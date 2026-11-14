@@ -26,7 +26,13 @@ import { openSiteFeedback } from "@/components/layout/FeedbackWidget";
 import { ComfortMenu } from "@/components/layout/ComfortMenu";
 import { LanguageSelector } from "@/components/layout/LanguageSelector";
 import { openReportIssue, reportIssueCopy } from "@/components/layout/ReportIssueWidget";
-import { NAV_LINK_ICONS, type NavLinkHref } from "@/components/layout/nav-links";
+import {
+  NAV_FULL_NAME_ON_WIDE,
+  NAV_LINK_ICONS,
+  NAV_ONLINE_DOCTOR_LABEL,
+  NAV_SHORT_LABELS,
+  type NavLinkHref,
+} from "@/components/layout/nav-links";
 import {
   capsuleDivider,
   capsuleItem,
@@ -56,9 +62,9 @@ const DRAWER_ROW_MOTION =
   "press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none";
 
 /**
- * Site header: six plain-text destinations on 2xl+ (including health mediators),
+ * Site header: six one-word destinations on xl+ (including health mediators),
  * compact utility actions (search trigger, comfort menu, language ISO selector,
- * 44px account link) from md+ upward, and below 2xl a focus-trapped menu drawer.
+ * 44px account link) from md+ upward, and below xl a focus-trapped menu drawer.
  */
 export function Header() {
   const headerRef = useRef<HTMLElement>(null);
@@ -145,7 +151,7 @@ export function Header() {
     document.body.style.overflow = "hidden";
 
     const fit = () => {
-      if (window.innerWidth >= 1536) {
+      if (window.innerWidth >= 1280) {
         setOpenDrawerSection(null);
         setMobileOpen(false);
         return;
@@ -220,18 +226,25 @@ export function Header() {
     menuButtonRef.current?.focus();
   };
 
-  const primaryLinks: { label: string; href: NavLinkHref; subtext: string }[] = [
-    { label: tHeader.navAfla, href: "/health-information", subtext: tHeader.navAflaSub },
+  // Ordered by need: get help now, find care nearby, talk to a doctor, then reading.
+  // Pharmacies come before the doctor: for many people the pharmacy is the first stop.
+  const helpLinks: { label: string; href: NavLinkHref; subtext: string }[] = [
     { label: tHeader.navCere, href: "/health-assistant", subtext: tHeader.navCereSub },
-    // Pharmacies first: for many people the pharmacy is the first stop, before a doctor.
     { label: findHelpLinks(lang).nav, href: "/find-help", subtext: findHelpLinks(lang).navDescription },
     { label: tHeader.navMedic, href: "/medic-online", subtext: tHeader.navMedicSub },
+  ];
+  const readingLinks: { label: string; href: NavLinkHref; subtext: string }[] = [
+    { label: tHeader.navAfla, href: "/health-information", subtext: tHeader.navAflaSub },
     { label: tHeader.navStiri, href: "/stiri", subtext: tHeader.navStiriSub },
   ];
 
+  const primaryLinks = [...helpLinks, ...readingLinks];
+
+  // The desktop bar keeps the people who help together: mediators sit with the help links, before reading.
   const desktopLinks: { label: string; href: NavLinkHref; subtext: string }[] = [
-    ...primaryLinks,
+    ...helpLinks,
     { label: tHeader.forMediators, href: "/mediatori", subtext: tHeader.forMediatorsSub },
+    ...readingLinks,
   ];
 
   const isGuidanceRoute =
@@ -284,11 +297,19 @@ export function Header() {
               label={chrome.homeLink}
             />
 
-            {/* Desktop destinations (from 1536px: six plain links fit cleanly alongside utilities in all 7 locales) */}
-            <nav aria-label={chrome.primaryNav} className="hidden min-w-0 2xl:block">
+            {/* Desktop destinations (from 1280px: six one-word links fit alongside the utilities in all 7 locales) */}
+            <nav aria-label={chrome.primaryNav} className="hidden min-w-0 xl:block">
               <ul className="flex items-center gap-0.5">
                 {desktopLinks.map((link) => {
                   const isActive = isActiveHref(link.href);
+                  const shortLabel = (NAV_SHORT_LABELS[lang] ?? NAV_SHORT_LABELS.ro)[link.href];
+                  // One word from 1280px; from 1536px the unclear names get their second word.
+                  const wideLabel =
+                    link.href === "/medic-online"
+                      ? (NAV_ONLINE_DOCTOR_LABEL[lang] ?? NAV_ONLINE_DOCTOR_LABEL.ro)
+                      : NAV_FULL_NAME_ON_WIDE.includes(link.href)
+                        ? link.label
+                        : shortLabel;
 
                   return (
                     <li key={link.href}>
@@ -296,8 +317,9 @@ export function Header() {
                         href={withLangPrefix(link.href, lang)}
                         onClick={() => setOpenHeaderMenu(null)}
                         aria-current={isActive ? "page" : undefined}
+                        title={link.label}
                         className={cn(
-                          "tab-ink relative flex min-h-11 flex-col justify-center rounded-lg px-2 py-1.5 min-[1400px]:px-3 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
+                          "tab-ink relative flex min-h-11 flex-col justify-center rounded-lg px-2.5 py-1.5 min-[1400px]:px-3 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
                           isTransparent
                             ? isActive
                               ? "font-semibold text-white focus-visible:ring-paper/70"
@@ -307,8 +329,15 @@ export function Header() {
                               : "font-medium text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
                         )}
                       >
-                        <span className="whitespace-nowrap text-body">{link.label}</span>
-                        <span className="sr-only">{link.subtext}</span>
+                        <span aria-hidden="true" className="whitespace-nowrap text-[0.9375rem] 2xl:hidden">
+                          {shortLabel}
+                        </span>
+                        <span aria-hidden="true" className="hidden whitespace-nowrap text-[0.9375rem] 2xl:inline">
+                          {wideLabel}
+                        </span>
+                        <span className="sr-only">
+                          {link.label} — {link.subtext}
+                        </span>
                       </Link>
                     </li>
                   );
@@ -332,7 +361,7 @@ export function Header() {
                   data-capsule-item=""
                   data-search-trigger=""
                   data-testid="header-search-trigger"
-                  className={cn(capsuleItem(isTransparent), "pl-3.5 pr-3 text-body")}
+                  className={cn(capsuleItem(isTransparent), "pl-3.5 pr-3 text-[0.9375rem]")}
                 >
                   <SearchIcon className="h-4.5 w-4.5 shrink-0 opacity-85" aria-hidden="true" />
                   <span>{searchCopy.triggerLabel}</span>
@@ -367,7 +396,7 @@ export function Header() {
                 />
                 <span aria-hidden="true" className={capsuleDivider(isTransparent)} />
 
-                {/* Direct 1-click Account and PWA install/update peer segments inside the capsule. */}
+                {/* Account is one click away. Install lives on the account screen and in the menu, not in the bar. */}
                 <Link
                   href={withLangPrefix(portalLink.href, lang)}
                   onClick={() => setOpenHeaderMenu(null)}
@@ -379,32 +408,6 @@ export function Header() {
                 >
                   <UserIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
                 </Link>
-
-                <button
-                  type="button"
-                  disabled={!showInstallTrigger && pwa.isRefreshing}
-                  onClick={() => {
-                    setOpenHeaderMenu(null);
-                    if (showInstallTrigger) {
-                      void openPwaInstall();
-                    } else {
-                      void applyPwaUpdate();
-                    }
-                  }}
-                  aria-label={pwaTriggerLabel}
-                  title={pwaTriggerLabel}
-                  data-capsule-item=""
-                  className={cn(
-                    capsuleItem(isTransparent, pwa.hasUpdate),
-                    "w-11 disabled:cursor-wait disabled:opacity-70",
-                  )}
-                >
-                  {showInstallTrigger ? (
-                    <DownloadIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-                  ) : (
-                    <RefreshIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-                  )}
-                </button>
               </div>
 
               {/* Mobile comfort control (search lives as the first row inside the drawer) */}
@@ -414,7 +417,7 @@ export function Header() {
                 </div>
               )}
 
-              {/* Menu button (phones, tablets and laptops below 2xl) */}
+              {/* Menu button (phones, tablets and small laptops below xl) */}
               <button
                 ref={menuButtonRef}
                 type="button"
@@ -423,7 +426,7 @@ export function Header() {
                 title={mobileOpen ? tHeader.closeMenu : tHeader.openMenu}
                 className={cn(
                   capsuleItem(isTransparent, mobileOpen),
-                  "gap-1.5 px-2.5 whitespace-nowrap text-meta font-semibold max-[359px]:gap-1 max-[359px]:px-2 2xl:hidden",
+                  "gap-1.5 px-2.5 whitespace-nowrap text-meta font-semibold max-[359px]:gap-1 max-[359px]:px-2 xl:hidden",
                 )}
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
@@ -453,7 +456,7 @@ export function Header() {
           onClick={closeMobileAndRestoreFocus}
           style={{ top: "var(--site-header-h, 4rem)" }}
           className={cn(
-            "fixed inset-x-0 bottom-0 z-40 bg-ink-950/45 transition-[opacity,visibility] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none print:hidden 2xl:hidden",
+            "fixed inset-x-0 bottom-0 z-40 bg-ink-950/45 transition-[opacity,visibility] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none print:hidden xl:hidden",
             mobileOpen ? "visible opacity-100" : "pointer-events-none invisible opacity-0",
           )}
         />
@@ -468,7 +471,7 @@ export function Header() {
           inert={!mobileOpen}
           style={{ height: drawerHeight ?? "calc(100dvh - var(--site-header-h, 4rem))" }}
           className={cn(
-            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain border-t border-border bg-paper text-foreground shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-950 dark:text-paper print:hidden 2xl:hidden",
+            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain border-t border-border bg-paper text-foreground shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-950 dark:text-paper print:hidden xl:hidden",
             "transition-[opacity,translate,visibility] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
             mobileOpen
               ? "visible translate-y-0 opacity-100"
