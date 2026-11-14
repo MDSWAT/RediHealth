@@ -431,6 +431,63 @@ describe("/api/tts route handlers", () => {
     expect(firstHeaders["Ocp-Apim-Subscription-Key"]).toBe("expired-primary-key");
     expect(secondHeaders["Ocp-Apim-Subscription-Key"]).toBe("secondary-secret-key");
   });
+
+  it("streams audio/mpeg directly when Accept includes audio/mpeg and hits cache on repeat call", async () => {
+    process.env.AZURE_SPEECH_KEY = "azure-secret-key";
+    process.env.AZURE_SPEECH_REGION = "westeurope";
+
+    const uniqueText = `Direct stream test ${Date.now()}-${Math.random()}`;
+    const expectedHash = trackTempHash(
+      computeTtsHash({
+        voice: "ro-RO-AlinaNeural",
+        text: uniqueText,
+      }),
+    );
+
+    const fakeMp3 = Uint8Array.from([0xff, 0xfb, 0x90, 0x64, 0x77, 0x88, 0x99]);
+    const fetchMock = vi.fn<typeof fetch>().mockResolvedValue(
+      new Response(fakeMp3, {
+        status: 200,
+        headers: { "Content-Type": "audio/mpeg" },
+      }),
+    );
+    globalThis.fetch = fetchMock;
+
+    const firstRes = await POST(
+      new Request("http://localhost/api/tts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "audio/mpeg, application/json;q=0.9",
+        },
+        body: JSON.stringify({ text: uniqueText, lang: "ro" }),
+      }),
+    );
+    expect(firstRes.status).toBe(200);
+    expect(firstRes.headers.get("Content-Type")).toBe("audio/mpeg");
+    expect(firstRes.headers.get("X-TTS-Hash")).toBe(expectedHash);
+    expect(firstRes.headers.get("X-TTS-Voice")).toBe("ro-RO-AlinaNeural");
+    expect(firstRes.headers.get("X-TTS-Cached")).toBe("0");
+    expect(Buffer.compare(Buffer.from(await firstRes.arrayBuffer()), Buffer.from(fakeMp3))).toBe(0);
+
+    const secondRes = await POST(
+      new Request("http://localhost/api/tts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "audio/mpeg, application/json;q=0.9",
+        },
+        body: JSON.stringify({ text: uniqueText, lang: "ro" }),
+      }),
+    );
+    expect(secondRes.status).toBe(200);
+    expect(secondRes.headers.get("Content-Type")).toBe("audio/mpeg");
+    expect(secondRes.headers.get("X-TTS-Hash")).toBe(expectedHash);
+    expect(secondRes.headers.get("X-TTS-Voice")).toBe("ro-RO-AlinaNeural");
+    expect(secondRes.headers.get("X-TTS-Cached")).toBe("1");
+    expect(Buffer.compare(Buffer.from(await secondRes.arrayBuffer()), Buffer.from(fakeMp3))).toBe(0);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe("findBestVoice ranking and zero cross-language fallback", () => {
@@ -780,5 +837,104 @@ describe("Sentence splitting, quiz spoiler guard, player lifecycle, and endReaso
 
     const topicDetail = readRepoFile("src/components/health-information/TopicDetailPageContent.tsx");
     expect(topicDetail).toMatch(/closeAudioPlayer\s*=\s*useCallback\(\(\)\s*=>\s*\{[\s\S]*setIsAudioPlayerOpen\(false\)[\s\S]*setActiveSentenceIndex\(null\)/);
+  });
+
+  it("streams single-hop audio/mpeg via shared Audio element and reuses client blob cache on repeat speak", async () => {
+    const audioInstances: Array<{
+      src: string;
+      preload: string;
+      playbackRate: number;
+      currentTime: number;
+      onplay: (() => void) | null;
+      ontimeupdate: (() => void) | null;
+      onended: (() => void) | null;
+      onerror: (() => void) | null;
+      pause: ReturnType<typeof vi.fn>;
+      play: ReturnType<typeof vi.fn>;
+    }> = [];
+
+    class MockAudio {
+      src = "";
+      preload = "";
+      playbackRate = 1;
+      currentTime = 0;
+      onplay: (() => void) | null = null;
+      ontimeupdate: (() => void) | null = null;
+      onended: (() => void) | null = null;
+      onerror: (() => void) | null = null;
+      pause = vi.fn();
+      play = vi.fn(async () => {
+        this.onplay?.();
+      });
+      constructor() {
+        audioInstances.push(this);
+      }
+    }
+
+    vi.stubGlobal("window", {});
+    vi.stubGlobal("Audio", MockAudio);
+
+    const fakeMp3 = Uint8Array.from([0xff, 0xfb, 0x90, 0x64, 0x11, 0x22, 0x33]);
+    let postCount = 0;
+    let lastAcceptHeader = "";
+    globalThis.fetch = vi.fn<typeof fetch>(async (input, init) => {
+      const url = typeof input === "string" ? input : input instanceof Request ? input.url : String(input);
+      const method = (init?.method ?? "GET").toUpperCase();
+      if (url.endsWith("/api/tts") && method === "GET") {
+        return new Response(JSON.stringify({ configured: true }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+      if (url.endsWith("/api/tts") && method === "POST") {
+        postCount += 1;
+        const headers = new Headers(init?.headers);
+        lastAcceptHeader = headers.get("accept") ?? "";
+        return new Response(fakeMp3, {
+          status: 200,
+          headers: { "Content-Type": "audio/mpeg" },
+        });
+      }
+      throw new Error(`Unexpected fetch: ${method} ${url}`);
+    });
+
+    const engine = HealthSpeechEngine.getInstance();
+    engine.resetForTests();
+    await engine.probeNeuralServer();
+
+    let endCount = 0;
+    engine.speak("Text pentru citire.", {
+      lang: "ro-RO",
+      onEnd: () => {
+        endCount += 1;
+      },
+    });
+
+    await vi.waitFor(() => {
+      expect(audioInstances).toHaveLength(1);
+      expect(audioInstances[0]?.play).toHaveBeenCalledTimes(1);
+    });
+
+    expect(postCount).toBe(1);
+    expect(lastAcceptHeader.toLowerCase()).toContain("audio/mpeg");
+    expect(audioInstances[0]?.src).toMatch(/^blob:/);
+
+    audioInstances[0]?.onended?.();
+    expect(endCount).toBe(1);
+
+    engine.speak("Text pentru citire.", {
+      lang: "ro-RO",
+      onEnd: () => {
+        endCount += 1;
+      },
+    });
+
+    await vi.waitFor(() => {
+      expect(audioInstances[0]?.play).toHaveBeenCalledTimes(2);
+    });
+
+    expect(audioInstances).toHaveLength(1);
+    expect(audioInstances[0]?.src).toMatch(/^blob:/);
+    expect(postCount).toBe(1);
   });
 });

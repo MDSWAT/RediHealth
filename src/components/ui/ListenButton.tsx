@@ -104,6 +104,12 @@ export function ListenButton({
   const playing = controlled ? isPlayingProp : isPlayingLocal;
 
   useEffect(() => {
+    if (voiceAvailable) {
+      void speechEngine.probeNeuralServer();
+    }
+  }, [voiceAvailable]);
+
+  useEffect(() => {
     return () => {
       if (playingLocalRef.current) {
         speechEngine.stop();

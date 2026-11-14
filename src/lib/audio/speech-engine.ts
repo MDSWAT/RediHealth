@@ -67,6 +67,7 @@ const PREFERRED_REGIONAL_TAGS: Record<string, string[]> = {
 };
 
 const MAX_NEURAL_SEGMENT_CHARS = 4000;
+const MAX_CLIENT_AUDIO_BLOBS = 64;
 
 type SpeechPrefix = "ro" | "en" | "sq" | "it" | "hr" | "ru";
 type InflectableUnit = "mg" | "mcg" | "ml" | "kg" | "g" | "celsius" | "percent";
@@ -569,6 +570,8 @@ export class HealthSpeechEngine {
   private activeUtterances: Set<SpeechSynthesisUtterance> = new Set();
   private currentUtterance: SpeechSynthesisUtterance | null = null;
   private currentAudioElement: HTMLAudioElement | null = null;
+  private sharedAudioElement: HTMLAudioElement | null = null;
+  private blobUrlCache: Map<string, string> = new Map();
   private playbackAbortController: AbortController | null = null;
 
   private activeTier: SpeechTier = "webspeech";
@@ -693,6 +696,8 @@ export class HealthSpeechEngine {
   public resetForTests(): void {
     this.listeners = {};
     this.stop();
+    this.clearBlobUrlCache();
+    this.sharedAudioElement = null;
     this.neuralServerAvailable = null;
     this.probePromise = null;
     this.playbackRate = 1.0;
@@ -772,6 +777,65 @@ export class HealthSpeechEngine {
     audio.ontimeupdate = null;
     audio.onended = null;
     audio.onerror = null;
+  }
+
+  private primeSharedAudioElement(): void {
+    if (typeof Audio === "undefined") return;
+    try {
+      if (!this.sharedAudioElement) {
+        this.sharedAudioElement = new Audio();
+        this.sharedAudioElement.preload = "auto";
+      }
+    } catch {
+      // Safe fallback when Audio constructor is unavailable
+    }
+  }
+
+  private getCachedBlobUrl(key: string): string | null {
+    const existing = this.blobUrlCache.get(key);
+    if (!existing) return null;
+    this.blobUrlCache.delete(key);
+    this.blobUrlCache.set(key, existing);
+    return existing;
+  }
+
+  private storeBlobUrl(key: string, url: string): void {
+    const previous = this.blobUrlCache.get(key);
+    if (previous) {
+      this.blobUrlCache.delete(key);
+      if (previous !== url && this.currentAudioElement?.src !== previous) {
+        try {
+          URL.revokeObjectURL?.(previous);
+        } catch {
+          // Safe cleanup
+        }
+      }
+    }
+    this.blobUrlCache.set(key, url);
+    while (this.blobUrlCache.size > MAX_CLIENT_AUDIO_BLOBS) {
+      const oldest = this.blobUrlCache.entries().next().value;
+      if (!oldest) break;
+      const [oldestKey, oldestUrl] = oldest;
+      this.blobUrlCache.delete(oldestKey);
+      if (this.currentAudioElement?.src !== oldestUrl) {
+        try {
+          URL.revokeObjectURL?.(oldestUrl);
+        } catch {
+          // Safe cleanup
+        }
+      }
+    }
+  }
+
+  private clearBlobUrlCache(): void {
+    for (const url of this.blobUrlCache.values()) {
+      try {
+        URL.revokeObjectURL?.(url);
+      } catch {
+        // Safe cleanup
+      }
+    }
+    this.blobUrlCache.clear();
   }
 
   public stop(): void {
@@ -943,6 +1007,10 @@ export class HealthSpeechEngine {
 
     const currentRun = ++this.runId;
 
+    if (Boolean(options.mp3FallbackUrl) || this.neuralServerAvailable !== false) {
+      this.primeSharedAudioElement();
+    }
+
     // (a) Explicit MP3 URL takes precedence, falling back to Web Speech if audio fails
     if (options.mp3FallbackUrl) {
       this.playStaticMp3Queue(normalized, lang, options.mp3FallbackUrl, currentRun);
@@ -1064,13 +1132,26 @@ export class HealthSpeechEngine {
     signal: AbortSignal,
     expectedRun: number,
   ): Promise<Mp3FetchResult> {
+    if (signal.aborted || this.runId !== expectedRun) {
+      return { kind: "aborted" };
+    }
+
+    const cacheKey = `${lang.toLowerCase().trim()}|${segmentText.trim()}`;
+    const cachedBlobUrl = this.getCachedBlobUrl(cacheKey);
+    if (cachedBlobUrl) {
+      return { kind: "ok", url: cachedBlobUrl };
+    }
+
     try {
       if (typeof fetch !== "function") {
         return { kind: "fallback" };
       }
       const res = await fetch("/api/tts", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "audio/mpeg, application/json;q=0.9",
+        },
         body: JSON.stringify({ text: segmentText, lang }),
         signal,
       });
@@ -1082,6 +1163,27 @@ export class HealthSpeechEngine {
         return { kind: "unconfigured" };
       }
       if (res.status === 429 || !res.ok) {
+        return { kind: "fallback" };
+      }
+
+      const contentType = (res.headers?.get?.("content-type") ?? "").toLowerCase();
+      if (contentType.includes("audio/")) {
+        const buf = await res.arrayBuffer();
+        if (signal.aborted || this.runId !== expectedRun) {
+          return { kind: "aborted" };
+        }
+        if (buf.byteLength === 0) {
+          return { kind: "fallback" };
+        }
+        if (
+          typeof Blob !== "undefined" &&
+          typeof URL !== "undefined" &&
+          typeof URL.createObjectURL === "function"
+        ) {
+          const objectUrl = URL.createObjectURL(new Blob([buf], { type: "audio/mpeg" }));
+          this.storeBlobUrl(cacheKey, objectUrl);
+          return { kind: "ok", url: objectUrl };
+        }
         return { kind: "fallback" };
       }
 
@@ -1208,7 +1310,10 @@ export class HealthSpeechEngine {
       if (typeof Audio === "undefined") {
         throw new Error("Audio constructor unavailable");
       }
-      const audio = new Audio(url);
+      const audio = this.sharedAudioElement ?? new Audio();
+      this.sharedAudioElement = audio;
+      this.clearAudioHandlers(audio);
+      audio.src = url;
       this.currentAudioElement = audio;
       audio.playbackRate = this.playbackRate;
 

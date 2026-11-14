@@ -107,10 +107,24 @@ export async function POST(request: NextRequest | Request) {
   }
 
   try {
-    const { hash, voice, cached } = await synthesizeAzureMp3({
+    const { audio, hash, voice, cached } = await synthesizeAzureMp3({
       lang: resolvedLang,
       text: rawText,
     });
+    const accept = request.headers.get("accept")?.toLowerCase() ?? "";
+    if (accept.includes("audio/mpeg")) {
+      return new Response(new Uint8Array(audio), {
+        status: 200,
+        headers: {
+          "Content-Type": "audio/mpeg",
+          "Content-Length": String(audio.byteLength),
+          "Cache-Control": "private, max-age=86400",
+          "X-TTS-Hash": hash,
+          "X-TTS-Voice": voice,
+          "X-TTS-Cached": cached ? "1" : "0",
+        },
+      });
+    }
     return Response.json({
       hash,
       url: getPublicTtsUrl(hash),
