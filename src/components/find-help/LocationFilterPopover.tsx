@@ -9,6 +9,8 @@ import { REGIONAL_CITY_PRESETS, type CityPreset } from "@/lib/i18n/find-help-tra
 export interface LocationFilterPopoverProps {
   id?: string;
   defaultOpen?: boolean;
+  /** Renders a single-line value inside the trigger when an external label sits above it (e.g. mobile sheet). */
+  hideLabel?: boolean;
   label: string;
   displayValue: string;
   activeCountry: CountryCode;
@@ -35,6 +37,7 @@ export interface LocationFilterPopoverProps {
 export function LocationFilterPopover({
   id,
   defaultOpen = false,
+  hideLabel = false,
   label,
   displayValue,
   activeCountry,
@@ -149,6 +152,7 @@ export function LocationFilterPopover({
         aria-expanded={open}
         aria-controls={panelId}
         aria-label={`${label}: ${displayValue}`}
+        title={`${label}: ${displayValue}`}
         onClick={() => {
           if (!open) {
             shouldAutoFocusOnOpenRef.current = true;
@@ -156,14 +160,20 @@ export function LocationFilterPopover({
           setOpen((prev) => !prev);
         }}
         className={cn(
-          "min-h-12 w-full max-w-full press-row flex items-center gap-2.5 whitespace-nowrap rounded-xl border px-3.5 py-2 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          "press-row flex min-h-12 w-full max-w-full items-center gap-2 whitespace-nowrap rounded-(--radius-control) border px-3.5 py-2 text-left text-body shadow-(--shadow-card-rest) transition-[border-color,background-color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-foreground/40 hover:bg-muted/70 hover:shadow-(--shadow-card-hover) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           open ? "border-sapphire bg-sapphire-soft/25 dark:bg-white/6" : "border-border-control bg-card",
         )}
       >
-        <PinIcon className="h-5 w-5 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
-        <span className="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-1.5 gap-y-0.5 text-meta">
-          <span className="hidden shrink-0 text-muted-foreground sm:inline">{label}:</span>
-          <span className="whitespace-normal font-semibold text-foreground">{displayValue}</span>
+        <PinIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
+        <span className="min-w-0 flex-1">
+          {hideLabel ? (
+            <span className="block truncate text-body font-semibold text-foreground">{displayValue}</span>
+          ) : (
+            <span className="flex min-w-0 items-baseline gap-1.5 truncate text-body">
+              <span className="hidden shrink-0 font-normal text-muted-foreground sm:inline">{label}:</span>
+              <span className="min-w-0 truncate font-semibold text-foreground">{displayValue}</span>
+            </span>
+          )}
         </span>
         <ChevronDownIcon
           className={cn(

@@ -155,10 +155,15 @@ describe("FindHelp location popover, inline FilterDropdown, and filter toolbar",
       const closedButtons = assertCleanButtons(closedCityHtml, `${lang} closed LocationFilterPopover`);
       expect(closedButtons).toHaveLength(1);
       expect(closedButtons[0].attrs).toContain("min-h-12");
+      expect(closedButtons[0].attrs).toContain("rounded-(--radius-control)");
       expect(closedButtons[0].attrs).toContain('aria-expanded="false"');
       expect(closedButtons[0].attrs).toContain(`aria-label="${copy.locationLabel}: ${cityDisplay}"`);
       expect(closedCityHtml).toContain(`${copy.locationLabel}:`);
       expect(closedCityHtml).toContain(cityDisplay);
+      expect(closedCityHtml).toContain("items-baseline");
+      expect(closedCityHtml).toContain("text-body");
+      expect(closedCityHtml).not.toContain("whitespace-normal");
+      expect(closedCityHtml).not.toContain("flex-wrap items-baseline");
 
       // Closed state with Country-only trigger value
       const closedCountryHtml = renderToStaticMarkup(
@@ -312,10 +317,12 @@ describe("FindHelp location popover, inline FilterDropdown, and filter toolbar",
       );
 
       expect(html).toContain("min-h-12");
+      expect(html).toContain("rounded-(--radius-control)");
       expect(html).toContain("border-border-control");
       expect(html).toContain("focus-visible:ring-ring");
       expect(html).toContain("whitespace-nowrap");
       expect(html).toContain("items-baseline");
+      expect(html).toContain("text-body");
       expect(html).toContain(`${copy.categoryLabel}:`);
       expect(html).toContain(copy.allCategories);
       expect(html).not.toContain("rounded-full");
@@ -529,11 +536,17 @@ describe("FindHelp location popover, inline FilterDropdown, and filter toolbar",
       }),
     ).toBe("200 m away (~3 min walk)");
 
+    expect(findHelpTranslations.ro.resultsCount(0)).toBe("0 locuri");
+    expect(findHelpTranslations.ro.resultsCount(1)).toBe("1 loc");
+    expect(findHelpTranslations.ro.resultsCount(5)).toBe("5 locuri");
+    expect(findHelpTranslations.ro.resultsCount(20)).toBe("20 de locuri");
+    expect(findHelpTranslations.ro.resultsCount(100)).toBe("100 de locuri");
+
     const explorerSrc = readSrc("src/components/find-help/FindHelpExplorer.tsx");
     expect(explorerSrc).toContain("useSheetDialog(filterSheetOpen");
     expect(explorerSrc).toContain("sheet-in");
     expect(explorerSrc).toContain(
-      "xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,0.85fr)_auto_auto]",
+      "xl:grid-cols-[minmax(0,1.2fr)_minmax(0,1.25fr)_minmax(0,0.75fr)_auto_auto]",
     );
     expect(readSrc("src/components/find-help/LocationFilterPopover.tsx")).toContain(
       "event.stopPropagation();",

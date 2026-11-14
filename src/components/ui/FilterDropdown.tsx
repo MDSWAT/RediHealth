@@ -78,19 +78,20 @@ export function FilterDropdown({
         aria-expanded={open}
         aria-controls={panelId}
         aria-label={`${label}: ${value}`}
+        title={`${label}: ${value}`}
         onClick={() => setOpen((prev) => !prev)}
         className={cn(
-          "press-row flex min-h-12 w-full max-w-full items-center gap-2.5 whitespace-nowrap rounded-xl border px-3.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-          open ? "border-sapphire bg-card" : "border-border-control bg-card",
+          "press-row flex min-h-12 w-full max-w-full items-center gap-2 whitespace-nowrap rounded-(--radius-control) border px-3.5 py-2 text-left text-body shadow-(--shadow-card-rest) transition-[border-color,background-color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-foreground/40 hover:bg-muted/70 hover:shadow-(--shadow-card-hover) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          open ? "border-sapphire bg-sapphire-soft/25 dark:bg-white/6" : "border-border-control bg-card",
         )}
       >
-        {icon ? <span className="shrink-0 text-sapphire">{icon}</span> : null}
+        {icon ? <span className="shrink-0 text-sapphire dark:text-sapphire-border">{icon}</span> : null}
         <span className="min-w-0 flex-1">
           {hideLabel ? (
             <span className="block truncate text-body font-semibold text-foreground">{value}</span>
           ) : inlineLabel ? (
-            <span className="flex min-w-0 items-baseline gap-1.5 truncate text-meta">
-              <span className="hidden shrink-0 text-muted-foreground sm:inline">{label}:</span>
+            <span className="flex min-w-0 items-baseline gap-1.5 truncate text-body">
+              <span className="hidden shrink-0 font-normal text-muted-foreground sm:inline">{label}:</span>
               <span className="min-w-0 truncate font-semibold text-foreground">{value}</span>
             </span>
           ) : (
@@ -102,7 +103,7 @@ export function FilterDropdown({
         </span>
         <ChevronDownIcon
           className={cn(
-            "h-4 w-4 shrink-0 text-muted-foreground motion-safe:transition-transform motion-safe:duration-[var(--dur-fast)]",
+            "h-4 w-4 shrink-0 text-muted-foreground motion-safe:transition-transform motion-safe:duration-[var(--dur-fast)] motion-reduce:transition-none",
             open && "rotate-180",
           )}
           aria-hidden="true"

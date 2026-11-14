@@ -411,9 +411,15 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
         : remaining % 100 === 0 || remaining % 100 >= 20
           ? `Arată încă ${remaining} de locuri`
           : `Arată încă ${remaining} locuri`,
-    // Romanian plural: 1 loc, 2–19 locuri, 20+ (and x00) „de locuri”.
+    // Romanian plural: 0 locuri, 1 loc, 2–19 locuri, 20+ (and non-zero x00) „de locuri”.
     resultsCount: (count) =>
-      count === 1 ? "1 loc" : count % 100 === 0 || count % 100 >= 20 ? `${count} de locuri` : `${count} locuri`,
+      count === 0
+        ? "0 locuri"
+        : count === 1
+          ? "1 loc"
+          : count % 100 === 0 || count % 100 >= 20
+            ? `${count} de locuri`
+            : `${count} locuri`,
     nearPlace: (place) => `Lângă ${place}`,
     allPlaces: "toate locurile",
     change: "Schimbă",

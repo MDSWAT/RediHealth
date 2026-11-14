@@ -364,10 +364,10 @@ function FilterToggleButton({
       type="button"
       aria-pressed={checked}
       onClick={onToggle}
-      className={`inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-xl border px-3.5 py-2 text-body transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+      className={`inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-(--radius-control) border px-3.5 py-2 text-body font-semibold transition-[color,background-color,border-color,box-shadow,filter] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
         checked
-          ? "press-solid border-sapphire bg-sapphire font-semibold text-white shadow-2xs hover:border-sapphire-light hover:bg-sapphire-light"
-          : "press-row border-border-control bg-card font-medium text-foreground hover:border-sapphire hover:bg-sapphire-soft/35"
+          ? "press-solid border-sapphire bg-sapphire text-white shadow-(--hairline-refraction) hover:border-sapphire-light hover:bg-sapphire-light"
+          : "press-row border-border-control bg-card text-foreground shadow-(--shadow-card-rest) hover:border-foreground/40 hover:bg-muted/70 hover:shadow-(--shadow-card-hover) active:bg-muted"
       }`}
     >
       {renderIcon(checked)}
@@ -842,7 +842,7 @@ export function FindHelpExplorer({
         className={
           isSheet
             ? "flex flex-col gap-4"
-            : "grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,0.85fr)] xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,0.85fr)_auto_auto] xl:items-end"
+            : "grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1.25fr)_minmax(0,0.75fr)] lg:items-center xl:grid-cols-[minmax(0,1.2fr)_minmax(0,1.25fr)_minmax(0,0.75fr)_auto_auto]"
         }
       >
         <form
@@ -852,7 +852,10 @@ export function FindHelpExplorer({
           className={isSheet ? "min-w-0" : "col-span-1 min-w-0 sm:col-span-2 lg:col-span-1"}
           role="search"
         >
-          <label htmlFor={searchId} className="mb-1.5 block text-meta font-medium text-foreground">
+          <label
+            htmlFor={searchId}
+            className={isSheet ? "mb-1.5 block text-meta font-medium text-foreground" : "sr-only"}
+          >
             {copy.searchPlaceholder}
           </label>
           <div className="relative min-w-0">
@@ -866,8 +869,9 @@ export function FindHelpExplorer({
                 setSearchInput(next);
                 if (!next) setSearch("");
               }}
-              placeholder={copy.searchHint}
-              className={`field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-background/60 pl-10 text-body placeholder:text-muted-foreground hover:bg-card focus-visible:bg-card dark:bg-ink-950/40 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
+              placeholder={isSheet ? copy.searchHint : copy.searchPlaceholder}
+              title={copy.searchPlaceholder}
+              className={`field-focus peer min-h-12 w-full rounded-(--radius-control) border border-border-control bg-card py-2 pl-10 text-body text-foreground shadow-(--shadow-card-rest) motion-reduce:transition-none placeholder:text-muted-foreground dark:bg-ink-950/40 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
                 searchInput ? "pr-12" : "pr-3.5"
               }`}
             />
@@ -898,6 +902,7 @@ export function FindHelpExplorer({
             <p className="mb-1.5 text-meta font-medium text-foreground">{copy.locationLabel}</p>
           ) : null}
           <LocationFilterPopover
+            hideLabel={isSheet}
             label={copy.locationLabel}
             displayValue={locationValue}
             activeCountry={activeCountry}
@@ -924,7 +929,7 @@ export function FindHelpExplorer({
           <FilterDropdown
             label={copy.categoryLabel}
             value={category ? copy.categories[category] : copy.allCategories}
-            icon={<CategoryIcon category={category} className="h-5 w-5" />}
+            icon={<CategoryIcon category={category} className="h-4 w-4" />}
             align={isSheet ? "left" : "right"}
             hideLabel={isSheet}
             inlineLabel={!isSheet}
@@ -999,7 +1004,7 @@ export function FindHelpExplorer({
       {emergencyOnly && (
         <div
           role="note"
-          className="rounded-xl border border-sapphire/25 bg-sapphire-soft/60 p-3.5 text-body text-foreground"
+          className="rounded-(--radius-control) border border-sapphire/25 bg-sapphire-soft/60 p-3.5 text-body text-foreground"
         >
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="flex-1">{copy.emergencyRightsCallout}</p>
@@ -1008,7 +1013,7 @@ export function FindHelpExplorer({
                 uiLang={lang}
                 isPlaying={activeSpeech === "rights"}
                 onToggle={toggleRightsSpeech}
-                className="shrink-0 self-start"
+                className="shrink-0 self-start sm:self-center"
               />
             )}
           </div>
@@ -1051,16 +1056,18 @@ export function FindHelpExplorer({
                 ) : null}
               </div>
             </div>
-            <button
+            <Button
               type="button"
+              variant="outline"
+              size="md"
               aria-haspopup="dialog"
               aria-expanded={filterSheetOpen}
               aria-label={`${copy.change}: ${mobileFilterSummary}`}
               onClick={() => setFilterSheetOpen(true)}
-              className="press-row inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-xl border border-border-control bg-card px-3.5 py-2 text-body font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
+              className="shrink-0"
             >
               {copy.change}
-            </button>
+            </Button>
           </div>
           {noticesBlock}
         </div>
@@ -1071,10 +1078,10 @@ export function FindHelpExplorer({
           {/* Calm, compact status and active-filter strip */}
           <div
             ref={statusRowRef}
-            className="mt-3 flex scroll-mt-[calc(var(--chrome-h,0px)+0.75rem)] flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border/70 pt-2.5"
+            className="mt-3 flex scroll-mt-[calc(var(--chrome-h,0px)+0.75rem)] flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border/70 pt-3"
           >
-            <p className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-meta text-muted-foreground">
-              <PinIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" aria-hidden="true" />
+            <p className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-body text-muted-foreground">
+              <PinIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
               <span>
                 {gpsActive
                   ? copy.locationActive
@@ -1088,7 +1095,7 @@ export function FindHelpExplorer({
               </span>
               {!isColdLoad && !error ? (
                 <>
-                  <span aria-hidden="true" className="h-3.5 w-px bg-border" />
+                  <span aria-hidden="true" className="h-4 w-px bg-border" />
                   <span role="status" className="tabular-nums text-muted-foreground">
                     {loading ? copy.loading : copy.resultsCount(displayedInstitutes.length)}
                   </span>
@@ -1099,24 +1106,26 @@ export function FindHelpExplorer({
             {(area.kind === "point" || filtered) && (
               <div className="flex flex-wrap items-center gap-2">
                 {area.kind === "point" && (
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
+                    size="md"
                     onClick={() => chooseCountry(activeCountry)}
-                    className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg border border-border-control bg-card px-3 py-1.5 text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {copy.wholeCountryOption(copy.countries[activeCountry])}
-                  </button>
+                  </Button>
                 )}
 
                 {filtered && (
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
+                    size="md"
                     onClick={clearFilters}
-                    className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-border-control bg-card px-3 py-1.5 text-body font-medium text-sapphire press-row whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <XIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    <XIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
                     <span>{copy.clearFilters}</span>
-                  </button>
+                  </Button>
                 )}
               </div>
             )}
@@ -1540,14 +1549,17 @@ export function FindHelpExplorer({
             </a>
           </div>
 
-          <button
+          <Button
             type="button"
+            variant="outline"
+            size="lg"
+            fullWidth
             onClick={() => switchMobileView("list", selectedId)}
-            className="press-row mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none lg:hidden"
+            className="mt-4 lg:hidden"
           >
-            <ListViewIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+            <ListViewIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
             <span>{copy.viewList}</span>
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -1635,40 +1647,44 @@ export function FindHelpExplorer({
                 {(area.kind === "point" || filtered) && (
                   <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-border/70 pt-3">
                     {area.kind === "point" && (
-                      <button
+                      <Button
                         type="button"
+                        variant="outline"
+                        size="md"
                         onClick={() => chooseCountry(activeCountry)}
-                        className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-xl border border-border-control bg-card px-3 py-2 text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/50 hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
                         {copy.wholeCountryOption(copy.countries[activeCountry])}
-                      </button>
+                      </Button>
                     )}
 
                     {filtered && (
-                      <button
+                      <Button
                         type="button"
+                        variant="outline"
+                        size="md"
                         onClick={clearFilters}
-                        className="press-row inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-xl border border-border-control bg-card px-3 py-2 text-body font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/50 hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
-                        <XIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                        <XIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
                         <span>{copy.clearFilters}</span>
-                      </button>
+                      </Button>
                     )}
                   </div>
                 )}
               </div>
 
               <div className="border-t border-border/80 bg-card px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] dark:border-ink-800">
-                <button
+                <Button
                   type="button"
+                  variant="action"
+                  size="lg"
+                  fullWidth
                   onClick={() => {
                     setSearch(searchInput.trim());
                     closeFilterSheet();
                   }}
-                  className="press-solid inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-xl border border-sapphire bg-sapphire px-4 py-2 text-body font-semibold text-white shadow-2xs transition-[color,background-color,border-color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire-light hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
                 >
                   {loading ? copy.loading : copy.showPlaces(displayedInstitutes.length)}
-                </button>
+                </Button>
               </div>
             </div>
           </div>,

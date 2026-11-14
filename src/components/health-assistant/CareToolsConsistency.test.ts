@@ -167,7 +167,9 @@ describe("Care tools design-system consistency", () => {
     expect(explorer).toContain("inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-2.5 text-body");
 
     const findHelp = readSrc("src/components/find-help/FindHelpExplorer.tsx");
-    expect(findHelp).toContain("inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-border-control");
+    expect(findHelp).toContain("min-h-11");
+    expect(findHelp).toContain("border-border-control");
+    expect(findHelp).toContain("rounded-(--radius-control)");
     expect(findHelp).not.toContain("min-h-9");
   });
 
