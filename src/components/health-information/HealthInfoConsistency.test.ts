@@ -162,7 +162,9 @@ describe("health information, glossary, myth card, and topic grid design consist
     expect(tabsHtml).toContain(">24<");
     expect(tabsHtml).toContain(">16<");
     expect(tabsHtml).toContain("focus-visible:ring-ring");
-    expect(tabsHtml).not.toContain("rounded-full");
+    // The dictionary tabs are a two-way capsule switch: track, thumb and two options, nothing else.
+    expect(tabsHtml).toContain("data-capsule-switch");
+    expect(tabsHtml.split("rounded-full").length - 1).toBe(4);
   });
 
   it("uses neutral pre-answer buttons and semantic verdict tokens in TopicMythCard", () => {
@@ -229,6 +231,11 @@ describe("health information, glossary, myth card, and topic grid design consist
     expect(html).toContain("focus-visible:ring-ring");
     expect(html).toContain("press-row");
     expect(html).not.toContain("scale-[");
-    expect(html).not.toContain("rounded-full");
+    {
+      // Pill shapes are allowed only inside two-way capsule switches (track, thumb, two options).
+      const pillCount = html.split("rounded-full").length - 1;
+      const switchCount = html.split("data-capsule-switch").length - 1;
+      expect(pillCount).toBe(switchCount * 4);
+    }
   });
 });

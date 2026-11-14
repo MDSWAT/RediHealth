@@ -90,14 +90,13 @@ const QUOTES: Record<Lang, [string, string]> = {
 };
 
 const SPEECH_LANG: Record<Lang, string> = {
-ru: "ru-RU",
-
+  ru: "ru-RU",
   ro: "ro-RO",
-  en: "en-US",
+  en: "en-GB",
   sq: "sq-AL",
   it: "it-IT",
   hr: "hr-HR",
-  rom: "ro-RO",
+  rom: "rom",
 };
 
 const ANSWER_VALUES = [true, false] as const;
@@ -379,7 +378,11 @@ export function TrueFalseQuizSection({
                   </h3>
                   <InlineAudioNarratorButton
                     variant="ghost"
-                    textToSpeak={`${currentMyth.statement} ${currentMyth.explanation}`}
+                    textToSpeak={
+                      hasAnswered
+                        ? `${currentMyth.statement}. ${currentMyth.explanation}`
+                        : currentMyth.statement
+                    }
                     label={q.audioNarratorLabel}
                     lang={SPEECH_LANG[lang as Lang] ?? SPEECH_LANG.ro}
                     className="-mr-2 -mt-1 shrink-0"

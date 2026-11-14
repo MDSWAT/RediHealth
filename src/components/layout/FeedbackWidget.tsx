@@ -583,15 +583,15 @@ export function FeedbackWidget() {
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
             transition={reducedMotion ? { duration: 0 } : CLINICAL_SETTLE_SPRING}
-            className="feedback-invite-card max-lg:hidden fixed bottom-4 right-4 z-30 w-[24rem] overflow-hidden rounded-2xl border border-sapphire/25 bg-card text-foreground shadow-[0_18px_42px_-12px_rgba(15,23,42,0.24)] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
+            className="feedback-invite-card max-lg:hidden fixed bottom-4 right-4 z-30 w-[22rem] overflow-hidden rounded-(--radius-surface) border border-transparent bg-card text-foreground shadow-[0_20px_48px_-14px_rgba(15,23,42,0.34)] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
           >
             <div className="p-4">
               <div className="flex items-start justify-between gap-2.5">
                 <div className="min-w-0">
-                  <h2 className="text-body font-semibold leading-snug text-foreground dark:text-paper">
+                  <h2 className="text-base font-semibold leading-snug text-balance text-foreground dark:text-paper">
                     {t.inviteTitle}
                   </h2>
-                  <p className="mt-1 text-body leading-relaxed text-muted-foreground dark:text-mist">
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground dark:text-mist">
                     {t.inviteBody}
                   </p>
                 </div>
@@ -607,12 +607,12 @@ export function FeedbackWidget() {
               </div>
 
               {/* Instant 1–5 usefulness tap strip that jumps straight into Step 1 */}
-              <div className="mt-3">
-                <p className="text-body font-medium text-muted-foreground dark:text-mist">
+              <div className="mt-3.5">
+                <p className="text-sm font-medium text-foreground dark:text-paper">
                   {t.inviteQuickScaleHint}
                 </p>
                 <div
-                  className="mt-1.5 grid grid-cols-5 gap-1.5"
+                  className="mt-2 grid grid-cols-5 gap-1.5"
                   role="group"
                   aria-label={t.questions.rating_usefulness.question}
                 >
@@ -628,17 +628,17 @@ export function FeedbackWidget() {
                     </button>
                   ))}
                 </div>
-                <div className="mt-1.5 flex items-center justify-between gap-2 text-body text-muted-foreground dark:text-mist">
+                <div className="mt-1.5 flex items-center justify-between gap-2 text-[13px] text-muted-foreground dark:text-mist">
                   <span>{t.scaleLow}</span>
                   <span>{t.scaleHigh}</span>
                 </div>
               </div>
 
-              <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+              <div className="mt-3 -mb-1 flex flex-wrap items-center justify-between gap-2">
                 <button
                   type="button"
                   onClick={snoozeInvite}
-                  className="inline-flex min-h-11 items-center rounded-lg px-2.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="-ml-2.5 inline-flex min-h-11 items-center rounded-lg px-2.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {t.inviteLaterCta}
                 </button>

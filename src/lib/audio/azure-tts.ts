@@ -30,10 +30,16 @@ export class TtsUnconfiguredError extends Error {
   }
 }
 
+function getAzureSpeechKeys(): string[] {
+  const primary = process.env.AZURE_SPEECH_KEY?.trim() ?? "";
+  const secondary = process.env.AZURE_SPEECH_KEY_SECONDARY?.trim() ?? "";
+  return Array.from(new Set([primary, secondary].filter(Boolean)));
+}
+
 /** Returns true when Azure Speech subscription key and region are configured. */
 export function isAzureTtsConfigured(): boolean {
   return Boolean(
-    process.env.AZURE_SPEECH_KEY?.trim() && process.env.AZURE_SPEECH_REGION?.trim(),
+    getAzureSpeechKeys().length > 0 && process.env.AZURE_SPEECH_REGION?.trim(),
   );
 }
 
@@ -59,21 +65,28 @@ async function synthesizeAndCache(
   cleanedText: string,
   hash: string,
 ): Promise<Buffer> {
-  const key = process.env.AZURE_SPEECH_KEY?.trim() ?? "";
+  const keys = getAzureSpeechKeys();
   const region = process.env.AZURE_SPEECH_REGION?.trim() ?? "";
   const endpoint = `https://${encodeURIComponent(region)}.tts.speech.microsoft.com/cognitiveservices/v1`;
+  const ssml = buildSsml({ locale: cfg.locale, voice: cfg.voice, text: cleanedText });
 
-  const res = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Ocp-Apim-Subscription-Key": key,
-      "Content-Type": "application/ssml+xml",
-      "X-Microsoft-OutputFormat": TTS_OUTPUT_FORMAT,
-      "User-Agent": "RediHealth-TTS",
-    },
-    body: buildSsml({ locale: cfg.locale, voice: cfg.voice, text: cleanedText }),
-    signal: AbortSignal.timeout(AZURE_TTS_TIMEOUT_MS),
-  });
+  const requestSynthesis = (subscriptionKey: string) =>
+    fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Ocp-Apim-Subscription-Key": subscriptionKey,
+        "Content-Type": "application/ssml+xml",
+        "X-Microsoft-OutputFormat": TTS_OUTPUT_FORMAT,
+        "User-Agent": "RediHealth-TTS",
+      },
+      body: ssml,
+      signal: AbortSignal.timeout(AZURE_TTS_TIMEOUT_MS),
+    });
+
+  let res = await requestSynthesis(keys[0] ?? "");
+  if ((res.status === 401 || res.status === 403) && keys.length > 1) {
+    res = await requestSynthesis(keys[1]);
+  }
 
   if (res.status === 429) {
     throw new TtsQuotaExceededError("Azure Speech quota exceeded (429).");

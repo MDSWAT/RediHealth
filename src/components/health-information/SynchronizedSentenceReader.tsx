@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState, useCallback } from "react";
-import { speechEngine, formatSpeechText } from "@/lib/audio/speech-engine";
+import { speechEngine, formatSpeechText, splitSpeechSentences } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled, useVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
@@ -243,7 +243,8 @@ export function SynchronizedSentenceReader({
   // Split all paragraphs into sentences while preserving paragraph grouping
   let globalSentenceCounter = 0;
   const parsedParagraphs = paragraphs.map((para) => {
-    const sentences = para.match(/[^.!?]+[.!?]+(\s|$)|[^.!?]+$/g) || [para];
+    const spans = splitSpeechSentences(para);
+    const sentences = spans.length > 0 ? spans.map((span) => span.text) : [para];
     return sentences.map((sent) => {
       const idx = globalSentenceCounter++;
       return {

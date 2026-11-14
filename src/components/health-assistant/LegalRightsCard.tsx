@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircleIcon, VolumeIcon, VolumeMuteIcon } from "@/components/ui/icons";
 import { formatSpeechText, speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
@@ -16,6 +16,7 @@ export function LegalRightsCard({ className = "" }: LegalRightsCardProps) {
   const { lang } = useLanguage();
   const voiceEnabled = isVoiceEnabled(lang);
   const [isPlaying, setIsPlaying] = useState(false);
+  const isPlayingRef = useRef(false);
 
   const content: Record<
     Lang,
@@ -126,25 +127,34 @@ ru: {
 
   useEffect(() => {
     return () => {
-      if (isPlaying) {
+      if (isPlayingRef.current) {
         speechEngine.stop();
+        isPlayingRef.current = false;
       }
     };
-  }, [isPlaying]);
+  }, []);
 
   function handleToggleAudio() {
     if (isPlaying) {
+      isPlayingRef.current = false;
       speechEngine.stop();
       setIsPlaying(false);
     } else {
+      isPlayingRef.current = true;
       setIsPlaying(true);
       // Read the card in the page language, not a fixed Romanian text.
       speechEngine.speak(
-        formatSpeechText([t.heading, t.body, ...t.keyRights].join(" "), t.speechLang),
+        formatSpeechText([`${t.heading}.`, t.body, ...t.keyRights].join(" "), t.speechLang),
         {
           lang: t.speechLang,
-          onEnd: () => setIsPlaying(false),
-          onError: () => setIsPlaying(false),
+          onEnd: () => {
+            isPlayingRef.current = false;
+            setIsPlaying(false);
+          },
+          onError: () => {
+            isPlayingRef.current = false;
+            setIsPlaying(false);
+          },
         },
       );
     }

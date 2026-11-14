@@ -71,3 +71,20 @@ Enforced across all 7 locales (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`) and au
 - **Family & Caregiver Sharing (`src/components/ui/FamilyShareButton.tsx`):** Consistent 1-tap WhatsApp, SMS, Copy text, and Web Share menu across prescriptions, triage summaries, telemedicine confirmations, clinic finder cards, and the patient portal.
 - **Print-First Clinical Sheets (`data-print-mode="fridge-sheet"`):** Printing structured prescriptions hides dense screen chrome and outputs a high-contrast large-print daily medication schedule.
 - **Minimum Touch Ergonomics:** Interactive rows and buttons maintain `min-h-11` (`44px+`) hit targets with clear `focus-visible` sapphire outlines (`outline-ring`).
+
+---
+
+## 7. Header Capsule & In-Page Capsule Menus
+
+One pattern for every menu bar, defined in `src/components/layout/chrome-capsule.ts`.
+
+- **Header capsule:** search, text size, language, account and the `Start here` action are segments of one fully rounded bar (`capsuleSurface`, `capsuleItem`, `capsuleDivider`, `capsuleAction`). No segment carries a box of its own. Below `xl` the bar also holds the menu button; on phones it holds search, text size and the menu button.
+- **Outline only:** the bar has no fill. Its only mark is a half-pixel hairline: white while the header floats over the dark landing hero, neutral grey (`ink-950/40`) once the header is solid. Nothing in the bar is red; `--color-primary` stays reserved for 112.
+- **One gliding highlight:** a single plate (`CapsuleGlide.tsx`, `.capsule-plate`) moves to the segment under the mouse or keyboard focus. Segments have no hover fill of their own. Touch keeps the existing press feedback.
+- **Panels open from their segment:** text size, language, account and `Start here` panels share `CAPSULE_PANEL` and the `.capsule-panel` motion (scale and fade from the top-right corner under the trigger). The search overlay grows from the search segment on `md+`.
+- **Account segment:** one segment opens a panel with the account link and the install or update action, each with a text label.
+- **In-page capsule menus:** menus that switch between sibling pages or sections (`AssistantNavigation`, the guides section menu in `HealthInformationPageContent`) use `CAPSULE_TABS` and `capsuleTab`, with the same hairline and gliding plate. The current destination sits on a soft plate.
+- **Two-way switches:** `ReadingLevelSwitcher` and `DictionaryTabs` use the capsule shape and hairline (`CAPSULE_SHAPE`, `CAPSULE_OUTLINE`) with their sliding sapphire thumb. Each marks its root with `data-capsule-switch`; tests allow pill shapes on reading pages only inside these switches.
+- **Where the capsule is not used:** status labels, counts and categories never get a capsule (see the UI rules in `CLAUDE.md`). Wrapping filter chips keep their rounded-rectangle shape.
+- **Motion:** plate and panel motion stop under `prefers-reduced-motion` and the in-app Calm motion toggle.
+- **Dev note:** `public/offline-worker.js` does not serve cached `/_next/static/` files on localhost, so UI changes show without clearing the service worker.

@@ -54,10 +54,12 @@ describe("Clinical UI elevation pass regression tests (#27-#56)", () => {
     }
   });
 
-  it("verifies AssistantNavigation uses press-row, rounded-t-md, motion-reduce, and focus-visible:ring-ring", () => {
-    const source = readSrc("src/components/health-assistant/AssistantNavigation.tsx");
+  it("verifies AssistantNavigation is a capsule menu with press-row, motion-reduce, and focus-visible:ring-ring", () => {
+    const source =
+      readSrc("src/components/health-assistant/AssistantNavigation.tsx") +
+      readSrc("src/components/layout/chrome-capsule.ts");
     expect(source).toContain("press-row");
-    expect(source).toContain("rounded-t-md");
+    expect(source).toContain("className={capsuleTab(isActive)}");
     expect(source).toContain("motion-reduce:transition-none");
     expect(source).toContain("focus-visible:ring-ring");
   });

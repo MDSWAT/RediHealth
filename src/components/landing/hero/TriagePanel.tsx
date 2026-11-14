@@ -20,6 +20,7 @@ import {
   PhoneIcon,
   PinIcon,
   PrescriptionIcon,
+  RefreshIcon,
   UsersIcon,
   VolumeIcon,
   VolumeMuteIcon,
@@ -69,6 +70,8 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
   const [visit, setVisit] = useState(0);
   const [hoveredNeed, setHoveredNeed] = useState<HeroNeedId | null>(null);
   const [lastVisitedNeed, setLastVisitedNeed] = useState<HeroNeedId | null>(null);
+  const [learnQuizIndex, setLearnQuizIndex] = useState(0);
+  const hasPickedLearnRef = useRef(false);
 
   const calmMotion = useCalmReducedMotion();
   const { available: canSpeak, speaking, isFallback, speak, stop } = useSpeech(lang);
@@ -82,10 +85,20 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
     if (hasInteracted.current) document.getElementById(headingId(view))?.focus({ preventScroll: true });
   }, [view]);
 
+  const learnQuizzes = copy.needs.learn.quizzes;
+  const learnQuizCount = learnQuizzes && learnQuizzes.length > 0 ? learnQuizzes.length : 1;
+
   const go = (next: View) => {
     hasInteracted.current = true;
     stop();
     setHoveredNeed(null);
+    if (next === "learn" && learnQuizCount > 1) {
+      const shouldExcludeCurrent = hasPickedLearnRef.current;
+      hasPickedLearnRef.current = true;
+      setLearnQuizIndex((prev) =>
+        pickRandomQuizIndex(learnQuizCount, shouldExcludeCurrent ? prev : undefined),
+      );
+    }
     if (next !== "question") {
       setLastVisitedNeed(next);
     }
@@ -94,11 +107,22 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
     setVisit((count) => count + 1);
   };
 
+  const handleNextLearnQuiz = () => {
+    if (learnQuizCount <= 1) return;
+    stop();
+    hasPickedLearnRef.current = true;
+    setLearnQuizIndex((prev) => pickRandomQuizIndex(learnQuizCount, prev));
+  };
+
   const scriptFor = (current: View): string[] => {
     if (current === "question") return toSentences([copy.question, ...HERO_NEED_ORDER.map((id) => copy.needs[id].label)]);
     const need = copy.needs[current];
     const details = current === "problem" ? alarmSigns : (need.points ?? []).map((point) => point.text);
-    const quiz = need.quiz ? [need.quiz.prompt, need.quiz.statement] : [];
+    const activeQuiz =
+      current === "learn" && need.quizzes?.length
+        ? need.quizzes[learnQuizIndex % need.quizzes.length]
+        : need.quiz;
+    const quiz = activeQuiz ? [activeQuiz.prompt, activeQuiz.statement] : [];
     return toSentences([need.title, need.body ?? "", ...details, ...quiz]);
   };
 
@@ -210,6 +234,8 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
                   id={current}
                   alarmSigns={alarmSigns}
                   lang={lang}
+                  quizIndex={current === "learn" ? learnQuizIndex : 0}
+                  onNextQuiz={current === "learn" && learnQuizCount > 1 ? handleNextLearnQuiz : undefined}
                   onBack={() => go("question")}
                 />
               )}
@@ -388,13 +414,19 @@ type AnswerViewProps = {
   id: HeroNeedId;
   alarmSigns: string[];
   lang: Lang;
+  quizIndex: number;
+  onNextQuiz?: () => void;
   onBack: () => void;
 };
 
-function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
+function AnswerView({ copy, id, alarmSigns, lang, quizIndex, onNextQuiz, onBack }: AnswerViewProps) {
   const need = copy.needs[id];
   const isProblem = id === "problem";
   const bullets = isProblem ? alarmSigns : need.points?.map((point) => point.text);
+  const activeQuiz =
+    need.quizzes && need.quizzes.length > 0
+      ? need.quizzes[quizIndex % need.quizzes.length]
+      : need.quiz;
 
   return (
     <>
@@ -434,7 +466,14 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
         </ul>
       )}
 
-      {need.quiz && <Quiz quiz={need.quiz} />}
+      {activeQuiz && (
+        <Quiz
+          key={activeQuiz.statement}
+          quiz={activeQuiz}
+          nextQuizLabel={need.nextQuizLabel}
+          onNextQuiz={onNextQuiz}
+        />
+      )}
 
       <div className="mt-auto pt-5">
         {isProblem ? (
@@ -482,7 +521,15 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
  * "True or false?" with one tap. The result's space is reserved up front so
  * answering never changes the panel height; the mark draws itself in.
  */
-function Quiz({ quiz }: { quiz: HeroQuiz }) {
+function Quiz({
+  quiz,
+  nextQuizLabel,
+  onNextQuiz,
+}: {
+  quiz: HeroQuiz;
+  nextQuizLabel?: string;
+  onNextQuiz?: () => void;
+}) {
   const [choice, setChoice] = useState<boolean | null>(null);
   const answered = choice !== null;
   const right = choice === quiz.answer;
@@ -490,8 +537,23 @@ function Quiz({ quiz }: { quiz: HeroQuiz }) {
 
   return (
     <div className="mt-4">
-      <p className="text-[14px] font-medium text-stone-500">{quiz.prompt}</p>
-      <p className="mt-1 text-[18px] font-semibold leading-snug">{quiz.statement}</p>
+      <div className="flex items-center justify-between gap-2">
+        <p className="min-w-0 text-[14px] font-medium text-stone-500">{quiz.prompt}</p>
+        {onNextQuiz && nextQuizLabel && (
+          <button
+            type="button"
+            onClick={onNextQuiz}
+            className={cn(
+              "group -my-2 -mr-2 inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl px-2.5 text-[13px] font-medium text-stone-600 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-950/[0.05] hover:text-ink-950 motion-reduce:transition-none",
+              focusRing,
+            )}
+          >
+            <RefreshIcon className="h-3.5 w-3.5 shrink-0 text-stone-500 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none" />
+            <span>{nextQuizLabel}</span>
+          </button>
+        )}
+      </div>
+      <p className="mt-1.5 text-[18px] font-semibold leading-snug">{quiz.statement}</p>
 
       <div role="group" aria-label={quiz.prompt} className="mt-3 grid grid-cols-2 gap-2">
         {[true, false].map((value) => {
@@ -556,3 +618,12 @@ function ResultMark({ right, drawn }: { right: boolean; drawn: boolean }) {
 }
 
 const longest = (a: string, b: string) => (a.length >= b.length ? a : b);
+
+function pickRandomQuizIndex(count: number, excludeIndex?: number): number {
+  if (count <= 1) return 0;
+  if (excludeIndex === undefined || excludeIndex < 0 || excludeIndex >= count) {
+    return Math.floor(Math.random() * count);
+  }
+  const offset = 1 + Math.floor(Math.random() * (count - 1));
+  return (excludeIndex + offset) % count;
+}

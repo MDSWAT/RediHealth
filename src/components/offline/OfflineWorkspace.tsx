@@ -30,8 +30,13 @@ const IDLE_WARNING_SECONDS = 120;
 
 async function prepareShell(lang: string, errors: OfflineCopy["errors"]) {
   if (!isSecureContext || !("serviceWorker" in navigator)) throw new Error(errors.needsHttps);
-  await navigator.serviceWorker.register("/offline-worker.js", { scope: "/" });
+  await navigator.serviceWorker.register("/offline-worker.js", {
+    scope: "/",
+    updateViaCache: "none",
+  });
   const registration = await navigator.serviceWorker.ready;
+  const worker = registration.active ?? registration.waiting ?? registration.installing;
+  if (!worker) throw new Error(errors.needsHttps);
   await new Promise<void>((resolve, reject) => {
     const channel = new MessageChannel();
     const timer = setTimeout(() => reject(new Error(errors.prepareTimeout)), 60_000);
@@ -45,7 +50,7 @@ async function prepareShell(lang: string, errors: OfflineCopy["errors"]) {
       .getEntriesByType("resource")
       .map((entry) => entry.name)
       .filter((name) => new URL(name).pathname.startsWith("/_next/static/"));
-    registration.active!.postMessage({ type: "PREPARE_OFFLINE", lang, assets }, [channel.port2]);
+    worker.postMessage({ type: "PREPARE_OFFLINE", lang, assets }, [channel.port2]);
   });
 }
 

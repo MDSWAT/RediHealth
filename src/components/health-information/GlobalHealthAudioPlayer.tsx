@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import { speechEngine, formatSpeechText, type SpeechEngineState } from "@/lib/audio/speech-engine";
+import {
+  speechEngine,
+  formatSpeechText,
+  splitSpeechSentences,
+  type SpeechEngineState,
+} from "@/lib/audio/speech-engine";
 import { playEarcon } from "@/lib/audio/earcon";
 import { isVoiceEnabled, useVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -107,32 +112,6 @@ function pickSpeechLang(lang: Lang): string {
   );
 }
 
-interface ParsedSentenceSpan {
-  startChar: number;
-  endChar: number;
-  text: string;
-}
-
-function splitSpeechSentences(text: string): ParsedSentenceSpan[] {
-  const spans: ParsedSentenceSpan[] = [];
-  const regex = /[^.!?]+[.!?]+(\s+|$)|[^.!?]+$/g;
-  let match: RegExpExecArray | null;
-  while ((match = regex.exec(text)) !== null) {
-    const raw = match[0];
-    if (raw.trim().length > 0) {
-      spans.push({
-        startChar: match.index,
-        endChar: match.index + raw.length,
-        text: raw,
-      });
-    }
-  }
-  if (spans.length === 0 && text.length > 0) {
-    spans.push({ startChar: 0, endChar: text.length, text });
-  }
-  return spans;
-}
-
 const PLAY_SWAP_CLASS =
   "flex items-center justify-center gap-2 transition-[opacity,translate] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none";
 const PLAY_SWAP_IN = "opacity-100 translate-y-0";
@@ -175,6 +154,7 @@ export function GlobalHealthAudioPlayer({
   const speedRef = useRef(speed);
   const lastSentenceRef = useRef<number>(0);
   const currentOffsetRef = useRef<number>(0);
+  const playbackGenRef = useRef(0);
   const scrubberRef = useRef<HTMLDivElement | null>(null);
   const isDraggingRef = useRef(false);
   const scrubRafRef = useRef<number | null>(null);
@@ -271,6 +251,7 @@ export function GlobalHealthAudioPlayer({
       const clampedOffset = Math.max(0, Math.min(totalChars - 1, offsetChar));
       currentOffsetRef.current = clampedOffset;
       const remainingText = formattedNarration.slice(clampedOffset);
+      const gen = ++playbackGenRef.current;
 
       setIsPlaying(true);
       speechEngine.speak(remainingText, {
@@ -296,11 +277,15 @@ export function GlobalHealthAudioPlayer({
           }
         },
         onEnd: () => {
+          if (gen !== playbackGenRef.current) return;
           setIsPlaying(false);
-          setProgressPercent(100);
-          currentOffsetRef.current = totalChars;
+          if (speechEngine.getLastEndReason() === "completed") {
+            setProgressPercent(100);
+            currentOffsetRef.current = totalChars;
+          }
         },
         onError: () => {
+          if (gen !== playbackGenRef.current) return;
           setIsPlaying(false);
         },
       });
@@ -322,9 +307,11 @@ export function GlobalHealthAudioPlayer({
       return () => {
         unregister();
         clearTimeout(playTimer);
+        playbackGenRef.current += 1;
         speechEngine.stop();
       };
     } else {
+      playbackGenRef.current += 1;
       speechEngine.stop();
       lastSentenceRef.current = -1;
       currentOffsetRef.current = 0;
@@ -338,6 +325,7 @@ export function GlobalHealthAudioPlayer({
 
   const handleClose = () => {
     playEarcon("stop");
+    playbackGenRef.current += 1;
     speechEngine.stop();
     onCloseRef.current();
   };
@@ -370,6 +358,7 @@ export function GlobalHealthAudioPlayer({
     speechEngine.setRate(newSpeed);
     if (isPlaying) {
       const charOffset = currentOffsetRef.current;
+      playbackGenRef.current += 1;
       speechEngine.stop();
       startSpeechFromOffset(charOffset, newSpeed);
     }
@@ -388,6 +377,7 @@ export function GlobalHealthAudioPlayer({
     lastSentenceRef.current = sentenceIdx;
     onSentenceChangeRef.current?.(sentenceIdx);
 
+    playbackGenRef.current += 1;
     speechEngine.stop();
     if (isPlaying) {
       startSpeechFromOffset(alignedOffset, speedRef.current);
@@ -411,6 +401,7 @@ export function GlobalHealthAudioPlayer({
     lastSentenceRef.current = nextIdx;
     onSentenceChangeRef.current?.(nextIdx);
 
+    playbackGenRef.current += 1;
     speechEngine.stop();
     if (isPlaying) {
       startSpeechFromOffset(targetOffset, speedRef.current);

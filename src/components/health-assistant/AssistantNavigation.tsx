@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import styles from "./AssistantNavigation.module.css";
+import { useEffect } from "react";
+import { CAPSULE_TABS, capsuleTab } from "@/components/layout/chrome-capsule";
+import { CapsuleGlidePlate, useCapsuleGlide } from "@/components/layout/CapsuleGlide";
 import { ActivityIcon, FileTextIcon, MessageDotsIcon, PinIcon } from "@/components/ui/icons";
 import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -13,6 +15,16 @@ export function AssistantNavigation() {
   const { lang } = useLanguage();
   const pathname = usePathname();
   const normalizedPathname = stripLangFromPathname(pathname);
+  const { trackRef, plateRef } = useCapsuleGlide<HTMLDivElement>();
+
+  // On narrow phones the menu scrolls sideways: bring the current tool into view without moving the page.
+  useEffect(() => {
+    const track = trackRef.current;
+    const current = track?.querySelector<HTMLElement>("[aria-current]");
+    if (!track || !current) return;
+    const overflowRight = current.offsetLeft + current.offsetWidth - track.clientWidth + 4;
+    if (overflowRight > 0) track.scrollLeft = overflowRight;
+  }, [normalizedPathname, trackRef]);
 
   const dict: Record<Lang, { navLabel: string; assistant: string; symptoms: string; prescription: string }> = {
 ru: {
@@ -70,34 +82,29 @@ ru: {
   ];
 
   return (
-    <nav
-      aria-label={t.navLabel}
-      className="mb-4 flex items-center gap-1 overflow-x-auto border-b border-stone-200/80 scrollbar-none sm:mb-5 sm:gap-1.5 dark:border-stone-800"
-    >
-      {items.map(({ href, label, Icon }) => {
-        const isActive =
-          normalizedPathname === href || normalizedPathname.startsWith(`${href}/`);
-        return (
-          <Link
-            key={href}
-            href={withLangPrefix(href, lang)}
-            aria-current={isActive ? "page" : undefined}
-            className={`${styles.tab} press-row inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-t-md border-b-2 px-3 py-2.5 text-sm leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:px-4 ${
-              isActive
-                ? "border-transparent font-semibold text-foreground"
-                : "border-transparent font-medium text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            <Icon
-              className={`h-4 w-4 shrink-0 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
-                isActive ? "text-sapphire dark:text-sapphire-border" : "text-muted-foreground"
-              }`}
-              aria-hidden="true"
-            />
-            <span>{label}</span>
-          </Link>
-        );
-      })}
+    // The wrapper keeps the capsule its own width and lets it scroll sideways on narrow phones.
+    <nav aria-label={t.navLabel} className="mb-4 flex sm:mb-5">
+      <div ref={trackRef} className={CAPSULE_TABS}>
+        <CapsuleGlidePlate plateRef={plateRef} />
+        {items.map(({ href, label, Icon }) => {
+          const isActive = normalizedPathname === href || normalizedPathname.startsWith(`${href}/`);
+          return (
+            <Link
+              key={href}
+              href={withLangPrefix(href, lang)}
+              aria-current={isActive ? "page" : undefined}
+              data-capsule-item=""
+              className={capsuleTab(isActive)}
+            >
+              <Icon
+                className={`h-4 w-4 shrink-0 ${isActive ? "text-sapphire dark:text-sapphire-border" : "opacity-70"}`}
+                aria-hidden="true"
+              />
+              <span>{label}</span>
+            </Link>
+          );
+        })}
+      </div>
     </nav>
   );
 }

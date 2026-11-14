@@ -14,8 +14,10 @@ import { openSiteFeedback } from "@/components/layout/FeedbackWidget";
 import { openReportIssue } from "@/components/layout/ReportIssueWidget";
 import { feedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations } from "@/lib/i18n/translations";
+import { applyPwaUpdate, openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-state";
 
 /**
  * Footer: the ink ground that closes every page, mirroring the ink hero. A short statement of
@@ -28,6 +30,16 @@ export function Footer() {
   const t = rawT ?? translations[lang || "ro"] ?? translations.ro;
   const tFooter = t.footer;
   const chrome = getChromeCopy(lang);
+  const pwa = usePwaSnapshot();
+  const pwaCopy = getPwaCopy(lang);
+  const showInstallTrigger = !pwa.isStandalone && !pwa.hasUpdate;
+  const pwaTriggerLabel = showInstallTrigger
+    ? pwaCopy.installButton
+    : pwa.isRefreshing
+      ? pwaCopy.refreshingApp
+      : pwa.hasUpdate
+        ? pwaCopy.updateNow
+        : pwaCopy.refreshApp;
   const [emergencySignsOpen, setEmergencySignsOpen] = useState(false);
   const [dialerOpen, setDialerOpen] = useState(false);
 
@@ -137,6 +149,20 @@ export function Footer() {
               <span>{tFooter.nonEmergencyWarning}</span>
             </p>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:shrink-0">
+              <button
+                type="button"
+                disabled={!showInstallTrigger && pwa.isRefreshing}
+                onClick={() => {
+                  if (showInstallTrigger) {
+                    void openPwaInstall();
+                  } else {
+                    void applyPwaUpdate();
+                  }
+                }}
+                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none disabled:cursor-wait disabled:opacity-70"
+              >
+                {pwaTriggerLabel}
+              </button>
               <button
                 type="button"
                 onClick={() => {

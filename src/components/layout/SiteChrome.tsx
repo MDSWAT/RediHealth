@@ -8,10 +8,12 @@ import { Header } from "@/components/layout/Header";
 import { FeedbackWidget } from "@/components/layout/FeedbackWidget";
 import { ReportIssueWidget } from "@/components/layout/ReportIssueWidget";
 import { SmartSearchModal } from "@/components/search/SmartSearchModal";
+import { PwaExperience } from "@/components/pwa/PwaExperience";
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
 import { RecaptchaProvider, RecaptchaNotice } from "@/components/security/RecaptchaProvider";
 import { initClientNoiseFilter } from "@/lib/client-noise-filter";
+import { initPwaRuntime } from "@/lib/pwa/pwa-state";
 import { useComfortDomSync } from "@/lib/comfort-preferences";
 import { useCalmReducedMotion } from "@/lib/motion/tokens";
 import type { Lang } from "@/lib/i18n/translations";
@@ -58,6 +60,9 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang }: SiteChrome
   const hideFooter = isChromelessSurface || path === "/health-check" || path === "/prescription-review";
   useSkipLinkTarget(pathname);
   useComfortDomSync();
+  useEffect(() => {
+    initPwaRuntime();
+  }, []);
   const calmMotion = useCalmReducedMotion();
 
   return (
@@ -66,6 +71,7 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang }: SiteChrome
         <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isChromelessSurface}>
           {isChromelessSurface ? null : <Header />}
           {isChromelessSurface ? null : <SmartSearchModal />}
+          {isChromelessSurface ? null : <PwaExperience />}
           {children}
           {isChromelessSurface ? null : <FeedbackWidget />}
           {isChromelessSurface ? null : <ReportIssueWidget />}

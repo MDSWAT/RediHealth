@@ -1,5 +1,7 @@
 "use client";
 
+import { CAPSULE_TABS, capsuleTab } from "@/components/layout/chrome-capsule";
+import { CapsuleGlidePlate, useCapsuleGlide } from "@/components/layout/CapsuleGlide";
 import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { BookIcon } from "@/components/ui/icons";
@@ -128,8 +130,9 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
     onSelect: (tab: "dictionary" | "romanes") => setOpenDrawer(tab),
   };
 
-  const explorerLinkClass =
-    "press-row inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-3.5 text-sm font-semibold text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  // The section menu is the same capsule as the header bar, so it reads as a menu of this page.
+  const explorerLinkClass = capsuleTab(false);
+  const { trackRef: explorerTrackRef, plateRef: explorerPlateRef } = useCapsuleGlide<HTMLDivElement>();
 
   return (
     <main id="main-content" className="flex-1 bg-background">
@@ -152,30 +155,30 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
             </div>
           </header>
 
-          <nav
-            aria-label={explorer.exploreAria}
-            className="no-scrollbar -mx-4 mt-6 flex flex-nowrap gap-2 overflow-x-auto px-4 pb-1 [mask-image:linear-gradient(to_right,black_calc(100%-2.5rem),transparent)] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:[mask-image:none]"
-          >
-            <a href="#health-guides" className={explorerLinkClass}>
+          <nav aria-label={explorer.exploreAria} className="mt-6 flex">
+            <div ref={explorerTrackRef} className={CAPSULE_TABS}>
+              <CapsuleGlidePlate plateRef={explorerPlateRef} />
+            <a href="#health-guides" data-capsule-item="" className={explorerLinkClass}>
               {explorer.guides}
             </a>
-            <a href="#health-articles" className={explorerLinkClass}>
+            <a href="#health-articles" data-capsule-item="" className={explorerLinkClass}>
               {explorer.articles}
             </a>
-            <a href="#informedhealth-library" className={explorerLinkClass}>
+            <a href="#informedhealth-library" data-capsule-item="" className={explorerLinkClass}>
               {explorer.topics}
             </a>
-            <a href="#myths-quiz" className={explorerLinkClass}>
+            <a href="#myths-quiz" data-capsule-item="" className={explorerLinkClass}>
               {explorer.myths}
             </a>
             <button
               type="button"
               onClick={() => setOpenDrawer("dictionary")}
-              className={explorerLinkClass}
+              data-capsule-item="" className={explorerLinkClass}
             >
               <BookIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
               <span>{explorer.dictionary}</span>
             </button>
+            </div>
           </nav>
 
           <HealthInformationTopicGrid

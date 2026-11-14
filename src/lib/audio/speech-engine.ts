@@ -68,66 +68,317 @@ const PREFERRED_REGIONAL_TAGS: Record<string, string[]> = {
 
 const MAX_NEURAL_SEGMENT_CHARS = 4000;
 
+type SpeechPrefix = "ro" | "en" | "sq" | "it" | "hr" | "ru";
+type InflectableUnit = "mg" | "mcg" | "ml" | "kg" | "g" | "celsius" | "percent";
+
+interface LocaleSpeechRules {
+  range: (a: string, b: string) => string;
+  emergency112: string;
+  bpConnector: string;
+  twentyFourSeven: string;
+  slashConjunction?: { pattern: RegExp; replacement: string };
+  atLeast: string;
+  atMost: string;
+  mmHg: string;
+  mgDl: string;
+  mmolL: string;
+  kmH: string;
+  formatUnit: (rawNum: string, unit: InflectableUnit) => string;
+}
+
+function slavicPluralCategory(rawNum: string): "one" | "few" | "many" {
+  if (/[.,]/.test(rawNum)) return "few";
+  const n = Number.parseInt(rawNum, 10);
+  const mod100 = n % 100;
+  const mod10 = n % 10;
+  if (mod10 === 1 && mod100 !== 11) return "one";
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return "few";
+  return "many";
+}
+
+function makeSimpleFormatter(
+  forms: Record<InflectableUnit, [singular: string, plural: string]>,
+): (rawNum: string, unit: InflectableUnit) => string {
+  return (rawNum, unit) => {
+    const [singular, plural] = forms[unit];
+    return rawNum === "1" ? singular : plural;
+  };
+}
+
+function formatRomanianUnit(rawNum: string, unit: InflectableUnit): string {
+  if (unit === "percent") return "la sută";
+  const roUnits: Record<Exclude<InflectableUnit, "percent">, [string, string]> = {
+    mg: ["miligram", "miligrame"],
+    mcg: ["microgram", "micrograme"],
+    ml: ["mililitru", "mililitri"],
+    kg: ["kilogram", "kilograme"],
+    g: ["gram", "grame"],
+    celsius: ["grad Celsius", "grade Celsius"],
+  };
+  const [singular, plural] = roUnits[unit];
+  if (rawNum === "1") return singular;
+  if (/[.,]/.test(rawNum)) return plural;
+  const n = Number.parseInt(rawNum, 10);
+  if (n >= 20 && (n % 100 === 0 || n % 100 >= 20)) {
+    return `de ${plural}`;
+  }
+  return plural;
+}
+
+function makeSlavicFormatter(
+  forms: Record<InflectableUnit, { one: string; few: string; many: string }>,
+): (rawNum: string, unit: InflectableUnit) => string {
+  return (rawNum, unit) => forms[unit][slavicPluralCategory(rawNum)];
+}
+
+const LOCALE_SPEECH_RULES: Record<SpeechPrefix, LocaleSpeechRules> = {
+  ro: {
+    range: (a, b) => `${a} până la ${b}`,
+    emergency112: "unu unu doi",
+    bpConnector: "cu",
+    twentyFourSeven: "24 din 24, 7 zile din 7",
+    slashConjunction: {
+      pattern: /(?<![\p{L}\d])și\/sau(?![\p{L}\d])/giu,
+      replacement: "și sau",
+    },
+    atLeast: "cel puțin ",
+    atMost: "cel mult ",
+    mmHg: "milimetri coloană de mercur",
+    mgDl: "miligrame pe decilitru",
+    mmolL: "milimoli pe litru",
+    kmH: "kilometri pe oră",
+    formatUnit: formatRomanianUnit,
+  },
+  en: {
+    range: (a, b) => `${a} to ${b}`,
+    emergency112: "one one two",
+    bpConnector: "over",
+    twentyFourSeven: "twenty-four seven",
+    slashConjunction: { pattern: /\band\/or\b/gi, replacement: "and or" },
+    atLeast: "at least ",
+    atMost: "at most ",
+    mmHg: "millimeters of mercury",
+    mgDl: "milligrams per deciliter",
+    mmolL: "millimoles per liter",
+    kmH: "kilometers per hour",
+    formatUnit: makeSimpleFormatter({
+      mg: ["milligram", "milligrams"],
+      mcg: ["microgram", "micrograms"],
+      ml: ["milliliter", "milliliters"],
+      kg: ["kilogram", "kilograms"],
+      g: ["gram", "grams"],
+      celsius: ["degree Celsius", "degrees Celsius"],
+      percent: ["percent", "percent"],
+    }),
+  },
+  sq: {
+    range: (a, b) => `nga ${a} deri në ${b}`,
+    emergency112: "një një dy",
+    bpConnector: "me",
+    twentyFourSeven: "24 orë në ditë, 7 ditë në javë",
+    slashConjunction: {
+      pattern: /(?<![\p{L}\d])dhe\/ose(?![\p{L}\d])/giu,
+      replacement: "dhe ose",
+    },
+    atLeast: "të paktën ",
+    atMost: "të shumtën ",
+    mmHg: "milimetra shtyllë zhive",
+    mgDl: "miligramë për decilitër",
+    mmolL: "milimole për litër",
+    kmH: "kilometra në orë",
+    formatUnit: makeSimpleFormatter({
+      mg: ["miligram", "miligramë"],
+      mcg: ["mikrogram", "mikrogramë"],
+      ml: ["mililitër", "mililitra"],
+      kg: ["kilogram", "kilogramë"],
+      g: ["gram", "gramë"],
+      celsius: ["gradë Celsius", "gradë Celsius"],
+      percent: ["përqind", "përqind"],
+    }),
+  },
+  it: {
+    range: (a, b) => `da ${a} a ${b}`,
+    emergency112: "uno uno due",
+    bpConnector: "su",
+    twentyFourSeven: "24 ore su 24, 7 giorni su 7",
+    slashConjunction: { pattern: /\be\/o\b/gi, replacement: "e o" },
+    atLeast: "almeno ",
+    atMost: "al massimo ",
+    mmHg: "millimetri di mercurio",
+    mgDl: "milligrammi per decilitro",
+    mmolL: "millimoli per litro",
+    kmH: "chilometri all'ora",
+    formatUnit: makeSimpleFormatter({
+      mg: ["milligrammo", "milligrammi"],
+      mcg: ["microgrammo", "microgrammi"],
+      ml: ["millilitro", "millilitri"],
+      kg: ["chilogrammo", "chilogrammi"],
+      g: ["grammo", "grammi"],
+      celsius: ["grado Celsius", "gradi Celsius"],
+      percent: ["percento", "percento"],
+    }),
+  },
+  hr: {
+    range: (a, b) => `od ${a} do ${b}`,
+    emergency112: "jedan jedan dva",
+    bpConnector: "sa",
+    twentyFourSeven: "24 sata dnevno, 7 dana u tjednu",
+    slashConjunction: { pattern: /\bi\/ili\b/gi, replacement: "i ili" },
+    atLeast: "najmanje ",
+    atMost: "najviše ",
+    mmHg: "milimetara živinog stupca",
+    mgDl: "miligrama po decilitru",
+    mmolL: "milimola po litri",
+    kmH: "kilometara na sat",
+    formatUnit: makeSlavicFormatter({
+      mg: { one: "miligram", few: "miligrama", many: "miligrama" },
+      mcg: { one: "mikrogram", few: "mikrograma", many: "mikrograma" },
+      ml: { one: "mililitar", few: "mililitra", many: "mililitara" },
+      kg: { one: "kilogram", few: "kilograma", many: "kilograma" },
+      g: { one: "gram", few: "grama", many: "grama" },
+      celsius: { one: "stupanj Celzija", few: "stupnja Celzija", many: "stupnjeva Celzija" },
+      percent: { one: "posto", few: "posto", many: "posto" },
+    }),
+  },
+  ru: {
+    range: (a, b) => `от ${a} до ${b}`,
+    emergency112: "один один два",
+    bpConnector: "на",
+    twentyFourSeven: "круглосуточно, 7 дней в неделю",
+    slashConjunction: {
+      pattern: /(?<![\p{L}\d])и\/или(?![\p{L}\d])/giu,
+      replacement: "и или",
+    },
+    atLeast: "не менее ",
+    atMost: "не более ",
+    mmHg: "миллиметров ртутного столба",
+    mgDl: "миллиграммов на децилитр",
+    mmolL: "миллимолей на литр",
+    kmH: "километров в час",
+    formatUnit: makeSlavicFormatter({
+      mg: { one: "миллиграмм", few: "миллиграмма", many: "миллиграммов" },
+      mcg: { one: "микрограмм", few: "микрограмма", many: "микрограммов" },
+      ml: { one: "миллилитр", few: "миллилитра", many: "миллилитров" },
+      kg: { one: "килограмм", few: "килограмма", many: "килограммов" },
+      g: { one: "грамм", few: "грамма", many: "граммов" },
+      celsius: { one: "градус Цельсия", few: "градуса Цельсия", many: "градусов Цельсия" },
+      percent: { one: "процент", few: "процента", many: "процентов" },
+    }),
+  },
+};
+
+function mapUnitToken(rawToken: string): InflectableUnit {
+  const lower = rawToken.toLowerCase();
+  if (lower === "µg" || lower === "mcg") return "mcg";
+  if (lower === "mg" || lower === "ml" || lower === "kg" || lower === "g") return lower;
+  return "g";
+}
+
 /**
- * Normalizes clinical numbers, ranges, URLs, and units into natural spoken words for
- * Romanian, English, Albanian, Croatian, Italian, and Russian so speech engines read
- * them like a human clinician.
+ * Normalizes clinical numbers, ranges, URLs, comparisons, blood pressure ratios, temperatures,
+ * percentages, and units into natural spoken words for Romanian, English, Albanian, Croatian,
+ * Italian, and Russian so speech engines read them like a human clinician. Idempotent per locale.
  */
 export function formatSpeechText(text: string, lang = "ro-RO"): string {
   if (!text) return "";
-  const prefix = lang.replace("_", "-").toLowerCase().split("-")[0];
+  const prefix = lang.replace("_", "-").toLowerCase().split("-")[0] as SpeechPrefix;
   let out = text
     .replace(/https?:\/\/\S+/gi, " ")
-    .replace(/[«»„""]/g, "")
+    .replace(/[«»„“”"]/g, "")
     .replace(/\s*·\s*/g, ". ")
     .replace(/\s+/g, " ")
-    .trim();
+    .trim()
+    .replace(/(?<!\.)\.\.(?!\.)/g, ".")
+    .replace(/(?:\.\s+)+\.+/g, ".")
+    .replace(/([?!])(?:\s*\.+)+/g, "$1");
 
-  if (prefix === "ro") {
-    out = out
-      .replace(/(\d+)\s*[–—-]\s*(\d+)/g, "$1 până la $2")
-      .replace(/\b112\b/g, "unu unu doi")
-      .replace(/\bmmHg\b/g, "milimetri coloană de mercur")
-      .replace(/\bmg\/dL\b/gi, "miligrame pe decilitru")
-      .replace(/\bkm\/h\b/gi, "kilometri pe oră");
-  } else if (prefix === "en") {
-    out = out
-      .replace(/(\d+)\s*[–—-]\s*(\d+)/g, "$1 to $2")
-      .replace(/\b112\b/g, "one one two")
-      .replace(/\bmmHg\b/g, "millimeters of mercury")
-      .replace(/\bmg\/dL\b/gi, "milligrams per deciliter")
-      .replace(/\bkm\/h\b/gi, "kilometers per hour");
-  } else if (prefix === "hr") {
-    out = out
-      .replace(/(\d+)\s*[–—-]\s*(\d+)/g, "od $1 do $2")
-      .replace(/\b112\b/g, "jedan jedan dva")
-      .replace(/\bmmHg\b/g, "milimetara živinog stupca")
-      .replace(/\bmg\/dL\b/gi, "miligrama po decilitru")
-      .replace(/\bkm\/h\b/gi, "kilometara na sat");
-  } else if (prefix === "it") {
-    out = out
-      .replace(/(\d+)\s*[–—-]\s*(\d+)/g, "da $1 a $2")
-      .replace(/\b112\b/g, "uno uno due")
-      .replace(/\bmmHg\b/g, "millimetri di mercurio")
-      .replace(/\bmg\/dL\b/gi, "milligrammi per decilitro")
-      .replace(/\bkm\/h\b/gi, "chilometri all'ora");
-  } else if (prefix === "ru") {
-    out = out
-      .replace(/(\d+)\s*[–—-]\s*(\d+)/g, "от $1 до $2")
-      .replace(/\b112\b/g, "один один два")
-      .replace(/\bmmHg\b/g, "миллиметров ртутного столба")
-      .replace(/\bmg\/dL\b/gi, "миллиграммов на децилитр")
-      .replace(/\bkm\/h\b/gi, "километров в час");
-  } else if (prefix === "sq") {
-    out = out
-      .replace(/(\d+)\s*[–—-]\s*(\d+)/g, "nga $1 deri në $2")
-      .replace(/\b112\b/g, "një një dy")
-      .replace(/\bmmHg\b/g, "milimetra shtyllë zhive")
-      .replace(/\bmg\/dL\b/gi, "miligramë për decilitër")
-      .replace(/\bkm\/h\b/gi, "kilometra në orë");
+  const rules = LOCALE_SPEECH_RULES[prefix];
+  if (!rules) {
+    return out.replace(/\s+/g, " ").trim();
   }
 
-  return out;
+  // Normalize decimals per locale while leaving dd.mm.yyyy dates and 1,000-style separators intact.
+  if (prefix === "en") {
+    out = out.replace(/(?<![\d,])(\d+),(\d{1,2})(?!\d|,\d)/g, "$1.$2");
+  } else {
+    out = out.replace(/(?<![\d.])(\d+)\.(\d+)(?!\d|\.\d)/g, "$1,$2");
+  }
+
+  // Expand ranges while protecting ISO dates (2026-11-14) and hyphenated phone numbers (0800-800-200).
+  out = out
+    .replace(
+      /(?<![\d.,])(\d+(?:[.,]\d+)?)\s*[–—]\s*(\d+(?:[.,]\d+)?)(?![\d.,])/g,
+      (_m, a: string, b: string) => rules.range(a, b),
+    )
+    .replace(
+      /(?<![+\d.,-])(0|[1-9]\d{0,2})\s*-\s*([1-9]\d{0,2})(?![\d.,-])/g,
+      (_m, a: string, b: string) => rules.range(a, b),
+    );
+
+  // Blood pressure ratios before mmHg (must run before mmHg and 24/7 replacements).
+  out = out
+    .replace(/\b(\d{2,3})\/(\d{2,3})(?=\s*mmHg\b)/g, `$1 ${rules.bpConnector} $2`)
+    .replace(/\b24\/7\b/g, rules.twentyFourSeven);
+
+  if (rules.slashConjunction) {
+    out = out.replace(rules.slashConjunction.pattern, rules.slashConjunction.replacement);
+  }
+
+  out = out
+    .replace(/≥\s*(?=\d)/g, rules.atLeast)
+    .replace(/≤\s*(?=\d)/g, rules.atMost)
+    .replace(/\b112\b/g, rules.emergency112)
+    .replace(/\bmmHg\b/g, rules.mmHg)
+    .replace(/\bmg\/dL\b/gi, rules.mgDl)
+    .replace(/\bmmol\/L\b/gi, rules.mmolL)
+    .replace(/\bkm\/h\b/gi, rules.kmH)
+    .replace(
+      /(?<![\p{L}\d.,])(\d+(?:[.,]\d+)?)\s*°\s*C\b/giu,
+      (_m, num: string) => `${num} ${rules.formatUnit(num, "celsius")}`,
+    )
+    .replace(
+      /(?<![\p{L}\d.,])(\d+(?:[.,]\d+)?)\s*%/gu,
+      (_m, num: string) => `${num} ${rules.formatUnit(num, "percent")}`,
+    )
+    .replace(
+      /(?<![\p{L}\d.,])(\d+(?:[.,]\d+)?)\s*(mg|mcg|µg|ml|kg|g)\b/giu,
+      (_m, num: string, unit: string) => `${num} ${rules.formatUnit(num, mapUnitToken(unit))}`,
+    );
+
+  return out.replace(/\s+/g, " ").trim();
+}
+
+export interface ParsedSentenceSpan {
+  startChar: number;
+  endChar: number;
+  text: string;
+}
+
+const SENTENCE_SPAN_REGEX =
+  /(?:[^.!?]|[.!?](?!\s|$))+[.!?]+(?:\s+|$)|(?:[^.!?]|[.!?](?!\s|$))+$/g;
+
+/**
+ * Splits narration or paragraph text into sentence spans while keeping decimal
+ * points inside numbers (for example "38.5 °C") attached to their sentence.
+ */
+export function splitSpeechSentences(text: string): ParsedSentenceSpan[] {
+  const spans: ParsedSentenceSpan[] = [];
+  SENTENCE_SPAN_REGEX.lastIndex = 0;
+  let match: RegExpExecArray | null;
+  while ((match = SENTENCE_SPAN_REGEX.exec(text)) !== null) {
+    const raw = match[0];
+    if (raw.trim().length > 0) {
+      spans.push({
+        startChar: match.index,
+        endChar: match.index + raw.length,
+        text: raw,
+      });
+    }
+  }
+  if (spans.length === 0 && text.length > 0) {
+    spans.push({ startChar: 0, endChar: text.length, text });
+  }
+  return spans;
 }
 
 /**
@@ -333,6 +584,7 @@ export class HealthSpeechEngine {
   private currentChunkIndex = 0;
   private pausedChunkIndex = 0;
   private runId = 0;
+  private lastEndReason: "completed" | "stopped" = "completed";
 
   private mp3Session: {
     run: number;
@@ -388,6 +640,10 @@ export class HealthSpeechEngine {
 
   public getRate(): number {
     return this.playbackRate;
+  }
+
+  public getLastEndReason(): "completed" | "stopped" {
+    return this.lastEndReason;
   }
 
   public setRate(rate: number): void {
@@ -449,6 +705,7 @@ export class HealthSpeechEngine {
     this.currentChunkIndex = 0;
     this.pausedChunkIndex = 0;
     this.mp3Session = null;
+    this.lastEndReason = "completed";
     this.playerCloseHandlers.clear();
     this.notifyState();
   }
@@ -560,6 +817,7 @@ export class HealthSpeechEngine {
     if (this.listeners.onEnd) {
       const endCallback = this.listeners.onEnd;
       this.listeners = {};
+      this.lastEndReason = "stopped";
       endCallback();
     }
   }
@@ -765,6 +1023,7 @@ export class HealthSpeechEngine {
       this.notifyState();
       const done = this.listeners.onEnd;
       this.listeners = {};
+      this.lastEndReason = "completed";
       done?.();
       return;
     }
@@ -855,6 +1114,7 @@ export class HealthSpeechEngine {
       this.notifyState();
       const done = this.listeners.onEnd;
       this.listeners = {};
+      this.lastEndReason = "completed";
       done?.();
       return;
     }
@@ -1089,6 +1349,7 @@ export class HealthSpeechEngine {
         if (this.listeners.onEnd) {
           const done = this.listeners.onEnd;
           this.listeners = {};
+          this.lastEndReason = "completed";
           done();
         }
       }

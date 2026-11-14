@@ -31,35 +31,43 @@ export function segmentId(text: string): string {
   return (hash >>> 0).toString(16).padStart(8, "0");
 }
 
-const RO_SMALL_NUMBERS: Record<string, string> = {
-  "1": "unu", "2": "două", "3": "trei", "4": "patru", "5": "cinci", "6": "șase", "7": "șapte", "8": "opt", "9": "nouă",
-};
-
 /**
- * What the voice should say for a displayed sentence. Speech engines read "2–7" as "doi-șapte"
- * (wrong gender in Romanian) or skip the dash, and say 112 as "one hundred and twelve".
+ * What the voice should say for a displayed sentence. Speech engines read "2–7" or "112" awkwardly
+ * in clinical contexts if left raw.
  */
 export function spokenForm(lang: Lang, text: string): string {
   let t = normaliseSegment(text.replace(/https?:\/\/\S+/gi, " "));
   if (lang === "ro") {
     t = t
-      .replace(/\bDe (\d)–(\d) /g, "Între $1 și $2 ")
-      .replace(/(\d)–(\d)/g, "$1 până la $2")
-      .replace(/\b112\b/g, "unu unu doi")
-      .replace(/Între 1 și/g, "Între una și")
-      .replace(/(^|[^\d])([1-9])(?=\s+\p{L})/gu, (_m, pre: string, d: string) => pre + RO_SMALL_NUMBERS[d]);
+      .replace(/\bDe 1\s*[–—-]\s*2 săptămâni\b/gi, "Între una și două săptămâni")
+      .replace(/\b1\s*[–—-]\s*2 săptămâni\b/gi, "una până la două săptămâni")
+      .replace(/\bDe (\d+)\s*[–—-]\s*(\d+)\s+/g, "Între $1 și $2 ")
+      .replace(/(?<![+\d.,-])(\d+)\s*[–—]\s*(\d+)(?![\d.,-])/g, "$1 până la $2")
+      .replace(/\b112\b/g, "unu unu doi");
   } else if (lang === "en") {
-    t = t.replace(/(\d)–(\d)/g, "$1 to $2").replace(/\b112\b/g, "one one two");
+    t = t
+      .replace(/(?<![+\d.,-])(\d+)\s*[–—]\s*(\d+)(?![\d.,-])/g, "$1 to $2")
+      .replace(/\b112\b/g, "one one two");
   } else if (lang === "sq") {
-    t = t.replace(/(\d)–(\d)/g, "nga $1 deri në $2").replace(/\b112\b/g, "një një dy");
+    t = t
+      .replace(/(?<![+\d.,-])(\d+)\s*[–—]\s*(\d+)(?![\d.,-])/g, "nga $1 deri në $2")
+      .replace(/\b112\b/g, "një një dy");
   } else if (lang === "it") {
-    t = t.replace(/\b(\d)–(\d)/g, "da $1 a $2").replace(/\b112\b/g, "uno uno due");
+    t = t
+      .replace(/(?<![+\d.,-])(\d+)\s*[–—]\s*(\d+)(?![\d.,-])/g, "da $1 a $2")
+      .replace(/\b112\b/g, "uno uno due");
   } else if (lang === "hr") {
-    t = t.replace(/(\d)–(\d)/g, "od $1 do $2").replace(/\b112\b/g, "jedan jedan dva");
+    t = t
+      .replace(/(?<![+\d.,-])(\d+)\s*[–—]\s*(\d+)(?![\d.,-])/g, "od $1 do $2")
+      .replace(/\b112\b/g, "jedan jedan dva");
   } else if (lang === "rom") {
-    t = t.replace(/(\d)–(\d)/g, "$1 dji ko $2").replace(/\b112\b/g, "jekh jekh duj");
+    t = t
+      .replace(/(?<![+\d.,-])(\d+)\s*[–—]\s*(\d+)(?![\d.,-])/g, "$1 dji ko $2")
+      .replace(/\b112\b/g, "jekh jekh duj");
   } else if (lang === "ru") {
-    t = t.replace(/(\d)–(\d)/g, "от $1 до $2").replace(/\b112\b/g, "один один два");
+    t = t
+      .replace(/(?<![+\d.,-])(\d+)\s*[–—]\s*(\d+)(?![\d.,-])/g, "от $1 до $2")
+      .replace(/\b112\b/g, "один один два");
   }
   return t;
 }

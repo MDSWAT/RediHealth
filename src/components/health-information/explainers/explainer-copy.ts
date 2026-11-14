@@ -9,5 +9,5 @@ export const SPEECH_LANG: Record<Lang, string> = {
   sq: "sq-AL",
   it: "it-IT",
   hr: "hr-HR",
-  rom: "ro-RO",
+  rom: "rom",
 };

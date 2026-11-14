@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { ChevronDownIcon, CloseIcon } from "@/components/ui/icons";
+import { CAPSULE_PANEL, CAPSULE_PANEL_LABEL, capsuleItem } from "@/components/layout/chrome-capsule";
 import { cn } from "@/lib/cn";
 import {
   resetComfortPreferences,
@@ -236,17 +237,29 @@ export function ComfortMenu({
     };
   }, [isOpen, variant, collapsible, setOpen]);
 
-  const scaleOptions: { value: TextScale; glyph: string; label: string }[] = [
-    { value: "normal", glyph: "A", label: copy.scaleNormal },
-    { value: "large", glyph: "A+", label: copy.scaleLarge },
-    { value: "xl", glyph: "A++", label: copy.scaleXl },
+  // The letter itself grows from one option to the next, so the choice shows what it does.
+  const scaleOptions: { value: TextScale; glyphClass: string; label: string }[] = [
+    { value: "normal", glyphClass: "text-[0.875rem]", label: copy.scaleNormal },
+    { value: "large", glyphClass: "text-[1.0625rem]", label: copy.scaleLarge },
+    { value: "xl", glyphClass: "text-[1.3125rem]", label: copy.scaleXl },
   ];
 
+  // One recessed track per choice, with the chosen option lifted onto a plate: a single control, not a row of boxes.
+  const segmentTrack = "mt-2 grid gap-1 rounded-xl bg-ink-950/[0.06] p-1 dark:bg-white/8";
+  const segmentLabel = CAPSULE_PANEL_LABEL;
+  const segment = (active: boolean) =>
+    cn(
+      "press-row flex min-h-12 min-w-0 items-center justify-center whitespace-nowrap rounded-lg px-1.5 text-center transition-[background-color,color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+      active
+        ? "bg-card font-semibold text-sapphire shadow-xs ring-1 ring-sapphire/45 dark:bg-white/18 dark:text-paper dark:ring-white/35"
+        : "font-medium text-foreground/75 hover:bg-card/60 hover:text-foreground dark:text-paper/75 dark:hover:bg-white/8 dark:hover:text-paper",
+    );
+
   const controlsBody = (
-    <div className="space-y-3.5 text-left">
+    <div className="space-y-4 text-left">
       <div style={{ "--i": 0 } as CSSProperties} className={cn(isOpen && "list-in")}>
-        <p className="text-xs font-semibold text-muted-foreground dark:text-mist">{copy.textSizeLabel}</p>
-        <div role="group" aria-label={copy.textSizeLabel} className="mt-1.5 grid grid-cols-3 gap-1.5">
+        <p className={segmentLabel}>{copy.textSizeLabel}</p>
+        <div role="group" aria-label={copy.textSizeLabel} className={cn(segmentTrack, "grid-cols-3")}>
           {scaleOptions.map((option) => {
             const active = textScale === option.value;
             return (
@@ -255,15 +268,12 @@ export function ComfortMenu({
                 type="button"
                 aria-pressed={active}
                 onClick={() => setTextScale(option.value)}
-                className={cn(
-                  "press-row flex min-h-12 min-w-0 flex-col items-center justify-center whitespace-nowrap rounded-xl border px-1.5 py-1.5 text-center transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
-                  active
-                    ? "border-sapphire bg-sapphire-soft/75 text-sapphire shadow-xs ring-1 ring-sapphire/20 dark:border-paper dark:bg-white/15 dark:text-paper dark:ring-white/20"
-                    : "border-border-control bg-muted/35 text-foreground hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:text-paper dark:hover:bg-white/10",
-                )}
+                className={cn(segment(active), "min-h-16 flex-col justify-end gap-1 pt-1.5 pb-2")}
               >
-                <span className="text-sm font-bold leading-none tabular-nums">{option.glyph}</span>
-                <span className="mt-1 max-w-full truncate text-[11px] font-medium leading-tight">{option.label}</span>
+                <span aria-hidden="true" className={cn("font-bold leading-none", option.glyphClass)}>
+                  A
+                </span>
+                <span className="max-w-full truncate text-xs leading-tight">{option.label}</span>
               </button>
             );
           })}
@@ -271,8 +281,8 @@ export function ComfortMenu({
       </div>
 
       <div style={{ "--i": 1 } as CSSProperties} className={cn(isOpen && "list-in")}>
-        <p className="text-xs font-semibold text-muted-foreground dark:text-mist">{copy.explanationLabel}</p>
-        <div role="group" aria-label={copy.explanationLabel} className="mt-1.5 grid grid-cols-2 gap-1.5">
+        <p className={segmentLabel}>{copy.explanationLabel}</p>
+        <div role="group" aria-label={copy.explanationLabel} className={cn(segmentTrack, "grid-cols-2")}>
           {(
             [
               { value: "simple", label: copy.simpleLabel },
@@ -286,12 +296,7 @@ export function ComfortMenu({
                 type="button"
                 aria-pressed={active}
                 onClick={() => setReadingLevel(option.value)}
-                className={cn(
-                  "press-row flex min-h-12 min-w-0 items-center justify-center whitespace-nowrap rounded-xl border px-2.5 py-1.5 text-center text-[13px] font-semibold leading-tight transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
-                  active
-                    ? "border-sapphire bg-sapphire-soft/75 text-sapphire shadow-xs ring-1 ring-sapphire/20 dark:border-paper dark:bg-white/15 dark:text-paper dark:ring-white/20"
-                    : "border-border-control bg-muted/35 text-foreground hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:text-paper dark:hover:bg-white/10",
-                )}
+                className={cn(segment(active), "text-sm leading-tight")}
               >
                 <span className="min-w-0 truncate">{option.label}</span>
               </button>
@@ -300,24 +305,22 @@ export function ComfortMenu({
         </div>
       </div>
 
-      <div style={{ "--i": 2 } as CSSProperties} className={cn(isOpen && "list-in", "pt-0.5")}>
+      <div
+        style={{ "--i": 2 } as CSSProperties}
+        className={cn(isOpen && "list-in", "border-t border-border/70 pt-2 dark:border-white/10")}
+      >
         <button
           type="button"
           role="switch"
           aria-checked={calmMotion}
           onClick={() => setCalmMotion(!calmMotion)}
-          className={cn(
-            "press-row flex min-h-11 w-full items-center justify-between gap-3 rounded-xl border px-3 py-2 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
-            calmMotion
-              ? "border-sapphire bg-sapphire-soft/60 dark:border-paper dark:bg-white/12"
-              : "border-border-control bg-muted/35 hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:hover:bg-white/10",
-          )}
+          className="press-row -mx-2 flex min-h-11 w-[calc(100%+1rem)] items-center justify-between gap-4 rounded-lg px-2 py-2 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:hover:bg-white/8"
         >
           <span className="min-w-0 flex-1">
-            <span className="block text-xs font-semibold text-foreground dark:text-paper">
+            <span className="block text-sm font-semibold leading-snug text-foreground dark:text-paper">
               {copy.calmMotionToggle}
             </span>
-            <span className="mt-0.5 block text-[11px] leading-snug text-muted-foreground dark:text-mist">
+            <span className="mt-0.5 block text-[13px] leading-snug text-muted-foreground dark:text-mist">
               {copy.calmMotionHelp}
             </span>
           </span>
@@ -325,7 +328,7 @@ export function ComfortMenu({
             aria-hidden="true"
             className={cn(
               "inline-flex h-6 w-11 shrink-0 items-center justify-start rounded-md p-0.5 transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
-              calmMotion ? "bg-sapphire" : "bg-ink-950/20 dark:bg-white/25",
+              calmMotion ? "bg-sapphire dark:bg-sapphire-border" : "bg-border-control dark:bg-white/30",
             )}
           >
             {/* The thumb travels the track (20px) rather than jumping between ends. */}
@@ -453,21 +456,11 @@ export function ComfortMenu({
         aria-controls={panelId}
         aria-label={copy.buttonLabel}
         title={copy.buttonLabel}
+        data-capsule-item=""
         onClick={() => setOpen((prev) => !prev)}
-        className={cn(
-          "press-row relative inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center whitespace-nowrap rounded-lg px-0 text-sm font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 motion-reduce:transition-none",
-          tone === "light"
-            ? "text-paper/90 hover:bg-white/10 hover:text-white focus-visible:ring-paper/70"
-            : "text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/85 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
-          !isOpen &&
-            hasComfortBoost &&
-            (tone === "light"
-              ? "bg-white/12 text-white"
-              : "bg-sapphire-soft/75 text-sapphire dark:bg-white/12 dark:text-paper"),
-          isOpen && (tone === "light" ? "bg-white/15 text-white" : "bg-muted text-foreground dark:bg-white/15"),
-        )}
+        className={cn(capsuleItem(tone === "light", isOpen || hasComfortBoost), "w-11")}
       >
-        <span aria-hidden="true" className="text-[15px] font-bold tracking-tight">
+        <span aria-hidden="true" className="text-[14.5px] font-bold leading-none tracking-[-0.02em]">
           Aa
         </span>
         <span className="sr-only">{copy.buttonLabel}</span>
@@ -478,14 +471,12 @@ export function ComfortMenu({
         role="dialog"
         aria-label={copy.title}
         inert={!isOpen}
-        className={cn(
-          "fixed inset-x-3 top-[calc(var(--site-header-h,4rem)+0.5rem)] z-50 transition-[opacity,transform,visibility] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:pt-2",
-          isOpen ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1.5 opacity-0",
-        )}
+        data-open={isOpen}
+        className="capsule-panel fixed inset-x-3 top-[calc(var(--site-header-h,4rem)+0.5rem)] z-50 sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:pt-3"
       >
-        <div className="w-auto rounded-(--radius-surface) border border-border bg-card p-4 text-foreground shadow-(--shadow-card-hover) sm:w-84 dark:border-white/10 dark:bg-ink-900 dark:text-paper">
-          <div className="mb-3 flex items-center justify-between gap-2 border-b border-border/70 pb-2.5 dark:border-white/10">
-            <h2 className="text-sm font-semibold text-foreground dark:text-paper">{copy.title}</h2>
+        <div className={cn(CAPSULE_PANEL, "w-auto p-4 sm:w-92")}>
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <h2 className="text-base font-semibold text-foreground dark:text-paper">{copy.title}</h2>
             <button
               type="button"
               onClick={() => {

@@ -17,6 +17,7 @@ import { ArrowRightIcon, CheckIcon, ChevronDownIcon, GlobeIcon } from "@/compone
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { languages, type Lang } from "@/lib/i18n/translations";
+import { CAPSULE_PANEL, CAPSULE_PANEL_LABEL, capsuleItem } from "@/components/layout/chrome-capsule";
 import { cn } from "@/lib/cn";
 
 export type LanguageSelectorProps = {
@@ -60,7 +61,7 @@ export const languageSelectorCopy: Record<Lang, { label: string; romaniNote: str
   },
   rom: {
     label: "Chib e rigaki",
-    romaniNote: "Le doktorikane vorbe si shpjegime vi pe romani chib and-o alavari ki rig Sikljov.",
+    romaniNote: "Alavari pe romani chib",
   },
 };
 
@@ -144,6 +145,7 @@ export function LanguageSelector({
   );
   const activeLang = orderedLanguages[activeIndex] || languages[0];
   const copy = languageSelectorCopy[lang] ?? languageSelectorCopy.ro;
+  const showRomaniNote = lang === "rom";
   const glossaryHref = withLangPrefix("/health-information", lang);
 
   useEffect(() => {
@@ -291,22 +293,24 @@ export function LanguageSelector({
         })}
       </ul>
 
-      <div
-        style={{ "--i": orderedLanguages.length } as CSSProperties}
-        className={cn(isOpen && "list-in", "mt-1.5 border-t border-border pt-1.5 dark:border-white/10")}
-      >
+      {/* The glossary pointer is for Romani readers, so it shows only when the site is in Romani: one short line. */}
+      {showRomaniNote ? (
         <Link
           href={glossaryHref}
           onClick={() => {
             setOpen(false);
             onNavigate?.();
           }}
-          className="flex min-h-11 max-w-full items-center justify-between gap-3 whitespace-nowrap rounded-(--radius-control) px-3 py-2 text-body leading-snug text-muted-foreground press-row hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper dark:text-mist dark:hover:bg-white/5 dark:hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+          style={{ "--i": orderedLanguages.length } as CSSProperties}
+          className={cn(
+            isOpen && "list-in",
+            "mt-1 flex min-h-11 max-w-full items-center justify-between gap-3 whitespace-nowrap rounded-(--radius-control) px-3 text-[13px] leading-snug text-muted-foreground press-row hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper dark:text-mist dark:hover:bg-white/5 dark:hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+          )}
         >
-          <span className="min-w-0 truncate">{copy.romaniNote}</span>
-          <ArrowRightIcon className="h-5 w-5 shrink-0 text-sapphire dark:text-paper" />
+          <span className="min-w-0 flex-1">{copy.romaniNote}</span>
+          <ArrowRightIcon className="h-3.5 w-3.5 shrink-0 opacity-70" />
         </Link>
-      </div>
+      ) : null}
     </>
   );
 
@@ -392,17 +396,19 @@ export function LanguageSelector({
                 })}
               </ul>
 
-              <Link
-                href={glossaryHref}
-                onClick={() => {
-                  setOpen(false);
-                  onNavigate?.();
-                }}
-                className="mt-2 flex min-h-11 items-center justify-between max-w-full gap-2.5 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-xs leading-snug text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-ink-900/[0.035] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:text-mist dark:hover:bg-white/5 dark:hover:text-paper dark:focus-visible:ring-paper"
-              >
-                <span className="min-w-0 truncate">{copy.romaniNote}</span>
-                <ArrowRightIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-paper" />
-              </Link>
+              {showRomaniNote ? (
+                <Link
+                  href={glossaryHref}
+                  onClick={() => {
+                    setOpen(false);
+                    onNavigate?.();
+                  }}
+                  className="mt-2 flex min-h-11 items-center justify-between max-w-full gap-2.5 whitespace-nowrap rounded-lg px-2.5 text-[13px] leading-snug text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-ink-900/[0.035] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:text-mist dark:hover:bg-white/5 dark:hover:text-paper dark:focus-visible:ring-paper"
+                >
+                  <span className="min-w-0 flex-1">{copy.romaniNote}</span>
+                  <ArrowRightIcon className="h-3.5 w-3.5 shrink-0 opacity-70" />
+                </Link>
+              ) : null}
             </div>
           </div>
         </div>
@@ -475,23 +481,18 @@ export function LanguageSelector({
         onKeyDown={handleTriggerKeyDown}
         aria-expanded={isOpen}
         aria-controls={panelId}
-        className={cn(
-          "inline-flex min-h-11 min-w-20 max-w-full items-center justify-between gap-1.5 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
-          tone === "light"
-            ? "text-paper/85 hover:bg-white/10 hover:text-paper focus-visible:ring-paper/70"
-            : "text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
-        )}
+        data-capsule-item=""
+        className={cn(capsuleItem(tone === "light", isOpen), "gap-1.5 px-2.5")}
       >
-        <GlobeIcon className={cn("h-4 w-4 shrink-0", tone === "light" ? "text-paper/75" : "text-muted-foreground dark:text-mist")} />
+        <GlobeIcon className="h-4.5 w-4.5 shrink-0 opacity-85" />
         <span className="sr-only">
           {copy.label}: {activeLang.label},{" "}
         </span>
-        <span className="text-meta font-semibold tracking-wide">{ISO_BADGE[activeLang.code]}</span>
+        <span className="text-[13px] font-semibold tracking-[0.02em]">{ISO_BADGE[activeLang.code]}</span>
         <ChevronDownIcon
           className={cn(
-            "h-4 w-4",
+            "h-3.5 w-3.5 opacity-70",
             chevronMotion,
-            tone === "light" ? "text-paper/65" : "text-muted-foreground dark:text-mist",
             isOpen && "rotate-180",
           )}
         />
@@ -500,12 +501,12 @@ export function LanguageSelector({
       <div
         id={panelId}
         inert={!isOpen}
-        className={cn(
-          "absolute right-0 top-full z-50 mt-2 w-72 rounded-(--radius-surface) border border-border bg-card p-2 shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-900",
-          "transition-[opacity,translate,visibility] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
-          isOpen ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0",
-        )}
+        data-open={isOpen}
+        className={cn(CAPSULE_PANEL, "capsule-panel absolute right-0 top-full z-50 mt-3 w-80 p-2")}
       >
+        <p aria-hidden="true" className={cn(CAPSULE_PANEL_LABEL, "px-3 pt-2 pb-2")}>
+          {copy.label}
+        </p>
         {panelBody}
       </div>
     </div>

@@ -119,7 +119,7 @@ describe("hero copy", () => {
     }
   });
 
-  it("asks a different true-or-false question than the myth quiz further down the page", async () => {
+  it("asks different true-or-false questions than the myth quiz further down the page", async () => {
     const { getHealthMyths } = await import("@/lib/i18n/health-myths");
     // Word stems of a statement; a large overlap means the same myth asked twice on one page.
     const stems = (text: string) =>
@@ -131,13 +131,30 @@ describe("hero copy", () => {
           .map((word) => word.slice(0, 4)),
       );
     for (const lang of LANGS) {
-      const hero = stems(heroCopy[lang].panel.needs.learn.quiz!.statement);
-      for (const myth of getHealthMyths(lang)) {
-        const other = stems(myth.statement);
-        const shared = [...other].filter((stem) => hero.has(stem)).length;
-        const overlap = shared / new Set([...hero, ...other]).size;
-        expect(overlap, `${lang}: ${myth.statement}`).toBeLessThan(0.34);
+      const learn = heroCopy[lang].panel.needs.learn;
+      const pool = learn.quizzes && learn.quizzes.length > 0 ? learn.quizzes : [learn.quiz!];
+      for (const question of pool) {
+        const hero = stems(question.statement);
+        for (const myth of getHealthMyths(lang)) {
+          const other = stems(myth.statement);
+          const shared = [...other].filter((stem) => hero.has(stem)).length;
+          const overlap = shared / new Set([...hero, ...other]).size;
+          expect(overlap, `${lang}: ${question.statement} vs ${myth.statement}`).toBeLessThan(0.34);
+        }
       }
+    }
+  });
+
+  it("provides a balanced randomized learn quiz pool and next-question label in all 7 languages", () => {
+    const allLangs = ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const;
+    for (const lang of allLangs) {
+      const learn = heroCopy[lang].panel.needs.learn;
+      expect(learn.quizzes, `${lang} learn quizzes`).toHaveLength(6);
+      expect(learn.nextQuizLabel?.trim().length, `${lang} nextQuizLabel`).toBeGreaterThan(0);
+      const answers = new Set(learn.quizzes!.map((q) => q.answer));
+      expect(answers.has(true) && answers.has(false), `${lang} mixed answers`).toBe(true);
+      const uniqueStatements = new Set(learn.quizzes!.map((q) => q.statement));
+      expect(uniqueStatements.size, `${lang} unique statements`).toBe(6);
     }
   });
 

@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import {
   ArrowRightIcon,
   ChevronRightIcon,
+  DownloadIcon,
   VolumeIcon,
   PhoneIcon,
   UsersIcon,
@@ -14,9 +15,11 @@ import {
 import { useReadAloud } from "@/components/health-check/readingTools";
 import { contulMeuCopy } from "@/components/portal/contul-meu-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
 import { useCalmReducedMotion } from "@/lib/motion/tokens";
+import { openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-state";
 
 export function normalizePortalPhone(raw: string): string {
   return raw.trim().replace(/[\s().-]+/g, "");
@@ -201,6 +204,9 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
   const copy = authModalCopy[lang] ?? authModalCopy.ro;
   const voice = useReadAloud(lang);
   const listenText = listenCopy[lang] ?? listenCopy.ro;
+  const pwa = usePwaSnapshot();
+  const showInstall = !pwa.isStandalone;
+  const installLabel = getPwaCopy(lang).installButton;
   const surfaceCopy = contulMeuCopy[lang] ?? contulMeuCopy.ro;
   const page = t.accountAuthPage ?? translations[lang].accountAuthPage;
   const calmMotion = useCalmReducedMotion();
@@ -441,25 +447,38 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
       </div>
 
       <div className="relative z-10 p-6 sm:p-8">
-        {voice.available ? (
-          <div className="mb-4 flex items-center justify-end gap-3">
-            <button
-              type="button"
-              onClick={() =>
-                voice.speaking
-                  ? voice.stop()
-                  : voice.speak([
-                      step === 1 ? page.title : surfaceCopy.card.step2Heading,
-                      activeSubtitle,
-                      copy.fallbackQuestion,
-                      copy.fallbackLinkText,
-                    ])
-              }
-              className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-              <span className="min-w-0 truncate">{voice.speaking ? listenText.stop : listenText.listen}</span>
-            </button>
+        {/* Install sits beside Listen: people who open their record are the ones who come back, so this is where it earns its place. */}
+        {showInstall || voice.available ? (
+          <div className="mb-4 flex flex-wrap items-center justify-end gap-2">
+            {showInstall ? (
+              <button
+                type="button"
+                onClick={() => void openPwaInstall()}
+                className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <DownloadIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+                <span>{installLabel}</span>
+              </button>
+            ) : null}
+            {voice.available ? (
+              <button
+                type="button"
+                onClick={() =>
+                  voice.speaking
+                    ? voice.stop()
+                    : voice.speak([
+                        step === 1 ? page.title : surfaceCopy.card.step2Heading,
+                        activeSubtitle,
+                        copy.fallbackQuestion,
+                        copy.fallbackLinkText,
+                      ])
+                }
+                className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-3 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+                <span className="min-w-0 truncate">{voice.speaking ? listenText.stop : listenText.listen}</span>
+              </button>
+            ) : null}
           </div>
         ) : null}
         <p aria-live="polite" className="sr-only">

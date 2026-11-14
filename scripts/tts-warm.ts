@@ -1,10 +1,17 @@
-import { collectSpokenSegments } from "@/components/health-check/spoken-segments";
+import {
+  collectSpokenSegments,
+  spokenForm,
+} from "@/components/health-check/spoken-segments";
 import {
   isAzureTtsConfigured,
   synthesizeAzureMp3,
   TtsQuotaExceededError,
 } from "@/lib/audio/azure-tts";
-import { SUPPORTED_TTS_LANGS } from "@/lib/audio/tts-voices";
+import { formatSpeechText } from "@/lib/audio/speech-engine";
+import {
+  getNeuralVoiceConfig,
+  SUPPORTED_TTS_LANGS,
+} from "@/lib/audio/tts-voices";
 
 const F0_PACING_DELAY_MS = 3500;
 
@@ -13,7 +20,7 @@ function sleep(ms: number): Promise<void> {
 }
 
 async function main() {
-  if (!process.env.AZURE_SPEECH_KEY?.trim() || !isAzureTtsConfigured()) {
+  if (!isAzureTtsConfigured()) {
     console.log(
       [
         "Skipping TTS cache warm: AZURE_SPEECH_KEY (or AZURE_SPEECH_REGION) is not set.",
@@ -32,10 +39,28 @@ async function main() {
   let failedCount = 0;
 
   for (const lang of SUPPORTED_TTS_LANGS) {
-    const segments = collectSpokenSegments(lang);
-    console.log(`Warming ${segments.length} segments for '${lang}'...`);
+    const voiceCfg = getNeuralVoiceConfig(lang);
+    const ttsLocale = voiceCfg?.locale ?? lang;
+    const rawSegments = collectSpokenSegments(lang);
+    const seen = new Set<string>();
+    const normalizedSegments: string[] = [];
 
-    for (const segment of segments) {
+    for (const raw of rawSegments) {
+      const spoken = spokenForm(lang, raw).trim();
+      if (!spoken) continue;
+      const withPunct = /[.?!:…]$/.test(spoken) ? spoken : `${spoken}.`;
+      const normalized = formatSpeechText(withPunct, ttsLocale);
+      if (normalized && !seen.has(normalized)) {
+        seen.add(normalized);
+        normalizedSegments.push(normalized);
+      }
+    }
+
+    console.log(
+      `Warming ${normalizedSegments.length} normalized segments for '${lang}'...`,
+    );
+
+    for (const segment of normalizedSegments) {
       total += 1;
       try {
         const result = await synthesizeAzureMp3({ lang, text: segment });

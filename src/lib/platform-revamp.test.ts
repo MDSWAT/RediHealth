@@ -13,17 +13,23 @@ import type { Lang } from "@/lib/i18n/translations";
 const LOCALES: Lang[] = ["ro", "en", "sq", "it", "hr", "rom"];
 
 describe("Platform core capabilities and multi-locale contracts", () => {
-  it("enables voice read-aloud for ro, en, it, and hr while strictly blocking sq and rom", () => {
+  it("enables voice read-aloud for ro, en, sq, it, hr, and ru (6/7 = 85.7%) while strictly blocking rom", () => {
     expect(isVoiceEnabled("ro")).toBe(true);
     expect(isVoiceEnabled("en")).toBe(true);
+    expect(isVoiceEnabled("sq")).toBe(true);
     expect(isVoiceEnabled("it")).toBe(true);
     expect(isVoiceEnabled("hr")).toBe(true);
-    expect(isVoiceEnabled("sq")).toBe(false);
+    expect(isVoiceEnabled("ru")).toBe(true);
+    expect(isVoiceEnabled("sq-AL" as Lang)).toBe(true);
     expect(isVoiceEnabled("rom")).toBe(false);
-    expect(isVoiceEnabled("sq-AL" as Lang)).toBe(false);
+    expect(isVoiceEnabled("rom-RO" as Lang)).toBe(false);
+    const enabledCount = (["ro", "en", "sq", "it", "hr", "ru", "rom"] as Lang[]).filter((lang) =>
+      isVoiceEnabled(lang)
+    ).length;
+    expect(enabledCount).toBe(6);
   });
 
-  it("normalizes clinical units, numeric ranges, and 112 for natural speech in ro, en, it, and hr", () => {
+  it("normalizes clinical units, numeric ranges, URLs, and 112 for natural speech across all 6 voiced languages", () => {
     expect(formatSpeechText("Tensiunea crește cu 10–15 mmHg. Sună la 112.", "ro-RO")).toContain(
       "10 până la 15 milimetri coloană de mercur"
     );
@@ -34,6 +40,19 @@ describe("Platform core capabilities and multi-locale contracts", () => {
       "od 10 do 15 milimetara živinog stupca"
     );
     expect(formatSpeechText("Nazovi 112.", "hr-HR")).toContain("jedan jedan dva");
+    const ruSpoken = formatSpeechText("Давление 10–15 mmHg. Звоните 112.", "ru-RU");
+    expect(ruSpoken).toContain("от 10 до 15 миллиметров ртутного столба");
+    expect(ruSpoken).toContain("один один два");
+    const sqSpoken = formatSpeechText("Tensioni rritet me 10–15 mmHg. Telefononi 112.", "sq-AL");
+    expect(sqSpoken).toContain("nga 10 deri në 15 milimetra shtyllë zhive");
+    expect(sqSpoken).toContain("një një dy");
+    const strippedUrl = formatSpeechText(
+      "Vezi detalii la https://redihealth.ro/ro/find-help?q=1 și sună la 112.",
+      "ro-RO"
+    );
+    expect(strippedUrl).not.toContain("https://");
+    expect(strippedUrl).not.toContain("redihealth.ro");
+    expect(strippedUrl).toContain("unu unu doi");
     expect(speechEngine.isSpeaking()).toBe(false);
   });
 

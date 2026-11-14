@@ -1538,3 +1538,59 @@ html[data-text-scale="xl"] :is(button, a).whitespace-nowrap {
     display: none !important;
   }
 }
+
+/*
+ * Header capsule and in-page capsule menus (src/components/layout/chrome-capsule.ts).
+ * capsule-plate: the single highlight that glides between segments (CapsuleGlide.tsx).
+ * capsule-panel: a panel that opens out of the segment that owns it (--panel-origin, top right by
+ * default), so it is clear which control it belongs to. Both hold still under reduced motion and
+ * in-app Calm motion.
+ */
+.capsule-plate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--dur-base) var(--ease-out-calm),
+    width var(--dur-base) var(--ease-out-calm),
+    height var(--dur-base) var(--ease-out-calm),
+    opacity var(--dur-fast) var(--ease-out-calm);
+}
+
+.capsule-panel {
+  transform-origin: var(--panel-origin, top right);
+  transition:
+    opacity var(--dur-fast) var(--ease-out-calm),
+    transform var(--dur-base) var(--ease-out-calm),
+    visibility var(--dur-fast);
+}
+
+.capsule-panel[data-open="false"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-0.25rem) scale(0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capsule-plate,
+  .capsule-panel {
+    transition: none;
+  }
+
+  .capsule-panel[data-open="false"] {
+    transform: none;
+  }
+}
+
+html[data-calm-motion] .capsule-plate,
+html[data-calm-motion] .capsule-panel {
+  transition: none;
+}
+
+html[data-calm-motion] .capsule-panel[data-open="false"] {
+  transform: none;
+}

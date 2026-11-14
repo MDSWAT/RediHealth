@@ -10,6 +10,7 @@ describe("buildContentSecurityPolicy", () => {
     expect(policy).not.toContain("'unsafe-eval'");
     expect(policy).not.toMatch(/script-src[^;]*unsafe-inline/);
     expect(policy).toContain("worker-src 'self' blob:");
+    expect(policy).toContain("manifest-src 'self'");
     expect(policy).toContain("upgrade-insecure-requests");
   });
 

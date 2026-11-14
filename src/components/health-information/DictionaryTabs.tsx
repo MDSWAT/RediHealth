@@ -1,5 +1,6 @@
 "use client";
 
+import { CAPSULE_OUTLINE, CAPSULE_SHAPE } from "@/components/layout/chrome-capsule";
 import { useRef, type KeyboardEvent } from "react";
 import { BookIcon, GlobeIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
@@ -123,12 +124,14 @@ export function DictionaryTabs({
     <div
       role="tablist"
       aria-label={tablistAriaLabel ?? DICTIONARY_TAB_LABELS.ro.tablistAria}
-      className="relative grid grid-cols-2 rounded-xl border border-border bg-surface-subtle p-1"
+      data-capsule-switch=""
+      className={cn("relative grid grid-cols-2 p-1", CAPSULE_SHAPE, CAPSULE_OUTLINE)}
     >
       <span
         aria-hidden="true"
         className={cn(
-          "pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-lg bg-sapphire shadow-xs transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
+          CAPSULE_SHAPE,
+          "pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] bg-sapphire shadow-xs transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
           active === "romanes" ? "translate-x-full" : "translate-x-0",
         )}
       />
@@ -146,7 +149,8 @@ export function DictionaryTabs({
             onClick={() => selectTab(id)}
             onKeyDown={handleKeyDown}
             className={cn(
-              "relative z-10 inline-flex min-h-11 min-w-0 items-center justify-center gap-1 whitespace-nowrap rounded-lg px-2 py-1.5 text-xs font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 sm:gap-2 sm:px-3 sm:text-sm",
+              CAPSULE_SHAPE,
+              "relative z-10 inline-flex min-h-11 min-w-0 items-center justify-center gap-1 whitespace-nowrap px-2 py-1.5 text-xs font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 sm:gap-2 sm:px-3 sm:text-sm",
               isSelected
                 ? "text-white"
                 : "text-muted-foreground hover:text-foreground",

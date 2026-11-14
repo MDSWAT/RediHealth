@@ -174,8 +174,26 @@ export function SmartSearchModal() {
     [speaking, stop],
   );
 
+  const [growOrigin, setGrowOrigin] = useState<string | null>(null);
+
   const handleOpen = useCallback((initialQuery?: string) => {
     shouldRestoreFocusRef.current = true;
+    // On desktop the panel grows out of the search control that opened it. Its origin is that
+    // control's centre, measured from the panel's own top-left corner (centred, max-w-2xl, md:pt-14 / lg:pt-18).
+    const trigger = Array.from(document.querySelectorAll<HTMLElement>("[data-search-trigger]")).find(
+      (el) => el.offsetParent !== null,
+    );
+    if (trigger && window.matchMedia("(min-width: 768px)").matches) {
+      const box = trigger.getBoundingClientRect();
+      const panelWidth = Math.min(672, window.innerWidth - 48);
+      const panelLeft = (window.innerWidth - panelWidth) / 2;
+      const panelTop = window.innerWidth >= 1024 ? 72 : 56;
+      setGrowOrigin(
+        `${Math.round(box.left + box.width / 2 - panelLeft)}px ${Math.round(box.top + box.height / 2 - panelTop)}px`,
+      );
+    } else {
+      setGrowOrigin(null);
+    }
     setRecentSearches(readRecentSearches());
     setExpandedJourneyId(null);
     setExpandedOverview(false);
@@ -537,16 +555,23 @@ export function SmartSearchModal() {
       <div
         aria-hidden="true"
         onClick={handleClose}
-        className="scrim-in fixed inset-0 -z-10 bg-ink-950/35"
+        className="scrim-in fixed inset-0 -z-10 bg-ink-950/45"
       />
 
       <motion.div
         ref={panelRef}
         tabIndex={-1}
-        initial={reducedMotion ? false : { opacity: 0, y: ENTRANCE_OFFSET_PX }}
-        animate={{ opacity: 1, y: 0 }}
+        style={growOrigin ? { transformOrigin: growOrigin } : undefined}
+        initial={
+          reducedMotion
+            ? false
+            : growOrigin
+              ? { opacity: 0, scale: 0.86, y: 0 }
+              : { opacity: 0, y: ENTRANCE_OFFSET_PX }
+        }
+        animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: reducedMotion ? 0 : DURATION.slow, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto flex max-h-[92%] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border border-ink-900/12 bg-white text-foreground shadow-[0_24px_64px_-16px_rgba(12,24,48,0.22)] md:max-h-[80vh] md:rounded-2xl dark:border-paper/15 dark:bg-ink-950 dark:text-paper"
+        className="mx-auto flex max-h-[92%] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border border-transparent bg-white text-foreground shadow-[0_28px_72px_-18px_rgba(12,24,48,0.38)] md:max-h-[80vh] md:rounded-2xl dark:border-paper/15 dark:bg-ink-950 dark:text-paper"
       >
         <h2 id={dialogTitleId} className="sr-only">
           {copy.modalLabel}
@@ -557,8 +582,9 @@ export function SmartSearchModal() {
         </div>
 
         {/* Google-like search header bar */}
-        <div className="shrink-0 border-b border-ink-900/10 px-4 py-2.5 dark:border-paper/10 sm:px-5">
-          <div className="flex min-h-[48px] items-center gap-2.5 rounded-xl px-2.5 has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-offset-2 has-[input:focus-visible]:outline-ring">
+        {/* Focus shows as a sapphire rule along the bar's own edge, not a second box drawn inside the panel. */}
+        <div className="shrink-0 border-b border-ink-900/10 px-4 py-2 transition-shadow duration-(--dur-fast) ease-(--ease-out-calm) has-[input:focus-visible]:shadow-[inset_0_-2px_0_var(--color-sapphire)] motion-reduce:transition-none dark:border-paper/10 dark:has-[input:focus-visible]:shadow-[inset_0_-2px_0_var(--color-sapphire-border)] sm:px-5">
+          <div className="flex min-h-[52px] items-center gap-3 pl-1.5">
             <SearchIcon
               className="h-5 w-5 shrink-0 text-sapphire dark:text-sapphire-border"
               aria-hidden="true"
@@ -568,7 +594,7 @@ export function SmartSearchModal() {
               {ghostSuffix ? (
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 flex items-center overflow-hidden pr-1 whitespace-pre text-[16px] leading-normal font-normal tracking-normal"
+                  className="pointer-events-none absolute inset-0 flex items-center overflow-hidden pr-1 whitespace-pre text-[1.0625rem] leading-normal font-normal tracking-normal sm:text-lg"
                 >
                   <span className="invisible">{query}</span>
                   <span className="text-ink-900/35 dark:text-paper/35">{ghostSuffix}</span>
@@ -597,7 +623,7 @@ export function SmartSearchModal() {
                 autoCorrect="off"
                 spellCheck={false}
                 style={{ outline: "none" }}
-                className="relative z-10 min-h-[44px] w-full bg-transparent pr-1 text-[16px] leading-normal font-normal tracking-normal text-foreground placeholder:text-ink-900/45 focus:outline-none focus-visible:outline-none dark:text-paper dark:placeholder:text-paper/45 [&::-webkit-search-cancel-button]:hidden"
+                className="relative z-10 min-h-[44px] w-full bg-transparent pr-1 text-[1.0625rem] leading-normal font-normal tracking-normal text-foreground caret-sapphire placeholder:text-ink-900/55 sm:text-lg focus:outline-none focus-visible:outline-none dark:text-paper dark:caret-sapphire-border dark:placeholder:text-paper/55 [&::-webkit-search-cancel-button]:hidden"
               />
             </div>
 
@@ -609,7 +635,7 @@ export function SmartSearchModal() {
                     applyQuery("", true);
                     inputRef.current?.focus();
                   }}
-                  className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg px-2.5 text-xs font-medium whitespace-nowrap text-ink-900/60 transition-colors hover:bg-ink-900/[0.05] hover:text-foreground dark:text-paper/65 dark:hover:bg-paper/[0.08] dark:hover:text-paper"
+                  className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg px-2.5 text-sm font-medium whitespace-nowrap text-ink-900/65 transition-colors hover:bg-ink-900/[0.05] hover:text-foreground dark:text-paper/65 dark:hover:bg-paper/[0.08] dark:hover:text-paper"
                 >
                   {copy.clearLabel}
                 </button>
@@ -657,14 +683,14 @@ export function SmartSearchModal() {
                   className={cn(
                     // tab-ink: the marker under the chosen tab draws out from its centre; the label sits
                     // exactly over it (px-3 matches the marker's 0.75rem inset).
-                    "tab-ink inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-md px-3 text-[13.5px] font-medium whitespace-nowrap transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none",
+                    "tab-ink inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-md px-3 text-sm font-medium whitespace-nowrap transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none",
                     isSelected
                       ? "text-sapphire dark:text-sapphire-border"
                       : "text-ink-900/60 hover:text-foreground dark:text-paper/65 dark:hover:text-paper",
                   )}
                 >
                   <span>{copy.categories[cat]}</span>
-                  <span className="text-xs font-normal tabular-nums text-ink-900/45 dark:text-paper/45">
+                  <span className="text-[13px] font-normal tabular-nums text-ink-900/55 dark:text-paper/55">
                     {count}
                   </span>
                 </button>
@@ -895,13 +921,13 @@ export function SmartSearchModal() {
               {overview && overviewBody ? (
                 <section
                   aria-label={copy.aiAnswerTitle}
-                  className="rounded-xl border border-sapphire/15 bg-sapphire/[0.03] px-4 py-3.5 dark:border-sapphire-border/20 dark:bg-sapphire/[0.08]"
+                  className="rounded-xl bg-sapphire-soft/70 px-4 pt-3.5 pb-2 dark:bg-white/[0.06]"
                 >
                   {/* Keyed: when the fuller answer replaces the catalogue lead, it settles in instead of snapping. */}
                   <p
                     key={activeAiAnswer ? "answer" : "lead"}
                     className={cn(
-                      "text-[14.5px] leading-relaxed text-foreground dark:text-paper",
+                      "text-[15px] leading-relaxed text-foreground dark:text-paper",
                       activeAiAnswer && "swap-in",
                     )}
                   >
@@ -1041,8 +1067,8 @@ export function SmartSearchModal() {
                         onMouseEnter={() => setActiveIndex(idx)}
                         style={{ "--i": idx } as CSSProperties}
                         className={cn(
-                          "list-in rounded-lg px-2 py-2.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
-                          isHighlighted && "bg-ink-900/[0.025] dark:bg-paper/[0.04]",
+                          "list-in rounded-lg px-2.5 py-3 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+                          isHighlighted && "bg-ink-900/[0.035] dark:bg-paper/[0.05]",
                         )}
                       >
                         <div className="flex items-start justify-between gap-2">
@@ -1054,7 +1080,7 @@ export function SmartSearchModal() {
                             <h3 className="text-[16px] leading-snug font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border">
                               {result.title}
                             </h3>
-                            <p className="mt-0.5 text-[14px] leading-relaxed text-ink-900/75 dark:text-paper/75">
+                            <p className="mt-1 text-[14.5px] leading-relaxed text-ink-900/75 dark:text-paper/75">
                               {result.summary}
                             </p>
                           </Link>
