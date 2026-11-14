@@ -1925,7 +1925,7 @@ export function HealthCheckExplorer() {
       </Link>
 
       <Link
-        href={withLangPrefix("/medic-online?queue=now&source=triage", activeLang)}
+        href={withLangPrefix("/medic-online/asteptare", activeLang)}
         aria-label={c.doctorNow}
         title={c.doctorNow}
         className={`${routingIconButton} whitespace-nowrap`}

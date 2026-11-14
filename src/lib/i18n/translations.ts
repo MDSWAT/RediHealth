@@ -583,7 +583,7 @@ export const translations: Record<Lang, Translations> = {
             title: "У меня проблемы со здоровьем",
             desc: "Посмотрите на предупреждающие знаки и поговорите с дежурным врачом онлайн.",
             actionLabel: "Поговорите с врачом",
-            actionHref: "/get-help?mode=doctor",
+            actionHref: "/medic-online",
           },
           {
             id: "prescription",
@@ -1216,7 +1216,7 @@ export const translations: Record<Lang, Translations> = {
             title: "I have a health problem",
             desc: "See the warning signs and talk to the on-call doctor online.",
             actionLabel: "Talk to a doctor",
-            actionHref: "/get-help?mode=doctor",
+            actionHref: "/medic-online",
           },
           {
             id: "prescription",
@@ -1848,7 +1848,7 @@ export const translations: Record<Lang, Translations> = {
             title: "Am o problemă de sănătate",
             desc: "Vezi semnele de alarmă și vorbește online cu medicul de gardă.",
             actionLabel: "Vorbește cu medicul",
-            actionHref: "/get-help?mode=doctor",
+            actionHref: "/medic-online",
           },
           {
             id: "prescription",
@@ -2479,7 +2479,7 @@ export const translations: Record<Lang, Translations> = {
             title: "Kam një problem shëndetësor",
             desc: "Shiko shenjat e alarmit dhe fol online me mjekun kujdestar.",
             actionLabel: "Fol me mjekun",
-            actionHref: "/get-help?mode=doctor",
+            actionHref: "/medic-online",
           },
           {
             id: "prescription",
@@ -3111,7 +3111,7 @@ export const translations: Record<Lang, Translations> = {
             title: "Ho un problema di salute",
             desc: "Guarda i segnali di allarme e parla online con il medico di guardia.",
             actionLabel: "Parla con il medico",
-            actionHref: "/get-help?mode=doctor",
+            actionHref: "/medic-online",
           },
           {
             id: "prescription",
@@ -3743,7 +3743,7 @@ export const translations: Record<Lang, Translations> = {
             title: "Imam zdravstveni problem",
             desc: "Pogledaj znakove uzbune i razgovaraj online s dežurnim liječnikom.",
             actionLabel: "Razgovaraj s liječnikom",
-            actionHref: "/get-help?mode=doctor",
+            actionHref: "/medic-online",
           },
           {
             id: "prescription",
@@ -4375,7 +4375,7 @@ export const translations: Record<Lang, Translations> = {
             title: "Si man sastipnaski problema",
             desc: "Dikh e daravne semnya thaj vaker online e doktoreya.",
             actionLabel: "Vaker e doktoreya",
-            actionHref: "/get-help?mode=doctor",
+            actionHref: "/medic-online",
           },
           {
             id: "prescription",

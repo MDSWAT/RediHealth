@@ -129,9 +129,9 @@ const en: HeroCopy = {
     back: "Back",
     step: (current, total) => `Step ${current} of ${total}`,
     doctorPrompt: "Want to talk to a doctor?",
-    doctorLink: "Book a call",
+    doctorLink: "Talk to a doctor",
     problemDoctorPrompt: "No alarm signs?",
-    problemDoctorLink: "Talk to a doctor online",
+    problemDoctorLink: "Talk to a doctor",
     needs: {
       learn: {
         label: "Read simple health guides",
@@ -230,9 +230,9 @@ const ro: HeroCopy = {
     back: "Înapoi",
     step: (current, total) => `Pasul ${current} din ${total}`,
     doctorPrompt: "Vrei să vorbești cu un medic?",
-    doctorLink: "Programează un apel",
+    doctorLink: "Vorbește cu un medic",
     problemDoctorPrompt: "Nu ai semne de alarmă?",
-    problemDoctorLink: "Vorbește cu un medic online",
+    problemDoctorLink: "Vorbește cu un medic",
     needs: {
       learn: {
         label: "Citește ghiduri simple de sănătate",
@@ -331,9 +331,9 @@ const sq: HeroCopy = {
     back: "Kthehu",
     step: (current, total) => `Hapi ${current} nga ${total}`,
     doctorPrompt: "Do të flasësh me një mjek?",
-    doctorLink: "Rezervo një thirrje",
+    doctorLink: "Fol me një mjek",
     problemDoctorPrompt: "Nuk ke shenja alarmi?",
-    problemDoctorLink: "Fol me një mjek online",
+    problemDoctorLink: "Fol me një mjek",
     needs: {
       learn: {
         label: "Lexo udhëzues të thjeshtë shëndeti",
@@ -432,9 +432,9 @@ const it: HeroCopy = {
     back: "Indietro",
     step: (current, total) => `Passo ${current} di ${total}`,
     doctorPrompt: "Vuoi parlare con un medico?",
-    doctorLink: "Prenota una chiamata",
+    doctorLink: "Parla con un medico",
     problemDoctorPrompt: "Nessun segnale di allarme?",
-    problemDoctorLink: "Parla con un medico online",
+    problemDoctorLink: "Parla con un medico",
     needs: {
       learn: {
         label: "Leggi guide semplici sulla salute",
@@ -533,9 +533,9 @@ const hr: HeroCopy = {
     back: "Natrag",
     step: (current, total) => `Korak ${current} od ${total}`,
     doctorPrompt: "Želiš li razgovarati s liječnikom?",
-    doctorLink: "Dogovori poziv",
+    doctorLink: "Razgovaraj s liječnikom",
     problemDoctorPrompt: "Nemaš znakove uzbune?",
-    problemDoctorLink: "Razgovaraj s liječnikom online",
+    problemDoctorLink: "Razgovaraj s liječnikom",
     needs: {
       learn: {
         label: "Čitaj jednostavne vodiče o zdravlju",
@@ -634,9 +634,9 @@ const rom: HeroCopy = {
     back: "Palpale",
     step: (current, total) => `Pash ${current} katar ${total}`,
     doctorPrompt: "Kames te vakeres ekhe doktoreya?",
-    doctorLink: "Programisar ekh akharipe",
+    doctorLink: "Vaker ekhe doktoreya",
     problemDoctorPrompt: "Nane tut daravne semnya?",
-    problemDoctorLink: "Vaker ekhe doktoreya online",
+    problemDoctorLink: "Vaker ekhe doktoreya",
     needs: {
       learn: {
         label: "Gin loke sastipnaske lekciye",
@@ -736,9 +736,9 @@ ru: {
     back: "Назад",
     step: (current, total) => `Шаг ${current} из ${total}`,
     doctorPrompt: "Хотите поговорить с врачом?",
-    doctorLink: "Записаться на звонок",
+    doctorLink: "Поговорите с врачом",
     problemDoctorPrompt: "Нет опасных симптомов?",
-    problemDoctorLink: "Поговорите с врачом онлайн",
+    problemDoctorLink: "Поговорите с врачом",
     needs: {
       learn: {
         label: "Читать простые гиды о здоровье",

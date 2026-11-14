@@ -53,7 +53,7 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
       {
         title: "Поговорить с врачом онлайн",
         description: "Бесплатный телефонный звонок дежурному врачу.",
-        cta: "Смотреть врачей",
+        cta: "Поговорите с врачом",
       },
       {
         title: "Найти, куда пойти",
@@ -80,7 +80,7 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
       {
         title: "Vorbește cu un medic online",
         description: "Apel gratuit la telefon cu medicul de gardă.",
-        cta: "Vezi medicii",
+        cta: "Vorbește cu un medic",
       },
       {
         title: "Găsește unde să mergi",
@@ -106,7 +106,7 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
       {
         title: "Talk to a doctor online",
         description: "Free phone call with an on-call doctor.",
-        cta: "See doctors",
+        cta: "Talk to a doctor",
       },
       {
         title: "Find where to go",
@@ -132,7 +132,7 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
       {
         title: "Fol me një mjek online",
         description: "Telefonatë falas me mjekun kujdestar.",
-        cta: "Shiko mjekët",
+        cta: "Fol me një mjek",
       },
       {
         title: "Gjej ku të shkosh",
@@ -158,7 +158,7 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
       {
         title: "Parla con un medico online",
         description: "Chiamata gratuita con un medico di guardia.",
-        cta: "Vedi i medici",
+        cta: "Parla con un medico",
       },
       {
         title: "Trova dove andare",
@@ -184,7 +184,7 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
       {
         title: "Razgovaraj s liječnikom online",
         description: "Besplatan telefonski poziv s dežurnim liječnikom.",
-        cta: "Pogledaj liječnike",
+        cta: "Razgovaraj s liječnikom",
       },
       {
         title: "Pronađi kamo otići",
@@ -210,7 +210,7 @@ const COPY: Record<Lang, HelpOptionsCopy> = {
       {
         title: "Vorbin jekhe doktorestar online",
         description: "Bi lovengo akharimos pe telefono e doktoresa pe straza.",
-        cta: "Dikh doktoren",
+        cta: "Vaker ekhe doktoreya",
       },
       {
         title: "Arakh kaj te djas",

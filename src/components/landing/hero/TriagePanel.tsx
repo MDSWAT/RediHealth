@@ -657,7 +657,7 @@ function AnswerView({ copy, id, alarmSigns, lang, onBack }: AnswerViewProps) {
         <p className="mt-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-ink-950/[0.08] pt-4 text-[15px]">
           <span className="font-medium">{isProblem ? copy.problemDoctorPrompt : copy.doctorPrompt}</span>
           <Link
-            href={localHref("/get-help?mode=doctor", lang)}
+            href={localHref("/medic-online", lang)}
             className={cn(
               "-my-2 inline-flex min-h-11 items-center whitespace-nowrap rounded font-semibold text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire motion-reduce:transition-none",
               focusRing,

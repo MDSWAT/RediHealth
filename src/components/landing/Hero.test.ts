@@ -143,7 +143,7 @@ describe("hero copy", () => {
 
   it("keeps links in the visitor's language except tel: and the staff panel", () => {
     expect(localHref("/health-check", "ro")).toBe("/ro/health-check");
-    expect(localHref("/get-help?mode=doctor", "it")).toBe("/it/get-help?mode=doctor");
+    expect(localHref("/get-help?mode=mediator", "it")).toBe("/it/get-help?mode=mediator");
     expect(localHref("tel:112", "en")).toBe("tel:112");
     expect(localHref("/panel", "sq")).toBe("/panel");
   });
