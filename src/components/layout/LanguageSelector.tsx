@@ -325,7 +325,7 @@ export function LanguageSelector({
           aria-expanded={isOpen}
           aria-controls={panelId}
           className={cn(
-            "group flex min-h-12 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-lg px-2.5 py-2.5 text-left press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper",
+            "group flex min-h-11 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-left press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper",
             isOpen
               ? "bg-sapphire/[0.06] dark:bg-white/[0.07]"
               : "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05]",

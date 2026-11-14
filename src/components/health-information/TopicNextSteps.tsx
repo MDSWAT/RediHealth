@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { PinIcon, StethoscopeIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
 import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -55,17 +55,18 @@ export function TopicNextSteps({ lang, topicSlug, topicTitle, className = "" }: 
         </Button>
       </div>
 
-      <div className="flex flex-col gap-2 px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8 print:hidden">
+      <div className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8 print:hidden">
         <div>
           <p className="text-body font-semibold text-foreground">{findHelp.noDoctorNeeded}</p>
           <p className="mt-0.5 text-body text-muted-foreground">{findHelp.pharmacyFirstHint}</p>
         </div>
         <Link
           href={withLangPrefix(findHelpHref("pharmacy"), lang)}
-          className="group -mx-2 inline-flex min-h-12 max-w-full items-center gap-2 self-start whitespace-nowrap rounded-lg px-2 py-1.5 text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:shrink-0 sm:self-auto"
+          className="group inline-flex min-h-12 max-w-full items-center gap-2 self-start whitespace-nowrap rounded-lg border border-sapphire/25 bg-sapphire-soft/55 px-3.5 py-2 text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/45 hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:shrink-0 sm:self-auto dark:border-sapphire-border/30 dark:bg-white/[0.06] dark:text-sapphire-border dark:hover:bg-white/[0.1]"
         >
           <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-          <span className="min-w-0 truncate underline-offset-4 group-hover:underline">{findHelp.nearestPharmacy}</span>
+          <span className="min-w-0 truncate">{findHelp.nearestPharmacy}</span>
+          <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
         </Link>
       </div>
 

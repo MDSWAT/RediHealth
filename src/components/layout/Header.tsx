@@ -9,13 +9,10 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import {
-  AlertCircleIcon,
   CloseIcon,
   DownloadIcon,
   ExternalLinkIcon,
-  GlobeIcon,
   MenuIcon,
-  MessageDotsIcon,
   PhoneIcon,
   ChevronRightIcon,
   RefreshIcon,
@@ -77,11 +74,11 @@ export function Header() {
     const el = headerRef.current;
     if (!el) return;
     const root = document.documentElement;
-    // Constant height per breakpoint (h-14 below md, md:h-16 above) prevents scroll-height oscillation.
+    // Constant 64px (h-16) bar height prevents scroll-height oscillation and gives the capsule balanced breathing room.
     const publish = () => {
       const pinned = getComputedStyle(el).position === "sticky";
       const strip = el.querySelector<HTMLElement>(".emergency-banner")?.offsetHeight ?? 0;
-      const bar = window.matchMedia("(min-width: 768px)").matches ? 64 : 56;
+      const bar = 64;
       const height = pinned ? `${strip + bar}px` : "0px";
       root.style.setProperty("--site-header-h", height);
       root.style.setProperty("--site-header-slim-h", height);
@@ -289,7 +286,7 @@ export function Header() {
           data-header-bar=""
           className="max-w-[80rem] max-sm:px-3 max-[359px]:px-2 2xl:max-w-[96rem] 2xl:px-5"
         >
-          <div className="flex h-14 md:h-16 items-center justify-between gap-1 sm:gap-3 2xl:gap-2">
+          <div className="flex h-16 items-center justify-between gap-1 sm:gap-3 2xl:gap-2">
             <Logo
               className="shrink-0 whitespace-nowrap"
               tone={isTransparent ? "light" : "default"}
@@ -347,7 +344,7 @@ export function Header() {
 
             {/* One capsule holds every utility: no control carries a box of its own. */}
             <div ref={glideTrackRef} className={cn(capsuleSurface(isTransparent), "shrink-0")}>
-              <CapsuleGlidePlate plateRef={glidePlateRef} onHero={isTransparent} />
+              {!mobileOpen ? <CapsuleGlidePlate plateRef={glidePlateRef} onHero={isTransparent} /> : null}
               <div className="hidden shrink-0 items-center gap-0.5 md:flex">
                 <button
                   type="button"
@@ -410,10 +407,29 @@ export function Header() {
                 </Link>
               </div>
 
-              {/* Mobile comfort control (search lives as the first row inside the drawer) */}
+              {/* Mobile utilities: search and text size sit beside the menu button while closed */}
               {!mobileOpen && (
                 <div className="flex items-center gap-0.5 md:hidden">
-                  <ComfortMenu tone={isTransparent ? "light" : "default"} showLabel />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpenHeaderMenu(null);
+                      openSmartSearch();
+                    }}
+                    aria-label={searchCopy.triggerLabel}
+                    title={searchCopy.triggerLabel}
+                    data-capsule-item=""
+                    data-search-trigger=""
+                    className={cn(capsuleItem(isTransparent), "w-11")}
+                  >
+                    <SearchIcon className="h-4.5 w-4.5 shrink-0 opacity-85" aria-hidden="true" />
+                    <span className="sr-only">{searchCopy.triggerLabel}</span>
+                  </button>
+                  <ComfortMenu tone={isTransparent ? "light" : "default"} />
+                  <span
+                    aria-hidden="true"
+                    className={cn(capsuleDivider(isTransparent), "max-[359px]:hidden")}
+                  />
                 </div>
               )}
 
@@ -478,7 +494,7 @@ export function Header() {
               : "pointer-events-none invisible -translate-y-2 opacity-0",
           )}
         >
-          <Container className="mx-auto flex min-h-full w-full max-w-xl flex-col gap-3 py-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+          <Container className="mx-auto flex min-h-full w-full max-w-xl flex-col gap-2 py-2.5 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
             <button
               type="button"
               onClick={() => {
@@ -488,7 +504,7 @@ export function Header() {
               style={{ "--i": 0 } as CSSProperties}
               className={cn(
                 mobileOpen && "list-in",
-                "flex min-h-12 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-xl md:hidden bg-ink-950/[0.05] px-3.5 py-2.5 text-left text-ink-900 press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-ink-950/[0.09] dark:bg-white/8 dark:text-paper dark:hover:bg-white/12",
+                "flex min-h-11 w-full max-w-full items-center gap-2.5 whitespace-nowrap rounded-xl md:hidden bg-ink-950/[0.05] px-3 py-1.5 text-left text-ink-900 press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-ink-950/[0.09] dark:bg-white/8 dark:text-paper dark:hover:bg-white/12",
                 DRAWER_FOCUS,
               )}
             >
@@ -516,7 +532,7 @@ export function Header() {
                         aria-current={isActive ? "page" : undefined}
                         onClick={closeMobile}
                         className={cn(
-                          "group flex min-h-14 items-center gap-3 rounded-lg px-2.5 py-2.5",
+                          "group flex min-h-12 items-center gap-3 rounded-lg px-2.5 py-1.5",
                           DRAWER_ROW_MOTION,
                           DRAWER_FOCUS,
                           isActive
@@ -544,7 +560,7 @@ export function Header() {
                           >
                             {link.label}
                           </span>
-                          <span className="mt-0.5 block text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
+                          <span className="block text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
                             {link.subtext}
                           </span>
                         </span>
@@ -559,7 +575,7 @@ export function Header() {
             {/* Secondary & Preferences */}
             <div
               style={{ "--i": primaryLinks.length + 1 } as CSSProperties}
-              className={cn(mobileOpen && "list-in", "border-t border-ink-900/10 pt-2 dark:border-white/10")}
+              className={cn(mobileOpen && "list-in", "border-t border-ink-900/10 pt-1.5 dark:border-white/10")}
             >
               {/* Account, language, text and install already sit in the bar from md up, so they are phone-only here. */}
               <ul>
@@ -569,7 +585,7 @@ export function Header() {
                   aria-current={isPortalActive ? "page" : undefined}
                   onClick={closeMobile}
                   className={cn(
-                    "group flex min-h-12 items-center gap-3 rounded-lg px-2.5 py-2.5",
+                    "group flex min-h-11 items-center gap-3 rounded-lg px-2.5 py-1.5",
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                     isPortalActive
@@ -606,7 +622,7 @@ export function Header() {
                   aria-current={isMediatorsActive ? "page" : undefined}
                   onClick={closeMobile}
                   className={cn(
-                    "group flex min-h-12 items-center gap-3 rounded-lg px-2.5 py-2.5",
+                    "group flex min-h-12 items-center gap-3 rounded-lg px-2.5 py-1.5",
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                     isMediatorsActive
@@ -632,7 +648,7 @@ export function Header() {
                     >
                       {tHeader.forMediators}
                     </span>
-                    <span className="mt-0.5 block text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
+                    <span className="block text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
                       {tHeader.forMediatorsSub}
                     </span>
                   </span>
@@ -677,7 +693,7 @@ export function Header() {
                     }
                   }}
                   className={cn(
-                    "group flex min-h-12 w-full items-center gap-3 whitespace-nowrap rounded-lg px-2.5 py-2.5 text-left",
+                    "group flex min-h-11 w-full items-center gap-3 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-left",
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                     "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05] disabled:cursor-wait disabled:opacity-75",
@@ -703,12 +719,12 @@ export function Header() {
               </ul>
             </div>
 
-            {/* Bottom 112 emergency row and quiet utility links */}
+            {/* Bottom 112 emergency row and single-line quiet colophon */}
             <div
               style={{ "--i": primaryLinks.length + 2 } as CSSProperties}
-              className={cn(mobileOpen && "list-in", "mt-auto space-y-2 border-t border-ink-900/10 pt-3 dark:border-white/10")}
+              className={cn(mobileOpen && "list-in", "mt-auto space-y-1.5 border-t border-ink-900/10 pt-2 dark:border-white/10")}
             >
-              <div className="flex min-h-11 items-center justify-between gap-3 px-2.5 py-1">
+              <div className="flex min-h-11 items-center justify-between gap-3 px-2.5 py-0.5">
                 <p className="text-body font-medium text-foreground dark:text-paper">
                   {chrome.emergencyQuestion}
                 </p>
@@ -720,31 +736,28 @@ export function Header() {
                     setMobileOpen(false);
                     setDialerOpen(true);
                   }}
-                  className="min-h-12 shrink-0 rounded-lg px-3.5 py-1.5 text-body font-semibold whitespace-nowrap shadow-none dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
+                  className="min-h-11 shrink-0 rounded-lg px-3.5 py-1.5 text-body font-semibold whitespace-nowrap shadow-none dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
                 >
                   <PhoneIcon className="h-4 w-4" />
                   <span>{tHeader.call112}</span>
                 </Button>
               </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-x-1 gap-y-1 border-t border-ink-900/8 pt-2 dark:border-white/10">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-0 border-t border-ink-900/8 px-2.5 pt-0.5 text-meta text-muted-foreground dark:border-white/10 dark:text-mist">
                 <a
                   href="https://www.redi-ngo.eu/"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeMobile}
                   className={cn(
-                    "group inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 py-1.5 text-body font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
+                    "-mx-1.5 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-1.5 font-medium hover:text-foreground dark:hover:text-paper",
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                   )}
                 >
-                  <GlobeIcon className="h-4 w-4 shrink-0 text-foreground/65 transition-colors duration-(--dur-fast) group-hover:text-sapphire dark:text-paper/70 dark:group-hover:text-paper" />
                   <span>redi-ngo.eu</span>
-                  <ExternalLinkIcon className="h-3 w-3 shrink-0 opacity-55 transition-opacity duration-(--dur-fast) group-hover:opacity-100" />
+                  <ExternalLinkIcon className="h-3.5 w-3.5 shrink-0 opacity-65" aria-hidden="true" />
                 </a>
-
-                <span aria-hidden="true" className="h-3 w-px bg-ink-900/15 max-[374px]:hidden dark:bg-white/12" />
 
                 <button
                   type="button"
@@ -753,16 +766,13 @@ export function Header() {
                     openSiteFeedback();
                   }}
                   className={cn(
-                    "group inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 py-1.5 text-body font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
+                    "-mx-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 font-medium hover:text-foreground dark:hover:text-paper",
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                   )}
                 >
-                  <MessageDotsIcon className="h-4 w-4 shrink-0 text-foreground/65 transition-colors duration-(--dur-fast) group-hover:text-sapphire dark:text-paper/70 dark:group-hover:text-paper" />
-                  <span>{(feedbackWidgetCopy[lang] ?? feedbackWidgetCopy.ro).compactTriggerLabel}</span>
+                  {(feedbackWidgetCopy[lang] ?? feedbackWidgetCopy.ro).compactTriggerLabel}
                 </button>
-
-                <span aria-hidden="true" className="h-3 w-px bg-ink-900/15 max-[374px]:hidden dark:bg-white/12" />
 
                 <Link
                   href={withLangPrefix("/report-issue", lang)}
@@ -777,13 +787,12 @@ export function Header() {
                     }
                   }}
                   className={cn(
-                    "group inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 py-1.5 text-body font-medium text-muted-foreground hover:bg-muted/70 hover:text-foreground dark:text-mist dark:hover:bg-white/8 dark:hover:text-paper",
+                    "-mx-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 font-medium hover:text-foreground dark:hover:text-paper",
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                   )}
                 >
-                  <AlertCircleIcon className="h-4 w-4 shrink-0 text-foreground/65 transition-colors duration-(--dur-fast) group-hover:text-primary dark:text-paper/70 dark:group-hover:text-ruby-300" />
-                  <span>{(reportIssueCopy[lang] ?? reportIssueCopy.ro).trigger}</span>
+                  {(reportIssueCopy[lang] ?? reportIssueCopy.ro).trigger}
                 </Link>
               </div>
             </div>

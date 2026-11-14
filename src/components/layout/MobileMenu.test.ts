@@ -69,12 +69,14 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     }
   });
 
-  it("shows single-line words on phone comfort & menu triggers and keeps search in the drawer (P27)", () => {
+  it("shows search icon, Aa-only comfort trigger, and single-line menu trigger on phones while keeping search in the drawer", () => {
     const mobileClusterStart = HEADER_SOURCE.indexOf("{!mobileOpen &&");
     const mobileBarSlice = HEADER_SOURCE.slice(mobileClusterStart, mobileMenuStart);
     expect(mobileClusterStart).toBeGreaterThan(-1);
-    expect(mobileBarSlice).not.toContain("openSmartSearch()");
-    expect(mobileBarSlice).toContain("<ComfortMenu tone={isTransparent ? \"light\" : \"default\"} showLabel />");
+    expect(mobileBarSlice).toContain("openSmartSearch()");
+    expect(mobileBarSlice).toContain('data-search-trigger=""');
+    expect(mobileBarSlice).toContain('<ComfortMenu tone={isTransparent ? "light" : "default"} />');
+    expect(mobileBarSlice).not.toContain("showLabel");
     expect(mobileBarSlice).toContain("chrome.closeWord : chrome.menuWord");
     expect(mobileBarSlice).toContain("whitespace-nowrap");
     expect(MOBILE_MENU_SOURCE).toContain("openSmartSearch()");
@@ -91,6 +93,9 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     }
 
     expect(HEADER_SOURCE).toContain('data-header-bar=""');
+    expect(HEADER_SOURCE).toContain("flex h-16 items-center");
+    expect(MOBILE_MENU_SOURCE).not.toContain("h-3 w-px");
+    expect(MOBILE_MENU_SOURCE).toContain("compactTriggerLabel");
     const containerHtml = renderToStaticMarkup(
       createElement(Container, { "data-header-bar": "", className: "max-[359px]:px-2" }, "ok"),
     );

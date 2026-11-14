@@ -99,6 +99,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang={lang}
+      data-scroll-behavior="smooth"
       data-public-origin={publicOrigin}
       suppressHydrationWarning
       className={`${bodyFont.variable} ${headingFont.variable} ${geistMono.variable} h-full antialiased`}

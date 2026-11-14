@@ -842,7 +842,7 @@ export function FindHelpExplorer({
         className={
           isSheet
             ? "flex flex-col gap-4"
-            : "grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1.25fr)_minmax(0,0.75fr)] lg:items-center xl:grid-cols-[minmax(0,1.2fr)_minmax(0,1.25fr)_minmax(0,0.75fr)_auto_auto]"
+            : "grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.28fr)_minmax(0,1.24fr)_minmax(0,0.68fr)] lg:items-center xl:grid-cols-[minmax(0,1.28fr)_minmax(0,1.24fr)_minmax(0,0.68fr)_auto_auto]"
         }
       >
         <form

@@ -367,7 +367,7 @@ describe("smart search engine", () => {
     expect(careIds[0]).not.toBe(homeIds[0]);
   });
 
-  it("predicts inline ghost completions only for multi-character queries", () => {
+  it("predicts inline ghost completions across trailing spaces and colloquial stems plus live predictions", () => {
     expect(predictQueryCompletion("", [], "en")).toBeNull();
     expect(predictQueryCompletion("d", [], "en")).toBeNull();
 
@@ -375,6 +375,27 @@ describe("smart search engine", () => {
     const completion = predictQueryCompletion("diab", diabetesSearch.results, "en");
     expect(completion).not.toBeNull();
     expect(completion!.toLowerCase().startsWith("diab")).toBe(true);
+
+    const trailingSpaceRo = searchSmartCatalog("ma doare ", { lang: "ro" });
+    expect(trailingSpaceRo.ghostCompletion).toBe("ma doare capul");
+    expect(trailingSpaceRo.predictions.length).toBeGreaterThanOrEqual(2);
+
+    const colloquialRo = searchSmartCatalog("ma doare capu", { lang: "ro" });
+    expect(colloquialRo.ghostCompletion).toBe("ma doare capul");
+    expect(colloquialRo.predictions).toContain("Mă doare capul");
+    expect(colloquialRo.predictions).not.toContain("Mă doare burta");
+    expect(colloquialRo.guidedOverview?.lead).toContain("112");
+    expect(colloquialRo.guidedOverview?.lead).not.toContain("Am ordonat mai întâi");
+    expect(colloquialRo.guidedOverview?.primaryAction.label).not.toBe("Deschide pagina");
+    expect(colloquialRo.results[0]?.kind).not.toBe("myths");
+    expect(
+      colloquialRo.results
+        .slice(0, 3)
+        .some((r) => r.id === "tool:health-check" || r.id === "tool:health-assistant"),
+    ).toBe(true);
+    expect(
+      colloquialRo.results.every((r) => !/\b(capacitate|capitol|handicap)\b/i.test(r.title)),
+    ).toBe(true);
   });
 
   it("builds guidedOverview and deduplicated relatedQuestions without boilerplate filler steps", () => {
@@ -575,5 +596,14 @@ describe("CLAUDE.md and MobileMenu source invariants", () => {
     expect(sheetHookSource).toContain("export function scrollExpandedIntoModalView");
     expect(sheetHookSource).toContain("export function useModalAutoScroll");
     expect(emergencySignsSource).toContain('data-modal-scroller="true"');
+
+    const feedbackWidgetSource = readFileSync(
+      path.resolve(process.cwd(), "src/components/layout/FeedbackWidget.tsx"),
+      "utf8",
+    );
+    expect(feedbackWidgetSource).toContain("disabled={step === 0 && !allRatingsComplete}");
+    expect(feedbackWidgetSource).toContain("nextUnansweredAny");
+    expect(feedbackWidgetSource).toContain("scrollIntoView");
+    expect(feedbackWidgetSource).not.toContain("rounded-full");
   });
 });

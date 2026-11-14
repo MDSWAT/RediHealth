@@ -1009,15 +1009,18 @@ html[data-text-scale="xl"] .site-header :is(button, a)[class~="w-11"] {
   }
 }
 
+@media (max-width: 767.98px) {
+  html[data-text-scale="large"] .site-header [data-header-bar] [data-header-trigger],
+  html[data-text-scale="xl"] .site-header [data-header-bar] [data-header-trigger] {
+    height: 44px;
+    min-height: 44px;
+  }
+}
+
 @media (max-width: 419.98px) {
   html[data-text-scale="large"] .site-header [data-header-bar],
   html[data-text-scale="xl"] .site-header [data-header-bar] {
     padding-inline: 8px;
-  }
-
-  html[data-text-scale="large"] .site-header [data-header-bar] [data-comfort-glyph],
-  html[data-text-scale="xl"] .site-header [data-header-bar] [data-comfort-glyph] {
-    display: none;
   }
 
   html[data-text-scale="large"] .site-header [data-header-bar] img,

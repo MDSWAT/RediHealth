@@ -169,7 +169,7 @@ export function TriagePanel({ copy, alarmSigns, lang }: TriagePanelProps) {
               inert={!active}
               data-active={active}
               data-dir={viewDir}
-              className="triage-view flex min-w-0 flex-col px-2.5 pb-4 pt-4 [grid-area:1/1] sm:px-7 sm:pb-6 sm:pt-5"
+              className="triage-view flex min-w-0 flex-col px-4 pb-4 pt-4 [grid-area:1/1] sm:px-7 sm:pb-6 sm:pt-5"
             >
               {current === "question" ? (
                 <QuestionView
@@ -359,23 +359,27 @@ function QuestionView({
       <div className="mt-auto">
         <p
           className={cn(
-            "mt-3 flex min-h-5 items-center text-body",
+            "mt-3 flex min-h-5 items-center text-meta sm:text-body",
             speaking ? "font-medium text-sapphire" : "text-ink-950/70",
           )}
         >
-          {speaking ? copy.subtitles.speaking : copy.subtitles.default}
+          {speaking
+            ? copy.subtitles.speaking
+            : hoveredNeed
+              ? copy.needs[hoveredNeed].hint
+              : copy.subtitles.default}
         </p>
 
-        <div className="mt-3 border-t border-ink-950/[0.08] pt-2.5">
+        <div className="mt-2.5 border-t border-ink-950/[0.08] pt-2">
           <Link
             href={localHref("/mediatori", lang)}
             className={cn(
-              "group -mx-1.5 flex min-h-11 w-[calc(100%+0.75rem)] max-w-[calc(100%+0.75rem)] items-center justify-between gap-1.5 whitespace-nowrap rounded-xl px-1 text-body font-medium text-ink-950/75 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-950/[0.04] hover:text-ink-950 motion-reduce:transition-none sm:-mx-2 sm:w-[calc(100%+1rem)] sm:max-w-[calc(100%+1rem)] sm:gap-2 sm:px-2",
+              "group -mx-2 flex min-h-11 w-[calc(100%+1rem)] max-w-[calc(100%+1rem)] items-center justify-between gap-2 whitespace-nowrap rounded-xl px-2 text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/60 hover:text-sapphire-light motion-reduce:transition-none",
               focusRing,
             )}
           >
             <span className="min-w-0">{copy.mediators}</span>
-            <ChevronRightIcon className="hidden h-4 w-4 shrink-0 text-ink-950/35 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-ink-950 motion-reduce:transition-none sm:inline-block" />
+            <ChevronRightIcon className="h-4 w-4 shrink-0 text-sapphire/75 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
           </Link>
         </div>
       </div>

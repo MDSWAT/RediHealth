@@ -291,26 +291,25 @@ export function TopicDetailPageContent({
         onStopClick={closeAudioPlayer}
         isPlayingAudio={isAudioPlayerOpen}
         afterActions={
-          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-body text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-body text-muted-foreground">
             <span>{ui.dictionaryPrompt}</span>
-            <button
-              type="button"
-              onClick={() => setOpenDrawer("dictionary")}
-              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
-            >
-              {ui.dualGlossaryCta}
-            </button>
-            <span aria-hidden="true" className="text-muted-foreground">
-              /
-            </span>
-            <button
-              type="button"
-              onClick={() => setOpenDrawer("romanes")}
-              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
-            >
-              {ui.romanesGlossaryCta}
-            </button>
-          </p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-0">
+              <button
+                type="button"
+                onClick={() => setOpenDrawer("dictionary")}
+                className="-mx-1 inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+              >
+                {ui.dualGlossaryCta}
+              </button>
+              <button
+                type="button"
+                onClick={() => setOpenDrawer("romanes")}
+                className="-mx-1 inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+              >
+                {ui.romanesGlossaryCta}
+              </button>
+            </div>
+          </div>
         }
         lang={lang}
       />

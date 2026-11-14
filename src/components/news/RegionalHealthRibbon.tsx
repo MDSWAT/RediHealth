@@ -243,15 +243,19 @@ export function RegionalHealthRibbon() {
       <div key={activeHeadline.slug} className={`min-w-0 flex-1 ${paused ? "swap-in" : ""}`}>
         <Link
           href={withLangPrefix(`${newsBasePath}/${activeHeadline.slug}`, lang)}
-          className="flex min-h-11 min-w-0 max-w-full items-center gap-2.5 rounded-lg px-1.5 text-paper/95 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-paper motion-reduce:transition-none"
+          className="flex min-h-11 min-w-0 max-w-full flex-col justify-center gap-0.5 rounded-lg px-1.5 py-1 text-paper/95 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-paper motion-reduce:transition-none md:flex-row md:items-center md:justify-start md:gap-2.5 md:py-0"
         >
           {activeHeadline.categoryLabel && (
             <>
-              <span className="shrink-0 font-semibold text-sapphire-border">{activeHeadline.categoryLabel}</span>
-              <span aria-hidden="true" className="h-3.5 w-px shrink-0 bg-current opacity-30" />
+              <span className="shrink-0 font-semibold leading-tight text-sapphire-border">
+                {activeHeadline.categoryLabel}
+              </span>
+              <span aria-hidden="true" className="hidden h-3.5 w-px shrink-0 bg-current opacity-30 md:inline-block" />
             </>
           )}
-          <span className="truncate">{activeHeadline.title}</span>
+          <span className="line-clamp-2 leading-snug md:line-clamp-none md:truncate">
+            {activeHeadline.title}
+          </span>
         </Link>
       </div>
     ) : null;
@@ -262,11 +266,11 @@ export function RegionalHealthRibbon() {
         aria-label={nr.ariaLabel}
         className="w-full bg-transparent py-2 text-paper md:py-1.5"
       >
-        <Container className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-meta md:flex-nowrap md:gap-4">
+        <Container className="flex flex-wrap items-center justify-between gap-x-2.5 gap-y-1.5 text-meta md:flex-nowrap md:gap-4">
           {/* Row 1 left on phones, start from md: the county or region, a button that changes it. */}
           {/* The button is pulled 6px left to align its text with the page edge, so its width limit allows for those 6px:
-              a plain max-w-full clipped every place name ("Bucur…", "Județul A…"). */}
-          <div className="order-1 flex min-w-0 max-w-full items-center gap-2 md:shrink-0">
+              flex-1 on phones lets long county names truncate cleanly while keeping "Vezi toate știrile" on Row 1. */}
+          <div className="order-1 flex min-w-0 flex-1 items-center gap-2 md:flex-none md:shrink-0">
             <button
               type="button"
               onClick={() => setModalOpen(true)}
@@ -280,9 +284,9 @@ export function RegionalHealthRibbon() {
             </button>
           </div>
 
-          {/* Row 2 on phones: calm stationary single-headline bar with 44px steppers.
+          {/* Row 2 on phones: calm stationary headline bar with 44px steppers.
               Middle from md: calm single headline when paused/calm-mode, otherwise the ticker. */}
-          <div className="order-3 flex w-full basis-full min-w-0 items-center gap-1 border-t border-white/10 pt-1 md:order-2 md:w-auto md:basis-auto md:flex-1 md:border-t-0 md:pt-0">
+          <div className="order-3 flex w-full basis-full min-w-0 items-center gap-1 border-t border-white/10 pt-1.5 md:order-2 md:w-auto md:basis-auto md:flex-1 md:border-t-0 md:pt-0">
             {items.length === 0 ? (
               <span className="block min-w-0 truncate py-2 text-mist">{nr.noActiveAlerts}</span>
             ) : (
@@ -354,10 +358,10 @@ export function RegionalHealthRibbon() {
             )}
           </div>
 
-          {/* Row 1 right on phones (refined translucent dark-glass pill), solid warm-paper button from md. */}
+          {/* Row 1 right on phones (refined translucent dark-glass control), solid warm-paper button from md. */}
           <Link
             href={withLangPrefix(newsBasePath, lang)}
-            className="press-solid order-2 inline-flex min-h-11 shrink-0 max-w-full items-center justify-self-end whitespace-nowrap ml-auto rounded-(--radius-control) border border-white/18 bg-white/[0.08] px-2.5 text-body font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 motion-reduce:transition-none sm:px-3.5 md:order-3 md:ml-0 md:border-transparent md:bg-paper md:text-ink-950 md:shadow-(--hairline-refraction) md:hover:bg-paper/90"
+            className="press-solid order-2 inline-flex min-h-11 shrink-0 max-w-full items-center justify-self-end whitespace-nowrap rounded-(--radius-control) border border-white/18 bg-white/[0.08] px-2.5 text-meta font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 motion-reduce:transition-none sm:px-3.5 md:order-3 md:border-transparent md:bg-paper md:text-body md:text-ink-950 md:shadow-(--hairline-refraction) md:hover:bg-paper/90"
           >
             <span className="min-w-0 truncate">{nr.viewAllNews}</span>
           </Link>

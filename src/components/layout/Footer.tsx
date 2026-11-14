@@ -121,26 +121,30 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* 112 reminder: one plain line, present even after the header's 112 line is closed. */}
-          <p className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-1 text-body text-mist">
-            <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-ruby-300" />
-            <span className="font-semibold text-paper">{tFooter.emergency112Title}</span>
+          {/* 112 reminder: hanging-indented on phones so wrapped lines and actions share one left axis; inline from lg. */}
+          <div className="mt-12 flex flex-col gap-1 text-body text-mist lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-4">
+            <div className="flex items-start gap-2.5 lg:items-center">
+              <PhoneIcon aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-ruby-300 lg:mt-0" />
+              <p className="font-semibold leading-snug text-paper">{tFooter.emergency112Title}</p>
+            </div>
             {/* Same gate as the header's 112 line: keypad on a phone, the number and guidance on a computer. */}
-            <button
-              type="button"
-              onClick={() => setDialerOpen(true)}
-              className="hero-focus press-on-dark -my-2 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 font-semibold text-paper underline decoration-paper/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:decoration-paper motion-reduce:transition-none"
-            >
-              {tFooter.call112Button}
-            </button>
-            <button
-              type="button"
-              onClick={() => setEmergencySignsOpen(true)}
-              className="hero-focus press-on-dark -my-2 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 text-mist underline decoration-mist/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-paper hover:decoration-paper motion-reduce:transition-none"
-            >
-              {tFooter.seeAlarmSigns}
-            </button>
-          </p>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-0 pl-[26px] lg:pl-0">
+              <button
+                type="button"
+                onClick={() => setDialerOpen(true)}
+                className="hero-focus press-on-dark -mx-1.5 -my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 font-semibold text-paper underline decoration-paper/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:decoration-paper motion-reduce:transition-none"
+              >
+                {tFooter.call112Button}
+              </button>
+              <button
+                type="button"
+                onClick={() => setEmergencySignsOpen(true)}
+                className="hero-focus press-on-dark -mx-1.5 -my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 text-mist underline decoration-mist/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-paper hover:decoration-paper motion-reduce:transition-none"
+              >
+                {tFooter.seeAlarmSigns}
+              </button>
+            </div>
+          </div>
 
           <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-meta text-mist lg:flex-row lg:items-center lg:justify-between lg:gap-8">
             <p className="text-pretty leading-relaxed">

@@ -29,6 +29,14 @@ import {
   type SmartSearchCategory,
   type SmartSearchSynonymGroup,
 } from "@/lib/i18n/smart-search-copy";
+import {
+  CLINICAL_SYNTHESIS_BY_CANONICAL,
+  COLLOQUIAL_TOKEN_EXPANSIONS,
+  CONVERSATIONAL_COMPLETIONS_BY_LANG,
+  GENERIC_SYMPTOM_TOKENS,
+  SEARCH_STOPWORDS,
+  synthesizeGroundedOverview,
+} from "@/lib/search/smart-search-synthesis";
 import { classifyIntentToPathway, type PathwayId } from "@/lib/triage-state";
 
 export type SmartSearchReadingLevel = "standard" | "simple";
@@ -75,6 +83,7 @@ export interface SmartSearchResponse {
   groupedCounts: Record<SmartSearchCategory, number>;
   didYouMean: string | null;
   ghostCompletion: string | null;
+  predictions: string[];
   isEmergency: boolean;
   suggestedFollowups: string[];
   intentSummary: string | null;
@@ -856,6 +865,10 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
     }
   };
 
+  for (const phrase of CONVERSATIONAL_COMPLETIONS_BY_LANG[lang] ?? []) {
+    completionSet.add(cleanDisplayText(phrase, lang));
+    addVocabWords(phrase);
+  }
   for (const q of copy.popularQueries) {
     completionSet.add(cleanDisplayText(q, lang));
     addVocabWords(q);
@@ -1313,10 +1326,15 @@ function scoreEntry(
       relevance += 48;
     }
 
+    const hasMeaningfulTokens = queryTokens.some((tok) => !SEARCH_STOPWORDS.has(tok));
+
     for (const qTok of queryTokens) {
+      if (hasMeaningfulTokens && SEARCH_STOPWORDS.has(qTok)) continue;
+
+      const expandedCandidates = [qTok, ...(COLLOQUIAL_TOKEN_EXPANSIONS[qTok] ?? [])];
       let tokenMatched = false;
 
-      if (entry.titleTokens.includes(qTok)) {
+      if (expandedCandidates.some((cand) => entry.titleTokens.includes(cand))) {
         relevance += 32;
         tokenMatched = true;
       } else if (qTok.length >= 3 && entry.titleTokens.some((t) => t.startsWith(qTok))) {
@@ -1327,7 +1345,7 @@ function scoreEntry(
         tokenMatched = true;
       }
 
-      if (entry.keywordTokens.includes(qTok)) {
+      if (expandedCandidates.some((cand) => entry.keywordTokens.includes(cand))) {
         relevance += 26;
         tokenMatched = true;
       } else if (qTok.length >= 3 && entry.keywordTokens.some((t) => t.startsWith(qTok))) {
@@ -1339,7 +1357,7 @@ function scoreEntry(
       }
 
       if (!tokenMatched) {
-        if (entry.bodyTokens.includes(qTok)) {
+        if (expandedCandidates.some((cand) => entry.bodyTokens.includes(cand))) {
           relevance += 10;
         } else if (qTok.length >= 4 && entry.bodyTokens.some((t) => t.startsWith(qTok))) {
           relevance += 6;
@@ -1352,9 +1370,28 @@ function scoreEntry(
     for (const group of synonyms) {
       let groupBoosted = false;
       for (const boostKw of group.boostTitleKeywords) {
+        if (entry.id === `tool:${boostKw}`) {
+          relevance += 72;
+          groupBoosted = true;
+          break;
+        }
         const normKw = normalizeSearchText(boostKw);
         if (!normKw) continue;
-        if (entry.normTitle.includes(normKw) || entry.normKeywords.includes(normKw) || entry.href.includes(normKw) || entry.href.includes(boostKw)) {
+        const matchesKw = normKw.includes(" ")
+          ? ` ${entry.normTitle} `.includes(` ${normKw} `) ||
+            ` ${entry.normKeywords} `.includes(` ${normKw} `)
+          : normKw === "cap"
+            ? entry.titleTokens.some((t) => t === "cap" || t === "capul") ||
+              entry.keywordTokens.some((t) => t === "cap" || t === "capul")
+            : normKw.length <= 4
+              ? entry.titleTokens.some((t) => t === normKw || t.startsWith(normKw)) ||
+                entry.keywordTokens.some((t) => t === normKw || t.startsWith(normKw)) ||
+                entry.href.includes(boostKw)
+              : entry.normTitle.includes(normKw) ||
+                entry.normKeywords.includes(normKw) ||
+                entry.href.includes(normKw) ||
+                entry.href.includes(boostKw);
+        if (matchesKw) {
           relevance += 30;
           groupBoosted = true;
           break;
@@ -1405,6 +1442,9 @@ function scoreEntry(
   let bonus = entry.priorityBoost;
   if (entry.pathwayHints.includes(pathway)) bonus += 12;
   if (entry.routeHints.includes(routeContext)) bonus += 8;
+  if (pathway === "symptoms" && entry.kind === "myths" && routeContext !== "myths") {
+    bonus -= 16;
+  }
 
   // Ensure emergency red-flag queries prioritize urgent care / triage / hospitals over lifestyle guides
   if (isEmergency) {
@@ -1512,7 +1552,7 @@ function computeDidYouMean(
 
 /**
  * Predicts a seamless inline ghost completion preserving the user's exact typed prefix
- * and keeping diacritics intact in the completed suffix.
+ * (including across trailing spaces and colloquial stems) and keeping diacritics intact.
  */
 export function predictQueryCompletion(
   query: string,
@@ -1522,10 +1562,11 @@ export function predictQueryCompletion(
   if (!query || query.trim().length < 2) return null;
   if (/^\s/.test(query) || /[\r\n]/.test(query)) return null;
 
-  const trimmedLeft = query;
-  const normQuery = normalizeSearchText(trimmedLeft);
+  const hasTrailingSpace = /\s$/.test(query);
+  const normQuery = normalizeSearchText(query);
   if (normQuery.length < 2) return null;
 
+  const minSuffixTrimLen = normQuery.length >= 4 ? 1 : 2;
   const index = getCatalogIndex(lang);
   const candidates: string[] = [
     ...index.completionCandidates,
@@ -1557,15 +1598,123 @@ export function predictQueryCompletion(
       if (matchedNorm.length > normQuery.length + 1) break;
     }
 
-    if (splitPos > 0 && splitPos === trimmedLeft.length && candidate.length - splitPos >= 2) {
-      const suffix = candidate.slice(splitPos);
-      if (suffix.trim().length >= 2) {
-        return `${trimmedLeft}${suffix}`;
+    if (splitPos <= 0 || splitPos >= candidate.length) continue;
+
+    let sliceFrom = splitPos;
+    if (hasTrailingSpace) {
+      if (!/\s/.test(candidate[sliceFrom] ?? "")) continue;
+      while (sliceFrom < candidate.length && /\s/.test(candidate[sliceFrom])) {
+        sliceFrom += 1;
       }
+    }
+
+    const suffix = candidate.slice(sliceFrom);
+    if (suffix.trim().length >= minSuffixTrimLen) {
+      return `${query}${suffix}`;
     }
   }
 
   return null;
+}
+
+function predictQuerySuggestions(
+  query: string,
+  results: SmartSearchResult[],
+  synonyms: SmartSearchSynonymGroup[],
+  lang: Lang,
+): string[] {
+  const normQuery = normalizeSearchText(query);
+  if (normQuery.length < 2) return [];
+
+  const copy = getSmartSearchCopy(lang);
+  const queryTokens = tokenizeNormalized(normQuery);
+  const meaningfulTokens = queryTokens.filter((t) => !SEARCH_STOPWORDS.has(t));
+  const specificTokens = meaningfulTokens.filter((t) => !GENERIC_SYMPTOM_TOKENS.has(t));
+  const checkTokens =
+    specificTokens.length > 0
+      ? specificTokens
+      : meaningfulTokens.length > 0
+        ? meaningfulTokens
+        : queryTokens;
+
+  const pool: { text: string; baseBonus: number }[] = [];
+  for (const phrase of CONVERSATIONAL_COMPLETIONS_BY_LANG[lang] ?? []) {
+    pool.push({ text: phrase, baseBonus: 14 });
+  }
+  for (const pq of copy.popularQueries) {
+    pool.push({ text: pq, baseBonus: 10 });
+  }
+  for (const chip of copy.starterChips) {
+    pool.push({ text: chip.query, baseBonus: 9 });
+  }
+  for (const journey of copy.guidedJourneys) {
+    for (const qItem of journey.queries) {
+      pool.push({ text: qItem.query, baseBonus: 8 });
+    }
+  }
+  for (const group of synonyms) {
+    const brief = CLINICAL_SYNTHESIS_BY_CANONICAL[group.canonical];
+    if (brief) {
+      for (const follow of brief.followups[lang]) {
+        pool.push({ text: follow, baseBonus: 12 });
+      }
+    }
+  }
+  for (const res of results.slice(0, 6)) {
+    if (res.title.length <= 48) {
+      pool.push({ text: res.title, baseBonus: 6 });
+    }
+  }
+
+  const ranked: { text: string; score: number }[] = [];
+  const seenNorm = new Set<string>([normQuery]);
+
+  for (const item of pool) {
+    const cleaned = cleanDisplayText(item.text, lang);
+    if (!cleaned || cleaned.length > 56) continue;
+    const normCand = normalizeSearchText(cleaned);
+    if (!normCand || seenNorm.has(normCand)) continue;
+
+    const candTokens = tokenizeNormalized(normCand);
+    let score = 0;
+
+    if (normCand.startsWith(normQuery)) {
+      score = 120 + item.baseBonus - cleaned.length * 0.25;
+    } else if (
+      queryTokens.length > 0 &&
+      queryTokens.every((qt) =>
+        candTokens.some(
+          (ct) =>
+            ct.startsWith(qt) ||
+            (COLLOQUIAL_TOKEN_EXPANSIONS[qt] ?? []).some((exp) => ct === exp || ct.startsWith(exp)),
+        ),
+      )
+    ) {
+      score = 92 + item.baseBonus - cleaned.length * 0.2;
+    } else if (
+      checkTokens.length > 0 &&
+      checkTokens.some((qt) =>
+        candTokens.some(
+          (ct) =>
+            ct === qt ||
+            (qt.length >= 3 && ct.startsWith(qt)) ||
+            (COLLOQUIAL_TOKEN_EXPANSIONS[qt] ?? []).some((exp) => ct === exp || ct.startsWith(exp)),
+        ),
+      )
+    ) {
+      score = 64 + item.baseBonus - cleaned.length * 0.15;
+    } else if (synonyms.length > 0 && item.baseBonus === 12) {
+      score = 46 - cleaned.length * 0.1;
+    }
+
+    if (score > 0) {
+      seenNorm.add(normCand);
+      ranked.push({ text: cleaned, score });
+    }
+  }
+
+  ranked.sort((a, b) => b.score - a.score || a.text.localeCompare(b.text, lang));
+  return ranked.slice(0, 4).map((r) => r.text);
 }
 
 export function getContextualSuggestions(
@@ -1792,6 +1941,7 @@ export function searchSmartCatalog(
       groupedCounts,
       didYouMean: null,
       ghostCompletion: null,
+      predictions: [],
       isEmergency: false,
       suggestedFollowups: copy.popularQueries.slice(0, 3).map((q) => cleanDisplayText(q, lang)),
       intentSummary: null,
@@ -1853,49 +2003,12 @@ export function searchSmartCatalog(
   const limitedResults = filteredResults.slice(0, limit);
   const didYouMean = computeDidYouMean(trimmed, queryTokens, index.vocabulary, lang);
   const ghostCompletion = predictQueryCompletion(query, limitedResults, lang);
+  const predictions = predictQuerySuggestions(query, limitedResults, synonyms, lang);
 
-  const followups = new Set<string>();
-  for (const pq of copy.popularQueries) {
-    if (normalizeSearchText(pq) !== normQuery) {
-      followups.add(cleanDisplayText(pq, lang));
-    }
-    if (followups.size >= 3) break;
-  }
-
-  const lead = cleanDisplayText(INTENT_SUMMARY_BY_LANG[lang][pathway], lang);
-  const overviewSteps: string[] = [];
-  const seenSteps = new Set<string>();
-  for (const res of scored.slice(0, 4)) {
-    if (res.id.startsWith("glossary-romanes:")) continue;
-    for (const step of res.nextSteps) {
-      const cleanedStep = cleanDisplayText(step, lang);
-      const normStep = normalizeSearchText(cleanedStep);
-      if (cleanedStep && normStep && !seenSteps.has(normStep)) {
-        seenSteps.add(normStep);
-        overviewSteps.push(cleanedStep);
-      }
-      if (overviewSteps.length >= 3) break;
-    }
-    if (overviewSteps.length >= 3) break;
-  }
-
-  const topOverviewResult = limitedResults[0] ?? scored[0];
-  const guidedOverview: SmartSearchGuidedOverview | null = topOverviewResult
-    ? {
-        lead,
-        steps: overviewSteps,
-        primaryAction: {
-          label:
-            topOverviewResult.title.length <= 28
-              ? topOverviewResult.title
-              : copy.openPageLabel,
-          href: topOverviewResult.href,
-        },
-      }
-    : null;
+  const fallbackIntentLead = cleanDisplayText(INTENT_SUMMARY_BY_LANG[lang][pathway], lang);
 
   const relatedQuestions: SmartSearchRelatedQuestion[] = [];
-  const seenQuestions = new Set<string>([normQuery, normalizeSearchText(lead)]);
+  const seenQuestions = new Set<string>([normQuery, normalizeSearchText(fallbackIntentLead)]);
   const pushRelatedPair = (
     res: SmartSearchResult,
     pairIdx: number,
@@ -1928,6 +2041,37 @@ export function searchSmartCatalog(
     }
   }
 
+  const synthesized = synthesizeGroundedOverview({
+    trimmedQuery: trimmed,
+    normQuery,
+    scored,
+    limitedResults,
+    synonyms,
+    relatedQuestions,
+    readingLevel,
+    isEmergency,
+    fallbackIntentLead,
+    cleanText: (val) => cleanDisplayText(val, lang),
+    normalizeText: normalizeSearchText,
+    lang,
+  });
+
+  const guidedOverview: SmartSearchGuidedOverview | null = synthesized
+    ? {
+        lead: synthesized.lead,
+        steps: synthesized.steps,
+        primaryAction: synthesized.primaryAction,
+      }
+    : null;
+
+  const suggestedFollowups =
+    synthesized && synthesized.followups.length > 0
+      ? synthesized.followups
+      : copy.popularQueries
+          .filter((pq) => normalizeSearchText(pq) !== normQuery)
+          .slice(0, 3)
+          .map((pq) => cleanDisplayText(pq, lang));
+
   // Ensure every category key exists in groupedCounts
   for (const cat of ALL_CATEGORIES) {
     groupedCounts[cat] = groupedCounts[cat] ?? 0;
@@ -1938,9 +2082,10 @@ export function searchSmartCatalog(
     groupedCounts,
     didYouMean,
     ghostCompletion,
+    predictions,
     isEmergency,
-    suggestedFollowups: Array.from(followups).slice(0, 3),
-    intentSummary: lead,
+    suggestedFollowups,
+    intentSummary: fallbackIntentLead,
     guidedOverview,
     relatedQuestions,
   };

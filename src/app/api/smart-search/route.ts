@@ -205,7 +205,7 @@ export async function POST(req: Request) {
       return NextResponse.json({
         mode: "local",
         isEmergency: false,
-        answer: null,
+        answer: local.guidedOverview?.lead ?? null,
         citations: local.results.slice(0, 4),
         suggestedFollowups: local.suggestedFollowups,
       });
@@ -235,7 +235,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       mode: "local",
       isEmergency: false,
-      answer: null,
+      answer: local.guidedOverview?.lead ?? null,
       citations: local.results.slice(0, 4),
       suggestedFollowups: local.suggestedFollowups,
     });

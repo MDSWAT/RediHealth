@@ -236,6 +236,7 @@ export function FeedbackWidget() {
   const [draftHydrated, setDraftHydrated] = useState(false);
 
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const bodyScrollerRef = useRef<HTMLDivElement>(null);
   const questionRefs = useRef<Partial<Record<RatingKey, HTMLFieldSetElement | null>>>({});
   const pageMountedAtRef = useRef<number>(0);
 
@@ -442,6 +443,11 @@ export function FeedbackWidget() {
       dialog.close();
     }
   }, [modalOpen]);
+
+  useEffect(() => {
+    if (!modalOpen) return;
+    bodyScrollerRef.current?.scrollTo({ top: 0 });
+  }, [step, modalOpen]);
 
   function handleBackdropClick(event: MouseEvent<HTMLDialogElement>) {
     if (event.target === event.currentTarget && !isSubmitting) {
@@ -669,15 +675,18 @@ export function FeedbackWidget() {
         ].join(" ")}
       >
         {/* One fixed size for every step, so the window does not jump as the reader moves through it. */}
-        <div className="flex h-[min(41rem,92dvh)] flex-col overflow-hidden rounded-t-2xl bg-card shadow-[0_24px_64px_-16px_rgba(11,19,43,0.34)] sm:rounded-2xl">
+        <div className="flex h-[min(45rem,92dvh)] flex-col overflow-hidden rounded-t-2xl bg-card shadow-[0_24px_64px_-16px_rgba(11,19,43,0.34)] sm:h-[min(42rem,90dvh)] sm:rounded-2xl">
           {/* Modal Header */}
-          <div className="border-b border-border bg-surface-subtle/65 px-5 pt-5 pb-4 sm:px-6">
+          <div className="border-b border-border bg-surface-subtle/65 px-4 pt-3.5 pb-3 sm:px-6 sm:pt-5 sm:pb-4">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <h2 id={titleId} className="text-title font-bold text-foreground">
+                <h2 id={titleId} className="text-title font-bold leading-snug text-foreground">
                   {submitted ? t.thankYouTitle : t.modalTitle}
                 </h2>
-                <p id={subtitleId} className="mt-1 text-body text-muted-foreground">
+                <p
+                  id={subtitleId}
+                  className="mt-0.5 text-meta leading-snug text-muted-foreground sm:mt-1 sm:text-body"
+                >
                   {submitted ? t.thankYouBody : t.modalSubtitle}
                 </p>
               </div>
@@ -694,7 +703,7 @@ export function FeedbackWidget() {
 
             {/* 3-Step Interactive Segmented Progress Bar */}
             {!submitted ? (
-              <div className="mt-4">
+              <div className="mt-2.5 sm:mt-4">
                 <div className="flex items-center justify-between text-meta font-medium text-muted-foreground">
                   <span>
                     {step === 0
@@ -705,7 +714,7 @@ export function FeedbackWidget() {
                   </span>
                   <span className="tabular-nums">{t.stepIndicator(step + 1, 3)}</span>
                 </div>
-                <div className="mt-2 grid grid-cols-3 gap-1.5">
+                <div className="mt-1.5 grid grid-cols-3 gap-1.5 sm:mt-2">
                   {([0, 1, 2] as const).map((idx) => {
                     const stepLabel =
                       idx === 0
@@ -713,19 +722,21 @@ export function FeedbackWidget() {
                         : idx === 1
                           ? t.stepTitles.openQuestion
                           : t.stepTitles.demographics;
+                    const lockedByMandatoryRatings = idx > 0 && !allRatingsComplete;
                     return (
                       <button
                         key={idx}
                         type="button"
+                        disabled={lockedByMandatoryRatings}
                         aria-label={`${t.stepIndicator(idx + 1, 3)}: ${stepLabel}`}
                         aria-current={step === idx ? "step" : undefined}
                         onClick={() => jumpToStep(idx)}
-                        className="group py-1 focus-visible:outline-none"
+                        className="group py-1 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         {/* Each segment fills from the left as the reader reaches it, and empties the same way back. */}
                         <span
                           className={`relative block h-1.5 w-full overflow-hidden rounded-xs bg-border transition-colors duration-(--dur-fast) group-focus-visible:ring-2 group-focus-visible:ring-ring motion-reduce:transition-none ${
-                            idx <= step ? "" : "group-hover:bg-sapphire/35"
+                            idx <= step || lockedByMandatoryRatings ? "" : "group-hover:bg-sapphire/35"
                           }`}
                         >
                           <span
@@ -759,7 +770,11 @@ export function FeedbackWidget() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate className="flex min-h-0 flex-1 flex-col">
-              <div className="flex-1 overflow-y-auto px-5 py-4 sm:px-6 sm:py-5">
+              <div
+                ref={bodyScrollerRef}
+                data-modal-scroller="true"
+                className="flex-1 overflow-y-auto overscroll-contain px-4 pt-3 pb-4 sm:px-6 sm:py-5"
+              >
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={step}
@@ -772,18 +787,20 @@ export function FeedbackWidget() {
                         : { duration: DURATION.base, ease: EASE_OUT }
                     }
                   >
-                    {/* Step 1: the five ratings as one compact list, so all of them fit on one screen. */}
+                    {/* Step 1: five mandatory ratings with sticky scale cue and smooth auto-advance scroll. */}
                     {step === 0 ? (
-                      <div className="space-y-1">
-                        <div className="flex items-center justify-between rounded-xl bg-surface-subtle px-3.5 py-2 text-meta font-medium text-muted-foreground">
-                          <span>{t.scaleLow}</span>
-                          <span className="tabular-nums font-semibold text-sapphire">
-                            {answeredRatingsCount} / {RATING_KEYS.length}
-                          </span>
-                          <span>{t.scaleHigh}</span>
+                      <div className="space-y-0.5">
+                        <div className="sticky top-0 z-10 -mx-4 -mt-3 mb-1 bg-card px-4 pt-2.5 pb-1.5 sm:-mx-6 sm:-mt-5 sm:px-6 sm:pt-3.5 sm:pb-2">
+                          <div className="flex items-center justify-between rounded-xl border border-border/60 bg-surface-subtle px-3 py-1.5 text-meta font-medium text-muted-foreground sm:px-3.5 sm:py-2">
+                            <span>{t.scaleLow}</span>
+                            <span className="tabular-nums font-semibold text-sapphire">
+                              {answeredRatingsCount} / {RATING_KEYS.length}
+                            </span>
+                            <span>{t.scaleHigh}</span>
+                          </div>
                         </div>
 
-                        {RATING_KEYS.map((key) => {
+                        {RATING_KEYS.map((key, qIdx) => {
                           const itemCopy = t.questions[key];
                           const selected = ratings[key];
                           const isMissing = highlightMissing && selected === null;
@@ -793,21 +810,18 @@ export function FeedbackWidget() {
                               ref={(node) => {
                                 questionRefs.current[key] = node;
                               }}
-                              className={`border-b border-border/70 py-2.5 transition-colors duration-(--dur-fast) last:border-b-0 ${
+                              className={`border-b border-border/70 py-2 transition-colors duration-(--dur-fast) last:border-b-0 sm:py-2.5 ${
                                 isMissing
-                                  ? "my-1 -mx-2.5 rounded-xl border border-primary/35 bg-primary-soft/30 px-2.5"
+                                  ? "my-1 -mx-2 rounded-xl border border-primary/35 bg-primary-soft/30 px-2"
                                   : ""
                               }`}
                             >
                               <legend className="sr-only">
                                 {itemCopy.label}: {itemCopy.question}
                               </legend>
-                              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                                 <div className="min-w-0 sm:max-w-[58%]">
-                                  <p className="text-body font-semibold text-foreground">
-                                    {itemCopy.label}
-                                  </p>
-                                  <p className="mt-0.5 text-body leading-snug text-muted-foreground">
+                                  <p className="text-body font-medium leading-snug text-foreground">
                                     {itemCopy.question}
                                   </p>
                                 </div>
@@ -827,14 +841,41 @@ export function FeedbackWidget() {
                                         aria-checked={active}
                                         aria-label={`${itemCopy.label}: ${t.scaleValueLabels[idx]}`}
                                         onClick={() => {
-                                          setRatings((prev) => {
-                                            const next = { ...prev, [key]: value };
-                                            if (RATING_KEYS.every((k) => next[k] !== null)) {
-                                              setHighlightMissing(false);
-                                            }
-                                            return next;
-                                          });
+                                          const nextRatings = { ...ratings, [key]: value };
+                                          const nextComplete = RATING_KEYS.every(
+                                            (k) => nextRatings[k] !== null,
+                                          );
+                                          setRatings(nextRatings);
+                                          if (nextComplete) {
+                                            setHighlightMissing(false);
+                                          }
                                           if (error) setError(null);
+
+                                          const nextUnansweredAfter = RATING_KEYS.slice(
+                                            qIdx + 1,
+                                          ).find((k) => nextRatings[k] === null);
+                                          const nextUnansweredAny =
+                                            nextUnansweredAfter ??
+                                            RATING_KEYS.find((k) => nextRatings[k] === null);
+
+                                          window.requestAnimationFrame(() => {
+                                            if (nextUnansweredAny) {
+                                              questionRefs.current[
+                                                nextUnansweredAny
+                                              ]?.scrollIntoView({
+                                                behavior: reducedMotion ? "auto" : "smooth",
+                                                block: "center",
+                                              });
+                                            } else {
+                                              const scroller = bodyScrollerRef.current;
+                                              if (scroller) {
+                                                scroller.scrollTo({
+                                                  top: scroller.scrollHeight,
+                                                  behavior: reducedMotion ? "auto" : "smooth",
+                                                });
+                                              }
+                                            }
+                                          });
                                         }}
                                         className={`flex min-h-11 items-center justify-center rounded-lg border text-body font-semibold tabular-nums transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                                           active
@@ -1013,7 +1054,7 @@ export function FeedbackWidget() {
               </div>
 
               {/* Modal Sticky Footer */}
-              <div className="flex items-center justify-between gap-3 border-t border-border bg-surface-subtle/50 px-5 py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:px-6 sm:pb-4">
+              <div className="flex items-center justify-between gap-3 border-t border-border bg-surface-subtle/50 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:px-6 sm:py-4 sm:pb-4">
                 {step > 0 ? (
                   <Button type="button" variant="outline" onClick={goPrevStep} disabled={isSubmitting}>
                     <ArrowLeftIcon className="h-4 w-4" />
@@ -1030,13 +1071,20 @@ export function FeedbackWidget() {
                     key="next-step"
                     type="button"
                     variant="action"
+                    disabled={step === 0 && !allRatingsComplete}
                     onClick={(event) => {
                       event.preventDefault();
                       goNextStep();
                     }}
                   >
                     <span>{t.nextCta}</span>
-                    <ArrowRightIcon className="h-4 w-4" />
+                    {step === 0 && !allRatingsComplete ? (
+                      <span className="tabular-nums text-meta font-semibold opacity-85">
+                        {" "}({answeredRatingsCount}/{RATING_KEYS.length})
+                      </span>
+                    ) : (
+                      <ArrowRightIcon className="h-4 w-4" />
+                    )}
                   </Button>
                 ) : (
                   <Button key="submit-feedback" type="submit" variant="action" disabled={isSubmitting}>

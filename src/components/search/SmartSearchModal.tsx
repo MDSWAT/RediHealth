@@ -364,20 +364,29 @@ export function SmartSearchModal() {
   const results = catalogResponse.results;
   const ghostSuffix = useMemo(() => {
     if (!trimmedQuery || !catalogResponse.ghostCompletion) return "";
+    if (catalogResponse.ghostCompletion.startsWith(query)) {
+      return catalogResponse.ghostCompletion.slice(query.length);
+    }
     if (catalogResponse.ghostCompletion.toLowerCase().startsWith(query.toLowerCase())) {
       return catalogResponse.ghostCompletion.slice(query.length);
     }
     return "";
   }, [trimmedQuery, catalogResponse.ghostCompletion, query]);
 
+  const livePredictions = useMemo(
+    () => (trimmedQuery.length >= 2 ? allCatalogResponse.predictions.slice(0, 3) : []),
+    [trimmedQuery, allCatalogResponse.predictions],
+  );
+
   const activeAiAnswer =
     trimmedQuery.length > 0 && aiState.query === trimmedQuery ? aiState.answer : null;
   const overview = trimmedQuery.length > 0 ? catalogResponse.guidedOverview : null;
+  const hasDistinctRemoteAnswer = Boolean(
+    activeAiAnswer && activeAiAnswer !== overview?.lead,
+  );
   const overviewBody = activeAiAnswer || overview?.lead || "";
   const hasOverviewDetails =
-    Boolean(overview?.steps.length) ||
-    Boolean(activeAiAnswer) ||
-    catalogResponse.suggestedFollowups.length > 0;
+    Boolean(overview?.steps.length) || hasDistinctRemoteAnswer;
 
   useEffect(() => {
     if (!open) return;
@@ -481,10 +490,17 @@ export function SmartSearchModal() {
       return;
     }
 
-    if (event.key === "Tab" && ghostSuffix && !event.shiftKey) {
-      event.preventDefault();
-      applyQuery(`${query}${ghostSuffix}`, true);
-      return;
+    if (event.key === "Tab" && !event.shiftKey) {
+      if (ghostSuffix) {
+        event.preventDefault();
+        applyQuery(`${query}${ghostSuffix}`, true);
+        return;
+      }
+      if (livePredictions[0]) {
+        event.preventDefault();
+        applyQuery(livePredictions[0], true);
+        return;
+      }
     }
 
     if (
@@ -638,7 +654,7 @@ export function SmartSearchModal() {
           <div
             role="tablist"
             aria-label={copy.modalLabel}
-            className="flex shrink-0 items-center overflow-x-auto border-b border-ink-900/10 px-2 [scrollbar-width:none] dark:border-paper/10 sm:px-3 [&::-webkit-scrollbar]:hidden"
+            className="flex shrink-0 items-center overflow-x-auto border-b border-ink-900/10 px-4 [scrollbar-width:none] dark:border-paper/10 sm:px-6 [&::-webkit-scrollbar]:hidden"
           >
             {visibleTabs.map((cat) => {
               const isSelected = effectiveCategory === cat;
@@ -878,6 +894,33 @@ export function SmartSearchModal() {
                 </div>
               ) : null}
 
+              {/* Live predictive query completions while typing */}
+              {livePredictions.length > 0 ? (
+                <div
+                  role="group"
+                  aria-label={copy.popularQueriesLabel}
+                  className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-0.5 [scrollbar-width:none] sm:-mx-6 sm:px-6 [&::-webkit-scrollbar]:hidden"
+                >
+                  {livePredictions.map((prediction) => (
+                    <button
+                      key={prediction}
+                      type="button"
+                      onClick={() => {
+                        applyQuery(prediction, true);
+                        inputRef.current?.focus();
+                      }}
+                      className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg border border-ink-900/12 bg-ink-900/[0.025] px-3 py-1.5 text-body font-medium whitespace-nowrap text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/35 hover:bg-sapphire-soft/55 hover:text-sapphire motion-reduce:transition-none dark:border-paper/14 dark:bg-paper/[0.05] dark:text-paper dark:hover:border-sapphire-border/45 dark:hover:bg-paper/[0.1]"
+                    >
+                      <SearchIcon
+                        className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border"
+                        aria-hidden="true"
+                      />
+                      <span>{prediction}</span>
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+
               {/* Did you mean correction */}
               {catalogResponse.didYouMean ? (
                 <p className="px-1 text-body text-muted-foreground dark:text-mist">
@@ -895,28 +938,38 @@ export function SmartSearchModal() {
                 </p>
               ) : null}
 
-              {/* Expandable Guidance Overview */}
+              {/* Grounded AI-like Guidance Synthesis */}
               {overview && overviewBody ? (
                 <section
                   aria-label={copy.aiAnswerTitle}
-                  className="rounded-xl bg-sapphire-soft/70 px-4 pt-3.5 pb-2 dark:bg-white/[0.06]"
+                  className="rounded-xl border border-sapphire/15 bg-sapphire-soft/70 px-4 pt-3.5 pb-3 dark:border-sapphire-border/20 dark:bg-white/[0.06]"
                 >
-                  {/* Keyed: when the fuller answer replaces the catalogue lead, it settles in instead of snapping. */}
+                  <div className="mb-1.5 flex items-center gap-2">
+                    <ActivityIcon
+                      className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"
+                      aria-hidden="true"
+                    />
+                    <p className="text-meta font-semibold text-sapphire dark:text-sapphire-border">
+                      {copy.aiAnswerTitle}
+                    </p>
+                  </div>
+
+                  {/* Keyed: when a fuller remote answer replaces the catalogue synthesis, it settles in instead of snapping. */}
                   <p
-                    key={activeAiAnswer ? "answer" : "lead"}
+                    key={hasDistinctRemoteAnswer ? "answer" : "lead"}
                     className={cn(
-                      "text-body text-foreground dark:text-paper",
-                      activeAiAnswer && "swap-in",
+                      "text-body leading-relaxed text-foreground dark:text-paper",
+                      hasDistinctRemoteAnswer && "swap-in",
                     )}
                   >
                     {overviewBody}
                   </p>
 
-                  <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+                  <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2">
                     <Link
                       href={overview.primaryAction.href}
                       onClick={() => handleFollowLink(overview.primaryAction.href, true)}
-                      className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
+                      className="group inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-sapphire/25 bg-white/85 px-3 py-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/50 hover:bg-white motion-reduce:transition-none dark:border-sapphire-border/35 dark:bg-ink-900/70 dark:text-sapphire-border dark:hover:bg-ink-900"
                     >
                       <span>{overview.primaryAction.label}</span>
                       <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
@@ -931,7 +984,7 @@ export function SmartSearchModal() {
                           lastExpandedControlIdRef.current = `${baseId}-overview-steps`;
                           setExpandedOverview((prev) => !prev);
                         }}
-                        className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-ink-900/[0.04] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.06] dark:hover:text-paper"
+                        className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2.5 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-ink-900/[0.04] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.06] dark:hover:text-paper"
                       >
                         <span>
                           {expandedOverview
@@ -959,7 +1012,7 @@ export function SmartSearchModal() {
                       )}
                     >
                       <div className="overflow-hidden" inert={!expandedOverview}>
-                        <div className="mt-2 space-y-2.5 border-t border-sapphire/12 pt-3 dark:border-sapphire-border/15">
+                        <div className="mt-2.5 space-y-2.5 border-t border-sapphire/12 pt-3 dark:border-sapphire-border/15">
                           {overview.steps.length > 0 ? (
                             <ol className="list-decimal space-y-1.5 pl-5 text-body text-foreground dark:text-paper">
                               {overview.steps.map((step) => (
@@ -968,32 +1021,32 @@ export function SmartSearchModal() {
                             </ol>
                           ) : null}
 
-                          {activeAiAnswer ? (
+                          {hasDistinctRemoteAnswer ? (
                             <p className="text-meta text-muted-foreground dark:text-mist">
                               {copy.aiAnswerDisclaimer}
                             </p>
                           ) : null}
-
-                          {catalogResponse.suggestedFollowups.length > 0 ? (
-                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 pt-0.5">
-                              {catalogResponse.suggestedFollowups.map((follow) => (
-                                <button
-                                  key={follow}
-                                  type="button"
-                                  onClick={() => {
-                                    applyQuery(follow, true);
-                                    inputRef.current?.focus();
-                                  }}
-                                  className="group inline-flex min-h-11 items-center gap-1.5 text-body font-medium whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
-                                >
-                                  <SearchIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                                  <span>{follow}</span>
-                                </button>
-                              ))}
-                            </div>
-                          ) : null}
                         </div>
                       </div>
+                    </div>
+                  ) : null}
+
+                  {catalogResponse.suggestedFollowups.length > 0 ? (
+                    <div className="mt-2.5 flex flex-wrap items-center gap-2 border-t border-sapphire/12 pt-2.5 dark:border-sapphire-border/15">
+                      {catalogResponse.suggestedFollowups.map((follow) => (
+                        <button
+                          key={follow}
+                          type="button"
+                          onClick={() => {
+                            applyQuery(follow, true);
+                            inputRef.current?.focus();
+                          }}
+                          className="group inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-white/70 px-2.5 py-1.5 text-meta font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white hover:text-sapphire-light motion-reduce:transition-none dark:bg-paper/[0.06] dark:text-sapphire-border dark:hover:bg-paper/[0.12]"
+                        >
+                          <SearchIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                          <span>{follow}</span>
+                        </button>
+                      ))}
                     </div>
                   ) : null}
                 </section>
