@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState, useSyncExternalStore } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
@@ -10,20 +11,32 @@ import {
   ALL_ITALY,
   ALL_MOLDOVA,
   EXTRA_MAP_COPY,
-  RomaniaCountyMap,
   countryAllValue,
   mapCountriesForLang,
   type MapCountry,
-} from "@/components/ui/RomaniaCountyMap";
+} from "@/components/ui/romania-county-map-helpers";
 import { useUserCounty } from "@/lib/geo-ip";
 import { CountyOverrideModal } from "@/components/news/CountyOverrideModal";
 import { PlaceNewsModal } from "@/components/news/PlaceNewsModal";
 import { countyLabel, formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
-import { ArrowRightIcon, PinIcon, SearchIcon, StethoscopeIcon, UsersIcon, VolumeIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, PinIcon, StethoscopeIcon, UsersIcon, VolumeIcon } from "@/components/ui/icons";
 import { useReadAloud } from "@/components/health-check/readingTools";
-import { openSmartSearch } from "@/components/search/smart-search-events";
-import { getSmartSearchCopy } from "@/lib/i18n/smart-search-copy";
 import { HEALTH_DETAIL_SHARED_STRINGS } from "@/lib/i18n/health-myths";
+
+const RomaniaCountyMap = dynamic(
+  () => import("@/components/ui/RomaniaCountyMap").then((m) => m.RomaniaCountyMap),
+  { ssr: false, loading: () => null },
+);
+
+function subscribeDesktopLayout(onChange: () => void) {
+  const mql = window.matchMedia("(min-width: 1024px)");
+  mql.addEventListener("change", onChange);
+  return () => mql.removeEventListener("change", onChange);
+}
+
+function readDesktopLayout() {
+  return window.matchMedia("(min-width: 1024px)").matches;
+}
 import {
   ALBANIA_WIDE,
   CROATIA_WIDE,
@@ -101,7 +114,6 @@ export function NewsHub() {
   const np = t.newsPage;
   const c = COPY[lang] ?? COPY.ro;
   const extra = EXTRA_MAP_COPY[lang] ?? EXTRA_MAP_COPY.ro;
-  const searchCopy = getSmartSearchCopy(lang);
   const voice = useReadAloud(lang);
   const voiceStrings = HEALTH_DETAIL_SHARED_STRINGS.topicHero;
   const listenLabel = voiceStrings.listenGuide[lang] ?? voiceStrings.listenGuide.ro;
@@ -122,7 +134,9 @@ export function NewsHub() {
   // Modal state carries both the chosen place and its country so shared names ("Călărași") never collide.
   const [modalState, setModalState] = useState<{ place: string; country: NewsCountry } | null>(null);
   const [countyModalOpen, setCountyModalOpen] = useState(false);
-  const [showMap, setShowMap] = useState(true);
+  const isDesktopLayout = useSyncExternalStore(subscribeDesktopLayout, readDesktopLayout, () => false);
+  const [mapOverride, setMapOverride] = useState<boolean | null>(null);
+  const showMap = mapOverride ?? isDesktopLayout;
 
   const selectedAreaForMap =
     activeCountry === "ro"
@@ -218,16 +232,6 @@ export function NewsHub() {
               <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:text-lg">{np.heroSubtitle}</p>
             </div>
             <div className="flex flex-wrap items-center gap-2 sm:flex-nowrap">
-              <button
-                type="button"
-                onClick={() => openSmartSearch()}
-                aria-label={searchCopy.triggerLabel}
-                title={searchCopy.triggerLabel}
-                className="press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <SearchIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                <span className="sr-only">{searchCopy.triggerLabel}</span>
-              </button>
               {voice.available && (
                 <button
                   type="button"
@@ -257,12 +261,12 @@ export function NewsHub() {
               )}
               <button
                 type="button"
-                onClick={() => setShowMap((prev) => !prev)}
+                onClick={() => setMapOverride((prev) => !(prev ?? isDesktopLayout))}
                 aria-expanded={showMap}
                 aria-controls="news-county-map"
                 className={utilityButton}
               >
-                <span className="min-w-0 truncate">{showMap ? c.hideMap : c.showMap}</span>
+                {showMap ? c.hideMap : c.showMap}
               </button>
               <button type="button" onClick={() => setCountyModalOpen(true)} className={utilityButton}>
                 <PinIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
@@ -286,14 +290,16 @@ export function NewsHub() {
           >
             <div className="calm-collapse-inner" inert={!showMap || undefined}>
               <div className="pb-10">
-                <RomaniaCountyMap
-                  selectedCounty={selectedAreaForMap}
-                  onSelectCounty={selectArea}
-                  activeHubs={hubs}
-                  countries={mapCountries}
-                  activeCountry={activeCountry}
-                  onCountryChange={setSelectedMapCountry}
-                />
+                {showMap && (
+                  <RomaniaCountyMap
+                    selectedCounty={selectedAreaForMap}
+                    onSelectCounty={selectArea}
+                    activeHubs={hubs}
+                    countries={mapCountries}
+                    activeCountry={activeCountry}
+                    onCountryChange={setSelectedMapCountry}
+                  />
+                )}
               </div>
             </div>
           </div>
