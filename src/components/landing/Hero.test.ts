@@ -256,10 +256,13 @@ describe("landing interaction rules", () => {
     expect(hero).not.toMatch(/hero-scroll|will-change|translate3d|addEventListener\("scroll"/);
   });
 
-  it("shows the hero photo as an ambient top wash on phones and full-bleed from lg, loaded eagerly", () => {
+  it("keeps the hero photo desktop-only via getImageProps and <picture> source while hiding WheelBackdrop below lg", () => {
     const hero = sources.find(([file]) => file === "Hero.tsx")![1];
     expect(hero).toMatch(/absolute inset-x-0 top-0 -z-30 h-56 lg:inset-0 lg:h-auto/);
-    expect(hero).toMatch(/loading="eager"\s+fetchPriority="high"/);
+    expect(hero).toMatch(/getImageProps\(/);
+    expect(hero).toMatch(/<source\s+media="\(min-width: 1024px\)"/);
+    expect(hero).toMatch(/loading:\s*"eager"[\s\S]*fetchPriority:\s*"high"/);
+    expect(hero).toMatch(/hidden lg:block[\s\S]*<WheelBackdrop placement="hero"/);
     expect(hero).not.toMatch(/\bpriority\b|\bquality=/);
     // Phones read every line on solid ink: both full-bleed scrims exist from lg only.
     expect(hero.match(/-z-20 hidden bg-\[linear-gradient[^"]*lg:block/g)).toHaveLength(2);

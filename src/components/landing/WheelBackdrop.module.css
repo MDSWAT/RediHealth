@@ -74,6 +74,14 @@
   width: clamp(20rem, 36vw, 30rem);
 }
 
+@media (max-width: 1023px) {
+  .backdrop,
+  .hero,
+  .footer {
+    display: none;
+  }
+}
+
 .layer {
   position: absolute;
   inset: 0;

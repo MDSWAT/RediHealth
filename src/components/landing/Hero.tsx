@@ -1,42 +1,55 @@
 "use client";
 
-import Image from "next/image";
+import { getImageProps } from "next/image";
 import { Container } from "@/components/ui/Container";
 import { heroCopy } from "@/lib/i18n/hero-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { WheelBackdrop } from "./WheelBackdrop";
 import { TriagePanel } from "./hero/TriagePanel";
 
+const TRANSPARENT_PIXEL =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
 /**
  * Landing hero:
  * - Extends beneath the transparent-on-load sticky header (and its 112 line) by --site-header-h.
  * - Two columns on a shared grid on desktop: headline and steps align to the panel's question and footer.
- * - Phones and tablets: an ambient top header wash fades smoothly into solid ink behind the headline
- *   and inline triage panel. Desktop: the same photo is full-bleed behind ink scrims. It never moves.
+ * - Phones and tablets: solid ink ground with the vertical fade and no photo or wheel backdrop work on first paint.
+ * - Desktop: the consultation photo sits full-bleed behind the ink scrims via <picture> source media="(min-width: 1024px)".
  * - Static on first paint: the headline copy column and triage panel render visibly immediately.
  */
 export function Hero() {
   const { lang } = useLanguage();
   const copy = heroCopy[lang];
   const [who, promise] = copy.lead.split(/(?<=\.)\s+/);
+  const {
+    props: { srcSet: desktopSrcSet, sizes: desktopSizes, ...heroImgProps },
+  } = getImageProps({
+    src: "/images/hero-consultation.jpg",
+    alt: "",
+    fill: true,
+    sizes: "100vw",
+    loading: "eager",
+    fetchPriority: "high",
+  });
 
   return (
     <section
       aria-labelledby="hero-title"
       className="hero relative isolate -mt-(--site-header-h) flex min-h-[calc(100svh-var(--site-header-h))] flex-col overflow-hidden bg-ink-950 pt-(--site-header-h) text-paper"
     >
-      {/* One photo, two placements: ambient top wash below lg, full-bleed behind the scrims from lg. */}
+      {/* Desktop-only photo source: below lg phones keep solid ink and the gradient wash without requesting the photo. */}
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-30 h-56 lg:inset-0 lg:h-auto">
-        <Image
-          src="/images/hero-consultation.jpg"
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          loading="eager"
-          fetchPriority="high"
-          className="pointer-events-none object-cover object-[60%_35%] opacity-45 select-none lg:object-[65%_center] lg:opacity-100"
-        />
+        <picture className="pointer-events-none hidden lg:block">
+          <source media="(min-width: 1024px)" srcSet={desktopSrcSet} sizes={desktopSizes} />
+          <img
+            {...heroImgProps}
+            src={TRANSPARENT_PIXEL}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none object-cover object-[65%_center] select-none"
+          />
+        </picture>
         {/* Phones: smooth vertical wash easing cleanly into solid ink behind the headline and panel. */}
         <div
           aria-hidden="true"
@@ -53,8 +66,10 @@ export function Hero() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-20 hidden bg-[linear-gradient(180deg,color-mix(in_srgb,var(--color-ink-950)_85%,transparent)_0%,transparent_22%,transparent_70%,var(--color-ink-950)_100%)] lg:block"
       />
-      {/* The topic wheel, faint and slow: framing the ink ground on phones and the panel on desktop. */}
-      <WheelBackdrop placement="hero" />
+      {/* The topic wheel, faint and slow: framing the panel on desktop only (hidden below lg). */}
+      <div aria-hidden="true" className="hidden lg:block">
+        <WheelBackdrop placement="hero" />
+      </div>
       {/* Subtle bottom inset horizon hairline separating the hero ground from the regional ribbon. */}
       <div
         aria-hidden="true"

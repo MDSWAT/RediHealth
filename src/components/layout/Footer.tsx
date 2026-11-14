@@ -74,8 +74,10 @@ export function Footer() {
   return (
     <>
       <footer className="relative z-10 bg-ink-950 text-paper">
-        {/* The topic wheel, small and faint, behind the brand block. */}
-        <WheelBackdrop placement="footer" />
+        {/* The topic wheel, small and faint, behind the brand block on desktop; hidden below lg. */}
+        <div aria-hidden="true" className="hidden lg:block">
+          <WheelBackdrop placement="footer" />
+        </div>
         <Container className="py-12 sm:py-16">
           <div className="grid gap-10 xl:grid-cols-[1.1fr_2.9fr] xl:gap-12">
             <div className="max-w-sm space-y-4">
