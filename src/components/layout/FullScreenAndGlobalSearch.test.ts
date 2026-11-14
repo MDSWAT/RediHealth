@@ -27,8 +27,8 @@ describe("Full-screen workspace layout, navigation bar, and global search unific
 
   it("keeps desktop Header height constant, container width unified, guidance active, and menus exclusive", () => {
     const header = readSrc("src/components/layout/Header.tsx");
-    expect(header).toContain("`${strip + 64}px`");
-    expect(header).toContain("h-16");
+    expect(header).toContain("`${strip + bar}px`");
+    expect(header).toContain("h-14 md:h-16");
     expect(header).toContain('containerSize = "workspace"');
     expect(header).toContain("isGuidanceRoute");
     expect(header).toContain("openHeaderMenu");

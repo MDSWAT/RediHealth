@@ -918,12 +918,18 @@ h2 {
 
 
 /*
- * Height of the sticky site header (its 112 line, 2rem, plus the bar, 4rem or 5rem from xl), for
- * the first paint. The header publishes its measured height over this once it runs, including
- * after the 112 line is closed. Only where the header exists: chromeless pages keep 0.
+ * Height of the sticky site header (its 112 strip, 2.75rem, plus the bar, 3.5rem below md or
+ * 4rem from md up, plus 1px border), for the first paint. The header publishes its measured
+ * height over this once it runs, including after the 112 strip is closed.
  */
 :root:has(.site-header) {
-  --site-header-h: 6rem;
+  --site-header-h: 6.3125rem;
+}
+
+@media (min-width: 768px) {
+  :root:has(.site-header) {
+    --site-header-h: 6.8125rem;
+  }
 }
 
 @media (min-width: 1280px) {

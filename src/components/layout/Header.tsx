@@ -68,11 +68,12 @@ export function Header() {
     const el = headerRef.current;
     if (!el) return;
     const root = document.documentElement;
-    // Constant height (h-16) prevents sticky scroll-height oscillation across scroll thresholds.
+    // Constant height per breakpoint (h-14 below md, md:h-16 above) prevents scroll-height oscillation.
     const publish = () => {
       const pinned = getComputedStyle(el).position === "sticky";
       const strip = el.querySelector<HTMLElement>(".emergency-banner")?.offsetHeight ?? 0;
-      const height = pinned ? `${strip + 64}px` : "0px";
+      const bar = window.matchMedia("(min-width: 768px)").matches ? 64 : 56;
+      const height = pinned ? `${strip + bar}px` : "0px";
       root.style.setProperty("--site-header-h", height);
       root.style.setProperty("--site-header-slim-h", height);
     };
@@ -275,7 +276,7 @@ export function Header() {
         {/* The 112 line rides on top of the bar, so it stays in view while the page scrolls. */}
         <UniversalEmergencyBanner tone={isTransparent ? "dark" : "light"} size={containerSize} />
         <Container size={containerSize}>
-          <div className="flex h-16 items-center justify-between gap-3 xl:gap-5">
+          <div className="flex h-14 md:h-16 items-center justify-between gap-3 xl:gap-5">
             <Logo
               className="shrink-0 whitespace-nowrap"
               tone={isTransparent ? "light" : "default"}
@@ -778,9 +779,9 @@ export function Header() {
                     setMobileOpen(false);
                     setDialerOpen(true);
                   }}
-                  className="min-h-11 shrink-0 rounded-lg px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap shadow-none dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
+                  className="min-h-12 shrink-0 rounded-lg px-3.5 py-1.5 text-body font-semibold whitespace-nowrap shadow-none dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
                 >
-                  <PhoneIcon className="h-3.5 w-3.5" />
+                  <PhoneIcon className="h-4 w-4" />
                   <span>{tHeader.call112}</span>
                 </Button>
               </div>

@@ -106,34 +106,37 @@ export function UniversalEmergencyBanner({
               dark ? "border-white/10 text-paper/75" : "border-border text-muted-foreground"
             }`}
           >
-            <Container size={size} className="flex min-h-[2rem] items-center gap-2 py-1 text-[13px] leading-snug">
-              <PhoneIcon className={`h-3 w-3 shrink-0 ${dark ? "text-paper/70" : "text-primary"}`} aria-hidden="true" />
-              <p className="min-w-0 leading-snug">
-                <span className="md:hidden">{chrome.emergencyQuestion}</span>
-                <span className="hidden md:inline">{e.bannerText}</span>
-              </p>
-              <button
-                type="button"
-                onClick={() => setDialerOpen(true)}
-                className={`${dark ? "press-on-dark" : "press-row"} inline-flex h-7 shrink-0 items-center whitespace-nowrap rounded-md px-1.5 font-semibold underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
-                  dark
-                    ? "text-paper decoration-paper/40 hover:decoration-paper focus-visible:outline-paper"
-                    : "text-primary decoration-primary/35 hover:decoration-primary focus-visible:outline-ring"
-                }`}
-              >
-                {e.call112}
-              </button>
+            <Container size={size} className="flex min-h-11 items-center gap-4 text-body leading-snug max-md:h-11 max-md:gap-[16px] max-md:px-[10px] md:py-1">
+              <div className="flex min-w-0 items-center gap-2 max-md:gap-[6px]">
+                <PhoneIcon className={`h-4 w-4 shrink-0 ${dark ? "text-paper/70" : "text-primary"}`} aria-hidden="true" />
+                <p className="min-w-0 leading-snug max-md:shrink-0 max-md:whitespace-nowrap">
+                  <span className="md:hidden">{chrome.emergencyQuestion}</span>
+                  <span className="hidden md:inline">{e.bannerText}</span>
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setDialerOpen(true)}
+                  className={`${dark ? "press-on-dark" : "press-row"} inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-md px-2 text-base font-semibold underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none max-md:px-[4px] sm:px-3 ${
+                    dark
+                      ? "text-paper decoration-paper/40 hover:decoration-paper focus-visible:outline-paper"
+                      : "text-primary decoration-primary/35 hover:decoration-primary focus-visible:outline-ring"
+                  }`}
+                >
+                  <span className="md:hidden">{chrome.call112Short}</span>
+                  <span className="hidden md:inline">{e.call112}</span>
+                </button>
+              </div>
               <button
                 type="button"
                 onClick={handleDismiss}
                 aria-label={e.dismissBannerAria}
-                className={`${dark ? "press-on-dark" : "press-row"} -mr-1.5 ml-auto inline-flex h-7 w-7 shrink-0 items-center justify-center whitespace-nowrap rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
+                className={`${dark ? "press-on-dark" : "press-row"} -mr-2 ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none ${
                   dark
                     ? "text-paper/60 hover:bg-white/10 hover:text-paper focus-visible:outline-paper"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-ring"
                 }`}
               >
-                <CloseIcon className="h-3.5 w-3.5" />
+                <CloseIcon className="h-4 w-4" />
               </button>
             </Container>
           </aside>

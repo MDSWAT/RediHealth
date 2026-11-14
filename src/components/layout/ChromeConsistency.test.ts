@@ -15,7 +15,7 @@ describe("sitewide chrome, footer, feedback, landing widgets, and news shell con
 
     const mobileMenu = header.slice(header.indexOf('id="mobile-menu"'), header.indexOf("</header>"));
     expect(mobileMenu).not.toMatch(/\bmin-h-(8|9|10)\b/);
-    expect(mobileMenu).toContain("min-h-11 shrink-0 rounded-lg");
+    expect(mobileMenu).toContain("min-h-12 shrink-0 rounded-lg");
     expect(mobileMenu.match(/group inline-flex min-h-11 items-center gap-1\.5/g)).toHaveLength(3);
     expect(mobileMenu).not.toContain("truncate");
     expect(mobileMenu).not.toContain("h-9 w-9");
