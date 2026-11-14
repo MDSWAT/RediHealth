@@ -40,10 +40,10 @@ export type Copy = {
   listen: string;
   stopListening: string;
   largeText: string;
-  bodyModelLabel: string;
   bodyTypeLabel: string;
   bodyGeneral: string;
   bodyFemale: string;
+  bodyGeneralHelper: string;
   exactSpot: string;
   exactSpotAny: string;
   whatItFeelsLike: string;
@@ -77,7 +77,7 @@ export const COPY: Record<Lang, Copy> = {
   ru: {
 "showMoreBody": "Показать больше тела",
 "showLessBody": "Показать меньше тела",
-"bodyTypeLabel": "Анатомия",
+"bodyTypeLabel": "Тело",
 "whatItFeelsLike": "Что вы чувствуете?",
 "questionProgress": "Вопрос {current} из {total}",
 "noExtraFinish": "Показать результат",
@@ -121,9 +121,9 @@ export const COPY: Record<Lang, Copy> = {
 
 
 
-"bodyModelLabel": "Модель тела",
 "bodyGeneral": "Общая",
-"bodyFemale": "Женская",
+"bodyFemale": "Женщина",
+"bodyGeneralHelper": "Выберите «Женщина», чтобы видеть грудь, менструацию и беременность.",
 "exactSpot": "Точное место (необязательно)",
 "exactSpotAny": "Вся область",
 "sideLabel": "Сторона",
@@ -209,10 +209,10 @@ export const COPY: Record<Lang, Copy> = {
     listen: "Ascultă",
     stopListening: "Oprește",
     largeText: "Text mai mare",
-    bodyModelLabel: "Modelul corpului",
-    bodyTypeLabel: "Anatomie",
+    bodyTypeLabel: "Corp",
     bodyGeneral: "General",
-    bodyFemale: "Feminin",
+    bodyFemale: "Femeie",
+    bodyGeneralHelper: "Alege Femeie pentru a vedea sâni, menstruație și sarcină.",
     exactSpot: "Locul mai exact (opțional)",
     exactSpotAny: "Toată zona",
     whatItFeelsLike: "Cum se simte?",
@@ -279,10 +279,10 @@ export const COPY: Record<Lang, Copy> = {
     listen: "Listen",
     stopListening: "Stop",
     largeText: "Larger text",
-    bodyModelLabel: "Body model",
-    bodyTypeLabel: "Anatomy",
+    bodyTypeLabel: "Body",
     bodyGeneral: "General",
-    bodyFemale: "Female",
+    bodyFemale: "Woman",
+    bodyGeneralHelper: "Choose Woman to see breasts, periods and pregnancy.",
     exactSpot: "Exact spot (optional)",
     exactSpotAny: "Whole area",
     whatItFeelsLike: "What does it feel like?",
@@ -350,10 +350,10 @@ export const COPY: Record<Lang, Copy> = {
     listen: "Dëgjo",
     stopListening: "Ndalo",
     largeText: "Tekst më i madh",
-    bodyModelLabel: "Modeli i trupit",
-    bodyTypeLabel: "Anatomia",
+    bodyTypeLabel: "Trupi",
     bodyGeneral: "I përgjithshëm",
-    bodyFemale: "Femëror",
+    bodyFemale: "Grua",
+    bodyGeneralHelper: "Zgjidh Grua për të parë gjinjtë, menstruacionet dhe shtatzëninë.",
     exactSpot: "Vendi më i saktë (opsionale)",
     exactSpotAny: "E gjithë zona",
     whatItFeelsLike: "Si ndihet?",
@@ -421,10 +421,10 @@ export const COPY: Record<Lang, Copy> = {
     listen: "Ascolta",
     stopListening: "Ferma",
     largeText: "Testo più grande",
-    bodyModelLabel: "Modello del corpo",
-    bodyTypeLabel: "Anatomia",
+    bodyTypeLabel: "Corpo",
     bodyGeneral: "Generale",
-    bodyFemale: "Femminile",
+    bodyFemale: "Donna",
+    bodyGeneralHelper: "Scegli Donna per vedere seno, ciclo e gravidanza.",
     exactSpot: "Punto più preciso (facoltativo)",
     exactSpotAny: "Tutta la zona",
     whatItFeelsLike: "Come si sente?",
@@ -492,10 +492,10 @@ export const COPY: Record<Lang, Copy> = {
     listen: "Poslušaj",
     stopListening: "Zaustavi",
     largeText: "Veći tekst",
-    bodyModelLabel: "Model tijela",
-    bodyTypeLabel: "Anatomija",
+    bodyTypeLabel: "Tijelo",
     bodyGeneral: "Opći",
-    bodyFemale: "Ženski",
+    bodyFemale: "Žena",
+    bodyGeneralHelper: "Odaberi Žena da vidiš dojke, mjesečnicu i trudnoću.",
     exactSpot: "Točnije mjesto (nije obavezno)",
     exactSpotAny: "Cijelo područje",
     whatItFeelsLike: "Kakav je osjećaj?",
@@ -563,10 +563,10 @@ export const COPY: Record<Lang, Copy> = {
     listen: "Ashun",
     stopListening: "Astav",
     largeText: "Maj baro teksto",
-    bodyModelLabel: "Modelo e truposko",
-    bodyTypeLabel: "Anatomija",
+    bodyTypeLabel: "Trupo",
     bodyGeneral: "Generalno",
-    bodyFemale: "Dzhuvlikano",
+    bodyFemale: "Dzhuvli",
+    bodyGeneralHelper: "Alosar Dzhuvli te dikhes kolin, menstruacia thaj khamnimos.",
     exactSpot: "Maj chacho than (te manges)",
     exactSpotAny: "Sasto than",
     whatItFeelsLike: "Sar hatjarel pes?",

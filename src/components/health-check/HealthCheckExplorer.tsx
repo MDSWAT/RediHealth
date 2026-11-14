@@ -2314,9 +2314,8 @@ export function HealthCheckExplorer() {
                         {forWhom === "child" ? c.forChild : c.forSelf}
                       </span>
                       {", "}
-                      {c.bodyTypeLabel.toLowerCase()}:{" "}
                       <span className="font-semibold text-foreground">
-                        {bodyProfile === "female" ? c.bodyFemale.toLowerCase() : c.bodyGeneral.toLowerCase()}
+                        {bodyProfile === "female" ? c.bodyFemale : c.bodyGeneral}
                       </span>
                     </p>
                     <button
@@ -2406,6 +2405,11 @@ export function HealthCheckExplorer() {
                             );
                           })}
                         </div>
+                        {bodyProfile === "general" && (
+                          <p className="mt-1.5 basis-full text-xs leading-relaxed text-muted-foreground">
+                            {c.bodyGeneralHelper}
+                          </p>
+                        )}
                       </div>
                     </div>
                   )}
