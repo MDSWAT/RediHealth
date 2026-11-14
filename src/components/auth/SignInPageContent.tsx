@@ -1,8 +1,6 @@
 "use client";
 
 import { Container } from "@/components/ui/Container";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { LockIcon } from "@/components/ui/icons";
 import { SignInForm } from "@/components/auth/SignInForm";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -68,19 +66,20 @@ export function SignInPageContent({
   return (
     <main id="main-content" className="flex-1 pb-12 sm:pb-16">
       <Container>
-        <PageHeader
-          above={<LockIcon className="h-7 w-7 text-sapphire" aria-hidden="true" />}
-          title={page.heroTitle}
-          lead={googleConfigured ? page.heroParagraphWithGoogle : page.heroParagraphNoGoogle}
-        />
+        {/* One narrow, centred column: the page has a single job, so nothing sits beside it. */}
+        <div className="mx-auto w-full max-w-[30rem] pt-8 sm:pt-14">
+          <h1 className="text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.02em] text-foreground text-balance sm:text-[2rem]">
+            {page.heroTitle}
+          </h1>
+          <p className="mt-2.5 text-body leading-relaxed text-muted-foreground text-pretty">
+            {googleConfigured ? page.heroParagraphWithGoogle : page.heroParagraphNoGoogle}
+          </p>
 
-        <div className="mt-6 max-w-xl">
-          <SignInForm
-            googleConfigured={googleConfigured}
-            initialError={initialErrorMessage}
-          />
-          <p className="mt-5 text-body text-muted-foreground">
-              {termsWithLinks(page.terms, lang)}
+          <div className="mt-6">
+            <SignInForm googleConfigured={googleConfigured} initialError={initialErrorMessage} />
+          </div>
+          <p className="mt-6 px-2 text-sm leading-relaxed text-muted-foreground text-pretty">
+            {termsWithLinks(page.terms, lang)}
           </p>
         </div>
       </Container>

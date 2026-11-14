@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState, useRef } from "react";
 import L from "leaflet";
 import { CircleMarker, MapContainer, Marker, Popup, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -381,8 +381,16 @@ function MapController({
       unmounted = true;
       ro.disconnect();
       if (rafId !== null) window.cancelAnimationFrame(rafId);
+      // Leaving the page mid-zoom: Leaflet's zoom animation ends on a timer that map.remove() does not
+      // cancel, and it then reads the removed map pane ("reading '_leaflet_pos'"). Stop any glide and
+      // mark the zoom as finished, so that late timer returns at its own guard.
+      if (isMapAlive(map)) map.stop();
+      (map as unknown as { _animatingZoom?: boolean })._animatingZoom = false;
     };
   }, [map]);
+
+  // The first framing lands without animation: the map should open on the results, not travel to them.
+  const hasFramedRef = useRef(false);
 
   useEffect(() => {
     if (!isMapAlive(map)) return;
@@ -397,8 +405,9 @@ function MapController({
     map.fitBounds(L.latLngBounds(framed), {
       padding: frameAll ? [24, 24] : [48, 48],
       maxZoom: 15,
-      animate: !prefersReducedMotion(),
+      animate: hasFramedRef.current && !prefersReducedMotion(),
     });
+    hasFramedRef.current = true;
   }, [institutes, userLocation, frameAll, map]);
 
   useEffect(() => {
