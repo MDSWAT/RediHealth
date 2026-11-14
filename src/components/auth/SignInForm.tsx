@@ -46,6 +46,7 @@ export function SignInForm({
   const [email, setEmail] = useState("");
   const [portalEmail, setPortalEmail] = useState("");
   const [code, setCode] = useState("");
+  const [codeResent, setCodeResent] = useState(false);
   const [error, setError] = useState(initialError);
   const [portalRecoveryMessage, setPortalRecoveryMessage] = useState("");
   const [portalRecoveryError, setPortalRecoveryError] = useState("");
@@ -88,7 +89,7 @@ export function SignInForm({
     }
   }
 
-  async function requestCode() {
+  async function requestCode(isResend = false) {
     const normalizedEmail = email.trim().toLowerCase();
     if (!isValidEmail(normalizedEmail)) {
       setError(form.emailInvalid);
@@ -96,6 +97,9 @@ export function SignInForm({
     }
 
     setError("");
+    if (isResend) {
+      setCodeResent(false);
+    }
     setIsSubmitting(true);
     try {
       const captchaToken = await executeCaptcha("email_code");
@@ -109,6 +113,7 @@ export function SignInForm({
         return;
       }
       setStage("code");
+      setCodeResent(isResend);
     } catch (error) {
       setError(captchaErrorMessage(error, form.genericSendError));
     } finally {
@@ -123,6 +128,7 @@ export function SignInForm({
     }
 
     setError("");
+    setCodeResent(false);
     setIsSubmitting(true);
     try {
       const captchaToken = await executeCaptcha("verify_code");
@@ -146,7 +152,7 @@ export function SignInForm({
   }
 
   return (
-    <div className="rounded-xl border border-border bg-card p-6 sm:p-10">
+    <div className="rounded-xl border border-border bg-card p-4 sm:p-10">
       <div key={stage} className="fhs-enter">
         {stage === "email" ? (
           <form
@@ -183,7 +189,7 @@ export function SignInForm({
             )}
             <div className="mt-7">
               <Button type="submit" variant="action" size="lg" disabled={isSubmitting}>
-                <span className="min-w-0 truncate">{isSubmitting ? form.sendingCode : form.emailMeCode}</span>
+                {isSubmitting ? form.sendingCode : form.emailMeCode}
               </Button>
             </div>
           </form>
@@ -212,7 +218,7 @@ export function SignInForm({
               value={code}
               onChange={(event) => setCode(event.target.value.replace(/\D/g, ""))}
               aria-invalid={Boolean(error)}
-              aria-describedby={error ? "code-error" : undefined}
+              aria-describedby={error ? "code-error" : codeResent ? "code-resent" : undefined}
               className={`${inputClass} font-medium tracking-[0.18em] tabular-nums`}
               placeholder="123456"
             />
@@ -220,21 +226,34 @@ export function SignInForm({
               <p id="code-error" role="alert" className="swap-in mt-2 text-sm text-amber-care dark:text-amber-care-border">
                 {error}
               </p>
+            ) : codeResent ? (
+              <p id="code-resent" role="status" className="swap-in mt-2 text-sm text-muted-foreground">
+                {form.codeResent}
+              </p>
             ) : null}
-            <div className="mt-7 flex flex-wrap items-center gap-4">
+            <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2">
               <Button type="submit" variant="action" size="lg" disabled={isSubmitting}>
-                <span className="min-w-0 truncate">{isSubmitting ? form.signingIn : form.continueLabel}</span>
+                {isSubmitting ? form.signingIn : form.continueLabel}
               </Button>
               <button
                 type="button"
-                className="press-row -mx-2.5 min-h-[44px] max-w-full whitespace-nowrap rounded-lg px-2.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                disabled={isSubmitting}
+                className="press-row min-h-11 max-w-full whitespace-nowrap rounded-lg px-1.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-sapphire-light disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                onClick={() => void requestCode(true)}
+              >
+                {form.resendCode}
+              </button>
+              <button
+                type="button"
+                className="press-row min-h-11 max-w-full whitespace-nowrap rounded-lg px-1.5 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 onClick={() => {
                   setCode("");
+                  setCodeResent(false);
                   setError("");
                   setStage("email");
                 }}
               >
-                <span className="min-w-0 truncate">{form.useDifferentEmail}</span>
+                {form.useDifferentEmail}
               </button>
             </div>
           </form>
@@ -272,7 +291,7 @@ export function SignInForm({
         ) : null}
         <div className="mt-4">
           <Button type="submit" size="md" disabled={isRequestingPortal}>
-            <span className="min-w-0 truncate">{isRequestingPortal ? form.portalRecoverySending : form.portalRecoveryButton}</span>
+            {isRequestingPortal ? form.portalRecoverySending : form.portalRecoveryButton}
           </Button>
         </div>
       </form>
@@ -289,6 +308,7 @@ export function SignInForm({
             type="button"
             variant="outline"
             fullWidth
+            className="px-3 sm:px-4"
             onClick={() =>
               void signIn("google", {
                 callbackUrl: withLangPrefix("/panel", lang),
@@ -296,7 +316,7 @@ export function SignInForm({
             }
           >
             <GoogleIcon className="h-5 w-5 shrink-0" />
-            <span className="min-w-0 truncate">{form.continueWithGoogle}</span>
+            {form.continueWithGoogle}
           </Button>
         </>
       ) : null}

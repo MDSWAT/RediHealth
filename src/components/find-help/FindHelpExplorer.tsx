@@ -767,11 +767,14 @@ export function FindHelpExplorer({
         aria-label={copy.searchPlaceholder}
         className="mt-4 rounded-2xl border border-stone-200/90 bg-card p-3.5 shadow-(--shadow-card-rest) sm:p-4 dark:border-stone-800"
       >
-        <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,0.85fr)] xl:grid-cols-[minmax(15rem,1.35fr)_minmax(12rem,1fr)_minmax(10rem,0.85fr)_auto_auto] xl:items-center">
+        <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,0.85fr)] xl:grid-cols-[minmax(15rem,1.35fr)_minmax(12rem,1fr)_minmax(10rem,0.85fr)_auto_auto] xl:items-end">
           <form onSubmit={submitSearch} className="col-span-2 min-w-0 lg:col-span-1" role="search">
-            <label className="relative block min-w-0">
-              <span className="sr-only">{copy.searchPlaceholder}</span>
+            <label htmlFor="find-help-search" className="mb-1.5 block text-meta font-semibold text-foreground">
+              {copy.searchPlaceholder}
+            </label>
+            <div className="relative min-w-0">
               <input
+                id="find-help-search"
                 type="search"
                 name="q"
                 value={searchInput}
@@ -781,7 +784,7 @@ export function FindHelpExplorer({
                   if (!next) setSearch("");
                 }}
                 placeholder={copy.searchHint}
-                className={`field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-background/60 pl-10 text-base placeholder:text-muted-foreground hover:bg-card focus-visible:bg-card sm:text-sm dark:bg-ink-950/40 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
+                className={`field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-background/60 pl-10 text-base placeholder:text-muted-foreground hover:bg-card focus-visible:bg-card dark:bg-ink-950/40 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
                   searchInput ? "pr-12" : "pr-3.5"
                 }`}
               />
@@ -804,7 +807,7 @@ export function FindHelpExplorer({
                   <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 </button>
               )}
-            </label>
+            </div>
           </form>
 
           <LocationFilterPopover

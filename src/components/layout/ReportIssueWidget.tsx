@@ -310,7 +310,7 @@ export function ReportIssueWidget() {
   }
 
   const fieldClass =
-    "field-focus w-full rounded-lg border bg-background text-base text-foreground placeholder:text-muted-foreground/80 sm:text-sm";
+    "field-focus w-full rounded-lg border bg-background text-base text-foreground placeholder:text-muted-foreground/80";
 
   return (
     <>

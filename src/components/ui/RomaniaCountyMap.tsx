@@ -574,7 +574,7 @@ export function RomaniaCountyMap({
             id={selectId}
             value={selectedInThisMap ? effectiveSelected : ""}
             onChange={(e) => chooseArea(e.target.value || allValue, country)}
-            className="min-h-[44px] w-full rounded-lg border border-border bg-background px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-64"
+            className="min-h-[44px] w-full rounded-lg border border-border bg-background px-3 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-64"
           >
             <option value="">{allLabel}</option>
             {sortedAreas.map((a) => (

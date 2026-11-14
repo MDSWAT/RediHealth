@@ -49,6 +49,7 @@ const authModalCopy: Record<
   {
     step2Subtitle: (phone: string) => string;
     invalidPhoneError: string;
+    incompleteCodeError: string;
     tooManyAttempts: string;
     smsSent: string;
     smsSwitchHint: string;
@@ -65,6 +66,7 @@ const authModalCopy: Record<
   ru: {
     step2Subtitle: (p) => `Мы отправили 4-значный код на ${p}. Введите его ниже.`,
     invalidPhoneError: "Напишите номер телефона, например 0721 000 000.",
+    incompleteCodeError: "Введите 4 цифры из SMS.",
     tooManyAttempts: "Слишком много попыток. Подождите минуту и повторите попытку.",
     smsSent: "Мы отправили вам код в текстовом сообщении.",
     smsSwitchHint: "Можете открыть SMS на телефоне, чтобы посмотреть код. Эта страница останется открытой.",
@@ -80,6 +82,7 @@ const authModalCopy: Record<
   ro: {
     step2Subtitle: (p) => `Am trimis un cod de 4 cifre la ${p}. Scrie-l mai jos.`,
     invalidPhoneError: "Scrie un număr de telefon, de exemplu 0721 000 000.",
+    incompleteCodeError: "Scrie cele 4 cifre din SMS.",
     tooManyAttempts: "Ai încercat de prea multe ori. Așteaptă un minut și încearcă din nou.",
     smsSent: "Ți-am trimis codul prin SMS.",
     smsSwitchHint: "Poți deschide mesajele SMS pe telefon ca să vezi codul. Această pagină rămâne deschisă și te așteaptă.",
@@ -95,6 +98,7 @@ const authModalCopy: Record<
   en: {
     step2Subtitle: (p) => `We sent a 4-digit code to ${p}. Type it below.`,
     invalidPhoneError: "Write a phone number, for example 0721 000 000.",
+    incompleteCodeError: "Enter the 4 numbers from the SMS.",
     tooManyAttempts: "Too many tries. Wait a minute and try again.",
     smsSent: "We sent you the code by text message.",
     smsSwitchHint: "You can open your SMS messages to check the code. This page stays open waiting for you.",
@@ -110,6 +114,7 @@ const authModalCopy: Record<
   sq: {
     step2Subtitle: (p) => `Të dërguam një kod me 4 shifra në ${p}. Shkruaje më poshtë.`,
     invalidPhoneError: "Shkruaj një numër telefoni, për shembull 0721 000 000.",
+    incompleteCodeError: "Shkruaj 4 shifrat nga SMS-ja.",
     tooManyAttempts: "Provove shumë herë. Prit një minutë dhe provo përsëri.",
     smsSent: "Ta dërguam kodin me SMS.",
     smsSwitchHint: "Mund t'i hapësh mesazhet SMS në telefon për të parë kodin. Kjo faqe mbetet e hapur.",
@@ -125,6 +130,7 @@ const authModalCopy: Record<
   it: {
     step2Subtitle: (p) => `Ti abbiamo mandato un codice di 4 cifre al ${p}. Scrivilo qui sotto.`,
     invalidPhoneError: "Scrivi un numero di telefono, per esempio 0721 000 000.",
+    incompleteCodeError: "Scrivi le 4 cifre dell'SMS.",
     tooManyAttempts: "Troppi tentativi. Aspetta un minuto e riprova.",
     smsSent: "Ti abbiamo mandato il codice via SMS.",
     smsSwitchHint: "Puoi aprire i messaggi SMS sul telefono per leggere il codice. Questa pagina resta aperta.",
@@ -140,6 +146,7 @@ const authModalCopy: Record<
   hr: {
     step2Subtitle: (p) => `Poslali smo četveroznamenkasti kod na broj ${p}. Upiši ga niže.`,
     invalidPhoneError: "Upiši broj telefona, na primjer 091 000 0000.",
+    incompleteCodeError: "Upiši 4 broja iz SMS-a.",
     tooManyAttempts: "Previše pokušaja. Pričekaj minutu pa pokušaj ponovno.",
     smsSent: "Poslali smo ti kod SMS porukom.",
     smsSwitchHint: "Možeš otvoriti SMS poruke na telefonu kako bi vidio kod. Ova stranica ostaje otvorena.",
@@ -155,6 +162,7 @@ const authModalCopy: Record<
   rom: {
     step2Subtitle: (p) => `Bichhaldyam kodo katar 4 gina pe ${p}. Lekhav les tele.`,
     invalidPhoneError: "Lekhav telefonesko gin, misal 0721 000 000.",
+    incompleteCodeError: "Lekhav e 4 gina katar o SMS.",
     tooManyAttempts: "But zumavimata. Azhuker ekh minuta thaj zumav palem.",
     smsSent: "Bichhaldyam tuke o kodo katar SMS.",
     smsSwitchHint: "Shaj putres e SMS mesažurya te dikhes o kodo. Kadi rig achhol putardi tuke.",
@@ -297,6 +305,11 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
   };
 
   const verifyOtp = async (code: string) => {
+    if (!/^\d{4}$/.test(code.trim())) {
+      setError(copy.incompleteCodeError);
+      otpInputRef.current?.focus();
+      return;
+    }
     setError("");
     setIsLoading(true);
     try {
@@ -563,8 +576,8 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                     onFocus={() => setOtpFocused(true)}
                     onBlur={() => setOtpFocused(false)}
                     aria-invalid={Boolean(error)}
-                    aria-describedby="auth-otp-switch-hint"
-                    className="peer absolute inset-0 z-10 h-full w-full cursor-text opacity-0"
+                    aria-describedby={error ? "auth-phone-error auth-otp-switch-hint" : "auth-otp-switch-hint"}
+                    className="peer absolute inset-0 z-10 h-full w-full cursor-text text-base opacity-0"
                   />
                   <div aria-hidden="true" className="grid grid-cols-4 gap-3">
                     {[0, 1, 2, 3].map((slot) => {
@@ -601,7 +614,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
 
               <button
                 type="button"
-                disabled={isLoading || otpCode.length < 4}
+                disabled={isLoading}
                 onClick={() => verifyOtp(otpCode)}
                 className={SUBMIT_BUTTON}
               >

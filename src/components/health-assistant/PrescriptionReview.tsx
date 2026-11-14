@@ -1072,9 +1072,7 @@ export function PrescriptionReview() {
                       value={context}
                       onChange={(event) => setContext(event.target.value)}
                       placeholder={t.whyPh}
-                      className={`field-focus mt-1.5 w-full resize-none rounded-lg border border-border-control bg-background p-3 text-foreground placeholder:text-muted-foreground ${
-                        largeText ? "text-base" : "text-sm"
-                      }`}
+                      className="field-focus mt-1.5 w-full resize-none rounded-lg border border-border-control bg-background p-3 text-base text-foreground placeholder:text-muted-foreground"
                     />
                   </div>
                 </div>
