@@ -6,6 +6,7 @@
   pointer-events: none;
   color: var(--color-paper);
   opacity: 0.1;
+  --backdrop-outer-dur: 240s;
   /* Icon cut-outs and the disc behind each icon take the ground colour. */
   --wheel-face-bg: var(--color-ink-950);
 }
@@ -67,11 +68,13 @@
   }
 }
 
-/* A small wheel on the left, its centre a little inside the edge so the chakra stays whole. */
+/* A small wheel on the left, kept whole: its centre sits a little more than half its drawn width
+   from the edge (the outer ring draws about 8.5% wider than the box), so nothing is cut as it turns. */
 .footer .wheel {
-  left: clamp(6rem, 14vw, 13rem);
+  --footer-wheel: clamp(20rem, 36vw, 30rem);
+  left: calc(var(--footer-wheel) * 0.5425 + 1rem);
   top: 50%;
-  width: clamp(20rem, 36vw, 30rem);
+  width: var(--footer-wheel);
 }
 
 @media (max-width: 1023px) {
@@ -89,9 +92,13 @@
   height: 100%;
 }
 
-.outer,
+/* The same slow turn in the hero and the footer: outer ring one way, inner ring the other. */
+.outer {
+  animation: hero-wheel-spin var(--backdrop-outer-dur) linear infinite;
+}
+
 .inner {
-  /* Static drawing layers */
+  animation: hero-wheel-spin 160s linear infinite reverse;
 }
 
 .hub {
@@ -101,6 +108,7 @@
   width: 14.8%;
   height: 14.8%;
   translate: -50% -50%;
+  animation: hero-wheel-spin 90s linear infinite;
 }
 
 .star {
@@ -110,7 +118,7 @@
   stroke-miterlimit: 8;
 }
 
-/* Sits on the outer ring. */
+/* Sits on the outer ring, so it travels with it. */
 .node {
   position: absolute;
   left: var(--x);
@@ -120,7 +128,8 @@
   translate: -50% -50%;
 }
 
-/* Counter-disc matching the ground colour so star lines behind the icon stay hidden. */
+/* Counter-rotates at the ring's speed so the icon stays upright. The ground-colour disc hides
+   the star lines behind it; the whole backdrop shares one opacity, so the disc itself is unseen. */
 .face {
   display: grid;
   place-items: center;
@@ -129,11 +138,18 @@
   border: 0.45cqw solid currentColor;
   border-radius: 50%;
   background: var(--wheel-face-bg);
+  animation: hero-wheel-spin var(--backdrop-outer-dur) linear infinite reverse;
 }
 
 .icon {
   width: 50%;
   height: 50%;
+}
+
+@keyframes hero-wheel-spin {
+  to {
+    rotate: 360deg;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -264,11 +264,13 @@ export function RegionalHealthRibbon() {
       >
         <Container className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-meta md:flex-nowrap md:gap-4">
           {/* Row 1 left on phones, start from md: the county or region, a button that changes it. */}
+          {/* The button is pulled 6px left to align its text with the page edge, so its width limit allows for those 6px:
+              a plain max-w-full clipped every place name ("Bucur…", "Județul A…"). */}
           <div className="order-1 flex min-w-0 max-w-full items-center gap-2 md:shrink-0">
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="press-on-dark -ml-1.5 inline-flex min-h-11 min-w-0 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-1.5 font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70 motion-reduce:transition-none"
+              className="press-on-dark -ml-1.5 inline-flex min-h-11 min-w-0 max-w-[calc(100%+0.375rem)] items-center gap-1.5 whitespace-nowrap rounded-lg px-1.5 font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70 motion-reduce:transition-none"
             >
               <PinIcon className="h-3.5 w-3.5 shrink-0 text-paper/80" />
               <span className="truncate">{areaDisplay}</span>
