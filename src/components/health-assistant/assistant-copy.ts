@@ -5,6 +5,7 @@
  */
 import type { PathwayId } from "@/lib/triage-state";
 import type { Lang } from "@/lib/i18n/translations";
+import { PLAIN_ALARM_SIGNS } from "@/lib/i18n/emergency-signs";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
 
@@ -340,13 +341,7 @@ const ro: AssistantCopy = {
       "Dificultate bruscă de a vorbi",
       "Sângerare abundentă",
     ],
-    plainSigns: [
-      "Te doare tare în piept, ca o apăsare mare",
-      "Respiri foarte greu",
-      "Ți-a amorțit sau a slăbit brusc fața, o mână sau un picior",
-      "Nu mai poți vorbi limpede",
-      "Sângerezi foarte tare",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.ro,
     callNow: "Sună acum la 112",
     yes: "Da, am cel puțin un semn",
     yesSeeTips: "Da, vezi ce să spui la 112",
@@ -703,13 +698,7 @@ const en: AssistantCopy = {
       "Sudden difficulty speaking",
       "Heavy bleeding",
     ],
-    plainSigns: [
-      "Your chest hurts badly, like a heavy weight pressing on it",
-      "You find it very hard to breathe",
-      "Your face, an arm or a leg has suddenly gone numb or weak",
-      "You can't speak clearly any more",
-      "You are bleeding a lot",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.en,
     callNow: "Call 112 now",
     yes: "Yes, I have at least one",
     yesSeeTips: "Yes, see what to tell 112",
@@ -1065,13 +1054,7 @@ const sq: AssistantCopy = {
       "Vështirësi e papritur për të folur",
       "Gjakderdhje e madhe",
     ],
-    plainSigns: [
-      "Të dhemb fort gjoksi, si një peshë e rëndë që shtyp",
-      "Ke shumë vështirësi të marrësh frymë",
-      "Të është mpirë ose dobësuar papritur fytyra, një krah ose një këmbë",
-      "Nuk mund të flasësh më qartë",
-      "Po humbet shumë gjak",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.sq,
     callNow: "Telefono tani 112",
     yes: "Po, kam të paktën një shenjë",
     yesSeeTips: "Po, çfarë t'i thuash 112",
@@ -1427,13 +1410,7 @@ const it: AssistantCopy = {
       "Difficoltà improvvisa a parlare",
       "Sanguinamento abbondante",
     ],
-    plainSigns: [
-      "Ti fa molto male il petto, come un peso che schiaccia",
-      "Fai molta fatica a respirare",
-      "All'improvviso senti intorpiditi o deboli il viso, un braccio o una gamba",
-      "Non riesci più a parlare chiaramente",
-      "Stai perdendo molto sangue",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.it,
     callNow: "Chiama subito il 112",
     yes: "Sì, ho almeno un segnale",
     yesSeeTips: "Sì, vedi cosa dire al 112",
@@ -1789,13 +1766,7 @@ const hr: AssistantCopy = {
       "Nagli poremećaj govora",
       "Jako krvarenje",
     ],
-    plainSigns: [
-      "Jako te boli u prsima, kao da ti težak teret pritišće prsni koš",
-      "Vrlo teško dišeš i nedostaje ti zraka",
-      "Odjednom ti je utrnulo ili oslabilo lice, ruka ili noga",
-      "Više ne možeš razgovijetno govoriti",
-      "Jako krvariš",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.hr,
     callNow: "Nazovi 112 odmah",
     yes: "Da, imam barem jedan znak",
     yesSeeTips: "Da, što reći na 112",
@@ -2151,13 +2122,7 @@ const rom: AssistantCopy = {
       "Sigo pharipen te vorbis",
       "Baro rat so thabdel",
     ],
-    plainSigns: [
-      "Dukhal tut zurales and-o kolin, sar baro pharipen",
-      "Phurdes but phares",
-      "Chiro muj, jekh vast vaj jekh punro kerdilo kovlo sigo",
-      "Nashti maj vorbis uzo",
-      "Thabdel tuke but rat",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.rom,
     callNow: "Akhar 112 akana",
     yes: "Va, si man barem jekh znako",
     yesSeeTips: "Va, so te phenes ko 112",
@@ -2520,13 +2485,7 @@ ru: {
       "Внезапное затруднение речи",
       "Сильное кровотечение",
     ],
-    plainSigns: [
-      "Грудь сильно болит, как будто на нее давит тяжелая тяжесть.",
-      "Вам очень трудно дышать",
-      "Ваше лицо, рука или нога внезапно онемели или ослабли.",
-      "Ты больше не можешь ясно говорить",
-      "У тебя сильное кровотечение",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.ru,
     yes: "Да, у меня есть хотя бы один",
     no: "Нет, у меня симптомы мягче",
     note: "Если вам угрожает опасность, позвоните по номеру 112 самостоятельно. Приложение не звонит вам.",

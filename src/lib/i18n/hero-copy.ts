@@ -1,4 +1,5 @@
 import type { Lang } from "@/lib/i18n/translations";
+import { PLAIN_ALARM_SIGNS } from "@/lib/i18n/emergency-signs";
 import { withLangPrefix } from "@/lib/i18n/routing";
 
 /**
@@ -95,13 +96,7 @@ export function localHref(href: string, lang: Lang): string {
 const en: HeroCopy = {
   emergency: {
     close: "Close",
-    alarmSigns: [
-      "Chest pain or pressure",
-      "Hard to breathe",
-      "Face drooping, weakness or slurred speech",
-      "Fainting or confusion",
-      "Heavy bleeding",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.en,
     callLead: "In a medical emergency,",
     callLink: "call 112",
   },
@@ -124,7 +119,7 @@ const en: HeroCopy = {
     step: (current, total) => `Step ${current} of ${total}`,
     doctorPrompt: "Want to talk to a doctor?",
     doctorLink: "Talk to a doctor",
-    problemDoctorPrompt: "No alarm signs?",
+    problemDoctorPrompt: "None of these?",
     problemDoctorLink: "Talk to a doctor",
     needs: {
       learn: {
@@ -193,13 +188,7 @@ const en: HeroCopy = {
 const ro: HeroCopy = {
   emergency: {
     close: "Închide",
-    alarmSigns: [
-      "Durere sau apăsare în piept",
-      "Respiri foarte greu",
-      "Gura strâmbă, slăbiciune sau vorbire greoaie",
-      "Leșin sau confuzie",
-      "Sângerare puternică",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.ro,
     callLead: "Pentru o urgență medicală,",
     callLink: "sună la 112",
   },
@@ -222,7 +211,7 @@ const ro: HeroCopy = {
     step: (current, total) => `Pasul ${current} din ${total}`,
     doctorPrompt: "Vrei să vorbești cu un medic?",
     doctorLink: "Vorbește cu un medic",
-    problemDoctorPrompt: "Nu ai semne de alarmă?",
+    problemDoctorPrompt: "Niciunul dintre acestea?",
     problemDoctorLink: "Vorbește cu un medic",
     needs: {
       learn: {
@@ -291,13 +280,7 @@ const ro: HeroCopy = {
 const sq: HeroCopy = {
   emergency: {
     close: "Mbyll",
-    alarmSigns: [
-      "Dhimbje ose shtrëngim në gjoks",
-      "Merr frymë me vështirësi",
-      "Fytyrë e shtrembër, dobësi ose të folur e paqartë",
-      "Të fikët ose konfuzion",
-      "Gjakderdhje e rëndë",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.sq,
     callLead: "Në rast urgjence mjekësore,",
     callLink: "telefono 112",
   },
@@ -320,7 +303,7 @@ const sq: HeroCopy = {
     step: (current, total) => `Hapi ${current} nga ${total}`,
     doctorPrompt: "Do të flasësh me një mjek?",
     doctorLink: "Fol me një mjek",
-    problemDoctorPrompt: "Nuk ke shenja alarmi?",
+    problemDoctorPrompt: "Asnjë nga këto?",
     problemDoctorLink: "Fol me një mjek",
     needs: {
       learn: {
@@ -389,13 +372,7 @@ const sq: HeroCopy = {
 const it: HeroCopy = {
   emergency: {
     close: "Chiudi",
-    alarmSigns: [
-      "Dolore o oppressione al petto",
-      "Fatica a respirare",
-      "Bocca storta, debolezza o difficoltà a parlare",
-      "Svenimento o confusione",
-      "Forte sanguinamento",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.it,
     callLead: "In caso di emergenza medica,",
     callLink: "chiama il 112",
   },
@@ -418,7 +395,7 @@ const it: HeroCopy = {
     step: (current, total) => `Passo ${current} di ${total}`,
     doctorPrompt: "Vuoi parlare con un medico?",
     doctorLink: "Parla con un medico",
-    problemDoctorPrompt: "Nessun segnale di allarme?",
+    problemDoctorPrompt: "Nessuno di questi?",
     problemDoctorLink: "Parla con un medico",
     needs: {
       learn: {
@@ -487,13 +464,7 @@ const it: HeroCopy = {
 const hr: HeroCopy = {
   emergency: {
     close: "Zatvori",
-    alarmSigns: [
-      "Bol ili pritisak u prsima",
-      "Teško disanje ili nedostatak zraka",
-      "Iskrivljeno lice, slabost ili nerazgovijetan govor",
-      "Nesvjestica ili zbunjenost",
-      "Jako krvarenje",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.hr,
     callLead: "U hitnom medicinskom slučaju,",
     callLink: "nazovi 112",
   },
@@ -516,7 +487,7 @@ const hr: HeroCopy = {
     step: (current, total) => `Korak ${current} od ${total}`,
     doctorPrompt: "Želiš li razgovarati s liječnikom?",
     doctorLink: "Razgovaraj s liječnikom",
-    problemDoctorPrompt: "Nemaš znakove uzbune?",
+    problemDoctorPrompt: "Ništa od toga?",
     problemDoctorLink: "Razgovaraj s liječnikom",
     needs: {
       learn: {
@@ -585,13 +556,7 @@ const hr: HeroCopy = {
 const rom: HeroCopy = {
   emergency: {
     close: "Phandav",
-    alarmSigns: [
-      "Dukh vay tasavipe ando kolin",
-      "Phari phurdinimos",
-      "Bango muy, kovlipe vay pharo vakeripe",
-      "Peripe vay bisterdipe",
-      "Zuralo ratvalo thavdipe",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.rom,
     callLead: "Ki sastipnaski sigardiari,",
     callLink: "akhar ko 112",
   },
@@ -614,7 +579,7 @@ const rom: HeroCopy = {
     step: (current, total) => `Pash ${current} katar ${total}`,
     doctorPrompt: "Kames te vakeres ekhe doktoreya?",
     doctorLink: "Vaker ekhe doktoreya",
-    problemDoctorPrompt: "Nane tut daravne semnya?",
+    problemDoctorPrompt: "Nijekh katar kadala?",
     problemDoctorLink: "Vaker ekhe doktoreya",
     needs: {
       learn: {
@@ -684,13 +649,7 @@ export const heroCopy: Record<Lang, HeroCopy> = {
 ru: {
   emergency: {
     close: "Закрыть",
-    alarmSigns: [
-      "Боль или давление в груди",
-      "Трудно дышать",
-      "Перекос лица, слабость или невнятная речь",
-      "Обморок или спутанность сознания",
-      "Сильное кровотечение",
-    ],
+    alarmSigns: PLAIN_ALARM_SIGNS.ru,
     callLead: "В экстренном случае",
     callLink: "звоните 112",
   },
@@ -713,7 +672,7 @@ ru: {
     step: (current, total) => `Шаг ${current} из ${total}`,
     doctorPrompt: "Хотите поговорить с врачом?",
     doctorLink: "Поговорите с врачом",
-    problemDoctorPrompt: "Нет опасных симптомов?",
+    problemDoctorPrompt: "Ничего из этого?",
     problemDoctorLink: "Поговорите с врачом",
     needs: {
       learn: {
@@ -751,7 +710,7 @@ ru: {
         action: { label: "Открыть карту", href: "/find-help" },
       },
       problem: {
-        label: "Мне сейчас нездоровится",
+        label: "Мне сейчас плохо",
         hint: "Признаки для 112 или врач онлайн.",
         title: "Сначала проверьте опасные симптомы",
         body: "Сразу звоните 112, если есть хотя бы один из признаков:",
