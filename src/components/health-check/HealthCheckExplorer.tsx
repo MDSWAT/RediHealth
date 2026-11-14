@@ -1884,38 +1884,30 @@ export function HealthCheckExplorer() {
     </Link>
   );
 
-  const routingIconButton =
-    "press-row inline-flex h-11 w-[44px] min-h-11 min-w-[44px] sm:h-12 sm:w-12 sm:min-h-12 sm:min-w-12 shrink-0 items-center justify-center rounded-xl border border-border-control bg-card text-sapphire shadow-2xs transition-[background-color,border-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/50 hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
-
   const renderRoutingStack = (placeCategory?: InstituteCategory, placeLabel?: string) => (
-    <div className="flex flex-nowrap items-center gap-1.5 sm:gap-2">
+    <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
       <Link
-        href={withLangPrefix("/medic-online?source=triage", activeLang)}
-        className={`${primaryButton} min-w-0 flex-1 justify-between px-3.5 sm:px-4 text-left whitespace-nowrap`}
+        href={withLangPrefix("/medic-online/asteptare", activeLang)}
+        className={`${primaryButton} w-full justify-center whitespace-nowrap sm:w-auto`}
       >
-        <span className="min-w-0 truncate">{c.doctorBook}</span>
-        <ArrowRightIcon className="arrow-travel h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+        <StethoscopeIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+        <span>{c.doctorNow}</span>
       </Link>
 
       <Link
-        href={withLangPrefix("/medic-online/asteptare", activeLang)}
-        aria-label={c.doctorNow}
-        title={c.doctorNow}
-        className={`${routingIconButton} whitespace-nowrap`}
+        href={withLangPrefix("/medic-online?source=triage", activeLang)}
+        className={`${secondaryButton} w-full justify-center whitespace-nowrap sm:w-auto`}
       >
-        <StethoscopeIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-        <span className="sr-only">{c.doctorNow}</span>
+        <span>{c.doctorBook}</span>
       </Link>
 
       {placeCategory && placeLabel && (
         <Link
           href={withLangPrefix(findHelpHref(placeCategory), activeLang)}
-          aria-label={placeLabel}
-          title={placeLabel}
-          className={`${routingIconButton} whitespace-nowrap`}
+          className="press-row inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto sm:justify-start"
         >
           <PinIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-          <span className="sr-only">{placeLabel}</span>
+          <span>{placeLabel}</span>
         </Link>
       )}
     </div>

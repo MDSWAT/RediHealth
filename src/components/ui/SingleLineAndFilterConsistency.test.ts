@@ -114,7 +114,8 @@ describe("Single-line icon actions & cross-page filter consistency", () => {
     const routingMatch = hcSource.match(
       /const renderRoutingStack = [\s\S]*?(?=\n\s*async function handleCopyDiagnosticSheet)/,
     );
-    expect(routingMatch?.[0]).toContain("flex-nowrap");
+    expect(routingMatch?.[0]).toContain("sm:flex-wrap");
+    expect(routingMatch?.[0]).toContain("whitespace-nowrap");
 
     const summarySource = readSrc("src/components/health-check/TriageSummaryCard.tsx");
     expect(summarySource).toContain("sm:flex-nowrap");
