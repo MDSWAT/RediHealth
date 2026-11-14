@@ -354,6 +354,7 @@ export function FindHelpExplorer({
   }, []);
 
   const [mobileView, setMobileView] = useState<MobileViewMode>("list");
+  const statusRowRef = useRef<HTMLDivElement>(null);
   const mapColumnRef = useRef<HTMLDivElement>(null);
   const listColumnRef = useRef<HTMLDivElement>(null);
   const [mobilePreviewId, setMobilePreviewId] = useState<string | null>(null);
@@ -555,7 +556,7 @@ export function FindHelpExplorer({
         setMobilePreviewId(id);
       }
     },
-    [displayedInstitutes, visibleCount],
+    [displayedInstitutes, visibleCount, setMobilePreviewId],
   );
 
   useEffect(() => {
@@ -573,7 +574,7 @@ export function FindHelpExplorer({
     window.requestAnimationFrame(() => {
       const behavior: ScrollBehavior = prefersReducedMotion() ? "auto" : "smooth";
       if (next === "map") {
-        mapColumnRef.current?.scrollIntoView({ block: "start", behavior });
+        (statusRowRef.current ?? mapColumnRef.current)?.scrollIntoView({ block: "start", behavior });
         return;
       }
       const row = focusId ? itemRefs.current.get(focusId) : null;
@@ -883,7 +884,10 @@ export function FindHelpExplorer({
         </div>
 
         {/* Calm, compact status and active-filter strip */}
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border/70 pt-2.5">
+        <div
+          ref={statusRowRef}
+          className="mt-3 flex scroll-mt-[calc(var(--chrome-h,0px)+0.75rem)] flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border/70 pt-2.5"
+        >
           <p className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground sm:text-sm">
             <PinIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" aria-hidden="true" />
             <span>
@@ -1249,7 +1253,7 @@ export function FindHelpExplorer({
         {/* Map column: sticky on lg:, aligned with top of results list */}
         <div
           ref={mapColumnRef}
-          className={`scroll-mt-[calc(var(--chrome-h,0px)+0.75rem)] lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:col-start-2 lg:row-start-1 lg:self-start ${
+          className={`scroll-mt-[calc(var(--chrome-h,0px)+0.75rem)] pb-24 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:col-start-2 lg:row-start-1 lg:self-start lg:pb-0 ${
             mobileView === "list" ? "hidden lg:block" : "block"
           }`}
         >
@@ -1257,8 +1261,8 @@ export function FindHelpExplorer({
             <div
               className={`w-full lg:h-[min(42rem,calc(100dvh-var(--chrome-h,0px)-7.5rem))] lg:min-h-[24rem] ${
                 mobilePreviewInstitute
-                  ? "h-[min(46dvh,24rem)]"
-                  : "h-[max(20rem,calc(100dvh-var(--chrome-h,0px)-7.5rem))]"
+                  ? "h-[min(46svh,24rem)]"
+                  : "h-[min(62svh,30rem)]"
               }`}
             >
               <InstitutesMap
@@ -1455,6 +1459,15 @@ export function FindHelpExplorer({
               {page.mapAttribution}
             </a>
           </div>
+
+          <button
+            type="button"
+            onClick={() => switchMobileView("list", selectedId)}
+            className="press-row mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none lg:hidden"
+          >
+            <ListViewIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+            <span>{copy.viewList}</span>
+          </button>
         </div>
       </div>
 
