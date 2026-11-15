@@ -117,6 +117,16 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${bodyFont.variable} ${headingFont.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Synchronous <head> icons so Safari/WebKit and Chromium never miss streamed metadata in <body> or fall back to stale domain caches. */}
+        <link rel="icon" href="/icon.svg?v=3" type="image/svg+xml" sizes="any" />
+        <link rel="icon" href="/favicon-48x48.png?v=3" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/favicon-32x32.png?v=3" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/favicon-16x16.png?v=3" type="image/png" sizes="16x16" />
+        <link rel="shortcut icon" href="/favicon.ico?v=3" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/pwa/apple-touch-icon.png?v=3" sizes="180x180" type="image/png" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg?v=3" color="#cc3746" />
+      </head>
       <body
         suppressHydrationWarning
         className={`${bodyFont.className} min-h-full flex flex-col font-sans`}

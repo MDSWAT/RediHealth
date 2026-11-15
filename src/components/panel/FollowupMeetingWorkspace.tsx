@@ -1095,7 +1095,9 @@ export function FollowupMeetingWorkspace({
                       title={meeting.title}
                       allow="camera; microphone; fullscreen; display-capture; autoplay"
                       allowFullScreen
-                      className="block h-[55dvh] min-h-80 w-full border-0 lg:h-[68dvh]"
+                      scrolling="no"
+                      style={{ colorScheme: "dark" }}
+                      className="block h-[55dvh] min-h-80 w-full overflow-hidden border-0 bg-ink-950 lg:h-[68dvh]"
                     />
                   )}
                   <p className="border-t border-white/10 px-4 py-3 text-xs leading-relaxed text-slate-400">

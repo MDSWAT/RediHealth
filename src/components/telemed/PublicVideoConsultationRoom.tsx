@@ -35,7 +35,8 @@ const roomCopy = {
     permHeadphones: "Если у вас есть наушники, наденьте их, чтобы лучше слышать",
     permAllow: "Разрешите и присоединяйтесь",
     permCancel: "Отмена",
-    statusLine: (patient: string, room: string) => `Шифрованный звонок, Пациент: ${patient}, Комната: ${room}`,
+    encryptedCall: "Шифрованный голосовой звонок",
+    statusLine: (patient: string) => `Шифрованный звонок, ${patient}`,
     callTitle: "Позвонить врачу",
     voiceOnly: "Только голос, использует мало данных",
     emergency: "Чрезвычайная ситуация? Позвоните 112",
@@ -55,7 +56,8 @@ const roomCopy = {
     permHeadphones: "Dacă ai căști, pune-le: auzi mai bine",
     permAllow: "Permite și intră",
     permCancel: "Renunță",
-    statusLine: (patient: string, room: string) => `Apel criptat, Pacient: ${patient}, Sala: ${room}`,
+    encryptedCall: "Apel vocal criptat",
+    statusLine: (patient: string) => `Apel criptat, ${patient}`,
     callTitle: "Apel cu medicul",
     voiceOnly: "Doar voce, consumă puține date",
     emergency: "Urgență? Sună la 112",
@@ -74,7 +76,8 @@ const roomCopy = {
     permHeadphones: "If you have headphones, put them on to hear better",
     permAllow: "Allow and join",
     permCancel: "Cancel",
-    statusLine: (patient: string, room: string) => `Encrypted call, Patient: ${patient}, Room: ${room}`,
+    encryptedCall: "Encrypted voice call",
+    statusLine: (patient: string) => `Encrypted call, ${patient}`,
     callTitle: "Call with the doctor",
     voiceOnly: "Voice only, uses little data",
     emergency: "Emergency? Call 112",
@@ -93,7 +96,8 @@ const roomCopy = {
     permHeadphones: "Nëse ke kufje, vendosi që të dëgjosh më mirë",
     permAllow: "Lejo dhe hyr",
     permCancel: "Anulo",
-    statusLine: (patient: string, room: string) => `Thirrje e enkriptuar, Pacienti: ${patient}, Dhoma: ${room}`,
+    encryptedCall: "Thirrje zanore e enkriptuar",
+    statusLine: (patient: string) => `Thirrje e enkriptuar, ${patient}`,
     callTitle: "Thirrje me mjekun",
     voiceOnly: "Vetëm zë, harxhon pak të dhëna",
     emergency: "Urgjencë? Telefono 112",
@@ -112,7 +116,8 @@ const roomCopy = {
     permHeadphones: "Se hai le cuffie, mettile: senti meglio",
     permAllow: "Consenti ed entra",
     permCancel: "Annulla",
-    statusLine: (patient: string, room: string) => `Chiamata criptata, Paziente: ${patient}, Stanza: ${room}`,
+    encryptedCall: "Chiamata vocale criptata",
+    statusLine: (patient: string) => `Chiamata criptata, ${patient}`,
     callTitle: "Chiamata con il medico",
     voiceOnly: "Solo voce, usa pochi dati",
     emergency: "Emergenza? Chiama il 112",
@@ -131,7 +136,8 @@ const roomCopy = {
     permHeadphones: "Ako imaš slušalice, stavi ih kako bi bolje čuo",
     permAllow: "Dopusti i pridruži se",
     permCancel: "Odustani",
-    statusLine: (patient: string, room: string) => `Šifrirani poziv, Pacijent: ${patient}, Soba: ${room}`,
+    encryptedCall: "Šifrirani glasovni poziv",
+    statusLine: (patient: string) => `Šifrirani poziv, ${patient}`,
     callTitle: "Poziv s liječnikom",
     voiceOnly: "Samo glas, troši malo podatkovnog prometa",
     emergency: "Hitno stanje? Nazovi 112",
@@ -150,7 +156,8 @@ const roomCopy = {
     permHeadphones: "Te si tut kanenge kufiye, tho len te shunes may mishto",
     permAllow: "Muk thaj khuves",
     permCancel: "Mekh",
-    statusLine: (patient: string, room: string) => `Garavdo svato, Paciento: ${patient}, Soba: ${room}`,
+    encryptedCall: "Garavdo avazesko svato",
+    statusLine: (patient: string) => `Garavdo svato, ${patient}`,
     callTitle: "Svato e doktoresa",
     voiceOnly: "Numay avazi, xal zalag interneto",
     emergency: "Sigo pharipe? Mar 112",
@@ -173,7 +180,11 @@ interface PublicVideoConsultationRoomProps {
 export function PublicVideoConsultationRoom({ roomId, patientName: patientNameProp, doctorName }: PublicVideoConsultationRoomProps) {
   const { lang } = useSafeLanguage();
   const copy = roomCopy[lang] ?? roomCopy.ro;
-  const patientName = patientNameProp ?? copy.patient;
+  const trimmedPatientName = patientNameProp?.trim();
+  const statusSubtitle =
+    trimmedPatientName && trimmedPatientName.toLowerCase() !== copy.patient.toLowerCase()
+      ? copy.statusLine(trimmedPatientName)
+      : copy.encryptedCall;
   const [hasPermissions, setHasPermissions] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -301,7 +312,7 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
         <StethoscopeIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-live-sage" />
         <div className="min-w-0 flex-1">
           <h1 className="truncate text-body font-semibold text-paper">{doctorName ?? copy.callTitle}</h1>
-          <p className="truncate text-meta text-mist">{copy.statusLine(patientName, roomId)}</p>
+          <p className="truncate text-meta text-mist">{statusSubtitle}</p>
         </div>
         <a
           href="tel:112"
@@ -314,13 +325,15 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
         </a>
       </header>
 
-      <main id="main-content" className="relative min-h-0 flex-1 bg-ink-950">
+      <main id="main-content" className="relative min-h-0 flex-1 overflow-hidden bg-ink-950">
         <iframe
           ref={iframeRef}
           src={jitsiUrl}
           title={copy.callTitle}
           allow="microphone; autoplay"
-          className="h-full w-full border-0"
+          scrolling="no"
+          style={{ colorScheme: "dark" }}
+          className="block h-full w-full overflow-hidden border-0 bg-ink-950"
         />
       </main>
 
