@@ -705,7 +705,8 @@ function AnatomicalBodyMapContent({
   useLayoutEffect(() => {
     onBodyShownRef.current?.(bodyShown);
   }, [bodyShown]);
-  const [layerMode, setLayerMode] = useState<LayerModeId>("surface");
+  /** The body opens on the muscles, like an anatomy atlas; skin, bones and organs are one tap away. */
+  const [layerMode, setLayerMode] = useState<LayerModeId>("muscular");
   const [userOverrodeLayer, setUserOverrodeLayer] = useState(false);
   const [prevForcedKey, setPrevForcedKey] = useState<string | null>(null);
   const forcedKey = forcedLayerMode || focusSubRegion ? `${forcedLayerMode ?? ""}:${focusSubRegion ?? ""}` : null;
@@ -935,6 +936,96 @@ function AnatomicalBodyMapContent({
     insideOpenerRef.current?.focus({ preventScroll: true });
   };
 
+  /**
+   * Phones: Front, Back, Inside (and zoom in full screen). Under the body on the page; in full screen
+   * it sits in one column with the turn buttons above the Save bar.
+   */
+  const mobileViewBar =
+    showTools && !isDesktopLayout ? (
+      <div
+        role="toolbar"
+        aria-label={`${t.views}, ${t.camera}, ${t.layer}`}
+        className={`z-30 mx-auto w-fit max-w-[calc(100%-0.5rem)] rounded-xl border border-border/90 bg-card/95 p-0.5 shadow-xs backdrop-blur-md sm:max-w-[calc(100%-1rem)] sm:p-1 ${
+          // In full screen it sits in the column above the Save bar, under the turn buttons.
+          fullScreen ? "pointer-events-auto relative" : "absolute inset-x-1 bottom-5 sm:inset-x-2"
+        }`}
+      >
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          {(["front", "back"] as const).map((preset) => {
+            const active = !freeView && viewAngle === preset;
+            const label = preset === "front" ? dict.ui.viewer3D.front : dict.ui.viewer3D.back;
+            return (
+              <button
+                key={preset}
+                type="button"
+                aria-pressed={active}
+                onClick={() => {
+                  setUserAngle(preset);
+                  setFreeView(false);
+                  setViewRequest((n) => n + 1);
+                  announceMobileHint(label);
+                }}
+                className={`inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-3 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  active
+                    ? "bg-sapphire-soft text-sapphire"
+                    : "text-foreground/80 hover:bg-muted hover:text-foreground"
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
+
+          <button
+            ref={insideOpenerRef}
+            type="button"
+            aria-expanded={layerOpen}
+            aria-controls={layerMenuId}
+            onClick={() => {
+              setPanelOpen(false);
+              setLayerOpen((open) => !open);
+            }}
+            className={`inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-3 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              layerOpen || effectiveLayerMode !== "surface"
+                ? "bg-sapphire-soft text-sapphire"
+                : "text-foreground/80 hover:bg-muted hover:text-foreground"
+            }`}
+          >
+            {t.inside}
+          </button>
+
+          {fullScreen && (
+            <>
+          <button
+            type="button"
+            aria-label={t.zoomOut}
+            title={t.zoomOut}
+            onClick={() => {
+              cameraRef.current?.zoomOut();
+              announceMobileHint(t.zoomOut);
+            }}
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <ZoomOutIcon className="h-5 w-5 shrink-0" />
+          </button>
+          <button
+            type="button"
+            aria-label={t.zoomIn}
+            title={t.zoomIn}
+            onClick={() => {
+              cameraRef.current?.zoomIn();
+              announceMobileHint(t.zoomIn);
+            }}
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <ZoomInIcon className="h-5 w-5 shrink-0" />
+          </button>
+            </>
+          )}
+        </div>
+      </div>
+    ) : null;
+
   const sectionTitle = "mb-1.5 text-body font-semibold text-foreground";
 
   /**
@@ -1086,7 +1177,8 @@ function AnatomicalBodyMapContent({
 
             {showTools && !fullScreen && (
               <div
-                className={`absolute right-2.5 top-2.5 z-30 items-center gap-1.5 ${controlsClassName ?? "flex"}`}
+                // Whole buttons wrap onto a second row when the stage is narrow, so none is cut off.
+                className={`absolute left-2.5 right-2.5 top-2.5 z-30 pointer-events-none flex-wrap items-center justify-end gap-1.5 [&>*]:pointer-events-auto ${controlsClassName ?? "flex"}`}
               >
                 {/* One tap to a body that fills the screen, with every control laid over it. */}
                 <button
@@ -1388,104 +1480,24 @@ function AnatomicalBodyMapContent({
             )}
 
             {showTools && !isDesktopLayout && fullScreen && (
-              // Turn and move buttons straight on the body: each press shows its result at once.
-              // Bottom right, above the view buttons and the Save bar, clear of the body itself.
-              <div role="group" aria-label={t.turnBody} className="absolute bottom-[9.5rem] right-2.5 z-30">
-                <DirectionPad
-                  size="panel"
-                  className="grid rounded-2xl border border-border/90 bg-card/90 p-1.5 shadow-xs backdrop-blur-md"
-                  labels={{ up: t.moveUp, down: t.moveDown, left: t.turnLeft, right: t.turnRight, reset: t.resetView }}
-                  onMove={handlePadMove}
-                  onReset={handlePadReset}
-                  onAnnounce={announceMobileHint}
-                />
-              </div>
-            )}
-
-            {showTools && !isDesktopLayout && (
-              <div
-                role="toolbar"
-                aria-label={`${t.views}, ${t.camera}, ${t.layer}`}
-                className={`absolute inset-x-1 z-30 mx-auto w-fit max-w-[calc(100%-0.5rem)] rounded-xl border border-border/90 bg-card/95 p-0.5 shadow-xs backdrop-blur-md sm:inset-x-2 sm:max-w-[calc(100%-1rem)] sm:p-1 ${
-                  // In full screen the Save bar sits under the body, so the buttons ride above it.
-                  fullScreen ? "bottom-[5.75rem]" : "bottom-5"
-                }`}
-              >
-                <div className="flex flex-wrap items-center justify-center gap-2">
-                  {(["front", "back"] as const).map((preset) => {
-                    const active = !freeView && viewAngle === preset;
-                    const label = preset === "front" ? dict.ui.viewer3D.front : dict.ui.viewer3D.back;
-                    return (
-                      <button
-                        key={preset}
-                        type="button"
-                        aria-pressed={active}
-                        onClick={() => {
-                          setUserAngle(preset);
-                          setFreeView(false);
-                          setViewRequest((n) => n + 1);
-                          announceMobileHint(label);
-                        }}
-                        className={`inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-3 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                          active
-                            ? "bg-sapphire-soft text-sapphire"
-                            : "text-foreground/80 hover:bg-muted hover:text-foreground"
-                        }`}
-                      >
-                        {label}
-                      </button>
-                    );
-                  })}
-
-                  <button
-                    ref={insideOpenerRef}
-                    type="button"
-                    aria-expanded={layerOpen}
-                    aria-controls={layerMenuId}
-                    onClick={() => {
-                      setPanelOpen(false);
-                      setLayerOpen((open) => !open);
-                    }}
-                    className={`inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-3 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                      layerOpen || effectiveLayerMode !== "surface"
-                        ? "bg-sapphire-soft text-sapphire"
-                        : "text-foreground/80 hover:bg-muted hover:text-foreground"
-                    }`}
-                  >
-                    {t.inside}
-                  </button>
-
-                  {fullScreen && (
-                    <>
-                  <button
-                    type="button"
-                    aria-label={t.zoomOut}
-                    title={t.zoomOut}
-                    onClick={() => {
-                      cameraRef.current?.zoomOut();
-                      announceMobileHint(t.zoomOut);
-                    }}
-                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    <ZoomOutIcon className="h-5 w-5 shrink-0" />
-                  </button>
-                  <button
-                    type="button"
-                    aria-label={t.zoomIn}
-                    title={t.zoomIn}
-                    onClick={() => {
-                      cameraRef.current?.zoomIn();
-                      announceMobileHint(t.zoomIn);
-                    }}
-                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    <ZoomInIcon className="h-5 w-5 shrink-0" />
-                  </button>
-                    </>
-                  )}
+              // Full screen: the turn buttons stack above the view buttons, above the Save bar. One column,
+              // so however many rows the view buttons take (large text), nothing covers anything else.
+              <div className="pointer-events-none absolute inset-x-1 bottom-[5.75rem] z-30 flex flex-col items-center gap-2 sm:inset-x-2">
+                <div role="group" aria-label={t.turnBody} className="pointer-events-auto mr-1.5 self-end">
+                  <DirectionPad
+                    size="panel"
+                    className="grid rounded-2xl border border-border/90 bg-card/90 p-1.5 shadow-xs backdrop-blur-md"
+                    labels={{ up: t.moveUp, down: t.moveDown, left: t.turnLeft, right: t.turnRight, reset: t.resetView }}
+                    onMove={handlePadMove}
+                    onReset={handlePadReset}
+                    onAnnounce={announceMobileHint}
+                  />
                 </div>
+                {mobileViewBar}
               </div>
             )}
+
+            {!fullScreen && mobileViewBar}
 
             {showTools && isDesktopLayout && (
               <div

@@ -2341,6 +2341,71 @@ html[data-underline-links] a[href].link-draw {
   background-image: none;
 }
 
+/* Grey colours: the whole page in shades of grey, for people who find colour tiring or hard to tell apart.
+   On the root element a filter does not trap fixed-position headers, sheets or dialogs. */
+html[data-grayscale] {
+  filter: grayscale(1);
+}
+
+/* Text size slider (Accessibility menu): a 44px-tall touch target with a 6px track and a 26px thumb.
+   --fill is the share of the track left of the thumb, set inline from the current step. */
+.comfort-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2.75rem;
+  background: transparent;
+  cursor: pointer;
+  --track-on: var(--color-sapphire);
+  --track-off: color-mix(in oklab, var(--color-border-control) 45%, transparent);
+}
+.dark .comfort-slider {
+  --track-on: var(--color-sapphire-border);
+  --track-off: rgb(255 255 255 / 0.22);
+}
+.comfort-slider:focus-visible {
+  outline: none;
+}
+.comfort-slider::-webkit-slider-runnable-track {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: linear-gradient(to right, var(--track-on) var(--fill, 0%), var(--track-off) var(--fill, 0%));
+}
+.comfort-slider::-moz-range-track {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: var(--track-off);
+}
+.comfort-slider::-moz-range-progress {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: var(--track-on);
+}
+.comfort-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.625rem;
+  height: 1.625rem;
+  margin-top: -0.625rem;
+  border-radius: 9999px;
+  border: 3px solid #fff;
+  background: var(--track-on);
+  box-shadow: 0 1px 4px rgb(2 6 23 / 0.3);
+}
+.comfort-slider::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  border: 3px solid #fff;
+  background: var(--track-on);
+  box-shadow: 0 1px 4px rgb(2 6 23 / 0.3);
+}
+.comfort-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--color-background), 0 0 0 5px var(--color-ring, var(--track-on));
+}
+.comfort-slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 3px var(--color-background), 0 0 0 5px var(--color-ring, var(--track-on));
+}
+
 /* Wider text spacing: WCAG 2.2 SC 1.4.12 readability spacing while keeping single-line buttons compact. */
 html[data-wide-spacing] :where(p, li, dd, dt, blockquote, label, td, th, .prose) {
   letter-spacing: 0.035em;

@@ -91,10 +91,7 @@ describe("calm motion preference synchronization", () => {
 });
 
 describe("plain reading mode copy (Pe scurt / Simple)", () => {
-  it("uses Pe scurt in Romanian and Simple in English across ComfortMenu and ReadingLevelSwitcher", () => {
-    expect(COMFORT_COPY.ro.simpleLabel).toBe("Pe scurt");
-    expect(COMFORT_COPY.en.simpleLabel).toBe("Simple");
-
+  it("uses Pe scurt in Romanian and Simple in English on the ReadingLevelSwitcher", () => {
     expect(READING_LEVEL_COPY.ro.simple).toBe("Pe scurt");
     expect(READING_LEVEL_COPY.en.simple).toBe("Simple");
   });
@@ -104,9 +101,9 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
       const comfort = COMFORT_COPY[lang];
       const reader = READING_LEVEL_COPY[lang];
 
-      expect(reader.simple, lang).toBe(comfort.simpleLabel);
-      expect(reader.complete, lang).toBe(comfort.completeLabel);
-      expect(reader.ariaLabel, lang).toBe(comfort.explanationLabel);
+      // The accessibility menu no longer repeats the reading mode switch.
+      expect(Object.keys(comfort)).not.toContain("simpleLabel");
+      expect(reader.simple, lang).toBeTruthy();
 
       for (const value of Object.values(comfort)) {
         expect(value, `${lang}: "${value}"`).not.toContain("&");
@@ -116,7 +113,7 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
     }
   });
 
-  it("renders ComfortMenu size options as vertical 16px+ radio previews without A/A+/A++ glyphs (P04)", () => {
+  it("renders text size as a labelled three-stop slider without A+/A++ glyphs (P04)", () => {
     const html = renderToStaticMarkup(
       createElement(
         LanguageContext.Provider,
@@ -124,17 +121,14 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
         createElement(ComfortMenu, { variant: "drawer" }),
       ),
     );
-    expect(html).toContain('role="radiogroup"');
-    expect(html).toContain('role="radio"');
-    expect(html).toContain("font-size:1rem");
-    expect(html).toContain("font-size:1.14rem");
-    expect(html).toContain("font-size:1.26rem");
+    expect(html).toContain('type="range"');
+    expect(html).toContain('min="0"');
+    expect(html).toContain('max="2"');
+    expect(html).toContain(`aria-valuetext="${COMFORT_COPY.en.scaleNormal}"`);
+    expect(html).toMatch(/<label[^>]*for="[^"]+"[^>]*>Text size<\/label>/);
+    expect(html).not.toContain('role="radiogroup"');
     expect(html).not.toContain("A+");
     expect(html).not.toContain("A++");
-
-    const comfortSrc = readFileSync(resolve(process.cwd(), "src/components/layout/ComfortMenu.tsx"), "utf8");
-    expect(comfortSrc).toContain("ArrowDown");
-    expect(comfortSrc).toContain("ArrowUp");
   });
 
   it("prevents synchronous re-entrant notification loops when switching reading level or syncing TriageStateMachine (P16)", () => {
@@ -194,7 +188,7 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
     expect(switcherSrc).toContain("syncingRef");
   });
 
-  it("renders single-line Aa Aa Aa buttons and shows Auto-read only on voice-enabled locales", () => {
+  it("renders one text size slider and shows Auto-read only on voice-enabled locales", () => {
     const enHtml = renderToStaticMarkup(
       createElement(
         LanguageContext.Provider,
@@ -202,8 +196,10 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
         createElement(ComfortMenu, { variant: "drawer" }),
       ),
     );
-    expect(enHtml).toContain("grid-cols-3");
-    expect((enHtml.match(/>Aa</g) ?? []).length).toBe(3);
+    expect((enHtml.match(/type="range"/g) ?? []).length).toBe(1);
+    expect(enHtml).not.toContain(">Aa<");
+    expect(enHtml).toContain(COMFORT_COPY.en.readingGuideToggle);
+    expect(enHtml).toContain(COMFORT_COPY.en.grayscaleToggle);
     expect(enHtml).toContain(COMFORT_COPY.en.autoReadToggle);
 
     const romHtml = renderToStaticMarkup(
@@ -275,13 +271,16 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
     const comfortSrc = readFileSync(resolve(process.cwd(), "src/components/layout/ComfortMenu.tsx"), "utf8");
     const iconsSrc = readFileSync(resolve(process.cwd(), "src/components/ui/icons.tsx"), "utf8");
     expect(comfortSrc).toContain("sm:rounded-3xl");
-    expect(comfortSrc).toContain("max-h-[min(78dvh,38rem)] overflow-y-auto");
+    expect(comfortSrc).toContain("sm:max-h-[min(78dvh,38rem)]");
+    expect(comfortSrc).toContain("max-sm:max-h-[calc(100dvh-0.5rem)]");
     expect(comfortSrc).not.toContain("sheet-close");
     expect(comfortSrc).toContain("bg-[#c62f3c]");
     expect(comfortSrc).not.toContain("list-in");
     expect(comfortSrc).toContain("redihealth:unlock-audio");
     expect(comfortSrc).toContain("AccessibilityIcon");
-    expect(iconsSrc).toContain('fillRule="evenodd"');
+    // The header glyph is the bare figure in the text colour, with no filled disc behind it.
+    const accessibilityIconSrc = iconsSrc.slice(iconsSrc.indexOf("export function AccessibilityIcon"));
+    expect(accessibilityIconSrc.slice(0, accessibilityIconSrc.indexOf("\n}\n"))).not.toContain("10.5 10.5 0 1 0 0 21");
   });
 });
 

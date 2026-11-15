@@ -235,7 +235,7 @@ const ro: AssistantCopy = {
       symptoms: {
         title: "Am o problemă de sănătate",
         plainTitle: "Nu mă simt bine chiar acum",
-        subtitle: "Verificăm întâi semnele de alarmă, apoi te îndrumăm spre un medic",
+        subtitle: "Arată pe corp unde te doare, apoi te îndrumăm spre un medic",
       },
       prescription: {
         title: "Am o rețetă medicală",
@@ -612,7 +612,7 @@ const en: AssistantCopy = {
       symptoms: {
         title: "I have a health problem",
         plainTitle: "I don't feel well right now",
-        subtitle: "We check for warning signs first, then point you to a doctor",
+        subtitle: "Show where it hurts on a body picture, then we point you to a doctor",
       },
       prescription: {
         title: "I have a prescription",
@@ -988,7 +988,7 @@ const sq: AssistantCopy = {
       symptoms: {
         title: "Kam një problem shëndetësor",
         plainTitle: "Nuk ndihem mirë tani",
-        subtitle: "Së pari shohim shenjat e rrezikut, pastaj të drejtojmë te një mjek",
+        subtitle: "Trego në trup ku të dhemb, pastaj të drejtojmë te një mjek",
       },
       prescription: {
         title: "Kam një recetë mjekësore",
@@ -1364,7 +1364,7 @@ const it: AssistantCopy = {
       symptoms: {
         title: "Ho un problema di salute",
         plainTitle: "Non mi sento bene in questo momento",
-        subtitle: "Prima controlliamo i segnali d'allarme, poi ti indirizziamo a un medico",
+        subtitle: "Mostra sul corpo dove ti fa male, poi ti indirizziamo a un medico",
       },
       prescription: {
         title: "Ho una ricetta medica",
@@ -1740,7 +1740,7 @@ const hr: AssistantCopy = {
       symptoms: {
         title: "Imam zdravstveni problem",
         plainTitle: "Trenutno se ne osjećam dobro",
-        subtitle: "Prvo provjeravamo znakove uzbune, a zatim te usmjeravamo liječniku",
+        subtitle: "Pokaži na tijelu gdje te boli, a zatim te usmjeravamo liječniku",
       },
       prescription: {
         title: "Imam liječnički recept",
@@ -2116,7 +2116,7 @@ const rom: AssistantCopy = {
       symptoms: {
         title: "Si man jekh sastipnaski problema",
         plainTitle: "Na hatjarav man mishto akana",
-        subtitle: "Anglunivar dikhas le znakoja vash dar, pala kodoja ingaras tut ko doktori",
+        subtitle: "Sikav pe trupo kaj dukhal tut, pala kodoja ingaras tut ko doktori",
       },
       prescription: {
         title: "Si man jekh receta",
@@ -2495,7 +2495,7 @@ ru: {
       symptoms: {
         title: "У меня проблемы со здоровьем",
         plainTitle: "Я сейчас нехорошо себя чувствую",
-        subtitle: "Сначала мы проверяем наличие настораживающих признаков, а затем направляем вас к врачу.",
+        subtitle: "Покажите на схеме тела, где болит, а затем мы направим вас к врачу.",
       },
       prescription: {
         title: "У меня есть рецепт",

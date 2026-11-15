@@ -14,6 +14,8 @@ const AUTO_READ_KEY = "redihealth-auto-read";
 const HIGH_CONTRAST_KEY = "redihealth-high-contrast";
 const UNDERLINE_LINKS_KEY = "redihealth-underline-links";
 const WIDE_SPACING_KEY = "redihealth-wide-spacing";
+const READING_GUIDE_KEY = "redihealth-reading-guide";
+const GRAYSCALE_KEY = "redihealth-grayscale";
 const READING_LEVEL_KEY = "redihealth_reading_level";
 const LEGACY_PLAIN_LANGUAGE_KEY = "redihealth_plain_language";
 
@@ -40,6 +42,8 @@ function bindStorageListener() {
       event.key === HIGH_CONTRAST_KEY ||
       event.key === UNDERLINE_LINKS_KEY ||
       event.key === WIDE_SPACING_KEY ||
+      event.key === READING_GUIDE_KEY ||
+      event.key === GRAYSCALE_KEY ||
       event.key === READING_LEVEL_KEY ||
       event.key === LEGACY_PLAIN_LANGUAGE_KEY
     ) {
@@ -116,6 +120,16 @@ export function getWideSpacingSnapshot(): boolean {
   return readBooleanPreference(WIDE_SPACING_KEY);
 }
 
+/** A band that follows the pointer or finger and dims the lines above and below it. */
+export function getReadingGuideSnapshot(): boolean {
+  return readBooleanPreference(READING_GUIDE_KEY);
+}
+
+/** Shows the site in shades of grey, for people who find colour tiring or hard to tell apart. */
+export function getGrayscaleSnapshot(): boolean {
+  return readBooleanPreference(GRAYSCALE_KEY);
+}
+
 export function getReadingLevelSnapshot(): ReadingLevel {
   if (typeof window === "undefined") return "simple";
   try {
@@ -137,6 +151,8 @@ export function applyComfortToDom() {
   const highContrast = getHighContrastSnapshot();
   const underlineLinks = getUnderlineLinksSnapshot();
   const wideSpacing = getWideSpacingSnapshot();
+  const readingGuide = getReadingGuideSnapshot();
+  const grayscale = getGrayscaleSnapshot();
   const readingLevel = getReadingLevelSnapshot();
 
   if (textScale === "xl") {
@@ -155,6 +171,8 @@ export function applyComfortToDom() {
   syncBooleanAttribute(root, "data-high-contrast", highContrast);
   syncBooleanAttribute(root, "data-underline-links", underlineLinks);
   syncBooleanAttribute(root, "data-wide-spacing", wideSpacing);
+  syncBooleanAttribute(root, "data-reading-guide", readingGuide);
+  syncBooleanAttribute(root, "data-grayscale", grayscale);
 
   root.setAttribute("data-reading-level", readingLevel);
 }
@@ -202,6 +220,14 @@ export function setWideSpacingPreference(next: boolean) {
   writeBooleanPreference(WIDE_SPACING_KEY, next, getWideSpacingSnapshot);
 }
 
+export function setReadingGuidePreference(next: boolean) {
+  writeBooleanPreference(READING_GUIDE_KEY, next, getReadingGuideSnapshot);
+}
+
+export function setGrayscalePreference(next: boolean) {
+  writeBooleanPreference(GRAYSCALE_KEY, next, getGrayscaleSnapshot);
+}
+
 export function setReadingLevel(next: ReadingLevel) {
   if (typeof window === "undefined") return;
   if (getReadingLevelSnapshot() === next) return;
@@ -225,6 +251,8 @@ export function resetComfortPreferences() {
     window.localStorage.removeItem(HIGH_CONTRAST_KEY);
     window.localStorage.removeItem(UNDERLINE_LINKS_KEY);
     window.localStorage.removeItem(WIDE_SPACING_KEY);
+    window.localStorage.removeItem(READING_GUIDE_KEY);
+    window.localStorage.removeItem(GRAYSCALE_KEY);
     window.localStorage.removeItem(READING_LEVEL_KEY);
     window.localStorage.removeItem(LEGACY_PLAIN_LANGUAGE_KEY);
   } catch {
@@ -271,6 +299,18 @@ export function useUnderlineLinks(): [boolean, (next: boolean) => void] {
 export function useWideSpacing(): [boolean, (next: boolean) => void] {
   const enabled = useSyncExternalStore(subscribeComfort, getWideSpacingSnapshot, () => false);
   const update = useCallback((next: boolean) => setWideSpacingPreference(next), []);
+  return [enabled, update];
+}
+
+export function useReadingGuide(): [boolean, (next: boolean) => void] {
+  const enabled = useSyncExternalStore(subscribeComfort, getReadingGuideSnapshot, () => false);
+  const update = useCallback((next: boolean) => setReadingGuidePreference(next), []);
+  return [enabled, update];
+}
+
+export function useGrayscale(): [boolean, (next: boolean) => void] {
+  const enabled = useSyncExternalStore(subscribeComfort, getGrayscaleSnapshot, () => false);
+  const update = useCallback((next: boolean) => setGrayscalePreference(next), []);
   return [enabled, update];
 }
 

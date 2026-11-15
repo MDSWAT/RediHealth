@@ -561,10 +561,10 @@ export function AccessibilityIcon({ className, ...props }: IconProps) {
       className={className}
       {...props}
     >
+      {/* Just the figure in the text colour, no filled disc behind it, so it weighs the same as the search glyph. */}
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M12 1.5a10.5 10.5 0 1 0 0 21 10.5 10.5 0 0 0 0-21ZM12 4.7a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4ZM7.35 9.05Q12 10.05 16.65 9.05a.9.9 0 0 1 .4 1.75Q15.2 11.25 13.35 11.45v2.1l1.9 4a.9.9 0 0 1-1.63.77L12 14.95l-1.62 3.37a.9.9 0 0 1-1.63-.77l1.9-4v-2.1Q8.8 11.25 6.95 10.8a.9.9 0 0 1 .4-1.75Z"
+        transform="translate(12 12) scale(1.45) translate(-12 -11.5)"
+        d="M12 4.7a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4ZM7.35 9.05Q12 10.05 16.65 9.05a.9.9 0 0 1 .4 1.75Q15.2 11.25 13.35 11.45v2.1l1.9 4a.9.9 0 0 1-1.63.77L12 14.95l-1.62 3.37a.9.9 0 0 1-1.63-.77l1.9-4v-2.1Q8.8 11.25 6.95 10.8a.9.9 0 0 1 .4-1.75Z"
       />
     </svg>
   );
@@ -599,6 +599,17 @@ export function TextSpacingIcon(props: IconProps) {
       <path d="M7 12h10" />
       <path d="M10 9l-3 3 3 3" />
       <path d="M14 9l3 3-3 3" />
+    </svg>
+  );
+}
+
+// Reading guide: text lines with the middle one framed (in-house outline, matches Boxicons line weight)
+export function ReadingGuideIcon(props: IconProps) {
+  return (
+    <svg {...strokeProps(props)}>
+      <path d="M6 4.5h12M6 19.5h12" />
+      <rect x="3" y="9" width="18" height="6" rx="1.5" />
+      <path d="M7 12h10" />
     </svg>
   );
 }

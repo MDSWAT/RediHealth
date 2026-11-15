@@ -31,6 +31,7 @@ import { initPwaRuntime } from "@/lib/pwa/pwa-state";
 import { clearPageAutoReadSession } from "@/lib/audio/page-auto-read";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { useComfortDomSync } from "@/lib/comfort-preferences";
+import { ReadingGuide } from "@/components/layout/ReadingGuide";
 import { useCalmReducedMotion } from "@/lib/motion/tokens";
 import type { Lang, SerializableTranslations } from "@/lib/i18n/languages";
 import type { Translations } from "@/lib/i18n/translations";
@@ -165,6 +166,7 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTrans
             {isChromelessSurface || !widgetsReady ? null : <ReportIssueWidget />}
             {isChromelessSurface ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
             {hideFooter ? null : <Footer />}
+            <ReadingGuide />
           </RecaptchaProvider>
         </LanguageProvider>
       </LazyMotion>

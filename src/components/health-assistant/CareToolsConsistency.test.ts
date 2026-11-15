@@ -28,7 +28,6 @@ const OWNED_SOURCE_FILES = [
   "src/components/health-assistant/MediatorRequestModal.tsx",
   "src/components/health-assistant/pathways/PathwayRisk.tsx",
   "src/components/health-assistant/pathways/PathwayNavigation.tsx",
-  "src/components/health-assistant/pathways/PathwaySymptomsMild.tsx",
   "src/components/health-check/HealthCheckExplorer.tsx",
   "src/components/health-check/AnatomicalBodyMap.tsx",
   "src/components/health-check/TriageNoteView.tsx",
@@ -171,14 +170,6 @@ describe("Care tools design-system consistency", () => {
     expect(findHelp).toContain("border-border-control");
     expect(findHelp).toContain("rounded-(--radius-control)");
     expect(findHelp).not.toContain("min-h-9");
-  });
-
-  it("keeps mild self-care list markers sapphire while preserving primary for emergency warnings", () => {
-    const mild = readSrc("src/components/health-assistant/pathways/PathwaySymptomsMild.tsx");
-    expect(mild).toContain("marker:text-sapphire");
-    expect(mild).not.toMatch(/<ol[^>]*marker:text-primary/);
-    expect(mild).toContain("shrink-0 text-primary");
-    expect(mild).toContain("list-disc marker:text-primary");
   });
 
   it("wraps /health-check/note top bar and note card in a readable max-w-3xl Container with print classes intact", () => {
