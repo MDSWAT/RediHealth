@@ -68,11 +68,21 @@
   }
 }
 
-/* A small wheel on the left, its centre a little inside the edge so the chakra stays whole. */
+/* A small wheel on the left, kept whole: its centre sits a little more than half its drawn width
+   from the edge (the outer ring draws about 8.5% wider than the box), so nothing is cut as it turns. */
 .footer .wheel {
-  left: clamp(6rem, 14vw, 13rem);
+  --footer-wheel: clamp(20rem, 36vw, 30rem);
+  left: calc(var(--footer-wheel) * 0.5425 + 1rem);
   top: 50%;
-  width: clamp(20rem, 36vw, 30rem);
+  width: var(--footer-wheel);
+}
+
+@media (max-width: 1023px) {
+  .backdrop,
+  .hero,
+  .footer {
+    display: none;
+  }
 }
 
 .layer {
@@ -82,6 +92,7 @@
   height: 100%;
 }
 
+/* The same slow turn in the hero and the footer: outer ring one way, inner ring the other. */
 .outer {
   animation: hero-wheel-spin var(--backdrop-outer-dur) linear infinite;
 }
@@ -148,4 +159,11 @@
   .face {
     animation: none;
   }
+}
+
+:global(html[data-calm-motion]) .outer,
+:global(html[data-calm-motion]) .inner,
+:global(html[data-calm-motion]) .hub,
+:global(html[data-calm-motion]) .face {
+  animation: none;
 }

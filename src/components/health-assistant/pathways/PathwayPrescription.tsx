@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { ArrowRightIcon, CameraIcon, CheckCircleIcon } from "@/components/ui/icons";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
@@ -11,7 +12,6 @@ import {
   optionIcon,
   optionRow,
   optionTitle,
-  primaryButton,
   stepHeading,
   stepLead,
   subHeading,
@@ -101,7 +101,7 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
           <label htmlFor={inputId} className={`block ${subHeading}`}>
             {rx.searchTitle}
           </label>
-          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{rx.searchDesc}</p>
+          <p className="mt-1 text-body text-muted-foreground">{rx.searchDesc}</p>
 
           <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-start">
             <div className="relative min-w-0 flex-1">
@@ -138,9 +138,9 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
                         // Keep focus in the input so blur does not close the list before the click lands.
                         onMouseDown={(e) => e.preventDefault()}
                         onClick={() => handleSelectDrug(drug)}
-                        className="flex min-h-11 w-full items-center rounded-lg px-3 text-left text-base text-foreground hover:bg-sapphire-soft/50"
+                        className="flex min-h-11 w-full items-center whitespace-nowrap rounded-lg px-3 text-left text-body text-foreground hover:bg-sapphire-soft/50"
                       >
-                        {drug}
+                        <span className="min-w-0 truncate">{drug}</span>
                       </button>
                     </li>
                   ))}
@@ -148,9 +148,9 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
               )}
             </div>
 
-            <button type="submit" disabled={!medicineSearch.trim()} className={`shrink-0 ${primaryButton}`}>
+            <Button type="submit" variant="action" size="lg" disabled={!medicineSearch.trim()} className="shrink-0">
               {rx.submit}
-            </button>
+            </Button>
           </div>
         </form>
       </div>
@@ -167,7 +167,7 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
       <h3 className={`mt-6 ${subHeading}`}>{rx.rulesHeading}</h3>
       <ul className="mt-3 space-y-2.5">
         {rules.map((rule) => (
-          <li key={rule} className="flex items-start gap-2.5 text-base leading-relaxed text-foreground">
+          <li key={rule} className="flex items-start gap-2.5 text-body text-foreground">
             <CheckCircleIcon className="mt-1 h-4.5 w-4.5 shrink-0 text-sapphire dark:text-sapphire-border" />
             <span>{rule}</span>
           </li>

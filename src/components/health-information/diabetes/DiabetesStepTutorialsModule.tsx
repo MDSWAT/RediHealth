@@ -1322,8 +1322,8 @@ export function DiabetesStepTutorialsModule({
       className="space-y-8"
     >
       <header className="space-y-2">
-        <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{ui.title}</h3>
-        <p className="max-w-prose text-sm leading-relaxed text-muted-foreground sm:text-base">{ui.description}</p>
+        <h3 className="text-section font-semibold text-foreground">{ui.title}</h3>
+        <p className="max-w-(--measure-reading) text-body text-muted-foreground">{ui.description}</p>
       </header>
 
       {/* Which guide */}
@@ -1344,15 +1344,15 @@ export function DiabetesStepTutorialsModule({
                 />
                 <span className={radioDotClass(isSelected)} aria-hidden="true" />
                 <span className="min-w-0">
-                  <span className="block text-sm font-semibold leading-snug text-foreground">{prog.tabLabel}</span>
-                  <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">{prog.badge}</span>
+                  <span className="block text-meta font-semibold leading-snug text-foreground">{prog.tabLabel}</span>
+                  <span className="mt-0.5 block text-meta leading-snug text-muted-foreground">{prog.badge}</span>
                 </span>
               </label>
             );
           })}
         </div>
 
-        <p className="max-w-prose text-sm leading-relaxed text-foreground">
+        <p className="max-w-(--measure-reading) text-body text-foreground">
           <strong className="font-semibold">{currentProgram.title}.</strong> {currentProgram.summary}
         </p>
       </div>
@@ -1378,7 +1378,7 @@ export function DiabetesStepTutorialsModule({
                 >
                   <span className={stepNumberClass(isCurrent)}>{st.number}</span>
                   <span
-                    className={`min-w-0 flex-1 text-sm leading-snug break-words ${
+                    className={`min-w-0 flex-1 text-meta leading-snug break-words ${
                       isCurrent ? "font-semibold text-foreground" : "font-medium text-muted-foreground group-hover:text-foreground"
                     }`}
                   >
@@ -1394,16 +1394,16 @@ export function DiabetesStepTutorialsModule({
         <div className="space-y-5 border-t border-border pt-5">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-0.5" aria-live="polite">
-              <span className="text-xs font-medium tabular-nums text-muted-foreground">
+              <span className="text-meta font-medium tabular-nums text-muted-foreground">
                 {ui.stageLabel} {step.number} {ui.ofFour}
               </span>
-              <h5 className="text-sm font-semibold text-foreground">{ui.actionHeading}</h5>
+              <h5 className="text-body font-semibold text-foreground">{ui.actionHeading}</h5>
             </div>
             <button
               type="button"
               aria-pressed={isCurrentStepDone}
               onClick={() => toggleStepCompleted(currentStepKey)}
-              className={`flex min-h-[44px] shrink-0 items-center gap-2 self-start rounded-lg border px-3.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+              className={`inline-flex min-h-[44px] shrink-0 items-center gap-2 self-start whitespace-nowrap rounded-lg border px-3.5 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                 isCurrentStepDone
                   ? "border-live-sage/40 bg-live-sage-soft text-foreground"
                   : "border-border bg-card text-foreground hover:bg-surface-subtle"
@@ -1418,20 +1418,20 @@ export function DiabetesStepTutorialsModule({
             </button>
           </div>
 
-          <p className="max-w-prose text-sm leading-relaxed text-foreground">{step.action}</p>
+          <p className="max-w-(--measure-reading) text-body text-foreground">{step.action}</p>
 
           <div className="grid grid-cols-1 gap-6 border-t border-border pt-4 md:grid-cols-2">
             <div className="space-y-1">
-              <h5 className="text-sm font-semibold text-foreground">
+              <h5 className="text-body font-semibold text-foreground">
                 {ui.doctorTipHeading}
               </h5>
-              <p className="text-sm leading-relaxed text-muted-foreground">{step.doctorTip}</p>
+              <p className="text-body text-muted-foreground">{step.doctorTip}</p>
             </div>
             <div className="space-y-1">
-              <h5 className="text-sm font-semibold text-foreground">
+              <h5 className="text-body font-semibold text-foreground">
                 {ui.mistakeHeading}
               </h5>
-              <p className="text-sm leading-relaxed text-muted-foreground">{step.mistakeToAvoid}</p>
+              <p className="text-body text-muted-foreground">{step.mistakeToAvoid}</p>
             </div>
           </div>
         </div>
@@ -1440,8 +1440,8 @@ export function DiabetesStepTutorialsModule({
         {activeTab === "footcare" && (
           <div className="space-y-4 border-t border-border pt-5">
             <div>
-              <h5 className="text-sm font-semibold text-foreground">{ui.hotspotsHeading}</h5>
-              <p className="mt-0.5 text-sm text-muted-foreground">{ui.hotspotsSubtitle}</p>
+              <h5 className="text-body font-semibold text-foreground">{ui.hotspotsHeading}</h5>
+              <p className="mt-0.5 text-body text-muted-foreground">{ui.hotspotsSubtitle}</p>
             </div>
 
             <div className="grid grid-cols-[112px_1fr] items-start gap-4 sm:grid-cols-[150px_1fr] sm:gap-8">
@@ -1510,23 +1510,23 @@ export function DiabetesStepTutorialsModule({
                           className="sr-only"
                         />
                         <span
-                          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
+                          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-sm text-meta font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
                             isSelected ? "bg-foreground text-white" : "border border-foreground text-foreground"
                           }`}
                           aria-hidden="true"
                         >
                           {i + 1}
                         </span>
-                        <span className={`text-sm leading-snug text-foreground ${isSelected ? "font-semibold" : ""}`}>{h.shortName}</span>
+                        <span className={`text-body leading-snug text-foreground ${isSelected ? "font-semibold" : ""}`}>{h.shortName}</span>
                       </label>
                     );
                   })}
                 </div>
 
                 <div aria-live="polite" className="border-t border-border pt-3">
-                  <p className="text-xs font-medium text-muted-foreground">{ui.hotspotSelectedLabel}</p>
-                  <p className="mt-0.5 text-sm font-semibold text-foreground">{activeHotspot.name}</p>
-                  <p className="mt-1 max-w-prose text-sm leading-relaxed text-muted-foreground">{activeHotspot.inspectionNote}</p>
+                  <p className="text-meta font-medium text-muted-foreground">{ui.hotspotSelectedLabel}</p>
+                  <p className="mt-0.5 text-body font-semibold text-foreground">{activeHotspot.name}</p>
+                  <p className="mt-1 max-w-(--measure-reading) text-body text-muted-foreground">{activeHotspot.inspectionNote}</p>
                 </div>
               </div>
             </div>
@@ -1535,11 +1535,11 @@ export function DiabetesStepTutorialsModule({
 
         {/* When to call the family doctor */}
         <div className="border-t border-border pt-5">
-          <h5 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+          <h5 className="flex items-center gap-2 text-body font-semibold text-foreground">
             <AlertCircleIcon className="h-4 w-4 shrink-0 text-amber-care" />
             {ui.redFlagsHeading}
           </h5>
-          <ul className="mt-2 list-disc space-y-1.5 pl-6 text-sm leading-relaxed text-muted-foreground">
+          <ul className="mt-2 list-disc space-y-1.5 pl-6 text-body text-muted-foreground">
             {currentProgram.clinicalRedFlags.map((flag) => (
               <li key={flag}>{flag}</li>
             ))}

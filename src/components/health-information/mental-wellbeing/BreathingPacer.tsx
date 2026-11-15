@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { LazyMotion, domAnimation, useInView, useReducedMotion } from "motion/react";
 import type { Lang } from "@/lib/i18n/translations";
+import { Button } from "@/components/ui/Button";
 import { VolumeIcon, VolumeMuteIcon } from "@/components/ui/icons";
 import { InlineAudioNarratorButton } from "../InlineAudioNarratorButton";
 import { BreathingPacerScene, type BreathPhaseKind } from "../explainers/scenes/BreathingPacerScene";
@@ -10,7 +11,6 @@ import { SPEECH_LANG } from "../explainers/explainer-copy";
 import {
   STAGE_CARD_CLASS,
   STAGE_CREDIT_CLASS,
-  STAGE_PRIMARY_CONTROL_CLASS,
 } from "../explainers/stage-styles";
 import {
   BREATHING_COPY,
@@ -170,13 +170,13 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
       data-testid="breathing-pacer"
     >
       <div className="flex items-center justify-between gap-4">
-        <h3 className="text-lg font-semibold text-foreground">{copy.title}</h3>
+        <h3 className="text-title font-semibold text-foreground">{copy.title}</h3>
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={() => setTonesEnabled((on) => !on)}
             aria-pressed={tonesEnabled}
-            className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire ${
+            className={`inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-lg border px-3 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
               tonesEnabled
                 ? "border-sapphire-border bg-sapphire-soft text-sapphire"
                 : "border-border bg-card text-muted-foreground hover:text-foreground"
@@ -199,7 +199,7 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
         </div>
       </div>
 
-      <div role="tablist" aria-label={copy.patternGroupLabel} className={`mt-4 ${TAB_LIST_CLASS} grid-cols-2`}>
+      <div role="tablist" aria-label={copy.patternGroupLabel} className={`mt-4 ${TAB_LIST_CLASS}`}>
         {PATTERN_IDS.map((id) => {
           const selected = id === patternId;
           return (
@@ -241,17 +241,17 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
             className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center"
             aria-hidden="true"
           >
-            <span className="text-lg font-semibold leading-tight text-sapphire">{copy.phases[current.phase.kind]}</span>
+            <span className="text-lead font-semibold leading-tight text-sapphire">{copy.phases[current.phase.kind]}</span>
             {/* The still circle shows no timing under reduced motion, so the seconds stand in for it. */}
             {reducedMotion && (
-              <span className="mt-1 text-sm font-medium tabular-nums text-sapphire/80">{secondsLeft}</span>
+              <span className="mt-1 text-meta font-medium tabular-nums text-sapphire/80">{secondsLeft}</span>
             )}
           </span>
         )}
       </div>
 
       <p
-        className="mt-3 min-h-[1.75rem] text-center text-base font-medium text-foreground"
+        className="mt-3 min-h-[1.75rem] text-center text-body font-medium text-foreground"
         aria-live="polite"
         aria-atomic="true"
         data-testid="breathing-status"
@@ -260,21 +260,22 @@ export function BreathingPacer({ lang, className = "" }: BreathingPacerProps) {
       </p>
 
       <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-        <button
+        <Button
           type="button"
+          variant="action"
+          size="md"
           onClick={running ? stop : start}
-          className={STAGE_PRIMARY_CONTROL_CLASS}
         >
           {running ? copy.stop : copy.start}
-        </button>
-        <span className="text-xs font-semibold text-muted-foreground">
+        </Button>
+        <span className="text-meta font-semibold text-muted-foreground">
           {copy.cycles.replace("{count}", String(completedBreaths))}
         </span>
       </div>
 
-      <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{intro}</p>
+      <p className="mt-5 text-body text-muted-foreground">{intro}</p>
 
-      <p className="mt-5 border-t border-border pt-5 text-sm leading-relaxed text-foreground">{copy.safety}</p>
+      <p className="mt-5 border-t border-border pt-5 text-body text-foreground">{copy.safety}</p>
 
       <p className={STAGE_CREDIT_CLASS}>{copy.credit}</p>
     </section>

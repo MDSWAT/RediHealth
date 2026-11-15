@@ -40,15 +40,15 @@ export function WeeklyActivityPlanner({
 
   return (
     <div className={className} data-testid="weekly-activity-planner">
-      <p className="max-w-[65ch] text-sm leading-relaxed text-muted-foreground sm:text-base">{copy.targetNote}</p>
+      <p className="max-w-(--measure-reading) text-body text-muted-foreground">{copy.targetNote}</p>
 
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
         <div>
           <div className="flex items-baseline justify-between gap-3">
-            <label htmlFor={`${id}-minutes`} className="text-sm font-semibold text-foreground">
+            <label htmlFor={`${id}-minutes`} className="text-body font-semibold text-foreground">
               {copy.minutesLabel}
             </label>
-            <span className="text-base font-bold tabular-nums text-foreground" aria-hidden="true">
+            <span className="text-body font-bold tabular-nums text-foreground" aria-hidden="true">
               {minutes}
             </span>
           </div>
@@ -65,10 +65,10 @@ export function WeeklyActivityPlanner({
         </div>
         <div>
           <div className="flex items-baseline justify-between gap-3">
-            <label htmlFor={`${id}-days`} className="text-sm font-semibold text-foreground">
+            <label htmlFor={`${id}-days`} className="text-body font-semibold text-foreground">
               {copy.daysLabel}
             </label>
-            <span className="text-base font-bold tabular-nums text-foreground" aria-hidden="true">
+            <span className="text-body font-bold tabular-nums text-foreground" aria-hidden="true">
               {days}
             </span>
           </div>
@@ -87,8 +87,8 @@ export function WeeklyActivityPlanner({
 
       <div className="mt-6 space-y-5 border-t border-border pt-5" aria-live="polite">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <p className="text-xl font-bold tracking-tight text-foreground tabular-nums">{weeklyText}</p>
-          <span className="text-xs font-medium text-muted-foreground">{copy.rangeLabel}</span>
+          <p className="text-title font-bold text-foreground tabular-nums">{weeklyText}</p>
+          <span className="text-meta font-medium text-muted-foreground">{copy.rangeLabel}</span>
         </div>
 
         {/* Linear scale 0–420 min with the WHO band */}
@@ -106,7 +106,7 @@ export function WeeklyActivityPlanner({
               <div key={mark} className="absolute inset-y-0 w-0.5 -translate-x-1/2 bg-card" style={{ left: pct(mark) }} />
             ))}
           </div>
-          <div className="relative mt-1.5 h-4 text-xs tabular-nums text-muted-foreground">
+          <div className="relative mt-1.5 h-4 text-meta tabular-nums text-muted-foreground">
             <span className="absolute left-0">0</span>
             <span className="absolute -translate-x-1/2" style={{ left: pct(TARGET_LOW) }}>
               {TARGET_LOW}
@@ -120,13 +120,13 @@ export function WeeklyActivityPlanner({
 
         <div className="grid grid-cols-1 gap-6 border-t border-border pt-5 sm:grid-cols-2">
           <div>
-            <h4 className="text-sm font-semibold text-foreground">{band.title}</h4>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+            <h4 className="text-body font-semibold text-foreground">{band.title}</h4>
+            <p className="mt-1 text-body text-muted-foreground">
               {band.description}
             </p>
           </div>
           <div>
-            <p className="text-sm leading-relaxed text-muted-foreground">{copy.strengthNote}</p>
+            <p className="text-body text-muted-foreground">{copy.strengthNote}</p>
           </div>
         </div>
       </div>

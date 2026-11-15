@@ -2,12 +2,12 @@
 
 import { useId, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import Link from "next/link";
-import { AlertCircleIcon, ArrowRightIcon, PhoneIcon } from "@/components/ui/icons";
+import { Button } from "@/components/ui/Button";
+import { ArrowRightIcon, PhoneIcon } from "@/components/ui/icons";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
 import { type MildCategoryId, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import {
   dangerPanel,
-  emergencyButton,
   optionArrow,
   optionDesc,
   optionRow,
@@ -66,24 +66,25 @@ export function PathwaySymptomsMild({
     return (
       <div>
         <div className={dangerPanel}>
-          <h2 className={`flex items-start gap-3 ${stepHeading}`}>
-            <AlertCircleIcon className="mt-1 h-5 w-5 shrink-0 text-primary sm:mt-1.5" aria-hidden="true" />
-            <span>{symptoms.emergencyHeading}</span>
+          <h2 className={stepHeading}>
+            {symptoms.emergencyHeading}
           </h2>
-          <p className="mt-2 max-w-prose text-base leading-relaxed text-foreground">
+          <p className="mt-2 max-w-(--measure-reading) text-body text-foreground">
             {symptoms.emergencyBody}
           </p>
 
-          <a
+          <Button
             href="tel:112"
-            className={`mt-5 w-full sm:w-auto ${emergencyButton}`}
+            variant="primary"
+            size="lg"
+            className="mt-5 w-full sm:w-auto"
           >
-            <PhoneIcon className="h-5 w-5" aria-hidden="true" />
+            <PhoneIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
             <span>{symptoms.callNow}</span>
-          </a>
+          </Button>
 
           <h3 className={`mt-6 ${subHeading}`}>{symptoms.callTipsTitle}</h3>
-          <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-base leading-relaxed text-foreground marker:text-primary">
+          <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-body text-foreground marker:text-sapphire">
             {symptoms.callTips.map((tip) => (
               <li key={tip}>{tip}</li>
             ))}
@@ -130,11 +131,11 @@ export function PathwaySymptomsMild({
               >
                 <span
                   aria-hidden="true"
-                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-[var(--dur-fast)] ${
+                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-sm border-2 transition-colors duration-[var(--dur-fast)] ${
                     checked ? "border-sapphire" : "border-border-control group-hover:border-sapphire/70"
                   }`}
                 >
-                  {checked && <span className="h-2.5 w-2.5 rounded-full bg-sapphire" />}
+                  {checked && <span className="h-2.5 w-2.5 rounded-xs bg-sapphire" />}
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className={optionTitle}>{category.title}</span>
@@ -146,11 +147,11 @@ export function PathwaySymptomsMild({
           })}
         </div>
 
-        <p className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-foreground">
+        <p className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-body text-foreground">
           <span>{symptoms.bodyMapHint}</span>
-          <Link href={withLangPrefix("/health-check", lang)} className={textLink}>
-            <span className={textLinkLabel}>{symptoms.bodyMapCta}</span>
-            <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+          <Link href={withLangPrefix("/health-check", lang)} className={`max-w-full whitespace-nowrap text-body ${textLink}`}>
+            <span className={`min-w-0 truncate ${textLinkLabel}`}>{symptoms.bodyMapCta}</span>
+            <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
           </Link>
         </p>
       </div>
@@ -163,18 +164,18 @@ export function PathwaySymptomsMild({
 
   return (
     <div>
-      <p className="text-sm text-muted-foreground">{symptoms.selectedLabel}</p>
+      <p className="text-body text-muted-foreground">{symptoms.selectedLabel}</p>
       <h2 className={`mt-1 ${stepHeading}`}>{current.title}</h2>
-      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{current.desc}</p>
+      <p className="mt-1 text-body text-muted-foreground">{current.desc}</p>
 
-      <p className="mt-5 max-w-prose text-base leading-relaxed text-foreground">
+      <p className="mt-5 max-w-(--measure-reading) text-body text-foreground">
         {plainLanguage ? symptoms.plainBody : symptoms.body}
       </p>
 
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="rounded-2xl border border-border p-5 sm:p-6">
           <h3 className={subHeading}>{symptoms.homeCareHeading}</h3>
-          <ul className="mt-3 space-y-2 pl-4 text-sm leading-relaxed text-foreground">
+          <ul className="mt-3 space-y-2 pl-4 text-body text-foreground">
             {homeCareTips.map((tip) => (
               <li key={tip} className="list-disc marker:text-sapphire">
                 {tip}
@@ -184,18 +185,17 @@ export function PathwaySymptomsMild({
         </div>
 
         <div className={dangerPanel}>
-          <h3 className={`flex items-start gap-2 ${subHeading}`}>
-            <AlertCircleIcon className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-            <span>{symptoms.whenToCallHeading}</span>
+          <h3 className={`text-balance ${subHeading}`}>
+            {symptoms.whenToCallHeading}
           </h3>
-          <ul className="mt-3 space-y-2 pl-4 text-sm leading-relaxed text-foreground">
+          <ul className="mt-3 space-y-2 pl-4 text-body text-foreground">
             {symptoms.whenToCallTips.map((tip) => (
               <li key={tip} className="list-disc marker:text-primary">
                 {tip}
               </li>
             ))}
           </ul>
-          <p className="mt-4 border-t border-primary/20 pt-3 text-sm font-medium leading-relaxed text-foreground">
+          <p className="mt-4 border-t border-primary/20 pt-3 text-body font-medium shrink-0 text-primary">
             {symptoms.safetyNet}
           </p>
         </div>

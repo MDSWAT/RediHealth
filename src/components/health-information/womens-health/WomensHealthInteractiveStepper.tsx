@@ -64,15 +64,15 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
       data-testid="womens-health-stepper"
     >
       <div>
-        <h3 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">{copy.title}</h3>
-        <p className="mt-1.5 max-w-[65ch] text-sm leading-relaxed text-muted-foreground sm:text-base">{copy.subtitle}</p>
+        <h3 className="text-section font-bold text-foreground">{copy.title}</h3>
+        <p className="mt-1.5 max-w-(--measure-reading) text-body text-muted-foreground">{copy.subtitle}</p>
       </div>
 
       {/* Track selector — clean 2-column grid */}
       <div
         role="tablist"
         aria-label={copy.trackAriaLabel}
-        className="grid grid-cols-2 gap-x-4 border-b border-border sm:flex sm:gap-x-0"
+        className="flex items-center gap-5 overflow-x-auto border-b border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6"
       >
         {TRACKS.map((t, index) => {
           const selected = track === t;
@@ -91,7 +91,7 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
               onClick={() => setTrack(t)}
               onKeyDown={trackTabs.onKeyDown}
               className={cn(
-                "-mb-px flex min-h-11 items-end gap-2 border-b-2 px-1 pb-2.5 pt-2 text-left text-sm font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire sm:mr-6",
+                "-mb-px flex min-h-11 shrink-0 items-end gap-2 whitespace-nowrap border-b-2 px-1 pb-2.5 pt-2 text-left text-body font-semibold leading-snug transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                 selected
                   ? "border-foreground text-foreground"
                   : "border-transparent text-muted-foreground hover:text-foreground",
@@ -127,21 +127,21 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
                     onClick={() => setTrimester(index)}
                     onKeyDown={trimesterRadio.onKeyDown}
                     className={cn(
-                      "flex min-h-[60px] items-center gap-3 px-3.5 py-3 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire",
+                      "flex min-h-[60px] items-center gap-3 px-3.5 py-3 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                       selected ? "bg-surface-subtle text-foreground" : "bg-card text-foreground hover:bg-surface-subtle/50",
                     )}
                   >
                     <span
                       className={cn(
-                        "flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-bold tabular-nums",
+                        "flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-meta font-bold tabular-nums",
                         selected ? "bg-foreground text-white" : "bg-surface-subtle text-muted-foreground",
                       )}
                     >
                       {index + 1}
                     </span>
                     <div className="min-w-0">
-                      <span className="block text-sm font-semibold leading-snug text-foreground">{step.name}</span>
-                      <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">{step.weeks}</span>
+                      <span className="block text-meta font-semibold leading-snug text-foreground">{step.name}</span>
+                      <span className="mt-0.5 block text-meta leading-snug text-muted-foreground">{step.weeks}</span>
                     </div>
                   </button>
                 );
@@ -159,7 +159,7 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
                   </LazyMotion>
                 </div>
                 {/* Week numbers under the trimester boundaries */}
-                <div aria-hidden="true" className="relative mt-1 h-4 text-xs font-semibold tabular-nums text-muted-foreground">
+                <div aria-hidden="true" className="relative mt-1 h-4 text-meta tabular-nums text-muted-foreground">
                   {WOMENS_SCENE_WEEK_MARKS.map((week) => (
                     <span
                       key={week}
@@ -174,13 +174,13 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
                   ))}
                 </div>
               </div>
-              <figcaption className="mt-4 flex flex-wrap gap-x-6 gap-y-1.5 border-t border-border pt-3 text-sm text-foreground">
+              <figcaption className="mt-4 flex flex-wrap gap-x-6 gap-y-1.5 border-t border-border pt-3 text-meta text-foreground">
                 <span className="inline-flex items-center gap-2.5">
-                  <span aria-hidden="true" className="block h-3.5 w-1 rounded-full bg-sapphire" />
+                  <span aria-hidden="true" className="block h-3.5 w-1 rounded-xs bg-sapphire" />
                   {copy.whoContactTitle}
                 </span>
                 <span className="inline-flex items-center gap-2.5">
-                  <span aria-hidden="true" className="block h-2.5 w-6 rounded-full bg-sapphire" />
+                  <span aria-hidden="true" className="block h-2.5 w-6 rounded-xs bg-sapphire" />
                   {current.name}, {current.weeks.charAt(0).toLowerCase() + current.weeks.slice(1)}
                 </span>
               </figcaption>
@@ -188,23 +188,23 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
 
             <div aria-live="polite" className="space-y-5 border-t border-border pt-5">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h4 className="text-base font-bold leading-snug text-foreground">{current.developmentTitle}</h4>
-                <span className="text-xs font-medium text-muted-foreground">{current.weeks}</span>
+                <h4 className="text-body font-bold leading-snug text-foreground">{current.developmentTitle}</h4>
+                <span className="text-meta font-medium text-muted-foreground">{current.weeks}</span>
               </div>
 
               <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
-                  <dt className="text-sm font-semibold text-foreground">{copy.fetalDevelopmentTitle}</dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{current.developmentDesc}</dd>
+                  <dt className="text-meta font-medium text-foreground">{copy.fetalDevelopmentTitle}</dt>
+                  <dd className="mt-1 text-meta text-muted-foreground">{current.developmentDesc}</dd>
                 </div>
                 <div>
-                  <dt className="text-sm font-semibold text-foreground">{copy.whoContactTitle}</dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{current.whoContact}</dd>
+                  <dt className="text-meta font-medium text-foreground">{copy.whoContactTitle}</dt>
+                  <dd className="mt-1 text-meta text-muted-foreground">{current.whoContact}</dd>
                 </div>
                 <div>
-                  <dt className="text-sm font-semibold text-foreground">{copy.clinicalChecklistTitle}</dt>
+                  <dt className="text-meta font-medium text-foreground">{copy.clinicalChecklistTitle}</dt>
                   <dd>
-                    <ul className="mt-1.5 space-y-1.5 text-sm">
+                    <ul className="mt-1.5 space-y-1.5 text-meta">
                       {current.clinicalChecklist.map((item) => (
                         <li key={item} className="flex gap-2 text-muted-foreground">
                           <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
@@ -215,15 +215,15 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-sm font-semibold text-foreground">{copy.selfCarePrefix.replace(/:\s*$/, "")}</dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{current.selfCare}</dd>
+                  <dt className="text-meta font-medium text-foreground">{copy.selfCarePrefix.replace(/:\s*$/, "")}</dt>
+                  <dd className="mt-1 text-meta text-muted-foreground">{current.selfCare}</dd>
                 </div>
               </dl>
 
               {/* Hairline-divided warning signs — zero yellow alert box */}
               <div className="flex items-start gap-2.5 border-t border-border pt-4">
                 <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className="text-body text-muted-foreground">
                   <span className="font-semibold text-foreground">{copy.redFlagsPrefix} </span>
                   {current.redFlags}
                 </p>
@@ -252,7 +252,7 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
                     onClick={() => setCheckId(check.id)}
                     onKeyDown={checkRadio.onKeyDown}
                     className={cn(
-                      "flex min-h-[52px] items-center justify-between px-4 py-3 text-left text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sapphire",
+                      "flex min-h-[52px] items-center justify-between px-4 py-3 text-left text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                       selected ? "bg-surface-subtle text-foreground" : "bg-card text-foreground hover:bg-surface-subtle/50",
                     )}
                   >
@@ -264,13 +264,13 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
 
             {checkId === "breast-awareness" ? (
               <div className="space-y-5 border-t border-border pt-5">
-                <p className="max-w-[65ch] text-sm leading-relaxed text-muted-foreground sm:text-base">{breast.summary}</p>
+                <p className="max-w-(--measure-reading) text-body text-muted-foreground">{breast.summary}</p>
                 <div>
-                  <h4 className="text-sm font-bold text-foreground">{copy.breastAwarenessRule3Title}</h4>
+                  <h4 className="text-body font-bold text-foreground">{copy.breastAwarenessRule3Title}</h4>
                   <ol className="mt-2 divide-y divide-border border-y border-border">
                     {breast.rule3Steps.map((step, index) => (
-                      <li key={step.stepName} className="flex gap-3 py-3 text-sm">
-                        <span className="w-5 shrink-0 font-semibold tabular-nums text-muted-foreground">
+                      <li key={step.stepName} className="flex gap-3 py-3 text-body">
+                        <span className="w-5 shrink-0 tabular-nums text-muted-foreground">
                           {index + 1}
                         </span>
                         <p className="leading-relaxed">
@@ -282,8 +282,8 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
                   </ol>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-foreground">{copy.ageGuidanceTitle}</h4>
-                  <dl className="mt-2 grid gap-x-6 gap-y-2 text-sm leading-relaxed sm:grid-cols-[max-content_minmax(0,1fr)]">
+                  <h4 className="text-body font-bold text-foreground">{copy.ageGuidanceTitle}</h4>
+                  <dl className="mt-2 grid gap-x-6 gap-y-2 text-body sm:grid-cols-[max-content_minmax(0,1fr)]">
                     {breast.ageGuidance.map((item) => (
                       <div key={item.ageRange} className="contents">
                         <dt className="font-semibold text-foreground">{item.ageRange}</dt>
@@ -296,24 +296,24 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
             ) : (
               <div className="space-y-5 border-t border-border pt-5">
                 <div>
-                  <p className="max-w-[65ch] text-sm leading-relaxed text-muted-foreground sm:text-base">{cervical.summary}</p>
-                  <p className="mt-2 max-w-[65ch] text-sm leading-relaxed text-muted-foreground">
+                  <p className="max-w-(--measure-reading) text-body text-muted-foreground">{cervical.summary}</p>
+                  <p className="mt-2 max-w-(--measure-reading) text-body text-muted-foreground">
                     {cervical.examExplanation}
                   </p>
                 </div>
                 <dl className="grid grid-cols-1 gap-6 border-t border-border pt-5 sm:grid-cols-2">
                   <div>
-                    <dt className="text-sm font-semibold text-foreground">{copy.nationalProgramPrefix.replace(/:\s*$/, "")}</dt>
-                    <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{cervical.nationalProgramNote}</dd>
+                    <dt className="text-meta font-medium text-foreground">{copy.nationalProgramPrefix.replace(/:\s*$/, "")}</dt>
+                    <dd className="mt-1 text-meta text-muted-foreground">{cervical.nationalProgramNote}</dd>
                   </div>
                   <div>
-                    <dt className="text-sm font-semibold text-foreground">{copy.hpvVaccinationPrefix.replace(/:\s*$/, "")}</dt>
-                    <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{cervical.vaccinationNote}</dd>
+                    <dt className="text-meta font-medium text-foreground">{copy.hpvVaccinationPrefix.replace(/:\s*$/, "")}</dt>
+                    <dd className="mt-1 text-meta text-muted-foreground">{cervical.vaccinationNote}</dd>
                   </div>
                   <div className="sm:col-span-2">
-                    <dt className="text-sm font-semibold text-foreground">{copy.recommendedIntervalsTitle}</dt>
+                    <dt className="text-meta font-medium text-foreground">{copy.recommendedIntervalsTitle}</dt>
                     <dd>
-                      <ul className="mt-1.5 space-y-1.5 text-sm">
+                      <ul className="mt-1.5 space-y-1.5 text-meta">
                         {cervical.recommendedIntervals.map((interval) => (
                           <li key={interval} className="flex gap-2 text-muted-foreground">
                             <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
@@ -328,7 +328,7 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
                 {/* Hairline-divided consultation prompt — zero yellow alert box */}
                 <div className="flex items-start gap-2.5 border-t border-border pt-4">
                   <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                  <p className="text-sm leading-relaxed text-muted-foreground">
+                  <p className="text-body text-muted-foreground">
                     <span className="font-semibold text-foreground">{copy.promptConsultationPrefix} </span>
                     {cervical.warningSigns}
                   </p>
@@ -341,10 +341,10 @@ export function WomensHealthInteractiveStepper({ lang, className = "" }: WomensH
 
       {/* Emergency: calm and clear. The page's warning card holds the one 112 button. */}
       <div className="border-t border-border pt-5">
-        <p className="max-w-[65ch] text-sm leading-relaxed text-foreground">{copy.emergencyNote}</p>
+        <p className="max-w-(--measure-reading) text-body text-foreground">{copy.emergencyNote}</p>
       </div>
 
-      <p className="text-xs leading-snug text-muted-foreground">{copy.credit}</p>
+      <p className="text-meta leading-snug text-muted-foreground">{copy.credit}</p>
     </div>
   );
 }

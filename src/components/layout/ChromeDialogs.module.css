@@ -1,0 +1,26 @@
+/*
+ * Native <dialog> backdrops of the chrome widgets (feedback, report an issue). The dialog box
+ * itself already settles in with `starting:open:*` utilities; this lets the dimmed layer behind
+ * it fade in with it instead of appearing at full strength in one frame.
+ * Static under reduced motion and in-app Calm Motion. The literal fallbacks cover browsers where
+ * ::backdrop does not inherit custom properties.
+ */
+.backdropFade::backdrop {
+  transition: opacity var(--dur-base, 240ms) var(--ease-out-calm, cubic-bezier(0.25, 1, 0.5, 1));
+}
+
+@starting-style {
+  .backdropFade[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdropFade::backdrop {
+    transition: none;
+  }
+}
+
+:global(html[data-calm-motion]) .backdropFade::backdrop {
+  transition: none;
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import {
   UsersIcon,
   VideoIcon,
@@ -234,21 +234,21 @@ export function MobileFieldMediatorDashboard({
       <header className="sticky top-0 z-30 border-b border-border bg-card px-4 py-3">
         <div className="mx-auto max-w-5xl flex items-center justify-between gap-3">
           <div className="min-w-0">
-            <h1 className="truncate text-sm font-semibold text-foreground sm:text-base">
-              {getGreeting()}, {mediatorName} · {communityName}, {county}
+            <h1 className="truncate text-body font-semibold text-foreground">
+              {getGreeting()}, {mediatorName}
+              <span aria-hidden="true" className="mx-2 inline-block h-3.5 w-px align-middle bg-border" />
+              {communityName}, {county}
             </h1>
           </div>
 
-          {/* Persistent Offline Sync Status Badge */}
-          <div className="flex items-center gap-1.5 rounded-md border border-border bg-muted/60 px-2.5 py-1 text-xs font-semibold shrink-0">
-            <span className="h-2 w-2 rounded-full bg-live-sage" />
+          <span className="shrink-0 tabular-nums text-meta font-medium text-muted-foreground">
             <span className="hidden sm:inline">
               {offlineSyncCount === 0 ? copy.synced : copy.savedOffline(offlineSyncCount)}
             </span>
             <span className="sm:hidden">
               {offlineSyncCount === 0 ? copy.syncedShort : copy.savedOfflineShort(offlineSyncCount)}
             </span>
-          </div>
+          </span>
         </div>
       </header>
 
@@ -262,21 +262,21 @@ export function MobileFieldMediatorDashboard({
               setSelectedVisitForTool(null);
               setActiveModal("intake");
             }}
-            className="flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="press-row flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <div className="flex items-center justify-between">
               <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sapphire/10 text-sapphire">
                 <UsersIcon className="h-5 w-5" />
               </span>
-              <span className="text-xs font-semibold text-sapphire">
+              <span className="text-meta font-semibold text-sapphire">
                 {copy.intakeBadge}
               </span>
             </div>
             <div>
-              <p className="text-sm font-bold text-foreground">
+              <p className="text-body font-bold text-foreground">
                 {copy.intakeTitle}
               </p>
-              <p className="text-[11px] text-muted-foreground mt-0.5">
+              <p className="mt-0.5 text-meta text-muted-foreground">
                 {copy.intakeText}
               </p>
             </div>
@@ -289,21 +289,21 @@ export function MobileFieldMediatorDashboard({
               setSelectedVisitForTool(null);
               setActiveModal("handover");
             }}
-            className="flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="press-row flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <div className="flex items-center justify-between">
               <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire">
                 <VideoIcon className="h-5 w-5" />
               </span>
-              <span className="text-xs font-semibold text-sapphire">
+              <span className="text-meta font-semibold text-sapphire">
                 {copy.videoBadge}
               </span>
             </div>
             <div>
-              <p className="text-sm font-bold text-foreground">
+              <p className="text-body font-bold text-foreground">
                 {copy.videoTitle}
               </p>
-              <p className="text-[11px] text-muted-foreground mt-0.5">
+              <p className="mt-0.5 text-meta text-muted-foreground">
                 {copy.videoText}
               </p>
             </div>
@@ -316,21 +316,21 @@ export function MobileFieldMediatorDashboard({
               setSelectedVisitForTool(null);
               setActiveModal("telemetry");
             }}
-            className="flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="press-row flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <div className="flex items-center justify-between">
               <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire">
                 <ShieldIcon className="h-5 w-5" aria-hidden="true" />
               </span>
-              <span className="text-xs font-semibold text-muted-foreground">
+              <span className="text-meta font-semibold text-muted-foreground">
                 {copy.kitBadge}
               </span>
             </div>
             <div>
-              <p className="text-sm font-bold text-foreground">
+              <p className="text-body font-bold text-foreground">
                 {copy.kitTitle}
               </p>
-              <p className="text-[11px] text-muted-foreground mt-0.5">
+              <p className="mt-0.5 text-meta text-muted-foreground">
                 {copy.kitText}
               </p>
             </div>
@@ -343,7 +343,7 @@ export function MobileFieldMediatorDashboard({
             <button
               type="button"
               onClick={() => setActiveModal(null)}
-              className="absolute top-4 right-4 rounded-md border border-border p-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
+              className="press-row absolute top-4 right-4 inline-flex min-h-11 items-center whitespace-nowrap rounded-md border border-border-control px-2.5 py-1.5 text-body text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               aria-label={copy.closeAria}
             >
               <span className="inline-flex items-center gap-1">
@@ -394,20 +394,22 @@ export function MobileFieldMediatorDashboard({
         {/* Link to longitudinal case tracking cohort (Change 73) */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-lg border border-border bg-card p-5 shadow-xs">
           <div>
-            <h3 className="text-sm font-bold text-foreground">
+            <h3 className="text-body font-bold text-foreground">
               {copy.casesTitle}
             </h3>
-            <p className="text-xs text-muted-foreground mt-0.5">
+            <p className="text-meta text-muted-foreground mt-0.5">
               {copy.casesText}
             </p>
           </div>
 
-          <Link
+          <Button
             href="/panel/mediator/cazuri"
-            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-sapphire px-4 py-2 text-xs font-semibold text-white hover:bg-sapphire-light shrink-0"
+            variant="action"
+            size="md"
+            className="shrink-0"
           >
             {copy.casesLink}
-          </Link>
+          </Button>
         </div>
       </main>
     </div>

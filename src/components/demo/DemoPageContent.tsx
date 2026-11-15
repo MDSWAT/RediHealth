@@ -104,21 +104,21 @@ export function DemoPageContent({ children }: { children: ReactNode }) {
     return { request, demo: true, canOpen, navigate: (href: string, replace = false) => replace ? router.replace(href) : router.push(href) };
   }, [store, router, seed]);
 
-  const toolbar = <div className="border-b border-amber-200 bg-amber-50 px-4 py-3 text-amber-950">
+  const toolbar = <div className="border-b border-amber-care-border bg-amber-care-soft px-4 py-3 text-foreground dark:border-amber-care/40 dark:bg-amber-care/15 dark:text-paper">
     <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
-      <div><p className="text-sm font-bold">{t.title}</p><p className="max-w-3xl text-xs leading-relaxed">{t.notice}</p></div>
+      <div><p className="text-body font-bold">{t.title}</p><p className="max-w-3xl text-meta">{t.notice}</p></div>
       <div className="flex flex-wrap items-center gap-2">
-        <label className="text-xs font-semibold">{t.role}
-          <select className="ml-2 min-h-10 rounded-lg border border-amber-300 bg-white px-3 text-sm" value={store?.data.role || "mediator"} disabled={!store}
+        <label className="text-body font-semibold">{t.role}
+          <select className="ml-2 min-h-10 rounded-lg border border-amber-care-border bg-card px-3 text-body text-foreground dark:border-amber-care/50 dark:bg-ink-900 dark:text-paper" value={store?.data.role || "mediator"} disabled={!store}
             onChange={(event) => changeRole(event.target.value === "doctor" ? "doctor" : "mediator")}>
             <option value="mediator">{t.mediator}</option><option value="doctor">{t.doctor}</option>
           </select>
         </label>
-        <button type="button" onClick={reset} className="min-h-10 rounded-lg border border-amber-300 bg-white px-3 text-xs font-semibold">{t.reset}</button>
-        <Link href={withLangPrefix("/", lang)} className="inline-flex min-h-10 items-center rounded-lg px-2 text-xs font-semibold underline underline-offset-2">{t.exit}</Link>
+        <button type="button" onClick={reset} className="min-h-11 whitespace-nowrap rounded-lg border border-amber-care-border bg-card px-3 text-body font-semibold text-foreground dark:border-amber-care/50 dark:bg-ink-900 dark:text-paper">{t.reset}</button>
+        <Link href={withLangPrefix("/", lang)} className="inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2 text-body font-semibold underline underline-offset-2">{t.exit}</Link>
       </div>
     </div>
-    {error && <p role="alert" className="mt-2 text-sm font-semibold text-red-700">{error}</p>}
+    {error && <p role="alert" className="mt-2 text-body font-semibold text-primary dark:text-ruby-300">{error}</p>}
   </div>;
   if (!loaded) return <>{toolbar}<PanelLoading /></>;
   if (!store || !runtime) return <>{toolbar}<p role="status" className="p-6">{t.resetToContinue}</p></>;

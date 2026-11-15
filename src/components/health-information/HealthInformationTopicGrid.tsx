@@ -1,27 +1,23 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRightIcon,
-  BookIcon,
-  CheckCircleIcon,
-  SearchIcon,
-  StethoscopeIcon,
-} from "@/components/ui/icons";
+import { Button } from "@/components/ui/Button";
+import { BookIcon, SearchIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import {
   type TopicItem,
   getHealthTopicsList,
-  getHealthInformationDictionary,
   HEALTH_TOPICS_LIST,
   getHealthTopicGridDictionary,
 } from "@/lib/i18n/health-information-topics";
 import { TopicMetaBadge } from "./TopicMetaBadge";
 import { ReadingLevelSwitcher } from "./ReadingLevelSwitcher";
+import { openSmartSearch } from "@/components/search/smart-search-events";
+import { getSmartSearchCopy } from "@/lib/i18n/smart-search-copy";
 
 export type { TopicItem };
 export { getHealthTopicsList, HEALTH_TOPICS_LIST };
@@ -43,73 +39,58 @@ const LIBRARY_COPY: Record<
   {
     howToRead: string;
     dictionary: string;
-    checkSymptom: string;
     showAll: string;
     title: string;
-    keyFactLabel: string;
     firstStepLabel: string;
   }
 > = {
-ru: {
-"firstStepLabel": "Первый практический шаг",
-
-
-"keyFactLabel": "Главный медицинский факт",
-
- howToRead: "Как читать", dictionary: "Словарь", checkSymptom: "Проверьте симптом", showAll: "Показать все руководства", title: "Путеводители по здоровью" },
-
+  ru: {
+    howToRead: "Как читать",
+    dictionary: "Словарь",
+    showAll: "Показать все руководства",
+    title: "Путеводители по здоровью",
+    firstStepLabel: "Первый практический шаг",
+  },
   ro: {
     howToRead: "Cum citești",
     dictionary: "Dicționar medical",
-    checkSymptom: "Verifică un simptom",
     showAll: "Arată toate ghidurile",
     title: "Ghiduri de sănătate",
-    keyFactLabel: "Idee clinică cheie",
     firstStepLabel: "Primul pas practic",
   },
   en: {
     howToRead: "How to read",
     dictionary: "Medical dictionary",
-    checkSymptom: "Check a symptom",
     showAll: "Show all guides",
     title: "Health guides",
-    keyFactLabel: "Key clinical fact",
     firstStepLabel: "Practical first step",
   },
   sq: {
     howToRead: "Si të lexosh",
     dictionary: "Fjalori mjekësor",
-    checkSymptom: "Kontrollo një simptomë",
     showAll: "Shfaq të gjithë udhëzuesit",
     title: "Udhëzues shëndetësorë",
-    keyFactLabel: "Fakt klinik kryesor",
     firstStepLabel: "Hapi i parë praktik",
   },
   it: {
     howToRead: "Come leggere",
     dictionary: "Dizionario medico",
-    checkSymptom: "Controlla un sintomo",
     showAll: "Mostra tutte le guide",
     title: "Guide alla salute",
-    keyFactLabel: "Punto clinico chiave",
     firstStepLabel: "Primo passo pratico",
   },
   hr: {
     howToRead: "Kako čitati",
     dictionary: "Medicinski rječnik",
-    checkSymptom: "Provjeri simptom",
     showAll: "Prikaži sve vodiče",
     title: "Zdravstveni vodiči",
-    keyFactLabel: "Ključna klinička činjenica",
     firstStepLabel: "Prvi praktični korak",
   },
   rom: {
     howToRead: "Sar te drabares",
     dictionary: "Doktorengo lavustik",
-    checkSymptom: "Dikh jekh simptomo",
     showAll: "Sikav sa le sikavimata",
     title: "Sikavimata vaš o sastipen",
-    keyFactLabel: "Baro sastipnasko fakto",
     firstStepLabel: "Angluno praktikano paso",
   },
 };
@@ -125,20 +106,10 @@ export function HealthInformationTopicGrid({
   const gridCopy =
     t?.healthInfoPage?.topicGrid ?? getHealthTopicGridDictionary(lang);
   const topics = useMemo(() => getHealthTopicsList(lang), [lang]);
-  const fullTopicsBySlug = useMemo(() => {
-    const dict = getHealthInformationDictionary(lang);
-    const map: Record<string, string> = {};
-    for (const item of dict.topics) {
-      if (item.keyFacts?.[0]) {
-        map[item.slug] = item.keyFacts[0];
-      }
-    }
-    return map;
-  }, [lang]);
 
   const [selectedCategory, setSelectedCategory] =
     useState<string>(initialCategory);
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const searchCopy = getSmartSearchCopy(lang);
 
   const filterChips = useMemo(
     () => [
@@ -155,32 +126,12 @@ export function HealthInformationTopicGrid({
     [gridCopy],
   );
 
-  const categoryLabelsBySlug = useMemo(() => {
-    const map: Record<string, string> = {};
-    for (const chip of filterChips) {
-      map[chip.slug] = chip.label;
-    }
-    return map;
-  }, [filterChips]);
-
-  const normalizedQuery = searchQuery.trim().toLowerCase();
-  const filteredTopics = topics.filter((topic) => {
-    const matchesCategory =
+  const filteredTopics = topics.filter(
+    (topic) =>
       selectedCategory === "toate" ||
       topic.categorySlug === selectedCategory ||
-      topic.slug === selectedCategory;
-    if (!matchesCategory) return false;
-    if (!normalizedQuery) return true;
-    const categoryLabel = categoryLabelsBySlug[topic.categorySlug] ?? "";
-    const firstFact = fullTopicsBySlug[topic.slug] ?? topic.keyFact ?? "";
-    return (
-      topic.title.toLowerCase().includes(normalizedQuery) ||
-      topic.description.toLowerCase().includes(normalizedQuery) ||
-      firstFact.toLowerCase().includes(normalizedQuery) ||
-      topic.categorySlug.toLowerCase().includes(normalizedQuery) ||
-      categoryLabel.toLowerCase().includes(normalizedQuery)
-    );
-  });
+      topic.slug === selectedCategory,
+  );
 
   const resultCountText =
     filteredTopics.length === 1
@@ -191,74 +142,52 @@ export function HealthInformationTopicGrid({
         );
 
   const lib = LIBRARY_COPY[lang] ?? LIBRARY_COPY.ro;
-  const checkSymptomLabel = t?.healthInfoPage?.tabs?.triage ?? lib.checkSymptom;
   const [showAll, setShowAll] = useState(false);
   const visibleTopics = showAll
     ? filteredTopics
     : filteredTopics.slice(0, FIRST_VIEW_LIMIT);
 
+  // Cards revealed by "show all" count their stagger from the first new card, not from the top.
+  const dealStyle = (index: number) =>
+    ({ "--i": showAll && index >= FIRST_VIEW_LIMIT ? index - FIRST_VIEW_LIMIT : index }) as CSSProperties;
+
   const isSingleSpotlight = visibleTopics.length === 1;
   const isPairedView = visibleTopics.length === 2;
   const promoteLeadCard =
     selectedCategory === "toate" &&
-    normalizedQuery.length === 0 &&
     visibleTopics.length >= 3;
 
   const cardData = (topic: TopicItem) => ({
     topic,
     href: withLangPrefix(`/health-information/${topic.slug}`, lang),
-    categoryLabel: categoryLabelsBySlug[topic.categorySlug] ?? "",
-    keyFact: fullTopicsBySlug[topic.slug] ?? topic.keyFact ?? "",
     readMinutes: readingLevel === "complete" ? topic.readMinutes + 2 : topic.readMinutes,
     audioMinutes: readingLevel === "complete" ? topic.audioMinutes + 1 : topic.audioMinutes,
-    isComplete: readingLevel === "complete",
-    keyFactLabel: lib.keyFactLabel,
     firstStepLabel: lib.firstStepLabel,
     actionLabel: gridCopy.cardActionLabel,
     lang,
   });
 
   return (
-    <section aria-labelledby="health-library-title" className={className}>
+    <section id="health-guides" aria-labelledby="health-library-title" className={`scroll-mt-24 ${className}`}>
       {/* The page H1 already names the library; this heading is for screen readers. */}
       <h2 id="health-library-title" className="sr-only">
         {lib.title}
       </h2>
 
-      {/* Search first: most people arrive with a word in mind. The symptom check is the side door. */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <div className="relative flex-1">
-          <SearchIcon
-            className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground"
-            aria-hidden="true"
-          />
-          <input
-            id="health-library-search"
-            name="q"
-            type="search"
-            autoComplete="off"
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              setShowAll(false);
-            }}
-            placeholder={gridCopy.searchPlaceholder}
-            aria-label={gridCopy.searchAriaLabel}
-            className="min-h-13 w-full rounded-xl border border-border-control bg-card pl-12 pr-4 text-base text-foreground placeholder:text-muted-foreground transition-[border-color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 focus-visible:border-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
-          />
-        </div>
-        <Link
-          href={withLangPrefix("/health-check", lang)}
-          className="group inline-flex min-h-13 shrink-0 items-center justify-center gap-2 rounded-xl border border-border-control bg-card px-5 text-[15px] font-semibold text-foreground transition-[border-color,background-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/40 motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
-        >
-          <StethoscopeIcon className="h-4.5 w-4.5 text-sapphire" aria-hidden="true" />
-          <span>{checkSymptomLabel}</span>
-          <ArrowRightIcon
-            className="h-4 w-4 text-sapphire transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:group-hover:translate-x-0.5"
-            aria-hidden="true"
-          />
-        </Link>
-      </div>
+      {/* Search first: the field itself is the control; "Check a symptom" sits in the page lead above. */}
+      <button
+        id="health-library-search"
+        type="button"
+        onClick={() => openSmartSearch()}
+        aria-label={gridCopy.searchAriaLabel}
+        className="press-row group flex min-h-12 w-full items-center gap-3 rounded-xl border border-border-control bg-card px-4 py-2.5 text-left text-body text-muted-foreground transition-[border-color,background-color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-sapphire/60 hover:bg-sapphire-soft/20 focus-visible:border-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        <SearchIcon
+          className="h-5 w-5 shrink-0 text-muted-foreground transition-colors group-hover:text-sapphire motion-reduce:transition-none"
+          aria-hidden="true"
+        />
+        <span className="min-w-0 truncate">{searchCopy.triggerPlaceholder}</span>
+      </button>
 
       {/* Topics: one row of chips; on phones it scrolls sideways and fades at the edge. */}
       <div
@@ -277,10 +206,10 @@ export function HealthInformationTopicGrid({
                 setSelectedCategory(chip.slug);
                 setShowAll(false);
               }}
-              className={`inline-flex min-h-11 shrink-0 items-center rounded-xl border px-4 text-sm font-medium transition-[color,background-color,border-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+              className={`inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-xl border px-4 text-body font-medium transition-[color,background-color,border-color] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                 isActive
-                  ? "border-sapphire bg-sapphire text-white shadow-2xs"
-                  : "border-border-control bg-card text-foreground hover:border-sapphire hover:bg-sapphire-soft/50"
+                  ? "press-solid border-sapphire bg-sapphire text-white shadow-2xs"
+                  : "press-row border-border-control bg-card text-foreground hover:border-sapphire hover:bg-sapphire-soft/50"
               }`}
             >
               {chip.label}
@@ -291,63 +220,69 @@ export function HealthInformationTopicGrid({
 
       {/* Count on the left, reading tools on the right; no box around them. */}
       <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-border pt-5">
-        <p role="status" className="mr-auto text-sm font-medium text-muted-foreground tabular-nums">
-          {resultCountText}
-          {searchQuery ? gridCopy.countSearchSuffix : ""}
+        <p role="status" className="mr-auto text-body font-medium text-muted-foreground tabular-nums">
+          {/* The figure settles in again whenever the filter changes it. */}
+          <span key={resultCountText} className="swap-in inline-block">
+            {resultCountText}
+          </span>
         </p>
         {onOpenDictionary && (
           <button
             type="button"
             aria-haspopup="dialog"
             onClick={onOpenDictionary}
-            className="-mr-3 inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire sm:mr-0"
+            className="press-row -mr-3 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl px-3 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:mr-0"
           >
             <BookIcon className="h-4.5 w-4.5" aria-hidden="true" />
             <span>{lib.dictionary}</span>
           </button>
         )}
         {/* Phones: count and dictionary share a line; the reading switch wraps under them, in reading order. */}
-        <div className="flex w-full items-center gap-3 sm:w-auto">
-          <span className="text-sm font-medium text-muted-foreground">{lib.howToRead}</span>
+        <div className="flex w-full flex-wrap items-center justify-between gap-2.5 sm:w-auto sm:justify-start">
+          <span className="text-meta font-medium text-muted-foreground">{lib.howToRead}</span>
           <ReadingLevelSwitcher level={readingLevel} onChange={(lvl) => onReadingLevelChange?.(lvl)} />
         </div>
       </div>
 
       {filteredTopics.length === 0 ? (
-        <div className="mt-8 rounded-2xl border border-dashed border-border-control px-6 py-12 text-center">
-          <p className="text-lg font-semibold text-foreground">{gridCopy.emptyTitle}</p>
-          <p className="mx-auto mt-1.5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+        <div key="empty" className="swap-in mt-8 rounded-2xl border border-dashed border-border-control px-6 py-12 text-center">
+          <p className="text-lead font-semibold text-foreground">{gridCopy.emptyTitle}</p>
+          <p className="mx-auto mt-1.5 max-w-md text-body text-muted-foreground">
             {gridCopy.emptyDescription}
           </p>
-          <button
+          <Button
             type="button"
+            variant="outline"
+            size="md"
             onClick={() => {
-              setSearchQuery("");
               setSelectedCategory("toate");
+              setShowAll(false);
             }}
-            className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl border border-border-control bg-card px-4 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="mt-5 hover:border-sapphire hover:bg-sapphire-soft/45"
           >
             {gridCopy.emptyResetButton}
-          </button>
+          </Button>
         </div>
       ) : isSingleSpotlight ? (
-        <div className="mt-8">
+        <div key={selectedCategory} className="swap-in mt-8">
           <LeadTopicCard {...cardData(visibleTopics[0])} wide />
         </div>
       ) : (
         <>
+          {/* Keyed by filter: a new choice re-deals the cards in order; "show all" only deals the new ones. */}
           <ul
+            key={selectedCategory}
             className={`mt-8 grid grid-cols-1 gap-5 sm:gap-6 ${
-              isPairedView ? "md:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"
+              isPairedView ? "md:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4"
             }`}
           >
             {visibleTopics.map((topic, index) =>
               promoteLeadCard && index === 0 ? (
-                <li key={topic.slug} className="flex sm:col-span-2">
+                <li key={topic.slug} className="list-in flex sm:col-span-2" style={dealStyle(index)}>
                   <LeadTopicCard {...cardData(topic)} />
                 </li>
               ) : (
-                <li key={topic.slug} className="flex">
+                <li key={topic.slug} className="list-in flex" style={dealStyle(index)}>
                   <TopicCard {...cardData(topic)} priority={index < 3} />
                 </li>
               ),
@@ -355,13 +290,15 @@ export function HealthInformationTopicGrid({
           </ul>
           {!showAll && filteredTopics.length > FIRST_VIEW_LIMIT && (
             <div className="mt-8 text-center">
-              <button
+              <Button
                 type="button"
+                variant="outline"
+                size="lg"
                 onClick={() => setShowAll(true)}
-                className="inline-flex min-h-12 items-center justify-center rounded-xl border border-border-control bg-card px-5 text-base font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire hover:bg-sapphire-soft/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                className="hover:border-sapphire hover:bg-sapphire-soft/45"
               >
-                {lib.showAll}
-              </button>
+                <span className="min-w-0 truncate">{lib.showAll}</span>
+              </Button>
             </div>
           )}
         </>
@@ -373,54 +310,32 @@ export function HealthInformationTopicGrid({
 type TopicCardProps = {
   topic: TopicItem;
   href: string;
-  categoryLabel: string;
-  keyFact: string;
   readMinutes: number;
   audioMinutes: number;
-  isComplete: boolean;
-  keyFactLabel: string;
   firstStepLabel: string;
   actionLabel: string;
   lang: Lang;
 };
 
-/** The card is one link: border at rest, a 2px lift and a darker edge on hover, photo zooms in its frame. */
+/** The card is one link: the shared card hover (shadow deepens, edge tints, nothing moves). */
 const cardLinkClass =
-  "group flex w-full overflow-hidden rounded-2xl border border-border bg-card transition-[border-color,box-shadow,transform] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] " +
-  "hover:border-sapphire/45 hover:shadow-[var(--shadow-card-hover)] motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0 motion-reduce:transition-none " +
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+  "card-interactive press-row group flex w-full overflow-hidden rounded-2xl border border-border bg-card motion-reduce:transition-none " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 const photoClass =
-  "object-cover transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-calm)] motion-safe:group-hover:scale-[1.03] motion-reduce:transition-none";
-
-function CardCategory({ topic, label }: { topic: TopicItem; label: string }) {
-  const TopicIcon = topic.icon;
-  if (!label) return null;
-  return (
-    <p className="inline-flex items-center gap-1.5 text-sm font-medium text-sapphire">
-      <TopicIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-      <span>{label}</span>
-    </p>
-  );
-}
+  "object-cover transition-opacity duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none";
 
 function CardFooter({ readMinutes, audioMinutes, lang, actionLabel }: Pick<TopicCardProps, "readMinutes" | "audioMinutes" | "lang" | "actionLabel">) {
   return (
-    <div className="mt-auto flex items-center justify-between gap-3 pt-5">
+    <div className="mt-auto pt-5">
       <TopicMetaBadge readMinutes={readMinutes} audioMinutes={audioMinutes} compact bordered={false} lang={lang} />
-      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire transition-[background-color,color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:bg-sapphire group-hover:text-white motion-reduce:transition-none">
-        <ArrowRightIcon
-          aria-hidden="true"
-          className="h-4 w-4 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-safe:group-hover:translate-x-0.5"
-        />
-      </span>
       <span className="sr-only">{actionLabel}</span>
     </div>
   );
 }
 
 function TopicCard(props: TopicCardProps & { priority?: boolean }) {
-  const { topic, href, categoryLabel, keyFact, isComplete, keyFactLabel, priority = false } = props;
+  const { topic, href, priority = false } = props;
   return (
     <Link href={href} className={`${cardLinkClass} flex-col`}>
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-subtle">
@@ -435,27 +350,10 @@ function TopicCard(props: TopicCardProps & { priority?: boolean }) {
       </div>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <CardCategory topic={topic} label={categoryLabel} />
-        <h3 className="mt-2 text-xl font-semibold leading-snug tracking-[-0.015em] text-foreground text-balance">
+        <h3 className="text-title font-semibold leading-snug text-foreground text-balance transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none">
           {topic.title}
         </h3>
-        <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground text-pretty">{topic.description}</p>
-
-        {keyFact && (
-          <div
-            aria-hidden={!isComplete}
-            className={`grid transition-[grid-template-rows,opacity,margin] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
-              isComplete ? "mt-4 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
-            }`}
-          >
-            <div className="overflow-hidden">
-              <div className="border-t border-border pt-3.5">
-                <p className="text-xs font-semibold text-sapphire">{keyFactLabel}</p>
-                <p className="mt-1 text-sm leading-relaxed text-foreground">{keyFact}</p>
-              </div>
-            </div>
-          </div>
-        )}
+        <p className="mt-2 text-body text-muted-foreground text-pretty">{topic.description}</p>
 
         <CardFooter {...props} />
       </div>
@@ -465,7 +363,7 @@ function TopicCard(props: TopicCardProps & { priority?: boolean }) {
 
 /** The first guide, set larger: photo beside the text, and its first practical step in one line. */
 function LeadTopicCard(props: TopicCardProps & { wide?: boolean }) {
-  const { topic, href, categoryLabel, keyFact, isComplete, keyFactLabel, firstStepLabel, wide = false } = props;
+  const { topic, href, firstStepLabel, wide = false } = props;
   return (
     <Link
       href={href}
@@ -487,27 +385,16 @@ function LeadTopicCard(props: TopicCardProps & { wide?: boolean }) {
       </div>
 
       <div className={`flex flex-1 flex-col p-6 sm:p-7 ${wide ? "lg:col-span-6 lg:p-9" : ""}`}>
-        <CardCategory topic={topic} label={categoryLabel} />
-        <h3 className="mt-2 text-2xl font-semibold leading-tight tracking-[-0.02em] text-foreground text-balance sm:text-[28px]">
+        <h3 className="text-section font-semibold leading-tight text-foreground text-balance transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none">
           {topic.title}
         </h3>
-        <p className="mt-3 text-base leading-relaxed text-muted-foreground text-pretty">{topic.description}</p>
+        <p className="mt-3 text-body text-muted-foreground text-pretty">{topic.description}</p>
 
         {topic.recommendationBody && (
-          <p className="mt-5 flex items-start gap-2.5 text-[15px] leading-relaxed text-foreground">
-            <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-live-sage" aria-hidden="true" />
-            <span>
-              <span className="font-semibold">{topic.recommendationTitle || firstStepLabel}.</span>{" "}
-              <span className="text-muted-foreground">{topic.recommendationBody}</span>
-            </span>
+          <p className="mt-5 text-body text-foreground">
+            <span className="font-semibold">{topic.recommendationTitle || firstStepLabel}.</span>{" "}
+            <span className="text-muted-foreground">{topic.recommendationBody}</span>
           </p>
-        )}
-
-        {isComplete && keyFact && (
-          <div className="mt-4 border-t border-border pt-4">
-            <p className="text-xs font-semibold text-sapphire">{keyFactLabel}</p>
-            <p className="mt-1 text-[15px] leading-relaxed text-foreground">{keyFact}</p>
-          </div>
         )}
 
         <CardFooter {...props} />

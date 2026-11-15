@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { Button } from "@/components/ui/Button";
 import {
   CheckCircleIcon,
   AlertCircleIcon,
@@ -443,18 +444,20 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire">
           <CheckCircleIcon className="h-6 w-6" />
         </div>
-        <h3 className="mt-4 text-base font-bold text-foreground">
+        <h3 className="mt-4 text-body font-bold text-foreground">
           {copy.successTitle}
         </h3>
-        <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+        <p className="mt-1 text-meta text-muted-foreground">
           {successInfo.message}
         </p>
-        <div className="mt-4 rounded-md bg-muted p-3 text-xs">
+        <div className="mt-4 rounded-md bg-muted p-3 text-meta">
           <span>{copy.accountNote} <strong>{familyPhone}</strong></span>
         </div>
         <div className="mt-6 flex justify-center gap-3">
-          <button
+          <Button
             type="button"
+            variant="action"
+            size="md"
             onClick={() => {
               setStep(1);
               setFullName("");
@@ -464,10 +467,9 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
               setFamilyPhone("");
               setSuccessInfo(null);
             }}
-            className="min-h-[44px] rounded-lg bg-sapphire px-4 py-2 text-xs font-semibold text-white hover:bg-sapphire-light"
           >
             {copy.addAnother}
-          </button>
+          </Button>
         </div>
       </div>
     );
@@ -478,18 +480,21 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
       {/* Wizard Step Bar */}
       <div className="flex items-center justify-between pb-3 mb-4 border-b border-border">
         <div>
-          <h2 className="text-base font-semibold text-foreground">
+          <h2 className="text-body font-semibold text-foreground">
             {copy.title}
           </h2>
         </div>
-        <span className="text-xs font-semibold text-muted-foreground">
+        <span className="text-meta font-semibold text-muted-foreground">
           {copy.stepOf(step)}
         </span>
       </div>
 
       {errorMessage && (
-        <div className="mb-4 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-xs text-red-600 font-medium flex items-center gap-2">
-          <AlertCircleIcon className="h-4 w-4 shrink-0" />
+        <div
+          role="alert"
+          className="mb-4 rounded-lg border border-primary/30 bg-primary-soft/75 p-3 text-body font-medium text-foreground dark:border-ruby-300/35 dark:bg-primary/15 dark:text-paper flex items-center gap-2"
+        >
+          <AlertCircleIcon className="h-4 w-4 shrink-0 text-primary dark:text-ruby-300" />
           <span>{errorMessage}</span>
         </div>
       )}
@@ -498,7 +503,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
       {step === 1 && (
         <div className="space-y-4">
           {/* Oral script box */}
-          <div className="rounded-lg border border-sapphire/20 bg-sapphire/5 p-3.5 text-xs text-foreground">
+          <div className="rounded-lg border border-sapphire/20 bg-sapphire/5 p-3.5 text-meta text-foreground">
             <p className="font-semibold text-sapphire dark:text-sapphire-border">
               {copy.scriptLabel}
             </p>
@@ -509,7 +514,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-foreground mb-1">
+              <label className="block text-meta font-semibold text-foreground mb-1">
                 {copy.nameLabel}
               </label>
               <input
@@ -519,12 +524,12 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder={copy.namePlaceholder}
-                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-foreground mb-1">
+              <label className="block text-meta font-semibold text-foreground mb-1">
                 {copy.ageLabel}
               </label>
               <input
@@ -533,13 +538,13 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
                 placeholder={copy.agePlaceholder}
-                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-foreground mb-1.5">
+            <label className="block text-meta font-semibold text-foreground mb-1.5">
               {copy.categoryLabel}
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -551,10 +556,10 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                     type="button"
                     aria-pressed={isSelected}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`min-h-[48px] flex items-center gap-2.5 rounded-lg border p-3 text-left text-xs font-medium transition-colors duration-[var(--dur-fast)] ${
+                    className={`press-row min-h-[48px] flex items-center gap-2.5 whitespace-nowrap rounded-lg border p-3 text-left text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                       isSelected
                         ? "border-sapphire bg-sapphire text-white shadow-xs font-semibold"
-                        : "border-border bg-background text-foreground hover:bg-muted"
+                        : "border-border-control bg-background text-foreground hover:bg-muted"
                     }`}
                   >
                     <cat.Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -566,7 +571,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-foreground mb-1">
+            <label className="block text-meta font-medium text-foreground mb-1">
               {copy.complaintLabel}
             </label>
             <textarea
@@ -575,13 +580,15 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
               value={complaintText}
               onChange={(e) => setComplaintText(e.target.value)}
               placeholder={copy.complaintPlaceholder}
-              className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+              className="w-full rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
           <div className="pt-2 flex justify-end">
-            <button
+            <Button
               type="button"
+              variant="action"
+              size="md"
               onClick={() => {
                 if (!fullName.trim()) {
                   setErrorMessage(copy.nameRequired);
@@ -590,10 +597,10 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                 setErrorMessage("");
                 setStep(2);
               }}
-              className="min-h-[44px] rounded-lg bg-foreground px-5 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="px-5"
             >
               {copy.next}
-            </button>
+            </Button>
           </div>
         </div>
       )}
@@ -601,7 +608,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
       {/* Step 2: Document / CI photo capture */}
       {step === 2 && (
         <div className="space-y-4">
-          <div className="rounded-lg border border-border bg-muted/30 p-4 text-xs text-foreground">
+          <div className="rounded-lg border border-border bg-muted/30 p-4 text-meta text-foreground">
             <p className="font-semibold text-foreground">
               {copy.documentTitle}
             </p>
@@ -630,7 +637,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
               <button
                 type="button"
                 onClick={() => setIdDocumentData(null)}
-                className="mt-3 text-xs font-semibold text-sapphire underline-offset-4 hover:underline"
+                className="mt-3 whitespace-nowrap text-body font-semibold text-sapphire underline-offset-4 hover:underline"
               >
                 {copy.retakePhoto}
               </button>
@@ -643,31 +650,35 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-sapphire">
                 <CameraIcon className="h-6 w-6" />
               </div>
-              <p className="mt-3 text-xs font-bold text-foreground">
+              <p className="mt-3 text-meta font-bold text-foreground">
                 {copy.captureTitle}
               </p>
-              <p className="mt-1 text-[11px] text-muted-foreground">
+              <p className="mt-1 text-meta text-muted-foreground">
                 {copy.captureHint}
               </p>
             </div>
           )}
 
           <div className="pt-2 flex items-center justify-between">
-            <button
+            <Button
               type="button"
+              variant="ghost"
+              size="md"
               onClick={() => setStep(1)}
-              className="min-h-[44px] rounded-lg px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="px-3 text-muted-foreground hover:text-foreground"
             >
               {copy.back}
-            </button>
+            </Button>
 
-            <button
+            <Button
               type="button"
+              variant="action"
+              size="md"
               onClick={() => setStep(3)}
-              className="min-h-[44px] rounded-lg bg-foreground px-5 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="px-5"
             >
               {copy.next}
-            </button>
+            </Button>
           </div>
         </div>
       )}
@@ -676,7 +687,7 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
       {step === 3 && (
         <div className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-foreground mb-1">
+            <label className="block text-meta font-semibold text-foreground mb-1">
               {copy.phoneLabel}
             </label>
             <input
@@ -686,57 +697,61 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
               value={familyPhone}
               onChange={(e) => setFamilyPhone(e.target.value)}
               placeholder="0721 000 000"
-              className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
-            <p className="mt-1 text-[11px] text-muted-foreground">
+            <p className="mt-1 text-body text-muted-foreground">
               {copy.phoneHelp}
             </p>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-foreground mb-1">{copy.countyLabel}</label>
+              <label className="block text-body font-medium text-foreground mb-1">{copy.countyLabel}</label>
               <input
                 type="text"
                 aria-label={copy.countyLabel}
                 value={county}
                 onChange={(e) => setCounty(e.target.value)}
-                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground"
+                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-foreground mb-1">{copy.localityLabel}</label>
+              <label className="block text-body font-medium text-foreground mb-1">{copy.localityLabel}</label>
               <input
                 type="text"
                 aria-label={copy.localityLabel}
                 value={locality}
                 onChange={(e) => setLocality(e.target.value)}
-                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground"
+                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           </div>
 
-          <div className="rounded-md bg-muted/40 p-3 text-xs text-muted-foreground">
-            {copy.summaryPatient} <strong>{fullName}</strong> ({age || copy.ageUnknown}) · {copy.summaryProblem} <strong>{copy.categories[selectedCategory]}</strong>
+          <div className="rounded-md bg-muted/40 p-3 text-meta text-muted-foreground">
+            {copy.summaryPatient} <strong>{fullName}</strong> ({age || copy.ageUnknown}), {copy.summaryProblem} <strong>{copy.categories[selectedCategory]}</strong>
           </div>
 
           <div className="pt-2 flex items-center justify-between">
-            <button
+            <Button
               type="button"
+              variant="ghost"
+              size="md"
               onClick={() => setStep(2)}
-              className="min-h-[44px] rounded-lg px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="px-3 text-muted-foreground hover:text-foreground"
             >
               {copy.back}
-            </button>
+            </Button>
 
-            <button
+            <Button
               type="button"
+              variant="action"
+              size="md"
               disabled={isSubmitting}
               onClick={handleFinalSubmit}
-              className="min-h-[44px] rounded-lg bg-foreground px-6 py-2 text-xs font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground"
+              className="px-6"
             >
               {isSubmitting ? copy.submitting : copy.submit}
-            </button>
+            </Button>
           </div>
         </div>
       )}

@@ -1,6 +1,7 @@
-import type { SubRegionId } from "@/components/health-check/anatomy-3d-data";
+import type { BodyAnatomyProfile, SubRegionId } from "@/components/health-check/anatomy-3d-data";
 import type { BodyPartId } from "@/lib/i18n/health-check-translations";
 import type { Lang } from "@/lib/i18n/translations";
+import { PALETTE } from "@/lib/palette-constants";
 
 export type PainDiagramSide = "Left" | "Right" | "Center";
 
@@ -8,6 +9,7 @@ export interface PainAreaDiagramInput {
   part: BodyPartId;
   subRegion?: SubRegionId | null;
   side?: PainDiagramSide;
+  bodyProfile?: BodyAnatomyProfile;
   urgent?: boolean;
   lang?: Lang;
 }
@@ -164,50 +166,65 @@ function resolvePointsForFigure(
   view: "front" | "back",
   spec: LocusSpec,
   side: PainDiagramSide,
-  subRegion?: SubRegionId | null
+  subRegion?: SubRegionId | null,
+  isFemale = false
 ): Array<{ cx: number; cy: number; rx: number; ry: number }> {
   // Anatomical orientation:
   // On FRONT view: patient's Right is viewer-left (-dx), patient's Left is viewer-right (+dx).
   // On BACK view: patient's Left is viewer-left (-dx), patient's Right is viewer-right (+dx).
   const rightSign = view === "front" ? -1 : 1;
   const leftSign = -rightSign;
+  const effectiveDx = isFemale && spec.dx >= 18 ? Number((spec.dx * 0.89).toFixed(2)) : spec.dx;
 
   // Fixed unilateral visceral organs when side === "Center"
   if (subRegion === "heart" || subRegion === "stomach_organ") {
-    return [{ cx: midX + leftSign * spec.dx, cy: spec.y, rx: spec.rx, ry: spec.ry }];
+    return [{ cx: midX + leftSign * effectiveDx, cy: spec.y, rx: spec.rx, ry: spec.ry }];
   }
   if (subRegion === "liver") {
-    return [{ cx: midX + rightSign * spec.dx, cy: spec.y, rx: spec.rx, ry: spec.ry }];
+    return [{ cx: midX + rightSign * effectiveDx, cy: spec.y, rx: spec.rx, ry: spec.ry }];
   }
 
   if (side === "Left") {
-    const offset = spec.dx > 0 ? spec.dx : 5.5;
+    const offset = effectiveDx > 0 ? effectiveDx : 5.5;
     return [{ cx: midX + leftSign * offset, cy: spec.y, rx: spec.rx, ry: spec.ry }];
   }
   if (side === "Right") {
-    const offset = spec.dx > 0 ? spec.dx : 5.5;
+    const offset = effectiveDx > 0 ? effectiveDx : 5.5;
     return [{ cx: midX + rightSign * offset, cy: spec.y, rx: spec.rx, ry: spec.ry }];
   }
 
-  if (spec.pairedLimb && spec.dx > 0) {
+  if (spec.pairedLimb && effectiveDx > 0) {
     return [
-      { cx: midX - spec.dx, cy: spec.y, rx: spec.rx, ry: spec.ry },
-      { cx: midX + spec.dx, cy: spec.y, rx: spec.rx, ry: spec.ry },
+      { cx: midX - effectiveDx, cy: spec.y, rx: spec.rx, ry: spec.ry },
+      { cx: midX + effectiveDx, cy: spec.y, rx: spec.rx, ry: spec.ry },
     ];
   }
 
   return [{ cx: midX, cy: spec.y, rx: spec.rx, ry: spec.ry }];
 }
 
-function buildSilhouettePaths(midX: number, isBack: boolean): string {
+function buildSilhouettePaths(midX: number, isBack: boolean, isFemale = false): string {
+  if (isFemale) {
+    // Clean proportional clinical female silhouette centered at midX over y=7..146
+    const head = `<ellipse cx="${midX}" cy="18.2" rx="8.8" ry="10.9" />`;
+    const body = `<path d="M ${midX - 4.0} 28.5 L ${midX - 4.6} 35.2 C ${midX - 12.5} 36.6 ${midX - 17.5} 39.5 ${midX - 19.2} 46 L ${midX - 26.8} 86.5 C ${midX - 27.5} 90.2 ${midX - 24.3} 92.5 ${midX - 22.5} 89 L ${midX - 16.0} 53 L ${midX - 12.8} 53 C ${midX - 12.2} 62 ${midX - 11.2} 69 ${midX - 11.2} 75 C ${midX - 11.2} 81 ${midX - 16.2} 84 ${midX - 16.2} 92 L ${midX - 14.0} 141 C ${midX - 14.0} 145.5 ${midX - 6.5} 145.5 ${midX - 6.2} 141 L ${midX - 3.0} 94 L ${midX + 3.0} 94 L ${midX + 6.2} 141 C ${midX + 6.5} 145.5 ${midX + 14.0} 145.5 ${midX + 14.0} 141 L ${midX + 16.2} 92 C ${midX + 16.2} 84 ${midX + 11.2} 81 ${midX + 11.2} 75 C ${midX + 11.2} 69 ${midX + 12.2} 62 ${midX + 12.8} 53 L ${midX + 16.0} 53 L ${midX + 22.5} 89 C ${midX + 24.3} 92.5 ${midX + 27.5} 90.2 ${midX + 26.8} 86.5 L ${midX + 19.2} 46 C ${midX + 17.5} 39.5 ${midX + 12.5} 36.6 ${midX + 4.6} 35.2 L ${midX + 4.0} 28.5 Z" />`;
+    const landmarks = isBack
+      ? `<line x1="${midX}" y1="32" x2="${midX}" y2="83" stroke="${PALETTE.border}" stroke-width="0.9" stroke-dasharray="2 2" />
+         <path d="M ${midX - 7.8} 43 Q ${midX - 4.4} 48.5 ${midX - 2.6} 44 M ${midX + 7.8} 43 Q ${midX + 4.4} 48.5 ${midX + 2.6} 44" fill="none" stroke="${PALETTE.border}" stroke-width="0.9" />`
+      : `<path d="M ${midX - 9.5} 38 Q ${midX} 41 ${midX + 9.5} 38" fill="none" stroke="${PALETTE.border}" stroke-width="0.9" />
+         <line x1="${midX - 4.0}" y1="35" x2="${midX + 4.0}" y2="35" stroke="${PALETTE.border}" stroke-width="0.8" />
+         <path d="M ${midX - 9.6} 50.5 Q ${midX - 5.5} 54.5 ${midX - 1.6} 50.5 M ${midX + 1.6} 50.5 Q ${midX + 5.5} 54.5 ${midX + 9.6} 50.5" fill="none" stroke="${PALETTE.border}" stroke-width="0.8" />`;
+    return `${head}${body}${landmarks}`;
+  }
+
   // Clean clinical human silhouette centered at midX over y=8..148
   const head = `<ellipse cx="${midX}" cy="18" rx="9.2" ry="11.2" />`;
   const body = `<path d="M ${midX - 4.5} 28.5 L ${midX - 5.2} 35 C ${midX - 15} 36.5 ${midX - 20.5} 39.5 ${midX - 22.5} 46 L ${midX - 30.5} 87 C ${midX - 31.3} 91 ${midX - 27.5} 93.5 ${midX - 25.5} 90 L ${midX - 18.2} 53 L ${midX - 14.5} 53 L ${midX - 13.2} 76 L ${midX - 15.2} 91 L ${midX - 14.5} 141 C ${midX - 14.5} 145.5 ${midX - 6.5} 145.5 ${midX - 6.2} 141 L ${midX - 3.2} 94 L ${midX + 3.2} 94 L ${midX + 6.2} 141 C ${midX + 6.5} 145.5 ${midX + 14.5} 145.5 ${midX + 14.5} 141 L ${midX + 15.2} 91 L ${midX + 13.2} 76 L ${midX + 14.5} 53 L ${midX + 18.2} 53 L ${midX + 25.5} 90 C ${midX + 27.5} 93.5 ${midX + 31.3} 91 ${midX + 30.5} 87 L ${midX + 22.5} 46 C ${midX + 20.5} 39.5 ${midX + 15} 36.5 ${midX + 5.2} 35 L ${midX + 4.5} 28.5 Z" />`;
   const landmarks = isBack
-    ? `<line x1="${midX}" y1="32" x2="${midX}" y2="83" stroke="#cbd5e1" stroke-width="0.9" stroke-dasharray="2 2" />
-       <path d="M ${midX - 9} 43 Q ${midX - 5} 49 ${midX - 3} 44 M ${midX + 9} 43 Q ${midX + 5} 49 ${midX + 3} 44" fill="none" stroke="#cbd5e1" stroke-width="0.9" />`
-    : `<path d="M ${midX - 11} 38 Q ${midX} 41 ${midX + 11} 38" fill="none" stroke="#cbd5e1" stroke-width="0.9" />
-       <line x1="${midX - 4.5}" y1="35" x2="${midX + 4.5}" y2="35" stroke="#cbd5e1" stroke-width="0.8" />`;
+    ? `<line x1="${midX}" y1="32" x2="${midX}" y2="83" stroke="${PALETTE.border}" stroke-width="0.9" stroke-dasharray="2 2" />
+       <path d="M ${midX - 9} 43 Q ${midX - 5} 49 ${midX - 3} 44 M ${midX + 9} 43 Q ${midX + 5} 49 ${midX + 3} 44" fill="none" stroke="${PALETTE.border}" stroke-width="0.9" />`
+    : `<path d="M ${midX - 11} 38 Q ${midX} 41 ${midX + 11} 38" fill="none" stroke="${PALETTE.border}" stroke-width="0.9" />
+       <line x1="${midX - 4.5}" y1="35" x2="${midX + 4.5}" y2="35" stroke="${PALETTE.border}" stroke-width="0.8" />`;
   return `${head}${body}${landmarks}`;
 }
 
@@ -219,17 +236,21 @@ export function buildPainAreaDiagramSvg(input: PainAreaDiagramInput): string {
   const lang = input.lang ?? "ro";
   const copy = PAIN_DIAGRAM_COPY[lang] ?? PAIN_DIAGRAM_COPY.en;
   const side = input.side ?? "Center";
+  const isFemale =
+    input.bodyProfile === "female" ||
+    input.subRegion === "breast" ||
+    input.subRegion === "uterus_ovaries";
   const spec =
     (input.subRegion ? SUB_REGION_LOCUS[input.subRegion] : undefined) ?? MACRO_LOCUS[input.part];
 
-  const accentStroke = input.urgent ? "#b91c1c" : "#1d4ed8";
-  const accentFill = input.urgent ? "#fecaca" : "#bfdbfe";
-  const accentCore = input.urgent ? "#dc2626" : "#1e40af";
+  const accentStroke = input.urgent ? PALETTE.primaryHover : PALETTE.sapphire;
+  const accentFill = input.urgent ? PALETTE.primarySoft : PALETTE.sapphireBorder;
+  const accentCore = input.urgent ? PALETTE.primary : PALETTE.sapphireLight;
 
   const frontMid = 50;
   const backMid = 146;
   const activeMid = spec.view === "front" ? frontMid : backMid;
-  const points = resolvePointsForFigure(activeMid, spec.view, spec, side, input.subRegion);
+  const points = resolvePointsForFigure(activeMid, spec.view, spec, side, input.subRegion, isFemale);
 
   const highlightMarkup = points
     .map(
@@ -237,7 +258,7 @@ export function buildPainAreaDiagramSvg(input: PainAreaDiagramInput): string {
       <ellipse cx="${pt.cx}" cy="${pt.cy}" rx="${pt.rx}" ry="${pt.ry}" fill="${accentFill}" fill-opacity="0.78" stroke="${accentStroke}" stroke-width="1.4" />
       <line x1="${pt.cx - 5.5}" y1="${pt.cy}" x2="${pt.cx + 5.5}" y2="${pt.cy}" stroke="${accentCore}" stroke-width="1.1" />
       <line x1="${pt.cx}" y1="${pt.cy - 5.5}" x2="${pt.cx}" y2="${pt.cy + 5.5}" stroke="${accentCore}" stroke-width="1.1" />
-      <rect x="${pt.cx - 2.2}" y="${pt.cy - 2.2}" width="4.4" height="4.4" rx="1" fill="${accentCore}" stroke="#ffffff" stroke-width="1" />`
+      <rect x="${pt.cx - 2.2}" y="${pt.cy - 2.2}" width="4.4" height="4.4" rx="1" fill="${accentCore}" stroke="${PALETTE.card}" stroke-width="1" />`
     )
     .join("");
 
@@ -245,25 +266,25 @@ export function buildPainAreaDiagramSvg(input: PainAreaDiagramInput): string {
   const backActive = spec.view === "back";
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 168" width="184" height="158" role="img" aria-label="${escapeXml(copy.heading)}">
-    <rect x="0.5" y="0.5" width="195" height="167" rx="8" fill="#f8fafc" stroke="#cbd5e1" />
-    <line x1="98" y1="10" x2="98" y2="158" stroke="#e2e8f0" stroke-width="1" />
+    <rect x="0.5" y="0.5" width="195" height="167" rx="8" fill="${PALETTE.surfaceCard}" stroke="${PALETTE.borderControl}" />
+    <line x1="98" y1="10" x2="98" y2="158" stroke="${PALETTE.border}" stroke-width="1" />
 
     <g opacity="${frontActive ? "1" : "0.48"}">
-      <g fill="#ffffff" stroke="${frontActive ? "#334155" : "#94a3b8"}" stroke-width="1.25" stroke-linejoin="round">
-        ${buildSilhouettePaths(frontMid, false)}
+      <g fill="${PALETTE.card}" stroke="${frontActive ? PALETTE.ink800 : PALETTE.borderControl}" stroke-width="1.25" stroke-linejoin="round">
+        ${buildSilhouettePaths(frontMid, false, isFemale)}
       </g>
-      <text x="14" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="#64748b">${escapeXml(copy.rightShort)}</text>
-      <text x="80" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="#64748b">${escapeXml(copy.leftShort)}</text>
-      <text x="${frontMid}" y="160" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="9.5" font-weight="${frontActive ? "700" : "600"}" fill="${frontActive ? "#0f172a" : "#64748b"}">${escapeXml(copy.front)}</text>
+      <text x="14" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="${PALETTE.mutedForeground}">${escapeXml(copy.rightShort)}</text>
+      <text x="80" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="${PALETTE.mutedForeground}">${escapeXml(copy.leftShort)}</text>
+      <text x="${frontMid}" y="160" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="9.5" font-weight="${frontActive ? "700" : "600"}" fill="${frontActive ? PALETTE.foreground : PALETTE.mutedForeground}">${escapeXml(copy.front)}</text>
     </g>
 
     <g opacity="${backActive ? "1" : "0.48"}">
-      <g fill="#ffffff" stroke="${backActive ? "#334155" : "#94a3b8"}" stroke-width="1.25" stroke-linejoin="round">
-        ${buildSilhouettePaths(backMid, true)}
+      <g fill="${PALETTE.card}" stroke="${backActive ? PALETTE.ink800 : PALETTE.borderControl}" stroke-width="1.25" stroke-linejoin="round">
+        ${buildSilhouettePaths(backMid, true, isFemale)}
       </g>
-      <text x="110" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="#64748b">${escapeXml(copy.leftShort)}</text>
-      <text x="176" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="#64748b">${escapeXml(copy.rightShort)}</text>
-      <text x="${backMid}" y="160" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="9.5" font-weight="${backActive ? "700" : "600"}" fill="${backActive ? "#0f172a" : "#64748b"}">${escapeXml(copy.back)}</text>
+      <text x="110" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="${PALETTE.mutedForeground}">${escapeXml(copy.leftShort)}</text>
+      <text x="176" y="18" font-family="system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="700" fill="${PALETTE.mutedForeground}">${escapeXml(copy.rightShort)}</text>
+      <text x="${backMid}" y="160" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="9.5" font-weight="${backActive ? "700" : "600"}" fill="${backActive ? PALETTE.foreground : PALETTE.mutedForeground}">${escapeXml(copy.back)}</text>
     </g>
 
     ${highlightMarkup}

@@ -27,9 +27,14 @@ export default async function FindHelpPage({
   const requested = (await searchParams).category;
   const initialCategory = isInstituteCategory(requested) ? requested : null;
   const ipCountry = countryFromHeaders(await headers());
-  const initialCountry = isSupportedCountry(ipCountry)
-    ? ipCountry
-    : countryForLang(await getRequestLang());
+  const detectedIpCountry = isSupportedCountry(ipCountry) ? ipCountry : null;
+  const initialCountry = detectedIpCountry ?? countryForLang(await getRequestLang());
 
-  return <FindHelpPageContent initialCountry={initialCountry} initialCategory={initialCategory} />;
+  return (
+    <FindHelpPageContent
+      initialCountry={initialCountry}
+      initialCategory={initialCategory}
+      detectedIpCountry={detectedIpCountry}
+    />
+  );
 }

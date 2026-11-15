@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/Button";
 import { ClockIcon, PhoneIcon, PinIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -246,17 +247,17 @@ export function HomeVisitsList({
         <div>
           <div className="flex items-center gap-2">
             <ClockIcon className="h-4 w-4 text-sapphire" />
-            <h2 className="text-base font-bold text-foreground">
+            <h2 className="text-body font-bold text-foreground">
               {copy.title(visits.length)}
             </h2>
           </div>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <p className="text-meta text-muted-foreground mt-0.5">
             {copy.subtitle}
           </p>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="rounded-md border border-border bg-muted/60 px-2.5 py-1 text-xs font-semibold text-foreground">
+          <span className="rounded-md border border-border bg-muted/60 px-2.5 py-1 text-meta font-semibold text-foreground">
             {copy.progress(completedCount, visits.length)}
           </span>
         </div>
@@ -281,35 +282,35 @@ export function HomeVisitsList({
             >
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                 <div className="flex items-start gap-3">
-                  <span className="flex h-10 w-12 shrink-0 items-center justify-center rounded-md border border-border bg-muted/60 font-mono text-xs font-bold text-foreground">
+                  <span className="flex h-10 w-12 shrink-0 items-center justify-center rounded-md border border-border bg-muted/60 font-mono text-meta font-bold text-foreground">
                     {visit.time}
                   </span>
 
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-sm font-bold text-foreground">
+                      <h3 className="text-body font-bold text-foreground">
                         {visit.patientName}
                       </h3>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-meta text-muted-foreground">
                         ({visit.patientAge})
                       </span>
                       {visit.urgency === "high" && (
-                        <span className="rounded-md border border-red-500/30 bg-red-500/10 px-2 py-0.5 text-[11px] font-semibold text-red-600">
+                        <span className="rounded-md border border-primary/30 bg-primary-soft px-2 py-0.5 text-meta font-semibold text-primary-hover dark:border-ruby-300/35 dark:bg-primary/15 dark:text-ruby-300">
                           {copy.urgent}
                         </span>
                       )}
                       {isCompleted && (
-                        <span className="rounded-md border border-border bg-muted px-2 py-0.5 text-[11px] font-semibold text-muted-foreground">
+                        <span className="rounded-md border border-border bg-muted px-2 py-0.5 text-meta font-semibold text-muted-foreground">
                           {copy.completed}
                         </span>
                       )}
                     </div>
 
-                    <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
+                    <p className="mt-1 flex items-center gap-1 text-meta text-muted-foreground">
                       <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                       {visit.address}
                     </p>
-                    <p className="mt-0.5 text-xs font-medium text-foreground">
+                    <p className="mt-0.5 text-meta font-medium text-foreground">
                       {copy.purpose} {visit.purpose}
                     </p>
                   </div>
@@ -320,7 +321,7 @@ export function HomeVisitsList({
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(visit.address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md border border-border bg-muted/40 px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted shrink-0"
+                  className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md border border-border bg-muted/40 px-3 py-1.5 text-body font-semibold text-foreground hover:bg-muted shrink-0"
                 >
                   {copy.openMap}
                 </a>
@@ -330,9 +331,9 @@ export function HomeVisitsList({
               <div className="mt-4 pt-3 border-t border-border flex flex-wrap items-center gap-2">
                 <a
                   href={`tel:${visit.phone.replace(/\s+/g, "")}`}
-                  className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
+                  className="inline-flex min-h-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-border bg-background px-3 py-1.5 text-body font-semibold text-foreground hover:bg-muted"
                 >
-                  <PhoneIcon className="h-3.5 w-3.5 text-sapphire" />
+                  <PhoneIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" />
                   {copy.callPatient}
                 </a>
 
@@ -340,7 +341,7 @@ export function HomeVisitsList({
                   <button
                     type="button"
                     onClick={() => updateStatus(visit.id, "arrived")}
-                    className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
+                    className="inline-flex min-h-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-border bg-background px-3 py-1.5 text-body font-semibold text-foreground hover:bg-muted"
                   >
                     {copy.arrived}
                   </button>
@@ -349,32 +350,38 @@ export function HomeVisitsList({
                 {isArrived && (
                   <>
                     {onLaunchTelemetry && (
-                      <button
+                      <Button
                         type="button"
+                        variant="outline"
+                        size="md"
                         onClick={() => onLaunchTelemetry(visit)}
-                        className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md border border-sapphire/30 bg-sapphire/10 px-3 py-1.5 text-xs font-semibold text-sapphire"
+                        className="border-sapphire/30 bg-sapphire/10 px-3 text-sapphire hover:bg-sapphire-soft"
                       >
                         {copy.addMeasurements}
-                      </button>
+                      </Button>
                     )}
 
                     {onLaunchHandover && (
-                      <button
+                      <Button
                         type="button"
+                        variant="action"
+                        size="md"
                         onClick={() => onLaunchHandover(visit)}
-                        className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md bg-sapphire px-3 py-1.5 text-xs font-semibold text-white hover:bg-sapphire-light"
+                        className="px-3"
                       >
                         {copy.connectDoctor}
-                      </button>
+                      </Button>
                     )}
 
-                    <button
+                    <Button
                       type="button"
+                      variant="outline"
+                      size="md"
                       onClick={() => updateStatus(visit.id, "completed")}
-                      className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-foreground/90"
+                      className="px-3"
                     >
                       {copy.endVisit}
-                    </button>
+                    </Button>
                   </>
                 )}
               </div>

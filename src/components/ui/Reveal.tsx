@@ -8,7 +8,22 @@ type RevealProps = {
   className?: string;
   /** Optional delay in seconds for items of a grid or list (clamped to 0.24s). */
   delay?: number;
+  /**
+   * How the block arrives. "rise" (default): opacity plus a 12px rise. "mask": a clip uncovers
+   * it from the bottom edge, for images and media. "fade": opacity only, for blocks that must
+   * not move (maps, tables).
+   */
+  variant?: RevealVariant;
+  /**
+   * Hand the entrance to the direct children, which arrive one after another: "ui" (48ms apart)
+   * for rows and controls, "editorial" (84ms) for cards and large blocks. `true` means "ui".
+   */
+  stagger?: boolean | "ui" | "editorial";
+  /** The element to render, so a staggered list can stay a real `ul` or `ol`. */
+  as?: "div" | "ul" | "ol" | "section" | "dl";
 };
+
+export type RevealVariant = "rise" | "mask" | "fade";
 
 const MAX_DELAY_S = 0.24;
 
@@ -52,13 +67,14 @@ type Phase = "visible" | "armed" | "revealed";
  *   already on screen stays as painted. Without IntersectionObserver nothing is armed.
  * - Static under reduced motion and in print.
  */
-export function Reveal({ children, className, delay = 0 }: RevealProps) {
+export function Reveal({ children, className, delay = 0, variant = "rise", stagger = false, as: Tag = "div" }: RevealProps) {
   const reducedMotion = useCalmReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const [phase, setPhase] = useState<Phase>("visible");
 
   useEffect(() => {
     if (reducedMotion) return;
+    if (window.matchMedia("(max-width: 767px)").matches) return;
     const el = ref.current;
     const observer = getSharedObserver();
     if (!el || !observer) return;
@@ -84,9 +100,9 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
 
   if (reducedMotion || phase === "visible") {
     return (
-      <div ref={ref} className={className}>
+      <Tag ref={ref as never} className={className}>
         {children}
-      </div>
+      </Tag>
     );
   }
 
@@ -94,8 +110,15 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
   const style = delayMs > 0 ? ({ "--reveal-delay": `${delayMs}ms` } as CSSProperties) : undefined;
 
   return (
-    <div ref={ref} className={className} data-reveal={phase} style={style}>
+    <Tag
+      ref={ref as never}
+      className={className}
+      data-reveal={phase}
+      data-reveal-variant={variant === "rise" ? undefined : variant}
+      data-reveal-stagger={stagger ? (stagger === true ? "ui" : stagger) : undefined}
+      style={style}
+    >
       {children}
-    </div>
+    </Tag>
   );
 }

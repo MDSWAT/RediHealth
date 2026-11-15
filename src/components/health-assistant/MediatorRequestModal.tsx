@@ -2,13 +2,14 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { CheckCircleIcon, HandHelpingIcon, XIcon } from "@/components/ui/icons";
+import { Button } from "@/components/ui/Button";
+import { HandHelpingIcon, XIcon } from "@/components/ui/icons";
 import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
-import { primaryButton, secondaryButton, textInput } from "@/components/health-assistant/step-ui";
+import { textInput } from "@/components/health-assistant/step-ui";
 
 interface MediatorRequestModalProps {
   /** Scenario title sent to the mediator inbox (mediators read it in Romanian). */
@@ -18,7 +19,7 @@ interface MediatorRequestModalProps {
 
 const dict = {
   ru: {
-    trigger: "Запросить медицинского посредника",
+    trigger: "Помощь медиатора",
     title: "Запросить медиатора по вопросам общественного здравоохранения",
     subtitle:
       "Медиатор по вопросам здравоохранения – это человек из вашего сообщества, который бесплатно помогает вам с врачами, документами и посещениями больниц.",
@@ -48,7 +49,7 @@ const dict = {
   },
 
   en: {
-    trigger: "Request a health mediator",
+    trigger: "Ask a health mediator",
     title: "Request a community health mediator",
     subtitle:
       "A health mediator is someone from your community who helps you, free of charge, with doctors, papers and hospital visits.",
@@ -77,7 +78,7 @@ const dict = {
     close: "Close",
   },
   ro: {
-    trigger: "Cere ajutorul unui mediator sanitar",
+    trigger: "Cere un mediator sanitar",
     title: "Cere ajutorul unui mediator sanitar",
     subtitle:
       "Mediatorul sanitar este o persoană din comunitate care te ajută gratuit cu medicii, actele și drumurile la spital.",
@@ -106,7 +107,7 @@ const dict = {
     close: "Închide",
   },
   sq: {
-    trigger: "Kërko një mediator shëndetësor",
+    trigger: "Kërko mediator shëndeti",
     title: "Kërko një mediator shëndetësor nga komuniteti",
     subtitle:
       "Mediatori shëndetësor është një person nga komuniteti që të ndihmon falas me mjekët, dokumentet dhe vizitat në spital.",
@@ -135,7 +136,7 @@ const dict = {
     close: "Mbyll",
   },
   it: {
-    trigger: "Chiedi un mediatore sanitario",
+    trigger: "Chiedi un mediatore",
     title: "Chiedi un mediatore sanitario di comunità",
     subtitle:
       "Il mediatore sanitario è una persona della comunità che ti aiuta gratuitamente con medici, documenti e visite in ospedale.",
@@ -164,7 +165,7 @@ const dict = {
     close: "Chiudi",
   },
   hr: {
-    trigger: "Zatraži zdravstvenog medijatora",
+    trigger: "Zatraži medijatora",
     title: "Zatraži zdravstvenog medijatora iz zajednice",
     subtitle:
       "Zdravstveni medijator je osoba iz tvoje zajednice koja ti besplatno pomaže s liječnicima, dokumentima i odlascima u bolnicu.",
@@ -193,7 +194,7 @@ const dict = {
     close: "Zatvori",
   },
   rom: {
-    trigger: "Mang jekhe sastipnaske mediatores",
+    trigger: "Mang jekhe mediatores",
     title: "Mang jekhe sastipnaske mediatores katar i komuniteta",
     subtitle:
       "O sastipnasko mediatori si jekh manush katar i komuniteta so azhutinel tut bi lovengo le doktorensa, le lilensa thaj ki bolnitsa.",
@@ -332,32 +333,34 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
 
   return (
     <div className={className}>
-      <button
+      <Button
         ref={triggerRef}
         type="button"
+        variant="outline"
+        size="lg"
         data-mediator-trigger
         onClick={() => setIsOpen(true)}
-        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-amber-care bg-card px-5 py-2.5 text-center text-base font-semibold text-amber-care transition-[background-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-amber-care-soft/40 motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-care focus-visible:ring-offset-2 sm:w-auto"
+        className="w-full border-amber-care text-amber-care hover:border-amber-care hover:bg-amber-care-soft/40 sm:w-auto sm:px-5"
       >
         <HandHelpingIcon className="h-4 w-4 shrink-0" />
-        <span>{t.trigger}</span>
-      </button>
+        <span className="min-w-0 truncate">{t.trigger}</span>
+      </Button>
 
       {/* Portal: the triage step wrapper animates transform, which would trap a fixed overlay inside the card. */}
       {isOpen &&
         createPortal(
-          <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/50 sm:items-center sm:p-4">
+          <div className="scrim-in fixed inset-0 z-[60] flex items-end justify-center bg-black/50 sm:items-center sm:p-4">
             <div
               ref={dialogRef}
               role="dialog"
               aria-modal="true"
               aria-labelledby={`${ids}-title`}
-              className="assistant-step-in relative max-h-[100dvh] w-full max-w-lg overflow-y-auto rounded-t-2xl border border-border bg-card p-6 shadow-xl sm:rounded-2xl sm:p-7"
+              className="dialog-in relative max-h-[100dvh] w-full max-w-lg overflow-y-auto rounded-t-2xl border border-border bg-card p-6 shadow-xl sm:rounded-2xl sm:p-7"
             >
               <button
                 type="button"
                 onClick={handleClose}
-                className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-xl text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground"
+                className="press-row absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-xl text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label={t.close}
               >
                 <XIcon className="h-5 w-5" />
@@ -365,14 +368,14 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
 
               {!submitted ? (
                 <form onSubmit={handleSubmit} noValidate>
-                  <h2 id={`${ids}-title`} className="pr-10 text-lg font-semibold text-foreground">
+                  <h2 id={`${ids}-title`} className="pr-10 text-title font-semibold text-foreground">
                     {t.title}
                   </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.subtitle}</p>
+                  <p className="mt-2 text-body text-muted-foreground">{t.subtitle}</p>
 
                   <div className="mt-5 space-y-4">
                     <div>
-                      <label htmlFor={`${ids}-name`} className="mb-1 block text-sm font-semibold text-foreground">
+                      <label htmlFor={`${ids}-name`} className="mb-1 block text-body font-semibold text-foreground">
                         {t.nameLabel}
                       </label>
                       <input
@@ -388,7 +391,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                     </div>
 
                     <div>
-                      <label htmlFor={`${ids}-phone`} className="mb-1 block text-sm font-semibold text-foreground">
+                      <label htmlFor={`${ids}-phone`} className="mb-1 block text-body font-semibold text-foreground">
                         {t.phoneLabel} <span className="text-primary" aria-hidden="true">*</span>
                         <span className="sr-only"> ({t.required})</span>
                       </label>
@@ -407,7 +410,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
 
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div>
-                        <label htmlFor={`${ids}-county`} className="mb-1 block text-sm font-semibold text-foreground">
+                        <label htmlFor={`${ids}-county`} className="mb-1 block text-body font-semibold text-foreground">
                           {t.countyLabel} <span className="text-primary" aria-hidden="true">*</span>
                           <span className="sr-only"> ({t.required})</span>
                         </label>
@@ -427,7 +430,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                         </select>
                       </div>
                       <div>
-                        <label htmlFor={`${ids}-location`} className="mb-1 block text-sm font-semibold text-foreground">
+                        <label htmlFor={`${ids}-location`} className="mb-1 block text-body font-semibold text-foreground">
                           {t.locationLabel}
                         </label>
                         <input
@@ -442,7 +445,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                       </div>
                     </div>
 
-                    <label className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
+                    <label className="flex items-start gap-2.5 text-body text-foreground">
                       <input
                         type="checkbox"
                         required
@@ -466,44 +469,47 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                   </div>
 
                   {errorMessage && (
-                    <p role="alert" className="mt-4 text-sm font-medium text-red-700 dark:text-red-300">
+                    <p role="alert" className="mt-4 text-body font-medium text-primary dark:text-ruby-300">
                       {errorMessage}
                     </p>
                   )}
 
                   <div className="mt-6 flex flex-col-reverse items-stretch justify-end gap-3 sm:flex-row sm:items-center">
-                    <button
+                    <Button
                       type="button"
+                      variant="outline"
+                      size="lg"
                       onClick={handleClose}
-                      className={secondaryButton}
                     >
                       {t.cancel}
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                       type="submit"
+                      variant="action"
+                      size="lg"
                       disabled={isSubmitting}
                       aria-busy={isSubmitting}
-                      className={primaryButton}
                     >
                       {isSubmitting ? t.submitting : t.submitButton}
-                    </button>
+                    </Button>
                   </div>
                 </form>
               ) : (
-                <div className="py-2" role="status">
-                  <CheckCircleIcon className="h-7 w-7 text-sapphire dark:text-sapphire-border" />
-                  <h2 id={`${ids}-title`} className="mt-3 text-lg font-semibold text-foreground">
+                <div className="swap-in py-2" role="status">
+                  <h2 id={`${ids}-title`} className="text-title font-semibold text-foreground">
                     {t.successTitle}
                   </h2>
-                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">{t.successMessage}</p>
-                  <button
+                  <p className="mt-2 max-w-sm text-body text-muted-foreground">{t.successMessage}</p>
+                  <Button
                     ref={closeRef}
                     type="button"
+                    variant="action"
+                    size="lg"
                     onClick={handleClose}
-                    className={`mt-6 ${primaryButton}`}
+                    className="mt-6"
                   >
                     {t.close}
-                  </button>
+                  </Button>
                 </div>
               )}
             </div>

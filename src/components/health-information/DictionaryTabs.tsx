@@ -1,5 +1,6 @@
 "use client";
 
+import { CAPSULE_OUTLINE, CAPSULE_SHAPE } from "@/components/layout/chrome-capsule";
 import { useRef, type KeyboardEvent } from "react";
 import { BookIcon, GlobeIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
@@ -28,7 +29,7 @@ export const DICTIONARY_TAB_LABELS: Record<
   },
   sq: {
     dictionary: "Fjalori",
-    romanes: "Në gjuhën rome",
+    romanes: "Në romisht",
     tablistAria: "Zgjidh fjalorin mjekësor",
   },
   it: {
@@ -43,7 +44,7 @@ export const DICTIONARY_TAB_LABELS: Record<
   },
   rom: {
     dictionary: "Lavustik",
-    romanes: "Pe romani chib",
+    romanes: "Romane",
     tablistAria: "Alosar o sastipnasko alavari",
   },
 };
@@ -123,12 +124,14 @@ export function DictionaryTabs({
     <div
       role="tablist"
       aria-label={tablistAriaLabel ?? DICTIONARY_TAB_LABELS.ro.tablistAria}
-      className="relative grid grid-cols-2 rounded-xl border border-border bg-surface-subtle p-1"
+      data-capsule-switch=""
+      className={cn("relative grid grid-cols-2 p-1", CAPSULE_SHAPE, CAPSULE_OUTLINE)}
     >
       <span
         aria-hidden="true"
         className={cn(
-          "pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-lg bg-sapphire shadow-xs transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
+          CAPSULE_SHAPE,
+          "pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] bg-sapphire shadow-xs transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
           active === "romanes" ? "translate-x-full" : "translate-x-0",
         )}
       />
@@ -146,21 +149,20 @@ export function DictionaryTabs({
             onClick={() => selectTab(id)}
             onKeyDown={handleKeyDown}
             className={cn(
-              "relative z-10 inline-flex min-h-[42px] min-w-0 items-center justify-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[13.5px] font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-1 sm:gap-2 sm:px-3 sm:text-sm",
+              CAPSULE_SHAPE,
+              "relative z-10 inline-flex min-h-11 min-w-0 items-center justify-center gap-1 whitespace-nowrap px-2 py-1.5 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 sm:gap-2 sm:px-3",
               isSelected
                 ? "text-white"
                 : "text-muted-foreground hover:text-foreground",
             )}
           >
             <Icon className="h-4 w-4 shrink-0" />
-            <span className="truncate">{label}</span>
+            <span className="whitespace-nowrap">{label}</span>
             {typeof count === "number" && (
               <span
                 className={cn(
-                  "shrink-0 rounded-full px-1.5 py-0.5 text-[11px] font-bold tabular-nums leading-none transition-colors duration-[var(--dur-fast)]",
-                  isSelected
-                    ? "bg-white/20 text-white"
-                    : "bg-card text-muted-foreground ring-1 ring-inset ring-border/70",
+                  "shrink-0 text-meta font-medium tabular-nums leading-none transition-colors duration-(--dur-fast) motion-reduce:transition-none",
+                  isSelected ? "text-white/80" : "text-muted-foreground",
                 )}
               >
                 {count}

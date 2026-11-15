@@ -1,6 +1,7 @@
 "use client";
 
 import { useContext, useMemo, useState } from "react";
+import { Button } from "@/components/ui/Button";
 import { CheckIcon } from "@/components/ui/icons";
 import { ROW_CLASS, ROW_LIST_CLASS, ROW_LIST_SINGLE_CLASS, radioDotClass, tickBoxClass } from "./choice-styles";
 import { LanguageContext } from "@/lib/i18n/language-context";
@@ -705,8 +706,8 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
       className="space-y-8"
     >
       <header className="space-y-2">
-        <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{ui.title}</h3>
-        <p className="max-w-prose text-sm leading-relaxed text-muted-foreground sm:text-base">{ui.description}</p>
+        <h3 className="text-section font-semibold text-foreground">{ui.title}</h3>
+        <p className="max-w-(--measure-reading) text-body text-muted-foreground">{ui.description}</p>
       </header>
 
       {/* Plate and the selected part */}
@@ -754,7 +755,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
           </svg>
 
           <div>
-            <p className="text-xs text-muted-foreground">{ui.plateHint}</p>
+            <p className="text-meta text-muted-foreground">{ui.plateHint}</p>
             <div role="radiogroup" aria-label={ui.plateAriaLabel} className={`mt-2 ${ROW_LIST_SINGLE_CLASS}`}>
               {SECTION_ORDER.map((id) => {
                 const isActive = id === activeSectionId;
@@ -769,10 +770,10 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
                       className="sr-only"
                     />
                     <span className={radioDotClass(isActive)} aria-hidden="true" />
-                    <span className="min-w-0 flex-1 text-sm font-semibold leading-snug text-foreground">
+                    <span className="min-w-0 flex-1 text-body font-semibold leading-snug text-foreground">
                       {sectionConfigs[id].title}
                     </span>
-                    <span className="shrink-0 text-xs tabular-nums text-muted-foreground">{SECTION_STYLE[id].pct}</span>
+                    <span className="shrink-0 text-meta tabular-nums text-muted-foreground">{SECTION_STYLE[id].pct}</span>
                   </label>
                 );
               })}
@@ -782,25 +783,25 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
 
         <div id="plate-section-detail" aria-live="polite" className="space-y-5">
           <div>
-            <h4 className="text-lg font-semibold text-foreground">{activeSection.title}</h4>
-            <p className="mt-0.5 text-sm font-medium text-muted-foreground">{activeSection.percentageLabel}</p>
+            <h4 className="text-title font-semibold text-foreground">{activeSection.title}</h4>
+            <p className="mt-0.5 text-body font-medium text-muted-foreground">{activeSection.percentageLabel}</p>
           </div>
 
           <div className="grid grid-cols-1 gap-5 border-t border-border pt-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-1 lg:gap-5">
             <div>
-              <h5 className="text-sm font-semibold text-foreground">{ui.handRuleHeading}</h5>
-              <p className="mt-1 text-base font-semibold text-foreground">{activeSection.handRule}</p>
-              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{activeSection.handDetail}</p>
+              <h5 className="text-body font-semibold text-foreground">{ui.handRuleHeading}</h5>
+              <p className="mt-1 text-body font-semibold text-foreground">{activeSection.handRule}</p>
+              <p className="mt-1 text-body text-muted-foreground">{activeSection.handDetail}</p>
             </div>
 
             <div>
-              <h5 className="text-sm font-semibold text-foreground">{ui.clinicalPurposeHeading}</h5>
-              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{activeSection.clinicalPurpose}</p>
+              <h5 className="text-body font-semibold text-foreground">{ui.clinicalPurposeHeading}</h5>
+              <p className="mt-1 text-body text-muted-foreground">{activeSection.clinicalPurpose}</p>
             </div>
           </div>
 
           <div className="border-t border-border pt-4">
-            <h5 className="text-sm font-semibold text-foreground">{ui.presetsTitle}</h5>
+            <h5 className="text-body font-semibold text-foreground">{ui.presetsTitle}</h5>
             <div role="radiogroup" aria-label={ui.presetsTitle} className={`mt-2 ${ROW_LIST_CLASS} sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-1`}>
               {PRESETS.map((p) => {
                 const isSelected = sameSet(selectedFoodIds, p.ids);
@@ -815,7 +816,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
                       className="sr-only"
                     />
                     <span className={radioDotClass(isSelected)} aria-hidden="true" />
-                    <span className="text-sm font-semibold leading-snug text-foreground">{ui[p.key]}</span>
+                    <span className="text-body font-semibold leading-snug text-foreground">{ui[p.key]}</span>
                   </label>
                 );
               })}
@@ -828,16 +829,18 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
       <div className="space-y-5 border-t border-border pt-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h4 className="text-base font-semibold text-foreground sm:text-lg">{ui.builderHeading}</h4>
-            <p className="mt-0.5 max-w-prose text-sm text-muted-foreground">{ui.builderSubtitle}</p>
+            <h4 className="text-lead font-semibold text-foreground">{ui.builderHeading}</h4>
+            <p className="mt-0.5 max-w-(--measure-reading) text-body text-muted-foreground">{ui.builderSubtitle}</p>
           </div>
-          <button
+          <Button
             type="button"
+            variant="outline"
+            size="md"
             onClick={() => setSelectedFoodIds(DEFAULT_SELECTION)}
-            className="min-h-[44px] shrink-0 self-start rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="shrink-0 self-start"
           >
             {ui.resetButton}
-          </button>
+          </Button>
         </div>
 
         <div
@@ -846,7 +849,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
         >
           <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
             <span
-              className={`rounded-md border px-2.5 py-1 text-xs font-semibold ${
+              className={`rounded-md border px-2.5 py-1 text-meta font-semibold ${
                 isPlateComplete
                   ? "bg-live-sage-soft text-foreground border-live-sage/30"
                   : "bg-amber-care-soft text-amber-care-hover border-amber-care-border"
@@ -854,7 +857,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
             >
               {isPlateComplete ? ui.completeStatus : ui.incompleteStatus}
             </span>
-            <span className="flex flex-wrap gap-x-4 gap-y-1 text-sm tabular-nums text-foreground">
+            <span className="flex flex-wrap gap-x-4 gap-y-1 text-meta tabular-nums text-foreground">
               <span>
                 {selectedFoods.length} {ui.foodsCountSuffix}
               </span>
@@ -868,7 +871,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
               </span>
             </span>
           </div>
-          <p className="max-w-prose text-sm leading-relaxed text-muted-foreground">
+          <p className="max-w-(--measure-reading) text-body text-muted-foreground">
             {isPlateComplete ? ui.completeMessage : ui.incompleteMessage}
           </p>
         </div>
@@ -877,7 +880,7 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {SECTION_ORDER.map((cat) => (
             <div key={cat}>
-              <h5 className="text-sm font-semibold text-foreground">
+              <h5 className="text-body font-semibold text-foreground">
                 {sectionConfigs[cat].title}
               </h5>
               <ul className={`mt-2 ${ROW_LIST_SINGLE_CLASS}`}>
@@ -897,10 +900,10 @@ export function DiabetesPlateMethodModule({ lang: propLang }: DiabetesPlateMetho
                             {isSelected && <CheckIcon className="h-3 w-3" />}
                           </span>
                           <span className="min-w-0">
-                            <span className="block text-sm font-medium leading-snug break-words text-foreground">{food.name}</span>
-                            <span className="mt-0.5 block text-xs tabular-nums text-muted-foreground">
+                            <span className="block text-meta font-medium leading-snug break-words text-foreground">{food.name}</span>
+                            <span className="mt-0.5 block text-meta tabular-nums text-muted-foreground">
                               {food.caloriesApprox} kcal
-                              {food.fiberGrams > 0 && ` · ${oneDecimal.format(food.fiberGrams)} ${ui.fiberShort}`}
+                              {food.fiberGrams > 0 && `, ${oneDecimal.format(food.fiberGrams)} ${ui.fiberShort}`}
                             </span>
                           </span>
                         </button>

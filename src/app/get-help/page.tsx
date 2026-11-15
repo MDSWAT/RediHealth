@@ -16,7 +16,11 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function GetHelpPage() {
+export default async function GetHelpPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   const countries = configuredCountries();
   const lang = await getRequestLang();
   const visitorCountry = parseCountry(countryFromHeaders(await headers()));
@@ -25,6 +29,8 @@ export default async function GetHelpPage() {
     countries.find((country) => COUNTRY_INFO[country].lang === lang) ??
     countries[0] ??
     null;
+  const resolvedSearchParams = await searchParams;
+  const mode = resolvedSearchParams?.mode === "mediator" ? "mediator" : undefined;
 
-  return <GetHelpPageContent countries={countries} initialCountry={initialCountry} />;
+  return <GetHelpPageContent countries={countries} initialCountry={initialCountry} mode={mode} />;
 }

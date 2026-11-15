@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { CalendarIcon, CheckIcon, GlobeIcon, PhoneIcon, PinIcon, ShieldIcon, VolumeIcon } from "@/components/ui/icons";
+import { Button } from "@/components/ui/Button";
+import { ListenButton } from "@/components/ui/ListenButton";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { useReadAloud } from "@/components/health-check/readingTools";
+import { PinIcon, VolumeIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { DUTY_HOURS, useOnCallStatus } from "./OnCallStatusBanner";
 import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
@@ -37,57 +41,57 @@ type HeroFeatureCopy = {
   offDutyAction: string;
 };
 
-const heroCopy: Record<Lang, HeroFeatureCopy> = {
+export const heroCopy: Record<Lang, HeroFeatureCopy> = {
   ru: {
-    soundTest: "Тестовый звук",
+    soundTest: "Проверить звук",
     soundOk: "Звук работает",
     freeTitle: "Бесплатно для всех",
-    freeDesc: "Никакой карты, счета или страховки не требуется.",
-    browserTitle: "Открывается в вашем браузере",
-    browserDesc: "Работает напрямую на любом телефоне без приложения",
-    smsTitle: "Подтверждение текстовым сообщением",
-    smsDesc: "Получите ссылку для звонка и консультацию по SMS",
-    free: "Бесплатно, для всех",
-    browser: "Открывается в браузере вашего телефона. Никакая учетная запись или приложение не требуется.",
-    sms: "Вы получите подтверждение и ссылку в текстовом сообщении.",
-    onDuty: `Доступно сейчас · каждый день, ${DUTY_HOURS}`,
-    offDutyTitle: "Зал ожидания открывается в 08:00.",
-    offDuty: "Он открыт каждый день до 20:00.",
-    offDutyAction: "Посмотрите, что приготовить",
+    freeDesc: "Без полиса, аккаунта и оплаты.",
+    browserTitle: "Открывается в браузере",
+    browserDesc: "Работает в браузере на любом телефоне",
+    smsTitle: "Подтверждение по SMS",
+    smsDesc: "Ссылка на звонок и советы придут по SMS",
+    free: "Бесплатно для всех",
+    browser: "Открывается в браузере телефона. Приложение и аккаунт не нужны.",
+    sms: "Подтверждение и ссылка придут в SMS.",
+    onDuty: `Доступно сейчас, каждый день, ${DUTY_HOURS}`,
+    offDutyTitle: "Зал ожидания открывается в 08:00",
+    offDuty: "Открыт каждый день до 20:00.",
+    offDutyAction: "Что подготовить",
   },
 
   ro: {
     soundTest: "Testează sunetul",
     soundOk: "Sunetul funcționează",
     freeTitle: "Gratuit pentru oricine",
-    freeDesc: "Fără card de sănătate, cont sau abonament",
+    freeDesc: "Fără card de sănătate, cont sau plată",
     browserTitle: "Se deschide în browser",
-    browserDesc: "Funcționează pe orice telefon, fără aplicație",
+    browserDesc: "Funcționează în browser, pe orice telefon",
     smsTitle: "Confirmare prin SMS",
-    smsDesc: "Primești linkul de consult și recomandările prin mesaj",
+    smsDesc: "Primești linkul de apel și sfaturile prin SMS",
     free: "Gratuit, pentru oricine",
     browser: "Se deschide în browserul telefonului. Nu ai nevoie de cont sau aplicație.",
     sms: "Primești prin SMS confirmarea și linkul",
-    onDuty: `Disponibil acum · zilnic, ${DUTY_HOURS}`,
+    onDuty: `Disponibil acum, zilnic, ${DUTY_HOURS}`,
     offDutyTitle: "Sala de așteptare se deschide la 08:00",
-    offDuty: "Este deschisă în fiecare zi, până la 20:00.",
+    offDuty: "Deschisă zilnic până la 20:00.",
     offDutyAction: "Vezi ce să pregătești",
   },
   en: {
-    soundTest: "Test sound",
+    soundTest: "Test your sound",
     soundOk: "Sound works",
     freeTitle: "Free for anyone",
-    freeDesc: "No card, account or insurance required",
+    freeDesc: "No card, account or payment needed",
     browserTitle: "Opens in your browser",
-    browserDesc: "Works directly on any phone without an app",
+    browserDesc: "Works in the browser on any phone",
     smsTitle: "Text message confirmation",
-    smsDesc: "Receive your call link and advice by SMS",
+    smsDesc: "Get your call link and advice by SMS",
     free: "Free, for anyone",
     browser: "Opens in your phone's browser. No account or app needed.",
     sms: "You get the confirmation and the link by text message",
-    onDuty: `Available now · every day, ${DUTY_HOURS}`,
+    onDuty: `Available now, every day, ${DUTY_HOURS}`,
     offDutyTitle: "The waiting room opens at 08:00",
-    offDuty: "It is open every day until 20:00.",
+    offDuty: "Open every day until 20:00.",
     offDutyAction: "See what to get ready",
   },
   sq: {
@@ -96,72 +100,69 @@ const heroCopy: Record<Lang, HeroFeatureCopy> = {
     freeTitle: "Falas për këdo",
     freeDesc: "Pa pagesë, kartë shëndetësore apo llogari",
     browserTitle: "Hapet në shfletues",
-    browserDesc: "Punon në çdo telefon pa instaluar aplikacion",
+    browserDesc: "Punon në shfletues në çdo telefon",
     smsTitle: "Konfirmim me SMS",
-    smsDesc: "Lidhjen e takimit dhe këshillat i merr me mesazh",
+    smsDesc: "Lidhjen e thirrjes dhe këshillat i merr me SMS",
     free: "Falas, për këdo",
     browser: "Hapet në shfletuesin e telefonit. Nuk të duhet llogari apo aplikacion.",
     sms: "Konfirmimin dhe lidhjen i merr me SMS",
-    onDuty: `Në dispozicion tani · çdo ditë, ${DUTY_HOURS}`,
+    onDuty: `Në dispozicion tani, çdo ditë, ${DUTY_HOURS}`,
     offDutyTitle: "Dhoma e pritjes hapet në 08:00",
-    offDuty: "Është e hapur çdo ditë deri në 20:00.",
-    offDutyAction: "Shiko çfarë të përgatitësh",
+    offDuty: "Hapur çdo ditë deri në 20:00.",
+    offDutyAction: "Çfarë të përgatitësh",
   },
   it: {
     soundTest: "Prova l'audio",
-    soundOk: "L'audio funciona",
+    soundOk: "L'audio funziona",
     freeTitle: "Gratuito per tutti",
-    freeDesc: "Senza costi, tessera sanitaria né abbonamento",
+    freeDesc: "Senza costi, tessera sanitaria né account",
     browserTitle: "Si apre nel browser",
-    browserDesc: "Funziona su qualsiasi telefono senza app",
+    browserDesc: "Funziona nel browser su qualsiasi telefono",
     smsTitle: "Conferma via SMS",
-    smsDesc: "Ricevi il link della visita e il promemoria via messaggio",
+    smsDesc: "Ricevi link della visita e consigli via SMS",
     free: "Gratis, per tutti",
     browser: "Si apre nel browser del telefono. Non ti servono account o app.",
     sms: "Ricevi conferma e link via SMS",
-    onDuty: `Disponibile ora · tutti i giorni, ${DUTY_HOURS}`,
+    onDuty: `Disponibile ora, tutti i giorni, ${DUTY_HOURS}`,
     offDutyTitle: "La sala d'attesa apre alle 08:00",
-    offDuty: "È aperta tutti i giorni fino alle 20:00.",
+    offDuty: "Aperta ogni giorno fino alle 20:00.",
     offDutyAction: "Vedi cosa preparare",
   },
   hr: {
     soundTest: "Isprobaj zvuk",
     soundOk: "Zvuk radi",
     freeTitle: "Besplatno za svakoga",
-    freeDesc: "Bez zdravstvene iskaznice HZZO, računa ili osiguranja",
+    freeDesc: "Bez zdravstvene iskaznice HZZO, računa ili plaćanja",
     browserTitle: "Otvara se u pregledniku",
-    browserDesc: "Radi izravno na svakom telefonu bez aplikacije",
+    browserDesc: "Radi u pregledniku na svakom telefonu",
     smsTitle: "Potvrda putem SMS poruke",
-    smsDesc: "Primi poveznicu za poziv i upute porukom",
+    smsDesc: "Poveznicu za poziv i upute primaš SMS porukom",
     free: "Besplatno, za svakoga",
     browser: "Otvara se u pregledniku telefona. Ne trebaš račun ni aplikaciju.",
     sms: "Potvrdu i poveznicu primaš SMS porukom",
-    onDuty: `Dostupno sada · svaki dan, ${DUTY_HOURS}`,
+    onDuty: `Dostupno sada, svaki dan, ${DUTY_HOURS}`,
     offDutyTitle: "Čekaonica se otvara u 08:00",
-    offDuty: "Otvorena je svaki dan do 20:00.",
+    offDuty: "Otvorena svaki dan do 20:00.",
     offDutyAction: "Pogledaj što pripremiti",
   },
   rom: {
     soundTest: "Zumav o avazi",
     soundOk: "O avazi kerel buchi",
     freeTitle: "Bi lovesko vash sakon",
-    freeDesc: "Bi sastipnaske kartako, kontosko vay siguranciyako",
+    freeDesc: "Bi sastipnaske kartako, kontosko vay platinipnasko",
     browserTitle: "Putrel pes and-o brauzero",
-    browserDesc: "Kerel buchi pe sako telefono bi aplikaciyako",
+    browserDesc: "Kerel buchi and-o brauzero pe sako telefono",
     smsTitle: "Chacharipe katar SMS",
-    smsDesc: "Lel o linko vash o svato thaj e sikavimata katar SMS",
+    smsDesc: "O linko vash o svato thaj e sikavimata aven katar SMS",
     free: "Bi lovesko, vash sakon",
     browser: "Putrel pes and-o brauzero e telefonesko. Na trebul konto vay aplikacia.",
     sms: "Lel o chacharipe thaj o linko katar SMS",
-    onDuty: `Kathe akana · sako dives, ${DUTY_HOURS}`,
+    onDuty: `Kathe akana, sako dives, ${DUTY_HOURS}`,
     offDutyTitle: "E azhukeripnaski soba putrel pes ko 08:00",
-    offDuty: "Putardi si sako dives zhi ko 20:00.",
+    offDuty: "Putardi sako dives zhi ko 20:00.",
     offDutyAction: "Dikh so te getosares",
   },
 };
-
-const primaryLink =
-  "inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
 /**
  * Doctor online: the two ways to talk to a doctor on one surface, then the pharmacy as a
@@ -175,111 +176,115 @@ export function MedicOnlineHero() {
   const c = heroCopy[lang] ?? heroCopy.ro;
   const findHelp = findHelpLinks(lang);
   const [soundChecked, setSoundChecked] = useState(false);
+  const voice = useReadAloud(lang);
   // Outside duty hours the booking is the useful action, so it takes the primary style.
   const { isOnDuty } = useOnCallStatus();
-  const primaryStyle = "bg-sapphire text-white hover:bg-sapphire-light";
-  const secondaryStyle = "border border-border bg-background text-foreground hover:bg-muted";
 
   return (
-    <section className="border-b border-border bg-background py-10 sm:py-16">
+    <section className="border-b border-border bg-background pb-10 sm:pb-16">
       <Container>
-        <div className="max-w-3xl">
-          <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">{mp.heroTitle}</h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">{mp.heroSubtitle}</p>
-        </div>
+        <PageHeader
+          title={mp.heroTitle}
+          lead={mp.heroSubtitle}
+          actions={
+            voice.available ? (
+              <ListenButton
+                uiLang={lang}
+                isPlaying={voice.speaking}
+                onToggle={() => {
+                  if (voice.speaking) {
+                    voice.stop();
+                  } else {
+                    voice.speak([mp.heroTitle, mp.heroSubtitle]);
+                  }
+                }}
+              />
+            ) : undefined
+          }
+        />
 
         {/* The two ways in share one surface, split by a hairline: no row of look-alike cards. */}
-        <div className="mt-8 divide-y divide-border rounded-xl border border-border bg-card">
+        {/* The page's one lit surface: a soft pointer light and top-edge highlight on fine pointers. */}
+        <div className="mt-8 divide-y divide-border rounded-xl border border-border bg-card shadow-(--shadow-card-rest)">
           <div className="grid grid-cols-1 divide-y divide-border md:grid-cols-2 md:divide-x md:divide-y-0">
             <div className="flex flex-col p-6">
               {isOnDuty && (
-                <p role="status" className="mb-3 border-l-2 border-live-sage pl-2.5 text-sm font-medium text-foreground tabular-nums">
+                <p role="status" className="mb-3 text-body font-semibold text-foreground tabular-nums">
                   {c.onDuty}
                 </p>
               )}
-              <h2 className="flex items-center gap-2.5 text-lg font-semibold text-foreground tabular-nums">
-                <PhoneIcon className="h-5 w-5 shrink-0 text-sapphire dark:text-sapphire-border" />
+              <h2 className="text-balance text-section font-semibold text-foreground tabular-nums">
                 {isOnDuty ? mp.cardOnCallTitle : c.offDutyTitle}
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground tabular-nums">{isOnDuty ? mp.cardOnCallSubtitle : c.offDuty}</p>
-              <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
-                <Link href={withLangPrefix("/medic-online/asteptare", lang)} className={`${primaryLink} flex-1 ${isOnDuty ? primaryStyle : secondaryStyle}`}>
-                  {isOnDuty ? mp.cardOnCallAction : c.offDutyAction}
-                </Link>
+              <p className="mt-2 text-body text-muted-foreground tabular-nums">{isOnDuty ? mp.cardOnCallSubtitle : c.offDuty}</p>
+              <div className="mt-auto flex flex-col items-start gap-2 pt-6">
+                <div className="flex w-full flex-nowrap items-center">
+                  <Button
+                    href={withLangPrefix("/medic-online/asteptare", lang)}
+                    variant={isOnDuty ? "action" : "outline"}
+                    size="lg"
+                    className="w-full sm:w-auto"
+                  >
+                    {isOnDuty ? mp.cardOnCallAction : c.offDutyAction}
+                  </Button>
+                </div>
                 <button
                   type="button"
                   onClick={() => {
                     playSoundCheck();
                     setSoundChecked(true);
                   }}
-                  className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg px-3 text-sm font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="press-row inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-sm text-body font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:decoration-sapphire-border/40"
                 >
-                  {soundChecked ? <CheckIcon className="h-4 w-4 text-sapphire dark:text-sapphire-border" /> : <VolumeIcon className="h-4 w-4" />}
+                  <VolumeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                   <span aria-live="polite">{soundChecked ? c.soundOk : c.soundTest}</span>
                 </button>
               </div>
             </div>
 
             <div className="flex flex-col p-6">
-              <h2 className="flex items-center gap-2.5 text-lg font-semibold text-foreground">
-                <CalendarIcon className="h-5 w-5 shrink-0 text-sapphire dark:text-sapphire-border" />
+              <h2 className="text-balance text-section font-semibold text-foreground">
                 {mp.cardBookingTitle}
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{mp.cardBookingSubtitle}</p>
+              <p className="mt-2 text-body text-muted-foreground">{mp.cardBookingSubtitle}</p>
               <div className="mt-auto pt-6">
-                <Link
+                <Button
                   href={withLangPrefix("/medic-online/programare", lang)}
-                  className={`${primaryLink} w-full ${isOnDuty ? secondaryStyle : primaryStyle}`}
+                  variant={isOnDuty ? "outline" : "action"}
+                  size="lg"
+                  className="w-full sm:w-auto"
                 >
                   {mp.cardBookingAction}
-                </Link>
+                </Button>
               </div>
             </div>
           </div>
-
-          {/* Many questions do not need a doctor: the pharmacy, as a quiet row of the same surface. */}
-          <div className="flex flex-col gap-2 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-base font-semibold text-foreground">{findHelp.noDoctorNeeded}</p>
-              <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{findHelp.pharmacyFirstHint}</p>
-            </div>
-            <Link
-              href={withLangPrefix(findHelpHref("pharmacy"), lang)}
-              className="group -mx-2 inline-flex min-h-[44px] shrink-0 items-center gap-2 self-start rounded-lg px-2 text-sm font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border sm:self-auto"
-            >
-              <PinIcon className="h-4 w-4" aria-hidden="true" />
-              <span className="underline-offset-4 group-hover:underline">{findHelp.nearestPharmacy}</span>
-            </Link>
-          </div>
         </div>
 
-        <ul className="mt-8 grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-3 sm:gap-5">
-          <li className="group relative flex items-start gap-4 rounded-2xl border border-stone-200/90 bg-gradient-to-b from-card via-card to-card/95 p-4 sm:p-5 shadow-xs transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:-translate-y-0.5 hover:border-sapphire/40 hover:shadow-md dark:border-stone-800">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sapphire-soft/80 text-sapphire ring-1 ring-sapphire/15 transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:scale-105 group-hover:bg-sapphire group-hover:text-white dark:bg-sapphire/15 dark:text-sapphire-light dark:ring-sapphire/25">
-              <ShieldIcon className="h-5 w-5" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold tracking-[-0.01em] text-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire dark:group-hover:text-sapphire-light sm:text-base">{c.freeTitle}</p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground text-pretty sm:text-sm">{c.freeDesc}</p>
-            </div>
+        {/* Many questions do not need a doctor: the pharmacy, as a single quiet line below the card. */}
+        <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span className="text-body text-muted-foreground">{findHelp.noDoctorNeeded}</span>
+          <Link
+            href={withLangPrefix(findHelpHref("pharmacy"), lang)}
+            className="inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-sm text-body font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:decoration-sapphire-border/40"
+          >
+            <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+            <span>{findHelp.nearestPharmacy}</span>
+          </Link>
+        </div>
+
+        <ul className="mt-8 grid grid-cols-1 gap-6 border-t border-border pt-6 sm:grid-cols-3 sm:gap-8">
+          <li>
+            <p className="text-body font-semibold text-foreground">{c.freeTitle}</p>
+            <p className="mt-1 text-body text-muted-foreground">{c.freeDesc}</p>
           </li>
-          <li className="group relative flex items-start gap-4 rounded-2xl border border-stone-200/90 bg-gradient-to-b from-card via-card to-card/95 p-4 sm:p-5 shadow-xs transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:-translate-y-0.5 hover:border-sapphire/40 hover:shadow-md dark:border-stone-800">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sapphire-soft/80 text-sapphire ring-1 ring-sapphire/15 transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:scale-105 group-hover:bg-sapphire group-hover:text-white dark:bg-sapphire/15 dark:text-sapphire-light dark:ring-sapphire/25">
-              <GlobeIcon className="h-5 w-5" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold tracking-[-0.01em] text-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire dark:group-hover:text-sapphire-light sm:text-base">{c.browserTitle}</p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground text-pretty sm:text-sm">{c.browserDesc}</p>
-            </div>
+          <li>
+            <p className="text-body font-semibold text-foreground">{c.browserTitle}</p>
+            <p className="mt-1 text-body text-muted-foreground">{c.browserDesc}</p>
           </li>
-          <li className="group relative flex items-start gap-4 rounded-2xl border border-stone-200/90 bg-gradient-to-b from-card via-card to-card/95 p-4 sm:p-5 shadow-xs transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:-translate-y-0.5 hover:border-sapphire/40 hover:shadow-md dark:border-stone-800">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sapphire-soft/80 text-sapphire ring-1 ring-sapphire/15 transition-all duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:scale-105 group-hover:bg-sapphire group-hover:text-white dark:bg-sapphire/15 dark:text-sapphire-light dark:ring-sapphire/25">
-              <PhoneIcon className="h-5 w-5" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold tracking-[-0.01em] text-foreground transition-colors duration-[var(--dur-fast)] group-hover:text-sapphire dark:group-hover:text-sapphire-light sm:text-base">{c.smsTitle}</p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground text-pretty sm:text-sm">{c.smsDesc}</p>
-            </div>
+          <li>
+            <p className="text-body font-semibold text-foreground">{c.smsTitle}</p>
+            <p className="mt-1 text-body text-muted-foreground">{c.smsDesc}</p>
           </li>
         </ul>
       </Container>

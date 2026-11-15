@@ -146,7 +146,7 @@ export function RecaptchaNotice() {
   if (!enabled) return null;
   const t = copy[lang];
   return (
-    <p className="mt-4 text-xs text-muted-foreground">
+    <p className="mt-4 text-meta text-muted-foreground">
       {t.notice}{" "}
       <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">{t.privacy}</a>{" "}
       {t.and}{" "}

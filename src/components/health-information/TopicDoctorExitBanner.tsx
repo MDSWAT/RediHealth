@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { StethoscopeIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
@@ -92,24 +92,26 @@ export function TopicDoctorExitBanner({
         <div className="max-w-2xl space-y-3">
           <h2
             id="doctor-exit-title"
-            className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
+            className="text-balance text-section font-semibold text-foreground"
           >
             {copy.title}
           </h2>
 
-          <p className="text-base leading-relaxed text-muted-foreground">
+          <p className="text-body text-muted-foreground">
             {copy.description}
           </p>
         </div>
 
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
-          <Link
+          <Button
             href={targetHref}
-            className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+            variant="action"
+            size="lg"
+            className="px-6"
           >
-            <StethoscopeIcon className="h-4 w-4" />
-            <span>{copy.buttonText}</span>
-          </Link>
+            <StethoscopeIcon className="h-4 w-4 shrink-0" />
+            <span className="min-w-0 truncate">{copy.buttonText}</span>
+          </Button>
         </div>
       </div>
     </section>

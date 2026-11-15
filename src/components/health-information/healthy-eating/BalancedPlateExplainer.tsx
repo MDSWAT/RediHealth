@@ -67,9 +67,9 @@ export function BalancedPlateExplainer({ lang, className = "", mode = "sectors" 
       aria-label={copy.title}
       data-testid="balanced-plate-explainer"
     >
-      <div className="max-w-prose">
-        <h3 className="text-lg font-semibold text-foreground">{copy.title}</h3>
-        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{copy.subtitle}</p>
+      <div className="max-w-(--measure-reading)">
+        <h3 className="text-title font-semibold text-foreground">{copy.title}</h3>
+        <p className="mt-1 text-body text-muted-foreground">{copy.subtitle}</p>
       </div>
 
       <div className="mx-auto my-6 aspect-[7/5] w-full max-w-[22rem]">
@@ -83,7 +83,7 @@ export function BalancedPlateExplainer({ lang, className = "", mode = "sectors" 
 
       {mode === "sectors" ? (
         <div className="space-y-5">
-          <p className="text-sm text-muted-foreground">{copy.interactiveHelper}</p>
+          <p className="text-body text-muted-foreground">{copy.interactiveHelper}</p>
 
           <div role="radiogroup" aria-label={copy.ariaPlateLabel} className={ROW_LIST_CLASS}>
             {SECTOR_ORDER.map((key) => {
@@ -101,8 +101,8 @@ export function BalancedPlateExplainer({ lang, className = "", mode = "sectors" 
                   />
                   <span className={radioDotClass(isSelected)} aria-hidden="true" />
                   <span className="min-w-0">
-                    <span className="block text-sm font-semibold leading-snug text-foreground">{sec.name}</span>
-                    <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">{sec.handRuleTitle}</span>
+                    <span className="block text-meta font-semibold leading-snug text-foreground">{sec.name}</span>
+                    <span className="mt-0.5 block text-meta leading-snug text-muted-foreground">{sec.handRuleTitle}</span>
                   </span>
                 </label>
               );
@@ -110,26 +110,26 @@ export function BalancedPlateExplainer({ lang, className = "", mode = "sectors" 
           </div>
 
           <div aria-live="polite">
-            <p className="max-w-prose text-sm font-medium leading-relaxed text-foreground">
+            <p className="max-w-(--measure-reading) text-body font-medium text-foreground">
               {activeSector.handRuleDesc}
             </p>
-            <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-1.5 max-w-(--measure-reading) text-body text-muted-foreground">
               {activeSector.clinicalWhy}
             </p>
 
-            <h4 className="mt-5 text-sm font-semibold text-foreground">{copy.staplesTitle}</h4>
+            <h4 className="mt-5 text-body font-semibold text-foreground">{copy.staplesTitle}</h4>
             <ul className="mt-2 grid grid-cols-1 gap-x-6 gap-y-1.5 sm:grid-cols-2">
               {activeSector.culturalStaples.map((staple) => (
-                <li key={staple} className="flex items-start gap-2 text-sm leading-snug text-foreground">
-                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted-foreground" aria-hidden="true" />
+                <li key={staple} className="flex items-start gap-2 text-body leading-snug text-foreground">
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-xs bg-muted-foreground" aria-hidden="true" />
                   <span>{staple}</span>
                 </li>
               ))}
             </ul>
 
             <div className="mt-5 border-t border-border pt-4">
-              <p className="text-sm font-semibold text-foreground">{copy.smartTipTitle}</p>
-              <p className="mt-1 max-w-prose text-sm leading-relaxed text-muted-foreground">
+              <p className="text-body font-semibold text-foreground">{copy.smartTipTitle}</p>
+              <p className="mt-1 max-w-(--measure-reading) text-body text-muted-foreground">
                 {activeSector.smartTip}
               </p>
             </div>
@@ -137,7 +137,7 @@ export function BalancedPlateExplainer({ lang, className = "", mode = "sectors" 
         </div>
       ) : (
         <div className="space-y-4">
-          <p className="text-sm text-muted-foreground">{copy.builderSubtitle}</p>
+          <p className="text-body text-muted-foreground">{copy.builderSubtitle}</p>
 
           <div className={ROW_LIST_CLASS}>
             {BUILDER_FOODS.map((food) => {
@@ -154,21 +154,21 @@ export function BalancedPlateExplainer({ lang, className = "", mode = "sectors" 
                   <span className={tickBoxClass(isChecked)} aria-hidden="true">
                     {isChecked && <CheckIcon className="h-3 w-3" />}
                   </span>
-                  <span className="text-sm leading-snug text-foreground">{name}</span>
+                  <span className="text-body leading-snug text-foreground">{name}</span>
                 </button>
               );
             })}
           </div>
 
           <div aria-live="polite">
-            <p className="text-sm font-semibold text-foreground">{builderFeedback}</p>
-            <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-xs text-foreground">
+            <p className="text-body font-semibold text-foreground">{builderFeedback}</p>
+            <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-meta text-foreground">
               {(["vegetables", "grains", "protein"] as BuilderCategory[]).map((key) => (
                 <li key={key} className="flex items-center gap-1.5">
                   {has[key] ? (
                     <CheckIcon className="h-3.5 w-3.5 text-live-sage" />
                   ) : (
-                    <span className="h-3 w-3 rounded-full border border-muted-foreground/60" aria-hidden="true" />
+                    <span className="h-3 w-3 rounded-xs border border-muted-foreground/60" aria-hidden="true" />
                   )}
                   <span className={has[key] ? "font-semibold" : "text-muted-foreground"}>{copy.builderChecklist[key]}</span>
                 </li>
@@ -179,7 +179,7 @@ export function BalancedPlateExplainer({ lang, className = "", mode = "sectors" 
           <button
             type="button"
             onClick={() => setSelectedFoodIds([])}
-            className="min-h-[44px] rounded-lg text-sm font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+            className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 text-body font-semibold text-sapphire underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {copy.builderReset}
           </button>

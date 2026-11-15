@@ -1,10 +1,12 @@
 "use client";
 
-import { memo, useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState, useRef } from "react";
 import L from "leaflet";
 import { CircleMarker, MapContainer, Marker, Popup, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { primaryPhoneHref, type InstituteCategory, type MedicalInstitute } from "@/lib/medical-institutes";
+import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
+import { PALETTE, readCssToken } from "@/lib/palette-constants";
 
 type LatLng = { lat: number; lng: number };
 
@@ -27,9 +29,14 @@ type Props = {
 const iconCache = new Map<string, L.DivIcon>();
 const clusterIconCache = new Map<string, L.DivIcon>();
 
-// Places are sapphire (#1d3557); emergency facilities carry clinical ruby (#c62f3c).
-const PLACE_FILL = "#1d3557";
-const EMERGENCY_FILL = "#c62f3c";
+// Places are sapphire; emergency facilities carry clinical ruby.
+function resolveMapPalette() {
+  return {
+    placeFill: readCssToken("--color-sapphire", PALETTE.sapphire),
+    emergencyFill: readCssToken("--color-primary", PALETTE.primary),
+    cardFill: readCssToken("--color-card", PALETTE.card),
+  };
+}
 
 const CLUSTER_MAX_ZOOM = 14;
 /** Places closer than this on screen join one cluster; larger than the biggest badge, so badges never overlap. */
@@ -37,7 +44,7 @@ const CLUSTER_RADIUS_PX = 56;
 const LOCAL_USER_RANGE_KM = 80;
 
 function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return prefersCalmOrReducedMotion();
 }
 
 function isMapAlive(map: L.Map): boolean {
@@ -70,10 +77,11 @@ const PIN_W = 28;
 const PIN_H = 36;
 
 function placeIcon(selected: boolean, hovered: boolean, emergency: boolean) {
-  const key = `${selected}-${hovered}-${emergency}`;
+  const { placeFill, emergencyFill, cardFill } = resolveMapPalette();
+  const key = `${selected}-${hovered}-${emergency}-${placeFill}-${emergencyFill}`;
   const cached = iconCache.get(key);
   if (cached) return cached;
-  const fill = emergency ? EMERGENCY_FILL : PLACE_FILL;
+  const fill = emergency ? emergencyFill : placeFill;
   const classes = ["fhs-place", selected ? "is-selected" : "", hovered ? "is-hovered" : ""]
     .filter(Boolean)
     .join(" ");
@@ -82,7 +90,7 @@ function placeIcon(selected: boolean, hovered: boolean, emergency: boolean) {
     html:
       `<span class="fhs-place-hit"></span>` +
       `<span class="fhs-place-dot" style="background:${fill}"></span>` +
-      `<svg class="fhs-place-pin" width="${PIN_W}" height="${PIN_H}" viewBox="4 1.6 16 20.8" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="10" r="4.5" fill="#ffffff"/><path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" fill="${fill}"/></svg>`,
+      `<svg class="fhs-place-pin" width="${PIN_W}" height="${PIN_H}" viewBox="4 1.6 16 20.8" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="10" r="4.5" fill="${cardFill}"/><path d="M12 2C7.589 2 4 5.589 4 9.995 3.971 16.44 11.696 21.784 12 22c0 0 8.029-5.56 8-12 0-4.411-3.589-8-8-8zm0 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" fill="${fill}"/></svg>`,
     iconSize: [PIN_W, PIN_H + 12],
     iconAnchor: [PIN_W / 2, PIN_H],
     popupAnchor: [0, -PIN_H + 4],
@@ -96,15 +104,16 @@ function clusterSize(count: number) {
 }
 
 function clusterTileIcon(count: number, hasEmergency: boolean, hasHovered: boolean) {
-  const key = `${count}-${hasEmergency}-${hasHovered}`;
+  const { placeFill, emergencyFill } = resolveMapPalette();
+  const key = `${count}-${hasEmergency}-${hasHovered}-${placeFill}-${emergencyFill}`;
   const cached = clusterIconCache.get(key);
   if (cached) return cached;
   const size = clusterSize(count);
   const icon = L.divIcon({
     className: `fhs-cluster${hasHovered ? " is-hovered" : ""}`,
     html:
-      `<span class="fhs-cluster-badge" style="width:${size}px;height:${size}px;background:${PLACE_FILL}">${count}</span>` +
-      (hasEmergency ? `<span class="fhs-cluster-er" style="background:${EMERGENCY_FILL}"></span>` : ""),
+      `<span class="fhs-cluster-badge" style="width:${size}px;height:${size}px;background:${placeFill}">${count}</span>` +
+      (hasEmergency ? `<span class="fhs-cluster-er" style="background:${emergencyFill}"></span>` : ""),
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
   });
@@ -372,8 +381,16 @@ function MapController({
       unmounted = true;
       ro.disconnect();
       if (rafId !== null) window.cancelAnimationFrame(rafId);
+      // Leaving the page mid-zoom: Leaflet's zoom animation ends on a timer that map.remove() does not
+      // cancel, and it then reads the removed map pane ("reading '_leaflet_pos'"). Stop any glide and
+      // mark the zoom as finished, so that late timer returns at its own guard.
+      if (isMapAlive(map)) map.stop();
+      (map as unknown as { _animatingZoom?: boolean })._animatingZoom = false;
     };
   }, [map]);
+
+  // The first framing lands without animation: the map should open on the results, not travel to them.
+  const hasFramedRef = useRef(false);
 
   useEffect(() => {
     if (!isMapAlive(map)) return;
@@ -385,7 +402,12 @@ function MapController({
     if (userLocation && isUserWithinLocalRange(userLocation, institutes)) {
       framed.push([userLocation.lat, userLocation.lng]);
     }
-    map.fitBounds(L.latLngBounds(framed), { padding: [48, 48], maxZoom: 15, animate: !prefersReducedMotion() });
+    map.fitBounds(L.latLngBounds(framed), {
+      padding: frameAll ? [24, 24] : [48, 48],
+      maxZoom: 15,
+      animate: hasFramedRef.current && !prefersReducedMotion(),
+    });
+    hasFramedRef.current = true;
   }, [institutes, userLocation, frameAll, map]);
 
   useEffect(() => {
@@ -445,9 +467,9 @@ function SearchAreaButton({ label, onSearch }: { label: string; onSearch: (cente
           setMoved(false);
           onSearch({ lat: center.lat, lng: center.lng });
         }}
-        className="pointer-events-auto min-h-11 rounded-lg bg-card px-4 text-sm font-semibold text-sapphire shadow-md ring-1 ring-black/5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="pointer-events-auto inline-flex min-h-11 max-w-[calc(100%-2rem)] items-center justify-center whitespace-nowrap rounded-lg border border-border-control bg-card px-4 text-body font-semibold text-sapphire shadow-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
-        {label}
+        <span className="min-w-0 truncate">{label}</span>
       </button>
     </div>
   );
@@ -480,6 +502,8 @@ export default function InstitutesMapInner({
       <MapContainer
         center={center}
         zoom={13}
+        zoomSnap={0.25}
+        zoomDelta={0.5}
         scrollWheelZoom={false}
         attributionControl={false}
         zoomAnimation={!prefersReducedMotion()}
@@ -501,14 +525,19 @@ export default function InstitutesMapInner({
             center={[userLocation.lat, userLocation.lng]}
             radius={18}
             interactive={false}
-            pathOptions={{ stroke: false, fillColor: PLACE_FILL, fillOpacity: 0.14 }}
+            pathOptions={{ stroke: false, fillColor: resolveMapPalette().placeFill, fillOpacity: 0.14 }}
           />
         ) : null}
         {userLocation ? (
           <CircleMarker
             center={[userLocation.lat, userLocation.lng]}
             radius={8}
-            pathOptions={{ color: PLACE_FILL, weight: 4, fillColor: "#ffffff", fillOpacity: 1 }}
+            pathOptions={{
+              color: resolveMapPalette().placeFill,
+              weight: 4,
+              fillColor: resolveMapPalette().cardFill,
+              fillOpacity: 1,
+            }}
           >
             {youAreHereLabel ? <Tooltip>{youAreHereLabel}</Tooltip> : null}
           </CircleMarker>

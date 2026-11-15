@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useEffect, useId, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AlertCircleIcon, ArrowRightIcon, CheckIcon, ClockIcon, CloseIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
+import { Button } from "@/components/ui/Button";
+import { ArrowRightIcon, ClockIcon, CloseIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
 import {
   ALL_ALBANIA,
   ALL_CROATIA,
@@ -64,7 +66,7 @@ const COPY: Record<Lang, {
     tabsLabel: "Типы новостей",
     local: "Местный",
     national: "Вся страна",
-    count: (n) => (n === 1 ? "1 news item" : `${n} новости`),
+    count: (n) => (n === 1 ? "1 новость" : `${n} новости`),
     noLocal: (p) => `Нет новостей для ${p} еще. Ниже новости по всей стране.`,
     highAlert: "Оповещение о здоровье",
     seasonalAlert: "Сезонное предупреждение",
@@ -283,7 +285,7 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
     listRef.current?.scrollTo({ top: 0 });
   }, [tab]);
 
-  if (!place) return null;
+  if (!place || typeof document === "undefined") return null;
 
   const targetCountry = placeCountry(place, countryHint);
   const title = isNationalCounty(place)
@@ -339,33 +341,33 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
     showCategory: tab === "all",
   };
 
-  return (
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}
-      className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4"
+      className="fixed inset-x-0 top-(--sheet-vv-top,0px) z-[80] flex h-(--sheet-vv-height,100dvh) items-end justify-center sm:inset-0 sm:h-auto sm:items-center sm:p-4"
     >
-      <div className="news-sheet-backdrop fixed inset-0 -z-10 bg-slate-950/45" onClick={onClose} aria-hidden="true" />
+      <div className="news-sheet-backdrop fixed inset-0 -z-10 bg-ink-950/55" onClick={onClose} aria-hidden="true" />
 
       <div
         ref={panelRef}
         tabIndex={-1}
-        className="news-sheet relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-[0_24px_48px_-12px_rgb(15_23_42/0.25)] sm:max-h-[85dvh] sm:rounded-xl focus:outline-none"
+        className="news-sheet relative flex max-h-[min(92dvh,calc(var(--sheet-vv-height,100dvh)-0.75rem))] w-full max-w-2xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-[0_24px_48px_-12px_rgb(15_23_42/0.25)] sm:max-h-[min(85dvh,calc(var(--sheet-vv-height,100dvh)-2rem))] sm:rounded-xl focus:outline-none"
       >
         <div className="shrink-0 border-b border-border px-5 pt-5 sm:px-7 sm:pt-6">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <h2 id={titleId} className="text-xl font-semibold tracking-tight text-balance">
+              <h2 id={titleId} className="text-title font-semibold text-balance">
                 {title}
               </h2>
-              <p className="mt-1 text-sm text-muted-foreground tabular-nums">{c.count(all.length)}</p>
+              <p className="mt-1 text-body text-muted-foreground tabular-nums">{c.count(all.length)}</p>
             </div>
             <button
               type="button"
               onClick={onClose}
               aria-label={c.close}
-              className="-mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row -mr-2 -mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <CloseIcon className="h-5 w-5" />
             </button>
@@ -387,20 +389,27 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
                     onClick={() => setTab(x.key)}
                     onKeyDown={(e) => onTabKeyDown(e, i)}
                     className={cn(
-                      "relative flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm",
+                      "press-row relative flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm",
                       selected ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                     )}
                   >
                     {x.label}
                     <span
                       className={cn(
-                        "text-xs tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]",
+                        "text-meta tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)]",
                         selected ? "font-semibold text-foreground/75" : "text-muted-foreground/80",
                       )}
                     >
                       {x.count}
                     </span>
-                    {selected && <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-0.5 bg-foreground" />}
+                    {/* The marker draws out from the centre under the chosen tab instead of jumping. */}
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        "absolute inset-x-0 bottom-0 h-0.5 origin-center bg-foreground transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
+                        selected ? "scale-x-100" : "scale-x-0",
+                      )}
+                    />
                   </button>
                 );
               })}
@@ -417,13 +426,14 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
         >
           {all.length === 0 ? (
             <div className="py-12 text-center">
-              <p className="text-base font-semibold">{np.emptyTitle}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{np.emptySubtitle}</p>
+              <p className="text-body font-semibold">{np.emptyTitle}</p>
+              <p className="mt-1 text-body text-muted-foreground">{np.emptySubtitle}</p>
             </div>
           ) : (
-            <>
+            // Keyed on the tab: the filtered list replaces the last one in place, items in order.
+            <div key={tab} className="swap-in">
               {groups.local.length === 0 && tab === "all" && (
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.noLocal(noteName)}</p>
+                <p className="mt-3 text-body text-muted-foreground">{c.noLocal(noteName)}</p>
               )}
               {local.length > 0 && (
                 <NewsList heading={showHeadings ? c.local : undefined} items={local} showRegion={placeIsNational} {...itemProps} />
@@ -431,11 +441,12 @@ export function PlaceNewsModal({ place, countryHint, articles, onClose }: PlaceN
               {national.length > 0 && (
                 <NewsList heading={showHeadings ? c.national : undefined} items={national} showRegion={false} {...itemProps} />
               )}
-            </>
+            </div>
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
@@ -457,7 +468,7 @@ function NewsList({ heading, items, ...rest }: ItemProps & { heading?: string; i
   return (
     <section className="mt-5 first:mt-3">
       {heading && (
-        <h3 className="mb-1 flex items-baseline gap-2 text-[13px] font-semibold text-foreground">
+        <h3 className="mb-1 flex items-baseline gap-2 text-body font-semibold text-foreground">
           {heading}
           <span className="font-normal text-muted-foreground tabular-nums">{items.length}</span>
         </h3>
@@ -500,17 +511,17 @@ function Meta({
               ? np.allCounties
               : placeName(a.county, lang);
   return (
-    <p className="flex flex-wrap items-center gap-x-1.5 text-xs text-muted-foreground tabular-nums">
+    <p className="flex flex-wrap items-center gap-x-1.5 text-meta text-muted-foreground tabular-nums">
       {lead ?? (showCategory && <span className="font-semibold text-foreground/80">{labels[a.category] ?? a.category}</span>)}
-      {(lead || showCategory) && <span aria-hidden="true">·</span>}
+      {(lead || showCategory) && <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />}
       {showRegion && (
         <>
           <span>{region}</span>
-          <span aria-hidden="true">·</span>
+          <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
         </>
       )}
       <time dateTime={a.date}>{date}</time>
-      <span aria-hidden="true">·</span>
+      <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
       <span>
         {a.readTimeMinutes} {c.readTime}
       </span>
@@ -524,24 +535,24 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
   return (
     <article className="group relative -mx-3 rounded-xl px-3 py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 has-[a:focus-visible]:bg-muted/50">
       <Meta {...props} />
-      <h4 lang={a.language} className="mt-1.5 text-base font-semibold leading-snug tracking-tight text-pretty">
+      <h4 lang={a.language} className="mt-1.5 text-body font-semibold leading-snug text-pretty">
         <Link
           href={withLangPrefix(`${basePath}/${a.slug}`, lang)}
-          className="outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:ring-2 focus-visible:after:ring-ring"
+          className="outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire motion-reduce:transition-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:ring-2 focus-visible:after:ring-ring"
         >
           {a.title}
         </Link>
       </h4>
-      <p lang={a.language} className="mt-1 text-sm leading-relaxed text-muted-foreground text-pretty">{a.summary}</p>
+      <p lang={a.language} className="mt-1 text-body text-muted-foreground text-pretty">{a.summary}</p>
 
       {caravan && (
-        <dl lang={a.language} className="mt-2.5 space-y-1 text-sm text-foreground">
+        <dl lang={a.language} className="mt-2.5 space-y-1 text-body text-foreground">
           <div className="flex items-start gap-2">
             <dt className="sr-only">{c.where}</dt>
             <PinIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
             <dd>
               <span className="font-medium">{caravan.village}</span>
-              <span className="text-muted-foreground"> · {caravan.landmark}</span>
+              <span className="text-muted-foreground">, {caravan.landmark}</span>
             </dd>
           </div>
           <div className="flex items-start gap-2">
@@ -557,10 +568,10 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
         </dl>
       )}
 
-      <div className="mt-3 flex justify-end text-xs">
+      <div className="mt-3 flex justify-end text-meta">
         <span aria-hidden="true" className="inline-flex shrink-0 items-center gap-1 font-semibold text-sapphire dark:text-sapphire-border">
           {c.read}
-          <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
+          <ArrowRightIcon className="h-3.5 w-3.5" />
         </span>
       </div>
     </article>
@@ -580,49 +591,54 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
       <Meta
         {...props}
         lead={
-          <span className={cn("inline-flex items-center gap-1 font-semibold", tone.label)}>
-            <AlertCircleIcon aria-hidden="true" className="h-3.5 w-3.5" />
+          <span className={cn("font-semibold", tone.label)}>
             {high ? c.highAlert : c.seasonalAlert}
           </span>
         }
       />
-      <h4 lang={a.language} className="mt-2 text-[17px] font-semibold leading-snug tracking-tight text-foreground text-pretty">
+      <h4 lang={a.language} className="mt-2 text-title font-semibold leading-snug text-foreground text-pretty">
         <Link href={href} className="rounded-sm underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           {a.title}
         </Link>
       </h4>
-      <p lang={a.language} className="mt-1 text-sm leading-relaxed text-foreground/80 text-pretty">{a.summary}</p>
+      <p lang={a.language} className="mt-1 text-body text-foreground/80 text-pretty">{a.summary}</p>
 
       {a.preventiveSteps && a.preventiveSteps.length > 0 && (
         <>
-          <p className="mt-4 text-xs font-semibold text-foreground">{c.measures}</p>
-          <ul lang={a.language} className="mt-2 space-y-1.5 text-sm text-foreground">
+          <p className="mt-4 text-meta font-semibold text-foreground">{c.measures}</p>
+          <ol lang={a.language} className="mt-2 space-y-1.5 text-body text-foreground">
             {a.preventiveSteps.map((step, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <CheckIcon aria-hidden="true" className={cn("mt-0.5 h-4 w-4 shrink-0", tone.icon)} />
+              <li key={i} className="flex items-baseline gap-2.5">
+                <span aria-hidden="true" className={cn("w-3 shrink-0 text-right text-body font-semibold tabular-nums", tone.icon)}>
+                  {i + 1}
+                </span>
                 <span>{step}</span>
               </li>
             ))}
-          </ul>
+          </ol>
         </>
       )}
 
       <div className={cn("mt-4 border-t pt-3", tone.rule)}>
         <div className="flex flex-wrap items-center gap-2">
-          <Link
+          <Button
             href={withLangPrefix("/medic-online", lang)}
-            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg bg-card px-3 text-xs font-semibold text-sapphire shadow-[0_1px_2px_rgb(15_23_42/0.08)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft dark:text-sapphire-border dark:hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            variant="outline"
+            size="md"
+            className="text-sapphire dark:text-sapphire-border"
           >
-            <StethoscopeIcon aria-hidden="true" className="h-4 w-4" />
+            <StethoscopeIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
             {np.handoverTelemed}
-          </Link>
-          <Link
+          </Button>
+          <Button
             href={href}
-            className="group inline-flex min-h-[44px] items-center gap-1 rounded-lg px-2 text-xs font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            variant="ghost"
+            size="md"
+            className="gap-1 hover:text-sapphire dark:hover:text-sapphire-border"
           >
             {c.readGuide}
-            <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:translate-x-0.5 motion-reduce:transition-none" />
-          </Link>
+            <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
+          </Button>
         </div>
       </div>
     </article>

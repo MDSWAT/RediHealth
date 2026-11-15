@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircleIcon, VolumeIcon, VolumeMuteIcon } from "@/components/ui/icons";
-import { speechEngine } from "@/lib/audio/speech-engine";
+import { formatSpeechText, speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
@@ -16,6 +16,7 @@ export function LegalRightsCard({ className = "" }: LegalRightsCardProps) {
   const { lang } = useLanguage();
   const voiceEnabled = isVoiceEnabled(lang);
   const [isPlaying, setIsPlaying] = useState(false);
+  const isPlayingRef = useRef(false);
 
   const content: Record<
     Lang,
@@ -119,31 +120,43 @@ ru: {
       ],
       listenLabel: "Ashun chire chachimata",
       stopLabel: "Astav",
-      speechLang: "ro-RO",
+      speechLang: "rom",
     },
   };
   const t = content[lang] || content[DEFAULT_LANG];
 
   useEffect(() => {
     return () => {
-      if (isPlaying) {
+      if (isPlayingRef.current) {
         speechEngine.stop();
+        isPlayingRef.current = false;
       }
     };
-  }, [isPlaying]);
+  }, []);
 
   function handleToggleAudio() {
     if (isPlaying) {
+      isPlayingRef.current = false;
       speechEngine.stop();
       setIsPlaying(false);
     } else {
+      isPlayingRef.current = true;
       setIsPlaying(true);
       // Read the card in the page language, not a fixed Romanian text.
-      speechEngine.speak([t.heading, t.body, ...t.keyRights].join(" "), {
-        lang: t.speechLang,
-        onEnd: () => setIsPlaying(false),
-        onError: () => setIsPlaying(false),
-      });
+      speechEngine.speak(
+        formatSpeechText([`${t.heading}.`, t.body, ...t.keyRights].join(" "), t.speechLang),
+        {
+          lang: t.speechLang,
+          onEnd: () => {
+            isPlayingRef.current = false;
+            setIsPlaying(false);
+          },
+          onError: () => {
+            isPlayingRef.current = false;
+            setIsPlaying(false);
+          },
+        },
+      );
     }
   }
 
@@ -151,15 +164,15 @@ ru: {
     <section className={`border-t border-border pt-6 ${className}`}>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h3 className="text-base font-semibold text-foreground">{t.heading}</h3>
-          <p className="mt-0.5 text-sm text-muted-foreground">{t.lawRef}</p>
+          <h3 className="text-balance text-body font-semibold text-foreground">{t.heading}</h3>
+          <p className="mt-0.5 text-body text-muted-foreground">{t.lawRef}</p>
         </div>
         {voiceEnabled && (
           <button
             type="button"
             onClick={handleToggleAudio}
             aria-pressed={isPlaying}
-            className="inline-flex min-h-11 shrink-0 items-center gap-2 self-start rounded-xl border border-border-control bg-card px-4 py-2 text-sm font-semibold text-foreground transition-[background-color,border-color,transform] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/60 hover:bg-sapphire-soft/30 motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 shrink-0 items-center gap-2 self-start whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2 text-body font-semibold text-foreground press-row transition-[background-color,border-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             {isPlaying ? <VolumeMuteIcon className="h-4 w-4" /> : <VolumeIcon className="h-4 w-4" />}
             <span>{isPlaying ? t.stopLabel : t.listenLabel}</span>
@@ -167,11 +180,11 @@ ru: {
         )}
       </div>
 
-      <p className="mt-3 max-w-prose text-base leading-relaxed text-foreground">{t.body}</p>
+      <p className="mt-3 max-w-(--measure-reading) text-body text-foreground">{t.body}</p>
 
       <ul className="mt-4 space-y-2">
         {t.keyRights.map((right) => (
-          <li key={right} className="flex items-start gap-2.5 text-base leading-relaxed text-foreground">
+          <li key={right} className="flex items-start gap-2.5 text-body text-foreground">
             <CheckCircleIcon className="mt-1 h-4.5 w-4.5 shrink-0 text-sapphire dark:text-sapphire-border" />
             <span>{right}</span>
           </li>

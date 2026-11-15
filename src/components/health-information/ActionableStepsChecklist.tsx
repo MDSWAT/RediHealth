@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { HEALTH_ARTICLE_SECTION_H2_CLASS } from "./HealthArticleShell";
 import { InlineAudioNarratorButton } from "./InlineAudioNarratorButton";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -23,6 +24,16 @@ export interface ActionableStepsChecklistProps {
   lang?: Lang;
 }
 
+const RESET_LABELS: Record<Lang, string> = {
+  ru: "Сбросить",
+  ro: "Resetează",
+  en: "Reset",
+  sq: "Rivendos",
+  it: "Azzera",
+  hr: "Poništi",
+  rom: "Ker palpal",
+};
+
 function useSafeLanguageContext(): { lang: Lang } {
   try {
     return useLanguage();
@@ -31,12 +42,18 @@ function useSafeLanguageContext(): { lang: Lang } {
   }
 }
 
-function pickLocale(entry: Record<"ro", string> & Partial<Record<Lang, string>>, lang: Lang): string {
+function pickLocale(
+  entry: Record<"ro", string> & Partial<Record<Lang, string>>,
+  lang: Lang,
+): string {
   return entry[lang] ?? entry.ro;
 }
 
 function pickSpeechLang(lang: Lang): string {
-  return (SPEECH_LANG_BY_LOCALE as Partial<Record<Lang, string>>)[lang] ?? (lang === "hr" ? "hr-HR" : "ro-RO");
+  return (
+    (SPEECH_LANG_BY_LOCALE as Partial<Record<Lang, string>>)[lang] ??
+    (lang === "hr" ? "hr-HR" : "ro-RO")
+  );
 }
 
 export function ActionableStepsChecklist({
@@ -81,6 +98,15 @@ export function ActionableStepsChecklist({
     }
   };
 
+  const resetChecks = () => {
+    setCheckedIds([]);
+    try {
+      localStorage.removeItem(storageKey);
+    } catch {
+      // LocalStorage access restricted
+    }
+  };
+
   const steps: StepItem[] = recommendations.map((rec, index) => ({
     id: `step-${index}`,
     title: rec.title,
@@ -92,57 +118,86 @@ export function ActionableStepsChecklist({
 
   return (
     <section aria-labelledby="steps-heading" className={className}>
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h2
-            id="steps-heading"
-            className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
-          >
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <h2 id="steps-heading" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
             {pickLocale(s.heading, currentLang)}
           </h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {pickLocale(s.subtitleTemplate, currentLang).replace("{topic}", topicTitle.toLowerCase())}
+          <p className="mt-1.5 text-body text-muted-foreground">
+            {pickLocale(s.subtitleTemplate, currentLang).replace(
+              "{topic}",
+              topicTitle.toLowerCase(),
+            )}
           </p>
+
+          {totalCount > 0 && (
+            <>
+              <div className="mt-2.5 flex flex-wrap items-center gap-3 print:hidden">
+                <span className="text-body font-medium tabular-nums text-muted-foreground">
+                  {pickLocale(s.completedBadge, currentLang)
+                    .replace("{completed}", String(completedCount))
+                    .replace("{total}", String(totalCount))}
+                </span>
+                {completedCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={resetChecks}
+                    className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2.5 text-body font-semibold text-sapphire underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft/50 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    {RESET_LABELS[currentLang] ?? RESET_LABELS.ro}
+                  </button>
+                )}
+              </div>
+              <div className="mt-3 h-1 w-full overflow-hidden rounded-sm bg-muted print:hidden">
+                <div
+                  className="h-full w-full origin-left bg-sapphire transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] motion-reduce:transition-none dark:bg-sapphire-border"
+                  style={{ transform: `scaleX(${steps.length > 0 ? completedCount / steps.length : 0})` }}
+                  aria-hidden="true"
+                />
+              </div>
+            </>
+          )}
         </div>
 
-        {totalCount > 0 && (
-          <div className="print:hidden">
-            <span className="text-sm font-medium tabular-nums text-muted-foreground">
-              {pickLocale(s.completedBadge, currentLang)
-                .replace("{completed}", String(completedCount))
-                .replace("{total}", String(totalCount))}
-            </span>
-          </div>
-        )}
+        <div className="shrink-0 self-start">
+          <InlineAudioNarratorButton
+            textToSpeak={`${pickLocale(s.heading, currentLang)}. ${steps
+              .map((step, i) => `${i + 1}. ${step.title}. ${step.description}`)
+              .join(" ")}`}
+            label={pickLocale(s.heading, currentLang)}
+            lang={speechLang}
+          />
+        </div>
       </div>
 
-      <ul className="mt-6 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
+      <ul className="mt-5 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
         {steps.map((step) => {
           const isChecked = checkedIds.includes(step.id);
           return (
             <li
               key={step.id}
-              className={`flex items-start justify-between gap-3 px-4 py-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] break-inside-avoid sm:px-5 ${
+              className={`transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none break-inside-avoid ${
                 isChecked ? "bg-surface-subtle" : "hover:bg-muted/30"
               }`}
             >
               <button
                 type="button"
                 onClick={() => toggleCheck(step.id)}
-                className="flex flex-1 items-start gap-3.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire rounded-md"
+                className="press-row group/step flex min-h-12 w-full items-start gap-4 px-5 py-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:px-6 sm:py-5"
                 aria-pressed={isChecked}
               >
+                {/* The box is the control: it fills, then its tick draws itself once. */}
                 <span
-                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] border transition-colors duration-[var(--dur-fast)] ${
+                  className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border transition-[background-color,border-color] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
                     isChecked
-                      ? "border-foreground bg-foreground text-white"
-                      : "border-foreground/30 bg-card"
+                      ? "border-sapphire bg-sapphire text-white dark:border-sapphire-border dark:bg-sapphire-border dark:text-ink-950"
+                      : "border-border-control bg-background group-hover/step:border-sapphire/70"
                   }`}
                   aria-hidden="true"
                 >
                   {isChecked && (
                     <svg
-                      className="h-3.5 w-3.5"
+                      className="h-4 w-4"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -150,28 +205,24 @@ export function ActionableStepsChecklist({
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <polyline points="20 6 9 17 4 12" />
+                      <polyline className="stroke-draw" pathLength={1} points="20 6 9 17 4 12" />
                     </svg>
                   )}
                 </span>
 
                 <div>
-                  <h3 className="text-base font-semibold leading-snug text-foreground">
+                  <h3
+                    className={`text-title font-semibold leading-snug transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                      isChecked ? "text-muted-foreground" : "text-foreground"
+                    }`}
+                  >
                     {step.title}
                   </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-1.5 text-body text-foreground/90">
                     {step.description}
                   </p>
                 </div>
               </button>
-
-              <InlineAudioNarratorButton
-                textToSpeak={`${step.title}. ${step.description}`}
-                label={pickLocale(s.listenStepLabel, currentLang).replace("{title}", step.title)}
-                lang={speechLang}
-                variant="ghost"
-                className="-my-2 -mr-2 shrink-0"
-              />
             </li>
           );
         })}

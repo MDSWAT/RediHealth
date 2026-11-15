@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
-import { CheckCircleIcon, CalendarIcon, PhoneIcon } from "@/components/ui/icons";
+import { Button } from "@/components/ui/Button";
+import { CalendarIcon, PhoneIcon } from "@/components/ui/icons";
+import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -24,7 +25,7 @@ const confirmationCopy = {
     forPatient: "Для:",
     smsTitle: (phone: string) => `Мы отправили текстовое сообщение на ${phone}`,
     whatsAppSent: "Мы также отправили подтверждение в WhatsApp.",
-    openRoom: "Присоединяйтесь к звонку",
+    openRoom: "Войти в звонок",
     addToCalendar: "Добавить в календарь",
     anotherBooking: "Забронировать еще",
     calSummary: (code: string) => `RediHealth звонок врачу (${code})`,
@@ -79,7 +80,7 @@ const confirmationCopy = {
     whatsAppSent: "Ti abbiamo mandato la conferma anche su WhatsApp.",
     openRoom: "Entra nella chiamata",
     addToCalendar: "Aggiungi al calendario",
-    anotherBooking: "Prenota un'altra chiamata",
+    anotherBooking: "Prenota un altro orario",
     calSummary: (code: string) => `Chiamata con il medico RediHealth (${code})`,
     calDesc: (link: string) => `Chiamata con un medico volontario RediHealth. Entra da qui: ${link}`,
   },
@@ -189,50 +190,71 @@ export function BookingSmsConfirmation({
   };
 
   return (
-    <div className="mx-auto max-w-xl rounded-xl border border-border bg-card p-6 sm:p-8">
-      <div className="flex items-start gap-3">
-        <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0 text-sapphire" />
-        <h2 ref={headingRef} tabIndex={-1} className="text-2xl font-semibold tracking-tight text-foreground focus:outline-none">{copy.title}</h2>
-      </div>
+    <div className="fhs-enter w-full rounded-xl border border-border bg-card p-6 sm:p-8">
+      <h2 ref={headingRef} tabIndex={-1} className="text-balance text-section font-semibold text-foreground focus:outline-none">{copy.title}</h2>
 
-      <p className="mt-2 text-base font-medium text-foreground tabular-nums">
+      <p className="mt-2 text-body font-medium text-foreground tabular-nums">
         {confirmation.formattedDate}, {copy.atHour} {confirmation.time}
       </p>
 
-      <dl className="mt-5 grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 border-y border-border py-4 text-sm">
+      <dl className="mt-5 grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 border-y border-border py-4 text-meta">
         <dt className="text-muted-foreground">{copy.codeLabel}</dt>
-        <dd className="font-mono text-lg font-semibold text-foreground">{confirmation.bookingCode}</dd>
+        <dd className="font-mono text-title font-semibold text-foreground">{confirmation.bookingCode}</dd>
         <dt className="text-muted-foreground">{copy.forPatient}</dt>
         <dd className="text-foreground">{confirmation.patientName}</dd>
       </dl>
 
       <div className="mt-5 flex items-start gap-3">
         <PhoneIcon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
-        <div className="text-sm leading-relaxed">
+        <div className="text-body">
           <p className="font-semibold text-foreground">{copy.smsTitle(confirmation.patientPhone)}</p>
           <p className="mt-1 text-muted-foreground">{confirmation.smsMessage}</p>
           {confirmation.whatsappSent && <p className="mt-1 text-muted-foreground">{copy.whatsAppSent}</p>}
         </div>
       </div>
 
-      <div className="mt-8 space-y-3">
-        <Link
+      <div className="mt-8 space-y-2.5">
+        <Button
           href={withLangPrefix(`/medic-online/meet/${confirmation.magicRoomId}`, lang)}
-          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-sapphire px-5 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          variant="action"
+          size="md"
+          fullWidth
+          className="sm:px-5"
         >
-          <PhoneIcon className="h-4 w-4" />
-          {copy.openRoom}
-        </Link>
+          <PhoneIcon className="h-4 w-4 shrink-0" />
+          <span>{copy.openRoom}</span>
+        </Button>
 
-        {confirmation.startsAt && (
-          <button
-            type="button"
-            onClick={handleDownloadCalendar}
-            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <CalendarIcon className="h-4 w-4" />
-            {copy.addToCalendar}
-          </button>
+        {confirmation.startsAt ? (
+          <div className="flex flex-nowrap items-center gap-2">
+            <Button
+              type="button"
+              variant="outline"
+              size="md"
+              onClick={handleDownloadCalendar}
+              className="min-w-0 flex-1 px-3.5 sm:px-4"
+            >
+              <CalendarIcon className="h-4 w-4 shrink-0" />
+              {copy.addToCalendar}
+            </Button>
+
+            <FamilyShareButton
+              iconOnly
+              align="right"
+              title={copy.title}
+              text={`${confirmation.formattedDate}, ${copy.atHour} ${confirmation.time}\n${copy.codeLabel}: ${confirmation.bookingCode}\n${copy.forPatient}: ${confirmation.patientName}`}
+              url={confirmation.magicLink}
+              lang={lang}
+            />
+          </div>
+        ) : (
+          <FamilyShareButton
+            title={copy.title}
+            text={`${confirmation.formattedDate}, ${copy.atHour} ${confirmation.time}\n${copy.codeLabel}: ${confirmation.bookingCode}\n${copy.forPatient}: ${confirmation.patientName}`}
+            url={confirmation.magicLink}
+            lang={lang}
+            className="w-full [&>button]:w-full"
+          />
         )}
 
         {onReset && (
@@ -240,9 +262,9 @@ export function BookingSmsConfirmation({
             <button
               type="button"
               onClick={onReset}
-              className="min-h-[44px] rounded-sm px-2 text-sm font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row inline-flex min-h-[44px] max-w-full items-center justify-center whitespace-nowrap rounded-sm px-2 text-body font-medium text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground hover:decoration-current focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              {copy.anotherBooking}
+              <span>{copy.anotherBooking}</span>
             </button>
           </div>
         )}

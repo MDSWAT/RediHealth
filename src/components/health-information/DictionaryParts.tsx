@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { CloseIcon, SearchIcon, VolumeIcon } from "@/components/ui/icons";
+import { useModalAutoScroll } from "@/components/news/use-sheet-dialog";
 import { cn } from "@/lib/cn";
 import type { Lang } from "@/lib/i18n/translations";
 
@@ -152,6 +153,8 @@ export function DictionaryDrawerFrame({
     onCloseRef.current = onClose;
   }, [onClose]);
 
+  useModalAutoScroll(true, panelRef);
+
   useEffect(() => {
     const handoff = pendingTabHandoff;
     if (activeDrawerInstances === 0 && !handoff) {
@@ -239,7 +242,7 @@ export function DictionaryDrawerFrame({
         <header className="shrink-0 border-b border-border bg-card">
           <div className="rh-dict-masthead pt-2.5 sm:pt-0">
             <div
-              className="mx-auto mb-2 h-1.5 w-12 shrink-0 rounded-full bg-border sm:hidden"
+              className="mx-auto mb-2 h-1.5 w-12 shrink-0 rounded-sm bg-border sm:hidden"
               aria-hidden="true"
             />
             <div
@@ -251,11 +254,11 @@ export function DictionaryDrawerFrame({
               <div className="min-w-0 flex-1">
                 <h2
                   id={labelledBy}
-                  className="text-xl font-semibold tracking-[-0.015em] text-foreground text-balance sm:text-[22px]"
+                  className="text-title font-semibold text-foreground text-balance"
                 >
                   {title}
                 </h2>
-                <p className="mt-1 text-sm leading-snug text-muted-foreground text-pretty">
+                <p className="mt-1 text-body leading-snug text-muted-foreground text-pretty">
                   {subtitle}
                 </p>
               </div>
@@ -267,13 +270,13 @@ export function DictionaryDrawerFrame({
                   aria-label={utilCopy.largeTextAria}
                   title={utilCopy.largeTextAria}
                   className={cn(
-                    "inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1.5 rounded-xl border px-3 text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire",
+                    "inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-3 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     largeText
-                      ? "border-sapphire bg-sapphire text-white shadow-xs"
-                      : "border-border bg-card text-foreground hover:bg-muted",
+                      ? "press-solid border-sapphire bg-sapphire text-white shadow-xs"
+                      : "press-row border-border-control bg-card text-foreground hover:bg-muted",
                   )}
                 >
-                  <span aria-hidden="true" className="text-[13px] font-bold tracking-tight">
+                  <span aria-hidden="true" className="text-body font-bold">
                     A+
                   </span>
                   <span className="hidden sm:inline">{utilCopy.largeTextLabel}</span>
@@ -284,7 +287,7 @@ export function DictionaryDrawerFrame({
                   onClick={onClose}
                   aria-label={closeLabel}
                   title={closeLabel}
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-transparent text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-border hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+                  className="press-row flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-transparent text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-border hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <CloseIcon className="h-5 w-5" />
                 </button>
@@ -323,7 +326,6 @@ export function DictionarySearch({
 
   return (
     <div className={cn("relative", className)}>
-      <SearchIcon className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
       {/* 16px text so iPhones do not zoom into the field. */}
       <input
         ref={inputRef}
@@ -333,10 +335,12 @@ export function DictionarySearch({
         placeholder={placeholder}
         aria-label={placeholder}
         className={cn(
-          "min-h-[46px] w-full rounded-xl border border-border bg-surface-card/70 pl-10 text-base text-foreground placeholder:text-muted-foreground/80 transition-colors duration-[var(--dur-fast)] focus:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
-          value.length > 0 ? "pr-11" : "pr-4",
+          "field-focus peer min-h-12 w-full rounded-xl border border-border-control bg-surface-card/70 pl-10 text-body text-foreground placeholder:text-muted-foreground/80 motion-reduce:transition-none focus:bg-card [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
+          value.length > 0 ? "pr-12" : "pr-4",
         )}
       />
+      {/* After the field in source so it can follow it: the glass takes the sapphire with focus. */}
+      <SearchIcon className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) peer-focus-visible:text-sapphire motion-reduce:transition-none dark:peer-focus-visible:text-sapphire-border" />
       {value.length > 0 && (
         <button
           type="button"
@@ -346,7 +350,7 @@ export function DictionarySearch({
           }}
           aria-label={clearLabel}
           title={clearLabel}
-          className="absolute right-1.5 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="popover-in press-row absolute right-0.5 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <CloseIcon className="h-4 w-4" />
         </button>
@@ -356,7 +360,7 @@ export function DictionarySearch({
 }
 
 /**
- * Multi-line wrapping category pills with semantic icons and live tabular counts.
+ * Multi-line wrapping category filter buttons with semantic icons and plain tabular counts.
  * Eliminates horizontal overflow so every category is visible at a glance on all viewports.
  */
 export function DictionaryFilters<T extends string>({
@@ -393,14 +397,14 @@ export function DictionaryFilters<T extends string>({
             aria-pressed={isSelected}
             onClick={() => onSelect(option.value)}
             className={cn(
-              "inline-flex min-h-[40px] max-w-full items-center gap-1.5 rounded-full border px-3 py-1.5 text-[13px] font-semibold leading-tight transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-1 sm:min-h-[42px] sm:px-3.5",
+              "inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-xl border px-3 py-1.5 text-body font-semibold leading-tight transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 sm:px-3.5",
               isEmergency
                 ? isSelected
-                  ? "border-primary bg-primary text-white shadow-xs"
+                  ? "border-primary bg-primary text-white shadow-xs active:bg-primary-active"
                   : "border-primary/25 bg-primary-soft/60 text-primary hover:border-primary/50 hover:bg-primary-soft"
                 : isSelected
-                  ? "border-sapphire bg-sapphire text-white shadow-xs"
-                  : "border-border bg-card text-foreground hover:border-sapphire/35 hover:bg-sapphire-soft/55 hover:text-sapphire",
+                  ? "press-solid border-sapphire bg-sapphire text-white shadow-xs"
+                  : "press-row border-border-control bg-card text-foreground hover:border-sapphire/35 hover:bg-sapphire-soft/55 hover:text-sapphire",
             )}
           >
             {option.icon && (
@@ -418,16 +422,16 @@ export function DictionaryFilters<T extends string>({
                 {option.icon}
               </span>
             )}
-            <span className="truncate">{option.label}</span>
+            <span className="whitespace-nowrap">{option.label}</span>
             {typeof option.count === "number" && (
               <span
                 className={cn(
-                  "rounded-full px-1.5 py-0.5 text-[11px] font-bold tabular-nums leading-none",
+                  "text-meta font-medium tabular-nums leading-none",
                   isSelected
-                    ? "bg-white/20 text-white"
+                    ? "text-white/80"
                     : isEmergency
-                      ? "bg-primary/12 text-primary"
-                      : "bg-muted text-muted-foreground",
+                      ? "text-primary"
+                      : "text-muted-foreground",
                 )}
               >
                 {option.count}
@@ -439,6 +443,11 @@ export function DictionaryFilters<T extends string>({
     </div>
   );
 }
+
+const SPEAK_SWAP_CLASS =
+  "transition-[opacity,translate] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none";
+const SPEAK_SWAP_IN = "opacity-100 translate-y-0";
+const SPEAK_SWAP_OUT = "pointer-events-none opacity-0 translate-y-1";
 
 /**
  * Tactile audio pronunciation pill with explicit listen/stop text and a 4-bar waveform while speaking.
@@ -468,35 +477,32 @@ export function DictionarySpeakButton({
       aria-pressed={speaking}
       title={label}
       className={cn(
-        "inline-flex min-h-[40px] shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[13px] font-semibold leading-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-1",
+        "inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl border px-3.5 py-1.5 text-body font-semibold leading-none transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
         isEmergency
           ? speaking
-            ? "border-primary bg-primary text-white shadow-xs hover:bg-primary-hover"
+            ? "border-primary bg-primary text-white shadow-xs hover:bg-primary-hover active:bg-primary-active"
             : "border-primary/25 bg-primary-soft text-primary hover:border-primary/45 hover:bg-primary-soft/80"
           : speaking
-            ? "border-sapphire bg-sapphire text-white shadow-xs hover:bg-sapphire-light"
-            : "border-sapphire-border bg-sapphire-soft text-sapphire hover:border-sapphire/40 hover:bg-sapphire-soft/80",
+            ? "press-solid border-sapphire bg-sapphire text-white shadow-xs hover:bg-sapphire-light"
+            : "press-row border-sapphire-border bg-sapphire-soft text-sapphire hover:border-sapphire/40 hover:bg-sapphire-soft/80",
       )}
     >
-      {speaking ? (
-        <>
-          <span
-            aria-hidden="true"
-            className="inline-flex h-4 w-4 shrink-0 items-center justify-between gap-[2px]"
-          >
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-full bg-current" />
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-full bg-current" />
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-full bg-current" />
-            <span className="rh-dict-wave-bar h-3.5 w-[2.5px] rounded-full bg-current" />
-          </span>
-          <span>{stopText}</span>
-        </>
-      ) : (
-        <>
-          <VolumeIcon className="h-4 w-4 shrink-0" />
-          <span>{listenText}</span>
-        </>
-      )}
+      {/*
+        Listen and stop share one cell, so the button keeps its width and the two states
+        cross-fade. While speaking it shows a still stop square (the control), not a looping wave.
+      */}
+      <span aria-hidden="true" className="grid shrink-0 place-items-center [&>*]:col-start-1 [&>*]:row-start-1">
+        <VolumeIcon className={cn(SPEAK_SWAP_CLASS, "h-4 w-4", speaking ? SPEAK_SWAP_OUT : SPEAK_SWAP_IN)} />
+        <span className={cn(SPEAK_SWAP_CLASS, "h-2.5 w-2.5 rounded-xs bg-current", speaking ? SPEAK_SWAP_IN : SPEAK_SWAP_OUT)} />
+      </span>
+      <span className="grid [&>*]:col-start-1 [&>*]:row-start-1">
+        <span aria-hidden={speaking} className={cn(SPEAK_SWAP_CLASS, speaking ? SPEAK_SWAP_OUT : SPEAK_SWAP_IN)}>
+          {listenText}
+        </span>
+        <span aria-hidden={!speaking} className={cn(SPEAK_SWAP_CLASS, speaking ? SPEAK_SWAP_IN : SPEAK_SWAP_OUT)}>
+          {stopText}
+        </span>
+      </span>
     </button>
   );
 }

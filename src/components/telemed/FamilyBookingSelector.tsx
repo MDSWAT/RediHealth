@@ -238,7 +238,7 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
     <div className="space-y-5">
       {/* Who the booking is for: one choice, so radio rows on one surface. */}
       <fieldset>
-        <legend className="mb-2 block text-sm font-semibold text-foreground">{copy.title}</legend>
+        <legend className="mb-2 block text-body font-semibold text-foreground">{copy.title}</legend>
         <div className="divide-y divide-border rounded-lg border border-border">
           {(
             [
@@ -251,7 +251,7 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
             return (
               <label
                 key={type}
-                className="flex min-h-[48px] cursor-pointer items-center gap-3 px-3.5 py-2.5 text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] first:rounded-t-lg last:rounded-b-lg hover:bg-muted/50 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-inset has-[:focus-visible]:ring-ring"
+                className="flex min-h-[48px] cursor-pointer items-center gap-3 px-3.5 py-2.5 text-body transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] first:rounded-t-lg last:rounded-b-lg hover:bg-muted/50 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-inset has-[:focus-visible]:ring-ring"
               >
                 <input
                   type="radio"
@@ -272,7 +272,7 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
       {/* Primary fields */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="patientName" className="mb-1.5 block text-sm font-semibold text-foreground">
+          <label htmlFor="patientName" className="mb-1.5 block text-body font-semibold text-foreground">
             {value.bookingType === "self" ? copy.nameLabelSelf : copy.nameLabelOther} <span aria-hidden="true">*</span>
           </label>
           <input
@@ -283,12 +283,12 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
             value={value.patientName}
             onChange={(e) => handleFieldChange("patientName", e.target.value)}
             placeholder={copy.namePlaceholder}
-            className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground sm:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
         <div>
-          <label htmlFor="patientPhone" className="mb-1.5 block text-sm font-semibold text-foreground">
+          <label htmlFor="patientPhone" className="mb-1.5 block text-body font-semibold text-foreground">
             {copy.phoneLabel} <span aria-hidden="true">*</span>
           </label>
           <input
@@ -300,7 +300,7 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
             value={value.patientPhone}
             onChange={(e) => handleFieldChange("patientPhone", e.target.value)}
             placeholder={copy.phonePlaceholder}
-            className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground sm:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
       </div>
@@ -308,18 +308,18 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
       {/* Conditional Proxy Fields */}
       {value.bookingType !== "self" && (
         <fieldset className="border-t border-border pt-5">
-          <legend className="float-left mb-1 w-full text-sm font-semibold text-foreground">{copy.assistedDataTitle}</legend>
+          <legend className="float-left mb-1 w-full text-body font-semibold text-foreground">{copy.assistedDataTitle}</legend>
 
           <div className="clear-both grid grid-cols-1 gap-4 pt-1 sm:grid-cols-2">
             <div>
-              <label htmlFor="proxyRelation" className="mb-1.5 block text-sm font-medium text-foreground">
+              <label htmlFor="proxyRelation" className="mb-1.5 block text-body font-medium text-foreground">
                 {copy.relationLabel}
               </label>
               <select
                 id="proxyRelation"
                 value={value.proxyRelation || ""}
                 onChange={(e) => handleFieldChange("proxyRelation", e.target.value)}
-                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground sm:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="">{copy.relationPlaceholder}</option>
                 {copy.relations.map((relation) => (
@@ -331,7 +331,7 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
             </div>
 
             <div>
-              <label htmlFor="patientAge" className="mb-1.5 block text-sm font-medium text-foreground">
+              <label htmlFor="patientAge" className="mb-1.5 block text-body font-medium text-foreground">
                 {copy.ageLabel}
               </label>
               <input
@@ -340,7 +340,7 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
                 value={value.patientAge || ""}
                 onChange={(e) => handleFieldChange("patientAge", e.target.value)}
                 placeholder={copy.agePlaceholder}
-                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground sm:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           </div>
@@ -349,7 +349,7 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
 
       {/* Reason for consultation */}
       <div>
-        <label htmlFor="reasonForVisit" className="mb-1.5 block text-sm font-semibold text-foreground">
+        <label htmlFor="reasonForVisit" className="mb-1.5 block text-body font-semibold text-foreground">
           {copy.reasonLabel}
         </label>
         <textarea
@@ -358,7 +358,7 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
           value={value.reasonForVisit || ""}
           onChange={(e) => handleFieldChange("reasonForVisit", e.target.value)}
           placeholder={copy.reasonPlaceholder}
-          className="w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground sm:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full rounded-lg border border-border bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
 
@@ -371,7 +371,7 @@ export function FamilyBookingSelector({ value, onChange }: FamilyBookingSelector
           onChange={(e) => handleFieldChange("sendWhatsApp", e.target.checked)}
           className="h-5 w-5 shrink-0 rounded border-border accent-sapphire"
         />
-        <label htmlFor="sendWhatsApp" className="cursor-pointer text-sm text-muted-foreground">
+        <label htmlFor="sendWhatsApp" className="cursor-pointer text-body text-muted-foreground">
           {copy.whatsAppNotice}
         </label>
       </div>

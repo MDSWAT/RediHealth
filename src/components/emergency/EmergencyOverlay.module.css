@@ -1,0 +1,45 @@
+/*
+ * Entrance of the 112 dialogs (dialer gate, warning signs). Below 640px they are bottom sheets,
+ * so they rise from the screen edge; from 640px they are centred dialogs and settle 8px into
+ * place. Same tokens and curves as the shared sheet-in / dialog-in in globals.css; kept here
+ * because one panel needs both by width. Static under reduced motion and in-app Calm Motion.
+ */
+@keyframes rise-from-edge {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.panel {
+  animation: rise-from-edge var(--dur-slow) var(--ease-out-expo) both;
+}
+
+@media (min-width: 640px) {
+  .panel {
+    animation-name: settle;
+  }
+}
+
+/* Desktop-only card (no sheet form): always the centred settle. */
+.card {
+  animation: settle var(--dur-slow) var(--ease-out-expo) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .card {
+    animation: none;
+  }
+}
+
+:global(html[data-calm-motion]) .panel,
+:global(html[data-calm-motion]) .card {
+  animation: none;
+}

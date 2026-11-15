@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/Button";
 import { CheckCircleIcon, AlertCircleIcon } from "@/components/ui/icons";
 import { validateVitals, type VitalsTelemetryRecord } from "@/lib/types/telemetry";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -469,39 +470,41 @@ export function HardwareKitTelemetryPanel({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-border">
         <div>
-          <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/60 px-2.5 py-1 text-xs font-semibold text-foreground">
+          <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/60 px-2.5 py-1 text-meta font-semibold text-foreground">
             {copy.kitBadge}
           </span>
-          <h2 className="mt-1.5 text-base sm:text-lg font-bold text-foreground">
+          <h2 className="mt-1.5 text-title font-bold text-foreground">
             {copy.title}
           </h2>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-meta text-muted-foreground">
             {copy.subtitle}
           </p>
         </div>
 
-        <button
+        <Button
           type="button"
+          variant="outline"
+          size="md"
           onClick={handlePairBluetooth}
           disabled={bluetoothConnecting}
-          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted shadow-xs transition-colors shrink-0"
+          className="shrink-0"
         >
           {bluetoothConnecting ? copy.searchingSensor : copy.connectSensor}
-        </button>
+        </Button>
       </div>
 
       {bluetoothStatus && (
-        <div className="mt-3 rounded-lg bg-muted p-2.5 text-xs text-muted-foreground">
+        <div className="mt-3 rounded-lg bg-muted p-2.5 text-meta text-muted-foreground">
           {bluetoothStatus}
         </div>
       )}
 
       {/* Critical range warnings banner (Clinical Ruby) */}
       {validation.isOutOfRange && (
-        <div className="mt-4 rounded-lg border-2 border-red-600 bg-red-500/10 p-3.5 text-red-700 dark:text-red-300">
+        <div className="mt-4 rounded-lg border-2 border-primary bg-primary-soft/75 p-3.5 text-foreground dark:border-ruby-300 dark:bg-primary/15 dark:text-paper">
           <div className="flex items-start gap-2.5">
-            <AlertCircleIcon className="h-5 w-5 shrink-0 text-red-600 mt-0.5" />
-            <div className="text-xs">
+            <AlertCircleIcon className="h-5 w-5 shrink-0 text-primary dark:text-ruby-300 mt-0.5" />
+            <div className="text-meta">
               <p className="font-bold">
                 {validation.criticalAlert ? localizeVitalsMessage(validation.criticalAlert, lang) : copy.outOfRange}
               </p>
@@ -516,14 +519,17 @@ export function HardwareKitTelemetryPanel({
       )}
 
       {successMessage && (
-        <div className="mt-4 rounded-lg bg-sapphire-soft border border-sapphire-border/40 p-3 text-xs text-sapphire font-medium flex items-center gap-2">
+        <div className="mt-4 rounded-lg bg-sapphire-soft border border-sapphire-border/40 p-3 text-meta text-sapphire font-medium flex items-center gap-2">
           <CheckCircleIcon className="h-4 w-4 shrink-0" />
           <span>{successMessage}</span>
         </div>
       )}
 
       {errorMessage && (
-        <div className="mt-4 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-xs text-red-600 font-medium">
+        <div
+          role="alert"
+          className="mt-4 rounded-lg border border-primary/30 bg-primary-soft/75 p-3 text-body font-medium text-foreground dark:border-ruby-300/35 dark:bg-primary/15 dark:text-paper"
+        >
           {errorMessage}
         </div>
       )}
@@ -533,32 +539,32 @@ export function HardwareKitTelemetryPanel({
           {/* Card 1: Blood Pressure */}
           <div className={`rounded-lg border p-4 ${
             systolic > 180 || diastolic > 110
-              ? "border-red-600 bg-red-500/5"
+              ? "border-primary bg-primary-soft/50 dark:border-ruby-300 dark:bg-primary/15"
               : "border-border bg-card"
           }`}>
-            <p className="text-xs font-bold text-foreground">
+            <p className="text-meta font-bold text-foreground">
               {copy.bloodPressure}
             </p>
             <div className="mt-3 flex items-center justify-between gap-3">
               <div className="flex-1">
-                <span className="block text-[11px] text-muted-foreground">{copy.systolic}</span>
+                <span className="block text-meta text-muted-foreground">{copy.systolic}</span>
                 <div className="flex items-center gap-2 mt-1">
                   <button
                     type="button"
                     aria-label={copy.decrease(copy.nameSystolic)}
                     onClick={() => setSystolic((v) => Math.max(60, v - 5))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     -
                   </button>
-                  <span className="font-mono text-lg font-bold min-w-[3rem] text-center text-foreground">
+                  <span className="font-mono text-title font-bold min-w-[3rem] text-center text-foreground">
                     {systolic}
                   </span>
                   <button
                     type="button"
                     aria-label={copy.increase(copy.nameSystolic)}
                     onClick={() => setSystolic((v) => Math.min(260, v + 5))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     +
                   </button>
@@ -566,24 +572,24 @@ export function HardwareKitTelemetryPanel({
               </div>
 
               <div className="flex-1">
-                <span className="block text-[11px] text-muted-foreground">{copy.diastolic}</span>
+                <span className="block text-meta text-muted-foreground">{copy.diastolic}</span>
                 <div className="flex items-center gap-2 mt-1">
                   <button
                     type="button"
                     aria-label={copy.decrease(copy.nameDiastolic)}
                     onClick={() => setDiastolic((v) => Math.max(40, v - 5))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     -
                   </button>
-                  <span className="font-mono text-lg font-bold min-w-[3rem] text-center text-foreground">
+                  <span className="font-mono text-title font-bold min-w-[3rem] text-center text-foreground">
                     {diastolic}
                   </span>
                   <button
                     type="button"
                     aria-label={copy.increase(copy.nameDiastolic)}
                     onClick={() => setDiastolic((v) => Math.min(150, v + 5))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     +
                   </button>
@@ -594,31 +600,31 @@ export function HardwareKitTelemetryPanel({
 
           {/* Card 2: SpO2 and Pulse */}
           <div className={`rounded-lg border p-4 ${
-            spo2 < 92 ? "border-red-600 bg-red-500/5" : "border-border bg-card"
+            spo2 < 92 ? "border-primary bg-primary-soft/50 dark:border-ruby-300 dark:bg-primary/15" : "border-border bg-card"
           }`}>
-            <p className="text-xs font-bold text-foreground">
+            <p className="text-meta font-bold text-foreground">
               {copy.spo2Pulse}
             </p>
             <div className="mt-3 flex items-center justify-between gap-3">
               <div className="flex-1">
-                <span className="block text-[11px] text-muted-foreground">{copy.spo2}</span>
+                <span className="block text-meta text-muted-foreground">{copy.spo2}</span>
                 <div className="flex items-center gap-2 mt-1">
                   <button
                     type="button"
                     aria-label={copy.decrease(copy.nameSpo2)}
                     onClick={() => setSpo2((v) => Math.max(50, v - 1))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     -
                   </button>
-                  <span className={`font-mono text-lg font-bold min-w-[3rem] text-center ${spo2 < 92 ? "text-red-600" : "text-foreground"}`}>
+                  <span className={`font-mono text-title font-bold min-w-[3rem] text-center ${spo2 < 92 ? "text-primary dark:text-ruby-300" : "text-foreground"}`}>
                     {spo2}%
                   </span>
                   <button
                     type="button"
                     aria-label={copy.increase(copy.nameSpo2)}
                     onClick={() => setSpo2((v) => Math.min(100, v + 1))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     +
                   </button>
@@ -626,24 +632,24 @@ export function HardwareKitTelemetryPanel({
               </div>
 
               <div className="flex-1">
-                <span className="block text-[11px] text-muted-foreground">{copy.pulse}</span>
+                <span className="block text-meta text-muted-foreground">{copy.pulse}</span>
                 <div className="flex items-center gap-2 mt-1">
                   <button
                     type="button"
                     aria-label={copy.decrease(copy.namePulse)}
                     onClick={() => setPulse((v) => Math.max(30, v - 2))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     -
                   </button>
-                  <span className="font-mono text-lg font-bold min-w-[3rem] text-center text-foreground">
+                  <span className="font-mono text-title font-bold min-w-[3rem] text-center text-foreground">
                     {pulse}
                   </span>
                   <button
                     type="button"
                     aria-label={copy.increase(copy.namePulse)}
                     onClick={() => setPulse((v) => Math.min(220, v + 2))}
-                    className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                    className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     +
                   </button>
@@ -655,14 +661,14 @@ export function HardwareKitTelemetryPanel({
           {/* Card 3: Blood Glucose */}
           <div className="rounded-lg border border-border bg-card p-4">
             <div className="flex items-center justify-between">
-              <p className="text-xs font-bold text-foreground">
+              <p className="text-meta font-bold text-foreground">
                 {copy.glucose}
               </p>
               <select
                 aria-label={copy.glucoseContext}
                 value={glucoseContext}
                 onChange={(e) => setGlucoseContext(e.target.value as "fasting" | "postprandial" | "random")}
-                className="text-xs rounded-md border border-border bg-background px-2 py-1 text-foreground"
+                className="min-h-[44px] rounded-md border border-border-control bg-background px-2 py-1 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="random">{copy.glucoseRandom}</option>
                 <option value="fasting">{copy.glucoseFasting}</option>
@@ -674,18 +680,18 @@ export function HardwareKitTelemetryPanel({
                 type="button"
                 aria-label={copy.decrease(copy.nameGlucose)}
                 onClick={() => setGlucose((v) => Math.max(20, v - 5))}
-                className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 -
               </button>
-              <span className="font-mono text-lg font-bold min-w-[4rem] text-center text-foreground">
+              <span className="font-mono text-title font-bold min-w-[4rem] text-center text-foreground">
                 {glucose} mg/dL
               </span>
               <button
                 type="button"
                 aria-label={copy.increase(copy.nameGlucose)}
                 onClick={() => setGlucose((v) => Math.min(600, v + 5))}
-                className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 +
               </button>
@@ -694,7 +700,7 @@ export function HardwareKitTelemetryPanel({
 
           {/* Card 4: Temperature */}
           <div className="rounded-lg border border-border bg-card p-4">
-            <p className="text-xs font-bold text-foreground">
+            <p className="text-meta font-bold text-foreground">
               {copy.temperature}
             </p>
             <div className="mt-3 flex items-center gap-2">
@@ -702,18 +708,18 @@ export function HardwareKitTelemetryPanel({
                 type="button"
                 aria-label={copy.decrease(copy.nameTemperature)}
                 onClick={() => setTemperature((v) => Number((Math.max(32, v - 0.2)).toFixed(1)))}
-                className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 -
               </button>
-              <span className={`font-mono text-lg font-bold min-w-[4rem] text-center ${temperature >= 38.5 ? "text-amber-700" : "text-foreground"}`}>
+              <span className={`font-mono text-title font-bold min-w-[4rem] text-center ${temperature >= 38.5 ? "text-amber-care dark:text-amber-care-border" : "text-foreground"}`}>
                 {temperature.toFixed(1)} °C
               </span>
               <button
                 type="button"
                 aria-label={copy.increase(copy.nameTemperature)}
                 onClick={() => setTemperature((v) => Number((Math.min(43, v + 0.2)).toFixed(1)))}
-                className="min-h-[44px] min-w-[44px] rounded-md border border-border bg-muted text-base font-bold text-foreground hover:bg-card"
+                className="press-row min-h-[44px] min-w-[44px] rounded-md border border-border-control bg-muted text-body font-bold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 +
               </button>
@@ -723,7 +729,7 @@ export function HardwareKitTelemetryPanel({
 
         {/* Notes */}
         <div>
-          <label className="block text-xs font-medium text-foreground mb-1">
+          <label className="block text-meta font-medium text-foreground mb-1">
             {copy.notesLabel}
           </label>
           <input
@@ -732,18 +738,20 @@ export function HardwareKitTelemetryPanel({
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder={copy.notesPlaceholder}
-            className="w-full min-h-[44px] rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+            className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
         {/* Submit button */}
-        <button
+        <Button
           type="submit"
+          variant="action"
+          size="md"
+          fullWidth
           disabled={isSubmitting}
-          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-sapphire px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-sapphire-light disabled:opacity-60 transition-colors"
         >
           {isSubmitting ? copy.submitting : copy.submit}
-        </button>
+        </Button>
       </form>
     </div>
   );

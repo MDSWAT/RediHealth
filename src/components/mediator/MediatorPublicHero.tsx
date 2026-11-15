@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { UsersIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
-import { RequestMediatorModal } from "./RequestMediatorModal";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -20,10 +20,10 @@ function useSafeLanguage() {
 
 export const heroCopy = {
   ru: {
-    title: "Медиатор по вопросам здоровья может помочь вам",
+    title: "Медицинские медиаторы могут вам помочь",
     subtitle: "Медицинский посредник поможет вам обратиться к врачу, получить документы, удостоверяющие личность и медицинскую страховку, а также присмотреть за вашими детьми, бабушками и дедушками.",
     ctaRequest: "Попросите посредника",
-    ctaSignIn: "Вход в Медиатор",
+    ctaSignIn: "Вход для медиаторов",
     card1Title: "Запись и посещение врача",
     card1Desc: "Они идут с вами к семейному врачу, помогают записаться на прием и объясняют ваши рецепты.",
     card2Title: "Документы и страховка",
@@ -33,7 +33,7 @@ export const heroCopy = {
   },
 
   ro: {
-    title: "Un mediator sanitar te ajută",
+    title: "Mediatori sanitari te ajută",
     subtitle: "Mediatorul sanitar te ajută să ajungi la medic, să faci buletinul și asigurarea și să ai grijă de copii și de bunici.",
     ctaRequest: "Cere un mediator",
     ctaSignIn: "Intră în contul de mediator",
@@ -45,7 +45,7 @@ export const heroCopy = {
     card3Desc: "Vine cu o tabletă și aparate pentru tensiune, oxigen și zahăr în sânge. Vorbești cu un medic la telefon.",
   },
   en: {
-    title: "A health mediator can help you",
+    title: "Health mediators can help you",
     subtitle: "A health mediator helps you see a doctor, get ID papers and health insurance, and look after your children and grandparents.",
     ctaRequest: "Ask for a mediator",
     ctaSignIn: "Mediator sign-in",
@@ -57,7 +57,7 @@ export const heroCopy = {
     card3Desc: "They bring a tablet and devices for blood pressure, oxygen and blood sugar. You talk to a doctor by phone.",
   },
   sq: {
-    title: "Një mediator shëndetësor të ndihmon",
+    title: "Mediatorët shëndetësorë të ndihmojnë",
     subtitle: "Mediatori shëndetësor të ndihmon të shkosh te mjeku, të nxjerrësh letërnjoftimin dhe sigurimin, dhe të kujdesesh për fëmijët dhe gjyshërit.",
     ctaRequest: "Kërko një mediator",
     ctaSignIn: "Hyr si mediator",
@@ -69,7 +69,7 @@ export const heroCopy = {
     card3Desc: "Vjen me një tabletë dhe aparate për tensionin, oksigjenin dhe sheqerin në gjak. Flet me një mjek në telefon.",
   },
   it: {
-    title: "Un mediatore sanitario ti aiuta",
+    title: "Mediatori sanitari per aiutarti",
     subtitle: "Il mediatore sanitario ti aiuta ad andare dal medico, a fare documenti e tessera sanitaria e a prenderti cura di bambini e nonni.",
     ctaRequest: "Chiedi un mediatore",
     ctaSignIn: "Accesso mediatori",
@@ -81,7 +81,7 @@ export const heroCopy = {
     card3Desc: "Porta un tablet e gli apparecchi per pressione, ossigeno e zucchero nel sangue. Parli con un medico al telefono.",
   },
   hr: {
-    title: "Zdravstveni medijator ti može pomoći",
+    title: "Zdravstveni medijatori ti mogu pomoći",
     subtitle: "Zdravstveni medijator pomaže ti otići liječniku, riješiti osobne dokumente i zdravstveno osiguranje te brinuti o djeci i starijima.",
     ctaRequest: "Zatraži medijatora",
     ctaSignIn: "Prijava za medijatore",
@@ -93,7 +93,7 @@ export const heroCopy = {
     card3Desc: "Dolazi s tabletom i uređajima za mjerenje krvnog tlaka, zasićenosti kisikom (SpO2) i glukoze u krvi. S liječnikom razgovaraš telefonom.",
   },
   rom: {
-    title: "Ekh sastipnasko mediatori zhutil tut",
+    title: "Sastipnaske mediatorya zhutin tut",
     subtitle: "O sastipnasko mediatori zhutil tut te zhas ko doktori, te keres che lila thaj e sastipnaski siguranciya, thaj te arakhes e chhavoren thaj e phuren.",
     ctaRequest: "Mang ekhe mediatores",
     ctaSignIn: "Khuves andre sar mediatori",
@@ -107,7 +107,6 @@ export const heroCopy = {
 };
 
 export function MediatorPublicHero() {
-  const [modalOpen, setModalOpen] = useState(false);
   const { lang } = useSafeLanguage();
   const copy = heroCopy[lang] ?? heroCopy.ro;
   const services = [
@@ -117,47 +116,45 @@ export function MediatorPublicHero() {
   ];
 
   return (
-    <>
-      <section className="border-b border-border bg-background py-10 sm:py-16">
-        <Container>
-          <div className="max-w-3xl">
-            <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-              {copy.title}
-            </h1>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">{copy.subtitle}</p>
-
-            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-              <button
-                type="button"
-                onClick={() => setModalOpen(true)}
-                aria-haspopup="dialog"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-sapphire px-6 py-3 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sapphire focus-visible:ring-offset-2"
-              >
-                <UsersIcon className="h-4 w-4" aria-hidden="true" />
-                <span>{copy.ctaRequest}</span>
-              </button>
-
+    <section className="border-b border-border bg-background pb-10 sm:pb-16">
+      <Container>
+        <PageHeader
+          title={copy.title}
+          lead={copy.subtitle}
+          actions={
+            <Button
+              href={withLangPrefix("/get-help?mode=mediator", lang)}
+              variant="action"
+              size="lg"
+              className="px-6"
+            >
+              <UsersIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span>{copy.ctaRequest}</span>
+            </Button>
+          }
+          below={
+            <p className="mt-3">
               <Link
                 href={withLangPrefix("/sign-in", lang)}
-                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-border bg-card px-5 py-3 text-center text-sm font-semibold text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center whitespace-nowrap rounded-sm text-body font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:decoration-sapphire-border/40"
               >
                 {copy.ctaSignIn}
               </Link>
+            </p>
+          }
+        />
+
+        {/* What a mediator does: three columns, each under its own hairline. */}
+        <div className="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-3">
+          {services.map((service) => (
+            <div key={service.title}>
+              <span aria-hidden="true" className="block h-px w-full bg-border" />
+              <h2 className="mt-5 text-balance text-body font-semibold text-foreground">{service.title}</h2>
+              <p className="mt-2 max-w-(--measure-lead) text-body text-muted-foreground">{service.body}</p>
             </div>
-          </div>
-
-          <ul className="mt-12 grid gap-x-10 gap-y-6 border-t border-border pt-8 md:grid-cols-3">
-            {services.map((service) => (
-              <li key={service.title}>
-                <h2 className="text-base font-semibold text-foreground">{service.title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{service.body}</p>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </section>
-
-      <RequestMediatorModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-    </>
+          ))}
+        </div>
+      </Container>
+    </section>
   );
 }

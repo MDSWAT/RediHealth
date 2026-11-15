@@ -116,7 +116,7 @@ export function DiabetesInteractiveHub({
 
   return (
     <div className={HUB_CARD_CLASS} data-testid="diabetes-interactive-hub">
-      <div role="tablist" aria-label={strings.ariaLabel} className={`${TAB_LIST_CLASS} grid-cols-2`}>
+      <div role="tablist" aria-label={strings.ariaLabel} className={TAB_LIST_CLASS}>
         {HUB_TABS.map((id) => {
           const isSelected = activeTab === id;
 

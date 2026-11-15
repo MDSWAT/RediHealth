@@ -5,6 +5,7 @@
  */
 import type { PathwayId } from "@/lib/triage-state";
 import type { Lang } from "@/lib/i18n/translations";
+import { PLAIN_ALARM_SIGNS } from "@/lib/i18n/emergency-signs";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
 
@@ -57,8 +58,6 @@ export interface AssistantCopy {
     heading: string;
     plainHeading: string;
     lead: string;
-    bodyMapPrompt: string;
-    bodyMapLink: string;
     mediatorTag: string;
     options: Record<PathwayId, Option>;
   };
@@ -170,13 +169,21 @@ export interface AssistantCopy {
       bedtime: string;
     };
     noDoseAria: string;
+    strengthLabel: string;
     foodTiming: {
       before_meal: string;
       with_meal: string;
       after_meal: string;
     };
+    foodTimingSentence: {
+      before_meal: string;
+      with_meal: string;
+      after_meal: string;
+    };
     durationLabel: (duration: string) => string;
+    durationSentence: (duration: string) => string;
     unclearBadge: string;
+    unclearDoseSentence: (medicineName: string) => string;
     listenMedicine: string;
     stopMedicine: string;
     listenMedicineAria: (medicineName: string) => string;
@@ -200,11 +207,9 @@ const ro: AssistantCopy = {
     selectedTrailLabel: "Răspunsurile alese până acum",
   },
   tree: {
-    heading: "Ce te îngrijorează astăzi?",
-    plainHeading: "Cu ce te putem ajuta astăzi?",
+    heading: "Spune-ne ce se întâmplă",
+    plainHeading: "Spune-ne ce se întâmplă",
     lead: "Alege ce ți se potrivește.",
-    bodyMapPrompt: "Vrei să arăți exact locul dureros pe corpul 3D?",
-    bodyMapLink: "Deschide harta corpului 3D",
     mediatorTag: "Sprijin cu mediator sanitar",
     options: {
       learn: {
@@ -292,7 +297,7 @@ const ro: AssistantCopy = {
     lead: "Răspunde cu Da sau Nu la 3 întrebări scurte. Rezultatul nu este un diagnostic.",
     quickTitle: "Nu ți se aplică nimic din listă?",
     quickBody: "Ai sub 45 de ani, nu ai diabet sau tensiune mare în familie și nu ai des aceste simptome.",
-    quickButton: "Vezi rezultatul: risc scăzut",
+    quickButton: "Vezi risc scăzut",
     questions: {
       q1: {
         title: "Vârstă și familie",
@@ -340,13 +345,7 @@ const ro: AssistantCopy = {
       "Dificultate bruscă de a vorbi",
       "Sângerare abundentă",
     ],
-    plainSigns: [
-      "Te doare tare în piept, ca o apăsare mare",
-      "Respiri foarte greu",
-      "Ți-a amorțit sau a slăbit brusc fața, o mână sau un picior",
-      "Nu mai poți vorbi limpede",
-      "Sângerezi foarte tare",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.ro,
     callNow: "Sună acum la 112",
     yes: "Da, am cel puțin un semn",
     yesSeeTips: "Da, vezi ce să spui la 112",
@@ -357,8 +356,8 @@ const ro: AssistantCopy = {
   symptoms: {
     heading: "Ce te deranjează cel mai mult?",
     lead: "Alege categoria, apoi poți vorbi cu un medic online.",
-    bodyMapHint: "Ai durere într-o zonă anume? Poți alege locul exact pe modelul 3D.",
-    bodyMapCta: "Verifică pe corpul 3D",
+    bodyMapHint: "Ai durere într-o zonă anume? Arată unde te doare.",
+    bodyMapCta: "Arată pe imaginea corpului",
     categories: {
       fever: {
         title: "Febră sau răceală",
@@ -533,13 +532,22 @@ const ro: AssistantCopy = {
       bedtime: "Culcare",
     },
     noDoseAria: "Nicio doză trecută la această oră",
+    strengthLabel: "Concentrație",
     foodTiming: {
       before_meal: "Înainte de masă",
       with_meal: "În timpul mesei",
       after_meal: "După masă",
     },
+    foodTimingSentence: {
+      before_meal: "Se ia înainte de masă.",
+      with_meal: "Se ia în timpul mesei.",
+      after_meal: "Se ia după masă.",
+    },
     durationLabel: (duration) => `Durată: ${duration}`,
+    durationSentence: (duration) => `Se ia timp de ${duration}.`,
     unclearBadge: "Scris neclar — verifică doza cu farmacistul",
+    unclearDoseSentence: (medicineName) =>
+      `Nu am putut citi doza pentru ${medicineName}. Întreabă farmacistul.`,
     listenMedicine: "Ascultă",
     stopMedicine: "Oprește",
     listenMedicineAria: (medicineName) => `Ascultă instrucțiunile pentru ${medicineName}`,
@@ -563,11 +571,9 @@ const en: AssistantCopy = {
     selectedTrailLabel: "Selected answers so far",
   },
   tree: {
-    heading: "What's worrying you today?",
-    plainHeading: "How can we help you today?",
+    heading: "Tell us what is happening",
+    plainHeading: "Tell us what is happening",
     lead: "Choose what fits you best.",
-    bodyMapPrompt: "Want to point to the exact area on the 3D body?",
-    bodyMapLink: "Open 3D body map",
     mediatorTag: "Community mediator support",
     options: {
       learn: {
@@ -655,7 +661,7 @@ const en: AssistantCopy = {
     lead: "Answer Yes or No to 3 short questions. The result is not a diagnosis.",
     quickTitle: "None of these apply to you?",
     quickBody: "You are under 45, nobody in your family has diabetes or high blood pressure, and you rarely have these symptoms.",
-    quickButton: "See result: low risk",
+    quickButton: "See low risk",
     questions: {
       q1: {
         title: "Age and family",
@@ -703,13 +709,7 @@ const en: AssistantCopy = {
       "Sudden difficulty speaking",
       "Heavy bleeding",
     ],
-    plainSigns: [
-      "Your chest hurts badly, like a heavy weight pressing on it",
-      "You find it very hard to breathe",
-      "Your face, an arm or a leg has suddenly gone numb or weak",
-      "You can't speak clearly any more",
-      "You are bleeding a lot",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.en,
     callNow: "Call 112 now",
     yes: "Yes, I have at least one",
     yesSeeTips: "Yes, see what to tell 112",
@@ -720,8 +720,8 @@ const en: AssistantCopy = {
   symptoms: {
     heading: "What is bothering you most?",
     lead: "Choose a category, then you can talk to a doctor online.",
-    bodyMapHint: "Have pain in a specific spot? Point to the exact area on the 3D body.",
-    bodyMapCta: "Check on 3D body",
+    bodyMapHint: "Have pain in a specific spot? Show where it hurts.",
+    bodyMapCta: "Show on a body picture",
     categories: {
       fever: {
         title: "Fever or a cold",
@@ -895,13 +895,22 @@ const en: AssistantCopy = {
       bedtime: "Bedtime",
     },
     noDoseAria: "No dose listed for this time",
+    strengthLabel: "Strength",
     foodTiming: {
       before_meal: "Before food",
       with_meal: "With food",
       after_meal: "After food",
     },
+    foodTimingSentence: {
+      before_meal: "Take it before food.",
+      with_meal: "Take it with food.",
+      after_meal: "Take it after food.",
+    },
     durationLabel: (duration) => `Duration: ${duration}`,
+    durationSentence: (duration) => `Take it for ${duration}.`,
     unclearBadge: "Unclear writing — check the dose with your pharmacist",
+    unclearDoseSentence: (medicineName) =>
+      `We could not read the dose for ${medicineName}. Ask your pharmacist.`,
     listenMedicine: "Listen",
     stopMedicine: "Stop",
     listenMedicineAria: (medicineName) => `Listen to instructions for ${medicineName}`,
@@ -925,11 +934,9 @@ const sq: AssistantCopy = {
     selectedTrailLabel: "Përgjigjet e zgjedhura deri tani",
   },
   tree: {
-    heading: "Çfarë të shqetëson sot?",
-    plainHeading: "Si mund të të ndihmojmë sot?",
+    heading: "Na trego çfarë po ndodh",
+    plainHeading: "Na trego çfarë po ndodh",
     lead: "Zgjidh atë që të përshtatet.",
-    bodyMapPrompt: "Do të tregosh vendin e saktë të dhimbjes në trupin 3D?",
-    bodyMapLink: "Hap hartën e trupit 3D",
     mediatorTag: "Mbështetje me mediator shëndetësor",
     options: {
       learn: {
@@ -967,7 +974,7 @@ const sq: AssistantCopy = {
     doctorLabel: "Çfarë është e vërtetë",
     sourceLabel: "Burimi",
     readGuide: "Lexo udhëzuesin e plotë",
-    browseGuides: "Shiko të gjithë udhëzuesit",
+    browseGuides: "Të gjithë udhëzuesit",
     topics: {
       vaccines: {
         title: "Vaksinat dhe imuniteti",
@@ -1017,7 +1024,7 @@ const sq: AssistantCopy = {
     lead: "Përgjigju me Po ose Jo 3 pyetjeve të shkurtra. Rezultati nuk është diagnozë.",
     quickTitle: "Nuk të përket asgjë nga lista?",
     quickBody: "Je nën 45 vjeç, askush në familje nuk ka diabet ose presion të lartë dhe nuk i ke shpesh këto shenja.",
-    quickButton: "Shiko rezultatin: rrezik i ulët",
+    quickButton: "Shiko rrezik të ulët",
     questions: {
       q1: {
         title: "Mosha dhe familja",
@@ -1065,16 +1072,10 @@ const sq: AssistantCopy = {
       "Vështirësi e papritur për të folur",
       "Gjakderdhje e madhe",
     ],
-    plainSigns: [
-      "Të dhemb fort gjoksi, si një peshë e rëndë që shtyp",
-      "Ke shumë vështirësi të marrësh frymë",
-      "Të është mpirë ose dobësuar papritur fytyra, një krah ose një këmbë",
-      "Nuk mund të flasësh më qartë",
-      "Po humbet shumë gjak",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.sq,
     callNow: "Telefono tani 112",
     yes: "Po, kam të paktën një shenjë",
-    yesSeeTips: "Po, shiko çfarë t'i thuash 112",
+    yesSeeTips: "Po, çfarë t'i thuash 112",
     no: "Jo, simptomat e mia janë më të lehta",
     noNoneOfThese: "Jo, asnjërën nga këto",
     note: "Nëse je në rrezik, telefono vetë 112. Aplikacioni nuk telefonon për ty.",
@@ -1082,8 +1083,8 @@ const sq: AssistantCopy = {
   symptoms: {
     heading: "Çfarë të shqetëson më shumë?",
     lead: "Zgjidh kategorinë, pastaj mund të flasësh me një mjek online.",
-    bodyMapHint: "Ke dhimbje në një vend të caktuar? Zgjidh pikën e saktë në trupin 3D.",
-    bodyMapCta: "Kontrollo në trupin 3D",
+    bodyMapHint: "Ke dhimbje në një vend të caktuar? Trego ku të dhemb.",
+    bodyMapCta: "Trego në figurën e trupit",
     categories: {
       fever: {
         title: "Temperaturë ose ftohje",
@@ -1257,13 +1258,22 @@ const sq: AssistantCopy = {
       bedtime: "Para gjumit",
     },
     noDoseAria: "Nuk ka dozë të shënuar për këtë orar",
+    strengthLabel: "Përqendrimi",
     foodTiming: {
       before_meal: "Para buke",
       with_meal: "Gjatë bukës",
       after_meal: "Pas buke",
     },
+    foodTimingSentence: {
+      before_meal: "Merre para buke.",
+      with_meal: "Merre gjatë bukës.",
+      after_meal: "Merre pas buke.",
+    },
     durationLabel: (duration) => `Kohëzgjatja: ${duration}`,
+    durationSentence: (duration) => `Merre për ${duration}.`,
     unclearBadge: "Shkrim i paqartë — kontrollo dozën me farmacistin",
+    unclearDoseSentence: (medicineName) =>
+      `Nuk e lexuam dot dozën për ${medicineName}. Pyet farmacistin.`,
     listenMedicine: "Dëgjo",
     stopMedicine: "Ndalo",
     listenMedicineAria: (medicineName) => `Dëgjo udhëzimet për ${medicineName}`,
@@ -1287,11 +1297,9 @@ const it: AssistantCopy = {
     selectedTrailLabel: "Risposte scelte finora",
   },
   tree: {
-    heading: "Cosa ti preoccupa oggi?",
-    plainHeading: "Come possiamo aiutarti oggi?",
+    heading: "Dicci cosa sta succedendo",
+    plainHeading: "Dicci cosa sta succedendo",
     lead: "Scegli quella più vicina alla tua situazione.",
-    bodyMapPrompt: "Vuoi indicare il punto esatto sul corpo 3D?",
-    bodyMapLink: "Apri la mappa del corpo 3D",
     mediatorTag: "Supporto con mediatore sanitario",
     options: {
       learn: {
@@ -1379,7 +1387,7 @@ const it: AssistantCopy = {
     lead: "Rispondi Sì o No a 3 domande brevi. Il risultato non è una diagnosi.",
     quickTitle: "Nessuna di queste cose ti riguarda?",
     quickBody: "Hai meno di 45 anni, nessuno in famiglia ha diabete o pressione alta e non hai spesso questi sintomi.",
-    quickButton: "Vedi il risultato: rischio basso",
+    quickButton: "Vedi rischio basso",
     questions: {
       q1: {
         title: "Età e famiglia",
@@ -1427,13 +1435,7 @@ const it: AssistantCopy = {
       "Difficoltà improvvisa a parlare",
       "Sanguinamento abbondante",
     ],
-    plainSigns: [
-      "Ti fa molto male il petto, come un peso che schiaccia",
-      "Fai molta fatica a respirare",
-      "All'improvviso senti intorpiditi o deboli il viso, un braccio o una gamba",
-      "Non riesci più a parlare chiaramente",
-      "Stai perdendo molto sangue",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.it,
     callNow: "Chiama subito il 112",
     yes: "Sì, ho almeno un segnale",
     yesSeeTips: "Sì, vedi cosa dire al 112",
@@ -1444,8 +1446,8 @@ const it: AssistantCopy = {
   symptoms: {
     heading: "Cosa ti dà più fastidio?",
     lead: "Scegli la categoria, poi potrai parlare con un medico online.",
-    bodyMapHint: "Hai dolore in un punto preciso? Puoi indicarlo sul modello 3D.",
-    bodyMapCta: "Controlla sul corpo 3D",
+    bodyMapHint: "Hai dolore in un punto preciso? Indica dove fa male.",
+    bodyMapCta: "Mostra su figura del corpo",
     categories: {
       fever: {
         title: "Febbre o raffreddore",
@@ -1619,13 +1621,22 @@ const it: AssistantCopy = {
       bedtime: "Prima di dormire",
     },
     noDoseAria: "Nessuna dose indicata per questo orario",
+    strengthLabel: "Concentrazione",
     foodTiming: {
       before_meal: "Prima dei pasti",
       with_meal: "Durante i pasti",
       after_meal: "Dopo i pasti",
     },
+    foodTimingSentence: {
+      before_meal: "Prendilo prima dei pasti.",
+      with_meal: "Prendilo durante i pasti.",
+      after_meal: "Prendilo dopo i pasti.",
+    },
     durationLabel: (duration) => `Durata: ${duration}`,
+    durationSentence: (duration) => `Prendilo per ${duration}.`,
     unclearBadge: "Scrittura poco chiara — verifica la dose con il farmacista",
+    unclearDoseSentence: (medicineName) =>
+      `Non siamo riusciti a leggere la dose per ${medicineName}. Chiedi al farmacista.`,
     listenMedicine: "Ascolta",
     stopMedicine: "Ferma",
     listenMedicineAria: (medicineName) => `Ascolta le indicazioni per ${medicineName}`,
@@ -1649,11 +1660,9 @@ const hr: AssistantCopy = {
     selectedTrailLabel: "Dosad odabrani odgovori",
   },
   tree: {
-    heading: "Što te danas brine?",
-    plainHeading: "Kako ti danas možemo pomoći?",
+    heading: "Reci nam što se događa",
+    plainHeading: "Reci nam što se događa",
     lead: "Odaberi ono što ti najviše odgovara.",
-    bodyMapPrompt: "Želiš li pokazati točno mjesto boli na 3D tijelu?",
-    bodyMapLink: "Otvori 3D kartu tijela",
     mediatorTag: "Podrška zdravstvenog medijatora",
     options: {
       learn: {
@@ -1691,7 +1700,7 @@ const hr: AssistantCopy = {
     doctorLabel: "Što je točno",
     sourceLabel: "Izvor",
     readGuide: "Pročitaj cijeli vodič",
-    browseGuides: "Pogledaj sve zdravstvene vodiče",
+    browseGuides: "Svi zdravstveni vodiči",
     topics: {
       vaccines: {
         title: "Cjepiva i imunitet",
@@ -1741,7 +1750,7 @@ const hr: AssistantCopy = {
     lead: "Odgovori s Da ili Ne na 3 kratka pitanja. Rezultat nije medicinska dijagnoza.",
     quickTitle: "Ništa s popisa se ne odnosi na tebe?",
     quickBody: "Imaš manje od 45 godina, nitko u obitelji nema dijabetes ni povišeni krvni tlak i rijetko imaš ove simptome.",
-    quickButton: "Pogledaj rezultat: nizak rizik",
+    quickButton: "Vidi nizak rizik",
     questions: {
       q1: {
         title: "Dob i obitelj",
@@ -1789,16 +1798,10 @@ const hr: AssistantCopy = {
       "Nagli poremećaj govora",
       "Jako krvarenje",
     ],
-    plainSigns: [
-      "Jako te boli u prsima, kao da ti težak teret pritišće prsni koš",
-      "Vrlo teško dišeš i nedostaje ti zraka",
-      "Odjednom ti je utrnulo ili oslabilo lice, ruka ili noga",
-      "Više ne možeš razgovijetno govoriti",
-      "Jako krvariš",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.hr,
     callNow: "Nazovi 112 odmah",
     yes: "Da, imam barem jedan znak",
-    yesSeeTips: "Da, pogledaj što reći broju 112",
+    yesSeeTips: "Da, što reći na 112",
     no: "Ne, moji su simptomi blaži",
     noNoneOfThese: "Ne, ništa od navedenog",
     note: "Ako si u opasnosti, sam ili sama nazovi 112. Aplikacija ne poziva umjesto tebe.",
@@ -1806,8 +1809,8 @@ const hr: AssistantCopy = {
   symptoms: {
     heading: "Što ti najviše smeta?",
     lead: "Odaberi kategoriju, a zatim možeš razgovarati s liječnikom online.",
-    bodyMapHint: "Imaš bol na određenom mjestu? Označi točno područje na 3D modelu.",
-    bodyMapCta: "Provjeri na 3D tijelu",
+    bodyMapHint: "Imaš bol na određenom mjestu? Pokaži gdje boli.",
+    bodyMapCta: "Pokaži na slici tijela",
     categories: {
       fever: {
         title: "Vrućica ili prehlada",
@@ -1981,13 +1984,22 @@ const hr: AssistantCopy = {
       bedtime: "Prije spavanja",
     },
     noDoseAria: "Nema navedene doze u ovo vrijeme",
+    strengthLabel: "Jačina",
     foodTiming: {
       before_meal: "Prije jela",
       with_meal: "Uz jelo",
       after_meal: "Poslije jela",
     },
+    foodTimingSentence: {
+      before_meal: "Uzmi prije jela.",
+      with_meal: "Uzmi uz jelo.",
+      after_meal: "Uzmi poslije jela.",
+    },
     durationLabel: (duration) => `Trajanje: ${duration}`,
+    durationSentence: (duration) => `Uzimaj ${duration}.`,
     unclearBadge: "Nečitak rukopis — provjeri dozu s ljekarnikom",
+    unclearDoseSentence: (medicineName) =>
+      `Nismo mogli pročitati dozu za ${medicineName}. Pitaj ljekarnika.`,
     listenMedicine: "Poslušaj",
     stopMedicine: "Zaustavi",
     listenMedicineAria: (medicineName) => `Poslušaj upute za ${medicineName}`,
@@ -2011,11 +2023,9 @@ const rom: AssistantCopy = {
     selectedTrailLabel: "Alosarde anglalipnata dji akana",
   },
   tree: {
-    heading: "So daravel tut adjes?",
-    plainHeading: "Sar shaj azhutinas tut adjes?",
+    heading: "Phen amenge so kerel pes",
+    plainHeading: "Phen amenge so kerel pes",
     lead: "Alosar so maladjol tuke maj mishto.",
-    bodyMapPrompt: "Manges te sikaves o chacho than pe 3D trupo?",
-    bodyMapLink: "Phuter o 3D trupo",
     mediatorTag: "Azhutimos sastipnaske mediatoresa",
     options: {
       learn: {
@@ -2053,7 +2063,7 @@ const rom: AssistantCopy = {
     doctorLabel: "So si chacho",
     sourceLabel: "Katar avel",
     readGuide: "Ginav o sasto sikavimos",
-    browseGuides: "Dikh sa le sastipnaske sikavimata",
+    browseGuides: "Sa le sikavimata",
     topics: {
       vaccines: {
         title: "Vakcine thaj arakhimos e truposko",
@@ -2103,7 +2113,7 @@ const rom: AssistantCopy = {
     lead: "De anglalipe Va vaj Na pe 3 skurte phuchimata. O rezultato na-i doktorikani diagnoza.",
     quickTitle: "Khanchi katar i lista na maladjol tuke?",
     quickBody: "Si tut telal 45 bersha, khonik and-i familija na-i les diabeto vaj bari tensia, thaj na-i tut butivar kadala simptome.",
-    quickButton: "Dikh o rezultato: tikno riziko",
+    quickButton: "Dikh tikno riziko",
     questions: {
       q1: {
         title: "Bersha thaj familija",
@@ -2151,16 +2161,10 @@ const rom: AssistantCopy = {
       "Sigo pharipen te vorbis",
       "Baro rat so thabdel",
     ],
-    plainSigns: [
-      "Dukhal tut zurales and-o kolin, sar baro pharipen",
-      "Phurdes but phares",
-      "Chiro muj, jekh vast vaj jekh punro kerdilo kovlo sigo",
-      "Nashti maj vorbis uzo",
-      "Thabdel tuke but rat",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.rom,
     callNow: "Akhar 112 akana",
     yes: "Va, si man barem jekh znako",
-    yesSeeTips: "Va, dikh so te phenes ko 112",
+    yesSeeTips: "Va, so te phenes ko 112",
     no: "Na, mure simptome si maj lokhe",
     noNoneOfThese: "Na, nijekh katar kadala",
     note: "Te san and-i dar, akhar tu ko 112. I aplikacia na akharel vash tute.",
@@ -2168,8 +2172,8 @@ const rom: AssistantCopy = {
   symptoms: {
     heading: "So dukhavel tut maj but?",
     lead: "Alosar i kategorija, pala kodoja shaj vorbis jekhe doktoresa online.",
-    bodyMapHint: "Si tut dukh pe jekh than? Alosar o chacho than pe 3D trupo.",
-    bodyMapCta: "Dikh pe 3D trupo",
+    bodyMapHint: "Si tut dukh pe jekh than? Sikav kaj dukhal.",
+    bodyMapCta: "Sikav pe sliko e truposko",
     categories: {
       fever: {
         title: "Tatipen vaj shil",
@@ -2343,13 +2347,22 @@ const rom: AssistantCopy = {
       bedtime: "Angla sovimos",
     },
     noDoseAria: "Na-i ramomi doza ko kadava chaso",
+    strengthLabel: "Zor",
     foodTiming: {
       before_meal: "Angla xabem",
       with_meal: "Le xabemasa",
       after_meal: "Pala xabem",
     },
+    foodTimingSentence: {
+      before_meal: "Le les angla xabem.",
+      with_meal: "Le les le xabemasa.",
+      after_meal: "Le les pala xabem.",
+    },
     durationLabel: (duration) => `Vrama: ${duration}`,
+    durationSentence: (duration) => `Le les ${duration}.`,
     unclearBadge: "Na uzo ramovimos — dikh i doza le farmacistosa",
+    unclearDoseSentence: (medicineName) =>
+      `Nashti gindjam i doza vaš ${medicineName}. Phuč e farmacistos.`,
     listenMedicine: "Ashun",
     stopMedicine: "Astav",
     listenMedicineAria: (medicineName) => `Ashun sar te les ${medicineName}`,
@@ -2370,17 +2383,15 @@ ru: {
 "selectedTrailLabel": "Выбранные ответы",
 
     back: "Назад",
-    intro: "Руководство из 3 шагов",
+    intro: "Пошаговое руководство",
     stepOf: (step, total = 3) => `Шаг ${step} из ${total}`,
     progressLabel: "Путеводитель по прогрессу",
   },
   tree: {
-"bodyMapPrompt": "Хотите указать точное место боли на 3D-модели?",
-"bodyMapLink": "Открыть 3D-карту тела",
 "mediatorTag": "Поддержка медицинского посредника",
 
-    heading: "Что тебя беспокоит сегодня?",
-    plainHeading: "Чем мы можем помочь вам сегодня?",
+    heading: "Расскажите, что происходит",
+    plainHeading: "Расскажите, что происходит",
     lead: "Выбирайте то, что подходит вам лучше всего.",
     options: {
       learn: {
@@ -2395,11 +2406,11 @@ ru: {
       },
       symptoms: {
         title: "У меня проблемы со здоровьем",
-        plainTitle: "я сейчас нехорошо себя чувствую",
+        plainTitle: "Я сейчас нехорошо себя чувствую",
         subtitle: "Сначала мы проверяем наличие настораживающих признаков, а затем направляем вас к врачу.",
       },
       prescription: {
-        title: "у меня есть рецепт",
+        title: "У меня есть рецепт",
         plainTitle: "У меня есть рецепт, и я не понимаю, как принимать таблетки.",
         subtitle: "Сфотографируйте рецепт или найдите лекарство.",
       },
@@ -2417,8 +2428,8 @@ ru: {
     verdictFalse: "Ложь",
     doctorLabel: "Что правда",
     sourceLabel: "Источник",
-    readGuide: "Прочитать полное руководство",
-    browseGuides: "Просмотреть все руководства по здоровью",
+    readGuide: "Открыть руководство",
+    browseGuides: "Все руководства",
     topics: {
       vaccines: {
         title: "Вакцины и иммунитет",
@@ -2468,7 +2479,7 @@ ru: {
     lead: "Ответьте «Да» или «Нет» на 3 коротких вопроса. Результат не является диагнозом.",
     quickTitle: "Ничего из этого к вам не относится?",
     quickBody: "Вам меньше 45 лет, никто в вашей семье не страдает диабетом или повышенным кровяным давлением, и эти симптомы наблюдаются у вас редко.",
-    quickButton: "Посмотреть результат: низкий риск",
+    quickButton: "Показать низкий риск",
     questions: {
       q1: {
         title: "Возраст и семья",
@@ -2508,8 +2519,8 @@ ru: {
   },
   gate: {
 "callNow": "Позвоните 112 сейчас",
-"yesSeeTips": "Да, что сказать оператору 112",
-"noNoneOfThese": "Нет, ничего из перечисленного",
+"yesSeeTips": "Да, что сказать в 112",
+"noNoneOfThese": "Нет, ничего из этого",
 
     heading: "Есть ли у вас сейчас какие-либо из этих предупреждающих знаков?",
     plainHeading: "Есть ли у вас сейчас какие-то очень серьезные признаки?",
@@ -2520,20 +2531,14 @@ ru: {
       "Внезапное затруднение речи",
       "Сильное кровотечение",
     ],
-    plainSigns: [
-      "Грудь сильно болит, как будто на нее давит тяжелая тяжесть.",
-      "Вам очень трудно дышать",
-      "Ваше лицо, рука или нога внезапно онемели или ослабли.",
-      "Ты больше не можешь ясно говорить",
-      "У тебя сильное кровотечение",
-    ],
+    plainSigns: PLAIN_ALARM_SIGNS.ru,
     yes: "Да, у меня есть хотя бы один",
     no: "Нет, у меня симптомы мягче",
     note: "Если вам угрожает опасность, позвоните по номеру 112 самостоятельно. Приложение не звонит вам.",
   },
   symptoms: {
-"bodyMapHint": "Болит в определенном месте? Укажите его на 3D-модели.",
-"bodyMapCta": "Показать на 3D-модели",
+"bodyMapHint": "Болит в определенном месте? Покажите, где именно.",
+"bodyMapCta": "Показать на схеме тела",
 "homeCareHeading": "Безопасная помощь дома",
 "homeCareByCategory": {"fever":["Отдыхайте в проветриваемой комнате и часто пейте воду или теплый травяной чай небольшими глотками.","Измеряйте температуру термометром и записывайте изменения.","Не начинайте оставшиеся антибиотики без назначения врача."],"headache":["Отдохните от экранов в тихой комнате и выпейте 1–2 стакана воды.","Приложите прохладную влажную ткань ко лбу или мягко расслабьте плечи.","Избегайте пропуска еды, избытка кофеина и позднего отхода ко сну."],"stomach":["Пейте воду или простой ромашковый либо мятный чай маленькими глотками.","Ешьте небольшие легкие порции, например рис, прозрачный бульон или тост.","Избегайте жареного, алкоголя и обезболивающих натощак."],"cough":["Смягчайте горло теплыми напитками и проветривайте комнату.","При ночном кашле слегка приподнимите голову дополнительной подушкой.","Избегайте табачного дыма и сухого воздуха."]},
 "whenToCallHeading": "Когда обращаться к врачу или звонить 112",
@@ -2677,9 +2682,13 @@ ru: {
 "medicinesLead": "Проверьте каждое лекарство по оригиналу рецепта.",
 "scheduleSlots": {"morning":"Утро","midday":"День","evening":"Вечер","bedtime":"Перед сном"},
 "noDoseAria": "Доза не указана",
+"strengthLabel": "Дозировка",
 "foodTiming": {"before_meal":"До еды","with_meal":"Во время еды","after_meal":"После еды"},
+"foodTimingSentence": {"before_meal":"Принимайте до еды.","with_meal":"Принимайте во время еды.","after_meal":"Принимайте после еды."},
 "durationLabel": (duration) => `Длительность: ${duration}`,
+"durationSentence": (duration) => `Принимайте ${duration}.`,
 "unclearBadge": "Нужно уточнить",
+"unclearDoseSentence": (medicineName) => `Не удалось прочитать дозу для ${medicineName}. Спросите у фармацевта.`,
 "listenMedicine": "Слушать",
 "stopMedicine": "Стоп",
 "listenMedicineAria": (medicineName) => `Прослушать: ${medicineName}`,

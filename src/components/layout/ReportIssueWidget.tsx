@@ -4,6 +4,7 @@ import { captchaErrorMessage, useRecaptcha } from "@/components/security/Recaptc
 
 import { useEffect, useId, useRef, useState, type FormEvent, type MouseEvent } from "react";
 import { AlertCircleIcon, CloseIcon, MailIcon } from "@/components/ui/icons";
+import styles from "@/components/layout/ChromeDialogs.module.css";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -244,12 +245,6 @@ export function ReportIssueWidget() {
     if (!open && dialog.open) dialog.close();
   }, [open]);
 
-  function openDialog() {
-    setError(null);
-    setSuccess(null);
-    setOpen(true);
-  }
-
   useEffect(() => {
     const handleOpen = (event: Event) => {
       event.preventDefault();
@@ -315,28 +310,10 @@ export function ReportIssueWidget() {
   }
 
   const fieldClass =
-    "w-full rounded-lg border bg-background text-base text-foreground placeholder:text-muted-foreground/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm";
+    "field-focus w-full rounded-lg border bg-background text-body text-foreground placeholder:text-muted-foreground/80";
 
   return (
     <>
-      {/* From 1024px only: on phones and tablets it covered body text and the topic action bar; the footer link opens the same form there. */}
-      <button
-        type="button"
-        onClick={openDialog}
-        aria-label={t.trigger}
-        aria-haspopup="dialog"
-        className="report-issue-trigger group fixed bottom-3 right-3 z-30 hidden h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground shadow-xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) lg:flex hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-      >
-        <AlertCircleIcon className="h-[18px] w-[18px]" aria-hidden="true" />
-        {/* Label on hover or keyboard focus only, above the icon so adjacent bottom-right controls stay clear. */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute right-0 bottom-full mb-2 whitespace-nowrap rounded-md bg-ink-950 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 shadow-xs transition-opacity duration-(--dur-fast) group-hover:opacity-100 group-focus-visible:opacity-100"
-        >
-          {t.trigger}
-        </span>
-      </button>
-
       <dialog
         ref={dialogRef}
         aria-labelledby={dialogTitleId}
@@ -347,17 +324,18 @@ export function ReportIssueWidget() {
           "m-0 mt-auto w-full max-w-none overflow-visible bg-transparent p-0 text-foreground",
           "sm:m-auto sm:w-[calc(100%-2rem)] sm:max-w-xl",
           "backdrop:bg-ink-950/45",
-          "transition-[opacity,translate] duration-(--dur-base) ease-(--ease-out-calm)",
+          styles.backdropFade,
+          "transition-[opacity,translate] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
           "starting:open:translate-y-2 starting:open:opacity-0",
         ].join(" ")}
       >
         <div className="flex max-h-[90dvh] flex-col overflow-y-auto rounded-t-xl border-t border-border bg-card p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-xl sm:rounded-xl sm:border sm:pb-5">
           <div className="mb-4 flex items-start justify-between gap-3 border-b border-border pb-4">
             <div className="min-w-0">
-              <h2 id={dialogTitleId} className="text-lg font-semibold text-foreground">
+              <h2 id={dialogTitleId} className="text-title font-semibold text-foreground">
                 {t.modalTitle}
               </h2>
-              <p id={dialogBodyId} className="mt-0.5 text-sm text-muted-foreground">
+              <p id={dialogBodyId} className="mt-0.5 text-body text-muted-foreground">
                 {t.modalBody}
               </p>
             </div>
@@ -365,7 +343,7 @@ export function ReportIssueWidget() {
               type="button"
               onClick={() => setOpen(false)}
               aria-label={t.close}
-              className="-mr-1.5 -mt-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row -mr-2 -mt-1.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <CloseIcon className="h-5 w-5" />
             </button>
@@ -373,11 +351,12 @@ export function ReportIssueWidget() {
 
           <form onSubmit={submitReport} noValidate className="space-y-4">
             <div>
-              <label htmlFor={emailId} className="mb-1.5 block text-sm font-medium text-foreground">
+              <label htmlFor={emailId} className="mb-1.5 block text-body font-medium text-foreground">
                 {t.emailLabel}
               </label>
-              <div className="relative">
-                <MailIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <div className="group relative">
+                {/* The envelope takes the focus colour with its field, so the active field reads at a glance. */}
+                <MailIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-focus-within:text-sapphire motion-reduce:transition-none dark:group-focus-within:text-sapphire-border" />
                 <input
                   id={emailId}
                   type="email"
@@ -388,13 +367,13 @@ export function ReportIssueWidget() {
                   placeholder={t.emailPlaceholder}
                   aria-invalid={error?.field === "email" || undefined}
                   aria-describedby={error?.field === "email" ? errorId : undefined}
-                  className={`${fieldClass} min-h-[44px] py-2 pl-9 pr-3 ${error?.field === "email" ? "border-primary" : "border-border"}`}
+                  className={`${fieldClass} min-h-11 py-2 pl-9 pr-3 ${error?.field === "email" ? "border-primary" : "border-border-control"}`}
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor={messageId} className="mb-1.5 block text-sm font-medium text-foreground">
+              <label htmlFor={messageId} className="mb-1.5 block text-body font-medium text-foreground">
                 {t.messageLabel}
               </label>
               <textarea
@@ -406,18 +385,18 @@ export function ReportIssueWidget() {
                 rows={5}
                 aria-invalid={error?.field === "message" || undefined}
                 aria-describedby={error?.field === "message" ? errorId : undefined}
-                className={`${fieldClass} px-3 py-2 ${error?.field === "message" ? "border-primary" : "border-border"}`}
+                className={`${fieldClass} px-3 py-2 ${error?.field === "message" ? "border-primary" : "border-border-control"}`}
               />
             </div>
 
             {error ? (
-              <p id={errorId} role="alert" className="flex items-start gap-2 rounded-lg border border-primary/30 bg-primary-soft/50 px-3 py-2 text-sm text-primary-active">
+              <p id={errorId} role="alert" className="swap-in flex items-start gap-2 rounded-lg border border-primary/30 bg-primary-soft/50 px-3 py-2 text-body text-primary-active">
                 <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>{error.text}</span>
               </p>
             ) : null}
             {success ? (
-              <p role="status" className="rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm font-medium text-foreground">
+              <p role="status" className="swap-in rounded-lg border border-border bg-muted/50 px-3 py-2 text-body font-medium text-foreground">
                 {success}
               </p>
             ) : null}
@@ -426,7 +405,7 @@ export function ReportIssueWidget() {
               <Button type="button" variant="ghost" onClick={() => setOpen(false)}>
                 {t.cancel}
               </Button>
-              <Button type="submit" variant="secondary" disabled={isSubmitting}>
+              <Button type="submit" variant="action" disabled={isSubmitting}>
                 {isSubmitting ? t.sending : t.send}
               </Button>
             </div>

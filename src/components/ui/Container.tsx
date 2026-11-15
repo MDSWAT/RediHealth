@@ -1,20 +1,19 @@
-import type { ElementType, ReactNode } from "react";
+import type { ElementType, HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-export type ContainerSize = "default" | "wide" | "narrow" | "workspace";
+export type ContainerSize = "default" | "narrow";
 
-type ContainerProps = {
-  children: ReactNode;
+type ContainerProps = HTMLAttributes<HTMLElement> & {
+  children?: ReactNode;
   className?: string;
   as?: ElementType;
   size?: ContainerSize;
+  [key: `data-${string}`]: string | number | boolean | undefined;
 };
 
 const MAX_WIDTHS: Record<ContainerSize, string> = {
-  narrow: "max-w-4xl",
-  default: "max-w-6xl",
-  wide: "max-w-7xl",
-  workspace: "max-w-[92rem] xl:px-10",
+  narrow: "max-w-[48rem]",
+  default: "max-w-[80rem]",
 };
 
 export function Container({
@@ -22,9 +21,19 @@ export function Container({
   className,
   as: Tag = "div",
   size = "default",
+  ...props
 }: ContainerProps) {
+  const hasCustomMaxWidth = Boolean(className && /\bmax-w-/.test(className));
+
   return (
-    <Tag className={cn("mx-auto w-full px-5 sm:px-6 lg:px-8", MAX_WIDTHS[size], className)}>
+    <Tag
+      {...props}
+      className={cn(
+        "mx-auto w-full px-5 sm:px-6 lg:px-8",
+        !hasCustomMaxWidth && MAX_WIDTHS[size],
+        className,
+      )}
+    >
       {children}
     </Tag>
   );

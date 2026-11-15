@@ -21,7 +21,8 @@
     "health:generate": "tsx scripts/health-content/generate.ts",
     "health:assemble": "tsx scripts/health-content/assemble.ts",
     "health:audit": "tsx scripts/health-content/audit.ts",
-    "health:register-direct": "tsx scripts/health-content/register-direct.ts"
+    "health:register-direct": "tsx scripts/health-content/register-direct.ts",
+    "tts:warm": "tsx --env-file=.env.local scripts/tts-warm.ts"
   },
   "dependencies": {
     "@types/three": "^0.187.0",

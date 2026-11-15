@@ -1,15 +1,30 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/Button";
+import { ListenButton } from "@/components/ui/ListenButton";
 import { CloseIcon, PhoneIcon } from "@/components/ui/icons";
+import { useReadAloud } from "@/components/health-check/readingTools";
+import { useModalAutoScroll } from "@/components/news/use-sheet-dialog";
 import { DispatcherScriptAccordion } from "@/components/emergency/DispatcherScriptAccordion";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
+import styles from "@/components/emergency/EmergencyOverlay.module.css";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { translations } from "@/lib/i18n/translations";
+import { translations, type Lang } from "@/lib/i18n/translations";
 
 export type EmergencySignsModalProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+};
+
+export const signsAudioCopy: Record<Lang, { listen: string; stop: string }> = {
+  ro: { listen: "Ascultă semnele", stop: "Oprește" },
+  en: { listen: "Listen to signs", stop: "Stop" },
+  sq: { listen: "Dëgjo shenjat", stop: "Ndalo" },
+  it: { listen: "Ascolta i segnali", stop: "Ferma" },
+  hr: { listen: "Poslušaj znakove", stop: "Zaustavi" },
+  rom: { listen: "Ashun e semnurya", stop: "Achav" },
+  ru: { listen: "Прослушать признаки", stop: "Остановить" },
 };
 
 function useSafeLanguage() {
@@ -37,12 +52,21 @@ export function EmergencySignsModal({
   open,
   onOpenChange,
 }: EmergencySignsModalProps) {
-  const { t } = useSafeLanguage();
+  const { t, lang } = useSafeLanguage();
+  const voice = useReadAloud(lang);
+  const { stop: stopVoice } = voice;
+  const audio = signsAudioCopy[lang];
   const e = t.emergency;
   const signs = e.signs;
 
   const [dialerGateOpen, setDialerGateOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) stopVoice();
+  }, [open, stopVoice]);
   const panelRef = useRef<HTMLDivElement>(null);
+
+  useModalAutoScroll(open, panelRef);
 
   useEffect(() => {
     if (!open) return;
@@ -74,7 +98,7 @@ export function EmergencySignsModal({
         aria-modal="true"
         aria-labelledby="emergency-signs-title"
         aria-describedby="emergency-signs-description"
-        className="fhs-fade fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/70 p-0 sm:items-center sm:p-4 backdrop-blur-xs"
+        className="scrim-in fixed inset-0 z-[100] flex items-end justify-center bg-ink-950/70 p-0 sm:items-center sm:p-4"
       >
         <div
           className="fixed inset-0 -z-10"
@@ -85,39 +109,74 @@ export function EmergencySignsModal({
         <div
           ref={panelRef}
           tabIndex={-1}
-          className="fhs-enter relative flex max-h-[92dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-2xl sm:max-h-[85dvh] sm:rounded-xl focus:outline-none"
+          className={`${styles.panel} relative flex max-h-[92dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-xl bg-card text-foreground shadow-2xl sm:max-h-[85dvh] sm:rounded-xl focus:outline-none`}
         >
           <div className="flex shrink-0 items-start justify-between gap-4 border-b border-border px-5 pb-4 pt-5 sm:px-7 sm:pt-6">
             <div className="min-w-0">
               <h2
                 id="emergency-signs-title"
-                className="text-lg font-semibold tracking-tight sm:text-xl"
+                className="text-title font-semibold"
               >
                 {e.signsModalTitle}
               </h2>
-              <p id="emergency-signs-description" className="mt-1 text-sm leading-relaxed text-muted-foreground">
+              <p id="emergency-signs-description" className="mt-1 text-meta text-muted-foreground">
                 {e.signsModalSubtitle}
               </p>
             </div>
 
+            <div className="-mr-2 -mt-1 flex shrink-0 items-center gap-2">
+            {voice.available ? (
+              <ListenButton
+                uiLang={lang}
+                isPlaying={voice.speaking}
+                label={audio.listen}
+                stopLabel={audio.stop}
+                onToggle={() =>
+                  voice.speaking
+                    ? voice.stop()
+                    : voice.speak([
+                        e.signsModalTitle,
+                        e.signsModalSubtitle,
+                        ...signs.map((s) => `${s.title}. ${s.description}`),
+                      ])
+                }
+              />
+            ) : null}
             <button
               type="button"
               onClick={() => onOpenChange(false)}
               aria-label={e.closeSignsModalAria}
-              className="-mr-2 -mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="press-row flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
             >
               <CloseIcon className="h-5 w-5" aria-hidden="true" />
             </button>
+            </div>
           </div>
 
-          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-5 sm:px-7">
+          <div
+            data-modal-scroller="true"
+            className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-5 sm:px-7"
+          >
             <ul className="divide-y divide-border">
-              {signs.map((sign) => (
-                <li key={sign.id} className="py-4">
-                  <h3 className="text-[15px] font-semibold leading-snug">{sign.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {sign.description}
-                  </p>
+              {signs.map((sign, index) => (
+                <li
+                  key={sign.id}
+                  // The signs arrive in reading order, just behind the sheet.
+                  style={{ "--i": index + 2 } as React.CSSProperties}
+                  className="list-in flex items-start gap-3 py-4"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary-soft text-meta font-semibold tabular-nums text-primary"
+                  >
+                    {index + 1}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="text-body font-semibold leading-snug">{sign.title}</h3>
+                    <p className="mt-1 text-meta text-muted-foreground">
+                      {sign.description}
+                    </p>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -128,18 +187,20 @@ export function EmergencySignsModal({
           </div>
 
           <div className="flex shrink-0 flex-col-reverse gap-2 border-t border-border px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-7">
-            <span className="text-center text-[13px] text-muted-foreground sm:text-left">
+            <span className="text-center text-meta text-muted-foreground sm:text-left">
               {e.freeServiceNotice}
             </span>
 
-            <button
+            <Button
               type="button"
+              variant="primary"
+              size="lg"
               onClick={() => setDialerGateOpen(true)}
-              className="flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="min-h-14 shrink-0 px-6"
             >
-              <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+              <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               <span>{e.call112}</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

@@ -1,21 +1,40 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, type PointerEvent as ReactPointerEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { IconTile } from "@/components/ui/IconTile";
-import { CheckCircleIcon, AlertCircleIcon, LockIcon } from "@/components/ui/icons";
-import { NAV_LINK_ICONS } from "@/components/layout/nav-links";
+import { AnimatePresence, motion } from "motion/react";
+import {
+  ArrowRightIcon,
+  ChevronRightIcon,
+  DownloadIcon,
+  PhoneIcon,
+  UsersIcon,
+} from "@/components/ui/icons";
+import { useReadAloud } from "@/components/health-check/readingTools";
+import { Button } from "@/components/ui/Button";
+import { ListenButton } from "@/components/ui/ListenButton";
+import { contulMeuCopy } from "@/components/portal/contul-meu-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
+import { useCalmReducedMotion } from "@/lib/motion/tokens";
+import { openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-state";
 
-function useSafeLanguage() {
+export function normalizePortalPhone(raw: string): string {
+  return raw.trim().replace(/[\s().-]+/g, "");
+}
+
+function useSafeLanguage(initialLang: Lang) {
   try {
-    const ctx = useLanguage();
-    return ctx;
+    return useLanguage();
   } catch {
-    return { lang: "ro" as Lang, t: translations.ro, setLang: () => {} };
+    return {
+      lang: initialLang,
+      t: translations[initialLang] ?? translations.ro,
+      setLang: () => {},
+    };
   }
 }
 
@@ -24,11 +43,12 @@ const authModalCopy: Record<
   {
     step2Subtitle: (phone: string) => string;
     invalidPhoneError: string;
+    incompleteCodeError: string;
     tooManyAttempts: string;
     smsSent: string;
+    smsSwitchHint: string;
     genericError: string;
     demoNotice: string;
-    digit: (n: number) => string;
     sending: string;
     verifying: string;
     changeNumber: string;
@@ -40,27 +60,28 @@ const authModalCopy: Record<
   ru: {
     step2Subtitle: (p) => `Мы отправили 4-значный код на ${p}. Введите его ниже.`,
     invalidPhoneError: "Напишите номер телефона, например 0721 000 000.",
-    tooManyAttempts: "Слишком много попыток. Подождите минуту и ​​повторите попытку.",
+    incompleteCodeError: "Введите 4 цифры из SMS.",
+    tooManyAttempts: "Слишком много попыток. Подождите минуту и повторите попытку.",
     smsSent: "Мы отправили вам код в текстовом сообщении.",
+    smsSwitchHint: "Можете открыть SMS на телефоне, чтобы посмотреть код. Эта страница останется открытой.",
     genericError: "Что-то пошло не так. Попробуйте еще раз.",
     demoNotice: "Тестовый код (только демо):",
-    digit: (n) => `цифра ${n} из 4`,
     sending: "Отправка…",
     verifying: "Проверка…",
     changeNumber: "Изменить номер",
-    resendSms: "Отправьте код еще раз",
-    fallbackQuestion: "У вас нет телефона или вам нужна помощь со входом в систему?",
+    resendSms: "Отправить код еще раз",
+    fallbackQuestion: "У вас нет телефона или вам нужна помощь со входом?",
     fallbackLinkText: "Обратитесь за помощью к медицинскому посреднику",
   },
-
   ro: {
     step2Subtitle: (p) => `Am trimis un cod de 4 cifre la ${p}. Scrie-l mai jos.`,
     invalidPhoneError: "Scrie un număr de telefon, de exemplu 0721 000 000.",
+    incompleteCodeError: "Scrie cele 4 cifre din SMS.",
     tooManyAttempts: "Ai încercat de prea multe ori. Așteaptă un minut și încearcă din nou.",
     smsSent: "Ți-am trimis codul prin SMS.",
+    smsSwitchHint: "Poți deschide mesajele SMS pe telefon ca să vezi codul. Această pagină rămâne deschisă și te așteaptă.",
     genericError: "Ceva nu a mers. Încearcă din nou.",
     demoNotice: "Cod de test (doar în demonstrație):",
-    digit: (n) => `Cifra ${n} din 4`,
     sending: "Se trimite…",
     verifying: "Se verifică…",
     changeNumber: "Schimbă numărul",
@@ -71,11 +92,12 @@ const authModalCopy: Record<
   en: {
     step2Subtitle: (p) => `We sent a 4-digit code to ${p}. Type it below.`,
     invalidPhoneError: "Write a phone number, for example 0721 000 000.",
+    incompleteCodeError: "Enter the 4 numbers from the SMS.",
     tooManyAttempts: "Too many tries. Wait a minute and try again.",
     smsSent: "We sent you the code by text message.",
+    smsSwitchHint: "You can open your SMS messages to check the code. This page stays open waiting for you.",
     genericError: "Something went wrong. Try again.",
     demoNotice: "Test code (demo only):",
-    digit: (n) => `Digit ${n} of 4`,
     sending: "Sending…",
     verifying: "Checking…",
     changeNumber: "Change number",
@@ -86,11 +108,12 @@ const authModalCopy: Record<
   sq: {
     step2Subtitle: (p) => `Të dërguam një kod me 4 shifra në ${p}. Shkruaje më poshtë.`,
     invalidPhoneError: "Shkruaj një numër telefoni, për shembull 0721 000 000.",
+    incompleteCodeError: "Shkruaj 4 shifrat nga SMS-ja.",
     tooManyAttempts: "Provove shumë herë. Prit një minutë dhe provo përsëri.",
     smsSent: "Ta dërguam kodin me SMS.",
+    smsSwitchHint: "Mund t'i hapësh mesazhet SMS në telefon për të parë kodin. Kjo faqe mbetet e hapur.",
     genericError: "Diçka nuk shkoi. Provo përsëri.",
     demoNotice: "Kod prove (vetëm në demonstrim):",
-    digit: (n) => `Shifra ${n} nga 4`,
     sending: "Po dërgohet…",
     verifying: "Po kontrollohet…",
     changeNumber: "Ndrysho numrin",
@@ -101,11 +124,12 @@ const authModalCopy: Record<
   it: {
     step2Subtitle: (p) => `Ti abbiamo mandato un codice di 4 cifre al ${p}. Scrivilo qui sotto.`,
     invalidPhoneError: "Scrivi un numero di telefono, per esempio 0721 000 000.",
+    incompleteCodeError: "Scrivi le 4 cifre dell'SMS.",
     tooManyAttempts: "Troppi tentativi. Aspetta un minuto e riprova.",
     smsSent: "Ti abbiamo mandato il codice via SMS.",
+    smsSwitchHint: "Puoi aprire i messaggi SMS sul telefono per leggere il codice. Questa pagina resta aperta.",
     genericError: "Qualcosa non ha funzionato. Riprova.",
     demoNotice: "Codice di prova (solo demo):",
-    digit: (n) => `Cifra ${n} di 4`,
     sending: "Invio…",
     verifying: "Controllo…",
     changeNumber: "Cambia numero",
@@ -116,11 +140,12 @@ const authModalCopy: Record<
   hr: {
     step2Subtitle: (p) => `Poslali smo četveroznamenkasti kod na broj ${p}. Upiši ga niže.`,
     invalidPhoneError: "Upiši broj telefona, na primjer 091 000 0000.",
+    incompleteCodeError: "Upiši 4 broja iz SMS-a.",
     tooManyAttempts: "Previše pokušaja. Pričekaj minutu pa pokušaj ponovno.",
     smsSent: "Poslali smo ti kod SMS porukom.",
+    smsSwitchHint: "Možeš otvoriti SMS poruke na telefonu kako bi vidio kod. Ova stranica ostaje otvorena.",
     genericError: "Nešto nije uspjelo. Pokušaj ponovno.",
     demoNotice: "Probni kod (samo za prikaz):",
-    digit: (n) => `Znamenka ${n} od 4`,
     sending: "Slanje…",
     verifying: "Provjera…",
     changeNumber: "Promijeni broj",
@@ -131,11 +156,12 @@ const authModalCopy: Record<
   rom: {
     step2Subtitle: (p) => `Bichhaldyam kodo katar 4 gina pe ${p}. Lekhav les tele.`,
     invalidPhoneError: "Lekhav telefonesko gin, misal 0721 000 000.",
+    incompleteCodeError: "Lekhav e 4 gina katar o SMS.",
     tooManyAttempts: "But zumavimata. Azhuker ekh minuta thaj zumav palem.",
     smsSent: "Bichhaldyam tuke o kodo katar SMS.",
+    smsSwitchHint: "Shaj putres e SMS mesažurya te dikhes o kodo. Kadi rig achhol putardi tuke.",
     genericError: "Vareso na kerdili mishto. Zumav palem.",
     demoNotice: "Zumavipnasko kodo (numay sikavipnaske):",
-    digit: (n) => `Gin ${n} katar 4`,
     sending: "Bichhalel pes…",
     verifying: "Dikhlyol pes…",
     changeNumber: "Paruv o gin",
@@ -145,74 +171,138 @@ const authModalCopy: Record<
   },
 };
 
-const EMPTY_CODE = ["", "", "", ""];
+const FOCUS_RING =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card dark:focus-visible:ring-offset-ink-900";
 
-const FOCUS_RING = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:focus-visible:ring-paper";
+const FIELD =
+  "field-focus min-h-14 w-full rounded-xl border border-border-control bg-white text-title font-semibold tabular-nums text-foreground placeholder:font-normal placeholder:text-muted-foreground dark:border-white/15 dark:bg-ink-950 dark:text-paper dark:placeholder:text-mist/60";
 
-// The edge is border-control, 3:1 against the card, so an empty field can be found.
-const FIELD = `rounded-(--radius-control) border border-border-control bg-card text-foreground dark:border-white/40 dark:bg-ink-900 dark:text-paper ${FOCUS_RING}`;
-
-const SUBMIT_BUTTON = `press-solid inline-flex min-h-14 w-full items-center justify-center rounded-(--radius-control) bg-sapphire px-4 text-base font-semibold text-white transition-[background-color,filter] duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-light focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground motion-reduce:transition-none dark:bg-paper dark:text-ink-950 dark:hover:bg-paper/90 dark:focus-visible:ring-offset-ink-800 dark:disabled:bg-white/10 dark:disabled:text-mist ${FOCUS_RING}`;
-
-const FIELD_LABEL = "text-base font-semibold text-foreground dark:text-paper";
+const FIELD_LABEL = "text-body font-semibold text-foreground dark:text-paper";
+const CALM_EASE: [number, number, number, number] = [0.25, 1, 0.5, 1];
 
 /**
- * Account sign-in by phone, as one card: number, then a 4-digit SMS code (typed, pasted or filled
- * by the phone), with the way to a health mediator in an amber block under the action.
- * Server messages are Romanian only, so errors shown here come from this file's own copy.
+ * Patient medical record SMS sign-in card.
+ * Uses a calm Apple-Health surface: spatial micro-float (disabled while typing or under
+ * reduced motion), anticipation progress hairline, single-heading flow, and mediator fallback link.
  */
-export function SmsPhoneAuthModal() {
+export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }) {
   const router = useRouter();
-  const { lang, t } = useSafeLanguage();
+  const { lang: activeLang, t } = useSafeLanguage(initialLang);
+  const lang = activeLang ?? initialLang;
   const copy = authModalCopy[lang] ?? authModalCopy.ro;
-  const page = t.accountAuthPage;
+  const voice = useReadAloud(lang);
+  const pwa = usePwaSnapshot();
+  const showInstall = !pwa.isStandalone;
+  const installLabel = getPwaCopy(lang).installButton;
+  const surfaceCopy = contulMeuCopy[lang] ?? contulMeuCopy.ro;
+  const page = t.accountAuthPage ?? translations[lang].accountAuthPage;
+  const calmMotion = useCalmReducedMotion();
 
   const [step, setStep] = useState<1 | 2>(1);
   const [phone, setPhone] = useState("");
-  const [otpDigits, setOtpDigits] = useState<string[]>(EMPTY_CODE);
+  const [otpCode, setOtpCode] = useState("");
+  const [phoneFocused, setPhoneFocused] = useState(false);
+  const [otpFocused, setOtpFocused] = useState(false);
   const [demoCode, setDemoCode] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
-  const digitRefs = useRef<Array<HTMLInputElement | null>>([]);
 
-  useEffect(() => {
-    if (step === 2) digitRefs.current[0]?.focus();
-  }, [step]);
+  const otpInputRef = useRef<HTMLInputElement | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const sheenRef = useRef<HTMLDivElement>(null);
+  const pointerTarget = useRef({ x: 0, y: 0, sx: 50, sy: 28, active: false });
+  const pointerCurrent = useRef({ x: 0, y: 0, sx: 50, sy: 28 });
+  const pointerRaf = useRef<number | null>(null);
 
-  const cleanPhone = () => phone.trim().replace(/[\s-]+/g, "");
+  const cleanPhone = () => normalizePortalPhone(phone);
+  const cleanDigits = cleanPhone();
+  const phoneReady = cleanDigits.length >= 9;
+  const isEditing = phoneFocused || otpFocused;
 
-  const handleSendCode = async (e?: React.FormEvent) => {
-    e?.preventDefault();
-    if (cleanPhone().length < 9) {
-      setError(copy.invalidPhoneError);
-      return;
-    }
-    setError("");
-    setIsLoading(true);
-    try {
-      const response = await fetch("/api/patient-portal/request-phone-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone: cleanPhone() }),
-      });
-      if (!response.ok) {
-        setError(response.status === 429 ? copy.tooManyAttempts : response.status === 400 ? copy.invalidPhoneError : copy.genericError);
-        return;
-      }
-      const data = (await response.json()) as { demoCode?: string };
-      setDemoCode(data.demoCode ?? null);
-      setOtpDigits(EMPTY_CODE);
-      setSent(true);
-      setStep(2);
-    } catch {
-      setError(copy.genericError);
-    } finally {
-      setIsLoading(false);
+  const stopFloatLoop = () => {
+    if (pointerRaf.current !== null) {
+      cancelAnimationFrame(pointerRaf.current);
+      pointerRaf.current = null;
     }
   };
 
+  useEffect(() => {
+    if (calmMotion || isEditing) {
+      stopFloatLoop();
+      pointerTarget.current = { x: 0, y: 0, sx: 50, sy: 28, active: false };
+      pointerCurrent.current = { x: 0, y: 0, sx: 50, sy: 28 };
+      if (cardRef.current) cardRef.current.style.transform = "translate3d(0px, 0px, 0)";
+      if (sheenRef.current) sheenRef.current.style.opacity = "0";
+    }
+    return stopFloatLoop;
+  }, [calmMotion, isEditing]);
+
+  const startFloatLoop = () => {
+    if (pointerRaf.current !== null || calmMotion || isEditing) return;
+    const stepFrame = () => {
+      const target = pointerTarget.current;
+      const cur = pointerCurrent.current;
+      const lerp = 0.14;
+      cur.x += (target.x - cur.x) * lerp;
+      cur.y += (target.y - cur.y) * lerp;
+      cur.sx += (target.sx - cur.sx) * lerp;
+      cur.sy += (target.sy - cur.sy) * lerp;
+
+      if (cardRef.current) {
+        cardRef.current.style.transform = `translate3d(${cur.x.toFixed(2)}px, ${cur.y.toFixed(2)}px, 0)`;
+      }
+      if (sheenRef.current) {
+        sheenRef.current.style.setProperty("--sheen-x", `${cur.sx.toFixed(1)}%`);
+        sheenRef.current.style.setProperty("--sheen-y", `${cur.sy.toFixed(1)}%`);
+        sheenRef.current.style.opacity = target.active ? "1" : "0";
+      }
+
+      const settled =
+        Math.abs(target.x - cur.x) < 0.04 &&
+        Math.abs(target.y - cur.y) < 0.04 &&
+        !target.active;
+
+      if (settled) {
+        if (cardRef.current) cardRef.current.style.transform = "translate3d(0px, 0px, 0)";
+        pointerRaf.current = null;
+        return;
+      }
+      pointerRaf.current = requestAnimationFrame(stepFrame);
+    };
+    pointerRaf.current = requestAnimationFrame(stepFrame);
+  };
+
+  const handleCardPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (calmMotion || isEditing) return;
+    if (event.pointerType !== "mouse") return;
+    if (typeof window !== "undefined" && !window.matchMedia("(pointer: fine)").matches) return;
+    const rect = cardRef.current?.getBoundingClientRect();
+    if (!rect || rect.width === 0 || rect.height === 0) return;
+
+    const nx = (event.clientX - rect.left) / rect.width;
+    const ny = (event.clientY - rect.top) / rect.height;
+    pointerTarget.current = {
+      x: (nx - 0.5) * 9,
+      y: (ny - 0.5) * 7,
+      sx: nx * 100,
+      sy: ny * 100,
+      active: true,
+    };
+    startFloatLoop();
+  };
+
+  const handleCardPointerLeave = () => {
+    pointerTarget.current = { ...pointerTarget.current, x: 0, y: 0, active: false };
+    startFloatLoop();
+  };
+
   const verifyOtp = async (code: string) => {
+    if (!/^\d{4}$/.test(code.trim())) {
+      setError(copy.incompleteCodeError);
+      otpInputRef.current?.focus();
+      return;
+    }
     setError("");
     setIsLoading(true);
     try {
@@ -235,155 +325,344 @@ export function SmsPhoneAuthModal() {
     }
   };
 
-  const fillDigits = (from: number, raw: string) => {
-    const incoming = raw.replace(/\D/g, "").slice(0, 4 - from).split("");
-    if (incoming.length === 0) return;
-    const updated = [...otpDigits];
-    incoming.forEach((d, i) => (updated[from + i] = d));
-    setOtpDigits(updated);
-    const next = Math.min(from + incoming.length, 3);
-    digitRefs.current[next]?.focus();
-    if (updated.every((d) => d.length === 1)) void verifyOtp(updated.join(""));
-  };
+  const verifyOtpRef = useRef(verifyOtp);
+  useEffect(() => {
+    verifyOtpRef.current = verifyOtp;
+  });
 
-  const handleDigitChange = (index: number, val: string) => {
-    if (val === "") {
-      const updated = [...otpDigits];
-      updated[index] = "";
-      setOtpDigits(updated);
+  useEffect(() => {
+    if (step !== 2) return;
+    otpInputRef.current?.focus();
+
+    if (typeof window === "undefined" || !("OTPCredential" in window) || !navigator.credentials?.get) {
       return;
     }
-    fillDigits(index, val.length > 1 && otpDigits[index] ? val.replace(otpDigits[index], "") : val);
+    const controller = new AbortController();
+    (navigator.credentials.get as (options?: unknown) => Promise<{ code?: string } | null>)({
+      otp: { transport: ["sms"] },
+      signal: controller.signal,
+    })
+      .then((credential) => {
+        const cleaned = credential?.code?.replace(/\D/g, "").slice(0, 4) ?? "";
+        if (cleaned.length === 4) {
+          setOtpCode(cleaned);
+          void verifyOtpRef.current(cleaned);
+        }
+      })
+      .catch(() => {
+        // Ignored cleanly when browser cancels, times out, or WebOTP is unsupported.
+      });
+
+    return () => controller.abort();
+  }, [step]);
+
+  const handleSendCode = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    if (cleanPhone().length < 9) {
+      setError(copy.invalidPhoneError);
+      return;
+    }
+    setError("");
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/patient-portal/request-phone-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone: cleanPhone() }),
+      });
+      if (!response.ok) {
+        setError(
+          response.status === 429
+            ? copy.tooManyAttempts
+            : response.status === 400
+              ? copy.invalidPhoneError
+              : copy.genericError,
+        );
+        return;
+      }
+      const data = (await response.json()) as { demoCode?: string };
+      setDemoCode(data.demoCode ?? null);
+      setOtpCode("");
+      setSent(true);
+      setStep(2);
+    } catch {
+      setError(copy.genericError);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Backspace" && !otpDigits[index] && index > 0) digitRefs.current[index - 1]?.focus();
+  const handleOtpChange = (raw: string) => {
+    const digits = raw.replace(/\D/g, "").slice(0, 4);
+    setOtpCode(digits);
+    if (digits.length === 4) {
+      void verifyOtp(digits);
+    }
   };
+
+  // Dynamic anticipation hairline progress + behavioural subtitle state
+  const hairlineScale = step === 2 ? 1 : phoneReady ? 0.78 : phoneFocused || cleanDigits.length > 0 ? 0.56 : 0.36;
+  const activeSubtitleKey = step === 2 ? "step2" : phoneReady ? "ready" : "default";
+  const activeSubtitle =
+    step === 2 ? copy.step2Subtitle(phone) : phoneReady ? surfaceCopy.card.phoneReadyHint : page.subtitle;
+  const stepText = surfaceCopy.card.step(step, 2);
 
   return (
-    <div className="mx-auto w-full max-w-md rounded-(--radius-surface) border border-border bg-card p-6 sm:p-8 dark:border-white/10 dark:bg-ink-800">
-      <IconTile size={48} tone="sapphire-solid" icon={LockIcon} />
-      <h1 className="mt-4 text-page text-foreground dark:text-paper">{page.title}</h1>
-      <p className="mt-2 text-body text-muted-foreground dark:text-mist">{step === 1 ? page.subtitle : copy.step2Subtitle(phone)}</p>
+    <div
+      ref={cardRef}
+      onPointerMove={handleCardPointerMove}
+      onPointerLeave={handleCardPointerLeave}
+      className="relative overflow-hidden rounded-2xl border border-border/90 bg-card text-foreground shadow-(--shadow-card-hover) dark:border-white/12 dark:bg-ink-900 dark:text-paper"
+    >
+      {/* Subtle sapphire cursor sheen on desktop hover (still when typing or reduced motion). */}
+      <div
+        ref={sheenRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-(--dur-base) ease-(--ease-out-calm)"
+        style={{
+          background:
+            "radial-gradient(380px circle at var(--sheen-x, 50%) var(--sheen-y, 28%), rgba(29, 53, 87, 0.06), transparent 70%)",
+        }}
+      />
 
-      {error && (
-        <p id="auth-phone-error" role="alert" className="mt-4 flex items-start gap-2 rounded-(--radius-control) border border-primary/30 bg-primary-soft p-3 text-body text-foreground dark:border-ruby-300/40 dark:bg-primary-soft/10 dark:text-paper">
-          <AlertCircleIcon aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-primary dark:text-ruby-300" />
-          <span>{error}</span>
-        </p>
-      )}
+      {/* Hairline progress bar driven by live form readiness */}
+      <div className="relative z-10 h-[2px] w-full bg-foreground/8 dark:bg-white/10" aria-hidden="true">
+        <div
+          className="h-full origin-left bg-sapphire transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:bg-sapphire-border"
+          style={{ transform: `scaleX(${hairlineScale})` }}
+        />
+      </div>
 
-      {sent && step === 2 && !error && (
-        <p role="status" className="mt-4 flex items-start gap-2 text-body text-muted-foreground dark:text-mist">
-          <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-sapphire dark:text-sapphire-border" />
-          <span>{copy.smsSent}</span>
-        </p>
-      )}
-
-      {demoCode && step === 2 && (
-        <p className="mt-2 rounded-(--radius-control) bg-muted px-3 py-2 text-body text-muted-foreground dark:bg-white/10 dark:text-mist">
-          {copy.demoNotice} <strong className="tabular-nums text-foreground dark:text-paper">{demoCode}</strong>
-        </p>
-      )}
-
-      {step === 1 && (
-        <form onSubmit={handleSendCode} className="mt-6 space-y-4" noValidate>
-          <div>
-            <label htmlFor="authPhone" className={`mb-1.5 block ${FIELD_LABEL}`}>
-              {page.phoneLabel}
-            </label>
-            <input
-              id="authPhone"
-              type="tel"
-              inputMode="tel"
-              autoComplete="tel"
-              required
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder={page.phonePlaceholder}
-              aria-invalid={Boolean(error)}
-              aria-describedby={error ? "auth-phone-error" : undefined}
-              className={`min-h-14 w-full px-4 text-lg placeholder:text-muted-foreground dark:placeholder:text-mist ${FIELD}`}
-            />
+      <div className="relative z-10 p-6 sm:p-8">
+        {/* Install sits beside Listen: people who open their record are the ones who come back, so this is where it earns its place. */}
+        {showInstall || voice.available ? (
+          <div className="mb-4 flex flex-wrap items-center justify-end gap-2">
+            {showInstall ? (
+              <button
+                type="button"
+                onClick={() => void openPwaInstall()}
+                className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-3 text-body font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <DownloadIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+                <span>{installLabel}</span>
+              </button>
+            ) : null}
+            {voice.available ? (
+              <ListenButton
+                uiLang={lang}
+                isPlaying={voice.speaking}
+                onToggle={() =>
+                  voice.speaking
+                    ? voice.stop()
+                    : voice.speak([
+                        step === 1 ? page.title : surfaceCopy.card.step2Heading,
+                        activeSubtitle,
+                        copy.fallbackQuestion,
+                        copy.fallbackLinkText,
+                      ])
+                }
+              />
+            ) : null}
           </div>
-          <button type="submit" disabled={isLoading} className={SUBMIT_BUTTON}>
-            {isLoading ? copy.sending : page.sendCode}
-          </button>
-        </form>
-      )}
+        ) : null}
+        <p aria-live="polite" className="sr-only">
+          {stepText}
+        </p>
 
-      {step === 2 && (
-        <div className="mt-6 space-y-6">
-          <fieldset>
-            <legend className={`mb-2 ${FIELD_LABEL}`}>{page.codeLabel}</legend>
-            <div className="flex gap-3">
-              {otpDigits.map((digit, idx) => (
-                <input
-                  key={idx}
-                  ref={(el) => {
-                    digitRefs.current[idx] = el;
-                  }}
-                  type="text"
-                  inputMode="numeric"
-                  autoComplete={idx === 0 ? "one-time-code" : "off"}
-                  pattern="[0-9]*"
-                  maxLength={idx === 0 ? 4 : 1}
-                  aria-label={copy.digit(idx + 1)}
-                  value={digit}
-                  onChange={(e) => handleDigitChange(idx, e.target.value)}
-                  onPaste={(e) => {
-                    e.preventDefault();
-                    fillDigits(idx, e.clipboardData.getData("text"));
-                  }}
-                  onKeyDown={(e) => handleKeyDown(idx, e)}
-                  className={`h-14 w-12 text-center text-2xl font-semibold tabular-nums focus-visible:border-sapphire ${FIELD}`}
-                />
-              ))}
-            </div>
-          </fieldset>
+        <h1 className="text-balance text-page font-semibold leading-tight text-foreground dark:text-paper">
+          {step === 1 ? page.title : surfaceCopy.card.step2Heading}
+        </h1>
 
-          <button
-            type="button"
-            disabled={isLoading || otpDigits.some((d) => !d)}
-            onClick={() => verifyOtp(otpDigits.join(""))}
-            className={SUBMIT_BUTTON}
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.p
+            key={activeSubtitleKey}
+            initial={calmMotion ? false : { opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={calmMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
+            transition={{ duration: calmMotion ? 0 : 0.16, ease: CALM_EASE }}
+            className="mt-2 text-body text-muted-foreground dark:text-mist"
           >
-            {isLoading ? copy.verifying : page.verifyCode}
-          </button>
+            {activeSubtitle}
+          </motion.p>
+        </AnimatePresence>
 
-          <div className="-mx-2 flex flex-wrap items-center justify-between gap-2 text-base">
-            <button
-              type="button"
-              onClick={() => {
-                setStep(1);
-                setOtpDigits(EMPTY_CODE);
-                setError("");
-              }}
-              className={`press-row min-h-11 rounded-(--radius-control) px-2 text-muted-foreground underline underline-offset-4 hover:text-foreground dark:text-mist dark:hover:text-paper ${FOCUS_RING}`}
-            >
-              {copy.changeNumber}
-            </button>
-            <button
-              type="button"
-              onClick={() => void handleSendCode()}
-              disabled={isLoading}
-              className={`press-row min-h-11 rounded-(--radius-control) px-2 font-semibold text-sapphire underline-offset-4 hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline dark:text-sapphire-border dark:disabled:text-mist ${FOCUS_RING}`}
-            >
-              {copy.resendSms}
-            </button>
-          </div>
-        </div>
-      )}
+        {error && (
+          <p
+            id="auth-phone-error"
+            role="alert"
+            key={error}
+            className="swap-in mt-4 rounded-xl border border-primary/40 bg-primary-soft p-3 text-body font-semibold text-foreground dark:bg-primary/15 dark:text-paper"
+          >
+            {error}
+          </p>
+        )}
 
-      <div className="mt-4 flex items-start gap-3 rounded-(--radius-control) border border-amber-care-border bg-amber-care-soft p-4 dark:border-amber-care/40 dark:bg-amber-care/10">
-        <IconTile size={40} tone="amber" icon={NAV_LINK_ICONS["/mediatori"]} />
-        <div className="min-w-0">
-          <p className="text-body text-foreground dark:text-paper">{copy.fallbackQuestion}</p>
+        {sent && step === 2 && !error && (
+          <p role="status" className="swap-in mt-4 text-body text-muted-foreground dark:text-mist">
+            {copy.smsSent}
+          </p>
+        )}
+
+        {demoCode && step === 2 && (
+          <p className="mt-2 rounded-xl bg-muted px-3 py-2 text-body text-muted-foreground dark:bg-white/[0.06] dark:text-mist">
+            {copy.demoNotice} <strong className="tabular-nums text-foreground dark:text-paper">{demoCode}</strong>
+          </p>
+        )}
+
+        <AnimatePresence mode="wait" initial={false}>
+          {step === 1 ? (
+            <motion.form
+              key="step-phone"
+              initial={calmMotion ? false : { opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={calmMotion ? { opacity: 0 } : { opacity: 0, y: -6 }}
+              transition={{ duration: calmMotion ? 0 : 0.18, ease: CALM_EASE }}
+              onSubmit={handleSendCode}
+              className="mt-5 space-y-4"
+              noValidate
+            >
+              <div>
+                <label htmlFor="authPhone" className={`mb-1.5 block ${FIELD_LABEL}`}>
+                  {page.phoneLabel}
+                </label>
+                <div className="relative">
+                  <PhoneIcon
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground dark:text-mist"
+                  />
+                  <input
+                    id="authPhone"
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    onFocus={() => setPhoneFocused(true)}
+                    onBlur={() => setPhoneFocused(false)}
+                    placeholder={page.phonePlaceholder}
+                    aria-invalid={Boolean(error)}
+                    aria-describedby={error ? "auth-phone-error" : undefined}
+                    className={`pl-11 pr-4 ${FIELD}`}
+                  />
+                </div>
+              </div>
+              <Button type="submit" variant="action" size="lg" fullWidth disabled={isLoading} className="min-h-14 sm:px-5">
+                <span>{isLoading ? copy.sending : page.sendCode}</span>
+                {!isLoading && <ArrowRightIcon aria-hidden="true" className="arrow-travel h-5 w-5 shrink-0" />}
+              </Button>
+            </motion.form>
+          ) : (
+            <motion.div
+              key="step-otp"
+              initial={calmMotion ? false : { opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={calmMotion ? { opacity: 0 } : { opacity: 0, y: -6 }}
+              transition={{ duration: calmMotion ? 0 : 0.18, ease: CALM_EASE }}
+              className="mt-5 space-y-5"
+            >
+              <div>
+                <label htmlFor="authOtpCode" className={`mb-2 block ${FIELD_LABEL}`}>
+                  {page.codeLabel}
+                </label>
+                <div className="relative">
+                  <input
+                    id="authOtpCode"
+                    ref={otpInputRef}
+                    type="text"
+                    inputMode="numeric"
+                    autoComplete="one-time-code"
+                    pattern="[0-9]*"
+                    maxLength={4}
+                    value={otpCode}
+                    onChange={(e) => handleOtpChange(e.target.value)}
+                    onFocus={() => setOtpFocused(true)}
+                    onBlur={() => setOtpFocused(false)}
+                    aria-invalid={Boolean(error)}
+                    aria-describedby={error ? "auth-phone-error auth-otp-switch-hint" : "auth-otp-switch-hint"}
+                    className="peer absolute inset-0 z-10 h-full w-full cursor-text text-body opacity-0"
+                  />
+                  <div aria-hidden="true" className="grid grid-cols-4 gap-3">
+                    {[0, 1, 2, 3].map((slot) => {
+                      const digit = otpCode[slot] ?? "";
+                      const isActiveSlot = otpFocused && slot === Math.min(otpCode.length, 3);
+                      return (
+                        <div
+                          key={slot}
+                          className={`flex h-16 items-center justify-center rounded-xl border-2 text-section font-bold tabular-nums transition-[border-color,box-shadow,background-color] duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                            isActiveSlot
+                              ? "border-sapphire bg-sapphire-soft text-foreground shadow-[0_0_0_4px_color-mix(in_oklab,var(--color-sapphire)_16%,transparent)] dark:border-sapphire-border dark:bg-sapphire/25 dark:text-paper"
+                              : digit
+                                ? "border-sapphire/50 bg-white text-foreground dark:border-sapphire-border/60 dark:bg-ink-950 dark:text-paper"
+                                : "border-border-control bg-muted/60 text-muted-foreground dark:border-white/15 dark:bg-ink-950/60 dark:text-mist/60"
+                          }`}
+                        >
+                          {/* A typed digit settles into its box; the empty active box shows the caret. */}
+                          {digit ? (
+                            <span key={`${slot}-${digit}`} className="swap-in">{digit}</span>
+                          ) : isActiveSlot ? (
+                            <span className="h-6 w-0.5 bg-sapphire dark:bg-sapphire-border" />
+                          ) : (
+                            "–"
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                <p id="auth-otp-switch-hint" className="mt-2.5 text-body text-muted-foreground dark:text-mist">
+                  {copy.smsSwitchHint}
+                </p>
+              </div>
+
+              <Button
+                type="button"
+                variant="action"
+                size="lg"
+                fullWidth
+                disabled={isLoading}
+                onClick={() => verifyOtp(otpCode)}
+                className="min-h-14 sm:px-5"
+              >
+                <span>{isLoading ? copy.verifying : page.verifyCode}</span>
+                {!isLoading && <ArrowRightIcon aria-hidden="true" className="arrow-travel h-5 w-5 shrink-0" />}
+              </Button>
+
+              <div className="btn-row -mx-2 flex flex-wrap items-center justify-between gap-3 text-body">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStep(1);
+                    setOtpCode("");
+                    setError("");
+                  }}
+                  className={`press-row min-h-11 max-w-full whitespace-nowrap rounded-xl px-2 text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground hover:decoration-current dark:text-mist dark:decoration-white/25 dark:hover:text-paper ${FOCUS_RING}`}
+                >
+                  <span>{copy.changeNumber}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void handleSendCode()}
+                  disabled={isLoading}
+                  className={`group press-row min-h-11 max-w-full whitespace-nowrap rounded-xl px-2 font-semibold text-sapphire disabled:cursor-not-allowed disabled:text-foreground/45 dark:text-sapphire-border dark:disabled:text-white/45 ${FOCUS_RING}`}
+                >
+                  <span>{copy.resendSms}</span>
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <div className="mt-6 border-t border-border/80 pt-4 dark:border-white/10">
           <Link
             href={withLangPrefix("/mediatori#solicita", lang)}
-            className={`press-row -mx-2 mt-1 inline-flex min-h-11 items-center rounded-(--radius-control) px-2 text-base font-semibold text-sapphire underline-offset-4 hover:underline dark:text-sapphire-border ${FOCUS_RING}`}
+            className={`group press-row -mx-1 flex min-h-11 max-w-full items-center justify-between gap-3 whitespace-nowrap rounded-md px-1 text-body font-medium text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/60 hover:text-foreground dark:text-mist dark:hover:bg-white/[0.06] dark:hover:text-paper ${FOCUS_RING}`}
           >
-            {copy.fallbackLinkText}
+            <span className="flex min-w-0 items-center gap-2.5">
+              <UsersIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-amber-care" />
+              <span className="min-w-0 truncate">{copy.fallbackLinkText}</span>
+            </span>
+            <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
           </Link>
         </div>
       </div>

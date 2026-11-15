@@ -22,15 +22,15 @@ export function Logo({ className, muted = false, tone = "default", href = "/", l
       href={href}
       onClick={onClick}
       className={cn(
-        "inline-flex items-center gap-2.5 rounded-md font-semibold",
+        "inline-flex items-center gap-1.5 rounded-md font-semibold sm:gap-2.5",
         className,
       )}
       aria-label={label || undefined}
     >
-      <Image src={LOGO_SRC} alt="" width={40} height={40} />
+      <Image src={LOGO_SRC} alt="" width={40} height={40} className="h-7 w-7 shrink-0 sm:h-10 sm:w-10" />
       <span
         className={cn(
-          "text-lg tracking-tight transition-colors duration-(--dur-base) ease-(--ease-out-calm)",
+          "text-body sm:text-lead transition-colors duration-(--dur-base) ease-(--ease-out-calm)",
           tone === "light" ? "text-paper" : muted ? "text-muted-foreground" : "text-foreground dark:text-paper",
         )}
       >

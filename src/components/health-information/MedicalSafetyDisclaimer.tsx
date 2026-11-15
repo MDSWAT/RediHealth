@@ -16,7 +16,7 @@ export const MEDICAL_SAFETY_DISCLAIMER_COPY: Record<
   { badge: string; body: string }
 > = {
   ru: {
-    badge: "Это руководство не заменяет врача.",
+    badge: "Это руководство не заменяет врача",
     body:
       "На этой странице представлена информация о здоровье. Оно не дает вам диагноза или лечения. Для этого обратитесь к врачу. В случае чрезвычайной ситуации звоните по номеру 112.",
   },
@@ -81,8 +81,8 @@ export function MedicalSafetyDisclaimer({
         framed ? "rounded-xl border border-border bg-card p-4 sm:p-5" : ""
       } ${className}`}
     >
-      <ShieldIcon className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-      <p className="max-w-[72ch] text-pretty text-sm leading-relaxed text-muted-foreground">
+      <ShieldIcon className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+      <p className="max-w-(--measure-reading) text-pretty text-body text-foreground/85">
         <span className="font-semibold text-foreground">{copy.badge}.</span> {copy.body}
       </p>
     </section>

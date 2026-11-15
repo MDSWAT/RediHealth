@@ -84,23 +84,23 @@ export function PathwayLearn({ step, selectedTopicId, onSelectTopic, plainLangua
       <h2 className={stepHeading}>{topic.title}</h2>
 
       <figure className="mt-5 rounded-2xl bg-muted/60 p-5">
-        <figcaption className="text-sm text-muted-foreground">
+        <figcaption className="text-meta text-muted-foreground">
           {learn.mythLabel}: <span className="font-semibold text-foreground">{learn.verdictFalse}</span>
         </figcaption>
-        <blockquote className="mt-2 text-base leading-relaxed text-foreground">&ldquo;{topic.myth}&rdquo;</blockquote>
+        <blockquote className="mt-2 text-body text-foreground">&ldquo;{topic.myth}&rdquo;</blockquote>
       </figure>
 
       <h3 className={`mt-6 ${subHeading}`}>{learn.doctorLabel}</h3>
-      <p className="mt-1.5 max-w-prose text-base leading-relaxed text-foreground">
+      <p className="mt-1.5 max-w-(--measure-reading) text-body text-foreground">
         {plainLanguage ? topic.plainDoctor : topic.doctor}
       </p>
-      <p className="mt-2 text-sm text-muted-foreground">
+      <p className="mt-2 text-body text-muted-foreground">
         {learn.sourceLabel}: {topic.source}
       </p>
 
-      <Link href={guideHref} className={`mt-3 text-base ${textLink}`}>
-        <span className={textLinkLabel}>{current.guideSlug ? learn.readGuide : learn.browseGuides}</span>
-        <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+      <Link href={guideHref} className={`mt-3 max-w-full text-body ${textLink}`}>
+        <span className={`min-w-0 truncate ${textLinkLabel}`}>{current.guideSlug ? learn.readGuide : learn.browseGuides}</span>
+        <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
       </Link>
 
       <UniversalDoctorExit pathway="learn" summary={learn.summary(topic.title)} />

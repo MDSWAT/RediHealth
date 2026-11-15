@@ -12,10 +12,16 @@ export type ChromeCopy = {
   /** Accessible name of the logo link; starts with the visible brand name. */
   homeLink: string;
   /**
-   * Phone-width 112 bar: a two-word question that reads as one line with the call button
-   * next to it ("Urgență? · Sună la 112"). From 768px up the bar shows the full sentence.
+   * Phone-width 112 bar: a short question that reads as one line with the call button
+   * next to it ("Urgență? Sună la 112"). From 768px up the bar shows the full sentence.
    */
   emergencyQuestion: string;
+  /** Compact phone-width emergency call label so the 112 strip stays single-line up to 126% scale. */
+  call112Short: string;
+  /** Short visible label next to the header menu icon on phones/tablets. */
+  menuWord: string;
+  /** Short visible label shown when the phone/tablet menu is open. */
+  closeWord: string;
 };
 
 export const chromeCopy: Record<Lang, ChromeCopy> = {
@@ -23,7 +29,10 @@ export const chromeCopy: Record<Lang, ChromeCopy> = {
     primaryNav: "Основная навигация",
     footerNav: "Навигация в нижнем колонтитуле",
     homeLink: "RediHealth, домашняя страница",
-    emergencyQuestion: "Чрезвычайная ситуация?",
+    emergencyQuestion: "Экстренно?",
+    call112Short: "Вызов 112",
+    menuWord: "Меню",
+    closeWord: "Закрыть",
   },
 
   ro: {
@@ -31,36 +40,54 @@ export const chromeCopy: Record<Lang, ChromeCopy> = {
     footerNav: "Navigare în subsolul paginii",
     homeLink: "RediHealth, pagina principală",
     emergencyQuestion: "Urgență?",
+    call112Short: "Sună la 112",
+    menuWord: "Meniu",
+    closeWord: "Închide",
   },
   en: {
     primaryNav: "Main navigation",
     footerNav: "Footer navigation",
     homeLink: "RediHealth, home page",
     emergencyQuestion: "Emergency?",
+    call112Short: "Call 112",
+    menuWord: "Menu",
+    closeWord: "Close",
   },
   sq: {
     primaryNav: "Navigimi kryesor",
     footerNav: "Navigimi në fund të faqes",
     homeLink: "RediHealth, faqja kryesore",
     emergencyQuestion: "Urgjencë?",
+    call112Short: "Thirr 112",
+    menuWord: "Menu",
+    closeWord: "Mbyll",
   },
   it: {
     primaryNav: "Navigazione principale",
     footerNav: "Navigazione a piè di pagina",
     homeLink: "RediHealth, pagina iniziale",
     emergencyQuestion: "Emergenza?",
+    call112Short: "Chiama 112",
+    menuWord: "Menu",
+    closeWord: "Chiudi",
   },
   hr: {
     primaryNav: "Glavna navigacija",
     footerNav: "Navigacija u podnožju stranice",
     homeLink: "RediHealth, početna stranica",
     emergencyQuestion: "Hitno?",
+    call112Short: "Nazovi 112",
+    menuWord: "Izbornik",
+    closeWord: "Zatvori",
   },
   rom: {
     primaryNav: "Sherutno drom",
     footerNav: "Telutno drom e rigako",
     homeLink: "RediHealth, angluni rig",
     emergencyQuestion: "Sigardiari?",
+    call112Short: "Akhar 112",
+    menuWord: "Meniu",
+    closeWord: "Phandav",
   },
 };
 

@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { ALBANIA_COUNTIES_MAP } from "@/lib/geo/albania-counties";
 import { CROATIA_COUNTIES_MAP } from "@/lib/geo/croatia-counties";
@@ -12,6 +14,7 @@ import {
   isMoldovanRegion,
   mapCountriesForLang,
 } from "@/components/ui/RomaniaCountyMap";
+import { filterCountyModalGroups } from "@/components/news/CountyOverrideModal";
 import { newsForPlace, placeCountry } from "@/components/news/PlaceNewsModal";
 import { countyLabel, formatNewsDate, resolveNewsBasePath } from "@/components/news/news-format";
 import { NEWS_ARTICLES, articleCountry, getLocalizedArticle } from "@/lib/data/news";
@@ -158,5 +161,59 @@ describe("Croatian (hr) and Common Romani (rom) clinical terminology and URL rou
     }
     expect(getLocalizedArticle(hrArticle, "hr").title).toContain("Mobilna ambulanta u Zagrebu");
     expect(getLocalizedArticle(mdArticle, "rom").summary).toContain("gudlo rat");
+  });
+
+  it("matches Moldova and Moldovan districts from CountyOverrideModal search when Romania + Moldova are active", () => {
+    const moldoSearch = filterCountyModalGroups({
+      searchTerm: "Moldo",
+      effectiveCountry: "ro",
+      availableCountries: ["ro", "md"],
+      lang: "ro",
+    });
+    expect(moldoSearch).toHaveLength(1);
+    expect(moldoSearch[0]?.country).toBe("md");
+    expect(moldoSearch[0]?.heading).toBe("Moldova");
+    expect(moldoSearch[0]?.items[0]).toEqual({ value: ALL_MOLDOVA, label: "Toată Moldova" });
+    expect(moldoSearch[0]?.items.some((item) => item.value === "Chișinău")).toBe(true);
+
+    const chisinauSearch = filterCountyModalGroups({
+      searchTerm: "Chisinau",
+      effectiveCountry: "ro",
+      availableCountries: ["ro", "md"],
+      lang: "ro",
+    });
+    expect(chisinauSearch).toHaveLength(1);
+    expect(chisinauSearch[0]?.country).toBe("md");
+    expect(chisinauSearch[0]?.items.map((item) => item.value)).toEqual(["Chișinău"]);
+
+    const sharedCalarasi = filterCountyModalGroups({
+      searchTerm: "Calarasi",
+      effectiveCountry: "ro",
+      availableCountries: ["ro", "md"],
+      lang: "ro",
+    });
+    expect(sharedCalarasi.map((g) => g.country)).toEqual(["ro", "md"]);
+
+    const singleCountryIt = filterCountyModalGroups({
+      searchTerm: "Moldo",
+      effectiveCountry: "it",
+      availableCountries: ["it"],
+      lang: "it",
+    });
+    expect(singleCountryIt).toEqual([]);
+  });
+
+  it("portals news sheets to document.body above sticky stacked sections and tracks visualViewport", () => {
+    const countyModal = readFileSync(path.resolve(__dirname, "CountyOverrideModal.tsx"), "utf8");
+    const placeModal = readFileSync(path.resolve(__dirname, "PlaceNewsModal.tsx"), "utf8");
+    const sheetHook = readFileSync(path.resolve(__dirname, "use-sheet-dialog.ts"), "utf8");
+
+    expect(countyModal).toContain("createPortal(");
+    expect(countyModal).toContain("z-[80]");
+    expect(countyModal).toContain("--sheet-vv-height");
+    expect(placeModal).toContain("createPortal(");
+    expect(placeModal).toContain("z-[80]");
+    expect(sheetHook).toContain("window.visualViewport");
+    expect(sheetHook).toContain("(pointer: coarse)");
   });
 });

@@ -276,10 +276,10 @@ export function CaseTrackingMatrix() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-border">
         <div>
-          <h2 className="text-base sm:text-lg font-bold text-foreground">
+          <h2 className="text-title font-bold text-foreground">
             {copy.title}
           </h2>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-meta text-muted-foreground">
             {copy.subtitle}
           </p>
         </div>
@@ -292,7 +292,7 @@ export function CaseTrackingMatrix() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={copy.searchPlaceholder}
             aria-label={copy.searchPlaceholder}
-            className="w-full min-h-[44px] rounded-md border border-border bg-background px-3 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sapphire"
+            className="w-full min-h-[44px] rounded-md border border-border bg-background px-3 py-1.5 text-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
           />
         </div>
       </div>
@@ -302,7 +302,7 @@ export function CaseTrackingMatrix() {
         <button
           type="button"
           onClick={() => setFilter("all")}
-          className={`min-h-[44px] rounded-md px-3 py-2 text-xs font-semibold transition-colors ${
+          className={`inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-body font-semibold transition-colors ${
             filter === "all"
               ? "bg-sapphire text-white shadow-xs"
               : "border border-border bg-background text-foreground hover:bg-muted"
@@ -314,7 +314,7 @@ export function CaseTrackingMatrix() {
         <button
           type="button"
           onClick={() => setFilter("mame")}
-          className={`min-h-[44px] rounded-md px-3 py-2 text-xs font-semibold transition-colors ${
+          className={`inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-body font-semibold transition-colors ${
             filter === "mame"
               ? "bg-sapphire text-white shadow-xs"
               : "border border-border bg-background text-foreground hover:bg-muted"
@@ -326,7 +326,7 @@ export function CaseTrackingMatrix() {
         <button
           type="button"
           onClick={() => setFilter("cronice")}
-          className={`min-h-[44px] rounded-md px-3 py-2 text-xs font-semibold transition-colors ${
+          className={`inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-body font-semibold transition-colors ${
             filter === "cronice"
               ? "bg-sapphire text-white shadow-xs"
               : "border border-border bg-background text-foreground hover:bg-muted"
@@ -338,7 +338,7 @@ export function CaseTrackingMatrix() {
         <button
           type="button"
           onClick={() => setFilter("fara_acte")}
-          className={`min-h-[44px] rounded-md px-3 py-2 text-xs font-semibold transition-colors ${
+          className={`inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-body font-semibold transition-colors ${
             filter === "fara_acte"
               ? "bg-sapphire text-white shadow-xs"
               : "border border-border bg-background text-foreground hover:bg-muted"
@@ -350,7 +350,7 @@ export function CaseTrackingMatrix() {
         <button
           type="button"
           onClick={() => setFilter("post_operator")}
-          className={`min-h-[44px] rounded-md px-3 py-2 text-xs font-semibold transition-colors ${
+          className={`inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-body font-semibold transition-colors ${
             filter === "post_operator"
               ? "bg-sapphire text-white shadow-xs"
               : "border border-border bg-background text-foreground hover:bg-muted"
@@ -374,32 +374,32 @@ export function CaseTrackingMatrix() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-bold text-foreground">
+                    <h3 className="text-body font-bold text-foreground">
                       {c.name}
                     </h3>
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-meta text-muted-foreground">
                       ({c.age})
                     </span>
                     <span
-                      className={`rounded-md px-2 py-0.5 text-[11px] font-semibold border ${
+                      className={`rounded-md px-2 py-0.5 text-meta font-semibold border ${
                         c.urgency === "Urgent"
-                          ? "border-red-500/30 bg-red-500/10 text-red-600"
+                          ? "border-primary/30 bg-primary-soft text-primary-hover dark:border-ruby-300/35 dark:bg-primary/15 dark:text-ruby-300"
                           : c.urgency === "Moderat"
-                          ? "border-amber-500/30 bg-amber-500/10 text-amber-800 dark:text-amber-300"
+                          ? "border-amber-care-border bg-amber-care-soft text-amber-care-hover dark:border-amber-care/40 dark:bg-amber-care/15 dark:text-amber-care-border"
                           : "border-border bg-muted/60 text-muted-foreground"
                       }`}
                     >
                       {copy.urgency[c.urgency]}
                     </span>
                   </div>
-                  <p className="mt-0.5 flex items-center gap-1 text-xs text-muted-foreground">
+                  <p className="mt-0.5 flex items-center gap-1 text-meta text-muted-foreground">
                     <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                     <span>{c.village} · {copy.lastVisit} {c.lastVisited}</span>
                   </p>
-                  <p className="mt-2 text-xs font-medium text-foreground">
+                  <p className="mt-2 text-meta font-medium text-foreground">
                     {copy.nextStep} <strong className="text-sapphire dark:text-sapphire-border">{c.nextAction}</strong>
                   </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
+                  <p className="mt-1 text-meta text-muted-foreground">
                     {copy.notes} {c.notes}
                   </p>
                 </div>
@@ -408,7 +408,7 @@ export function CaseTrackingMatrix() {
               <div className="flex sm:flex-col gap-2 shrink-0">
                 <button
                   type="button"
-                  className="min-h-[44px] rounded-md border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted"
+                  className="inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-md border border-border bg-card px-3 py-1.5 text-body font-semibold text-foreground hover:bg-muted"
                 >
                   {copy.openFile}
                 </button>
@@ -418,7 +418,7 @@ export function CaseTrackingMatrix() {
         ))}
 
         {filteredCases.length === 0 && (
-          <div className="rounded-lg border border-dashed border-border p-8 text-center text-xs text-muted-foreground">
+          <div className="rounded-lg border border-dashed border-border p-8 text-center text-meta text-muted-foreground">
             {copy.empty}
           </div>
         )}
