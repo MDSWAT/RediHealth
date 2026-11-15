@@ -17,6 +17,7 @@ type Verification = {
   action?: string;
   hostname?: string;
   challenge_ts?: string;
+  "error-codes"?: string[];
 };
 
 export async function verifyRecaptcha(
@@ -73,7 +74,13 @@ export async function verifyRecaptcha(
     typeof result.hostname !== "string" || !hostnames.includes(result.hostname.toLowerCase()) ||
     !Number.isFinite(timestamp) || age < -30_000 || age > 120_000
   ) {
-    console.warn("reCAPTCHA rejected a submission.", { action });
+    const reasons: string[] = [];
+    if (result.success !== true) reasons.push("google-said-not-success");
+    if (typeof result.score !== "number" || result.score < 0.5) reasons.push(`low-score:${String(result.score)}`);
+    if (result.action !== action) reasons.push(`action-mismatch:${String(result.action)}`);
+    if (typeof result.hostname !== "string" || !hostnames.includes(result.hostname.toLowerCase())) reasons.push(`hostname-not-allowed:${String(result.hostname)}`);
+    if (!Number.isFinite(timestamp) || age < -30_000 || age > 120_000) reasons.push("token-expired-or-clock-skew");
+    console.warn("reCAPTCHA rejected a submission.", { action, reasons, errorCodes: result["error-codes"] });
     return NextResponse.json(
       { error: "Bot verification failed. Please try again.", code: "captcha_invalid" },
       { status: 400 },

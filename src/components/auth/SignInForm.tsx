@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
 import { ChevronDownIcon, GoogleIcon } from "@/components/ui/icons";
@@ -11,6 +10,7 @@ import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { isValidEmail } from "@/lib/text";
 import {
   captchaErrorMessage,
+  captchaFailureMessage,
   useRecaptcha,
 } from "@/components/security/RecaptchaProvider";
 
@@ -41,7 +41,6 @@ export function SignInForm({
   googleConfigured: boolean;
   initialError?: string;
 }) {
-  const router = useRouter();
   const { t, lang } = useLanguage();
   const executeCaptcha = useRecaptcha();
   const form = t.signInPage.form;
@@ -80,12 +79,12 @@ export function SignInForm({
         body: JSON.stringify({ email: normalizedEmail, captchaToken }),
       });
       if (!response.ok) {
+        const failure = (await response.json().catch(() => null)) as { code?: unknown } | null;
         setPortalRecoveryError(
           response.status === 429
             ? TOO_MANY[lang]
-            : response.status === 400
-              ? form.emailInvalid
-              : form.portalRecoveryError,
+            : (captchaFailureMessage(lang, failure?.code) ??
+              (response.status === 400 ? form.emailInvalid : form.portalRecoveryError)),
         );
         return;
       }
@@ -122,12 +121,12 @@ export function SignInForm({
         body: JSON.stringify({ email: normalizedEmail, captchaToken }),
       });
       if (!response.ok) {
+        const failure = (await response.json().catch(() => null)) as { code?: unknown } | null;
         setError(
           response.status === 429
             ? TOO_MANY[lang]
-            : response.status === 400
-              ? form.emailInvalid
-              : form.genericSendError,
+            : (captchaFailureMessage(lang, failure?.code) ??
+              (response.status === 400 ? form.emailInvalid : form.genericSendError)),
         );
         return;
       }
@@ -162,7 +161,9 @@ export function SignInForm({
         return;
       }
 
-      router.push(withLangPrefix("/panel", lang));
+      // Hard navigation: the new session cookie must reach the server on the very next request.
+      // A client-side push can reuse a cached /panel result (a redirect back to sign-in), which looked like "enter your email again".
+      window.location.assign(withLangPrefix("/panel", lang));
     } catch (error) {
       setError(captchaErrorMessage(error, form.genericVerifyError));
     } finally {

@@ -82,6 +82,11 @@ export function captchaErrorMessage(error: unknown, fallback: string): string {
   return error instanceof CaptchaClientError ? error.message : fallback;
 }
 
+/** The sign-in APIs answer 400 for both a bad email and a failed bot check; only the latter carries a captcha_* code. */
+export function captchaFailureMessage(lang: keyof typeof copy, code: unknown): string | null {
+  return typeof code === "string" && code.startsWith("captcha_") ? copy[lang].unavailable : null;
+}
+
 const CaptchaContext = createContext<((action: CaptchaAction) => Promise<string>) | null>(null);
 const CaptchaEnabledContext = createContext(false);
 
