@@ -4,6 +4,7 @@ import { useState, useCallback, useMemo } from "react";
 import type { ComponentType, SVGProps } from "react";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { useReadingLevel } from "@/lib/comfort-preferences";
 import {
   ActivityIcon,
   AppleIcon,
@@ -23,9 +24,9 @@ import { TopicHeroSection } from "./TopicHeroSection";
 import {
   HEALTH_ARTICLE_CONTAINER_CLASS,
   HEALTH_ARTICLE_WITH_TOC_GRID_CLASS,
-  HealthArticleToc,
 } from "./HealthArticleShell";
 import { HealthArticleTocRail } from "./HealthArticleTocRail";
+import { MobileGuideJumpBar } from "./MobileGuideJumpBar";
 import { WhyItMattersInfographic } from "./WhyItMattersInfographic";
 import { ActionableStepsChecklist } from "./ActionableStepsChecklist";
 import { WarningSignsEmergencyCard } from "./WarningSignsEmergencyCard";
@@ -205,16 +206,19 @@ export function TopicDetailPageContent({
   relatedTopics,
 }: TopicDetailPageContentProps) {
   const { lang } = useLanguage();
-  const [readingLevel, setReadingLevel] = useState<"simple" | "complete">(
-    "simple",
-  );
+  const [readingLevel, setReadingLevel] = useReadingLevel();
   const [isAudioPlayerOpen, setIsAudioPlayerOpen] = useState(false);
+  const [followResumeNonce, setFollowResumeNonce] = useState(0);
   const [activeSentenceIndex, setActiveSentenceIndex] = useState<number | null>(
     null,
   );
   const [openDrawer, setOpenDrawer] = useState<"dictionary" | "romanes" | null>(
     null,
   );
+
+  const resumeAutoScroll = useCallback(() => {
+    setFollowResumeNonce((n) => n + 1);
+  }, []);
 
   const ui = TOPIC_PAGE_UI_STRINGS[lang] ?? TOPIC_PAGE_UI_STRINGS.ro;
   const tabCopy = DICTIONARY_TAB_LABELS[lang] ?? DICTIONARY_TAB_LABELS.ro;
@@ -288,8 +292,11 @@ export function TopicDetailPageContent({
         readingLevel={readingLevel}
         readMinutes={readMinutes}
         audioMinutes={audioMinutes}
-        onReadingLevelChange={(lvl) => setReadingLevel(lvl)}
-        onListenClick={() => setIsAudioPlayerOpen(true)}
+        onReadingLevelChange={setReadingLevel}
+        onListenClick={() => {
+          resumeAutoScroll();
+          setIsAudioPlayerOpen(true);
+        }}
         onStopClick={closeAudioPlayer}
         isPlayingAudio={isAudioPlayerOpen}
         afterActions={
@@ -316,6 +323,8 @@ export function TopicDetailPageContent({
         lang={lang}
       />
 
+      <MobileGuideJumpBar ariaLabel={ui.tocAria} sections={tocSections} />
+
       <div className="bg-background pb-12 pt-6 sm:pb-16 sm:pt-8 print:py-4">
         <Container>
           {(() => {
@@ -333,8 +342,6 @@ export function TopicDetailPageContent({
                   className={`${HEALTH_ARTICLE_CONTAINER_CLASS} space-y-10 sm:space-y-12 print:space-y-6`}
                   data-health-article-column
                 >
-                  <HealthArticleToc {...toc} className="mt-0 lg:hidden" />
-
             {/* Lead paragraph */}
             <section
               id="section-overview"
@@ -344,6 +351,7 @@ export function TopicDetailPageContent({
               <SynchronizedSentenceReader
                 paragraphs={[topic.intro]}
                 activeSentenceIndex={activeSentenceIndex}
+                autoScrollResumeKey={followResumeNonce}
                 lang={lang}
               />
             </section>
@@ -424,6 +432,7 @@ export function TopicDetailPageContent({
         isOpen={isAudioPlayerOpen}
         onClose={closeAudioPlayer}
         onActiveSentenceIndexChange={followNarration}
+        onUserPlayOrSeek={resumeAutoScroll}
         lang={lang}
         chapterMarkers={chapterMarkers}
       />

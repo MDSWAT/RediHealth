@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { UsersIcon } from "@/components/ui/icons";
+import { PhoneIcon, UsersIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { PageListenAction } from "@/components/ui/PageListenAction";
@@ -24,7 +23,7 @@ export const heroCopy = {
     title: "Медицинские медиаторы могут вам помочь",
     subtitle: "Медицинский посредник поможет вам обратиться к врачу, получить документы, удостоверяющие личность и медицинскую страховку, а также присмотреть за вашими детьми, бабушками и дедушками.",
     ctaRequest: "Попросите посредника",
-    ctaSignIn: "Вход для медиаторов",
+    ctaCallback: "Заказать звонок",
     card1Title: "Запись и посещение врача",
     card1Desc: "Они идут с вами к семейному врачу, помогают записаться на прием и объясняют ваши рецепты.",
     card2Title: "Документы и страховка",
@@ -37,7 +36,7 @@ export const heroCopy = {
     title: "Mediatori sanitari te ajută",
     subtitle: "Mediatorul sanitar te ajută să ajungi la medic, să faci buletinul și asigurarea și să ai grijă de copii și de bunici.",
     ctaRequest: "Cere un mediator",
-    ctaSignIn: "Intră în contul de mediator",
+    ctaCallback: "Cere un apel",
     card1Title: "Înscriere și vizite la medic",
     card1Desc: "Merge cu tine la medicul de familie, te ajută cu programările și îți explică rețetele.",
     card2Title: "Acte și asigurare",
@@ -49,7 +48,7 @@ export const heroCopy = {
     title: "Health mediators can help you",
     subtitle: "A health mediator helps you see a doctor, get ID papers and health insurance, and look after your children and grandparents.",
     ctaRequest: "Ask for a mediator",
-    ctaSignIn: "Mediator sign-in",
+    ctaCallback: "Request a callback",
     card1Title: "Registering and doctor visits",
     card1Desc: "They go with you to the family doctor, help with appointments and explain your prescriptions.",
     card2Title: "Documents and insurance",
@@ -61,7 +60,7 @@ export const heroCopy = {
     title: "Mediatorët shëndetësorë të ndihmojnë",
     subtitle: "Mediatori shëndetësor të ndihmon të shkosh te mjeku, të nxjerrësh letërnjoftimin dhe sigurimin, dhe të kujdesesh për fëmijët dhe gjyshërit.",
     ctaRequest: "Kërko një mediator",
-    ctaSignIn: "Hyr si mediator",
+    ctaCallback: "Kërko një telefonatë",
     card1Title: "Regjistrimi dhe vizitat te mjeku",
     card1Desc: "Vjen me ty te mjeku i familjes, të ndihmon me takimet dhe të shpjegon recetat.",
     card2Title: "Dokumentet dhe sigurimi",
@@ -73,7 +72,7 @@ export const heroCopy = {
     title: "Mediatori sanitari per aiutarti",
     subtitle: "Il mediatore sanitario ti aiuta ad andare dal medico, a fare documenti e tessera sanitaria e a prenderti cura di bambini e nonni.",
     ctaRequest: "Chiedi un mediatore",
-    ctaSignIn: "Accesso mediatori",
+    ctaCallback: "Fatti richiamare",
     card1Title: "Iscrizione e visite dal medico",
     card1Desc: "Viene con te dal medico di famiglia, ti aiuta con gli appuntamenti e ti spiega le ricette.",
     card2Title: "Documenti e tessera sanitaria",
@@ -85,7 +84,7 @@ export const heroCopy = {
     title: "Zdravstveni medijatori ti mogu pomoći",
     subtitle: "Zdravstveni medijator pomaže ti otići liječniku, riješiti osobne dokumente i zdravstveno osiguranje te brinuti o djeci i starijima.",
     ctaRequest: "Zatraži medijatora",
-    ctaSignIn: "Prijava za medijatore",
+    ctaCallback: "Zatraži poziv",
     card1Title: "Upis i posjeti liječniku",
     card1Desc: "Ide s tobom obiteljskom liječniku, pomaže oko naručivanja i objašnjava ti recepte i upute.",
     card2Title: "Dokumenti i zdravstveno osiguranje",
@@ -97,7 +96,7 @@ export const heroCopy = {
     title: "Sastipnaske mediatorya zhutin tut",
     subtitle: "O sastipnasko mediatori zhutil tut te zhas ko doktori, te keres che lila thaj e sastipnaski siguranciya, thaj te arakhes e chhavoren thaj e phuren.",
     ctaRequest: "Mang ekhe mediatores",
-    ctaSignIn: "Khuves andre sar mediatori",
+    ctaCallback: "Mang ekh akharipe",
     card1Title: "Lekhavipe thaj vizite ko doktori",
     card1Desc: "Zhal tusa ko familiyako doktori, zhutil tut e vramenca thaj phenel tuke lokhes e recepte thaj sikavimata.",
     card2Title: "Lila thaj sastipnaski siguranciya",
@@ -107,8 +106,9 @@ export const heroCopy = {
   },
 };
 
-export function MediatorPublicHero() {
-  const { lang } = useSafeLanguage();
+export function MediatorPublicHero({ lang: langProp }: { lang?: Lang }) {
+  const { lang: ctxLang } = useSafeLanguage();
+  const lang = langProp ?? ctxLang;
   const copy = heroCopy[lang] ?? heroCopy.ro;
   const services = [
     { title: copy.card1Title, body: copy.card1Desc },
@@ -133,18 +133,20 @@ export function MediatorPublicHero() {
                 <UsersIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{copy.ctaRequest}</span>
               </Button>
-              <PageListenAction lang={lang} segments={[copy.title, copy.subtitle, copy.ctaRequest]} />
-            </div>
-          }
-          below={
-            <p className="mt-3">
-              <Link
-                href={withLangPrefix("/sign-in", lang)}
-                className="inline-flex min-h-11 items-center whitespace-nowrap rounded-sm text-body font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:decoration-sapphire-border/40"
+              <Button
+                href="#solicita"
+                variant="outline"
+                size="lg"
+                className="px-5"
               >
-                {copy.ctaSignIn}
-              </Link>
-            </p>
+                <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>{copy.ctaCallback}</span>
+              </Button>
+              <PageListenAction
+                lang={lang}
+                segments={[copy.title, copy.subtitle, copy.ctaRequest, copy.ctaCallback]}
+              />
+            </div>
           }
         />
 

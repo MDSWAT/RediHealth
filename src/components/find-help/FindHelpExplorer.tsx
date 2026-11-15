@@ -312,7 +312,7 @@ export function PlaceCardActions({
             className={secondaryActionClass}
             onClick={handleLinkClick}
           >
-            <PinIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+            <PinIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
             <span>{copy.directions}</span>
           </a>
         ) : null}
@@ -326,7 +326,7 @@ export function PlaceCardActions({
             className={secondaryActionClass}
             onClick={handleLinkClick}
           >
-            <GlobeIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+            <GlobeIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
             <span>{copy.website}</span>
           </a>
         ) : null}
@@ -346,6 +346,17 @@ export function PlaceCardActions({
     </div>
   );
 }
+
+const quickChipBaseClass =
+  "inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border px-3 py-2 text-body font-semibold " +
+  "transition-[color,background-color,border-color,box-shadow,filter] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+
+const quickChipActiveClass =
+  `${quickChipBaseClass} press-solid border-sapphire bg-sapphire text-white shadow-(--hairline-refraction) hover:border-sapphire-light hover:bg-sapphire-light`;
+
+const quickChipInactiveClass =
+  `${quickChipBaseClass} press-row border-border-control bg-card text-foreground shadow-(--shadow-card-rest) hover:border-foreground/40 hover:bg-muted/70 hover:shadow-(--shadow-card-hover) active:bg-muted`;
 
 /** Clean checkable filter toggle button with pressed state and trailing check icon. */
 function FilterToggleButton({
@@ -975,7 +986,7 @@ export function FindHelpExplorer({
             onToggle={() => setOpenNowOnly((prev) => !prev)}
             renderIcon={(active) => (
               <ClockIcon
-                className={`h-4 w-4 shrink-0 ${active ? "text-white" : "text-sapphire"}`}
+                className={`h-4 w-4 shrink-0 ${active ? "text-white" : "text-sapphire dark:text-sapphire-border"}`}
                 aria-hidden="true"
               />
             )}
@@ -1040,12 +1051,12 @@ export function FindHelpExplorer({
         }
       />
 
-      {/* Row 2: Phones fold filters into one summary row; lg+ renders the full elevated toolbar */}
+      {/* Row 2: Phones fold filters into one summary row + 1-tap quick chips; lg+ renders the full elevated toolbar */}
       <section aria-label={copy.searchPlaceholder} className="mt-4">
         <div className="rounded-2xl border border-border bg-card p-3 shadow-(--shadow-card-rest) dark:border-ink-800 lg:hidden">
           <div className="flex items-center justify-between gap-3">
             <div className="flex min-w-0 flex-1 items-start gap-2.5">
-              <PinIcon className="mt-1 h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+              <PinIcon className="mt-1 h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
               <div className="min-w-0 flex-1">
                 <p className="text-body font-medium leading-snug text-foreground">
                   {mobileFilterSummary}
@@ -1070,6 +1081,56 @@ export function FindHelpExplorer({
               {copy.change}
             </Button>
           </div>
+
+          <div
+            role="group"
+            aria-label={copy.filtersTitle}
+            className="mt-2.5 flex flex-wrap items-center gap-2 border-t border-border/70 pt-2.5 dark:border-ink-800"
+          >
+            <button
+              type="button"
+              aria-pressed={openNowOnly}
+              onClick={() => setOpenNowOnly((prev) => !prev)}
+              className={openNowOnly ? quickChipActiveClass : quickChipInactiveClass}
+            >
+              <ClockIcon
+                className={openNowOnly ? "h-4 w-4 shrink-0 text-white" : "h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"}
+                aria-hidden="true"
+              />
+              <span>{copy.openNowFilter}</span>
+            </button>
+            {WAYFINDING_CATEGORIES.map((item) => {
+              const selected = category === item;
+              return (
+                <button
+                  key={item ?? "all"}
+                  type="button"
+                  aria-pressed={selected}
+                  onClick={() => {
+                    setCategory((prev) => (item === null ? null : prev === item ? null : item));
+                  }}
+                  className={selected ? quickChipActiveClass : quickChipInactiveClass}
+                >
+                  <CategoryIcon
+                    category={item}
+                    className={selected ? "h-4 w-4 shrink-0 text-white" : "h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"}
+                  />
+                  <span>{item ? copy.categories[item] : copy.allCategories}</span>
+                </button>
+              );
+            })}
+            {filtered && (
+              <button
+                type="button"
+                onClick={clearFilters}
+                className={quickChipInactiveClass}
+              >
+                <XIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
+                <span>{copy.clearFilters}</span>
+              </button>
+            )}
+          </div>
+
           {noticesBlock}
         </div>
 
@@ -1281,7 +1342,7 @@ export function FindHelpExplorer({
                       >
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-meta">
                           <span className="inline-flex items-center gap-1.5 font-medium text-muted-foreground">
-                            <CategoryIcon category={institute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire" />
+                            <CategoryIcon category={institute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" />
                             <span>{copy.categories[institute.category]}</span>
                           </span>
                           {institute.emergency ? (
@@ -1315,30 +1376,30 @@ export function FindHelpExplorer({
                         ) : null}
 
                         {distanceLabel ? (
-                          <p className="mt-1 inline-flex items-center gap-1.5 text-body font-medium tabular-nums text-sapphire">
+                          <p className="mt-1 inline-flex items-center gap-1.5 text-body font-medium tabular-nums text-sapphire dark:text-sapphire-border">
                             <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                             <span>{distanceLabel}</span>
                           </p>
                         ) : null}
 
                         {hours ? (
-                          <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-body">
+                          <div className="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-border/60 pt-2.5 text-body dark:border-ink-800">
                             {openNow ? (
                               <>
                                 <span className="text-body font-semibold text-foreground">
                                   {copy.openNowLive}
                                 </span>
-                                <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
+                                <span aria-hidden="true" className="inline-block h-3.5 w-px bg-sapphire/35 dark:bg-sapphire-border/45" />
                               </>
                             ) : hasSchedule ? (
                               <>
                                 <span className="text-body font-medium text-muted-foreground">
                                   {copy.closedNowLive}
                                 </span>
-                                <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
+                                <span aria-hidden="true" className="inline-block h-3.5 w-px bg-border" />
                               </>
                             ) : null}
-                            <span className="text-muted-foreground">{hours}</span>
+                            <span className="tabular-nums text-muted-foreground">{hours}</span>
                           </div>
                         ) : null}
 
@@ -1423,7 +1484,7 @@ export function FindHelpExplorer({
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-meta">
                     <span className="inline-flex items-center gap-1.5 font-medium text-muted-foreground">
-                      <CategoryIcon category={mobilePreviewInstitute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire" />
+                      <CategoryIcon category={mobilePreviewInstitute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" />
                       <span>{copy.categories[mobilePreviewInstitute.category]}</span>
                     </span>
                     {mobilePreviewInstitute.emergency && (
@@ -1435,7 +1496,7 @@ export function FindHelpExplorer({
                       </>
                     )}
                   </div>
-                  <h3 className="mt-1.5 text-title leading-snug text-foreground">
+                  <h3 className="mt-1.5 text-title font-semibold leading-snug text-foreground">
                     {mobilePreviewInstitute.name}
                   </h3>
                 </div>
@@ -1474,29 +1535,29 @@ export function FindHelpExplorer({
                   <>
                     {previewLoc && <p className="mt-1 text-body text-muted-foreground">{previewLoc}</p>}
                     {previewDistance && (
-                      <p className="mt-1 inline-flex items-center gap-1.5 text-body font-medium tabular-nums text-sapphire">
+                      <p className="mt-1 inline-flex items-center gap-1.5 text-body font-medium tabular-nums text-sapphire dark:text-sapphire-border">
                         <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                         <span>{previewDistance}</span>
                       </p>
                     )}
                     {previewHours && (
-                      <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-body">
+                      <div className="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-border/60 pt-2.5 text-body dark:border-ink-800">
                         {previewOpenNow ? (
                           <>
-                            <span className="text-body font-medium text-foreground">
+                            <span className="text-body font-semibold text-foreground">
                               {copy.openNowLive}
                             </span>
-                            <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
+                            <span aria-hidden="true" className="inline-block h-3.5 w-px bg-sapphire/35 dark:bg-sapphire-border/45" />
                           </>
                         ) : previewHasSchedule ? (
                           <>
                             <span className="text-body font-medium text-muted-foreground">
                               {copy.closedNowLive}
                             </span>
-                            <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
+                            <span aria-hidden="true" className="inline-block h-3.5 w-px bg-border" />
                           </>
                         ) : null}
-                        <span className="text-muted-foreground">{previewHours}</span>
+                        <span className="tabular-nums text-muted-foreground">{previewHours}</span>
                       </div>
                     )}
                     <PlaceCardActions
