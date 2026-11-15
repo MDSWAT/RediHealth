@@ -549,14 +549,23 @@ export function ExternalLinkIcon(props: IconProps) {
   );
 }
 
-// Universal accessibility figure in a circle (in-house outline, matches Boxicons line weight)
-export function AccessibilityIcon(props: IconProps) {
+// Universal accessibility medallion in-house (high-contrast filled disc with crisp cutout silhouette)
+export function AccessibilityIcon({ className, ...props }: IconProps) {
   return (
-    <svg {...strokeProps(props)}>
-      <circle cx="12" cy="12" r="9.5" />
-      <circle cx="12" cy="7.5" r="1.25" fill="currentColor" stroke="none" />
-      <path d="M7.5 10.5c1.5.5 3 .7 4.5.7s3-.2 4.5-.7" />
-      <path d="M12 11.2v3.3l-2.5 3.8M12 14.5l2.5 3.8" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="none"
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 1.5a10.5 10.5 0 1 0 0 21 10.5 10.5 0 0 0 0-21ZM12 4.7a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4ZM7.35 9.05Q12 10.05 16.65 9.05a.9.9 0 0 1 .4 1.75Q15.2 11.25 13.35 11.45v2.1l1.9 4a.9.9 0 0 1-1.63.77L12 14.95l-1.62 3.37a.9.9 0 0 1-1.63-.77l1.9-4v-2.1Q8.8 11.25 6.95 10.8a.9.9 0 0 1 .4-1.75Z"
+      />
     </svg>
   );
 }

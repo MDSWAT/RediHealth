@@ -273,12 +273,15 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
     }
 
     const comfortSrc = readFileSync(resolve(process.cwd(), "src/components/layout/ComfortMenu.tsx"), "utf8");
+    const iconsSrc = readFileSync(resolve(process.cwd(), "src/components/ui/icons.tsx"), "utf8");
     expect(comfortSrc).toContain("sm:rounded-3xl");
     expect(comfortSrc).toContain("max-h-[min(78dvh,38rem)] overflow-y-auto");
     expect(comfortSrc).not.toContain("sheet-close");
+    expect(comfortSrc).toContain("bg-[#c62f3c]");
     expect(comfortSrc).not.toContain("list-in");
     expect(comfortSrc).toContain("redihealth:unlock-audio");
     expect(comfortSrc).toContain("AccessibilityIcon");
+    expect(iconsSrc).toContain('fillRule="evenodd"');
   });
 });
 

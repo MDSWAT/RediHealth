@@ -36,7 +36,11 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(MOBILE_MENU_SOURCE).not.toContain("rounded-2xl");
     expect(MOBILE_MENU_SOURCE).not.toContain("rounded-full");
     expect(MOBILE_MENU_SOURCE).not.toContain("bg-primary-soft/45");
+    expect(MOBILE_MENU_SOURCE).not.toContain("portalLink.label");
+    expect(MOBILE_MENU_SOURCE).toContain('variant="outline"');
     expect(HEADER_SOURCE).toContain("gap-0.5 md:hidden");
+    expect(HEADER_SOURCE).toContain("data-mobile-account-trigger");
+    expect(HEADER_SOURCE).toContain("capsuleCloseItem()");
   });
 
   it("shows primary navigation and mediator subtitles visibly without sr-only or line clipping", () => {

@@ -829,6 +829,8 @@ describe("CLAUDE.md and MobileMenu source invariants", () => {
     expect(feedbackWidgetSource).toContain("disabled={step === 0 && !allRatingsComplete}");
     expect(feedbackWidgetSource).toContain("nextUnansweredAny");
     expect(feedbackWidgetSource).toContain("scrollIntoView");
+    expect(feedbackWidgetSource).toContain("[writing-mode:vertical-rl]");
+    expect(feedbackWidgetSource).toContain("EDGE_DISMISSED_SESSION_KEY");
     expect(feedbackWidgetSource).not.toContain("rounded-full");
   });
 });

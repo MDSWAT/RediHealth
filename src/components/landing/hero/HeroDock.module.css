@@ -95,8 +95,7 @@
   height: clamp(5.5rem, calc((100svh - var(--site-header-h, 4.6875rem)) * 0.28 - 2.5rem), 14rem);
   height: clamp(5.5rem, calc((100dvh - var(--site-header-h, 4.6875rem)) * 0.28 - 2.5rem), 14rem);
   clip-path: inset(
-    calc((var(--sun-over, 0px) + var(--dock-down) * (var(--sun-rise, 12rem) - var(--sun-over, 0px))) * -1) 0
-      calc(var(--dock-down) * var(--sun-reach, 0px) * -1) 0
+    -100svh -50vw calc(var(--dock-down) * var(--sun-reach, 0px) * -1) -50vw
   );
   pointer-events: none;
 }

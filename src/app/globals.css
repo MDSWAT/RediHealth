@@ -308,14 +308,17 @@ h2 {
   }
 }
 
-/* Phones: the next question pushes in from the side, like a settings menu (back comes from the left). */
+/*
+ * Phones: the next question glides in from the side, like a settings menu (back comes from the left).
+ * A short travel and a long settle, so it reads as one smooth move rather than a swipe.
+ */
 .hc-step {
-  --hc-step-x: 28%;
-  animation: hc-step-in 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  --hc-step-x: 12%;
+  animation: hc-step-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hc-step[data-dir="back"] {
-  --hc-step-x: -28%;
+  --hc-step-x: -12%;
 }
 
 /* Desktop: the next question rises in gently, like a form; back drops in from above. */
@@ -502,8 +505,11 @@ html[data-calm-motion] .hero {
   .hero-phone-drift {
     transform: translateY(
       calc(
-        var(--dock-down, 0) *
-          (var(--text-lift, 0px) + var(--ring, 0) * (var(--text-lift-ring, 0px) - var(--text-lift, 0px))) * -1
+        (
+          var(--dock-down, 0) *
+            (var(--text-lift, 0px) + var(--ring, 0) * (var(--text-lift-ring, 0px) - var(--text-lift, 0px))) +
+          (1 - var(--dock-down, 0)) * var(--ring, 0) * var(--text-lift-open-ring, 0px)
+        ) * -1
       )
     );
   }
@@ -1050,7 +1056,13 @@ html[data-calm-motion] .triage-sheet[open] {
 @media (max-width: 1023.98px) {
   body:has(.news-sheet) .report-issue-trigger,
   body:has(.news-sheet) .feedback-trigger,
+  body:has(.news-sheet) .feedback-edge-trigger,
   body:has(.news-sheet) .feedback-invite-card { display: none; }
+}
+
+body:has(#mobile-menu:not([inert])) .feedback-edge-trigger,
+body:has(dialog[open]) .feedback-edge-trigger {
+  display: none;
 }
 
 /* News modals (/stiri, county picker): rise from the bottom on phones, settle in place from sm up.
@@ -1369,6 +1381,7 @@ html[data-calm-motion] .triage-sheet[open] {
   footer,
   .report-issue-trigger,
   .feedback-trigger,
+  .feedback-edge-trigger,
   .feedback-invite-card,
   [data-bottom-bar],
   [data-sticky-actions] {

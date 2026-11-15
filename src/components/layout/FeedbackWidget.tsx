@@ -1,7 +1,17 @@
 "use client";
 
 import { AnimatePresence, m } from "motion/react";
-import { useCallback, useEffect, useId, useRef, useState, type FormEvent, type MouseEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type FormEvent,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type MouseEvent,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { usePathname } from "next/navigation";
 import styles from "@/components/layout/ChromeDialogs.module.css";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
@@ -48,6 +58,7 @@ const SNOOZE_STEPS_MS = [
 
 const SCHEDULE_STORAGE_KEY = "redihealth:feedback-schedule:v2";
 const DRAFT_SESSION_KEY = "redihealth:feedback-draft:v2";
+const EDGE_DISMISSED_SESSION_KEY = "redihealth:feedback-edge-dismissed:v1";
 import {
   consumePendingFeedbackOpen,
   OPEN_FEEDBACK_EVENT,
@@ -267,11 +278,43 @@ export function FeedbackWidget() {
   const isClinicalTaskSurface =
     barePath === "/health-check" || barePath === "/prescription-review";
   const [mobileHeroTop, setMobileHeroTop] = useState(false);
+  const [edgeDismissed, setEdgeDismissed] = useState(false);
+  const [edgeDismissing, setEdgeDismissing] = useState(false);
+  const [edgeDragX, setEdgeDragX] = useState(0);
+  const [edgeDragging, setEdgeDragging] = useState(false);
+  const [inviteDrag, setInviteDrag] = useState({ x: 0, y: 0 });
+  const [inviteDragging, setInviteDragging] = useState(false);
 
-  // Hydrate any unfinished in-session draft so closing and reopening never loses progress
+  const edgeDragRef = useRef<{
+    pointerId: number;
+    startX: number;
+    startTime: number;
+    maxAbsDx: number;
+    captured: boolean;
+  } | null>(null);
+  const inviteDragRef = useRef<{
+    pointerId: number;
+    startX: number;
+    startY: number;
+    startTime: number;
+    maxDist: number;
+    captured: boolean;
+  } | null>(null);
+  const suppressEdgeClickRef = useRef(false);
+  const edgeDismissTimerRef = useRef<number | null>(null);
+  const suppressEdgeClickTimerRef = useRef<number | null>(null);
+
+  // Hydrate any unfinished in-session draft and edge-tab dismissal state
   useEffect(() => {
     pageMountedAtRef.current = Date.now();
     queueMicrotask(() => {
+      try {
+        if (window.sessionStorage.getItem(EDGE_DISMISSED_SESSION_KEY) === "1") {
+          setEdgeDismissed(true);
+        }
+      } catch {
+        // Ignore sessionStorage read errors
+      }
       const draft = readDraft();
       if (draft) {
         setStep(draft.step);
@@ -285,6 +328,14 @@ export function FeedbackWidget() {
       }
       setDraftHydrated(true);
     });
+    return () => {
+      if (edgeDismissTimerRef.current !== null) {
+        window.clearTimeout(edgeDismissTimerRef.current);
+      }
+      if (suppressEdgeClickTimerRef.current !== null) {
+        window.clearTimeout(suppressEdgeClickTimerRef.current);
+      }
+    };
   }, []);
 
   // Keep mobile full-viewport Hero completely unobstructed while at top of `/`, showing side tab once scrolled or on inner routes
@@ -353,6 +404,8 @@ export function FeedbackWidget() {
 
   const snoozeInvite = useCallback(() => {
     setInviteVisible(false);
+    setInviteDragging(false);
+    setInviteDrag({ x: 0, y: 0 });
     const now = Date.now();
     const current = readSchedule(now);
     const snoozeDuration =
@@ -364,6 +417,174 @@ export function FeedbackWidget() {
       dismissCount: current.dismissCount + 1,
     });
   }, []);
+
+  const dismissEdgeTrigger = useCallback(() => {
+    try {
+      window.sessionStorage.setItem(EDGE_DISMISSED_SESSION_KEY, "1");
+    } catch {
+      // Ignore sessionStorage errors
+    }
+    snoozeInvite();
+    setEdgeDragging(false);
+    if (reducedMotion) {
+      setEdgeDismissed(true);
+      setEdgeDismissing(false);
+      setEdgeDragX(0);
+      return;
+    }
+    setEdgeDismissing(true);
+    if (edgeDismissTimerRef.current !== null) {
+      window.clearTimeout(edgeDismissTimerRef.current);
+    }
+    edgeDismissTimerRef.current = window.setTimeout(() => {
+      setEdgeDismissed(true);
+      setEdgeDismissing(false);
+      setEdgeDragX(0);
+      edgeDismissTimerRef.current = null;
+    }, 180);
+  }, [reducedMotion, snoozeInvite]);
+
+  const handleEdgePointerDown = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    edgeDragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startTime: performance.now(),
+      maxAbsDx: 0,
+      captured: false,
+    };
+  }, []);
+
+  const handleEdgePointerMove = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
+    const drag = edgeDragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    const dx = event.clientX - drag.startX;
+    drag.maxAbsDx = Math.max(drag.maxAbsDx, Math.abs(dx));
+    if (drag.maxAbsDx > 6) {
+      if (!drag.captured) {
+        drag.captured = true;
+        try {
+          event.currentTarget.setPointerCapture(event.pointerId);
+        } catch {
+          // Ignore pointer capture errors
+        }
+      }
+      suppressEdgeClickRef.current = true;
+      setEdgeDragging(true);
+      setEdgeDragX(dx > 0 ? Math.min(dx, 96) : Math.max(-5, dx * 0.12));
+    }
+  }, []);
+
+  const handleEdgePointerEnd = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      const drag = edgeDragRef.current;
+      if (!drag || drag.pointerId !== event.pointerId) return;
+      edgeDragRef.current = null;
+      if (drag.captured) {
+        try {
+          event.currentTarget.releasePointerCapture(event.pointerId);
+        } catch {
+          // Ignore release errors
+        }
+      }
+      setEdgeDragging(false);
+
+      const dx = event.clientX - drag.startX;
+      const elapsed = Math.max(1, performance.now() - drag.startTime);
+      const vx = dx / elapsed;
+
+      if (drag.maxAbsDx > 6) {
+        suppressEdgeClickRef.current = true;
+        if (suppressEdgeClickTimerRef.current !== null) {
+          window.clearTimeout(suppressEdgeClickTimerRef.current);
+        }
+        suppressEdgeClickTimerRef.current = window.setTimeout(() => {
+          suppressEdgeClickRef.current = false;
+          suppressEdgeClickTimerRef.current = null;
+        }, 120);
+      }
+
+      if (event.type !== "pointercancel" && (dx >= 20 || vx >= 0.25)) {
+        dismissEdgeTrigger();
+      } else {
+        setEdgeDragX(0);
+      }
+    },
+    [dismissEdgeTrigger],
+  );
+
+  const handleEdgeKeyDown = useCallback(
+    (event: ReactKeyboardEvent<HTMLDivElement>) => {
+      if (event.key === "ArrowRight" || event.key === "Delete" || event.key === "Backspace") {
+        event.preventDefault();
+        dismissEdgeTrigger();
+      }
+    },
+    [dismissEdgeTrigger],
+  );
+
+  const handleInvitePointerDown = useCallback((event: ReactPointerEvent<HTMLElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    inviteDragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      startTime: performance.now(),
+      maxDist: 0,
+      captured: false,
+    };
+  }, []);
+
+  const handleInvitePointerMove = useCallback((event: ReactPointerEvent<HTMLElement>) => {
+    const drag = inviteDragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    const dx = Math.max(0, event.clientX - drag.startX);
+    const dy = Math.max(0, event.clientY - drag.startY);
+    drag.maxDist = Math.max(drag.maxDist, dx, dy);
+    if (drag.maxDist > 8) {
+      if (!drag.captured) {
+        drag.captured = true;
+        try {
+          event.currentTarget.setPointerCapture(event.pointerId);
+        } catch {
+          // Ignore pointer capture errors
+        }
+      }
+      setInviteDragging(true);
+      setInviteDrag({ x: Math.min(dx, 160), y: Math.min(dy, 120) });
+    }
+  }, []);
+
+  const handleInvitePointerEnd = useCallback(
+    (event: ReactPointerEvent<HTMLElement>) => {
+      const drag = inviteDragRef.current;
+      if (!drag || drag.pointerId !== event.pointerId) return;
+      inviteDragRef.current = null;
+      if (drag.captured) {
+        try {
+          event.currentTarget.releasePointerCapture(event.pointerId);
+        } catch {
+          // Ignore release errors
+        }
+      }
+      setInviteDragging(false);
+      const dx = event.clientX - drag.startX;
+      const dy = event.clientY - drag.startY;
+      const elapsed = Math.max(1, performance.now() - drag.startTime);
+      const vx = dx / elapsed;
+      const vy = dy / elapsed;
+
+      if (
+        event.type !== "pointercancel" &&
+        (dx >= 48 || dy >= 48 || vx >= 0.35 || vy >= 0.35)
+      ) {
+        snoozeInvite();
+      } else {
+        setInviteDrag({ x: 0, y: 0 });
+      }
+    },
+    [snoozeInvite],
+  );
 
   const openModal = useCallback((prefillUsefulness?: number) => {
     setInviteVisible(false);
@@ -636,17 +857,72 @@ export function FeedbackWidget() {
 
   return (
     <>
-      {!isConsultationOrPortal && !isClinicalTaskSurface && !inviteVisible && !modalOpen && !mobileHeroTop ? (
-        <button
-          type="button"
-          onClick={() => openModal()}
-          aria-label={t.footerLink}
-          data-feedback-trigger=""
-          className="feedback-edge-trigger press-solid fixed right-0 bottom-24 z-30 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-l-lg border border-r-0 border-border bg-card/95 px-3.5 py-2 text-meta font-semibold text-foreground shadow-[0_12px_28px_-10px_rgba(15,23,42,0.28)] backdrop-blur-md transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:bottom-6 dark:border-white/15 dark:bg-ink-950/95 dark:text-paper"
+      {!isConsultationOrPortal &&
+      !isClinicalTaskSurface &&
+      !inviteVisible &&
+      !modalOpen &&
+      !mobileHeroTop &&
+      (!edgeDismissed || edgeDismissing) ? (
+        <div
+          onPointerDown={handleEdgePointerDown}
+          onPointerMove={handleEdgePointerMove}
+          onPointerUp={handleEdgePointerEnd}
+          onPointerCancel={handleEdgePointerEnd}
+          onKeyDown={handleEdgeKeyDown}
+          style={{
+            transform: edgeDismissing
+              ? "translate3d(115%, 0, 0)"
+              : edgeDragX !== 0
+                ? `translate3d(${edgeDragX}px, 0, 0)`
+                : undefined,
+            opacity: edgeDismissing
+              ? 0
+              : edgeDragX > 0
+                ? Math.max(0.28, 1 - edgeDragX / 64)
+                : undefined,
+          }}
+          className={[
+            "feedback-edge-trigger fixed right-0 top-1/2 z-30 -translate-y-1/2 flex w-9 sm:w-10 flex-col items-stretch rounded-l-xl border border-r-0 border-border bg-card/95 text-foreground shadow-[0_12px_28px_-10px_rgba(15,23,42,0.28)] backdrop-blur-md touch-pan-y select-none print:hidden dark:border-white/15 dark:bg-ink-950/95 dark:text-paper",
+            edgeDragging || reducedMotion
+              ? "transition-none"
+              : "transition-[transform,opacity,border-color] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+          ].join(" ")}
         >
-          <MessageDotsIcon className="h-4 w-4 shrink-0 text-sapphire transition-colors group-hover:text-current dark:text-primary-soft" />
-          <span>{t.compactTriggerLabel}</span>
-        </button>
+          <button
+            type="button"
+            onClick={() => {
+              if (suppressEdgeClickRef.current) {
+                suppressEdgeClickRef.current = false;
+                return;
+              }
+              dismissEdgeTrigger();
+            }}
+            aria-label={t.inviteCloseAria}
+            title={t.inviteCloseAria}
+            className="relative inline-flex h-8 w-full items-center justify-center rounded-tl-xl border-b border-border/60 text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted/80 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring before:absolute before:-top-1.5 before:-left-2 before:right-0 before:bottom-0 dark:border-white/10 dark:text-mist dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper"
+          >
+            <CloseIcon className="h-3.5 w-3.5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              if (suppressEdgeClickRef.current) {
+                suppressEdgeClickRef.current = false;
+                return;
+              }
+              openModal();
+            }}
+            aria-label={t.footerLink}
+            title={t.footerLink}
+            data-feedback-trigger=""
+            className="press-solid group relative flex min-h-24 w-full flex-col items-center justify-center gap-2 rounded-bl-xl px-1.5 py-3 text-meta font-semibold text-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring before:absolute before:inset-y-0 before:-left-2 before:right-0 dark:text-paper dark:hover:bg-sapphire dark:focus-visible:ring-paper"
+          >
+            <MessageDotsIcon className="h-4 w-4 shrink-0 text-sapphire transition-colors group-hover:text-current dark:text-sapphire-border" />
+            <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap tracking-wide">
+              {t.compactTriggerLabel}
+            </span>
+          </button>
+        </div>
       ) : null}
 
       {/* Calm, non-disruptive floating invitation card after 45 seconds of active browsing (or 20s after reading an article) */}
@@ -655,11 +931,24 @@ export function FeedbackWidget() {
           <m.aside
             role="region"
             aria-label={t.inviteOpenCta}
+            onPointerDown={handleInvitePointerDown}
+            onPointerMove={handleInvitePointerMove}
+            onPointerUp={handleInvitePointerEnd}
+            onPointerCancel={handleInvitePointerEnd}
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{
+              opacity:
+                inviteDrag.x > 0 || inviteDrag.y > 0
+                  ? Math.max(0.35, 1 - Math.max(inviteDrag.x, inviteDrag.y) / 140)
+                  : 1,
+              x: inviteDrag.x,
+              y: inviteDrag.y,
+            }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
-            transition={reducedMotion ? { duration: 0 } : CLINICAL_SETTLE_SPRING}
-            className="feedback-invite-card fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-30 mx-auto max-w-md overflow-hidden rounded-(--radius-surface) border border-border bg-card text-foreground shadow-[0_20px_48px_-14px_rgba(15,23,42,0.34)] sm:inset-x-auto sm:right-4 sm:bottom-4 sm:mx-0 sm:w-[22rem] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
+            transition={
+              reducedMotion || inviteDragging ? { duration: 0 } : CLINICAL_SETTLE_SPRING
+            }
+            className="feedback-invite-card fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-30 mx-auto max-w-md overflow-hidden rounded-(--radius-surface) border border-border bg-card text-foreground shadow-[0_20px_48px_-14px_rgba(15,23,42,0.34)] touch-pan-y sm:inset-x-auto sm:right-4 sm:bottom-4 sm:mx-0 sm:w-[22rem] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
           >
             <div className="p-4">
               <div className="flex items-start justify-between gap-2.5">

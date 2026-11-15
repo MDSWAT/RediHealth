@@ -172,8 +172,8 @@ export function HeroDock({ copy, lang, topics = [], onNote }: HeroDockProps) {
     const starR = radius * (452 / 530);
     const iconR = radius * ((WHEEL_NODE_ORBIT + WHEEL_VIEW * 0.059) / (WHEEL_VIEW / 2));
     const centreOpen = sunTop + sunH - 24;
-    // Open, the star tips may stand a little above the band: the clip leaves them whole.
-    const overOpen = Math.max(0, starR - (sunH - 24)) + 4;
+    // Open, the star tips or top topic circle may stand above the band: the clip leaves them whole.
+    const overOpen = Math.max(0, iconR + 16 - (sunH - 24));
 
     // At the peek the wheel keeps its full size, its icons just clear of the peeking bar.
     const peekTop = dock.offsetTop + travel;
@@ -184,6 +184,7 @@ export function HeroDock({ copy, lang, topics = [], onNote }: HeroDockProps) {
     const headerH = parseFloat(getComputedStyle(section).paddingTop) || 0;
     let lift = 0;
     let liftRing = 0;
+    let liftOpenRing = 0;
     let plainShift = 0;
     if (text) {
       const textTop = text.offsetTop;
@@ -201,6 +202,7 @@ export function HeroDock({ copy, lang, topics = [], onNote }: HeroDockProps) {
       const crossRoom = cross ? cross.offsetHeight + parseFloat(getComputedStyle(cross).marginBottom || "0") : 0;
       const captionH = (caption?.offsetHeight ?? 40) + 12;
       liftRing = Math.min(Math.max(0, textBottom + captionH + 8 - (centreRing - iconR)), room + crossRoom);
+      liftOpenRing = Math.min(Math.max(0, textBottom + captionH + 8 - (centreOpen - iconR)), room + crossRoom);
     }
     root.style.setProperty("--dock-travel", `${travel}px`);
     root.style.setProperty("--dock-grow", `${grow}px`);
@@ -211,6 +213,7 @@ export function HeroDock({ copy, lang, topics = [], onNote }: HeroDockProps) {
     root.style.setProperty("--sun-rise", `${Math.max(overOpen, sunTop - (centreRing - iconR) + 8)}px`);
     section.style.setProperty("--text-lift", `${lift}px`);
     section.style.setProperty("--text-lift-ring", `${liftRing}px`);
+    section.style.setProperty("--text-lift-open-ring", `${liftOpenRing}px`);
   }, []);
 
   useEffect(() => {

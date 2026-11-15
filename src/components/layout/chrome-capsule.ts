@@ -51,6 +51,24 @@ export function capsuleItem(onHero: boolean, active = false) {
   );
 }
 
+/** Comfort/Accessibility segment with clean single-token light/dark colors (no colliding bg classes). */
+export function capsuleComfortItem(onHero: boolean, active = false) {
+  return cn(
+    "relative z-10 inline-flex h-11 min-h-11 min-w-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
+    onHero
+      ? "press-on-dark text-white hover:text-white focus-visible:ring-paper/75"
+      : "press-row text-foreground hover:text-foreground focus-visible:ring-ring dark:text-paper dark:hover:text-paper dark:focus-visible:ring-paper",
+    onHero
+      ? active && "bg-white/18 shadow-[inset_0_1px_0_rgba(255,255,255,0.14)]"
+      : active && "bg-white shadow-[0_1px_2px_rgba(12,18,32,0.08)] dark:bg-white/14 dark:shadow-none",
+  );
+}
+
+/** Signature red Close button inside the header capsule when a mobile drawer/menu is open. */
+export function capsuleCloseItem() {
+  return "relative z-10 inline-flex h-11 min-h-11 min-w-11 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-[#c62f3c] text-sm font-semibold text-white shadow-[0_2px_8px_-2px_rgb(2_6_23/0.5)] transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-[#a82733] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff8f98]";
+}
+
 /** Hairline between groups of segments. */
 export function capsuleDivider(onHero: boolean) {
   return cn(

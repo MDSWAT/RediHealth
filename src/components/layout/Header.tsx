@@ -37,6 +37,7 @@ import {
   type NavLinkHref,
 } from "@/components/layout/nav-links";
 import {
+  capsuleCloseItem,
   capsuleDivider,
   capsuleItem,
   capsuleSurface,
@@ -131,6 +132,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
         : pwaCopy.refreshApp;
 
   const isTransparent = currentPath === "/" && !scrolled && !mobileOpen;
+  const onDarkBar = isTransparent || mobileOpen;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -190,7 +192,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
         return;
       }
       if (event.key !== "Tab") return;
-      const container = mobileMenuRef.current;
+      const container = headerRef.current;
       if (!container) return;
       const focusables = Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(
         (el) => !el.closest("[inert]") && el.offsetParent !== null,
@@ -359,7 +361,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
             </nav>
 
             {/* One capsule holds every utility: no control carries a box of its own. */}
-            <div ref={glideTrackRef} className={cn(capsuleSurface(isTransparent), "shrink-0")}>
+            <div ref={glideTrackRef} className={cn(capsuleSurface(onDarkBar), "shrink-0")}>
               {!mobileOpen ? <CapsuleGlidePlate plateRef={glidePlateRef} onHero={isTransparent} /> : null}
               <div className="hidden shrink-0 items-center gap-0.5 md:flex">
                 <button
@@ -376,7 +378,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                   data-capsule-item=""
                   data-search-trigger=""
                   data-testid="header-search-trigger"
-                  className={cn(capsuleItem(isTransparent), "pl-3.5 pr-3 text-[0.9375rem] lg:max-xl:w-11 lg:max-xl:px-0")}
+                  className={cn(capsuleItem(onDarkBar), "pl-3.5 pr-3 text-[0.9375rem] lg:max-xl:w-11 lg:max-xl:px-0")}
                 >
                   <SearchIcon className="h-4.5 w-4.5 shrink-0 opacity-85" aria-hidden="true" />
                   {/* From lg to xl the six links need the room, so search shows its icon alone (the label stays in aria-label). */}
@@ -385,7 +387,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     aria-hidden="true"
                     className={cn(
                       "hidden min-w-5 items-center justify-center rounded border px-1 py-0.5 font-sans text-meta font-medium leading-none xl:inline-flex",
-                      isTransparent
+                      onDarkBar
                         ? "border-white/20 bg-white/10 text-paper/75"
                         : "border-ink-950/12 bg-white/80 text-foreground/65 dark:border-white/15 dark:bg-white/10 dark:text-paper/75",
                     )}
@@ -393,9 +395,9 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     /
                   </kbd>
                 </button>
-                <span aria-hidden="true" className={capsuleDivider(isTransparent)} />
+                <span aria-hidden="true" className={capsuleDivider(onDarkBar)} />
                 <ComfortMenu
-                  tone={isTransparent ? "light" : "default"}
+                  tone={onDarkBar ? "light" : "default"}
                   open={openHeaderMenu === "comfort"}
                   onOpenChange={(next) =>
                     setOpenHeaderMenu((prev) => (next ? "comfort" : prev === "comfort" ? null : prev))
@@ -403,30 +405,33 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                   onDone={() => setOpenHeaderMenu(null)}
                 />
                 <LanguageSelector
-                  tone={isTransparent ? "light" : "default"}
+                  tone={onDarkBar ? "light" : "default"}
                   open={openHeaderMenu === "language"}
                   onOpenChange={(next) =>
                     setOpenHeaderMenu((prev) => (next ? "language" : prev === "language" ? null : prev))
                   }
                   onNavigate={() => setOpenHeaderMenu(null)}
                 />
-                <span aria-hidden="true" className={capsuleDivider(isTransparent)} />
+                <span aria-hidden="true" className={capsuleDivider(onDarkBar)} />
 
                 {/* Account is one click away. Install lives on the account screen and in the menu, not in the bar. */}
                 <Link
                   href={withLangPrefix(portalLink.href, lang)}
-                  onClick={() => setOpenHeaderMenu(null)}
+                  onClick={() => {
+                    setOpenHeaderMenu(null);
+                    if (mobileOpen) closeMobile();
+                  }}
                   aria-current={isPortalActive ? "page" : undefined}
                   aria-label={portalLink.label}
                   title={portalLink.label}
                   data-capsule-item=""
-                  className={cn(capsuleItem(isTransparent, isPortalActive), "w-11")}
+                  className={cn(capsuleItem(onDarkBar, isPortalActive), "w-11")}
                 >
                   <UserIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
                 </Link>
               </div>
 
-              {/* Mobile utilities: search and text size sit beside the menu button while closed */}
+              {/* Mobile utilities: search and accessibility sit beside the menu button while closed */}
               {!mobileOpen && (
                 <div className="flex items-center gap-0.5 md:hidden">
                   <button
@@ -454,7 +459,25 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                 </div>
               )}
 
-              {/* Menu button (phones and portrait tablets, below lg) */}
+              {/* While the phone menu is open, surface Account directly next to Close */}
+              {mobileOpen && (
+                <div className="flex items-center gap-1 md:hidden">
+                  <Link
+                    href={withLangPrefix(portalLink.href, lang)}
+                    onClick={closeMobile}
+                    aria-current={isPortalActive ? "page" : undefined}
+                    aria-label={portalLink.label}
+                    title={portalLink.label}
+                    data-capsule-item=""
+                    data-mobile-account-trigger=""
+                    className={cn(capsuleItem(true, isPortalActive), "w-11")}
+                  >
+                    <UserIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+                  </Link>
+                </div>
+              )}
+
+              {/* Menu / Close button (phones and portrait tablets, below lg) */}
               <button
                 ref={menuButtonRef}
                 type="button"
@@ -462,8 +485,8 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                 data-header-trigger=""
                 title={mobileOpen ? tHeader.closeMenu : tHeader.openMenu}
                 className={cn(
-                  capsuleItem(isTransparent, mobileOpen),
-                  "gap-1.5 px-2.5 whitespace-nowrap text-meta font-semibold max-[359px]:gap-1 max-[359px]:px-2 lg:hidden",
+                  mobileOpen ? capsuleCloseItem() : capsuleItem(isTransparent, false),
+                  "gap-1.5 px-3 whitespace-nowrap text-meta font-semibold max-[359px]:gap-1 max-[359px]:px-2.5 lg:hidden",
                 )}
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
@@ -605,46 +628,9 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
               style={{ "--i": primaryLinks.length + 1 } as CSSProperties}
               className={cn(mobileOpen && "list-in", "border-t border-ink-900/10 pt-1.5 dark:border-white/10")}
             >
-              {/* Account, language, text and install already sit in the bar from md up, so they are phone-only here. */}
+              {/* Language, accessibility and install sit in the bar from md up, so they are phone-only here. */}
               <ul>
-                <li className="md:hidden">
-                <Link
-                  href={withLangPrefix(portalLink.href, lang)}
-                  aria-current={isPortalActive ? "page" : undefined}
-                  onClick={closeMobile}
-                  className={cn(
-                    "group flex min-h-11 items-center gap-3 rounded-lg px-2.5 py-1.5",
-                    DRAWER_ROW_MOTION,
-                    DRAWER_FOCUS,
-                    isPortalActive
-                      ? "bg-sapphire/[0.06] dark:bg-white/[0.07]"
-                      : "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05]",
-                  )}
-                >
-                  <UserIcon
-                    className={cn(
-                      "h-4.5 w-4.5 shrink-0 transition-colors duration-(--dur-fast)",
-                      isPortalActive
-                        ? "text-sapphire dark:text-sapphire-border"
-                        : "text-ink-900/50 group-hover:text-foreground dark:text-paper/55 dark:group-hover:text-paper",
-                    )}
-                    aria-hidden="true"
-                  />
-                  <span
-                    className={cn(
-                      "min-w-0 flex-1 text-body leading-snug",
-                      isPortalActive
-                        ? "font-semibold text-sapphire dark:text-paper"
-                        : "font-medium text-foreground dark:text-paper",
-                    )}
-                  >
-                    {portalLink.label}
-                  </span>
-                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-foreground motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
-                </Link>
-                </li>
-
-                <li className="border-t border-ink-900/8 dark:border-white/10 md:border-t-0">
+                <li>
                 <Link
                   href={withLangPrefix("/mediatori", lang)}
                   aria-current={isMediatorsActive ? "page" : undefined}
@@ -787,13 +773,13 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                 </p>
                 <Button
                   type="button"
-                  variant="primary"
+                  variant="outline"
                   onClick={() => {
                     setOpenDrawerSection(null);
                     setMobileOpen(false);
                     setDialerOpen(true);
                   }}
-                  className="min-h-11 shrink-0 rounded-lg px-3.5 py-1.5 text-body font-semibold whitespace-nowrap shadow-none dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
+                  className="min-h-11 shrink-0 rounded-lg border-primary/35! bg-primary/[0.06]! px-3.5 py-1.5 text-body font-semibold whitespace-nowrap text-primary! shadow-none! hover:border-primary/55! hover:bg-primary/[0.12]! dark:border-[#ff8f98]/35! dark:bg-white/[0.05]! dark:text-[#ffccd0]! dark:hover:border-[#ff8f98]/55! dark:hover:bg-[#c62f3c]/18! dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
                 >
                   <PhoneIcon className="h-4 w-4" />
                   <span>{tHeader.call112}</span>

@@ -12,7 +12,7 @@ import {
   UnderlineIcon,
   VolumeIcon,
 } from "@/components/ui/icons";
-import { CAPSULE_PANEL, CAPSULE_SHAPE, capsuleItem } from "@/components/layout/chrome-capsule";
+import { CAPSULE_PANEL, CAPSULE_SHAPE, capsuleComfortItem } from "@/components/layout/chrome-capsule";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { clearPageAutoReadSession } from "@/lib/audio/page-auto-read";
@@ -615,10 +615,10 @@ export function ComfortMenu({
         >
           <AccessibilityIcon
             className={cn(
-              "h-4.5 w-4.5 shrink-0 transition-colors duration-(--dur-fast)",
+              "h-5 w-5 shrink-0 transition-colors duration-(--dur-fast)",
               isOpen || isCustomized
                 ? "text-sapphire dark:text-sapphire-border"
-                : "text-muted-foreground group-hover:text-foreground dark:text-mist dark:group-hover:text-paper",
+                : "text-sapphire/85 group-hover:text-sapphire dark:text-paper/85 dark:group-hover:text-paper",
             )}
           />
           <span className="min-w-0 flex-1 truncate text-body font-medium leading-snug text-foreground dark:text-paper">
@@ -681,7 +681,7 @@ export function ComfortMenu({
         data-header-trigger={showLabel ? "" : undefined}
         onClick={() => setOpen((prev) => !prev)}
         className={cn(
-          capsuleItem(tone === "light", isOpen || hasComfortBoost),
+          capsuleComfortItem(tone === "light", isOpen || hasComfortBoost),
           showLabel
             ? "gap-1.5 px-2.5 text-meta font-semibold max-[359px]:px-2"
             : "w-11",
@@ -689,7 +689,7 @@ export function ComfortMenu({
       >
         <AccessibilityIcon
           data-comfort-glyph={showLabel ? "" : undefined}
-          className={cn("h-4.5 w-4.5 shrink-0", showLabel && "max-[359px]:hidden")}
+          className={cn("h-5.5 w-5.5 shrink-0", showLabel && "max-[359px]:hidden")}
         />
         {showLabel ? <span>{copy.comfortShort}</span> : <span className="sr-only">{copy.buttonLabel}</span>}
       </button>
@@ -733,11 +733,11 @@ export function ComfortMenu({
               }}
               aria-label={copy.close}
               className={cn(
-                "-mr-1 -mt-1 inline-flex h-11 w-11 shrink-0 items-center justify-center whitespace-nowrap border border-border-control/45 bg-muted/80 text-foreground transition-colors duration-(--dur-fast) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/25 dark:bg-white/10 dark:text-paper dark:hover:bg-white/20",
+                "-mr-1 -mt-1 inline-flex h-11 w-11 shrink-0 items-center justify-center whitespace-nowrap bg-[#c62f3c] text-white shadow-[0_2px_8px_-2px_rgb(2_6_23/0.45)] transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-[#a82733] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c62f3c] focus-visible:ring-offset-2 focus-visible:ring-offset-card dark:focus-visible:ring-[#ff8f98] dark:focus-visible:ring-offset-ink-950",
                 CAPSULE_SHAPE,
               )}
             >
-              <CloseIcon className="h-4 w-4" />
+              <CloseIcon className="h-4.5 w-4.5" />
             </button>
           </div>
           <div className="-m-0.5 max-h-[min(78dvh,38rem)] overflow-y-auto overscroll-contain py-0.5 pl-0.5 pr-1.5">
