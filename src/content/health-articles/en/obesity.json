@@ -1,0 +1,51 @@
+{
+  "title": "Obesity and losing weight",
+  "intro": "Obesity means having a high amount of body fat that raises the risk of problems such as type 2 diabetes, high blood pressure, heart disease and joint problems. It is a complex condition influenced by genes, environment and lifestyle, not just willpower. Even modest weight loss can bring noticeable health benefits.",
+  "sections": [
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "Weight is controlled by many factors: genetic tendency, hormones, appetite regulation, food environment, activity levels, sleep, stress, certain medicines and medical conditions. Modern life with abundant high-calorie foods and little movement makes weight gain easier. Blame is unhelpful and can make change harder."
+      ]
+    },
+    {
+      "heading": "Assessing weight and health",
+      "paragraphs": [
+        "Body mass index is widely used, with 30 or above generally defined as obesity, but it does not show where fat is stored. Waist measurement and checks of blood pressure, blood sugar and cholesterol give a fuller picture. The aim is better health, not just a number."
+      ]
+    },
+    {
+      "heading": "Lifestyle approaches",
+      "paragraphs": [
+        "Programmes combining diet, physical activity and behavioural support are most effective. A moderate reduction in calories with a balanced, mostly unprocessed diet is more sustainable than strict diets. Build up regular activity such as brisk walking and include strength training. Losing five to ten percent of body weight can improve blood pressure, blood sugar and mobility."
+      ]
+    },
+    {
+      "heading": "Medicines and surgery",
+      "paragraphs": [
+        "Certain medicines, including injectable drugs that mimic gut hormones, can support weight loss alongside lifestyle changes in selected people. They require ongoing use, can cause digestive side effects and may be costly. Bariatric surgery may be considered for severe obesity and leads to substantial, lasting weight loss for many, but involves risks and lifelong follow-up."
+      ]
+    },
+    {
+      "heading": "Keeping weight off",
+      "paragraphs": [
+        "Weight regain is common, because the body tries to defend its previous weight. Long-term support, regular self-monitoring, ongoing activity and realistic goals help. Seek professional support rather than fad diets or unproven supplements."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Starting small",
+      "text": "Imagine you want to lose weight. You could replace sugary drinks with water, add a daily twenty-minute walk and track progress for a month before setting further goals."
+    },
+    {
+      "title": "Exploring options",
+      "text": "Suppose several attempts at dieting have not lasted. You might ask your doctor about structured programmes, medicines or surgery and what each involves."
+    }
+  ],
+  "questions": [
+    "What is a realistic and healthy weight goal for me?",
+    "Which programme or treatment is most suitable, and what support is available?",
+    "How can I prevent regaining weight after losing it?"
+  ]
+}

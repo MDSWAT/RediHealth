@@ -1,0 +1,51 @@
+{
+  "title": "Što je elektrokardiogram (EKG)?",
+  "intro": "Elektrokardiogram, poznat kao EKG, brza je i bezbolna pretraga koja bilježi električnu aktivnost srca. Pokazuje srčanu frekvenciju i ritam te može pomoći otkriti srčani udar, poremećaje ritma i opterećenje srca. Jedna je od najčešćih srčanih pretraga.",
+  "sections": [
+    {
+      "heading": "Zašto se radi",
+      "paragraphs": [
+        "EKG se koristi kod boli u prsima, lupanja srca, omaglice, nesvjestice i nedostatka zraka. Također pomaže u praćenju poznate srčane bolesti, provjeri učinka lijekova i probiru prije operacije. Može pokazati nepravilne ritmove kao što je fibrilacija atrija, znakove prošlog ili sadašnjeg srčanog udara i zadebljan srčani mišić."
+      ]
+    },
+    {
+      "heading": "Kako radi",
+      "paragraphs": [
+        "Sa svakim otkucajem srca električni signal širi se srcem i uzrokuje njegovo stezanje. Senzori na koži hvataju te sitne signale, a uređaj ih crta kao valove. Liječnici čitaju oblik i vremenski slijed valova kako bi procijenili kako srce radi. Pretraga ne šalje struju u tijelo."
+      ]
+    },
+    {
+      "heading": "Pretraga",
+      "paragraphs": [
+        "Ležite, a deset ljepljivih elektroda postavlja se na prsa, ruke i noge. Dlake će se možda trebati obrijati. Ležite mirno i normalno dišete otprilike minutu. Snimanje traje samo nekoliko minuta. Bezbolno je, ali ljepljivi jastučići mogu povući pri skidanju."
+      ]
+    },
+    {
+      "heading": "Druge vrste",
+      "paragraphs": [
+        "Monitor od dvadeset i četiri sata ili dulje, ili uređaj za bilježenje događaja, nosi se kod kuće kako bi uhvatio ritmove koji dolaze i odlaze. EKG opterećenja snima se na traci za trčanje ili biciklu kako bi se vidjelo kako srce reagira na napor. Neki satovi i uređaji bilježe EKG s jednim odvodom, koji može otkriti neke ritmove, ali nije zamjena za medicinske pretrage."
+      ]
+    },
+    {
+      "heading": "Razumijevanje rezultata",
+      "paragraphs": [
+        "Normalan EKG ne isključuje sve srčane probleme jer se abnormalnosti mogu javljati i nestajati. Liječnici ga tumače zajedno sa simptomima i drugim pretragama. Pitajte što rezultat znači i trebaju li daljnje pretrage."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Bilježenje",
+      "text": "Zamislite da osjećate lupanje srca. Mogli biste zabilježiti kada se događa i pitati je li koristan dugotrajni monitor."
+    },
+    {
+      "title": "Razgovor o očitanju sata",
+      "text": "Pretpostavite da vaš pametni sat pokazuje nepravilan ritam. Mogli biste posjetiti liječnika radi pravog EKG-a."
+    }
+  ],
+  "questions": [
+    "Je li EKG dovoljan ili trebam daljnje srčane pretrage?",
+    "Što rezultat pokazuje?",
+    "Trebam li nositi monitor kako bih uhvatio poremećaje ritma?"
+  ]
+}

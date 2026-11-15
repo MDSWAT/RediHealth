@@ -1,0 +1,51 @@
+{
+  "title": "Implantable defibrillators: protection and follow-up",
+  "intro": "An implantable cardioverter-defibrillator, or ICD, watches for certain dangerous heart rhythms and can treat them automatically. It may reduce the risk of sudden death in selected people, but does not cure every heart problem or replace medicines and follow-up.",
+  "sections": [
+    {
+      "heading": "Detection and treatment",
+      "paragraphs": [
+        "The device interprets heart signals according to programmed settings. Depending on type, it may use rapid pacing or a shock to interrupt a dangerous rhythm. It does not shock every fast heartbeat, and an inappropriate shock is possible."
+      ]
+    },
+    {
+      "heading": "Choosing and fitting a device",
+      "paragraphs": [
+        "Some systems have leads inside the heart; others sit under the skin without intracardiac leads. Benefits, pacing abilities and procedure risks differ. Ask why a particular device is proposed and discuss infection, bleeding, lead problems and personal treatment goals."
+      ]
+    },
+    {
+      "heading": "Living with an ICD",
+      "paragraphs": [
+        "Carry the device card and tell clinicians before scans or procedures. Compatibility depends on the exact system, so MRI is not automatically forbidden or automatically safe. Ask about magnets, electrical equipment, driving and activity using your team’s specific instructions."
+      ]
+    },
+    {
+      "heading": "Checks and planning",
+      "paragraphs": [
+        "Attend device and battery checks even when well. Remote monitoring is useful but is not a continuously staffed emergency service. Discuss anxiety after shocks and future choices, including how shock therapy can be reviewed if health or care goals change."
+      ]
+    },
+    {
+      "heading": "Responding to shocks",
+      "paragraphs": [
+        "Get a written shock plan. After a shock, contact the device team promptly even if you feel well. Repeated shocks, fainting, chest pain or continuing breathlessness require emergency help. An unconscious person not breathing normally still needs emergency services, CPR and an AED when available."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira asks whether the proposed device can provide pacing as well as shocks and discusses her own goals before implantation."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben experiences a shock and feels well afterward. He follows the contact plan instead of assuming a remote transmission means someone has already assessed him."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Ce este o electrocardiogramă (EKG)?",
+  "intro": "Electrocardiograma, cunoscută ca EKG sau ECG, este un test rapid și nedureros care înregistrează activitatea electrică a inimii. Arată frecvența și ritmul inimii și poate ajuta la depistarea infarctului, a tulburărilor de ritm și a suprasolicitării inimii. Este unul dintre cele mai frecvente teste cardiace.",
+  "sections": [
+    {
+      "heading": "De ce se face",
+      "paragraphs": [
+        "EKG-ul este folosit pentru durere în piept, palpitații, amețeală, leșin și lipsă de aer. Ajută și la monitorizarea unei boli de inimă cunoscute, la verificarea efectului medicamentelor și la screeningul înainte de operație. Poate arăta ritmuri neregulate precum fibrilația atrială, semne ale unui infarct trecut sau în curs și mușchi cardiac îngroșat."
+      ]
+    },
+    {
+      "heading": "Cum funcționează",
+      "paragraphs": [
+        "La fiecare bătaie a inimii, un semnal electric se răspândește prin inimă și o face să se contracte. Senzorii de pe piele captează aceste semnale minuscule, iar un aparat le desenează sub formă de unde. Medicii citesc forma și momentul undelor pentru a judeca cum lucrează inima. Testul nu trimite electricitate în corp."
+      ]
+    },
+    {
+      "heading": "Testul",
+      "paragraphs": [
+        "Vă întindeți și zece electrozi lipicioși sunt plasați pe piept, brațe și picioare. Părul poate trebui ras. Stați nemișcat și respirați normal aproximativ un minut. Înregistrarea durează doar câteva minute. Este nedureroasă, dar tampoanele lipicioase pot trage la îndepărtare."
+      ]
+    },
+    {
+      "heading": "Alte tipuri",
+      "paragraphs": [
+        "Un monitor de douăzeci și patru de ore sau mai lung, sau un înregistrator de evenimente, este purtat acasă pentru a surprinde ritmurile care apar și dispar. Un EKG de efort este înregistrat pe o bandă de alergare sau pe o bicicletă pentru a vedea cum răspunde inima la efort. Unele ceasuri și dispozitive înregistrează un EKG cu un singur canal, care poate detecta unele ritmuri, dar nu înlocuiește testele medicale."
+      ]
+    },
+    {
+      "heading": "Înțelegerea rezultatelor",
+      "paragraphs": [
+        "Un EKG normal nu exclude toate problemele de inimă, deoarece anomaliile pot apărea și dispărea. Medicii îl interpretează împreună cu simptomele și cu alte teste. Întrebați ce înseamnă rezultatul și dacă sunt necesare alte teste."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Notarea unei înregistrări",
+      "text": "Imaginați-vă că simțiți palpitații. Ați putea nota când apar și ați putea întreba dacă un monitor de lungă durată este util."
+    },
+    {
+      "title": "Discutarea unei valori de pe ceas",
+      "text": "Presupuneți că ceasul inteligent arată un ritm neregulat. Ați putea merge la medic pentru un EKG corespunzător."
+    }
+  ],
+  "questions": [
+    "Este suficient un EKG sau am nevoie de alte teste ale inimii?",
+    "Ce arată rezultatul?",
+    "Ar trebui să port un monitor pentru a surprinde problemele de ritm?"
+  ]
+}

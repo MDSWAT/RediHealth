@@ -1,0 +1,53 @@
+{
+  "title": "Come usare i diversi tipi di informazione sulla salute",
+  "intro": "L'informazione sulla salute si presenta in molte forme, come panoramiche, articoli approfonditi, spiegazioni di esami e trattamenti ed esperienze personali. Sapere che cosa offre ciascun tipo aiuta a trovare risposte più rapidamente e a evitare di scambiare informazioni generali per consigli medici personali.",
+  "sections": [
+    {
+      "heading": "Panoramiche e articoli approfonditi",
+      "paragraphs": [
+        "Le panoramiche offrono una breve introduzione a un argomento. Spiegano che cos'è una condizione, come viene di solito riconosciuta e quali sono le opzioni principali. Gli articoli approfonditi vanno oltre, trattando in modo più dettagliato sintomi, cause, esami, trattamenti e vita quotidiana.",
+        "Leggere prima una panoramica può aiutare a decidere quali articoli specifici contano per te e quali termini cercare."
+      ]
+    },
+    {
+      "heading": "Spiegazioni di esami e trattamenti",
+      "paragraphs": [
+        "Alcuni articoli si concentrano su come funziona un esame o una procedura, quale preparazione serve e che cosa potrebbero significare i risultati. Aiutano a sapere che cosa aspettarsi e possono ridurre la preoccupazione prima di un esame. Spiegano anche benefici, rischi e incertezze, così da poter valutare le opzioni."
+      ]
+    },
+    {
+      "heading": "Esperienze ed esempi personali",
+      "paragraphs": [
+        "Esempi che descrivono come qualcuno potrebbe affrontare una situazione possono rendere più facile comprendere informazioni astratte. Ricorda che le esperienze differiscono e che ciò che ha aiutato una persona può non andare bene per un'altra. Gli esempi ipotetici sono illustrazioni, non previsioni di ciò che accadrà a te."
+      ]
+    },
+    {
+      "heading": "Domande da discutere e fonti",
+      "paragraphs": [
+        "Le domande per il tuo professionista sanitario trasformano l'informazione in azione. Portale alle visite e aggiungi le tue. I link alle fonti alla fine di un articolo indicano il materiale su cui si basano le informazioni di fondo, così puoi leggere di più.",
+        "Le informazioni negli articoli sono generali e non possono mai sostituire una visita. La medicina cambia, quindi controlla le date e valuta se le informazioni valgono per il tuo paese, poiché i sistemi sanitari e le raccomandazioni differiscono."
+      ]
+    },
+    {
+      "heading": "Usare le informazioni con saggezza",
+      "paragraphs": [
+        "Cerca una paternità chiara, contenuti aggiornati, una presentazione equilibrata di benefici e rischi e dichiarazioni aperte sull'incertezza. Diffida delle promesse di cure miracolose e delle pagine che vendono soprattutto prodotti. Usa più fonti affidabili e parla con un professionista delle decisioni che riguardano la tua salute."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi a una visita",
+      "text": "Immagina di aver appena ricevuto la diagnosi di una malattia di lunga durata. Potresti leggere una panoramica, sottolineare le parole sconosciute, poi copiare le domande in fondo nei tuoi appunti e aggiungere le tue preoccupazioni personali da portare alla prossima visita."
+    },
+    {
+      "title": "Confrontare le fonti",
+      "text": "Supponi di trovare due pagine web con consigli contrastanti su un trattamento. Potresti controllare chi ha scritto ciascuna pagina, quando è stata aggiornata e quali evidenze cita, poi chiedere al medico quale consiglio vale per te."
+    }
+  ],
+  "questions": [
+    "Quale delle informazioni che ho trovato vale per la mia situazione?",
+    "Ci sono fonti affidabili o gruppi di sostegno che consigliereste per la mia condizione?",
+    "Che cosa devo fare se un'informazione che leggo contraddice ciò che mi viene detto?"
+  ]
+}

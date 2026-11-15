@@ -1,0 +1,51 @@
+{
+  "title": "PSA tests for prostate cancer screening",
+  "intro": "The PSA test measures prostate-specific antigen, a protein made by the prostate, in a blood sample. A high level may indicate prostate cancer, but also benign conditions. Using the PSA test for screening in healthy men can detect some cancers early, but it also leads to false alarms and overdiagnosis, so the decision is a personal one.",
+  "sections": [
+    {
+      "heading": "What the test measures",
+      "paragraphs": [
+        "PSA levels rise with cancer, but also with benign enlargement, inflammation, infection, recent ejaculation, cycling and instrumentation. Levels also increase with age. There is no cut-off that completely separates cancer from non-cancer, so a raised value only indicates the need for further assessment."
+      ]
+    },
+    {
+      "heading": "Possible benefits",
+      "paragraphs": [
+        "Large trials suggest that PSA screening can lower the risk of dying from prostate cancer in a small number of men, with the benefit appearing after more than ten years. The effect is modest. Finding a cancer early may allow treatment while it is still localised."
+      ]
+    },
+    {
+      "heading": "Possible harms",
+      "paragraphs": [
+        "Many raised results lead to biopsies that find no cancer. Biopsy may cause bleeding, infection and anxiety. Screening finds many slow-growing cancers that would never have caused symptoms or shortened life, called overdiagnosis. Men who are treated for such cancers may suffer side effects such as incontinence and erectile problems without benefit."
+      ]
+    },
+    {
+      "heading": "Making your own decision",
+      "paragraphs": [
+        "Because benefits and harms are closely balanced, many guidelines recommend an informed choice rather than routine screening for all men. Think about your age, family history, health and how you feel about uncertainty. Men with a strong family history or of African descent may have a higher risk and may discuss earlier assessment. Using MRI before biopsy and active surveillance of low-risk cancers can reduce harm."
+      ]
+    },
+    {
+      "heading": "Follow-up after a raised result",
+      "paragraphs": [
+        "If PSA is raised, doctors may repeat the test after a few weeks, check for infection and consider MRI before deciding on a biopsy. Ask about each step and the chances of finding a significant cancer."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Weighing it up",
+      "text": "Imagine you are 58 and your doctor mentions a PSA test. You could ask how many men benefit, how many have false alarms and what you would do if the result were raised."
+    },
+    {
+      "title": "Preparing for the test",
+      "text": "Suppose you decide to be tested. You might avoid ejaculation and strenuous cycling for a couple of days beforehand, and tell the doctor about any urinary infection."
+    }
+  ],
+  "questions": [
+    "Is a PSA test advisable for me, given my age and family history?",
+    "What would happen if my PSA level were raised?",
+    "What are the chances of overdiagnosis and overtreatment?"
+  ]
+}

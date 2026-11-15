@@ -1,0 +1,52 @@
+{
+  "title": "Otite esterna",
+  "intro": "L'otite esterna è un'infiammazione della pelle del condotto uditivo, spesso chiamata orecchio del nuotatore. Causa dolore, prurito e talvolta secrezione. Di solito si cura con gocce auricolari e passa in una o due settimane. Tenere asciutto il condotto e non frugarvi aiuta a prevenirla.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "La pelle che riveste il condotto uditivo è normalmente protetta da un sottile strato ceroso. L'acqua che resta nell'orecchio, i cotton fioc, gli apparecchi acustici, i tappi, l'eczema e il grattarsi possono rompere questa barriera, permettendo a batteri o talvolta funghi di crescere. Il nuoto, il clima umido e i condotti stretti aumentano il rischio."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I segni tipici sono dolore all'orecchio che peggiora quando si tira o si preme l'orecchio esterno, prurito, arrossamento, sensazione di pienezza, udito ovattato e secrezione chiara o giallastra. La febbre è insolita. Il dolore può essere intenso e disturbare il sonno."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Un medico esamina il condotto uditivo e spesso lo pulisce con cura. Si usano gocce antibiotiche o antisettiche, a volte combinate con un lieve steroide, per circa una settimana. Se il condotto è gonfio e chiuso si può inserire un piccolo stoppino per portare le gocce. Antidolorifici come paracetamolo o ibuprofene alleviano il fastidio. Le infezioni fungine richiedono gocce antifungine.",
+        "Tieni l'orecchio asciutto durante il trattamento e non usare cotton fioc né oggetti. Smetti di nuotare finché il medico non dice che va bene."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Asciuga delicatamente le orecchie dopo il nuoto o la doccia, inclinando la testa e usando l'asciugamano solo all'esterno. Evita di pulire dentro il condotto, usa i tappi per il nuoto se sei incline alle infezioni e pulisci gli apparecchi acustici come consigliato. Tratta l'eczema sottostante."
+      ]
+    },
+    {
+      "heading": "Quando chiedere aiuto",
+      "paragraphs": [
+        "Vai subito dal medico se il dolore è forte, c'è gonfiore del viso, febbre, perdita dell'udito, capogiri o se hai il diabete o difese immunitarie indebolite, perché una rara forma grave può diffondersi all'osso. Chiedi consiglio se i sintomi non migliorano dopo alcuni giorni di trattamento."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dopo il nuoto",
+      "text": "Immagina che l'orecchio ti faccia male il giorno dopo una vacanza al mare. Potresti evitare i cotton fioc, andare dal medico e usare le gocce prescritte esattamente come indicato."
+    },
+    {
+      "title": "Prevenire le recidive",
+      "text": "Supponi di aver avuto questo problema più volte. Potresti chiedere se i tappi o le gocce asciuganti possano aiutare ed evitare di inserire qualsiasi cosa nelle orecchie."
+    }
+  ],
+  "questions": [
+    "La mia infezione all'orecchio è batterica o fungina e di quali gocce ho bisogno?",
+    "Come posso tenere l'acqua fuori dall'orecchio mentre guarisce?",
+    "Che cosa posso fare per evitare che ritorni?"
+  ]
+}

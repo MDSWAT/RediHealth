@@ -1,0 +1,51 @@
+{
+  "title": "Što se događa tijekom srčane kateterizacije?",
+  "intro": "Srčana kateterizacija je zahvat u kojem se tanka savitljiva cijev, zvana kateter, vodi kroz krvnu žilu do srca. Koristi se za pregled koronarnih arterija i srčanih komora i za liječenje suženja, primjerice otvaranjem arterija stentom. Obično se radi pod lokalnom anestezijom.",
+  "sections": [
+    {
+      "heading": "Zašto se radi",
+      "paragraphs": [
+        "Liječnici je izvode radi pronalaska uzroka boli u prsima, dijagnosticiranja koronarne bolesti, pregleda srčanih zalistaka i tlakova te u hitnim slučajevima tijekom srčanog udara. Tijekom istog zahvata sužene arterije mogu se proširiti balonom i držati otvorenima stentom."
+      ]
+    },
+    {
+      "heading": "Priprema",
+      "paragraphs": [
+        "Obično ste natašte nekoliko sati. Recite timu o alergijama, osobito na kontrastno sredstvo ili jod, problemima s bubrezima, dijabetesu i lijekovima kao što su lijekovi za razrjeđivanje krvi ili metformin. Rade se krvne pretrage i elektrokardiogram. Dat ćete pisani pristanak, a netko vas treba odvesti kući ili ostajete preko noći."
+      ]
+    },
+    {
+      "heading": "Tijekom zahvata",
+      "paragraphs": [
+        "Ležite na stolu i dobivate sedativ ako želite. Koža na zapešću ili preponi se umrtvljuje, a kateter se uz rendgensko vođenje vodi do srca. Kontrastno sredstvo se ubrizgava kako bi se prikazale arterije, što može uzrokovati osjećaj topline. Zahvat traje trideset do šezdeset minuta, dulje ako se postavlja stent."
+      ]
+    },
+    {
+      "heading": "Rizici",
+      "paragraphs": [
+        "Zahvat je općenito siguran. Mogući rizici uključuju krvarenje ili modrice na mjestu uboda, alergijsku reakciju na kontrast, probleme s bubrezima, nepravilan rad srca, oštećenje žile i, rijetko, srčani udar, moždani udar ili smrt. Liječnik vaga rizike naspram koristi."
+      ]
+    },
+    {
+      "heading": "Nakon zahvata",
+      "paragraphs": [
+        "Odmarate nekoliko sati, pijete tekućinu i nadzirete se. Izbjegavajte dizanje teških tereta nekoliko dana. Odmah prijavite krvarenje, oticanje, bol, utrnulost ili bol u prsima. Ako se postavi stent, uzimate lijekove za sprječavanje ugrušaka i ne smijete ih prekidati bez savjeta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema",
+      "text": "Zamislite da ste sutra naručeni na kateterizaciju. Mogli biste popisati lijekove, pitati koje privremeno prekinuti i dogovoriti prijevoz kući."
+    },
+    {
+      "title": "Briga o rani",
+      "text": "Pretpostavite da je ubod bio na zapešću. Mogli biste izbjegavati dizanje tereta i pratiti oticanje ili krvarenje."
+    }
+  ],
+  "questions": [
+    "Zašto trebam ovaj zahvat i postoje li alternative?",
+    "Koji su rizici u mojoj situaciji?",
+    "Koje lijekove moram uzimati poslije?"
+  ]
+}

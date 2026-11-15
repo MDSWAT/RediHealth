@@ -1,0 +1,51 @@
+{
+  "title": "Problemele de somn și insomnia",
+  "intro": "Aproape toată lumea are probleme cu somnul la un moment dat. Insomnia înseamnă dificultate persistentă de a adormi, de a rămâne adormit sau trezirea prea devreme, împreună cu oboseală sau funcționare slabă în timpul zilei. Problemele de scurtă durată trec de obicei, iar pentru insomnia de lungă durată terapia comportamentală funcționează mai bine și mai durabil decât somniferele.",
+  "sections": [
+    {
+      "heading": "Ce este insomnia",
+      "paragraphs": [
+        "Insomnia se diagnostichează când problemele apar cel puțin trei nopți pe săptămână timp de o lună sau mai mult și afectează funcționarea în timpul zilei. Acuzele tipice sunt statul treaz în pat, trezirile în timpul nopții, trezirea devreme, somnul neodihnitor, oboseala, iritabilitatea și dificultatea de concentrare. Îngrijorarea față de somnul însuși menține adesea problema."
+      ]
+    },
+    {
+      "heading": "Cauze și factori contributivi",
+      "paragraphs": [
+        "Stresul, grijile, schimbările de rutină, munca în schimburi, durerea, zgomotul, cafeaua, alcoolul, nicotina și unele medicamente pot perturba somnul. Insomnia însoțește adesea depresia și anxietatea. Alte tulburări de somn, precum apneea în somn și sindromul picioarelor neliniștite, pot provoca somn slab și trebuie verificate dacă sunt suspectate."
+      ]
+    },
+    {
+      "heading": "Obiceiuri de somn care ajută",
+      "paragraphs": [
+        "Păstrați ore regulate de culcare și de trezire, chiar și în weekend, expuneți-vă la lumina zilei, faceți exerciții și evitați cafeaua după-amiaza și mesele grele sau alcoolul aproape de culcare. Creați un dormitor întunecat, liniștit și răcoros și rezervați patul pentru somn. Evitați ecranele și activitățile stimulatoare seara târziu. Dacă nu puteți dormi după aproximativ douăzeci de minute, ridicați-vă și faceți ceva relaxant până vă este somn."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Terapia cognitiv-comportamentală pentru insomnie este primul tratament recomandat. Include programarea somnului, limitarea timpului petrecut în pat, schimbarea gândurilor nefolositoare despre somn și relaxarea. Poate fi oferită de un terapeut, în grup sau prin programe digitale aprobate. Somniferele pot ajuta pe termen scurt, dar provoacă dependență, somnolență în timpul zilei și căderi, așa că se folosesc doar pe perioade scurte. Remediile din plante, precum valeriana, au beneficii incerte."
+      ]
+    },
+    {
+      "heading": "Când să cereți ajutor",
+      "paragraphs": [
+        "Mergeți la medic dacă somnul slab persistă câteva săptămâni, dacă sforăiți puternic, cu pauze în respirație, adormiți involuntar în timpul zilei sau vă simțiți deprimat sau anxios. Nu conduceți când sunteți somnoros."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ținerea unui jurnal al somnului",
+      "text": "Imaginați-vă că dormiți prost în cele mai multe nopți. Ați putea nota ora de culcare, orele de trezire, somnurile scurte, cafeaua și dispoziția timp de două săptămâni și ați putea aduce jurnalul medicului."
+    },
+    {
+      "title": "Ruperea ciclului îngrijorării",
+      "text": "Presupuneți că stați treaz îngrijorat de ziua de mâine. Ați putea scrie pe hârtie sarcinile de mâine înainte de culcare și v-ați putea ridica pentru o activitate calmă dacă nu puteți dormi după douăzeci de minute."
+    }
+  ],
+  "questions": [
+    "Ar putea o afecțiune medicală sau un medicament să-mi provoace insomnia?",
+    "Este disponibilă pentru mine terapia cognitiv-comportamentală pentru insomnie?",
+    "Cât timp este sigur să folosesc somnifere?"
+  ]
+}

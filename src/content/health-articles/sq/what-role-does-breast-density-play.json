@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë roli luan dendësia e gjirit?",
+  "intro": "Dendësia e gjirit përshkruan sa pjesë e gjirit përbëhet nga indi gjëndror e lidhës krahasuar me yndyrën, siç shihet në një mamogram. Gjinjtë e dendur janë të zakonshëm e normalë. Dendësia ka rëndësi sepse mund t'i bëjë kancerët më të vështirë për t'u parë e vetë lidhet me një rrezik paksa më të lartë të kancerit të gjirit.",
+  "sections": [
+    {
+      "heading": "Çfarë do të thotë dendësia",
+      "paragraphs": [
+        "Në një mamogram, yndyra duket e errët, ndërsa indi gjëndror e fibroz duket i bardhë. Gjinjtë shpesh grupohen në katër kategori, nga kryesisht yndyrorë deri shumë të dendur. Dendësia nuk lidhet me ndjesinë e gjinjve, as me madhësinë e tyre, e nuk mund të gjykohet me prekje. Është më e zakonshme te gratë më të reja e prirret të ulet me moshën e pas menopauzës."
+      ]
+    },
+    {
+      "heading": "Pse ka rëndësi",
+      "paragraphs": [
+        "Indi i dendur e tumoret të dyja duken të bardha në një mamogram, prandaj kancerët mund të fshihen, çka e ul ndjeshmërinë e mamografisë. Gratë me gjinj shumë të dendur kanë edhe rrezik më të lartë të kancerit të gjirit se gratë me gjinj yndyrorë, por dendësia është vetëm një nga shumë faktorët e rrezikut, si mosha, historia familjare e gjenet."
+      ]
+    },
+    {
+      "heading": "Teste shtesë",
+      "paragraphs": [
+        "Për gratë me gjinj të dendur, imazheri shtesë si ultratingulli ose rezonanca magnetike mund të gjejë më shumë kancerë, por çon edhe në më shumë alarme të rreme e teste shtesë. Nëse ofrohen teste shtesë ndryshon midis vendeve e udhëzuesve, e përfitimi për mbijetesën ende studiohet. Diskutoni opsionet me mjekun."
+      ]
+    },
+    {
+      "heading": "Çfarë mund të bëni",
+      "paragraphs": [
+        "Merrni pjesë në skriningun e rekomanduar, njihni gjinjtë tuaj e raportoni ndryshime si gungë, ndryshime të lëkurës, rrjedhje nga thithka ose dhimbje, edhe pas një mamogrami normal. Zvogëloni rreziqet e ndryshueshme si alkooli i tepërt, mbipesha pas menopauzës e mungesa e aktivitetit. Dendësia nuk mund të ndryshohet qëllimisht."
+      ]
+    },
+    {
+      "heading": "Të qenit i informuar",
+      "paragraphs": [
+        "Në disa vende gratë njoftohen për dendësinë pas një mamogrami. Nëse e juaja është e lartë, pyesni çfarë do të thotë për ju, nëse rreziku juaj është rritur e nëse teste shtesë kanë kuptim. Të kesh gjinj të dendur nuk është sëmundje, e nuk do të thotë se do të zhvilloni kancer."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pyetja për dendësinë",
+      "text": "Imagjinoni që raporti i mamogramit përmend gjinj të dendur. Mund ta pyesni mjekun nëse imazheria shtesë është e përshtatshme për ju."
+    },
+    {
+      "title": "Vërejtja e një ndryshimi",
+      "text": "Supozoni që ndjeni një gungë të re pas një mamogrami normal. Mund të shihni mjekun shpejt në vend që të prisni skriningun e radhës."
+    }
+  ],
+  "questions": [
+    "Cila është kategoria e dendësisë së gjirit tim e çfarë do të thotë?",
+    "A do të ishte e dobishme një ultratingull ose rezonancë për mua?",
+    "Sa shpesh duhet të bëj skrining?"
+  ]
+}

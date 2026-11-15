@@ -1,0 +1,52 @@
+{
+  "title": "Kako štitnjača regulira metabolizam",
+  "intro": "Štitnjača je sprijeda u vratu i otpušta hormone za energiju, temperaturu i brojne funkcije. Simptomi se preklapaju s drugim bolestima; sama težina ili umor nisu dijagnoza štitnjače.",
+  "sections": [
+    {
+      "heading": "Proizvodnja",
+      "paragraphs": [
+        "Folikuli koriste jod za proizvodnju i pohranu hormona. Jod dolazi hranom, ali više nije uvijek bolje; višak može poremetiti funkciju."
+      ]
+    },
+    {
+      "heading": "Povratna sprega",
+      "paragraphs": [
+        "Hormon hipofize koji stimulira štitnjaču regulira izlaz. Hormoni štitnjače daju povratni signal. Nalazi se tumače zajedno s trudnoćom, lijekovima i mogućom bolešću hipofize."
+      ]
+    },
+    {
+      "heading": "Malo ili mnogo",
+      "paragraphs": [
+        "Niska proizvodnja usporava, višak može dati nepodnošenje topline, tremor ili lupanje srca. Simptomi variraju; otok vrata sam ne mjeri proizvodnju."
+      ]
+    },
+    {
+      "heading": "Testovi",
+      "paragraphs": [
+        "Krv procjenjuje funkciju, ultrazvuk strukturu prema potrebi. Liječenje ovisi o uzroku. Ne mijenjajte lijekove samo po težini niti uzimajte hormone za mršavljenje bez recepta."
+      ]
+    },
+    {
+      "heading": "Praćenje",
+      "paragraphs": [
+        "Prijavite planove trudnoće, dodatke i druge lijekove te dolazite na krvne kontrole. Jako lupanje srca s boli u prsima, zaduha, visoka vrućica ili jaka zbunjenost traže hitnost.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima umor i traži procjenu umjesto joda kao univerzalnog liječenja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima čvor na ultrazvuku. Zasebno pita o strukturi i funkciji krvi, ne pretpostavlja višak hormona."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

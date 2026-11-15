@@ -1,0 +1,51 @@
+{
+  "title": "What are clinical practice guidelines?",
+  "intro": "Clinical practice guidelines are documents that summarise the best available evidence and give recommendations on how to prevent, diagnose and treat health conditions. They help doctors and patients make decisions, and aim to reduce unwarranted differences in care. Understanding what they are and what they are not helps you use them wisely.",
+  "sections": [
+    {
+      "heading": "What they contain",
+      "paragraphs": [
+        "Guidelines are developed by expert groups, medical societies or health authorities. They review research evidence, and state recommendations such as which tests to use, which treatments to offer and when to refer. Many grade the strength of a recommendation and the quality of the evidence behind it. Some versions are written for patients."
+      ]
+    },
+    {
+      "heading": "How good guidelines are made",
+      "paragraphs": [
+        "Trustworthy guidelines use systematic reviews of evidence, include a range of experts and often patient representatives, declare conflicts of interest, describe the methods and are updated regularly. Where evidence is lacking, they say so and rely on expert consensus. Guidelines funded by a company with an interest in the outcome deserve extra scrutiny."
+      ]
+    },
+    {
+      "heading": "How doctors use them",
+      "paragraphs": [
+        "Guidelines are guides, not rules. They describe what is appropriate for most patients. Doctors adapt them to the individual, taking into account other illnesses, age, preferences and circumstances. Departures from guidelines can be justified but should be explained. Guidelines may differ between countries or organisations."
+      ]
+    },
+    {
+      "heading": "Limits",
+      "paragraphs": [
+        "Many guidelines are based on studies of people who do not resemble patients with several conditions. They can become outdated, and recommendations for one disease may conflict with another in a person with several illnesses. They may overlook what matters to individuals. Patients should not feel that a guideline replaces a conversation."
+      ]
+    },
+    {
+      "heading": "How you can use them",
+      "paragraphs": [
+        "Ask your doctor whether a guideline exists for your condition, and ask for a patient version. Check the date and the issuing organisation. Use the content to prepare questions and understand why certain tests or treatments are offered. Discuss any difference between guidance and your treatment plan with your doctor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Finding a guideline",
+      "text": "Imagine you have just been diagnosed with asthma. You could ask your doctor whether there is a patient version of the guideline, and look at what it recommends."
+    },
+    {
+      "title": "Discussing differences",
+      "text": "Suppose your treatment differs from what you read. You might ask your doctor why, and whether your circumstances explain it."
+    }
+  ],
+  "questions": [
+    "Is there a guideline for my condition, and does my treatment follow it?",
+    "Why is my plan different from what the guideline says?",
+    "How up to date is the guideline?"
+  ]
+}

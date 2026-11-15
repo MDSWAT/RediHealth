@@ -1,0 +1,51 @@
+{
+  "title": "Kako dijaliza čisti krv",
+  "intro": "Dijaliza uklanja otpad i vodu kada bubrezi ne mogu. Podržava ravnotežu, ne ispire sve tvari. Ne zamjenjuje svaku funkciju pa lijekovi, prehrana i kontrole ostaju važni.",
+  "sections": [
+    {
+      "heading": "Membrana",
+      "paragraphs": [
+        "Krv i tekućina odvojene su membranom koja propušta odabrane male tvari, a zadržava stanice i mnoge proteine. Sastav je odabran: nije obična voda."
+      ]
+    },
+    {
+      "heading": "Difuzija",
+      "paragraphs": [
+        "Čestice prelaze prema razlici koncentracije. Prikladna tekućina uklanja otpad i usklađuje soli. Postavke ovise o krvi; brže nije uvijek sigurnije."
+      ]
+    },
+    {
+      "heading": "Voda",
+      "paragraphs": [
+        "Ultrafiltracija koristi tlak. Prebrzo uklanjanje može dati nizak tlak ili grčeve. Tim koristi pregled, težinu i simptome, ne samo žeđ ili gležnjeve."
+      ]
+    },
+    {
+      "heading": "Dva pristupa",
+      "paragraphs": [
+        "Hemodijaliza koristi vanjski filtar i vaskularni pristup. Peritonejska trbušnu ovojnicu i tekućinu kroz kateter. Rasporedi, infekcije i obveze razlikuju se; ne birajte iz jednog crteža."
+      ]
+    },
+    {
+      "heading": "Sigurnost",
+      "paragraphs": [
+        "Dolazite na terapiju, javite bolest i propuštanje. Slijedite individualnu prehranu, tekućinu i pristup. Teška zaduha, prsna bol, kolaps ili krv traže hitnost; vrućica ili mutna peritonejska tekućina brz savjet. Prije pregleda zapišite kada je simptom počeo, što ga ublažava ili pogoršava i kako utječe na uobičajene aktivnosti. Ponesite prethodne nalaze ako ih imate. Zamolite stručnjaka da objašnjenje poveže s vašim nalazima: opći opis sam po sebi ne postavlja dijagnozu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pita prilagodbu uklanjanja uz grčeve, ne smatra jaču seansu uvijek boljom."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben uspoređuje dom i centar, podršku i rutinu, ne samo jednostavan mehanizam."
+    }
+  ],
+  "questions": [
+    "Koji bi koraci bili jasniji uz dijagram?",
+    "Što objašnjenje pokazuje i što ne predviđa?",
+    "Treba li moja konkretna briga stručnu procjenu?"
+  ]
+}

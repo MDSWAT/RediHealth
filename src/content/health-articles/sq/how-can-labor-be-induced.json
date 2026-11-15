@@ -1,0 +1,51 @@
+{
+  "title": "Nxitja e lindjes: metoda, zgjedhje dhe monitorim",
+  "intro": "Nxitja nis ose përgatit lindjen para fillimit spontan. Ofrohet kur vazhdimi mund të ketë më shumë rrezik, por arsyeja, koha dhe mundësitë janë personale. Pyesni çfarë rekomandohet për ju.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Arsyet përfshijnë zgjatjen e shtatzënisë, plasjen e ujërave ose shqetësime të nënës e fetusit. Data e lindjes nuk shpjegon çdo vendim. Diskutoni përfitimet, pasiguritë, pritjen me monitorim dhe alternativa të përshtatshme."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Ekipi vlerëson qafën e mitrës, pozicionin dhe gjendjen e foshnjës, shëndetin dhe lindjet ose operacionet e mëparshme. Pyesni për ekzaminimet dhe jepni pëlqim veçmas. Cezarianja e mëparshme ndryshon metodat. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Mund të përdoren ilaçe për pjekje, balon, çarje e ujërave ose oksitocinë në venë. Nuk janë të këmbyeshme. Monitorimi kontrollon kontraksionet dhe foshnjën; shpeshtësia e tepërt ose komplikimet kërkojnë ndryshim ose ndalim. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Procesi merr kohë dhe etapa; pyesni për dhimbjen, lëvizjen, shoqëruesin dhe planin në dështim. Mos përdorni vaj ricini, bimë ose ilaçe për ta nxitur vetë. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Kontaktoni maternitetin shpejt për lëvizje të pakta, gjakosje, ethe, dhimbje të fortë të vazhdueshme ose shqetësime pas ujërave. Raportoni menjëherë gjatë nxitjes. Përkeqësimi serioz është urgjencë pa pritje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet pse ofrohet nxitja dhe çfarë përfshin pritja. Diskuton metoda dhe lehtësim para vendimit."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ndihmon partneren me cezariane të mëparshme të pyesë metodat për mbresën, monitorimin dhe alternativat."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

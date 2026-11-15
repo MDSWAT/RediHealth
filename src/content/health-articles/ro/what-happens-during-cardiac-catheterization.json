@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă în timpul cateterismului cardiac?",
+  "intro": "Cateterismul cardiac este o procedură în care un tub subțire flexibil, numit cateter, este trecut printr-un vas de sânge până la inimă. Este folosit pentru a examina arterele coronare și camerele inimii și pentru a trata îngustările, de exemplu deschizând arterele cu un stent. De obicei se face sub anestezie locală.",
+  "sections": [
+    {
+      "heading": "De ce se face",
+      "paragraphs": [
+        "Medicii îl efectuează pentru a găsi cauza durerii în piept, pentru a diagnostica boala coronariană, pentru a examina valvele inimii și presiunile și, în urgență, în timpul unui infarct. În cursul aceleiași proceduri, arterele îngustate pot fi lărgite cu un balon și menținute deschise cu un stent."
+      ]
+    },
+    {
+      "heading": "Pregătirea",
+      "paragraphs": [
+        "De obicei sunteți à jeun câteva ore. Spuneți echipei despre alergii, în special la substanța de contrast sau la iod, despre problemele rinichilor, diabet și medicamente precum anticoagulantele sau metforminul. Se fac analize de sânge și un electrocardiogram. Veți da consimțământul scris, iar cineva trebuie să vă ducă acasă sau rămâneți peste noapte."
+      ]
+    },
+    {
+      "heading": "În timpul procedurii",
+      "paragraphs": [
+        "Vă întindeți pe o masă și primiți un sedativ, dacă doriți. Pielea de la încheietura mâinii sau din zona inghinală este anesteziată, iar un cateter este avansat către inimă sub ghidaj radiologic. Substanța de contrast este injectată pentru a arăta arterele, ceea ce poate provoca o senzație de căldură. Procedura durează între treizeci și șaizeci de minute, mai mult dacă se plasează un stent."
+      ]
+    },
+    {
+      "heading": "Riscuri",
+      "paragraphs": [
+        "Procedura este în general sigură. Riscurile posibile includ sângerarea sau vânătaia la locul puncției, reacția alergică la substanța de contrast, probleme ale rinichilor, bătăi neregulate ale inimii, lezarea unui vas și, rar, infarct, accident vascular cerebral sau deces. Medicul cântărește riscurile față de beneficii."
+      ]
+    },
+    {
+      "heading": "După procedură",
+      "paragraphs": [
+        "Vă odihniți câteva ore, beți lichide și sunteți monitorizat. Evitați ridicarea de greutăți câteva zile. Raportați imediat sângerarea, umflătura, durerea, amorțeala sau durerea în piept. Dacă se plasează un stent, luați medicamente pentru a preveni cheagurile și nu trebuie să le opriți fără sfat."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea",
+      "text": "Imaginați-vă că aveți mâine un cateterism. Ați putea să vă listați medicamentele, să întrebați pe care să le opriți și să aranjați un transport acasă."
+    },
+    {
+      "title": "Îngrijirea plăgii",
+      "text": "Presupuneți că puncția a fost la încheietura mâinii. Ați putea evita ridicarea de greutăți și ați putea urmări umflătura sau sângerarea."
+    }
+  ],
+  "questions": [
+    "De ce am nevoie de această procedură și există alternative?",
+    "Care sunt riscurile în situația mea?",
+    "Ce medicamente trebuie să iau după aceea?"
+  ]
+}

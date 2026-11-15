@@ -1,0 +1,51 @@
+{
+  "title": "Urođeni i stečeni imunološki sustav",
+  "intro": "Vaš imunološki sustav štiti vas od bakterija, virusa, gljivica i drugih uljeza te pomaže popraviti oštećenja. Ima dva glavna dijela: urođeni sustav, koji reagira brzo i općenito, i stečeni sustav, koji uči prepoznavati određene klice i pamti ih. Rade zajedno.",
+  "sections": [
+    {
+      "heading": "Urođeni imunološki sustav",
+      "paragraphs": [
+        "Urođeni sustav je prva crta obrane. Uključuje fizičke barijere poput kože i sluznica, želučane kiseline i suza, kao i stanice poput neutrofila i makrofaga koji gutaju klice. Prirodne stanice ubojice uništavaju zaražene stanice. Taj sustav reagira unutar minuta do sati, uzrokujući upalu s crvenilom, toplinom i oticanjem koja dovode više imunoloških stanica na mjesto."
+      ]
+    },
+    {
+      "heading": "Stečeni imunološki sustav",
+      "paragraphs": [
+        "Stečeni sustav je sporiji, treba mu dani da se razvije, ali je vrlo specifičan. Njegove glavne stanice su limfociti. B stanice stvaraju protutijela koja se vežu na određene klice i označavaju ih za uništenje. T stanice pomažu koordinirati odgovor i izravno ubijaju zaražene stanice. Svaki limfocit prepoznaje određenu metu."
+      ]
+    },
+    {
+      "heading": "Pamćenje",
+      "paragraphs": [
+        "Nakon infekcije neke B i T stanice preživljavaju kao stanice pamćenja. Ako se ista klica ponovno pojavi, reagiraju brže i jače, često sprječavajući bolest. To je temelj imuniteta nakon infekcije i cijepljenja, koje trenira stečeni sustav bezopasnim dijelom ili oslabljenim oblikom klice."
+      ]
+    },
+    {
+      "heading": "Kada sustav pogriješi",
+      "paragraphs": [
+        "Prekomjerno aktivan imunološki sustav može uzrokovati alergije i autoimune bolesti, kod kojih tijelo napada vlastita tkiva. Premalo aktivan, zbog bolesti ili lijekova, povećava ranjivost na infekcije. Stres, loš san, pothranjenost i starenje mogu oslabiti obranu. Zdrave navike, cijepljenje i liječenje osnovne bolesti pomažu imunološkom sustavu da obavlja svoj posao."
+      ]
+    },
+    {
+      "heading": "Podrška imunološkom zdravlju",
+      "paragraphs": [
+        "Redoviti san, uravnotežena prehrana, tjelesna aktivnost, nepušenje, umjeren alkohol i ažurna cijepljenja najbolje su potkrijepljeni koraci. Dodaci prehrani koji se reklamiraju kao poticatelji imuniteta imaju malo dokaza kod zdravih ljudi. Potražite savjet ako imate ponavljane ili neobične infekcije."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razumijevanje cjepiva",
+      "text": "Zamislite da se pitate zašto je potrebno docjepljivanje. Mogli biste pitati liječnika kako djeluju stanice pamćenja i koliko dugo traje zaštita."
+    },
+    {
+      "title": "Prepoznavanje problema",
+      "text": "Pretpostavite da dobivate infekcije mnogo češće od drugih. Mogli biste voditi evidenciju i pitati liječnika o pretragama imunološke funkcije."
+    }
+  ],
+  "questions": [
+    "Kako cjepiva koriste imunološko pamćenje?",
+    "Mogu li moje česte infekcije upućivati na problem s imunološkim sustavom?",
+    "Koje navike najbolje podupiru moje imunološko zdravlje?"
+  ]
+}

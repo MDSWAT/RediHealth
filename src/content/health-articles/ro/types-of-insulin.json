@@ -1,0 +1,51 @@
+{
+  "title": "Tipurile de insulină",
+  "intro": "Insulina există în mai multe forme, care diferă prin cât de repede încep să acționeze și cât durează. Persoanele cu diabet care au nevoie de insulină combină de obicei tipuri diferite pentru a acoperi mesele și a asigura un nivel de fond constant. Înțelegerea tipurilor vă ajută să le folosiți în siguranță și să discutați schimbările cu echipa de diabet.",
+  "sections": [
+    {
+      "heading": "Insulina cu acțiune rapidă și cu acțiune scurtă",
+      "paragraphs": [
+        "Insulina cu acțiune rapidă începe să acționeze în aproximativ cincisprezece minute, atinge vârful după una-două ore și durează trei până la cinci ore. Se ia la masă sau chiar înainte de ea și pentru a corecta glicemia mare. Insulina cu acțiune scurtă, sau regulară, începe după aproximativ o jumătate de oră, atinge vârful mai târziu și durează mai mult, așa că se ia cu un timp înainte de masă."
+      ]
+    },
+    {
+      "heading": "Insulina intermediară și cu acțiune lungă",
+      "paragraphs": [
+        "Insulina cu acțiune intermediară, adesea tulbure și care trebuie amestecată, acționează aproximativ o jumătate de zi, cu un vârf. Insulina cu acțiune lungă acționează o zi sau mai mult, cu un profil mai plat, și asigură acoperirea de fond între mese și peste noapte. Formele cu acțiune ultra-lungă durează chiar mai mult. Acestea se iau de obicei o dată sau de două ori pe zi, la aceleași ore."
+      ]
+    },
+    {
+      "heading": "Insulina premixată",
+      "paragraphs": [
+        "Insulina premixată conține o combinație fixă de insulină rapidă și mai lentă într-o singură injecție, adesea folosită de două ori pe zi. Este mai simplă, dar mai puțin flexibilă, deoarece orarul meselor și al activității trebuie să fie regulat. Dozele sunt ajustate de medic."
+      ]
+    },
+    {
+      "heading": "Administrare și păstrare",
+      "paragraphs": [
+        "Insulina se injectează sub piele în abdomen, coapsă sau fesă cu un pix sau o seringă ori este administrată de o pompă de insulină. Alternați locurile de injectare pentru a preveni nodulii care afectează absorbția. Păstrați insulina nedeschisă în frigider, iar pe cea în uz la temperatura camerei, pentru timpul indicat în prospect. Nu congelați niciodată insulina și nu o lăsați într-o mașină încinsă și verificați data de expirare."
+      ]
+    },
+    {
+      "heading": "Folosire sigură",
+      "paragraphs": [
+        "Verificați întotdeauna tipul și doza înainte de injectare, deoarece confuzia între insuline poate fi periculoasă. Învățați să recunoașteți și să tratați glicemia scăzută, ajustați dozele în funcție de alimentație, activitate și boală conform planului dumneavoastră și măsurați regulat glucoza. Nu schimbați dozele și nu treceți la altă marcă fără sfat medical. Luați la dumneavoastră materialele necesare când călătoriți."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Potrivirea insulinei cu mesele",
+      "text": "Imaginați-vă că luați insulină cu acțiune rapidă la mese. Ați putea injecta chiar înainte de masă, ați putea măsura glucoza la ore stabilite și ați nota mesele și dozele, ca echipa dumneavoastră să le revizuiască."
+    },
+    {
+      "title": "Alternarea locurilor",
+      "text": "Presupuneți că observați un nodul acolo unde injectați des. Ați putea trece la o altă zonă, ați putea evita injectarea în nodul și l-ați putea arăta asistentei."
+    }
+  ],
+  "questions": [
+    "Ce tipuri și doze de insulină se potrivesc cel mai bine rutinei mele zilnice?",
+    "Cum ar trebui să ajustez insulina pentru exerciții, boală și călătorii?",
+    "Cum ar trebui să-mi păstrez insulina și să alternez locurile de injectare?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Zubi i potporna tkiva",
+  "intro": "Zubi režu i melju te pomažu govoru i izgledu. Drži ih živi parodont. Bezbolan zub nije nužno zdrav; bolest desni može prethoditi klimavosti.",
+  "sections": [
+    {
+      "heading": "Slojevi",
+      "paragraphs": [
+        "Kruna ima caklinu, ispod dentin. Pulpa sadrži živce i žile. Korijen ima cement, ne caklinu: povlačenje desni otkriva drugu površinu i osjetljivost."
+      ]
+    },
+    {
+      "heading": "Sidrenje",
+      "paragraphs": [
+        "Parodontni ligament spaja korijen s kosti i amortizira. Desni zatvaraju i štite. Zubi nisu samo zalijepljeni u kost; potpora se oštećuje i bez karijesa."
+      ]
+    },
+    {
+      "heading": "Plak",
+      "paragraphs": [
+        "Bakterije uzrokuju karijes ili upalu. Trajanje oštećuje pričvrstak i kost. Krvarenje traži njegu i savjet, ne prestanak čišćenja."
+      ]
+    },
+    {
+      "heading": "Zaštita",
+      "paragraphs": [
+        "Nježno četkajte fluoridom i čistite prostore. Smanjite česte slatkiše, raspravite suhoću, duhan i dijabetes. Pregledajte i desni; izbjeljivanje ne liječi bolest."
+      ]
+    },
+    {
+      "heading": "Hitnost",
+      "paragraphs": [
+        "Bol, otok, lom ili klimav trajni zub traže pregled. Otok lica s vrućicom treba hitan dentalni savjet; teško disanje ili gutanje hitnu pomoć. Izbijeni trajni zub je hitan, mliječni se ne vraća. Prije pregleda zapišite kada je simptom počeo, što ga ublažava ili pogoršava i kako utječe na uobičajene aktivnosti. Ponesite prethodne nalaze ako ih imate. Zamolite stručnjaka da objašnjenje poveže s vašim nalazima: opći opis sam po sebi ne postavlja dijagnozu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira krvari bez boli. Ide stomatologu i uči međuzubno čišćenje bez pretpostavke zdravlja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben osjeti izloženi korijen. Liječnik provjerava uzrok prije ponovnog izbjeljivanja."
+    }
+  ],
+  "questions": [
+    "Koji bi koraci bili jasniji uz dijagram?",
+    "Što objašnjenje pokazuje i što ne predviđa?",
+    "Treba li moja konkretna briga stručnu procjenu?"
+  ]
+}

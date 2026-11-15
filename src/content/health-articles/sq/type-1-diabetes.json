@@ -1,0 +1,51 @@
+{
+  "title": "Diabeti i tipit 1",
+  "intro": "Diabeti i tipit 1 është një gjendje e përjetshme ku sistemi imunitar i shkatërron qelizat prodhuese të insulinës të pankreasit, kështu që trupi nuk mund të prodhojë më insulinë. Njerëzit kanë nevojë për insulinë çdo ditë për të mbijetuar. Me trajtimin e teknologjinë moderne, mund të jetojnë jetë të plotë e aktive.",
+  "sections": [
+    {
+      "heading": "Çfarë ndodh në trup",
+      "paragraphs": [
+        "Insulina e lejon sheqerin nga ushqimi të hyjë në qelizat e trupit për energji. Pa të, sheqeri grumbullohet në gjak ndërsa qelizat uritën. Shkaku është një reagim autoimun te njerëz me prirje gjenetike e nuk shkaktohet nga dieta ose stili i jetesës. Zakonisht fillon në fëmijëri ose moshën e re të rritur por mund të ndodhë në çdo moshë."
+      ]
+    },
+    {
+      "heading": "Simptomat dhe diagnoza",
+      "paragraphs": [
+        "Simptomat tipike janë etje e shtuar, urinim i shpeshtë, humbje peshe, lodhje e shikim i turbullt, që zhvillohen brenda ditësh deri javësh. Pa trajtim mund të rezultojë ketoacidoza, me të përziera, të vjella, dhimbje barku, frymëmarrje të thellë e përgjumje, që është urgjencë. Diagnoza bëhet me teste të sheqerit në gjak e HbA1c, me teste antitrupash për të konfirmuar llojin."
+      ]
+    },
+    {
+      "heading": "Terapia me insulinë",
+      "paragraphs": [
+        "Insulina jepet me injeksione disa herë në ditë me stilolapsa, ose vazhdimisht me një pompë insuline. Insulina me veprim të shpejtë mbulon vaktet e korrigjimet e insulina me veprim të gjatë jep një nivel të qëndrueshëm bazë. Dozat rregullohen sipas ushqimit, aktivitetit e sheqerit në gjak. Monitorët e vazhdueshëm të glukozës tregojnë nivelet në kohë reale e disa sisteme lidhen me pompat për të rregulluar insulinën automatikisht."
+      ]
+    },
+    {
+      "heading": "Jeta e përditshme",
+      "paragraphs": [
+        "Njerëzit mësojnë të numërojnë karbohidratet, të kontrollojnë glukozën e të rregullojnë dozat. Një dietë e ekuilibruar, aktiviteti i rregullt, rregullimi i insulinës rreth ushtrimeve e një plan për ditët e sëmundjes janë pjesë e menaxhimit të përditshëm. Sheqeri i ulët në gjak kërkon karbohidrate të shpejta e është rrezik me insulinën, ndërsa nivelet shumë të larta kërkojnë vëmendje. Alkooli, ngasja e puna me turne kërkojnë planifikim shtesë."
+      ]
+    },
+    {
+      "heading": "Shëndeti afatgjatë dhe mbështetja",
+      "paragraphs": [
+        "Kontrolli i mirë i sheqerit në gjak ul rrezikun e dëmtimit të syve, veshkave, nervave e zemrës. Kontrollet e rregullta të syve, këmbëve, veshkave e tensionit janë të rëndësishme. Programet e edukimit, ekipet e diabetit, mbështetja psikologjike e grupet e bashkëmoshatarëve ndihmojnë, përfshirë me barrën e vetëmenaxhimit të vazhdueshëm. Fëmijët kanë nevojë për mbështetje në shkollë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mësimi i numërimit të karbohidrateve",
+      "text": "Imagjinoni që sapo jeni diagnostikuar. Mund të ndiqni një kurs edukimi për diabetin, të mësoni të vlerësoni karbohidratet e të mbani një regjistër të niveleve të glukozës."
+    },
+    {
+      "title": "Planifikimi i ushtrimeve",
+      "text": "Supozoni që doni të luani futboll. Mund ta pyesni ekipin si ta ulni insulinën ose të merrni karbohidrate shtesë e të mbani gjithmonë sheqer të shpejtë."
+    }
+  ],
+  "questions": [
+    "Cili regjim insuline e teknologji më përshtatet?",
+    "Si t'i trajtoj ditët e sëmundjes, ushtrimet e sheqerin e ulët në gjak?",
+    "Cilat kontrolle më duhen çdo vit?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Intoleranța la lactoză",
+  "intro": "Intoleranța la lactoză înseamnă că organismul nu poate digera corect zahărul din lapte, provocând balonare, gaze și diaree după produsele lactate. Este frecventă la adulți în întreaga lume și nu este periculoasă. Cele mai multe persoane o pot gestiona ajustând cât lactoză mănâncă, în loc să evite complet lactatele.",
+  "sections": [
+    {
+      "heading": "Ce o provoacă",
+      "paragraphs": [
+        "Lactoza este digerată de o enzimă numită lactază din intestinul subțire. La majoritatea persoanelor, producția de lactază scade după copilărie, așa că zahărul ajunge în intestinul gros, unde bacteriile îl fermentează. Aceasta produce gaz și atrage apă în intestin. Mai rar, bolile intestinale precum boala celiacă sau infecția reduc temporar lactaza."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele apar de obicei în decurs de treizeci de minute până la două ore după consumul de lactate și includ crampe abdominale, balonare, flatulență, scaune moi și uneori greață. Cât lactoză provoacă probleme diferă de la o persoană la alta, iar multe tolerează cantități mici, precum laptele din cafea."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicii pot sugera eliminarea lactozei pentru o scurtă perioadă pentru a vedea dacă simptomele se ameliorează, apoi reintroducerea ei. Un test respirator cu hidrogen după consumul unei soluții de lactoză o poate confirma. Alte afecțiuni precum sindromul intestinului iritabil, boala celiacă și alergia la laptele de vacă provoacă simptome similare și nu trebuie confundate. Alergia la lapte este o reacție imună și este diferită."
+      ]
+    },
+    {
+      "heading": "O alimentație bună cu intoleranță la lactoză",
+      "paragraphs": [
+        "Multe persoane tolerează brânzeturile tari, iaurtul și untul, care conțin puțină lactoză. Laptele și produsele lactate fără lactoză sunt larg disponibile și au valoare nutritivă similară. Tabletele cu enzima lactază pot fi luate cu mesele. Citiți etichetele, deoarece lactoza apare în alimente procesate și în unele medicamente.",
+        "Dacă evitați complet lactatele, asigurați-vă că primiți suficient calciu și vitamina D din alte alimente, precum băuturi îmbogățite, legume verzi, nuci și pește, sau întrebați despre suplimente."
+      ]
+    },
+    {
+      "heading": "Când să mergeți la medic",
+      "paragraphs": [
+        "Cereți sfat dacă aveți sânge în scaun, scădere în greutate, diaree persistentă, durere severă sau simptome care nu se potrivesc tiparului. Bebelușii cu vărsături și diaree după lapte necesită examen medical."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Găsirea limitei dumneavoastră",
+      "text": "Imaginați-vă că aveți crampe după un pahar de lapte. Ați putea încerca lapte fără lactoză o săptămână, apoi să testați cantități mici de iaurt sau brânză și să notați ce alimente provoacă simptome și care nu."
+    },
+    {
+      "title": "Verificarea unei etichete",
+      "text": "Presupuneți că cumpărați mâncare gata preparată și nu sunteți sigur de lactoza ascunsă. Ați putea verifica listele de ingrediente pentru lapte, zer și lapte praf și ați putea întreba un dietetician despre alternative potrivite."
+    }
+  ],
+  "questions": [
+    "Sunt simptomele mele cu adevărat cauzate de lactoză sau ar putea fi implicată altă afecțiune?",
+    "Cât lactate pot tolera probabil și ce produse sunt cel mai ușor de digerat?",
+    "Cum pot primi suficient calciu dacă limitez lactatele?"
+  ]
+}

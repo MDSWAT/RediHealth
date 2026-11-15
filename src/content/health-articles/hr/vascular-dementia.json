@@ -1,0 +1,51 @@
+{
+  "title": "Vaskularna demencija",
+  "intro": "Vaskularna demencija je oblik demencije uzrokovan smanjenim protokom krvi u mozak, često nakon moždanih udara ili oštećenja malih žila. Utječe na mišljenje, planiranje i raspoloženje, a može napredovati u skokovima ili postupno. Kontrola vaskularnih čimbenika rizika može usporiti napredovanje i možda ga spriječiti.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Oštećenje krvnih žila u mozgu mogu uzrokovati visok krvni tlak, dijabetes, visok kolesterol, pušenje, fibrilacija atrija, bolest srca i pretilost. Veliki moždani udari, višestruki mali moždani udari ili postupno oštećenje sitnih žila mogu uništiti moždano tkivo. Vaskularna demencija može koegzistirati s Alzheimerovom bolešću, kao miješana demencija."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Rani simptomi često uključuju usporeno razmišljanje, teškoće u planiranju i organiziranju, probleme s pažnjom i koncentracijom te promjene raspoloženja ili osobnosti, a pamćenje je rano manje zahvaćeno nego kod Alzheimerove bolesti. Ostali znakovi su teškoće u hodanju, problemi s ravnotežom, hitna potreba za mokrenjem i iznenadno pogoršanje nakon moždanog udara. Tijek varira, a neki su ljudi stabilni u razdobljima."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Liječnici uzimaju anamnezu, pregledavaju osobu i koriste testove pamćenja i mišljenja. Snimanje mozga CT-om ili MR-om pokazuje moždane udare i oštećenje žila. Krvne pretrage provjeravaju druge uzroke kognitivnog opadanja kao što su nedostatak vitamina ili problemi sa štitnjačom. Može biti uključen specijalist."
+      ]
+    },
+    {
+      "heading": "Liječenje i prevencija",
+      "paragraphs": [
+        "Nema lijeka, a lijekovi za Alzheimerovu bolest imaju ograničenu korist kod vaskularne demencije osim ako je miješana. Najvažnije liječenje je kontrola čimbenika rizika: snižavanje krvnog tlaka, upravljanje dijabetesom i kolesterolom, liječenje fibrilacije atrija lijekovima za razrjeđivanje krvi, prestanak pušenja, redovita aktivnost i zdrava prehrana. Antitrombocitni lijekovi mogu se dati nakon moždanih udara. Depresiju i probleme sa spavanjem treba liječiti."
+      ]
+    },
+    {
+      "heading": "Život s vaskularnom demencijom",
+      "paragraphs": [
+        "Rutina, pomagala za pamćenje, aktivnost, društveni kontakt i sigurna okolina pomažu. Radna terapija i rehabilitacija održavaju samostalnost. Njegovateljima su potrebni potpora, informacije i predah. Rano planirajte pravne i financijske stvari, uključujući punomoći i želje o skrbi. Ako se sumnja na moždani udar, odmah nazovite hitnu pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Smanjenje rizika",
+      "text": "Zamislite da je vaš rođak imao mali moždani udar. Mogli biste pitati liječnika kako se mogu kontrolirati krvni tlak i kolesterol i trebaju li lijekovi za razrjeđivanje krvi."
+    },
+    {
+      "title": "Planiranje unaprijed",
+      "text": "Pretpostavite da je dijagnoza nedavno postavljena. Mogli biste dogovoriti pravno planiranje i planiranje skrbi dok osoba još može sudjelovati u odlukama."
+    }
+  ],
+  "questions": [
+    "Koje čimbenike rizika možemo liječiti kako bismo usporili napredovanje?",
+    "Koje su potpore i terapije dostupne za svakodnevni život?",
+    "Kako možemo planirati buduću skrb?"
+  ]
+}

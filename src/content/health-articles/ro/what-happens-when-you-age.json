@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă când îmbătrâniți?",
+  "intro": "Îmbătrânirea aduce schimbări treptate ale corpului și ale minții. Unele sunt inevitabile, dar multe persoane rămân sănătoase și active mult timp, iar stilul de viață face o mare diferență. Cunoașterea a ceea ce este normal vă ajută să deosebiți îmbătrânirea de boală.",
+  "sections": [
+    {
+      "heading": "Schimbări ale corpului",
+      "paragraphs": [
+        "Masa și forța musculară scad, oasele pierd din densitate, articulațiile devin rigide, iar pielea se subțiază și devine mai puțin elastică. Metabolismul încetinește, iar greutatea tinde să se mute spre talie. Inima și vasele de sânge devin mai rigide, ceea ce crește tensiunea arterială, iar plămânii au o capacitate mai mică. Sistemul imunitar răspunde mai lent."
+      ]
+    },
+    {
+      "heading": "Simțuri și organe",
+      "paragraphs": [
+        "Vederea se schimbă, mai ales focalizarea de aproape, iar cataracta devine mai frecventă. Auzul scade, în special la sunetele înalte. Gustul și mirosul pot slăbi. Vezica reține mai puțin, iar prostata se poate mări. Digestia este mai lentă, iar somnul tinde să fie mai ușor și mai scurt. Dinții și gingiile au nevoie de îngrijire."
+      ]
+    },
+    {
+      "heading": "Mintea și memoria",
+      "paragraphs": [
+        "Viteza gândirii poate scădea și poate dura mai mult să învățați lucruri noi sau să vă amintiți nume, dar cunoștințele și înțelepciunea cresc adesea. Pierderea semnificativă a memoriei, rătăcirea în locuri familiare sau schimbările de personalitate nu sunt îmbătrânire normală și trebuie verificate. Nici depresia nu este o parte normală a îmbătrânirii."
+      ]
+    },
+    {
+      "heading": "Menținerea sănătății",
+      "paragraphs": [
+        "Activitatea fizică regulată, inclusiv exerciții de forță și de echilibru, alimentația sănătoasă cu suficiente proteine, calciu și vitamina D, nefumatul, limitarea alcoolului, contactul social și activitatea mentală susțin îmbătrânirea sănătoasă. Contează și vaccinările, screeningul și reevaluările regulate ale medicamentelor. Preveniți căderile îndepărtând obstacolele și îmbunătățind iluminarea."
+      ]
+    },
+    {
+      "heading": "Sprijin și planificare",
+      "paragraphs": [
+        "Faceți aranjamente pentru viitor, precum cine vă poate ajuta, adaptări ale locuinței, chestiuni financiare și dorințe privind îngrijirea anticipată. Cereți ajutor devreme pentru singurătate, durere sau probleme cu activitățile zilnice. Serviciile pentru persoanele în vârstă pot oferi sprijin practic și pot păstra independența."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rămânerea activ",
+      "text": "Imaginați-vă că vreți să rămâneți puternic pe măsură ce îmbătrâniți. Ați putea merge pe jos zilnic și face exerciții simple de forță și de echilibru de două ori pe săptămână."
+    },
+    {
+      "title": "Verificarea grijilor legate de memorie",
+      "text": "Presupuneți că observați mai multă uitare. Ați putea vorbi cu medicul despre o evaluare a memoriei și ați putea verifica medicamentele."
+    }
+  ],
+  "questions": [
+    "Ce schimbări sunt normale pentru vârsta mea și care necesită un control?",
+    "Ce screeninguri și vaccinări îmi trebuie?",
+    "Cum îmi pot reduce riscul de căderi?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Neck pain",
+  "intro": "Neck pain is common and usually caused by muscle strain or stiffness from posture, sleeping position or sudden movement. It generally improves within a few weeks. Staying active, gentle exercise and short-term pain relief are the mainstays of care, while serious causes are rare.",
+  "sections": [
+    {
+      "heading": "Common causes",
+      "paragraphs": [
+        "Muscle tension from prolonged sitting, poor posture, phone and computer use, stress, awkward sleeping, minor whiplash injuries and age-related wear of the neck joints are typical. Scan findings of wear are very common even in people without pain and often do not explain symptoms."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Neck pain may involve stiffness, pain with movement, headaches starting at the base of the skull and tenderness in the shoulders. Pain, tingling or weakness spreading into an arm suggests that a nerve root may be irritated, for example by a disc."
+      ]
+    },
+    {
+      "heading": "Self-care",
+      "paragraphs": [
+        "Keep moving gently and avoid prolonged bed rest or neck collars. Heat can relax muscles, and simple painkillers may be used. Place your screen at eye level, take regular movement breaks and use a supportive pillow. Gentle neck stretches and shoulder exercises help."
+      ]
+    },
+    {
+      "heading": "Professional treatment",
+      "paragraphs": [
+        "If pain lasts, physiotherapy, exercise programmes and manual therapy can provide relief. Injections and surgery are rarely needed and are considered for severe nerve compression. Stress management and relaxation help when tension plays a role."
+      ]
+    },
+    {
+      "heading": "Warning signs",
+      "paragraphs": [
+        "Seek urgent help for neck pain after significant injury, with fever and stiff neck, severe headache, weakness in arms or legs, difficulty walking, bladder or bowel changes, or chest pain. These can indicate serious conditions."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Adjusting a desk",
+      "text": "Imagine you work at a laptop all day. You could raise the screen with a stand, use an external keyboard and stand up each hour for movement."
+    },
+    {
+      "title": "Tracking improvement",
+      "text": "Suppose your neck has been stiff for two weeks. You might note which movements hurt, start gentle range-of-motion exercises and see your doctor if arm weakness appears."
+    }
+  ],
+  "questions": [
+    "Is a scan needed, or is it better to treat without imaging?",
+    "Which exercises and posture changes will help me?",
+    "Which symptoms mean I should return urgently?"
+  ]
+}

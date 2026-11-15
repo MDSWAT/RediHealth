@@ -1,0 +1,51 @@
+{
+  "title": "Ictus",
+  "intro": "Un ictus si verifica quando il flusso di sangue a una parte del cervello è bloccato o un vaso sanguigno si rompe. Le cellule cerebrali vengono danneggiate in pochi minuti, quindi è un'emergenza medica. Un trattamento rapido limita il danno e la riabilitazione aiuta la guarigione. Controllare la pressione e gli altri fattori di rischio previene la maggior parte degli ictus.",
+  "sections": [
+    {
+      "heading": "Tipi",
+      "paragraphs": [
+        "La maggior parte degli ictus, circa otto su dieci, è ischemica, causata da un coagulo che blocca un'arteria. Un attacco ischemico transitorio è un blocco di breve durata con sintomi che si risolvono in poche ore ed è un grave avvertimento che richiede una valutazione urgente. Gli ictus emorragici derivano da un sanguinamento dentro o attorno al cervello."
+      ]
+    },
+    {
+      "heading": "Riconoscere un ictus",
+      "paragraphs": [
+        "Ricorda i segni: un viso che cade, debolezza o intorpidimento di un braccio o di una gamba, di solito da un lato, linguaggio impastato o confuso, improvvisa perdita della vista, improvviso forte mal di testa, capogiri o perdita di equilibrio. Chiama subito i servizi di emergenza, annota l'ora in cui sono iniziati i sintomi e non aspettare di vedere se passano."
+      ]
+    },
+    {
+      "heading": "Trattamento d'emergenza",
+      "paragraphs": [
+        "L'imaging cerebrale identifica il tipo. Nell'ictus ischemico un farmaco che scioglie i coaguli dato entro poche ore dall'esordio, o una procedura per rimuovere il coagulo attraverso un'arteria, può salvare il tessuto cerebrale e ridurre la disabilità. Gli ictus emorragici possono richiedere abbassamento della pressione, inversione degli anticoagulanti o chirurgia. Il trattamento in un'unità specializzata per l'ictus migliora gli esiti."
+      ]
+    },
+    {
+      "heading": "Riabilitazione",
+      "paragraphs": [
+        "La riabilitazione inizia presto. Fisioterapia, terapia occupazionale e logopedia aiutano a recuperare movimento, abilità quotidiane e comunicazione. Il recupero è maggiore nei primi mesi ma può continuare per anni. Problemi come stanchezza, depressione, problemi di memoria e cambiamenti della vista possono richiedere sostegno e anche i familiari hanno spesso bisogno di aiuto."
+      ]
+    },
+    {
+      "heading": "Prevenire un ictus",
+      "paragraphs": [
+        "Il controllo della pressione alta è la misura più importante. Altre comprendono non fumare, attività regolare, alimentazione sana, alcol limitato, gestione di diabete e colesterolo e trattamento della fibrillazione atriale con anticoagulanti. Dopo un ictus farmaci come antiaggreganti o anticoagulanti e farmaci per abbassare pressione e colesterolo ne prevengono un altro."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Agire in fretta",
+      "text": "Immagina che il viso di un tuo familiare cada e che il suo linguaggio sia impastato. Potresti chiamare subito i servizi di emergenza, annotare l'ora e restare con lui."
+    },
+    {
+      "title": "Pianificare il recupero",
+      "text": "Supponi di essere a casa dopo un ictus. Potresti rispettare gli appuntamenti di riabilitazione, prendere i farmaci come prescritto e chiedere della guida e del ritorno al lavoro."
+    }
+  ],
+  "questions": [
+    "Che cosa ha causato il mio ictus e come posso prevenirne un altro?",
+    "Quale terapia aiuterà il mio recupero e quanto tempo richiederà?",
+    "Quando posso guidare o tornare al lavoro?"
+  ]
+}

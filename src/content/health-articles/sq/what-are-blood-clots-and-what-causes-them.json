@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë janë mpiksjet e gjakut e çfarë i shkakton ato?",
+  "intro": "Një mpiksje gjaku është një grumbull gjaku që nga i lëngshëm është shndërruar në gjendje gjysmë të ngurtë. Mpiksja është një proces jetik mbrojtës që ndalon gjakderdhjen pas lëndimit. Problemet ndodhin kur mpiksjet formohen pa nevojë brenda enëve të gjakut e bllokojnë rrjedhën e gjakut, çka mund të çojë në infarkt, goditje në tru ose tromboza.",
+  "sections": [
+    {
+      "heading": "Si funksionon mpiksja",
+      "paragraphs": [
+        "Kur një enë gjaku lëndohet, trombocitet mblidhen në vend e proteinat në gjak të quajtura faktorë mpiksjeje formojnë një rrjetë fibrine që e mbyll plagën. Më pas trupi e shpërndan mpiksjen ndërsa ena shërohet. Ky ekuilibër midis mpiksjes e shpërbërjes e mban gjakun në rrjedhë e parandalon gjakderdhjen."
+      ]
+    },
+    {
+      "heading": "Mpiksjet e dëmshme",
+      "paragraphs": [
+        "Mpiksjet në arterie shpesh formohen mbi depozita yndyrore që janë çarë e mund ta bllokojnë rrjedhën e gjakut drejt zemrës, duke shkaktuar infarkt, ose drejt trurit, duke shkaktuar goditje. Mpiksjet në vena, zakonisht në këmbë, quhen trombozë e venave të thella e mund të udhëtojnë drejt mushkërive si embolia pulmonare. Mpiksjet mund të formohen edhe në dhomat e zemrës në fibrilacionin atrial."
+      ]
+    },
+    {
+      "heading": "Çfarë e rrit rrezikun",
+      "paragraphs": [
+        "Rreziku rritet me palëvizshmërinë, udhëtimin e gjatë, kirurgjinë, lëndimin, shtatzëninë e javët pas lindjes, barnat me estrogjen, kancerin e trajtimin e tij, obezitetin, duhanin, moshën e madhe, dehidrimin, mpiksjet e mëparshme, historinë familjare e çrregullimet e trashëguara të mpiksjes. Shpesh disa faktorë kombinohen."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Një mpiksje në venën e këmbës shkakton enjtje, dhimbje, ngrohtësi e skuqje, zakonisht në një këmbë. Një mpiksje në mushkëri shkakton gulçim të papritur, dhimbje gjoksi e puls të shpejtë. Infarkti e goditja në tru kanë shenjat e tyre paralajmëruese, si dhimbja e gjoksit ose dobësia në njërën anë të trupit. Telefononi menjëherë shërbimet e urgjencës nëse ndodhin këto."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Qëndroni aktivë, shmangni periudhat e gjata uljeje, pini mjaftueshëm lëngje, mbani një peshë të shëndetshme, mos pini duhan e kontrolloni tensionin, kolesterolin e diabetin. Pas kirurgjisë ose gjatë qëndrimit në spital përdoren masa parandaluese si ecja e hershme, kompresioni e holluesit e gjakut. Diskutoni rreziqet me mjekun nëse merrni hormone ose keni histori familjare mpiksjesh."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Udhëtimi i sigurt",
+      "text": "Imagjinoni që bëni një fluturim të gjatë. Mund të ecni rregullisht nëpër korridor, të bëni ushtrime për pulpat, të pini ujë e ta pyesni mjekun për çorape kompresive."
+    },
+    {
+      "title": "Njohja e simptomave",
+      "text": "Supozoni që një pulpë enjtet e dhemb. Mund të kërkoni vlerësim mjekësor po atë ditë."
+    }
+  ],
+  "questions": [
+    "A kam faktorë rreziku për mpiksje e çfarë mund të bëj për to?",
+    "A duhet të testohet familja ime për çrregullime mpiksjeje?",
+    "Cilat simptoma kërkojnë kujdes urgjent?"
+  ]
+}

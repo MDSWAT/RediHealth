@@ -1,0 +1,51 @@
+{
+  "title": "Dijabetes tipa 1",
+  "intro": "Dijabetes tipa 1 je doživotno stanje u kojem imunološki sustav uništava stanice gušterače koje stvaraju inzulin pa tijelo više ne može stvarati inzulin. Ljudima je svaki dan potreban inzulin za preživljavanje. Uz suvremeno liječenje i tehnologiju mogu živjeti ispunjene, aktivne živote.",
+  "sections": [
+    {
+      "heading": "Što se događa u tijelu",
+      "paragraphs": [
+        "Inzulin omogućuje da šećer iz hrane uđe u stanice tijela radi energije. Bez njega se šećer nakuplja u krvi dok stanice gladuju. Uzrok je autoimuna reakcija kod ljudi s genetskom sklonošću i nije uzrokovan prehranom ili načinom života. Obično počinje u djetinjstvu ili mladoj odrasloj dobi, ali se može pojaviti u bilo kojoj dobi."
+      ]
+    },
+    {
+      "heading": "Simptomi i dijagnoza",
+      "paragraphs": [
+        "Tipični simptomi su pojačana žeđ, često mokrenje, gubitak težine, umor i zamućen vid, koji se razvijaju tijekom dana do tjedana. Bez liječenja može nastati ketoacidoza, s mučninom, povraćanjem, bolovima u trbuhu, dubokim disanjem i pospanošću, što je hitno stanje. Dijagnoza se postavlja pretragama šećera u krvi i HbA1c, uz testove protutijela radi potvrde vrste."
+      ]
+    },
+    {
+      "heading": "Terapija inzulinom",
+      "paragraphs": [
+        "Inzulin se daje injekcijama nekoliko puta dnevno olovkama ili kontinuirano inzulinskom pumpom. Inzulin brzog djelovanja pokriva obroke i korekcije, a inzulin dugog djelovanja daje stalnu pozadinu. Doze se prilagođavaju hrani, aktivnosti i šećeru u krvi. Uređaji za kontinuirano praćenje glukoze pokazuju razine u stvarnom vremenu, a neki sustavi se povezuju s pumpama kako bi automatski prilagodili inzulin."
+      ]
+    },
+    {
+      "heading": "Svakodnevni život",
+      "paragraphs": [
+        "Ljudi uče brojati ugljikohidrate, provjeravati glukozu i prilagođavati doze. Uravnotežena prehrana, redovita aktivnost, prilagodba inzulina oko vježbanja i plan za dane bolesti dio su svakodnevnog upravljanja. Nizak šećer u krvi zahtijeva brze ugljikohidrate i rizik je uz inzulin, dok vrlo visoke razine zahtijevaju pozornost. Alkohol, vožnja i smjenski rad zahtijevaju dodatno planiranje."
+      ]
+    },
+    {
+      "heading": "Dugoročno zdravlje i potpora",
+      "paragraphs": [
+        "Dobra kontrola šećera u krvi snižava rizik od oštećenja očiju, bubrega, živaca i srca. Redoviti pregledi očiju, stopala, bubrega i krvnog tlaka su važni. Programi edukacije, timovi za dijabetes, psihološka potpora i grupe vršnjaka pomažu, uključujući s teretom stalnog samoupravljanja. Djeci je potrebna potpora u školi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Učenje brojanja ugljikohidrata",
+      "text": "Zamislite da vam je upravo postavljena dijagnoza. Mogli biste pohađati tečaj edukacije o dijabetesu, naučiti procjenjivati ugljikohidrate i voditi dnevnik razina glukoze."
+    },
+    {
+      "title": "Planiranje vježbanja",
+      "text": "Pretpostavite da želite igrati nogomet. Mogli biste pitati svoj tim kako smanjiti inzulin ili uzeti dodatne ugljikohidrate i uvijek nositi brzi šećer."
+    }
+  ],
+  "questions": [
+    "Koji režim inzulina i tehnologija najbolje odgovaraju meni?",
+    "Kako postupati u danima bolesti, pri vježbanju i kod niskog šećera u krvi?",
+    "Koji su mi pregledi potrebni svake godine?"
+  ]
+}

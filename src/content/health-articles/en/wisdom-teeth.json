@@ -1,0 +1,51 @@
+{
+  "title": "Wisdom teeth",
+  "intro": "Wisdom teeth are the third molars at the back of the mouth, usually appearing between ages seventeen and twenty-five. Many people have no problems, while others experience pain, infection or crowding. Removal is advised only when there is a clear medical reason.",
+  "sections": [
+    {
+      "heading": "What they are",
+      "paragraphs": [
+        "Most adults have four wisdom teeth, two on top and two at the bottom, though some have fewer or none. Often there is not enough room, so the teeth may come through at an angle, partially or not at all. A tooth that is stuck below the gum or against another tooth is called impacted."
+      ]
+    },
+    {
+      "heading": "Possible problems",
+      "paragraphs": [
+        "Impacted or partly erupted teeth can cause pain, swelling, inflammation of the gum around the tooth (pericoronitis), decay in the tooth or the one beside it, damage to the neighbouring tooth, cysts and gum disease. Symptoms include pain, swelling, bad taste, difficulty opening the mouth and fever."
+      ]
+    },
+    {
+      "heading": "When removal is recommended",
+      "paragraphs": [
+        "Dentists usually advise removal if there are repeated infections, decay that cannot be treated, damage to adjacent teeth, cysts or disease around the tooth, or before certain treatments. Removing healthy wisdom teeth without symptoms to prevent problems is generally not recommended, but they should be monitored with X-rays."
+      ]
+    },
+    {
+      "heading": "The procedure and recovery",
+      "paragraphs": [
+        "Removal is done under local anaesthetic, sometimes with sedation or general anaesthetic. The dentist or oral surgeon may need to cut the gum and remove bone, and may divide the tooth. After the procedure, swelling, pain and bruising peak at two to three days and settle within a week. Use cold packs, pain relief and soft food, avoid rinsing hard and smoking, and keep the area clean."
+      ]
+    },
+    {
+      "heading": "Risks",
+      "paragraphs": [
+        "Risks include dry socket, a painful condition when the blood clot is lost, infection, bleeding and, rarely, numbness of the lip or tongue from nerve irritation. Seek help for severe pain after the third day, fever, heavy bleeding or persistent numbness."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planning recovery",
+      "text": "Imagine you have your wisdom teeth removed on Friday. You could prepare soft food, ice packs and plan to rest over the weekend."
+    },
+    {
+      "title": "Deciding about removal",
+      "text": "Suppose your dentist sees an impacted tooth without symptoms. You might ask whether to monitor it and when to have X-rays."
+    }
+  ],
+  "questions": [
+    "Do my wisdom teeth need to be removed, or can we monitor them?",
+    "What are the risks for my tooth position?",
+    "What aftercare will I need?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "ME/CFS (sindroma e lodhjes kronike)",
+  "intro": "Encefalomieliti mialgjik ose sindroma e lodhjes kronike, e shkurtuar zakonisht ME/CFS, është një sëmundje e rëndë afatgjatë me rraskapitje të fortë që nuk përmirësohet me pushim dhe përkeqësohet pas edhe përpjekjes minimale fizike ose mendore. Mund ta kufizojë shumë jetën e përditshme. Ende nuk ka shërim, por menaxhimi i kujdesshëm mund të ndihmojë.",
+  "sections": [
+    {
+      "heading": "Simptomat kryesore",
+      "paragraphs": [
+        "Tipari kyç është keqësimi pas përpjekjes: simptoma si lodhja ekstreme, dhimbja, mjegulla e trurit dhe ndjesitë si të gripit përkeqësohen orë ose një a dy ditë pas përpjekjes dhe mund të zgjasin ditë apo javë. Simptoma të tjera përfshijnë gjumë jo çlodhës, vështirësi në të menduar e përqendrim, marramendje kur ngriheni, dhimbje muskujsh e nyjesh, dhimbje fyti dhe ndjeshmëri ndaj dritës ose zhurmës."
+      ]
+    },
+    {
+      "heading": "Shkaqet dhe diagnoza",
+      "paragraphs": [
+        "Shkaku nuk kuptohet plotësisht. Shumë raste fillojnë pas një infeksioni si mononukleoza ose, së fundmi, COVID-19. Po studiohen ndryshime të imunitetit, sistemit nervor dhe metabolizmit të energjisë. Nuk ka një test të vetëm, kështu që mjekët e diagnostikojnë ME/CFS nga simptomat, që zgjasin të paktën disa muaj, dhe duke përjashtuar gjendje të tjera si anemia, sëmundja e tiroides, çrregullimet e gjumit ose depresioni."
+      ]
+    },
+    {
+      "heading": "Dozimi i përpjekjes dhe menaxhimi i energjisë",
+      "paragraphs": [
+        "Dozimi do të thotë balancimi i aktivitetit e pushimit për të qëndruar brenda kufijve të energjisë dhe për të shmangur nxitjen e një kolapsi. Ndarja e detyrave në hapa të vegjël, planifikimi i pushimit para e pas aktivitetit dhe mbajtja e një ditari ndihmojnë të gjenden kufijtë tuaj. Ushtrimet e shkallëzuara që shtyjnë përtej simptomave mund ta përkeqësojnë sëmundjen dhe nuk rekomandohen për njerëzit me keqësim pas përpjekjes."
+      ]
+    },
+    {
+      "heading": "Trajtimi i simptomave",
+      "paragraphs": [
+        "Trajtimi përqendrohet te simptomat individuale. Dhimbja, problemet e gjumit, marramendja, problemet tretëse dhe gjendja e ulët shpirtërore mund të trajtohen me masa ose barna të përshtatshme. Mbështetja psikologjike ndihmon në përballim, megjithëse ME/CFS është sëmundje fizike dhe nuk shkaktohet nga depresioni ose përtacia. Ndihmesat si karrigia me rrota ose ulësja e dushit kursejnë energji."
+      ]
+    },
+    {
+      "heading": "Mbështetja dhe jeta e përditshme",
+      "paragraphs": [
+        "Shumë pacientë përballen me mosbesim, prandaj mjekët, familja dhe punëdhënësit e informuar janë të rëndësishëm. Përshtatjet në punë ose shkollë, ndihma në shtëpi dhe mbështetja financiare mund të bëjnë ndryshim të madh. Organizatat e pacientëve ofrojnë këshilla. Njerëzit me ME/CFS shumë të rëndë mund të jenë të shtrirë në shtrat dhe të kenë nevojë për kujdes të specializuar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planifikimi i një jave",
+      "text": "Imagjinoni që keni një ngjarje familjare të shtunën. Mund të planifikoni ditë të qeta para dhe pas, të bëni pauza gjatë ngjarjes dhe të kufizoni detyrat e tjera atë javë."
+    },
+    {
+      "title": "Shpjegimi te të tjerët",
+      "text": "Supozoni që kolegët nuk i kuptojnë kufizimet tuaja. Mund të ndani një shpjegim të shkurtër me shkrim nga mjeku dhe të propozoni ndryshime specifike si orar fleksibël."
+    }
+  ],
+  "questions": [
+    "A mund t'i shpjegojë simptomat e mia një gjendje tjetër e trajtueshme dhe cilat teste nevojiten?",
+    "Si mund t'i dozoj aktivitetet e mia dhe kush mund të më ndihmojë të planifikoj?",
+    "Cilat shërbime e përfitime janë të disponueshme për të më mbështetur?"
+  ]
+}

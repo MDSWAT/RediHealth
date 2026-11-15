@@ -1,0 +1,51 @@
+{
+  "title": "Kërkimet sistematike për prova",
+  "intro": "Për të gjykuar nëse një trajtim funksionon, nuk mjafton të shihet një studim ose studimet që gjenden lehtë. Një kërkim sistematik kërkon gjithë kërkimin e rëndësishëm në mënyrë të planifikuar e të përsëritshme. Njohja si funksionon kjo ju ndihmon të kuptoni pse disa përmbledhje janë më të besueshme se të tjera.",
+  "sections": [
+    {
+      "heading": "Pse ka rëndësi kërkimi sistematik",
+      "paragraphs": [
+        "Studimet me rezultate pozitive kanë më shumë gjasa të botohen e të vihen re se ato me rezultate negative. Një rishikues që i zgjedh studimet rastësisht mund të përfundojë me një pamje të njëanshme. Një kërkim sistematik synon ta shmangë këtë duke identifikuar sa më shumë prova të rëndësishme, pavarësisht rezultateve."
+      ]
+    },
+    {
+      "heading": "Planifikimi i pyetjes",
+      "paragraphs": [
+        "Hapi i parë është një pyetje e qartë, për shembull cilët njerëz janë me interes, cili trajtim krahasohet me çfarë e cilat rezultate kanë rëndësi. Studiuesit shkruajnë paraprakisht cilat studime do të përfshihen e përjashtohen, si lloji i studimit, popullata e periudha kohore, që vendimet të mos ndikohen nga rezultatet."
+      ]
+    },
+    {
+      "heading": "Kërkimi në shumë burime",
+      "paragraphs": [
+        "Kërkuesit përdorin disa baza të dhënash të literaturës mjekësore, duke kombinuar shumë terma kërkimi e sinonime. Kontrollojnë gjithashtu regjistrat e provave për studime të pabotuara ose në vazhdim, listat e referencave të artikujve kyç, raportet e konferencave e kontaktojnë ekspertë ose prodhues. Strategjia e kërkimit dokumentohet që të tjerët ta përsërisin."
+      ]
+    },
+    {
+      "heading": "Përzgjedhja e kontrolli i studimeve",
+      "paragraphs": [
+        "Dy persona skanojnë në mënyrë të pavarur titujt e përmbledhjet, pastaj tekstet e plota, sipas kritereve të përfshirjes. Mospajtimet zgjidhen me diskutim. Numri i studimeve të gjetura e të përjashtuara, e arsyet, raportohen, shpesh në një diagram rrjedhe. Pastaj çdo studim i përfshirë vlerësohet për cilësi e rrezik njëanshmërie."
+      ]
+    },
+    {
+      "heading": "Kufijtë e praktika e mirë",
+      "paragraphs": [
+        "Asnjë kërkim nuk gjen gjithçka e disa prova mbeten të pabotuara. Rishikimet e mira janë transparente se si kërkuan e ku mbeten boshllëqet. Kur lexoni një përmbledhje kërkimi, kërkoni një përshkrim se si u identifikuan studimet, datat e kërkimit e nëse rishikimi është i përditësuar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gjykimi i një rishikimi",
+      "text": "Imagjinoni që një faqe shëndetësore pretendon se kërkimi provon që një trajtim funksionon. Mund të kontrolloni nëse pretendimi bazohet në një rishikim sistematik e si u gjetën studimet."
+    },
+    {
+      "title": "Pyetja e mjekut",
+      "text": "Supozoni që lexoni studime kontradiktore. Mund ta pyesni mjekun nëse një rishikim sistematik ose udhëzues ka përmbledhur gjithë kërkimin për pyetjen."
+    }
+  ],
+  "questions": [
+    "A bazohet ky pretendim në të gjitha studimet e rëndësishme apo vetëm disa?",
+    "A ka një rishikim sistematik të fundit për këtë pyetje?",
+    "Sa e përditësuar është kjo provë?"
+  ]
+}

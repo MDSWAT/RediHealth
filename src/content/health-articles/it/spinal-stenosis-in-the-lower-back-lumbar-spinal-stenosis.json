@@ -1,0 +1,51 @@
+{
+  "title": "Stenosi del canale lombare",
+  "intro": "La stenosi del canale lombare è un restringimento del canale vertebrale nella parte bassa della schiena che mette sotto pressione i nervi. Colpisce tipicamente gli adulti anziani e causa dolore, formicolio o debolezza alle gambe stando in piedi o camminando, che si attenua da seduti o piegati in avanti. Molte persone migliorano con esercizio e cure conservative e la chirurgia è un'opzione per i casi gravi.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "Con l'età i dischi perdono altezza e sporgono, le articolazioni si ingrandiscono, i legamenti si ispessiscono e si formano speroni ossei. Insieme questi riducono lo spazio per i nervi. Contribuiscono anche un infortunio precedente, uno scivolamento delle vertebre e l'essere nati con un canale stretto. Le alterazioni alle scansioni sono comuni in persone senza sintomi."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Il sintomo caratteristico è dolore, pesantezza, intorpidimento o debolezza a glutei e gambe che compare camminando o stando a lungo in piedi e si attenua da seduti, appoggiandosi in avanti o piegandosi, per esempio appoggiandosi a un carrello della spesa. Può essere presente mal di schiena. La distanza percorribile a piedi si accorcia nel tempo."
+      ]
+    },
+    {
+      "heading": "Segnali d'allarme",
+      "paragraphs": [
+        "Cerca aiuto medico urgente per improvvisa debolezza alle gambe, intorpidimento attorno ai genitali o ai glutei o perdita del controllo di vescica o intestino, che possono segnalare una grave compressione dei nervi che richiede un trattamento d'urgenza."
+      ]
+    },
+    {
+      "heading": "Trattamento non chirurgico",
+      "paragraphs": [
+        "Restare attivi conta. Sono utili la fisioterapia con esercizi di flessione, lo stretching e il rinforzo dei muscoli del tronco e delle gambe, gli ausili per camminare e la bicicletta, di solito confortevole perché la colonna è piegata in avanti. Gli antidolorifici possono alleviare i sintomi. Le infiltrazioni epidurali di corticosteroidi possono dare un sollievo temporaneo ma i benefici sono limitati."
+      ]
+    },
+    {
+      "heading": "Chirurgia",
+      "paragraphs": [
+        "La chirurgia di decompressione rimuove osso e tessuto che premono sui nervi, a volte con fusione delle vertebre per instabilità. Tende a migliorare il dolore alla gamba e la distanza percorribile in chi non è migliorato con il trattamento conservativo, ma comporta rischi come infezione, lesione nervosa e nuovo intervento e i risultati variano. La decisione dipende da sintomi, capacità di camminare, altre condizioni di salute e preferenza."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Usare il carrello della spesa",
+      "text": "Immagina di riuscire a camminare più a lungo appoggiandoti a un carrello. Potresti dirlo al medico, perché aiuta a caratterizzare il problema, e chiedere di ausili per camminare o di esercizio."
+    },
+    {
+      "title": "Valutare la chirurgia",
+      "text": "Supponi di poter camminare solo cinquanta metri prima che il dolore alla gamba ti costringa a fermarti. Potresti chiedere a un chirurgo della colonna di benefici, rischi e recupero e confrontarli con il continuare con l'esercizio."
+    }
+  ],
+  "questions": [
+    "Il dolore alla mia gamba è causato dalla stenosi del canale?",
+    "Quali esercizi e trattamenti devo provare per primi?",
+    "Quando verrebbe raccomandata la chirurgia e quali sono i rischi?"
+  ]
+}

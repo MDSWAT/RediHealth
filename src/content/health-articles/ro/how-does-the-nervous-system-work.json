@@ -1,0 +1,52 @@
+{
+  "title": "Cum leagă nervii simțirea și acțiunea",
+  "intro": "Sistemul nervos primește informații, le procesează și coordonează răspunsuri. Include mișcarea conștientă și reglarea automată. Amorțeala, slăbiciunea și durerea pot începe la niveluri diferite; harta simptomelor nu este diagnostic.",
+  "sections": [
+    {
+      "heading": "Central și periferic",
+      "paragraphs": [
+        "Creierul și măduva formează sistemul central. Nervii periferici leagă pielea, mușchii și organele; lezarea unui nerv diferă de leziunea măduvei sau creierului."
+      ]
+    },
+    {
+      "heading": "Mesaje",
+      "paragraphs": [
+        "Neuronii folosesc impulsuri electrice și mesageri chimici. Mielina ajută conducerea multor fibre. Sunt esențiale și celulele de susținere și alimentarea cu sânge."
+      ]
+    },
+    {
+      "heading": "Acțiune și reflexe",
+      "paragraphs": [
+        "Semnalele motorii activează mușchii, cele senzoriale raportează situația. Unele reflexe trec prin măduvă înaintea interpretării conștiente, retrăgând corpul din pericol fără plan deliberat."
+      ]
+    },
+    {
+      "heading": "Control automat",
+      "paragraphs": [
+        "Căile autonome reglează pulsul, digestia și transpirația. Activitatea simpatică și parasimpatică echilibrează nevoi schimbătoare; simptomele nu dovedesc un singur sistem permanent activat."
+      ]
+    },
+    {
+      "heading": "Evaluare și urgență",
+      "paragraphs": [
+        "Consultul poate testa forța, sensibilitatea și reflexele, apoi investigații țintite. Slăbiciunea bruscă sau schimbarea vorbirii, ori probleme urinare noi cu amorțeală în șa și simptome lombare cer urgență.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira descrie începutul amorțelii și activitățile dificile, ajutând diferențierea căilor nervoase fără diagnostic dintr-un desen online."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are slăbiciune la picioare și dificultate la urinare cu durere lombară nouă. Cere urgență, nu întinderi forțate."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Cum lucrează împreună dinții și maxilarele",
+  "intro": "Dinții și maxilarele formează un sistem precis pentru mușcat, mestecat, vorbit și zâmbit. Dinții superiori și inferiori se întâlnesc într-un tipar numit ocluzie, iar articulațiile maxilarului și mușchii masticatori mișcă maxilarul inferior. Când părțile se potrivesc bine, mestecarea este eficientă, iar forțele sunt distribuite uniform.",
+  "sections": [
+    {
+      "heading": "Părțile unui dinte",
+      "paragraphs": [
+        "Un dinte are un strat exterior alb și dur, numit smalț, care este cea mai dură substanță din corp, și un strat mai moale dedesubt, numit dentină. În interior se află pulpa, cu nervi și vase de sânge. Rădăcina ancorează dintele în osul maxilarului prin fibre care acționează ca o pernă flexibilă."
+      ]
+    },
+    {
+      "heading": "Dinți diferiți, sarcini diferite",
+      "paragraphs": [
+        "Adulții au în mod normal 32 de dinți, inclusiv măselele de minte. Incisivii din față taie hrana, caninii o sfâșie, iar premolarii și molarii o zdrobesc și o macină. Copiii au mai întâi 20 de dinți de lapte, care încep să fie înlocuiți cu dinți permanenți în jurul vârstei de șase ani și păstrează locul pentru cei permanenți."
+      ]
+    },
+    {
+      "heading": "Articulațiile și mușchii maxilarului",
+      "paragraphs": [
+        "Maxilarul inferior se leagă de craniu prin două articulații temporomandibulare, chiar în fața urechilor. Mușchii masticatori puternici deschid, închid și mișcă maxilarul lateral. Articulațiile se pot atât roti ca un balamal, cât și aluneca, ceea ce vă permite să măcinați hrana.",
+        "Încleștarea sau scrâșnirea dinților, o accidentare sau artrita pot provoca durere de maxilar, pocnituri sau deschidere limitată a gurii. Multe astfel de probleme se ameliorează prin autoîngrijire, kinetoterapie sau o gutieră de ocluzie."
+      ]
+    },
+    {
+      "heading": "Cum arată o ocluzie bună",
+      "paragraphs": [
+        "Într-o ocluzie bine aliniată, dinții superiori îi acoperă ușor pe cei inferiori, iar molarii se angrenează. Dinții înghesuiți, cu spații sau nealiniați pot face curățarea mai grea și uneori afectează mestecarea și vorbirea, dar nu orice abatere necesită tratament.",
+        "Dinții lipsă pot permite dinților vecini să se deplaseze, ceea ce schimbă ocluzia în timp. Înlocuirile, precum punțile, protezele sau implanturile, ajută la menținerea funcției."
+      ]
+    },
+    {
+      "heading": "Îngrijirea dinților și a maxilarelor",
+      "paragraphs": [
+        "Spălați-vă pe dinți de două ori pe zi cu pastă cu fluor, curățați spațiile dintre dinți zilnic, limitați gustările și băuturile zaharoase și mergeți regulat la dentist. Cereți sfatul medicului pentru durere persistentă de maxilar, dificultăți la deschiderea gurii, dinți mobili sau gingii care sângerează."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Observarea pocniturilor din maxilar",
+      "text": "Imaginați-vă că maxilarul vă pocnește când deschideți larg gura, dar nu doare. Ați putea menționa la următoarea vizită stomatologică și ați putea întreba dacă este necesar vreun tratament și ce obiceiuri, precum mestecatul gumei ore în șir, merită schimbate."
+    },
+    {
+      "title": "Discuția despre scrâșnirea nocturnă",
+      "text": "Presupuneți că partenerul vă aude scrâșnind din dinți noaptea, iar dimineața vă treziți cu mușchii maxilarului dureroși. Ați putea întreba dentistul despre o gutieră de protecție și despre modalități de gestionare a stresului."
+    }
+  ],
+  "questions": [
+    "Ocluzia mea este sănătoasă sau ar ajuta un tratament pentru dinții și maxilarele mele?",
+    "Durerea sau scrâșnirea mea ar putea fi tratate cu o gutieră sau cu exerciții?",
+    "Cât de des ar trebui să merg la controale stomatologice?"
+  ]
+}

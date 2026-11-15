@@ -1,0 +1,51 @@
+{
+  "title": "Denti e tessuti di sostegno",
+  "intro": "I denti tagliano e macinano e aiutano parola e aspetto. Il parodonto vivente li sostiene. Assenza di dolore non garantisce salute; la malattia gengivale precede talvolta mobilità.",
+  "sections": [
+    {
+      "heading": "Strati",
+      "paragraphs": [
+        "La corona ha smalto, sotto dentina. La polpa contiene nervi e vasi. Le radici hanno cemento, non smalto: recessione espone superfici diverse e sensibilità."
+      ]
+    },
+    {
+      "heading": "Ancoraggio",
+      "paragraphs": [
+        "Il legamento parodontale collega radice e osso e ammortizza. Le gengive sigillano e proteggono. I denti non sono semplicemente incollati all’osso; sostegno si danneggia anche senza carie."
+      ]
+    },
+    {
+      "heading": "Placca",
+      "paragraphs": [
+        "Batteri causano carie o infiammazione. Persistenza danneggia attacco e osso. Sanguinamento richiede cura e consiglio, non sospendere pulizia."
+      ]
+    },
+    {
+      "heading": "Protezione",
+      "paragraphs": [
+        "Spazzolare delicatamente con fluoro e pulire gli spazi. Limitare dolci frequenti, discutere bocca secca, fumo e diabete. Controllare denti e gengive; sbiancamento non cura malattia."
+      ]
+    },
+    {
+      "heading": "Urgenze",
+      "paragraphs": [
+        "Dolore, gonfiore, frattura o dente permanente mobile richiedono visita. Viso gonfio con febbre necessita urgenza odontoiatrica; respiro o deglutizione difficili emergenza. Un permanente espulso è urgente, un dente da latte non si reinserisce. Prima della visita, annotate quando è iniziato il sintomo, cosa lo migliora o peggiora e come influisce sulle attività abituali. Portate i referti precedenti, se disponibili. Chiedete al professionista di collegare la spiegazione ai vostri riscontri: una descrizione generale non stabilisce una diagnosi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira sanguina senza dolore. Va dal dentista e impara gli spazi, non presume salute dal comfort."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha sensibilità nella recessione. Il dentista valuta cause prima di altri sbiancamenti."
+    }
+  ],
+  "questions": [
+    "Quali passaggi sarebbero più chiari con un diagramma?",
+    "Cosa spiega questo testo e cosa non può prevedere?",
+    "Il mio dubbio specifico richiede valutazione professionale?"
+  ]
+}

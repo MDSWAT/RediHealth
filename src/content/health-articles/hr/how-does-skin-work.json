@@ -1,0 +1,52 @@
+{
+  "title": "Koža: živa barijera i osjetni organ",
+  "intro": "Koža štiti tijelo, ograničava gubitak vode, osjeća dodir i regulira temperaturu. Slojevi imaju različite zadaće. Promjene mogu biti lokalne ili dio šire bolesti; sam izgled ne otkriva uvijek uzrok.",
+  "sections": [
+    {
+      "heading": "Vanjska barijera",
+      "paragraphs": [
+        "Epiderma se obnavlja i tvori zaštitnu površinu. Pigment pomaže protiv ultraljubičastog svjetla, ali ne isključuje štetu od sunca. Agresivno pranje može oštetiti barijeru umjesto poboljšati je."
+      ]
+    },
+    {
+      "heading": "Potpora",
+      "paragraphs": [
+        "Derma sadrži vezivo, žile, živce, folikule i žlijezde. Masni sloj ispod ublažava udarce i izolira. Mala površinska rana može dosegnuti duboke strukture ovisno o dubini."
+      ]
+    },
+    {
+      "heading": "Toplina i osjet",
+      "paragraphs": [
+        "Znojenje i promjene protoka krvi kroz kožu reguliraju toplinu. Živci osjećaju dodir, bol i temperaturu; slab osjet povećava rizik neprimijećenih opeklina i ozljeda pritiskom."
+      ]
+    },
+    {
+      "heading": "Zaštita",
+      "paragraphs": [
+        "Koristite blago čišćenje, prikladno vlaženje i zaštitu od sunca. Mijenjajte položaj ako ste nepokretni i pregledajte područja slabog osjeta. Rane trebaju odgovarajuću skrb, ne nadražujuća kućna sredstva."
+      ]
+    },
+    {
+      "heading": "Pregled",
+      "paragraphs": [
+        "Madež koji se mijenja, trajna rana ili neobjašnjen osip zahtijevaju pregled. Bolno crvenilo koje se brzo širi uz vrućicu, opsežni mjehuri ili osip s teškim disanjem traže hitnu pomoć.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Miri pucaju ruke nakon agresivnog pranja. Bira blažu njegu i razgovara o upali, umjesto jačeg ribanja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben slabo osjeća stopala. Pregledava kožu i pritisak obuće bez oslanjanja samo na bol."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

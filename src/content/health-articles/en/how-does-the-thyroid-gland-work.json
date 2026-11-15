@@ -1,0 +1,52 @@
+{
+  "title": "How the thyroid regulates metabolism",
+  "intro": "The thyroid lies at the front of the neck and releases hormones that influence energy use, temperature and many body functions. Symptoms of imbalance overlap with other illnesses; weight or tiredness alone is not a thyroid diagnosis.",
+  "sections": [
+    {
+      "heading": "Making hormones",
+      "paragraphs": [
+        "Thyroid follicles use iodine to make and store thyroid hormones. The body obtains iodine from food, but more iodine is not always better; excess can also disturb thyroid function."
+      ]
+    },
+    {
+      "heading": "Feedback control",
+      "paragraphs": [
+        "Pituitary thyroid-stimulating hormone helps regulate output. Thyroid hormone levels feed back to the pituitary. Results need interpretation together and with pregnancy, medicines and possible pituitary disease in mind."
+      ]
+    },
+    {
+      "heading": "Too little or too much",
+      "paragraphs": [
+        "Low output can slow functions; excess can cause heat intolerance, tremor or palpitations. Symptoms vary and develop at different speeds; a neck swelling does not by itself show hormone output."
+      ]
+    },
+    {
+      "heading": "Tests and treatment",
+      "paragraphs": [
+        "Blood tests assess function; ultrasound assesses structure when indicated. Treatment depends on the cause. Do not adjust thyroid medicines from weight changes alone or use thyroid hormone for unprescribed weight loss."
+      ]
+    },
+    {
+      "heading": "Follow-up and safety",
+      "paragraphs": [
+        "Tell the team about pregnancy plans, supplements and other medicines, and attend agreed blood tests. Severe palpitations with chest pain, breathlessness, high fever or marked confusion requires urgent assessment.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira has fatigue and brings her symptoms for evaluation rather than buying iodine as a universal thyroid treatment."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben's scan shows a nodule. He asks separately about its structure and blood-test function instead of assuming it produces excess hormone."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Što vaš indeks tjelesne mase govori o vašem zdravlju?",
+  "intro": "Indeks tjelesne mase, ili ITM, je broj izračunat iz težine i visine. To je brz alat za probir kategorija težine, ali ne mjeri izravno tjelesnu mast niti govori sve o zdravlju. Najbolje ga je koristiti zajedno s drugim mjerama i liječničkom procjenom.",
+  "sections": [
+    {
+      "heading": "Kako se ITM izračunava",
+      "paragraphs": [
+        "ITM je vaša težina u kilogramima podijeljena s vašom visinom u metrima na kvadrat. Primjerice, osoba teška sedamdeset kilograma i visoka 1,75 metara ima ITM od oko 22,9. Za odrasle, ITM ispod 18,5 je pothranjenost, 18,5 do 24,9 je normalno, 25 do 29,9 je prekomjerna težina, a 30 ili više je pretilost."
+      ]
+    },
+    {
+      "heading": "Što vam govori",
+      "paragraphs": [
+        "U populacijama viši ITM povezan je s većim rizikom od stanja kao što su dijabetes tipa 2, visok krvni tlak, bolest srca, neki rakovi i problemi sa zglobovima. Vrlo nizak ITM također je povezan sa zdravstvenim rizicima, kao što su oslabljene kosti i slab imunitet. ITM je lako izmjeriti i usporediti."
+      ]
+    },
+    {
+      "heading": "Ograničenja",
+      "paragraphs": [
+        "ITM ne razlikuje mast od mišića pa mišićave osobe mogu biti razvrstane kao prekomjerno teške. Ne pokazuje gdje se mast pohranjuje. Može biti manje točan kod starijih osoba, djece, trudnica i osoba različitog etničkog podrijetla. Kod djece se ITM uspoređuje s grafikonima prema dobi i spolu."
+      ]
+    },
+    {
+      "heading": "Druge mjere",
+      "paragraphs": [
+        "Opseg struka, osobito mast oko trbuha, povezan je s rizikom od bolesti srca i dijabetesa. Omjer struka i visine, krvni tlak, šećer u krvi, kolesterol, kondicija i prehrambene navike daju potpuniju sliku. Zdravlje ovisi o mnogim čimbenicima, a ne o jednom broju."
+      ]
+    },
+    {
+      "heading": "Što učiniti sa svojim rezultatom",
+      "paragraphs": [
+        "Ako je vaš ITM izvan normalnog raspona, razgovarajte s liječnikom. Mali koraci, kao što su uravnotežena prehrana, redovita aktivnost, dovoljno sna i ograničavanje zaslađenih pića, važniji su od brze promjene težine. Izbjegavajte ekstremne dijete i potražite potporu ako vas brinu težina ili hrana."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izračun vlastitog",
+      "text": "Zamislite da želite znati svoj ITM. Mogli biste podijeliti svoju težinu s visinom na kvadrat, a zatim razgovarati s liječnikom o tome što to znači."
+    },
+    {
+      "title": "Gledanje izvan ITM-a",
+      "text": "Pretpostavite da je vaš ITM granični, ali često trenirate. Mogli biste izmjeriti i opseg struka te zatražiti mjerenje krvnog tlaka i krvne pretrage."
+    }
+  ],
+  "questions": [
+    "Što moj ITM znači za moje zdravlje?",
+    "Treba li provjeriti i mjeru struka ili druge pretrage?",
+    "Koji bi realni koraci mogli poboljšati moje zdravlje?"
+  ]
+}

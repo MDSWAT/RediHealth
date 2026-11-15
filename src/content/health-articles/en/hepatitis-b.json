@@ -1,0 +1,51 @@
+{
+  "title": "Hepatitis B: testing, prevention and liver care",
+  "intro": "Hepatitis B is a viral liver infection. Some infections clear, while others persist and need monitoring or treatment. Infection can be present without symptoms; feeling well does not establish whether the virus or liver damage is absent.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Transmission involves infected blood or certain body fluids, including sexual exposure and birth. It is not spread through ordinary shared meals or hugging. Do not exclude people from daily life because of their diagnosis."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Blood tests distinguish infection, immunity and other patterns; interpretation may require repeat tests. Liver tests and assessment of scarring guide follow-up. Discuss pregnancy, household contacts and any future immune-suppressing treatment. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Chronic infection may need antiviral treatment to suppress the virus and reduce liver complications. Not everyone needs immediate medicine, but monitoring remains important. Do not stop antiviral treatment without the specialist’s plan. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Vaccination protects susceptible people; contacts should ask about testing and vaccination. Do not share needles, razors or toothbrushes. Pregnancy care can arrange measures protecting the baby, and recent possible exposure needs prompt advice about preventive treatment. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Seek urgent care for confusion, severe vomiting, major abdominal swelling or bleeding. New jaundice needs prompt assessment. Avoid alcohol and check medicines or supplements with the team rather than trusting products advertised as liver cleanses."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira learns she is infected during pregnancy and promptly discusses the delivery and newborn prevention plan rather than waiting until birth."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben feels healthy on long-term follow-up. He keeps liver monitoring and asks about household vaccination without avoiding ordinary family meals."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

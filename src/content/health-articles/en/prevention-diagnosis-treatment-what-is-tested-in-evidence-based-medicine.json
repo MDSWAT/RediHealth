@@ -1,0 +1,51 @@
+{
+  "title": "Prevention, diagnosis, treatment: what evidence-based medicine tests",
+  "intro": "Evidence-based medicine uses the best available research to judge whether health measures work and whether their benefits outweigh harm. It looks at the whole range of medical care: preventing illness, detecting it and treating it. Understanding the main types of questions helps you interpret claims and make decisions with your healthcare team.",
+  "sections": [
+    {
+      "heading": "Testing prevention",
+      "paragraphs": [
+        "Prevention aims to stop disease before it occurs. Examples include vaccines, healthy lifestyle programmes and medicines taken to lower risk. Studies ask whether people who use the measure develop fewer cases of disease or complications than those who do not, and whether there are side effects for healthy people, which matters because healthy people have little to gain from harm."
+      ]
+    },
+    {
+      "heading": "Testing diagnosis and screening",
+      "paragraphs": [
+        "Tests are judged by how well they identify people who have a condition and those who do not, but more importantly by whether using them leads to better outcomes. Finding a disease earlier does not always help, and can lead to overdiagnosis and unnecessary treatment. Screening trials compare groups offered screening with groups not offered it, looking at deaths and harms."
+      ]
+    },
+    {
+      "heading": "Testing treatment",
+      "paragraphs": [
+        "Treatments are best tested in randomised trials, which compare them with placebo or standard care. Researchers measure outcomes that matter to patients, such as survival, symptoms, function and quality of life, as well as side effects. A treatment that improves a blood value is not necessarily beneficial for health."
+      ]
+    },
+    {
+      "heading": "Weighing benefit and harm",
+      "paragraphs": [
+        "Every intervention has potential benefits and harms. Evidence helps estimate how likely each is. Absolute numbers, such as how many of one hundred people benefit, are more informative than relative figures. Individual preferences also matter, because people value outcomes differently."
+      ]
+    },
+    {
+      "heading": "Using evidence in practice",
+      "paragraphs": [
+        "Guidelines and systematic reviews summarise evidence. Doctors combine this with experience and patient wishes. When evidence is lacking, uncertainty should be acknowledged. You can ask about the size of benefit, risks, alternatives and the quality of the studies."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Interpreting numbers",
+      "text": "Imagine a medicine is said to reduce risk by half. You could ask how many people out of a hundred would benefit in absolute terms, and how many would experience side effects."
+    },
+    {
+      "title": "Considering screening",
+      "text": "Suppose you are invited to a screening programme. You might ask what the test can find, how often it gives false alarms and what harms might follow."
+    }
+  ],
+  "questions": [
+    "What is the evidence that this test or treatment improves outcomes that matter to me?",
+    "How large are the benefits and risks in absolute numbers?",
+    "Are there alternatives, including doing nothing for now?"
+  ]
+}

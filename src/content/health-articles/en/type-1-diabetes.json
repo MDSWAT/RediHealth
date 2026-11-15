@@ -1,0 +1,51 @@
+{
+  "title": "Type 1 diabetes",
+  "intro": "Type 1 diabetes is a lifelong condition in which the immune system destroys the insulin-producing cells of the pancreas, so the body can no longer make insulin. People need insulin every day to survive. With modern treatment and technology, they can live full, active lives.",
+  "sections": [
+    {
+      "heading": "What happens in the body",
+      "paragraphs": [
+        "Insulin allows sugar from food to enter body cells for energy. Without it, sugar accumulates in the blood while cells starve. The cause is an autoimmune reaction in people with a genetic tendency, and it is not caused by diet or lifestyle. It usually starts in childhood or young adulthood but can occur at any age."
+      ]
+    },
+    {
+      "heading": "Symptoms and diagnosis",
+      "paragraphs": [
+        "Typical symptoms are increased thirst, frequent urination, weight loss, tiredness and blurred vision, developing over days to weeks. Without treatment, ketoacidosis may result, with nausea, vomiting, abdominal pain, deep breathing and drowsiness, which is an emergency. Diagnosis is made by blood sugar and HbA1c tests, with antibody tests to confirm the type."
+      ]
+    },
+    {
+      "heading": "Insulin therapy",
+      "paragraphs": [
+        "Insulin is given by injections several times a day with pens, or continuously through an insulin pump. Fast-acting insulin covers meals and corrections, and long-acting insulin provides a steady background. Doses are adjusted to food, activity and blood sugar. Continuous glucose monitors show levels in real time, and some systems link with pumps to adjust insulin automatically."
+      ]
+    },
+    {
+      "heading": "Daily life",
+      "paragraphs": [
+        "People learn to count carbohydrates, check glucose and adjust doses. A balanced diet, regular activity, adjusting insulin around exercise and a sick-day plan are part of daily management. Low blood sugar needs fast carbohydrates and is a risk with insulin, while very high levels need attention. Alcohol, driving and shift work need extra planning."
+      ]
+    },
+    {
+      "heading": "Long-term health and support",
+      "paragraphs": [
+        "Good blood sugar control lowers the risk of damage to the eyes, kidneys, nerves and heart. Regular checks of eyes, feet, kidneys and blood pressure are important. Education programmes, diabetes teams, psychological support and peer groups help, including with the burden of constant self-management. Children need support at school."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Learning carbohydrate counting",
+      "text": "Imagine you were just diagnosed. You could attend a diabetes education course, learn to estimate carbohydrates and keep a log of glucose levels."
+    },
+    {
+      "title": "Planning exercise",
+      "text": "Suppose you want to play football. You might ask your team how to reduce insulin or take extra carbohydrates and always carry fast sugar."
+    }
+  ],
+  "questions": [
+    "Which insulin regimen and technology suit me best?",
+    "How do I handle sick days, exercise and low blood sugar?",
+    "Which check-ups do I need each year?"
+  ]
+}

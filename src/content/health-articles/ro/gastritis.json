@@ -1,0 +1,51 @@
+{
+  "title": "Gastrita: identificarea și tratarea cauzei",
+  "intro": "Gastrita este inflamația mucoasei stomacului. Poate apărea prin infecție Helicobacter pylori, anumite calmante sau alte cauze; durerea abdominală superioară singură nu confirmă diagnosticul.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Inflamația acută poate provoca greață, arsură și poftă redusă; cea cronică poate fi discretă. Gastrita autoimună poate afecta absorbția și produce deficit vitaminic, necesitând altă monitorizare."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Descrieți calmantele folosite, alcoolul și ulcerele anterioare. Investigațiile pot include test respirator sau din scaun pentru Helicobacter, hemogramă ori endoscopie cu biopsii; medicamentele pot influența rezultatele. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Tratamentul urmărește cauza: eradicare prescrisă pentru Helicobacter confirmat, reducerea acidității sau revizuirea medicamentelor iritante. Nu opriți aspirina prescrisă ori anticoagulantele fără recomandare medicală. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Evitați alcoolul când aveți simptome și alegeți mese tolerate. Nu există dietă universală pentru gastrită sau necesitate dovedită de post prelungit. Întrebați despre calmante sigure în loc de ibuprofen repetat. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Sângele în vărsături, scaunul negru lucios, leșinul sau durerea bruscă severă cer ajutor urgent. Slăbirea, înghițirea dificilă, vărsăturile persistente ori anemia necesită investigații, nu automedicație repetată."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira ia frecvent antiinflamatoare pentru spate. Discută un plan mai sigur pentru durere în loc să adauge singură tratament gastric pe termen nedefinit."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben termină tratamentul Helicobacter prescris și programează testul de confirmare, verificând cum influențează celelalte medicamente momentul testării."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

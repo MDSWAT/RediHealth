@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa può aiutare i bambini con perdita dell'udito o sordità",
+  "intro": "L'udito è essenziale per imparare a parlare e per lo sviluppo, quindi la diagnosi precoce e il sostegno ai bambini con perdita dell'udito contano moltissimo. Esistono molte opzioni efficaci, dagli apparecchi acustici agli impianti cocleari, alla logopedia e alla lingua dei segni, e le famiglie sono sostenute da équipe specialistiche.",
+  "sections": [
+    {
+      "heading": "Diagnosi precoce",
+      "paragraphs": [
+        "In molti paesi i neonati fanno uno screening dell'udito nei primi giorni di vita. I genitori devono anche osservare segni più tardi, come non reagire ai suoni forti, un linguaggio in ritardo, non rispondere al proprio nome o alzare il volume della televisione. Qualsiasi dubbio deve portare a un esame dell'udito da uno specialista dell'orecchio per bambini o da un audiologo pediatrico, senza aspettare."
+      ]
+    },
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "Le cause comprendono fattori genetici, infezioni in gravidanza come il citomegalovirus, nascita prematura, ittero, meningite, infezioni dell'orecchio con liquido dietro il timpano ed esposizione al rumore. La perdita temporanea di conduzione dovuta all'otite media con versamento è comune e spesso migliora con il tempo o con piccoli tubicini nelle orecchie. La perdita permanente riguarda l'orecchio interno o il nervo acustico."
+      ]
+    },
+    {
+      "heading": "Apparecchi acustici e impianti",
+      "paragraphs": [
+        "Gli apparecchi acustici si possono applicare da poche settimane di età e vengono adattati man mano che il bambino cresce. Quando gli apparecchi danno troppo poco beneficio nella perdita grave o profonda, si può proporre un impianto cocleare, idealmente in giovane età. I dispositivi a conduzione ossea aiutano i bambini il cui orecchio esterno o medio non si è formato normalmente. Controlli regolari mantengono i dispositivi in buon funzionamento."
+      ]
+    },
+    {
+      "heading": "Linguaggio e comunicazione",
+      "paragraphs": [
+        "La logopedia, l'addestramento all'ascolto e i programmi di intervento precoce sostengono lo sviluppo. Alcune famiglie scelgono la lingua dei segni, la lingua parlata o entrambe e sono possibili approcci bilingui. L'apprendimento è migliore quando i genitori sono coinvolti fin dall'inizio, parlando, leggendo e giocando insieme con un contatto faccia a faccia."
+      ]
+    },
+    {
+      "heading": "Scuola e benessere",
+      "paragraphs": [
+        "Il sostegno a scuola può comprendere un posto vicino all'insegnante, sistemi di ascolto assistito, sottotitoli e insegnanti specializzati. Il contatto con altre famiglie e con adulti sordi aiuta i bambini a sviluppare identità e fiducia. Osserva stanchezza, frustrazione o bullismo e chiedi aiuto presto."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rispondere a un dubbio",
+      "text": "Immagina che il tuo bambino piccolo reagisca di rado ai suoni e dica poche parole. Potresti chiedere al pediatra l'invio per un esame dell'udito senza aspettare."
+    },
+    {
+      "title": "Sostenere a casa",
+      "text": "Supponi che tuo figlio abbia nuovi apparecchi acustici. Potresti assicurarti che li porti ogni giorno, controllare le batterie e parlare faccia a faccia in ambienti tranquilli."
+    }
+  ],
+  "questions": [
+    "Che tipo e grado di perdita dell'udito ha mio figlio?",
+    "Quali dispositivi e terapie sono migliori per mio figlio?",
+    "Quale sostegno è disponibile all'asilo e a scuola?"
+  ]
+}

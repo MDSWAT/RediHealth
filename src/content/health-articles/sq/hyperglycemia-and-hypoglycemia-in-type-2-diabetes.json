@@ -1,0 +1,54 @@
+{
+  "title": "Sheqeri i lartë dhe i ulët në gjak në diabetin e tipit 2",
+  "intro": "Njerëzit me diabet të tipit 2 mund të përjetojnë sheqer në gjak shumë të lartë, të quajtur hiperglicemi, ose shumë të ulët, të quajtur hipoglicemi. Njohja e shenjave dhe e asaj që duhet bërë ju ndihmon të qëndroni të sigurt dhe parandalon urgjencat. Sheqeri i ulët në gjak është shumë më i rrallë me ndryshime të stilit të jetesës ose vetëm me metforminë, por mund të ndodhë me insulinë ose disa tableta.",
+  "sections": [
+    {
+      "heading": "Sheqeri i lartë në gjak",
+      "paragraphs": [
+        "Hiperglicemia zhvillohet gradualisht. Shenjat tipike janë etja e shtuar, urinimi i shpeshtë, lodhja, shikimi i turbullt dhe shërimi i ngadaltë i plagëve. Sëmundja, infeksioni, stresi, disa barna, dozat e humbura, vaktet e mëdha të pasura me karbohidrate dhe mungesa e ushtrimeve mund t'i ngrenë nivelet.",
+        "Nivelet e larta të vazhdueshme dëmtojnë enët e gjakut dhe nervat me kalimin e kohës dhe rrisin rrezikun e problemeve të zemrës, veshkave, syve dhe këmbëve. Nivelet shumë të larta me të vjella, dehidratim të rëndë, përgjumje ose konfuzion kërkojnë kujdes urgjent mjekësor."
+      ]
+    },
+    {
+      "heading": "Sheqeri i ulët në gjak",
+      "paragraphs": [
+        "Hipoglicemia ndodh kur sheqeri në gjak bie shumë, për shembull pas shumë insuline ose tabletave sulfonilure, vakteve të anashkaluara, ushtrimeve të pazakonta ose alkoolit. Shenjat e hershme përfshijnë dridhje, djersitje, uri, palpitacione, marramendje dhe ankth. Nëse përkeqësohet, mund të pasojnë probleme përqendrimi, konfuzion, të folur të pakuptueshëm dhe humbje ndjenjash.",
+        "Disa njerëz i humbin shenjat e hershme paralajmëruese, veçanërisht pas shumë vitesh diabeti, prandaj monitorimi i rregullt është i rëndësishëm."
+      ]
+    },
+    {
+      "heading": "Çfarë të bëni për sheqerin e ulët në gjak",
+      "paragraphs": [
+        "Nëse mund të gëlltitni me siguri, merrni karbohidrate me veprim të shpejtë si tableta glukoze, lëng frutash ose një pije të ëmbël, prisni rreth pesëmbëdhjetë minuta dhe matni përsëri, duke e përsëritur nëse niveli është ende i ulët. Pastaj hani një ushqim të lehtë ose vakt nëse vakti tjetër nuk është afër. Nëse dikush është pa ndjenja ose nuk mund të gëlltisë, thirrni shërbimet e urgjencës dhe mos i vini ushqim në gojë.",
+        "Të afërmit dhe kolegët mund të mësohen çfarë të bëjnë dhe disa njerëz mund të kenë një kit urgjence me glukagon të përshkruar."
+      ]
+    },
+    {
+      "heading": "Çfarë të bëni për sheqerin e lartë në gjak",
+      "paragraphs": [
+        "Pini shumë lëngje pa sheqer dhe kontrolloni nivelin më shpesh, siç këshillohet. Ndiqni planin tuaj të trajtimit dhe kontaktoni ekipin e diabetit nëse nivelet mbeten të larta, veçanërisht gjatë sëmundjes, pasi dozat mund të kenë nevojë për rregullim. Mos i ndërprisni barnat pa këshillë."
+      ]
+    },
+    {
+      "heading": "Parandalimi dhe planifikimi",
+      "paragraphs": [
+        "Matja e rregullt sipas planit tuaj, vaktet e ekuilibruara, koha e qëndrueshme e barnave, kujdesi me alkoolin dhe planifikimi rreth ushtrimeve ndihmojnë të parandalohen ekstremet. Mbani me vete glukozë ose një ushqim të lehtë, mbani identifikim dhe informoni gjithmonë njerëzit pranë jush për diabetin tuaj. Mos ngisni kur sheqeri në gjak është i ulët."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Të ndiesh dridhje në punë",
+      "text": "Imagjinoni që ndiheni të dridhur dhe të djersitur para drekës pasi keni marrë tabletën tuaj të zakonshme. Mund të matni sheqerin në gjak, të merrni glukozë nëse është i ulët, pastaj të flisni me mjekun nëse ilaçi ose koha e vakteve duhet të ndryshojë."
+    },
+    {
+      "title": "Plani për ditët e sëmundjes",
+      "text": "Supozoni që keni një sëmundje të stomakut dhe nuk mund të hani. Mund të telefononi ekipin e diabetit për cilat barna të rregulloni, të pini rregullisht sasi të vogla lëngjesh dhe ta kontrolloni më shpesh sheqerin në gjak."
+    }
+  ],
+  "questions": [
+    "Çfarë intervali objektiv duhet të synoj dhe sa shpesh duhet të matem?",
+    "A ka gjasa që ilaçi im të shkaktojë sheqer të ulët në gjak dhe çfarë duhet të bëj nëse ndodh?",
+    "Cili është plani im për ditët e sëmundjes, udhëtimin dhe ushtrimet?"
+  ]
+}

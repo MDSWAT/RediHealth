@@ -1,0 +1,51 @@
+{
+  "title": "Quali vaccinazioni sono raccomandate in Germania",
+  "intro": "In Germania la Commissione permanente per le vaccinazioni (STIKO) presso l'Istituto Robert Koch pubblica raccomandazioni per bambini, adulti e gruppi particolari. Sono aggiornate regolarmente, quindi controlla il calendario attuale con il medico. Questa panoramica è generale e non sostituisce il calendario ufficiale.",
+  "sections": [
+    {
+      "heading": "Neonati e bambini",
+      "paragraphs": [
+        "Le vaccinazioni standard nei primi anni comprendono rotavirus, difterite, tetano, pertosse, Haemophilus influenzae di tipo b, poliomielite, epatite B, pneumococco, meningococco, morbillo, parotite, rosolia e varicella. Le dosi si danno a età specifiche, come dai due mesi, e seguono i richiami. I bambini di solito le ricevono ai controlli di routine."
+      ]
+    },
+    {
+      "heading": "Adolescenti",
+      "paragraphs": [
+        "Nell'adolescenza si raccomandano i richiami per tetano, difterite, pertosse e poliomielite. La vaccinazione contro il papillomavirus umano (HPV) è raccomandata per ragazze e ragazzi da circa nove a quattordici anni, con recupero possibile fino a diciassette. Le dosi mancanti di morbillo, parotite, rosolia, epatite B e varicella vanno recuperate."
+      ]
+    },
+    {
+      "heading": "Adulti",
+      "paragraphs": [
+        "Gli adulti dovrebbero fare un richiamo di tetano e difterite ogni dieci anni, con una dose che includa la pertosse. Le persone nate dopo il 1970 che non sono state vaccinate o lo sono state una sola volta contro il morbillo dovrebbero vaccinarsi. Agli adulti più anziani dai sessant'anni si consigliano la vaccinazione antinfluenzale annuale, quella contro lo pneumococco, quella contro l'herpes zoster e quella contro COVID-19 secondo le indicazioni attuali."
+      ]
+    },
+    {
+      "heading": "Gruppi particolari",
+      "paragraphs": [
+        "Alle donne in gravidanza si consiglia la vaccinazione contro la pertosse e l'influenza. Operatori sanitari, persone con malattie croniche, immunità debole e viaggiatori hanno raccomandazioni aggiuntive, come epatite A e B, encefalite da zecche nelle aree a rischio e vaccini per i viaggi. Il medico può consigliarti su questi."
+      ]
+    },
+    {
+      "heading": "Punti pratici",
+      "paragraphs": [
+        "Porta il libretto delle vaccinazioni, o libretto giallo, agli appuntamenti. L'assicurazione sanitaria pubblica copre le vaccinazioni raccomandate. I vaccini sono monitorati molto bene per la sicurezza e gli effetti collaterali sono di solito lievi, come dolore al braccio o febbre bassa. Se hai perso i documenti, un medico può consigliarti come recuperare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Controllare il tuo libretto",
+      "text": "Immagina di avere un vecchio libretto delle vaccinazioni. Potresti portarlo al medico e chiedere che cosa manca."
+    },
+    {
+      "title": "Pianificare un viaggio",
+      "text": "Supponi di programmare un viaggio all'estero. Potresti chiedere al medico o a un ambulatorio dei viaggiatori diverse settimane prima della partenza."
+    }
+  ],
+  "questions": [
+    "Quali vaccinazioni mi mancano?",
+    "Quali vaccini aggiuntivi sono raccomandati per la mia età o salute?",
+    "Quali effetti collaterali devo aspettarmi?"
+  ]
+}

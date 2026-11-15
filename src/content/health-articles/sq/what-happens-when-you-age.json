@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh kur plakeni?",
+  "intro": "Plakja sjell ndryshime graduale në trup e mendje. Disa janë të pashmangshme, por shumë njerëz qëndrojnë të shëndetshëm e aktivë për kohë të gjatë, e stili i jetesës bën ndryshim të madh. Të dish çfarë është normale ju ndihmon të dalloni plakjen nga sëmundja.",
+  "sections": [
+    {
+      "heading": "Ndryshimet e trupit",
+      "paragraphs": [
+        "Masa e forca e muskujve bie, kockat humbasin dendësi, nyjet ngurtësohen e lëkura bëhet më e hollë e më pak elastike. Metabolizmi ngadalësohet, e pesha prirret të zhvendoset drejt belit. Zemra e enët e gjakut bëhen më të ngurta, çka e rrit tensionin, e mushkëritë kanë më pak kapacitet. Sistemi imunitar reagon më ngadalë."
+      ]
+    },
+    {
+      "heading": "Shqisat e organet",
+      "paragraphs": [
+        "Shikimi ndryshon, veçanërisht fokusi në afërsi, e kataraktet bëhen më të zakonshme. Dëgjimi bie, veçanërisht tingujt e lartë. Shija e aroma mund të dobësohen. Fshikëza mban më pak e prostata mund të zmadhohet. Tretja është më e ngadaltë e gjumi prirret të jetë më i lehtë e më i shkurtër. Dhëmbët e mishrat kanë nevojë për kujdes."
+      ]
+    },
+    {
+      "heading": "Mendja e kujtesa",
+      "paragraphs": [
+        "Shpejtësia e të menduarit mund të ngadalësohet, e mund të duhet më shumë kohë për të mësuar gjëra të reja ose për të kujtuar emra, por dija e urtësia shpesh rriten. Humbja e rëndësishme e kujtesës, humbja në vende të njohura ose ndryshimet e personalitetit nuk janë plakje normale e duhen kontrolluar. As depresioni nuk është pjesë normale e plakjes."
+      ]
+    },
+    {
+      "heading": "Qëndrimi i shëndetshëm",
+      "paragraphs": [
+        "Aktiviteti fizik i rregullt, përfshirë ushtrimet e forcës e ekuilibrit, ushqyerja e shëndetshme me proteina, kalcium e vitaminë D të mjaftueshme, mospirja e duhanit, kufizimi i alkoolit, kontakti shoqëror e aktiviteti mendor mbështesin plakjen e shëndetshme. Vaksinimet, skriningu e rishikimet e rregullta të barnave kanë gjithashtu rëndësi. Parandaloni rëniet duke hequr rreziqet e pengimit e duke përmirësuar ndriçimin."
+      ]
+    },
+    {
+      "heading": "Mbështetja e planifikimi",
+      "paragraphs": [
+        "Bëni rregullime për të ardhmen, si kush mund të ndihmojë, përshtatjet e banesës, çështjet financiare e dëshirat për kujdesin paraprak. Kërkoni ndihmë herët për vetminë, dhimbjen ose probleme me detyrat e përditshme. Shërbimet për të moshuarit mund të ofrojnë mbështetje praktike e t'i mbajnë njerëzit të pavarur."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Qëndrimi aktiv",
+      "text": "Imagjinoni që doni të qëndroni të fortë ndërsa plakeni. Mund të ecni çdo ditë e të bëni ushtrime të thjeshta forcimi e ekuilibri dy herë në javë."
+    },
+    {
+      "title": "Kontrolli i shqetësimeve për kujtesën",
+      "text": "Supozoni që vini re më shumë harresë. Mund të flisni me mjekun për një vlerësim të kujtesës e të kontrolloni barnat tuaja."
+    }
+  ],
+  "questions": [
+    "Cilat ndryshime janë normale për moshën time e cilat kërkojnë kontroll?",
+    "Cilat skrinime e vaksinime më duhen?",
+    "Si mund ta zvogëloj rrezikun e rënieve?"
+  ]
+}

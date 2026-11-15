@@ -1,0 +1,51 @@
+{
+  "title": "Loviturile la cap: primul ajutor și urmărirea agravării",
+  "intro": "O lovitură poate afecta creierul fără rană evidentă ori pierderea conștienței. Comoția poate provoca durere, amețeală, probleme de memorie și concentrare. Aspectul nu stabilește gravitatea. Primul ajutor protejează respirația și previne alte leziuni în timp ce se organizează evaluarea.",
+  "sections": [
+    {
+      "heading": "Verificați siguranța și respirația",
+      "paragraphs": [
+        "Apropiați-vă numai în siguranță. Vorbiți și verificați răspunsul și respirația normală. Chemați urgența dacă persoana nu răspunde. La respirație absentă ori anormală urmați instrucțiunile de resuscitare ale dispecerului și folosiți defibrilatorul disponibil. Posibila leziune cervicală nu trebuie să împiedice salvarea căilor respiratorii."
+      ]
+    },
+    {
+      "heading": "Recunoașteți semnele de urgență",
+      "paragraphs": [
+        "Sunați la 112 pentru trezire dificilă, convulsii, slăbiciune nouă, vorbire ori mers anormal, vărsături repetate, cefalee severă agravată, lichid din urechi sau nas, rană penetrantă ori accident violent. Nu transportați singur persoana instabilă. Simptomele pot apărea după o perioadă aparent liniștitoare."
+      ]
+    },
+    {
+      "heading": "Protejați persoana până vine ajutorul",
+      "paragraphs": [
+        "Evitați mișcarea inutilă și sprijiniți capul și gâtul fără poziție forțată. Nu scoateți obiectele înfipte și nu apăsați direct pe posibila fractură. Urmăriți respirația continuu. La inconștiență cu respirație normală prioritatea este calea respiratorie; urmați dispecerul pentru întoarcere sigură. Rămâneți aproape și păstrați căldura."
+      ]
+    },
+    {
+      "heading": "Explicați factorii de risc",
+      "paragraphs": [
+        "Spuneți mecanismul, ora, leșinul, golurile de memorie, vărsăturile și schimbările observate. Menționați anticoagulantele, tulburările de coagulare, operațiile cerebrale, alcoolul sau drogurile. Cu anticoagulante cereți sfat prompt chiar dacă persoana pare bine. Sugarii și cei care nu descriu simptomele cer atenție. Nu atribuiți confuzia doar alcoolului."
+      ]
+    },
+    {
+      "heading": "Respectați observarea și recuperarea",
+      "paragraphs": [
+        "Îngrijirea acasă urmează evaluării sau sfatului potrivit. Un adult responsabil supraveghează cel puțin 24 ore. Somnul este permis, dar trezirea dificilă este urgență. Evitați alcoolul, sedativele fără indicație pentru situație și riscul altei lovituri. Urmați planul individual pentru școală, muncă, condus și sport; cereți control dacă simptomele persistă ori se agravează."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: după meci",
+      "text": "Luka este confuz după ciocnire. Oprește jocul și este evaluat fără să considere lipsa leșinului o garanție. Însoțitorul descrie confuzia și urmărește agravarea."
+    },
+    {
+      "title": "Exemplu ipotetic: tratamentul contează",
+      "text": "Ana se lovește și pare bine, dar ia anticoagulant. Cere prompt sfat și spune medicamentul, fără să decidă că vânătaia mică exclude evaluarea."
+    }
+  ],
+  "questions": [
+    "Mecanismul sau medicamentele impun evaluare urgentă?",
+    "Cine mă observă și ce schimbări cer urgență?",
+    "Când reiau în siguranță activitățile?"
+  ]
+}

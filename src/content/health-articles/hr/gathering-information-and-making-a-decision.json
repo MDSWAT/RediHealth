@@ -1,0 +1,51 @@
+{
+  "title": "Zdravstvene odluke: usporedba mogućnosti i prioriteta",
+  "intro": "Zdravstvena odluka može biti pretraga, terapija, zahvat ili promatranje. Pouzdane informacije pomažu, ali izbor ovisi i o okolnostima i prioritetima. Zajedničko odlučivanje povezuje kliničko znanje s onim što vam je važno.",
+  "sections": [
+    {
+      "heading": "Odredite odluku",
+      "paragraphs": [
+        "Najprije odredite odluku i hitnost. Pitajte koji problem mogućnost rješava i što je bez nje. Praćenje s planom kontrole može biti aktivan izbor kada je medicinski razumno, ne samo nedjelovanje."
+      ]
+    },
+    {
+      "heading": "Pronađite pouzdane informacije",
+      "paragraphs": [
+        "Tražite imenovane autore, datume, izvore i jasno financiranje. Odvojite reklamu od dokaza i osobne priče od pouzdanih usporedbi. Pitajte nalikuju li sudionici vama; korist iz drugih okolnosti može biti drukčija."
+      ]
+    },
+    {
+      "heading": "Usporedite koristi i štete",
+      "paragraphs": [
+        "Usporedite koristi i štete u istoj populaciji i razdoblju. Tražite apsolutne vjerojatnosti, uključujući bez liječenja, ne samo dojmljive relativne postotke. Usporedite oporavak, opterećenje, neizvjesnost i alternative, uključujući kasniju promjenu plana."
+      ]
+    },
+    {
+      "heading": "Prepoznajte prioritete",
+      "paragraphs": [
+        "Zapišite prioritete: olakšanje, pokretljivost, izbjegavanje nuspojava, plodnost, obiteljska skrb ili trošak. Ponesite pitanja ili blisku osobu ako želite i zatražite tumača. Zamolite objašnjenje pojmova pa prepričajte plan svojim riječima."
+      ]
+    },
+    {
+      "heading": "Dogovorite sljedeće korake",
+      "paragraphs": [
+        "Dogovorite korake, kontrolu i znakove za raniju pomoć. Pitajte koliko je sigurno odlučivati; tražite drugo mišljenje kada vrijeme dopušta. Ne odgađajte hitnu skrb beskrajnim informacijama niti kupujte pod pritiskom odbrojavanja ponude."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira uspoređuje zahvat s praćenjem. Pita o vjerojatnosti olakšanja, komplikacijama i oporavku prije izbora prema obiteljskim obvezama."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben vidi obećanje velikog smanjenja rizika. Traži apsolutne rizike i relevantno razdoblje prije procjene osobne koristi."
+    }
+  ],
+  "questions": [
+    "Što se događa uz svaku mogućnost, uključujući praćenje?",
+    "Koji ishodi i opterećenja meni najviše znače?",
+    "Koliko dugo mogu sigurno odlučivati?"
+  ]
+}

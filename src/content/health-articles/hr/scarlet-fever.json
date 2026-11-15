@@ -1,0 +1,51 @@
+{
+  "title": "Šarlah",
+  "intro": "Šarlah je bakterijska infekcija koja prati streptokoknu infekciju grla i uzrokuje tipičan osip. Najčešće se vidi u djece od pet do petnaest godina. Liječi se antibioticima, koji skraćuju bolest, smanjuju širenje i snižavaju rizik od komplikacija.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Simptomi počinju upalom grla, vrućicom, glavoboljom, mučninom i povećanim žlijezdama. Unutar dan-dva pojavljuje se fini crveni osip poput brusnog papira na prsima i širi se, štedeći područje oko usta. Jezik postaje crven i nalik jagodi, a kasnije se koža na prstima ruku i nogu može ljuštiti."
+      ]
+    },
+    {
+      "heading": "Kako se širi",
+      "paragraphs": [
+        "Bakterije, streptokoki skupine A, šire se kapljicama i bliskim kontaktom. Ljudi ostaju zarazni dok ne uzimaju antibiotike otprilike jedan dan. Djeca trebaju ostati kod kuće barem dan nakon početka antibiotika i dok se ne osjećaju dovoljno dobro. Pranje ruku i nedijeljenje šalica smanjuju širenje."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Liječnici dijagnosticiraju šarlah prema simptomima i obrisku grla s brzim testom ili kulturom. Potvrda dijagnoze je važna jer i druga stanja mogu uzrokovati sličan osip."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Penicilin ili srodni antibiotici uzimaju se oko deset dana, iako se koriste i kraći tijekovi s nekim drugim antibioticima. Dovršite terapiju čak i ako se dijete osjeća bolje kako biste spriječili komplikacije. Paracetamol ili ibuprofen snižavaju vrućicu i ublažavaju bol, a dosta tekućine i mekana hrana olakšavaju gutanje."
+      ]
+    },
+    {
+      "heading": "Komplikacije",
+      "paragraphs": [
+        "Rijetko neliječena infekcija može uzrokovati reumatsku groznicu, koja može oštetiti srce, kao i upalu bubrega, apscese ili upale uha i sinusa. Potražite pomoć ako dijete ima uporno povišenu temperaturu, jaku bol u grlu, otežano gutanje, bol u zglobovima, tamnu mokraću ili oticanje nakon prividnog oporavka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zaštita braće i sestara",
+      "text": "Zamislite da je vašem djetetu dijagnosticiran šarlah. Mogli biste koristiti odvojene šalice i ručnike, često prati ruke i obavijestiti školu o dijagnozi."
+    },
+    {
+      "title": "Dovršavanje antibiotika",
+      "text": "Pretpostavite da se dijete osjeća dobro nakon četiri dana. Mogli biste nastaviti s antibiotikom dok se ne završi cijela terapija kako je liječnik propisao."
+    }
+  ],
+  "questions": [
+    "Treba li moje dijete antibiotike i koliko dugo?",
+    "Kada se može vratiti u jaslice ili školu?",
+    "Koji bi znakovi upućivali na komplikaciju?"
+  ]
+}

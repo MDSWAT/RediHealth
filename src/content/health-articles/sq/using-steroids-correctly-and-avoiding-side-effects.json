@@ -1,0 +1,51 @@
+{
+  "title": "Përdorimi i saktë i kortikosteroideve e shmangia e efekteve anësore",
+  "intro": "Kortikosteroidet, shpesh të quajtura steroide ose kortizon, janë barna të fuqishme antiinflamatore që përdoren për astmën, alergjitë, artritin, gjendjet e lëkurës e shumë sëmundje të tjera. Janë shumë efektive, por mund të ndodhin efekte anësore, veçanërisht me doza të larta ose përdorim të gjatë. Përdorimi i saktë i mban përfitimet të larta e rreziqet të ulëta.",
+  "sections": [
+    {
+      "heading": "Si funksionojnë dhe format",
+      "paragraphs": [
+        "Kortikosteroidet imitojnë hormonet e prodhuara nga gjëndrat mbiveshkore e e ulin inflamacionin e reagimet imune. Vijnë si tableta, injeksione, inhalatorë, spërkatës hundësh, pika syri e kremra lëkure. Format lokale si inhalatorët e kremrat veprojnë kryesisht ku aplikohen, me shumë më pak efekt në gjithë trupin se tabletat."
+      ]
+    },
+    {
+      "heading": "Përdorimi afatshkurtër",
+      "paragraphs": [
+        "Kurat e shkurtra me tableta tolerohen përgjithësisht mirë. Efektet e mundshme përfshijnë sheqer të ngritur në gjak, vështirësi në gjumë, oreks të shtuar, ndryshime humori, mbajtje lëngjesh e shqetësim stomaku. Merrini tabletat në mëngjes me ushqim, siç udhëzohet, e përfundoni kurën."
+      ]
+    },
+    {
+      "heading": "Përdorimi afatgjatë",
+      "paragraphs": [
+        "Përdorimi afatgjatë ose me dozë të lartë mund të shkaktojë shtim peshe, fytyrë të rrumbullakosur, lëkurë të hollë e mavijosje të lehta, tension e sheqer të lartë, kocka të dobësuara, katarakt e glaukomë, dobësi muskulore, infeksione e ngadalësim rritjeje te fëmijët. Mjekët synojnë dozën më të ulët efektive e mund të shtojnë mbrojtje si kalcium, vitaminë D, barna që forcojnë kockat ose mbrojtje të stomakut."
+      ]
+    },
+    {
+      "heading": "Mos ndaloni kurrë papritur",
+      "paragraphs": [
+        "Pas javësh trajtimi, prodhimi i hormoneve të vetë trupit shtypet. Ndalimi i papritur mund të shkaktojë dobësi, të përziera, tension të ulët e, rrallë, një krizë të rrezikshme mbiveshkore. Dozat duhen ulur gradualisht siç udhëzohet. Mbani një kartë steroidesh nëse i merrni afatgjatë e tregojini mjekëve, dentistëve e stafit të urgjencës. Gjatë sëmundjes së rëndë ose kirurgjisë, dozat mund të duhet të rriten."
+      ]
+    },
+    {
+      "heading": "Përdorimi i formave lokale e qëndrimi i sigurt",
+      "paragraphs": [
+        "Shpëlani gojën pas përdorimit të steroideve të thithura për të parandaluar kandidozën. Përdorni kremrat siç udhëzohet, shtresa të holla në zonat e duhura, duke shmangur fytyrën përveç nëse këshillohet. Monitoroni tensionin, sheqerin në gjak, kockat e sytë nëse përdorni steroide afatgjatë. Raportoni ndryshime humori, ndryshime shikimi, dhimbje të rëndë stomaku ose shenja infeksioni. Shumë njerëz kanë frikë nga steroidet, por inflamacioni i patrajtuar ka gjithashtu rreziqe, prandaj diskutoni shqetësimet në vend që të ndaloni trajtimin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ndjekja e një plani ulje dozash",
+      "text": "Imagjinoni që merrni prednizolon për disa javë. Mund të shkruani orarin e dozave e të mos ndaloni papritur, edhe nëse ndiheni më mirë."
+    },
+    {
+      "title": "Kontrolli për efekte",
+      "text": "Supozoni që merrni steroide afatgjatë. Mund të pyesni për kontrolle të dendësisë së kockave, sheqerit në gjak, tensionit e syve."
+    }
+  ],
+  "questions": [
+    "Sa kohë do ta marr steroidin e si do të ulet?",
+    "Cilat efekte anësore duhet të vëzhgoj e cilat kontrolle më duhen?",
+    "A mund të përdor një formë lokale në vend të tabletave?"
+  ]
+}

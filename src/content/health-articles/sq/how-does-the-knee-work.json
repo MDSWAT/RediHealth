@@ -1,0 +1,52 @@
+{
+  "title": "Si përkulet gjuri dhe mban peshën",
+  "intro": "Gjuri lidh kofshën me kërcirin dhe lejon përkulje, drejtim dhe rrotullim të kufizuar. Qëndrueshmëria varet nga kockat, ligamentet dhe kontrolli muskulor bashkë. Vetëm dhimbja ose kërcitja nuk identifikon indin.",
+  "sections": [
+    {
+      "heading": "Kockat dhe leva",
+      "paragraphs": [
+        "Femuri takohet me tibian; kupëza lëviz në një brazdë përpara. Ndihmon muskulin e kofshës të drejtojë gjurin përmes tendinave."
+      ]
+    },
+    {
+      "heading": "Kërci dhe meniskët",
+      "paragraphs": [
+        "Kërci ul fërkimin. Meniskët shpërndajnë ngarkesën dhe përmirësojnë kontaktin; një gjetje në imazh nuk provon automatikisht shkakun e dhimbjes ose nevojën për operacion."
+      ]
+    },
+    {
+      "heading": "Stabilizimi",
+      "paragraphs": [
+        "Ligamentet e kryqëzuara dhe anësore kufizojnë lëvizjen e padëshiruar. Muskujt dhe tendinat kontrollojnë aktivisht. Ënjtja mund të ulë aktivizimin dhe besimin edhe pa këputje të plotë."
+      ]
+    },
+    {
+      "heading": "Funksioni",
+      "paragraphs": [
+        "Shtoni aktivitetin gradualisht dhe ndiqni rehabilitimin pas dëmtimit. Forca, ekuilibri dhe lëvizja e tolerueshme vlejnë; detyrimi i gjurit të bllokuar ose vazhdimi me ënjtje të shpejtë mund ta dëmtojë."
+      ]
+    },
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Ënjtja e vazhdueshme ose lëshimi kërkon kontroll. Gjuri i nxehtë me ethe, deformimi, pamundësia për të mbajtur peshë pas dëmtimit ose bllokimi i vërtetë kërkon vlerësim të shpejtë, jo manipulim.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira dëgjon kërcitje pa dhimbje dhe ecën mirë. Diskuton simptoma të reja nëse shfaqen, jo çdo zhurmë si dëmtim."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben përdredh gjurin dhe nuk e drejton dot. Kërkon kontroll pa e detyruar për të vazhduar lojën."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Osteoartritis koljena",
+  "intro": "Osteoartritis koljena je dugotrajno stanje u kojem se hrskavica i druga tkiva koljena s vremenom mijenjaju, uzrokujući bol, ukočenost i smanjenu pokretljivost. Vrlo je česta s dobi. Vježbanje, kontrola težine i ublažavanje boli pomažu mnogim ljudima ostati aktivni, a operacija je mogućnost kad druga liječenja više nisu dovoljna.",
+  "sections": [
+    {
+      "heading": "Što se događa u zglobu",
+      "paragraphs": [
+        "Koljeno je amortizirano glatkom hrskavicom koja kod osteoartritisa tanji i postaje hrapava. Kost ispod se zadebljava, mogu se stvoriti mali koštani izdanci, a ovojnica zgloba može postati nadražena i otečena. Prethodne ozljede, prekomjerna težina, obiteljska povijest i teško ponavljajuće naprezanje povećavaju rizik."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipični simptomi su bol pri hodanju, penjanju stepenicama ili ustajanju sa stolca, ukočenost nakon odmora, oticanje i osjećaj struganja. Koljeno može popustiti kad su mišići bedra slabi. Simptomi variraju i često se pogoršavaju nakon neuobičajene aktivnosti."
+      ]
+    },
+    {
+      "heading": "Vježbanje i težina",
+      "paragraphs": [
+        "Redovito vježbanje je najučinkovitije liječenje. Jačanje mišića bedra, vožnja bicikla, plivanje i hodanje smanjuju bol i poboljšavaju funkciju, čak i ako se kretanje isprva čini neugodnim. Ako imate prekomjernu težinu, gubitak težine znatno smanjuje opterećenje koljena. Potporne cipele i pomagala za hodanje mogu pomoći."
+      ]
+    },
+    {
+      "heading": "Lijekovi i injekcije",
+      "paragraphs": [
+        "Protuupalni gelovi koji se nanose na koljeno mogu ublažiti bol uz malo nuspojava. Tablete kao što je ibuprofen mogu pomoći kratko vrijeme, uz oprez zbog želuca, bubrega i srca. Injekcije kortikosteroida mogu donijeti privremeno olakšanje tijekom pogoršanja. Korist dodataka kao što je glukozamin je upitna, a ispiranje zgloba i artroskopija općenito nisu korisni kod samog osteoartritisa."
+      ]
+    },
+    {
+      "heading": "Operacija",
+      "paragraphs": [
+        "Zamjena koljena može se razmotriti kad bol i gubitak funkcije ostanu teški unatoč drugim liječenjima. Ublažava bol i poboljšava pokretljivost većini ljudi, a umjetni zglobovi obično traju petnaest godina ili više. Rizici uključuju infekciju, krvne ugruške i ukočenost, a rehabilitacija traje tjednima do mjeseci. Mlađi bolesnici ponekad imaju korektivnu operaciju kosti kako bi se opterećenje prebacilo s oštećenog područja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izgradnja rutine vježbanja",
+      "text": "Zamislite da vas koljeno boli pri penjanju stepenicama. Mogli biste početi nježnim vježbama jačanja bedra i kratkim šetnjama, svaki tjedan ih polako povećavati i zamoliti fizioterapeuta da provjeri vašu tehniku."
+    },
+    {
+      "title": "Razmišljanje o operaciji",
+      "text": "Pretpostavite da vas bol budi noću i ograničava hodanje na nekoliko minuta. Mogli biste pitati ortopeda o očekivanim koristima, vremenu oporavka i kako se pripremiti za zamjenu."
+    }
+  ],
+  "questions": [
+    "Koje su vježbe i pomagala najbolji za moja koljena?",
+    "Bi li mi injekcije ili druga liječenja pomogla u ovoj fazi?",
+    "Kako ću znati kada je operacija pravi izbor?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Dijabetes tipa 2",
+  "intro": "Kod dijabetesa tipa 2 tijelo ne reagira ispravno na inzulin i s vremenom ga ne može stvarati dovoljno. Šećer u krvi raste, što tijekom godina može oštetiti krvne žile i živce. Usko je povezan s prekomjernom težinom, tjelesnom neaktivnošću i dobi, a kod mnogih ljudi može se dobro kontrolirati, ponekad čak i dovesti u remisiju, promjenom načina života i liječenjem.",
+  "sections": [
+    {
+      "heading": "Uzroci i čimbenici rizika",
+      "paragraphs": [
+        "Rizik raste s prekomjernom težinom, osobito oko struka, malom tjelesnom aktivnošću, dobi, obiteljskom poviješću, prethodnim gestacijskim dijabetesom, visokim krvnim tlakom i određenim etničkim podrijetlom. Mnogi ljudi imaju stanje godinama prije dijagnoze jer se simptomi razvijaju polako i mogu biti blagi."
+      ]
+    },
+    {
+      "heading": "Simptomi i dijagnoza",
+      "paragraphs": [
+        "Mogući simptomi su žeđ, često mokrenje, umor, zamućen vid, sporo zacjeljivanje rana i ponavljajuće infekcije, ali mnogi ljudi ih nemaju. Dijagnoza se postavlja natašte šećerom u krvi, HbA1c ili testom podnošenja glukoze. Redoviti pregledi važni su za osobe s čimbenicima rizika."
+      ]
+    },
+    {
+      "heading": "Način života",
+      "paragraphs": [
+        "Zdrava prehrana, više tjelesne aktivnosti i gubitak težine su temelj. Čak i skroman gubitak težine poboljšava šećer u krvi, a veliki gubitak težine prehranom može donijeti remisiju kod nekih ljudi. Ciljajte redovito kretanje, kao što je brzo hodanje, i trening snage. Ograničavanje zaslađenih pića, rafiniranih ugljikohidrata i prerađene hrane te odabir povrća, cjelovitih žitarica, mahunarki i zdravih masti pomažu."
+      ]
+    },
+    {
+      "heading": "Lijekovi",
+      "paragraphs": [
+        "Metformin je često prvi lijek. Ostali uključuju lijekove koji povećavaju gubitak šećera mokraćom, lijekove koji djeluju na crijevne hormone i neke koji potiču izlučivanje inzulina. Nekoliko njih štiti i srce ili bubrege kod određenih bolesnika. S vremenom može biti potreban inzulin. Lijekovi se biraju prema zdravlju srca i bubrega, težini i nuspojavama te trebaju redoviti pregled."
+      ]
+    },
+    {
+      "heading": "Sprječavanje komplikacija",
+      "paragraphs": [
+        "Redoviti pregledi uključuju HbA1c, krvni tlak, kolesterol, oči, stopala, testove bubrega i stomatološku skrb. Kontrola krvnog tlaka i kolesterola važna je koliko i šećer u krvi. Ne pušite. Rano prijavite rane na stopalima, promjene vida ili utrnulost. Strukturirani programi edukacije i programi upravljanja bolešću podupiru samozbrinjavanje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Postavljanje prvog cilja",
+      "text": "Zamislite da vam je upravo postavljena dijagnoza. Mogli biste odabrati jednu promjenu, kao što je dnevna šetnja od trideset minuta, nakon mjesec dana dodati drugu i pratiti napredak sa svojim timom za dijabetes."
+    },
+    {
+      "title": "Priprema za pregled",
+      "text": "Pretpostavite da je vaš godišnji pregled sljedeći tjedan. Mogli biste popisati pitanja, ponijeti zapise šećera u krvi i pitati o pregledima očiju, stopala i bubrega."
+    }
+  ],
+  "questions": [
+    "Koji su moji ciljevi za šećer u krvi, krvni tlak i kolesterol?",
+    "Koji je lijek najbolji za mene i koje nuspojave trebam očekivati?",
+    "Bi li gubitak težine mogao dovesti moj dijabetes u remisiju?"
+  ]
+}

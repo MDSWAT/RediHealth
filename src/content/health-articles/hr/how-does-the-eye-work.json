@@ -1,0 +1,52 @@
+{
+  "title": "Kako oko i mozak stvaraju vid",
+  "intro": "Vid traži prozirne optičke površine, funkcionalnu mrežnicu, vidne živce i mozak. Strukture imaju različite zadaće; jače naočale ne rješavaju sve, a uredan izgled ne isključuje bolest.",
+  "sections": [
+    {
+      "heading": "Fokusiranje",
+      "paragraphs": [
+        "Rožnica lomi svjetlo, leća podešava fokus. Šarenica mijenja zjenicu radi ulaska svjetla. Naočale ispravljaju neke pogreške fokusiranja, ne svaki uzrok gubitka vida."
+      ]
+    },
+    {
+      "heading": "Primanje slike",
+      "paragraphs": [
+        "Štapići pomažu pri slabom svjetlu, čunjići za boje i detalje. Makula daje fini središnji vid. Ozljede različitih područja mrežnice daju različite teškoće."
+      ]
+    },
+    {
+      "heading": "Signali i potpora",
+      "paragraphs": [
+        "Vidni živac nosi signale mozgu. Suze štite površinu, mišići usklađuju pogled. Očni tlak ovisi o stvaranju i odvodnji tekućine, nije jednostavno krvni tlak."
+      ]
+    },
+    {
+      "heading": "Zaštita",
+      "paragraphs": [
+        "Nosite zaštitu za opasne poslove i održavajte higijenu kontaktnih leća. Pregledajte promjene; jače osvjetljenje ekrana ne liječi očnu bolest."
+      ]
+    },
+    {
+      "heading": "Hitne promjene",
+      "paragraphs": [
+        "Nagli gubitak vida ili jaka očna bol traže hitnu procjenu. Novi bljeskovi, mnogo mušica ili sjena trebaju hitan očni pregled; ne vozite s nesigurnim vidom.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira vidi novu sjenu. Traži hitan očni pregled umjesto samo redovite kontrole naočala."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben bolje čita s propisanim lećama. Nastavlja kontrole jer fokusiranje i zdravlje mrežnice nisu isto."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

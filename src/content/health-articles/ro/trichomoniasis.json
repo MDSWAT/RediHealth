@@ -1,0 +1,51 @@
+{
+  "title": "Trichomoniaza",
+  "intro": "Trichomoniaza este o infecție frecventă cu transmitere sexuală, provocată de un parazit minuscul. Multe persoane nu au simptome, dar poate provoca scurgeri vaginale, mâncărime și disconfort. Se vindecă ușor cu antibiotice, cu condiția ca partenerii să fie tratați în același timp.",
+  "sections": [
+    {
+      "heading": "Cum se răspândește",
+      "paragraphs": [
+        "Parazitul se răspândește prin contact sexual, mai ales prin raport vaginal, și poate fi transmis chiar și când nu există simptome. Trăiește în vagin, în uretră și uneori în prostată. Prezervativele reduc riscul. Nu se răspândește prin colacul de toaletă sau prin contact ocazional."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "La femei, simptomele includ scurgeri spumoase, galben-verzui sau cenușii, cu miros neplăcut, mâncărime, roșeață, durere sau arsură la urinare sau la raport sexual și disconfort în abdomenul inferior. Bărbații nu au adesea simptome, dar pot observa scurgeri uretrale, arsură la urinare sau iritație. Multe infecții rămân tăcute perioade lungi."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Testele includ examinarea secrețiilor la microscop și teste moleculare mai sensibile pe un tampon sau o probă de urină. Se recomandă testarea pentru alte infecții cu transmitere sexuală, deoarece adesea coexistă. Femeile însărcinate cu simptome trebuie testate, deoarece trichomoniaza poate fi legată de nașterea prematură."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "O cură de metronidazol sau de un antibiotic înrudit, luat sub formă de tablete timp de câteva zile, vindecă infecția la cei mai mulți oameni. Evitați alcoolul în timpul tratamentului și o zi-două după aceea, conform indicațiilor, deoarece poate provoca greață și vărsături. Evitați relațiile sexuale până când dumneavoastră și partenerii ați terminat tratamentul și simptomele au dispărut, pentru a preveni reinfectarea."
+      ]
+    },
+    {
+      "heading": "Parteneri și prevenire",
+      "paragraphs": [
+        "Partenerii sexuali au nevoie de testare și tratament chiar și fără simptome. Se recomandă repetarea testării la câteva luni după tratament, deoarece reinfectarea este frecventă. Prezervativele, testarea regulată cu parteneri noi și conversațiile sincere reduc riscul. Clinicile de sănătate sexuală oferă testare confidențială."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Spunerea unui partener",
+      "text": "Imaginați-vă că testul este pozitiv. Ați putea întreba clinica cum să vă informați partenerul și ați putea conveni să evitați relațiile sexuale până când amândoi ați terminat tratamentul."
+    },
+    {
+      "title": "Urmărirea evoluției",
+      "text": "Presupuneți că simptomele dispar după tratament. Ați putea totuși programa o repetare a testului după câteva luni, conform recomandării."
+    }
+  ],
+  "questions": [
+    "Am nevoie de testare și pentru alte infecții?",
+    "Ce tratament ar trebui să urmez și ce ar trebui să evit cât îl iau?",
+    "Care parteneri au nevoie de tratament și când putem relua relațiile sexuale?"
+  ]
+}

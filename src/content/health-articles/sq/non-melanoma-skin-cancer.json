@@ -1,0 +1,51 @@
+{
+  "title": "Kanceri i lëkurës jo-melanomë",
+  "intro": "Karcinoma bazoqelizore dhe karcinoma skuamoqelizore janë kancerët më të zakonshëm në botë. Zakonisht zhvillohen në lëkurë të ekspozuar ndaj diellit dhe rriten ngadalë. Përgjithësisht shërohen kur trajtohen herët dhe përhapen rrallë, megjithëse kanceri skuamoqelizor ka më shumë gjasa se ai bazoqelizor ta bëjë këtë.",
+  "sections": [
+    {
+      "heading": "Shkaqet dhe rreziku",
+      "paragraphs": [
+        "Ekspozimi afatgjatë ndaj rrezatimit ultravjollcë nga dielli dhe shtretërit e nxirjes është shkaku kryesor. Rreziku është më i lartë me lëkurë të çelët, moshë më të madhe, histori djegiesh nga dielli, imunitet të dobësuar si pas transplantit të organeve dhe kancer të mëparshëm të lëkurës. Njollat e vrazhda, me luspa, të quajtura keratoza aktinike, mund të përparojnë në kancer skuamoqelizor."
+      ]
+    },
+    {
+      "heading": "Si duket",
+      "paragraphs": [
+        "Kanceri bazoqelizor duket shpesh si një gungë me ngjyrë margaritari ose dylli, një njollë e sheshtë si cikatrice ose një plagë që gjakon dhe nuk shërohet. Kanceri skuamoqelizor shfaqet si një njollë e kuqe me luspa, një gungë e fortë ose një ulçerë me kore. Çdo njollë e re që rritet, gjakon ose nuk shërohet brenda një a dy muajsh duhet ekzaminuar."
+      ]
+    },
+    {
+      "heading": "Diagnoza dhe trajtimi",
+      "paragraphs": [
+        "Një mjek e ekzaminon lëkurën dhe zakonisht e heq lezionin ose një mostër të vogël për ekzaminim nën mikroskop. Shumica e tumoreve hiqen kirurgjikisht me një kufi lëkure të shëndetshme. Tumoret sipërfaqësorë mund të trajtohen me kruajtje, ngrirje, krema, terapi fotodinamike ose radioterapi. Kirurgjia e specializuar mikrografike përdoret për zona me rrezik të lartë si fytyra."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe parandalimi",
+      "paragraphs": [
+        "Të kesh një kancer lëkure i rrit rrezikun për të tjerë, prandaj këshillohen kontrolle të rregullta të lëkurës. Mbroni lëkurën nga dielli me hije, veshje, kapela dhe krem dielli, shmangni shtretërit e nxirjes dhe ekzaminoni lëkurën rregullisht."
+      ]
+    },
+    {
+      "heading": "Të jetosh me historik kanceri të lëkurës",
+      "paragraphs": [
+        "Shumë njerëz ndihen të shqetësuar pas një diagnoze. Të mësuarit çfarë të kërkoni, mbajtja e takimeve dhe mbrojtja e lëkurës jep një ndjenjë kontrolli. Tregojuni të afërmve, sepse anëtarët e familjes mund të ndajnë faktorë rreziku si lëkura e çelët."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vërejtja e një njolle",
+      "text": "Imagjinoni që keni një plagë në hundë që gjakon dhe nuk shërohet. Mund të caktoni menjëherë një kontroll të lëkurës dhe të sillni një foto që tregon kur e vutë re për herë të parë."
+    },
+    {
+      "title": "Planifikimi i mbrojtjes",
+      "text": "Supozoni që punoni jashtë. Mund të vishni kapelë me strehë të gjerë e mëngë të gjata, të aplikoni krem dielli në lëkurën e ekspozuar dhe të bëni një kontroll vjetor të lëkurës."
+    }
+  ],
+  "questions": [
+    "Çfarë lloji kanceri lëkure kam dhe cili trajtim i përshtatet?",
+    "Sa shpesh duhet të kontrollohet lëkura ime pas kësaj?",
+    "Çfarë mund të bëj për ta mbrojtur lëkurën që tani e tutje?"
+  ]
+}

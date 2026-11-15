@@ -1,0 +1,51 @@
+{
+  "title": "What does blood do?",
+  "intro": "Blood is the body's transport and defence system. It carries oxygen, nutrients, hormones and waste, helps control temperature and fights infection. An adult has about five litres of blood, which circulates constantly through the heart and blood vessels.",
+  "sections": [
+    {
+      "heading": "What blood contains",
+      "paragraphs": [
+        "Blood is made of plasma, a pale yellow liquid that is mostly water with proteins, salts, sugars and fats, and blood cells. Red blood cells carry oxygen, white blood cells defend against infection, and platelets help stop bleeding. All blood cells are made in the bone marrow."
+      ]
+    },
+    {
+      "heading": "Red cells and oxygen",
+      "paragraphs": [
+        "Red blood cells contain haemoglobin, an iron-containing protein that binds oxygen in the lungs and releases it in the tissues. They also carry some carbon dioxide back to the lungs. Low red cells or haemoglobin cause anaemia, with tiredness, pallor and breathlessness. Red cells live around four months."
+      ]
+    },
+    {
+      "heading": "Defence and clotting",
+      "paragraphs": [
+        "White blood cells, including neutrophils and lymphocytes, find and destroy germs and abnormal cells. Platelets stick together at injuries and, together with clotting proteins, form a clot to stop bleeding. Too little clotting causes bleeding problems, and too much can cause dangerous clots."
+      ]
+    },
+    {
+      "heading": "Other roles and tests",
+      "paragraphs": [
+        "Blood distributes heat, keeps the acid balance of the body steady and transports hormones and nutrients such as glucose. Blood tests measure cells, sugar, cholesterol, kidney and liver function and many other things, making them one of the most useful medical tools."
+      ]
+    },
+    {
+      "heading": "Keeping blood healthy",
+      "paragraphs": [
+        "A varied diet with iron, vitamin B12 and folate, regular exercise, not smoking and limiting alcohol help. Blood donation helps others and is safe for most healthy adults. See a doctor for unexplained bruising, bleeding, constant tiredness or paleness."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reading a blood count",
+      "text": "Imagine your report shows low haemoglobin. You could ask your doctor about the cause, such as iron deficiency, and about treatment."
+    },
+    {
+      "title": "Donating blood",
+      "text": "Suppose you want to donate. You might check the eligibility rules, eat well and drink water beforehand."
+    }
+  ],
+  "questions": [
+    "Are my blood test results normal?",
+    "What could explain a low or high blood count?",
+    "Do I need further tests or treatment?"
+  ]
+}

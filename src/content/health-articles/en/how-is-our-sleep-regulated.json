@@ -1,0 +1,56 @@
+{
+  "title": "How sleep is regulated",
+  "intro": "Sleep is controlled by two main systems: the body clock, which tells you when it is time to be awake or asleep, and the build-up of sleep pressure the longer you stay awake. Knowing how they interact explains why jet lag, shift work and late-night screen use disturb sleep, and how habits can support better rest.",
+  "sections": [
+    {
+      "heading": "The internal body clock",
+      "paragraphs": [
+        "A group of nerve cells in the brain acts as a master clock that follows an approximately 24-hour rhythm, called the circadian rhythm. It is set mainly by light entering the eyes. Morning light shifts the clock earlier, while bright light in the evening shifts it later.",
+        "The clock influences body temperature, hormone release and alertness. Melatonin, a hormone released in darkness, signals night to the body. People differ naturally in their preferred timing, with some being early types and others late types."
+      ]
+    },
+    {
+      "heading": "Sleep pressure",
+      "paragraphs": [
+        "While you are awake, substances such as adenosine gradually accumulate in the brain and increase the need for sleep. The longer you stay awake, the stronger this pressure becomes, and sleep reduces it again. Caffeine works partly by blocking adenosine's effect.",
+        "Napping late in the day can reduce sleep pressure and make it harder to fall asleep at night. Short naps earlier in the day usually have less impact."
+      ]
+    },
+    {
+      "heading": "Stages of sleep",
+      "paragraphs": [
+        "Sleep is not uniform. A night consists of repeating cycles of about 90 minutes with light sleep, deep sleep and rapid eye movement sleep, during which most vivid dreaming happens. Deep sleep dominates the first half of the night and supports physical recovery, while REM sleep is more frequent toward morning.",
+        "Short awakenings during the night are normal and usually forgotten. Sleep structure changes with age, and older people often sleep lighter and wake earlier."
+      ]
+    },
+    {
+      "heading": "What disturbs sleep",
+      "paragraphs": [
+        "Irregular schedules, shift work, travelling across time zones and bright screens late at night can push the body clock out of step with your plans. Stress, pain, alcohol, large late meals, nicotine and caffeine, a noisy or warm bedroom, and some medicines also affect sleep quality.",
+        "Medical conditions such as sleep apnoea, restless legs, depression or anxiety can cause persistent problems and deserve proper evaluation instead of self-treatment with sleep aids."
+      ]
+    },
+    {
+      "heading": "Supporting healthy sleep",
+      "paragraphs": [
+        "Try to keep consistent bedtimes and wake times, get daylight early in the day, be physically active, and wind down before bed. Keep the bedroom dark, cool and quiet, and avoid using it for work. Limit caffeine in the afternoon and alcohol in the evening, as alcohol fragments sleep.",
+        "If you cannot sleep, get up and do something calm until you feel sleepy, rather than lying awake worrying. If sleep difficulties last for weeks or affect your daytime functioning, talk to a doctor. Cognitive behavioural therapy for insomnia is an effective option."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Adjusting after a time change",
+      "text": "Imagine you have flown across several time zones and cannot sleep at night. You could spend time outdoors in daylight at local times, keep meals and bedtime on the new schedule, and avoid long naps until your rhythm adapts."
+    },
+    {
+      "title": "Improving the evening routine",
+      "text": "Suppose you usually scroll on your phone in bed and then struggle to fall asleep. You might set a fixed time to put devices away, dim the lights, and try reading or gentle stretching for a week to see whether your sleep changes."
+    }
+  ],
+  "questions": [
+    "Could a medical condition or a medicine be affecting my sleep?",
+    "What changes to my daily schedule would be most helpful given my work and lifestyle?",
+    "When is a sleep study or a referral to a sleep specialist worthwhile?"
+  ]
+}

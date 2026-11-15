@@ -1,0 +1,51 @@
+{
+  "title": "Razumijevanje pretraga za otkrivanje problema s kostima",
+  "intro": "Problemi s kostima kao što su osteoporoza, prijelomi, infekcije, tumori i metabolička bolest kostiju istražuju se nizom pretraga. Svaka pokazuje nešto drugo, od gustoće kosti do građe kosti ili aktivnosti koštanih stanica. Znati čemu test služi pomaže vam razumjeti rezultate.",
+  "sections": [
+    {
+      "heading": "Rendgen",
+      "paragraphs": [
+        "Obični rendgen prikazuje prijelome, deformacije, artritis te neke tumore i infekcije. Brz je i široko dostupan. Rane promjene možda nisu vidljive, a kost mora biti znatno istanjena da bi se vidjela na standardnom rendgenu pa se osteoporoza na taj način ne dijagnosticira pouzdano, iako rendgen kralježnice može otkriti prijelome."
+      ]
+    },
+    {
+      "heading": "Mjerenje gustoće kostiju",
+      "paragraphs": [
+        "DXA pregled koristi vrlo niske doze rendgenskih zraka za mjerenje mineralne gustoće kosti na kuku i kralježnici. Rezultati se daju kao T-vrijednost, kojom se uspoređujete sa zdravom mladom odraslom osobom. T-vrijednost od minus 2,5 ili niža definira osteoporozu. Liječnici to kombiniraju s čimbenicima rizika poput dobi i prethodnih prijeloma kako bi procijenili rizik od prijeloma. Pregled traje nekoliko minuta i bezbolan je."
+      ]
+    },
+    {
+      "heading": "CT, MR i scintigrafija",
+      "paragraphs": [
+        "CT daje detaljne slike građe kosti i koristi se kod složenih prijeloma. MR prikazuje koštanu srž, meka tkiva, tumore, infekcije i stres-prijelome koje rendgen propušta. Koštana scintigrafija koristi malu količinu radioaktivnog biljega za prikaz područja povećane koštane aktivnosti, korisnog za otkrivanje širenja raka, infekcije ili skrivenih prijeloma. PET se može koristiti kod nekih vrsta raka."
+      ]
+    },
+    {
+      "heading": "Pretrage krvi i mokraće",
+      "paragraphs": [
+        "Krvne pretrage provjeravaju kalcij, fosfat, vitamin D, paratiroidni hormon, funkciju bubrega, hormon štitnjače i markere obnove kosti. Pomažu pronaći uzroke gubitka kosti i pratiti liječenje. Druge pretrage traže upalu, mijelom ili druge uzroke. Rezultati se tumače zajedno sa snimanjem."
+      ]
+    },
+    {
+      "heading": "Biopsija kosti",
+      "paragraphs": [
+        "Biopsija kosti uklanja sitan uzorak kosti iglom, obično pod lokalnom anestezijom i uz vođenje snimanjem, radi pregleda pod mikroskopom. Koristi se kada druge pretrage ne mogu odrediti uzrok koštane lezije, primjerice za razlikovanje infekcije od tumora ili dijagnosticiranje rijetkih bolesti kostiju. Rizici uključuju krvarenje, bol i infekciju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za DXA pregled",
+      "text": "Zamislite da ste naručeni na mjerenje gustoće kostiju. Mogli biste pitati treba li tog jutra izbjegavati dodatke kalcija, odjenuti odjeću bez metala i ponijeti popis lijekova."
+    },
+    {
+      "title": "Razumijevanje rezultata",
+      "text": "Pretpostavite da je vaša T-vrijednost niska. Mogli biste pitati kako je izračunat vaš ukupni rizik od prijeloma, koji su sljedeći koraci i kada ponoviti pregled."
+    }
+  ],
+  "questions": [
+    "Koja je pretraga najbolja za moj problem?",
+    "Što znače moji rezultati gustoće kostiju i rizika?",
+    "Koliko često trebam ponavljati pretrage?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Implantabilni defibrilatori: zaštita i praćenje",
+  "intro": "ICD prati neke opasne ritmove i automatski liječi. Smanjuje rizik iznenadne smrti odabranima, ali ne liječi svaku bolest niti zamjenjuje lijekove i kontrole.",
+  "sections": [
+    {
+      "heading": "Otkrivanje i terapija",
+      "paragraphs": [
+        "Tumači signale prema postavkama. Može brzo stimulirati ili dati šok za prekid ritma. Ne šokira svaki ubrzan puls, a moguć je neprimjeren šok."
+      ]
+    },
+    {
+      "heading": "Izbor i ugradnja",
+      "paragraphs": [
+        "Neki imaju elektrode u srcu, drugi pod kožom bez njih. Korist, stimulacija i rizici razlikuju se. Pitajte razlog i raspravite infekciju, krv, elektrode i ciljeve."
+      ]
+    },
+    {
+      "heading": "Život s ICD-om",
+      "paragraphs": [
+        "Nosite karticu i recite prije pretraga. Kompatibilnost ovisi o sustavu: MR nije automatski zabranjen ni siguran. Pitajte za magnete, uređaje, vožnju i aktivnost prema osobnim uputama."
+      ]
+    },
+    {
+      "heading": "Kontrole i plan",
+      "paragraphs": [
+        "Provjeravajte uređaj i bateriju i kada ste dobro. Daljinsko praćenje nije hitna služba s neprekidnim nadzorom. Raspravite tjeskobu i promjenu šok-terapije ako se zdravlje ili ciljevi promijene."
+      ]
+    },
+    {
+      "heading": "Nakon šoka",
+      "paragraphs": [
+        "Dobijte pisani plan. Brzo kontaktirajte tim i ako ste dobro. Ponovljeni šokovi, nesvjestica, prsna bol ili trajna zaduha traže hitnost. Bez svijesti i normalnog disanja trebaju služba, oživljavanje i AVD."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pita stimulira li uređaj uz šokove i raspravlja ciljeve prije ugradnje."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben primi šok pa je dobro. Slijedi plan bez pretpostavke da je daljinski prijenos već pregledan."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

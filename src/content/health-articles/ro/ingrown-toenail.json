@@ -1,0 +1,51 @@
+{
+  "title": "Unghia încarnată",
+  "intro": "O unghie încarnată apare când marginea unghiei crește în pielea din jur, provocând durere, roșeață și uneori infecție. Afectează cel mai des degetul mare de la picior. Îngrijirea simplă acasă funcționează în cazurile ușoare, în timp ce unghiile recurente sau infectate pot necesita o mică procedură.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Cauzele frecvente includ tăierea unghiilor prea scurt sau rotunjirea colțurilor, pantofii strâmți, leziunile, picioarele transpirate și unghiile curbate natural. Unele persoane au o tendință familială. Adolescenții și persoanele care aleargă sau joacă mult fotbal sunt adesea afectați."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Pielea de lângă unghie devine sensibilă, roșie și umflată. Mersul și purtarea pantofilor pot durea. Dacă pielea se infectează, pot apărea puroi, durere pulsatilă, iar zona poate dezvolta un țesut moale numit țesut de granulație."
+      ]
+    },
+    {
+      "heading": "Autoîngrijirea în stadiile incipiente",
+      "paragraphs": [
+        "Înmuiați piciorul în apă caldă de mai multe ori pe zi, uscați-l cu grijă și împingeți blând pielea de la marginea unghiei. Purtați pantofi lejeri sau sandale și păstrați zona curată. Pe viitor, tăiați unghiile drept și nu scormoniți colțul cu unelte ascuțite. Analgezicele fără prescripție pot fi folosite conform indicațiilor."
+      ]
+    },
+    {
+      "heading": "Tratament medical",
+      "paragraphs": [
+        "Dacă unghia nu se ameliorează, este foarte dureroasă sau infectată, mergeți la medic sau la podolog. Ei pot ridica marginea unghiei și pot plasa o mică atelă, pot tăia partea încarnată sub anestezie locală sau pot prescrie antibiotice pentru infecție. Pentru probleme repetate, o mică operație poate îndepărta o parte din unghie și poate trata rădăcina astfel încât să nu mai crească pe margini. Vindecarea durează de obicei câteva săptămâni."
+      ]
+    },
+    {
+      "heading": "Prevenire și cazuri speciale",
+      "paragraphs": [
+        "Alegeți pantofi potriviți, cu loc pentru degete, și tăiați corect unghiile. Persoanele cu diabet, circulație slabă sau picioare amorțite trebuie să meargă devreme la un specialist și să nu trateze singure problema, deoarece infecțiile pot deveni rapid grave. Cereți îngrijiri urgente pentru roșeață care se extinde, febră sau un deget negru ori foarte umflat."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tratarea timpurie",
+      "text": "Imaginați-vă că marginea unghiei vă doare după o plimbare lungă în pantofi strâmți. Ați putea trece la pantofi lejeri, ați putea înmuia piciorul zilnic în apă caldă și ați putea merge la podolog dacă durerea nu se ameliorează în câteva zile."
+    },
+    {
+      "title": "Planificarea unei proceduri",
+      "text": "Presupuneți că aceeași unghie s-a încarnat de mai multe ori. Ați putea întreba despre o mică operație, ce implică recuperarea și cât timp ar trebui să evitați sportul."
+    }
+  ],
+  "questions": [
+    "Este această unghie infectată și are nevoie de antibiotice?",
+    "Ce tratament ar împiedica reapariția ei?",
+    "Cum ar trebui să-mi tai unghiile și să-mi aleg pantofii pentru a o evita?"
+  ]
+}

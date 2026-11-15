@@ -1,0 +1,51 @@
+{
+  "title": "Wheat symptoms: celiac disease, allergy or sensitivity?",
+  "intro": "Symptoms after wheat do not all have the same cause. Celiac disease is an immune reaction to gluten that damages the small bowel; wheat allergy and non-celiac sensitivity need different investigations and care.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Celiac disease may cause diarrhea, bloating, anemia or few digestive symptoms. Wheat allergy can cause rapid hives, swelling or breathing problems. Sensitivity is considered after other causes are excluded."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Do not start a gluten-free diet before discussing celiac testing, because avoidance can make results misleading. If wheat caused a suspected allergic reaction, do not challenge yourself at home; seek specialist advice. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Confirmed celiac disease requires lifelong gluten avoidance and nutritional follow-up. Wheat allergy needs individualized avoidance and an emergency plan. Non-celiac sensitivity does not automatically require the same strict lifelong restrictions. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "A dietitian can help preserve fiber, iron and other nutrients and explain label reading and cross-contact. Expensive commercial intolerance panels cannot establish these diagnoses or justify eliminating many foods. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Breathing difficulty, throat swelling or collapse after food is an emergency; use prescribed adrenaline immediately and call emergency services. Persistent diarrhea, weight loss or anemia need assessment, even without dramatic reactions."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira plans to remove gluten for bloating. She first discusses testing so the dietary change does not obscure a possible celiac diagnosis."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben developed swelling after bread. He seeks allergy assessment rather than deliberately eating bread again to test a gluten theory."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

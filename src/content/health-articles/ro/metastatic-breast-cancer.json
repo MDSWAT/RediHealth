@@ -1,0 +1,52 @@
+{
+  "title": "Cancerul de sân metastatic",
+  "intro": "Cancerul de sân metastatic înseamnă că un cancer care a început în sân s-a răspândit în alte părți ale corpului, precum oasele, ficatul, plămânii sau creierul. De obicei nu poate fi vindecat, dar tratamentele îl pot ține sub control luni sau ani, pot ameliora simptomele și pot menține calitatea vieții. Există multe opțiuni, iar deciziile sunt individuale.",
+  "sections": [
+    {
+      "heading": "Cum este descoperit",
+      "paragraphs": [
+        "Poate fi găsit la primul diagnostic sau poate reveni la ani după un tratament anterior. Simptomele depind de locul unde s-a răspândit, cum ar fi durerile osoase, lipsa de aer, tusea persistentă, disconfortul abdominal, durerile de cap sau scăderea în greutate. Scanările, analizele de sânge și biopsiile metastazelor confirmă constatările și arată caracteristicile cancerului."
+      ]
+    },
+    {
+      "heading": "Contează tipul de cancer",
+      "paragraphs": [
+        "Tratamentul depinde de faptul dacă celulele canceroase au receptori hormonali, produc prea multă proteină HER2 sau sunt triplu negative. Testarea unei probe noi poate arăta diferențe față de tumora inițială. Testele genetice pot identifica schimbări care fac utile anumite medicamente."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Cancerele sensibile la hormoni sunt adesea tratate cu terapie endocrină combinată cu medicamente țintite. Cancerele HER2-pozitive răspund la anticorpii anti-HER2. Chimioterapia, imunoterapia și alte medicamente țintite se folosesc la nevoie. Tratamentul continuă cât timp funcționează și este tolerat și este schimbat dacă cancerul progresează.",
+        "Radioterapia, chirurgia și medicamentele care întăresc oasele ajută la controlul problemelor locale și al simptomelor. Studiile clinice pot oferi acces la tratamente noi."
+      ]
+    },
+    {
+      "heading": "Controlul simptomelor și îngrijirile paliative",
+      "paragraphs": [
+        "Echipele de îngrijiri paliative se concentrează pe ameliorarea durerii, a grețurilor, a oboselii și a încordării emoționale și sunt implicate alături de tratamentul oncologic, nu doar la sfârșitul vieții. Implicarea timpurie este asociată cu o calitate mai bună a vieții. Terapiile complementare, precum exercițiile și relaxarea, pot ajuta, dar trebuie discutate cu echipa dumneavoastră."
+      ]
+    },
+    {
+      "heading": "Viața cu un cancer avansat",
+      "paragraphs": [
+        "Sentimentele de frică, furie și tristețe sunt normale. Sprijinul psiho-oncologic, grupurile de sprijin și serviciile sociale pot ajuta la problemele emoționale și practice, inclusiv la muncă, finanțe și responsabilitățile de îngrijire. Este util să discutați despre obiective, dorințe și planificarea anticipată a îngrijirii."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea unei decizii de tratament",
+      "text": "Imaginați-vă că tocmai ați aflat că cancerul s-a răspândit. Ați putea veni cu o rudă la programări, ați putea înregistra discuția și ați putea nota întrebări despre obiective, efecte secundare și cum va fi măsurat succesul tratamentului."
+    },
+    {
+      "title": "Căutarea sprijinului",
+      "text": "Presupuneți că vă simțiți izolată. Ați putea întreba echipa de oncologie despre un consilier psiho-oncolog sau despre un grup local pentru femei cu cancer de sân avansat."
+    }
+  ],
+  "questions": [
+    "Care sunt caracteristicile cancerului meu și ce tratamente li se potrivesc?",
+    "Care sunt obiectivele tratamentului și cum vom judeca dacă funcționează?",
+    "Cum mă pot ajuta acum îngrijirile paliative?"
+  ]
+}

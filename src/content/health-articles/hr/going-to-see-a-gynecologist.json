@@ -1,0 +1,51 @@
+{
+  "title": "Ginekološki pregled: priprema i pristanak",
+  "intro": "Ginekološka skrb obuhvaća krvarenje, zdjeličnu bol, kontracepciju, trudnoću ili probir. Prvi dolazak ne zahtijeva automatski unutarnji pregled. Možete pitati svrhu svakog dijela te ga odbiti ili zaustaviti.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Pripremite pitanja, menstrualni obrazac, simptome, lijekove i mogućnost trudnoće. Nije potrebno brijanje ni korištenje proizvoda za unutarnje vaginalno čišćenje prije dolaska."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Liječnik objašnjava preglede i uzorke, provjerava pristanak i osigurava privatnost. Zatražite medicinsku pratnju, tumača ili željenog liječnika kada je moguće; o boli i traumi govorite koliko želite. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Pretrage i liječenje ovise o problemu. Probir vrata maternice razlikuje se od obrade simptoma; nedavni uredan rezultat ne zamjenjuje procjenu novog krvarenja ili boli. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Pitajte o trošku, povjerljivosti, rezultatima i kontaktu ako ne stignu. Tijekom intimnog pregleda možete tražiti stanku, manji instrument ili novi razgovor o mogućnostima. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Jaka zdjelična bol, nesvjestica, obilno krvarenje ili bol uz moguću trudnoću traže hitnu procjenu. Trajno krvarenje nakon odnosa ili menopauze traži brz pregled bez čekanja probira."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira dolazi zbog kontracepcije i pita bi li unutarnji pregled promijenio savjet. Liječnik objašnjava mogućnosti i poštuje odluku."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben pomaže partnerici zapisati pitanja. Ona odlučuje hoće li ući s njom i može privatno razgovarati s liječnikom."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

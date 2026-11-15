@@ -1,0 +1,51 @@
+{
+  "title": "Ekografia: përgatitja, pëlqimi dhe rezultatet",
+  "intro": "Ekografia përdor tinguj me frekuencë të lartë dhe jehonat për imazhe të brendshme. Nuk ka rrezatim jonizues. Vlera varet nga pyetja, zona dhe interpretimi i trajnuar; nuk tregon çdo gjendje.",
+  "sections": [
+    {
+      "heading": "Imazhi",
+      "paragraphs": [
+        "Sonda dërgon e merr jehona nga indet. Xheli heq ajrin mes sondës e lëkurës. Lëvizja jep pamje dhe Doppler informacion gjaku."
+      ]
+    },
+    {
+      "heading": "Përgatitja",
+      "paragraphs": [
+        "Disa barku duan agjërim, disa pelvike fshikëz plot. Ndiqni udhëzimet dhe pyesni veçanërisht me diabet ose ilaçe. Mos ndaloni trajtim vetëm për skanim."
+      ]
+    },
+    {
+      "heading": "Ekzaminimi",
+      "paragraphs": [
+        "Shumë bëhen mbi lëkurë, disa me sondë të brendshme. Profesionisti shpjegon arsyen, alternativat dhe pëlqimin. Kërkoni shoqërues, përkthyes, pushim ose ndalim të ekzaminimit intim."
+      ]
+    },
+    {
+      "heading": "Kufijtë",
+      "paragraphs": [
+        "Gazrat e kocka fshehin struktura dhe gjetjet varen nga konteksti. Normal nuk përjashton çdo shkak. Gjetja rastësore nuk është automatikisht rrezik; pyesni nëse testet e tjera duhen."
+      ]
+    },
+    {
+      "heading": "Pas ekzaminimit",
+      "paragraphs": [
+        "Pyesni kur dhe kush shpjegon dhe çfarë bëni me simptoma. Përdoret siç duhet, jo për argëtim të përsëritur. Simptomat e reja të rënda kërkojnë kujdes, jo pritje ose siguri nga rezultat i vjetër. Para konsultës, shënoni kur filloi simptoma, çfarë e lehtëson ose përkeqëson dhe si ndikon në veprimtaritë e zakonshme. Merrni raportet e mëparshme nëse i keni. Kërkojini profesionistit ta lidhë shpjegimin me gjetjet tuaja; një përshkrim i përgjithshëm nuk vendos diagnozën."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet për fshikëzën dhe ilaçet para takimit pelvik pa ndjekur rregulla të palidhura online."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ka dhimbje me ekografi normale. Kërkon ndjekje për shkaqe të tjera, jo përsëritje pa pyetje."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

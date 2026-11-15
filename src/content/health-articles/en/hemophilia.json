@@ -1,0 +1,51 @@
+{
+  "title": "Hemophilia: preventing and responding to bleeding",
+  "intro": "Hemophilia is a disorder of clotting proteins that can cause prolonged or internal bleeding. Inherited forms are more common in males, but females can also have significant bleeding. Severity varies and specialist care matters.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Bleeding into joints or muscles may cause pain, swelling and limited movement without a visible wound. Repeated joint bleeding can cause damage; do not judge seriousness only by blood seen outside the body."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Specialist blood tests establish the type and factor level, with inhibitor testing when indicated. Describe family history, surgery and dental bleeding. Genetic counseling can explain inheritance without assuming every family member has the same severity. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Treatment may replace clotting factor or use other specialist medicines, for prevention or a bleed. The emergency plan depends on the exact treatment and inhibitors; do not substitute medicines or wait for swelling to become dramatic. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Carry treatment information and arrange dental care, surgery and safer activity with the team. Learn home treatment only through supervised training. Check painkillers because aspirin and some anti-inflammatory medicines can increase bleeding risk. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Head injury, severe headache, vomiting, neck swelling, breathing difficulty or suspected major internal bleeding requires emergency care and the prescribed bleed plan immediately. Contact the team promptly for a suspected joint bleed even without visible bruising."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira tells a dentist about her bleeding history before an extraction, enabling coordination with the specialist rather than discovering the problem afterward."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben recognizes a warm painful joint as a possible bleed and follows his written plan instead of continuing sport because there is no external wound."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

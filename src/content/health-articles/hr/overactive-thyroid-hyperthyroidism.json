@@ -1,0 +1,51 @@
+{
+  "title": "Pojačana funkcija štitnjače (hipertireoza)",
+  "intro": "Kod hipertireoze štitnjača proizvodi previše hormona štitnjače, što ubrzava metabolizam tijela. Uzrokuje simptome kao što su gubitak težine, ubrzano srce, nervoza i nepodnošenje vrućine. Dostupno je nekoliko učinkovitih liječenja, a pronalaženje uzroka vodi izbor.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Najčešći uzrok je Gravesova bolest, autoimuno stanje u kojem protutijela stimuliraju žlijezdu. Drugi uzroci su čvorovi koji proizvode hormon neovisno, upala štitnjače koja privremeno oslobađa pohranjeni hormon te višak joda ili određeni lijekovi. Može biti prisutna struma, povećana štitnjača."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipični simptomi uključuju gubitak težine unatoč dobrom apetitu, lupanje srca, znojenje, drhtanje ruku, tjeskobu, razdražljivost, teškoće sa spavanjem, umor, česte stolice i lakše menstruacije. Starije osobe mogu imati manje simptoma, kao što su fibrilacija atrija ili slabost. Kod Gravesove bolesti oči mogu postati ispupčene, crvene ili suhe."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Krvne pretrage pokazuju nizak hormon koji stimulira štitnjaču i visoke razine hormona štitnjače. Testovi protutijela, ultrazvuk i ponekad pretraga radioaktivnim obilježivačem pomažu pronaći uzrok. Može se provjeriti srčani ritam."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Antitireoidne tablete smanjuju proizvodnju hormona i često se koriste prve, jednu do dvije godine, uz krvne pretrage za praćenje nuspojava. Beta-blokatori brzo ublažavaju lupanje srca i drhtanje. Ako se stanje vrati ili je uzrok čvorovi, mogućnosti su radioaktivni jod ili operacija uklanjanja cijele ili dijela žlijezde. Nakon toga mnogi ljudi razviju smanjenu funkciju štitnjače i trebaju doživotne tablete hormona."
+      ]
+    },
+    {
+      "heading": "Posebne situacije",
+      "paragraphs": [
+        "Trudnoća zahtijeva specijalističku skrb jer neki lijekovi i radioaktivni jod nisu prikladni. Neliječena hipertireoza opterećuje srce i kosti. Problemi s očima kod Gravesove bolesti zahtijevaju očnog specijalista. Pušenje pogoršava bolest oka pa se prestanak snažno savjetuje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Opisivanje simptoma",
+      "text": "Zamislite da ste smršavjeli i osjećate kako vam srce juri. Mogli biste navesti kada su simptomi počeli, kako spavate i koje lijekove ili dodatke uzimate te zatražiti krvne pretrage štitnjače."
+    },
+    {
+      "title": "Odabir liječenja",
+      "text": "Pretpostavite da vam liječnik nudi tablete, radioaktivni jod ili operaciju. Mogli biste pitati o stopama povrata, nuspojavama, učincima na plodnost ili planove za trudnoću i potrebi za doživotnim tabletama."
+    }
+  ],
+  "questions": [
+    "Što uzrokuje moju pojačanu funkciju štitnjače?",
+    "Koje liječenje mi odgovara i koji su dugoročni učinci?",
+    "Koliko će često biti potrebne krvne pretrage i što trebam prijaviti između posjeta?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Cum pregătește stomacul hrana",
+  "intro": "Stomacul primește hrana din esofag, o amestecă și eliberează porții mici în intestin. Începe o parte din digestie, dar nu absoarbe toți nutrienții. Durerea în zonă poate veni și de la alte organe.",
+  "sections": [
+    {
+      "heading": "Intrare și rezervor",
+      "paragraphs": [
+        "Coordonarea musculară la esofag limitează refluxul. Stomacul se extinde pentru mese; forma și umplerea variază, deci balonarea nu măsoară precis mărimea."
+      ]
+    },
+    {
+      "heading": "Acid și enzime",
+      "paragraphs": [
+        "Acidul gastric creează condiții digestive și limitează unii germeni. Enzimele încep descompunerea proteinelor. Acidul excesiv nu explică orice durere, iar reducerea lui nu tratează orice problemă."
+      ]
+    },
+    {
+      "heading": "Protecția mucoasei",
+      "paragraphs": [
+        "Mucusul și alte mecanisme apără țesutul de conținut. Unele medicamente și infecții le perturbă. Stomacul produce și factor intrinsec, necesar ulterior absorbției vitaminei B12 în intestin."
+      ]
+    },
+    {
+      "heading": "Amestec și golire",
+      "paragraphs": [
+        "Contracțiile amestecă; pilorul reglează eliberarea în intestinul subțire. Compoziția hranei și bolile schimbă golirea, deci vărsăturile persistente sau sațietatea precoce cer evaluare."
+      ]
+    },
+    {
+      "heading": "Îngrijire",
+      "paragraphs": [
+        "Observați tiparul și revizuiți medicamentele, fără diete restrictive repetate. Vărsăturile cu sânge, scaunul negru ca păcura, colapsul, durerea severă persistentă sau imposibilitatea păstrării lichidelor cer sfat medical urgent.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira notează plenitudinea și vărsăturile și aduce medicamentele, fără să presupună că orice disconfort înseamnă acid excesiv."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben varsă material ca zațul de cafea. Cere ajutor urgent, nu doar antiacid fără rețetă."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Sistemul de sănătate german",
+  "intro": "Germania are un sistem de sănătate cu asigurare obligatorie de sănătate, o gamă largă de medici și spitale și o rețea densă de servicii. Înțelegerea modului în care este organizat îi ajută pe pacienți, inclusiv pe nou-veniți, să găsească îngrijiri și să-și cunoască drepturile. Această prezentare este generală; regulile și sumele se schimbă, așa că verificați detaliile actuale la asigurătorul dumneavoastră.",
+  "sections": [
+    {
+      "heading": "Asigurarea de sănătate",
+      "paragraphs": [
+        "Aproape toți cei care locuiesc în Germania trebuie să aibă asigurare de sănătate. Cele mai multe persoane sunt acoperite de casele de asigurări de sănătate publice, la care angajații și angajatorii contribuie cu un procent din venit. Unele persoane, precum cei cu venituri mari, liber-profesioniștii și funcționarii publici, pot alege asigurarea privată. Copiii și soții care nu lucrează sunt adesea acoperiți gratuit prin asigurarea familială din sistemul public. Îngrijirea pe termen lung are propria asigurare."
+      ]
+    },
+    {
+      "heading": "Îngrijirea primară și specialiștii",
+      "paragraphs": [
+        "Cele mai multe persoane au un medic de familie ca prim punct de contact, care tratează problemele frecvente, coordonează îngrijirea și eliberează trimiteri. De obicei puteți merge direct la specialiști, deși unii necesită programări sau trimiteri. Farmaciile oferă medicamente pe bază de prescripție și sfaturi. La dentiști, moașe și terapeuți se ajunge într-un mod asemănător."
+      ]
+    },
+    {
+      "heading": "Spitale și urgențe",
+      "paragraphs": [
+        "Spitalele oferă îngrijire cu internare și de zi și au departamente ambulatorii pentru anumite afecțiuni. Pentru urgențe, sunați la 112 sau mergeți la o unitate de primiri urgențe. Pentru probleme urgente, dar fără pericol de moarte, în afara orelor de program, un serviciu medical de gardă poate fi contactat la 116117, care ajută și cu programările."
+      ]
+    },
+    {
+      "heading": "Costuri și coplăți",
+      "paragraphs": [
+        "Asigurarea publică acoperă un catalog larg de servicii, inclusiv controale, vaccinări, tratament, medicamente, îngrijire în spital și recuperare. Pacienții fac unele coplăți, de exemplu pentru medicamente, zile de spitalizare sau anumite terapii, cu limite anuale și scutiri pentru persoanele cu venituri mici și pentru copii. Unele servicii, precum multe extra stomatologice, se plătesc privat."
+      ]
+    },
+    {
+      "heading": "Drepturile pacienților și obținerea ajutorului",
+      "paragraphs": [
+        "Pacienții au dreptul la informații, la consimțământ informat, la acces la dosarul lor și la o a doua opinie. Plângerile pot fi adresate cabinetului, asigurătorului sau serviciilor de consiliere a pacienților. Consilierea independentă este disponibilă pentru persoanele nesigure de drepturile lor, inclusiv migranți și refugiați, iar serviciile de interpretariat pot fi aranjate în unele situații."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Găsirea unui medic",
+      "text": "Imaginați-vă că sunteți nou în Germania. Ați putea să vă înscrieți la un medic de familie, să cereți trimiteri când este nevoie și să aveți cardul de asigurare la dumneavoastră."
+    },
+    {
+      "title": "Folosirea îngrijirii în afara programului",
+      "text": "Presupuneți că copilul dumneavoastră are febră sâmbătă seara. Ați putea suna serviciul de gardă pentru sfaturi și, dacă este grav, ați putea merge la o unitate de primiri urgențe."
+    }
+  ],
+  "questions": [
+    "Ce servicii acoperă asigurarea mea și ce trebuie să plătesc singur?",
+    "Cum găsesc rapid un specialist sau o programare?",
+    "Unde pot obține sfaturi independente despre drepturile mele?"
+  ]
+}

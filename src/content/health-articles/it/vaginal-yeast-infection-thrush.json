@@ -1,0 +1,51 @@
+{
+  "title": "Infezione vaginale da lieviti (candidosi)",
+  "intro": "La candidosi vaginale è un'infezione comune causata da una crescita eccessiva del lievito Candida, che normalmente vive in piccole quantità in vagina. Causa prurito, irritazione e perdite dense e bianche. Non è un'infezione sessualmente trasmissibile e si cura facilmente con creme antimicotiche, ovuli o compresse.",
+  "sections": [
+    {
+      "heading": "Cause e fattori scatenanti",
+      "paragraphs": [
+        "La candidosi compare quando l'equilibrio degli organismi vaginali viene alterato. I fattori scatenanti comprendono antibiotici, gravidanza, diabete non controllato, sistema immunitario indebolito, cambiamenti ormonali e a volte saponi irritanti, abiti sintetici stretti o lavande vaginali. Molte donne la contraggono occasionalmente e alcune hanno episodi ripetuti."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi tipici sono prurito e irritazione di vagina e vulva, arrossamento e gonfiore, bruciore urinando o durante i rapporti e perdite dense, bianche e inodori simili alla ricotta. Sintomi simili possono essere causati da altre condizioni come vaginosi batterica, tricomoniasi, malattie della pelle e allergie, quindi il primo episodio è meglio farlo confermare da un medico."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Il trattamento antimicotico è disponibile come ovuli vaginali, creme o una singola compressa per bocca. La maggior parte delle donne migliora in pochi giorni e completa il ciclo come indicato. La crema antimicotica applicata sulla vulva aiuta il prurito esterno. Le compresse non sono raccomandate in gravidanza, quindi chiedi un trattamento locale. Non usare assorbenti interni né avere rapporti finché non sei curata se causano fastidio."
+      ]
+    },
+    {
+      "heading": "Candidosi ricorrente",
+      "paragraphs": [
+        "Quattro o più episodi all'anno richiedono una valutazione medica. I medici possono confermare la diagnosi con un tampone, cercare un diabete e prescrivere un ciclo più lungo seguito da un trattamento preventivo settimanale per alcuni mesi. Individua i possibili fattori scatenanti e rivedi i farmaci."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Indossa biancheria intima di cotone traspirante, evita prodotti profumati e lavande vaginali, lavati con acqua semplice o con un detergente delicato senza profumo, cambia subito costumi bagnati o abiti sudati e controlla la glicemia se hai il diabete. I probiotici hanno un beneficio incerto. Chiedi consiglio se i sintomi non migliorano entro una settimana o se ci sono febbre, dolore addominale o perdite maleodoranti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Scegliere il trattamento",
+      "text": "Immagina di avere sintomi tipici e una diagnosi precedente. Potresti chiedere al farmacista di un ovulo o di una compressa antimicotica e seguire il ciclo completo."
+    },
+    {
+      "title": "Affrontare gli episodi frequenti",
+      "text": "Supponi di avere la candidosi dopo ogni ciclo di antibiotici. Potresti discutere la prevenzione con il medico e annotare lo schema in un diario."
+    }
+  ],
+  "questions": [
+    "È candidosi o potrebbe essere un'altra infezione?",
+    "Quale trattamento è sicuro per me, anche in gravidanza?",
+    "Che cosa posso fare per evitare che ritorni?"
+  ]
+}

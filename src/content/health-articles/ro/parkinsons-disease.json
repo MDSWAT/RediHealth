@@ -1,0 +1,51 @@
+{
+  "title": "Boala Parkinson",
+  "intro": "Boala Parkinson este o afecțiune progresivă care afectează mișcarea, provocată de pierderea celulelor nervoase care produc dopamină în creier. Duce la lentoare, rigiditate și tremor, precum și la simptome nemotorii. Nu există un leac, dar medicamentele, terapiile și sprijinul pot controla simptomele și pot menține calitatea vieții mulți ani.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Principalele simptome motorii sunt lentoarea mișcărilor, rigiditatea musculară, un tremor de repaus care începe adesea la o mână și problemele de echilibru și de mers. Scrisul de mână poate deveni mic, vocea mai slabă, iar expresia feței redusă. Simptomele nemotorii includ constipația, problemele de somn, pierderea mirosului, dispoziția scăzută, anxietatea și problemele de memorie și pot apărea cu ani înainte de problemele de mișcare."
+      ]
+    },
+    {
+      "heading": "Cauze și diagnostic",
+      "paragraphs": [
+        "Cauza este în mare parte necunoscută. Vârsta este cel mai mare factor de risc, iar genele și factorii de mediu joacă un rol în unele cazuri. Diagnosticul se bazează pe simptome și pe examinarea de către un neurolog. Imagistica cerebrală și scanările speciale pot ajuta la excluderea altor afecțiuni. Răspunsul la medicamentul dopaminergic susține diagnosticul."
+      ]
+    },
+    {
+      "heading": "Medicamente",
+      "paragraphs": [
+        "Levodopa, pe care creierul o transformă în dopamină, este cel mai eficient medicament. Alte medicamente, precum agoniștii dopaminei, inhibitorii MAO-B și inhibitorii COMT, pot fi folosite singure sau în combinație. De-a lungul anilor, efectul levodopei poate dispărea între doze și pot apărea mișcări involuntare, ceea ce impune ajustarea momentelor și a dozelor. Efectele secundare pot include greață, somnolență, tensiune arterială scăzută și probleme de control al impulsurilor, precum jocurile de noroc compulsive, care trebuie raportate."
+      ]
+    },
+    {
+      "heading": "Alte tratamente",
+      "paragraphs": [
+        "Kinetoterapia, exercițiile, terapia vorbirii și limbajului și terapia ocupațională sunt importante și îmbunătățesc mobilitatea, vocea și activitățile zilnice. Exercițiile regulate, precum mersul, ciclismul, dansul sau boxul, ajută. Stimularea cerebrală profundă, în care se plasează electrozi în creier, poate ajuta pacienți selectați cu fluctuații severe."
+      ]
+    },
+    {
+      "heading": "Viața cu boala Parkinson",
+      "paragraphs": [
+        "Rămâneți activ, mâncați echilibrat, cu suficiente fibre și lichide, planificați atent orele medicamentelor, luați măsuri de precauție împotriva căderilor și cereți tratament pentru problemele de dispoziție și de somn. Grupurile de sprijin și asistentele specializate ajută pacienții și familiile. Planificați din timp nevoile de îngrijire."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Luarea medicamentelor la timp",
+      "text": "Imaginați-vă că rigiditatea revine cu o oră înainte de următoarea doză. Ați putea ține un jurnal al simptomelor și al orelor dozelor și l-ați putea arăta neurologului, pentru ca programul să poată fi ajustat."
+    },
+    {
+      "title": "Rămânerea activ",
+      "text": "Presupuneți că vă simțiți obosit și vreți să vă retrageți din activități. Ați putea întreba despre un grup local de exerciții sau despre un program de kinetoterapie conceput pentru persoanele cu boala Parkinson."
+    }
+  ],
+  "questions": [
+    "Ce medicament și ce doză sunt cele mai bune pentru mine și la ce efecte secundare să fiu atent?",
+    "Ce terapii și exerciții mă pot ajuta să rămân mobil?",
+    "Ce sprijin este disponibil pentru familia mea și pentru mine?"
+  ]
+}

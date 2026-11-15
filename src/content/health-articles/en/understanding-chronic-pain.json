@@ -1,0 +1,51 @@
+{
+  "title": "Understanding chronic pain",
+  "intro": "Chronic pain is pain that lasts for more than three months, beyond the usual time of healing. It can arise from an injury or illness, or without a clear cause, and it affects mood, sleep, work and relationships. Pain is real, and understanding how it works helps you take part in effective treatment.",
+  "sections": [
+    {
+      "heading": "How pain works",
+      "paragraphs": [
+        "Pain is produced by the brain and nervous system in response to signals of threat. In acute pain, it protects us from harm. In chronic pain, the nervous system can become oversensitive, so pain continues or is amplified even though tissue has healed, and normal sensations may become painful. Stress, poor sleep, low mood and worry can turn the volume up further."
+      ]
+    },
+    {
+      "heading": "Common types",
+      "paragraphs": [
+        "Chronic pain includes back and neck pain, osteoarthritis, nerve pain after shingles or diabetes, headaches, fibromyalgia, pain after surgery and conditions with no clear cause. Many people have more than one type. Scan findings often do not match the amount of pain experienced."
+      ]
+    },
+    {
+      "heading": "Treatment approaches",
+      "paragraphs": [
+        "The best results come from combining several approaches. Staying physically active with graded exercise, physiotherapy, education about pain, and psychological methods such as cognitive behavioural therapy, acceptance and commitment therapy and relaxation are among the most effective treatments. Medicines can help certain types, such as nerve pain medicines, but have side effects. Opioids are generally not suitable for long-term use in chronic non-cancer pain, due to limited benefit and risks of dependence."
+      ]
+    },
+    {
+      "heading": "Pacing and daily life",
+      "paragraphs": [
+        "Pacing means balancing activity and rest to avoid a pattern of overdoing it on good days and crashing afterwards. Setting small goals, keeping up with social activities, regular sleep and routine help. Share what you need with family and employers. Pain clinics with teams of doctors, psychologists and physiotherapists offer comprehensive programmes."
+      ]
+    },
+    {
+      "heading": "Emotional wellbeing",
+      "paragraphs": [
+        "Living with ongoing pain can cause frustration, anxiety and depression, which in turn worsen pain. Do not hesitate to seek support for your mood. Peer support groups can reduce isolation. If you have thoughts of harming yourself, contact emergency services or a crisis helpline immediately."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pacing activity",
+      "text": "Imagine you clean the whole house on good days and then rest for days. You could split chores into short sessions through the week and track how you feel."
+    },
+    {
+      "title": "Asking for a pain programme",
+      "text": "Suppose medicines alone are not working. You might ask your doctor about a multidisciplinary pain programme that includes exercise and psychological therapy."
+    }
+  ],
+  "questions": [
+    "Which approach is most likely to help my type of pain?",
+    "Which medicines are appropriate, and which should I avoid?",
+    "Is a pain clinic or psychological therapy available to me?"
+  ]
+}

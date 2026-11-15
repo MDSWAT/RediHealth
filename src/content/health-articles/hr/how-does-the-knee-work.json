@@ -1,0 +1,52 @@
+{
+  "title": "Kako se koljeno savija i nosi težinu",
+  "intro": "Koljeno povezuje bedro i potkoljenicu uz savijanje, opružanje i ograničenu rotaciju. Stabilnost ovisi o kostima, ligamentima i mišićnoj kontroli zajedno. Sama bol ili klik ne identificiraju tkivo.",
+  "sections": [
+    {
+      "heading": "Kosti i poluga",
+      "paragraphs": [
+        "Bedrena kost susreće goljeničnu; čašica klizi sprijeda u žlijebu. Pomaže bedrenom mišiću opružiti koljeno preko tetiva."
+      ]
+    },
+    {
+      "heading": "Hrskavica i menisci",
+      "paragraphs": [
+        "Hrskavica smanjuje trenje. Menisci raspoređuju teret i poboljšavaju kontakt; nalaz na snimci ne dokazuje automatski uzrok boli ni potrebu operacije."
+      ]
+    },
+    {
+      "heading": "Stabilnost",
+      "paragraphs": [
+        "Križni i bočni ligamenti ograničavaju neželjen pokret. Mišići i tetive aktivno kontroliraju zglob. Otok smanjuje aktivaciju i sigurnost i bez potpunog puknuća."
+      ]
+    },
+    {
+      "heading": "Funkcija",
+      "paragraphs": [
+        "Aktivnost povećavajte postupno uz rehabilitaciju nakon ozljede. Snaga, ravnoteža i podnošljiv pokret važni su; forsiranje blokiranog koljena ili nastavak uz rastući otok može pogoršati ozljedu."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Trajni otok ili popuštanje trebaju pregled. Vruće koljeno s vrućicom, deformacija, nemogućnost oslonca nakon ozljede ili pravo blokiranje traže brzu procjenu, ne manipulaciju.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira čuje bezbolne klikove i dobro hoda. Razgovara o novim simptomima ako nastanu, ne smatra svaki zvuk ozljedom."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben izvrne koljeno i ne može ga opružiti. Traži pregled umjesto forsiranja radi nastavka igre."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

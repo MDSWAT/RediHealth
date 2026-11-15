@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është terapia e të folurit?",
+  "intro": "Terapia e të folurit e gjuhës u ndihmon njerëzve me vështirësi në të folur, të kuptuar, lexim, zë, rrjedhshmëri ose gëlltitje. Ofrohet nga terapistë të trajnuar për fëmijë e të rritur, e synon të përmirësojë komunikimin e cilësinë e jetës.",
+  "sections": [
+    {
+      "heading": "Kujt i ndihmon",
+      "paragraphs": [
+        "Fëmijëve me të folur të vonuar, shqiptim të paqartë, belbëzim ose çrregullime gjuhe, e të rriturve që kanë humbur të folurit pas goditjes në tru ose lëndimit të trurit, me probleme zëri, sëmundjen e Parkinsonit ose vështirësi gëlltitjeje. Përfitojnë edhe njerëzit pas kirurgjisë së laringut e ata me humbje dëgjimi."
+      ]
+    },
+    {
+      "heading": "Çfarë bëjnë terapistët",
+      "paragraphs": [
+        "Vlerësojnë të folurin, gjuhën, zërin e gëlltitjen me teste e vëzhgim. Pastaj planifikojnë terapinë me ushtrime e strategji, për shembull praktikimin e tingujve, ndërtimin e fjalorit, përmirësimin e rrjedhshmërisë, stërvitjen e zërit ose mësimin e gëlltitjes së sigurt. Trajnojnë edhe familjen e mësuesit e mund të rekomandojnë ndihmesa komunikimi."
+      ]
+    },
+    {
+      "heading": "Çfarë përfshijnë seancat",
+      "paragraphs": [
+        "Seancat janë zakonisht javore, individuale ose në grup, shpesh duke përdorur lojëra për fëmijët. Praktika në shtëpi është e rëndësishme. Kohëzgjatja e terapisë varet nga problemi, nga disa javë deri në vite. Përparimi rishikohet rregullisht e objektivat rregullohen."
+      ]
+    },
+    {
+      "heading": "Marrja e terapisë së të folurit",
+      "paragraphs": [
+        "Zakonisht e përshkruan një mjek, e sigurimi shëndetësor mund ta mbulojë, sipas vendit e rregullave. Kohët e pritjes mund të jenë të gjata, prandaj pyesni herët. Ndihma e hershme është më efektive te fëmijët, por edhe të rriturit përfitojnë nga terapia edhe vite pas një lëndimi."
+      ]
+    },
+    {
+      "heading": "Çfarë mund të bëjnë familjet",
+      "paragraphs": [
+        "Flisni, lexoni e luani me fëmijët, jepuni kohë të përgjigjen, shmangni korrigjimin e tepërt e lavdëroni përpjekjet. Për të rriturit me probleme të të folurit, jini të durueshëm, zvogëloni zhurmën, përdorni fjali të thjeshta e jepni kohë shtesë. Bashkohuni me grupe mbështetëse nëse ndihmon."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktikimi në shtëpi",
+      "text": "Imagjinoni që fëmija juaj ka terapi për tinguj të paqartë. Mund të luani lojërat e tingujve çdo ditë për disa minuta."
+    },
+    {
+      "title": "Mbështetja e komunikimit",
+      "text": "Supozoni që një prind ka humbur të folurit pas një goditjeje në tru. Mund të flisni ngadalë, të bëni pyetje po-ose-jo e të jepni kohë për përgjigje."
+    }
+  ],
+  "questions": [
+    "A ka nevojë për terapi të folurit fëmija im ose unë?",
+    "Sa seanca do të nevojiten e çfarë mund të praktikojmë në shtëpi?",
+    "Çfarë mbulon sigurimi?"
+  ]
+}

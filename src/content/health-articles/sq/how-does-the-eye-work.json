@@ -1,0 +1,52 @@
+{
+  "title": "Si krijojnë shikimin syri dhe truri",
+  "intro": "Shikimi kërkon sipërfaqe optike të qarta, retinë funksionale, nerva optikë dhe përpunim në tru. Strukturat kanë role të ndryshme; syzet më të forta nuk zgjidhin gjithçka dhe pamja normale nuk përjashton sëmundjen.",
+  "sections": [
+    {
+      "heading": "Fokusimi",
+      "paragraphs": [
+        "Kornea përthyen dritën; thjerrëza përshtat fokusin. Irisi ndryshon bebëzën për hyrjen e dritës. Syzet korrigjojnë disa gabime fokusimi, jo çdo shkak të humbjes së shikimit."
+      ]
+    },
+    {
+      "heading": "Marrja e figurës",
+      "paragraphs": [
+        "Shkopinjtë e retinës ndihmojnë në dritë të dobët, konet në ngjyra e hollësi. Makula jep shikim qendror të imët. Dëmtimet e zonave të ndryshme japin probleme të ndryshme."
+      ]
+    },
+    {
+      "heading": "Sinjale dhe mbështetje",
+      "paragraphs": [
+        "Nervi optik çon sinjale në tru. Lotët mbrojnë sipërfaqen, muskujt drejtojnë shikimin. Presioni i syrit lidhet me prodhimin dhe kullimin e lëngut, jo thjesht me tensionin e gjakut."
+      ]
+    },
+    {
+      "heading": "Mbrojtja",
+      "paragraphs": [
+        "Përdorni syze mbrojtëse në punë të rrezikshme dhe higjienë për lentet. Kontrolloni ndryshimet; rritja e ndriçimit të ekranit nuk trajton sëmundjen e syrit."
+      ]
+    },
+    {
+      "heading": "Urgjenca",
+      "paragraphs": [
+        "Humbja e papritur ose dhimbja e fortë kërkon urgjencë. Vetëtimat e reja, shumë pika lëvizëse ose hije kërkojnë kujdes urgjent; mos drejtoni me shikim të pasigurt.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira sheh një hije të re. Kërkon kontroll urgjent të syrit, jo vetëm vizitë të zakonshme për syze."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben lexon më qartë me lentet e përshkruara. Mban kontrollet sepse fokusimi dhe shëndeti i retinës ndryshojnë."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

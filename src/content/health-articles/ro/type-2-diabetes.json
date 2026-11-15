@@ -1,0 +1,51 @@
+{
+  "title": "Diabetul de tip 2",
+  "intro": "În diabetul de tip 2, organismul nu răspunde corect la insulină și în cele din urmă nu mai poate produce suficientă. Glicemia crește, ceea ce în ani poate deteriora vasele de sânge și nervii. Este strâns legat de excesul de greutate, sedentarism și vârstă, iar la mulți oameni poate fi bine controlat, uneori chiar adus în remisie, prin schimbarea stilului de viață și tratament.",
+  "sections": [
+    {
+      "heading": "Cauze și factori de risc",
+      "paragraphs": [
+        "Riscul crește cu excesul de greutate, mai ales în zona taliei, cu activitatea fizică redusă, vârsta, istoricul familial, diabetul gestațional anterior, tensiunea arterială mare și anumite origini etnice. Multe persoane au afecțiunea ani de zile înainte de diagnostic, deoarece simptomele se dezvoltă lent și pot fi ușoare."
+      ]
+    },
+    {
+      "heading": "Simptome și diagnostic",
+      "paragraphs": [
+        "Simptomele posibile sunt setea, urinarea frecventă, oboseala, vederea încețoșată, rănile care se vindecă greu și infecțiile recurente, dar mulți oameni nu au niciunul. Diagnosticul se pune cu glicemia pe nemâncate, HbA1c sau un test de toleranță la glucoză. Controalele regulate contează pentru persoanele cu factori de risc."
+      ]
+    },
+    {
+      "heading": "Stilul de viață",
+      "paragraphs": [
+        "Alimentația sănătoasă, mai multă activitate fizică și scăderea în greutate sunt baza. Chiar și o scădere modestă în greutate îmbunătățește glicemia, iar o scădere mare prin dietă poate aduce remisia la unele persoane. Țintiți o mișcare regulată, precum mersul alert, și exerciții de forță. Ajută limitarea băuturilor zaharoase, a carbohidraților rafinați și a alimentelor procesate și alegerea legumelor, a cerealelor integrale, a leguminoaselor și a grăsimilor sănătoase."
+      ]
+    },
+    {
+      "heading": "Medicamente",
+      "paragraphs": [
+        "Metformina este adesea primul medicament. Altele includ medicamente care cresc pierderea de zahăr prin urină, medicamente care acționează asupra hormonilor intestinali și unele care stimulează eliberarea de insulină. Mai multe dintre ele protejează și inima sau rinichii la anumiți pacienți. Insulina poate fi necesară în cele din urmă. Medicamentele se aleg în funcție de sănătatea inimii și a rinichilor, de greutate și de efectele secundare și necesită o revizuire regulată."
+      ]
+    },
+    {
+      "heading": "Prevenirea complicațiilor",
+      "paragraphs": [
+        "Controalele regulate includ HbA1c, tensiunea arterială, colesterolul, ochii, picioarele, testele renale și îngrijirea dinților. Controlul tensiunii arteriale și al colesterolului contează la fel de mult ca glicemia. Nu fumați. Raportați devreme rănile la picioare, schimbările de vedere sau amorțelile. Programele structurate de educație și cele de gestionare a bolii sprijină autoîngrijirea."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Stabilirea unui prim obiectiv",
+      "text": "Imaginați-vă că tocmai ați fost diagnosticat. Ați putea alege o singură schimbare, precum o plimbare zilnică de treizeci de minute, ați putea adăuga a doua schimbare după o lună și ați putea urmări progresul împreună cu echipa de diabet."
+    },
+    {
+      "title": "Pregătirea pentru un control",
+      "text": "Presupuneți că evaluarea anuală este săptămâna viitoare. Ați putea face o listă de întrebări, ați putea aduce înregistrările glicemiei și ați putea întreba despre controlul ochilor, al picioarelor și al rinichilor."
+    }
+  ],
+  "questions": [
+    "Care sunt țintele mele pentru glicemie, tensiune arterială și colesterol?",
+    "Care medicament este cel mai bun pentru mine și ce efecte secundare ar trebui să mă aștept să am?",
+    "Ar putea scăderea în greutate să îmi aducă diabetul în remisie?"
+  ]
+}

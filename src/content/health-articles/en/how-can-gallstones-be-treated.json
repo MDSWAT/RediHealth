@@ -1,0 +1,51 @@
+{
+  "title": "Gallstone treatment: comparing observation and procedures",
+  "intro": "Treatment depends on whether stones cause symptoms, where they are and whether complications are present. Removing the gallbladder is different from clearing a bile duct. A scan finding alone does not automatically mean surgery is needed.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Observation is usual for many symptom-free gallbladder stones, with selected exceptions. For recurrent typical attacks, discuss likely benefit and whether other digestive symptoms may have another cause and persist after surgery."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Ultrasound, blood tests and selected duct imaging guide decisions. Ask if a stone blocks drainage, whether infection or pancreatitis is suspected and how urgent treatment is. Your overall health affects procedural planning. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Gallbladder removal is often laparoscopic but still has anesthetic, bleeding, infection and bile-duct injury risks. Duct stones may require endoscopic removal, which has its own risks including pancreatitis; it does not automatically remove the gallbladder stones. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Medicines may relieve pain; stone-dissolving treatment suits only selected cases and stones can recur. Commercial flushes are not reliable cures. Ask about recovery, work, driving and support at home before a planned procedure. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Fever, jaundice, severe persistent pain or repeated vomiting requires urgent assessment, even if surgery is scheduled. After a procedure, follow instructions for worsening pain, fever, jaundice or wound problems rather than assuming all symptoms are normal recovery."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira asks whether surgery is likely to improve her specific attacks and understands that unrelated bloating may remain afterward."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben learns that an endoscopic procedure clears a duct stone and asks whether separate gallbladder treatment is still needed to reduce future problems."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

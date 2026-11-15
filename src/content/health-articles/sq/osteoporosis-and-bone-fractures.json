@@ -1,0 +1,51 @@
+{
+  "title": "Osteoporoza dhe frakturat e kockave",
+  "intro": "Osteoporoza është një gjendje ku kockat humbasin densitetin e forcën, kështu që thyhen më lehtë, shpesh pas një rënieje të vogël. Zhvillohet në heshtje gjatë vitesh dhe është më e zakonshme te gratë pas menopauzës dhe te të moshuarit. Ushtrimet, ushqimi e barnat mund ta ulin rrezikun e frakturave.",
+  "sections": [
+    {
+      "heading": "Shkaqet dhe faktorët e rrezikut",
+      "paragraphs": [
+        "Kocka rindërtohet vazhdimisht dhe me moshën shkatërrimi tejkalon formimin. Rreziku rritet me menopauzën, historinë familjare, peshën e ulët, duhanin, pirjen e rëndë të alkoolit, kalciumin e vitaminën D të ulët, pak aktivitet fizik, përdorimin afatgjatë të kortikosteroideve dhe sëmundje si artriti reumatoid, sëmundja e tiroides ose sëmundja celiake."
+      ]
+    },
+    {
+      "heading": "Frakturat",
+      "paragraphs": [
+        "Frakturat tipike ndodhin në shtyllën kurrizore, ijë e kyç dore. Frakturat e shtyllës mund të shkaktojnë dhimbje të papritur shpine, humbje të lartësisë ose qëndrim të kërrusur, megjithëse disa nuk shkaktojnë dhimbje. Një frakturë e ijës kërkon zakonisht kirurgji dhe mund të ketë pasoja serioze për pavarësinë, prandaj parandalimi ka rëndësi."
+      ]
+    },
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Mjekët marrin parasysh faktorët e rrezikut dhe mund ta masin densitetin e kockës me një skanim të veçantë me rreze X. Mjete të veçanta e vlerësojnë rrezikun dhjetëvjeçar të frakturës bazuar në moshën, seksin, peshën, frakturat e mëparshme e faktorë të tjerë. Analizat e gjakut kërkojnë shkaqet. Jo çdo person me densitet të ulët ka nevojë për ilaç, prandaj vlerësimi i rrezikut udhëheq vendimet."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Kalciumi e vitamina D e mjaftueshme, ushtrimet me peshë e ekuilibri, lënia e duhanit e kufizimi i alkoolit janë themeli. Barnat përfshijnë bisfosfonatet, që e ngadalësojnë humbjen e kockës dhe barna të tjera që e forcojnë kockën, të dhëna si tableta ose injeksione. Trajtimi është zakonisht afatgjatë dhe kërkon kontrolle, përfshirë kujdesin dentar para disa barnave. Efektet anësore ndryshojnë midis barnave dhe duhen diskutuar."
+      ]
+    },
+    {
+      "heading": "Parandalimi i rënieve",
+      "paragraphs": [
+        "Zvogëlimi i rënieve është po aq i rëndësishëm sa forcimi i kockave. Hiqni rrezikun e pengesave, përdorni ndriçim të mirë e këpucë jo-rrëshqitëse, kontrolloni shikimin, rishikoni barnat që shkaktojnë marramendje dhe stërvituni për ekuilibër si tai chi. Mbrojtësit e ijëve mund të ndihmojnë në shtëpitë e kujdesit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rishikimi i rrezikut tuaj",
+      "text": "Imagjinoni që thyet kyçin e dorës pas një rënieje të vogël në moshën gjashtëdhjetë vjeç. Mund ta pyesni mjekun për një skanim të densitetit të kockave, një vlerësim rreziku dhe çfarë hapash mund të parandalojnë një frakturë tjetër."
+    },
+    {
+      "title": "Bërja e shtëpisë më të sigurt",
+      "text": "Supozoni që prindi juaj i moshuar jeton vetëm. Mund të ndihmoni të hiqen qilimat e lirshëm, të shtohen kapëse dhe drita nate dhe të organizoni një rishikim të barnave."
+    }
+  ],
+  "questions": [
+    "Cili është rreziku im për frakturë dhe a kam nevojë për trajtim?",
+    "Cili ilaç është i përshtatshëm, sa kohë do ta marr dhe cilat janë efektet anësore?",
+    "Cilat ushtrime e ndryshime në shtëpi do ta ulnin rrezikun tim të rënies?"
+  ]
+}

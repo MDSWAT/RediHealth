@@ -1,0 +1,51 @@
+{
+  "title": "What is an electrocardiogram (ECG)?",
+  "intro": "An electrocardiogram, known as an ECG or EKG, is a quick and painless test that records the electrical activity of the heart. It shows heart rate and rhythm and can help detect heart attack, rhythm disorders and strain on the heart. It is one of the most common heart tests.",
+  "sections": [
+    {
+      "heading": "Why it is done",
+      "paragraphs": [
+        "An ECG is used for chest pain, palpitations, dizziness, fainting and breathlessness. It also helps to monitor known heart disease, check the effect of medicines and screen before surgery. It can show irregular rhythms such as atrial fibrillation, signs of a past or current heart attack and thickened heart muscle."
+      ]
+    },
+    {
+      "heading": "How it works",
+      "paragraphs": [
+        "With each heartbeat, an electrical signal spreads through the heart and makes it contract. Sensors on the skin pick up these tiny signals and a machine draws them as waves. Doctors read the shape and timing of the waves to judge how the heart is working. The test does not send electricity into the body."
+      ]
+    },
+    {
+      "heading": "The test",
+      "paragraphs": [
+        "You lie down and ten sticky electrodes are placed on the chest, arms and legs. Hair may need to be shaved. You lie still and breathe normally for a minute or so. The recording takes only a few minutes. It is painless, but the sticky pads may pull when removed."
+      ]
+    },
+    {
+      "heading": "Other types",
+      "paragraphs": [
+        "A twenty-four-hour or longer monitor, or an event recorder, is worn at home to catch rhythms that come and go. An exercise ECG is recorded on a treadmill or bike to see how the heart responds to exertion. Some watches and devices record a single-lead ECG, which can detect some rhythms but is not a replacement for medical tests."
+      ]
+    },
+    {
+      "heading": "Understanding results",
+      "paragraphs": [
+        "A normal ECG does not exclude all heart problems, because abnormalities may come and go. Doctors interpret it together with symptoms and other tests. Ask what the result means and whether further testing is needed."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Taking a record",
+      "text": "Imagine you feel palpitations. You could note when they happen and ask whether a long-term monitor is useful."
+    },
+    {
+      "title": "Discussing a watch reading",
+      "text": "Suppose your smartwatch shows an irregular rhythm. You might see your doctor for a proper ECG."
+    }
+  ],
+  "questions": [
+    "Is an ECG enough, or do I need further heart tests?",
+    "What does the result show?",
+    "Should I wear a monitor to catch rhythm problems?"
+  ]
+}

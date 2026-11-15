@@ -1,0 +1,51 @@
+{
+  "title": "Cunoștințe medicale actualizate: cum sunt evaluate",
+  "intro": "Cunoștințele medicale se schimbă continuu. Pentru ca informațiile de sănătate să rămână fiabile, producătorii lor trebuie să urmărească cercetarea, să-i judece calitatea și să-și actualizeze textele. Înțelegerea modului în care se face acest lucru vă ajută să vedeți cum se creează informațiile actuale și de ce recomandările se schimbă uneori.",
+  "sections": [
+    {
+      "heading": "Urmărirea cercetărilor noi",
+      "paragraphs": [
+        "În fiecare săptămână se publică mii de studii. Echipele monitorizează reviste, registre de studii, ghiduri și avertismente de siguranță pentru descoperiri noi în subiectele pe care le acoperă. Ele decid dacă dovezile noi sunt relevante, suficient de puternice și susceptibile să schimbe concluziile existente."
+      ]
+    },
+    {
+      "heading": "Judecarea calității dovezilor",
+      "paragraphs": [
+        "Nu orice studiu este la fel de fiabil. Evaluatorii analizează designul, dimensiunea, erorile sistematice, consecvența și dacă rezultatele contează pentru pacienți. Un singur studiu mic schimbă rar recomandările, în timp ce un studiu mare bine conceput sau o analiză sistematică ce combină mai multe studii o pot face. Dovezile sunt gradate, ceea ce exprimă cât de încrezători putem fi în rezultate."
+      ]
+    },
+    {
+      "heading": "Actualizarea informațiilor",
+      "paragraphs": [
+        "Când dovezile schimbă tabloul, textele sunt revizuite, iar data revizuirii este înregistrată. Modificările minore pot fi făcute la ciclurile regulate de revizuire, iar informațiile urgente de siguranță sunt actualizate rapid. Uneori dovezile noi confirmă sfatul actual și nu se schimbă nimic. Furnizorii buni explică ce s-a schimbat și de ce."
+      ]
+    },
+    {
+      "heading": "De ce se schimbă sfaturile",
+      "paragraphs": [
+        "Recomandările se pot schimba pentru că studii noi arată că un tratament este mai bun sau mai rău decât se credea, pentru că riscurile devin evidente doar după o utilizare largă sau pentru că se dezvoltă teste mai bune. Schimbarea sfaturilor este semn că știința funcționează, nu neapărat de eșec. Unele afirmații raportate prima dată în presă nu sunt confirmate de cercetările ulterioare."
+      ]
+    },
+    {
+      "heading": "Ce puteți face",
+      "paragraphs": [
+        "Verificați data informațiilor pe care le folosiți, preferați sursele care arată cum sunt actualizate și întrebați medicul despre noutățile din afecțiunea dumneavoastră. Nu opriți și nu schimbați tratamentul din cauza unui singur raport, ci discutați despre el cu echipa medicală."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Observarea unei schimbări",
+      "text": "Imaginați-vă că un medicament pe care îl luați este menționat în presă ca riscant. Ați putea verifica o sursă fiabilă și ați putea întreba medicul sau farmacistul înainte de orice schimbare."
+    },
+    {
+      "title": "Căutarea datelor",
+      "text": "Presupuneți că citiți un sfat despre o vaccinare. Ați putea verifica când a fost actualizat ultima oară textul și l-ați putea compara cu recomandările naționale."
+    }
+  ],
+  "questions": [
+    "S-a schimbat recent recomandarea pentru afecțiunea mea?",
+    "Cât de fiabile sunt dovezile noi?",
+    "Ar trebui să se schimbe ceva în tratamentul meu în lumina lor?"
+  ]
+}

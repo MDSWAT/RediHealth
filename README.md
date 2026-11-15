@@ -431,6 +431,17 @@ npm run health:assemble -- --allow-partial
 npm test
 ```
 
+English-only articles: all 488 indexed topics now have an English article. Where only
+`en/{id}.json` exists, register it with `--english-only` so it is published as available in
+English (`availableLanguages: ["en"]`). Users of other languages see the English text with a
+notice that the translation is not yet available. To add a translation later, write
+`{lang}/{id}.json` in the same schema and register the id again without `--english-only`:
+
+```bash
+npm run health:register-direct -- --english-only article-id another-article-id
+npm run health:assemble -- --allow-partial
+```
+
 The full inventory is still the required scope; partial assembly only updates the accurately
 labelled preview. Registration checks structure, examples, questions and numeric consistency.
 It does not certify medical accuracy or native fluency. Independent review remains pending.

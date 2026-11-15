@@ -1,0 +1,52 @@
+{
+  "title": "Pancreas: digestione e glicemia",
+  "intro": "Il pancreas si trova dietro lo stomaco e ha funzioni digestive e ormonali. Usano vie di uscita diverse. Un problema in una funzione non significa automaticamente fallimento completo dell'altra.",
+  "sections": [
+    {
+      "heading": "Enzimi",
+      "paragraphs": [
+        "Le cellule esocrine inviano enzimi nei dotti verso l'intestino tenue. Scompongono grassi, proteine e carboidrati; normalmente non entrano nel sangue per digerire il cibo."
+      ]
+    },
+    {
+      "heading": "Neutralizzare l'acido",
+      "paragraphs": [
+        "Il liquido pancreatico contiene bicarbonato che neutralizza l'acido gastrico nell'intestino. Favorisce il lavoro degli enzimi e protegge il rivestimento."
+      ]
+    },
+    {
+      "heading": "Ormoni",
+      "paragraphs": [
+        "Le cellule delle isole rilasciano insulina e glucagone nel sangue. L'insulina favorisce ingresso e riserva di glucosio; il glucagone aiuta il fegato a rilasciarlo al bisogno. Collaborano con altri segnali."
+      ]
+    },
+    {
+      "heading": "Problemi",
+      "paragraphs": [
+        "Infiammazione, pochi enzimi e diabete sono distinti ma talvolta collegati. Feci grasse, dimagrimento o sete persistente richiedono visita, non enzimi autonomi o divieto universale di zucchero."
+      ]
+    },
+    {
+      "heading": "Sicurezza",
+      "paragraphs": [
+        "Dolore superiore grave persistente, soprattutto con vomito o collasso, richiede urgenza. Con diabete seguite i piani individuali per malattia e ipoglicemia; non fermate l'insulina necessaria per un pasto saltato senza consiglio.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira chiede perché gli enzimi prescritti accompagnano i pasti. Capisce il ruolo digestivo, diverso dagli ormoni nel sangue."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha sete e dimagrisce inaspettatamente. Chiede test glicemici, non diagnosi pancreatica da un disegno."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Frymëmarrjet shpëtuese gjatë reanimimit të të rriturit",
+  "intro": "Ky udhëzues vlen për një të rritur pa reagim që nuk merr frymë normalisht. Telefononi menjëherë 112 për personin pa reagim, përdorni altoparlantin dhe ndiqni operatorin. Mos vononi reanimimin për lexim; trajnimi praktik rrit besimin.",
+  "sections": [
+    {
+      "heading": "Njihni urgjencën dhe telefononi",
+      "paragraphs": [
+        "Siguroni vendin, flisni me personin dhe kontrolloni reagimin. Ndërsa thirret urgjenca kontrolloni frymëmarrjen. Gulçimet e rralla nuk janë normale. Në mungesë reagimi me frymëmarrje jonormale filloni reanimimin dhe kërkoni defibrilator automatik."
+      ]
+    },
+    {
+      "heading": "Filloni shtypjet për të rriturin",
+      "paragraphs": [
+        "Vendosni bazën e njërës dorë në qendër të gjoksit dhe tjetrën sipër. Mbani krahët drejt, shtypni 5–6 cm me 100–120 shtypje në minutë dhe lejoni kthimin e plotë, me pak ndërprerje."
+      ]
+    },
+    {
+      "heading": "Jepni fryma nëse jeni trajnuar",
+      "paragraphs": [
+        "Nëse jeni trajnuar dhe mundeni, alternoni 30 shtypje me 2 frymëmarrje. Hapni rrugën me anim koke e ngritje mjekre, mbyllni hundën, mbuloni gojën dhe fryni butësisht rreth 1 sekondë vetëm sa të ngrihet gjoksi. Lejojeni të ulet para frymës tjetër."
+      ]
+    },
+    {
+      "heading": "Minimizoni ndërprerjet",
+      "paragraphs": [
+        "Mbajeni ndërprerjen nën 10 sekonda. Nëse frymat dështojnë, mos vazhdoni gjatë: kthehuni te shtypjet dhe ndiqni operatorin. Nëse nuk mundeni ose nuk doni fryma, vazhdoni shtypjet; ndihma e shpejtë është më mirë se pritja."
+      ]
+    },
+    {
+      "heading": "Përdorni defibrilatorin dhe vazhdoni",
+      "paragraphs": [
+        "Përdorni defibrilatorin sapo vjen dhe ndiqni udhëzimet; askush nuk prek gjatë analizës ose goditjes. Vazhdoni deri sa marrin përsipër profesionistët, kthehet frymëmarrja normale, vendi bëhet i pasigurt ose nuk mundeni më. Fëmijët, foshnjat dhe mbytja kërkojnë udhëzime të veçanta, sidomos për frymat."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira thërret urgjencën me altoparlant ndërsa dikush sjell defibrilatorin. Ndjek operatorin pa humbur kohë duke kërkuar pulsin."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni nuk mund të japë fryma. Vazhdon shtypjet sipas udhëzimeve në vend të ndalimit të gjithë ndihmës."
+    }
+  ],
+  "questions": [
+    "Ku mund të ushtroj reanimimin dhe defibrilatorin me instruktor?",
+    "Si ndryshojnë udhëzimet për fëmijët ose mbytjen?",
+    "Si mund të marr mbështetje pas ndihmës në urgjencë?"
+  ]
+}

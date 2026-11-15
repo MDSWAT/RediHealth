@@ -1,0 +1,51 @@
+{
+  "title": "Cefalea tensiva, emicrania e cefalea a grappolo",
+  "intro": "I tipi si sovrappongono: sede o intensità non bastano alla diagnosi. Tensiva ed emicrania sono comuni; a grappolo meno, ma molto invalidante. Un andamento nuovo o diverso richiede valutazione.",
+  "sections": [
+    {
+      "heading": "Tensiva",
+      "paragraphs": [
+        "Spesso pressione o stretta bilaterale, lieve o moderata, non molto aggravata dall’attività ordinaria. Vomito intenso è meno tipico. Serve aiuto se frequente o limitante."
+      ]
+    },
+    {
+      "heading": "Emicrania",
+      "paragraphs": [
+        "Spesso moderata o forte, talvolta pulsante e peggiore col movimento, con nausea o sensibilità a luce e suoni. Alcuni hanno aura, molti no. Nuovi sintomi neurologici non sono automaticamente aura. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "A grappolo",
+      "paragraphs": [
+        "Dolore intensissimo unilaterale vicino all’occhio con lacrime, sintomi nasali e agitazione in periodi. Diagnosi rapida conta perché la cura differisce dai comuni analgesici. Anche un occhio rosso dolente ha altre urgenze. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Piano",
+      "paragraphs": [
+        "Annotare tempi, durata, sintomi e giorni di farmaci. Cure acute e prevenzione possono servire; analgesici frequenti mantengono cefalea. Non prendere farmaci altrui per semplice somiglianza. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Allarmi",
+      "paragraphs": [
+        "Dolore improvviso massimo, debolezza, confusione, febbre con collo rigido, perdita visiva o trauma importante richiedono urgenza. Nuova cefalea forte in gravidanza o dopo parto va valutata anche con storia emicranica."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha nausea e sensibilità alla luce. Registra il quadro e chiede visita anziché presumere sempre tensione."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha forte dolore perioculare e lacrime. Cerca valutazione senza ripetere compresse prive di diagnosi."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

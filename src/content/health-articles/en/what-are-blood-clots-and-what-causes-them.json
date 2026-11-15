@@ -1,0 +1,51 @@
+{
+  "title": "What are blood clots and what causes them?",
+  "intro": "A blood clot is a clump of blood that has turned from liquid to a semi-solid state. Clotting is a vital protective process that stops bleeding after injury. Problems occur when clots form inside blood vessels without need and block blood flow, which can lead to heart attack, stroke or thrombosis.",
+  "sections": [
+    {
+      "heading": "How clotting works",
+      "paragraphs": [
+        "When a blood vessel is injured, platelets gather at the site and proteins in the blood called clotting factors form a mesh of fibrin that seals the wound. Afterwards the body dissolves the clot as the vessel heals. This balance between clotting and breakdown keeps blood flowing while preventing bleeding."
+      ]
+    },
+    {
+      "heading": "Harmful clots",
+      "paragraphs": [
+        "Clots in arteries often form on fatty deposits that have cracked, and can block blood flow to the heart, causing a heart attack, or to the brain, causing a stroke. Clots in veins, usually in the legs, are called deep vein thrombosis, and can travel to the lungs as pulmonary embolism. Clots can also form in the heart's chambers in atrial fibrillation."
+      ]
+    },
+    {
+      "heading": "What increases the risk",
+      "paragraphs": [
+        "Risk rises with immobility, long travel, surgery, injury, pregnancy and the weeks after birth, oestrogen-containing medicines, cancer and its treatment, obesity, smoking, older age, dehydration, previous clots, family history and inherited clotting disorders. Several factors often combine."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "A clot in a leg vein causes swelling, pain, warmth and redness, usually in one leg. A lung clot causes sudden breathlessness, chest pain and a rapid pulse. Heart attack and stroke have their own warning signs, such as chest pain or weakness on one side of the body. Call emergency services immediately if these occur."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Stay active, avoid long periods of sitting, drink enough fluid, maintain a healthy weight, do not smoke, and control blood pressure, cholesterol and diabetes. After surgery or during hospital stays, preventive measures such as early walking, compression and blood thinners are used. Discuss risks with your doctor if you take hormones or have a family history of clots."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Travelling safely",
+      "text": "Imagine you take a long flight. You could walk the aisle regularly, do calf exercises, drink water and ask your doctor about compression stockings."
+    },
+    {
+      "title": "Recognising symptoms",
+      "text": "Suppose one calf becomes swollen and painful. You might seek medical assessment the same day."
+    }
+  ],
+  "questions": [
+    "Do I have risk factors for clots, and what can I do about them?",
+    "Should my family be tested for clotting disorders?",
+    "Which symptoms require emergency care?"
+  ]
+}

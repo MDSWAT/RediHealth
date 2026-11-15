@@ -1,0 +1,51 @@
+{
+  "title": "Nemelanomski rak kože",
+  "intro": "Bazocelularni i planocelularni karcinom najčešći su rakovi u svijetu. Obično se razvijaju na koži izloženoj suncu i rastu sporo. Općenito su izlječivi kad se rano liječe i rijetko se šire, iako je veća vjerojatnost da će se planocelularni rak proširiti nego bazocelularni.",
+  "sections": [
+    {
+      "heading": "Uzroci i rizik",
+      "paragraphs": [
+        "Dugotrajna izloženost ultraljubičastom zračenju sunca i solarija glavni je uzrok. Rizik je veći uz svijetlu kožu, stariju dob, povijest opeklina, oslabljen imunitet kao nakon transplantacije organa i prethodni rak kože. Hrapave, ljuskave mrlje zvane aktinične keratoze mogu napredovati u planocelularni rak."
+      ]
+    },
+    {
+      "heading": "Kako izgleda",
+      "paragraphs": [
+        "Bazocelularni rak često izgleda kao sedefasta ili voštana kvržica, ravna mrlja nalik na ožiljak ili rana koja krvari i ne zacjeljuje. Planocelularni rak pojavljuje se kao ljuskava crvena mrlja, tvrda kvržica ili ulkus s korom. Svaku novu pjegu koja raste, krvari ili ne zacijeli unutar mjesec ili dva treba pregledati."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i liječenje",
+      "paragraphs": [
+        "Liječnik pregledava kožu i obično uklanja leziju ili mali uzorak za pregled pod mikroskopom. Većina tumora uklanja se kirurški s rubom zdrave kože. Površinski tumori mogu se liječiti struganjem, zamrzavanjem, kremama, fotodinamskom terapijom ili radioterapijom. Specijalizirana mikrografska kirurgija koristi se za područja visokog rizika kao što je lice."
+      ]
+    },
+    {
+      "heading": "Praćenje i prevencija",
+      "paragraphs": [
+        "Jedan rak kože povećava rizik od drugih pa se savjetuju redoviti pregledi kože. Zaštitite kožu od sunca hladom, odjećom, šeširima i kremom za sunčanje, izbjegavajte solarije i redovito pregledavajte kožu."
+      ]
+    },
+    {
+      "heading": "Život s poviješću raka kože",
+      "paragraphs": [
+        "Mnogi se ljudi osjećaju tjeskobno nakon dijagnoze. Učenje što tražiti, držanje termina i zaštita kože daju osjećaj kontrole. Recite rođacima jer članovi obitelji mogu dijeliti čimbenike rizika kao što je svijetla koža."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Primjećivanje pjege",
+      "text": "Zamislite da imate ranu na nosu koja krvari i ne zacjeljuje. Mogli biste odmah naručiti pregled kože i donijeti fotografiju koja pokazuje kada ste je prvi put primijetili."
+    },
+    {
+      "title": "Planiranje zaštite",
+      "text": "Pretpostavite da radite na otvorenom. Mogli biste nositi šešir širokog oboda i duge rukave, nanositi kremu za sunčanje na izloženu kožu i imati godišnji pregled kože."
+    }
+  ],
+  "questions": [
+    "Koju vrstu raka kože imam i koje liječenje joj odgovara?",
+    "Koliko će se često poslije pregledavati moja koža?",
+    "Što mogu učiniti da zaštitim kožu ubuduće?"
+  ]
+}

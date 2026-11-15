@@ -1,0 +1,51 @@
+{
+  "title": "Kako zglobovi pokreću i nose opterećenje",
+  "intro": "Zglobovi spajaju kosti, vode pokret i teret. Građa se razlikuje: rame se široko kreće, koljeno savija uz kontroliranu rotaciju. Zvuk nije automatski oštećenje.",
+  "sections": [
+    {
+      "heading": "Hrskavica i tekućina",
+      "paragraphs": [
+        "Mnogi imaju glatku hrskavicu i sinovijalnu tekućinu. Smanjuju trenje i dijele tlak. Hrskavica se ograničeno popravlja, ne izrasta nakon svake ozljede."
+      ]
+    },
+    {
+      "heading": "Čahura i ligamenti",
+      "paragraphs": [
+        "Čahura zatvara, ligamenti ograničavaju neželjen pokret. Mišići i tetive stabiliziraju. Istezanje daleko preko normale može ozlijediti i uz fleksibilnost."
+      ]
+    },
+    {
+      "heading": "Koordinacija",
+      "paragraphs": [
+        "Živci pomažu položaju i mišićima. Neki imaju meniske za raspodjelu tereta. Bol, otok i slabost remete; anatomija sama ne nalazi uzrok."
+      ]
+    },
+    {
+      "heading": "Podrška",
+      "paragraphs": [
+        "Podnošljiva aktivnost čuva funkciju i snagu. Povećavajte postupno uz oporavak. Dug potpuni odmor smanjuje sposobnost, ali ozljeda ili upala traže zaštitu i osobni plan."
+      ]
+    },
+    {
+      "heading": "Pregled",
+      "paragraphs": [
+        "Trajna bol, otok ili gubitak funkcije trebaju procjenu. Vruć zglob s vrućicom, deformacija ili nemoguće oslanjanje traže hitnost. Ne forsirajte blokiran zglob ni svaku bol zovite trošenjem. Prije pregleda zapišite kada je simptom počeo, što ga ublažava ili pogoršava i kako utječe na uobičajene aktivnosti. Ponesite prethodne nalaze ako ih imate. Zamolite stručnjaka da objašnjenje poveže s vašim nalazima: opći opis sam po sebi ne postavlja dijagnozu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira postupno hoda više i prati funkciju bez uklanjanja svakog bezazlenog klika."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arbenovo koljeno postane vruće i otečeno uz vrućicu. Traži hitnost umjesto obične upale mišića."
+    }
+  ],
+  "questions": [
+    "Koji bi koraci bili jasniji uz dijagram?",
+    "Što objašnjenje pokazuje i što ne predviđa?",
+    "Treba li moja konkretna briga stručnu procjenu?"
+  ]
+}

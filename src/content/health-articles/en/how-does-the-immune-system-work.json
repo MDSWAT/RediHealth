@@ -1,0 +1,52 @@
+{
+  "title": "How immune defenses recognize and respond",
+  "intro": "The immune system is a network of barriers, cells, organs and proteins, not a single strength setting. It must respond to threats while limiting injury to the body. More inflammation is not automatically better protection.",
+  "sections": [
+    {
+      "heading": "First defenses",
+      "paragraphs": [
+        "Skin and mucous membranes limit entry. Innate defenses respond quickly through cells and chemical signals; inflammation recruits help but can also cause swelling and discomfort."
+      ]
+    },
+    {
+      "heading": "Targeted responses",
+      "paragraphs": [
+        "B and T lymphocytes recognize particular targets. Antibodies can bind targets, while different T cells coordinate responses or attack infected cells. These roles work together rather than compete."
+      ]
+    },
+    {
+      "heading": "Memory",
+      "paragraphs": [
+        "After some exposures, memory cells support a faster later response. Vaccines build useful protection without requiring the full disease, but protection varies and is not a guarantee against every infection."
+      ]
+    },
+    {
+      "heading": "When regulation fails",
+      "paragraphs": [
+        "Allergy responds to usually harmless substances; autoimmunity targets the body. Immunodeficiency reduces particular defenses. These are different problems, so a generic immune-boosting supplement is not a universal treatment."
+      ]
+    },
+    {
+      "heading": "Practical care",
+      "paragraphs": [
+        "Follow recommended vaccination and hygiene advice, especially with immune-suppressing treatment. Recurrent unusual infections deserve review. Serious illness or fever during certain treatments requires the team's urgent plan, not waiting for supplements.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira asks whether more inflammation means stronger immunity. Her clinician explains that controlling an overactive response can protect tissue."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben checks his vaccination plan before immune-suppressing treatment rather than choosing a supplement advertised as a universal boost."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa sono le linee guida di pratica clinica",
+  "intro": "Le linee guida di pratica clinica sono documenti che riassumono le migliori prove disponibili e danno raccomandazioni su come prevenire, diagnosticare e trattare le condizioni di salute. Aiutano medici e pazienti a prendere decisioni e mirano a ridurre le differenze ingiustificate nelle cure. Capire che cosa sono e che cosa non sono aiuta a usarle con saggezza.",
+  "sections": [
+    {
+      "heading": "Che cosa contengono",
+      "paragraphs": [
+        "Le linee guida sono sviluppate da gruppi di esperti, società mediche o autorità sanitarie. Esaminano le prove della ricerca e indicano raccomandazioni come quali esami usare, quali trattamenti offrire e quando inviare a uno specialista. Molte classificano la forza di una raccomandazione e la qualità delle prove che la sostengono. Alcune versioni sono scritte per i pazienti."
+      ]
+    },
+    {
+      "heading": "Come si fanno buone linee guida",
+      "paragraphs": [
+        "Le linee guida attendibili usano revisioni sistematiche delle prove, includono una varietà di esperti e spesso rappresentanti dei pazienti, dichiarano i conflitti di interesse, descrivono i metodi e sono aggiornate regolarmente. Dove mancano prove lo dicono e si basano sul consenso degli esperti. Le linee guida finanziate da un'azienda con un interesse nell'esito meritano un esame in più."
+      ]
+    },
+    {
+      "heading": "Come le usano i medici",
+      "paragraphs": [
+        "Le linee guida sono guide, non regole. Descrivono ciò che è appropriato per la maggior parte dei pazienti. I medici le adattano al singolo, tenendo conto di altre malattie, età, preferenze e circostanze. Allontanarsi dalle linee guida può essere giustificato ma va spiegato. Le linee guida possono differire tra paesi od organizzazioni."
+      ]
+    },
+    {
+      "heading": "Limiti",
+      "paragraphs": [
+        "Molte linee guida si basano su studi di persone che non somigliano ai pazienti con più condizioni. Possono diventare obsolete e le raccomandazioni per una malattia possono essere in conflitto con un'altra in una persona con più malattie. Possono trascurare ciò che conta per i singoli. I pazienti non devono sentire che una linea guida sostituisce una conversazione."
+      ]
+    },
+    {
+      "heading": "Come puoi usarle",
+      "paragraphs": [
+        "Chiedi al medico se esiste una linea guida per la tua condizione e chiedi una versione per i pazienti. Controlla la data e l'organizzazione che l'ha emessa. Usa il contenuto per preparare domande e capire perché certi esami o trattamenti vengono proposti. Discuti con il medico qualsiasi differenza tra le indicazioni e il tuo piano di cura."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trovare una linea guida",
+      "text": "Immagina di aver appena ricevuto una diagnosi di asma. Potresti chiedere al medico se esiste una versione della linea guida per i pazienti e guardare che cosa raccomanda."
+    },
+    {
+      "title": "Discutere le differenze",
+      "text": "Supponi che il tuo trattamento sia diverso da ciò che leggi. Potresti chiedere al medico perché e se le tue circostanze lo spiegano."
+    }
+  ],
+  "questions": [
+    "Esiste una linea guida per la mia condizione e il mio trattamento la segue?",
+    "Perché il mio piano è diverso da ciò che dice la linea guida?",
+    "Quanto è aggiornata la linea guida?"
+  ]
+}

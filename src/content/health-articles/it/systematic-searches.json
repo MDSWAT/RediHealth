@@ -1,0 +1,51 @@
+{
+  "title": "Ricerche sistematiche delle prove",
+  "intro": "Per giudicare se un trattamento funziona non basta guardare un solo studio o gli studi che capita siano facili da trovare. Una ricerca sistematica cerca tutta la ricerca rilevante in modo pianificato e ripetibile. Sapere come funziona aiuta a capire perché alcune sintesi sono più affidabili di altre.",
+  "sections": [
+    {
+      "heading": "Perché cercare in modo sistematico conta",
+      "paragraphs": [
+        "Gli studi con risultati positivi hanno più probabilità di essere pubblicati e notati di quelli con risultati negativi. Un revisore che sceglie gli studi in modo casuale può ritrovarsi con un quadro distorto. Una ricerca sistematica mira a evitarlo individuando quante più prove rilevanti possibile, indipendentemente dai risultati."
+      ]
+    },
+    {
+      "heading": "Pianificare la domanda",
+      "paragraphs": [
+        "Il primo passo è una domanda chiara, per esempio quali persone interessano, quale trattamento viene confrontato con che cosa e quali esiti contano. I ricercatori scrivono in anticipo quali studi saranno inclusi ed esclusi, come tipo di studio, popolazione e periodo, così che le decisioni non siano influenzate dai risultati."
+      ]
+    },
+    {
+      "heading": "Cercare in molte fonti",
+      "paragraphs": [
+        "Chi cerca usa diverse banche dati della letteratura medica, combinando molti termini di ricerca e sinonimi. Controlla anche i registri degli studi per studi non pubblicati o in corso, gli elenchi bibliografici degli articoli chiave, gli atti dei congressi e contatta esperti o produttori. La strategia di ricerca è documentata così che altri possano ripeterla."
+      ]
+    },
+    {
+      "heading": "Selezionare e controllare gli studi",
+      "paragraphs": [
+        "Due persone esaminano in modo indipendente titoli e riassunti, poi i testi completi, rispetto ai criteri di inclusione. I disaccordi si risolvono discutendo. Il numero di studi trovati ed esclusi e i motivi vengono riportati, spesso in un diagramma di flusso. Poi ogni studio incluso viene valutato per qualità e rischio di distorsione."
+      ]
+    },
+    {
+      "heading": "Limiti e buona pratica",
+      "paragraphs": [
+        "Nessuna ricerca trova tutto e alcune prove restano non pubblicate. Le buone revisioni sono trasparenti su come hanno cercato e su dove restano lacune. Quando leggi una sintesi della ricerca cerca una descrizione di come gli studi sono stati individuati, le date della ricerca e se la revisione è aggiornata."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Giudicare una revisione",
+      "text": "Immagina che un sito di salute affermi che la ricerca dimostra che un trattamento funziona. Potresti controllare se l'affermazione si basa su una revisione sistematica e su come sono stati trovati gli studi."
+    },
+    {
+      "title": "Chiedere al medico",
+      "text": "Supponi di leggere studi contrastanti. Potresti chiedere al medico se una revisione sistematica o una linea guida abbia riassunto tutta la ricerca sulla questione."
+    }
+  ],
+  "questions": [
+    "Questa affermazione si basa su tutti gli studi rilevanti o solo su alcuni?",
+    "Esiste una revisione sistematica recente su questa questione?",
+    "Quanto sono aggiornate queste prove?"
+  ]
+}

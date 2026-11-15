@@ -1,0 +1,52 @@
+{
+  "title": "Kako živci povezuju osjet i radnju",
+  "intro": "Živčani sustav prima informacije, obrađuje ih i koordinira odgovor. Uključuje svjestan pokret i automatsku regulaciju. Utrnulost, slabost i bol nastaju na različitim razinama; karta simptoma nije dijagnoza.",
+  "sections": [
+    {
+      "heading": "Središnji i periferni",
+      "paragraphs": [
+        "Mozak i leđna moždina čine središnji sustav. Periferni živci povezuju kožu, mišiće i organe; ozljeda živca razlikuje se od ozljede mozga ili moždine."
+      ]
+    },
+    {
+      "heading": "Poruke",
+      "paragraphs": [
+        "Neuroni koriste električne impulse i kemijske glasnike. Mijelin olakšava provođenje mnogih vlakana. Važni su i potporne stanice i opskrba krvlju."
+      ]
+    },
+    {
+      "heading": "Radnje i refleksi",
+      "paragraphs": [
+        "Motorički signali aktiviraju mišiće, osjetni opisuju stanje. Neki refleksi prolaze kroz moždinu prije svijesti, pomažući odmaku od opasnosti bez planiranja."
+      ]
+    },
+    {
+      "heading": "Automatska kontrola",
+      "paragraphs": [
+        "Autonomni putovi reguliraju puls, probavu i znojenje. Simpatička i parasimpatička aktivnost uravnotežuju potrebe; simptomi ne dokazuju stalno uključen jedan sustav."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Pregled provjerava snagu, osjet i reflekse, zatim ciljane testove. Nagla slabost ili smetnje govora, ili novi problemi mokrenja uz utrnulost međunožja i leđne simptome traže hitnost.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira opisuje početak utrnulosti i teške zadatke, ne postavlja dijagnozu iz internetskog crteža."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben dobije slabost nogu i teško mokri uz novu bol leđa. Traži hitnost umjesto forsiranja istezanja."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

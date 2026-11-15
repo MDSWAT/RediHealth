@@ -1,0 +1,51 @@
+{
+  "title": "Sëmundja Lyme",
+  "intro": "Sëmundja Lyme është një infeksion bakterial që transmetohet përmes pickimeve të rriqrave. Është e zakonshme në pyje e livadhe në Evropë dhe Amerikën e Veriut. Infeksioni i hershëm trajtohet me sukses me antibiotikë, prandaj njohja e skuqjes tipike të lëkurës dhe kërkimi i shpejtë i trajtimit kanë rëndësi.",
+  "sections": [
+    {
+      "heading": "Si infektoheni",
+      "paragraphs": [
+        "Bakteret, të quajtura Borrelia, jetojnë në rriqrat, që i marrin nga kafshët. Zakonisht transmetohen pasi rriqra ka qëndruar e ngjitur për shumë orë, kështu që gjetja dhe heqja e shpejtë e një rriqre e ul rrezikun. Jo çdo rriqër bart baktere dhe jo çdo pickim çon në infeksion."
+      ]
+    },
+    {
+      "heading": "Shenjat e hershme",
+      "paragraphs": [
+        "Një unazë e kuqe që zgjerohet, e quajtur eritemë migrans, shfaqet shpesh ditë deri javë pas pickimit dhe rritet gjatë ditësh, ndonjëherë duke u pastruar në qendër. Zakonisht është pa dhimbje dhe nuk kruhet. Mund të ndodhin simptoma si të gripit, si ethe, lodhje, dhimbje koke e dhimbje muskujsh. Jo të gjithë e vënë re skuqjen ose kujtojnë një pickim."
+      ]
+    },
+    {
+      "heading": "Komplikimet e mëvonshme",
+      "paragraphs": [
+        "Nëse nuk trajtohet, infeksioni mund të përhapet në nyje, sistemin nervor ose zemrën javë deri muaj më vonë. Kjo mund të shkaktojë enjtje të nyjeve, veçanërisht të gjurit, dobësi të fytyrës, dhimbje nervore, meningjit ose probleme të ritmit të zemrës. Këto komplikime trajtohen me antibiotikë, por shpesh kërkojnë kurë më të gjatë."
+      ]
+    },
+    {
+      "heading": "Diagnoza dhe trajtimi",
+      "paragraphs": [
+        "Një skuqje tipike diagnostikohet me sy dhe nuk ka nevojë për analiza gjaku. Për simptoma të tjera përdoren analiza gjaku për antitrupa, megjithëse mund të jenë negative herët dhe pozitive pas infeksionit të kaluar, kështu që rezultatet duhen interpretuar me simptomat. Trajtimi është zakonisht doksiciklinë ose amoksicilinë për disa javë. Shumica e njerëzve shërohen plotësisht."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Vishni pantallona të gjata dhe këpucë të mbyllura në zonat me rriqra, përdorni repelent, kontrolloni trupin dhe rrobat pas aktivitetit jashtë dhe hiqni menjëherë rriqrat me piskatore të hollë ose mjet për rriqra. Pastroni zonën më pas dhe vëzhgojeni për disa javë. Nuk ka antibiotik parandalues rutinë pas pickimit për shumicën e njerëzve. Kërkoni këshillë nëse zhvillohet skuqje ose simptoma."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pas një shëtitjeje",
+      "text": "Imagjinoni që e keni kaluar pasditen në bar të lartë. Mund të kontrolloni lëkurën, veçanërisht pas gjunjëve, në ije e sqetulla, vijën e flokëve dhe pas veshëve dhe të shënoni datën nëse gjeni një rriqër."
+    },
+    {
+      "title": "Vëzhgimi i një pickimi",
+      "text": "Supozoni që e keni hequr një rriqër javën e kaluar dhe tani një njollë e kuqe po rritet. Mund ta fotografoni çdo ditë, të shënoni datat dhe të kontaktoni së shpejti mjekun."
+    }
+  ],
+  "questions": [
+    "A mund të jenë simptomat e mia sëmundja Lyme dhe a kam nevojë për analizë gjaku?",
+    "Sa kohë do të zgjasë trajtimi dhe cilat efekte anësore janë të mundshme?",
+    "Çfarë duhet të bëj nëse simptomat vazhdojnë pas trajtimit?"
+  ]
+}

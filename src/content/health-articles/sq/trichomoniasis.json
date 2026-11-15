@@ -1,0 +1,51 @@
+{
+  "title": "Trikomoniaza",
+  "intro": "Trikomoniaza është një infeksion i zakonshëm seksualisht i transmetueshëm i shkaktuar nga një parazit i vogël. Shumë njerëz nuk kanë simptoma, por mund të shkaktojë sekrecione vaginale, kruarje e parehati. Shërohet lehtë me antibiotikë, me kusht që partnerët të trajtohen njëkohësisht.",
+  "sections": [
+    {
+      "heading": "Si përhapet",
+      "paragraphs": [
+        "Paraziti përhapet përmes kontaktit seksual, kryesisht marrëdhënies vaginale, e mund të kalojë edhe kur nuk ka simptoma. Jeton në vagjinë, uretër e nganjëherë prostatë. Prezervativët e ulin rrezikun. Nuk përhapet nga ndenjëset e tualetit ose kontakti i rastësishëm."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Te gratë, simptomat përfshijnë sekrecione me shkumë, të verdhë-jeshile ose gri me erë të pakëndshme, kruarje, skuqje, dhimbje ose djegie gjatë urinimit ose seksit e parehati në pjesën e poshtme të barkut. Meshkujt shpesh nuk kanë simptoma por mund të vënë re sekrecione uretrale, djegie gjatë urinimit ose acarim. Shumë infeksione mbeten të heshtura për periudha të gjata."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Testet përfshijnë ekzaminimin e sekrecioneve nën mikroskop e teste molekulare më të ndjeshme në një bris ose mostër urine. Testimi për infeksione të tjera seksualisht të transmetueshme rekomandohet, pasi shpesh bashkëekzistojnë. Gratë shtatzëna me simptoma duhet të testohen, pasi trikomoniaza mund të lidhet me lindjen e parakohshme."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Një kurë me metronidazol ose antibiotik të lidhur, e marrë si tableta për disa ditë, e shëron infeksionin te shumica e njerëzve. Shmangni alkoolin gjatë trajtimit e një a dy ditë më pas siç këshillohet, pasi mund të shkaktojë të përziera e të vjella. Shmangni seksin derisa ju e partnerët të keni përfunduar trajtimin e simptomat të kenë ikur, për të parandaluar ri-infektimin."
+      ]
+    },
+    {
+      "heading": "Partnerët dhe parandalimi",
+      "paragraphs": [
+        "Partnerët seksualë kanë nevojë për testim e trajtim edhe pa simptoma. Testimi i përsëritur disa muaj pas trajtimit këshillohet sepse ri-infektimi është i zakonshëm. Prezervativët, testimi i rregullt me partnerë të rinj e bisedat e sinqerta e ulin rrezikun. Klinikat e shëndetit seksual ofrojnë testim konfidencial."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Njoftimi i partnerit",
+      "text": "Imagjinoni që dilni pozitiv. Mund ta pyesni klinikën si ta informoni partnerin e të ujdisni që të shmangni seksin derisa të dy të përfundoni trajtimin."
+    },
+    {
+      "title": "Ndjekja",
+      "text": "Supozoni që simptomat zhduken pas trajtimit. Mund të organizoni prapëseprapë një test të përsëritur pas disa muajsh siç këshillohet."
+    }
+  ],
+  "questions": [
+    "A më duhet testim edhe për infeksione të tjera?",
+    "Cilin trajtim duhet të marr e çfarë të shmang ndërsa e marr?",
+    "Cilët partnerë kanë nevojë për trajtim e kur mund të rifillojmë seksin?"
+  ]
+}

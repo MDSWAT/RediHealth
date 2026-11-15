@@ -1,0 +1,52 @@
+{
+  "title": "Cum menține inima circulația",
+  "intro": "Inima este o pompă musculară între plămâni și restul corpului. Camerele, valvele, sistemul electric și circulația proprie colaborează. Pulsul normal singur nu dovedește funcționarea normală a tuturor componentelor.",
+  "sections": [
+    {
+      "heading": "Traseu",
+      "paragraphs": [
+        "Sângele revine din corp în partea dreaptă și merge la plămâni. Sângele oxigenat revine în stânga și este pompat în aortă spre corp."
+      ]
+    },
+    {
+      "heading": "Valve și mușchi",
+      "paragraphs": [
+        "Valvele dirijează fluxul într-un sens. Mușchiul se relaxează pentru umplere și se contractă pentru evacuare; boala valvelor și pomparea slabă sunt probleme diferite, deși legate."
+      ]
+    },
+    {
+      "heading": "Sincronizare",
+      "paragraphs": [
+        "Semnalele electrice pornesc obișnuit din nodul sinusal și circulă prin sistemul de conducere. Ritmul și forța de pompare nu sunt identice; neregularitatea se interpretează în context."
+      ]
+    },
+    {
+      "heading": "Alimentare proprie",
+      "paragraphs": [
+        "Arterele coronare hrănesc mușchiul. Blocajul îl poate leza deși sângele rămâne în camere. Activitatea, tensiunea și medicamentele modifică solicitarea."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Consultul, electrocardiograma și ecografia răspund diferit. Presiunea toracică nouă persistentă, lipsa severă de aer, colapsul sau semnele de infarct cer urgență, nu liniștirea de către ceas.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira întreabă de ce este necesară ecografia după electrocardiogramă. Află diferența dintre structură și pompare, respectiv activitate electrică."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are presiune persistentă în piept și transpirații. Cere urgență deși ceasul arată puls obișnuit."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Terapija svjetlom, tablete i injekcije kod ekcema",
+  "intro": "Kad kreme i njega kože nisu dovoljne za kontrolu atopijskog ekcema, liječnici mogu razmotriti liječenja koja djeluju na cijelo tijelo ili koriste posebno svjetlo. Te mogućnosti mogu smanjiti svrbež i pogoršanja kod umjerenog do teškog ekcema, ali zahtijevaju praćenje zbog nuspojava i troškova.",
+  "sections": [
+    {
+      "heading": "Kad se razmatra jače liječenje",
+      "paragraphs": [
+        "Liječenje se pojačava kad je ekcem raširen ili težak, san i svakodnevni život su poremećeni ili lokalna liječenja ne daju dovoljnu kontrolu. Prije toga će vaš liječnik provjeriti jesu li isprobani osnovna njega kože i ispravna uporaba protuupalnih krema, kao i okidači i infekcije."
+      ]
+    },
+    {
+      "heading": "Terapija svjetlom",
+      "paragraphs": [
+        "Fototerapija koristi ultraljubičasto svjetlo, obično uskopojasni UVB, u kabini nekoliko puta tjedno kroz nekoliko tjedana. Smanjuje upalu i svrbež u mnogih ljudi. Nuspojave uključuju crvenilo nalik opeklinama, suhu kožu i, uz dugotrajnu ponavljanu uporabu, povećan rizik od starenja kože i moguće raka kože. Nosi se zaštita za oči, a broj seansi je ograničen. Zahtijeva redovite posjete, što može biti teško uz posao ili školu."
+      ]
+    },
+    {
+      "heading": "Tablete",
+      "paragraphs": [
+        "Lijekovi poput ciklosporina potiskuju imunološki sustav i mogu brzo kontrolirati teški ekcem, ali mogu utjecati na krvni tlak i funkciju bubrega i obično se koriste ograničeno vrijeme uz krvne pretrage. Novije tablete koje blokiraju signalne molekule, zvane JAK inhibitori, mogu biti učinkovite, ali nose upozorenja o infekcijama, krvnim ugrušcima i drugim rizicima pa se koriste kad druge mogućnosti nisu prikladne."
+      ]
+    },
+    {
+      "heading": "Injekcije",
+      "paragraphs": [
+        "Biološki lijekovi poput dupilumaba i tralokinumaba ciljaju specifične imunološke signale uključene u ekcem. Daju se injekcijom pod kožu u razmacima od nekoliko tjedana, često kod kuće nakon poduke. Često se dobro podnose, ali mogu se pojaviti problemi s očima kao što su crvenilo ili konjunktivitis te reakcije na mjestu uboda. Općenito ih propisuju specijalisti."
+      ]
+    },
+    {
+      "heading": "Odabir i praćenje",
+      "paragraphs": [
+        "Najbolja mogućnost ovisi o vašoj dobi, zdravlju, planovima za trudnoću, drugim stanjima, koliko je težak vaš ekcem i vašim željama. Tijekom cijelog vremena nastavite koristiti emolijense. Recite liječniku o infekcijama, planiranim cijepljenjima ili trudnoći. Potrebni su pregledi kako bi se procijenile koristi i nuspojave."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vaganje praktičnih čimbenika",
+      "text": "Zamislite da vam liječnik predlaže terapiju svjetlom. Mogli biste pitati koliko je posjeta tjedno potrebno, koliko je potrebno vremena da se vidi poboljšanje i možete li je uskladiti s poslom ili školom."
+    },
+    {
+      "title": "Usporedba mogućnosti",
+      "text": "Pretpostavite da vam nude i injekciju i tabletu. Mogli biste pitati o učinkovitosti, nuspojavama, praćenju i što se događa ako prestanete."
+    }
+  ],
+  "questions": [
+    "Koje je liječenje najprikladnije za moj ekcem i koji su mu rizici?",
+    "Kako ću znati djeluje li i kada ćemo razmotriti promjenu?",
+    "Kako trebam nastaviti njegu kože tijekom liječenja?"
+  ]
+}

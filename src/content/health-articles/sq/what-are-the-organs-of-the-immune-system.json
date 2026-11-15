@@ -1,0 +1,51 @@
+{
+  "title": "Organet e sistemit imunitar",
+  "intro": "Sistemi imunitar përbëhet nga organe, inde e qeliza që e mbrojnë trupin nga mikrobet e qelizat jonormale. Disa organe prodhojnë e stërvitin qelizat imune, ndërsa të tjerat filtrojnë lëngjet e trupit e mbledhin mikrobet. Së bashku formojnë një rrjet mbrojtës të koordinuar të shpërndarë në të gjithë trupin.",
+  "sections": [
+    {
+      "heading": "Palca e kockave e timusi",
+      "paragraphs": [
+        "Palca e kockave, indi i butë brenda kockave të mëdha, prodhon të gjitha qelizat e gjakut, përfshirë qelizat e bardha të sistemit imunitar. Qelizat B piqen aty. Timusi, një organ i vogël pas sternumit, është vendi ku piqen qelizat T e mësojnë t'i dallojnë qelizat e vetë trupit nga ato të huaja. Është më aktiv në fëmijëri e tkurret me moshën."
+      ]
+    },
+    {
+      "heading": "Nyjet limfatike e enët limfatike",
+      "paragraphs": [
+        "Nyjet limfatike janë filtra të vegjël të shpërndarë nëpër rrjetin limfatik, të përqendruar në qafë, sqetulla, ijë e bark. Kapin mikrobet nga lëngu limfatik e janë vende takimi ku aktivizohen qelizat imune. Enët limfatike mbartin limfën e qelizat imune nëpër trup. Gjatë luftës me infeksionin, nyjet mund të enjten e të ndjehen të ndjeshme."
+      ]
+    },
+    {
+      "heading": "Shpretka e bajamet",
+      "paragraphs": [
+        "Shpretka, në anën e majtë të barkut, filtron gjakun, heq qelizat e vjetra të kuqe e mikrobet e mban qeliza imune. Njerëzit pa shpretkë janë më të ndjeshëm ndaj disa infeksioneve e kanë nevojë për vaksinime e nganjëherë për antibiotikë parandalues. Bajamet e adenoidet në fyt marrin mostra të mikrobeve që hyjnë përmes gojës e hundës."
+      ]
+    },
+    {
+      "heading": "Indi imunitar i mukozave",
+      "paragraphs": [
+        "Sipërfaqet veshëse në zorrë, mushkëri e traktin urinar kanë indin e tyre imunitar. Grumbujt e indit limfatik në zorrën e hollë, të quajtur pllaka të Peyer-it, monitorojnë çfarë ka në zorrë. Edhe lëkura ka qeliza imune. Këto barriera janë vija e parë kundër mikrobeve nga bota e jashtme."
+      ]
+    },
+    {
+      "heading": "Mbajtja e sistemit të shëndetshëm",
+      "paragraphs": [
+        "Gjumi, stërvitja e rregullt, ushqyerja e ekuilibruar, mospirja e duhanit, alkooli i moderuar, menaxhimi i stresit e vaksinimi mbështesin funksionin imunitar. Kërkoni këshillë për infeksione të përsëritura, ethe të pashpjegueshme, gjëndra të enjtura të vazhdueshme ose nëse ju është hequr shpretka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Të kuptuarit e gjëndrave të enjtura",
+      "text": "Imagjinoni që keni dhimbje fyti e gjëndra të ndjeshme në qafë. Mund të pushoni e të shihni nëse enjtja zbret brenda disa javësh."
+    },
+    {
+      "title": "Pas heqjes së shpretkës",
+      "text": "Supozoni që ju është hequr shpretka. Mund ta pyesni mjekun për vaksinimet e rekomanduara e çfarë të bëni kur keni ethe."
+    }
+  ],
+  "questions": [
+    "Cilat organe të sistemit tim imunitar preken nga gjendja ime?",
+    "A kam nevojë për vaksinime ose masa shtesë?",
+    "Cilat simptoma tregojnë se më duhet të kontrollohem për probleme imune?"
+  ]
+}

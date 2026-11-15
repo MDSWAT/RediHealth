@@ -1,0 +1,51 @@
+{
+  "title": "Tegobe nakon pšenice: celijakija, alergija ili osjetljivost?",
+  "intro": "Tegobe nakon pšenice nemaju uvijek isti uzrok. Celijakija je imunološka reakcija na gluten koja oštećuje tanko crijevo; alergija na pšenicu i necelijakijska osjetljivost zahtijevaju drukčije pretrage i skrb.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Celijakija može izazvati proljev, nadutost, anemiju ili malo probavnih simptoma. Alergija može brzo izazvati koprivnjaču, otok ili probleme disanja. Osjetljivost se razmatra nakon isključenja drugih uzroka."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Ne započinjite bezglutensku prehranu prije razgovora o testovima jer izbjegavanje može iskriviti rezultate. Nakon sumnjive alergijske reakcije ne iskušavajte pšenicu kod kuće; tražite stručni savjet. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Potvrđena celijakija traži doživotno izbjegavanje glutena i nutritivno praćenje. Alergija traži individualno izbjegavanje i hitni plan. Necelijakijska osjetljivost ne znači automatski jednaka stroga trajna ograničenja. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Dijetetičar pomaže očuvati vlakna, željezo i druge hranjive tvari te objasniti deklaracije i križni kontakt. Komercijalni paneli intolerancije ne postavljaju ove dijagnoze niti opravdavaju široko izbacivanje hrane. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Otežano disanje, otok grla ili kolaps nakon hrane hitno su stanje: odmah primijenite propisani adrenalin i zovite pomoć. Trajan proljev, mršavljenje ili anemija zahtijevaju procjenu i bez dramatične reakcije."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira želi izbaciti gluten zbog nadutosti. Najprije razgovara o testovima kako promjena ne bi prikrila moguću celijakiju."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben je otekao nakon kruha. Traži alergološku obradu umjesto namjernog ponovnog jedenja radi provjere pretpostavke o glutenu."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

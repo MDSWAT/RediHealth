@@ -1,0 +1,51 @@
+{
+  "title": "Cum cresc cunoștințele medicale: punct de plecare",
+  "intro": "Cunoștințele medicale se schimbă când cercetătorii testează întrebări, compară tratamente și examinează riscuri. Informația fiabilă explică ce știm și ce rămâne incert. Un studiu nou contribuie, fără să fie automat răspunsul final.",
+  "sections": [
+    {
+      "heading": "Formulați o întrebare clară",
+      "paragraphs": [
+        "Porniți de la o întrebare clară despre persoane, intervenție ori expunere, comparație și rezultate importante. Ameliorarea, funcția, boala gravă și calitatea vieții pot conta mai mult decât schimbarea unei analize. O explicație plauzibilă trebuie testată."
+      ]
+    },
+    {
+      "heading": "Comparați corect grupurile",
+      "paragraphs": [
+        "Comparați corect grupurile. Repartizarea aleatorie reduce diferențele; observația arată tipare, dar poate confunda cauza cu alți factori. Mărimea studiului, pierderea participanților și raportarea selectivă influențează încrederea în rezultate."
+      ]
+    },
+    {
+      "heading": "Înțelegeți revizuirile sistematice",
+      "paragraphs": [
+        "Revizuirea sistematică folosește metode explicite pentru găsirea și evaluarea studiilor, nu selectează exemple favorabile. Poate rămâne incertă când cercetarea este slabă ori neconcordantă. Combinarea multor studii părtinitoare nu elimină automat eroarea."
+      ]
+    },
+    {
+      "heading": "Verificați relevanța și transparența",
+      "paragraphs": [
+        "Verificați finanțatorul, măsurarea efectelor adverse și aplicarea la persoane asemănătoare. Căutați evaluări independente și data actualizării. Experiența pacientului identifică întrebări relevante, dar singură nu demonstrează că tratamentul a produs ameliorarea."
+      ]
+    },
+    {
+      "heading": "Folosiți atent dovezile noi",
+      "paragraphs": [
+        "Discutați descoperirile înainte de schimbarea îngrijirii prescrise. Recomandarea se poate modifica prin dovezi mai bune ori siguranță nou cunoscută, nu prin necinstea cercetătorilor anteriori. Întrebați ce incertitudine schimbă decizia și dacă este mai sigură acțiunea, monitorizarea ori așteptarea."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira citește un studiu mic fără grup de control pentru un supliment. Întreabă dacă ameliorarea a fost comparată cu un grup similar înainte să cheltuiască."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben vede titluri contradictorii. Caută revizuire sistematică și rezultate reale în loc să numere articolele care repetă fiecare afirmație."
+    }
+  ],
+  "questions": [
+    "Comparația a fost corectă și relevantă pentru mine?",
+    "Ce beneficii, riscuri și incertitudini s-au măsurat?",
+    "Dovezile justifică schimbarea îngrijirii mele?"
+  ]
+}

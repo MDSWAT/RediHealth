@@ -1,0 +1,56 @@
+{
+  "title": "Come viene regolato il sonno",
+  "intro": "Il sonno è controllato da due sistemi principali: l'orologio biologico, che dice quando è il momento di essere svegli o addormentati, e l'accumulo di pressione del sonno man mano che si resta svegli. Sapere come interagiscono spiega perché il jet lag, il lavoro a turni e l'uso degli schermi a tarda notte disturbano il sonno, e come le abitudini possano favorire un riposo migliore.",
+  "sections": [
+    {
+      "heading": "L'orologio biologico interno",
+      "paragraphs": [
+        "Un gruppo di cellule nervose nel cervello funziona come orologio principale che segue un ritmo di circa 24 ore, chiamato ritmo circadiano. È regolato soprattutto dalla luce che entra negli occhi. La luce del mattino sposta l'orologio più presto, mentre la luce intensa la sera lo sposta più tardi.",
+        "L'orologio influenza la temperatura corporea, il rilascio degli ormoni e la vigilanza. La melatonina, un ormone rilasciato al buio, segnala la notte al corpo. Le persone differiscono naturalmente nell'orario preferito, alcune sono tipi mattinieri e altre tipi serotini."
+      ]
+    },
+    {
+      "heading": "La pressione del sonno",
+      "paragraphs": [
+        "Mentre si è svegli, sostanze come l'adenosina si accumulano gradualmente nel cervello e aumentano il bisogno di sonno. Più a lungo si resta svegli, più questa pressione diventa forte, e il sonno la riduce di nuovo. La caffeina agisce in parte bloccando l'effetto dell'adenosina.",
+        "Fare un pisolino a fine giornata può ridurre la pressione del sonno e rendere più difficile addormentarsi la notte. I pisolini brevi nella prima parte della giornata di solito hanno meno impatto."
+      ]
+    },
+    {
+      "heading": "Le fasi del sonno",
+      "paragraphs": [
+        "Il sonno non è uniforme. Una notte è fatta di cicli ripetuti di circa 90 minuti con sonno leggero, sonno profondo e sonno con movimenti oculari rapidi, durante il quale avvengono i sogni più vividi. Il sonno profondo domina la prima metà della notte e favorisce il recupero fisico, mentre il sonno REM è più frequente verso il mattino.",
+        "I brevi risvegli durante la notte sono normali e di solito dimenticati. La struttura del sonno cambia con l'età, e le persone anziane spesso dormono più leggero e si svegliano prima."
+      ]
+    },
+    {
+      "heading": "Cosa disturba il sonno",
+      "paragraphs": [
+        "Orari irregolari, lavoro a turni, viaggi attraverso fusi orari e schermi luminosi a tarda notte possono mettere l'orologio biologico fuori sincrono con i tuoi programmi. Stress, dolore, alcol, pasti abbondanti a tarda ora, nicotina e caffeina, una camera rumorosa o calda e alcuni farmaci influiscono anch'essi sulla qualità del sonno.",
+        "Condizioni mediche come l'apnea del sonno, le gambe senza riposo, la depressione o l'ansia possono causare problemi persistenti e meritano una valutazione adeguata invece dell'automedicazione con ausili per dormire."
+      ]
+    },
+    {
+      "heading": "Favorire un sonno sano",
+      "paragraphs": [
+        "Cerca di mantenere orari costanti per andare a letto e svegliarti, prendi la luce del giorno presto, sii fisicamente attivo e rilassati prima di coricarti. Tieni la camera buia, fresca e silenziosa ed evita di usarla per lavorare. Limita la caffeina nel pomeriggio e l'alcol la sera, perché l'alcol frammenta il sonno.",
+        "Se non riesci a dormire, alzati e fai qualcosa di calmo finché non senti sonno, invece di restare sveglio a preoccuparti. Se le difficoltà di sonno durano settimane o influiscono sul funzionamento diurno, parlane con un medico. La terapia cognitivo-comportamentale per l'insonnia è un'opzione efficace."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Adattarsi dopo un cambio di fuso",
+      "text": "Immagina di aver volato attraverso diversi fusi orari e di non riuscire a dormire di notte. Potresti passare del tempo all'aperto alla luce del giorno agli orari locali, mantenere pasti e orario di coricarsi secondo il nuovo programma ed evitare lunghi sonnellini finché il ritmo non si adatta."
+    },
+    {
+      "title": "Migliorare la routine serale",
+      "text": "Supponi di scorrere di solito il telefono a letto e poi di faticare ad addormentarti. Potresti fissare un orario per mettere via i dispositivi, abbassare le luci e provare a leggere o a fare un leggero stretching per una settimana per vedere se il tuo sonno cambia."
+    }
+  ],
+  "questions": [
+    "Una condizione medica o un farmaco potrebbe influire sul mio sonno?",
+    "Quali cambiamenti al mio programma quotidiano sarebbero più utili in base al mio lavoro e al mio stile di vita?",
+    "Quando vale la pena fare uno studio del sonno o un consulto con uno specialista del sonno?"
+  ]
+}

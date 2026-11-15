@@ -1,0 +1,52 @@
+{
+  "title": "Cum procesează ficatul nutrienții",
+  "intro": "Ficatul procesează nutrienți, produce proteine importante și bilă și transformă multe medicamente și reziduuri. Nu este un filtru care se resetează cu o băutură de curățare. Bolile afectează funcții diferite.",
+  "sections": [
+    {
+      "heading": "Sânge și procesare",
+      "paragraphs": [
+        "Sângele digestiv aduce substanțe absorbite prin vena portă; o arteră aduce și oxigen. Celulele hepatice procesează, stochează sau eliberează după nevoile corpului."
+      ]
+    },
+    {
+      "heading": "Energie",
+      "paragraphs": [
+        "Ficatul stochează glucoza ca glicogen și o eliberează la nevoie. Procesează și grăsimi și proteine. Reglarea colaborează cu hormonii, nu este controlată de un aliment anume."
+      ]
+    },
+    {
+      "heading": "Producere și eliminare",
+      "paragraphs": [
+        "Produce albumină, multe proteine de coagulare și bilă pentru digestie și reziduuri. Vezica stochează bila; organele sunt legate, dar nu interschimbabile."
+      ]
+    },
+    {
+      "heading": "Protecție",
+      "paragraphs": [
+        "Evitați alcoolul excesiv și verificați medicamentele și suplimentele cu un specialist. Prea mult paracetamol poate fi periculos înainte de simptome; supradozajul suspectat cere sfat imediat. Nu opriți singuri tratamentul prescris."
+      ]
+    },
+    {
+      "heading": "Evaluare",
+      "paragraphs": [
+        "Analizele și imaginile verifică aspecte diferite; lipsa durerii nu exclude boala. Icterul nou cere evaluare; vărsăturile cu sânge, scaunul negru ca păcura, confuzia severă ori colapsul cer urgență.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira întreabă dacă un supliment detox repară ficatul. Discută cauza și siguranța, fără să presupună că natural înseamnă inofensiv."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben ia accidental produse suprapuse cu paracetamol. Cere sfat imediat, fără să aștepte durere hepatică."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

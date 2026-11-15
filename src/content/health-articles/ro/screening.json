@@ -1,0 +1,52 @@
+{
+  "title": "Screeningul și depistarea precoce",
+  "intro": "Screeningul înseamnă testarea persoanelor care nu au simptome pentru a găsi devreme o boală. Poate salva vieți în unele afecțiuni, dar nu orice test de screening merită făcut. Toate testele au și dezavantaje, precum alarmele false și supradiagnosticul. Cunoașterea ambelor părți vă ajută să decideți dacă să participați.",
+  "sections": [
+    {
+      "heading": "Pentru ce este screeningul",
+      "paragraphs": [
+        "Programele de screening invită persoanele dintr-o anumită grupă de vârstă sau de risc să fie testate, de exemplu pentru cancerul de sân, de col uterin sau colorectal sau pentru tensiunea arterială mare. Ideea este că descoperirea unei boli mai devreme permite un tratament mai eficient. Aceasta funcționează doar dacă boala poate fi depistată înainte de simptome, iar tratamentul timpuriu este mai bun decât cel tardiv."
+      ]
+    },
+    {
+      "heading": "Beneficii posibile",
+      "paragraphs": [
+        "Un screening bun reduce decesele sau complicațiile unei boli și poate permite un tratament mai blând. Poate oferi și liniștire când rezultatele sunt normale. De exemplu, screeningul cervical poate găsi modificări precanceroase, care sunt tratate înainte să se dezvolte cancerul."
+      ]
+    },
+    {
+      "heading": "Daune posibile",
+      "paragraphs": [
+        "Testele de screening nu sunt niciodată perfecte. Rezultatele fals pozitive provoacă îngrijorare și teste suplimentare, dintre care unele implică riscuri. Rezultatele fals negative pot oferi o falsă liniștire. Supradiagnosticul înseamnă depistarea unor afecțiuni care nu ar fi provocat niciodată daune în timpul vieții, ducând la tratament inutil. Unele teste implică radiații sau disconfort."
+      ]
+    },
+    {
+      "heading": "Cum să decideți",
+      "paragraphs": [
+        "Uitați-vă la informații clare despre câte persoane beneficiază și câte sunt afectate negativ, de exemplu la o mie de persoane testate. Luați în considerare riscul dumneavoastră, sănătatea, valorile și cum ați face față unor constatări incerte. Puteți refuza screeningul fără dezavantaje în îngrijirea de rutină. Simptomele trebuie întotdeauna verificate, indiferent de screening.",
+        "Un test de screening pozitiv nu este un diagnostic. Duce la teste suplimentare pentru a confirma sau exclude boala, așa că întrebați care sunt pașii următori, cât vor dura rezultatele și pe cine să contactați."
+      ]
+    },
+    {
+      "heading": "Exemple frecvente",
+      "paragraphs": [
+        "Programele bine cunoscute includ mamografia pentru cancerul de sân, testele celulelor cervicale și HPV, testele din scaun sau colonoscopia pentru cancerul colorectal și verificările tensiunii arteriale și ale colesterolului. Ce teste se oferă și de la ce vârstă depinde de țară și se schimbă pe măsură ce dovezile evoluează."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Citirea unei invitații",
+      "text": "Imaginați-vă că primiți o invitație la screening. Ați putea citi cu atenție pliantul informativ, ați putea nota câte persoane beneficiază și câte sunt afectate negativ și ați putea discuta orice întrebări cu medicul."
+    },
+    {
+      "title": "Gestionarea unui rezultat incert",
+      "text": "Presupuneți că testul dumneavoastră trebuie repetat. Ați putea întreba cât de des se dovedește inofensiv și când veți ști mai multe."
+    }
+  ],
+  "questions": [
+    "Care sunt beneficiile și daunele acestui test de screening pentru o persoană ca mine?",
+    "Ce se întâmplă dacă rezultatul testului este anormal?",
+    "Cât de des ar trebui să fac screening și până la ce vârstă?"
+  ]
+}

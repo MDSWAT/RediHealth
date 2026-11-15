@@ -1,0 +1,53 @@
+{
+  "title": "Kako koristiti različite vrste zdravstvenih informacija",
+  "intro": "Zdravstvene informacije dolaze u mnogim oblicima, kao što su pregledi, detaljni članci, objašnjenja pretraga i liječenja te osobna iskustva. Znanje što svaka vrsta nudi pomaže vam brže pronaći odgovore i izbjeći zamjenu općih informacija za osobni liječnički savjet.",
+  "sections": [
+    {
+      "heading": "Pregledi i detaljni članci",
+      "paragraphs": [
+        "Pregledi daju kratak uvod u temu. Objašnjavaju što je neko stanje, kako se obično prepoznaje i koje su glavne mogućnosti. Detaljni članci idu dalje i dublje pokrivaju simptome, uzroke, pretrage, liječenja i svakodnevni život.",
+        "Čitanje pregleda prvo može vam pomoći odlučiti koji su specifični članci važni za vas i koje pojmove potražiti."
+      ]
+    },
+    {
+      "heading": "Objašnjenja pretraga i liječenja",
+      "paragraphs": [
+        "Neki se članci usredotočuju na to kako pretraga ili zahvat radi, kakva je priprema potrebna i što rezultati mogu značiti. Oni vam pomažu znati što očekivati i mogu smanjiti brigu prije pregleda. Objašnjavaju i koristi, rizike i nesigurnosti kako biste mogli vagati mogućnosti."
+      ]
+    },
+    {
+      "heading": "Osobna iskustva i primjeri",
+      "paragraphs": [
+        "Primjeri koji opisuju kako bi netko mogao postupiti u nekoj situaciji mogu apstraktne informacije učiniti razumljivijima. Zapamtite da se iskustva razlikuju i da ono što je pomoglo jednoj osobi možda ne odgovara drugoj. Hipotetski primjeri su ilustracije, a ne predviđanja što će se dogoditi vama."
+      ]
+    },
+    {
+      "heading": "Pitanja za razgovor i izvori",
+      "paragraphs": [
+        "Pitanja za vašeg zdravstvenog djelatnika pretvaraju informacije u djelovanje. Ponesite ih na preglede i dodajte svoja. Poveznice na izvore na kraju članka upućuju na gradivo na kojem su se temeljile pozadinske informacije kako biste mogli čitati dalje.",
+        "Informacije u člancima su opće i nikad ne mogu zamijeniti pregled. Medicina se mijenja pa provjerite datume i razmislite odgovaraju li informacije vašoj zemlji jer se zdravstveni sustavi i preporuke razlikuju."
+      ]
+    },
+    {
+      "heading": "Mudra uporaba informacija",
+      "paragraphs": [
+        "Tražite jasno autorstvo, ažuran sadržaj, uravnotežen prikaz koristi i rizika te otvorene izjave o nesigurnosti. Budite skeptični prema obećanjima čudotvornih lijekova i stranicama koje uglavnom prodaju proizvode. Koristite nekoliko pouzdanih izvora i razgovarajte sa stručnjakom o odlukama koje utječu na vaše zdravlje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za pregled",
+      "text": "Zamislite da vam je upravo dijagnosticirano dugotrajno stanje. Mogli biste pročitati pregled, podcrtati nepoznate riječi, zatim prepisati pitanja s kraja u svoje bilješke i dodati osobne zabrinutosti za sljedeći posjet."
+    },
+    {
+      "title": "Usporedba izvora",
+      "text": "Pretpostavite da pronađete dvije web-stranice sa proturječnim savjetima o liječenju. Mogli biste provjeriti tko je napisao svaku stranicu, kada je ažurirana i na koje se dokaze poziva, a zatim pitati liječnika koji se savjet odnosi na vas."
+    }
+  ],
+  "questions": [
+    "Što od informacija koje sam pronašao odnosi se na moju situaciju?",
+    "Postoje li pouzdani izvori ili grupe podrške koje biste preporučili za moje stanje?",
+    "Što trebam učiniti ako informacije koje pročitam proturječe onome što mi se kaže?"
+  ]
+}

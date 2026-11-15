@@ -1,0 +1,51 @@
+{
+  "title": "Ce este psihoterapia și ce implică",
+  "intro": "Psihoterapia, sau terapia prin vorbire, este un tratament pentru problemele de sănătate mintală și dificultățile emoționale. Un terapeut instruit lucrează cu dumneavoastră prin conversație și exerciții pentru a înțelege și a schimba gândurile, sentimentele și comportamentul. Este eficientă în afecțiuni precum depresia, anxietatea, trauma și multe altele.",
+  "sections": [
+    {
+      "heading": "Principalele abordări",
+      "paragraphs": [
+        "Terapia cognitiv-comportamentală se concentrează pe gânduri și comportamente și este structurată și practică. Terapia psihodinamică explorează experiențele din trecut și tiparele inconștiente. Abordările umaniste și sistemice se concentrează pe dezvoltarea personală și pe relații. Alte metode includ terapia centrată pe traumă, terapia interpersonală și programele bazate pe mindfulness. Cea mai bună metodă depinde de problemă și de persoană."
+      ]
+    },
+    {
+      "heading": "Cum sunt ședințele",
+      "paragraphs": [
+        "Ședințele durează de obicei cincizeci de minute, săptămânal sau la câteva săptămâni, individual, în cuplu, cu familia sau în grup. Terapeutul ascultă, pune întrebări și sugerează modalități de a face față, iar între ședințe puteți face exerciții. Terapia poate dura de la câteva ședințe la un an sau mai mult. Ce spuneți este confidențial, cu excepții legale privind riscul grav."
+      ]
+    },
+    {
+      "heading": "Funcționează?",
+      "paragraphs": [
+        "Cercetările arată că psihoterapia ajută multe persoane, iar beneficiile durează adesea mai mult decât medicamentele singure. Relația cu terapeutul este printre cei mai puternici predictori ai succesului. Terapia necesită efort și timp și poate aduce în prim-plan sentimente dificile înainte de ameliorare. Medicamentele și terapia sunt uneori combinate."
+      ]
+    },
+    {
+      "heading": "Găsirea unui terapeut",
+      "paragraphs": [
+        "Căutați un profesionist autorizat, precum un psiholog, un psihiatru sau un psihoterapeut. Verificați ce acoperă asigurarea și dacă există liste de așteptare. O primă întâlnire ajută să vedeți dacă vă simțiți confortabil. Terapia online este de asemenea disponibilă și funcționează pentru multe persoane. În caz de urgență sau gânduri de autovătămare, cereți imediat ajutor urgent."
+      ]
+    },
+    {
+      "heading": "Valorificarea la maximum",
+      "paragraphs": [
+        "Fiți deschis și sincer, stabiliți obiective, încercați exercițiile și vorbiți despre aceasta dacă terapia nu ajută. Puteți schimba terapeutul dacă potrivirea este slabă. Progresul este adesea treptat."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Alegerea unui terapeut",
+      "text": "Imaginați-vă că vreți ajutor pentru anxietate. Ați putea programa scurte prime întâlniri și ați putea alege terapeutul în care aveți cea mai mare încredere."
+    },
+    {
+      "title": "Exersarea între ședințe",
+      "text": "Presupuneți că terapeutul vă dă exerciții de respirație. Ați putea exersa zilnic și ați putea raporta ce a funcționat la ședința următoare."
+    }
+  ],
+  "questions": [
+    "Ce tip de terapie se potrivește problemei mele?",
+    "Cât va dura tratamentul și cât va costa?",
+    "Ce se întâmplă dacă terapia nu ajută?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Durerile menstruale",
+  "intro": "Durerile menstruale, sau dismenoreea, sunt dureri de tip crampă în abdomenul inferior înainte sau în timpul menstruației. Sunt foarte frecvente, mai ales la adolescente și la femeile tinere. Cele mai multe dureri menstruale nu sunt semnul unei boli și pot fi ameliorate cu căldură, exerciții și calmante, dar durerea severă merită investigată.",
+  "sections": [
+    {
+      "heading": "De ce apar",
+      "paragraphs": [
+        "Înainte și în timpul menstruației, uterul produce substanțe numite prostaglandine, care fac mușchiul său să se contracte pentru a elimina mucoasa. Nivelurile mari provoacă contracții mai puternice și durere și pot provoca și greață, diaree sau dureri de cap. Această durere menstruală primară începe adesea în primii ani după prima menstruație și tinde să scadă odată cu vârsta și după naștere."
+      ]
+    },
+    {
+      "heading": "Când este posibilă o altă cauză",
+      "paragraphs": [
+        "Durerea menstruală secundară apare din afecțiuni precum endometrioza, adenomioza, fibroamele sau infecția pelvină. Începe adesea mai târziu în viață, se agravează în timp, durează mai mult decât sângerarea sau vine cu sângerări abundente, durere în timpul actului sexual sau între menstruații. Acestea necesită evaluare medicală."
+      ]
+    },
+    {
+      "heading": "Ce puteți face",
+      "paragraphs": [
+        "Căldura de la o sticlă cu apă caldă sau o baie caldă relaxează mușchiul. Exercițiile blânde, precum mersul, yoga sau înotul, pot ajuta. Relaxarea și un somn suficient pot ameliora simptomele. Unele femei găsesc utile dispozitivele TENS."
+      ]
+    },
+    {
+      "heading": "Medicamente",
+      "paragraphs": [
+        "Calmantele antiinflamatoare precum ibuprofenul funcționează bine când sunt luate la primul semn de durere sau cu o zi înainte, dacă menstruațiile sunt previzibile, și luate cu mâncare. Paracetamolul este o alternativă. Contracepția hormonală, inclusiv pilula, steriletul hormonal sau implantul, reduce producția de prostaglandine și adesea ușurează menstruațiile și durerea. Discutați opțiunile cu medicul."
+      ]
+    },
+    {
+      "heading": "Când mergeți la medic",
+      "paragraphs": [
+        "Cereți sfat dacă durerea perturbă școala, munca sau viața de zi cu zi, nu răspunde la măsurile simple, începe brusc la vârsta adultă sau vine cu febră, secreții neobișnuite sau sângerare foarte abundentă. Examinarea și ecografia pot căuta cauze de fond. Durerea nu este ceva ce trebuie să acceptați ca fiind normal."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planificarea din timp",
+      "text": "Imaginați-vă că durerea menstruală este cea mai intensă în prima zi. Ați putea lua ibuprofen cu mâncare imediat ce încep crampele, ați putea folosi o compresă caldă și ați putea planifica activități mai ușoare, dacă este posibil."
+    },
+    {
+      "title": "Discutarea cu medicul",
+      "text": "Presupuneți că durerea s-a agravat treptat de-a lungul mai multor ani. Ați putea ține un jurnal al durerii, al sângerării și al efectelor asupra vieții de zi cu zi și ați putea întreba despre endometrioză."
+    }
+  ],
+  "questions": [
+    "Ar putea durerea mea menstruală să fie cauzată de o afecțiune de fond?",
+    "Ce calmant sau ce opțiune hormonală este cea mai bună pentru mine?",
+    "Când ar trebui să fac o ecografie sau să merg la un specialist?"
+  ]
+}

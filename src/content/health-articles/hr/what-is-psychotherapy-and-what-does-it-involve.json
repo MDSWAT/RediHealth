@@ -1,0 +1,51 @@
+{
+  "title": "Što je psihoterapija i što uključuje?",
+  "intro": "Psihoterapija, ili terapija razgovorom, je liječenje problema mentalnog zdravlja i emocionalnih teškoća. Educirani terapeut radi s vama kroz razgovor i vježbe kako biste razumjeli i promijenili misli, osjećaje i ponašanje. Učinkovita je kod stanja kao što su depresija, tjeskoba, trauma i mnoga druga.",
+  "sections": [
+    {
+      "heading": "Glavni pristupi",
+      "paragraphs": [
+        "Kognitivno-bihevioralna terapija usmjerena je na misli i ponašanja te je strukturirana i praktična. Psihodinamska terapija istražuje prošla iskustva i nesvjesne obrasce. Humanistički i sustavni pristupi usmjereni su na osobni rast i odnose. Ostale metode uključuju terapiju usmjerenu na traumu, interpersonalnu terapiju i programe temeljene na svjesnosti. Najbolja metoda ovisi o problemu i osobi."
+      ]
+    },
+    {
+      "heading": "Kakve su seanse",
+      "paragraphs": [
+        "Seanse obično traju pedeset minuta, tjedno ili svakih nekoliko tjedana, pojedinačno, za parove, s obiteljima ili u grupama. Terapeut sluša, postavlja pitanja i predlaže načine nošenja, a između seansi možete raditi vježbe. Terapija može trajati od nekoliko seansi do godinu dana ili više. Ono što kažete je povjerljivo, uz zakonske iznimke koje se tiču ozbiljnog rizika."
+      ]
+    },
+    {
+      "heading": "Djeluje li",
+      "paragraphs": [
+        "Istraživanja pokazuju da psihoterapija pomaže mnogim ljudima, a koristi često traju dulje nego samo od lijekova. Odnos s terapeutom jedan je od najjačih pokazatelja uspjeha. Terapija zahtijeva trud i vrijeme te može izazvati teške osjećaje prije poboljšanja. Lijekovi i terapija ponekad se kombiniraju."
+      ]
+    },
+    {
+      "heading": "Pronalazak terapeuta",
+      "paragraphs": [
+        "Potražite licenciranog stručnjaka, kao što je psiholog, psihijatar ili psihoterapeut. Provjerite što pokriva osiguranje i postoje li liste čekanja. Prvi susret pomaže vidjeti osjećate li se ugodno. Online terapija također je dostupna i djeluje mnogima. U hitnom slučaju ili uz misli o samoozljeđivanju odmah potražite hitnu pomoć."
+      ]
+    },
+    {
+      "heading": "Maksimalno iskorištavanje",
+      "paragraphs": [
+        "Budite otvoreni i iskreni, postavite ciljeve, isprobajte vježbe i razgovarajte o tome ako terapija ne pomaže. Možete promijeniti terapeuta ako se ne slažete. Napredak je često postupan."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Odabir terapeuta",
+      "text": "Zamislite da želite pomoć kod tjeskobe. Mogli biste dogovoriti kratke prve susrete i odabrati terapeuta kojem najviše vjerujete."
+    },
+    {
+      "title": "Vježbanje između seansi",
+      "text": "Pretpostavite da vam terapeut zada vježbe disanja. Mogli biste ih vježbati svaki dan i na sljedećoj seansi reći što je djelovalo."
+    }
+  ],
+  "questions": [
+    "Koja vrsta terapije odgovara mom problemu?",
+    "Koliko će trajati liječenje i koliko će koštati?",
+    "Što se događa ako terapija ne pomaže?"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Si rregullohet ritmi i zemrës",
+  "intro": "Zemra rreh falë sistemit të saj elektrik, që e nis çdo rrahje dhe i koordinon dhomat që të tkurren në rendin e duhur. Truri dhe hormonet e rregullojnë shpejtësinë sipas nevojave tuaja. Njohja e mënyrës si funksionon kjo ndihmon të kuptohen palpitacionet, ritmet e parregullta dhe testet si EKG-ja.",
+  "sections": [
+    {
+      "heading": "Sistemi elektrik i zemrës",
+      "paragraphs": [
+        "Çdo rrahje fillon në nyjën sinusale, një grumbull i vogël qelizash në pjesën e sipërme të djathtë të zemrës, që vepron si stimuluesi natyror. Ajo dërgon një impuls elektrik nëpër dy dhomat e sipërme, atriumet, duke i bërë të tkurren dhe të shtyjnë gjakun në dhomat e poshtme.",
+        "Sinjali pastaj arrin te nyja atrioventrikulare, që e vonon shkurtimisht që ventrikujt të mbushen. Ai udhëton poshtë nëpër fibra të veçanta që përhapen në muret e ventrikujve, duke i bërë të tkurren së bashku dhe të pompojnë gjak në mushkëri dhe trup."
+      ]
+    },
+    {
+      "heading": "Kontrolli i rrahjeve të zemrës",
+      "paragraphs": [
+        "Në pushim, zemra e një të rrituri tipik rreh rreth 60 deri në 100 herë në minutë. Gjatë ushtrimeve, stresit ose etheve shpejtësia rritet dhe gjatë gjumit bie. Sistemi nervor autonom e rregullon këtë: sistemi simpatik e përshpejton zemrën, ndërsa parasimpatiku e ngadalëson.",
+        "Hormonet si adrenalina, hormonet e tiroides, mineralet e gjakut si kaliumi e kalciumi dhe shumë barna ndikojnë gjithashtu në ritëm. Atletët e stërvitur mirë shpesh kanë një ritëm zemre në pushim të ngadaltë që është i shëndetshëm."
+      ]
+    },
+    {
+      "heading": "Kur ritmi prishet",
+      "paragraphs": [
+        "Aritmitë janë çrregullime të ritmit të zemrës. Zemra mund të rrahë shumë shpejt, shumë ngadalë ose në mënyrë të parregullt. Shembuj të zakonshëm përfshijnë fibrilacionin atrial, ku atriumet dridhen në mënyrë të parregullt, rrahjet shtesë që duken si rrahje e humbur dhe bllokun e zemrës, ku sinjalet vonohen ose bllokohen.",
+        "Simptomat përfshijnë palpitacione, marramendje, gulçim, shqetësim në gjoks ose humbje ndjenjash. Disa njerëz nuk kanë simptoma. Fibrilacioni atrial e rrit rrezikun e goditjes në tru, prandaj është e rëndësishme të zbulohet dhe të trajtohet siç duhet."
+      ]
+    },
+    {
+      "heading": "Testet për ritmin e zemrës",
+      "paragraphs": [
+        "Një elektrokardiogram regjistron aktivitetin elektrik të zemrës brenda pak minutash. Nëse simptomat vijnë e ikin, një EKG afatgjatë e veshur për një ditë deri në disa javë, ose një regjistrues i implantuar, mund t'i kapë ato. Analizat e gjakut, ultratingulli i zemrës dhe testet e ushtrimeve ndihmojnë të kërkohen shkaqet.",
+        "Orët inteligjente mund ta regjistrojnë ritmin, por rezultatet e tyre duhen konfirmuar me teste mjekësore para se të merren vendime."
+      ]
+    },
+    {
+      "heading": "Opsionet e trajtimit",
+      "paragraphs": [
+        "Shumë rrahje shtesë të padëmshme nuk kërkojnë trajtim përtej shmangies së nxitësve si kafeina e tepërt, alkooli, nikotina ose mungesa e gjumit. Çrregullime të tjera të ritmit mund të trajtohen me barna që kontrollojnë shpejtësinë ose ritmin, holluesa gjaku për të ulur rrezikun e goditjes, kardioversion elektrik ose ablacion me kateter, që trajton burimin e sinjaleve jonormale.",
+        "Një stimulues kardiak mund ta mbështesë një zemër që rreh shumë ngadalë dhe një defibrilator i implantueshëm mund t'i ndalojë ritmet e rrezikshme të shpejta. Thirrni shërbimet e urgjencës për humbje ndjenjash, dhimbje gjoksi ose gulçim të rëndë me zemër që rreh shpejt."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përshkrimi i palpitacioneve",
+      "text": "Imagjinoni që ndonjëherë e ndieni zemrën të rreh shpejt për disa minuta. Mund të shkruani kur ndodh, sa shpejt e ndieni pulsin, çfarë po bënit dhe çdo simptomë tjetër, që mjeku juaj të zgjedhë testet e duhura."
+    },
+    {
+      "title": "Të kuptuarit e vendimit për holluesin e gjakut",
+      "text": "Supozoni që keni marrë diagnozën e fibrilacionit atrial. Mund të pyesni si u vlerësua rreziku juaj personal i goditjes, cilat janë përfitimet dhe rreziqet e gjakderdhjes të holluesve të gjakut dhe cilat shenja gjakderdhjeje duhet të vëzhgoni."
+    }
+  ],
+  "questions": [
+    "Cili lloj çrregullimi të ritmit mund t'i shpjegojë simptomat e mia dhe cilat teste do ta qartësojnë?",
+    "A kam nevojë për trajtim dhe si do ta ulte rrezikun tim të goditjes ose komplikimeve të tjera?",
+    "Cilët nxitës duhet të shmang dhe kur duhet të thërras shërbimet e urgjencës?"
+  ]
+}

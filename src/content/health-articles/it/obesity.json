@@ -1,0 +1,51 @@
+{
+  "title": "Obesità e perdita di peso",
+  "intro": "L'obesità significa avere una quantità elevata di grasso corporeo che aumenta il rischio di problemi come diabete di tipo 2, pressione alta, malattie cardiache e problemi articolari. È una condizione complessa influenzata da geni, ambiente e stile di vita, non solo dalla forza di volontà. Anche una modesta perdita di peso può portare benefici di salute evidenti.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "Il peso è controllato da molti fattori: predisposizione genetica, ormoni, regolazione dell'appetito, ambiente alimentare, livelli di attività, sonno, stress, certi farmaci e condizioni mediche. La vita moderna, con abbondanza di cibi ipercalorici e poco movimento, rende più facile aumentare di peso. Dare la colpa non è utile e può rendere più difficile il cambiamento."
+      ]
+    },
+    {
+      "heading": "Valutare peso e salute",
+      "paragraphs": [
+        "L'indice di massa corporea è ampiamente usato, con 30 o più generalmente definito come obesità, ma non mostra dove è depositato il grasso. La misura della vita e i controlli di pressione, glicemia e colesterolo danno un quadro più completo. L'obiettivo è una salute migliore, non solo un numero."
+      ]
+    },
+    {
+      "heading": "Approcci di stile di vita",
+      "paragraphs": [
+        "I programmi che combinano dieta, attività fisica e sostegno comportamentale sono i più efficaci. Una riduzione moderata delle calorie con un'alimentazione equilibrata e per lo più non processata è più sostenibile delle diete rigide. Aumenta gradualmente un'attività regolare come la camminata a passo svelto e includi l'allenamento della forza. Perdere dal cinque al dieci per cento del peso corporeo può migliorare pressione, glicemia e mobilità."
+      ]
+    },
+    {
+      "heading": "Farmaci e chirurgia",
+      "paragraphs": [
+        "Certi farmaci, compresi quelli iniettabili che imitano gli ormoni intestinali, possono sostenere la perdita di peso insieme ai cambiamenti di stile di vita in persone selezionate. Richiedono un uso continuativo, possono causare effetti collaterali digestivi e possono essere costosi. La chirurgia bariatrica può essere considerata per l'obesità grave e porta a una perdita di peso sostanziale e duratura in molti, ma comporta rischi e un follow-up per tutta la vita."
+      ]
+    },
+    {
+      "heading": "Mantenere il peso perso",
+      "paragraphs": [
+        "Il recupero del peso è comune, perché il corpo cerca di difendere il peso precedente. Aiutano un sostegno a lungo termine, un autocontrollo regolare, un'attività continua e obiettivi realistici. Cerca un sostegno professionale invece di diete lampo o integratori non provati."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Iniziare in piccolo",
+      "text": "Immagina di voler perdere peso. Potresti sostituire le bevande zuccherate con acqua, aggiungere una camminata quotidiana di venti minuti e seguire i progressi per un mese prima di fissare altri obiettivi."
+    },
+    {
+      "title": "Esplorare le opzioni",
+      "text": "Supponi che diversi tentativi di dieta non siano durati. Potresti chiedere al medico di programmi strutturati, farmaci o chirurgia e che cosa comporti ciascuno."
+    }
+  ],
+  "questions": [
+    "Qual è un obiettivo di peso realistico e sano per me?",
+    "Quale programma o trattamento è più adatto e quale sostegno è disponibile?",
+    "Come posso evitare di riprendere peso dopo averlo perso?"
+  ]
+}

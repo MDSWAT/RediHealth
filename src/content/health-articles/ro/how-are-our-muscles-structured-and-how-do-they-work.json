@@ -1,0 +1,51 @@
+{
+  "title": "Structura și funcționarea mușchilor",
+  "intro": "Mușchii ne ajută să mișcăm, să păstrăm postura, să respirăm și să producem căldură. Alte tipuri pompează sângele și deplasează conținutul organelor. Diferențele explică de ce antrenarea brațului nu este controlul digestiei ori inimii.",
+  "sections": [
+    {
+      "heading": "Fibre, fascicule și tendoane",
+      "paragraphs": [
+        "Mușchii scheletici au fibre lungi grupate în fascicule, susținute de țesut conjunctiv și alimentate de nervi și vase. Tendoanele transmit forța la os. Mișcarea folosește de obicei mușchi coordonați, nu unul care trage în ambele direcții."
+      ]
+    },
+    {
+      "heading": "Cum contracția produce forță",
+      "paragraphs": [
+        "În fibre, filamentele proteice alunecă folosind energie și produc tensiune. Semnalele nervoase inițiază activarea, sistemul ajustând numărul fibrelor recrutate. Forța depinde de coordonare și proprietăți, nu numai mărime."
+      ]
+    },
+    {
+      "heading": "Mușchi neted și cardiac",
+      "paragraphs": [
+        "Mușchiul neted din organe și vase lucrează în mare parte involuntar. Cel cardiac se contractă ritmic cu coordonare electrică. Diferă de cel scheletic, deși toate necesită forță controlată și energie."
+      ]
+    },
+    {
+      "heading": "Adaptare și recuperare",
+      "paragraphs": [
+        "Încărcarea regulată crescută treptat susține adaptarea; recuperarea, nutriția și somnul ajută. Durerea musculară nu este necesară progresului. Creșterea bruscă mare poate supraîncărca mușchiul ori tendonul, nu accelerează adaptarea."
+      ]
+    },
+    {
+      "heading": "Durere, slăbiciune și alarme",
+      "paragraphs": [
+        "Durerea, crampa și slăbiciunea au multe cauze, nu sunt identice. Slăbiciunea persistentă inexplicabilă cere consult. Cea brusc unilaterală, umflarea severă după traumatism ori durerea intensă cu urină închisă cer urgență, nu exercițiu forțat."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira începe forța cu rezistență tolerată și pauze. Măsoară sarcinile zilnice mai ușoare, nu caută durerea ca dovadă de succes."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben învață coordonarea grupelor la cot. Nu judecă problema mișcării numai după aspectul unui mușchi."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

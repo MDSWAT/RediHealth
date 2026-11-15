@@ -1,0 +1,51 @@
+{
+  "title": "Raccolta di cellule staminali: cosa aspettarsi come donatore",
+  "intro": "Le cellule staminali emopoietiche possono essere raccolte da sangue o midollo osseo per trapianto. La raccolta è diversa dal condizionamento e dal trapianto del ricevente. Il metodo dipende dalla situazione clinica, non solo dalla comodità.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "La raccolta periferica filtra il sangue con aferesi e restituisce il resto. Quella midollare usa aghi nell’osso pelvico sotto anestesia; non preleva cellule dal midollo spinale."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "La valutazione comprende storia sanitaria, analisi e consenso informato. Riferire farmaci e possibile gravidanza; chiedere viaggio, assenza dal lavoro e calendario prima che inizi il condizionamento del ricevente. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Prima della raccolta periferica, iniezioni prescritte di fattore di crescita mobilizzano cellule nel sangue e possono dare dolore osseo temporaneo. Può servire ripetere; la raccolta midollare comporta anestesia, dolore locale e rischi specifici. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Seguire istruzioni su farmaci, idratazione e attività senza analgesici non approvati. Segnalare subito formicolio, crampi o malessere durante aferesi: spesso possono essere affrontati rapidamente. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Usare il contatto del gruppo per febbre, dolore crescente, sanguinamento o disturbi persistenti dopo la raccolta. Forte dolore toracico o addominale, affanno o collasso richiedono urgenza. Recupero e ritorno allo sport sono individuali."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira chiede il metodo previsto e organizza trasporto e permesso lavorativo prima di accettare il calendario."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben avverte formicolio intorno alla bocca durante aferesi. Avvisa subito invece di tacere fino alla fine."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

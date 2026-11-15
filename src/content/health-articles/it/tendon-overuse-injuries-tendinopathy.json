@@ -1,0 +1,51 @@
+{
+  "title": "Lesioni da sovraccarico dei tendini (tendinopatia)",
+  "intro": "La tendinopatia è una condizione dolorosa e di lunga durata di un tendine, di solito causata da sollecitazioni ripetute oltre ciò che il tendine può tollerare. Colpisce comunemente il tendine d'Achille, la spalla, il gomito, il ginocchio e l'anca. Il trattamento si concentra su esercizi con carico graduale invece del riposo completo e il recupero richiede spesso mesi.",
+  "sections": [
+    {
+      "heading": "Che cosa succede nel tendine",
+      "paragraphs": [
+        "I tendini collegano il muscolo all'osso e trasmettono la forza. Quando il carico aumenta più in fretta di quanto il tendine riesca ad adattarsi, la sua struttura cambia, diventando ispessita e disorganizzata, e compare il dolore. Nonostante il vecchio termine tendinite, l'infiammazione non è la caratteristica principale nei casi cronici. Età, sovrappeso, certi farmaci, diabete e improvvisi aumenti dell'attività aumentano il rischio."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi tipici sono dolore e rigidità localizzati al tendine che sono peggiori all'inizio dell'attività, possono attenuarsi con il riscaldamento, poi ritornano dopo o la mattina seguente. Il tendine può essere dolente e ispessito. Il dolore con movimenti specifici, come la spinta quando si corre nei problemi del tendine d'Achille, è caratteristico."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "I medici diagnosticano con la storia e la visita. L'ecografia o la risonanza magnetica possono mostrare alterazioni del tendine, ma i reperti non corrispondono sempre ai sintomi. L'imaging si usa soprattutto quando si sospetta una lacerazione o la diagnosi non è chiara. Un dolore improvviso e acuto con una sensazione di schiocco e perdita di funzione suggerisce una rottura e richiede una valutazione urgente."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Esercizi di rinforzo progressivi graduali, come il carico lento e pesante, sono il trattamento meglio sostenuto. Riduci ma non sospendere l'attività che provoca dolore ed evita improvvisi aumenti dell'allenamento. Gli antidolorifici possono alleviare i sintomi per breve tempo. Le infiltrazioni di corticosteroidi possono dare un breve sollievo ma possono indebolire i tendini e si usano con cautela. La terapia a onde d'urto e altri trattamenti hanno prove contrastanti. La chirurgia si considera solo dopo mesi di riabilitazione fallita."
+      ]
+    },
+    {
+      "heading": "Prevenzione e prospettive",
+      "paragraphs": [
+        "Aumenta gradualmente l'allenamento, riscaldati, varia le attività, usa calzature adatte e mantieni forza e flessibilità nei muscoli. La maggior parte delle persone migliora con diversi mesi di esercizio costante, anche se i tendini guariscono lentamente e i sintomi possono ripresentarsi se il carico sale troppo in fretta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dosare il ritorno alla corsa",
+      "text": "Immagina che il tendine d'Achille ti faccia male all'inizio delle corse. Potresti ridurre la distanza, fare esercizi di rinforzo del polpaccio come insegnato e aumentare la corsa lentamente nell'arco di settimane."
+    },
+    {
+      "title": "Restare costanti",
+      "text": "Supponi di vedere pochi cambiamenti dopo due settimane. Potresti continuare il programma, perché il recupero del tendine richiede mesi, e rivedere i progressi con un fisioterapista."
+    }
+  ],
+  "questions": [
+    "Si tratta di tendinopatia e ho bisogno di imaging?",
+    "Quali esercizi devo fare e per quanto tempo?",
+    "Le infiltrazioni o altri trattamenti sono utili nel mio caso?"
+  ]
+}

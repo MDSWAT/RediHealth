@@ -1,0 +1,51 @@
+{
+  "title": "Ecografia: preparazione, consenso e risultati",
+  "intro": "L’ecografia usa suoni ad alta frequenza ed echi per immagini interne. Non usa radiazioni ionizzanti. Il valore dipende da quesito, zona e interpretazione preparata; non mostra ogni condizione.",
+  "sections": [
+    {
+      "heading": "Immagine",
+      "paragraphs": [
+        "La sonda invia e riceve echi dai tessuti. Il gel elimina aria tra pelle e sonda. Il movimento offre viste, il Doppler informazioni sul flusso."
+      ]
+    },
+    {
+      "heading": "Preparazione",
+      "paragraphs": [
+        "Alcuni addominali richiedono digiuno, alcuni pelvici vescica piena. Seguire istruzioni e chiedere, soprattutto con diabete o farmaci. Non sospendere terapie solo per esame."
+      ]
+    },
+    {
+      "heading": "Esame",
+      "paragraphs": [
+        "Molti sulla pelle, alcuni con sonda interna. Il professionista spiega scopo, alternative e consenso. Si possono chiedere accompagnatore sanitario, interprete, pausa o interruzione intima."
+      ]
+    },
+    {
+      "heading": "Limiti",
+      "paragraphs": [
+        "Gas e ossa nascondono strutture e i reperti dipendono dal contesto. Normale non esclude tutte le cause. Un reperto occasionale non è automaticamente pericoloso; chiedere reale bisogno di altri test."
+      ]
+    },
+    {
+      "heading": "Dopo",
+      "paragraphs": [
+        "Chiedere tempi, spiegazione e cosa fare con sintomi persistenti. Usare appropriatamente, non ripetere per intrattenimento. Sintomi nuovi gravi richiedono aiuto, non aspettare appuntamento né fidarsi di un vecchio risultato. Prima della visita, annotate quando è iniziato il sintomo, cosa lo migliora o peggiora e come influisce sulle attività abituali. Portate i referti precedenti, se disponibili. Chiedete al professionista di collegare la spiegazione ai vostri riscontri: una descrizione generale non stabilisce una diagnosi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira verifica vescica e farmaci prima dell’esame pelvico senza regole online non pertinenti."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha dolore con esame normale. Chiede controllo di altre cause, non ripete senza quesito."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

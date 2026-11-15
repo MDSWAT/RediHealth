@@ -1,0 +1,51 @@
+{
+  "title": "Kada se preporučuju statini?",
+  "intro": "Statini su lijekovi koji snižavaju kolesterol i smanjuju rizik od srčanog udara i moždanog udara. Preporučuju se uglavnom osobama koje već imaju bolest srca ili krvnih žila i nekim osobama s visokim rizikom. Odluka ovisi o individualnom riziku pa se donosi zajedno s liječnikom.",
+  "sections": [
+    {
+      "heading": "Kako statini djeluju",
+      "paragraphs": [
+        "Statini blokiraju enzim u jetri koji stvara kolesterol, čime snižavaju LDL kolesterol, štetnu vrstu. Također stabiliziraju masne naslage u arterijama. Primjeri uključuju simvastatin, atorvastatin i rosuvastatin. Obično se uzimaju jednom dnevno, dugoročno."
+      ]
+    },
+    {
+      "heading": "Tko ima najviše koristi",
+      "paragraphs": [
+        "Osobe koje su imale srčani udar, moždani udar ili drugu kardiovaskularnu bolest imaju najviše koristi i statini im se općenito savjetuju. Onima s vrlo visokim kolesterolom, kao što je obiteljska hiperkolesterolemija, i mnogim osobama s dijabetesom koje su starije ili imaju druge čimbenike rizika također se obično savjetuje uzimanje."
+      ]
+    },
+    {
+      "heading": "Prevencija kod osoba bez bolesti",
+      "paragraphs": [
+        "Kod osoba bez utvrđene bolesti liječnici procjenjuju desetogodišnji rizik od kardiovaskularnog događaja, koristeći čimbenike kao što su dob, spol, krvni tlak, kolesterol, pušenje i dijabetes. Statini se razmatraju kada je rizik dovoljno visok da korist nadmašuje moguće nuspojave. Korist je manja kod onih s niskim rizikom pa je stil života na prvom mjestu."
+      ]
+    },
+    {
+      "heading": "Nuspojave",
+      "paragraphs": [
+        "Većina ljudi dobro podnosi statine. Bolovi u mišićima su najčešća tegoba, a ozbiljno oštećenje mišića je rijetko. Mogu se javiti porast jetrenih enzima i malo povećanje šećera u krvi. Prijavite jaku bol u mišićima, slabost ili tamni urin. Neki lijekovi i sok od grejpa međusobno djeluju s određenim statinima. Statini se ne preporučuju u trudnoći."
+      ]
+    },
+    {
+      "heading": "Stil života ostaje važan",
+      "paragraphs": [
+        "Zdrava prehrana, redovita aktivnost, nepušenje, zdrava težina i ograničenje alkohola snižavaju rizik s lijekom ili bez njega. Ne prestajte uzimati statine bez razgovora s liječnikom. Razine kolesterola treba provjeravati u dogovorenim razmacima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razgovor o riziku",
+      "text": "Zamislite da vam je kolesterol visok, ali nemate bolest srca. Mogli biste zamoliti liječnika da izračuna vaš desetogodišnji rizik i objasni brojke."
+    },
+    {
+      "title": "Nošenje s nuspojavama",
+      "text": "Pretpostavite da imate bolove u mišićima nakon početka statina. Mogli biste pitati o nižoj dozi ili drugom statinu prije nego što prestanete."
+    }
+  ],
+  "questions": [
+    "Koliki je moj rizik i koliko bi mi statin pomogao?",
+    "Koji su statin i doza pravi za mene?",
+    "Koje nuspojave trebam prijaviti?"
+  ]
+}

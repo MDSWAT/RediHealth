@@ -1,0 +1,52 @@
+{
+  "title": "Come la tiroide regola il metabolismo",
+  "intro": "La tiroide è davanti al collo e rilascia ormoni che influenzano energia, temperatura e molte funzioni. I sintomi si sovrappongono ad altre malattie; peso o stanchezza da soli non sono una diagnosi tiroidea.",
+  "sections": [
+    {
+      "heading": "Produzione",
+      "paragraphs": [
+        "I follicoli usano iodio per produrre e conservare ormoni. Lo iodio arriva dal cibo, ma di più non è sempre meglio: l'eccesso può alterare la funzione."
+      ]
+    },
+    {
+      "heading": "Feedback",
+      "paragraphs": [
+        "L'ormone stimolante dell'ipofisi regola l'uscita. Gli ormoni tiroidei inviano segnali di ritorno. I risultati si interpretano insieme a gravidanza, farmaci e possibili malattie ipofisarie."
+      ]
+    },
+    {
+      "heading": "Poco o troppo",
+      "paragraphs": [
+        "Una produzione bassa rallenta le funzioni; l'eccesso può dare intolleranza al caldo, tremore o palpitazioni. I sintomi variano; un gonfiore del collo non misura da solo la produzione."
+      ]
+    },
+    {
+      "heading": "Esami",
+      "paragraphs": [
+        "Il sangue valuta funzione, l'ecografia struttura quando indicata. La cura dipende dalla causa. Non modificate farmaci dal solo peso né usate ormoni per dimagrire senza prescrizione."
+      ]
+    },
+    {
+      "heading": "Controlli",
+      "paragraphs": [
+        "Segnalate progetti di gravidanza, integratori e altri farmaci e rispettate gli esami. Palpitazioni gravi con dolore toracico, affanno, febbre alta o forte confusione richiedono urgenza.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira è stanca e chiede valutazione anziché comprare iodio come cura universale."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha un nodulo all'ecografia. Chiede separatamente struttura e funzione ematica senza presumere ormoni in eccesso."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

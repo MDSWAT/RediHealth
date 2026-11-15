@@ -1,0 +1,51 @@
+{
+  "title": "Vendime shëndetësore: krahasimi i mundësive dhe prioriteteve",
+  "intro": "Vendimi shëndetësor mund të jetë analizë, trajtim, procedurë ose vëzhgim. Informacioni i besueshëm ndihmon, por zgjedhja varet edhe nga rrethanat dhe prioritetet. Vendimmarrja e përbashkët bashkon njohuritë klinike me atë që ju vlerësoni.",
+  "sections": [
+    {
+      "heading": "Përcaktoni vendimin",
+      "paragraphs": [
+        "Së pari përcaktoni vendimin dhe urgjencën. Pyesni çfarë problemi zgjidh mundësia dhe çfarë ndodh pa të. Vëzhgimi me plan rivlerësimi mund të jetë mundësi aktive kur është mjekësisht e arsyeshme, jo thjesht mosveprim."
+      ]
+    },
+    {
+      "heading": "Gjeni informacion të besueshëm",
+      "paragraphs": [
+        "Kërkoni autorë, data, burime dhe financim transparent. Ndani reklamën nga provat dhe historitë personale nga krahasimet e besueshme. Pyesni nëse pjesëmarrësit ju ngjajnë; trajtimi në rrethana të tjera mund të japë përfitim tjetër."
+      ]
+    },
+    {
+      "heading": "Krahasoni përfitimet dhe dëmet",
+      "paragraphs": [
+        "Krahasoni përfitime dhe dëme me të njëjtën popullatë dhe periudhë. Kërkoni mundësi absolute, edhe pa trajtim, jo vetëm përqindje relative mbresëlënëse. Krahasoni rikuperimin, barrën, pasigurinë dhe alternativat, përfshirë ndryshimin e planit më vonë."
+      ]
+    },
+    {
+      "heading": "Identifikoni prioritetet",
+      "paragraphs": [
+        "Shkruani çfarë vlen: lehtësimi, lëvizshmëria, shmangia e efekteve, fertiliteti, kujdesi familjar ose kostoja. Merrni pyetje ose person të besuar nëse doni dhe kërkoni përkthyes. Kërkoni shpjegim termash dhe përmblidheni planin me fjalët tuaja."
+      ]
+    },
+    {
+      "heading": "Përcaktoni hapat e ardhshëm",
+      "paragraphs": [
+        "Përcaktoni hapat, kontrollin dhe shenjat për ndihmë më herët. Pyesni sa kohë është e sigurt të vendosni; kërkoni opinion tjetër kur lejohet. Mos vononi urgjencën për mbledhje pa fund informacioni ose blini nga presioni i ofertave me numërim mbrapsht."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira krahason procedurën me vëzhgimin. Pyet mundësinë e lehtësimit, komplikimet dhe rikuperimin para zgjedhjes sipas kujdesit familjar."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni sheh premtim për ulje të madhe rreziku. Kërkon rreziqet absolute dhe periudhën përkatëse para se të vendosë rëndësinë personale."
+    }
+  ],
+  "questions": [
+    "Çfarë ndodh me çdo mundësi, përfshirë vëzhgimin?",
+    "Cilat rezultate dhe barra kanë rëndësi për mua?",
+    "Sa kohë mund të vendos me siguri?"
+  ]
+}

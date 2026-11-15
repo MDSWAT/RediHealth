@@ -1,0 +1,51 @@
+{
+  "title": "Cum articulațiile mișcă și suportă greutatea",
+  "intro": "Articulațiile unesc oase și ghidează mișcarea împărțind sarcina. Structura diferă: umărul permite multă mișcare, genunchiul îndoire cu rotație controlată. Zgomotul nu înseamnă automat articulație lezată.",
+  "sections": [
+    {
+      "heading": "Cartilaj și lichid",
+      "paragraphs": [
+        "Multe au cartilaj neted la capetele osoase și spațiu cu lichid sinovial. Reduc frecarea și distribuie presiunea. Cartilajul este țesut viu cu reparare limitată, nu strat care crește mereu la loc."
+      ]
+    },
+    {
+      "heading": "Capsulă și ligamente",
+      "paragraphs": [
+        "Capsula închide articulația, ligamentele limitează mișcarea nedorită. Mușchii și tendoanele stabilizează activ. Întinderea mult peste normal poate leza structuri chiar dacă pare flexibilă."
+      ]
+    },
+    {
+      "heading": "Coordonare",
+      "paragraphs": [
+        "Nervii ajută creierul să simtă poziția și să coordoneze mușchii. Unele au meniscuri pentru sarcină. Durerea, umflarea și slăbiciunea perturbă; anatomia singură nu identifică cauza."
+      ]
+    },
+    {
+      "heading": "Sprijin",
+      "paragraphs": [
+        "Activitatea tolerată păstrează funcția și mușchii. Creșteți efortul treptat și recuperați. Repausul complet lung scade capacitatea, dar trauma ori inflamația poate cere protecție temporară și plan individual."
+      ]
+    },
+    {
+      "heading": "Consult",
+      "paragraphs": [
+        "Durerea persistentă, umflarea ori funcția pierdută cer consult. Articulația caldă cu febră, deformarea severă ori imposibilitatea sprijinului cer urgență. Nu forțați blocajul și nu numiți orice durere uzură. Înainte de consultație, notați când a început simptomul, ce îl ameliorează sau agravează și cum afectează activitățile obișnuite. Aduceți rezultatele anterioare dacă le aveți. Cereți specialistului să lege explicația de constatările din cazul dumneavoastră; o descriere generală nu stabilește un diagnostic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira crește mersul treptat și urmărește funcția, fără să elimine orice pocnitură inofensivă."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Genunchiul lui Arben este cald umflat cu febră. Cere evaluare urgentă, nu presupune febră musculară."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

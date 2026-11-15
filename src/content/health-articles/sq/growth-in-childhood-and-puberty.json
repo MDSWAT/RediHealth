@@ -1,0 +1,51 @@
+{
+  "title": "Rritja në fëmijëri dhe pubertet: vlerësimi i modelit",
+  "intro": "Fëmijët rriten me ritme të ndryshme dhe puberteti nis në kohë të ndryshme. Gjatësia, pesha dhe përmasat ndryshojnë. Një krahasim i vetëm me shokët nuk përcakton shëndetin e rritjes ose gjatësinë përfundimtare.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Familja, ushqyerja, hormonet, gjumi dhe sëmundjet kronike ndikojnë. Dallimi i përkohshëm nga moshatarët mund të jetë normal; matjet e përsëritura dhe modeli i zhvillimit japin më shumë informacion."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Mjeku vendos matje të sakta në kurbat përkatëse dhe shqyrton shpejtësinë, gjatësinë familjare dhe shenjat e pubertetit. Rënia nëpër centile ose koha e pazakontë mund të kërkojnë hetim. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Trajtohet shkaku kur gjendet. Suplementet dhe hormoni i rritjes nuk janë zgjidhje rutinë për fëmijën e shëndetshëm të shkurtër; hormoni ka indikacione e monitorim specialistik. Shmangni produkte që premtojnë gjatësi shtesë. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Ofroni ushqim të mjaftueshëm të larmishëm, aktivitet dhe gjumë pa presion për pamjen. Diskutoni talljen dhe shqetësimet trupore privatisht me respekt; mos turpëroni peshën ose krahasoni vëllezërit në garë. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Kërkoni kontroll për rritje të ngadalësuar, humbje peshe, simptoma tretëse të vazhdueshme ose pubertet shumë të hershëm apo të vonuar. Dhimbja e re e fortë e kokës ose ndryshimet e shikimit kërkojnë vlerësim të shpejtë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Fëmija i Mirës është më i shkurtër por ndjek një kurbë të qëndrueshme familjare. Mjeku ndjek ecurinë pa suplemente gjatësie."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni vëren ngadalësim të rritjes së adoleshentit në matje të përsëritura. Merr shënimet në vizitë, jo vetëm një fotografi shkolle."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

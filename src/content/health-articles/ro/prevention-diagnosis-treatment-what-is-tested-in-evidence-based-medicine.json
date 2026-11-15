@@ -1,0 +1,51 @@
+{
+  "title": "Prevenție, diagnostic, tratament: ce testează medicina bazată pe dovezi",
+  "intro": "Medicina bazată pe dovezi folosește cele mai bune cercetări disponibile pentru a judeca dacă măsurile de sănătate funcționează și dacă beneficiile lor depășesc răul. Se uită la întreaga gamă a îngrijirii medicale: prevenirea bolilor, depistarea lor și tratarea lor. Înțelegerea principalelor tipuri de întrebări vă ajută să interpretați afirmațiile și să luați decizii împreună cu echipa de îngrijire.",
+  "sections": [
+    {
+      "heading": "Testarea prevenției",
+      "paragraphs": [
+        "Prevenția urmărește oprirea bolii înainte de apariția ei. Exemplele includ vaccinurile, programele de stil de viață sănătos și medicamentele luate pentru a reduce riscul. Studiile întreabă dacă persoanele care folosesc măsura dezvoltă mai puține cazuri de boală sau complicații decât cele care nu o folosesc și dacă există efecte secundare la persoanele sănătoase, ceea ce contează deoarece persoanele sănătoase au puțin de câștigat și nu trebuie să suporte răul."
+      ]
+    },
+    {
+      "heading": "Testarea diagnosticului și a screeningului",
+      "paragraphs": [
+        "Testele sunt judecate după cât de bine identifică persoanele care au o afecțiune și pe cele care nu o au, dar mai ales după faptul dacă folosirea lor duce la rezultate mai bune. Descoperirea unei boli mai devreme nu ajută întotdeauna și poate duce la supradiagnostic și la tratament inutil. Studiile de screening compară grupurile cărora li se oferă screening cu grupurile cărora nu li se oferă, urmărind decesele și efectele nocive."
+      ]
+    },
+    {
+      "heading": "Testarea tratamentului",
+      "paragraphs": [
+        "Tratamentele sunt testate cel mai bine în studii randomizate, care le compară cu placebo sau cu îngrijirea standard. Cercetătorii măsoară rezultatele care contează pentru pacienți, precum supraviețuirea, simptomele, funcția și calitatea vieții, precum și efectele secundare. Un tratament care îmbunătățește o valoare din sânge nu este neapărat benefic pentru sănătate."
+      ]
+    },
+    {
+      "heading": "Cântărirea beneficiului și a răului",
+      "paragraphs": [
+        "Orice intervenție are beneficii și daune potențiale. Dovezile ajută la estimarea cât de probabile sunt. Cifrele absolute, precum câte persoane din o sută beneficiază, sunt mai informative decât cele relative. Contează și preferințele individuale, deoarece oamenii prețuiesc rezultatele diferit."
+      ]
+    },
+    {
+      "heading": "Folosirea dovezilor în practică",
+      "paragraphs": [
+        "Ghidurile și analizele sistematice rezumă dovezile. Medicii combină aceasta cu experiența și dorințele pacientului. Când dovezile lipsesc, incertitudinea trebuie recunoscută. Puteți întreba despre mărimea beneficiului, riscuri, alternative și calitatea studiilor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Interpretarea cifrelor",
+      "text": "Imaginați-vă că se spune despre un medicament că reduce riscul la jumătate. Ați putea întreba câte persoane din o sută ar beneficia în termeni absoluți și câte ar avea efecte secundare."
+    },
+    {
+      "title": "Luarea în considerare a screeningului",
+      "text": "Presupuneți că sunteți invitat la un program de screening. Ați putea întreba ce poate găsi testul, cât de des dă alarme false și ce daune ar putea urma."
+    }
+  ],
+  "questions": [
+    "Care sunt dovezile că acest test sau tratament îmbunătățește rezultatele care contează pentru mine?",
+    "Cât de mari sunt beneficiile și riscurile în cifre absolute?",
+    "Există alternative, inclusiv să nu fac nimic deocamdată?"
+  ]
+}

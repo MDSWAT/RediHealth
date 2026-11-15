@@ -1,0 +1,51 @@
+{
+  "title": "Mungesa e hekurit dhe anemia nga mungesa e hekurit",
+  "intro": "Hekuri nevojitet për të prodhuar hemoglobinën, proteinën në qelizat e kuqe të gjakut që bart oksigjenin. Kur trupit i mungon hekuri, zhvillohen lodhje dhe simptoma të tjera dhe mund të pasojë anemia. Mungesa e hekurit është e zakonshme, veçanërisht te gratë që kanë menstruacione, gratë shtatzëna dhe fëmijët, dhe zakonisht trajtohet sapo gjendet shkaku.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Shkaqet më të zakonshme janë humbja e gjakut, për shembull nga menstruacionet e bollshme ose gjakderdhja në traktin tretës, një dietë e varfër me hekur, nevojat e shtuara në shtatzëni dhe rritje dhe thithja e reduktuar për shkak të gjendjeve si sëmundja celiake ose pas operacionit të stomakut. Te burrat dhe gratë pas menopauzës, humbja e fshehtë e gjakut duhet hetuar."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat përfshijnë lodhje, dobësi, lëkurë të zbehtë, gulçim gjatë përpjekjes, dhimbje koke, marramendje, thonj të brishtë, rënie flokësh, duar e këmbë të ftohta dhe këmbë të shqetësuara. Disa njerëz dëshirojnë akull ose sende jo ushqimore. Simptomat zhvillohen ngadalë dhe shumë njerëz mësohen me to."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Një analizë e plotë e gjakut tregon nëse ka anemi dhe feritina mat rezervat e hekurit. Teste të mëtejshme mund të përfshijnë kërkimin e një burimi gjakderdhjeje, teste për sëmundjen celiake dhe, sipas moshës e simptomave, ekzaminimin e traktit tretës."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Trajtimi adreson shkakun dhe zëvendëson hekurin. Tabletat e hekurit të marra një herë në ditë ose në ditë alternative thithen shpesh mirë, mundësisht larg çajit, kafesë dhe qumështit. Efektet anësore përfshijnë kapsllëk, të përzier dhe jashtëqitje të errëta. Hekuri mund të jepet me infuzion kur tabletat nuk tolerohen, nuk funksionojnë ose kur nevojitet korrigjim i shpejtë. Hemoglobina zakonisht përmirësohet brenda javësh, por rezervat kanë nevojë për disa muaj për t'u mbushur."
+      ]
+    },
+    {
+      "heading": "Dieta dhe parandalimi",
+      "paragraphs": [
+        "Ushqimet e pasura me hekur përfshijnë mishin e kuq, shpendët, peshkun, bishtajoret, perimet jeshile të errëta, arrat dhe drithërat e pasuruara. Vitamina C ndihmon thithjen e hekurit nga bimët, ndërsa çaji, kafeja dhe kalciumi e ulin. Gratë shtatzëna, vegjetarianët dhe njerëzit me menstruacione të bollshme duhet të pyesin nëse suplementet kanë kuptim. Mos merrni suplemente hekuri pa diagnozë, pasi tepria mund të jetë e dëmshme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Të kuptuarit e lodhjes",
+      "text": "Imagjinoni që jeni ndier të rraskapitur për muaj. Mund t'i kërkoni mjekut një analizë të plotë gjaku dhe një test feritine dhe të raportoni detaje për menstruacionet e bollshme ose simptomat tretëse."
+    },
+    {
+      "title": "Marrja e mirë e tabletave",
+      "text": "Supozoni që tabletat e hekurit ju prishin stomakun. Mund të pyesni nëse marrja e tyre çdo ditë të dytë, me një formulim tjetër ose me ushqim mund të ndihmojë, në vend që të ndërpritet."
+    }
+  ],
+  "questions": [
+    "Çfarë e shkakton mungesën time të hekurit dhe a kam nevojë për teste të mëtejshme?",
+    "Sa kohë duhet ta marr hekurin dhe kur do të rikontrollohen nivelet?",
+    "Cilat ushqime ose zakone mund ta përmirësojnë marrjen time të hekurit?"
+  ]
+}

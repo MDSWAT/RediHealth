@@ -1,0 +1,52 @@
+{
+  "title": "Tulburările de învățare (dislexia și discalculia)",
+  "intro": "Tulburările specifice de învățare sunt dificultăți durabile în învățarea cititului, a scrisului corect sau a aritmeticii, care nu pot fi explicate prin inteligență scăzută sau predare slabă. Dislexia afectează cititul și scrisul corect, iar discalculia afectează numerele și calculul. Cu recunoaștere timpurie și sprijin adaptat, copiii pot face progrese bune și își pot construi încrederea.",
+  "sections": [
+    {
+      "heading": "Ce sunt",
+      "paragraphs": [
+        "Dislexia implică probleme în legarea literelor de sunete, în citirea fluentă și în scrierea corectă. Discalculia provoacă dificultăți în înțelegerea conceptelor numerice, memorarea faptelor numerice și efectuarea calculelor. Aceste tulburări apar adesea în familie și se crede că implică diferențe în modul în care creierul procesează limbajul și numerele."
+      ]
+    },
+    {
+      "heading": "Semne de urmărit",
+      "paragraphs": [
+        "În dislexie, un copil poate fi lent în învățarea literelor, poate confunda litere asemănătoare, poate citi poticnit, poate evita citirea cu voce tare sau poate scrie același cuvânt diferit. În discalculie, copiii pot număra pe degete mult după colegi, pot avea greutăți cu timpul și banii sau pot găsi temele la matematică copleșitoare. Copiii pot dezvolta și stimă de sine scăzută, dureri de cap sau reticență de a merge la școală."
+      ]
+    },
+    {
+      "heading": "Evaluarea",
+      "paragraphs": [
+        "Evaluarea este făcută de psihologi educaționali sau clinici, pediatri sau servicii specializate, adesea împreună cu școala. Include teste de citire, scriere, matematică și abilități generale și verifică auzul, vederea și alte cauze posibile, precum problemele de atenție sau stresul emoțional, care pot coexista."
+      ]
+    },
+    {
+      "heading": "Sprijin și predare",
+      "paragraphs": [
+        "Cea mai utilă este predarea structurată care se concentrează pe legăturile sunet-literă, pe exersarea cititului și a scrisului corect sau pe simțul numărului și strategiile de calcul. Pașii mici, exersarea repetată, ajutoarele vizuale și încurajarea susțin progresul. Școlile pot oferi timp suplimentar la teste, un spațiu liniștit sau folosirea calculatoarelor și a verificatoarelor ortografice.",
+        "Materiile și interesele puternice trebuie cultivate, deoarece succesul construiește încrederea. Exersarea regulată în sesiuni scurte este mai bună decât în cele lungi și obositoare."
+      ]
+    },
+    {
+      "heading": "Părinți și profesori",
+      "paragraphs": [
+        "Lăudați efortul și evitați comparațiile. Păstrați legătura cu profesorii și întrebați despre planuri specifice de sprijin. Unele țări oferă drepturi legale la adaptări și finanțare. Adulții cu aceste dificultăți pot primi ajutor și la locul de muncă și în învățământul superior."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Începerea unei conversații",
+      "text": "Imaginați-vă că copilul dumneavoastră evită citirea cu voce tare și spune că este prost. Ați putea să vă întâlniți cu profesorul, să împărtășiți ce observați acasă și să întrebați despre screening și sprijin suplimentar."
+    },
+    {
+      "title": "Sprijinirea temelor",
+      "text": "Presupuneți că temele la matematică provoacă lacrimi în fiecare seară. Ați putea conveni cu profesorul asupra unei sarcini mai scurte, folosi obiecte sau desene pentru a explica numerele și face pauze."
+    }
+  ],
+  "questions": [
+    "Are copilul meu nevoie de o evaluare formală și cine o poate efectua?",
+    "Ce sprijin și adaptări poate oferi școala?",
+    "Cum putem ajuta acasă fără a provoca frustrare?"
+  ]
+}

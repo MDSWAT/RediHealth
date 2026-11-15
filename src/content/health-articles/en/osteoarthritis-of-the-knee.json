@@ -1,0 +1,51 @@
+{
+  "title": "Osteoarthritis of the knee",
+  "intro": "Knee osteoarthritis is a long-term condition in which the cartilage and other tissues of the knee change over time, causing pain, stiffness and reduced movement. It is very common with increasing age. Exercise, weight control and pain relief help many people stay active, and surgery is an option when other treatments are no longer enough.",
+  "sections": [
+    {
+      "heading": "What happens in the joint",
+      "paragraphs": [
+        "The knee is cushioned by smooth cartilage that thins and roughens in osteoarthritis. The bone underneath thickens, small bony spurs may form and the joint lining can become irritated and swollen. Previous injuries, overweight, family history and heavy repetitive strain increase the risk."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical symptoms are pain when walking, climbing stairs or getting up from a chair, stiffness after rest, swelling and a grating feeling. The knee may give way when the thigh muscles are weak. Symptoms fluctuate and often flare up after unusual activity."
+      ]
+    },
+    {
+      "heading": "Exercise and weight",
+      "paragraphs": [
+        "Regular exercise is the most effective treatment. Strengthening the thigh muscles, cycling, swimming and walking reduce pain and improve function, even if movement feels uncomfortable at first. If you are overweight, losing weight reduces the load on the knee substantially. Supportive shoes and walking aids can help."
+      ]
+    },
+    {
+      "heading": "Medicines and injections",
+      "paragraphs": [
+        "Anti-inflammatory gels applied to the knee can ease pain with few side effects. Tablets such as ibuprofen may help for short periods, with care for the stomach, kidneys and heart. Corticosteroid injections can bring temporary relief during flares. The benefit of supplements such as glucosamine is doubtful, and joint lavage and arthroscopy are generally not helpful for osteoarthritis alone."
+      ]
+    },
+    {
+      "heading": "Surgery",
+      "paragraphs": [
+        "A knee replacement may be considered when pain and loss of function remain severe despite other treatments. It relieves pain and improves mobility for most people, and artificial joints commonly last fifteen years or more. Risks include infection, blood clots and stiffness, and rehabilitation takes weeks to months. Younger patients sometimes have corrective bone surgery to shift load away from the damaged area."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Building an exercise routine",
+      "text": "Imagine your knee hurts when you climb stairs. You could start with gentle thigh-strengthening exercises and short walks, increase them slowly each week and ask a physiotherapist to check your technique."
+    },
+    {
+      "title": "Thinking about surgery",
+      "text": "Suppose pain wakes you at night and limits walking to a few minutes. You might ask an orthopaedic specialist about expected benefits, recovery time and how to prepare for a replacement."
+    }
+  ],
+  "questions": [
+    "Which exercises and aids are best for my knees?",
+    "Would injections or other treatments help me at this stage?",
+    "How do I know when surgery is the right choice?"
+  ]
+}

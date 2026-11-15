@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë përfshin testimi gjenetik?",
+  "intro": "Testet gjenetike shohin gjenet, kromozomet ose proteinat për të gjetur ndryshime të lidhura me gjendje të trashëguara ose me rrezikun e sëmundjes. Bëhen në një mostër gjaku ose pështyme. Testimi mund të sjellë përgjigje të dobishme por ngre edhe pyetje personale, prandaj këshillimi paraprak është i rëndësishëm.",
+  "sections": [
+    {
+      "heading": "Llojet e testeve",
+      "paragraphs": [
+        "Testimi diagnostik konfirmon ose përjashton një gjendje të dyshuar. Testimi parashikues e presimptomatik tregon nëse dikush do ose mund të zhvillojë një sëmundje më vonë. Testimi i bartësit tregon nëse një person bart një ndryshim gjeni që mund t'i prekë fëmijët. Testet prenatale e të porsalindurve kërkojnë gjendje herët. Testet farmakogjenetike udhëzojnë zgjedhjen e barit."
+      ]
+    },
+    {
+      "heading": "Procesi",
+      "paragraphs": [
+        "Një këshillues gjenetik ose mjek diskuton arsyet, rezultatet e mundshme e pasojat, e kontrollon historinë familjare. Merret një mostër gjaku ose pështyme e analizohet në laborator, çka mund të zgjasë ditë deri muaj. Rezultatet shpjegohen në një takim vijues. Në shumë vende kërkohet pëlqim me shkrim."
+      ]
+    },
+    {
+      "heading": "Rezultatet e mundshme",
+      "paragraphs": [
+        "Një rezultat mund të jetë pozitiv, që do të thotë se u gjet një ndryshim gjeni, negativ, ose i pasigurt, kur gjendet një variant me rëndësi të panjohur. Një rezultat negativ nuk e përjashton të gjithë rrezikun, pasi jo të gjitha shkaqet njihen. Një rezultat pozitiv mund të mos nënkuptojë sëmundje të sigurt, pasi shumë ndryshime gjenesh vetëm e rrisin rrezikun."
+      ]
+    },
+    {
+      "heading": "Konsiderata",
+      "paragraphs": [
+        "Rezultatet mund t'i prekin të afërmit, që ndajnë gjene, e mund të kenë efekte emocionale, si ankth ose faj. Disa vende kanë ligje që mbrojnë nga diskriminimi gjenetik nga punëdhënësit e siguruesit, por rregullat ndryshojnë e disa produkte sigurimi mund të preken. Testet direkt për konsumatorin ndryshojnë në cilësi, e rezultatet duhen diskutuar me një profesionist."
+      ]
+    },
+    {
+      "heading": "Marrja e një vendimi",
+      "paragraphs": [
+        "Testimi është vullnetar. Mendoni çfarë do të bënit me rezultatin, nëse e ndryshon trajtimin ose skriningun e si do t'ua tregonit familjarëve. Mund të merrni kohë ose të refuzoni. Mbështetja ofrohet nga këshilluesit gjenetikë e organizatat e pacientëve."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për këshillim",
+      "text": "Imagjinoni që disa të afërm patën kancer gjiri. Mund të hartoni një pemë familjare e të shënoni moshat në diagnozë për t'ia sjellë këshilluesit."
+    },
+    {
+      "title": "Peshimi i vendimit",
+      "text": "Supozoni që ju ofrohet testim parashikues. Mund të pyesni si do ta ndryshonin rezultatet kujdesin tuaj e çfarë mbështetjeje ekziston pas tij."
+    }
+  ],
+  "questions": [
+    "A është i dobishëm testimi gjenetik për situatën time?",
+    "Si mund t'i ndikojë rezultati të afërmit e sigurimin tim?",
+    "Çfarë mbështetjeje ofrohet pas rezultatit?"
+  ]
+}

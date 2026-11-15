@@ -1,0 +1,51 @@
+{
+  "title": "Menopausa",
+  "intro": "La menopausa è il momento in cui le mestruazioni cessano definitivamente, di solito intorno ai cinquant'anni. Gli anni che la precedono, chiamati perimenopausa, portano cambiamenti ormonali che possono causare vampate di calore, problemi di sonno e cambiamenti dell'umore. È una fase naturale della vita e per chi trova difficili i sintomi esistono molte opzioni.",
+  "sections": [
+    {
+      "heading": "Che cosa succede nel corpo",
+      "paragraphs": [
+        "Le ovaie producono gradualmente meno estrogeni e progesterone. Le mestruazioni diventano irregolari prima di finire. La menopausa si conferma dopo dodici mesi senza mestruazioni. La perimenopausa può durare diversi anni e i sintomi variano molto; alcune donne ne hanno pochi, altre molti."
+      ]
+    },
+    {
+      "heading": "Sintomi comuni",
+      "paragraphs": [
+        "Vampate di calore e sudorazioni notturne sono i sintomi più noti. Altri comprendono disturbi del sonno, cambiamenti dell'umore, irritabilità, difficoltà di concentrazione, dolori articolari, secchezza vaginale, fastidio durante i rapporti, sintomi urinari e calo del desiderio. Un sanguinamento abbondante o molto irregolare, un sanguinamento dopo la menopausa o tra una mestruazione e l'altra va valutato da un medico."
+      ]
+    },
+    {
+      "heading": "Che cosa puoi fare da sola",
+      "paragraphs": [
+        "Esercizio regolare, alimentazione equilibrata, limitare alcol e caffeina, smettere di fumare e vestirsi a strati possono aiutare. Camere fresche, tecniche di rilassamento e terapia cognitivo-comportamentale alleviano vampate e problemi di sonno. Idratanti e lubrificanti vaginali alleviano la secchezza."
+      ]
+    },
+    {
+      "heading": "Trattamenti medici",
+      "paragraphs": [
+        "La terapia ormonale della menopausa è il trattamento più efficace per le vampate e aiuta anche i sintomi vaginali e protegge le ossa. Comporta rischi che dipendono da tipo, dose, durata ed età e salute della donna, come un rischio leggermente maggiore di coaguli di sangue e di tumore al seno con l'uso a lungo termine di alcune combinazioni. L'estrogeno vaginale locale è efficace per i sintomi vaginali con un assorbimento minimo. I farmaci non ormonali possono aiutare le vampate quando gli ormoni non sono adatti."
+      ]
+    },
+    {
+      "heading": "Salute a lungo termine",
+      "paragraphs": [
+        "Dopo la menopausa le ossa perdono densità più in fretta e il rischio di malattie cardiache aumenta. Sono sensati esercizio con carico, calcio e vitamina D a sufficienza, evitare il fumo e controllare pressione e colesterolo. La contraccezione serve ancora per un periodo dopo l'ultima mestruazione fino alla conferma della menopausa."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi a una visita",
+      "text": "Immagina di svegliarti di notte fradicia di sudore. Potresti tenere un diario dei sintomi per due settimane, elencare le domande sulla terapia ormonale e la tua storia familiare e portarlo all'appuntamento."
+    },
+    {
+      "title": "Parlare dell'intimità",
+      "text": "Supponi che i rapporti siano diventati dolorosi. Potresti chiedere al medico di estrogeno vaginale e lubrificanti e parlarne con il partner."
+    }
+  ],
+  "questions": [
+    "Quali trattamenti si adatterebbero ai miei sintomi e alla mia storia clinica?",
+    "Quali sono i benefici e i rischi della terapia ormonale nella mia situazione?",
+    "Come posso proteggere ossa e cuore dopo la menopausa?"
+  ]
+}

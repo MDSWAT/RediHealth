@@ -1,0 +1,56 @@
+{
+  "title": "Cum sprijină ventilația respiratorie",
+  "intro": "Terapia prin ventilație folosește un aparat pentru a ajuta o persoană să respire atunci când plămânii sau mușchii respiratori nu pot face acest lucru suficient de bine singuri. Poate fi folosită pe termen scurt în timpul unei boli sau al unei operații, ori luni și ani la domiciliu, în afecțiuni de lungă durată. Înțelegerea principalelor tipuri îi ajută pe pacienți și pe familii să participe la decizii.",
+  "sections": [
+    {
+      "heading": "De ce este necesar sprijinul respirator",
+      "paragraphs": [
+        "Respirația depinde de plămâni sănătoși, de mușchi respiratori puternici și de un creier care controlează ritmul respirațiilor. Când unul dintre aceștia cedează, organismul poate să nu primească suficient oxigen sau să nu elimine suficient dioxid de carbon. Aceasta poate provoca dificultăți de respirație, oboseală, dureri de cap, confuzie sau somnolență dimineața.",
+        "Afecțiunile care pot duce la terapie prin ventilație includ pneumonia severă, boala pulmonară obstructivă cronică avansată, bolile neuromusculare, obezitatea severă cu probleme de respirație și unele traumatisme sau operații. Cauza și evoluția așteptată a bolii influențează puternic alegerea metodei."
+      ]
+    },
+    {
+      "heading": "Ventilația neinvazivă",
+      "paragraphs": [
+        "Ventilația neinvazivă livrează aer sub presiune blândă printr-o mască bine fixată peste nas sau peste nas și gură. Aparatul ajută plămânii să se destindă și ușurează munca mușchilor respiratori. Este folosită adesea noaptea, uneori și câteva ore în timpul zilei.",
+        "Multe persoane o folosesc acasă, de exemplu în boli pulmonare cronice sau în slăbiciune musculară. O potrivire bună contează: masca trebuie să se închidă etanș fără a provoca escare, iar setările presiunii sunt ajustate de o echipă de specialiști. Gura uscată, iritația pielii și senzația de presiune a aerului sunt plângeri frecvente la început, care pot fi adesea ameliorate."
+      ]
+    },
+    {
+      "heading": "Ventilația invazivă",
+      "paragraphs": [
+        "Ventilația invazivă folosește un tub introdus prin gură sau nas în trahee, ori printr-o mică deschidere în gât numită traheostomă. Aparatul livrează apoi respirațiile. De obicei se face într-o unitate de terapie intensivă, unde pacienții primesc medicamente pentru confort și sunt monitorizați atent.",
+        "Medicii urmăresc să o folosească cât mai puțin timp posibil, cât permite boala. Complicațiile posibile includ infecțiile pulmonare, leziunile pulmonare cauzate de presiune și slăbiciunea musculară după o internare lungă, motiv pentru care reabilitarea este o parte importantă a recuperării."
+      ]
+    },
+    {
+      "heading": "Viața cu ventilație la domiciliu",
+      "paragraphs": [
+        "Persoanele care folosesc ventilația acasă și rudele lor sunt instruite să folosească și să curețe echipamentul, să gestioneze alarmele și să știe ce să facă dacă se oprește curentul. Controalele regulate evaluează cât de bine funcționează tratamentul, adesea prin analize de sânge pentru oxigen și dioxid de carbon sau prin măsurători pe parcursul nopții.",
+        "Printre subiectele practice se numără călătoria cu aparatul, vorbirea și înghițirea, nutriția și organizarea ajutorului la domiciliu. Sprijinul asistenților specializați, al terapeuților respiratori și al grupurilor de pacienți poate ușura viața de zi cu zi."
+      ]
+    },
+    {
+      "heading": "Luarea deciziilor împreună",
+      "paragraphs": [
+        "Ventilația poate ameliora simptomele și uneori prelungi viața, dar aduce și poveri. Întrebările despre obiective, confort și ceea ce ar dori persoana trebuie discutate din timp, ideal cât timp persoana poate participa. Documentele de planificare anticipată a îngrijirii pot consemna aceste dorințe.",
+        "Dacă o persoană nu se poate exprima singură, rudele de încredere sau un reprezentant legal pot fi rugați să ajute la interpretarea dorințelor persoanei împreună cu echipa medicală."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Obișnuirea cu masca",
+      "text": "Imaginați-vă că ați început ventilația cu mască pe timpul nopții și masca vă incomodează. Ați putea nota când are scurgeri sau doare, apoi să cereți echipei s-o reajusteze, să încercați altă mărime sau să reglați umidificatorul, în loc să opriți pur și simplu tratamentul."
+    },
+    {
+      "title": "Planificarea împreună cu familia",
+      "text": "Presupuneți că o rudă apropiată are o boală musculară progresivă și ar putea avea nevoie ulterior de ventilație. Familia ar putea organiza o discuție calmă cu medicii despre ce prețuiește cel mai mult ruda, ce poveri ale tratamentului sunt acceptabile și cum vor fi consemnate aceste dorințe."
+    }
+  ],
+  "questions": [
+    "Ce tip de ventilație este potrivit pentru afecțiunea mea și care sunt beneficiile și limitele așteptate?",
+    "Cum vom ști dacă tratamentul funcționează și cât de des va fi verificat?",
+    "Ce sprijin există acasă pentru echipament, urgențe și îngrijirea de zi cu zi?"
+  ]
+}

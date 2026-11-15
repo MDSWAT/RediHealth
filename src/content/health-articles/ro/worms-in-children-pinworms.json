@@ -1,0 +1,51 @@
+{
+  "title": "Oxiurii la copii",
+  "intro": "Oxiurii sunt viermi mici, albi, în formă de ață, care trăiesc în intestin și sunt printre cele mai frecvente infecții cu viermi la copii. Sunt inofensivi, dar provoacă mâncărime în jurul anusului, mai ales noaptea. Se răspândesc ușor în familie, dar sunt simplu de tratat.",
+  "sections": [
+    {
+      "heading": "Cum apare infecția",
+      "paragraphs": [
+        "Femelele adulte depun ouă în jurul anusului noaptea, provocând mâncărime. Copiii se scarpină, iar ouăle se lipesc de degete, unghii, lenjerie de pat și haine și se răspândesc pe suprafețe și jucării. Înghițirea ouălor după atingerea gurii duce la infecție, iar ciclul continuă. Ouăle supraviețuiesc până la două sau trei săptămâni pe suprafețe."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Mâncărime în jurul anusului sau vaginului, mai ales noaptea, somn agitat, iritabilitate și uneori roșeață sau mici răni din cauza scărpinatului. Unii copii nu au deloc simptome. Ocazional, viermii pot fi văzuți în scaun sau în jurul anusului, arătând ca niște mici fire albe de aproximativ un centimetru."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament",
+      "paragraphs": [
+        "Medicii diagnostichează de obicei după istoric sau după vederea viermilor. Un test cu bandă adezivă dimineața, apăsând banda pe pielea din jurul anusului, poate colecta ouă pentru un test de laborator. Tratamentul este o tabletă sau un lichid, precum mebendazolul, repetat după două săptămâni. De obicei toată gospodăria este tratată în același timp. Tratamentul nu se folosește de obicei la bebeluși fără sfat medical."
+      ]
+    },
+    {
+      "heading": "Măsuri de igienă",
+      "paragraphs": [
+        "Spălați-vă pe mâini cu săpun după toaletă și înainte de mese, țineți unghiile scurte, evitați roaderea unghiilor și scărpinatul, faceți duș dimineața, schimbați zilnic lenjeria de corp și de pat în zilele de tratament, spălați la șaizeci de grade dacă este posibil și aspirați dormitoarele. Nu folosiți prosoape în comun."
+      ]
+    },
+    {
+      "heading": "Liniștire",
+      "paragraphs": [
+        "Oxiurii nu înseamnă că un copil este murdar și nu provoacă vătămări grave. Copiii pot merge la școală sau la creșă după începerea tratamentului. Mergeți la medic dacă mâncărimea persistă după tratament, dacă copilul are dureri abdominale sau pentru infecții la bebeluși și la femei însărcinate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rutina de igienă",
+      "text": "Imaginați-vă că copilul dumneavoastră are oxiuri. Ați putea spăla toată lenjeria la temperatură ridicată și ați putea ține unghiile scurte."
+    },
+    {
+      "title": "Tratarea familiei",
+      "text": "Presupuneți că medicul prescrie tratament. Ați putea trata pe toată lumea din casă în aceeași zi și ați putea repeta după două săptămâni."
+    }
+  ],
+  "questions": [
+    "Are copilul meu oxiuri și ar trebui tratată familia?",
+    "Ce medicament este potrivit și când ar trebui repetat?",
+    "Când se poate întoarce copilul meu la creșă sau la școală?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Pušenje, e-cigarete i prestanak",
+  "intro": "Pušenje je vodeći preventabilni uzrok bolesti i prerane smrti i šteti gotovo svakom organu. Prestanak u bilo kojoj dobi donosi koristi, a šanse za uspjeh rastu uz potporu i lijekove. E-cigarete su manje štetne od cigareta, ali nisu bez rizika, a dugoročni učinci još se proučavaju.",
+  "sections": [
+    {
+      "heading": "Učinci na zdravlje",
+      "paragraphs": [
+        "Duhanski dim sadrži tisuće kemikalija, mnoge otrovne i rakotvorne. Pušenje uzrokuje rak pluća i druge rakove, srčane udare, moždane udare, kroničnu bolest pluća, probleme s cirkulacijom, probleme s plodnošću i komplicira trudnoću. Pasivno pušenje šteti djeci i nepušačima. Što duže i više netko puši, rizik je veći."
+      ]
+    },
+    {
+      "heading": "E-cigarete",
+      "paragraphs": [
+        "E-cigarete zagrijavaju tekućinu, obično s nikotinom, u paru. Izlažu korisnike manje otrovnih tvari nego gorenje duhana, ali i dalje daju nikotin, koji izaziva ovisnost, i druge kemikalije čiji dugoročni učinci nisu poznati. Dokazi upućuju da mogu pomoći nekim pušačima da prestanu kada se koriste kao potpuna zamjena, ali ne preporučuju se mladima ni nepušačima, a mnogi na kraju koriste oba proizvoda."
+      ]
+    },
+    {
+      "heading": "Koristi prestanka",
+      "paragraphs": [
+        "Unutar nekoliko dana poboljšavaju se cirkulacija i disanje. Unutar godine rizik od bolesti srca znatno pada, a tijekom godina smanjuje se rizik od raka i moždanog udara. Prestanak prije srednje dobi izbjegava većinu viška rizika. Prestanak također štedi novac i štiti obitelj."
+      ]
+    },
+    {
+      "heading": "Kako prestati",
+      "paragraphs": [
+        "Odredite datum prestanka, recite prijateljima i obitelji i uklonite cigarete. Bihevioralna potpora, poput savjetovanja, telefonskih linija za prestanak, grupnih programa i aplikacija, povećava uspjeh. Nadomjesna terapija nikotinom u obliku flastera, žvakaćih guma ili pastila te lijekovi na recept poput vareniklina ili bupropiona otprilike udvostručuju šansu za uspjeh. Kombinacija lijekova i savjetovanja djeluje najbolje. Mnogim ljudima potrebno je više pokušaja."
+      ]
+    },
+    {
+      "heading": "Ostanak bez dima",
+      "paragraphs": [
+        "Žudnja obično prolazi unutar nekoliko minuta. Izbjegavajte okidače, pronađite zamjene poput šetnje ili žvakanja žvakaće gume i planirajte stres. Posrtanje nije neuspjeh i možete ponovno početi. Pitajte liječnika ili ljekarnika o potpori dostupnoj u vašem području."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planiranje datuma prestanka",
+      "text": "Zamislite da odlučite prestati. Mogli biste odabrati datum unutar dva tjedna, pitati liječnika o flasterima i lijekovima te reći obitelji kako bi vas mogla podržati."
+    },
+    {
+      "title": "Nošenje sa žudnjom",
+      "text": "Pretpostavite da žudite za cigaretom nakon obroka. Mogli biste oprati zube, kratko prošetati ili žvakati žvakaću gumu dok žudnja ne prođe."
+    }
+  ],
+  "questions": [
+    "Koja metoda ili lijek za prestanak je najbolja za mene?",
+    "Jesu li e-cigarete dobra opcija za mene ili rizik?",
+    "Koja je potpora dostupna ako ponovno počnem pušiti?"
+  ]
+}

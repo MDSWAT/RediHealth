@@ -1,0 +1,52 @@
+{
+  "title": "Pankreasi: tretja dhe sheqeri në gjak",
+  "intro": "Pankreasi është pas stomakut dhe ka funksione tretëse e hormonale. Këto përdorin rrugë daljeje të ndryshme. Problemi në njërën nuk do të thotë automatikisht dështim i plotë i tjetrës.",
+  "sections": [
+    {
+      "heading": "Enzimat",
+      "paragraphs": [
+        "Qelizat ekzokrine dërgojnë enzima përmes kanaleve në zorrën e hollë. Zbërthejnë yndyra, proteina e karbohidrate; normalisht nuk derdhen në gjak për të tretur ushqimin."
+      ]
+    },
+    {
+      "heading": "Neutralizimi",
+      "paragraphs": [
+        "Lëngu pankreatik ka bikarbonat që neutralizon acidin e stomakut në zorrë. Krijon kushte për enzimat dhe mbron mukozën."
+      ]
+    },
+    {
+      "heading": "Hormonet",
+      "paragraphs": [
+        "Qelizat e ishujve lëshojnë insulinë e glukagon në gjak. Insulina ndihmon marrjen dhe ruajtjen e glukozës; glukagoni ndihmon mëlçinë ta lëshojë sipas nevojës. Bashkëpunojnë me sinjale të tjera."
+      ]
+    },
+    {
+      "heading": "Problemet",
+      "paragraphs": [
+        "Inflamacioni, pak enzima dhe diabeti janë të ndryshme por ndonjëherë lidhen. Jashtëqitja yndyrore, humbja e peshës ose etja e vazhdueshme kërkojnë kontroll, jo enzima vetë ose ndalim universal të sheqerit."
+      ]
+    },
+    {
+      "heading": "Siguria",
+      "paragraphs": [
+        "Dhimbja e fortë e vazhdueshme sipër barkut, sidomos me të vjella ose kolaps, kërkon urgjencë. Në diabet ndiqni planet individuale për sëmundje e hipoglicemi; mos ndaloni insulinën e nevojshme për një vakt të humbur pa këshillë.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet pse enzimat e përshkruara merren me vaktet. Mëson rolin tretës, ndryshe nga hormonet në gjak."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ka etje dhe humb peshë papritur. Kërkon matje të glukozës, jo diagnozë pankreasi nga skema."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

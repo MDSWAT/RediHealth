@@ -1,0 +1,51 @@
+{
+  "title": "Ovarian cysts",
+  "intro": "Ovarian cysts are fluid-filled sacs on or inside the ovary. Most are harmless, form as part of the normal menstrual cycle and disappear without treatment. Some cause pain or other symptoms, and a few need further assessment or removal. Ultrasound usually tells doctors what kind of cyst it is.",
+  "sections": [
+    {
+      "heading": "Types of cysts",
+      "paragraphs": [
+        "Functional cysts develop when a follicle does not release an egg or when it seals after release, and they usually resolve within a few cycles. Other types include endometriomas, linked to endometriosis, dermoid cysts that contain tissue like hair or fat, and cystadenomas filled with fluid or mucus. Polycystic ovary syndrome involves many small follicles and is a different hormonal condition."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Many cysts cause no symptoms and are found by chance. Larger cysts may cause a dull ache or heaviness in the lower abdomen, bloating, pain during sex, or pressure on the bladder or bowel. Sudden severe pain, sometimes with nausea, vomiting or fever, can indicate that a cyst has ruptured or twisted and needs urgent care."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "A pelvic ultrasound shows the size and appearance of the cyst. Blood tests such as a pregnancy test and, in women past menopause or with concerning features, tumour markers may be done. MRI may add information. Appearance on ultrasound helps estimate the likelihood that a cyst is benign."
+      ]
+    },
+    {
+      "heading": "Treatment and follow-up",
+      "paragraphs": [
+        "Simple cysts in women before menopause are often just watched with a repeat scan after a few months. Painkillers ease symptoms. Hormonal contraception does not shrink existing cysts but may reduce new functional ones. Surgery, usually keyhole, is considered for cysts that are large, persist, cause symptoms, look suspicious or are in women after menopause. Surgeons try to remove the cyst while preserving healthy ovarian tissue when possible."
+      ]
+    },
+    {
+      "heading": "Living with cysts",
+      "paragraphs": [
+        "Many women worry about cancer when a cyst is found. Most cysts are benign, and a clear explanation of the scan result usually reassures. Keep follow-up appointments, and tell your doctor about new bloating, persistent pelvic pain or changes in appetite."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Understanding a scan result",
+      "text": "Imagine an ultrasound shows a small cyst on your ovary. You could ask what type it appears to be, whether you need a repeat scan and which symptoms should prompt earlier contact."
+    },
+    {
+      "title": "Acting on severe pain",
+      "text": "Suppose you develop sudden severe pain on one side with vomiting. You might go to an emergency department rather than waiting, as a twisted ovary is time-critical."
+    }
+  ],
+  "questions": [
+    "What kind of cyst do I have, and is it likely to be harmless?",
+    "Do I need further tests or follow-up scans?",
+    "Under what circumstances would surgery be recommended?"
+  ]
+}

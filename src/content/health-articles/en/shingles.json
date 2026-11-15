@@ -1,0 +1,52 @@
+{
+  "title": "Shingles (herpes zoster)",
+  "intro": "Shingles is a painful rash caused by reactivation of the chickenpox virus, which remains dormant in nerve cells after a person has had chickenpox. It usually appears as a band of blisters on one side of the body and heals in a few weeks. Early treatment and vaccination can reduce complications.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typically there is burning, tingling or pain in an area of skin for a few days, followed by a red rash with clusters of fluid-filled blisters in a band-like pattern on one side of the trunk, face or another area. The blisters crust over within about ten days. Some people have fever, headache and tiredness."
+      ]
+    },
+    {
+      "heading": "Who gets it",
+      "paragraphs": [
+        "Anyone who has had chickenpox can get shingles, but risk increases with age, particularly after fifty, and with weakened immunity from illness, medicines or stress. Shingles cannot be caught from another person, but a person with active blisters can pass the chickenpox virus to someone who has never had chickenpox or the vaccine."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Antiviral medicine, started within three days of the rash appearing, can reduce severity and shorten the illness and may lower the risk of lasting pain. It is especially advised for people over fifty, those with a rash on the face or severe pain, and people with weakened immunity. Painkillers, cool compresses and loose clothes ease discomfort. Keep blisters clean and covered, and avoid contact with pregnant women, newborns and people with weak immunity until they have crusted."
+      ]
+    },
+    {
+      "heading": "Complications and vaccination",
+      "paragraphs": [
+        "Some people develop lasting nerve pain called postherpetic neuralgia. Shingles near the eye can threaten vision and needs urgent assessment. Other complications include bacterial skin infection, facial paralysis and hearing problems.",
+        "A vaccine reduces the risk of shingles and its complications, and is recommended for older adults and certain younger people at risk, in a two-dose schedule. Ask your doctor whether it is appropriate for you and whether costs are covered."
+      ]
+    },
+    {
+      "heading": "Looking after yourself",
+      "paragraphs": [
+        "Rest, gentle pain relief and keeping the skin clean help recovery. Avoid scratching, and tell your doctor if the rash spreads, becomes very painful, or you feel unwell. Most people recover fully within a few weeks."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Acting quickly",
+      "text": "Imagine you feel burning on one side of your chest and then see blisters. You could contact your doctor the same day to ask about antiviral treatment."
+    },
+    {
+      "title": "Considering vaccination",
+      "text": "Suppose you are sixty years old. You might ask your doctor whether the shingles vaccine is advised and how many doses you need."
+    }
+  ],
+  "questions": [
+    "Should I start antiviral treatment, and how soon?",
+    "How can I protect others around me while I have blisters?",
+    "Am I eligible for shingles vaccination?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Vrste inzulina",
+  "intro": "Inzulin dolazi u nekoliko oblika koji se razlikuju po tome koliko brzo počinju djelovati i koliko dugo traju. Osobe s dijabetesom kojima je potreban inzulin obično kombiniraju vrste kako bi pokrile obroke i osigurale stalnu pozadinsku razinu. Razumijevanje vrsta pomaže vam sigurno ih koristiti i razgovarati o promjenama sa svojim timom za dijabetes.",
+  "sections": [
+    {
+      "heading": "Inzulin brzog i kratkog djelovanja",
+      "paragraphs": [
+        "Inzulin brzog djelovanja počinje djelovati unutar otprilike petnaest minuta, vrhunac dostiže nakon jednog do dva sata i traje tri do pet sati. Uzima se za obroke ili neposredno prije njih te za korekciju visokog šećera u krvi. Inzulin kratkog, ili običnog, djelovanja počinje nakon otprilike pola sata, vrhunac dostiže kasnije i traje dulje pa se uzima neko vrijeme prije jela."
+      ]
+    },
+    {
+      "heading": "Inzulin srednje i dugog djelovanja",
+      "paragraphs": [
+        "Inzulin srednjeg djelovanja, često mutan i koji treba miješati, djeluje otprilike pola dana s vrhuncem. Inzulin dugog djelovanja djeluje dan ili dulje s ravnijim profilom i daje pozadinsku pokrivenost između obroka i preko noći. Oblici ultra dugog djelovanja traju još dulje. Obično se uzimaju jednom ili dvaput dnevno u isto vrijeme."
+      ]
+    },
+    {
+      "heading": "Miješani inzulin",
+      "paragraphs": [
+        "Predmiješani inzulin sadrži fiksnu kombinaciju brzog i sporijeg inzulina u jednoj injekciji, često se koristi dvaput dnevno. Jednostavniji je, ali manje fleksibilan jer vrijeme obroka i aktivnosti treba biti redovito. Doze prilagođava liječnik."
+      ]
+    },
+    {
+      "heading": "Primjena i pohrana",
+      "paragraphs": [
+        "Inzulin se ubrizgava pod kožu trbuha, bedra ili stražnjice olovkom ili štrcaljkom ili se daje inzulinskom pumpom. Mijenjajte mjesta injekcija kako biste spriječili kvržice koje utječu na upijanje. Neotvoreni inzulin čuvajte u hladnjaku, a onaj koji koristite na sobnoj temperaturi toliko vremena koliko piše u uputi. Nikada ne zamrzavajte inzulin niti ga ostavljajte u vrućem autu i provjerite rok trajanja."
+      ]
+    },
+    {
+      "heading": "Sigurna uporaba",
+      "paragraphs": [
+        "Uvijek provjerite vrstu i dozu prije ubrizgavanja jer zabuna između inzulina može biti opasna. Naučite prepoznati i liječiti nizak šećer u krvi, prilagođavajte doze hrani, aktivnosti i bolesti prema svom planu i redovito mjerite glukozu. Ne mijenjajte doze niti prelazite na drugu marku bez savjeta. Nosite zalihe kada putujete."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Usklađivanje inzulina s obrocima",
+      "text": "Zamislite da uzimate inzulin brzog djelovanja uz obroke. Mogli biste ga ubrizgati neposredno prije jela, mjeriti glukozu u određeno vrijeme i bilježiti obroke i doze da ih vaš tim pregleda."
+    },
+    {
+      "title": "Izmjena mjesta",
+      "text": "Pretpostavite da primijetite kvržicu na mjestu gdje često ubrizgavate. Mogli biste prijeći na drugo područje, izbjegavati ubrizgavanje u kvržicu i pokazati je medicinskoj sestri."
+    }
+  ],
+  "questions": [
+    "Koje vrste i doze inzulina najbolje odgovaraju mojoj svakodnevnoj rutini?",
+    "Kako trebam prilagoditi inzulin za vježbanje, bolest i putovanje?",
+    "Kako trebam pohranjivati inzulin i mijenjati mjesta injekcija?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Schizophrenia",
+  "intro": "Schizophrenia is a serious mental illness that affects thinking, perception, emotions and behaviour. People may experience hallucinations or delusions and may withdraw from others. It is treatable, and many people recover substantially with medicine, psychological therapy and social support. Stigma is a major burden that understanding can reduce.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Positive symptoms include hearing voices that others do not hear, fixed false beliefs such as being watched or persecuted, and disorganised speech or behaviour. Negative symptoms include loss of motivation, reduced emotional expression, social withdrawal and difficulty enjoying activities. Problems with attention and memory are also common. Symptoms often start in late adolescence or early adulthood."
+      ]
+    },
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "There is no single cause. Genetic vulnerability, brain development, birth complications, cannabis use, severe stress and trauma may play roles. Schizophrenia is not caused by bad parenting and does not mean split personality. Most people with schizophrenia are not violent and are more often victims than perpetrators of violence."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Antipsychotic medicines reduce hallucinations and delusions and prevent relapse. Choosing the right one involves balancing effectiveness and side effects, such as weight gain, drowsiness, movement problems and metabolic changes, which need monitoring. Long-acting injections can help people who struggle to take tablets daily. Stopping medication suddenly raises the risk of relapse and should be done only with medical advice.",
+        "Cognitive behavioural therapy, family education, skills training, supported employment and housing help recovery. Avoiding cannabis and other drugs is important."
+      ]
+    },
+    {
+      "heading": "Crisis and hospital care",
+      "paragraphs": [
+        "During an acute episode, hospital treatment may be needed, sometimes involuntarily if there is serious danger to self or others, under legal safeguards. Early treatment improves outcomes, so seek help when first signs appear. Contact emergency services in a crisis."
+      ]
+    },
+    {
+      "heading": "Living with schizophrenia",
+      "paragraphs": [
+        "Regular routines, sleep, exercise and supportive relationships reduce relapse. Peer support, self-help groups and recovery-oriented services help people rebuild their lives, and families benefit from information and support too. Keep physical health in view, as people with schizophrenia have higher rates of heart disease and diabetes."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Supporting a relative",
+      "text": "Imagine your brother is convinced others are watching him. You could stay calm, avoid arguing about the belief, express concern about his distress and encourage him to see a doctor."
+    },
+    {
+      "title": "Planning for relapse",
+      "text": "Suppose you have had an episode before. You might write a crisis plan with your care team listing early warning signs, trusted contacts and your treatment preferences."
+    }
+  ],
+  "questions": [
+    "Which medicine is best for me, and how will side effects be monitored?",
+    "What therapies and support services are available?",
+    "How can my family and I recognise early signs of relapse?"
+  ]
+}

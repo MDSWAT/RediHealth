@@ -1,0 +1,52 @@
+{
+  "title": "Pancreasul: digestie și glicemie",
+  "intro": "Pancreasul este în spatele stomacului și are funcții digestive și hormonale. Acestea folosesc căi de ieșire diferite. Afectarea unei funcții nu înseamnă automat că cealaltă a eșuat complet.",
+  "sections": [
+    {
+      "heading": "Enzime digestive",
+      "paragraphs": [
+        "Celulele exocrine trimit enzime prin canale în intestinul subțire. Descompun grăsimi, proteine și carbohidrați; nu sunt trimise normal în sânge ca să digere hrana."
+      ]
+    },
+    {
+      "heading": "Neutralizarea acidului",
+      "paragraphs": [
+        "Lichidul pancreatic conține bicarbonat care neutralizează acidul gastric intrat în intestin. Creează condiții pentru enzime și protejează mucoasa intestinală."
+      ]
+    },
+    {
+      "heading": "Hormoni",
+      "paragraphs": [
+        "Celulele insulare eliberează insulină și glucagon în sânge. Insulina ajută preluarea și stocarea glucozei; glucagonul ajută ficatul să o elibereze la nevoie. Echilibrul colaborează cu alte semnale."
+      ]
+    },
+    {
+      "heading": "Probleme",
+      "paragraphs": [
+        "Inflamația, producția redusă de enzime și diabetul sunt diferite, uneori legate. Scaunele grase, slăbirea sau setea persistentă cer evaluare, nu enzime fără prescripție sau interdicție universală a zahărului."
+      ]
+    },
+    {
+      "heading": "Siguranță",
+      "paragraphs": [
+        "Durerea severă persistentă în abdomenul superior, mai ales cu vărsături ori colaps, cere urgență. Cu diabet, urmați planurile individuale de boală și hipoglicemie; nu opriți insulina necesară pentru o masă ratată fără sfat.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira întreabă de ce ia enzimele prescrise cu mesele. Află rolul digestiv, diferit de hormonii din sânge."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are sete și slăbește neașteptat. Cere testarea glicemiei, nu diagnostic pancreatic din diagramă."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

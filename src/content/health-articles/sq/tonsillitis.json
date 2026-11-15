@@ -1,0 +1,51 @@
+{
+  "title": "Tonsiliti e dhimbja e fytit",
+  "intro": "Tonsiliti është inflamacion i bajameve, dy copave të indit në pjesën e pasme të fytit. Shkakton dhimbje fyti, dhimbje gjatë gëlltitjes e shpesh ethe. Shumica e rasteve shkaktohen nga viruse e kalojnë brenda rreth një jave pa antibiotikë. Lehtësimi i dhimbjes, lëngjet e pushimi janë trajtimet kryesore.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Viruset, si ato të ftohjes e gripit, shkaktojnë shumicën e rasteve. Bakteret, veçanërisht streptokokët e grupit A, përbëjnë një pjesë më të vogël, kryesisht te fëmijët mes pesë e pesëmbëdhjetë vjeç. Mikrobet përhapen me pika e kontakt të ngushtë. Tymi e ajri i thatë mund ta acarojnë fytin."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat tipike janë dhimbje fyti, gëlltitje e dhimbshme, ethe, bajame të enjtura e të kuqe me njolla të bardha në disa raste, gjëndra të enjtura të qafës, erë e keqe e gojës, dhimbje koke e lodhje. Një kollë e rrjedhje e hundës sugjerojnë shkak viral, ndërsa dhimbja e rëndë e fytit pa kollë e me gjëndra të enjtura rrit gjasën e infeksionit bakterial."
+      ]
+    },
+    {
+      "heading": "Vetëkujdesi",
+      "paragraphs": [
+        "Pushoni, pini shumë lëngje e hani ushqime të buta. Paracetamoli ose ibuprofeni ulin dhimbjen e ethet. Pastilat, shpëlarja me ujë të ngrohtë e kripë e spërkatësit e fytit mund ta lehtësojnë parehatinë. Shmangni duhanin. Fëmijët duhet të qëndrojnë në shtëpi gjatë etheve e larja e duarve e ul përhapjen."
+      ]
+    },
+    {
+      "heading": "Kur përdoren antibiotikët",
+      "paragraphs": [
+        "Antibiotikët përdoren kur një infeksion streptokokal është i mundshëm ose i konfirmuar me bris fyti, veçanërisht kur simptomat janë të rënda ose ka rrezik komplikimesh. I shkurtojnë paksa simptomat e ulin rrezikun e komplikimeve të rralla si ethet reumatizmale e abscesi. Një kurë penicilinë zakonisht zgjat disa ditë. Antibiotikët nuk ndihmojnë për infeksionet virale."
+      ]
+    },
+    {
+      "heading": "Komplikimet dhe kirurgjia",
+      "paragraphs": [
+        "Kërkoni kujdes urgjent për vështirësi në frymëmarrje ose gëlltitjen e pështymës, rrjedhje pështyme, zë të mbytur, pamundësi për të hapur gojën, dhimbje të rëndë fyti në njërën anë ose enjtje të qafës, që mund të tregojnë një abces. Kirurgjia për heqjen e bajameve merret në konsideratë për njerëz me infeksione të shpeshta, të rënda, mirë të dokumentuara që prishin jetën e vendimet peshojnë përfitimin kundrejt rreziqeve si gjakderdhja e dhimbja pas operacionit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kujdesi për një fëmijë",
+      "text": "Imagjinoni që fëmija juaj ka dhimbje fyti e ethe. Mund të ofroni pije të freskëta e ushqime të buta, të jepni lehtësues dhimbjeje në dozën e duhur e të shihni një mjek nëse gëlltitja bëhet shumë e vështirë."
+    },
+    {
+      "title": "Pyetja për kirurgjinë",
+      "text": "Supozoni që keni pasur shumë sulme tonsiliti këtë vit. Mund të mbani një regjistër të çdo episodi me data e trajtim e ta diskutoni me një specialist të veshit, hundës e fytit."
+    }
+  ],
+  "questions": [
+    "A ka gjasa që dhimbja ime e fytit të jetë virale apo bakteriale e a më duhet një bris?",
+    "Kur do të këshillohej kirurgjia e bajameve?",
+    "Cilat simptoma tregojnë se duhet të kërkoj ndihmë urgjente?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Apneea obstructivă în somn",
+  "intro": "În apneea obstructivă în somn, căile respiratorii se îngustează sau se închid în mod repetat în timpul somnului, provocând pauze în respirație, sforăit puternic și somn fragmentat. Duce la oboseală în timpul zilei și crește riscul de tensiune arterială mare, boli de inimă și accidente. Există tratamente eficiente, cel mai frecvent fiind masca de respirat purtată noaptea.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Semnele tipice sunt sforăitul puternic și neregulat, pauzele de respirație observate de alții, sufocările sau gâfâielile nocturne, somnul agitat, trezirea cu gura uscată sau cu dureri de cap, somnolența în timpul zilei și concentrarea slabă. Adesea partenerul observă primul problema. Somnolența la volan este periculoasă și trebuie luată foarte în serios."
+      ]
+    },
+    {
+      "heading": "Cauze și factori de risc",
+      "paragraphs": [
+        "În timpul somnului, mușchii gâtului se relaxează, iar căile respiratorii se pot colapsa. Factorii de risc includ excesul de greutate, circumferința mare a gâtului, sexul masculin, înaintarea în vârstă, alcoolul și sedativele înainte de culcare, fumatul, obstrucția nazală și particularități anatomice precum maxilarul mic sau amigdalele mari."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicii întreabă despre simptome și pot folosi chestionare. Testele de somn la domiciliu măsoară respirația, oxigenul și ritmul inimii, iar un studiu într-un laborator de somn se face la nevoie. Numărul de întreruperi ale respirației pe oră determină severitatea."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Presiunea pozitivă continuă a căilor respiratorii livrează aer printr-o mască pentru a menține căile deschise și este tratamentul standard în apneea moderată până la severă. Reduce somnolența și tensiunea arterială când este folosită regulat, iar adaptarea durează puțin timp; măștile pot fi reglate. Alternativele includ un dispozitiv oral care împinge maxilarul inferior înainte, terapia pozițională și, la pacienți selectați, chirurgia sau implanturile de stimulare nervoasă.",
+        "Slăbitul, evitarea alcoolului și a somniferelor seara, renunțarea la fumat și tratarea obstrucției nazale ajută și ele."
+      ]
+    },
+    {
+      "heading": "De ce contează tratamentul",
+      "paragraphs": [
+        "Apneea netratată crește riscul de hipertensiune, ritm cardiac neregulat, accident vascular cerebral și accidente. Controalele regulate verifică dacă terapia funcționează și dacă masca se potrivește."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Obținerea unui diagnostic",
+      "text": "Imaginați-vă că partenerul vă spune că vă opriți din respirat în somn. Ați putea nota simptomele, completa un chestionar de somnolență și cere medicului un studiu al somnului."
+    },
+    {
+      "title": "Adaptarea la mască",
+      "text": "Presupuneți că masca este incomodă. Ați putea cere clinicii de somn o altă mărime sau un alt tip și le-ați putea spune despre uscăciune sau scurgeri."
+    }
+  ],
+  "questions": [
+    "Am nevoie de un studiu al somnului și ce tip este potrivit?",
+    "Ce tratament mi se potrivește cel mai bine și ce pot face dacă nu tolerez masca?",
+    "Este sigur să conduc cât timp problema este netratată?"
+  ]
+}

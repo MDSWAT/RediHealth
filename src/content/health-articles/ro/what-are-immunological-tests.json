@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt testele imunologice?",
+  "intro": "Testele imunologice examinează componente ale sistemului imunitar, precum anticorpii, celulele imune și moleculele de semnalizare. Ele sunt folosite pentru a diagnostica infecții, alergii, boli autoimune și deficiențe imune și pentru a verifica dacă vaccinarea a oferit protecție. Rezultatele trebuie interpretate în context.",
+  "sections": [
+    {
+      "heading": "Testele de anticorpi",
+      "paragraphs": [
+        "Testele de anticorpi măsoară proteinele pe care sistemul imunitar le produce împotriva microbilor sau împotriva propriilor țesuturi. Ele pot arăta o infecție trecută sau actuală, precum hepatita sau HIV, imunitatea după vaccinare, ca în rubeolă sau hepatita B, și boala autoimună, precum anticorpii antinucleari în lupus sau anti-CCP în poliartrita reumatoidă. Un test pozitiv nu înseamnă întotdeauna boală, iar un test negativ nu o exclude întotdeauna."
+      ]
+    },
+    {
+      "heading": "Testele de alergie",
+      "paragraphs": [
+        "Analizele de sânge pot măsura anticorpi IgE specifici față de substanțe precum polenul, acarienii, alimentele sau veninul de insecte. Ele sunt folosite împreună cu istoricul și cu testele cutanate prin înțepare. Un rezultat pozitiv arată sensibilizare, adică sistemul imunitar a produs anticorpi, dar nu neapărat că persoana are simptome la expunere."
+      ]
+    },
+    {
+      "heading": "Numărarea și funcția celulelor",
+      "paragraphs": [
+        "Hemogramele arată numărul de globule albe, iar citometria în flux numără subtipurile de limfocite, precum celulele T și celulele B, ceea ce este important în HIV și în deficiențele imune. Alte teste măsoară cât de bine funcționează celulele imune sau nivelurile unor proteine precum complementul și imunoglobulinele."
+      ]
+    },
+    {
+      "heading": "Inflamația și alți markeri",
+      "paragraphs": [
+        "Teste precum proteina C reactivă și viteza de sedimentare a hematiilor indică inflamația generală. Sunt nespecifice, deoarece cresc în infecții și în multe alte afecțiuni. Markerii tumorali sunt uneori numiți teste imunologice, dar au valoare limitată pentru screening."
+      ]
+    },
+    {
+      "heading": "Înțelegerea rezultatelor",
+      "paragraphs": [
+        "Intervalele normale diferă între laboratoare. Testele sunt interpretate împreună cu simptomele și cu alte constatări și uneori repetate. Evitați să cereți teste fără motiv medical, deoarece rezultatele fals pozitive pot duce la anxietate și la proceduri inutile. Întrebați ce înseamnă rezultatul pentru tratament."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Verificarea protecției vaccinale",
+      "text": "Imaginați-vă că lucrați în sănătate și aveți nevoie de dovada imunității la hepatita B. Ați putea cere medicului un test de anticorpi și ați putea păstra rezultatul împreună cu carnetul de vaccinări."
+    },
+    {
+      "title": "Interpretarea unui rezultat pozitiv",
+      "text": "Presupuneți că testul anticorpilor antinucleari este pozitiv, dar vă simțiți bine. Ați putea întreba dacă este semnificativ și dacă sunt necesare alte teste."
+    }
+  ],
+  "questions": [
+    "Ce test este potrivit pentru problema mea?",
+    "Ce înseamnă un rezultat pozitiv sau negativ pentru mine?",
+    "Trebuie repetate unele rezultate?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Glaukoma: ruajtja e shikimit të mbetur",
+  "intro": "Glaukoma dëmton nervin optik dhe mund të kufizojë fushën pamore. Forma e zakonshme me kënd të hapur shpesh zhvillohet në heshtje. Trajtimi ruan shikimin e mbetur; dëmi ekzistues zakonisht nuk rikthehet.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Presioni i syrit është faktor i rëndësishëm, por glaukoma mund të shfaqet me presion në intervalin e zakonshëm. Presioni i lartë vetëm nuk është dëmtim i konfirmuar nervor."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Vlerësimi kombinon matjen e presionit, ekzaminimin ose imazherinë e nervit dhe fushën pamore. Një matje normale nuk përjashton glaukomën; përsëritja mund të nevojitet për të dalluar përparimin. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Pikat që ulin presionin, lazeri ose kirurgjia zgjidhen sipas llojit, dëmit dhe përgjigjes. Tregoni astmën, sëmundjet e zemrës dhe ilaçet sepse edhe pikat kanë efekte sistemike. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Përdorini sipas udhëzimit, mos prekni majën e shishes dhe kërkoni demonstrim. Tregoni koston, irritimin ose dozat e humbura në vend që ta ndaloni trajtimin në heshtje. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Vazhdoni kontrollet edhe pa ndryshim të dukshëm të shikimit. Sy i kuq e i dhimbshëm papritur me turbullim, rrathë drite, dhimbje koke ose të përziera kërkon vlerësim urgjent të menjëhershëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira sheh qartë, por testi tregon humbje të hershme të fushës. Kupton pse vazhdon trajtimi edhe pa simptoma."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ka irritim nga pikat. Pyet për teknikën ose alternativat, pa i ndalur deri te vizita e ardhshme vjetore."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

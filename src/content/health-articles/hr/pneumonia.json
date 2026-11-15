@@ -1,0 +1,51 @@
+{
+  "title": "Upala pluća",
+  "intro": "Upala pluća je infekcija plućnog tkiva, obično uzrokovana bakterijama ili virusima, u kojoj se zračne vrećice pune tekućinom ili gnojem. Uzrokuje kašalj, vrućicu i nedostatak zraka. Mnogi ljudi liječe se kod kuće, ali može biti ozbiljna u starijih osoba, male djece i onih s drugim bolestima.",
+  "sections": [
+    {
+      "heading": "Uzroci i čimbenici rizika",
+      "paragraphs": [
+        "Uobičajeni uzroci su pneumokokne bakterije i virusi kao što su gripa i, u djece, respiratorni sincicijski virus. Infekcija se širi kapljicama ili kad klice iz nosa i grla uđu u pluća. Rizik je veći uz stariju dob, pušenje, kroničnu bolest pluća ili srca, dijabetes, slab imunitet, alkoholizam i nedavnu virusnu bolest."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipični simptomi uključuju kašalj s iskašljajem, vrućicu i zimicu, bol u prsima pri disanju, ubrzano disanje i umor. Starije osobe mogu biti smetene, a ne imati vrućicu. Simptomi se često razvijaju tijekom dana. Potražite pomoć zbog otežanog disanja, plavih usana, smetenosti, boli u prsima ili visoke vrućice."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Liječnici slušaju pluća, provjeravaju frekvenciju disanja, razine kisika i krvni tlak i mogu naručiti rendgen prsnog koša, krvne pretrage i pretrage iskašljaja. Sustavi bodovanja procjenjuju težinu i pomažu odlučiti između kućne skrbi i bolničke skrbi."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Bakterijska upala pluća liječi se antibioticima, obično oko pet do sedam dana, a virusna potpornom skrbi ili antivirusnim lijekovima u nekim slučajevima. Odmor, pijenje puno tekućine i paracetamol ili ibuprofen za vrućicu i bol pomažu. Bolničko liječenje može uključivati kisik, intravenske antibiotike i tekućine. Kašalj se obično smiri unutar nekoliko tjedana, ali umor može trajati dulje. Kontrolni rendgen može se savjetovati za pušače ili starije odrasle osobe."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Cijepljenje protiv pneumokoka i gripe te za djecu protiv drugih čestih klica smanjuje rizik. Ne pušite, redovito perite ruke i potražite rano liječenje respiratornih infekcija. Ljudi pod većim rizikom trebaju pitati liječnika koja se cijepljenja savjetuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Odlučivanje gdje se liječiti",
+      "text": "Zamislite da ste starija osoba s vrućicom i kašljem. Mogli biste pitati možete li se sigurno liječiti kod kuće i koji bi vas simptomi trebali potaknuti da se vratite."
+    },
+    {
+      "title": "Dobar oporavak",
+      "text": "Pretpostavite da ste završili antibiotike, ali se još uvijek osjećate slabo. Mogli biste postupno povećavati aktivnost, dovoljno odmarati i spomenuti liječniku uporan kašalj ili vrućicu."
+    }
+  ],
+  "questions": [
+    "Trebam li bolničko liječenje ili se mogu oporaviti kod kuće?",
+    "Koja cjepiva trebam primiti da smanjim rizik?",
+    "Kada treba ponovno provjeriti moja pluća?"
+  ]
+}

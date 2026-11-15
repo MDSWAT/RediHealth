@@ -1,0 +1,51 @@
+{
+  "title": "Mjekësia e personalizuar",
+  "intro": "Mjekësia e personalizuar synon ta përshtatë parandalimin e trajtimin me karakteristikat e një pacienti individual, si gjenet, tiparet e një tumori ose shënues të tjerë biologjikë. Ka çuar në përparime reale, për shembull në trajtimin e kancerit, por termi përdoret shpesh lirshëm dhe jo çdo pretendim personalizimi mbështetet nga prova.",
+  "sections": [
+    {
+      "heading": "Çfarë do të thotë",
+      "paragraphs": [
+        "Tradicionalisht, trajtimet testoheshin te grupet dhe ofroheshin për këdo me një diagnozë të caktuar. Qasjet e personalizuara përdorin teste për të gjetur nëngrupe që kanë më shumë gjasa të përfitojnë, për të shmangur efekte anësore ose për të zgjedhur dozën. Termat mjekësi precize e mjekësi e stratifikuar përshkruajnë ide të ngjashme."
+      ]
+    },
+    {
+      "heading": "Shembuj",
+      "paragraphs": [
+        "Në kancer, testet e indit tumoral mund të tregojnë mutacione ose receptorë që parashikojnë përgjigjen ndaj barnave të synuara, si receptorët hormonalë në kancerin e gjirit. Testet gjenetike mund të tregojnë sa shpejt një person i zbërthen disa barna, kështu që doza mund të rregullohet. Skriningu gjenetik mund të identifikojë rreziqe të trashëguara si ndryshimet e gjenit BRCA. Në kujdesin e përditshëm, zgjedhjet e trajtimit marrin parasysh edhe moshën, sëmundjet e tjera e preferencat personale."
+      ]
+    },
+    {
+      "heading": "Përfitimet",
+      "paragraphs": [
+        "Të përdorura mirë, personalizimi mund ta përmirësojë gjasën e përfitimit, të ulë trajtimin e panevojshëm e efektet anësore dhe të mundësojë zbulimin më të hershëm të rrezikut në familje me gjendje të trashëguara. Mund t'u japë gjithashtu pacientëve zë më të fortë në vendime."
+      ]
+    },
+    {
+      "heading": "Kufijtë dhe kujdesi",
+      "paragraphs": [
+        "Shumë variante gjenetike kanë vetëm efekte të vogla ose të pasigurta mbi sëmundjen. Testet e ofruara drejtpërdrejt konsumatorëve mund të mos parashikojnë asgjë të dobishme dhe mund të shkaktojnë shqetësim ose qetësim të rremë. Disa trajtime të përshtatura janë të shtrenjta dhe të disponueshme vetëm në qendra të specializuara. Privatësia e të dhënave e mundësia e diskriminimit janë çështje të rëndësishme. Duhet të ekzistojnë prova që një test përmirëson rezultatet para se të përdoret rutinisht."
+      ]
+    },
+    {
+      "heading": "Marrja e vendimeve",
+      "paragraphs": [
+        "Pyesni çfarë po testohet saktësisht, sa mirë e parashikon testi rezultatin, çfarë do të ndryshonte në trajtim e sa është kostoja. Kërkoni këshillim gjenetik para e pas testimit gjenetik. Mos harroni se stili i jetesës, vaksinimi, skriningu e trajtimet e mirëpërcaktuara mbeten të rëndësishme për të gjithë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vënia në pikëpyetje e një testi",
+      "text": "Imagjinoni që ju ofrohet një test gjenetik për një ilaç. Mund të pyesni sa i besueshëm është, si e ndryshon rezultati trajtimin tuaj dhe nëse siguruesit e mbulojnë."
+    },
+    {
+      "title": "Historia familjare",
+      "text": "Supozoni që disa të afërm kanë pasur kancer gjiri në moshë të re. Mund ta pyesni mjekun për këshillim gjenetik për të vendosur nëse testimi është i dobishëm."
+    }
+  ],
+  "questions": [
+    "A ka ky test përfitim të provuar për situatën time?",
+    "Si do ta ndryshonte rezultati trajtimin ose ndjekjen time?",
+    "Cilat janë implikimet për familjen time e privatësinë time?"
+  ]
+}

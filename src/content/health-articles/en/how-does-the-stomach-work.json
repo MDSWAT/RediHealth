@@ -1,0 +1,52 @@
+{
+  "title": "How the stomach stores and prepares food",
+  "intro": "The stomach receives food from the esophagus, mixes it and releases small amounts into the intestine. It begins some digestion but does not absorb all nutrients. Pain in its general area can also come from other organs.",
+  "sections": [
+    {
+      "heading": "Entry and storage",
+      "paragraphs": [
+        "Muscle coordination at the esophagus helps limit reflux. The stomach expands to accommodate meals; its shape and fullness change, so a sensation of bloating is not a precise measure of size."
+      ]
+    },
+    {
+      "heading": "Acid and enzymes",
+      "paragraphs": [
+        "Gastric acid creates conditions for digestion and helps limit some germs. Enzymes begin protein breakdown. More acid is not always the cause of pain, and acid suppression does not treat every stomach problem."
+      ]
+    },
+    {
+      "heading": "Protecting the lining",
+      "paragraphs": [
+        "Mucus and other defenses protect tissue from its contents. Some medicines and infection can disturb protection. The stomach also produces intrinsic factor needed for later vitamin B12 absorption in the intestine."
+      ]
+    },
+    {
+      "heading": "Mixing and emptying",
+      "paragraphs": [
+        "Muscle contractions mix contents; the pylorus regulates release into the small intestine. Food composition and illness influence emptying, so persistent vomiting or early fullness needs assessment."
+      ]
+    },
+    {
+      "heading": "Practical care",
+      "paragraphs": [
+        "Notice symptom patterns and review medicines rather than starting repeated restrictive diets. Vomiting blood, black tarry stool, collapse, severe persistent pain or inability to keep fluids down requires urgent medical advice.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira records fullness and vomiting and brings her medicines to a visit, rather than assuming all discomfort is excess acid."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben vomits material resembling coffee grounds. He seeks urgent help instead of treating it with an over-the-counter antacid."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

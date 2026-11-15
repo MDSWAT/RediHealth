@@ -1,0 +1,51 @@
+{
+  "title": "Hepatiti C: testim dhe trajtim shërues",
+  "intro": "Hepatiti C është infeksion viral i mëlçisë nga gjaku, që mund të mos vërehet për vite. Tabletat shërojnë shumicën, por shërimi nuk kthen automatikisht cirrozën ose mbron nga riinfektimi.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Pajisjet e përbashkëta të injektimit, instrumentet josterile dhe ekspozime gjaku transmetojnë. Përqafimi dhe vaktet jo. Shmangni fajësimin: testi pozitiv nuk përcakton kohën ose mënyrën e infektimit."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Antitrupat tregojnë ekspozim të kaluar, jo domosdoshmërisht infeksion aktiv. Testi i materialit gjenetik viral konfirmon infeksionin aktual. Mëlçia dhe analizat e tjera udhëheqin trajtimin dhe ndjekjen. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Antiviralët e drejtpërdrejtë zgjidhen sipas mëlçisë, terapisë së mëparshme dhe ndërveprimeve. Përfundoni kursin dhe testin konfirmues. Kontrolloni ilaçet dhe suplementet: ndërveprimet ulin efektin ose dëmtojnë. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Mos ndani gjilpëra, brisqe ose furça; përdorni shërbime sterile. Nuk ka vaksinë për C. Pyesni për vaksinat A dhe B kur duhen dhe shmangni alkoolin. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Ekspozimi i fundit në gjak do këshillë të shpejtë dhe plan testimi. Konfuzioni, barku shumë i ënjtur, të vjellat me gjak ose feçet e zeza kërkojnë urgjencë. Cirroza mund të kërkojë ndjekje kanceri edhe pas shërimit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka antitrupa pozitivë dhe kërkon testin e infeksionit aktual pa supozuar se ende mban patjetër virusin."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni përfundon tabletat dhe konfirmimin. Vazhdon kontrollet për dhëmbëzimin e mëparshëm pa menduar se shërimi i mbyll të gjitha."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

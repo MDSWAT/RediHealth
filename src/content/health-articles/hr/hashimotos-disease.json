@@ -1,0 +1,51 @@
+{
+  "title": "Hashimotova bolest: funkcija štitnjače i trajna skrb",
+  "intro": "Hashimotova bolest je autoimuna upala štitnjače. S vremenom može smanjiti hormone, ali sama antitijela ne znače da svi odmah trebaju terapiju. Simptomi i funkcija štitnjače usmjeravaju plan.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Hipotireoza može izazvati umor, osjećaj hladnoće, zatvor i suhu kožu. Simptomi imaju i druge uzroke; trajan umor uz normalizirane nalaze traži širu procjenu."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Krvni testovi mjere stimulirajući i slobodni hormon, uz antitijela kada pomažu. Ultrazvuk nije automatski potreban za svaki pozitivan nalaz antitijela; kvržica na vratu traži zasebnu procjenu. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Levotiroksin nadoknađuje manjak kada je indiciran. Doza je individualna i provjerava se krvlju, ne mijenja samo po težini ili internetskim popisima. I prevelika nadoknada može štetiti. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Uzimajte lijek dosljedno prema uputi i pitajte kako hrana, željezo, kalcij i lijekovi utječu na apsorpciju. Izbjegavajte nepropisani jod i dodatke za štitnjaču; višak hormona nije sigurno mršavljenje. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Brzo razgovarajte o trudnoći ili planovima jer doze i praćenje mogu trebati promjenu. Nova oteklina vrata, teško gutanje, palpitacije ili trajni simptomi trebaju kontrolu; teška zbunjenost ili znatno pogoršanje traže hitnu pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima pozitivna antitijela, ali urednu funkciju. Dogovara praćenje umjesto samostalne kupnje hormonskih dodataka."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben uzima željezo istodobno s levotiroksinom. Pita ljekarnika o razdvajanju doza prije zaključka da recept ne djeluje."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

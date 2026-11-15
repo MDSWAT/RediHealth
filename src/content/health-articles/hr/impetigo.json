@@ -1,0 +1,53 @@
+{
+  "title": "Impetigo",
+  "intro": "Impetigo je česta, zarazna bakterijska infekcija kože, osobito u male djece. Uzrokuje crvene rane koje pucaju i stvaraju koricu boje meda, često oko nosa i usta. Lako se širi dodirom, ali obično zacijeli unutar nekoliko tjedana uz liječenje i dobru higijenu.",
+  "sections": [
+    {
+      "heading": "Uzroci i tko ga dobiva",
+      "paragraphs": [
+        "Impetigo uzrokuju bakterije, uglavnom Staphylococcus aureus i ponekad Streptococcus. Bakterije ulaze u kožu kroz sitne prekide kao što su ubodi kukaca, ogrebotine, ekcem ili groznice na usnama. Češći je po toplom, vlažnom vremenu i u gužvi kao što su jaslice i škole."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Najčešći oblik počinje kao male crvene točke koje se pretvaraju u mjehuriće, koji pucaju i ostavljaju ljepljive, zlatnosmeđe korice. Rane mogu svrbjeti, ali obično nisu jako bolne. Rjeđi oblik stvara veće mjehure. Vrućica je neuobičajena, a kad se pojavi, liječnik treba pregledati dijete."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Blagi impetigo na malom području često se liječi antibiotskom kremom ili mašću koja se nanosi nekoliko puta dnevno oko tjedan dana. Raširenije infekcije mogu zahtijevati antibiotske tablete ili tekućinu. Nježno natapanje korica toplom vodom prije nanošenja lijeka može pomoći da djeluje.",
+        "Dovršite cijeli tijek liječenja čak i kad koža izgleda bolje. Ako se rane ne poboljšaju za nekoliko dana, ponovno posjetite liječnika jer mogu biti uključene otporne bakterije ili neko drugo stanje."
+      ]
+    },
+    {
+      "heading": "Sprječavanje širenja",
+      "paragraphs": [
+        "Impetigo je zarazan dok se rane ne prekriju korom ili nakon otprilike dva dana liječenja. Držite djecu kod kuće tijekom tog razdoblja, kako sugeriraju lokalna pravila. Često perite ruke, držite nokte kratkima, izbjegavajte češanje i koristite zasebne ručnike, krpice i posteljinu koja se pere na visokoj temperaturi.",
+        "Rane po mogućnosti lagano pokrijte zavojem i obavijestite školu ili jaslice."
+      ]
+    },
+    {
+      "heading": "Kada potražiti hitni savjet",
+      "paragraphs": [
+        "Brzo posjetite liječnika ako se infekcija brzo širi, dijete ima visoku vrućicu, loše se osjeća ili ako koža postane vrlo crvena, vruća i otečena. Bebe i osobe sa slabim imunološkim sustavom trebaju ranije pozornost. Rijetko infekcija može zahvatiti bubrege pa prijavite tamnu mokraću ili oticanje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Povratak u jaslice",
+      "text": "Zamislite da vaše dijete ima rane oko usta. Mogli biste započeti propisanu kremu, držati dijete kod kuće dok rane ne dobiju koricu, često prati njegove ruke i ručnike i pitati jaslice o pravilima povratka."
+    },
+    {
+      "title": "Nošenje sa svrbežom",
+      "text": "Pretpostavite da vaše dijete stalno češe mjehuriće. Mogli biste mu podrezati nokte, pokriti rane i pitati ljekarnika o ublažavajućim mjerama koje su sigurne za njegovu dob."
+    }
+  ],
+  "questions": [
+    "Je li dovoljna krema ili mom djetetu treba antibiotski lijek?",
+    "Kada se moje dijete sigurno može vratiti u školu ili jaslice?",
+    "Koji bi znakovi značili da infekciju treba ponovno pregledati?"
+  ]
+}

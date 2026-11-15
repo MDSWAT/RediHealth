@@ -1,0 +1,51 @@
+{
+  "title": "Melanoma",
+  "intro": "Melanoma është një lloj kanceri i lëkurës që zhvillohet nga qelizat që prodhojnë pigment. Është më pak i zakonshëm se kancerët e tjerë të lëkurës, por më i rrezikshëm, sepse mund të përhapet. Kur gjendet herët, shërohet zakonisht me një operacion të vogël, prandaj njohja e shenjave paralajmëruese dhe kontrollimi i nishaneve të dyshimta është i rëndësishëm.",
+  "sections": [
+    {
+      "heading": "Shkaqet dhe faktorët e rrezikut",
+      "paragraphs": [
+        "Shkaku kryesor është rrezatimi ultravjollcë nga dielli dhe shtretërit e nxirjes, veçanërisht djegiet e përsëritura nga dielli. Rreziku është më i lartë me lëkurë të çelët, shumë nishane, nishane atipike, histori familjare të melanomës, një melanomë të mëparshme dhe imunitet të dobësuar. Melanoma mund të ndodhë edhe në lëkurë të ekspozuar rrallë ndaj diellit, në thonj ose në sy."
+      ]
+    },
+    {
+      "heading": "Shenjat paralajmëruese",
+      "paragraphs": [
+        "Rregulli ABCDE ndihmon: Asimetria, skaji i parregullt, ngjyra e pabarabartë, diametri më i madh se rreth gjashtë milimetra dhe evolucioni ose ndryshimi. Një nishan i ri ose që ndryshon, që kruhet, gjakon ose duket ndryshe nga të tjerët, duhet kontrolluar. Jo të gjitha melanomat janë të errëta; disa janë rozë ose pa ngjyrë."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Një dermatolog e ekzaminon lëkurën, shpesh me dermatoskop. Një nishan i dyshimtë hiqet plotësisht dhe ekzaminohet nën mikroskop. Trashësia e tumorit, e matur në milimetra, është faktori më i rëndësishëm për prognozën. Nyjet limfatike mund të kontrollohen dhe skanimet përdoren për melanoma më të trasha ose më të avancuara."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Melanoma e hershme trajtohet me prerje të gjerë, duke hequr tumorin dhe një kufi lëkure normale. Një biopsi e nyjës limfatike roje mund të këshillohet për tumore më të trasha. Për melanomën në fazat III dhe IV, trajtimet moderne përfshijnë imunoterapinë dhe barna të synuara që bllokojnë mutacione specifike, shpesh të kombinuara me kirurgji ose radioterapi. Këto e kanë përmirësuar shumë mbijetesën, megjithëse mund të shkaktojnë efekte anësore të rëndësishme që kërkojnë monitorim."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe parandalimi",
+      "paragraphs": [
+        "Pas trajtimit, kontrollet e rregullta të lëkurës dhe vetëekzaminimi zbulojnë rikthimet dhe melanoma të reja. Mbroni lëkurën nga dielli, shmangni shtretërit e nxirjes dhe fotografoni nishanet për të ndjekur ndryshimet. Tregojuni të afërmve për rrezikun e tyre të shtuar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kontrolli i lëkurës",
+      "text": "Imagjinoni që vendosni ta ekzaminoni lëkurën çdo muaj. Mund të përdorni një pasqyrë ose t'i kërkoni partnerit të shikojë shpinën, të bëni fotografi të nishaneve dhe t'i krahasoni me kalimin e kohës."
+    },
+    {
+      "title": "Të kuptuarit e një rezultati",
+      "text": "Supozoni që nishani juaj u hoq dhe doli melanomë e hollë. Mund të pyesni çfarë do të thotë trashësia për ndjekjen, nëse nevojitet më shumë kirurgji dhe sa shpesh të kontrolloheni."
+    }
+  ],
+  "questions": [
+    "Cilat nga nishanet e mia duhen monitoruar dhe sa shpesh duhet të bëj kontrolle të lëkurës?",
+    "Në çfarë faze është melanoma ime dhe cili trajtim rekomandohet?",
+    "Çfarë orari ndjekjeje do të kem dhe si mund ta mbroj lëkurën?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "What is laparoscopy?",
+  "intro": "Laparoscopy, also called keyhole surgery, is a way of looking inside the abdomen or pelvis, and performing operations, through small cuts. A thin tube with a camera and light, called a laparoscope, is inserted. Compared with open surgery it usually means less pain, smaller scars and faster recovery.",
+  "sections": [
+    {
+      "heading": "Why it is done",
+      "paragraphs": [
+        "Laparoscopy is used to diagnose causes of pelvic or abdominal pain and to treat conditions. Common operations include removal of the gallbladder or appendix, repair of hernias, treatment of endometriosis, removal of ovarian cysts, sterilisation, some bowel operations and treatment of ectopic pregnancy."
+      ]
+    },
+    {
+      "heading": "How it is done",
+      "paragraphs": [
+        "It is usually done under general anaesthetic. The surgeon makes a few small cuts, about one centimetre, and fills the abdomen with carbon dioxide gas to create space. The camera shows the organs on a screen, and long thin instruments are used through other cuts. The gas is released at the end and the cuts are closed."
+      ]
+    },
+    {
+      "heading": "Advantages",
+      "paragraphs": [
+        "Compared with open surgery, patients usually have less pain, smaller scars, a lower risk of wound infection, a shorter hospital stay and a quicker return to normal activities, often within one to two weeks. Some operations, however, are still better performed open, or may need to be converted during surgery."
+      ]
+    },
+    {
+      "heading": "Risks and recovery",
+      "paragraphs": [
+        "Risks include bleeding, infection, injury to organs or blood vessels, reactions to anaesthesia and, rarely, blood clots. Shoulder-tip pain and bloating from the gas are common for a day or two. Walk early, take pain relief as advised and contact your doctor for fever, worsening pain, vomiting or wound problems."
+      ]
+    },
+    {
+      "heading": "Preparing",
+      "paragraphs": [
+        "You will be asked to fast, stop some medicines such as blood thinners and arrange transport. Ask your surgeon about the expected recovery, work leave, and what to do if there are complications."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planning recovery",
+      "text": "Imagine you are having your gallbladder removed. You could arrange help at home and plan a few days off work."
+    },
+    {
+      "title": "Managing shoulder pain",
+      "text": "Suppose you have shoulder pain afterwards. You might walk gently and take pain relief, since this comes from the gas."
+    }
+  ],
+  "questions": [
+    "Is laparoscopy suitable for my condition?",
+    "What are the risks and the chance of converting to open surgery?",
+    "How long will recovery take?"
+  ]
+}

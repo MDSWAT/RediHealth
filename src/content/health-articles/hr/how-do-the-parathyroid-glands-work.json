@@ -1,0 +1,51 @@
+{
+  "title": "Doštitne žlijezde: kontrola kalcija",
+  "intro": "Doštitne žlijezde male su, obično iza štitnjače. Stvaraju parathormon za kalcij krvi. Funkcija se razlikuje od štitnjače uz sličan naziv i položaj.",
+  "sections": [
+    {
+      "heading": "Važnost",
+      "paragraphs": [
+        "Kalcij treba živcima, mišićima, zgrušavanju i kostima. Tijelo čuva uzak raspon. Nalaz pokazuje regulaciju, ne samo jučerašnju hranu."
+      ]
+    },
+    {
+      "heading": "Odgovor",
+      "paragraphs": [
+        "Pri padu hormon čuva kalcij bubrezima, utječe na otpuštanje iz kosti i aktivni vitamin D. Pomaže crijevnom unosu. Povezan je s fosfatom i bubrezima."
+      ]
+    },
+    {
+      "heading": "Poremećaj",
+      "paragraphs": [
+        "Višak ili manjak mijenja kalcij, kosti, bubrege i živce. Visok hormon može biti žlijezda ili odgovor na bubrege ili manjak D; broj ima više značenja."
+      ]
+    },
+    {
+      "heading": "Testovi",
+      "paragraphs": [
+        "Kalcij se tumači s hormonom, bubrezima i nalazima. Albumin ili ionizirani kalcij mogu biti važni. Snimka lokalizira kada treba, ne zamjenjuje biokemiju."
+      ]
+    },
+    {
+      "heading": "Sigurnost",
+      "paragraphs": [
+        "Kamenci, prijelomi ili abnormalan kalcij traže pregled. Trnci oko usta ili grčevi nakon operacije vrata traže savjet prema planu. Teški grčevi, napadaji, zbunjenost ili disanje traže hitnost. Ne uzimajte velike doze za sve. Prije pregleda zapišite kada je simptom počeo, što ga ublažava ili pogoršava i kako utječe na uobičajene aktivnosti. Ponesite prethodne nalaze ako ih imate. Zamolite stručnjaka da objašnjenje poveže s vašim nalazima: opći opis sam po sebi ne postavlja dijagnozu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira uči da visok hormon uz bubrežnu bolest nije automatski tumor i pita druge testove."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben osjeti trnce nakon operacije i zove tim umjesto pretpostavke tjeskobe ili nasumičnih dodataka."
+    }
+  ],
+  "questions": [
+    "Koji bi koraci bili jasniji uz dijagram?",
+    "Što objašnjenje pokazuje i što ne predviđa?",
+    "Treba li moja konkretna briga stručnu procjenu?"
+  ]
+}

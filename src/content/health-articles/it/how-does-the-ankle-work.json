@@ -1,0 +1,52 @@
+{
+  "title": "Come la caviglia sostiene il cammino",
+  "intro": "La caviglia collega gamba e piede, sostiene il peso e si adatta al terreno. Articolazioni, legamenti, tendini e muscoli collaborano; dolore dopo una torsione non significa automaticamente distorsione lieve.",
+  "sections": [
+    {
+      "heading": "Ossa e movimento",
+      "paragraphs": [
+        "Tibia e perone circondano l'astragalo. L'articolazione superiore muove soprattutto il piede su e giù; quelle inferiori contribuiscono all'adattamento laterale."
+      ]
+    },
+    {
+      "heading": "Contatto",
+      "paragraphs": [
+        "Cartilagine e liquido articolare riducono l'attrito. La forma distribuisce il carico, ma forze ripetute oltre la tolleranza dei tessuti possono lesionare."
+      ]
+    },
+    {
+      "heading": "Stabilità",
+      "paragraphs": [
+        "I legamenti collegano ossa e limitano movimenti eccessivi. I tendini trasmettono forza muscolare; l'Achille aiuta la spinta. Una lesione legamentosa differisce da rottura tendinea o frattura."
+      ]
+    },
+    {
+      "heading": "Recupero",
+      "paragraphs": [
+        "Proteggete la caviglia lesionata e chiedete indicazioni sul carico sicuro. Forza ed equilibrio si recuperano gradualmente; cedimenti ricorrenti richiedono visita, non stiramenti forzati."
+      ]
+    },
+    {
+      "heading": "Segnali d'allarme",
+      "paragraphs": [
+        "Deformità, impossibilità di caricare, piede freddo o insensibile, oppure schiocco con perdita di spinta richiedono valutazione rapida. Riuscire a muovere non esclude una frattura.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira si torce spesso la caviglia su terreno irregolare. Chiede riabilitazione ed equilibrio senza affidarsi soltanto al tutore."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben sente uno schiocco correndo e non riesce a spingere. Cerca una visita anziché camminarci sopra come fosse una comune distorsione."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

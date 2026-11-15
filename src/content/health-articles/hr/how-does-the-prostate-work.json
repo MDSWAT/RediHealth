@@ -1,0 +1,52 @@
+{
+  "title": "Prostata, reprodukcija i mokrenje",
+  "intro": "Prostata je ispod mjehura oko dijela mokraćne cijevi. Dodaje tekućinu sjemenu, ne proizvodi spermije. Položaj objašnjava utjecaj povećanja na mokrenje, ali ne dolaze svi simptomi od nje.",
+  "sections": [
+    {
+      "heading": "Tekućina",
+      "paragraphs": [
+        "Sekret se miješa sa spermijima iz testisa i tekućinom drugih žlijezda. Kontrakcije potiskuju sjeme u mokraćnu cijev tijekom ejakulacije."
+      ]
+    },
+    {
+      "heading": "Različiti putovi",
+      "paragraphs": [
+        "Urin i sjeme koriste cijev u različito vrijeme uz usklađeno zatvaranje i mišiće. Ejakulacija, erekcija i pražnjenje povezani su ali različiti."
+      ]
+    },
+    {
+      "heading": "Rast",
+      "paragraphs": [
+        "Povećanje s dobi može suziti prolaz, oslabiti mlaz ili otežati pražnjenje. Sama veličina ne određuje težinu; dobroćudno povećanje nije isto što i rak."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Razgovarajte o simptomima, lijekovima i željama. Pregled, urin i odabrani testovi razjašnjavaju uzrok. Prostatični specifični antigen traži tumačenje; sam ne dokazuje ni isključuje rak."
+      ]
+    },
+    {
+      "heading": "Pomoć",
+      "paragraphs": [
+        "Nova krv u urinu treba procjenu. Nemogućnost mokrenja, posebno bolna, ili simptomi s vrućicom i teškim stanjem traže hitnost. Ne liječite akutni zastoj jednostavno mnogo većim pijenjem.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pomaže rođaku popisati simptome i lijekove bez pripisivanja svakog noćnog mokrenja prostati."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ne može mokriti uz pun bolan mjehur. Traži hitnost bez čekanja da dodatak smanji žlijezdu."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

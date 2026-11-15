@@ -1,0 +1,51 @@
+{
+  "title": "Hashimoto: funksioni i tiroides dhe kujdesi i vazhdueshëm",
+  "intro": "Hashimoto është inflamacion autoimun i tiroides. Me kohën mund të ulë prodhimin hormonal, por antitrupat vetëm nuk nënkuptojnë trajtim të menjëhershëm për të gjithë. Simptomat dhe funksioni tiroide udhëheqin planin.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Tiroidja joaktive mund të japë lodhje, ndjesi të ftohti, kapsllëk dhe lëkurë të thatë. Këto kanë edhe shkaqe të tjera; lodhja pas normalizimit të analizave kërkon vlerësim më të gjerë."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Analizat matin hormonin stimulues dhe hormonin e lirë, me antitrupa kur ndihmojnë. Ekografia nuk duhet automatikisht për çdo rezultat antitrupash pozitiv; një gungë në qafë kërkon vlerësim veçmas. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Levotiroksina zëvendëson hormonin kur duhet. Doza është individuale dhe kontrollohet me analiza, jo vetëm sipas peshës ose listave online. Zëvendësimi i tepërt mund të dëmtojë gjithashtu. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Merreni rregullisht sipas udhëzimit dhe pyesni si ushqimi, hekuri, kalciumi dhe ilaçet ndikojnë përthithjen. Shmangni jodin ose suplementet tiroide pa recetë; hormoni shtesë nuk është trajtim i sigurt për dobësim. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Diskutoni shtatzëninë ose planet shpejt sepse doza dhe kontrollet ndryshojnë. Ënjtja e re në qafë, gëlltitja e vështirë, palpitacionet ose simptomat e vazhdueshme duan kontroll; konfuzioni i rëndë ose përkeqësimi i madh kërkojnë urgjencë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka antitrupa pozitivë por funksion normal. Pranon plan monitorimi pa blerë vetë suplemente hormonale."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni merr hekur bashkë me levotiroksinën. Pyet farmacistin për ndarjen e dozave para se të mendojë se receta nuk funksionon."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

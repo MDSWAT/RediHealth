@@ -1,0 +1,51 @@
+{
+  "title": "What happens during a biopsy?",
+  "intro": "A biopsy is a procedure in which a small sample of tissue is taken from the body and examined under a microscope. It is used to diagnose conditions such as cancer, inflammation and infections. Most biopsies are quick and done with local anaesthetic.",
+  "sections": [
+    {
+      "heading": "Why a biopsy is done",
+      "paragraphs": [
+        "Scans and blood tests can suggest a problem, but examining tissue is often the only way to be sure what it is. A biopsy can show whether a lump is benign or malignant, find the type of cancer and help plan treatment. It is also used for diagnosing liver, kidney, skin and bowel diseases."
+      ]
+    },
+    {
+      "heading": "Types of biopsy",
+      "paragraphs": [
+        "A needle biopsy uses a fine or thicker needle to take cells or a small core of tissue, often guided by ultrasound or scan. An endoscopic biopsy takes samples with small forceps through a camera tube. A skin biopsy removes a small piece with a blade or punch. Surgical biopsy removes a part or all of a lump through a cut."
+      ]
+    },
+    {
+      "heading": "Before and during",
+      "paragraphs": [
+        "You may be asked to stop blood thinners and to fast for some procedures. The area is cleaned and numbed. You may feel pressure or brief pain during sampling. Procedures take from a few minutes to an hour, and some need sedation. You can usually go home the same day."
+      ]
+    },
+    {
+      "heading": "After the biopsy",
+      "paragraphs": [
+        "Mild soreness, bruising or slight bleeding are common. Follow instructions on wound care. Contact the doctor for heavy bleeding, fever, increasing pain, redness or swelling. Complications are uncommon, but include bleeding and infection."
+      ]
+    },
+    {
+      "heading": "Results",
+      "paragraphs": [
+        "A pathologist examines the sample, and results take from a few days to two weeks. Waiting can be stressful. Ask when and how you will receive the result and who will explain it. Sometimes another biopsy is needed if the sample was too small or unclear."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing",
+      "text": "Imagine you are having a liver biopsy. You could tell the team about all medicines, especially blood thinners, and arrange a ride home."
+    },
+    {
+      "title": "While waiting for results",
+      "text": "Suppose results take ten days. You might ask for a follow-up appointment date and bring someone to it."
+    }
+  ],
+  "questions": [
+    "Why do I need a biopsy, and what will it show?",
+    "Which type of biopsy is planned, and what are the risks?",
+    "When will I get the results and who will explain them?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Stiramenti muscolari",
+  "intro": "Uno stiramento muscolare è un allungamento o una piccola lacerazione di un muscolo o del tendine che vi è attaccato, di solito per un sovraccarico improvviso durante lo sport o il sollevamento di pesi. Causa dolore, dolorabilità e talvolta lividi. La maggior parte degli stiramenti guarisce bene in giorni o settimane con riposo relativo, ritorno graduale al movimento e una riabilitazione sensata.",
+  "sections": [
+    {
+      "heading": "Cause e sedi tipiche",
+      "paragraphs": [
+        "Gli stiramenti si verificano quando un muscolo viene allungato oltre la sua capacità o si contrae con forza, per esempio negli scatti, nei calci o nel sollevamento di un oggetto pesante. Sono colpiti più spesso i muscoli della coscia, il polpaccio, l'inguine e la parte bassa della schiena. Il rischio aumenta con stanchezza, riscaldamento inadeguato, infortuni precedenti e aumenti improvvisi dell'allenamento."
+      ]
+    },
+    {
+      "heading": "Sintomi e gravità",
+      "paragraphs": [
+        "Gli stiramenti lievi causano rigidità e indolenzimento. Quelli moderati causano dolore acuto, gonfiore, lividi e debolezza. Una lacerazione grave può causare uno schiocco, un avvallamento visibile o l'incapacità di usare il muscolo. Il dolore peggiora quando il muscolo viene allungato o contratto."
+      ]
+    },
+    {
+      "heading": "Primi passi",
+      "paragraphs": [
+        "Nei primi giorni riduci l'attività che provoca dolore ma evita l'immobilizzazione completa. Impacchi freddi per brevi periodi possono alleviare il dolore e compressione ed elevazione riducono il gonfiore. Semplici antidolorifici possono aiutare. Un movimento dolce e precoce entro limiti confortevoli favorisce la guarigione meglio del riposo prolungato."
+      ]
+    },
+    {
+      "heading": "Riabilitazione e ritorno allo sport",
+      "paragraphs": [
+        "Quando il dolore si calma, inizia stretching dolce e rinforzo, aumentando gradualmente. Torna allo sport solo quando riesci a muoverti senza dolore, hai recuperato forza e flessibilità e puoi eseguire i gesti specifici dello sport. Tornare troppo presto porta spesso a nuovi infortuni. Un fisioterapista può guidare un piano sicuro, soprattutto dopo stiramenti ripetuti."
+      ]
+    },
+    {
+      "heading": "Quando andare dal medico",
+      "paragraphs": [
+        "Chiedi consiglio medico se non riesci a camminare o a usare il muscolo, hai sentito uno schiocco con forte debolezza, hai una deformità visibile, gonfiore intenso o intorpidimento, o se il dolore non migliora dopo circa una settimana. Riscaldati, aumenta l'allenamento gradualmente e fermati quando senti un dolore acuto per ridurre il rischio di stiramenti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tornare a correre",
+      "text": "Immagina di esserti stirato il polpaccio durante una corsa. Potresti camminare e fare stretching dolce, aggiungere un rinforzo leggero dopo qualche giorno e tornare a correre con sedute brevi solo quando non senti dolore."
+    },
+    {
+      "title": "Chiedere consiglio",
+      "text": "Supponi che un infortunio alla coscia lasci un avvallamento visibile e tu non riesca a stendere la gamba. Potresti andare al pronto soccorso o in un ambulatorio di medicina dello sport per una valutazione."
+    }
+  ],
+  "questions": [
+    "Si tratta di uno stiramento o di un infortunio più grave e ho bisogno di una scansione?",
+    "Quali esercizi devo fare e quando posso tornare allo sport?",
+    "Come posso ridurre il rischio di stiramenti ricorrenti?"
+  ]
+}

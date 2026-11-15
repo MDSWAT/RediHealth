@@ -1,0 +1,51 @@
+{
+  "title": "The history of evidence-based medicine",
+  "intro": "Evidence-based medicine grew from the idea that treatments should be judged by careful testing, not by tradition or authority alone. Its roots go back centuries, but it became a defined approach in the late twentieth century. Knowing its history shows why healthcare now relies on trials and systematic reviews.",
+  "sections": [
+    {
+      "heading": "Early ideas",
+      "paragraphs": [
+        "Even in antiquity, physicians noted that experience should guide treatment. In the eighteenth century, the naval doctor James Lind compared treatments for scurvy among sailors and found that oranges and lemons helped. In the nineteenth century, statistical methods began to be used to evaluate treatments and hospital outcomes. Nursing reformers also used data to improve care."
+      ]
+    },
+    {
+      "heading": "Controlled trials",
+      "paragraphs": [
+        "The twentieth century saw the development of the modern randomised controlled trial. After the Second World War, a British trial of streptomycin for tuberculosis is regarded as a landmark. Randomisation and control groups helped separate real effects from chance and bias. Tragic experiences, such as harm from the drug thalidomide, led to stricter testing and regulation of medicines."
+      ]
+    },
+    {
+      "heading": "Archie Cochrane",
+      "paragraphs": [
+        "The British epidemiologist Archie Cochrane argued in the 1970s that health services should be evaluated through randomised trials, and that results should be summarised systematically, since many treatments were used without proof of benefit. He criticised the lack of a regularly updated summary of all trials. His ideas inspired later work."
+      ]
+    },
+    {
+      "heading": "The evidence-based movement",
+      "paragraphs": [
+        "In the early 1990s, a group of physicians at McMaster University in Canada named and promoted evidence-based medicine, teaching clinicians to find and appraise research. The international Cochrane Collaboration was founded in 1993 to prepare and update systematic reviews. Guidelines, health technology assessment agencies and patient information increasingly adopted these methods."
+      ]
+    },
+    {
+      "heading": "Criticism and development",
+      "paragraphs": [
+        "Critics note that evidence can be biased by industry funding, that trials may not reflect real patients and that guidelines can ignore individual circumstances. The field responded with trial registration, data sharing, reporting standards and involvement of patients. Today, evidence-based medicine continues to develop with attention to patient preferences and to quality of evidence."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Seeing history in practice",
+      "text": "Imagine you read about a treatment once widely used and later abandoned. You could ask what trials showed, and how evidence changed practice."
+    },
+    {
+      "title": "Using the principle",
+      "text": "Suppose a friend recommends a remedy on the basis of experience. You might look for controlled studies and ask your doctor about the evidence."
+    }
+  ],
+  "questions": [
+    "Has this treatment been tested in controlled trials?",
+    "Where can I find summaries of the best evidence?",
+    "How has the evidence on this topic changed over time?"
+  ]
+}

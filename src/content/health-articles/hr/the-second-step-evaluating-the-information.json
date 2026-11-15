@@ -1,0 +1,51 @@
+{
+  "title": "Drugi korak: procjena zdravstvenih informacija",
+  "intro": "Pronalazak informacija je tek pola posla. Drugi korak je procijeniti jesu li pouzdane, relevantne i primjenjive na vas. Nekoliko jednostavnih pitanja može vam pomoći razlikovati pouzdane savjete od marketinga, mišljenja ili zastarjelih tvrdnji.",
+  "sections": [
+    {
+      "heading": "Tko stoji iza informacije",
+      "paragraphs": [
+        "Provjerite tko je napisao tekst, kakve su mu kvalifikacije i tko financira izvor. Pouzdani pružatelji navode svoje autore i objašnjavaju kako rade. Budite oprezni sa stranicama koje vode tvrtke koje prodaju liječenja ili proizvode povezane s temom te s anonimnim objavama."
+      ]
+    },
+    {
+      "heading": "Koji se dokazi koriste",
+      "paragraphs": [
+        "Tražite upućivanja na istraživanja poput sustavnih pregleda, kliničkih ispitivanja ili smjernica, a ne na anegdote ili jedno istraživanje. Razlikuje li tekst dokazane od neizvjesnih tvrdnji? Informacije o liječenjima trebaju opisivati koristi i rizike, alternative i mogućnost da se ne učini ništa. Tvrdnje da nema nuspojava su znak upozorenja."
+      ]
+    },
+    {
+      "heading": "Kako su prikazane brojke",
+      "paragraphs": [
+        "Relativne brojke poput prepolovljenja rizika mogu zvučati impresivno, ali zavaravaju ako je početni rizik malen. Apsolutni brojevi, kao što je koliko od sto ljudi ima koristi, jasniji su. Provjerite dolaze li rezultati od ljudi poput vas i jesu li ishodi važni u svakodnevnom životu ili su samo laboratorijske vrijednosti."
+      ]
+    },
+    {
+      "heading": "Koliko je aktualno",
+      "paragraphs": [
+        "Medicinsko znanje se mijenja pa tražite datum i znakove redovitog ažuriranja. Stare informacije mogu preporučivati liječenja koja su danas napuštena ili previdjeti novije mogućnosti. Provjerite odgovaraju li informacije vašoj zemlji jer se zdravstveni sustavi i preporuke razlikuju."
+      ]
+    },
+    {
+      "heading": "Korištenje informacija",
+      "paragraphs": [
+        "Usporedite nekoliko pouzdanih izvora. Ako se savjeti sukobljavaju, pitajte liječnika koji se odnosi na vašu situaciju. Koristite informacije za pripremu pitanja, a ne za samodijagnozu ili prekid liječenja. Vjerujte svojim brigama i potražite potporu ako vas informacije preplave."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Provjera tvrdnje",
+      "text": "Zamislite da stranica kaže da dodatak prehrani prepolovljuje rizik od bolesti. Mogli biste pitati koliko je ljudi sudjelovalo, kolika je bila apsolutna promjena rizika i tko je financirao istraživanje."
+    },
+    {
+      "title": "Usporedba izvora",
+      "text": "Pretpostavite da dvije stranice daju različite savjete. Mogli biste provjeriti njihove datume i izvore te pitati liječnika koja je prikladnija za vas."
+    }
+  ],
+  "questions": [
+    "Koliko su ove informacije pouzdane za moju situaciju?",
+    "Koje su apsolutne koristi i rizici?",
+    "Postoje li noviji dokazi ili smjernica za koje bih trebao znati?"
+  ]
+}

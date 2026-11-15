@@ -1,0 +1,52 @@
+{
+  "title": "Come la lingua aiuta cibo e parola",
+  "intro": "La lingua è un organo muscolare flessibile con superficie sensibile. Muove cibo, aiuta a deglutire e forma la parola, rilevando gusto e contatto. L'aspetto varia; una foto da sola non stabilisce diagnosi.",
+  "sections": [
+    {
+      "heading": "Muscoli e legami",
+      "paragraphs": [
+        "Alcuni muscoli cambiano la forma, altri muovono l'organo intero. Legami vicini e frenulo sottostante sostengono movimenti coordinati, non stiramento illimitato."
+      ]
+    },
+    {
+      "heading": "Preparare il cibo",
+      "paragraphs": [
+        "La lingua posiziona il cibo tra i denti e lo mescola alla saliva. Riunisce il bolo e lo spinge indietro per deglutire; i nervi coordinano la protezione respiratoria."
+      ]
+    },
+    {
+      "heading": "Superficie e gusto",
+      "paragraphs": [
+        "Molte papille contengono gemme gustative, altre danno soprattutto consistenza. Gusto e olfatto collaborano; nessuna zona rileva esclusivamente un gusto. Variazione normale non significa infezione."
+      ]
+    },
+    {
+      "heading": "Parola e cura",
+      "paragraphs": [
+        "Contatti precisi formano suoni con denti, palato e labbra. Igiene delicata e idratazione adatta aiutano. Non raschiate tessuto dolorante né scegliete cure dal solo colore."
+      ]
+    },
+    {
+      "heading": "Valutazione",
+      "paragraphs": [
+        "Ulcere persistenti, noduli, sangue o difficoltà a muovere o deglutire richiedono visita. Gonfiore improvviso con difficoltà respiratoria è emergenza. Nuova debolezza con cambiamenti di parola o volto richiede urgenza.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha una lesione dopo essersi morsa. Evita irritazioni e chiede visita se non guarisce, senza rimedi caustici."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha gonfiore improvviso e fatica a respirare dopo un possibile allergene. La famiglia cerca soccorso senza aspettare il dentista."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

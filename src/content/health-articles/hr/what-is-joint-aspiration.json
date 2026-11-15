@@ -1,0 +1,51 @@
+{
+  "title": "Što je aspiracija zgloba?",
+  "intro": "Aspiracija zgloba, ili artrocenteza, je zahvat u kojem se iglom izvlači tekućina iz zgloba. Radi se kako bi se pronašao uzrok oticanja ili boli zgloba, ublažio tlak i ponekad ubrizgao lijek. Brz je i obično se radi u liječničkoj ordinaciji.",
+  "sections": [
+    {
+      "heading": "Zašto se radi",
+      "paragraphs": [
+        "Analiza tekućine može otkriti infekciju, giht, kristale pseudogihta, krvarenje ili upalni artritis. Uklanjanje tekućine iz jako natečenog zgloba ublažava bol i poboljšava pokretljivost. Sumnja na infekciju zgloba je hitno stanje, a aspiracija je hitno potrebna kako bi se spriječilo trajno oštećenje."
+      ]
+    },
+    {
+      "heading": "Kako se radi",
+      "paragraphs": [
+        "Koža se očisti i može se umrtviti lokalnim anestetikom ili sprejem za hlađenje. Sterilnom tehnikom liječnik uvodi iglu u zglob, ponekad uz vođenje ultrazvukom, i izvlači tekućinu. Ako je potrebno, kortikosteroid ili drugi lijek ubrizgava se istom iglom. Zahvat traje nekoliko minuta."
+      ]
+    },
+    {
+      "heading": "Što tekućina pokazuje",
+      "paragraphs": [
+        "Normalna zglobna tekućina je bistra i gusta. Mutna tekućina upućuje na upalu ili infekciju, krvava na ozljedu ili poremećaj krvarenja, a kristali u tekućini ukazuju na giht ili pseudogiht. Uzorak se šalje u laboratorij na broj stanica, kristale i bakterijsku kulturu."
+      ]
+    },
+    {
+      "heading": "Njega nakon zahvata i rizici",
+      "paragraphs": [
+        "Odmarajte zglob dan-dva i izbjegavajte jako opterećenje. Malo bolnosti je uobičajeno. Rizici su rijetki i uključuju infekciju, krvarenje i oštećenje hrskavice. Obratite se liječniku ako nakon zahvata dobijete vrućicu, pojačanu bol, crvenilo, toplinu ili oticanje. Recite liječniku ako uzimate lijekove za razrjeđivanje krvi."
+      ]
+    },
+    {
+      "heading": "Rezultati",
+      "paragraphs": [
+        "Neki rezultati dostupni su unutar nekoliko sati, drugi, kao što je kultura, traju danima. Liječnik objašnjava nalaze i liječenje, primjerice antibiotike za infekciju ili lijekove za giht."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema",
+      "text": "Zamislite da imate natečeno koljeno. Mogli biste reći liječniku o lijekovima za razrjeđivanje krvi te zabilježiti kada je oticanje počelo i jeste li imali vrućicu."
+    },
+    {
+      "title": "Njega nakon zahvata",
+      "text": "Pretpostavite da vam je izvučena tekućina iz koljena. Mogli biste ga odmarati dan i paziti na toplinu, crvenilo ili vrućicu."
+    }
+  ],
+  "questions": [
+    "Zašto se uzima tekućina iz mog zgloba?",
+    "Hoće li se ubrizgati lijek i koje su koristi i rizici?",
+    "Kada ću znati rezultate?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Ce face sângele?",
+  "intro": "Sângele este sistemul de transport și de apărare al corpului. Transportă oxigen, nutrienți, hormoni și deșeuri, ajută la controlul temperaturii și luptă împotriva infecțiilor. Un adult are aproximativ cinci litri de sânge, care circulă constant prin inimă și vasele de sânge.",
+  "sections": [
+    {
+      "heading": "Ce conține sângele",
+      "paragraphs": [
+        "Sângele este alcătuit din plasmă, un lichid gălbui, deschis la culoare, format mai ales din apă, cu proteine, săruri, zaharuri și grăsimi, și din celule sanguine. Globulele roșii transportă oxigen, globulele albe apără împotriva infecțiilor, iar trombocitele ajută la oprirea sângerării. Toate celulele sanguine sunt produse în măduva osoasă."
+      ]
+    },
+    {
+      "heading": "Globulele roșii și oxigenul",
+      "paragraphs": [
+        "Globulele roșii conțin hemoglobină, o proteină cu fier care leagă oxigenul în plămâni și îl eliberează în țesuturi. Ele transportă înapoi spre plămâni și o parte din dioxidul de carbon. Globulele roșii sau hemoglobina scăzute provoacă anemie, cu oboseală, paloare și lipsă de aer. Globulele roșii trăiesc în jur de patru luni."
+      ]
+    },
+    {
+      "heading": "Apărarea și coagularea",
+      "paragraphs": [
+        "Globulele albe, inclusiv neutrofilele și limfocitele, găsesc și distrug microbii și celulele anormale. Trombocitele se lipesc între ele la nivelul leziunilor și, împreună cu proteinele coagulării, formează un cheag care oprește sângerarea. Prea puțină coagulare provoacă probleme de sângerare, iar prea multă poate provoca cheaguri periculoase."
+      ]
+    },
+    {
+      "heading": "Alte roluri și teste",
+      "paragraphs": [
+        "Sângele distribuie căldura, menține constant echilibrul acid al corpului și transportă hormoni și nutrienți precum glucoza. Analizele de sânge măsoară celule, zahăr, colesterol, funcția rinichilor și a ficatului și multe altele, ceea ce le face unul dintre cele mai utile instrumente medicale."
+      ]
+    },
+    {
+      "heading": "Menținerea sângelui sănătos",
+      "paragraphs": [
+        "O alimentație variată cu fier, vitamina B12 și folat, mișcarea regulată, nefumatul și limitarea alcoolului ajută. Donarea de sânge ajută alte persoane și este sigură pentru majoritatea adulților sănătoși. Mergeți la medic pentru vânătăi sau sângerări neexplicate, oboseală constantă sau paloare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Citirea hemogramei",
+      "text": "Imaginați-vă că raportul arată hemoglobină scăzută. Ați putea întreba medicul despre cauză, precum deficitul de fier, și despre tratament."
+    },
+    {
+      "title": "Donarea de sânge",
+      "text": "Presupuneți că vreți să donați. Ați putea verifica regulile de eligibilitate, să mâncați bine și să beți apă înainte."
+    }
+  ],
+  "questions": [
+    "Sunt normale rezultatele analizelor mele de sânge?",
+    "Ce ar putea explica un hemogram scăzut sau crescut?",
+    "Am nevoie de alte teste sau de tratament?"
+  ]
+}

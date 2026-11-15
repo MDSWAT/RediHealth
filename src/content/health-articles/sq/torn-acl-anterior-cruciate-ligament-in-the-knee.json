@@ -1,0 +1,51 @@
+{
+  "title": "Këputja e ligamentit kryq të përparmë (ACL)",
+  "intro": "Ligamenti kryq i përparmë është një rrip i fortë brenda gjurit që e mban kockën e tibias nga rrëshqitja përpara e stabilizon rrotullimin. Këputja e tij ndodh shpesh gjatë sportit, me një përdredhje të papritur ose zbritje të sikletshme, e mund ta bëjë gjurin të lëshojë. Trajtimi mund të jetë me ushtrime ose kirurgjik sipas aktiviteteve tuaja.",
+  "sections": [
+    {
+      "heading": "Si ndodh",
+      "paragraphs": [
+        "Këputjet e ACL zakonisht ndodhin pa kontakt, kur dikush ndryshon drejtim shpejt, ndalon papritur ose zbret nga një kërcim, si në futboll, basketboll, skijim e hendboll. Gratë kanë rrezik më të lartë. Njerëzit shpesh ndiejnë ose dëgjojnë një kërcitje, e ndjekur nga enjtje e shpejtë e ndjenjë se gjuri është i paqëndrueshëm."
+      ]
+    },
+    {
+      "heading": "Simptomat dhe diagnoza",
+      "paragraphs": [
+        "Dhimbja, enjtja brenda orësh, vështirësia për të vënë peshë në këmbë e paqëndrueshmëria ose lëshimi janë tipike. Mjekët e ekzaminojnë gjurin me teste të veçanta të lirshmërisë e zakonisht marrin një rezonancë për të konfirmuar këputjen e për të kontrolluar për lëndime të tjera si dëmtimi i meniskut. Rrezet X përjashtojnë thyerjet."
+      ]
+    },
+    {
+      "heading": "Hapat e parë",
+      "paragraphs": [
+        "Pushojeni gjurin, aplikoni kompresa të ftohta, kompresion e ngritje e përdorni paterica ndërsa dhimbja është e rëndë. Qetësuesit ndihmojnë. Lëvizja e butë e fizioterapia fillojnë herët për të rikthyer shtrirjen e lëvizjes e për të ulur enjtjen, pasi një gju i ngurtë mund ta bëjë kirurgjinë ose rikuperimin e mëvonshëm më të vështirë."
+      ]
+    },
+    {
+      "heading": "Trajtimi me ushtrime ose kirurgji",
+      "paragraphs": [
+        "Shumë njerëz e përballojnë mirë pa kirurgji, veçanërisht nëse nuk kanë nevojë të përdredhen e të rrotullohen në sport. Fizioterapia e strukturuar i forcon muskujt për ta stabilizuar gjurin e kirurgjia mund të bëhet më vonë nëse gjuri vazhdon të lëshojë. Studimet tregojnë rezultate të ngjashme në dy deri pesë vjet te shumë pacientë midis kirurgjisë së hershme e rehabilitimit me kirurgji opsionale më vonë. Kirurgjia, ku ligamenti zëvendësohet me një graft zakonisht të marrë nga tendini i vetë pacientit, këshillohet më shpesh për atletë të rinj në sporte me rrotullim, për njerëz që gjuri u lëshon në jetën e përditshme e për ata me lëndime të tjera në gju."
+      ]
+    },
+    {
+      "heading": "Rikuperimi",
+      "paragraphs": [
+        "Pas kirurgjisë, rehabilitimi zgjat rreth nëntë deri dymbëdhjetë muaj para kthimit te sportet me rrotullim. Kthimi varet nga forca, ekuilibri e vetëbesimi, jo vetëm nga koha në kalendar. Rreziku i këputjes së re është më i lartë te atletët e rinj që kthehen herët. Programet e parandalimit me forcim e teknikë të zbritjes ulin rrezikun e lëndimit. Një lëndim ACL e rrit rrezikun e osteoartritit të gjurit me kalimin e kohës."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Peshimi i opsioneve",
+      "text": "Imagjinoni që luani futboll çdo javë e keni këputur ACL. Mund të diskutoni me kirurgun si kirurgjinë ashtu edhe rehabilitimin e strukturuar e të pyesni çfarë do të përfshinte kthimi në sport."
+    },
+    {
+      "title": "Përgatitja për kirurgji",
+      "text": "Supozoni që vendosni për kirurgji. Mund të filloni fizioterapinë paraprakisht për të rifituar lëvizjen e forcën e të planifikoni kohë pushimi nga puna."
+    }
+  ],
+  "questions": [
+    "A kam nevojë për kirurgji apo mund të provoj fillimisht rehabilitimin?",
+    "Cilin graft e teknikë rekomandoni?",
+    "Kur mund të kthehem në sport në mënyrë të sigurt?"
+  ]
+}

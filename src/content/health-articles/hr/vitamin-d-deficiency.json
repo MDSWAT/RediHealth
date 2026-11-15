@@ -1,0 +1,51 @@
+{
+  "title": "Nedostatak vitamina D",
+  "intro": "Nedostatak vitamina D znači da tijelo ima premalo vitamina D, koji je potreban za snažne kosti i mišiće. Čest je, osobito zimi u sjevernim zemljama, kod ljudi koji pokrivaju kožu ili rijetko izlaze van te kod starijih osoba. Lako se liječi, a prevencija je jednostavna.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Uzroci uključuju premalo izlaganja suncu, tamnu kožu, pokrivajuću odjeću, stalnu uporabu krema za sunčanje, dob, pretilost, slabo upijanje zbog bolesti crijeva, bolest jetre ili bubrega i neke lijekove. Sama prehrana rijetko daje dovoljno jer malo namirnica sadrži mnogo vitamina D."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Blagi nedostatak često ne uzrokuje simptome. Težak nedostatak može uzrokovati bol u kostima, slabost i bolnost mišića, umor, a ponekad se prijavljuju i česte infekcije. Kod djece uzrokuje rahitis, s mekim kostima, krivim nogama i zakašnjelim rastom. Kod odraslih uzrokuje osteomalaciju, s boli u kostima i prijelomima. Mnogi simptomi su nespecifični i imaju druge uzroke."
+      ]
+    },
+    {
+      "heading": "Testiranje",
+      "paragraphs": [
+        "Krvna pretraga mjeri vitamin D, u obliku zvanom 25-hidroksivitamin D. Rutinsko testiranje nije potrebno zdravim ljudima, ali je prikladno za osobe s bolešću kostiju, slabim upijanjem, bolešću bubrega ili simptomima. Razine ispod praga određenog smjernicama smatraju se nedostatnima. Tumačenje ovisi o laboratoriju i smjernicama."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Liječnici propisuju dodatke vitamina D u dozama ovisno o razini, primjerice više doze nekoliko tjedana nakon čega slijede niže doze održavanja. Unos kalcija treba biti dovoljan. Po potrebi ponovno testirajte nakon nekoliko mjeseci. Uzimanje dodataka uz obrok koji sadrži masnoću pomaže upijanju. Previše vitamina D tijekom dugog vremena može povisiti kalcij i oštetiti bubrege pa slijedite upute i izbjegavajte vrlo visoke doze bez nadzora."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Provodite vrijeme na otvorenom na dnevnom svjetlu, uz razumnu zaštitu od sunca, jedite ribu, jaja i obogaćenu hranu te pitajte o dodacima ako ste u rizičnoj skupini. Bebama se obično daju kapi vitamina D prema nacionalnim savjetima. Starije osobe u domovima za njegu često imaju koristi od dodataka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Početak liječenja",
+      "text": "Zamislite da vaš test pokaže nizak vitamin D. Mogli biste uzeti dodatak uz glavni obrok, označiti u kalendaru ponovnu provjeru i dodati šetnje na otvorenom."
+    },
+    {
+      "title": "Pogled na rizik",
+      "text": "Pretpostavite da većinu kože pokrivate kad ste vani. Mogli biste pitati liječnika o dodacima održavanja tijekom zime."
+    }
+  ],
+  "questions": [
+    "Koju dozu i koliko dugo trebam uzimati vitamin D?",
+    "Trebam li ponovnu provjeru razina?",
+    "Koji se čimbenici rizika odnose na mene?"
+  ]
+}

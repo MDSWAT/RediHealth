@@ -1,0 +1,51 @@
+{
+  "title": "Aritmije: prepoznavanje obrasca",
+  "intro": "Aritmije su neuobičajeno brzi, spori ili nepravilni otkucaji. Neki dodatni otkucaji su bezazleni, a drugi ritmovi traže hitno liječenje. Sam osjećaj lupanja ne određuje vrstu ritma.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Bilježite nagao početak, trajanje i vezu s naporom, nesvjesticom ili bolešću. Kofein, alkohol, lijekovi te bolesti srca ili štitnjače mogu utjecati, ali okidač nije uvijek očit."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "EKG bilježi električnu aktivnost; povremene epizode mogu tražiti prijenosno praćenje. Krv i snimanje biraju se prema nalazima. Uredan zapis između epizoda ne isključuje uvijek aritmiju. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Liječenje može biti praćenje, lijek, ablacija, elektrostimulator ili defibrilator prema dijagnozi. Neki ritmovi traže procjenu moždanog udara i antikoagulaciju; sporiji puls sam ne uklanja rizik ugrušaka. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Vodite dnevnik i uzimajte dogovorene lijekove. Raspravite vožnju, rad i vježbanje ako gubite svijest. Upozorenja sata potiču procjenu ali ne zamjenjuju dijagnozu; ne uzimajte tuđe srčane lijekove. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Lupanje uz bol u prsima, tešku zaduhu, nesvjesticu ili kolaps traži hitnu pomoć. Za nove trajne tegobe tražite brz savjet bez beskrajnog čekanja zapisa uređaja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima kratke epizode propuštene na EKG-u u ordinaciji. Liječnik dogovara praćenje bez isključenja bolesti na temelju kratkog urednog zapisa."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben se osjeća bolje nakon kontrole frekvencije. Pita treba li i dalje prevenciju udara umjesto samostalnog prekida."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

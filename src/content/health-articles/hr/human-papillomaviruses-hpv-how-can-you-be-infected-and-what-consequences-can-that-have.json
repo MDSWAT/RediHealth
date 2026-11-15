@@ -1,0 +1,54 @@
+{
+  "title": "HPV infekcija: kako se širi i što može uzrokovati",
+  "intro": "Humani papilomavirusi velika su skupina virusa koji zaražavaju kožu i sluznice. Većina ljudi se u nekom trenutku života zarazi, a da to ne primijeti. Obično imunološki sustav uklanja virus, ali neki tipovi mogu uzrokovati bradavice ili, nakon mnogo godina, rak. Znanje kako se HPV širi i kako se zaštititi pomaže vam ostati informirani bez nepotrebnog straha.",
+  "sections": [
+    {
+      "heading": "Kako se HPV širi",
+      "paragraphs": [
+        "Genitalni tipovi HPV-a prenose se bliskim dodirom kože ili sluznice, najčešće tijekom vaginalnog, analnog ili oralnog seksa. Kondomi smanjuju rizik, ali ga ne uklanjaju jer virus može zaraziti kožu koju kondom ne pokriva. Bradavice na rukama i stopalima obično se šire dodirom kontaminiranih površina ili kože.",
+        "Budući da su infekcije često tihe, ljudi mogu prenijeti virus a da to ne znaju. Dugogodišnji partner ne znači da je infekcija nedavna."
+      ]
+    },
+    {
+      "heading": "Što infekcije mogu uzrokovati",
+      "paragraphs": [
+        "Većina HPV infekcija ne uzrokuje simptome i nestaje unutar jedne ili dvije godine. Neki niskorizični tipovi uzrokuju genitalne bradavice, koje su obično bezopasne, ali mogu smetati i vraćati se. Visokorizični tipovi mogu uzrokovati promjene stanica na vratu maternice, anusu, stidnici, rodnici, penisu ili grlu, koje se nakon mnogo godina mogu razviti u rak."
+      ]
+    },
+    {
+      "heading": "Otkrivanje",
+      "paragraphs": [
+        "Probir vrata maternice koristi citološke testove, HPV testove ili oboje kako bi našao infekciju i rane promjene na vratu maternice. Ne postoji rutinski test na HPV u muškaraca. Bradavice se obično dijagnosticiraju pregledom, a sumnjiva područja mogu se pregledati povećalom ili malim uzorkom tkiva."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Ne postoji lijek koji liječi sam virus. Genitalne bradavice mogu se liječiti kremama, zamrzavanjem, laserom ili manjim kirurškim zahvatom, iako se mogu vratiti. Prekancerozne promjene stanica na vratu maternice liječe se uklanjanjem zahvaćenog tkiva.",
+        "Liječenje raka povezanog s HPV-om ovisi o mjestu i stadiju i može uključivati operaciju, zračenje i lijekove."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Cijepljenje prije početka spolne aktivnosti najučinkovitija je prevencija. Redoviti probir, kondomi i nepušenje, koje slabi sposobnost tijela da ukloni HPV, dodatno smanjuju rizik. Pozitivan HPV test nije dijagnoza raka, ali znači da je potrebno praćenje prema savjetu vašeg liječnika.",
+        "Mnogi ljudi se osjećaju tjeskobno ili posramljeno nakon HPV rezultata. Otvoren razgovor sa zdravstvenim stručnjakom i, ako želite, s partnerom, može smanjiti brige."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razumijevanje rezultata testa",
+      "text": "Zamislite da vaš probirni test nađe visokorizični tip HPV-a, ali nema promjena stanica. Mogli biste pitati kada treba ponoviti test, koliki je rizik napredovanja i koji bi koraci načina života, poput prestanka pušenja, pomogli."
+    },
+    {
+      "title": "Razgovor s partnerom",
+      "text": "Pretpostavite da saznate da imate genitalne bradavice. Mogli biste se pripremiti objasniti da je HPV vrlo čest, da se bradavice mogu liječiti, i pitati kliničara kako smanjiti vjerojatnost prenošenja."
+    }
+  ],
+  "questions": [
+    "Što znači moj HPV rezultat i kada se trebam ponovno testirati?",
+    "Koje mogućnosti liječenja postoje za bradavice ili promjene stanica i koji su rizici?",
+    "Bi li mi cijepljenje još uvijek koristilo?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Capire gli esami della tiroide",
+  "intro": "Gli esami della tiroide aiutano a diagnosticare una tiroide iperattiva o ipoattiva, l'ingrossamento della tiroide e il cancro della tiroide. Comprendono esami del sangue, ecografia e a volte scintigrafie o biopsie. Sapere che cosa significano i risultati può rendere più facile seguire le visite.",
+  "sections": [
+    {
+      "heading": "Esami del sangue",
+      "paragraphs": [
+        "L'ormone stimolante la tiroide, prodotto dall'ipofisi, di solito è il primo esame. Sale quando la tiroide è ipoattiva e scende quando è iperattiva. La tiroxina libera e a volte la triiodotironina libera misurano i veri ormoni tiroidei. Insieme mostrano se la tiroide lavora troppo o troppo poco."
+      ]
+    },
+    {
+      "heading": "Esami degli anticorpi",
+      "paragraphs": [
+        "Gli anticorpi contro la tiroide, come anti-TPO e anti-tireoglobulina, sono presenti nelle malattie autoimmuni della tiroide come quella di Hashimoto. Gli anticorpi che stimolano il recettore del TSH si trovano nel morbo di Graves. Questi esami aiutano a trovare la causa ma non sono sempre necessari."
+      ]
+    },
+    {
+      "heading": "Ecografia",
+      "paragraphs": [
+        "L'ecografia usa onde sonore per visualizzare la tiroide, mostrandone le dimensioni ed eventuali noduli, compreso se sono solidi o cistici e quali caratteristiche appaiono sospette. È indolore, rapida e non usa radiazioni. È il principale metodo di imaging per il gozzo e i noduli."
+      ]
+    },
+    {
+      "heading": "Scintigrafia e biopsia",
+      "paragraphs": [
+        "Una scintigrafia tiroidea usa una piccola quantità di tracciante radioattivo per mostrare quali aree della tiroide sono attive, aiutando a distinguere i noduli iperattivi da quelli inattivi. Se un nodulo appare sospetto all'ecografia, un agoaspirato preleva alcune cellule con un ago sottile da esaminare al microscopio. La maggior parte dei noduli risulta benigna."
+      ]
+    },
+    {
+      "heading": "Consigli pratici",
+      "paragraphs": [
+        "Informa il medico dei farmaci per la tiroide, degli integratori come la biotina, che può alterare i risultati, e di una gravidanza. A chi prende levotiroxina si chiede spesso di assumere la compressa dopo il prelievo. I risultati possono variare durante una malattia, quindi a volte serve ripetere l'esame. Chiedi quando è previsto il prossimo esame."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi a un esame del sangue",
+      "text": "Immagina di prendere levotiroxina al mattino. Potresti chiedere se fare il prelievo prima della compressa e portare un elenco degli integratori."
+    },
+    {
+      "title": "Capire un nodulo",
+      "text": "Supponi che un'ecografia mostri un nodulo tiroideo. Potresti chiedere quali caratteristiche sono state viste, se serve una biopsia e con che frequenza controllarlo."
+    }
+  ],
+  "questions": [
+    "Di quali esami della tiroide ho bisogno e che cosa significano i risultati?",
+    "I miei farmaci o integratori potrebbero influire sui risultati?",
+    "Il mio nodulo tiroideo ha bisogno di una biopsia?"
+  ]
+}

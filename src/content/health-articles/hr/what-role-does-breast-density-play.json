@@ -1,0 +1,51 @@
+{
+  "title": "Kakvu ulogu ima gustoća dojke?",
+  "intro": "Gustoća dojke opisuje koliki je dio dojke građen od žljezdanog i vezivnog tkiva u usporedbi s masnim, kako se vidi na mamografiji. Guste dojke su česte i normalne. Gustoća je važna jer može otežati uočavanje tumora i sama je povezana s nešto većim rizikom od raka dojke.",
+  "sections": [
+    {
+      "heading": "Što gustoća znači",
+      "paragraphs": [
+        "Na mamografiji masno tkivo izgleda tamno, a žljezdano i vlaknasto tkivo izgleda bijelo. Dojke se često razvrstavaju u četiri kategorije, od uglavnom masnih do iznimno gustih. Gustoća nije povezana s time kako se dojke osjećaju ni s njihovom veličinom i ne može se procijeniti dodirom. Češća je kod mlađih žena i sklona je opadati s dobi i nakon menopauze."
+      ]
+    },
+    {
+      "heading": "Zašto je važna",
+      "paragraphs": [
+        "Gusto tkivo i tumori na mamografiji izgledaju bijelo pa tumori mogu biti skriveni, što snižava osjetljivost mamografije. Žene s vrlo gustim dojkama također imaju veći rizik od raka dojke nego žene s masnim dojkama, ali je gustoća samo jedan od mnogih čimbenika rizika, kao što su dob, obiteljska povijest i geni."
+      ]
+    },
+    {
+      "heading": "Dodatne pretrage",
+      "paragraphs": [
+        "Kod žena s gustim dojkama dodatno snimanje kao što je ultrazvuk ili magnetska rezonancija može pronaći više tumora, ali i dovodi do više lažnih alarma i dodatnih pretraga. Nude li se dodatne pretrage razlikuje se među državama i smjernicama, a korist za preživljenje još se istražuje. Razgovarajte o mogućnostima s liječnikom."
+      ]
+    },
+    {
+      "heading": "Što možete učiniti",
+      "paragraphs": [
+        "Sudjelujte u preporučenom probiru, upoznajte svoje dojke i prijavite promjene kao što su kvržica, promjene kože, iscjedak iz bradavice ili bol, čak i nakon normalne mamografije. Smanjite promjenjive rizike kao što su prekomjeran alkohol, prekomjerna težina nakon menopauze i nedostatak aktivnosti. Gustoća se ne može namjerno promijeniti."
+      ]
+    },
+    {
+      "heading": "Biti informiran",
+      "paragraphs": [
+        "U nekim državama ženama se nakon mamografije javlja njihova gustoća. Ako je vaša visoka, pitajte što to znači za vas, je li vaš rizik povećan i imaju li dodatne pretrage smisla. Imati guste dojke nije bolest i ne znači da ćete dobiti rak."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pitanje o gustoći",
+      "text": "Zamislite da nalaz vaše mamografije spominje guste dojke. Mogli biste pitati liječnika je li dodatno snimanje prikladno za vas."
+    },
+    {
+      "title": "Uočavanje promjene",
+      "text": "Pretpostavite da nakon normalne mamografije napipate novu kvržicu. Mogli biste brzo posjetiti liječnika umjesto čekati sljedeći probir."
+    }
+  ],
+  "questions": [
+    "Koja je moja kategorija gustoće dojke i što znači?",
+    "Bi li mi ultrazvuk ili MR bio koristan?",
+    "Koliko često trebam ići na probir?"
+  ]
+}

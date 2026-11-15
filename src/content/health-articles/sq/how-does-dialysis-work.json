@@ -1,0 +1,51 @@
+{
+  "title": "Si pastron dializa gjakun: difuzioni dhe uji",
+  "intro": "Dializa heq mbeturina dhe ujë kur veshkat nuk munden. Mbështet ekuilibrin, jo larje të çdo substance. Nuk zëvendëson çdo funksion, ndaj ilaçet, ushqimi dhe kontrollet vlejnë.",
+  "sections": [
+    {
+      "heading": "Membrana",
+      "paragraphs": [
+        "Gjaku dhe lëngu ndahen nga membranë që lejon disa molekula të vogla por mban qelizat dhe shumë proteina. Lëngu zgjidhet me kujdes; nuk është ujë i thjeshtë."
+      ]
+    },
+    {
+      "heading": "Difuzioni",
+      "paragraphs": [
+        "Grimcat lëvizin sipas përqendrimit. Lëngu përkatës heq mbeturina dhe rregullon kripërat. Parametrat varen nga gjaku; heqja më e shpejtë nuk është gjithmonë më e sigurt."
+      ]
+    },
+    {
+      "heading": "Heqja e ujit",
+      "paragraphs": [
+        "Ultrafiltrimi përdor presion. Shumë shpejt ul presionin ose jep ngërçe. Ekipi përdor ekzaminim, peshë dhe shenja, jo vetëm etje ose kyçe."
+      ]
+    },
+    {
+      "heading": "Dy mënyra",
+      "paragraphs": [
+        "Hemodializa ka filtër të jashtëm dhe akses gjaku. Peritonealja përdor veshjen e barkut dhe lëng përmes kateterit. Oraret, parandalimi i infeksionit dhe rutina ndryshojnë; mos zgjidhni vetëm nga skema."
+      ]
+    },
+    {
+      "heading": "Siguria",
+      "paragraphs": [
+        "Ndiqni terapinë dhe tregoni sëmundje ose mungesë. Ndiqni ushqimin, lëngjet dhe aksesin individual. Frymëmarrja e rëndë, dhimbja gjoksi, kolapsi ose gjaku kërkojnë urgjencë; ethet ose lëngu peritoneal i turbullt duan ekipin shpejt. Para konsultës, shënoni kur filloi simptoma, çfarë e lehtëson ose përkeqëson dhe si ndikon në veprimtaritë e zakonshme. Merrni raportet e mëparshme nëse i keni. Kërkojini profesionistit ta lidhë shpjegimin me gjetjet tuaja; një përshkrim i përgjithshëm nuk vendos diagnozën."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet ndryshimin e heqjes së lëngjeve për ngërçet, pa menduar se më fort është gjithmonë më mirë."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni krahason shtëpinë dhe qendrën, mbështetjen e rutinën, jo vetëm mekanizmin e thjeshtë."
+    }
+  ],
+  "questions": [
+    "Cilat hapa sqarohen me diagram?",
+    "Çfarë tregon shpjegimi dhe çfarë nuk parashikon?",
+    "A kërkon shqetësimi im vlerësim profesional?"
+  ]
+}

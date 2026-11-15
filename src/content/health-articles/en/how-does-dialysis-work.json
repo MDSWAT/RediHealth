@@ -1,0 +1,51 @@
+{
+  "title": "How dialysis cleans blood: diffusion and fluid removal",
+  "intro": "Dialysis removes some waste products and excess water when kidneys cannot do enough. It supports balance rather than washing all substances out of blood. It does not replace every kidney function, so medicines, nutrition and monitoring remain important.",
+  "sections": [
+    {
+      "heading": "A selective membrane",
+      "paragraphs": [
+        "Blood and dialysis fluid are separated by a membrane that lets selected small substances cross while normally retaining blood cells and many large proteins. The fluid’s composition is chosen carefully; dialysis is not a simple exchange with plain water."
+      ]
+    },
+    {
+      "heading": "Diffusion",
+      "paragraphs": [
+        "Particles move according to concentration differences. Keeping suitable dialysis fluid on the other side of the membrane helps remove waste and adjust salts. Treatment settings depend on the person’s blood chemistry; faster removal is not always safer."
+      ]
+    },
+    {
+      "heading": "Removing water",
+      "paragraphs": [
+        "Ultrafiltration moves water across the membrane using pressure differences. Removing too much too quickly may cause low blood pressure or cramps. The team uses examination, weight and symptoms to set a suitable plan, not just thirst or ankle appearance."
+      ]
+    },
+    {
+      "heading": "Two main approaches",
+      "paragraphs": [
+        "Hemodialysis uses an external filter and vascular access. Peritoneal dialysis uses the abdominal lining and fluid exchanged through a catheter. Schedules, infection precautions and daily demands differ; neither should be selected from a mechanism diagram alone."
+      ]
+    },
+    {
+      "heading": "Practical safety",
+      "paragraphs": [
+        "Attend prescribed treatment and report illness or missed sessions promptly. Follow individual diet, fluid and access instructions. Severe breathlessness, chest pain, collapse or uncontrolled access bleeding requires emergency help; fever or cloudy peritoneal fluid needs urgent team advice. Before a consultation, note when a symptom began, what makes it better or worse, and how it affects ordinary activities. Bring previous reports if available. Ask the professional to connect the explanation to your own findings rather than assuming that a general description establishes a diagnosis."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira asks why the team changes fluid removal when she has cramps rather than assuming a longer or more forceful session must always be better."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben compares home and center options, including support and daily routines, instead of choosing only because one filter mechanism sounds simpler."
+    }
+  ],
+  "questions": [
+    "Which steps would be clearer with a diagram?",
+    "What does this explanation show, and what can it not predict?",
+    "Would my specific concern need professional assessment?"
+  ]
+}

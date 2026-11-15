@@ -1,0 +1,51 @@
+{
+  "title": "Com'è fatto il capello e come cresce",
+  "intro": "Il capello è fatto di una proteina resistente chiamata cheratina. Ogni capello cresce da un follicolo nella pelle e attraversa cicli di crescita, riposo e caduta. Capirlo aiuta a spiegare la normale caduta dei capelli, i cambiamenti dell'età e perché alcuni trattamenti agiscono lentamente.",
+  "sections": [
+    {
+      "heading": "Struttura",
+      "paragraphs": [
+        "La parte visibile del capello, il fusto, è fatta di cellule morte di cheratina in tre strati: la cuticola esterna di squame sovrapposte, la corteccia che dà forza e colore e, nei capelli più spessi, un midollo centrale. Sotto la pelle c'è la radice nel follicolo, con il bulbo alla base in cui le cellule si dividono rapidamente. Una piccola ghiandola, la ghiandola sebacea, aggiunge olio al capello."
+      ]
+    },
+    {
+      "heading": "Ciclo di crescita",
+      "paragraphs": [
+        "Ogni follicolo ha un ciclo indipendente. La fase anagen è di crescita attiva e dura da due a sette anni. La fase catagen è una breve transizione di poche settimane e la fase telogen è un periodo di riposo di circa tre mesi, dopo il quale il capello cade e ne cresce uno nuovo. Circa il novanta per cento dei capelli del cuoio capelluto è in crescita in ogni momento e perderne da cinquanta a cento al giorno è normale."
+      ]
+    },
+    {
+      "heading": "Colore, tipo e velocità di crescita",
+      "paragraphs": [
+        "Il colore viene dalla melanina prodotta nel follicolo. Con l'età la produzione rallenta e i capelli diventano grigi o bianchi. La forma dei capelli, lisci, ondulati o ricci, dipende dalla forma del follicolo ed è ereditaria. I capelli crescono di circa un centimetro al mese."
+      ]
+    },
+    {
+      "heading": "Problemi comuni",
+      "paragraphs": [
+        "Il diradamento dei capelli può derivare da genetica (alopecia androgenetica), cambiamenti ormonali, stress, malattie, problemi nutrizionali come la carenza di ferro, malattie della tiroide, farmaci, chemioterapia e alopecia areata autoimmune. Una forte caduta alcuni mesi dopo una malattia o un parto, detta telogen effluvium, di solito è temporanea."
+      ]
+    },
+    {
+      "heading": "Cura dei capelli e trattamento",
+      "paragraphs": [
+        "Lavare con delicatezza ed evitare acconciature tirate, il calore e le sostanze chimiche aggressive protegge i capelli. Un'alimentazione equilibrata sostiene la crescita. Minoxidil e finasteride si usano per la caduta di tipo androgenetico e richiedono mesi per mostrare risultati. Vai dal medico per una caduta improvvisa o a chiazze, problemi del cuoio capelluto o caduta dei capelli con altri sintomi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Capire la caduta",
+      "text": "Immagina di notare più capelli dopo una febbre. Potresti aspettare qualche mese, perché questo tipo di caduta spesso si risolve."
+    },
+    {
+      "title": "Chiedere consiglio",
+      "text": "Supponi di avere chiazze calve. Potresti andare dal medico per trovare la causa e discutere il trattamento."
+    }
+  ],
+  "questions": [
+    "La mia caduta dei capelli è normale o segno di malattia?",
+    "Quali trattamenti funzionano e quanto tempo richiedono?",
+    "Ho bisogno di esami del sangue per problemi nutrizionali o della tiroide?"
+  ]
+}

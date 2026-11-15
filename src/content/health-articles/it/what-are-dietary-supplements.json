@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa sono gli integratori alimentari",
+  "intro": "Gli integratori alimentari sono prodotti come vitamine, minerali, estratti di erbe e altre sostanze assunti per integrare la dieta. Si vendono in compresse, capsule, polveri e bevande. Per la maggior parte delle persone sane che mangiano in modo vario sono inutili e alcuni possono essere dannosi. In certe situazioni gli integratori mirati sono utili.",
+  "sections": [
+    {
+      "heading": "Come differiscono dai farmaci",
+      "paragraphs": [
+        "In molti paesi gli integratori sono regolamentati come alimenti e non come farmaci, quindi non devono dimostrare l'efficacia prima della vendita, anche se valgono regole di sicurezza. Le etichette possono fare affermazioni generali, ma non devono dichiarare di trattare o curare malattie. Qualità e contenuto possono variare tra i prodotti e alcuni contengono più o meno di quanto dice l'etichetta."
+      ]
+    },
+    {
+      "heading": "Quando gli integratori possono essere utili",
+      "paragraphs": [
+        "Gli integratori possono aiutare quando c'è un bisogno provato: acido folico prima e all'inizio della gravidanza, vitamina D per i neonati e certi gruppi a rischio, vitamina B12 per i vegani e per chi ha problemi di assorbimento, ferro per la carenza di ferro, iodio in gravidanza in alcune regioni e calcio e vitamina D per alcune persone a rischio di osteoporosi. Un medico può confermare il bisogno con gli esami."
+      ]
+    },
+    {
+      "heading": "Rischi",
+      "paragraphs": [
+        "Dosi molto alte di certe vitamine e minerali possono causare danni, per esempio un eccesso di vitamina A in gravidanza può danneggiare il bambino, dosi alte di vitamina D possono alzare il calcio nel sangue e grandi quantità di ferro sono tossiche, soprattutto per i bambini. I prodotti erboristici possono interagire con i farmaci, come l'erba di San Giovanni con i contraccettivi e gli anticoagulanti. Alcuni prodotti contengono sostanze non dichiarate. Prendere più prodotti può portare a un sovradosaggio."
+      ]
+    },
+    {
+      "heading": "Scegliere con saggezza",
+      "paragraphs": [
+        "Chiediti se hai davvero bisogno di un integratore e punta a ottenere i nutrienti prima dal cibo. Informa medico e farmacista di ciò che prendi. Scegli prodotti di marche affidabili e controlla le dosi rispetto alle quantità giornaliere raccomandate. Sii scettico verso affermazioni di effetti miracolosi, disintossicazione o potenziamento immunitario. Smetti e cerca aiuto se hai effetti collaterali. Tieni i prodotti fuori dalla portata dei bambini."
+      ]
+    },
+    {
+      "heading": "Parlarne con il tuo team sanitario",
+      "paragraphs": [
+        "Cita gli integratori a ogni visita, perché possono cambiare i risultati degli esami e interagire con il trattamento. Porta la confezione, così si conoscono esattamente ingredienti e dosi, e rivedi regolarmente se ne hai ancora bisogno."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Verificare il bisogno",
+      "text": "Immagina di chiederti se prendere un multivitaminico. Potresti rivedere la dieta con il medico o con un dietista e chiedere se servano degli esami."
+    },
+    {
+      "title": "Verificare le interazioni",
+      "text": "Supponi di iniziare un rimedio erboristico mentre prendi un farmaco abituale. Potresti chiedere al farmacista delle interazioni prima di cominciare."
+    }
+  ],
+  "questions": [
+    "Ho davvero bisogno di un integratore e quale?",
+    "Potrebbe interagire con i miei farmaci?",
+    "Quale dose è sicura per me?"
+  ]
+}

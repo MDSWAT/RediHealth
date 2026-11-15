@@ -1,0 +1,52 @@
+{
+  "title": "Simptomat fizike pa shpjegim mjekësor",
+  "intro": "Shumë njerëz kanë simptoma fizike të vërteta, si dhimbje, marramendje, lodhje ose palpitacione, për të cilat mjekët nuk gjejnë sëmundje të qartë fizike. Këto quhen edhe simptoma funksionale. Janë të zakonshme, të vërteta dhe shpesh të menaxhueshme. Të kuptuarit si bashkëveprojnë trupi e mendja mund ta ulë frikën dhe ta përmirësojë jetën e përditshme.",
+  "sections": [
+    {
+      "heading": "Çfarë janë",
+      "paragraphs": [
+        "Shembuj të zakonshëm përfshijnë dhimbje koke, dhimbje shpine, ankesa të stomakut, ngushtim në gjoks, lodhje e marramendje pa gjetje në teste. Simptomat janë të vërteta, jo të imagjinuara. Ato shpesh vijnë nga ndryshime në mënyrën si sistemi nervor përpunon sinjalet, për shembull pas stresit, infeksionit ose lëndimit."
+      ]
+    },
+    {
+      "heading": "Pse nuk gjendet shkak",
+      "paragraphs": [
+        "Testet standarde tregojnë kryesisht dëmtim strukturor ose ndryshime kimike, por simptomat funksionale përfshijnë ndryshime në mënyrën si funksionon trupi, jo në pamjen e tij. Stresi, gjumi i dobët, shqetësimi, gjendja e ulët shpirtërore dhe përqendrimi te trupi mund t'i amplifikojnë ndjesitë dhe, nga ana tjetër, simptomat e rrisin shqetësimin, duke krijuar një cikël."
+      ]
+    },
+    {
+      "heading": "Marrja e një vlerësimi të mirë",
+      "paragraphs": [
+        "Një anamnezë dhe ekzaminim i kujdesshëm me teste të arsyeshme ndihmon të përjashtohet sëmundja serioze. Testet e përsëritura dhe shumë vizita te specialistët zakonisht nuk ndihmojnë dhe mund të bëjnë dëm. Një mjek familjar i besuar që ju sheh rregullisht mund ta koordinojë kujdesin dhe të shmangë procedura të panevojshme."
+      ]
+    },
+    {
+      "heading": "Çfarë ndihmon",
+      "paragraphs": [
+        "Edukimi për gjendjen, aktiviteti i rregullt fizik, rutinat e mira të gjumit, ulja e stresit dhe dozimi i strukturuar ndihmojnë. Terapitë psikologjike si terapia konjitivo-sjellëse kanë prova të mira, si edhe vëmendja e plotë dhe relaksimi. Barna si disa antidepresivë në doza të ulëta mund të ndihmojnë disa njerëz, veçanërisht për dhimbjen, dhe fizioterapia mund të ndihmojë simptomat e muskujve.",
+        "Trajtimi i ankthit ose depresionit bashkëekzistues ka rëndësi, por simptomat nuk duhen hedhur poshtë si thjesht stres."
+      ]
+    },
+    {
+      "heading": "Të jetosh me simptomat",
+      "paragraphs": [
+        "Vendosni objektiva realistë, vazhdoni aktivitetet që vlerësoni dhe shmangni kontrollimin e vazhdueshëm të trupit. Ndani përvojën tuaj me njerëz që ju besojnë dhe kërkoni ndihmë nëse simptomat përkeqësohen ose shfaqen simptoma të reja që dallojnë nga modeli i zakonshëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prishja e ciklit",
+      "text": "Imagjinoni që keni pasur dhimbje stomaku për muaj me teste normale. Mund të mbani një ditar të simptomave e të stresuesve, të filloni ecje të rregullt dhe të pyesni për mbështetje psikologjike për menaxhimin e dhimbjes."
+    },
+    {
+      "title": "Komunikimi me mjekun",
+      "text": "Supozoni që ndiheni se simptomat tuaja nuk merren seriozisht. Mund të thoni qartë si ndikojnë simptomat në jetën tuaj dhe të kërkoni një plan trajtimi në vend të testeve shtesë."
+    }
+  ],
+  "questions": [
+    "Çfarë nënkuptojnë simptomat e mia dhe a mund të jetë humbur diçka serioze?",
+    "Cilat trajtime kanë provat më të mira për llojin tim të simptomave?",
+    "Kush do ta koordinojë kujdesin tim që të shmang testet e panevojshme?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Shytat",
+  "intro": "Shytat janë një sëmundje virale ngjitëse që shkakton klasikisht enjtje të dhimbshme të gjëndrave të pështymës përpara veshëve. Përhapet me kollitje, teshtitje dhe kontakt. Tani është e pazakontë në vende me shkallë të lartë vaksinimi, por shpërthime ende ndodhin. Vaksina e dhënë në fëmijëri është mbrojtje efektive.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Pas një periudhe inkubacioni prej rreth dy-tre javësh, njerëzit zhvillojnë ethe, dhimbje koke, dhimbje muskujsh, lodhje dhe enjtje e dhimbje të njërës ose të dyja faqeve. Përtypja e gëlltitja mund të dhembin. Deri në një të tretën e njerëzve kanë pak ose aspak simptoma, por prapëseprapë mund ta përhapin virusin."
+      ]
+    },
+    {
+      "heading": "Komplikimet",
+      "paragraphs": [
+        "Komplikimet janë të pazakonta, por mund të jenë serioze. Te djemtë adoleshentë e burrat e rritur, testikujt mund të bëhen të dhimbshëm e të enjtur. Te gratë, vezoret mund të inflamohen. Komplikime të tjera përfshijnë meningjitin, pankreatitin dhe humbjen e dëgjimit, që mund të jetë e përhershme. Problemet e pjellorisë janë të rralla."
+      ]
+    },
+    {
+      "heading": "Diagnoza dhe trajtimi",
+      "paragraphs": [
+        "Diagnoza bëhet zakonisht nga simptomat dhe konfirmohet me një tampon ose analizë gjaku, veçanërisht në shpërthime. Nuk ka trajtim specifik antiviral. Pushimi, lëngjet, ushqimet e buta, lehtësimi i dhimbjes e etheve me paracetamol ose ibuprofen dhe kompresat e ftohta ose të ngrohta ndihmojnë. Shmangni pijet e thartat që stimulojnë pështymën e rrisin dhimbjen. Kërkoni këshillë mjekësore për dhimbje koke të rëndë, qafë të ngurtë, dhimbje barku ose dhimbje të testikujve."
+      ]
+    },
+    {
+      "heading": "Parandalimi i përhapjes",
+      "paragraphs": [
+        "Njerëzit janë ngjitës nga disa ditë para enjtjes deri rreth pesë ditë pasi fillon. Duhet të qëndrojnë larg shkollës ose punës gjatë asaj kohe, të mbulojnë kollën dhe të lajnë duart. Tregojini mjekut para se ta vizitoni, që të merren masa paraprake. Kontaktet me status të panjohur vaksinimi duhet të kontrollojnë regjistrat e tyre."
+      ]
+    },
+    {
+      "heading": "Vaksinimi",
+      "paragraphs": [
+        "Vaksina e kombinuar kundër fruthit, shytave dhe rubeolës jepet në dy doza në fëmijëri dhe mbron shumicën dërrmuese të njerëzve. Imuniteti mund të bjerë me kalimin e kohës, gjë që shpjegon rastet e rralla te të vaksinuarit, përgjithësisht me sëmundje më të lehtë. Të rriturit e lindur më vonë pa vaksinim ose me regjistra të pasigurt duhet të pyesin për vaksinim të vonuar dhe gratë shtatzëna nuk duhet të vaksinohen."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kontrolli i regjistrave të vaksinimit",
+      "text": "Imagjinoni që fëmija juaj ka shytat në shkollë. Mund të kontrolloni kartat tuaja e të fëmijëve të tjerë dhe ta pyesni mjekun nëse këshillohen doza të mëtejshme."
+    },
+    {
+      "title": "Qëndrimi në shtëpi",
+      "text": "Supozoni që zhvilloni faqe të enjtura dhe ethe. Mund të telefononi ambulancën para vizitës, të qëndroni në shtëpi rreth pesë ditë dhe të pini lëngje duke ndjekur dhimbjen e rëndë."
+    }
+  ],
+  "questions": [
+    "A kemi unë dhe familja ime kursin e plotë të vaksinimit MMR?",
+    "Sa kohë duhet të qëndroj në shtëpi dhe cilat simptoma tregojnë se duhet të kërkoj kujdes urgjent?",
+    "A ka gjasa për komplikime në situatën time?"
+  ]
+}

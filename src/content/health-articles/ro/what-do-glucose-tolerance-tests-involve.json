@@ -1,0 +1,51 @@
+{
+  "title": "Ce implică testele de toleranță la glucoză?",
+  "intro": "Testul oral de toleranță la glucoză măsoară cât de bine elimină organismul zahărul din sânge. Este folosit pentru diagnosticarea diabetului și a prediabetului și, în sarcină, pentru depistarea diabetului gestațional. Testul durează aproximativ două ore și necesită repaus alimentar înainte.",
+  "sections": [
+    {
+      "heading": "De ce se face",
+      "paragraphs": [
+        "Testul poate arăta o utilizare afectată a glucozei chiar dacă glicemia à jeun este normală. Este folosit dacă simptomele sau alte teste sugerează diabet sau pentru screeningul femeilor însărcinate, de obicei între douăzeci și patru și douăzeci și opt de săptămâni. În unele situații se pot folosi în schimb alte teste, precum analiza de sânge HbA1c."
+      ]
+    },
+    {
+      "heading": "Pregătirea",
+      "paragraphs": [
+        "Trebuie să fiți à jeun opt până la paisprezece ore înainte, bând doar apă. Cu câteva zile înainte, mâncați normal, fără diete stricte, deoarece acestea pot denatura rezultatul. Spuneți medicului ce medicamente luați, dacă ați avut o boală și ce afecțiuni influențează glicemia. Evitați fumatul și efortul intens în dimineața testului."
+      ]
+    },
+    {
+      "heading": "Cum se desfășoară testul",
+      "paragraphs": [
+        "Se recoltează mai întâi o probă de sânge pentru a măsura glicemia à jeun. Apoi beți o soluție de zahăr, de obicei șaptezeci și cinci de grame de glucoză, în câteva minute. Probe de sânge se iau după una și după două ore în sarcină și după două ore la alți adulți. Trebuie să stați liniștit și să nu mâncați, să nu fumați și să nu beți nimic altceva. Unele persoane simt greață sau amețeală."
+      ]
+    },
+    {
+      "heading": "Înțelegerea rezultatelor",
+      "paragraphs": [
+        "Rezultatele sunt comparate cu praguri standard. La adulți, o valoare la două ore de 11.1 milimoli pe litru (200 de miligrame pe decilitru) sau mai mare indică diabet, în timp ce valorile între 7.8 și 11.0 sugerează toleranță alterată la glucoză. În sarcină, pragurile sunt mai mici, iar diagnosticul de diabet gestațional duce la sfaturi alimentare, monitorizare și uneori insulină."
+      ]
+    },
+    {
+      "heading": "După test",
+      "paragraphs": [
+        "Puteți mânca și bea normal după aceea. Întrebați când să vă așteptați la rezultate și cum se face urmărirea. Dacă se găsește prediabet, schimbările stilului de viață, precum o alimentație sănătoasă, activitatea fizică și scăderea în greutate, pot reduce riscul de evoluție spre diabet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru test",
+      "text": "Imaginați-vă că testul este la ora opt dimineața. Ați putea să nu mai mâncați după cină, să beți doar apă și să aduceți o carte pentru așteptare."
+    },
+    {
+      "title": "După un rezultat mare",
+      "text": "Presupuneți că rezultatul arată toleranță alterată. Ați putea întreba despre schimbările alimentației, mișcare și când să repetați testul."
+    }
+  ],
+  "questions": [
+    "Este acesta testul potrivit pentru mine sau sunt disponibile alte teste?",
+    "Cum trebuie să mă pregătesc și pot lua medicamentele obișnuite?",
+    "Ce se întâmplă dacă rezultatul este anormal?"
+  ]
+}

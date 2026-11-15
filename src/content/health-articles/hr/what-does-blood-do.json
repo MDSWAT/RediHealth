@@ -1,0 +1,51 @@
+{
+  "title": "Što radi krv?",
+  "intro": "Krv je transportni i obrambeni sustav tijela. Nosi kisik, hranjive tvari, hormone i otpad, pomaže u kontroli temperature i bori se protiv infekcije. Odrasla osoba ima oko pet litara krvi, koja neprestano kruži kroz srce i krvne žile.",
+  "sections": [
+    {
+      "heading": "Što krv sadrži",
+      "paragraphs": [
+        "Krv se sastoji od plazme, blijedožute tekućine koja je uglavnom voda s bjelančevinama, solima, šećerima i mastima, i krvnih stanica. Crvene krvne stanice nose kisik, bijele krvne stanice brane od infekcije, a trombociti pomažu zaustaviti krvarenje. Sve krvne stanice stvaraju se u koštanoj srži."
+      ]
+    },
+    {
+      "heading": "Crvene stanice i kisik",
+      "paragraphs": [
+        "Crvene krvne stanice sadrže hemoglobin, bjelančevinu koja sadrži željezo i veže kisik u plućima te ga oslobađa u tkivima. Također nose nešto ugljikova dioksida natrag u pluća. Premalo crvenih stanica ili hemoglobina uzrokuje anemiju, s umorom, bljedilom i nedostatkom zraka. Crvene stanice žive oko četiri mjeseca."
+      ]
+    },
+    {
+      "heading": "Obrana i zgrušavanje",
+      "paragraphs": [
+        "Bijele krvne stanice, uključujući neutrofile i limfocite, pronalaze i uništavaju klice i abnormalne stanice. Trombociti se slijepe na ozljedama i zajedno s bjelančevinama zgrušavanja tvore ugrušak koji zaustavlja krvarenje. Premalo zgrušavanja uzrokuje probleme s krvarenjem, a previše može uzrokovati opasne ugruške."
+      ]
+    },
+    {
+      "heading": "Ostale uloge i pretrage",
+      "paragraphs": [
+        "Krv raspoređuje toplinu, održava kiselinsku ravnotežu tijela stabilnom i prenosi hormone i hranjive tvari kao što je glukoza. Krvne pretrage mjere stanice, šećer, kolesterol, funkciju bubrega i jetre i mnoge druge stvari, zbog čega su jedan od najkorisnijih medicinskih alata."
+      ]
+    },
+    {
+      "heading": "Održavanje zdrave krvi",
+      "paragraphs": [
+        "Raznolika prehrana sa željezom, vitaminom B12 i folatom, redovita tjelovježba, nepušenje i ograničenje alkohola pomažu. Darivanje krvi pomaže drugima i sigurno je za većinu zdravih odraslih. Posjetite liječnika zbog neobjašnjenih modrica, krvarenja, stalnog umora ili bljedila."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Čitanje krvne slike",
+      "text": "Zamislite da vaš nalaz pokazuje nizak hemoglobin. Mogli biste pitati liječnika o uzroku, kao što je nedostatak željeza, i o liječenju."
+    },
+    {
+      "title": "Darivanje krvi",
+      "text": "Pretpostavite da želite darovati krv. Mogli biste provjeriti pravila prihvatljivosti, dobro jesti i prije piti vodu."
+    }
+  ],
+  "questions": [
+    "Jesu li rezultati mojih krvnih pretraga normalni?",
+    "Što bi moglo objasniti nisku ili visoku krvnu sliku?",
+    "Trebam li daljnje pretrage ili liječenje?"
+  ]
+}

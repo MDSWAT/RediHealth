@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh gjatë një gjakderdhjeje në tru?",
+  "intro": "Një gjakderdhje në tru është gjakderdhje brenda ose rreth trurit. Është urgjencë mjekësore që mund të shkaktojë simptoma të papritura të rënda e dëmtim të përhershëm. Trajtimi i shpejtë e përmirëson shansin për mbijetesë e rikuperim. Ky tekst është informacion i përgjithshëm e nuk e zëvendëson kujdesin e urgjencës.",
+  "sections": [
+    {
+      "heading": "Çfarë është",
+      "paragraphs": [
+        "Gjakderdhja ndodh kur plas një enë gjaku në tru. Gjaku mund të grumbullohet brenda indit të trurit, e quajtur gjakderdhje intracerebrale, ose në hapësirat rreth trurit, si gjakderdhja subaraknoidale. Gjakderdhja rrit presionin në kafkë e dëmton qelizat e trurit. Shkaqet përfshijnë tensionin e lartë, një aneurizëm të plasur, keqformime vaskulare, lëndimin e kokës e barnat hollues të gjakut."
+      ]
+    },
+    {
+      "heading": "Shenjat paralajmëruese",
+      "paragraphs": [
+        "Dhimbje koke e papritur e e rëndë, shpesh e përshkruar si më e keqja ndonjëherë, vjellje, dobësi ose mpirje në një anë, rënie e fytyrës, vështirësi në të folur ose të kuptuar, probleme shikimi, konfuzion, ngërçe ose humbje ndjenjash. Telefononi menjëherë numrin e urgjencës e mos drejtoni vetë."
+      ]
+    },
+    {
+      "heading": "Diagnoza e trajtimi i urgjencës",
+      "paragraphs": [
+        "Një tomografi kompjuterike e kokës tregon shpejt gjakderdhjen. Trajtimi varet nga lloji e shkaku. Mjekët kontrollojnë tensionin, kthejnë mbrapsht efektin e holluesve të gjakut e monitorojnë presionin e trurit. Mund të nevojitet kirurgji për të hequr gjakun, riparuar një aneurizëm ose lehtësuar presionin. Kujdesi shpesh bëhet në terapi intensive ose në një njësi të specializuar për goditje."
+      ]
+    },
+    {
+      "heading": "Rikuperimi",
+      "paragraphs": [
+        "Rikuperimi mund të zgjasë muaj e varet nga vendndodhja e madhësia e gjakderdhjes. Rehabilitimi përfshin fizioterapi, terapi profesionale e terapi të të folurit. Disa njerëz shërohen mirë, ndërsa të tjerë kanë dobësi të përhershme, probleme të të folurit, lodhje ose ndryshime në të menduarit e humorin. Mbështetja për anëtarët e familjes është e rëndësishme."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Kontrolloni tensionin, shmangni duhanin e alkoolin e tepërt, merrni barnat e përshkruara saktë e ndiqni kontrollet. Diskutoni rreziqet me mjekun nëse merrni antikoagulantë ose keni histori familjare aneurizmash."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Veprimi i shpejtë",
+      "text": "Imagjinoni që një i afërm papritur ka dhimbje koke të rëndë e të folur të turbullt. Mund të telefononi menjëherë numrin e urgjencës e të shënoni kohën kur filluan simptomat."
+    },
+    {
+      "title": "Mbështetja e rikuperimit",
+      "text": "Supozoni që një anëtar i familjes po del nga spitali. Mund të kërkoni një plan rehabilitimi e një kontakt për mbështetje të vazhdueshme."
+    }
+  ],
+  "questions": [
+    "Çfarë e shkaktoi gjakderdhjen e a mund të ndodhë përsëri?",
+    "Cili rehabilitim do të ndihmojë më shumë?",
+    "Çfarë mund ta ulë rrezikun e një gjakderdhjeje tjetër?"
+  ]
+}

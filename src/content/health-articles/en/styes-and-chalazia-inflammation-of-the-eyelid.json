@@ -1,0 +1,51 @@
+{
+  "title": "Styes and chalazia (eyelid inflammation)",
+  "intro": "A stye is a painful red lump at the edge of the eyelid caused by infection of an eyelash follicle or gland. A chalazion is a firmer, usually painless lump caused by a blocked oil gland deeper in the lid. Both are common and most go away on their own with warm compresses.",
+  "sections": [
+    {
+      "heading": "Stye",
+      "paragraphs": [
+        "A stye, or hordeolum, looks like a red, tender, swollen bump on the lid margin, sometimes with a yellow centre of pus. It results from bacterial infection, usually Staphylococcus. Eyelid inflammation called blepharitis, poor lid hygiene, touching the eyes with unwashed hands and old makeup raise the risk."
+      ]
+    },
+    {
+      "heading": "Chalazion",
+      "paragraphs": [
+        "A chalazion develops when an oil gland in the eyelid becomes blocked and its contents leak into surrounding tissue, causing inflammation. It forms a firm round lump away from the lid edge, often painless after an initial tender period. It may press on the eye and blur vision if large. It can follow a stye."
+      ]
+    },
+    {
+      "heading": "Home treatment",
+      "paragraphs": [
+        "Apply a clean warm compress for about ten minutes, three or four times a day, to soften the blockage and encourage drainage. Gently massage the lid afterwards. Keep the lids clean with a mild cleanser or lid wipes. Do not squeeze or pop the lump. Avoid eye makeup and contact lenses until healed."
+      ]
+    },
+    {
+      "heading": "Medical treatment",
+      "paragraphs": [
+        "Most styes heal within one to two weeks, and chalazia may take weeks to months. If a lump persists, is very large or affects vision, a doctor can inject a steroid or make a small incision to drain it under local anaesthetic. Antibiotics are needed only for spreading infection of the eyelid or the skin around the eye."
+      ]
+    },
+    {
+      "heading": "When to see a doctor",
+      "paragraphs": [
+        "Seek prompt care for redness and swelling that spreads over the eyelid and cheek, pain on moving the eye, fever, vision changes or a lump that bleeds or keeps coming back in the same spot, since rarely a tumour can mimic a chalazion."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Warm compress routine",
+      "text": "Imagine your eyelid has a tender bump. You could use a clean warm cloth for ten minutes four times a day and wash your hands before touching the area."
+    },
+    {
+      "title": "Preventing recurrence",
+      "text": "Suppose you get styes often. You might clean the lid margins daily, replace eye makeup regularly and ask about treatment for blepharitis."
+    }
+  ],
+  "questions": [
+    "Is this a stye or a chalazion, and how long will it take to heal?",
+    "When would drainage or injection be considered?",
+    "How can I prevent recurrences?"
+  ]
+}

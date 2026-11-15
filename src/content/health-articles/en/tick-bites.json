@@ -1,0 +1,51 @@
+{
+  "title": "Tick bites",
+  "intro": "Ticks are small arachnids that feed on blood and can transmit infections such as Lyme disease and tick-borne encephalitis. Most bites cause no harm. Removing a tick quickly and correctly, and knowing which symptoms to watch for afterwards, keeps the risk low.",
+  "sections": [
+    {
+      "heading": "Where ticks live",
+      "paragraphs": [
+        "Ticks live in forests, tall grass, bushes and gardens, particularly from spring to autumn, though they may be active in mild winters. They wait on vegetation and climb onto people or animals that brush past. They prefer warm, moist areas of the body such as the groin, armpits, behind the knees, the hairline and behind the ears."
+      ]
+    },
+    {
+      "heading": "Removing a tick",
+      "paragraphs": [
+        "Remove the tick as soon as you find it. Use fine tweezers or a tick removal tool, grasp the tick close to the skin and pull steadily upward without twisting, squeezing or applying oil or glue. Disinfect the area afterwards and wash your hands. If parts of the mouth remain, they usually fall out by themselves. Note the date and location of the bite."
+      ]
+    },
+    {
+      "heading": "What to watch for",
+      "paragraphs": [
+        "Check the bite site for several weeks. A spreading red ring, especially one that grows over days, can signal Lyme disease. Fever, headache, fatigue, muscle aches or neurological symptoms in the following weeks also need attention. Tick-borne encephalitis can cause flu-like symptoms followed by inflammation of the brain, in regions where it occurs."
+      ]
+    },
+    {
+      "heading": "Do you need treatment after a bite",
+      "paragraphs": [
+        "Most people do not need antibiotics after a bite. Doctors treat Lyme disease when symptoms appear. In regions where tick-borne encephalitis occurs, vaccination is advised for people who spend time outdoors, since there is no specific treatment once infected."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Wear long trousers tucked into socks and closed shoes in tick areas, light-coloured clothing to spot ticks, and insect repellent. Walk on paths and avoid tall grass. After outdoor activity, check the whole body, including children and pets, and shower. Wash clothes and keep gardens tidy."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "After a hike",
+      "text": "Imagine you find a tick on your calf after a walk. You could remove it with tweezers, disinfect the skin, write the date in your phone and look at the area daily."
+    },
+    {
+      "title": "Noticing a rash",
+      "text": "Suppose a red patch is expanding three weeks after a bite. You might photograph it and contact your doctor promptly."
+    }
+  ],
+  "questions": [
+    "Do I need treatment or vaccination after this tick bite?",
+    "Which symptoms mean I should return?",
+    "Is tick-borne encephalitis vaccination advisable where I live?"
+  ]
+}

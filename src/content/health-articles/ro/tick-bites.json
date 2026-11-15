@@ -1,0 +1,51 @@
+{
+  "title": "Mușcăturile de căpușă",
+  "intro": "Căpușele sunt mici arahnide care se hrănesc cu sânge și pot transmite infecții precum boala Lyme și encefalita transmisă de căpușe. Cele mai multe mușcături nu provoacă daune. Îndepărtarea rapidă și corectă a căpușei și cunoașterea simptomelor de urmărit după aceea țin riscul scăzut.",
+  "sections": [
+    {
+      "heading": "Unde trăiesc căpușele",
+      "paragraphs": [
+        "Căpușele trăiesc în păduri, iarbă înaltă, tufișuri și grădini, mai ales din primăvară până toamna, deși pot fi active și în iernile blânde. Așteaptă pe vegetație și se urcă pe oamenii sau animalele care trec pe lângă ele. Preferă zonele calde și umede ale corpului, precum zona inghinală, axilele, spatele genunchilor, linia părului și spatele urechilor."
+      ]
+    },
+    {
+      "heading": "Îndepărtarea unei căpușe",
+      "paragraphs": [
+        "Îndepărtați căpușa imediat ce o găsiți. Folosiți o pensetă fină sau un instrument pentru căpușe, prindeți căpușa aproape de piele și trageți constant în sus, fără să răsuciți, să strângeți sau să aplicați ulei sau adeziv. Dezinfectați zona după aceea și spălați-vă pe mâini. Dacă părți din aparatul bucal rămân, de obicei cad singure. Notați data și locul mușcăturii."
+      ]
+    },
+    {
+      "heading": "La ce să fiți atent",
+      "paragraphs": [
+        "Verificați locul mușcăturii câteva săptămâni. Un inel roșu care se extinde, mai ales unul care crește în câteva zile, poate semnala boala Lyme. Febra, durerea de cap, oboseala, durerile musculare sau simptomele neurologice din săptămânile următoare necesită, de asemenea, atenție. Encefalita transmisă de căpușe poate provoca simptome asemănătoare gripei, urmate de inflamația creierului, în regiunile unde apare."
+      ]
+    },
+    {
+      "heading": "Aveți nevoie de tratament după o mușcătură",
+      "paragraphs": [
+        "Cele mai multe persoane nu au nevoie de antibiotice după o mușcătură. Medicii tratează boala Lyme când apar simptomele. În regiunile unde apare encefalita transmisă de căpușe, vaccinarea este recomandată persoanelor care petrec timp în aer liber, deoarece nu există tratament specific după infectare."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Purtați pantaloni lungi băgați în șosete și încălțăminte închisă în zonele cu căpușe, haine deschise la culoare, ca să vedeți căpușele, și repelent pentru insecte. Mergeți pe poteci și evitați iarba înaltă. După activitățile în aer liber, verificați tot corpul, inclusiv copiii și animalele de companie, și faceți duș. Spălați hainele și păstrați grădinile îngrijite."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "După o drumeție",
+      "text": "Imaginați-vă că găsiți o căpușă pe gambă după o plimbare. Ați putea să o îndepărtați cu pensa, să dezinfectați pielea, să scrieți data pe telefon și să vă uitați zilnic la zonă."
+    },
+    {
+      "title": "Observarea unei erupții",
+      "text": "Presupuneți că o pată roșie se extinde la trei săptămâni după o mușcătură. Ați putea să o fotografiați și să contactați prompt medicul."
+    }
+  ],
+  "questions": [
+    "Am nevoie de tratament sau de vaccinare după această mușcătură de căpușă?",
+    "Ce simptome înseamnă că trebuie să revin?",
+    "Este recomandată vaccinarea împotriva encefalitei transmise de căpușe unde locuiesc?"
+  ]
+}

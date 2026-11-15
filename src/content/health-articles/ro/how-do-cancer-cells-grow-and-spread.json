@@ -1,0 +1,51 @@
+{
+  "title": "Cum cresc și se răspândesc celulele canceroase",
+  "intro": "Cancerul apare când schimbările celulare permit creștere și supraviețuire anormale. Nu este o singură boală: tipurile diferă mult. Înțelegerea explică testele și tratamentul, fără să prezică rezultatul individual.",
+  "sections": [
+    {
+      "heading": "Pierderea controlului",
+      "paragraphs": [
+        "Celulele normale răspund semnalelor de diviziune, reparare și moarte. Cele canceroase dobândesc schimbări care afectează controlul. Multe apar în timpul vieții, nu sunt moștenite; diagnosticul nu dovedește vină personală."
+      ]
+    },
+    {
+      "heading": "Creștere locală",
+      "paragraphs": [
+        "Formațiunea benignă nu invadează precum cea malignă, deși poate cauza probleme. Celulele maligne intră în țesut vecin și afectează funcția. Unele cancere, precum cele sanguine, nu formează nodul solid unic."
+      ]
+    },
+    {
+      "heading": "Răspândire",
+      "paragraphs": [
+        "Celulele pot călători prin limfă ori sânge și forma metastaze. Cancerul mamar în os rămâne mamar, nu automat cancer osos nou. Ganglionul mărit singur nu dovedește răspândirea."
+      ]
+    },
+    {
+      "heading": "Teste diferite",
+      "paragraphs": [
+        "Biopsia identifică celule și caracteristici, imagistica extinderea. Stadiul descrie răspândirea, gradul aspectul anormal microscopic. Datele moleculare pot ghida tratamentul, dar niciun test nu răspunde tuturor întrebărilor."
+      ]
+    },
+    {
+      "heading": "Folosirea informației",
+      "paragraphs": [
+        "Întrebați originea, ce este confirmat și ce rămâne incert. Tratamentul poate fi local, circulant sau combinat. Simptomele noi severe cer consult, nu presupunerea că orice durere înseamnă progresie ori diete anticancer nedovedite. Înainte de consultație, notați când a început simptomul, ce îl ameliorează sau agravează și cum afectează activitățile obișnuite. Aduceți rezultatele anterioare dacă le aveți. Cereți specialistului să lege explicația de constatările din cazul dumneavoastră; o descriere generală nu stabilește un diagnostic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira aude că boala este în alt organ. Întreabă metastază ori diagnostic separat înainte să interpreteze planul."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben cere explicarea separată a stadiului și gradului, fără să considere cuvintele același risc."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

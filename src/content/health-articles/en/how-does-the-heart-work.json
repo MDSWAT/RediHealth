@@ -1,0 +1,52 @@
+{
+  "title": "How the heart keeps blood moving",
+  "intro": "The heart is a muscular pump linking the lungs and the rest of the body. Its chambers, valves, electrical system and own blood supply cooperate. A normal pulse alone does not prove that all these parts work normally.",
+  "sections": [
+    {
+      "heading": "The route",
+      "paragraphs": [
+        "Blood returns from the body to the right side and goes to the lungs. Oxygen-rich blood returns to the left side and is pumped into the aorta to supply the body."
+      ]
+    },
+    {
+      "heading": "Valves and muscle",
+      "paragraphs": [
+        "Valves guide one-way flow. The muscle relaxes to fill and contracts to eject blood; valve disease and weak pumping are related but different problems."
+      ]
+    },
+    {
+      "heading": "Timing",
+      "paragraphs": [
+        "Electrical signals normally start in the sinus node and spread through a conduction system. Rhythm and pumping strength are not identical; an irregular beat needs interpretation in context."
+      ]
+    },
+    {
+      "heading": "The heart's own supply",
+      "paragraphs": [
+        "Coronary arteries nourish the heart muscle. A blockage can damage muscle even while blood remains inside the chambers. Activity, blood pressure and medicines may change the workload."
+      ]
+    },
+    {
+      "heading": "Assessing symptoms",
+      "paragraphs": [
+        "Examination, an electrocardiogram and ultrasound answer different questions. New persistent chest pressure, severe breathlessness, collapse or symptoms suggesting a heart attack need emergency help, not a smartwatch reassurance.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira asks why ultrasound is needed after an electrocardiogram. She learns one examines structure and pumping, the other electrical activity."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben has persistent chest pressure and sweating. He seeks emergency help even though his watch displays an ordinary pulse."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

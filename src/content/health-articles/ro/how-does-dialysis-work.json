@@ -1,0 +1,51 @@
+{
+  "title": "Cum curăță dializa sângele: difuzie și eliminarea apei",
+  "intro": "Dializa elimină unele deșeuri și apă când rinichii nu reușesc suficient. Susține echilibrul, nu spală orice substanță. Nu înlocuiește toate funcțiile, deci medicamentele, nutriția și controalele contează.",
+  "sections": [
+    {
+      "heading": "Membrană selectivă",
+      "paragraphs": [
+        "Sângele și lichidul sunt separate prin membrană care lasă molecule mici selectate, reținând normal celulele și multe proteine mari. Lichidul este ales atent; nu este schimb cu apă simplă."
+      ]
+    },
+    {
+      "heading": "Difuzie",
+      "paragraphs": [
+        "Particulele se mișcă după diferența concentrației. Lichidul potrivit ajută eliminarea deșeurilor și ajustarea sărurilor. Setările depind de analize; mai repede nu înseamnă mai sigur."
+      ]
+    },
+    {
+      "heading": "Eliminarea apei",
+      "paragraphs": [
+        "Ultrafiltrarea mută apa prin presiune. Prea mult prea repede poate scădea tensiunea și da crampe. Echipa folosește examen, greutate și simptome, nu doar sete ori glezne."
+      ]
+    },
+    {
+      "heading": "Două abordări",
+      "paragraphs": [
+        "Hemodializa folosește filtru extern și acces vascular. Cea peritoneală folosește învelișul abdominal și lichid prin cateter. Programul, prevenția infecției și cerințele diferă; nu alegeți numai după diagramă."
+      ]
+    },
+    {
+      "heading": "Siguranță",
+      "paragraphs": [
+        "Respectați tratamentul și anunțați boala ori absența. Urmați dieta, apa și accesul individual. Dispneea severă, durerea toracică, colapsul ori sângele necontrolat cer urgență; febra ori lichidul peritoneal tulbure cer echipa urgent. Înainte de consultație, notați când a început simptomul, ce îl ameliorează sau agravează și cum afectează activitățile obișnuite. Aduceți rezultatele anterioare dacă le aveți. Cereți specialistului să lege explicația de constatările din cazul dumneavoastră; o descriere generală nu stabilește un diagnostic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira întreabă schimbarea extragerii apei la crampe, fără să creadă că ședința mai forțată este mereu mai bună."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben compară acasă și centru, inclusiv sprijin și rutină, nu alege doar mecanismul aparent simplu."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

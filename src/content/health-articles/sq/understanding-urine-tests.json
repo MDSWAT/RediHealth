@@ -1,0 +1,51 @@
+{
+  "title": "Të kuptuarit e testeve të urinës",
+  "intro": "Testet e urinës janë të thjeshta, pa dhimbje e japin shumë informacion për veshkat, traktin urinar e shëndetin e përgjithshëm. Mund të zbulojnë infeksion, probleme të veshkave, diabet e shtatzëni. Njohja si mblidhet një mostër siç duhet e çfarë do të thonë rezultatet e bën testin të besueshëm.",
+  "sections": [
+    {
+      "heading": "Llojet e zakonshme",
+      "paragraphs": [
+        "Një shirit urine është një shirit i zhytur në mostër që ndryshon ngjyrë për të treguar praninë e substancave si gjaku, proteina, glukoza, qelizat e bardha e nitritet. Jep rezultate të shpejta në praktikë. Kultura e urinës rrit baktere për të konfirmuar infeksionin e teston ndjeshmërinë ndaj antibiotikëve. Një ekzaminim mikroskopik shikon qelizat e kristalet. Testet e shtatzënisë zbulojnë hormonin hCG."
+      ]
+    },
+    {
+      "heading": "Mbledhja e një mostre",
+      "paragraphs": [
+        "Për një mostër të mesme, lani duart, pastroni zonën gjenitale, filloni të urinoni në tualet, pastaj mblidhni pjesën e mesme të rrjedhës në enë, pa prekur brendësinë, e përfundoni në tualet. Kjo ul ndotjen nga mikrobet e lëkurës. Urina e mëngjesit herët është më e përqendruar. Dorëzojeni mostrën shpejt ose mbajeni të ftohtë siç udhëzohet."
+      ]
+    },
+    {
+      "heading": "Çfarë mund të tregojnë rezultatet",
+      "paragraphs": [
+        "Gjaku në urinë mund të vijë nga infeksioni, gurët, sëmundja e veshkave, tumoret ose një lëndim i fundit e kërkon gjithmonë vlerësim. Proteina mund të tregojë dëmtim të veshkave por shfaqet edhe pas ushtrimeve ose etheve. Glukoza sugjeron diabet. Qelizat e bardha e nitritet sugjerojnë infeksion. Një gjetje e vetme jonormale shpesh përsëritet."
+      ]
+    },
+    {
+      "heading": "Testet e shtatzënisë",
+      "paragraphs": [
+        "Testet e shtatzënisë në shtëpi zbulojnë hCG në urinë e janë më të besueshme nga dita e parë e menstruacioneve të humbura. Një rezultat pozitiv është pothuajse gjithmonë i saktë, ndërsa një negativ shumë herët mund të jetë i gabuar e mund të përsëritet pas disa ditësh. Konfirmoni një test pozitiv me një mjek."
+      ]
+    },
+    {
+      "heading": "Këshilla praktike",
+      "paragraphs": [
+        "Disa ushqime, barna, vitamina e dehidrimi mund t'i ndryshojnë ngjyrën e rezultatet e urinës. Tregojini mjekut gjithçka që merrni. Gjaku menstrual mund ta ndotë një mostër, prandaj përmendeni. Raportoni simptoma si djegie, urgjencë, dhimbje shpine ose ethe së bashku me testin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dhënia e një mostre të mirë",
+      "text": "Imagjinoni që dyshoni për infeksion të fshikëzës. Mund t'i ndiqni me kujdes udhëzimet e mostrës së mesme, të përdorni enën e dhënë e ta dorëzoni shpejt mostrën."
+    },
+    {
+      "title": "Pyetja për një rezultat",
+      "text": "Supozoni që shiriti tregon gjurmë proteine. Mund të pyesni nëse duhet përsëritur e nëse nevojiten teste të tjera të veshkave."
+    }
+  ],
+  "questions": [
+    "Cili test urine më duhet e si të përgatitem?",
+    "Çfarë do të thotë për mua një rezultat jonormal?",
+    "A më duhet test i përsëritur ose hetim i mëtejshëm?"
+  ]
+}

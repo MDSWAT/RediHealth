@@ -1,0 +1,51 @@
+{
+  "title": "Căutările sistematice de dovezi",
+  "intro": "Pentru a judeca dacă un tratament funcționează, nu este suficient să te uiți la un singur studiu sau la studiile care se întâmplă să fie ușor de găsit. O căutare sistematică caută toată cercetarea relevantă într-un mod planificat și repetabil. Înțelegerea modului în care funcționează vă ajută să vedeți de ce unele rezumate sunt mai de încredere decât altele.",
+  "sections": [
+    {
+      "heading": "De ce contează căutarea sistematică",
+      "paragraphs": [
+        "Studiile cu rezultate pozitive au mai multe șanse să fie publicate și observate decât cele cu rezultate negative. Un evaluator care alege studiile la întâmplare poate ajunge la o imagine părtinitoare. O căutare sistematică urmărește să evite aceasta prin identificarea a cât mai multe dovezi relevante, indiferent de rezultatele lor."
+      ]
+    },
+    {
+      "heading": "Planificarea întrebării",
+      "paragraphs": [
+        "Primul pas este o întrebare clară, de exemplu ce persoane sunt de interes, ce tratament este comparat cu ce și ce rezultate contează. Cercetătorii notează în prealabil ce studii vor fi incluse și excluse, de exemplu tipul de studiu, populația și perioada, astfel încât deciziile să nu fie influențate de rezultate."
+      ]
+    },
+    {
+      "heading": "Căutarea în multe surse",
+      "paragraphs": [
+        "Cei care caută folosesc mai multe baze de date de literatură medicală, combinând mulți termeni de căutare și sinonime. Verifică și registrele de studii pentru studii nepublicate sau în desfășurare, listele de referințe ale articolelor-cheie, rapoartele de conferințe și contactează experți sau producători. Strategia de căutare este documentată pentru ca alții s-o poată repeta."
+      ]
+    },
+    {
+      "heading": "Selectarea și verificarea studiilor",
+      "paragraphs": [
+        "Două persoane triază independent titlurile și rezumatele, apoi textele integrale, în raport cu criteriile de includere. Dezacordurile se rezolvă prin discuție. Numărul de studii găsite și excluse și motivele sunt raportate, adesea într-o diagramă de flux. Apoi fiecare studiu inclus este evaluat pentru calitate și risc de părtinire."
+      ]
+    },
+    {
+      "heading": "Limite și bune practici",
+      "paragraphs": [
+        "Nicio căutare nu găsește totul, iar unele dovezi rămân nepublicate. Analizele bune sunt transparente cu privire la modul în care au căutat și la locul unde rămân lacune. Când citiți un rezumat al cercetării, căutați o descriere a modului în care au fost identificate studiile, datele căutării și dacă analiza este actualizată."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Evaluarea unei analize",
+      "text": "Imaginați-vă că un site de sănătate susține că cercetarea dovedește că un tratament funcționează. Ați putea verifica dacă afirmația se bazează pe o analiză sistematică și cum au fost găsite studiile."
+    },
+    {
+      "title": "Întrebarea medicului",
+      "text": "Presupuneți că citiți studii contradictorii. Ați putea întreba medicul dacă o analiză sistematică sau un ghid a rezumat toată cercetarea pe această întrebare."
+    }
+  ],
+  "questions": [
+    "Se bazează această afirmație pe toate studiile relevante sau doar pe unele?",
+    "Există o analiză sistematică recentă pe această întrebare?",
+    "Cât de actuale sunt aceste dovezi?"
+  ]
+}

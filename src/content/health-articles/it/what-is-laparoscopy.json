@@ -1,0 +1,51 @@
+{
+  "title": "Che cos'è la laparoscopia",
+  "intro": "La laparoscopia, detta anche chirurgia mininvasiva, è un modo di guardare dentro l'addome o la pelvi, e di eseguire interventi, attraverso piccole incisioni. Si inserisce un sottile tubo con telecamera e luce, detto laparoscopio. Rispetto alla chirurgia aperta di solito comporta meno dolore, cicatrici più piccole e un recupero più rapido.",
+  "sections": [
+    {
+      "heading": "Perché si fa",
+      "paragraphs": [
+        "La laparoscopia si usa per diagnosticare le cause di dolore pelvico o addominale e per trattare condizioni. Gli interventi comuni comprendono rimozione della colecisti o dell'appendice, riparazione delle ernie, trattamento dell'endometriosi, rimozione di cisti ovariche, sterilizzazione, alcuni interventi all'intestino e trattamento della gravidanza ectopica."
+      ]
+    },
+    {
+      "heading": "Come si fa",
+      "paragraphs": [
+        "Di solito si fa in anestesia generale. Il chirurgo fa alcune piccole incisioni, di circa un centimetro, e riempie l'addome di anidride carbonica per creare spazio. La telecamera mostra gli organi su uno schermo e attraverso altre incisioni si usano strumenti lunghi e sottili. Alla fine il gas viene rilasciato e le incisioni vengono chiuse."
+      ]
+    },
+    {
+      "heading": "Vantaggi",
+      "paragraphs": [
+        "Rispetto alla chirurgia aperta i pazienti hanno di solito meno dolore, cicatrici più piccole, un rischio minore di infezione della ferita, un ricovero più breve e un ritorno più rapido alle normali attività, spesso entro una o due settimane. Alcuni interventi, tuttavia, sono ancora meglio eseguiti in chirurgia aperta o possono dover essere convertiti durante l'operazione."
+      ]
+    },
+    {
+      "heading": "Rischi e recupero",
+      "paragraphs": [
+        "I rischi comprendono sanguinamento, infezione, lesione di organi o vasi sanguigni, reazioni all'anestesia e, raramente, coaguli di sangue. Dolore alla punta della spalla e gonfiore per il gas sono comuni per un giorno o due. Cammina presto, prendi gli antidolorifici come indicato e contatta il medico per febbre, dolore in peggioramento, vomito o problemi alla ferita."
+      ]
+    },
+    {
+      "heading": "Prepararsi",
+      "paragraphs": [
+        "Ti verrà chiesto di digiunare, di sospendere alcuni farmaci come gli anticoagulanti e di organizzare il trasporto. Chiedi al chirurgo del recupero previsto, dell'assenza dal lavoro e di che cosa fare in caso di complicanze."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pianificare il recupero",
+      "text": "Immagina di dover togliere la colecisti. Potresti organizzare aiuto a casa e pianificare alcuni giorni lontano dal lavoro."
+    },
+    {
+      "title": "Gestire il dolore alla spalla",
+      "text": "Supponi di avere dolore alla spalla dopo. Potresti camminare con calma e prendere un antidolorifico, perché viene dal gas."
+    }
+  ],
+  "questions": [
+    "La laparoscopia è adatta alla mia condizione?",
+    "Quali sono i rischi e la probabilità di conversione in chirurgia aperta?",
+    "Quanto durerà il recupero?"
+  ]
+}

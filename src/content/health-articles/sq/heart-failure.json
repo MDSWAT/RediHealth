@@ -1,0 +1,51 @@
+{
+  "title": "Insuficienca kardiake: trajtimi dhe ndryshimet",
+  "intro": "Insuficienca kardiake do të thotë se zemra nuk mbushet ose pompon mjaftueshëm për nevojat e trupit. Nuk është ndalim i zemrës. Format e ndryshme duan terapi të ndryshme dhe kujdesi i vazhdueshëm ndihmon.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Mund të ketë mungesë ajri gjatë aktivitetit ose shtrirjes, lodhje dhe ënjtje. Këto kanë edhe shkaqe të tjera, prandaj diagnoza nuk bëhet vetëm nga kyçet e ënjtura ose lista online."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Analizat, elektrokardiograma dhe ekografia e zemrës tregojnë funksionin e shkakun. Pyesni për llojin tuaj; fraksioni i ruajtur i pompimit nuk përjashton insuficiencën. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Ilaçet varen nga lloji dhe sëmundjet shoqëruese; diuretikët ulin lëngjet, ndërsa të tjerat mund të ulin përkeqësimin ose shtrimet. Pajisjet e procedurat ndihmojnë raste të zgjedhura. Presioni, veshkat dhe kripërat duan kontrolle. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Përcaktoni plan për aktivitet, rehabilitim, peshë dhe kontakt. Këshillat për kripë e lëngje janë individuale; mos kufizoni drastikisht ose ndryshoni diuretikët pa plan të posaçëm të ekipit. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Shtimi i shpejtë i peshës, ënjtja në rritje ose mungesa e re e ajrit duan kontakt të shpejtë. Frymëmarrja shumë e rëndë në pushim, dhimbja e gjoksit, buzët blu ose kolapsi janë urgjencë. Kontrolloni antiinflamatorët që mund të shtojnë lëngjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira shënon peshë në rritje dhe këpucë më të ngushta. Kontakton ekipin sipas planit pa pritur vizitën rutinë."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ndihet më mirë por vazhdon ilaçet dhe kontrollet, duke ditur se lehtësimi nuk tregon zhdukjen e sëmundjes."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

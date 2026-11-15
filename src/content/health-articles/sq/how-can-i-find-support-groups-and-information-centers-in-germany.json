@@ -1,0 +1,51 @@
+{
+  "title": "Gjetja e grupeve dhe këshillimit në Gjermani",
+  "intro": "Sëmundja sjell probleme praktike, emocionale dhe administrative përtej diagnozës. Grupet dhe këshillimi i pavarur ndihmojnë në Gjermani, por ndryshojnë nga trajtimi klinik. Disponueshmëria dhe gjuha ndryshojnë sipas vendit.",
+  "sections": [
+    {
+      "heading": "Përcaktoni mbështetjen",
+      "paragraphs": [
+        "Përcaktoni nevojën: përvoja, orientim në kujdes, faturë ose mbështetje sociale. Qendra lokale e vetëndihmës gjen grupe; klinika ose shërbimi social spitalor mund të japë kontakte."
+      ]
+    },
+    {
+      "heading": "Kontrolloni grupin",
+      "paragraphs": [
+        "Pyesni nëse grupi lidhet me gjendjen, pranon familjarë dhe takohet online ose fizikisht. Kontrolloni aksesin, gjuhën, tarifat dhe privatësinë para të dhënave. Pjesëmarrja është vullnetare dhe përshtatja personale."
+      ]
+    },
+    {
+      "heading": "Këshillim i pavarur",
+      "paragraphs": [
+        "Për pyetje kujdesi dhe sistemi, fondacioni gjerman i pavarur i këshillimit ofron kanale aktuale. Konfirmoni oraret dhe gjuhët drejtpërdrejt. Grupi nuk vendos të drejtën e sigurimit ose diagnozën e simptomës së re."
+      ]
+    },
+    {
+      "heading": "Financimi, privatësia dhe premtimet",
+      "paragraphs": [
+        "Kontrolloni financimin dhe shitjet. Kini kujdes nga kërkesa për ndalim terapie, premtime shërimi ose presion për kartelën. Përvoja është e vlefshme, por një histori suksesi nuk provon efekt për të gjithë."
+      ]
+    },
+    {
+      "heading": "Përgatitja dhe ndjekja",
+      "paragraphs": [
+        "Përgatitni përshkrim të shkurtër dhe dokumente për pyetjen. Caktoni hapin tjetër dhe ruani përgjigjet. Problemet urgjente kërkojnë shërbim mjekësor, jo pritje të takimit ose përgjigjes administrative."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira kërkon bisedë pas diagnozës. Pyet qendrën për grup të arritshëm dhe shkon pa detyrim të tregojë çdo hollësi."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ka letër të paqartë mbulimi. Kërkon këshillë të pavarur me dokumentin, jo vendim detyrues nga grupi online."
+    }
+  ],
+  "questions": [
+    "Çfarë mbështetjeje kërkoj?",
+    "A është shërbimi i pavarur, i arritshëm dhe konfidencial?",
+    "Cili është hapi praktik tjetër?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Cum creează ochiul și creierul vederea",
+  "intro": "Vederea necesită suprafețe optice clare, retină funcțională, nervi optici și procesare cerebrală. Structurile au roluri diferite; ochelarii mai puternici nu rezolvă orice problemă, iar aspectul normal nu exclude boala.",
+  "sections": [
+    {
+      "heading": "Focalizarea",
+      "paragraphs": [
+        "Corneea deviază lumina; cristalinul ajustează focalizarea. Irisul schimbă pupila pentru a controla intrarea. Ochelarii corectează anumite erori de focalizare, nu repară orice cauză de pierdere a vederii."
+      ]
+    },
+    {
+      "heading": "Recepția",
+      "paragraphs": [
+        "Bastonașele retinei ajută în lumină slabă, conurile la culoare și detalii. Macula oferă vederea centrală fină. Leziunile în zone diferite dau dificultăți diferite."
+      ]
+    },
+    {
+      "heading": "Mesaje și susținere",
+      "paragraphs": [
+        "Nervul optic transmite creierului. Lacrimile protejează suprafața, mușchii aliniază privirea. Presiunea oculară ține de producerea și drenarea lichidului, nu este pur și simplu tensiunea arterială."
+      ]
+    },
+    {
+      "heading": "Protecție",
+      "paragraphs": [
+        "Folosiți ochelari adecvați activităților periculoase și igiena lentilelor de contact. Evaluați schimbările; luminozitatea crescută a ecranului nu tratează boala oculară."
+      ]
+    },
+    {
+      "heading": "Urgențe",
+      "paragraphs": [
+        "Pierderea bruscă a vederii sau durerea oculară severă impune urgență. Fulgerele noi, multe puncte plutitoare ori o umbră cer îngrijire oculară urgentă; nu conduceți cu vedere nesigură.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira vede o umbră nouă. Cere evaluare oculară urgentă în locul unui simplu control pentru ochelari."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben citește mai clar cu lentilele prescrise. Păstrează controalele recomandate: focalizarea și sănătatea retinei sunt diferite."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

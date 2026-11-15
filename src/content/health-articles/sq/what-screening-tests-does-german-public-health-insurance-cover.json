@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë testesh skriningu mbulon sigurimi publik shëndetësor gjerman?",
+  "intro": "Sigurimi shëndetësor ligjor në Gjermani paguan një gamë kontrollesh parandaluese e testesh skriningu për mosha të ndryshme. Detajet e kufijtë e moshës përcaktohen nga Komiteti i Përbashkët Federal e mund të ndryshojnë, prandaj kontrolloni rregullat aktuale me siguruesin ose mjekun. Kjo përmbledhje është e përgjithshme.",
+  "sections": [
+    {
+      "heading": "Kontrollet për të rriturit",
+      "paragraphs": [
+        "Të rriturit nga mosha tetëmbëdhjetë vjeç mund të bëjnë një kontroll shëndeti një herë, e nga tridhjetë e pesë një kontroll çdo tre vjet që shikon tensionin, sheqerin në gjak, kolesterolin e faktorët e rrezikut për sëmundjen e zemrës e diabetin. Një skrining për kancerin e lëkurës ofrohet nga tridhjetë e pesë çdo dy vjet. Kontrollet dentare mbulohen çdo vit."
+      ]
+    },
+    {
+      "heading": "Skriningu për kancerin",
+      "paragraphs": [
+        "Gratë marrin një ekzaminim vjetor për kancerin e qafës së mitrës nga njëzet, me një test të kombinuar shtupe e virusi i papilomës njerëzore çdo tre vjet nga tridhjetë e pesë. Skriningu me mamografi ofrohet çdo dy vjet për gratë në një moshë rreth pesëdhjetë deri shtatëdhjetë e pesë. Skriningu i kancerit kolorektal ofron teste fekale ose kolonoskopi nga rreth pesëdhjetë. Burrat nga dyzet e pesë mund të bëjnë një ekzaminim të prostatës, ndërsa analiza e gjakut PSA përgjithësisht nuk mbulohet si test rutinë skriningu."
+      ]
+    },
+    {
+      "heading": "Skrinime të tjera",
+      "paragraphs": [
+        "Një ultratingull i aortës abdominale ofrohet për burrat nga gjashtëdhjetë e pesë për të zbuluar aneurizma. Skriningu për hepatitin B e C është pjesë e kontrollit të të rriturve. Skriningu i dëgjimit për të porsalindurit, e një skrining për klamidia për gratë e reja deri në njëzet e pesë, mbulohen gjithashtu. Ekzistojnë programe shtesë për gratë shtatzëna, si skriningu për diabetin gestacional."
+      ]
+    },
+    {
+      "heading": "Fëmijët e të rinjtë",
+      "paragraphs": [
+        "Fëmijët kanë një seri kontrollesh nga lindja, të quajtura ekzaminimet U, të regjistruara në fletoren e verdhë, me një kontroll për të rinjtë në adoleshencë. Këto kontrollojnë rritjen, zhvillimin, shikimin, dëgjimin e statusin e vaksinimit."
+      ]
+    },
+    {
+      "heading": "Pika praktike",
+      "paragraphs": [
+        "Pjesëmarrja është vullnetare. Disa teste janë shërbime shëndetësore individuale që i paguani vetë, e mjekët duhet t'i shpjegojnë përfitimet e kufijtë. Pyesni praktikën çfarë mbulohet për moshën tuaj e sillni kartën e sigurimit. Skriningu mund të ketë disavantazhe si alarmet e rreme, prandaj vendimet e informuara kanë rëndësi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Caktimi i një kontrolli",
+      "text": "Imagjinoni që jeni tridhjetë e gjashtë vjeç. Mund ta pyesni mjekun e familjes për kontrollin e shëndetit e skriningun e lëkurës që ofrohen për moshën tuaj."
+    },
+    {
+      "title": "Të kuptuarit e kostove",
+      "text": "Supozoni që ju ofrohet një test shtesë. Mund të pyesni nëse është shërbim i mbuluar apo një që duhet ta paguani, e pse rekomandohet."
+    }
+  ],
+  "questions": [
+    "Cilat teste skriningu kam të drejtë të bëj në moshën time?",
+    "Cilat janë përfitimet e disavantazhet e këtij testi?",
+    "A mbulohet ky test nga sigurimi im apo e paguaj unë?"
+  ]
+}

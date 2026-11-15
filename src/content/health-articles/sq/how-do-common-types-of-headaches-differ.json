@@ -1,0 +1,51 @@
+{
+  "title": "Dhimbja tensionale, migrena dhe dhimbja cluster",
+  "intro": "Llojet mbivendosen; vendi ose rëndesa nuk përcaktojnë diagnozën. Tensionalja dhe migrena janë të shpeshta, cluster më e rrallë por shumë penguese. Modeli i ri ose i ndryshuar kërkon vlerësim.",
+  "sections": [
+    {
+      "heading": "Modeli tensional",
+      "paragraphs": [
+        "Shpesh shtypje ose shtrëngim në të dy anët, i lehtë ose mesatar, jo shumë më keq me aktivitet të zakonshëm. Të vjellat e forta nuk janë tipike. Kërkoni ndihmë kur përsëritet."
+      ]
+    },
+    {
+      "heading": "Modeli migrenoz",
+      "paragraphs": [
+        "Shpesh mesatar ose i rëndë, nganjëherë pulsues, më keq me aktivitet, me nauze ose ndjeshmëri ndaj dritës e zërit. Disa kanë aurë, shumë jo. Shenjat neurologjike të reja nuk quhen automatikisht aurë. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Modeli cluster",
+      "paragraphs": [
+        "Dhimbje shumë e fortë në njërin sy me lotim, hundë dhe shqetësim në seri. Diagnoza duhet shpejt sepse trajtimi ndryshon nga qetësuesit. Syri i kuq i dhimbshëm ka edhe urgjenca të tjera. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Plani",
+      "paragraphs": [
+        "Shënoni kohën, zgjatjen, simptomat dhe ditët e ilaçeve. Përdoren trajtim akut e parandalim; qetësuesit e shpeshtë mbajnë dhimbjen. Mos merrni ilaçin e migrenës të tjetrit vetëm nga ngjashmëria. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Alarmet",
+      "paragraphs": [
+        "Dhimbja e menjëhershme maksimale, dobësia, konfuzioni, ethet me qafë të ngrirë, humbja e shikimit ose trauma kërkojnë urgjencë. Dhimbja e re e rëndë në shtatzëni ose pas lindjes vlerësohet shpejt edhe me migrenë të mëparshme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka dhimbje me nauze dhe dritë shqetësuese. Regjistron modelin dhe kërkon kontroll, jo çdo dhimbje si tension."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ka dhimbje të fortë rreth syrit dhe lotim. Kërkon vlerësim pa përsëritur tableta pa diagnozë."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

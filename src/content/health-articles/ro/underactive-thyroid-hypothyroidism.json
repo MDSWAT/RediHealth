@@ -1,0 +1,51 @@
+{
+  "title": "Tiroida hipoactivă (hipotiroidismul)",
+  "intro": "În hipotiroidism, glanda tiroidă produce prea puțin hormon tiroidian, încetinind metabolismul organismului. Provoacă oboseală, creștere în greutate și senzație de frig și se dezvoltă lent. Este frecvent, mai ales la femei și la persoanele în vârstă, și se tratează ușor cu tablete zilnice de hormon.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Cea mai frecventă cauză în țările dezvoltate este tiroidita Hashimoto, o afecțiune autoimună în care sistemul imunitar atacă tiroida. Alte cauze includ tratamentul pentru o tiroidă hiperactivă, chirurgia sau radiațiile tiroidei, anumite medicamente, deficitul de iod și, rar, probleme ale glandei hipofize. Bebelușii se pot naște cu ea, motiv pentru care nou-născuții sunt supuși screeningului."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele includ oboseala, creșterea în greutate, constipația, pielea uscată, subțierea părului, sensibilitatea la frig, durerile musculare, gândirea lentă, dispoziția scăzută, vocea răgușită, menstruațiile mai abundente și o tiroidă mărită sau gușă. Simptomele se dezvoltă lent și sunt ușor confundate cu îmbătrânirea sau stresul. Boala severă netratată poate provoca probleme care pun viața în pericol."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "O analiză de sânge care arată un hormon de stimulare a tiroidei crescut și un nivel scăzut de hormon tiroidian confirmă diagnosticul. Testele de anticorpi ajută la identificarea bolii autoimune. Un nivel ușor crescut al hormonului de stimulare cu hormon tiroidian normal, numit hipotiroidism subclinic, este adesea doar monitorizat, iar tratamentul depinde de nivel, simptome și factori de risc."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Levotiroxina, un hormon tiroidian sintetic, înlocuiește ceea ce lipsește organismului. Se ia o dată pe zi, pe stomacul gol, de obicei dimineața cu apă, cu aproximativ o jumătate de oră înainte de micul dejun, și se separă de fier, calciu și alte medicamente. Doza se ajustează în funcție de analizele de sânge, la fiecare câteva săptămâni la început, apoi anual, când este stabilă. Tratamentul este de obicei pe viață."
+      ]
+    },
+    {
+      "heading": "A trăi cu ea",
+      "paragraphs": [
+        "Cu doza potrivită, cei mai mulți se simt bine. Spuneți medicului dacă rămâneți însărcinată, deoarece dozele trebuie adesea crescute, și raportați simptomele unui exces de hormon, precum palpitațiile, anxietatea sau scăderea în greutate. Suplimentele precum biotina pot denatura rezultatele analizelor, așa că spuneți laboratorului. Nu opriți tabletele nici dacă vă simțiți bine."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Luarea fiabilă a tabletelor",
+      "text": "Imaginați-vă că uitați tableta de dimineață. Ați putea pune cutia lângă fierbător, ați putea seta o alarmă pe telefon și ați putea lua tableta constant pe stomacul gol."
+    },
+    {
+      "title": "Planificarea sarcinii",
+      "text": "Presupuneți că vreți să rămâneți însărcinată. Ați putea cere medicului să vă verifice nivelurile tiroidiene dinainte și să stabiliți devreme ajustarea dozei în sarcină."
+    }
+  ],
+  "questions": [
+    "Care este cauza tiroidei mele hipoactive?",
+    "Ce doză este potrivită pentru mine și cât de des voi avea nevoie de analize de sânge?",
+    "Cum ar trebui să iau levotiroxina pentru cel mai bun efect?"
+  ]
+}

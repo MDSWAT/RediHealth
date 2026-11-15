@@ -1,0 +1,51 @@
+{
+  "title": "Amigdale și vegetații adenoide: țesut imun",
+  "intro": "Amigdalele sunt țesut imun la intrarea respiratorie și digestivă. Recunosc germeni, mai ales în copilărie, fără barieră perfectă. Durerea în gât nu înseamnă automat antibiotic sau operație.",
+  "sections": [
+    {
+      "heading": "Locuri",
+      "paragraphs": [
+        "Amigdalele palatine se văd în spatele gurii. Adenoidele sunt sus în spatele nasului, nu se văd normal prin gură. Există țesut înrudit lângă limbă."
+      ]
+    },
+    {
+      "heading": "Imunitate",
+      "paragraphs": [
+        "Celulele recunosc material și construiesc răspuns. Mărimea se schimbă cu vârsta și infecția. Mare nu dovedește boală gravă, mic se poate inflama."
+      ]
+    },
+    {
+      "heading": "Infecție și obstacol",
+      "paragraphs": [
+        "Virusuri și bacterii inflamează, dar aspectul nu le diferențiază sigur. Țesutul mare afectează înghițirea ori somnul. Sforăitul cu pauze și efecte ziua cere evaluare."
+      ]
+    },
+    {
+      "heading": "Decizii",
+      "paragraphs": [
+        "Depind de gravitate, cauză, repetare și respirație. Antibioticul ajută unele boli bacteriene, nu toate. Operația are beneficii și risc de sânge și durere; nu elimină toată imunitatea."
+      ]
+    },
+    {
+      "heading": "Urgențe",
+      "paragraphs": [
+        "Respirația dificilă, saliva cu imposibilitatea înghițirii, umflarea unilaterală mare, vocea modificată ori gura greu deschisă cer evaluare urgentă. Sângerarea după operație este urgentă și dacă pare oprită. Nu amânați după episod anterior ușor. Înainte de consultație, notați când a început simptomul, ce îl ameliorează sau agravează și cum afectează activitățile obișnuite. Aduceți rezultatele anterioare dacă le aveți. Cereți specialistului să lege explicația de constatările din cazul dumneavoastră; o descriere generală nu stabilește un diagnostic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira notează infecțiile și efectul școlar înaintea opțiunilor, nu cere operație după episod obișnuit."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben observă copilul sforăind cu pauze. Cere evaluare, nu presupune că orice sforăit e inofensiv."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

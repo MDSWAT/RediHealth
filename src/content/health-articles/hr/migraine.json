@@ -1,0 +1,51 @@
+{
+  "title": "Migrena",
+  "intro": "Migrena je često neurološko stanje koje uzrokuje ponavljajuće napadaje umjerene do jake glavobolje, često uz mučninu i osjetljivost na svjetlo i zvuk. Napadaji traju sate do dana. Iako se ne može izliječiti, lijekovi, mjere načina života i svijest o okidačima mogu smanjiti koliko često i koliko jako utječe na vas.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Glavobolja kod migrene tipično je jednostrana i pulsirajuća, pogoršava se kretanjem. Mnogi ljudi osjećaju mučninu, povraćaju i izbjegavaju svjetlo, buku i mirise. Neki imaju auru prije toga: poremećaje vida kao što su cik-cak linije, trnce ili teškoće s govorom koje traju do sat vremena. Faza upozorenja sa zijevanjem, promjenama raspoloženja ili žudnjom za hranom može prethoditi napadajima."
+      ]
+    },
+    {
+      "heading": "Uzroci i okidači",
+      "paragraphs": [
+        "Migrena uključuje promjene u živčanoj aktivnosti mozga i krvnim žilama, a sklonost je obiteljska. Mogući okidači uključuju stres, nepravilan san, preskočene obroke, hormonske promjene, određenu hranu, alkohol, jaka svjetla i promjene vremena. Okidači se razlikuju, a dnevnik glavobolja pomaže identificirati vaše."
+      ]
+    },
+    {
+      "heading": "Liječenje napadaja",
+      "paragraphs": [
+        "Uzmite lijek rano u napadaju. Jednostavni lijekovi protiv bolova kao što su ibuprofen, aspirin ili paracetamol mogu djelovati kod blagih do umjerenih napadaja, ponekad uz lijek protiv mučnine. Triptani djeluju specifično na migrenu i koriste se kod težih napadaja. Odmor u tamnoj, tihoj sobi pomaže. Uzimanje lijekova protiv bolova više od oko deset dana mjesečno može dovesti do glavobolje uzrokovane prekomjernom uporabom lijekova."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Preventivno liječenje razmatra se kod čestih ili onesposobljavajućih napadaja. Mogućnosti uključuju određene lijekove za krvni tlak, antiepileptike, antidepresive i novija protutijela protiv molekule zvane CGRP koja se daju injekcijom. Pristupi bez lijekova uključuju redoviti san, tjelovježbu, opuštanje, biofeedback i akupunkturu, koji pomažu nekim ljudima."
+      ]
+    },
+    {
+      "heading": "Kada potražiti hitnu pomoć",
+      "paragraphs": [
+        "Potražite hitnu skrb zbog iznenadne, jake glavobolje različite od svih prijašnjih, glavobolje s vrućicom i ukočenim vratom, smetenosti, slabosti, teškoća s govorom, gubitka vida ili glavobolje nakon ozljede glave. Nove glavobolje nakon pedesete godine također trebaju procjenu. Migrena s aurom blago povećava rizik od moždanog udara, osobito uz pušenje i neke hormonske kontraceptive, pa o tome razgovarajte s liječnikom."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vođenje dnevnika",
+      "text": "Zamislite da imate dva napadaja mjesečno. Mogli biste bilježiti datume, hranu, san, stres, menstrualni ciklus i liječenje te podijeliti obrazac s liječnikom."
+    },
+    {
+      "title": "Rano liječenje",
+      "text": "Pretpostavite da vaši napadaji često počinju vizualnom aurom. Mogli biste držati propisani lijek pri ruci i uzeti ga pri prvom znaku glavobolje kako je savjetovano."
+    }
+  ],
+  "questions": [
+    "Koji je lijek najbolji za moje napadaje i kada ga trebam uzeti?",
+    "Bi li mi pomoglo preventivno liječenje i koje su nuspojave?",
+    "Koji simptomi znače da trebam hitnu procjenu?"
+  ]
+}

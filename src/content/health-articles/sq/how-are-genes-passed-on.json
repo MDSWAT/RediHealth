@@ -1,0 +1,51 @@
+{
+  "title": "Si trashëgohen gjenet: modele dhe pasiguri",
+  "intro": "Gjenet janë pjesë ADN-je që ndihmojnë qelizat të prodhojnë e rregullojnë produkte biologjike. Trashëgimia kalon informacion nga prindërit te fëmijët, por nuk përcakton çdo tipar ose garanton sëmundje. Mjedisi dhe rastësia vlejnë.",
+  "sections": [
+    {
+      "heading": "Kromozomet dhe kontributi prindëror",
+      "paragraphs": [
+        "Shumica e qelizave kanë kromozome çift, zakonisht një nga secili prind biologjik. Formimi i vezës dhe spermës përzien informacionin, ndaj vëllezërit marrin kombinime të ndryshme. ADN-ja mitokondriale ka model tjetër, zakonisht nga nëna."
+      ]
+    },
+    {
+      "heading": "Modelet e trashëgimisë",
+      "paragraphs": [
+        "Gjendja dominante mund të vijë nga ndryshimi i një kopjeje përkatëse. Recesivja zakonisht kërkon të dyja. Trashëgimia e lidhur me X ndryshon. Këto janë thjeshtime; gjeni i saktë dhe familja përcaktojnë rrezikun."
+      ]
+    },
+    {
+      "heading": "Shumë gjene dhe shprehje e ndryshme",
+      "paragraphs": [
+        "Shumë sëmundje të zakonshme kanë shumë gjene dhe rrethana, jo shkak të vetëm. Varianti mund të jetë pa simptoma ose me shkallë tjetër nga i afërmi. Mund të jetë variant i ri që mungon në analizat rutinë të prindërve."
+      ]
+    },
+    {
+      "heading": "Testimi dhe pasiguria",
+      "paragraphs": [
+        "Testet gjenetike përgjigjen pyetjeve të veçanta dhe japin edhe pasiguri. Varianti i pasigurt nuk konfirmon vetë diagnozë ose trajtim të pakthyeshëm. Diskutoni privatësinë, familjen dhe kufijtë e raporteve tregtare të prejardhjes ose rrezikut."
+      ]
+    },
+    {
+      "heading": "Këshillimi për familjen",
+      "paragraphs": [
+        "Për sëmundje familjare, gjenetisti harton pemën dhe shpjegon mundësitë. Merrni raportin e saktë kur ka. Rreziku zbatohet në çdo shtatzëni sipas modelit, nuk premton numër fiks fëmijësh të prekur."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka të afërm të prekur dhe merr raportin në këshillim. Ekipi shpjegon variantin, jo vetëm emrin e sëmundjes."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni dhe vëllai kanë shenja të ndryshme me gjetje të afërt. Ai mëson se trashëgimia nuk garanton shprehje identike dhe kërkon këshillë për pasigurinë."
+    }
+  ],
+  "questions": [
+    "Cilat hapa sqarohen me diagram?",
+    "Çfarë tregon shpjegimi dhe çfarë nuk parashikon?",
+    "A kërkon shqetësimi im vlerësim profesional?"
+  ]
+}

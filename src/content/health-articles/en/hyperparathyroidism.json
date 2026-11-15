@@ -1,0 +1,53 @@
+{
+  "title": "Hyperparathyroidism",
+  "intro": "The parathyroid glands are four tiny glands in the neck that control calcium levels in the blood. In hyperparathyroidism, one or more of them make too much parathyroid hormone, which raises blood calcium and can weaken the bones. The condition is often found by chance on a blood test and many people have few symptoms.",
+  "sections": [
+    {
+      "heading": "Types and causes",
+      "paragraphs": [
+        "In primary hyperparathyroidism, usually a single benign growth called an adenoma causes the gland to overproduce hormone. Less often, several glands are enlarged. In secondary hyperparathyroidism, the glands work overtime because another problem, such as kidney disease or severe vitamin D deficiency, lowers calcium."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Many people feel nothing. Others have tiredness, weakness, low mood, difficulty concentrating, increased thirst and urination, constipation, bone and joint pain, or recurring kidney stones. Over time, the bones may thin and the risk of fractures rises. Very high calcium levels can cause confusion and irregular heartbeat and need urgent treatment."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Blood tests show high calcium with high or inappropriately normal parathyroid hormone. Doctors also check vitamin D and kidney function and often measure bone density and look for kidney stones. Ultrasound or other imaging may locate the affected gland, especially before surgery."
+      ]
+    },
+    {
+      "heading": "Treatment options",
+      "paragraphs": [
+        "Surgery to remove the overactive gland or glands can cure primary hyperparathyroidism and is usually recommended for people with symptoms, bone loss, kidney stones or higher calcium levels. The operation is often done through a small cut and lasts a short time, with a quick recovery. Some people temporarily develop low calcium afterwards.",
+        "If symptoms are absent or mild, careful monitoring with regular blood tests and bone density measurements is an option. Drinking enough water, staying active and avoiding calcium-raising medicines may be advised. Certain medicines can lower calcium or protect bone when surgery is not suitable.",
+        "In secondary forms, treatment focuses on the underlying cause, such as vitamin D replacement or kidney care."
+      ]
+    },
+    {
+      "heading": "Living with the condition",
+      "paragraphs": [
+        "Regular follow-up is important even after successful surgery, as bone health may need long-term attention. Seek medical advice for new bone pain, kidney stone symptoms or marked thirst and confusion."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Weighing surgery against monitoring",
+      "text": "Imagine your calcium is only mildly raised and you feel well. You could ask your doctor which findings would make surgery advisable, how often tests would be needed and what bone scans show."
+    },
+    {
+      "title": "Preparing for the operation",
+      "text": "Suppose you are scheduled for parathyroid surgery. You might ask about the type of anaesthesia, the likely recovery time and what symptoms of low calcium to watch for afterwards."
+    }
+  ],
+  "questions": [
+    "Which type of hyperparathyroidism do I have, and what is causing it?",
+    "Do I need surgery, or is monitoring a reasonable choice for me?",
+    "How will my bones and kidneys be checked over time?"
+  ]
+}

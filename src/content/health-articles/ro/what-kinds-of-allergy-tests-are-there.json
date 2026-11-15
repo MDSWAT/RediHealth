@@ -1,0 +1,51 @@
+{
+  "title": "Ce tipuri de teste de alergie există",
+  "intro": "Testele de alergie ajută la aflarea substanțelor care declanșează o reacție alergică. Ele includ teste cutanate, analize de sânge și teste de provocare supravegheate. Rezultatele trebuie întotdeauna interpretate împreună cu simptomele dumneavoastră, deoarece un test pozitiv singur nu dovedește o alergie.",
+  "sections": [
+    {
+      "heading": "Testul cutanat prin înțepare",
+      "paragraphs": [
+        "O picătură de extract de alergen este plasată pe antebraț sau pe spate, iar pielea este înțepată cu o mică lanțetă. Dacă sunteți alergic, apare în cincisprezece-douăzeci de minute o mică umflătură roșie, care mănâncă. Este rapid, ieftin și folosit pe scară largă pentru polen, acarieni, animale, alimente și venin. Antihistaminicele trebuie oprite cu câteva zile înainte. Rar, poate apărea o reacție severă, așa că se face într-un cadru medical."
+      ]
+    },
+    {
+      "heading": "Analizele de sânge",
+      "paragraphs": [
+        "Acestea măsoară anticorpii IgE specifici pentru alergeni și sunt utile dacă testarea cutanată nu este posibilă, de exemplu din cauza unei boli de piele sau dacă antihistaminicele nu pot fi oprite. Sunt sigure, dar în unele cazuri puțin mai puțin sensibile, iar rezultatele durează câteva zile. Testarea pe componente identifică proteine specifice dintr-un alergen și ajută la prezicerea severității."
+      ]
+    },
+    {
+      "heading": "Alte teste cutanate",
+      "paragraphs": [
+        "Testul epicutanat este folosit pentru alergiile de contact, de exemplu la nichel sau la parfumuri. Plasturi cu alergeni sunt lipiți pe spate două zile, iar pielea este verificată după două și după trei-patru zile. Testele intradermice injectează o cantitate foarte mică în piele, folosite mai ales pentru alergiile la medicamente și la veninul de insecte."
+      ]
+    },
+    {
+      "heading": "Testele de provocare",
+      "paragraphs": [
+        "Testele de provocare alimentară, medicamentoasă sau nazală administrează alergenul suspectat sub supraveghere medicală pentru a vedea dacă apare o reacție. Sunt cea mai fiabilă metodă de a confirma multe alergii alimentare și medicamentoase, dar comportă riscul unei reacții și se fac doar acolo unde tratamentul de urgență este disponibil. Dietele de eliminare ajută la identificarea declanșatorilor."
+      ]
+    },
+    {
+      "heading": "Teste de evitat",
+      "paragraphs": [
+        "Analiza părului, analizele de sânge IgG pentru intoleranță alimentară, kinesiologia și testele similare nu sunt fiabile și pot duce la restricții alimentare inutile. Întrebați un alergolog ce teste sunt potrivite."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru testul cutanat",
+      "text": "Imaginați-vă că aveți săptămâna viitoare un test cutanat prin înțepare. Ați putea întreba ce antihistaminice să opriți și cu câte zile înainte."
+    },
+    {
+      "title": "Interpretarea rezultatelor",
+      "text": "Presupuneți că analiza de sânge este pozitivă pentru arahide, dar le mâncați fără probleme. Ați putea întreba dacă este necesară o provocare supravegheată."
+    }
+  ],
+  "questions": [
+    "Ce test de alergie este cel mai bun pentru simptomele mele?",
+    "Trebuie să opresc vreun medicament înainte?",
+    "Ce înseamnă un rezultat pozitiv pentru mine?"
+  ]
+}

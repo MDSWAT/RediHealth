@@ -1,0 +1,51 @@
+{
+  "title": "Lajmska bolest",
+  "intro": "Lajmska bolest je bakterijska infekcija koja se prenosi ubodima krpelja. Česta je u šumama i travnjacima u Europi i Sjevernoj Americi. Rana infekcija uspješno se liječi antibioticima pa su prepoznavanje tipičnog osipa na koži i brzo traženje liječenja važni.",
+  "sections": [
+    {
+      "heading": "Kako se zarazite",
+      "paragraphs": [
+        "Bakterije, zvane Borrelia, žive u krpeljima, koji ih preuzimaju od životinja. Obično se prenose nakon što je krpelj pričvršćen mnogo sati pa pronalaženje i brzo uklanjanje krpelja smanjuje rizik. Ne nosi svaki krpelj bakterije i ne dovodi svaki ubod do infekcije."
+      ]
+    },
+    {
+      "heading": "Rani znakovi",
+      "paragraphs": [
+        "Crveni prsten koji se širi, zvan erythema migrans, često se pojavi danima do tjednima nakon uboda i raste tijekom dana, ponekad blijedeći u sredini. Obično je bezbolan i ne svrbi. Mogu se pojaviti simptomi nalik gripi kao što su vrućica, umor, glavobolja i bolovi u mišićima. Ne primijeti svatko osip niti se sjeća uboda."
+      ]
+    },
+    {
+      "heading": "Kasnije komplikacije",
+      "paragraphs": [
+        "Ako se ne liječi, infekcija se može proširiti na zglobove, živčani sustav ili srce tjednima do mjesecima kasnije. To može uzrokovati oticanje zglobova, osobito koljena, slabost lica, živčanu bol, meningitis ili poremećaje srčanog ritma. Te se komplikacije mogu liječiti antibioticima, ali često zahtijevaju dulji tijek."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i liječenje",
+      "paragraphs": [
+        "Tipičan osip dijagnosticira se pogledom i ne zahtijeva krvne pretrage. Za druge simptome koriste se krvne pretrage na protutijela, iako mogu biti negativne rano i pozitivne nakon prošle infekcije pa se rezultati moraju tumačiti sa simptomima. Liječenje je obično doksiciklin ili amoksicilin nekoliko tjedana. Većina ljudi se potpuno oporavi."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Nosite duge hlače i zatvorene cipele u područjima s krpeljima, koristite repelent, pregledajte tijelo i odjeću nakon aktivnosti na otvorenom i brzo uklanjajte krpelje finom pincetom ili alatom za krpelje. Nakon toga očistite područje i pratite ga nekoliko tjedana. Za većinu ljudi nema rutinskog preventivnog antibiotika nakon uboda. Potražite savjet ako se razvije osip ili simptomi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Nakon šetnje",
+      "text": "Zamislite da ste poslijepodne proveli u visokoj travi. Mogli biste pregledati kožu, osobito iza koljena, u preponama i pazusima, na liniji kose i iza ušiju te zabilježiti datum ako nađete krpelja."
+    },
+    {
+      "title": "Praćenje uboda",
+      "text": "Pretpostavite da ste prošli tjedan uklonili krpelja i sada raste crvena mrlja. Mogli biste je svaki dan fotografirati, zabilježiti datume i uskoro kontaktirati liječnika."
+    }
+  ],
+  "questions": [
+    "Mogu li moji simptomi biti lajmska bolest i trebam li krvnu pretragu?",
+    "Koliko će dugo trajati liječenje i koje su nuspojave moguće?",
+    "Što trebam učiniti ako simptomi potraju nakon liječenja?"
+  ]
+}

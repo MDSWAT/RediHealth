@@ -1,0 +1,51 @@
+{
+  "title": "Kako kosti podupiru i obnavljaju tijelo",
+  "intro": "Kosti podupiru pokret, štite organe i čuvaju minerale. Srž nekih stvara krv. Kost je živo prilagodljivo tkivo cijeli život, ne fiksna skela nakon djetinjstva.",
+  "sections": [
+    {
+      "heading": "Građa",
+      "paragraphs": [
+        "Gusta vanjska kost okružuje lakšu mrežu. Usklađuje snagu i težinu. Hrskavica pokriva zglobove, tetive i ligamenti povezuju; nisu ista tkiva."
+      ]
+    },
+    {
+      "heading": "Obnova",
+      "paragraphs": [
+        "Stanice uklanjaju staro i grade novo. Hormoni, hrana, aktivnost i bolest utječu. Snaga ovisi o kvaliteti i gustoći; izgled ne određuje rizik."
+      ]
+    },
+    {
+      "heading": "Rast i cijeljenje",
+      "paragraphs": [
+        "Dječje kosti rastu na posebnim mjestima. Prijelom treba vrijeme, krv i stabilnost. Manje boli ne znači spremnost za puni teret."
+      ]
+    },
+    {
+      "heading": "Podrška",
+      "paragraphs": [
+        "Prikladno opterećenje i snaga, prehrana i prevencija padova pomažu. Kalcij i vitamin D ovise o okolnostima. Dodaci ne zamjenjuju pregled ili terapiju."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Prijelom nakon male ozljede, gubitak visine ili trajna bol trebaju pregled. Deformacija, rana nad prijelomom ili hladan utrnuo ud traže hitnost. Ne provjeravajte forsiranim pokretom. Prije pregleda zapišite kada je simptom počeo, što ga ublažava ili pogoršava i kako utječe na uobičajene aktivnosti. Ponesite prethodne nalaze ako ih imate. Zamolite stručnjaka da objašnjenje poveže s vašim nalazima: opći opis sam po sebi ne postavlja dijagnozu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira lomi zapešće nakon malog pada i pita za kost i padove, ne samo lošu sreću."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben slijedi plan tereta i uz manju bol jer čvrstoća i udobnost ne vraćaju se jednako."
+    }
+  ],
+  "questions": [
+    "Koji bi koraci bili jasniji uz dijagram?",
+    "Što objašnjenje pokazuje i što ne predviđa?",
+    "Treba li moja konkretna briga stručnu procjenu?"
+  ]
+}

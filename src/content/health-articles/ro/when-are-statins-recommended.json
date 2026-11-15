@@ -1,0 +1,51 @@
+{
+  "title": "Când sunt recomandate statinele",
+  "intro": "Statinele sunt medicamente care scad colesterolul și reduc riscul de infarct și de accident vascular cerebral. Sunt recomandate în principal persoanelor care au deja boli de inimă sau vasculare și unor persoane cu risc crescut. Decizia depinde de riscul individual, așa că se ia împreună cu medicul.",
+  "sections": [
+    {
+      "heading": "Cum acționează statinele",
+      "paragraphs": [
+        "Statinele blochează o enzimă din ficat care produce colesterol, ceea ce scade colesterolul LDL, cel dăunător. De asemenea, stabilizează depunerile grase din artere. Exemplele includ simvastatina, atorvastatina și rosuvastatina. De obicei se iau o dată pe zi, pe termen lung."
+      ]
+    },
+    {
+      "heading": "Cine beneficiază cel mai mult",
+      "paragraphs": [
+        "Persoanele care au avut un infarct, un accident vascular cerebral sau altă boală cardiovasculară beneficiază cel mai mult, iar statinele sunt în general recomandate. Cele cu colesterol foarte mare, precum hipercolesterolemia familială, și multe persoane cu diabet care sunt mai în vârstă sau au alți factori de risc sunt de asemenea sfătuite de obicei să le ia."
+      ]
+    },
+    {
+      "heading": "Prevenția la persoanele fără boală",
+      "paragraphs": [
+        "Pentru persoanele fără boală instalată, medicii estimează riscul pe zece ani al unui eveniment cardiovascular, folosind factori precum vârsta, sexul, tensiunea arterială, colesterolul, fumatul și diabetul. Statinele sunt luate în considerare când riscul este suficient de mare încât beneficiul depășește posibilele efecte secundare. Beneficiul este mai mic la cei cu risc scăzut, așa că stilul de viață este pe primul loc."
+      ]
+    },
+    {
+      "heading": "Efecte secundare",
+      "paragraphs": [
+        "Majoritatea persoanelor tolerează bine statinele. Durerile musculare sunt cea mai frecventă plângere, iar afectarea musculară gravă este rară. Pot apărea creșteri ale enzimelor hepatice și o mică creștere a glicemiei. Raportați durerea musculară severă, slăbiciunea sau urina închisă la culoare. Unele medicamente și sucul de grepfrut interacționează cu anumite statine. Statinele nu sunt recomandate în sarcină."
+      ]
+    },
+    {
+      "heading": "Stilul de viață rămâne important",
+      "paragraphs": [
+        "O alimentație sănătoasă, activitatea regulată, nefumatul, greutatea sănătoasă și limitarea alcoolului reduc riscul cu sau fără medicament. Nu opriți statinele fără a discuta cu medicul. Nivelurile colesterolului trebuie verificate la intervale convenite."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Discutarea riscului",
+      "text": "Imaginați-vă că aveți colesterol mare, dar nu aveți boală de inimă. Ați putea cere medicului să vă calculeze riscul pe zece ani și să vă explice cifrele."
+    },
+    {
+      "title": "Gestionarea efectelor secundare",
+      "text": "Presupuneți că aveți dureri musculare după începerea unei statine. Ați putea întreba despre o doză mai mică sau o altă statină înainte de a opri."
+    }
+  ],
+  "questions": [
+    "Care este riscul meu și cât m-ar ajuta o statină?",
+    "Ce statină și ce doză sunt potrivite pentru mine?",
+    "Ce efecte secundare ar trebui să raportez?"
+  ]
+}

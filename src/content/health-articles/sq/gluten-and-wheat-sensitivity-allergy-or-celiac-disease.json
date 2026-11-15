@@ -1,0 +1,51 @@
+{
+  "title": "Simptoma pas grurit: celiaki, alergji apo ndjeshmëri?",
+  "intro": "Simptomat pas grurit nuk kanë gjithmonë të njëjtin shkak. Celiakia është reagim imunitar ndaj glutenit që dëmton zorrën e hollë; alergjia ndaj grurit dhe ndjeshmëria jo-celiake kërkojnë hetime e kujdes të ndryshëm.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Celiakia mund të japë diarre, fryrje, anemi ose pak simptoma tretëse. Alergjia mund të japë shpejt urtikarie, ënjtje ose probleme frymëmarrjeje. Ndjeshmëria shqyrtohet pasi përjashtohen shkaqe të tjera."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Mos filloni dietë pa gluten para diskutimit të testimit për celiaki, sepse shmangia shtrembëron rezultatet. Pas një reaksioni alergjik të dyshuar nga gruri, mos e provoni në shtëpi; kërkoni specialist. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Celiakia e konfirmuar kërkon shmangie të përjetshme të glutenit dhe ndjekje ushqyese. Alergjia kërkon shmangie individuale e plan urgjence. Ndjeshmëria jo-celiake nuk kërkon automatikisht të njëjtat kufizime të përhershme. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Dietologu ndihmon ruajtjen e fibrave, hekurit dhe ushqyesve dhe shpjegon etiketat e kontaktin e kryqëzuar. Panelet tregtare të intolerancës nuk vendosin këto diagnoza dhe nuk justifikojnë përjashtime të gjera. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Frymëmarrja e vështirë, ënjtja e fytit ose kolapsi pas ushqimit janë urgjencë; përdorni menjëherë adrenalinën e përshkruar dhe thirrni urgjencën. Diarreja e vazhdueshme, rënia në peshë ose anemia kërkojnë vlerësim."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira dëshiron të heqë glutenin për fryrjen. Së pari diskuton testimin që dieta të mos fshehë një diagnozë celiakie."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni pati ënjtje pas bukës. Kërkon vlerësim alergjie, pa ngrënë qëllimisht bukë përsëri për të testuar një teori gluteni."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

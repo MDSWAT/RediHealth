@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është gjumi normal?",
+  "intro": "Gjumi është një gjendje jetike, aktive ku trupi riparohet vetë e truri përpunon kujtimet. Sa gjumë nevojitet ndryshon nga njeriu, e po ashtu koha. Të dish çfarë është normale mund t'ju ndihmojë të njihni problemet e gjumit e të ndërtoni zakone të shëndetshme gjumi.",
+  "sections": [
+    {
+      "heading": "Sa gjumë nevojitet",
+      "paragraphs": [
+        "Shumica e të rriturve kanë nevojë për shtatë deri nëntë orë në natë. Adoleshentët kanë nevojë për tetë deri dhjetë orë, fëmijët e moshës shkollore nëntë deri dymbëdhjetë, e foshnjat shumë më tepër. Të moshuarit shpesh flenë më pak thellë e zgjohen më lehtë por prapë kanë nevojë për rreth shtatë deri tetë orë. Disa njerëz ndihen mirë me pak më pak ose më shumë."
+      ]
+    },
+    {
+      "heading": "Fazat e gjumit",
+      "paragraphs": [
+        "Gjumi kalon nëpër cikle prej rreth nëntëdhjetë minutash. Gjumi i lehtë çon në gjumë të thellë, që është i rëndësishëm për rikuperimin fizik, e gjumin me lëvizje të shpejta të syve, ose REM, kur ndodhin shumica e ëndrrave e truri përpunon emocionin e kujtesën. Disa cikle ndodhin çdo natë, me më shumë gjumë të thellë herët e më shumë REM më vonë."
+      ]
+    },
+    {
+      "heading": "Ora e trupit",
+      "paragraphs": [
+        "Një orë e brendshme, ritmi cirkadian, e rregullon gjumin e zgjimin gjatë rreth njëzet e katër orësh, duke reaguar ndaj dritës e errësirës. Adoleshentët zhvendosen më vonë, ndërsa të rriturit më të moshuar prirren të zgjohen më herët. Puna me turne, udhëtimi e ekranet e ndritshme natën mund ta prishin ritmin. Drita e ditës në mëngjes ndihmon ta mbajë të qëndrueshëm."
+      ]
+    },
+    {
+      "heading": "Variacionet normale",
+      "paragraphs": [
+        "Nëse ju duhet deri në gjysmë ore që t'ju zërë gjumi, zgjimi i shkurtër gjatë natës, ëndrrat e gërhitja e lehtë mund të jenë normale. Netët e këqija herë pas here janë të zakonshme e zakonisht jo të dëmshme. Vështirësia e vazhdueshme për t'ju zënë gjumi ose për të qëndruar në gjumë, gërhitja e fortë me ndalesa frymëmarrjeje, përgjumja gjatë ditës ose këmbët e shqetësuara mund të sinjalizojnë një çrregullim gjumi."
+      ]
+    },
+    {
+      "heading": "Zakone të shëndetshme gjumi",
+      "paragraphs": [
+        "Mbani orare të rregullta për gjumë e zgjim, bëni dhomën e gjumit të errët, të qetë e të freskët, shmangni kafeinën vonë gjatë ditës, kufizoni alkoolin e vaktet e rënda pranë gjumit, qëndroni aktivë gjatë ditës e zvogëloni përdorimin e ekraneve para gjumit. Nëse nuk flini dot, ngrihuni e bëni diçka relaksuese, pastaj ktheheni kur ju zë gjumi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vendosja e një rutine",
+      "text": "Imagjinoni që shpesh flini keq. Mund të shkoni në shtrat e të ngriheni në të njëjtat orë çdo ditë e të kufizoni ekranet një orë më parë."
+    },
+    {
+      "title": "Kërkimi i këshillës",
+      "text": "Supozoni që gërhitni fort e ndiheni të rraskapitur gjatë ditës. Mund ta pyesni mjekun për një test për apnenë e gjumit."
+    }
+  ],
+  "questions": [
+    "Sa gjumë më duhet në moshën time?",
+    "A mund ta prishë gjumin tim një problem mjekësor?",
+    "Cilat zakone do të më ndihmonin më shumë?"
+  ]
+}

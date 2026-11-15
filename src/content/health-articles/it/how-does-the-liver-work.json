@@ -1,0 +1,52 @@
+{
+  "title": "Come il fegato elabora i nutrienti",
+  "intro": "Il fegato elabora nutrienti, produce proteine importanti e bile, e modifica molti farmaci e scarti. Non è un filtro da azzerare con bevande depurative. Problemi diversi alterano funzioni diverse.",
+  "sections": [
+    {
+      "heading": "Sangue e lavorazione",
+      "paragraphs": [
+        "Il sangue digestivo porta sostanze assorbite tramite la vena porta; un'arteria fornisce ossigeno. Le cellule elaborano, conservano o rilasciano secondo necessità."
+      ]
+    },
+    {
+      "heading": "Energia",
+      "paragraphs": [
+        "Il fegato conserva glucosio come glicogeno e lo rilascia al bisogno. Gestisce anche grassi e proteine. Il controllo collabora con ormoni, non dipende da un singolo alimento."
+      ]
+    },
+    {
+      "heading": "Produzione e rimozione",
+      "paragraphs": [
+        "Produce albumina, molte proteine della coagulazione e bile per digestione e scarti. La colecisti conserva bile; gli organi sono collegati ma non intercambiabili."
+      ]
+    },
+    {
+      "heading": "Protezione",
+      "paragraphs": [
+        "Evitate alcol eccessivo e verificate farmaci e integratori con un professionista. Troppo paracetamolo è pericoloso anche prima dei sintomi; un sospetto sovradosaggio richiede consiglio immediato. Non sospendete terapie da soli."
+      ]
+    },
+    {
+      "heading": "Valutazione",
+      "paragraphs": [
+        "Esami ematici e immagini valutano aspetti diversi; assenza di dolore non esclude malattia. Nuovo ittero richiede visita; vomito di sangue, feci nere catramose, grave confusione o collasso richiedono urgenza.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira chiede se un integratore detox ripari il danno. Discute causa e sicurezza, senza equiparare naturale e innocuo."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben assume per errore prodotti sovrapposti con paracetamolo. Cerca consiglio subito senza aspettare dolore al fegato."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

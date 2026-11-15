@@ -1,0 +1,51 @@
+{
+  "title": "Razumijevanje kronične boli",
+  "intro": "Kronična bol je bol koja traje dulje od tri mjeseca, nakon uobičajenog vremena zacjeljivanja. Može nastati od ozljede ili bolesti ili bez jasnog uzroka, a utječe na raspoloženje, san, posao i odnose. Bol je stvarna, a razumijevanje kako djeluje pomaže vam sudjelovati u učinkovitom liječenju.",
+  "sections": [
+    {
+      "heading": "Kako bol funkcionira",
+      "paragraphs": [
+        "Bol stvara mozak i živčani sustav kao odgovor na signale prijetnje. Kod akutne boli ona nas štiti od štete. Kod kronične boli živčani sustav može postati preosjetljiv pa bol traje ili se pojačava iako je tkivo zacijelilo, a normalni osjeti mogu postati bolni. Stres, loš san, loše raspoloženje i briga mogu dodatno pojačati jačinu."
+      ]
+    },
+    {
+      "heading": "Česte vrste",
+      "paragraphs": [
+        "Kronična bol uključuje bol u leđima i vratu, osteoartritis, živčanu bol nakon herpesa zostera ili dijabetesa, glavobolje, fibromijalgiju, bol nakon operacije i stanja bez jasnog uzroka. Mnogi ljudi imaju više od jedne vrste. Nalazi snimanja često ne odgovaraju količini doživljene boli."
+      ]
+    },
+    {
+      "heading": "Pristupi liječenju",
+      "paragraphs": [
+        "Najbolji rezultati dolaze kombiniranjem više pristupa. Ostanak tjelesno aktivnim uz postupno vježbanje, fizioterapija, edukacija o boli i psihološke metode kao što su kognitivno-bihevioralna terapija, terapija prihvaćanja i predanosti te opuštanje spadaju među najučinkovitija liječenja. Lijekovi mogu pomoći kod određenih vrsta, kao što su lijekovi za živčanu bol, ali imaju nuspojave. Opioidi općenito nisu prikladni za dugotrajnu uporabu kod kronične nemaligne boli zbog ograničene koristi i rizika ovisnosti."
+      ]
+    },
+    {
+      "heading": "Dozirano opterećenje i svakodnevni život",
+      "paragraphs": [
+        "Dozirano opterećenje znači uravnoteženje aktivnosti i odmora kako bi se izbjegao obrazac pretjerivanja u dobrim danima i sloma poslije. Postavljanje malih ciljeva, nastavak društvenih aktivnosti, redoviti san i rutina pomažu. Podijelite s obitelji i poslodavcima što vam treba. Klinike za bol s timovima liječnika, psihologa i fizioterapeuta nude sveobuhvatne programe."
+      ]
+    },
+    {
+      "heading": "Emocionalna dobrobit",
+      "paragraphs": [
+        "Život s trajnom boli može uzrokovati frustraciju, tjeskobu i depresiju, što zauzvrat pogoršava bol. Ne oklijevajte potražiti potporu za svoje raspoloženje. Grupe podrške vršnjaka mogu smanjiti izolaciju. Ako imate misli o samoozljeđivanju, odmah kontaktirajte hitne službe ili liniju za krizne situacije."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dozirano opterećenje",
+      "text": "Zamislite da u dobrim danima očistite cijelu kuću, a zatim danima odmarate. Mogli biste podijeliti poslove u kratke sesije tijekom tjedna i pratiti kako se osjećate."
+    },
+    {
+      "title": "Traženje programa za bol",
+      "text": "Pretpostavite da sami lijekovi ne djeluju. Mogli biste pitati liječnika o multidisciplinarnom programu za bol koji uključuje vježbanje i psihološku terapiju."
+    }
+  ],
+  "questions": [
+    "Koji pristup će vjerojatno pomoći mojoj vrsti boli?",
+    "Koji lijekovi su prikladni, a koje trebam izbjegavati?",
+    "Je li klinika za bol ili psihološka terapija dostupna meni?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Što se događa kada starite?",
+  "intro": "Starenje donosi postupne promjene u tijelu i umu. Neke su neizbježne, ali mnogi ljudi dugo ostaju zdravi i aktivni, a stil života čini veliku razliku. Znati što je normalno pomaže razlikovati starenje od bolesti.",
+  "sections": [
+    {
+      "heading": "Promjene u tijelu",
+      "paragraphs": [
+        "Mišićna masa i snaga opadaju, kosti gube gustoću, zglobovi se ukoče, a koža postaje tanja i manje elastična. Metabolizam se usporava, a težina se sklona premjestiti prema struku. Srce i krvne žile postaju krući, što podiže krvni tlak, a pluća imaju manji kapacitet. Imunološki sustav reagira sporije."
+      ]
+    },
+    {
+      "heading": "Osjetila i organi",
+      "paragraphs": [
+        "Vid se mijenja, osobito izoštravanje na blizinu, a katarakta postaje češća. Sluh opada, osobito za visoke tonove. Okus i njuh mogu oslabjeti. Mjehur drži manje, a prostata se može povećati. Probava je sporija, a san je sklon biti plići i kraći. Zubi i desni trebaju njegu."
+      ]
+    },
+    {
+      "heading": "Um i pamćenje",
+      "paragraphs": [
+        "Brzina razmišljanja može se usporiti, a učenje novog ili prisjećanje imena može trajati dulje, ali znanje i mudrost često rastu. Znatan gubitak pamćenja, gubljenje na poznatim mjestima ili promjene osobnosti nisu normalno starenje i treba ih provjeriti. Ni depresija nije normalan dio starenja."
+      ]
+    },
+    {
+      "heading": "Ostanak zdrav",
+      "paragraphs": [
+        "Redovita tjelesna aktivnost, uključujući vježbe snage i ravnoteže, zdrava prehrana s dovoljno bjelančevina, kalcija i vitamina D, nepušenje, ograničen alkohol, društveni kontakti i mentalna aktivnost podupiru zdravo starenje. Cijepljenja, probiri i redoviti pregledi lijekova također su važni. Spriječite padove uklanjanjem prepreka i boljim osvjetljenjem."
+      ]
+    },
+    {
+      "heading": "Potpora i planiranje",
+      "paragraphs": [
+        "Dogovorite budućnost, primjerice tko može pomoći, prilagodbe stanovanja, financijska pitanja i želje o skrbi unaprijed. Rano potražite pomoć zbog usamljenosti, boli ili problema s dnevnim zadacima. Usluge za starije osobe mogu pružiti praktičnu potporu i očuvati samostalnost."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ostanak aktivan",
+      "text": "Zamislite da želite ostati snažni dok starite. Mogli biste svaki dan hodati i dvaput tjedno raditi jednostavne vježbe snage i ravnoteže."
+    },
+    {
+      "title": "Provjera briga oko pamćenja",
+      "text": "Pretpostavite da primjećujete više zaboravljivosti. Mogli biste razgovarati s liječnikom o procjeni pamćenja i provjeriti svoje lijekove."
+    }
+  ],
+  "questions": [
+    "Koje su promjene normalne za moju dob, a koje treba provjeriti?",
+    "Koje probire i cjepiva trebam?",
+    "Kako mogu smanjiti rizik od padova?"
+  ]
+}

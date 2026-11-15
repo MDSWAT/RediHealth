@@ -1,0 +1,51 @@
+{
+  "title": "Dovoljno željeza i prepoznavanje manjka",
+  "intro": "Željezo pomaže prijenos kisika i druge funkcije. Potrebe ovise o rastu, trudnoći, menstruaciji i prehrani. Sam umor ne dijagnosticira manjak; nepotrebno željezo može štetiti.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Izvori su meso, riba, grah, leća, tofu i obogaćene žitarice. Biljno se slabije apsorbira, vitamin C pomaže. Uravnotežena biljna prehrana može dati korisno željezo."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Testovi procjenjuju anemiju i zalihe uz upalu i bolesti. Pitajte uzrok: obilni ciklusi, probavno krvarenje, unos ili apsorpcija traže obradu. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Potvrđen manjak može trebati propisano oralno ili odabrano intravensko željezo. Sama prehrana ne ispravlja uvijek značajnu anemiju. Raspravite nuspojave i praćenje umjesto dodataka bez dijagnoze. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Birajte održive kombinacije i slijedite dozu. Čaj, kava, kalcij i lijekovi utječu pa pitajte vrijeme. Tablete potamne stolicu, ali sumnjiva katranasta stolica ili drugi znakovi krvi ne smiju se zanemariti. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Čuvajte daleko od djece: predoziranje je opasno i traži brz toksikološki ili hitan savjet. Teška zaduha, nesvjestica, prsna bol ili krvarenje traže hitnost bez čekanja prehrane."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira kombinira leću i vitamin C te traži nalaze jer obilni ciklusi i umor nisu uvijek samo hrana."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben dobiva zatvor od željeza. Raspravlja podnošljiv plan i kontrole bez prekida ili udvostručenja samostalno."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

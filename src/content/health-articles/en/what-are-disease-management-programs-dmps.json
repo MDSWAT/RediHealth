@@ -1,0 +1,51 @@
+{
+  "title": "What are disease management programmes (DMPs)?",
+  "intro": "Disease management programmes in Germany are structured treatment programmes for people with certain long-term illnesses, such as type 2 diabetes, asthma, COPD, coronary heart disease and breast cancer. They aim to improve the quality of care through regular check-ups, agreed goals and patient education. Participation is voluntary. This overview is general; the available programmes and rules can change.",
+  "sections": [
+    {
+      "heading": "What they are",
+      "paragraphs": [
+        "A DMP sets out how a chronic disease should be treated according to current evidence. A family doctor or specialist who takes part coordinates your care. The programme defines regular check-ups, tests, medicines, referral rules and training. Statutory health insurers offer them to insured people with the corresponding diagnosis."
+      ]
+    },
+    {
+      "heading": "What participants receive",
+      "paragraphs": [
+        "Participants have regular appointments, usually every three months for conditions such as diabetes, with tests suited to the disease. Together with your doctor you set treatment goals, for example blood sugar or blood pressure targets and lifestyle changes. You can attend education courses, such as diabetes training or asthma courses. Referrals to specialists follow defined criteria, and your doctor documents your progress."
+      ]
+    },
+    {
+      "heading": "Possible benefits",
+      "paragraphs": [
+        "The structured follow-up can ensure that important checks, such as eye, foot and kidney tests in diabetes, are not forgotten. Studies suggest better adherence to guidelines, better monitoring, and in some conditions fewer complications, although the size of the benefit is debated. Many people appreciate the support and education."
+      ]
+    },
+    {
+      "heading": "Enrolment, data and drawbacks",
+      "paragraphs": [
+        "Enrolment is by agreement with your doctor and your insurer, after written consent. Your data are passed on to the insurer and a central body for quality assurance, under data protection rules. You can leave at any time. Drawbacks include the administrative effort, the need to attend regular appointments, and the possibility that you do not want your data shared. If you miss appointments repeatedly, the insurer may end participation."
+      ]
+    },
+    {
+      "heading": "How to join",
+      "paragraphs": [
+        "Ask your family doctor whether they take part in a DMP for your condition, or contact your health insurer. You will need a confirmed diagnosis. Bring questions about goals, data protection and what is expected from you."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Setting a goal",
+      "text": "Imagine you have diabetes and are enrolling in a DMP. You could agree with your doctor on a target for blood pressure and a walking goal, and note them in your record."
+    },
+    {
+      "title": "Weighing data sharing",
+      "text": "Suppose you worry about data being passed on. You might ask the practice what is shared, with whom, and how to withdraw."
+    }
+  ],
+  "questions": [
+    "Is there a programme for my condition, and what does it involve?",
+    "Which data are passed on, and can I leave at any time?",
+    "Which education courses are included?"
+  ]
+}

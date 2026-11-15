@@ -1,0 +1,56 @@
+{
+  "title": "Come viene regolato il ritmo del cuore",
+  "intro": "Il cuore batte grazie al proprio sistema elettrico, che avvia ogni battito e coordina le camere affinché si contraggano nell'ordine giusto. Il cervello e gli ormoni adeguano la frequenza alle tue esigenze. Sapere come funziona aiuta a capire le palpitazioni, i ritmi irregolari e gli esami come l'ECG.",
+  "sections": [
+    {
+      "heading": "Il sistema elettrico del cuore",
+      "paragraphs": [
+        "Ogni battito inizia nel nodo senoatriale, un piccolo gruppo di cellule nella parte alta destra del cuore che agisce da pacemaker naturale. Invia un impulso elettrico attraverso le due camere superiori, gli atri, facendoli contrarre e spingendo il sangue nelle camere inferiori.",
+        "Il segnale raggiunge poi il nodo atrioventricolare, che lo ritarda brevemente in modo che i ventricoli possano riempirsi. Scende lungo fibre speciali che si diffondono nelle pareti dei ventricoli, facendoli contrarre insieme e pompare il sangue ai polmoni e al resto del corpo."
+      ]
+    },
+    {
+      "heading": "Il controllo della frequenza cardiaca",
+      "paragraphs": [
+        "A riposo, il cuore di un adulto tipico batte circa 60-100 volte al minuto. Durante l'esercizio, lo stress o la febbre la frequenza aumenta, mentre durante il sonno diminuisce. Il sistema nervoso autonomo la regola: il sistema simpatico accelera il cuore, mentre il parasimpatico lo rallenta.",
+        "Anche ormoni come l'adrenalina, gli ormoni tiroidei, minerali del sangue come potassio e calcio e molti farmaci influenzano il ritmo. Gli atleti ben allenati hanno spesso una frequenza cardiaca a riposo lenta, che è sana."
+      ]
+    },
+    {
+      "heading": "Quando il ritmo è alterato",
+      "paragraphs": [
+        "Le aritmie sono disturbi del ritmo cardiaco. Il cuore può battere troppo veloce, troppo lento o in modo irregolare. Esempi comuni sono la fibrillazione atriale, in cui gli atri vibrano in modo irregolare, i battiti extra che danno la sensazione di un battito saltato e il blocco cardiaco, in cui i segnali sono ritardati o bloccati.",
+        "I sintomi comprendono palpitazioni, capogiri, mancanza di fiato, fastidio al petto o svenimento. Alcune persone non hanno sintomi. La fibrillazione atriale aumenta il rischio di ictus, ed è per questo importante individuarla e trattarla in modo appropriato."
+      ]
+    },
+    {
+      "heading": "Esami per il ritmo cardiaco",
+      "paragraphs": [
+        "Un elettrocardiogramma registra l'attività elettrica del cuore in pochi minuti. Se i sintomi vanno e vengono, un ECG di lunga durata indossato da un giorno a qualche settimana, o un registratore di eventi impiantato, può coglierli. Esami del sangue, un'ecografia del cuore e test da sforzo aiutano a cercare le cause.",
+        "Gli smartwatch possono registrare il ritmo, ma i loro risultati vanno confermati con esami medici prima di prendere decisioni."
+      ]
+    },
+    {
+      "heading": "Opzioni di trattamento",
+      "paragraphs": [
+        "Molti battiti extra innocui non richiedono alcun trattamento oltre a evitare fattori scatenanti come eccesso di caffeina, alcol, nicotina o mancanza di sonno. Altri disturbi del ritmo possono essere trattati con farmaci che controllano frequenza o ritmo, anticoagulanti per ridurre il rischio di ictus, cardioversione elettrica o ablazione transcatetere, che tratta l'origine dei segnali anomali.",
+        "Un pacemaker può sostenere un cuore che batte troppo lentamente e un defibrillatore impiantabile può fermare ritmi rapidi pericolosi. Chiama i soccorsi in caso di svenimento, dolore al petto o forte mancanza di fiato con battito accelerato."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Descrivere le palpitazioni",
+      "text": "Immagina di sentire a volte il cuore accelerare per qualche minuto. Potresti annotare quando succede, quanto veloce sembra il polso, che cosa stavi facendo e gli altri sintomi, in modo che il medico possa scegliere gli esami adatti."
+    },
+    {
+      "title": "Capire la decisione sugli anticoagulanti",
+      "text": "Supponi di aver ricevuto una diagnosi di fibrillazione atriale. Potresti chiedere come è stato stimato il tuo rischio personale di ictus, quali sono i benefici e i rischi di sanguinamento degli anticoagulanti e a quali segni di sanguinamento prestare attenzione."
+    }
+  ],
+  "questions": [
+    "Quale tipo di disturbo del ritmo potrebbe spiegare i miei sintomi e quali esami lo chiariranno?",
+    "Ho bisogno di un trattamento e come ridurrebbe il mio rischio di ictus o di altre complicanze?",
+    "Quali fattori scatenanti devo evitare e quando devo chiamare i soccorsi?"
+  ]
+}

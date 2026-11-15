@@ -1,0 +1,54 @@
+{
+  "title": "Infeksioni HPV: si përhapet dhe çfarë mund të shkaktojë",
+  "intro": "Virusët e papilomës njerëzore janë një grup i madh virusesh që infektojnë lëkurën dhe mukozat. Shumica e njerëzve infektohen në një moment të jetës pa e vënë re. Zakonisht sistemi imunitar e pastron virusin, por disa lloje mund të shkaktojnë lytha ose, pas shumë vitesh, kancer. Njohja e mënyrës si përhapet HPV dhe si të mbroheni ju mban të informuar pa frikë të panevojshme.",
+  "sections": [
+    {
+      "heading": "Si përhapet HPV",
+      "paragraphs": [
+        "Llojet gjenitale të HPV transmetohen me kontakt të ngushtë të lëkurës ose mukozave, më shpesh gjatë seksit vaginal, anal ose oral. Prezervativët e ulin rrezikun, por nuk e eliminojnë, sepse virusi mund të infektojë lëkurën e pambuluar nga prezervativi. Lythat në duar dhe këmbë përhapen zakonisht me kontakt me sipërfaqe ose lëkurë të kontaminuar.",
+        "Meqenëse infeksionet janë shpesh të heshtura, njerëzit mund ta kalojnë virusin pa e ditur. Të kesh një partner të përhershëm nuk do të thotë që infeksioni ishte i fundit."
+      ]
+    },
+    {
+      "heading": "Çfarë mund të shkaktojnë infeksionet",
+      "paragraphs": [
+        "Shumica e infeksioneve HPV nuk shkaktojnë simptoma dhe pastrohen brenda një ose dy vjetësh. Disa lloje me rrezik të ulët shkaktojnë lytha gjenitale, që janë zakonisht të padëmshme, por mund të bezdisin dhe të përsëriten. Llojet me rrezik të lartë mund të shkaktojnë ndryshime qelizore në qafën e mitrës, anus, vulvë, vaginë, penis ose fyt, që mund të zhvillohen në kancer pas shumë vitesh."
+      ]
+    },
+    {
+      "heading": "Zbulimi",
+      "paragraphs": [
+        "Skriningu i qafës së mitrës përdor teste qelizore, teste HPV ose të dyja për të gjetur infeksion dhe ndryshime të hershme në qafën e mitrës. Nuk ka test rutinë për HPV te burrat. Lythat diagnostikohen zakonisht duke i parë dhe zonat e dyshimta mund të ekzaminohen me një instrument zmadhues ose një mostër të vogël indi."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Nuk ka ilaç që e shëron vetë virusin. Lythat gjenitale mund të trajtohen me krema, ngrirje, lazer ose kirurgji të vogël, edhe pse mund të kthehen. Ndryshimet qelizore paraprake në qafën e mitrës trajtohen me heqjen e indit të prekur.",
+        "Trajtimi i kancerëve të lidhur me HPV varet nga vendndodhja dhe faza dhe mund të përfshijë kirurgji, rrezatim dhe barna."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Vaksinimi para fillimit të aktivitetit seksual është parandalimi më efektiv. Skriningu i rregullt, prezervativët dhe mospirja e duhanit, që e dobëson aftësinë e trupit për ta pastruar HPV, e ulin më tej rrezikun. Një test pozitiv HPV nuk është diagnozë kanceri, por do të thotë që nevojitet ndjekje sipas këshillës së mjekut.",
+        "Shumë njerëz ndihen të shqetësuar ose të turpëruar pas një rezultati HPV. Të folurit hapur me një profesionist shëndetësor dhe, nëse dëshironi, me një partner, mund t'i ulë shqetësimet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Të kuptuarit e një rezultati testi",
+      "text": "Imagjinoni që testi i skriningut gjen një lloj HPV me rrezik të lartë, por pa ndryshime qelizore. Mund të pyesni kur duhet përsëritur testi, sa është rreziku i përparimit dhe cilat hapa të stilit të jetesës, si lënia e duhanit, do të ndihmonin."
+    },
+    {
+      "title": "Të folurit me një partner",
+      "text": "Supozoni që mësoni se keni lytha gjenitale. Mund të përgatiteni të shpjegoni se HPV është shumë i zakonshëm, se lythat mund të trajtohen dhe ta pyesni klinicistin si ta ulni mundësinë e kalimit të tyre."
+    }
+  ],
+  "questions": [
+    "Çfarë do të thotë rezultati im HPV dhe kur duhet të testohem përsëri?",
+    "Cilat opsione trajtimi ekzistojnë për lythat ose ndryshimet qelizore dhe cilat janë rreziqet?",
+    "A do të përfitoja prapëseprapë nga vaksinimi?"
+  ]
+}

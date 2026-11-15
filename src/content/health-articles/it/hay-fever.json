@@ -1,0 +1,51 @@
+{
+  "title": "Rinite da pollini: controllare i sintomi",
+  "intro": "L’allergia ai pollini causa starnuti, prurito o naso chiuso e occhi acquosi pruriginosi, spesso stagionali. Può disturbare sonno e concentrazione; la febbre non è una caratteristica tipica nonostante il nome febbre da fieno.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Pollini di erbe, alberi e infestanti hanno stagioni diverse secondo luogo e clima. Sibili o tosse notturna possono indicare asma associata anziché semplice congestione nasale."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Descrivere quando e dove compaiono i sintomi e l’effetto sulle attività. I test allergici servono per chiarire fattori sospetti o guidare lo specialista, non come pannelli indiscriminati. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Antistaminici non sedativi e spray nasali corticosteroidei sono opzioni comuni; conta l’uso corretto regolare. Chiedere tecnica e compatibilità con età o gravidanza. L’immunoterapia aiuta alcuni casi persistenti selezionati. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Usare previsioni locali dei pollini, cambiare abiti dopo attività esterna ed evitare di asciugare biancheria fuori nei giorni critici se peggiora. I lavaggi salini richiedono acqua sicura e strumenti puliti. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Chiedere controllo per sintomi non controllati, sonno compromesso o effetti indesiderati. Nuovi sibili o affanno vanno valutati; grave difficoltà respiratoria è un’emergenza, non normale rinite."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha sintomi nella stagione delle graminacee e verifica la tecnica dello spray col farmacista prima di considerarlo inefficace."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben sviluppa tosse notturna durante la stagione dei pollini. Chiede una valutazione per asma invece di aggiungere solo compresse antiallergiche."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

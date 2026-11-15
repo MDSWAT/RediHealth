@@ -1,0 +1,54 @@
+{
+  "title": "L'infezione da HPV: come si trasmette e cosa può causare",
+  "intro": "I papillomavirus umani sono un grande gruppo di virus che infettano pelle e mucose. La maggior parte delle persone si infetta a un certo punto della vita senza accorgersene. Di solito il sistema immunitario elimina il virus, ma alcuni tipi possono causare verruche o, dopo molti anni, tumori. Sapere come si diffonde l'HPV e come proteggersi aiuta a restare informati senza paure inutili.",
+  "sections": [
+    {
+      "heading": "Come si diffonde l'HPV",
+      "paragraphs": [
+        "I tipi genitali di HPV si trasmettono attraverso uno stretto contatto della pelle o delle mucose, più comunemente durante rapporti vaginali, anali od orali. I preservativi riducono il rischio ma non lo eliminano, perché il virus può infettare la pelle non coperta da un preservativo. Le verruche di mani e piedi di solito si diffondono per contatto con superfici o pelle contaminate.",
+        "Poiché le infezioni sono spesso silenziose, le persone possono trasmettere il virus senza saperlo. Avere un partner di lunga data non significa che l'infezione sia recente."
+      ]
+    },
+    {
+      "heading": "Cosa possono causare le infezioni",
+      "paragraphs": [
+        "La maggior parte delle infezioni da HPV non causa sintomi e si risolve entro uno o due anni. Alcuni tipi a basso rischio causano condilomi genitali, di solito innocui ma che possono essere fastidiosi e recidivare. I tipi ad alto rischio possono causare alterazioni cellulari nella cervice, nell'ano, nella vulva, nella vagina, nel pene o nella gola, che possono evolvere in tumore dopo molti anni."
+      ]
+    },
+    {
+      "heading": "Individuazione",
+      "paragraphs": [
+        "Lo screening cervicale usa test citologici, test HPV o entrambi per individuare l'infezione e le alterazioni precoci nella cervice. Non esiste un test di routine per l'HPV negli uomini. Le verruche si diagnosticano di solito guardandole e le aree sospette possono essere esaminate con uno strumento d'ingrandimento o con un piccolo campione di tessuto."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Non esiste un farmaco che curi il virus stesso. I condilomi genitali possono essere trattati con creme, congelamento, laser o piccoli interventi chirurgici, anche se possono ripresentarsi. Le alterazioni cellulari precancerose della cervice si trattano asportando il tessuto interessato.",
+        "Il trattamento dei tumori correlati all'HPV dipende dalla sede e dallo stadio e può includere chirurgia, radioterapia e farmaci."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "La vaccinazione prima dell'inizio dell'attività sessuale è la prevenzione più efficace. Screening regolare, preservativi e non fumare, che indebolisce la capacità dell'organismo di eliminare l'HPV, riducono ulteriormente il rischio. Un test HPV positivo non è una diagnosi di tumore, ma significa che servono controlli secondo il consiglio del medico.",
+        "Molte persone si sentono ansiose o provano vergogna dopo un risultato HPV. Parlarne apertamente con un professionista sanitario e, se lo desideri, con un partner può ridurre le preoccupazioni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Capire il risultato di un test",
+      "text": "Immagina che il tuo test di screening trovi un tipo di HPV ad alto rischio ma nessuna alterazione cellulare. Potresti chiedere quando ripetere il test, qual è il rischio di progressione e quali misure di stile di vita, come smettere di fumare, sarebbero utili."
+    },
+    {
+      "title": "Parlarne con un partner",
+      "text": "Supponi di scoprire di avere condilomi genitali. Potresti prepararti a spiegare che l'HPV è molto comune, che i condilomi si possono trattare, e chiedere al clinico come ridurre la possibilità di trasmetterli."
+    }
+  ],
+  "questions": [
+    "Che cosa significa il mio risultato HPV e quando dovrei rifare il test?",
+    "Quali opzioni di trattamento esistono per le verruche o le alterazioni cellulari e quali sono i rischi?",
+    "La vaccinazione sarebbe ancora utile per me?"
+  ]
+}

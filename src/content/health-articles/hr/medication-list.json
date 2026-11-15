@@ -1,0 +1,52 @@
+{
+  "title": "Vođenje popisa lijekova",
+  "intro": "Popis lijekova bilježi svaki lijek koji uzimate, uključujući lijekove na recept, proizvode bez recepta, vitamine i biljne pripravke. Njegovo održavanje ažurnim pomaže liječnicima, ljekarnicima i njegovateljima izbjeći opasne interakcije i pogreške. Osobito je koristan ako uzimate nekoliko lijekova ili posjećujete više od jednog liječnika.",
+  "sections": [
+    {
+      "heading": "Zašto je popis važan",
+      "paragraphs": [
+        "Mnogi ljudi uzimaju više lijekova koje su propisali različiti stručnjaci. Bez pregleda vjerojatniji su duplikati, štetne kombinacije i zaboravljene promjene. U hitnom slučaju ili pri prijmu u bolnicu popis omogućuje osoblju da brzo razumije vaše liječenje."
+      ]
+    },
+    {
+      "heading": "Što uključiti",
+      "paragraphs": [
+        "Za svaki lijek zabilježite naziv, jačinu, dozu, koliko često i u koje vrijeme ga uzimate, razlog, tko ga je propisao i datum početka. Dodajte dodatke prehrani, biljne proizvode, kapi za oči, kreme, flastere, inhalatore i lijekove koji se uzimaju samo po potrebi. Zabilježite alergije i nuspojave koje ste imali."
+      ]
+    },
+    {
+      "heading": "Kako ga voditi",
+      "paragraphs": [
+        "Možete koristiti ispisani predložak, bilježnicu ili aplikaciju na telefonu. Držite kopiju u novčaniku ili torbi i dajte jednu osobi od povjerenja. Ažurirajte ga kad god se lijek započne, prekine ili promijeni i jasno prekrižite ukinute lijekove s datumom. Mnoge ljekarne i ordinacije mogu vam ispisati aktualni popis."
+      ]
+    },
+    {
+      "heading": "Korištenje na pregledima",
+      "paragraphs": [
+        "Ponesite popis ili kutije lijekova na svaki posjet, uključujući posjete ljekarni i bolnici, i zamolite stručnjaka da ga provjeri. Pitajte koji su lijekovi još potrebni, koji se mogu ukinuti i djeluju li neki u interakciji s novim liječenjima ili alkoholom.",
+        "Godišnji pregled lijekova s liječnikom ili ljekarnikom je koristan, osobito za starije osobe koje uzimaju mnogo lijekova."
+      ]
+    },
+    {
+      "heading": "Sigurna uporaba",
+      "paragraphs": [
+        "Ne prekidajte i ne mijenjajte doze bez savjeta. Čuvajte lijekove sigurno, provjeravajte rokove valjanosti i neiskorištene lijekove zbrinite preko ljekarne. Recite svim svojim zdravstvenim pružateljima o svemu što uzimate, uključujući proizvode kupljene na internetu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prijam u bolnicu",
+      "text": "Zamislite da vas nakon pada odvezu u bolnicu. Ako nosite aktualni popis, osoblje odmah vidi vaš lijek za razrjeđivanje krvi i lijekove za srce i izbjegava nesigurne dodatke."
+    },
+    {
+      "title": "Pregled s ljekarnikom",
+      "text": "Pretpostavite da uzimate osam tableta dnevno. Mogli biste donijeti popis u ljekarnu i pitati jesu li neke kombinacije rizične i mogu li se doze pojednostaviti."
+    }
+  ],
+  "questions": [
+    "Jesu li svi lijekovi na mom popisu još uvijek potrebni?",
+    "Djeluje li neki od mojih lijekova, dodataka ili hrane u interakciji?",
+    "Koliko često treba pregledavati moje lijekove?"
+  ]
+}

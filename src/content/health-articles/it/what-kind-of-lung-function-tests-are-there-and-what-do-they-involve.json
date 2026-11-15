@@ -1,0 +1,51 @@
+{
+  "title": "Esami della funzione polmonare: tipi e che cosa comportano",
+  "intro": "Gli esami della funzione polmonare misurano quanto bene funzionano i polmoni, compresa la quantità di aria che contengono e la rapidità con cui l'aria entra ed esce. Aiutano a diagnosticare asma, broncopneumopatia cronica ostruttiva e altre malattie polmonari e a monitorare il trattamento. La maggior parte è rapida, indolore e richiede la tua collaborazione.",
+  "sections": [
+    {
+      "heading": "Spirometria",
+      "paragraphs": [
+        "La spirometria è l'esame più comune. Inspiri a fondo e poi soffi fuori il più forte e veloce possibile in un boccaglio, con una pinza sul naso. Misura la quantità totale di aria che riesci a espirare, detta capacità vitale forzata, e quanta nel primo secondo. Un rapporto basso suggerisce un restringimento delle vie aeree come nell'asma o nella broncopneumopatia cronica ostruttiva."
+      ]
+    },
+    {
+      "heading": "Broncodilatatore e test di provocazione",
+      "paragraphs": [
+        "Dopo la spirometria inali un farmaco al bisogno e ripeti l'esame. Un grande miglioramento indica l'asma. Un test di provocazione, con una sostanza inalata o l'esercizio, si fa sotto supervisione per scoprire se le vie aeree reagiscono in modo eccessivo. I misuratori del picco di flusso sono semplici dispositivi per il monitoraggio a casa."
+      ]
+    },
+    {
+      "heading": "Altri esami",
+      "paragraphs": [
+        "La pletismografia corporea usa una cabina chiusa per misurare il volume polmonare totale. Un test di diffusione misura quanto bene l'ossigeno passa dai polmoni al sangue respirando una piccola quantità di gas innocuo. La pulsossimetria usa un sensore sul dito per misurare l'ossigeno nel sangue e le emogasanalisi misurano i livelli di ossigeno e anidride carbonica. Un test del cammino misura la tolleranza allo sforzo."
+      ]
+    },
+    {
+      "heading": "Preparazione",
+      "paragraphs": [
+        "Evita di fumare per diverse ore, i pasti abbondanti e lo sforzo intenso prima dell'esame. Può esserti chiesto di sospendere gli inalatori prima, quindi chiedi in anticipo. Indossa abiti larghi. Informa il personale di infezioni recenti, dolore al petto, interventi agli occhi o problemi di cuore, perché alcuni esami possono dover essere rimandati."
+      ]
+    },
+    {
+      "heading": "Risultati",
+      "paragraphs": [
+        "I risultati si confrontano con i valori attesi per età, altezza, sesso e origine etnica. Il medico li interpreta con i sintomi e altri esami. Chiedi che cosa mostrano i risultati, quale trattamento serve e con che frequenza ripetere gli esami."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fare bene la spirometria",
+      "text": "Immagina che ti venga chiesto di soffiare forte. Potresti fare un respiro pieno, sigillare le labbra e continuare a soffiare finché non ti dicono di fermarti."
+    },
+    {
+      "title": "Usare il picco di flusso a casa",
+      "text": "Supponi di avere l'asma. Potresti registrare il picco di flusso mattina e sera e portare il diario al medico."
+    }
+  ],
+  "questions": [
+    "Di quali esami della funzione polmonare ho bisogno?",
+    "Devo sospendere gli inalatori prima dell'esame?",
+    "Che cosa significano i risultati per il mio trattamento?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Struttura e funzionamento dei muscoli",
+  "intro": "I muscoli permettono movimento, postura, respiro e calore. Altri pompano sangue e muovono contenuti negli organi. Queste differenze spiegano perché allenare un braccio non equivale a controllare digestione o battito.",
+  "sections": [
+    {
+      "heading": "Fibre, fasci e tendini",
+      "paragraphs": [
+        "I muscoli scheletrici contengono fibre lunghe in fasci, con tessuto connettivo, nervi e vasi. I tendini trasferiscono forza alle ossa. Un movimento usa solitamente più muscoli coordinati, non uno che tira in entrambe le direzioni."
+      ]
+    },
+    {
+      "heading": "Come la contrazione produce forza",
+      "paragraphs": [
+        "Filamenti proteici scorrono usando energia e producono tensione. Segnali nervosi avviano l’attivazione e il sistema regola quante fibre coinvolgere. Forza dipende da coordinazione e proprietà, non solo dimensione visibile."
+      ]
+    },
+    {
+      "heading": "Muscolo liscio e cardiaco",
+      "paragraphs": [
+        "Il muscolo liscio di organi e vasi lavora soprattutto involontariamente. Quello cardiaco si contrae ritmicamente con coordinazione elettrica. Differiscono dallo scheletrico, ma tutti necessitano forza controllata ed energia."
+      ]
+    },
+    {
+      "heading": "Adattamento e recupero",
+      "paragraphs": [
+        "Carichi regolari aumentati gradualmente favoriscono adattamento; recupero, nutrizione e sonno aiutano. Indolenzimento non è necessario al progresso. Aumenti bruschi sovraccaricano muscoli o tendini invece di accelerare l’adattamento."
+      ]
+    },
+    {
+      "heading": "Dolore, debolezza e allarmi",
+      "paragraphs": [
+        "Dolore, crampo e debolezza hanno molte cause e non coincidono. Debolezza persistente inspiegata merita visita. Debolezza improvvisa unilaterale, forte gonfiore dopo trauma o dolore intenso con urine scure richiedono urgenza."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira inizia con resistenza gestibile e riposo. Misura attività quotidiane più facili, non ricerca dolore come prova d’efficacia."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben apprende che piegare e raddrizzare il gomito usa gruppi coordinati. Non giudica un problema dall’aspetto di un solo muscolo."
+    }
+  ],
+  "questions": [
+    "Quali passaggi sarebbero più chiari con un diagramma?",
+    "Cosa spiega questo testo e cosa non può prevedere?",
+    "Il mio dubbio specifico richiede valutazione professionale?"
+  ]
+}

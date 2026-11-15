@@ -1,0 +1,51 @@
+{
+  "title": "Principiile de bază ale medicinei bazate pe dovezi",
+  "intro": "Medicina bazată pe dovezi înseamnă luarea deciziilor de îngrijire a sănătății folosind cele mai bune cercetări disponibile, împreună cu experiența clinică și valorile pacientului. Urmărește să înlocuiască presupunerile și obiceiul cu cunoștințe fiabile despre ce ajută și ce dăunează. Înțelegerea principiilor ei vă ajută să participați la deciziile privind îngrijirea dumneavoastră.",
+  "sections": [
+    {
+      "heading": "Trei piloni",
+      "paragraphs": [
+        "Medicina bazată pe dovezi se sprijină pe trei elemente: cele mai bune dovezi actuale din cercetare, expertiza clinicianului și preferințele și circumstanțele pacientului. Niciunul nu este suficient singur. Cercetarea arată ce funcționează în medie, medicul o interpretează pentru individ, iar pacientul decide ce contează pentru el."
+      ]
+    },
+    {
+      "heading": "Formularea unor întrebări la care se poate răspunde",
+      "paragraphs": [
+        "Procesul începe prin transformarea unei probleme într-o întrebare precisă: cine sunt pacienții, care este tratamentul sau testul, cu ce este comparat și ce rezultate contează. De exemplu, la persoanele cu artroză a genunchiului, reduc exercițiile durerea mai mult decât îngrijirea obișnuită?"
+      ]
+    },
+    {
+      "heading": "Găsirea și evaluarea dovezilor",
+      "paragraphs": [
+        "Apoi se caută studii relevante și se judecă calitatea lor. Studiile randomizate bine concepute și analizele sistematice oferă răspunsuri mai fiabile despre tratamente decât opiniile sau observațiile izolate. Evaluatorii verifică riscul de părtinire, mărimea efectului, dacă rezultatele sunt consecvente și dacă se aplică pacientului."
+      ]
+    },
+    {
+      "heading": "Aplicarea la pacient",
+      "paragraphs": [
+        "Dovezile descriu grupuri, iar indivizii pot diferi. Clinicienii iau în considerare vârsta, alte boli, riscurile și ce prețuiește pacientul, inclusiv calitatea vieții și povara tratamentului. Luarea deciziilor în comun înseamnă explicarea beneficiilor și a riscurilor în termeni ușor de înțeles, adesea cu cifre și instrumente de ajutor în decizie, astfel încât alegerea să reflecte prioritățile pacientului."
+      ]
+    },
+    {
+      "heading": "Limite",
+      "paragraphs": [
+        "Pentru multe întrebări lipsesc dovezi bune, iar studiile pot exclude persoane precum adulții în vârstă sau copiii. Lipsa dovezilor de beneficiu nu este același lucru cu dovada lipsei beneficiului. Dovezile se schimbă în timp, așa că recomandările necesită revizuire. Medicina bazată pe dovezi nu înseamnă ignorarea experienței, ci verificarea ei în raport cu datele."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Cererea cifrelor",
+      "text": "Imaginați-vă că medicul vă recomandă un medicament. Ați putea întreba câte persoane ca dumneavoastră beneficiază, câte au efecte secundare și ce se întâmplă fără tratament."
+    },
+    {
+      "title": "Exprimarea preferințelor",
+      "text": "Presupuneți că două tratamente sunt la fel de eficiente, dar diferă prin efectele secundare. Ați putea explica ce poveri contează cel mai mult pentru dumneavoastră, ca decizia să se potrivească vieții dumneavoastră."
+    }
+  ],
+  "questions": [
+    "Ce spun cele mai bune dovezi despre opțiunile mele?",
+    "Cât de sigure sunt aceste dovezi și se aplică unei persoane ca mine?",
+    "Ce opțiune se potrivește cel mai bine valorilor și circumstanțelor mele?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Decizii de sănătate: compararea opțiunilor și priorităților",
+  "intro": "O decizie poate privi un test, tratament, procedură ori supraveghere. Informația sigură ajută, dar alegerea depinde și de situația și prioritățile personale. Decizia comună combină cunoștințele clinice cu ceea ce contează pentru dumneavoastră.",
+  "sections": [
+    {
+      "heading": "Definiți decizia",
+      "paragraphs": [
+        "Definiți întâi decizia și urgența ei. Întrebați ce problemă urmărește opțiunea și ce se poate întâmpla fără ea. Supravegherea cu plan de control poate fi opțiune activă când este medical potrivită, nu doar lipsă de acțiune."
+      ]
+    },
+    {
+      "heading": "Găsiți informații fiabile",
+      "paragraphs": [
+        "Căutați autori numiți, date, surse și finanțare transparentă. Separați publicitatea de dovezi și poveștile personale de comparații fiabile. Întrebați dacă participanții seamănă cu dumneavoastră; rezultatele din altă situație pot diferi."
+      ]
+    },
+    {
+      "heading": "Comparați beneficiile și riscurile",
+      "paragraphs": [
+        "Comparați beneficii și riscuri pentru aceeași populație și perioadă. Cereți șanse absolute, inclusiv fără tratament, nu doar procente relative impresionante. Comparați și recuperarea, inconvenientele, incertitudinea și alternativele, inclusiv schimbarea ulterioară a planului."
+      ]
+    },
+    {
+      "heading": "Identificați prioritățile",
+      "paragraphs": [
+        "Notați prioritățile: ameliorare, mobilitate, evitarea reacțiilor, fertilitate, îngrijirea familiei sau cost. Aduceți întrebări ori persoană de încredere dacă doriți și cereți interpret la nevoie. Rugați explicarea termenilor și reformulați planul cu propriile cuvinte."
+      ]
+    },
+    {
+      "heading": "Stabiliți pașii următori",
+      "paragraphs": [
+        "Stabiliți pașii, data controlului și simptomele pentru ajutor mai devreme. Întrebați cât puteți decide în siguranță; cereți a doua opinie când timpul permite. Nu întârziați urgența pentru informație nesfârșită și nu cumpărați sub presiunea unei promoții cu numărătoare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira compară o procedură cu supravegherea. Întreabă șansa de ameliorare, complicațiile și recuperarea înainte de alegerea potrivită îngrijirii familiei."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben vede o promisiune de reducere mare a riscului. Cere riscurile absolute și perioada relevantă înainte să decidă dacă beneficiul contează pentru el."
+    }
+  ],
+  "questions": [
+    "Ce se întâmplă cu fiecare opțiune, inclusiv supravegherea?",
+    "Ce rezultate și poveri contează cel mai mult pentru mine?",
+    "Cât timp pot decide în siguranță?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Il sistema linfatico",
+  "intro": "Il sistema linfatico è una rete di vasi, linfonodi e organi che drena il liquido dai tessuti, sostiene il sistema immunitario e aiuta ad assorbire i grassi dall'intestino. Quando funziona bene, quasi non lo si nota. Ghiandole gonfie, problemi dei linfonodi e linfedema mostrano quanto sia importante.",
+  "sections": [
+    {
+      "heading": "Linfa e vasi linfatici",
+      "paragraphs": [
+        "Dai vasi sanguigni più piccoli fuoriesce continuamente liquido nei tessuti. La maggior parte viene riassorbita, ma il resto entra nei vasi linfatici come linfa. I vasi linfatici la portano verso il collo, dove ritorna nel sangue. Il movimento dei muscoli, la respirazione e le valvole nei vasi muovono la linfa, ed è per questo che l'esercizio aiuta."
+      ]
+    },
+    {
+      "heading": "Linfonodi",
+      "paragraphs": [
+        "I linfonodi sono piccoli filtri a forma di fagiolo lungo i vasi, in gruppi a collo, ascelle, inguine e altrove nel corpo. Contengono cellule immunitarie che rilevano e combattono i germi. Quando hai un'infezione, i linfonodi vicini possono gonfiarsi e diventare dolenti mentre producono più cellule immunitarie. Anche il cancro può diffondersi attraverso i linfonodi."
+      ]
+    },
+    {
+      "heading": "Organi linfatici",
+      "paragraphs": [
+        "La milza filtra il sangue e conserva le cellule immunitarie, le tonsille proteggono la gola, il timo fa maturare i linfociti T nell'infanzia e il midollo osseo produce le cellule del sangue. Il tessuto linfatico dell'intestino gestisce i germi del cibo. La linfa trasporta anche i grassi assorbiti dall'intestino."
+      ]
+    },
+    {
+      "heading": "Problemi comuni",
+      "paragraphs": [
+        "I linfonodi ingrossati riflettono più spesso un'infezione innocua e si risolvono in alcune settimane. I linfonodi duri, indolori, in crescita, che persistono oltre alcune settimane o accompagnati da febbre, sudorazioni notturne o perdita di peso vanno controllati. Il linfedema è un gonfiore persistente, di solito di un braccio o di una gamba, quando il drenaggio linfatico è compromesso, per esempio dopo un intervento per tumore o radioterapia, infezione o condizioni ereditarie. La linfangite, una striscia rossa con febbre, è un'infezione che si diffonde lungo i vasi e richiede un trattamento tempestivo. L'avvelenamento del sangue, o sepsi, è una reazione diversa e pericolosa per la vita a un'infezione che richiede cure d'emergenza."
+      ]
+    },
+    {
+      "heading": "Prendersene cura",
+      "paragraphs": [
+        "Resta attivo, mantieni un peso sano ed evita lesioni e infezioni della pelle di un arto a rischio. Chi ha un linfedema trae beneficio da compressione, cura della pelle, esercizio e terapia linfatica specializzata."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Controllare un linfonodo gonfio",
+      "text": "Immagina di sentire un nodulo dolente al collo durante un raffreddore. Potresti osservarlo per due settimane e andare dal medico se persiste o se ti senti male."
+    },
+    {
+      "title": "Proteggere un braccio",
+      "text": "Supponi di aver subito l'asportazione di linfonodi sotto l'ascella. Potresti proteggere la pelle da tagli e scottature e chiedere consigli su esercizio e compressione."
+    }
+  ],
+  "questions": [
+    "Questo linfonodo ingrossato è innocuo o servono esami?",
+    "Come posso gestire il linfedema e prevenire le infezioni?",
+    "Quali sintomi significano che devo cercare cure urgenti?"
+  ]
+}

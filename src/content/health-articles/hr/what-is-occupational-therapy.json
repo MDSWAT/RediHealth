@@ -1,0 +1,51 @@
+{
+  "title": "Što je radna terapija?",
+  "intro": "Radna terapija pomaže ljudima svih dobi u svakodnevnim aktivnostima koje su im važne, kao što su odijevanje, kuhanje, rad, učenje i igra, kada bolest, ozljeda, invaliditet ili starenje to otežavaju. Radni terapeuti promatraju osobu, aktivnost i okolinu kako bi pronašli praktična rješenja.",
+  "sections": [
+    {
+      "heading": "Što rade radni terapeuti",
+      "paragraphs": [
+        "Procjenjuju što osoba može, a što ne može, i s njom rade na ciljevima. Uče nove načine obavljanja zadataka, preporučuju pomagala i prilagođavaju dom ili radno mjesto, grade snagu i vještine vježbama i uvježbavanjem te savjetuju njegovatelje. Naglasak je na neovisnosti, sudjelovanju i kvaliteti života."
+      ]
+    },
+    {
+      "heading": "Kome pomaže",
+      "paragraphs": [
+        "Osobama koje su imale moždani udar ili ozljedu, onima s artritisom, multiplom sklerozom, Parkinsonovom bolešću ili demencijom, djeci s razvojnim problemima ili problemima koordinacije, osobama s problemima mentalnog zdravlja i starijim osobama izloženima riziku od pada. Koristi se u bolnicama, rehabilitacijskim centrima, školama, na radnim mjestima i kod kuće."
+      ]
+    },
+    {
+      "heading": "Primjeri liječenja",
+      "paragraphs": [
+        "Uvježbavanje odijevanja jednom rukom nakon moždanog udara, zaštita zglobova i posebni alati za osobe s artritisom, terapija ruke nakon operacije, senzorne aktivnosti i aktivnosti fine motorike za djecu, rutine i strategije za osobe s teškoćama pamćenja te promjene u domu kao što su rukohvati ili stolica za stepenice. Terapeuti mogu savjetovati i o povratku na posao."
+      ]
+    },
+    {
+      "heading": "Dobivanje terapije",
+      "paragraphs": [
+        "Može je propisati liječnik, a u mnogim državama zdravstveno osiguranje je pokriva uz recept. Seanse mogu biti individualne ili u grupama, u ordinaciji, klinici ili kod kuće. Terapija zahtijeva vježbanje izvan seansi. Pitajte o broju seansi, ciljevima i kako će se procjenjivati napredak."
+      ]
+    },
+    {
+      "heading": "Da bi djelovala",
+      "paragraphs": [
+        "Budite jasni što vam je najvažnije i postavite realne ciljeve. Uključite obitelj i njegovatelje. Prijavite poteškoće kako bi se plan mogao prilagoditi te pitajte o pomagalima, financiranju i lokalnim službama potpore."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Postavljanje cilja",
+      "text": "Zamislite da vam je teško kuhati nakon ozljede ramena. Mogli biste reći terapeutu i vježbati kuhinjske zadatke uz prilagođene alate."
+    },
+    {
+      "title": "Prilagodba doma",
+      "text": "Pretpostavite da se bojite padova. Mogli biste zatražiti posjet domu radi provjere osvjetljenja, tepiha i kupaonskih pomagala."
+    }
+  ],
+  "questions": [
+    "Koje ciljeve trebamo postaviti za moju terapiju?",
+    "Koja bi pomagala ili promjene u domu pomogle?",
+    "Pokriva li moje osiguranje radnu terapiju?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Tulburările de ritm cardiac: identificarea tiparului",
+  "intro": "Aritmiile sunt bătăi neobișnuit de rapide, lente ori neregulate. Unele bătăi suplimentare sunt inofensive, altele necesită tratament urgent. Senzația de palpitații singură nu identifică ritmul.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Notați debutul brusc, durata și legătura cu efortul, leșinul ori boala. Cofeina, alcoolul, medicamentele și bolile cardiace sau tiroidiene pot contribui, dar nu fiecare episod are factor evident."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Electrocardiograma înregistrează electricitatea; episoadele intermitente pot necesita monitorizare portabilă. Analizele și imagistica se aleg după constatări. Traseul normal dintre episoade nu exclude întotdeauna aritmia. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Tratamentul poate fi supraveghere, medicamente, ablație, stimulator ori defibrilator după diagnostic. Unele ritmuri cer evaluarea riscului de accident vascular și anticoagulare; pulsul mai lent nu elimină riscul cheagului. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Păstrați jurnalul și luați tratamentul convenit. Discutați condusul, munca și sportul dacă leșinați. Alertele dispozitivelor pot orienta, dar nu înlocuiesc diagnosticul; nu luați medicamentele cardiace ale altcuiva. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Palpitațiile cu durere toracică, dispnee severă, leșin ori colaps cer ajutor urgent de urgență. Pentru simptome noi persistente fără acestea cereți sfat prompt, fără a aștepta nelimitat înregistrarea dispozitivului."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira are episoade scurte ratate de electrocardiograma cabinetului. Medicul organizează monitorizare, fără să considere traseul scurt normal dovadă de excludere."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben se simte mai bine după controlul frecvenței. Întreabă dacă prevenția accidentului vascular rămâne necesară în loc să o oprească singur."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

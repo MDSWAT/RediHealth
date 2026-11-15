@@ -1,0 +1,51 @@
+{
+  "title": "Găsirea informațiilor medicale de încredere online",
+  "intro": "Căutarea online poate pregăti întrebări, dar poate aduce reclame, afirmații înșelătoare și sfaturi nepotrivite situației. Începeți cu o întrebare clară și păstrați la vedere sursa și limitele. Ghidul descrie o căutare practică, nu o metodă de autodiagnostic.",
+  "sections": [
+    {
+      "heading": "Definiți decizia înainte de căutare",
+      "paragraphs": [
+        "Notați ce vreți să înțelegeți: diagnosticul discutat, alternativele, recuperarea sau un rezultat. Folosiți termenul medical primit la consultație. Separați învățarea generală de întrebările pentru medic. Simptomele urgente necesită îngrijire potrivită, nu prelungirea căutării."
+      ]
+    },
+    {
+      "heading": "Identificați responsabilitatea și interesele comerciale",
+      "paragraphs": [
+        "Căutați autorii, calificările, organizația responsabilă, finanțarea și contactul. Pagina informează sau vinde? Clasamentul sponsorizat, mărturiile și grafica profesională nu sunt verificare independentă. Linkul comercial nu dovedește că totul este fals, dar cere examinarea dovezilor."
+      ]
+    },
+    {
+      "heading": "Urmăriți afirmațiile până la dovezi utile",
+      "paragraphs": [
+        "Citiți explicația, nu doar titlul ori rezumatul căutării. Căutați comparații relevante, rezultate importante, efecte nocive și incertitudine. Referințele ajută dacă susțin afirmația. Verificați publicarea, revizuirea și dacă persoanele și serviciile descrise corespund situației dumneavoastră."
+      ]
+    },
+    {
+      "heading": "Tratați prudent poveștile și răspunsurile automate",
+      "paragraphs": [
+        "Forumurile arată experiențe și întrebări practice, dar nu stabilesc sigur frecvența succesului. Relatările anonime pot fi incomplete ori publicitare. Răspunsul automat poate suna sigur, omițând precizări sau inventând surse. Verificați afirmațiile importante și nu introduceți date medicale ori identificatoare inutile în servicii necunoscute."
+      ]
+    },
+    {
+      "heading": "Aduceți o întrebare precisă la consultație",
+      "paragraphs": [
+        "Salvați titlul, data și pasajul de discutat. Comparați organizații independente reputabile, nu multe pagini cu aceeași afirmație. Întrebați aplicabilitatea la medicamentele și bolile proprii. Nu opriți tratamentul din cauza unei postări. Dacă apare anxietate, opriți căutarea și discutați cu un profesionist."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: reclamă la supliment",
+      "text": "Mira găsește promisiune de vindecare lângă cumpărare. Verifică comparația și riscurile și, fără dovezi clare, întreabă farmacistul în loc să cumpere imediat."
+    },
+    {
+      "title": "Exemplu ipotetic: recuperare contradictorie",
+      "text": "Arben găsește termene diferite. Notează procedurile descrise și întreabă echipa care i se aplică, fără media unor sfaturi incompatibile."
+    }
+  ],
+  "questions": [
+    "Cine a scris și finanțat informația?",
+    "Dovezile susțin beneficii, riscuri și alternative pentru oameni ca mine?",
+    "Ce întrebări cer sfat individual înainte să acționez?"
+  ]
+}

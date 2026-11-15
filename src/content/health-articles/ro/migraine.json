@@ -1,0 +1,51 @@
+{
+  "title": "Migrena",
+  "intro": "Migrena este o afecțiune neurologică frecventă, care provoacă crize recurente de durere de cap moderată până la severă, adesea cu greață și sensibilitate la lumină și sunet. Crizele durează de la ore la zile. Deși nu poate fi vindecată, medicamentele, măsurile de stil de viață și cunoașterea factorilor declanșatori pot reduce cât de des și cât de sever vă afectează.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Durerea de cap din migrenă este de obicei pe o parte, pulsatilă, agravată de mișcare. Multe persoane au greață, vărsături și evită lumina, zgomotul și mirosurile. Unele au o aură înainte: tulburări vizuale precum linii în zigzag, furnicături sau dificultăți de vorbire care durează până la o oră. O fază de avertizare cu căscat, schimbări de dispoziție sau pofte alimentare poate precede crizele."
+      ]
+    },
+    {
+      "heading": "Cauze și factori declanșatori",
+      "paragraphs": [
+        "Migrena implică schimbări ale activității nervoase a creierului și ale vaselor de sânge, iar o predispoziție este moștenită în familii. Factorii declanșatori posibili includ stresul, somnul neregulat, sărirea meselor, schimbările hormonale, anumite alimente, alcoolul, luminile puternice și schimbările vremii. Factorii declanșatori variază, iar un jurnal al durerilor de cap ajută la identificarea celor ai dumneavoastră."
+      ]
+    },
+    {
+      "heading": "Tratarea unei crize",
+      "paragraphs": [
+        "Luați medicamentul devreme în criză. Calmantele simple precum ibuprofenul, aspirina sau paracetamolul pot funcționa în crizele ușoare până la moderate, uneori împreună cu un medicament contra grețurilor. Triptanii acționează specific asupra migrenei și se folosesc în crizele mai severe. Odihna într-o cameră întunecată și liniștită ajută. Folosirea calmantelor mai mult de aproximativ zece zile pe lună poate duce la durere de cap prin abuz de medicamente."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Tratamentul preventiv se ia în considerare la crize frecvente sau invalidante. Opțiunile includ anumite medicamente pentru tensiune, antiepileptice, antidepresive și anticorpi mai noi împotriva unei molecule numite CGRP, administrați prin injecție. Abordările fără medicamente includ somnul regulat, exercițiile, relaxarea, biofeedbackul și acupunctura, care ajută unele persoane."
+      ]
+    },
+    {
+      "heading": "Când să cereți ajutor urgent",
+      "paragraphs": [
+        "Cereți imediat îngrijiri pentru o durere de cap bruscă și severă, diferită de orice altă durere de până atunci, durere de cap cu febră și ceafă înțepenită, confuzie, slăbiciune, dificultăți de vorbire, pierderea vederii sau o durere de cap după o lovitură la cap. Durerile de cap noi după vârsta de cincizeci de ani necesită, de asemenea, evaluare. Migrena cu aură crește ușor riscul de accident vascular cerebral, mai ales la fumat și la unele contraceptive hormonale, așa că discutați despre aceasta cu medicul."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ținerea unui jurnal",
+      "text": "Imaginați-vă că aveți două crize pe lună. Ați putea nota datele, alimentele, somnul, stresul, ciclul menstrual și tratamentul și ați putea împărtăși tiparul cu medicul."
+    },
+    {
+      "title": "Tratarea timpurie",
+      "text": "Presupuneți că crizele dumneavoastră încep adesea cu aură vizuală. Ați putea ține la îndemână medicamentul prescris și l-ați putea lua la primul semn de durere de cap, conform recomandărilor."
+    }
+  ],
+  "questions": [
+    "Ce medicament este cel mai potrivit pentru crizele mele și când trebuie să-l iau?",
+    "M-ar ajuta tratamentul preventiv și care sunt efectele secundare?",
+    "Ce simptome înseamnă că am nevoie de o evaluare urgentă?"
+  ]
+}

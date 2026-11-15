@@ -1,0 +1,51 @@
+{
+  "title": "Testele prenatale",
+  "intro": "Testele prenatale examinează sănătatea și dezvoltarea bebelușului nenăscut. Includ ecografiile de rutină și teste opționale pentru afecțiuni cromozomiale precum sindromul Down. Decizia de a le face este una personală, iar consilierea înainte și după testare vă ajută să înțelegeți ce pot și ce nu pot spune rezultatele.",
+  "sections": [
+    {
+      "heading": "Tipuri de teste",
+      "paragraphs": [
+        "Testele de screening estimează șansa ca un bebeluș să aibă o afecțiune, dar nu oferă un răspuns sigur. Includ măsurători ecografice, analize de sânge ale mamei și o analiză de sânge care examinează fragmente din materialul genetic al bebelușului găsite în sângele mamei. Testele de diagnostic, precum biopsia de vilozități coriale și amniocenteza, examinează celulele bebelușului și oferă un răspuns clar, dar implică un risc mic de pierdere a sarcinii."
+      ]
+    },
+    {
+      "heading": "Ce înseamnă rezultatele",
+      "paragraphs": [
+        "Un rezultat de screening este exprimat ca probabilitate, nu ca diagnostic. Un rezultat cu risc mare nu înseamnă că bebelușul este afectat, iar unul cu risc mic nu exclude complet o afecțiune. Testele pot depista și constatări incerte, care provoacă îngrijorare. Ecografia poate arăta diferențe structurale ale organelor bebelușului, deși nu toate afecțiunile sunt vizibile."
+      ]
+    },
+    {
+      "heading": "Decizia de a testa sau nu",
+      "paragraphs": [
+        "Unii părinți doresc informații pentru a se pregăti, pentru a planifica nașterea într-un centru specializat sau pentru a lua în considerare un tratament înainte sau după naștere. Alții preferă să nu testeze. Gândiți-vă în prealabil ce ați face cu rezultatul, cum v-ați simți față de incertitudine și ce valori contează pentru dumneavoastră. Puteți refuza orice test."
+      ]
+    },
+    {
+      "heading": "Sprijin și consiliere",
+      "paragraphs": [
+        "Consilierea de către medici, moașe și servicii independente poate explica opțiunile și consecințele. Dacă un test arată o posibilă afecțiune, trebuie să primiți timp și sprijin pentru a decide pașii următori, inclusiv teste suplimentare, pregătirea pentru un copil cu nevoi speciale sau, în funcție de lege, luarea în considerare a întreruperii sarcinii. Grupurile de sprijin și specialiștii oferă informații despre viața cu diferite afecțiuni."
+      ]
+    },
+    {
+      "heading": "Ecografiile de rutină și alegerile de zi cu zi",
+      "paragraphs": [
+        "Ecografiile de rutină din timpul sarcinii verifică creșterea, poziția placentei și organele bebelușului și sunt oferite tuturor. Fac parte din îngrijirea prenatală și diferă de testele pentru afecțiuni cromozomiale. Întrebați ce urmărește fiecare ecografie, ca să știți la ce să vă așteptați de la rezultate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Cântărirea unei decizii",
+      "text": "Imaginați-vă că vi se oferă o analiză de sânge pentru sindromul Down. Ați putea discuta ce ar schimba rezultatul pentru dumneavoastră, ați putea întreba despre acuratețe și alarme false și ați putea decide împreună cu partenerul dacă o faceți."
+    },
+    {
+      "title": "După un rezultat cu risc mare",
+      "text": "Presupuneți că un rezultat de screening arată o șansă crescută. Ați putea cere consiliere, ați putea întreba despre riscurile și beneficiile unui test de diagnostic și v-ați putea lua timp înainte de a decide."
+    }
+  ],
+  "questions": [
+    "Ce teste sunt disponibile și cât de precise sunt?",
+    "Care sunt riscurile testelor de diagnostic precum amniocenteza?",
+    "Unde pot găsi consiliere independentă înainte și după testare?"
+  ]
+}

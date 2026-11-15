@@ -1,0 +1,51 @@
+{
+  "title": "Parathyroid glands: controlling blood calcium",
+  "intro": "The parathyroid glands are small glands usually behind the thyroid. They make parathyroid hormone, which helps control calcium in blood. Their function is different from the thyroid’s, despite the similar name and nearby location.",
+  "sections": [
+    {
+      "heading": "Why calcium matters",
+      "paragraphs": [
+        "Calcium is needed for nerves, muscles and clotting as well as bones. The body keeps blood calcium within a narrow range. A blood result reflects regulation and is not simply a measure of how much calcium someone ate yesterday."
+      ]
+    },
+    {
+      "heading": "Hormone feedback",
+      "paragraphs": [
+        "When calcium falls, parathyroid hormone helps conserve calcium in the kidneys, affects release from bone and supports active vitamin D. This helps the intestine absorb calcium. The system also interacts with phosphate and kidney function."
+      ]
+    },
+    {
+      "heading": "When the balance changes",
+      "paragraphs": [
+        "Excess or deficient hormone can disturb calcium and affect bones, kidneys or nerves. High hormone may result from a gland problem or a response to another condition, such as kidney disease or vitamin D deficiency; the same number can have different meanings."
+      ]
+    },
+    {
+      "heading": "Interpreting tests",
+      "paragraphs": [
+        "Clinicians interpret calcium together with parathyroid hormone, kidney function and other relevant tests. Albumin or direct ionized calcium measurement may matter. Imaging can help locate a gland when appropriate but does not replace biochemical diagnosis."
+      ]
+    },
+    {
+      "heading": "Symptoms and safety",
+      "paragraphs": [
+        "Persistent stones, fractures or abnormal calcium need review. Tingling around the mouth or muscle spasms after neck surgery need prompt advice under the surgical plan. Severe spasms, seizures, confusion or breathing difficulty need urgent care. Do not self-treat every symptom with large calcium doses. Before a consultation, note when a symptom began, what makes it better or worse, and how it affects ordinary activities. Bring previous reports if available. Ask the professional to connect the explanation to your own findings rather than assuming that a general description establishes a diagnosis."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira learns that a high hormone result with kidney disease is not automatically a tumor; she asks how the accompanying calcium and kidney tests change interpretation."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben develops mouth tingling after thyroid surgery and contacts the team promptly instead of assuming it is ordinary anxiety or taking random supplement doses."
+    }
+  ],
+  "questions": [
+    "Which steps would be clearer with a diagram?",
+    "What does this explanation show, and what can it not predict?",
+    "Would my specific concern need professional assessment?"
+  ]
+}

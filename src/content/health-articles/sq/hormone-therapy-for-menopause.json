@@ -1,0 +1,51 @@
+{
+  "title": "Terapia hormonale e menopauzës: vendim individual",
+  "intro": "Terapia hormonale lehtëson afshet, djersitjet e natës dhe disa simptoma të lidhura. Është mundësi, jo detyrim. Përfitimet e rreziqet varen nga mosha, historia, formulimi e rruga dhe kërkojnë diskutim personal.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Terapia sistemike vepron në trup; estrogjeni vaginal me dozë të ulët trajton kryesisht tharjen e shqetësimin lokal me profil tjetër rreziku. Personi me mitër zakonisht do mbrojtje endometriale me estrogjen sistemik."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Vlerësimi përfshin simptomat, gjakosjen e pashpjeguar, gjirin, mpiksjet, mëlçinë dhe ilaçet. Testet hormonale nuk duhen gjithmonë në menopauzë tipike. Diskutoni veçmas menopauzën e hershme me qëllime të ndryshme. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Ka tableta, ngjitëse ose xhel me progestogjen kur duhet dhe mundësi jo hormonale. Estrogjeni oral e transdermal kanë rreziqe të ndryshme mpiksjeje. Preparatet e përziera ose bimore nuk janë automatikisht më të sigurta. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Përcaktoni objektivat dhe kontrolloni rregullisht dozën, efektet dhe përfitimin. Nuk ka datë ndalimi për të gjithë. Terapia nuk është kontracepsion; diskutoni parandalimin e shtatzënisë kur ende nevojitet. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Gjakosja e pashpjeguar vlerësohet përpara, e reja ose e vazhdueshmja gjatë terapisë raportohet. Dhimbja e gjoksit, frymëmarrja e rëndë, këmba e ënjtur e dhimbshme ose shenjat e goditjes janë urgjencë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka afshe që prishin gjumin dhe pyet për rrugë e alternativa sipas rrezikut të saj, jo recetës së shoqes."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ndihmon partneren me ditarin. Ajo diskuton gjakosjen e vazhdueshme pa quajtur çdo ndryshim menopauzë normale."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "title": "HPV infection: how it spreads and what it can cause",
+  "intro": "Human papillomaviruses are a large group of viruses that infect skin and mucous membranes. Most people are infected at some point in their lives without noticing. Usually the immune system clears the virus, but some types can cause warts or, after many years, cancer. Knowing how HPV spreads and how to protect yourself helps you stay informed without unnecessary fear.",
+  "sections": [
+    {
+      "heading": "How HPV spreads",
+      "paragraphs": [
+        "Genital HPV types are transmitted through close skin or mucous membrane contact, most commonly during vaginal, anal or oral sex. Condoms lower the risk but do not eliminate it, because the virus can infect skin not covered by a condom. Warts on hands and feet usually spread by contact with contaminated surfaces or skin.",
+        "Because infections are often silent, people can pass on the virus without knowing. Having a long-standing partner does not mean that the infection was recent."
+      ]
+    },
+    {
+      "heading": "What infections can cause",
+      "paragraphs": [
+        "Most HPV infections cause no symptoms and clear within one or two years. Some low-risk types cause genital warts, which are usually harmless but can be bothersome and recur. High-risk types can cause cell changes in the cervix, anus, vulva, vagina, penis or throat, which may develop into cancer after many years."
+      ]
+    },
+    {
+      "heading": "Detection",
+      "paragraphs": [
+        "Cervical screening uses cell tests, HPV tests or both to find infection and early changes in the cervix. There is no routine test for HPV in men. Warts are usually diagnosed by looking at them, and suspicious areas can be examined with a magnifying instrument or a small tissue sample."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "There is no drug that cures the virus itself. Genital warts can be treated with creams, freezing, laser or minor surgery, although they may return. Precancerous cell changes in the cervix are treated by removing the affected tissue.",
+        "Treatment of HPV-related cancers depends on the location and stage and may include surgery, radiation and medicines."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Vaccination before sexual activity begins is the most effective prevention. Regular screening, condoms, and not smoking, which weakens the body's ability to clear HPV, further lower the risk. A positive HPV test is not a diagnosis of cancer, but it means follow-up is needed according to your doctor's advice.",
+        "Many people feel anxious or ashamed after an HPV result. Openly talking about it with a health professional and, if you wish, with a partner, can reduce worries."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Understanding a test result",
+      "text": "Imagine your screening test finds a high-risk HPV type but no cell changes. You could ask when the test should be repeated, what the risk of progression is, and what lifestyle steps like quitting smoking would help."
+    },
+    {
+      "title": "Talking with a partner",
+      "text": "Suppose you learn you have genital warts. You might prepare to explain that HPV is very common, that warts can be treated, and ask your clinician how to reduce the chance of passing them on."
+    }
+  ],
+  "questions": [
+    "What does my HPV result mean, and when should I be tested again?",
+    "Which treatment options exist for warts or cell changes, and what are the risks?",
+    "Would vaccination still benefit me?"
+  ]
+}

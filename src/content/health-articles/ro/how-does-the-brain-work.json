@@ -1,0 +1,52 @@
+{
+  "title": "Cum coordonează creierul corpul",
+  "intro": "Creierul combină senzațiile, mișcarea, memoria și emoțiile și reglează funcțiile vitale. Regiunile au specializări, dar colaborează în rețele; o imagine simplă nu prezice abilitățile, personalitatea sau recuperarea.",
+  "sections": [
+    {
+      "heading": "Semnale și susținere",
+      "paragraphs": [
+        "Neuronii schimbă mesaje electrice și chimice. Celulele de susținere păstrează mediul potrivit. Sângele aduce oxigen și energie; întreruperea poate leza rapid țesutul."
+      ]
+    },
+    {
+      "heading": "Regiuni conectate",
+      "paragraphs": [
+        "Cortexul ajută percepția, limbajul și acțiunea planificată. Conexiunile leagă emisferele; ideea oamenilor complet dominanți de emisfera stângă sau dreaptă simplifică excesiv."
+      ]
+    },
+    {
+      "heading": "Coordonare și supraviețuire",
+      "paragraphs": [
+        "Cerebelul ajută sincronizarea și echilibrul. Trunchiul cerebral susține respirația și vigilența; hipotalamusul leagă temperatura, apetitul și controlul hormonal."
+      ]
+    },
+    {
+      "heading": "Protecție și învățare",
+      "paragraphs": [
+        "Craniul, membranele și lichidul protejează fără să prevină orice rană. Exersarea modifică rețelele, dar recuperarea variază; antrenamentul nu garantează revenirea funcției pierdute."
+      ]
+    },
+    {
+      "heading": "Urgențe",
+      "paragraphs": [
+        "Slăbiciunea bruscă a feței sau brațului, vorbirea dificilă, durerea de cap severă neobișnuită, confuzia nouă sau pierderea conștienței cer evaluare urgentă. Nu așteptați explicația unui test online.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira exersează o sarcină nouă în sesiuni suportabile. Înțelege că învățarea implică sisteme conectate, nu o zonă nefolosită."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben nu mai vorbește clar brusc. O rudă cere ajutor urgent chiar dacă el încă poate merge."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

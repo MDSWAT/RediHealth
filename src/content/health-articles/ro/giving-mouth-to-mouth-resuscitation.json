@@ -1,0 +1,51 @@
+{
+  "title": "Insuflațiile în resuscitarea adultului",
+  "intro": "Ghidul privește adultul inconștient care nu respiră normal. Sunați imediat la 112 pentru persoana nereactivă, puneți telefonul pe difuzor și urmați dispecerul. Nu întârziați resuscitarea pentru lectură; pregătirea practică oferă încredere.",
+  "sections": [
+    {
+      "heading": "Recunoașteți urgența și sunați",
+      "paragraphs": [
+        "Verificați siguranța, vorbiți persoanei și evaluați reacția. În timp ce este chemat ajutorul, verificați respirația. Gâfâielile rare nu sunt respirație normală. Dacă nu reacționează și respiră anormal, începeți resuscitarea și cereți un defibrilator automat."
+      ]
+    },
+    {
+      "heading": "Începeți compresiile adultului",
+      "paragraphs": [
+        "Pentru compresiile adultului puneți podul palmei central pe piept și cealaltă mână deasupra. Țineți brațele drepte, apăsați 5–6 cm cu 100–120 compresii pe minut și permiteți revenirea completă, cu întreruperi minime."
+      ]
+    },
+    {
+      "heading": "Faceți insuflații dacă sunteți instruit",
+      "paragraphs": [
+        "Dacă sunteți instruit și capabil, alternați 30 compresii cu 2 insuflații. Deschideți calea aeriană prin înclinarea capului și ridicarea bărbiei, pensați nasul, etanșați gura și suflați blând aproximativ 1 secundă, doar până se ridică pieptul. Lăsați-l să coboare înaintea următoarei insuflații."
+      ]
+    },
+    {
+      "heading": "Reduceți întreruperile",
+      "paragraphs": [
+        "Țineți pauza pentru insuflații sub 10 secunde. Dacă nu reușesc, nu prelungiți încercările: reveniți la compresii și urmați dispecerul. Dacă nu puteți ori nu doriți insuflații, continuați compresiile; intervenția promptă este mai bună decât așteptarea."
+      ]
+    },
+    {
+      "heading": "Folosiți defibrilatorul și continuați",
+      "paragraphs": [
+        "Aplicați defibrilatorul imediat disponibil și urmați instrucțiunile; nimeni nu atinge persoana în analiză sau șoc. Continuați până preiau profesioniștii, revine respirația normală, locul devine nesigur ori nu mai puteți. Copiii, sugarii și înecul necesită instrucțiuni adaptate, mai ales pentru insuflații."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira sună pe difuzor în timp ce un ajutor aduce defibrilatorul. Urmează dispecerul fără să piardă timp căutând pulsul."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben nu poate face insuflații. Continuă compresiile după instrucțiuni în loc să oprească orice ajutor fiindcă respirația gură la gură nu este posibilă."
+    }
+  ],
+  "questions": [
+    "Unde pot exersa resuscitarea și defibrilatorul cu instructor?",
+    "Cum diferă instrucțiunile pentru copil sau înec?",
+    "Cum obțin sprijin după ajutorul dat într-o urgență?"
+  ]
+}

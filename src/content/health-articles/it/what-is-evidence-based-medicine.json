@@ -1,0 +1,51 @@
+{
+  "title": "Che cos'è la medicina basata sulle prove",
+  "intro": "La medicina basata sulle prove significa prendere decisioni sulla salute combinando la migliore ricerca disponibile, l'esperienza clinica del medico e i valori e le circostanze del paziente. Mira a garantire che i trattamenti siano scelti perché si è dimostrato che funzionano, non solo perché sono tradizionali o popolari.",
+  "sections": [
+    {
+      "heading": "Le tre parti",
+      "paragraphs": [
+        "La prima parte è la migliore ricerca attuale, come studi ben condotti e revisioni sistematiche. La seconda è la competenza clinica del medico, che sa come applicare i risultati ai singoli pazienti. La terza sono le preferenze, gli obiettivi e la situazione del paziente. Servono tutte e tre, perché le prove da sole non possono decidere che cosa è giusto per una persona."
+      ]
+    },
+    {
+      "heading": "Livelli di prova",
+      "paragraphs": [
+        "Non tutte le prove sono ugualmente affidabili. Le revisioni sistematiche di studi randomizzati sono in cima, seguite dai singoli studi randomizzati, poi dagli studi di coorte e caso-controllo e infine da casi clinici e opinioni di esperti. Le prove di qualità più alta hanno meno probabilità di essere alterate da caso o distorsioni. Le prove vanno giudicate anche per la pertinenza alla persona."
+      ]
+    },
+    {
+      "heading": "Come si usa",
+      "paragraphs": [
+        "Le linee guida riassumono le prove sulle condizioni per aiutare medici e pazienti a scegliere i trattamenti. Le prove aiutano a decidere se un esame è utile, quale farmaco funziona meglio e quali trattamenti vanno evitati. Mostrano anche dove non sappiamo abbastanza, così che serva ricerca."
+      ]
+    },
+    {
+      "heading": "Limiti e critiche",
+      "paragraphs": [
+        "Gli studi possono non includere persone come te, come anziani o chi ha più malattie. Le prove possono mancare o essere distorte da finanziamenti e risultati non pubblicati. Seguire le linee guida in modo meccanico può trascurare le esigenze individuali. Per questo le prove sono una base di discussione, non una regola."
+      ]
+    },
+    {
+      "heading": "Che cosa significa per te",
+      "paragraphs": [
+        "Puoi chiedere al medico che cosa dicono le prove su benefici e rischi, quanto sono grandi gli effetti e quali sono le alternative. Condividi apertamente le tue preferenze. Fai attenzione alle affermazioni basate solo su testimonianze o singoli studi e cerca fonti di informazione affidabili."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Chiedere delle prove",
+      "text": "Immagina che il medico ti proponga un nuovo trattamento. Potresti chiedere quanto funziona bene, quali sono i rischi e quanto siamo sicuri."
+    },
+    {
+      "title": "Giudicare un'affermazione",
+      "text": "Supponi che una pubblicità prometta una cura miracolosa basata su storie personali. Potresti cercare studi o revisioni che la mettano alla prova in modo corretto."
+    }
+  ],
+  "questions": [
+    "Quali prove sostengono questo trattamento e quanto sono solide?",
+    "La ricerca vale per una persona come me?",
+    "Quali sono le alternative, compreso non fare nulla?"
+  ]
+}

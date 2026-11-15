@@ -1,0 +1,51 @@
+{
+  "title": "Testet e funksionit të mushkërive: llojet e çfarë përfshijnë",
+  "intro": "Testet e funksionit të mushkërive masin sa mirë punojnë mushkëritë, përfshirë sa ajër mbajnë e sa shpejt lëviz ajri brenda e jashtë. Ndihmojnë të diagnostikohen astma, sëmundja kronike pengimtare e mushkërive e gjendje të tjera të mushkërive, e të monitorohet trajtimi. Shumica janë të shpejta, pa dhimbje e kërkojnë bashkëpunimin tuaj.",
+  "sections": [
+    {
+      "heading": "Spirometria",
+      "paragraphs": [
+        "Spirometria është testi më i zakonshëm. Merrni frymë plotësisht e pastaj fryni sa më fort e shpejt në një gojëz, me një kapëse në hundë. Mat sasinë totale të ajrit që mund ta nxirrni, të quajtur kapacitet vital i detyruar, e sa në sekondën e parë. Një raport i ulët sugjeron ngushtim të rrugëve të ajrit si në astmë ose sëmundjen kronike pengimtare të mushkërive."
+      ]
+    },
+    {
+      "heading": "Testet me bronkodilatues e provokimi",
+      "paragraphs": [
+        "Pas spirometrisë, thithni një bar lehtësues e e përsërisni testin. Një përmirësim i madh tregon astmë. Një test provokimi, me një substancë të thithur ose ushtrime, bëhet nën mbikëqyrje për të zbuluar nëse rrugët e ajrit reagojnë tepër. Matësit e rrjedhës së kulmit janë pajisje të thjeshta për monitorim në shtëpi."
+      ]
+    },
+    {
+      "heading": "Teste të tjera",
+      "paragraphs": [
+        "Pletizmografia e trupit përdor një kabinë të mbyllur për të matur vëllimin total të mushkërive. Një test difuzioni mat sa mirë lëviz oksigjeni nga mushkëritë në gjak duke marrë frymë një sasi të vogël gazi të padëmshëm. Pulsoksimetria përdor një sensor gishti për të matur oksigjenin në gjak, e analizat e gazeve të gjakut masin nivelet e oksigjenit e dioksidit të karbonit. Një test ecjeje mat tolerancën ndaj ushtrimeve."
+      ]
+    },
+    {
+      "heading": "Përgatitja",
+      "paragraphs": [
+        "Shmangni duhanin për disa orë, vaktet e mëdha e ushtrimet e forta para testit. Mund t'ju kërkohet të ndaloni inhalatorët më parë, prandaj pyesni paraprakisht. Vishni rroba të lirshme. Tregojini stafit për infeksione të fundit, dhimbje gjoksi, kirurgji të syve ose probleme të zemrës, pasi disa teste mund të duhet të shtyhen."
+      ]
+    },
+    {
+      "heading": "Rezultatet",
+      "paragraphs": [
+        "Rezultatet krahasohen me vlerat e pritura për moshën, gjatësinë, gjininë e etninë tuaj. Mjeku i interpreton me simptomat e teste të tjera. Pyesni çfarë tregojnë rezultatet, çfarë trajtimi nevojitet e sa shpesh duhet përsëritur testet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Bërja mirë e spirometrisë",
+      "text": "Imagjinoni që ju kërkohet të frynit fort. Mund të merrni një frymë të plotë, t'i mbyllni buzët e të vazhdoni të frynit deri sa t'ju thonë të ndaloni."
+    },
+    {
+      "title": "Përdorimi i rrjedhës së kulmit në shtëpi",
+      "text": "Supozoni që keni astmë. Mund ta regjistroni rrjedhën e kulmit në mëngjes e në mbrëmje e ta sillni ditarin te mjeku."
+    }
+  ],
+  "questions": [
+    "Cilat teste të funksionit të mushkërive më duhen?",
+    "A duhet t'i ndaloj inhalatorët para testimit?",
+    "Çfarë do të thonë rezultatet për trajtimin tim?"
+  ]
+}

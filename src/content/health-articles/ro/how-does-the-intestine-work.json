@@ -1,0 +1,52 @@
+{
+  "title": "Cum digeră și absoarbe intestinul",
+  "intro": "Intestinul continuă digestia după stomac, absoarbe nutrienți și apă și deplasează reziduurile spre anus. Mucoasa, mușchii, nervii și microbii colaborează. Simptomele pot avea cauze multiple, inclusiv în afara digestiei.",
+  "sections": [
+    {
+      "heading": "Intestinul subțire",
+      "paragraphs": [
+        "Enzimele și bila se amestecă cu hrana. Pliurile și proiecțiile mici măresc suprafața de absorbție; nutrienții intră în sânge sau limfă, nu cad pur și simplu prin intestin."
+      ]
+    },
+    {
+      "heading": "Intestinul gros",
+      "paragraphs": [
+        "Colonul absoarbe apa și sărurile rămase și formează scaunul. Bacteriile procesează o parte din material. Aspectul scaunului singur nu identifică întregul microbiom sau boala."
+      ]
+    },
+    {
+      "heading": "Mișcare",
+      "paragraphs": [
+        "Contracțiile coordonate deplasează conținutul. Nervii locali și creierul influențează mișcarea; stresul poate modifica simptomele fără să le facă imaginare sau să excludă boala fizică."
+      ]
+    },
+    {
+      "heading": "Sprijin zilnic",
+      "paragraphs": [
+        "Mesele regulate, lichidele potrivite și fibrele ajustate treptat pot ajuta tranzitul. Nevoile diferă după boală sau operație; evitați curele repetate și excluderile drastice."
+      ]
+    },
+    {
+      "heading": "Evaluare",
+      "paragraphs": [
+        "Schimbarea persistentă, slăbirea neexplicată sau sângele cer consult. Durerea severă în agravare, abdomenul umflat cu vărsături ori imposibilitatea eliminării gazelor sau sângerarea mare cer urgență, nu laxative suplimentare.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira crește fibrele treptat după sfat și notează toleranța, fără dublare bruscă."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are abdomen umflat, vărsături și nu elimină gaze. Cere urgență în locul tratamentului repetat pentru constipație presupusă."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Ce tipuri de examinări oftalmologice există",
+  "intro": "Examinările oftalmologice verifică vederea și sănătatea ochiului. Ele depistează probleme precum miopia sau hipermetropia, glaucomul, cataracta, degenerescența maculară și boala oculară diabetică, adesea înainte de apariția simptomelor. Cele mai multe teste sunt rapide și nedureroase.",
+  "sections": [
+    {
+      "heading": "Testele de vedere",
+      "paragraphs": [
+        "Un test de acuitate vizuală vă cere să citiți litere sau simboluri de pe un tabel, de la o distanță stabilită. Un test de refracție, cu lentile, stabilește dacă aveți nevoie de ochelari și ce dioptrii. Testele pentru vederea culorilor, percepția profunzimii și câmpul vizual verifică alte aspecte ale vederii. Copiii au teste adaptate vârstei, precum imagini sau simboluri de potrivit."
+      ]
+    },
+    {
+      "heading": "Presiunea oculară și partea din față a ochiului",
+      "paragraphs": [
+        "Tonometria măsoară presiunea din interiorul ochiului, crescută în glaucom, fie cu un jet de aer, fie printr-o ușoară atingere a suprafeței după picături anestezice. O lampă cu fantă, un microscop cu lumină puternică, arată corneea, cristalinul și partea din față a ochiului și ajută la depistarea cataractei, a leziunilor și a inflamațiilor."
+      ]
+    },
+    {
+      "heading": "Privirea în partea din spate a ochiului",
+      "paragraphs": [
+        "Picăturile dilată pupila, astfel încât medicul să poată vedea retina, nervul optic și vasele de sânge cu un oftalmoscop sau o cameră. Aceasta arată semne de diabet, hipertensiune arterială, degenerescență maculară și glaucom. Vederea de aproape este încețoșată, iar sensibilitatea la lumină crește câteva ore, așa că nu conduceți după aceea."
+      ]
+    },
+    {
+      "heading": "Alte teste",
+      "paragraphs": [
+        "Tomografia în coerență optică scanează straturile retinei folosind lumină. Testele câmpului vizual găsesc puncte oarbe, importante pentru glaucom. Angiografia cu fluoresceină folosește un colorant pentru a vedea vasele de sânge. Ecografia poate examina ochiul când vederea este blocată. Se fac și teste pentru ochiul uscat și pentru producția de lacrimi."
+      ]
+    },
+    {
+      "heading": "Cât de des se fac controale",
+      "paragraphs": [
+        "Copiii au nevoie de controale dacă există îngrijorări sau conform programelor de screening. Adulții pot face controale la doi ani, iar persoanele de peste patruzeci de ani, cele cu diabet, cu antecedente familiale de glaucom sau cu alți factori de risc pot avea nevoie mai des. Cereți ajutor urgent pentru pierderea bruscă a vederii, fulgere de lumină, plutitoare noi sau durere în ochi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea",
+      "text": "Imaginați-vă că aveți o programare cu picături dilatatoare. Ați putea aduce ochelari de soare și ați putea aranja ca cineva să vă ducă acasă."
+    },
+    {
+      "title": "Cererea de îngrijire urgentă",
+      "text": "Presupuneți că vedeți brusc fulgere și multe plutitoare noi. Ați putea contacta un medic oftalmolog în aceeași zi."
+    }
+  ],
+  "questions": [
+    "Ce teste îmi trebuie pentru ochii mei?",
+    "Cât de des ar trebui să fiu examinat?",
+    "Ce simptome înseamnă că ar trebui să cer îngrijire urgentă?"
+  ]
+}

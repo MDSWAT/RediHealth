@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa fa il sangue",
+  "intro": "Il sangue è il sistema di trasporto e di difesa del corpo. Trasporta ossigeno, nutrienti, ormoni e scorie, aiuta a controllare la temperatura e combatte le infezioni. Un adulto ha circa cinque litri di sangue, che circola costantemente attraverso il cuore e i vasi sanguigni.",
+  "sections": [
+    {
+      "heading": "Che cosa contiene il sangue",
+      "paragraphs": [
+        "Il sangue è fatto di plasma, un liquido giallo pallido composto soprattutto di acqua con proteine, sali, zuccheri e grassi, e di cellule del sangue. I globuli rossi trasportano ossigeno, i globuli bianchi difendono dalle infezioni e le piastrine aiutano a fermare il sanguinamento. Tutte le cellule del sangue sono prodotte nel midollo osseo."
+      ]
+    },
+    {
+      "heading": "Globuli rossi e ossigeno",
+      "paragraphs": [
+        "I globuli rossi contengono emoglobina, una proteina contenente ferro che lega l'ossigeno nei polmoni e lo rilascia nei tessuti. Riportano ai polmoni anche un po' di anidride carbonica. Pochi globuli rossi o poca emoglobina causano anemia, con stanchezza, pallore e affanno. I globuli rossi vivono circa quattro mesi."
+      ]
+    },
+    {
+      "heading": "Difesa e coagulazione",
+      "paragraphs": [
+        "I globuli bianchi, compresi neutrofili e linfociti, trovano e distruggono germi e cellule anomale. Le piastrine si attaccano insieme nelle lesioni e, insieme alle proteine della coagulazione, formano un coagulo che ferma il sanguinamento. Troppa poca coagulazione causa problemi di sanguinamento e troppa può causare coaguli pericolosi."
+      ]
+    },
+    {
+      "heading": "Altri ruoli ed esami",
+      "paragraphs": [
+        "Il sangue distribuisce il calore, mantiene stabile l'equilibrio acido del corpo e trasporta ormoni e nutrienti come il glucosio. Gli esami del sangue misurano cellule, zuccheri, colesterolo, funzione di reni e fegato e molte altre cose, il che li rende uno degli strumenti medici più utili."
+      ]
+    },
+    {
+      "heading": "Mantenere sano il sangue",
+      "paragraphs": [
+        "Aiutano una dieta varia con ferro, vitamina B12 e folati, esercizio regolare, non fumare e limitare l'alcol. La donazione di sangue aiuta gli altri ed è sicura per la maggior parte degli adulti sani. Vai dal medico per lividi inspiegati, sanguinamenti, stanchezza costante o pallore."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Leggere un emocromo",
+      "text": "Immagina che il referto mostri un'emoglobina bassa. Potresti chiedere al medico della causa, come la carenza di ferro, e del trattamento."
+    },
+    {
+      "title": "Donare il sangue",
+      "text": "Supponi di voler donare. Potresti controllare le regole di idoneità, mangiare bene e bere acqua prima."
+    }
+  ],
+  "questions": [
+    "I risultati dei miei esami del sangue sono normali?",
+    "Che cosa potrebbe spiegare un emocromo basso o alto?",
+    "Ho bisogno di altri esami o di un trattamento?"
+  ]
+}

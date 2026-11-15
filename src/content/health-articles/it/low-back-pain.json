@@ -1,0 +1,51 @@
+{
+  "title": "Mal di schiena basso",
+  "intro": "Il mal di schiena basso è molto comune e di solito migliora in poche settimane, anche senza una diagnosi specifica. Restare attivi, usare semplici antidolorifici ed evitare il riposo a letto prolungato sono i pilastri della guarigione. Le cause gravi sono rare, ma certi segnali d'allarme significano che devi cercare presto aiuto medico.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "La maggior parte dei mal di schiena è aspecifica, cioè nasce da muscoli, legamenti, articolazioni o dischi senza un'unica causa strutturale chiara. I fattori che contribuiscono comprendono mancanza di attività, stress, sonno scarso, un lavoro fisicamente impegnativo, lunghi periodi seduti e fumo. Reperti agli esami come le protrusioni discali sono comuni nelle persone senza dolore e non sempre spiegano i sintomi."
+      ]
+    },
+    {
+      "heading": "Che cosa aiuta nelle prime settimane",
+      "paragraphs": [
+        "Resta attivo il più possibile e torna gradualmente alle normali attività. Calore, movimenti dolci e semplici antidolorifici come ibuprofene o paracetamolo possono alleviare il dolore, se adatti a te. Il riposo a letto rallenta la guarigione. La maggior parte delle persone sta nettamente meglio in qualche settimana, anche se le recidive sono comuni."
+      ]
+    },
+    {
+      "heading": "Segnali d'allarme",
+      "paragraphs": [
+        "Cerca aiuto medico urgente se il mal di schiena si accompagna a intorpidimento intorno all'inguine o ai glutei, perdita di controllo di vescica o intestino, debolezza alle gambe, febbre, perdita di peso inspiegata, una storia di cancro, o se segue un trauma significativo. Il dolore che è forte di notte o che non migliora affatto va valutato."
+      ]
+    },
+    {
+      "heading": "Dolore persistente",
+      "paragraphs": [
+        "Se il dolore dura più di qualche settimana sono utili terapia con esercizio, fisioterapia, stretching e rinforzo e approcci che affrontino paura e stress. Camminare, nuotare, yoga e tai chi possono aiutare. Le terapie psicologiche e l'educazione al dolore possono ridurre la disabilità. Infiltrazioni, chirurgia e antidolorifici forti sono raramente necessari e sono riservati a situazioni specifiche."
+      ]
+    },
+    {
+      "heading": "Prevenire le recidive",
+      "paragraphs": [
+        "Resta fisicamente attivo, mantieni un peso sano, fai pause dai lunghi periodi seduti, solleva con una tecnica sensata e occupati di stress e sonno. Rinforzare addome e gambe sostiene la colonna. Parla con il datore di lavoro di adattamenti se il lavoro contribuisce ai sintomi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Restare attivi",
+      "text": "Immagina che la schiena ti faccia male all'improvviso dopo aver fatto giardinaggio. Potresti continuare a camminare per brevi tratti, evitare di stare a letto tutto il giorno, usare il calore e prendere un antidolorifico come indica il foglietto illustrativo e andare dal medico se compaiono intorpidimento o debolezza."
+    },
+    {
+      "title": "Pianificare il ritorno all'esercizio",
+      "text": "Supponi che il tuo dolore duri da sei settimane. Potresti chiedere a un fisioterapista un piano di esercizi che aumenti gradualmente e ti mostri come gestire le riacutizzazioni."
+    }
+  ],
+  "questions": [
+    "Ho bisogno di una scansione o ci sono ragioni per non farla?",
+    "Quali esercizi e trattamenti sono più utili per il mio tipo di dolore?",
+    "Quali sintomi significano che devo tornare subito?"
+  ]
+}

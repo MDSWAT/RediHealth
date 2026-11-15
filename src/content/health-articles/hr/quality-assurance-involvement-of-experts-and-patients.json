@@ -1,0 +1,51 @@
+{
+  "title": "Osiguranje kvalitete: uključivanje stručnjaka i bolesnika",
+  "intro": "Pouzdane zdravstvene informacije ovise o više od dobrog pisanja. Trebaju pažljivu provjeru stručnjaka i doprinos ljudi kojima su namijenjene. Razumijevanje kako osiguranje kvalitete radi pomaže vam prosuditi koji izvori zaslužuju vaše povjerenje i pokazuje zašto je iskustvo bolesnika važno u oblikovanju informacija.",
+  "sections": [
+    {
+      "heading": "Zašto je osiguranje kvalitete važno",
+      "paragraphs": [
+        "Zdravstvene odluke mogu imati trajne posljedice pa pogreške, zastarjeli savjeti ili pristrana prezentacija mogu nanijeti štetu. Osiguranje kvalitete smanjuje te rizike definiranim koracima: provjerom činjenica prema pouzdanim dokazima, pregledom izričaja radi jasnoće i uravnoteženosti i ažuriranjem sadržaja kako se znanje mijenja."
+      ]
+    },
+    {
+      "heading": "Uloga stručnjaka",
+      "paragraphs": [
+        "Medicinski specijalisti, istraživači i metodolozi pregledavaju tekstove kako bi potvrdili da je sadržaj točan, potpun i u skladu s aktualnim dokazima. Mogu ukazati na nedostajuće rizike, preuveličane tvrdnje ili nejasne pojmove. Neovisna recenzija pomaže izbjeći da sukobi interesa utječu na poruku."
+      ]
+    },
+    {
+      "heading": "Uloga bolesnika i javnosti",
+      "paragraphs": [
+        "Ljudi koji žive s nekim stanjem znaju koja su pitanja važna u svakodnevnom životu, koje riječi zbunjuju i koje teme nedostaju. Njihove povratne informacije pomažu da informacije budu razumljivije i relevantnije. Predstavnici bolesnika i grupe podrške mogu komentirati nacrte, predlagati teme i testirati jesu li tekstovi korisni."
+      ]
+    },
+    {
+      "heading": "Postupanje sa sukobima interesa",
+      "paragraphs": [
+        "Svatko tko doprinosi treba otkriti financijske ili druge veze koje bi mogle utjecati na njegovu prosudbu. Dobri izvori navode tko ih financira i kako osiguravaju neovisnost. Informacije koje plaća proizvođač zaslužuju dodatnu provjeru."
+      ]
+    },
+    {
+      "heading": "Što možete tražiti",
+      "paragraphs": [
+        "Provjerite navodi li izvor autore i recenzente, objašnjava li kako je pripremljen, prikazuje li datum i izvore, poziva li na povratne informacije i otvoreno ispravlja pogreške. Te značajke signaliziraju proces usmjeren na pouzdanost. Čak i tada opće informacije ne mogu zamijeniti savjet vašeg zdravstvenog tima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prosudba web-stranice",
+      "text": "Zamislite da nađete stranicu o novom liječenju. Mogli biste tražiti imenovane stručnjake, datum pregleda, popis izvora i izjavu o financiranju prije nego joj povjerujete."
+    },
+    {
+      "title": "Davanje povratne informacije",
+      "text": "Pretpostavite da vas letak zbunjuje. Mogli biste reći izdavaču ili udruzi bolesnika što je bilo nejasno jer takve povratne informacije pomažu poboljšati informacije."
+    }
+  ],
+  "questions": [
+    "Koliko je ova informacija pouzdana i tko ju je pregledao?",
+    "Postoje li udruge bolesnika koje mogu preporučiti pouzdane izvore o mom stanju?",
+    "Mogu li komercijalni interesi utjecati na ono što čitam?"
+  ]
+}

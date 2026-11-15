@@ -1,0 +1,51 @@
+{
+  "title": "Puknuće meniskusa",
+  "intro": "Meniskusi su dva hrskavična jastučića u obliku slova C u svakom koljenu koji ublažavaju zglob i pomažu ga stabilizirati. Puknuće može nastati iznenada tijekom sporta ili postupno s dobi. Mnoga puknuća se smire uz vježbe i vrijeme, dok se operacija ostavlja za one sa zaglavljivanjem ili upornim simptomima.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Kod mlađih ljudi puknuća meniskusa obično slijede nakon ozljede uvrtanjem, ponekad uz oštećenje drugih ligamenata. Kod ljudi srednje i starije dobi menisk se troši i degenerira, a sitna puknuća mogu nastati pri manjim pokretima kao što su čučanj ili ustajanje, često uz rani osteoartritis."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Bol duž linije zgloba, oticanje koje se razvija tijekom dana, ukočenost, zapinjanje ili klikanje te ponekad zaglavljivanje, kod kojeg se koljeno ne može potpuno ispraviti. Bol je često jača pri uvrtanju i dubokom savijanju. Degenerativna puknuća mogu uzrokovati manje simptoma, a mnoga puknuća viđena na snimkama kod starijih ljudi nisu izvor boli."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Liječnici pregledavaju koljeno specifičnim testovima i mogu zatražiti MR ako je dijagnoza nejasna ili zaglavljeno koljeno upućuje na pomaknuto puknuće. MR često pokazuje promjene meniskusa kod ljudi bez simptoma pa nalaze treba tumačiti uz simptome."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Odmor, led i ublažavanje boli pomažu na početku. Fizioterapija s jačanjem mišića natkoljenice i kuka učinkovita je za mnoge ljude, osobito kod degenerativnih puknuća, s rezultatima sličnima operaciji. Operacija artroskopijom, bilo šivanjem meniskusa ili podrezivanjem oštećenih dijelova, razmatra se kod zaglavljenog koljena, velikih puknuća kod mlađih ljudi ili upornih simptoma unatoč terapiji. Šivanje čuva menisk i prednost je kada je moguće, ali zahtijeva dulji oporavak."
+      ]
+    },
+    {
+      "heading": "Oporavak i prevencija",
+      "paragraphs": [
+        "Nakon podrezivanja ljudi se često vraćaju normalnoj aktivnosti unutar tjedana, dok šivanje zahtijeva zaštićeno kretanje nekoliko tjedana i povratak sportu za mjesece. Jačanje, vježbe ravnoteže, zdrava težina i zagrijavanje prije sporta pomažu zaštititi koljena. Uklanjanje tkiva meniskusa povećava rizik od kasnijeg osteoartritisa, što je još jedan razlog da ga se pokuša sačuvati."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prvo isprobati vježbe",
+      "text": "Zamislite da imate pedeset i pet godina i bol u koljenu s degenerativnim puknućem na MR-u. Mogli biste započeti nadzirani program jačanja dvanaest tjedana prije razmatranja operacije."
+    },
+    {
+      "title": "Prepoznavanje zaglavljenog koljena",
+      "text": "Pretpostavite da se koljeno nakon uvrtanja iznenada ne može ispraviti. Mogli biste brzo potražiti liječnički pregled jer može trebati operaciju."
+    }
+  ],
+  "questions": [
+    "Uzrokuje li moj simptom doista puknuće meniskusa?",
+    "Bi li terapija vježbama djelovala jednako dobro kao operacija za mene?",
+    "Ako se preporuči operacija, hoće li se menisk šivati ili podrezati?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Ujedi krpelja",
+  "intro": "Krpelji su mali paučnjaci koji se hrane krvlju i mogu prenositi infekcije poput lajmske bolesti i krpeljnog meningoencefalitisa. Većina ujeda ne šteti. Brzo i ispravno uklanjanje krpelja te poznavanje simptoma na koje treba paziti poslije drže rizik niskim.",
+  "sections": [
+    {
+      "heading": "Gdje žive krpelji",
+      "paragraphs": [
+        "Krpelji žive u šumama, visokoj travi, grmlju i vrtovima, osobito od proljeća do jeseni, iako mogu biti aktivni i u blagim zimama. Čekaju na vegetaciji i penju se na ljude ili životinje koji prođu. Preferiraju topla, vlažna područja tijela kao što su prepone, pazusi, iza koljena, linija kose i iza ušiju."
+      ]
+    },
+    {
+      "heading": "Uklanjanje krpelja",
+      "paragraphs": [
+        "Uklonite krpelja čim ga nađete. Koristite fine pincete ili alat za uklanjanje krpelja, uhvatite krpelja blizu kože i povlačite ravnomjerno prema gore bez uvrtanja, stiskanja ili nanošenja ulja ili ljepila. Poslije dezinficirajte područje i operite ruke. Ako dijelovi usnog aparata ostanu, obično sami ispadnu. Zabilježite datum i mjesto ujeda."
+      ]
+    },
+    {
+      "heading": "Na što paziti",
+      "paragraphs": [
+        "Pratite mjesto ujeda nekoliko tjedana. Crveni prsten koji se širi, osobito onaj koji raste tijekom dana, može upućivati na lajmsku bolest. Vrućica, glavobolja, umor, bolovi u mišićima ili neurološki simptomi u sljedećim tjednima također zahtijevaju pozornost. Krpeljni meningoencefalitis može uzrokovati simptome nalik gripi nakon kojih slijedi upala mozga, u područjima gdje se javlja."
+      ]
+    },
+    {
+      "heading": "Treba li liječenje nakon ujeda",
+      "paragraphs": [
+        "Većini ljudi nakon ujeda nisu potrebni antibiotici. Liječnici liječe lajmsku bolest kada se pojave simptomi. U područjima gdje se javlja krpeljni meningoencefalitis, cijepljenje se savjetuje osobama koje borave na otvorenom jer nakon zaraze nema specifičnog liječenja."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Nosite duge hlače uvučene u čarape i zatvorenu obuću u područjima s krpeljima, svijetlu odjeću za lakše uočavanje krpelja i repelent protiv kukaca. Hodajte stazama i izbjegavajte visoku travu. Nakon aktivnosti na otvorenom pregledajte cijelo tijelo, uključujući djecu i kućne ljubimce, i istuširajte se. Operite odjeću i održavajte vrtove urednima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Nakon planinarenja",
+      "text": "Zamislite da nakon šetnje nađete krpelja na listu. Mogli biste ga ukloniti pincetom, dezinficirati kožu, upisati datum u telefon i svakodnevno gledati područje."
+    },
+    {
+      "title": "Uočavanje osipa",
+      "text": "Pretpostavite da se crvena mrlja širi tri tjedna nakon ujeda. Mogli biste je fotografirati i brzo kontaktirati liječnika."
+    }
+  ],
+  "questions": [
+    "Trebam li liječenje ili cijepljenje nakon ovog ujeda krpelja?",
+    "Koji simptomi znače da se trebam vratiti?",
+    "Je li cijepljenje protiv krpeljnog meningoencefalitisa preporučljivo tamo gdje živim?"
+  ]
+}

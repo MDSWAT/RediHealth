@@ -1,0 +1,51 @@
+{
+  "title": "Gonoreea: testare, tratament și îngrijirea partenerilor",
+  "intro": "Gonoreea este o infecție bacteriană sexual transmisă care poate afecta organele genitale, rectul, gâtul ori ochii. Multe infecții nu au simptome; netratată, poate produce complicații și se poate transmite neobservat.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Pot apărea usturime la urinare, secreții neobișnuite, durere pelvină sau testiculară. Infecțiile faringiene și rectale sunt adesea tăcute. Simptomele nu diferențiază sigur gonoreea de alte infecții sexuale."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Testarea folosește urină ori recoltări din locurile expuse sexual; numai urina poate rata infecția faringiană sau rectală. Cultura ajută la depistarea rezistenței antibiotice, mai ales după eșec aparent. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Medicul alege antibiotice după recomandările locale actuale și rezistență. Nu folosiți resturi de comprimate și nu împărțiți tratamentul. Discutați alte teste, sarcina și necesitatea confirmării vindecării ori retestării. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Evitați sexul până când clinica confirmă că este sigur, inclusiv îndeplinirea cerințelor pentru tratamentul partenerilor. Notificarea confidențială previne reinfectarea. Prezervativele reduc riscul, dar testarea regulată poate rămâne utilă. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Durerea pelvină severă, febra, testiculul dureros umflat, secrețiile oculare sau articulația caldă umflată cer evaluare urgentă. Simptomele persistente după tratament necesită reevaluare, nu repetarea singur a antibioticului."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira nu are simptome, dar partenerul este pozitiv. Merge la testare și respectă sfatul clinicii, fără să presupună că nu este infectată."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben menționează expunerea orală pentru a putea fi discutată recoltarea faringiană, nu numai analiza urinei."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

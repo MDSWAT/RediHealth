@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt tendoanele și tecile tendinoase?",
+  "intro": "Tendoanele sunt cordoane puternice de țesut fibros care leagă mușchii de oase și transmit forța care mișcă corpul. Multe tendoane sunt înconjurate de teci tendinoase, care le permit să alunece lin. Problemele tendoanelor sunt frecvente la persoanele care fac activități repetitive sau grele și în sport.",
+  "sections": [
+    {
+      "heading": "Structură și funcție",
+      "paragraphs": [
+        "Tendoanele sunt alcătuite în principal din fibre de colagen strâns împachetate, care le fac foarte puternice, dar ușor flexibile. Când un mușchi se contractă, tendonul trage de os și mișcă articulația. Tendonul lui Ahile, care leagă mușchii gambei de călcâi, este cel mai gros și mai puternic din corp. Tendoanele stochează și eliberează energie elastică, ajutând la mers și la alergare."
+      ]
+    },
+    {
+      "heading": "Tecile tendinoase",
+      "paragraphs": [
+        "În locurile în care tendoanele trec pe sub ligamente sau pe după colțuri, precum încheietura mâinii, mâna, degetele și glezna, ele merg în teci căptușite cu o membrană subțire care produce un lichid lubrifiant. Aceasta reduce frecarea. Inflamația tecii se numește tenosinovită. Bursele, mici saci plini cu lichid din apropierea articulațiilor, reduc de asemenea frecarea."
+      ]
+    },
+    {
+      "heading": "Probleme frecvente",
+      "paragraphs": [
+        "Tendinopatia este o leziune de suprasolicitare cu durere și îngroșarea tendonului, de exemplu la tendonul lui Ahile, la cot și la umăr. Inflamația tecii tendinoase provoacă durere și umflătură și la degete poate provoca degetul în resort. Rupturile parțiale sau complete pot apărea din cauza unei solicitări bruște sau a degenerării și pot provoca o senzație de pocnitură și pierderea funcției."
+      ]
+    },
+    {
+      "heading": "Vindecarea",
+      "paragraphs": [
+        "Tendoanele au o irigare sanguină limitată, așa că se vindecă lent. Tratamentul include de obicei modificarea activităților, exerciții progresive de întărire și uneori injecții sau chirurgie. Rupturile complete ale unor tendoane, precum cel al lui Ahile, pot necesita intervenție chirurgicală sau imobilizare specializată. Reabilitarea durează luni."
+      ]
+    },
+    {
+      "heading": "Îngrijirea tendoanelor",
+      "paragraphs": [
+        "Încălziți-vă înainte de efort, creșteți antrenamentul treptat, includeți antrenament de forță, folosiți echipament potrivit și lăsați timp pentru recuperare. Unele medicamente, precum anumite antibiotice din grupa chinolonelor, și corticosteroizii pot crește riscul problemelor tendinoase. Raportați durerea bruscă a tendonului, mai ales dacă luați aceste medicamente."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Încălzirea",
+      "text": "Imaginați-vă că începeți să alergați din nou după o pauză. Ați putea începe cu alergări scurte și lente, cu o încălzire blândă, și ați putea crește distanța în pași mici."
+    },
+    {
+      "title": "Raportarea durerii",
+      "text": "Presupuneți că luați un antibiotic și observați durere în tendonul lui Ahile. Ați putea opri activitatea și ați putea suna prompt medicul."
+    }
+  ],
+  "questions": [
+    "Durerea mea provine de la un tendon, de la o teacă sau de la o articulație?",
+    "Ce tratament ajută cel mai mult și cât durează recuperarea?",
+    "Ar putea medicamentul meu să-mi afecteze tendoanele?"
+  ]
+}

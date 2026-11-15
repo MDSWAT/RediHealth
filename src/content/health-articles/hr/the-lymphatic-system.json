@@ -1,0 +1,51 @@
+{
+  "title": "Limfni sustav",
+  "intro": "Limfni sustav je mreža žila, čvorova i organa koja odvodi tekućinu iz tkiva, podupire imunološki sustav i pomaže upijanju masti iz crijeva. Kada dobro radi, jedva ga primjećujete. Otečene žlijezde, problemi s limfnim čvorovima i limfedem pokazuju koliko je važan.",
+  "sections": [
+    {
+      "heading": "Limfa i limfne žile",
+      "paragraphs": [
+        "Tekućina neprestano izlazi iz najmanjih krvnih žila u tkiva. Većina se ponovno upije, a ostatak ulazi u limfne žile kao limfa. Limfne žile nose je prema vratu, gdje se vraća u krvotok. Kretanje mišića, disanje i zalisci u žilama pokreću limfu, zbog čega pomaže tjelovježba."
+      ]
+    },
+    {
+      "heading": "Limfni čvorovi",
+      "paragraphs": [
+        "Limfni čvorovi su mali filtri u obliku graha koji se nalaze duž žila, u skupinama na vratu, pazusima, preponama i drugdje u tijelu. Sadrže imunološke stanice koje otkrivaju i bore se protiv klica. Kada imate infekciju, obližnji čvorovi mogu oteći i postati bolni jer stvaraju više imunoloških stanica. Rak se također može širiti kroz limfne čvorove."
+      ]
+    },
+    {
+      "heading": "Limfni organi",
+      "paragraphs": [
+        "Slezena filtrira krv i pohranjuje imunološke stanice, krajnici štite grlo, timus u djetinjstvu dozrijeva T stanice, a koštana srž stvara krvne stanice. Limfno tkivo u crijevima obrađuje klice iz hrane. Limfa također nosi masti upijene iz crijeva."
+      ]
+    },
+    {
+      "heading": "Česti problemi",
+      "paragraphs": [
+        "Otečeni limfni čvorovi najčešće odražavaju bezazlenu infekciju i smiruju se unutar tjedana. Čvorove koji su tvrdi, bezbolni, rastu, traju dulje od nekoliko tjedana ili dolaze s vrućicom, noćnim znojenjem ili gubitkom težine treba pregledati. Limfedem je trajno oticanje, obično ruke ili noge, kada je limfna drenaža oštećena, primjerice nakon operacije raka ili radioterapije, infekcije ili nasljednih stanja. Limfangitis, crvena pruga s vrućicom, je infekcija koja se širi uzduž žila i zahtijeva brzo liječenje. Trovanje krvi, ili sepsa, je drukčija, životno ugrožavajuća reakcija na infekciju koja zahtijeva hitnu skrb."
+      ]
+    },
+    {
+      "heading": "Briga o njemu",
+      "paragraphs": [
+        "Ostanite aktivni, održavajte zdravu težinu i izbjegavajte ozljede i infekcije kože ugroženog uda. Osobe s limfedemom imaju koristi od kompresije, njege kože, vježbanja i specijalizirane limfne terapije."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Provjera otečenog čvora",
+      "text": "Zamislite da osjetite bolnu kvržicu na vratu tijekom prehlade. Mogli biste je pratiti dva tjedna i posjetiti liječnika ako potraje ili se loše osjećate."
+    },
+    {
+      "title": "Zaštita ruke",
+      "text": "Pretpostavite da su vam uklonjeni limfni čvorovi u pazuhu. Mogli biste štititi kožu od porezotina i opeklina od sunca i pitati o savjetima za vježbanje i kompresiju."
+    }
+  ],
+  "questions": [
+    "Je li ovaj otečeni limfni čvor bezazlen ili treba pretrage?",
+    "Kako mogu upravljati limfedemom i sprječavati infekcije?",
+    "Koji simptomi znače da trebam potražiti hitnu skrb?"
+  ]
+}

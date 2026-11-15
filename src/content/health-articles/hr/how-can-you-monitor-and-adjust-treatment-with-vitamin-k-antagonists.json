@@ -1,0 +1,51 @@
+{
+  "title": "Antagonisti vitamina K: praćenje i sigurna doza",
+  "intro": "Antagonisti poput varfarina smanjuju zgrušavanje i sprječavaju trombe. Premali učinak ostavlja rizik, prevelik povećava krvarenje. Sigurnost traži osobni cilj INR-a i jasan plan doze.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "INR mjeri učinak. Cilj i razmak ovise o razlogu i stabilnosti; nema univerzalne doze ili cilja. Različite jačine tableta pažljivo provjerite."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Vodite točne doze i testove te znajte tko daje iduću uputu. Kućno testiranje ili samoprilagodba zahtijevaju obuku i dogovor službe, ne internetsku tablicu. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Bolest, povraćanje, proljev, novi lijekovi, antibiotici i dodaci mijenjaju učinak. Javite promjene i zahvate. Ne prekidajte ili privremeno zamjenjujte prije zubara ili operacije bez stručnog plana. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Držite unos vitamina K prilično stalnim bez zabrane sveg zelenog povrća. Raspravite alkohol i velike prehrambene promjene. Slijedite upute propuštene doze: ne udvostručujte ni improvizirajte. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Ozljeda glave, nekontrolirana krv, krvavo povraćanje, crna stolica, jaka glavobolja ili udar traže hitnost. INR izvan granica traži pravovremen savjet i bez simptoma. Sumnja trudnoće traži brz kontakt."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira počinje antibiotik i javlja službi koja odlučuje o ranijem INR-u."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben dobiva drugu jačinu i provjerava dozu s ljekarnikom, ne pretpostavlja istu dozu prema istom broju tableta."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

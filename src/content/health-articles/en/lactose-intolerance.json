@@ -1,0 +1,52 @@
+{
+  "title": "Lactose intolerance",
+  "intro": "Lactose intolerance means the body cannot digest milk sugar properly, causing bloating, wind and diarrhoea after dairy products. It is common in adults worldwide and is not dangerous. Most people can manage it by adjusting how much lactose they eat rather than avoiding dairy completely.",
+  "sections": [
+    {
+      "heading": "What causes it",
+      "paragraphs": [
+        "Lactose is digested by an enzyme called lactase in the small intestine. In most people, lactase production falls after childhood, so the sugar passes to the large bowel where bacteria ferment it. This produces gas and draws water into the gut. Less commonly, gut illnesses such as coeliac disease or infection temporarily reduce lactase."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Symptoms usually appear within thirty minutes to two hours of eating dairy and include abdominal cramps, bloating, flatulence, loose stools and sometimes nausea. How much lactose causes problems differs from person to person, and many tolerate small amounts, such as milk in coffee."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Doctors may suggest cutting out lactose for a short period to see whether symptoms improve, then reintroducing it. A hydrogen breath test after drinking a lactose solution can confirm it. Other conditions such as irritable bowel syndrome, coeliac disease and cow's milk allergy cause similar symptoms and should not be mixed up. Milk allergy is an immune reaction and is different."
+      ]
+    },
+    {
+      "heading": "Eating well with lactose intolerance",
+      "paragraphs": [
+        "Many people tolerate hard cheeses, yoghurt and butter, which contain little lactose. Lactose-free milk and dairy products are widely available and nutritionally similar. Lactase enzyme tablets can be taken with meals. Check labels, as lactose appears in processed foods and some medicines.",
+        "If you avoid dairy entirely, make sure you get enough calcium and vitamin D from other foods such as fortified drinks, green vegetables, nuts and fish, or ask about supplements."
+      ]
+    },
+    {
+      "heading": "When to see a doctor",
+      "paragraphs": [
+        "Seek advice if you have blood in the stool, weight loss, persistent diarrhoea, severe pain or symptoms that do not match the pattern. Babies with vomiting and diarrhoea after milk need medical review."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Finding your limit",
+      "text": "Imagine you get cramps after a glass of milk. You could try lactose-free milk for a week, then test small amounts of yoghurt or cheese and note which foods cause symptoms and which do not."
+    },
+    {
+      "title": "Checking a label",
+      "text": "Suppose you buy ready meals and are unsure about hidden lactose. You might check ingredient lists for milk, whey and milk powder, and ask a dietitian about suitable alternatives."
+    }
+  ],
+  "questions": [
+    "Are my symptoms really caused by lactose, or could another condition be involved?",
+    "How much dairy can I probably tolerate, and which products are easiest to digest?",
+    "How can I get enough calcium if I limit dairy?"
+  ]
+}

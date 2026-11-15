@@ -1,0 +1,51 @@
+{
+  "title": "Mitoza: diviziunea celulelor corpului",
+  "intro": "Diviziunea susține creșterea, reînnoirea și repararea. Mitoza împarte materialul genetic copiat în nuclee noi, de obicei urmată de celule fiice. Diferă de meioză, care formează celule reproductive cu set redus.",
+  "sections": [
+    {
+      "heading": "Pregătire",
+      "paragraphs": [
+        "Înainte celula crește și copiază ADN. Copierea creează copii cromozomiale, nu celule separate imediat. Sistemele verifică pregătirea și leziunile, dar nu perfect."
+      ]
+    },
+    {
+      "heading": "Organizare",
+      "paragraphs": [
+        "Cromozomii copiați se condensează și se atașează fusului pentru poziție. Se aliniază înaintea separării copiilor. Diagrama simplifică un proces dinamic; cromozomii nu aleg conștient destinația."
+      ]
+    },
+    {
+      "heading": "Separare",
+      "paragraphs": [
+        "Copiile merg spre laturi opuse și se formează nuclee. Împărțirea conținutului completează de obicei procesul. Celulele păstrează setul, nu îl înjumătățesc ca meioza."
+      ]
+    },
+    {
+      "heading": "Țesuturi diferite",
+      "paragraphs": [
+        "Pielea și intestinul se reînnoiesc, multe celule nervoase mature aproape nu se divid. Procesul nu este identic pretutindeni. Vindecarea cere circulație, imunitate și organizare, nu doar multiplicare rapidă."
+      ]
+    },
+    {
+      "heading": "Erori și boală",
+      "paragraphs": [
+        "Greșelile pot fi reparate, duc la moarte ori persistă. Unele contribuie la cancer, dar o eroare nu înseamnă automat cancer. Diagnosticul cere context; prezentarea nu interpretează biopsia ori viteza individuală. Înainte de consultație, notați când a început simptomul, ce îl ameliorează sau agravează și cum afectează activitățile obișnuite. Aduceți rezultatele anterioare dacă le aveți. Cereți specialistului să lege explicația de constatările din cazul dumneavoastră; o descriere generală nu stabilește un diagnostic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira compară repararea pielii și meioza și înțelege de ce vindecarea nu creează ovule ori spermatozoizi."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben întreabă efectul chimioterapiei pe păr și intestin. Echipa explică diviziunea activă și în unele țesuturi normale."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

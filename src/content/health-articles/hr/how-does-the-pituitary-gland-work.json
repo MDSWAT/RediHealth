@@ -1,0 +1,52 @@
+{
+  "title": "Hipofiza i hormonska povratna sprega",
+  "intro": "Hipofiza je mala žlijezda ispod mozga povezana s hipotalamusom. Koordinira druge žlijezde i izravne funkcije. Simptomi su često nespecifični; sam umor ne identificira bolest hipofize.",
+  "sections": [
+    {
+      "heading": "Prednji režanj",
+      "paragraphs": [
+        "Stvara hormone za štitnjaču, koru nadbubrežne žlijezde, jajnike i testise te hormon rasta i prolaktin. Različite skupine stanica imaju različite zadaće."
+      ]
+    },
+    {
+      "heading": "Stražnji režanj",
+      "paragraphs": [
+        "Pohranjuje i otpušta hormone nastale u hipotalamusu, uključujući antidiuretski i oksitocin. Pomažu ravnoteži vode i reprodukciji; pohrana i proizvodnja nisu isto."
+      ]
+    },
+    {
+      "heading": "Povratna sprega",
+      "paragraphs": [
+        "Signali hipotalamusa i razine ciljnih hormona reguliraju izlaz. Test se često tumači s povezanim hormonom, vremenom uzorka i lijekovima, ne kao izoliran broj."
+      ]
+    },
+    {
+      "heading": "Ispitivanje",
+      "paragraphs": [
+        "Uključuje krv, urin, stimulacijske ili supresijske testove te snimanje prema potrebi. Mali slučajni nalaz ne objašnjava svaki simptom niti automatski traži operaciju."
+      ]
+    },
+    {
+      "heading": "Sigurnost",
+      "paragraphs": [
+        "Jaka žeđ i obilno mokrenje traže pregled. Nagla jaka glavobolja s promjenom vida, povraćanjem ili kolapsom traži hitnost. Poznati manjkovi zahtijevaju plan nadomjesnog i hitnog liječenja bez samostalnog prekida hormona.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira donosi nalaze hipofize i štitnjače, ne smatra jedan uredan broj isključenjem svih problema."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima poznati hormonski manjak. Nosi hitne upute na put bez izmišljanja doza tijekom bolesti."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

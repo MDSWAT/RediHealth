@@ -1,0 +1,51 @@
+{
+  "title": "Tosse cronica senza spiegazione",
+  "intro": "Una tosse che dura più di otto settimane si dice cronica. Le cause comuni comprendono fumo, asma, reflusso, gocciolamento retronasale e certi farmaci, ma a volte non si trova alcuna causa nonostante gli esami. Trovare e trattare un'eventuale causa è il primo passo e terapie speciali possono aiutare quando non se ne trova nessuna.",
+  "sections": [
+    {
+      "heading": "Cause comuni",
+      "paragraphs": [
+        "Le cause frequenti sono fumo, asma, gocciolamento da naso e seni nasali in gola, reflusso acido, bronchite cronica e BPCO e le compresse per la pressione della classe degli ACE-inibitori. Meno spesso sono responsabili infezioni polmonari, bronchiectasie, tumore del polmone, insufficienza cardiaca o tubercolosi. Più cause possono coesistere."
+      ]
+    },
+    {
+      "heading": "Valutazione",
+      "paragraphs": [
+        "Il medico chiede della tosse, del fumo, dei farmaci, di sintomi come bruciore di stomaco o respiro sibilante e di perdita di peso. Di solito si fanno una visita e una radiografia del torace. Gli esami respiratori cercano asma o BPCO. Ulteriori esami come TC, broncoscopia o test per il reflusso si usano in modo selettivo. Tosse con sangue, perdita di peso, affanno, febbre o età oltre i cinquant'anni con storia di fumo richiedono una valutazione tempestiva."
+      ]
+    },
+    {
+      "heading": "Trattare le cause",
+      "paragraphs": [
+        "Smettere di fumare è essenziale. Passare dagli ACE-inibitori a un altro farmaco per la pressione spesso fa passare la tosse in poche settimane. Si provano i trattamenti per l'asma, gli spray nasali e i trattamenti per il reflusso, perché una prova di terapia può mostrare la causa. Le misure di stile di vita per il reflusso comprendono evitare i pasti tardivi e sollevare la testata del letto."
+      ]
+    },
+    {
+      "heading": "Quando non si trova una causa",
+      "paragraphs": [
+        "Alcune persone hanno un riflesso della tosse ipersensibile, a volte detto tosse cronica refrattaria o inspiegata. Le tecniche di logopedia per controllare la tosse e alcuni farmaci che modulano i nervi a basse dosi possono ridurla. Sono stati studiati nuovi farmaci che agiscono sui recettori della tosse. I sedativi della tosse da banco non aiutano molto."
+      ]
+    },
+    {
+      "heading": "Convivere con la tosse",
+      "paragraphs": [
+        "Una tosse cronica può disturbare il sonno, causare incontinenza, raucedine, dolore al torace o ai muscoli e imbarazzo. Sorseggia acqua, evita gli irritanti, usa pastiglie per la gola e umidifica l'aria. Chiedi di ambulatori specialistici per la tosse, di sostegno e di tecniche come strategie di deglutizione o di respirazione in risposta allo stimolo di tossire."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rivedere i farmaci",
+      "text": "Immagina di avere una tosse secca da quando hai iniziato una compressa per la pressione. Potresti chiedere al medico se è un ACE-inibitore e se un'alternativa sarebbe adatta."
+    },
+    {
+      "title": "Imparare il controllo della tosse",
+      "text": "Supponi che non sia stata trovata alcuna causa. Potresti chiedere di essere indirizzato a un logopedista per tecniche di soppressione della tosse."
+    }
+  ],
+  "questions": [
+    "Che cosa potrebbe causare la mia tosse e quali esami servono?",
+    "Uno dei miei farmaci potrebbe essere responsabile?",
+    "Quali trattamenti esistono se non si trova una causa?"
+  ]
+}

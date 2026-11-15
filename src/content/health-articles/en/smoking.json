@@ -1,0 +1,51 @@
+{
+  "title": "Smoking, e-cigarettes and quitting",
+  "intro": "Smoking is the leading preventable cause of illness and early death, harming nearly every organ. Quitting at any age brings benefits, and the chances of success rise with support and medicine. E-cigarettes are less harmful than cigarettes but are not risk-free, and long-term effects are still being studied.",
+  "sections": [
+    {
+      "heading": "Health effects",
+      "paragraphs": [
+        "Tobacco smoke contains thousands of chemicals, many toxic and cancer-causing. Smoking causes lung and other cancers, heart attacks, strokes, chronic lung disease, circulation problems, fertility problems, and complicates pregnancy. Passive smoking harms children and non-smokers. The longer and the more one smokes, the higher the risk."
+      ]
+    },
+    {
+      "heading": "E-cigarettes",
+      "paragraphs": [
+        "E-cigarettes heat a liquid, usually containing nicotine, into vapour. They expose users to fewer toxic substances than burning tobacco, but they still deliver nicotine, which is addictive, and other chemicals whose long-term effects are unknown. Evidence suggests they can help some smokers quit when used as a full replacement, but they are not recommended for young people or non-smokers, and many people end up using both products."
+      ]
+    },
+    {
+      "heading": "Benefits of quitting",
+      "paragraphs": [
+        "Within days, circulation and breathing improve. Within a year, the risk of heart disease falls substantially, and over years the risk of cancer and stroke declines. Quitting before middle age avoids most of the excess risk. Quitting also saves money and protects family."
+      ]
+    },
+    {
+      "heading": "How to quit",
+      "paragraphs": [
+        "Set a quit date, tell friends and family and remove cigarettes. Behavioural support, such as counselling, quitlines, group programmes and apps, raises success. Nicotine replacement in patches, gum or lozenges, and prescription medicines such as varenicline or bupropion, roughly double the chance of success. Combining medication with counselling works best. Many people need several attempts."
+      ]
+    },
+    {
+      "heading": "Staying smoke-free",
+      "paragraphs": [
+        "Cravings usually pass within minutes. Avoid triggers, find substitutes such as walking or chewing gum, and plan for stress. A slip is not failure, and you can restart. Ask your doctor or pharmacist about support available in your area."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planning a quit date",
+      "text": "Imagine you decide to quit. You could choose a date within two weeks, ask your doctor about patches and medicine, and tell your family so that they can support you."
+    },
+    {
+      "title": "Coping with a craving",
+      "text": "Suppose you crave a cigarette after meals. You might brush your teeth, take a short walk or chew gum until the craving passes."
+    }
+  ],
+  "questions": [
+    "Which quit method or medicine is best for me?",
+    "Are e-cigarettes a good option for me, or a risk?",
+    "What support is available if I relapse?"
+  ]
+}

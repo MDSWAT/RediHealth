@@ -1,0 +1,51 @@
+{
+  "title": "Underactive thyroid (hypothyroidism)",
+  "intro": "In hypothyroidism, the thyroid gland produces too little thyroid hormone, slowing the body's metabolism. It causes tiredness, weight gain and feeling cold, and develops slowly. It is common, especially in women and older people, and is easily treated with daily hormone tablets.",
+  "sections": [
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "The most common cause in developed countries is Hashimoto's thyroiditis, an autoimmune condition in which the immune system attacks the thyroid. Other causes include treatment for an overactive thyroid, thyroid surgery or radiation, certain medicines, iodine deficiency and, rarely, problems with the pituitary gland. Babies can be born with it, which is why newborns are screened."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Symptoms include tiredness, weight gain, constipation, dry skin, hair thinning, sensitivity to cold, muscle aches, slow thinking, low mood, hoarse voice, heavier periods and a swollen thyroid or goitre. Symptoms develop slowly and are easily mistaken for ageing or stress. Severe untreated disease can cause life-threatening problems."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "A blood test showing a raised thyroid-stimulating hormone and a low level of thyroid hormone confirms the diagnosis. Antibody tests help identify autoimmune disease. A slightly raised hormone level with normal thyroid hormone, called subclinical hypothyroidism, is often only monitored, and treatment depends on the level, symptoms and risk factors."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Levothyroxine, a synthetic thyroid hormone, replaces what the body lacks. Take it once daily on an empty stomach, usually in the morning with water, about half an hour before breakfast, and separate it from iron, calcium and some other medicines. The dose is adjusted according to blood tests every few weeks at first, then yearly once stable. Treatment is usually lifelong."
+      ]
+    },
+    {
+      "heading": "Living with it",
+      "paragraphs": [
+        "With the right dose most people feel well. Tell your doctor if you become pregnant, since doses often need to be increased, and report symptoms of too much hormone such as palpitations, anxiety or weight loss. Supplements such as biotin can distort test results, so tell the lab. Do not stop tablets even if you feel well."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Taking tablets reliably",
+      "text": "Imagine you forget your morning tablet. You could place the packet next to the kettle, set a phone reminder and take it consistently on an empty stomach."
+    },
+    {
+      "title": "Planning pregnancy",
+      "text": "Suppose you plan to become pregnant. You might ask your doctor to check your thyroid levels beforehand and arrange dose adjustment early in pregnancy."
+    }
+  ],
+  "questions": [
+    "What is the cause of my underactive thyroid?",
+    "What dose is right for me, and how often will I need blood tests?",
+    "How should I take levothyroxine to get the best effect?"
+  ]
+}

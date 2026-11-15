@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa dice l'indice di massa corporea sulla tua salute",
+  "intro": "L'indice di massa corporea, o IMC, è un numero calcolato da peso e altezza. È un rapido strumento di screening per le categorie di peso, ma non misura direttamente il grasso corporeo né dice tutto sulla salute. Si usa al meglio insieme ad altre misure e alla valutazione di un medico.",
+  "sections": [
+    {
+      "heading": "Come si calcola l'IMC",
+      "paragraphs": [
+        "L'IMC è il tuo peso in chilogrammi diviso per l'altezza in metri al quadrato. Per esempio una persona che pesa settanta chilogrammi ed è alta 1,75 metri ha un IMC di circa 22,9. Per gli adulti un IMC sotto 18,5 è sottopeso, da 18,5 a 24,9 è normale, da 25 a 29,9 è sovrappeso e 30 o più è obesità."
+      ]
+    },
+    {
+      "heading": "Che cosa ti dice",
+      "paragraphs": [
+        "Nelle popolazioni un IMC più alto è legato a un rischio più alto di condizioni come diabete di tipo 2, pressione alta, malattie cardiache, alcuni tumori e problemi articolari. Anche un IMC molto basso è legato a rischi per la salute, come ossa indebolite e immunità scarsa. L'IMC è facile da misurare e da confrontare."
+      ]
+    },
+    {
+      "heading": "Limiti",
+      "paragraphs": [
+        "L'IMC non distingue il grasso dal muscolo, quindi le persone muscolose possono essere classificate come in sovrappeso. Non mostra dove si accumula il grasso. Può essere meno accurato per anziani, bambini, donne in gravidanza e persone di origini etniche diverse. Per i bambini l'IMC si confronta con curve per età e sesso."
+      ]
+    },
+    {
+      "heading": "Altre misure",
+      "paragraphs": [
+        "La circonferenza vita, soprattutto il grasso attorno all'addome, è legata al rischio di malattie cardiache e diabete. Il rapporto vita-altezza, pressione, glicemia, colesterolo, forma fisica e abitudini alimentari danno un quadro più completo. La salute dipende da molti fattori, non da un solo numero."
+      ]
+    },
+    {
+      "heading": "Che cosa fare con il tuo risultato",
+      "paragraphs": [
+        "Se il tuo IMC è fuori dall'intervallo normale, parlane con il medico. Piccoli passi, come un'alimentazione equilibrata, attività regolare, sonno sufficiente e limitare le bevande zuccherate, contano più di un cambiamento rapido di peso. Evita le diete estreme e cerca sostegno se peso o cibo ti preoccupano."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Calcolare il proprio",
+      "text": "Immagina di voler conoscere il tuo IMC. Potresti dividere il peso per l'altezza al quadrato, poi parlare con il medico di che cosa significa."
+    },
+    {
+      "title": "Guardare oltre l'IMC",
+      "text": "Supponi che il tuo IMC sia borderline ma che ti alleni spesso. Potresti misurare anche la circonferenza vita e chiedere pressione ed esami del sangue."
+    }
+  ],
+  "questions": [
+    "Che cosa significa il mio IMC per la mia salute?",
+    "Dovrebbero essere controllati anche la misura della vita o altri esami?",
+    "Quali passi realistici potrebbero migliorare la mia salute?"
+  ]
+}

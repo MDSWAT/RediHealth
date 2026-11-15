@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă în timpul unui examen al pielii?",
+  "intro": "Examenul pielii este o verificare a pielii pentru modificări precum aluniți neobișnuiți, pete sau erupții. Este folosit pentru depistarea timpurie a cancerului de piele și pentru diagnosticarea afecțiunilor pielii. Este rapid și nedureros și poate fi făcut de un medic de familie sau de un dermatolog.",
+  "sections": [
+    {
+      "heading": "De ce se face",
+      "paragraphs": [
+        "Cancerul de piele, inclusiv melanomul, este mai ușor de tratat când este depistat devreme. Medicii examinează pielea pentru pete noi sau care se schimbă, evaluează erupțiile și monitorizează afecțiunile existente. Persoanele cu mulți aluniți, cu piele deschisă, cu arsuri solare în trecut, cu antecedente familiale de melanom sau cu sistem imunitar slăbit beneficiază de controale regulate."
+      ]
+    },
+    {
+      "heading": "Cum se desfășoară examinarea",
+      "paragraphs": [
+        "Vă dezbrăcați până la lenjeria intimă, iar medicul inspectează pielea din cap până în picioare, inclusiv scalpul, spațiile dintre degetele de la picioare, unghiile și zona genitală dacă este necesar, cu consimțământul dumneavoastră. O lupă de mână numită dermatoscop arată structurile din interiorul aluniților. Se pot face fotografii pentru urmărirea schimbărilor."
+      ]
+    },
+    {
+      "heading": "Ce urmăresc medicii",
+      "paragraphs": [
+        "Ei urmăresc asimetria, marginile neregulate, culoarea neuniformă, un diametru mai mare de șase milimetri și evoluția, adică schimbarea în timp. Aluniții care mănâncă, sângerează sau cresc și rănile care nu se vindecă sunt de asemenea îngrijorătoare. Cele mai multe pete sunt inofensive."
+      ]
+    },
+    {
+      "heading": "După examinare",
+      "paragraphs": [
+        "Dacă ceva pare suspect, o mică probă sau întreaga leziune poate fi îndepărtată sub anestezie locală și examinată. Rezultatele durează zile. Veți fi sfătuit cum să vă verificați singur pielea și cum s-o protejați de soare. Întrebați cât de des sunt recomandate controalele."
+      ]
+    },
+    {
+      "heading": "Verificarea propriei piele",
+      "paragraphs": [
+        "Priviți-vă pielea regulat, la lumină bună, folosind o oglindă pentru spate. Notați petele noi sau schimbările și faceți fotografii pentru comparație. Folosiți umbra, hainele, pălăriile și crema de protecție și evitați paturile de bronzat. Mergeți prompt la medic pentru orice nev care se schimbă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Autoverificare regulată",
+      "text": "Imaginați-vă că vreți să vă monitorizați aluniții. Ați putea să-i fotografiați la câteva luni și să arătați medicului schimbările."
+    },
+    {
+      "title": "Raportarea unei schimbări",
+      "text": "Presupuneți că un nev a crescut și mănâncă. Ați putea face curând o programare și ați putea cere un examen dermatoscopic."
+    }
+  ],
+  "questions": [
+    "Trebuie îndepărtate sau urmărite unele dintre petele mele?",
+    "Cât de des ar trebui să-mi fie verificată pielea?",
+    "Cum îmi pot proteja cel mai bine pielea?"
+  ]
+}

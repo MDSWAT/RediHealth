@@ -1,0 +1,51 @@
+{
+  "title": "Dekubitusi (ranice od ležanja)",
+  "intro": "Dekubitusi su ozljede kože i tkiva ispod nje uzrokovane dugotrajnim pritiskom, obično iznad koštanih područja kao što su pete, kukovi, trtica i laktovi. Pogađaju ljude koji se ne mogu lako kretati, kao što su oni prikovani za krevet ili u invalidskim kolicima. U većini se slučajeva mogu spriječiti redovitim mijenjanjem položaja i pažljivom njegom kože.",
+  "sections": [
+    {
+      "heading": "Kako nastaju",
+      "paragraphs": [
+        "Kad pritisak dugo stišće kožu uz kost, dotok krvi se smanjuje i tkivo se oštećuje. Trenje, smicanje pri klizanju niz krevet, vlaga od znoja ili inkontinencije, loša prehrana, smanjen osjet i starija dob povećavaju rizik. Dijabetes, bolest cirkulacije i paraliza također pridonose."
+      ]
+    },
+    {
+      "heading": "Stadiji",
+      "paragraphs": [
+        "Prvi znak je trajno crvenilo koje ne blijedi pri pritisku. Zatim koža može dobiti mjehur ili puknuti, a zatim dublje oštećenje otkriva masnoću, mišić ili kost. Bol, toplina, oticanje i iscjedak mogu upućivati na infekciju. Rano prepoznavanje sprječava napredovanje."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Mijenjajte položaj najmanje svakih nekoliko sati u krevetu ili prebacujte težinu svakih petnaest do trideset minuta u stolici, kako je savjetovano za osobu. Koristite madrace i jastuke koji rasterećuju pritisak, održavajte kožu čistom i suhom, zbrinite inkontinenciju, izbjegavajte vučenje kože preko plahti i držite pete bez pritiska jastucima. Pregledavajte kožu svaki dan, osobito iznad koštanih područja. Dovoljno bjelančevina, kalorija i tekućine podržava zdravlje kože."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Rasterećenje pritiska je ključno, inače rane neće zacijeliti. Rane se čiste, drže vlažnima prikladnim zavojima, a mrtvo tkivo mogu ukloniti stručnjaci za rane. Infekcija se liječi antibioticima kad je potrebno. Duboki dekubitusi mogu zahtijevati operaciju. Ublažavanje boli i prehrambena potpora su važni. Liječenje negativnim tlakom ponekad se koristi."
+      ]
+    },
+    {
+      "heading": "Potpora njegovateljima",
+      "paragraphs": [
+        "Njegovatelji trebaju naučiti sigurne tehnike okretanja i premještanja osobe. Zamolite medicinske sestre da demonstriraju. Brzo potražite pomoć ako crvenilo potraje, pojavi se rana ili osoba ima vrućicu. Planovi skrbi i pomagala mogu se organizirati preko službi za njegu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izrada rasporeda okretanja",
+      "text": "Zamislite da njegujete rođaka koji većinu dana ostaje u krevetu. Mogli biste napisati raspored mijenjanja položaja, koristiti madrac koji rasterećuje pritisak i provjeravati pete i trticu svako jutro i večer."
+    },
+    {
+      "title": "Uočavanje ranih znakova",
+      "text": "Pretpostavite da primijetite crvenu mrlju koja ostaje crvena nakon uklanjanja pritiska. Mogli biste odmah skinuti pritisak s tog područja i kontaktirati medicinsku sestru ili liječnika."
+    }
+  ],
+  "questions": [
+    "Kako možemo smanjiti rizik od dekubitusa u situaciji mog rođaka?",
+    "Koji su madraci, jastuci ili pomagala prikladni?",
+    "Kako treba liječiti ranu u ovom stadiju?"
+  ]
+}

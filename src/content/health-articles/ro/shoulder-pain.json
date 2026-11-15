@@ -1,0 +1,51 @@
+{
+  "title": "Durerea de umăr",
+  "intro": "Durerea de umăr este frecventă și are multe cauze, cel mai adesea probleme ale tendoanelor și mușchilor manșetei rotatorilor. Cele mai multe cazuri se ameliorează în timp, cu ajustarea activității și exerciții. Tendinita calcifiantă, în care se formează depozite de calciu într-un tendon, este o cauză specifică care se liniștește adesea de la sine.",
+  "sections": [
+    {
+      "heading": "Cauze frecvente",
+      "paragraphs": [
+        "Umărul este o articulație foarte mobilă, ținută de mușchi și tendoane. Suprasolicitarea, uzura legată de vârstă, leziunile, iritația sau rupturile tendoanelor, inflamația bursei, umărul înghețat și artrita pot provoca durere. Problemele gâtului și afecțiunile inimii, ale plămânilor sau ale abdomenului pot trimite, de asemenea, durerea spre umăr."
+      ]
+    },
+    {
+      "heading": "Tendinita calcifiantă",
+      "paragraphs": [
+        "În tendinita calcifiantă se formează depozite de calciu în interiorul unui tendon, de obicei în manșeta rotatorilor, și pot provoca durere severă, mai ales noaptea și la ridicarea brațului. Cauza este neclară. Depozitele se dizolvă adesea de la sine în câteva luni, iar durerea de obicei se ameliorează atunci."
+      ]
+    },
+    {
+      "heading": "Autoajutorare",
+      "paragraphs": [
+        "Evitați mișcările care provoacă durere severă, dar țineți umărul în mișcare în limitele confortului, nu îl lăsați în repaus complet. Calmantele și compresele reci sau calde pot ameliora simptomele pe termen scurt. Mobilitatea blândă și, mai târziu, exercițiile de întărire ajută. Ajustați pozițiile de somn, de exemplu cu o pernă care susține brațul."
+      ]
+    },
+    {
+      "heading": "Tratament medical",
+      "paragraphs": [
+        "Kinetoterapia cu un program țintit de exerciții este piatra de temelie. Injecțiile cu corticosteroizi pot ameliora durerea câteva săptămâni și permit exercițiile. Terapia cu unde de șoc sau tratamentul cu ac pot ajuta la spargerea depozitelor mari de calciu. Chirurgia, de obicei laparoscopică, se ia în considerare când depozitele sau rupturile persistă și provoacă dizabilitate în ciuda a luni de tratament."
+      ]
+    },
+    {
+      "heading": "Când să cereți ajutor urgent",
+      "paragraphs": [
+        "Cereți ajutor imediat pentru durere de umăr după o leziune importantă, cu durere în piept, lipsă de aer sau transpirație, o articulație fierbinte, roșie și umflată, cu febră, sau pierderea bruscă a forței brațului. Durerea cu amorțeală sau slăbiciune care se extinde pe braț trebuie, de asemenea, evaluată."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ameliorarea durerii de noapte",
+      "text": "Imaginați-vă că durerea de umăr vă trezește noaptea. Ați putea încerca să vă culcați pe cealaltă parte, cu o pernă care susține brațul dureros, să luați un calmant conform recomandărilor și să întrebați despre un program de kinetoterapie."
+    },
+    {
+      "title": "Revenirea la activitate",
+      "text": "Presupuneți că durerea s-a ameliorat după câteva săptămâni. Ați putea reveni treptat la activitățile cu brațele ridicate și ați putea continua exercițiile pentru a preveni recidiva."
+    }
+  ],
+  "questions": [
+    "Ce provoacă durerea mea de umăr și am nevoie de o scanare?",
+    "Ce exerciții sau injecții m-ar ajuta?",
+    "Când s-ar lua în considerare chirurgia?"
+  ]
+}

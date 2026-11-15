@@ -1,0 +1,51 @@
+{
+  "title": "Diabete di tipo 1",
+  "intro": "Il diabete di tipo 1 è una condizione che dura tutta la vita in cui il sistema immunitario distrugge le cellule del pancreas che producono insulina, così il corpo non riesce più a produrne. Le persone hanno bisogno di insulina ogni giorno per sopravvivere. Con le terapie e le tecnologie moderne possono vivere una vita piena e attiva.",
+  "sections": [
+    {
+      "heading": "Che cosa succede nel corpo",
+      "paragraphs": [
+        "L'insulina permette allo zucchero del cibo di entrare nelle cellule del corpo per fornire energia. Senza di essa lo zucchero si accumula nel sangue mentre le cellule patiscono la fame. La causa è una reazione autoimmune in persone con una predisposizione genetica e non dipende da dieta o stile di vita. Di solito inizia nell'infanzia o nella giovane età adulta ma può comparire a qualsiasi età."
+      ]
+    },
+    {
+      "heading": "Sintomi e diagnosi",
+      "paragraphs": [
+        "I sintomi tipici sono sete aumentata, urinazione frequente, perdita di peso, stanchezza e visione offuscata, che si sviluppano nell'arco di giorni o settimane. Senza trattamento può derivarne la chetoacidosi, con nausea, vomito, dolore addominale, respiro profondo e sonnolenza, che è un'emergenza. La diagnosi si fa con esami della glicemia e dell'HbA1c, con test degli anticorpi per confermare il tipo."
+      ]
+    },
+    {
+      "heading": "Terapia insulinica",
+      "paragraphs": [
+        "L'insulina si somministra con iniezioni più volte al giorno con le penne, o in modo continuo con un microinfusore. L'insulina ad azione rapida copre i pasti e le correzioni e quella ad azione lunga fornisce una copertura di base costante. Le dosi si adattano a cibo, attività e glicemia. I sensori per il monitoraggio continuo del glucosio mostrano i livelli in tempo reale e alcuni sistemi si collegano ai microinfusori per regolare automaticamente l'insulina."
+      ]
+    },
+    {
+      "heading": "Vita quotidiana",
+      "paragraphs": [
+        "Le persone imparano a contare i carboidrati, controllare il glucosio e adattare le dosi. Un'alimentazione equilibrata, attività regolare, aggiustamento dell'insulina intorno all'esercizio e un piano per i giorni di malattia fanno parte della gestione quotidiana. La glicemia bassa richiede carboidrati rapidi ed è un rischio con l'insulina, mentre livelli molto alti richiedono attenzione. Alcol, guida e lavoro a turni richiedono una pianificazione in più."
+      ]
+    },
+    {
+      "heading": "Salute a lungo termine e sostegno",
+      "paragraphs": [
+        "Un buon controllo della glicemia riduce il rischio di danni a occhi, reni, nervi e cuore. Sono importanti controlli regolari di occhi, piedi, reni e pressione arteriosa. Programmi educativi, team per il diabete, sostegno psicologico e gruppi di pari aiutano, anche con il peso dell'autogestione costante. I bambini hanno bisogno di sostegno a scuola."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Imparare il conteggio dei carboidrati",
+      "text": "Immagina di aver appena ricevuto la diagnosi. Potresti frequentare un corso di educazione al diabete, imparare a stimare i carboidrati e tenere un registro dei livelli di glucosio."
+    },
+    {
+      "title": "Pianificare l'esercizio",
+      "text": "Supponi di voler giocare a calcio. Potresti chiedere al tuo team come ridurre l'insulina o assumere carboidrati extra e portare sempre con te zucchero rapido."
+    }
+  ],
+  "questions": [
+    "Quale schema insulinico e quale tecnologia mi si adattano meglio?",
+    "Come gestisco i giorni di malattia, l'esercizio e la glicemia bassa?",
+    "Di quali controlli ho bisogno ogni anno?"
+  ]
+}

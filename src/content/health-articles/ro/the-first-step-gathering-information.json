@@ -1,0 +1,51 @@
+{
+  "title": "Primul pas: adunarea informațiilor de sănătate",
+  "intro": "Luarea unor decizii bune despre sănătate începe cu găsirea unor informații de încredere. Internetul oferă o cantitate enormă, dar calitatea variază mult. O abordare atentă a căutării economisește timp și reduce șansa de a fi indus în eroare sau alarmat.",
+  "sections": [
+    {
+      "heading": "Știți ce vreți să aflați",
+      "paragraphs": [
+        "Scrieți întrebarea cât mai precis, de exemplu ce tratamente există pentru o afecțiune, ce implică un test sau ce efecte secundare are un medicament. Notați-vă îngrijorările, simptomele și deciziile din fața dumneavoastră. O întrebare clară vă ajută să alegeți sursele și termenii de căutare."
+      ]
+    },
+    {
+      "heading": "Unde să căutați",
+      "paragraphs": [
+        "Punctele de pornire de încredere includ autoritățile de sănătate publică, spitalele universitare, serviciile naționale de informare a pacienților, societățile medicale, furnizorii independenți de informații bazate pe dovezi și farmacistul sau medicul dumneavoastră. Prospectele și rezumatele ghidurilor pentru pacienți oferă detalii despre medicamente și tratamente. Organizațiile de pacienți oferă experiență și sfaturi practice."
+      ]
+    },
+    {
+      "heading": "Sfaturi de căutare",
+      "paragraphs": [
+        "Folosiți termeni specifici și numele afecțiunii sau al tratamentului. Adăugați cuvinte precum simptome, tratament, riscuri sau efecte secundare. Încercați mai multe surse și comparați. Evitați să vă bazați pe primul rezultat, deoarece motoarele de căutare pot favoriza reclamele sau paginile comerciale. Verificați datele, deoarece tratamentele și recomandările se schimbă."
+      ]
+    },
+    {
+      "heading": "Fiți precaut față de",
+      "paragraphs": [
+        "Promisiunile de leacuri miraculoase, paginile care vând produse alături de sfaturi, mărturiile prezentate drept dovadă, lipsa autorilor sau a surselor numite, limbajul alarmist și afirmațiile că medicii ascund adevărul. Postările de pe rețelele sociale și forumurile pot oferi sprijin, dar pot răspândi informații inexacte."
+      ]
+    },
+    {
+      "heading": "Țineți evidența și întrebați",
+      "paragraphs": [
+        "Notați ce găsiți, de unde provine și întrebările dumneavoastră. Aduceți-le medicului și întrebați în ce informații are încredere. Informațiile nu pot înlocui un consult, iar tratamentul nu trebuie schimbat pe baza a ceea ce citiți fără a vorbi cu un specialist."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru o consultație",
+      "text": "Imaginați-vă că vi s-a prescris un medicament nou. Ați putea citi prospectul și o pagină de informare pentru pacienți de încredere, ați putea nota întrebările și le-ați putea discuta la următoarea vizită."
+    },
+    {
+      "title": "Observarea unei pagini dubioase",
+      "text": "Presupuneți că un site promite să vindece diabetul cu un supliment. Ați putea verifica cine administrează site-ul, dacă citează cercetări și dacă vinde produsul."
+    }
+  ],
+  "questions": [
+    "Ce surse recomandați pentru informații de încredere despre afecțiunea mea?",
+    "Este ceea ce citesc relevant pentru situația mea?",
+    "Cum pot discuta cu dumneavoastră informațiile pe care le-am găsit?"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Cum se diagnostichează diabetul",
+  "intro": "Diabetul este diagnosticat prin analize de sânge care măsoară cât zahăr, adică glucoză, se află în sânge. Deoarece diabetul incipient poate să nu provoace simptome, testarea este importantă pentru persoanele cu risc mai mare. Înțelegerea principalelor teste și a semnificației valorilor face mai ușoară urmărirea și formularea întrebărilor potrivite.",
+  "sections": [
+    {
+      "heading": "De ce se face testarea",
+      "paragraphs": [
+        "Medicii testează pentru diabet atunci când cineva are simptome precum sete mare, urinare frecventă, oboseală, vedere încețoșată sau vindecare lentă a rănilor. Testează și persoane fără simptome, care au factori de risc, de exemplu greutate în exces, o rudă apropiată cu diabet, hipertensiune arterială sau diabet în timpul sarcinii în antecedente.",
+        "Depistarea precoce a diabetului permite tratamentul înainte să apară leziuni pe termen lung la ochi, rinichi, nervi și vase de sânge. Ajută, de asemenea, la deosebirea diferitelor forme, care se tratează diferit."
+      ]
+    },
+    {
+      "heading": "Glicemia à jeun",
+      "paragraphs": [
+        "Testul glicemiei à jeun măsoară nivelul zahărului dintr-o probă de sânge recoltată după cel puțin opt ore fără alimente sau băuturi cu calorii. Este simplu și larg disponibil. Un rezultat repetat peste pragul de diagnostic de 126 mg/dl, adică 7.0 mmol/l, indică diabet.",
+        "Valorile situate între normal și pragul pentru diabet se numesc glicemie à jeun modificată sau prediabet. Este un semnal de alarmă că riscul de a dezvolta diabet este crescut, iar schimbările stilului de viață pot adesea întârzia sau preveni evoluția."
+      ]
+    },
+    {
+      "heading": "HbA1c: valoarea pe termen lung",
+      "paragraphs": [
+        "HbA1c reflectă glicemia medie din ultimele două-trei luni, deoarece măsoară proporția de hemoglobină la care s-a atașat zahăr. Nu este nevoie de repaus alimentar. O valoare de 6.5 la sută sau mai mare indică diabet atunci când este confirmată.",
+        "HbA1c poate fi nesigură în unele situații, precum anemia, anumite variante de hemoglobină, pierderile recente de sânge sau transfuziile și boala renală. În aceste cazuri, medicii se bazează mai mult pe măsurători directe ale glucozei."
+      ]
+    },
+    {
+      "heading": "Testul de toleranță la glucoză",
+      "paragraphs": [
+        "În testul oral de toleranță la glucoză, glicemia este măsurată à jeun și din nou la două ore după ce beți o soluție standard de zahăr. Poate detecta probleme pe care valorile à jeun le ratează și este folosit pentru diagnosticarea diabetului gestațional în sarcină. Pregătirea și condițiile contează, așa că urmați instrucțiunile primite.",
+        "O glicemie la întâmplare de 200 mg/dl sau mai mare, împreună cu simptome tipice, poate confirma de asemenea diagnosticul. Fără simptome, rezultatele sunt verificate în mod normal printr-un al doilea test."
+      ]
+    },
+    {
+      "heading": "După diagnostic",
+      "paragraphs": [
+        "Medicul vă va explica ce tip de diabet aveți și va programa alte analize, de exemplu pentru funcția rinichilor, colesterol și sănătatea ochilor. Tratamentul poate include schimbări ale alimentației, activitate fizică, tablete sau insulină, împreună cu educație despre automonitorizare.",
+        "Multe persoane se simt copleșite la început. Programele de educație pentru diabet și grupurile de sprijin vă pot ajuta să înțelegeți afecțiunea și să căpătați încredere în gestionarea de zi cu zi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru un test",
+      "text": "Imaginați-vă că sunteți programat pentru un test al glicemiei à jeun. Ați putea confirma cât timp să evitați mâncarea, dacă puteți bea apă și lua medicamentele obișnuite și ați putea alege o programare dimineața devreme, ca postul să fie mai ușor."
+    },
+    {
+      "title": "Înțelegerea unui rezultat la limită",
+      "text": "Presupuneți că HbA1c este ușor crescută, dar sub pragul pentru diabet. Ați putea întreba ce înseamnă aceasta pentru riscul dumneavoastră, ce pași legați de stilul de viață sunt cei mai utili și când ar trebui repetat testul."
+    }
+  ],
+  "questions": [
+    "Care test este cel mai potrivit pentru mine și trebuie să fiu à jeun sau să mă pregătesc în vreun fel?",
+    "Dacă rezultatul meu este la limită, cât de probabil este să progreseze și ce pot face?",
+    "Dacă am diabet, ce alte analize și ce educație mi se vor oferi?"
+  ]
+}

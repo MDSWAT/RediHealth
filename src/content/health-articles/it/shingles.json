@@ -1,0 +1,52 @@
+{
+  "title": "Herpes zoster (fuoco di Sant'Antonio)",
+  "intro": "L'herpes zoster è un'eruzione dolorosa causata dalla riattivazione del virus della varicella, che resta dormiente nelle cellule nervose dopo che una persona ha avuto la varicella. Di solito compare come una fascia di vescicole su un lato del corpo e guarisce in alcune settimane. Il trattamento precoce e la vaccinazione possono ridurre le complicanze.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Tipicamente c'è bruciore, formicolio o dolore in una zona della pelle per alcuni giorni, seguito da un'eruzione rossa con grappoli di vescicole piene di liquido disposte a fascia su un lato del tronco, del viso o di un'altra zona. Le vescicole formano croste entro circa dieci giorni. Alcune persone hanno febbre, mal di testa e stanchezza."
+      ]
+    },
+    {
+      "heading": "Chi lo contrae",
+      "paragraphs": [
+        "Chiunque abbia avuto la varicella può avere l'herpes zoster, ma il rischio aumenta con l'età, in particolare dopo i cinquant'anni, e con difese immunitarie indebolite da malattie, farmaci o stress. L'herpes zoster non si prende da un'altra persona, ma una persona con vescicole attive può trasmettere il virus della varicella a chi non ha mai avuto la varicella né il vaccino."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Un farmaco antivirale, iniziato entro tre giorni dalla comparsa dell'eruzione, può ridurre la gravità, accorciare la malattia e abbassare il rischio di dolore duraturo. È consigliato soprattutto alle persone sopra i cinquant'anni, a chi ha un'eruzione sul viso o un forte dolore e a chi ha difese immunitarie indebolite. Antidolorifici, impacchi freddi e vestiti larghi alleviano il fastidio. Tieni le vescicole pulite e coperte ed evita il contatto con donne in gravidanza, neonati e persone con difese deboli finché non si sono incrostate."
+      ]
+    },
+    {
+      "heading": "Complicanze e vaccinazione",
+      "paragraphs": [
+        "Alcune persone sviluppano un dolore nervoso duraturo chiamato nevralgia post-erpetica. L'herpes zoster vicino all'occhio può minacciare la vista e richiede una valutazione urgente. Altre complicanze comprendono infezione batterica della pelle, paralisi facciale e problemi dell'udito.",
+        "Un vaccino riduce il rischio di herpes zoster e delle sue complicanze ed è raccomandato per gli anziani e per certe persone più giovani a rischio, con uno schema a due dosi. Chiedi al medico se è appropriato per te e se i costi sono coperti."
+      ]
+    },
+    {
+      "heading": "Prendersi cura di sé",
+      "paragraphs": [
+        "Riposo, un dolce sollievo dal dolore e tenere pulita la pelle aiutano la guarigione. Evita di grattarti e informa il medico se l'eruzione si estende, diventa molto dolorosa o ti senti male. La maggior parte delle persone guarisce completamente in poche settimane."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Agire in fretta",
+      "text": "Immagina di sentire bruciore su un lato del petto e poi di vedere delle vescicole. Potresti contattare il medico lo stesso giorno per chiedere del trattamento antivirale."
+    },
+    {
+      "title": "Considerare la vaccinazione",
+      "text": "Supponi di avere sessant'anni. Potresti chiedere al medico se il vaccino contro l'herpes zoster sia consigliato e di quante dosi hai bisogno."
+    }
+  ],
+  "questions": [
+    "Dovrei iniziare un trattamento antivirale e con quale urgenza?",
+    "Come posso proteggere gli altri intorno a me mentre ho le vescicole?",
+    "Sono idoneo alla vaccinazione contro l'herpes zoster?"
+  ]
+}

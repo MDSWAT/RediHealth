@@ -1,0 +1,51 @@
+{
+  "title": "Manjak željeza i anemija zbog manjka željeza",
+  "intro": "Željezo je potrebno za stvaranje hemoglobina, bjelančevine u crvenim krvnim stanicama koja prenosi kisik. Kad tijelu nedostaje željeza, razvijaju se umor i drugi simptomi, a može uslijediti anemija. Manjak željeza je čest, osobito u žena koje menstruiraju, trudnica i djece, i obično se može liječiti kad se nađe uzrok.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Najčešći uzroci su gubitak krvi, primjerice zbog obilnih menstruacija ili krvarenja u probavnom sustavu, prehrana siromašna željezom, povećane potrebe u trudnoći i rastu te smanjena apsorpcija zbog stanja kao što je celijakija ili nakon operacije želuca. U muškaraca i žena nakon menopauze treba istražiti skriveni gubitak krvi."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Simptomi uključuju umor, slabost, bljedilo kože, nedostatak zraka pri naporu, glavobolje, vrtoglavicu, lomljive nokte, gubitak kose, hladne ruke i stopala te nemirne noge. Neki ljudi žude za ledom ili predmetima koji nisu hrana. Simptomi se razvijaju polako i mnogi ljudi se na njih naviknu."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Krvna slika pokazuje je li anemija prisutna, a feritin mjeri zalihe željeza. Daljnje pretrage mogu uključivati traženje izvora krvarenja, testove na celijakiju i, ovisno o dobi i simptomima, pregled probavnog sustava."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Liječenje rješava uzrok i nadoknađuje željezo. Tablete željeza uzete jednom dnevno ili svaki drugi dan često se dobro apsorbiraju, najbolje podalje od čaja, kave i mliječnih proizvoda. Nuspojave uključuju zatvor, mučninu i tamnu stolicu. Željezo se može dati infuzijom kad se tablete ne podnose, ne djeluju ili kad je potrebna brza korekcija. Hemoglobin se obično poboljša unutar nekoliko tjedana, ali zalihama treba nekoliko mjeseci da se napune."
+      ]
+    },
+    {
+      "heading": "Prehrana i prevencija",
+      "paragraphs": [
+        "Namirnice bogate željezom uključuju crveno meso, perad, ribu, mahunarke, tamnozeleno povrće, orašaste plodove i obogaćene žitarice. Vitamin C pomaže apsorpciji biljnog željeza, dok čaj, kava i kalcij je smanjuju. Trudnice, vegetarijanci i osobe s obilnim menstruacijama trebaju pitati imaju li dodaci smisla. Ne uzimajte dodatke željeza bez dijagnoze jer previše može biti štetno."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razumijevanje umora",
+      "text": "Zamislite da ste mjesecima iscrpljeni. Mogli biste zatražiti od liječnika krvnu sliku i test feritina te prijaviti pojedinosti o obilnim menstruacijama ili probavnim simptomima."
+    },
+    {
+      "title": "Dobro uzimanje tableta",
+      "text": "Pretpostavite da vam tablete željeza uznemiruju želudac. Mogli biste pitati može li pomoći uzimanje svaki drugi dan, drugačiji pripravak ili uzimanje s hranom, umjesto da prestanete."
+    }
+  ],
+  "questions": [
+    "Što uzrokuje moj manjak željeza i trebam li dodatne pretrage?",
+    "Koliko dugo trebam uzimati željezo i kada će se razine ponovno provjeriti?",
+    "Koje namirnice ili navike mogu poboljšati moj unos željeza?"
+  ]
+}

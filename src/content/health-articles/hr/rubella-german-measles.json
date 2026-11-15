@@ -1,0 +1,51 @@
+{
+  "title": "Rubeola (njemačke ospice)",
+  "intro": "Rubeola je virusna infekcija koja obično uzrokuje blagu bolest s osipom, ali može ozbiljno naškoditi nerođenom djetetu ako se žena zarazi u ranoj trudnoći. Cijepljenje u sklopu kombiniranog cjepiva protiv ospica, zaušnjaka i rubeole pruža pouzdanu zaštitu i učinilo je rubeolu rijetkom u mnogim zemljama.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Nakon inkubacije od dva do tri tjedna, ružičasti osip počinje na licu i širi se na tijelo te traje oko tri dana. Ostali simptomi su niska vrućica, povećani limfni čvorovi iza ušiju i na vratu, blagi simptomi prehlade i bol u zglobovima, osobito u odraslih žena. Mnoge infekcije uzrokuju malo simptoma ili ih uopće nemaju."
+      ]
+    },
+    {
+      "heading": "Kako se širi",
+      "paragraphs": [
+        "Rubeola se širi kapljicama kada zaražena osoba kašlje ili kiše. Ljudi su zarazni od otprilike tjedan dana prije osipa do otprilike tjedan dana poslije. U tom razdoblju trebaju izbjegavati školu, posao i trudnice te javiti liječniku prije posjeta."
+      ]
+    },
+    {
+      "heading": "Rizik u trudnoći",
+      "paragraphs": [
+        "Infekcija u prvim mjesecima trudnoće može uzrokovati spontani pobačaj ili sindrom kongenitalne rubeole, koji može uključivati srčane mane, sivu mrenu, gubitak sluha i probleme u razvoju. Žene koje planiraju trudnoću trebaju provjeriti jesu li imune. Trudnica koja je bila izložena ili ima osip treba odmah kontaktirati liječnika."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i liječenje",
+      "paragraphs": [
+        "Dijagnoza se potvrđuje krvnim pretragama ili obrisom grla. Nema specifičnog liječenja; odmor, tekućina te paracetamol ili ibuprofen ublažavaju simptome. Komplikacije kao što su artritis, problemi s krvarenjem ili upala mozga su rijetke."
+      ]
+    },
+    {
+      "heading": "Cijepljenje",
+      "paragraphs": [
+        "Cjepivo protiv ospica, zaušnjaka i rubeole daje se u dvije doze u djetinjstvu. Žene reproduktivne dobi bez dokaza o imunitetu trebaju se cijepiti, idealno prije trudnoće, jer se cjepivo ne smije davati tijekom trudnoće, a trudnoću treba izbjegavati otprilike mjesec dana nakon toga. Zdravstveni radnici i oni koji skrbe o djeci također trebaju osigurati svoj imunitet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Provjera imuniteta",
+      "text": "Zamislite da planirate trudnoću. Mogli biste provjeriti cijepni karton i zamoliti liječnika za krvnu pretragu ako niste sigurni jeste li imuni."
+    },
+    {
+      "title": "Reakcija na izloženost",
+      "text": "Pretpostavite da kolega ima rubeolu, a vi ste trudni. Mogli biste odmah nazvati liječnika kako biste dogovorili test imuniteta i savjet."
+    }
+  ],
+  "questions": [
+    "Jesam li zaštićena od rubeole i trebam li cjepivo?",
+    "Kada se trebam cijepiti ako želim ostati trudna?",
+    "Što trebam učiniti ako sam trudna i bila sam izložena rubeoli?"
+  ]
+}

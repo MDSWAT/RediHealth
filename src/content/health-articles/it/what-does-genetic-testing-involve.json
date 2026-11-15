@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa comportano i test genetici",
+  "intro": "I test genetici esaminano geni, cromosomi o proteine per trovare cambiamenti legati a condizioni ereditarie o al rischio di malattia. Si fanno su un campione di sangue o di saliva. Il test può dare risposte utili ma solleva anche questioni personali, quindi la consulenza prima è importante.",
+  "sections": [
+    {
+      "heading": "Tipi di test",
+      "paragraphs": [
+        "Il test diagnostico conferma o esclude una condizione sospetta. Il test predittivo e presintomatico mostra se qualcuno svilupperà o potrebbe sviluppare una malattia più avanti. Il test del portatore mostra se una persona porta una variante genetica che potrebbe riguardare i figli. I test prenatali e neonatali cercano le condizioni precocemente. I test farmacogenetici guidano la scelta del farmaco."
+      ]
+    },
+    {
+      "heading": "Il percorso",
+      "paragraphs": [
+        "Un consulente genetico o un medico discute i motivi, i possibili risultati e le conseguenze e verifica la storia familiare. Si preleva un campione di sangue o di saliva e lo si analizza in laboratorio, il che può richiedere da giorni a mesi. I risultati sono spiegati in una visita di controllo. In molti paesi è richiesto il consenso scritto."
+      ]
+    },
+    {
+      "heading": "Possibili risultati",
+      "paragraphs": [
+        "Un risultato può essere positivo, cioè è stata trovata una variante genetica, negativo o incerto, quando si trova una variante di significato sconosciuto. Un risultato negativo non esclude ogni rischio, perché non tutte le cause sono note. Un risultato positivo può non significare una malattia certa, perché molte varianti genetiche aumentano solo il rischio."
+      ]
+    },
+    {
+      "heading": "Considerazioni",
+      "paragraphs": [
+        "I risultati possono riguardare i familiari, che condividono i geni, e possono avere effetti emotivi, come ansia o senso di colpa. Alcuni paesi hanno leggi che proteggono dalla discriminazione genetica da parte di datori di lavoro e assicurazioni, ma le regole differiscono e alcuni prodotti assicurativi possono essere interessati. I test venduti direttamente ai consumatori variano in qualità e i risultati vanno discussi con un professionista."
+      ]
+    },
+    {
+      "heading": "Prendere una decisione",
+      "paragraphs": [
+        "Il test è volontario. Pensa a che cosa faresti con il risultato, se cambia il trattamento o lo screening e come lo diresti alla famiglia. Puoi prenderti del tempo o rifiutare. Il sostegno è disponibile da consulenti genetici e organizzazioni di pazienti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi alla consulenza",
+      "text": "Immagina che diversi familiari abbiano avuto un tumore al seno. Potresti disegnare un albero genealogico e annotare le età alla diagnosi da portare al consulente."
+    },
+    {
+      "title": "Ponderare la decisione",
+      "text": "Supponi che ti venga proposto un test predittivo. Potresti chiedere come i risultati cambierebbero le tue cure e quale sostegno esiste dopo."
+    }
+  ],
+  "questions": [
+    "Il test genetico è utile nella mia situazione?",
+    "Come potrebbe un risultato influire sui miei familiari e sull'assicurazione?",
+    "Quale sostegno è disponibile dopo il risultato?"
+  ]
+}

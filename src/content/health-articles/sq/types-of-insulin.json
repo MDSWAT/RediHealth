@@ -1,0 +1,51 @@
+{
+  "title": "Llojet e insulinës",
+  "intro": "Insulina vjen në disa forma që dallojnë në sa shpejt fillojnë të veprojnë e sa zgjasin. Njerëzit me diabet që kanë nevojë për insulinë zakonisht kombinojnë lloje për të mbuluar vaktet e për të dhënë një nivel të qëndrueshëm bazë. Të kuptuarit e llojeve ju ndihmon t'i përdorni në mënyrë të sigurt e të diskutoni ndryshime me ekipin e diabetit.",
+  "sections": [
+    {
+      "heading": "Insulina me veprim të shpejtë e të shkurtër",
+      "paragraphs": [
+        "Insulina me veprim të shpejtë fillon të veprojë brenda rreth pesëmbëdhjetë minutash, arrin kulmin pas një deri dy orësh e zgjat tre deri pesë orë. Merret në vakt ose pak para vakteve e për të korrigjuar sheqerin e lartë në gjak. Insulina me veprim të shkurtër, ose e rregullt, fillon pas rreth gjysmë ore, arrin kulmin më vonë e zgjat më gjatë, prandaj merret pak kohë para ngrënies."
+      ]
+    },
+    {
+      "heading": "Insulina e ndërmjetme e me veprim të gjatë",
+      "paragraphs": [
+        "Insulina me veprim të ndërmjetëm, shpesh e turbullt e që kërkon përzierje, vepron rreth gjysmë dite me një kulm. Insulina me veprim të gjatë vepron një ditë ose më shumë me profil më të sheshtë e jep mbulim bazë midis vakteve e gjatë natës. Format me veprim ultra të gjatë zgjasin edhe më shumë. Këto merren zakonisht një a dy herë në ditë në të njëjtat kohë."
+      ]
+    },
+    {
+      "heading": "Insulina e përzier",
+      "paragraphs": [
+        "Insulina e premiksuar përmban një kombinim të fiksuar insuline të shpejtë e më të ngadaltë në një injeksion, shpesh e përdorur dy herë në ditë. Është më e thjeshtë por më pak fleksibël, pasi koha e vakteve e aktivitetit duhet të jetë e rregullt. Dozat rregullohen nga mjeku."
+      ]
+    },
+    {
+      "heading": "Dhënia dhe ruajtja",
+      "paragraphs": [
+        "Insulina injektohet nën lëkurë në bark, kofshë ose vithe me stilolaps ose shiringë, ose jepet nga një pompë insuline. Ndërroni vendet e injektimit për të parandaluar gunga që ndikojnë thithjen. Ruajeni insulinën e hapur në frigorifer e mbajeni atë në përdorim në temperaturë dhome për kohën e treguar në fletë. Mos e ngrini kurrë insulinën e mos e lini në makinë të nxehtë e kontrolloni datën e skadimit."
+      ]
+    },
+    {
+      "heading": "Përdorimi i sigurt",
+      "paragraphs": [
+        "Kontrolloni gjithmonë llojin e dozën para injektimit, pasi ngatërrimi midis insulinave mund të jetë i rrezikshëm. Mësoni të njihni e trajtoni sheqerin e ulët në gjak, rregulloni dozat sipas ushqimit, aktivitetit e sëmundjes sipas planit tuaj e matni glukozën rregullisht. Mos i ndryshoni dozat ose markat pa këshillë. Mbani furnizimet kur udhëtoni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përputhja e insulinës me vaktet",
+      "text": "Imagjinoni që merrni insulinë me veprim të shpejtë me vaktet. Mund të injektoni pak para ngrënies, të matni glukozën në kohë të caktuara e të shënoni vaktet e dozat që ekipi t'i rishikojë."
+    },
+    {
+      "title": "Ndërrimi i vendeve",
+      "text": "Supozoni që vini re një gungë ku injektoni shpesh. Mund të kaloni në një zonë tjetër, të shmangni injektimin në gungë e t'ia tregoni infermierit."
+    }
+  ],
+  "questions": [
+    "Cilat lloje e doza insuline i përshtaten më mirë rutinës sime ditore?",
+    "Si ta rregulloj insulinën për ushtrime, sëmundje e udhëtim?",
+    "Si ta ruaj insulinën e t'i ndërroj vendet e injektimit?"
+  ]
+}

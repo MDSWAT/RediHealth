@@ -1,0 +1,51 @@
+{
+  "title": "Tonzilitis i grlobolja",
+  "intro": "Tonzilitis je upala krajnika, dvaju nakupina tkiva u stražnjem dijelu grla. Uzrokuje grlobolju, bol pri gutanju i često vrućicu. Većinu slučajeva uzrokuju virusi i prolaze unutar otprilike tjedan dana bez antibiotika. Ublažavanje boli, tekućina i odmor glavna su liječenja.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Virusi, kao što su virusi prehlade i gripe, uzrokuju većinu slučajeva. Bakterije, osobito streptokoki skupine A, čine manji udio, uglavnom kod djece od pet do petnaest godina. Klice se šire kapljicama i bliskim kontaktom. Dim i suh zrak mogu nadražiti grlo."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipični simptomi su grlobolja, bolno gutanje, vrućica, otečeni i crveni krajnici s bijelim naslagama u nekim slučajevima, otečene žlijezde na vratu, neugodan zadah, glavobolja i umor. Kašalj i curenje nosa upućuju na virusni uzrok, dok jaka grlobolja bez kašlja i s otečenim žlijezdama povećava vjerojatnost bakterijske infekcije."
+      ]
+    },
+    {
+      "heading": "Samozbrinjavanje",
+      "paragraphs": [
+        "Odmarajte, pijte dosta tekućine i jedite mekanu hranu. Paracetamol ili ibuprofen smanjuju bol i vrućicu. Pastile, grgljanje toplom slanom vodom i sprejevi za grlo mogu ublažiti nelagodu. Izbjegavajte pušenje. Djeca trebaju ostati kod kuće dok imaju vrućicu, a pranje ruku smanjuje širenje."
+      ]
+    },
+    {
+      "heading": "Kada se koriste antibiotici",
+      "paragraphs": [
+        "Antibiotici se koriste kada je streptokokna infekcija vjerojatna ili potvrđena obriskom grla, osobito kada su simptomi teški ili postoji rizik od komplikacija. Blago skraćuju simptome i smanjuju rizik od rijetkih komplikacija kao što su reumatska groznica i apsces. Terapija penicilinom obično traje nekoliko dana. Antibiotici ne pomažu kod virusnih infekcija."
+      ]
+    },
+    {
+      "heading": "Komplikacije i operacija",
+      "paragraphs": [
+        "Potražite hitnu skrb kod otežanog disanja ili gutanja sline, slinjenja, prigušenog glasa, nemogućnosti otvaranja usta, jake jednostrane boli u grlu ili oticanja vrata, što može upućivati na apsces. Operacija uklanjanja krajnika razmatra se kod ljudi s čestim, teškim, dobro dokumentiranim infekcijama koje remete život, a odluke vagaju korist naspram rizika poput krvarenja i boli nakon operacije."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Briga o djetetu",
+      "text": "Zamislite da vaše dijete ima grlobolju i vrućicu. Mogli biste ponuditi hladna pića i mekanu hranu, dati lijek protiv bolova u pravoj dozi i posjetiti liječnika ako gutanje postane vrlo teško."
+    },
+    {
+      "title": "Pitanje o operaciji",
+      "text": "Pretpostavite da ste ove godine imali mnogo napadaja tonzilitisa. Mogli biste voditi evidenciju svake epizode s datumima i liječenjem te razgovarati s otorinolaringologom."
+    }
+  ],
+  "questions": [
+    "Je li moja grlobolja vjerojatno virusna ili bakterijska i trebam li bris?",
+    "Kada bi operacija krajnika bila preporučljiva?",
+    "Koji simptomi znače da trebam potražiti hitnu pomoć?"
+  ]
+}

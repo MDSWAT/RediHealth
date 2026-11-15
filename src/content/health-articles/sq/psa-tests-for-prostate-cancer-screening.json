@@ -1,0 +1,51 @@
+{
+  "title": "Testet PSA për skriningun e kancerit të prostatës",
+  "intro": "Testi PSA mat antigjenin specifik të prostatës, një proteinë e prodhuar nga prostata, në një mostër gjaku. Një nivel i lartë mund të tregojë kancer të prostatës, por edhe gjendje beninje. Përdorimi i testit PSA për skrining te meshkujt e shëndetshëm mund të zbulojë disa kanceret herët, por çon edhe në alarme të rreme e mbidiagnozë, prandaj vendimi është personal.",
+  "sections": [
+    {
+      "heading": "Çfarë mat testi",
+      "paragraphs": [
+        "Nivelet e PSA rriten me kancerin, por edhe me zmadhimin beninj, inflamacionin, infeksionin, ejakulimin e fundit, çiklizmin e ndërhyrjet instrumentale. Nivelet rriten edhe me moshën. Nuk ka kufi që e ndan plotësisht kancerin nga jo-kanceri, prandaj një vlerë e ngritur tregon vetëm nevojën për vlerësim të mëtejshëm."
+      ]
+    },
+    {
+      "heading": "Përfitimet e mundshme",
+      "paragraphs": [
+        "Provat e mëdha sugjerojnë që skriningu PSA mund ta ulë rrezikun e vdekjes nga kanceri i prostatës te një numër i vogël meshkujsh, me përfitimin që shfaqet pas më shumë se dhjetë vjetësh. Efekti është modest. Gjetja e hershme e kancerit mund të lejojë trajtim ndërsa është ende i lokalizuar."
+      ]
+    },
+    {
+      "heading": "Dëmet e mundshme",
+      "paragraphs": [
+        "Shumë rezultate të ngritura çojnë në biopsi që nuk gjejnë kancer. Biopsia mund të shkaktojë gjakderdhje, infeksion e ankth. Skriningu gjen shumë kancere me rritje të ngadaltë që nuk do të kishin shkaktuar kurrë simptoma ose shkurtuar jetën, të quajtura mbidiagnozë. Meshkujt që trajtohen për këto kancere mund të vuajnë efekte anësore si inkontinenca e problemet e ngritjes pa përfitim."
+      ]
+    },
+    {
+      "heading": "Marrja e vendimit tuaj",
+      "paragraphs": [
+        "Meqenëse përfitimet e dëmet janë të balancuara ngushtë, shumë udhëzues rekomandojnë zgjedhje të informuar në vend të skriningut rutinë për të gjithë meshkujt. Mendoni për moshën, historinë familjare, shëndetin dhe si ndiheni për pasigurinë. Meshkujt me histori të fortë familjare ose me origjinë afrikane mund të kenë rrezik më të lartë dhe mund të diskutojnë vlerësim më të hershëm. Përdorimi i rezonancës magnetike para biopsisë e ndjekja aktive e kancereve me rrezik të ulët mund ta ulin dëmin."
+      ]
+    },
+    {
+      "heading": "Ndjekja pas një rezultati të ngritur",
+      "paragraphs": [
+        "Nëse PSA është e ngritur, mjekët mund ta përsërisin testin pas disa javësh, të kontrollojnë për infeksion e të marrin parasysh rezonancën para se të vendosin për biopsi. Pyesni për çdo hap e gjasat e gjetjes së një kanceri të rëndësishëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Peshimi i situatës",
+      "text": "Imagjinoni që jeni 58 vjeç dhe mjeku përmend një test PSA. Mund të pyesni sa meshkuj përfitojnë, sa kanë alarme të rreme e çfarë do të bënit nëse rezultati do të ishte i ngritur."
+    },
+    {
+      "title": "Përgatitja për testin",
+      "text": "Supozoni që vendosni të testoheni. Mund të shmangni ejakulimin e çiklizmin e ngarkuar për një a dy ditë më parë dhe t'i tregoni mjekut për çdo infeksion urinar."
+    }
+  ],
+  "questions": [
+    "A këshillohet testi PSA për mua, duke pasur parasysh moshën e historinë familjare?",
+    "Çfarë do të ndodhte nëse niveli im i PSA do të ishte i ngritur?",
+    "Cilat janë gjasat e mbidiagnozës e mbitrajtimit?"
+  ]
+}

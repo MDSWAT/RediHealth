@@ -1,0 +1,52 @@
+{
+  "title": "Come occhio e cervello creano la visione",
+  "intro": "La vista richiede superfici ottiche trasparenti, retina funzionante, nervi ottici e cervello. Le strutture hanno compiti diversi; occhiali più forti non risolvono tutto e un aspetto esterno normale non esclude malattie.",
+  "sections": [
+    {
+      "heading": "Messa a fuoco",
+      "paragraphs": [
+        "La cornea devia la luce; il cristallino regola il fuoco. L'iride cambia la pupilla per controllare l'ingresso. Gli occhiali correggono alcuni difetti, non ogni causa di perdita visiva."
+      ]
+    },
+    {
+      "heading": "Ricezione",
+      "paragraphs": [
+        "I bastoncelli aiutano al buio e i coni colori e dettagli. La macula offre visione centrale fine. Danni in aree retiniche diverse provocano difficoltà diverse."
+      ]
+    },
+    {
+      "heading": "Segnali e sostegno",
+      "paragraphs": [
+        "Il nervo ottico porta segnali al cervello. Le lacrime proteggono la superficie, i muscoli allineano lo sguardo. La pressione oculare dipende da produzione e drenaggio di liquido, non coincide con quella sanguigna."
+      ]
+    },
+    {
+      "heading": "Protezione",
+      "paragraphs": [
+        "Usate protezioni oculari nei lavori rischiosi e igiene delle lenti a contatto. Fate valutare cambiamenti; aumentare la luminosità dello schermo non cura malattie oculari."
+      ]
+    },
+    {
+      "heading": "Urgenze",
+      "paragraphs": [
+        "Perdita improvvisa della vista o dolore intenso richiedono emergenza. Nuovi lampi, molte mosche volanti o un'ombra richiedono assistenza urgente; non guidate con vista insicura.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira vede una nuova ombra. Cerca una visita oculistica urgente invece del solo controllo ordinario degli occhiali."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben legge meglio con le lenti prescritte. Mantiene i controlli: messa a fuoco e salute retinica sono diverse."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

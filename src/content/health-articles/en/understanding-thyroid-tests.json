@@ -1,0 +1,51 @@
+{
+  "title": "Understanding thyroid tests",
+  "intro": "Thyroid tests help diagnose an overactive or underactive thyroid, thyroid enlargement and thyroid cancer. They include blood tests, ultrasound and sometimes scans or biopsies. Knowing what the results mean can make appointments easier to follow.",
+  "sections": [
+    {
+      "heading": "Blood tests",
+      "paragraphs": [
+        "Thyroid-stimulating hormone, made by the pituitary gland, is usually the first test. It rises when the thyroid is underactive and falls when it is overactive. Free thyroxine and sometimes free triiodothyronine measure the actual thyroid hormones. Together they show whether the thyroid is working too much or too little."
+      ]
+    },
+    {
+      "heading": "Antibody tests",
+      "paragraphs": [
+        "Antibodies against the thyroid, such as anti-TPO and anti-thyroglobulin, are present in autoimmune thyroid disease like Hashimoto's. Antibodies that stimulate the TSH receptor are found in Graves' disease. These tests help find the cause but are not always necessary."
+      ]
+    },
+    {
+      "heading": "Ultrasound",
+      "paragraphs": [
+        "Ultrasound uses sound waves to image the thyroid, showing its size and any nodules, including whether they are solid or cystic and which features appear suspicious. It is painless, quick and does not use radiation. It is the main imaging method for goitre and nodules."
+      ]
+    },
+    {
+      "heading": "Scans and biopsy",
+      "paragraphs": [
+        "A thyroid scintigraphy uses a small amount of a radioactive tracer to show which areas of the thyroid are active, helping to distinguish overactive nodules from inactive ones. If a nodule looks suspicious on ultrasound, a fine needle aspiration takes a few cells with a thin needle for examination under a microscope. Most nodules turn out to be benign."
+      ]
+    },
+    {
+      "heading": "Practical tips",
+      "paragraphs": [
+        "Tell your doctor about thyroid medicines, supplements such as biotin, which can distort results, and pregnancy. Levothyroxine users are often asked to take the tablet after the blood sample. Results may vary during illness, so repeat testing is sometimes needed. Ask when your next test is due."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing for a blood test",
+      "text": "Imagine you take levothyroxine in the morning. You could ask whether to have the blood sample taken before the tablet and bring a list of supplements."
+    },
+    {
+      "title": "Understanding a nodule",
+      "text": "Suppose an ultrasound shows a thyroid nodule. You might ask what features were seen, whether a biopsy is needed and how often it should be checked."
+    }
+  ],
+  "questions": [
+    "Which thyroid tests do I need, and what do the results mean?",
+    "Could my medicines or supplements affect the results?",
+    "Does my thyroid nodule need a biopsy?"
+  ]
+}

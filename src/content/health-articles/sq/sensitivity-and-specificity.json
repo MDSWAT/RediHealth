@@ -1,0 +1,52 @@
+{
+  "title": "Ndjeshmëria e specifikiteti i testeve mjekësore",
+  "intro": "Asnjë test mjekësor nuk është i përsosur. Ndjeshmëria e specifikiteti përshkruajnë sa mirë një test i gjen njerëzit me një sëmundje e sa mirë i pastron saktë njerëzit pa të. Të kuptuarit e këtyre ideve ju ndihmon të interpretoni rezultatet, veçanërisht nga skriningu, e të shihni pse një rezultat pozitiv nuk është gjithmonë diagnozë.",
+  "sections": [
+    {
+      "heading": "Ndjeshmëria",
+      "paragraphs": [
+        "Ndjeshmëria është përqindja e njerëzve me sëmundjen që testi i identifikon saktë si pozitivë. Një test me nëntëdhjetë për qind ndjeshmëri zbulon nëntë nga dhjetë njerëz me sëmundjen e humbet një. Një test me ndjeshmëri të lartë është i vlefshëm kur humbja e një sëmundjeje do të ishte e rëndë, sepse një rezultat negativ e bën atëherë sëmundjen të pamundshme."
+      ]
+    },
+    {
+      "heading": "Specifikiteti",
+      "paragraphs": [
+        "Specifikiteti është përqindja e njerëzve pa sëmundjen që testi i identifikon saktë si negativë. Një test me nëntëdhjetë për qind specifikitet e shënon gabim një nga dhjetë njerëz të shëndetshëm. Një test me specifikitet të lartë është i dobishëm për të konfirmuar një diagnozë, pasi një rezultat pozitiv ka më pak gjasa të jetë alarm i rremë."
+      ]
+    },
+    {
+      "heading": "Pse një rezultat pozitiv mund të jetë i gabuar",
+      "paragraphs": [
+        "Gjasa që një rezultat pozitiv të jetë i saktë varet nga sa e zakonshme është sëmundja te njerëzit e testuar. Kur një sëmundje është e rrallë, edhe një test i mirë prodhon më shumë alarme të rreme se raste të vërteta. Imagjinoni një mijë njerëz, dhjetë prej të cilëve kanë një sëmundje. Një test me nëntëdhjetë për qind ndjeshmëri e nëntëdhjetë për qind specifikitet gjen nëntë nga dhjetë të sëmurët, por shënon gabim edhe rreth nëntëdhjetë e nëntë nga nëntëqind e nëntëdhjetë të shëndetshmit. Nga rreth njëqind e tetë pozitivë, vetëm nëntë e kanë vërtet sëmundjen."
+      ]
+    },
+    {
+      "heading": "Pasojat e pyetjet",
+      "paragraphs": [
+        "Rezultatet false-pozitive shkaktojnë ankth e teste të mëtejshme, nganjëherë të dëmshme. Rezultatet false-negative mund ta vonojnë trajtimin. Testet e përdorura për skrining të njerëzve të shëndetshëm kanë prandaj nevojë për specifikitet shumë të lartë e një test i dytë, më specifik, shpesh pason një rezultat skriningu pozitiv.",
+        "Pyesni çfarë synon të tregojë testi, sa i besueshëm është për njerëz si ju, çfarë do të thotë një rezultat pozitiv ose negativ për ju e çfarë ndodh më pas. Numrat nga njëqind janë më të lehtë për t'u kuptuar se përqindjet."
+      ]
+    },
+    {
+      "heading": "Përdorimi në vendime të përditshme",
+      "paragraphs": [
+        "Njohja e këtyre termave ndihmon kur lexoni për teste të reja ose programe skriningu. Një test i reklamuar si nëntëdhjetë e nëntë për qind i saktë mund të prodhojë prapëseprapë shumë alarme të rreme kur gjendja është e rrallë, prandaj kërkoni numrat pas pretendimit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Të kuptuarit e një rezultati",
+      "text": "Imagjinoni që testi juaj i skriningut është pozitiv. Mund të pyesni çfarë përqindje e njerëzve me rezultat pozitiv e kanë vërtet sëmundjen e çfarë testi konfirmues do të pasojë."
+    },
+    {
+      "title": "Krahasimi i dy testeve",
+      "text": "Supozoni që ju ofrohen dy teste të ndryshme. Mund të pyesni cili është më i mirë në shmangien e alarmeve të rreme e cili në shmangien e rasteve të humbura e pse ka rëndësi kjo për situatën tuaj."
+    }
+  ],
+  "questions": [
+    "Sa i saktë është ky test dhe cilat janë shkallët e tij false-pozitive e false-negative?",
+    "Çfarë do të thotë për mua një rezultat pozitiv ose negativ?",
+    "Cili do të ishte hapi i radhës pas një rezultati jonormal?"
+  ]
+}

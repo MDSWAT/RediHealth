@@ -1,0 +1,51 @@
+{
+  "title": "Sistemi shëndetësor gjerman",
+  "intro": "Gjermania ka një sistem shëndetësor me sigurim të detyrueshëm shëndetësor, zgjedhje të gjerë mjekësh e spitalesh e një rrjet të dendur shërbimesh. Të kuptuarit si është i organizuar ndihmon pacientët, përfshirë të ardhurit e rinj, të gjejnë kujdes e të njohin të drejtat. Kjo pasqyrë është e përgjithshme; rregullat e shumat ndryshojnë, prandaj kontrolloni detajet aktuale me siguruesin tuaj.",
+  "sections": [
+    {
+      "heading": "Sigurimi shëndetësor",
+      "paragraphs": [
+        "Pothuajse çdokush që jeton në Gjermani duhet të ketë sigurim shëndetësor. Shumica e njerëzve mbulohen nga fondet ligjore të sigurimit shëndetësor, ku punonjësit e punëdhënësit kontribuojnë një përqindje të të ardhurave. Disa njerëz, si ata me të ardhura më të larta, të vetëpunësuarit e nëpunësit civilë, mund të zgjedhin sigurim privat. Fëmijët e bashkëshortët pa punë shpesh mbulohen falas me sigurimin familjar në sistemin ligjor. Kujdesi afatgjatë ka sigurimin e vet."
+      ]
+    },
+    {
+      "heading": "Kujdesi parësor e specialistët",
+      "paragraphs": [
+        "Shumica e njerëzve kanë një mjek familjar si pikë të parë kontakti, që trajton probleme të zakonshme, koordinon kujdesin e jep referime. Zakonisht mund t'i vizitoni specialistët drejtpërdrejt, megjithëse disa kërkojnë takime ose referime. Farmacitë ofrojnë barna me recetë e këshilla. Dentistët, mamitë e terapistët arrihen në mënyrë të ngjashme."
+      ]
+    },
+    {
+      "heading": "Spitalet e urgjencat",
+      "paragraphs": [
+        "Spitalet ofrojnë kujdes të shtruar e ditor e kanë departamente ambulatore për gjendje të caktuara. Për urgjenca, telefononi 112 ose shkoni në një departament urgjence. Për probleme urgjente por jo kërcënuese për jetën jashtë orëve të praktikës, shërbimi mjekësor i gatishmërisë mund të arrihet në 116117, që ndihmon edhe me takime."
+      ]
+    },
+    {
+      "heading": "Kostot e bashkëpagesat",
+      "paragraphs": [
+        "Sigurimi ligjor mbulon një katalog të gjerë shërbimesh, përfshirë kontrollet, vaksinimet, trajtimin, barnat, kujdesin në spital e rehabilitimin. Pacientët bëjnë disa bashkëpagesa, për shembull për barna, ditë në spital ose terapi të caktuara, me kufij vjetorë e përjashtime për njerëz me të ardhura të ulëta e fëmijë. Disa shërbime, si shumë shtesa dentare, paguhen privatisht."
+      ]
+    },
+    {
+      "heading": "Të drejtat e pacientit e marrja e ndihmës",
+      "paragraphs": [
+        "Pacientët kanë të drejtën e informacionit, pëlqimit të informuar, qasjes në dosjet e tyre e një mendimi të dytë. Ankesat mund t'i drejtohen praktikës, siguruesit ose shërbimeve këshilluese për pacientët. Këshillim i pavarur ofrohet për njerëz të pasigurt për të drejtat e tyre, përfshirë migrantët e refugjatët, e shërbimet e përkthimit mund të organizohen në disa vende."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gjetja e një mjeku",
+      "text": "Imagjinoni që jeni të ri në Gjermani. Mund të regjistroheni te një mjek familjar, të kërkoni referime kur nevojiten e ta mbani kartën e sigurimit me vete."
+    },
+    {
+      "title": "Përdorimi i kujdesit jashtë orarit",
+      "text": "Supozoni që fëmija juaj ka ethe të shtunën në mbrëmje. Mund ta telefononi shërbimin e gatishmërisë për këshillë e, nëse është serioze, të shkoni në një departament urgjence."
+    }
+  ],
+  "questions": [
+    "Cilat shërbime i mbulon sigurimi im e çfarë duhet të paguaj vetë?",
+    "Si gjej një specialist ose takim shpejt?",
+    "Ku mund të marr këshillë të pavarur për të drejtat e mia?"
+  ]
+}

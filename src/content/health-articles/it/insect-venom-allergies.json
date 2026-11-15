@@ -1,0 +1,51 @@
+{
+  "title": "Allergia al veleno di insetti",
+  "intro": "La maggior parte delle punture di insetti causa solo dolore e gonfiore brevi. In alcune persone il sistema immunitario reagisce in modo eccessivo al veleno di api, vespe o calabroni e provoca una pericolosa reazione allergica. Conoscere i segnali di allarme, portare con sé un farmaco di emergenza e considerare l'immunoterapia con veleno può proteggere le persone a rischio.",
+  "sections": [
+    {
+      "heading": "Reazioni normali e allergiche",
+      "paragraphs": [
+        "Una normale puntura causa dolore, arrossamento e un piccolo gonfiore che svanisce in poche ore. Una grande reazione locale produce un gonfiore più grande di dieci centimetri che dura giorni. Una vera reazione allergica coinvolge tutto il corpo e può causare orticaria, gonfiore del viso, costrizione alla gola, respiro sibilante, capogiri, vomito o collasso, detto anafilassi."
+      ]
+    },
+    {
+      "heading": "Trattamento d'emergenza",
+      "paragraphs": [
+        "L'anafilassi è un'emergenza. Chiama subito i servizi di emergenza. Le persone a cui è stato prescritto un autoiniettore di adrenalina devono usarlo subito nella parte esterna della coscia, sdraiarsi con le gambe sollevate a meno che respirare sia più facile da seduti, e attendere i soccorsi anche se si sentono meglio. Può essere necessaria una seconda dose."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "Un allergologo raccoglie la storia della reazione ed esegue test cutanei ed esami del sangue per gli anticorpi contro il veleno. In alcuni casi un esame del sangue per la triptasi aiuta a identificare le persone a rischio aumentato. Il test viene di solito eseguito settimane dopo una reazione."
+      ]
+    },
+    {
+      "heading": "Immunoterapia con veleno",
+      "paragraphs": [
+        "L'immunoterapia con veleno somministra dosi di veleno purificato gradualmente crescenti nell'arco di settimane, seguite da iniezioni di mantenimento circa ogni mese per tre-cinque anni. Previene reazioni gravi nella maggior parte dei pazienti ed è raccomandata per chi ha avuto reazioni sistemiche e un'allergia confermata. Il trattamento viene iniziato sotto stretta supervisione."
+      ]
+    },
+    {
+      "heading": "Evitare le punture",
+      "paragraphs": [
+        "Evita di camminare scalzo sull'erba, indossa scarpe all'aperto, tieni coperti cibo e bevande dolci e fai attenzione vicino a bidoni della spazzatura e frutta. Resta calmo vicino a vespe e api e allontanati lentamente. Non agitare le braccia. Usa zanzariere alle finestre. Porta con te il kit di emergenza e informa familiari, amici e colleghi del piano."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparare un picnic",
+      "text": "Immagina di essere allergico alle vespe e di andare a un picnic. Potresti portare l'autoiniettore, coprire le bevande, tenere un telefono a portata di mano e dire ai tuoi compagni che cosa fare se hai una reazione."
+    },
+    {
+      "title": "Chiedere dell'immunoterapia",
+      "text": "Supponi di aver avuto una forte reazione l'estate scorsa. Potresti chiedere a uno specialista se i test e l'immunoterapia con veleno siano adatti a te e quanto durerebbe il trattamento."
+    }
+  ],
+  "questions": [
+    "La mia reazione è una vera allergia e quali esami dovrei fare?",
+    "Ho bisogno di un autoiniettore di adrenalina e come lo uso correttamente?",
+    "L'immunoterapia con veleno sarebbe adatta a me?"
+  ]
+}

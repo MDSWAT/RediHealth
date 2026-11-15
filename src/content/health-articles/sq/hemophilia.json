@@ -1,0 +1,51 @@
+{
+  "title": "Hemofilia: parandalimi dhe reagimi ndaj gjakosjes",
+  "intro": "Hemofilia prek proteinat e mpiksjes dhe shkakton gjakosje të zgjatur ose të brendshme. Format e trashëguara janë më të shpeshta te meshkujt, por edhe femrat mund të kenë gjakosje serioze. Shkalla ndryshon dhe specialisti ka rëndësi.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Gjakosja në artikulacione ose muskuj jep dhimbje, ënjtje dhe lëvizje të kufizuar pa plagë. Përsëritja dëmton nyjet; mos gjykoni vetëm nga gjaku jashtë trupit."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Analizat specialistike përcaktojnë llojin dhe nivelin e faktorit, me inhibitorë kur duhet. Tregoni familjen, operacionet dhe gjakosjen dentare. Këshillimi gjenetik shpjegon trashëgiminë pa supozuar shkallë të njëjtë në familje. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Trajtimi zëvendëson faktor ose përdor ilaçe të tjera specialistike për parandalim ose episod. Plani urgjent varet nga terapia dhe inhibitorët; mos zëvendësoni ilaçe ose prisni ënjtje dramatike. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Mbani informacionin dhe organizoni dentistin, operacionet dhe aktivitetin e sigurt me ekipin. Mësoni trajtimin në shtëpi vetëm me trajnim. Kontrolloni qetësuesit: aspirina dhe disa antiinflamatorë shtojnë gjakosjen. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Dëmtimi i kokës, dhimbja e fortë, të vjellat, ënjtja e qafës, frymëmarrja e vështirë ose gjakosja e madhe e brendshme kërkojnë urgjencë dhe planin menjëherë. Kontaktoni ekipin për gjakosje të dyshuar nyjeje edhe pa mavijosje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira tregon historinë para heqjes së dhëmbit, që dentisti të koordinohet me specialistin dhe jo ta zbulojë më pas."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni njeh nyjen e ngrohtë të dhimbshme si gjakosje të mundshme dhe ndjek planin, pa vazhduar sportin nga mungesa e plagës."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

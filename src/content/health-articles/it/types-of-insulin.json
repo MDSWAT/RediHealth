@@ -1,0 +1,51 @@
+{
+  "title": "Tipi di insulina",
+  "intro": "L'insulina esiste in diverse forme che differiscono per la rapidità con cui iniziano ad agire e per la durata. Le persone con diabete che hanno bisogno di insulina di solito combinano più tipi per coprire i pasti e per fornire un livello di base costante. Capire i tipi aiuta a usarli in sicurezza e a discutere i cambiamenti con il team per il diabete.",
+  "sections": [
+    {
+      "heading": "Insulina rapida e a breve durata d'azione",
+      "paragraphs": [
+        "L'insulina ad azione rapida inizia ad agire entro circa quindici minuti, raggiunge il picco dopo una o due ore e dura da tre a cinque ore. Si assume ai pasti o poco prima e per correggere la glicemia alta. L'insulina a breve durata d'azione, o regolare, inizia dopo circa mezz'ora, ha il picco più tardi e dura di più, quindi si assume un po' prima di mangiare."
+      ]
+    },
+    {
+      "heading": "Insulina intermedia e ad azione prolungata",
+      "paragraphs": [
+        "L'insulina ad azione intermedia, spesso torbida e da miscelare, agisce per circa mezza giornata con un picco. L'insulina ad azione prolungata agisce per un giorno o più con un profilo più piatto e fornisce una copertura di base tra i pasti e di notte. Le forme ad azione ultra-prolungata durano ancora di più. Di solito si assumono una o due volte al giorno agli stessi orari."
+      ]
+    },
+    {
+      "heading": "Insulina premiscelata",
+      "paragraphs": [
+        "L'insulina premiscelata contiene una combinazione fissa di insulina rapida e più lenta in un'unica iniezione, spesso usata due volte al giorno. È più semplice ma meno flessibile, perché i tempi di pasti e attività devono essere regolari. Le dosi sono stabilite dal medico."
+      ]
+    },
+    {
+      "heading": "Somministrazione e conservazione",
+      "paragraphs": [
+        "L'insulina si inietta sotto la pelle di addome, coscia o gluteo con una penna o una siringa, oppure viene erogata da un microinfusore. Alterna i punti di iniezione per prevenire noduli che influenzano l'assorbimento. Conserva l'insulina non aperta in frigorifero e tieni quella in uso a temperatura ambiente per il tempo indicato nel foglietto. Non congelare mai l'insulina né lasciarla in un'auto calda e controlla la data di scadenza."
+      ]
+    },
+    {
+      "heading": "Uso sicuro",
+      "paragraphs": [
+        "Controlla sempre tipo e dose prima di iniettare, perché la confusione tra insuline può essere pericolosa. Impara a riconoscere e trattare la glicemia bassa, adatta le dosi a cibo, attività e malattia secondo il tuo piano e misura regolarmente il glucosio. Non cambiare le dosi né passare a un'altra marca senza consiglio. Porta con te il materiale quando viaggi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Abbinare l'insulina ai pasti",
+      "text": "Immagina di assumere insulina ad azione rapida ai pasti. Potresti iniettare poco prima di mangiare, misurare il glucosio a orari fissi e annotare pasti e dosi perché il team li riveda."
+    },
+    {
+      "title": "Alternare i punti",
+      "text": "Supponi di notare un nodulo dove inietti spesso. Potresti passare a un'altra zona, evitare di iniettare nel nodulo e mostrarlo all'infermiere."
+    }
+  ],
+  "questions": [
+    "Quali tipi e dosi di insulina sono più adatti alla mia routine quotidiana?",
+    "Come devo adattare l'insulina per esercizio, malattia e viaggi?",
+    "Come devo conservare l'insulina e alternare i punti di iniezione?"
+  ]
+}

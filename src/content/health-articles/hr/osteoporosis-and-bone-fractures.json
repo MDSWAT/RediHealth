@@ -1,0 +1,51 @@
+{
+  "title": "Osteoporoza i prijelomi kostiju",
+  "intro": "Osteoporoza je stanje u kojem kosti gube gustoću i čvrstoću pa se lakše lome, često nakon manjeg pada. Razvija se tiho tijekom godina i češća je u žena nakon menopauze i u starijih osoba. Tjelovježba, prehrana i lijekovi mogu smanjiti rizik od prijeloma.",
+  "sections": [
+    {
+      "heading": "Uzroci i čimbenici rizika",
+      "paragraphs": [
+        "Kost se stalno obnavlja, a s dobi razgradnja nadmašuje stvaranje. Rizik raste s menopauzom, obiteljskom poviješću, niskom tjelesnom težinom, pušenjem, prekomjernim pijenjem alkohola, malo kalcija i vitamina D, malo tjelesne aktivnosti, dugotrajnom uporabom kortikosteroida i bolestima kao što su reumatoidni artritis, bolest štitnjače ili celijakija."
+      ]
+    },
+    {
+      "heading": "Prijelomi",
+      "paragraphs": [
+        "Tipični prijelomi javljaju se u kralježnici, kuku i zapešću. Prijelomi kralježaka mogu uzrokovati iznenadnu bol u leđima, gubitak visine ili pogrbljeno držanje, iako neki ne uzrokuju bol. Prijelom kuka obično zahtijeva operaciju i može imati ozbiljne posljedice za samostalnost, zbog čega je prevencija važna."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Liječnici razmatraju čimbenike rizika i mogu izmjeriti gustoću kostiju posebnim rendgenskim pregledom. Alati procjenjuju desetogodišnji rizik od prijeloma na temelju dobi, spola, težine, prethodnih prijeloma i drugih čimbenika. Krvne pretrage traže uzroke. Ne treba svatko s niskom gustoćom lijek pa procjena rizika vodi odluke."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Dovoljno kalcija i vitamina D, vježbe s opterećenjem i ravnoteže, prestanak pušenja i ograničavanje alkohola su temelj. Lijekovi uključuju bisfosfonate, koji usporavaju gubitak kosti, i druge lijekove koji jačaju kost, a daju se kao tablete ili injekcije. Liječenje je obično dugotrajno i zahtijeva kontrole, uključujući stomatološku skrb prije nekih lijekova. Nuspojave se razlikuju među lijekovima i o njima treba razgovarati."
+      ]
+    },
+    {
+      "heading": "Sprječavanje padova",
+      "paragraphs": [
+        "Smanjenje padova važno je koliko i jačanje kostiju. Uklonite prepreke o koje se može spotaknuti, koristite dobro osvjetljenje i neklizajuću obuću, dajte provjeriti vid, pregledajte lijekove koji uzrokuju vrtoglavicu i vježbajte trening ravnoteže kao što je tai chi. Štitnici za kukove mogu pomoći u domovima za starije."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregled vašeg rizika",
+      "text": "Zamislite da ste u dobi od šezdeset godina nakon manjeg pada slomili zapešće. Mogli biste pitati liječnika o denzitometriji kostiju, procjeni rizika i koji bi koraci mogli spriječiti novi prijelom."
+    },
+    {
+      "title": "Sigurniji dom",
+      "text": "Pretpostavite da vaš stariji roditelj živi sam. Mogli biste pomoći ukloniti labave tepihe, dodati rukohvate i noćna svjetla te dogovoriti pregled lijekova."
+    }
+  ],
+  "questions": [
+    "Koliki je moj rizik od prijeloma i trebam li liječenje?",
+    "Koji je lijek prikladan, koliko bih ga dugo uzimao i koje su nuspojave?",
+    "Koje bi vježbe i promjene u domu smanjile rizik od pada?"
+  ]
+}

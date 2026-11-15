@@ -1,0 +1,51 @@
+{
+  "title": "Kur rekomandohen statinat?",
+  "intro": "Statinat janë barna që ulin kolesterolin e zvogëlojnë rrezikun e infarktit e goditjes në tru. Rekomandohen kryesisht për njerëz që kanë tashmë sëmundje të zemrës ose enëve, e për disa njerëz me rrezik të lartë. Vendimi varet nga rreziku individual, prandaj merret së bashku me mjekun.",
+  "sections": [
+    {
+      "heading": "Si funksionojnë statinat",
+      "paragraphs": [
+        "Statinat bllokojnë një enzimë në mëlçi që prodhon kolesterol, çka ul kolesterolin LDL, llojin e dëmshëm. Ato stabilizojnë edhe depozitat yndyrore në arterie. Shembuj janë simvastatina, atorvastatina e rosuvastatina. Zakonisht merren një herë në ditë, afatgjatë."
+      ]
+    },
+    {
+      "heading": "Kush përfiton më shumë",
+      "paragraphs": [
+        "Njerëzit që kanë pasur infarkt, goditje në tru ose sëmundje tjetër kardiovaskulare përfitojnë më shumë, e statinat përgjithësisht këshillohen për ta. Ata me kolesterol shumë të lartë, si hiperkolesterolemia familjare, e shumë njerëz me diabet që janë më të moshuar ose kanë faktorë të tjerë rreziku, zakonisht këshillohen gjithashtu t'i marrin."
+      ]
+    },
+    {
+      "heading": "Parandalimi te njerëzit pa sëmundje",
+      "paragraphs": [
+        "Për njerëz pa sëmundje të vendosur, mjekët vlerësojnë rrezikun dhjetëvjeçar të një ngjarjeje kardiovaskulare, duke përdorur faktorë si mosha, gjinia, tensioni, kolesteroli, duhani e diabeti. Statinat merren në konsideratë kur rreziku është aq i lartë sa përfitimi tejkalon efektet anësore të mundshme. Përfitimi është më i vogël te ata me rrezik të ulët, prandaj stili i jetesës vjen i pari."
+      ]
+    },
+    {
+      "heading": "Efektet anësore",
+      "paragraphs": [
+        "Shumica e njerëzve i durojnë mirë statinat. Dhimbjet e muskujve janë ankesa më e zakonshme, dëmtimi serioz i muskujve është i rrallë. Mund të ndodhin rritje të enzimave të mëlçisë e një rritje e vogël e sheqerit në gjak. Raportoni dhimbje të rëndë muskujsh, dobësi ose urinë të errët. Disa barna e lëngu i grejpfrutit ndërveprojnë me disa statina. Statinat nuk rekomandohen në shtatzëni."
+      ]
+    },
+    {
+      "heading": "Stili i jetesës mbetet i rëndësishëm",
+      "paragraphs": [
+        "Një dietë e shëndetshme, aktiviteti i rregullt, mospirja e duhanit, pesha e shëndetshme e kufizimi i alkoolit e ulin rrezikun me ose pa bar. Mos i ndaloni statinat pa folur me mjekun. Nivelet e kolesterolit duhen kontrolluar në intervale të dakordësuara."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Diskutimi i rrezikut",
+      "text": "Imagjinoni që kolesteroli juaj është i lartë por nuk keni sëmundje zemre. Mund t'i kërkoni mjekut të llogarisë rrezikun tuaj dhjetëvjeçar e t'jua shpjegojë numrat."
+    },
+    {
+      "title": "Menaxhimi i efekteve anësore",
+      "text": "Supozoni që keni dhimbje muskujsh pas nisjes së një statine. Mund të pyesni për një dozë më të ulët ose një statinë tjetër para se ta ndaloni."
+    }
+  ],
+  "questions": [
+    "Cili është rreziku im e sa do të më ndihmonte një statinë?",
+    "Cila statinë e dozë është e duhura për mua?",
+    "Cilat efekte anësore duhet të raportoj?"
+  ]
+}

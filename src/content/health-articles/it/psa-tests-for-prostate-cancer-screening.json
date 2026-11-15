@@ -1,0 +1,51 @@
+{
+  "title": "Test del PSA per lo screening del tumore della prostata",
+  "intro": "Il test del PSA misura in un campione di sangue l'antigene prostatico specifico, una proteina prodotta dalla prostata. Un livello alto può indicare un tumore della prostata, ma anche condizioni benigne. Usare il test del PSA per lo screening negli uomini sani può individuare precocemente alcuni tumori, ma porta anche a falsi allarmi e sovradiagnosi, quindi la decisione è personale.",
+  "sections": [
+    {
+      "heading": "Che cosa misura il test",
+      "paragraphs": [
+        "I livelli di PSA salgono con il tumore, ma anche con l'ingrossamento benigno, l'infiammazione, l'infezione, una recente eiaculazione, la bicicletta e le manovre strumentali. I livelli aumentano anche con l'età. Non esiste una soglia che separi del tutto il tumore dal non tumore, quindi un valore elevato indica soltanto la necessità di ulteriori accertamenti."
+      ]
+    },
+    {
+      "heading": "Possibili benefici",
+      "paragraphs": [
+        "Ampi studi suggeriscono che lo screening con il PSA può ridurre il rischio di morire di tumore della prostata in un piccolo numero di uomini, con il beneficio che compare dopo più di dieci anni. L'effetto è modesto. Trovare un tumore presto può permettere il trattamento mentre è ancora localizzato."
+      ]
+    },
+    {
+      "heading": "Possibili danni",
+      "paragraphs": [
+        "Molti risultati elevati portano a biopsie che non trovano alcun tumore. La biopsia può causare sanguinamento, infezione e ansia. Lo screening trova molti tumori a crescita lenta che non avrebbero mai causato sintomi né accorciato la vita, chiamati sovradiagnosi. Gli uomini trattati per questi tumori possono soffrire di effetti collaterali come incontinenza e problemi di erezione senza alcun beneficio."
+      ]
+    },
+    {
+      "heading": "Prendere la propria decisione",
+      "paragraphs": [
+        "Poiché benefici e danni sono molto bilanciati, molte linee guida raccomandano una scelta informata anziché uno screening di routine per tutti gli uomini. Pensa a età, storia familiare, salute e a come ti senti rispetto all'incertezza. Gli uomini con una forte storia familiare o di origine africana possono avere un rischio più alto e possono discutere una valutazione più precoce. L'uso della risonanza magnetica prima della biopsia e la sorveglianza attiva dei tumori a basso rischio possono ridurre i danni."
+      ]
+    },
+    {
+      "heading": "Controlli dopo un risultato elevato",
+      "paragraphs": [
+        "Se il PSA è elevato i medici possono ripetere il test dopo qualche settimana, controllare l'infezione e considerare la risonanza magnetica prima di decidere su una biopsia. Chiedi di ogni passo e delle probabilità di trovare un tumore significativo."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Valutare la questione",
+      "text": "Immagina di avere 58 anni e che il medico ti parli di un test del PSA. Potresti chiedere quanti uomini ne traggono beneficio, quanti hanno falsi allarmi e che cosa faresti se il risultato fosse elevato."
+    },
+    {
+      "title": "Prepararsi al test",
+      "text": "Supponi di decidere di farlo. Potresti evitare l'eiaculazione e la bicicletta intensa per un paio di giorni prima e riferire al medico eventuali infezioni urinarie."
+    }
+  ],
+  "questions": [
+    "Un test del PSA è consigliabile per me, data la mia età e la mia storia familiare?",
+    "Che cosa succederebbe se il mio livello di PSA fosse elevato?",
+    "Quali sono le probabilità di sovradiagnosi e sovratrattamento?"
+  ]
+}

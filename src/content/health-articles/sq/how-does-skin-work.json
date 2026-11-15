@@ -1,0 +1,52 @@
+{
+  "title": "Lëkura: barrierë e gjallë dhe organ ndijor",
+  "intro": "Lëkura mbron trupin, kufizon humbjen e ujit, ndien prekjen dhe ndihmon kontrollin e temperaturës. Shtresat kanë role të ndryshme. Ndryshimet mund të jenë lokale ose nga sëmundje më të gjera; pamja vetë nuk tregon gjithmonë shkakun.",
+  "sections": [
+    {
+      "heading": "Barriera e jashtme",
+      "paragraphs": [
+        "Epiderma ripërtërihet dhe formon sipërfaqe mbrojtëse. Pigmenti ndihmon kundër rrezeve ultravjollcë por nuk përjashton dëmin nga dielli. Larja agresive dëmton barrierën, nuk e bën më të shëndetshme."
+      ]
+    },
+    {
+      "heading": "Mbështetja",
+      "paragraphs": [
+        "Derma përmban ind lidhor, enë, nerva, folikula dhe gjëndra. Shtresa dhjamore poshtë zbut goditjet dhe izolon. Një plagë e vogël mund të prekë struktura të thella sipas thellësisë."
+      ]
+    },
+    {
+      "heading": "Temperatura dhe ndjesia",
+      "paragraphs": [
+        "Djersitja dhe ndryshimet e qarkullimit në lëkurë rregullojnë nxehtësinë. Nervat dallojnë prekjen, dhimbjen dhe temperaturën; ndjesia e ulur rrit djegiet ose dëmtimet nga presioni pa u vënë re."
+      ]
+    },
+    {
+      "heading": "Mbrojtja",
+      "paragraphs": [
+        "Përdorni pastrim të butë, hidratues të përshtatshëm dhe mbrojtje diellore. Ndërroni pozicion kur nuk lëvizni dhe kontrolloni zonat me ndjesi të ulur. Plagët kërkojnë kujdes, jo lëndë shtëpiake irrituese."
+      ]
+    },
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Nishani që ndryshon, plaga e vazhdueshme ose skuqja e pashpjeguar kërkon kontroll. Skuqja e dhimbshme që përhapet shpejt me ethe, flluskat e gjera ose skuqja me frymëmarrje të vështirë kërkojnë urgjencë.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mirës i çahen duart pas larjeve agresive. Zgjedh kujdes të butë dhe diskuton inflamacionin, jo fërkim më të fortë."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ka ndjeshmëri të ulur në këmbë. Kontrollon lëkurën dhe presionin e këpucëve pa u mbështetur vetëm te dhimbja."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

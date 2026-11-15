@@ -1,0 +1,51 @@
+{
+  "title": "Tiroidja hiperaktive (hipertiroidizmi)",
+  "intro": "Në hipertiroidizëm, gjëndra tiroide prodhon shumë hormon tiroid, duke përshpejtuar metabolizmin e trupit. Shkakton simptoma si humbje peshe, rrahje të shpejta të zemrës, nervozizëm dhe mospërballim të të nxehtit. Ekzistojnë disa trajtime efektive dhe gjetja e shkakut e udhëzon zgjedhjen.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Shkaku më i zakonshëm është sëmundja e Graves, një gjendje autoimune ku antitrupat stimulojnë gjëndrën. Shkaqe të tjera janë nyjet që prodhojnë hormon në mënyrë të pavarur, inflamacioni i tiroides që çliron përkohësisht hormonin e ruajtur dhe jodi i tepërt ose disa barna. Mund të ketë gusha, pra zmadhim të tiroides."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat tipike përfshijnë humbje peshe pavarësisht oreksit të mirë, palpitacione, djersitje, duar që dridhen, ankth, nervozizëm, vështirësi në gjumë, lodhje, jashtëqitje të shpeshta dhe cikle më të lehta. Të moshuarit mund të kenë më pak simptoma, si fibrilacion atrial ose dobësi. Në sëmundjen e Graves sytë mund të dalin përpara, të skuqen ose të thahen."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Analizat e gjakut tregojnë hormon stimulues të tiroides të ulët dhe nivele të larta të hormoneve tiroide. Testet e antitrupave, ultratingulli dhe nganjëherë një skanim me gjurmues radioaktiv ndihmojnë të gjendet shkaku. Ritmi i zemrës mund të kontrollohet."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Tabletat antitiroide ulin prodhimin e hormoneve dhe shpesh përdoren fillimisht, për një deri në dy vjet, me analiza gjaku për të monitoruar efektet anësore. Beta-bllokuesit lehtësojnë shpejt palpitacionet e dridhjen. Nëse gjendja rikthehet ose shkaku janë nyjet, opsione janë jodi radioaktiv ose kirurgjia për heqjen e gjithë ose një pjese të gjëndrës. Pas tyre, shumë njerëz zhvillojnë tiroide hipoaktive dhe kanë nevojë për tableta hormonale gjithë jetën."
+      ]
+    },
+    {
+      "heading": "Situata të veçanta",
+      "paragraphs": [
+        "Shtatzënia kërkon kujdes specialistik, pasi disa barna dhe jodi radioaktiv nuk janë të përshtatshëm. Hipertiroidizmi i patrajtuar e ngarkon zemrën dhe kockat. Problemet e syve në sëmundjen e Graves kërkojnë një okulist. Duhani e përkeqëson sëmundjen e syve, prandaj lënia e tij këshillohet fort."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përshkrimi i simptomave",
+      "text": "Imagjinoni që keni humbur peshë dhe e ndjeni zemrën duke rrahur shpejt. Mund të listoni kur filluan simptomat, si flini dhe çfarë barnash ose suplementesh merrni dhe të kërkoni analiza gjaku për tiroiden."
+    },
+    {
+      "title": "Zgjedhja e trajtimit",
+      "text": "Supozoni që mjeku ju ofron tableta, jod radioaktiv ose kirurgji. Mund të pyesni për shkallën e rikthimit, efektet anësore, ndikimin te pjellshmëria ose planet për shtatzëni dhe nevojën për tableta gjithë jetën."
+    }
+  ],
+  "questions": [
+    "Çfarë e shkakton tiroiden time hiperaktive?",
+    "Cili trajtim më përshtatet dhe cilat janë efektet afatgjata?",
+    "Sa shpesh do të nevojiten analizat e gjakut dhe çfarë duhet të raportoj midis vizitave?"
+  ]
+}

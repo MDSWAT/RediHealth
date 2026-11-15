@@ -1,0 +1,53 @@
+{
+  "title": "Sa vitaminë D na duhet dhe si ta marrim",
+  "intro": "Vitamina D ndihmon trupin të thithë kalcium dhe i mban kockat e muskujt të shëndetshëm. Shumica e njerëzve prodhojnë një pjesë të madhe të vitaminës D në lëkurë me ndihmën e dritës së diellit dhe një pjesë më e vogël vjen nga ushqimi. Sa ju nevojitet varet nga mosha, lëkura, stili i jetesës dhe shëndeti, dhe për shumicën e njerëzve të shëndetshëm nuk kërkohen masa të veçanta.",
+  "sections": [
+    {
+      "heading": "Çfarë bën vitamina D",
+      "paragraphs": [
+        "Vitamina D vepron si një hormon. Ajo mbështet thithjen e kalciumit dhe fosfatit nga zorrët, që është thelbësore për kocka të forta. Një mungesë e zgjatur mund të shkaktojë rakitizëm te fëmijët dhe zbutje të kockave te të rriturit dhe mund ta rrisë rrezikun e rënieve dhe frakturave te të moshuarit."
+      ]
+    },
+    {
+      "heading": "Marrja e vitaminës D nga drita e diellit",
+      "paragraphs": [
+        "Kur rrezet UVB arrijnë në lëkurë, trupi e shndërron një substancë në të në vitaminë D. Në pranverë e verë, disa minuta dritë dite mbi fytyrë, duar e krahë disa herë në javë mjafton për shumë njerëz. Nga tetori deri në mars, përafërsisht, në gjerësi veriore, dielli është shumë i dobët për të prodhuar shumë.",
+        "Kremi i diellit, veshjet mbulese, lëkura më e errët, mosha më e madhe dhe kalimi i pjesës më të madhe të ditës brenda e ulin prodhimin. Qëndrimi në diell më gjatë se sa nevojitet nuk krijon më shumë vitaminë D dhe e rrit rrezikun e dëmtimit të lëkurës."
+      ]
+    },
+    {
+      "heading": "Burimet ushqimore",
+      "paragraphs": [
+        "Pak ushqime përmbajnë shumë vitaminë D. Peshqit e yndyrshëm të detit, si harenga, salmoni dhe skumbri, janë burimet më të mira natyrore, me sasi më të vogla në vezë, mëlçi dhe disa kërpudha. Disa produkte si margarina ose drithërat e mëngjesit janë të pasuruara. Vetëm dieta shpesh e siguron vetëm një pjesë të nevojës ditore."
+      ]
+    },
+    {
+      "heading": "Kush mund të ketë nevojë për suplemente",
+      "paragraphs": [
+        "Rekomandimet zyrtare sugjerojnë zakonisht vitaminë D çdo ditë për foshnjat në vitin e tyre të parë dhe suplementet mund të këshillohen për njerëzit që dalin rrallë jashtë, për shembull në shtëpitë e kujdesit, për ata që mbulojnë pjesën më të madhe të lëkurës dhe për njerëzit me sëmundje të caktuara të zorrëve, veshkave ose mëlçisë. Mjeku juaj mund t'ju këshillojë për situatën tuaj.",
+        "Suplementet vijnë në doza të ndryshme dhe më shumë nuk do të thotë më mirë. Doza shumë të larta për një kohë të gjatë mund ta rrisin kalciumin në gjak dhe mund t'i dëmtojnë veshkat. Ndiqni dozën e rekomanduar nga mjeku ose udhëzuesi i produktit dhe i tregoni mjekut për suplementet që merrni."
+      ]
+    },
+    {
+      "heading": "Testimi dhe këshilla të përditshme",
+      "paragraphs": [
+        "Analizat rutinë të gjakut për vitaminën D nuk janë të nevojshme për shumicën e njerëzve të shëndetshëm. Ato mund të merren në konsideratë te njerëzit me sëmundje të kockave ose faktorë specifikë rreziku. Zakonet e shëndetshme përfshijnë aktivitet të rregullt jashtë në dritën e ditës, dietë të larmishme me peshk dhe ushtrime me peshë për të mbështetur shëndetin e kockave."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planifikimi për dimrin",
+      "text": "Imagjinoni që punoni brenda dhe e shihni rrallë dritën e ditës në dimër. Mund të bëni një shëtitje të shkurtër jashtë në pushimin e drekës, të përfshini peshk në vakte dhe ta pyesni mjekun nëse një suplement me dozë të ulët do t'ju përshtatej."
+    },
+    {
+      "title": "Kontrolli i suplementit të një foshnjeje",
+      "text": "Supozoni që keni një të porsalindur dhe nuk jeni të sigurt nëse nevojiten pika të vitaminës D. Mund ta pyesni pediatrin çfarë doze rekomandohet, sa kohë të jepet dhe si të kombinohet me ushqyerjen."
+    }
+  ],
+  "questions": [
+    "A ka gjasa që marrja ime e vitaminës D të jetë e mjaftueshme apo i përkas një grupi që përfiton nga suplementi?",
+    "Çfarë doze është e sigurt për mua dhe për sa kohë duhet ta marr?",
+    "A është e dobishme një analizë gjaku në situatën time?"
+  ]
+}

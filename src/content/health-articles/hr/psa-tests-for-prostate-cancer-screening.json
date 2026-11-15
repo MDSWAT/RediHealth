@@ -1,0 +1,51 @@
+{
+  "title": "PSA testovi za probir raka prostate",
+  "intro": "PSA test mjeri prostata-specifični antigen, bjelančevinu koju stvara prostata, u uzorku krvi. Visoka razina može upućivati na rak prostate, ali i na dobroćudna stanja. Korištenje PSA testa za probir u zdravih muškaraca može rano otkriti neke rakove, ali dovodi i do lažnih alarma i prekomjerne dijagnostike pa je odluka osobna.",
+  "sections": [
+    {
+      "heading": "Što test mjeri",
+      "paragraphs": [
+        "Razine PSA rastu s rakom, ali i s dobroćudnim povećanjem, upalom, infekcijom, nedavnom ejakulacijom, vožnjom bicikla i instrumentacijom. Razine rastu i s dobi. Ne postoji granična vrijednost koja potpuno razdvaja rak od ne-raka pa povišena vrijednost samo upućuje na potrebu daljnje procjene."
+      ]
+    },
+    {
+      "heading": "Moguće koristi",
+      "paragraphs": [
+        "Velika ispitivanja upućuju na to da PSA probir može smanjiti rizik od smrti od raka prostate u malog broja muškaraca, a korist se pojavljuje nakon više od deset godina. Učinak je skroman. Rano otkrivanje raka može omogućiti liječenje dok je još lokaliziran."
+      ]
+    },
+    {
+      "heading": "Moguće štete",
+      "paragraphs": [
+        "Mnogi povišeni rezultati dovode do biopsija koje ne nalaze rak. Biopsija može uzrokovati krvarenje, infekciju i tjeskobu. Probir pronalazi mnoge sporo rastuće rakove koji nikad ne bi uzrokovali simptome niti skratili život, što se zove prekomjerna dijagnostika. Muškarci koji se liječe od takvih rakova mogu imati nuspojave kao što su inkontinencija i problemi s erekcijom bez koristi."
+      ]
+    },
+    {
+      "heading": "Donošenje vlastite odluke",
+      "paragraphs": [
+        "Budući da su koristi i štete usko uravnotežene, mnoge smjernice preporučuju informiran izbor umjesto rutinskog probira za sve muškarce. Razmislite o svojoj dobi, obiteljskoj povijesti, zdravlju i kako se osjećate zbog nesigurnosti. Muškarci s jakom obiteljskom poviješću ili afričkog podrijetla mogu imati veći rizik i mogu razgovarati o ranijoj procjeni. Korištenje MR-a prije biopsije i aktivni nadzor raka niskog rizika mogu smanjiti štetu."
+      ]
+    },
+    {
+      "heading": "Praćenje nakon povišenog rezultata",
+      "paragraphs": [
+        "Ako je PSA povišen, liječnici mogu ponoviti test nakon nekoliko tjedana, provjeriti infekciju i razmotriti MR prije odluke o biopsiji. Pitajte o svakom koraku i šansama pronalaska značajnog raka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vaganje",
+      "text": "Zamislite da imate 58 godina i liječnik spominje PSA test. Mogli biste pitati koliko muškaraca ima koristi, koliko ih ima lažne alarme i što biste učinili ako bi rezultat bio povišen."
+    },
+    {
+      "title": "Priprema za test",
+      "text": "Pretpostavite da se odlučite testirati. Mogli biste dva dana prije izbjegavati ejakulaciju i naporno vozenje bicikla i reći liječniku o bilo kakvoj mokraćnoj infekciji."
+    }
+  ],
+  "questions": [
+    "Je li PSA test preporučljiv za mene s obzirom na moju dob i obiteljsku povijest?",
+    "Što bi se dogodilo ako bi moja razina PSA bila povišena?",
+    "Kakve su šanse prekomjerne dijagnostike i prekomjernog liječenja?"
+  ]
+}

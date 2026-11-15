@@ -1,0 +1,51 @@
+{
+  "title": "Što su mikrobi?",
+  "intro": "Mikrobi, ili mikroorganizmi, su živa bića premala da bi se vidjela bez mikroskopa. Uključuju bakterije, viruse, gljivice i neke parazite. Nalaze se posvuda: u tlu, vodi, zraku te na našem tijelu i u njemu. Većina je bezazlena ili korisna, a samo ih nekoliko uzrokuje bolest.",
+  "sections": [
+    {
+      "heading": "Bakterije",
+      "paragraphs": [
+        "Bakterije su jednostanični organizmi koji mogu živjeti samostalno i brzo se razmnožavaju. Mnoge su korisne, primjerice one u crijevima koje pomažu probavi hrane i stvaraju vitamine ili se koriste za proizvodnju jogurta i sira. Neke uzrokuju infekcije kao što su streptokokna angina, infekcije mokraćnog sustava, tuberkuloza i upala pluća. Antibiotici djeluju protiv bakterija."
+      ]
+    },
+    {
+      "heading": "Virusi",
+      "paragraphs": [
+        "Virusi su mnogo manji od bakterija i ne mogu se razmnožavati sami. Napadaju stanice i koriste ih za stvaranje vlastitih kopija. Uzrokuju prehlade, gripu, ospice, hepatitis i COVID-19. Antibiotici ne djeluju protiv virusa, ali cjepiva mogu spriječiti mnoge virusne bolesti, a postoje i neki antivirusni lijekovi."
+      ]
+    },
+    {
+      "heading": "Gljivice i paraziti",
+      "paragraphs": [
+        "Gljivice uključuju kvasce i plijesni. Većina je bezazlena, ali neke uzrokuju infekcije kao što su atletsko stopalo, gljivice noktiju i kandidijaza, a rijetko ozbiljne infekcije kod ljudi sa slabim imunitetom. Paraziti, kao što su gliste, uši, grinje šuge i organizmi koji uzrokuju malariju, žive na drugom organizmu ili u njemu i uzimaju hranjive tvari."
+      ]
+    },
+    {
+      "heading": "Mikrobiom",
+      "paragraphs": [
+        "Mikrobi koji žive na tijelu i u njemu, osobito u crijevima, na koži i u ustima, zovu se mikrobiom. Pomažu probavi, treniraju imunološki sustav i štite od štetnih klica. Antibiotici, prehrana, higijena i bolest mogu poremetiti tu ravnotežu. Istraživanja su u tijeku o tome kako utječe na zdravlje, a proizvodi koji se reklamiraju za zdravlje crijeva razlikuju se po dokazima."
+      ]
+    },
+    {
+      "heading": "Zaštita",
+      "paragraphs": [
+        "Perite ruke sapunom, pripremajte i pohranjujte hranu sigurno, održavajte cijepljenja ažurnima, pokrivajte kašalj, izbjegavajte nepotrebne antibiotike i održavajte rane čistima. Dobra higijena smanjuje infekcije, ali ekstremna sterilizacija doma nije potrebna. Antibiotike koristite samo kada su propisani i dovršite terapiju prema uputi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pranje ruku",
+      "text": "Zamislite da želite smanjiti infekcije u svom kućanstvu. Mogli biste prati ruke sapunom dvadeset sekundi nakon zahoda, prije kuhanja i prije jela."
+    },
+    {
+      "title": "Pravilna uporaba antibiotika",
+      "text": "Pretpostavite da imate prehladu i želite antibiotike. Mogli biste pitati liječnika je li virusna i kako umjesto toga ublažiti simptome."
+    }
+  ],
+  "questions": [
+    "Je li moja bolest uzrokovana virusom, bakterijom ili nečim drugim?",
+    "Trebam li antibiotike ili je bolje neko drugo liječenje?",
+    "Koja cijepljenja trebam imati?"
+  ]
+}

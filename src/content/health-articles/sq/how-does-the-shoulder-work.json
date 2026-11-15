@@ -1,0 +1,52 @@
+{
+  "title": "Si bashkon shpatulla lëvizjen dhe qëndrueshmërinë",
+  "intro": "Shpatulla lejon lëvizje të gjera dhe lidh krahun me trungun. Disa nyja dhe tehu i shpatullës bashkëpunojnë. Lëvizshmëria varet shumë nga indet e buta; dhimbja mund të ketë disa burime.",
+  "sections": [
+    {
+      "heading": "Kockat",
+      "paragraphs": [
+        "Humerusi, skapula dhe klavikula formojnë nyja të lidhura. Koka qëndron në gropë të cekët; buza kërcore dhe kapsula shtojnë mbështetje pa krijuar menteshë të ngurtë."
+      ]
+    },
+    {
+      "heading": "Muskujt",
+      "paragraphs": [
+        "Mansheta rrotulluese mban kokën në qendër. Muskujt e mëdhenj japin fuqi, ata të skapulës pozicionojnë gropën. Dobësia ose dhimbja nuk provon një tendinë të caktuar të këputur."
+      ]
+    },
+    {
+      "heading": "Rrëshqitja",
+      "paragraphs": [
+        "Bursat dhe tendinat ulin fërkimin. Irritimi mund të dhembë gjatë ngritjes, por modele të ngjashme vijnë nga probleme të ndryshme; ekzaminimi vlen më shumë se një manovër në internet."
+      ]
+    },
+    {
+      "heading": "Funksioni",
+      "paragraphs": [
+        "Ndryshoni detyrat përsëritëse dhe rritni ngarkesën gradualisht. Pas dëmtimit ose operacionit ndiqni rehabilitimin; palëvizshmëria pa fund dhe detyrimi me dhimbje të rëndë nuk zëvendësojnë kontrollin."
+      ]
+    },
+    {
+      "heading": "Ndihma",
+      "paragraphs": [
+        "Dobësia e vazhdueshme ose kufizimi kërkon kontroll. Deformimi pas dëmtimit, krahu i ftohtë ose i mpirë, apo nyja e nxehtë me ethe kërkon urgjencë. Dhimbja me presion gjoksi ose frymëmarrje të vështirë mund të jetë emergjencë.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ndryshon punën sipër kokës dhe pyet për forcim gradual, jo çdo ngritje të dhimbshme si operacion."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben rrëzohet dhe shpatulla deformohet. Kërkon urgjencë në vend që dikush ta tërheqë në vend."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

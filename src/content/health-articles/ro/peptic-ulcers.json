@@ -1,0 +1,51 @@
+{
+  "title": "Ulcerul gastric și duodenal",
+  "intro": "Ulcerul peptic este o rană deschisă în mucoasa stomacului sau a primei părți a intestinului subțire. Provoacă adesea o durere arzătoare în partea superioară a abdomenului. Cele mai multe ulcere sunt cauzate de o infecție bacteriană sau de calmantele antiinflamatoare și se vindecă bine odată ce cauza este tratată.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Mucoasa stomacului este protejată în mod normal de acid prin mucus. Infecția cu Helicobacter pylori și folosirea regulată a calmantelor antiinflamatoare precum ibuprofenul, diclofenacul sau aspirina deteriorează această protecție. Fumatul, consumul mare de alcool și bolile severe cresc riscul. Stresul și mâncarea picantă nu provoacă în sine ulcere, deși pot agrava simptomele."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele tipice sunt durerea arzătoare sau ca o roadere în partea superioară a abdomenului, adesea între mese sau noaptea, balonarea, greața și senzația de sațietate rapidă. Durerea din ulcerul gastric se poate agrava la mâncat, în timp ce cea din ulcerul duodenal se poate ameliora. Unele ulcere nu provoacă simptome până când sângerează."
+      ]
+    },
+    {
+      "heading": "Semne de alarmă",
+      "paragraphs": [
+        "Cereți ajutor urgent pentru vărsături cu sânge sau cu un conținut asemănător zațului de cafea, scaune negre, ca smoala, durere abdominală bruscă și severă, leșin sau paloare, deoarece acestea pot indica sângerare sau perforație. Scăderea în greutate neintenționată, vărsăturile persistente sau dificultățile la înghițit necesită, de asemenea, evaluare promptă."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament",
+      "paragraphs": [
+        "Medicii pot testa Helicobacter printr-un test respirator, din scaun sau din țesut și fac adesea o gastroscopie pentru a privi ulcerul și a lua probe. Tratamentul combină medicamentele care reduc aciditatea, numite inhibitori ai pompei de protoni, de obicei câteva săptămâni, cu o cură de antibiotice dacă este prezent Helicobacter. Opriți sau înlocuiți calmantele antiinflamatoare, dacă este posibil. Testele de urmărire confirmă dispariția infecției."
+      ]
+    },
+    {
+      "heading": "Prevenirea recidivei",
+      "paragraphs": [
+        "Luați cura completă de antibiotice, evitați calmantele antiinflamatoare inutile sau folosiți protecție gastrică când sunt esențiale, renunțați la fumat și limitați alcoolul. Spuneți medicilor și farmaciștilor că ați avut un ulcer."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Revizuirea calmantelor",
+      "text": "Imaginați-vă că luați zilnic ibuprofen pentru durerea de genunchi și apare o durere de stomac. Ați putea discuta cu medicul alternative de calmare a durerii și protecția stomacului înainte de a continua."
+    },
+    {
+      "title": "Terminarea tratamentului",
+      "text": "Presupuneți că vă simțiți mai bine după o săptămână de antibiotice. Ați putea totuși să terminați toată cura și să mergeți la testul de urmărire, deoarece oprirea prea devreme poate lăsa infecția pe loc."
+    }
+  ],
+  "questions": [
+    "Este ulcerul meu cauzat de infecție sau de medicamente?",
+    "Ce tratament voi urma și cât timp?",
+    "Cum vom verifica dacă ulcerul s-a vindecat?"
+  ]
+}

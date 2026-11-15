@@ -1,0 +1,51 @@
+{
+  "title": "What happens during cardiac catheterisation?",
+  "intro": "Cardiac catheterisation is a procedure in which a thin flexible tube, called a catheter, is passed through a blood vessel to the heart. It is used to look at the coronary arteries and heart chambers, and to treat narrowing, for instance by opening arteries with a stent. It is usually done under local anaesthetic.",
+  "sections": [
+    {
+      "heading": "Why it is done",
+      "paragraphs": [
+        "Doctors perform it to find the cause of chest pain, to diagnose coronary artery disease, to look at heart valves and pressures, and in an emergency during a heart attack. During the same procedure, narrowed arteries can be widened with a balloon and held open with a stent."
+      ]
+    },
+    {
+      "heading": "Preparation",
+      "paragraphs": [
+        "You usually fast for several hours. Tell the team about allergies, particularly to contrast dye or iodine, kidney problems, diabetes and medicines such as blood thinners or metformin. Blood tests and an electrocardiogram are done. You will give written consent, and someone should take you home or you stay overnight."
+      ]
+    },
+    {
+      "heading": "During the procedure",
+      "paragraphs": [
+        "You lie on a table and receive a sedative if you wish. The skin at the wrist or groin is numbed and a catheter is advanced to the heart under X-ray guidance. Contrast dye is injected to show the arteries, which may cause a warm feeling. The procedure takes thirty to sixty minutes, longer if a stent is placed."
+      ]
+    },
+    {
+      "heading": "Risks",
+      "paragraphs": [
+        "The procedure is generally safe. Possible risks include bleeding or bruising at the puncture site, allergic reaction to dye, kidney problems, irregular heartbeat, damage to a vessel and, rarely, heart attack, stroke or death. The doctor weighs the risks against the benefits."
+      ]
+    },
+    {
+      "heading": "After the procedure",
+      "paragraphs": [
+        "You rest for some hours, drink fluids and are monitored. Avoid heavy lifting for a few days. Report bleeding, swelling, pain, numbness or chest pain at once. If a stent is placed, you take medicines to prevent clots, and must not stop them without advice."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing",
+      "text": "Imagine you are due a catheter test tomorrow. You could list your medicines, ask which to hold and arrange a lift home."
+    },
+    {
+      "title": "Caring for the wound",
+      "text": "Suppose the puncture was at your wrist. You might avoid lifting and watch for swelling or bleeding."
+    }
+  ],
+  "questions": [
+    "Why do I need this procedure, and are there alternatives?",
+    "What are the risks in my situation?",
+    "Which medicines must I take afterwards?"
+  ]
+}

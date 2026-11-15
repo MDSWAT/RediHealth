@@ -1,0 +1,53 @@
+{
+  "title": "Impetigo",
+  "intro": "Impetigo është një infeksion bakterial i lëkurës i zakonshëm dhe ngjitës, veçanërisht te fëmijët e vegjël. Shkakton plagë të kuqe që çahen dhe formojnë kore ngjyrë mjalti, shpesh rreth hundës dhe gojës. Përhapet lehtë me prekje, por zakonisht shërohet brenda dy javësh me trajtim dhe higjienë të mirë.",
+  "sections": [
+    {
+      "heading": "Shkaqet dhe kush e merr",
+      "paragraphs": [
+        "Impetigo shkaktohet nga baktere, kryesisht Staphylococcus aureus dhe ndonjëherë Streptococcus. Bakteret hyjnë në lëkurë përmes çarjeve të vogla si pickimet e insekteve, gërvishtjet, ekzema ose herpesi i buzës. Është më i zakonshëm në mot të ngrohtë e të lagësht dhe në ambiente të ngjeshura si çerdhet e shkollat."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Forma më e zakonshme fillon si njolla të vogla të kuqe që kthehen në flluska, të cilat çahen dhe lënë kore ngjitëse, kafe-të artë. Plagët mund të kruhen, por zakonisht nuk janë shumë të dhimbshme. Një formë më e rrallë prodhon flluska më të mëdha. Ethet janë të pazakonta dhe kur ndodhin, një mjek duhet ta kontrollojë fëmijën."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Impetigo i lehtë në një zonë të vogël trajtohet shpesh me krem ose vaj antibiotik të aplikuar disa herë në ditë për rreth një javë. Infeksionet më të përhapura mund të kërkojnë tableta ose lëng antibiotik. Zbutja e korave butësisht me ujë të ngrohtë para aplikimit të trajtimit mund ta ndihmojë të funksionojë.",
+        "Përfundoni të gjithë kurën edhe kur lëkura duket më mirë. Nëse plagët nuk përmirësohen brenda disa ditësh, shihni përsëri mjekun, sepse mund të jenë të përfshira baktere rezistente ose një gjendje tjetër."
+      ]
+    },
+    {
+      "heading": "Parandalimi i përhapjes",
+      "paragraphs": [
+        "Impetigo është ngjitës derisa plagët të jenë mbuluar me kore ose pas rreth dy ditësh trajtim. Mbajini fëmijët në shtëpi gjatë asaj periudhe, siç sugjerojnë rregullat vendore. Lani duart shpesh, mbani thonjtë të shkurtër, shmangni gërvishtjen dhe përdorni peshqirë, leckë larëse dhe çarçafë të veçantë që lahen në temperaturë të lartë.",
+        "Mbulojini plagët lirshëm me një fashë nëse është e mundur dhe informoni shkollën ose çerdhen."
+      ]
+    },
+    {
+      "heading": "Kur të kërkoni këshillë urgjente",
+      "paragraphs": [
+        "Shihni një mjek menjëherë nëse infeksioni përhapet shpejt, fëmija ka ethe të larta, është i sëmurë ose nëse lëkura bëhet shumë e kuqe, e nxehtë dhe e enjtur. Foshnjat dhe njerëzit me sistem imunitar të dobët kërkojnë vëmendje më të hershme. Rrallë, infeksioni mund t'i prekë veshkat, prandaj raportoni urinë të errët ose enjtje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kthimi në çerdhe",
+      "text": "Imagjinoni që fëmija juaj ka plagë rreth gojës. Mund të filloni kremin e përshkruar, ta mbani fëmijën në shtëpi derisa plagët të mbulohen me kore, t'i lani shpesh duart e peshqirët dhe ta pyesni çerdhen për rregullat e kthimit."
+    },
+    {
+      "title": "Përballimi i kruajtjes",
+      "text": "Supozoni që fëmija juaj vazhdon të gërvishtë flluskat. Mund t'ia prisni thonjtë, t'i mbuloni plagët dhe ta pyesni farmacistin për masa qetësuese që janë të sigurta për moshën e tij."
+    }
+  ],
+  "questions": [
+    "A mjafton një krem apo fëmija im ka nevojë për ilaç antibiotik?",
+    "Kur mund të kthehet fëmija im me siguri në shkollë ose çerdhe?",
+    "Cilat shenja do të tregonin se infeksioni ka nevojë për një rishikim të dytë?"
+  ]
+}

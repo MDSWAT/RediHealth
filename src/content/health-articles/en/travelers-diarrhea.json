@@ -1,0 +1,51 @@
+{
+  "title": "Traveller's diarrhoea",
+  "intro": "Traveller's diarrhoea affects many people who visit regions with different hygiene standards, usually through contaminated food or water. It causes loose stools, cramps and sometimes nausea, and is usually mild and over within a few days. Preventing dehydration is the main treatment.",
+  "sections": [
+    {
+      "heading": "Causes and risk",
+      "paragraphs": [
+        "Most cases are caused by bacteria such as certain E. coli types, less often by viruses or parasites. Germs are taken in by contaminated food, water or ice. Risk is highest in parts of Asia, Africa and Latin America and in hot weather. Street food, salads, unpeeled fruit and tap water raise risk. Young children, older people and those with weak immunity are more vulnerable."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Sudden watery diarrhoea three or more times per day, abdominal cramps, nausea, bloating and sometimes fever. Most people recover within three to five days. Blood in the stool, high fever, severe pain or persistent diarrhoea beyond a week suggest a more serious infection."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Replace fluids and salts with oral rehydration solution, water, broth and diluted juices, and eat light food as tolerated. Loperamide can reduce the frequency of stools in adults with watery diarrhoea but should not be used with fever or bloody stool or in young children. Antibiotics are reserved for severe cases and are taken on medical advice, as they carry risks and may promote resistant bacteria."
+      ]
+    },
+    {
+      "heading": "When to seek medical care",
+      "paragraphs": [
+        "Seek care for signs of dehydration such as dark urine, dizziness, very dry mouth, little urine or lethargy, for blood in the stool, high fever, persistent vomiting, symptoms beyond several days or in babies, small children, pregnant women and people with chronic illness."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Wash hands with soap before eating, eat food that is freshly cooked and served hot, peel fruit yourself, drink bottled or boiled water, avoid ice cubes and raw salads in high-risk areas, and brush teeth with safe water. Consider vaccination against typhoid or cholera as advised by a travel clinic. Seeing a travel clinic before the trip helps you plan."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rehydrating",
+      "text": "Imagine you have watery diarrhoea on holiday. You could take oral rehydration salts, drink regularly in small sips and eat bland food."
+    },
+    {
+      "title": "Packing smart",
+      "text": "Suppose you are travelling to a high-risk region. You might pack rehydration sachets and hand sanitiser, and ask a travel clinic about advice."
+    }
+  ],
+  "questions": [
+    "Which medicines should I take on a trip, and when should I use them?",
+    "Are vaccinations advised for my destination?",
+    "When should I see a doctor abroad?"
+  ]
+}

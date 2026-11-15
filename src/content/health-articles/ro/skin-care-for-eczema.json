@@ -1,0 +1,51 @@
+{
+  "title": "Îngrijirea pielii în eczemă",
+  "intro": "Eczema atopică face pielea uscată, cu mâncărime și predispusă la inflamație. Îngrijirea zilnică a pielii cu emoliente este baza tratamentului, reducând puseele și nevoia de creme medicamentoase. O rutină constantă, produse blânde și evitarea factorilor declanșatori fac o diferență reală.",
+  "sections": [
+    {
+      "heading": "De ce contează îngrijirea pielii",
+      "paragraphs": [
+        "În eczemă, bariera pielii este afectată, așa că pielea pierde umiditate și lasă iritanții și alergenii să pătrundă. Aceasta provoacă uscăciune, mâncărime și inflamație. Refacerea regulată a barierei reduce simptomele și poate prelungi timpul dintre pusee."
+      ]
+    },
+    {
+      "heading": "Hidratarea",
+      "paragraphs": [
+        "Aplicați un emolient din abundență cel puțin o dată sau de două ori pe zi, și mai mult pe vreme uscată, ideal imediat după baie, cât pielea este încă puțin umedă. Unguentele și cremele groase sunt mai eficiente decât loțiunile ușoare, deși cel mai bun produs este cel pe care îl veți folosi. Aplicați de sus în jos, în direcția creșterii părului, și folosiți mult produs, deoarece este nevoie de multă cantitate pentru tot corpul."
+      ]
+    },
+    {
+      "heading": "Baia și spălatul",
+      "paragraphs": [
+        "Băile sau dușurile scurte, cu apă călduță, de aproximativ cinci până la zece minute, sunt în regulă. Folosiți produse de curățare fără săpun și fără parfum și uscați pielea tamponând, nu frecând. Uleiurile de baie pot ajuta, dar fac baia alunecoasă. Evitați băile lungi și fierbinți, băile cu spumă și săpunurile agresive."
+      ]
+    },
+    {
+      "heading": "Îmbrăcămintea și factorii declanșatori",
+      "paragraphs": [
+        "Alegeți țesături moi, care respiră, precum bumbacul, și evitați lâna și cusăturile aspre. Spălați hainele cu detergent blând și clătiți bine. Țineți unghiile scurte pentru a limita leziunile prin scărpinat și folosiți mănuși de bumbac noaptea, dacă este nevoie. Factorii declanșatori variază și pot include transpirația, căldura, praful, animalele de companie, stresul și anumite produse pentru piele. Identificați-i și limitați-i pe cei ai dumneavoastră."
+      ]
+    },
+    {
+      "heading": "Gestionarea puseelor și a mâncărimii",
+      "paragraphs": [
+        "În timpul unui puseu, folosiți cremele antiinflamatoare prescrise de medic, pe lângă emoliente, conform indicațiilor. Compresele reci, pansamentele umede și distragerea atenției ajută la mâncărime. Cereți sfat dacă pielea pare infectată, cu secreții, cruste sau febră, sau dacă somnul și viața de zi cu zi sunt grav afectate. Copiii cu eczemă beneficiază de o rutină calmă și constantă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Construirea unei rutine",
+      "text": "Imaginați-vă că copilul dumneavoastră are pielea uscată și cu mâncărime. Ați putea să-l hidratați după baie și din nou înainte de culcare, să folosiți un produs de curățare fără parfum și să țineți un tub mic în ghiozdan pentru perioadele uscate."
+    },
+    {
+      "title": "Alegerea produselor",
+      "text": "Presupuneți că o loțiune nouă înțeapă. Ați putea să încetați s-o folosiți, să reveniți la un emolient simplu și să cereți medicului sau farmacistului o alternativă blândă."
+    }
+  ],
+  "questions": [
+    "Ce emolient și cât din el ar trebui să folosesc?",
+    "Cum ar trebui să combin emolientele cu cremele prescrise în timpul puseelor?",
+    "Cum îmi dau seama dacă eczema mea este infectată?"
+  ]
+}

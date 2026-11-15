@@ -1,0 +1,51 @@
+{
+  "title": "Deficitul de fier și anemia feriprivă",
+  "intro": "Fierul este necesar pentru producerea hemoglobinei, proteina din globulele roșii care transportă oxigenul. Când organismului îi lipsește fierul, apar oboseala și alte simptome, iar după aceea poate urma anemia. Deficitul de fier este frecvent, mai ales la femeile cu menstruație, la femeile însărcinate și la copii, și este de obicei tratabil odată ce se găsește cauza.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Cele mai frecvente cauze sunt pierderea de sânge, de exemplu din menstruații abundente sau sângerări ale tubului digestiv, o alimentație săracă în fier, nevoile crescute în sarcină și în creștere și absorbția redusă din cauza unor afecțiuni precum boala celiacă sau după o operație pe stomac. La bărbați și la femeile după menopauză, o pierdere ascunsă de sânge trebuie investigată."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele includ oboseală, slăbiciune, piele palidă, lipsă de aer la efort, dureri de cap, amețeală, unghii fragile, cădere a părului, mâini și picioare reci și picioare neliniștite. Unele persoane poftesc gheață sau obiecte necomestibile. Simptomele se dezvoltă lent, iar multe persoane se obișnuiesc cu ele."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "O hemogramă arată dacă există anemie, iar feritina măsoară rezervele de fier. Alte teste pot include căutarea unei surse de sângerare, teste pentru boala celiacă și, în funcție de vârstă și simptome, examinarea tubului digestiv."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Tratamentul abordează cauza și înlocuiește fierul. Tabletele de fier luate o dată pe zi sau la două zile sunt adesea bine absorbite, de preferință departe de ceai, cafea și lactate. Efectele secundare includ constipația, greața și scaunele închise la culoare. Fierul poate fi administrat prin perfuzie când tabletele nu sunt tolerate, nu funcționează sau când este nevoie de corectare rapidă. Hemoglobina se îmbunătățește de obicei în câteva săptămâni, dar rezervele au nevoie de câteva luni pentru a se reface."
+      ]
+    },
+    {
+      "heading": "Alimentația și prevenirea",
+      "paragraphs": [
+        "Alimentele bogate în fier includ carnea roșie, carnea de pasăre, peștele, leguminoasele, legumele verde închis, nucile și cerealele îmbogățite. Vitamina C ajută la absorbția fierului din plante, în timp ce ceaiul, cafeaua și calciul o reduc. Femeile însărcinate, vegetarienii și persoanele cu menstruații abundente trebuie să întrebe dacă suplimentele au sens. Nu luați suplimente de fier fără diagnostic, deoarece prea mult poate fi dăunător."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Înțelegerea oboselii",
+      "text": "Imaginați-vă că vă simțiți epuizat de luni de zile. Ați putea cere medicului o hemogramă și un test pentru feritină și ați putea raporta detalii despre menstruații abundente sau simptome digestive."
+    },
+    {
+      "title": "Luarea corectă a tabletelor",
+      "text": "Presupuneți că tabletele de fier vă deranjează stomacul. Ați putea întreba dacă ar ajuta luarea lor din două în două zile, cu o altă formulă sau cu mâncare, în loc să opriți tratamentul."
+    }
+  ],
+  "questions": [
+    "Ce provoacă deficitul meu de fier și am nevoie de alte teste?",
+    "Cât timp ar trebui să iau fier și când vor fi reverificate nivelurile?",
+    "Ce alimente sau obiceiuri îmi pot îmbunătăți aportul de fier?"
+  ]
+}

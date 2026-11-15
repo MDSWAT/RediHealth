@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa sono i coaguli di sangue e che cosa li causa",
+  "intro": "Un coagulo di sangue è un grumo di sangue passato dallo stato liquido a uno semisolido. La coagulazione è un processo protettivo vitale che ferma il sanguinamento dopo una lesione. I problemi nascono quando si formano coaguli dentro i vasi sanguigni senza necessità e bloccano il flusso, il che può portare a infarto, ictus o trombosi.",
+  "sections": [
+    {
+      "heading": "Come funziona la coagulazione",
+      "paragraphs": [
+        "Quando un vaso sanguigno è lesionato, le piastrine si raccolgono nel punto e proteine del sangue dette fattori della coagulazione formano una rete di fibrina che sigilla la ferita. Poi il corpo scioglie il coagulo mentre il vaso guarisce. Questo equilibrio tra coagulazione e dissoluzione mantiene il sangue in movimento e previene le emorragie."
+      ]
+    },
+    {
+      "heading": "Coaguli dannosi",
+      "paragraphs": [
+        "I coaguli nelle arterie si formano spesso su depositi di grasso che si sono incrinati e possono bloccare il flusso al cuore, causando un infarto, o al cervello, causando un ictus. I coaguli nelle vene, di solito delle gambe, si chiamano trombosi venosa profonda e possono raggiungere i polmoni come embolia polmonare. I coaguli possono formarsi anche nelle camere del cuore nella fibrillazione atriale."
+      ]
+    },
+    {
+      "heading": "Che cosa aumenta il rischio",
+      "paragraphs": [
+        "Il rischio cresce con immobilità, lunghi viaggi, interventi, traumi, gravidanza e le settimane dopo il parto, farmaci contenenti estrogeni, cancro e relative terapie, obesità, fumo, età avanzata, disidratazione, coaguli precedenti, storia familiare e disturbi ereditari della coagulazione. Spesso più fattori si combinano."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Un coagulo in una vena della gamba causa gonfiore, dolore, calore e arrossamento, di solito in una sola gamba. Un coagulo nel polmone causa affanno improvviso, dolore al petto e polso rapido. Infarto e ictus hanno i loro segni d'allarme, come dolore al petto o debolezza su un lato del corpo. Chiama subito i servizi di emergenza se compaiono."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Resta attivo, evita lunghi periodi da seduto, bevi abbastanza, mantieni un peso sano, non fumare e controlla pressione, colesterolo e diabete. Dopo un intervento o durante i ricoveri si usano misure preventive come camminare presto, compressione e anticoagulanti. Discuti i rischi con il medico se prendi ormoni o hai una storia familiare di coaguli."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Viaggiare in sicurezza",
+      "text": "Immagina di fare un lungo volo. Potresti camminare regolarmente lungo il corridoio, fare esercizi per i polpacci, bere acqua e chiedere al medico delle calze a compressione."
+    },
+    {
+      "title": "Riconoscere i sintomi",
+      "text": "Supponi che un polpaccio diventi gonfio e dolente. Potresti cercare una valutazione medica lo stesso giorno."
+    }
+  ],
+  "questions": [
+    "Ho fattori di rischio per i coaguli e che cosa posso fare?",
+    "La mia famiglia dovrebbe fare test per i disturbi della coagulazione?",
+    "Quali sintomi richiedono cure di emergenza?"
+  ]
+}

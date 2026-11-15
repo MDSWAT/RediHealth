@@ -1,0 +1,51 @@
+{
+  "title": "Ventilazioni di soccorso nella RCP dell’adulto",
+  "intro": "Questa guida riguarda un adulto non responsivo che non respira normalmente. Chiamare subito 112 per una persona non responsiva, usare il vivavoce e seguire l’operatore. Non ritardare la rianimazione per leggere; l’addestramento pratico aumenta la sicurezza.",
+  "sections": [
+    {
+      "heading": "Riconoscere l’emergenza e chiamare",
+      "paragraphs": [
+        "Verificare la sicurezza, parlare alla persona e controllare la risposta. Mentre si chiama aiuto valutare il respiro. Rantoli occasionali non sono respiro normale. Se non risponde e respira in modo anomalo iniziare RCP e chiedere un DAE."
+      ]
+    },
+    {
+      "heading": "Iniziare compressioni nell’adulto",
+      "paragraphs": [
+        "Porre il palmo alla base della mano al centro del torace con l’altra sopra. Braccia dritte, comprimere 5–6 cm a 100–120 compressioni al minuto, consentendo il ritorno completo e riducendo le interruzioni."
+      ]
+    },
+    {
+      "heading": "Ventilare se addestrati e capaci",
+      "paragraphs": [
+        "Se addestrati e capaci, alternare 30 compressioni con 2 ventilazioni. Aprire la via aerea inclinando la testa e sollevando il mento, chiudere il naso, sigillare la bocca e soffiare delicatamente per circa 1 secondo, quanto basta a sollevare il torace. Lasciarlo scendere prima del respiro successivo."
+      ]
+    },
+    {
+      "heading": "Ridurre le interruzioni",
+      "paragraphs": [
+        "Tenere la pausa sotto 10 secondi. Se le ventilazioni falliscono non prolungare i tentativi: riprendere compressioni e seguire l’operatore. Se incapaci o non disposti a ventilare, continuare compressioni; agire prontamente è meglio che attendere."
+      ]
+    },
+    {
+      "heading": "Usare il DAE e continuare",
+      "paragraphs": [
+        "Applicare il DAE appena disponibile seguendone i comandi; nessuno tocchi durante analisi o scarica. Continuare finché subentrano professionisti, ritorna respiro normale, il luogo è pericoloso o non si riesce più. Bambini, lattanti e annegamento richiedono istruzioni specifiche, soprattutto per ventilazioni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira chiama in vivavoce mentre un aiutante porta il DAE. Segue l’operatore senza perdere tempo cercando il polso."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben non può ventilare. Continua le compressioni secondo istruzioni invece di interrompere tutto l’aiuto perché il bocca a bocca non è possibile."
+    }
+  ],
+  "questions": [
+    "Dove posso esercitare RCP e DAE con un istruttore?",
+    "Come cambiano le istruzioni per bambini o annegamento?",
+    "Come ottenere sostegno dopo aver aiutato in un’emergenza?"
+  ]
+}

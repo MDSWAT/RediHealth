@@ -1,0 +1,51 @@
+{
+  "title": "Pronalaženje pouzdanih zdravstvenih informacija na internetu",
+  "intro": "Internetsko traženje priprema pitanja, ali donosi oglase, zavaravajuće tvrdnje i neprikladne savjete. Počnite jasnim pitanjem uz svijest o izvoru i ograničenjima. Ovo je praktičan način pretraživanja, a ne samostalnog postavljanja dijagnoze.",
+  "sections": [
+    {
+      "heading": "Odredite odluku prije traženja",
+      "paragraphs": [
+        "Zapišite što želite razumjeti: dijagnozu, alternative, oporavak ili nalaz. Koristite naziv s pregleda. Razlikujte opće učenje od osobnog savjeta. Hitni simptomi zahtijevaju skrb umjesto duljeg pretraživanja."
+      ]
+    },
+    {
+      "heading": "Provjerite odgovornost i komercijalne interese",
+      "paragraphs": [
+        "Tražite autora, kvalifikacije, organizaciju, financiranje i kontakt. Informira li stranica ili prodaje? Sponzorirani položaj, svjedočanstva i stručan izgled nisu neovisna provjera. Prodajna poveznica ne znači da je sve netočno, ali zahtijeva provjeru dokaza."
+      ]
+    },
+    {
+      "heading": "Pratite tvrdnju do dokaza",
+      "paragraphs": [
+        "Čitajte objašnjenje, ne samo naslov ili sažetak. Tražite relevantne usporedbe, važne ishode, štete i nesigurnost. Reference vrijede ako podupiru tvrdnju. Provjerite datume te odnose li se opisani ljudi i usluge na vašu situaciju."
+      ]
+    },
+    {
+      "heading": "Oprezno s pričama i automatskim odgovorima",
+      "paragraphs": [
+        "Forumi otkrivaju iskustva i pitanja, ali ne pouzdano učestalost uspjeha terapije. Anonimni opisi mogu biti nepotpuni ili promotivni. Automatski odgovori zvuče sigurno i kad izostave ograde ili izmisle reference. Provjerite važne tvrdnje i ne unosite nepotrebne osobne zdravstvene podatke nepoznatim službama."
+      ]
+    },
+    {
+      "heading": "Pripremite konkretno pitanje",
+      "paragraphs": [
+        "Spremite naslov, datum i odlomak. Usporedite neovisne ugledne organizacije umjesto mnogo jednakih stranica. Pitajte primjenjivost uz svoje lijekove i bolesti. Ne prekidajte terapiju zbog objave. Ako traženje povećava tjeskobu, zastanite i razgovarajte sa stručnjakom."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: oglas dodatka",
+      "text": "Mira vidi obećanje izlječenja uz gumb kupnje. Provjeri usporedbu i štete te bez jasnih dokaza pita ljekarnika umjesto trenutne kupnje."
+    },
+    {
+      "title": "Zamišljeni primjer: različiti oporavci",
+      "text": "Arben nalazi različite rokove. Zabilježi zahvate i pita tim koji vrijedi za njega, bez prosjeka nespojivih savjeta."
+    }
+  ],
+  "questions": [
+    "Tko je napisao i financirao?",
+    "Podupiru li dokazi koristi, štete i alternative za ljude poput mene?",
+    "Što trebam osobno razjasniti prije djelovanja?"
+  ]
+}

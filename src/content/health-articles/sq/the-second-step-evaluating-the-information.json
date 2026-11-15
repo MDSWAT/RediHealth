@@ -1,0 +1,51 @@
+{
+  "title": "Hapi i dytë: vlerësimi i informacionit shëndetësor",
+  "intro": "Gjetja e informacionit është vetëm gjysma e detyrës. Hapi i dytë është të gjykoni nëse është i besueshëm, i rëndësishëm e i zbatueshëm për ju. Disa pyetje të thjeshta mund t'ju ndihmojnë ta ndani këshillën e besueshme nga marketingu, opinioni ose pretendimet e vjetruara.",
+  "sections": [
+    {
+      "heading": "Kush qëndron pas informacionit",
+      "paragraphs": [
+        "Kontrolloni kush e ka shkruar tekstin, cilat janë kualifikimet e tij e kush e financon burimin. Ofruesit e besueshëm emërtojnë autorët e shpjegojnë si punojnë. Kini kujdes me faqet e drejtuara nga kompani që shesin trajtime ose produkte të lidhura me temën e me postimet anonime."
+      ]
+    },
+    {
+      "heading": "Çfarë prove përdoret",
+      "paragraphs": [
+        "Kërkoni referenca për kërkime si rishikime sistematike, prova klinike ose udhëzues, në vend të anekdotave a një studimi të vetëm. A dallon teksti midis pretendimeve të provuara e të pasigurta? Informacioni për trajtimet duhet të përshkruajë përfitimet e rreziqet, alternativat e mundësinë e mosveprimit. Pretendimet pa efekte anësore janë shenjë paralajmëruese."
+      ]
+    },
+    {
+      "heading": "Si paraqiten numrat",
+      "paragraphs": [
+        "Shifrat relative si përgjysmimi i rrezikut mund të tingëllojnë mbresëlënëse por mashtrojnë nëse rreziku fillestar është i vogël. Numrat absolutë, si sa nga njëqind njerëz përfitojnë, janë më të qartë. Kontrolloni nëse rezultatet vijnë nga njerëz si ju e nëse rezultatet kanë rëndësi në jetën e përditshme ose janë vetëm vlera laboratorike."
+      ]
+    },
+    {
+      "heading": "Sa i përditësuar është",
+      "paragraphs": [
+        "Dija mjekësore ndryshon, prandaj kërkoni një datë e shenja përditësimi të rregullt. Informacioni i vjetër mund të rekomandojë trajtime tani të braktisura ose të mos vërë re opsione më të reja. Kontrolloni nëse informacioni i përshtatet vendit tuaj, pasi sistemet shëndetësore e rekomandimet ndryshojnë."
+      ]
+    },
+    {
+      "heading": "Përdorimi i tij",
+      "paragraphs": [
+        "Krahasoni disa burime të besueshme. Nëse këshillat bien ndesh, pyesni mjekun cila vlen për situatën tuaj. Përdoreni informacionin për të përgatitur pyetje, jo për të diagnostikuar veten ose për të ndaluar trajtimin. Besojini shqetësimet tuaja e kërkoni mbështetje nëse informacioni ju mbingarkon."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Testimi i një pretendimi",
+      "text": "Imagjinoni që një faqe thotë se një suplement e ul përgjysmë rrezikun e sëmundjes. Mund të pyesni sa njerëz morën pjesë, sa ishte ndryshimi absolut i rrezikut e kush e financoi kërkimin."
+    },
+    {
+      "title": "Krahasimi i burimeve",
+      "text": "Supozoni që dy faqe japin këshilla të ndryshme. Mund të kontrolloni datat e burimet e t'i kërkoni mjekut cila është më e përshtatshme për ju."
+    }
+  ],
+  "questions": [
+    "Sa i besueshëm është ky informacion për situatën time?",
+    "Cilat janë përfitimet e rreziqet absolute?",
+    "A ka provë më të re ose udhëzues që duhet ta di?"
+  ]
+}

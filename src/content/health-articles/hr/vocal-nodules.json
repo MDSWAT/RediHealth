@@ -1,0 +1,51 @@
+{
+  "title": "Čvorići na glasnicama i problemi s glasom",
+  "intro": "Čvorići na glasnicama su mali, dobroćudni kvrgava zadebljanja na glasnicama uzrokovani ponavljanim naprezanjem, česti kod pjevača, učitelja i drugih koji mnogo koriste glas. Uzrokuju promuklost, dahtav ili umoran glas i vokalni umor. Glasovna terapija je glavno liječenje, a operacija je rijetko potrebna.",
+  "sections": [
+    {
+      "heading": "Kako glas funkcionira",
+      "paragraphs": [
+        "Zvuk nastaje kada zrak iz pluća potakne titranje dviju glasnica. One se moraju potpuno zatvoriti i ravnomjerno titrati. Kada su glasnice preopterećene, točke dodira mogu se zadebljati i stvoriti čvoriće, koji ih sprječavaju da se pravilno zatvore i uzrokuju hrapav ili dahtav zvuk. Polipi i ciste mogu uzrokovati slične simptome."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Promuklost, dahtav ili slab glas, glas koji se brzo umara, niža visina, teškoće u dostizanju visokih tonova i nelagoda u grlu. Simptomi se često pogoršavaju tijekom dana uporabom. Trajnu promuklost koja traje dulje od tri do četiri tjedna treba provjeriti liječnik jer se moraju isključiti drugi uzroci, uključujući rak, osobito kod pušača."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Otorinolaringolog pregledava glasnice malom savitljivom kamerom ili krutim endoskopom, često uz stroboskopsko svjetlo koje pokazuje kako titraju. Glasovni terapeut procjenjuje uporabu glasa. Cilj je prepoznati vrstu lezije i doprinosne navike kao što su vikanje, govorenje preko buke, kašljucanje, pušenje i refluks."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Glasovna terapija s logopedom uči učinkovitu uporabu glasa, disanje, opuštanje i zdrave navike. Većina čvorića se smanji ili nestane uz terapiju tijekom tjedana do mjeseci. Liječite refluks, prestanite pušiti, održavajte hidraciju i izbjegavajte šaptanje i kašljucanje. Operacija pod općom anestezijom razmatra se samo ako terapija ne uspije, a slijedi mirovanje glasa i terapija."
+      ]
+    },
+    {
+      "heading": "Briga o glasu",
+      "paragraphs": [
+        "Pijte vodu, odmarajte glas tijekom bolesti, koristite pojačanje u bučnim prostorima, izbjegavajte naprezanje, zagrijavajte se prije dugog korištenja i osigurajte dovoljno sna. Profesionalci koji koriste glas mogu imati obuku kod učitelja glasa. Potražite pomoć rano umjesto da se nastavlja kroz promuklost."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zaštita glasa učitelja",
+      "text": "Zamislite da cijeli dan predajete i završite promukli. Mogli biste koristiti mikrofon, praviti stanke u tišini, piti vodu i pitati o glasovnoj terapiji."
+    },
+    {
+      "title": "Primjećivanje trajne promuklosti",
+      "text": "Pretpostavite da ste promukli šest tjedana. Mogli biste posjetiti liječnika radi pregleda glasnica umjesto da čekate."
+    }
+  ],
+  "questions": [
+    "Što uzrokuje moju promuklost i jesu li isključena druga stanja?",
+    "Bi li glasovna terapija pomogla i koliko bi trajala?",
+    "Kada se razmatra operacija?"
+  ]
+}

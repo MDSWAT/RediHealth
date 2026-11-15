@@ -1,0 +1,51 @@
+{
+  "title": "Mungesa e vitaminës D",
+  "intro": "Mungesa e vitaminës D do të thotë që trupi ka shumë pak vitaminë D, që nevojitet për kocka e muskuj të fortë. Është e zakonshme, veçanërisht në dimër në vendet veriore, te njerëzit që e mbulojnë lëkurën ose rrallë dalin jashtë e te të moshuarit. Trajtohet lehtë e parandalimi është i thjeshtë.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Shkaqet përfshijnë shumë pak ekspozim në diell, lëkurën e errët, rrobat mbulese, kremin e diellit të përdorur gjithmonë, moshën, obezitetin, keqthithjen nga sëmundjet e zorrëve, sëmundjen e mëlçisë ose veshkave e disa barna. Vetëm dieta rrallë siguron mjaftueshëm, pasi pak ushqime përmbajnë shumë vitaminë D."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Mungesa e lehtë shpesh nuk shkakton simptoma. Mungesa e rëndë mund të shkaktojë dhimbje kockash, dobësi e ndjeshmëri muskulore, lodhje e nganjëherë raportohen infeksione të shpeshta. Te fëmijët shkakton rakitizëm, me kocka të buta, këmbë të harkuara e rritje të vonuar. Te të rriturit shkakton osteomalaci, me dhimbje kockash e thyerje. Shumë simptoma janë jospecifike e kanë shkaqe të tjera."
+      ]
+    },
+    {
+      "heading": "Testimi",
+      "paragraphs": [
+        "Një analizë gjaku mat vitaminën D, në formën e quajtur 25-hidroksivitaminë D. Testimi rutinë nuk nevojitet për njerëz të shëndetshëm, por është i përshtatshëm për njerëz me sëmundje të kockave, keqthithje, sëmundje të veshkave ose simptoma. Nivelet nën pragun e vendosur nga udhëzuesit konsiderohen të mangëta. Interpretimi varet nga laboratori e udhëzuesit."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Mjekët përshkruajnë suplemente të vitaminës D në doza që varen nga niveli, për shembull doza më të larta për disa javë e pastaj doza mirëmbajtjeje më të ulëta. Marrja e kalciumit duhet të jetë e mjaftueshme. Përsëritni analizën pas disa muajsh nëse nevojitet. Marrja e suplementeve me një vakt që përmban yndyrë ndihmon thithjen. Shumë vitaminë D për një kohë të gjatë mund ta rrisë kalciumin e të dëmtojë veshkat, prandaj ndiqni udhëzimet e shmangni doza shumë të larta pa mbikëqyrje."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Kaloni kohë jashtë në dritën e ditës, me mbrojtje të arsyeshme nga dielli, hani peshk, vezë e ushqime të pasuruara e pyesni për suplemente nëse jeni në grup rreziku. Foshnjave zakonisht u jepen pika të vitaminës D sipas këshillës kombëtare. Të moshuarit në shtëpi pleqsh shpesh përfitojnë nga suplementet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fillimi i trajtimit",
+      "text": "Imagjinoni që analiza tregon vitaminë D të ulët. Mund ta merrni suplementin me një vakt kryesor, të shënoni në kalendar një kontroll të ri e të shtoni shëtitje jashtë."
+    },
+    {
+      "title": "Shikimi i rrezikut",
+      "text": "Supozoni që e mbuloni pjesën më të madhe të lëkurës kur jeni jashtë. Mund ta pyesni mjekun për suplemente mirëmbajtjeje gjatë dimrit."
+    }
+  ],
+  "questions": [
+    "Cilën dozë e për sa kohë duhet ta marr vitaminën D?",
+    "A më nevojitet një kontroll i ri i niveleve?",
+    "Cilët faktorë rreziku vlejnë për mua?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Off-label use of medicines: what to be aware of",
+  "intro": "Off-label use means using a medicine for a condition, age group, dose or route that is not covered by its official approval. It is common, especially for children, rare diseases and cancer, and can be reasonable when evidence supports it. Because less is known or documented, it requires careful discussion of benefits and risks.",
+  "sections": [
+    {
+      "heading": "What off-label means",
+      "paragraphs": [
+        "When a medicine is approved, the manufacturer has shown that it is effective and safe for specific uses described in the product information. Using it outside these uses is off-label. This does not make it illegal or unsafe by itself, and doctors may prescribe it where they judge it appropriate. It differs from unlicensed medicines, which have no approval at all."
+      ]
+    },
+    {
+      "heading": "Why it happens",
+      "paragraphs": [
+        "Studies in children, pregnant women and people with rare diseases are often lacking, so doctors use medicines based on experience and smaller studies. New uses may be discovered after approval, but the manufacturer may not seek a formal extension. Some off-label uses have good evidence, while others rest on weak evidence."
+      ]
+    },
+    {
+      "heading": "Risks and uncertainties",
+      "paragraphs": [
+        "There may be less information on correct dosing, side effects and interactions for off-label uses. Responsibility for harm and coverage by health insurance may differ, as insurers may only pay under certain conditions. The package leaflet will not mention your use, which can be worrying."
+      ]
+    },
+    {
+      "heading": "What to ask",
+      "paragraphs": [
+        "Ask why the medicine is being recommended, what evidence supports it, what the alternatives are and what risks are known. Ask how success will be measured and when to stop. Check whether insurance covers it and who is responsible for follow-up.",
+        "Follow the prescribed dose, report side effects and tell all your healthcare providers. The leaflet still gives valuable safety advice such as interactions and warnings."
+      ]
+    },
+    {
+      "heading": "Taking it safely",
+      "paragraphs": [
+        "Do not change doses on the basis of what others report online. Keep a list of all your medicines so that interactions can be checked, and report side effects promptly."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Understanding a leaflet",
+      "text": "Imagine your doctor prescribes a medicine for a use not listed in the leaflet. You could ask about the reasons and evidence, and request a written note about the plan."
+    },
+    {
+      "title": "Asking about costs",
+      "text": "Suppose the prescription is not usually covered by your insurer. You might ask your doctor about alternatives and expected costs before starting."
+    }
+  ],
+  "questions": [
+    "Is this use of the medicine backed by evidence, and is there an approved alternative?",
+    "What are the possible risks, and how will we monitor them?",
+    "Will my health insurance cover this treatment?"
+  ]
+}

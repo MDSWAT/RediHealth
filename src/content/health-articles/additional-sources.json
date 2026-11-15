@@ -1714,5 +1714,297 @@
       "label": "NHS — Fibromyalgia treatment",
       "url": "https://www.nhs.uk/conditions/fibromyalgia/treatment/"
     }
+  ],
+  "first-aid-for-head-injuries": [
+    {
+      "label": "NHS — Head injury and concussion",
+      "url": "https://www.nhs.uk/conditions/head-injury-and-concussion/"
+    }
+  ],
+  "food-allergies": [
+    {
+      "label": "NHS — Food allergy",
+      "url": "https://www.nhs.uk/conditions/food-allergy/"
+    }
+  ],
+  "foot-deformities": [
+    {
+      "label": "NHS — Flat feet",
+      "url": "https://www.nhs.uk/conditions/flat-feet/"
+    }
+  ],
+  "frozen-shoulder": [
+    {
+      "label": "NHS — Frozen shoulder",
+      "url": "https://www.nhs.uk/conditions/frozen-shoulder/"
+    }
+  ],
+  "giving-mouth-to-mouth-resuscitation": [
+    {
+      "label": "Resuscitation Council UK — Adult basic life support guidelines",
+      "url": "https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/adult-basic-life-support-guidelines"
+    },
+    {
+      "label": "St John Ambulance — How to do CPR",
+      "url": "https://www.sja.org.uk/first-aid-advice/cpr/"
+    }
+  ],
+  "harvesting-blood-stem-cells-for-transplantation": [
+    {
+      "label": "NHS — How a stem cell or bone marrow transplant is done",
+      "url": "https://www.nhs.uk/tests-and-treatments/stem-cell-or-bone-marrow-transplants/how-its-done/"
+    }
+  ],
+  "graves-disease": [
+    {
+      "label": "NHS — Overactive thyroid treatment",
+      "url": "https://www.nhs.uk/conditions/overactive-thyroid-hyperthyroidism/treatment/"
+    }
+  ],
+  "hashimotos-disease": [
+    {
+      "label": "NHS — Underactive thyroid",
+      "url": "https://www.nhs.uk/conditions/underactive-thyroid-hypothyroidism/"
+    }
+  ],
+  "health-care-in-germany": [
+    {
+      "label": "KBV — Medical help in Germany",
+      "url": "https://www.116117.de/de/englisch.php"
+    }
+  ],
+  "health-insurance-in-germany": [
+    {
+      "label": "German Federal Ministry of Health — Statutory health insurance",
+      "url": "https://www.bundesgesundheitsministerium.de/en/themen/krankenversicherung/online-ratgeber-krankenversicherung/krankenversicherung/statutory-health-insurance-shi"
+    }
+  ],
+  "heart-failure": [
+    {
+      "label": "NHS — Heart failure",
+      "url": "https://www.nhs.uk/conditions/heart-failure/"
+    }
+  ],
+  "hemangioma": [
+    {
+      "label": "Great Ormond Street Hospital — Haemangiomas",
+      "url": "https://www.gosh.nhs.uk/conditions-and-treatments/conditions-we-treat/haemangiomas/"
+    }
+  ],
+  "hemophilia": [
+    {
+      "label": "NHS — Haemophilia",
+      "url": "https://www.nhs.uk/conditions/haemophilia/"
+    }
+  ],
+  "hormone-therapy-for-menopause": [
+    {
+      "label": "NHS — Benefits and risks of HRT",
+      "url": "https://www.nhs.uk/medicines/hormone-replacement-therapy-hrt/benefits-and-risks-of-hormone-replacement-therapy-hrt/"
+    },
+    {
+      "label": "NHS — When and how long to take HRT",
+      "url": "https://www.nhs.uk/medicines/hormone-replacement-therapy-hrt/when-to-take-hormone-replacement-therapy-hrt/"
+    }
+  ],
+  "how-are-sex-cells-made-meiosis": [
+    {
+      "label": "NHGRI — Meiosis",
+      "url": "https://www.genome.gov/genetics-glossary/Meiosis"
+    }
+  ],
+  "how-are-hearing-and-speaking-connected": [
+    {
+      "label": "NIDCD — Sign language and early language learning",
+      "url": "https://www.nidcd.nih.gov/health/american-sign-language"
+    }
+  ],
+  "hearing-loss-and-deafness-in-children": [
+    {
+      "label": "NIDCD — Sign language and early language learning",
+      "url": "https://www.nidcd.nih.gov/health/american-sign-language"
+    }
+  ],
+  "how-can-i-find-support-groups-and-information-centers-in-germany": [
+    {
+      "label": "Stiftung Unabhängige Patientenberatung Deutschland — Patient advice",
+      "url": "https://patientenberatung.de/"
+    }
+  ],
+  "how-can-labor-be-induced": [
+    {
+      "label": "NHS — Inducing labour",
+      "url": "https://www.nhs.uk/pregnancy/labour-and-birth/inducing-labour/"
+    }
+  ],
+  "how-can-you-get-enough-calcium": [
+    {
+      "label": "NHS — Calcium",
+      "url": "https://www.nhs.uk/conditions/vitamins-and-minerals/calcium/"
+    }
+  ],
+  "how-can-you-get-enough-iron": [
+    {
+      "label": "NIH Office of Dietary Supplements — Iron",
+      "url": "https://ods.od.nih.gov/factsheets/Iron-Consumer/"
+    }
+  ],
+  "how-can-you-monitor-and-adjust-treatment-with-vitamin-k-antagonists": [
+    {
+      "label": "NHS — Warfarin",
+      "url": "https://www.nhs.uk/medicines/warfarin/"
+    }
+  ],
+  "how-do-implantable-cardioverter-defibrillators-icds-work": [
+    {
+      "label": "British Heart Foundation — Implantable cardioverter defibrillator",
+      "url": "https://www.bhf.org.uk/informationsupport/treatments/implantable-cardioverter-defibrillator"
+    }
+  ],
+  "how-do-you-use-an-automated-external-defibrillator-aed": [
+    {
+      "label": "Resuscitation Council UK — Adult basic life support guidelines",
+      "url": "https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/adult-basic-life-support-guidelines"
+    }
+  ],
+  "how-does-chemotherapy-work": [
+    {
+      "label": "NHS — Chemotherapy",
+      "url": "https://www.nhs.uk/tests-and-treatments/chemotherapy/"
+    }
+  ],
+  "how-do-ultrasound-examinations-work": [
+    {
+      "label": "NHS — Ultrasound scan",
+      "url": "https://www.nhs.uk/tests-and-treatments/ultrasound-scan/"
+    }
+  ],
+  "how-does-mechanical-ventilation-work-during-an-operation": [
+    {
+      "label": "NHS — General anaesthetic",
+      "url": "https://www.nhs.uk/tests-and-treatments/general-anaesthesia/"
+    }
+  ],
+  "how-does-our-sense-of-balance-work": [
+    {
+      "label": "NHS — Vertigo",
+      "url": "https://www.nhs.uk/conditions/vertigo/"
+    }
+  ],
+  "how-does-the-brain-work": [
+    {
+      "label": "NHS — Stroke symptoms",
+      "url": "https://www.nhs.uk/conditions/stroke/symptoms/"
+    }
+  ],
+  "how-does-the-ear-work": [
+    {
+      "label": "NHS — Hearing loss",
+      "url": "https://www.nhs.uk/conditions/hearing-loss/"
+    }
+  ],
+  "how-does-the-eye-work": [
+    {
+      "label": "NHS — Vision loss",
+      "url": "https://www.nhs.uk/conditions/vision-loss/"
+    }
+  ],
+  "how-does-the-gallbladder-work": [
+    {
+      "label": "NHS — Gallstones",
+      "url": "https://www.nhs.uk/conditions/gallstones/"
+    }
+  ],
+  "how-does-the-heart-work": [
+    {
+      "label": "NHS — Heart attack",
+      "url": "https://www.nhs.uk/conditions/heart-attack/"
+    }
+  ],
+  "how-does-the-knee-work": [
+    {
+      "label": "NHS — Knee pain",
+      "url": "https://www.nhs.uk/symptoms/knee-pain/"
+    }
+  ],
+  "how-does-the-larynx-work": [
+    {
+      "label": "NHS — Laryngitis",
+      "url": "https://www.nhs.uk/conditions/laryngitis/"
+    }
+  ],
+  "how-does-the-liver-work": [
+    {
+      "label": "NHS — Paracetamol for adults",
+      "url": "https://www.nhs.uk/medicines/paracetamol-for-adults/"
+    }
+  ],
+  "how-does-the-menstrual-cycle-work": [
+    {
+      "label": "NHS — Ectopic pregnancy symptoms",
+      "url": "https://www.nhs.uk/conditions/ectopic-pregnancy/symptoms/"
+    }
+  ],
+  "how-does-the-nervous-system-work": [
+    {
+      "label": "NHS — Back pain",
+      "url": "https://www.nhs.uk/conditions/back-pain/"
+    },
+    {
+      "label": "NHS — Stroke symptoms",
+      "url": "https://www.nhs.uk/conditions/stroke/symptoms/"
+    }
+  ],
+  "how-does-the-pancreas-work": [
+    {
+      "label": "NHS — Acute pancreatitis",
+      "url": "https://www.nhs.uk/conditions/acute-pancreatitis/"
+    }
+  ],
+  "how-does-the-pituitary-gland-work": [
+    {
+      "label": "Pituitary Foundation — Pituitary apoplexy",
+      "url": "https://www.pituitary.org.uk/information/pituitary-apoplexy/"
+    }
+  ],
+  "how-does-the-prostate-work": [
+    {
+      "label": "NHS — Enlarged prostate",
+      "url": "https://www.nhs.uk/conditions/enlarged-prostate/"
+    }
+  ],
+  "how-does-the-shoulder-work": [
+    {
+      "label": "NHS — Shoulder pain",
+      "url": "https://www.nhs.uk/symptoms/shoulder-pain/"
+    }
+  ],
+  "how-does-the-spine-work": [
+    {
+      "label": "NHS — Back pain",
+      "url": "https://www.nhs.uk/conditions/back-pain/"
+    }
+  ],
+  "how-does-the-stomach-work": [
+    {
+      "label": "NHS — Stomach ulcer",
+      "url": "https://www.nhs.uk/conditions/stomach-ulcer/"
+    }
+  ],
+  "how-does-the-thyroid-gland-work": [
+    {
+      "label": "NHS — Underactive thyroid",
+      "url": "https://www.nhs.uk/conditions/underactive-thyroid-hypothyroidism/"
+    },
+    {
+      "label": "NHS — Overactive thyroid",
+      "url": "https://www.nhs.uk/conditions/overactive-thyroid-hyperthyroidism/"
+    }
+  ],
+  "how-does-the-tongue-work": [
+    {
+      "label": "NHS — Anaphylaxis",
+      "url": "https://www.nhs.uk/conditions/anaphylaxis/"
+    }
   ]
 }

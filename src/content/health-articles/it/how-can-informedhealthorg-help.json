@@ -1,0 +1,51 @@
+{
+  "title": "Usare InformedHealth per preparare decisioni",
+  "intro": "InformedHealth è il servizio inglese dell’IQWiG tedesco. Spiega prove su condizioni, esami e terapie. Una pagina sostiene la visita ma non vi esamina né decide l’opzione personale.",
+  "sections": [
+    {
+      "heading": "Partire da una domanda",
+      "paragraphs": [
+        "Partire da una domanda, non da una cura promessa. Scegliere panoramica, confronto o preparazione a esame. Annotare termini e domande che potrebbero cambiare la decisione."
+      ]
+    },
+    {
+      "heading": "Controllare data e contesto",
+      "paragraphs": [
+        "Leggere data e fonti. Distinguere risultati generali dalle regole tedesche. Una traduzione non rende automaticamente applicabile altrove un servizio o un’assicurazione della Germania."
+      ]
+    },
+    {
+      "heading": "Confrontare prove pertinenti",
+      "paragraphs": [
+        "Confrontare benefici e danni con stesso periodo e rischio iniziale. Chiedere se gli studi riguardano età, salute e terapie simili. L’incertezza è informazione utile, non garanzia della scelta migliore."
+      ]
+    },
+    {
+      "heading": "Preparare la visita",
+      "paragraphs": [
+        "Portare i punti al medico e le priorità: sollievo, recupero, effetti avversi. Chiedere alternative e monitoraggio quando ragionevole. Riassumere il piano con parole proprie e chiedere spiegazioni accessibili."
+      ]
+    },
+    {
+      "heading": "Fonti e limiti",
+      "paragraphs": [
+        "Usare fonti per contesto e approfondimenti. Gli articoli locali indipendenti non sono traduzioni ufficiali IQWiG né consigli individuali. Nuovi sintomi gravi richiedono valutazione, non ricerche ripetute; le emergenze non aspettano lettura."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira legge di un test e chiede falsi risultati e conseguenze, senza richiederlo solo perché esiste."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben vede regole assicurative tedesche. Chiede al servizio locale senza presumere uguale copertura nel proprio paese."
+    }
+  ],
+  "questions": [
+    "L’informazione vale per le mie circostanze e paese?",
+    "Cosa è incerto e quali opzioni si confrontano?",
+    "Quali domande portare al medico?"
+  ]
+}

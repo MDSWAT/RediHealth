@@ -1,0 +1,52 @@
+{
+  "title": "Potpora disanju tijekom operacije",
+  "intro": "Opća anestezija može oslabiti disanje i zaštitne reflekse dišnih putova. Anesteziološki tim podupire disanje uz stalan nadzor; izbor uređaja ovisi o zahvatu i osobnim rizicima.",
+  "sections": [
+    {
+      "heading": "Zašto je potrebna",
+      "paragraphs": [
+        "Anestetici i mišićni relaksansi mogu spriječiti učinkovite udahe. Ventilator uvodi zrak s kisikom i omogućuje uklanjanje ugljikova dioksida; sam kisik ne zamjenjuje ventilaciju."
+      ]
+    },
+    {
+      "heading": "Pristup dišnom putu",
+      "paragraphs": [
+        "Maska pokriva nos i usta. Supraglotični uređaj leži iznad grkljana; trahealna cijev prolazi između glasnica. Brtvljenje i zaštita razlikuju se pa uređaji nisu uvijek zamjenjivi."
+      ]
+    },
+    {
+      "heading": "Kontrole",
+      "paragraphs": [
+        "Tim prati kisik, izdahnuti ugljikov dioksid i druge vitalne znakove, podešava ventilaciju i provjerava uređaj. Ventilator podupire disanje; sam ne daje nesvijest ili ublažavanje boli."
+      ]
+    },
+    {
+      "heading": "Priprema",
+      "paragraphs": [
+        "Slijedite bolničke upute o hrani, piću i lijekovima. Prijavite apneju, refluks, klimave zube, alergije i prijašnje teškoće s dišnim putovima. Ne određujte sami gladovanje ni prekid terapije."
+      ]
+    },
+    {
+      "heading": "Buđenje",
+      "paragraphs": [
+        "Potpora se smanjuje kad se disanje i zaštitni refleksi dovoljno oporave. Moguća je prolazna grlobolja, ali teško disanje nakon operacije zahtijeva hitnu pomoć.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira koristi uređaj za apneju. Obavještava anesteziologa i pita treba li ga donijeti za oporavak."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima nestabilan zubni nadomjestak. Prijavljuje ga prije zahvata radi prilagodbe plana dišnog puta."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

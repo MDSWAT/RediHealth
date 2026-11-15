@@ -1,0 +1,56 @@
+{
+  "title": "Cum se măsoară tensiunea arterială",
+  "intro": "Tensiunea arterială este forța cu care sângele apasă pe pereții arterelor. Măsurarea ei este rapidă, nedureroasă și una dintre cele mai utile verificări din medicină, deoarece tensiunea arterială crescută nu provoacă de obicei simptome, dar mărește riscul de infarct, accident vascular cerebral și boală renală. Cunoașterea modului de măsurare ajută la obținerea unor valori fiabile.",
+  "sections": [
+    {
+      "heading": "Ce înseamnă cele două valori",
+      "paragraphs": [
+        "O măsurătoare are două valori, de exemplu 120 pe 80. Valoarea de sus, numită tensiune sistolică, este presiunea din momentul în care inima se contractă și împinge sângele afară. Valoarea de jos, tensiunea diastolică, este presiunea din momentul în care inima se relaxează și se umple între bătăi. Ambele se exprimă în milimetri coloană de mercur.",
+        "Tensiunea arterială se modifică în mod firesc pe parcursul zilei. Crește la efort, stres, durere, cafeină sau frig și scade în repaus și în somn. O singură valoare mare nu dovedește deci hipertensiunea arterială; medicii urmăresc măsurători repetate, făcute în condiții comparabile."
+      ]
+    },
+    {
+      "heading": "Măsurarea la cabinet",
+      "paragraphs": [
+        "O manșetă se înfășoară în jurul brațului, la nivelul inimii, și se umflă până când oprește pentru scurt timp fluxul de sânge. Pe măsură ce se dezumflă, aparatul sau medicul detectează momentul în care sângele începe să curgă din nou și cel în care curge liber, ceea ce oferă cele două valori. Mărimea manșetei contează, deoarece o manșetă prea mică poate da valori fals crescute.",
+        "Unele persoane au valori mai mari la cabinet decât acasă pentru că sunt emoționate, un efect numit adesea hipertensiune de halat alb. Din acest motiv, multe ghiduri recomandă confirmarea unei valori mari de la cabinet prin măsurători în afara cabinetului."
+      ]
+    },
+    {
+      "heading": "Măsurarea acasă",
+      "paragraphs": [
+        "Măsurarea acasă cu un aparat validat pentru braț este adesea cea mai utilă metodă de urmărire a tensiunii arteriale. Stați liniștit câteva minute, cu spatele sprijinit, cu tălpile pe podea și cu brațul odihnit la nivelul inimii. Evitați cafeaua, fumatul și efortul fizic în jumătatea de oră dinainte și goliți mai întâi vezica.",
+        "Faceți două măsurători la aproximativ un minut distanță și notați-le, ideal dimineața și seara, timp de câteva zile, conform indicațiilor medicului. Aparatele de încheietură și de deget sunt în general mai puțin fiabile decât cele de braț. Aduceți aparatul la o consultație, pentru ca precizia lui să fie comparată cu echipamentul cabinetului."
+      ]
+    },
+    {
+      "heading": "Monitorizarea timp de douăzeci și patru de ore",
+      "paragraphs": [
+        "În cazurile neclare, medicii pot folosi monitorizarea ambulatorie. Purtați o mică manșetă timp de o zi și o noapte întregi, iar aparatul măsoară automat la fiecare 20–30 de minute. Aceasta arată cum se comportă tensiunea în activitățile obișnuite și în somn și ajută la deosebirea hipertensiunii adevărate de efectele legate de cabinet.",
+        "Aparatul vă poate strânge brațul când se umflă și vi se poate cere să țineți un jurnal simplu al activităților și simptomelor în timpul testului."
+      ]
+    },
+    {
+      "heading": "Înțelegerea rezultatelor",
+      "paragraphs": [
+        "Țintele diferă de la o persoană la alta, în funcție de vârstă, de alte boli și de riscul de boală de inimă, așa că medicul vă va explica ce interval este potrivit pentru dumneavoastră. Valorile care rămân mari duc la discuția despre măsuri legate de stilul de viață, precum mai puțină sare, mișcare regulată, controlul greutății și limitarea alcoolului, și eventual despre medicamente.",
+        "Cereți ajutor de urgență dacă o valoare foarte mare apare împreună cu durere în piept, dureri de cap severe, tulburări de vedere, slăbiciune sau dificultăți de vorbire. Valorile foarte mici, cu amețeală sau leșin, trebuie de asemenea evaluate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Alcătuirea unui jurnal acasă",
+      "text": "Imaginați-vă că medicul suspectează hipertensiune arterială și vă cere să vă măsurați acasă. Ați putea face măsurători în fiecare dimineață și seară timp de o săptămână, să le treceți într-un tabel simplu și să aduceți tabelul și aparatul la vizita de control."
+    },
+    {
+      "title": "Verificarea mărimii manșetei",
+      "text": "Presupuneți că aveți brațe mai groase și valorile dumneavoastră par mereu mari. Ați putea ruga asistenta să verifice dacă manșeta are mărimea potrivită, deoarece o manșetă nepotrivită poate schimba valorile."
+    }
+  ],
+  "questions": [
+    "Ce valori ale tensiunii arteriale sunt potrivite pentru mine și cât de des ar trebui să măsor?",
+    "Ar trebui să măsor acasă sau să fac monitorizare ambulatorie și ce aparat ați recomanda?",
+    "Ce schimbări ale stilului de viață ar avea cel mai mare efect în situația mea?"
+  ]
+}

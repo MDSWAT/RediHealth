@@ -1,0 +1,51 @@
+{
+  "title": "Kakva je struktura kose i kako raste?",
+  "intro": "Kosa je građena od čvrste bjelančevine zvane keratin. Svaka dlaka raste iz folikula u koži i prolazi kroz cikluse rasta, mirovanja i opadanja. Razumijevanje toga pomaže objasniti normalno opadanje kose, promjene zbog starenja i zašto neka liječenja djeluju sporo.",
+  "sections": [
+    {
+      "heading": "Struktura",
+      "paragraphs": [
+        "Vidljivi dio dlake, stručak, građen je od mrtvih keratinskih stanica u tri sloja: vanjske kutikule od preklopljenih ljuskica, korteksa koji daje čvrstoću i boju te, kod debljih dlaka, središnje medule. Ispod kože nalazi se korijen u folikulu, s lukovicom na dnu gdje se stanice brzo dijele. Mala žlijezda, lojna žlijezda, dodaje ulje dlaci."
+      ]
+    },
+    {
+      "heading": "Ciklus rasta",
+      "paragraphs": [
+        "Svaki folikul prolazi ciklus neovisno. Anagena faza je aktivni rast i traje dvije do sedam godina. Katagena faza je kratki prijelaz od nekoliko tjedana, a telogena faza je razdoblje mirovanja od otprilike tri mjeseca, nakon čega dlaka ispadne i raste nova. Otprilike devedeset posto dlaka na vlasištu raste u isto vrijeme, a gubitak pedeset do stotinu dlaka dnevno je normalan."
+      ]
+    },
+    {
+      "heading": "Boja, vrsta i brzina rasta",
+      "paragraphs": [
+        "Boja potječe od melanina koji nastaje u folikulu. S dobi se proizvodnja usporava i kosa postaje siva ili bijela. Oblik kose, ravna, valovita ili kovrčava, ovisi o obliku folikula i nasljeđuje se. Kosa raste otprilike jedan centimetar mjesečno."
+      ]
+    },
+    {
+      "heading": "Uobičajeni problemi",
+      "paragraphs": [
+        "Prorjeđivanje kose može biti posljedica genetike (androgenetska alopecija), hormonskih promjena, stresa, bolesti, problema s prehranom kao što je nedostatak željeza, bolesti štitnjače, lijekova, kemoterapije i autoimune alopecije areate. Jače opadanje nekoliko mjeseci nakon bolesti ili poroda, zvano telogeni efluvij, obično je privremeno."
+      ]
+    },
+    {
+      "heading": "Njega kose i liječenje",
+      "paragraphs": [
+        "Nježno pranje i izbjegavanje uskih frizura, topline i oštrih kemikalija štite kosu. Uravnotežena prehrana podupire rast. Minoksidil i finasterid koriste se kod muškog uzorka gubitka kose, a rezultati se vide tek nakon mjeseci. Posjetite liječnika zbog naglog ili mrljastog gubitka, problema s vlasištem ili gubitka kose uz druge simptome."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razumijevanje opadanja",
+      "text": "Zamislite da nakon vrućice primijetite više kose. Mogli biste pričekati nekoliko mjeseci jer se ova vrsta opadanja često oporavi."
+    },
+    {
+      "title": "Traženje savjeta",
+      "text": "Pretpostavite da imate mrljaste ćelave dijelove. Mogli biste posjetiti liječnika kako bi se pronašao uzrok i razgovaralo o liječenju."
+    }
+  ],
+  "questions": [
+    "Je li moj gubitak kose normalan ili znak bolesti?",
+    "Koja liječenja djeluju i koliko dugo traju?",
+    "Trebam li krvne pretrage zbog prehrane ili problema sa štitnjačom?"
+  ]
+}

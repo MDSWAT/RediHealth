@@ -1,0 +1,51 @@
+{
+  "title": "Malattia mani-piedi-bocca: comfort e idratazione",
+  "intro": "La malattia mani-piedi-bocca è un’infezione virale contagiosa, comune nei bambini piccoli ma possibile negli adulti. Può dare lesioni in bocca e su mani o piedi; non è l’afta epizootica degli animali.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Febbre e mal di gola possono precedere macchie o vescicole. Il dolore orale ostacola il bere. Molti casi guariscono spontaneamente, ma idratazione e reattività contano più del numero delle macchie."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Il medico riconosce solitamente il quadro senza test ordinari. Chiedere consiglio per lattanti molto piccoli, eruzioni dubbie o malessere insolito; descrivere contatti, liquidi, pannolini bagnati o urine e problemi immunitari. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Gli antibiotici non curano il virus. Chiedere analgesici adatti a età e peso; non dare aspirina ai bambini. I prodotti orali hanno limiti d’età: verificare prima di usare gel per adulti. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Offrire spesso piccoli sorsi e cibi morbidi freschi se graditi, evitando bevande acide irritanti. Lavare mani con sapone dopo i pannolini e pulire superfici. Seguire le indicazioni locali per il nido. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Pochissime urine, bocca asciutta, sonnolenza crescente, difficoltà respiratoria, forte cefalea o rigidità del collo richiedono consiglio urgente. Febbre persistente, impossibilità di bere o peggioramento necessitano controllo."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira offre al bambino piccoli sorsi freschi perché la bocca fa male. Controlla urine e vigilanza senza forzare il cibo."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben lava le mani dopo i pannolini anche quando l’eruzione migliora: l’eliminazione del virus può continuare oltre i sintomi."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

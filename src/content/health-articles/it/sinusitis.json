@@ -1,0 +1,51 @@
+{
+  "title": "Sinusite acuta",
+  "intro": "La sinusite acuta è un'infiammazione del rivestimento dei seni paranasali, gli spazi pieni d'aria attorno a naso e occhi, di solito dopo un raffreddore. Causa naso chiuso, pressione al viso e talvolta secrezione densa. La maggior parte dei casi è causata da virus e passa in circa due settimane senza antibiotici.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "Un raffreddore o un'allergia possono gonfiare il rivestimento del naso e bloccare le strette aperture dei seni, così il muco si accumula. La maggior parte delle infezioni è virale. I batteri occasionalmente subentrano. Fumo, aria secca, nuoto, infezioni dentali e problemi come un setto deviato o polipi aumentano il rischio."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi tipici sono naso chiuso o che cola, pressione o dolore a guance, fronte o attorno agli occhi che peggiora quando ci si china in avanti, ridotto senso dell'olfatto, tosse e talvolta lieve febbre. Un muco denso giallo o verde non significa di per sé infezione batterica."
+      ]
+    },
+    {
+      "heading": "Autocura",
+      "paragraphs": [
+        "Sciacqua il naso con soluzione salina, inala vapore, bevi molti liquidi e riposa. Gli spray nasali decongestionanti possono ridurre il gonfiore ma vanno usati per non più di circa una settimana per evitare la congestione da rimbalzo. Antidolorifici come paracetamolo o ibuprofene alleviano il dolore. Gli spray nasali steroidei possono aiutare alcune persone."
+      ]
+    },
+    {
+      "heading": "Quando si considerano gli antibiotici",
+      "paragraphs": [
+        "Gli antibiotici sono raramente necessari. Si considerano quando i sintomi sono gravi, con febbre alta e dolore al viso, durano più di circa dieci giorni senza miglioramento o peggiorano dopo un miglioramento iniziale. Le persone con difese immunitarie deboli o altre malattie possono aver bisogno di un trattamento più precoce."
+      ]
+    },
+    {
+      "heading": "Segnali d'allarme e prevenzione",
+      "paragraphs": [
+        "Cerca cure urgenti per gonfiore o arrossamento attorno all'occhio, visione doppia, forte mal di testa, rigidità del collo, confusione o cambiamenti della vista, perché l'infezione può raramente diffondersi all'occhio o al cervello. Se la sinusite continua a ripresentarsi o dura più di dodici settimane, uno specialista di orecchio, naso e gola può cercare le cause sottostanti. Evita il fumo, tratta le allergie e lava le mani per limitare i raffreddori."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trattare un raffreddore passato ai seni",
+      "text": "Immagina che il raffreddore ti abbia lasciato pressione al viso e naso chiuso. Potresti sciacquare il naso con soluzione salina due volte al giorno, riposare e usare uno spray decongestionante per non più di una settimana."
+    },
+    {
+      "title": "Sapere quando chiamare",
+      "text": "Supponi che la palpebra diventi rossa e gonfia. Potresti cercare subito aiuto medico."
+    }
+  ],
+  "questions": [
+    "Ho bisogno di antibiotici o posso aspettare?",
+    "Che cosa posso fare per alleviare il naso chiuso?",
+    "Dovrei vedere uno specialista se la sinusite continua a tornare?"
+  ]
+}

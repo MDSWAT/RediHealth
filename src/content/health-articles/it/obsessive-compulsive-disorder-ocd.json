@@ -1,0 +1,52 @@
+{
+  "title": "Disturbo ossessivo-compulsivo (DOC)",
+  "intro": "Il disturbo ossessivo-compulsivo comporta pensieri, immagini o impulsi indesiderati e angoscianti chiamati ossessioni, e comportamenti ripetitivi o atti mentali chiamati compulsioni messi in atto per ridurre l'angoscia. È molto più che essere ordinati o precisi. Può occupare molto tempo e causare sofferenza, ma la terapia cognitivo-comportamentale e i farmaci sono efficaci.",
+  "sections": [
+    {
+      "heading": "Come si presenta il DOC",
+      "paragraphs": [
+        "Ossessioni comuni sono la paura della contaminazione, il dubbio di aver chiuso la porta o spento gli apparecchi, pensieri intrusivi aggressivi o sessuali e il bisogno di simmetria. Le compulsioni comprendono lavarsi eccessivamente, controllare, contare, ripetere e rituali mentali. Le persone di solito riconoscono i pensieri come eccessivi ma si sentono incapaci di fermarsi."
+      ]
+    },
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "Il DOC nasce da una combinazione di fattori genetici, cerebrali e ambientali. Spesso inizia nell'infanzia o nella prima età adulta e può peggiorare con lo stress. Non è causato da un carattere debole o da un'educazione sbagliata. Depressione, ansia e tic si presentano spesso insieme."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "La diagnosi si fa con un colloquio con un medico o uno psicoterapeuta, che chiede la natura e il tempo dedicato a ossessioni e compulsioni e come interferiscono con la vita. Molte persone aspettano anni prima di chiedere aiuto per vergogna, quindi si incoraggia un trattamento precoce."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "La terapia cognitivo-comportamentale con esposizione e prevenzione della risposta è il trattamento psicologico di prima scelta. La persona viene gradualmente esposta alle situazioni temute e impara a resistere ai rituali, così che l'ansia svanisce col tempo. Gli antidepressivi, in particolare gli inibitori selettivi della ricaptazione della serotonina, spesso a dosi più alte, aiutano molte persone e possono essere combinati con la terapia.",
+        "Per i casi gravi che non rispondono sono disponibili opzioni specialistiche come i programmi intensivi."
+      ]
+    },
+    {
+      "heading": "Vivere con il DOC",
+      "paragraphs": [
+        "Evita di cercare rassicurazioni e di assecondare i rituali, che possono mantenere il problema, e coinvolgi la famiglia nella comprensione. Libri di auto-aiuto e gruppi di sostegno possono integrare il trattamento."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Cercare aiuto",
+      "text": "Immagina di passare ore a controllare il fornello ogni mattina. Potresti annotare quanto tempo ci vuole, dirlo al medico e chiedere l'invio a un terapeuta esperto in terapia da esposizione."
+    },
+    {
+      "title": "Sostenere un familiare",
+      "text": "Supponi che un familiare continui a chiederti di confermare che le cose sono pulite. Potresti parlare con il terapeuta di come rispondere con gentilezza senza alimentare la compulsione."
+    }
+  ],
+  "questions": [
+    "I miei sintomi indicano un DOC e quale trattamento mi raccomandate?",
+    "Che cosa comporta l'esposizione con prevenzione della risposta e quanto tempo richiede?",
+    "Come può aiutarmi la mia famiglia senza rinforzare i sintomi?"
+  ]
+}

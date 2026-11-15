@@ -1,0 +1,51 @@
+{
+  "title": "Skarlatina",
+  "intro": "Skarlatina është një infeksion bakterial që shoqëron një infeksion streptokokal të fytit e shkakton një skuqje tipike. Shihet kryesisht te fëmijët mes pesë e pesëmbëdhjetë vjeç. Trajtohet me antibiotikë, që e shkurtojnë sëmundjen, ulin përhapjen e rrezikun e komplikimeve.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat fillojnë me dhimbje fyti, ethe, dhimbje koke, të përziera e gjëndra të enjtura. Brenda një a dy ditësh, një skuqje e hollë e kuqe si letër zmerile shfaqet në gjoks e përhapet, duke kursyer zonën rreth gojës. Gjuha bëhet e kuqe me pamje si luleshtrydhe e më vonë lëkura mund të zhvishet në gishta të duarve e këmbëve."
+      ]
+    },
+    {
+      "heading": "Si përhapet",
+      "paragraphs": [
+        "Bakteret, streptokokët e grupit A, përhapen me pika e kontakt të ngushtë. Njerëzit mbeten ngjitës derisa kanë marrë antibiotikë për rreth një ditë. Fëmijët duhet të qëndrojnë në shtëpi të paktën një ditë pas fillimit të antibiotikëve e ndjenjës mjaftueshëm mirë. Larja e duarve e mosndarja e gotave ulin përhapjen."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Mjekët diagnostikojnë skarlatinën nga simptomat e nga një bris i fytit me test të shpejtë ose kulturë. Konfirmimi i diagnozës është i rëndësishëm sepse gjendje të tjera mund të shkaktojnë skuqje të ngjashme."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Penicilina ose antibiotikët e lidhur merren rreth dhjetë ditë, megjithëse përdoren kura më të shkurtra me disa antibiotikë të tjerë. Plotësojeni kurën edhe nëse fëmija ndihet më mirë, për të parandaluar komplikimet. Paracetamoli ose ibuprofeni ul ethet e dhimbjen e shumë lëngje e ushqime të buta lehtësojnë gëlltitjen."
+      ]
+    },
+    {
+      "heading": "Komplikimet",
+      "paragraphs": [
+        "Rrallë, infeksioni i patrajtuar mund të shkaktojë ethe reumatizmale, që mund ta dëmtojë zemrën, si edhe inflamacion të veshkave, abscese ose infeksione të veshit e të sinuseve. Kërkoni ndihmë nëse fëmija ka ethe të vazhdueshme, dhimbje të rëndë fyti, vështirësi në gëlltitje, dhimbje nyjesh, urinë të errët ose enjtje pas shërimit të dukshëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mbrojtja e vëllezërve e motrave",
+      "text": "Imagjinoni që fëmija juaj është diagnostikuar me skarlatinë. Mund të përdorni gota e peshqirë të veçantë, të lani shpesh duart e t'ia tregoni shkollës diagnozën."
+    },
+    {
+      "title": "Përfundimi i antibiotikëve",
+      "text": "Supozoni që fëmija ndihet mirë pas katër ditësh. Mund ta vazhdoni antibiotikun derisa të përfundojë e gjithë kura siç e përshkroi mjeku."
+    }
+  ],
+  "questions": [
+    "A ka nevojë fëmija im për antibiotikë dhe për sa kohë?",
+    "Kur mund të kthehet në çerdhe ose shkollë?",
+    "Cilat shenja do të sugjeronin një komplikim?"
+  ]
+}

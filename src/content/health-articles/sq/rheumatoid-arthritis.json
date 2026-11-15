@@ -1,0 +1,51 @@
+{
+  "title": "Artriti reumatoid",
+  "intro": "Artriti reumatoid është një sëmundje kronike autoimune ku sistemi imunitar sulmon mbulesën e nyjeve, duke shkaktuar dhimbje, enjtje e ngurtësi, shpesh në të dyja duart e këmbët. Pa trajtim mund t'i dëmtojë nyjet përgjithmonë. Trajtimi i hershëm me barna modifikuese të sëmundjes e kontrollon inflamacionin te shumica e njerëzve.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat tipike janë nyje të dhimbshme e të enjtura në të dyja anët e trupit, veçanërisht nyjet e vogla të duarve e këmbëve, ngurtësi e mëngjesit që zgjat më shumë se gjysmë ore, lodhje, ethe të lehta e humbje oreksi. Përkeqësimet alternojnë me periudha më të qeta. Sëmundja mund të prekë edhe mushkëritë, sytë, zemrën e enët e gjakut."
+      ]
+    },
+    {
+      "heading": "Shkaqet dhe faktorët e rrezikut",
+      "paragraphs": [
+        "Shkaku nuk kuptohet plotësisht. Gjenet, hormonet e faktorët mjedisorë si duhani kontribuojnë. Është më e zakonshme te gratë e shpesh fillon në moshën e mesme, por mund të ndodhë në çdo moshë. Duhani e rrit rrezikun e ul efektin e trajtimit."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Diagnoza mbështetet te simptomat, ekzaminimi i nyjeve, analizat e gjakut përfshirë faktorin reumatoid, antitrupat anti-CCP e shënuesit e inflamacionit, dhe imazheria si rrezet X, ultratingulli ose rezonanca. Referimi i hershëm te një reumatolog është i rëndësishëm, ideale brenda javësh nga fillimi i simptomave."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Barnat modifikuese të sëmundjes, më shpesh metotreksati, e ngadalësojnë sëmundjen e i mbrojnë nyjet. Nëse nuk mjaftojnë, shtohen barna biologjike ose tableta të synuara që bllokojnë sinjale specifike imune. Kurat e shkurtra me kortikosteroide e ulin shpejt përkeqësimet, megjithëse përdorimi afatgjatë shkakton efekte anësore. Këto barna kërkojnë analiza gjaku të rregullta e rrisin rrezikun e infeksionit, prandaj raportoni herët ethet ose simptomat e infeksionit. Trajtimi synon remision ose aktivitet të ulët të sëmundjes e rishikohet rregullisht."
+      ]
+    },
+    {
+      "heading": "Të jetosh me të",
+      "paragraphs": [
+        "Ushtrimet, fizioterapia e terapia profesionale e ruajnë lëvizshmërinë e mësojnë mbrojtjen e nyjeve. Lënia e duhanit, një dietë e ekuilibruar, mbrojtja e kockave e vaksinat e kontrolluara janë të rëndësishme. Rreziku i sëmundjes së zemrës është më i lartë, prandaj tensioni e kolesteroli duhen monitoruar. Lodhja e humori i ulët janë të zakonshme e mbështetja ndihmon."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Të shihni herët një specialist",
+      "text": "Imagjinoni që keni pasur nyje gishtash të enjtura e ngurtësi në mëngjes për gjashtë javë. Mund t'i kërkoni mjekut të familjes referim urgjent te një reumatolog e të sillni një listë të nyjeve të prekura."
+    },
+    {
+      "title": "Përgatitja për trajtimin",
+      "text": "Supozoni që po filloni metotreksat. Mund të pyesni për analizat e gjakut, vaksinat, alkoolin e çfarë të bëni nëse merrni një infeksion."
+    }
+  ],
+  "questions": [
+    "Cili trajtim është më i miri për mua dhe cilat janë rreziqet?",
+    "Si do të kontrollojmë nëse sëmundja është nën kontroll?",
+    "Çfarë mund të bëj vetë për të mbrojtur nyjet e shëndetin tim të përgjithshëm?"
+  ]
+}

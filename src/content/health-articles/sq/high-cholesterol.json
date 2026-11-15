@@ -1,0 +1,51 @@
+{
+  "title": "Kolesteroli i lartë: vlerësimi i rrezikut të përgjithshëm",
+  "intro": "Kolesteroli qarkullon në grimca gjaku dhe ka funksione normale. LDL vazhdimisht i lartë ndihmon sëmundjen arteriale. Zakonisht nuk ndihet; trajtimi merr parasysh rrezikun e plotë, jo vetëm një numër.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Rreziku varet nga mosha, presioni, duhani, diabeti dhe sëmundja vaskulare e mëparshme. Historia e fortë familjare ose vlerat shumë të larta sugjerojnë trashëgimi edhe me ushqim të mirë."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Profili lipidik dhe historia udhëheqin vlerësimin. Tiroidja, veshkat dhe ilaçet mund të kontrollohen si shkaqe. Pyesni kuptimin për rrezikun absolut dhe nëse duhet testim familjar. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Statinat janë zgjedhje të zakonshme kur duhen ilaçe; alternativa ose shtesa ndihmojnë disa raste. Përfitimi varet nga rreziku fillestar. Diskutoni shtatzëninë, ndërveprimet dhe shenjat pa ndryshime vetë. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Zgjidhni fibra e yndyrna të pangopura duke ulur të ngopurat e tepërta, lëvizni dhe mos pini duhan. Dietat ekstreme ose suplementet nuk zëvendësojnë terapinë e provuar kur duhet. Qëndrueshmëria vlen më shumë se faji. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Kontrolloni përgjigjen dhe efektet. Dhimbja e fortë e pashpjeguar muskulore ose dobësia, sidomos me urinë të errët, do këshillë shpejt. Dhimbja e gjoksit ose shenjat e goditjes kërkojnë urgjencë pavarësisht kolesterolit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka histori familjare dhe vlera të larta megjithëse ha mirë. Pyet për trashëgiminë dhe familjen pa fajësuar ushqimin."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni pyet për uljen e rrezikut personal me statinë dhe diskuton simptomat muskulore pa braktisur parandalimin në heshtje."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Përdorimi i InformedHealth për vendime kujdesi",
+  "intro": "InformedHealth është shërbimi anglisht i IQWiG gjerman. Shpjegon prova për sëmundje, teste dhe trajtime. Faqja mbështet vizitën por nuk ju ekzaminon ose zgjedh mundësinë tuaj.",
+  "sections": [
+    {
+      "heading": "Nisni me pyetje",
+      "paragraphs": [
+        "Nisni me pyetje, jo me kurë të premtuar. Zgjidhni përmbledhje, krahasim ose përgatitje testi. Shënoni termat e panjohur dhe pyetjet që ndryshojnë vendimin."
+      ]
+    },
+    {
+      "heading": "Kontrolloni datën dhe kontekstin",
+      "paragraphs": [
+        "Lexoni datën e publikimit ose përditësimit dhe burimet. Ndani gjetjet e përgjithshme nga rregullat gjermane. Përkthimi nuk e bën shërbimin ose sigurimin gjerman të vlefshëm automatikisht diku tjetër."
+      ]
+    },
+    {
+      "heading": "Krahasoni provat",
+      "paragraphs": [
+        "Krahasoni përfitime e dëme me të njëjtën kohë e rrezik fillestar. Pyesni nëse provat lidhen me moshën, shëndetin dhe trajtimet tuaja. Pasiguria është informacion, jo garanci e zgjedhjes më të mirë."
+      ]
+    },
+    {
+      "heading": "Përgatitni vizitën",
+      "paragraphs": [
+        "Merrni pikat te mjeku dhe tregoni prioritetet si lehtësimi, rikuperimi ose efektet. Pyesni alternativat dhe monitorimin kur arsyetohet. Përmblidhni planin me fjalët tuaja dhe kërkoni shpjegim të arritshëm."
+      ]
+    },
+    {
+      "heading": "Burimet dhe kufijtë",
+      "paragraphs": [
+        "Ndiqni burimet për kontekst dhe lexim. Artikujt lokalë të pavarur nuk janë përkthime zyrtare IQWiG ose këshillë personale. Shenjat e reja të rënda duan ekzaminim, jo kërkim pafund; urgjenca nuk pret leximin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira lexon për testin dhe pyet për rezultate të rreme dhe pasojat, jo vetëm e kërkon sepse ekziston."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni sheh sigurimin gjerman. Pyet shërbimin lokal pa supozuar të njëjtin mbulim në vendin e tij."
+    }
+  ],
+  "questions": [
+    "A vlen informacioni për rrethanat dhe vendin tim?",
+    "Çfarë mbetet e pasigurt dhe cilat mundësi krahasohen?",
+    "Cilat pyetje t’i marr mjekut?"
+  ]
+}

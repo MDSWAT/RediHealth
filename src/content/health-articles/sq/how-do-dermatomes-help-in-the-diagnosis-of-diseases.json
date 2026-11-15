@@ -1,0 +1,51 @@
+{
+  "title": "Dermatomet: përdorimi i kujdesshëm i hartës",
+  "intro": "Dermatomi është zonë lëkure e lidhur kryesisht me një rrënjë nervore spinale. Dhimbja, therja ose ndjesia e ulët ndihmojnë lokalizimin, por harta orienton dhe nuk diagnostikon.",
+  "sections": [
+    {
+      "heading": "Rrënjët dhe nervat",
+      "paragraphs": [
+        "Rrënja del nga shtylla dhe fijet bashkohen me nerva periferikë të ndryshëm. Harta dermatomale ndryshon nga territori i nervit të emërtuar. Ngatërrimi shpjegon gabim simptomat."
+      ]
+    },
+    {
+      "heading": "Mbivendosja",
+      "paragraphs": [
+        "Zonat fqinje mbivendosen dhe hartat ndryshojnë mes njerëzve. Simptomat nuk janë gjithmonë shirit i përsosur. Irritimi, qarkullimi e gjendje të tjera japin djegie; jo çdo njollë provon ngjeshje rrënje."
+      ]
+    },
+    {
+      "heading": "Ekzaminimi",
+      "paragraphs": [
+        "Mjeku kombinon shpërndarjen me forcën, reflekset dhe historinë. Imazheria e testet zgjidhen kur sqarojnë. Një gjetje në skanim nuk shpjegon vetë vendin e simptomave."
+      ]
+    },
+    {
+      "heading": "Shembull klinik",
+      "paragraphs": [
+        "Zoster mund të japë dhimbje e flluska në model nervor, shpesh njëanësor. Vlerësimi i hershëm vlen pranë syrit ose me imunitet të ulët. Mos quani çdo shirit zoster pa ekzaminim."
+      ]
+    },
+    {
+      "heading": "Urgjencat",
+      "paragraphs": [
+        "Dobësia e re në rritje, humbja e kontrollit të urinës ose feçeve apo mpirja gjenitale me shpinën duan urgjencë. Dobësia e papritur e fytyrës, gjymtyrës ose të folurit mund të jetë goditje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira shënon therjen dhe dobësinë. Mjeku kontrollon rrënjën dhe nervin periferik, jo vetëm hartën."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ka shirit të dhimbshëm me flluska pranë syrit. Kërkon kujdes shpejt pa krahasuar foto për ditë."
+    }
+  ],
+  "questions": [
+    "Cilat hapa sqarohen me diagram?",
+    "Çfarë tregon shpjegimi dhe çfarë nuk parashikon?",
+    "A kërkon shqetësimi im vlerësim profesional?"
+  ]
+}

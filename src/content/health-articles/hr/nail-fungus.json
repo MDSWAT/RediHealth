@@ -1,0 +1,52 @@
+{
+  "title": "Gljivica na noktima",
+  "intro": "Gljivica na noktima je česta infekcija zbog koje nokti postaju debeli, promijenjene boje i krhki. Češće pogađa nokte na nogama nego na rukama i nije opasna za većinu ljudi, ali može biti neugledna i ponekad neugodna. Liječenje traje mjesecima, a infekcija se može vratiti.",
+  "sections": [
+    {
+      "heading": "Uzroci i čimbenici rizika",
+      "paragraphs": [
+        "Infekciju uzrokuju gljivice koje uspijevaju u toplom, vlažnom okolišu i ulaze u nokat kroz sitne pukotine. Čimbenici rizika uključuju atletsko stopalo, stariju dob, nošenje zatvorenih cipela dugo vremena, znojenje, ozljedu nokta, dijabetes, slabu cirkulaciju, slab imunitet i korištenje zajedničkih tuševa i bazena."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Nokat može postati bijel, žut ili smeđ, zadebljati, mrviti se ili se odvajati od ležišta, a ispod njega se mogu skupljati naslage. Nije svaki nenormalni nokat gljivični; psorijaza i ozljeda izgledaju slično pa se laboratorijsko testiranje izrezaka noktiju često preporučuje prije dugog liječenja."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Blage infekcije mogu se liječiti medicinskim lakom ili otopinama za nokte koji se nanose mnogo mjeseci. Tablete kao što je terbinafin učinkovitije su kod umjerene do teške infekcije, ali mogu utjecati na jetru i djelovati u interakciji s drugim lijekovima pa se propisuju pažljivo. Uklanjanje zadebljanih dijelova kod podologa može pomoći.",
+        "Novom nokatu na nozi treba do godinu dana da izraste pa nokat može dugo izgledati nepromijenjeno. Izlječenje se ne postiže u svakom slučaju, a recidiv je čest."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Držite stopala čistima i suhima, mijenjajte čarape svaki dan, nosite prozračne cipele, rano liječite atletsko stopalo, ne dijelite škarice za nokte i nosite sandale na javnim mokrim mjestima. Osobe s dijabetesom ili slabom cirkulacijom trebaju rano potražiti liječenje i ne liječiti sami debele nokte."
+      ]
+    },
+    {
+      "heading": "Posjet stručnjaku",
+      "paragraphs": [
+        "Posjetite liječnika ili podologa ako je nokat bolan, koža oko njega crvena ili otečena ili se problem širi. Stručnjak može potvrditi dijagnozu, sigurno podrezati zadebljane nokte i razgovarati jesu li tablete prikladne s obzirom na vaše druge lijekove i zdravlje jetre."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Potvrda dijagnoze",
+      "text": "Zamislite da vam je nokat na nozi požutio i zadebljao. Mogli biste posjetiti liječnika radi testa uzorka nokta prije početka dugog i skupog liječenja."
+    },
+    {
+      "title": "Ustrajnost",
+      "text": "Pretpostavite da koristite medicinski lak za nokte. Mogli biste postaviti dnevni podsjetnik i mjesečno fotografirati nokat radi praćenja napretka."
+    }
+  ],
+  "questions": [
+    "Je li moj problem s noktom gljivična infekcija i je li testiran?",
+    "Koje liječenje mi odgovara i koje su njegove koristi i rizici?",
+    "Kako mogu izbjeći ponovnu infekciju?"
+  ]
+}

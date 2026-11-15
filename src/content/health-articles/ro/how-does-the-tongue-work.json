@@ -1,0 +1,52 @@
+{
+  "title": "Cum ajută limba alimentația și vorbirea",
+  "intro": "Limba este un organ muscular flexibil cu suprafață sensibilă. Mișcă hrana, ajută înghițirea și modelează vorbirea, percepând gustul și atingerea. Aspectul variază; fotografia singură nu stabilește diagnosticul.",
+  "sections": [
+    {
+      "heading": "Mușchi și legături",
+      "paragraphs": [
+        "Unii mușchi schimbă forma, alții deplasează limba întreagă. Legăturile cu structurile vecine și frenul de dedesubt susțin coordonarea, nu întinderea nelimitată."
+      ]
+    },
+    {
+      "heading": "Pregătirea hranei",
+      "paragraphs": [
+        "Limba pune hrana între dinți și o amestecă cu saliva. Formează bolul și îl împinge înapoi pentru înghițire; nervii coordonează protecția căilor aeriene."
+      ]
+    },
+    {
+      "heading": "Gust și suprafață",
+      "paragraphs": [
+        "Multe papile conțin muguri gustativi, altele dau mai ales textură. Gustul colaborează cu mirosul; nicio zonă nu detectează exclusiv un singur gust. Variația normală nu înseamnă automat infecție."
+      ]
+    },
+    {
+      "heading": "Vorbire și îngrijire",
+      "paragraphs": [
+        "Contactele precise modelează sunete împreună cu dinții, palatul și buzele. Igiena blândă și hidratarea potrivită ajută confortul. Nu răzuiți agresiv țesutul dureros și nu tratați doar după culoare."
+      ]
+    },
+    {
+      "heading": "Evaluare",
+      "paragraphs": [
+        "Ulcerațiile persistente, nodulii, sângerarea ori mișcarea sau înghițirea dificilă cer consult. Umflarea bruscă cu respirație dificilă este urgență. Slăbiciunea nouă cu schimbări ale vorbirii sau feței cere evaluare urgentă.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira are o rană după mușcarea limbii. Evită iritația și cere consult dacă nu se vindecă, fără remedii caustice."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are brusc limba umflată și respiră greu după un posibil alergen. Familia cere urgență, fără să aștepte dentistul."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Ce este terapia vocală",
+  "intro": "Terapia vocală este un tratament care îi ajută pe cei cu probleme de voce, precum răgușeala, efortul vocal, vocea slabă sau pierderea vocii. Un logoped învață exerciții și obiceiuri sănătoase. Se folosește pentru multe cauze, inclusiv suprasolicitarea, nodulii, problemele nervoase și schimbarea vocii legată de gen.",
+  "sections": [
+    {
+      "heading": "De ce apar problemele de voce",
+      "paragraphs": [
+        "Vocea poate fi afectată de suprasolicitare sau folosire greșită, precum strigatul sau vorbitul îndelungat, de infecții, reflux, fumat, uscăciune, noduli sau polipi pe corzile vocale, leziuni ale nervilor, boli neurologice sau stres emoțional. Răgușeala care durează mai mult de trei-patru săptămâni trebuie verificată de un medic, mai ales la fumători."
+      ]
+    },
+    {
+      "heading": "Evaluarea",
+      "paragraphs": [
+        "Un medic, de obicei un specialist ORL, privește corzile vocale cu o cameră. Terapeutul ascultă vocea, măsoară cât timp puteți ține un sunet și întreabă despre obiceiuri, muncă și medicamente. Împreună stabilesc obiective, precum o voce mai clară, mai puțin efort sau o rezistență mai mare."
+      ]
+    },
+    {
+      "heading": "Ce implică terapia",
+      "paragraphs": [
+        "Terapia include antrenamentul respirației, relaxarea mușchilor gâtului și umerilor, exerciții pentru rezonanță, înălțime și intensitate și tehnici precum exercițiile cu tract vocal semiocluzat, de exemplu fredonatul sau vorbitul printr-un pai. Învățați să folosiți vocea eficient și să evitați obiceiurile care dăunează. Ședințele sunt săptămânale, cu exersare zilnică acasă."
+      ]
+    },
+    {
+      "heading": "Îngrijirea vocii",
+      "paragraphs": [
+        "Beți suficientă apă, evitați fumatul și iritanții, tratați refluxul, evitați șoptitul și curățarea frecventă a gâtului, odihniți vocea după efort intens și folosiți amplificare în locuri zgomotoase. Profesorii, cântăreții și lucrătorii din call center sunt deosebit de expuși. Terapia vocală îi poate ajuta și pe persoanele transgender să-și ajusteze înălțimea și rezonanța vocii."
+      ]
+    },
+    {
+      "heading": "Rezultate",
+      "paragraphs": [
+        "Multe persoane se ameliorează în săptămâni până la luni. Unele afecțiuni, precum nodulii, pot dispărea cu terapie, în timp ce altele necesită și medicamente sau chirurgie. Exersarea constantă este esențială. Contactați medicul dacă nu există progres sau dacă simptomele se agravează."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exersarea zilnică",
+      "text": "Imaginați-vă că v-ați forțat vocea la serviciu. Ați putea face zilnic exercițiile de fredonat și ați putea odihni vocea în pauze."
+    },
+    {
+      "title": "Cererea unui examen",
+      "text": "Presupuneți că sunteți răgușit de șase săptămâni. Ați putea cere un control ORL."
+    }
+  ],
+  "questions": [
+    "Ce provoacă problema mea de voce?",
+    "Cât va dura terapia și ce trebuie să exersez?",
+    "Am nevoie și de medicamente sau de operație?"
+  ]
+}

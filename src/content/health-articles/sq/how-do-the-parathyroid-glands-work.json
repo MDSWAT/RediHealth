@@ -1,0 +1,51 @@
+{
+  "title": "Paratiroidet: kontrolli i kalciumit në gjak",
+  "intro": "Paratiroidet janë gjëndra të vogla zakonisht pas tiroides. Prodhojnë parathormon për kontrollin e kalciumit. Funksioni ndryshon nga tiroidja pavarësisht emrit dhe vendit.",
+  "sections": [
+    {
+      "heading": "Rëndësia",
+      "paragraphs": [
+        "Kalciumi duhet për nerva, muskuj, mpiksje dhe kocka. Trupi mban interval të ngushtë. Analiza tregon rregullimin, jo vetëm çfarë hëngrët dje."
+      ]
+    },
+    {
+      "heading": "Përgjigjja",
+      "paragraphs": [
+        "Kur ulet, hormoni ruan kalciumin në veshka, ndikon lirimin nga kocka dhe vitaminën D aktive. Kjo ndihmon zorrën. Lidhet edhe me fosfatin dhe veshkat."
+      ]
+    },
+    {
+      "heading": "Çrregullimi",
+      "paragraphs": [
+        "Teprica ose mungesa prek kalciumin, kockat, veshkat e nervat. Hormoni i lartë mund të jetë gjëndër ose përgjigje ndaj veshkave e mungesës D; numri ka kuptime të ndryshme."
+      ]
+    },
+    {
+      "heading": "Testet",
+      "paragraphs": [
+        "Mjeku interpreton kalciumin me hormonin, veshkat dhe analiza. Albumina ose kalciumi jonik mund të vlejnë. Imazheria lokalizon kur duhet, jo zëvendësim diagnoze biokimike."
+      ]
+    },
+    {
+      "heading": "Siguria",
+      "paragraphs": [
+        "Gurët, frakturat ose kalciumi jonormal duan kontroll. Therja rreth gojës ose spazmat pas kirurgjisë së qafës duan këshillë sipas planit. Spazma të rënda, kriza, konfuzion ose fryma e vështirë janë urgjencë. Mos merrni doza të mëdha vetë. Para konsultës, shënoni kur filloi simptoma, çfarë e lehtëson ose përkeqëson dhe si ndikon në veprimtaritë e zakonshme. Merrni raportet e mëparshme nëse i keni. Kërkojini profesionistit ta lidhë shpjegimin me gjetjet tuaja; një përshkrim i përgjithshëm nuk vendos diagnozën."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira mëson se hormoni i lartë me veshka të sëmura nuk është automatikisht tumor dhe pyet analizat shoqëruese."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ka therje pas operacionit të tiroides dhe kontakton ekipin, jo ankth ose suplemente rastësore."
+    }
+  ],
+  "questions": [
+    "Cilat hapa sqarohen me diagram?",
+    "Çfarë tregon shpjegimi dhe çfarë nuk parashikon?",
+    "A kërkon shqetësimi im vlerësim profesional?"
+  ]
+}

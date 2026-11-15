@@ -1,0 +1,51 @@
+{
+  "title": "Antagonistët e vitaminës K: monitorimi dhe doza",
+  "intro": "Antagonistët si warfarina ulin mpiksjen dhe parandalojnë trombe të rrezikshme. Efekti i ulët lë rrezik, i tepërti rrit gjakosjen. Siguria varet nga objektivi individual INR dhe plani i qartë.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "INR mat efektin e ilaçit. Objektivi dhe intervali varen nga arsyeja e stabiliteti; nuk ka dozë ose objektiv universal. Fuqitë e ndryshme të tabletave kontrollohen me kujdes."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Mbani shënime të sakta dhe dijeni kush jep udhëzimin tjetër. Matja në shtëpi ose vetërregullimi bëhet vetëm pas trajnimit dhe marrëveshjes me shërbimin, jo nga tabela online. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Sëmundja, të vjellat, diarreja, ilaçet e reja, antibiotikët dhe suplementet ndryshojnë efektin. Tregoni ndryshimet dhe procedurat. Mos ndaloni ose zëvendësoni përkohësisht terapinë para dentistit ose operacionit pa plan profesional. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Mbani vitaminën K relativisht të qëndrueshme, jo shmangie të çdo perimeje jeshile. Diskutoni alkoolin dhe ndryshimet dietike. Ndiqni udhëzimet e dozës së harruar; mos dyfishoni ose korrigjoni vetë. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Dëmtimi i kokës, gjakosja e pakontrolluar, gjaku në të vjella, feçet e zeza, dhimbja e fortë e kokës ose goditja duan urgjencë. INR jashtë kufijve do këshillë në kohë edhe pa shenja. Shtatzënia e dyshuar do kontakt shpejt."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira nis antibiotik dhe njofton shërbimin që vendos nëse duhet INR më herët."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni merr fuqi tjetër tablete dhe verifikon dozën me farmacistin, jo numrin e njëjtë të tabletave."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

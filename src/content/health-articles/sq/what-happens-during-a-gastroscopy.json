@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh gjatë një gastroskopie?",
+  "intro": "Një gastroskopi është një ekzaminim ku një tub i hollë fleksibël me kamerë kalohet përmes gojës për të parë ezofagun, stomakun e pjesën e parë të zorrës së hollë. Ndihmon të gjenden shkaqet e dhimbjes, refluksit, gjakderdhjes ose problemeve të gëlltitjes, e zgjat rreth dhjetë deri njëzet minuta.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "Mjekët përdorin gastroskopinë për të hetuar djegien e vazhdueshme të stomakut, dhimbjen e pjesës së sipërme të barkut, vështirësinë në gëlltitje, vjelljen, aneminë ose gjakderdhjen. Mund të tregojë ulçera, inflamacion, hernie, polipe, tumore e infeksione. Gjatë ekzaminimit mund të merren mostra të vogla indi e disa probleme, si gjakderdhja, mund të trajtohen."
+      ]
+    },
+    {
+      "heading": "Përgatitja",
+      "paragraphs": [
+        "Duhet të ndaloni ngrënien rreth gjashtë orë e pirjen rreth dy orë para. Tregojini mjekut për holluesit e gjakut, diabetin, alergjitë e gjendjet e zemrës ose mushkërive. Nëse qetësoheni, dikush duhet t'ju çojë në shtëpi, e nuk duhet të drejtoni për pjesën tjetër të ditës. Hiqni protezën."
+      ]
+    },
+    {
+      "heading": "Gjatë procedurës",
+      "paragraphs": [
+        "Shtriheni mbi anën e majtë, e fyti mund t'ju mpihet me një spërkatës. Shpesh jepet qetësim. Një mbrojtës goje mbron dhëmbët. Tubi kalohet mbi gjuhë, e ju kërkohet të gëlltisni. Nuk e bllokon frymëmarrjen. Mund të ndjeni presion, nauze ose fryrje nga ajri që futet."
+      ]
+    },
+    {
+      "heading": "Pas procedurës",
+      "paragraphs": [
+        "Pushoni për pak kohë, e mund të ndiheni të fryrë ose me dhimbje fyti për një ditë. Hani e pini kur ka kaluar mpirja e fytit. Kërkoni ndihmë për dhimbje të rëndë barku ose gjoksi, ethe, vjellje me gjak ose jashtëqitje të zeza. Komplikime të rënda, si një çarje ose gjakderdhje, janë të rralla."
+      ]
+    },
+    {
+      "heading": "Rezultatet",
+      "paragraphs": [
+        "Mjeku shpesh i jep gjetjet pas ekzaminimit, megjithëse rezultatet e biopsisë zgjasin disa ditë. Pyesni për trajtimin, ndjekjen e çdo ndryshim të barnave. Një bakter i stomakut i quajtur Helicobacter pylori mund të gjendet me biopsi e të trajtohet me antibiotikë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja një ditë më parë",
+      "text": "Imagjinoni që gastroskopia juaj është në mëngjes. Mund të agjëroni pas mesnate, të merrni vetëm barnat e dakordësuara me një gllënjkë ujë e të organizoni një udhëtim për në shtëpi."
+    },
+    {
+      "title": "Përballja me nervat",
+      "text": "Supozoni që shqetësoheni për nauzenë. Mund të pyesni për qetësimin e të praktikoni frymëmarrje të ngadaltë."
+    }
+  ],
+  "questions": [
+    "A është gastroskopia testi i duhur për simptomat e mia?",
+    "A do të qetësohem e cilat janë rreziqet?",
+    "Kur do t'i marr rezultatet e biopsisë?"
+  ]
+}

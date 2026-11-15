@@ -1,0 +1,51 @@
+{
+  "title": "Prenatalno testiranje",
+  "intro": "Prenatalni testovi ispituju zdravlje i razvoj nerođene bebe. Uključuju rutinske ultrazvučne preglede i izborne testove za kromosomska stanja kao što je Downov sindrom. Odluka hoće li ih učiniti osobni je izbor, a savjetovanje prije i nakon testiranja pomaže vam razumjeti što rezultati mogu i ne mogu reći.",
+  "sections": [
+    {
+      "heading": "Vrste testova",
+      "paragraphs": [
+        "Probirni testovi procjenjuju šansu da beba ima stanje, ali ne daju konačan odgovor. Uključuju ultrazvučna mjerenja, krvne pretrage majke i krvnu pretragu koja analizira fragmente genetskog materijala bebe pronađene u majčinoj krvi. Dijagnostički testovi kao što su biopsija korionskih resica i amniocenteza ispituju stanice bebe i daju jasan odgovor, ali nose mali rizik pobačaja."
+      ]
+    },
+    {
+      "heading": "Što rezultati znače",
+      "paragraphs": [
+        "Rezultat probira izražava se kao vjerojatnost, a ne dijagnoza. Rezultat visokog rizika ne znači da je beba zahvaćena, a rezultat niskog rizika ne isključuje u potpunosti stanje. Testovi mogu otkriti i nesigurne nalaze koji izazivaju brigu. Ultrazvuk može pokazati strukturne razlike u organima bebe, iako nisu sva stanja vidljiva."
+      ]
+    },
+    {
+      "heading": "Odlučivanje hoće li testirati",
+      "paragraphs": [
+        "Neki roditelji žele informacije za pripremu, planiranje poroda u specijaliziranom centru ili razmatranje liječenja prije ili nakon poroda. Drugi radije ne testiraju. Unaprijed razmislite što biste učinili s rezultatom, kako biste se osjećali zbog nesigurnosti i koje su vam vrijednosti važne. Možete odbiti bilo koji test."
+      ]
+    },
+    {
+      "heading": "Potpora i savjetovanje",
+      "paragraphs": [
+        "Savjetovanje liječnika, primalja i neovisnih službi može objasniti mogućnosti i posljedice. Ako test pokaže moguće stanje, trebate dobiti vremena i potpore za odluku o daljnjim koracima, uključujući dodatno testiranje, pripremu za dijete s posebnim potrebama ili, ovisno o zakonu, razmatranje prekida trudnoće. Grupe podrške i specijalisti nude informacije o životu s različitim stanjima."
+      ]
+    },
+    {
+      "heading": "Rutinski ultrazvuci i svakodnevni izbori",
+      "paragraphs": [
+        "Rutinski ultrazvučni pregledi tijekom trudnoće provjeravaju rast, položaj posteljice i organe bebe i nude se svima. Dio su prenatalne skrbi i razlikuju se od testova za kromosomska stanja. Pitajte što svaki pregled treba tražiti kako biste znali što očekivati od rezultata."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vaganje odluke",
+      "text": "Zamislite da vam nude krvnu pretragu za Downov sindrom. Mogli biste razgovarati što bi rezultat za vas promijenio, pitati o točnosti i lažnim alarmima i odlučiti s partnerom hoćete li je napraviti."
+    },
+    {
+      "title": "Nakon rezultata visokog rizika",
+      "text": "Pretpostavite da rezultat probira pokazuje povišenu šansu. Mogli biste zatražiti savjetovanje, pitati o rizicima i koristima dijagnostičkog testa i uzeti vremena prije odlučivanja."
+    }
+  ],
+  "questions": [
+    "Koji su testovi dostupni i koliko su točni?",
+    "Koji su rizici dijagnostičkih testova kao što je amniocenteza?",
+    "Gdje mogu dobiti neovisno savjetovanje prije i nakon testiranja?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "How genes are inherited: patterns and uncertainty",
+  "intro": "Genes are sections of DNA that help cells make and regulate biological products. Inheritance passes genetic information from parents to children, but genes do not determine every trait or guarantee a disease. Environment and chance also matter.",
+  "sections": [
+    {
+      "heading": "Chromosomes and parental contributions",
+      "paragraphs": [
+        "Most body cells contain chromosomes in pairs, with one member usually inherited from each biological parent. Egg and sperm formation reshuffles information, so siblings receive different combinations. Mitochondrial DNA follows a different pattern and is usually inherited from the mother."
+      ]
+    },
+    {
+      "heading": "Different inheritance patterns",
+      "paragraphs": [
+        "A dominant condition can occur with a change in one copy of a relevant gene. A recessive condition usually requires changes in both copies. X-linked inheritance has another pattern. These descriptions are simplified; the exact gene and family findings determine meaningful risk."
+      ]
+    },
+    {
+      "heading": "Many genes and variable expression",
+      "paragraphs": [
+        "Many common conditions involve numerous genes plus life circumstances rather than a single inherited cause. A person may carry a relevant variant without symptoms, or have different severity from a relative. A condition can also result from a new variant absent from parents’ routine blood tests."
+      ]
+    },
+    {
+      "heading": "Testing and uncertain findings",
+      "paragraphs": [
+        "Genetic tests answer specific questions and can produce uncertain findings. An uncertain variant is not by itself a confirmed diagnosis or a reason for irreversible treatment. Discuss privacy, possible family implications and the limits of commercial ancestry or health-risk reports."
+      ]
+    },
+    {
+      "heading": "Counseling about family risk",
+      "paragraphs": [
+        "For a known familial condition, a genetics professional can draw a family tree and explain personal options. Bring the exact family report if available. Risks apply to each pregnancy according to the relevant pattern, not as a promise that a fixed number of children will be affected."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira has an affected relative and brings the laboratory report to counseling. The team explains the specific variant rather than inferring her risk from the disease name alone."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben and a sibling have different symptoms despite a related genetic finding. He learns that inheritance does not guarantee identical expression and seeks advice before interpreting an uncertain result."
+    }
+  ],
+  "questions": [
+    "Which steps would be clearer with a diagram?",
+    "What does this explanation show, and what can it not predict?",
+    "Would my specific concern need professional assessment?"
+  ]
+}

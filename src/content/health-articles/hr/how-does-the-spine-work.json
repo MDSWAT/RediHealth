@@ -1,0 +1,52 @@
+{
+  "title": "Kako kralježnica podupire i štiti živce",
+  "intro": "Kralježnica je niz kostiju, zglobova i diskova uz mišiće i ligamente. Nosi teret i štiti moždinu i živčane korijene. Normalne krivine dio su građe, ne dokaz lošeg držanja.",
+  "sections": [
+    {
+      "heading": "Regije",
+      "paragraphs": [
+        "Vrat, prsni i slabinski dio imaju različite pokrete i teret. Križna kost spaja s zdjelicom; srasle donje kosti kreću se drukčije od pokretnih kralježaka."
+      ]
+    },
+    {
+      "heading": "Diskovi i zglobovi",
+      "paragraphs": [
+        "Diskovi raspoređuju teret među većinom trupova kralježaka. Mali zglobovi vode pokret. Dobne promjene na snimci česte su i ne objašnjavaju automatski bol ni potrebu operacije."
+      ]
+    },
+    {
+      "heading": "Živčani prostor",
+      "paragraphs": [
+        "Kanal i bočni otvori propuštaju živčane strukture. Nadražaj ili pritisak uzrokuje širenje boli, utrnulost ili slabost; mjesto i pregled pomažu tumačenju."
+      ]
+    },
+    {
+      "heading": "Pokret",
+      "paragraphs": [
+        "Mijenjajte položaje, održavajte podnošljivu aktivnost i postupno jačajte. Nijedno držanje ne sprečava svu bol. Nakon velike traume izbjegavajte nepotrebno kretanje i tražite pomoć."
+      ]
+    },
+    {
+      "heading": "Upozorenja",
+      "paragraphs": [
+        "Novi problemi mokrenja ili stolice, utrnulost međunožja ili progresivna slabost nogu traže hitnost. Bol s vrućicom, velikom ozljedom ili zabrinjavajućom poviješću traži pregled, ne forsiranu manipulaciju.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira čita degenerativne promjene u nalazu. Pita vezu s pregledom bez smatranja leđa krhkima i prekida sve aktivnosti."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima utrnulost međunožja i nove teškoće mokrenja. Traži hitnost bez čekanja redovite fizioterapije."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

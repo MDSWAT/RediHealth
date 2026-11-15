@@ -1,0 +1,51 @@
+{
+  "title": "Quando sono raccomandate le statine",
+  "intro": "Le statine sono farmaci che abbassano il colesterolo e riducono il rischio di infarto e ictus. Sono raccomandate soprattutto per chi ha già una malattia del cuore o dei vasi e per alcune persone ad alto rischio. La decisione dipende dal rischio individuale, quindi si prende insieme al medico.",
+  "sections": [
+    {
+      "heading": "Come agiscono le statine",
+      "paragraphs": [
+        "Le statine bloccano un enzima del fegato che produce colesterolo, il che abbassa il colesterolo LDL, quello dannoso. Stabilizzano anche i depositi di grasso nelle arterie. Esempi sono simvastatina, atorvastatina e rosuvastatina. Di solito si prendono una volta al giorno, a lungo termine."
+      ]
+    },
+    {
+      "heading": "Chi ne trae più beneficio",
+      "paragraphs": [
+        "Ne traggono più beneficio le persone che hanno avuto un infarto, un ictus o un'altra malattia cardiovascolare e in genere le statine sono consigliate a loro. Di solito si consiglia di prenderle anche a chi ha un colesterolo molto alto, come nell'ipercolesterolemia familiare, e a molte persone con diabete che sono più anziane o hanno altri fattori di rischio."
+      ]
+    },
+    {
+      "heading": "Prevenzione in chi non ha malattie",
+      "paragraphs": [
+        "Per chi non ha una malattia accertata i medici stimano il rischio a dieci anni di un evento cardiovascolare, usando fattori come età, sesso, pressione, colesterolo, fumo e diabete. Le statine si considerano quando il rischio è abbastanza alto da far prevalere il beneficio sui possibili effetti collaterali. Il beneficio è minore in chi è a basso rischio, quindi viene prima lo stile di vita."
+      ]
+    },
+    {
+      "heading": "Effetti collaterali",
+      "paragraphs": [
+        "La maggior parte delle persone tollera bene le statine. I dolori muscolari sono il disturbo più comune, il grave danno muscolare è raro. Possono verificarsi aumenti degli enzimi del fegato e un piccolo aumento della glicemia. Segnala forte dolore muscolare, debolezza o urine scure. Alcuni farmaci e il succo di pompelmo interagiscono con certe statine. Le statine non sono raccomandate in gravidanza."
+      ]
+    },
+    {
+      "heading": "Lo stile di vita resta importante",
+      "paragraphs": [
+        "Una dieta sana, attività regolare, non fumare, peso sano e alcol limitato riducono il rischio con o senza farmaci. Non smettere di prendere le statine senza parlarne con il medico. I livelli di colesterolo vanno controllati a intervalli concordati."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Discutere il rischio",
+      "text": "Immagina che il tuo colesterolo sia alto ma tu non abbia malattie cardiache. Potresti chiedere al medico di calcolare il tuo rischio a dieci anni e di spiegarti i numeri."
+    },
+    {
+      "title": "Gestire gli effetti collaterali",
+      "text": "Supponi di avere dolori muscolari dopo aver iniziato una statina. Potresti chiedere di una dose più bassa o di una statina diversa prima di smettere."
+    }
+  ],
+  "questions": [
+    "Qual è il mio rischio e quanto mi aiuterebbe una statina?",
+    "Quale statina e quale dose sono giuste per me?",
+    "Quali effetti collaterali devo segnalare?"
+  ]
+}

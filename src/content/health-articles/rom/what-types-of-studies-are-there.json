@@ -1,0 +1,51 @@
+{
+  "title": "Save vrste studijengo postojinen?",
+  "intro": "Medicinsko istraživanje koristinel različite vrste studijengo te odgovorinel pe različita pitanja. Nesave testirinen dali sastjaripe radinel, dok aver dikhen uzroke bolestengo vaj sar si učestala. Haćaripe glavnone vrstengo azhutil te procjenjinel sar si pouzdano nalaz.",
+  "sections": [
+    {
+      "heading": "Randomizirane kontrolirane studije",
+      "paragraphs": [
+        "Ande randomizirano kontrolirano studija, sudionici nasumično dodjelinen pes te dobinen sastjaripe savo testirinel pes vaj usporedbu, sar placebo vaj standardno njega. Slučaj odlučinel, te si grupe slične. Butivar ni sudionici ni istraživači na džanen ko dobinel so, savo vičinel pes zasljepljivanje. Kala studije si najlačho način te testirinel pes dali sastjaripe radinel."
+      ]
+    },
+    {
+      "heading": "Opservacijske studije",
+      "paragraphs": [
+        "Kohortne studije prate grupe manushengo kroz vreme te dikhen ko razvinel bolest, sar primjer uspoređinen pušače thaj nepušače. Studije slučaj-kontrola uspoređinen manusha sa bolestja thaj slične manusha bi late, tražindoj unazad razlike. Presječne studije mjerinen stanje ande jekh točka vremenosko. Shaj te sikaven veze numa na dokazinen uzrok, sostar shaj te si uključime aver faktori."
+      ]
+    },
+    {
+      "heading": "Aver dizajni",
+      "paragraphs": [
+        "Opisi slučajengo thaj serije slučajengo opisinen nekobor pacijente thaj shaj te pokrenen ideje numa si slabi dokazi. Studije dijagnostičke točnosti testirinen sar dobro test prepoznavinel bolest. Kvalitativne studije istražinen iskustva intervjuenca. Laboratorijske thaj studije pe životinje istražinen mehanizme numa na vrijedinen uvijek vash manusha."
+      ]
+    },
+    {
+      "heading": "Pregledi",
+      "paragraphs": [
+        "Sustavni pregled skupljinel thaj procjenjinel sa studije pe pitanje, thaj meta-analiza kombinirinel lengere brojke. Kala dinen najpotpunije slika, te si studije save uključinen dobre."
+      ]
+    },
+    {
+      "heading": "Procjena studijengo",
+      "paragraphs": [
+        "Dikh broj sudionikengo, sar formirinde pes grupe, kobor sas dugo praćenje, dali si rezultati značajni vash pacijente thaj ko plaćindja studija. Studija pe mišenge vaj jedna mala studija na trubul te paruvinel so keres. Pučh doktores te objasninel so studija znaćinel vash tut."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Čitanje vijesti",
+      "text": "Zamisli te naslov phenel te kafa spriječinel bolest. Shaj te provjerines dali studija pratinde manusha vaj randomizirinde len."
+    },
+    {
+      "title": "Pitanje vash pouzdanost",
+      "text": "Zamisli te studija sugeririnel te dodatak radinel. Shaj te pučes kobor sas velika thaj dali sas ponovljena."
+    }
+  ],
+  "questions": [
+    "Savo vrsta studijako podržinel kado tvrdnja?",
+    "Kobor si jakho dokaz uspoređeno sa aver studijenca?",
+    "Vrijedinen li rezultati vash manusha sar me?"
+  ]
+}

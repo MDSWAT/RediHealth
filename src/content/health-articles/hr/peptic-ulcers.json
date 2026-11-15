@@ -1,0 +1,51 @@
+{
+  "title": "Peptički ulkus",
+  "intro": "Peptički ulkus je otvorena rana na sluznici želuca ili prvog dijela tankog crijeva. Često uzrokuje pekuću bol u gornjem dijelu trbuha. Većinu vrijedova uzrokuje bakterijska infekcija ili protuupalni lijekovi protiv bolova, a dobro zacjeljuju kad se liječi uzrok.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Sluznicu želuca normalno od kiseline štiti sluz. Infekcija bakterijom Helicobacter pylori i redovita uporaba protuupalnih lijekova protiv bolova kao što su ibuprofen, diklofenak ili aspirin oštećuju tu zaštitu. Pušenje, prekomjerno pijenje alkohola i teška bolest povećavaju rizik. Stres i ljuta hrana sami ne uzrokuju vrijedove, iako mogu pogoršati simptome."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipični simptomi su pekuća ili grizuća bol u gornjem dijelu trbuha, često između obroka ili noću, nadutost, mučnina i brzo osjećanje sitosti. Bol kod vrijeda želuca može se pogoršati jelom, dok se kod vrijeda dvanaesnika može ublažiti. Neki vrijedovi ne uzrokuju simptome dok ne prokrvare."
+      ]
+    },
+    {
+      "heading": "Znakovi upozorenja",
+      "paragraphs": [
+        "Potražite hitnu pomoć zbog povraćanja krvi ili sadržaja nalik talogu kave, crne katranaste stolice, iznenadne jake boli u trbuhu, nesvjestice ili bljedila jer to može upućivati na krvarenje ili perforaciju. Nenamjeran gubitak težine, uporno povraćanje ili teškoće s gutanjem također zahtijevaju brzu procjenu."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i liječenje",
+      "paragraphs": [
+        "Liječnici mogu testirati na Helicobacter testom daha, stolice ili tkiva i često provode gastroskopiju kako bi pogledali vrijed i uzeli uzorke. Liječenje kombinira lijekove za smanjenje kiseline zvane inhibitori protonske pumpe, obično nekoliko tjedana, s tijekom antibiotika ako je prisutan Helicobacter. Prekinite ili zamijenite protuupalne lijekove protiv bolova ako je moguće. Kontrolne pretrage potvrđuju da je infekcija nestala."
+      ]
+    },
+    {
+      "heading": "Sprječavanje ponavljanja",
+      "paragraphs": [
+        "Uzmite cijeli tijek antibiotika, izbjegavajte nepotrebne protuupalne lijekove protiv bolova ili koristite zaštitu želuca kad su nužni, prestanite pušiti i ograničite alkohol. Recite liječnicima i ljekarnicima da ste imali vrijed."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregled lijekova protiv bolova",
+      "text": "Zamislite da svaki dan uzimate ibuprofen zbog boli u koljenu i razvijete bol u želucu. Mogli biste razgovarati s liječnikom o alternativnom ublažavanju boli i zaštiti želuca prije nastavka."
+    },
+    {
+      "title": "Dovršavanje liječenja",
+      "text": "Pretpostavite da se osjećate bolje nakon tjedan dana antibiotika. Mogli biste ipak dovršiti cijeli tijek i otići na kontrolnu pretragu jer rani prekid može ostaviti infekciju."
+    }
+  ],
+  "questions": [
+    "Uzrokuje li moj vrijed infekcija ili lijekovi?",
+    "Koje ću liječenje uzimati i koliko dugo?",
+    "Kako ćemo provjeriti da je vrijed zacijelio?"
+  ]
+}

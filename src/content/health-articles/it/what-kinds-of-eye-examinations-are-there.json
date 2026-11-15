@@ -1,0 +1,51 @@
+{
+  "title": "Che tipi di visite oculistiche esistono",
+  "intro": "Le visite oculistiche controllano la vista e la salute dell'occhio. Individuano problemi come miopia o ipermetropia, glaucoma, cataratta, degenerazione maculare e malattia oculare diabetica, spesso prima che compaiano i sintomi. La maggior parte degli esami è rapida e indolore.",
+  "sections": [
+    {
+      "heading": "Esami della vista",
+      "paragraphs": [
+        "Un esame dell'acuità visiva ti chiede di leggere lettere o simboli da una tabella a una distanza stabilita. Un esame di rifrazione, con lenti, scopre se hai bisogno di occhiali e di quale gradazione. Esami della visione dei colori, della percezione della profondità e dei campi visivi controllano altri aspetti della vista. I bambini fanno esami adattati all'età, come immagini o simboli da abbinare."
+      ]
+    },
+    {
+      "heading": "Pressione oculare e parte anteriore dell'occhio",
+      "paragraphs": [
+        "La tonometria misura la pressione dentro l'occhio, che è aumentata nel glaucoma, con un soffio d'aria o un delicato tocco della superficie dopo gocce anestetizzanti. La lampada a fessura, un microscopio con una luce intensa, mostra cornea, cristallino e parte anteriore dell'occhio e aiuta a individuare cataratta, lesioni e infiammazione."
+      ]
+    },
+    {
+      "heading": "Guardare il fondo dell'occhio",
+      "paragraphs": [
+        "Delle gocce dilatano la pupilla così che il medico possa vedere retina, nervo ottico e vasi sanguigni con un oftalmoscopio o una telecamera. Questo mostra segni di diabete, pressione alta, degenerazione maculare e glaucoma. La visione da vicino è offuscata e la sensibilità alla luce aumenta per diverse ore, quindi non guidare dopo."
+      ]
+    },
+    {
+      "heading": "Altri esami",
+      "paragraphs": [
+        "La tomografia a coerenza ottica scansiona gli strati della retina con la luce. I test del campo visivo trovano punti ciechi, importanti per il glaucoma. L'angiografia con fluoresceina usa un colorante per vedere i vasi sanguigni. L'ecografia può esaminare l'occhio quando la vista è bloccata. Si fanno anche esami per l'occhio secco e la produzione di lacrime."
+      ]
+    },
+    {
+      "heading": "Con che frequenza fare i controlli",
+      "paragraphs": [
+        "I bambini hanno bisogno di controlli se ci sono dubbi o secondo i programmi di screening. Gli adulti possono fare controlli ogni due anni e chi ha più di quarant'anni, chi ha il diabete, una storia familiare di glaucoma o altri fattori di rischio può averne bisogno più spesso. Cerca aiuto urgente per perdita improvvisa della vista, lampi di luce, nuove mosche volanti o dolore all'occhio."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi",
+      "text": "Immagina di avere un appuntamento con gocce dilatanti. Potresti portare gli occhiali da sole e organizzare che qualcuno ti accompagni a casa."
+    },
+    {
+      "title": "Cercare cure urgenti",
+      "text": "Supponi di vedere all'improvviso lampi e molte nuove mosche volanti. Potresti contattare un oculista lo stesso giorno."
+    }
+  ],
+  "questions": [
+    "Quali esami servono per i miei occhi?",
+    "Con che frequenza devo essere visitato?",
+    "Quali sintomi significano che devo cercare cure urgenti?"
+  ]
+}

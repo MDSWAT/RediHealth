@@ -1,0 +1,51 @@
+{
+  "title": "Hepatiti B: testimi, parandalimi dhe mëlçia",
+  "intro": "Hepatiti B është infeksion viral i mëlçisë. Disa kalojnë, të tjerat vazhdojnë dhe kërkojnë ndjekje ose terapi. Mund të jetë pa simptoma; mirëqenia nuk provon mungesë virusi ose dëmi.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Transmetohet nga gjaku ose disa lëngje trupore, përfshirë seksin dhe lindjen. Nuk përhapet nga vakte të zakonshme ose përqafime. Mos përjashtoni njerëzit nga jeta për diagnozën."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Analizat dallojnë infeksionin, imunitetin dhe modele të tjera; mund të duan përsëritje. Funksioni dhe shenjat e fibrozës udhëheqin ndjekjen. Diskutoni shtatzëninë, kontaktet dhe trajtimin imunosupresiv të ardhshëm. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Infeksioni kronik mund të kërkojë antiviralë për frenim dhe ulje komplikimesh. Jo të gjithë duan menjëherë ilaç, por monitorimi mbetet i rëndësishëm. Mos ndaloni antiviralët pa plan specialisti. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Vaksina mbron të pambrojturit; kontaktet duhet të pyesin për teste e vaksinim. Mos ndani gjilpëra, brisqe ose furça. Kujdesi i shtatzënisë mbron foshnjën; ekspozimi i fundit kërkon shpejt këshillë për parandalim. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Konfuzioni, të vjellat e rënda, ënjtja e madhe e barkut ose gjakosja kërkojnë urgjencë. Verdhëza e re kërkon kontroll shpejt. Shmangni alkoolin dhe kontrolloni ilaçet e suplementet, jo pastrime të reklamuara."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira e zbulon infeksionin në shtatzëni dhe diskuton shpejt planin e lindjes dhe mbrojtjen e foshnjës, pa pritur lindjen."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ndihet mirë por vazhdon ndjekjen dhe pyet për vaksinimin familjar, pa shmangur vaktet bashkë."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

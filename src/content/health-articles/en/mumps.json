@@ -1,0 +1,51 @@
+{
+  "title": "Mumps",
+  "intro": "Mumps is a contagious viral illness that classically causes painful swelling of the salivary glands in front of the ears. It spreads through coughing, sneezing and contact. It is now uncommon in places with high vaccination rates, but outbreaks still occur. The vaccine given in childhood is an effective protection.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "After an incubation period of about two to three weeks, people develop fever, headache, muscle aches, tiredness and swelling and pain of one or both cheeks. Chewing and swallowing can hurt. Up to a third of people have few or no symptoms but can still spread the virus."
+      ]
+    },
+    {
+      "heading": "Complications",
+      "paragraphs": [
+        "Complications are uncommon but can be serious. In teenage and adult men, the testicles may become painful and swollen. In women, the ovaries may be inflamed. Other complications include meningitis, pancreatitis and hearing loss, which can be permanent. Fertility problems are rare."
+      ]
+    },
+    {
+      "heading": "Diagnosis and treatment",
+      "paragraphs": [
+        "The diagnosis is usually made on symptoms, and confirmed with a swab or blood test, especially in outbreaks. There is no specific antiviral treatment. Rest, fluids, soft foods, pain and fever relief with paracetamol or ibuprofen and cool or warm compresses help. Avoid acidic drinks that stimulate saliva and increase pain. Seek medical advice for severe headache, stiff neck, abdominal pain or testicular pain."
+      ]
+    },
+    {
+      "heading": "Preventing spread",
+      "paragraphs": [
+        "People are contagious from a few days before swelling until about five days after it starts. They should stay away from school or work during that time, cover coughs and wash hands. Tell your doctor before visiting, so that precautions can be taken. Contacts with unknown vaccination status should check their records."
+      ]
+    },
+    {
+      "heading": "Vaccination",
+      "paragraphs": [
+        "The combined measles, mumps and rubella vaccine is given in two doses in childhood and protects the great majority of people. Immunity may wane over time, which explains occasional cases in vaccinated people, generally with milder illness. Adults born later without vaccination or uncertain records should ask about catch-up vaccination, and pregnant women should not be vaccinated."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Checking vaccination records",
+      "text": "Imagine your child has mumps at school. You could check your own and your other children's vaccination cards and ask your doctor whether any further doses are advised."
+    },
+    {
+      "title": "Staying home",
+      "text": "Suppose you develop swollen cheeks and fever. You might call your practice before visiting, stay home for about five days and drink fluids while watching for severe pain."
+    }
+  ],
+  "questions": [
+    "Have I and my family had the full course of MMR vaccination?",
+    "How long should I stay at home, and which symptoms mean I should seek urgent care?",
+    "Are complications likely in my situation?"
+  ]
+}

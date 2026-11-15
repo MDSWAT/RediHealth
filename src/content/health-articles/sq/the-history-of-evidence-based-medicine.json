@@ -1,0 +1,51 @@
+{
+  "title": "Historia e mjekësisë së bazuar në prova",
+  "intro": "Mjekësia e bazuar në prova u rrit nga ideja se trajtimet duhet të gjykohen me testim të kujdesshëm, jo vetëm me traditë ose autoritet. Rrënjët e saj shkojnë shekuj prapa, por u bë qasje e përcaktuar në fund të shekullit njëzet. Njohja e historisë së saj tregon pse kujdesi shëndetësor tani mbështetet te provat e rishikimet sistematike.",
+  "sections": [
+    {
+      "heading": "Idetë e hershme",
+      "paragraphs": [
+        "Edhe në lashtësi, mjekët vunë re se përvoja duhet të udhëheqë trajtimin. Në shekullin e tetëmbëdhjetë, mjeku detar James Lind krahasoi trajtime për skorbutin mes detarëve e gjeti se portokallet e limonët ndihmonin. Në shekullin e nëntëmbëdhjetë, metodat statistikore filluan të përdoren për të vlerësuar trajtimet e rezultatet e spitaleve. Reformatorët e infermierisë përdorën gjithashtu të dhëna për të përmirësuar kujdesin."
+      ]
+    },
+    {
+      "heading": "Provat e kontrolluara",
+      "paragraphs": [
+        "Shekulli i njëzetë pa zhvillimin e provës moderne të rastësishme të kontrolluar. Pas Luftës së Dytë Botërore, një provë britanike e streptomicinës për tuberkulozin konsiderohet pikë kthese. Rastësimi e grupet e kontrollit ndihmuan të ndahen efektet e vërteta nga rasti e njëanshmëria. Përvoja tragjike, si dëmi nga ilaçi talidomid, çuan në testim e rregullim më të rreptë të barnave."
+      ]
+    },
+    {
+      "heading": "Archie Cochrane",
+      "paragraphs": [
+        "Epidemiologu britanik Archie Cochrane argumentoi në vitet 1970 se shërbimet shëndetësore duhet të vlerësohen përmes provave të rastësishme e se rezultatet duhet të përmblidhen sistematikisht, pasi shumë trajtime përdoreshin pa provë përfitimi. Kritikoi mungesën e një përmbledhjeje të përditësuar rregullisht të të gjitha provave. Idetë e tij frymëzuan punën e mëvonshme."
+      ]
+    },
+    {
+      "heading": "Lëvizja e bazuar në prova",
+      "paragraphs": [
+        "Në fillim të viteve 1990, një grup mjekësh në Universitetin McMaster në Kanada e emëruan e promovuan mjekësinë e bazuar në prova, duke mësuar klinicistët të gjejnë e vlerësojnë kërkimin. Bashkëpunimi ndërkombëtar Cochrane u themelua në vitin 1993 për të përgatitur e përditësuar rishikime sistematike. Udhëzuesit, agjencitë e vlerësimit të teknologjisë shëndetësore e informacioni për pacientët i miratuan gjithnjë e më shumë këto metoda."
+      ]
+    },
+    {
+      "heading": "Kritika e zhvillimi",
+      "paragraphs": [
+        "Kritikët vënë re se prova mund të jetë e njëanshme nga financimi i industrisë, se provat mund të mos pasqyrojnë pacientët realë e se udhëzuesit mund t'i injorojnë rrethanat individuale. Fusha u përgjigj me regjistrim provash, ndarje të dhënash, standarde raportimi e përfshirje pacientësh. Sot, mjekësia e bazuar në prova vazhdon të zhvillohet me vëmendje ndaj preferencave të pacientit e cilësisë së provës."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Historia në praktikë",
+      "text": "Imagjinoni që lexoni për një trajtim dikur të përdorur gjerësisht e më vonë të braktisur. Mund të pyesni çfarë treguan provat e si e ndryshoi praktikën prova."
+    },
+    {
+      "title": "Përdorimi i parimit",
+      "text": "Supozoni që një mik rekomandon një mjet bazuar në përvojë. Mund të kërkoni studime të kontrolluara e ta pyesni mjekun për provën."
+    }
+  ],
+  "questions": [
+    "A është testuar ky trajtim në prova të kontrolluara?",
+    "Ku mund të gjej përmbledhje të provës më të mirë?",
+    "Si ka ndryshuar prova për këtë temë me kalimin e kohës?"
+  ]
+}

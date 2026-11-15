@@ -1,0 +1,51 @@
+{
+  "title": "Folosirea AED la urgența adultului",
+  "intro": "Defibrilatorul extern automat, AED, analizează ritmul și aplică șoc numai când este indicat. Oricine poate urma instrucțiunile. Nu întârziați pentru lectură: sunați la 112 pentru persoana nereactivă și urmați dispecerul.",
+  "sections": [
+    {
+      "heading": "Recunoașteți și sunați",
+      "paragraphs": [
+        "Verificați siguranța, reacția și sunați pe difuzor. Evaluați respirația în timpul apelului; gâfâielile rare nu sunt normale. Dacă nu reacționează și nu respiră normal, începeți resuscitarea și cereți altcuiva AED."
+      ]
+    },
+    {
+      "heading": "Continuați resuscitarea",
+      "paragraphs": [
+        "La adult comprimați central pieptul 5–6 cm cu 100–120 pe minut, cu revenire completă. Dacă sunteți instruit, alternați 30 compresii și 2 insuflații; altfel continuați compresiile. Nu lăsați singur pentru căutare departe."
+      ]
+    },
+    {
+      "heading": "Porniți și aplicați",
+      "paragraphs": [
+        "Deschideți ori porniți și urmați imaginile și vocea. Expuneți pieptul, uscați pielea și puneți electrozii cum arată. Cu alt salvator continuați compresiile în aplicare. Nu puneți electrod direct peste dispozitiv implantat."
+      ]
+    },
+    {
+      "heading": "Nu atingeți",
+      "paragraphs": [
+        "Nimeni nu atinge la analiză ori șoc. Unele modele șochează automat, altele cer buton. Reluați imediat resuscitarea după șoc ori indicația fără șoc. Lipsa șocului nu înseamnă lipsa nevoii de ajutor."
+      ]
+    },
+    {
+      "heading": "Continuați ajutorul",
+      "paragraphs": [
+        "Lăsați electrozii și continuați până preiau profesioniștii, revine respirația normală, apare pericol ori nu mai puteți. Spuneți schimbările dispecerului. Copiii și sugarii cer instrucțiuni și setări potrivite; nu întârziați din nesiguranță."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira începe compresiile, altcineva aduce AED. Împart sarcinile și nu ating numai când analiza ori șocul cer."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben aude că nu este indicat șocul. Reia resuscitarea după instrucțiuni, fără să presupună vindecarea."
+    }
+  ],
+  "questions": [
+    "Unde pot exersa resuscitarea și defibrilatorul cu instructor?",
+    "Cum diferă instrucțiunile pentru copil sau înec?",
+    "Cum obțin sprijin după ajutorul dat într-o urgență?"
+  ]
+}

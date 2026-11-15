@@ -1,0 +1,56 @@
+{
+  "title": "Liječenje raka vrata maternice i njegovih prethodnika",
+  "intro": "Rak vrata maternice razvija se u donjem dijelu maternice, vratu maternice, obično nakon dugotrajne infekcije određenim tipovima humanog papilomavirusa. Nenormalne stanice često se pojavljuju godinama prije nego što nastane rak i mogu se otkriti probirom. Liječenje ovisi o tome postoje li samo prekancerozne promjene ili invazivni rak te o njegovoj veličini i proširenosti.",
+  "sections": [
+    {
+      "heading": "Liječenje prekanceroznih promjena",
+      "paragraphs": [
+        "Probir može pokazati promjene stanica koje još nisu rak. Blage promjene često nestanu same i mogu zahtijevati samo ponovljene kontrole. Napredenije promjene obično se liječe uklanjanjem zahvaćenog tkiva jer to sprječava razvoj raka.",
+        "Uobičajeni zahvat je konizacija, koja uklanja mali komad vrata maternice u obliku stošca, tankom zagrijanom petljom ili skalpelom. Često se radi u lokalnoj ili kratkoj općoj anesteziji kao ambulantni zahvat ili kratki boravak u bolnici. Tkivo se pregledava kako bi se potvrdilo da su nenormalne stanice potpuno uklonjene."
+      ]
+    },
+    {
+      "heading": "Rani invazivni rak",
+      "paragraphs": [
+        "Kad je rak malen i ograničen na vrat maternice, kirurški zahvat je glavno liječenje. Mogućnosti se kreću od veće konizacije do odstranjenja maternice, često s odstranjenjem obližnjih limfnih čvorova kako bi se vidjelo je li se rak proširio. U odabranih mladih žena mogući su zahvati koji čuvaju plodnost.",
+        "Kirurzi sve više uzimaju u obzir točnu veličinu i dubinu tumora te želju žene da ima djecu. To je dobar trenutak da pitate o mogućnostima očuvanja plodnosti te o koristima i rizicima različitih kirurških pristupa."
+      ]
+    },
+    {
+      "heading": "Uznapredovali rak",
+      "paragraphs": [
+        "Veći tumori ili oni koji su se proširili na obližnje tkivo obično se liječe radioterapijom u kombinaciji s kemoterapijom. Zračenje se može davati izvan tijela i iznutra postavljanjem radioaktivnog izvora blizu tumora. Liječenje obično traje nekoliko tjedana.",
+        "Nuspojave mogu uključivati umor, nadražaj crijeva i mjehura, suhoću ili suženje rodnice te ranu menopauzu kad su zahvaćeni jajnici. Noviji lijekovi, uključujući imunoterapiju, mogu se razmotriti za rak koji se vraća ili se proširio na druge organe."
+      ]
+    },
+    {
+      "heading": "Život nakon liječenja",
+      "paragraphs": [
+        "Redoviti kontrolni pregledi provjeravaju povratak bolesti i pomažu u zbrinjavanju nuspojava. Neke žene razviju limfedem, promjene u radu mjehura ili crijeva ili spolne teškoće. Fizioterapija dna zdjelice, vlažila za rodnicu i savjetovanje mogu pomoći, a simptome treba prijaviti umjesto ih trpjeti.",
+        "Emocionalna potpora jednako je važna. Strah od povratka bolesti, promjene slike o tijelu i zabrinutost zbog plodnosti česti su, a psihoonkološke službe, grupe podrške i bliski ljudi mogu pružiti pomoć."
+      ]
+    },
+    {
+      "heading": "Prevencija i probir",
+      "paragraphs": [
+        "Cijepljenje protiv humanog papilomavirusa, idealno prije početka spolne aktivnosti, uvelike smanjuje rizik od raka vrata maternice. Redoviti probir citološkim testom, HPV testom ili oboje otkriva promjene rano, kad se najbolje liječe.",
+        "Prestanak pušenja također smanjuje rizik. Žene koje su cijepljene ipak trebaju ići na probir jer cjepivo ne štiti od svakog tipa koji uzrokuje rak."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razumijevanje rezultata probira",
+      "text": "Zamislite da vaš probir pokazuje blage promjene stanica. Mogli biste pitati što rezultat znači, je li dovoljno ponovljeno testiranje za nekoliko mjeseci i koje simptome prijaviti u međuvremenu kako ne biste ostali u neizvjesnosti."
+    },
+    {
+      "title": "Vaganje želja o plodnosti",
+      "text": "Pretpostavite da imate 29 godina i rani rak vrata maternice, ali se nadate djeci. Mogli biste pitati onkološki konzilij je li prikladan zahvat koji čuva plodnost, kakav bi bio rizik povratka i ima li smisla uputnica specijalistu za plodnost prije liječenja."
+    }
+  ],
+  "questions": [
+    "U kojem je stadiju nenormalni nalaz ili rak i koje mogućnosti liječenja odgovaraju tome?",
+    "Kako bi liječenje moglo utjecati na moju plodnost, spolni život i rad mjehura ili crijeva?",
+    "Kakav će raspored kontrola i koje službe podrške biti dostupne nakon liječenja?"
+  ]
+}

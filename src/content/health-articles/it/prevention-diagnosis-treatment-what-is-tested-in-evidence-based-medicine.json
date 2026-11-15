@@ -1,0 +1,51 @@
+{
+  "title": "Prevenzione, diagnosi, trattamento: che cosa verifica la medicina basata sulle prove",
+  "intro": "La medicina basata sulle prove usa la migliore ricerca disponibile per giudicare se le misure sanitarie funzionano e se i loro benefici superano i danni. Considera l'intera gamma dell'assistenza medica: prevenire la malattia, individuarla e curarla. Capire i principali tipi di domande aiuta a interpretare le affermazioni e a decidere insieme al tuo team di cura.",
+  "sections": [
+    {
+      "heading": "Verificare la prevenzione",
+      "paragraphs": [
+        "La prevenzione mira a fermare la malattia prima che si verifichi. Gli esempi comprendono vaccini, programmi di stile di vita sano e farmaci assunti per ridurre il rischio. Gli studi chiedono se le persone che usano la misura sviluppano meno casi di malattia o complicanze di chi non la usa e se ci sono effetti collaterali per le persone sane, il che conta perché le persone sane hanno poco da guadagnare dal danno."
+      ]
+    },
+    {
+      "heading": "Verificare diagnosi e screening",
+      "paragraphs": [
+        "I test sono giudicati da quanto bene identificano chi ha una condizione e chi no, ma ancora più da se il loro uso porta a esiti migliori. Trovare una malattia prima non sempre aiuta e può portare a sovradiagnosi e trattamenti non necessari. Gli studi sullo screening confrontano gruppi a cui viene offerto lo screening con gruppi a cui non viene offerto, guardando decessi e danni."
+      ]
+    },
+    {
+      "heading": "Verificare il trattamento",
+      "paragraphs": [
+        "I trattamenti si testano al meglio in studi randomizzati, che li confrontano con il placebo o con le cure standard. I ricercatori misurano esiti che contano per i pazienti, come sopravvivenza, sintomi, funzione e qualità di vita, oltre agli effetti collaterali. Un trattamento che migliora un valore del sangue non è necessariamente benefico per la salute."
+      ]
+    },
+    {
+      "heading": "Bilanciare beneficio e danno",
+      "paragraphs": [
+        "Ogni intervento ha potenziali benefici e danni. Le prove aiutano a stimare quanto sia probabile ciascuno. I numeri assoluti, come quante persone su cento ne traggono beneficio, sono più informativi delle cifre relative. Contano anche le preferenze individuali, perché le persone danno valore diverso agli esiti."
+      ]
+    },
+    {
+      "heading": "Usare le prove nella pratica",
+      "paragraphs": [
+        "Linee guida e revisioni sistematiche riassumono le prove. I medici le combinano con l'esperienza e i desideri del paziente. Quando mancano le prove si dovrebbe riconoscere l'incertezza. Puoi chiedere l'entità del beneficio, i rischi, le alternative e la qualità degli studi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Interpretare i numeri",
+      "text": "Immagina che si dica che un farmaco riduce il rischio della metà. Potresti chiedere quante persone su cento ne trarrebbero beneficio in termini assoluti e quante avrebbero effetti collaterali."
+    },
+    {
+      "title": "Valutare lo screening",
+      "text": "Supponi di essere invitato a un programma di screening. Potresti chiedere che cosa può trovare il test, con quale frequenza dà falsi allarmi e quali danni potrebbero seguire."
+    }
+  ],
+  "questions": [
+    "Quali prove ci sono che questo test o trattamento migliori gli esiti che contano per me?",
+    "Quanto sono grandi i benefici e i rischi in numeri assoluti?",
+    "Esistono alternative, compreso non fare nulla per ora?"
+  ]
+}

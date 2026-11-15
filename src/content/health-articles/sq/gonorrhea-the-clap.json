@@ -1,0 +1,51 @@
+{
+  "title": "Gonorrea: testim, trajtim dhe kujdesi për partnerët",
+  "intro": "Gonorrea është infeksion bakterial seksual që prek organet gjenitale, rektumin, fytin ose sytë. Shumë infeksione nuk japin simptoma; pa trajtim mund të ketë komplikime dhe transmetim pa dijeni.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Mund të ketë djegie urinimi, sekrecione të pazakonta, dhimbje pelvike ose testikulare. Infeksionet e fytit dhe rektumit shpesh janë të heshtura. Simptomat nuk e dallojnë me siguri nga infeksione të tjera."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Testimi përdor urinë ose tamponë nga vendet e ekspozuara gjatë seksit; vetëm urina mund të humbasë infeksionet e fytit ose rektumit. Kultura ndihmon për rezistencën ndaj antibiotikëve, veçanërisht kur trajtimi dështon. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Mjeku zgjedh antibiotikun sipas rekomandimeve lokale aktuale dhe rezistencës. Mos përdorni tableta të mbetura ose ndani trajtim. Diskutoni teste të tjera, shtatzëninë dhe nevojën për konfirmim shërimi ose ritestim. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Shmangni seksin deri kur klinika thotë se është i sigurt, përfshirë kushtet e trajtimit të partnerëve. Njoftimi konfidencial parandalon riinfektimin. Prezervativët ulin rrezikun, por testimi i rregullt mund të mbetet i nevojshëm. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Dhimbja e fortë pelvike, ethet, testikuli i dhimbshëm i ënjtur, sekrecionet e syrit ose artikulacioni i nxehtë i ënjtur kërkojnë urgjencë. Simptomat pas trajtimit duan rivlerësim, jo përsëritje vetë të antibiotikut."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira nuk ka simptoma, por partneri është pozitiv. Shkon për testim dhe ndjek klinikën, pa supozuar se nuk është e infektuar."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni tregon ekspozimin oral që të merret parasysh tamponi i fytit, jo vetëm analiza e urinës."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

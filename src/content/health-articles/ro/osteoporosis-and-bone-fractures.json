@@ -1,0 +1,51 @@
+{
+  "title": "Osteoporoza și fracturile osoase",
+  "intro": "Osteoporoza este o afecțiune în care oasele pierd din densitate și rezistență, astfel încât se rup mai ușor, adesea după o cădere minoră. Se dezvoltă silențios în ani și este mai frecventă la femei după menopauză și la persoanele în vârstă. Exercițiile, alimentația și medicamentele pot reduce riscul de fracturi.",
+  "sections": [
+    {
+      "heading": "Cauze și factori de risc",
+      "paragraphs": [
+        "Osul este reconstruit continuu, iar odată cu vârsta, distrugerea depășește formarea. Riscul crește cu menopauza, antecedentele familiale, greutatea mică, fumatul, consumul mare de alcool, aportul scăzut de calciu și vitamina D, activitatea fizică redusă, folosirea îndelungată de corticosteroizi și boli precum poliartrita reumatoidă, boala tiroidiană sau boala celiacă."
+      ]
+    },
+    {
+      "heading": "Fracturi",
+      "paragraphs": [
+        "Fracturile tipice apar la coloană, la șold și la încheietura mâinii. Fracturile vertebrale pot provoca durere bruscă de spate, pierdere în înălțime sau postură aplecată, deși unele nu provoacă durere. O fractură de șold necesită de obicei operație și poate avea consecințe grave pentru independență, motiv pentru care prevenirea contează."
+      ]
+    },
+    {
+      "heading": "Evaluare",
+      "paragraphs": [
+        "Medicii iau în considerare factorii de risc și pot măsura densitatea osoasă cu o scanare specială cu raze X. Unele instrumente estimează riscul de fractură pe zece ani în funcție de vârstă, sex, greutate, fracturi anterioare și alți factori. Analizele de sânge caută cauze. Nu toate persoanele cu densitate scăzută au nevoie de medicamente, așa că evaluarea riscului ghidează deciziile."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Un aport adecvat de calciu și vitamina D, exercițiile cu greutate și de echilibru, renunțarea la fumat și limitarea alcoolului sunt baza. Medicamentele includ bifosfonații, care încetinesc pierderea osoasă, și alte medicamente care întăresc osul, administrate sub formă de tablete sau injecții. Tratamentul este de obicei pe termen lung și necesită controale, inclusiv îngrijire dentară înainte de unele medicamente. Efectele secundare diferă între medicamente și trebuie discutate."
+      ]
+    },
+    {
+      "heading": "Prevenirea căderilor",
+      "paragraphs": [
+        "Reducerea căderilor este la fel de importantă ca întărirea oaselor. Îndepărtați obstacolele, folosiți iluminat bun și încălțăminte antiderapantă, verificați-vă vederea, revizuiți medicamentele care provoacă amețeală și exersați antrenamentul de echilibru, precum tai chi. Protectoarele de șold pot ajuta în căminele de îngrijire."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Revizuirea riscului",
+      "text": "Imaginați-vă că v-ați rupt încheietura mâinii după o cădere minoră la șaizeci de ani. Ați putea întreba medicul despre o scanare a densității osoase, o evaluare a riscului și ce pași ar putea preveni o altă fractură."
+    },
+    {
+      "title": "Siguranța locuinței",
+      "text": "Presupuneți că părintele dumneavoastră în vârstă locuiește singur. L-ați putea ajuta să scoată covoarele libere, să adauge mânere și lumini de veghe și să programeze o revizuire a medicamentelor."
+    }
+  ],
+  "questions": [
+    "Care este riscul meu de fractură și am nevoie de tratament?",
+    "Ce medicament este potrivit, cât timp l-aș lua și care sunt efectele secundare?",
+    "Ce exerciții și schimbări în locuință mi-ar reduce riscul de cădere?"
+  ]
+}

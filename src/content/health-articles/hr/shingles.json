@@ -1,0 +1,52 @@
+{
+  "title": "Herpes zoster (pojasni herpes)",
+  "intro": "Herpes zoster je bolan osip uzrokovan ponovnom aktivacijom virusa vodenih kozica, koji ostaje uspavan u živčanim stanicama nakon preboljenih vodenih kozica. Obično se pojavljuje kao pojas mjehurića na jednoj strani tijela i zacjeljuje za nekoliko tjedana. Rano liječenje i cijepljenje mogu smanjiti komplikacije.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipično se nekoliko dana javlja pečenje, trnci ili bol na dijelu kože, a zatim crveni osip s nakupinama mjehurića ispunjenih tekućinom u obliku pojasa na jednoj strani trupa, lica ili drugog područja. Mjehurići se prekriju korom unutar oko deset dana. Neki ljudi imaju vrućicu, glavobolju i umor."
+      ]
+    },
+    {
+      "heading": "Tko ga dobiva",
+      "paragraphs": [
+        "Svatko tko je preboljela vodene kozice može dobiti herpes zoster, ali rizik raste s dobi, osobito nakon pedesete, te sa smanjenim imunitetom zbog bolesti, lijekova ili stresa. Herpes zoster se ne može uhvatiti od druge osobe, ali osoba s aktivnim mjehurićima može prenijeti virus vodenih kozica nekome tko nikada nije imao vodene kozice ni cjepivo."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Antivirusni lijek, započet unutar tri dana od pojave osipa, može smanjiti težinu i skratiti bolest te može sniziti rizik od trajne boli. Osobito se savjetuje osobama starijim od pedeset godina, onima s osipom na licu ili jakom boli te osobama sa smanjenim imunitetom. Lijekovi protiv bolova, hladni oblozi i široka odjeća ublažavaju nelagodu. Držite mjehuriće čistima i pokrivenima te izbjegavajte kontakt s trudnicama, novorođenčadi i osobama slabog imuniteta dok se ne prekriju korom."
+      ]
+    },
+    {
+      "heading": "Komplikacije i cijepljenje",
+      "paragraphs": [
+        "Neki ljudi razviju trajnu živčanu bol zvanu postherpetična neuralgija. Herpes zoster blizu oka može ugroziti vid i zahtijeva hitnu procjenu. Ostale komplikacije uključuju bakterijsku infekciju kože, paralizu lica i probleme sa sluhom.",
+        "Cjepivo smanjuje rizik od herpesa zostera i njegovih komplikacija te se preporučuje starijim odraslima i određenim mlađim osobama u riziku, u shemi s dvije doze. Pitajte liječnika je li prikladno za vas i pokrivaju li se troškovi."
+      ]
+    },
+    {
+      "heading": "Briga o sebi",
+      "paragraphs": [
+        "Odmor, blago ublažavanje boli i čista koža pomažu oporavku. Izbjegavajte češanje i javite liječniku ako se osip širi, postane vrlo bolan ili se osjećate loše. Većina ljudi potpuno se oporavi unutar nekoliko tjedana."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Brzo djelovanje",
+      "text": "Zamislite da osjetite pečenje na jednoj strani prsnog koša, a zatim vidite mjehuriće. Mogli biste istog dana kontaktirati liječnika i pitati za antivirusno liječenje."
+    },
+    {
+      "title": "Razmatranje cijepljenja",
+      "text": "Pretpostavite da imate šezdeset godina. Mogli biste pitati liječnika preporučuje li se cjepivo protiv herpesa zostera i koliko vam je doza potrebno."
+    }
+  ],
+  "questions": [
+    "Trebam li započeti antivirusno liječenje i koliko brzo?",
+    "Kako mogu zaštititi druge oko sebe dok imam mjehuriće?",
+    "Jesam li prikladan za cijepljenje protiv herpesa zostera?"
+  ]
+}

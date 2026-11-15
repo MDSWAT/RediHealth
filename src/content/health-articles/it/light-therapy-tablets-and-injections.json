@@ -1,0 +1,51 @@
+{
+  "title": "Fototerapia, compresse e iniezioni per l'eczema",
+  "intro": "Quando creme e cura della pelle non bastano a controllare la dermatite atopica, i medici possono prendere in considerazione trattamenti che agiscono su tutto il corpo o usano una luce speciale. Queste opzioni possono ridurre prurito e riacutizzazioni nell'eczema da moderato a grave, ma richiedono monitoraggio a causa di effetti collaterali e costi.",
+  "sections": [
+    {
+      "heading": "Quando si considera un trattamento più forte",
+      "paragraphs": [
+        "Il trattamento viene intensificato quando l'eczema è esteso o grave, sonno e vita quotidiana sono disturbati o i trattamenti topici non danno un controllo sufficiente. Prima di questo il medico verificherà che siano state provate la cura di base della pelle e l'uso corretto delle creme antinfiammatorie, oltre a fattori scatenanti e infezioni."
+      ]
+    },
+    {
+      "heading": "Fototerapia",
+      "paragraphs": [
+        "La fototerapia usa luce ultravioletta, di solito UVB a banda stretta, in una cabina più volte a settimana per alcune settimane. Riduce infiammazione e prurito in molte persone. Gli effetti collaterali comprendono arrossamento simile a una scottatura, pelle secca e, con l'uso ripetuto a lungo termine, un aumentato rischio di invecchiamento cutaneo e forse di tumore della pelle. Si indossa una protezione per gli occhi e il numero di sedute è limitato. Richiede visite regolari, che possono essere difficili con lavoro o scuola."
+      ]
+    },
+    {
+      "heading": "Compresse",
+      "paragraphs": [
+        "Farmaci come la ciclosporina sopprimono il sistema immunitario e possono controllare rapidamente l'eczema grave, ma possono influire su pressione e funzione renale e di solito si usano per periodi limitati con esami del sangue. Le compresse più recenti che bloccano molecole di segnalazione, chiamate inibitori JAK, possono essere efficaci ma comportano avvertenze su infezioni, coaguli di sangue e altri rischi, quindi si usano quando altre opzioni non sono adatte."
+      ]
+    },
+    {
+      "heading": "Iniezioni",
+      "paragraphs": [
+        "I farmaci biologici come dupilumab e tralokinumab colpiscono specifici segnali immunitari coinvolti nell'eczema. Vengono somministrati con un'iniezione sotto la pelle a intervalli di settimane, spesso a casa dopo istruzione. Sono spesso ben tollerati, ma possono verificarsi problemi agli occhi come arrossamento o congiuntivite e reazioni nel punto di iniezione. Sono generalmente prescritti da specialisti."
+      ]
+    },
+    {
+      "heading": "Scelta e monitoraggio",
+      "paragraphs": [
+        "L'opzione migliore dipende da età, salute, progetti di gravidanza, altre condizioni, gravità dell'eczema e preferenze. Continua a usare gli emollienti per tutto il tempo. Informa il medico di infezioni, vaccinazioni programmate o gravidanza. Servono controlli per valutare benefici ed effetti collaterali."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Valutare i fattori pratici",
+      "text": "Immagina che il medico proponga la fototerapia. Potresti chiedere quante visite a settimana servono, quanto tempo ci vuole per vedere un miglioramento e se puoi conciliarla con lavoro o scuola."
+    },
+    {
+      "title": "Confrontare le opzioni",
+      "text": "Supponi che vengano offerti sia un'iniezione sia una compressa. Potresti chiedere di efficacia, effetti collaterali, monitoraggio e che cosa succede se smetti."
+    }
+  ],
+  "questions": [
+    "Quale trattamento è più adatto al mio eczema e quali sono i suoi rischi?",
+    "Come saprò se funziona e quando riconsidereremo?",
+    "Come devo proseguire la cura della pelle durante il trattamento?"
+  ]
+}

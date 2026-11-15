@@ -1,0 +1,52 @@
+{
+  "title": "Roli i fshikëzës së tëmthit në tretje",
+  "intro": "Fshikëza e tëmthit ruan dhe përqendron bilën e prodhuar nga mëlçia. E dërgon për tretje por nuk e prodhon. Ky dallim shpjegon si vazhdon tretja pas heqjes së saj.",
+  "sections": [
+    {
+      "heading": "Ruajtja",
+      "paragraphs": [
+        "Mes vakteve bila hyn në fshikëz përmes kanalit. Heqja e ujit e përqendron; përmban kripëra dhe pigmente mbetjesh, krahas substancave të tjera."
+      ]
+    },
+    {
+      "heading": "Lëshimi",
+      "paragraphs": [
+        "Sinjalet pas ngrënies e tkurrin fshikëzën. Bila kalon nëpër kanale në zorrën e hollë; kripërat shpërndajnë yndyrat për tretje dhe përthithje."
+      ]
+    },
+    {
+      "heading": "Bllokimi",
+      "paragraphs": [
+        "Gurët mund të jenë pa simptoma ose të bllokojnë kanal. Vendi ka rëndësi: mund të sjellin dhimbje, inflamacion ose verdhëz. Vetëm dhimbja sipër barkut nuk identifikon organin."
+      ]
+    },
+    {
+      "heading": "Pas heqjes",
+      "paragraphs": [
+        "Mëlçia ende prodhon bilë që arrin në zorrë pa rezervuarin. Shumë njerëz tresin mirë; diarreja ose dhimbja e vazhdueshme kërkon kontroll, jo pranim si e pashmangshme ose dietë ekstreme të përhershme."
+      ]
+    },
+    {
+      "heading": "Ndihma",
+      "paragraphs": [
+        "Dhimbja e fortë ose e vazhdueshme sipër barkut kërkon vlerësim. Me ethe, verdhëz ose të vjella të përsëritura kërkon urgjencë. Shmangni pastrimet shtëpiake për gurë të dyshuar.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira mendon se operacioni ndal bilën. Pyet si arrin bila e mëlçisë në zorrë pas heqjes."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ka dhimbje me ethe dhe sy të verdhë. Kërkon ndihmë urgjente, jo pije pastruese."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

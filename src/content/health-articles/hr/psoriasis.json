@@ -1,0 +1,51 @@
+{
+  "title": "Psorijaza",
+  "intro": "Psorijaza je dugotrajno upalno stanje kože u kojem se stanice kože razmnožavaju prebrzo, stvarajući crvene, ljuskave, ponekad svrbežne mrlje. Nije zarazna. Slijedi tijek pogoršanja i mirnijih razdoblja, a postoje mnoga učinkovita liječenja, od krema do modernih injekcijskih lijekova.",
+  "sections": [
+    {
+      "heading": "Simptomi i vrste",
+      "paragraphs": [
+        "Najčešći oblik je plak psorijaza, s oštro ograničenim crvenim mrljama prekrivenim srebrnastim ljuskama na laktovima, koljenima, vlasištu i donjem dijelu leđa. Drugi oblici uključuju gutatnu psorijazu, s malim kapljicama nakon infekcije grla, inverznu psorijazu u kožnim naborima, pustularnu psorijazu i promjene noktiju kao što je točkasto udubljenje. Psorijaza može zahvatiti i zglobove."
+      ]
+    },
+    {
+      "heading": "Uzroci i okidači",
+      "paragraphs": [
+        "Psorijaza nastaje zbog prekomjerno aktivnog imunološkog odgovora u kombinaciji s genetskim čimbenicima. Pogoršanja mogu pokrenuti infekcije, ozljeda kože, stres, određeni lijekovi, pušenje, alkohol i pretilost. Ljudi s psorijazom imaju veći rizik od kardiovaskularne bolesti, dijabetesa i depresije pa je cjelokupno zdravlje važno."
+      ]
+    },
+    {
+      "heading": "Liječenje blage psorijaze",
+      "paragraphs": [
+        "Hidratantne kreme omekšavaju ljuske. Kreme s kortikosteroidima, derivatima vitamina D ili kombinacijom smanjuju upalu i ljuštenje. Salicilna kiselina uklanja ljuske. Liječenje se nanosi prema uputama kako bi se izbjeglo stanjivanje kože. Psorijaza vlasišta može zahtijevati posebne šampone i otopine."
+      ]
+    },
+    {
+      "heading": "Liječenje umjerene do teške psorijaze",
+      "paragraphs": [
+        "Fototerapija ultraljubičastim svjetlom je učinkovita. Tablete kao što su metotreksat, ciklosporin ili novije male molekule potiskuju imunološki sustav i zahtijevaju praćenje. Biološki lijekovi, koji se daju injekcijom, ciljaju specifične imunološke signale i često dramatično očiste kožu, ali povećavaju rizik od infekcija i zahtijevaju probir na tuberkulozu i hepatitis. Izbor ovisi o težini, zahvaćenosti zglobova, drugim bolestima i željama."
+      ]
+    },
+    {
+      "heading": "Život s psorijazom",
+      "paragraphs": [
+        "Njega kože, izbjegavanje okidača, prestanak pušenja, smanjenje alkohola, gubitak težine ako je potreban i upravljanje stresom pomažu. Psorijaza može utjecati na samopoštovanje i odnose, a grupe podrške i psihološka pomoć su vrijedne. Recite liječniku ako vas bole ili otječu zglobovi jer rano liječenje psorijatičnog artritisa sprječava oštećenje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planiranje liječenja",
+      "text": "Zamislite da vam se mrlje stalno vraćaju na laktovima. Mogli biste pitati o kombiniranoj kremi, koliko dugo je koristiti i što učiniti ako se pogoršanja vrate."
+    },
+    {
+      "title": "Razgovor o boli u zglobovima",
+      "text": "Pretpostavite da vam prsti postanu otečeni i ukočeni ujutro. Mogli biste reći dermatologu i zatražiti uputnicu reumatologu."
+    }
+  ],
+  "questions": [
+    "Koliko je teška moja psorijaza i koje liječenje mi odgovara?",
+    "Koji su rizici jačih lijekova i kako se prate?",
+    "Može li moja bol u zglobovima biti povezana s psorijazom?"
+  ]
+}

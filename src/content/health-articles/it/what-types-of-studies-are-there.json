@@ -1,0 +1,51 @@
+{
+  "title": "Che tipi di studi esistono",
+  "intro": "La ricerca medica usa diversi tipi di studi per rispondere a domande diverse. Alcuni mettono alla prova se un trattamento funziona, altri guardano alle cause di una malattia o a quanto è comune. Conoscere i tipi principali aiuta a giudicare quanto sia affidabile un risultato.",
+  "sections": [
+    {
+      "heading": "Studi randomizzati controllati",
+      "paragraphs": [
+        "In uno studio randomizzato controllato i partecipanti sono assegnati a caso a ricevere il trattamento in prova o un confronto, come un placebo o le cure standard. Decide il caso, così che i gruppi siano simili. Spesso né i partecipanti né i ricercatori sanno chi riceve che cosa, il che si chiama cecità. Questi studi sono il modo migliore per mettere alla prova se un trattamento funziona."
+      ]
+    },
+    {
+      "heading": "Studi osservazionali",
+      "paragraphs": [
+        "Gli studi di coorte seguono gruppi di persone nel tempo per vedere chi sviluppa una malattia, per esempio confrontando fumatori e non fumatori. Gli studi caso-controllo confrontano persone con una malattia con persone simili senza di essa, cercando a ritroso le differenze. Gli studi trasversali misurano una condizione in un solo momento. Possono mostrare associazioni ma non provare la causa, perché possono essere coinvolti altri fattori."
+      ]
+    },
+    {
+      "heading": "Altri disegni",
+      "paragraphs": [
+        "I casi clinici e le serie di casi descrivono pochi pazienti e possono suggerire idee ma sono una prova debole. Gli studi di accuratezza diagnostica verificano quanto bene un esame individua la malattia. Gli studi qualitativi esplorano le esperienze con interviste. Gli studi di laboratorio e sugli animali esplorano i meccanismi ma non sempre valgono per le persone."
+      ]
+    },
+    {
+      "heading": "Revisioni",
+      "paragraphs": [
+        "Una revisione sistematica raccoglie e valuta tutti gli studi su una domanda e una metanalisi ne combina i numeri. Danno il quadro più completo, a patto che gli studi inclusi siano buoni."
+      ]
+    },
+    {
+      "heading": "Giudicare gli studi",
+      "paragraphs": [
+        "Guarda il numero di partecipanti, come sono stati formati i gruppi, quanto è durato il follow-up, se i risultati sono significativi per i pazienti e chi ha pagato lo studio. Uno studio sui topi o un singolo piccolo studio non devono cambiare ciò che fai. Chiedi al medico di spiegare che cosa uno studio significa per te."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Leggere una notizia",
+      "text": "Immagina che un titolo dica che il caffè previene le malattie. Potresti controllare se lo studio ha seguito delle persone o le ha randomizzate."
+    },
+    {
+      "title": "Chiedere dell'affidabilità",
+      "text": "Supponi che uno studio suggerisca che un integratore funziona. Potresti chiedere quanto era grande e se è stato ripetuto."
+    }
+  ],
+  "questions": [
+    "Che tipo di studio sostiene questa affermazione?",
+    "Quanto sono solide le prove rispetto ad altri studi?",
+    "I risultati valgono per persone come me?"
+  ]
+}

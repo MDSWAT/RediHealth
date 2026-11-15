@@ -1,0 +1,51 @@
+{
+  "title": "Menopauza",
+  "intro": "Menopauza este momentul în care menstruația încetează definitiv, de obicei în jurul vârstei de cincizeci de ani. Anii dinainte, numiți perimenopauză, aduc schimbări hormonale care pot provoca bufeuri, probleme de somn și schimbări de dispoziție. Este o etapă naturală a vieții, iar pentru cele care găsesc simptomele greu de suportat există multe opțiuni.",
+  "sections": [
+    {
+      "heading": "Ce se întâmplă în corp",
+      "paragraphs": [
+        "Ovarele produc treptat mai puțin estrogen și progesteron. Menstruațiile devin neregulate înainte de a înceta. Menopauza este confirmată după douăsprezece luni fără menstruație. Perimenopauza poate dura câțiva ani, iar simptomele variază mult; unele femei au puține, altele multe."
+      ]
+    },
+    {
+      "heading": "Simptome frecvente",
+      "paragraphs": [
+        "Bufeurile și transpirațiile nocturne sunt cele mai cunoscute simptome. Altele includ tulburările de somn, schimbările de dispoziție, iritabilitatea, dificultatea de concentrare, durerile articulare, uscăciunea vaginală, disconfortul în timpul actului sexual, simptomele urinare și scăderea libidoului. Sângerările abundente sau foarte neregulate, sângerările după menopauză sau între menstruații trebuie evaluate de un medic."
+      ]
+    },
+    {
+      "heading": "Ce puteți face singură",
+      "paragraphs": [
+        "Exercițiile regulate, o alimentație echilibrată, limitarea alcoolului și a cafeinei, renunțarea la fumat și îmbrăcatul în straturi pot ajuta. Dormitoarele răcoroase, tehnicile de relaxare și terapia cognitiv-comportamentală ameliorează bufeurile și problemele de somn. Hidratanții și lubrifianții vaginali ameliorează uscăciunea."
+      ]
+    },
+    {
+      "heading": "Tratamente medicale",
+      "paragraphs": [
+        "Terapia hormonală de menopauză este cel mai eficient tratament pentru bufeuri și ajută și simptomele vaginale și protejează oasele. Are riscuri care depind de tip, doză, durată, precum și de vârsta și sănătatea femeii, cum ar fi un risc ceva mai mare de cheaguri de sânge și de cancer de sân la folosirea pe termen lung a unor combinații. Estrogenul vaginal local este eficient pentru simptomele vaginale, cu absorbție minimă. Medicamentele nehormonale pot ajuta la bufeuri când hormonii nu sunt potriviți."
+      ]
+    },
+    {
+      "heading": "Sănătatea pe termen lung",
+      "paragraphs": [
+        "După menopauză, oasele pierd mai repede din densitate, iar riscul de boli de inimă crește. Sunt rezonabile exercițiile cu greutate, suficient calciu și vitamina D, evitarea fumatului și verificarea tensiunii arteriale și a colesterolului. Contracepția este în continuare necesară o perioadă după ultima menstruație, până la confirmarea menopauzei."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru o consultație",
+      "text": "Imaginați-vă că vă treziți noaptea leoarcă de transpirație. Ați putea ține un jurnal al simptomelor timp de două săptămâni, ați putea nota întrebările despre terapia hormonală și antecedentele familiale și le-ați putea duce la programare."
+    },
+    {
+      "title": "Discutarea intimității",
+      "text": "Presupuneți că actul sexual a devenit dureros. Ați putea întreba medicul despre estrogenul vaginal și lubrifianți și ați putea discuta cu partenerul."
+    }
+  ],
+  "questions": [
+    "Ce tratamente s-ar potrivi simptomelor și istoricului meu medical?",
+    "Care sunt beneficiile și riscurile terapiei hormonale în situația mea?",
+    "Cum îmi pot proteja oasele și inima după menopauză?"
+  ]
+}

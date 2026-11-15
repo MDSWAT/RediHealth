@@ -1,0 +1,51 @@
+{
+  "title": "Glavobolje: obrasci, liječenje i znakovi upozorenja",
+  "intro": "Glavobolja ima mnogo uzroka. Tenzijska glavobolja i migrena česti su primarni poremećaji; infekcija, ozljeda ili druga bolest uzrokuju sekundarnu glavobolju. Obrazac i prateći znakovi usmjeravaju skrb.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Zapišite pritisak ili pulsiranje, mjesto, trajanje, okidače i učinak na aktivnost. Mučnina, osjetljivost na svjetlo ili promjene vida važne su; jedan znak ne potvrđuje migrenu svima."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Dnevnik uključuje dane boli i sve analgetike. Pregled usmjerava pretrage; rutinsko snimanje nije potrebno za svaki poznat stabilan obrazac. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Liječenje ovisi o dijagnozi. Jednostavni analgetici pomažu nekim napadajima; drugima trebaju specifični ili preventivni lijekovi za migrenu. Česti analgetici mogu sami održavati glavobolju: razgovarajte o nadziranom planu umjesto povećanja doza. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Redoviti obroci, hidracija, san i podnošljivo kretanje podržavaju skrb. Ne krivite se za svaki napadaj i ne uvodite široke zabrane prema općim popisima okidača. Prilagodbe škole ili posla mogu smanjiti ograničenja. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Nagla najjača glavobolja, nova slabost, zbunjenost, vrućica s ukočenim vratom, gubitak vida ili bol nakon veće ozljede traže hitnu procjenu. Nova jaka bol u trudnoći ili nakon poroda također zahtijeva brzu pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira bilježi dane boli i analgetike. Pregled otkriva rastuću upotrebu i vodi dogovorenoj promjeni umjesto jačih dnevnih tableta."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arbenova poznata glavobolja naglo postaje vrlo jaka uz slabost ruke. Traži hitnu pomoć umjesto liječenja kao običnog napadaja."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Gingivita și parodontita: protejarea susținerii dinților",
+  "intro": "Gingivita este inflamația gingiilor, frecvent produsă de placă. Parodontita afectează țesuturile profunde de susținere și osul. Poate avansa cu durere redusă, deci absența durerii dentare nu dovedește sănătatea gingiilor.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Sângerarea la periaj, roșeața, mirosul persistent, retragerea gingiilor ori mobilitatea dentară necesită atenție. Fumatul poate masca sângerarea și crește riscul; diabetul și anumite medicamente influențează gingiile."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Stomatologul verifică placa, adâncimea pungilor, sângerarea și stabilitatea; radiografiile selectate evaluează pierderea osoasă. Explicați fumatul, diabetul, medicamentele și dificultățile de curățare. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Îndepărtarea profesională a depozitelor deasupra și sub gingie, igiena acasă și întreținerea sunt esențiale. Uneori este necesară chirurgie; antibioticele nu înlocuiesc de rutină curățarea sau planul stomatologic. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Periați blând cu pastă fluorurată și curățați interdentar cu instrumente potrivite spațiilor. Cereți demonstrație. Nu opriți igiena doar fiindcă gingiile inflamate sângerează și cereți sprijin pentru renunțarea la fumat. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Programați consult pentru sângerare persistentă ori dinți mobili. Umflarea feței, febra sau durerea în agravare cer sfat stomatologic urgent; dificultatea respiratorie ori la înghițire asociată umflării este urgență."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira evită zona care sângerează. O demonstrație stomatologică o ajută să curețe blând în timpul tratării inflamației."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben simte dinții stabili după tratament. Continuă întreținerea deoarece confortul singur nu arată dacă pungile gingivale sunt controlate."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

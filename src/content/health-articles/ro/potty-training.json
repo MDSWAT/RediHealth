@@ -1,0 +1,51 @@
+{
+  "title": "Învățarea la oliță",
+  "intro": "Învățarea la oliță este procesul prin care ajutați un copil să învețe să folosească toaleta. Copiii sunt pregătiți la vârste diferite, de obicei între aproximativ doi și patru ani. Păstrarea calmului, urmărirea semnelor de pregătire și evitarea presiunii duc de obicei la cele mai bune rezultate, iar accidentele sunt o parte normală a învățării.",
+  "sections": [
+    {
+      "heading": "Semne de pregătire",
+      "paragraphs": [
+        "Copiii sunt de obicei pregătiți când rămân uscați câteva ore, arată interes pentru toaletă, pot urma instrucțiuni simple, pot trage hainele în sus și în jos, observă când trebuie să meargă și arată disconfort în scutecul murdar. Controlul intestinului și al vezicii depinde de maturizarea sistemului nervos al copilului, așa că începerea prea devreme prelungește adesea doar procesul."
+      ]
+    },
+    {
+      "heading": "Începutul",
+      "paragraphs": [
+        "Alegeți o perioadă calmă, fără schimbări majore, precum un nou frate sau o mutare. Oferiți o oliță sau un reductor de toaletă pentru copii, cu un scăunel pentru picioare. Lăsați copilul să se obișnuiască cu ea, să stea mai întâi îmbrăcat, și introduceți ședințe regulate după mese. Folosiți haine ușor de scos și explicați simplu ce trebuie făcut. Lăudați eforturile și păstrați o atitudine relaxată."
+      ]
+    },
+    {
+      "heading": "Gestionarea accidentelor",
+      "paragraphs": [
+        "Accidentele sunt normale, mai ales când copilul este ocupat, bolnav sau agitat. Rămâneți calm, curățați fără reproșuri și încurajați copilul să încerce din nou. Pedeapsa, rușinarea și presiunea pot provoca teamă și reținerea scaunului. Uscăciunea de noapte vine mai târziu, adesea la ani după controlul de zi."
+      ]
+    },
+    {
+      "heading": "Dificultăți frecvente",
+      "paragraphs": [
+        "Unii copii refuză olița sau rețin scaunul, ceea ce poate duce la constipație și durere. Oferiți fibre, apă și momente relaxate la toaletă și opriți antrenamentul o vreme, dacă este nevoie. Constipația sau durerea la eliminarea scaunului necesită sfat medical."
+      ]
+    },
+    {
+      "heading": "Când să cereți sfat",
+      "paragraphs": [
+        "Vorbiți cu pediatrul dacă copilul are peste patru ani și încă nu este uscat ziua, dacă are o regresie bruscă după ce fusese învățat, arsuri la urinare, picurare continuă, urinare foarte frecventă sau constipație persistentă. Udarea patului după vârsta de cinci sau șase ani este frecventă și apare adesea în familii, iar ajutorul este disponibil dacă îl supără pe copil."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Stabilirea unei rutine",
+      "text": "Imaginați-vă că copilul dumneavoastră de doi ani și jumătate arată interes pentru toaletă. Ați putea introduce olița după mese, ați putea lăuda statul pe ea chiar și fără succes și ați putea ține haine de schimb la îndemână."
+    },
+    {
+      "title": "Reacția la refuz",
+      "text": "Presupuneți că copilul plânge de fiecare dată când pomeniți de oliță. Ați putea face o pauză de câteva săptămâni, ați putea evita presiunea și ați putea încerca din nou când pare pregătit."
+    }
+  ],
+  "questions": [
+    "Este copilul meu pregătit să înceapă și care este un calendar realist?",
+    "Cum pot ajuta un copil care reține scaunul sau refuză?",
+    "Când sunt accidentele sau udarea patului un motiv să cer ajutor medical?"
+  ]
+}

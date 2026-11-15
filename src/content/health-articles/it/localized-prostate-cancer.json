@@ -1,0 +1,51 @@
+{
+  "title": "Tumore della prostata localizzato",
+  "intro": "Il tumore della prostata è uno dei tumori più comuni negli uomini. In molti casi viene scoperto quando è ancora confinato alla prostata e cresce lentamente. Poiché il trattamento può causare effetti collaterali come incontinenza e problemi di erezione, gli uomini hanno spesso diverse scelte, tra cui sorveglianza attiva, chirurgia e radioterapia.",
+  "sections": [
+    {
+      "heading": "Come viene scoperto",
+      "paragraphs": [
+        "Il tumore della prostata può essere sospettato dopo un esame del sangue del PSA elevato o un reperto anomalo alla visita. La risonanza magnetica e una biopsia confermano la diagnosi e stabiliscono il grado del tumore. Il punteggio di Gleason o il gruppo di grado descrive quanto le cellule appaiano aggressive e, insieme al livello di PSA e all'estensione del tumore, determina la categoria di rischio."
+      ]
+    },
+    {
+      "heading": "Sorveglianza attiva e attesa vigile",
+      "paragraphs": [
+        "Per i tumori a basso rischio il trattamento può non essere necessario subito. La sorveglianza attiva significa esami del PSA regolari, scansioni e talvolta biopsie ripetute, con avvio del trattamento se il tumore progredisce. Questo evita effetti collaterali a molti uomini mantenendo la possibilità di guarigione. L'attesa vigile è un approccio meno intensivo per uomini anziani o con altre malattie, che tratta solo i sintomi."
+      ]
+    },
+    {
+      "heading": "Chirurgia",
+      "paragraphs": [
+        "La prostatectomia radicale rimuove la prostata, a volte con i linfonodi vicini, spesso con tecniche laparoscopiche o robotiche. Gli effetti possibili comprendono perdite di urina e disfunzione erettile, che spesso migliorano nell'arco di mesi ma possono persistere. Gli esercizi del pavimento pelvico prima e dopo l'intervento possono aiutare."
+      ]
+    },
+    {
+      "heading": "Radioterapia",
+      "paragraphs": [
+        "La radioterapia esterna colpisce la prostata nell'arco di diverse settimane, oppure in meno sedute a dose più alta, a volte combinata con terapia ormonale. La radioterapia interna colloca sorgenti radioattive nella prostata. Gli effetti collaterali comprendono irritazione di intestino e vescica, problemi di erezione e affaticamento, che possono comparire mesi o anni dopo."
+      ]
+    },
+    {
+      "heading": "Prendere una decisione",
+      "paragraphs": [
+        "Le prove suggeriscono che per molti uomini con tumore a basso rischio i risultati sono simili tra le opzioni in termini di sopravvivenza a dieci anni, mentre gli effetti collaterali differiscono. Considera età, salute, valori personali, come valuti gli effetti collaterali e i tuoi sentimenti riguardo al monitoraggio. Chiedi un secondo parere o di parlare con un infermiere specializzato. Anche i gruppi di sostegno possono aiutare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Valutare gli effetti collaterali",
+      "text": "Immagina di avere 62 anni e un tumore della prostata a basso rischio. Potresti chiedere all'urologo quanto sia probabile che ciascun trattamento causi perdite o problemi di erezione e che cosa comporti il programma di sorveglianza attiva."
+    },
+    {
+      "title": "Coinvolgere il partner",
+      "text": "Supponi che il trattamento possa influire sull'intimità. Potresti portare il partner alla visita successiva e chiedere di opzioni di riabilitazione e di consulenza."
+    }
+  ],
+  "questions": [
+    "Il mio tumore è a rischio basso, intermedio o alto e che cosa significa per il trattamento?",
+    "Quali sono i probabili effetti collaterali di ciascuna opzione nel mio caso?",
+    "Che cosa comporterebbe la sorveglianza attiva e quando inizierebbe il trattamento?"
+  ]
+}

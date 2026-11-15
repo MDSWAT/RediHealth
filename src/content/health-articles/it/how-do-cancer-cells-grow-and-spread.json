@@ -1,0 +1,51 @@
+{
+  "title": "Come crescono e si diffondono le cellule tumorali",
+  "intro": "Il cancro nasce da cambiamenti che permettono crescita e sopravvivenza anomale. Non è una sola malattia. Comprenderlo spiega esami e cure, senza predire l’esito personale.",
+  "sections": [
+    {
+      "heading": "Perdita del controllo",
+      "paragraphs": [
+        "Le cellule normali rispondono a divisione, riparazione e morte. Quelle tumorali acquisiscono cambiamenti del controllo. Molti nascono durante la vita e non sono ereditari: diagnosi non significa colpa."
+      ]
+    },
+    {
+      "heading": "Crescita locale",
+      "paragraphs": [
+        "Una massa benigna non invade come una maligna, pur causando problemi. Le cellule maligne entrano nei tessuti e alterano funzioni. Alcuni tumori del sangue non formano un’unica massa solida."
+      ]
+    },
+    {
+      "heading": "Diffusione",
+      "paragraphs": [
+        "Le cellule viaggiano con linfa o sangue e formano metastasi. Un tumore mammario nell’osso resta mammario, non automaticamente nuovo cancro osseo. Linfonodi ingrossati da soli non provano diffusione."
+      ]
+    },
+    {
+      "heading": "Esami",
+      "paragraphs": [
+        "La biopsia identifica cellule e caratteristiche; immagini valutano estensione. Lo stadio descrive diffusione, il grado aspetto microscopico. Dati molecolari guidano cure, ma nessun test risponde a tutto."
+      ]
+    },
+    {
+      "heading": "Usare le informazioni",
+      "paragraphs": [
+        "Chiedere origine, conferme e incertezze. Cure locali, sistemiche o combinate hanno ruoli diversi. Nuovi sintomi gravi richiedono visita, non attribuire ogni dolore a progressione o affidarsi a diete anticancro non provate. Prima della visita, annotate quando è iniziato il sintomo, cosa lo migliora o peggiora e come influisce sulle attività abituali. Portate i referti precedenti, se disponibili. Chiedete al professionista di collegare la spiegazione ai vostri riscontri: una descrizione generale non stabilisce una diagnosi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira sente di un altro organo coinvolto. Chiede metastasi o nuova diagnosi prima di interpretare la cura."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben chiede stadio e grado separatamente senza considerarli identico rischio."
+    }
+  ],
+  "questions": [
+    "Quali passaggi sarebbero più chiari con un diagramma?",
+    "Cosa spiega questo testo e cosa non può prevedere?",
+    "Il mio dubbio specifico richiede valutazione professionale?"
+  ]
+}

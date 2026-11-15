@@ -1,0 +1,51 @@
+{
+  "title": "Migrena",
+  "intro": "Migrena është një gjendje e zakonshme neurologjike që shkakton sulme të përsëritura të dhimbjes së kokës mesatare deri të rëndë, shpesh me të përzier dhe ndjeshmëri ndaj dritës e zërit. Sulmet zgjasin orë deri ditë. Edhe pse nuk mund të shërohet, barnat, masat e stilit të jetesës dhe ndërgjegjësimi për nxitësit mund të ulin sa shpesh dhe sa fort ju prek.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Një dhimbje koke migrene është zakonisht në njërën anë dhe pulsuese, e përkeqësuar nga lëvizja. Shumë njerëz ndiejnë të përziera, vjellin dhe shmangin dritën, zhurmën e erërat. Disa kanë një aurë paraprakisht: çrregullime të shikimit si vija zigzag, ndjesi therjeje ose vështirësi në të folur që zgjat deri në një orë. Një fazë paralajmëruese me gogësitje, ndryshime të gjendjes shpirtërore ose dëshira për ushqim mund të paraprijë sulmet."
+      ]
+    },
+    {
+      "heading": "Shkaqet dhe nxitësit",
+      "paragraphs": [
+        "Migrena përfshin ndryshime në aktivitetin nervor e enët e gjakut të trurit dhe një prirje trashëgohet në familje. Nxitësit e mundshëm përfshijnë stresin, gjumin e parregullt, vaktet e anashkaluara, ndryshimet hormonale, disa ushqime, alkoolin, dritat e forta dhe ndryshimet e motit. Nxitësit ndryshojnë dhe një ditar i dhimbjeve të kokës ndihmon të identifikohen të tuajt."
+      ]
+    },
+    {
+      "heading": "Trajtimi i një sulmi",
+      "paragraphs": [
+        "Merrni ilaçin herët në një sulm. Qetësuesit e thjeshtë si ibuprofeni, aspirina ose paracetamoli mund të funksionojnë për sulme të lehta deri mesatare, ndonjëherë me një ilaç kundër së përzierës. Triptanët veprojnë posaçërisht te migrena dhe përdoren në sulme më të rënda. Pushimi në një dhomë të errët e të qetë ndihmon. Përdorimi i qetësuesve më shumë se rreth dhjetë ditë në muaj mund të çojë në dhimbje koke nga abuzimi me barnat."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Trajtimi parandalues merret në konsideratë me sulme të shpeshta ose paaftësuese. Opsionet përfshijnë disa barna për tensionin e gjakut, antiepileptikë, antidepresivë dhe antitrupa më të rinj kundër një molekule të quajtur CGRP, të dhënë me injeksion. Qasjet pa ilaçe përfshijnë gjumë të rregullt, ushtrime, relaksim, biofidbek e akupunkturë, që ndihmojnë disa njerëz."
+      ]
+    },
+    {
+      "heading": "Kur të kërkoni ndihmë urgjente",
+      "paragraphs": [
+        "Kërkoni kujdes të menjëhershëm për një dhimbje koke të papritur, të rëndë, të ndryshme nga çdo e mëparshme, dhimbje koke me ethe e qafë të ngurtë, konfuzion, dobësi, vështirësi në të folur, humbje shikimi ose dhimbje koke pas një lëndimi në kokë. Dhimbjet e reja të kokës pas moshës pesëdhjetë vjeç kërkojnë gjithashtu vlerësim. Migrena me aurë e rrit pak rrezikun e goditjes në tru, veçanërisht me duhan dhe disa kontraceptivë hormonalë, prandaj diskutojeni me mjekun."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mbajtja e një ditari",
+      "text": "Imagjinoni që keni dy sulme në muaj. Mund të regjistroni datat, ushqimin, gjumin, stresin, ciklin menstrual dhe trajtimin dhe ta ndani modelin me mjekun."
+    },
+    {
+      "title": "Trajtimi herët",
+      "text": "Supozoni që sulmet tuaja shpesh fillojnë me aurë vizuale. Mund ta mbani ilaçin e përshkruar pranë dhe ta merrni me shenjën e parë të dhimbjes së kokës siç këshillohet."
+    }
+  ],
+  "questions": [
+    "Cili ilaç është më i miri për sulmet e mia dhe kur duhet ta marr?",
+    "A do të më ndihmonte trajtimi parandalues dhe cilat janë efektet anësore?",
+    "Cilat simptoma tregojnë se kam nevojë për vlerësim urgjent?"
+  ]
+}

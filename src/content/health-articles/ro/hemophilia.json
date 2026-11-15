@@ -1,0 +1,51 @@
+{
+  "title": "Hemofilia: prevenirea și răspunsul la sângerare",
+  "intro": "Hemofilia afectează proteinele coagulării și poate produce sângerare prelungită ori internă. Formele ereditare sunt mai frecvente la bărbați, dar și femeile pot sângera semnificativ. Gravitatea variază și specialistul contează.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Sângerarea articulară ori musculară poate da durere, umflare și mișcare redusă fără rană vizibilă. Repetarea poate deteriora articulația; nu apreciați gravitatea numai după sângele exterior."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Analizele specializate stabilesc tipul și nivelul factorului, cu inhibitori când este indicat. Descrieți familia, operațiile și sângerarea dentară. Consilierea genetică explică moștenirea fără să presupună gravitate identică în familie. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Tratamentul poate înlocui factorul ori folosi alte medicamente specializate, preventiv sau în sângerare. Planul depinde de tratamentul exact și inhibitori; nu substituiți și nu așteptați umflare dramatică. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Purtați informațiile și organizați stomatologia, operațiile și activitatea mai sigură cu echipa. Învățați administrarea acasă doar supravegheat. Verificați calmantele: aspirina și unele antiinflamatoare cresc riscul sângerării. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Trauma capului, cefaleea severă, vărsăturile, umflarea gâtului, dispneea ori suspiciunea de hemoragie internă majoră cer urgență și planul prescris imediat. Contactați prompt echipa pentru posibilă sângerare articulară chiar fără vânătaie."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira spune dentistului istoricul înainte de extracție, permițând coordonarea cu specialistul, nu descoperirea problemei ulterior."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben recunoaște articulația caldă dureroasă drept posibilă sângerare și urmează planul, fără să continue sportul doar fiindcă nu vede rană."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

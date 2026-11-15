@@ -5,7 +5,6 @@ import { cacheRoot, contentRoot, topics } from "./source";
 
 async function main() {
   const langs = ["en", "ro", "sq", "it", "ru", "hr", "rom"] as const;
-  const baseLangs = langs.slice(0, 5);
   const index = [];
   const statusPath = new URL("editorial-status.json", contentRoot);
   const previous = existsSync(statusPath) ? JSON.parse(await readFile(statusPath, "utf8")) : {};
@@ -39,7 +38,8 @@ async function main() {
       hashes[lang] = hash;
     }
     const availableLanguages = langs.filter(lang => Object.hasOwn(hashes, lang));
-    const available = baseLangs.every(lang => availableLanguages.includes(lang));
+    // English is the baseline; other languages fall back to labelled English until translated.
+    const available = availableLanguages.includes("en");
     for (const lang of langs) {
       if (available && availableLanguages.includes(lang)) availableByLanguage[lang]++;
       else missingByLanguage[lang].push(topic.id);

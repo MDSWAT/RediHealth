@@ -1,0 +1,53 @@
+{
+  "title": "Hiperparatireoza",
+  "intro": "Doštitne žlijezde su četiri sitne žlijezde na vratu koje kontroliraju razinu kalcija u krvi. Kod hiperparatireoze jedna ili više njih stvara previše paratiroidnog hormona, što povisuje kalcij u krvi i može oslabiti kosti. Stanje se često otkrije slučajno krvnom pretragom, a mnogi ljudi imaju malo simptoma.",
+  "sections": [
+    {
+      "heading": "Vrste i uzroci",
+      "paragraphs": [
+        "Kod primarne hiperparatireoze obično jedan dobroćudni izraštaj zvan adenom uzrokuje da žlijezda stvara previše hormona. Rjeđe je povećano nekoliko žlijezda. Kod sekundarne hiperparatireoze žlijezde rade prekovremeno jer neki drugi problem, kao što je bolest bubrega ili teški manjak vitamina D, snižava kalcij."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Mnogi ljudi ne osjećaju ništa. Drugi imaju umor, slabost, loše raspoloženje, teškoće s koncentracijom, pojačanu žeđ i mokrenje, zatvor, bolove u kostima i zglobovima ili ponavljajuće bubrežne kamence. S vremenom kosti mogu postati tanje, a rizik od prijeloma raste. Vrlo visoke razine kalcija mogu uzrokovati smetenost i nepravilan rad srca i zahtijevaju hitno liječenje."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Krvne pretrage pokazuju visok kalcij uz visok ili neodgovarajuće normalan paratiroidni hormon. Liječnici provjeravaju i vitamin D i funkciju bubrega te često mjere gustoću kostiju i traže bubrežne kamence. Ultrazvuk ili druge slikovne pretrage mogu pronaći zahvaćenu žlijezdu, osobito prije operacije."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Operacija uklanjanja prekomjerno aktivne žlijezde ili žlijezda može izliječiti primarnu hiperparatireozu i obično se preporučuje osobama sa simptomima, gubitkom koštane mase, bubrežnim kamencima ili višim razinama kalcija. Operacija se često radi kroz mali rez, kratko traje i oporavak je brz. Neki ljudi nakon toga privremeno razviju nizak kalcij.",
+        "Ako simptoma nema ili su blagi, mogućnost je pažljivo praćenje redovitim krvnim pretragama i mjerenjima gustoće kostiju. Može se savjetovati dovoljno pijenja vode, održavanje aktivnosti i izbjegavanje lijekova koji povisuju kalcij. Određeni lijekovi mogu sniziti kalcij ili zaštititi kost kad operacija nije prikladna.",
+        "Kod sekundarnih oblika liječenje se usredotočuje na osnovni uzrok, kao što je nadomještanje vitamina D ili skrb za bubrege."
+      ]
+    },
+    {
+      "heading": "Život sa stanjem",
+      "paragraphs": [
+        "Redovito praćenje važno je i nakon uspješne operacije jer zdravlje kostiju može zahtijevati dugotrajnu pozornost. Potražite liječnički savjet zbog nove boli u kostima, simptoma bubrežnih kamenaca ili izražene žeđi i smetenosti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vaganje operacije i praćenja",
+      "text": "Zamislite da vam je kalcij samo blago povišen i osjećate se dobro. Mogli biste pitati liječnika koji bi nalazi učinili operaciju preporučljivom, koliko bi često trebale pretrage i što pokazuju denzitometrije kostiju."
+    },
+    {
+      "title": "Priprema za operaciju",
+      "text": "Pretpostavite da ste naručeni na operaciju doštitnih žlijezda. Mogli biste pitati o vrsti anestezije, vjerojatnom vremenu oporavka i koje simptome niskog kalcija pratiti nakon toga."
+    }
+  ],
+  "questions": [
+    "Koju vrstu hiperparatireoze imam i što je uzrokuje?",
+    "Trebam li operaciju ili je praćenje razumna mogućnost za mene?",
+    "Kako će se s vremenom pratiti moje kosti i bubrezi?"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Come funziona l'apparato urinario",
+  "intro": "L'apparato urinario filtra le scorie e l'acqua in eccesso dal sangue e le elimina sotto forma di urina. Comprende i reni, gli ureteri, la vescica e l'uretra. Sapere come queste parti lavorano insieme rende più facile capire problemi comuni come infezioni, calcoli o difficoltà di controllo della vescica e parlarne con un professionista sanitario.",
+  "sections": [
+    {
+      "heading": "I reni: filtrare il sangue",
+      "paragraphs": [
+        "Si hanno due reni, ciascuno grande circa quanto un pugno, situati ai due lati della colonna vertebrale sotto le costole. Insieme filtrano tutto il sangue molte volte al giorno. Minuscole unità filtranti eliminano i prodotti di scarto, i sali in eccesso e l'acqua superflua, trattenendo ciò di cui l'organismo ha bisogno, come le proteine e la maggior parte dei nutrienti.",
+        "Oltre a produrre urina, i reni aiutano a regolare la pressione arteriosa, a bilanciare minerali come sodio e potassio, a mantenere il sangue al giusto livello di acidità e a produrre ormoni che sostengono la formazione dei globuli rossi e la salute delle ossa. Poiché svolgono così tanti compiti, i problemi renali possono interessare tutto il corpo."
+      ]
+    },
+    {
+      "heading": "Dai reni alla vescica",
+      "paragraphs": [
+        "L'urina si raccoglie in una zona a forma di imbuto all'interno di ciascun rene e poi scende lungo un sottile tubo muscolare chiamato uretere. Contrazioni muscolari delicate, simili a onde, spingono l'urina in avanti, così continua a scorrere anche quando si è sdraiati. Ogni uretere entra nella vescica con un'angolazione che aiuta a impedire all'urina di rifluire all'indietro.",
+        "Se qualcosa blocca un uretere, come un calcolo renale, l'urina può ristagnare e causare dolore, spesso descritto come improvviso e crampiforme al fianco o alla schiena. I medici prendono sul serio questi sintomi perché un'ostruzione associata a infezione può danneggiare il rene."
+      ]
+    },
+    {
+      "heading": "Raccogliere ed eliminare l'urina",
+      "paragraphs": [
+        "La vescica è un organo muscolare elastico che trattiene l'urina finché non è opportuno svuotarla. Man mano che si riempie, i nervi inviano segnali al cervello e la maggior parte degli adulti avverte per la prima volta lo stimolo a urinare quando la vescica contiene qualche centinaio di millilitri. Una vescica sana può trattenere l'urina per diverse ore senza perdite.",
+        "Quando si decide di urinare, il cervello segnala al muscolo della vescica di contrarsi e ai muscoli sfinteri attorno all'uscita di rilassarsi. L'urina lascia quindi il corpo attraverso l'uretra. L'uretra è più corta nelle donne che negli uomini, ed è uno dei motivi per cui le infezioni della vescica sono più frequenti nelle donne."
+      ]
+    },
+    {
+      "heading": "Problemi comuni",
+      "paragraphs": [
+        "I problemi tipici comprendono le infezioni delle vie urinarie, i calcoli dei reni e della vescica, la vescica iperattiva, le perdite di urina con la tosse o l'esercizio fisico e, negli uomini, la difficoltà a svuotare la vescica a causa di una prostata ingrossata. I sintomi possono includere bruciore alla minzione, bisogno frequente o urgente di urinare, sangue nelle urine o dolore al fianco o al basso ventre.",
+        "Molte di queste condizioni sono curabili. Sangue nelle urine, febbre con dolore alla schiena o impossibilità di urinare vanno valutati tempestivamente, perché possono segnalare qualcosa che richiede attenzione urgente."
+      ]
+    },
+    {
+      "heading": "Prendersi cura della salute urinaria",
+      "paragraphs": [
+        "Bere abbastanza liquidi, di solito un po' di più quando fa caldo o si è attivi, aiuta a mantenere l'urina diluita e a lavare le vie urinarie. Non trattenere l'urina per periodi molto lunghi, svuotare completamente la vescica e adottare una buona igiene possono ridurre il rischio di infezioni.",
+        "Tenere sotto controllo la pressione e la glicemia protegge i reni nel lungo periodo, ed è necessaria cautela con alcuni antidolorifici e altri farmaci che possono affaticarli. I controlli regolari sono ancora più importanti se si ha diabete, pressione alta o familiarità per malattie renali."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Accorgersi presto dei cambiamenti",
+      "text": "Immagina di aver iniziato ad alzarti molto più spesso di notte per urinare e che a volte urinare bruci. Potresti annotare per qualche giorno quante volte vai in bagno e quanto bevi, poi portare gli appunti alla visita, così il medico può vedere l'andamento e decidere se un esame delle urine sia utile."
+    },
+    {
+      "title": "Parlare delle perdite",
+      "text": "Supponi di perdere un po' di urina quando ridi o sollevi qualcosa e di sentirti in imbarazzo. Potresti esercitarti a descrivere esattamente quando succede e come influisce sulla tua giornata, poi chiedere se la ginnastica del pavimento pelvico o altre opzioni possano aiutare, sapendo che è un problema comune e curabile."
+    }
+  ],
+  "questions": [
+    "I miei sintomi potrebbero dipendere da un'infezione, da un calcolo o da un problema di controllo della vescica, e quali esami aiuterebbero a chiarirlo?",
+    "Quanti liquidi dovrei bere ogni giorno, considerando il mio stato di salute e i miei farmaci?",
+    "Quali sintomi devono spingermi a cercare cure urgenti invece di aspettare una visita di routine?"
+  ]
+}

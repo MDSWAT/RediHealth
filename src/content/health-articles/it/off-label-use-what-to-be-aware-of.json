@@ -1,0 +1,52 @@
+{
+  "title": "Uso off-label dei farmaci: a che cosa fare attenzione",
+  "intro": "Uso off-label significa usare un farmaco per una condizione, una fascia d'età, una dose o una via di somministrazione non coperte dalla sua approvazione ufficiale. È comune, soprattutto per bambini, malattie rare e cancro, e può essere ragionevole quando le prove lo sostengono. Poiché se ne sa meno o è meno documentato, richiede un'attenta discussione di benefici e rischi.",
+  "sections": [
+    {
+      "heading": "Che cosa significa off-label",
+      "paragraphs": [
+        "Quando un farmaco viene approvato, il produttore ha dimostrato che è efficace e sicuro per usi specifici descritti nelle informazioni sul prodotto. Usarlo al di fuori di questi usi è off-label. Questo non lo rende di per sé illegale o pericoloso e i medici possono prescriverlo dove lo ritengano appropriato. È diverso dai farmaci non autorizzati, che non hanno alcuna approvazione."
+      ]
+    },
+    {
+      "heading": "Perché succede",
+      "paragraphs": [
+        "Mancano spesso studi su bambini, donne in gravidanza e persone con malattie rare, quindi i medici usano i farmaci sulla base dell'esperienza e di studi più piccoli. Nuovi usi possono essere scoperti dopo l'approvazione, ma il produttore può non chiedere un'estensione formale. Alcuni usi off-label hanno buone prove, mentre altri poggiano su prove deboli."
+      ]
+    },
+    {
+      "heading": "Rischi e incertezze",
+      "paragraphs": [
+        "Per gli usi off-label possono esserci meno informazioni su dosaggio corretto, effetti collaterali e interazioni. La responsabilità per eventuali danni e la copertura dell'assicurazione sanitaria possono differire, poiché le assicurazioni possono pagare solo a certe condizioni. Il foglietto illustrativo non menzionerà il tuo uso, il che può preoccupare."
+      ]
+    },
+    {
+      "heading": "Che cosa chiedere",
+      "paragraphs": [
+        "Chiedi perché il farmaco viene raccomandato, quali prove lo sostengono, quali sono le alternative e quali rischi sono noti. Chiedi come verrà misurato il successo e quando smettere. Verifica se l'assicurazione lo copre e chi è responsabile del follow-up.",
+        "Segui la dose prescritta, segnala gli effetti collaterali e informa tutti i tuoi operatori sanitari. Il foglietto illustrativo dà comunque preziosi consigli di sicurezza come interazioni e avvertenze."
+      ]
+    },
+    {
+      "heading": "Assumerlo in sicurezza",
+      "paragraphs": [
+        "Non cambiare le dosi in base a ciò che altri riferiscono online. Tieni un elenco di tutti i tuoi farmaci così da poter controllare le interazioni e segnala subito gli effetti collaterali."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Capire un foglietto illustrativo",
+      "text": "Immagina che il medico ti prescriva un farmaco per un uso non indicato nel foglietto. Potresti chiedere i motivi e le prove e richiedere una nota scritta sul piano."
+    },
+    {
+      "title": "Chiedere dei costi",
+      "text": "Supponi che la prescrizione di solito non sia coperta dalla tua assicurazione. Potresti chiedere al medico delle alternative e dei costi previsti prima di iniziare."
+    }
+  ],
+  "questions": [
+    "Questo uso del farmaco è sostenuto da prove e c'è un'alternativa approvata?",
+    "Quali sono i possibili rischi e come li monitoreremo?",
+    "La mia assicurazione sanitaria coprirà questo trattamento?"
+  ]
+}

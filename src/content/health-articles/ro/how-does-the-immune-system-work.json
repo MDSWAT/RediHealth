@@ -1,0 +1,52 @@
+{
+  "title": "Cum recunoaște și răspunde imunitatea",
+  "intro": "Imunitatea este o rețea de bariere, celule, organe și proteine, nu o singură valoare de putere. Trebuie să răspundă amenințărilor limitând leziunile. Mai multă inflamație nu înseamnă automat protecție mai bună.",
+  "sections": [
+    {
+      "heading": "Primele bariere",
+      "paragraphs": [
+        "Pielea și mucoasele limitează intrarea. Apărarea înnăscută răspunde rapid prin celule și semnale; inflamația aduce ajutor, dar poate provoca umflare și disconfort."
+      ]
+    },
+    {
+      "heading": "Răspuns țintit",
+      "paragraphs": [
+        "Limfocitele B și T recunosc ținte specifice. Anticorpii le pot lega, iar diferite celule T coordonează răspunsul sau atacă celule infectate. Rolurile colaborează."
+      ]
+    },
+    {
+      "heading": "Memorie",
+      "paragraphs": [
+        "După unele expuneri, celulele de memorie susțin răspunsul ulterior rapid. Vaccinurile creează protecție fără boala completă, dar efectul variază și nu garantează evitarea oricărei infecții."
+      ]
+    },
+    {
+      "heading": "Reglare defectuoasă",
+      "paragraphs": [
+        "Alergia răspunde la substanțe de obicei inofensive; autoimunitatea atacă propriul corp. Imunodeficiența reduce anumite apărări. Sunt probleme diferite; un supliment pentru imunitate nu este tratament universal."
+      ]
+    },
+    {
+      "heading": "Îngrijire",
+      "paragraphs": [
+        "Urmați vaccinarea și igiena recomandate, mai ales sub imunosupresoare. Infecțiile repetate neobișnuite cer consult. Boala severă sau febra sub anumite tratamente cer planul urgent al echipei, nu suplimente.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira întreabă dacă inflamația mai mare înseamnă imunitate mai bună. Află că reducerea unui răspuns excesiv poate proteja țesuturile."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben verifică vaccinurile înaintea tratamentului imunosupresor, în locul unui supliment promovat drept stimulent universal."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Meioza: informația genetică în ovule și spermatozoizi",
+  "intro": "Meioza este diviziune specială implicată în producerea ovulelor și spermatozoizilor. Reduce setul cromozomial pentru combinarea informației ambilor părinți biologici la fecundație. Explică și diferențele genetice între frați.",
+  "sections": [
+    {
+      "heading": "Perechi cromozomiale și copierea ADN",
+      "paragraphs": [
+        "Majoritatea celulelor umane au tipic 46 cromozomi în perechi. Înainte de meioză ADN se copiază, dar materialul necesită separare atentă. Copierea nu este identică formării imediate a unei noi celule obișnuite."
+      ]
+    },
+    {
+      "heading": "Recombinare și variație",
+      "paragraphs": [
+        "Partenerii cromozomiali se apropie și schimbă segmente ADN corespunzătoare, prin recombinare. Distribuția diferă între celule. Procesele produc combinații noi, nu aleg intenționat cele mai bune trăsături și nu garantează sănătatea."
+      ]
+    },
+    {
+      "heading": "Diviziunile și fecundația",
+      "paragraphs": [
+        "În prima diviziune se separă partenerii, apoi părțile copiate. Gameții maturi tipici au 23 cromozomi. La fecundație ovulul și spermatozoidul combină seturile, restabilind perechile obișnuite în celula nouă."
+      ]
+    },
+    {
+      "heading": "Dezvoltarea ovulului și spermatozoidului",
+      "paragraphs": [
+        "Producerea spermei și maturarea ovulului au ritm și dezvoltare diferite. Ovulul împarte inegal conținutul, lăsând o celulă mare și corpi polari mult mai mici. Diagrama cu celule egale nu arată toate detaliile reproducerii."
+      ]
+    },
+    {
+      "heading": "Schimbări cromozomiale și consiliere",
+      "paragraphs": [
+        "Uneori separarea nu are loc normal și numărul cromozomial diferă. Poate influența fertilitatea, sarcina ori sănătatea copilului, fără dovada greșelii părinților. Consilierea genetică explică rezultate specifice; prezentarea nu calculează riscul unei sarcini individuale."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira folosește diagrama pentru a separa copierea ADN de separarea perechilor. Înțelege de ce diviziunea obișnuită nu înlocuiește formarea gametului."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben întreabă un rezultat cromozomial după pierderea sarcinii. Specialistul explică fără să presupună că părinții au provocat prin alimentație ori acțiuni."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

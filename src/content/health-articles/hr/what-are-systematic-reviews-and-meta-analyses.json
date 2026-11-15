@@ -1,0 +1,51 @@
+{
+  "title": "Što su sustavni pregledi i meta-analize?",
+  "intro": "Sustavni pregled okuplja sva istraživanja o određenom pitanju planiranom, transparentnom metodom. Meta-analiza je statistička tehnika koja se koristi unutar nekih pregleda za kombiniranje brojčanih rezultata nekoliko istraživanja u jedan ukupan rezultat. Zajedno daju pouzdaniji odgovor od bilo kojeg pojedinačnog istraživanja.",
+  "sections": [
+    {
+      "heading": "Zašto su potrebni",
+      "paragraphs": [
+        "Pojedinačna istraživanja mogu biti mala, pristrana ili slučajni nalazi, a različita istraživanja često daju različite odgovore. Sustavni pregledi smanjuju te probleme promatrajući sve dostupne dokaze o pitanju i procjenjujući njihovu kvalitetu, umjesto selektivnog biranja istraživanja. Ključni su za medicinu utemeljenu na dokazima i smjernice."
+      ]
+    },
+    {
+      "heading": "Kako se radi sustavni pregled",
+      "paragraphs": [
+        "Recenzenti definiraju pitanje i kriterije za uključivanje istraživanja, sustavno pretražuju nekoliko baza podataka, neovisno biraju istraživanja, procjenjuju rizik pristranosti i izdvajaju podatke. Metode se opisuju unaprijed kako bi se pregled mogao provjeriti i ponoviti. Nalazi se sažimaju u tekstu i tablicama, uz procjenu koliko možemo biti sigurni u rezultate."
+      ]
+    },
+    {
+      "heading": "Što radi meta-analiza",
+      "paragraphs": [
+        "Kada su istraživanja dovoljno slična, meta-analiza objedinjuje njihove brojke, dajući veću težinu većim istraživanjima. To daje ukupnu procjenu učinka s intervalom pouzdanosti, koji je raspon vjerojatnih vrijednosti, i pomaže otkriti učinke koje su pojedinačna istraživanja bila premala da pokažu. Rezultati se često prikazuju na forest dijagramu sa svakim istraživanjem kao linijom i ukupnim rezultatom kao dijamantom."
+      ]
+    },
+    {
+      "heading": "Ograničenja",
+      "paragraphs": [
+        "Pregled je dobar koliko i istraživanja koja sadrži. Kombiniranje loših istraživanja daje loš rezultat. Razlike među istraživanjima u ljudima, liječenjima ili ishodima mogu učiniti objedinjavanje neprikladnim. Pristranost objavljivanja, kod koje se istraživanja s negativnim rezultatima ne objavljuju, može iskriviti nalaze. Pregledi mogu zastarjeti kako se pojavljuju nova istraživanja."
+      ]
+    },
+    {
+      "heading": "Čitanje pregleda",
+      "paragraphs": [
+        "Provjerite je li pitanje jasno, kako su istraživanja pronađena, je li kvaliteta procijenjena, koliko su rezultati bili dosljedni i tko je financirao pregled. Pogledajte zaključak o pouzdanosti dokaza. Pregledi neovisnih skupina, kao što je Cochrane, slijede stroge metode. Pregled može reći da su dokazi nedovoljni, što je također korisna informacija."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pronalazak pregleda",
+      "text": "Zamislite da želite znati djeluje li neki dodatak. Mogli biste potražiti sustavni pregled ispitivanja i pogledati koliko je istraživanja i ljudi uključeno."
+    },
+    {
+      "title": "Pitanje o sigurnosti",
+      "text": "Pretpostavite da pregled pokazuje malu korist. Mogli biste pitati liječnika koliko možemo biti sigurni u rezultat i odnosi li se na vas."
+    }
+  ],
+  "questions": [
+    "Postoji li sustavni pregled o mom pitanju?",
+    "Koliko su pouzdani njegovi zaključci?",
+    "Odnosi li se rezultat na nekoga poput mene?"
+  ]
+}

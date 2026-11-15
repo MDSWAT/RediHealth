@@ -1,0 +1,51 @@
+{
+  "title": "Gli organi del sistema immunitario",
+  "intro": "Il sistema immunitario è fatto di organi, tessuti e cellule che proteggono il corpo da germi e cellule anomale. Alcuni organi producono e addestrano le cellule immunitarie, altri filtrano i liquidi del corpo e raccolgono i germi. Insieme formano una rete di difesa coordinata distribuita in tutto il corpo.",
+  "sections": [
+    {
+      "heading": "Midollo osseo e timo",
+      "paragraphs": [
+        "Il midollo osseo, il tessuto molle all'interno delle ossa lunghe, produce tutte le cellule del sangue, compresi i globuli bianchi del sistema immunitario. I linfociti B maturano lì. Il timo, un piccolo organo dietro lo sterno, è il luogo in cui i linfociti T maturano e imparano a distinguere le cellule del corpo da quelle estranee. È più attivo nell'infanzia e si riduce con l'età."
+      ]
+    },
+    {
+      "heading": "Linfonodi e vasi linfatici",
+      "paragraphs": [
+        "I linfonodi sono piccoli filtri distribuiti nella rete linfatica, concentrati in collo, ascelle, inguine e addome. Intrappolano i germi dal liquido linfatico e sono luoghi di incontro in cui le cellule immunitarie vengono attivate. I vasi linfatici trasportano la linfa e le cellule immunitarie nel corpo. Quando combattono un'infezione i linfonodi possono gonfiarsi e diventare dolenti."
+      ]
+    },
+    {
+      "heading": "Milza e tonsille",
+      "paragraphs": [
+        "La milza, sul lato sinistro dell'addome, filtra il sangue, rimuove i globuli rossi vecchi e i germi e contiene cellule immunitarie. Le persone senza milza sono più suscettibili a certe infezioni e hanno bisogno di vaccinazioni e a volte di antibiotici preventivi. Le tonsille e le adenoidi in gola campionano i germi che entrano da bocca e naso."
+      ]
+    },
+    {
+      "heading": "Tessuto immunitario delle mucose",
+      "paragraphs": [
+        "Le superfici di rivestimento di intestino, polmoni e vie urinarie hanno un proprio tessuto immunitario. Gli ammassi di tessuto linfatico nell'intestino tenue detti placche di Peyer monitorano ciò che c'è nell'intestino. Anche la pelle ha cellule immunitarie. Queste barriere sono la prima linea contro i germi del mondo esterno."
+      ]
+    },
+    {
+      "heading": "Mantenere sano il sistema",
+      "paragraphs": [
+        "Sonno, esercizio regolare, alimentazione equilibrata, non fumare, alcol moderato, gestione dello stress e vaccinazione sostengono la funzione immunitaria. Chiedi consiglio per infezioni ripetute, febbre inspiegata, ghiandole gonfie persistenti o se ti è stata asportata la milza."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Capire le ghiandole gonfie",
+      "text": "Immagina di avere mal di gola e ghiandole dolenti al collo. Potresti riposare e osservare se il gonfiore scende nell'arco di un paio di settimane."
+    },
+    {
+      "title": "Dopo l'asportazione della milza",
+      "text": "Supponi che ti sia stata asportata la milza. Potresti chiedere al medico delle vaccinazioni raccomandate e di che cosa fare quando hai la febbre."
+    }
+  ],
+  "questions": [
+    "Quali organi del mio sistema immunitario sono interessati dalla mia condizione?",
+    "Ho bisogno di vaccinazioni o precauzioni in più?",
+    "Quali sintomi significano che devo essere controllato per problemi immunitari?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Colesterolul crescut: evaluarea riscului cardiovascular general",
+  "intro": "Colesterolul circulă în particule sanguine și are funcții normale. LDL persistent mare poate contribui la boala arterelor. De obicei nu se simte; tratamentul ia în calcul riscul general, nu o singură cifră izolată.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Riscul depinde și de vârstă, tensiune, fumat, diabet și boală vasculară anterioară. Istoricul familial puternic ori valorile foarte mari pot sugera moștenire, chiar cu alimentație bună."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Profilul lipidic și istoricul ghidează evaluarea. Pot fi verificate tiroida, rinichii și medicamentele drept cauze. Întrebați semnificația pentru riscul absolut și oportunitatea testării familiei. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Statinele sunt opțiuni inițiale frecvente când sunt indicate; alternativele ori asocierile ajută cazuri selectate. Beneficiile depind de risc. Discutați sarcina, interacțiunile și simptomele, fără oprire sau adăugare singur. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Alegeți fibre și grăsimi nesaturate, reducând excesul celor saturate, faceți mișcare și evitați fumatul. Dietele extreme și suplimentele nu înlocuiesc tratamentul dovedit necesar. Schimbarea sustenabilă contează, nu vina. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Programați controlul răspunsului și reacțiilor. Durerea musculară severă inexplicabilă ori slăbiciunea, mai ales cu urină închisă, cer sfat prompt. Durerea toracică și semnele vasculare cerebrale sunt urgențe indiferent de colesterolul recent."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira are familie cu risc și valori mari în ciuda meselor echilibrate. Întreabă despre forma ereditară și familie, nu învinovățește mâncarea."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben întreabă reducerea riscului propriu prin statină și discută simptomele musculare, fără să abandoneze prevenția în tăcere."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

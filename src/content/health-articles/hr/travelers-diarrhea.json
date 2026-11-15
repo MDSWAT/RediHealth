@@ -1,0 +1,51 @@
+{
+  "title": "Putnički proljev",
+  "intro": "Putnički proljev pogađa mnoge ljude koji posjećuju regije s drukčijim higijenskim standardima, obično putem zagađene hrane ili vode. Uzrokuje rijetku stolicu, grčeve i ponekad mučninu, a obično je blag i prolazi za nekoliko dana. Sprječavanje dehidracije je glavno liječenje.",
+  "sections": [
+    {
+      "heading": "Uzroci i rizik",
+      "paragraphs": [
+        "Većinu slučajeva uzrokuju bakterije kao što su određeni tipovi E. coli, rjeđe virusi ili paraziti. Klice se unose zagađenom hranom, vodom ili ledom. Rizik je najveći u dijelovima Azije, Afrike i Latinske Amerike te po vrućem vremenu. Hrana s ulice, salate, neoguljeno voće i voda iz slavine povećavaju rizik. Mala djeca, starije osobe i oni sa slabim imunitetom su ranjiviji."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Iznenadan vodenasti proljev tri ili više puta dnevno, grčevi u trbuhu, mučnina, nadutost i ponekad vrućica. Većina ljudi se oporavi unutar tri do pet dana. Krv u stolici, visoka vrućica, jaka bol ili proljev koji traje dulje od tjedan dana upućuju na ozbiljniju infekciju."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Nadoknadite tekućinu i soli oralnom rehidracijskom otopinom, vodom, juhom i razrijeđenim sokovima te jedite laganu hranu prema podnošljivosti. Loperamid može smanjiti učestalost stolice kod odraslih s vodenastim proljevom, ali se ne smije koristiti uz vrućicu ili krvavu stolicu niti kod male djece. Antibiotici se čuvaju za teške slučajeve i uzimaju se prema liječničkom savjetu jer nose rizike i mogu poticati otporne bakterije."
+      ]
+    },
+    {
+      "heading": "Kada potražiti liječničku skrb",
+      "paragraphs": [
+        "Potražite skrb zbog znakova dehidracije kao što su tamna mokraća, vrtoglavica, vrlo suha usta, malo mokraće ili mlitavost, zbog krvi u stolici, visoke vrućice, uporno povraćanje, simptoma koji traju dulje od nekoliko dana ili kod beba, male djece, trudnica i osoba s kroničnom bolesti."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Perite ruke sapunom prije jela, jedite svježe pripremljenu i toplu hranu, sami gulite voće, pijte flaširanu ili prokuhanu vodu, izbjegavajte kockice leda i sirove salate u područjima visokog rizika i perite zube sigurnom vodom. Razmotrite cijepljenje protiv tifusa ili kolere prema savjetu putničke klinike. Posjet putničkoj klinici prije puta pomaže vam planirati."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rehidracija",
+      "text": "Zamislite da imate vodenasti proljev na odmoru. Mogli biste uzeti oralne rehidracijske soli, piti redovito u malim gutljajima i jesti blagu hranu."
+    },
+    {
+      "title": "Pametno pakiranje",
+      "text": "Pretpostavite da putujete u regiju visokog rizika. Mogli biste spakirati vrećice za rehidraciju i dezinficijens za ruke te pitati putničku kliniku za savjet."
+    }
+  ],
+  "questions": [
+    "Koje lijekove trebam ponijeti na put i kada ih koristiti?",
+    "Preporučuju li se cijepljenja za moje odredište?",
+    "Kada trebam posjetiti liječnika u inozemstvu?"
+  ]
+}

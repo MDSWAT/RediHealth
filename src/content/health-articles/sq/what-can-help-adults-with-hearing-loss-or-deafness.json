@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë mund t'u ndihmojë të rriturve me humbje dëgjimi ose shurdhim",
+  "intro": "Humbja e dëgjimit te të rriturit është e zakonshme e zakonisht graduale. Ekzistojnë shumë opsione, nga aparatet dëgjimi te implantet, trajnimi i komunikimit e teknologjia ndihmëse. Trajtimi i hershëm i humbjes së dëgjimit lidhet me komunikim më të mirë, më pak izolim e ndoshta shëndet më të mirë të trurit.",
+  "sections": [
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Një test dëgjimi nga një mjek i veshit, hundës e fytit ose audiolog mat llojin e shkallën e humbjes. Ekzaminimi i veshit kontrollon për dyllë e infeksione, që mund të trajtohen. Teste të tjera kërkojnë shkaqe, si dëmtimi nga zhurma, mosha, infeksioni, barnat ose rrallë një tumor. Humbja e papritur e dëgjimit në një vesh kërkon vëmendje urgjente."
+      ]
+    },
+    {
+      "heading": "Aparatet e dëgjimit",
+      "paragraphs": [
+        "Aparatet e dëgjimit e amplifikojnë tingullin e janë trajtimi kryesor për shumicën e llojeve të humbjes së dëgjimit sensorineural. Pajisjet moderne janë të vogla, dixhitale e përshtaten me mjediset, e mund të lidhen me telefona e televizorë. Kërkojnë përshtatje e rregullim të imët nga një profesionist e kohë për t'u mësuar me to, me përdorim të rregullt. Mbulimi i kostos ndryshon midis vendeve e siguruesve."
+      ]
+    },
+    {
+      "heading": "Implantet",
+      "paragraphs": [
+        "Implantet kokleare anashkalojnë qelizat e dëmtuara qimore në veshin e brendshëm e stimulojnë drejtpërdrejt nervin e dëgjimit. Janë për njerëz me humbje të rëndë ose të thellë që përfitojnë pak nga aparatet. Nevojiten kirurgji e muaj rehabilitimi. Pajisjet e ankoruara në kockë ndihmojnë në disa humbje dëgjimi përçuese ose shurdhim njëanësh. Implantet e veshit të mesëm janë një opsion tjetër për pacientë të përzgjedhur."
+      ]
+    },
+    {
+      "heading": "Pajisjet ndihmëse e komunikimi",
+      "paragraphs": [
+        "Telefonat e amplifikuar, titrat, sistemet me lak, transmetuesit e televizorit e sinjalet vizuale ose me dridhje ndihmojnë në jetën e përditshme. Leximi i buzëve, trajnimi i komunikimit e, për njerëzit shurdhë, gjuha e shenjave hapin mënyra të tjera komunikimi. Përkthyesit e shërbimet e titrimit mbështesin punën e takimet."
+      ]
+    },
+    {
+      "heading": "Mbështetja e mirëqenia",
+      "paragraphs": [
+        "Humbja e dëgjimit mund të çojë në tërheqje e humor të ulët. Këshillimi, grupet e bashkëmoshatarëve e përfshirja e familjes ndihmojnë. Tingëllima në vesh shpesh e shoqëron humbjen e dëgjimit e mund të lehtësohet me aparate dëgjimi e terapi me tinguj. Mbrojeni dëgjimin e mbetur nga zhurma e lartë e bëni kontrolle të rregullta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fillimi me aparate dëgjimi",
+      "text": "Imagjinoni që ju përshtaten aparate të reja. Mund t'i mbani pak më gjatë çdo ditë, të praktikoni fillimisht në dhoma të qeta e të ktheheni për rregullime."
+    },
+    {
+      "title": "Marrja në konsideratë e një implanti",
+      "text": "Supozoni që aparatet nuk ndihmojnë më. Mund ta pyesni specialistin nëse jeni kandidat për implant kokleor e çfarë përfshin procesi."
+    }
+  ],
+  "questions": [
+    "Çfarë lloj humbjeje dëgjimi kam e cili trajtim është më i miri?",
+    "A mbulohen aparatet ose implantet nga siguruesi im?",
+    "Cilat pajisje ndihmëse do të ndihmonin në shtëpi e në punë?"
+  ]
+}

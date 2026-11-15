@@ -1,0 +1,51 @@
+{
+  "title": "Ciste jajnika",
+  "intro": "Ciste jajnika su vrećice ispunjene tekućinom na jajniku ili unutar njega. Većina je bezopasna, nastaje kao dio normalnog menstrualnog ciklusa i nestaje bez liječenja. Neke uzrokuju bol ili druge simptome, a nekoliko zahtijeva dodatnu procjenu ili uklanjanje. Ultrazvuk obično pokazuje liječnicima o kakvoj je cisti riječ.",
+  "sections": [
+    {
+      "heading": "Vrste cisti",
+      "paragraphs": [
+        "Funkcionalne ciste nastaju kad folikul ne oslobodi jajnu stanicu ili kad se zatvori nakon oslobađanja i obično nestaju unutar nekoliko ciklusa. Druge vrste uključuju endometriome, povezane s endometriozom, dermoidne ciste koje sadrže tkivo kao što su dlake ili masnoća i cistadenome ispunjene tekućinom ili sluzi. Sindrom policističnih jajnika uključuje mnogo malih folikula i drukčije je hormonsko stanje."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Mnoge ciste ne uzrokuju simptome i nalaze se slučajno. Veće ciste mogu uzrokovati tupu bol ili težinu u donjem dijelu trbuha, nadutost, bol pri spolnom odnosu ili pritisak na mjehur ili crijevo. Iznenadna jaka bol, ponekad s mučninom, povraćanjem ili vrućicom, može upućivati na to da je cista pukla ili se uvrnula i zahtijeva hitnu skrb."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Ultrazvuk zdjelice pokazuje veličinu i izgled ciste. Mogu se učiniti krvne pretrage kao što je test na trudnoću i, u žena nakon menopauze ili sa zabrinjavajućim značajkama, tumorski markeri. MR može dodati informacije. Izgled na ultrazvuku pomaže procijeniti vjerojatnost da je cista dobroćudna."
+      ]
+    },
+    {
+      "heading": "Liječenje i praćenje",
+      "paragraphs": [
+        "Jednostavne ciste u žena prije menopauze često se samo promatraju uz ponovljenu pretragu nakon nekoliko mjeseci. Lijekovi protiv bolova ublažavaju simptome. Hormonska kontracepcija ne smanjuje postojeće ciste, ali može smanjiti nove funkcionalne. Operacija, obično laparoskopska, razmatra se za ciste koje su velike, traju, uzrokuju simptome, izgledaju sumnjivo ili su u žena nakon menopauze. Kirurzi pokušavaju ukloniti cistu uz očuvanje zdravog tkiva jajnika kad je moguće."
+      ]
+    },
+    {
+      "heading": "Život s cistama",
+      "paragraphs": [
+        "Mnoge žene brinu zbog raka kad se pronađe cista. Većina cisti je dobroćudna, a jasno objašnjenje nalaza obično umiruje. Držite se kontrolnih termina i recite liječniku o novoj nadutosti, trajnoj boli u zdjelici ili promjenama apetita."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razumijevanje nalaza",
+      "text": "Zamislite da ultrazvuk pokazuje malu cistu na jajniku. Mogli biste pitati o kojoj se vrsti čini da je riječ, trebate li ponovnu pretragu i koji simptomi trebaju potaknuti raniji kontakt."
+    },
+    {
+      "title": "Postupanje kod jake boli",
+      "text": "Pretpostavite da razvijete iznenadnu jaku bol s jedne strane uz povraćanje. Mogli biste otići u hitnu službu umjesto čekati jer je uvrnuti jajnik vremenski kritičan."
+    }
+  ],
+  "questions": [
+    "Kakvu cistu imam i je li vjerojatno bezopasna?",
+    "Trebam li dodatne pretrage ili kontrolne preglede?",
+    "U kojim bi se okolnostima preporučila operacija?"
+  ]
+}

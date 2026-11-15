@@ -1,0 +1,51 @@
+{
+  "title": "Al doilea pas: evaluarea informațiilor de sănătate",
+  "intro": "Găsirea informațiilor este doar jumătate din sarcină. Al doilea pas este să judecați dacă sunt fiabile, relevante și aplicabile în cazul dumneavoastră. Câteva întrebări simple vă pot ajuta să separați sfaturile de încredere de reclame, opinii sau afirmații depășite.",
+  "sections": [
+    {
+      "heading": "Cine este în spatele informației",
+      "paragraphs": [
+        "Verificați cine a scris textul, ce calificări are și cine finanțează sursa. Furnizorii de încredere își numesc autorii și explică cum lucrează. Fiți atent la paginile conduse de companii care vând tratamente sau produse legate de subiect și la postările anonime."
+      ]
+    },
+    {
+      "heading": "Ce dovezi sunt folosite",
+      "paragraphs": [
+        "Căutați trimiteri la cercetări precum analize sistematice, studii clinice sau ghiduri, nu la anecdote sau la un singur studiu. Face textul diferența între afirmațiile dovedite și cele incerte? Informațiile despre tratamente trebuie să descrie beneficiile și riscurile, alternativele și opțiunea de a nu face nimic. Afirmațiile că nu există efecte secundare sunt un semn de alarmă."
+      ]
+    },
+    {
+      "heading": "Cum sunt prezentate cifrele",
+      "paragraphs": [
+        "Cifrele relative, precum înjumătățirea riscului, pot suna impresionant, dar induc în eroare dacă riscul de la care se pornește este mic. Cifrele absolute, precum câte persoane din o sută beneficiază, sunt mai clare. Verificați dacă rezultatele provin de la persoane ca dumneavoastră și dacă rezultatele contează în viața de zi cu zi sau sunt doar valori de laborator."
+      ]
+    },
+    {
+      "heading": "Cât de actuale sunt",
+      "paragraphs": [
+        "Cunoștințele medicale se schimbă, așa că căutați o dată și semne de actualizări regulate. Informațiile vechi pot recomanda tratamente abandonate de atunci sau pot ignora opțiuni mai noi. Verificați dacă informațiile se potrivesc țării dumneavoastră, deoarece sistemele de sănătate și recomandările variază."
+      ]
+    },
+    {
+      "heading": "Folosirea lor",
+      "paragraphs": [
+        "Comparați mai multe surse de încredere. Dacă sfaturile se contrazic, întrebați medicul care se aplică în situația dumneavoastră. Folosiți informațiile pentru a pregăti întrebări, nu pentru a vă pune singur un diagnostic sau a opri tratamentul. Aveți încredere în îngrijorările dumneavoastră și cereți sprijin dacă informațiile vă copleșesc."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Testarea unei afirmații",
+      "text": "Imaginați-vă că o pagină spune că un supliment reduce la jumătate riscul de îmbolnăvire. Ați putea întreba câte persoane au participat, care a fost schimbarea absolută a riscului și cine a finanțat cercetarea."
+    },
+    {
+      "title": "Compararea surselor",
+      "text": "Presupuneți că două site-uri dau sfaturi diferite. Ați putea verifica datele și sursele lor și ați putea întreba medicul care este mai potrivit pentru dumneavoastră."
+    }
+  ],
+  "questions": [
+    "Cât de fiabile sunt aceste informații pentru situația mea?",
+    "Care sunt beneficiile și riscurile în cifre absolute?",
+    "Există dovezi mai noi sau un ghid despre care ar trebui să știu?"
+  ]
+}

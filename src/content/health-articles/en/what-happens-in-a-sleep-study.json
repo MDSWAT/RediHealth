@@ -1,0 +1,51 @@
+{
+  "title": "What happens in a sleep study?",
+  "intro": "A sleep study, or polysomnography, records body activity during sleep to find out why someone sleeps badly or feels tired by day. It helps to diagnose conditions such as sleep apnoea, restless legs, narcolepsy and abnormal movements in sleep. It is painless, but takes a whole night.",
+  "sections": [
+    {
+      "heading": "Why it is done",
+      "paragraphs": [
+        "It may be recommended for loud snoring with pauses in breathing, extreme daytime sleepiness, unrefreshing sleep, unusual behaviour at night such as sleepwalking, restless legs or suspected narcolepsy. The study shows how long you sleep, which stages you reach and how often breathing stops."
+      ]
+    },
+    {
+      "heading": "Types of studies",
+      "paragraphs": [
+        "An in-laboratory study is done overnight in a sleep centre with a technician monitoring. A simplified home test measures breathing, oxygen and heart rate, and is used mainly when sleep apnoea is likely. Some tests, such as the multiple sleep latency test, are done by day to measure how quickly you fall asleep."
+      ]
+    },
+    {
+      "heading": "What is measured",
+      "paragraphs": [
+        "Small sensors are attached to your scalp, face, chest, legs and finger to record brain waves, eye movements, muscle activity, heart rhythm, breathing effort, airflow and oxygen levels. A microphone and camera record snoring and movement. The sensors are attached with tape or paste and do not hurt."
+      ]
+    },
+    {
+      "heading": "Preparing for the night",
+      "paragraphs": [
+        "Keep to your normal routine, avoid caffeine in the afternoon, and avoid alcohol and daytime naps if advised. Bring comfortable nightwear, and your usual medicines. Most people do sleep, even if less well than at home. Tell staff about problems with the equipment."
+      ]
+    },
+    {
+      "heading": "Results and treatment",
+      "paragraphs": [
+        "A specialist analyses the data, and results are shared within days to weeks. Treatment depends on the finding, for example a mask that supplies air pressure for sleep apnoea, dental devices, weight loss, medicines or behavioural therapy. Follow-up checks whether treatment works."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing",
+      "text": "Imagine you have a sleep test tomorrow night. You could skip afternoon coffee, bring your usual medicines and wear comfortable nightwear."
+    },
+    {
+      "title": "Reviewing results",
+      "text": "Suppose the study shows sleep apnoea. You might ask about mask treatment and how to adjust to it."
+    }
+  ],
+  "questions": [
+    "Which type of sleep study is right for me?",
+    "What do the results mean for my daytime tiredness?",
+    "Which treatment options exist if a problem is found?"
+  ]
+}

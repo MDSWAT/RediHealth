@@ -1,0 +1,51 @@
+{
+  "title": "Çrregullimet e zhvillimit motorik te fëmijët",
+  "intro": "Fëmijët mësojnë të ulen, zvarriten, ecin, kapin e vrapojnë me ritme të ndryshme, por disa kanë vonesa ose vështirësi të qarta me lëvizjen e koordinimin. Çrregullimet e zhvillimit motorik mund të ndikojnë në lojën, shkollën dhe vetëvlerësimin. Vlerësimi dhe terapia e hershme ndihmojnë shumë fëmijë të arrijnë të tjerët ose ta menaxhojnë më mirë.",
+  "sections": [
+    {
+      "heading": "Zhvillimi normal",
+      "paragraphs": [
+        "Shumica e foshnjave e ngrenë kokën në muajt e parë, rrotullohen, ulen pa mbështetje rreth gjashtë deri në nëntë muajsh, zvarriten ose rrëshqasin dhe bëjnë hapat e parë midis rreth nëntë dhe tetëmbëdhjetë muajsh. Aftësitë e imëta motorike si kapja, vizatimi dhe përdorimi i takëmeve zhvillohen gjatë viteve parashkollore. Ka një gamë të gjerë normaliteti."
+      ]
+    },
+    {
+      "heading": "Shenjat shqetësuese",
+      "paragraphs": [
+        "Shenjat e mundshme paralajmëruese përfshijnë mosecjen deri rreth tetëmbëdhjetë muajsh, muskuj shumë të dobët ose të ngurtë, përdorimin e vetëm një ane të trupit, humbjen e aftësive, ngathtësinë e vazhdueshme, rënien e shpeshtë, vështirësi me lidhjen e këpucëve, shkrimin ose lojërat me top përtej asaj që mund të bëjnë moshatarët dhe shmangien e aktiviteteve fizike. Lindja e parakohshme dhe disa gjendje mjekësore e rrisin rrezikun."
+      ]
+    },
+    {
+      "heading": "Shkaqet dhe vlerësimi",
+      "paragraphs": [
+        "Shkaqet përfshijnë lindjen e parakohshme, dëmtimin e trurit në lindje, gjendje gjenetike ose muskulore dhe gjendje si çrregullimi i koordinimit të zhvillimit, ku nuk gjendet shkak i qartë. Një pediatër e ekzaminon fëmijën, shikon dëgjimin, shikimin e rritjen dhe mund të referojë te neurologë ose qendra të specializuara zhvillimi. Testet standarde vlerësojnë aftësitë motorike dhe përjashtojnë gjendje të tjera."
+      ]
+    },
+    {
+      "heading": "Terapia dhe mbështetja",
+      "paragraphs": [
+        "Fizioterapia dhe terapia profesionale ndërtojnë forcën, ekuilibrin, koordinimin dhe aftësitë e jetës së përditshme me ushtrime të bazuara në lojë. Ushtrimi i detyrave specifike është më efektivi. Ndihmesa si mbajtëset e veçanta të lapsit ose mbështetëset mund të ndihmojnë dhe terapistët këshillojnë prindërit për aktivitete në shtëpi. Për disa gjendje neurologjike shtohen barna ose kujdes ortopedik."
+      ]
+    },
+    {
+      "heading": "Ndihma në shtëpi dhe në shkollë",
+      "paragraphs": [
+        "Inkurajoni lojën aktive, vrapimin, ngjitjen dhe lojërat me top pa presion. Kërkojuni mësuesve durim, kohë shtesë dhe alternativa në sport. Përqendrohuni te pikat e forta dhe lavdëroni përparimin, sepse fëmijët me probleme motorike mund të ndihen në siklet ose të shmangin aktivitetet në grup."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ngritja e shqetësimeve",
+      "text": "Imagjinoni që fëmija juaj dyvjeçar ende nuk ecën dhe bie shpesh. Mund të shënoni çfarë mund e çfarë nuk mund të bëjë, të sillni një video te pediatri dhe të pyesni për referim për vlerësim."
+    },
+    {
+      "title": "Mbështetja në shkollë",
+      "text": "Supozoni që fëmija juaj tetëvjeçar ka vështirësi me shkrimin e dorës. Mund të diskutoni opsionet me mësuesin, si letër më të madhe, mbajtëse lapsi, kohë shtesë ose përdorimin e tastierës."
+    }
+  ],
+  "questions": [
+    "A është zhvillimi i fëmijës tim brenda intervalit normal dhe çfarë vlerësimi të mëtejshëm nevojitet?",
+    "Cila terapi do ta ndihmonte fëmijën tim dhe sa shpesh?",
+    "Si mund ta mbështesim fëmijën tonë në shtëpi dhe në shkollë?"
+  ]
+}

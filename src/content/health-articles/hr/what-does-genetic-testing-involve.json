@@ -1,0 +1,51 @@
+{
+  "title": "Što uključuje genetsko testiranje?",
+  "intro": "Genetski testovi promatraju gene, kromosome ili bjelančevine kako bi pronašli promjene povezane s nasljednim stanjima ili rizikom od bolesti. Rade se na uzorku krvi ili sline. Testiranje može donijeti korisne odgovore, ali i otvara osobna pitanja pa je savjetovanje unaprijed važno.",
+  "sections": [
+    {
+      "heading": "Vrste testova",
+      "paragraphs": [
+        "Dijagnostičko testiranje potvrđuje ili isključuje sumnjivo stanje. Prediktivno i presimptomatsko testiranje pokazuje hoće li netko ili može li kasnije razviti bolest. Testiranje nositeljstva pokazuje nosi li osoba promjenu gena koja bi mogla utjecati na djecu. Prenatalni i novorođenački testovi traže stanja rano. Farmakogenetski testovi usmjeravaju odabir lijeka."
+      ]
+    },
+    {
+      "heading": "Postupak",
+      "paragraphs": [
+        "Genetski savjetnik ili liječnik razgovara o razlozima, mogućim rezultatima i posljedicama i provjerava obiteljsku povijest. Uzorak krvi ili sline uzima se i analizira u laboratoriju, što može trajati od dana do mjeseci. Rezultati se objašnjavaju na kontrolnom pregledu. U mnogim zemljama traži se pisani pristanak."
+      ]
+    },
+    {
+      "heading": "Mogući rezultati",
+      "paragraphs": [
+        "Rezultat može biti pozitivan, što znači da je pronađena promjena gena, negativan ili neizvjestan, kada se pronađe varijanta nepoznatog značenja. Negativan rezultat ne isključuje sav rizik jer nisu poznati svi uzroci. Pozitivan rezultat ne mora značiti sigurnu bolest jer mnoge promjene gena samo povećavaju rizik."
+      ]
+    },
+    {
+      "heading": "Razmatranja",
+      "paragraphs": [
+        "Rezultati mogu utjecati na rodbinu, koja dijeli gene, i mogu imati emocionalne učinke, kao što su tjeskoba ili krivnja. Neke zemlje imaju zakone koji štite od genetske diskriminacije od strane poslodavaca i osiguravatelja, ali se pravila razlikuju i neki proizvodi osiguranja mogu biti pogođeni. Testovi koji se nude izravno potrošačima razlikuju se po kvaliteti, a rezultate treba raspraviti sa stručnjakom."
+      ]
+    },
+    {
+      "heading": "Donošenje odluke",
+      "paragraphs": [
+        "Testiranje je dobrovoljno. Razmislite što biste učinili s rezultatom, mijenja li liječenje ili probir i kako biste rekli obitelji. Možete uzeti vremena ili odbiti. Potpora je dostupna od genetskih savjetnika i udruga bolesnika."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za savjetovanje",
+      "text": "Zamislite da je nekoliko rođaka imalo rak dojke. Mogli biste nacrtati obiteljsko stablo i zabilježiti dobi pri dijagnozi da donesete savjetniku."
+    },
+    {
+      "title": "Vaganje odluke",
+      "text": "Pretpostavite da vam nude prediktivno testiranje. Mogli biste pitati kako bi rezultati promijenili vašu skrb i kakva potpora postoji poslije."
+    }
+  ],
+  "questions": [
+    "Je li genetsko testiranje korisno za moju situaciju?",
+    "Kako bi rezultat mogao utjecati na moju rodbinu i osiguranje?",
+    "Koja je potpora dostupna nakon rezultata?"
+  ]
+}

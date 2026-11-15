@@ -1,0 +1,51 @@
+{
+  "title": "Kako se geni nasljeđuju: obrasci i neizvjesnost",
+  "intro": "Geni su dijelovi DNA koji pomažu stvarati i regulirati biološke proizvode. Nasljeđe prenosi podatke djeci, ali ne određuje svako svojstvo ni jamči bolest. Okolina i slučaj također su važni.",
+  "sections": [
+    {
+      "heading": "Kromosomi i doprinos roditelja",
+      "paragraphs": [
+        "Većina stanica ima kromosome u parovima, obično jedan od svakog biološkog roditelja. Stvaranje jajne stanice i spermija miješa podatke pa braća dobivaju različite kombinacije. Mitohondrijska DNA slijedi drugi obrazac, obično majčinski."
+      ]
+    },
+    {
+      "heading": "Obrasci nasljeđivanja",
+      "paragraphs": [
+        "Dominantno stanje može nastati promjenom jedne odgovarajuće kopije. Recesivno obično traži obje. Nasljeđivanje vezano uz X je drukčije. To su pojednostavljenja: točan gen i obitelj određuju značajan rizik."
+      ]
+    },
+    {
+      "heading": "Mnogi geni i promjenjiv izraz",
+      "paragraphs": [
+        "Mnoge česte bolesti uključuju brojne gene i okolnosti, ne jedan uzrok. Osoba može imati varijantu bez simptoma ili drukčije težine od rođaka. Može biti i nova varijanta odsutna iz rutinske krvi roditelja."
+      ]
+    },
+    {
+      "heading": "Testovi i neizvjesni nalazi",
+      "paragraphs": [
+        "Testovi odgovaraju određenim pitanjima i daju nejasne nalaze. Neizvjesna varijanta sama ne potvrđuje dijagnozu ni nepovratno liječenje. Raspravite privatnost, obitelj i granice komercijalnih izvještaja podrijetla ili rizika."
+      ]
+    },
+    {
+      "heading": "Savjetovanje o obiteljskom riziku",
+      "paragraphs": [
+        "Za obiteljsku bolest genetičar crta stablo i objašnjava opcije. Ponesite točan nalaz ako postoji. Rizik vrijedi za svaku trudnoću po obrascu, ne obećava fiksan broj zahvaćene djece."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima oboljelog rođaka i donosi nalaz. Tim objašnjava varijantu bez procjene samo iz naziva bolesti."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben i brat imaju drukčije simptome uz povezani nalaz. Uči da nasljeđe ne jamči isti izraz i traži savjet za nejasan rezultat."
+    }
+  ],
+  "questions": [
+    "Koji bi koraci bili jasniji uz dijagram?",
+    "Što objašnjenje pokazuje i što ne predviđa?",
+    "Treba li moja konkretna briga stručnu procjenu?"
+  ]
+}

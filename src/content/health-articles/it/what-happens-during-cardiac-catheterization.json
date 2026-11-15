@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa succede durante un cateterismo cardiaco",
+  "intro": "Il cateterismo cardiaco è una procedura in cui un sottile tubo flessibile, detto catetere, viene fatto passare attraverso un vaso sanguigno fino al cuore. Si usa per osservare le arterie coronarie e le camere del cuore e per trattare i restringimenti, per esempio aprendo le arterie con uno stent. Di solito si fa con anestesia locale.",
+  "sections": [
+    {
+      "heading": "Perché si fa",
+      "paragraphs": [
+        "I medici lo eseguono per trovare la causa del dolore al petto, per diagnosticare la malattia delle arterie coronarie, per osservare valvole e pressioni del cuore e in emergenza durante un infarto. Nella stessa procedura le arterie ristrette possono essere allargate con un palloncino e tenute aperte con uno stent."
+      ]
+    },
+    {
+      "heading": "Preparazione",
+      "paragraphs": [
+        "Di solito si digiuna per diverse ore. Informa il team di allergie, in particolare al mezzo di contrasto o allo iodio, problemi ai reni, diabete e farmaci come anticoagulanti o metformina. Si fanno esami del sangue e un elettrocardiogramma. Dai il consenso scritto e qualcuno deve riaccompagnarti a casa oppure resti per la notte."
+      ]
+    },
+    {
+      "heading": "Durante la procedura",
+      "paragraphs": [
+        "Ti sdrai su un lettino e ricevi un sedativo se lo desideri. La pelle del polso o dell'inguine viene anestetizzata e un catetere viene fatto avanzare fino al cuore sotto guida radiografica. Il mezzo di contrasto viene iniettato per mostrare le arterie e può dare una sensazione di calore. La procedura dura da trenta a sessanta minuti, di più se si mette uno stent."
+      ]
+    },
+    {
+      "heading": "Rischi",
+      "paragraphs": [
+        "La procedura è in genere sicura. I possibili rischi comprendono sanguinamento o lividi nel punto della puntura, reazione allergica al mezzo di contrasto, problemi ai reni, battito irregolare, danno a un vaso e, raramente, infarto, ictus o morte. Il medico valuta i rischi rispetto ai benefici."
+      ]
+    },
+    {
+      "heading": "Dopo la procedura",
+      "paragraphs": [
+        "Riposi per alcune ore, bevi liquidi e sei monitorato. Evita di sollevare pesi per alcuni giorni. Riferisci subito sanguinamento, gonfiore, dolore, intorpidimento o dolore al petto. Se viene messo uno stent, prendi farmaci per prevenire i coaguli e non devi sospenderli senza consiglio."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi",
+      "text": "Immagina di dover fare domani un cateterismo. Potresti elencare i farmaci, chiedere quali sospendere e organizzare un passaggio per tornare a casa."
+    },
+    {
+      "title": "Curare la ferita",
+      "text": "Supponi che la puntura sia stata al polso. Potresti evitare di sollevare pesi e osservare gonfiore o sanguinamento."
+    }
+  ],
+  "questions": [
+    "Perché ho bisogno di questa procedura e ci sono alternative?",
+    "Quali sono i rischi nella mia situazione?",
+    "Quali farmaci devo prendere dopo?"
+  ]
+}

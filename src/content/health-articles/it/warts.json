@@ -1,0 +1,51 @@
+{
+  "title": "Verruche",
+  "intro": "Le verruche sono escrescenze innocue della pelle causate dall'infezione cutanea da papillomavirus umano. Sono comuni nei bambini e negli adolescenti e di solito scompaiono da sole, ma possono impiegare mesi o anni. I trattamenti possono accelerare la guarigione, anche se nessuno è garantito.",
+  "sections": [
+    {
+      "heading": "Tipi",
+      "paragraphs": [
+        "Le verruche comuni sono escrescenze ruvide e in rilievo su mani e dita. Le verruche plantari compaiono sotto i piedi e possono essere spinte verso l'interno, causando dolore camminando. Le verruche piane sono piccole, lisce e spesso compaiono a gruppi su viso e gambe. Le verruche genitali sono un tipo a sé, sessualmente trasmissibile, che richiede una gestione diversa."
+      ]
+    },
+    {
+      "heading": "Come si diffondono",
+      "paragraphs": [
+        "Le verruche si diffondono con il contatto diretto della pelle e toccando superfici come il pavimento delle piscine e le docce comuni, soprattutto dove la pelle è danneggiata o bagnata. Sono solo lievemente contagiose. Grattarsi o toccarle può diffonderle ad altre zone. Un'immunità debole le rende più persistenti."
+      ]
+    },
+    {
+      "heading": "Opzioni di trattamento",
+      "paragraphs": [
+        "Molte verruche scompaiono senza trattamento entro uno-due anni. I preparati di acido salicilico applicati ogni giorno dopo il bagno e la limatura della superficie sono il primo trattamento standard e richiedono diverse settimane. La crioterapia con azoto liquido congela la verruca e si ripete ogni due settimane circa. Il nastro adesivo è stato provato con risultati contrastanti. Per le verruche ostinate i medici possono usare altre creme, piccole procedure o il laser. Evita di tagliare le verruche da solo."
+      ]
+    },
+    {
+      "heading": "Prevenire la diffusione",
+      "paragraphs": [
+        "Copri le verruche con un cerotto, soprattutto in piscina, indossa sandali nelle docce comuni, non condividere asciugamani né rasoi, evita di toccarle e tieni i piedi asciutti. I bambini con verruche possono andare a scuola e in piscina, coprendole quando possibile."
+      ]
+    },
+    {
+      "heading": "Quando andare dal medico",
+      "paragraphs": [
+        "Chiedi consiglio se una escrescenza sanguina, cambia colore, fa male, si estende, è nella zona genitale, compare in una persona con diabete, cattiva circolazione o immunità debole, o se non sei sicuro che sia una verruca. Le persone con diabete non devono trattare da sole le verruche ai piedi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Usare l'acido salicilico",
+      "text": "Immagina che tuo figlio abbia una verruca su un dito. Potresti immergere la zona in acqua tiepida, limare la pelle morta e applicare il trattamento ogni giorno per diverse settimane."
+    },
+    {
+      "title": "Proteggere la piscina",
+      "text": "Supponi di avere una verruca plantare. Potresti coprirla con un cerotto impermeabile e indossare le ciabatte nello spogliatoio."
+    }
+  ],
+  "questions": [
+    "Si tratta di una verruca e devo trattarla o aspettare?",
+    "Quale trattamento è migliore per questa sede?",
+    "Quando devo tornare se il trattamento non funziona?"
+  ]
+}

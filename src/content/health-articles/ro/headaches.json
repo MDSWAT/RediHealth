@@ -1,0 +1,51 @@
+{
+  "title": "Cefaleea: tipare, tratament și semne de alarmă",
+  "intro": "Cefaleea este un simptom cu multe cauze. Cefaleea de tensiune și migrena sunt forme primare frecvente; infecția, trauma ori alte boli pot produce cefalee secundară. Tiparul și simptomele asociate ghidează îngrijirea.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Notați dacă durerea apasă ori pulsează, locul, durata, factorii și efectul asupra activităților. Greața, sensibilitatea la lumină ori schimbările vizuale contează; un singur semn nu confirmă migrena tuturor."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Jurnalul include zilele cu durere și toate calmantele folosite. Examinarea ghidează investigațiile; scanările uzuale nu sunt necesare pentru fiecare tipar familiar stabil. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Tratamentul diferă după diagnostic. Analgezicele simple ajută unele episoade, iar tratamentul specific migrenei ori preventiv poate fi potrivit altora. Folosirea frecventă a calmantelor poate întreține cefaleea; discutați plan supravegheat, nu creșterea dozelor. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Mesele regulate, hidratarea, somnul și mișcarea tolerată sprijină îngrijirea. Nu vă învinovățiți pentru fiecare criză și nu impuneți restricții largi din liste generale de factori. Adaptările școlii ori muncii pot reduce impactul. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Durerea bruscă maximă, slăbiciunea nouă, confuzia, febra cu ceafă rigidă, pierderea vederii ori cefaleea după traumă importantă cer urgență. Cefaleea nouă severă în sarcină sau după naștere necesită evaluare promptă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira notează zilele dureroase și calmantele. Evaluarea arată utilizare în creștere și conduce la schimbare planificată, nu comprimate zilnice mai puternice."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Cefaleea familiară a lui Arben devine brusc foarte severă cu slăbiciunea brațului. Cere ajutor urgent în loc să o trateze ca episod obișnuit."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

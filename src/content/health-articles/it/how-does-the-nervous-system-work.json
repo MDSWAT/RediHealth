@@ -1,0 +1,52 @@
+{
+  "title": "Come i nervi collegano sensazione e azione",
+  "intro": "Il sistema nervoso riceve informazioni, le elabora e coordina risposte. Include movimento cosciente e regolazione automatica. Insensibilità, debolezza e dolore possono originare a livelli diversi; una mappa non è una diagnosi.",
+  "sections": [
+    {
+      "heading": "Centrale e periferico",
+      "paragraphs": [
+        "Cervello e midollo formano il sistema centrale. I nervi periferici li collegano a pelle, muscoli e organi; una lesione nervosa differisce da una del midollo o cervello."
+      ]
+    },
+    {
+      "heading": "Messaggi",
+      "paragraphs": [
+        "I neuroni usano impulsi elettrici e messaggeri chimici. La mielina aiuta molte fibre a condurre bene. Sono essenziali anche cellule di sostegno e apporto sanguigno."
+      ]
+    },
+    {
+      "heading": "Azione e riflessi",
+      "paragraphs": [
+        "I segnali motori attivano muscoli, quelli sensoriali descrivono condizioni. Alcuni riflessi passano dal midollo prima dell'interpretazione cosciente, allontanando dal pericolo senza pianificazione."
+      ]
+    },
+    {
+      "heading": "Controllo automatico",
+      "paragraphs": [
+        "Le vie autonome regolano battito, digestione e sudore. Attività simpatica e parasimpatica bilanciano esigenze variabili; i sintomi non provano un sistema permanentemente acceso."
+      ]
+    },
+    {
+      "heading": "Valutazione",
+      "paragraphs": [
+        "La visita valuta forza, sensibilità e riflessi, poi eventuali test mirati. Debolezza improvvisa o difficoltà di parola, oppure nuovi problemi urinari con insensibilità a sella e sintomi lombari richiedono urgenza.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira descrive dove inizia l'insensibilità e quali compiti sono difficili, senza diagnosticare da un disegno online."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben sviluppa debolezza alle gambe e difficoltà a urinare con nuovo mal di schiena. Cerca urgenza anziché forzare gli esercizi."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

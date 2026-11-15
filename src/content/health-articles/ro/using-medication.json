@@ -1,0 +1,51 @@
+{
+  "title": "Folosirea în siguranță a medicamentelor",
+  "intro": "Medicamentele pot ajuta foarte mult, dar pot și dăuna dacă sunt folosite incorect. Luarea medicamentului potrivit, în doza și la ora potrivite, și știința a ceea ce trebuie urmărit fac tratamentul mai sigur și mai eficient. Comunicarea deschisă cu medicii și farmaciștii este esențială.",
+  "sections": [
+    {
+      "heading": "Înțelegerea medicamentelor dumneavoastră",
+      "paragraphs": [
+        "Pentru fiecare medicament, cunoașteți numele, scopul, doza, orarul, cât timp trebuie luat și ce să faceți dacă omiteți o doză. Citiți prospectul, care enumeră efectele secundare și interacțiunile. Întrebați dacă trebuie luat cu alimente și ce alimente, alcool sau alte medicamente trebuie evitate. Păstrați o listă actualizată a tot ce luați."
+      ]
+    },
+    {
+      "heading": "Luarea corectă a medicamentelor",
+      "paragraphs": [
+        "Urmați întocmai instrucțiunile. Nu opriți medicamentele prescrise și nu schimbați dozele fără sfat medical, chiar dacă vă simțiți mai bine sau mai rău. Terminați curele de antibiotice conform indicațiilor. Folosiți dispozitivele de măsurare furnizate pentru lichide, deoarece lingurile de bucătărie variază. Nu zdrobiți și nu împărțiți tabletele decât dacă este permis. Organizatoarele de pastile și alarmele ajută când luați mai multe medicamente."
+      ]
+    },
+    {
+      "heading": "Efecte secundare și interacțiuni",
+      "paragraphs": [
+        "Cele mai multe efecte secundare sunt ușoare, dar raportați simptomele severe, neobișnuite sau persistente și semnele unei reacții alergice, precum erupția, umflarea sau dificultatea de a respira. Interacțiunile pot apărea între medicamente, cu suplimente, produse din plante, alimente și alcool. Spuneți fiecărui medic și farmacist tot ce luați, inclusiv produsele cumpărate fără rețetă."
+      ]
+    },
+    {
+      "heading": "Păstrare și eliminare",
+      "paragraphs": [
+        "Păstrați medicamentele conform indicațiilor, de obicei într-un loc răcoros și uscat, la îndemâna copiilor, în ambalajul original. Verificați datele de expirare. Nu păstrați antibiotice rămase și nu dați medicamente altora. Returnați medicamentele nefolosite sau expirate la farmacie, în loc să le aruncați în toaletă sau la gunoi."
+      ]
+    },
+    {
+      "heading": "Situații speciale",
+      "paragraphs": [
+        "Sarcina, alăptarea, vârsta înaintată, problemele renale sau hepatice și copilăria necesită grijă specială cu dozele și alegerile. Întrebați înainte de a lua orice medicament, inclusiv cele fără rețetă. Revizuirile regulate ale medicației cu medicul sau farmacistul pot reduce tratamentele inutile. Cereți ajutor urgent după o supradoză sau dacă cineva ia medicamentul greșit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Umplerea unui organizator săptămânal",
+      "text": "Imaginați-vă că luați șase medicamente zilnic. Ați putea umple un organizator săptămânal cu ajutorul farmacistului și ați putea ține în portofel o listă actualizată."
+    },
+    {
+      "title": "Verificarea înainte de cumpărare",
+      "text": "Presupuneți că vreți să cumpărați un remediu pentru răceală. Ați putea întreba farmacistul dacă este sigur cu medicamentele dumneavoastră actuale."
+    }
+  ],
+  "questions": [
+    "De ce iau acest medicament și cât timp?",
+    "Ce efecte secundare ar trebui să raportez?",
+    "Există interacțiuni cu celelalte medicamente, suplimente sau alimente ale mele?"
+  ]
+}

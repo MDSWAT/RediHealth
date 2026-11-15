@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa succede se si prende una polmonite in ospedale",
+  "intro": "La polmonite acquisita in ospedale è un'infezione dei polmoni che inizia almeno due giorni dopo il ricovero. Può essere più grave di una polmonite presa a casa perché i germi ospedalieri sono spesso resistenti ad alcuni antibiotici e i pazienti possono essere già debilitati. Prevenzione e trattamento precoce sono importanti.",
+  "sections": [
+    {
+      "heading": "Perché succede",
+      "paragraphs": [
+        "I pazienti sono a rischio maggiore se sono anziani, hanno una malattia cronica di polmoni o cuore, sono in ventilazione meccanica, non riescono a tossire bene dopo un intervento, hanno problemi di deglutizione o un sistema immunitario debole. I batteri di bocca o stomaco possono essere inalati nei polmoni e alcuni batteri ospedalieri resistono agli antibiotici abituali."
+      ]
+    },
+    {
+      "heading": "Segni",
+      "paragraphs": [
+        "Febbre, tosse nuova o peggiore, catarro denso o colorato, affanno, dolore al petto, confusione e respirazione più veloce. Negli anziani confusione o stanchezza possono essere i primi segni. Informa subito il personale se tu o un familiare sviluppate questi sintomi."
+      ]
+    },
+    {
+      "heading": "Diagnosi e trattamento",
+      "paragraphs": [
+        "I medici visitano il torace, fanno una radiografia del torace, esami del sangue e campioni di catarro. Il trattamento è con antibiotici, spesso dati all'inizio in flebo e scelti per coprire i batteri resistenti, poi adattati ai risultati degli esami. Possono servire ossigeno, liquidi, fisioterapia e nei casi gravi terapia intensiva o ventilazione."
+      ]
+    },
+    {
+      "heading": "Recupero",
+      "paragraphs": [
+        "Molte persone guariscono in una o due settimane, ma i pazienti più anziani o fragili possono aver bisogno di più tempo e il ricovero può allungarsi. Esercizi di respirazione, alzarsi dal letto e una buona nutrizione aiutano. Alcune persone si sentono stanche per settimane dopo e può essere raccomandata una radiografia del torace di controllo."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Gli ospedali prevengono la polmonite con igiene delle mani, cura della bocca, mettendo i pazienti seduti, incoraggiando il movimento e la respirazione profonda dopo gli interventi e un uso attento di ventilatori e sedativi. I pazienti possono aiutare pulendo i denti, smettendo di fumare prima dell'intervento, chiedendo al personale dell'igiene e muovendosi appena consentito."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fare esercizi di respirazione",
+      "text": "Immagina di aver subito un intervento all'addome. Potresti fare respiri profondi, tossire delicatamente sostenendo la ferita e metterti seduto regolarmente."
+    },
+    {
+      "title": "Segnalare una preoccupazione",
+      "text": "Supponi che un tuo familiare diventi confuso e abbia affanno. Potresti dirlo subito all'infermiere e chiedere una valutazione medica."
+    }
+  ],
+  "questions": [
+    "Che cosa ha causato la mia polmonite e quali antibiotici si usano?",
+    "Per quanto tempo dovrò restare e recuperare?",
+    "Che cosa posso fare per evitare che ritorni?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Hepatitis C: testiranje i izlječenje",
+  "intro": "Hepatitis C je krvlju prenosiva virusna infekcija jetre, često godinama neprimjetna. Tablete liječe većinu infekcija, ali izlječenje ne uklanja automatski cirozu niti štiti od ponovne zaraze.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Dijeljeni pribor za injekcije, nesterilni instrumenti i druge krvne izloženosti prenose. Zagrljaji i obroci ne prenose. Izbjegavajte krivnju: pozitivan test ne određuje vrijeme ili način zaraze."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Antitijela pokazuju prošlu izloženost, ne nužno aktivnu infekciju. Virusni genetski materijal potvrđuje sadašnju infekciju. Procjena jetre i drugi nalazi usmjeravaju terapiju i praćenje. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Izravni antivirotici biraju se prema jetri, prethodnoj terapiji i interakcijama. Završite kuru i potvrdni test. Provjerite lijekove i dodatke jer interakcije slabe učinak ili štete. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Ne dijelite igle, britvice ili četkice; koristite sterilne službe. Cjepiva za C nema. Pitajte za A i B kada treba i izbjegavajte alkohol. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Nedavna izloženost krvi traži brz savjet i plan testiranja. Zbunjenost, velik otok trbuha, krvavo povraćanje ili crna stolica traže hitnost. Ciroza može trebati nadzor raka jetre i nakon izlječenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima pozitivna antitijela i pita za test sadašnje infekcije bez pretpostavke da sigurno još nosi virus."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben završava tablete i potvrdu. Nastavlja kontrole zbog prethodnih ožiljaka bez pretpostavke da je izlječenje kraj svih provjera."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

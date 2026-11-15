@@ -1,0 +1,52 @@
+{
+  "title": "Intolerancija na laktozu",
+  "intro": "Intolerancija na laktozu znači da tijelo ne može pravilno probaviti mliječni šećer, što uzrokuje nadutost, vjetrove i proljev nakon mliječnih proizvoda. Česta je u odraslih diljem svijeta i nije opasna. Većina ljudi može se nositi s njom prilagodbom količine laktoze koju jede umjesto potpunog izbjegavanja mliječnih proizvoda.",
+  "sections": [
+    {
+      "heading": "Što je uzrokuje",
+      "paragraphs": [
+        "Laktozu probavlja enzim zvan laktaza u tankom crijevu. U većine ljudi proizvodnja laktaze pada nakon djetinjstva pa šećer prolazi u debelo crijevo gdje ga bakterije fermentiraju. To stvara plin i uvlači vodu u crijevo. Rjeđe crijevne bolesti kao što su celijakija ili infekcija privremeno smanjuju laktazu."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Simptomi se obično javljaju unutar trideset minuta do dva sata nakon jedenja mliječnih proizvoda i uključuju grčeve u trbuhu, nadutost, vjetrove, rijetku stolicu i ponekad mučninu. Koliko laktoze uzrokuje probleme razlikuje se od osobe do osobe, a mnogi podnose male količine, kao što je mlijeko u kavi."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Liječnici mogu predložiti izbacivanje laktoze na kratko razdoblje da se vidi poboljšavaju li se simptomi, a zatim njezino ponovno uvođenje. Vodikov izdisajni test nakon pijenja otopine laktoze može to potvrditi. Druga stanja kao što su sindrom iritabilnog crijeva, celijakija i alergija na kravlje mlijeko uzrokuju slične simptome i ne treba ih miješati. Alergija na mlijeko je imunološka reakcija i drukčija je."
+      ]
+    },
+    {
+      "heading": "Dobro jesti s intolerancijom na laktozu",
+      "paragraphs": [
+        "Mnogi ljudi podnose tvrde sireve, jogurt i maslac, koji sadrže malo laktoze. Mlijeko i mliječni proizvodi bez laktoze široko su dostupni i nutritivno slični. Tablete enzima laktaze mogu se uzeti uz obroke. Provjeravajte oznake jer se laktoza pojavljuje u prerađenoj hrani i nekim lijekovima.",
+        "Ako potpuno izbjegavate mliječne proizvode, pobrinite se da dobijete dovoljno kalcija i vitamina D iz druge hrane kao što su obogaćena pića, zeleno povrće, orašasti plodovi i riba, ili pitajte o dodacima."
+      ]
+    },
+    {
+      "heading": "Kada posjetiti liječnika",
+      "paragraphs": [
+        "Potražite savjet ako imate krv u stolici, gubitak težine, trajan proljev, jaku bol ili simptome koji ne odgovaraju obrascu. Bebe s povraćanjem i proljevom nakon mlijeka trebaju liječnički pregled."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pronalaženje svoje granice",
+      "text": "Zamislite da dobijete grčeve nakon čaše mlijeka. Mogli biste tjedan dana probati mlijeko bez laktoze, zatim isprobati male količine jogurta ili sira i zabilježiti koja hrana uzrokuje simptome, a koja ne."
+    },
+    {
+      "title": "Provjera oznake",
+      "text": "Pretpostavite da kupujete gotova jela i niste sigurni oko skrivene laktoze. Mogli biste provjeriti popise sastojaka za mlijeko, sirutku i mlijeko u prahu i pitati dijetetičara o prikladnim alternativama."
+    }
+  ],
+  "questions": [
+    "Uzrokuje li moje simptome doista laktoza ili bi moglo biti uključeno neko drugo stanje?",
+    "Koliko mliječnih proizvoda vjerojatno mogu podnijeti i koje je proizvode najlakše probaviti?",
+    "Kako mogu dobiti dovoljno kalcija ako ograničim mliječne proizvode?"
+  ]
+}

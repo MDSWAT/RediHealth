@@ -1,0 +1,51 @@
+{
+  "title": "Tinnitus",
+  "intro": "Tinnitus is the perception of sounds such as ringing, buzzing or hissing without an external source. Many people notice it briefly, and for some it becomes persistent and bothersome. It is rarely a sign of a serious disease, and although there is no cure for most cases, there are effective ways to reduce its impact.",
+  "sections": [
+    {
+      "heading": "What it is and why it occurs",
+      "paragraphs": [
+        "Tinnitus arises in the hearing system and the brain's processing of sound. It often accompanies hearing loss, for example from ageing or loud noise, as the brain turns up its own activity. Other triggers include earwax, ear infections, certain medicines, jaw problems, stress and head or neck injury. In many cases no cause is found."
+      ]
+    },
+    {
+      "heading": "When to see a doctor",
+      "paragraphs": [
+        "See a doctor if tinnitus is new, occurs in only one ear, is pulsing in time with the heartbeat, comes with sudden hearing loss, dizziness or facial weakness, or follows a head injury. These features may need further tests, such as hearing tests or imaging."
+      ]
+    },
+    {
+      "heading": "Assessment",
+      "paragraphs": [
+        "A doctor examines the ears, tests hearing and asks about noise exposure, medicines and stress. Hearing tests check for hearing loss that could be treated with hearing aids. Questionnaires assess how disturbing the tinnitus is. Blood tests or scans are used when a particular cause is suspected."
+      ]
+    },
+    {
+      "heading": "Treatment and coping",
+      "paragraphs": [
+        "There is no proven medicine that removes tinnitus. Treatment of any underlying cause, such as removing earwax or treating hearing loss with hearing aids, can help. Counselling and cognitive behavioural therapy are effective at reducing distress. Sound therapy using background sound, noise generators or apps, and relaxation techniques make tinnitus less noticeable, especially at night. Avoid complete silence. Sleep, stress management and exercise matter."
+      ]
+    },
+    {
+      "heading": "Prevention and misconceptions",
+      "paragraphs": [
+        "Protect hearing from loud noise using earplugs or ear defenders and lowering headphone volume. Supplements and expensive devices marketed as cures lack proof. Most people get used to tinnitus over time, and it often becomes less bothersome. Seek help if it affects sleep, mood or concentration."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Coping at night",
+      "text": "Imagine tinnitus is loud when you try to sleep. You could play soft background sound from a speaker, practise relaxation before bed and avoid silence."
+    },
+    {
+      "title": "Seeking a hearing test",
+      "text": "Suppose you notice ringing and some difficulty following conversation. You might book a hearing test to see whether hearing aids could help."
+    }
+  ],
+  "questions": [
+    "Is my tinnitus linked to hearing loss, and could a hearing aid help?",
+    "Which therapies are most effective for reducing distress?",
+    "Which signs would mean I need further tests?"
+  ]
+}

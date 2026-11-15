@@ -1,0 +1,51 @@
+{
+  "title": "Ce ajută la reducerea grețurilor în sarcină",
+  "intro": "Greața și vărsăturile sunt foarte frecvente la începutul sarcinii și sunt adesea numite greață de dimineață, deși pot apărea la orice oră din zi. De obicei încep în jur de șase săptămâni și se ameliorează în jur de șaisprezece până la douăzeci de săptămâni. Măsurile simple ajută multe femei, iar medicamentele sunt disponibile când este nevoie.",
+  "sections": [
+    {
+      "heading": "De ce apar",
+      "paragraphs": [
+        "Cauza nu este pe deplin înțeleasă, dar se crede că hormonii sarcinii, aflați în creștere, joacă un rol. Greața nu este dăunătoare bebelușului în majoritatea cazurilor. Este mai frecventă în prima sarcină, în sarcina multiplă și la femeile care au mai avut-o. Stresul, oboseala și mirosurile puternice o pot agrava."
+      ]
+    },
+    {
+      "heading": "Sfaturi privind mâncarea și băutura",
+      "paragraphs": [
+        "Mâncați mese mici și frecvente și țineți gustări simple, precum biscuiți sărați, lângă pat, pentru a mânca înainte de a vă ridica. Evitați alimentele grase, picante sau foarte dulci și orice mirosuri care declanșează greața. Beți înghițituri mici de lichide pe parcursul zilei; băuturile reci sau ceaiul de ghimbir pot fi mai ușor de tolerat. Odihniți-vă bine."
+      ]
+    },
+    {
+      "heading": "Alte măsuri",
+      "paragraphs": [
+        "Ghimbirul sub formă de ceai, biscuiți sau capsule s-a dovedit util pentru unele femei. Brățările de acupresiune și acupunctura au arătat rezultate mixte, dar sunt sigure pentru multe femei. Vitamina B6 poate reduce greața. Luați vitaminele prenatale împreună cu mâncarea sau cereți o schimbare dacă agravează greața."
+      ]
+    },
+    {
+      "heading": "Medicamente",
+      "paragraphs": [
+        "Dacă măsurile nu ajută, medicii pot prescrie medicamente antiemetice considerate sigure în sarcină, precum anumite antihistaminice sau doxilamină cu vitamina B6. Nu luați medicamente sau remedii din plante fără a verifica cu medicul sau cu moașa."
+      ]
+    },
+    {
+      "heading": "Când să cereți ajutor",
+      "paragraphs": [
+        "Vărsăturile severe cu scădere în greutate, deshidratare, imposibilitatea de a reține lichide, urina închisă la culoare, amețeala sau slăbiciunea pot indica hiperemesis gravidarum, o formă gravă care necesită îngrijiri medicale și uneori internare cu perfuzii. Contactați moașa sau medicul dacă nu puteți mânca sau bea o zi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Începutul zilei",
+      "text": "Imaginați-vă că vă simțiți rău în fiecare dimineață. Ați putea ține biscuiți uscați lângă pat și ați putea mânca unul încet înainte de a vă ridica."
+    },
+    {
+      "title": "Cererea de ajutor",
+      "text": "Presupuneți că ați vărsat toată ziua și nu puteți reține apa. Ați putea suna moașa sau medicul în aceeași zi."
+    }
+  ],
+  "questions": [
+    "Este greața mea normală sau ar putea fi hiperemesis?",
+    "Ce medicamente sunt sigure pentru mine și pentru bebeluș?",
+    "Îmi agravează vitaminele greața?"
+  ]
+}

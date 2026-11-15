@@ -1,0 +1,56 @@
+{
+  "title": "Si diagnostikohet diabeti",
+  "intro": "Diabeti diagnostikohet me analiza gjaku që masin sa sheqer, ose glukozë, ka në gjak. Meqenëse diabeti i hershëm mund të mos japë simptoma, testimi është i rëndësishëm për njerëzit me rrezik më të lartë. Të kuptuarit e testeve kryesore dhe e asaj që nënkuptojnë numrat e bën më të lehtë ndjekjen dhe parashtrimin e pyetjeve të duhura.",
+  "sections": [
+    {
+      "heading": "Pse bëhet testimi",
+      "paragraphs": [
+        "Mjekët testojnë për diabet kur dikush ka simptoma si etje e madhe, urinim i shpeshtë, lodhje, shikim i turbullt ose shërim i ngadaltë i plagëve. Ata testojnë edhe njerëz pa simptoma që kanë faktorë rreziku, për shembull mbipeshë, të afërm të ngushtë me diabet, tension të lartë ose histori diabeti gjatë shtatzënisë.",
+        "Gjetja e hershme e diabetit lejon trajtimin përpara se të zhvillohet dëmtim afatgjatë në sy, veshka, nerva dhe enë gjaku. Ajo ndihmon edhe të dallohen format e ndryshme, që menaxhohen ndryshe."
+      ]
+    },
+    {
+      "heading": "Glukoza e gjakut në agjërim",
+      "paragraphs": [
+        "Testi i glukozës në agjërim mat nivelin e sheqerit në një mostër gjaku të marrë pas të paktën tetë orësh pa ushqim ose pije me kalori. Është i thjeshtë dhe i disponueshëm gjerësisht. Një rezultat i përsëritur mbi pragun diagnostik prej 126 mg/dl, ose 7,0 mmol/l, tregon diabet.",
+        "Vlerat midis normales dhe pragut të diabetit quhen glukozë e dëmtuar në agjërim ose para-diabet. Ky është një paralajmërim se rreziku për të zhvilluar diabet është i rritur dhe ndryshimet e stilit të jetesës shpesh mund ta vonojnë ose parandalojnë përparimin."
+      ]
+    },
+    {
+      "heading": "HbA1c: vlera afatgjatë",
+      "paragraphs": [
+        "HbA1c pasqyron sheqerin mesatar në gjak gjatë dy-tre muajve të fundit, sepse mat pjesën e hemoglobinës me sheqer të ngjitur. Nuk nevojitet agjërim. Një vlerë prej 6,5 përqind ose më shumë tregon diabet kur konfirmohet.",
+        "HbA1c mund të jetë i pasigurt në disa situata, si anemia, disa variante të hemoglobinës, humbja e fundit e gjakut ose transfuzioni dhe sëmundja e veshkave. Në këto raste mjekët mbështeten më shumë në matje të drejtpërdrejta të glukozës."
+      ]
+    },
+    {
+      "heading": "Testi i tolerancës ndaj glukozës",
+      "paragraphs": [
+        "Në një test oral të tolerancës ndaj glukozës, sheqeri në gjak matet në agjërim dhe përsëri dy orë pas pirjes së një solucioni standard sheqeri. Mund të zbulojë probleme që vlerat në agjërim i lënë pas dore dhe përdoret për diagnostikimin e diabetit gestacional në shtatzëni. Përgatitja dhe kushtet kanë rëndësi, prandaj ndiqni udhëzimet që merrni.",
+        "Një sheqer i rastësishëm në gjak prej 200 mg/dl ose më shumë së bashku me simptoma tipike mund ta konfirmojë gjithashtu diagnozën. Pa simptoma, rezultatet zakonisht kontrollohen me një test të dytë."
+      ]
+    },
+    {
+      "heading": "Pas diagnozës",
+      "paragraphs": [
+        "Mjeku juaj do t'ju shpjegojë cilin lloj diabeti keni dhe do të organizojë analiza të tjera, për shembull për funksionin e veshkave, kolesterolin dhe shëndetin e syve. Trajtimi mund të përfshijë ndryshime të dietës, aktivitet fizik, tableta ose insulinë, bashkë me edukim për monitorimin.",
+        "Shumë njerëz ndihen të mbingarkuar në fillim. Programet e edukimit për diabetin dhe grupet e mbështetjes mund t'ju ndihmojnë ta kuptoni gjendjen tuaj dhe të ndërtoni besim në menaxhimin e përditshëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për një test",
+      "text": "Imagjinoni që keni një takim për një test të glukozës në agjërim. Mund të konfirmoni sa kohë të shmangni ushqimin, nëse mund të pini ujë dhe të merrni barnat tuaja të zakonshme dhe të planifikoni një takim herët, që agjërimi të jetë më i lehtë."
+    },
+    {
+      "title": "Të kuptuarit e një rezultati kufitar",
+      "text": "Supozoni që HbA1c juaj është pak i ngritur, por nën pragun e diabetit. Mund të pyesni çfarë do të thotë kjo për rrezikun tuaj, cilat hapa të stilit të jetesës janë më të dobishëm dhe kur duhet përsëritur testi."
+    }
+  ],
+  "questions": [
+    "Cili test është më i miri për mua dhe a duhet të agjëroj ose të përgatitem në ndonjë mënyrë?",
+    "Nëse rezultati im është kufitar, sa i mundshëm është të përparojë dhe çfarë mund të bëj?",
+    "Nëse kam diabet, çfarë analizash të tjera dhe çfarë edukimi do të më ofrohen?"
+  ]
+}

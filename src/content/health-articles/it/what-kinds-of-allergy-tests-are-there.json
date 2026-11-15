@@ -1,0 +1,51 @@
+{
+  "title": "Che tipi di test per le allergie esistono",
+  "intro": "I test per le allergie aiutano a scoprire quali sostanze scatenano una reazione allergica. Comprendono test cutanei, esami del sangue e test di provocazione supervisionati. I risultati vanno sempre interpretati insieme ai sintomi, perché un test positivo da solo non prova un'allergia.",
+  "sections": [
+    {
+      "heading": "Test cutaneo prick",
+      "paragraphs": [
+        "Una goccia di estratto di allergene viene posta sull'avambraccio o sulla schiena e la pelle viene punta con una minuscola lancetta. Se sei allergico compare entro quindici-venti minuti un piccolo rigonfiamento rosso e pruriginoso. È rapido, economico e molto usato per pollini, acari, animali, cibi e veleni. Gli antistaminici vanno sospesi per diversi giorni prima. Raramente può verificarsi una reazione grave, quindi si fa in ambito medico."
+      ]
+    },
+    {
+      "heading": "Esami del sangue",
+      "paragraphs": [
+        "Misurano gli anticorpi IgE specifici verso gli allergeni e sono utili se il test cutaneo non è possibile, per esempio per malattie della pelle o se non si possono sospendere gli antistaminici. Sono sicuri, ma in alcuni casi leggermente meno sensibili e i risultati richiedono diversi giorni. Il test dei componenti individua proteine specifiche di un allergene e aiuta a prevedere la gravità."
+      ]
+    },
+    {
+      "heading": "Altri test cutanei",
+      "paragraphs": [
+        "Il patch test si usa per le allergie da contatto, come al nichel o ai profumi. Cerotti con allergeni vengono attaccati sulla schiena per due giorni e la pelle viene controllata dopo due e dopo tre-quattro giorni. I test intradermici iniettano una minuscola quantità nella pelle e si usano soprattutto per le allergie ai farmaci e al veleno di insetti."
+      ]
+    },
+    {
+      "heading": "Test di provocazione",
+      "paragraphs": [
+        "I test di provocazione per cibo, farmaci o nasale somministrano l'allergene sospetto sotto supervisione medica per vedere se avviene una reazione. Sono il modo più affidabile per confermare molte allergie a cibi e farmaci, ma comportano un rischio di reazione e si fanno solo dove è disponibile il trattamento d'emergenza. Le diete di eliminazione aiutano a individuare i fattori scatenanti."
+      ]
+    },
+    {
+      "heading": "Test da evitare",
+      "paragraphs": [
+        "L'analisi dei capelli, gli esami del sangue delle IgG per l'intolleranza alimentare, la kinesiologia e test simili non sono affidabili e possono portare a restrizioni alimentari inutili. Chiedi a un allergologo quali test sono appropriati."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi al test cutaneo",
+      "text": "Immagina di avere il test prick la settimana prossima. Potresti chiedere quali antistaminici sospendere e per quanti giorni."
+    },
+    {
+      "title": "Interpretare i risultati",
+      "text": "Supponi che l'esame del sangue sia positivo per le arachidi ma tu le mangi senza problemi. Potresti chiedere se serva una provocazione supervisionata."
+    }
+  ],
+  "questions": [
+    "Quale test per le allergie è migliore per i miei sintomi?",
+    "Devo sospendere dei farmaci prima?",
+    "Che cosa significa per me un risultato positivo?"
+  ]
+}

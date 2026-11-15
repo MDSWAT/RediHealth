@@ -1,0 +1,56 @@
+{
+  "title": "La temperatura corporea e la febbre",
+  "intro": "Il corpo umano mantiene la temperatura interna entro un intervallo ristretto, di solito intorno ai 37 gradi Celsius, in modo che le cellule e gli enzimi funzionino bene. La febbre è un aumento temporaneo di questo valore di riferimento, nella maggior parte dei casi perché il sistema immunitario sta combattendo un'infezione. Capire come viene controllata la temperatura aiuta a decidere quando la febbre si può gestire a casa e quando serve un consiglio medico.",
+  "sections": [
+    {
+      "heading": "Come il corpo controlla la temperatura",
+      "paragraphs": [
+        "Una piccola area del cervello, l'ipotalamo, funziona come un termostato. Riceve segnali dai sensori di temperatura nella pelle e all'interno del corpo e poi attiva delle risposte. Quando si ha troppo caldo, i vasi sanguigni della pelle si dilatano e si suda, il che raffredda il corpo man mano che il sudore evapora.",
+        "Quando si ha troppo freddo, i vasi della pelle si restringono per trattenere il calore e i muscoli possono tremare per generare calore. Conta anche il comportamento: mettersi dei vestiti, cercare l'ombra o bere acqua fresca aiutano il corpo a mantenere l'equilibrio."
+      ]
+    },
+    {
+      "heading": "Che cos'è la febbre",
+      "paragraphs": [
+        "La febbre compare quando sostanze rilasciate durante un'infezione o un'infiammazione alzano il valore di riferimento del termostato. Il corpo allora si sente freddo, provocando brividi e tremori finché non viene raggiunta la nuova temperatura più alta. Una temperatura di circa 38 gradi o più è comunemente considerata febbre negli adulti, anche se le definizioni variano leggermente.",
+        "La febbre non è di per sé una malattia ma un segno che il corpo sta reagendo. In molte infezioni può persino aiutare il sistema immunitario a lavorare in modo più efficace. Altre cause comprendono vaccinazioni, alcuni farmaci, condizioni infiammatorie, colpi di calore e, meno spesso, tumori."
+      ]
+    },
+    {
+      "heading": "Misurare la temperatura",
+      "paragraphs": [
+        "I termometri digitali sono lo strumento standard. Le misure si possono prendere in bocca, sotto l'ascella, nell'orecchio o sulla fronte e, nei neonati, spesso per via rettale, seguendo le istruzioni del termometro. I valori differiscono leggermente tra le sedi, quindi usa lo stesso metodo quando confronti le misure nel tempo.",
+        "Toccare la fronte con la mano è un modo inaffidabile di valutare la febbre. Dopo l'esercizio fisico, una bevanda calda o un bagno caldo attendi prima di misurare, perché possono alterare il risultato."
+      ]
+    },
+    {
+      "heading": "Prendersi cura di sé con la febbre",
+      "paragraphs": [
+        "Riposo e molti liquidi sono i passi più importanti, poiché la febbre aumenta la perdita di liquidi. Abbigliamento leggero e una temperatura ambiente confortevole aiutano. Paracetamolo o ibuprofene possono ridurre il disagio e si possono usare secondo le istruzioni della confezione, ma non sono necessari solo per abbassare il numero se ci si sente abbastanza bene.",
+        "Ai bambini non si deve mai dare l'aspirina per il rischio di una condizione rara ma grave. I bagni freddi o le frizioni con alcol non sono raccomandati, perché possono causare brividi e possono essere dannosi."
+      ]
+    },
+    {
+      "heading": "Quando chiedere aiuto medico",
+      "paragraphs": [
+        "Chiedi subito un consiglio per la febbre in un neonato sotto i tre mesi, per una febbre che dura più di tre giorni, rigidità del collo, un'eruzione cutanea che non scompare premendo, confusione, difficoltà respiratorie, dolore intenso o segni di disidratazione. Anche le persone con difesa immunitaria indebolita, malattie croniche gravi o un intervento recente dovrebbero chiedere consiglio prima.",
+        "La febbre dopo un viaggio in certe regioni può indicare infezioni come la malaria e richiede una valutazione tempestiva. Se un bambino ha una convulsione febbrile, mantieni la calma, mettilo su un fianco e chiama i soccorsi se dura più di pochi minuti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Assistere un bambino a casa",
+      "text": "Immagina che il tuo bambino piccolo abbia la febbre ma beva, giochi un po' e risponda normalmente. Potresti offrirgli liquidi e riposo, vestirlo leggero, controllare la temperatura a intervalli e chiamare il medico se la febbre dura più di qualche giorno o se il suo comportamento cambia."
+    },
+    {
+      "title": "Prepararsi a una telefonata",
+      "text": "Supponi di telefonare a un servizio di assistenza medica per un familiare con la febbre. Avere scritti i valori della temperatura, l'ora in cui è iniziata la febbre, gli altri sintomi e i farmaci già assunti aiuta l'operatore a dare indicazioni utili in fretta."
+    }
+  ],
+  "questions": [
+    "Quanto alta o per quanto tempo deve durare la febbre prima che contatti un medico nel mio caso?",
+    "Quali antifebbrili sono sicuri per me o per mio figlio e quali dosi devo usare?",
+    "Quali segnali di allarme devono spingermi a cercare cure d'emergenza?"
+  ]
+}

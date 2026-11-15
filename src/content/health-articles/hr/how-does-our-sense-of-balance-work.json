@@ -1,0 +1,52 @@
+{
+  "title": "Kako tijelo usklađuje ravnotežu",
+  "intro": "Ravnoteža nastaje suradnjom unutarnjih ušiju, očiju, osjeta položaja tijela i mozga. Vrtoglavica ima mnogo mogućih uzroka; poznavanje sustava ne postavlja dijagnozu bolesti uha.",
+  "sections": [
+    {
+      "heading": "Rotacija",
+      "paragraphs": [
+        "Polukružni kanali ispunjeni tekućinom otkrivaju promjene rotacije glave. Osjetne stanice šalju signale mozgu; mogu se kratko nastaviti nakon prestanka vrtnje, što objašnjava osjećaj tijekom igre."
+      ]
+    },
+    {
+      "heading": "Teža i ravno gibanje",
+      "paragraphs": [
+        "Otolitni organi koriste sitne kristale i osjetne stanice za nagib i linearno ubrzanje. Normalni kristali dio su sustava; sama prisutnost nije bolest."
+      ]
+    },
+    {
+      "heading": "Spajanje informacija",
+      "paragraphs": [
+        "Mozak uspoređuje uho s vidom te informacijama mišića i zglobova. Podešava držanje i pokrete očiju, pomažući čitanju znaka dok se glava kreće."
+      ]
+    },
+    {
+      "heading": "Svakodnevica",
+      "paragraphs": [
+        "Nesklad signala može izazvati mučninu u vožnji. Slabo svjetlo, smanjen osjet i neki lijekovi povećavaju rizik pada. Sjednite sigurno pri vrtoglavici i izbjegavajte vožnju ili penjanje do potrebne procjene."
+      ]
+    },
+    {
+      "heading": "Traženje pomoći",
+      "paragraphs": [
+        "Ponavljanje zahtijeva procjenu lijekova i drugih uzroka. Nagla vrtoglavica uz slabost, smetnje govora, dvoslike ili nemogućnost hoda zahtijeva hitnu pomoć, ne kućne manevre.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira je nestabilnija u mraku. Poboljšava rasvjetu i razgovara o vidu, osjetu i ravnoteži, ne samo ušima."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima novu vrtoglavicu i nerazgovijetan govor. Obitelj traži hitnu pomoć umjesto internetskih vježbi."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

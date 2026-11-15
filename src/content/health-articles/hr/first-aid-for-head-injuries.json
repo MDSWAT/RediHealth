@@ -1,0 +1,51 @@
+{
+  "title": "Ozljede glave: prva pomoć i praćenje pogoršanja",
+  "intro": "Udarac može utjecati na mozak bez vidljive rane ili nesvjestice. Potres mozga može uzrokovati glavobolju, omaglicu, smetnje pamćenja i koncentracije. Izgled ne određuje težinu. Prva pomoć čuva disanje i sprječava nove ozljede dok se organizira procjena.",
+  "sections": [
+    {
+      "heading": "Provjerite sigurnost i disanje",
+      "paragraphs": [
+        "Priđite samo sigurno. Govorite osobi i provjerite reakciju i normalno disanje. Pozovite pomoć ako ne reagira. Ako disanje nedostaje ili nije normalno, slijedite dispečera za oživljavanje i upotrijebite dostupan defibrilator. Moguća ozljeda vrata ne smije spriječiti životno važnu zaštitu dišnog puta."
+      ]
+    },
+    {
+      "heading": "Prepoznajte hitne znakove",
+      "paragraphs": [
+        "Nazovite 112 zbog teškog buđenja, napadaja, nove slabosti, promjene govora ili hoda, ponovljenog povraćanja, sve jače glavobolje, tekućine iz nosa ili uha, prodorne rane ili snažnog sudara. Nemojte sami prevoziti nestabilnu osobu. Simptomi se mogu pojaviti nakon naizgled mirnog razdoblja."
+      ]
+    },
+    {
+      "heading": "Zaštitite dok pomoć stiže",
+      "paragraphs": [
+        "Izbjegavajte nepotrebno pomicanje i poduprite glavu i vrat bez sile. Nemojte vaditi zabodene predmete ili pritiskati sumnjivi prijelom lubanje. Stalno pratite disanje. Kod nesvjesne osobe koja normalno diše dišni put ima prednost; slijedite upute za sigurno okretanje. Ostanite blizu i čuvajte toplinu."
+      ]
+    },
+    {
+      "heading": "Objasnite rizike službi",
+      "paragraphs": [
+        "Navedite mehanizam, vrijeme, nesvjesticu, gubitak pamćenja, povraćanje i promjene. Spomenite lijekove za razrjeđivanje krvi, poremećaje krvarenja, operacije mozga, alkohol i droge. Antikoagulansi zahtijevaju brz savjet i kad je osoba dobro. Dojenčad i ljudi koji ne opisuju simptome trebaju posebnu pažnju. Smetenost nije nužno samo opijenost."
+      ]
+    },
+    {
+      "heading": "Slijedite oporavak i nadzor",
+      "paragraphs": [
+        "Kućna njega tek nakon odgovarajućeg savjeta ili pregleda. Odgovorna odrasla osoba nadzire najmanje 24 sata. Spavanje je dopušteno, teško buđenje je hitno stanje. Izbjegavajte alkohol, sedative bez upute i novi udarac. Slijedite osobni plan za školu, rad, vožnju i sport te se javite zbog trajnih ili rastućih tegoba."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zamišljeni primjer: nakon utakmice",
+      "text": "Luka je smeten nakon sudara. Prekida igru i ide na procjenu i bez nesvjestice. Pratitelj opisuje smetenost i prati pogoršanje."
+    },
+    {
+      "title": "Zamišljeni primjer: važnost lijekova",
+      "text": "Ana se udari i dobro je, ali uzima antikoagulans. Brzo traži savjet umjesto pretpostavke da mali podljev znači sigurnost."
+    }
+  ],
+  "questions": [
+    "Traže li mehanizam ili lijekovi hitnu procjenu?",
+    "Tko nadzire i koje promjene traže pomoć?",
+    "Kada sigurno nastaviti aktivnosti?"
+  ]
+}

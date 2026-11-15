@@ -1,0 +1,51 @@
+{
+  "title": "Cefalea tensiva",
+  "intro": "La cefalea tensiva è il tipo più comune di mal di testa e causa un dolore sordo e oppressivo su entrambi i lati della testa, spesso descritto come una fascia stretta. Di solito è lieve o moderata e non impedisce le attività quotidiane. Semplici antidolorifici, il rilassamento e buone abitudini aiutano e i mal di testa frequenti si possono trattare in modo preventivo.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Il dolore è tipicamente costante più che pulsante, avvertito su entrambi i lati della testa o attorno a fronte e collo e non peggiora con l'attività di routine. La nausea è assente o lieve e la sensibilità a luce o rumore è modesta, il che aiuta a distinguerla dall'emicrania. Gli episodi durano da trenta minuti a diversi giorni."
+      ]
+    },
+    {
+      "heading": "Cause e fattori scatenanti",
+      "paragraphs": [
+        "La causa esatta non è nota. La tensione muscolare del collo e del cuoio capelluto, lo stress, il sonno scarso, i pasti saltati, la disidratazione, le lunghe ore al computer con una postura scorretta, l'affaticamento degli occhi e la tensione emotiva sono fattori scatenanti comuni. I fattori differiscono da persona a persona e un diario del mal di testa può aiutare a identificare i tuoi."
+      ]
+    },
+    {
+      "heading": "Trattare un episodio",
+      "paragraphs": [
+        "Semplici antidolorifici come paracetamolo, ibuprofene o aspirina, assunti presto alla dose raccomandata sul foglietto, di solito sono efficaci. Riposo, un impacco caldo o freddo, un delicato massaggio del collo e il rilassamento possono aiutare. Evita di prendere antidolorifici per più di due o tre giorni alla settimana, perché l'uso frequente può causare cefalea da abuso di farmaci."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Sonno e pasti regolari, esercizio fisico, gestione dello stress, tecniche di rilassamento, una buona postura e pause dallo schermo riducono la frequenza. La terapia cognitivo-comportamentale e il biofeedback aiutano molte persone. Per mal di testa frequenti o cronici il medico può proporre un antidepressivo a basso dosaggio assunto ogni giorno, o un altro trattamento preventivo, e l'agopuntura ha qualche prova a favore."
+      ]
+    },
+    {
+      "heading": "Quando cercare aiuto urgente",
+      "paragraphs": [
+        "Rivolgiti subito a un medico per un mal di testa improvviso e forte come mai prima, un mal di testa con febbre e rigidità del collo, confusione, debolezza, alterazioni della vista, difficoltà a parlare, dopo un trauma cranico o un mal di testa nuovo dopo i cinquant'anni. Chiedi consiglio anche se i mal di testa peggiorano progressivamente o interferiscono con la vita quotidiana."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tenere un diario",
+      "text": "Immagina di avere mal di testa più volte alla settimana. Potresti annotare orari, stress, sonno, cibo e antidolorifici usati e rivedere lo schema con il medico."
+    },
+    {
+      "title": "Sistemare la postazione di lavoro",
+      "text": "Supponi che i mal di testa seguano lunghe ore davanti a uno schermo. Potresti alzare il monitor, fare una pausa ogni ora, stirare collo e spalle e far controllare la vista."
+    }
+  ],
+  "questions": [
+    "I miei mal di testa potrebbero essere di un altro tipo che richiede un trattamento diverso?",
+    "Con che frequenza posso prendere antidolorifici in sicurezza?",
+    "Un trattamento preventivo o una terapia mi aiuterebbero?"
+  ]
+}

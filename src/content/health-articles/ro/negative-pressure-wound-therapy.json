@@ -1,0 +1,51 @@
+{
+  "title": "Terapia plăgilor cu presiune negativă",
+  "intro": "Terapia plăgilor cu presiune negativă sigilează un pansament special peste o plagă și îl conectează la o pompă care elimină ușor lichidul prin aspirație. Se folosește pentru plăgile care se vindecă lent, precum escarele, ulcerele piciorului diabetic și unele plăgi chirurgicale. Poate grăbi vindecarea în unele cazuri, dar dovezile privind beneficiul variază.",
+  "sections": [
+    {
+      "heading": "Cum funcționează",
+      "paragraphs": [
+        "O bucată de burete sau de tifon este plasată în plagă și acoperită cu o folie etanșă. Un tub o leagă de o pompă portabilă care aplică o aspirație scăzută, continuă sau intermitentă. Scopul este de a elimina lichidul în exces, de a reduce umflarea, de a apropia marginile plăgii și de a stimula țesutul nou."
+      ]
+    },
+    {
+      "heading": "Când se folosește",
+      "paragraphs": [
+        "Medicii o iau în considerare pentru plăgile mari, adânci sau cu vindecare lentă, pentru plăgile lăsate deschise după operație, arsuri, grefe de piele și plăgi infectate după curățare. Se aplică după îndepărtarea țesutului mort. Nu este potrivită pentru plăgi cu infecție osoasă netratată, cu cancer în plagă, cu vase de sânge sau organe expuse sau cu unele riscuri de sângerare."
+      ]
+    },
+    {
+      "heading": "La ce să vă așteptați",
+      "paragraphs": [
+        "Pansamentul este schimbat la câteva zile de personal instruit, iar unii pacienți folosesc dispozitive portabile acasă, cu vizite ale asistentei. Puteți simți tragere sau durere, mai ales la schimbarea pansamentului, și vi se poate da calmant. Spuneți dacă apar durere mai mare, sângerare, febră, miros neplăcut sau alarme de la aparat."
+      ]
+    },
+    {
+      "heading": "Beneficii și incertitudini",
+      "paragraphs": [
+        "Studiile sugerează că terapia poate reduce timpul de vindecare la unele plăgi, precum cele ale piciorului diabetic, dar pentru multe altele dovezile sunt limitate sau contradictorii. Riscurile includ sângerarea, durerea și iritația pielii. Continuați celelalte măsuri, precum descărcarea de presiune, controlul glicemiei, nutriția bună și renunțarea la fumat, care sunt esențiale pentru vindecare."
+      ]
+    },
+    {
+      "heading": "Aspecte practice zilnice",
+      "paragraphs": [
+        "Purtați pompa în geanta ei, protejați pansamentul la spălat și păstrați etanșeitatea intactă. Întrebați despre limitele de activitate și despre cum să gestionați alarmele și țineți la îndemână datele de contact ale echipei de îngrijire a plăgii."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gestionarea acasă",
+      "text": "Imaginați-vă că plecați acasă cu o pompă portabilă după operație. Ați putea întreba asistenta cum să recunoașteți o scurgere, pe cine să sunați noaptea și când este următoarea schimbare a pansamentului."
+    },
+    {
+      "title": "Cântărirea opțiunilor",
+      "text": "Presupuneți că ulcerul de la picior nu s-a ameliorat de săptămâni. Ați putea întreba dacă terapia cu presiune negativă este potrivită, ce dovezi o susțin pentru plaga dumneavoastră și ce alternative există."
+    }
+  ],
+  "questions": [
+    "Este probabil ca terapia cu presiune negativă să-mi ajute plaga?",
+    "Cât timp va fi nevoie de ea și ce implică îngrijirea acasă?",
+    "Ce semne înseamnă că trebuie să sun imediat?"
+  ]
+}

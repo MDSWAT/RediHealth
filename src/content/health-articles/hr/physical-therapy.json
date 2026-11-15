@@ -1,0 +1,51 @@
+{
+  "title": "Fizioterapija",
+  "intro": "Fizioterapija koristi kretanje, vježbe, manualne tehnike i edukaciju za obnovu i održavanje tjelesne funkcije. Koristi se nakon ozljede ili operacije i kod dugotrajnih stanja koja zahvaćaju mišiće, zglobove, živce, srce i pluća. Dobar fizioterapeut pomoći će vam razumjeti svoj problem i naučiti što možete učiniti sami.",
+  "sections": [
+    {
+      "heading": "Što rade fizioterapeuti",
+      "paragraphs": [
+        "Fizioterapeuti procjenjuju kako se krećete, nalaze uzroke boli ili ograničenja i planiraju liječenje s vama. Rade u bolnicama, ordinacijama, rehabilitacijskim centrima i kod kuće. Područja prakse uključuju ortopediju, neurologiju, respiratornu skrb, zdravlje žena, pedijatriju i sport."
+      ]
+    },
+    {
+      "heading": "Tipična liječenja",
+      "paragraphs": [
+        "Liječenje često uključuje prilagođene vježbe za snagu, fleksibilnost, ravnotežu i izdržljivost, trening hodanja ili svakodnevnih zadataka, manualnu terapiju, toplinu ili hladnoću te savjete o držanju i aktivnosti. Tehnike kao što su električna stimulacija, traping ili hidroterapija ponekad se dodaju. Edukacija o vašem stanju i doziranju aktivnosti ključni je dio."
+      ]
+    },
+    {
+      "heading": "Za što fizioterapija može pomoći",
+      "paragraphs": [
+        "Uobičajeni razlozi uključuju bol u leđima i vratu, probleme sa zglobovima i osteoartritis, oporavak nakon prijeloma ili zamjene zgloba, sportske ozljede, moždani udar i Parkinsonovu bolest, bolesti pluća, probleme dna zdjelice i razvojne probleme u djece. Dokazi su najjači za aktivno liječenje temeljeno na vježbanju."
+      ]
+    },
+    {
+      "heading": "Izvlačenje najviše iz nje",
+      "paragraphs": [
+        "Dolazite redovito, postavljajte pitanja i vježbajte kućne vježbe jer korist dolazi uglavnom od onoga što radite između seansi. Recite terapeutu o boli, drugim bolestima i lijekovima. Dogovorite ciljeve, kao što je hodanje određene udaljenosti ili povratak na posao, i pregledajte napredak nakon nekoliko seansi."
+      ]
+    },
+    {
+      "heading": "Praktične napomene",
+      "paragraphs": [
+        "U mnogim zemljama uputnica liječnika i pravila osiguranja određuju koliko je seansi pokriveno. Možda ćete morati platiti dio troška. Ako se ne poboljšate ili se simptomi pogoršaju, recite terapeutu i liječniku."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Postavljanje cilja",
+      "text": "Zamislite da se oporavljate od operacije koljena. Mogli biste se s fizioterapeutom dogovoriti o ciljevima kao što je penjanje stepenicama bez rukohvata unutar šest tjedana i pratiti vježbe u dnevniku."
+    },
+    {
+      "title": "Uvođenje vježbi u rutinu",
+      "text": "Pretpostavite da zaboravljate kućne vježbe. Mogli biste ih povezati s dnevnom navikom, postaviti podsjetnik i zamoliti terapeuta da skrati program na bitno."
+    }
+  ],
+  "questions": [
+    "Koje će vježbe pomoći mom stanju i koliko često ih trebam raditi?",
+    "Koliko mi seansi treba i kako ćemo mjeriti napredak?",
+    "Što trebam izbjegavati dok se oporavljam?"
+  ]
+}

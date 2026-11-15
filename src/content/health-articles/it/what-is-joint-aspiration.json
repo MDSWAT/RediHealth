@@ -1,0 +1,51 @@
+{
+  "title": "Che cos'è l'artrocentesi",
+  "intro": "L'artrocentesi, o aspirazione articolare, è una procedura in cui si usa un ago per prelevare liquido da un'articolazione. Si fa per trovare la causa di gonfiore o dolore articolare, per ridurre la pressione e a volte per iniettare un farmaco. È rapida e di solito si fa in ambulatorio.",
+  "sections": [
+    {
+      "heading": "Perché si fa",
+      "paragraphs": [
+        "L'analisi del liquido può individuare infezione, gotta, cristalli di pseudogotta, sanguinamento o artrite infiammatoria. Rimuovere il liquido da un'articolazione molto gonfia allevia il dolore e migliora il movimento. Un sospetto di infezione articolare è un'emergenza e l'aspirazione serve con urgenza per prevenire danni permanenti."
+      ]
+    },
+    {
+      "heading": "Come si fa",
+      "paragraphs": [
+        "La pelle viene pulita e può essere anestetizzata con anestetico locale o spray refrigerante. Con una tecnica sterile il medico inserisce un ago nell'articolazione, a volte guidato dall'ecografia, e preleva il liquido. Se serve, attraverso lo stesso ago si inietta un corticosteroide o un altro farmaco. La procedura dura pochi minuti."
+      ]
+    },
+    {
+      "heading": "Che cosa mostra il liquido",
+      "paragraphs": [
+        "Il liquido articolare normale è limpido e denso. Un liquido torbido suggerisce infiammazione o infezione, uno con sangue suggerisce un trauma o un disturbo emorragico e i cristalli nel liquido indicano gotta o pseudogotta. Il campione viene inviato al laboratorio per conta delle cellule, cristalli e coltura batterica."
+      ]
+    },
+    {
+      "heading": "Cura dopo e rischi",
+      "paragraphs": [
+        "Riposa l'articolazione per un giorno o due ed evita l'uso intenso. Un po' di dolore è comune. I rischi sono rari e comprendono infezione, sanguinamento e danno alla cartilagine. Contatta un medico se dopo la procedura compaiono febbre, dolore in aumento, arrossamento, calore o gonfiore. Informa il medico se prendi anticoagulanti."
+      ]
+    },
+    {
+      "heading": "Risultati",
+      "paragraphs": [
+        "Alcuni risultati sono disponibili in poche ore, altri, come la coltura, richiedono giorni. Il medico spiega i reperti e il trattamento, per esempio antibiotici per l'infezione o farmaci per la gotta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi",
+      "text": "Immagina di avere un ginocchio gonfio. Potresti informare il medico degli anticoagulanti e annotare quando è iniziato il gonfiore e se hai avuto febbre."
+    },
+    {
+      "title": "Cura dopo la procedura",
+      "text": "Supponi che ti sia stato prelevato liquido dal ginocchio. Potresti riposarlo per un giorno e osservare calore, arrossamento o febbre."
+    }
+  ],
+  "questions": [
+    "Perché viene prelevato liquido dalla mia articolazione?",
+    "Verrà iniettato un farmaco e quali sono i benefici e i rischi?",
+    "Quando conoscerò i risultati?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Glaukom: zaštita preostalog vida",
+  "intro": "Glaukom oštećuje vidni živac i može suziti vidno polje. Čest oblik otvorenog kuta često napreduje neprimjetno. Liječenje čuva preostali vid; postojeće oštećenje živca uglavnom nije povratno.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Očni tlak važan je čimbenik rizika, ali glaukom može nastati i uz uobičajen tlak. Sam povišen tlak nije isto što i potvrđeno oštećenje živca."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Procjena povezuje mjerenje tlaka, pregled ili snimanje živca i testove vidnog polja. Jedno uredno mjerenje ne isključuje glaukom; ponavljanja mogu trebati za utvrđivanje napredovanja. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Kapi za snižavanje tlaka, laser ili operacija biraju se prema vrsti, oštećenju i odgovoru. Navedite astmu, srčane bolesti i druge lijekove jer i kapi mogu imati sistemske učinke. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Primjenjujte kapi prema uputi, ne dodirujte vrh bočice i zatražite demonstraciju. Prijavite trošak, iritaciju ili propuštanje doza umjesto tihog prekida. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Dolazite na praćenje i kada vid djeluje nepromijenjeno. Naglo bolno crveno oko uz zamagljenje, krugove oko svjetla, glavobolju ili mučninu traži odmah hitnu očnu procjenu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira vidi jasno, ali test pokazuje rani ispad polja. Razumije zašto terapija traje i bez uočljivih simptoma."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben dobiva iritaciju od kapi. Pita o tehnici ili alternativama umjesto prekida do sljedeće godišnje kontrole."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

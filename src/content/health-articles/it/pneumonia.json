@@ -1,0 +1,51 @@
+{
+  "title": "Polmonite",
+  "intro": "La polmonite è un'infezione del tessuto polmonare, di solito causata da batteri o virus, in cui gli alveoli si riempiono di liquido o di pus. Causa tosse, febbre e mancanza di fiato. Molte persone sono curate a casa, ma può essere grave negli anziani, nei bambini piccoli e in chi ha altre malattie.",
+  "sections": [
+    {
+      "heading": "Cause e fattori di rischio",
+      "paragraphs": [
+        "Le cause comuni sono i batteri pneumococco e virus come l'influenza e, nei bambini, il virus respiratorio sinciziale. L'infezione si diffonde con le goccioline o quando germi di naso e gola entrano nei polmoni. Il rischio è maggiore con età avanzata, fumo, malattie croniche di polmoni o cuore, diabete, difese immunitarie deboli, alcolismo e una recente malattia virale."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi tipici comprendono tosse con catarro, febbre e brividi, dolore al petto quando si respira, respirazione rapida e stanchezza. Le persone anziane possono essere confuse invece che febbrili. I sintomi spesso si sviluppano nell'arco di giorni. Cerca aiuto per difficoltà respiratorie, labbra bluastre, confusione, dolore al petto o febbre alta."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "I medici ascoltano il torace, controllano la frequenza del respiro, i livelli di ossigeno e la pressione e possono disporre una radiografia del torace, esami del sangue ed esami dell'espettorato. Sistemi di punteggio stimano la gravità e aiutano a decidere tra cura a casa e ricovero."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "La polmonite batterica si cura con antibiotici, di solito per circa cinque-sette giorni, e quella virale con terapia di supporto o antivirali in alcuni casi. Aiutano riposo, bere molti liquidi e paracetamolo o ibuprofene per febbre e dolore. Il trattamento in ospedale può comprendere ossigeno, antibiotici e liquidi per via endovenosa. La tosse di solito si calma in qualche settimana, ma la stanchezza può durare più a lungo. Una radiografia di controllo può essere consigliata per i fumatori o gli anziani."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "La vaccinazione contro lo pneumococco e l'influenza e, nei bambini, contro altri germi comuni riduce il rischio. Non fumare, lava le mani regolarmente e cerca un trattamento precoce delle infezioni respiratorie. Le persone a rischio più alto dovrebbero chiedere al medico quali vaccinazioni siano consigliate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Decidere dove farsi curare",
+      "text": "Immagina di essere una persona anziana con febbre e tosse. Potresti chiedere se puoi essere curato a casa in sicurezza e quali sintomi dovrebbero spingerti a tornare."
+    },
+    {
+      "title": "Riprendersi bene",
+      "text": "Supponi di aver finito gli antibiotici ma di sentirti ancora debole. Potresti aumentare gradualmente l'attività, riposare abbastanza e riferire al medico la tosse o la febbre persistenti."
+    }
+  ],
+  "questions": [
+    "Ho bisogno di un trattamento in ospedale o posso guarire a casa?",
+    "Quali vaccini dovrei fare per ridurre il rischio?",
+    "Quando dovrebbe essere ricontrollato il mio torace?"
+  ]
+}

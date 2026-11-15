@@ -1,0 +1,52 @@
+{
+  "title": "Kako srce održava krvotok",
+  "intro": "Srce je mišićna pumpa između pluća i tijela. Komore, zalisci, električni sustav i vlastita opskrba krvlju surađuju. Sam uredan puls ne dokazuje da svi dijelovi uredno rade.",
+  "sections": [
+    {
+      "heading": "Put krvi",
+      "paragraphs": [
+        "Krv se iz tijela vraća desno i ide u pluća. Oksigenirana se vraća lijevo i pumpa kroz aortu prema tijelu."
+      ]
+    },
+    {
+      "heading": "Zalisci i mišić",
+      "paragraphs": [
+        "Zalisci vode krv jednosmjerno. Mišić se opušta radi punjenja i steže radi izbacivanja; bolest zalistaka i slabo pumpanje različiti su povezani problemi."
+      ]
+    },
+    {
+      "heading": "Ritam",
+      "paragraphs": [
+        "Signali obično počinju u sinusnom čvoru i šire se provodnim sustavom. Ritam i snaga nisu isto; nepravilan otkucaj treba tumačenje u kontekstu."
+      ]
+    },
+    {
+      "heading": "Vlastita opskrba",
+      "paragraphs": [
+        "Koronarne arterije hrane mišić. Zapreka ga može oštetiti i uz krv unutar komora. Aktivnost, tlak i lijekovi mijenjaju opterećenje."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Pregled, elektrokardiogram i ultrazvuk odgovaraju na različita pitanja. Nov trajni pritisak u prsima, teško disanje, kolaps ili znakovi infarkta traže hitnu pomoć, ne utjehu pametnog sata.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pita zašto treba ultrazvuk nakon elektrokardiograma. Razumije razliku strukture i pumpanja od električne aktivnosti."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima trajan pritisak u prsima i znojenje. Traži hitnu pomoć iako sat pokazuje običan puls."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

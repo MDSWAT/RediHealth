@@ -1,0 +1,51 @@
+{
+  "title": "Parandalimi, diagnoza, trajtimi: çfarë teston mjekësia e bazuar në prova",
+  "intro": "Mjekësia e bazuar në prova përdor kërkimin më të mirë në dispozicion për të gjykuar nëse masat shëndetësore funksionojnë dhe nëse përfitimet e tyre tejkalojnë dëmin. Shqyrton gamën e plotë të kujdesit mjekësor: parandalimin e sëmundjes, zbulimin dhe trajtimin e saj. Të kuptuarit e llojeve kryesore të pyetjeve ju ndihmon të interpretoni pretendimet e të merrni vendime me ekipin tuaj shëndetësor.",
+  "sections": [
+    {
+      "heading": "Testimi i parandalimit",
+      "paragraphs": [
+        "Parandalimi synon të ndalojë sëmundjen para se të ndodhë. Shembuj përfshijnë vaksinat, programet e stilit të shëndetshëm të jetesës e barnat e marra për të ulur rrezikun. Studimet pyesin nëse njerëzit që e përdorin masën zhvillojnë më pak raste sëmundjeje ose komplikimesh se ata që nuk e përdorin dhe nëse ka efekte anësore për njerëz të shëndetshëm, çka ka rëndësi sepse njerëzit e shëndetshëm kanë pak për të fituar nga dëmi."
+      ]
+    },
+    {
+      "heading": "Testimi i diagnozës e skriningut",
+      "paragraphs": [
+        "Testet gjykohen nga sa mirë identifikojnë njerëzit që kanë një gjendje e ata që nuk e kanë, por më e rëndësishmja nga fakti nëse përdorimi i tyre çon në rezultate më të mira. Gjetja më e hershme e një sëmundjeje nuk ndihmon gjithmonë dhe mund të çojë në mbidiagnozë e trajtim të panevojshëm. Provat e skriningut krahasojnë grupet që u ofrohet skriningu me grupet që nuk u ofrohet, duke parë vdekjet e dëmet."
+      ]
+    },
+    {
+      "heading": "Testimi i trajtimit",
+      "paragraphs": [
+        "Trajtimet testohen më mirë në prova të rastësishme, që i krahasojnë me placebo ose kujdes standard. Studiuesit masin rezultate që kanë rëndësi për pacientët, si mbijetesa, simptomat, funksioni e cilësia e jetës, si edhe efektet anësore. Një trajtim që përmirëson një vlerë gjaku nuk është domosdoshmërisht i dobishëm për shëndetin."
+      ]
+    },
+    {
+      "heading": "Peshimi i përfitimit e dëmit",
+      "paragraphs": [
+        "Çdo ndërhyrje ka përfitime e dëme të mundshme. Provat ndihmojnë të vlerësohet sa e mundshme është secila. Numrat absolutë, si sa nga njëqind njerëz përfitojnë, janë më informues se shifrat relative. Preferencat individuale kanë gjithashtu rëndësi, sepse njerëzit i vlerësojnë ndryshe rezultatet."
+      ]
+    },
+    {
+      "heading": "Përdorimi i provave në praktikë",
+      "paragraphs": [
+        "Udhëzuesit e rishikimet sistematike përmbledhin provat. Mjekët e kombinojnë këtë me përvojën e dëshirat e pacientit. Kur mungojnë provat, pasiguria duhet pranuar. Mund të pyesni për madhësinë e përfitimit, rreziqet, alternativat e cilësinë e studimeve."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Interpretimi i numrave",
+      "text": "Imagjinoni që një ilaç thuhet se e ul rrezikun përgjysmë. Mund të pyesni sa njerëz nga njëqind do të përfitonin në terma absolutë dhe sa do të përjetonin efekte anësore."
+    },
+    {
+      "title": "Të menduarit për skrining",
+      "text": "Supozoni që ftoheni në një program skriningu. Mund të pyesni çfarë mund të gjejë testi, sa shpesh jep alarme të rreme e çfarë dëmesh mund të pasojnë."
+    }
+  ],
+  "questions": [
+    "Cilat prova ka që ky test ose trajtim i përmirëson rezultatet që kanë rëndësi për mua?",
+    "Sa të mëdha janë përfitimet e rreziqet në numra absolutë?",
+    "A ka alternativa, përfshirë mosveprimin për momentin?"
+  ]
+}

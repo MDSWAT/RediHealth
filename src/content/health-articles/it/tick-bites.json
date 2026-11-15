@@ -1,0 +1,51 @@
+{
+  "title": "Morsi di zecca",
+  "intro": "Le zecche sono piccoli aracnidi che si nutrono di sangue e possono trasmettere infezioni come la malattia di Lyme e l'encefalite da zecche. La maggior parte dei morsi non causa danni. Rimuovere subito e correttamente la zecca e sapere quali sintomi osservare dopo mantiene basso il rischio.",
+  "sections": [
+    {
+      "heading": "Dove vivono le zecche",
+      "paragraphs": [
+        "Le zecche vivono in boschi, erba alta, cespugli e giardini, soprattutto dalla primavera all'autunno, anche se possono essere attive negli inverni miti. Aspettano sulla vegetazione e salgono su persone o animali che passano. Preferiscono le zone calde e umide del corpo come inguine, ascelle, dietro le ginocchia, l'attaccatura dei capelli e dietro le orecchie."
+      ]
+    },
+    {
+      "heading": "Rimuovere una zecca",
+      "paragraphs": [
+        "Rimuovi la zecca appena la trovi. Usa pinzette sottili o uno strumento per zecche, afferra la zecca vicino alla pelle e tira in modo costante verso l'alto senza torcere, schiacciare né applicare olio o colla. Disinfetta poi la zona e lavati le mani. Se restano parti della bocca, di solito cadono da sole. Annota data e luogo del morso."
+      ]
+    },
+    {
+      "heading": "Che cosa osservare",
+      "paragraphs": [
+        "Controlla la sede del morso per diverse settimane. Un anello rosso che si allarga, soprattutto se cresce nell'arco di giorni, può indicare la malattia di Lyme. Anche febbre, mal di testa, stanchezza, dolori muscolari o sintomi neurologici nelle settimane successive richiedono attenzione. L'encefalite da zecche può causare sintomi simil-influenzali seguiti da infiammazione del cervello, nelle regioni dove è presente."
+      ]
+    },
+    {
+      "heading": "Serve un trattamento dopo un morso",
+      "paragraphs": [
+        "La maggior parte delle persone non ha bisogno di antibiotici dopo un morso. I medici trattano la malattia di Lyme quando compaiono i sintomi. Nelle regioni dove è presente l'encefalite da zecche si consiglia la vaccinazione a chi trascorre tempo all'aperto, perché non esiste un trattamento specifico una volta contratta l'infezione."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Nelle zone con zecche indossa pantaloni lunghi infilati nei calzini e scarpe chiuse, abiti chiari per individuare le zecche e un repellente per insetti. Cammina sui sentieri ed evita l'erba alta. Dopo l'attività all'aperto controlla tutto il corpo, compresi bambini e animali, e fai la doccia. Lava gli abiti e tieni in ordine i giardini."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dopo un'escursione",
+      "text": "Immagina di trovare una zecca sul polpaccio dopo una passeggiata. Potresti rimuoverla con le pinzette, disinfettare la pelle, scrivere la data sul telefono e guardare la zona ogni giorno."
+    },
+    {
+      "title": "Notare un'eruzione",
+      "text": "Supponi che una macchia rossa si estenda tre settimane dopo un morso. Potresti fotografarla e contattare subito il medico."
+    }
+  ],
+  "questions": [
+    "Ho bisogno di un trattamento o di una vaccinazione dopo questo morso di zecca?",
+    "Quali sintomi significano che devo tornare?",
+    "La vaccinazione contro l'encefalite da zecche è consigliabile dove vivo?"
+  ]
+}

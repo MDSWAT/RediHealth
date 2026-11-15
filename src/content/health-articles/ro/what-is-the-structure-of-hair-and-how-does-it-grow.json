@@ -1,0 +1,51 @@
+{
+  "title": "Structura părului și cum crește",
+  "intro": "Părul este alcătuit dintr-o proteină rezistentă numită cheratină. Fiecare fir crește dintr-un folicul din piele și parcurge cicluri de creștere, repaus și cădere. Înțelegerea acestui lucru ajută la explicarea căderii normale a părului, a schimbărilor datorate vârstei și a motivului pentru care unele tratamente acționează lent.",
+  "sections": [
+    {
+      "heading": "Structura",
+      "paragraphs": [
+        "Partea vizibilă a firului de păr, tija, este alcătuită din celule moarte de cheratină în trei straturi: cuticula exterioară, cu solzi suprapuși, corticala, care oferă rezistență și culoare, și, la firele mai groase, o medulară centrală. Sub piele se află rădăcina din folicul, cu bulbul la baza ei, unde celulele se divid rapid. O glandă mică, glanda sebacee, adaugă ulei părului."
+      ]
+    },
+    {
+      "heading": "Ciclul de creștere",
+      "paragraphs": [
+        "Fiecare folicul parcurge cicluri independent. Faza anagenă este creșterea activă și durează între doi și șapte ani. Faza catagenă este o tranziție scurtă de câteva săptămâni, iar faza telogenă este o perioadă de repaus de aproximativ trei luni, după care firul cade și crește unul nou. Aproximativ nouăzeci la sută din firele de pe scalp cresc în același timp, iar pierderea a cincizeci până la o sută de fire pe zi este normală."
+      ]
+    },
+    {
+      "heading": "Culoarea, tipul și viteza de creștere",
+      "paragraphs": [
+        "Culoarea provine din melanina produsă în folicul. Odată cu vârsta, producția încetinește, iar părul devine cărunt sau alb. Forma părului, dreaptă, ondulată sau creață, depinde de forma folicului și este ereditară. Părul crește aproximativ un centimetru pe lună."
+      ]
+    },
+    {
+      "heading": "Probleme frecvente",
+      "paragraphs": [
+        "Subțierea părului poate rezulta din factori genetici (alopecie androgenetică), schimbări hormonale, stres, boală, probleme de nutriție precum deficitul de fier, boala tiroidiană, medicamente, chimioterapie și alopecia areata autoimună. Căderea intensă a părului la câteva luni după o boală sau o naștere, numită efluviu telogen, este de obicei temporară."
+      ]
+    },
+    {
+      "heading": "Îngrijirea părului și tratamentul",
+      "paragraphs": [
+        "Spălarea blândă și evitarea coafurilor strânse, a căldurii și a substanțelor chimice agresive protejează părul. O alimentație echilibrată susține creșterea. Minoxidilul și finasterida se folosesc pentru căderea de tip masculin, iar rezultatele apar după luni. Mergeți la medic pentru cădere bruscă sau pe zone, probleme ale scalpului sau cădere a părului însoțită de alte simptome."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Înțelegerea căderii",
+      "text": "Imaginați-vă că observați mai mult păr căzut după o febră. Ați putea aștepta câteva luni, deoarece acest tip de cădere se recuperează adesea."
+    },
+    {
+      "title": "Cererea de sfat",
+      "text": "Presupuneți că aveți zone chelioase pe cap. Ați putea merge la medic pentru a găsi cauza și a discuta tratamentul."
+    }
+  ],
+  "questions": [
+    "Este căderea părului meu normală sau un semn de boală?",
+    "Ce tratamente funcționează și cât durează?",
+    "Am nevoie de analize de sânge pentru nutriție sau tiroidă?"
+  ]
+}

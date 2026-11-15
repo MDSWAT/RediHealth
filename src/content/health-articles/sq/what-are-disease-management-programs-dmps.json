@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë janë programet e menaxhimit të sëmundjeve (DMP)?",
+  "intro": "Programet e menaxhimit të sëmundjeve në Gjermani janë programe të strukturuara trajtimi për njerëz me sëmundje afatgjata, si diabeti i tipit 2, astma, COPD, sëmundja koronare e zemrës e kanceri i gjirit. Synojnë të përmirësojnë cilësinë e kujdesit përmes kontrolleve të rregullta, objektivave të dakordësuara e edukimit të pacientit. Pjesëmarrja është vullnetare. Kjo përmbledhje është e përgjithshme; programet e disponueshme e rregullat mund të ndryshojnë.",
+  "sections": [
+    {
+      "heading": "Çfarë janë",
+      "paragraphs": [
+        "Një DMP përcakton si duhet trajtuar një sëmundje kronike sipas provave aktuale. Një mjek familjar ose specialist që merr pjesë e koordinon kujdesin tuaj. Programi përcakton kontrolle të rregullta, teste, barna, rregulla referimi e trajnim. Siguruesit shëndetësorë ligjorë i ofrojnë të siguruarve me diagnozën përkatëse."
+      ]
+    },
+    {
+      "heading": "Çfarë marrin pjesëmarrësit",
+      "paragraphs": [
+        "Pjesëmarrësit kanë takime të rregullta, zakonisht çdo tre muaj për gjendje si diabeti, me teste të përshtatshme për sëmundjen. Së bashku me mjekun vendosni objektiva trajtimi, për shembull synime të sheqerit në gjak ose tensionit e ndryshime të stilit të jetesës. Mund të ndiqni kurse edukimi, si trajnimi për diabetin ose kurset e astmës. Referimet te specialistët ndjekin kritere të përcaktuara, e mjeku dokumenton përparimin tuaj."
+      ]
+    },
+    {
+      "heading": "Përfitimet e mundshme",
+      "paragraphs": [
+        "Ndjekja e strukturuar mund të sigurojë që kontrolle të rëndësishme, si testet e syve, këmbëve e veshkave në diabet, të mos harrohen. Studimet sugjerojnë respektim më të mirë të udhëzuesve, monitorim më të mirë e, në disa gjendje, më pak komplikime, megjithëse madhësia e përfitimit diskutohet. Shumë njerëz e çmojnë mbështetjen e edukimin."
+      ]
+    },
+    {
+      "heading": "Regjistrimi, të dhënat e disavantazhet",
+      "paragraphs": [
+        "Regjistrimi bëhet me marrëveshje me mjekun e siguruesin tuaj, pas pëlqimit me shkrim. Të dhënat tuaja i kalohen siguruesit e një organi qendror për sigurimin e cilësisë, sipas rregullave të mbrojtjes së të dhënave. Mund të largoheni në çdo kohë. Disavantazhet përfshijnë përpjekjen administrative, nevojën për të ndjekur takime të rregullta e mundësinë që të mos doni t'i ndahen të dhënat. Nëse mungoni vazhdimisht në takime, siguruesi mund ta përfundojë pjesëmarrjen."
+      ]
+    },
+    {
+      "heading": "Si të bashkoheni",
+      "paragraphs": [
+        "Pyesni mjekun familjar nëse merr pjesë në një DMP për gjendjen tuaj, ose kontaktoni siguruesin shëndetësor. Do t'ju duhet një diagnozë e konfirmuar. Sillni pyetje për objektivat, mbrojtjen e të dhënave e çfarë pritet nga ju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vendosja e një objektivi",
+      "text": "Imagjinoni që keni diabet e po regjistroheni në një DMP. Mund të merrni vesh me mjekun për një synim të tensionit e një objektiv ecjeje e t'i shënoni në dosje."
+    },
+    {
+      "title": "Peshimi i ndarjes së të dhënave",
+      "text": "Supozoni që shqetësoheni se të dhënat u kalohen të tjerëve. Mund ta pyesni praktikën çfarë ndahet, me kë e si të tërhiqeni."
+    }
+  ],
+  "questions": [
+    "A ka program për gjendjen time e çfarë përfshin?",
+    "Cilat të dhëna kalohen e a mund të largohem në çdo kohë?",
+    "Cilat kurse edukimi përfshihen?"
+  ]
+}

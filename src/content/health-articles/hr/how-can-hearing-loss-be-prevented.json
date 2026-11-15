@@ -1,0 +1,51 @@
+{
+  "title": "Zaštita sluha: manje izbjegljive štete",
+  "intro": "Nije svaki gubitak sluha moguće spriječiti i nije osobni neuspjeh. Buka, neke infekcije, ozljede i lijekovi promjenjivi su rizici. Prevencija smanjuje rizik bez jamstva savršenog sluha cijeli život.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Važne su glasnoća i duljina. Eksplozije mogu oštetiti odmah; ponavljana glazba ili strojevi postupno. Ugodna glasnoća ne znači uvijek sigurno dugo izlaganje."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Razmotrite buku na poslu, hobijima i slušalicama te pitajte za testiranje. Trajno zujanje ili prigušen sluh poslije buke upozorenje su, ne jačanje uha. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Smanjite izvor, povećajte udaljenost i pravite tihe stanke. Koristite prilagođene čepiće ili štitnike; obične slušalice s poništavanjem buke nisu automatski certificirana zaštita. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Održavajte cjepiva, zaštitite glavu i pitajte za kontrolu uz ototoksične lijekove. Ne prekidajte važno liječenje sami. Ne stavljajte predmete ili štapiće duboko. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Naglo slabljenje, jaka bol ili trajno zujanje nakon eksplozije traže hitnu procjenu. Postupno teško razumijevanje govora također treba test. Zaštita ne smije sakriti važne alarme: raspravite radna rješenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira planira koncertne čepiće i odmore dalje od zvučnika, ne smatra odsutnost zujanja dokazom sigurnosti."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben pita za smanjenje buke stroja i prilagodbu zaštite: čepići ne zamjenjuju sigurne uvjete."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

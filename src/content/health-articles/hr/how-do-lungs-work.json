@@ -1,0 +1,51 @@
+{
+  "title": "Kako pluća izmjenjuju plinove",
+  "intro": "Pluća prenose kisik u krv i uklanjaju ugljikov dioksid. Trebaju putove, alveole, krv i mišiće zajedno. Zaduha može biti plućna, srčana, krvna ili druga.",
+  "sections": [
+    {
+      "heading": "Grananje",
+      "paragraphs": [
+        "Zrak prolazi nos ili usta, dušnik i bronhe do malih putova. Sluz i trepetljike čiste čestice. Suženje ili sluz smanjuju protok bez potpunog bloka."
+      ]
+    },
+    {
+      "heading": "Izmjena",
+      "paragraphs": [
+        "Tanke alveole uz žile prenose kisik unutra i dioksid van. Trebaju zrak i krv: uredan pokret ne jamči opskrbu."
+      ]
+    },
+    {
+      "heading": "Pumpa",
+      "paragraphs": [
+        "Ošit i mišići mijenjaju volumen za udah. Elastičan povrat pomaže izdahu. Bol, slabost ili ograničenje smetaju i uz otvorene putove."
+      ]
+    },
+    {
+      "heading": "Kontrola i testovi",
+      "paragraphs": [
+        "Živci prilagođavaju disanje. Funkcija, kisik i snimke daju različite odgovore. Kućni nalaz ne dijagnosticira svaki uzrok ni zamjenjuje procjenu pogoršanja."
+      ]
+    },
+    {
+      "heading": "Zaštita",
+      "paragraphs": [
+        "Izbjegavajte dim i štetne izloženosti, održavajte aktivnost i cjepiva. Trajan kašalj ili slabiji napor traže pregled. Teško disanje, plave ili sive usne, prsna bol ili krv traže hitnost. Prije pregleda zapišite kada je simptom počeo, što ga ublažava ili pogoršava i kako utječe na uobičajene aktivnosti. Ponesite prethodne nalaze ako ih imate. Zamolite stručnjaka da objašnjenje poveže s vašim nalazima: opći opis sam po sebi ne postavlja dijagnozu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pita testove nakon uredne slike: procjenjuju funkciju uz građu."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben je sve zadihaniji uz dobar kućni broj. Traži pregled, ne vjeruje samo uređaju."
+    }
+  ],
+  "questions": [
+    "Koji bi koraci bili jasniji uz dijagram?",
+    "Što objašnjenje pokazuje i što ne predviđa?",
+    "Treba li moja konkretna briga stručnu procjenu?"
+  ]
+}

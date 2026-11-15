@@ -1,0 +1,51 @@
+{
+  "title": "Gonorrea: test, trattamento e cura dei partner",
+  "intro": "La gonorrea è un’infezione batterica sessuale che può colpire genitali, retto, gola o occhi. Molte infezioni non danno sintomi; senza cura possono causare complicazioni e trasmissione inconsapevole.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Possibili bruciore urinario, secrezioni insolite e dolore pelvico o testicolare. Infezioni di gola e retto sono spesso silenziose. I sintomi non distinguono affidabilmente la gonorrea da altre infezioni sessuali."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Si usano urine o tamponi dalle sedi esposte; la sola urina può non rilevare infezioni di gola o retto. La coltura aiuta a riconoscere resistenze, soprattutto in caso di apparente fallimento terapeutico. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Il medico sceglie antibiotici secondo raccomandazioni locali aggiornate e resistenze. Non usare avanzi né condividere terapie. Discutere altri test, gravidanza e necessità di conferma della guarigione o nuovo screening. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Evitare rapporti finché il servizio li ritiene sicuri, comprese le condizioni di trattamento dei partner. La notifica riservata previene reinfezioni. I preservativi riducono il rischio, ma i test regolari possono restare opportuni. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Dolore pelvico intenso, febbre, testicolo dolente gonfio, secrezione oculare o articolazione calda gonfia richiedono urgenza. Sintomi persistenti dopo terapia necessitano controllo, non ripetizione autonoma dello stesso antibiotico."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira non ha sintomi, ma il partner risulta positivo. Si sottopone ai test e segue il servizio senza presumere di non essere infetta."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben riferisce esposizione orale perché si valuti un tampone faringeo, senza affidarsi solo alle urine."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

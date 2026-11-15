@@ -1,0 +1,51 @@
+{
+  "title": "Diabetul de tip 1",
+  "intro": "Diabetul de tip 1 este o afecțiune pe viață în care sistemul imunitar distruge celulele pancreasului care produc insulină, astfel încât organismul nu mai poate produce insulină. Persoanele au nevoie de insulină în fiecare zi pentru a supraviețui. Cu tratamentul și tehnologia moderne, pot trăi vieți pline și active.",
+  "sections": [
+    {
+      "heading": "Ce se întâmplă în organism",
+      "paragraphs": [
+        "Insulina permite zahărului din alimente să intre în celulele corpului pentru energie. Fără ea, zahărul se acumulează în sânge, în timp ce celulele sunt înfometate. Cauza este o reacție autoimună la persoane cu o predispoziție genetică și nu este provocată de dietă sau de stilul de viață. Începe de obicei în copilărie sau la vârsta de adult tânăr, dar poate apărea la orice vârstă."
+      ]
+    },
+    {
+      "heading": "Simptome și diagnostic",
+      "paragraphs": [
+        "Simptomele tipice sunt setea crescută, urinarea frecventă, scăderea în greutate, oboseala și vederea încețoșată, care se dezvoltă în zile sau săptămâni. Fără tratament, poate apărea cetoacidoza, cu greață, vărsături, durere abdominală, respirație profundă și somnolență, care este o urgență. Diagnosticul se pune prin glicemie și testul HbA1c, cu teste de anticorpi pentru a confirma tipul."
+      ]
+    },
+    {
+      "heading": "Terapia cu insulină",
+      "paragraphs": [
+        "Insulina se administrează prin injecții de mai multe ori pe zi cu pixuri sau continuu printr-o pompă de insulină. Insulina cu acțiune rapidă acoperă mesele și corecțiile, iar insulina cu acțiune lungă asigură un nivel de fond constant. Dozele se ajustează în funcție de alimentație, activitate și glicemie. Monitoarele continue de glucoză arată nivelurile în timp real, iar unele sisteme se leagă de pompe pentru a ajusta automat insulina."
+      ]
+    },
+    {
+      "heading": "Viața de zi cu zi",
+      "paragraphs": [
+        "Oamenii învață să numere carbohidrații, să verifice glucoza și să ajusteze dozele. O dietă echilibrată, activitatea regulată, ajustarea insulinei în jurul exercițiilor și un plan pentru zilele de boală fac parte din gestionarea zilnică. Glicemia scăzută necesită carbohidrați rapizi și este un risc al insulinei, în timp ce nivelurile foarte mari necesită atenție. Alcoolul, condusul și munca în ture necesită o planificare suplimentară."
+      ]
+    },
+    {
+      "heading": "Sănătatea pe termen lung și sprijinul",
+      "paragraphs": [
+        "Un control bun al glicemiei reduce riscul de afectare a ochilor, rinichilor, nervilor și inimii. Controalele regulate ale ochilor, picioarelor, rinichilor și tensiunii arteriale sunt importante. Programele de educație, echipele de diabet, sprijinul psihologic și grupurile de egali ajută, inclusiv în fața poverii automanagementului constant. Copiii au nevoie de sprijin la școală."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Învățarea numărării carbohidraților",
+      "text": "Imaginați-vă că tocmai ați fost diagnosticat. Ați putea urma un curs de educație pentru diabet, ați putea învăța să estimați carbohidrații și ați putea ține un jurnal al nivelurilor de glucoză."
+    },
+    {
+      "title": "Planificarea exercițiilor",
+      "text": "Presupuneți că vreți să jucați fotbal. Ați putea întreba echipa de diabet cum să reduceți insulina sau să luați carbohidrați în plus și ați putea avea mereu la dumneavoastră zahăr rapid."
+    }
+  ],
+  "questions": [
+    "Ce schemă de insulină și ce tehnologie mi se potrivesc cel mai bine?",
+    "Cum procedez în zilele de boală, la exerciții și la glicemie scăzută?",
+    "De ce controale am nevoie în fiecare an?"
+  ]
+}

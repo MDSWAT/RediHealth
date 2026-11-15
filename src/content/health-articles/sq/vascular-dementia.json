@@ -1,0 +1,51 @@
+{
+  "title": "Demenca vaskulare",
+  "intro": "Demenca vaskulare është një formë demence e shkaktuar nga rrjedhja e reduktuar e gjakut në tru, shpesh pas goditjeve në tru ose dëmtimit të enëve të vogla. Prek të menduarit, planifikimin e humorin e mund të përparojë në hapa ose gradualisht. Kontrolli i faktorëve vaskularë të rrezikut mund ta ngadalësojë përparimin e ndoshta ta parandalojë.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Dëmtimin e enëve të gjakut në tru mund ta shkaktojnë tensioni i lartë, diabeti, kolesteroli i lartë, duhani, fibrilacioni atrial, sëmundja e zemrës e obeziteti. Goditjet e mëdha, goditjet e shumta të vogla ose dëmtimi gradual i enëve të vogla mund ta shkatërrojnë indin e trurit. Demenca vaskulare mund të bashkëjetojë me sëmundjen e Alzheimerit, si demencë e përzier."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat e hershme përfshijnë shpesh të menduarit e ngadaltë, vështirësi në planifikim e organizim, probleme me vëmendjen e përqendrimin e ndryshime të humorit ose personalitetit, me kujtesën të prekur më pak herët se në sëmundjen e Alzheimerit. Shenja të tjera janë vështirësitë në ecje, problemet e ekuilibrit, urgjenca urinare e përkeqësimi i papritur pas një goditjeje. Rrjedha ndryshon, me disa njerëz të qëndrueshëm për periudha."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Mjekët marrin historinë, ekzaminojnë personin e përdorin teste të kujtesës e të menduarit. Skanimet e trurit me CT ose rezonancë tregojnë goditjet e dëmtimin e enëve. Analizat e gjakut kontrollojnë për shkaqe të tjera të rënies njohëse si mungesa e vitaminave ose problemet e tiroides. Mund të përfshihet një specialist."
+      ]
+    },
+    {
+      "heading": "Trajtimi e parandalimi",
+      "paragraphs": [
+        "Nuk ka kurë, e barnat për sëmundjen e Alzheimerit kanë përfitim të kufizuar për demencën vaskulare përveç nëse është e përzier. Trajtimi më i rëndësishëm është kontrolli i faktorëve të rrezikut: ulja e tensionit, menaxhimi i diabetit e kolesterolit, trajtimi i fibrilacionit atrial me antikoagulantë, lënia e duhanit, aktiviteti i rregullt e një dietë e shëndetshme. Barna antiaggreguese mund të jepen pas goditjeve. Depresioni e problemet e gjumit duhen trajtuar."
+      ]
+    },
+    {
+      "heading": "Të jetosh me demencën vaskulare",
+      "paragraphs": [
+        "Rutina, ndihmesat e kujtesës, aktiviteti, kontakti shoqëror e mjedisi i sigurt ndihmojnë. Terapia profesionale e rehabilitimi ruajnë pavarësinë. Kujdestarët kanë nevojë për mbështetje, informacion e pushime. Planifikoni herët çështjet ligjore e financiare, përfshirë prokurat e preferencat e kujdesit. Nëse dyshohet për goditje, telefononi menjëherë shërbimet e urgjencës."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zvogëlimi i rrezikut",
+      "text": "Imagjinoni që i afërmi juaj pati një goditje të vogël. Mund ta pyesni mjekun si mund të kontrollohen tensioni e kolesteroli e nëse nevojiten antikoagulantë."
+    },
+    {
+      "title": "Planifikimi paraprak",
+      "text": "Supozoni që diagnoza u vendos së fundmi. Mund të organizoni planifikimin ligjor e të kujdesit derisa personi mund të marrë ende pjesë në vendime."
+    }
+  ],
+  "questions": [
+    "Cilët faktorë rreziku mund t'i trajtojmë për të ngadalësuar përparimin?",
+    "Cilat mbështetje e terapi ekzistojnë për jetën e përditshme?",
+    "Si mund të planifikojmë kujdesin e ardhshëm?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Personalised medicine",
+  "intro": "Personalised medicine aims to tailor prevention and treatment to the characteristics of an individual patient, such as genes, the features of a tumour or other biological markers. It has led to real advances, for example in cancer treatment, but the term is often used loosely, and not every claim of personalisation is backed by evidence.",
+  "sections": [
+    {
+      "heading": "What it means",
+      "paragraphs": [
+        "Traditionally, treatments were tested on groups and offered to everyone with a given diagnosis. Personalised approaches use tests to find subgroups who are more likely to benefit, to avoid side effects or to choose the dose. The terms precision medicine and stratified medicine describe similar ideas."
+      ]
+    },
+    {
+      "heading": "Examples",
+      "paragraphs": [
+        "In cancer, tests of tumour tissue can show mutations or receptors that predict response to targeted drugs, such as hormone receptors in breast cancer. Genetic tests can show how quickly a person breaks down certain medicines, so dosing can be adjusted. Genetic screening can identify inherited risks such as BRCA gene changes. In everyday care, treatment choices also consider age, other illnesses and personal preferences."
+      ]
+    },
+    {
+      "heading": "Benefits",
+      "paragraphs": [
+        "Used well, personalisation can improve the chance of benefit, reduce unnecessary treatment and side effects, and enable earlier risk detection in families with inherited conditions. It can also give patients a stronger voice in decisions."
+      ]
+    },
+    {
+      "heading": "Limits and cautions",
+      "paragraphs": [
+        "Many genetic variants have only small or uncertain effects on disease. Tests offered directly to consumers may not predict anything useful and can cause worry or false reassurance. Some tailored treatments are expensive and available only in specialised centres. Data privacy and the possibility of discrimination are important issues. Evidence that a test improves outcomes should exist before it is used routinely."
+      ]
+    },
+    {
+      "heading": "Making decisions",
+      "paragraphs": [
+        "Ask what exactly is being tested, how well the test predicts the outcome, what would change in treatment and what the cost is. Seek genetic counselling before and after genetic testing. Remember that lifestyle, vaccination, screening and well-established treatments remain important for everyone."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Questioning a test",
+      "text": "Imagine you are offered a gene test for a medicine. You could ask how reliable it is, how the result changes your treatment and whether insurers cover it."
+    },
+    {
+      "title": "Family history",
+      "text": "Suppose several relatives had breast cancer at a young age. You might ask your doctor about genetic counselling to decide whether testing is useful."
+    }
+  ],
+  "questions": [
+    "Does this test have proven benefit for my situation?",
+    "How would the result change my treatment or follow-up?",
+    "What are the implications for my family and my privacy?"
+  ]
+}

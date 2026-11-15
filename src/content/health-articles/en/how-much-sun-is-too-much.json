@@ -1,0 +1,56 @@
+{
+  "title": "How much sun is too much",
+  "intro": "Sunlight supports mood and the production of vitamin D, but too much ultraviolet radiation damages skin cells and raises the risk of sunburn, premature skin ageing and skin cancer. Finding a sensible balance means knowing your skin type, the strength of the sun and the practical ways to protect yourself without avoiding the outdoors.",
+  "sections": [
+    {
+      "heading": "What ultraviolet radiation does",
+      "paragraphs": [
+        "Two kinds of ultraviolet light reach the ground. UVB causes sunburn and is the main trigger for vitamin D production, while UVA penetrates deeper, contributes to ageing and also plays a role in skin cancer. Both can damage the DNA in skin cells.",
+        "Damage adds up over a lifetime. Repeated sunburns, especially in childhood, are linked with a higher risk of melanoma, the most dangerous skin cancer. Tanning is the skin's response to injury and is not a sign of health."
+      ]
+    },
+    {
+      "heading": "How much is too much",
+      "paragraphs": [
+        "Risk depends on the UV index, the time of day, season, altitude, reflection from water, snow or sand, and your skin type. People with fair skin, red or blond hair, many moles or a family history of skin cancer burn most easily and should be especially careful. Clouds do not block all UV rays.",
+        "The sun is strongest around midday, so shade and cover are most important then. The UV index in weather forecasts helps you decide when protection is needed. A reading of 3 or above generally calls for protection."
+      ]
+    },
+    {
+      "heading": "Practical protection",
+      "paragraphs": [
+        "Seek shade between late morning and mid-afternoon, wear a wide-brimmed hat, sunglasses with UV protection and tightly woven clothing covering arms and legs. Clothing is more reliable than lotion because it does not wear off.",
+        "Use sunscreen with a high sun protection factor on exposed skin that clothing does not cover. Apply a generous amount about 20 minutes before going out and reapply every two hours and after swimming or sweating. Sunscreen should not be used to stay in the sun longer."
+      ]
+    },
+    {
+      "heading": "Children, babies and special situations",
+      "paragraphs": [
+        "Babies under one year should be kept out of direct sun. Children's skin is thinner and more sensitive, so shade, clothing and hats are the best protection. Some medicines make skin more sensitive to light, and people who take them should ask about precautions.",
+        "Sunbeds and tanning lamps emit strong UV radiation and increase the risk of skin cancer. Health authorities advise against their use, especially for young people."
+      ]
+    },
+    {
+      "heading": "Sun and vitamin D",
+      "paragraphs": [
+        "Brief regular exposure of face, hands and arms to daylight in spring and summer generally helps the body make enough vitamin D without burning. Stopping before the skin turns pink is sensible. In winter at northern latitudes, sunlight produces little vitamin D, and diet or supplements may matter more for some people.",
+        "Check your skin regularly. See a doctor about a mole that changes in size, shape or colour, bleeds, itches, or a sore that does not heal."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planning a beach day",
+      "text": "Imagine you are going to a beach in summer with children. You could arrange shade, bring hats and long-sleeved swim shirts, apply sunscreen before leaving and again after swimming, and plan the quiet midday hours indoors."
+    },
+    {
+      "title": "Noticing a changing mole",
+      "text": "Suppose you notice a mole on your back that looks darker and larger than before. You could take a clear photo, note the date, and book a skin check rather than waiting to see whether it changes again."
+    }
+  ],
+  "questions": [
+    "How sensitive is my skin, and what protection suits my skin type and activities?",
+    "Should I have regular skin checks given my moles and family history?",
+    "Do I need vitamin D supplements, or is my sun exposure and diet sufficient?"
+  ]
+}

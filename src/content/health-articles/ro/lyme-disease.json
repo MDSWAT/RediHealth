@@ -1,0 +1,51 @@
+{
+  "title": "Boala Lyme",
+  "intro": "Boala Lyme este o infecție bacteriană transmisă prin mușcăturile de căpușe. Este frecventă în păduri și pajiști din Europa și America de Nord. Infecția timpurie este tratată cu succes cu antibiotice, deci recunoașterea erupției tipice a pielii și căutarea promptă a tratamentului contează.",
+  "sections": [
+    {
+      "heading": "Cum vă infectați",
+      "paragraphs": [
+        "Bacteriile, numite Borrelia, trăiesc în căpușe, care le iau de la animale. Sunt transmise de obicei după ce căpușa a fost atașată multe ore, așa că găsirea și îndepărtarea promptă a unei căpușe reduce riscul. Nu orice căpușă poartă bacterii și nu orice mușcătură duce la infecție."
+      ]
+    },
+    {
+      "heading": "Semne timpurii",
+      "paragraphs": [
+        "Un inel roșu care se extinde, numit eritem migrator, apare adesea la zile sau săptămâni după mușcătură și crește în câteva zile, uneori dispărând în centru. De obicei este nedureros și nu mănâncă. Pot apărea simptome asemănătoare gripei, precum febră, oboseală, dureri de cap și dureri musculare. Nu toată lumea observă erupția sau își amintește o mușcătură."
+      ]
+    },
+    {
+      "heading": "Complicații tardive",
+      "paragraphs": [
+        "Dacă nu este tratată, infecția se poate răspândi la articulații, la sistemul nervos sau la inimă la săptămâni sau luni distanță. Aceasta poate provoca umflarea articulațiilor, mai ales a genunchiului, slăbiciune facială, durere nervoasă, meningită sau tulburări de ritm cardiac. Aceste complicații pot fi tratate cu antibiotice, dar necesită adesea o cură mai lungă."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament",
+      "paragraphs": [
+        "O erupție tipică este diagnosticată din vedere și nu necesită analize de sânge. Pentru alte simptome se folosesc analize de sânge pentru anticorpi, deși pot fi negative la început și pozitive după o infecție trecută, așa că rezultatele trebuie interpretate împreună cu simptomele. Tratamentul este de obicei doxiciclină sau amoxicilină timp de câteva săptămâni. Cele mai multe persoane se vindecă complet."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Purtați pantaloni lungi și pantofi închiși în zonele cu căpușe, folosiți repelent, verificați-vă corpul și hainele după activitățile în aer liber și îndepărtați prompt căpușele cu o pensetă fină sau un instrument pentru căpușe. Curățați zona după aceea și urmăriți-o câteva săptămâni. Nu există un antibiotic preventiv de rutină după o mușcătură pentru majoritatea persoanelor. Cereți sfat dacă apar erupție sau simptome."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "După o plimbare",
+      "text": "Imaginați-vă că ați petrecut după-amiaza în iarbă înaltă. Ați putea să vă verificați pielea, mai ales în spatele genunchilor, în zona inghinală și subsuori, la linia părului și în spatele urechilor și să notați data dacă găsiți o căpușă."
+    },
+    {
+      "title": "Urmărirea unei mușcături",
+      "text": "Presupuneți că ați îndepărtat o căpușă săptămâna trecută, iar acum o pată roșie crește. Ați putea să o fotografiați zilnic, să notați datele și să contactați curând medicul."
+    }
+  ],
+  "questions": [
+    "Ar putea simptomele mele să fie boala Lyme și am nevoie de o analiză de sânge?",
+    "Cât va dura tratamentul și ce efecte secundare sunt posibile?",
+    "Ce ar trebui să fac dacă simptomele persistă după tratament?"
+  ]
+}

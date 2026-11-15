@@ -1,0 +1,51 @@
+{
+  "title": "Ce este somnul normal",
+  "intro": "Somnul este o stare vitală, activă, în care corpul se repară, iar creierul procesează amintirile. Cât somn au nevoie oamenii variază, la fel ca și momentul. Cunoașterea a ceea ce este normal vă poate ajuta să recunoașteți problemele de somn și să construiți obiceiuri sănătoase de somn.",
+  "sections": [
+    {
+      "heading": "Cât somn este necesar",
+      "paragraphs": [
+        "Cei mai mulți adulți au nevoie de șapte până la nouă ore pe noapte. Adolescenții au nevoie de opt până la zece ore, copiii de vârstă școlară de nouă până la douăsprezece, iar bebelușii de mult mai multe. Persoanele în vârstă dorm adesea mai puțin profund și se trezesc mai ușor, dar au totuși nevoie de aproximativ șapte-opt ore. Unele persoane se simt bine cu puțin mai puțin sau mai mult."
+      ]
+    },
+    {
+      "heading": "Stadiile somnului",
+      "paragraphs": [
+        "Somnul parcurge cicluri de aproximativ nouăzeci de minute. Somnul ușor duce la somn profund, important pentru refacerea fizică, și la somnul cu mișcări oculare rapide, sau REM, când apar cele mai multe vise și creierul procesează emoțiile și amintirile. Mai multe cicluri apar în fiecare noapte, cu mai mult somn profund la început și mai mult somn REM mai târziu."
+      ]
+    },
+    {
+      "heading": "Ceasul biologic",
+      "paragraphs": [
+        "Un ceas intern, ritmul circadian, reglează somnul și starea de veghe pe parcursul a aproximativ douăzeci și patru de ore, răspunzând la lumină și întuneric. Adolescenții se mută mai târziu, în timp ce adulții în vârstă tind să se trezească mai devreme. Munca în ture, călătoriile și ecranele luminoase noaptea pot perturba ritmul. Lumina dimineții ajută la menținerea lui stabilă."
+      ]
+    },
+    {
+      "heading": "Variații normale",
+      "paragraphs": [
+        "Să aveți nevoie de până la o jumătate de oră pentru a adormi, să vă treziți scurt în timpul nopții, să visați și să sforăiți ușor poate fi normal. Nopțile ocazionale proaste sunt frecvente și de obicei nu sunt dăunătoare. Dificultatea persistentă de a adormi sau de a rămâne adormit, sforăitul puternic cu pauze în respirație, somnolența de zi sau picioarele neliniștite pot semnala o tulburare de somn."
+      ]
+    },
+    {
+      "heading": "Obiceiuri sănătoase de somn",
+      "paragraphs": [
+        "Păstrați ore regulate de culcare și de trezire, faceți dormitorul întunecat, liniștit și răcoros, evitați cafeaua târziu în cursul zilei, limitați alcoolul și mesele copioase aproape de ora culcării, rămâneți activ ziua și reduceți folosirea ecranelor înainte de culcare. Dacă nu puteți dormi, ridicați-vă și faceți ceva relaxant, apoi reveniți când vă este somn."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Stabilirea unei rutine",
+      "text": "Imaginați-vă că dormiți adesea prost. Ați putea să vă culcați și să vă treziți la aceleași ore în fiecare zi și să limitați ecranele cu o oră înainte."
+    },
+    {
+      "title": "Cererea de sfat",
+      "text": "Presupuneți că sforăiți tare și sunteți epuizat în timpul zilei. Ați putea întreba medicul despre un test pentru apneea în somn."
+    }
+  ],
+  "questions": [
+    "Cât somn am nevoie la vârsta mea?",
+    "Ar putea o problemă medicală să-mi perturbe somnul?",
+    "Ce obiceiuri m-ar ajuta cel mai mult?"
+  ]
+}

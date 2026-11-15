@@ -1,0 +1,51 @@
+{
+  "title": "Acute sinusitis",
+  "intro": "Acute sinusitis is inflammation of the lining of the sinuses, the air-filled spaces around the nose and eyes, usually following a cold. It causes a blocked nose, facial pressure and sometimes thick discharge. Most cases are caused by viruses and clear up within about two weeks without antibiotics.",
+  "sections": [
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "A cold or allergy can swell the lining of the nose and block the narrow openings of the sinuses, so mucus builds up. Most infections are viral. Bacteria occasionally take over. Smoking, dry air, swimming, dental infections and problems such as a deviated septum or polyps raise the risk."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical symptoms are a blocked or runny nose, pressure or pain in the cheeks, forehead or around the eyes that worsens when bending forward, reduced sense of smell, cough, and sometimes mild fever. Thick yellow or green mucus does not by itself mean bacterial infection."
+      ]
+    },
+    {
+      "heading": "Self-care",
+      "paragraphs": [
+        "Rinse the nose with saline solution, inhale steam, drink plenty of fluids and rest. Decongestant nasal sprays can reduce swelling but should be used for no more than about a week to avoid rebound congestion. Painkillers such as paracetamol or ibuprofen ease pain. Nasal steroid sprays may help some people."
+      ]
+    },
+    {
+      "heading": "When antibiotics are considered",
+      "paragraphs": [
+        "Antibiotics are rarely needed. They are considered when symptoms are severe, with high fever and facial pain, last more than about ten days without improvement, or worsen after initial improvement. People with weak immunity or other illnesses may need earlier treatment."
+      ]
+    },
+    {
+      "heading": "Warning signs and prevention",
+      "paragraphs": [
+        "Seek urgent care for swelling or redness around the eye, double vision, severe headache, stiff neck, confusion or changes in vision, since infection can rarely spread to the eye or brain. If sinusitis keeps returning or lasts more than twelve weeks, an ear, nose and throat specialist can look for underlying causes. Avoid smoking, treat allergies and wash hands to limit colds."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Treating a cold that moved to the sinuses",
+      "text": "Imagine your cold has left you with facial pressure and blocked nose. You could rinse the nose with saline twice a day, rest and use a decongestant spray for no more than a week."
+    },
+    {
+      "title": "Knowing when to call",
+      "text": "Suppose your eyelid becomes red and swollen. You might seek medical help immediately."
+    }
+  ],
+  "questions": [
+    "Do I need antibiotics, or can I wait?",
+    "What can I do to relieve the blocked nose?",
+    "Should I see a specialist if sinusitis keeps coming back?"
+  ]
+}

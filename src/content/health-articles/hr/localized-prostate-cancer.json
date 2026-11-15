@@ -1,0 +1,51 @@
+{
+  "title": "Lokalizirani rak prostate",
+  "intro": "Rak prostate jedan je od najčešćih raka u muškaraca. U mnogim slučajevima otkrije se dok je još ograničen na prostatu i raste sporo. Budući da liječenje može uzrokovati nuspojave kao što su inkontinencija i problemi s erekcijom, muškarci često imaju nekoliko izbora, uključujući aktivni nadzor, operaciju i radioterapiju.",
+  "sections": [
+    {
+      "heading": "Kako se otkriva",
+      "paragraphs": [
+        "Na rak prostate može se posumnjati nakon povišenog PSA u krvi ili nenormalnog nalaza pri pregledu. MR pretrage i biopsija potvrđuju dijagnozu i određuju stupanj raka. Gleasonov zbroj ili skupina stupnja opisuje koliko agresivno stanice izgledaju i zajedno s razinom PSA i opsegom tumora određuje kategoriju rizika."
+      ]
+    },
+    {
+      "heading": "Aktivni nadzor i oprezno čekanje",
+      "paragraphs": [
+        "Kod raka niskog rizika liječenje možda nije odmah potrebno. Aktivni nadzor znači redovite PSA testove, pretrage i ponekad ponovljene biopsije, uz početak liječenja ako rak napreduje. To mnogim muškarcima izbjegava nuspojave, a zadržava šansu za izlječenje. Oprezno čekanje je manje intenzivan pristup za starije muškarce ili one s drugim bolestima, kojim se liječe samo simptomi."
+      ]
+    },
+    {
+      "heading": "Operacija",
+      "paragraphs": [
+        "Radikalna prostatektomija uklanja prostatu, ponekad s obližnjim limfnim čvorovima, često laparoskopskim ili robotski potpomognutim tehnikama. Moguće posljedice uključuju curenje mokraće i erektilnu disfunkciju, koje se često poboljšaju tijekom mjeseci, ali mogu potrajati. Vježbe za mišiće dna zdjelice prije i nakon operacije mogu pomoći."
+      ]
+    },
+    {
+      "heading": "Radioterapija",
+      "paragraphs": [
+        "Vanjsko zračenje cilja prostatu kroz nekoliko tjedana ili u manje seansi veće doze, ponekad u kombinaciji s hormonskom terapijom. Unutarnje zračenje postavlja radioaktivne izvore u prostatu. Nuspojave uključuju nadražaj crijeva i mjehura, probleme s erekcijom i umor, koji se mogu pojaviti mjesecima ili godinama kasnije."
+      ]
+    },
+    {
+      "heading": "Donošenje odluke",
+      "paragraphs": [
+        "Dokazi upućuju na to da su za mnoge muškarce s rakom niskog rizika ishodi slični među mogućnostima što se tiče preživljenja tijekom deset godina, dok se nuspojave razlikuju. Razmislite o svojoj dobi, zdravlju, osobnim vrijednostima, kako vagate nuspojave i svojim osjećajima o praćenju. Zatražite drugo mišljenje ili razgovor sa specijalističkom medicinskom sestrom. Pomoći mogu i grupe podrške."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vaganje nuspojava",
+      "text": "Zamislite da imate 62 godine i rak prostate niskog rizika. Mogli biste pitati urologa koliko je vjerojatno da će svako liječenje uzrokovati curenje ili probleme s erekcijom i što uključuje raspored aktivnog nadzora."
+    },
+    {
+      "title": "Uključivanje partnera",
+      "text": "Pretpostavite da liječenje može utjecati na intimnost. Mogli biste povesti partnera na sljedeći pregled i pitati o mogućnostima rehabilitacije i savjetovanju."
+    }
+  ],
+  "questions": [
+    "Je li moj rak niskog, srednjeg ili visokog rizika i što to znači za liječenje?",
+    "Koje su vjerojatne nuspojave svake mogućnosti u mom slučaju?",
+    "Što bi uključivao aktivni nadzor i kada bi liječenje počelo?"
+  ]
+}

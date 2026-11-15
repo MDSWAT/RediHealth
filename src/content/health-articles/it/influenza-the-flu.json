@@ -1,0 +1,51 @@
+{
+  "title": "Influenza",
+  "intro": "L'influenza è un'infezione virale contagiosa di naso, gola e polmoni che si verifica soprattutto in inverno. È più grave di un comune raffreddore e può portare a complicanze serie negli anziani, nei bambini piccoli, nelle donne in gravidanza e nelle persone con malattie croniche. Vaccinazione, igiene e riposo sono gli strumenti principali.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "L'influenza inizia tipicamente all'improvviso con febbre, brividi, dolori muscolari e articolari, mal di testa, stanchezza, tosse secca e mal di gola. I sintomi durano di solito circa una settimana, anche se tosse e stanchezza possono persistere più a lungo. Un comune raffreddore tende a essere più lieve con naso che cola e starnuti."
+      ]
+    },
+    {
+      "heading": "Come si diffonde",
+      "paragraphs": [
+        "Il virus si diffonde attraverso le goccioline di tosse e starnuti e tramite mani e superfici contaminate. Le persone sono contagiose da circa un giorno prima dei sintomi fino a circa cinque-sette giorni dopo. Lavare le mani, coprire la tosse e restare a casa quando si sta male riducono la diffusione."
+      ]
+    },
+    {
+      "heading": "Curare l'influenza a casa",
+      "paragraphs": [
+        "La maggior parte delle persone sane guarisce senza trattamento medico. Riposa, bevi molti liquidi e usa paracetamolo o ibuprofene per alleviare febbre e dolore, secondo il foglietto illustrativo. Gli antibiotici non funzionano contro i virus. I bambini non devono prendere l'aspirina. I farmaci antivirali possono essere prescritti a persone ad alto rischio se iniziati presto."
+      ]
+    },
+    {
+      "heading": "Complicanze",
+      "paragraphs": [
+        "L'influenza può portare a polmonite, peggioramento dell'asma, problemi cardiaci e disidratazione. Cerca aiuto medico per difficoltà respiratorie, dolore al petto, confusione, febbre alta persistente, febbre che ritorna dopo un miglioramento o quando un neonato, una persona anziana o qualcuno con una malattia cronica sta male."
+      ]
+    },
+    {
+      "heading": "Vaccinazione",
+      "paragraphs": [
+        "La vaccinazione annuale è raccomandata per anziani, donne in gravidanza, persone con malattie croniche, operatori sanitari e altri a rischio più alto. Il vaccino viene aggiornato ogni anno per corrispondere ai virus in circolazione. Non dà una protezione completa, ma riduce il rischio di ammalarsi e soprattutto di complicanze gravi. Effetti collaterali lievi come un braccio dolorante sono comuni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Restare a casa",
+      "text": "Immagina di svegliarti con febbre e dolori. Potresti restare a casa, riposare, bere liquidi, avvisare il posto di lavoro ed evitare contatti ravvicinati con familiari vulnerabili finché non stai meglio."
+    },
+    {
+      "title": "Decidere sulla vaccinazione",
+      "text": "Supponi di avere l'asma e di non essere sicuro del vaccino antinfluenzale. Potresti chiedere al medico di tempi, protezione ed effetti collaterali e fissare l'appuntamento in autunno."
+    }
+  ],
+  "questions": [
+    "Rientro in un gruppo che dovrebbe ricevere il vaccino antinfluenzale annuale?",
+    "Quando un farmaco antivirale sarebbe utile per me?",
+    "Quali sintomi dovrebbero spingermi a cercare cure urgenti?"
+  ]
+}

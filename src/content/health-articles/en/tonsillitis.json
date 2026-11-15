@@ -1,0 +1,51 @@
+{
+  "title": "Tonsillitis and sore throat",
+  "intro": "Tonsillitis is inflammation of the tonsils, the two lumps of tissue at the back of the throat. It causes a sore throat, pain on swallowing and often fever. Most cases are caused by viruses and go away within about a week without antibiotics. Pain relief, fluids and rest are the main treatments.",
+  "sections": [
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "Viruses, such as cold and flu viruses, cause most cases. Bacteria, particularly group A streptococci, account for a smaller share, mainly in children aged five to fifteen. Germs spread through droplets and close contact. Smoke and dry air can irritate the throat."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical symptoms are sore throat, painful swallowing, fever, swollen and red tonsils with white patches in some cases, swollen neck glands, bad breath, headache and tiredness. A cough and runny nose suggest a viral cause, whereas severe sore throat without cough and with swollen glands raises the chance of a bacterial infection."
+      ]
+    },
+    {
+      "heading": "Self-care",
+      "paragraphs": [
+        "Rest, drink plenty of fluids, and eat soft foods. Paracetamol or ibuprofen reduce pain and fever. Lozenges, gargling with warm salt water and throat sprays can ease discomfort. Avoid smoking. Children should stay at home while feverish, and hand washing reduces spread."
+      ]
+    },
+    {
+      "heading": "When antibiotics are used",
+      "paragraphs": [
+        "Antibiotics are used when a streptococcal infection is likely or confirmed by a throat swab, particularly when symptoms are severe or there is a risk of complications. They shorten symptoms slightly and reduce the risk of rare complications such as rheumatic fever and abscess. A course of penicillin usually lasts several days. Antibiotics do not help for viral infections."
+      ]
+    },
+    {
+      "heading": "Complications and surgery",
+      "paragraphs": [
+        "Seek urgent care for difficulty breathing or swallowing saliva, drooling, a muffled voice, inability to open the mouth, severe one-sided throat pain or swelling of the neck, which may indicate an abscess. Surgery to remove the tonsils is considered for people with frequent, severe, well-documented infections that disrupt life, and decisions weigh benefit against risks such as bleeding and pain after the operation."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Caring for a child",
+      "text": "Imagine your child has a sore throat and fever. You could offer cool drinks and soft foods, give pain relief at the right dose and see a doctor if swallowing becomes very hard."
+    },
+    {
+      "title": "Asking about surgery",
+      "text": "Suppose you have had many bouts of tonsillitis this year. You might keep a record of each episode with dates and treatment and discuss with an ear, nose and throat specialist."
+    }
+  ],
+  "questions": [
+    "Is my sore throat likely to be viral or bacterial, and do I need a swab?",
+    "When would tonsil surgery be advisable?",
+    "Which symptoms mean I should seek urgent help?"
+  ]
+}

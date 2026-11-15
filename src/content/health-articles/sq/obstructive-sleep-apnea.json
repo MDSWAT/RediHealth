@@ -1,0 +1,52 @@
+{
+  "title": "Apnea obstruktive e gjumit",
+  "intro": "Në apnenë obstruktive të gjumit, rruga e ajrit ngushtohet ose mbyllet vazhdimisht gjatë gjumit, duke shkaktuar pauza në frymëmarrje, gërhitje të zhurmshme dhe gjumë të copëtuar. Çon në lodhje gjatë ditës dhe e rrit rrezikun e tensionit të lartë, sëmundjes së zemrës dhe aksidenteve. Ofrohen trajtime efektive, më i zakonshmi është një maskë frymëmarrjeje e veshur natën.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Shenjat tipike janë gërhitje e zhurmshme e parregullt, pauza të dëshmuara në frymëmarrje, gulçim ose mbytje natën, gjumë i shqetësuar, zgjim me gojë të thatë ose dhimbje koke, përgjumje gjatë ditës dhe përqendrim i dobët. Shpesh partneri e vëren i pari problemin. Përgjumja gjatë ngasjes është e rrezikshme dhe duhet marrë shumë seriozisht."
+      ]
+    },
+    {
+      "heading": "Shkaqet dhe faktorët e rrezikut",
+      "paragraphs": [
+        "Gjatë gjumit, muskujt e fytit çlirohen dhe rruga e ajrit mund të rrëzohet. Faktorët e rrezikut përfshijnë mbipeshën, perimetër të madh të qafës, seksin mashkullor, moshën në rritje, alkoolin e qetësuesit para gjumit, duhanin, bllokimin e hundës dhe veçori anatomike si nofull e vogël ose bajame të mëdha."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Mjekët pyesin për simptomat dhe mund të përdorin pyetësorë. Testet e gjumit në shtëpi masin frymëmarrjen, oksigjenin e rrahjet e zemrës dhe një studim në laborator gjumi bëhet kur nevojitet. Numri i ndërprerjeve të frymëmarrjes në orë përcakton ashpërsinë."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Presioni i vazhdueshëm pozitiv i rrugës së ajrit jep ajër përmes një maske për ta mbajtur rrugën të hapur dhe është trajtimi standard për apnenë mesatare deri të rëndë. Ul përgjumjen dhe tensionin e gjakut kur përdoret rregullisht dhe kërkon pak kohë për t'u mësuar; maskat mund të rregullohen. Alternativat përfshijnë një pajisje goje që e lëviz nofullën e poshtme përpara, terapinë pozicionale dhe, për pacientë të përzgjedhur, kirurgji ose implante stimulimi nervor.",
+        "Humbja e peshës, shmangia e alkoolit e pilulave të gjumit në mbrëmje, lënia e duhanit dhe trajtimi i bllokimit të hundës ndihmojnë gjithashtu."
+      ]
+    },
+    {
+      "heading": "Pse ka rëndësi trajtimi",
+      "paragraphs": [
+        "Apnea e patrajtuar e rrit rrezikun e hipertensionit, rrahjeve të parregullta të zemrës, goditjes në tru dhe aksidenteve. Ndjekja e rregullt kontrollon nëse terapia funksionon dhe nëse maska përshtatet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Marrja e një diagnoze",
+      "text": "Imagjinoni që partneri ju thotë se ndaloni së marri frymë në gjumë. Mund të shënoni simptomat, të plotësoni një pyetësor përgjumjeje dhe t'i kërkoni mjekut një studim gjumi."
+    },
+    {
+      "title": "Përshtatja me një maskë",
+      "text": "Supozoni që maska ndihet e parehatshme. Mund t'i kërkoni klinikës së gjumit një madhësi ose lloj tjetër dhe t'u tregoni për thatësi ose rrjedhje."
+    }
+  ],
+  "questions": [
+    "A kam nevojë për një studim gjumi dhe cili lloj është i përshtatshëm?",
+    "Cili trajtim më përshtatet më mirë dhe çfarë mund të bëj nëse nuk e toleroj maskën?",
+    "A është e sigurt për mua të ngas ndërsa problemi është i patrajtuar?"
+  ]
+}

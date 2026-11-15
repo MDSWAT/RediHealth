@@ -1,0 +1,51 @@
+{
+  "title": "Sistemul imunitar înnăscut și cel adaptativ",
+  "intro": "Sistemul imunitar vă protejează împotriva bacteriilor, virusurilor, ciupercilor și altor invadatori și ajută la repararea leziunilor. Are două părți principale: sistemul înnăscut, care reacționează rapid și într-un mod general, și sistemul adaptativ, care învață să recunoască microbi specifici și îi ține minte. Ele lucrează împreună.",
+  "sections": [
+    {
+      "heading": "Sistemul imunitar înnăscut",
+      "paragraphs": [
+        "Sistemul înnăscut este prima linie de apărare. Include bariere fizice precum pielea și mucoasele, aciditatea stomacului și lacrimile, precum și celule precum neutrofilele și macrofagele, care înghit microbii. Celulele ucigașe naturale distrug celulele infectate. Acest sistem reacționează în minute până la ore, provocând inflamație cu roșeață, căldură și umflare, care aduc mai multe celule imune la locul infecției."
+      ]
+    },
+    {
+      "heading": "Sistemul imunitar adaptativ",
+      "paragraphs": [
+        "Sistemul adaptativ este mai lent, durând zile să se dezvolte, dar este foarte specific. Celulele sale principale sunt limfocitele. Celulele B produc anticorpi care se leagă de anumiți microbi și îi marchează pentru distrugere. Celulele T ajută la coordonarea răspunsului și omoară direct celulele infectate. Fiecare limfocit recunoaște o țintă anume."
+      ]
+    },
+    {
+      "heading": "Memoria",
+      "paragraphs": [
+        "După o infecție, unele celule B și T supraviețuiesc ca celule de memorie. Dacă același microb apare din nou, ele răspund mai rapid și mai puternic, prevenind adesea boala. Aceasta este baza imunității după infecție și a vaccinării, care antrenează sistemul adaptativ cu o parte inofensivă sau cu o formă slăbită a unui microb."
+      ]
+    },
+    {
+      "heading": "Când sistemul funcționează greșit",
+      "paragraphs": [
+        "Un sistem imunitar hiperactiv poate provoca alergii și boli autoimune, în care corpul își atacă propriile țesuturi. Unul hipoactiv, din cauza bolii sau a medicamentelor, crește vulnerabilitatea la infecții. Stresul, somnul slab, malnutriția și îmbătrânirea pot slăbi apărarea. Obiceiurile sănătoase, vaccinarea și tratarea bolilor de fond ajută sistemul imunitar să-și facă treaba."
+      ]
+    },
+    {
+      "heading": "Susținerea sănătății imunitare",
+      "paragraphs": [
+        "Somnul regulat, alimentația echilibrată, activitatea fizică, nefumatul, alcoolul moderat și vaccinările la zi sunt cei mai bine susținuți pași. Suplimentele promovate drept stimulatoare ale imunității au puține dovezi la persoanele sănătoase. Cereți sfat dacă aveți infecții repetate sau neobișnuite."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Înțelegerea unui vaccin",
+      "text": "Imaginați-vă că vă întrebați de ce este nevoie de o doză de rapel. Ați putea întreba medicul cum funcționează celulele de memorie și cât durează protecția."
+    },
+    {
+      "title": "Recunoașterea unei probleme",
+      "text": "Presupuneți că faceți infecții mult mai des decât alții. Ați putea ține o evidență și ați putea întreba medicul despre teste ale funcției imune."
+    }
+  ],
+  "questions": [
+    "Cum folosesc vaccinurile memoria imună?",
+    "Ar putea infecțiile mele frecvente să semnaleze o problemă a sistemului meu imunitar?",
+    "Ce obiceiuri susțin cel mai bine sănătatea mea imunitară?"
+  ]
+}

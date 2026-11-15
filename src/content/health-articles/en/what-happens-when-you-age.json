@@ -1,0 +1,51 @@
+{
+  "title": "What happens when you age?",
+  "intro": "Ageing brings gradual changes in the body and mind. Some are inevitable, but many people stay healthy and active for a long time, and lifestyle makes a big difference. Knowing what is normal helps you tell ageing from illness.",
+  "sections": [
+    {
+      "heading": "Body changes",
+      "paragraphs": [
+        "Muscle mass and strength decline, bones lose density, joints stiffen and the skin becomes thinner and less elastic. Metabolism slows, and weight tends to shift towards the waist. Heart and blood vessels become stiffer, which raises blood pressure, and lungs have less capacity. The immune system responds more slowly."
+      ]
+    },
+    {
+      "heading": "Senses and organs",
+      "paragraphs": [
+        "Vision changes, especially close focus, and cataracts become more common. Hearing declines, particularly high pitches. Taste and smell may weaken. The bladder holds less and the prostate may enlarge. Digestion is slower and sleep tends to be lighter and shorter. Teeth and gums need care."
+      ]
+    },
+    {
+      "heading": "Mind and memory",
+      "paragraphs": [
+        "Thinking speed may slow, and it can take longer to learn new things or recall names, but knowledge and wisdom often grow. Significant memory loss, getting lost in familiar places or changes in personality are not normal ageing and should be checked. Depression is not a normal part of ageing either."
+      ]
+    },
+    {
+      "heading": "Staying healthy",
+      "paragraphs": [
+        "Regular physical activity, including strength and balance exercises, healthy eating with enough protein, calcium and vitamin D, not smoking, limiting alcohol, social contact and mental activity all support healthy ageing. Vaccinations, screening, and regular reviews of medicines also matter. Prevent falls by removing trip hazards and improving lighting."
+      ]
+    },
+    {
+      "heading": "Support and planning",
+      "paragraphs": [
+        "Make arrangements for the future, such as who can help, housing adaptations, financial matters and advance care wishes. Seek help early for loneliness, pain or problems with daily tasks. Services for older people can offer practical support and keep people independent."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Staying active",
+      "text": "Imagine you want to stay strong as you age. You could walk daily and do simple strength and balance exercises twice a week."
+    },
+    {
+      "title": "Checking memory worries",
+      "text": "Suppose you notice more forgetfulness. You might talk to your doctor about a memory assessment and check your medicines."
+    }
+  ],
+  "questions": [
+    "Which changes are normal for my age and which need a check?",
+    "Which screenings and vaccinations do I need?",
+    "How can I reduce my risk of falls?"
+  ]
+}

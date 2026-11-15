@@ -1,0 +1,52 @@
+{
+  "title": "Rame: pokretljivost i stabilnost",
+  "intro": "Rame omogućuje širok pokret i povezuje ruku s trupom. Više zglobova i lopatica surađuju. Pokretljivost ovisi o mekim tkivima; bol može imati više izvora.",
+  "sections": [
+    {
+      "heading": "Kosti",
+      "paragraphs": [
+        "Nadlaktična kost, lopatica i ključna kost tvore povezane zglobove. Glava leži u plitkoj čašici; hrskavični rub i čahura podupiru bez krute šarke."
+      ]
+    },
+    {
+      "heading": "Mišići",
+      "paragraphs": [
+        "Rotatorna manšeta centrira glavu. Veći mišići daju snagu, mišići lopatice postavljaju čašicu. Slabost ili bol ne dokazuju određenu puknutu tetivu."
+      ]
+    },
+    {
+      "heading": "Klizanje",
+      "paragraphs": [
+        "Burze i tetive smanjuju trenje. Nadražaj boli pri podizanju, ali sličan obrazac ima više uzroka; pregled vrijedi više od internetskog manevra."
+      ]
+    },
+    {
+      "heading": "Funkcija",
+      "paragraphs": [
+        "Mijenjajte ponavljane zadatke i postupno povećavajte teret. Nakon ozljede ili zahvata slijedite rehabilitaciju; beskrajno mirovanje i forsiranje jake boli nisu zamjena za procjenu."
+      ]
+    },
+    {
+      "heading": "Pomoć",
+      "paragraphs": [
+        "Trajna slabost ili ukočenost trebaju pregled. Deformacija nakon ozljede, hladna ili utrnula ruka te vruć zglob s vrućicom traže hitnost. Bol s pritiskom u prsima ili zaduha mogu biti hitni.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira prilagođava rad iznad glave i pita o postupnom jačanju umjesto svaku bol smatrati puknućem za operaciju."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben padne i rame je deformirano. Traži hitnu pomoć umjesto da ga netko potezanjem vraća na mjesto."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

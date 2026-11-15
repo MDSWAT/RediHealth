@@ -1,0 +1,51 @@
+{
+  "title": "Thoi i ngulur i këmbës",
+  "intro": "Një thua i ngulur i këmbës ndodh kur skaji i thoit rritet brenda lëkurës përreth, duke shkaktuar dhimbje, skuqje dhe ndonjëherë infeksion. Prek më shpesh gishtin e madh. Kujdesi i thjeshtë në shtëpi funksionon në raste të lehta, ndërsa thonjtë e përsëritur ose të infektuar mund të kërkojnë një procedurë të vogël.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Shkaqet e zakonshme përfshijnë prerjen shumë të shkurtër të thonjve ose rrumbullakosjen e cepave, këpucët e ngushta, lëndimin, këmbët e djersitura dhe thonjtë natyrisht të përkulur. Disa njerëz kanë prirje familjare. Adoleshentët dhe njerëzit që vrapojnë shumë ose luajnë futboll preken shpesh."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Lëkura pranë thoit bëhet e ndjeshme, e kuqe dhe e enjtur. Ecja dhe veshja e këpucëve mund të dhembin. Nëse lëkura infektohet, mund të ketë qelb, dhimbje pulsuese dhe zona mund të rritë ind të butë të quajtur ind granulimi."
+      ]
+    },
+    {
+      "heading": "Kujdesi personal në fazat e hershme",
+      "paragraphs": [
+        "Zhysni këmbën në ujë të ngrohtë disa herë në ditë, thajeni me kujdes dhe shtyjeni butë lëkurën larg skajit të thoit. Vishni këpucë ose sandale të gjera dhe mbajeni zonën të pastër. Në të ardhmen prisni thonjtë drejt përgjatë dhe mos gërmoni në cep me mjete të mprehta. Qetësuesit e shitur pa recetë mund të përdoren siç udhëzohet."
+      ]
+    },
+    {
+      "heading": "Trajtimi mjekësor",
+      "paragraphs": [
+        "Nëse thoi nuk përmirësohet, është shumë i dhimbshëm ose i infektuar, shihni një mjek ose podiatër. Ata mund ta ngrenë skajin e thoit dhe të vendosin një spinë të vogël, ta presin pjesën e ngulur nën anestezi lokale ose të përshkruajnë antibiotikë për infeksionin. Për probleme të përsëritura, një operacion i vogël mund të heqë një pjesë të thoit dhe të trajtojë rrënjën që të mos rritet më në skaje. Shërimi zgjat zakonisht disa javë."
+      ]
+    },
+    {
+      "heading": "Parandalimi dhe raste të veçanta",
+      "paragraphs": [
+        "Zgjidhni këpucë që përshtaten mirë me hapësirë për gishtat dhe prisni thonjtë siç duhet. Njerëzit me diabet, qarkullim të dobët ose këmbë të mpira duhet të shohin një profesionist herët dhe të mos e trajtojnë vetë problemin, sepse infeksionet mund të bëhen shpejt serioze. Kërkoni kujdes urgjent për skuqje që përhapet, ethe ose një gisht të zi apo shumë të enjtur."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trajtimi herët",
+      "text": "Imagjinoni që skaji i thoit tuaj të këmbës dhemb pas një shëtitjeje të gjatë me këpucë të ngushta. Mund të kaloni te këpucë të gjera, ta zhysni këmbën në ujë të ngrohtë çdo ditë dhe të shihni një podiatër nëse dhimbja nuk përmirësohet brenda disa ditësh."
+    },
+    {
+      "title": "Planifikimi i një procedure",
+      "text": "Supozoni që e njëjta thua është ngulur disa herë. Mund të pyesni për një operacion të vogël, çfarë përfshin shërimi dhe sa kohë duhet të shmangni sportin."
+    }
+  ],
+  "questions": [
+    "A është i infektuar ky thua dhe a ka nevojë për antibiotikë?",
+    "Cili trajtim do ta parandalonte rikthimin e tij?",
+    "Si duhet t'i pres thonjtë dhe të zgjedh këpucët për ta shmangur?"
+  ]
+}

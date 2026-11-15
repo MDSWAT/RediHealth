@@ -1,0 +1,51 @@
+{
+  "title": "Anxietatea generalizată: ajutor pentru îngrijorarea persistentă",
+  "intro": "Tulburarea de anxietate generalizată implică îngrijorare greu de controlat în multe domenii. Pot apărea tensiune musculară, somn slab, neliniște și probleme de concentrare; depășește grija obișnuită ocazională.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Îngrijorarea poate trece de la bani la familie sau sănătate și rămâne după reasigurare. Contează efectul asupra vieții, nu dacă ceilalți consideră temerea justificată."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Evaluarea explorează durata, suferința, somnul, medicamentele, substanțele și cauzele fizice. Descrieți evitarea și verificările repetate; chestionarul sprijină, dar nu înlocuiește conversația clinică. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Terapia cognitiv-comportamentală și anumite antidepresive pot ajuta. Medicamentele necesită timp și monitorizare; benzodiazepinele pot da dependență și nu sunt soluție obișnuită pe termen lung. Nu opriți brusc tratamentul psihiatric. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Construiți un program regulat de somn, mișcare și pași mici spre activitățile evitate. Reduceți excesul de cofeină și alcool; relaxarea sprijină gestionarea fără obligația eliminării oricărei senzații anxioase. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Cereți reevaluare când grija afectează munca, relațiile sau îngrijirea de bază. Durerea toracică, leșinul ori simptomele fizice noi severe cer evaluare separată. Pericolul imediat sau imposibilitatea de a rămâne în siguranță necesită ajutor urgent."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira verifică repetat mesajele familiei și nu doarme. În terapie reduce treptat verificările, fără să caute reasigurare continuă."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are greață la începerea tratamentului prescris. Contactează medicul despre tolerabilitate în loc să dubleze doza sau să oprească brusc."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

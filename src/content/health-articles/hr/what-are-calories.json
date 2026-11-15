@@ -1,0 +1,51 @@
+{
+  "title": "Što su kalorije?",
+  "intro": "Kalorija je jedinica energije. U prehrani se energija u hrani mjeri u kilokalorijama, često skraćeno kalorijama, ili u kilodžulima. Tijelu je potrebna energija da bi srce kucalo, da bi disalo, kretalo se i raslo. Ravnoteža između energije koju unosite i energije koju trošite pomaže održati stabilnu težinu.",
+  "sections": [
+    {
+      "heading": "Odakle dolaze kalorije",
+      "paragraphs": [
+        "Masti daju oko devet kilokalorija po gramu, ugljikohidrati i bjelančevine oko četiri svaki, a alkohol oko sedam. Vlakna i voda daju malo ili ništa. Hrana bogata mastima i šećerom, kao što su ulja, peciva i slatkiši, energetski je gusta, dok su povrće, voće i juhe manje, što znači da veće porcije daju manje kalorija."
+      ]
+    },
+    {
+      "heading": "Koliko energije vam treba",
+      "paragraphs": [
+        "Dnevne potrebe ovise o dobi, spolu, veličini, sastavu tijela, razini aktivnosti, trudnoći i zdravlju. Većinu energije tijelo troši u mirovanju, što se zove bazalni metabolizam. Tjelesna aktivnost i energija potrošena na probavu hrane dodaju se tome. Tipične potrebe su oko dvije tisuće kilokalorija za mnoge žene i dvije i pol tisuće za mnoge muškarce, uz velike individualne razlike."
+      ]
+    },
+    {
+      "heading": "Energetska ravnoteža i težina",
+      "paragraphs": [
+        "Kada unosite više energije nego što trošite, višak se pohranjuje kao mast, a kada unosite manje, tijelo koristi zalihe. U stvarnosti na tjelesnu težinu utječu i hormoni, san, genetika, lijekovi i kvaliteta hrane. Brojanje kalorija može pomoći nekim ljudima, ali je samo grubi vodič, a oznake su procjene."
+      ]
+    },
+    {
+      "heading": "Kvaliteta je važna",
+      "paragraphs": [
+        "Kalorije iz različite hrane drukčije utječu na zdravlje i sitost. Hrana bogata hranjivim tvarima kao što su povrće, voće, cjelovite žitarice, mahunarke, orašasti plodovi, riba i nemasne bjelančevine podupire zdravlje i bolje zasićuje od jako prerađene hrane i zaslađenih pića. Prehrane s vrlo niskim unosom kalorija mogu uzrokovati nedostatke i trebaju liječnički nadzor. Djeci, trudnicama i osobama s poremećajima prehrane potreban je individualan savjet. Opsjednutost brojanjem može postati nezdrava."
+      ]
+    },
+    {
+      "heading": "Posebne skupine",
+      "paragraphs": [
+        "Djeca, tinejdžeri, trudnice i dojilje, starije osobe, sportaši i osobe s bolešću imaju različite energetske potrebe. Ne ograničavajte jako kalorije bez savjeta i potražite pomoć ako misli o hrani ili težini preuzmu vaš život."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Čitanje oznake",
+      "text": "Zamislite da uspoređujete dvije grickalice. Mogli biste provjeriti kalorije po porciji i na sto grama, te pogledati šećer, vlakna i veličinu porcije koju biste doista pojeli."
+    },
+    {
+      "title": "Planiranje obroka",
+      "text": "Pretpostavite da se želite osjećati sitije uz manje kalorija. Mogli biste dodati povrće i mahunarke na tanjur i zamijeniti zaslađena pića vodom."
+    }
+  ],
+  "questions": [
+    "Koliko energije mi treba svaki dan?",
+    "Pomaže li mi brojanje kalorija ili je bolji neki drugi pristup?",
+    "Koja hrana me drži sitim uz podršku mom zdravlju?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Takikardia ventrikulare e vdekja e papritur kardiake",
+  "intro": "Takikardia ventrikulare është një ritëm i shpejtë e jonormal i zemrës që fillon në dhomat e poshtme, ventrikujt. Mund ta bëjë zemrën të pompojë keq e mund të degjenerojë në fibrilacion ventrikular, që shkakton ndalim të papritur të zemrës. Veprimi i shpejtë me ringjallje e defibrilim shpëton jetë e trajtimi mund të parandalojë përsëritjet.",
+  "sections": [
+    {
+      "heading": "Çfarë ndodh",
+      "paragraphs": [
+        "Ventrikujt normalisht tkurren në mënyrë të organizuar. Në takikardinë ventrikulare rrahin shumë shpejt, shpesh mbi njëqind e pesëdhjetë rrahje në minutë, prandaj zemra nuk mund të mbushet e të pompojë në mënyrë efektive. Episodet e shkurtra mund të shkaktojnë vetëm palpitacione. Episodet e vazhdueshme mund të shkaktojnë marrje mendsh, të fikët ose rënie. Fibrilacioni ventrikular është dridhje kaotike pa pompim, që është fatale brenda minutash pa trajtim."
+      ]
+    },
+    {
+      "heading": "Shkaqet e faktorët e rrezikut",
+      "paragraphs": [
+        "Shumica e rasteve ndodhin te njerëz me sëmundje të zemrës, si infarkt i mëparshëm me cikatrice, kardiomiopati e dështim i zemrës. Mund ta shkaktojnë edhe çrregullimet e trashëguara të ritmit, si sindroma e QT të gjatë, çekuilibri i mineraleve të gjakut, disa barna e drogat. Vdekja e papritur kardiake te të rinjtë është e rrallë e mund të lidhet me gjendje të trashëguara, prandaj historia familjare është e rëndësishme."
+      ]
+    },
+    {
+      "heading": "Reagimi i urgjencës",
+      "paragraphs": [
+        "Nëse dikush bie e nuk merr frymë normalisht, telefononi menjëherë shërbimet e urgjencës, filloni shtypjet e gjoksit në qendër të gjoksit me ritëm të fortë e të shpejtë e përdorni një defibrilator publik nëse ka, duke ndjekur udhëzimet e tij zanore. Defibrilimi i hershëm e rrit shumë shansin e mbijetesës. Mësimi i mbështetjes bazë të jetës është i vlefshëm."
+      ]
+    },
+    {
+      "heading": "Diagnoza e trajtimi",
+      "paragraphs": [
+        "Një EKG regjistron ritmin. Monitorët afatgjatë, ultratingulli i zemrës, rezonanca, testet e ushtrimeve e nganjëherë studimet elektrofiziologjike identifikojnë shkaqet. Trajtimi përfshin barna si beta-bllokuesit e antiaritmikët, ablacionin me kateter për të shkatërruar qarqet jonormale e një defibrilator kardioverter të implantueshëm që zbulon ritme të rrezikshme e jep një goditje. Trajtimi i sëmundjes themelore të zemrës është thelbësor."
+      ]
+    },
+    {
+      "heading": "Të jetosh me rrezikun",
+      "paragraphs": [
+        "Njerëzit me defibrilator kanë nevojë për kontrolle të rregullta, duhet të dinë çfarë të bëjnë nëse marrin një goditje e mund të përballen me kufizime në drejtim. Të afërmve të njerëzve me vdekje të papritur ose gjendje të trashëguara mund t'u ofrohet skrining. Mbështetja emocionale ndihmon të përballohet ankthi. Shmangni nxitësit e këshilluar nga mjeku, si disa droga ose përpjekja e rëndë në disa gjendje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mësimi i ringjalljes",
+      "text": "Imagjinoni që doni të jeni të përgatitur. Mund të ndiqni një kurs të mbështetjes bazë të jetës e të zbuloni ku ndodhen defibrilatorët publikë në lagjen tuaj."
+    },
+    {
+      "title": "Skrining familjar",
+      "text": "Supozoni që një i afërm vdiq papritur në moshë të re. Mund ta pyesni mjekun për teste të zemrës për anëtarët e familjes."
+    }
+  ],
+  "questions": [
+    "Cili është shkaku i aritmisë sime e cilin trajtim rekomandoni?",
+    "A kam nevojë për defibrilator e çfarë do të përfshinte jeta me të?",
+    "A duhet të bëhet skrining për të afërmit e mi?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Kirurgjia: çfarë të prisni",
+  "intro": "Një operacion mund të trajtojë sëmundjen, të riparojë lëndimin, të lehtësojë simptomat ose të ndihmojë diagnostikimin e një gjendjeje. Njohja e asaj që ndodh para, gjatë e pas kirurgjisë ju ndihmon të përgatiteni, të bëni pyetjet e duhura e të merrni pjesë aktive në vendime. Çdo operacion përfshin përfitime, rreziqe e alternativa që duhen diskutuar paraprakisht.",
+  "sections": [
+    {
+      "heading": "Vendimi për kirurgji",
+      "paragraphs": [
+        "Kirurgjia është një opsion mes të tjerëve. Pyesni çfarë synon të arrijë operacioni, sa ka gjasa të funksionojë, çfarë mund të shkojë keq, çfarë ndodh pa kirurgji e nëse ka alternativa si barnat ose fizioterapia. Operacionet urgjente lënë pak kohë për vendim, por operacionet e planifikuara lejojnë kohë për një mendim të dytë."
+      ]
+    },
+    {
+      "heading": "Përgatitja për operacionin",
+      "paragraphs": [
+        "Para kirurgjisë vlerësoheni për gatishmëri, me teste si analiza gjaku, regjistrim zemre e diskutim të barnave. Disa barna, si holluesit e gjakut, mund të duhet të pezullohen me këshillë. Tregojini ekipit për alergjitë, reagimet e mëparshme ndaj anestezisë, duhanin e alkoolin. Lënia e duhanit e aktiviteti më parë e përmirësojnë shërimin. Ndiqni udhëzimet për agjërimin."
+      ]
+    },
+    {
+      "heading": "Anestezia",
+      "paragraphs": [
+        "Anestezia e përgjithshme ju bën të pavetëdijshëm e pa dhimbje. Anestezia rajonale, si bllokimet spinale ose të nervave, e mpin një pjesë të trupit ndërsa qëndroni zgjuar ose lehtë të qetësuar e anestezia lokale e mpin një zonë të vogël. Anesteziologu e zgjedh llojin me ju, sipas operacionit e shëndetit tuaj. Efektet anësore mund të përfshijnë të përziera, përgjumje e dhimbje fyti e komplikimet serioze janë të rralla."
+      ]
+    },
+    {
+      "heading": "Rreziqet",
+      "paragraphs": [
+        "Çdo operacion ka rreziqe, përfshirë gjakderdhje, infeksion, mpiksje gjaku, dëmtim të strukturave afër, reagime ndaj anestezisë e shërim të dobët. Niveli i rrezikut varet nga operacioni, shëndeti juaj i përgjithshëm e nëse është urgjencë. Ju kërkohet të jepni pëlqim të informuar pasi ekipi shpjegon përfitimet e rreziqet e mund të kërkoni kohë për të menduar."
+      ]
+    },
+    {
+      "heading": "Rikuperimi",
+      "paragraphs": [
+        "Pas operacionit monitoroheni e merrni lehtësim dhimbjeje. Lëvizja e hershme, frymëmarrja e thellë e ngrënia sapo lejohet ndihmojnë rikuperimin. Ndiqni udhëzimet për kujdesin e plagës, aktivitetin, ngasjen e kthimin në punë e dini kë të telefononi nëse keni ethe, dhimbje në rritje, skuqje, enjtje ose shqetësime të tjera. Rehabilitimi mund të nevojitet pas disa operacioneve."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja e pyetjeve",
+      "text": "Imagjinoni që ju ofrohet një operacion. Mund të shkruani pyetje për përfitimet, rreziqet e alternativat e të sillni një të afërm në takime për të ndihmuar të mbahen mend përgjigjet."
+    },
+    {
+      "title": "Planifikimi i rikuperimit",
+      "text": "Supozoni që do të ktheheni në shtëpi ditën pas kirurgjisë. Mund të organizoni transport, ndihmë në shtëpi, vakte të lehta e kohë pushimi nga puna."
+    }
+  ],
+  "questions": [
+    "Cilat janë përfitimet e rreziqet e këtij operacioni e cilat janë alternativat?",
+    "Cili lloj anestezie planifikohet e cilat janë efektet anësore?",
+    "Çfarë të pres gjatë rikuperimit e kur mund të rifilloj aktivitetet normale?"
+  ]
+}

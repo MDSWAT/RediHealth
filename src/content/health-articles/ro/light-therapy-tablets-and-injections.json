@@ -1,0 +1,51 @@
+{
+  "title": "Fototerapia, tabletele și injecțiile pentru eczemă",
+  "intro": "Când cremele și îngrijirea pielii nu sunt suficiente pentru a controla eczema atopică, medicii pot lua în considerare tratamente care acționează asupra întregului corp sau folosesc lumină specială. Aceste opțiuni pot reduce mâncărimea și puseele în eczema moderată până la severă, dar necesită monitorizare din cauza efectelor secundare și a costurilor.",
+  "sections": [
+    {
+      "heading": "Când se ia în considerare un tratament mai puternic",
+      "paragraphs": [
+        "Tratamentul este intensificat când eczema este extinsă sau severă, somnul și viața de zi cu zi sunt perturbate sau tratamentele topice nu oferă suficient control. Înainte de aceasta, medicul va verifica dacă s-au încercat îngrijirea de bază a pielii și folosirea corectă a cremelor antiinflamatoare, precum și factorii declanșatori și infecțiile."
+      ]
+    },
+    {
+      "heading": "Fototerapia",
+      "paragraphs": [
+        "Fototerapia folosește lumină ultravioletă, de obicei UVB cu bandă îngustă, într-o cabină de mai multe ori pe săptămână, timp de câteva săptămâni. Reduce inflamația și mâncărimea la multe persoane. Efectele secundare includ roșeață asemănătoare arsurii solare, piele uscată și, la folosire repetată pe termen lung, un risc crescut de îmbătrânire a pielii și posibil cancer de piele. Se poartă protecție pentru ochi, iar numărul de ședințe este limitat. Necesită vizite regulate, ceea ce poate fi greu cu munca sau școala."
+      ]
+    },
+    {
+      "heading": "Tabletele",
+      "paragraphs": [
+        "Medicamente precum ciclosporina suprimă sistemul imunitar și pot controla rapid eczema severă, dar pot afecta tensiunea arterială și funcția rinichilor și sunt de obicei folosite pe perioade limitate, cu analize de sânge. Tabletele mai noi care blochează moleculele de semnalizare, numite inhibitori JAK, pot fi eficiente, dar au avertismente privind infecțiile, cheagurile de sânge și alte riscuri, așa că se folosesc când alte opțiuni nu sunt potrivite."
+      ]
+    },
+    {
+      "heading": "Injecțiile",
+      "paragraphs": [
+        "Medicamentele biologice precum dupilumab și tralokinumab țintesc semnale imune specifice implicate în eczemă. Se administrează prin injecție sub piele la intervale de săptămâni, adesea acasă, după instruire. Sunt adesea bine tolerate, dar pot apărea probleme oculare precum roșeața sau conjunctivita și reacții la locul injectării. Sunt prescrise în general de specialiști."
+      ]
+    },
+    {
+      "heading": "Alegerea și monitorizarea",
+      "paragraphs": [
+        "Cea mai bună opțiune depinde de vârsta dumneavoastră, de sănătate, de planurile de sarcină, de alte afecțiuni, de cât de severă este eczema și de preferințele dumneavoastră. Continuați să folosiți emoliente tot timpul. Spuneți medicului despre infecții, vaccinări planificate sau sarcină. Controalele sunt necesare pentru a judeca beneficiile și efectele secundare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Cântărirea factorilor practici",
+      "text": "Imaginați-vă că medicul vă propune fototerapie. Ați putea întreba câte vizite pe săptămână sunt necesare, cât durează până se vede îmbunătățirea și dacă o puteți combina cu munca sau cu școala."
+    },
+    {
+      "title": "Compararea opțiunilor",
+      "text": "Presupuneți că vi se oferă atât o injecție, cât și o tabletă. Ați putea întreba despre eficacitate, efecte secundare, monitorizare și ce se întâmplă dacă vă opriți."
+    }
+  ],
+  "questions": [
+    "Ce tratament este cel mai potrivit pentru eczema mea și care sunt riscurile lui?",
+    "Cum voi ști dacă funcționează și când ne vom reconsidera decizia?",
+    "Cum ar trebui să-mi continui îngrijirea pielii în timpul tratamentului?"
+  ]
+}

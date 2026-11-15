@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt aplicațiile digitale de sănătate (DiGA)?",
+  "intro": "În Germania, anumite aplicații și programe web pot fi prescrise de medici și psihoterapeuți ca medicamentele, iar costurile sunt acoperite de asigurarea de sănătate obligatorie. Ele se numesc aplicații digitale de sănătate, sau DiGA. Își propun să sprijine tratamentul unor afecțiuni precum depresia, insomnia, tinitusul și durerile de spate. Această prezentare este generală; lista se schimbă, așa că verificați detaliile actuale.",
+  "sections": [
+    {
+      "heading": "Ce este o DiGA",
+      "paragraphs": [
+        "O DiGA este un produs medical bazat pe tehnologie digitală, folosit de pacient pentru a detecta, monitoriza, trata sau ameliora o boală ori pentru a compensa o dizabilitate. Exemplele includ programe cu exerciții de terapie cognitiv-comportamentală, jurnale de simptome și module de antrenament. Nu sunt simple aplicații de bunăstare. Sunt evaluate ca dispozitive medicale cu risc scăzut."
+      ]
+    },
+    {
+      "heading": "Cum sunt aprobate",
+      "paragraphs": [
+        "Institutul federal responsabil pentru medicamente și dispozitive medicale verifică siguranța, funcționarea, protecția datelor și calitatea. Producătorii trebuie să arate un efect pozitiv asupra îngrijirii, de exemplu o sănătate îmbunătățită sau o gestionare mai bună a bolii. Unele aplicații sunt listate provizoriu cât timp se adună dovezi. Registrul oficial arată indicațiile, dovezile și cerințele, inclusiv limbile."
+      ]
+    },
+    {
+      "heading": "Cum se obține una",
+      "paragraphs": [
+        "Un medic sau un psihoterapeut poate prescrie o DiGA, ori asigurătorul dumneavoastră o poate aproba dacă arătați că aveți un diagnostic potrivit. Primiți apoi un cod pentru activarea aplicației, iar asigurătorul plătește direct producătorul, așa că de obicei nu plătiți nimic. Prescripția acoperă o perioadă stabilită, adesea nouăzeci de zile, după care se decide continuarea."
+      ]
+    },
+    {
+      "heading": "Beneficii și limite",
+      "paragraphs": [
+        "Beneficiile includ flexibilitatea, disponibilitatea în orice moment și posibilitatea de a exersa abilități între consultații. Studiile sugerează beneficii pentru unele aplicații, dar efectele sunt adesea modeste și depind de implicare. Ele nu înlocuiesc un medic sau terapia în boli grave. Nu toți se simt confortabil cu instrumentele digitale, iar disponibilitatea în diferite limbi poate fi limitată."
+      ]
+    },
+    {
+      "heading": "Protecția datelor",
+      "paragraphs": [
+        "DiGA trebuie să respecte cerințe stricte de protecție a datelor, iar datele despre sănătate sunt prelucrate conform legislației germane și europene, fiind stocate în locuri aprobate. Citiți ce permisiuni cere aplicația și întrebați producătorul sau medicul cum sunt folosite datele dumneavoastră. Puteți înceta folosirea aplicației și puteți cere ștergerea datelor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Întrebarea adresată medicului",
+      "text": "Imaginați-vă că aveți probleme de somn și preferați să nu începeți medicamente. Ați putea întreba medicul dacă o DiGA pentru insomnie este potrivită și cum se obține un cod."
+    },
+    {
+      "title": "Verificarea registrului",
+      "text": "Presupuneți că citiți online despre o DiGA. Ați putea verifica în registrul oficial indicația aprobată și dovezile înainte de a începe."
+    }
+  ],
+  "questions": [
+    "Există o DiGA potrivită pentru afecțiunea mea și o acoperă asigurătorul meu?",
+    "Cum vor fi folosite datele mele?",
+    "Cum vom judeca dacă funcționează pentru mine?"
+  ]
+}

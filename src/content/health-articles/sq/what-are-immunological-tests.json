@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë janë testet imunologjike?",
+  "intro": "Testet imunologjike ekzaminojnë përbërës të sistemit imunitar, si antitrupat, qelizat imune e molekulat sinjalizuese. Përdoren për të diagnostikuar infeksione, alergji, sëmundje autoimune e mungesa imune e për të kontrolluar nëse vaksinimi ka dhënë mbrojtje. Rezultatet duhen interpretuar në kontekst.",
+  "sections": [
+    {
+      "heading": "Testet e antitrupave",
+      "paragraphs": [
+        "Testet e antitrupave masin proteina që sistemi imunitar prodhon kundër mikrobeve ose indeve të vetë trupit. Mund të tregojnë infeksion të kaluar ose aktual, si hepatiti ose HIV, imunitet pas vaksinimit, si te rubeola ose hepatiti B, e sëmundje autoimune, si antitrupat antinuklearë në lupus ose anti-CCP në artritin reumatoid. Një test pozitiv nuk do të thotë gjithmonë sëmundje, e një test negativ nuk e përjashton gjithmonë."
+      ]
+    },
+    {
+      "heading": "Testet e alergjisë",
+      "paragraphs": [
+        "Analizat e gjakut mund të masin antitrupa specifikë IgE ndaj substancave si poleni, marimangat, ushqimet ose helmi i insekteve. Përdoren së bashku me historinë e testet e shpimit të lëkurës. Një rezultat pozitiv tregon ndjeshmëri, çka do të thotë se sistemi imunitar ka prodhuar antitrupa, por jo domosdoshmërisht se personi ka simptoma kur ekspozohet."
+      ]
+    },
+    {
+      "heading": "Numërimi e funksioni i qelizave",
+      "paragraphs": [
+        "Numërimet e gjakut tregojnë numrin e qelizave të bardha, e citometria e rrjedhës numëron nëntipet e limfociteve, si qelizat T e B, që është e rëndësishme në HIV e mungesat imune. Teste të tjera masin sa mirë funksionojnë qelizat imune ose nivelet e proteinave si komplementi e imunoglobulinat."
+      ]
+    },
+    {
+      "heading": "Inflamacioni e shënuesit e tjerë",
+      "paragraphs": [
+        "Teste si proteina C-reaktive e shpejtësia e sedimentimit të eritrociteve tregojnë inflamacion të përgjithshëm. Janë jospecifike, pasi rriten në infeksione e shumë gjendje të tjera. Shënuesit e tumoreve nganjëherë quhen teste imunologjike, por kanë vlerë të kufizuar për skrining."
+      ]
+    },
+    {
+      "heading": "Të kuptuarit e rezultateve",
+      "paragraphs": [
+        "Intervalet normale ndryshojnë midis laboratorëve. Testet interpretohen me simptomat e gjetjet e tjera e nganjëherë përsëriten. Shmangni kërkimin e testeve pa arsye mjekësore, pasi pozitivët e rremë mund të çojnë në ankth e procedura të panevojshme. Pyesni çfarë do të thotë rezultati për trajtimin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kontrolli i mbrojtjes nga vaksina",
+      "text": "Imagjinoni që punoni në kujdesin shëndetësor e keni nevojë për provë të imunitetit ndaj hepatitit B. Mund të kërkoni një test antitrupash nga mjeku e ta mbani rezultatin me kartelën e vaksinave."
+    },
+    {
+      "title": "Interpretimi i një rezultati pozitiv",
+      "text": "Supozoni që testi juaj i antitrupave antinuklearë është pozitiv por ndiheni mirë. Mund të pyesni nëse është i rëndësishëm e nëse nevojiten teste të tjera."
+    }
+  ],
+  "questions": [
+    "Cili test është i përshtatshëm për problemin tim?",
+    "Çfarë do të thotë një rezultat pozitiv ose negativ për mua?",
+    "A duhet të përsëritet ndonjë rezultat?"
+  ]
+}

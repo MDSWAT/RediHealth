@@ -1,0 +1,51 @@
+{
+  "title": "Koje vrste alergijskih testova postoje?",
+  "intro": "Alergijski testovi pomažu otkriti koje tvari izazivaju alergijsku reakciju. Uključuju kožne testove, krvne pretrage i nadzirane provokacijske testove. Rezultate uvijek treba tumačiti zajedno sa simptomima jer pozitivan test sam po sebi ne dokazuje alergiju.",
+  "sections": [
+    {
+      "heading": "Kožni ubodni test",
+      "paragraphs": [
+        "Kapljica ekstrakta alergena stavlja se na podlakticu ili leđa, a koža se ubode sitnom lancetom. Ako ste alergični, unutar petnaest do dvadeset minuta pojavi se mala crvena kvržica koja svrbi. Brz je, jeftin i široko se koristi za pelud, grinje, životinje, hranu i otrov. Antihistaminici se moraju prekinuti nekoliko dana prije. Rijetko se može javiti teška reakcija pa se radi u medicinskoj ustanovi."
+      ]
+    },
+    {
+      "heading": "Krvne pretrage",
+      "paragraphs": [
+        "One mjere specifična IgE protutijela na alergene i korisne su ako kožno testiranje nije moguće, primjerice zbog kožne bolesti ili ako se antihistaminici ne mogu prekinuti. Sigurne su, ali u nekim slučajevima malo manje osjetljive, a rezultati stižu za nekoliko dana. Komponentno testiranje identificira specifične bjelančevine u alergenu i pomaže predvidjeti težinu."
+      ]
+    },
+    {
+      "heading": "Ostali kožni testovi",
+      "paragraphs": [
+        "Epikutani test koristi se kod kontaktnih alergija, kao na nikal ili parfeme. Flasteri s alergenima lijepe se na leđa dva dana, a koža se provjerava nakon dva i tri do četiri dana. Intradermalni testovi ubrizgavaju sitnu količinu u kožu, uglavnom se koriste kod alergija na lijekove i otrov kukaca."
+      ]
+    },
+    {
+      "heading": "Provokacijski testovi",
+      "paragraphs": [
+        "Provokacijski testovi hranom, lijekom ili nosom daju sumnjivi alergen pod liječničkim nadzorom da bi se vidjelo događa li se reakcija. To je najpouzdaniji način potvrde mnogih alergija na hranu i lijekove, ali nose rizik reakcije i rade se samo gdje je dostupno hitno liječenje. Eliminacijske dijete pomažu identificirati okidače."
+      ]
+    },
+    {
+      "heading": "Testovi koje treba izbjegavati",
+      "paragraphs": [
+        "Analiza kose, krvni testovi IgG za intoleranciju na hranu, kineziologija i slični testovi nisu pouzdani i mogu dovesti do nepotrebnih prehrambenih ograničenja. Pitajte alergologa koji su testovi prikladni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za kožno testiranje",
+      "text": "Zamislite da idući tjedan imate kožni ubodni test. Mogli biste pitati koje antihistaminike prekinuti i na koliko dana."
+    },
+    {
+      "title": "Tumačenje rezultata",
+      "text": "Pretpostavite da je vaš krvni test pozitivan na kikiriki, ali ga jedete bez problema. Mogli biste pitati treba li nadzirani provokacijski test."
+    }
+  ],
+  "questions": [
+    "Koji je alergijski test najbolji za moje simptome?",
+    "Trebam li prije prekinuti neke lijekove?",
+    "Što pozitivan rezultat znači za mene?"
+  ]
+}

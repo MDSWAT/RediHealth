@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă în timpul unei hemoragii cerebrale?",
+  "intro": "O hemoragie cerebrală este o sângerare în interiorul sau în jurul creierului. Este o urgență medicală care poate provoca simptome bruște severe și leziuni durabile. Tratamentul rapid îmbunătățește șansele de supraviețuire și de recuperare. Acest text este o informare generală și nu înlocuiește îngrijirile de urgență.",
+  "sections": [
+    {
+      "heading": "Ce este",
+      "paragraphs": [
+        "Sângerarea apare când un vas de sânge din creier se rupe. Sângele se poate aduna în țesutul cerebral, numită hemoragie intracerebrală, sau în spațiile din jurul creierului, precum hemoragia subarahnoidiană. Sângerarea crește presiunea în craniu și deteriorează celulele cerebrale. Cauzele includ hipertensiunea arterială, un anevrism rupt, malformațiile vasculare, traumatismele craniene și medicamentele anticoagulante."
+      ]
+    },
+    {
+      "heading": "Semne de alarmă",
+      "paragraphs": [
+        "Durere de cap bruscă severă, descrisă adesea ca cea mai puternică vreodată, vărsături, slăbiciune sau amorțeală pe o parte, căderea feței, dificultăți de vorbire sau de înțelegere, probleme de vedere, confuzie, convulsii sau pierderea conștienței. Chemați imediat numărul de urgență și nu conduceți singur."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament de urgență",
+      "paragraphs": [
+        "O tomografie computerizată a capului arată rapid sângerarea. Tratamentul depinde de tip și de cauză. Medicii controlează tensiunea arterială, anulează efectul anticoagulantelor și monitorizează presiunea din creier. Poate fi necesară o operație pentru îndepărtarea sângelui, repararea unui anevrism sau reducerea presiunii. Îngrijirea se face adesea într-o unitate de terapie intensivă sau într-o unitate specializată pentru accident vascular cerebral."
+      ]
+    },
+    {
+      "heading": "Recuperarea",
+      "paragraphs": [
+        "Recuperarea poate dura luni și depinde de localizarea și de mărimea sângerării. Reabilitarea include kinetoterapie, terapie ocupațională și logopedie. Unele persoane se recuperează bine, în timp ce altele au slăbiciune durabilă, probleme de vorbire, oboseală sau schimbări ale gândirii și dispoziției. Sprijinul pentru membrii familiei este important."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Controlați tensiunea arterială, evitați fumatul și excesul de alcool, luați corect medicamentele prescrise și mergeți la controale. Discutați riscurile cu medicul dacă luați anticoagulante sau aveți antecedente familiale de anevrisme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Acțiunea rapidă",
+      "text": "Imaginați-vă că o rudă are brusc o durere de cap severă și vorbire neclară. Ați putea chema imediat numărul de urgență și ați putea nota ora la care au început simptomele."
+    },
+    {
+      "title": "Sprijinirea recuperării",
+      "text": "Presupuneți că un membru al familiei părăsește spitalul. Ați putea cere un plan de reabilitare și un contact pentru sprijin continuu."
+    }
+  ],
+  "questions": [
+    "Ce a cauzat sângerarea și se poate repeta?",
+    "Ce reabilitare va ajuta cel mai mult?",
+    "Ce poate reduce riscul unei noi sângerări?"
+  ]
+}

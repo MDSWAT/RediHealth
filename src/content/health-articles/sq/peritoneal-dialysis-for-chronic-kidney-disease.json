@@ -1,0 +1,52 @@
+{
+  "title": "Dializa peritoneale për sëmundjen kronike të veshkave",
+  "intro": "Dializa peritoneale është një formë trajtimi zëvendësues i veshkave që kryhet në shtëpi. Një lëng pastrues futet në bark përmes një tubi të butë, ku mbulesa e zgavrës së barkut filtron mbetjet e lëngun e tepërt nga gjaku. Ofron fleksibilitet krahasuar me hemodializën në spital, por kërkon higjienë të kujdesshme e trajnim.",
+  "sections": [
+    {
+      "heading": "Si funksionon",
+      "paragraphs": [
+        "Një kateter, i vendosur me një operacion të vogël, qëndron në bark. Lëngu i dializës që përmban sheqer futet, lihet për disa orë dhe shkarkohet me mbetjet e ujin e tepërt të tërhequr përmes peritoneumit. Procesi përsëritet disa herë në ditë me dorë ose gjatë natës nga një makinë që shkëmben lëngun automatikisht ndërsa flini."
+      ]
+    },
+    {
+      "heading": "Kujt i përshtatet",
+      "paragraphs": [
+        "Mund t'u përshtatet njerëzve që preferojnë trajtimin në shtëpi, duan të vazhdojnë punën ose udhëtimin ose jetojnë larg një qendre dialize. Kërkon aftësinë, ose ndihmën e një kujdestari, për të kryer shkëmbimet në kushte të pastra. Kirurgjia e mëparshme e barkut, hernitë e rënda ose kushtet shumë të këqija higjienike mund ta bëjnë të papërshtatshme."
+      ]
+    },
+    {
+      "heading": "Përfitimet dhe rreziqet",
+      "paragraphs": [
+        "Përfitimet përfshijnë më shumë pavarësi, heqje më të butë të lëngjeve dhe mundësinë për disa njerëz të mbajnë një dietë e marrje lëngjesh më të lirshme se me hemodializën. Rreziku kryesor është peritoniti, një infeksion i zgavrës së barkut, që shkakton lëng të turbullt, dhimbje barku dhe ethe dhe kërkon trajtim urgjent. Probleme të tjera përfshijnë probleme me kateterin, herni, shtim peshe nga sheqeri në lëng dhe, gjatë viteve, humbje të aftësisë filtruese të membranës."
+      ]
+    },
+    {
+      "heading": "Jeta e përditshme dhe kujdesi",
+      "paragraphs": [
+        "Trajnimi zgjat një deri në dy javë. Larja e rreptë e duarve dhe një rutinë e pastër shkëmbimi parandalojnë infeksionin. Mbajeni vendin e daljes së kateterit të pastër e të thatë dhe raportoni menjëherë skuqje, sekrecione ose lëng të turbullt. Vizitat e rregullta në klinikë monitorojnë analizat e gjakut e ekuilibrin e lëngjeve. Këshillat e dietës zakonisht lidhen me proteinat, kripën, kaliumin e fosfatin. Shumë njerëz mund të punojnë, të udhëtojnë me furnizime të dërguara jashtë vendit e të mbajnë aktivitete normale.",
+        "Transplantimi, hemodializa e kujdesi konservativ janë opsione të tjera dhe trajtimi mund të ndryshojë me kalimin e kohës."
+      ]
+    },
+    {
+      "heading": "Trajtime të tjera të veshkave",
+      "paragraphs": [
+        "Dializa peritoneale është një nga disa opsione. Transplantimi i veshkës, hemodializa në një qendër ose në shtëpi dhe kujdesi konservativ që përqendrohet te simptomat janë të tjerat. Trajtimi mund të ndryshojë me kalimin e kohës dhe zgjedhja duhet të pasqyrojë shëndetin, dëshirat e situatën tuaj në shtëpi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mësimi i rutinës",
+      "text": "Imagjinoni që filloni trajnimin për shkëmbime gjatë natës. Mund t'u kërkoni infermierëve të shohin teknikën tuaj, të shkruani hapat e të mbani numrat e urgjencës pranë furnizimeve."
+    },
+    {
+      "title": "Njohja e një problemi",
+      "text": "Supozoni që lëngu i shkarkuar duket i turbullt dhe ndjeni dhimbje barku. Mund të telefononi menjëherë njësinë e dializës dhe ta sillni qesen në klinikë."
+    }
+  ],
+  "questions": [
+    "A është dializa peritoneale e përshtatshme për mua krahasuar me hemodializën ose transplantin?",
+    "Si mund t'i parandaloj infeksionet dhe cilat janë shenjat paralajmëruese?",
+    "Si do të jenë dieta dhe jeta ime e përditshme me këtë trajtim?"
+  ]
+}

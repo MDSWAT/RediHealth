@@ -1,0 +1,51 @@
+{
+  "title": "Fumatul, țigările electronice și renunțarea",
+  "intro": "Fumatul este principala cauză evitabilă de boală și de deces prematur, afectând aproape fiecare organ. Renunțarea la orice vârstă aduce beneficii, iar șansele de succes cresc cu sprijin și medicamente. Țigările electronice sunt mai puțin dăunătoare decât țigările, dar nu sunt lipsite de riscuri, iar efectele pe termen lung sunt încă studiate.",
+  "sections": [
+    {
+      "heading": "Efecte asupra sănătății",
+      "paragraphs": [
+        "Fumul de tutun conține mii de substanțe chimice, multe toxice și cancerigene. Fumatul provoacă cancer pulmonar și de alte tipuri, infarct, accident vascular cerebral, boli pulmonare cronice, probleme de circulație, probleme de fertilitate și complică sarcina. Fumatul pasiv dăunează copiilor și nefumătorilor. Cu cât se fumează mai mult timp și mai mult, cu atât riscul este mai mare."
+      ]
+    },
+    {
+      "heading": "Țigările electronice",
+      "paragraphs": [
+        "Țigările electronice încălzesc un lichid, de obicei cu nicotină, transformându-l în vapori. Expun utilizatorii la mai puține substanțe toxice decât arderea tutunului, dar tot livrează nicotină, care creează dependență, și alte substanțe chimice ale căror efecte pe termen lung sunt necunoscute. Dovezile sugerează că pot ajuta unii fumători să renunțe când sunt folosite ca înlocuitor complet, dar nu sunt recomandate tinerilor sau nefumătorilor, iar mulți ajung să folosească ambele produse."
+      ]
+    },
+    {
+      "heading": "Beneficiile renunțării",
+      "paragraphs": [
+        "În câteva zile, circulația și respirația se îmbunătățesc. În decurs de un an, riscul de boli de inimă scade substanțial, iar în ani scade riscul de cancer și de accident vascular cerebral. Renunțarea înainte de vârsta mijlocie evită cea mai mare parte a riscului în exces. Renunțarea economisește și bani și protejează familia."
+      ]
+    },
+    {
+      "heading": "Cum să renunțați",
+      "paragraphs": [
+        "Stabiliți o dată de renunțare, spuneți prietenilor și familiei și scoateți țigările din casă. Sprijinul comportamental, precum consilierea, liniile de ajutor, programele de grup și aplicațiile, crește succesul. Terapia de substituție cu nicotină sub formă de plasturi, gumă sau pastile de supt și medicamentele prescrise precum vareniclina sau bupropiona dublează aproximativ șansa de succes. Combinația dintre medicamente și consiliere funcționează cel mai bine. Multe persoane au nevoie de mai multe încercări."
+      ]
+    },
+    {
+      "heading": "Rămânerea fără fum",
+      "paragraphs": [
+        "Poftele trec de obicei în câteva minute. Evitați factorii declanșatori, găsiți înlocuitori precum mersul sau guma de mestecat și planificați pentru stres. O greșeală nu este eșec și puteți reîncepe. Întrebați medicul sau farmacistul despre sprijinul disponibil în zona dumneavoastră."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planificarea datei de renunțare",
+      "text": "Imaginați-vă că hotărâți să renunțați. Ați putea alege o dată în două săptămâni, ați putea întreba medicul despre plasturi și medicamente și ați putea spune familiei, ca să vă poată sprijini."
+    },
+    {
+      "title": "Gestionarea poftei",
+      "text": "Presupuneți că vă este poftă de o țigară după mese. Ați putea să vă spălați pe dinți, să faceți o scurtă plimbare sau să mestecați gumă până trece pofta."
+    }
+  ],
+  "questions": [
+    "Ce metodă sau ce medicament de renunțare este cel mai bun pentru mine?",
+    "Sunt țigările electronice o opțiune bună pentru mine sau un risc?",
+    "Ce sprijin este disponibil dacă recad?"
+  ]
+}

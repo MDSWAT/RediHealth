@@ -1,0 +1,52 @@
+{
+  "title": "Metastatic breast cancer",
+  "intro": "Metastatic breast cancer means that cancer that began in the breast has spread to other parts of the body, such as bones, liver, lungs or brain. It is usually not curable, but treatments can control it for months or years, relieve symptoms and maintain quality of life. Many options exist, and decisions are individual.",
+  "sections": [
+    {
+      "heading": "How it is detected",
+      "paragraphs": [
+        "It may be found at first diagnosis or return years after earlier treatment. Symptoms depend on where it has spread, such as bone pain, shortness of breath, persistent cough, abdominal discomfort, headaches or weight loss. Scans, blood tests and biopsies of metastases confirm the findings and show the cancer's features."
+      ]
+    },
+    {
+      "heading": "The type of cancer matters",
+      "paragraphs": [
+        "Treatment depends on whether the cancer cells carry hormone receptors, produce too much HER2 protein or are triple-negative. Testing a new sample may show differences from the original tumour. Gene tests can identify changes that make certain medicines useful."
+      ]
+    },
+    {
+      "heading": "Treatment options",
+      "paragraphs": [
+        "Hormone-sensitive cancers are often treated with endocrine therapy combined with targeted drugs. HER2-positive cancers respond to anti-HER2 antibodies. Chemotherapy, immunotherapy and other targeted drugs are used when needed. Treatment continues for as long as it works and is tolerated, and is changed if the cancer progresses.",
+        "Radiotherapy, surgery and bone-strengthening medicines help control local problems and symptoms. Clinical trials may provide access to new treatments."
+      ]
+    },
+    {
+      "heading": "Symptom control and palliative care",
+      "paragraphs": [
+        "Palliative care teams focus on relief of pain, nausea, fatigue and emotional strain, and are involved alongside cancer treatment, not only at the end of life. Early involvement is associated with better quality of life. Complementary therapies such as exercise and relaxation may help, but should be discussed with your team."
+      ]
+    },
+    {
+      "heading": "Living with advanced cancer",
+      "paragraphs": [
+        "Feelings of fear, anger and sadness are normal. Psycho-oncology support, support groups and social services can help with emotional and practical concerns, including work, finances and caring responsibilities. Talking about goals, wishes and advance care planning is helpful."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing for a treatment decision",
+      "text": "Imagine you have just learned your cancer has spread. You could bring a relative to appointments, record the discussion and write down questions about goals, side effects and how treatment success will be measured."
+    },
+    {
+      "title": "Looking for support",
+      "text": "Suppose you feel isolated. You might ask the oncology team about a psycho-oncology counsellor or a local group for women with advanced breast cancer."
+    }
+  ],
+  "questions": [
+    "What are the features of my cancer, and which treatments suit them?",
+    "What are the goals of treatment, and how will we judge whether it works?",
+    "How can palliative care help me now?"
+  ]
+}

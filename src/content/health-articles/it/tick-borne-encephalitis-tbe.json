@@ -1,0 +1,51 @@
+{
+  "title": "Encefalite da zecche (TBE)",
+  "intro": "L'encefalite da zecche è un'infezione virale trasmessa dai morsi di zecca in parti d'Europa e d'Asia. Molte infezioni causano sintomi scarsi o lievi, ma alcune portano all'infiammazione del cervello e delle sue membrane. Non esiste una cura, ma la vaccinazione offre una protezione affidabile alle persone nelle regioni colpite.",
+  "sections": [
+    {
+      "heading": "Come si trasmette",
+      "paragraphs": [
+        "Il virus è portato dalle zecche in certe aree a rischio, mappate dalle autorità sanitarie. Si trasmette entro pochi minuti da un morso, a differenza della malattia di Lyme, che richiede ore. Raramente può essere trasmesso dal latte non pastorizzato di animali infetti."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Molte persone non hanno sintomi. Nella prima fase compaiono sintomi simil-influenzali come febbre, mal di testa e stanchezza da una a due settimane dopo il morso e durano alcuni giorni. Dopo un periodo senza sintomi, alcune persone sviluppano una seconda fase con febbre alta, forte mal di testa, rigidità del collo, confusione, problemi di equilibrio o debolezza. Gli adulti tendono ad avere una malattia più grave dei bambini."
+      ]
+    },
+    {
+      "heading": "Diagnosi e trattamento",
+      "paragraphs": [
+        "Gli esami del sangue rilevano gli anticorpi e l'esame del liquido spinale può mostrare segni di infiammazione. Non esiste un trattamento antivirale specifico, quindi la cura è di supporto: riposo, liquidi, sollievo dal dolore e cure ospedaliere per i casi gravi. La maggior parte delle persone guarisce completamente, ma alcune restano con problemi duraturi come mal di testa, difficoltà di concentrazione o paralisi e un piccolo numero muore."
+      ]
+    },
+    {
+      "heading": "Vaccinazione",
+      "paragraphs": [
+        "La vaccinazione è raccomandata a chi vive o viaggia in aree a rischio e può essere esposto alle zecche. Il ciclo di base consiste in tre dosi nell'arco di circa un anno, con richiami a intervalli stabiliti dal produttore e dalle indicazioni nazionali. Per i viaggiatori esiste uno schema rapido. Il vaccino è ben tollerato e gli effetti collaterali sono di solito lievi, come il dolore al braccio."
+      ]
+    },
+    {
+      "heading": "Altre protezioni",
+      "paragraphs": [
+        "La vaccinazione non protegge dalla malattia di Lyme, quindi le misure contro le zecche restano importanti. Rimuovi subito le zecche, indossa abiti protettivi, usa un repellente e controlla il corpo dopo le attività all'aperto. Evita i latticini non pastorizzati nelle aree a rischio."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pianificare un viaggio",
+      "text": "Immagina di programmare una vacanza in campeggio in un'area a rischio. Potresti chiedere al medico uno schema rapido di vaccinazione almeno qualche settimana prima di partire."
+    },
+    {
+      "title": "Tenere aggiornati i richiami",
+      "text": "Supponi di aver completato il ciclo di base anni fa. Potresti controllare il libretto delle vaccinazioni e chiedere quando è previsto il prossimo richiamo."
+    }
+  ],
+  "questions": [
+    "Vivo o viaggio in un'area a rischio di TBE?",
+    "Quale schema di vaccinazione è adatto a me?",
+    "Quali sintomi dopo un morso di zecca significano che devo cercare aiuto medico?"
+  ]
+}

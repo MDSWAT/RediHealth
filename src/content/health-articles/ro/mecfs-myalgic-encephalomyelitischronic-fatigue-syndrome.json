@@ -1,0 +1,51 @@
+{
+  "title": "ME/CFS (sindromul de oboseală cronică)",
+  "intro": "Encefalomielita mialgică sau sindromul de oboseală cronică, de obicei prescurtat ME/CFS, este o boală gravă de lungă durată, cu epuizare severă care nu se ameliorează prin repaus și se agravează după chiar și un efort fizic sau mental minor. Poate limita foarte mult viața de zi cu zi. Nu există încă un leac, dar o gestionare atentă poate ajuta.",
+  "sections": [
+    {
+      "heading": "Principalele simptome",
+      "paragraphs": [
+        "Trăsătura-cheie este stările de rău după efort: simptome precum oboseala extremă, durerea, ceața mentală și senzația asemănătoare gripei se agravează la ore sau la o zi sau două după efort și pot dura zile sau săptămâni. Alte simptome includ somn neodihnitor, dificultăți de gândire și concentrare, amețeală la ridicarea în picioare, dureri musculare și articulare, durere în gât și sensibilitate la lumină sau la zgomot."
+      ]
+    },
+    {
+      "heading": "Cauze și diagnostic",
+      "paragraphs": [
+        "Cauza nu este pe deplin înțeleasă. Multe cazuri încep după o infecție precum mononucleoza sau, mai recent, COVID-19. Schimbările imune, ale sistemului nervos și ale metabolismului energetic sunt studiate. Nu există un singur test, așa că medicii diagnostichează ME/CFS după simptome, care durează cel puțin câteva luni, și prin excluderea altor afecțiuni precum anemia, boala tiroidiană, tulburările de somn sau depresia."
+      ]
+    },
+    {
+      "heading": "Dozarea efortului și gestionarea energiei",
+      "paragraphs": [
+        "Dozarea efortului înseamnă echilibrarea activității cu odihna pentru a rămâne în limitele energiei și a evita declanșarea unei crize. Împărțirea sarcinilor în pași mici, planificarea odihnei înainte și după activitate și ținerea unui jurnal ajută la găsirea limitelor. Exercițiile gradate care forțează simptomele pot agrava boala și nu sunt recomandate persoanelor cu stări de rău după efort."
+      ]
+    },
+    {
+      "heading": "Tratarea simptomelor",
+      "paragraphs": [
+        "Tratamentul se concentrează pe simptomele individuale. Durerea, problemele de somn, amețeala, problemele digestive și dispoziția scăzută pot fi tratate cu măsuri sau medicamente potrivite. Sprijinul psihologic ajută la adaptare, deși ME/CFS este o boală fizică și nu este cauzată de depresie sau de lene. Ajutoare precum un scaun cu rotile sau un scaun pentru duș economisesc energie."
+      ]
+    },
+    {
+      "heading": "Sprijin și viața de zi cu zi",
+      "paragraphs": [
+        "Mulți pacienți se confruntă cu neîncredere, așa că medicii, familia și angajatorii informați sunt importanți. Adaptările la locul de muncă sau la școală, ajutorul acasă și sprijinul financiar pot face o mare diferență. Organizațiile de pacienți oferă sfaturi. Persoanele cu ME/CFS foarte severă pot fi imobilizate la pat și au nevoie de îngrijire specializată."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planificarea unei săptămâni",
+      "text": "Imaginați-vă că aveți un eveniment în familie sâmbătă. Ați putea programa zile liniștite înainte și după, face pauze în timpul evenimentului și limita alte sarcini în acea săptămână."
+    },
+    {
+      "title": "Explicarea către ceilalți",
+      "text": "Presupuneți că colegii nu vă înțeleg limitările. Ați putea împărtăși o scurtă explicație scrisă de la medic și ați putea propune schimbări specifice, precum un program flexibil."
+    }
+  ],
+  "questions": [
+    "Ar putea o altă afecțiune tratabilă să explice simptomele mele și ce teste sunt necesare?",
+    "Cum îmi pot doza activitățile și cine mă poate ajuta să planific?",
+    "Ce servicii și beneficii sunt disponibile pentru a mă sprijini?"
+  ]
+}

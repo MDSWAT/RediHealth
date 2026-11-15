@@ -1,0 +1,51 @@
+{
+  "title": "How chemotherapy works: purpose, cycles and safety",
+  "intro": "Chemotherapy uses medicines that interfere with cancer-cell growth or survival. It is different from radiotherapy and from many targeted or immune treatments. The exact regimen determines expected benefits, side effects and monitoring.",
+  "sections": [
+    {
+      "heading": "Clarify the goal",
+      "paragraphs": [
+        "Treatment may aim to cure, reduce recurrence risk, shrink cancer before another treatment or control symptoms and progression. Ask what benefit is realistic in your situation and how response will be judged; palliative treatment can still provide meaningful benefit."
+      ]
+    },
+    {
+      "heading": "Why cycles and tests matter",
+      "paragraphs": [
+        "Many regimens alternate treatment and recovery periods because normal tissues are affected too. Blood counts and organ-function checks guide safe dosing. A delay or dose change can be a safety decision, not proof that treatment has failed. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Routes and supportive care",
+      "paragraphs": [
+        "Medicines may be given through a vein, pump, tablets or other routes. Home tablets require careful handling and the same monitoring as infusions. Ask about nausea prevention, mouth care, fertility, pregnancy prevention and interactions before starting. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Prepare a practical plan",
+      "paragraphs": [
+        "Keep the regimen name, medicines and emergency contact available. Record symptoms and take prescribed supportive treatment. Ask before supplements or new medicines; do not double missed oral doses or alter the schedule without team instructions. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Recognize urgent problems",
+      "paragraphs": [
+        "Fever, shaking chills or sudden illness during chemotherapy can indicate serious infection even when symptoms seem mild. Follow the oncology emergency plan immediately, including its temperature threshold; do not wait for the next visit. Severe breathlessness, chest pain, confusion or uncontrolled bleeding requires emergency help."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira asks whether treatment is intended to reduce recurrence after surgery and what absolute benefit is expected, rather than assuming every regimen has the same goal."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben develops shaking chills between cycles and calls the oncology contact immediately instead of hiding symptoms with fever medicine and waiting."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

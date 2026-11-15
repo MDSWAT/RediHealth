@@ -1,0 +1,51 @@
+{
+  "title": "Depistimi i dëgjimit te të porsalindurit: rezultati",
+  "intro": "Depistimi neonatal kërkon dallime dëgjimi para se të duken. Është i shpejtë dhe nuk diagnostikon çdo lloj humbjeje. Rezultati që kërkon ndjekje nuk është i njëjtë me shurdhësi të përhershme të konfirmuar.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Testet regjistrojnë përgjigjen e veshit të brendshëm ose përgjigjet elektrike në rrugën e dëgjimit. Përdoret sondë e vogël ose sensorë në lëkurë ndërsa foshnja pushon; nuk testojnë inteligjencën ose gjuhën."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Lëngu, zhurma dhe lëvizja ndikojnë depistimin. Pyesni cilët veshë u testuan, rezultatin dhe takimin tjetër. Përsëritja ose referimi për audiologji diagnostike është hap i rëndësishëm, jo faj personal. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Nëse konfirmohet humbja, ekipi diskuton llojin, shkallën dhe mbështetjen. Aksesi i hershëm në gjuhë, mbështetja familjare dhe pajisjet ose kujdesi tjetër kanë rëndësi; mos prisni vetëm vështirësi të të folurit. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Ruani rezultatin dhe shkoni në ndjekje edhe nëse foshnja reagon ndaj disa tingujve. Reagimet në shtëpi nuk tregojnë tërë dëgjimin. Pyesni për komunikimin dhe testet shtesë pas kujdesit intensiv neonatal. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Kalimi i testit nuk përjashton ndryshime të mëvonshme. Kërkoni vlerësim për pakësim reagimesh, shqetësime zhvillimi ose pasiguri prindërore. Mos testoni me zhurma të forta të papritura dhe mos prisni depistimin shkollor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Foshnja e Mirës përsërit testin pas depistimit të parë me zhurmë. Ajo shkon pa supozuar humbje të përhershme të sigurt."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Foshnja e Arbenit kaloi testin por më vonë reagon më pak ndaj zërave. Ai kërkon rivlerësim pa e quajtur rezultatin garanci përjetë."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

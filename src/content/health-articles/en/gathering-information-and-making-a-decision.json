@@ -1,0 +1,51 @@
+{
+  "title": "Making a health decision: comparing options and priorities",
+  "intro": "A health decision may involve a test, treatment, procedure or continued observation. Reliable information helps, but the best choice also depends on your circumstances and priorities. Shared decision-making combines clinical knowledge with what matters to you.",
+  "sections": [
+    {
+      "heading": "Define the decision",
+      "paragraphs": [
+        "First define the decision and whether it is urgent. Ask what problem the option is meant to solve and what may happen without it. Observation with a review plan can be an active option when medically reasonable, not simply doing nothing."
+      ]
+    },
+    {
+      "heading": "Find reliable information",
+      "paragraphs": [
+        "Look for named authors, dates, sources and transparent funding. Separate advertising from evidence and personal stories from reliable comparisons. Ask whether study participants resemble you; a treatment tested in another situation may not offer the same benefit."
+      ]
+    },
+    {
+      "heading": "Compare benefits and harms",
+      "paragraphs": [
+        "Compare benefits and harms using the same population and time period. Ask for absolute chances, including what happens without treatment, rather than impressive relative percentages alone. Also compare recovery, inconvenience, uncertainty and alternatives, including changing the plan later."
+      ]
+    },
+    {
+      "heading": "Identify personal priorities",
+      "paragraphs": [
+        "Write what matters most: relief, mobility, avoiding side effects, fertility, caring responsibilities or cost. Bring questions or a trusted person if you wish and request an interpreter when needed. Ask the clinician to explain unfamiliar terms, then summarize the plan in your own words."
+      ]
+    },
+    {
+      "heading": "Agree next steps",
+      "paragraphs": [
+        "Agree next steps, the review date and what symptoms require earlier help. Ask how long it is safe to decide; seek a second opinion for unresolved uncertainty when time allows. Do not delay urgent care while collecting endless information or buy products because a sales countdown creates pressure."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira compares a procedure with observation. She asks about the chance of symptom relief, complications and recovery before choosing around her caregiving duties."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben sees a headline promising a large risk reduction. He asks for the underlying absolute risks and relevant time period before deciding whether the benefit matters to him."
+    }
+  ],
+  "questions": [
+    "What happens with each option, including observation?",
+    "Which outcomes and burdens matter most to me?",
+    "How long can I safely take to decide?"
+  ]
+}

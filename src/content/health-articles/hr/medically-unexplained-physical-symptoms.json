@@ -1,0 +1,52 @@
+{
+  "title": "Medicinski neobjašnjeni tjelesni simptomi",
+  "intro": "Mnogi ljudi imaju stvarne tjelesne simptome, kao što su bol, vrtoglavica, umor ili lupanje srca, za koje liječnici ne nalaze jasnu tjelesnu bolest. Oni se nazivaju i funkcionalnim simptomima. Česti su, stvarni i često se mogu zbrinuti. Razumijevanje kako tijelo i um djeluju zajedno može smanjiti strah i poboljšati svakodnevni život.",
+  "sections": [
+    {
+      "heading": "Što su",
+      "paragraphs": [
+        "Uobičajeni primjeri uključuju glavobolje, bol u leđima, tegobe sa želucem, stezanje u prsima, umor i vrtoglavicu bez nalaza na pretragama. Simptomi su stvarni, ne umišljeni. Često nastaju iz promjena u tome kako živčani sustav obrađuje signale, primjerice nakon stresa, infekcije ili ozljede."
+      ]
+    },
+    {
+      "heading": "Zašto se ne nalazi uzrok",
+      "paragraphs": [
+        "Standardne pretrage uglavnom pokazuju strukturno oštećenje ili kemijske promjene, ali funkcionalni simptomi uključuju promjene u tome kako tijelo radi, a ne kako izgleda. Stres, loš san, briga, loše raspoloženje i usmjeravanje na tijelo mogu pojačati osjete, a simptomi zauzvrat povećavaju brigu, stvarajući krug."
+      ]
+    },
+    {
+      "heading": "Dobivanje dobre procjene",
+      "paragraphs": [
+        "Pažljiva anamneza i pregled uz razumne pretrage pomažu isključiti ozbiljnu bolest. Ponovljene pretrage i mnogi posjeti specijalistima obično ne pomažu i mogu naštetiti. Obiteljski liječnik od povjerenja koji vas redovito vidi može koordinirati skrb i izbjeći nepotrebne zahvate."
+      ]
+    },
+    {
+      "heading": "Što pomaže",
+      "paragraphs": [
+        "Edukacija o stanju, redovita tjelesna aktivnost, dobre rutine spavanja, smanjenje stresa i strukturirano doziranje aktivnosti pomažu. Psihološke terapije kao što je kognitivno-bihevioralna terapija imaju dobre dokaze, kao i svjesnost i opuštanje. Lijekovi kao što su određeni antidepresivi u niskim dozama mogu pomoći nekim ljudima, osobito kod boli, a fizioterapija može pomoći kod mišićnih simptoma.",
+        "Liječenje popratne anksioznosti ili depresije je važno, ali se simptomi ne smiju odbaciti kao puki stres."
+      ]
+    },
+    {
+      "heading": "Život sa simptomima",
+      "paragraphs": [
+        "Postavite realne ciljeve, nastavite raditi vrijedne aktivnosti i izbjegavajte stalno provjeravanje tijela. Podijelite svoje iskustvo s ljudima koji vam vjeruju i potražite pomoć ako se simptomi pogoršaju ili se pojave novi koji se razlikuju od uobičajenog obrasca."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prekidanje kruga",
+      "text": "Zamislite da mjesecima imate bol u želucu s normalnim nalazima. Mogli biste voditi dnevnik simptoma i stresora, početi redovito hodati i pitati o psihološkoj potpori za upravljanje boli."
+    },
+    {
+      "title": "Komunikacija s liječnikom",
+      "text": "Pretpostavite da osjećate da se vaši simptomi ne shvaćaju ozbiljno. Mogli biste jasno reći kako simptomi utječu na vaš život i tražiti plan liječenja umjesto dodatnih pretraga."
+    }
+  ],
+  "questions": [
+    "Što znače moji simptomi i je li nešto ozbiljno moglo biti previđeno?",
+    "Koja liječenja imaju najbolje dokaze za moju vrstu simptoma?",
+    "Tko će koordinirati moju skrb kako bih izbjegao nepotrebne pretrage?"
+  ]
+}

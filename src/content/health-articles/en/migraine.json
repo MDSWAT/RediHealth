@@ -1,0 +1,51 @@
+{
+  "title": "Migraine",
+  "intro": "Migraine is a common neurological condition that causes recurring attacks of moderate to severe headache, often with nausea and sensitivity to light and sound. Attacks last hours to days. Although it cannot be cured, medicines, lifestyle measures and awareness of triggers can reduce how often and how severely it affects you.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "A migraine headache is typically one-sided and throbbing, worsened by movement. Many people feel nauseous, vomit, and avoid light, noise and smells. Some have an aura beforehand: visual disturbances such as zigzag lines, tingling or speech difficulty lasting up to an hour. A warning phase with yawning, mood changes or food cravings may precede attacks."
+      ]
+    },
+    {
+      "heading": "Causes and triggers",
+      "paragraphs": [
+        "Migraine involves changes in the brain's nerve activity and blood vessels, and a tendency runs in families. Possible triggers include stress, irregular sleep, skipped meals, hormonal changes, certain foods, alcohol, bright lights and weather changes. Triggers vary, and a headache diary helps identify yours."
+      ]
+    },
+    {
+      "heading": "Treating an attack",
+      "paragraphs": [
+        "Take medicine early in an attack. Simple painkillers such as ibuprofen, aspirin or paracetamol can work for mild to moderate attacks, sometimes with an anti-nausea medicine. Triptans act specifically on migraine and are used in more severe attacks. Resting in a dark, quiet room helps. Using painkillers on more than about ten days per month can lead to medication-overuse headache."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Preventive treatment is considered with frequent or disabling attacks. Options include certain blood pressure medicines, anti-epileptics, antidepressants, and newer antibodies against a molecule called CGRP given by injection. Non-drug approaches include regular sleep, exercise, relaxation, biofeedback and acupuncture, which help some people."
+      ]
+    },
+    {
+      "heading": "When to seek urgent help",
+      "paragraphs": [
+        "Seek immediate care for a sudden, severe headache unlike any before, headache with fever and stiff neck, confusion, weakness, difficulty speaking, vision loss, or a headache after a head injury. New headaches after age fifty also need assessment. Migraine with aura slightly increases stroke risk, particularly with smoking and some hormonal contraception, so discuss this with your doctor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Keeping a diary",
+      "text": "Imagine you have two attacks per month. You could record dates, food, sleep, stress, menstrual cycle and treatment, and share the pattern with your doctor."
+    },
+    {
+      "title": "Treating early",
+      "text": "Suppose your attacks often begin with visual aura. You might keep your prescribed medicine at hand and take it at the first sign of headache as advised."
+    }
+  ],
+  "questions": [
+    "Which medicine is best for my attacks, and when should I take it?",
+    "Would preventive treatment help me, and what are the side effects?",
+    "Which symptoms mean I need urgent assessment?"
+  ]
+}

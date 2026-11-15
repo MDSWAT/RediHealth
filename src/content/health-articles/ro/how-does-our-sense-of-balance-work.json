@@ -1,0 +1,52 @@
+{
+  "title": "Cum se combină semnalele pentru echilibru",
+  "intro": "Echilibrul rezultă din cooperarea urechilor interne, ochilor, senzorilor poziției corpului și creierului. Amețeala are multe cauze posibile; înțelegerea mecanismului nu stabilește o boală a urechii.",
+  "sections": [
+    {
+      "heading": "Mișcarea de rotație",
+      "paragraphs": [
+        "Canalele semicirculare pline cu lichid detectează schimbările rotației capului. Celulele senzoriale transmit creierului; semnalele pot continua scurt după oprirea învârtirii, explicând senzația de pe terenul de joacă."
+      ]
+    },
+    {
+      "heading": "Gravitație și deplasare",
+      "paragraphs": [
+        "Organele otolitice folosesc cristale mici și celule senzoriale pentru înclinare și accelerație liniară. Cristalele normale fac parte din mecanism; simpla lor prezență nu este boală."
+      ]
+    },
+    {
+      "heading": "Combinarea informațiilor",
+      "paragraphs": [
+        "Creierul compară semnalele urechii cu vederea și informațiile mușchilor și articulațiilor. Ajustează postura și mișcările ochilor, ajutând citirea unui indicator în timp ce capul se mișcă."
+      ]
+    },
+    {
+      "heading": "În viața zilnică",
+      "paragraphs": [
+        "Semnalele contradictorii pot produce rău de mișcare. Lumina slabă, sensibilitatea redusă și unele medicamente cresc riscul de cădere. Așezați-vă în siguranță când amețiți și evitați condusul sau urcatul până la evaluarea necesară."
+      ]
+    },
+    {
+      "heading": "Ajutor medical",
+      "paragraphs": [
+        "Amețeala repetată cere evaluarea medicamentelor și a altor cauze. Debutul brusc cu slăbiciune, vorbire dificilă, vedere dublă sau imposibilitatea mersului impune urgență, nu manevre acasă.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira este mai instabilă pe întuneric. Îmbunătățește iluminatul și discută vederea, sensibilitatea și echilibrul, fără să învinovățească doar urechile."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are vertij nou și vorbire neclară. Familia cere ajutor de urgență în loc să încerce exerciții online."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

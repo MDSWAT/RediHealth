@@ -1,0 +1,51 @@
+{
+  "title": "Paratiroidele: controlul calciului sanguin",
+  "intro": "Paratiroidele sunt glande mici de obicei în spatele tiroidei. Produc parathormon pentru controlul calciului. Funcția diferă de tiroidă, deși numele și locul sunt apropiate.",
+  "sections": [
+    {
+      "heading": "Rolul calciului",
+      "paragraphs": [
+        "Calciul este necesar nervilor, mușchilor, coagulării și osului. Corpul menține interval îngust. Analiza reflectă reglarea, nu doar cât calciu ați mâncat ieri."
+      ]
+    },
+    {
+      "heading": "Feedback hormonal",
+      "paragraphs": [
+        "Când calciul scade, parathormonul ajută conservarea renală, eliberarea osoasă și vitamina D activă. Ajută absorbția intestinală. Sistemul interacționează cu fosfatul și rinichii."
+      ]
+    },
+    {
+      "heading": "Dezechilibru",
+      "paragraphs": [
+        "Excesul sau lipsa hormonului afectează calciul, osul, rinichii și nervii. Hormonul mare poate fi problemă de glandă ori răspuns la rinichi sau deficit D; același număr are sensuri diferite."
+      ]
+    },
+    {
+      "heading": "Teste",
+      "paragraphs": [
+        "Medicul interpretează calciul cu parathormon, rinichi și alte teste. Albumina ori calciul ionizat contează uneori. Imagistica localizează când trebuie, dar nu înlocuiește diagnosticul biochimic."
+      ]
+    },
+    {
+      "heading": "Siguranță",
+      "paragraphs": [
+        "Pietrele, fracturile ori calciul anormal cer control. Furnicăturile periorale și spasmele după operația gâtului cer sfat prompt după plan. Spasmele severe, convulsiile, confuzia ori respirația dificilă cer urgență. Nu tratați orice simptom cu doze mari. Înainte de consultație, notați când a început simptomul, ce îl ameliorează sau agravează și cum afectează activitățile obișnuite. Aduceți rezultatele anterioare dacă le aveți. Cereți specialistului să lege explicația de constatările din cazul dumneavoastră; o descriere generală nu stabilește un diagnostic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira înțelege că hormonul mare cu boală renală nu este automat tumoră; cere interpretarea calciului și rinichilor."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben simte furnicături după operația tiroidei și contactează echipa, nu presupune anxietate ori doze aleatorii de supliment."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

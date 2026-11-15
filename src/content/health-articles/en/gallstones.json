@@ -1,0 +1,51 @@
+{
+  "title": "Gallstones: deciding when treatment is needed",
+  "intro": "Gallstones are solid deposits in the gallbladder or bile ducts. Many cause no symptoms, while an obstructing stone can cause intense upper abdominal pain and sometimes infection or pancreatitis.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Typical biliary pain is strong and sustained, often in the upper right abdomen or center and sometimes radiating to the back. Bloating alone does not prove stones are responsible."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Ultrasound and blood tests help assess stones, inflammation and bile drainage. Report fever, jaundice and previous attacks; a stone found incidentally may be unrelated to another digestive complaint. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Symptom-free gallbladder stones usually need observation, with selected exceptions. Recurrent attacks may lead to discussion of gallbladder removal; bile-duct stones may require endoscopic clearance. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Record attacks and foods that seem to trigger discomfort. Choose tolerable balanced meals while awaiting advice; drastic fasting, crash diets and commercial gallbladder flushes are not reliable cures. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Severe persistent abdominal pain, fever, yellow eyes, dark urine, pale stools or repeated vomiting need urgent medical assessment. Do not wait for a scheduled operation if these appear."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira has stones found during an unrelated scan but no biliary symptoms. She asks why monitoring is preferable to automatic surgery."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben’s usual upper abdominal pain is now accompanied by fever and yellow eyes. He seeks urgent assessment rather than simply avoiding fatty food."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

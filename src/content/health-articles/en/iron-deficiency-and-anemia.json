@@ -1,0 +1,51 @@
+{
+  "title": "Iron deficiency and iron deficiency anaemia",
+  "intro": "Iron is needed to make haemoglobin, the protein in red blood cells that carries oxygen. When the body lacks iron, tiredness and other symptoms develop, and anaemia may follow. Iron deficiency is common, especially in menstruating women, pregnant women and children, and is usually treatable once the cause is found.",
+  "sections": [
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "The most common causes are blood loss, for example from heavy periods or bleeding in the digestive tract, a diet low in iron, increased needs in pregnancy and growth, and reduced absorption due to conditions such as coeliac disease or after stomach surgery. In men and post-menopausal women, hidden blood loss should be investigated."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Symptoms include fatigue, weakness, pale skin, shortness of breath on exertion, headaches, dizziness, brittle nails, hair loss, cold hands and feet, and restless legs. Some people crave ice or non-food items. Symptoms develop slowly and many people get used to them."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "A blood count shows whether anaemia is present, and ferritin measures iron stores. Further tests may include looking for a source of bleeding, tests for coeliac disease and, depending on age and symptoms, examination of the digestive tract."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Treatment addresses the cause and replaces iron. Iron tablets taken once daily or on alternate days are often well absorbed, preferably away from tea, coffee and dairy. Side effects include constipation, nausea and dark stools. Iron may be given by infusion when tablets are not tolerated, do not work or when rapid correction is needed. Haemoglobin usually improves within weeks, but stores need several months to refill."
+      ]
+    },
+    {
+      "heading": "Diet and prevention",
+      "paragraphs": [
+        "Iron-rich foods include red meat, poultry, fish, legumes, dark green vegetables, nuts and fortified cereals. Vitamin C helps absorption of plant iron, while tea, coffee and calcium reduce it. Pregnant women, vegetarians and people with heavy periods should ask whether supplements make sense. Do not take iron supplements without a diagnosis, as too much can be harmful."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Understanding tiredness",
+      "text": "Imagine you have felt exhausted for months. You could ask your doctor for a blood count and ferritin test, and report details of heavy periods or digestive symptoms."
+    },
+    {
+      "title": "Taking tablets well",
+      "text": "Suppose iron tablets upset your stomach. You might ask whether taking them every second day, with a different formulation or with food could help, rather than stopping."
+    }
+  ],
+  "questions": [
+    "What is causing my iron deficiency, and do I need further tests?",
+    "How long should I take iron, and when will levels be rechecked?",
+    "Which foods or habits can improve my iron intake?"
+  ]
+}

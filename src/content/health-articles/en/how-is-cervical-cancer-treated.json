@@ -1,0 +1,56 @@
+{
+  "title": "Treating cervical cancer and its precursors",
+  "intro": "Cervical cancer develops in the lower part of the womb, the cervix, usually after long-lasting infection with certain types of human papillomavirus. Abnormal cells often appear years before cancer forms and can be found by screening. Treatment depends on whether there are only precancerous changes or an invasive cancer, and on its size and spread.",
+  "sections": [
+    {
+      "heading": "Treating precancerous changes",
+      "paragraphs": [
+        "Screening may show cell changes that are not yet cancer. Mild changes often disappear by themselves and may only need repeat checks. More advanced changes are commonly treated by removing the affected tissue, because this prevents cancer from developing.",
+        "The usual procedure is conization, which removes a small cone-shaped piece of the cervix, using a thin heated loop or a scalpel. It is often done under local or short general anaesthesia as an outpatient or short hospital stay. The tissue is examined to confirm that the abnormal cells were removed completely."
+      ]
+    },
+    {
+      "heading": "Early invasive cancer",
+      "paragraphs": [
+        "When cancer is small and confined to the cervix, surgery is the main treatment. Options range from a larger conization to removal of the womb, often with removal of nearby lymph nodes to see whether cancer has spread. In selected young women, operations that preserve fertility may be possible.",
+        "Surgeons increasingly consider the exact tumour size, depth and the woman's wish to have children. This is a good moment to ask about fertility-preserving options and about the benefits and risks of different surgical approaches."
+      ]
+    },
+    {
+      "heading": "Advanced cancer",
+      "paragraphs": [
+        "Larger tumours or those that have spread to nearby tissue are usually treated with radiation therapy combined with chemotherapy. Radiation can be given from outside the body and from inside by placing a radioactive source close to the tumour. Treatment typically lasts several weeks.",
+        "Side effects can include tiredness, bowel and bladder irritation, vaginal dryness or narrowing, and early menopause when the ovaries are affected. Newer drugs, including immunotherapy, may be considered for cancer that comes back or has spread to other organs."
+      ]
+    },
+    {
+      "heading": "Life after treatment",
+      "paragraphs": [
+        "Regular follow-up visits check for recurrence and help manage side effects. Some women develop lymphoedema, bladder or bowel changes, or sexual difficulties. Pelvic floor physiotherapy, vaginal moisturisers and counselling can help, and symptoms should be reported rather than endured.",
+        "Emotional support is just as important. Fear of recurrence, changes in body image and concerns about fertility are common, and psycho-oncology services, support groups and trusted relatives can provide help."
+      ]
+    },
+    {
+      "heading": "Prevention and screening",
+      "paragraphs": [
+        "Vaccination against human papillomavirus, ideally before sexual activity begins, greatly reduces the risk of cervical cancer. Regular screening with a cell test, an HPV test, or both, finds changes early, when they are most treatable.",
+        "Stopping smoking also lowers the risk. Women who have been vaccinated should still attend screening, because the vaccine does not protect against every cancer-causing type."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Understanding a screening result",
+      "text": "Imagine your screening shows mild cell changes. You could ask what the result means, whether repeat testing in several months is sufficient, and what symptoms to report in the meantime so that you do not feel left in uncertainty."
+    },
+    {
+      "title": "Weighing fertility wishes",
+      "text": "Suppose you are 29 and have early cervical cancer but hope to have children. You might ask the tumour board whether a fertility-sparing operation is suitable, what the recurrence risk would be, and whether a referral to a fertility specialist before treatment makes sense."
+    }
+  ],
+  "questions": [
+    "What stage is the abnormal finding or cancer, and which treatment options fit it?",
+    "How could the treatment affect my fertility, sexual life and bladder or bowel function?",
+    "What follow-up schedule and support services will be available after treatment?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "What kinds of eye examinations are there?",
+  "intro": "Eye examinations check vision and the health of the eye. They detect problems such as short or long sight, glaucoma, cataracts, macular degeneration and diabetic eye disease, often before symptoms appear. Most tests are quick and painless.",
+  "sections": [
+    {
+      "heading": "Vision tests",
+      "paragraphs": [
+        "A visual acuity test asks you to read letters or symbols from a chart at a set distance. A refraction test, with lenses, finds out whether you need glasses and which strength. Tests of colour vision, depth perception and visual fields check other aspects of sight. Children have age-adapted tests, such as pictures or matching symbols."
+      ]
+    },
+    {
+      "heading": "Eye pressure and the front of the eye",
+      "paragraphs": [
+        "Tonometry measures pressure inside the eye, which is raised in glaucoma, either with a puff of air or a gentle touch of the surface after numbing drops. A slit lamp, a microscope with a bright light, shows the cornea, lens and front of the eye and helps to detect cataracts, injuries and inflammation."
+      ]
+    },
+    {
+      "heading": "Looking at the back of the eye",
+      "paragraphs": [
+        "Drops widen the pupil so that the doctor can see the retina, the optic nerve and blood vessels with an ophthalmoscope or camera. This shows signs of diabetes, high blood pressure, macular degeneration and glaucoma. Your close vision is blurred and light sensitivity increases for several hours, so do not drive afterwards."
+      ]
+    },
+    {
+      "heading": "Further tests",
+      "paragraphs": [
+        "Optical coherence tomography scans the layers of the retina using light. Visual field tests find blind spots, important for glaucoma. Fluorescein angiography uses dye to see blood vessels. Ultrasound can examine the eye when the view is blocked. Tests for dry eye and tear production are also done."
+      ]
+    },
+    {
+      "heading": "How often to have checks",
+      "paragraphs": [
+        "Children need checks if there are concerns or according to screening schedules. Adults may have checks every two years, and people over forty, those with diabetes, a family history of glaucoma or other risk factors, may need them more often. Seek urgent help for sudden loss of vision, flashes of light, new floaters or eye pain."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing",
+      "text": "Imagine you have an appointment with dilating drops. You could bring sunglasses and arrange someone to drive you home."
+    },
+    {
+      "title": "Seeking urgent care",
+      "text": "Suppose you suddenly see flashes and many new floaters. You might contact an eye doctor the same day."
+    }
+  ],
+  "questions": [
+    "Which tests are needed for my eyes?",
+    "How often should I be examined?",
+    "Which symptoms mean I should seek urgent care?"
+  ]
+}

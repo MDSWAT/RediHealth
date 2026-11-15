@@ -1,0 +1,51 @@
+{
+  "title": "Che cos'è il sonno normale",
+  "intro": "Il sonno è uno stato vitale e attivo in cui il corpo si ripara e il cervello elabora i ricordi. Quanto sonno serva varia da persona a persona, così come gli orari. Sapere che cosa è normale può aiutare a riconoscere i problemi del sonno e a costruire buone abitudini.",
+  "sections": [
+    {
+      "heading": "Di quanto sonno c'è bisogno",
+      "paragraphs": [
+        "La maggior parte degli adulti ha bisogno di sette-nove ore a notte. Gli adolescenti hanno bisogno di otto-dieci ore, i bambini in età scolare di nove-dodici e i neonati di molto di più. Gli anziani spesso dormono meno profondamente e si svegliano più facilmente ma hanno comunque bisogno di circa sette-otto ore. Alcune persone stanno bene con un po' meno o un po' più."
+      ]
+    },
+    {
+      "heading": "Fasi del sonno",
+      "paragraphs": [
+        "Il sonno passa attraverso cicli di circa novanta minuti. Il sonno leggero porta al sonno profondo, importante per il recupero fisico, e al sonno con movimenti oculari rapidi, o REM, in cui avviene la maggior parte dei sogni e il cervello elabora emozioni e memoria. Ogni notte si susseguono diversi cicli, con più sonno profondo all'inizio e più sonno REM più tardi."
+      ]
+    },
+    {
+      "heading": "Orologio biologico",
+      "paragraphs": [
+        "Un orologio interno, il ritmo circadiano, regola sonno e veglia nell'arco di circa ventiquattro ore, rispondendo a luce e buio. Gli adolescenti si spostano più tardi, mentre gli anziani tendono a svegliarsi prima. Turni di lavoro, viaggi e schermi luminosi di notte possono disturbare il ritmo. La luce del giorno al mattino aiuta a mantenerlo stabile."
+      ]
+    },
+    {
+      "heading": "Variazioni normali",
+      "paragraphs": [
+        "Impiegare fino a mezz'ora ad addormentarsi, svegliarsi brevemente durante la notte, sognare e un lieve russamento possono essere normali. Qualche notte cattiva ogni tanto è comune e di solito non è dannosa. Difficoltà persistente ad addormentarsi o a restare addormentati, russamento forte con pause del respiro, sonnolenza diurna o gambe senza riposo possono indicare un disturbo del sonno."
+      ]
+    },
+    {
+      "heading": "Abitudini di sonno sane",
+      "paragraphs": [
+        "Mantieni orari regolari per dormire e svegliarti, rendi la camera buia, silenziosa e fresca, evita la caffeina nel tardo pomeriggio, limita alcol e pasti pesanti vicino all'ora di dormire, resta attivo di giorno e riduci l'uso degli schermi prima di andare a letto. Se non riesci a dormire, alzati e fai qualcosa di rilassante, poi torna quando hai sonno."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Stabilire una routine",
+      "text": "Immagina di dormire spesso male. Potresti andare a letto e alzarti alla stessa ora ogni giorno e limitare gli schermi un'ora prima."
+    },
+    {
+      "title": "Chiedere consiglio",
+      "text": "Supponi di russare forte e di sentirti esausto di giorno. Potresti chiedere al medico di un esame per l'apnea notturna."
+    }
+  ],
+  "questions": [
+    "Di quanto sonno ho bisogno alla mia età?",
+    "Un problema medico potrebbe disturbare il mio sonno?",
+    "Quali abitudini mi aiuterebbero di più?"
+  ]
+}

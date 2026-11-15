@@ -1,0 +1,51 @@
+{
+  "title": "Mughetto orale",
+  "intro": "Il mughetto orale è un'infezione fungina della bocca causata dal lievito Candida. Produce chiazze bianche cremose sulla lingua e sulle guance, dolore e una sensazione di cotone. È comune nei neonati, negli anziani, in chi usa steroidi inalati o protesi dentarie e in chi ha difese immunitarie indebolite. Di solito è facile da trattare.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "La Candida normalmente vive in piccole quantità nella bocca. Può crescere troppo dopo gli antibiotici, con bocca secca, con l'uso di corticosteroidi inalati o orali, con il diabete, dopo la chemioterapia, con l'HIV o nei fumatori. Le protesi che calzano male e non sono pulite bene possono ospitare il lievito."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Sono tipiche chiazze bianche o giallastre che si possono raschiare via lasciando zone rosse e dolenti. Altri sintomi comprendono bruciore alla bocca, perdita del gusto, ragadi agli angoli della bocca e fastidio nel mangiare o deglutire. I neonati possono rifiutare le poppate e mostrare chiazze bianche all'interno delle guance."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Gel, gocce o pastiglie antifungine si usano nella bocca per circa una settimana o come indicato e si continuano per un paio di giorni dopo la scomparsa dei sintomi. Le compresse si usano per infezioni gravi o persistenti. Sciacquati la bocca dopo aver usato gli steroidi inalati. Pulisci le protesi e immergile di notte in una soluzione antifungina come consigliato. Le madri che allattano possono aver bisogno di trattare anche i capezzoli."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Lavati i denti due volte al giorno, pulisci le protesi, evita di tenerle di notte, smetti di fumare, controlla la glicemia e mantieni umida la bocca. Sterilizza le tettarelle dei biberon e i ciucci."
+      ]
+    },
+    {
+      "heading": "Quando chiedere aiuto",
+      "paragraphs": [
+        "Vai dal medico se il mughetto dura più di due settimane, ricorre spesso, causa difficoltà a deglutire o compare senza una ragione chiara, perché può segnalare una malattia sottostante."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trattare un neonato",
+      "text": "Immagina che il tuo bambino abbia chiazze bianche all'interno delle guance. Potresti chiedere al medico o al farmacista un gel antifungino adatto, pulire con cura i ciucci e le tettarelle e usare il farmaco per tutto il periodo."
+    },
+    {
+      "title": "Curare le protesi",
+      "text": "Supponi di portare una protesi e di avere la lingua dolente. Potresti lasciare la protesi fuori di notte, pulirla a fondo e chiedere al dentista o al medico di un trattamento antifungino."
+    }
+  ],
+  "questions": [
+    "Che cosa causa il mio mughetto e quale trattamento devo usare?",
+    "Ho bisogno di altri esami se continua a tornare?",
+    "Come devo pulire protesi, inalatori e articoli per bambini?"
+  ]
+}

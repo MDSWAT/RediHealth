@@ -1,0 +1,51 @@
+{
+  "title": "How joints allow movement and carry load",
+  "intro": "Joints connect bones and guide movement while sharing load. Their structure varies with their task: a shoulder allows broad motion, while a knee combines bending with controlled rotation. A noisy joint is not automatically a damaged joint.",
+  "sections": [
+    {
+      "heading": "Cartilage and fluid",
+      "paragraphs": [
+        "Many movable joints have smooth cartilage covering bone ends and a small space with synovial fluid. These reduce friction and distribute pressure. Cartilage is living tissue with limited repair capacity, not a layer that simply regrows after any injury."
+      ]
+    },
+    {
+      "heading": "Capsule and ligaments",
+      "paragraphs": [
+        "A capsule encloses the joint and ligaments help limit unwanted motion. Muscles and tendons provide active stability. Stretching far beyond a normal range can injure these structures even if the joint initially seems flexible."
+      ]
+    },
+    {
+      "heading": "Coordinated movement",
+      "paragraphs": [
+        "Nerves help the brain sense position and coordinate muscles. Some joints also contain structures such as menisci that spread load. Pain, swelling or weakness may disturb this coordination; anatomy alone does not identify the cause."
+      ]
+    },
+    {
+      "heading": "Supporting joint health",
+      "paragraphs": [
+        "Regular tolerable activity helps function and surrounding muscle strength. Build loads gradually and allow recovery. Prolonged complete rest can reduce capacity, but an injured or inflamed joint may need temporary protection and an individual rehabilitation plan."
+      ]
+    },
+    {
+      "heading": "When to seek care",
+      "paragraphs": [
+        "Persistent pain, swelling or lost function deserves assessment. A hot swollen joint with fever, severe deformity after injury or inability to bear weight needs urgent care. Do not force a locked joint or assume every painful joint is ordinary wear. Before a consultation, note when a symptom began, what makes it better or worse, and how it affects ordinary activities. Bring previous reports if available. Ask the professional to connect the explanation to your own findings rather than assuming that a general description establishes a diagnosis."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira increases walking gradually after advice and judges progress by function rather than trying to eliminate every harmless click."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben’s knee becomes hot and swollen with fever. He seeks urgent assessment instead of treating it as routine exercise soreness."
+    }
+  ],
+  "questions": [
+    "Which steps would be clearer with a diagram?",
+    "What does this explanation show, and what can it not predict?",
+    "Would my specific concern need professional assessment?"
+  ]
+}

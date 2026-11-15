@@ -1,0 +1,55 @@
+{
+  "title": "Vaccinul HPV: împotriva a ce protejează și cui i se adresează",
+  "intro": "Vaccinul împotriva papilomavirusului uman protejează împotriva infecției cu tipurile de HPV care cauzează cel mai des cancerul de col uterin și alte câteva cancere, precum și negii genitali. Vaccinarea este recomandată în multe țări copiilor și adolescenților înainte de a deveni activi sexual. Înțelegerea modului în care funcționează ajută familiile să ia o decizie informată.",
+  "sections": [
+    {
+      "heading": "Împotriva a ce protejează vaccinurile HPV",
+      "paragraphs": [
+        "HPV este un grup foarte frecvent de virusuri, transmis prin contactul pielii și al mucoaselor, mai ales în timpul actului sexual. Majoritatea infecțiilor dispar fără simptome, dar anumite tipuri cu risc crescut pot persista și provoca modificări care evoluează spre cancer de col uterin, anus, vulvă, vagin, penis sau gât. Alte tipuri provoacă negi genitali.",
+        "Vaccinurile actuale protejează împotriva celor mai importante tipuri cu risc crescut, iar unele și împotriva tipurilor care provoacă majoritatea negilor genitali. Ele previn infecția, dar nu tratează o infecție existentă."
+      ]
+    },
+    {
+      "heading": "Cui i se recomandă vaccinarea",
+      "paragraphs": [
+        "Vaccinarea este recomandată de obicei fetelor și băieților în jurul vârstei de nouă până la paisprezece ani, ideal înainte de primul contact sexual. Vaccinarea la această vârstă produce un răspuns imun puternic și necesită adesea doar două doze, administrate la câteva luni distanță. Persoanele care încep mai târziu au nevoie de obicei de trei doze.",
+        "Multe țări oferă vaccinare de recuperare până la vârsta de adult tânăr. Adulții care depășesc vârstele recomandate pot beneficia totuși, în funcție de expunerea anterioară, și ar trebui să discute cu medicul."
+      ]
+    },
+    {
+      "heading": "Siguranță și efecte secundare",
+      "paragraphs": [
+        "Vaccinurile HPV au fost studiate în grupuri foarte mari din întreaga lume. Reacțiile frecvente sunt durere, roșeață sau umflături la locul injectării, dureri de cap, oboseală și febră ușoară, care de obicei trec în câteva zile. Leșinul poate apărea după orice injecție, așa că este înțelept să stați jos câteva minute după aceea.",
+        "Reacțiile alergice grave sunt foarte rare. Sistemele de monitorizare continuă să urmărească siguranța, iar autoritățile de sănătate nu au găsit dovezi ale unei legături cu bolile pe termen lung de care se temea cândva."
+      ]
+    },
+    {
+      "heading": "Vaccinarea și screeningul",
+      "paragraphs": [
+        "Vaccinul nu protejează împotriva tuturor tipurilor care provoacă cancer, așa că femeile trebuie să participe în continuare la screeningul cervical regulat după vaccinare. Prezervativele reduc, dar nu previn complet transmiterea HPV.",
+        "Dovezile arată că programele de vaccinare au scăzut semnificativ ratele modificărilor precanceroase și, în unele țări, ale cancerului de col uterin în grupurile vaccinate."
+      ]
+    },
+    {
+      "heading": "Aspecte practice",
+      "paragraphs": [
+        "Verificați recomandările locale și ce costuri sunt acoperite de asigurarea de sănătate. Păstrați în siguranță carnetul de vaccinări și întrebați despre momentul potrivit în raport cu alte vaccinuri. Dacă copilul dumneavoastră este bolnav, cu febră, vaccinarea poate fi de obicei amânată."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Luarea unei decizii în familie",
+      "text": "Imaginați-vă că fiul sau fiica dumneavoastră de doisprezece ani poate primi vaccinul HPV. Ați putea citi despre beneficii și efecte secundare, nota întrebările și discuta cu medicul pediatru înainte de a decide împreună."
+    },
+    {
+      "title": "Recuperarea ca adult tânăr",
+      "text": "Presupuneți că aveți 22 de ani și nu ați fost niciodată vaccinat. Ați putea întreba dacă vaccinarea de recuperare este recomandată în cazul dumneavoastră, câte doze sunt necesare și dacă este totuși utilă dacă ați avut deja o viață sexuală activă."
+    }
+  ],
+  "questions": [
+    "Este vaccinul HPV recomandat pentru copilul meu sau pentru mine și câte doze sunt necesare?",
+    "La ce efecte secundare ne putem aștepta și când ar trebui să sunăm medicul?",
+    "Mai am nevoie de screening regulat după vaccinare?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Si e kthen veshi tingullin në dëgjim",
+  "intro": "Dëgjimi përfshin veshin e jashtëm, të mesëm e të brendshëm, nervat dhe trurin. Veshi i brendshëm ka edhe organet e ekuilibrit. Vështirësia mund të nisë në pika të ndryshme dhe të kërkojë trajtime të ndryshme.",
+  "sections": [
+    {
+      "heading": "Mbledhja",
+      "paragraphs": [
+        "Veshi i dukshëm drejton tingullin në kanal drejt daulles. Dylli mbron kanalin; futja e sendeve mund ta dëmtojë ose shtyjë dyllin më thellë."
+      ]
+    },
+    {
+      "heading": "Dridhja",
+      "paragraphs": [
+        "Daullja lëviz kockëzat e veshit të mesëm, që përcjellin dridhjen. Tubi i Eustakut barazon presionin me fytin; ënjtja mund ta pengojë."
+      ]
+    },
+    {
+      "heading": "Sinjalet",
+      "paragraphs": [
+        "Qelizat me qime në kokle e kthejnë lëvizjen në sinjale nervore. Truri i interpreton si tingull kuptimplotë. Dëmtimi këtu ndryshon nga bllokimi që pengon mbërritjen e zërit."
+      ]
+    },
+    {
+      "heading": "Mbrojtja",
+      "paragraphs": [
+        "Kufizoni zhurmën dhe përdorni mbrojtje të përshtatshme. Ulni kufjet dhe bëni pushime. Testet vlerësojnë pjesë të ndryshme; pamja normale jashtë nuk provon dëgjim normal."
+      ]
+    },
+    {
+      "heading": "Kujdesi",
+      "paragraphs": [
+        "Ndryshimi i vazhdueshëm, rrjedhja ose dhimbja kërkon kontroll. Humbja e papritur kërkon vlerësim urgjent edhe pa dhimbje; mos prisni duke menduar se është dyll. Shmangni mjetet dhe qirinjtë e veshit.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira dëgjon dobët pas ndryshimit të presionit. Shpjegon kohën dhe pyet për veshin e mesëm në vend të pastrimit të thellë."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben zgjohet me humbje të papritur dëgjimi. Kërkon urgjencë, jo pritje që të dalë dylli."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

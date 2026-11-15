@@ -1,0 +1,51 @@
+{
+  "title": "Prikupljanje krvnih matičnih stanica: što očekuje darivatelja",
+  "intro": "Krvotvorne matične stanice prikupljaju se iz krvi ili koštane srži za transplantaciju. Prikupljanje je odvojeno od pripreme i transplantacije primatelja. Metoda ovisi o kliničkoj situaciji, ne samo udobnosti darivatelja.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Periferno prikupljanje filtrira krv aparatom za aferezu i vraća ostatak. Koštana srž uzima se iglama iz zdjelične kosti pod anestezijom; ne uzima se iz leđne moždine."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Procjena uključuje zdravstvenu povijest, krvne testove i informirani pristanak. Navedite lijekove i mogućnost trudnoće; pitajte za put, izostanak s posla i raspored prije pripreme primatelja. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Prije periferne zbirke propisane injekcije faktora rasta mobiliziraju stanice u krv i mogu izazvati prolaznu bol u kostima. Postupak se može ponoviti; uzimanje srži uključuje anesteziju, lokalnu bol i posebne rizike. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Slijedite upute o lijekovima, hidraciji i aktivnosti bez neodobrenih analgetika. Odmah prijavite trnce, grčeve ili slabost tijekom afereze jer se često mogu brzo ublažiti. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Koristite kontakt tima za vrućicu, sve jaču bol, krvarenje ili trajne simptome nakon prikupljanja. Jaka bol u prsima ili trbuhu, nedostatak zraka ili kolaps traže hitnu procjenu. Povratak aktivnosti je individualan."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pita za metodu i organizira prijevoz i slobodne dane prije prihvaćanja rasporeda."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben osjeća trnce oko usta tijekom afereze. Odmah govori osoblju umjesto čekanja do kraja postupka."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Rast u djetinjstvu i pubertetu: praćenje obrasca",
+  "intro": "Djeca rastu različitom brzinom i pubertet počinje u različito vrijeme. Visina, težina i proporcije se mijenjaju. Jedna usporedba s razredom ne utvrđuje zdravlje rasta niti konačnu odraslu visinu.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Obitelj, prehrana, hormoni, san i kronične bolesti utječu na rast. Privremena razlika od vršnjaka može biti uredna; ponovljena mjerenja i razvojni obrazac daju više informacija."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Liječnik unosi točne mjere u odgovarajuće krivulje i procjenjuje brzinu, obiteljsku visinu i pubertet. Pad kroz centile ili neobično vrijeme puberteta može opravdati obradu umjesto zaključka iz jednog broja. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Liječi se prepoznat uzrok kada postoji. Dodaci i hormon rasta nisu rutinsko rješenje za zdravo nisko dijete; hormon ima posebne indikacije i specijalistički nadzor. Izbjegavajte proizvode koji obećavaju dodatnu visinu. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Osigurajte dovoljnu raznoliku hranu, kretanje i san bez pritiska na izgled. O zadirkivanju i tijelu razgovarajte privatno i s poštovanjem; ne posramljujte težinu niti natjecateljski uspoređujte braću i sestre. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Tražite kontrolu za usporavanje rasta, neobjašnjivo mršavljenje, trajne probavne tegobe ili vrlo rani odnosno odgođeni pubertet. Nova jaka glavobolja ili promjene vida uz probleme rasta traže brzu procjenu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mirino dijete niže je od razreda, ali slijedi stabilnu obiteljsku krivulju. Liječnik prati razvoj bez dodataka za visinu."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben primjećuje usporavanje rasta tinejdžera na ponovljenim mjerenjima. Donosi zapise umjesto prosuđivanja iz školske fotografije."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

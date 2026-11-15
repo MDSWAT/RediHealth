@@ -1,0 +1,51 @@
+{
+  "title": "Dermatoamele: folosirea atentă a hărții pielii",
+  "intro": "Dermatomul este o zonă cutanată legată predominant de o rădăcină nervoasă spinală. Durerea, furnicăturile și sensibilitatea redusă ajută localizarea, dar diagrama orientează, nu diagnostichează.",
+  "sections": [
+    {
+      "heading": "Rădăcini și nervi",
+      "paragraphs": [
+        "Rădăcina părăsește coloana, iar fibrele pot intra în nervi periferici diferiți. Harta dermatomală diferă de teritoriul unui nerv numit. Confuzia poate explica greșit simptomele."
+      ]
+    },
+    {
+      "heading": "Suprapunere",
+      "paragraphs": [
+        "Dermatoamele vecine se suprapun și diferă între persoane. Simptomele nu urmează perfect o bandă. Iritația, circulația și alte afecțiuni dau arsură ori amorțeală; nu orice pată dovedește compresie spinală."
+      ]
+    },
+    {
+      "heading": "Examinare",
+      "paragraphs": [
+        "Medicul combină distribuția cu forța, reflexele, istoricul și examenul. Imagistica ori testele nervoase se aleg când clarifică. Rezultatul scanării singur nu explică întotdeauna localizarea simptomelor."
+      ]
+    },
+    {
+      "heading": "Exemplu clinic",
+      "paragraphs": [
+        "Zona zoster poate produce durere și vezicule într-un tipar nervos, adesea unilateral. Evaluarea timpurie contează, mai ales lângă ochi ori imunitate redusă. Nu numiți orice bandă dureroasă zoster fără examen."
+      ]
+    },
+    {
+      "heading": "Urgențe",
+      "paragraphs": [
+        "Slăbiciunea progresivă nouă, pierderea controlului urinar ori fecal sau amorțeala genitală și perineală cu simptome de spate cer evaluare urgentă. Slăbiciunea bruscă a feței ori membrului și vorbirea dificilă pot fi accident vascular."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira marchează furnicăturile și descrie slăbiciunea. Medicul verifică rădăcina și nervul periferic, nu doar harta."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are bandă dureroasă cu vezicule lângă ochi. Cere îngrijire promptă, nu compară poze online zile întregi."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

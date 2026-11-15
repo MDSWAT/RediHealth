@@ -1,0 +1,51 @@
+{
+  "title": "Orjoletul și chalazionul (inflamația pleoapei)",
+  "intro": "Orjoletul este o umflătură roșie și dureroasă pe marginea pleoapei, provocată de infecția unui folicul al genei sau a unei glande. Chalazionul este o umflătură mai fermă, de obicei nedureroasă, provocată de blocarea unei glande sebacee mai adânc în pleoapă. Ambele sunt frecvente, iar cele mai multe dispar de la sine cu comprese calde.",
+  "sections": [
+    {
+      "heading": "Orjoletul",
+      "paragraphs": [
+        "Orjoletul arată ca o umflătură roșie, sensibilă, pe marginea pleoapei, uneori cu un centru galben de puroi. Rezultă dintr-o infecție bacteriană, de obicei cu Staphylococcus. Inflamația pleoapei numită blefarită, igiena precară a pleoapelor, atingerea ochilor cu mâinile nespălate și machiajul vechi cresc riscul."
+      ]
+    },
+    {
+      "heading": "Chalazionul",
+      "paragraphs": [
+        "Un chalazion se dezvoltă când o glandă sebacee din pleoapă se blochează, iar conținutul ei se scurge în țesutul din jur, provocând inflamație. Formează o umflătură fermă, rotundă, departe de marginea pleoapei, adesea nedureroasă după o perioadă inițială de sensibilitate. Poate apăsa pe ochi și poate încețoșa vederea dacă este mare. Poate urma unui orjolet."
+      ]
+    },
+    {
+      "heading": "Tratament la domiciliu",
+      "paragraphs": [
+        "Aplicați o compresă caldă curată aproximativ zece minute, de trei sau patru ori pe zi, pentru a înmuia blocajul și a încuraja drenajul. Masați ușor pleoapa după aceea. Păstrați pleoapele curate cu un produs de curățare blând sau cu șervețele pentru pleoape. Nu strângeți și nu spargeți umflătura. Evitați machiajul ochilor și lentilele de contact până la vindecare."
+      ]
+    },
+    {
+      "heading": "Tratament medical",
+      "paragraphs": [
+        "Cei mai mulți orjoleți se vindecă în una-două săptămâni, iar chalazioanele pot dura de la săptămâni la luni. Dacă o umflătură persistă, este foarte mare sau afectează vederea, un medic poate injecta un steroid sau poate face o mică incizie pentru a o drena, sub anestezie locală. Antibioticele sunt necesare doar pentru infecția care se extinde a pleoapei sau a pielii din jurul ochiului."
+      ]
+    },
+    {
+      "heading": "Când mergeți la medic",
+      "paragraphs": [
+        "Cereți îngrijiri prompte pentru roșeață și umflare care se extind peste pleoapă și obraz, durere la mișcarea ochiului, febră, schimbări ale vederii sau o umflătură care sângerează sau revine în același loc, deoarece rar o tumoră poate imita un chalazion."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rutina compreselor calde",
+      "text": "Imaginați-vă că aveți o umflătură sensibilă pe pleoapă. Ați putea folosi o cârpă curată și caldă zece minute de patru ori pe zi și v-ați putea spăla pe mâini înainte de a atinge zona."
+    },
+    {
+      "title": "Prevenirea recidivei",
+      "text": "Presupuneți că faceți des orjoleți. Ați putea curăța zilnic marginile pleoapelor, ați putea înlocui regulat machiajul ochilor și ați putea întreba despre tratamentul blefaritei."
+    }
+  ],
+  "questions": [
+    "Este acesta un orjolet sau un chalazion și cât va dura până se vindecă?",
+    "Când s-ar lua în considerare drenajul sau injecția?",
+    "Cum pot preveni recidivele?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Peptic ulcers",
+  "intro": "A peptic ulcer is an open sore in the lining of the stomach or the first part of the small intestine. It often causes burning upper abdominal pain. Most ulcers are caused by a bacterial infection or by anti-inflammatory painkillers, and they heal well once the cause is treated.",
+  "sections": [
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "The stomach lining is normally protected from acid by mucus. Infection with Helicobacter pylori and regular use of anti-inflammatory painkillers such as ibuprofen, diclofenac or aspirin damage this protection. Smoking, heavy alcohol use and severe illness add to the risk. Stress and spicy food do not themselves cause ulcers, though they may worsen symptoms."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical symptoms are burning or gnawing pain in the upper abdomen, often between meals or at night, bloating, nausea and feeling full quickly. Stomach ulcer pain may worsen with eating, while duodenal ulcer pain may ease. Some ulcers cause no symptoms until they bleed."
+      ]
+    },
+    {
+      "heading": "Warning signs",
+      "paragraphs": [
+        "Seek urgent help for vomiting blood or material like coffee grounds, black tarry stools, sudden severe abdominal pain, fainting or pallor, since these can indicate bleeding or perforation. Unintended weight loss, persistent vomiting or difficulty swallowing also need prompt assessment."
+      ]
+    },
+    {
+      "heading": "Diagnosis and treatment",
+      "paragraphs": [
+        "Doctors may test for Helicobacter with a breath, stool or tissue test and often perform gastroscopy to look at the ulcer and take samples. Treatment combines acid-reducing medicines called proton pump inhibitors, usually for several weeks, with a course of antibiotics if Helicobacter is present. Stop or replace anti-inflammatory painkillers if possible. Follow-up tests confirm that the infection is gone."
+      ]
+    },
+    {
+      "heading": "Preventing recurrence",
+      "paragraphs": [
+        "Take the complete antibiotic course, avoid unnecessary anti-inflammatory painkillers or use stomach protection when they are essential, stop smoking and limit alcohol. Tell doctors and pharmacists that you have had an ulcer."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reviewing painkillers",
+      "text": "Imagine you take ibuprofen daily for knee pain and develop stomach pain. You could discuss alternative pain relief and stomach protection with your doctor before continuing."
+    },
+    {
+      "title": "Completing the treatment",
+      "text": "Suppose you feel better after a week of antibiotics. You might still finish the whole course and attend the follow-up test, since stopping early can leave the infection in place."
+    }
+  ],
+  "questions": [
+    "Is my ulcer caused by infection or by medicines?",
+    "Which treatment will I take, and how long?",
+    "How will we check that the ulcer has healed?"
+  ]
+}

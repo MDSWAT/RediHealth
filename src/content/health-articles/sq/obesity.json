@@ -1,0 +1,51 @@
+{
+  "title": "Obeziteti dhe humbja e peshës",
+  "intro": "Obeziteti do të thotë të kesh një sasi të lartë dhjami trupor që e rrit rrezikun e problemeve si diabeti i tipit 2, tensioni i lartë i gjakut, sëmundja e zemrës dhe problemet e nyjeve. Është një gjendje e ndërlikuar e ndikuar nga gjenet, mjedisi dhe stili i jetesës, jo vetëm nga vullneti. Edhe një humbje modeste peshe mund të sjellë përfitime të dukshme shëndetësore.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Pesha kontrollohet nga shumë faktorë: prirja gjenetike, hormonet, rregullimi i oreksit, mjedisi ushqimor, nivelet e aktivitetit, gjumi, stresi, disa barna e gjendje mjekësore. Jeta moderne me ushqime të bollshme me kalori të larta dhe pak lëvizje e bën më të lehtë shtimin në peshë. Fajësimi nuk ndihmon dhe mund ta bëjë ndryshimin më të vështirë."
+      ]
+    },
+    {
+      "heading": "Vlerësimi i peshës dhe shëndetit",
+      "paragraphs": [
+        "Indeksi i masës trupore përdoret gjerësisht, me 30 ose më shumë të përkufizuar përgjithësisht si obezitet, por nuk tregon ku ruhet dhjami. Matja e belit dhe kontrollet e tensionit të gjakut, sheqerit në gjak e kolesterolit japin një pamje më të plotë. Qëllimi është shëndet më i mirë, jo thjesht një numër."
+      ]
+    },
+    {
+      "heading": "Qasjet e stilit të jetesës",
+      "paragraphs": [
+        "Programet që kombinojnë dietën, aktivitetin fizik dhe mbështetjen sjellëse janë më efektivet. Një reduktim i moderuar i kalorive me një dietë të ekuilibruar, kryesisht të papërpunuar, është më i qëndrueshëm se dietat strikte. Ndërtoni aktivitet të rregullt si ecja e shpejtë dhe përfshini stërvitje force. Humbja e pesë deri dhjetë përqind të peshës trupore mund të përmirësojë tensionin e gjakut, sheqerin në gjak e lëvizshmërinë."
+      ]
+    },
+    {
+      "heading": "Barnat dhe kirurgjia",
+      "paragraphs": [
+        "Disa barna, përfshirë ata të injektueshëm që imitojnë hormonet e zorrëve, mund ta mbështesin humbjen e peshës krahas ndryshimeve të stilit të jetesës te persona të përzgjedhur. Ato kërkojnë përdorim të vazhdueshëm, mund të shkaktojnë efekte anësore tretëse dhe mund të jenë të kushtueshme. Kirurgjia bariatrike mund të merret në konsideratë për obezitetin e rëndë dhe çon në humbje peshe të konsiderueshme e të qëndrueshme për shumë njerëz, por përfshin rreziqe dhe ndjekje gjatë gjithë jetës."
+      ]
+    },
+    {
+      "heading": "Mbajtja larg e peshës së humbur",
+      "paragraphs": [
+        "Rimarrja e peshës është e zakonshme, sepse trupi përpiqet ta mbrojë peshën e mëparshme. Mbështetja afatgjatë, vetëmonitorimi i rregullt, aktiviteti i vazhdueshëm dhe objektivat realistë ndihmojnë. Kërkoni mbështetje profesionale në vend të dietave të modës ose suplementeve të paprovuara."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fillimi me hapa të vegjël",
+      "text": "Imagjinoni që doni të humbni peshë. Mund të zëvendësoni pijet e ëmbla me ujë, të shtoni një shëtitje ditore njëzetminutëshe dhe të ndiqni përparimin për një muaj para se të caktoni objektiva të tjerë."
+    },
+    {
+      "title": "Eksplorimi i opsioneve",
+      "text": "Supozoni që disa përpjekje me dietë nuk kanë zgjatur. Mund ta pyesni mjekun për programe të strukturuara, barna ose kirurgji dhe çfarë përfshin secila."
+    }
+  ],
+  "questions": [
+    "Cili është një objektiv peshe realist dhe i shëndetshëm për mua?",
+    "Cili program ose trajtim është më i përshtatshëm dhe çfarë mbështetjeje ofrohet?",
+    "Si mund ta parandaloj rimarrjen e peshës pasi e kam humbur?"
+  ]
+}

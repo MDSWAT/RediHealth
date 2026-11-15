@@ -1,0 +1,51 @@
+{
+  "title": "Melanom",
+  "intro": "Melanom je vrsta raka kože koja se razvija iz stanica koje proizvode pigment. Rjeđi je od drugih vrsta raka kože, ali opasniji jer se može proširiti. Pronađen rano, obično se izliječi malom operacijom pa je važno poznavati znakove upozorenja i dati pregledati sumnjive madeže.",
+  "sections": [
+    {
+      "heading": "Uzroci i čimbenici rizika",
+      "paragraphs": [
+        "Glavni uzrok je ultraljubičasto zračenje sunca i solarija, osobito ponovljene opekline. Rizik je veći uz svijetlu kožu, mnogo madeža, atipične madeže, obiteljsku povijest melanoma, prethodni melanom i oslabljen imunitet. Melanom se može pojaviti i na koži koja je rijetko izložena suncu, na noktima ili u oku."
+      ]
+    },
+    {
+      "heading": "Znakovi upozorenja",
+      "paragraphs": [
+        "Pravilo ABCDE pomaže: asimetrija, nepravilan rub, neujednačena boja, promjer veći od oko šest milimetara te promjena ili razvoj. Novi madež ili madež koji se mijenja, svrbi, krvari ili izgleda drukčije od ostalih treba provjeriti. Nisu svi melanomi tamni; neki su ružičasti ili bezbojni."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Dermatolog pregledava kožu, često dermatoskopom. Sumnjivi madež se potpuno odstranjuje i pregledava pod mikroskopom. Debljina tumora, izmjerena u milimetrima, najvažniji je čimbenik za prognozu. Limfni čvorovi mogu se provjeriti, a pretrage se koriste za deblje ili uznapredovalije melanome."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Rani melanom liječi se širokim izrezivanjem, uklanjanjem tumora i ruba normalne kože. Za deblje tumore može se savjetovati biopsija čuvarskog limfnog čvora. Za melanom stadija III i IV moderna liječenja uključuju imunoterapiju i ciljane lijekove koji blokiraju specifične mutacije, često u kombinaciji s operacijom ili radioterapijom. Oni su uvelike poboljšali preživljenje, iako mogu uzrokovati značajne nuspojave koje treba pratiti."
+      ]
+    },
+    {
+      "heading": "Praćenje i prevencija",
+      "paragraphs": [
+        "Nakon liječenja redoviti pregledi kože i samopregled otkrivaju povratak bolesti i nove melanome. Zaštitite kožu od sunca, izbjegavajte solarije i fotografirajte madeže kako biste pratili promjene. Recite rođacima o njihovom povećanom riziku."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregled kože",
+      "text": "Zamislite da odlučite pregledavati kožu mjesečno. Mogli biste koristiti zrcalo ili zamoliti partnera da pogleda leđa, fotografirati madeže i uspoređivati ih tijekom vremena."
+    },
+    {
+      "title": "Razumijevanje nalaza",
+      "text": "Pretpostavite da vam je madež odstranjen i utvrđeno je da je tanki melanom. Mogli biste pitati što debljina znači za praćenje, treba li dodatna operacija i koliko se često provjeravati."
+    }
+  ],
+  "questions": [
+    "Koje od mojih madeža treba pratiti i koliko često trebam pregleda kože?",
+    "U kojem je stadiju moj melanom i koje se liječenje preporučuje?",
+    "Kakav ću raspored praćenja imati i kako mogu zaštititi kožu?"
+  ]
+}

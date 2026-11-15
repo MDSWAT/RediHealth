@@ -1,0 +1,56 @@
+{
+  "title": "Cât soare este prea mult",
+  "intro": "Lumina soarelui susține buna dispoziție și producerea vitaminei D, dar prea multă radiație ultravioletă deteriorează celulele pielii și mărește riscul de arsuri solare, de îmbătrânire prematură a pielii și de cancer de piele. Găsirea unui echilibru rezonabil înseamnă să vă cunoașteți tipul de piele, intensitatea soarelui și modurile practice de a vă proteja fără a evita aerul liber.",
+  "sections": [
+    {
+      "heading": "Ce face radiația ultravioletă",
+      "paragraphs": [
+        "Două tipuri de lumină ultravioletă ajung la sol. UVB provoacă arsuri solare și este principalul declanșator al producerii de vitamina D, în timp ce UVA pătrunde mai adânc, contribuie la îmbătrânire și joacă un rol și în cancerul de piele. Ambele pot deteriora ADN-ul din celulele pielii.",
+        "Leziunile se adună pe parcursul vieții. Arsurile solare repetate, mai ales în copilărie, sunt asociate cu un risc mai mare de melanom, cel mai periculos cancer de piele. Bronzarea este răspunsul pielii la o agresiune și nu este un semn de sănătate."
+      ]
+    },
+    {
+      "heading": "Cât este prea mult",
+      "paragraphs": [
+        "Riscul depinde de indicele UV, de ora din zi, de anotimp, de altitudine, de reflexia de pe apă, zăpadă sau nisip și de tipul de piele. Persoanele cu piele deschisă, păr roșcat sau blond, mulți aluniți sau antecedente familiale de cancer de piele se ard cel mai ușor și trebuie să fie deosebit de atente. Norii nu opresc toți razele UV.",
+        "Soarele este cel mai puternic în jurul prânzului, așa că umbra și acoperirea sunt cele mai importante atunci. Indicele UV din prognozele meteo vă ajută să decideți când este nevoie de protecție. O valoare de 3 sau mai mare cere, în general, protecție."
+      ]
+    },
+    {
+      "heading": "Protecție practică",
+      "paragraphs": [
+        "Căutați umbra între sfârșitul dimineții și mijlocul după-amiezii, purtați o pălărie cu boruri largi, ochelari de soare cu protecție UV și haine din țesătură deasă care acoperă brațele și picioarele. Hainele sunt mai sigure decât loțiunea, deoarece nu se șterg.",
+        "Folosiți cremă de protecție cu factor mare pe pielea expusă pe care hainele nu o acoperă. Aplicați o cantitate generoasă cu aproximativ 20 de minute înainte de a ieși și reaplicați la fiecare două ore și după înot sau transpirație. Crema de protecție nu trebuie folosită pentru a sta mai mult la soare."
+      ]
+    },
+    {
+      "heading": "Copii, sugari și situații speciale",
+      "paragraphs": [
+        "Sugarii sub un an trebuie ținuți departe de soarele direct. Pielea copiilor este mai subțire și mai sensibilă, așa că umbra, hainele și pălăriile sunt cea mai bună protecție. Unele medicamente fac pielea mai sensibilă la lumină, iar persoanele care le iau trebuie să întrebe despre măsurile de precauție.",
+        "Paturile de bronzat și lămpile de bronzat emit radiații UV puternice și măresc riscul de cancer de piele. Autoritățile de sănătate sfătuiesc evitarea lor, mai ales de către tineri."
+      ]
+    },
+    {
+      "heading": "Soarele și vitamina D",
+      "paragraphs": [
+        "Expunerea scurtă și regulată a feței, mâinilor și brațelor la lumina zilei primăvara și vara ajută în general organismul să producă suficientă vitamina D fără a se arde. Este înțelept să vă opriți înainte ca pielea să devină roz. Iarna, la latitudini nordice, lumina soarelui produce puțină vitamina D, iar alimentația sau suplimentele pot conta mai mult pentru unele persoane.",
+        "Verificați-vă regulat pielea. Mergeți la medic pentru un nev care își schimbă dimensiunea, forma sau culoarea, sângerează sau produce mâncărime, ori pentru o rană care nu se vindecă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planificarea unei zile la plajă",
+      "text": "Imaginați-vă că mergeți vara la plajă cu copii. Ați putea asigura umbră, aduce pălării și tricouri de înot cu mâneci lungi, aplica cremă de protecție înainte de plecare și din nou după înot și planifica orele liniștite de la prânz în interior."
+    },
+    {
+      "title": "Observarea unui nev care se schimbă",
+      "text": "Presupuneți că observați pe spate un nev care pare mai închis la culoare și mai mare decât înainte. Ați putea face o fotografie clară, nota data și programa un control al pielii, în loc să așteptați să vedeți dacă se mai schimbă."
+    }
+  ],
+  "questions": [
+    "Cât de sensibilă este pielea mea și ce protecție se potrivește tipului meu de piele și activităților?",
+    "Ar trebui să fac controale regulate ale pielii, având în vedere aluniții și antecedentele familiale?",
+    "Am nevoie de suplimente de vitamina D sau expunerea la soare și alimentația mea sunt suficiente?"
+  ]
+}

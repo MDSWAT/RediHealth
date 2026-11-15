@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa sono gli ormoni e che cosa fanno",
+  "intro": "Gli ormoni sono messaggeri chimici prodotti dalle ghiandole e rilasciati nel sangue. Viaggiano verso organi e tessuti bersaglio e controllano processi come crescita, metabolismo, riproduzione, umore e risposta del corpo allo stress. Piccole variazioni dei livelli ormonali possono avere grandi effetti, ed è per questo che i disturbi ormonali causano sintomi diffusi.",
+  "sections": [
+    {
+      "heading": "Le ghiandole principali",
+      "paragraphs": [
+        "L'ipofisi alla base del cervello è la ghiandola principale che controlla molte altre. La tiroide nel collo regola il metabolismo. Le ghiandole surrenali sopra i reni producono cortisolo e adrenalina. Il pancreas rilascia insulina e glucagone. Le ovaie producono estrogeni e progesterone e i testicoli il testosterone. Le paratiroidi controllano il calcio e la ghiandola pineale produce melatonina."
+      ]
+    },
+    {
+      "heading": "Come sono regolati i sistemi ormonali",
+      "paragraphs": [
+        "La maggior parte degli ormoni è controllata da circuiti di retroazione. Quando il livello di un ormone è alto, il segnale a produrne di più si riduce e quando è basso la produzione aumenta, come in un termostato. Per esempio l'ipofisi rilascia l'ormone stimolante la tiroide quando l'ormone tiroideo è basso e lo riduce quando è alto."
+      ]
+    },
+    {
+      "heading": "Che cosa fanno gli ormoni",
+      "paragraphs": [
+        "L'insulina abbassa la glicemia. Gli ormoni tiroidei stabiliscono il ritmo di consumo di energia del corpo. Il cortisolo aiuta a gestire lo stress e regola pressione e glicemia. L'ormone della crescita guida la crescita nell'infanzia. Gli ormoni sessuali controllano pubertà, fertilità, mestruazioni e funzione sessuale. Gli ormoni influenzano anche sonno, appetito, umore e forza delle ossa."
+      ]
+    },
+    {
+      "heading": "Quando qualcosa va storto",
+      "paragraphs": [
+        "Troppo o troppo poco ormone può causare malattie: diabete per effetto insufficiente dell'insulina, una tiroide iperattiva o ipoattiva, sindrome di Cushing per eccesso di cortisolo, insufficienza surrenalica, sintomi della menopausa, sindrome dell'ovaio policistico e testosterone basso. Sintomi come stanchezza, variazioni del peso, cambiamenti d'umore, intolleranza alla temperatura o problemi mestruali possono indicare disturbi ormonali ma hanno molte altre cause."
+      ]
+    },
+    {
+      "heading": "Esami e trattamento",
+      "paragraphs": [
+        "Esami del sangue, a volte della saliva o delle urine, e immagini aiutano a diagnosticare i problemi ormonali. Il trattamento può sostituire gli ormoni mancanti, bloccare quelli in eccesso, trattare la causa o rimuovere una massa. Fai attenzione ai prodotti ormonali non regolamentati e agli esami venduti direttamente ai consumatori e discuti i dubbi con un medico."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Descrivere i sintomi",
+      "text": "Immagina di sentirti costantemente stanco e infreddolito. Potresti chiedere al medico degli esami della tiroide ed elencare gli altri sintomi."
+    },
+    {
+      "title": "Capire la terapia sostitutiva",
+      "text": "Supponi di iniziare una terapia ormonale sostitutiva per una tiroide ipoattiva. Potresti chiedere come si adegua la dose e con che frequenza servono gli esami."
+    }
+  ],
+  "questions": [
+    "I miei sintomi potrebbero essere causati da un problema ormonale?",
+    "Quali esami servono per verificarlo?",
+    "Come verrà monitorato il trattamento?"
+  ]
+}

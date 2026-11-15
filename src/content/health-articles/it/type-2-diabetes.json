@@ -1,0 +1,51 @@
+{
+  "title": "Diabete di tipo 2",
+  "intro": "Nel diabete di tipo 2 il corpo non risponde bene all'insulina e alla fine non riesce a produrne abbastanza. La glicemia sale e nel corso degli anni può danneggiare vasi sanguigni e nervi. È strettamente legato a sovrappeso, inattività ed età e in molte persone si può controllare bene, a volte perfino portare in remissione, con cambiamenti dello stile di vita e trattamento.",
+  "sections": [
+    {
+      "heading": "Cause e fattori di rischio",
+      "paragraphs": [
+        "Il rischio aumenta con sovrappeso, soprattutto attorno alla vita, poca attività fisica, età, storia familiare, precedente diabete gestazionale, pressione alta e certe origini etniche. Molte persone hanno la condizione per anni prima della diagnosi, perché i sintomi si sviluppano lentamente e possono essere lievi."
+      ]
+    },
+    {
+      "heading": "Sintomi e diagnosi",
+      "paragraphs": [
+        "I possibili sintomi sono sete, urinazione frequente, stanchezza, visione offuscata, ferite che guariscono lentamente e infezioni ricorrenti, ma molte persone non ne hanno. La diagnosi si fa con la glicemia a digiuno, l'HbA1c o una curva da carico di glucosio. I controlli regolari contano per le persone con fattori di rischio."
+      ]
+    },
+    {
+      "heading": "Stile di vita",
+      "paragraphs": [
+        "Alimentazione sana, più attività fisica e perdita di peso sono la base. Anche una modesta perdita di peso migliora la glicemia e una grande perdita di peso con la dieta può portare alla remissione in alcune persone. Punta a un movimento regolare, come camminare a passo svelto, e all'allenamento della forza. Aiutano limitare bevande zuccherate, carboidrati raffinati e cibi processati e scegliere verdure, cereali integrali, legumi e grassi sani."
+      ]
+    },
+    {
+      "heading": "Farmaci",
+      "paragraphs": [
+        "La metformina è spesso il primo farmaco. Altri comprendono farmaci che aumentano la perdita di zucchero con le urine, farmaci che agiscono sugli ormoni intestinali e alcuni che stimolano il rilascio di insulina. Diversi di essi proteggono anche cuore o reni in certi pazienti. Alla fine può servire l'insulina. I farmaci si scelgono in base a salute di cuore e reni, peso ed effetti collaterali e vanno rivisti regolarmente."
+      ]
+    },
+    {
+      "heading": "Prevenire le complicanze",
+      "paragraphs": [
+        "I controlli regolari comprendono HbA1c, pressione arteriosa, colesterolo, occhi, piedi, esami dei reni e cure dentali. Controllare pressione e colesterolo conta quanto la glicemia. Non fumare. Segnala presto piaghe ai piedi, alterazioni della vista o intorpidimento. I programmi educativi strutturati e i programmi di gestione della malattia sostengono l'autocura."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fissare un primo obiettivo",
+      "text": "Immagina di aver appena ricevuto la diagnosi. Potresti scegliere un solo cambiamento, come una camminata quotidiana di trenta minuti, aggiungerne un secondo dopo un mese e monitorare i progressi con il tuo team per il diabete."
+    },
+    {
+      "title": "Prepararsi a un controllo",
+      "text": "Supponi che la tua visita annuale sia la settimana prossima. Potresti elencare domande, portare i registri della glicemia e chiedere dei controlli di occhi, piedi e reni."
+    }
+  ],
+  "questions": [
+    "Quali sono i miei obiettivi per glicemia, pressione e colesterolo?",
+    "Quale farmaco è migliore per me e quali effetti collaterali devo aspettarmi?",
+    "La perdita di peso potrebbe portare il mio diabete in remissione?"
+  ]
+}

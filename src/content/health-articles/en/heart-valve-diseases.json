@@ -1,0 +1,51 @@
+{
+  "title": "Heart valve disease: monitoring and treatment",
+  "intro": "Heart valves keep blood moving in the right direction. A narrowed valve obstructs flow, while a leaking valve allows backward flow. Severity varies; a murmur alone does not tell whether a procedure is needed.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Breathlessness, reduced exercise tolerance, fatigue, swelling or fainting can develop. Some severe valve problems remain quiet initially, so symptoms and heart imaging both matter rather than waiting for obvious pain."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Echocardiography examines valve structure, blood flow and the heart’s response. Ask which valve is affected, how severe the problem is and when repeat imaging is due. Report any change in usual walking or stairs. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Some people need monitoring only; medicines may ease associated symptoms but cannot reliably repair a mechanically damaged valve. Repair, replacement or catheter procedures are selected by anatomy, severity, surgical risk and personal priorities. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Maintain dental hygiene and tell clinicians about valve disease or a replacement valve. Antibiotics before dental work are needed only for selected high-risk situations under professional advice. Replacement type affects anticoagulation and long-term follow-up. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "New breathlessness, fainting with exertion or worsening swelling needs prompt review. Severe chest pain, marked breathing difficulty or collapse is an emergency. Persistent unexplained fever after valve replacement needs prompt assessment for possible infection."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira has a moderate valve problem without symptoms. She keeps scheduled scans and reports reduced walking tolerance rather than waiting for the next appointment."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben discusses tissue and mechanical replacement options, including the monitoring and blood-thinner implications, before consenting to a procedure."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

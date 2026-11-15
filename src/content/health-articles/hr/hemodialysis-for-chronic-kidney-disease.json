@@ -1,0 +1,51 @@
+{
+  "title": "Hemodijaliza: priprema i svakodnevica",
+  "intro": "Hemodijaliza uklanja otpad i višak tekućine kada bubrezi ne mogu dovoljno. Podržava život, ali ne zamjenjuje sve funkcije. Raspored i kućno ili bolničko liječenje individualni su.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Krv prolazi kroz filtar i vraća se. Pristup može biti fistula, graft ili kateter. Priprema traje pa mogućnosti raspravite prije hitnosti kada je moguće."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Tim procjenjuje simptome, krv, tekućinu i prioritete. Usporedite peritonejsku dijalizu, transplantaciju ako ste prikladni i konzervativnu skrb kada odgovara; nema univerzalnog izbora. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Dolazite na propisane seanse i prijavite grčeve, vrtoglavicu ili umor tijekom liječenja. Uklanjanje tekućine i lijekove prilagođava tim. Preskakanje ili skraćivanje ostavlja opasne poremećaje. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Slijedite individualne upute o tekućini, soli, kaliju i prehrani, ne opće restriktivne dijete. Zaštitite pristup i provjerite vibraciju ako ste poučeni. Organizirajte prijevoz, posao i putovanja; rano javite prepreke dolasku. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Krvarenje koje ne staje, vrućica uz kateter, prsna bol, teška zaduha ili kolaps traže hitnu pomoć. Fistula bez vibracije, crvena, bolna ili otečena traži odmah savjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira planira prijevoz i posao unaprijed. Traži jelovnik prema nalazima i uobičajenoj hrani."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ne osjeća fistulu kao inače. Odmah zove jedinicu umjesto čekanja sljedeće seanse."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

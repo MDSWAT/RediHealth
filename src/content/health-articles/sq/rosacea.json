@@ -1,0 +1,51 @@
+{
+  "title": "Rosacea",
+  "intro": "Rosacea është një gjendje e zakonshme afatgjatë e lëkurës që shkakton skuqje të fytyrës, enë gjaku të vogla të dukshme e nganjëherë gunga e puçrra. Prek kryesisht të rritur me lëkurë të çelët e tenton të përkeqësohet e të qetësohet. Nuk shërohet, por trajtimi e shmangia e nxitësve e mbajnë nën kontroll.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Rosacea zakonisht prek pjesën qendrore të fytyrës: faqet, hundën, ballin e mjekrën. Veçoritë përfshijnë skuqje të papritura, skuqje të vazhdueshme, enë si merimangë, gunga e puçrra që ngjajnë me akne por pa pika të zeza, e një ndjenjë djegieje ose therjeje. Te disa njerëz, veçanërisht meshkujt, hunda mund të trashet. Sytë mund të jenë të thatë, të kuq e të acaruar, e quajtur rosacea okulare."
+      ]
+    },
+    {
+      "heading": "Shkaqet dhe nxitësit",
+      "paragraphs": [
+        "Shkaku nuk dihet plotësisht dhe ka gjasa të përfshijë reaktivitetin e enëve të gjakut, inflamacionin e mikrobet e lëkurës. Nxitësit e zakonshëm përfshijnë diellin, nxehtësinë, erën e ftohtë, pijet e nxehta, alkoolin, ushqimin e pikant, stresin, ushtrimet e ngarkuara e disa produkte të lëkurës. Nxitësit ndryshojnë, prandaj një ditar ndihmon të identifikohen tuajt."
+      ]
+    },
+    {
+      "heading": "Kujdesi i lëkurës",
+      "paragraphs": [
+        "Përdorni pastrues të butë, lagështues të përshtatshëm për lëkurë të ndjeshme e një krem mbrojtës mineral nga dielli çdo ditë. Shmangni fërkimet, tonikët me alkool e produktet e ashpra e thajeni lëkurën me prekje të lehta. Mbrojeni fytyrën nga ekstremet e temperaturës."
+      ]
+    },
+    {
+      "heading": "Trajtimi mjekësor",
+      "paragraphs": [
+        "Kremrat e gelet me acid azelaik, metronidazol, ivermektinë ose brimonidinë mund t'i ulin gungat ose skuqjen. Për rosacea inflamatore më të gjerë përdoren antibiotikë të tetraciklinës në dozë të ulët, ose izotretinoinë në raste të përzgjedhura. Trajtimet me lazer ose dritë i ulin enët e dukshme. Trajtimi kërkon javë për të treguar përfitim e shpesh nevojitet mirëmbajtje. Simptomat e syve si djegia, ndjenja e rërës e skuqja kërkojnë vëmendjen e mjekut, pasi mund të ndikojnë shikimin."
+      ]
+    },
+    {
+      "heading": "Të jetosh me rosacean",
+      "paragraphs": [
+        "Rosacea mund të ndikojë te vetëbesimi e humori. Trajtimi efektiv, durimi e mbështetja nga të tjerët që e kuptojnë gjendjen e përmirësojnë cilësinë e jetës. Ndiqni vizitat e kontrollit, pasi trajtimi shpesh rregullohet me kalimin e kohës."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Identifikimi i nxitësve",
+      "text": "Imagjinoni që fytyra ju skuqet pas një gote vere të kuqe e një vakti të nxehtë. Mund t'i shënoni nxitësit në një ditar për një muaj e të diskutoni ndryshime me mjekun."
+    },
+    {
+      "title": "Zgjedhja e produkteve",
+      "text": "Supozoni që lëkura ju djeg kur aplikoni një krem të ri. Mund ta ndaloni, të kaloni te një lagështues i thjeshtë e të kërkoni një farmacisti ose dermatologu opsione të buta."
+    }
+  ],
+  "questions": [
+    "A është kjo rosacea dhe cili trajtim do t'i përshtatej llojit tim?",
+    "Cilat produkte të kujdesit të lëkurës janë të sigurta për mua?",
+    "A mund të jenë prekur sytë e mi dhe duhen kontrolluar?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Koje vrste očnih pregleda postoje?",
+  "intro": "Očni pregledi provjeravaju vid i zdravlje oka. Otkrivaju probleme kao što su kratkovidnost ili dalekovidnost, glaukom, katarakta, makularna degeneracija i dijabetička bolest oka, često prije pojave simptoma. Većina testova je brza i bezbolna.",
+  "sections": [
+    {
+      "heading": "Testovi vida",
+      "paragraphs": [
+        "Test oštrine vida traži da čitate slova ili simbole s ploče na određenoj udaljenosti. Test refrakcije, s lećama, utvrđuje trebate li naočale i koje jačine. Testovi vida boja, dubinske percepcije i vidnih polja provjeravaju druge aspekte vida. Djeca imaju testove prilagođene dobi, kao što su slike ili povezivanje simbola."
+      ]
+    },
+    {
+      "heading": "Očni tlak i prednji dio oka",
+      "paragraphs": [
+        "Tonometrija mjeri tlak unutar oka, koji je povišen kod glaukoma, ili puhom zraka ili nježnim dodirom površine nakon kapi za umrtvljivanje. Procjepna svjetiljka, mikroskop sa svijetlim svjetlom, prikazuje rožnicu, leću i prednji dio oka te pomaže otkriti kataraktu, ozljede i upalu."
+      ]
+    },
+    {
+      "heading": "Pregled stražnjeg dijela oka",
+      "paragraphs": [
+        "Kapi šire zjenicu kako bi liječnik mogao vidjeti mrežnicu, vidni živac i krvne žile oftalmoskopom ili kamerom. To pokazuje znakove dijabetesa, visokog krvnog tlaka, makularne degeneracije i glaukoma. Vid na blizinu je zamućen, a osjetljivost na svjetlo povećana nekoliko sati pa nakon toga ne vozite."
+      ]
+    },
+    {
+      "heading": "Daljnje pretrage",
+      "paragraphs": [
+        "Optička koherentna tomografija snima slojeve mrežnice svjetlom. Testovi vidnog polja otkrivaju slijepe pjege, što je važno za glaukom. Fluoresceinska angiografija koristi boju za prikaz krvnih žila. Ultrazvuk može pregledati oko kada je pogled blokiran. Rade se i testovi za suho oko i proizvodnju suza."
+      ]
+    },
+    {
+      "heading": "Koliko često na preglede",
+      "paragraphs": [
+        "Djeci su potrebni pregledi ako postoje zabrinutosti ili prema rasporedima probira. Odrasli mogu imati preglede svake dvije godine, a osobe starije od četrdeset, one s dijabetesom, obiteljskom poviješću glaukoma ili drugim čimbenicima rizika mogu ih trebati češće. Hitno potražite pomoć zbog naglog gubitka vida, bljeskova svjetla, novih mušica ili boli u oku."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema",
+      "text": "Zamislite da imate termin s kapima za širenje zjenica. Mogli biste ponijeti sunčane naočale i dogovoriti da vas netko odveze kući."
+    },
+    {
+      "title": "Traženje hitne skrbi",
+      "text": "Pretpostavite da iznenada vidite bljeskove i mnogo novih mušica. Mogli biste se istog dana javiti očnom liječniku."
+    }
+  ],
+  "questions": [
+    "Koji su testovi potrebni za moje oči?",
+    "Koliko često trebam biti pregledavan?",
+    "Koji simptomi znače da trebam potražiti hitnu skrb?"
+  ]
+}

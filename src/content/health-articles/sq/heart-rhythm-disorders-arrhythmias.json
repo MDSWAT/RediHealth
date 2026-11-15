@@ -1,0 +1,51 @@
+{
+  "title": "Çrregullimet e ritmit: gjetja e modelit",
+  "intro": "Aritmitë janë rrahje jashtëzakonisht të shpejta, të ngadalta ose të parregullta. Disa rrahje shtesë janë të padëmshme, të tjera kërkojnë urgjencë. Vetëm ndjesia e palpitacioneve nuk përcakton ritmin.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Shënoni fillimin e papritur, zgjatjen dhe lidhjen me ushtrimin, dobësinë ose sëmundjen. Kafeina, alkooli, ilaçet dhe sëmundjet e zemrës ose tiroides ndikojnë, por jo çdo episod ka nxitës të dukshëm."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Elektrokardiograma regjistron aktivitetin; episodet e ndërprera mund të duan monitor portativ. Analizat dhe imazheria varen nga gjetjet. Një regjistrim normal mes episodeve nuk e përjashton gjithmonë aritminë. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Trajtimi mund të jetë vëzhgim, ilaçe, ablacion, stimulues ose defibrilator sipas diagnozës. Disa ritme kërkojnë vlerësim goditjeje dhe antikoagulim; pulsi më i ngadaltë nuk heq vetë rrezikun e mpiksjes. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Mbani shënime dhe merrni terapinë sipas planit. Diskutoni drejtimin, punën e ushtrimet nëse ju bie të fikët. Alarmet e orës ndihmojnë vlerësimin por jo diagnozën; mos merrni ilaçin e zemrës të tjetrit. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Palpitacionet me dhimbje gjoksi, frymëmarrje shumë të vështirë, të fikët ose kolaps kërkojnë urgjencë. Për simptoma të reja të vazhdueshme kërkoni këshillë shpejt pa pritur pafund regjistrimin e pajisjes."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka episode të shkurtra që analiza në klinikë nuk i kap. Mjeku organizon monitorim pa e quajtur problemin të përjashtuar."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ndihet më mirë pas kontrollit të ritmit. Pyet nëse duhet ende ilaçi parandalues i goditjes, pa e ndalur vetë."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Alergia la veninul de insecte",
+  "intro": "Cele mai multe înțepături de insecte provoacă doar durere și umflături de scurtă durată. La unele persoane, sistemul imunitar reacționează exagerat la veninul de albine, viespi sau croitori și provoacă o reacție alergică periculoasă. Cunoașterea semnelor de avertizare, purtarea medicamentului de urgență și luarea în considerare a imunoterapiei cu venin pot proteja persoanele cu risc.",
+  "sections": [
+    {
+      "heading": "Reacții normale față de reacții alergice",
+      "paragraphs": [
+        "O înțepătură normală provoacă durere, roșeață și o mică umflătură care dispare în câteva ore. O reacție locală mare produce o umflătură de peste zece centimetri, care durează zile. O reacție alergică adevărată implică întregul corp și poate provoca urticarie, umflarea feței, senzație de strângere în gât, respirație șuierătoare, amețeală, vărsături sau colaps, ceea ce se numește anafilaxie."
+      ]
+    },
+    {
+      "heading": "Tratamentul de urgență",
+      "paragraphs": [
+        "Anafilaxia este o urgență. Chemați imediat serviciul de urgență. Persoanele cărora li s-a prescris un autoinjector cu adrenalină trebuie să-l folosească imediat pe partea exterioară a coapsei, să se întindă cu picioarele ridicate, cu excepția cazului în care respiră mai ușor așezate, și să aștepte ajutorul chiar dacă se simt mai bine. Poate fi necesară o a doua doză."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Un alergolog ia istoricul reacției și efectuează teste cutanate și analize de sânge pentru anticorpi la venin. În unele cazuri, o analiză de sânge pentru triptază ajută la identificarea persoanelor cu risc crescut. Testarea se face de obicei la săptămâni după o reacție."
+      ]
+    },
+    {
+      "heading": "Imunoterapia cu venin",
+      "paragraphs": [
+        "Imunoterapia cu venin administrează doze crescânde treptat de venin purificat pe parcursul a săptămâni, urmate de injecții de întreținere aproximativ în fiecare lună, timp de trei până la cinci ani. Previne reacțiile grave la majoritatea pacienților și este recomandată persoanelor care au avut reacții sistemice și au o alergie confirmată. Tratamentul este început sub supraveghere atentă."
+      ]
+    },
+    {
+      "heading": "Evitarea înțepăturilor",
+      "paragraphs": [
+        "Evitați să mergeți desculț pe iarbă, purtați încălțăminte în aer liber, țineți mâncarea și băuturile dulci acoperite și fiți atent în apropierea coșurilor de gunoi și a fructelor. Păstrați-vă calmul lângă viespi și albine și îndepărtați-vă încet. Nu fluturați brațele. Folosiți plase la ferestre. Purtați cu dumneavoastră trusa de urgență și informați familia, prietenii și colegii despre plan."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea unui picnic",
+      "text": "Imaginați-vă că sunteți alergic la viespi și mergeți la un picnic. Ați putea lua autoinjectorul, ați putea acoperi băuturile, ați putea ține telefonul la îndemână și ați putea spune însoțitorilor ce să facă dacă aveți o reacție."
+    },
+    {
+      "title": "Întrebări despre imunoterapie",
+      "text": "Presupuneți că vara trecută ați avut o reacție puternică. Ați putea întreba un specialist dacă testarea și imunoterapia cu venin sunt potrivite pentru dumneavoastră și cât ar dura tratamentul."
+    }
+  ],
+  "questions": [
+    "Este reacția mea o alergie adevărată și ce teste ar trebui să fac?",
+    "Am nevoie de un autoinjector cu adrenalină și cum îl folosesc corect?",
+    "Ar fi potrivită pentru mine imunoterapia cu venin?"
+  ]
+}

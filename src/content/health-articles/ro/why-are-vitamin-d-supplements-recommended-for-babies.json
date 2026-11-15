@@ -1,0 +1,51 @@
+{
+  "title": "De ce se recomandă suplimente de vitamina D pentru bebeluși",
+  "intro": "Vitamina D este necesară pentru oase și dinți puternici, deoarece ajută organismul să absoarbă calciul. Bebelușii primesc puțină vitamina D din laptele matern și nu sunt expuși la multă lumină solară, așa că autoritățile de sănătate din multe țări recomandă un supliment zilnic pentru prevenirea rahitismului. Verificați recomandarea din țara dumneavoastră cu medicul pediatru.",
+  "sections": [
+    {
+      "heading": "De ce au nevoie bebelușii de ea",
+      "paragraphs": [
+        "Organismul produce vitamina D când pielea este expusă la lumina soarelui, dar bebelușii trebuie ținuți departe de soarele direct, iar crema de protecție blochează producția. Laptele matern conține doar cantități mici de vitamina D. Laptele praf este îmbogățit, așa că bebelușii hrăniți cu lapte praf pot avea nevoie de mai puțin supliment. Fără suficientă vitamina D, oasele se pot înmuia și curba, o afecțiune numită rahitism."
+      ]
+    },
+    {
+      "heading": "Cantitățile recomandate",
+      "paragraphs": [
+        "În Germania și în multe alte țări, sfatul obișnuit este de cinci sute până la o mie de unități internaționale zilnic, adesea sub formă de picături sau tabletă, din prima săptămână de viață până în a doua vară, uneori combinat cu fluor, în funcție de recomandare. Medicul vă va da doza pentru bebelușul dumneavoastră, în special pentru bebelușii prematuri și cei cu probleme de sănătate."
+      ]
+    },
+    {
+      "heading": "Cum se administrează",
+      "paragraphs": [
+        "Picăturile pot fi date pe o lingură sau puse într-un pic de lapte. Dați doza aproximativ la aceeași oră zilnic. Folosiți doar produsul și doza recomandate. Dacă omiteți o doză, continuați a doua zi și nu dublați doza. Păstrați departe de copii."
+      ]
+    },
+    {
+      "heading": "Siguranța",
+      "paragraphs": [
+        "Prea multă vitamina D poate provoca prea mult calciu în sânge, cu vărsături, pofta de mâncare scăzută și probleme ale rinichilor, așa că evitați să dați mai mult decât se recomandă și evitați să dați mai multe produse care conțin vitamina D. La doza recomandată, suplimentele sunt considerate sigure."
+      ]
+    },
+    {
+      "heading": "Alte surse",
+      "paragraphs": [
+        "Peștele gras, ouăle și alimentele îmbogățite conțin vitamina D, iar copiii mai mari și adulții produc vitamina D din lumina soarelui. Unele grupuri, precum cei cu pielea închisă, cu puțin timp petrecut afară sau cu afecțiuni specifice, pot avea nevoie de sfaturi despre suplimente și după perioada de sugar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Crearea unei rutine",
+      "text": "Imaginați-vă că uitați picăturile zilnice. Le-ați putea lega de masa de dimineață sau ați putea seta o reamintire pe telefon."
+    },
+    {
+      "title": "Verificarea dozei",
+      "text": "Presupuneți că bebelușul ia și un multivitaminic. Ați putea întreba medicul pediatru despre cantitatea totală de vitamina D."
+    }
+  ],
+  "questions": [
+    "Ce doză de vitamina D are nevoie bebelușul meu și pentru cât timp?",
+    "Are bebelușul meu nevoie de mai mult sau de mai puțin din cauza laptelui praf sau a nașterii premature?",
+    "Ce semne ar sugera o problemă cu vitamina D?"
+  ]
+}

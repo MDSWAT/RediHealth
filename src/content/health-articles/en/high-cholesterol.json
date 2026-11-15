@@ -1,0 +1,51 @@
+{
+  "title": "High cholesterol: judging overall cardiovascular risk",
+  "intro": "Cholesterol travels in blood particles and has normal body functions. Persistently high LDL cholesterol can contribute to artery disease. It usually cannot be felt; treatment decisions consider overall cardiovascular risk, not a single number in isolation.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Risk also depends on age, blood pressure, smoking, diabetes and previous vascular disease. Strong family history or very high results may suggest an inherited disorder, even in someone who eats well."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "A blood lipid profile and medical history guide assessment. Other causes, including thyroid or kidney conditions and medicines, may need checking. Ask what the result means for your absolute risk and whether family testing is appropriate. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Statins are common first options when medicine is indicated; alternatives or additional drugs help selected people. Benefits differ with baseline risk. Discuss pregnancy plans, interactions and symptoms rather than stopping or adding treatments on your own. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Choose more fiber and unsaturated fats while reducing excess saturated fat, stay active and avoid smoking. Extreme diets and supplements are not substitutes for proven treatment when needed. Sustainable changes matter more than blame. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Arrange review of response and possible adverse effects. Severe unexplained muscle pain or weakness, especially with dark urine, needs prompt medical advice. Chest pain or stroke symptoms require emergency help regardless of a recent cholesterol result."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira has a strong family history and high results despite balanced eating. She asks about inherited cholesterol and family assessment rather than blaming her meals."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben asks how much a statin may reduce his own risk and discusses muscle symptoms with the prescriber instead of silently abandoning prevention."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

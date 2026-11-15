@@ -1,0 +1,51 @@
+{
+  "title": "ME/CFS (sindrome da stanchezza cronica)",
+  "intro": "L'encefalomielite mialgica o sindrome da stanchezza cronica, di solito abbreviata in ME/CFS, è una grave malattia di lunga durata con esaurimento intenso che non migliora con il riposo e peggiora dopo anche un lieve sforzo fisico o mentale. Può limitare moltissimo la vita quotidiana. Non esiste ancora una cura, ma una gestione attenta può aiutare.",
+  "sections": [
+    {
+      "heading": "Sintomi principali",
+      "paragraphs": [
+        "La caratteristica chiave è il malessere post-sforzo: sintomi come stanchezza estrema, dolore, nebbia mentale e sensazioni simil-influenzali peggiorano ore o uno o due giorni dopo lo sforzo e possono durare giorni o settimane. Altri sintomi comprendono sonno non ristoratore, difficoltà a pensare e a concentrarsi, capogiri in piedi, dolore muscolare e articolare, mal di gola e sensibilità a luce o rumore."
+      ]
+    },
+    {
+      "heading": "Cause e diagnosi",
+      "paragraphs": [
+        "La causa non è del tutto compresa. Molti casi iniziano dopo un'infezione come la mononucleosi o, più di recente, il COVID-19. Si studiano cambiamenti del sistema immunitario, del sistema nervoso e del metabolismo energetico. Non esiste un esame unico, quindi i medici diagnosticano la ME/CFS in base ai sintomi, che durano almeno diversi mesi, e all'esclusione di altre condizioni come anemia, malattie della tiroide, disturbi del sonno o depressione."
+      ]
+    },
+    {
+      "heading": "Pacing e gestione dell'energia",
+      "paragraphs": [
+        "Pacing significa bilanciare attività e riposo per restare entro i propri limiti di energia ed evitare di scatenare un crollo. Suddividere i compiti in piccoli passi, pianificare il riposo prima e dopo l'attività e tenere un diario aiutano a trovare i propri limiti. L'esercizio graduale che spinge oltre i sintomi può peggiorare la malattia e non è raccomandato per le persone con malessere post-sforzo."
+      ]
+    },
+    {
+      "heading": "Trattare i sintomi",
+      "paragraphs": [
+        "Il trattamento si concentra sui singoli sintomi. Dolore, problemi del sonno, capogiri, disturbi digestivi e umore basso possono essere trattati con misure o farmaci adatti. Il sostegno psicologico aiuta a farvi fronte, anche se la ME/CFS è una malattia fisica e non è causata da depressione o pigrizia. Ausili come una sedia a rotelle o un sedile per la doccia conservano energia."
+      ]
+    },
+    {
+      "heading": "Sostegno e vita quotidiana",
+      "paragraphs": [
+        "Molti pazienti incontrano incredulità, quindi medici, familiari e datori di lavoro informati sono importanti. Adattamenti al lavoro o a scuola, aiuto a casa e sostegno economico possono fare una grande differenza. Le organizzazioni di pazienti offrono consigli. Le persone con ME/CFS molto grave possono essere costrette a letto e hanno bisogno di cure specializzate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pianificare una settimana",
+      "text": "Immagina di avere un evento di famiglia il sabato. Potresti programmare giorni tranquilli prima e dopo, fare pause durante l'evento e limitare gli altri impegni di quella settimana."
+    },
+    {
+      "title": "Spiegarlo agli altri",
+      "text": "Supponi che i colleghi non capiscano i tuoi limiti. Potresti condividere una breve spiegazione scritta del tuo medico e proporre cambiamenti concreti come orari flessibili."
+    }
+  ],
+  "questions": [
+    "Un'altra condizione curabile potrebbe spiegare i miei sintomi e quali esami servono?",
+    "Come posso dosare le mie attività e chi può aiutarmi a pianificare?",
+    "Quali servizi e sostegni sono disponibili per aiutarmi?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Seboroični dermatitis",
+  "intro": "Seboroični dermatitis je čest, bezazlen kožni problem koji uzrokuje crvene, ljuskave, masno izgledajuće mrlje, osobito na vlasištu, licu i prsima. Prhut je blagi oblik. Dolazi i prolazi te dobro reagira na medicinske šampone i kreme, iako se sklon vraćati.",
+  "sections": [
+    {
+      "heading": "Gdje i kako se pojavljuje",
+      "paragraphs": [
+        "Zahvaća područja s mnogo žlijezda lojnica: vlasište, obrve, strane nosa, područje iza ušiju, područje brade i sredinu prsa. Koža može biti crvena sa žućkastim ljuskama te svrbežna ili bolna. Kod beba se pojavljuje kao debele žute ljuskave kore na vlasištu, zvane mliječna krasta, koje su bezazlene i obično nestaju unutar nekoliko mjeseci."
+      ]
+    },
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Uzrok je kombinacija kožnog sebuma, kvasca zvanog Malassezia koji normalno živi na koži i individualne upalne reakcije. Ne uzrokuje ga loša higijena. Stres, umor, hladno suho vrijeme, određene bolesti poput Parkinsonove bolesti i neki lijekovi mogu ga pokrenuti ili pogoršati."
+      ]
+    },
+    {
+      "heading": "Liječenje vlasišta",
+      "paragraphs": [
+        "Šamponi s ketokonazolom, selenijevim sulfidom, cinkovim piritionom ili katranom koriste se dva do tri puta tjedno dok se stanje ne smiri, a zatim rjeđe, ostavljajući šampon nekoliko minuta prije ispiranja. Salicilna kiselina ili ulje mogu otpustiti debele ljuske. Mliječna krasta kod beba može se omekšati dječjim uljem i nježno izčešljati."
+      ]
+    },
+    {
+      "heading": "Liječenje lica i tijela",
+      "paragraphs": [
+        "Antifungalne kreme nanose se jednom ili dvaput dnevno. Za crvenilo i svrbež može se kratko propisati blaga kortikosteroidna krema jer dulja uporaba stanjuje kožu na licu. Budući da se sklon vraćati, terapija održavanja jednom ili dvaput tjedno pomaže da se drži podalje. Posjetite liječnika ako koža izgleda inficirano, vrlo je raširena ili ne reagira."
+      ]
+    },
+    {
+      "heading": "Život s njim",
+      "paragraphs": [
+        "Stanje je bezazleno i nije zarazno. Nježna njega kože, izbjegavanje oštrih proizvoda i jednostavna rutina pomažu. Pogoršanja često slijede nakon stresa ili lošeg sna pa njihovo rješavanje može smanjiti povratke."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Korištenje šampona",
+      "text": "Zamislite da vam je vlasište ljuskavo i svrbežno. Mogli biste koristiti antifungalni šampon dvaput tjedno, ostaviti ga nekoliko minuta i nastaviti do poboljšanja prije smanjenja uporabe."
+    },
+    {
+      "title": "Njega bebe",
+      "text": "Pretpostavite da vaša beba ima žute kore na vlasištu. Mogli biste utrljati malo ulja u vlasište, ostaviti sat vremena i nježno češljati mekom četkom."
+    }
+  ],
+  "questions": [
+    "Koji je šampon ili krema najbolja za moj seboroični dermatitis?",
+    "Koliko često trebam koristiti liječenje i koliko dugo?",
+    "Može li moj kožni problem uzrokovati nešto drugo?"
+  ]
+}

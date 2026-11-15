@@ -1,0 +1,52 @@
+{
+  "title": "Si e mban zemra gjakun në qarkullim",
+  "intro": "Zemra është pompë muskulore mes mushkërive dhe trupit. Dhomat, valvulat, sistemi elektrik dhe furnizimi i vet me gjak bashkëpunojnë. Pulsi normal vetëm nuk provon se çdo pjesë punon normalisht.",
+  "sections": [
+    {
+      "heading": "Rruga",
+      "paragraphs": [
+        "Gjaku kthehet nga trupi në anën e djathtë dhe shkon në mushkëri. Gjaku me oksigjen kthehet majtas dhe pompohet në aortë për trupin."
+      ]
+    },
+    {
+      "heading": "Valvulat dhe muskuli",
+      "paragraphs": [
+        "Valvulat drejtojnë rrjedhjen në një drejtim. Muskuli çlodhet për mbushje dhe tkurret për nxjerrje; sëmundja e valvulave dhe pompimi i dobët janë të ndryshme, megjithëse lidhen."
+      ]
+    },
+    {
+      "heading": "Koha",
+      "paragraphs": [
+        "Sinjalet nisin zakonisht në nyjën sinusale dhe kalojnë në sistemin përçues. Ritmi dhe forca nuk janë të njëjta; çrregullimi kërkon interpretim në kontekst."
+      ]
+    },
+    {
+      "heading": "Furnizimi i zemrës",
+      "paragraphs": [
+        "Arteriet koronare ushqejnë muskulin. Bllokimi mund ta dëmtojë edhe kur dhomat kanë gjak. Aktiviteti, tensioni dhe ilaçet mund të ndryshojnë ngarkesën."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Ekzaminimi, elektrokardiograma dhe ekografia përgjigjen ndryshe. Presioni i ri i vazhdueshëm në gjoks, frymëmarrja shumë e vështirë, kolapsi ose shenjat e infarktit kërkojnë urgjencë, jo siguri nga ora.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet pse nevojitet ekografi pas elektrokardiogramës. Mëson dallimin mes strukturës e pompimit dhe aktivitetit elektrik."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ka presion të vazhdueshëm në gjoks dhe djersë. Kërkon urgjencë edhe pse ora tregon puls të zakonshëm."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

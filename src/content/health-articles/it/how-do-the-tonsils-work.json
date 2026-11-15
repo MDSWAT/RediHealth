@@ -1,0 +1,51 @@
+{
+  "title": "Tonsille e adenoidi: tessuto immunitario",
+  "intro": "Le tonsille sono tessuto immune all’ingresso di vie e digestione. Riconoscono germi soprattutto nell’infanzia, non barriera perfetta. Mal di gola non significa automaticamente antibiotico o chirurgia.",
+  "sections": [
+    {
+      "heading": "Sedi",
+      "paragraphs": [
+        "Le palatine si vedono in bocca. Le adenoidi sono più alte dietro il naso, normalmente invisibili dalla bocca. Altro tessuto è vicino alla lingua."
+      ]
+    },
+    {
+      "heading": "Immunità",
+      "paragraphs": [
+        "Le cellule riconoscono materiali e sviluppano risposte. Dimensione cambia con età e infezione. Grandi non prova gravità; piccole possono infiammarsi."
+      ]
+    },
+    {
+      "heading": "Infezione e ostacolo",
+      "paragraphs": [
+        "Virus e batteri infiammano, l’aspetto non distingue sempre. Tessuto grande disturba deglutizione o sonno. Russamento con pause ed effetti diurni merita visita."
+      ]
+    },
+    {
+      "heading": "Scelte",
+      "paragraphs": [
+        "Dipendono da gravità, causa, recidive e respiro. Antibiotici per alcuni batteri, non ogni gola. Chirurgia offre benefici e rischi di sangue e dolore; non toglie ogni difesa."
+      ]
+    },
+    {
+      "heading": "Urgenze",
+      "paragraphs": [
+        "Affanno, saliva con impossibilità di deglutire, gonfiore unilaterale, voce ovattata o difficoltà ad aprire bocca richiedono urgenza. Sangue dopo intervento è urgente anche se sembra fermarsi. Non attendere per un passato episodio lieve. Prima della visita, annotate quando è iniziato il sintomo, cosa lo migliora o peggiora e come influisce sulle attività abituali. Portate i referti precedenti, se disponibili. Chiedete al professionista di collegare la spiegazione ai vostri riscontri: una descrizione generale non stabilisce una diagnosi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira registra infezioni e scuola prima delle opzioni, non chiede intervento dopo un episodio comune."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben nota russamento infantile con pause. Cerca valutazione senza ritenerlo sempre innocuo."
+    }
+  ],
+  "questions": [
+    "Quali passaggi sarebbero più chiari con un diagramma?",
+    "Cosa spiega questo testo e cosa non può prevedere?",
+    "Il mio dubbio specifico richiede valutazione professionale?"
+  ]
+}

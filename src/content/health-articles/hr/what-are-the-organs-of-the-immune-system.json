@@ -1,0 +1,51 @@
+{
+  "title": "Organi imunološkog sustava",
+  "intro": "Imunološki sustav čine organi, tkiva i stanice koji štite tijelo od klica i abnormalnih stanica. Neki organi stvaraju i treniraju imunološke stanice, dok drugi filtriraju tjelesne tekućine i prikupljaju klice. Zajedno čine koordiniranu obrambenu mrežu raširenu po cijelom tijelu.",
+  "sections": [
+    {
+      "heading": "Koštana srž i timus",
+      "paragraphs": [
+        "Koštana srž, meko tkivo unutar velikih kostiju, stvara sve krvne stanice, uključujući bijele krvne stanice imunološkog sustava. B stanice tamo dozrijevaju. Timus, mali organ iza prsne kosti, mjesto je gdje T stanice dozrijevaju i uče razlikovati vlastite stanice tijela od stranih. Najaktivniji je u djetinjstvu, a s dobi se smanjuje."
+      ]
+    },
+    {
+      "heading": "Limfni čvorovi i limfne žile",
+      "paragraphs": [
+        "Limfni čvorovi su mali filtri raspoređeni kroz limfnu mrežu, koncentrirani na vratu, pazusima, preponama i trbuhu. Hvataju klice iz limfne tekućine i mjesta su susreta gdje se imunološke stanice aktiviraju. Limfne žile nose limfu i imunološke stanice kroz tijelo. Kada se bore protiv infekcije, čvorovi mogu oteći i biti bolni."
+      ]
+    },
+    {
+      "heading": "Slezena i krajnici",
+      "paragraphs": [
+        "Slezena, na lijevoj strani trbuha, filtrira krv, uklanja stare crvene krvne stanice i klice i drži imunološke stanice. Osobe bez slezene podložnije su određenim infekcijama i trebaju cijepljenja, a ponekad i preventivne antibiotike. Krajnici i nosni krajnik u grlu uzorkuju klice koje ulaze kroz usta i nos."
+      ]
+    },
+    {
+      "heading": "Imunološko tkivo sluznica",
+      "paragraphs": [
+        "Površine obloge u crijevima, plućima i mokraćnom sustavu imaju vlastito imunološko tkivo. Nakupine limfnog tkiva u tankom crijevu zvane Peyerove ploče nadziru što je u crijevima. I koža ima imunološke stanice. Te su barijere prva crta obrane protiv klica iz vanjskog svijeta."
+      ]
+    },
+    {
+      "heading": "Održavanje zdravog sustava",
+      "paragraphs": [
+        "San, redovita tjelovježba, uravnotežena prehrana, nepušenje, umjeren alkohol, upravljanje stresom i cijepljenje podupiru imunološku funkciju. Potražite savjet kod ponavljanih infekcija, neobjašnjenih vrućica, uporno otečenih žlijezda ili ako vam je uklonjena slezena."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razumijevanje otečenih žlijezda",
+      "text": "Zamislite da imate grlobolju i bolne žlijezde na vratu. Mogli biste odmarati i pratiti smanjuje li se oticanje tijekom nekoliko tjedana."
+    },
+    {
+      "title": "Nakon uklanjanja slezene",
+      "text": "Pretpostavite da vam je uklonjena slezena. Mogli biste pitati liječnika o preporučenim cijepljenjima i što učiniti kada imate vrućicu."
+    }
+  ],
+  "questions": [
+    "Koji organi mog imunološkog sustava su zahvaćeni mojim stanjem?",
+    "Trebam li dodatna cijepljenja ili mjere opreza?",
+    "Koji simptomi znače da me treba provjeriti zbog imunoloških problema?"
+  ]
+}

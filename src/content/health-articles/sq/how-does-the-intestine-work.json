@@ -1,0 +1,52 @@
+{
+  "title": "Si tret dhe përthith zorra",
+  "intro": "Zorra vazhdon tretjen pas stomakut, përthith lëndë e ujë dhe shtyn mbetjet drejt anusit. Mukoza, muskujt, nervat dhe mikrobet bashkëpunojnë. Simptomat kanë shumë shkaqe, edhe jashtë tretjes.",
+  "sections": [
+    {
+      "heading": "Zorra e hollë",
+      "paragraphs": [
+        "Enzimat dhe bila përzihen me ushqimin. Palosjet dhe zgjatimet e vogla rrisin sipërfaqen; lëndët kalojnë në gjak ose limfë, jo thjesht përmes një vrime."
+      ]
+    },
+    {
+      "heading": "Zorra e trashë",
+      "paragraphs": [
+        "Koloni përthith ujin e kripërat e mbetura dhe formon jashtëqitjen. Bakteret përpunojnë pjesë të materialit. Pamja e jashtëqitjes nuk identifikon gjithë mikrobiomën ose sëmundjen."
+      ]
+    },
+    {
+      "heading": "Lëvizja",
+      "paragraphs": [
+        "Tkurrjet e bashkërenduara shtyjnë përmbajtjen. Nervat lokalë dhe truri ndikojnë lëvizjen; stresi mund të ndikojë pa i bërë simptomat imagjinare ose përjashtuar sëmundjen fizike."
+      ]
+    },
+    {
+      "heading": "Mbështetja",
+      "paragraphs": [
+        "Vaktet e rregullta, lëngjet e përshtatshme dhe fibra e shtuar gradualisht mund të ndihmojnë. Nevojat ndryshojnë pas sëmundjes ose operacionit; shmangni pastrimet dhe përjashtimet drastike."
+      ]
+    },
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Ndryshimi i vazhdueshëm, rënia e pashpjeguar në peshë ose gjaku kërkojnë kontroll. Dhimbja që rëndohet fort, fryrja me të vjella ose mosdalje gazrash, apo gjakderdhja e madhe kërkojnë urgjencë, jo më shumë laksativë.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira shton fibrën gradualisht sipas këshillës dhe shënon tolerancën, jo dyfishim të menjëhershëm."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ka fryrje, të vjella dhe nuk nxjerr gazra. Kërkon urgjencë në vend të trajtimit të përsëritur për kapsllëk të supozuar."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

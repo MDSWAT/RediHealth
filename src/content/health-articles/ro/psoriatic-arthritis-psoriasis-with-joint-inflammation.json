@@ -1,0 +1,51 @@
+{
+  "title": "Artrita psoriazică (psoriazis cu inflamația articulațiilor)",
+  "intro": "Artrita psoriazică este o boală inflamatorie a articulațiilor care afectează unele persoane cu psoriazis. Provoacă durere, umflare și rigiditate în articulații și tendoane și poate deteriora articulațiile dacă nu este tratată. Diagnosticul și tratamentul timpuriu pot controla inflamația și pot proteja funcția articulațiilor.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele includ articulații umflate și dureroase, rigiditate mai ales dimineața, care se ameliorează cu mișcarea, un deget de la mână sau de la picior întreg umflat, numit deget în cârnat, durere la călcâi din cauza tendoanelor inflamate, rigiditate la spate și la gât și modificări ale unghiilor. Oboseala este frecventă. Tiparul variază de la câteva articulații la multe, iar puseele alternează cu faze mai calme."
+      ]
+    },
+    {
+      "heading": "Cine o face",
+      "paragraphs": [
+        "Aproximativ una din cinci persoane cu psoriazis dezvoltă afectare articulară, adesea în câțiva ani de la apariția bolii de piele, deși articulațiile pot fi afectate primele. Riscul este mai mare în psoriazisul sever, la afectarea unghiilor și la antecedente familiale. Sunt implicate genele și hiperactivitatea sistemului imunitar."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicii iau în considerare simptomele, examinează articulațiile și pielea și folosesc analize de sânge pentru a verifica inflamația și a exclude alte tipuri de artrită, precum poliartrita reumatoidă. Radiografiile, ecografia sau rezonanța magnetică detectează inflamația și leziunile articulațiilor și tendoanelor. Un reumatolog confirmă de obicei diagnosticul."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Calmantele antiinflamatoare ajută simptomele. Medicamentele care modifică evoluția bolii, precum metotrexatul, reduc inflamația și protejează articulațiile. Dacă acestea nu sunt suficiente, medicamentele biologice care blochează semnale imune specifice și tabletele mai noi sunt eficiente atât pentru piele, cât și pentru articulații. Injecțiile cu corticosteroizi în articulații ajută la puseele locale. Pentru multe dintre aceste medicamente este nevoie de monitorizare regulată prin analize de sânge."
+      ]
+    },
+    {
+      "heading": "Viața cu artrită psoriazică",
+      "paragraphs": [
+        "Exercițiile, kinetoterapia și terapia ocupațională protejează mișcarea și reduc rigiditatea. Menținerea unei greutăți sănătoase, renunțarea la fumat și gestionarea stresului ajută. Sănătatea inimii și cea metabolică trebuie verificate regulat, deoarece sunt afectate mai des. Sprijinul din partea grupurilor de pacienți poate ajuta pe plan emoțional."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Raportarea timpurie a simptomelor",
+      "text": "Imaginați-vă că aveți psoriazis și observați rigiditate dimineața la mâini. Ați putea nota cât durează și ați putea spune medicului devreme, în loc să presupuneți că este o îmbătrânire obișnuită."
+    },
+    {
+      "title": "Rămânerea activ",
+      "text": "Presupuneți că articulațiile vă dor după repaus. Ați putea include în ziua dumneavoastră exerciții blânde, precum înotul sau ciclismul, și ați putea întreba despre kinetoterapie."
+    }
+  ],
+  "questions": [
+    "Indică simptomele mele articulare artrită psoriazică și ce teste îmi trebuie?",
+    "Ce medicamente îmi pot proteja articulațiile și pielea?",
+    "Cât de des voi avea nevoie de controale și analize de sânge?"
+  ]
+}

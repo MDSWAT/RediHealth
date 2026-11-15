@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është laparoskopia?",
+  "intro": "Laparoskopia, e quajtur edhe kirurgji me vrimë çelësi, është një mënyrë për të parë brenda barkut ose legenit, e për të kryer operacione, përmes prerjesh të vogla. Futet një tub i hollë me kamerë e dritë, i quajtur laparoskop. Krahasuar me kirurgjinë e hapur zakonisht do të thotë më pak dhimbje, cikatrice më të vogla e rikuperim më të shpejtë.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "Laparoskopia përdoret për të diagnostikuar shkaqet e dhimbjes së legenit ose barkut e për të trajtuar gjendje. Operacionet e zakonshme përfshijnë heqjen e fshikëzës së tëmthit ose apendiksit, riparimin e hernieve, trajtimin e endometriozës, heqjen e kisteve të vezoreve, sterilizimin, disa operacione të zorrëve e trajtimin e shtatzënisë jashtëmitrore."
+      ]
+    },
+    {
+      "heading": "Si bëhet",
+      "paragraphs": [
+        "Zakonisht bëhet nën anestezi të përgjithshme. Kirurgu bën disa prerje të vogla, rreth një centimetër, e e mbush barkun me gaz dioksid karboni për të krijuar hapësirë. Kamera i tregon organet në ekran, e instrumente të gjata e të holla përdoren përmes prerjeve të tjera. Gazi lirohet në fund e prerjet mbyllen."
+      ]
+    },
+    {
+      "heading": "Avantazhet",
+      "paragraphs": [
+        "Krahasuar me kirurgjinë e hapur, pacientët zakonisht kanë më pak dhimbje, cikatrice më të vogla, rrezik më të ulët infeksioni të plagës, qëndrim më të shkurtër në spital e kthim më të shpejtë te aktivitetet normale, shpesh brenda një a dy javësh. Disa operacione, megjithatë, janë ende më mirë të kryhen të hapura, ose mund të duhet të kalohen në të hapura gjatë kirurgjisë."
+      ]
+    },
+    {
+      "heading": "Rreziqet e rikuperimi",
+      "paragraphs": [
+        "Rreziqet përfshijnë gjakderdhje, infeksion, lëndim të organeve ose enëve të gjakut, reagime ndaj anestezisë e, rrallë, mpiksje gjaku. Dhimbja në majën e shpatullës e fryrja nga gazi janë të zakonshme për një a dy ditë. Ecni herët, merrni lehtësues dhimbjesh siç këshillohet e kontaktoni mjekun për ethe, dhimbje që përkeqësohet, vjellje ose probleme me plagën."
+      ]
+    },
+    {
+      "heading": "Përgatitja",
+      "paragraphs": [
+        "Do t'ju kërkohet të agjëroni, të ndaloni disa barna si hollues gjaku e të organizoni transport. Pyesni kirurgun për rikuperimin e pritur, lejen nga puna e çfarë të bëni nëse ka komplikime."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planifikimi i rikuperimit",
+      "text": "Imagjinoni që po ju hiqet fshikëza e tëmthit. Mund të organizoni ndihmë në shtëpi e të planifikoni disa ditë pushim nga puna."
+    },
+    {
+      "title": "Menaxhimi i dhimbjes së shpatullës",
+      "text": "Supozoni që keni dhimbje shpatulle pas. Mund të ecni butësisht e të merrni lehtësues dhimbjesh, pasi vjen nga gazi."
+    }
+  ],
+  "questions": [
+    "A është laparoskopia e përshtatshme për gjendjen time?",
+    "Cilat janë rreziqet e shansi i kalimit në kirurgji të hapur?",
+    "Sa kohë do të zgjasë rikuperimi?"
+  ]
+}

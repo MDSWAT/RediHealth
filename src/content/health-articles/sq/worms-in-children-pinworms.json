@@ -1,0 +1,51 @@
+{
+  "title": "Oksiurët te fëmijët",
+  "intro": "Oksiurët janë krimba të vegjël, të bardhë si fije që jetojnë në zorrë e janë ndër infeksionet më të zakonshme me krimba te fëmijët. Janë të padëmshëm por shkaktojnë kruarje rreth anusit, veçanërisht natën. Përhapen lehtë brenda familjeve, por trajtohen thjesht.",
+  "sections": [
+    {
+      "heading": "Si ndodh infeksioni",
+      "paragraphs": [
+        "Krimbat femra të rritur lëshojnë vezë rreth anusit natën, duke shkaktuar kruarje. Fëmijët kruhen e vezët ngjiten në gishta, thonj, çarçafë e rroba, e përhapen në sipërfaqe e lodra. Gëlltitja e vezëve pas prekjes së gojës çon në infeksion, e cikli vazhdon. Vezët mbijetojnë deri në dy a tre javë në sipërfaqe."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Kruarje rreth anusit ose vaginës, veçanërisht natën, gjumë i shqetësuar, nervozizëm e nganjëherë skuqje ose plagë të vogla nga kruarja. Disa fëmijë nuk kanë asnjë simptomë. Herë pas here, krimbat mund të shihen në jashtëqitje ose rreth anusit, si fije të vogla të bardha rreth një centimetër të gjata."
+      ]
+    },
+    {
+      "heading": "Diagnoza e trajtimi",
+      "paragraphs": [
+        "Mjekët zakonisht e diagnostikojnë nga historia, ose duke parë krimbat. Një test me shirit në mëngjes, duke shtypur shirit ngjitës në lëkurën rreth anusit, mund të mbledhë vezë për një test laboratorik. Trajtimi është një tabletë ose lëng, si mebendazoli, i përsëritur pas dy javësh. Zakonisht trajtohet e gjithë familja në të njëjtën kohë. Trajtimi zakonisht nuk përdoret te foshnjat pa këshillë mjekësore."
+      ]
+    },
+    {
+      "heading": "Masat e higjienës",
+      "paragraphs": [
+        "Lani duart me sapun pas tualetit e para vakteve, mbani thonjtë e shkurtër, shmangni kafshimin e thonjve e kruarjen, bëni dush në mëngjes, ndërroni të brendshmet e çarçafët çdo ditë në ditët e trajtimit, lani në gjashtëdhjetë gradë nëse është e mundur e pastroni dhomat me fshesë. Mos ndani peshqirë."
+      ]
+    },
+    {
+      "heading": "Qetësimi",
+      "paragraphs": [
+        "Oksiurët nuk do të thonë se fëmija është i pistë, e nuk shkaktojnë dëm të rëndë. Fëmijët mund të ndjekin shkollën ose çerdhen pasi ka filluar trajtimi. Shihni një mjek nëse kruarja vazhdon pas trajtimit, nëse fëmija ka dhimbje barku, ose për infeksione te foshnjat e gratë shtatzëna."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Bërja e rutinës së higjienës",
+      "text": "Imagjinoni që fëmija juaj ka oksiurë. Mund t'i lani të gjithë çarçafët e shtroja në temperaturë të lartë e t'i mbani thonjtë të shkurtër."
+    },
+    {
+      "title": "Trajtimi i familjes",
+      "text": "Supozoni që mjeku përshkruan trajtim. Mund t'i trajtoni të gjithë në shtëpi po atë ditë e ta përsërisni pas dy javësh."
+    }
+  ],
+  "questions": [
+    "A ka fëmija im oksiurë, e a duhet trajtuar familja?",
+    "Cili bar është i përshtatshëm e kur duhet përsëritur?",
+    "Kur mund të kthehet fëmija im në çerdhe ose shkollë?"
+  ]
+}

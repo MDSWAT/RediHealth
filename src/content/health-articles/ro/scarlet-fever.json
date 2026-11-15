@@ -1,0 +1,51 @@
+{
+  "title": "Scarlatina",
+  "intro": "Scarlatina este o infecție bacteriană care însoțește o infecție streptococică a gâtului și provoacă o erupție tipică. Se vede mai ales la copiii între cinci și cincisprezece ani. Se tratează cu antibiotice, care scurtează boala, reduc răspândirea și scad riscul de complicații.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele încep cu durere în gât, febră, durere de cap, greață și ganglioni umflați. În una-două zile apare pe piept o erupție roșie fină, ca hârtia de șlefuit, care se extinde, cruțând zona din jurul gurii. Limba devine roșie, cu aspect de căpșună, iar mai târziu pielea se poate descuama la degetele de la mâini și de la picioare."
+      ]
+    },
+    {
+      "heading": "Cum se răspândește",
+      "paragraphs": [
+        "Bacteriile, streptococii de grup A, se răspândesc prin picături și contact apropiat. Persoanele rămân contagioase până au luat antibiotice aproximativ o zi. Copiii trebuie să stea acasă cel puțin o zi după începerea antibioticelor și până se simt suficient de bine. Spălarea mâinilor și nefolosirea în comun a paharelor reduc răspândirea."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicii diagnostichează scarlatina după simptome și după un frotiu faringian cu test rapid sau cultură. Confirmarea diagnosticului este importantă, deoarece alte afecțiuni pot provoca o erupție similară."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Penicilina sau antibioticele înrudite se iau aproximativ zece zile, deși cu unele alte antibiotice se folosesc cure mai scurte. Terminați cura chiar dacă copilul se simte mai bine, pentru a preveni complicațiile. Paracetamolul sau ibuprofenul reduc febra și durerea, iar lichidele din belșug și alimentele moi ușurează înghițitul."
+      ]
+    },
+    {
+      "heading": "Complicații",
+      "paragraphs": [
+        "Rar, infecția netratată poate provoca reumatism articular acut, care poate afecta inima, precum și inflamația rinichilor, abcese sau infecții ale urechii și ale sinusurilor. Cereți ajutor dacă copilul are febră persistentă, durere severă în gât, dificultăți la înghițit, dureri articulare, urină închisă la culoare sau umflături după o vindecare aparentă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Protejarea fraților",
+      "text": "Imaginați-vă că copilului dumneavoastră i s-a pus diagnosticul de scarlatină. Ați putea folosi pahare și prosoape separate, v-ați putea spăla des pe mâini și ați putea anunța școala despre diagnostic."
+    },
+    {
+      "title": "Terminarea antibioticelor",
+      "text": "Presupuneți că copilul se simte bine după patru zile. Ați putea continua antibioticul până se termină toată cura, așa cum a prescris medicul."
+    }
+  ],
+  "questions": [
+    "Are copilul meu nevoie de antibiotice și cât timp?",
+    "Când se poate întoarce la creșă sau la școală?",
+    "Ce semne ar sugera o complicație?"
+  ]
+}

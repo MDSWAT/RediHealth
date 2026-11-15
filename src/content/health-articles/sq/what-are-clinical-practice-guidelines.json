@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë janë udhëzuesit e praktikës klinike?",
+  "intro": "Udhëzuesit e praktikës klinike janë dokumente që përmbledhin provat më të mira në dispozicion e japin rekomandime se si të parandalohen, diagnostikohen e trajtohen gjendjet shëndetësore. Ndihmojnë mjekët e pacientët të marrin vendime e synojnë të zvogëlojnë dallimet e pajustifikuara në kujdes. Të kuptuarit e asaj që janë e që nuk janë ju ndihmon t'i përdorni me mençuri.",
+  "sections": [
+    {
+      "heading": "Çfarë përmbajnë",
+      "paragraphs": [
+        "Udhëzuesit zhvillohen nga grupe ekspertësh, shoqata mjekësore ose autoritete shëndetësore. Shqyrtojnë provat kërkimore e shprehin rekomandime si cilat teste të përdoren, cilat trajtime të ofrohen e kur të bëhet referim. Shumë i klasifikojnë forcën e rekomandimit e cilësinë e provave pas tij. Disa versione shkruhen për pacientët."
+      ]
+    },
+    {
+      "heading": "Si bëhen udhëzuesit e mirë",
+      "paragraphs": [
+        "Udhëzuesit e besueshëm përdorin rishikime sistematike të provave, përfshijnë një gamë ekspertësh e shpesh përfaqësues të pacientëve, deklarojnë konfliktet e interesit, përshkruajnë metodat e përditësohen rregullisht. Kur mungojnë provat, e thonë këtë e mbështeten te konsensusi i ekspertëve. Udhëzuesit e financuar nga një kompani me interes te rezultati meritojnë shqyrtim shtesë."
+      ]
+    },
+    {
+      "heading": "Si i përdorin mjekët",
+      "paragraphs": [
+        "Udhëzuesit janë udhërrëfyes, jo rregulla. Përshkruajnë çfarë është e përshtatshme për shumicën e pacientëve. Mjekët i përshtatin sipas individit, duke marrë parasysh sëmundjet e tjera, moshën, preferencat e rrethanat. Largimet nga udhëzuesit mund të justifikohen por duhen shpjeguar. Udhëzuesit mund të ndryshojnë midis vendeve ose organizatave."
+      ]
+    },
+    {
+      "heading": "Kufijtë",
+      "paragraphs": [
+        "Shumë udhëzues bazohen në studime të njerëzve që nuk u ngjajnë pacientëve me disa gjendje. Mund të vjetrohen, e rekomandimet për një sëmundje mund të përplasen me një tjetër te një person me disa sëmundje. Mund të mos marrin parasysh çfarë ka rëndësi për individët. Pacientët nuk duhet të ndihen se një udhëzues e zëvendëson një bisedë."
+      ]
+    },
+    {
+      "heading": "Si mund t'i përdorni",
+      "paragraphs": [
+        "Pyesni mjekun nëse ekziston një udhëzues për gjendjen tuaj e kërkoni një version për pacientë. Kontrolloni datën e organizatën botuese. Përdoreni përmbajtjen për të përgatitur pyetje e për të kuptuar pse ofrohen disa teste ose trajtime. Diskutoni me mjekun çdo dallim midis udhëzimit e planit tuaj të trajtimit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gjetja e një udhëzuesi",
+      "text": "Imagjinoni që sapo ju është diagnostikuar astma. Mund ta pyesni mjekun nëse ka version për pacientë të udhëzuesit e të shihni çfarë rekomandon."
+    },
+    {
+      "title": "Diskutimi i dallimeve",
+      "text": "Supozoni që trajtimi juaj ndryshon nga ajo që lexoni. Mund ta pyesni mjekun pse e nëse rrethanat tuaja e shpjegojnë."
+    }
+  ],
+  "questions": [
+    "A ka udhëzues për gjendjen time e a e ndjek trajtimi im?",
+    "Pse ndryshon plani im nga ajo që thotë udhëzuesi?",
+    "Sa i përditësuar është udhëzuesi?"
+  ]
+}

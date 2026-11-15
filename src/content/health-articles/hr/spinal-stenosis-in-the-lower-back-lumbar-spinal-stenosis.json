@@ -1,0 +1,51 @@
+{
+  "title": "Lumbalna spinalna stenoza",
+  "intro": "Lumbalna spinalna stenoza je suženje kralježničnog kanala u donjem dijelu leđa koje pritišće živce. Tipično pogađa starije odrasle osobe i uzrokuje bol u nozi, trnce ili slabost pri stajanju ili hodanju, koji popuštaju sjedenjem ili pretklonom. Mnogi se poboljšaju vježbama i konzervativnom skrbi, a operacija je mogućnost kod teških slučajeva.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "S dobi diskovi gube visinu i ispupčuju se, zglobovi se povećavaju, ligamenti zadebljaju i stvaraju se koštani izdanci. Zajedno to smanjuje prostor za živce. Prijašnja ozljeda, pomak kralježaka i urođeno uzak kanal također pridonose. Promjene na snimkama česte su kod ljudi bez simptoma."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Karakterističan simptom je bol, težina, utrnulost ili slabost u stražnjici i nogama koja se javlja pri hodanju ili dugom stajanju, a popušta sjedenjem, naginjanjem naprijed ili pretklonom, primjerice oslanjanjem na kolica za kupovinu. Može biti prisutna bol u leđima. Udaljenost hodanja s vremenom se skraćuje."
+      ]
+    },
+    {
+      "heading": "Znakovi upozorenja",
+      "paragraphs": [
+        "Potražite hitnu liječničku pomoć kod iznenadne slabosti u nogama, utrnulosti oko genitalija ili stražnjice ili gubitka kontrole mokraćnog mjehura ili crijeva, što može upućivati na teški pritisak na živce koji zahtijeva hitno liječenje."
+      ]
+    },
+    {
+      "heading": "Neoperativno liječenje",
+      "paragraphs": [
+        "Ostanak aktivnim je važan. Pomažu fizioterapija s fleksijskim vježbama, istezanje i jačanje mišića trupa i nogu, pomagala za hodanje te vožnja bicikla, koja je obično ugodna jer je kralježnica nagnuta naprijed. Lijekovi protiv bolova mogu ublažiti simptome. Epiduralne injekcije kortikosteroida mogu dati privremeno olakšanje, ali su koristi ograničene."
+      ]
+    },
+    {
+      "heading": "Operacija",
+      "paragraphs": [
+        "Dekompresijska operacija uklanja kost i tkivo koji pritišću živce, ponekad uz spajanje kralježaka zbog nestabilnosti. Obično poboljšava bol u nozi i udaljenost hodanja kod ljudi koji se nisu poboljšali konzervativnim liječenjem, ali nosi rizike kao što su infekcija, ozljeda živca i ponovna operacija, a rezultati se razlikuju. Odluka ovisi o simptomima, sposobnosti hodanja, drugim zdravstvenim stanjima i željama."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Korištenje kolica za kupovinu",
+      "text": "Zamislite da možete dulje hodati kad se oslanjate na kolica. Mogli biste to spomenuti liječniku jer pomaže opisati problem te pitati o pomagalima za hodanje ili vježbama."
+    },
+    {
+      "title": "Vaganje operacije",
+      "text": "Pretpostavite da možete hodati samo pedeset metara prije nego što vas bol u nozi prisili da stanete. Mogli biste pitati kirurga kralježnice o koristima, rizicima i oporavku te ih usporediti s nastavkom vježbanja."
+    }
+  ],
+  "questions": [
+    "Uzrokuje li moju bol u nozi spinalna stenoza?",
+    "Koje vježbe i liječenja trebam prvo isprobati?",
+    "Kada bi se preporučila operacija i koji su rizici?"
+  ]
+}

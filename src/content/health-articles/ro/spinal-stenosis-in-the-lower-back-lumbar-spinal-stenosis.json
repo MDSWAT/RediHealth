@@ -1,0 +1,51 @@
+{
+  "title": "Stenoza spinală lombară",
+  "intro": "Stenoza spinală lombară este o îngustare a canalului rahidian din zona lombară, care apasă pe nervi. Afectează de obicei adulții în vârstă și provoacă durere, furnicături sau slăbiciune la picioare în picioare sau la mers, care se ameliorează la așezare sau la aplecare în față. Multe persoane se îmbunătățesc cu exerciții și îngrijire conservatoare, iar chirurgia este o opțiune pentru cazurile severe.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Odată cu vârsta, discurile își pierd înălțimea și bombează, articulațiile se măresc, ligamentele se îngroașă și se formează pinteni osoși. Împreună, acestea reduc spațiul pentru nervi. Leziunile anterioare, alunecarea vertebrelor și nașterea cu un canal îngust contribuie și ele. Modificările de la scanări sunt frecvente la persoane fără simptome."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomul caracteristic este durerea, greutatea, amorțeala sau slăbiciunea la fese și la picioare, care apare la mers sau la statul îndelungat în picioare și se ameliorează la așezare, la aplecarea în față sau la sprijinirea de ceva, de exemplu de un cărucior de cumpărături. Poate fi prezentă durerea de spate. Distanța de mers se scurtează în timp."
+      ]
+    },
+    {
+      "heading": "Semne de alarmă",
+      "paragraphs": [
+        "Cereți ajutor medical urgent pentru slăbiciune bruscă la picioare, amorțeală în jurul organelor genitale sau al fesierilor ori pierderea controlului vezicii sau al intestinului, care pot semnala o compresie severă a nervilor ce necesită tratament de urgență."
+      ]
+    },
+    {
+      "heading": "Tratament fără operație",
+      "paragraphs": [
+        "Rămânerea activ contează. Kinetoterapia cu exerciții de flexie, întinderi și întărirea mușchilor trunchiului și ai picioarelor, ajutoarele pentru mers și ciclismul, care este de obicei confortabil pentru că coloana este îndoită înainte, sunt utile. Calmantele pot ameliora simptomele. Injecțiile epidurale cu corticosteroid pot oferi o ameliorare temporară, dar beneficiile sunt limitate."
+      ]
+    },
+    {
+      "heading": "Chirurgia",
+      "paragraphs": [
+        "Operația de decompresie îndepărtează osul și țesutul care apasă pe nervi, uneori cu fuziunea vertebrelor în caz de instabilitate. Tinde să îmbunătățească durerea de picior și distanța de mers la persoanele care nu s-au îmbunătățit cu tratamentul conservator, dar implică riscuri precum infecția, lezarea nervilor și o nouă operație, iar rezultatele variază. Decizia depinde de simptome, de capacitatea de mers, de alte afecțiuni și de preferințe."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Folosirea căruciorului de cumpărături",
+      "text": "Imaginați-vă că puteți merge mai mult când vă sprijiniți de un cărucior. Ați putea spune medicului, deoarece ajută la caracterizarea problemei, și ați putea întreba despre ajutoare pentru mers sau exerciții."
+    },
+    {
+      "title": "Cântărirea operației",
+      "text": "Presupuneți că puteți merge doar cincizeci de metri înainte ca durerea de picior să vă oblige să vă opriți. Ați putea întreba un chirurg spinal despre beneficii, riscuri și recuperare și le-ați putea compara cu continuarea exercițiilor."
+    }
+  ],
+  "questions": [
+    "Este durerea mea de picior cauzată de stenoza spinală?",
+    "Ce exerciții și tratamente ar trebui să încerc mai întâi?",
+    "Când ar fi recomandată operația și care sunt riscurile?"
+  ]
+}

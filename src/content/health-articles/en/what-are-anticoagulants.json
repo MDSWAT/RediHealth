@@ -1,0 +1,51 @@
+{
+  "title": "What are anticoagulants?",
+  "intro": "Anticoagulants, often called blood thinners, are medicines that make blood clot less easily. They prevent harmful clots that can cause strokes, heart attacks and lung clots, and treat existing clots. They do not actually thin the blood or dissolve clots, and they carry a risk of bleeding.",
+  "sections": [
+    {
+      "heading": "How they work",
+      "paragraphs": [
+        "Blood clotting involves a chain of proteins in the blood. Anticoagulants block steps in this chain, so clots form more slowly. This helps prevent new clots and stops existing clots from growing, giving the body time to break them down itself. They differ from antiplatelet drugs such as aspirin, which stop platelets from sticking together."
+      ]
+    },
+    {
+      "heading": "Types",
+      "paragraphs": [
+        "Vitamin K antagonists such as warfarin have been used for decades and require regular blood tests of clotting time, and attention to diet and interactions. Direct oral anticoagulants, such as apixaban, rivaroxaban, edoxaban and dabigatran, are taken in fixed doses and need less monitoring. Heparins are given by injection, often in hospital or short-term at home."
+      ]
+    },
+    {
+      "heading": "Why they are used",
+      "paragraphs": [
+        "Common uses include atrial fibrillation to prevent stroke, treatment and prevention of deep vein thrombosis and pulmonary embolism, mechanical heart valves, and prevention of clots after some operations. The duration depends on the reason, from weeks to lifelong."
+      ]
+    },
+    {
+      "heading": "Risks and side effects",
+      "paragraphs": [
+        "The main risk is bleeding, which can range from nosebleeds and easy bruising to serious internal bleeding. Warning signs include black or bloody stools, vomiting blood, severe headache, blood in the urine, heavy or prolonged bleeding and bleeding after a fall or head injury, which needs urgent care. Doctors weigh the risk of clots against bleeding and review treatment regularly."
+      ]
+    },
+    {
+      "heading": "Using them safely",
+      "paragraphs": [
+        "Take your medicine at the same time each day and do not skip or double doses. Do not stop without advice, as the risk of clots rises. Tell all healthcare providers, dentists and pharmacists you take anticoagulants, and carry a card. Check with a pharmacist before using painkillers such as ibuprofen and supplements. Be cautious with alcohol and take care to avoid injuries."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing for dental treatment",
+      "text": "Imagine you take a blood thinner and need a tooth removed. You could tell the dentist and ask your doctor whether the dose should be changed."
+    },
+    {
+      "title": "Handling a missed dose",
+      "text": "Suppose you forget a dose. You might read the leaflet or call the pharmacist for the rule for your medicine, and never double the next dose."
+    }
+  ],
+  "questions": [
+    "Which anticoagulant is best for me, and for how long?",
+    "How can I reduce my risk of bleeding?",
+    "Which medicines and foods should I avoid?"
+  ]
+}

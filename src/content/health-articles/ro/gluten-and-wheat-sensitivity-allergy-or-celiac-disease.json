@@ -1,0 +1,51 @@
+{
+  "title": "Simptome după grâu: celiachie, alergie sau sensibilitate?",
+  "intro": "Simptomele după grâu nu au toate aceeași cauză. Celiachia este o reacție imună la gluten care lezează intestinul subțire; alergia la grâu și sensibilitatea non-celiacă necesită alte investigații și îngrijiri.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Celiachia poate provoca diaree, balonare, anemie sau puține simptome digestive. Alergia la grâu poate da rapid urticarie, umflare ori dificultăți respiratorii. Sensibilitatea este considerată după excluderea altor cauze."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Nu începeți dietă fără gluten înainte de discutarea testării pentru celiachie: evitarea poate falsifica rezultatele. După o reacție alergică suspectă la grâu nu faceți provocare acasă; cereți specialist. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Celiachia confirmată necesită evitarea glutenului toată viața și monitorizare nutrițională. Alergia cere evitare individualizată și plan de urgență. Sensibilitatea non-celiacă nu impune automat aceleași restricții stricte permanente. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Dieteticianul ajută la păstrarea fibrelor, fierului și altor nutrienți și explică etichetele și contaminarea încrucișată. Panourile comerciale de intoleranță nu stabilesc diagnosticul și nu justifică eliminarea multor alimente. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Respirația dificilă, umflarea gâtului sau colapsul după mâncare sunt urgențe; utilizați imediat adrenalina prescrisă și chemați ajutor. Diareea persistentă, slăbirea ori anemia cer evaluare chiar fără reacții dramatice."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira vrea să elimine glutenul pentru balonare. Discută întâi testele, ca dieta să nu ascundă o posibilă celiachie."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben s-a umflat după pâine. Cere evaluare alergologică în loc să mănânce intenționat din nou pentru a verifica o teorie despre gluten."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

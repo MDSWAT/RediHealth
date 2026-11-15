@@ -1,0 +1,51 @@
+{
+  "title": "Bubrežni kamenci",
+  "intro": "Bubrežni kamenci su tvrdi nakupovi minerala i soli koji nastaju u bubrezima i mogu putovati niz mokraćni sustav. Mali kamenci često prođu neprimijećeno, dok veći mogu uzrokovati jaku bol. Većina kamenaca može se liječiti, a dovoljno pijenja tekućine najbolji je način sprječavanja novih.",
+  "sections": [
+    {
+      "heading": "Kako nastaju kamenci",
+      "paragraphs": [
+        "Kad mokraća sadrži visoke razine određenih tvari kao što su kalcij, oksalat ili mokraćna kiselina i premalo tekućine, kristali se mogu slijepiti. Većina kamenaca sadrži kalcij. Rizik raste s dehidracijom, prehranom bogatom solju i životinjskim bjelančevinama, prekomjernom težinom, određenim medicinskim stanjima, nekim lijekovima i obiteljskom poviješću kamenaca."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Kamenac koji ostaje u bubregu može ne uzrokovati simptome. Kad se pomakne u mokraćovod, može uzrokovati iznenadnu, valovitu bol u boku ili leđima koja se širi prema preponi, uz mučninu, povraćanje, krv u mokraći i čestu potrebu za mokrenjem. Vrućica uz bol upućuje na infekciju i zahtijeva hitno liječenje."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Liječnici koriste pretrage mokraće, krvne pretrage i slikovne pretrage, često ultrazvuk ili CT niske doze, kako bi našli kamenac i vidjeli je li tok mokraće blokiran. Ako izbacite kamenac, sačuvajte ga za analizu jer njegov sastav usmjerava prevenciju."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Mnogi kamenci manji od oko pet milimetara prođu sami unutar nekoliko tjedana. Pomažu ublažavanje boli, primjerice protuupalnim lijekovima protiv bolova, puno tekućine i ponekad lijek za opuštanje mokraćovoda. Veći kamenci ili kamenci koji blokiraju mokraću ili uzrokuju infekciju mogu zahtijevati liječenje. Terapija udarnim valovima razbija kamenje u djeliće izvan tijela, dok ureteroskopija koristi tanki endoskop za uklanjanje ili laserski razbijanje kamenca. Veliki bubrežni kamenci mogu zahtijevati operaciju kroz leđa."
+      ]
+    },
+    {
+      "heading": "Sprječavanje novih kamenaca",
+      "paragraphs": [
+        "Pijte dovoljno da proizvedete oko dvije do dvije i pol litre mokraće dnevno, što obično znači tri litre ili više tekućine. Ograničite sol i prekomjerne životinjske bjelančevine, jedite uravnoteženu prehranu s normalnim količinama kalcija i budite oprezni s visokim dozama vitamina C ili dodacima. Ovisno o vrsti kamenca mogu se preporučiti specifični lijekovi. Kamenci se ponavljaju u mnogih ljudi pa je praćenje važno."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Nošenje s napadom",
+      "text": "Zamislite da razvijete iznenadnu jaku bol u slabini s mučninom. Mogli biste potražiti hitnu liječničku pomoć, spomenuti svaku vrućicu i pitati trebate li cijediti mokraću kako biste sakupili kamenac."
+    },
+    {
+      "title": "Izgradnja navike pijenja",
+      "text": "Pretpostavite da ste već imali kamenac. Mogli biste svako jutro napuniti bocu, rasporediti pijenje kroz dan i provjeravati je li vam mokraća blijeda."
+    }
+  ],
+  "questions": [
+    "Koju vrstu kamenca imam i kako mogu spriječiti novi?",
+    "Treba li moj kamenac ukloniti ili mogu čekati da prođe?",
+    "Koji znakovi upozorenja znače da trebam otići u bolnicu?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Embolia pulmonară",
+  "intro": "Embolia pulmonară este o blocare a uneia dintre arterele plămânului, cel mai adesea provocată de un cheag de sânge care a ajuns din venele profunde ale picioarelor. Poate provoca lipsă bruscă de aer și durere în piept și poate pune viața în pericol. Diagnosticul și tratamentul prompt cu anticoagulante salvează vieți.",
+  "sections": [
+    {
+      "heading": "Cauze și factori de risc",
+      "paragraphs": [
+        "Cheagurile se formează în venele picioarelor sau ale bazinului când circulația sângelui încetinește sau coagularea crește, apoi se desprind și se opresc în plămâni. Factorii de risc includ o operație recentă, o leziune sau imobilizarea prelungită, călătoriile de lungă durată, cancerul, sarcina și perioada de după naștere, terapia hormonală și pilulele contraceptive, obezitatea, fumatul, vârsta înaintată, un cheag anterior și predispozițiile moștenite la coagulare."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele tipice sunt lipsa bruscă de aer, durerea ascuțită în piept, mai intensă la inspirație, tusea, uneori cu sânge, bătăile rapide ale inimii, amețeala și leșinul. Unele persoane au umflare, durere și căldură la un picior, de la cheagul inițial. Simptomele pot fi ușoare sau severe. Sunați la serviciile de urgență pentru lipsă de aer sau durere în piept bruscă și inexplicabilă."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicii evaluează probabilitatea folosind un sistem de scor și simptomele și pot verifica o analiză de sânge numită D-dimeri. O tomografie computerizată cu substanță de contrast arată cheagurile din arterele pulmonare. Alte teste includ ecografia picioarelor, ecografia inimii și, la nevoie, scintigrafia pulmonară."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Medicamentele anticoagulante împiedică creșterea cheagului și permit corpului să îl dizolve. Se încep imediat, se administrează prin injecție sau sub formă de tablete și se continuă cel puțin trei luni. În cazurile severe se folosesc medicamente care dizolvă cheagul sau proceduri de îndepărtare a cheagului. Persoanele care nu pot lua anticoagulante pot primi un filtru în vena mare. Sângerarea este principalul risc al tratamentului, așa că raportați vânătăile sau sângerările neobișnuite."
+      ]
+    },
+    {
+      "heading": "După o embolie pulmonară",
+      "paragraphs": [
+        "Durata tratamentului depinde de cauză. Unele persoane au nevoie de terapie pe termen lung. Unele rămân cu lipsă de aer sau cu hipertensiune pulmonară și necesită urmărire. Pentru a preveni recidiva, mișcați-vă regulat în călătoriile lungi, mențineți-vă hidratat, folosiți ciorapi de compresie, dacă se recomandă, și discutați medicamentele preventive înainte de operații."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Recunoașterea unei urgențe",
+      "text": "Imaginați-vă că rămâneți brusc fără aer după un zbor lung și aveți gamba umflată. Ați putea suna imediat la serviciile de urgență și nu ați aștepta să vedeți dacă se ameliorează."
+    },
+    {
+      "title": "Luarea în siguranță a anticoagulantelor",
+      "text": "Presupuneți că începeți un anticoagulant. Ați putea purta un card, ați putea spune dentiștilor și medicilor, ați putea evita activitățile riscante și ați putea raporta orice sângerare abundentă sau scaune negre."
+    }
+  ],
+  "questions": [
+    "Cât timp am nevoie de anticoagulante și care sunt riscurile?",
+    "Am o predispoziție moștenită la coagulare și ar trebui testată familia mea?",
+    "Cum pot reduce riscul unui alt cheag?"
+  ]
+}

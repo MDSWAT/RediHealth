@@ -1,0 +1,56 @@
+{
+  "title": "Kako se regulira srčani ritam",
+  "intro": "Srce kuca zahvaljujući vlastitom električnom sustavu, koji pokreće svaki otkucaj i usklađuje srčane šupljine tako da se stežu pravilnim redoslijedom. Mozak i hormoni prilagođavaju brzinu vašim potrebama. Poznavanje načina rada pomaže razumjeti lupanje srca, nepravilne ritmove i pretrage kao što je EKG.",
+  "sections": [
+    {
+      "heading": "Električni sustav srca",
+      "paragraphs": [
+        "Svaki otkucaj počinje u sinusnom čvoru, maloj skupini stanica u gornjem desnom dijelu srca koja djeluje kao prirodni elektrostimulator. Šalje električni impuls preko dviju gornjih šupljina, pretklijetki, zbog čega se stežu i guraju krv u donje šupljine.",
+        "Signal zatim stiže do atrioventrikularnog čvora, koji ga nakratko odgađa kako bi se klijetke mogle napuniti. Putuje niz posebna vlakna koja se šire kroz stijenke klijetki, zbog čega se one zajedno stežu i pumpaju krv u pluća i tijelo."
+      ]
+    },
+    {
+      "heading": "Kontrola srčane frekvencije",
+      "paragraphs": [
+        "U mirovanju srce tipičnog odraslog kuca otprilike 60 do 100 puta u minuti. Tijekom vježbanja, stresa ili vrućice frekvencija raste, a tijekom sna pada. Autonomni živčani sustav to prilagođava: simpatički sustav ubrzava srce, a parasimpatički ga usporava.",
+        "Na ritam utječu i hormoni kao što su adrenalin, hormoni štitnjače, minerali u krvi poput kalija i kalcija te mnogi lijekovi. Dobro trenirani sportaši često imaju sporu frekvenciju u mirovanju koja je zdrava."
+      ]
+    },
+    {
+      "heading": "Kad je ritam poremećen",
+      "paragraphs": [
+        "Aritmije su poremećaji srčanog ritma. Srce može kucati prebrzo, presporo ili nepravilno. Uobičajeni primjeri uključuju fibrilaciju atrija, pri kojoj pretklijetke nepravilno podrhtavaju, dodatne otkucaje koji se doživljavaju kao preskočen otkucaj i srčani blok, pri kojem su signali odgođeni ili blokirani.",
+        "Simptomi uključuju lupanje srca, vrtoglavicu, nedostatak zraka, nelagodu u prsima ili nesvjesticu. Neki ljudi nemaju simptoma. Fibrilacija atrija povećava rizik od moždanog udara, zbog čega je važno otkriti je i primjereno liječiti."
+      ]
+    },
+    {
+      "heading": "Pretrage srčanog ritma",
+      "paragraphs": [
+        "Elektrokardiogram bilježi električnu aktivnost srca u nekoliko minuta. Ako simptomi dolaze i odlaze, dugotrajni EKG koji se nosi dan do nekoliko tjedana ili ugrađeni petljasti snimač može ih uhvatiti. Krvne pretrage, ultrazvuk srca i testovi opterećenja pomažu u traženju uzroka.",
+        "Pametni satovi mogu bilježiti ritam, ali njihove rezultate treba potvrditi medicinskim pretragama prije donošenja odluka."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Mnogi bezopasni dodatni otkucaji ne zahtijevaju liječenje osim izbjegavanja okidača kao što su višak kofeina, alkohola, nikotina ili nedostatak sna. Drugi poremećaji ritma mogu se liječiti lijekovima koji kontroliraju frekvenciju ili ritam, lijekovima za razrjeđivanje krvi radi smanjenja rizika od moždanog udara, električnom kardioverzijom ili kateterskom ablacijom, koja liječi izvor nenormalnih signala.",
+        "Elektrostimulator može podržati srce koje kuca presporo, a ugradivi defibrilator može zaustaviti opasne brze ritmove. Nazovite hitnu pomoć kod nesvjestice, boli u prsima ili jakog nedostatka zraka uz ubrzano srce."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Opisivanje lupanja srca",
+      "text": "Zamislite da povremeno nekoliko minuta osjećate kako vam srce juri. Mogli biste zapisati kada se to događa, koliko brzo puls izgleda, što ste radili i kakvi su drugi simptomi kako bi liječnik mogao odabrati prikladne pretrage."
+    },
+    {
+      "title": "Razumijevanje odluke o lijeku za razrjeđivanje krvi",
+      "text": "Pretpostavite da vam je dijagnosticirana fibrilacija atrija. Mogli biste pitati kako je procijenjen vaš osobni rizik od moždanog udara, koje su koristi i rizici krvarenja od lijekova za razrjeđivanje krvi i na koje znakove krvarenja paziti."
+    }
+  ],
+  "questions": [
+    "Koja bi vrsta poremećaja ritma mogla objasniti moje simptome i koje će pretrage to razjasniti?",
+    "Trebam li liječenje i kako bi ono smanjilo moj rizik od moždanog udara ili drugih komplikacija?",
+    "Koje okidače trebam izbjegavati i kada trebam nazvati hitnu pomoć?"
+  ]
+}

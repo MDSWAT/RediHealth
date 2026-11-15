@@ -1,0 +1,51 @@
+{
+  "title": "Il sistema sanitario tedesco",
+  "intro": "La Germania ha un sistema sanitario con assicurazione sanitaria obbligatoria, un'ampia scelta di medici e ospedali e una fitta rete di servizi. Capire come è organizzato aiuta i pazienti, compresi i nuovi arrivati, a trovare cure e a conoscere i propri diritti. Questa panoramica è generale; regole e importi cambiano, quindi verifica i dettagli attuali con la tua assicurazione.",
+  "sections": [
+    {
+      "heading": "Assicurazione sanitaria",
+      "paragraphs": [
+        "Quasi tutti coloro che vivono in Germania devono avere un'assicurazione sanitaria. La maggior parte delle persone è coperta dalle casse malattia pubbliche, a cui lavoratori e datori di lavoro contribuiscono con una percentuale del reddito. Alcuni, come i redditi più alti, i lavoratori autonomi e i dipendenti pubblici, possono scegliere un'assicurazione privata. Figli e coniugi non lavoratori sono spesso coperti gratuitamente con l'assicurazione familiare nel sistema pubblico. L'assistenza a lungo termine ha una propria assicurazione."
+      ]
+    },
+    {
+      "heading": "Medicina di base e specialisti",
+      "paragraphs": [
+        "La maggior parte delle persone ha un medico di famiglia come primo punto di contatto, che tratta i problemi comuni, coordina le cure e rilascia le impegnative. Di solito si può andare direttamente dagli specialisti, anche se alcuni richiedono appuntamenti o impegnative. Le farmacie forniscono farmaci su prescrizione e consigli. Dentisti, ostetriche e terapisti si raggiungono in modo simile."
+      ]
+    },
+    {
+      "heading": "Ospedali ed emergenze",
+      "paragraphs": [
+        "Gli ospedali offrono cure con ricovero e in day hospital e hanno ambulatori per certe condizioni. Per le emergenze chiama il 112 o vai al pronto soccorso. Per problemi urgenti ma non pericolosi per la vita fuori dagli orari degli studi, si può raggiungere un servizio medico di guardia al 116117, che aiuta anche con gli appuntamenti."
+      ]
+    },
+    {
+      "heading": "Costi e compartecipazioni",
+      "paragraphs": [
+        "L'assicurazione pubblica copre un ampio catalogo di servizi, tra cui controlli, vaccinazioni, trattamenti, farmaci, cure ospedaliere e riabilitazione. I pazienti pagano alcune compartecipazioni, per esempio per farmaci, giorni di ricovero o certe terapie, con limiti annuali ed esenzioni per le persone a basso reddito e per i bambini. Alcuni servizi, come molti extra dentistici, si pagano privatamente."
+      ]
+    },
+    {
+      "heading": "Diritti dei pazienti e come ottenere aiuto",
+      "paragraphs": [
+        "I pazienti hanno diritto a informazione, consenso informato, accesso alla propria documentazione e a un secondo parere. I reclami si possono rivolgere allo studio, all'assicurazione o ai servizi di consulenza per i pazienti. Una consulenza indipendente è disponibile per chi non è sicuro dei propri diritti, compresi migranti e rifugiati, e in alcuni contesti si possono organizzare servizi di interpretariato."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trovare un medico",
+      "text": "Immagina di essere appena arrivato in Germania. Potresti iscriverti a un medico di famiglia, chiedere le impegnative quando servono e portare sempre con te la tessera dell'assicurazione."
+    },
+    {
+      "title": "Usare l'assistenza fuori orario",
+      "text": "Supponi che tuo figlio abbia la febbre un sabato sera. Potresti chiamare il servizio di guardia per un consiglio e, se è grave, andare al pronto soccorso."
+    }
+  ],
+  "questions": [
+    "Quali servizi copre la mia assicurazione e che cosa devo pagare io?",
+    "Come trovo uno specialista o un appuntamento in fretta?",
+    "Dove posso ottenere una consulenza indipendente sui miei diritti?"
+  ]
+}

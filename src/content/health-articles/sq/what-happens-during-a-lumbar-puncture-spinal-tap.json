@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh gjatë një punksioni lumbar?",
+  "intro": "Një punksion lumbar, ose shpim kurrizor, është një procedurë ku një gjilpërë e hollë futet në pjesën e poshtme të shpinës për të mbledhur lëngun cerebrospinal, lëngun rreth trurit e palcës kurrizore. Ndihmon të diagnostikohen infeksionet, gjakderdhja, inflamacioni e disa sëmundje neurologjike.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "Lëngu mund të tregojë meningjit, gjakderdhje rreth trurit, skleroze të shumëfishtë, inflamacion të nervave e disa kancere. Nganjëherë përdoret për të matur presionin ose për të dhënë barna, për shembull në disa trajtime të kancerit ose për anestezi. Një skanim mund të bëhet më parë për të qenë të sigurt se procedura është e sigurt."
+      ]
+    },
+    {
+      "heading": "Para procedurës",
+      "paragraphs": [
+        "Do t'ju pyesin për barnat hollues të gjakut, që mund të duhet të ndalen, e për alergjitë. Procedura shpjegohet e jepni pëlqimin. Testet mund të kontrollojnë mpiksjen e gjakut. Zakonisht mund të hani e pini më parë, e mund ta zbrazni fshikëzën."
+      ]
+    },
+    {
+      "heading": "Gjatë procedurës",
+      "paragraphs": [
+        "Shtriheni mbi një anë të mbledhur, ose uleni të anuar përpara, për të hapur hapësirat midis kockave të shtyllës kurrizore. Shpina pastrohet e mpihet me anestezi lokale. Një gjilpërë futet poshtë fundit të palcës kurrizore, që të mos e dëmtojë. Mblidhen disa mililitra lëng. Zakonisht zgjat pesëmbëdhjetë deri tridhjetë minuta."
+      ]
+    },
+    {
+      "heading": "Pas procedurës e rreziqet",
+      "paragraphs": [
+        "Ju kërkohet të shtriheni sheshtë për pak kohë e të pini lëngje. Një dhimbje koke, që është më keq kur qëndroni drejt e më mirë kur shtriheni, prek disa njerëz për disa ditë. Mund të ndodhë dhimbje shpine ose ndjeshmëri. Rreziqet e rralla përfshijnë infeksion, gjakderdhje, acarim nervor e zhvendosje (hernim) të trurit nëse presioni është i lartë. Kërkoni ndihmë për dhimbje të rëndë koke, ethe, mpirje ose dobësi në këmbë."
+      ]
+    },
+    {
+      "heading": "Rezultatet",
+      "paragraphs": [
+        "Disa rezultate, si numërimi i qelizave, jepen brenda orësh, ndërsa të tjerat zgjasin ditë. Mjeku do të shpjegojë çfarë do të thonë gjetjet për diagnozën e trajtimin. Pyesni për ndjekjen e çdo kufizim aktiviteti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Qëndrimi rehat",
+      "text": "Imagjinoni që jeni shtrirë mbi një anë për procedurën. Mund të merrni frymë ngadalë, t'i thoni mjekut nëse ndjeni dhimbje e të përpiqeni të qëndroni të palëvizshëm."
+    },
+    {
+      "title": "Rikuperimi në shtëpi",
+      "text": "Supozoni që ju shfaqet dhimbje koke ditën tjetër. Mund të pushoni të shtrirë, të pini lëngje e të telefononi nëse është e rëndë ose nuk përmirësohet."
+    }
+  ],
+  "questions": [
+    "Pse nevojitet një punksion lumbar e çfarë mund të tregojë?",
+    "A ka rreziqe të veçanta për mua?",
+    "Çfarë duhet të vëzhgoj pas tij?"
+  ]
+}

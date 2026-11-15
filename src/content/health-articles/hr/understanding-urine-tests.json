@@ -1,0 +1,51 @@
+{
+  "title": "Razumijevanje pretraga mokraće",
+  "intro": "Pretrage mokraće su jednostavne, bezbolne i daju mnogo informacija o bubrezima, mokraćnom sustavu i općem zdravlju. Mogu otkriti infekciju, probleme s bubrezima, dijabetes i trudnoću. Znati kako ispravno prikupiti uzorak i što rezultati znače pomaže da test bude pouzdan.",
+  "sections": [
+    {
+      "heading": "Česte vrste",
+      "paragraphs": [
+        "Test-traka za mokraću je traka koja se uroni u uzorak i mijenja boju kako bi pokazala prisutnost tvari poput krvi, bjelančevina, glukoze, bijelih krvnih stanica i nitrita. Daje brze rezultate u ordinaciji. Urinokultura uzgaja bakterije radi potvrde infekcije i testira osjetljivost na antibiotike. Mikroskopski pregled promatra stanice i kristale. Testovi trudnoće otkrivaju hormon hCG."
+      ]
+    },
+    {
+      "heading": "Prikupljanje uzorka",
+      "paragraphs": [
+        "Za srednji mlaz mokraće operite ruke, očistite genitalno područje, počnite mokriti u zahod, zatim sakupite srednji dio mlaza u posudu, bez dodirivanja unutrašnjosti, i završite u zahodu. To smanjuje onečišćenje klicama s kože. Jutarnja mokraća je koncentriranija. Uzorak brzo dostavite ili ga držite hladnim prema uputi."
+      ]
+    },
+    {
+      "heading": "Što rezultati mogu pokazati",
+      "paragraphs": [
+        "Krv u mokraći može potjecati od infekcije, kamenaca, bolesti bubrega, tumora ili nedavne ozljede i uvijek zahtijeva procjenu. Bjelančevine mogu upućivati na oštećenje bubrega, ali se javljaju i nakon vježbanja ili vrućice. Glukoza upućuje na dijabetes. Bijele stanice i nitriti upućuju na infekciju. Jedan abnormalan nalaz često se ponavlja."
+      ]
+    },
+    {
+      "heading": "Testovi trudnoće",
+      "paragraphs": [
+        "Kućni testovi trudnoće otkrivaju hCG u mokraći i najpouzdaniji su od prvog dana izostanka menstruacije. Pozitivan rezultat gotovo je uvijek točan, dok negativan vrlo rano može biti pogrešan i može se ponoviti nakon nekoliko dana. Pozitivan test potvrdite kod liječnika."
+      ]
+    },
+    {
+      "heading": "Praktični savjeti",
+      "paragraphs": [
+        "Određena hrana, lijekovi, vitamini i dehidracija mogu promijeniti boju mokraće i rezultate. Recite liječniku sve što uzimate. Menstrualna krv može onečistiti uzorak pa to spomenite. Prijavite simptome poput peckanja, hitne potrebe za mokrenjem, boli u leđima ili vrućice zajedno s testom."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Davanje dobrog uzorka",
+      "text": "Zamislite da sumnjate na infekciju mokraćnog mjehura. Mogli biste pažljivo slijediti upute za srednji mlaz, koristiti dobivenu posudu i brzo dostaviti uzorak."
+    },
+    {
+      "title": "Pitanje o rezultatu",
+      "text": "Pretpostavite da vaša test-traka pokaže tragove bjelančevina. Mogli biste pitati treba li ponoviti test i trebaju li druge pretrage bubrega."
+    }
+  ],
+  "questions": [
+    "Koju pretragu mokraće trebam i kako se pripremiti?",
+    "Što abnormalan rezultat znači za mene?",
+    "Trebam li ponovni test ili daljnju pretragu?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Rosacea",
+  "intro": "Rosacea is a common long-term skin condition causing facial redness, visible small blood vessels, and sometimes bumps and pimples. It mostly affects adults with fair skin and tends to flare and settle. It cannot be cured, but treatment and trigger avoidance keep it under control.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Rosacea typically affects the central face: cheeks, nose, forehead and chin. Features include flushing, persistent redness, spider-like vessels, bumps and pustules that resemble acne but without blackheads, and a burning or stinging sensation. In some people, particularly men, the nose may thicken. The eyes may be dry, red and irritated, called ocular rosacea."
+      ]
+    },
+    {
+      "heading": "Causes and triggers",
+      "paragraphs": [
+        "The cause is not fully known and probably involves blood vessel reactivity, inflammation and skin microbes. Common triggers include sun, heat, cold wind, hot drinks, alcohol, spicy food, stress, strenuous exercise and certain skin products. Triggers vary, so a diary helps identify yours."
+      ]
+    },
+    {
+      "heading": "Skin care",
+      "paragraphs": [
+        "Use gentle cleansers, moisturisers suitable for sensitive skin and a mineral sunscreen daily. Avoid scrubs, alcohol-containing toners and harsh products, and pat the skin dry. Protect the face from extremes of temperature."
+      ]
+    },
+    {
+      "heading": "Medical treatment",
+      "paragraphs": [
+        "Creams and gels containing azelaic acid, metronidazole, ivermectin or brimonidine can reduce bumps or redness. For more extensive inflammatory rosacea, low-dose tetracycline antibiotics, or isotretinoin in selected cases, are used. Laser or light treatments reduce visible vessels. Treatment takes weeks to show benefit, and maintenance is often needed. Eye symptoms such as burning, grittiness and redness need attention from a doctor, as they can affect vision."
+      ]
+    },
+    {
+      "heading": "Living with rosacea",
+      "paragraphs": [
+        "Rosacea can affect confidence and mood. Effective treatment, patience and support from others who understand the condition improve quality of life. Keep follow-up visits, since treatment is often adjusted over time."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Identifying triggers",
+      "text": "Imagine your face flushes after a glass of red wine and a hot meal. You could note triggers in a diary for a month and discuss changes with your doctor."
+    },
+    {
+      "title": "Choosing products",
+      "text": "Suppose your skin stings when you apply a new cream. You might stop using it, switch to a simple moisturiser and ask a pharmacist or dermatologist for gentle options."
+    }
+  ],
+  "questions": [
+    "Is this rosacea, and which treatment would suit my type?",
+    "Which skin care products are safe for me?",
+    "Could my eyes be affected, and should they be checked?"
+  ]
+}

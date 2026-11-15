@@ -1,0 +1,51 @@
+{
+  "title": "Che cos'è l'infiammazione",
+  "intro": "L'infiammazione è la risposta del corpo a lesione, infezione o irritazione. È un processo protettivo che aiuta la guarigione, ma quando è eccessiva o dura troppo può danneggiare i tessuti e contribuire a molte malattie. Capirla aiuta a spiegare sintomi come gonfiore e febbre.",
+  "sections": [
+    {
+      "heading": "Infiammazione acuta",
+      "paragraphs": [
+        "L'infiammazione acuta inizia rapidamente e dura giorni. I vasi sanguigni si dilatano, nella zona arrivano più sangue e liquidi e arrivano i globuli bianchi per combattere i germi e rimuovere il tessuto danneggiato. Questo produce i classici segni di rossore, calore, gonfiore, dolore e perdita di funzione, come in un taglio, una distorsione o un mal di gola."
+      ]
+    },
+    {
+      "heading": "Infiammazione cronica",
+      "paragraphs": [
+        "Quando la causa persiste o il sistema immunitario è iperattivo, l'infiammazione può continuare per mesi o anni. È coinvolta in malattie come artrite reumatoide, malattie infiammatorie intestinali, asma, psoriasi e, in parte, malattie cardiache e diabete. L'infiammazione cronica può danneggiare il tessuto sano e causare stanchezza e dolore."
+      ]
+    },
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "Le cause comprendono infezioni da batteri o virus, lesioni, ustioni, sostanze chimiche, allergie, malattie autoimmuni in cui il sistema immunitario attacca il corpo, obesità, fumo e stress prolungato. Non ogni infiammazione è un'infezione e non sempre servono gli antibiotici."
+      ]
+    },
+    {
+      "heading": "Diagnosi e trattamento",
+      "paragraphs": [
+        "I medici osservano i sintomi, visitano la zona e possono usare esami del sangue come la proteina C reattiva, esami di immagini o campioni di tessuto. Il trattamento affronta la causa. Riposo, freddo e antidolorifici antinfiammatori come l'ibuprofene possono alleviare i sintomi acuti e gli steroidi o altri farmaci immunomodulatori si usano nelle malattie croniche. Controlla con un medico prima di prendere regolarmente antinfiammatori."
+      ]
+    },
+    {
+      "heading": "Abitudini sane",
+      "paragraphs": [
+        "Una dieta equilibrata ricca di verdure, frutta, cereali integrali e pesce, esercizio regolare, sonno sufficiente, non fumare, alcol limitato e un peso sano sono legati a livelli più bassi di infiammazione. Le affermazioni su diete antinfiammatorie speciali o integratori che curano le malattie sono spesso esagerate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Lenire una distorsione",
+      "text": "Immagina di esserti storto la caviglia. Potresti riposarla, applicare un impacco freddo avvolto in un panno e sollevare il piede."
+    },
+    {
+      "title": "Andare dal medico",
+      "text": "Supponi che un'articolazione resti gonfia per settimane. Potresti prendere un appuntamento, perché l'infiammazione di lunga durata richiede una diagnosi adeguata."
+    }
+  ],
+  "questions": [
+    "Che cosa causa l'infiammazione?",
+    "Quale trattamento è più sicuro per me?",
+    "Quali cambiamenti dello stile di vita possono aiutare?"
+  ]
+}

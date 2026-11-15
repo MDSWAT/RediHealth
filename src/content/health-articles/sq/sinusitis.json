@@ -1,0 +1,51 @@
+{
+  "title": "Sinusiti akut",
+  "intro": "Sinusiti akut është inflamacion i mbulesës së sinuseve, hapësirave të mbushura me ajër rreth hundës e syve, zakonisht pas një ftohjeje. Shkakton hundë të bllokuar, presion në fytyrë e nganjëherë sekrecione të trasha. Shumica e rasteve shkaktohen nga viruse e kalojnë brenda rreth dy javësh pa antibiotikë.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Një ftohje ose alergji mund ta enjtë mbulesën e hundës e ta bllokojë hapjet e ngushta të sinuseve, kështu që mukusi grumbullohet. Shumica e infeksioneve janë virale. Bakteret herë pas here marrin përsipër. Duhani, ajri i thatë, noti, infeksionet dentare e probleme si devijimi i septumit ose polipet e rrisin rrezikun."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat tipike janë hundë e bllokuar ose që rrjedh, presion ose dhimbje në faqe, ballë ose rreth syve që përkeqësohet kur përkuleni përpara, nuhatje e reduktuar, kollë e nganjëherë ethe të lehta. Mukusi i trashë i verdhë ose i gjelbër nuk do të thotë vetvetiu infeksion bakterial."
+      ]
+    },
+    {
+      "heading": "Vetëkujdesi",
+      "paragraphs": [
+        "Shpëlani hundën me tretësirë fiziologjike, thithni avull, pini shumë lëngje e pushoni. Spërkatësit dekongjestionues të hundës mund ta ulin enjtjen, por duhen përdorur jo më shumë se rreth një javë për të shmangur mbylljen rebound. Qetësuesit si paracetamoli ose ibuprofeni e lehtësojnë dhimbjen. Spërkatësit steroidë të hundës mund të ndihmojnë disa njerëz."
+      ]
+    },
+    {
+      "heading": "Kur merren parasysh antibiotikët",
+      "paragraphs": [
+        "Antibiotikët nevojiten rrallë. Merren parasysh kur simptomat janë të rënda, me ethe të larta e dhimbje fytyre, zgjasin më shumë se rreth dhjetë ditë pa përmirësim, ose përkeqësohen pas përmirësimit fillestar. Njerëzit me imunitet të dobët ose sëmundje të tjera mund të kenë nevojë për trajtim më të hershëm."
+      ]
+    },
+    {
+      "heading": "Shenjat paralajmëruese e parandalimi",
+      "paragraphs": [
+        "Kërkoni kujdes urgjent për enjtje ose skuqje rreth syrit, shikim të dyfishtë, dhimbje koke të rëndë, qafë të ngurtë, hutim ose ndryshime të shikimit, pasi infeksioni rrallë mund të përhapet te syri ose truri. Nëse sinusiti kthehet vazhdimisht ose zgjat më shumë se dymbëdhjetë javë, një specialist i veshit, hundës e fytit mund të kërkojë shkaqe themelore. Shmangni duhanin, trajtoni alergjitë e lani duart për të kufizuar ftohjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trajtimi i një ftohjeje që ka kaluar te sinuset",
+      "text": "Imagjinoni që ftohja ju ka lënë me presion në fytyrë e hundë të bllokuar. Mund ta shpëlani hundën me tretësirë fiziologjike dy herë në ditë, të pushoni e të përdorni një spërkatës dekongjestionues jo më shumë se një javë."
+    },
+    {
+      "title": "Të dini kur të telefononi",
+      "text": "Supozoni që qepalla juaj bëhet e kuqe e e enjtur. Mund të kërkoni menjëherë ndihmë mjekësore."
+    }
+  ],
+  "questions": [
+    "A kam nevojë për antibiotikë apo mund të pres?",
+    "Çfarë mund të bëj për ta lehtësuar hundën e bllokuar?",
+    "A duhet të shoh një specialist nëse sinusiti kthehet vazhdimisht?"
+  ]
+}

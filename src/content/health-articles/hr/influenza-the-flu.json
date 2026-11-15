@@ -1,0 +1,51 @@
+{
+  "title": "Gripa (influenca)",
+  "intro": "Gripa je zarazna virusna infekcija nosa, grla i pluća koja se javlja uglavnom zimi. Teža je od obične prehlade i može dovesti do ozbiljnih komplikacija u starijih osoba, male djece, trudnica i ljudi s kroničnim bolestima. Cijepljenje, higijena i odmor glavna su sredstva.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Gripa obično počinje naglo s vrućicom, zimicom, bolovima u mišićima i zglobovima, glavoboljom, umorom, suhim kašljem i grloboljom. Simptomi obično traju oko tjedan dana, iako kašalj i umor mogu potrajati dulje. Obična prehlada obično je blaža, s curenjem nosa i kihanjem."
+      ]
+    },
+    {
+      "heading": "Kako se širi",
+      "paragraphs": [
+        "Virus se širi kapljicama pri kašljanju i kihanju te preko kontaminiranih ruku i površina. Ljudi su zarazni od otprilike dan prije simptoma do otprilike pet do sedam dana poslije. Pranje ruku, pokrivanje kašlja i ostanak kod kuće kad ste bolesni smanjuju širenje."
+      ]
+    },
+    {
+      "heading": "Liječenje gripe kod kuće",
+      "paragraphs": [
+        "Većina zdravih ljudi oporavlja se bez liječničkog liječenja. Odmarajte, pijte puno tekućine i koristite paracetamol ili ibuprofen za ublažavanje vrućice i boli, prema uputi. Antibiotici ne djeluju protiv virusa. Djeca ne smiju uzimati aspirin. Antivirusni lijekovi mogu se propisati osobama visokog rizika ako se započnu rano."
+      ]
+    },
+    {
+      "heading": "Komplikacije",
+      "paragraphs": [
+        "Gripa može dovesti do upale pluća, pogoršanja astme, problema sa srcem i dehidracije. Potražite liječničku pomoć zbog otežanog disanja, boli u prsima, smetenosti, trajne visoke vrućice, vrućice koja se vrati nakon poboljšanja ili kad se beba, starija osoba ili osoba s kroničnom bolešću razboli."
+      ]
+    },
+    {
+      "heading": "Cijepljenje",
+      "paragraphs": [
+        "Godišnje cijepljenje preporučuje se starijim osobama, trudnicama, osobama s kroničnim stanjima, zdravstvenim djelatnicima i drugima pod većim rizikom. Cjepivo se svake godine ažurira kako bi odgovaralo virusima u optjecaju. Ne daje potpunu zaštitu, ali smanjuje rizik od bolesti, a osobito od teških komplikacija. Blage nuspojave kao što je bolna ruka česte su."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ostanak kod kuće",
+      "text": "Zamislite da se probudite s vrućicom i bolovima. Mogli biste ostati kod kuće, odmarati, piti tekućinu, obavijestiti radno mjesto i izbjegavati bliski kontakt s ranjivim rođacima dok vam ne bude bolje."
+    },
+    {
+      "title": "Odlučivanje o cijepljenju",
+      "text": "Pretpostavite da imate astmu i niste sigurni oko cjepiva protiv gripe. Mogli biste pitati liječnika o vremenu, zaštiti i nuspojavama te dogovoriti termin u jesen."
+    }
+  ],
+  "questions": [
+    "Pripadam li skupini koja treba primiti godišnje cjepivo protiv gripe?",
+    "Kada bi mi antivirusni lijek bio koristan?",
+    "Koji bi me simptomi trebali navesti da potražim hitnu skrb?"
+  ]
+}

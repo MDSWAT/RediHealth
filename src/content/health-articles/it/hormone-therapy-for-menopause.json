@@ -1,0 +1,51 @@
+{
+  "title": "Terapia ormonale della menopausa: scelta individuale",
+  "intro": "La terapia ormonale allevia vampate, sudorazioni notturne e alcuni sintomi associati. È un’opzione, non un obbligo. Benefici e rischi dipendono da età, storia, preparazione e via e richiedono discussione individuale.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "La terapia sistemica agisce nel corpo; estrogeni vaginali a basso dosaggio trattano soprattutto secchezza e disturbi locali con diverso profilo di rischio. Chi ha utero necessita solitamente protezione endometriale con estrogeno sistemico."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Valutare sintomi, sanguinamenti inspiegati, storia mammaria, trombosi, fegato e farmaci. I test ormonali non servono sempre nella menopausa tipica. Quella precoce va discussa separatamente con possibili obiettivi diversi. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Esistono compresse, cerotti o gel con progestinico appropriato quando necessario e approcci non ormonali. Estrogeni orali e transdermici hanno rischi trombotici diversi. Preparati personalizzati o erbe non sono automaticamente più sicuri. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Concordare obiettivi e controlli regolari di dose, effetti e beneficio. Non esiste un’unica scadenza per tutti. La terapia non è contraccettiva: discutere prevenzione della gravidanza quando pertinente. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Perdite inspiegate vanno valutate prima; nuove o persistenti durante terapia vanno riferite. Dolore toracico, grave affanno, gamba gonfia dolorosa o segni di ictus richiedono urgenza senza aspettare controlli."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha vampate che interrompono il sonno e chiede vie e alternative secondo il proprio rischio, non la ricetta di un’amica."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben aiuta la partner col diario. Lei riferisce perdite persistenti senza attribuire ogni cambiamento a normale menopausa."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

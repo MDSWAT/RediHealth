@@ -1,0 +1,51 @@
+{
+  "title": "Kandidoza e gojës",
+  "intro": "Kandidoza e gojës është një infeksion kërpudhor i gojës i shkaktuar nga maja Candida. Prodhon njolla të bardha kremoze në gjuhë e faqe, dhimbje dhe një ndjenjë pambuku. Është e zakonshme te foshnjat, të moshuarit, njerëzit që përdorin steroide të thithura ose protezat dhe ata me imunitet të dobësuar. Zakonisht trajtohet lehtë.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Candida jeton normalisht në numër të vogël në gojë. Mund të shumohet tepër pas antibiotikëve, me gojë të thatë, kur përdoren kortikosteroide të thithura ose orale, me diabet, pas kimioterapisë, me HIV ose te duhanpirësit. Protezat që përshtaten dobët dhe nuk pastrohen mirë mund të strehojnë majanë."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Njolla të bardha ose të verdhërta që mund të hiqen duke i kruar, duke lënë zona të kuqe e të dhimbshme, janë tipike. Simptoma të tjera përfshijnë gojë që djeg, humbje shije, çarje në qoshet e gojës dhe shqetësim gjatë ngrënies ose gëlltitjes. Foshnjat mund të refuzojnë ushqimin dhe të shfaqin njolla të bardha brenda faqeve."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Gelet, pikat ose pastilat antifungale përdoren në gojë për rreth një javë ose siç udhëzohet dhe vazhdohen disa ditë pas zhdukjes së simptomave. Tabletat përdoren për infeksione të rënda ose të vazhdueshme. Shpëlani gojën pas përdorimit të steroideve të thithura. Pastroni protezat dhe zhyseni natën në tretësirë antifungale siç këshillohet. Nënat që ushqejnë me gji mund të kenë nevojë për trajtim edhe të thithkave."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Lani dhëmbët dy herë në ditë, pastroni protezat, shmangni mbajtjen e protezave natën, ndaloni duhanin, kontrolloni sheqerin në gjak dhe mbajeni gojën të lagësht. Sterilizoni thithkat e biberonit dhe biberonët e qetësues."
+      ]
+    },
+    {
+      "heading": "Kur të kërkoni ndihmë",
+      "paragraphs": [
+        "Shihni një mjek nëse kandidoza zgjat më shumë se dy javë, përsëritet shpesh, shkakton vështirësi në gëlltitje ose ndodh pa arsye të qartë, pasi mund të sinjalizojë sëmundje themelore."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trajtimi i një foshnjeje",
+      "text": "Imagjinoni që foshnja juaj ka njolla të bardha brenda faqeve. Mund t'i kërkoni mjekut ose farmacistit një xhel të përshtatshëm antifungal, të pastroni me kujdes biberonët dhe qetësuesit dhe ta përdorni ilaçin për gjithë periudhën."
+    },
+    {
+      "title": "Kujdesi për protezat",
+      "text": "Supozoni që mbani proteza dhe keni gjuhë të dhimbshme. Mund t'i hiqni protezat natën, t'i pastroni plotësisht dhe ta pyesni dentistin ose mjekun për trajtim antifungal."
+    }
+  ],
+  "questions": [
+    "Çfarë e shkakton kandidozën time dhe cilin trajtim duhet të përdor?",
+    "A kam nevojë për teste të mëtejshme nëse vazhdon të kthehet?",
+    "Si duhet t'i pastroj protezat, inhalatorët dhe pajisjet e foshnjës?"
+  ]
+}

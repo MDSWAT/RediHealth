@@ -1,0 +1,51 @@
+{
+  "title": "Recoltarea celulelor stem sanguine: ce poate aștepta donatorul",
+  "intro": "Celulele stem care formează sângele pot fi recoltate din circulație ori măduva osoasă pentru transplant. Recoltarea diferă de condiționarea și transplantul primitorului. Metoda depinde de situația clinică, nu numai de confortul donatorului.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Recoltarea periferică filtrează sângele prin afereză și returnează restul. Recoltarea medulară folosește ace în osul bazinului sub anestezie; nu prelevează din măduva spinării."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Evaluarea include istoricul sănătății, analize și consimțământ informat. Menționați medicamentele și posibilitatea sarcinii; întrebați despre deplasare, concediu și calendar înainte de condiționarea primitorului. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Înainte de recoltarea periferică, injecțiile prescrise cu factor de creștere mobilizează celulele și pot da temporar dureri osoase. Poate fi necesară repetarea; recoltarea medulară implică anestezie, durere locală și riscuri specifice procedurii. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Respectați instrucțiunile pentru medicamente, hidratare și activitate, fără calmante neaprobate. Spuneți imediat personalului despre furnicături, crampe ori stare rea în afereză; simptomele pot fi adesea corectate prompt. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Urmați contactul echipei pentru febră, durere în agravare, sângerare ori simptome persistente după recoltare. Durerea toracică sau abdominală severă, lipsa de aer ori colapsul cer evaluare urgentă. Recuperarea și sportul se individualizează."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira întreabă ce metodă este cerută și organizează transportul și concediul înainte de acordul pentru calendar."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben simte furnicături în jurul gurii în afereză. Anunță imediat personalul în loc să tacă până la final."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

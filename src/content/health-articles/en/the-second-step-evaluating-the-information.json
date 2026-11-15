@@ -1,0 +1,51 @@
+{
+  "title": "The second step: evaluating health information",
+  "intro": "Finding information is only half the task. The second step is to judge whether it is reliable, relevant and applicable to you. A few simple questions can help you separate trustworthy advice from marketing, opinion or outdated claims.",
+  "sections": [
+    {
+      "heading": "Who is behind the information",
+      "paragraphs": [
+        "Check who wrote the text, what their qualifications are and who funds the source. Reliable providers name their authors and explain how they work. Be careful with pages run by companies selling treatments or products related to the topic, and with anonymous posts."
+      ]
+    },
+    {
+      "heading": "What evidence is used",
+      "paragraphs": [
+        "Look for references to research such as systematic reviews, clinical trials or guidelines, rather than anecdotes or a single study. Does the text distinguish between proven and uncertain claims? Information about treatments should describe benefits and risks, alternatives and the option of doing nothing. Claims of no side effects are a warning sign."
+      ]
+    },
+    {
+      "heading": "How are numbers presented",
+      "paragraphs": [
+        "Relative figures such as halving your risk can sound impressive but mislead if the starting risk is small. Absolute numbers, such as how many in a hundred people benefit, are clearer. Check whether results come from people like you, and whether outcomes matter in daily life or are only laboratory values."
+      ]
+    },
+    {
+      "heading": "How current it is",
+      "paragraphs": [
+        "Medical knowledge changes, so look for a date and signs of regular updates. Old information may recommend treatments now abandoned or overlook newer options. Check whether the information fits your country, since health systems and recommendations vary."
+      ]
+    },
+    {
+      "heading": "Making use of it",
+      "paragraphs": [
+        "Compare several reliable sources. If advice conflicts, ask your doctor which applies to your situation. Use information to prepare questions, not to diagnose yourself or stop treatment. Trust your concerns, and seek support if information overwhelms you."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Testing a claim",
+      "text": "Imagine a page says a supplement reduces risk of illness by half. You could ask how many people took part, what the absolute risk change was and who funded the research."
+    },
+    {
+      "title": "Comparing sources",
+      "text": "Suppose two sites give different advice. You might check their dates and sources and ask your doctor which is more suitable for you."
+    }
+  ],
+  "questions": [
+    "How reliable is this information for my situation?",
+    "What are the absolute benefits and risks?",
+    "Is there newer evidence or a guideline that I should know about?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Krpeljni meningoencefalitis (KME)",
+  "intro": "Krpeljni meningoencefalitis je virusna infekcija koju šire ujedi krpelja u dijelovima Europe i Azije. Mnoge infekcije uzrokuju malo ili blage simptome, ali neke vode do upale mozga i njegovih ovojnica. Nema lijeka, ali cijepljenje pruža pouzdanu zaštitu ljudima u zahvaćenim regijama.",
+  "sections": [
+    {
+      "heading": "Kako se prenosi",
+      "paragraphs": [
+        "Virus nose krpelji u određenim rizičnim područjima koja karti javnozdravstvene vlasti. Prenosi se unutar minuta od ujeda, za razliku od lajmske bolesti kojoj treba nekoliko sati. Rijetko se može prenijeti nepasteriziranim mlijekom zaraženih životinja."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Mnogi ljudi nemaju simptoma. U prvoj fazi simptomi nalik gripi, kao što su vrućica, glavobolja i umor, javljaju se jedan do dva tjedna nakon ujeda i traju nekoliko dana. Nakon razdoblja bez simptoma, neki ljudi razviju drugu fazu s visokom vrućicom, jakom glavoboljom, ukočenim vratom, smetenošću, problemima s ravnotežom ili slabošću. Odrasli obično imaju težu bolest od djece."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i liječenje",
+      "paragraphs": [
+        "Krvne pretrage otkrivaju protutijela, a pregled likvora može pokazati znakove upale. Nema specifičnog antivirusnog liječenja pa je skrb potporna: odmor, tekućina, lijekovi protiv bolova i bolničko liječenje kod teških slučajeva. Većina ljudi se potpuno oporavi, ali neki ostaju s dugotrajnim problemima kao što su glavobolje, teškoće s koncentracijom ili paraliza, a mali broj umire."
+      ]
+    },
+    {
+      "heading": "Cijepljenje",
+      "paragraphs": [
+        "Cijepljenje se preporučuje ljudima koji žive u rizičnim područjima ili putuju u njih i mogu biti izloženi krpeljima. Osnovni ciklus sastoji se od tri doze tijekom otprilike godine dana, uz docjepljivanja u razmacima koje određuju proizvođač i nacionalne smjernice. Za putnike postoji brzi raspored. Cjepivo se dobro podnosi, a nuspojave su obično blage, kao što je bolnost ruke."
+      ]
+    },
+    {
+      "heading": "Ostala zaštita",
+      "paragraphs": [
+        "Cijepljenje ne štiti od lajmske bolesti pa mjere zaštite od krpelja ostaju važne. Brzo uklanjajte krpelje, nosite zaštitnu odjeću, koristite repelent i pregledajte tijelo nakon aktivnosti na otvorenom. Izbjegavajte nepasterizirane mliječne proizvode u rizičnim područjima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planiranje putovanja",
+      "text": "Zamislite da planirate kampiranje u rizičnom području. Mogli biste pitati liječnika o brzom rasporedu cijepljenja barem nekoliko tjedana prije polaska."
+    },
+    {
+      "title": "Ažurna docjepljivanja",
+      "text": "Pretpostavite da ste osnovni ciklus završili prije nekoliko godina. Mogli biste provjeriti cijepnu iskaznicu i pitati kada je sljedeće docjepljivanje."
+    }
+  ],
+  "questions": [
+    "Živim li u području rizika od KME-a ili putujem u njega?",
+    "Koji raspored cijepljenja je prikladan za mene?",
+    "Koji simptomi nakon ujeda krpelja znače da trebam potražiti liječničku pomoć?"
+  ]
+}

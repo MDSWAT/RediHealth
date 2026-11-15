@@ -1,0 +1,52 @@
+{
+  "title": "Păstrarea unei liste a medicamentelor",
+  "intro": "O listă a medicamentelor consemnează fiecare medicament pe care îl luați, inclusiv medicamentele pe bază de prescripție, produsele fără prescripție, vitaminele și remediile din plante. Păstrarea ei la zi ajută medicii, farmaciștii și îngrijitorii să evite interacțiunile periculoase și greșelile. Este deosebit de utilă dacă luați mai multe medicamente sau mergeți la mai mulți medici.",
+  "sections": [
+    {
+      "heading": "De ce contează o listă",
+      "paragraphs": [
+        "Multe persoane iau mai multe medicamente prescrise de profesioniști diferiți. Fără o imagine de ansamblu, dublurile, combinațiile dăunătoare și schimbările uitate sunt mai probabile. În caz de urgență sau de internare în spital, o listă permite personalului să înțeleagă rapid tratamentul dumneavoastră."
+      ]
+    },
+    {
+      "heading": "Ce să includeți",
+      "paragraphs": [
+        "Pentru fiecare medicament, notați denumirea, concentrația, doza, cât de des și la ce ore îl luați, motivul, cine l-a prescris și data începerii. Adăugați suplimentele, produsele din plante, picăturile pentru ochi, cremele, plasturii, inhalatoarele și medicamentele luate doar la nevoie. Consemnați alergiile și efectele secundare pe care le-ați avut."
+      ]
+    },
+    {
+      "heading": "Cum s-o păstrați",
+      "paragraphs": [
+        "Puteți folosi un șablon tipărit, un caiet sau o aplicație pe telefon. Păstrați o copie în portofel sau în geantă și dați una unei persoane de încredere. Actualizați-o ori de câte ori un medicament este început, oprit sau schimbat și tăiați clar medicamentele întrerupte, cu data. Multe farmacii și cabinete vă pot tipări o listă actuală."
+      ]
+    },
+    {
+      "heading": "Folosirea ei la consultații",
+      "paragraphs": [
+        "Aduceți lista sau cutiile cu medicamente la fiecare vizită, inclusiv la farmacie și la consultațiile din spital, și cereți profesionistului s-o verifice. Întrebați ce medicamente sunt încă necesare, care pot fi oprite și dacă vreunul interacționează cu tratamente noi sau cu alcoolul.",
+        "O revizuire anuală a medicamentelor cu medicul sau cu farmacistul este utilă, în special pentru persoanele în vârstă care iau multe medicamente."
+      ]
+    },
+    {
+      "heading": "Folosirea în siguranță",
+      "paragraphs": [
+        "Nu opriți și nu schimbați dozele fără sfat. Păstrați medicamentele în siguranță, verificați datele de expirare și eliminați medicamentele neutilizate prin farmacie. Spuneți tuturor furnizorilor de îngrijiri de sănătate tot ce luați, inclusiv produsele cumpărate online."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Internarea în spital",
+      "text": "Imaginați-vă că sunteți dus la spital după o cădere. Dacă aveți o listă actuală, personalul poate vedea imediat anticoagulantul și medicamentele pentru inimă și poate evita adăugiri nesigure."
+    },
+    {
+      "title": "Revizuirea cu un farmacist",
+      "text": "Presupuneți că luați opt tablete pe zi. Ați putea aduce lista la farmacie și ați putea întreba dacă vreo combinație este riscantă și dacă dozele ar putea fi simplificate."
+    }
+  ],
+  "questions": [
+    "Mai sunt necesare toate medicamentele de pe lista mea?",
+    "Interacționează vreunul dintre medicamentele, suplimentele sau alimentele mele?",
+    "Cât de des ar trebui revizuite medicamentele mele?"
+  ]
+}

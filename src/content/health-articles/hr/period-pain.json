@@ -1,0 +1,51 @@
+{
+  "title": "Bol pri menstruaciji",
+  "intro": "Bol pri menstruaciji, ili dismenoreja, je grčevita bol u donjem dijelu trbuha prije ili tijekom menstruacije. Vrlo je česta, osobito u tinejdžerica i mladih žena. Većina boli pri menstruaciji nije znak bolesti i može se ublažiti toplinom, tjelovježbom i lijekovima protiv bolova, ali jaka bol zaslužuje istraživanje.",
+  "sections": [
+    {
+      "heading": "Zašto se događa",
+      "paragraphs": [
+        "Prije i tijekom menstruacije maternica proizvodi tvari zvane prostaglandini zbog kojih se njezin mišić steže da odbaci sluznicu. Visoke razine uzrokuju jače kontrakcije i bol, a mogu uzrokovati i mučninu, proljev ili glavobolje. Ta primarna bol pri menstruaciji često počinje u prvim godinama nakon prve menstruacije i obično se smanjuje s dobi i nakon poroda."
+      ]
+    },
+    {
+      "heading": "Kada je moguć drugi uzrok",
+      "paragraphs": [
+        "Sekundarna bol pri menstruaciji nastaje zbog stanja kao što su endometrioza, adenomioza, miomi ili upala zdjelice. Često počinje kasnije u životu, s vremenom se pogoršava, traje dulje od krvarenja ili dolazi s obilnim krvarenjem, boli pri spolnom odnosu ili između menstruacija. To zahtijeva liječničku procjenu."
+      ]
+    },
+    {
+      "heading": "Što možete učiniti",
+      "paragraphs": [
+        "Toplina iz termofora ili tople kupke opušta mišić. Nježno vježbanje, kao što su hodanje, joga ili plivanje, može pomoći. Opuštanje i dovoljno sna mogu ublažiti simptome. Neke žene smatraju korisnima TENS uređaje."
+      ]
+    },
+    {
+      "heading": "Lijekovi",
+      "paragraphs": [
+        "Protuupalni lijekovi protiv bolova kao što je ibuprofen dobro djeluju kad se uzmu pri prvom znaku boli ili dan prije, ako su menstruacije predvidljive, i uzimaju s hranom. Paracetamol je alternativa. Hormonska kontracepcija, uključujući pilulu, hormonsku spiralu ili implantat, smanjuje proizvodnju prostaglandina i često ublažava menstruacije i bol. Razgovarajte o mogućnostima s liječnikom."
+      ]
+    },
+    {
+      "heading": "Kada posjetiti liječnika",
+      "paragraphs": [
+        "Potražite savjet ako bol remeti školu, posao ili svakodnevni život, ne reagira na jednostavne mjere, počinje iznenada u odrasloj dobi ili dolazi s vrućicom, neobičnim iscjetkom ili vrlo obilnim krvarenjem. Pregled i ultrazvuk mogu tražiti temeljne uzroke. Bol nije nešto što morate prihvatiti kao normalno."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planiranje unaprijed",
+      "text": "Zamislite da je vaša bol pri menstruaciji najjača prvog dana. Mogli biste uzeti ibuprofen s hranom čim počnu grčevi, koristiti topli oblog i planirati lakše aktivnosti ako je moguće."
+    },
+    {
+      "title": "Iznošenje liječniku",
+      "text": "Pretpostavite da se vaša bol postupno pogoršava tijekom nekoliko godina. Mogli biste voditi dnevnik boli, krvarenja i učinaka na svakodnevni život i pitati o endometriozi."
+    }
+  ],
+  "questions": [
+    "Može li moju bol pri menstruaciji uzrokovati neko osnovno stanje?",
+    "Koji je lijek protiv bolova ili hormonska mogućnost najbolja za mene?",
+    "Kada trebam ultrazvuk ili posjet specijalistu?"
+  ]
+}

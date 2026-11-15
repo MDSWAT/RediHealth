@@ -1,0 +1,51 @@
+{
+  "title": "What happens during a brain haemorrhage?",
+  "intro": "A brain haemorrhage is bleeding inside or around the brain. It is a medical emergency that can cause sudden severe symptoms and lasting damage. Quick treatment improves the chance of survival and recovery. This text is general information and does not replace emergency care.",
+  "sections": [
+    {
+      "heading": "What it is",
+      "paragraphs": [
+        "Bleeding occurs when a blood vessel in the brain bursts. Blood can collect within the brain tissue, called intracerebral haemorrhage, or in the spaces around the brain, such as subarachnoid haemorrhage. Bleeding raises pressure in the skull and damages brain cells. Causes include high blood pressure, a ruptured aneurysm, vascular malformations, head injury and blood-thinning medicines."
+      ]
+    },
+    {
+      "heading": "Warning signs",
+      "paragraphs": [
+        "Sudden severe headache, often described as the worst ever, vomiting, weakness or numbness on one side, drooping of the face, trouble speaking or understanding, vision problems, confusion, seizures or loss of consciousness. Call the emergency number immediately and do not drive yourself."
+      ]
+    },
+    {
+      "heading": "Diagnosis and emergency treatment",
+      "paragraphs": [
+        "A computed tomography scan of the head quickly shows bleeding. Treatment depends on the type and cause. Doctors control blood pressure, reverse blood thinners, and monitor the brain pressure. Surgery may be needed to remove blood, repair an aneurysm or relieve pressure. Care is often in an intensive care or specialist stroke unit."
+      ]
+    },
+    {
+      "heading": "Recovery",
+      "paragraphs": [
+        "Recovery can take months and depends on location and size of bleeding. Rehabilitation includes physiotherapy, occupational therapy and speech therapy. Some people recover well, while others have lasting weakness, speech problems, fatigue or changes in thinking and mood. Support for family members is important."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Control blood pressure, avoid smoking and excess alcohol, take prescribed medicines correctly and attend check-ups. Discuss risks with your doctor if you take anticoagulants or have a family history of aneurysms."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Acting fast",
+      "text": "Imagine a relative suddenly has a severe headache and slurred speech. You could call the emergency number right away and note the time symptoms began."
+    },
+    {
+      "title": "Supporting recovery",
+      "text": "Suppose a family member is leaving hospital. You might ask for a rehabilitation plan and a contact for ongoing support."
+    }
+  ],
+  "questions": [
+    "What caused the bleeding, and can it happen again?",
+    "Which rehabilitation will help most?",
+    "What can lower the risk of another bleed?"
+  ]
+}

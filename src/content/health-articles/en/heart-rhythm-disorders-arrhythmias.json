@@ -1,0 +1,51 @@
+{
+  "title": "Heart rhythm disorders: identifying the pattern",
+  "intro": "Arrhythmias are heartbeats that are unusually fast, slow or irregular. Some extra beats are harmless, while other rhythms need urgent treatment. A sensation of palpitations alone cannot identify which rhythm is present.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Record whether episodes start abruptly, how long they last and whether they occur with exercise, faintness or illness. Caffeine, alcohol, medicines and underlying heart or thyroid disease may contribute, but not every episode has an obvious trigger."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "An ECG records electrical activity; intermittent episodes may need portable monitoring. Blood tests and heart imaging are selected by the findings. A normal tracing between episodes does not always exclude an arrhythmia. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Treatment may involve observation, medicines, ablation, a pacemaker or a defibrillator depending on diagnosis. Some rhythms also require stroke-risk assessment and anticoagulation; a slower pulse does not itself remove clot risk. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Keep a symptom record and take medicines as agreed. Discuss driving, work and exercise if fainting occurs. Wearable alerts can prompt assessment but do not replace diagnosis; do not take someone else’s heart medicine. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Palpitations with chest pain, severe breathlessness, fainting or collapse require urgent emergency help. For new persistent symptoms without these features, seek prompt clinical advice rather than waiting indefinitely for a device to record them."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira has brief episodes missed by the office ECG. The clinician arranges suitable monitoring instead of assuming a normal short tracing excludes the problem."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben feels better after rate treatment for a diagnosed rhythm. He asks whether stroke-prevention medicine is still needed rather than stopping it himself."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

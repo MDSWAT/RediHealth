@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh gjatë një ekzaminimi të lëkurës?",
+  "intro": "Një ekzaminim i lëkurës është një kontroll i lëkurës për ndryshime si nishane të pazakonta, njolla ose skuqje. Përdoret për të zbuluar herët kancerin e lëkurës e për të diagnostikuar gjendje të lëkurës. Është i shpejtë e pa dhimbje, e mund të bëhet nga një mjek familjar ose dermatolog.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "Kanceri i lëkurës, përfshirë melanomën, trajtohet më mirë kur gjendet herët. Mjekët ekzaminojnë lëkurën për shenja të reja ose që ndryshojnë, vlerësojnë skuqjet e monitorojnë gjendjet ekzistuese. Njerëzit me shumë nishane, lëkurë të çelët, djegie të mëparshme nga dielli, histori familjare melanome ose imunitet të dobët përfitojnë nga kontrollet e rregullta."
+      ]
+    },
+    {
+      "heading": "Si bëhet ekzaminimi",
+      "paragraphs": [
+        "Zhvishuni deri te të brendshmet e mjeku inspekton lëkurën nga koka te këmbët, përfshirë kokën, midis gishtërinjve të këmbës, thonjtë e zonën gjenitale nëse nevojitet, me pëlqimin tuaj. Një xham zmadhues dore i quajtur dermatoskop tregon struktura brenda nishaneve. Mund të bëhen fotografi për të ndjekur ndryshimet."
+      ]
+    },
+    {
+      "heading": "Çfarë kërkojnë mjekët",
+      "paragraphs": [
+        "Shohin asimetrinë, kufijtë e parregullt, ngjyrën e pabarabartë, një diametër më të madh se gjashtë milimetra e evolucionin, që do të thotë ndryshim me kalimin e kohës. Nishanet që kruhen, gjakderdhin ose rriten, e plagët që nuk shërohen, janë gjithashtu shqetësuese. Shumica e njollave janë të padëmshme."
+      ]
+    },
+    {
+      "heading": "Pas ekzaminimit",
+      "paragraphs": [
+        "Nëse diçka duket e dyshimtë, një mostër e vogël ose e gjithë njolla mund të hiqet me anestezi lokale e të ekzaminohet. Rezultatet zgjasin ditë. Do t'ju këshillojnë si ta kontrolloni lëkurën tuaj e ta mbroni nga dielli. Pyesni sa shpesh këshillohen kontrollet."
+      ]
+    },
+    {
+      "heading": "Kontrolli i lëkurës suaj",
+      "paragraphs": [
+        "Shikoni lëkurën rregullisht në dritë të mirë, duke përdorur një pasqyrë për shpinën. Shënoni njolla të reja ose ndryshime, e bëni fotografi për të krahasuar. Përdorni hijen, rrobat, kapelat e kremin e diellit, e shmangni solariumin. Shihni një mjek shpejt për çdo nishan që ndryshon."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vetëkontrolli i rregullt",
+      "text": "Imagjinoni që doni të monitoroni nishanet tuaj. Mund t'i fotografoni çdo disa muaj e t'ia tregoni ndryshimet mjekut."
+    },
+    {
+      "title": "Raportimi i një ndryshimi",
+      "text": "Supozoni që një nishan ka rritur e kruhet. Mund të caktoni shpejt një takim e të kërkoni një ekzaminim dermatoskopik."
+    }
+  ],
+  "questions": [
+    "A ka nevojë ndonjë nga njollat e mia të hiqet ose të vëzhgohet?",
+    "Sa shpesh duhet të kontrollohet lëkura ime?",
+    "Si mund ta mbroj më mirë lëkurën time?"
+  ]
+}

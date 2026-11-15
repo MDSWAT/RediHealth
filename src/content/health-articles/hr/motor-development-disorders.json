@@ -1,0 +1,51 @@
+{
+  "title": "Poremećaji motoričkog razvoja u djece",
+  "intro": "Djeca uče sjediti, puzati, hodati, hvatati i trčati različitom brzinom, ali neka imaju jasna kašnjenja ili teškoće s kretanjem i koordinacijom. Poremećaji motoričkog razvoja mogu utjecati na igru, školu i samopoštovanje. Rana procjena i terapija pomažu mnogoj djeci da dostignu vršnjake ili se bolje snalaze.",
+  "sections": [
+    {
+      "heading": "Normalan razvoj",
+      "paragraphs": [
+        "Većina beba podiže glavu u prvim mjesecima, okreće se, sjedi bez oslonca oko šest do devet mjeseci, puzi ili se vuče i čini prve korake između otprilike devet i osamnaest mjeseci. Fine motoričke vještine kao što su hvatanje, crtanje i korištenje pribora za jelo razvijaju se tijekom predškolskih godina. Postoji širok raspon normalnog."
+      ]
+    },
+    {
+      "heading": "Znakovi zabrinutosti",
+      "paragraphs": [
+        "Mogući znakovi upozorenja uključuju nehodanje do otprilike osamnaest mjeseci, vrlo mlohave ili ukočene mišiće, korištenje samo jedne strane tijela, gubitak vještina, trajnu nespretnost, često padanje, teškoće s vezanjem vezica, rukopisom ili igrama loptom izvan onoga što vršnjaci mogu i izbjegavanje tjelesnih aktivnosti. Prijevremeni porod i neka medicinska stanja povećavaju rizik."
+      ]
+    },
+    {
+      "heading": "Uzroci i procjena",
+      "paragraphs": [
+        "Uzroci uključuju nedonošenost, ozljedu mozga pri rođenju, genetska ili mišićna stanja i stanja kao što je razvojni poremećaj koordinacije, kod kojeg se ne nalazi jasan uzrok. Pedijatar pregledava dijete, gleda sluh, vid i rast i može uputiti neurolozima ili specijaliziranim razvojnim centrima. Standardni testovi procjenjuju motoričke vještine i isključuju druga stanja."
+      ]
+    },
+    {
+      "heading": "Terapija i potpora",
+      "paragraphs": [
+        "Fizioterapija i radna terapija grade snagu, ravnotežu, koordinaciju i vještine svakodnevnog života kroz vježbe temeljene na igri. Vježbanje specifičnih zadataka je najučinkovitije. Pomagala kao što su posebni držači olovke ili potpore mogu pomoći, a terapeuti savjetuju roditelje o aktivnostima kod kuće. Za neka neurološka stanja dodaju se lijekovi ili ortopedska skrb."
+      ]
+    },
+    {
+      "heading": "Pomoć kod kuće i u školi",
+      "paragraphs": [
+        "Potičite aktivnu igru, trčanje, penjanje i igre loptom bez pritiska. Zamolite učitelje za strpljenje, dodatno vrijeme i alternative u sportu. Usredotočite se na snage i hvalite napredak jer se djeca s motoričkim problemima mogu sramiti ili izbjegavati grupne aktivnosti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Iznošenje zabrinutosti",
+      "text": "Zamislite da vaše dvogodišnje dijete još ne hoda i često pada. Mogli biste zabilježiti što može i što ne može, ponijeti video pedijatru i pitati o uputnici za procjenu."
+    },
+    {
+      "title": "Potpora u školi",
+      "text": "Pretpostavite da se vaše osmogodišnje dijete muči s rukopisom. Mogli biste s učiteljem razgovarati o mogućnostima, kao što su veći papir, držači olovke, dodatno vrijeme ili korištenje tipkovnice."
+    }
+  ],
+  "questions": [
+    "Je li razvoj mog djeteta unutar normalnog raspona i koja je daljnja procjena potrebna?",
+    "Koja bi terapija pomogla mom djetetu i koliko često?",
+    "Kako možemo podržati svoje dijete kod kuće i u školi?"
+  ]
+}

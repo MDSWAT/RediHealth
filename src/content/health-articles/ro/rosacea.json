@@ -1,0 +1,51 @@
+{
+  "title": "Rozaceea",
+  "intro": "Rozaceea este o afecțiune cronică frecventă a pielii, care provoacă roșeață a feței, vase mici de sânge vizibile și uneori umflături și coșuri. Afectează mai ales adulții cu pielea deschisă la culoare și tinde să facă pusee și să se liniștească. Nu poate fi vindecată, dar tratamentul și evitarea factorilor declanșatori o țin sub control.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Rozaceea afectează de obicei zona centrală a feței: obrajii, nasul, fruntea și bărbia. Trăsăturile includ înroșirea, roșeața persistentă, vase de tip păianjen, umflături și pustule care seamănă cu acneea, dar fără comedoane, și o senzație de arsură sau înțepătură. La unele persoane, în special la bărbați, nasul se poate îngroșa. Ochii pot fi uscați, roșii și iritați, ceea ce se numește rozacee oculară."
+      ]
+    },
+    {
+      "heading": "Cauze și factori declanșatori",
+      "paragraphs": [
+        "Cauza nu este pe deplin cunoscută și implică probabil reactivitatea vaselor de sânge, inflamația și microbii pielii. Factorii declanșatori frecvenți includ soarele, căldura, vântul rece, băuturile fierbinți, alcoolul, mâncarea picantă, stresul, efortul intens și anumite produse pentru piele. Factorii declanșatori variază, așa că un jurnal ajută la identificarea celor ai dumneavoastră."
+      ]
+    },
+    {
+      "heading": "Îngrijirea pielii",
+      "paragraphs": [
+        "Folosiți produse de curățare blânde, creme hidratante potrivite pielii sensibile și o cremă minerală de protecție solară zilnic. Evitați exfolierile, loțiunile tonice cu alcool și produsele agresive și uscați pielea tamponând. Protejați fața de temperaturile extreme."
+      ]
+    },
+    {
+      "heading": "Tratament medical",
+      "paragraphs": [
+        "Cremele și gelurile cu acid azelaic, metronidazol, ivermectină sau brimonidină pot reduce umflăturile sau roșeața. Pentru rozaceea inflamatorie mai extinsă se folosesc antibiotice din grupa tetraciclinelor în doză mică sau, în cazuri selectate, izotretinoin. Tratamentele cu laser sau cu lumină reduc vasele vizibile. Tratamentul durează săptămâni până să arate beneficii și este adesea necesară o terapie de întreținere. Simptomele oculare precum arsura, senzația de nisip și roșeața necesită atenția unui medic, deoarece pot afecta vederea."
+      ]
+    },
+    {
+      "heading": "Viața cu rozacee",
+      "paragraphs": [
+        "Rozaceea poate afecta încrederea în sine și dispoziția. Tratamentul eficient, răbdarea și sprijinul din partea celor care înțeleg afecțiunea îmbunătățesc calitatea vieții. Mergeți la controale, deoarece tratamentul este adesea ajustat în timp."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Identificarea factorilor declanșatori",
+      "text": "Imaginați-vă că vi se înroșește fața după un pahar de vin roșu și o masă fierbinte. Ați putea nota factorii declanșatori într-un jurnal timp de o lună și ați putea discuta schimbările cu medicul."
+    },
+    {
+      "title": "Alegerea produselor",
+      "text": "Presupuneți că pielea vă înțeapă când aplicați o cremă nouă. Ați putea înceta s-o folosiți, ați putea trece la o cremă hidratantă simplă și ați putea cere unui farmacist sau dermatolog opțiuni blânde."
+    }
+  ],
+  "questions": [
+    "Este aceasta rozacee și ce tratament s-ar potrivi tipului meu?",
+    "Ce produse de îngrijire a pielii sunt sigure pentru mine?",
+    "Ar putea fi afectați ochii mei și ar trebui verificați?"
+  ]
+}

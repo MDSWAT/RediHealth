@@ -1,0 +1,51 @@
+{
+  "title": "Korištenje AVD-a u hitnosti odrasle osobe",
+  "intro": "AVD analizira ritam i daje šok samo kada treba. Svatko može slijediti upute. Ne čekajte čitanje: zovite 112 za osobu bez reakcije i slijedite dispečera.",
+  "sections": [
+    {
+      "heading": "Prepoznajte i zovite",
+      "paragraphs": [
+        "Provjerite sigurnost i reakciju, zovite na zvučnik. Procijenite disanje tijekom poziva: povremeni hropci nisu normalni. Bez reakcije i normalnog disanja počnite oživljavanje i tražite AVD."
+      ]
+    },
+    {
+      "heading": "Nastavite oživljavanje",
+      "paragraphs": [
+        "Odraslome pritišćite sredinu prsiju 5–6 cm brzinom 100–120 u minuti uz puni povrat. Ako ste obučeni izmjenjujte 30 pritisaka i 2 upuha; inače neprekidne pritiske. Ne ostavljajte osobu radi dalekog traženja."
+      ]
+    },
+    {
+      "heading": "Uključite i postavite",
+      "paragraphs": [
+        "Otvorite ili uključite, slijedite sliku i glas. Otkrijte prsa, osušite kožu i stavite elektrode prema slici. Uz pomagača nastavite pritiske tijekom postavljanja. Ne stavite izravno preko implantata."
+      ]
+    },
+    {
+      "heading": "Ne dirajte",
+      "paragraphs": [
+        "Nitko ne dira tijekom analize ili šoka. Neki daju automatski, drugi traže tipku. Odmah nastavite poslije šoka ili upute bez šoka. Bez šoka ne znači bez potrebe za pomoći."
+      ]
+    },
+    {
+      "heading": "Nastavite pomoć",
+      "paragraphs": [
+        "Ostavite elektrode i nastavite do stručnjaka, normalnog disanja, opasnosti ili nemogućnosti. Javite promjene. Djeca i dojenčad trebaju dobne upute i postavke; ne odgađajte zbog dvojbe."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pritišće dok pomagač donosi AVD. Dijele zadatke i ne diraju kada analiza ili šok zahtijevaju."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben čuje da šok nije potreban. Nastavlja oživljavanje bez pretpostavke oporavka."
+    }
+  ],
+  "questions": [
+    "Gdje mogu vježbati oživljavanje i defibrilator s instruktorom?",
+    "Kako se upute razlikuju za dijete ili utapanje?",
+    "Kako dobiti podršku nakon pomoći u hitnom stanju?"
+  ]
+}

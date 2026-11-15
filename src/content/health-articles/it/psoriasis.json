@@ -1,0 +1,51 @@
+{
+  "title": "Psoriasi",
+  "intro": "La psoriasi è una condizione infiammatoria cronica della pelle in cui le cellule cutanee si moltiplicano troppo in fretta, producendo chiazze rosse, squamose e talvolta pruriginose. Non è contagiosa. Segue un decorso con riacutizzazioni e periodi più calmi ed esistono molti trattamenti efficaci, dalle creme ai moderni farmaci iniettabili.",
+  "sections": [
+    {
+      "heading": "Sintomi e tipi",
+      "paragraphs": [
+        "La forma più comune è la psoriasi a placche, con chiazze rosse ben delimitate coperte da squame argentee su gomiti, ginocchia, cuoio capelluto e parte bassa della schiena. Altre forme comprendono la psoriasi guttata, con piccole gocce dopo un'infezione della gola, la psoriasi inversa nelle pieghe della pelle, la psoriasi pustolosa e alterazioni delle unghie come i puntini. La psoriasi può colpire anche le articolazioni."
+      ]
+    },
+    {
+      "heading": "Cause e fattori scatenanti",
+      "paragraphs": [
+        "La psoriasi nasce da una risposta immunitaria iperattiva combinata con fattori genetici. Le riacutizzazioni possono essere scatenate da infezioni, lesioni della pelle, stress, certi farmaci, fumo, alcol e obesità. Le persone con psoriasi hanno un rischio più alto di malattie cardiovascolari, diabete e depressione, quindi la salute complessiva conta."
+      ]
+    },
+    {
+      "heading": "Trattamento della psoriasi lieve",
+      "paragraphs": [
+        "Gli idratanti ammorbidiscono le squame. Le creme contenenti corticosteroidi, derivati della vitamina D o una combinazione riducono infiammazione e desquamazione. L'acido salicilico rimuove le squame. Il trattamento si applica come indicato per evitare l'assottigliamento della pelle. La psoriasi del cuoio capelluto può richiedere shampoo e soluzioni speciali."
+      ]
+    },
+    {
+      "heading": "Trattamento della psoriasi da moderata a grave",
+      "paragraphs": [
+        "La fototerapia con luce ultravioletta è efficace. Compresse come metotrexato, ciclosporina o farmaci più recenti a piccole molecole sopprimono il sistema immunitario e richiedono monitoraggio. I farmaci biologici, somministrati per iniezione, colpiscono specifici segnali immunitari e spesso puliscono la pelle in modo spettacolare, ma aumentano il rischio di infezioni e richiedono uno screening per tubercolosi ed epatite. La scelta dipende da gravità, coinvolgimento articolare, altre malattie e preferenze."
+      ]
+    },
+    {
+      "heading": "Vivere con la psoriasi",
+      "paragraphs": [
+        "Cura della pelle, evitare i fattori scatenanti, smettere di fumare, ridurre l'alcol, perdere peso se serve e gestire lo stress aiutano. La psoriasi può influire su autostima e relazioni e i gruppi di sostegno e l'aiuto psicologico sono preziosi. Informa il medico se le articolazioni fanno male o si gonfiano, perché il trattamento precoce dell'artrite psoriasica previene i danni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pianificare il trattamento",
+      "text": "Immagina che le tue chiazze continuino a ripresentarsi sui gomiti. Potresti chiedere di una crema combinata, per quanto tempo usarla e che cosa fare se le riacutizzazioni tornano."
+    },
+    {
+      "title": "Parlare del dolore alle articolazioni",
+      "text": "Supponi che le dita diventino gonfie e rigide al mattino. Potresti dirlo al dermatologo e chiedere l'invio a un reumatologo."
+    }
+  ],
+  "questions": [
+    "Quanto è grave la mia psoriasi e quale trattamento fa per me?",
+    "Quali sono i rischi dei farmaci più forti e come vengono monitorati?",
+    "Il mio dolore articolare potrebbe essere legato alla psoriasi?"
+  ]
+}

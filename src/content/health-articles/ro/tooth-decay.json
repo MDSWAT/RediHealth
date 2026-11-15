@@ -1,0 +1,51 @@
+{
+  "title": "Cariile dentare",
+  "intro": "Cariile dentare sunt deteriorarea țesutului dur al unui dinte, provocată de acizii produși de bacteriile din placa dentară. Sunt una dintre cele mai frecvente probleme de sănătate din lume, dar în mare parte evitabile. Cariile timpurii pot fi inversate, în timp ce cele avansate necesită tratament la dentist.",
+  "sections": [
+    {
+      "heading": "Cum se dezvoltă cariile",
+      "paragraphs": [
+        "Bacteriile din placă se hrănesc cu zaharuri și produc acid care dizolvă mineralele din smalț. Alimentele și băuturile zaharoase frecvente, curățarea slabă, gura uscată și expunerea scăzută la fluor cresc riscul. La început apare o pată albă pe smalț. Dacă procesul continuă, se formează o cavitate care poate ajunge la dentină și la nerv."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Cariile timpurii nu provoacă simptome. Semnele de mai târziu includ sensibilitate la dulce, cald sau rece, pete maronii sau negre vizibile, găuri în dinți, durere de dinți și gust neplăcut. Durerea severă, pulsatilă, umflarea feței sau febra sugerează o infecție care necesită îngrijiri stomatologice urgente."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Leziunile timpurii pot fi remineralizate cu fluor și o curățare mai bună. Cavitățile se tratează prin îndepărtarea părții cariate și obturarea dintelui. Dacă mărirea cariei ajunge la nerv, tratamentul de canal poate salva dintele, altfel dintele este extras. Coroanele protejează dinții grav deteriorați. Tratamentul timpuriu este mai simplu, mai ieftin și mai puțin dureros."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Periați-vă dinții de două ori pe zi cu pastă cu fluor, două minute, curățați între dinți zilnic, limitați gustările și băuturile zaharoase la mese și clătiți-vă cu apă după băuturile acide sau dulci. Copiii trebuie să folosească o cantitate mică de pastă cu fluor sub supraveghere, iar dentiștii pot aplica lac cu fluor sau sigilanți pe molari."
+      ]
+    },
+    {
+      "heading": "Îngrijirea stomatologică regulată",
+      "paragraphs": [
+        "Mergeți regulat la dentist pentru controale, cu frecvența stabilită în funcție de riscul dumneavoastră. Bebelușilor nu trebuie să li se dea băuturi îndulcite în biberon la culcare. Evitați sorbitul frecvent de băuturi zaharoase. Dacă aveți gura uscată, întrebați despre produse potrivite. Cereți prompt ajutor pentru orice durere de dinți."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Construirea unei rutine",
+      "text": "Imaginați-vă că copilului dumneavoastră nu-i place periajul. Ați putea să vă periați împreună de două ori pe zi, cu un cronometru sau un cântec, și să limitați dulciurile la mese."
+    },
+    {
+      "title": "Observarea semnelor timpurii",
+      "text": "Presupuneți că observați o pată albă, cretoasă, pe un dinte. Ați putea întreba dentistul despre tratamentul cu fluor și despre sfaturi pentru a preveni o cavitate."
+    }
+  ],
+  "questions": [
+    "Am semne de carie și cum ar trebui tratată?",
+    "Cât de des ar trebui să fac un control?",
+    "Ar fi utile lacul cu fluor sau sigilanții pentru copilul meu?"
+  ]
+}

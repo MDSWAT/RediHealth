@@ -1,0 +1,53 @@
+{
+  "title": "Iperparatiroidismo",
+  "intro": "Le paratiroidi sono quattro minuscole ghiandole nel collo che controllano i livelli di calcio nel sangue. Nell'iperparatiroidismo una o più di esse producono troppo ormone paratiroideo, il che aumenta il calcio nel sangue e può indebolire le ossa. La condizione viene spesso scoperta per caso con un esame del sangue e molte persone hanno pochi sintomi.",
+  "sections": [
+    {
+      "heading": "Tipi e cause",
+      "paragraphs": [
+        "Nell'iperparatiroidismo primario, di solito una singola crescita benigna chiamata adenoma fa produrre alla ghiandola troppo ormone. Meno spesso sono ingrandite più ghiandole. Nell'iperparatiroidismo secondario, le ghiandole lavorano in eccesso perché un altro problema, come una malattia renale o una grave carenza di vitamina D, abbassa il calcio."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Molte persone non avvertono nulla. Altre hanno stanchezza, debolezza, umore basso, difficoltà di concentrazione, aumento di sete e minzione, stitichezza, dolori alle ossa e alle articolazioni o calcoli renali ricorrenti. Con il tempo le ossa possono assottigliarsi e il rischio di fratture aumenta. Livelli di calcio molto alti possono causare confusione e battito irregolare e richiedono un trattamento urgente."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "Gli esami del sangue mostrano calcio alto con ormone paratiroideo alto o inappropriatamente normale. I medici controllano anche vitamina D e funzione renale e spesso misurano la densità ossea e cercano calcoli renali. L'ecografia o altre immagini possono localizzare la ghiandola interessata, soprattutto prima dell'intervento."
+      ]
+    },
+    {
+      "heading": "Opzioni di trattamento",
+      "paragraphs": [
+        "La chirurgia per rimuovere la ghiandola o le ghiandole iperattive può guarire l'iperparatiroidismo primario ed è di solito raccomandata per chi ha sintomi, perdita ossea, calcoli renali o livelli di calcio più alti. L'operazione viene spesso eseguita con un piccolo taglio, dura poco e ha una ripresa rapida. Alcune persone sviluppano temporaneamente calcio basso dopo l'intervento.",
+        "Se i sintomi sono assenti o lievi, un attento monitoraggio con esami del sangue regolari e misurazioni della densità ossea è un'opzione. Può essere consigliato bere abbastanza acqua, restare attivi ed evitare farmaci che aumentano il calcio. Alcuni farmaci possono abbassare il calcio o proteggere l'osso quando la chirurgia non è adatta.",
+        "Nelle forme secondarie il trattamento si concentra sulla causa sottostante, come la reintegrazione di vitamina D o la cura dei reni."
+      ]
+    },
+    {
+      "heading": "Vivere con la condizione",
+      "paragraphs": [
+        "Il controllo regolare è importante anche dopo un intervento riuscito, perché la salute delle ossa può richiedere attenzione a lungo termine. Chiedi consiglio medico per nuovi dolori alle ossa, sintomi di calcoli renali o sete marcata e confusione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Valutare chirurgia o monitoraggio",
+      "text": "Immagina che il tuo calcio sia solo lievemente alto e che tu stia bene. Potresti chiedere al medico quali reperti renderebbero consigliabile l'intervento, con che frequenza servirebbero gli esami e che cosa mostrano le densitometrie ossee."
+    },
+    {
+      "title": "Prepararsi all'operazione",
+      "text": "Supponi di essere in programma per un intervento alle paratiroidi. Potresti chiedere del tipo di anestesia, del probabile tempo di recupero e di quali sintomi di calcio basso tenere d'occhio dopo."
+    }
+  ],
+  "questions": [
+    "Quale tipo di iperparatiroidismo ho e cosa lo causa?",
+    "Ho bisogno di un intervento o il monitoraggio è una scelta ragionevole per me?",
+    "Come verranno controllati nel tempo le mie ossa e i miei reni?"
+  ]
+}

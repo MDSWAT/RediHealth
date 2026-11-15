@@ -1,0 +1,51 @@
+{
+  "title": "Influenza (the flu)",
+  "intro": "Influenza is a contagious viral infection of the nose, throat and lungs that occurs mostly in winter. It is more severe than a common cold and can lead to serious complications in older people, young children, pregnant women and people with chronic illness. Vaccination, hygiene and rest are the main tools.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Flu typically starts suddenly with fever, chills, muscle and joint aches, headache, tiredness, dry cough and sore throat. Symptoms usually last about a week, though cough and tiredness may linger longer. A common cold tends to be milder with a runny nose and sneezing."
+      ]
+    },
+    {
+      "heading": "How it spreads",
+      "paragraphs": [
+        "The virus spreads through droplets from coughing and sneezing and through contaminated hands and surfaces. People are infectious from about a day before symptoms until about five to seven days afterwards. Washing hands, covering coughs and staying home when ill reduce spread."
+      ]
+    },
+    {
+      "heading": "Treating the flu at home",
+      "paragraphs": [
+        "Most healthy people recover without medical treatment. Rest, drink plenty of fluids and use paracetamol or ibuprofen to ease fever and pain, according to the leaflet. Antibiotics do not work against viruses. Children should not take aspirin. Antiviral medicines may be prescribed for people at high risk if started early."
+      ]
+    },
+    {
+      "heading": "Complications",
+      "paragraphs": [
+        "Flu can lead to pneumonia, worsening of asthma, heart problems and dehydration. Seek medical help for trouble breathing, chest pain, confusion, persistent high fever, a fever that returns after improvement, or when a baby, older person or someone with chronic illness becomes unwell."
+      ]
+    },
+    {
+      "heading": "Vaccination",
+      "paragraphs": [
+        "Annual vaccination is recommended for older people, pregnant women, people with chronic conditions, healthcare workers and others at higher risk. The vaccine is updated each year to match circulating viruses. It does not give complete protection, but it reduces the risk of illness and especially of severe complications. Mild side effects such as a sore arm are common."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Staying home",
+      "text": "Imagine you wake up with fever and aches. You could stay home, rest, drink fluids, notify your workplace and avoid close contact with vulnerable relatives until you are better."
+    },
+    {
+      "title": "Deciding on vaccination",
+      "text": "Suppose you have asthma and are unsure about the flu vaccine. You might ask your doctor about timing, protection and side effects, and arrange the appointment in autumn."
+    }
+  ],
+  "questions": [
+    "Am I in a group that should receive the yearly flu vaccine?",
+    "When would antiviral medicine be useful for me?",
+    "Which symptoms should lead me to seek urgent care?"
+  ]
+}

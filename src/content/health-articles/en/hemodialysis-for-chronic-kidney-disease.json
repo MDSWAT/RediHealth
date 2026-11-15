@@ -1,0 +1,51 @@
+{
+  "title": "Hemodialysis: preparing for treatment and daily life",
+  "intro": "Hemodialysis removes waste and excess fluid from blood when kidneys cannot do enough. It supports life but does not replace every kidney function. Schedules and whether treatment occurs at home or a center are individualized.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Blood passes through a filter and returns to the body. Safe access may use a fistula, graft or catheter. Access planning can take time, so discuss options before treatment becomes urgent when possible."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "The kidney team assesses symptoms, blood results, fluid status and personal priorities. Compare hemodialysis with peritoneal dialysis, transplantation when eligible and conservative kidney care where appropriate; no single choice fits everyone. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Attend the prescribed sessions and discuss cramps, dizziness or fatigue during treatment. Fluid removal and medicines may need adjustment by the team. Skipping or shortening sessions can leave dangerous fluid or blood-chemistry problems. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Follow individual fluid, salt, potassium and nutrition advice rather than generic restrictive diets. Protect access as instructed and check its usual vibration if taught. Arrange transport, work and travel with the team; report difficulty attending early. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Access bleeding that does not stop, fever with a catheter, chest pain, severe breathlessness or collapse needs urgent help. A fistula losing its usual vibration or becoming red, painful or swollen needs immediate team advice."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira plans transport and discusses suitable work hours before starting. She asks the dietitian for meals that fit her blood results and usual foods."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben notices his fistula no longer feels as usual. He calls the dialysis unit immediately rather than waiting for the next session."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

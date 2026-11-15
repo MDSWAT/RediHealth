@@ -1,0 +1,52 @@
+{
+  "title": "Uloga žučnog mjehura u probavi",
+  "intro": "Žučni mjehur pohranjuje i koncentrira žuč koju stvara jetra. Pomaže njezinoj isporuci za probavu, ali je ne proizvodi. Ta razlika objašnjava probavu nakon uklanjanja mjehura.",
+  "sections": [
+    {
+      "heading": "Pohrana",
+      "paragraphs": [
+        "Između obroka žuč ulazi kroz vod. Uklanjanje vode koncentrira je; sadrži soli, otpadne pigmente i druge tvari."
+      ]
+    },
+    {
+      "heading": "Otpuštanje",
+      "paragraphs": [
+        "Signali nakon jela potiču stezanje. Žuč putuje vodovima u tanko crijevo; soli raspršuju masti radi probave i apsorpcije."
+      ]
+    },
+    {
+      "heading": "Zapreka",
+      "paragraphs": [
+        "Kamenci mogu biti tihi ili začepiti vod. Mjesto je važno: mogu dati bol, upalu ili žuticu. Sama bol u gornjem trbuhu ne određuje organ."
+      ]
+    },
+    {
+      "heading": "Nakon uklanjanja",
+      "paragraphs": [
+        "Jetra i dalje stvara žuč koja dolazi u crijevo bez spremnika. Mnogi uredno probavljaju; trajni proljev ili bol trebaju pregled, ne prihvaćanje kao neizbježnost ili trajnu ekstremnu dijetu."
+      ]
+    },
+    {
+      "heading": "Pomoć",
+      "paragraphs": [
+        "Jaka ili trajna bol u gornjem trbuhu traži procjenu. Uz vrućicu, žuticu ili ponavljano povraćanje potrebna je hitnost. Ne pokušavajte kućno ispiranje navodnih kamenaca.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira misli da operacija zaustavlja žuč. Pita kako žuč jetre dolazi u crijevo nakon uklanjanja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima bol, vrućicu i žute oči. Traži hitnu pomoć umjesto napitka za čišćenje."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

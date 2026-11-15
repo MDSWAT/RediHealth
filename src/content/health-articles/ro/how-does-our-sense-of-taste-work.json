@@ -1,0 +1,52 @@
+{
+  "title": "Gustul, mirosul și experiența alimentelor",
+  "intro": "Aroma combină gustul cu mirosul, temperatura și textura. Nasul înfundat poate face mâncarea fadă deși receptorii limbii funcționează. Schimbarea aromei nu înseamnă mereu pierderea gustului propriu-zis.",
+  "sections": [
+    {
+      "heading": "Substanțe dizolvate",
+      "paragraphs": [
+        "Saliva aduce substanțele alimentare la celulele receptoare din mugurii gustativi. Nervii transmit creierului; gura uscată poate îngreuna alimentația și perceperea aromei."
+      ]
+    },
+    {
+      "heading": "Calități de bază",
+      "paragraphs": [
+        "Dulce, acru, sărat, amar și umami sunt gusturi recunoscute. Zone diferite ale limbii detectează mai multe calități; harta cu o zonă exclusivă pentru fiecare gust este înșelătoare."
+      ]
+    },
+    {
+      "heading": "Miros și senzație",
+      "paragraphs": [
+        "Aromele ajung din gură la nas în timpul mesei. Iuțeala ardeiului este mai ales iritație percepută de alți nervi, nu un gust de bază suplimentar. Contează și temperatura și textura."
+      ]
+    },
+    {
+      "heading": "Îngrijire",
+      "paragraphs": [
+        "Păstrați igiena orală și discutați modificările persistente, uscăciunea sau medicamentele cu un specialist. Nu opriți singuri tratamentul și nu compensați automat cu mult mai multă sare sau zahăr."
+      ]
+    },
+    {
+      "heading": "Siguranță",
+      "paragraphs": [
+        "Pierderea aromei poate afecta apetitul și greutatea; evaluarea poate include gura și mirosul. Nu gustați pentru a decide dacă alimentele sau substanțele chimice sunt sigure; respectați păstrarea și etichetele.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira simte supa fadă când este răcită. Deosebește mirosul blocat de lezarea limbii și nu adaugă sare excesivă."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are o aromă modificată persistent după schimbarea unui medicament. Cere reevaluare fără să oprească singur tratamentul."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

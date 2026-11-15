@@ -1,0 +1,52 @@
+{
+  "title": "Shkëputja e retinës",
+  "intro": "Retina është shtresa e ndjeshme ndaj dritës në pjesën e pasme të syrit. Në shkëputjen e retinës ajo shkëputet nga indi mbështetës, çka mund të shkaktojë humbje të përhershme të shikimit nëse nuk trajtohet shpejt. Është pa dhimbje por urgjente. Vezullimet e papritura, njollat e reja lundruese ose një hije përtej shikimit kërkojnë vlerësim të së njëjtës ditë.",
+  "sections": [
+    {
+      "heading": "Shkaqet dhe faktorët e rrezikut",
+      "paragraphs": [
+        "Shumica e shkëputjeve fillojnë me një çarje ose vrimë në retinë, shpesh pasi trupi qelqtor xhelatinoz brenda syrit tkurret e e tërheq. Pastaj lëngu depërton pas retinës. Rreziku është më i lartë me miopi të rëndë, kirurgji të mëparshme të kataraktës, lëndim të syrit, shkëputje të mëparshme në syrin tjetër e histori familjare."
+      ]
+    },
+    {
+      "heading": "Shenjat paralajmëruese",
+      "paragraphs": [
+        "Shenjat tipike paralajmëruese janë vezullime të papritura drite, një rrebesh i papritur njollash të reja lundruese, një perde ose hije e errët që përhapet nëpër një pjesë të fushës së shikimit ose shikim i papritur i turbullt. Gjendja nuk shkakton dhimbje ose skuqje. Çdo njëra nga këto shenja kërkon ekzaminim urgjent nga një okulist, ideale po atë ditë."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Një specialist i syve e zgjeron bebëzën e ekzaminon retinën me një lente e dritë të veçantë për të gjetur çarje e shkëputje. Ultratingulli mund të përdoret nëse pamja bllokohet nga gjakderdhja. Çarjet e zbuluara herët shpesh mund të trajtohen para se të shkëputen."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Çarjet e vogla mund të vulosen me lazer ose ngrirje në klinikë. Retinat e shkëputura kërkojnë kirurgji. Opsionet përfshijnë vitrektominë, ku hiqet trupi qelqtor e një flluskë gazi ose vaj e shtyn retinën prapa, dhe rrethimin skleral, ku një rrip silikoni fiksohet rreth syrit. Pas kirurgjisë me flluskë gazi mund t'ju duhet ta mbani kokën në një pozicion të caktuar për ditë dhe udhëtimi me avion ose lartësia duhen shmangur derisa gazi të shkojë.",
+        "Shumica e shkëputjeve mund të riparohen, megjithëse shikimi mund të mos kthehet plotësisht e nganjëherë nevojitet më shumë se një operacion."
+      ]
+    },
+    {
+      "heading": "Pas operacionit",
+      "paragraphs": [
+        "Përdorni pikat e syve siç përshkruhen, shmangni ngritjen e rëndë e aktivitetin e ngarkuar siç këshillohet e ndiqni të gjitha vizitat e ndjekjes. Raportoni menjëherë dhimbje, skuqje ose humbje shikimi e raportoni menjëherë çdo simptomë të re në syrin tjetër."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Veprimi i shpejtë",
+      "text": "Imagjinoni që vini re një hije të errët në cep të shikimit me drita që vezullojnë. Mund të shkoni drejt e te një shërbim urgjence për sy e të kërkoni dikë t'ju çojë me makinë."
+    },
+    {
+      "title": "Pozicionimi pas kirurgjisë",
+      "text": "Supozoni që kirurgu ju kërkon të shtriheni me fytyrë poshtë për disa ditë. Mund të organizoni paraprakisht jastëkë, një mbështetëse për fytyrën e ndihmë në shtëpi."
+    }
+  ],
+  "questions": [
+    "Sa urgjente është situata ime dhe cili trajtim rekomandohet?",
+    "Si do të jetë shikimi im pas trajtimit dhe sa kohë do të zgjasë shërimi?",
+    "Cilat aktivitete duhet të shmang dhe cilat simptoma duhet të më shtyjnë të kontaktoj menjëherë?"
+  ]
+}

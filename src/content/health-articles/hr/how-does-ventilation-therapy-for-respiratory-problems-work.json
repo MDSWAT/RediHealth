@@ -1,0 +1,56 @@
+{
+  "title": "Kako ventilacijska terapija podržava disanje",
+  "intro": "Ventilacijska terapija koristi uređaj kako bi pomogla osobi da diše kad pluća ili dišni mišići ne mogu sami dovoljno dobro obavljati svoj posao. Može se primjenjivati kratko tijekom bolesti ili operacije, ili mjesecima i godinama kod kuće zbog dugotrajnih stanja. Poznavanje glavnih vrsta pomaže bolesnicima i obiteljima da sudjeluju u odlukama o njoj.",
+  "sections": [
+    {
+      "heading": "Zašto je potrebna potpora disanju",
+      "paragraphs": [
+        "Disanje ovisi o zdravim plućima, jakim dišnim mišićima i mozgu koji kontrolira ritam udisaja. Kad jedno od toga zakaže, tijelo možda neće unijeti dovoljno kisika ili neće izbaciti dovoljno ugljikova dioksida. To može uzrokovati nedostatak zraka, umor, glavobolje, smetenost ili jutarnju pospanost.",
+        "Stanja koja mogu dovesti do ventilacijske terapije uključuju tešku upalu pluća, uznapredovalu kroničnu opstruktivnu plućnu bolest, neuromišićne bolesti, tešku pretilost s problemima disanja te neke ozljede ili operacije. Uzrok i očekivani tijek bolesti snažno utječu na to koji se pristup odabire."
+      ]
+    },
+    {
+      "heading": "Neinvazivna ventilacija",
+      "paragraphs": [
+        "Neinvazivna ventilacija dovodi zrak pod blagim tlakom kroz usko prianjajuću masku preko nosa ili preko nosa i usta. Uređaj pomaže plućima da se prošire i olakšava rad dišnih mišića. Često se koristi noću, a ponekad i nekoliko sati tijekom dana.",
+        "Mnogi ljudi kod kuće koriste taj oblik liječenja, primjerice zbog kronične plućne bolesti ili slabosti mišića. Važno je dobro prianjanje: maska treba brtviti bez izazivanja rana od pritiska, a postavke tlaka prilagođava stručni tim. Suha usta, nadražaj kože i osjećaj pritiska zraka česte su rane tegobe koje se često mogu ublažiti."
+      ]
+    },
+    {
+      "heading": "Invazivna ventilacija",
+      "paragraphs": [
+        "Invazivna ventilacija koristi cijev postavljenu kroz usta ili nos u dušnik, ili kroz mali otvor na vratu koji se zove traheostoma. Uređaj tada daje udisaje. To se obično radi u jedinici intenzivnog liječenja, gdje bolesnici dobivaju lijekove za ugodu i pomno se nadziru.",
+        "Liječnici nastoje primjenjivati je onoliko kratko koliko bolest dopušta. Moguće komplikacije uključuju infekcije pluća, oštećenje pluća od tlaka i slabost mišića nakon dugog boravka, zbog čega je rehabilitacija važan dio oporavka."
+      ]
+    },
+    {
+      "heading": "Život s kućnom ventilacijom",
+      "paragraphs": [
+        "Osobe koje kod kuće koriste ventilaciju i njihovi bližnji obučavaju se kako rabiti i čistiti opremu, postupati s alarmima i znati što učiniti ako nestane struje. Redoviti pregledi procjenjuju koliko liječenje djeluje, često krvnim pretragama kisika i ugljikova dioksida ili noćnim mjerenjima.",
+        "Praktične teme uključuju putovanje s uređajem, govor i gutanje, prehranu i organizaciju pomoći kod kuće. Potpora specijaliziranih medicinskih sestara, respiracijskih terapeuta i udruga bolesnika može olakšati svakodnevni život."
+      ]
+    },
+    {
+      "heading": "Zajedničko donošenje odluka",
+      "paragraphs": [
+        "Ventilacija može poboljšati simptome i ponekad produžiti život, ali donosi i opterećenja. O ciljevima, ugodi i onome što bi osoba željela treba razgovarati rano, idealno dok osoba još može sudjelovati. Dokumenti o unaprijed planiranoj skrbi mogu zabilježiti te želje.",
+        "Ako osoba ne može govoriti sama za sebe, od pouzdanih bližnjih ili zakonskog zastupnika može se tražiti da zajedno s liječničkim timom pomognu protumačiti osobine želje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Navikavanje na masku",
+      "text": "Zamislite da ste tek počeli s noćnom ventilacijom maskom i maska vam je neudobna. Mogli biste zabilježiti kada curi ili boli, pa zamoliti tim da je ponovno namjesti, isproba drugu veličinu ili podesi ovlaživač umjesto da jednostavno prekinete liječenje."
+    },
+    {
+      "title": "Planiranje unaprijed s obitelji",
+      "text": "Pretpostavite da bliski rođak ima progresivnu mišićnu bolest i da će kasnije možda trebati ventilaciju. Obitelj bi mogla dogovoriti miran razgovor s liječnicima o tome što rođak najviše cijeni, koja su opterećenja liječenja prihvatljiva i kako će te želje biti zapisane."
+    }
+  ],
+  "questions": [
+    "Koja je vrsta ventilacije prikladna za moje stanje i koje su njezine očekivane koristi i ograničenja?",
+    "Kako ćemo znati djeluje li liječenje i koliko se često provjerava?",
+    "Kakva je potpora dostupna kod kuće za opremu, hitne slučajeve i svakodnevnu skrb?"
+  ]
+}

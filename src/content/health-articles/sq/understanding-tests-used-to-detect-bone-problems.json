@@ -1,0 +1,51 @@
+{
+  "title": "Të kuptuarit e testeve për zbulimin e problemeve të kockave",
+  "intro": "Problemet e kockave si osteoporoza, thyerjet, infeksionet, tumoret e sëmundja metabolike e kockave hetohen me disa teste. Secili tregon diçka tjetër, nga dendësia e kockës te struktura e saj ose aktiviteti i qelizave të kockës. Njohja e asaj për çfarë shërben një test ju ndihmon të kuptoni rezultatet.",
+  "sections": [
+    {
+      "heading": "Rrezet X",
+      "paragraphs": [
+        "Rrezet X të zakonshme tregojnë thyerje, deformime, artrit e disa tumore e infeksione. Janë të shpejta e të disponueshme gjerësisht. Ndryshimet e hershme mund të mos duken e kocka duhet të holluar ndjeshëm para se të shihet në një rreze X standarde, prandaj osteoporoza nuk diagnostikohet besueshëm me këtë mënyrë, megjithëse rrezet X të shtyllës mund të zbulojnë thyerje."
+      ]
+    },
+    {
+      "heading": "Skanimet e dendësisë së kockës",
+      "paragraphs": [
+        "Një skanim DXA përdor doza shumë të ulëta rrezesh X për të matur dendësinë minerale të kockës në ijë e shtyllë. Rezultatet jepen si një T-score, që ju krahason me një të rritur të ri të shëndetshëm. Një T-score prej minus 2.5 ose më i ulët përcakton osteoporozën. Mjekët e kombinojnë me faktorë rreziku si mosha e thyerjet e mëparshme për të vlerësuar rrezikun e thyerjes. Skanimi merr disa minuta e është pa dhimbje."
+      ]
+    },
+    {
+      "heading": "CT, rezonancë e shintigrafi",
+      "paragraphs": [
+        "Skanimet CT japin pamje të detajuara të strukturës së kockës e përdoren për thyerje komplekse. Rezonanca tregon palcën e kockave, indin e butë, tumoret, infeksionin e thyerjet nga stresi që rrezet X i humbasin. Shintigrafia e kockave përdor pak gjurmues radioaktiv për të treguar zona me aktivitet të shtuar të kockës, e dobishme për zbulimin e përhapjes së kancerit, infeksionit ose thyerjeve të fshehura. Skanimet PET mund të përdoren në disa kancere."
+      ]
+    },
+    {
+      "heading": "Testet e gjakut e urinës",
+      "paragraphs": [
+        "Analizat e gjakut kontrollojnë kalciumin, fosfatin, vitaminën D, hormonin paratiroid, funksionin e veshkave, hormonin tiroid e shënues të qarkullimit të kockës. Ndihmojnë të gjenden shkaqet e humbjes së kockës e të monitorohet trajtimi. Teste të tjera kërkojnë inflamacion, mielomë ose shkaqe të tjera. Rezultatet interpretohen së bashku me imazherinë."
+      ]
+    },
+    {
+      "heading": "Biopsia e kockës",
+      "paragraphs": [
+        "Një biopsi kocke heq një mostër të vogël kocke me një gjilpërë, zakonisht nën anestezi lokale e udhëzim imazherie, për ta ekzaminuar nën mikroskop. Përdoret kur testet e tjera nuk mund të përcaktojnë shkakun e një lezioni të kockës, për shembull për të dalluar infeksionin nga tumori ose për të diagnostikuar sëmundje të rralla të kockës. Rreziqet përfshijnë gjakderdhje, dhimbje e infeksion."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për një skanim DXA",
+      "text": "Imagjinoni që keni caktuar një skanim të dendësisë së kockës. Mund të pyesni nëse duhet të shmangni suplementet e kalciumit atë mëngjes, të visheni pa metal e të sillni një listë barnash."
+    },
+    {
+      "title": "Të kuptuarit e rezultateve",
+      "text": "Supozoni që T-score juaj është i ulët. Mund të pyesni si u llogarit rreziku juaj i përgjithshëm i thyerjes, cilët janë hapat e radhës e kur ta përsëritni skanimin."
+    }
+  ],
+  "questions": [
+    "Cili test është më i miri për problemin tim?",
+    "Çfarë do të thonë rezultatet e mia të dendësisë e rrezikut?",
+    "Sa shpesh duhet t'i përsëris testet?"
+  ]
+}

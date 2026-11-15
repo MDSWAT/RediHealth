@@ -1,0 +1,51 @@
+{
+  "title": "I principi di base della medicina basata sulle prove",
+  "intro": "La medicina basata sulle prove significa prendere decisioni sanitarie usando la migliore ricerca disponibile insieme all'esperienza clinica e ai valori del paziente. Mira a sostituire congetture e abitudine con conoscenze affidabili su che cosa aiuta e che cosa fa male. Capire i suoi principi aiuta a partecipare alle decisioni sulle tue cure.",
+  "sections": [
+    {
+      "heading": "Tre pilastri",
+      "paragraphs": [
+        "La medicina basata sulle prove poggia su tre elementi: la migliore prova di ricerca attuale, la competenza del clinico e le preferenze e le circostanze del paziente. Nessuno basta da solo. La ricerca mostra che cosa funziona in media, il medico la interpreta per il singolo e il paziente decide che cosa conta per lui."
+      ]
+    },
+    {
+      "heading": "Porre domande a cui si può rispondere",
+      "paragraphs": [
+        "Il processo comincia trasformando un problema in una domanda precisa: chi sono i pazienti, qual è il trattamento o il test, con che cosa viene confrontato e quali esiti contano. Per esempio, nelle persone con artrosi del ginocchio, l'esercizio riduce il dolore più delle cure abituali?"
+      ]
+    },
+    {
+      "heading": "Trovare e valutare le prove",
+      "paragraphs": [
+        "Poi si cercano gli studi pertinenti e se ne giudica la qualità. Studi randomizzati ben progettati e revisioni sistematiche danno risposte più affidabili sui trattamenti di opinioni o singole osservazioni. I revisori controllano il rischio di distorsione, la dimensione dell'effetto, se i risultati sono coerenti e se si applicano al paziente."
+      ]
+    },
+    {
+      "heading": "Applicarle al paziente",
+      "paragraphs": [
+        "Le prove descrivono gruppi e i singoli possono differire. I clinici considerano età, altre malattie, rischi e ciò che il paziente apprezza, compresi qualità della vita e pesi del trattamento. La decisione condivisa significa spiegare benefici e rischi in termini comprensibili, spesso con numeri e strumenti decisionali, così che la scelta rifletta le priorità del paziente."
+      ]
+    },
+    {
+      "heading": "Limiti",
+      "paragraphs": [
+        "Per molte domande mancano buone prove e gli studi possono escludere persone come anziani o bambini. L'assenza di prove di beneficio non equivale a prove di assenza di beneficio. Le prove cambiano nel tempo, quindi le raccomandazioni vanno riviste. La medicina basata sulle prove non significa ignorare l'esperienza, ma verificarla sui dati."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Chiedere i numeri",
+      "text": "Immagina che il medico ti raccomandi un farmaco. Potresti chiedere a quante persone come te giova, a quante dà effetti collaterali e che cosa succede senza trattamento."
+    },
+    {
+      "title": "Esprimere le preferenze",
+      "text": "Supponi che due trattamenti siano ugualmente efficaci ma differiscano negli effetti collaterali. Potresti spiegare quali pesi contano di più per te così che la decisione si adatti alla tua vita."
+    }
+  ],
+  "questions": [
+    "Che cosa dicono le migliori prove sulle mie opzioni?",
+    "Quanto sono certe queste prove e valgono per una persona come me?",
+    "Quale opzione si adatta meglio ai miei valori e alle mie circostanze?"
+  ]
+}

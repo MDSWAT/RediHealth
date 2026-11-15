@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt suplimentele alimentare?",
+  "intro": "Suplimentele alimentare sunt produse precum vitaminele, mineralele, extractele din plante și alte substanțe luate pentru a completa dieta. Se vând sub formă de tablete, capsule, pulberi și băuturi. Pentru cei mai mulți oameni sănătoși, care mănâncă variat, sunt inutile, iar unele pot fi dăunătoare. În anumite situații, suplimentele țintite sunt utile.",
+  "sections": [
+    {
+      "heading": "Cum diferă de medicamente",
+      "paragraphs": [
+        "În multe țări, suplimentele sunt reglementate ca alimente, nu ca medicamente, deci nu trebuie să dovedească eficacitatea înainte de vânzare, deși se aplică reguli de siguranță. Etichetele lor pot face afirmații generale, dar nu trebuie să pretindă că tratează sau vindecă boli. Calitatea și conținutul pot varia între produse, iar unele conțin mai mult sau mai puțin decât scrie pe etichetă."
+      ]
+    },
+    {
+      "heading": "Când pot fi utile suplimentele",
+      "paragraphs": [
+        "Suplimentele pot ajuta când există o nevoie dovedită: acidul folic înainte și la începutul sarcinii, vitamina D pentru sugari și anumite grupuri de risc, vitamina B12 pentru vegani și persoanele cu probleme de absorbție, fierul pentru deficitul de fier, iodul în sarcină în unele regiuni, iar calciul și vitamina D pentru unele persoane cu risc de osteoporoză. Un medic poate confirma nevoia prin teste."
+      ]
+    },
+    {
+      "heading": "Riscuri",
+      "paragraphs": [
+        "Dozele foarte mari de unele vitamine și minerale pot face rău, de exemplu excesul de vitamina A în sarcină poate afecta bebelușul, dozele mari de vitamina D pot crește calciul din sânge, iar cantitățile mari de fier sunt toxice, mai ales pentru copii. Produsele din plante pot interacționa cu medicamentele, precum sunătoarea cu contraceptivele și anticoagulantele. Unele produse conțin substanțe nedeclarate. Luarea mai multor produse poate duce la supradoză."
+      ]
+    },
+    {
+      "heading": "Alegerea înțeleaptă",
+      "paragraphs": [
+        "Întrebați dacă aveți nevoie deloc de un supliment și urmăriți să obțineți nutrienții mai întâi din alimente. Spuneți medicului și farmacistului ce luați. Alegeți produse de la mărci cu reputație și verificați dozele față de cantitățile zilnice recomandate. Fiți sceptic față de afirmațiile despre efecte miraculoase, detoxifiere sau stimularea imunității. Opriți-vă și cereți ajutor dacă apar efecte secundare. Țineți produsele departe de copii."
+      ]
+    },
+    {
+      "heading": "Discuția cu echipa medicală",
+      "paragraphs": [
+        "Menționați suplimentele la fiecare consult, deoarece ele pot schimba rezultatele analizelor și pot interacționa cu tratamentul. Aduceți ambalajul, ca ingredientele și dozele exacte să fie cunoscute, și verificați regulat dacă mai aveți nevoie de ele."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Verificarea necesității",
+      "text": "Imaginați-vă că vă întrebați dacă să luați un multivitamin. Ați putea analiza alimentația cu medicul sau cu un dietetician și ați putea întreba dacă sunt necesare teste."
+    },
+    {
+      "title": "Verificarea interacțiunilor",
+      "text": "Presupuneți că începeți un remediu din plante în timp ce luați un medicament regulat. Ați putea întreba farmacistul despre interacțiuni înainte de a începe."
+    }
+  ],
+  "questions": [
+    "Am într-adevăr nevoie de un supliment și de care?",
+    "Ar putea interacționa cu medicamentele mele?",
+    "Ce doză este sigură pentru mine?"
+  ]
+}

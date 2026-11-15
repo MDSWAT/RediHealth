@@ -1,0 +1,51 @@
+{
+  "title": "Rozacea",
+  "intro": "Rozacea je često dugotrajno stanje kože koje uzrokuje crvenilo lica, vidljive sitne krvne žile, a ponekad kvržice i prištiće. Uglavnom pogađa odrasle svijetle kože i sklona je pogoršanjima i smirivanju. Ne može se izliječiti, ali liječenje i izbjegavanje okidača drže je pod kontrolom.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Rozacea tipično zahvaća središnji dio lica: obraze, nos, čelo i bradu. Značajke uključuju navale crvenila, trajno crvenilo, pauk-žilice, kvržice i pustule nalik aknama ali bez mitesera te osjećaj pečenja ili peckanja. U nekih ljudi, osobito muškaraca, nos se može zadebljati. Oči mogu biti suhe, crvene i nadražene, što se zove očna rozacea."
+      ]
+    },
+    {
+      "heading": "Uzroci i okidači",
+      "paragraphs": [
+        "Uzrok nije potpuno poznat i vjerojatno uključuje reaktivnost krvnih žila, upalu i kožne mikrobe. Uobičajeni okidači uključuju sunce, vrućinu, hladan vjetar, vruća pića, alkohol, ljutu hranu, stres, naporno vježbanje i određene proizvode za kožu. Okidači se razlikuju pa dnevnik pomaže identificirati vaše."
+      ]
+    },
+    {
+      "heading": "Njega kože",
+      "paragraphs": [
+        "Koristite nježna sredstva za čišćenje, hidratantne kreme prikladne za osjetljivu kožu i mineralnu kremu za sunčanje svaki dan. Izbjegavajte pilinge, tonike s alkoholom i oštre proizvode te kožu osušite tapkanjem. Zaštitite lice od ekstremnih temperatura."
+      ]
+    },
+    {
+      "heading": "Medicinsko liječenje",
+      "paragraphs": [
+        "Kreme i gelovi s azelainskom kiselinom, metronidazolom, ivermektinom ili brimonidinom mogu smanjiti kvržice ili crvenilo. Za opsežniju upalnu rozaceu koriste se antibiotici tetraciklini u niskoj dozi ili izotretinoin u odabranim slučajevima. Laserski ili svjetlosni tretmani smanjuju vidljive žilice. Liječenju treba tjedana da pokaže korist, a često je potrebno održavanje. Očni simptomi kao što su pečenje, osjećaj pijeska i crvenilo zahtijevaju pozornost liječnika jer mogu utjecati na vid."
+      ]
+    },
+    {
+      "heading": "Život s rozaceom",
+      "paragraphs": [
+        "Rozacea može utjecati na samopouzdanje i raspoloženje. Učinkovito liječenje, strpljenje i potpora drugih koji razumiju stanje poboljšavaju kvalitetu života. Držite se kontrolnih posjeta jer se liječenje često prilagođava tijekom vremena."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepoznavanje okidača",
+      "text": "Zamislite da vam lice pocrveni nakon čaše crnog vina i vrućeg obroka. Mogli biste mjesec dana bilježiti okidače u dnevnik i razgovarati o promjenama s liječnikom."
+    },
+    {
+      "title": "Odabir proizvoda",
+      "text": "Pretpostavite da vas koža peče kad nanesete novu kremu. Mogli biste prestati koristiti je, prijeći na jednostavnu hidratantnu kremu i pitati ljekarnika ili dermatologa za nježne mogućnosti."
+    }
+  ],
+  "questions": [
+    "Je li ovo rozacea i koje liječenje bi odgovaralo mojoj vrsti?",
+    "Koji su proizvodi za njegu kože sigurni za mene?",
+    "Mogu li biti zahvaćene moje oči i treba li ih pregledati?"
+  ]
+}

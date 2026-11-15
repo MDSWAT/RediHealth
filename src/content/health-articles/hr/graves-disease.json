@@ -1,0 +1,51 @@
+{
+  "title": "Gravesova bolest: štitnjača i oči",
+  "intro": "Gravesova bolest je autoimuna bolest koja može izazvati prekomjerno stvaranje hormona štitnjače. Mogući su lupanje srca, nepodnošenje topline, tremor i mršavljenje; očne tegobe mogu napredovati neovisno o stupnju hipertireoze.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Simptomi mogu nalikovati anksioznosti, ali trajan ubrzan puls, slabost mišića i neobjašnjiva promjena težine traže tjelesnu procjenu. Prijavite očnu nelagodu, izbočene oči ili dvoslike."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Krvni testovi procjenjuju funkciju i antitijela; snimanje se bira prema potrebi. Navedite dodatke, posebno biotin koji mijenja neke nalaze, i planove trudnoće. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Antitireoidni lijekovi, radiojod i operacija imaju različite koristi i rizike. Radiojod nije prikladan u trudnoći ili dojenju i može utjecati na oči. Neka liječenja vode trajnoj hormonskoj nadoknadi. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Redovito uzimajte lijekove i kontrolirajte krv. Pušenje pogoršava očnu bolest pa tražite podršku za prestanak. Odmah razgovarajte o trudnoći jer lijekovi i praćenje trebaju specijalističku prilagodbu. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Vrućica ili grlobolja tijekom antitireoidne terapije zahtijevaju odmah savjet i hitnu krvnu sliku; slijedite upute lijeka o prekidu i kontaktu. Nagli gubitak vida, jaka očna bol, zbunjenost ili teška bolest uz ubrzan puls traže hitnu pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima tremor i mršavljenje pripisane stresu. Opisuje cijeli obrazac i traži obradu štitnjače, ne samo opuštanje."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben dobiva grlobolju na antitireoidnoj terapiji. Slijedi pisani sigurnosni plan i odmah kontaktira tim umjesto čekanja redovitih testova."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

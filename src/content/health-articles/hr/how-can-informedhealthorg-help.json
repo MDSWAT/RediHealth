@@ -1,0 +1,51 @@
+{
+  "title": "Korištenje InformedHealtha za pripremu odluka",
+  "intro": "InformedHealth je engleska služba njemačkog IQWiG-a. Objašnjava dokaze o bolestima, testovima i terapiji. Stranica podupire pregled ali ne pregledava vas niti bira osobnu mogućnost.",
+  "sections": [
+    {
+      "heading": "Počnite pitanjem",
+      "paragraphs": [
+        "Počnite pitanjem, ne obećanim lijekom. Odaberite pregled teme, usporedbu ili pripremu testa. Zapišite pojmove i pitanja koja mogu promijeniti odluku."
+      ]
+    },
+    {
+      "heading": "Provjerite datum i kontekst",
+      "paragraphs": [
+        "Čitajte datum i izvore. Odvojite opće nalaze od njemačkih pravila. Prijevod ne znači da njemačka usluga ili osiguranje vrijede u drugoj zemlji."
+      ]
+    },
+    {
+      "heading": "Usporedite dokaze",
+      "paragraphs": [
+        "Usporedite koristi i štete uz isto razdoblje i početni rizik. Odnose li se studije na vašu dob, zdravlje i terapije? Neizvjesnost pomaže, ali ne jamči najbolji izbor."
+      ]
+    },
+    {
+      "heading": "Pripremite pregled",
+      "paragraphs": [
+        "Ponesite pitanja liječniku i prioritete: olakšanje, oporavak ili nuspojave. Pitajte za alternative i praćenje kada odgovara. Prepričajte plan svojim riječima i tražite pristupačno objašnjenje."
+      ]
+    },
+    {
+      "heading": "Izvori i granice",
+      "paragraphs": [
+        "Izvori daju kontekst i čitanje. Neovisni lokalni članci nisu službeni prijevodi IQWiG-a niti osobni savjet. Novi teški simptomi traže pregled, ne pretraživanje; hitnost ne čeka čitanje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira čita o testu i pita lažne nalaze i posljedice umjesto traženja samo zato što postoji."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben vidi njemačka pravila osiguranja. Pita lokalnu službu bez pretpostavke jednakog pokrića kod kuće."
+    }
+  ],
+  "questions": [
+    "Vrijede li informacije za moje okolnosti i zemlju?",
+    "Što je neizvjesno i koje se mogućnosti uspoređuju?",
+    "Koja pitanja nosim liječniku?"
+  ]
+}

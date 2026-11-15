@@ -1,0 +1,51 @@
+{
+  "title": "Problemet e gjumit e pagjumësia",
+  "intro": "Pothuajse të gjithë kanë vështirësi gjumi në një moment. Pagjumësia do të thotë vështirësi e vazhdueshme për të rënë në gjumë, për të vazhduar gjumin ose zgjim shumë herët, së bashku me lodhje ose funksionim të dobët gjatë ditës. Problemet afatshkurtra zakonisht kalojnë dhe për pagjumësinë afatgjatë, terapia e sjelljes funksionon më mirë e më qëndrueshëm se pilulat e gjumit.",
+  "sections": [
+    {
+      "heading": "Çfarë është pagjumësia",
+      "paragraphs": [
+        "Pagjumësia diagnostikohet kur problemet ndodhin të paktën tri net në javë për një muaj ose më shumë e ndikojnë funksionimin gjatë ditës. Ankesat tipike janë të qenit zgjuar, zgjimi gjatë natës, zgjimi herët, gjumi jo-freskues, lodhja, nervozizmi e vështirësia e përqendrimit. Shqetësimi për vetë gjumin shpesh e mban problemin."
+      ]
+    },
+    {
+      "heading": "Shkaqet e kontribuesit",
+      "paragraphs": [
+        "Stresi, shqetësimi, ndryshimet e rutinës, puna me turne, dhimbja, zhurma, kafeina, alkooli, nikotina e disa barna mund ta prishin gjumin. Pagjumësia shpesh shoqëron depresionin e ankthin. Çrregullime të tjera gjumi si apnea e gjumit e këmbët e shqetësuara mund të shkaktojnë gjumë të dobët e duhen kontrolluar nëse dyshohen."
+      ]
+    },
+    {
+      "heading": "Zakone gjumi që ndihmojnë",
+      "paragraphs": [
+        "Mbani orare të rregullta shtrirjeje e zgjimi, edhe në fundjavë, merrni dritë dite e bëni ushtrime e shmangni kafeinën pasdite e vaktet e rënda ose alkoolin afër kohës së gjumit. Krijoni një dhomë gjumi të errët, të qetë, të freskët e rezervojeni shtratin për gjumë. Shmangni ekranet e aktivitetet stimuluese vonë në mbrëmje. Nëse nuk flini pas rreth njëzet minutash, ngrihuni e bëni diçka relaksuese derisa të përgjumeni."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Terapia konjitivo-sjellëse për pagjumësinë është trajtimi i parë i rekomanduar. Përfshin planifikimin e gjumit, kufizimin e kohës në shtrat, ndryshimin e mendimeve të padobishme për gjumin e relaksimin. Mund të ofrohet nga një terapist, në grupe ose përmes programeve dixhitale të miratuara. Tabletat e gjumit mund të ndihmojnë afatshkurtër por shkaktojnë varësi, përgjumje gjatë ditës e rënie, prandaj përdoren vetëm për periudha të shkurtra. Mjetet bimore si valeriana kanë përfitim të pasigurt."
+      ]
+    },
+    {
+      "heading": "Kur të kërkoni ndihmë",
+      "paragraphs": [
+        "Shihni një mjek nëse gjumi i dobët vazhdon disa javë, nëse gërhitni fort me pauza në frymëmarrje, bini në gjumë pa dashje gjatë ditës ose ndiheni të ulur a të ankthshëm. Mos ngasni kur jeni të përgjumur."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mbajtja e një ditari gjumi",
+      "text": "Imagjinoni që flini keq shumicën e netëve. Mund të regjistroni orën e shtrirjes, të zgjimit, dremitjet, kafeinën e humorin për dy javë e ta çoni ditarin te mjeku."
+    },
+    {
+      "title": "Prishja e rrethit të shqetësimit",
+      "text": "Supozoni që qëndroni zgjuar duke u shqetësuar për nesër. Mund të shkruani detyrat e nesërme në letër para gjumit e të ngriheni për një aktivitet të qetë nëse nuk flini pas njëzet minutash."
+    }
+  ],
+  "questions": [
+    "A mund ta shkaktojë pagjumësinë time një gjendje mjekësore ose një ilaç?",
+    "A ofrohet për mua terapia konjitivo-sjellëse për pagjumësinë?",
+    "Sa kohë është e sigurt të përdoren tabletat e gjumit?"
+  ]
+}

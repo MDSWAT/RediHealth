@@ -1,0 +1,51 @@
+{
+  "title": "Ansia generalizzata: aiuto per preoccupazioni persistenti",
+  "intro": "Il disturbo d’ansia generalizzata comporta preoccupazioni difficili da controllare in molti ambiti. Tensione muscolare, sonno scarso, irrequietezza e difficoltà di concentrazione possono accompagnarlo; supera la normale apprensione occasionale.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "La preoccupazione può spostarsi dalle finanze alla famiglia o alla salute e persistere dopo rassicurazioni. Conta l’impatto sulla vita, non il giudizio altrui sulla ragionevolezza della paura."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "La valutazione esplora durata, disagio, sonno, farmaci, sostanze e cause fisiche. Descrivere evitamenti e controlli ripetuti; un questionario aiuta ma non sostituisce un colloquio completo. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Terapia cognitivo-comportamentale e alcuni antidepressivi possono aiutare. I farmaci richiedono tempo e monitoraggio; le benzodiazepine comportano dipendenza e non sono una soluzione ordinaria a lungo termine. Non interrompere bruscamente terapie psichiatriche. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Favorire sonno e attività regolari e piccoli passi verso attività evitate. Ridurre caffeina eccessiva e alcol; il rilassamento sostiene la gestione, senza imporre di sopprimere ogni sensazione ansiosa. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Richiedere controllo se l’ansia compromette lavoro, relazioni o cura personale. Dolore toracico, svenimenti o nuovi sintomi fisici intensi vanno valutati separatamente. Pericolo immediato o impossibilità di restare al sicuro richiedono soccorso urgente."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira controlla continuamente i messaggi familiari e perde sonno. In terapia riduce gradualmente i controlli invece di cercare rassicurazioni infinite."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben prova nausea all’inizio della terapia prescritta. Contatta il medico sulla tollerabilità invece di raddoppiare o sospendere bruscamente le dosi."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

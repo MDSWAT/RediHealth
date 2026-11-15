@@ -1,0 +1,51 @@
+{
+  "title": "Che cos'è la sovradiagnosi",
+  "intro": "La sovradiagnosi significa trovare una condizione che non avrebbe mai causato sintomi o danni durante la vita di una persona e poi trattarla. Avviene quando gli esami rilevano anomalie reali che non sono pericolose. Può portare a preoccupazione, trattamenti ed effetti collaterali inutili, quindi è importante conoscerla.",
+  "sections": [
+    {
+      "heading": "Come avviene",
+      "paragraphs": [
+        "Esami più sensibili, come le immagini e lo screening, trovano molte piccole anomalie. Alcuni tumori crescono così lentamente o per nulla e alcune persone muoiono di altre cause prima che la condizione avrebbe mai avuto importanza. I medici non sempre sanno dire quali anomalie causeranno danni, quindi molte vengono trattate per sicurezza. Anche ampliare la definizione di una malattia crea più diagnosi."
+      ]
+    },
+    {
+      "heading": "Esempi",
+      "paragraphs": [
+        "La sovradiagnosi è riconosciuta in alcuni tumori scoperti con lo screening, come certi tumori di seno, prostata e tiroide, e in condizioni in cui le soglie sono state abbassate, come la pressione ai limiti o il prediabete. I reperti incidentali nelle immagini, come i piccoli noduli tiroidei, sono comuni e di solito innocui."
+      ]
+    },
+    {
+      "heading": "Danni e benefici",
+      "paragraphs": [
+        "Le persone sovradiagnosticate possono soffrire ansia, etichettatura, esami aggiuntivi, interventi, radiazioni o farmaci con effetti collaterali, senza beneficio. Esami e screening salvano comunque vite per molti, quindi la questione è l'equilibrio. Il danno della sovradiagnosi è difficile da misurare perché non si vede nel singolo caso."
+      ]
+    },
+    {
+      "heading": "Che cosa puoi fare",
+      "paragraphs": [
+        "Chiedi se un esame serve davvero, che cosa potrebbe accadere con i risultati e quali sono le possibilità se si trova qualcosa, compresa l'osservazione attenta. Per alcuni reperti la sorveglianza attiva con controlli regolari è un'alternativa sicura al trattamento immediato. Capire i numeri aiuta a decidere."
+      ]
+    },
+    {
+      "heading": "Valutare lo screening",
+      "paragraphs": [
+        "Prima dello screening pensa ai benefici come la diagnosi più precoce e agli svantaggi come i falsi allarmi e la sovradiagnosi. Gli opuscoli informativi ufficiali espongono questi punti. Sei libero di decidere se partecipare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ponderare un esame",
+      "text": "Immagina che ti venga proposto un esame di screening. Potresti chiedere a quante persone giova e quante sono sovradiagnosticate."
+    },
+    {
+      "title": "Considerare l'attesa vigile",
+      "text": "Supponi che un esame trovi un piccolo nodulo. Potresti chiedere se può essere monitorato invece di essere rimosso."
+    }
+  ],
+  "questions": [
+    "Ho bisogno di questo esame e che cosa faremo con il risultato?",
+    "Il monitoraggio attento è un'alternativa sicura al trattamento?",
+    "Quali sono i possibili danni dello screening?"
+  ]
+}

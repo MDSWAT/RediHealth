@@ -1,0 +1,51 @@
+{
+  "title": "Trapianto di cellule staminali per il trattamento del cancro",
+  "intro": "Il trapianto di cellule staminali sostituisce le cellule che formano il sangue malate o danneggiate con cellule sane. Si usa soprattutto per i tumori del sangue come leucemia, linfoma e mieloma. Può essere curativo ma è un trattamento intensivo con rischi significativi, quindi le decisioni si prendono insieme a un team specializzato.",
+  "sections": [
+    {
+      "heading": "Che cosa fanno le cellule staminali",
+      "paragraphs": [
+        "Le cellule staminali del sangue nel midollo osseo producono globuli rossi, globuli bianchi e piastrine. La chemioterapia ad alte dosi o la radioterapia possono distruggere le cellule tumorali ma danneggiano anche il midollo, quindi le cellule staminali vengono date dopo per ripristinare la formazione del sangue."
+      ]
+    },
+    {
+      "heading": "Tipi di trapianto",
+      "paragraphs": [
+        "In un trapianto autologo le cellule staminali del paziente vengono raccolte prima, conservate e restituite dopo il trattamento ad alte dosi. In un trapianto allogenico le cellule provengono da un donatore, idealmente un fratello o una sorella ben compatibile, un donatore non consanguineo compatibile o un parente parzialmente compatibile o sangue del cordone. Le cellule del donatore possono anche attaccare le cellule tumorali rimaste, un effetto chiamato graft-versus-leukaemia."
+      ]
+    },
+    {
+      "heading": "Il processo",
+      "paragraphs": [
+        "Il trattamento inizia con esami e, per i donatori, con la raccolta di cellule dal sangue dopo che un farmaco ne stimola il rilascio o dal midollo osseo in anestesia. Il paziente riceve il trattamento di condizionamento, poi le cellule per infusione attraverso una vena. I valori del sangue scendono e poi si riprendono nell'arco di settimane. I ricoveri possono durare diverse settimane, in condizioni protette, seguiti da mesi di recupero."
+      ]
+    },
+    {
+      "heading": "Rischi",
+      "paragraphs": [
+        "I rischi comprendono infezioni, sanguinamenti, anemia, afte in bocca, nausea, danni agli organi e infertilità. Dopo i trapianti allogenici si verifica la malattia del trapianto contro l'ospite quando le cellule del donatore attaccano i tessuti del paziente, colpendo pelle, intestino, fegato e altri, e può essere acuta o cronica. I farmaci immunosoppressori la riducono ma aumentano il rischio di infezioni. Il cancro può anche ripresentarsi."
+      ]
+    },
+    {
+      "heading": "Dopo il trapianto",
+      "paragraphs": [
+        "Controlli regolari monitorano i valori del sangue, le infezioni, la funzione degli organi e le complicanze croniche. Le vaccinazioni vanno ripetute e il sistema immunitario impiega fino a un anno o più per recuperare. La preservazione della fertilità va discussa prima del trattamento. Sostegno emotivo, riabilitazione e assistenza psicosociale aiutano pazienti e famiglie a farvi fronte."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Considerare un donatore",
+      "text": "Immagina che il medico proponga un trapianto allogenico. Potresti chiedere come si trova un donatore, che cosa comporti il processo di compatibilità e quali siano le probabilità di successo."
+    },
+    {
+      "title": "Prepararsi al ricovero",
+      "text": "Supponi di essere ricoverato per diverse settimane. Potresti pianificare visite e attività e chiedere al team delle precauzioni contro le infezioni e dei servizi di sostegno."
+    }
+  ],
+  "questions": [
+    "Un trapianto di cellule staminali è adatto alla mia malattia e quali sono le probabilità di successo?",
+    "Quali sono i principali rischi e quanto durerà il recupero?",
+    "Come potrebbe il trattamento influire sulla mia fertilità e sulla salute a lungo termine?"
+  ]
+}

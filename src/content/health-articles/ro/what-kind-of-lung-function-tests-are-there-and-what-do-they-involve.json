@@ -1,0 +1,51 @@
+{
+  "title": "Testele funcției pulmonare: tipuri și ce implică",
+  "intro": "Testele funcției pulmonare măsoară cât de bine funcționează plămânii, inclusiv cât aer conțin și cât de repede se mișcă aerul înăuntru și în afară. Ajută la diagnosticarea astmului, a bolii pulmonare obstructive cronice și a altor afecțiuni pulmonare și la monitorizarea tratamentului. Cele mai multe sunt rapide, nedureroase și necesită cooperarea dumneavoastră.",
+  "sections": [
+    {
+      "heading": "Spirometria",
+      "paragraphs": [
+        "Spirometria este cel mai frecvent test. Inspirați complet și apoi expirați cât de tare și de repede puteți într-o piesă bucală, cu o clemă pe nas. Măsoară cantitatea totală de aer pe care o puteți expira, numită capacitate vitală forțată, și cât în prima secundă. Un raport scăzut sugerează îngustarea căilor respiratorii, ca în astm sau în boala pulmonară obstructivă cronică."
+      ]
+    },
+    {
+      "heading": "Testele cu bronhodilatator și de provocare",
+      "paragraphs": [
+        "După spirometrie, inhalați un medicament de ameliorare și repetați testul. O îmbunătățire mare indică astm. Un test de provocare, cu o substanță inhalată sau cu efort, se face sub supraveghere pentru a afla dacă căile respiratorii reacționează exagerat. Debitmetrele sunt dispozitive simple pentru monitorizare acasă."
+      ]
+    },
+    {
+      "heading": "Alte teste",
+      "paragraphs": [
+        "Pletismografia corporală folosește o cabină închisă pentru a măsura volumul pulmonar total. Un test de difuziune măsoară cât de bine trece oxigenul din plămâni în sânge prin respirarea unei mici cantități de gaz inofensiv. Pulsoximetria folosește un senzor pe deget pentru a măsura oxigenul din sânge, iar gazometria măsoară nivelurile de oxigen și de dioxid de carbon. Un test de mers măsoară toleranța la efort."
+      ]
+    },
+    {
+      "heading": "Pregătirea",
+      "paragraphs": [
+        "Evitați fumatul câteva ore, mesele copioase și efortul intens înainte de test. Vi se poate cere să opriți inhalatoarele înainte, așa că întrebați din timp. Purtați haine largi. Spuneți personalului despre infecții recente, durere în piept, operații la ochi sau probleme de inimă, deoarece unele teste pot trebui amânate."
+      ]
+    },
+    {
+      "heading": "Rezultatele",
+      "paragraphs": [
+        "Rezultatele sunt comparate cu valorile așteptate pentru vârsta, înălțimea, sexul și etnia dumneavoastră. Medicul le interpretează împreună cu simptomele și cu alte teste. Întrebați ce arată rezultatele, ce tratament este necesar și cât de des trebuie repetate testele."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Efectuarea corectă a spirometriei",
+      "text": "Imaginați-vă că vi se cere să suflați tare. Ați putea inspira complet, închide buzele etanș și continua să suflați până când vi se spune să vă opriți."
+    },
+    {
+      "title": "Folosirea debitmetrului acasă",
+      "text": "Presupuneți că aveți astm. Ați putea nota debitul expirator de vârf dimineața și seara și ați putea aduce jurnalul la medic."
+    }
+  ],
+  "questions": [
+    "Ce teste ale funcției pulmonare îmi trebuie?",
+    "Ar trebui să opresc inhalatoarele înainte de testare?",
+    "Ce înseamnă rezultatele pentru tratamentul meu?"
+  ]
+}

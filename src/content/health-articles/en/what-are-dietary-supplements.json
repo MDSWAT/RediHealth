@@ -1,0 +1,51 @@
+{
+  "title": "What are dietary supplements?",
+  "intro": "Dietary supplements are products such as vitamins, minerals, herbal extracts and other substances taken to add to the diet. They are sold in tablets, capsules, powders and drinks. For most healthy people who eat a varied diet, they are unnecessary, and some can be harmful. In certain situations, targeted supplements are useful.",
+  "sections": [
+    {
+      "heading": "How they differ from medicines",
+      "paragraphs": [
+        "In many countries, supplements are regulated as foods, not medicines, so they do not have to prove effectiveness before sale, though safety rules apply. Their labels may make general claims, but they should not claim to treat or cure disease. Quality and content can vary between products, and some contain more or less than the label says."
+      ]
+    },
+    {
+      "heading": "When supplements may be useful",
+      "paragraphs": [
+        "Supplements can help when there is a proven need: folic acid before and in early pregnancy, vitamin D for infants and certain risk groups, vitamin B12 for vegans and people with absorption problems, iron for iron deficiency, iodine in pregnancy in some regions, and calcium and vitamin D for some people at risk of osteoporosis. A doctor can confirm need with tests."
+      ]
+    },
+    {
+      "heading": "Risks",
+      "paragraphs": [
+        "Very high doses of some vitamins and minerals can cause harm, for example excess vitamin A in pregnancy can damage the baby, high doses of vitamin D can raise blood calcium and large amounts of iron are toxic, particularly to children. Herbal products can interact with medicines, such as St John's wort with contraceptives and blood thinners. Some products contain undeclared substances. Taking several products can lead to overdose."
+      ]
+    },
+    {
+      "heading": "Choosing wisely",
+      "paragraphs": [
+        "Ask whether you need a supplement at all, and aim to get nutrients from food first. Tell your doctor and pharmacist about what you take. Choose products from reputable brands and check doses against recommended daily amounts. Be sceptical about claims of miracle effects, detox or immune boosting. Stop and seek help if you have side effects. Keep products out of children's reach."
+      ]
+    },
+    {
+      "heading": "Talking to your healthcare team",
+      "paragraphs": [
+        "Mention supplements at every appointment, because they can change test results and interact with treatment. Bring the packaging, so the exact ingredients and doses are known, and review regularly whether you still need them."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Checking need",
+      "text": "Imagine you wonder whether to take a multivitamin. You could review your diet with your doctor or a dietitian and ask whether any tests are needed."
+    },
+    {
+      "title": "Checking interactions",
+      "text": "Suppose you start a herbal remedy while taking a regular medicine. You might ask the pharmacist about interactions before you begin."
+    }
+  ],
+  "questions": [
+    "Do I really need a supplement, and which one?",
+    "Could it interact with my medicines?",
+    "Which dose is safe for me?"
+  ]
+}

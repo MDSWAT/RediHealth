@@ -1,0 +1,51 @@
+{
+  "title": "Mitosis: how body cells divide",
+  "intro": "Cell division supports growth, tissue renewal and repair. Mitosis divides the copied genetic material into new nuclei, usually followed by separation into daughter cells. It differs from meiosis, which produces reproductive cells with a reduced chromosome set.",
+  "sections": [
+    {
+      "heading": "Preparation",
+      "paragraphs": [
+        "Before mitosis, the cell grows and copies DNA. Copying creates matching chromosome copies, not immediately separate cells. Control systems check readiness and damage, although these checks are not perfect."
+      ]
+    },
+    {
+      "heading": "Organizing chromosomes",
+      "paragraphs": [
+        "The copied chromosomes condense and attach to a spindle that helps position them. They align before their matching copies separate. A diagram simplifies a dynamic process; chromosomes do not choose destinations consciously."
+      ]
+    },
+    {
+      "heading": "Separation",
+      "paragraphs": [
+        "Copies move toward opposite sides and new nuclei form. Division of the cell contents usually completes the process. The daughter cells normally retain the same chromosome set, rather than halving it as in meiosis."
+      ]
+    },
+    {
+      "heading": "Different tissues",
+      "paragraphs": [
+        "Skin and bowel lining renew regularly, while many mature nerve cells divide very little or not at all. Cell division is therefore not identical everywhere. Wound healing also needs circulation, immune activity and tissue organization, not just faster multiplication."
+      ]
+    },
+    {
+      "heading": "Errors and disease",
+      "paragraphs": [
+        "Mistakes may be repaired, lead to cell death or persist. Some changes contribute to cancer, but a single error does not automatically mean cancer. Tests and diagnosis require context; this explanation cannot interpret an individual biopsy or predict growth speed. Before a consultation, note when a symptom began, what makes it better or worse, and how it affects ordinary activities. Bring previous reports if available. Ask the professional to connect the explanation to your own findings rather than assuming that a general description establishes a diagnosis."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira compares skin repair with a meiosis diagram and learns why healing does not create eggs or sperm."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben asks why cancer medicines may affect hair or bowel lining. The team explains that some normal tissues also contain actively dividing cells."
+    }
+  ],
+  "questions": [
+    "Which steps would be clearer with a diagram?",
+    "What does this explanation show, and what can it not predict?",
+    "Would my specific concern need professional assessment?"
+  ]
+}

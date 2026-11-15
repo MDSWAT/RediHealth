@@ -1,0 +1,51 @@
+{
+  "title": "Low back pain",
+  "intro": "Low back pain is very common and usually improves within weeks, even without a specific diagnosis. Staying active, using simple pain relief and avoiding prolonged bed rest are the cornerstones of recovery. Serious causes are rare, but certain warning signs mean you should seek medical help quickly.",
+  "sections": [
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "Most back pain is non-specific, meaning it arises from muscles, ligaments, joints or discs without a single clear structural cause. Contributing factors include lack of activity, stress, poor sleep, a physically demanding job, long periods of sitting and smoking. Scan findings such as disc bulges are common in people without pain and do not always explain symptoms."
+      ]
+    },
+    {
+      "heading": "What helps in the first weeks",
+      "paragraphs": [
+        "Stay as active as you can and return to normal activities gradually. Heat, gentle movement and simple painkillers like ibuprofen or paracetamol may ease pain, if suitable for you. Bed rest slows recovery. Most people feel markedly better within a few weeks, though recurrences are common."
+      ]
+    },
+    {
+      "heading": "Warning signs",
+      "paragraphs": [
+        "Seek urgent medical help if back pain comes with numbness around the groin or buttocks, loss of control of bladder or bowels, weakness in the legs, fever, unexplained weight loss, a history of cancer, or follows a significant injury. Pain that is severe at night or that does not improve at all should be assessed."
+      ]
+    },
+    {
+      "heading": "Persistent pain",
+      "paragraphs": [
+        "If pain lasts more than a few weeks, exercise therapy, physiotherapy, stretching and strengthening, and approaches that address fear and stress are useful. Walking, swimming, yoga and tai chi may help. Psychological therapies and pain education can reduce disability. Injections, surgery and strong painkillers are rarely needed and are reserved for specific situations."
+      ]
+    },
+    {
+      "heading": "Preventing recurrence",
+      "paragraphs": [
+        "Remain physically active, keep a healthy weight, take breaks from long sitting, lift with sensible technique and address stress and sleep. Strengthening your core and legs supports the spine. Talk to your employer about adjustments if work contributes to symptoms."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Staying active",
+      "text": "Imagine your back suddenly hurts after gardening. You could keep walking short distances, avoid lying in bed all day, use heat and take a painkiller as the leaflet advises, and see a doctor if numbness or weakness appears."
+    },
+    {
+      "title": "Planning your return to exercise",
+      "text": "Suppose your pain has lasted six weeks. You might ask a physiotherapist for an exercise plan that increases gradually and shows you how to manage flare-ups."
+    }
+  ],
+  "questions": [
+    "Do I need a scan, or are there reasons not to have one?",
+    "Which exercises and treatments are most helpful for my type of pain?",
+    "Which symptoms mean I should come back immediately?"
+  ]
+}

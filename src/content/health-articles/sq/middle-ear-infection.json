@@ -1,0 +1,52 @@
+{
+  "title": "Infeksioni i veshit të mesëm",
+  "intro": "Infeksioni i veshit të mesëm, ose otiti media, ndodh kur hapësira pas daulles së veshit inflamohet, zakonisht pas një ftohjeje. Është shumë i zakonshëm te fëmijët e vegjël dhe shkakton dhimbje veshi e ndonjëherë ethe. Shumica e infeksioneve kalojnë brenda disa ditësh pa antibiotikë, me lehtësimin e dhimbjes si trajtim kryesor.",
+  "sections": [
+    {
+      "heading": "Pse ndodh",
+      "paragraphs": [
+        "Veshi i mesëm lidhet me pjesën e pasme të hundës nga tubi i Eustakit. Gjatë një ftohjeje ose alergjie, ky tub mund të enjtet dhe bllokohet dhe lëngu grumbullohet pas daulles së veshit, ku mikrobet mund të shumohen. Fëmijët preken më shumë sepse tubat e tyre janë të shkurtër e të ngushtë. Ekspozimi ndaj tymit, mungesa e ushqyerjes me gji dhe ndjekja e çerdhes e rrisin rrezikun."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Shenjat tipike janë dhimbja e veshit, që mund të jetë më e fortë kur shtriheni, ethet, nervozizmi, gjumi i dobët, oreksi i reduktuar dhe ndonjëherë dëgjimi i reduktuar. Foshnjat mund t'i tërheqin veshët dhe të qajnë. Nëse çahet daullja e veshit, lëngu mund të rrjedhë dhe dhimbja shpesh lehtësohet shpejt."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Lehtësimi i dhimbjes dhe etheve me paracetamol ose ibuprofen në dozën e rekomanduar është trajtimi kryesor. Ngrohtësia mbi vesh mund të qetësojë. Shumë udhëzues sugjerojnë pritje të vëmendshme për 48 deri 72 orë për fëmijët mbi një moshë të caktuar me sëmundje të lehtë, sepse shumica shërohen pa antibiotikë. Antibiotikët merren në konsideratë për fëmijët shumë të vegjël, simptoma të rënda, të dy veshët e prekur, rrjedhje nga veshi ose nëse simptomat nuk përmirësohen.",
+        "Spërkatësit dekongjestionues të hundës dhe antihistaminikët nuk ndihmojnë. Mbajeni veshin të thatë nëse rrjedh."
+      ]
+    },
+    {
+      "heading": "Komplikimet",
+      "paragraphs": [
+        "Lëngu mund të mbetet pas daulles së veshit për javë dhe ta ulë përkohësisht dëgjimin. Infeksionet e përsëritura ose lëngu i vazhdueshëm mund të trajtohen me tuba të vegjël ventilimi të futur në daullen e veshit. Rrallë, infeksioni përhapet në kockën aty pranë ose në tru. Kërkoni kujdes urgjent për enjtje ose skuqje pas veshit, qafë të ngurtë, dhimbje koke të rëndë, përgjumje ose dobësi të fytyrës."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Shmangni ekspozimin ndaj tymit, inkurajoni ushqyerjen me gji në foshnjëri dhe mbajini vaksinimet të përditësuara, pasi vaksinat pneumokokale dhe e gripit i ulin infeksionet. Lani duart për të kufizuar ftohjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shikimi dhe pritja",
+      "text": "Imagjinoni që fëmija juaj katërvjeçar ka dhimbje veshi pas një ftohjeje. Mund të jepni lehtësues dhimbjeje, të ofroni lëngje, të vëzhgoni për dy ditë dhe të telefononi mjekun nëse ethet rriten, dhimbja përkeqësohet ose shfaqet rrjedhje."
+    },
+    {
+      "title": "Diskutimi i infeksioneve të përsëritura",
+      "text": "Supozoni që fëmija juaj ka pasur disa infeksione veshi këtë vit. Mund të pyesni nëse një test dëgjimi ose një vizitë te specialisti i veshit do të ishte e dobishme."
+    }
+  ],
+  "questions": [
+    "A ka nevojë fëmija im për antibiotikë apo mund të presim?",
+    "Si mund ta menaxhoj dhimbjen në shtëpi dhe për sa kohë?",
+    "A duhet të bëjmë një kontroll dëgjimi nëse infeksionet vazhdojnë të kthehen?"
+  ]
+}

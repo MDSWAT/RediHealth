@@ -1,0 +1,51 @@
+{
+  "title": "Why are vitamin D supplements recommended for babies?",
+  "intro": "Vitamin D is needed for strong bones and teeth, as it helps the body absorb calcium. Babies get little vitamin D from breast milk and are not exposed to much sunlight, so health authorities in many countries recommend a daily supplement to prevent rickets. Check the recommendation in your country with your paediatrician.",
+  "sections": [
+    {
+      "heading": "Why babies need it",
+      "paragraphs": [
+        "The body makes vitamin D when skin is exposed to sunlight, but babies should be kept out of direct sun, and sunscreen blocks production. Breast milk contains only small amounts of vitamin D. Formula milk is fortified, so formula-fed babies may need less supplement. Without enough vitamin D, bones can become soft and bent, a condition called rickets."
+      ]
+    },
+    {
+      "heading": "Recommended amounts",
+      "paragraphs": [
+        "In Germany and many other countries, the usual advice is five hundred to a thousand international units daily, often in drops or a tablet, from the first week of life until the second summer, sometimes combined with fluoride, depending on advice. Your doctor will give the dose for your baby, in particular for premature babies and those with health conditions."
+      ]
+    },
+    {
+      "heading": "How to give it",
+      "paragraphs": [
+        "Drops can be given on a spoon or placed in a little milk. Give the dose at about the same time daily. Use only the product and dose recommended. If you miss a dose, continue the next day and do not double the dose. Keep out of reach of children."
+      ]
+    },
+    {
+      "heading": "Safety",
+      "paragraphs": [
+        "Excessive vitamin D can cause too much calcium in the blood, with vomiting, poor appetite and kidney problems, so avoid giving more than advised and avoid giving multiple products containing vitamin D. At the recommended dose, supplements are considered safe."
+      ]
+    },
+    {
+      "heading": "Other sources",
+      "paragraphs": [
+        "Oily fish, eggs and fortified foods contain vitamin D, and older children and adults make vitamin D from sunshine. Some groups, such as those with dark skin, little outdoor time or specific conditions, may need advice about supplements beyond infancy."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Building a routine",
+      "text": "Imagine you forget the daily drops. You could link them to the morning feed or set a phone reminder."
+    },
+    {
+      "title": "Checking the dose",
+      "text": "Suppose your baby also takes a multivitamin. You might ask your paediatrician about the total vitamin D amount."
+    }
+  ],
+  "questions": [
+    "What dose of vitamin D does my baby need, and for how long?",
+    "Does my baby need more or less because of formula or premature birth?",
+    "Which signs would suggest a vitamin D problem?"
+  ]
+}

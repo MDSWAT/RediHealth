@@ -1,0 +1,51 @@
+{
+  "title": "Što je ehokardiogram?",
+  "intro": "Ehokardiogram je ultrazvučni pregled srca. Koristi zvučne valove za dobivanje pokretnih slika srčanih komora, zalistaka i stijenki te pokazuje koliko dobro pumpa. Siguran je, bezbolan i bez zračenja te se široko koristi za dijagnosticiranje srčanih problema.",
+  "sections": [
+    {
+      "heading": "Zašto se radi",
+      "paragraphs": [
+        "Liječnici ga koriste za ispitivanje nedostatka zraka, boli u prsima, srčanog šuma, oticanja nogu ili lupanja srca, za procjenu zatajenja srca, bolesti zalistaka, oštećenja nakon srčanog udara, prirođenih mana i tekućine oko srca te za praćenje liječenja. Mjeri istisnu frakciju, udio krvi koji se izbaci pri svakom otkucaju."
+      ]
+    },
+    {
+      "heading": "Vrste",
+      "paragraphs": [
+        "Transtorakalni ehokardiogram radi se preko prsa i standardna je pretraga. Transezofagealni ehokardiogram uvodi sondu niz jednjak za jasnije slike stražnjeg dijela srca, uz sedaciju. Stres ehokardiogram radi se tijekom vježbanja ili nakon lijeka kako bi se vidjelo kako se srce ponaša pod opterećenjem. Kontrastna sredstva mogu se ubrizgati radi poboljšanja slika."
+      ]
+    },
+    {
+      "heading": "Što se događa",
+      "paragraphs": [
+        "Skidate se do pasa i ležite na lijevom boku. Postavljaju se mali ljepljivi jastučići za elektrokardiogram. Tehničar nanosi gel i pomiče sondu preko prsa uz blagi pritisak. Možda će vas zamoliti da zadržite dah. Iz uređaja se čuje zvuk poput šuma. Traje trideset do šezdeset minuta."
+      ]
+    },
+    {
+      "heading": "Priprema i sigurnost",
+      "paragraphs": [
+        "Obično nije potrebna priprema, osim za transezofagealni test, koji zahtijeva post, ili za stres test. Obucite široku odjeću. Postupak je siguran. Transezofagealni testovi imaju male rizike kao što je grlobolja. Liječnik objašnjava rezultate, često nakon što specijalist pregleda slike."
+      ]
+    },
+    {
+      "heading": "Razumijevanje rezultata",
+      "paragraphs": [
+        "Rezultati opisuju veličinu komora, debljinu stijenki, funkciju pumpanja i kako se zalisci otvaraju i zatvaraju. Nalazi se kombiniraju sa simptomima i drugim pretragama. Pitajte što rezultati znače za liječenje, kontrole i aktivnost."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema",
+      "text": "Zamislite da sutra imate pretragu. Mogli biste obući široku majicu, ponijeti popis lijekova i pitati smijete li jesti prije."
+    },
+    {
+      "title": "Razgovor o rezultatima",
+      "text": "Pretpostavite da nalaz spominje blago curenje zaliska. Mogli biste pitati koliko često ga treba kontrolirati i koji su simptomi važni."
+    }
+  ],
+  "questions": [
+    "Koju vrstu ehokardiograma trebam i zašto?",
+    "Što znači moja istisna frakcija?",
+    "Koliko često treba ponavljati pretragu?"
+  ]
+}

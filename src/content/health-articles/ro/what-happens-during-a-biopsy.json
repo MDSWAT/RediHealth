@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă în timpul unei biopsii?",
+  "intro": "O biopsie este o procedură în care o mică probă de țesut este prelevată din organism și examinată la microscop. Este folosită pentru a diagnostica afecțiuni precum cancerul, inflamațiile și infecțiile. Cele mai multe biopsii sunt rapide și se fac cu anestezie locală.",
+  "sections": [
+    {
+      "heading": "De ce se face o biopsie",
+      "paragraphs": [
+        "Investigațiile imagistice și analizele de sânge pot sugera o problemă, dar examinarea țesutului este adesea singura modalitate de a fi siguri ce este. O biopsie poate arăta dacă o formațiune este benignă sau malignă, poate găsi tipul de cancer și poate ajuta la planificarea tratamentului. Se folosește și pentru diagnosticarea bolilor ficatului, rinichilor, pielii și intestinului."
+      ]
+    },
+    {
+      "heading": "Tipuri de biopsie",
+      "paragraphs": [
+        "O biopsie cu ac folosește un ac fin sau mai gros pentru a lua celule sau un mic fragment de țesut, adesea ghidată prin ecografie sau scanare. O biopsie endoscopică ia probe cu mici pense printr-un tub cu cameră. O biopsie de piele îndepărtează o mică bucată cu o lamă sau cu un dispozitiv de tip punch. Biopsia chirurgicală îndepărtează o parte sau toată formațiunea printr-o incizie."
+      ]
+    },
+    {
+      "heading": "Înainte și în timpul procedurii",
+      "paragraphs": [
+        "Vi se poate cere să opriți anticoagulantele și să fiți à jeun pentru unele proceduri. Zona este curățată și anesteziată. Puteți simți presiune sau o durere scurtă în timpul prelevării. Procedurile durează de la câteva minute la o oră, iar unele necesită sedare. De obicei puteți merge acasă în aceeași zi."
+      ]
+    },
+    {
+      "heading": "După biopsie",
+      "paragraphs": [
+        "Sensibilitatea ușoară, vânătăile sau o ușoară sângerare sunt frecvente. Urmați instrucțiunile privind îngrijirea plăgii. Contactați medicul pentru sângerare abundentă, febră, durere crescândă, roșeață sau umflătură. Complicațiile sunt rare, dar includ sângerarea și infecția."
+      ]
+    },
+    {
+      "heading": "Rezultatele",
+      "paragraphs": [
+        "Un medic anatomopatolog examinează proba, iar rezultatele durează de la câteva zile la două săptămâni. Așteptarea poate fi stresantă. Întrebați când și cum veți primi rezultatul și cine îl va explica. Uneori este nevoie de o altă biopsie dacă proba a fost prea mică sau neclară."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea",
+      "text": "Imaginați-vă că faceți o biopsie hepatică. Ați putea spune echipei despre toate medicamentele, în special despre anticoagulante, și ați putea aranja un transport acasă."
+    },
+    {
+      "title": "În așteptarea rezultatelor",
+      "text": "Presupuneți că rezultatele durează zece zile. Ați putea cere data unei consultații de urmărire și ați putea veni însoțit."
+    }
+  ],
+  "questions": [
+    "De ce am nevoie de o biopsie și ce va arăta?",
+    "Ce tip de biopsie este planificat și care sunt riscurile?",
+    "Când voi primi rezultatele și cine mi le va explica?"
+  ]
+}

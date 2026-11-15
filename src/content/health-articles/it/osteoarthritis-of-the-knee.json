@@ -1,0 +1,51 @@
+{
+  "title": "Artrosi del ginocchio",
+  "intro": "L'artrosi del ginocchio è una condizione di lunga durata in cui la cartilagine e gli altri tessuti del ginocchio cambiano nel tempo, causando dolore, rigidità e movimento ridotto. È molto comune con l'avanzare dell'età. Esercizio, controllo del peso e sollievo dal dolore aiutano molte persone a restare attive e la chirurgia è un'opzione quando gli altri trattamenti non bastano più.",
+  "sections": [
+    {
+      "heading": "Che cosa succede nell'articolazione",
+      "paragraphs": [
+        "Il ginocchio è ammortizzato da una cartilagine liscia che nell'artrosi si assottiglia e diventa ruvida. L'osso sottostante si ispessisce, possono formarsi piccoli speroni ossei e il rivestimento articolare può irritarsi e gonfiarsi. Infortuni precedenti, sovrappeso, storia familiare e forti sollecitazioni ripetute aumentano il rischio."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi tipici sono dolore quando si cammina, si salgono le scale o ci si alza da una sedia, rigidità dopo il riposo, gonfiore e una sensazione di sfregamento. Il ginocchio può cedere quando i muscoli della coscia sono deboli. I sintomi fluttuano e spesso peggiorano dopo un'attività insolita."
+      ]
+    },
+    {
+      "heading": "Esercizio e peso",
+      "paragraphs": [
+        "L'esercizio regolare è il trattamento più efficace. Rinforzare i muscoli della coscia, andare in bicicletta, nuotare e camminare riducono il dolore e migliorano la funzione, anche se il movimento all'inizio è scomodo. Se sei in sovrappeso, perdere peso riduce notevolmente il carico sul ginocchio. Scarpe di sostegno e ausili per camminare possono aiutare."
+      ]
+    },
+    {
+      "heading": "Farmaci e infiltrazioni",
+      "paragraphs": [
+        "I gel antinfiammatori applicati sul ginocchio possono alleviare il dolore con pochi effetti collaterali. Compresse come l'ibuprofene possono aiutare per brevi periodi, con attenzione a stomaco, reni e cuore. Le infiltrazioni di corticosteroidi possono dare un sollievo temporaneo durante le riacutizzazioni. Il beneficio di integratori come la glucosamina è dubbio e il lavaggio articolare e l'artroscopia in genere non sono utili per la sola artrosi."
+      ]
+    },
+    {
+      "heading": "Chirurgia",
+      "paragraphs": [
+        "Una protesi di ginocchio può essere considerata quando dolore e perdita di funzione restano gravi nonostante gli altri trattamenti. Allevia il dolore e migliora la mobilità per la maggior parte delle persone e le articolazioni artificiali durano comunemente quindici anni o più. I rischi comprendono infezione, coaguli di sangue e rigidità e la riabilitazione richiede da settimane a mesi. Ai pazienti più giovani a volte si propone una chirurgia correttiva dell'osso per spostare il carico lontano dall'area danneggiata."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Costruire una routine di esercizio",
+      "text": "Immagina che il ginocchio ti faccia male quando sali le scale. Potresti iniziare con esercizi dolci di rinforzo della coscia e brevi camminate, aumentarli lentamente ogni settimana e chiedere a un fisioterapista di controllare la tua tecnica."
+    },
+    {
+      "title": "Pensare alla chirurgia",
+      "text": "Supponi che il dolore ti svegli di notte e limiti la camminata a pochi minuti. Potresti chiedere a un ortopedico dei benefici attesi, dei tempi di recupero e di come prepararti a una protesi."
+    }
+  ],
+  "questions": [
+    "Quali esercizi e ausili sono migliori per le mie ginocchia?",
+    "Le infiltrazioni o altri trattamenti mi aiuterebbero in questa fase?",
+    "Come capisco quando la chirurgia è la scelta giusta?"
+  ]
+}

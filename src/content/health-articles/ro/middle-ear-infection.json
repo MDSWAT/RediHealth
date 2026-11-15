@@ -1,0 +1,52 @@
+{
+  "title": "Otita medie",
+  "intro": "Otita medie apare când spațiul din spatele timpanului se inflamează, de obicei după o răceală. Este foarte frecventă la copiii mici și provoacă dureri de ureche și uneori febră. Cele mai multe infecții trec în câteva zile fără antibiotice, tratamentul principal fiind calmarea durerii.",
+  "sections": [
+    {
+      "heading": "De ce apare",
+      "paragraphs": [
+        "Urechea medie este legată de partea din spate a nasului prin trompa lui Eustachio. În timpul unei răceli sau al unei alergii, această trompă se poate umfla și bloca, iar lichidul se adună în spatele timpanului, unde microbii se pot înmulți. Copiii sunt mai afectați pentru că trompele lor sunt scurte și înguste. Expunerea la fum, lipsa alăptării și frecventarea creșei cresc riscul."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Semnele tipice sunt durerea de ureche, care poate fi mai intensă când stați culcat, febra, iritabilitatea, somnul slab, apetitul scăzut și uneori auzul diminuat. Bebelușii pot trage de urechi și plâng. Dacă timpanul se rupe, poate curge lichid, iar durerea se ameliorează adesea rapid."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Calmarea durerii și a febrei cu paracetamol sau ibuprofen în doza recomandată este tratamentul principal. Căldura pe ureche poate alina. Multe ghiduri sugerează așteptare vigilentă timp de 48 până la 72 de ore pentru copiii peste o anumită vârstă cu boală ușoară, deoarece cei mai mulți se vindecă fără antibiotice. Antibioticele se iau în considerare la copiii foarte mici, la simptome severe, când sunt afectate ambele urechi, când curge secreție din ureche sau când simptomele nu se ameliorează.",
+        "Spray-urile nazale decongestionante și antihistaminicele nu ajută. Păstrați urechea uscată dacă curge."
+      ]
+    },
+    {
+      "heading": "Complicații",
+      "paragraphs": [
+        "Lichidul poate rămâne în spatele timpanului săptămâni la rând și poate reduce temporar auzul. Infecțiile repetate sau lichidul persistent pot fi tratate cu mici tuburi de ventilație introduse în timpan. Rar, infecția se răspândește la osul din apropiere sau la creier. Cereți îngrijiri urgente pentru umflătură sau roșeață în spatele urechii, ceafă înțepenită, durere de cap severă, somnolență sau slăbiciune facială."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Evitați expunerea la fum, încurajați alăptarea în perioada de sugar și țineți vaccinările la zi, deoarece vaccinurile antipneumococic și antigripal reduc infecțiile. Spălați-vă pe mâini pentru a limita răcelile."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Așteptare vigilentă",
+      "text": "Imaginați-vă că copilul dumneavoastră de patru ani are dureri de ureche după o răceală. Ați putea da un calmant, oferi lichide, observa copilul două zile și suna medicul dacă febra crește, durerea se agravează sau apare secreție."
+    },
+    {
+      "title": "Discutarea infecțiilor repetate",
+      "text": "Presupuneți că copilul a avut mai multe otite anul acesta. Ați putea întreba dacă ar fi utilă o testare a auzului sau o vizită la un specialist ORL."
+    }
+  ],
+  "questions": [
+    "Are copilul meu nevoie de antibiotice sau putem aștepta?",
+    "Cum pot gestiona durerea acasă și cât timp?",
+    "Ar trebui să facem un control al auzului dacă infecțiile revin?"
+  ]
+}

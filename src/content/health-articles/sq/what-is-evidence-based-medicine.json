@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është mjekësia e bazuar në prova?",
+  "intro": "Mjekësia e bazuar në prova do të thotë marrja e vendimeve shëndetësore duke kombinuar kërkimin më të mirë në dispozicion, përvojën klinike të mjekut e vlerat e rrethanat e pacientit. Synon të sigurojë që trajtimet zgjidhen sepse është treguar se funksionojnë, jo vetëm sepse janë tradicionale ose të njohura.",
+  "sections": [
+    {
+      "heading": "Tri pjesët",
+      "paragraphs": [
+        "Pjesa e parë është kërkimi më i mirë aktual, si provat e kryera mirë e rishikimet sistematike. E dyta është ekspertiza klinike e mjekut, që di si t'i zbatojë gjetjet te pacientët individualë. E treta janë preferencat, objektivat e situata e pacientit. Të tria nevojiten, pasi vetëm prova nuk mund të vendosë çfarë është e drejtë për një person."
+      ]
+    },
+    {
+      "heading": "Nivelet e provave",
+      "paragraphs": [
+        "Jo çdo provë është njëlloj e besueshme. Rishikimet sistematike të provave të rastësuara renditen më lart, e ndjekin provat e vetme të rastësuara, pastaj studimet e kohortës e rast-kontrollit, e në fund raportet e rasteve e mendimi i ekspertëve. Prova me cilësi më të lartë ka më pak gjasa të shtrembërohet nga rastësia ose njëanshmëria. Prova duhet gjykuar edhe për rëndësinë te personi."
+      ]
+    },
+    {
+      "heading": "Si përdoret",
+      "paragraphs": [
+        "Udhëzuesit përmbledhin provat për gjendjet për t'i ndihmuar mjekët e pacientët të zgjedhin trajtime. Prova ndihmon të vendoset nëse një test është i dobishëm, cili bar funksionon më mirë e cilat trajtime duhen shmangur. Tregon edhe ku nuk dimë mjaftueshëm, prandaj nevojitet kërkim."
+      ]
+    },
+    {
+      "heading": "Kufijtë e kritikat",
+      "paragraphs": [
+        "Studimet mund të mos përfshijnë njerëz si ju, si të moshuarit ose ata me disa sëmundje. Prova mund të mungojë ose të jetë e njëanshme nga financimi e rezultatet e pabotuara. Ndjekja mekanike e udhëzuesve mund të anashkalojë nevojat individuale. Për këtë arsye, prova është bazë për diskutim, jo rregull."
+      ]
+    },
+    {
+      "heading": "Çfarë do të thotë për ju",
+      "paragraphs": [
+        "Mund ta pyesni mjekun çfarë thotë prova për përfitimet e rreziqet, sa të mëdha janë efektet e cilat janë alternativat. Ndani preferencat hapur. Kini kujdes me pohimet e bazuara vetëm në dëshmi ose studime të vetme, e kërkoni burime informacioni të besueshme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pyetja për provat",
+      "text": "Imagjinoni që mjeku sugjeron një trajtim të ri. Mund të pyesni sa mirë funksionon, cilat janë rreziqet e sa të sigurt jemi."
+    },
+    {
+      "title": "Gjykimi i një pohimi",
+      "text": "Supozoni që një reklamë premton një kurë të mrekullueshme bazuar në histori personale. Mund të kërkoni prova ose rishikime që e testojnë drejt."
+    }
+  ],
+  "questions": [
+    "Çfarë prove e mbështet këtë trajtim e sa e fortë është?",
+    "A vlen kërkimi për dikë si unë?",
+    "Cilat janë alternativat, përfshirë mosveprimin?"
+  ]
+}

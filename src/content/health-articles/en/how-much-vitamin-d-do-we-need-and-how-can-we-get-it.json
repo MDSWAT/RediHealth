@@ -1,0 +1,53 @@
+{
+  "title": "How much vitamin D we need and how to get it",
+  "intro": "Vitamin D helps the body absorb calcium and keeps bones and muscles healthy. Most people make much of their vitamin D in the skin with the help of sunlight, and a smaller part comes from food. How much you need depends on age, skin, lifestyle and health, and for most healthy people no special measures are required.",
+  "sections": [
+    {
+      "heading": "What vitamin D does",
+      "paragraphs": [
+        "Vitamin D works like a hormone. It supports the uptake of calcium and phosphate from the gut, which is essential for strong bones. A long-lasting shortage can cause rickets in children and softening of the bones in adults, and it may increase the risk of falls and fractures in older people."
+      ]
+    },
+    {
+      "heading": "Getting vitamin D from sunlight",
+      "paragraphs": [
+        "When UVB rays reach the skin, the body converts a substance in it into vitamin D. In spring and summer, a few minutes of daylight on face, hands and arms several times a week is enough for many people. Between roughly October and March at northern latitudes, the sun is too weak to produce much.",
+        "Sunscreen, covering clothes, darker skin, older age and spending most of the day indoors reduce production. Staying in the sun longer than needed does not create more vitamin D and raises the risk of skin damage."
+      ]
+    },
+    {
+      "heading": "Food sources",
+      "paragraphs": [
+        "Few foods contain much vitamin D. Fatty sea fish such as herring, salmon and mackerel are the best natural sources, with smaller amounts in eggs, liver and some mushrooms. Some products such as margarine or breakfast cereals are fortified. Diet alone often provides only a part of the daily requirement."
+      ]
+    },
+    {
+      "heading": "Who might need supplements",
+      "paragraphs": [
+        "Official recommendations commonly suggest daily vitamin D for babies in their first year, and supplements may be advised for people who rarely go outside, for example in care homes, for those who cover most of their skin, and for people with certain illnesses of the gut, kidneys or liver. Your doctor can advise on your situation.",
+        "Supplements come in different doses, and more is not better. Very high doses over a long time can raise blood calcium and may harm the kidneys. Follow the dose recommended by your doctor or the product leaflet, and tell your doctor about supplements you take."
+      ]
+    },
+    {
+      "heading": "Testing and everyday advice",
+      "paragraphs": [
+        "Routine blood tests for vitamin D are not necessary for most healthy people. They may be considered in people with bone disease or specific risk factors. Healthy habits include regular outdoor activity in daylight, a varied diet with fish, and weight-bearing exercise to support bone health."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planning for winter",
+      "text": "Imagine you work indoors and rarely see daylight in winter. You could take a short walk outside at lunchtime, include fish in your meals, and ask your doctor whether a low-dose supplement would suit you."
+    },
+    {
+      "title": "Checking a baby's supplement",
+      "text": "Suppose you have a newborn and are unsure whether vitamin D drops are needed. You might ask the paediatrician what dose is recommended, how long to give it, and how to combine it with feeding."
+    }
+  ],
+  "questions": [
+    "Is my vitamin D intake likely to be sufficient, or do I belong to a group that benefits from a supplement?",
+    "What dose is safe for me, and for how long should I take it?",
+    "Is a blood test useful in my situation?"
+  ]
+}

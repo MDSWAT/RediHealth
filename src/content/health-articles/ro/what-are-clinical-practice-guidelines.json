@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt ghidurile de practică clinică?",
+  "intro": "Ghidurile de practică clinică sunt documente care rezumă cele mai bune dovezi disponibile și oferă recomandări despre cum să se prevină, să se diagnosticheze și să se trateze afecțiunile. Ele ajută medicii și pacienții să ia decizii și urmăresc reducerea diferențelor nejustificate în îngrijire. Înțelegerea a ceea ce sunt și a ceea ce nu sunt vă ajută să le folosiți cu înțelepciune.",
+  "sections": [
+    {
+      "heading": "Ce conțin",
+      "paragraphs": [
+        "Ghidurile sunt elaborate de grupuri de experți, societăți medicale sau autorități de sănătate. Ele analizează dovezile din cercetare și formulează recomandări, precum ce teste să se folosească, ce tratamente să se ofere și când să se facă trimitere. Multe gradează puterea unei recomandări și calitatea dovezilor din spatele ei. Unele versiuni sunt scrise pentru pacienți."
+      ]
+    },
+    {
+      "heading": "Cum se fac ghidurile bune",
+      "paragraphs": [
+        "Ghidurile de încredere folosesc analize sistematice ale dovezilor, includ o gamă de experți și adesea reprezentanți ai pacienților, declară conflictele de interese, descriu metodele și sunt actualizate regulat. Unde dovezile lipsesc, spun acest lucru și se bazează pe consensul experților. Ghidurile finanțate de o companie interesată de rezultat merită o analiză suplimentară."
+      ]
+    },
+    {
+      "heading": "Cum le folosesc medicii",
+      "paragraphs": [
+        "Ghidurile sunt repere, nu reguli. Ele descriu ce este potrivit pentru majoritatea pacienților. Medicii le adaptează la individ, ținând cont de alte boli, vârstă, preferințe și circumstanțe. Abaterile de la ghiduri pot fi justificate, dar trebuie explicate. Ghidurile pot diferi între țări sau organizații."
+      ]
+    },
+    {
+      "heading": "Limite",
+      "paragraphs": [
+        "Multe ghiduri se bazează pe studii ale unor persoane care nu seamănă cu pacienții cu mai multe afecțiuni. Se pot demoda, iar recomandările pentru o boală pot intra în conflict cu cele pentru alta la o persoană cu mai multe boli. Pot trece cu vederea ceea ce contează pentru indivizi. Pacienții nu trebuie să simtă că un ghid înlocuiește o conversație."
+      ]
+    },
+    {
+      "heading": "Cum le puteți folosi",
+      "paragraphs": [
+        "Întrebați medicul dacă există un ghid pentru afecțiunea dumneavoastră și cereți o versiune pentru pacienți. Verificați data și organizația emitentă. Folosiți conținutul pentru a pregăti întrebări și a înțelege de ce se oferă anumite teste sau tratamente. Discutați cu medicul orice diferență între recomandări și planul dumneavoastră de tratament."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Găsirea unui ghid",
+      "text": "Imaginați-vă că tocmai ați fost diagnosticat cu astm. Ați putea întreba medicul dacă există o versiune pentru pacienți a ghidului și v-ați uita la ce recomandă."
+    },
+    {
+      "title": "Discutarea diferențelor",
+      "text": "Presupuneți că tratamentul dumneavoastră diferă de ce ați citit. Ați putea întreba medicul de ce și dacă circumstanțele dumneavoastră explică acest lucru."
+    }
+  ],
+  "questions": [
+    "Există un ghid pentru afecțiunea mea și îl urmează tratamentul meu?",
+    "De ce diferă planul meu de ce spune ghidul?",
+    "Cât de actualizat este ghidul?"
+  ]
+}

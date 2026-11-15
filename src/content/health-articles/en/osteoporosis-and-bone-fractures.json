@@ -1,0 +1,51 @@
+{
+  "title": "Osteoporosis and bone fractures",
+  "intro": "Osteoporosis is a condition in which bones lose density and strength so that they break more easily, often after a minor fall. It develops silently over years and is more common in women after menopause and in older people. Exercise, nutrition and medicines can lower the risk of fractures.",
+  "sections": [
+    {
+      "heading": "Causes and risk factors",
+      "paragraphs": [
+        "Bone is constantly rebuilt, and with age, breakdown outpaces formation. Risk rises with menopause, family history, low body weight, smoking, heavy alcohol use, low calcium and vitamin D, little physical activity, long-term corticosteroid use and illnesses such as rheumatoid arthritis, thyroid disease or coeliac disease."
+      ]
+    },
+    {
+      "heading": "Fractures",
+      "paragraphs": [
+        "Typical fractures occur in the spine, hip and wrist. Spinal fractures can cause sudden back pain, loss of height or a stooped posture, although some cause no pain. A hip fracture usually needs surgery and can have serious consequences for independence, which is why prevention matters."
+      ]
+    },
+    {
+      "heading": "Assessment",
+      "paragraphs": [
+        "Doctors consider risk factors and may measure bone density with a special X-ray scan. Tools estimate the ten-year risk of fracture based on age, sex, weight, previous fractures and other factors. Blood tests look for causes. Not everyone with low density needs medicine, so risk assessment guides decisions."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Adequate calcium and vitamin D, weight-bearing and balance exercises, stopping smoking and limiting alcohol are the foundation. Medicines include bisphosphonates, which slow bone loss, and other drugs that strengthen bone, given as tablets or injections. Treatment is usually long-term and needs checks, including dental care before some medicines. Side effects differ between drugs and should be discussed."
+      ]
+    },
+    {
+      "heading": "Preventing falls",
+      "paragraphs": [
+        "Reducing falls is as important as strengthening bones. Remove trip hazards, use good lighting and non-slip footwear, have eyesight checked, review medicines that cause dizziness and practise balance training such as tai chi. Hip protectors may help in care homes."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reviewing your risk",
+      "text": "Imagine you broke your wrist after a minor fall at age sixty. You could ask your doctor about a bone density scan, a risk assessment and what steps could prevent another fracture."
+    },
+    {
+      "title": "Making the home safer",
+      "text": "Suppose your elderly parent lives alone. You might help remove loose rugs, add handrails and nightlights, and arrange a medicine review."
+    }
+  ],
+  "questions": [
+    "What is my risk of fracture, and do I need treatment?",
+    "Which medicine is suitable, how long would I take it, and what are the side effects?",
+    "What exercises and home changes would reduce my risk of falling?"
+  ]
+}

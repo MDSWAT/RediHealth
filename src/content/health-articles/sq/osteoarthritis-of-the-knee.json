@@ -1,0 +1,51 @@
+{
+  "title": "Osteoartriti i gjurit",
+  "intro": "Osteoartriti i gjurit është një gjendje afatgjatë ku kërci dhe indet e tjera të gjurit ndryshojnë me kalimin e kohës, duke shkaktuar dhimbje, ngurtësi dhe lëvizje të reduktuar. Është shumë i zakonshëm me rritjen e moshës. Ushtrimet, kontrolli i peshës dhe lehtësimi i dhimbjes i ndihmojnë shumë njerëz të mbeten aktivë dhe kirurgjia është opsion kur trajtimet e tjera nuk mjaftojnë më.",
+  "sections": [
+    {
+      "heading": "Çfarë ndodh në nyje",
+      "paragraphs": [
+        "Gjuri amortizohet nga kërci i lëmuar që hollohet dhe vrazhdohet në osteoartrit. Kocka poshtë trashet, mund të formohen gjemba të vegjël kockorë dhe mbulesa e nyjes mund të acarohet e enjtet. Lëndimet e mëparshme, mbipesha, historia familjare dhe ngarkesa e rëndë e përsëritur e rrisin rrezikun."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat tipike janë dhimbje gjatë ecjes, ngjitjes së shkallëve ose ngritjes nga karrigia, ngurtësi pas pushimit, enjtje dhe një ndjenjë gërvishtjeje. Gjuri mund të lëshojë kur muskujt e kofshës janë të dobët. Simptomat luhaten dhe shpesh përkeqësohen pas aktivitetit të pazakontë."
+      ]
+    },
+    {
+      "heading": "Ushtrimet dhe pesha",
+      "paragraphs": [
+        "Ushtrimet e rregullta janë trajtimi më efektiv. Forcimi i muskujve të kofshës, çiklizmi, noti dhe ecja ulin dhimbjen dhe përmirësojnë funksionin, edhe nëse lëvizja ndihet e parehatshme në fillim. Nëse keni mbipeshë, humbja e peshës e ul ndjeshëm ngarkesën mbi gju. Këpucët mbështetëse dhe ndihmesat për ecje mund të ndihmojnë."
+      ]
+    },
+    {
+      "heading": "Barnat dhe injeksionet",
+      "paragraphs": [
+        "Gelet antiinflamatore të aplikuara në gju mund ta lehtësojnë dhimbjen me pak efekte anësore. Tabletat si ibuprofeni mund të ndihmojnë për periudha të shkurtra, me kujdes për stomakun, veshkat e zemrën. Injeksionet e kortikosteroideve mund të sjellin lehtësim të përkohshëm gjatë përkeqësimeve. Përfitimi i suplementeve si glukozamina është i dyshimtë dhe larja e nyjes e artroskopia nuk janë përgjithësisht të dobishme vetëm për osteoartritin."
+      ]
+    },
+    {
+      "heading": "Kirurgjia",
+      "paragraphs": [
+        "Një zëvendësim i gjurit mund të merret në konsideratë kur dhimbja e humbja e funksionit mbeten të rënda pavarësisht trajtimeve të tjera. E lehtëson dhimbjen dhe e përmirëson lëvizshmërinë për shumicën e njerëzve dhe nyjet artificiale zgjasin zakonisht pesëmbëdhjetë vjet ose më shumë. Rreziqet përfshijnë infeksion, mpiksje gjaku dhe ngurtësi dhe rehabilitimi merr javë deri muaj. Pacientët më të rinj ndonjëherë i nënshtrohen kirurgjisë korrigjuese të kockës për ta zhvendosur ngarkesën larg zonës së dëmtuar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ndërtimi i një rutine ushtrimesh",
+      "text": "Imagjinoni që gjuri ju dhemb kur ngjiteni shkallëve. Mund të filloni me ushtrime të buta forcimi të kofshës dhe shëtitje të shkurtra, t'i shtoni ngadalë çdo javë dhe t'i kërkoni një fizioterapisti të kontrollojë teknikën tuaj."
+    },
+    {
+      "title": "Të menduarit për kirurgji",
+      "text": "Supozoni që dhimbja ju zgjon natën dhe e kufizon ecjen në pak minuta. Mund të pyesni një specialist ortoped për përfitimet e pritura, kohën e shërimit dhe si të përgatiteni për një zëvendësim."
+    }
+  ],
+  "questions": [
+    "Cilat ushtrime e ndihmesa janë më të mirat për gjunjët e mi?",
+    "A do të më ndihmonin injeksionet ose trajtime të tjera në këtë fazë?",
+    "Si e di kur kirurgjia është zgjedhja e duhur?"
+  ]
+}

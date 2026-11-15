@@ -1,0 +1,51 @@
+{
+  "title": "Fisioterapia",
+  "intro": "La fisioterapia usa movimento, esercizio, tecniche manuali e educazione per ripristinare e mantenere la funzione fisica. Si usa dopo infortuni o interventi e per condizioni di lunga durata che riguardano muscoli, articolazioni, nervi, cuore e polmoni. Un buon fisioterapista ti aiuterà a capire il tuo problema e ti insegnerà che cosa puoi fare da solo.",
+  "sections": [
+    {
+      "heading": "Che cosa fanno i fisioterapisti",
+      "paragraphs": [
+        "I fisioterapisti valutano come ti muovi, trovano le cause di dolore o limitazione e pianificano il trattamento con te. Lavorano in ospedali, studi, centri di riabilitazione e a domicilio. Le aree di pratica comprendono ortopedia, neurologia, cure respiratorie, salute della donna, pediatria e sport."
+      ]
+    },
+    {
+      "heading": "Trattamenti tipici",
+      "paragraphs": [
+        "Il trattamento comprende spesso esercizi personalizzati per forza, flessibilità, equilibrio e resistenza, allenamento al cammino o ai compiti quotidiani, terapia manuale, calore o freddo e consigli su postura e attività. A volte si aggiungono tecniche come la stimolazione elettrica, il bendaggio o l'idroterapia. L'educazione sulla tua condizione e il dosaggio delle attività è una parte centrale."
+      ]
+    },
+    {
+      "heading": "Con che cosa può aiutare la fisioterapia",
+      "paragraphs": [
+        "I motivi comuni sono mal di schiena e al collo, problemi articolari e artrosi, recupero dopo fratture o protesi articolari, infortuni sportivi, ictus e malattia di Parkinson, malattie polmonari, problemi del pavimento pelvico e problemi di sviluppo nei bambini. Le prove sono più solide per il trattamento attivo basato sull'esercizio."
+      ]
+    },
+    {
+      "heading": "Ottenere il massimo",
+      "paragraphs": [
+        "Partecipa con regolarità, fai domande ed esercita gli esercizi a casa, perché il beneficio viene soprattutto da ciò che fai tra una seduta e l'altra. Parla al terapista di dolore, altre malattie e farmaci. Concorda obiettivi, come camminare per una certa distanza o tornare al lavoro, e rivedi i progressi dopo alcune sedute."
+      ]
+    },
+    {
+      "heading": "Aspetti pratici",
+      "paragraphs": [
+        "In molti paesi l'impegnativa del medico e le regole assicurative determinano quante sedute sono coperte. Potresti dover pagare parte del costo. Se non migliori o i sintomi peggiorano, dillo al terapista e al medico."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fissare un obiettivo",
+      "text": "Immagina di riprenderti da un intervento al ginocchio. Potresti concordare con il fisioterapista obiettivi come salire le scale senza corrimano entro sei settimane e tenere traccia degli esercizi in un diario."
+    },
+    {
+      "title": "Rendere routine gli esercizi",
+      "text": "Supponi di dimenticare gli esercizi a casa. Potresti collegarli a un'abitudine quotidiana, impostare un promemoria e chiedere al terapista di ridurre il programma all'essenziale."
+    }
+  ],
+  "questions": [
+    "Quali esercizi aiuteranno la mia condizione e con quale frequenza devo farli?",
+    "Di quante sedute ho bisogno e come misureremo i progressi?",
+    "Che cosa devo evitare mentre mi riprendo?"
+  ]
+}

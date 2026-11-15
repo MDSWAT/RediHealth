@@ -1,0 +1,51 @@
+{
+  "title": "Sistemi limfatik",
+  "intro": "Sistemi limfatik është një rrjet enësh, nyjesh e organesh që kullon lëngun nga indet, mbështet sistemin imunitar e ndihmon thithjen e yndyrave nga zorra. Kur punon mirë, vështirë ta vini re. Gjëndrat e enjtura, problemet e nyjeve limfatike e limfedema tregojnë sa i rëndësishëm është.",
+  "sections": [
+    {
+      "heading": "Limfa e enët limfatike",
+      "paragraphs": [
+        "Lëngu rrjedh vazhdimisht nga enët më të vogla të gjakut në inde. Pjesa më e madhe rithithet, por pjesa tjetër hyn në enët limfatike si limfë. Enët limfatike e bartin drejt qafës, ku kthehet në qarkullimin e gjakut. Lëvizja e muskujve, frymëmarrja e valvulat në enë e lëvizin limfën, prandaj ushtrimet ndihmojnë."
+      ]
+    },
+    {
+      "heading": "Nyjet limfatike",
+      "paragraphs": [
+        "Nyjet limfatike janë filtra të vegjël në formë fasulje që gjenden përgjatë enëve, në grupe në qafë, sqetulla, ijë e gjetkë në trup. Përmbajnë qeliza imune që zbulojnë e luftojnë mikrobet. Kur keni infeksion, nyjet pranë mund të enjten e të bëhen të ndjeshme ndërsa prodhojnë më shumë qeliza imune. Kanceri mund të përhapet edhe përmes nyjeve limfatike."
+      ]
+    },
+    {
+      "heading": "Organet limfatike",
+      "paragraphs": [
+        "Shpretka filtron gjakun e ruan qeliza imune, bajamet mbrojnë fytin, timusi i pjek qelizat T në fëmijëri e palca e kockave prodhon qeliza gjaku. Indi limfatik në zorrë merret me mikrobet nga ushqimi. Limfa bart edhe yndyrat e thithura nga zorra."
+      ]
+    },
+    {
+      "heading": "Problemet e zakonshme",
+      "paragraphs": [
+        "Nyjet limfatike të enjtura më shpesh pasqyrojnë një infeksion të padëmshëm e qetësohen brenda javësh. Nyjet që janë të forta, pa dhimbje, në rritje, vazhdojnë pas disa javësh ose vijnë me ethe, djersitje nate ose humbje peshe duhen kontrolluar. Limfedema është enjtje e vazhdueshme, zakonisht e një krahu ose këmbe, kur kullimi limfatik është i dëmtuar, për shembull pas kirurgjisë së kancerit ose radioterapisë, infeksionit ose gjendjeve të trashëguara. Limfangiti, një vijë e kuqe me ethe, është infeksion që përhapet përgjatë enëve e kërkon trajtim të shpejtë. Helmimi i gjakut, ose sepsa, është një reagim tjetër, kërcënues për jetën ndaj infeksionit që kërkon kujdes urgjent."
+      ]
+    },
+    {
+      "heading": "Kujdesi për të",
+      "paragraphs": [
+        "Qëndroni aktiv, mbani një peshë të shëndetshme e shmangni lëndimet e infeksionet e lëkurës së një gjymtyre në rrezik. Njerëzit me limfedemë përfitojnë nga kompresioni, kujdesi i lëkurës, ushtrimet e terapia e specializuar limfatike."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kontrolli i një nyjeje të enjtur",
+      "text": "Imagjinoni që ndieni një gungë të ndjeshme në qafë gjatë një ftohjeje. Mund ta ndiqni dy javë e të shihni një mjek nëse vazhdon ose ndiheni keq."
+    },
+    {
+      "title": "Mbrojtja e një krahu",
+      "text": "Supozoni që ju janë hequr nyje limfatike në sqetull. Mund ta mbroni lëkurën nga prerjet e djegiet nga dielli e të pyesni për këshilla ushtrimesh e kompresioni."
+    }
+  ],
+  "questions": [
+    "A është kjo nyje limfatike e enjtur e padëmshme apo kërkon teste?",
+    "Si mund ta menaxhoj limfedemën e të parandaloj infeksionet?",
+    "Cilat simptoma tregojnë se duhet të kërkoj kujdes urgjent?"
+  ]
+}

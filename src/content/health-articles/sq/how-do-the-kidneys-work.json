@@ -1,0 +1,51 @@
+{
+  "title": "Si veshkat rregullojnë gjakun dhe urinën",
+  "intro": "Veshkat filtrojnë gjak, ujë, kripëra dhe aciditet. Mbështesin presionin, qelizat e kuqe dhe kockat. Urina është vetëm pjesë; sasia normale nuk provon funksion.",
+  "sections": [
+    {
+      "heading": "Njësitë",
+      "paragraphs": [
+        "Nefronet filtrojnë e kthejnë ujin dhe substancat e nevojshme. Mbeturinat dalin në ureter e fshikëz. Urina nuk është thjesht gjak pa qeliza."
+      ]
+    },
+    {
+      "heading": "Ekuilibri dhe hormonet",
+      "paragraphs": [
+        "Reagojnë ndaj sinjaleve për ujë e kripë. Japin sinjale presioni e gjaku dhe aktivizojnë vitaminën D. Sëmundja prek sisteme para shenjave urinare."
+      ]
+    },
+    {
+      "heading": "Testimi",
+      "paragraphs": [
+        "Kreatinina dhe vlerësimet në gjak plotësohen me urinë e albuminë kur duhet. Duhen kontekst dhe përsëritje. Një rezultat ose shirit shtëpiak nuk shpjegon çdo problem."
+      ]
+    },
+    {
+      "heading": "Mbrojtja",
+      "paragraphs": [
+        "Kontrolloni presionin e diabetin, shmangni duhanin dhe kontrolloni ilaçet. Uji i tepërt nuk pastron dëmtimin; lëngjet ndryshojnë në zemër ose veshka të avancuara."
+      ]
+    },
+    {
+      "heading": "Alarmet",
+      "paragraphs": [
+        "Gjaku, ënjtja ose ndryshimet duan kontroll. Pak urinë me sëmundje, dehidratimi, ethet me dhimbje anash ose fryma e rëndë duan urgjencë. Sëmundja e hershme mund të heshtë, ndaj testet vlejnë edhe mirë. Para konsultës, shënoni kur filloi simptoma, çfarë e lehtëson ose përkeqëson dhe si ndikon në veprimtaritë e zakonshme. Merrni raportet e mëparshme nëse i keni. Kërkojini profesionistit ta lidhë shpjegimin me gjetjet tuaja; një përshkrim i përgjithshëm nuk vendos diagnozën."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira urinon normal por ka diabet. Bën gjak e urinë, jo sasinë si provë filtrimi."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni pyet para antiinflamatorëve të përsëritur me veshka të dobëta, jo çdo produkt pa recetë i sigurt."
+    }
+  ],
+  "questions": [
+    "Cilat hapa sqarohen me diagram?",
+    "Çfarë tregon shpjegimi dhe çfarë nuk parashikon?",
+    "A kërkon shqetësimi im vlerësim profesional?"
+  ]
+}

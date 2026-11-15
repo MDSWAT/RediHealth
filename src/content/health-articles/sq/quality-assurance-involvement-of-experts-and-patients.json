@@ -1,0 +1,51 @@
+{
+  "title": "Sigurimi i cilësisë: përfshirja e ekspertëve e pacientëve",
+  "intro": "Informacioni i besueshëm shëndetësor varet nga më shumë se shkrimi i mirë. Kërkon kontroll të kujdesshëm nga ekspertët e kontribut nga njerëzit që synon t'i ndihmojë. Të kuptuarit se si funksionon sigurimi i cilësisë ju ndihmon të gjykoni cilat burime meritojnë besimin tuaj e tregon pse përvoja e pacientëve ka rëndësi në formësimin e informacionit.",
+  "sections": [
+    {
+      "heading": "Pse ka rëndësi sigurimi i cilësisë",
+      "paragraphs": [
+        "Vendimet shëndetësore mund të kenë pasoja afatgjata, prandaj gabimet, këshillat e vjetruara ose paraqitja e njëanshme mund të shkaktojnë dëm. Sigurimi i cilësisë i ul këto rreziqe me hapa të përcaktuar: kontrollimin e fakteve me prova të besueshme, rishikimin e formulimit për qartësi e ekuilibër e përditësimin e përmbajtjes kur ndryshon dija."
+      ]
+    },
+    {
+      "heading": "Roli i ekspertëve",
+      "paragraphs": [
+        "Specialistët mjekësorë, studiuesit e metodologët rishikojnë tekstet për të konfirmuar që përmbajtja është e saktë, e plotë e në përputhje me provat aktuale. Mund të tregojnë rreziqe që mungojnë, pretendime të ekzagjeruara ose terma të paqartë. Rishikimi i pavarur ndihmon të shmanget ndikimi i konflikteve të interesit te mesazhi."
+      ]
+    },
+    {
+      "heading": "Roli i pacientëve e publikut",
+      "paragraphs": [
+        "Njerëzit që jetojnë me një gjendje e dinë cilat pyetje kanë rëndësi në jetën e përditshme, cilat fjalë ngatërrojnë e cilat tema mungojnë. Përgjigjet e tyre ndihmojnë ta bëjnë informacionin më të kuptueshëm e të rëndësishëm. Përfaqësuesit e pacientëve e grupet e mbështetjes mund të komentojnë drafte, të sugjerojnë tema e të testojnë nëse tekstet janë të dobishme."
+      ]
+    },
+    {
+      "heading": "Trajtimi i konflikteve të interesit",
+      "paragraphs": [
+        "Çdokush që kontribuon duhet të deklarojë lidhje financiare ose të tjera që mund të ndikojnë gjykimin e tij. Burimet e mira thonë kush i financon e si sigurojnë pavarësinë. Informacioni i paguar nga një prodhues meriton shqyrtim shtesë."
+      ]
+    },
+    {
+      "heading": "Çfarë mund të kërkoni",
+      "paragraphs": [
+        "Kontrolloni nëse një burim emërton autorët e rishikuesit e tij, shpjegon si u përgatit, tregon datën e burimet, ftojnë reagime e korrigjon gabimet hapur. Këto veçori sinjalizojnë një proces që synon besueshmërinë. Edhe atëherë, informacioni i përgjithshëm nuk mund të zëvendësojë këshillën e ekipit tuaj të kujdesit shëndetësor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gjykimi i një faqeje në internet",
+      "text": "Imagjinoni që gjeni një faqe për një trajtim të ri. Mund të kërkoni ekspertë të emërtuar, datë rishikimi, listë burimesh e një deklaratë për financimin para se t'i besoni."
+    },
+    {
+      "title": "Dhënia e përgjigjes",
+      "text": "Supozoni që një fletëpalosje ju ngatërron. Mund t'i tregoni botuesit ose një organizate pacientësh çfarë ishte e paqartë, pasi kjo ndihmon të përmirësohet informacioni."
+    }
+  ],
+  "questions": [
+    "Sa i besueshëm është ky informacion dhe kush e ka rishikuar?",
+    "A ka organizata pacientësh që mund të rekomandojnë burime të besueshme për gjendjen time?",
+    "A mund të ndikojnë interesat tregtare në atë që po lexoj?"
+  ]
+}

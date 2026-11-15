@@ -1,0 +1,51 @@
+{
+  "title": "Kako radi pražnjenje crijeva",
+  "intro": "Pražnjenje koordinira debelo crijevo, rektum, živce i zdjelično dno. Normalna učestalost varira. Udobnost, konzistencija i osobna promjena važniji su od strogog dnevnog rasporeda.",
+  "sections": [
+    {
+      "heading": "Od hrane do stolice",
+      "paragraphs": [
+        "Tanko crijevo upija hranjive tvari, debelo vodu i oblikuje stolicu. Kontrakcije pomiču sadržaj. Vrijeme, lijekovi, hrana i bolest mijenjaju konzistenciju: proljev i zatvor imaju mnogo uzroka."
+      ]
+    },
+    {
+      "heading": "Osjećaj potrebe",
+      "paragraphs": [
+        "Stolica rasteže rektum i šalje živčane poruke. Sfinkteri održavaju kontinenciju uz zdjelično dno i analne jastučiće. Potreba je signal, ne nalog za trenutačno napinjanje."
+      ]
+    },
+    {
+      "heading": "Koordinacija izlaza",
+      "paragraphs": [
+        "Izlaz se opušta dok trbušne i crijevne sile pomiču stolicu. Guranje uz napete mišiće otežava. Zdjelični poremećaj treba procjenu, ne samo više vlakana."
+      ]
+    },
+    {
+      "heading": "Korisne navike",
+      "paragraphs": [
+        "Dajte mirno vrijeme, odgovorite potrebi i koristite udoban oslonjen položaj. Postupno dodajte vlakna i pijte prema svom savjetu. Izbjegavajte dugo napinjanje ili sve više laksativa bez uzroka."
+      ]
+    },
+    {
+      "heading": "Promjene",
+      "paragraphs": [
+        "Krv, mršavljenje, trajne nove promjene ili curenje trebaju pregled. Jaka bol uz povraćanje, nadutost ili izostanak stolice i plinova traži hitnost. Uredan izgled ne isključuje sve bolesti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima zatvor nakon novog lijeka. Raspravlja vrijeme i simptome bez težnje samo dnevnoj stolici."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima meku stolicu, ali teško prazni. Pita koordinaciju umjesto beskrajnog dodavanja vlakana i napinjanja."
+    }
+  ],
+  "questions": [
+    "Koji bi koraci bili jasniji uz dijagram?",
+    "Što objašnjenje pokazuje i što ne predviđa?",
+    "Treba li moja konkretna briga stručnu procjenu?"
+  ]
+}

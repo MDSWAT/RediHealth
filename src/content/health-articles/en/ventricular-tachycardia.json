@@ -1,0 +1,51 @@
+{
+  "title": "Ventricular tachycardia and sudden cardiac death",
+  "intro": "Ventricular tachycardia is a fast, abnormal heart rhythm that begins in the lower chambers, the ventricles. It can make the heart pump poorly and may degenerate into ventricular fibrillation, which causes sudden cardiac arrest. Quick action with resuscitation and defibrillation saves lives, and treatment can prevent recurrences.",
+  "sections": [
+    {
+      "heading": "What happens",
+      "paragraphs": [
+        "The ventricles normally contract in an organised way. In ventricular tachycardia they beat very fast, often above one hundred and fifty beats per minute, so the heart cannot fill and pump effectively. Short episodes may cause only palpitations. Sustained episodes may cause dizziness, fainting or collapse. Ventricular fibrillation is chaotic quivering with no pumping, which is fatal within minutes without treatment."
+      ]
+    },
+    {
+      "heading": "Causes and risk factors",
+      "paragraphs": [
+        "Most cases occur in people with heart disease, such as previous heart attack with scarring, cardiomyopathy and heart failure. Inherited rhythm disorders, such as long QT syndrome, imbalance of blood minerals, certain medicines and drugs can also cause it. Sudden cardiac death in young people is rare and may be linked to inherited conditions, so family history is important."
+      ]
+    },
+    {
+      "heading": "Emergency response",
+      "paragraphs": [
+        "If someone collapses and is not breathing normally, call emergency services immediately, start chest compressions in the centre of the chest at a firm, fast rate, and use a public defibrillator if available, following its voice instructions. Early defibrillation greatly increases the chance of survival. Learning basic life support is valuable."
+      ]
+    },
+    {
+      "heading": "Diagnosis and treatment",
+      "paragraphs": [
+        "An ECG records rhythm. Long-term monitors, heart ultrasound, MRI, exercise tests and sometimes electrophysiology studies identify causes. Treatment includes medicines such as beta-blockers and anti-arrhythmics, catheter ablation to destroy abnormal circuits and an implantable cardioverter-defibrillator that detects dangerous rhythms and delivers a shock. Treating the underlying heart disease is essential."
+      ]
+    },
+    {
+      "heading": "Living with the risk",
+      "paragraphs": [
+        "People with a defibrillator need regular checks, should know what to do if they receive a shock, and may face driving restrictions. Relatives of people with sudden death or inherited conditions may be offered screening. Emotional support helps cope with anxiety. Avoid triggers advised by your doctor, such as certain drugs or heavy exertion in some conditions."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Learning resuscitation",
+      "text": "Imagine you want to be prepared. You could attend a basic life support course and find out where public defibrillators are located in your neighbourhood."
+    },
+    {
+      "title": "Family screening",
+      "text": "Suppose a relative died suddenly at a young age. You might ask your doctor about heart tests for family members."
+    }
+  ],
+  "questions": [
+    "What is the cause of my arrhythmia, and which treatment do you recommend?",
+    "Do I need a defibrillator, and what would living with one involve?",
+    "Should my relatives be screened?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Dermatomeri: usare con cautela la mappa cutanea",
+  "intro": "Il dermatomero è un’area legata soprattutto a una radice spinale. Dolore, formicolio o sensibilità ridotta aiutano a localizzare, ma una mappa orienta e non diagnostica.",
+  "sections": [
+    {
+      "heading": "Radici e nervi",
+      "paragraphs": [
+        "La radice esce dalla colonna e le fibre entrano in diversi nervi periferici. Il dermatomero differisce dal territorio di un nervo nominato. Confonderli può spiegare male i sintomi."
+      ]
+    },
+    {
+      "heading": "Sovrapposizione",
+      "paragraphs": [
+        "Aree vicine si sovrappongono e variano tra persone. I sintomi non seguono strisce perfette. Irritazione, circolazione e altro causano bruciore o intorpidimento: non ogni zona prova compressione spinale."
+      ]
+    },
+    {
+      "heading": "Esame",
+      "paragraphs": [
+        "Il medico combina distribuzione, forza, riflessi e storia. Immagini e test nervosi servono quando chiariscono. Un reperto radiologico non spiega automaticamente dove si sente il disturbo."
+      ]
+    },
+    {
+      "heading": "Esempio clinico",
+      "paragraphs": [
+        "Lo zoster causa dolore e vescicole in un territorio, spesso unilaterale. Valutazione precoce conta vicino all’occhio o con immunità ridotta. Non attribuire ogni striscia dolorosa a zoster senza visita."
+      ]
+    },
+    {
+      "heading": "Urgenze",
+      "paragraphs": [
+        "Debolezza progressiva nuova, perdita di controllo urinario o fecale o intorpidimento genitale con problemi alla schiena richiedono urgenza. Improvvisa debolezza facciale, degli arti o del linguaggio può essere ictus."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira segna formicolio e riferisce debolezza. Il medico controlla radice e nervo periferico senza affidarsi alla sola mappa."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha una striscia di vescicole dolorose vicino all’occhio. Cerca presto aiuto senza confrontare immagini per giorni."
+    }
+  ],
+  "questions": [
+    "Quali passaggi sarebbero più chiari con un diagramma?",
+    "Cosa spiega questo testo e cosa non può prevedere?",
+    "Il mio dubbio specifico richiede valutazione professionale?"
+  ]
+}

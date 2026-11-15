@@ -1,0 +1,51 @@
+{
+  "title": "Sistemul limfatic",
+  "intro": "Sistemul limfatic este o rețea de vase, ganglioni și organe care drenează lichidul din țesuturi, susține sistemul imunitar și ajută la absorbția grăsimilor din intestin. Când funcționează bine, abia îl observați. Ganglionii umflați, problemele ganglionilor limfatici și limfedemul arată cât de important este.",
+  "sections": [
+    {
+      "heading": "Limfa și vasele limfatice",
+      "paragraphs": [
+        "Lichidul se scurge constant din cele mai mici vase de sânge în țesuturi. Cea mai mare parte este reabsorbită, dar restul intră în vasele limfatice sub formă de limfă. Vasele limfatice o duc spre gât, unde se întoarce în sânge. Mișcarea mușchilor, respirația și valvele din vase mișcă limfa, motiv pentru care exercițiile ajută."
+      ]
+    },
+    {
+      "heading": "Ganglionii limfatici",
+      "paragraphs": [
+        "Ganglionii limfatici sunt mici filtre în formă de boabă de fasole, aflate de-a lungul vaselor, în grupuri la gât, în axile, în zona inghinală și în alte părți ale corpului. Conțin celule imune care detectează și combat microbii. Când aveți o infecție, ganglionii din apropiere se pot umfla și deveni sensibili pe măsură ce produc mai multe celule imune. Cancerul se poate răspândi și prin ganglionii limfatici."
+      ]
+    },
+    {
+      "heading": "Organele limfatice",
+      "paragraphs": [
+        "Splina filtrează sângele și stochează celule imune, amigdalele protejează gâtul, timusul maturizează celulele T în copilărie, iar măduva osoasă produce celule sanguine. Țesutul limfatic din intestin se ocupă de microbii din alimente. Limfa transportă și grăsimile absorbite din intestin."
+      ]
+    },
+    {
+      "heading": "Probleme frecvente",
+      "paragraphs": [
+        "Ganglionii limfatici umflați reflectă cel mai des o infecție inofensivă și se liniștesc în câteva săptămâni. Ganglionii duri, nedureroși, care cresc, persistă mai mult de câteva săptămâni sau vin cu febră, transpirații nocturne sau scădere în greutate trebuie verificați. Limfedemul este o umflare persistentă, de obicei a unui braț sau picior, când drenajul limfatic este afectat, de exemplu după o operație sau radioterapie pentru cancer, o infecție sau afecțiuni moștenite. Limfangita, o dungă roșie cu febră, este o infecție care se răspândește de-a lungul vaselor și necesită tratament prompt. Septicemia sau sepsisul este o reacție diferită, care pune viața în pericol, la o infecție și necesită îngrijiri de urgență."
+      ]
+    },
+    {
+      "heading": "Îngrijirea sistemului limfatic",
+      "paragraphs": [
+        "Rămâneți activ, mențineți o greutate sănătoasă și evitați leziunile și infecțiile pielii unui membru cu risc. Persoanele cu limfedem beneficiază de compresie, îngrijirea pielii, exerciții și terapie limfatică specializată."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Verificarea unui ganglion umflat",
+      "text": "Imaginați-vă că simțiți o umflătură sensibilă la gât în timpul unei răceli. Ați putea să o urmăriți două săptămâni și ați putea merge la medic dacă persistă sau vă simțiți rău."
+    },
+    {
+      "title": "Protejarea unui braț",
+      "text": "Presupuneți că vi s-au îndepărtat ganglioni limfatici din axilă. Ați putea proteja pielea de tăieturi și arsuri solare și ați putea întreba despre exerciții și sfaturi privind compresia."
+    }
+  ],
+  "questions": [
+    "Este acest ganglion limfatic umflat inofensiv sau necesită teste?",
+    "Cum pot gestiona limfedemul și preveni infecțiile?",
+    "Ce simptome înseamnă că trebuie să cer îngrijiri urgente?"
+  ]
+}

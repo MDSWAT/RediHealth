@@ -1,0 +1,51 @@
+{
+  "title": "Capire gli esami per individuare i problemi alle ossa",
+  "intro": "I problemi delle ossa come osteoporosi, fratture, infezioni, tumori e malattie metaboliche dell'osso si indagano con diversi esami. Ognuno mostra qualcosa di diverso, dalla densità ossea alla struttura dell'osso o all'attività delle cellule ossee. Sapere a che cosa serve un esame aiuta a capirne i risultati.",
+  "sections": [
+    {
+      "heading": "Radiografie",
+      "paragraphs": [
+        "Le radiografie comuni mostrano fratture, deformità, artrite e alcuni tumori e infezioni. Sono rapide e ampiamente disponibili. I cambiamenti iniziali possono non essere visibili e l'osso deve assottigliarsi molto prima di vedersi in una radiografia standard, quindi l'osteoporosi non si diagnostica in modo affidabile così, anche se le radiografie della colonna possono rivelare fratture."
+      ]
+    },
+    {
+      "heading": "Esami della densità ossea",
+      "paragraphs": [
+        "Una DXA usa dosi molto basse di raggi X per misurare la densità minerale ossea a anca e colonna. I risultati sono dati come T-score, che ti confronta con un giovane adulto sano. Un T-score pari o inferiore a meno 2,5 definisce l'osteoporosi. I medici lo combinano con fattori di rischio come età e fratture precedenti per stimare il rischio di frattura. L'esame dura pochi minuti ed è indolore."
+      ]
+    },
+    {
+      "heading": "TC, risonanza e scintigrafia",
+      "paragraphs": [
+        "Le TC danno immagini dettagliate della struttura ossea e si usano per fratture complesse. La risonanza mostra midollo osseo, tessuti molli, tumori, infezioni e fratture da stress che le radiografie non vedono. La scintigrafia ossea usa una piccola quantità di tracciante radioattivo per mostrare le aree di maggiore attività ossea, utile per individuare la diffusione di un tumore, un'infezione o fratture nascoste. La PET può essere usata in alcuni tumori."
+      ]
+    },
+    {
+      "heading": "Esami del sangue e delle urine",
+      "paragraphs": [
+        "Gli esami del sangue controllano calcio, fosfato, vitamina D, paratormone, funzione renale, ormone tiroideo e marcatori del ricambio osseo. Aiutano a trovare le cause della perdita ossea e a monitorare il trattamento. Altri esami cercano infiammazione, mieloma o altre cause. I risultati si interpretano insieme alle immagini."
+      ]
+    },
+    {
+      "heading": "Biopsia ossea",
+      "paragraphs": [
+        "Una biopsia ossea preleva con un ago un piccolo campione di osso, di solito con anestesia locale e guida di immagini, da esaminare al microscopio. Si usa quando altri esami non riescono a determinare la causa di una lesione ossea, per esempio per distinguere un'infezione da un tumore o per diagnosticare rare malattie dell'osso. I rischi comprendono sanguinamento, dolore e infezione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi a una DXA",
+      "text": "Immagina di avere in programma un esame della densità ossea. Potresti chiedere se evitare gli integratori di calcio quella mattina, indossare abiti senza metallo e portare un elenco dei farmaci."
+    },
+    {
+      "title": "Capire i risultati",
+      "text": "Supponi che il tuo T-score sia basso. Potresti chiedere come è stato calcolato il tuo rischio complessivo di frattura, quali sono i passi successivi e quando ripetere l'esame."
+    }
+  ],
+  "questions": [
+    "Quale esame è il migliore per il mio problema?",
+    "Che cosa significano i risultati su densità ossea e rischio?",
+    "Con che frequenza devo ripetere gli esami?"
+  ]
+}

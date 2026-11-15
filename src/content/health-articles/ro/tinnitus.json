@@ -1,0 +1,51 @@
+{
+  "title": "Tinitusul",
+  "intro": "Tinitusul este percepția unor sunete precum țiuit, bâzâit sau șuierat fără o sursă externă. Multe persoane îl observă pe scurt, iar pentru unele devine persistent și supărător. Este rar semnul unei boli grave și, deși nu există leac pentru cele mai multe cazuri, există modalități eficiente de a-i reduce impactul.",
+  "sections": [
+    {
+      "heading": "Ce este și de ce apare",
+      "paragraphs": [
+        "Tinitusul apare în sistemul auditiv și în procesarea sunetului de către creier. Însoțește adesea pierderea auzului, de exemplu din cauza îmbătrânirii sau a zgomotului puternic, pe măsură ce creierul își crește propria activitate. Alți factori declanșatori includ cerumenul, infecțiile urechii, anumite medicamente, problemele maxilarului, stresul și leziunile capului sau gâtului. În multe cazuri nu se găsește nicio cauză."
+      ]
+    },
+    {
+      "heading": "Când mergeți la medic",
+      "paragraphs": [
+        "Mergeți la medic dacă tinitusul este nou, apare la o singură ureche, pulsează în ritmul inimii, vine cu pierderea bruscă a auzului, amețeală sau slăbiciune facială sau urmează unei lovituri la cap. Aceste caracteristici pot necesita teste suplimentare, precum teste ale auzului sau imagistică."
+      ]
+    },
+    {
+      "heading": "Evaluare",
+      "paragraphs": [
+        "Un medic examinează urechile, testează auzul și întreabă despre expunerea la zgomot, medicamente și stres. Testele auzului verifică pierderea auzului care ar putea fi tratată cu aparate auditive. Chestionarele evaluează cât de supărător este tinitusul. Analizele de sânge sau scanările se folosesc când se suspectează o anumită cauză."
+      ]
+    },
+    {
+      "heading": "Tratament și adaptare",
+      "paragraphs": [
+        "Nu există un medicament dovedit care să elimine tinitusul. Tratarea oricărei cauze de fond, precum îndepărtarea cerumenului sau tratarea pierderii auzului cu aparate auditive, poate ajuta. Consilierea și terapia cognitiv-comportamentală sunt eficiente în reducerea suferinței. Terapia prin sunet, folosind sunet de fundal, generatoare de zgomot sau aplicații, și tehnicile de relaxare fac tinitusul mai puțin evident, mai ales noaptea. Evitați liniștea completă. Somnul, gestionarea stresului și exercițiile contează."
+      ]
+    },
+    {
+      "heading": "Prevenire și idei greșite",
+      "paragraphs": [
+        "Protejați auzul de zgomotul puternic folosind dopuri de urechi sau căști de protecție și scăzând volumul căștilor. Suplimentele și dispozitivele scumpe promovate drept leacuri nu au dovezi. Cele mai multe persoane se obișnuiesc cu tinitusul în timp, iar acesta devine adesea mai puțin supărător. Cereți ajutor dacă vă afectează somnul, dispoziția sau concentrarea."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Adaptarea noaptea",
+      "text": "Imaginați-vă că tinitusul este puternic când încercați să dormiți. Ați putea reda un sunet de fundal blând dintr-un difuzor, ați putea exersa relaxarea înainte de culcare și ați putea evita liniștea."
+    },
+    {
+      "title": "Cererea unui test al auzului",
+      "text": "Presupuneți că observați țiuit și o oarecare dificultate de a urmări conversațiile. Ați putea programa un test al auzului, ca să vedeți dacă ar ajuta aparatele auditive."
+    }
+  ],
+  "questions": [
+    "Este tinitusul meu legat de pierderea auzului și ar putea ajuta un aparat auditiv?",
+    "Ce terapii sunt cele mai eficiente pentru reducerea suferinței?",
+    "Ce semne ar însemna că am nevoie de teste suplimentare?"
+  ]
+}

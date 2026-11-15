@@ -1,0 +1,51 @@
+{
+  "title": "Ce este supradiagnosticarea",
+  "intro": "Supradiagnosticarea înseamnă găsirea unei afecțiuni care nu ar fi provocat niciodată simptome sau vătămare în timpul vieții unei persoane și apoi tratarea ei. Se întâmplă când testele detectează anomalii reale care nu sunt periculoase. Poate duce la îngrijorare inutilă, la tratament și la efecte secundare, de aceea este important să știți despre ea.",
+  "sections": [
+    {
+      "heading": "Cum se întâmplă",
+      "paragraphs": [
+        "Testele mai sensibile, precum investigațiile imagistice și screeningul, găsesc multe mici anomalii. Unele cancere cresc atât de lent sau deloc, iar unele persoane mor din alte cauze înainte ca afecțiunea să conteze vreodată. Medicii nu pot spune întotdeauna care anomalii vor provoca vătămare, așa că multe sunt tratate pentru siguranță. Lărgirea definiției unei boli creează și mai multe diagnostice."
+      ]
+    },
+    {
+      "heading": "Exemple",
+      "paragraphs": [
+        "Supradiagnosticarea este recunoscută în unele cancere depistate prin screening, precum anumite cancere de sân, de prostată și de tiroidă, și în afecțiuni în care pragurile au fost coborâte, precum tensiunea arterială la limită sau prediabetul. Constatările incidentale la investigații, precum micii noduli tiroidieni, sunt frecvente și de obicei inofensive."
+      ]
+    },
+    {
+      "heading": "Prejudicii și beneficii",
+      "paragraphs": [
+        "Persoanele supradiagnosticate pot suferi de anxietate, etichetare, teste suplimentare, operații, radiații sau medicamente cu efecte secundare, fără beneficiu. Testele și screeningul salvează totuși vieți pentru mulți, deci întrebarea este echilibrul. Prejudiciul supradiagnosticării este greu de măsurat deoarece nu poate fi văzut într-un caz individual."
+      ]
+    },
+    {
+      "heading": "Ce puteți face",
+      "paragraphs": [
+        "Întrebați dacă un test este într-adevăr necesar, ce s-ar putea întâmpla cu rezultatele și care sunt posibilitățile dacă se găsește ceva, inclusiv urmărirea atentă. Pentru unele constatări, supravegherea activă cu controale regulate este o alternativă sigură la tratamentul imediat. Înțelegerea cifrelor vă ajută să decideți."
+      ]
+    },
+    {
+      "heading": "Luarea în considerare a screeningului",
+      "paragraphs": [
+        "Înainte de screening, gândiți-vă la beneficii, precum depistarea mai timpurie, și la dezavantaje, precum alarmele false și supradiagnosticarea. Broșurile oficiale de informare prezintă aceste puncte. Sunteți liber să decideți dacă participați."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Cântărirea unui test",
+      "text": "Imaginați-vă că vi se oferă un test de screening. Ați putea întreba câte persoane beneficiază și câte sunt supradiagnosticate."
+    },
+    {
+      "title": "Luarea în considerare a așteptării vigilente",
+      "text": "Presupuneți că o scanare găsește un mic nodul. Ați putea întreba dacă poate fi monitorizat în loc să fie îndepărtat."
+    }
+  ],
+  "questions": [
+    "Am nevoie de acest test și ce vom face cu rezultatul?",
+    "Este urmărirea atentă o alternativă sigură la tratament?",
+    "Care sunt posibilele prejudicii ale screeningului?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Gripi (influenca)",
+  "intro": "Gripi është një infeksion viral ngjitës i hundës, fytit dhe mushkërive që ndodh kryesisht në dimër. Është më i rëndë se një ftohje e zakonshme dhe mund të çojë në komplikime serioze te të moshuarit, fëmijët e vegjël, gratë shtatzëna dhe njerëzit me sëmundje kronike. Vaksinimi, higjiena dhe pushimi janë mjetet kryesore.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Gripi fillon zakonisht papritur me ethe, të dridhura, dhimbje muskujsh e nyjesh, dhimbje koke, lodhje, kollë të thatë dhe dhimbje fyti. Simptomat zgjasin zakonisht rreth një javë, edhe pse kolla e lodhja mund të vazhdojnë më gjatë. Një ftohje e zakonshme priret të jetë më e lehtë me hundë që rrjedh dhe teshtitje."
+      ]
+    },
+    {
+      "heading": "Si përhapet",
+      "paragraphs": [
+        "Virusi përhapet me pika nga kollitja e teshtitja dhe me duar e sipërfaqe të kontaminuara. Njerëzit janë ngjitës nga rreth një ditë para simptomave deri rreth pesë-shtatë ditë pas tyre. Larja e duarve, mbulimi i kollës dhe qëndrimi në shtëpi kur jeni të sëmurë e ulin përhapjen."
+      ]
+    },
+    {
+      "heading": "Trajtimi i gripit në shtëpi",
+      "paragraphs": [
+        "Shumica e njerëzve të shëndetshëm shërohen pa trajtim mjekësor. Pushoni, pini shumë lëngje dhe përdorni paracetamol ose ibuprofen për të lehtësuar ethet e dhimbjen, sipas udhëzuesit. Antibiotikët nuk funksionojnë kundër viruseve. Fëmijët nuk duhet të marrin aspirinë. Barna antivirale mund të përshkruhen për njerëzit me rrezik të lartë nëse fillohen herët."
+      ]
+    },
+    {
+      "heading": "Komplikimet",
+      "paragraphs": [
+        "Gripi mund të çojë në pneumoni, përkeqësim të astmës, probleme të zemrës dhe dehidratim. Kërkoni ndihmë mjekësore për vështirësi në frymëmarrje, dhimbje gjoksi, konfuzion, ethe të larta të vazhdueshme, ethe që kthehen pas përmirësimit ose kur një foshnjë, person i moshuar ose dikush me sëmundje kronike sëmuret rëndë."
+      ]
+    },
+    {
+      "heading": "Vaksinimi",
+      "paragraphs": [
+        "Vaksinimi vjetor rekomandohet për të moshuarit, gratë shtatzëna, njerëzit me gjendje kronike, punonjësit shëndetësorë dhe të tjerë me rrezik më të lartë. Vaksina përditësohet çdo vit që të përputhet me viruset që qarkullojnë. Ajo nuk jep mbrojtje të plotë, por e ul rrezikun e sëmundjes dhe veçanërisht të komplikimeve të rënda. Efekte anësore të lehta si dhimbja e krahut janë të zakonshme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Qëndrimi në shtëpi",
+      "text": "Imagjinoni që zgjoheni me ethe e dhimbje. Mund të qëndroni në shtëpi, të pushoni, të pini lëngje, ta njoftoni vendin e punës dhe të shmangni kontaktin e ngushtë me të afërm të cenueshëm derisa të përmirësoheni."
+    },
+    {
+      "title": "Vendosja për vaksinim",
+      "text": "Supozoni që keni astmë dhe nuk jeni të sigurt për vaksinën e gripit. Mund ta pyesni mjekun për kohën, mbrojtjen dhe efektet anësore dhe të caktoni takimin në vjeshtë."
+    }
+  ],
+  "questions": [
+    "A jam në një grup që duhet të marrë vaksinën vjetore të gripit?",
+    "Kur do të ishte i dobishëm ilaçi antiviral për mua?",
+    "Cilat simptoma duhet të më çojnë të kërkoj kujdes urgjent?"
+  ]
+}

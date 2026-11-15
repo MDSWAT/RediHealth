@@ -1,0 +1,51 @@
+{
+  "title": "Light therapy, tablets and injections for eczema",
+  "intro": "When creams and skin care are not enough to control atopic eczema, doctors may consider treatments that work on the whole body or use special light. These options can reduce itching and flare-ups in moderate to severe eczema, but they need monitoring because of side effects and costs.",
+  "sections": [
+    {
+      "heading": "When stronger treatment is considered",
+      "paragraphs": [
+        "Treatment is stepped up when eczema is widespread or severe, sleep and daily life are disturbed, or topical treatments do not provide enough control. Before this, your doctor will check that basic skin care and correct use of anti-inflammatory creams have been tried, as well as triggers and infections."
+      ]
+    },
+    {
+      "heading": "Light therapy",
+      "paragraphs": [
+        "Phototherapy uses ultraviolet light, usually narrowband UVB, in a cabin several times a week for some weeks. It reduces inflammation and itching in many people. Side effects include sunburn-like redness, dry skin, and, with long-term repeated use, an increased risk of skin ageing and possibly skin cancer. Eye protection is worn, and the number of sessions is limited. It requires regular visits, which can be hard with work or school."
+      ]
+    },
+    {
+      "heading": "Tablets",
+      "paragraphs": [
+        "Medicines such as ciclosporin suppress the immune system and can quickly control severe eczema but may affect blood pressure and kidney function and are usually used for limited periods with blood tests. Newer tablets that block signalling molecules, called JAK inhibitors, can be effective but carry warnings about infections, blood clots and other risks, so they are used when other options are unsuitable."
+      ]
+    },
+    {
+      "heading": "Injections",
+      "paragraphs": [
+        "Biologic medicines such as dupilumab and tralokinumab target specific immune signals involved in eczema. They are given by injection under the skin at intervals of weeks, often at home after instruction. They are often well tolerated, but eye problems such as redness or conjunctivitis and injection site reactions can occur. They are generally prescribed by specialists."
+      ]
+    },
+    {
+      "heading": "Choosing and monitoring",
+      "paragraphs": [
+        "The best option depends on your age, health, pregnancy plans, other conditions, how severe your eczema is and your preferences. Keep using emollients throughout. Tell your doctor about infections, planned vaccinations or pregnancy. Check-ups are needed to judge benefits and side effects."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Weighing practical factors",
+      "text": "Imagine your doctor suggests light therapy. You could ask how many visits per week are needed, how long it takes to see improvement and whether you can combine it with work or school."
+    },
+    {
+      "title": "Comparing options",
+      "text": "Suppose both an injection and a tablet are offered. You might ask about effectiveness, side effects, monitoring and what happens if you stop."
+    }
+  ],
+  "questions": [
+    "Which treatment is most suitable for my eczema, and what are its risks?",
+    "How will I know if it is working, and when would we reconsider?",
+    "How should I continue my skin care during treatment?"
+  ]
+}

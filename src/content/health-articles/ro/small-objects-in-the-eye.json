@@ -1,0 +1,51 @@
+{
+  "title": "Corpii străini mici în ochi",
+  "intro": "Praful, nisipul, genele sau particulele minuscule de metal ajung adesea în ochi și provoacă iritație, lăcrimare și roșeață. Cei mai mulți pot fi spălați în siguranță. Poate rezulta o zgârietură pe suprafața ochiului, numită abraziune corneană, de obicei dureroasă, dar care se vindecă în câteva zile. Unele leziuni sunt urgențe.",
+  "sections": [
+    {
+      "heading": "Ce să faceți mai întâi",
+      "paragraphs": [
+        "Spălați-vă pe mâini. Nu frecați ochiul, deoarece frecatul poate zgâria suprafața. Clipiți de mai multe ori și lăsați lacrimile să spele obiectul. Clătiți ochiul cu apă curată sau cu ser fiziologic steril, înclinând capul astfel încât apa să curgă dinspre nas spre exterior. Trageți pleoapa superioară peste cea inferioară pentru a ajuta la îndepărtarea particulelor."
+      ]
+    },
+    {
+      "heading": "Căutarea obiectului",
+      "paragraphs": [
+        "În lumină bună, priviți sub pleoape trăgând ușor în jos pleoapa inferioară și, la nevoie, răsfrângând pleoapa superioară peste un bețișor de vată. Îndepărtați particulele libere cu un bețișor de vată curat și umed sau cu colțul unui șervețel curat. Nu încercați să îndepărtați nimic care este înfipt în ochi sau care atinge partea colorată."
+      ]
+    },
+    {
+      "heading": "Abraziunea corneană",
+      "paragraphs": [
+        "O zgârietură pe suprafața transparentă din față poate provoca durere ascuțită, sensibilitate la lumină, lăcrimare, roșeață și senzația că aveți ceva în ochi chiar și după ce obiectul a ieșit. Medicii o examinează cu un colorant și o lumină și o tratează cu unguent sau picături antibiotice și uneori cu un calmant. Cele mai multe abraziuni se vindecă în una până la trei zile. Nu purtați lentile de contact până la vindecare."
+      ]
+    },
+    {
+      "heading": "Când este o urgență",
+      "paragraphs": [
+        "Mergeți imediat la o unitate de primiri urgențe dacă ceva este înfipt în ochi, dacă obiectul provine dintr-o muncă de mare viteză, precum șlefuirea, ciocănitul metalului sau găurirea, dacă există o tăietură, sânge în ochi, pierderea vederii, durere severă, stropi de substanțe chimice sau dacă nu puteți deschide ochiul. Pentru substanțe chimice, clătiți mai întâi cu apă cel puțin cincisprezece minute și apoi cereți îngrijiri urgente."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Purtați ochelari de protecție pentru șlefuire, găurire, lucrări în lemn și grădinărit și ochelari etanși pentru substanțe chimice și unele sporturi. Scoateți lentilele de contact și mergeți la medic dacă iritația persistă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ajutorul cu o geană",
+      "text": "Imaginați-vă că o geană v-a intrat în ochi. Ați putea să vă spălați pe mâini, să clipiți, să clătiți cu apă curată și să evitați frecatul."
+    },
+    {
+      "title": "Alegerea îngrijirilor de urgență",
+      "text": "Presupuneți că un fragment de metal v-a sărit în ochi în timpul șlefuirii. Ați putea acoperi ușor ochiul fără a apăsa, ați putea evita frecatul și ați putea merge la o unitate de urgență oftalmologică."
+    }
+  ],
+  "questions": [
+    "Cum îmi dau seama dacă suprafața ochiului meu este zgâriată?",
+    "Ce picături sau unguente ar trebui să folosesc și cât timp?",
+    "Ce fel de muncă necesită ochelari de protecție?"
+  ]
+}

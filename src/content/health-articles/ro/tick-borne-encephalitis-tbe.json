@@ -1,0 +1,51 @@
+{
+  "title": "Encefalita transmisă de căpușe",
+  "intro": "Encefalita transmisă de căpușe este o infecție virală răspândită prin mușcăturile de căpușe în părți ale Europei și Asiei. Multe infecții provoacă puține simptome sau simptome ușoare, dar unele duc la inflamația creierului și a membranelor lui. Nu există leac, dar vaccinarea oferă protecție sigură persoanelor din regiunile afectate.",
+  "sections": [
+    {
+      "heading": "Cum se transmite",
+      "paragraphs": [
+        "Virusul este purtat de căpușe în anumite zone de risc, care sunt cartografiate de autoritățile de sănătate. Se transmite în câteva minute de la mușcătură, spre deosebire de boala Lyme, care durează ore. Rar, poate fi transmis prin laptele nepasteurizat de la animale infectate."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Multe persoane nu au simptome. În prima fază, simptome asemănătoare gripei, precum febră, durere de cap și oboseală, apar la una-două săptămâni după mușcătură și durează câteva zile. După o perioadă fără simptome, unele persoane dezvoltă o a doua fază, cu febră mare, durere de cap severă, ceafă înțepenită, confuzie, probleme de echilibru sau slăbiciune. Adulții tind să aibă o boală mai severă decât copiii."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament",
+      "paragraphs": [
+        "Analizele de sânge detectează anticorpii, iar examinarea lichidului cefalorahidian poate arăta semne de inflamație. Nu există tratament antiviral specific, așa că îngrijirea este de susținere: repaus, lichide, calmarea durerii și îngrijire în spital pentru cazurile severe. Cele mai multe persoane se vindecă complet, dar unele rămân cu probleme de lungă durată, precum dureri de cap, dificultăți de concentrare sau paralizie, iar un număr mic mor."
+      ]
+    },
+    {
+      "heading": "Vaccinarea",
+      "paragraphs": [
+        "Vaccinarea este recomandată persoanelor care locuiesc în zone de risc sau călătoresc în ele și pot fi expuse la căpușe. Schema de bază constă din trei doze în aproximativ un an, cu rapeluri la intervale stabilite de producător și de recomandările naționale. Există o schemă rapidă pentru călători. Vaccinul este bine tolerat, iar efectele secundare sunt de obicei ușoare, precum durerea brațului."
+      ]
+    },
+    {
+      "heading": "Alte măsuri de protecție",
+      "paragraphs": [
+        "Vaccinarea nu protejează împotriva bolii Lyme, așa că măsurile de protecție împotriva căpușelor rămân importante. Îndepărtați prompt căpușele, purtați haine de protecție, folosiți repelent și verificați-vă corpul după activitățile în aer liber. Evitați produsele lactate nepasteurizate în zonele de risc."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planificarea unei călătorii",
+      "text": "Imaginați-vă că planificați o vacanță la cort într-o zonă de risc. Ați putea întreba medicul despre o schemă rapidă de vaccinare, cu cel puțin câteva săptămâni înainte de plecare."
+    },
+    {
+      "title": "Menținerea rapelurilor la zi",
+      "text": "Presupuneți că ați terminat schema de bază acum câțiva ani. Ați putea verifica carnetul de vaccinări și ați putea întreba când este scadent următorul rapel."
+    }
+  ],
+  "questions": [
+    "Locuiesc sau călătoresc într-o zonă cu risc de encefalită transmisă de căpușe?",
+    "Ce schemă de vaccinare mi se potrivește?",
+    "Ce simptome după o mușcătură de căpușă înseamnă că trebuie să cer ajutor medical?"
+  ]
+}

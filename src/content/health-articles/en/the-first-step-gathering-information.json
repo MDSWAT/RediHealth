@@ -1,0 +1,51 @@
+{
+  "title": "The first step: gathering health information",
+  "intro": "Making good decisions about health starts with finding reliable information. The internet offers an enormous amount of it, but quality varies widely. A thoughtful approach to searching saves time and reduces the chance of being misled or alarmed.",
+  "sections": [
+    {
+      "heading": "Know what you want to find out",
+      "paragraphs": [
+        "Write down your question as precisely as you can, for example what treatments exist for a condition, what a test involves or what side effects a medicine has. Note your concerns, your symptoms and the decisions in front of you. A clear question helps you choose sources and search terms."
+      ]
+    },
+    {
+      "heading": "Where to look",
+      "paragraphs": [
+        "Reliable starting points include public health authorities, university hospitals, national patient information services, medical societies, independent evidence-based information providers and your pharmacist or doctor. Package leaflets and guideline summaries for patients give details on medicines and treatments. Patient organisations offer experience and practical advice."
+      ]
+    },
+    {
+      "heading": "Search tips",
+      "paragraphs": [
+        "Use specific terms and the name of the condition or treatment. Add words such as symptoms, treatment, risks or side effects. Try more than one source and compare. Avoid relying on the first result, since search engines may favour advertisements or commercial pages. Check dates, as treatments and recommendations change."
+      ]
+    },
+    {
+      "heading": "Be wary of",
+      "paragraphs": [
+        "Promises of miracle cures, pages that sell products alongside advice, testimonials presented as proof, no named authors or sources, alarmist language and claims that doctors are hiding the truth. Social media posts and forums can offer support but may spread inaccurate information."
+      ]
+    },
+    {
+      "heading": "Keep track and ask",
+      "paragraphs": [
+        "Note what you find, where it came from and your questions. Bring them to your doctor, and ask what information they trust. Information cannot replace an examination, and you should not change treatment based on what you read without talking to a professional."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing for a consultation",
+      "text": "Imagine you have been prescribed a new medicine. You could read the leaflet and a trusted patient information page, write down your questions and discuss them at your next visit."
+    },
+    {
+      "title": "Spotting a doubtful page",
+      "text": "Suppose a website promises to cure diabetes with a supplement. You might check who runs the site, whether it cites research and whether it sells the product."
+    }
+  ],
+  "questions": [
+    "Which sources do you recommend for reliable information on my condition?",
+    "Is what I read relevant to my situation?",
+    "How can I discuss information I have found with you?"
+  ]
+}

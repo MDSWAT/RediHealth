@@ -1,0 +1,51 @@
+{
+  "title": "Ce spune indicele de masă corporală despre sănătatea dumneavoastră",
+  "intro": "Indicele de masă corporală, sau IMC, este un număr calculat din greutate și înălțime. Este un instrument rapid de screening pentru categoriile de greutate, dar nu măsoară direct grăsimea corporală și nu spune totul despre sănătate. Este folosit cel mai bine împreună cu alte măsurători și cu evaluarea unui medic.",
+  "sections": [
+    {
+      "heading": "Cum se calculează IMC",
+      "paragraphs": [
+        "IMC este greutatea dumneavoastră în kilograme împărțită la pătratul înălțimii în metri. De exemplu, o persoană care cântărește șaptezeci de kilograme și măsoară 1,75 metri are un IMC de aproximativ 22,9. La adulți, un IMC sub 18,5 înseamnă subponderal, între 18,5 și 24,9 normal, între 25 și 29,9 supraponderal, iar 30 sau mai mult obezitate."
+      ]
+    },
+    {
+      "heading": "Ce vă spune",
+      "paragraphs": [
+        "La nivelul populațiilor, un IMC mai mare este asociat cu un risc mai mare de afecțiuni precum diabetul de tip 2, hipertensiunea arterială, bolile de inimă, unele cancere și problemele articulare. Un IMC foarte scăzut este de asemenea asociat cu riscuri pentru sănătate, precum oase slăbite și imunitate redusă. IMC este ușor de măsurat și de comparat."
+      ]
+    },
+    {
+      "heading": "Limite",
+      "paragraphs": [
+        "IMC nu face distincție între grăsime și mușchi, astfel încât persoanele musculoase pot fi clasificate ca supraponderale. Nu arată unde este depozitată grăsimea. Poate fi mai puțin exact la persoanele în vârstă, la copii, la femeile însărcinate și la persoane din diferite grupuri etnice. La copii, IMC este comparat cu grafice pe vârstă și sex."
+      ]
+    },
+    {
+      "heading": "Alte măsurători",
+      "paragraphs": [
+        "Circumferința taliei, mai ales grăsimea din jurul abdomenului, este asociată cu riscul de boli de inimă și diabet. Raportul talie-înălțime, tensiunea arterială, glicemia, colesterolul, condiția fizică și obiceiurile alimentare oferă o imagine mai completă. Sănătatea depinde de mulți factori, nu de un singur număr."
+      ]
+    },
+    {
+      "heading": "Ce să faceți cu rezultatul",
+      "paragraphs": [
+        "Dacă IMC-ul dumneavoastră este în afara intervalului normal, discutați cu medicul. Pașii mici, precum o alimentație echilibrată, mișcarea regulată, somnul suficient și limitarea băuturilor îndulcite, contează mai mult decât o schimbare rapidă a greutății. Evitați dietele extreme și cereți sprijin dacă greutatea sau alimentația vă îngrijorează."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Calcularea propriului IMC",
+      "text": "Imaginați-vă că vreți să știți IMC-ul dumneavoastră. Ați putea împărți greutatea la înălțimea la pătrat, apoi ați putea discuta cu medicul ce înseamnă."
+    },
+    {
+      "title": "Privirea dincolo de IMC",
+      "text": "Presupuneți că IMC-ul dumneavoastră este la limită, dar vă antrenați des. Ați putea măsura și circumferința taliei și ați putea cere măsurarea tensiunii arteriale și analize de sânge."
+    }
+  ],
+  "questions": [
+    "Ce înseamnă IMC-ul meu pentru sănătatea mea?",
+    "Ar trebui verificate și circumferința taliei sau alte teste?",
+    "Ce pași realiști ar îmbunătăți sănătatea mea?"
+  ]
+}

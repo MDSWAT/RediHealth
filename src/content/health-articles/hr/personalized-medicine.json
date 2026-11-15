@@ -1,0 +1,51 @@
+{
+  "title": "Personalizirana medicina",
+  "intro": "Personalizirana medicina nastoji prilagoditi prevenciju i liječenje obilježjima pojedinog bolesnika, kao što su geni, značajke tumora ili drugi biološki biljezi. Dovela je do stvarnih napredaka, primjerice u liječenju raka, ali se pojam često koristi olako, a ne podupiru dokazi svaku tvrdnju o personalizaciji.",
+  "sections": [
+    {
+      "heading": "Što znači",
+      "paragraphs": [
+        "Tradicionalno su se liječenja testirala na skupinama i nudila svima s određenom dijagnozom. Personalizirani pristupi koriste pretrage kako bi pronašli podskupine koje će vjerojatnije imati koristi, izbjeći nuspojave ili odabrati dozu. Pojmovi precizna medicina i stratificirana medicina opisuju slične ideje."
+      ]
+    },
+    {
+      "heading": "Primjeri",
+      "paragraphs": [
+        "Kod raka pretrage tumorskog tkiva mogu pokazati mutacije ili receptore koji predviđaju odgovor na ciljane lijekove, kao što su hormonski receptori kod raka dojke. Genetske pretrage mogu pokazati koliko brzo osoba razgrađuje određene lijekove pa se doziranje može prilagoditi. Genetski probir može identificirati nasljedne rizike kao što su promjene gena BRCA. U svakodnevnoj skrbi izbor liječenja uzima u obzir i dob, druge bolesti i osobne preferencije."
+      ]
+    },
+    {
+      "heading": "Koristi",
+      "paragraphs": [
+        "Ako se dobro koristi, personalizacija može povećati šansu za korist, smanjiti nepotrebno liječenje i nuspojave i omogućiti ranije otkrivanje rizika u obiteljima s nasljednim stanjima. Također može dati bolesnicima jači glas u odlukama."
+      ]
+    },
+    {
+      "heading": "Ograničenja i oprez",
+      "paragraphs": [
+        "Mnoge genetske varijante imaju samo male ili nesigurne učinke na bolest. Testovi koji se nude izravno potrošačima možda ne predviđaju ništa korisno i mogu izazvati brigu ili lažnu sigurnost. Neka prilagođena liječenja su skupa i dostupna samo u specijaliziranim centrima. Privatnost podataka i mogućnost diskriminacije važna su pitanja. Dokaz da test poboljšava ishode treba postojati prije rutinske uporabe."
+      ]
+    },
+    {
+      "heading": "Donošenje odluka",
+      "paragraphs": [
+        "Pitajte što se točno testira, koliko dobro test predviđa ishod, što bi se promijenilo u liječenju i koliki je trošak. Potražite genetsko savjetovanje prije i nakon genetskog testiranja. Zapamtite da način života, cijepljenje, probir i dobro utvrđena liječenja ostaju važni za sve."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preispitivanje testa",
+      "text": "Zamislite da vam nude genetski test za lijek. Mogli biste pitati koliko je pouzdan, kako rezultat mijenja vaše liječenje i pokrivaju li ga osiguravatelji."
+    },
+    {
+      "title": "Obiteljska povijest",
+      "text": "Pretpostavite da je nekoliko rođaka imalo rak dojke u mladoj dobi. Mogli biste pitati liječnika o genetskom savjetovanju kako biste odlučili je li testiranje korisno."
+    }
+  ],
+  "questions": [
+    "Ima li ovaj test dokazanu korist za moju situaciju?",
+    "Kako bi rezultat promijenio moje liječenje ili praćenje?",
+    "Kakve su posljedice za moju obitelj i moju privatnost?"
+  ]
+}

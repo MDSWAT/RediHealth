@@ -1,0 +1,51 @@
+{
+  "title": "Testele PSA pentru screeningul cancerului de prostată",
+  "intro": "Testul PSA măsoară antigenul specific prostatei, o proteină produsă de prostată, într-o probă de sânge. Un nivel crescut poate indica un cancer de prostată, dar și afecțiuni benigne. Folosirea testului PSA pentru screening la bărbații sănătoși poate depista unele cancere devreme, dar duce și la alarme false și supradiagnostic, deci decizia este una personală.",
+  "sections": [
+    {
+      "heading": "Ce măsoară testul",
+      "paragraphs": [
+        "Nivelurile PSA cresc în cancer, dar și în mărirea benignă, inflamație, infecție, după o ejaculare recentă, ciclism și manevre instrumentale. Nivelurile cresc și cu vârsta. Nu există o valoare-limită care să separe complet cancerul de non-cancer, așa că o valoare crescută indică doar necesitatea unei evaluări suplimentare."
+      ]
+    },
+    {
+      "heading": "Beneficii posibile",
+      "paragraphs": [
+        "Studiile mari sugerează că screeningul PSA poate reduce riscul de deces prin cancer de prostată la un număr mic de bărbați, beneficiul apărând după mai mult de zece ani. Efectul este modest. Descoperirea unui cancer devreme poate permite tratamentul cât timp este încă localizat."
+      ]
+    },
+    {
+      "heading": "Daune posibile",
+      "paragraphs": [
+        "Multe rezultate crescute duc la biopsii care nu găsesc cancer. Biopsia poate provoca sângerare, infecție și anxietate. Screeningul găsește multe cancere cu creștere lentă, care nu ar fi provocat niciodată simptome și nu ar fi scurtat viața, numit supradiagnostic. Bărbații tratați pentru astfel de cancere pot suferi efecte secundare precum incontinența și problemele de erecție, fără niciun beneficiu."
+      ]
+    },
+    {
+      "heading": "Luarea propriei decizii",
+      "paragraphs": [
+        "Deoarece beneficiile și daunele sunt strâns echilibrate, multe ghiduri recomandă o alegere informată, nu screening de rutină pentru toți bărbații. Gândiți-vă la vârsta dumneavoastră, la antecedentele familiale, la sănătate și la cum vă simțiți față de incertitudine. Bărbații cu antecedente familiale puternice sau de origine africană pot avea un risc mai mare și pot discuta o evaluare mai timpurie. Folosirea rezonanței magnetice înainte de biopsie și supravegherea activă a cancerelor cu risc scăzut pot reduce daunele."
+      ]
+    },
+    {
+      "heading": "Urmărirea după un rezultat crescut",
+      "paragraphs": [
+        "Dacă PSA este crescut, medicii pot repeta testul după câteva săptămâni, pot verifica dacă există infecție și pot lua în considerare o rezonanță magnetică înainte de a decide asupra unei biopsii. Întrebați despre fiecare pas și despre șansele de a găsi un cancer semnificativ."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Cântărirea deciziei",
+      "text": "Imaginați-vă că aveți 58 de ani și medicul menționează un test PSA. Ați putea întreba câți bărbați beneficiază, câți au alarme false și ce ați face dacă rezultatul ar fi crescut."
+    },
+    {
+      "title": "Pregătirea pentru test",
+      "text": "Presupuneți că hotărâți să faceți testul. Ați putea evita ejacularea și ciclismul intens cu câteva zile înainte și ați putea spune medicului despre orice infecție urinară."
+    }
+  ],
+  "questions": [
+    "Este recomandat un test PSA pentru mine, având în vedere vârsta și antecedentele mele familiale?",
+    "Ce s-ar întâmpla dacă nivelul meu de PSA ar fi crescut?",
+    "Care sunt șansele de supradiagnostic și supratratament?"
+  ]
+}

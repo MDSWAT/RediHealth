@@ -1,0 +1,52 @@
+{
+  "title": "Hipofiza și reglarea hormonală",
+  "intro": "Hipofiza este o glandă mică sub creier, legată de hipotalamus. Coordonează alte glande și unele funcții directe. Simptomele sunt frecvent nespecifice; oboseala singură nu identifică o boală hipofizară.",
+  "sections": [
+    {
+      "heading": "Lobul anterior",
+      "paragraphs": [
+        "Produce hormoni care influențează tiroida, cortexul suprarenal, ovarele și testiculele, precum și hormonul de creștere și prolactina. Grupele celulare au roluri diferite."
+      ]
+    },
+    {
+      "heading": "Lobul posterior",
+      "paragraphs": [
+        "Stochează și eliberează hormoni produși în hipotalamus, inclusiv hormon antidiuretic și oxitocină. Susțin echilibrul apei și funcții reproductive; stocarea și producția diferă."
+      ]
+    },
+    {
+      "heading": "Feedback",
+      "paragraphs": [
+        "Semnalele hipotalamice și nivelurile hormonilor glandelor-țintă reglează producția. Analiza se interpretează adesea cu hormonul asociat, ora recoltării și medicamentele, nu ca număr izolat."
+      ]
+    },
+    {
+      "heading": "Investigații",
+      "paragraphs": [
+        "Pot include sânge, urină, teste de stimulare ori supresie și imagini când sunt indicate. O mică descoperire întâmplătoare nu explică automat toate simptomele și nu impune operație."
+      ]
+    },
+    {
+      "heading": "Siguranță",
+      "paragraphs": [
+        "Setea intensă și urinarea excesivă cer consult. Durerea de cap bruscă severă cu tulburări vizuale, vărsături ori colaps cere urgență. Deficitele cunoscute necesită planul de substituție și urgență, nu oprirea independentă a hormonilor.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira aduce atât analizele hipofizare, cât și tiroidiene, fără să considere un singur rezultat în interval drept excludere a tuturor problemelor."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are deficit hormonal cunoscut. Ia instrucțiunile de urgență în călătorie, fără doze improvizate la boală."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

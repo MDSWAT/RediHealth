@@ -1,0 +1,51 @@
+{
+  "title": "What are microbes?",
+  "intro": "Microbes, or microorganisms, are living things too small to see without a microscope. They include bacteria, viruses, fungi and some parasites. They are found everywhere: in soil, water, air and on and inside our bodies. Most are harmless or helpful, and only a few cause disease.",
+  "sections": [
+    {
+      "heading": "Bacteria",
+      "paragraphs": [
+        "Bacteria are single-celled organisms that can live independently and multiply quickly. Many are helpful, for example those in the gut that help digest food and produce vitamins, or used to make yoghurt and cheese. Some cause infections such as strep throat, urinary infections, tuberculosis and pneumonia. Antibiotics work against bacteria."
+      ]
+    },
+    {
+      "heading": "Viruses",
+      "paragraphs": [
+        "Viruses are much smaller than bacteria and cannot reproduce on their own. They invade cells and use them to make copies of themselves. They cause colds, influenza, measles, hepatitis and COVID-19. Antibiotics do not work against viruses, but vaccines can prevent many viral diseases, and some antiviral medicines exist."
+      ]
+    },
+    {
+      "heading": "Fungi and parasites",
+      "paragraphs": [
+        "Fungi include yeasts and moulds. Most are harmless, but some cause infections such as athlete's foot, nail fungus and thrush, and rarely serious infections in people with weak immunity. Parasites, such as worms, lice, scabies mites and the organisms that cause malaria, live on or in another organism and take nutrients."
+      ]
+    },
+    {
+      "heading": "The microbiome",
+      "paragraphs": [
+        "The microbes living on and in the body, especially in the gut, skin and mouth, are called the microbiome. They help digestion, train the immune system and protect against harmful germs. Antibiotics, diet, hygiene and illness can disturb this balance. Research is ongoing on how it affects health, and products marketed for gut health vary in evidence."
+      ]
+    },
+    {
+      "heading": "Protecting yourself",
+      "paragraphs": [
+        "Wash hands with soap, prepare and store food safely, keep vaccinations up to date, cover coughs, avoid unnecessary antibiotics and keep wounds clean. Good hygiene reduces infections, but extreme sterilisation of the home is not necessary. Use antibiotics only when prescribed, and finish courses as directed."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Washing hands",
+      "text": "Imagine you want to reduce infections in your household. You could wash hands with soap for twenty seconds after the toilet, before cooking and before eating."
+    },
+    {
+      "title": "Using antibiotics properly",
+      "text": "Suppose you have a cold and wish for antibiotics. You might ask your doctor whether it is viral and how to relieve symptoms instead."
+    }
+  ],
+  "questions": [
+    "Is my illness caused by a virus, bacteria or something else?",
+    "Do I need antibiotics, or is another treatment better?",
+    "Which vaccinations should I have?"
+  ]
+}

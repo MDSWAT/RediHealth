@@ -1,0 +1,51 @@
+{
+  "title": "Përdorimi i sigurt i barnave",
+  "intro": "Barnat mund të ndihmojnë shumë, por mund të bëjnë edhe dëm nëse përdoren gabim. Marrja e barit të duhur në dozën e kohën e duhur e njohja e asaj që duhet vëzhguar e bëjnë trajtimin më të sigurt e më efektiv. Komunikimi i hapur me mjekët e farmacistët është çelësi.",
+  "sections": [
+    {
+      "heading": "Të kuptuarit e barnave tuaja",
+      "paragraphs": [
+        "Për çdo ilaç, njihni emrin, qëllimin, dozën, kohën, sa kohë ta merrni e çfarë të bëni nëse humbisni një dozë. Lexoni fletën e paketimit, që liston efektet anësore e ndërveprimet. Pyesni nëse duhet marrë me ushqim e cilat ushqime, alkool ose barna të tjera të shmangni. Mbani një listë të përditësuar të gjithçkaje që merrni."
+      ]
+    },
+    {
+      "heading": "Marrja e saktë e barnave",
+      "paragraphs": [
+        "Ndiqni udhëzimet saktësisht. Mos i ndaloni barnat e përshkruara ose mos i ndryshoni dozat pa këshillë, edhe nëse ndiheni më mirë ose më keq. Përfundoni kurat e antibiotikëve siç udhëzohet. Përdorni pajisjet matëse të dhëna për lëngjet, pasi lugët e kuzhinës ndryshojnë. Mos i shtypni ose ndani tabletat përveç nëse lejohet. Organizuesit e pilulave e kujtesat ndihmojnë me disa barna."
+      ]
+    },
+    {
+      "heading": "Efektet anësore dhe ndërveprimet",
+      "paragraphs": [
+        "Shumica e efekteve anësore janë të lehta, por raportoni simptoma të rënda, të pazakonta ose të vazhdueshme e shenja reagimi alergjik si skuqje, enjtje ose vështirësi në frymëmarrje. Ndërveprimet mund të ndodhin midis barnave, me suplemente, produkte bimore, ushqim e alkool. Tregojini çdo mjeku e farmacisti gjithçka që merrni, përfshirë produktet e blera pa recetë."
+      ]
+    },
+    {
+      "heading": "Ruajtja dhe asgjësimi",
+      "paragraphs": [
+        "Ruani barnat siç udhëzohet, zakonisht në vend të freskët e të thatë larg fëmijëve, e mbajini në paketimin origjinal. Kontrolloni datat e skadimit. Mos mbani antibiotikë të mbetur ose mos ndani barna me të tjerët. Ktheni barnat e papërdorura ose të skaduara në farmaci në vend që t'i hidhni në tualet ose kosh."
+      ]
+    },
+    {
+      "heading": "Situata të veçanta",
+      "paragraphs": [
+        "Shtatzënia, ushqyerja me gji, mosha e madhe, problemet e veshkave ose mëlçisë e fëmijëria kërkojnë kujdes të veçantë me dozat e zgjedhjet. Pyesni para se të merrni çdo ilaç, përfshirë ato pa recetë. Rishikimet e rregullta të barnave me mjekun ose farmacistin mund të ulin trajtimet e panevojshme. Kërkoni ndihmë urgjente pas një mbidoze ose nëse dikush merr barin e gabuar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Renditja e një organizuesi javor",
+      "text": "Imagjinoni që merrni gjashtë barna çdo ditë. Mund të mbushni një organizues javor me ndihmën e farmacistit e të mbani një listë të përditësuar në portofol."
+    },
+    {
+      "title": "Kontrolli para një blerjeje",
+      "text": "Supozoni që doni të blini një ilaç për ftohjen. Mund ta pyesni farmacistin nëse është i sigurt me barnat tuaja aktuale."
+    }
+  ],
+  "questions": [
+    "Pse e marr këtë ilaç e për sa kohë?",
+    "Cilat efekte anësore duhet të raportoj?",
+    "A ka ndërveprime me barnat e mia të tjera, suplementet ose ushqimin?"
+  ]
+}

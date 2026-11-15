@@ -1,0 +1,51 @@
+{
+  "title": "Malattia di Lyme",
+  "intro": "La malattia di Lyme è un'infezione batterica trasmessa dalle punture di zecca. È comune in foreste e praterie in Europa e Nord America. L'infezione precoce si cura con successo con gli antibiotici, quindi riconoscere l'eruzione cutanea tipica e cercare subito una terapia è importante.",
+  "sections": [
+    {
+      "heading": "Come ci si infetta",
+      "paragraphs": [
+        "I batteri, chiamati Borrelia, vivono nelle zecche, che li prendono dagli animali. Vengono di solito trasmessi dopo che la zecca è rimasta attaccata per molte ore, quindi trovare e rimuovere subito una zecca riduce il rischio. Non ogni zecca porta batteri e non ogni puntura porta a un'infezione."
+      ]
+    },
+    {
+      "heading": "Primi segni",
+      "paragraphs": [
+        "Un anello rosso che si allarga, chiamato eritema migrante, compare spesso da giorni a settimane dopo la puntura e cresce nell'arco di giorni, a volte schiarendosi al centro. Di solito è indolore e non prude. Possono comparire sintomi simil-influenzali come febbre, stanchezza, mal di testa e dolori muscolari. Non tutti notano l'eruzione o ricordano una puntura."
+      ]
+    },
+    {
+      "heading": "Complicanze tardive",
+      "paragraphs": [
+        "Se non trattata, l'infezione può diffondersi ad articolazioni, sistema nervoso o cuore da settimane a mesi dopo. Questo può causare gonfiore articolare, soprattutto al ginocchio, debolezza del viso, dolore nervoso, meningite o problemi del ritmo cardiaco. Queste complicanze sono curabili con antibiotici ma richiedono spesso un ciclo più lungo."
+      ]
+    },
+    {
+      "heading": "Diagnosi e trattamento",
+      "paragraphs": [
+        "Un'eruzione tipica si diagnostica a vista e non richiede esami del sangue. Per altri sintomi si usano esami del sangue per gli anticorpi, anche se possono essere negativi all'inizio e positivi dopo un'infezione passata, quindi i risultati vanno interpretati insieme ai sintomi. Il trattamento è di solito doxiciclina o amoxicillina per un paio di settimane. La maggior parte delle persone guarisce completamente."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Indossa pantaloni lunghi e scarpe chiuse nelle zone con zecche, usa repellente, controlla il corpo e i vestiti dopo l'attività all'aperto e rimuovi subito le zecche con pinzette sottili o uno strumento apposito. Pulisci poi la zona e osservala per diverse settimane. Per la maggior parte delle persone non c'è un antibiotico preventivo di routine dopo una puntura. Chiedi consiglio se compaiono un'eruzione o sintomi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dopo una passeggiata",
+      "text": "Immagina di aver passato il pomeriggio tra l'erba alta. Potresti controllare la pelle, soprattutto dietro le ginocchia, all'inguine e sotto le ascelle, all'attaccatura dei capelli e dietro le orecchie, e annotare la data se trovi una zecca."
+    },
+    {
+      "title": "Osservare una puntura",
+      "text": "Supponi di aver rimosso una zecca la settimana scorsa e che ora una macchia rossa si stia allargando. Potresti fotografarla ogni giorno, annotare le date e contattare presto il medico."
+    }
+  ],
+  "questions": [
+    "I miei sintomi potrebbero essere la malattia di Lyme e ho bisogno di un esame del sangue?",
+    "Quanto durerà il trattamento e quali effetti collaterali sono possibili?",
+    "Che cosa devo fare se i sintomi persistono dopo il trattamento?"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Cum este reglat somnul",
+  "intro": "Somnul este controlat de două sisteme principale: ceasul biologic, care vă spune când este momentul să fiți treaz sau adormit, și acumularea presiunii de somn cu cât rămâneți mai mult treaz. Cunoașterea modului în care interacționează explică de ce decalajul orar, munca în ture și folosirea ecranelor noaptea târziu perturbă somnul și cum pot obiceiurile să susțină un somn mai bun.",
+  "sections": [
+    {
+      "heading": "Ceasul biologic intern",
+      "paragraphs": [
+        "Un grup de celule nervoase din creier acționează ca un ceas principal care urmează un ritm de aproximativ 24 de ore, numit ritm circadian. El este reglat în principal de lumina care intră în ochi. Lumina de dimineață mută ceasul mai devreme, în timp ce lumina puternică seara îl mută mai târziu.",
+        "Ceasul influențează temperatura corpului, eliberarea hormonilor și starea de alertă. Melatonina, un hormon eliberat în întuneric, semnalează noaptea corpului. Oamenii diferă în mod natural în ceea ce privește momentul preferat, unii fiind de tip matinal, alții de tip nocturn."
+      ]
+    },
+    {
+      "heading": "Presiunea de somn",
+      "paragraphs": [
+        "Cât timp sunteți treaz, substanțe precum adenozina se acumulează treptat în creier și măresc nevoia de somn. Cu cât rămâneți mai mult treaz, cu atât această presiune devine mai puternică, iar somnul o reduce din nou. Cafeaua acționează în parte blocând efectul adenozinei.",
+        "Un pui de somn târziu în cursul zilei poate reduce presiunea de somn și poate face mai greu adormirea noaptea. Somnurile scurte, mai devreme în cursul zilei, au de obicei un impact mai mic."
+      ]
+    },
+    {
+      "heading": "Stadiile somnului",
+      "paragraphs": [
+        "Somnul nu este uniform. O noapte este alcătuită din cicluri repetate de aproximativ 90 de minute, cu somn ușor, somn profund și somn cu mișcări oculare rapide, în timpul căruia apar cele mai multe vise intense. Somnul profund predomină în prima jumătate a nopții și susține refacerea fizică, în timp ce somnul REM este mai frecvent spre dimineață.",
+        "Trezirile scurte din timpul nopții sunt normale și de obicei uitate. Structura somnului se schimbă cu vârsta, iar persoanele în vârstă dorm adesea mai ușor și se trezesc mai devreme."
+      ]
+    },
+    {
+      "heading": "Ce perturbă somnul",
+      "paragraphs": [
+        "Programele neregulate, munca în ture, călătoriile prin mai multe fusuri orare și ecranele luminoase noaptea târziu pot dezacorda ceasul biologic de planurile dumneavoastră. Stresul, durerea, alcoolul, mesele copioase târzii, nicotina și cafeaua, un dormitor zgomotos sau cald și unele medicamente afectează de asemenea calitatea somnului.",
+        "Afecțiuni medicale precum apneea în somn, sindromul picioarelor neliniștite, depresia sau anxietatea pot provoca probleme persistente și merită o evaluare corespunzătoare, în loc de automedicație cu somnifere."
+      ]
+    },
+    {
+      "heading": "Sprijinirea unui somn sănătos",
+      "paragraphs": [
+        "Încercați să păstrați ore constante de culcare și de trezire, expuneți-vă la lumina zilei devreme, fiți activ fizic și relaxați-vă înainte de culcare. Țineți dormitorul întunecat, răcoros și liniștit și evitați să-l folosiți pentru muncă. Limitați cafeaua după-amiaza și alcoolul seara, deoarece alcoolul fragmentează somnul.",
+        "Dacă nu puteți dormi, ridicați-vă și faceți ceva liniștitor până vă simțiți somnoros, în loc să stați treaz îngrijorându-vă. Dacă dificultățile de somn durează săptămâni sau vă afectează funcționarea în timpul zilei, vorbiți cu un medic. Terapia cognitiv-comportamentală pentru insomnie este o opțiune eficientă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Adaptarea după o schimbare de fus orar",
+      "text": "Imaginați-vă că ați zburat prin mai multe fusuri orare și nu puteți dormi noaptea. Ați putea petrece timp afară, la lumina zilei, la orele locale, să păstrați mesele și ora de culcare conform noului program și să evitați somnurile lungi până când ritmul se adaptează."
+    },
+    {
+      "title": "Îmbunătățirea rutinei de seară",
+      "text": "Presupuneți că de obicei derulați telefonul în pat și apoi aveți greutăți să adormiți. Ați putea stabili o oră fixă la care lăsați dispozitivele deoparte, să reduceți luminile și să încercați o săptămână să citiți sau să faceți întinderi ușoare, ca să vedeți dacă somnul se schimbă."
+    }
+  ],
+  "questions": [
+    "Ar putea o afecțiune medicală sau un medicament să-mi afecteze somnul?",
+    "Ce schimbări ale programului zilnic ar fi cele mai utile, având în vedere munca și stilul meu de viață?",
+    "Când merită o polisomnografie sau o trimitere la un specialist în somn?"
+  ]
+}

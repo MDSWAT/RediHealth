@@ -1,0 +1,51 @@
+{
+  "title": "Calcoli renali",
+  "intro": "I calcoli renali sono depositi duri di minerali e sali che si formano nei reni e possono scendere lungo le vie urinarie. I calcoli piccoli spesso passano inosservati, mentre quelli più grandi possono causare dolore intenso. La maggior parte dei calcoli si può trattare e bere abbastanza è il modo migliore per prevenirne di nuovi.",
+  "sections": [
+    {
+      "heading": "Come si formano i calcoli",
+      "paragraphs": [
+        "Quando l'urina contiene livelli elevati di certe sostanze come calcio, ossalato o acido urico e troppo poco liquido, i cristalli possono aggregarsi. La maggior parte dei calcoli contiene calcio. Il rischio aumenta con la disidratazione, una dieta ricca di sale e proteine animali, il sovrappeso, certe malattie, alcuni farmaci e una storia familiare di calcoli."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Un calcolo che resta nel rene può non causare sintomi. Quando si sposta nell'uretere può causare un dolore improvviso a ondate al fianco o alla schiena che si irradia verso l'inguine, insieme a nausea, vomito, sangue nelle urine e frequente stimolo a urinare. La febbre con dolore suggerisce un'infezione e richiede un trattamento urgente."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "I medici usano esami delle urine, esami del sangue e diagnostica per immagini, spesso ecografia o TC a basso dosaggio, per trovare il calcolo e vedere se il flusso dell'urina è bloccato. Se espelli un calcolo, conservalo per l'analisi, perché la sua composizione guida la prevenzione."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Molti calcoli più piccoli di circa cinque millimetri passano da soli nell'arco di settimane. Aiutano il sollievo dal dolore, come gli antidolorifici antinfiammatori, molti liquidi e talvolta farmaci che rilassano l'uretere. I calcoli più grandi o quelli che bloccano l'urina o causano infezione possono richiedere un trattamento. La litotrissia a onde d'urto frantuma i calcoli in frammenti dall'esterno del corpo, mentre l'ureteroscopia usa un sottile strumento per rimuovere il calcolo o frantumarlo con il laser. I grandi calcoli renali possono richiedere un intervento mini-invasivo attraverso la schiena."
+      ]
+    },
+    {
+      "heading": "Prevenire nuovi calcoli",
+      "paragraphs": [
+        "Bevi abbastanza da produrre circa due-due litri e mezzo di urina al giorno, il che di solito significa tre litri o più di liquidi. Limita sale e proteine animali eccessive, segui una dieta equilibrata con quantità normali di calcio e fai attenzione a vitamina C ad alto dosaggio o integratori. A seconda del tipo di calcolo possono essere raccomandati farmaci specifici. I calcoli recidivano in molte persone, quindi il controllo successivo è importante."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gestire un attacco",
+      "text": "Immagina di avere un improvviso forte dolore al fianco con nausea. Potresti cercare aiuto medico urgente, riferire l'eventuale febbre e chiedere se devi filtrare l'urina per raccogliere il calcolo."
+    },
+    {
+      "title": "Costruire l'abitudine di bere",
+      "text": "Supponi di aver già avuto un calcolo. Potresti riempire una bottiglia ogni mattina, distribuire il bere nell'arco della giornata e controllare che l'urina sia chiara."
+    }
+  ],
+  "questions": [
+    "Che tipo di calcolo ho e come posso prevenirne un altro?",
+    "Il mio calcolo deve essere rimosso o posso aspettare che passi?",
+    "Quali segnali d'allarme significano che devo andare in ospedale?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Skin: a living barrier and sensory organ",
+  "intro": "Skin protects the body, limits water loss, senses contact and helps control temperature. Its layers have different jobs. Visible changes can arise from local irritation or wider illness, so appearance alone may not reveal the cause.",
+  "sections": [
+    {
+      "heading": "The outer barrier",
+      "paragraphs": [
+        "The epidermis renews itself and forms a protective surface. Pigment helps protect against ultraviolet light but does not eliminate sun damage. Harsh washing can damage the barrier rather than make it healthier."
+      ]
+    },
+    {
+      "heading": "Support beneath",
+      "paragraphs": [
+        "The dermis contains connective tissue, blood vessels, nerves, follicles and glands. The fatty layer beneath cushions and insulates. A small surface wound can reach deeper structures depending on its depth."
+      ]
+    },
+    {
+      "heading": "Temperature and feeling",
+      "paragraphs": [
+        "Sweating and changes in skin blood flow help regulate heat. Sensory nerves detect touch, pain and temperature; reduced sensation increases the risk of unnoticed burns or pressure damage."
+      ]
+    },
+    {
+      "heading": "Daily protection",
+      "paragraphs": [
+        "Use gentle cleansing, suitable moisturizer and sun protection. Change position when immobile and inspect areas with reduced sensation. Wounds need appropriate cleaning and care, not irritating household substances."
+      ]
+    },
+    {
+      "heading": "Changes needing assessment",
+      "paragraphs": [
+        "A changing mole, persistent sore or unexplained rash needs review. Rapidly spreading painful redness with fever, extensive blistering or a rash with breathing difficulty requires urgent help.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira's hands crack after frequent harsh washing. She switches to gentler care and discusses persistent inflammation rather than scrubbing harder."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben has reduced foot sensation. He checks skin and shoe pressure instead of using pain alone to detect injury."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

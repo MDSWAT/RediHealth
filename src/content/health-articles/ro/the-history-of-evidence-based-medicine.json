@@ -1,0 +1,51 @@
+{
+  "title": "Istoria medicinei bazate pe dovezi",
+  "intro": "Medicina bazată pe dovezi a crescut din ideea că tratamentele trebuie judecate prin testare atentă, nu doar după tradiție sau autoritate. Rădăcinile ei merg înapoi cu secole, dar a devenit o abordare definită la sfârșitul secolului al douăzecilea. Cunoașterea istoriei ei arată de ce îngrijirea sănătății se bazează acum pe studii și analize sistematice.",
+  "sections": [
+    {
+      "heading": "Primele idei",
+      "paragraphs": [
+        "Încă din antichitate, medicii au notat că experiența ar trebui să ghideze tratamentul. În secolul al optsprezecelea, medicul de marină James Lind a comparat tratamentele pentru scorbut la marinari și a constatat că portocalele și lămâile ajută. În secolul al nouăsprezecelea, metodele statistice au început să fie folosite pentru evaluarea tratamentelor și a rezultatelor din spitale. Reformatorii din domeniul asistenței medicale au folosit și ei date pentru a îmbunătăți îngrijirea."
+      ]
+    },
+    {
+      "heading": "Studiile controlate",
+      "paragraphs": [
+        "Secolul al douăzecilea a adus dezvoltarea studiului randomizat controlat modern. După al Doilea Război Mondial, un studiu britanic al streptomicinei pentru tuberculoză este considerat un reper. Randomizarea și grupurile de control au ajutat la separarea efectelor reale de întâmplare și de părtinire. Experiențele tragice, precum daunele cauzate de medicamentul talidomidă, au dus la testare și reglementare mai stricte a medicamentelor."
+      ]
+    },
+    {
+      "heading": "Archie Cochrane",
+      "paragraphs": [
+        "Epidemiologul britanic Archie Cochrane a susținut în anii 1970 că serviciile de sănătate ar trebui evaluate prin studii randomizate și că rezultatele ar trebui rezumate sistematic, deoarece multe tratamente erau folosite fără dovada beneficiului. El a criticat lipsa unui rezumat actualizat regulat al tuturor studiilor. Ideile lui au inspirat lucrări ulterioare."
+      ]
+    },
+    {
+      "heading": "Mișcarea bazată pe dovezi",
+      "paragraphs": [
+        "La începutul anilor 1990, un grup de medici de la Universitatea McMaster din Canada a numit și a promovat medicina bazată pe dovezi, învățându-i pe clinicieni să găsească și să evalueze cercetările. Colaborarea internațională Cochrane a fost înființată în 1993 pentru a pregăti și actualiza analize sistematice. Ghidurile, agențiile de evaluare a tehnologiilor medicale și informarea pacienților au adoptat tot mai mult aceste metode."
+      ]
+    },
+    {
+      "heading": "Critici și dezvoltare",
+      "paragraphs": [
+        "Criticii notează că dovezile pot fi părtinite de finanțarea din partea industriei, că studiile pot să nu reflecte pacienții reali și că ghidurile pot ignora circumstanțele individuale. Domeniul a răspuns prin înregistrarea studiilor, partajarea datelor, standarde de raportare și implicarea pacienților. Astăzi, medicina bazată pe dovezi continuă să se dezvolte, acordând atenție preferințelor pacienților și calității dovezilor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vederea istoriei în practică",
+      "text": "Imaginați-vă că citiți despre un tratament folosit odinioară pe scară largă și abandonat ulterior. Ați putea întreba ce au arătat studiile și cum au schimbat dovezile practica."
+    },
+    {
+      "title": "Folosirea principiului",
+      "text": "Presupuneți că un prieten recomandă un remediu pe baza experienței. Ați putea căuta studii controlate și ați putea întreba medicul despre dovezi."
+    }
+  ],
+  "questions": [
+    "A fost acest tratament testat în studii controlate?",
+    "Unde pot găsi rezumate ale celor mai bune dovezi?",
+    "Cum s-au schimbat în timp dovezile pe această temă?"
+  ]
+}

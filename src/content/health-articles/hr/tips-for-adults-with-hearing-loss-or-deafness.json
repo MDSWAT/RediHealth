@@ -1,0 +1,51 @@
+{
+  "title": "Savjeti za odrasle koji žive s gubitkom sluha ili gluhoćom",
+  "intro": "Gubitak sluha može razgovor, posao i društveni život učiniti napornijima, ali praktične strategije pomažu. Male promjene u načinu na koji vi i drugi komunicirate, zajedno s tehnologijom i uslugama potpore, olakšavaju svakodnevni život. Tražiti ono što trebate je vještina koju vrijedi vježbati.",
+  "sections": [
+    {
+      "heading": "Olakšavanje razgovora",
+      "paragraphs": [
+        "Okrenite se osobi s kojom razgovarate i osigurajte dobro svjetlo na njezinu licu kako biste vidjeli pokrete usana i izraze. Birajte tiha mjesta, smanjite pozadinsku buku i zamolite druge da govore jasno normalnom brzinom bez vikanja ili pretjerivanja. Zamolite ih da preformuliraju umjesto da ponavljaju iste riječi. Budite otvoreni o svom gubitku sluha kako bi ljudi razumjeli."
+      ]
+    },
+    {
+      "heading": "Korištenje tehnologije",
+      "paragraphs": [
+        "Slušni aparati i kohlearni implantati pomažu mnogim ljudima i treba ih dosljedno nositi, a namješta ih audiolog. Dodaci poput udaljenih mikrofona, prijenosnika za televiziju i indukcijskih petlji poboljšavaju razumijevanje u teškim okruženjima. Titlovi na videu, aplikacije za pretvaranje govora u tekst i pojačani telefoni pomažu s medijima i pozivima. Bljeskajući ili vibrirajući alarmi i zvona čine dom sigurnijim."
+      ]
+    },
+    {
+      "heading": "Na poslu i u javnosti",
+      "paragraphs": [
+        "Recite svom poslodavcu što pomaže, kao što su sastanci u tihim prostorijama, pisani dnevni redovi, videosastanci s titlovima ili tumači znakovnog jezika. Mnoge zemlje daju zakonska prava na razumne prilagodbe. Na javnim mjestima pitajte o indukcijskim petljama i pisanim informacijama te birajte sjedala blizu govornika."
+      ]
+    },
+    {
+      "heading": "Briga o sebi",
+      "paragraphs": [
+        "Slušanje je naporno pa planirajte stanke i vrijeme u tišini. Zaštitite preostali sluh od glasne buke. Redovito testirajte sluh i brzo liječite probleme s ušima. Ostanite društveno povezani jer izolacija povećava rizik od usamljenosti i lošeg raspoloženja. Grupe vršnjaka i organizacije za gubitak sluha nude savjete i zajedničko iskustvo."
+      ]
+    },
+    {
+      "heading": "Uključivanje obitelji i prijatelja",
+      "paragraphs": [
+        "Objasnite obitelji i prijateljima kako komunicirati s vama, primjerice privlačenjem vaše pažnje prije govora i nepričanjem iz druge prostorije. Dogovorite signale kada ne razumijete. Učenje čitanja s usana ili znakovnog jezika, samostalno ili zajedno s obitelji, može obogatiti komunikaciju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za sastanak",
+      "text": "Zamislite da imate timski sastanak. Mogli biste unaprijed zatražiti dnevni red, sjesti okrenuti govorniku i zamoliti da ljudi govore jedan po jedan."
+    },
+    {
+      "title": "Uređenje kod kuće",
+      "text": "Pretpostavite da teško čujete televiziju. Mogli biste pitati audiologa o prijenosniku ili slušalicama koje se spajaju na televizor."
+    }
+  ],
+  "questions": [
+    "Bi li slušni aparati ili drugi uređaji pomogli u mojoj situaciji?",
+    "Koje prilagodbe na radnom mjestu mogu tražiti?",
+    "Gdje mogu pronaći lokalne grupe za podršku kod gubitka sluha?"
+  ]
+}

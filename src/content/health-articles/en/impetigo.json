@@ -1,0 +1,53 @@
+{
+  "title": "Impetigo",
+  "intro": "Impetigo is a common, contagious bacterial skin infection, especially in young children. It causes red sores that burst and form honey-coloured crusts, often around the nose and mouth. It spreads easily through touch but usually heals within a couple of weeks with treatment and good hygiene.",
+  "sections": [
+    {
+      "heading": "Causes and who gets it",
+      "paragraphs": [
+        "Impetigo is caused by bacteria, mainly Staphylococcus aureus and sometimes Streptococcus. The bacteria enter the skin through small breaks such as insect bites, scratches, eczema or cold sores. It is more common in warm, humid weather and in crowded settings like nurseries and schools."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "The most common form starts as small red spots that turn into blisters, which burst and leave sticky, golden-brown crusts. The sores may itch but are usually not very painful. A less common form produces larger blisters. Fever is unusual, and when it happens, a doctor should check the child."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Mild impetigo in a small area is often treated with an antibiotic cream or ointment applied a few times a day for about a week. More widespread infections may need antibiotic tablets or liquid. Gently soaking off crusts with warm water before applying treatment can help it work.",
+        "Finish the whole course even when the skin looks better. If sores do not improve in a few days, see the doctor again, since resistant bacteria or another condition might be involved."
+      ]
+    },
+    {
+      "heading": "Preventing spread",
+      "paragraphs": [
+        "Impetigo is contagious until the sores have crusted over or after about two days of treatment. Keep children at home during that period, as local rules suggest. Wash hands often, keep nails short, avoid scratching, and use separate towels, flannels and bedding that are washed at a high temperature.",
+        "Cover sores loosely with a dressing if possible, and tell the school or nursery."
+      ]
+    },
+    {
+      "heading": "When to seek urgent advice",
+      "paragraphs": [
+        "See a doctor promptly if the infection spreads quickly, the child has a high fever, is unwell, or if the skin becomes very red, hot and swollen. Babies and people with weak immune systems need earlier attention. Rarely, infection may affect the kidneys, so report dark urine or swelling."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Returning to nursery",
+      "text": "Imagine your child has sores around the mouth. You could start the prescribed cream, keep your child home until the sores crust over, wash their hands and towels frequently, and ask the nursery about its return rules."
+    },
+    {
+      "title": "Dealing with itching",
+      "text": "Suppose your child keeps scratching the blisters. You might trim their nails, cover the sores and ask the pharmacist about soothing measures that are safe for their age."
+    }
+  ],
+  "questions": [
+    "Is a cream enough, or does my child need antibiotic medicine?",
+    "When can my child safely go back to school or nursery?",
+    "Which signs would mean the infection needs a second review?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Predmenstrualni sindrom (PMS)",
+  "intro": "Predmenstrualni sindrom je obrazac tjelesnih i emocionalnih simptoma koji se pojavljuju u danima prije menstruacije i popuštaju kad krvarenje počne. Mnoge žene primjećuju blage promjene, dok su za neke simptomi dovoljno teški da remete posao i odnose. Mjere načina života i, po potrebi, lijekovi mogu pomoći.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Uobičajeni simptomi uključuju osjetljivost dojki, nadutost, glavobolje, umor, žudnju za hranom, razdražljivost, loše raspoloženje, tjeskobu i teškoće sa spavanjem. Simptomi počinju u drugoj polovici ciklusa, obično oko tjedan dana prije menstruacije, i nestaju unutar nekoliko dana nakon početka krvarenja. Teški oblik s izraženim simptomima raspoloženja zove se predmenstrualni disforični poremećaj."
+      ]
+    },
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Uzrok nije potpuno poznat. Čini se da je povezan s time kako mozak reagira na normalne hormonske promjene, uključujući kemijske glasnike kao što je serotonin. Ne uzrokuje ga slab karakter i nije jednostavno stres. Žene s poviješću depresije, tjeskobe ili visokog stresa mogu biti više pogođene."
+      ]
+    },
+    {
+      "heading": "Vođenje dnevnika simptoma",
+      "paragraphs": [
+        "Dnevno bilježenje simptoma kroz dva ili više ciklusa pokazuje slijede li tipičan obrazac i pomaže razlikovati PMS od depresije, problema sa štitnjačom ili drugih stanja koja se ne poboljšavaju s menstruacijom. Također olakšava razgovor o liječenju s liječnikom."
+      ]
+    },
+    {
+      "heading": "Što može pomoći",
+      "paragraphs": [
+        "Redovita tjelovježba, dovoljno sna, uravnotežena prehrana s manje kofeina, soli i alkohola i metode opuštanja mogu smanjiti simptome. Dodaci kalcija mogu pomoći nekim ženama, a dokazi za druge dodatke su neujednačeni. Lijekovi protiv bolova ublažavaju grčeve i glavobolje. Kognitivno-bihevioralna terapija učinkovita je za simptome raspoloženja."
+      ]
+    },
+    {
+      "heading": "Medicinsko liječenje",
+      "paragraphs": [
+        "Kod teških simptoma antidepresivi serotoninskog tipa koji se uzimaju kroz cijeli ciklus ili samo u drugoj polovici mogu biti vrlo učinkoviti. Neke kombinirane kontracepcijske pilule smanjuju simptome, a druge hormonske mogućnosti dostupne su odabranim ženama. Razgovarajte o koristima i nuspojavama s liječnikom i redovito pregledavajte liječenje. Odmah potražite pomoć ako imate misli o samoozljeđivanju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praćenje obrasca",
+      "text": "Zamislite da vam raspoloženje svakog mjeseca pada prije menstruacije. Mogli biste tri mjeseca svaki dan ocjenjivati simptome i ponijeti grafikon liječniku kako biste razgovarali o mogućnostima."
+    },
+    {
+      "title": "Planiranje oko ciklusa",
+      "text": "Pretpostavite da znate da je tjedan prije menstruacije najteži. Mogli biste tada izbjegavati zakazivanje stresnih događaja, nastaviti vježbati i planirati vrijeme za odmor."
+    }
+  ],
+  "questions": [
+    "Odgovaraju li moji simptomi PMS-u ili bi za njih mogao biti odgovoran neko drugo stanje?",
+    "Koja su liječenja najbolja za moje simptome?",
+    "Je li hormonska kontracepcija ili antidepresiv prikladan za mene?"
+  ]
+}

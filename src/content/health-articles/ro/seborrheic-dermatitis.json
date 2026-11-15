@@ -1,0 +1,51 @@
+{
+  "title": "Dermatita seboreică",
+  "intro": "Dermatita seboreică este o afecțiune frecventă și inofensivă a pielii, care provoacă plăci roșii, cu scuame, cu aspect gras, mai ales pe scalp, față și piept. Mătreața este o formă ușoară. Apare și dispare și răspunde bine la șampoanele și cremele medicamentoase, deși tinde să revină.",
+  "sections": [
+    {
+      "heading": "Unde și cum apare",
+      "paragraphs": [
+        "Afectează zonele cu multe glande sebacee: scalpul, sprâncenele, marginile nasului, spatele urechilor, zona bărbii și mijlocul pieptului. Pielea poate fi roșie, cu solzi gălbui, și poate mânca sau durea. La bebeluși apare ca cruste groase, galbene, solzoase pe scalp, numite crustă de lapte, care sunt inofensive și de obicei dispar în câteva luni."
+      ]
+    },
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Cauza este o combinație între sebum, o drojdie numită Malassezia, care trăiește în mod normal pe piele, și o reacție inflamatorie individuală. Nu este cauzată de igiena proastă. Stresul, oboseala, vremea rece și uscată, anumite boli precum boala Parkinson și unele medicamente o pot declanșa sau agrava."
+      ]
+    },
+    {
+      "heading": "Tratarea scalpului",
+      "paragraphs": [
+        "Șampoanele cu ketoconazol, sulfură de seleniu, piritionat de zinc sau gudron de huilă se folosesc de două-trei ori pe săptămână până când afecțiunea se liniștește, apoi mai rar, lăsând șamponul câteva minute înainte de clătire. Acidul salicilic sau uleiul pot dezlipi solzii groși. Crusta de lapte la bebeluși poate fi înmuiată cu ulei pentru bebeluși și periată ușor."
+      ]
+    },
+    {
+      "heading": "Tratarea feței și a corpului",
+      "paragraphs": [
+        "Cremele antifungice se aplică o dată sau de două ori pe zi. Pentru roșeață și mâncărime se poate prescrie o cremă cu corticosteroid slab, pe perioade scurte, deoarece folosirea mai îndelungată subțiază pielea feței. Deoarece tinde să recidiveze, tratamentul de întreținere o dată sau de două ori pe săptămână ajută să nu revină. Mergeți la medic dacă pielea pare infectată, este foarte extinsă sau nu răspunde."
+      ]
+    },
+    {
+      "heading": "Viața cu ea",
+      "paragraphs": [
+        "Afecțiunea este inofensivă și nu este contagioasă. Îngrijirea blândă a pielii, evitarea produselor agresive și o rutină simplă ajută. Puseele urmează adesea stresului sau somnului slab, așa că abordarea acestora poate reduce recăderile."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Folosirea unui șampon",
+      "text": "Imaginați-vă că scalpul vă este plin de scuame și vă mănâncă. Ați putea folosi un șampon antifungic de două ori pe săptămână, ați putea să-l lăsați câteva minute și ați putea continua până la îmbunătățire, înainte de a reduce folosirea."
+    },
+    {
+      "title": "Îngrijirea unui bebeluș",
+      "text": "Presupuneți că bebelușul are cruste galbene pe scalp. Ați putea masa puțin ulei pe scalp, ați putea să-l lăsați o oră și ați putea pieptăna ușor cu o perie moale."
+    }
+  ],
+  "questions": [
+    "Ce șampon sau cremă este cel mai bun pentru dermatita mea seboreică?",
+    "Cât de des ar trebui să folosesc tratamentul și cât timp?",
+    "Ar putea altceva să-mi provoace afecțiunea pielii?"
+  ]
+}

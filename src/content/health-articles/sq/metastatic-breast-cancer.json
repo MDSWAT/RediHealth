@@ -1,0 +1,52 @@
+{
+  "title": "Kanceri metastatik i gjirit",
+  "intro": "Kanceri metastatik i gjirit do të thotë se kanceri që filloi në gji është përhapur në pjesë të tjera të trupit, si kockat, mëlçia, mushkëritë ose truri. Zakonisht nuk shërohet, por trajtimet mund ta kontrollojnë për muaj ose vite, ta lehtësojnë simptomat dhe ta ruajnë cilësinë e jetës. Ekzistojnë shumë opsione dhe vendimet janë individuale.",
+  "sections": [
+    {
+      "heading": "Si zbulohet",
+      "paragraphs": [
+        "Mund të gjendet në diagnozën e parë ose të kthehet vite pas trajtimit të mëparshëm. Simptomat varen nga vendi ku është përhapur, si dhimbje kockash, gulçim, kollë e vazhdueshme, shqetësim në bark, dhimbje koke ose humbje peshe. Skanimet, analizat e gjakut dhe biopsitë e metastazave i konfirmojnë gjetjet dhe tregojnë tiparet e kancerit."
+      ]
+    },
+    {
+      "heading": "Lloji i kancerit ka rëndësi",
+      "paragraphs": [
+        "Trajtimi varet nëse qelizat e kancerit mbajnë receptorë hormonalë, prodhojnë shumë proteinë HER2 ose janë tre-negative. Testimi i një mostre të re mund të tregojë dallime nga tumori origjinal. Testet gjenetike mund të identifikojnë ndryshime që i bëjnë disa barna të dobishme."
+      ]
+    },
+    {
+      "heading": "Opsionet e trajtimit",
+      "paragraphs": [
+        "Kancerët e ndjeshëm ndaj hormoneve trajtohen shpesh me terapi endokrine të kombinuar me barna të synuara. Kancerët HER2-pozitivë i përgjigjen antitrupave anti-HER2. Kimioterapia, imunoterapia dhe barna të tjera të synuara përdoren kur nevojitet. Trajtimi vazhdon për sa kohë funksionon dhe tolerohet dhe ndryshohet nëse kanceri përparon.",
+        "Radioterapia, kirurgjia dhe barnat që forcojnë kockat ndihmojnë të kontrollohen problemet lokale dhe simptomat. Provat klinike mund të ofrojnë qasje në trajtime të reja."
+      ]
+    },
+    {
+      "heading": "Kontrolli i simptomave dhe kujdesi paliativ",
+      "paragraphs": [
+        "Ekipet e kujdesit paliativ përqendrohen te lehtësimi i dhimbjes, të përzierave, lodhjes e ngarkesës emocionale dhe përfshihen krahas trajtimit të kancerit, jo vetëm në fund të jetës. Përfshirja e hershme lidhet me cilësi më të mirë të jetës. Terapitë plotësuese si ushtrimet e relaksimi mund të ndihmojnë, por duhen diskutuar me ekipin tuaj."
+      ]
+    },
+    {
+      "heading": "Të jetosh me kancer të avancuar",
+      "paragraphs": [
+        "Ndjenjat e frikës, zemërimit e trishtimit janë normale. Mbështetja psiko-onkologjike, grupet e mbështetjes dhe shërbimet sociale mund të ndihmojnë me shqetësimet emocionale e praktike, përfshirë punën, financat e përgjegjësitë e kujdesit. Të folurit për qëllimet, dëshirat dhe planifikimin e kujdesit paraprak është i dobishëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për një vendim trajtimi",
+      "text": "Imagjinoni që sapo keni mësuar se kanceri juaj është përhapur. Mund të sillni një të afërm në takime, ta regjistroni diskutimin dhe të shkruani pyetje për qëllimet, efektet anësore dhe si do të matet suksesi i trajtimit."
+    },
+    {
+      "title": "Kërkimi i mbështetjes",
+      "text": "Supozoni që ndiheni të izoluar. Mund ta pyesni ekipin e onkologjisë për një këshillues psiko-onkologjik ose një grup vendor për gra me kancer të avancuar të gjirit."
+    }
+  ],
+  "questions": [
+    "Cilat janë tiparet e kancerit tim dhe cilat trajtime u përshtaten?",
+    "Cilat janë qëllimet e trajtimit dhe si do të gjykojmë nëse funksionon?",
+    "Si mund të më ndihmojë tani kujdesi paliativ?"
+  ]
+}

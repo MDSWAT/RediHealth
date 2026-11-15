@@ -1,0 +1,56 @@
+{
+  "title": "Temperatura corpului și febra",
+  "intro": "Corpul uman își menține temperatura centrală într-un interval îngust, de obicei în jur de 37 de grade Celsius, pentru ca celulele și enzimele să funcționeze bine. Febra este o creștere temporară a acestui punct de referință, cel mai adesea pentru că sistemul imunitar luptă cu o infecție. Înțelegerea modului în care este controlată temperatura vă ajută să decideți când febra poate fi gestionată acasă și când este nevoie de sfatul medicului.",
+  "sections": [
+    {
+      "heading": "Cum controlează corpul temperatura",
+      "paragraphs": [
+        "O mică zonă din creier, hipotalamusul, acționează ca un termostat. El primește semnale de la senzori de temperatură din piele și din interiorul corpului și declanșează apoi răspunsuri. Când vă este prea cald, vasele de sânge din piele se dilată și transpirați, ceea ce răcește corpul pe măsură ce transpirația se evaporă.",
+        "Când vă este prea frig, vasele pielii se îngustează pentru a păstra căldura, iar mușchii pot tremura pentru a genera căldură. Contează și comportamentul: îmbrăcatul, căutarea umbrei sau băutul de apă rece ajută corpul să rămână în echilibru."
+      ]
+    },
+    {
+      "heading": "Ce este febra",
+      "paragraphs": [
+        "Febra apare atunci când substanțele eliberate în timpul infecției sau inflamației ridică punctul de referință al termostatului. Corpul se simte apoi rece, provocând frisoane și tremurături până când este atinsă noua temperatură, mai mare. O temperatură de aproximativ 38 de grade sau mai mult este considerată în mod obișnuit febră la adulți, deși definițiile variază ușor.",
+        "Febra nu este în sine o boală, ci un semn că organismul reacționează. În multe infecții poate chiar ajuta sistemul imunitar să lucreze mai eficient. Alte cauze includ vaccinările, unele medicamente, afecțiunile inflamatorii, insolația și, mai rar, cancerele."
+      ]
+    },
+    {
+      "heading": "Măsurarea temperaturii",
+      "paragraphs": [
+        "Termometrele digitale sunt instrumentul standard. Valorile pot fi luate în gură, sub braț, în ureche sau pe frunte, iar la sugari adesea rectal, urmând instrucțiunile termometrului. Valorile diferă ușor între locuri, așa că folosiți aceeași metodă când comparați măsurătorile în timp.",
+        "Atingerea frunții cu mâna este o metodă nesigură de a aprecia febra. Așteptați după efort, băuturi fierbinți sau baie fierbinte înainte de a măsura, deoarece acestea pot denatura rezultatul."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de sine în caz de febră",
+      "paragraphs": [
+        "Odihna și lichidele din abundență sunt cei mai importanți pași, deoarece febra mărește pierderea de lichide. Hainele ușoare și o temperatură confortabilă în cameră ajută. Paracetamolul sau ibuprofenul pot reduce disconfortul și pot fi folosite conform prospectului, dar nu sunt necesare doar pentru a coborî cifra dacă vă simțiți relativ bine.",
+        "Copiilor nu trebuie să li se dea niciodată aspirină, din cauza riscului unei afecțiuni rare, dar grave. Băile reci sau frecțiile cu alcool nu sunt recomandate, deoarece pot provoca tremurături și pot fi dăunătoare."
+      ]
+    },
+    {
+      "heading": "Când să cereți ajutor medical",
+      "paragraphs": [
+        "Cereți rapid sfatul medicului în caz de febră la un sugar sub trei luni, febră care durează mai mult de trei zile, ceafă înțepenită, erupție care nu dispare la apăsare, confuzie, dificultăți de respirație, durere severă sau semne de deshidratare. Persoanele cu imunitate slăbită, boli cronice grave sau operații recente trebuie să ceară sfat mai devreme.",
+        "Febra după o călătorie în anumite regiuni poate indica infecții precum malaria și necesită evaluare promptă. Dacă un copil face o convulsie febrilă, păstrați-vă calmul, așezați-l pe o parte și chemați ajutor de urgență dacă durează mai mult de câteva minute."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Îngrijirea unui copil acasă",
+      "text": "Imaginați-vă că cel mic are febră, dar bea, se joacă puțin și răspunde normal. Ați putea să-i oferiți lichide și odihnă, să-l îmbrăcați ușor, să-i verificați temperatura la intervale și să chemați medicul dacă febra durează mai mult de câteva zile sau comportamentul se schimbă."
+    },
+    {
+      "title": "Pregătirea unui telefon",
+      "text": "Presupuneți că sunați la o linie medicală pentru o rudă cu febră. Dacă aveți notate valorile temperaturii, ora la care a început febra, celelalte simptome și medicamentele deja luate, consilierul poate oferi mai repede indicații utile."
+    }
+  ],
+  "questions": [
+    "De la ce temperatură sau după cât timp ar trebui să mă adresez unui medic în situația mea?",
+    "Ce antitermice sunt sigure pentru mine sau pentru copilul meu și ce doze ar trebui să folosesc?",
+    "Ce semne de alarmă ar trebui să mă facă să cer îngrijiri de urgență?"
+  ]
+}

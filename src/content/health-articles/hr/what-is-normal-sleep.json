@@ -1,0 +1,51 @@
+{
+  "title": "Što je normalan san?",
+  "intro": "San je vitalno, aktivno stanje u kojem se tijelo obnavlja, a mozak obrađuje sjećanja. Koliko sna ljudi trebaju razlikuje se, kao i vrijeme spavanja. Znati što je normalno može vam pomoći prepoznati probleme sa spavanjem i izgraditi zdrave navike spavanja.",
+  "sections": [
+    {
+      "heading": "Koliko je sna potrebno",
+      "paragraphs": [
+        "Većini odraslih treba sedam do devet sati noću. Tinejdžerima treba osam do deset sati, djeci školske dobi devet do dvanaest, a bebama mnogo više. Starije osobe često spavaju pliće i lakše se bude, ali im i dalje treba oko sedam do osam sati. Neki se ljudi osjećaju dobro s malo manje ili više."
+      ]
+    },
+    {
+      "heading": "Faze sna",
+      "paragraphs": [
+        "San prolazi kroz cikluse od otprilike devedeset minuta. Lagani san vodi u duboki san, koji je važan za tjelesni oporavak, i REM san, ili san s brzim pokretima očiju, u kojem se događa većina snova, a mozak obrađuje emocije i pamćenje. Svake noći događa se nekoliko ciklusa, s više dubokog sna rano i više REM sna kasnije."
+      ]
+    },
+    {
+      "heading": "Biološki sat",
+      "paragraphs": [
+        "Unutarnji sat, cirkadijalni ritam, regulira spavanje i budnost tijekom otprilike dvadeset i četiri sata, reagirajući na svjetlo i tamu. Tinejdžeri se pomiču na kasnije, dok se stariji odrasli sklone ranije buditi. Rad u smjenama, putovanja i svijetli ekrani noću mogu poremetiti ritam. Dnevno svjetlo ujutro pomaže ga održati stabilnim."
+      ]
+    },
+    {
+      "heading": "Normalne varijacije",
+      "paragraphs": [
+        "Do pola sata za zaspati, kratko buđenje tijekom noći, sanjanje i blago hrkanje mogu biti normalni. Povremene loše noći su česte i obično nisu štetne. Uporne teškoće s uspavljivanjem ili ostankom u snu, glasno hrkanje s prekidima disanja, dnevna pospanost ili nemirne noge mogu upućivati na poremećaj spavanja."
+      ]
+    },
+    {
+      "heading": "Zdrave navike spavanja",
+      "paragraphs": [
+        "Držite redovita vremena spavanja i buđenja, neka spavaća soba bude tamna, tiha i hladna, izbjegavajte kofein kasno tijekom dana, ograničite alkohol i teške obroke blizu spavanja, budite aktivni danju i smanjite uporabu ekrana prije spavanja. Ako ne možete spavati, ustanite i radite nešto opuštajuće, pa se vratite kada budete pospani."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Postavljanje rutine",
+      "text": "Zamislite da često loše spavate. Mogli biste liječi i buditi se svaki dan u isto vrijeme te sat vremena ranije ograničiti ekrane."
+    },
+    {
+      "title": "Traženje savjeta",
+      "text": "Pretpostavite da glasno hrćete i danju ste iscrpljeni. Mogli biste pitati liječnika o testu za apneju u snu."
+    }
+  ],
+  "questions": [
+    "Koliko sna trebam u svojoj dobi?",
+    "Može li medicinski problem remetiti moj san?",
+    "Koje bi navike najviše pomogle?"
+  ]
+}

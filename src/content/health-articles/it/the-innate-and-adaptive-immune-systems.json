@@ -1,0 +1,51 @@
+{
+  "title": "Il sistema immunitario innato e adattativo",
+  "intro": "Il sistema immunitario ti protegge da batteri, virus, funghi e altri invasori e aiuta a riparare i danni. Ha due parti principali: il sistema innato, che reagisce in fretta e in modo generale, e il sistema adattativo, che impara a riconoscere germi specifici e li ricorda. Lavorano insieme.",
+  "sections": [
+    {
+      "heading": "Il sistema immunitario innato",
+      "paragraphs": [
+        "Il sistema innato è la prima linea di difesa. Comprende barriere fisiche come pelle e mucose, acido gastrico e lacrime, oltre a cellule come i neutrofili e i macrofagi che inglobano i germi. Le cellule natural killer distruggono le cellule infettate. Questo sistema reagisce in pochi minuti o ore, causando infiammazione con rossore, calore e gonfiore che portano altre cellule immunitarie sul posto."
+      ]
+    },
+    {
+      "heading": "Il sistema immunitario adattativo",
+      "paragraphs": [
+        "Il sistema adattativo è più lento e richiede giorni per svilupparsi, ma è molto specifico. Le sue cellule principali sono i linfociti. I linfociti B producono anticorpi che si legano a germi particolari e li segnalano per la distruzione. I linfociti T aiutano a coordinare la risposta e uccidono direttamente le cellule infettate. Ogni linfocita riconosce un bersaglio particolare."
+      ]
+    },
+    {
+      "heading": "Memoria",
+      "paragraphs": [
+        "Dopo un'infezione alcuni linfociti B e T sopravvivono come cellule della memoria. Se lo stesso germe ricompare, rispondono più in fretta e con più forza, spesso prevenendo la malattia. Questa è la base dell'immunità dopo un'infezione e della vaccinazione, che addestra il sistema adattativo con una parte innocua o una forma indebolita di un germe."
+      ]
+    },
+    {
+      "heading": "Quando il sistema funziona male",
+      "paragraphs": [
+        "Un sistema immunitario iperattivo può causare allergie e malattie autoimmuni, in cui il corpo attacca i propri tessuti. Uno poco attivo, per malattia o farmaci, aumenta la vulnerabilità alle infezioni. Stress, sonno scarso, malnutrizione e invecchiamento possono indebolire le difese. Abitudini sane, vaccinazione e cura delle malattie di base aiutano il sistema immunitario a svolgere il suo compito."
+      ]
+    },
+    {
+      "heading": "Sostenere la salute immunitaria",
+      "paragraphs": [
+        "Sonno regolare, alimentazione equilibrata, attività fisica, non fumare, alcol moderato e vaccinazioni aggiornate sono i passi meglio sostenuti. Gli integratori venduti come stimolanti immunitari hanno poche prove nelle persone sane. Chiedi consiglio se hai infezioni ripetute o insolite."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Capire un vaccino",
+      "text": "Immagina di chiederti perché serva un richiamo. Potresti chiedere al medico come funzionano le cellule della memoria e quanto dura la protezione."
+    },
+    {
+      "title": "Riconoscere un problema",
+      "text": "Supponi di avere infezioni molto più spesso degli altri. Potresti tenerne un registro e chiedere al medico degli esami della funzione immunitaria."
+    }
+  ],
+  "questions": [
+    "Come usano i vaccini la memoria immunitaria?",
+    "I miei frequenti episodi infettivi potrebbero indicare un problema del sistema immunitario?",
+    "Quali abitudini sostengono meglio la mia salute immunitaria?"
+  ]
+}

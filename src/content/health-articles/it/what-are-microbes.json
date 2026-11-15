@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa sono i microbi",
+  "intro": "I microbi, o microrganismi, sono esseri viventi troppo piccoli per essere visti senza microscopio. Comprendono batteri, virus, funghi e alcuni parassiti. Si trovano ovunque: nel suolo, nell'acqua, nell'aria e sopra e dentro il nostro corpo. La maggior parte è innocua o utile e solo pochi causano malattie.",
+  "sections": [
+    {
+      "heading": "Batteri",
+      "paragraphs": [
+        "I batteri sono organismi unicellulari che possono vivere in modo indipendente e moltiplicarsi rapidamente. Molti sono utili, per esempio quelli dell'intestino che aiutano a digerire il cibo e producono vitamine, o usati per fare yogurt e formaggio. Alcuni causano infezioni come la faringite streptococcica, le infezioni urinarie, la tubercolosi e la polmonite. Gli antibiotici agiscono contro i batteri."
+      ]
+    },
+    {
+      "heading": "Virus",
+      "paragraphs": [
+        "I virus sono molto più piccoli dei batteri e non possono riprodursi da soli. Invadono le cellule e le usano per farsi delle copie. Causano raffreddori, influenza, morbillo, epatite e COVID-19. Gli antibiotici non agiscono contro i virus, ma i vaccini possono prevenire molte malattie virali ed esistono alcuni farmaci antivirali."
+      ]
+    },
+    {
+      "heading": "Funghi e parassiti",
+      "paragraphs": [
+        "I funghi comprendono lieviti e muffe. La maggior parte è innocua, ma alcuni causano infezioni come il piede d'atleta, il fungo delle unghie e la candidosi e, raramente, infezioni gravi in persone con immunità debole. I parassiti, come vermi, pidocchi, acari della scabbia e gli organismi che causano la malaria, vivono su o dentro un altro organismo e ne sottraggono nutrienti."
+      ]
+    },
+    {
+      "heading": "Il microbioma",
+      "paragraphs": [
+        "I microbi che vivono sul corpo e al suo interno, soprattutto in intestino, pelle e bocca, si chiamano microbioma. Aiutano la digestione, addestrano il sistema immunitario e proteggono dai germi dannosi. Antibiotici, dieta, igiene e malattie possono alterare questo equilibrio. La ricerca è in corso su come influisca sulla salute e i prodotti venduti per la salute dell'intestino hanno prove variabili."
+      ]
+    },
+    {
+      "heading": "Proteggersi",
+      "paragraphs": [
+        "Lavati le mani con il sapone, prepara e conserva gli alimenti in modo sicuro, tieni aggiornate le vaccinazioni, copri la tosse, evita gli antibiotici inutili e tieni pulite le ferite. Una buona igiene riduce le infezioni, ma una sterilizzazione estrema della casa non è necessaria. Usa gli antibiotici solo se prescritti e completa i cicli come indicato."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Lavarsi le mani",
+      "text": "Immagina di voler ridurre le infezioni in casa. Potresti lavarti le mani con il sapone per venti secondi dopo il bagno, prima di cucinare e prima di mangiare."
+    },
+    {
+      "title": "Usare correttamente gli antibiotici",
+      "text": "Supponi di avere un raffreddore e di desiderare gli antibiotici. Potresti chiedere al medico se è virale e come alleviare invece i sintomi."
+    }
+  ],
+  "questions": [
+    "La mia malattia è causata da un virus, un batterio o qualcos'altro?",
+    "Ho bisogno di antibiotici o è meglio un altro trattamento?",
+    "Quali vaccinazioni dovrei fare?"
+  ]
+}

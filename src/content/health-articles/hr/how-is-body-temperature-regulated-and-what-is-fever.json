@@ -1,0 +1,56 @@
+{
+  "title": "Tjelesna temperatura i vrućica",
+  "intro": "Ljudsko tijelo održava svoju središnju temperaturu u uskom rasponu, obično oko 37 stupnjeva Celzijevih, kako bi njegove stanice i enzimi dobro radili. Vrućica je privremeni porast te zadane vrijednosti, najčešće zato što se imunološki sustav bori protiv infekcije. Razumijevanje kako se temperatura kontrolira pomaže vam odlučiti kad se vrućica može zbrinuti kod kuće, a kad treba liječnički savjet.",
+  "sections": [
+    {
+      "heading": "Kako tijelo kontrolira temperaturu",
+      "paragraphs": [
+        "Malo područje u mozgu, hipotalamus, djeluje poput termostata. Prima signale od senzora temperature u koži i unutar tijela, a zatim pokreće odgovore. Kad vam je prevruće, krvne žile u koži se šire i znojite se, što hladi tijelo dok znoj isparava.",
+        "Kad vam je prehladno, kožne žile se sužavaju kako bi zadržale toplinu, a mišići mogu drhtati kako bi proizveli toplinu. Važno je i ponašanje: oblačenje, traženje hlada ili pijenje hladne vode pomažu tijelu da ostane u ravnoteži."
+      ]
+    },
+    {
+      "heading": "Što je vrućica",
+      "paragraphs": [
+        "Vrućica nastaje kad tvari oslobođene tijekom infekcije ili upale podižu zadanu vrijednost termostata. Tijelo se tada osjeća hladno, što uzrokuje zimicu i drhtanje dok se ne postigne nova, viša temperatura. Temperatura od oko 38 stupnjeva ili viša obično se u odraslih smatra vrućicom, iako se definicije malo razlikuju.",
+        "Vrućica sama po sebi nije bolest nego znak da tijelo reagira. Kod mnogih infekcija može čak pomoći imunološkom sustavu da djeluje učinkovitije. Drugi uzroci uključuju cijepljenja, neke lijekove, upalna stanja, toplinske bolesti i, rjeđe, rak."
+      ]
+    },
+    {
+      "heading": "Mjerenje temperature",
+      "paragraphs": [
+        "Digitalni toplomjeri standardno su pomagalo. Očitanja se mogu uzeti u ustima, pod pazuhom, u uhu ili na čelu, a u beba često rektalno, prema uputama toplomjera. Vrijednosti se malo razlikuju među mjestima mjerenja pa koristite istu metodu kad uspoređujete očitanja kroz vrijeme.",
+        "Dodirivanje čela rukom nepouzdan je način procjene vrućice. Pričekajte nakon vježbanja, vrućih pića ili tople kupke prije mjerenja jer to može iskriviti rezultat."
+      ]
+    },
+    {
+      "heading": "Briga o sebi s vrućicom",
+      "paragraphs": [
+        "Odmor i dovoljno tekućine najvažniji su koraci jer vrućica povećava gubitak tekućine. Lagana odjeća i ugodna sobna temperatura pomažu. Paracetamol ili ibuprofen mogu smanjiti nelagodu i mogu se uzimati prema uputama na pakiranju, ali nisu nužni samo da bi se broj snizio ako se osjećate razmjerno dobro.",
+        "Djeci se nikad ne smije davati aspirin zbog rizika od rijetkog, ali ozbiljnog stanja. Hladne kupke ili trljanje alkoholom ne preporučuju se jer mogu izazvati drhtanje i mogu biti štetni."
+      ]
+    },
+    {
+      "heading": "Kada potražiti liječničku pomoć",
+      "paragraphs": [
+        "Brzo potražite savjet kod vrućice u bebe mlađe od tri mjeseca, vrućice koja traje dulje od tri dana, ukočenog vrata, osipa koji ne blijedi na pritisak, smetenosti, otežanog disanja, jake boli ili znakova dehidracije. Osobe s oslabljenim imunološkim sustavom, ozbiljnim kroničnim bolestima ili nedavnom operacijom također trebaju ranije potražiti savjet.",
+        "Vrućica nakon putovanja u određene krajeve može upućivati na infekcije kao što je malarija i zahtijeva hitnu procjenu. Ako dijete ima febrilnu konvulziju, ostanite mirni, položite ga na bok i pozovite hitnu pomoć ako traje dulje od nekoliko minuta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Briga o djetetu kod kuće",
+      "text": "Zamislite da vaše malo dijete ima vrućicu, ali pije, malo se igra i normalno reagira. Mogli biste ponuditi tekućinu i odmor, lagano ga obući, povremeno provjeravati temperaturu i nazvati liječnika ako vrućica traje dulje od nekoliko dana ili se promijeni ponašanje."
+    },
+    {
+      "title": "Priprema za poziv",
+      "text": "Pretpostavite da nazovete liječničku telefonsku liniju zbog rođaka s vrućicom. Ako imate zapisane vrijednosti temperature, vrijeme početka vrućice, druge simptome i već uzete lijekove, savjetnik brzo može dati korisne upute."
+    }
+  ],
+  "questions": [
+    "Koliko visoka ili koliko dugotrajna vrućica treba biti da u mojoj situaciji kontaktiram liječnika?",
+    "Koji su lijekovi za snižavanje vrućice sigurni za mene ili moje dijete i koje doze trebam koristiti?",
+    "Koji bi me znakovi upozorenja trebali navesti da potražim hitnu skrb?"
+  ]
+}

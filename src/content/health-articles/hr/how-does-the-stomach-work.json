@@ -1,0 +1,52 @@
+{
+  "title": "Kako želudac priprema hranu",
+  "intro": "Želudac prima hranu iz jednjaka, miješa je i otpušta male količine u crijevo. Započinje dio probave, ali ne upija sve hranjive tvari. Bol u tom području može dolaziti i od drugih organa.",
+  "sections": [
+    {
+      "heading": "Ulaz i pohrana",
+      "paragraphs": [
+        "Mišićna koordinacija jednjaka ograničava refluks. Želudac se širi za obroke; oblik i punoća variraju pa napuhnutost ne mjeri točno veličinu."
+      ]
+    },
+    {
+      "heading": "Kiselina i enzimi",
+      "paragraphs": [
+        "Kiselina stvara uvjete probave i ograničava neke klice. Enzimi počinju razgradnju proteina. Nije svaka bol višak kiseline niti njezino smanjenje liječi sve."
+      ]
+    },
+    {
+      "heading": "Sluznica",
+      "paragraphs": [
+        "Sluz i druge obrane štite tkivo. Neki lijekovi i infekcije remete zaštitu. Želudac stvara i unutarnji faktor potreban kasnijoj apsorpciji vitamina B12 u crijevu."
+      ]
+    },
+    {
+      "heading": "Miješanje",
+      "paragraphs": [
+        "Kontrakcije miješaju, pilorus regulira izlaz u tanko crijevo. Hrana i bolest utječu na pražnjenje; trajno povraćanje ili rana sitost traže pregled."
+      ]
+    },
+    {
+      "heading": "Skrb",
+      "paragraphs": [
+        "Pratite obrazac i provjerite lijekove, ne ponavljane restriktivne dijete. Povraćanje krvi, crna katranasta stolica, kolaps, jaka trajna bol ili nemogućnost zadržavanja tekućine traže hitan savjet.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira bilježi punoću i povraćanje te donosi lijekove na pregled bez pripisivanja svega višku kiseline."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben povraća sadržaj poput taloga kave. Traži hitnost umjesto samo antacida bez recepta."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

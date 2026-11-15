@@ -1,0 +1,51 @@
+{
+  "title": "Hemodializa: përgatitja dhe jeta e përditshme",
+  "intro": "Hemodializa heq mbeturinat dhe lëngun e tepërt kur veshkat nuk munden. Mbështet jetën por nuk zëvendëson çdo funksion. Orari dhe trajtimi në shtëpi ose qendër janë individualë.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Gjaku kalon në filtër e kthehet. Aksesi përdor fistulë, graft ose kateter. Përgatitja merr kohë, ndaj diskutoni mundësitë para urgjencës kur mundet."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Ekipi vlerëson simptomat, analizat, lëngjet dhe prioritetet. Krahasoni me dializën peritoneale, transplantin kur lejohet dhe kujdesin konservativ kur përshtatet; asnjë zgjedhje nuk vlen për të gjithë. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Ndiqni seancat dhe raportoni ngërçe, marramendje ose lodhje gjatë tyre. Heqja e lëngjeve dhe ilaçet mund të rregullohen nga ekipi. Mungesa ose shkurtimi lë probleme të rrezikshme lëngjesh dhe kimie gjaku. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Ndiqni këshilla individuale për lëngje, kripë, kalium dhe ushqim, jo dieta të përgjithshme kufizuese. Mbroni aksesin dhe kontrolloni dridhjen nëse jeni mësuar. Organizoni transport, punë e udhëtime; tregoni herët pengesat për ardhje. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Gjakosja që nuk ndalet, ethet me kateter, dhimbja e gjoksit, frymëmarrja shumë e vështirë ose kolapsi duan urgjencë. Fistula pa dridhje, e kuqe, e dhimbshme ose e ënjtur kërkon kontakt të menjëhershëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira organizon transportin dhe orarin e punës përpara. Kërkon vakte që përshtaten me analizat dhe ushqimet e zakonshme."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni nuk ndien fistulën si zakonisht. Telefonon njësinë menjëherë pa pritur seancën tjetër."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

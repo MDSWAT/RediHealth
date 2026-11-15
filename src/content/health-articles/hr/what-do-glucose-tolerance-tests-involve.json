@@ -1,0 +1,51 @@
+{
+  "title": "Što uključuju testovi podnošenja glukoze?",
+  "intro": "Oralni test podnošenja glukoze mjeri koliko dobro tijelo uklanja šećer iz krvi. Koristi se za dijagnosticiranje dijabetesa i predijabetesa, a u trudnoći za otkrivanje gestacijskog dijabetesa. Test traje oko dva sata i zahtijeva prethodni post.",
+  "sections": [
+    {
+      "heading": "Zašto se radi",
+      "paragraphs": [
+        "Test može pokazati narušenu obradu glukoze čak i kada je šećer natašte normalan. Koristi se ako simptomi ili druge pretrage upućuju na dijabetes ili za probir trudnica, obično između dvadeset četvrtog i dvadeset osmog tjedna. Druge pretrage, kao što je krvna pretraga HbA1c, mogu se koristiti umjesto toga u nekim situacijama."
+      ]
+    },
+    {
+      "heading": "Priprema",
+      "paragraphs": [
+        "Morate biti natašte osam do četrnaest sati prije, pijući samo vodu. Nekoliko dana prije jedite normalno, bez stroge dijete, jer to može iskriviti rezultat. Recite liječniku o lijekovima, bolesti i stanjima koja utječu na šećer u krvi. Izbjegavajte pušenje i jako vježbanje ujutro na dan testa."
+      ]
+    },
+    {
+      "heading": "Kako se test provodi",
+      "paragraphs": [
+        "Prvi uzorak krvi uzima se za mjerenje glukoze natašte. Zatim popijete otopinu šećera, obično sedamdeset pet grama glukoze, unutar nekoliko minuta. Uzorci krvi uzimaju se nakon jednog i dva sata u trudnoći, a nakon dva sata kod ostalih odraslih. Morate mirno sjediti i ne jesti, pušiti ni piti ništa drugo. Neki ljudi osjete mučninu ili vrtoglavicu."
+      ]
+    },
+    {
+      "heading": "Razumijevanje rezultata",
+      "paragraphs": [
+        "Rezultati se uspoređuju sa standardnim pragovima. Kod odraslih vrijednost nakon dva sata od 11,1 milimola po litri (200 miligrama po decilitru) ili viša upućuje na dijabetes, dok vrijednosti između 7,8 i 11,0 upućuju na narušeno podnošenje glukoze. U trudnoći su pragovi niži, a dijagnoza gestacijskog dijabetesa vodi do savjeta o prehrani, praćenja i ponekad inzulina."
+      ]
+    },
+    {
+      "heading": "Nakon testa",
+      "paragraphs": [
+        "Poslije možete normalno jesti i piti. Pitajte kada očekivati rezultate i kako pratiti dalje. Ako se otkrije predijabetes, promjene načina života kao što su zdrava prehrana, tjelesna aktivnost i gubitak težine mogu smanjiti rizik napredovanja u dijabetes."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za test",
+      "text": "Zamislite da je vaš test u osam ujutro. Mogli biste prestati jesti nakon večere, piti samo vodu i ponijeti knjigu za čekanje."
+    },
+    {
+      "title": "Nakon visokog rezultata",
+      "text": "Pretpostavite da vaš rezultat pokazuje narušeno podnošenje. Mogli biste pitati o promjenama prehrane, vježbanju i kada ponoviti test."
+    }
+  ],
+  "questions": [
+    "Je li ovo prava pretraga za mene ili postoje druge?",
+    "Kako se trebam pripremiti i mogu li uzeti svoje uobičajene lijekove?",
+    "Što se događa ako je rezultat abnormalan?"
+  ]
+}

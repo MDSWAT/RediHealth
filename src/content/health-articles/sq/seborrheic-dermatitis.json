@@ -1,0 +1,51 @@
+{
+  "title": "Dermatiti seboreik",
+  "intro": "Dermatiti seboreik është një gjendje e zakonshme e padëmshme e lëkurës që shkakton njolla të kuqe, me luspa, me pamje yndyrore, veçanërisht në kokë, fytyrë e gjoks. Zbokthi është një formë e lehtë. Vjen e shkon dhe i përgjigjet mirë shampove e kremrave medicinalë, megjithëse tenton të kthehet.",
+  "sections": [
+    {
+      "heading": "Ku e si shfaqet",
+      "paragraphs": [
+        "Prek zona me shumë gjëndra yndyrore: kokën, vetullat, anët e hundës, pas veshëve, zonën e mjekrës e qendrën e gjoksit. Lëkura mund të jetë e kuqe me luspa të verdha, me kruarje ose të dhimbshme. Te foshnjat shfaqet si kore të trasha të verdha me luspa në kokë, e quajtur kapaku i djepit, që është e padëmshme e zakonisht zhduket brenda muajsh."
+      ]
+    },
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Shkaku është një kombinim i yndyrës së lëkurës, një majaje e quajtur Malassezia që jeton normalisht në lëkurë e një reagimi inflamator individual. Nuk shkaktohet nga higjiena e dobët. Stresi, lodhja, moti i ftohtë e i thatë, disa sëmundje si Parkinsoni e disa barna mund ta nxisin ose përkeqësojnë."
+      ]
+    },
+    {
+      "heading": "Trajtimi i kokës",
+      "paragraphs": [
+        "Shampot me ketokonazol, sulfur selenium, pirition zinku ose katran qymyri përdoren dy deri tre herë në javë derisa gjendja të qetësohet, pastaj më rrallë, duke e lënë shampon disa minuta para shpëlarjes. Acidi salicilik ose vaji mund t'i lirojë luspat e trasha. Kapaku i djepit te foshnjat mund të zbutet me vaj foshnjash e të krehet butë."
+      ]
+    },
+    {
+      "heading": "Trajtimi i fytyrës e trupit",
+      "paragraphs": [
+        "Kremrat antifungale aplikohen një a dy herë në ditë. Për skuqje e kruarje mund të përshkruhet një krem kortikosteroid i butë për periudha të shkurtra, pasi përdorimi më i gjatë e holl lëkurën e fytyrës. Meqenëse tenton të përsëritet, trajtimi mirëmbajtës një a dy herë në javë ndihmon ta mbajë larg. Shihni një mjek nëse lëkura duket e infektuar, është shumë e përhapur ose nuk përgjigjet."
+      ]
+    },
+    {
+      "heading": "Të jetosh me të",
+      "paragraphs": [
+        "Gjendja është e padëmshme dhe jo ngjitëse. Kujdesi i butë i lëkurës, shmangia e produkteve të ashpra e mbajtja e një rutine të thjeshtë ndihmojnë. Përkeqësimet shpesh vijnë pas stresit ose gjumit të dobët, prandaj trajtimi i tyre mund t'i ulë rikthimet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përdorimi i një shampoje",
+      "text": "Imagjinoni që koka ju është me luspa e kruarje. Mund të përdorni një shampo antifungale dy herë në javë, ta lini disa minuta e të vazhdoni deri në përmirësim para se ta zvogëloni."
+    },
+    {
+      "title": "Kujdesi për një foshnjë",
+      "text": "Supozoni që foshnja juaj ka kore të verdha në kokë. Mund të masazhoni pak vaj në kokë, ta lini një orë e ta krehni butë me një furçë të butë."
+    }
+  ],
+  "questions": [
+    "Cila shampo ose krem është më e mira për dermatitin tim seboreik?",
+    "Sa shpesh duhet ta përdor trajtimin dhe për sa kohë?",
+    "A mund ta shkaktojë gjendjen e lëkurës sime diçka tjetër?"
+  ]
+}

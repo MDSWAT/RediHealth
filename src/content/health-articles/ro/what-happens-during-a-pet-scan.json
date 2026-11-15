@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă în timpul unei scanări PET?",
+  "intro": "Tomografia cu emisie de pozitroni, sau PET, este un test imagistic care arată cum funcționează țesuturile, nu doar cum arată. O mică cantitate de trasor radioactiv este injectată, iar un scaner detectează unde se acumulează. Se folosește mai ales pentru cancer, boli de inimă și afecțiuni ale creierului, adesea combinată cu CT sau RMN.",
+  "sections": [
+    {
+      "heading": "De ce se face",
+      "paragraphs": [
+        "PET poate arăta cât de active sunt țesuturile, ceea ce ajută la găsirea cancerului, la aprecierea răspândirii lui, la verificarea răspunsului la tratament și la depistarea recidivei. Se mai folosește pentru evaluarea irigării cu sânge a mușchiului inimii și pentru afecțiuni ale creierului precum demența și epilepsia. Rezultatul este combinat cu alte teste."
+      ]
+    },
+    {
+      "heading": "Pregătirea",
+      "paragraphs": [
+        "De obicei vi se cere să nu mâncați patru până la șase ore, deși puteți bea apă. Pentru unele scanări trebuie să evitați efortul intens înainte. Persoanele cu diabet au nevoie de instrucțiuni speciale despre mâncare și medicamente. Spuneți personalului dacă sunteți însărcinată, alăptați sau vă este teamă de spațiile închise."
+      ]
+    },
+    {
+      "heading": "Scanarea",
+      "paragraphs": [
+        "Un trasor, adesea o formă de zahăr marcată cu un atom radioactiv, este injectat într-o venă. Vă odihniți liniștit aproximativ o oră cât timp se răspândește prin corp. Apoi vă întindeți pe o masă care alunecă într-un scaner în formă de inel, timp de douăzeci până la patruzeci de minute. Trebuie să stați nemișcat, iar aparatul este deschis și nedureros."
+      ]
+    },
+    {
+      "heading": "Siguranța",
+      "paragraphs": [
+        "Doza de radiații este mică și similară cu câțiva ani de radiație naturală de fond. Trasorul părăsește corpul în câteva ore. Beți multe lichide și evitați contactul apropiat cu femeile însărcinate și cu bebelușii mici câteva ore, dacă vi se recomandă. Reacțiile alergice sunt foarte rare. Sarcina este în general un motiv de a evita testul."
+      ]
+    },
+    {
+      "heading": "Rezultatele",
+      "paragraphs": [
+        "Un specialist în medicină nucleară și un radiolog interpretează imaginile. Rezultatele ajung la medicul care a făcut trimiterea în câteva zile. Zonele active apar luminoase, dar inflamația poate arăta și ea ca un cancer, așa că constatările sunt interpretate împreună cu alte informații. Întrebați ce urmează."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea",
+      "text": "Imaginați-vă că scanarea este după-amiaza. Ați putea mânca un mic dejun ușor, apoi ați putea posti conform indicațiilor și bea apă."
+    },
+    {
+      "title": "Statul nemișcat",
+      "text": "Presupuneți că vă simțiți anxios în scaner. Ați putea respira lent și ați putea spune personalului dacă aveți nevoie de ajutor."
+    }
+  ],
+  "questions": [
+    "De ce este necesară o scanare PET și cum va schimba rezultatul îngrijirea mea?",
+    "Cum ar trebui să mă pregătesc, mai ales dacă am diabet?",
+    "Există precauții după scanare?"
+  ]
+}

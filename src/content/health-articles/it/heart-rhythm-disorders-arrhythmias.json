@@ -1,0 +1,51 @@
+{
+  "title": "Aritmie: riconoscere il tipo di disturbo",
+  "intro": "Le aritmie sono battiti insolitamente veloci, lenti o irregolari. Alcuni battiti aggiuntivi sono innocui, altri ritmi richiedono urgenza. La sola sensazione di palpitazioni non identifica il ritmo.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Annotare esordio brusco, durata e rapporto con esercizio, svenimento o malattia. Caffeina, alcol, farmaci e malattie cardiache o tiroidee possono contribuire, ma non sempre esiste un fattore evidente."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "L’ECG registra attività elettrica; episodi intermittenti possono richiedere monitoraggio portatile. Analisi e immagini dipendono dai reperti. Un tracciato normale tra episodi non esclude sempre un’aritmia. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Si può usare osservazione, farmaci, ablazione, pacemaker o defibrillatore secondo diagnosi. Alcuni ritmi necessitano valutazione del rischio di ictus e anticoagulanti; un polso più lento non elimina da solo il rischio di coaguli. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Tenere diario e assumere farmaci concordati. Discutere guida, lavoro ed esercizio in caso di svenimenti. Gli avvisi dell’orologio orientano ma non diagnosticano; non prendere farmaci cardiaci altrui. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Palpitazioni con dolore toracico, grave affanno, svenimento o collasso richiedono soccorso urgente. Per nuovi sintomi persistenti chiedere consiglio rapido senza attendere indefinitamente una registrazione del dispositivo."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha episodi brevi non rilevati dall’ECG in studio. Il medico organizza monitoraggio senza escludere il problema per un tracciato breve normale."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben sta meglio dopo controllo della frequenza. Chiede se serva ancora la prevenzione dell’ictus invece di sospenderla autonomamente."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

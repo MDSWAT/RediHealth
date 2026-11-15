@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh gjatë një ekzaminimi neurologjik?",
+  "intro": "Një ekzaminim neurologjik kontrollon se si punojnë truri, palca kurrizore e nervat. Përfshin teste të thjeshta e pa dhimbje të të menduarit, shqisave, lëvizjes, refleksit e koordinimit. Ndihmon mjekët të kuptojnë nëse një problem vjen nga sistemi nervor e ku.",
+  "sections": [
+    {
+      "heading": "Të menduarit e të folurit",
+      "paragraphs": [
+        "Mjeku bisedon me ju për të vlerësuar vigjilencën, kujtesën, vëmendjen, gjuhën e të kuptuarit. Mund t'ju pyesin pyetje si data, të mbani mend disa fjalë, ose të ndiqni udhëzime. Shënohen edhe humori e sjellja. Kjo ndihmon të zbulohen gjendje si demenca, goditja në tru ose infeksionet."
+      ]
+    },
+    {
+      "heading": "Nervat kraniale e shqisat",
+      "paragraphs": [
+        "Mjeku teston shikimin, lëvizjet e syve, reagimet e bebëzave, lëvizjen e ndjesinë e fytyrës, dëgjimin, gëlltitjen e lëvizjen e gjuhës. Mund të ndriçojë një dritë në sytë tuaj ose t'ju kërkojë të ndiqni një gisht. Prekja, temperatura, dhimbja e dridhja kontrollohen me pambuk të butë, një gjilpërë ose një pirun akordues."
+      ]
+    },
+    {
+      "heading": "Forca, toni e refleksët",
+      "paragraphs": [
+        "Ju kërkohet të shtypni e të tërhiqni kundër duarve të mjekut e të mbani krahët jashtë. Muskujt preken për tension ose dobësim. Refleksët testohen duke goditur tendinat në gju, kyç e bërryl me një çekiç të vogël. Refleksët jonormalë mund të tregojnë probleme të nervave ose të shtyllës kurrizore."
+      ]
+    },
+    {
+      "heading": "Koordinimi e ecja",
+      "paragraphs": [
+        "Mund të prekni hundën e gishtin e mjekut, ta kaloni thembrën përgjatë këmbës e të ecni në një vijë. Qëndrimi me sytë mbyllur teston ekuilibrin. Qëndrimi, lëkundja e krahut e hapat tregojnë probleme me tru të vogël, muskujt ose qarqet e lëvizjes të llojit Parkinson."
+      ]
+    },
+    {
+      "heading": "Pas ekzaminimit",
+      "paragraphs": [
+        "Mjeku mund të porosisë analiza gjaku, skanime si rezonanca magnetike, teste nervash ose elektroencefalografi. Pyesni çfarë u gjet, çfarë testesh të tjera nevojiten e çfarë do të thonë gjetjet. Sillni një listë simptomash e barnash në takim."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja",
+      "text": "Imagjinoni që keni mpirje në dorë. Mund të shënoni kur filloi, çfarë e përmirëson ose përkeqëson e të sillni listën e barnave."
+    },
+    {
+      "title": "Të kuptuarit e rezultateve",
+      "text": "Supozoni që refleksët tuaj janë të zvogëluar. Mund të pyesni çfarë sugjeron kjo e cilat teste të tjera do të ndihmojnë."
+    }
+  ],
+  "questions": [
+    "Cila pjesë e sistemit nervor mund të përfshihet?",
+    "Cilat teste të tjera më duhen?",
+    "Kur duhet të kërkoj ndihmë urgjente?"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Kako se mjeri krvni tlak",
+  "intro": "Krvni tlak je sila kojom krv tlači stijenke vaših arterija. Mjerenje je brzo, bezbolno i jedna od najkorisnijih provjera u medicini jer visok krvni tlak obično ne uzrokuje simptome, a ipak povećava rizik od srčanog udara, moždanog udara i bolesti bubrega. Poznavanje načina mjerenja pomaže vam da dobijete pouzdane vrijednosti.",
+  "sections": [
+    {
+      "heading": "Što znače dva broja",
+      "paragraphs": [
+        "Očitanje ima dvije vrijednosti, primjerice 120 nad 80. Gornji broj, koji se zove sistolički tlak, tlak je kad se srce steže i izbacuje krv. Donji broj, dijastolički tlak, tlak je kad se srce opušta i ponovno puni između otkucaja. Oba se izražavaju u milimetrima žive.",
+        "Krvni tlak se prirodno mijenja tijekom dana. Raste s aktivnošću, stresom, boli, kofeinom ili hladnoćom, a pada u mirovanju i snu. Jedna visoka vrijednost stoga ne dokazuje visok krvni tlak; liječnici gledaju ponovljena mjerenja učinjena u usporedivim uvjetima."
+      ]
+    },
+    {
+      "heading": "Mjerenje u liječničkoj ordinaciji",
+      "paragraphs": [
+        "Manšeta se omota oko nadlaktice u razini srca i napuhava dok nakratko ne zaustavi protok krvi. Dok se ispuhuje, uređaj ili zdravstveni djelatnik prepoznaje kad krv ponovno počinje teći i kad teče slobodno, što daje dvije vrijednosti. Veličina manšete je važna jer premala manšeta može dati lažno visoke vrijednosti.",
+        "Neki ljudi imaju više vrijednosti u ordinaciji nego kod kuće jer su nervozni, što se često naziva hipertenzija bijelog ogrtača. Zbog toga mnoge smjernice preporučuju potvrditi visoko očitanje u ordinaciji mjerenjima izvan ordinacije."
+      ]
+    },
+    {
+      "heading": "Mjerenje kod kuće",
+      "paragraphs": [
+        "Kućno mjerenje validiranim uređajem za nadlakticu često je najkorisniji način praćenja krvnog tlaka. Mirno sjednite nekoliko minuta, leđa oslonjenih, stopala ravno na podu i ruke u razini srca. Izbjegavajte kofein, pušenje i vježbanje otprilike pola sata prije, a prije toga ispraznite mjehur.",
+        "Napravite dva mjerenja u razmaku od otprilike jedne minute i zapišite ih, idealno ujutro i navečer kroz nekoliko dana, kako vam savjetuje liječnik. Uređaji za zapešće i prst općenito su manje pouzdani od uređaja za nadlakticu. Ponesite uređaj na pregled kako bi se njegova točnost mogla usporediti s opremom u ordinaciji."
+      ]
+    },
+    {
+      "heading": "Dvadesetčetverosatno praćenje",
+      "paragraphs": [
+        "U nejasnim slučajevima liječnici mogu primijeniti ambulantno praćenje. Cijeli dan i noć nosite mali uređaj s manšetom koji automatski mjeri svakih 20 do 30 minuta. To pokazuje kako se krvni tlak ponaša tijekom uobičajenih aktivnosti i sna te pomaže razlikovati pravi visoki krvni tlak od učinaka povezanih s ordinacijom.",
+        "Uređaj vam može stisnuti ruku kad se napuhuje, a od vas se može tražiti da tijekom pretrage vodite jednostavan dnevnik aktivnosti i simptoma."
+      ]
+    },
+    {
+      "heading": "Razumijevanje rezultata",
+      "paragraphs": [
+        "Ciljne vrijednosti razlikuju se među ljudima, ovisno o dobi, drugim bolestima i riziku od srčane bolesti, pa će vam liječnik objasniti koji je raspon prikladan za vas. Vrijednosti koje ostaju visoke trebaju dovesti do razgovora o mjerama načina života kao što su manje soli, redovita tjelovježba, kontrola tjelesne težine i ograničavanje alkohola, a po potrebi i o lijekovima.",
+        "Potražite hitnu pomoć ako vrlo visoko očitanje prati bol u prsima, jaka glavobolja, promjene vida, slabost ili otežan govor. Vrlo niske vrijednosti s vrtoglavicom ili nesvjesticom također treba procijeniti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izrada kućnog zapisa",
+      "text": "Zamislite da liječnik sumnja na visok krvni tlak i traži da mjerite kod kuće. Mogli biste mjeriti svako jutro i večer tijekom tjedna, upisati vrijednosti u jednostavnu tablicu i donijeti tablicu i uređaj na kontrolni pregled."
+    },
+    {
+      "title": "Provjera veličine manšete",
+      "text": "Pretpostavite da imate veće nadlaktice i da vam se vrijednosti uvijek čine visokima. Mogli biste zamoliti medicinsku sestru u ordinaciji da provjeri je li vaša manšeta prave veličine, jer pogrešna manšeta može promijeniti brojeve."
+    }
+  ],
+  "questions": [
+    "Koje su vrijednosti krvnog tlaka prave za mene i koliko često trebam mjeriti?",
+    "Trebam li mjeriti kod kuće ili imati ambulantno praćenje i koji biste uređaj preporučili?",
+    "Koje bi promjene načina života najviše pomogle u mojoj situaciji?"
+  ]
+}

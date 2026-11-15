@@ -1,0 +1,56 @@
+{
+  "title": "Cum funcționează sistemul urinar",
+  "intro": "Sistemul urinar filtrează din sânge deșeurile și excesul de apă și le elimină sub formă de urină. El cuprinde rinichii, ureterele, vezica urinară și uretra. Înțelegerea modului în care aceste părți lucrează împreună ajută la înțelegerea problemelor frecvente, precum infecțiile, pietrele sau dificultățile de control al vezicii, și la discuția despre ele cu un profesionist din sănătate.",
+  "sections": [
+    {
+      "heading": "Rinichii: filtrarea sângelui",
+      "paragraphs": [
+        "Avem doi rinichi, fiecare cât un pumn, așezați de o parte și de alta a coloanei vertebrale, sub coaste. Împreună filtrează de multe ori pe zi tot sângele din corp. Unități minuscule de filtrare elimină produsele de degradare, sărurile în plus și surplusul de apă, păstrând ceea ce are nevoie organismul, cum ar fi proteinele și majoritatea nutrienților.",
+        "Pe lângă producerea urinei, rinichii ajută la reglarea tensiunii arteriale, echilibrează minerale precum sodiul și potasiul, mențin aciditatea sângelui la nivelul potrivit și produc hormoni care susțin formarea globulelor roșii și sănătatea oaselor. Fiindcă au atât de multe roluri, problemele renale pot afecta întregul organism."
+      ]
+    },
+    {
+      "heading": "De la rinichi la vezică",
+      "paragraphs": [
+        "Urina se adună într-o zonă în formă de pâlnie din fiecare rinichi și apoi curge printr-un tub subțire și musculos numit ureter. Contracții musculare blânde, în valuri, împing urina înainte, astfel încât ea continuă să se deplaseze chiar și când stați culcat. Fiecare ureter intră în vezică sub un unghi care ajută la împiedicarea refluxului urinei.",
+        "Dacă ceva blochează un ureter, de exemplu o piatră la rinichi, urina se poate acumula înapoi și poate provoca durere, descrisă adesea ca fiind bruscă, cu crampe, în flanc sau în spate. Medicii iau în serios astfel de simptome, deoarece o obstrucție însoțită de infecție poate afecta rinichiul."
+      ]
+    },
+    {
+      "heading": "Depozitarea și eliminarea urinei",
+      "paragraphs": [
+        "Vezica urinară este un organ elastic și musculos care păstrează urina până când este potrivit momentul s-o eliminați. Pe măsură ce se umple, nervii trimit semnale către creier, iar majoritatea adulților simt prima dată nevoia de a urina când vezica conține câteva sute de mililitri. O vezică sănătoasă poate reține urina câteva ore fără scurgeri.",
+        "Când hotărâți să urinați, creierul transmite mușchiului vezicii să se contracte, iar mușchilor sfincteri din jurul orificiului de ieșire să se relaxeze. Urina părăsește apoi corpul prin uretră. Uretra este mai scurtă la femei decât la bărbați, un motiv pentru care infecțiile de vezică sunt mai frecvente la femei."
+      ]
+    },
+    {
+      "heading": "Probleme frecvente",
+      "paragraphs": [
+        "Problemele tipice includ infecțiile urinare, pietrele la rinichi și la vezică, vezica hiperactivă, scurgerile de urină la tuse sau la efort și, la bărbați, dificultatea de a goli vezica din cauza măririi prostatei. Simptomele pot fi arsură la urinare, nevoia de a urina des sau urgent, sânge în urină sau durere în flanc ori în abdomenul inferior.",
+        "Multe dintre aceste afecțiuni se pot trata. Sângele în urină, febra împreună cu durerea de spate sau imposibilitatea totală de a urina trebuie verificate prompt, deoarece pot semnala ceva ce necesită atenție urgentă."
+      ]
+    },
+    {
+      "heading": "Îngrijirea sănătății urinare",
+      "paragraphs": [
+        "Consumul unei cantități suficiente de lichide, de obicei puțin mai mult pe căldură sau când sunteți activ, ajută la diluarea urinei și la spălarea sistemului urinar. Faptul de a nu vă abține foarte mult timp, de a goli complet vezica și de a respecta o igienă bună poate reduce riscul de infecție.",
+        "Controlul tensiunii arteriale și al glicemiei protejează rinichii pe termen lung, iar unele analgezice și alte medicamente care pot suprasolicita rinichii se folosesc cu grijă. Controalele regulate contează mai mult dacă aveți diabet, hipertensiune arterială sau antecedente familiale de boală renală."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Observarea timpurie a schimbărilor",
+      "text": "Imaginați-vă că ați început să mergeți mult mai des la toaletă noaptea, iar urinarea vă arde uneori. Ați putea nota pe scurt de câte ori mergeți și cât beți timp de câteva zile, apoi să aduceți notițele la consultație, ca medicul să vadă tiparul și să decidă dacă un test de urină este util."
+    },
+    {
+      "title": "Discuția despre scurgeri",
+      "text": "Presupuneți că pierdeți puțină urină când râdeți sau ridicați ceva și vă simțiți jenat. Ați putea exersa să descrieți exact când se întâmplă și cum vă afectează ziua, apoi să întrebați dacă antrenamentul planșeului pelvin sau alte opțiuni ar putea ajuta, știind că este o problemă frecventă și tratabilă."
+    }
+  ],
+  "questions": [
+    "Simptomele mele pot proveni dintr-o infecție, o piatră sau o problemă de control al vezicii și ce analize ar ajuta să aflăm?",
+    "Câte lichide ar trebui să beau pe zi, ținând cont de sănătatea mea și de medicamente?",
+    "Ce simptome ar trebui să mă facă să caut ajutor urgent, în loc să aștept o consultație programată?"
+  ]
+}

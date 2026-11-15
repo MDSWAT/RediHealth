@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa puoi fare se hai la VPPB",
+  "intro": "La vertigine parossistica posizionale benigna, o VPPB, causa brevi capogiri rotatori quando muovi la testa in certi modi, come girarti nel letto o guardare in alto. È un comune problema dell'orecchio interno ed è innocuo e di solito si può trattare con efficacia con semplici manovre di posizione della testa.",
+  "sections": [
+    {
+      "heading": "Che cosa la causa",
+      "paragraphs": [
+        "Dentro l'orecchio interno ci sono minuscoli cristalli di calcio che normalmente stanno in un sacco. Se si staccano e si spostano nei canali semicircolari, i movimenti della testa fanno muovere il liquido in modo sbagliato e mandano falsi segnali al cervello. Questo causa una breve e intensa sensazione di rotazione, spesso con nausea. Diventa più comune con l'età e può seguire un trauma cranico."
+      ]
+    },
+    {
+      "heading": "Sintomi tipici",
+      "paragraphs": [
+        "Gli episodi durano meno di un minuto e sono scatenati da posizioni come sdraiarsi, girarsi, piegarsi in avanti o inclinare la testa all'indietro. Non c'è perdita dell'udito e stai bene tra un episodio e l'altro. Capogiri costanti, forte mal di testa, debolezza, problemi di linguaggio o visione doppia non sono tipici della VPPB e richiedono una valutazione medica urgente."
+      ]
+    },
+    {
+      "heading": "Diagnosi e trattamento",
+      "paragraphs": [
+        "Un medico può diagnosticarla con test posizionali, come la manovra di Dix-Hallpike, che scatena il capogiro e i movimenti degli occhi. Il trattamento usa manovre di riposizionamento dei cristalli, come la manovra di Epley, che riportano i cristalli fuori dal canale. Funzionano nella maggior parte delle persone dopo una o poche sedute. I farmaci di solito non aiutano."
+      ]
+    },
+    {
+      "heading": "Autocura",
+      "paragraphs": [
+        "Dopo la manovra segui i consigli sulla posizione della testa. A casa un medico o un fisioterapista può insegnarti un autotrattamento. Muoviti lentamente, alzati per gradi e fai attenzione a evitare le cadute, per esempio usando una luce di notte. Le recidive sono comuni, ma si possono trattare di nuovo."
+      ]
+    },
+    {
+      "heading": "Quando chiedere aiuto",
+      "paragraphs": [
+        "Vai dal medico se il capogiro è nuovo, ripetuto, impedisce le attività quotidiane o si presenta con altri sintomi. Serve aiuto d'emergenza per un capogiro improvviso e forte con debolezza, difficoltà a parlare, alterazioni della vista o forte mal di testa."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Alzarsi in sicurezza",
+      "text": "Immagina di avere un capogiro quando ti giri nel letto. Potresti metterti seduto lentamente, aspettare un momento e alzarti solo quando la rotazione finisce."
+    },
+    {
+      "title": "Prepararsi al trattamento",
+      "text": "Supponi di avere un appuntamento per una manovra. Potresti chiedere se puoi guidare dopo e come prevenire una recidiva."
+    }
+  ],
+  "questions": [
+    "Il mio capogiro è VPPB o qualcos'altro?",
+    "Quale manovra è adatta e posso farla a casa?",
+    "Che cosa devo fare se ritorna?"
+  ]
+}

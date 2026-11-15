@@ -1,0 +1,51 @@
+{
+  "title": "Il telemonitoraggio è una buona idea nello scompenso cardiaco avanzato?",
+  "intro": "Telemonitoraggio significa misurare a casa parametri come peso, pressione, polso o sintomi e inviarli in via elettronica a un team sanitario. Nello scompenso cardiaco avanzato l'obiettivo è accorgersi presto di un peggioramento ed evitare ricoveri. I risultati della ricerca sono contrastanti, quindi la decisione dipende dalla persona e dal programma.",
+  "sections": [
+    {
+      "heading": "Che cosa comporta lo scompenso cardiaco",
+      "paragraphs": [
+        "Nello scompenso cardiaco il cuore non riesce a pompare il sangue come il corpo richiede. I sintomi comprendono affanno, stanchezza, gonfiore alle caviglie e improvviso aumento di peso dovuto ai liquidi. Le riacutizzazioni possono svilupparsi nell'arco di giorni e portano spesso al ricovero, quindi è utile adattare presto la terapia."
+      ]
+    },
+    {
+      "heading": "Come funziona il telemonitoraggio",
+      "paragraphs": [
+        "Le persone si pesano ogni giorno e possono misurare pressione, polso o livelli di ossigeno con dispositivi che trasmettono i dati in automatico o tramite un'app. Alcuni programmi comprendono telefonate o questionari regolari. Il personale sanitario esamina le misure e contatta il paziente se i valori suggeriscono un problema. Anche alcuni dispositivi impiantati possono trasmettere dati."
+      ]
+    },
+    {
+      "heading": "Che cosa mostra la ricerca",
+      "paragraphs": [
+        "Gli studi sul telemonitoraggio hanno dato risultati diversi. Alcuni programmi hanno ridotto i ricoveri o i decessi, altri hanno mostrato pochi benefici. I programmi che prevedono un intervento rapido di personale formato sembrano avere più probabilità di aiutare rispetto alla semplice raccolta di dati. I risultati possono dipendere da quanto è malata la persona e da quanto è ben organizzato il programma."
+      ]
+    },
+    {
+      "heading": "Vantaggi e svantaggi",
+      "paragraphs": [
+        "I possibili vantaggi comprendono sentirsi rassicurati, meno visite in ambulatorio e un adeguamento più precoce dei farmaci. Gli svantaggi comprendono falsi allarmi e ansia, lo sforzo aggiuntivo delle misurazioni quotidiane, problemi ai dispositivi, questioni di privacy e la necessità di una connessione internet stabile o di competenze digitali. Il telemonitoraggio non sostituisce l'assistenza di persona."
+      ]
+    },
+    {
+      "heading": "Decidere se usarlo",
+      "paragraphs": [
+        "Chiedi se il servizio è disponibile, chi esamina i dati e con che rapidità, che cosa succede di notte e nei fine settimana e chi paga. Valuta se tu o un familiare siete in grado di gestire le apparecchiature. Pesarsi ogni giorno e registrare i sintomi sono utili anche senza tecnologie sofisticate e molte persone traggono beneficio da un piano d'azione scritto."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Controllo quotidiano del peso",
+      "text": "Immagina di pesarti ogni mattina dopo essere stato in bagno. Potresti annotare il numero, notare un aumento di più di due chili in pochi giorni e chiamare il tuo ambulatorio come concordato nel piano."
+    },
+    {
+      "title": "Scegliere un programma",
+      "text": "Supponi che il tuo ospedale offra il telemonitoraggio. Potresti chiedere con quale frequenza i dati vengono esaminati, che cosa fa il team quando le misure cambiano e se puoi interrompere in qualsiasi momento."
+    }
+  ],
+  "questions": [
+    "Il telemonitoraggio è disponibile per me e ha probabilità di aiutare nella mia situazione?",
+    "Chi vedrà i miei dati e come risponderà?",
+    "Che cosa devo fare a casa se il mio peso o i miei sintomi cambiano?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Visita ginecologica: preparazione e consenso",
+  "intro": "La visita ginecologica può affrontare sanguinamento, dolore pelvico, contraccezione, gravidanza o screening. La prima visita non richiede automaticamente un esame interno. È possibile chiedere lo scopo di ogni parte e rifiutarla o interromperla.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Preparare domande, andamento delle mestruazioni, sintomi, farmaci e possibilità di gravidanza. Non serve depilarsi né usare prodotti per lavande vaginali prima dell’appuntamento."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Il medico spiega esami e prelievi, verifica il consenso e tutela la riservatezza. Chiedere accompagnatore sanitario, interprete o professionista preferito se disponibili; riferire dolore o traumi solo quanto desiderato. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Esami e cure dipendono dal problema. Lo screening cervicale è diverso dall’indagine dei sintomi; un recente risultato normale non sostituisce la valutazione di nuovo sanguinamento o dolore. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Chiedere costi, confidenzialità, modalità dei risultati e contatto se non arrivano. Durante l’esame intimo si può chiedere pausa, strumenti più piccoli o altro appuntamento per discutere alternative. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Dolore pelvico intenso, svenimento, sanguinamento abbondante o dolore con possibile gravidanza richiedono valutazione urgente. Sanguinamento persistente dopo rapporti o menopausa richiede controllo tempestivo senza aspettare lo screening."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira consulta per contraccezione e chiede se l’esame interno cambierebbe il consiglio. Il medico spiega le opzioni e rispetta la scelta."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben aiuta la partner a scrivere domande. Lei sceglie se farlo entrare e può parlare privatamente con il medico."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

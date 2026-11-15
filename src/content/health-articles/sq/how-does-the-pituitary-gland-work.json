@@ -1,0 +1,52 @@
+{
+  "title": "Hipofiza dhe kontrolli hormonal",
+  "intro": "Hipofiza është gjëndër e vogël poshtë trurit, e lidhur me hipotalamusin. Koordinon gjëndra të tjera dhe funksione të drejtpërdrejta. Simptomat shpesh janë jospecifike; vetëm lodhja nuk identifikon sëmundjen.",
+  "sections": [
+    {
+      "heading": "Lobi i përparmë",
+      "paragraphs": [
+        "Prodhon hormone që ndikojnë tiroiden, korteksin mbiveshkor, vezoret dhe testikujt, si dhe hormonin e rritjes e prolaktinën. Grupet qelizore kanë role të ndryshme."
+      ]
+    },
+    {
+      "heading": "Lobi i pasmë",
+      "paragraphs": [
+        "Ruan dhe lëshon hormone të prodhuara në hipotalamus, përfshirë hormonin antidiuretik dhe oksitocinën. Ndihmojnë ekuilibrin e ujit dhe riprodhimin; ruajtja dhe prodhimi ndryshojnë."
+      ]
+    },
+    {
+      "heading": "Feedback",
+      "paragraphs": [
+        "Sinjalet hipotalamike dhe nivelet e gjëndrave të synuara rregullojnë daljen. Testi shpesh interpretohet me hormonin përkatës, orën e marrjes dhe ilaçet, jo vetëm si numër."
+      ]
+    },
+    {
+      "heading": "Hetimi",
+      "paragraphs": [
+        "Mund të përfshijë gjak, urinë, teste stimulimi ose shtypjeje dhe imazhe kur duhen. Një gjetje e vogël rastësore nuk shpjegon automatikisht çdo simptomë ose kërkon operacion."
+      ]
+    },
+    {
+      "heading": "Siguria",
+      "paragraphs": [
+        "Etja e madhe dhe urinimi i tepërt kërkojnë kontroll. Dhimbja e papritur e fortë e kokës me ndryshim shikimi, të vjella ose kolaps kërkon urgjencë. Mungesat hormonale kërkojnë planin e zëvendësimit dhe urgjencës, jo ndërprerje vetë.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira sjell rezultatet hipofizare dhe tiroide pa menduar se një numër në normë përjashton çdo problem."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ka mungesë hormonale të njohur. Merr udhëzimet urgjente në udhëtim pa improvizuar doza gjatë sëmundjes."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

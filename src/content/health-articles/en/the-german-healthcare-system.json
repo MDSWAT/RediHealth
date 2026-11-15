@@ -1,0 +1,51 @@
+{
+  "title": "The German healthcare system",
+  "intro": "Germany has a health system with compulsory health insurance, a wide choice of doctors and hospitals and a dense network of services. Understanding how it is organised helps patients, including newcomers, find care and know their rights. This overview is general; rules and amounts change, so check current details with your insurer.",
+  "sections": [
+    {
+      "heading": "Health insurance",
+      "paragraphs": [
+        "Nearly everyone living in Germany must have health insurance. Most people are covered by statutory health insurance funds, to which employees and employers contribute a percentage of income. Some people, such as higher earners, self-employed people and civil servants, may choose private insurance. Children and non-working spouses are often covered free of charge under family insurance in the statutory system. Long-term care has its own insurance."
+      ]
+    },
+    {
+      "heading": "Primary care and specialists",
+      "paragraphs": [
+        "Most people have a family doctor as a first point of contact, who treats common problems, coordinates care and issues referrals. You can usually visit specialists directly, although some need appointments or referrals. Pharmacies provide prescription medicines and advice. Dentists, midwives and therapists are accessed in a similar way."
+      ]
+    },
+    {
+      "heading": "Hospitals and emergencies",
+      "paragraphs": [
+        "Hospitals provide inpatient and day care and have outpatient departments for certain conditions. For emergencies, call 112 or go to an emergency department. For urgent but not life-threatening problems outside practice hours, an on-call medical service can be reached on 116117, which also helps with appointments."
+      ]
+    },
+    {
+      "heading": "Costs and co-payments",
+      "paragraphs": [
+        "Statutory insurance covers a broad catalogue of services, including check-ups, vaccinations, treatment, medicines, hospital care and rehabilitation. Patients make some co-payments, for example for medicines, hospital days or certain therapies, with annual limits and exemptions for low-income people and children. Some services, such as many dental extras, are paid privately."
+      ]
+    },
+    {
+      "heading": "Patient rights and getting help",
+      "paragraphs": [
+        "Patients have the right to information, informed consent, access to their records and a second opinion. Complaints can be directed to the practice, the insurer or patient advisory services. Independent counselling is available for people unsure of their entitlements, including migrants and refugees, and interpreting services may be arranged in some settings."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Finding a doctor",
+      "text": "Imagine you are new in Germany. You could register with a family doctor, ask for referrals when needed and keep your insurance card with you."
+    },
+    {
+      "title": "Using out-of-hours care",
+      "text": "Suppose your child has a fever on a Saturday evening. You might call the on-call service for advice and, if serious, go to an emergency department."
+    }
+  ],
+  "questions": [
+    "Which services does my insurance cover, and what must I pay myself?",
+    "How do I find a specialist or an appointment quickly?",
+    "Where can I get independent advice about my rights?"
+  ]
+}

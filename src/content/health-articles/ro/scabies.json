@@ -1,0 +1,51 @@
+{
+  "title": "Scabia",
+  "intro": "Scabia este o infestare a pielii provocată de acarieni minusculi care sapă galerii în piele și provoacă mâncărime intensă, mai ales noaptea. Se răspândește prin contact prelungit cu pielea și nu este semn de igienă proastă. Se tratează ușor cu creme sau tablete, dar toate persoanele aflate în contact apropiat trebuie tratate în același timp.",
+  "sections": [
+    {
+      "heading": "Cum se răspândește",
+      "paragraphs": [
+        "Acarienii scabiei trec de la o persoană la alta prin contact apropiat și prelungit al pielii, de exemplu în gospodărie, în timpul actului sexual și în cămine de îngrijire sau creșe. Folosirea în comun a lenjeriei sau a hainelor îi poate răspândi ocazional. Acarienii supraviețuiesc doar câteva zile în afara corpului uman."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Principalul simptom este mâncărimea intensă, mai ales noaptea, care începe la două-șase săptămâni după prima infecție sau în câteva zile la reinfectare. Apar mici puncte roșii și linii subțiri, șerpuite, ale galeriilor, mai ales între degete, la încheieturi, coate, axile, talie și organe genitale, iar la bebeluși pe palme, tălpi și cap. Scărpinatul poate duce la răni infectate."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Un medic recunoaște scabia după aspectul și distribuția erupției și după contactele cu mâncărime similară. Examinarea cu dermatoscopul sau răzuirea microscopică a pielii pot confirma acarienii. Mâncărimea poate persista câteva săptămâni după un tratament reușit, din cauza reacției la acarienii morți."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Crema cu permetrin se folosește de obicei pe tot corpul, de la gât în jos, se lasă timpul precizat, de obicei peste noapte, apoi se spală și se repetă după o săptămână. Benzoatul de benzil este o alternativă, iar tabletele de ivermectină se folosesc în unele cazuri, mai ales în focare. Tratați toate persoanele din gospodărie și contacții apropiați în același timp, chiar și fără simptome."
+      ]
+    },
+    {
+      "heading": "Măsuri de curățenie",
+      "paragraphs": [
+        "Spălați lenjeria de pat, prosoapele și hainele din ultimele zile la temperatură înaltă sau sigilați-le în pungi de plastic câteva zile. Aspirați mobila tapițată și țineți unghiile scurte. Reveniți la școală sau la serviciu doar după ce s-a administrat tratamentul conform recomandărilor. Antihistaminicele sau loțiunile calmante pot ameliora mâncărimea."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tratarea gospodăriei",
+      "text": "Imaginați-vă că copilul dumneavoastră are scabie. Ați putea coordona tratamentul pentru întreaga familie în aceeași seară și ați putea spăla toată lenjeria a doua zi dimineață."
+    },
+    {
+      "title": "Gestionarea mâncărimii persistente",
+      "text": "Presupuneți că mâncărimea continuă la două săptămâni după tratament. Ați putea întreba medicul dacă este mâncărimea obișnuită de după scabie sau dacă este necesar un nou tratament."
+    }
+  ],
+  "questions": [
+    "Ce tratament este cel mai bun și cine altcineva trebuie tratat?",
+    "Când ne putem întoarce la școală sau la serviciu?",
+    "Cum pot ameliora mâncărimea după aceea?"
+  ]
+}

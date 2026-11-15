@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë llojesh studimesh ka?",
+  "intro": "Kërkimi mjekësor përdor lloje të ndryshme studimesh për t'iu përgjigjur pyetjeve të ndryshme. Disa testojnë nëse një trajtim funksionon, ndërsa të tjerat shohin shkaqet e sëmundjes ose sa e zakonshme është. Njohja e llojeve kryesore ndihmon të gjykoni sa e besueshme është një gjetje.",
+  "sections": [
+    {
+      "heading": "Provat e kontrolluara të rastësuara",
+      "paragraphs": [
+        "Në një provë të kontrolluar të rastësuar, pjesëmarrësit caktohen rastësisht të marrin trajtimin që testohet ose një krahasim, si placebo ose kujdes standard. Shansi vendos, që grupet të jenë të ngjashme. Shpesh as pjesëmarrësit as kërkuesit nuk e dinë kush merr çfarë, çka quhet verbim. Këto prova janë mënyra më e mirë për të testuar nëse një trajtim funksionon."
+      ]
+    },
+    {
+      "heading": "Studimet vëzhguese",
+      "paragraphs": [
+        "Studimet e kohortës ndjekin grupe njerëzish me kalimin e kohës për të parë kush zhvillon një sëmundje, për shembull duke krahasuar duhanpirësit e jo-duhanpirësit. Studimet rast-kontroll krahasojnë njerëz me një sëmundje me njerëz të ngjashëm pa të, duke kërkuar prapa për dallime. Studimet tërthore masin një gjendje në një çast të vetëm kohe. Mund të tregojnë lidhje por jo të provojnë shkakun, sepse mund të përfshihen faktorë të tjerë."
+      ]
+    },
+    {
+      "heading": "Dizajne të tjera",
+      "paragraphs": [
+        "Raportet e rasteve e seritë e rasteve përshkruajnë disa pacientë e mund të ngrenë ide por janë provë e dobët. Studimet e saktësisë diagnostike testojnë sa mirë një test identifikon sëmundjen. Studimet cilësore eksplorojnë përvojat me intervista. Studimet laboratorike e me kafshë eksplorojnë mekanizma por nuk zbatohen gjithmonë te njerëzit."
+      ]
+    },
+    {
+      "heading": "Rishikimet",
+      "paragraphs": [
+        "Një rishikim sistematik mbledh e vlerëson të gjitha studimet për një pyetje, e një meta-analizë kombinon numrat e tyre. Këto japin pamjen më të plotë, me kusht që studimet që përfshijnë të jenë të mira."
+      ]
+    },
+    {
+      "heading": "Gjykimi i studimeve",
+      "paragraphs": [
+        "Shihni numrin e pjesëmarrësve, si u formuan grupet, sa zgjati ndjekja, nëse rezultatet janë kuptimplote për pacientët e kush e pagoi studimin. Një studim në minj ose një studim i vetëm i vogël nuk duhet të ndryshojë atë që bëni. Kërkojini mjekut të shpjegojë çfarë do të thotë një studim për ju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Leximi i një lajmi",
+      "text": "Imagjinoni që një titull thotë se kafeja parandalon sëmundjen. Mund të kontrolloni nëse studimi ndoqi njerëz apo i rastësoi."
+    },
+    {
+      "title": "Pyetja për besueshmërinë",
+      "text": "Supozoni që një studim sugjeron se një suplement funksionon. Mund të pyesni sa i madh ishte e nëse u përsërit."
+    }
+  ],
+  "questions": [
+    "Çfarë lloj studimi e mbështet këtë pohim?",
+    "Sa e fortë është prova krahasuar me studime të tjera?",
+    "A vlejnë rezultatet për njerëz si unë?"
+  ]
+}

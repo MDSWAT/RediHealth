@@ -1,0 +1,51 @@
+{
+  "title": "Pierderea bruscă a auzului",
+  "intro": "Pierderea bruscă a auzului de tip neurosenzorial este o pierdere rapidă a auzului la o ureche, care apare de obicei în ore până la câteva zile, fără o cauză clară. Poate fi însoțită de tinitus sau de o senzație de plenitudine. Trebuie evaluată rapid de un medic, iar multe persoane își recapătă cel puțin o parte din auz, mai ales cu tratament timpuriu.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Persoanele observă adesea o scădere bruscă a auzului la trezire sau în timpul zilei, o senzație de ureche înfundată, sunete înăbușite sau țiuit. Unele au și amețeală. Auzul poate reveni parțial sau complet în câteva zile sau săptămâni, dar este posibil să nu revină."
+      ]
+    },
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "În cele mai multe cazuri nu se găsește nicio cauză. Factorii declanșatori posibili includ infecția virală, problemele de circulație în urechea internă, reacțiile imune, leziunile, anumite medicamente și, rar, tumorile nervului auditiv. O ureche înfundată de cerumen, lichidul din spatele timpanului sau o infecție a urechii medii pot imita problema și se tratează diferit."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Un medic examinează urechea și programează un test al auzului într-un timp scurt pentru a măsura tipul și gradul pierderii. Se pot face analize de sânge și o rezonanță magnetică pentru a căuta cauze de fond. Testarea promptă este importantă, deoarece tratamentul este sensibil la timp."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Corticosteroizii în doze mari, luați sub formă de tablete sau injectați în urechea medie, sunt tratamentul obișnuit și sunt cei mai utili când sunt începuți în câteva zile. Dovezile de beneficiu sunt modeste, iar medicii discută riscuri precum glicemia crescută, schimbările de dispoziție și problemele de somn. Alte tratamente, precum oxigenoterapia sau medicamentele pentru fluxul sanguin, au valoare incertă. Repausul și evitarea zgomotului puternic sunt rezonabile."
+      ]
+    },
+    {
+      "heading": "Recuperare și perspective",
+      "paragraphs": [
+        "Multe persoane se îmbunătățesc în primele două săptămâni. Aproximativ jumătate își recapătă un grad bun de auz, iar unele rămân cu o pierdere durabilă. Dacă auzul nu revine, aparatele auditive sau implanturile pot ajuta, iar sprijinul pentru tinitus este disponibil. Testele de auz de urmărire monitorizează progresul."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Acțiunea rapidă",
+      "text": "Imaginați-vă că vă treziți cu auzul înăbușit la o ureche. Ați putea programa o vizită la medic în aceeași zi sau în ziua următoare, în loc să așteptați o săptămână."
+    },
+    {
+      "title": "Obținerea sprijinului",
+      "text": "Presupuneți că auzul nu a revenit după câteva săptămâni. Ați putea întreba despre aparate auditive, consiliere pentru tinitus și strategii de comunicare."
+    }
+  ],
+  "questions": [
+    "Ar putea altceva decât pierderea bruscă a auzului să provoace acest lucru?",
+    "Ar trebui să iau steroizi și la ce efecte secundare să fiu atent?",
+    "Ce sprijin este disponibil dacă auzul nu își revine?"
+  ]
+}

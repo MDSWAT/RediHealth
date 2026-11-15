@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë janë hormonet e çfarë bëjnë ato?",
+  "intro": "Hormonet janë lajmëtarë kimikë të prodhuar nga gjëndrat e të çliruar në gjak. Udhëtojnë drejt organeve e indeve synim e kontrollojnë procese si rritja, metabolizmi, riprodhimi, humori e reagimi i trupit ndaj stresit. Ndryshime të vogla në nivelet e hormoneve mund të kenë efekte të mëdha, prandaj çrregullimet hormonale shkaktojnë simptoma të gjera.",
+  "sections": [
+    {
+      "heading": "Gjëndrat kryesore",
+      "paragraphs": [
+        "Hipofiza në bazën e trurit është gjëndra kryesore që kontrollon shumë të tjera. Tiroidja në qafë rregullon metabolizmin. Gjëndrat mbiveshkore mbi veshka prodhojnë kortizol e adrenalinë. Pankreasi çliron insulinën e glukagonin. Vezoret prodhojnë estrogjen e progesteron, e testisët prodhojnë testosteron. Gjëndrat paratiroide kontrollojnë kalciumin, e gjëndra pineale prodhon melatoninë."
+      ]
+    },
+    {
+      "heading": "Si rregullohen sistemet hormonale",
+      "paragraphs": [
+        "Shumica e hormoneve kontrollohen nga cikle reagimi. Kur niveli i një hormoni është i lartë, sinjali për të prodhuar më shumë zvogëlohet, e kur është i ulët, prodhimi rritet, si një termostat. Për shembull, hipofiza çliron hormonin stimulues të tiroides kur hormoni tiroid është i ulët e e zvogëlon kur hormoni tiroid është i lartë."
+      ]
+    },
+    {
+      "heading": "Çfarë bëjnë hormonet",
+      "paragraphs": [
+        "Insulina ul sheqerin në gjak. Hormonet tiroide caktojnë ritmin e trupit në përdorimin e energjisë. Kortizoli ndihmon në menaxhimin e stresit e rregullon tensionin e sheqerin. Hormoni i rritjes nxit rritjen në fëmijëri. Hormonet seksuale kontrollojnë pubertetin, pjellshmërinë, menstruacionet e funksionin seksual. Hormonet ndikojnë edhe gjumin, oreksin, humorin e forcën e kockave."
+      ]
+    },
+    {
+      "heading": "Kur gjërat shkojnë keq",
+      "paragraphs": [
+        "Shumë ose pak hormon mund të shkaktojë sëmundje: diabet nga efekti i pamjaftueshëm i insulinës, tiroide hiperaktive ose hipoaktive, sindromë Cushing nga kortizoli i tepërt, pamjaftueshmëri mbiveshkore, simptoma të menopauzës, sindromë të vezoreve polikistike e testosteron të ulët. Simptoma si lodhja, ndryshimi i peshës, ndryshimet e humorit, mospërballimi i temperaturës ose problemet menstruale mund të sinjalizojnë çrregullime hormonale por kanë shumë shkaqe të tjera."
+      ]
+    },
+    {
+      "heading": "Testimi e trajtimi",
+      "paragraphs": [
+        "Analizat e gjakut, nganjëherë teste të pështymës ose urinës e imazheria ndihmojnë të diagnostikohen problemet hormonale. Trajtimi mund të zëvendësojë hormonet që mungojnë, të bllokojë ato të tepërta, të trajtojë shkakun ose të heqë një rritje. Kini kujdes me produktet hormonale të parregulluara e testet që shiten drejtpërdrejt te konsumatorët, e diskutoni shqetësimet me mjekun."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përshkrimi i simptomave",
+      "text": "Imagjinoni që ndiheni vazhdimisht të lodhur e të ftohtë. Mund ta pyesni mjekun për teste të tiroides e të listoni simptomat e tjera."
+    },
+    {
+      "title": "Të kuptuarit e zëvendësimit",
+      "text": "Supozoni që filloni zëvendësim hormonal për tiroide hipoaktive. Mund të pyesni si rregullohet doza e sa shpesh nevojiten teste."
+    }
+  ],
+  "questions": [
+    "A mund t'i shkaktojë simptomat e mia një problem hormonal?",
+    "Cilat teste nevojiten për ta kontrolluar?",
+    "Si do të monitorohet trajtimi?"
+  ]
+}

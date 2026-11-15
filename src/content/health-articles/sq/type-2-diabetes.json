@@ -1,0 +1,51 @@
+{
+  "title": "Diabeti i tipit 2",
+  "intro": "Në diabetin e tipit 2 trupi nuk i përgjigjet siç duhet insulinës e përfundimisht nuk mund të prodhojë mjaftueshëm. Sheqeri në gjak rritet, çka gjatë viteve mund t'i dëmtojë enët e gjakut e nervat. Lidhet ngushtë me mbipeshën, mosaktivitetin e moshën e te shumë njerëz mund të kontrollohet mirë, nganjëherë edhe të futet në remision, me ndryshim të stilit të jetesës e trajtim.",
+  "sections": [
+    {
+      "heading": "Shkaqet dhe faktorët e rrezikut",
+      "paragraphs": [
+        "Rreziku rritet me mbipeshën, veçanërisht rreth belit, pak aktivitet fizik, moshën, historinë familjare, diabetin gestacional të mëparshëm, tensionin e lartë e prejardhje të caktuara etnike. Shumë njerëz e kanë gjendjen vite para diagnozës, pasi simptomat zhvillohen ngadalë e mund të jenë të lehta."
+      ]
+    },
+    {
+      "heading": "Simptomat dhe diagnoza",
+      "paragraphs": [
+        "Simptoma të mundshme janë etja, urinimi i shpeshtë, lodhja, shikimi i turbullt, plagët që shërohen ngadalë e infeksionet e përsëritura, por shumë njerëz nuk kanë asnjë. Diagnoza bëhet me sheqerin në gjak me agjërim, HbA1c ose një test tolerance ndaj glukozës. Kontrollet e rregullta kanë rëndësi për njerëzit me faktorë rreziku."
+      ]
+    },
+    {
+      "heading": "Stili i jetesës",
+      "paragraphs": [
+        "Ushqimi i shëndetshëm, më shumë aktivitet fizik e humbja e peshës janë themeli. Edhe humbja modeste e peshës e përmirëson sheqerin në gjak e humbja e madhe e peshës përmes dietës mund të sjellë remision te disa njerëz. Synoni lëvizje të rregullt, si ecja e shpejtë, e stërvitje forcimi. Kufizimi i pijeve me sheqer, karbohidrateve të rafinuara e ushqimeve të përpunuara e zgjedhja e perimeve, drithërave të plota, bishtajoreve e yndyrave të shëndetshme ndihmojnë."
+      ]
+    },
+    {
+      "heading": "Barnat",
+      "paragraphs": [
+        "Metformina është shpesh ilaçi i parë. Të tjerë përfshijnë barna që rrisin humbjen urinare të sheqerit, barna që veprojnë mbi hormonet e zorrëve e disa që stimulojnë çlirimin e insulinës. Disa prej tyre mbrojnë edhe zemrën ose veshkat te pacientë të caktuar. Insulina mund të nevojitet përfundimisht. Barnat zgjidhen sipas shëndetit të zemrës e veshkave, peshës e efekteve anësore e kërkojnë rishikim të rregullt."
+      ]
+    },
+    {
+      "heading": "Parandalimi i komplikimeve",
+      "paragraphs": [
+        "Kontrollet e rregullta përfshijnë HbA1c, tensionin, kolesterolin, sytë, këmbët, testet e veshkave e kujdesin dentar. Kontrolli i tensionit e kolesterolit ka po aq rëndësi sa sheqeri në gjak. Mos pini duhan. Raportoni herët plagët e këmbës, ndryshimet e shikimit ose mpirjen. Programet e strukturuara të edukimit e programet e menaxhimit të sëmundjes mbështesin vetëkujdesin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vendosja e një synimi të parë",
+      "text": "Imagjinoni që sapo jeni diagnostikuar. Mund të zgjidhni një ndryshim, si një shëtitje ditore tridhjetë minutëshe, të shtoni një ndryshim të dytë pas një muaji e ta ndiqni progresin me ekipin e diabetit."
+    },
+    {
+      "title": "Përgatitja për një kontroll",
+      "text": "Supozoni që rishikimi juaj vjetor është javën tjetër. Mund të listoni pyetje, të sillni regjistra të sheqerit në gjak e të pyesni për kontrolle të syve, këmbëve e veshkave."
+    }
+  ],
+  "questions": [
+    "Cilat janë synimet e mia për sheqerin në gjak, tensionin e kolesterolin?",
+    "Cili ilaç është më i miri për mua e cilat efekte anësore të pres?",
+    "A mund ta fusë humbja e peshës diabetin tim në remision?"
+  ]
+}

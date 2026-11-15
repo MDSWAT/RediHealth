@@ -1,0 +1,52 @@
+{
+  "title": "Teškoće učenja (disleksija i diskalkulija)",
+  "intro": "Specifične teškoće učenja su trajne poteškoće u učenju čitanja, pravopisa ili aritmetike koje se ne mogu objasniti niskom inteligencijom ili lošim poučavanjem. Disleksija utječe na čitanje i pisanje, a diskalkulija na brojeve i računanje. Uz rano prepoznavanje i prilagođenu potporu djeca mogu postići dobar napredak i izgraditi samopouzdanje.",
+  "sections": [
+    {
+      "heading": "Što su",
+      "paragraphs": [
+        "Disleksija uključuje probleme povezivanja slova sa zvukovima, tečnog čitanja i pravopisa. Diskalkulija uzrokuje poteškoće u razumijevanju pojmova brojeva, pamćenju brojevnih činjenica i provođenju računanja. Ti poremećaji često se pojavljuju u obiteljima i smatra se da uključuju razlike u tome kako mozak obrađuje jezik i brojeve."
+      ]
+    },
+    {
+      "heading": "Znakovi na koje treba paziti",
+      "paragraphs": [
+        "Kod disleksije dijete može sporo učiti slova, brkati slična slova, čitati zastajkujući, izbjegavati čitanje naglas ili istu riječ pisati različito. Kod diskalkulije djeca mogu brojati na prste dugo nakon vršnjaka, teško shvaćati vrijeme i novac ili im domaća zadaća iz matematike može biti previše zahtjevna. Djeca mogu razviti i nisko samopoštovanje, glavobolje ili nevoljkost za odlazak u školu."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Procjenu provode obrazovni ili klinički psiholozi, pedijatri ili specijalističke službe, često zajedno sa školom. Uključuje testove čitanja, pisanja, matematike i općih sposobnosti te provjerava sluh, vid i druge moguće uzroke, kao što su problemi s pažnjom ili emocionalni stres, koji se mogu pojavljivati zajedno."
+      ]
+    },
+    {
+      "heading": "Potpora i poučavanje",
+      "paragraphs": [
+        "Strukturirano poučavanje usmjereno na veze zvuk–slovo, vježbanje čitanja i pravopis ili na osjećaj za broj i strategije računanja najkorisnije je. Mali koraci, ponavljana vježba, vizualna pomagala i poticaj podržavaju napredak. Škole mogu ponuditi dodatno vrijeme na testovima, miran prostor ili korištenje računala i provjere pravopisa.",
+        "Jake predmete i interese treba njegovati jer uspjeh gradi samopouzdanje. Redovita vježba u kratkim sesijama bolja je od dugih, zamornih."
+      ]
+    },
+    {
+      "heading": "Roditelji i učitelji",
+      "paragraphs": [
+        "Hvalite trud i izbjegavajte usporedbe. Ostanite u kontaktu s učiteljima i pitajte o specifičnim planovima potpore. Neke zemlje nude zakonska prava na prilagodbe i financiranje. Odrasli s tim teškoćama također mogu dobiti pomoć na poslu i u daljnjem obrazovanju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Započinjanje razgovora",
+      "text": "Zamislite da vaše dijete izbjegava čitanje naglas i kaže da je glupo. Mogli biste se sastati s učiteljem, podijeliti što primjećujete kod kuće i pitati o probiru i dodatnoj potpori."
+    },
+    {
+      "title": "Potpora pri domaćoj zadaći",
+      "text": "Pretpostavite da domaća zadaća iz matematike svake večeri uzrokuje suze. Mogli biste se s učiteljem dogovoriti o kraćem zadatku, koristiti predmete ili crteže za objašnjavanje brojeva i raditi stanke."
+    }
+  ],
+  "questions": [
+    "Treba li mom djetetu formalna procjena i tko je može provesti?",
+    "Koju potporu i prilagodbe škola može pružiti?",
+    "Kako možemo pomoći kod kuće bez izazivanja frustracije?"
+  ]
+}

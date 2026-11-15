@@ -1,0 +1,51 @@
+{
+  "title": "Akutni sinusitis",
+  "intro": "Akutni sinusitis je upala sluznice sinusa, zračnih prostora oko nosa i očiju, obično nakon prehlade. Uzrokuje začepljen nos, pritisak u licu i ponekad gust sekret. Većinu slučajeva uzrokuju virusi i prolaze unutar otprilike dva tjedna bez antibiotika.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Prehlada ili alergija mogu otjecati sluznicu nosa i začepiti uske otvore sinusa pa se sluz nakuplja. Većina infekcija je virusna. Bakterije povremeno preuzmu. Pušenje, suh zrak, plivanje, zubne infekcije i problemi kao što su iskrivljena nosna pregrada ili polipi povećavaju rizik."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipični simptomi su začepljen ili curi nos, pritisak ili bol u obrazima, čelu ili oko očiju koji se pogoršava pri pretklonu, smanjen njuh, kašalj i ponekad blaga vrućica. Gusta žuta ili zelena sluz sama po sebi ne znači bakterijsku infekciju."
+      ]
+    },
+    {
+      "heading": "Samozbrinjavanje",
+      "paragraphs": [
+        "Ispirite nos fiziološkom otopinom, udišite paru, pijte dosta tekućine i odmarajte. Dekongestivni sprejevi za nos mogu smanjiti oticanje, ali ih treba koristiti najviše otprilike tjedan dana kako bi se izbjegla povratna začepljenost. Lijekovi protiv bolova poput paracetamola ili ibuprofena ublažavaju bol. Steroidni sprejevi za nos mogu pomoći nekim ljudima."
+      ]
+    },
+    {
+      "heading": "Kada se razmatraju antibiotici",
+      "paragraphs": [
+        "Antibiotici su rijetko potrebni. Razmatraju se kada su simptomi teški, uz visoku vrućicu i bol u licu, traju dulje od otprilike deset dana bez poboljšanja ili se pogoršaju nakon početnog poboljšanja. Ljudima sa slabim imunitetom ili drugim bolestima može biti potrebno ranije liječenje."
+      ]
+    },
+    {
+      "heading": "Znakovi upozorenja i prevencija",
+      "paragraphs": [
+        "Potražite hitnu skrb kod oticanja ili crvenila oko oka, dvoslika, jake glavobolje, ukočenog vrata, smetenosti ili promjena vida jer se infekcija rijetko može proširiti na oko ili mozak. Ako se sinusitis stalno vraća ili traje dulje od dvanaest tjedana, otorinolaringolog može potražiti uzroke u pozadini. Izbjegavajte pušenje, liječite alergije i perite ruke kako biste ograničili prehlade."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Liječenje prehlade koja se spustila na sinuse",
+      "text": "Zamislite da vam je prehlada ostavila pritisak u licu i začepljen nos. Mogli biste ispirati nos fiziološkom otopinom dvaput dnevno, odmarati i koristiti dekongestivni sprej najviše tjedan dana."
+    },
+    {
+      "title": "Znati kada nazvati",
+      "text": "Pretpostavite da vam kapak postane crven i otečen. Mogli biste odmah potražiti liječničku pomoć."
+    }
+  ],
+  "questions": [
+    "Trebam li antibiotike ili mogu pričekati?",
+    "Što mogu učiniti za olakšanje začepljenog nosa?",
+    "Trebam li posjetiti specijalista ako se sinusitis stalno vraća?"
+  ]
+}

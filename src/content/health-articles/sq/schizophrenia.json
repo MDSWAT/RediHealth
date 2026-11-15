@@ -1,0 +1,52 @@
+{
+  "title": "Skizofrenia",
+  "intro": "Skizofrenia është një sëmundje e rëndë mendore që prek të menduarit, perceptimin, emocionet e sjelljen. Njerëzit mund të përjetojnë halucinacione ose iluzione dhe mund të tërhiqen nga të tjerët. Është e trajtueshme dhe shumë njerëz shërohen ndjeshëm me barna, terapi psikologjike e mbështetje shoqërore. Stigma është një barrë e madhe që mirëkuptimi mund ta ulë.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat pozitive përfshijnë dëgjimin e zërave që të tjerët nuk i dëgjojnë, besime të rreme të ngulitura si të qenit i vëzhguar ose i përndjekur e të folur ose sjellje të çorganizuar. Simptomat negative përfshijnë humbje motivimi, shprehje të reduktuar emocionale, tërheqje shoqërore e vështirësi në të shijuarit e aktiviteteve. Probleme me vëmendjen e kujtesën janë gjithashtu të zakonshme. Simptomat shpesh fillojnë në fund të adoleshencës ose në moshën e hershme madhore."
+      ]
+    },
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Nuk ka një shkak të vetëm. Cenueshmëria gjenetike, zhvillimi i trurit, komplikimet e lindjes, përdorimi i kanabisit, stresi i rëndë e trauma mund të luajnë rol. Skizofrenia nuk shkaktohet nga prindërimi i keq e nuk do të thotë personalitet i ndarë. Shumica e njerëzve me skizofreni nuk janë të dhunshëm dhe janë më shpesh viktima se autorë të dhunës."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Barnat antipsikotike i ulin halucinacionet e iluzionet e parandalojnë rikthimin. Zgjedhja e duhur përfshin balancimin e efektivitetit e efekteve anësore, si shtimi i peshës, përgjumja, problemet e lëvizjes e ndryshimet metabolike, që kërkojnë monitorim. Injeksionet me veprim të gjatë mund të ndihmojnë njerëzit që e kanë të vështirë të marrin tableta çdo ditë. Ndalimi i papritur i barnave e rrit rrezikun e rikthimit e duhet bërë vetëm me këshillë mjekësore.",
+        "Terapia konjitivo-sjellëse, edukimi i familjes, stërvitja e aftësive, punësimi i mbështetur e strehimi ndihmojnë shërimin. Shmangia e kanabisit e drogave të tjera është e rëndësishme."
+      ]
+    },
+    {
+      "heading": "Kriza dhe kujdesi në spital",
+      "paragraphs": [
+        "Gjatë një episodi akut mund të nevojitet trajtim në spital, nganjëherë i pavullnetshëm nëse ka rrezik serioz për veten ose të tjerët, me garanci ligjore. Trajtimi i hershëm i përmirëson rezultatet, prandaj kërkoni ndihmë kur shfaqen shenjat e para. Kontaktoni shërbimet e urgjencës në krizë."
+      ]
+    },
+    {
+      "heading": "Të jetosh me skizofreninë",
+      "paragraphs": [
+        "Rutinat e rregullta, gjumi, ushtrimet e marrëdhëniet mbështetëse e ulin rikthimin. Mbështetja nga bashkëmoshatarët, grupet e vetëndihmës e shërbimet e orientuara drejt shërimit ndihmojnë njerëzit të rindërtojnë jetën e familjet përfitojnë gjithashtu nga informacioni e mbështetja. Mbani shëndetin fizik në pah, pasi njerëzit me skizofreni kanë shkallë më të lartë të sëmundjes së zemrës e diabetit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mbështetja e një të afërmi",
+      "text": "Imagjinoni që vëllai juaj është i bindur se të tjerët e vëzhgojnë. Mund të qëndroni të qetë, të shmangni debatin për besimin, të shprehni shqetësim për vuajtjen e tij e ta nxitni të shohë një mjek."
+    },
+    {
+      "title": "Planifikimi për rikthim",
+      "text": "Supozoni që keni pasur një episod më parë. Mund të shkruani një plan krize me ekipin e kujdesit që liston shenjat paralajmëruese të hershme, kontaktet e besuara e preferencat tuaja të trajtimit."
+    }
+  ],
+  "questions": [
+    "Cili ilaç është më i miri për mua dhe si do të monitorohen efektet anësore?",
+    "Çfarë terapish e shërbimesh mbështetjeje ofrohen?",
+    "Si mund të njohim unë e familja ime shenjat e hershme të rikthimit?"
+  ]
+}

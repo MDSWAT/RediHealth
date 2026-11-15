@@ -1,0 +1,51 @@
+{
+  "title": "Ultrazvuk: priprema, pristanak i nalazi",
+  "intro": "Ultrazvuk koristi visokofrekventan zvuk i odjeke za unutarnje slike. Nema ionizirajućeg zračenja. Vrijednost ovisi o pitanju, mjestu i stručnom tumačenju; ne pokazuje svaku bolest.",
+  "sections": [
+    {
+      "heading": "Slika",
+      "paragraphs": [
+        "Sonda šalje i prima odjeke tkiva. Gel uklanja zrak između kože i sonde. Pokret daje poglede, Doppler protok krvi."
+      ]
+    },
+    {
+      "heading": "Priprema",
+      "paragraphs": [
+        "Neki trbušni trebaju post, neki zdjelični pun mjehur. Slijedite upute i pitajte uz dijabetes ili lijekove. Ne prekidajte terapiju samo zbog snimanja."
+      ]
+    },
+    {
+      "heading": "Pregled",
+      "paragraphs": [
+        "Mnogi su na koži, neki unutarnjom sondom. Stručnjak objašnjava razlog, alternative i pristanak. Možete tražiti pratnju, tumača, stanku ili prekid intimnog pregleda."
+      ]
+    },
+    {
+      "heading": "Granice",
+      "paragraphs": [
+        "Plin i kost skrivaju strukture, nalazi ovise o kontekstu. Uredno ne isključuje sve uzroke. Usputni nalaz nije automatski opasan; pitajte treba li daljnje testiranje."
+      ]
+    },
+    {
+      "heading": "Nakon",
+      "paragraphs": [
+        "Pitajte vrijeme, tumačenje i postupak uz simptome. Koristite primjereno, ne za ponavljanu zabavu. Novi teški simptomi traže pomoć, ne čekanje niti jamstvo starog nalaza. Prije pregleda zapišite kada je simptom počeo, što ga ublažava ili pogoršava i kako utječe na uobičajene aktivnosti. Ponesite prethodne nalaze ako ih imate. Zamolite stručnjaka da objašnjenje poveže s vašim nalazima: opći opis sam po sebi ne postavlja dijagnozu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira provjerava mjehur i lijekove prije zdjeličnog termina bez nepovezanih mrežnih pravila."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima bol uz urednu sliku. Traži pregled drugih uzroka, ne ponavljanje bez pitanja."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

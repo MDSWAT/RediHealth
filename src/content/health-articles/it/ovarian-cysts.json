@@ -1,0 +1,51 @@
+{
+  "title": "Cisti ovariche",
+  "intro": "Le cisti ovariche sono sacche piene di liquido sull'ovaio o al suo interno. La maggior parte è innocua, si forma come parte del normale ciclo mestruale e scompare senza trattamento. Alcune causano dolore o altri sintomi e poche richiedono ulteriori accertamenti o la rimozione. L'ecografia di solito dice ai medici di che tipo di cisti si tratta.",
+  "sections": [
+    {
+      "heading": "Tipi di cisti",
+      "paragraphs": [
+        "Le cisti funzionali si sviluppano quando un follicolo non rilascia un ovulo o quando si chiude dopo il rilascio e di solito si risolvono entro pochi cicli. Altri tipi comprendono gli endometriomi, legati all'endometriosi, le cisti dermoidi che contengono tessuto come capelli o grasso e i cistoadenomi pieni di liquido o muco. La sindrome dell'ovaio policistico comporta molti piccoli follicoli ed è una condizione ormonale diversa."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Molte cisti non causano sintomi e si scoprono per caso. Le cisti più grandi possono causare un dolore sordo o pesantezza nel basso addome, gonfiore, dolore durante i rapporti o pressione su vescica o intestino. Un dolore improvviso e forte, a volte con nausea, vomito o febbre, può indicare che una cisti si è rotta o torta e richiede cure urgenti."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "Un'ecografia pelvica mostra le dimensioni e l'aspetto della cisti. Si possono fare esami del sangue come il test di gravidanza e, nelle donne dopo la menopausa o con caratteristiche preoccupanti, i marcatori tumorali. La risonanza magnetica può aggiungere informazioni. L'aspetto all'ecografia aiuta a stimare la probabilità che una cisti sia benigna."
+      ]
+    },
+    {
+      "heading": "Trattamento e controlli",
+      "paragraphs": [
+        "Le cisti semplici nelle donne prima della menopausa vengono spesso solo osservate con una nuova scansione dopo alcuni mesi. Gli antidolorifici alleviano i sintomi. La contraccezione ormonale non riduce le cisti esistenti ma può ridurre quelle funzionali nuove. La chirurgia, di solito laparoscopica, si considera per cisti grandi, persistenti, che causano sintomi, sospette o nelle donne dopo la menopausa. I chirurghi cercano di rimuovere la cisti preservando se possibile il tessuto ovarico sano."
+      ]
+    },
+    {
+      "heading": "Vivere con le cisti",
+      "paragraphs": [
+        "Molte donne si preoccupano del cancro quando viene trovata una cisti. La maggior parte delle cisti è benigna e una spiegazione chiara del risultato dell'esame di solito rassicura. Rispetta gli appuntamenti di controllo e informa il medico di nuovo gonfiore, dolore pelvico persistente o cambiamenti dell'appetito."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Capire il risultato di un'ecografia",
+      "text": "Immagina che un'ecografia mostri una piccola cisti sulla tua ovaia. Potresti chiedere di che tipo sembri essere, se serva una nuova scansione e quali sintomi dovrebbero spingerti a contattare prima."
+    },
+    {
+      "title": "Agire di fronte a un dolore forte",
+      "text": "Supponi di avere un improvviso forte dolore su un lato con vomito. Potresti andare al pronto soccorso invece di aspettare, perché un'ovaia torta è un'urgenza."
+    }
+  ],
+  "questions": [
+    "Che tipo di cisti ho ed è probabilmente innocua?",
+    "Ho bisogno di altri esami o di scansioni di controllo?",
+    "In quali circostanze verrebbe raccomandata la chirurgia?"
+  ]
+}

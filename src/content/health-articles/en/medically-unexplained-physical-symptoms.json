@@ -1,0 +1,52 @@
+{
+  "title": "Medically unexplained physical symptoms",
+  "intro": "Many people have real physical symptoms, such as pain, dizziness, fatigue or palpitations, for which doctors find no clear physical disease. These are also called functional symptoms. They are common, genuine and often manageable. Understanding how body and mind interact can reduce fear and improve daily life.",
+  "sections": [
+    {
+      "heading": "What they are",
+      "paragraphs": [
+        "Common examples include headaches, back pain, stomach complaints, chest tightness, tiredness and dizziness without findings on tests. The symptoms are real, not imagined. They often arise from changes in how the nervous system processes signals, for example after stress, infection or injury."
+      ]
+    },
+    {
+      "heading": "Why no cause is found",
+      "paragraphs": [
+        "Standard tests mainly show structural damage or chemical changes, but functional symptoms involve changes in how the body works rather than how it looks. Stress, poor sleep, worry, low mood and focusing on the body can amplify sensations, and in turn, symptoms increase worry, creating a cycle."
+      ]
+    },
+    {
+      "heading": "Getting a good assessment",
+      "paragraphs": [
+        "A careful history and examination with sensible tests helps exclude serious illness. Repeated tests and many specialist visits usually do not help and can cause harm. A trusted family doctor who sees you regularly can coordinate care and avoid unnecessary procedures."
+      ]
+    },
+    {
+      "heading": "What helps",
+      "paragraphs": [
+        "Education about the condition, regular physical activity, good sleep routines, stress reduction and structured pacing help. Psychological therapies such as cognitive behavioural therapy have good evidence, as do mindfulness and relaxation. Medicines such as certain antidepressants in low doses can help some people, especially with pain, and physiotherapy can help muscle symptoms.",
+        "Treating coexisting anxiety or depression matters, but symptoms should not be dismissed as just stress."
+      ]
+    },
+    {
+      "heading": "Living with symptoms",
+      "paragraphs": [
+        "Set realistic goals, keep doing valued activities and avoid constantly checking your body. Share your experience with people who trust you, and seek help if symptoms worsen or new ones appear that differ from the usual pattern."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Breaking the cycle",
+      "text": "Imagine you have had stomach pain for months with normal tests. You could keep a diary of symptoms and stressors, start regular walking, and ask about psychological support for pain management."
+    },
+    {
+      "title": "Communicating with your doctor",
+      "text": "Suppose you feel your symptoms are not taken seriously. You might say clearly how the symptoms affect your life and ask for a treatment plan rather than additional tests."
+    }
+  ],
+  "questions": [
+    "What do my symptoms mean, and could something serious have been missed?",
+    "Which treatments have the best evidence for my kind of symptoms?",
+    "Who will coordinate my care so that I avoid unnecessary tests?"
+  ]
+}

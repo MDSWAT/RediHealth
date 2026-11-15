@@ -1,0 +1,51 @@
+{
+  "title": "Gastrite: identificare e trattare la causa",
+  "intro": "La gastrite è un’infiammazione della mucosa dello stomaco. Può dipendere da Helicobacter pylori, alcuni antidolorifici o altre cause; il solo dolore addominale superiore non conferma la diagnosi.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "L’infiammazione acuta può causare nausea, bruciore e scarso appetito; quella cronica può essere silenziosa. La gastrite autoimmune può compromettere l’assorbimento e causare carenze vitaminiche, richiedendo controlli diversi."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Descrivere uso di antidolorifici, alcol e precedenti ulcere. Possono servire test respiratori o fecali per Helicobacter, emocromo o endoscopia con biopsie; i farmaci possono alterare l’accuratezza dei test. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "La terapia affronta la causa: eradicazione prescritta per Helicobacter confermato, riduzione dell’acidità o revisione dei farmaci irritanti. Non interrompere aspirina prescritta o anticoagulanti senza consiglio medico. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Evitare alcol durante i sintomi e scegliere pasti tollerabili. Non esistono dieta universale o necessità dimostrata di digiuno prolungato. Chiedere analgesici sicuri invece di usare ripetutamente ibuprofene. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Sangue nel vomito, feci nere catramose, svenimento o dolore improvviso intenso richiedono assistenza urgente. Dimagrimento, difficoltà a deglutire, vomito persistente o anemia vanno indagati, evitando automedicazioni ripetute."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira prende spesso antinfiammatori per la schiena. Discute una strategia più sicura invece di aggiungere autonomamente farmaci gastrici a tempo indefinito."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben termina la terapia prescritta per Helicobacter e programma il test di conferma, verificando come gli altri farmaci ne influenzino la tempistica."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

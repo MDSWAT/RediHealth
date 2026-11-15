@@ -1,0 +1,51 @@
+{
+  "title": "Usare i farmaci in sicurezza",
+  "intro": "I farmaci possono aiutare moltissimo, ma possono anche fare danni se usati in modo scorretto. Prendere il farmaco giusto alla dose e all'ora giuste e sapere che cosa osservare rende il trattamento più sicuro ed efficace. Una comunicazione aperta con medici e farmacisti è fondamentale.",
+  "sections": [
+    {
+      "heading": "Capire i tuoi farmaci",
+      "paragraphs": [
+        "Per ogni farmaco conosci nome, scopo, dose, orario, per quanto tempo prenderlo e che cosa fare se salti una dose. Leggi il foglietto illustrativo, che elenca effetti collaterali e interazioni. Chiedi se va preso con il cibo e quali cibi, alcol o altri farmaci evitare. Tieni un elenco aggiornato di tutto ciò che prendi."
+      ]
+    },
+    {
+      "heading": "Prendere i farmaci correttamente",
+      "paragraphs": [
+        "Segui esattamente le istruzioni. Non sospendere i farmaci prescritti né cambiare le dosi senza consiglio, anche se ti senti meglio o peggio. Completa i cicli di antibiotici come indicato. Usa i dosatori forniti per i liquidi, perché i cucchiai da cucina variano. Non schiacciare né dividere le compresse se non è consentito. Organizzatori di pillole e promemoria aiutano con più farmaci."
+      ]
+    },
+    {
+      "heading": "Effetti collaterali e interazioni",
+      "paragraphs": [
+        "La maggior parte degli effetti collaterali è lieve, ma segnala sintomi gravi, insoliti o persistenti e segni di reazione allergica come eruzione, gonfiore o difficoltà a respirare. Le interazioni possono verificarsi tra farmaci, con integratori, prodotti erboristici, cibo e alcol. Informa ogni medico e farmacista di tutto ciò che prendi, compresi i prodotti acquistati senza ricetta."
+      ]
+    },
+    {
+      "heading": "Conservazione e smaltimento",
+      "paragraphs": [
+        "Conserva i farmaci come indicato, di solito in un luogo fresco e asciutto fuori dalla portata dei bambini, e tienili nella confezione originale. Controlla le date di scadenza. Non tenere antibiotici avanzati né condividere i farmaci con altri. Riporta i farmaci inutilizzati o scaduti in farmacia invece di gettarli nel water o nei rifiuti."
+      ]
+    },
+    {
+      "heading": "Situazioni particolari",
+      "paragraphs": [
+        "Gravidanza, allattamento, età avanzata, problemi di reni o fegato e infanzia richiedono particolare cura nelle dosi e nelle scelte. Chiedi prima di prendere qualsiasi farmaco, compresi quelli da banco. Revisioni regolari dei farmaci con il medico o il farmacista possono ridurre i trattamenti non necessari. Cerca aiuto urgente dopo un sovradosaggio o se qualcuno prende il farmaco sbagliato."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparare un organizzatore settimanale",
+      "text": "Immagina di prendere sei farmaci al giorno. Potresti riempire un organizzatore settimanale con l'aiuto del farmacista e tenere nel portafoglio un elenco aggiornato."
+    },
+    {
+      "title": "Controllare prima di un acquisto",
+      "text": "Supponi di voler comprare un rimedio per il raffreddore. Potresti chiedere al farmacista se è sicuro con i farmaci che prendi."
+    }
+  ],
+  "questions": [
+    "Perché prendo questo farmaco e per quanto tempo?",
+    "Quali effetti collaterali devo segnalare?",
+    "Ci sono interazioni con i miei altri farmaci, integratori o cibi?"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Si vlerësohet cilësia e studimeve mjekësore",
+  "intro": "Jo të gjitha studimet janë njësoj të besueshme. Disa janë hartuar dhe kryer në mënyra që i bëjnë rezultatet e tyre më të besueshme, ndërsa të tjera kanë rrezik të lartë të çojnë në përfundime mashtruese. Njohja e mënyrës si gjykojnë studiuesit cilësinë e një studimi ju ndihmon të kuptoni pse disa pohime shëndetësore janë më të forta se të tjerat dhe pse titujt duhen lexuar me kujdes.",
+  "sections": [
+    {
+      "heading": "Pse ka rëndësi cilësia",
+      "paragraphs": [
+        "Një studim mund të raportojë që një trajtim funksionon, por dizajni i tij mund ta bëjë rezultatin të duket më i mirë ose më i keq se e vërteta. Rastësia, ndryshimet e fshehura midis grupeve dhe pritjet e pjesëmarrësve e të studiuesve mund t'i shtrembërojnë gjetjet. Vlerësimi i cilësisë do të thotë të kontrollohet sa mirë i ka shmangur një studim këto probleme.",
+        "Studimet e kryera dobët priren t'i mbivlerësojnë përfitimet. Prandaj përfundimet e besueshme varen nga forca e metodave, jo vetëm nga madhësia e efektit të raportuar."
+      ]
+    },
+    {
+      "heading": "Dizajni i studimit",
+      "paragraphs": [
+        "Provat e kontrolluara të rastësishme janë përgjithësisht dizajni më i besueshëm për testimin e trajtimeve. Pjesëmarrësit caktohen rastësisht të marrin trajtimin e ri ose një krahasues, gjë që i bën grupet të ngjashme në fillim, kështu që dallimet më pas kanë më shumë gjasa të vijnë nga trajtimi.",
+        "Studimet vëzhguese, si studimet e kohortës dhe të rast-kontrollit, ndjekin ose krahasojnë njerëz pa caktuar trajtime. Janë të dobishme për dëme të rralla dhe rezultate afatgjata, por janë më të prirura ndaj ngatërrimit, ku një faktor tjetër shpjegon efektin e dukshëm."
+      ]
+    },
+    {
+      "heading": "Verbërimi dhe fshehja",
+      "paragraphs": [
+        "Verbërimi do të thotë që pjesëmarrësit, mjekët dhe ata që vlerësojnë rezultatet nuk dinë kush merr cilin trajtim. Kjo parandalon që pritjet të ndikojnë në raportimin e simptomave dhe në gjykimet për rezultatet. Kur verbërimi është i pamundur, për shembull në kirurgji krahasuar me ushtrimet, studiuesit përdorin sa më shumë rezultate objektive.",
+        "Fshehja e caktimit do të thotë që ata që regjistrojnë pjesëmarrësit nuk mund ta parashikojnë caktimin e radhës, gjë që parandalon hyrjen selektive në grupe."
+      ]
+    },
+    {
+      "heading": "Pika të tjera që kontrollojnë vlerësuesit",
+      "paragraphs": [
+        "Vlerësuesit shikojnë nëse shumë pjesëmarrës u larguan ose u humbën gjatë ndjekjes, nëse analiza përfshiu të gjithë siç u caktuan fillimisht dhe nëse studimi raportoi të gjitha rezultatet e planifikuara. Raportimi selektiv mund ta bëjë një trajtim të duket më i mirë se sa është.",
+        "Ata marrin parasysh edhe madhësinë e mostrës, sa gjatë u ndoqën njerëzit, nëse rezultatet kanë rëndësi për pacientët, si mbijetesa, simptomat dhe cilësia e jetës dhe kush e financoi studimin. Financimi nga industria nuk e bën një rezultat të rremë, por kërkon vëmendje shtesë ndaj dizajnit e raportimit."
+      ]
+    },
+    {
+      "heading": "Përdorimi i kësaj kur lexoni lajme shëndetësore",
+      "paragraphs": [
+        "Pyesni çfarë lloj studimi ishte, sa njerëz morën pjesë, kush ishin, çfarë u krahasua dhe cilat rezultate u matën. Jini të kujdesshëm ndaj rezultateve nga studime me kafshë ose me qeliza, studime shumë të vogla dhe studime të vetme që bien ndesh me një mori provash të mëdha.",
+        "Rishikimet sistematike që kombinojnë të gjitha studimet me cilësi të lartë për një pyetje zakonisht japin një pamje më të besueshme se çdo studim i vetëm. Diskutoni vendimet e rëndësishme me një profesionist shëndetësor që mund ta vendosë një studim në kontekst."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Leximi i një lajmi",
+      "text": "Imagjinoni që lexoni një titull që thotë se një suplement e përgjysmon rrezikun e një sëmundjeje. Mund të kontrolloni nëse studimi përfshinte njerëz ose kafshë laboratori, sa pjesëmarrës kishte dhe nëse rezultati u konfirmua nga kërkime të tjera para se të ndryshoni zakonet."
+    },
+    {
+      "title": "Pyetja për provat",
+      "text": "Supozoni që një mjek ju ofron një trajtim të ri. Mund të pyesni cilat studime e mbështesin, nëse e krahasuan me trajtimin ekzistues ose placebon dhe sa i madh ishte përfitimi e efektet anësore."
+    }
+  ],
+  "questions": [
+    "Çfarë lloj provash e mbështet këtë trajtim dhe sa e besueshme është?",
+    "A u përfshinë në studime njerëz si unë dhe a kishin rëndësi rezultatet për simptomat ose mbijetesën?",
+    "A ka një rishikim sistematik ose udhëzues që i përmbledh kërkimet?"
+  ]
+}

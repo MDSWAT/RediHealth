@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt microbii?",
+  "intro": "Microbii, sau microorganismele, sunt ființe vii prea mici pentru a fi văzute fără microscop. Ei includ bacterii, virusuri, ciuperci și unii paraziți. Se găsesc peste tot: în sol, în apă, în aer și pe corpul nostru și în interiorul lui. Cei mai mulți sunt inofensivi sau utili, iar doar puțini provoacă boli.",
+  "sections": [
+    {
+      "heading": "Bacteriile",
+      "paragraphs": [
+        "Bacteriile sunt organisme unicelulare care pot trăi independent și se înmulțesc rapid. Multe sunt utile, de exemplu cele din intestin care ajută la digestia hranei și produc vitamine sau cele folosite la fabricarea iaurtului și a brânzei. Unele provoacă infecții precum angina streptococică, infecțiile urinare, tuberculoza și pneumonia. Antibioticele acționează împotriva bacteriilor."
+      ]
+    },
+    {
+      "heading": "Virusurile",
+      "paragraphs": [
+        "Virusurile sunt mult mai mici decât bacteriile și nu se pot reproduce singure. Ele invadează celulele și le folosesc pentru a face copii ale lor. Provoacă răceli, gripă, rujeolă, hepatită și COVID-19. Antibioticele nu acționează împotriva virusurilor, dar vaccinurile pot preveni multe boli virale și există unele medicamente antivirale."
+      ]
+    },
+    {
+      "heading": "Ciupercile și paraziții",
+      "paragraphs": [
+        "Ciupercile includ drojdiile și mucegaiurile. Cele mai multe sunt inofensive, dar unele provoacă infecții precum piciorul atletului, ciuperca unghiilor și candidoza și, rareori, infecții grave la persoane cu imunitate slabă. Paraziții, precum viermii, păduchii, acarienii râiei și organismele care provoacă malaria, trăiesc pe sau în alt organism și îi iau nutrienții."
+      ]
+    },
+    {
+      "heading": "Microbiomul",
+      "paragraphs": [
+        "Microbii care trăiesc pe corp și în interiorul lui, mai ales în intestin, pe piele și în gură, se numesc microbiom. Ei ajută digestia, antrenează sistemul imunitar și protejează împotriva microbilor dăunători. Antibioticele, alimentația, igiena și boala pot perturba acest echilibru. Cercetările continuă asupra modului în care influențează sănătatea, iar produsele comercializate pentru sănătatea intestinală variază ca dovezi."
+      ]
+    },
+    {
+      "heading": "Cum vă protejați",
+      "paragraphs": [
+        "Spălați-vă pe mâini cu săpun, pregătiți și păstrați alimentele în siguranță, păstrați vaccinările la zi, acoperiți tusea, evitați antibioticele inutile și păstrați rănile curate. O igienă bună reduce infecțiile, dar sterilizarea extremă a locuinței nu este necesară. Folosiți antibiotice doar când sunt prescrise și terminați tratamentele conform indicațiilor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Spălarea mâinilor",
+      "text": "Imaginați-vă că vreți să reduceți infecțiile din gospodărie. Ați putea să vă spălați pe mâini cu săpun timp de douăzeci de secunde după toaletă, înainte de gătit și înainte de masă."
+    },
+    {
+      "title": "Folosirea corectă a antibioticelor",
+      "text": "Presupuneți că aveți o răceală și vă doriți antibiotice. Ați putea întreba medicul dacă este vorba de un virus și cum puteți ameliora simptomele în schimb."
+    }
+  ],
+  "questions": [
+    "Boala mea este cauzată de un virus, de bacterii sau de altceva?",
+    "Am nevoie de antibiotice sau este mai bun alt tratament?",
+    "Ce vaccinări ar trebui să fac?"
+  ]
+}

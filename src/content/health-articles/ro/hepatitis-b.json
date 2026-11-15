@@ -1,0 +1,51 @@
+{
+  "title": "Hepatita B: testare, prevenție și îngrijirea ficatului",
+  "intro": "Hepatita B este infecție virală hepatică. Unele infecții dispar, altele persistă și necesită control ori tratament. Poate exista fără simptome; starea bună nu dovedește absența virusului sau leziunii hepatice.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Transmiterea implică sânge ori anumite lichide, inclusiv contact sexual și naștere. Nu se transmite prin mese obișnuite ori îmbrățișare. Nu excludeți oamenii din viața zilnică din cauza diagnosticului."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Analizele diferențiază infecția, imunitatea și alte situații; interpretarea poate cere repetare. Testele hepatice și fibroza ghidează controlul. Discutați sarcina, familia și eventualul tratament imunosupresor viitor. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Infecția cronică poate necesita antivirale pentru suprimarea virusului și reducerea complicațiilor. Nu toți au nevoie imediată, dar monitorizarea contează. Nu opriți antiviralele fără planul specialistului. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Vaccinarea protejează persoanele susceptibile; contacții întreabă despre teste și vaccin. Nu împărțiți ace, lame ori periuțe dentare. Sarcina permite măsuri de protecție a bebelușului; expunerea recentă cere sfat prompt pentru profilaxie. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Confuzia, vărsăturile severe, abdomenul foarte umflat sau sângerarea cer urgență. Icterul nou cere evaluare promptă. Evitați alcoolul și verificați medicamentele ori suplimentele, fără încredere în cure comerciale de curățare hepatică."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira află infecția în sarcină și discută prompt planul nașterii și prevenția nou-născutului, fără a aștepta nașterea."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben se simte sănătos, dar păstrează monitorizarea și întreabă despre vaccinarea familiei, fără să evite mesele comune."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

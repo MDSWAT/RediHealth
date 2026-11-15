@@ -1,0 +1,56 @@
+{
+  "title": "Kako se procjenjuje kvaliteta medicinskih istraživanja",
+  "intro": "Nisu sva istraživanja jednako pouzdana. Neka su osmišljena i provedena na načine koji njihove rezultate čine pouzdanijima, dok druga nose visok rizik od zavaravajućih zaključaka. Znanje kako istraživači prosuđuju kvalitetu istraživanja pomaže vam razumjeti zašto su neke zdravstvene tvrdnje jače od drugih i zašto naslove treba čitati s oprezom.",
+  "sections": [
+    {
+      "heading": "Zašto je kvaliteta važna",
+      "paragraphs": [
+        "Istraživanje može izvijestiti da liječenje djeluje, ali njegov dizajn može učiniti da rezultat izgleda bolje ili lošije od istine. Slučajnost, skrivene razlike među skupinama te očekivanja sudionika i istraživača mogu iskriviti nalaze. Procjena kvalitete znači provjeru koliko se dobro istraživanje izbjeglo tim problemima.",
+        "Slabo provedena istraživanja skloni su precjenjivati koristi. Pouzdani zaključci stoga ovise o snazi metoda, a ne samo o veličini prijavljenog učinka."
+      ]
+    },
+    {
+      "heading": "Dizajn istraživanja",
+      "paragraphs": [
+        "Randomizirana kontrolirana ispitivanja općenito su najpouzdaniji dizajn za testiranje liječenja. Sudionici se slučajno raspoređuju da prime novo liječenje ili usporedbu, što skupine čini sličnima na početku pa je vjerojatnije da su razlike poslije posljedica liječenja.",
+        "Opservacijska istraživanja, kao što su kohortna i istraživanja slučaj–kontrola, prate ili uspoređuju ljude bez dodjele liječenja. Korisna su za rijetke štete i dugoročne ishode, ali su sklonija zbunjujućim čimbenicima, pri čemu drugi čimbenik objašnjava prividan učinak."
+      ]
+    },
+    {
+      "heading": "Zasljepljivanje i prikrivanje raspodjele",
+      "paragraphs": [
+        "Zasljepljivanje znači da sudionici, liječnici i oni koji procjenjuju ishode ne znaju tko prima koje liječenje. To sprječava da očekivanja utječu na izvješća o simptomima i prosudbe o rezultatima. Gdje je zasljepljivanje nemoguće, primjerice kod operacije u usporedbi s vježbanjem, istraživači koriste objektivne ishode koliko je moguće.",
+        "Prikrivanje raspodjele znači da oni koji uključuju sudionike ne mogu predvidjeti sljedeću dodjelu, što sprječava selektivni ulazak u skupine."
+      ]
+    },
+    {
+      "heading": "Druge stvari koje recenzenti provjeravaju",
+      "paragraphs": [
+        "Recenzenti gledaju je li mnogo sudionika odustalo ili izgubljeno iz praćenja, je li analiza uključila sve kako su izvorno raspoređeni i je li istraživanje izvijestilo o svim planiranim ishodima. Selektivno izvješćivanje može učiniti da liječenje izgleda bolje nego što jest.",
+        "Razmatraju i veličinu uzorka, koliko su dugo ljudi praćeni, jesu li ishodi važni bolesnicima, kao što su preživljenje, simptomi i kvaliteta života, i tko je financirao istraživanje. Financiranje industrije ne čini rezultat lažnim, ali zahtijeva dodatnu pozornost na dizajn i izvješćivanje."
+      ]
+    },
+    {
+      "heading": "Primjena pri čitanju zdravstvenih vijesti",
+      "paragraphs": [
+        "Pitajte kakvo je to bilo istraživanje, koliko je ljudi sudjelovalo, tko su bili, što se uspoređivalo i koji su ishodi mjereni. Budite oprezni s rezultatima istraživanja na životinjama ili stanicama, vrlo malih istraživanja i pojedinačnih istraživanja koja proturječe velikom korpusu dokaza.",
+        "Sustavni pregledi koji kombiniraju sva visokokvalitetna istraživanja o nekom pitanju obično daju pouzdaniju sliku od bilo kojeg pojedinačnog istraživanja. Važne odluke razmotrite sa zdravstvenim djelatnikom koji može smjestiti istraživanje u kontekst."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Čitanje novinskog izvješća",
+      "text": "Zamislite da pročitate naslov koji kaže da dodatak prehrani prepolovljuje rizik od bolesti. Mogli biste provjeriti jesu li u istraživanju sudjelovali ljudi ili laboratorijske životinje, koliko je bilo sudionika i je li rezultat potvrđen drugim istraživanjima prije nego što promijenite navike."
+    },
+    {
+      "title": "Pitanje o dokazima",
+      "text": "Pretpostavite da vam liječnik nudi novo liječenje. Mogli biste pitati koja ga istraživanja podupiru, jesu li ga uspoređivala s postojećim liječenjem ili placebom te koliko su velike bile korist i nuspojave."
+    }
+  ],
+  "questions": [
+    "Kakvi dokazi podupiru ovo liječenje i koliko su pouzdani?",
+    "Jesu li u istraživanja bili uključeni ljudi poput mene i jesu li rezultati bili važni za simptome ili preživljenje?",
+    "Postoji li sustavni pregled ili smjernica koja sažima istraživanja?"
+  ]
+}

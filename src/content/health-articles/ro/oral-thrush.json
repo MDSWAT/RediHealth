@@ -1,0 +1,51 @@
+{
+  "title": "Candidoza orală",
+  "intro": "Candidoza orală este o infecție fungică a gurii, provocată de drojdia Candida. Produce plăci albe cremoase pe limbă și pe obraji, usturime și o senzație de bumbac. Este frecventă la bebeluși, la persoanele în vârstă, la cei care folosesc steroizi inhalatori sau proteze dentare și la cei cu imunitate scăzută. De obicei se tratează ușor.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Candida trăiește în mod normal în cantități mici în gură. Poate prolifera după antibiotice, la gură uscată, la folosirea corticosteroizilor inhalatori sau orali, în diabet, după chimioterapie, în HIV sau la fumători. Protezele dentare care se potrivesc prost și nu sunt curățate bine pot adăposti drojdia."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Sunt tipice plăcile albe sau gălbui care pot fi răzuite, lăsând zone roșii și dureroase. Alte simptome includ arsura în gură, pierderea gustului, crăpături în colțurile gurii și disconfort la mâncat sau la înghițit. Bebelușii pot refuza hrănirea și au plăci albe în interiorul obrajilor."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Gelurile, picăturile sau pastilele de supt antifungice se folosesc în gură aproximativ o săptămână sau conform indicațiilor și se continuă câteva zile după dispariția simptomelor. Tabletele se folosesc pentru infecțiile severe sau persistente. Clătiți-vă gura după folosirea steroizilor inhalatori. Curățați protezele și lăsați-le peste noapte în soluție antifungică, conform recomandărilor. Mamele care alăptează pot avea nevoie de tratament și pentru mameloane."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Periați-vă dinții de două ori pe zi, curățați protezele, evitați să purtați proteza noaptea, renunțați la fumat, controlați glicemia și mențineți gura umedă. Sterilizați biberoanele, tetinele și suzetele."
+      ]
+    },
+    {
+      "heading": "Când să cereți ajutor",
+      "paragraphs": [
+        "Mergeți la medic dacă candidoza durează mai mult de două săptămâni, revine des, provoacă dificultăți la înghițit sau apare fără un motiv clar, deoarece poate semnala o boală de fond."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tratarea unui bebeluș",
+      "text": "Imaginați-vă că bebelușul dumneavoastră are plăci albe în interiorul obrajilor. Ați putea cere medicului sau farmacistului un gel antifungic potrivit, ați putea curăța cu grijă suzetele și tetinele și ați putea folosi medicamentul pe toată durata."
+    },
+    {
+      "title": "Îngrijirea protezelor",
+      "text": "Presupuneți că purtați proteză dentară și aveți limba dureroasă. Ați putea scoate proteza noaptea, ați putea-o curăța temeinic și ați putea întreba dentistul sau medicul despre tratamentul antifungic."
+    }
+  ],
+  "questions": [
+    "Ce provoacă candidoza mea și ce tratament ar trebui să folosesc?",
+    "Am nevoie de alte teste dacă tot revine?",
+    "Cum ar trebui să curăț protezele, inhalatoarele și echipamentul bebelușului?"
+  ]
+}

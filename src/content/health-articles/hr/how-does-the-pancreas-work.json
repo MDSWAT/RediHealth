@@ -1,0 +1,52 @@
+{
+  "title": "Gušterača: probava i glukoza",
+  "intro": "Gušterača je iza želuca i ima probavnu i hormonsku funkciju. Koriste različite izlazne putove. Problem jedne ne znači automatski potpuni gubitak druge funkcije.",
+  "sections": [
+    {
+      "heading": "Enzimi",
+      "paragraphs": [
+        "Egzokrine stanice šalju enzime vodovima u tanko crijevo. Razgrađuju masti, proteine i ugljikohidrate; normalno ne ulaze u krv radi probavljanja hrane."
+      ]
+    },
+    {
+      "heading": "Neutralizacija",
+      "paragraphs": [
+        "Tekućina gušterače sadrži bikarbonat koji neutralizira želučanu kiselinu u crijevu. Stvara uvjete enzimima i štiti sluznicu."
+      ]
+    },
+    {
+      "heading": "Hormoni",
+      "paragraphs": [
+        "Stanice otočića otpuštaju inzulin i glukagon u krv. Inzulin pomaže unosu i pohrani glukoze, glukagon jetri da je otpušta po potrebi. Surađuju s drugim signalima."
+      ]
+    },
+    {
+      "heading": "Problemi",
+      "paragraphs": [
+        "Upala, manjak enzima i dijabetes različiti su ali ponekad povezani. Masna stolica, mršavljenje ili trajna žeđ traže pregled, ne samostalne enzime ili opću zabranu šećera."
+      ]
+    },
+    {
+      "heading": "Sigurnost",
+      "paragraphs": [
+        "Jaka trajna bol u gornjem trbuhu, posebno uz povraćanje ili kolaps, traži hitnost. Kod dijabetesa slijedite osobni plan bolesti i hipoglikemije; ne prekidajte potreban inzulin zbog preskočenog obroka bez savjeta.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pita zašto propisani enzimi idu uz obroke. Uči njihovu probavnu ulogu, različitu od hormona krvi."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima žeđ i neočekivano mršavi. Traži test glukoze umjesto dijagnoze iz dijagrama."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

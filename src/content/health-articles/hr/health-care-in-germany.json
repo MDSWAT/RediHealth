@@ -1,0 +1,51 @@
+{
+  "title": "Pronalaženje zdravstvene skrbi u Njemačkoj",
+  "intro": "Članak govori o službama u Njemačkoj, ne pravilima Moldavije ili svake europske zemlje. Poznavanje puteva redovite, žurne i hitne skrbi može smanjiti kašnjenja i nepotrebne odlaske.",
+  "sections": [
+    {
+      "heading": "Redovita skrb i uputnice",
+      "paragraphs": [
+        "Za trajne simptome, recepte i prevenciju opća praksa često je početna točka. Pitajte prihvaća li osiguranje i treba li termin; uputnice ovise o službi i osiguranju."
+      ]
+    },
+    {
+      "heading": "Priprema pregleda",
+      "paragraphs": [
+        "Ponesite podatke osiguranja, lijekove, nalaze i važna pitanja. Unaprijed objasnite komunikacijske ili pristupne potrebe. Tumač pomaže, ali dostupnost i plaćanje treba provjeriti bez pretpostavke da ga svaka ordinacija pruža."
+      ]
+    },
+    {
+      "heading": "Žurna skrb izvan radnog vremena",
+      "paragraphs": [
+        "Kada su ordinacije zatvorene, a problem ne može čekati ali ne ugrožava život, njemačka dežurna služba savjetuje na 116117. Telefon je na njemačkom; tražite dostupne alternative za jezične ili slušne teškoće."
+      ]
+    },
+    {
+      "heading": "Životno ugrožavajuća stanja",
+      "paragraphs": [
+        "Za životnu ugrozu, teško disanje, sumnju na moždani udar ili kolaps nazovite 112. Opišite mjesto i simptome te slijedite upute. Ne odgađajte pomoć tražeći osiguranje ili redovit termin."
+      ]
+    },
+    {
+      "heading": "Nalazi, lijekovi i troškovi",
+      "paragraphs": [
+        "Prije odlaska razjasnite plan, kontrolu i rezultate. Lijekovi se dobivaju u ljekarni; pitajte za primjenu i trošak. Ovi putevi ne određuju osobno pokriće pa nehitne troškove provjerite s ordinacijom i osiguravateljem."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima bolnu tegobu dok je ordinacija zatvorena. Koristi dežurstvo jer ne može čekati, znajući da životna ugroza zahtijeva hitnu službu."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben nosi popis lijekova i traži jezičnu pomoć prije pregleda. Provjerava rezultate umjesto pretpostavke da šutnja znači uredan nalaz."
+    }
+  ],
+  "questions": [
+    "Koju službu trebam u svojoj situaciji?",
+    "Koja se komunikacijska podrška može dogovoriti?",
+    "Kako dobivam nalaze i daljnje upute?"
+  ]
+}

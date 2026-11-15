@@ -1,0 +1,51 @@
+{
+  "title": "Alergija na otrov kukaca",
+  "intro": "Većina uboda kukaca uzrokuje samo kratku bol i oticanje. U nekih ljudi imunološki sustav pretjerano reagira na otrov pčela, osa ili stršljena i uzrokuje opasnu alergijsku reakciju. Poznavanje znakova upozorenja, nošenje hitnog lijeka i razmatranje imunoterapije otrovom mogu zaštititi ljude u riziku.",
+  "sections": [
+    {
+      "heading": "Normalne naspram alergijskih reakcija",
+      "paragraphs": [
+        "Normalan ubod uzrokuje bol, crvenilo i malu oteklinu koja nestaje unutar nekoliko sati. Velika lokalna reakcija stvara oteklinu veću od deset centimetara koja traje danima. Prava alergijska reakcija zahvaća cijelo tijelo i može uzrokovati koprivnjaču, oticanje lica, stezanje u grlu, piskanje pri disanju, vrtoglavicu, povraćanje ili kolaps, što se zove anafilaksija."
+      ]
+    },
+    {
+      "heading": "Hitno liječenje",
+      "paragraphs": [
+        "Anafilaksija je hitno stanje. Odmah nazovite hitnu pomoć. Osobe kojima je propisan autoinjektor adrenalina trebaju ga odmah upotrijebiti na vanjskoj strani bedra, leći s podignutim nogama osim ako im je disanje lakše sjedeći i čekati pomoć čak i ako se osjećaju bolje. Može biti potrebna druga doza."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Alergolog uzima povijest reakcije i provodi kožne testove i krvne pretrage na protutijela na otrov. U nekim slučajevima krvna pretraga triptaze pomaže identificirati osobe pod povećanim rizikom. Testiranje se obično provodi tjednima nakon reakcije."
+      ]
+    },
+    {
+      "heading": "Imunoterapija otrovom",
+      "paragraphs": [
+        "Imunoterapija otrovom daje postupno rastuće doze pročišćenog otrova tijekom tjedana, nakon čega slijede injekcije održavanja svakih mjesec dana ili tako tri do pet godina. Sprječava ozbiljne reakcije u većine bolesnika i preporučuje se osobama koje su imale sustavne reakcije i imaju potvrđenu alergiju. Liječenje se započinje pod pomnim nadzorom."
+      ]
+    },
+    {
+      "heading": "Izbjegavanje uboda",
+      "paragraphs": [
+        "Izbjegavajte hodanje bosi po travi, nosite cipele na otvorenom, držite hranu i slatka pića pokrivenima i budite oprezni oko kanti za smeće i voća. Ostanite mirni u blizini osa i pčela i polako se udaljite. Ne mašite rukama. Koristite mreže na prozorima. Nosite svoj komplet za hitne slučajeve i obavijestite obitelj, prijatelje i kolege o planu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za piknik",
+      "text": "Zamislite da ste alergični na ose i idete na piknik. Mogli biste ponijeti autoinjektor, pokriti pića, držati telefon blizu i reći suputnicima što učiniti ako reagirate."
+    },
+    {
+      "title": "Pitanje o imunoterapiji",
+      "text": "Pretpostavite da ste prošlog ljeta imali jaku reakciju. Mogli biste pitati specijalista jesu li testiranje i imunoterapija otrovom prikladni za vas i koliko bi liječenje trajalo."
+    }
+  ],
+  "questions": [
+    "Je li moja reakcija prava alergija i koje pretrage trebam učiniti?",
+    "Trebam li autoinjektor adrenalina i kako ga ispravno koristiti?",
+    "Bi li mi imunoterapija otrovom bila prikladna?"
+  ]
+}

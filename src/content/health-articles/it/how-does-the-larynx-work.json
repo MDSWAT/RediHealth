@@ -1,0 +1,52 @@
+{
+  "title": "Laringe: respiro, voce e protezione",
+  "intro": "La laringe si trova fra gola e trachea. Fa passare aria, produce voce e aiuta a tenere il cibo fuori dalle vie aeree. Parlare e deglutire richiedono muscoli e nervi coordinati, non un solo coperchio.",
+  "sections": [
+    {
+      "heading": "Struttura",
+      "paragraphs": [
+        "Le cartilagini sostengono consentendo movimento. Il rivestimento è delicato; fumo, irritazione e uso intenso della voce possono alterarlo. La prominenza del collo non misura la salute vocale."
+      ]
+    },
+    {
+      "heading": "Suono",
+      "paragraphs": [
+        "L'aria polmonare fa vibrare le corde vocali posizionate per parlare. Tensione e vibrazione influenzano l'altezza; bocca e lingua modellano le parole."
+      ]
+    },
+    {
+      "heading": "Deglutizione",
+      "paragraphs": [
+        "La laringe sale e diverse chiusure collaborano, comprese epiglottide e corde. La tosse elimina materiale, ma episodi ripetuti di soffocamento non vanno ignorati."
+      ]
+    },
+    {
+      "heading": "Cura",
+      "paragraphs": [
+        "Evitate fumo e urla ripetute, fate pause e idratatevi adeguatamente. Raucedine persistente richiede esame, non sussurri indefiniti o antibiotici ripetuti senza prescrizione."
+      ]
+    },
+    {
+      "heading": "Allarmi",
+      "paragraphs": [
+        "Respiro rumoroso o difficile, impossibilità di deglutire saliva o gonfiore rapido richiedono urgenza. Tosse ai pasti o voce alterata a lungo richiedono visita, soprattutto con dimagrimento o nodulo al collo.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira perde la voce dopo un uso intenso. Riposa ragionevolmente e cerca una visita se persiste senza forzare le esibizioni."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben tossisce spesso bevendo. Chiede valutazione della deglutizione anziché considerarla semplice goffaggine."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

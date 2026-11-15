@@ -1,0 +1,51 @@
+{
+  "title": "Defibrilatori i implantuar: mbrojtje dhe ndjekje",
+  "intro": "ICD ndjek disa ritme të rrezikshme dhe i trajton automatikisht. Ul rrezikun e vdekjes së papritur te persona të zgjedhur, por nuk shëron çdo problem ose zëvendëson ilaçet e kontrollet.",
+  "sections": [
+    {
+      "heading": "Zbulimi dhe terapia",
+      "paragraphs": [
+        "Interpreton sinjalet sipas programimit. Sipas llojit përdor stimulim të shpejtë ose goditje për ritmin e rrezikshëm. Nuk godet çdo puls të shpejtë dhe mund të godasë papërshtatshëm."
+      ]
+    },
+    {
+      "heading": "Zgjedhja dhe vendosja",
+      "paragraphs": [
+        "Disa kanë tela në zemër, të tjerë nën lëkurë pa tela brenda saj. Përfitimet, stimulimi dhe rreziqet ndryshojnë. Pyesni arsyen dhe diskutoni infeksionin, gjakosjen, telat dhe qëllimet."
+      ]
+    },
+    {
+      "heading": "Jeta me ICD",
+      "paragraphs": [
+        "Mbani kartën dhe tregoni para skanimeve ose procedurave. Përputhshmëria varet nga sistemi: rezonanca nuk është automatikisht e ndaluar ose e sigurt. Pyesni magnetët, pajisjet, drejtimin e aktivitetin sipas ekipit."
+      ]
+    },
+    {
+      "heading": "Kontrollet dhe planet",
+      "paragraphs": [
+        "Ndiqni pajisjen dhe baterinë edhe kur jeni mirë. Monitorimi në distancë nuk është urgjencë e vëzhguar pa pushim. Diskutoni ankthin dhe rishikimin e goditjeve kur ndryshon shëndeti ose qëllimi."
+      ]
+    },
+    {
+      "heading": "Pas goditjes",
+      "paragraphs": [
+        "Merrni plan të shkruar. Kontaktoni shpejt ekipin edhe nëse jeni mirë. Goditjet e përsëritura, të fikëtit, dhimbja e gjoksit ose frymëmarrja e vështirë duan urgjencë. Pa reagim e frymë normale nevojiten urgjenca, reanimimi dhe AED kur ka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet nëse pajisja stimulon dhe godet dhe diskuton qëllimet para implantimit."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni merr goditje por ndihet mirë më pas. Ndjek planin pa supozuar se transmetimi në distancë është vlerësuar."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

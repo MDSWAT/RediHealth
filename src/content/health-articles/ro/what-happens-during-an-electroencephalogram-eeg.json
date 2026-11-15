@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă în timpul unei electroencefalograme (EEG)?",
+  "intro": "Electroencefalograma, sau EEG, înregistrează activitatea electrică a creierului prin mici senzori așezați pe scalp. Este nedureroasă și sigură. Este folosită cel mai des pentru a ajuta la diagnosticarea epilepsiei și a altor cauze de convulsii, leșinuri și schimbări ale stării de conștiență.",
+  "sections": [
+    {
+      "heading": "De ce se face",
+      "paragraphs": [
+        "Celulele creierului comunică prin semnale electrice, iar un EEG arată tipare ale acestei activități. Poate arăta descărcări anormale în epilepsie, poate ajuta la clasificarea tipurilor de crize, la evaluarea tulburărilor de somn și a confuziei și la aprecierea funcției creierului în unele boli. Un EEG normal nu exclude epilepsia."
+      ]
+    },
+    {
+      "heading": "Pregătirea",
+      "paragraphs": [
+        "Spălați-vă părul cu o zi înainte, fără balsam, geluri sau spray-uri. Mâncați normal și luați medicamentele, dacă nu vi se spune altfel. Uneori vi se cere să dormiți mai puțin în noaptea dinainte, pentru a adormi în timpul testului. Aduceți o listă cu medicamentele și spuneți personalului despre orice crize."
+      ]
+    },
+    {
+      "heading": "În timpul testului",
+      "paragraphs": [
+        "Un tehnician fixează pe scalp aproximativ douăzeci de mici discuri metalice cu pastă sau cu o cască. Ele se conectează la un aparat de înregistrare. Vă întindeți sau stați relaxat cu ochii închiși, apoi deschiși. Vi se poate cere să respirați adânc sau să priviți lumini intermitente, care pot declanșa activitate anormală. Înregistrarea durează de la douăzeci până la șaizeci de minute."
+      ]
+    },
+    {
+      "heading": "Alte tipuri",
+      "paragraphs": [
+        "EEG-ul de somn înregistrează în timpul somnului, iar EEG-ul ambulatoriu este înregistrat una până la trei zile acasă. EEG-ul video din spital înregistrează crizele împreună cu imaginea video. Acestea oferă mai multe informații decât un test de rutină. Testul nu produce niciun șoc electric."
+      ]
+    },
+    {
+      "heading": "După test",
+      "paragraphs": [
+        "De obicei puteți merge acasă și vă puteți relua activitățile normale. Spălați pasta din păr. Un specialist examinează înregistrarea, iar rezultatul este trimis medicului dumneavoastră în câteva zile. Întrebați ce arată și care sunt pașii următori."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea părului",
+      "text": "Imaginați-vă că EEG-ul este mâine. Ați putea să vă spălați părul în seara aceasta, să evitați produsele și să aduceți lista de medicamente."
+    },
+    {
+      "title": "Înțelegerea unui rezultat normal",
+      "text": "Presupuneți că EEG-ul este normal după o criză. Ați putea întreba dacă un EEG mai lung sau în somn ar ajuta."
+    }
+  ],
+  "questions": [
+    "De ce am nevoie de un EEG și ce ar putea arăta?",
+    "Trebuie să-mi schimb medicamentele sau somnul înainte de test?",
+    "Ce se întâmplă dacă EEG-ul este normal?"
+  ]
+}

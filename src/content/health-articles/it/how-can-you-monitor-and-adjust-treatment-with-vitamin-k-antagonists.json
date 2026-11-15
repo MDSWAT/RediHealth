@@ -1,0 +1,51 @@
+{
+  "title": "Antagonisti della vitamina K: controlli e sicurezza",
+  "intro": "Gli antagonisti come warfarin riducono la coagulazione e prevengono trombi. Effetto basso lascia rischio, eccessivo aumenta emorragie. Sicurezza richiede obiettivo INR individuale e dosaggio chiaro.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "L’INR misura l’effetto. Obiettivo e intervallo dipendono da indicazione e stabilità; non esiste dose o obiettivo universale. Verificare attentamente diverse quantità per compressa."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Tenere dosi e test accurati e sapere chi dà l’istruzione successiva. Test domestico o autoaggiustamento richiedono formazione e accordo del servizio, non una tabella online. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Malattia, vomito, diarrea, nuovi farmaci, antibiotici e integratori modificano l’effetto. Riferire cambiamenti e procedure. Non sospendere o fare sostituzioni temporanee prima di dentista o chirurgia senza piano professionale. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Mantenere vitamina K abbastanza costante senza vietare tutte le verdure verdi. Discutere alcol e grandi cambi di dieta. Seguire istruzioni specifiche per dose dimenticata: non raddoppiare né improvvisare correzioni. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Trauma cranico, sangue incontrollato, vomito ematico, feci nere, forte cefalea o ictus richiedono urgenza. INR fuori limiti richiede consiglio tempestivo anche senza sintomi. Sospetta gravidanza richiede contatto rapido."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira inizia un antibiotico e avvisa il servizio che decide se anticipare l’INR."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben riceve compresse di diversa forza e verifica la dose col farmacista invece di presumere uguale dose con uguale numero."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

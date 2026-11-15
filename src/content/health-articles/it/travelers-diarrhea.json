@@ -1,0 +1,51 @@
+{
+  "title": "Diarrea del viaggiatore",
+  "intro": "La diarrea del viaggiatore colpisce molte persone che visitano regioni con standard igienici diversi, di solito tramite cibo o acqua contaminati. Causa feci molli, crampi e a volte nausea ed è di solito lieve e passa in pochi giorni. Prevenire la disidratazione è il trattamento principale.",
+  "sections": [
+    {
+      "heading": "Cause e rischio",
+      "paragraphs": [
+        "La maggior parte dei casi è causata da batteri come certi tipi di E. coli, meno spesso da virus o parassiti. I germi vengono assunti con cibo, acqua o ghiaccio contaminati. Il rischio è massimo in parti dell'Asia, dell'Africa e dell'America Latina e con il caldo. Cibo di strada, insalate, frutta non sbucciata e acqua del rubinetto aumentano il rischio. Bambini piccoli, anziani e persone con immunità debole sono più vulnerabili."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Diarrea improvvisa e acquosa tre o più volte al giorno, crampi addominali, nausea, gonfiore e a volte febbre. La maggior parte delle persone guarisce in tre-cinque giorni. Sangue nelle feci, febbre alta, forte dolore o diarrea persistente oltre una settimana suggeriscono un'infezione più grave."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Reintegra liquidi e sali con una soluzione di reidratazione orale, acqua, brodo e succhi diluiti e mangia cibi leggeri secondo tolleranza. La loperamide può ridurre la frequenza delle scariche negli adulti con diarrea acquosa ma non va usata con febbre o feci con sangue né nei bambini piccoli. Gli antibiotici sono riservati ai casi gravi e si prendono su consiglio medico, perché comportano rischi e possono favorire batteri resistenti."
+      ]
+    },
+    {
+      "heading": "Quando cercare assistenza medica",
+      "paragraphs": [
+        "Cerca assistenza per segni di disidratazione come urine scure, capogiri, bocca molto secca, poca urina o letargia, per sangue nelle feci, febbre alta, vomito persistente, sintomi oltre alcuni giorni o in neonati, bambini piccoli, donne in gravidanza e persone con malattie croniche."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Lavati le mani con il sapone prima di mangiare, mangia cibi appena cucinati e serviti caldi, sbuccia la frutta da solo, bevi acqua in bottiglia o bollita, evita cubetti di ghiaccio e insalate crude nelle zone ad alto rischio e lavati i denti con acqua sicura. Valuta la vaccinazione contro tifo o colera secondo il consiglio di un ambulatorio dei viaggiatori. Rivolgersi a un ambulatorio dei viaggiatori prima del viaggio aiuta a pianificare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reidratarsi",
+      "text": "Immagina di avere diarrea acquosa in vacanza. Potresti prendere sali per la reidratazione orale, bere regolarmente a piccoli sorsi e mangiare cibi neutri."
+    },
+    {
+      "title": "Fare i bagagli con cura",
+      "text": "Supponi di viaggiare verso una regione ad alto rischio. Potresti portare bustine di reidratazione e disinfettante per le mani e chiedere consigli a un ambulatorio dei viaggiatori."
+    }
+  ],
+  "questions": [
+    "Quali farmaci devo portare in viaggio e quando devo usarli?",
+    "Sono consigliate vaccinazioni per la mia destinazione?",
+    "Quando devo andare da un medico all'estero?"
+  ]
+}

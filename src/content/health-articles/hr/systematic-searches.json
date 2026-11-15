@@ -1,0 +1,51 @@
+{
+  "title": "Sustavna pretraživanja dokaza",
+  "intro": "Da bi se procijenilo djeluje li neko liječenje, nije dovoljno pogledati jedno istraživanje ili ona koja je slučajno lako pronaći. Sustavno pretraživanje traži sva relevantna istraživanja na planiran, ponovljiv način. Znati kako to funkcionira pomaže vam razumjeti zašto su neki sažeci pouzdaniji od drugih.",
+  "sections": [
+    {
+      "heading": "Zašto je sustavno pretraživanje važno",
+      "paragraphs": [
+        "Istraživanja s pozitivnim rezultatima vjerojatnije se objavljuju i primjećuju od onih s negativnim rezultatima. Recenzent koji nehajno bira istraživanja može dobiti pristranu sliku. Sustavno pretraživanje nastoji to izbjeći utvrđivanjem što više relevantnih dokaza, bez obzira na njihove rezultate."
+      ]
+    },
+    {
+      "heading": "Planiranje pitanja",
+      "paragraphs": [
+        "Prvi korak je jasno pitanje, primjerice koje su osobe od interesa, koje se liječenje s čime uspoređuje i koji su ishodi važni. Istraživači unaprijed zapisuju koja će se istraživanja uključiti, a koja isključiti, kao što su vrsta istraživanja, populacija i vremensko razdoblje, kako rezultati ne bi utjecali na odluke."
+      ]
+    },
+    {
+      "heading": "Pretraživanje mnogih izvora",
+      "paragraphs": [
+        "Pretraživači koriste nekoliko baza medicinske literature, kombinirajući mnogo pojmova i sinonima. Također provjeravaju registre kliničkih ispitivanja radi neobjavljenih ili tekućih istraživanja, popise literature ključnih članaka, izvješća s konferencija te kontaktiraju stručnjake ili proizvođače. Strategija pretraživanja se dokumentira kako bi je drugi mogli ponoviti."
+      ]
+    },
+    {
+      "heading": "Odabir i provjera istraživanja",
+      "paragraphs": [
+        "Dvije osobe neovisno pregledavaju naslove i sažetke, a zatim cijele tekstove, prema kriterijima uključivanja. Neslaganja se rješavaju raspravom. Broj pronađenih i isključenih istraživanja te razlozi izvješćuju se, često u dijagramu toka. Zatim se svako uključeno istraživanje procjenjuje s obzirom na kvalitetu i rizik pristranosti."
+      ]
+    },
+    {
+      "heading": "Ograničenja i dobra praksa",
+      "paragraphs": [
+        "Nijedno pretraživanje ne pronalazi sve, a neki dokazi ostaju neobjavljeni. Dobri pregledi su transparentni o tome kako su pretraživali i gdje ostaju praznine. Kada čitate sažetak istraživanja, tražite opis kako su istraživanja identificirana, datume pretraživanja i je li pregled ažuran."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Procjena pregleda",
+      "text": "Zamislite da zdravstvena web-stranica tvrdi da istraživanja dokazuju da liječenje djeluje. Mogli biste provjeriti temelji li se tvrdnja na sustavnom pregledu i kako su istraživanja pronađena."
+    },
+    {
+      "title": "Pitanje liječniku",
+      "text": "Pretpostavite da čitate proturječna istraživanja. Mogli biste pitati liječnika je li sustavni pregled ili smjernica sažela sva istraživanja o tom pitanju."
+    }
+  ],
+  "questions": [
+    "Temelji li se ova tvrdnja na svim relevantnim istraživanjima ili samo na nekima?",
+    "Postoji li nedavni sustavni pregled o ovom pitanju?",
+    "Koliko su ti dokazi ažurni?"
+  ]
+}

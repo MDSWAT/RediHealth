@@ -1,0 +1,52 @@
+{
+  "title": "Upala vanjskog uha",
+  "intro": "Upala vanjskog uha, ili otitis externa, je upala kože zvukovoda, često nazvana uho plivača. Uzrokuje bol, svrbež i ponekad iscjedak. Obično se liječi kapima za uši i prolazi unutar tjedan ili dva. Držanje zvukovoda suhim i nebockanje po njemu pomažu spriječiti je.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Kožu koja oblaže zvukovod normalno štiti tanak voštani sloj. Voda koja ostaje u uhu, štapići s vatom, slušni aparati, čepići za uši, ekcem i češanje mogu razbiti tu barijeru, omogućujući rast bakterija ili ponekad gljivica. Plivanje, vlažno vrijeme i uski zvukovodi povećavaju rizik."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipični znakovi su bol u uhu koja se pogoršava kad se vanjsko uho povuče ili pritisne, svrbež, crvenilo, osjećaj punoće, prigušen sluh i bistar ili žućkast iscjedak. Vrućica je neuobičajena. Bol može biti intenzivna i remetiti san."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Liječnik pregledava zvukovod i često ga pažljivo čisti. Antibiotske ili antiseptičke kapi, ponekad u kombinaciji s blagim steroidom, koriste se oko tjedan dana. Ako je zvukovod zatvoren oticanjem, može se umetnuti mali fitilj koji prenosi kapi. Lijekovi protiv bolova kao što su paracetamol ili ibuprofen ublažavaju nelagodu. Gljivične infekcije zahtijevaju antifungalne kapi.",
+        "Držite uho suhim tijekom liječenja i ne koristite štapiće s vatom ili predmete. Prestanite plivati dok liječnik ne kaže da je u redu."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Nježno osušite uši nakon plivanja ili tuširanja, naginjući glavu i koristeći ručnik samo izvana. Izbjegavajte čišćenje unutar zvukovoda, koristite čepiće za uši pri plivanju ako ste skloni infekcijama i čistite slušne aparate kako je savjetovano. Liječite osnovni ekcem."
+      ]
+    },
+    {
+      "heading": "Kada potražiti pomoć",
+      "paragraphs": [
+        "Brzo posjetite liječnika ako je bol jaka, postoji oticanje lica, vrućica, gubitak sluha, vrtoglavica ili ako imate dijabetes ili oslabljen imunitet jer se rijedak težak oblik može proširiti na kost. Potražite savjet ako se simptomi ne poboljšaju nakon nekoliko dana liječenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Nakon plivanja",
+      "text": "Zamislite da vas uho boli dan nakon odmora na moru. Mogli biste izbjegavati štapiće s vatom, posjetiti liječnika i koristiti propisane kapi točno kako je naloženo."
+    },
+    {
+      "title": "Sprječavanje ponavljanja",
+      "text": "Pretpostavite da ste to imali nekoliko puta. Mogli biste pitati bi li čepići za uši ili kapi za sušenje pomogli i izbjegavati umetanje bilo čega u uši."
+    }
+  ],
+  "questions": [
+    "Je li moja upala uha bakterijska ili gljivična i koje kapi trebam?",
+    "Kako mogu držati vodu van uha dok zacjeljuje?",
+    "Što mogu učiniti da se ne vrati?"
+  ]
+}

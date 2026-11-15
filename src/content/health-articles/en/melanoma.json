@@ -1,0 +1,51 @@
+{
+  "title": "Melanoma",
+  "intro": "Melanoma is a type of skin cancer that develops from pigment-producing cells. It is less common than other skin cancers but more dangerous because it can spread. Found early, it is usually cured by a small operation, so knowing the warning signs and having suspicious moles checked is important.",
+  "sections": [
+    {
+      "heading": "Causes and risk factors",
+      "paragraphs": [
+        "The main cause is ultraviolet radiation from the sun and sunbeds, especially repeated sunburn. Risk is higher with fair skin, many moles, atypical moles, a family history of melanoma, a previous melanoma and weakened immunity. Melanoma can also occur on skin rarely exposed to sun, on nails, or in the eye."
+      ]
+    },
+    {
+      "heading": "Warning signs",
+      "paragraphs": [
+        "The ABCDE rule helps: Asymmetry, irregular Border, uneven Colour, Diameter larger than about six millimetres, and Evolving or changing. A new or changing mole that itches, bleeds or looks different from the rest should be checked. Not all melanomas are dark; some are pink or colourless."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "A dermatologist examines the skin, often using a dermatoscope. A suspicious mole is removed completely and examined under the microscope. The thickness of the tumour, measured in millimetres, is the most important factor for prognosis. Lymph nodes may be checked, and scans are used for thicker or more advanced melanoma."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Early melanoma is treated by wide excision, removing the tumour and a margin of normal skin. A sentinel lymph node biopsy may be advised for thicker tumours. For stage III and IV melanoma, modern treatments include immunotherapy and targeted drugs that block specific mutations, often combined with surgery or radiotherapy. These have greatly improved survival, though they can cause significant side effects that need monitoring."
+      ]
+    },
+    {
+      "heading": "Follow-up and prevention",
+      "paragraphs": [
+        "After treatment, regular skin checks and self-examination detect recurrences and new melanomas. Protect your skin from the sun, avoid sunbeds and photograph your moles to track changes. Tell relatives about their increased risk."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Checking your skin",
+      "text": "Imagine you decide to examine your skin monthly. You could use a mirror or ask a partner to look at your back, take photographs of your moles and compare them over time."
+    },
+    {
+      "title": "Understanding a result",
+      "text": "Suppose your mole was removed and found to be a thin melanoma. You might ask what thickness means for follow-up, whether more surgery is needed and how often to be checked."
+    }
+  ],
+  "questions": [
+    "Which of my moles should be monitored, and how often should I have skin checks?",
+    "What stage is my melanoma, and what treatment is recommended?",
+    "What follow-up schedule will I have, and how can I protect my skin?"
+  ]
+}

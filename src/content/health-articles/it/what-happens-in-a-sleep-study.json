@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa succede in uno studio del sonno",
+  "intro": "Uno studio del sonno, o polisonnografia, registra l'attività del corpo durante il sonno per scoprire perché qualcuno dorme male o si sente stanco di giorno. Aiuta a diagnosticare condizioni come l'apnea notturna, la sindrome delle gambe senza riposo, la narcolessia e movimenti anomali nel sonno. È indolore, ma richiede un'intera notte.",
+  "sections": [
+    {
+      "heading": "Perché si fa",
+      "paragraphs": [
+        "Può essere raccomandato per un russamento forte con pause del respiro, un'eccessiva sonnolenza diurna, un sonno non ristoratore, comportamenti insoliti di notte come il sonnambulismo, gambe senza riposo o sospetta narcolessia. Lo studio mostra quanto dormi, quali fasi raggiungi e quanto spesso il respiro si ferma."
+      ]
+    },
+    {
+      "heading": "Tipi di studi",
+      "paragraphs": [
+        "Uno studio in laboratorio si fa di notte in un centro del sonno con un tecnico che monitora. Un esame semplificato a casa misura respirazione, ossigeno e frequenza cardiaca e si usa soprattutto quando l'apnea notturna è probabile. Alcuni esami, come il test delle latenze multiple del sonno, si fanno di giorno per misurare quanto in fretta ti addormenti."
+      ]
+    },
+    {
+      "heading": "Che cosa si misura",
+      "paragraphs": [
+        "Piccoli sensori vengono applicati a cuoio capelluto, viso, torace, gambe e dito per registrare onde cerebrali, movimenti degli occhi, attività muscolare, ritmo cardiaco, sforzo respiratorio, flusso d'aria e livelli di ossigeno. Un microfono e una telecamera registrano russamento e movimenti. I sensori sono fissati con cerotto o pasta e non fanno male."
+      ]
+    },
+    {
+      "heading": "Prepararsi alla notte",
+      "paragraphs": [
+        "Mantieni la tua routine normale, evita la caffeina nel pomeriggio ed evita alcol e sonnellini diurni se indicato. Porta indumenti da notte comodi e i tuoi farmaci abituali. La maggior parte delle persone dorme, anche se meno bene che a casa. Segnala al personale i problemi con l'apparecchiatura."
+      ]
+    },
+    {
+      "heading": "Risultati e trattamento",
+      "paragraphs": [
+        "Uno specialista analizza i dati e i risultati vengono comunicati in giorni o settimane. Il trattamento dipende dal reperto, per esempio una maschera che fornisce pressione d'aria per l'apnea notturna, dispositivi dentali, perdita di peso, farmaci o terapia comportamentale. Il controllo successivo verifica se il trattamento funziona."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi",
+      "text": "Immagina di avere domani notte un esame del sonno. Potresti saltare il caffè del pomeriggio, portare i tuoi farmaci abituali e indossare indumenti da notte comodi."
+    },
+    {
+      "title": "Rivedere i risultati",
+      "text": "Supponi che lo studio mostri un'apnea notturna. Potresti chiedere del trattamento con la maschera e di come abituarsi."
+    }
+  ],
+  "questions": [
+    "Quale tipo di studio del sonno è giusto per me?",
+    "Che cosa significano i risultati per la mia stanchezza diurna?",
+    "Quali opzioni di trattamento esistono se si trova un problema?"
+  ]
+}

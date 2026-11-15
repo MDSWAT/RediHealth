@@ -1,0 +1,52 @@
+{
+  "title": "Sindroma e zorrës së irrituar",
+  "intro": "Sindroma e zorrës së irrituar është një çrregullim i zakonshëm afatgjatë i zorrëve që shkakton dhimbje barku me diarre, kapsllëk ose të dyja. Ajo nuk e dëmton zorrën dhe nuk e rrit rrezikun e kancerit, por simptomat mund të jenë të shqetësuara. Dieta, menaxhimi i stresit dhe ndonjëherë ilaçet sjellin lehtësim.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat tipike janë dhimbje barku me ngërçe të lidhura me jashtëqitjen, fryrje, gazra dhe ndryshime në shpeshtësinë ose konsistencën e jashtëqitjes. Disa njerëz kanë kryesisht diarre, të tjerë kapsllëk dhe disa alternojnë. Simptomat vijnë e ikin dhe shpesh përkeqësohen gjatë stresit ose pas disa ushqimeve."
+      ]
+    },
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Shkaku i saktë nuk dihet. Faktorët përfshijnë një zorrë më të ndjeshme, lëvizje të ndryshuar të zorrëve, ndryshime në bakteret e zorrëve, infeksion të mëparshëm të zorrëve dhe lidhjen midis trurit dhe zorrëve. Stresi dhe ankthi nuk e shkaktojnë çrregullimin, por mund ta përkeqësojnë."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Diagnoza bazohet te simptomat tipike dhe përjashtimi i gjendjeve të tjera. Mjekët mund të kërkojnë analiza gjaku, analiza jashtëqitjeje dhe, kur nevojitet, një kolonoskopi, veçanërisht kur ka shenja paralajmëruese si gjak në jashtëqitje, humbje peshe, anemi, ethe, simptoma që fillojnë pas moshës 50 vjeç ose histori familjare të kancerit të zorrës ose sëmundjes inflamatore të zorrëve."
+      ]
+    },
+    {
+      "heading": "Trajtimi dhe vetëndihma",
+      "paragraphs": [
+        "Vaktet e rregullta, lëngjet e mjaftueshme, aktiviteti fizik dhe gjumi i mirë ndihmojnë. Mbajtja e një ditari ushqimi e simptomash mund të identifikojë nxitësit si kafeina, ushqimi i yndyrshëm ose ëmbëlsuesit. Fibra e tretshme, si psyllium, ndihmon disa njerëz, ndërsa fibra e patretshme mund ta përkeqësojë fryrjen. Një dietë low-FODMAP, e bërë me një dietolog, ndihmon disa njerëz, por nuk duhet ndjekur afatgjatë pa udhëzim.",
+        "Barnat mund të lehtësojnë ngërçet, diarrenë ose kapsllëkun. Vaji i nenexhikut mund të ndihmojë për dhimbjen. Terapitë psikologjike si terapia konjitivo-sjellëse dhe hipnoterapia e drejtuar nga zorrët janë efektive për simptoma të vazhdueshme."
+      ]
+    },
+    {
+      "heading": "Të jetosh me IBS",
+      "paragraphs": [
+        "IBS është zakonisht një gjendje e përjetshme me simptoma që ndryshojnë. Mësimi i nxitësve tuaj, menaxhimi i stresit dhe mbajtja e kontaktit me mjekun ju ndihmojnë ta përballoni. Kërkoni këshillë nëse simptomat ndryshojnë ndjeshëm ose zhvillohen shenja të reja paralajmëruese."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mbajtja e një ditari",
+      "text": "Imagjinoni që dyshoni se disa ushqime i nxisin simptomat tuaja. Mund të shkruani vaktet, stresin dhe simptomat për dy javë dhe ta rishikoni modelin me mjekun ose dietologun."
+    },
+    {
+      "title": "Provimi i një diete me siguri",
+      "text": "Supozoni që doni të provoni një dietë low-FODMAP. Mund të kërkoni referim te një dietolog që ta eliminoni ushqimet vetëm për një kohë të kufizuar dhe t'i rifutni me kujdes."
+    }
+  ],
+  "questions": [
+    "A mund t'i ketë simptomat e mia një shkak tjetër dhe cilat teste më duhen?",
+    "Cilat trajtime ose dieta kanë më shumë gjasa të ndihmojnë llojin tim të IBS?",
+    "Cilat shenja paralajmëruese do të thotë të kthehem më herët?"
+  ]
+}

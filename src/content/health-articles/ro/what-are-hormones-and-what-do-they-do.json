@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt hormonii și ce fac ei?",
+  "intro": "Hormonii sunt mesageri chimici produși de glande și eliberați în sânge. Ei călătoresc către organele și țesuturile țintă și controlează procese precum creșterea, metabolismul, reproducerea, dispoziția și răspunsul organismului la stres. Mici schimbări ale nivelurilor hormonale pot avea efecte mari, de aceea tulburările hormonale provoacă simptome extinse.",
+  "sections": [
+    {
+      "heading": "Principalele glande",
+      "paragraphs": [
+        "Hipofiza, de la baza creierului, este glanda principală care controlează multe altele. Tiroida din gât reglează metabolismul. Glandele suprarenale, situate deasupra rinichilor, produc cortizol și adrenalină. Pancreasul eliberează insulină și glucagon. Ovarele produc estrogen și progesteron, iar testiculele produc testosteron. Glandele paratiroide controlează calciul, iar glanda pineală produce melatonină."
+      ]
+    },
+    {
+      "heading": "Cum sunt reglate sistemele hormonale",
+      "paragraphs": [
+        "Cei mai mulți hormoni sunt controlați prin bucle de feedback. Când nivelul unui hormon este mare, semnalul de a produce mai mult este redus, iar când este mic, producția crește, asemenea unui termostat. De exemplu, hipofiza eliberează hormon de stimulare a tiroidei când hormonul tiroidian este scăzut și îl reduce când este crescut."
+      ]
+    },
+    {
+      "heading": "Ce fac hormonii",
+      "paragraphs": [
+        "Insulina scade glicemia. Hormonii tiroidieni stabilesc ritmul de consum de energie al organismului. Cortizolul ajută la gestionarea stresului și reglează tensiunea arterială și zahărul. Hormonul de creștere stimulează creșterea în copilărie. Hormonii sexuali controlează pubertatea, fertilitatea, menstruația și funcția sexuală. Hormonii influențează și somnul, pofta de mâncare, dispoziția și rezistența oaselor."
+      ]
+    },
+    {
+      "heading": "Când lucrurile merg prost",
+      "paragraphs": [
+        "Prea mult sau prea puțin hormon poate provoca boli: diabet prin efect insuficient al insulinei, tiroidă hiperactivă sau hipoactivă, sindromul Cushing prin exces de cortizol, insuficiență suprarenală, simptome de menopauză, sindromul ovarelor polichistice și testosteron scăzut. Simptome precum oboseala, schimbările de greutate, schimbările de dispoziție, intoleranța la temperatură sau problemele menstruale pot semnala tulburări hormonale, dar au multe alte cauze."
+      ]
+    },
+    {
+      "heading": "Testare și tratament",
+      "paragraphs": [
+        "Analizele de sânge, uneori de salivă sau de urină, și imagistica ajută la diagnosticarea problemelor hormonale. Tratamentul poate înlocui hormonii lipsă, îi poate bloca pe cei în exces, poate trata cauza sau poate îndepărta o formațiune. Fiți atent la produsele hormonale nereglementate și la testele comercializate direct consumatorilor și discutați îngrijorările cu un medic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Descrierea simptomelor",
+      "text": "Imaginați-vă că vă simțiți mereu obosit și vă este frig. Ați putea întreba medicul despre testele tiroidiene și ați putea enumera celelalte simptome."
+    },
+    {
+      "title": "Înțelegerea terapiei de substituție",
+      "text": "Presupuneți că începeți terapia de substituție pentru o tiroidă hipoactivă. Ați putea întreba cum se ajustează doza și cât de des sunt necesare analizele."
+    }
+  ],
+  "questions": [
+    "Ar putea simptomele mele să fie cauzate de o problemă hormonală?",
+    "Ce teste sunt necesare pentru a verifica?",
+    "Cum va fi monitorizat tratamentul?"
+  ]
+}

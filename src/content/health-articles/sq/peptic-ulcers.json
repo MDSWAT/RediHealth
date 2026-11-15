@@ -1,0 +1,51 @@
+{
+  "title": "Ulçerat peptike",
+  "intro": "Ulçera peptike është një plagë e hapur në mukozën e stomakut ose të pjesës së parë të zorrës së hollë. Shpesh shkakton dhimbje djegëse në pjesën e sipërme të barkut. Shumica e ulçerave shkaktohen nga një infeksion bakterial ose nga qetësuesit antiinflamatorë dhe shërohen mirë pasi trajtohet shkaku.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Mukoza e stomakut mbrohet normalisht nga acidi me anë të mukusit. Infeksioni me Helicobacter pylori dhe përdorimi i rregullt i qetësuesve antiinflamatorë si ibuprofeni, diklofenaku ose aspirina e dëmtojnë këtë mbrojtje. Duhani, pirja e rëndë e alkoolit dhe sëmundja e rëndë e shtojnë rrezikun. Stresi dhe ushqimi i pikant nuk i shkaktojnë vetë ulçerat, megjithëse mund t'i përkeqësojnë simptomat."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat tipike janë dhimbje djegëse ose gërryese në pjesën e sipërme të barkut, shpesh midis vakteve ose natën, fryrje, të përziera dhe ndjenjë e shpejtë ngopjeje. Dhimbja e ulçerës së stomakut mund të përkeqësohet me ngrënien, ndërsa ajo e ulçerës së duodenit mund të lehtësohet. Disa ulçera nuk japin simptoma derisa gjakderdhin."
+      ]
+    },
+    {
+      "heading": "Shenjat paralajmëruese",
+      "paragraphs": [
+        "Kërkoni ndihmë urgjente për të vjella me gjak ose material si llum kafeje, jashtëqitje të zeza si katran, dhimbje të papritur të rëndë barku, të fikët ose zbehje, pasi këto mund të tregojnë gjakderdhje ose çarje. Humbja e paqëllimtë e peshës, të vjellat e vazhdueshme ose vështirësia në gëlltitje kërkojnë gjithashtu vlerësim të shpejtë."
+      ]
+    },
+    {
+      "heading": "Diagnoza dhe trajtimi",
+      "paragraphs": [
+        "Mjekët mund të testojnë për Helicobacter me një test frymëmarrjeje, jashtëqitjeje ose indi dhe shpesh bëjnë gastroskopi për të parë ulçerën e për të marrë mostra. Trajtimi kombinon barna që ulin acidin të quajtura frenues të pompës së protoneve, zakonisht për disa javë, me një kurë antibiotikësh nëse ka Helicobacter. Ndalojini ose zëvendësojini qetësuesit antiinflamatorë nëse është e mundur. Testet e ndjekjes konfirmojnë që infeksioni ka shkuar."
+      ]
+    },
+    {
+      "heading": "Parandalimi i rikthimit",
+      "paragraphs": [
+        "Merrni kurën e plotë të antibiotikëve, shmangni qetësuesit antiinflamatorë të panevojshëm ose përdorni mbrojtje për stomakun kur janë të domosdoshëm, lini duhanin dhe kufizoni alkoolin. Tregojuni mjekëve e farmacistëve se keni pasur ulçerë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rishikimi i qetësuesve",
+      "text": "Imagjinoni që merrni ibuprofen çdo ditë për dhimbje gjuri dhe zhvilloni dhimbje stomaku. Mund të diskutoni me mjekun lehtësues alternativë të dhimbjes e mbrojtje të stomakut para se të vazhdoni."
+    },
+    {
+      "title": "Përfundimi i trajtimit",
+      "text": "Supozoni që ndiheni më mirë pas një jave antibiotikësh. Mund ta mbaroni prapëseprapë të gjithë kurën e të shkoni në testin e ndjekjes, pasi ndalimi i hershëm mund ta lërë infeksionin."
+    }
+  ],
+  "questions": [
+    "A shkaktohet ulçera ime nga infeksioni apo nga barnat?",
+    "Cilin trajtim do të marr dhe për sa kohë?",
+    "Si do të kontrollojmë që ulçera është shëruar?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Što se događa tijekom studije spavanja?",
+  "intro": "Studija spavanja, ili polisomnografija, bilježi aktivnost tijela tijekom spavanja kako bi se otkrilo zašto netko loše spava ili je danju umoran. Pomaže u dijagnosticiranju stanja kao što su apneja u snu, sindrom nemirnih nogu, narkolepsija i abnormalni pokreti u snu. Bezbolna je, ali traje cijelu noć.",
+  "sections": [
+    {
+      "heading": "Zašto se radi",
+      "paragraphs": [
+        "Može se preporučiti zbog glasnog hrkanja s prekidima disanja, izrazite dnevne pospanosti, sna koji ne odmara, neobičnog ponašanja noću kao što je mjesečarenje, nemirnih nogu ili sumnje na narkolepsiju. Studija pokazuje koliko dugo spavate, koje faze dosežete i koliko često disanje staje."
+      ]
+    },
+    {
+      "heading": "Vrste studija",
+      "paragraphs": [
+        "Studija u laboratoriju provodi se preko noći u centru za spavanje uz tehničara koji nadzire. Pojednostavljeni kućni test mjeri disanje, kisik i srčani ritam, a koristi se uglavnom kada je apneja u snu vjerojatna. Neki testovi, kao što je test višestruke latencije spavanja, provode se danju kako bi se izmjerilo koliko brzo zaspite."
+      ]
+    },
+    {
+      "heading": "Što se mjeri",
+      "paragraphs": [
+        "Mali senzori pričvršćuju se na vlasište, lice, prsa, noge i prst kako bi bilježili moždane valove, pokrete očiju, aktivnost mišića, srčani ritam, napor pri disanju, protok zraka i razinu kisika. Mikrofon i kamera bilježe hrkanje i pokrete. Senzori se pričvršćuju trakom ili pastom i ne bole."
+      ]
+    },
+    {
+      "heading": "Priprema za noć",
+      "paragraphs": [
+        "Držite se uobičajene rutine, izbjegavajte kofein poslijepodne te alkohol i dnevno drijemanje ako vam je savjetovano. Ponesite udobnu odjeću za spavanje i svoje uobičajene lijekove. Većina ljudi zaspi, iako lošije nego kod kuće. Recite osoblju ako imate problema s opremom."
+      ]
+    },
+    {
+      "heading": "Rezultati i liječenje",
+      "paragraphs": [
+        "Specijalist analizira podatke, a rezultati se dijele unutar nekoliko dana do tjedana. Liječenje ovisi o nalazu, primjerice maska koja dovodi zrak pod tlakom kod apneje u snu, zubni aparati, mršavljenje, lijekovi ili bihevioralna terapija. Kontrola provjerava djeluje li liječenje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema",
+      "text": "Zamislite da sutra navečer imate test spavanja. Mogli biste preskočiti poslijepodnevnu kavu, ponijeti svoje uobičajene lijekove i obući udobnu odjeću za spavanje."
+    },
+    {
+      "title": "Pregled rezultata",
+      "text": "Pretpostavite da studija pokaže apneju u snu. Mogli biste pitati o liječenju maskom i kako se na nju privići."
+    }
+  ],
+  "questions": [
+    "Koja je vrsta studije spavanja prava za mene?",
+    "Što rezultati znače za moj dnevni umor?",
+    "Koje opcije liječenja postoje ako se otkrije problem?"
+  ]
+}

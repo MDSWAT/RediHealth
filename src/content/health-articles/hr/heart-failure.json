@@ -1,0 +1,51 @@
+{
+  "title": "Zatajivanje srca: liječenje i prepoznavanje promjena",
+  "intro": "Zatajivanje znači da se srce ne puni ili ne pumpa dovoljno učinkovito za tijelo. Nije isto što i prestanak rada srca. Različiti oblici traže različite terapije, a trajna skrb pomaže mnogima.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Mogući su zaduha pri aktivnosti ili ležanju, umor i otoci. Simptomi imaju i druge uzroke pa dijagnoza traži procjenu, ne samo gležnjeve ili internetski popis."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Krvni testovi, EKG i ultrazvuk procjenjuju funkciju i uzrok. Pitajte koji oblik imate: očuvana ejekcijska frakcija ne isključuje zatajivanje. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Lijekovi ovise o obliku i drugim bolestima; diuretici smanjuju tekućinu, a druge terapije mogu smanjiti pogoršanja i hospitalizacije. Uređaji ili zahvati pomažu odabranima. Tlak, bubrezi i elektroliti trebaju nadzor. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Dogovorite aktivnost, rehabilitaciju, težinu i kontakt za promjene. Savjet o soli i tekućini mora biti individualan: ne ograničavajte drastično i ne mijenjajte diuretik bez posebnog plana. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Brzo dobivanje težine, više otoka ili nova zaduha traže brz kontakt. Teška zaduha u mirovanju, bol u prsima, plave usne ili kolaps traže hitnu pomoć. Provjerite protuupalne lijekove jer mogu pogoršati zadržavanje tekućine."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira bilježi rast težine i tijesne cipele. Kontaktira tim prema pisanom planu umjesto čekanja redovitog termina."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben se osjeća bolje ali nastavlja lijekove i kontrole jer olakšanje ne znači nestanak bolesti."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

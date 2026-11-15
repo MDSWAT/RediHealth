@@ -1,0 +1,51 @@
+{
+  "title": "What are calories?",
+  "intro": "A calorie is a unit of energy. In nutrition, the energy in food is measured in kilocalories, often shortened to calories, or in kilojoules. The body needs energy to keep the heart beating, to breathe, to move and to grow. Balancing the energy you eat and the energy you use helps keep weight stable.",
+  "sections": [
+    {
+      "heading": "Where calories come from",
+      "paragraphs": [
+        "Fat provides about nine kilocalories per gram, carbohydrates and protein about four each, and alcohol about seven. Fibre and water provide little or none. Foods rich in fat and sugar, such as oils, pastries and sweets, are energy-dense, while vegetables, fruit and soups are less so, meaning that larger portions give fewer calories."
+      ]
+    },
+    {
+      "heading": "How much energy you need",
+      "paragraphs": [
+        "Daily needs depend on age, sex, size, body composition, activity level, pregnancy and health. Most of the energy is used by the body at rest, called the basal metabolic rate. Physical activity and the energy used to digest food add to it. Typical requirements are around two thousand kilocalories for many women and two and a half thousand for many men, with large individual variation."
+      ]
+    },
+    {
+      "heading": "Energy balance and weight",
+      "paragraphs": [
+        "When you eat more energy than you use, the surplus is stored as fat, and when you eat less, the body uses stores. In reality, body weight is also influenced by hormones, sleep, genetics, medicines and food quality. Counting calories can help some people, but it is only a rough guide, and labels are estimates."
+      ]
+    },
+    {
+      "heading": "Quality matters",
+      "paragraphs": [
+        "Calories from different foods affect health and fullness differently. Nutrient-rich foods such as vegetables, fruits, wholegrains, pulses, nuts, fish and lean protein support health and satisfy hunger better than highly processed foods and sugary drinks. Very low calorie diets can cause deficiencies and should be medically supervised. Children, pregnant women and people with eating disorders need individual advice. Preoccupation with counting can become unhealthy."
+      ]
+    },
+    {
+      "heading": "Special groups",
+      "paragraphs": [
+        "Children, teenagers, pregnant and breastfeeding women, older adults, athletes and people with illness have different energy needs. Do not restrict calories strongly without advice, and seek help if thoughts about food or weight take over your life."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reading a label",
+      "text": "Imagine you compare two snacks. You could check calories per portion and per hundred grams, and also look at sugar, fibre and the portion size you would actually eat."
+    },
+    {
+      "title": "Planning a meal",
+      "text": "Suppose you want to feel fuller on fewer calories. You might add vegetables and pulses to your plate and swap sugary drinks for water."
+    }
+  ],
+  "questions": [
+    "How much energy do I need each day?",
+    "Is counting calories helpful for me, or is another approach better?",
+    "Which foods keep me full while supporting my health?"
+  ]
+}

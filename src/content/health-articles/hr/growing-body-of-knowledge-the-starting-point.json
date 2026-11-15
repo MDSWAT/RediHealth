@@ -1,0 +1,51 @@
+{
+  "title": "Kako raste medicinsko znanje: polazište",
+  "intro": "Medicinsko znanje mijenja se provjerom pitanja, usporedbom liječenja i proučavanjem šteta. Pouzdana informacija objašnjava poznato i neizvjesno. Nova studija pridonosi znanju, ali nije automatski konačan odgovor.",
+  "sections": [
+    {
+      "heading": "Postavite jasno pitanje",
+      "paragraphs": [
+        "Počnite jasnim pitanjem o ljudima, postupku ili izloženosti, usporedbi i važnim ishodima. Olakšanje, funkcija, teška bolest i kvaliteta života mogu biti važniji od laboratorijske promjene. Uvjerljivo objašnjenje još treba testirati."
+      ]
+    },
+    {
+      "heading": "Pošteno usporedite skupine",
+      "paragraphs": [
+        "Pošteno usporedite skupine. Nasumična raspodjela smanjuje razlike; promatranje pokazuje povezanost, ali može zamijeniti uzrok drugim čimbenicima. Veličina, gubitak praćenja i selektivno izvještavanje utječu na pouzdanost."
+      ]
+    },
+    {
+      "heading": "Razumijte sustavne preglede",
+      "paragraphs": [
+        "Sustavni pregled koristi jasne metode traženja i procjene studija umjesto biranja povoljnih primjera. Zaključak ostaje neizvjestan uz slabo ili nedosljedno istraživanje. Spajanje mnogo pristranih studija ne uklanja automatski pristranost."
+      ]
+    },
+    {
+      "heading": "Provjerite važnost i transparentnost",
+      "paragraphs": [
+        "Provjerite financiranje, mjerenje šteta i primjenjivost na slične ljude. Tražite neovisne procjene i datum ažuriranja. Iskustvo pacijenata otkriva važne teme, ali samo ne dokazuje da je liječenje izazvalo poboljšanje."
+      ]
+    },
+    {
+      "heading": "Promišljeno koristite nove dokaze",
+      "paragraphs": [
+        "Razgovarajte o novim nalazima prije promjene propisane skrbi. Preporuke se mogu mijenjati zbog boljih dokaza ili sigurnosnih podataka, ne ranije nepoštenosti. Pitajte koja neizvjesnost mijenja odluku i je li sigurnije djelovati, pratiti ili čekati."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira čita malu nekontroliranu studiju dodatka. Prije troška pita je li poboljšanje uspoređeno sa sličnom skupinom."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben vidi suprotne naslove. Traži sustavni pregled i stvarne ishode umjesto brojanja članaka koji ponavljaju tvrdnje."
+    }
+  ],
+  "questions": [
+    "Je li usporedba bila poštena i primjenjiva na mene?",
+    "Koje su koristi, štete i neizvjesnosti mjerene?",
+    "Opravdavaju li dokazi promjenu moje skrbi?"
+  ]
+}

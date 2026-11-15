@@ -1,0 +1,51 @@
+{
+  "title": "Up-to-date medical knowledge: how it is assessed",
+  "intro": "Medical knowledge changes continuously. To keep health information reliable, producers must follow research, judge its quality and update their texts. Understanding how this is done helps you see how current information is made and why recommendations sometimes change.",
+  "sections": [
+    {
+      "heading": "Following new research",
+      "paragraphs": [
+        "Thousands of studies are published every week. Teams monitor journals, registers of trials, guidelines and safety warnings for new findings on topics they cover. They decide whether new evidence is relevant, strong enough and likely to change the existing conclusions."
+      ]
+    },
+    {
+      "heading": "Judging evidence quality",
+      "paragraphs": [
+        "Not every study is equally reliable. Reviewers assess the design, size, bias, consistency and whether outcomes matter to patients. A single small study rarely changes recommendations, whereas a well-designed large trial or a systematic review that combines several studies may. Evidence is graded, which expresses how confident we can be in the results."
+      ]
+    },
+    {
+      "heading": "Updating information",
+      "paragraphs": [
+        "When evidence changes the picture, texts are revised and the date of revision is recorded. Minor changes may be made at regular review cycles, and urgent safety information is updated quickly. Sometimes new evidence confirms current advice, and nothing changes. Good providers explain what changed and why."
+      ]
+    },
+    {
+      "heading": "Why advice changes",
+      "paragraphs": [
+        "Recommendations can change because new trials show a treatment is better or worse than thought, because harms become evident only after wide use, or because better tests are developed. Changing advice is a sign of science working, not necessarily of failure. Some claims first reported in the news are not confirmed by later research."
+      ]
+    },
+    {
+      "heading": "What you can do",
+      "paragraphs": [
+        "Check the date of the information you use, prefer sources that show how they are updated, and ask your doctor about new developments in your condition. Do not stop or change treatment because of one report, but talk about it with your healthcare team."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Spotting a change",
+      "text": "Imagine a medicine you take is mentioned in the news as risky. You could check a reliable source, and ask your doctor or pharmacist before making any change."
+    },
+    {
+      "title": "Looking for dates",
+      "text": "Suppose you read advice about a vaccination. You might look at when the text was last updated and compare with your national recommendations."
+    }
+  ],
+  "questions": [
+    "Has the recommendation for my condition changed recently?",
+    "How reliable is the new evidence?",
+    "Should anything about my treatment change in light of it?"
+  ]
+}

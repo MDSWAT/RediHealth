@@ -1,0 +1,56 @@
+{
+  "title": "How blood pressure is measured",
+  "intro": "Blood pressure is the force of blood pushing against the walls of your arteries. Measuring it is quick, painless and one of the most useful checks in medicine, because high blood pressure usually causes no symptoms yet raises the risk of heart attack, stroke and kidney disease. Knowing how measurement works helps you get reliable readings.",
+  "sections": [
+    {
+      "heading": "What the two numbers mean",
+      "paragraphs": [
+        "A reading has two values, for example 120 over 80. The upper number, called systolic pressure, is the pressure when the heart contracts and pushes blood out. The lower number, diastolic pressure, is the pressure when the heart relaxes and refills between beats. Both are given in millimetres of mercury.",
+        "Blood pressure naturally changes during the day. It rises with activity, stress, pain, caffeine or cold and falls during rest and sleep. A single high value therefore does not prove high blood pressure; doctors look at repeated readings taken under comparable conditions."
+      ]
+    },
+    {
+      "heading": "Measuring in the doctor's office",
+      "paragraphs": [
+        "A cuff is wrapped around the upper arm at heart level and inflated until it briefly stops blood flow. As it deflates, the device or the clinician detects when blood starts to flow again and when it flows freely, which gives the two values. Cuff size matters, since a cuff that is too small can give falsely high readings.",
+        "Some people have higher readings in the clinic than at home because they feel nervous, an effect often called white-coat hypertension. For this reason, many guidelines recommend confirming a high office reading with measurements outside the clinic."
+      ]
+    },
+    {
+      "heading": "Measuring at home",
+      "paragraphs": [
+        "Home measurement with a validated upper-arm device is often the most useful way to track blood pressure. Sit quietly for a few minutes with your back supported, feet flat on the floor and your arm resting at heart level. Avoid caffeine, smoking and exercise for about half an hour beforehand, and empty your bladder first.",
+        "Take two readings about a minute apart and write them down, ideally in the morning and evening over several days, as your doctor advises. Wrist and finger devices are generally less reliable than upper-arm devices. Bring your device to an appointment so its accuracy can be compared with the clinic equipment."
+      ]
+    },
+    {
+      "heading": "Twenty-four-hour monitoring",
+      "paragraphs": [
+        "For unclear cases, doctors may use ambulatory monitoring. You wear a small cuff device for a full day and night, and it measures automatically every 20 to 30 minutes. This shows how blood pressure behaves during normal activities and sleep and helps separate true high blood pressure from clinic-related effects.",
+        "The device may squeeze your arm when it inflates, and you may be asked to keep a simple diary of activities and symptoms during the test."
+      ]
+    },
+    {
+      "heading": "Understanding the results",
+      "paragraphs": [
+        "Targets differ between people, depending on age, other illnesses and risk of heart disease, so your doctor will explain what range is right for you. Readings that stay high should lead to a discussion of lifestyle measures such as less salt, regular exercise, weight control and limiting alcohol, and possibly medication.",
+        "Seek urgent help if a very high reading comes with chest pain, severe headache, vision changes, weakness or difficulty speaking. Very low readings with dizziness or fainting should also be assessed."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Building a home record",
+      "text": "Imagine your doctor suspects high blood pressure and asks you to measure at home. You could take readings each morning and evening for a week, write them in a simple table and bring the table and your device to the follow-up visit."
+    },
+    {
+      "title": "Checking cuff size",
+      "text": "Suppose you have larger upper arms and your readings always seem high. You might ask the practice nurse to check whether your cuff is the right size, since the wrong cuff can change the numbers."
+    }
+  ],
+  "questions": [
+    "Which blood pressure values are right for me, and how often should I measure?",
+    "Should I measure at home or have ambulatory monitoring, and which device would you recommend?",
+    "Which lifestyle changes would make the biggest difference in my situation?"
+  ]
+}

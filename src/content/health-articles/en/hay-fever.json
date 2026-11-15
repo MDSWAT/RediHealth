@@ -1,0 +1,51 @@
+{
+  "title": "Hay fever: controlling pollen symptoms",
+  "intro": "Hay fever is an allergic response to pollen. Sneezing, an itchy or blocked nose and watery itchy eyes often follow a seasonal pattern. Symptoms can disturb sleep and concentration; fever itself is not a typical feature.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Grass, tree and weed pollens have different seasons, varying by place and weather. Wheezing or nighttime cough may indicate accompanying asthma rather than simply a more blocked nose."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Describe when and where symptoms occur and their effect on activities. Allergy tests are useful when they clarify a suspected trigger or guide specialist care, not as indiscriminate screening panels. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Non-sedating antihistamines and corticosteroid nasal sprays are common options; correct regular use matters. Ask about spray technique and age or pregnancy suitability. Specialist allergen immunotherapy may help selected persistent cases. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Use local pollen forecasts to plan exposure, change clothes after outdoor activity and avoid drying bedding outside on high-pollen days if it worsens symptoms. Saline rinses require safe water and clean equipment. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Seek review if symptoms remain uncontrolled, sleep is impaired or medicine causes side effects. New wheeze or breathlessness needs assessment; severe breathing difficulty is an emergency, not routine hay fever."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira has symptoms during grass season and checks nasal-spray technique with a pharmacist before assuming treatment has failed."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben develops night cough during pollen season. He asks about asthma assessment instead of simply adding more allergy tablets."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

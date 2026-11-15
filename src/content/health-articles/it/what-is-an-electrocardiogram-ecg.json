@@ -1,0 +1,51 @@
+{
+  "title": "Che cos'è un elettrocardiogramma (ECG)",
+  "intro": "L'elettrocardiogramma, noto come ECG, è un esame rapido e indolore che registra l'attività elettrica del cuore. Mostra frequenza e ritmo cardiaco e può aiutare a individuare infarto, disturbi del ritmo e sofferenza del cuore. È uno degli esami cardiaci più comuni.",
+  "sections": [
+    {
+      "heading": "Perché si fa",
+      "paragraphs": [
+        "L'ECG si usa per dolore al petto, palpitazioni, capogiri, svenimenti e affanno. Aiuta anche a monitorare una malattia cardiaca nota, a controllare l'effetto dei farmaci e a fare screening prima di un intervento. Può mostrare ritmi irregolari come la fibrillazione atriale, segni di un infarto passato o in corso e un muscolo cardiaco ispessito."
+      ]
+    },
+    {
+      "heading": "Come funziona",
+      "paragraphs": [
+        "A ogni battito un segnale elettrico si diffonde nel cuore e lo fa contrarre. I sensori sulla pelle captano questi piccoli segnali e una macchina li disegna come onde. I medici leggono forma e tempi delle onde per giudicare come funziona il cuore. L'esame non manda elettricità nel corpo."
+      ]
+    },
+    {
+      "heading": "L'esame",
+      "paragraphs": [
+        "Ti sdrai e si applicano dieci elettrodi adesivi su torace, braccia e gambe. Può essere necessario rasare i peli. Resti fermo e respiri normalmente per circa un minuto. La registrazione dura solo pochi minuti. È indolore, ma i cerotti adesivi possono tirare quando si tolgono."
+      ]
+    },
+    {
+      "heading": "Altri tipi",
+      "paragraphs": [
+        "Un monitor delle ventiquattro ore o più, o un registratore di eventi, si porta a casa per cogliere ritmi che vanno e vengono. Un ECG da sforzo si registra su tapis roulant o cyclette per vedere come risponde il cuore allo sforzo. Alcuni orologi e dispositivi registrano un ECG a una derivazione, che può rilevare alcuni ritmi ma non sostituisce gli esami medici."
+      ]
+    },
+    {
+      "heading": "Capire i risultati",
+      "paragraphs": [
+        "Un ECG normale non esclude tutti i problemi cardiaci, perché le anomalie possono andare e venire. I medici lo interpretano insieme ai sintomi e ad altri esami. Chiedi che cosa significa il risultato e se servono ulteriori esami."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tenere un registro",
+      "text": "Immagina di avere palpitazioni. Potresti annotare quando compaiono e chiedere se un monitor a lungo termine sia utile."
+    },
+    {
+      "title": "Discutere la lettura di un orologio",
+      "text": "Supponi che il tuo smartwatch mostri un ritmo irregolare. Potresti andare dal medico per un ECG vero e proprio."
+    }
+  ],
+  "questions": [
+    "Un ECG basta o ho bisogno di ulteriori esami del cuore?",
+    "Che cosa mostra il risultato?",
+    "Dovrei portare un monitor per cogliere i problemi del ritmo?"
+  ]
+}

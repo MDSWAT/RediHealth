@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë llojesh ekzaminimesh të syve ka?",
+  "intro": "Ekzaminimet e syve kontrollojnë shikimin e shëndetin e syrit. Zbulojnë probleme si miopia ose hipermetropia, glaukoma, kataraktet, degjenerimi makular e sëmundja diabetike e syrit, shpesh para se të shfaqen simptomat. Shumica e testeve janë të shpejta e pa dhimbje.",
+  "sections": [
+    {
+      "heading": "Testet e shikimit",
+      "paragraphs": [
+        "Një test i mprehtësisë së shikimit ju kërkon të lexoni shkronja ose simbole nga një tabelë në një largësi të caktuar. Një test refraksioni, me lente, zbulon nëse keni nevojë për syze e me çfarë fuqie. Testet e shikimit të ngjyrave, perceptimit të thellësisë e fushës së shikimit kontrollojnë aspekte të tjera të shikimit. Fëmijët kanë teste të përshtatura për moshën, si fotografi ose simbole për përshtatje."
+      ]
+    },
+    {
+      "heading": "Presioni i syrit e pjesa e përparme e syrit",
+      "paragraphs": [
+        "Tonometria mat presionin brenda syrit, që rritet në glaukomë, ose me një fryrje ajri ose një prekje të butë të sipërfaqes pas pikave mpirëse. Një llambë me çarje, një mikroskop me dritë të fortë, tregon kornenë, lentin e pjesën e përparme të syrit e ndihmon të zbulohen kataraktet, lëndimet e inflamacioni."
+      ]
+    },
+    {
+      "heading": "Shikimi i pjesës së pasme të syrit",
+      "paragraphs": [
+        "Pikat e zgjerojnë bebëzën që mjeku të shohë retinën, nervin optik e enët e gjakut me një oftalmoskop ose kamerë. Kjo tregon shenja të diabetit, tensionit të lartë, degjenerimit makular e glaukomës. Shikimi juaj nga afër turbullohet e ndjeshmëria ndaj dritës rritet për disa orë, prandaj mos drejtoni pas."
+      ]
+    },
+    {
+      "heading": "Teste të mëtejshme",
+      "paragraphs": [
+        "Tomografia e koherencës optike skanon shtresat e retinës duke përdorur dritë. Testet e fushës së shikimit gjejnë njolla të verbra, të rëndësishme për glaukomën. Angiografia me fluoresceinë përdor bojë për të parë enët e gjakut. Ultratingulli mund ta ekzaminojë syrin kur pamja është e bllokuar. Bëhen edhe teste për syrin e thatë e prodhimin e lotëve."
+      ]
+    },
+    {
+      "heading": "Sa shpesh të bëni kontrolle",
+      "paragraphs": [
+        "Fëmijët kanë nevojë për kontrolle nëse ka shqetësime ose sipas orareve të skriningut. Të rriturit mund të bëjnë kontrolle çdo dy vjet, e njerëzit mbi dyzet vjeç, ata me diabet, histori familjare glaukome ose faktorë të tjerë rreziku, mund t'i kenë më shpesh. Kërkoni ndihmë urgjente për humbje të papritur shikimi, vetëtima drite, pikëza të reja lundruese ose dhimbje syri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja",
+      "text": "Imagjinoni që keni një takim me pika zgjeruese. Mund të sillni syze dielli e të organizoni dikë që t'ju çojë në shtëpi."
+    },
+    {
+      "title": "Kërkimi i kujdesit urgjent",
+      "text": "Supozoni që papritur shihni vetëtima e shumë pikëza të reja lundruese. Mund të kontaktoni një okulist po atë ditë."
+    }
+  ],
+  "questions": [
+    "Cilat teste nevojiten për sytë e mi?",
+    "Sa shpesh duhet të ekzaminohem?",
+    "Cilat simptoma tregojnë se duhet të kërkoj kujdes urgjent?"
+  ]
+}

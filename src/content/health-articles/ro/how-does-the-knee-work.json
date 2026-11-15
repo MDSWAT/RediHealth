@@ -1,0 +1,52 @@
+{
+  "title": "Cum se îndoaie genunchiul și susține greutatea",
+  "intro": "Genunchiul leagă coapsa de gambă și permite flexie, extensie și rotație limitată. Stabilitatea depinde împreună de oase, ligamente și control muscular. Durerea sau pocniturile singure nu identifică țesutul afectat.",
+  "sections": [
+    {
+      "heading": "Oase și pârghie",
+      "paragraphs": [
+        "Femurul întâlnește tibia; rotula alunecă într-un șanț anterior. Ajută mușchiul coapsei să întindă genunchiul prin sistemul de tendoane."
+      ]
+    },
+    {
+      "heading": "Cartilaj și meniscuri",
+      "paragraphs": [
+        "Cartilajul reduce frecarea. Meniscurile distribuie sarcina și îmbunătățesc contactul; o constatare imagistică nu stabilește automat cauza durerii sau nevoia operației."
+      ]
+    },
+    {
+      "heading": "Stabilizare",
+      "paragraphs": [
+        "Ligamentele încrucișate și colaterale limitează mișcarea nedorită. Mușchii și tendoanele controlează activ articulația. Umflarea poate reduce activarea musculară și încrederea chiar fără ruptură completă."
+      ]
+    },
+    {
+      "heading": "Funcție",
+      "paragraphs": [
+        "Creșteți activitatea treptat și urmați recuperarea după accidentare. Contează forța, echilibrul și mișcarea tolerabilă; forțarea genunchiului blocat sau continuarea cu umflare rapidă poate agrava rana."
+      ]
+    },
+    {
+      "heading": "Evaluare",
+      "paragraphs": [
+        "Umflarea persistentă sau cedarea cer consult. Genunchiul fierbinte cu febră, deformarea, imposibilitatea sprijinului după traumă ori blocarea reală cer evaluare promptă, nu manipulare acasă.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira aude pocnituri nedureroase dar merge bine. Discută simptomele noi dacă apar, fără să presupună că orice zgomot este leziune."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben răsucește genunchiul și nu îl mai întinde. Cere evaluare în loc să îl forțeze pentru a continua jocul."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

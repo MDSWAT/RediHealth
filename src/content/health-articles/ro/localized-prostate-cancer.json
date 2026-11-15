@@ -1,0 +1,51 @@
+{
+  "title": "Cancerul de prostată localizat",
+  "intro": "Cancerul de prostată este unul dintre cele mai frecvente cancere la bărbați. În multe cazuri este descoperit când este încă limitat la prostată și crește lent. Deoarece tratamentul poate provoca efecte secundare precum incontinența și problemele de erecție, bărbații au adesea mai multe alegeri, inclusiv supravegherea activă, chirurgia și radioterapia.",
+  "sections": [
+    {
+      "heading": "Cum este descoperit",
+      "paragraphs": [
+        "Cancerul de prostată poate fi suspectat după un test PSA crescut sau o constatare anormală la examinare. Scanările prin rezonanță magnetică și o biopsie confirmă diagnosticul și gradează cancerul. Scorul Gleason sau grupul de grad descrie cât de agresive arată celulele și, împreună cu nivelul PSA și extinderea tumorii, stabilește categoria de risc."
+      ]
+    },
+    {
+      "heading": "Supravegherea activă și așteptarea vigilentă",
+      "paragraphs": [
+        "Pentru cancerele cu risc scăzut, tratamentul poate să nu fie necesar imediat. Supravegherea activă înseamnă teste PSA regulate, scanări și uneori biopsii repetate, cu începerea tratamentului dacă cancerul progresează. Aceasta evită efectele secundare la mulți bărbați, păstrând în același timp șansa de vindecare. Așteptarea vigilentă este o abordare mai puțin intensivă pentru bărbații mai în vârstă sau cu alte boli, tratând doar simptomele."
+      ]
+    },
+    {
+      "heading": "Chirurgia",
+      "paragraphs": [
+        "Prostatectomia radicală îndepărtează prostata, uneori împreună cu ganglionii limfatici din apropiere, adesea prin tehnici laparoscopice sau asistate de robot. Efectele posibile includ pierderi de urină și disfuncție erectilă, care se îmbunătățesc adesea în câteva luni, dar pot persista. Exercițiile pentru planșeul pelvin înainte și după operație pot ajuta."
+      ]
+    },
+    {
+      "heading": "Radioterapia",
+      "paragraphs": [
+        "Radioterapia externă țintește prostata pe parcursul câtorva săptămâni sau în mai puține ședințe cu doze mai mari, uneori combinată cu terapie hormonală. Radioterapia internă plasează surse radioactive în prostată. Efectele secundare includ iritația intestinului și a vezicii, problemele de erecție și oboseala, care pot apărea după luni sau ani."
+      ]
+    },
+    {
+      "heading": "Luarea unei decizii",
+      "paragraphs": [
+        "Dovezile sugerează că, pentru mulți bărbați cu cancer cu risc scăzut, rezultatele sunt similare între opțiuni în ce privește supraviețuirea pe zece ani, în timp ce efectele secundare diferă. Luați în considerare vârsta, sănătatea, valorile personale, cum cântăriți efectele secundare și sentimentele față de monitorizare. Cereți o a doua opinie sau discutați cu o asistentă specializată. Grupurile de sprijin pot ajuta de asemenea."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Cântărirea efectelor secundare",
+      "text": "Imaginați-vă că aveți 62 de ani și un cancer de prostată cu risc scăzut. Ați putea întreba urologul cât de probabil este ca fiecare tratament să provoace pierderi de urină sau probleme de erecție și ce implică programul de supraveghere activă."
+    },
+    {
+      "title": "Implicarea partenerei",
+      "text": "Presupuneți că tratamentul poate afecta intimitatea. Ați putea veni cu partenera la următoarea programare și ați putea întreba despre opțiuni de reabilitare și consiliere."
+    }
+  ],
+  "questions": [
+    "Este cancerul meu cu risc scăzut, intermediar sau mare și ce înseamnă asta pentru tratament?",
+    "Care sunt efectele secundare probabile ale fiecărei opțiuni în cazul meu?",
+    "Ce ar implica supravegherea activă și când ar începe tratamentul?"
+  ]
+}

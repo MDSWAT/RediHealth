@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është oksidi i azotit (gazi qesharak) e çfarë efektesh ka?",
+  "intro": "Oksidi i azotit, i njohur si gazi qesharak, është një gaz pa ngjyrë i përdorur në mjekësi e stomatologji për të zvogëluar dhimbjen e ankthin. Keqpërdoret edhe si drogë rekreative, çka bart rreziqe reale shëndetësore. I përdorur saktë në ambiente mjekësore është përgjithësisht i sigurt.",
+  "sections": [
+    {
+      "heading": "Përdorimi mjekësor",
+      "paragraphs": [
+        "I përzier me oksigjen, zakonisht në përzierje gjysmë-gjysmë, thithet përmes një maske. Përdoret në procedura dentare, gjatë lindjes e për procedura të vogla te fëmijët. Ka efekt të shpejtë, kalon brenda minutash pasi hiqet maska e zakonisht u lejon njerëzve të drejtojnë shpejt pas, siç këshillon stafi."
+      ]
+    },
+    {
+      "heading": "Efektet",
+      "paragraphs": [
+        "Prodhon një ndjenjë relaksimi, lehtësie në kokë, shpimesh e nganjëherë të qeshurash ose një ndjesi lundrimi, së bashku me dhimbje e ankth të zvogëluar. Efektet anësore përfshijnë nauze, marrje mendsh, dhimbje koke e përgjumje. Në përqendrime të larta mund të shkaktojë konfuzion, e nuk duhet përdorur nga disa njerëz, si ata me disa gjendje mushkërish ose në shtatzëninë e hershme pa këshillë."
+      ]
+    },
+    {
+      "heading": "Përdorimi rekreativ e rreziqet",
+      "paragraphs": [
+        "Keqpërdorimi përfshin thithjen e gazit nga kartuçe ose balona për një ngazëllim të shkurtër. Rreziqet përfshijnë rënie e lëndime, mungesë oksigjeni, humbje ndjenjash e ngrirje të buzëve e fytit nga gazi i ftohtë. Përdorimi i rregullt ose i rëndë mund ta shkatërrojë vitaminën B12, duke shkaktuar mpirje, shpime, dobësi, vështirësi në ecje e dëmtim të palcës kurrizore, që mund të jetë i përhershëm. Përzierja me alkool e rrit rrezikun."
+      ]
+    },
+    {
+      "heading": "Kërkimi i ndihmës",
+      "paragraphs": [
+        "Kërkoni këshillë mjekësore nëse keni shpime, mpirje, dobësi ose probleme ekuilibri pas përdorimit të oksidit të azotit. Ndalimi i përdorimit e trajtimi me vitaminë B12 mund të ndihmojë. Shërbimet mbështetëse mund të ndihmojnë me përdorimin e substancave. Në shumë vende, shitja e gazit për thithje është e kufizuar."
+      ]
+    },
+    {
+      "heading": "Praktika e sigurt",
+      "paragraphs": [
+        "Përdoreni vetëm nën mbikëqyrje mjekësore për lehtësimin e dhimbjes. Mos drejtoni pas keqpërdorimit, e kurrë mos e përdorni vetëm ose në këmbë. Efektet mjedisore janë një shqetësim tjetër, sepse është gaz serrë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përdorimi te dentisti",
+      "text": "Imagjinoni që keni frikë nga trajtimi dentar. Mund ta pyesni dentistin nëse qetësimi me oksid azoti është opsion për ju."
+    },
+    {
+      "title": "Njohja e një shenje paralajmëruese",
+      "text": "Supozoni që një mik që e thith shpesh raporton këmbë të mpira. Mund ta nxitni të bëjë një kontroll mjekësor, pasi dëmtimi nga mungesa e vitaminës B12 mund të jetë i rëndë."
+    }
+  ],
+  "questions": [
+    "A është oksidi i azotit i përshtatshëm për mua për dhimbje ose ankth?",
+    "Cilat janë rreziqet e përdorimit të përsëritur?",
+    "Çfarë ndihme ekziston nëse dua ta ndaloj?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Trovare assistenza sanitaria in Germania",
+  "intro": "L’articolo riguarda i servizi in Germania, non le regole in Moldavia o in ogni paese europeo. Conoscere i percorsi ordinari, urgenti e d’emergenza può ridurre ritardi e spostamenti inutili.",
+  "sections": [
+    {
+      "heading": "Cure ordinarie e invii",
+      "paragraphs": [
+        "Per sintomi persistenti, ricette e prevenzione, il medico generale è spesso un buon punto iniziale. Chiedere se accetta l’assicurazione e serve appuntamento; gli invii specialistici dipendono dal servizio e dalla copertura."
+      ]
+    },
+    {
+      "heading": "Prepararsi alla visita",
+      "paragraphs": [
+        "Portare dati assicurativi, elenco dei farmaci, documenti e domande importanti. Spiegare prima esigenze di comunicazione o accesso. Un interprete aiuta; disponibilità e pagamento vanno chiariti senza presumere traduzioni in ogni studio."
+      ]
+    },
+    {
+      "heading": "Urgenze fuori orario",
+      "paragraphs": [
+        "A studi chiusi, per problemi che non possono aspettare ma non minacciano la vita, il servizio medico di guardia tedesco risponde al 116117. Il telefono è in tedesco; chiedere alternative accessibili per difficoltà linguistiche o uditive."
+      ]
+    },
+    {
+      "heading": "Emergenze vitali",
+      "paragraphs": [
+        "Per pericolo di vita, grave difficoltà respiratoria, sospetto ictus o collasso chiamare 112. Descrivere luogo e sintomi e seguire istruzioni. Non ritardare soccorsi cercando documenti assicurativi o un appuntamento ordinario."
+      ]
+    },
+    {
+      "heading": "Risultati, farmaci e costi",
+      "paragraphs": [
+        "Prima di uscire chiarire piano, controllo e arrivo dei risultati. I farmaci si ottengono in farmacia; chiedere modalità e costi. I percorsi non stabiliscono la copertura individuale: chiarire spese non urgenti con studio e assicuratore."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha un disturbo doloroso a studio chiuso. Usa la guardia perché non può attendere, sapendo che i pericoli vitali richiedono emergenza."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben porta i farmaci e chiede sostegno linguistico prima della visita. Verifica i risultati senza interpretare il silenzio come normalità."
+    }
+  ],
+  "questions": [
+    "Quale servizio usare nella mia situazione?",
+    "Quale sostegno comunicativo si può organizzare?",
+    "Come ricevere risultati e istruzioni successive?"
+  ]
+}

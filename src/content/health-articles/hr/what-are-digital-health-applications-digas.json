@@ -1,0 +1,51 @@
+{
+  "title": "Što su digitalne zdravstvene aplikacije (DiGA)?",
+  "intro": "U Njemačkoj liječnici i psihoterapeuti mogu propisivati određene aplikacije i web-programe poput lijekova, a troškove pokriva zakonsko zdravstveno osiguranje. Zovu se digitalne zdravstvene aplikacije, ili DiGA. Cilj im je podržati liječenje stanja kao što su depresija, nesanica, tinitus i bol u leđima. Ovaj pregled je opći; popis se mijenja pa provjerite aktualne pojedinosti.",
+  "sections": [
+    {
+      "heading": "Što je DiGA",
+      "paragraphs": [
+        "DiGA je medicinski proizvod temeljen na digitalnoj tehnologiji, koji bolesnik koristi za otkrivanje, praćenje, liječenje ili ublažavanje bolesti ili za nadoknadu invaliditeta. Primjeri uključuju programe s vježbama kognitivno-bihevioralne terapije, dnevnicima simptoma i modulima za vježbanje. To nisu samo aplikacije za dobrobit. Procjenjuju se kao medicinski proizvodi niskog rizika."
+      ]
+    },
+    {
+      "heading": "Kako se odobravaju",
+      "paragraphs": [
+        "Savezni institut nadležan za lijekove i medicinske proizvode pregledava sigurnost, funkciju, zaštitu podataka i kvalitetu. Proizvođači moraju pokazati pozitivan učinak na skrb, primjerice poboljšano zdravlje ili bolje nošenje s bolešću. Neke aplikacije privremeno su navedene dok se prikupljaju dokazi. Službeni imenik pokazuje indikacije, dokaze i zahtjeve, uključujući jezike."
+      ]
+    },
+    {
+      "heading": "Kako ju dobiti",
+      "paragraphs": [
+        "Liječnik ili psihoterapeut može propisati DiGA, ili vaš zdravstveni osiguravatelj može je odobriti ako pokažete da imate odgovarajuću dijagnozu. Zatim dobivate kôd za aktivaciju aplikacije, a osiguravatelj izravno plaća proizvođaču pa obično ne plaćate ništa. Recept pokriva određeno razdoblje, često devedeset dana, nakon čega se odlučuje o nastavku."
+      ]
+    },
+    {
+      "heading": "Koristi i ograničenja",
+      "paragraphs": [
+        "Koristi uključuju fleksibilnost, dostupnost u bilo koje vrijeme i mogućnost vježbanja vještina između pregleda. Istraživanja upućuju na koristi kod nekih aplikacija, ali su učinci često skromni i ovise o angažmanu. Ne zamjenjuju liječnika ili terapiju kod ozbiljne bolesti. Ne osjeća se svatko ugodno s digitalnim alatima, a dostupnost jezika može biti ograničena."
+      ]
+    },
+    {
+      "heading": "Zaštita podataka",
+      "paragraphs": [
+        "DiGA moraju ispunjavati stroge zahtjeve zaštite podataka, a zdravstveni podaci obrađuju se u skladu s njemačkim i europskim pravom, uz pohranu podataka na odobrenim lokacijama. Pročitajte za što aplikacija traži dopuštenje i pitajte proizvođača ili liječnika kako se koriste vaši podaci. Možete prestati koristiti aplikaciju i zatražiti brisanje podataka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pitanje liječniku",
+      "text": "Zamislite da imate teškoće sa spavanjem i ne želite započeti lijekove. Mogli biste pitati liječnika je li DiGA za nesanicu prikladna i kako dobiti kôd."
+    },
+    {
+      "title": "Provjera imenika",
+      "text": "Pretpostavite da na internetu pročitate o nekoj DiGA. Mogli biste prije početka provjeriti službeni imenik radi odobrene indikacije i dokaza."
+    }
+  ],
+  "questions": [
+    "Postoji li DiGA prikladna za moje stanje i pokriva li je moj osiguravatelj?",
+    "Kako će se koristiti moji podaci?",
+    "Kako ćemo procijeniti djeluje li za mene?"
+  ]
+}

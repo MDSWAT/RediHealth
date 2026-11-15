@@ -1,0 +1,56 @@
+{
+  "title": "Il trattamento del tumore della cervice uterina e delle lesioni precancerose",
+  "intro": "Il tumore della cervice uterina si sviluppa nella parte inferiore dell'utero, la cervice, di solito dopo una lunga infezione da alcuni tipi di papillomavirus umano. Cellule anomale compaiono spesso anni prima che si formi il tumore e possono essere individuate con lo screening. Il trattamento dipende dal fatto che vi siano solo alterazioni precancerose o un tumore invasivo, e dalle sue dimensioni e diffusione.",
+  "sections": [
+    {
+      "heading": "Trattamento delle lesioni precancerose",
+      "paragraphs": [
+        "Lo screening può mostrare alterazioni cellulari che non sono ancora un tumore. Le alterazioni lievi spesso scompaiono da sole e possono richiedere soltanto controlli ripetuti. Le alterazioni più avanzate vengono comunemente trattate asportando il tessuto interessato, perché questo impedisce lo sviluppo del tumore.",
+        "La procedura abituale è la conizzazione, che rimuove un piccolo pezzo a forma di cono della cervice, usando un'ansa sottile riscaldata o un bisturi. Viene spesso eseguita in anestesia locale o generale breve, in regime ambulatoriale o con un breve ricovero. Il tessuto viene esaminato per confermare che le cellule anomale siano state rimosse completamente."
+      ]
+    },
+    {
+      "heading": "Tumore invasivo in fase iniziale",
+      "paragraphs": [
+        "Quando il tumore è piccolo e limitato alla cervice, la chirurgia è il trattamento principale. Le opzioni vanno da una conizzazione più ampia alla rimozione dell'utero, spesso con l'asportazione dei linfonodi vicini per vedere se il tumore si è diffuso. In giovani donne selezionate possono essere possibili interventi che preservano la fertilità.",
+        "I chirurghi considerano sempre più le dimensioni e la profondità esatte del tumore e il desiderio della donna di avere figli. È un buon momento per chiedere delle opzioni che preservano la fertilità e dei benefici e rischi dei diversi approcci chirurgici."
+      ]
+    },
+    {
+      "heading": "Tumore avanzato",
+      "paragraphs": [
+        "I tumori più grandi o quelli che si sono diffusi ai tessuti vicini vengono di solito trattati con radioterapia combinata con chemioterapia. La radioterapia può essere somministrata dall'esterno del corpo e dall'interno, posizionando una sorgente radioattiva vicino al tumore. Il trattamento dura in genere diverse settimane.",
+        "Gli effetti collaterali possono comprendere stanchezza, irritazione dell'intestino e della vescica, secchezza o restringimento vaginale e menopausa precoce quando le ovaie sono interessate. Farmaci più recenti, compresa l'immunoterapia, possono essere presi in considerazione per un tumore che ritorna o si è diffuso ad altri organi."
+      ]
+    },
+    {
+      "heading": "La vita dopo il trattamento",
+      "paragraphs": [
+        "Le visite di controllo regolari verificano l'eventuale recidiva e aiutano a gestire gli effetti collaterali. Alcune donne sviluppano linfedema, alterazioni della vescica o dell'intestino o difficoltà sessuali. La fisioterapia del pavimento pelvico, gli idratanti vaginali e il supporto psicologico possono aiutare e i sintomi vanno riferiti anziché sopportati.",
+        "Il sostegno emotivo è altrettanto importante. La paura di una recidiva, i cambiamenti nell'immagine corporea e le preoccupazioni sulla fertilità sono comuni, e i servizi di psico-oncologia, i gruppi di sostegno e i familiari di fiducia possono offrire aiuto."
+      ]
+    },
+    {
+      "heading": "Prevenzione e screening",
+      "paragraphs": [
+        "La vaccinazione contro il papillomavirus umano, idealmente prima dell'inizio dell'attività sessuale, riduce moltissimo il rischio di tumore della cervice uterina. Uno screening regolare con un test citologico, un test HPV o entrambi individua le alterazioni precocemente, quando sono più curabili.",
+        "Smettere di fumare riduce inoltre il rischio. Le donne vaccinate dovrebbero comunque partecipare allo screening, perché il vaccino non protegge contro ogni tipo che causa tumore."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Capire il risultato di uno screening",
+      "text": "Immagina che il tuo screening mostri lievi alterazioni cellulari. Potresti chiedere che cosa significhi il risultato, se un controllo ripetuto dopo alcuni mesi sia sufficiente e quali sintomi riferire nel frattempo, così da non sentirti lasciata nell'incertezza."
+    },
+    {
+      "title": "Valutare il desiderio di fertilità",
+      "text": "Supponi di avere 29 anni e un tumore cervicale iniziale, ma di sperare di avere figli. Potresti chiedere al gruppo multidisciplinare se un intervento che preserva la fertilità sia adatto, quale sarebbe il rischio di recidiva e se abbia senso una consulenza con uno specialista della fertilità prima del trattamento."
+    }
+  ],
+  "questions": [
+    "In che stadio si trova il reperto anomalo o il tumore e quali opzioni di trattamento sono adatte?",
+    "Come potrebbe il trattamento influire sulla mia fertilità, sulla vita sessuale e sulla funzione della vescica o dell'intestino?",
+    "Quale programma di controlli e quali servizi di sostegno saranno disponibili dopo il trattamento?"
+  ]
+}

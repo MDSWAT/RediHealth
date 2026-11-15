@@ -1,0 +1,51 @@
+{
+  "title": "What do ear examinations involve?",
+  "intro": "Ear examinations help doctors find the cause of ear pain, hearing loss, dizziness or ringing in the ears. They are usually painless and quick. Which tests are used depends on your symptoms, and results guide treatment.",
+  "sections": [
+    {
+      "heading": "Looking inside the ear",
+      "paragraphs": [
+        "The doctor uses an otoscope or a microscope to look into the ear canal and at the eardrum. This can show earwax, infection, injury, fluid behind the eardrum or a hole. In children, the ear is gently pulled to straighten the canal. The examination may feel slightly uncomfortable but should not hurt."
+      ]
+    },
+    {
+      "heading": "Hearing tests",
+      "paragraphs": [
+        "Pure-tone audiometry measures the quietest sounds you can hear at different pitches, using headphones, and the results are shown on a chart. Speech tests check how well you understand words. Babies and small children have tests that do not need active cooperation, such as otoacoustic emissions or responses to sounds."
+      ]
+    },
+    {
+      "heading": "Middle ear tests",
+      "paragraphs": [
+        "Tympanometry uses a small probe in the ear canal to measure how well the eardrum moves and whether there is fluid in the middle ear. Tuning fork tests help to distinguish between conductive and sensorineural hearing loss. These tests take only a few minutes and are painless."
+      ]
+    },
+    {
+      "heading": "Balance and imaging",
+      "paragraphs": [
+        "If dizziness is the problem, tests of eye movement, positional manoeuvres and balance may be used. Scans such as magnetic resonance imaging or computed tomography are used for unexplained one-sided hearing loss, suspected growths or bone problems, and only when necessary."
+      ]
+    },
+    {
+      "heading": "Preparing and results",
+      "paragraphs": [
+        "Tell the doctor about symptoms, medicines, and previous ear problems. Avoid using cotton buds, since they can push wax deeper. Ask what the results mean, whether further tests are needed and what the treatment options are."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Describing symptoms",
+      "text": "Imagine you have muffled hearing in one ear. You could note when it started and whether you also have pain, dizziness or ringing."
+    },
+    {
+      "title": "After the test",
+      "text": "Suppose your audiogram shows mild loss. You might ask about hearing protection, repeat tests and whether aids are suitable."
+    }
+  ],
+  "questions": [
+    "Which tests do I need for my symptoms?",
+    "What do the results show?",
+    "Do I need treatment or follow-up?"
+  ]
+}

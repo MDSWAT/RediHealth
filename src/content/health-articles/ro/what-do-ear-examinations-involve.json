@@ -1,0 +1,51 @@
+{
+  "title": "Ce implică examinările urechii?",
+  "intro": "Examinările urechii ajută medicii să găsească cauza durerii de ureche, a pierderii auzului, a amețelii sau a țiuitului în urechi. De obicei sunt nedureroase și rapide. Testele folosite depind de simptomele dumneavoastră, iar rezultatele orientează tratamentul.",
+  "sections": [
+    {
+      "heading": "Privirea în interiorul urechii",
+      "paragraphs": [
+        "Medicul folosește un otoscop sau un microscop pentru a privi în canalul urechii și la timpan. Aceasta poate arăta ceară, infecție, leziuni, lichid în spatele timpanului sau o perforație. La copii, urechea este trasă ușor pentru a îndrepta canalul. Examinarea poate fi ușor neplăcută, dar nu trebuie să doară."
+      ]
+    },
+    {
+      "heading": "Testele auditive",
+      "paragraphs": [
+        "Audiometria tonală măsoară cele mai slabe sunete pe care le auziți la diferite înălțimi, folosind căști, iar rezultatele sunt arătate pe un grafic. Testele de vorbire verifică cât de bine înțelegeți cuvintele. Bebelușii și copiii mici au teste care nu necesită cooperare activă, precum otoemisiunile acustice sau răspunsurile la sunete."
+      ]
+    },
+    {
+      "heading": "Testele urechii medii",
+      "paragraphs": [
+        "Timpanometria folosește o mică sondă în canalul urechii pentru a măsura cât de bine se mișcă timpanul și dacă există lichid în urechea medie. Testele cu diapazonul ajută la diferențierea pierderii auzului conductive de cea neurosenzorială. Aceste teste durează doar câteva minute și sunt nedureroase."
+      ]
+    },
+    {
+      "heading": "Echilibrul și imagistica",
+      "paragraphs": [
+        "Dacă problema este amețeala, se pot folosi teste ale mișcărilor ochilor, manevre de poziționare și teste de echilibru. Investigațiile precum rezonanța magnetică sau tomografia computerizată se folosesc pentru pierderea unilaterală neexplicată a auzului, suspiciunea de formațiuni sau probleme osoase și doar când este necesar."
+      ]
+    },
+    {
+      "heading": "Pregătire și rezultate",
+      "paragraphs": [
+        "Spuneți medicului simptomele, medicamentele și problemele anterioare ale urechii. Evitați bețișoarele cu vată, deoarece pot împinge ceara mai adânc. Întrebați ce înseamnă rezultatele, dacă sunt necesare alte teste și care sunt opțiunile de tratament."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Descrierea simptomelor",
+      "text": "Imaginați-vă că aveți auzul înfundat la o ureche. Ați putea nota când a început și dacă aveți și durere, amețeală sau țiuit."
+    },
+    {
+      "title": "După test",
+      "text": "Presupuneți că audiograma arată o pierdere ușoară. Ați putea întreba despre protecția auzului, retestări și dacă aparatele auditive sunt potrivite."
+    }
+  ],
+  "questions": [
+    "Ce teste îmi trebuie pentru simptomele mele?",
+    "Ce arată rezultatele?",
+    "Am nevoie de tratament sau de urmărire?"
+  ]
+}

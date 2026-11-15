@@ -1,0 +1,51 @@
+{
+  "title": "Organele sistemului imunitar",
+  "intro": "Sistemul imunitar este alcătuit din organe, țesuturi și celule care protejează organismul de microbi și de celule anormale. Unele organe produc și antrenează celulele imune, în timp ce altele filtrează lichidele corpului și rețin microbii. Împreună formează o rețea de apărare coordonată, răspândită în tot corpul.",
+  "sections": [
+    {
+      "heading": "Măduva osoasă și timusul",
+      "paragraphs": [
+        "Măduva osoasă, țesutul moale din interiorul oaselor mari, produce toate celulele sanguine, inclusiv globulele albe ale sistemului imunitar. Limfocitele B se maturizează acolo. Timusul, un mic organ situat în spatele sternului, este locul unde se maturizează limfocitele T și învață să deosebească celulele proprii ale corpului de cele străine. Este cel mai activ în copilărie și se micșorează odată cu vârsta."
+      ]
+    },
+    {
+      "heading": "Ganglionii limfatici și vasele limfatice",
+      "paragraphs": [
+        "Ganglionii limfatici sunt mici filtre răspândite în rețeaua limfatică, concentrate în gât, subsuori, zona inghinală și abdomen. Ei rețin microbii din lichidul limfatic și sunt locuri de întâlnire în care celulele imune sunt activate. Vasele limfatice transportă limfa și celulele imune prin corp. Când luptă cu o infecție, ganglionii se pot umfla și pot deveni sensibili."
+      ]
+    },
+    {
+      "heading": "Splina și amigdalele",
+      "paragraphs": [
+        "Splina, situată în partea stângă a abdomenului, filtrează sângele, îndepărtează hematiile vechi și microbii și găzduiește celule imune. Persoanele fără splină sunt mai susceptibile la anumite infecții și au nevoie de vaccinări și uneori de antibiotice preventive. Amigdalele și vegetațiile adenoide din gât prelevează microbii care intră prin gură și nas."
+      ]
+    },
+    {
+      "heading": "Țesutul imun al mucoaselor",
+      "paragraphs": [
+        "Suprafețele de căptușeală din intestin, plămâni și tractul urinar au propriul țesut imun. Aglomerări de țesut limfatic din intestinul subțire, numite plăci Peyer, monitorizează ce se află în intestin. Și pielea are celule imune. Aceste bariere sunt prima linie de apărare împotriva microbilor din lumea exterioară."
+      ]
+    },
+    {
+      "heading": "Menținerea sănătății sistemului",
+      "paragraphs": [
+        "Somnul, mișcarea regulată, alimentația echilibrată, nefumatul, alcoolul moderat, gestionarea stresului și vaccinarea susțin funcția imună. Cereți sfat pentru infecții repetate, febră neexplicată, ganglioni umflați persistenți sau dacă vi s-a îndepărtat splina."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Înțelegerea ganglionilor umflați",
+      "text": "Imaginați-vă că aveți durere în gât și ganglioni sensibili în gât. Ați putea să vă odihniți și să urmăriți dacă umflătura scade în câteva săptămâni."
+    },
+    {
+      "title": "După îndepărtarea splinei",
+      "text": "Presupuneți că vi s-a îndepărtat splina. Ați putea întreba medicul despre vaccinările recomandate și ce să faceți când aveți febră."
+    }
+  ],
+  "questions": [
+    "Ce organe ale sistemului meu imunitar sunt afectate de afecțiunea mea?",
+    "Am nevoie de vaccinări sau precauții suplimentare?",
+    "Ce simptome înseamnă că trebuie verificat pentru probleme imune?"
+  ]
+}

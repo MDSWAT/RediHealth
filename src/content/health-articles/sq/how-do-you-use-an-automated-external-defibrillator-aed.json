@@ -1,0 +1,51 @@
+{
+  "title": "Përdorimi i AED në urgjencën e të rriturit",
+  "intro": "AED analizon ritmin dhe jep goditje vetëm kur duhet. Kushdo ndjek udhëzimet. Mos vononi për lexim: telefononi 112 për personin pa reagim dhe ndiqni operatorin.",
+  "sections": [
+    {
+      "heading": "Njihni dhe telefononi",
+      "paragraphs": [
+        "Siguroni vendin, kontrolloni reagimin dhe telefononi me altoparlant. Vlerësoni frymën ndërkohë; gulçimet e rralla nuk janë normale. Pa reagim e frymë normale nisni reanimimin dhe kërkoni ndihmës për AED."
+      ]
+    },
+    {
+      "heading": "Vazhdoni reanimimin",
+      "paragraphs": [
+        "Për të rriturin shtypni mesin e gjoksit 5–6 cm me 100–120 në minutë dhe kthim të plotë. Nëse trajnuar, alternoni 30 shtypje me 2 fryma; ndryshe vazhdoni shtypjet. Mos lini vetëm për kërkim të largët."
+      ]
+    },
+    {
+      "heading": "Ndizni dhe vendosni",
+      "paragraphs": [
+        "Hapni ose ndizni dhe ndiqni figurat e zërin. Zbuloni gjoksin, thani lëkurën dhe vendosni pllakat siç tregohet. Me ndihmës vazhdoni shtypjet gjatë vendosjes. Mos vendosni direkt mbi pajisje të implantuar."
+      ]
+    },
+    {
+      "heading": "Larg duart",
+      "paragraphs": [
+        "Askush nuk prek gjatë analizës ose goditjes. Disa godasin vetë, të tjerë kërkojnë buton. Rifilloni menjëherë pas goditjes ose udhëzimit pa goditje. Mungesa e goditjes nuk nënkupton mungesë nevoje."
+      ]
+    },
+    {
+      "heading": "Vazhdoni ndihmën",
+      "paragraphs": [
+        "Lërini pllakat dhe vazhdoni deri te profesionistët, fryma normale, rreziku ose pamundësia. Tregoni ndryshimet operatorit. Fëmijët dhe foshnjat duan udhëzime e cilësime moshe; mos vononi nga pasiguria."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira shtyp ndërsa ndihmësi sjell AED. Ndan detyrat dhe largon duart vetëm kur kërkohet analizë ose goditje."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni dëgjon se nuk këshillohet goditje. Rifillon reanimimin pa supozuar rikuperim."
+    }
+  ],
+  "questions": [
+    "Ku mund të ushtroj reanimimin dhe defibrilatorin me instruktor?",
+    "Si ndryshojnë udhëzimet për fëmijët ose mbytjen?",
+    "Si mund të marr mbështetje pas ndihmës në urgjencë?"
+  ]
+}

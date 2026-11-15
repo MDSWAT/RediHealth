@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh gjatë një elektroencefalogramë (EEG)?",
+  "intro": "Një elektroencefalogram, ose EEG, regjistron aktivitetin elektrik të trurit përmes sensorëve të vegjël të vendosur në kokë. Është pa dhimbje e i sigurt. Përdoret më shpesh për të ndihmuar diagnostikimin e epilepsisë e shkaqeve të tjera të ngërçeve, humbjes së vetëdijes e ndryshimeve të ndërgjegjes.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "Qelizat e trurit komunikojnë me sinjale elektrike, e një EEG tregon modele të këtij aktiviteti. Mund të tregojë shkarkime jonormale në epilepsi, të ndihmojë klasifikimin e llojeve të ngërçeve, të vlerësojë çrregullimet e gjumit e konfuzionin e të vlerësojë funksionin e trurit në disa sëmundje. Një EEG normale nuk e përjashton epilepsinë."
+      ]
+    },
+    {
+      "heading": "Përgatitja",
+      "paragraphs": [
+        "Lani flokët një ditë më parë, pa balsam, xhel ose spërkatës. Hani normalisht e merrni barnat përveç nëse thuhet ndryshe. Nganjëherë ju kërkohet të flini më pak natën para, që të flini gjatë testit. Sillni një listë barnash e tregojini stafit për çdo ngërç."
+      ]
+    },
+    {
+      "heading": "Gjatë testit",
+      "paragraphs": [
+        "Një teknik fikson rreth njëzet disqe të vegjël metalikë në kokë me pastë ose një kapele. Lidhen me një makinë regjistrimi. Shtriheni ose uleni të relaksuar me sytë mbyllur, pastaj hapur. Mund t'ju kërkohet të merrni frymë thellë ose të shikoni drita që pulsojnë, që mund të nxisin aktivitet jonormal. Regjistrimi zgjat njëzet deri gjashtëdhjetë minuta."
+      ]
+    },
+    {
+      "heading": "Lloje të tjera",
+      "paragraphs": [
+        "EEG e gjumit regjistron gjatë gjumit, e EEG ambulatore regjistrohet një deri tre ditë në shtëpi. EEG me video në spital i regjistron ngërçet së bashku me video. Këto japin më shumë informacion se një test rutinë. Testi nuk jep goditje elektrike."
+      ]
+    },
+    {
+      "heading": "Pas testit",
+      "paragraphs": [
+        "Zakonisht mund të shkoni në shtëpi e të ktheheni te aktivitetet normale. Lani pastën nga flokët. Një specialist rishikon regjistrimin, e rezultati i dërgohet mjekut brenda disa ditësh. Pyesni çfarë tregon e cilat janë hapat e radhës."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja e flokëve",
+      "text": "Imagjinoni që EEG juaj është nesër. Mund t'i lani flokët sonte, të shmangni produktet e të sillni një listë të barnave tuaja."
+    },
+    {
+      "title": "Të kuptuarit e një rezultati normal",
+      "text": "Supozoni që EEG juaj është normale pas një ngërçi. Mund të pyesni nëse një EEG më e gjatë ose e gjumit do të ndihmonte."
+    }
+  ],
+  "questions": [
+    "Pse më duhet një EEG e çfarë mund të tregojë?",
+    "A duhet t'i ndryshoj barnat ose gjumin para testit?",
+    "Çfarë ndodh nëse EEG është normale?"
+  ]
+}

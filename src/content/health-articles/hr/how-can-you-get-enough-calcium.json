@@ -1,0 +1,51 @@
+{
+  "title": "Dovoljno kalcija bez nepotrebnih dodataka",
+  "intro": "Kalcij podupire kosti, zube, mišiće i živce. Potrebe ovise o dobi i okolnostima. Prehrana često može biti dovoljna; više ne jača automatski kosti niti jamči manje prijeloma.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Izvori su mlijeko, jogurt, sir, obogaćene alternative, neko povrće i tofu s kalcijem. Provjerite deklaracije jer biljni napitci variraju. Sadržaj i apsorpcija razlikuju se, ne vrijedi samo reputacija hrane."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Pregledajte tjedan obroka, porcije i izbjegavanje. Liječnik ili dijetetičar procjenjuju manjak i apsorpciju. Uredan kalcij krvi sam ne dokazuje dovoljan unos. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Dodajte samo kada treba ili je preporučeno uz računanje hrane. Bubrezi, kamenci, visok kalcij i lijekovi mijenjaju savjet. Kalcij ometa apsorpciju nekih lijekova: pitajte razdvajanje. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Birajte dostupnu podnošljivu hranu i rasporedite unos. Bezlaktozni proizvodi ili obogaćene zamjene pomažu pri simptomima od mlijeka. Vitamin D, kretanje i prehrana su važni; sam kalcij nije plan osteoporoze. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Raspravite nedostatke, prijelome ili simptome bez povećanja dodataka. Jaka slabost, zbunjenost, ponavljano povraćanje ili greška doze traže brz savjet. Držite dalje od djece bez slaganja istih proizvoda."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira izbjegava mlijeko, ali provjerava kalcij na napitku i dodaje izvore, ne smatra sve biljne napitke jednakima."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben uzima lijek štitnjače i pita ljekarnika kako razdvojiti preporučen kalcij radi apsorpcije."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

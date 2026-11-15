@@ -1,0 +1,51 @@
+{
+  "title": "A është telemonitorimi një ide e mirë për dështimin e avancuar të zemrës?",
+  "intro": "Telemonitorimi do të thotë matja në shtëpi e gjërave si pesha, tensioni i gjakut, pulsi ose simptomat dhe dërgimi i tyre elektronikisht te një ekip shëndetësor. Në dështimin e avancuar të zemrës, qëllimi është të vihet re herët përkeqësimi dhe të shmangen qëndrimet në spital. Gjetjet e kërkimeve janë të përziera, kështu që vendimi varet nga personi dhe programi.",
+  "sections": [
+    {
+      "heading": "Çfarë përfshin dështimi i zemrës",
+      "paragraphs": [
+        "Në dështimin e zemrës, zemra nuk mund të pompojë gjak aq mirë sa i duhet trupit. Simptomat përfshijnë gulçim, lodhje, enjtje të kyçeve të këmbëve dhe shtim të papritur në peshë nga lëngjet. Përkeqësimet mund të zhvillohen brenda ditësh dhe shpesh çojnë në shtrim në spital, kështu që rregullimi i hershëm i trajtimit është i vlefshëm."
+      ]
+    },
+    {
+      "heading": "Si funksionon telemonitorimi",
+      "paragraphs": [
+        "Njerëzit peshohen çdo ditë dhe mund të masin tensionin, pulsin ose nivelet e oksigjenit me pajisje që transmetojnë të dhënat automatikisht ose përmes një aplikacioni. Disa programe përfshijnë telefonata të rregullta ose pyetësorë. Stafi shëndetësor rishikon vlerat dhe kontakton pacientin nëse vlerat sugjerojnë problem. Disa pajisje të implantuara mund të transmetojnë gjithashtu të dhëna."
+      ]
+    },
+    {
+      "heading": "Çfarë tregojnë kërkimet",
+      "paragraphs": [
+        "Studimet për telemonitorimin kanë dhënë rezultate të ndryshme. Disa programe ulën shtrimet në spital ose vdekjet, të tjerë treguan pak përfitim. Programet që përfshijnë veprim të shpejtë nga staf i trajnuar duket se kanë më shumë gjasa të ndihmojnë se thjesht mbledhja e të dhënave. Rezultatet mund të varen nga sa i sëmurë është personi dhe sa mirë është organizuar programi."
+      ]
+    },
+    {
+      "heading": "Përfitimet dhe disavantazhet",
+      "paragraphs": [
+        "Përfitimet e mundshme përfshijnë ndjenjën e qetësisë, më pak vizita në klinikë dhe rregullim më të hershëm të barnave. Disavantazhet përfshijnë alarme të rreme e ankth, përpjekje shtesë për matjet ditore, probleme me pajisjet, konsiderata të privatësisë dhe nevojën për internet të qëndrueshëm ose aftësi dixhitale. Telemonitorimi nuk e zëvendëson kujdesin ballë për ballë."
+      ]
+    },
+    {
+      "heading": "Vendosja nëse ta përdorni",
+      "paragraphs": [
+        "Pyesni nëse shërbimi është i disponueshëm, kush i rishikon të dhënat dhe sa shpejt, çfarë ndodh natën dhe në fundjavë dhe kush paguan. Mendoni nëse ju ose një i afërm mund ta menaxhoni pajisjen. Peshimi ditor dhe ndjekja e simptomave janë të dobishme edhe pa teknologji të sofistikuar dhe shumë njerëz përfitojnë nga një plan veprimi i shkruar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kontrolli ditor i peshës",
+      "text": "Imagjinoni që peshoheni çdo mëngjes pasi keni përdorur tualetin. Mund ta shkruani numrin, të vini re një rritje prej më shumë se dy kilogramësh brenda disa ditësh dhe të telefononi klinikën siç është rënë dakord në planin tuaj."
+    },
+    {
+      "title": "Zgjedhja e një programi",
+      "text": "Supozoni që spitali juaj ofron telemonitorim. Mund të pyesni sa shpesh rishikohen të dhënat, çfarë bën ekipi kur vlerat ndryshojnë dhe nëse mund të ndaloni në çdo kohë."
+    }
+  ],
+  "questions": [
+    "A është i disponueshëm telemonitorimi për mua dhe a ka gjasa të ndihmojë në situatën time?",
+    "Kush do t'i shohë të dhënat e mia dhe si do të reagojë?",
+    "Çfarë duhet të bëj në shtëpi nëse ndryshon pesha ose simptomat e mia?"
+  ]
+}

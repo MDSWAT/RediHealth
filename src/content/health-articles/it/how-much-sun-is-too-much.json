@@ -1,0 +1,56 @@
+{
+  "title": "Quanto sole è troppo",
+  "intro": "La luce solare sostiene l'umore e la produzione di vitamina D, ma troppa radiazione ultravioletta danneggia le cellule della pelle e aumenta il rischio di scottature, invecchiamento cutaneo precoce e tumori della pelle. Trovare un equilibrio ragionevole significa conoscere il proprio tipo di pelle, l'intensità del sole e i modi pratici per proteggersi senza rinunciare a stare all'aria aperta.",
+  "sections": [
+    {
+      "heading": "Cosa fa la radiazione ultravioletta",
+      "paragraphs": [
+        "Due tipi di luce ultravioletta raggiungono il suolo. Gli UVB causano le scottature e sono il principale stimolo per la produzione di vitamina D, mentre gli UVA penetrano più in profondità, contribuiscono all'invecchiamento e hanno un ruolo anche nel tumore della pelle. Entrambi possono danneggiare il DNA delle cellule cutanee.",
+        "Il danno si accumula nel corso della vita. Scottature ripetute, soprattutto nell'infanzia, sono associate a un rischio più alto di melanoma, il tumore della pelle più pericoloso. L'abbronzatura è la risposta della pelle a un danno e non è un segno di salute."
+      ]
+    },
+    {
+      "heading": "Quanto è troppo",
+      "paragraphs": [
+        "Il rischio dipende dall'indice UV, dall'ora del giorno, dalla stagione, dall'altitudine, dalla riflessione di acqua, neve o sabbia e dal proprio tipo di pelle. Le persone con pelle chiara, capelli rossi o biondi, molti nei o familiarità per tumori della pelle si scottano più facilmente e dovrebbero fare particolare attenzione. Le nuvole non bloccano tutti i raggi UV.",
+        "Il sole è più forte intorno a mezzogiorno, quindi ombra e copertura sono più importanti in quelle ore. L'indice UV nelle previsioni del tempo aiuta a decidere quando serve protezione. Un valore pari o superiore a 3 richiede in genere protezione."
+      ]
+    },
+    {
+      "heading": "Protezione pratica",
+      "paragraphs": [
+        "Cerca l'ombra tra la tarda mattinata e metà pomeriggio, indossa un cappello a tesa larga, occhiali da sole con protezione UV e abiti a trama fitta che coprano braccia e gambe. L'abbigliamento è più affidabile della crema perché non si consuma.",
+        "Usa una crema solare con alto fattore di protezione sulla pelle esposta che gli abiti non coprono. Applicane una quantità generosa circa 20 minuti prima di uscire e riapplicala ogni due ore e dopo aver nuotato o sudato. La crema solare non va usata per restare più a lungo al sole."
+      ]
+    },
+    {
+      "heading": "Bambini, neonati e situazioni particolari",
+      "paragraphs": [
+        "I neonati sotto un anno vanno tenuti fuori dal sole diretto. La pelle dei bambini è più sottile e sensibile, quindi ombra, abiti e cappelli sono la migliore protezione. Alcuni farmaci rendono la pelle più sensibile alla luce, e chi li assume dovrebbe chiedere quali precauzioni adottare.",
+        "Lettini e lampade abbronzanti emettono radiazioni UV intense e aumentano il rischio di tumore della pelle. Le autorità sanitarie ne sconsigliano l'uso, soprattutto ai giovani."
+      ]
+    },
+    {
+      "heading": "Sole e vitamina D",
+      "paragraphs": [
+        "Una breve esposizione regolare di viso, mani e braccia alla luce del giorno in primavera ed estate in genere aiuta il corpo a produrre abbastanza vitamina D senza scottarsi. Fermarsi prima che la pelle diventi rosa è ragionevole. In inverno alle latitudini settentrionali la luce solare produce poca vitamina D, e per alcune persone possono contare di più dieta o integratori.",
+        "Controlla regolarmente la pelle. Rivolgiti a un medico per un neo che cambia dimensione, forma o colore, sanguina, prude, o per una lesione che non guarisce."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pianificare una giornata al mare",
+      "text": "Immagina di andare in estate al mare con dei bambini. Potresti organizzare l'ombra, portare cappelli e magliette da bagno a maniche lunghe, applicare la crema solare prima di partire e di nuovo dopo il bagno e programmare le ore centrali della giornata al chiuso."
+    },
+    {
+      "title": "Notare un neo che cambia",
+      "text": "Supponi di notare sulla schiena un neo che sembra più scuro e più grande di prima. Potresti scattare una foto nitida, annotare la data e prenotare un controllo della pelle invece di aspettare di vedere se cambia ancora."
+    }
+  ],
+  "questions": [
+    "Quanto è sensibile la mia pelle e quale protezione si adatta al mio tipo di pelle e alle mie attività?",
+    "Dovrei fare controlli regolari della pelle, considerati i miei nei e la familiarità?",
+    "Ho bisogno di integratori di vitamina D o la mia esposizione al sole e la mia dieta sono sufficienti?"
+  ]
+}

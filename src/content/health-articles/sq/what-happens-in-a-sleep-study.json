@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh në një studim të gjumit?",
+  "intro": "Një studim i gjumit, ose polisomnografia, regjistron aktivitetin e trupit gjatë gjumit për të zbuluar pse dikush fle keq ose ndihet i lodhur gjatë ditës. Ndihmon të diagnostikohen gjendje si apnea e gjumit, këmbët e shqetësuara, narkolepsia e lëvizjet jonormale në gjumë. Është pa dhimbje, por zgjat një natë të tërë.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "Mund të rekomandohet për gërhitje të fortë me ndalesa në frymëmarrje, përgjumje ekstreme gjatë ditës, gjumë që nuk pushon, sjellje të pazakonta natën si ecja në gjumë, këmbë të shqetësuara ose dyshim për narkolepsi. Studimi tregon sa kohë flini, cilat faza i arrini e sa shpesh ndalet frymëmarrja."
+      ]
+    },
+    {
+      "heading": "Llojet e studimeve",
+      "paragraphs": [
+        "Një studim në laborator bëhet natën në një qendër gjumi me një teknik që monitoron. Një test i thjeshtuar në shtëpi mat frymëmarrjen, oksigjenin e rrahjet e zemrës, e përdoret kryesisht kur apnea e gjumit është e mundshme. Disa teste, si testi i vonesës së shumëfishtë të gjumit, bëhen gjatë ditës për të matur sa shpejt e zë gjumi."
+      ]
+    },
+    {
+      "heading": "Çfarë matet",
+      "paragraphs": [
+        "Sensorë të vegjël vendosen në kokë, fytyrë, gjoks, këmbë e gisht për të regjistruar valët e trurit, lëvizjet e syve, aktivitetin e muskujve, ritmin e zemrës, përpjekjen e frymëmarrjes, rrjedhën e ajrit e nivelet e oksigjenit. Një mikrofon e një kamerë regjistrojnë gërhitjen e lëvizjen. Sensorët vendosen me shirit ose pastë e nuk dhembin."
+      ]
+    },
+    {
+      "heading": "Përgatitja për natën",
+      "paragraphs": [
+        "Mbani rutinën tuaj normale, shmangni kafeinën pasdite, e shmangni alkoolin e gjumërat e ditës nëse këshillohet. Sillni rroba të rehatshme gjumi e barnat tuaja të zakonshme. Shumica e njerëzve flenë, edhe pse më pak mirë se në shtëpi. Tregojini stafit për probleme me pajisjet."
+      ]
+    },
+    {
+      "heading": "Rezultatet e trajtimi",
+      "paragraphs": [
+        "Një specialist i analizon të dhënat, e rezultatet ndahen brenda ditëve deri javëve. Trajtimi varet nga gjetja, për shembull një maskë që jep presion ajri për apnenë e gjumit, pajisje dentare, humbje peshe, barna ose terapi sjelljeje. Ndjekja kontrollon nëse trajtimi funksionon."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja",
+      "text": "Imagjinoni që keni një test gjumi nesër natën. Mund ta kapërceni kafenë e pasdites, të sillni barnat e zakonshme e të visheni me rroba rehatshme gjumi."
+    },
+    {
+      "title": "Rishikimi i rezultateve",
+      "text": "Supozoni që studimi tregon apne të gjumit. Mund të pyesni për trajtimin me maskë e si të përshtateni me të."
+    }
+  ],
+  "questions": [
+    "Cili lloj studimi gjumi është i duhuri për mua?",
+    "Çfarë do të thonë rezultatet për lodhjen time gjatë ditës?",
+    "Cilat opsione trajtimi ekzistojnë nëse gjendet një problem?"
+  ]
+}

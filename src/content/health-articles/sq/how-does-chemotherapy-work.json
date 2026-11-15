@@ -1,0 +1,51 @@
+{
+  "title": "Si punon kimioterapia: qëllimi, ciklet dhe siguria",
+  "intro": "Kimioterapia përdor barna që ndërhyjnë në rritjen ose mbijetesën e kancerit. Ndryshon nga rrezatimi dhe shumë terapi të synuara ose imune. Skema përcakton përfitimet, efektet dhe monitorimin.",
+  "sections": [
+    {
+      "heading": "Qëllimi",
+      "paragraphs": [
+        "Synon shërim, më pak rikthim, zvogëlim para trajtimit tjetër ose kontroll simptomash e përparimi. Pyesni përfitimin realist dhe vlerësimin; trajtimi paliativ mund të ndihmojë shumë."
+      ]
+    },
+    {
+      "heading": "Ciklet dhe analizat",
+      "paragraphs": [
+        "Skemat alternojnë trajtim e rikuperim sepse prekin edhe indin normal. Gjaku dhe organet udhëheqin dozën. Vonesa ose ndryshimi mund të jenë siguri, jo dështim. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Rrugët dhe mbështetja",
+      "paragraphs": [
+        "Jepet në venë, pompë, tableta ose ndryshe. Tabletat në shtëpi kërkojnë kujdes e monitorim si infuzionet. Pyesni nauzen, gojën, fertilitetin, parandalimin e shtatzënisë dhe ndërveprimet. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Plani",
+      "paragraphs": [
+        "Mbani emrin, ilaçet dhe kontaktin urgjent. Shënoni simptoma dhe merrni mbështetjen e përshkruar. Pyesni para suplementeve ose ilaçeve të reja; mos dyfishoni doza ose ndryshoni orarin vetë. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Urgjencat",
+      "paragraphs": [
+        "Ethet, të dridhurat ose sëmundja e papritur mund të tregojnë infeksion serioz edhe me shenja të lehta. Ndiqni menjëherë planin dhe pragun e tij të temperaturës. Frymëmarrja e rëndë, dhimbja e gjoksit, konfuzioni ose gjakosja kërkojnë urgjencë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet për uljen e rikthimit pas operacionit dhe përfitimin absolut, jo çdo skemë me të njëjtin qëllim."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ka të dridhura mes cikleve dhe telefonon menjëherë pa fshehur shenjat me ilaç etheje."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

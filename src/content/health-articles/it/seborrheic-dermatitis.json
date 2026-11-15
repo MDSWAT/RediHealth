@@ -1,0 +1,51 @@
+{
+  "title": "Dermatite seborroica",
+  "intro": "La dermatite seborroica è una condizione comune e innocua della pelle che causa chiazze rosse, desquamate e dall'aspetto untuoso, soprattutto su cuoio capelluto, viso e petto. La forfora ne è una forma lieve. Va e viene e risponde bene a shampoo e creme medicati, anche se tende a ripresentarsi.",
+  "sections": [
+    {
+      "heading": "Dove e come compare",
+      "paragraphs": [
+        "Colpisce zone con molte ghiandole sebacee: cuoio capelluto, sopracciglia, lati del naso, dietro le orecchie, zona della barba e centro del petto. La pelle può essere rossa con squame giallastre e pruriginosa o dolente. Nei neonati compare come spesse croste squamose gialle sul cuoio capelluto, chiamate crosta lattea, che è innocua e di solito scompare entro mesi."
+      ]
+    },
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "La causa è una combinazione di sebo cutaneo, di un lievito chiamato Malassezia che normalmente vive sulla pelle e di una reazione infiammatoria individuale. Non è causata da scarsa igiene. Stress, stanchezza, tempo freddo e secco, certe malattie come il Parkinson e alcuni farmaci possono scatenarla o peggiorarla."
+      ]
+    },
+    {
+      "heading": "Trattare il cuoio capelluto",
+      "paragraphs": [
+        "Si usano shampoo contenenti ketoconazolo, solfuro di selenio, piritione di zinco o catrame di carbone da due a tre volte alla settimana finché la condizione non si calma, poi meno spesso, lasciando lo shampoo in posa qualche minuto prima di sciacquare. L'acido salicilico o l'olio possono staccare le squame spesse. La crosta lattea nei neonati si può ammorbidire con olio per bambini e togliere delicatamente con una spazzola."
+      ]
+    },
+    {
+      "heading": "Trattare viso e corpo",
+      "paragraphs": [
+        "Le creme antifungine si applicano una o due volte al giorno. Per arrossamento e prurito si può prescrivere per brevi periodi una crema corticosteroidea lieve, perché un uso più lungo assottiglia la pelle del viso. Poiché tende a ripresentarsi, un trattamento di mantenimento una o due volte alla settimana aiuta a tenerla lontana. Vai dal medico se la pelle sembra infetta, è molto estesa o non risponde."
+      ]
+    },
+    {
+      "heading": "Vivere con la condizione",
+      "paragraphs": [
+        "La condizione è innocua e non contagiosa. Aiutano una cura delicata della pelle, evitare prodotti aggressivi e mantenere una routine semplice. Le riacutizzazioni spesso seguono stress o sonno scarso, quindi occuparsi di questi può ridurre le recidive."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Usare uno shampoo",
+      "text": "Immagina che il cuoio capelluto sia desquamato e pruriginoso. Potresti usare uno shampoo antifungino due volte alla settimana, lasciarlo in posa per diversi minuti e continuare fino al miglioramento prima di ridurre l'uso."
+    },
+    {
+      "title": "Curare un neonato",
+      "text": "Supponi che il tuo bambino abbia croste gialle sul cuoio capelluto. Potresti massaggiare un po' d'olio sul cuoio capelluto, lasciarlo per un'ora e pettinare delicatamente con una spazzola morbida."
+    }
+  ],
+  "questions": [
+    "Quale shampoo o crema è il migliore per la mia dermatite seborroica?",
+    "Con quale frequenza devo usare il trattamento e per quanto tempo?",
+    "Qualcos'altro potrebbe causare la mia condizione della pelle?"
+  ]
+}

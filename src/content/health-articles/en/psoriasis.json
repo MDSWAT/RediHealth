@@ -1,0 +1,51 @@
+{
+  "title": "Psoriasis",
+  "intro": "Psoriasis is a long-term inflammatory skin condition in which skin cells multiply too fast, producing red, scaly, sometimes itchy patches. It is not contagious. It follows a course of flare-ups and calmer periods, and there are many effective treatments, from creams to modern injectable medicines.",
+  "sections": [
+    {
+      "heading": "Symptoms and types",
+      "paragraphs": [
+        "The most common form is plaque psoriasis, with sharply defined red patches covered in silvery scales on elbows, knees, scalp and lower back. Other forms include guttate psoriasis, with small drops after a throat infection, inverse psoriasis in skin folds, pustular psoriasis and nail changes such as pitting. Psoriasis can also affect the joints."
+      ]
+    },
+    {
+      "heading": "Causes and triggers",
+      "paragraphs": [
+        "Psoriasis arises from an overactive immune response combined with genetic factors. Flares may be triggered by infections, skin injury, stress, certain medicines, smoking, alcohol and obesity. People with psoriasis have a higher risk of cardiovascular disease, diabetes and depression, so overall health matters."
+      ]
+    },
+    {
+      "heading": "Treatment of mild psoriasis",
+      "paragraphs": [
+        "Moisturisers soften scales. Creams containing corticosteroids, vitamin D derivatives or a combination reduce inflammation and scaling. Salicylic acid removes scale. Treatment is applied as instructed to avoid thinning of the skin. Scalp psoriasis may need special shampoos and solutions."
+      ]
+    },
+    {
+      "heading": "Treatment of moderate to severe psoriasis",
+      "paragraphs": [
+        "Phototherapy with ultraviolet light is effective. Tablets such as methotrexate, ciclosporin or newer small-molecule drugs suppress the immune system and need monitoring. Biologic medicines, given by injection, target specific immune signals and often clear the skin dramatically, but increase the risk of infections and require screening for tuberculosis and hepatitis. The choice depends on severity, joint involvement, other illnesses and preferences."
+      ]
+    },
+    {
+      "heading": "Living with psoriasis",
+      "paragraphs": [
+        "Skin care, avoiding triggers, stopping smoking, reducing alcohol, losing weight if needed and managing stress help. Psoriasis can affect self-esteem and relationships, and support groups and psychological help are valuable. Tell your doctor if joints ache or swell, since early treatment of psoriatic arthritis prevents damage."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planning treatment",
+      "text": "Imagine your patches keep returning on your elbows. You could ask about a combination cream, how long to use it and what to do if flares come back."
+    },
+    {
+      "title": "Discussing joint pain",
+      "text": "Suppose your fingers become swollen and stiff in the morning. You might tell your dermatologist and ask for referral to a rheumatologist."
+    }
+  ],
+  "questions": [
+    "How severe is my psoriasis, and which treatment suits me?",
+    "What are the risks of stronger medicines and how are they monitored?",
+    "Could my joint pain be related to psoriasis?"
+  ]
+}

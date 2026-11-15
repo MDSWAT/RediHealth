@@ -1,0 +1,51 @@
+{
+  "title": "Capire il dolore cronico",
+  "intro": "Il dolore cronico è un dolore che dura più di tre mesi, oltre il normale tempo di guarigione. Può nascere da un infortunio o da una malattia, o senza una causa chiara, e influisce su umore, sonno, lavoro e relazioni. Il dolore è reale e capire come funziona aiuta a partecipare a un trattamento efficace.",
+  "sections": [
+    {
+      "heading": "Come funziona il dolore",
+      "paragraphs": [
+        "Il dolore è prodotto dal cervello e dal sistema nervoso in risposta a segnali di minaccia. Nel dolore acuto ci protegge dai danni. Nel dolore cronico il sistema nervoso può diventare ipersensibile, così il dolore continua o è amplificato anche se il tessuto è guarito e le sensazioni normali possono diventare dolorose. Stress, sonno scarso, umore basso e preoccupazione possono alzare ancora di più il volume."
+      ]
+    },
+    {
+      "heading": "Tipi comuni",
+      "paragraphs": [
+        "Il dolore cronico comprende mal di schiena e dolore al collo, artrosi, dolore nervoso dopo l'herpes zoster o il diabete, mal di testa, fibromialgia, dolore dopo un intervento e condizioni senza una causa chiara. Molte persone hanno più di un tipo. I reperti agli esami spesso non corrispondono alla quantità di dolore avvertita."
+      ]
+    },
+    {
+      "heading": "Approcci al trattamento",
+      "paragraphs": [
+        "I risultati migliori vengono dal combinare più approcci. Restare fisicamente attivi con esercizio graduale, la fisioterapia, l'educazione sul dolore e metodi psicologici come la terapia cognitivo-comportamentale, la terapia di accettazione e impegno e il rilassamento sono tra i trattamenti più efficaci. I farmaci possono aiutare certi tipi, come i farmaci per il dolore nervoso, ma hanno effetti collaterali. Gli oppioidi in genere non sono adatti all'uso a lungo termine nel dolore cronico non oncologico, per il beneficio limitato e i rischi di dipendenza."
+      ]
+    },
+    {
+      "heading": "Dosare le energie e vita quotidiana",
+      "paragraphs": [
+        "Dosare le energie significa bilanciare attività e riposo per evitare di esagerare nei giorni buoni e crollare dopo. Aiutano fissare piccoli obiettivi, mantenere le attività sociali, sonno regolare e routine. Condividi ciò di cui hai bisogno con familiari e datori di lavoro. Le cliniche del dolore con équipe di medici, psicologi e fisioterapisti offrono programmi completi."
+      ]
+    },
+    {
+      "heading": "Benessere emotivo",
+      "paragraphs": [
+        "Convivere con un dolore continuo può causare frustrazione, ansia e depressione, che a loro volta peggiorano il dolore. Non esitare a cercare sostegno per il tuo umore. I gruppi di sostegno tra pari possono ridurre l'isolamento. Se hai pensieri di farti del male, contatta subito i servizi di emergenza o una linea di aiuto per le crisi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dosare l'attività",
+      "text": "Immagina di pulire tutta la casa nei giorni buoni e poi riposare per giorni. Potresti dividere le faccende in brevi sessioni durante la settimana e annotare come ti senti."
+    },
+    {
+      "title": "Chiedere un programma per il dolore",
+      "text": "Supponi che i farmaci da soli non funzionino. Potresti chiedere al medico di un programma multidisciplinare per il dolore che comprenda esercizio e terapia psicologica."
+    }
+  ],
+  "questions": [
+    "Quale approccio ha più probabilità di aiutare il mio tipo di dolore?",
+    "Quali farmaci sono appropriati e quali devo evitare?",
+    "Una clinica del dolore o una terapia psicologica sono disponibili per me?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Orzaioli e calazi (infiammazione della palpebra)",
+  "intro": "Un orzaiolo è un nodulo rosso e doloroso sul bordo della palpebra causato dall'infezione di un follicolo di ciglio o di una ghiandola. Un calazio è un nodulo più duro, di solito indolore, causato da una ghiandola sebacea ostruita più in profondità nella palpebra. Entrambi sono comuni e la maggior parte passa da sola con impacchi caldi.",
+  "sections": [
+    {
+      "heading": "Orzaiolo",
+      "paragraphs": [
+        "Un orzaiolo appare come un rigonfiamento rosso, dolente e gonfio sul margine della palpebra, a volte con un centro giallo di pus. Deriva da un'infezione batterica, di solito da Staphylococcus. L'infiammazione della palpebra chiamata blefarite, la scarsa igiene delle palpebre, il toccarsi gli occhi con le mani non lavate e il trucco vecchio aumentano il rischio."
+      ]
+    },
+    {
+      "heading": "Calazio",
+      "paragraphs": [
+        "Un calazio si sviluppa quando una ghiandola sebacea della palpebra si ostruisce e il suo contenuto fuoriesce nel tessuto circostante, causando infiammazione. Forma un nodulo rotondo e duro lontano dal bordo della palpebra, spesso indolore dopo un periodo iniziale di dolorabilità. Può premere sull'occhio e offuscare la vista se è grande. Può seguire un orzaiolo."
+      ]
+    },
+    {
+      "heading": "Trattamento a casa",
+      "paragraphs": [
+        "Applica un impacco caldo pulito per circa dieci minuti, tre o quattro volte al giorno, per ammorbidire l'ostruzione e favorire il drenaggio. Massaggia delicatamente la palpebra dopo. Tieni pulite le palpebre con un detergente delicato o salviettine apposite. Non spremere né bucare il nodulo. Evita il trucco per gli occhi e le lenti a contatto finché non è guarito."
+      ]
+    },
+    {
+      "heading": "Trattamento medico",
+      "paragraphs": [
+        "La maggior parte degli orzaioli guarisce in una o due settimane e i calazi possono richiedere da settimane a mesi. Se un nodulo persiste, è molto grande o influisce sulla vista, un medico può iniettare uno steroide o fare una piccola incisione per drenarlo in anestesia locale. Gli antibiotici servono solo per un'infezione che si estende alla palpebra o della pelle attorno all'occhio."
+      ]
+    },
+    {
+      "heading": "Quando andare dal medico",
+      "paragraphs": [
+        "Chiedi cure tempestive per arrossamento e gonfiore che si estendono sulla palpebra e sulla guancia, dolore al movimento dell'occhio, febbre, cambiamenti della vista o un nodulo che sanguina o si ripresenta sempre nello stesso punto, perché raramente un tumore può imitare un calazio."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Routine con impacco caldo",
+      "text": "Immagina che la palpebra abbia un rigonfiamento dolente. Potresti usare un panno caldo pulito per dieci minuti quattro volte al giorno e lavarti le mani prima di toccare la zona."
+    },
+    {
+      "title": "Prevenire le recidive",
+      "text": "Supponi di avere spesso orzaioli. Potresti pulire ogni giorno i margini delle palpebre, sostituire regolarmente il trucco per gli occhi e chiedere del trattamento della blefarite."
+    }
+  ],
+  "questions": [
+    "Questo è un orzaiolo o un calazio e quanto tempo ci vorrà per guarire?",
+    "Quando si considererebbero il drenaggio o l'iniezione?",
+    "Come posso prevenire le recidive?"
+  ]
+}

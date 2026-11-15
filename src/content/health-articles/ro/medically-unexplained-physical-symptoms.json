@@ -1,0 +1,52 @@
+{
+  "title": "Simptome fizice fără explicație medicală",
+  "intro": "Multe persoane au simptome fizice reale, precum durere, amețeală, oboseală sau palpitații, pentru care medicii nu găsesc o boală fizică clară. Acestea se numesc și simptome funcționale. Sunt frecvente, autentice și adesea gestionabile. Înțelegerea modului în care interacționează corpul și mintea poate reduce frica și îmbunătăți viața de zi cu zi.",
+  "sections": [
+    {
+      "heading": "Ce sunt",
+      "paragraphs": [
+        "Exemplele frecvente includ dureri de cap, dureri de spate, probleme de stomac, senzația de strângere în piept, oboseală și amețeală fără constatări la teste. Simptomele sunt reale, nu imaginare. Ele apar adesea din schimbări în modul în care sistemul nervos procesează semnalele, de exemplu după stres, infecție sau leziune."
+      ]
+    },
+    {
+      "heading": "De ce nu se găsește o cauză",
+      "paragraphs": [
+        "Testele standard arată în principal leziuni structurale sau modificări chimice, dar simptomele funcționale implică schimbări în modul în care funcționează corpul, nu în modul în care arată. Stresul, somnul slab, grijile, dispoziția scăzută și concentrarea pe corp pot amplifica senzațiile, iar la rândul lor simptomele cresc îngrijorarea, creând un ciclu."
+      ]
+    },
+    {
+      "heading": "Obținerea unei evaluări bune",
+      "paragraphs": [
+        "O anamneză atentă și un examen cu teste rezonabile ajută la excluderea unei boli grave. Testele repetate și multe vizite la specialiști de obicei nu ajută și pot face rău. Un medic de familie de încredere, care vă vede regulat, poate coordona îngrijirea și poate evita procedurile inutile."
+      ]
+    },
+    {
+      "heading": "Ce ajută",
+      "paragraphs": [
+        "Educația despre afecțiune, activitatea fizică regulată, rutine bune de somn, reducerea stresului și dozarea structurată a efortului ajută. Terapiile psihologice, precum terapia cognitiv-comportamentală, au dovezi bune, la fel ca mindfulness și relaxarea. Medicamente precum anumite antidepresive în doze mici pot ajuta unele persoane, mai ales în durere, iar kinetoterapia poate ajuta simptomele musculare.",
+        "Tratarea anxietății sau depresiei coexistente contează, dar simptomele nu trebuie respinse ca fiind doar stres."
+      ]
+    },
+    {
+      "heading": "Viața cu simptomele",
+      "paragraphs": [
+        "Stabiliți obiective realiste, continuați activitățile care contează pentru dumneavoastră și evitați să vă verificați constant corpul. Împărtășiți experiența cu persoane care au încredere în dumneavoastră și cereți ajutor dacă simptomele se agravează sau apar altele noi, diferite de tiparul obișnuit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ruperea ciclului",
+      "text": "Imaginați-vă că aveți dureri de stomac de luni de zile, cu teste normale. Ați putea ține un jurnal al simptomelor și al factorilor de stres, începe mersul regulat pe jos și întreba despre sprijin psihologic pentru gestionarea durerii."
+    },
+    {
+      "title": "Comunicarea cu medicul",
+      "text": "Presupuneți că simțiți că simptomele dumneavoastră nu sunt luate în serios. Ați putea spune clar cum vă afectează simptomele viața și ați putea cere un plan de tratament, în loc de teste suplimentare."
+    }
+  ],
+  "questions": [
+    "Ce înseamnă simptomele mele și ar fi putut fi omis ceva grav?",
+    "Ce tratamente au cele mai bune dovezi pentru tipul meu de simptome?",
+    "Cine îmi va coordona îngrijirea pentru a evita testele inutile?"
+  ]
+}

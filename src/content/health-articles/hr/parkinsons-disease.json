@@ -1,0 +1,51 @@
+{
+  "title": "Parkinsonova bolest",
+  "intro": "Parkinsonova bolest je progresivno stanje koje zahvaća kretanje, uzrokovano gubitkom živčanih stanica koje proizvode dopamin u mozgu. Dovodi do usporenosti, ukočenosti i tremora, a također i nemotoričkih simptoma. Ne postoji lijek, ali lijekovi, terapije i potpora mogu kontrolirati simptome i održati kvalitetu života mnogo godina.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Glavni motorički simptomi su usporenost pokreta, mišićna ukočenost, tremor u mirovanju koji često počinje u jednoj ruci te problemi s ravnotežom i hodanjem. Rukopis može postati sitan, glas tiši, a izraz lica smanjen. Nemotorički simptomi uključuju zatvor, probleme sa spavanjem, gubitak njuha, loše raspoloženje, tjeskobu i probleme s pamćenjem, a mogu se pojaviti godinama prije problema s kretanjem."
+      ]
+    },
+    {
+      "heading": "Uzroci i dijagnoza",
+      "paragraphs": [
+        "Uzrok je uglavnom nepoznat. Dob je najveći čimbenik rizika, a geni i okolišni čimbenici imaju ulogu u nekim slučajevima. Dijagnoza se temelji na simptomima i pregledu neurologa. Slikovne pretrage mozga i posebne pretrage mogu pomoći isključiti druga stanja. Odgovor na lijek s dopaminom podupire dijagnozu."
+      ]
+    },
+    {
+      "heading": "Lijekovi",
+      "paragraphs": [
+        "Levodopa, koju mozak pretvara u dopamin, najučinkovitiji je lijek. Drugi lijekovi kao što su agonisti dopamina, inhibitori MAO-B i inhibitori COMT mogu se koristiti sami ili u kombinaciji. Tijekom godina učinci levodope mogu popuštati između doza, a mogu se javiti nevoljni pokreti, što zahtijeva prilagodbu vremena i doza. Nuspojave mogu uključivati mučninu, pospanost, nizak krvni tlak i probleme s kontrolom impulsa kao što je kompulzivno kockanje, što treba prijaviti."
+      ]
+    },
+    {
+      "heading": "Druga liječenja",
+      "paragraphs": [
+        "Fizioterapija, vježbanje, logopedska terapija i radna terapija su važne i poboljšavaju pokretljivost, glas i svakodnevne aktivnosti. Redovito vježbanje kao što su hodanje, vožnja bicikla, ples ili boks pomaže. Duboka moždana stimulacija, kod koje se elektrode postavljaju u mozak, može pomoći odabranim bolesnicima s teškim fluktuacijama."
+      ]
+    },
+    {
+      "heading": "Život s Parkinsonovom bolešću",
+      "paragraphs": [
+        "Ostanite aktivni, jedite uravnoteženu prehranu s dovoljno vlakana i tekućine, pažljivo planirajte vrijeme uzimanja lijekova, poduzmite mjere opreza protiv padova i potražite liječenje za probleme s raspoloženjem i snom. Grupe podrške i specijalističke medicinske sestre pomažu bolesnicima i obiteljima. Planirajte unaprijed potrebe za skrbi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Uzimanje lijeka na vrijeme",
+      "text": "Zamislite da se ukočenost vraća sat prije sljedeće doze. Mogli biste voditi dnevnik simptoma i vremena doza i pokazati ga neurologu kako bi se raspored mogao prilagoditi."
+    },
+    {
+      "title": "Ostanak aktivnim",
+      "text": "Pretpostavite da se osjećate umorno i želite se povući iz aktivnosti. Mogli biste pitati o lokalnoj grupi za vježbanje ili fizioterapijskom programu osmišljenom za ljude s Parkinsonovom bolešću."
+    }
+  ],
+  "questions": [
+    "Koji je lijek i doza najbolji za mene i na koje nuspojave trebam paziti?",
+    "Koje terapije i vježbe mi mogu pomoći da ostanem pokretan?",
+    "Koja je potpora dostupna mojoj obitelji i meni?"
+  ]
+}

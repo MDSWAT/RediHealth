@@ -5,7 +5,10 @@ import { contentRoot, topics } from "./source";
 
 // Registers directly authored files. No model client, credentials or network calls.
 async function main() {
-  const ids = process.argv.slice(2);
+  const englishOnly = process.argv.includes("--english-only");
+  const langsArg = process.argv.find(arg => arg.startsWith("--langs="));
+  const extraLangs = langsArg ? langsArg.slice(8).split(",").filter(Boolean) : [];
+  const ids = process.argv.slice(2).filter(arg => !arg.startsWith("--"));
   if (!ids.length) throw new Error("Supply the completed article ids.");
   const path = new URL("direct-authorship.json", contentRoot);
   const records = existsSync(path) ? JSON.parse(await readFile(path, "utf8")) : {};
@@ -15,7 +18,7 @@ async function main() {
     let baseline: { intro: string; sections: { paragraphs: string[] }[] } | undefined;
     const text = (value: unknown) => typeof value === "string" && value.trim().length > 3;
     const numbers = (value: unknown) => (JSON.stringify(value).match(/\d+(?:[.,]\d+)?/g) ?? []).map(n => n.replace(",", ".")).sort().join("|");
-    for (const lang of ["en", "ro", "sq", "it", "ru", "hr", "rom"]) {
+    for (const lang of langsArg ? ["en", ...extraLangs] : englishOnly ? ["en"] : ["en", "ro", "sq", "it", "ru", "hr", "rom"]) {
       const raw = await readFile(new URL(`${lang}/${id}.json`, contentRoot), "utf8");
       const a = JSON.parse(raw);
       if (typeof a.title !== "string" || typeof a.intro !== "string" || a.intro.length < 80 || a.sections?.length !== 5 || a.examples?.length !== 2 || a.questions?.length !== 3 || raw.length < 1800) throw new Error(`Incomplete article: ${lang}/${id}`);
@@ -26,9 +29,9 @@ async function main() {
       if (!baseline) baseline = a;
       contentHashes[lang] = createHash("sha256").update(raw).digest("hex");
     }
-    records[id] = { sourceCheckedOn: new Date().toISOString().slice(0, 10), authoringMethod: "direct-assistant", sourceCheckMethod: "assistant-source-comparison", translationCheckMethod: "direct-assistant-comparison", humanClinicalReview: false, contentHashes };
+    records[id] = { sourceCheckedOn: new Date().toISOString().slice(0, 10), authoringMethod: "direct-assistant", sourceCheckMethod: "assistant-source-comparison", translationCheckMethod: "direct-assistant-comparison", humanClinicalReview: false, contentHashes: { ...(records[id]?.contentHashes ?? {}), ...contentHashes } };
   }
   await writeFile(path, JSON.stringify(records, null, 2) + "\n");
-  console.log(`Registered ${ids.length} directly authored articles in seven languages. Independent clinical and language review remains pending.`);
+  console.log(`Registered ${ids.length} directly authored articles in ${langsArg ? `English plus ${extraLangs.join(", ")}` : englishOnly ? "English only (other languages show labelled English until translated)" : "seven languages"}. Independent clinical and language review remains pending.`);
 }
 main().catch(error => { console.error(error instanceof Error ? error.message : "Registration failed"); process.exitCode = 1; });

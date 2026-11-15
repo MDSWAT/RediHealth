@@ -1,0 +1,52 @@
+{
+  "title": "Obstructive sleep apnoea",
+  "intro": "In obstructive sleep apnoea, the airway repeatedly narrows or closes during sleep, causing pauses in breathing, loud snoring and fragmented sleep. It leads to daytime tiredness and raises the risk of high blood pressure, heart disease and accidents. Effective treatments are available, with a breathing mask worn at night being the most common.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical signs are loud, irregular snoring, witnessed pauses in breathing, gasping or choking at night, restless sleep, waking with a dry mouth or headache, daytime sleepiness and poor concentration. Often a partner notices the problem first. Sleepiness while driving is dangerous and should be taken very seriously."
+      ]
+    },
+    {
+      "heading": "Causes and risk factors",
+      "paragraphs": [
+        "During sleep, throat muscles relax and the airway can collapse. Risk factors include overweight, a large neck circumference, male sex, increasing age, alcohol and sedatives before bed, smoking, nasal blockage and anatomical features such as a small jaw or large tonsils."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Doctors ask about symptoms and may use questionnaires. Home sleep tests measure breathing, oxygen and heart rate, and a sleep laboratory study is done when necessary. The number of breathing interruptions per hour determines severity."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Continuous positive airway pressure delivers air through a mask to keep the airway open and is the standard treatment for moderate to severe apnoea. It reduces sleepiness and blood pressure when used regularly, and it takes some time to adapt; masks can be adjusted. Alternatives include a mouth device that moves the lower jaw forward, positional therapy and, for selected patients, surgery or nerve stimulation implants.",
+        "Losing weight, avoiding alcohol and sleeping pills in the evening, quitting smoking and treating nasal blockage also help."
+      ]
+    },
+    {
+      "heading": "Why treatment matters",
+      "paragraphs": [
+        "Untreated apnoea raises the risk of hypertension, irregular heartbeat, stroke and accidents. Regular follow-up checks whether the therapy works and whether the mask fits."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Getting a diagnosis",
+      "text": "Imagine your partner says you stop breathing in your sleep. You could note your symptoms, complete a sleepiness questionnaire and ask your doctor for a sleep study."
+    },
+    {
+      "title": "Adapting to a mask",
+      "text": "Suppose the mask feels uncomfortable. You might ask the sleep clinic for a different size or type and tell them about dryness or leaks."
+    }
+  ],
+  "questions": [
+    "Do I need a sleep study, and which type is appropriate?",
+    "Which treatment suits me best, and what can I do if I cannot tolerate the mask?",
+    "Is it safe for me to drive while the problem is untreated?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Sistemet imune të lindura e adaptive",
+  "intro": "Sistemi juaj imunitar ju mbron kundër baktereve, viruseve, kërpudhave e pushtuesve të tjerë e ndihmon riparimin e dëmit. Ka dy pjesë kryesore: sistemin e lindur, që reagon shpejt e në mënyrë të përgjithshme, e sistemin adaptiv, që mëson të njohë mikrobe specifike e i mban mend. Punojnë së bashku.",
+  "sections": [
+    {
+      "heading": "Sistemi imunitar i lindur",
+      "paragraphs": [
+        "Sistemi i lindur është linja e parë e mbrojtjes. Përfshin pengesa fizike si lëkura e mukozat, acidi i stomakut e lotët, si edhe qeliza si neutrofilet e makrofagët që gëlltitin mikrobet. Qelizat vrasëse natyrale shkatërrojnë qelizat e infektuara. Ky sistem reagon brenda minutash deri orësh, duke shkaktuar inflamacion me skuqje, ngrohtësi e enjtje që sjellin më shumë qeliza imune në vend."
+      ]
+    },
+    {
+      "heading": "Sistemi imunitar adaptiv",
+      "paragraphs": [
+        "Sistemi adaptiv është më i ngadaltë, duke kërkuar ditë për t'u zhvilluar, por shumë specifik. Qelizat e tij kryesore janë limfocitet. Qelizat B prodhojnë antitrupa që lidhen me mikrobe të veçanta e i shënojnë për shkatërrim. Qelizat T ndihmojnë koordinimin e reagimit e vrasin drejtpërdrejt qelizat e infektuara. Çdo limfocit njeh një objektiv të veçantë."
+      ]
+    },
+    {
+      "heading": "Kujtesa",
+      "paragraphs": [
+        "Pas një infeksioni, disa qeliza B e T mbijetojnë si qeliza kujtese. Nëse i njëjti mikrob shfaqet përsëri, reagojnë më shpejt e më fort, shpesh duke parandaluar sëmundjen. Kjo është baza e imunitetit pas infeksionit e e vaksinimit, që e stërvit sistemin adaptiv me një pjesë të padëmshme ose formë të dobësuar të një mikrobi."
+      ]
+    },
+    {
+      "heading": "Kur sistemi shkon keq",
+      "paragraphs": [
+        "Një sistem imunitar i tepruar mund të shkaktojë alergji e sëmundje autoimune, ku trupi sulmon indet e veta. Një sistem i nënaktiv, për shkak të sëmundjes ose barnave, rrit cenueshmërinë ndaj infeksionit. Stresi, gjumi i dobët, nënushqyerja e plakja mund ta dobësojnë mbrojtjen. Zakonet e shëndetshme, vaksinimi e trajtimi i sëmundjes themelore ndihmojnë sistemin imunitar të bëjë punën e vet."
+      ]
+    },
+    {
+      "heading": "Mbështetja e shëndetit imunitar",
+      "paragraphs": [
+        "Gjumi i rregullt, ushqimi i ekuilibruar, aktiviteti fizik, moslënia e duhanit, alkooli i moderuar e vaksinimet e përditësuara janë hapat më të mbështetur. Suplementet e tregtuara si përforcues imuniteti kanë pak prova te njerëzit e shëndetshëm. Kërkoni këshillë nëse keni infeksione të përsëritura ose të pazakonta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Të kuptuarit e një vaksine",
+      "text": "Imagjinoni që pyesni veten pse nevojitet një dozë përforcuese. Mund ta pyesni mjekun si funksionojnë qelizat e kujtesës e sa zgjat mbrojtja."
+    },
+    {
+      "title": "Njohja e një problemi",
+      "text": "Supozoni që merrni infeksione shumë më shpesh se të tjerët. Mund të mbani një regjistër e ta pyesni mjekun për teste të funksionit imunitar."
+    }
+  ],
+  "questions": [
+    "Si e përdorin vaksinat kujtesën imune?",
+    "A mund të sinjalizojnë infeksionet e mia të shpeshta një problem me sistemin tim imunitar?",
+    "Cilat zakone e mbështesin më mirë shëndetin tim imunitar?"
+  ]
+}

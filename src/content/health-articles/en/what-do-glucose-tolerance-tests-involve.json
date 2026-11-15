@@ -1,0 +1,51 @@
+{
+  "title": "What do glucose tolerance tests involve?",
+  "intro": "An oral glucose tolerance test measures how well the body clears sugar from the blood. It is used to diagnose diabetes and prediabetes, and in pregnancy to detect gestational diabetes. The test takes about two hours and requires fasting beforehand.",
+  "sections": [
+    {
+      "heading": "Why it is done",
+      "paragraphs": [
+        "The test can show impaired glucose handling even when fasting blood sugar is normal. It is used if symptoms or other tests suggest diabetes, or for screening pregnant women, usually between twenty-four and twenty-eight weeks. Other tests, such as the HbA1c blood test, may be used instead in some situations."
+      ]
+    },
+    {
+      "heading": "Preparation",
+      "paragraphs": [
+        "You need to fast for eight to fourteen hours beforehand, drinking only water. For a few days before, eat normally, without strict dieting, since this can distort the result. Tell the doctor about medicines, illness, and conditions that influence blood sugar. Avoid smoking and heavy exercise on the morning of the test."
+      ]
+    },
+    {
+      "heading": "How the test is done",
+      "paragraphs": [
+        "A first blood sample is taken to measure fasting glucose. You then drink a sugar solution, usually seventy-five grams of glucose, within a few minutes. Blood samples are taken after one and two hours in pregnancy and after two hours in other adults. You have to sit quietly and not eat, smoke or drink anything else. Some people feel nausea or dizziness."
+      ]
+    },
+    {
+      "heading": "Understanding results",
+      "paragraphs": [
+        "Results are compared to standard thresholds. In adults, a two-hour value of 11.1 millimoles per litre (200 milligrams per decilitre) or higher indicates diabetes, while values between 7.8 and 11.0 suggest impaired glucose tolerance. In pregnancy, thresholds are lower, and a diagnosis of gestational diabetes leads to diet advice, monitoring and sometimes insulin."
+      ]
+    },
+    {
+      "heading": "After the test",
+      "paragraphs": [
+        "You can eat and drink normally afterwards. Ask when to expect results and how to follow up. If prediabetes is found, lifestyle changes such as healthy diet, physical activity and weight loss can lower the risk of progressing to diabetes."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing for the test",
+      "text": "Imagine your test is at eight in the morning. You could stop eating after dinner, drink water only and bring a book to wait."
+    },
+    {
+      "title": "After a high result",
+      "text": "Suppose your result shows impaired tolerance. You might ask about diet changes, exercise and when to repeat the test."
+    }
+  ],
+  "questions": [
+    "Is this the right test for me, or are other tests available?",
+    "How should I prepare, and can I take my usual medicines?",
+    "What happens if the result is abnormal?"
+  ]
+}

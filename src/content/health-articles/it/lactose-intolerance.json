@@ -1,0 +1,52 @@
+{
+  "title": "Intolleranza al lattosio",
+  "intro": "L'intolleranza al lattosio significa che il corpo non riesce a digerire bene lo zucchero del latte, causando gonfiore, aria nell'intestino e diarrea dopo i latticini. È comune negli adulti in tutto il mondo e non è pericolosa. La maggior parte delle persone può gestirla regolando la quantità di lattosio che mangia invece di evitare del tutto i latticini.",
+  "sections": [
+    {
+      "heading": "Che cosa la causa",
+      "paragraphs": [
+        "Il lattosio viene digerito da un enzima chiamato lattasi nell'intestino tenue. Nella maggior parte delle persone la produzione di lattasi cala dopo l'infanzia, così lo zucchero passa nell'intestino crasso dove i batteri lo fermentano. Questo produce gas e richiama acqua nell'intestino. Meno comunemente, malattie intestinali come la celiachia o un'infezione riducono temporaneamente la lattasi."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi compaiono di solito entro trenta minuti o due ore dall'assunzione di latticini e comprendono crampi addominali, gonfiore, flatulenza, feci molli e talvolta nausea. Quanto lattosio causi problemi differisce da persona a persona e molti ne tollerano piccole quantità, come il latte nel caffè."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "I medici possono suggerire di eliminare il lattosio per un breve periodo per vedere se i sintomi migliorano, per poi reintrodurlo. Un breath test all'idrogeno dopo aver bevuto una soluzione di lattosio può confermarla. Altre condizioni come la sindrome dell'intestino irritabile, la celiachia e l'allergia al latte vaccino causano sintomi simili e non vanno confuse. L'allergia al latte è una reazione immunitaria ed è diversa."
+      ]
+    },
+    {
+      "heading": "Mangiare bene con l'intolleranza al lattosio",
+      "paragraphs": [
+        "Molte persone tollerano formaggi stagionati, yogurt e burro, che contengono poco lattosio. Latte e latticini senza lattosio sono ampiamente disponibili e nutrizionalmente simili. Le compresse dell'enzima lattasi possono essere assunte ai pasti. Controlla le etichette, perché il lattosio compare negli alimenti trasformati e in alcuni farmaci.",
+        "Se eviti del tutto i latticini, assicurati di assumere abbastanza calcio e vitamina D da altri alimenti come bevande fortificate, verdure verdi, frutta secca e pesce, oppure chiedi degli integratori."
+      ]
+    },
+    {
+      "heading": "Quando rivolgersi al medico",
+      "paragraphs": [
+        "Chiedi consiglio se hai sangue nelle feci, perdita di peso, diarrea persistente, dolore intenso o sintomi che non corrispondono allo schema. I neonati con vomito e diarrea dopo il latte richiedono una valutazione medica."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trovare il proprio limite",
+      "text": "Immagina di avere crampi dopo un bicchiere di latte. Potresti provare il latte senza lattosio per una settimana, poi testare piccole quantità di yogurt o formaggio e annotare quali alimenti causano sintomi e quali no."
+    },
+    {
+      "title": "Controllare un'etichetta",
+      "text": "Supponi di comprare piatti pronti e di non essere sicuro del lattosio nascosto. Potresti controllare negli elenchi degli ingredienti latte, siero di latte e latte in polvere e chiedere a un dietista delle alternative adatte."
+    }
+  ],
+  "questions": [
+    "I miei sintomi sono davvero causati dal lattosio o potrebbe esserci un'altra condizione?",
+    "Quanti latticini posso probabilmente tollerare e quali prodotti sono più facili da digerire?",
+    "Come posso assumere abbastanza calcio se limito i latticini?"
+  ]
+}

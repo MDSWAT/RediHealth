@@ -1,0 +1,56 @@
+{
+  "title": "Trajtimi i kancerit të qafës së mitrës dhe i gjendjeve paraprake",
+  "intro": "Kanceri i qafës së mitrës zhvillohet në pjesën e poshtme të mitrës, qafën e mitrës, zakonisht pas infeksionit të zgjatur me disa lloje të virusit të papilomës njerëzore. Qeliza jonormale shpesh shfaqen vite përpara se të formohet kanceri dhe mund të zbulohen me skrining. Trajtimi varet nga fakti nëse ka vetëm ndryshime paraprake ose një kancer invaziv dhe nga madhësia e përhapja e tij.",
+  "sections": [
+    {
+      "heading": "Trajtimi i ndryshimeve paraprake",
+      "paragraphs": [
+        "Skriningu mund të tregojë ndryshime qelizore që nuk janë ende kancer. Ndryshimet e lehta shpesh zhduken vetë dhe mund të kërkojnë vetëm kontrolle të përsëritura. Ndryshimet më të avancuara trajtohen zakonisht me heqjen e indit të prekur, sepse kjo parandalon zhvillimin e kancerit.",
+        "Procedura e zakonshme është konizimi, që heq një copë të vogël në formë koni nga qafa e mitrës, me një lak të hollë të nxehtë ose me bisturi. Shpesh bëhet nën anestezi lokale ose të shkurtër të përgjithshme, ambulatorisht ose me një qëndrim të shkurtër në spital. Indi ekzaminohet për të konfirmuar që qelizat jonormale janë hequr plotësisht."
+      ]
+    },
+    {
+      "heading": "Kanceri invaziv i hershëm",
+      "paragraphs": [
+        "Kur kanceri është i vogël dhe i kufizuar në qafën e mitrës, kirurgjia është trajtimi kryesor. Opsionet shkojnë nga një konizim më i madh te heqja e mitrës, shpesh me heqjen e nyjeve limfatike aty pranë për të parë nëse kanceri është përhapur. Te gra të reja të përzgjedhura, mund të jenë të mundshme operacione që ruajnë pjellorinë.",
+        "Kirurgët e marrin gjithnjë e më shumë parasysh madhësinë e saktë të tumorit, thellësinë dhe dëshirën e gruas për të pasur fëmijë. Ky është një moment i mirë për të pyetur për opsionet që ruajnë pjellorinë dhe për përfitimet e rreziqet e qasjeve të ndryshme kirurgjikale."
+      ]
+    },
+    {
+      "heading": "Kanceri i avancuar",
+      "paragraphs": [
+        "Tumoret më të mëdhenj ose ata që janë përhapur në indet aty pranë trajtohen zakonisht me radioterapi të kombinuar me kimioterapi. Rrezatimi mund të jepet nga jashtë trupit dhe nga brenda duke vendosur një burim radioaktiv pranë tumorit. Trajtimi zgjat zakonisht disa javë.",
+        "Efektet anësore mund të përfshijnë lodhje, acarim të zorrëve dhe të fshikëzës, thatësi ose ngushtim të vaginës dhe menopauzë të hershme kur preken vezoret. Barna më të reja, përfshirë imunoterapinë, mund të merren në konsideratë për kancerin që kthehet ose që është përhapur në organe të tjera."
+      ]
+    },
+    {
+      "heading": "Jeta pas trajtimit",
+      "paragraphs": [
+        "Vizitat e rregullta të ndjekjes kontrollojnë për rikthim dhe ndihmojnë në menaxhimin e efekteve anësore. Disa gra zhvillojnë limfedemë, ndryshime të fshikëzës ose të zorrëve ose vështirësi seksuale. Fizioterapia e dyshemesë pelvike, lagështuesit vaginalë dhe këshillimi mund të ndihmojnë dhe simptomat duhen raportuar, jo duruar.",
+        "Mbështetja emocionale është po aq e rëndësishme. Frika nga rikthimi, ndryshimet në imazhin e trupit dhe shqetësimet për pjellorinë janë të zakonshme dhe shërbimet e psiko-onkologjisë, grupet e mbështetjes dhe të afërmit e besuar mund të ofrojnë ndihmë."
+      ]
+    },
+    {
+      "heading": "Parandalimi dhe skriningu",
+      "paragraphs": [
+        "Vaksinimi kundër virusit të papilomës njerëzore, në mënyrë ideale para fillimit të aktivitetit seksual, e ul shumë rrezikun e kancerit të qafës së mitrës. Skriningu i rregullt me një test qelizor, një test HPV ose të dyja, i gjen ndryshimet herët, kur janë më të trajtueshme.",
+        "Ndalimi i duhanit gjithashtu e ul rrezikun. Gratë që janë vaksinuar duhet të vazhdojnë të ndjekin skriningun, sepse vaksina nuk mbron nga çdo lloj që shkakton kancer."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Të kuptuarit e një rezultati skriningu",
+      "text": "Imagjinoni që skriningu tregon ndryshime të lehta qelizore. Mund të pyesni çfarë do të thotë rezultati, nëse mjafton një test i përsëritur pas disa muajsh dhe cilat simptoma të raportoni ndërkohë, që të mos ndiheni të lënë në pasiguri."
+    },
+    {
+      "title": "Peshimi i dëshirave për pjellorinë",
+      "text": "Supozoni që jeni 29 vjeç, keni kancer të hershëm të qafës së mitrës, por shpresoni të keni fëmijë. Mund ta pyesni bordin e tumoreve nëse një operacion që kursen pjellorinë është i përshtatshëm, sa do të ishte rreziku i rikthimit dhe nëse ka kuptim një referim te një specialist pjellorie para trajtimit."
+    }
+  ],
+  "questions": [
+    "Në çfarë faze është gjetja jonormale ose kanceri dhe cilat opsione trajtimi i përshtaten?",
+    "Si mund ta ndikojë trajtimi pjellorinë, jetën time seksuale dhe funksionin e fshikëzës ose të zorrëve?",
+    "Çfarë orari ndjekjeje dhe çfarë shërbimesh mbështetjeje do të ketë pas trajtimit?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë janë suplementet ushqimore?",
+  "intro": "Suplementet ushqimore janë produkte si vitaminat, mineralet, ekstraktet bimore e substanca të tjera që merren për ta plotësuar dietën. Shiten në tableta, kapsula, pluhura e pije. Për shumicën e njerëzve të shëndetshëm që hanë një dietë të larmishme, janë të panevojshme e disa mund të jenë të dëmshme. Në situata të caktuara, suplementet e synuara janë të dobishme.",
+  "sections": [
+    {
+      "heading": "Si ndryshojnë nga barnat",
+      "paragraphs": [
+        "Në shumë vende suplementet rregullohen si ushqime, jo si barna, prandaj nuk duhet të provojnë efektivitetin para shitjes, megjithëse zbatohen rregullat e sigurisë. Etiketat e tyre mund të bëjnë pohime të përgjithshme, por nuk duhet të pretendojnë se trajtojnë ose shërojnë sëmundje. Cilësia e përmbajtja mund të ndryshojnë midis produkteve e disa përmbajnë më shumë ose më pak nga ç'thotë etiketa."
+      ]
+    },
+    {
+      "heading": "Kur mund të jenë të dobishme suplementet",
+      "paragraphs": [
+        "Suplementet mund të ndihmojnë kur ka nevojë të provuar: acidi folik para e në fillim të shtatzënisë, vitamina D për foshnjat e disa grupe rreziku, vitamina B12 për vegjetarianët e rreptë e njerëzit me probleme thithjeje, hekuri për mungesë hekuri, jodi në shtatzëni në disa rajone e kalciumi me vitaminën D për disa njerëz në rrezik osteoporoze. Një mjek mund ta konfirmojë nevojën me teste."
+      ]
+    },
+    {
+      "heading": "Rreziqet",
+      "paragraphs": [
+        "Dozat shumë të larta të disa vitaminave e mineraleve mund të bëjnë dëm, për shembull vitamina A e tepërt në shtatzëni mund ta dëmtojë foshnjën, dozat e larta të vitaminës D mund ta rrisin kalciumin në gjak e sasitë e mëdha të hekurit janë toksike, veçanërisht për fëmijët. Produktet bimore mund të ndërveprojnë me barnat, si hiperiku me kontraceptivët e holluesit e gjakut. Disa produkte përmbajnë substanca të padeklaruara. Marrja e disa produkteve mund të çojë në mbidozë."
+      ]
+    },
+    {
+      "heading": "Zgjedhja me mençuri",
+      "paragraphs": [
+        "Pyesni nëse keni nevojë fare për suplement e synoni t'i merrni lëndët ushqyese së pari nga ushqimi. Tregojini mjekut e farmacistit çfarë merrni. Zgjidhni produkte nga marka të njohura e kontrolloni dozat kundrejt sasive ditore të rekomanduara. Jini skeptikë ndaj pohimeve për efekte të mrekullishme, detoksifikim ose forcim imuniteti. Ndalojeni e kërkoni ndihmë nëse keni efekte anësore. Mbajini produktet larg fëmijëve."
+      ]
+    },
+    {
+      "heading": "Biseda me ekipin tuaj të kujdesit shëndetësor",
+      "paragraphs": [
+        "Përmendini suplementet në çdo takim, sepse mund t'i ndryshojnë rezultatet e testeve e të ndërveprojnë me trajtimin. Sillni paketimin, që të njihen përbërësit e dozat e sakta, e rishikoni rregullisht nëse ende ju duhen."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kontrolli i nevojës",
+      "text": "Imagjinoni që pyesni veten nëse të merrni një multivitaminë. Mund ta rishikoni dietën me mjekun ose një dietolog e të pyesni nëse nevojiten teste."
+    },
+    {
+      "title": "Kontrolli i ndërveprimeve",
+      "text": "Supozoni që filloni një ilaç bimor ndërsa merrni një bar të rregullt. Mund ta pyesni farmacistin për ndërveprimet para se të filloni."
+    }
+  ],
+  "questions": [
+    "A kam vërtet nevojë për suplement, e cilin?",
+    "A mund të ndërveprojë me barnat e mia?",
+    "Cila dozë është e sigurt për mua?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Otite media",
+  "intro": "L'otite media, cioè l'infezione dell'orecchio medio, si verifica quando lo spazio dietro il timpano si infiamma, di solito dopo un raffreddore. È molto comune nei bambini piccoli e causa mal d'orecchio e talvolta febbre. La maggior parte delle infezioni guarisce in pochi giorni senza antibiotici, con il sollievo dal dolore come trattamento principale.",
+  "sections": [
+    {
+      "heading": "Perché succede",
+      "paragraphs": [
+        "L'orecchio medio è collegato alla parte posteriore del naso dalla tromba di Eustachio. Durante un raffreddore o un'allergia questo canale può gonfiarsi e bloccarsi e dietro il timpano si accumula liquido, dove i germi possono moltiplicarsi. I bambini sono più colpiti perché i loro canali sono corti e stretti. L'esposizione al fumo, la mancanza di allattamento al seno e la frequenza dell'asilo nido aumentano il rischio."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I segni tipici sono mal d'orecchio, che può peggiorare da sdraiati, febbre, irritabilità, sonno scarso, appetito ridotto e talvolta udito ridotto. I neonati possono tirarsi le orecchie e piangere. Se il timpano si rompe, può uscire del liquido e il dolore spesso si attenua in fretta."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Alleviare dolore e febbre con paracetamolo o ibuprofene alla dose raccomandata è il trattamento principale. Il calore sull'orecchio può dare conforto. Molte linee guida suggeriscono un'attesa vigile di 48-72 ore per i bambini sopra una certa età con malattia lieve, perché la maggior parte guarisce senza antibiotici. Gli antibiotici si considerano per bambini molto piccoli, sintomi gravi, entrambe le orecchie colpite, secrezione dall'orecchio o se i sintomi non migliorano.",
+        "Spray decongestionanti nasali e antistaminici non aiutano. Tieni l'orecchio asciutto se perde liquido."
+      ]
+    },
+    {
+      "heading": "Complicanze",
+      "paragraphs": [
+        "Il liquido può restare dietro il timpano per settimane e ridurre temporaneamente l'udito. Infezioni ripetute o liquido persistente possono essere trattati con piccoli tubicini di ventilazione inseriti nel timpano. Raramente l'infezione si diffonde all'osso vicino o al cervello. Cerca cure urgenti per gonfiore o arrossamento dietro l'orecchio, rigidità del collo, forte mal di testa, sonnolenza o debolezza del viso."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Evita l'esposizione al fumo, favorisci l'allattamento al seno nell'infanzia e mantieni aggiornate le vaccinazioni, perché i vaccini contro lo pneumococco e l'influenza riducono le infezioni. Lava le mani per limitare i raffreddori."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Osservare e aspettare",
+      "text": "Immagina che tuo figlio di quattro anni abbia mal d'orecchio dopo un raffreddore. Potresti dare un antidolorifico, offrire liquidi, osservare per due giorni e chiamare il medico se la febbre sale, il dolore peggiora o compare secrezione."
+    },
+    {
+      "title": "Parlare delle infezioni ripetute",
+      "text": "Supponi che tuo figlio abbia avuto diverse otiti quest'anno. Potresti chiedere se un esame dell'udito o una visita da uno specialista dell'orecchio possano essere utili."
+    }
+  ],
+  "questions": [
+    "Mio figlio ha bisogno di antibiotici o possiamo aspettare?",
+    "Come posso gestire il dolore a casa e per quanto tempo?",
+    "Dovremmo fare un controllo dell'udito se le infezioni continuano a ripresentarsi?"
+  ]
+}

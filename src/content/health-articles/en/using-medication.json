@@ -1,0 +1,51 @@
+{
+  "title": "Using medicines safely",
+  "intro": "Medicines can help a great deal, but they can also cause harm if used incorrectly. Taking the right medicine at the right dose and time, and knowing what to watch for, makes treatment safer and more effective. Open communication with doctors and pharmacists is key.",
+  "sections": [
+    {
+      "heading": "Understanding your medicines",
+      "paragraphs": [
+        "For each medicine, know its name, purpose, dose, timing, how long to take it and what to do if you miss a dose. Read the package leaflet, which lists side effects and interactions. Ask whether it should be taken with food, and which foods, alcohol or other medicines to avoid. Keep an up-to-date list of everything you take."
+      ]
+    },
+    {
+      "heading": "Taking medicines correctly",
+      "paragraphs": [
+        "Follow instructions exactly. Do not stop prescribed medicines or change doses without advice, even if you feel better or worse. Finish antibiotic courses as directed. Use measuring devices supplied for liquids, since kitchen spoons vary. Do not crush or split tablets unless allowed. Pill organisers and reminders help with several medicines."
+      ]
+    },
+    {
+      "heading": "Side effects and interactions",
+      "paragraphs": [
+        "Most side effects are mild, but report severe, unusual or persistent symptoms and signs of allergic reaction such as rash, swelling or difficulty breathing. Interactions can occur between medicines, with supplements, herbal products, food and alcohol. Tell every doctor and pharmacist about everything you take, including products bought without prescription."
+      ]
+    },
+    {
+      "heading": "Storage and disposal",
+      "paragraphs": [
+        "Store medicines as directed, usually in a cool, dry place out of reach of children, and keep them in their original packaging. Check expiry dates. Do not keep leftover antibiotics or share medicines with others. Return unused or expired medicines to a pharmacy rather than flushing or binning them."
+      ]
+    },
+    {
+      "heading": "Special situations",
+      "paragraphs": [
+        "Pregnancy, breastfeeding, older age, kidney or liver problems and childhood need special care with doses and choices. Ask before taking any medicine, including over-the-counter ones. Regular medication reviews with your doctor or pharmacist can reduce unnecessary treatments. Seek urgent help after an overdose or if someone takes the wrong medicine."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Sorting a weekly organiser",
+      "text": "Imagine you take six medicines daily. You could fill a weekly organiser with your pharmacist's help and keep an updated list in your wallet."
+    },
+    {
+      "title": "Checking before a purchase",
+      "text": "Suppose you want to buy a cold remedy. You might ask the pharmacist whether it is safe with your current medicines."
+    }
+  ],
+  "questions": [
+    "Why do I take this medicine, and how long?",
+    "Which side effects should I report?",
+    "Are there interactions with my other medicines, supplements or food?"
+  ]
+}

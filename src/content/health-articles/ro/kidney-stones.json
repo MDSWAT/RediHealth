@@ -1,0 +1,51 @@
+{
+  "title": "Pietrele la rinichi",
+  "intro": "Pietrele la rinichi sunt depuneri dure formate din minerale și săruri, care se formează în rinichi și pot călători de-a lungul tractului urinar. Pietrele mici trec adesea neobservate, în timp ce cele mai mari pot provoca durere severă. Cele mai multe pietre pot fi tratate, iar consumul de suficiente lichide este cea mai bună metodă de a preveni formarea altora noi.",
+  "sections": [
+    {
+      "heading": "Cum se formează pietrele",
+      "paragraphs": [
+        "Când urina conține niveluri mari ale unor substanțe precum calciul, oxalatul sau acidul uric și prea puțin lichid, cristalele se pot aglomera. Cele mai multe pietre conțin calciu. Riscul crește cu deshidratarea, o alimentație bogată în sare și proteine animale, supraponderalitatea, anumite afecțiuni medicale, unele medicamente și antecedente familiale de pietre."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "O piatră care rămâne în rinichi poate să nu provoace simptome. Când se mișcă în ureter, poate provoca durere bruscă, în valuri, în flanc sau în spate, care iradiază spre zona inghinală, împreună cu greață, vărsături, sânge în urină și nevoia frecventă de a urina. Febra cu durere sugerează infecție și necesită tratament urgent."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicii folosesc analize de urină, analize de sânge și imagistică, adesea ecografie sau CT cu doză mică, pentru a găsi piatra și a vedea dacă fluxul de urină este blocat. Dacă eliminați o piatră, păstrați-o pentru analiză, deoarece compoziția ei orientează prevenția."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Multe pietre mai mici de aproximativ cinci milimetri trec singure în câteva săptămâni. Ajută calmarea durerii, de exemplu cu analgezice antiinflamatoare, lichide din abundență și uneori un medicament care relaxează ureterul. Pietrele mai mari sau cele care blochează urina ori provoacă infecție pot necesita tratament. Litotriția cu unde de șoc sparge pietrele în fragmente din exteriorul corpului, în timp ce ureteroscopia folosește un endoscop subțire pentru a îndepărta sau a sparge piatra cu laser. Pietrele mari la rinichi pot necesita chirurgie minim invazivă prin spate."
+      ]
+    },
+    {
+      "heading": "Prevenirea pietrelor noi",
+      "paragraphs": [
+        "Beți suficient pentru a produce aproximativ două până la două litri și jumătate de urină pe zi, ceea ce înseamnă de obicei trei litri sau mai mult de lichide. Limitați sarea și excesul de proteine animale, urmați o alimentație echilibrată cu cantități normale de calciu și fiți atent cu vitamina C în doze mari sau cu suplimentele. În funcție de tipul pietrei, pot fi recomandate medicamente specifice. Pietrele reapar la multe persoane, așa că urmărirea contează."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gestionarea unei crize",
+      "text": "Imaginați-vă că apare brusc o durere severă în flanc, cu greață. Ați putea cere ajutor medical urgent, menționa orice febră și întreba dacă ar trebui să strecurați urina pentru a colecta piatra."
+    },
+    {
+      "title": "Formarea obiceiului de a bea",
+      "text": "Presupuneți că ați mai avut o piatră. Ați putea umple o sticlă în fiecare dimineață, răspândi băutul pe parcursul zilei și verifica dacă urina este deschisă la culoare."
+    }
+  ],
+  "questions": [
+    "Ce tip de piatră am și cum pot preveni apariția alteia?",
+    "Trebuie îndepărtată piatra mea sau pot aștepta să fie eliminată?",
+    "Ce semne de alarmă înseamnă că ar trebui să merg la spital?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Scarlattina",
+  "intro": "La scarlattina è un'infezione batterica che accompagna un'infezione streptococcica della gola e causa un'eruzione tipica. Si vede soprattutto nei bambini da cinque a quindici anni. Si cura con antibiotici, che accorciano la malattia, riducono la diffusione e abbassano il rischio di complicanze.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi iniziano con mal di gola, febbre, mal di testa, nausea e ghiandole ingrossate. In uno o due giorni compare sul petto un'eruzione rossa e fine simile a carta vetrata che si estende, risparmiando la zona attorno alla bocca. La lingua diventa rossa con un aspetto simile alla fragola e in seguito la pelle può desquamarsi su dita delle mani e dei piedi."
+      ]
+    },
+    {
+      "heading": "Come si diffonde",
+      "paragraphs": [
+        "I batteri, streptococchi del gruppo A, si diffondono con le goccioline e il contatto stretto. Le persone restano contagiose finché non hanno preso antibiotici per circa un giorno. I bambini devono restare a casa almeno un giorno dopo l'inizio degli antibiotici e finché non si sentono abbastanza bene. Lavare le mani e non condividere i bicchieri riducono la diffusione."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "I medici diagnosticano la scarlattina dai sintomi e da un tampone della gola con un test rapido o una coltura. Confermare la diagnosi è importante perché altre condizioni possono causare un'eruzione simile."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "La penicillina o antibiotici correlati si assumono per circa dieci giorni, anche se con altri antibiotici si usano cicli più brevi. Completa il ciclo anche se il bambino si sente meglio, per prevenire le complicanze. Paracetamolo o ibuprofene riducono febbre e dolore e molti liquidi e cibi morbidi facilitano la deglutizione."
+      ]
+    },
+    {
+      "heading": "Complicanze",
+      "paragraphs": [
+        "Raramente l'infezione non trattata può causare la febbre reumatica, che può danneggiare il cuore, oltre a infiammazione dei reni, ascessi o infezioni di orecchie e seni nasali. Cerca aiuto se tuo figlio ha febbre persistente, forte dolore alla gola, difficoltà a deglutire, dolori articolari, urine scure o gonfiore dopo un'apparente guarigione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Proteggere i fratelli",
+      "text": "Immagina che a tuo figlio sia stata diagnosticata la scarlattina. Potresti usare bicchieri e asciugamani separati, lavare spesso le mani e informare la scuola della diagnosi."
+    },
+    {
+      "title": "Finire gli antibiotici",
+      "text": "Supponi che tuo figlio si senta bene dopo quattro giorni. Potresti continuare l'antibiotico finché l'intero ciclo non è finito come ha prescritto il medico."
+    }
+  ],
+  "questions": [
+    "Mio figlio ha bisogno di antibiotici e per quanto tempo?",
+    "Quando può tornare all'asilo o a scuola?",
+    "Quali segni suggerirebbero una complicanza?"
+  ]
+}

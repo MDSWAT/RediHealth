@@ -1,0 +1,51 @@
+{
+  "title": "Struktura e funksioni i këmbëve",
+  "intro": "Këmbët mbajnë gjithë peshën e trupit, thithin goditjet e ju shtyjnë përpara me çdo hap. Çdo këmbë ka 26 kocka, shumë nyje, ligamente të forta, tendina e muskuj që punojnë së bashku. Të kuptuarit si është ndërtuar këmba ndihmon të shpjegohen problemet e zakonshme e si të kujdesemi për to.",
+  "sections": [
+    {
+      "heading": "Kockat e nyjet",
+      "paragraphs": [
+        "Këmba ka tri rajone kryesore: pjesën e pasme me kockën e thembrës e të kyçit, pjesën e mesme me disa kocka më të vogla që formojnë harkun e pjesën e përparme me pesë kockat e gjata e gishtat. Gishti i madh ka dy kocka e gishtat e tjerë tri. Nyjet midis tyre e lejojnë këmbën të përshtatet me terrenin e pabarabartë e të ngurtësohet kur shtyn."
+      ]
+    },
+    {
+      "heading": "Harqet",
+      "paragraphs": [
+        "Këmba formon harqe përgjatë gjatësisë e gjerësisë së saj. Këto veprojnë si susta, duke shpërndarë ngarkesën e duke thithur goditjet. Këmbët e rrafshëta kanë harqe më të ulëta e harqet e larta janë më të ngurta. Të dyja mund të jenë normale e nuk shkaktojnë probleme, por nganjëherë mund të çojnë në dhimbje ose lodhje."
+      ]
+    },
+    {
+      "heading": "Ligamentet, tendinat e muskujt",
+      "paragraphs": [
+        "Ligamentet lidhin kockat e stabilizojnë nyjet. Fascia plantare, një rrip i trashë nën këmbë, mbështet harkun. Tendinat lidhin muskujt e pjesës së poshtme të këmbës e të këmbës me kockat, si tendini i Akilit, më i forti në trup, që lidh muskujt e pulpës me thembrën. Muskujt e vegjël të këmbës kontrollojnë gishtat e mbështesin harkun."
+      ]
+    },
+    {
+      "heading": "Lëkura, nervat e qarkullimi",
+      "paragraphs": [
+        "Tabani ka lëkurë të trashë e një jastëk yndyror nën thembër e pjesën e përparme që amortizojnë goditjen. Nervat japin ndjesinë e prekjes e ekuilibrit e enët e gjakut sjellin oksigjen. Ndjeshmëria ose qarkullimi i reduktuar, si në diabet, e bën lëndimin e infeksionin më të mundshëm."
+      ]
+    },
+    {
+      "heading": "Kujdesi për këmbët",
+      "paragraphs": [
+        "Vishni këpucë që përshtaten mirë me hapësirë për gishtat e mbështetje të mirë, ndërroni rregullisht e shmangni takat e larta për periudha të gjata. Ecni zbathur në sipërfaqe të sigurta për të forcuar muskujt e këmbës, mbani lëkurën të pastër e të lagështuar, prisni thonjtë drejt e kontrolloni rregullisht këmbët. Dhimbja e vazhdueshme, deformimi ose ndryshimet në lëkurë e thonj duhen vlerësuar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zgjedhja e këpucëve",
+      "text": "Imagjinoni që blini këpucë të reja për ecje. Mund t'i provoni pasdite, të kontrolloni që gishtat të lëvizin lirshëm e të ecni nëpër dyqan para se të blini."
+    },
+    {
+      "title": "Forcimi i këmbës",
+      "text": "Supozoni që harqet ndihen të lodhura pas qëndrimit të gjatë në këmbë. Mund të praktikoni marrjen e një peshqiri me gishta e rrotullimin e këmbës mbi një top për pak minuta çdo ditë."
+    }
+  ],
+  "questions": [
+    "A kam këmbë të rrafshëta ose harqe të larta e ka rëndësi kjo për mua?",
+    "A më duhen tabana ose këpucë të veçanta?",
+    "Cilat ushtrime të këmbës do t'i ndihmonin simptomat e mia?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Podiatria: kujdesi specialistik për këmbët",
+  "intro": "Podiatrët janë specialistë të kujdesit për këmbët. Trajtojnë thonjtë, kallot e kallot e forta e problemet e këmbëve dhe ndihmojnë njerëzit me diabet ose probleme të qarkullimit të parandalojnë komplikime të rënda të këmbës. Kujdesi i rregullt profesional mund ta mbrojë lëvizshmërinë e pavarësinë, veçanërisht te njerëzit me rrezik më të lartë.",
+  "sections": [
+    {
+      "heading": "Çfarë bëjnë podiatrët",
+      "paragraphs": [
+        "Podiatrët vlerësojnë këmbët, presin thonjtë, heqin lëkurën e trashur e kallot, trajtojnë thonjtë e ngulur e lungat, vendosin mbushje e tabana, këshillojnë për këpucët dhe edukojnë për kujdesin e përditshëm të këmbëve. Kujdesi mjekësor i këmbëve zakonisht do të thotë trajtimi i këmbëve të prekura nga sëmundje, si diabeti ose dëmtimi i nervave."
+      ]
+    },
+    {
+      "heading": "Kush përfiton më shumë",
+      "paragraphs": [
+        "Njerëzit me diabet që kanë dëmtim nervash, qarkullim të dobët ose ulçera të mëparshme të këmbës kanë rrezikun më të lartë për plagë që shërohen keq e mund të infektohen. Të moshuarit që nuk i arrijnë dot këmbët, njerëzit me thonj kërpudhorë ose të deformuar, artrit reumatoid ose deformime të rënda të këmbës përfitojnë gjithashtu."
+      ]
+    },
+    {
+      "heading": "Çfarë mund të bëni në shtëpi",
+      "paragraphs": [
+        "Shikojini këmbët çdo ditë, përfshirë tabanët e midis gishtave, ose kërkoni dikë t'ju ndihmojë. Lajini me ujë të vakët, thajini mirë, aplikoni krem lagështues por jo midis gishtave, prisni thonjtë drejt, vishni këpucë që përshtaten mirë e çorape të pastra pa qepje të trasha dhe mos ecni kurrë zbathur. Mos përdorni mjete të mprehta, kimikate të forta ose shishe me ujë të nxehtë në këmbë me ndjeshmëri të reduktuar."
+      ]
+    },
+    {
+      "heading": "Këpucët dhe ndihmesat",
+      "paragraphs": [
+        "Këpucët duhet të jenë të gjera te gishtat, me mbështetje të mirë e pa pika presioni. Tabanat, mbushjet ose këpucët e porositura mund të përshkruhen për këmbë me rrezik të lartë. Kontrolloni brenda këpucëve për objekte para se t'i vishni. Zëvendësoni këpucët e konsumuara."
+      ]
+    },
+    {
+      "heading": "Kur të kërkoni ndihmë shpejt",
+      "paragraphs": [
+        "Kërkoni këshillë urgjente për flluskë, plagë, skuqje, enjtje, ngrohtësi, ndryshim ngjyre ose ethe, veçanërisht te njerëzit me diabet. Problemet e këmbës mund të përparojnë shpejt. Pyesni mjekun nëse kualifikoheni për kujdes podiatrik sipas sigurimit shëndetësor, pasi rregullat ndryshojnë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kontrolli ditor i këmbëve",
+      "text": "Imagjinoni që keni diabet dhe ndjeshmëri të reduktuar në këmbë. Mund t'i ekzaminoni këmbët çdo mbrëmje me një pasqyrë dhe të telefononi mjekun nëse vini re flluskë ose zonë të kuqe."
+    },
+    {
+      "title": "Zgjedhja e këpucëve",
+      "text": "Supozoni që ju duhen këpucë të reja. Mund të blini pasdite kur këmbët janë paksa të enjtura, të kontrolloni gjerësinë e t'i kërkoni këshillë podiatrit."
+    }
+  ],
+  "questions": [
+    "A jam me rrezik të lartë për probleme të këmbëve dhe sa shpesh duhen kontrolluar këmbët e mia?",
+    "A më duhen këpucë ose tabana të veçantë?",
+    "Cilat probleme të këmbës duhet t'i trajtoj vetë dhe cilat t'ia lë një profesionisti?"
+  ]
+}

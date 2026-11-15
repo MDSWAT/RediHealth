@@ -1,0 +1,51 @@
+{
+  "title": "Rosacea",
+  "intro": "La rosacea è una condizione cronica comune della pelle che causa arrossamento del viso, piccoli vasi sanguigni visibili e talvolta noduli e brufoli. Colpisce soprattutto gli adulti con pelle chiara e tende a riacutizzarsi e a calmarsi. Non si può guarire, ma il trattamento e l'evitamento dei fattori scatenanti la tengono sotto controllo.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "La rosacea colpisce tipicamente la parte centrale del viso: guance, naso, fronte e mento. Le caratteristiche comprendono vampate, arrossamento persistente, vasi a ragnatela, noduli e pustole che somigliano all'acne ma senza punti neri e una sensazione di bruciore o pizzicore. In alcune persone, in particolare gli uomini, il naso può ispessirsi. Gli occhi possono essere secchi, rossi e irritati, ed è la rosacea oculare."
+      ]
+    },
+    {
+      "heading": "Cause e fattori scatenanti",
+      "paragraphs": [
+        "La causa non è del tutto nota e probabilmente coinvolge la reattività dei vasi sanguigni, l'infiammazione e i microrganismi della pelle. I fattori scatenanti comuni comprendono sole, caldo, vento freddo, bevande calde, alcol, cibi piccanti, stress, esercizio intenso e certi prodotti per la pelle. I fattori scatenanti variano, quindi un diario aiuta a individuare i tuoi."
+      ]
+    },
+    {
+      "heading": "Cura della pelle",
+      "paragraphs": [
+        "Usa detergenti delicati, idratanti adatti alla pelle sensibile e una crema solare minerale ogni giorno. Evita scrub, tonici contenenti alcol e prodotti aggressivi e asciuga la pelle tamponando. Proteggi il viso dagli estremi di temperatura."
+      ]
+    },
+    {
+      "heading": "Trattamento medico",
+      "paragraphs": [
+        "Creme e gel contenenti acido azelaico, metronidazolo, ivermectina o brimonidina possono ridurre noduli o arrossamento. Per la rosacea infiammatoria più estesa si usano antibiotici tetraciclinici a basso dosaggio o, in casi selezionati, l'isotretinoina. I trattamenti laser o con luce riducono i vasi visibili. Il trattamento richiede settimane per mostrare beneficio e spesso serve un mantenimento. Sintomi oculari come bruciore, sensazione di sabbia e arrossamento richiedono l'attenzione del medico, perché possono influire sulla vista."
+      ]
+    },
+    {
+      "heading": "Vivere con la rosacea",
+      "paragraphs": [
+        "La rosacea può influire su fiducia e umore. Un trattamento efficace, pazienza e il sostegno di altri che capiscono la condizione migliorano la qualità di vita. Rispetta le visite di controllo, perché il trattamento viene spesso adattato nel tempo."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Individuare i fattori scatenanti",
+      "text": "Immagina che il viso ti si arrossi dopo un bicchiere di vino rosso e un pasto caldo. Potresti annotare i fattori scatenanti in un diario per un mese e discutere dei cambiamenti con il medico."
+    },
+    {
+      "title": "Scegliere i prodotti",
+      "text": "Supponi che la pelle bruci quando applichi una nuova crema. Potresti smettere di usarla, passare a un semplice idratante e chiedere a un farmacista o a un dermatologo opzioni delicate."
+    }
+  ],
+  "questions": [
+    "Questa è rosacea e quale trattamento si adatterebbe al mio tipo?",
+    "Quali prodotti per la pelle sono sicuri per me?",
+    "I miei occhi potrebbero essere coinvolti e dovrebbero essere controllati?"
+  ]
+}

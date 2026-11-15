@@ -1,0 +1,52 @@
+{
+  "title": "How balance combines movement, vision and body signals",
+  "intro": "Balance comes from cooperation between the inner ears, eyes, body-position sensors and brain. Dizziness is a symptom with many possible causes; understanding the system does not establish an ear diagnosis.",
+  "sections": [
+    {
+      "heading": "Turning movements",
+      "paragraphs": [
+        "Fluid-filled semicircular canals detect changes in head rotation. Their sensory cells send messages to the brain; signals may briefly continue after spinning stops, which helps explain a playground sensation."
+      ]
+    },
+    {
+      "heading": "Gravity and straight movement",
+      "paragraphs": [
+        "The otolith organs use tiny crystals and sensory cells to detect head tilt and linear acceleration. Normal crystals are part of the system; their presence alone is not a disease."
+      ]
+    },
+    {
+      "heading": "Combining information",
+      "paragraphs": [
+        "The brain compares ear signals with vision and feedback from muscles and joints. It adjusts posture and eye movements, helping keep a sign readable while the head moves."
+      ]
+    },
+    {
+      "heading": "Everyday implications",
+      "paragraphs": [
+        "Conflicting signals can cause motion sickness. Poor lighting, reduced sensation and some medicines increase fall risk. Sit safely during dizziness and avoid driving or climbing until assessed when appropriate."
+      ]
+    },
+    {
+      "heading": "When to seek help",
+      "paragraphs": [
+        "Recurrent dizziness needs assessment, including medicines and other causes. Sudden dizziness with weakness, speech trouble, double vision or inability to walk needs emergency assessment, not a home repositioning experiment.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira feels less steady in darkness. She improves lighting and discusses vision, sensation and balance rather than blaming the ears alone."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben has new vertigo and slurred speech. His family seeks emergency help instead of trying online exercises."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

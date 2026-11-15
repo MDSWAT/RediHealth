@@ -1,0 +1,51 @@
+{
+  "title": "Problemi sa spavanjem i nesanica",
+  "intro": "Gotovo svatko ponekad ima problema sa spavanjem. Nesanica znači trajne teškoće u usnivanju, održavanju sna ili prerano buđenje, uz umor ili slabije funkcioniranje tijekom dana. Kratkotrajni problemi obično prođu, a kod dugotrajne nesanice bihevioralna terapija djeluje bolje i trajnije od tableta za spavanje.",
+  "sections": [
+    {
+      "heading": "Što je nesanica",
+      "paragraphs": [
+        "Nesanica se dijagnosticira kada se problemi javljaju barem tri noći tjedno mjesec dana ili dulje i utječu na funkcioniranje tijekom dana. Tipične tegobe su ležanje budan, buđenje tijekom noći, rano buđenje, san koji ne odmara, umor, razdražljivost i teškoće s koncentracijom. Briga zbog samog spavanja često održava problem."
+      ]
+    },
+    {
+      "heading": "Uzroci i doprinosni čimbenici",
+      "paragraphs": [
+        "Stres, briga, promjene rutine, smjenski rad, bol, buka, kofein, alkohol, nikotin i neki lijekovi mogu poremetiti san. Nesanica često prati depresiju i anksioznost. Drugi poremećaji spavanja kao što su apneja u snu i sindrom nemirnih nogu mogu uzrokovati loš san i treba ih provjeriti ako se sumnja."
+      ]
+    },
+    {
+      "heading": "Navike spavanja koje pomažu",
+      "paragraphs": [
+        "Držite redovito vrijeme odlaska u krevet i buđenja, čak i vikendom, izlažite se dnevnom svjetlu i vježbajte te izbjegavajte kofein poslijepodne te teške obroke ili alkohol blizu spavanja. Stvorite tamnu, tihu, hladnu spavaću sobu i krevet rezervirajte za spavanje. Izbjegavajte ekrane i poticajne aktivnosti kasno navečer. Ako ne možete zaspati nakon otprilike dvadeset minuta, ustanite i radite nešto opuštajuće dok ne postanete pospani."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Kognitivno-bihevioralna terapija nesanice je preporučeno prvo liječenje. Uključuje raspored spavanja, ograničavanje vremena u krevetu, mijenjanje neutemeljenih misli o spavanju i opuštanje. Može je provoditi terapeut, u grupama ili putem odobrenih digitalnih programa. Tablete za spavanje mogu pomoći kratkoročno, ali uzrokuju ovisnost, dnevnu pospanost i padove pa se koriste samo kratko. Biljni pripravci poput valerijane imaju neizvjesnu korist."
+      ]
+    },
+    {
+      "heading": "Kada potražiti pomoć",
+      "paragraphs": [
+        "Posjetite liječnika ako loš san traje nekoliko tjedana, ako glasno hrčete uz stanke u disanju, nehotice zaspite tijekom dana ili se osjećate potišteno ili tjeskobno. Ne vozite kad ste pospani."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vođenje dnevnika spavanja",
+      "text": "Zamislite da većinu noći loše spavate. Mogli biste dva tjedna bilježiti vrijeme odlaska u krevet, buđenja, drijemanja, kofein i raspoloženje te donijeti dnevnik liječniku."
+    },
+    {
+      "title": "Prekidanje kruga brige",
+      "text": "Pretpostavite da ležite budni zabrinuti za sutra. Mogli biste prije spavanja na papir napisati sutrašnje zadatke i ustati radi mirne aktivnosti ako ne možete zaspati nakon dvadeset minuta."
+    }
+  ],
+  "questions": [
+    "Može li nesanicu uzrokovati zdravstveno stanje ili lijek?",
+    "Je li kognitivno-bihevioralna terapija nesanice dostupna meni?",
+    "Koliko je dugo sigurno koristiti tablete za spavanje?"
+  ]
+}

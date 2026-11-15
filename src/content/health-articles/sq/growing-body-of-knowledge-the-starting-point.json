@@ -1,0 +1,51 @@
+{
+  "title": "Si rritet njohuria mjekësore: pikënisja",
+  "intro": "Njohuria mjekësore ndryshon kur studiuesit testojnë pyetje, krahasojnë trajtime dhe shqyrtojnë dëmet. Informacioni i besueshëm shpjegon çfarë dihet dhe çfarë mbetet e pasigurt. Studimi i ri është kontribut, jo automatikisht përgjigje përfundimtare.",
+  "sections": [
+    {
+      "heading": "Bëni pyetje të qartë",
+      "paragraphs": [
+        "Nisni me pyetje të qartë për njerëzit, ndërhyrjen ose ekspozimin, krahasimin dhe rezultate me rëndësi. Lehtësimi, funksioni, sëmundja serioze dhe cilësia e jetës vlejnë më shumë se vetëm ndryshimi laboratorik. Shpjegimi i besueshëm duhet testuar."
+      ]
+    },
+    {
+      "heading": "Krahasoni grupet drejt",
+      "paragraphs": [
+        "Krahasoni grupet drejt. Ndarja rastësore ul dallimet mes tyre; vëzhgimi zbulon modele por ngatërron shkakun me faktorë të tjerë. Madhësia, largimi nga ndjekja dhe raportimi përzgjedhës ndikojnë besimin në rezultat."
+      ]
+    },
+    {
+      "heading": "Kuptoni rishikimet sistematike",
+      "paragraphs": [
+        "Rishikimi sistematik përdor metoda të qarta për gjetjen dhe vlerësimin e studimeve, jo zgjedhjen e shembujve të favorshëm. Mund të mbetet i pasigurt kur kërkimi është i dobët ose i paqëndrueshëm. Bashkimi i studimeve të anshme nuk heq vetë anshmërinë."
+      ]
+    },
+    {
+      "heading": "Kontrolloni rëndësinë dhe transparencën",
+      "paragraphs": [
+        "Kontrolloni financimin, matjen e dëmeve dhe zbatimin te njerëz si ju. Kërkoni vlerësime të pavarura dhe datën e përditësimit. Përvoja e pacientit ndihmon pyetjet me rëndësi, por vetë nuk provon se trajtimi shkaktoi përmirësimin."
+      ]
+    },
+    {
+      "heading": "Përdorni me kujdes provat e reja",
+      "paragraphs": [
+        "Diskutoni gjetjet para ndryshimit të kujdesit të përshkruar. Rekomandimi mund të ndryshojë nga prova më të mira ose informacion i ri sigurie, jo nga pandershmëria e mëparshme. Pyesni cila pasiguri ndryshon vendimin dhe nëse është më e sigurt të veproni, monitoroni ose prisni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira lexon një studim të vogël pa kontroll për suplement. Pyet nëse përmirësimi është krahasuar me grup të ngjashëm para shpenzimit."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni sheh tituj kundërshtues. Kërkon rishikim sistematik dhe rezultate reale në vend të numërimit të artikujve që përsërisin pretendimet."
+    }
+  ],
+  "questions": [
+    "A ishte krahasimi i drejtë dhe i zbatueshëm për mua?",
+    "Cilat përfitime, dëme dhe pasiguri u matën?",
+    "A justifikojnë provat ndryshimin e kujdesit?"
+  ]
+}

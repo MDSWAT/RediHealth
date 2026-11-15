@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është aspirimi i nyjës?",
+  "intro": "Aspirimi i nyjës, ose artrocenteza, është një procedurë ku përdoret një gjilpërë për të nxjerrë lëng nga një nyje. Bëhet për të gjetur shkakun e enjtjes ose dhimbjes së nyjës, për të lehtësuar presionin e nganjëherë për të injektuar bar. Është e shpejtë e zakonisht bëhet në klinikën e mjekut.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "Analiza e lëngut mund të identifikojë infeksion, gut, kristale pseudogut, gjakderdhje ose artrit inflamator. Heqja e lëngut nga një nyje shumë e enjtur lehtëson dhimbjen e përmirëson lëvizjen. Një infeksion i dyshuar i nyjës është urgjencë, e aspirimi nevojitet urgjentisht për të parandaluar dëmtim të përhershëm."
+      ]
+    },
+    {
+      "heading": "Si bëhet",
+      "paragraphs": [
+        "Lëkura pastrohet e mund të mpihet me anestezi lokale ose spërkatës ftohës. Me teknikë sterile, mjeku fut një gjilpërë në nyje, nganjëherë e udhëhequr nga ultratingulli, e nxjerr lëng. Nëse dëshirohet, një kortikosteroid ose bar tjetër injektohet përmes së njëjtës gjilpërë. Procedura zgjat disa minuta."
+      ]
+    },
+    {
+      "heading": "Çfarë tregon lëngu",
+      "paragraphs": [
+        "Lëngu normal i nyjës është i pastër e i trashë. Lëngu i turbullt sugjeron inflamacion ose infeksion, lëngu me gjak sugjeron lëndim ose çrregullim gjakderdhjeje, e kristalet në lëng tregojnë gut ose pseudogut. Mostra dërgohet në laborator për numërim qelizash, kristale e kulturë bakteriale."
+      ]
+    },
+    {
+      "heading": "Kujdesi pas e rreziqet",
+      "paragraphs": [
+        "Pushojeni nyjën një a dy ditë e shmangni përdorimin e rëndë. Pak dhimbje është e zakonshme. Rreziqet janë të pazakonta e përfshijnë infeksion, gjakderdhje e dëmtim të kërcit. Kontaktoni një mjek nëse zhvilloni ethe, dhimbje në rritje, skuqje, ngrohtësi ose enjtje pas procedurës. Tregojini mjekut nëse merrni hollues gjaku."
+      ]
+    },
+    {
+      "heading": "Rezultatet",
+      "paragraphs": [
+        "Disa rezultate janë të disponueshme brenda orësh, të tjera, si kultura, zgjasin ditë. Mjeku shpjegon gjetjet e trajtimin, për shembull antibiotikë për infeksion, ose barna për gutin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja",
+      "text": "Imagjinoni që keni një gju të enjtur. Mund t'i tregoni mjekut për holluesit e gjakut e të shënoni kur filloi enjtja e nëse patët ethe."
+    },
+    {
+      "title": "Kujdesi pas",
+      "text": "Supozoni që ju hoqën lëng nga gjuri. Mund ta pushoni një ditë e të vëzhgoni për ngrohtësi, skuqje ose ethe."
+    }
+  ],
+  "questions": [
+    "Pse po merret lëng nga nyja ime?",
+    "A do të injektohet bar e cilat janë përfitimet e rreziqet?",
+    "Kur do t'i di rezultatet?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Probir i rano otkrivanje",
+  "intro": "Probir znači testiranje ljudi bez simptoma kako bi se bolest otkrila rano. Može spasiti živote kod nekih stanja, ali nije svaki probirni test vrijedan. Svi testovi imaju i nedostatke, kao što su lažni alarmi i prekomjerna dijagnoza. Poznavanje obiju strana pomaže vam odlučiti hoćete li sudjelovati.",
+  "sections": [
+    {
+      "heading": "Čemu služi probir",
+      "paragraphs": [
+        "Programi probira pozivaju ljude određene dobi ili rizične skupine na testiranje, primjerice na rak dojke, vrata maternice ili debelog crijeva ili na visok krvni tlak. Ideja je da ranije otkrivanje bolesti omogućuje učinkovitije liječenje. To djeluje samo ako se bolest može otkriti prije simptoma i ako je rano liječenje bolje od kasnijeg."
+      ]
+    },
+    {
+      "heading": "Moguće koristi",
+      "paragraphs": [
+        "Dobar probir smanjuje smrtnost ili komplikacije bolesti i može omogućiti blaže liječenje. Također može dati sigurnost kada su nalazi uredni. Primjerice, probir vrata maternice može pronaći predrakave promjene koje se liječe prije nego se razvije rak."
+      ]
+    },
+    {
+      "heading": "Moguće štete",
+      "paragraphs": [
+        "Probirni testovi nikada nisu savršeni. Lažno pozitivni rezultati uzrokuju brigu i daljnje pretrage, od kojih neke nose rizik. Lažno negativni rezultati mogu dati lažnu sigurnost. Prekomjerna dijagnoza znači otkrivanje stanja koja tijekom života nikada ne bi nanijela štetu, što dovodi do nepotrebnog liječenja. Neki testovi uključuju zračenje ili nelagodu."
+      ]
+    },
+    {
+      "heading": "Kako odlučiti",
+      "paragraphs": [
+        "Pogledajte jasne informacije o tome koliko ljudi ima koristi, a koliko ih trpi štetu, primjerice na tisuću probranih osoba. Razmotrite svoj rizik, zdravlje, vrijednosti i kako biste se nosili s nejasnim nalazima. Probir možete odbiti bez nedostataka u redovitoj skrbi. Simptome uvijek treba provjeriti bez obzira na probir.",
+        "Pozitivan probirni test nije dijagnoza. Vodi do daljnjih pretraga radi potvrde ili isključenja bolesti pa pitajte koji su sljedeći koraci, koliko će trajati rezultati i koga kontaktirati."
+      ]
+    },
+    {
+      "heading": "Uobičajeni primjeri",
+      "paragraphs": [
+        "Poznati programi uključuju mamografiju za rak dojke, testove stanica vrata maternice i HPV, testove stolice ili kolonoskopiju za rak debelog crijeva te provjere krvnog tlaka i kolesterola. Koji se testovi nude i od koje dobi ovisi o zemlji i mijenja se kako se razvijaju dokazi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Čitanje poziva",
+      "text": "Zamislite da primite poziv na probir. Mogli biste pažljivo pročitati informativni letak, zabilježiti koliko ljudi ima koristi, a koliko štete, te razgovarati o pitanjima s liječnikom."
+    },
+    {
+      "title": "Postupanje s nejasnim nalazom",
+      "text": "Pretpostavite da test treba ponoviti. Mogli biste pitati koliko često se to pokaže bezazlenim i kada ćete znati više."
+    }
+  ],
+  "questions": [
+    "Koje su koristi i štete ovog probirnog testa za nekoga poput mene?",
+    "Što se događa ako je nalaz testa abnormalan?",
+    "Koliko često se trebam testirati i do koje dobi?"
+  ]
+}

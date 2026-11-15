@@ -1,0 +1,51 @@
+{
+  "title": "Hepatita C: testare și tratament curativ",
+  "intro": "Hepatita C este infecție virală hepatică transmisă prin sânge, uneori neobservată ani. Tratamentul cu comprimate vindecă majoritatea infecțiilor, dar vindecarea nu inversează automat ciroza și nu protejează de reinfectare.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Echipamentul injectabil comun, instrumentele nesterile și alte expuneri sanguine transmit infecția. Îmbrățișarea și mesele obișnuite nu. Evitați învinuirea: rezultatul pozitiv nu stabilește când sau cum s-a produs."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Anticorpii arată expunerea anterioară, nu obligatoriu infecția activă. Detectarea materialului genetic viral confirmă prezentul. Evaluarea ficatului și alte analize ghidează tratamentul și controalele ulterioare. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Antiviralele directe se aleg după ficat, tratamente anterioare și interacțiuni. Completați schema și testul de confirmare. Verificați toate medicamentele și suplimentele: interacțiunile pot scădea efectul ori dăuna. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Nu împărțiți ace, lame sau periuțe; folosiți servicii sterile pentru tatuaje ori proceduri. Nu există vaccin pentru C. Întrebați despre vaccinarea A și B când este potrivită și evitați alcoolul. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Expunerea recentă la sânge cere sfat prompt și plan de testare. Confuzia, abdomenul foarte umflat, vărsăturile cu sânge ori scaunul negru cer urgență. Ciroza poate necesita supraveghere oncologică hepatică și după vindecare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira are anticorpi pozitivi și cere testul infecției actuale, fără să presupună că poartă sigur încă virusul."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben termină comprimatele și face confirmarea. Continuă controalele recomandate pentru fibroza anterioară, fără să considere că vindecarea încheie orice control."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

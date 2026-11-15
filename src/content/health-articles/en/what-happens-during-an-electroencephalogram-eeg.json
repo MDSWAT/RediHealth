@@ -1,0 +1,51 @@
+{
+  "title": "What happens during an electroencephalogram (EEG)?",
+  "intro": "An electroencephalogram, or EEG, records the electrical activity of the brain through small sensors placed on the scalp. It is painless and safe. It is most often used to help diagnose epilepsy and other causes of seizures, blackouts and changes in consciousness.",
+  "sections": [
+    {
+      "heading": "Why it is done",
+      "paragraphs": [
+        "Brain cells communicate by electrical signals, and an EEG shows patterns of this activity. It can show abnormal discharges in epilepsy, help classify seizure types, evaluate sleep disorders and confusion, and assess brain function in some illnesses. A normal EEG does not exclude epilepsy."
+      ]
+    },
+    {
+      "heading": "Preparation",
+      "paragraphs": [
+        "Wash your hair the day before, without conditioner, gels or sprays. Eat normally and take your medicines unless told otherwise. Sometimes you are asked to sleep less the night before, so that you fall asleep during the test. Bring a list of medicines and tell staff about any seizures."
+      ]
+    },
+    {
+      "heading": "During the test",
+      "paragraphs": [
+        "A technician fixes about twenty small metal discs to your scalp with paste or a cap. They connect to a recording machine. You lie or sit relaxed with your eyes closed, then open. You may be asked to breathe deeply or watch flashing lights, which can trigger abnormal activity. The recording lasts twenty to sixty minutes."
+      ]
+    },
+    {
+      "heading": "Other types",
+      "paragraphs": [
+        "Sleep EEG records during sleep, and ambulatory EEG is recorded for one to three days at home. Video EEG in hospital records seizures together with video. These give more information than a routine test. The test does not give an electric shock."
+      ]
+    },
+    {
+      "heading": "After the test",
+      "paragraphs": [
+        "You can usually go home and resume normal activities. Wash the paste from your hair. A specialist reviews the recording, and the result is sent to your doctor in several days. Ask what it shows and what the next steps are."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing hair",
+      "text": "Imagine your EEG is tomorrow. You could wash your hair tonight, avoid products and bring a list of your medicines."
+    },
+    {
+      "title": "Understanding a normal result",
+      "text": "Suppose your EEG is normal after a seizure. You might ask whether a longer or sleep EEG would help."
+    }
+  ],
+  "questions": [
+    "Why do I need an EEG, and what might it show?",
+    "Do I need to change my medicines or sleep before the test?",
+    "What happens if the EEG is normal?"
+  ]
+}

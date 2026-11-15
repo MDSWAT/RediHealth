@@ -1,0 +1,51 @@
+{
+  "title": "Surgery: what to expect",
+  "intro": "An operation can treat disease, repair injury, relieve symptoms or help diagnose a condition. Knowing what happens before, during and after surgery helps you prepare, ask the right questions and take an active part in decisions. Each operation involves benefits, risks and alternatives that should be discussed in advance.",
+  "sections": [
+    {
+      "heading": "Deciding on surgery",
+      "paragraphs": [
+        "Surgery is one option among others. Ask what the operation is meant to achieve, how likely it is to work, what could go wrong, what happens without surgery and whether there are alternatives such as medicines or physiotherapy. Urgent operations leave little time for deciding, but planned operations allow time for a second opinion."
+      ]
+    },
+    {
+      "heading": "Preparing for the operation",
+      "paragraphs": [
+        "Before surgery you are assessed for fitness, with tests such as blood tests, heart tracing and a discussion of medicines. Some medicines, such as blood thinners, may need to be paused on advice. Tell the team about allergies, previous reactions to anaesthesia, smoking and alcohol use. Stopping smoking and being active beforehand improve healing. Follow instructions about fasting."
+      ]
+    },
+    {
+      "heading": "Anaesthesia",
+      "paragraphs": [
+        "General anaesthesia makes you unconscious and pain-free. Regional anaesthesia, such as spinal or nerve blocks, numbs a part of the body while you stay awake or lightly sedated, and local anaesthesia numbs a small area. The anaesthetist chooses the type with you, based on the operation and your health. Side effects can include nausea, drowsiness and sore throat, and serious complications are rare."
+      ]
+    },
+    {
+      "heading": "Risks",
+      "paragraphs": [
+        "Every operation has risks, including bleeding, infection, blood clots, damage to nearby structures, reactions to anaesthesia and poor healing. The level of risk depends on the operation, your general health and whether it is an emergency. You are asked to give informed consent after the team explains the benefits and risks, and you can ask for time to think."
+      ]
+    },
+    {
+      "heading": "Recovery",
+      "paragraphs": [
+        "After the operation you are monitored and given pain relief. Moving early, deep breathing and eating as soon as allowed aid recovery. Follow instructions for wound care, activity, driving and returning to work, and know whom to call if you have fever, increasing pain, redness, swelling or other concerns. Rehabilitation may be needed after some operations."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing questions",
+      "text": "Imagine you are offered an operation. You could write down questions about benefits, risks and alternatives, and bring a relative to appointments to help remember answers."
+    },
+    {
+      "title": "Planning your recovery",
+      "text": "Suppose you will go home the day after surgery. You might arrange transport, help at home, easy meals and time off work."
+    }
+  ],
+  "questions": [
+    "What are the benefits and risks of this operation, and what are the alternatives?",
+    "Which type of anaesthesia is planned, and what are the side effects?",
+    "What should I expect during recovery, and when can I resume normal activities?"
+  ]
+}

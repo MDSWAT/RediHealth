@@ -1,0 +1,52 @@
+{
+  "title": "Cum transformă urechea sunetul în auz",
+  "intro": "Auzul implică urechea externă, medie și internă, nervii și creierul. Urechea internă conține și organele echilibrului. Dificultatea de auz poate începe în puncte diferite, necesitând tratamente diferite.",
+  "sections": [
+    {
+      "heading": "Colectarea sunetului",
+      "paragraphs": [
+        "Pavilionul conduce sunetul prin conduct spre timpan. Ceara protejează conductul; obiectele introduse pot răni sau împinge ceara mai adânc."
+      ]
+    },
+    {
+      "heading": "Transmiterea vibrației",
+      "paragraphs": [
+        "Timpanul mișcă oscioarele urechii medii, care transmit vibrația. Trompa lui Eustachio echilibrează presiunea cu gâtul; umflarea poate perturba procesul."
+      ]
+    },
+    {
+      "heading": "Semnale nervoase",
+      "paragraphs": [
+        "Celulele ciliate din cohlee transformă mișcarea în semnale. Creierul interpretează sunetul. Lezarea lor diferă de blocajul care împiedică sunetul să ajungă la cohlee."
+      ]
+    },
+    {
+      "heading": "Protecție",
+      "paragraphs": [
+        "Limitați zgomotul și folosiți protecție potrivită. Reduceți volumul căștilor și faceți pauze. Testele verifică părți diferite ale căii; aspectul extern normal nu dovedește auz normal."
+      ]
+    },
+    {
+      "heading": "Consult",
+      "paragraphs": [
+        "Schimbarea persistentă, secrețiile sau durerea cer consult. Pierderea bruscă a auzului cere evaluare urgentă chiar fără durere; nu presupuneți ceară și nu așteptați. Evitați instrumentele și lumânările auriculare.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira aude slab după schimbări de presiune. Explică momentul și întreabă despre urechea medie, fără curățare profundă."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben se trezește cu pierdere bruscă de auz. Cere evaluare urgentă în loc să aștepte eliminarea presupusei ceri."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Gastritis: pronalaženje i liječenje uzroka",
+  "intro": "Gastritis znači upalu želučane sluznice. Uzrok mogu biti Helicobacter pylori, neki lijekovi protiv bolova ili drugi čimbenici; sama bol u gornjem trbuhu ne potvrđuje dijagnozu.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Akutna upala može izazvati mučninu, pečenje i slab apetit; kronična može biti tiha. Autoimuni gastritis može poremetiti apsorpciju i uzrokovati manjak vitamina, pa zahtijeva drukčije praćenje."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Opišite analgetike, alkohol i ranije ulkuse. Mogu se koristiti izdisajni test ili analiza stolice na Helicobacter, krvna slika ili endoskopija s uzorcima; lijekovi mogu utjecati na točnost testova. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Liječenje cilja uzrok: propisana eradikacija potvrđenog Helicobactera, smanjenje kiseline ili pregled nadražujućih lijekova. Nemojte samostalno prekidati propisani aspirin ili antikoagulanse. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Izbjegavajte alkohol dok imate tegobe i birajte podnošljive obroke. Nema univerzalne dijete niti dokazane potrebe za dugim postom. Pitajte za sigurne analgetike umjesto opetovanog ibuprofena. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Krv u povraćenom sadržaju, crna katranasta stolica, nesvjestica ili nagla jaka bol traže hitnu pomoć. Mršavljenje, teško gutanje, trajno povraćanje ili anemija zahtijevaju obradu, ne stalno samoliječenje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira često uzima protuupalne tablete za leđa. Razgovara o sigurnijem planu protiv boli umjesto da sama neograničeno dodaje želučane lijekove."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben završava propisanu terapiju Helicobactera i dogovara potvrdni test, provjeravajući utjecaj ostalih lijekova na termin testiranja."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

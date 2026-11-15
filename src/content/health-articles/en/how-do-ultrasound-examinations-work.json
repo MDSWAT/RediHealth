@@ -1,0 +1,51 @@
+{
+  "title": "Ultrasound examinations: preparation, consent and results",
+  "intro": "Ultrasound uses high-frequency sound waves and their returning echoes to form images inside the body. It does not use ionizing radiation. Its value depends on the question, the area examined and trained interpretation; it cannot show every condition.",
+  "sections": [
+    {
+      "heading": "Producing the image",
+      "paragraphs": [
+        "A probe sends sound and receives echoes from tissue boundaries. Gel improves contact by removing air between probe and skin. Moving the probe builds different views; Doppler techniques can add information about blood flow."
+      ]
+    },
+    {
+      "heading": "Preparing appropriately",
+      "paragraphs": [
+        "Preparation differs: some abdominal examinations require fasting, while some pelvic scans need a full bladder. Follow the appointment instructions and ask if unclear, especially with diabetes or medicines. Do not stop prescribed treatment simply because a scan is planned."
+      ]
+    },
+    {
+      "heading": "During the examination",
+      "paragraphs": [
+        "Many scans use a probe on the skin; others use an internal probe to obtain suitable views. The professional should explain the reason, alternatives and consent. You can ask for a chaperone, interpreter, pause or to stop an intimate examination."
+      ]
+    },
+    {
+      "heading": "Understanding limitations",
+      "paragraphs": [
+        "Gas and bone can obscure structures, and findings depend on the view and clinical context. A normal result does not exclude every cause of symptoms. An incidental finding is not automatically dangerous; ask whether further tests or monitoring are genuinely needed."
+      ]
+    },
+    {
+      "heading": "Afterward and safety",
+      "paragraphs": [
+        "Ask when results will be available, who explains them and what to do if symptoms persist. Diagnostic ultrasound should be used appropriately rather than repeated for entertainment. Severe new symptoms require clinical help instead of waiting for a routine scan or assuming a previous normal result guarantees safety. Before a consultation, note when a symptom began, what makes it better or worse, and how it affects ordinary activities. Bring previous reports if available. Ask the professional to connect the explanation to your own findings rather than assuming that a general description establishes a diagnosis."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira checks whether she needs a full bladder before a pelvic appointment and asks how to take her usual medicines, rather than following unrelated internet preparation rules."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben has persistent pain despite a normal scan. He arranges follow-up to discuss other causes instead of repeating the same examination without a clear question."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

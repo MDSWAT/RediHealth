@@ -1,0 +1,56 @@
+{
+  "title": "Come si valuta la qualità degli studi medici",
+  "intro": "Non tutti gli studi sono ugualmente affidabili. Alcuni sono progettati e condotti in modi che rendono i loro risultati più attendibili, mentre altri comportano un alto rischio di conclusioni fuorvianti. Sapere come i ricercatori giudicano la qualità di uno studio aiuta a capire perché alcune affermazioni sulla salute sono più solide di altre e perché i titoli vanno letti con cautela.",
+  "sections": [
+    {
+      "heading": "Perché la qualità conta",
+      "paragraphs": [
+        "Uno studio può riportare che un trattamento funziona, ma il suo disegno può far apparire il risultato migliore o peggiore del vero. Il caso, le differenze nascoste tra i gruppi e le aspettative di partecipanti e ricercatori possono tutti distorcere i risultati. Valutare la qualità significa verificare quanto bene uno studio abbia evitato questi problemi.",
+        "Gli studi condotti male tendono a sopravvalutare i benefici. Conclusioni affidabili dipendono quindi dalla solidità dei metodi, non solo dalla grandezza dell'effetto riportato."
+      ]
+    },
+    {
+      "heading": "Il disegno dello studio",
+      "paragraphs": [
+        "Gli studi controllati randomizzati sono in genere il disegno più affidabile per testare i trattamenti. I partecipanti sono assegnati per caso a ricevere il nuovo trattamento o un confronto, il che rende i gruppi simili all'inizio, così che le differenze successive siano più probabilmente dovute al trattamento.",
+        "Gli studi osservazionali, come quelli di coorte e caso-controllo, seguono o confrontano persone senza assegnare trattamenti. Sono utili per i danni rari e gli esiti a lungo termine ma sono più soggetti a confondimento, in cui un altro fattore spiega l'effetto apparente."
+      ]
+    },
+    {
+      "heading": "Cecità e occultamento",
+      "paragraphs": [
+        "La cecità, o mascheramento, significa che partecipanti, medici e valutatori degli esiti non sanno chi riceve quale trattamento. Questo impedisce alle aspettative di influenzare i resoconti dei sintomi e i giudizi sui risultati. Dove il mascheramento è impossibile, per esempio nella chirurgia confrontata con l'esercizio, i ricercatori usano per quanto possibile esiti oggettivi.",
+        "L'occultamento dell'assegnazione significa che chi arruola i partecipanti non può prevedere la prossima assegnazione, il che impedisce un ingresso selettivo nei gruppi."
+      ]
+    },
+    {
+      "heading": "Altri aspetti che i revisori controllano",
+      "paragraphs": [
+        "I revisori verificano se molti partecipanti abbiano abbandonato o siano stati persi al follow-up, se l'analisi abbia incluso tutti secondo l'assegnazione originale e se lo studio abbia riportato tutti gli esiti pianificati. La comunicazione selettiva può far sembrare un trattamento migliore di quello che è.",
+        "Considerano anche la dimensione del campione, per quanto tempo le persone sono state seguite, se gli esiti sono rilevanti per i pazienti, come sopravvivenza, sintomi e qualità di vita, e chi ha finanziato lo studio. Il finanziamento dell'industria non rende falso un risultato, ma richiede un'attenzione particolare al disegno e alla comunicazione."
+      ]
+    },
+    {
+      "heading": "Usare queste conoscenze leggendo le notizie sulla salute",
+      "paragraphs": [
+        "Chiediti che tipo di studio fosse, quante persone hanno partecipato, chi erano, che cosa è stato confrontato e quali esiti sono stati misurati. Sii cauto con i risultati di studi su animali o cellule, studi molto piccoli e studi singoli che contraddicono un'ampia mole di evidenze.",
+        "Le revisioni sistematiche che combinano tutti gli studi di alta qualità su una domanda di solito danno un quadro più affidabile di qualsiasi singolo studio. Discuti le decisioni importanti con un professionista sanitario che possa inserire uno studio nel suo contesto."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Leggere una notizia",
+      "text": "Immagina di leggere un titolo che dice che un integratore dimezza il rischio di una malattia. Potresti verificare se lo studio ha coinvolto persone o animali da laboratorio, quanti erano i partecipanti e se il risultato è stato confermato da altre ricerche prima di cambiare le tue abitudini."
+    },
+    {
+      "title": "Chiedere delle prove",
+      "text": "Supponi che un medico ti proponga un nuovo trattamento. Potresti chiedere quali studi lo sostengono, se è stato confrontato con il trattamento esistente o con un placebo e quanto erano grandi il beneficio e gli effetti collaterali."
+    }
+  ],
+  "questions": [
+    "Quale tipo di evidenza sostiene questo trattamento e quanto è affidabile?",
+    "Persone come me sono state incluse negli studi e i risultati riguardavano sintomi o sopravvivenza?",
+    "Esiste una revisione sistematica o una linea guida che riassume la ricerca?"
+  ]
+}

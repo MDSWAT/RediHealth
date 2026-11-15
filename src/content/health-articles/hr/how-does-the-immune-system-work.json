@@ -1,0 +1,52 @@
+{
+  "title": "Kako imunost prepoznaje i odgovara",
+  "intro": "Imunost je mreža barijera, stanica, organa i proteina, a ne jedna postavka snage. Odgovara prijetnjama uz ograničavanje štete tijelu. Više upale ne znači automatski bolju zaštitu.",
+  "sections": [
+    {
+      "heading": "Prva obrana",
+      "paragraphs": [
+        "Koža i sluznice ograničavaju ulaz. Urođena obrana brzo reagira stanicama i signalima; upala dovodi pomoć, ali i otok i nelagodu."
+      ]
+    },
+    {
+      "heading": "Ciljani odgovor",
+      "paragraphs": [
+        "Limfociti B i T prepoznaju određene mete. Protutijela ih mogu vezati; različite T stanice koordiniraju odgovor ili napadaju zaražene stanice. Uloge surađuju."
+      ]
+    },
+    {
+      "heading": "Pamćenje",
+      "paragraphs": [
+        "Nakon nekih izlaganja memorijske stanice ubrzavaju kasniji odgovor. Cjepiva grade zaštitu bez pune bolesti, ali učinak varira i ne jamči protiv svake infekcije."
+      ]
+    },
+    {
+      "heading": "Poremećaji",
+      "paragraphs": [
+        "Alergija reagira na obično neškodljive tvari, autoimunost napada tijelo. Imunodeficijencija smanjuje određene obrane. To su različiti problemi; dodatak nije univerzalno liječenje."
+      ]
+    },
+    {
+      "heading": "Praktična skrb",
+      "paragraphs": [
+        "Slijedite preporuke cijepljenja i higijene, posebno uz imunosupresiju. Neobične ponavljane infekcije traže pregled. Teška bolest ili vrućica uz neke terapije traže hitni plan tima, ne čekanje dodataka.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pita znači li više upale jaču imunost. Uči da kontrola pretjeranog odgovora može zaštititi tkivo."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben provjerava cjepiva prije imunosupresije umjesto dodatka koji obećava univerzalno jačanje."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

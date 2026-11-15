@@ -1,0 +1,51 @@
+{
+  "title": "Madeži, rodni znakovi i druge vrste nevusa",
+  "intro": "Nevus je bezopasno nakupljanje stanica kože koje se pojavljuje kao madež ili rodni znak. Većina ljudi ima između deset i pedeset madeža, a većina je bezopasna. Korisno je znati kako izgledaju normalni madeži i koje promjene treba provjeriti jer se mali broj može razviti u melanom.",
+  "sections": [
+    {
+      "heading": "Uobičajene vrste",
+      "paragraphs": [
+        "Obični madeži su male, ravnomjerno obojene smeđe pjege koje se pojavljuju u djetinjstvu i ranoj odrasloj dobi. Prirođeni nevusi prisutni su pri rođenju i variraju u veličini. Neki ljudi imaju atipične ili displastične nevuse koji su veći i nepravilniji. Plavi nevusi su plavosivi, a vaskularni rodni znakovi kao što su vinske mrlje i jagodaste mrlje sastoje se od krvnih žila, a ne pigmentnih stanica."
+      ]
+    },
+    {
+      "heading": "Kako se madeži mijenjaju",
+      "paragraphs": [
+        "Madeži mogu potamniti tijekom adolescencije i trudnoće, a mnogi blijede ili nestaju s dobi. Izlaganje suncu stvara više madeža. Novi madeži koji se pojave nakon otprilike četrdesete godine trebaju posebnu pozornost. Mnogo madeža ili atipični madeži povećavaju rizik od melanoma, kao i obiteljska povijest."
+      ]
+    },
+    {
+      "heading": "Kada dati pregledati madež",
+      "paragraphs": [
+        "Posjetite liječnika ako madež raste, mijenja oblik ili boju, postane asimetričan, ima nepravilan rub, krvari, svrbi, stvara koricu ili izgleda drukčije od vaših ostalih madeža. Novu tamnu pjegu u odrasloj dobi treba provjeriti. Koristite kriterije ABCDE kao vodič."
+      ]
+    },
+    {
+      "heading": "Pregled i uklanjanje",
+      "paragraphs": [
+        "Dermatolog može pregledati madeže dermatoskopom i može snimiti fotografiju za usporedbu. Sumnjivi madež kirurški se uklanja i pregledava pod mikroskopom. Madeži se ne uklanjaju samo zato što postoje, ali se mogu ukloniti iz kozmetičkih razloga ili ako ih odjeća više puta nadražuje. Ne pokušavajte uklanjati madeže kod kuće."
+      ]
+    },
+    {
+      "heading": "Rodni znakovi",
+      "paragraphs": [
+        "Mnogi rodni znakovi su bezopasni i blijede. Neki, kao što su veliki prirođeni nevusi, pomno se prate, a neki vaskularni rodni znakovi mogu se liječiti laserom. Razgovarajte o zabrinutostima s liječnikom."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mapiranje madeža",
+      "text": "Zamislite da imate mnogo madeža. Mogli biste svakih nekoliko mjeseci snimiti datirane fotografije leđa i ruku i usporediti ih radi promjena ili ih podijeliti s dermatologom."
+    },
+    {
+      "title": "Pitanje o rodnom znaku bebe",
+      "text": "Pretpostavite da vaše novorođenče ima crvenu mrlju na čelu. Mogli biste pitati pedijatra hoće li vjerojatno nestati i treba li neko liječenje."
+    }
+  ],
+  "questions": [
+    "Koje od mojih madeža treba pratiti i koliko često?",
+    "Trebam li redovite preglede kože zbog svojih čimbenika rizika?",
+    "Je li potrebno ukloniti ovaj madež ili rodni znak?"
+  ]
+}

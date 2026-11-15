@@ -1,0 +1,51 @@
+{
+  "title": "Capire gli esami delle urine",
+  "intro": "Gli esami delle urine sono semplici, indolori e danno molte informazioni su reni, vie urinarie e salute generale. Possono rilevare infezioni, problemi renali, diabete e gravidanza. Sapere come raccogliere bene un campione e che cosa significano i risultati aiuta a rendere l'esame affidabile.",
+  "sections": [
+    {
+      "heading": "Tipi comuni",
+      "paragraphs": [
+        "Lo stick urinario è una striscia immersa nel campione che cambia colore per mostrare la presenza di sostanze come sangue, proteine, glucosio, globuli bianchi e nitriti. Dà risultati rapidi in ambulatorio. L'urinocoltura fa crescere i batteri per confermare l'infezione e verifica la sensibilità agli antibiotici. L'esame al microscopio osserva cellule e cristalli. I test di gravidanza rilevano l'ormone hCG."
+      ]
+    },
+    {
+      "heading": "Raccogliere un campione",
+      "paragraphs": [
+        "Per un campione del mitto intermedio, lavati le mani, pulisci la zona genitale, inizia a urinare nel water, poi raccogli la parte centrale del flusso nel contenitore, senza toccarne l'interno, e finisci nel water. Questo riduce la contaminazione da germi della pelle. L'urina del mattino presto è più concentrata. Consegna il campione in fretta o conservalo al fresco come indicato."
+      ]
+    },
+    {
+      "heading": "Che cosa possono mostrare i risultati",
+      "paragraphs": [
+        "Il sangue nelle urine può venire da infezione, calcoli, malattia renale, tumori o un trauma recente e richiede sempre una valutazione. Le proteine possono indicare un danno renale ma compaiono anche dopo esercizio o febbre. Il glucosio suggerisce un diabete. Globuli bianchi e nitriti suggeriscono un'infezione. Un singolo reperto anomalo si ripete spesso."
+      ]
+    },
+    {
+      "heading": "Test di gravidanza",
+      "paragraphs": [
+        "I test di gravidanza domestici rilevano l'hCG nelle urine e sono più affidabili dal primo giorno di ritardo del ciclo. Un risultato positivo è quasi sempre corretto, mentre uno negativo molto precoce può essere sbagliato e si può ripetere dopo alcuni giorni. Conferma un test positivo con un medico."
+      ]
+    },
+    {
+      "heading": "Consigli pratici",
+      "paragraphs": [
+        "Certi cibi, farmaci, vitamine e la disidratazione possono cambiare il colore delle urine e i risultati. Informa il medico di tutto ciò che prendi. Il sangue mestruale può contaminare un campione, quindi segnalalo. Riferisci sintomi come bruciore, urgenza, dolore alla schiena o febbre insieme all'esame."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dare un buon campione",
+      "text": "Immagina di sospettare un'infezione della vescica. Potresti seguire con attenzione le istruzioni sul mitto intermedio, usare il contenitore fornito e consegnare subito il campione."
+    },
+    {
+      "title": "Chiedere di un risultato",
+      "text": "Supponi che lo stick mostri tracce di proteine. Potresti chiedere se vada ripetuto e se servano altri esami dei reni."
+    }
+  ],
+  "questions": [
+    "Di quale esame delle urine ho bisogno e come devo prepararmi?",
+    "Che cosa significa per me un risultato anomalo?",
+    "Ho bisogno di un nuovo esame o di ulteriori accertamenti?"
+  ]
+}

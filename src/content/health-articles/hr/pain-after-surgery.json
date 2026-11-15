@@ -1,0 +1,51 @@
+{
+  "title": "Bol nakon operacije",
+  "intro": "Određena bol nakon operacije je normalna, ali se obično može dobro kontrolirati. Dobro ublažavanje boli pomaže vam duboko disati, rano se kretati, spavati i brže se oporaviti. Poznavanje mogućnosti i otvoren razgovor sa zdravstvenim timom pomažu vam dobiti pravo liječenje uz najmanje nuspojava.",
+  "sections": [
+    {
+      "heading": "Zašto je ublažavanje boli važno",
+      "paragraphs": [
+        "Slabo kontrolirana bol može usporiti oporavak, dovesti do upala dišnih putova, krvnih ugrušaka i slabosti od ležanja u krevetu te može povećati rizik od dugotrajne boli. Bol se razlikuje među ljudima i ovisi o vrsti operacije pa je vaše vlastito iskustvo vodič. Ne morate biti hrabri niti čekati da bol postane jaka."
+      ]
+    },
+    {
+      "heading": "Ocjenjivanje boli",
+      "paragraphs": [
+        "Osoblje vas često traži da ocijenite bol na ljestvici od nula do deset. Recite im kako bol utječe na hodanje, kašljanje i spavanje, a ne samo broj. Prijavite novu ili iznenada pojačanu bol jer može biti znak komplikacije."
+      ]
+    },
+    {
+      "heading": "Lijekovi",
+      "paragraphs": [
+        "Liječenje često kombinira nekoliko vrsta ublažavanja boli. Paracetamol i protuupalni lijekovi protiv bolova su osnova. Opioidni lijekovi koriste se za jaču bol i mogu uzrokovati pospanost, mučninu, zatvor i usporeno disanje, a treba ih koristiti u najnižoj učinkovitoj dozi što kraće vrijeme. Injekcije lokalnog anestetika, blokade živaca, epiduralne i infuzije mogu umrtviti područje."
+      ]
+    },
+    {
+      "heading": "Druge korisne mjere",
+      "paragraphs": [
+        "Namještanje položaja, hladni ili topli oblozi, pridržavanje rane jastukom pri kašljanju, opuštanje, glazba i odvraćanje pažnje mogu pomoći. Rano nježno kretanje i vježbe disanja smanjuju komplikacije. Dobre informacije prije operacije smanjuju tjeskobu, što pak smanjuje bol."
+      ]
+    },
+    {
+      "heading": "Odlazak kući",
+      "paragraphs": [
+        "Zatražite plan boli prije odlaska: koji lijekovi, koliko često, kada smanjivati i što učiniti kod zatvora. Ne vozite i ne pijte alkohol dok uzimate opioide. Čuvajte ih sigurno i neiskorištene tablete vratite u ljekarnu. Obratite se liječniku ako se bol pojača, ako imate vrućicu, crvenilo ili iscjedak iz rane."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razgovor o boli",
+      "text": "Zamislite da osjećate bol pri kašljanju nakon operacije trbuha. Mogli biste reći medicinskoj sestri da vas bol sprječava duboko disati i zatražiti ublažavanje boli prije fizioterapije."
+    },
+    {
+      "title": "Planiranje unaprijed",
+      "text": "Pretpostavite da vam je operacija sljedeći tjedan. Mogli biste pitati anesteziologa koje će se mogućnosti ublažavanja boli ponuditi i kako se nositi s nuspojavama kao što je mučnina."
+    }
+  ],
+  "questions": [
+    "Koje ću ublažavanje boli dobiti i koje nuspojave trebam očekivati?",
+    "Kako ću se nositi s boli kod kuće i kada trebam smanjiti dozu?",
+    "Koji simptomi znače da trebam nazvati kirurški tim?"
+  ]
+}

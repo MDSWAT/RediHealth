@@ -1,0 +1,51 @@
+{
+  "title": "Trovare informazioni sanitarie affidabili online",
+  "intro": "La ricerca online prepara domande ma espone anche a pubblicità, affermazioni fuorvianti e consigli inadatti. Partite da una domanda chiara considerando fonte e limiti. Questa guida descrive un percorso pratico di ricerca, non un metodo per diagnosticarsi da soli.",
+  "sections": [
+    {
+      "heading": "Definire la decisione",
+      "paragraphs": [
+        "Scrivete cosa capire: diagnosi discussa, alternative, recupero o risultato. Usate il termine della visita. Separate apprendimento generale e quesiti personali. Sintomi urgenti richiedono cure appropriate anziché prolungare la ricerca."
+      ]
+    },
+    {
+      "heading": "Identificare responsabilità e interessi",
+      "paragraphs": [
+        "Cercate autore, qualifiche, organizzazione, finanziamento e contatto. La pagina informa o vende? Posizioni sponsorizzate, testimonianze e grafica professionale non sono verifica indipendente. Un collegamento commerciale non rende tutto falso, ma richiede esame delle prove."
+      ]
+    },
+    {
+      "heading": "Risalire alle prove",
+      "paragraphs": [
+        "Leggete la spiegazione e non soltanto titolo o riassunto. Cercate confronti pertinenti, esiti importanti, danni e incertezza. Le citazioni servono se sostengono la tesi. Controllate date e pertinenza delle persone e dei servizi descritti alla vostra situazione."
+      ]
+    },
+    {
+      "heading": "Valutare storie e risposte automatiche",
+      "paragraphs": [
+        "I forum mostrano esperienze e domande pratiche, non quanto spesso funzioni una cura. Racconti anonimi possono essere incompleti o promozionali. Risposte automatiche possono sembrare sicure omettendo limiti o inventando riferimenti. Verificate le tesi importanti e non inserite dettagli medici o identificativi inutili in servizi sconosciuti."
+      ]
+    },
+    {
+      "heading": "Preparare un quesito mirato",
+      "paragraphs": [
+        "Salvate titolo, data e passaggio. Confrontate organizzazioni indipendenti attendibili anziché molte pagine identiche. Chiedete applicabilità a farmaci e malattie personali. Non interrompete cure per un post. Se cercare aumenta l’ansia, fermatevi e organizzate un colloquio professionale."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: pubblicità di un integratore",
+      "text": "Mira trova una promessa di guarigione vicino all’acquisto. Cerca confronti e danni e, senza prove chiare, chiede al farmacista invece di comprare subito."
+    },
+    {
+      "title": "Esempio ipotetico: recuperi differenti",
+      "text": "Arben trova tempi diversi. Registra le procedure e chiede al team quali si applichino senza fare una media di consigli incompatibili."
+    }
+  ],
+  "questions": [
+    "Chi ha scritto e finanziato?",
+    "Le prove sostengono benefici, danni e alternative per persone come me?",
+    "Cosa richiede un consiglio personale prima di agire?"
+  ]
+}

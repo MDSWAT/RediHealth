@@ -1,0 +1,51 @@
+{
+  "title": "Gastritis: finding and treating the cause",
+  "intro": "Gastritis means inflammation of the stomach lining. It may follow Helicobacter pylori infection, certain pain medicines or other causes; upper abdominal pain alone cannot confirm the diagnosis.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Acute inflammation may cause nausea, burning and poor appetite; chronic inflammation may be quiet. Autoimmune gastritis can affect absorption and lead to vitamin deficiency, requiring a different follow-up plan."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Explain pain-medicine use, alcohol intake and previous ulcers. Testing may include Helicobacter breath or stool tests, blood counts or endoscopy with samples; medicines can affect test accuracy. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Treatment addresses the cause: prescribed eradication treatment for confirmed Helicobacter, appropriate acid suppression or review of irritating medicines. Do not stop prescribed aspirin or anticoagulants without medical advice. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Avoid alcohol while symptomatic and choose meals you tolerate. There is no universal gastritis diet or proven need for prolonged fasting. Ask about safe pain relief rather than repeatedly using ibuprofen. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Blood in vomit, black tarry stool, fainting or severe sudden abdominal pain require urgent care. Weight loss, swallowing difficulty, persistent vomiting or anemia need investigation rather than repeated self-treatment."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira takes frequent anti-inflammatory tablets for back pain. She discusses a safer pain plan instead of adding stomach medicine indefinitely on her own."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben finishes prescribed Helicobacter therapy and arranges the recommended confirmation test, checking how other medicines affect its timing."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

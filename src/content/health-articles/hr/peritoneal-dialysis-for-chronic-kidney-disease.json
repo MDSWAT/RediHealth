@@ -1,0 +1,52 @@
+{
+  "title": "Peritonealna dijaliza kod kronične bolesti bubrega",
+  "intro": "Peritonealna dijaliza je oblik nadomještanja bubrežne funkcije koji se provodi kod kuće. Tekućina za čišćenje uvodi se u trbuh kroz mekanu cijev, gdje ovojnica trbušne šupljine filtrira otpadne tvari i višak tekućine iz krvi. Nudi fleksibilnost u usporedbi s bolničkom hemodijalizom, ali zahtijeva pažljivu higijenu i obuku.",
+  "sections": [
+    {
+      "heading": "Kako djeluje",
+      "paragraphs": [
+        "Kateter, umetnut u manjem zahvatu, ostaje u trbuhu. Tekućina za dijalizu koja sadrži šećer uvodi se, ostavlja nekoliko sati i ispušta s otpadnim tvarima i viškom vode povučenim kroz potrbušnicu. Postupak se ponavlja nekoliko puta dnevno ručno ili preko noći strojem koji automatski izmjenjuje tekućinu dok spavate."
+      ]
+    },
+    {
+      "heading": "Kome odgovara",
+      "paragraphs": [
+        "Može odgovarati ljudima koji preferiraju liječenje kod kuće, žele nastaviti raditi ili putovati ili žive daleko od centra za dijalizu. Zahtijeva sposobnost, ili pomoć njegovatelja, za izvođenje izmjena u čistim uvjetima. Prethodna operacija trbuha, teške kile ili vrlo loši higijenski uvjeti mogu je učiniti neprikladnom."
+      ]
+    },
+    {
+      "heading": "Koristi i rizici",
+      "paragraphs": [
+        "Koristi uključuju veću samostalnost, nježnije uklanjanje tekućine i mogućnost slobodnije prehrane i unosa tekućine nego kod hemodijalize za neke ljude. Glavni rizik je peritonitis, infekcija trbušne šupljine, koja uzrokuje mutnu tekućinu, bol u trbuhu i vrućicu i zahtijeva hitno liječenje. Drugi problemi uključuju probleme s kateterom, kile, debljanje od šećera u tekućini i, tijekom godina, gubitak sposobnosti filtriranja membrane."
+      ]
+    },
+    {
+      "heading": "Svakodnevni život i skrb",
+      "paragraphs": [
+        "Obuka traje jedan do dva tjedna. Strogo pranje ruku i čista rutina izmjene sprječavaju infekciju. Držite mjesto izlaza katetera čistim i suhim te odmah prijavite crvenilo, iscjedak ili mutnu tekućinu. Redoviti posjeti klinici prate krvne pretrage i ravnotežu tekućine. Savjeti o prehrani obično uključuju bjelančevine, sol, kalij i fosfat. Mnogi ljudi mogu raditi, putovati s opremom isporučenom u inozemstvo i održavati normalne aktivnosti.",
+        "Transplantacija, hemodijaliza i konzervativna skrb druge su mogućnosti, a liječenje se može s vremenom mijenjati."
+      ]
+    },
+    {
+      "heading": "Druga liječenja bubrega",
+      "paragraphs": [
+        "Peritonealna dijaliza jedna je od nekoliko mogućnosti. Transplantacija bubrega, hemodijaliza u centru ili kod kuće i konzervativna skrb usmjerena na simptome su ostale. Liječenje se može s vremenom mijenjati, a izbor treba odražavati vaše zdravlje, vaše želje i vašu kućnu situaciju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Učenje rutine",
+      "text": "Zamislite da počinjete obuku za noćne izmjene. Mogli biste zamoliti medicinske sestre da promatraju vašu tehniku, zapisati korake i držati brojeve za hitne slučajeve pored zaliha."
+    },
+    {
+      "title": "Prepoznavanje problema",
+      "text": "Pretpostavite da ispuštena tekućina izgleda mutno i osjećate bol u trbuhu. Mogli biste odmah nazvati jedinicu za dijalizu i donijeti vrećicu u kliniku."
+    }
+  ],
+  "questions": [
+    "Je li peritonealna dijaliza prikladna za mene u usporedbi s hemodijalizom ili transplantacijom?",
+    "Kako mogu spriječiti infekcije i koji su znakovi upozorenja?",
+    "Kakva će biti moja prehrana i svakodnevni život uz ovo liječenje?"
+  ]
+}

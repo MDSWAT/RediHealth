@@ -1,0 +1,51 @@
+{
+  "title": "Ruptura de menisc",
+  "intro": "Meniscurile sunt două perne de cartilaj în formă de C din fiecare genunchi, care amortizează articulația și ajută la stabilizarea ei. O ruptură poate apărea brusc în timpul sportului sau treptat, odată cu vârsta. Multe rupturi se ameliorează cu exerciții și timp, iar chirurgia este rezervată celor cu blocaj sau simptome persistente.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "La persoanele tinere, rupturile de menisc urmează de obicei unei leziuni prin răsucire, uneori cu afectarea altor ligamente. La persoanele de vârstă mijlocie și în vârstă, meniscul se uzează și se degenerează, iar rupturi mici pot apărea la mișcări minore, precum ghemuitul sau ridicarea din scaun, adesea împreună cu o artroză incipientă."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Durere de-a lungul liniei articulare, umflare care se dezvoltă în decurs de o zi, rigiditate, agățare sau pocnete și uneori blocaj, în care genunchiul nu se mai poate întinde complet. Durerea este adesea mai intensă la răsucire și la flexia profundă. Rupturile degenerative pot da mai puține simptome, iar multe rupturi văzute la imagistică la persoanele în vârstă nu sunt sursa durerii."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicii examinează genunchiul cu teste specifice și pot cere o rezonanță magnetică dacă diagnosticul este neclar sau dacă un genunchi blocat sugerează o ruptură deplasată. Rezonanța arată adesea modificări ale meniscului la persoane fără simptome, așa că rezultatele trebuie interpretate împreună cu simptomele."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Repausul, gheața și calmarea durerii ajută la început. Kinetoterapia cu întărirea mușchilor coapsei și șoldului este eficientă pentru multe persoane, mai ales în rupturile degenerative, cu rezultate asemănătoare chirurgiei pentru mulți. Chirurgia prin artroscopie, fie repararea meniscului cu fire, fie tăierea părților lezate, se ia în considerare pentru un genunchi blocat, rupturi mari la persoane tinere sau simptome persistente în ciuda terapiei. Repararea păstrează meniscul și este preferată când este posibil, dar necesită o recuperare mai lungă."
+      ]
+    },
+    {
+      "heading": "Recuperare și prevenire",
+      "paragraphs": [
+        "După tăiere, persoanele revin adesea la activitatea normală în câteva săptămâni, în timp ce repararea necesită mișcare protejată timp de mai multe săptămâni și revenirea la sport în câteva luni. Întărirea musculară, exercițiile de echilibru, greutatea sănătoasă și încălzirea înainte de sport ajută la protejarea genunchilor. Îndepărtarea țesutului meniscal crește riscul de artroză ulterioară, ceea ce este un alt motiv pentru a încerca să fie păstrat."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Încercarea mai întâi a exercițiilor",
+      "text": "Imaginați-vă că aveți cincizeci și cinci de ani și durere de genunchi cu o ruptură degenerativă la rezonanță. Ați putea începe un program supravegheat de întărire timp de douăsprezece săptămâni înainte de a lua în considerare operația."
+    },
+    {
+      "title": "Recunoașterea unui genunchi blocat",
+      "text": "Presupuneți că genunchiul nu se mai întinde brusc după o răsucire. Ați putea cere prompt un consult medical, deoarece ar putea necesita operație."
+    }
+  ],
+  "questions": [
+    "Este simptomul meu cauzat de fapt de ruptura de menisc?",
+    "Ar funcționa terapia prin exerciții la fel de bine ca operația în cazul meu?",
+    "Dacă se recomandă operația, meniscul va fi reparat sau tăiat?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Lesione del menisco",
+  "intro": "I menischi sono due cuscinetti di cartilagine a forma di C in ciascun ginocchio che ammortizzano l'articolazione e ne aiutano la stabilità. Una lesione può avvenire all'improvviso durante lo sport o gradualmente con l'età. Molte lesioni migliorano con esercizio e tempo, mentre la chirurgia è riservata a chi ha blocchi o sintomi persistenti.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "Nei più giovani le lesioni del menisco seguono di solito un trauma da torsione, a volte con altri danni ai legamenti. Nelle persone di mezza età e anziane il menisco si consuma e degenera e piccole lesioni possono verificarsi con movimenti minimi come accovacciarsi o alzarsi, spesso insieme a un'artrosi iniziale."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Dolore lungo la linea articolare, gonfiore che si sviluppa nell'arco di un giorno, rigidità, sensazione di impuntamento o scatti e talvolta blocco, in cui il ginocchio non riesce a stendersi del tutto. Il dolore peggiora spesso con le torsioni e la flessione profonda. Le lesioni degenerative possono dare meno sintomi e molte lesioni viste agli esami nelle persone anziane non sono la fonte del dolore."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "I medici esaminano il ginocchio con test specifici e possono richiedere una risonanza magnetica se la diagnosi non è chiara o se un ginocchio bloccato suggerisce una lesione dislocata. La risonanza mostra spesso alterazioni del menisco in persone senza sintomi, quindi i reperti vanno interpretati insieme ai sintomi."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Riposo, ghiaccio e sollievo dal dolore aiutano all'inizio. La fisioterapia con rinforzo dei muscoli di coscia e anca è efficace per molte persone, in particolare con le lesioni degenerative, con risultati simili alla chirurgia per molti. La chirurgia in artroscopia, che ripara il menisco con punti o ne rimuove le parti danneggiate, si considera per un ginocchio bloccato, lesioni ampie nei più giovani o sintomi persistenti nonostante la terapia. La riparazione conserva il menisco ed è preferita quando possibile, ma richiede un recupero più lungo."
+      ]
+    },
+    {
+      "heading": "Recupero e prevenzione",
+      "paragraphs": [
+        "Dopo la rimozione di parti del menisco le persone tornano spesso alla normale attività entro alcune settimane, mentre la riparazione richiede movimenti protetti per diverse settimane e il ritorno allo sport in alcuni mesi. Rinforzo, esercizi di equilibrio, peso sano e riscaldamento prima dello sport aiutano a proteggere le ginocchia. Rimuovere tessuto del menisco aumenta il rischio di artrosi successiva, un altro motivo per cercare di preservarlo."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Provare prima l'esercizio",
+      "text": "Immagina di avere cinquantacinque anni, dolore al ginocchio e una lesione degenerativa alla risonanza. Potresti iniziare un programma di rinforzo supervisionato per dodici settimane prima di considerare la chirurgia."
+    },
+    {
+      "title": "Riconoscere un ginocchio bloccato",
+      "text": "Supponi che il ginocchio all'improvviso non si stenda dopo una torsione. Potresti cercare subito una valutazione medica, perché potrebbe servire un intervento."
+    }
+  ],
+  "questions": [
+    "Il mio sintomo è davvero causato dalla lesione del menisco?",
+    "La terapia con esercizio funzionerebbe come la chirurgia nel mio caso?",
+    "Se si consiglia la chirurgia, il menisco sarà riparato o rimosso in parte?"
+  ]
+}

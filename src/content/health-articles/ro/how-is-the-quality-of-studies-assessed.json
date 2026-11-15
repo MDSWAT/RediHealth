@@ -1,0 +1,56 @@
+{
+  "title": "Cum se evaluează calitatea studiilor medicale",
+  "intro": "Nu toate studiile sunt la fel de demne de încredere. Unele sunt concepute și realizate astfel încât rezultatele lor să fie mai fiabile, în timp ce altele prezintă un risc mare de concluzii înșelătoare. Cunoașterea modului în care cercetătorii judecă calitatea unui studiu ajută la înțelegerea motivului pentru care unele afirmații despre sănătate sunt mai solide decât altele și pentru care titlurile trebuie citite cu grijă.",
+  "sections": [
+    {
+      "heading": "De ce contează calitatea",
+      "paragraphs": [
+        "Un studiu poate raporta că un tratament funcționează, dar designul său poate face rezultatul să pară mai bun sau mai slab decât adevărul. Întâmplarea, diferențele ascunse dintre grupuri și așteptările participanților și ale cercetătorilor pot denatura rezultatele. Evaluarea calității înseamnă a verifica cât de bine a evitat un studiu aceste probleme.",
+        "Studiile realizate necorespunzător tind să supraestimeze beneficiile. Concluziile fiabile depind deci de soliditatea metodelor, nu doar de mărimea efectului raportat."
+      ]
+    },
+    {
+      "heading": "Designul studiului",
+      "paragraphs": [
+        "Studiile controlate randomizate sunt, în general, cel mai fiabil design pentru testarea tratamentelor. Participanții sunt repartizați prin tragere la sorți pentru a primi noul tratament sau o comparație, ceea ce face grupurile asemănătoare la început, astfel încât diferențele de după aceea se datorează mai probabil tratamentului.",
+        "Studiile observaționale, precum cele de cohortă și cele caz-control, urmăresc sau compară persoane fără a atribui tratamente. Sunt utile pentru efecte nocive rare și rezultate pe termen lung, dar sunt mai expuse factorilor de confuzie, în care un alt factor explică efectul aparent."
+      ]
+    },
+    {
+      "heading": "Orbirea și ascunderea alocării",
+      "paragraphs": [
+        "Orbirea înseamnă că participanții, medicii și cei care evaluează rezultatele nu știu cine primește ce tratament. Aceasta împiedică așteptările să influențeze relatarea simptomelor și aprecierile asupra rezultatelor. Acolo unde orbirea nu este posibilă, de exemplu la compararea chirurgiei cu exercițiile fizice, cercetătorii folosesc pe cât posibil rezultate obiective.",
+        "Ascunderea alocării înseamnă că cei care înrolează participanți nu pot anticipa următoarea repartizare, ceea ce previne includerea selectivă în grupuri."
+      ]
+    },
+    {
+      "heading": "Alte aspecte verificate de evaluatori",
+      "paragraphs": [
+        "Evaluatorii urmăresc dacă mulți participanți au abandonat sau au fost pierduți din urmărire, dacă analiza a inclus pe toată lumea conform repartizării inițiale și dacă studiul a raportat toate rezultatele planificate. Raportarea selectivă poate face un tratament să pară mai bun decât este.",
+        "Ei iau în considerare și dimensiunea eșantionului, cât timp au fost urmărite persoanele, dacă rezultatele contează pentru pacienți, de exemplu supraviețuirea, simptomele și calitatea vieții, și cine a finanțat studiul. Finanțarea din industrie nu face un rezultat fals, dar cere o atenție suplimentară la design și la raportare."
+      ]
+    },
+    {
+      "heading": "Cum folosiți aceste cunoștințe când citiți știri despre sănătate",
+      "paragraphs": [
+        "Întrebați ce fel de studiu a fost, câte persoane au participat, cine au fost, ce s-a comparat și ce rezultate s-au măsurat. Fiți prudenți față de rezultatele din studii pe animale sau pe celule, din studii foarte mici și din studii singulare care contrazic un volum mare de dovezi.",
+        "Revizuirile sistematice care combină toate studiile de calitate pe o întrebare oferă de obicei o imagine mai fiabilă decât orice studiu singur. Discutați deciziile importante cu un profesionist din sănătate care poate plasa un studiu în context."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Citirea unei știri",
+      "text": "Imaginați-vă că citiți un titlu care spune că un supliment reduce la jumătate riscul unei boli. Ați putea verifica dacă studiul a implicat oameni sau animale de laborator, câți participanți au fost și dacă rezultatul a fost confirmat de alte cercetări înainte de a vă schimba obiceiurile."
+    },
+    {
+      "title": "Întrebări despre dovezi",
+      "text": "Presupuneți că un medic vă propune un tratament nou. Ați putea întreba ce studii îl susțin, dacă l-au comparat cu tratamentul existent sau cu placebo și cât de mari au fost beneficiul și efectele secundare."
+    }
+  ],
+  "questions": [
+    "Ce fel de dovezi susțin acest tratament și cât de fiabile sunt?",
+    "Au fost incluse în studii persoane ca mine și au contat rezultatele pentru simptome sau supraviețuire?",
+    "Există o revizuire sistematică sau un ghid care rezumă cercetările?"
+  ]
+}

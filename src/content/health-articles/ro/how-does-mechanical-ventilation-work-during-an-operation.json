@@ -1,0 +1,52 @@
+{
+  "title": "Susținerea respirației în timpul operației",
+  "intro": "Anestezia generală poate reduce respirația și reflexele care protejează căile aeriene. Echipa de anestezie poate susține respirația sub monitorizare continuă; dispozitivul depinde de operație și de riscurile individuale.",
+  "sections": [
+    {
+      "heading": "De ce este necesară",
+      "paragraphs": [
+        "Anestezicele și relaxantele musculare pot împiedica respirația eficientă. Ventilatorul introduce aer cu oxigen și permite eliminarea dioxidului de carbon; oxigenul singur nu înlocuiește ventilația."
+      ]
+    },
+    {
+      "heading": "Accesul la căile aeriene",
+      "paragraphs": [
+        "Masca facială acoperă nasul și gura. Dispozitivul supraglotic stă deasupra laringelui; tubul traheal trece printre corzile vocale. Etanșarea și protecția diferă, deci nu sunt mereu interschimbabile."
+      ]
+    },
+    {
+      "heading": "Verificări în timpul operației",
+      "paragraphs": [
+        "Echipa urmărește oxigenul, dioxidul de carbon expirat și alte funcții vitale, ajustează ventilația și verifică dispozitivul. Ventilatorul susține respirația; nu produce singur inconștiență sau calmarea durerii."
+      ]
+    },
+    {
+      "heading": "Pregătirea",
+      "paragraphs": [
+        "Respectați instrucțiunile spitalului privind alimentele, lichidele și medicamentele. Anunțați apneea, refluxul, dinții mobili, alergiile și problemele anterioare de intubație. Nu improvizați postul și nu opriți singuri tratamentul."
+      ]
+    },
+    {
+      "heading": "Trezirea",
+      "paragraphs": [
+        "Susținerea scade când respirația și reflexele protectoare revin suficient. Poate apărea jenă temporară în gât, dar dificultatea severă de respirație după operație necesită ajutor urgent.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira folosește un aparat pentru apnee. Anunță anestezistul și întreabă dacă să îl aducă pentru recuperare."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are o lucrare dentară mobilă. O raportează înaintea operației, pentru adaptarea planului de protejare a căilor aeriene."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

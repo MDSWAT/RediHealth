@@ -1,0 +1,51 @@
+{
+  "title": "Alergia alimentară: diagnostic, mese și plan de urgență",
+  "intro": "Alergia alimentară este reacția imunitară la o proteină; uneori cantități mici provoacă boală gravă. Diferă de intoleranță și nu explică orice simptom după masă. Diagnosticul permite evitarea necesară fără restricții inutile asupra nutriției și vieții zilnice.",
+  "sections": [
+    {
+      "heading": "Recunoașteți reacția severă",
+      "paragraphs": [
+        "Sunați la 112 pentru respirație sau înghițire dificilă, umflarea gâtului ori limbii, colaps sau confuzie importantă după aliment. Anafilaxia poate exista fără erupție. Folosiți imediat adrenalina de urgență prescrisă conform instrucțiunilor și cereți ajutor chiar dacă apare ameliorare. Antihistaminicul nu o înlocuiește. Stați culcat; pentru respirație dificilă șezut sprijinit, fără ridicare ori mers. Urmați planul pentru repetare până vine ajutorul."
+      ]
+    },
+    {
+      "heading": "Evaluați declanșatorul",
+      "paragraphs": [
+        "Notați alimente, ingrediente, cantitate, timp și simptome, inclusiv sportul și medicamentele din jurul episodului. Medicul poate indica test cutanat sau anticorpi specifici; pozitivitatea singură nu dovedește alergia clinică. Uneori este necesară provocarea supravegheată. Nu testați intenționat acasă un aliment suspect de reacție gravă și nu vă bazați pe panouri comerciale nevalidate."
+      ]
+    },
+    {
+      "heading": "Evitați practic alergenul confirmat",
+      "paragraphs": [
+        "Citiți eticheta de fiecare dată, deoarece rețetele se schimbă. Întrebați despre preparare, ustensile comune și contact încrucișat. Scoaterea nucii vizibile nu face felul sigur. Explicați școlii, îngrijitorilor și însoțitorilor și păstrați accesibile planul și medicamentele de urgență. Verificați expirarea și învățați dispozitivul specific, fără presupunerea că toate injectoarele sunt identice."
+      ]
+    },
+    {
+      "heading": "Protejați nutriția și discutați specialistul",
+      "paragraphs": [
+        "Dieteticianul ajută înlocuirea alimentelor, mai ales laptele ori mai multe alimente de bază la copii. Nu eliminați grupe întregi fără sfat. Unele alergii se schimbă, dar reintroducerea cere plan. Anumiți pacienți discută imunoterapia de specialitate: implică riscuri și monitorizare, nu consum liber ori abandonarea precauțiilor."
+      ]
+    },
+    {
+      "heading": "Revizuiți la schimbări",
+      "paragraphs": [
+        "Cereți control după reacții, simptome noi sau nelămuriri despre evitare. Discutați călătorii, restaurante, sport, controlul astmului și schimbarea școlii ori muncii. Reacția ușoară anterioară nu garantează viitorul. Întrebați despre medicamente și accesul la urgență. Familia trebuie să cunoască planul, fără să aștepte gestionarea solitară a reacției severe."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exemplu ipotetic: masa școlară",
+      "text": "Familia Milei transmite alergia confirmată și planul scris. Stabilește verificarea ingredientelor și medicamentelor, fără să considere denumirea fără nuci o garanție a preparării."
+    },
+    {
+      "title": "Exemplu ipotetic: restricții inutile",
+      "text": "Arben are simptome digestive și vrea să elimine multe alimente. Notează tiparul și cere evaluare și dietetician în locul diagnosticului din test comercial."
+    }
+  ],
+  "questions": [
+    "Ce aliment este responsabil și ce teste ajută?",
+    "Cum îl evit păstrând nutriția?",
+    "Ce facem la reacție severă și când revizuim?"
+  ]
+}

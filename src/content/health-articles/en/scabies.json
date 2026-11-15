@@ -1,0 +1,51 @@
+{
+  "title": "Scabies",
+  "intro": "Scabies is a skin infestation caused by tiny mites that burrow into the skin and cause intense itching, especially at night. It spreads through prolonged skin contact and is not a sign of poor hygiene. It is easily treated with creams or tablets, but everyone in close contact must be treated at the same time.",
+  "sections": [
+    {
+      "heading": "How it spreads",
+      "paragraphs": [
+        "Scabies mites pass from person to person through close, prolonged skin contact, such as within households, during sex and in care homes or nurseries. Sharing bedding or clothes can occasionally spread them. Mites survive only a few days away from the human body."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "The main symptom is intense itching, particularly at night, beginning two to six weeks after first infection, or within days on re-infection. Small red spots and thin, wavy burrow lines appear especially between fingers, on wrists, elbows, armpits, waist and genitals, and in babies on palms, soles and head. Scratching can lead to infected sores."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "A doctor recognises scabies from the appearance and distribution of the rash and from contacts with similar itching. Examination with a dermatoscope or microscopic skin scraping can confirm mites. Itching may persist for several weeks after successful treatment because of a reaction to dead mites."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Permethrin cream is commonly used on the whole body from the neck down, left on for the specified time, usually overnight, then washed off, and repeated after a week. Benzyl benzoate is an alternative, and ivermectin tablets are used in some cases, particularly outbreaks. Treat everyone in the household and close contacts at the same time, even without symptoms."
+      ]
+    },
+    {
+      "heading": "Cleaning measures",
+      "paragraphs": [
+        "Wash bedding, towels and clothing from the past few days at a high temperature, or seal them in plastic bags for several days. Vacuum upholstered furniture and keep nails short. Return to school or work only after treatment has been given as advised. Antihistamines or soothing lotions can ease itching."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Treating the household",
+      "text": "Imagine your child has scabies. You could coordinate treatment for the whole family on the same evening and wash all bedding the next morning."
+    },
+    {
+      "title": "Dealing with persistent itch",
+      "text": "Suppose itching continues two weeks after treatment. You might ask your doctor whether it is the usual post-scabies itch or whether re-treatment is needed."
+    }
+  ],
+  "questions": [
+    "Which treatment is best, and who else must be treated?",
+    "When can we return to school or work?",
+    "How can I ease the itching afterwards?"
+  ]
+}

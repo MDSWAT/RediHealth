@@ -1,0 +1,52 @@
+{
+  "title": "Sindromul intestinului iritabil",
+  "intro": "Sindromul intestinului iritabil este o tulburare frecventă, de lungă durată, a intestinului, care provoacă dureri abdominale cu diaree, constipație sau ambele. Nu deteriorează intestinul și nu crește riscul de cancer, dar simptomele pot fi supărătoare. Alimentația, gestionarea stresului și uneori medicamentele aduc alinare.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele tipice sunt durerea abdominală cu crampe legată de scaune, balonarea, gazele și schimbările frecvenței sau consistenței scaunelor. Unele persoane au mai ales diaree, altele constipație, iar unele alternează. Simptomele apar și dispar și se agravează adesea în timpul stresului sau după anumite alimente."
+      ]
+    },
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Cauza exactă nu este cunoscută. Factorii includ un intestin mai sensibil, mișcarea alterată a intestinelor, schimbări ale bacteriilor intestinale, o infecție intestinală anterioară și legătura dintre creier și intestin. Stresul și anxietatea nu provoacă tulburarea, dar o pot agrava."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Diagnosticul se bazează pe simptomele tipice și pe excluderea altor afecțiuni. Medicii pot comanda analize de sânge, analize de scaun și, când este nevoie, o colonoscopie, mai ales când există semne de alarmă precum sânge în scaun, scădere în greutate, anemie, febră, simptome care încep după vârsta de 50 de ani sau antecedente familiale de cancer intestinal sau boală inflamatorie intestinală."
+      ]
+    },
+    {
+      "heading": "Tratament și autoajutor",
+      "paragraphs": [
+        "Mesele regulate, lichidele suficiente, activitatea fizică și somnul bun ajută. Ținerea unui jurnal alimentar și al simptomelor poate identifica factorii declanșatori precum cafeaua, alimentele grase sau îndulcitorii. Fibrele solubile, precum psyllium, ajută unele persoane, în timp ce fibrele insolubile pot agrava balonarea. O dietă săracă în FODMAP, urmată cu un dietetician, ajută unele persoane, dar nu trebuie urmată pe termen lung fără îndrumare.",
+        "Medicamentele pot ameliora crampele, diareea sau constipația. Uleiul de mentă poate ajuta la durere. Terapiile psihologice, precum terapia cognitiv-comportamentală și hipnoterapia orientată spre intestin, sunt eficiente pentru simptomele persistente."
+      ]
+    },
+    {
+      "heading": "Viața cu IBS",
+      "paragraphs": [
+        "IBS este de obicei o afecțiune pe viață, cu simptome schimbătoare. Cunoașterea factorilor declanșatori, gestionarea stresului și păstrarea legăturii cu medicul vă ajută să faceți față. Cereți sfat dacă simptomele se schimbă semnificativ sau apar noi semne de alarmă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ținerea unui jurnal",
+      "text": "Imaginați-vă că bănuiți că anumite alimente vă declanșează simptomele. Ați putea nota mesele, stresul și simptomele timp de două săptămâni și ați putea analiza tiparul cu medicul sau cu dieteticianul."
+    },
+    {
+      "title": "Încercarea în siguranță a unei diete",
+      "text": "Presupuneți că vreți să încercați o dietă săracă în FODMAP. Ați putea cere o trimitere la un dietetician, pentru a elimina alimentele doar pentru o perioadă limitată și a le reintroduce cu grijă."
+    }
+  ],
+  "questions": [
+    "Ar putea simptomele mele să aibă altă cauză și ce teste îmi trebuie?",
+    "Ce tratamente sau diete au cele mai mari șanse să ajute tipul meu de IBS?",
+    "Ce semne de alarmă înseamnă că trebuie să revin mai devreme?"
+  ]
+}

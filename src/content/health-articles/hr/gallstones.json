@@ -1,0 +1,51 @@
+{
+  "title": "Žučni kamenci: kada je potrebno liječenje",
+  "intro": "Žučni kamenci su čvrste naslage u žučnom mjehuru ili vodovima. Mnogi ne uzrokuju simptome, no kamen koji začepi vod može izazvati jaku bol u gornjem trbuhu, infekciju ili pankreatitis.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Tipična žučna bol jaka je i trajna, često gore desno ili u sredini, ponekad se širi u leđa. Sama nadutost ne dokazuje da su uzrok kamenci."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Ultrazvuk i krvne pretrage pomažu procijeniti kamence, upalu i protok žuči. Prijavite vrućicu, žuticu i ranije napadaje; slučajan kamenac ne mora objašnjavati drugu probavnu tegobu. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Kamenci bez simptoma uglavnom se prate, uz odabrane iznimke. Ponavljani napadaji mogu voditi razgovoru o uklanjanju mjehura; kamenci u vodu mogu zahtijevati endoskopsko vađenje. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Bilježite napadaje i hranu koja izaziva tegobe. Dok čekate savjet birajte podnošljive uravnotežene obroke; drastično gladovanje, naglo mršavljenje i komercijalna čišćenja žuči nisu pouzdane terapije. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Jaka trajna bol, vrućica, žute oči, tamna mokraća, svijetla stolica ili ponavljano povraćanje zahtijevaju hitnu procjenu. Nemojte čekati zakazanu operaciju ako se pojave."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima slučajno otkrivene kamence, bez žučnih simptoma. Pita zašto je praćenje prikladnije od automatske operacije."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arbenovu uobičajenu bol sada prate vrućica i žute oči. Traži hitnu procjenu umjesto da samo izbjegava masnoće."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

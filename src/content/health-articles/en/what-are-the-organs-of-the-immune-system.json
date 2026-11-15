@@ -1,0 +1,51 @@
+{
+  "title": "The organs of the immune system",
+  "intro": "The immune system is made up of organs, tissues and cells that protect the body from germs and abnormal cells. Some organs produce and train immune cells, while others filter body fluids and collect germs. Together they form a coordinated defence network spread throughout the body.",
+  "sections": [
+    {
+      "heading": "Bone marrow and thymus",
+      "paragraphs": [
+        "Bone marrow, the soft tissue inside large bones, produces all blood cells, including the white blood cells of the immune system. B cells mature there. The thymus, a small organ behind the breastbone, is where T cells mature and learn to distinguish the body's own cells from foreign ones. It is most active in childhood and shrinks with age."
+      ]
+    },
+    {
+      "heading": "Lymph nodes and lymph vessels",
+      "paragraphs": [
+        "Lymph nodes are small filters spread through the lymphatic network, concentrated in the neck, armpits, groin and abdomen. They trap germs from lymph fluid and are meeting places where immune cells are activated. Lymph vessels carry lymph and immune cells through the body. When fighting infection, nodes can swell and feel tender."
+      ]
+    },
+    {
+      "heading": "Spleen and tonsils",
+      "paragraphs": [
+        "The spleen, on the left side of the abdomen, filters the blood, removes old red cells and germs, and holds immune cells. People without a spleen are more susceptible to certain infections and need vaccinations and sometimes preventive antibiotics. Tonsils and adenoids in the throat sample germs entering through the mouth and nose."
+      ]
+    },
+    {
+      "heading": "Mucosal immune tissue",
+      "paragraphs": [
+        "Lining surfaces in the gut, lungs and urinary tract have their own immune tissue. Clusters of lymph tissue in the small intestine called Peyer's patches monitor what is in the gut. Skin also has immune cells. These barriers are the front line against germs from the outside world."
+      ]
+    },
+    {
+      "heading": "Keeping the system healthy",
+      "paragraphs": [
+        "Sleep, regular exercise, balanced nutrition, not smoking, moderate alcohol, stress management and vaccination support immune function. Seek advice for repeated infections, unexplained fevers, persistent swollen glands or if you have had your spleen removed."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Understanding swollen glands",
+      "text": "Imagine you have a sore throat and tender glands in your neck. You could rest and watch whether the swelling goes down over a couple of weeks."
+    },
+    {
+      "title": "After spleen removal",
+      "text": "Suppose you have had your spleen removed. You might ask your doctor about recommended vaccinations and what to do when you have a fever."
+    }
+  ],
+  "questions": [
+    "Which organs of my immune system are affected by my condition?",
+    "Do I need extra vaccinations or precautions?",
+    "Which symptoms mean I need to be checked for immune problems?"
+  ]
+}

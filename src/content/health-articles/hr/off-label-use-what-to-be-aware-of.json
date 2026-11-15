@@ -1,0 +1,52 @@
+{
+  "title": "Primjena lijekova izvan odobrenih indikacija: na što treba paziti",
+  "intro": "Primjena izvan odobrenih indikacija znači korištenje lijeka za stanje, dobnu skupinu, dozu ili put primjene koji nije obuhvaćen njegovim službenim odobrenjem. Česta je, osobito kod djece, rijetkih bolesti i raka, i može biti razumna kad je podupiru dokazi. Budući da je manje poznato ili dokumentirano, zahtijeva pažljiv razgovor o koristima i rizicima.",
+  "sections": [
+    {
+      "heading": "Što znači izvan indikacija",
+      "paragraphs": [
+        "Kad je lijek odobren, proizvođač je pokazao da je učinkovit i siguran za specifične primjene opisane u informacijama o proizvodu. Korištenje izvan tih primjena je primjena izvan indikacija. To samo po sebi ne čini lijek nezakonitim ili nesigurnim, a liječnici ga mogu propisati ondje gdje procijene da je prikladno. Razlikuje se od neodobrenih lijekova, koji nemaju nikakvo odobrenje."
+      ]
+    },
+    {
+      "heading": "Zašto se događa",
+      "paragraphs": [
+        "Istraživanja na djeci, trudnicama i ljudima s rijetkim bolestima često nedostaju pa liječnici koriste lijekove na temelju iskustva i manjih istraživanja. Nove primjene mogu se otkriti nakon odobrenja, ali proizvođač možda ne traži formalno proširenje. Neke primjene izvan indikacija imaju dobre dokaze, dok druge počivaju na slabim dokazima."
+      ]
+    },
+    {
+      "heading": "Rizici i nesigurnosti",
+      "paragraphs": [
+        "Može biti manje podataka o ispravnom doziranju, nuspojavama i interakcijama za primjene izvan indikacija. Odgovornost za štetu i pokrivenost zdravstvenim osiguranjem mogu se razlikovati jer osiguravatelji mogu plaćati samo pod određenim uvjetima. Uputa o lijeku neće spominjati vašu primjenu, što može zabrinjavati."
+      ]
+    },
+    {
+      "heading": "Što pitati",
+      "paragraphs": [
+        "Pitajte zašto se lijek preporučuje, koji dokazi to podupiru, koje su alternative i koji su rizici poznati. Pitajte kako će se mjeriti uspjeh i kada prestati. Provjerite pokriva li ga osiguranje i tko je odgovoran za praćenje.",
+        "Slijedite propisanu dozu, prijavite nuspojave i recite svim svojim zdravstvenim pružateljima. Uputa i dalje daje vrijedne sigurnosne savjete kao što su interakcije i upozorenja."
+      ]
+    },
+    {
+      "heading": "Sigurno uzimanje",
+      "paragraphs": [
+        "Ne mijenjajte doze na temelju onoga što drugi izvještavaju na internetu. Vodite popis svih svojih lijekova kako bi se interakcije mogle provjeriti i odmah prijavite nuspojave."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razumijevanje upute",
+      "text": "Zamislite da vam liječnik propiše lijek za primjenu koja nije navedena u uputi. Mogli biste pitati o razlozima i dokazima i zatražiti pisanu bilješku o planu."
+    },
+    {
+      "title": "Pitanje o troškovima",
+      "text": "Pretpostavite da vaš osiguravatelj obično ne pokriva propisano. Mogli biste pitati liječnika o alternativama i očekivanim troškovima prije početka."
+    }
+  ],
+  "questions": [
+    "Je li ova primjena lijeka potkrijepljena dokazima i postoji li odobrena alternativa?",
+    "Koji su mogući rizici i kako ćemo ih pratiti?",
+    "Hoće li moje zdravstveno osiguranje pokriti ovo liječenje?"
+  ]
+}

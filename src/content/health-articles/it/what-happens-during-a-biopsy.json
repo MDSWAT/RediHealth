@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa succede durante una biopsia",
+  "intro": "Una biopsia è una procedura in cui si preleva dal corpo un piccolo campione di tessuto e lo si esamina al microscopio. Si usa per diagnosticare condizioni come tumori, infiammazioni e infezioni. La maggior parte delle biopsie è rapida e si fa con anestesia locale.",
+  "sections": [
+    {
+      "heading": "Perché si fa una biopsia",
+      "paragraphs": [
+        "Esami di immagini e del sangue possono suggerire un problema, ma esaminare il tessuto è spesso l'unico modo per essere sicuri di che cosa sia. Una biopsia può mostrare se un nodulo è benigno o maligno, individuare il tipo di tumore e aiutare a pianificare il trattamento. Si usa anche per diagnosticare malattie di fegato, reni, pelle e intestino."
+      ]
+    },
+    {
+      "heading": "Tipi di biopsia",
+      "paragraphs": [
+        "Una biopsia con ago usa un ago sottile o più grosso per prelevare cellule o un piccolo cilindro di tessuto, spesso guidata da ecografia o altro esame. Una biopsia endoscopica preleva campioni con piccole pinze attraverso un tubo con telecamera. Una biopsia cutanea asporta un piccolo pezzo con una lama o un punch. La biopsia chirurgica rimuove una parte o tutto un nodulo con un'incisione."
+      ]
+    },
+    {
+      "heading": "Prima e durante",
+      "paragraphs": [
+        "Può esserti chiesto di sospendere gli anticoagulanti e di digiunare per alcune procedure. La zona viene pulita e anestetizzata. Puoi sentire pressione o un breve dolore durante il prelievo. Le procedure durano da pochi minuti a un'ora e alcune richiedono la sedazione. Di solito puoi tornare a casa lo stesso giorno."
+      ]
+    },
+    {
+      "heading": "Dopo la biopsia",
+      "paragraphs": [
+        "Un lieve dolore, lividi o un leggero sanguinamento sono comuni. Segui le istruzioni sulla cura della ferita. Contatta il medico per sanguinamento abbondante, febbre, dolore in aumento, arrossamento o gonfiore. Le complicanze sono rare, ma comprendono sanguinamento e infezione."
+      ]
+    },
+    {
+      "heading": "Risultati",
+      "paragraphs": [
+        "Un patologo esamina il campione e i risultati richiedono da pochi giorni a due settimane. L'attesa può essere stressante. Chiedi quando e come riceverai il risultato e chi lo spiegherà. A volte serve un'altra biopsia se il campione era troppo piccolo o poco chiaro."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi",
+      "text": "Immagina di dover fare una biopsia del fegato. Potresti informare il team di tutti i farmaci, soprattutto gli anticoagulanti, e organizzare un passaggio per tornare a casa."
+    },
+    {
+      "title": "Durante l'attesa dei risultati",
+      "text": "Supponi che i risultati richiedano dieci giorni. Potresti chiedere la data di una visita di controllo e portare qualcuno con te."
+    }
+  ],
+  "questions": [
+    "Perché ho bisogno di una biopsia e che cosa mostrerà?",
+    "Quale tipo di biopsia è previsto e quali sono i rischi?",
+    "Quando avrò i risultati e chi me li spiegherà?"
+  ]
+}

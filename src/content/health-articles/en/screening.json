@@ -1,0 +1,52 @@
+{
+  "title": "Screening and early detection",
+  "intro": "Screening means testing people who have no symptoms in order to find a disease early. It can save lives in some conditions, but not every screening test is worthwhile. All tests also have downsides such as false alarms and overdiagnosis. Knowing both sides helps you decide whether to take part.",
+  "sections": [
+    {
+      "heading": "What screening is for",
+      "paragraphs": [
+        "Screening programmes invite people in a certain age or risk group to be tested, for example for breast, cervical or bowel cancer or high blood pressure. The idea is that finding a disease earlier allows more effective treatment. This only works if the disease can be detected before symptoms and early treatment is better than later treatment."
+      ]
+    },
+    {
+      "heading": "Possible benefits",
+      "paragraphs": [
+        "Good screening reduces deaths or complications from a disease, and may allow gentler treatment. It can also provide reassurance when results are normal. For example, cervical screening can find precancerous changes that are treated before cancer develops."
+      ]
+    },
+    {
+      "heading": "Possible harms",
+      "paragraphs": [
+        "Screening tests are never perfect. False-positive results cause worry and further tests, some of which carry risk. False-negative results may give false reassurance. Overdiagnosis means detecting conditions that would never have caused harm during life, leading to unnecessary treatment. Some tests involve radiation or discomfort."
+      ]
+    },
+    {
+      "heading": "How to decide",
+      "paragraphs": [
+        "Look at clear information on how many people benefit and how many are harmed, for example per thousand people screened. Consider your risk, health, values and how you would cope with uncertain findings. You may decline screening without disadvantage in your routine care. Symptoms should always be checked regardless of screening.",
+        "A positive screening test is not a diagnosis. It leads to further tests to confirm or exclude disease, so ask what the next steps are, how long results will take and who to contact."
+      ]
+    },
+    {
+      "heading": "Common examples",
+      "paragraphs": [
+        "Well-known programmes include mammography for breast cancer, cervical cell and HPV tests, stool tests or colonoscopy for bowel cancer, and blood pressure and cholesterol checks. Which tests are offered, and from what age, depends on the country and changes as evidence develops."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reading an invitation",
+      "text": "Imagine you receive a screening invitation. You could read the information leaflet carefully, note how many people benefit and how many are harmed, and discuss any questions with your doctor."
+    },
+    {
+      "title": "Dealing with an uncertain result",
+      "text": "Suppose your test needs a repeat. You might ask how often this turns out to be harmless and when you will know more."
+    }
+  ],
+  "questions": [
+    "What are the benefits and harms of this screening test for someone like me?",
+    "What happens if the test result is abnormal?",
+    "How often should I be screened, and until what age?"
+  ]
+}

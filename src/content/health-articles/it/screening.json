@@ -1,0 +1,52 @@
+{
+  "title": "Screening e diagnosi precoce",
+  "intro": "Screening significa sottoporre a test persone che non hanno sintomi per individuare precocemente una malattia. Può salvare vite in alcune condizioni, ma non ogni test di screening vale la pena. Tutti i test hanno anche lati negativi come falsi allarmi e sovradiagnosi. Conoscere entrambi i lati aiuta a decidere se partecipare.",
+  "sections": [
+    {
+      "heading": "A che cosa serve lo screening",
+      "paragraphs": [
+        "I programmi di screening invitano a fare un test le persone di una certa fascia di età o di rischio, per esempio per tumori della mammella, della cervice o dell'intestino o per la pressione alta. L'idea è che trovare una malattia prima permetta un trattamento più efficace. Funziona solo se la malattia può essere individuata prima dei sintomi e il trattamento precoce è meglio di quello successivo."
+      ]
+    },
+    {
+      "heading": "Possibili benefici",
+      "paragraphs": [
+        "Un buon screening riduce i decessi o le complicanze di una malattia e può consentire un trattamento più lieve. Può anche dare rassicurazione quando i risultati sono normali. Per esempio lo screening cervicale può trovare alterazioni precancerose che vengono trattate prima che si sviluppi il cancro."
+      ]
+    },
+    {
+      "heading": "Possibili danni",
+      "paragraphs": [
+        "I test di screening non sono mai perfetti. I risultati falsi positivi causano preoccupazione e ulteriori esami, alcuni dei quali comportano rischi. I risultati falsi negativi possono dare una falsa rassicurazione. La sovradiagnosi significa individuare condizioni che non avrebbero mai causato danni nel corso della vita, portando a trattamenti non necessari. Alcuni test comportano radiazioni o fastidio."
+      ]
+    },
+    {
+      "heading": "Come decidere",
+      "paragraphs": [
+        "Guarda informazioni chiare su quante persone traggono beneficio e quante subiscono danni, per esempio su mille persone sottoposte a screening. Considera il tuo rischio, la tua salute, i tuoi valori e come affronteresti reperti incerti. Puoi rifiutare lo screening senza svantaggi nelle tue cure di routine. I sintomi vanno sempre controllati indipendentemente dallo screening.",
+        "Un test di screening positivo non è una diagnosi. Porta a ulteriori esami per confermare o escludere la malattia, quindi chiedi quali sono i passi successivi, quanto tempo richiederanno i risultati e chi contattare."
+      ]
+    },
+    {
+      "heading": "Esempi comuni",
+      "paragraphs": [
+        "I programmi noti comprendono la mammografia per il tumore della mammella, il Pap test e il test dell'HPV, i test delle feci o la colonscopia per il tumore dell'intestino e i controlli di pressione e colesterolo. Quali test vengono offerti e da che età dipende dal paese e cambia con l'evolversi delle prove."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Leggere un invito",
+      "text": "Immagina di ricevere un invito a uno screening. Potresti leggere con attenzione il foglio informativo, notare quante persone traggono beneficio e quante subiscono danni e discutere le domande con il medico."
+    },
+    {
+      "title": "Gestire un risultato incerto",
+      "text": "Supponi che il tuo test debba essere ripetuto. Potresti chiedere con quale frequenza risulta innocuo e quando saprai di più."
+    }
+  ],
+  "questions": [
+    "Quali sono i benefici e i danni di questo test di screening per una persona come me?",
+    "Che cosa succede se il risultato del test è anomalo?",
+    "Con quale frequenza dovrei fare lo screening e fino a che età?"
+  ]
+}

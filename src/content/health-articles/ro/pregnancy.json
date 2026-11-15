@@ -1,0 +1,51 @@
+{
+  "title": "Sarcina",
+  "intro": "Sarcina durează aproximativ patruzeci de săptămâni și aduce multe schimbări fizice și emoționale. Îngrijirea prenatală regulată, obiceiurile sănătoase și cunoașterea semnelor de alarmă ajută cele mai multe persoane să aibă o sarcină și o naștere în siguranță. Fiecare sarcină este diferită, iar echipa de îngrijire poate adapta sfaturile la sănătatea și circumstanțele dumneavoastră.",
+  "sections": [
+    {
+      "heading": "Etapele sarcinii",
+      "paragraphs": [
+        "Sarcina este împărțită în trei trimestre. În primul, embrionul se dezvoltă, iar simptome precum greața, oboseala și sânii sensibili sunt frecvente. În al doilea, energia revine adesea, iar mișcările se simt de pe la mijlocul sarcinii. În al treilea, bebelușul crește rapid și pot apărea disconforturi precum durerile de spate și lipsa de aer."
+      ]
+    },
+    {
+      "heading": "Îngrijirea prenatală",
+      "paragraphs": [
+        "Vizitele regulate la moașă sau la medic monitorizează sănătatea dumneavoastră și creșterea bebelușului prin verificarea tensiunii arteriale, analize de urină, analize de sânge, măsurători și ecografii. Puteți discuta despre testele de screening opționale pentru afecțiunile cromozomiale, planurile de naștere, vaccinări și hrănire. Cursurile prenatale pregătesc pentru naștere și pentru începutul vieții de părinte."
+      ]
+    },
+    {
+      "heading": "Obiceiuri sănătoase",
+      "paragraphs": [
+        "Mâncați variat, luați acid folic înainte și la începutul sarcinii, conform recomandărilor, și întrebați despre vitamina D și iod. Evitați alcoolul, fumatul și drogurile recreaționale. Limitați cafeaua, evitați carnea crudă, produsele lactate nepasteurizate și anumite pești cu mult mercur. Rămâneți activă prin mers, înot sau exerciții pentru gravide, dacă nu vi se spune altfel, și odihniți-vă suficient. Întrebați un medic sau un farmacist înainte de a lua orice medicament."
+      ]
+    },
+    {
+      "heading": "Acuze frecvente și semne de alarmă",
+      "paragraphs": [
+        "Greața, arsurile la stomac, constipația, durerile de spate, gleznele umflate și oboseala sunt frecvente și adesea pot fi gestionate prin măsuri simple. Cereți prompt ajutor pentru sângerare vaginală, durere abdominală severă, durere de cap severă sau tulburări de vedere, umflare bruscă a feței și a mâinilor, febră, scurgere de lichid din vagin, mișcări reduse ale bebelușului sau vărsături severe și persistente."
+      ]
+    },
+    {
+      "heading": "Starea emoțională și planificarea",
+      "paragraphs": [
+        "Schimbările de dispoziție sunt normale, dar tristețea persistentă, anxietatea sau gândurile chinuitoare necesită atenție, iar sprijinul este disponibil. Planificați nașterea, discutați despre calmarea durerii, despre locul nașterii și despre ce aveți nevoie după venirea bebelușului. Implicați partenerul sau familia și aranjați ajutor practic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Notarea întrebărilor",
+      "text": "Imaginați-vă că sunteți însărcinată în săptămâna treisprezece și aveți multe întrebări. Ați putea ține o listă pe telefon și ați putea-o aduce la fiecare consultație prenatală, inclusiv întrebări despre muncă și călătorii."
+    },
+    {
+      "title": "Observarea unei schimbări",
+      "text": "Presupuneți că observați că bebelușul se mișcă mai puțin decât de obicei la sfârșitul sarcinii. Ați putea contacta moașa sau spitalul în aceeași zi, în loc să așteptați."
+    }
+  ],
+  "questions": [
+    "Ce teste și ecografii mi se vor oferi și sunt opționale?",
+    "Ce alimente, medicamente sau activități ar trebui să evit?",
+    "Ce simptome înseamnă că ar trebui să sun imediat?"
+  ]
+}

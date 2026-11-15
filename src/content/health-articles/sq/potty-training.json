@@ -1,0 +1,51 @@
+{
+  "title": "Mësimi i fëmijës për tualetin",
+  "intro": "Mësimi i fëmijës për tualetin është procesi i ndihmës që një fëmijë të mësojë ta përdorë tualetin. Fëmijët janë gati në mosha të ndryshme, zakonisht midis dy e katër vjeç. Qëndrimi i qetë, vëzhgimi i shenjave të gatishmërisë dhe shmangia e presionit zakonisht sjellin rezultatet më të mira dhe aksidentet janë pjesë normale e të mësuarit.",
+  "sections": [
+    {
+      "heading": "Shenjat e gatishmërisë",
+      "paragraphs": [
+        "Fëmijët zakonisht janë gati kur qëndrojnë të thatë për disa orë, tregojnë interes për tualetin, mund të ndjekin udhëzime të thjeshta, mund t'i ngrenë e t'i ulin rrobat, vënë re kur duhet të shkojnë dhe tregojnë shqetësim në pelena të ndotura. Kontrolli i zorrës e i fshikëzës lidhet me pjekjen e sistemit nervor të fëmijës, prandaj fillimi shumë i hershëm shpesh vetëm e zgjat procesin."
+      ]
+    },
+    {
+      "heading": "Fillimi",
+      "paragraphs": [
+        "Zgjidhni një periudhë të qetë pa ndryshime të mëdha si vëllai i ri ose shpërngulja. Ofroni një tas ose një ndenjëse tualeti për fëmijë me një stol për këmbët. Lëreni fëmijën të mësohet me të, të ulet fillimisht i veshur dhe prezantoni uljet e rregullta pas vakteve. Përdorni veshje që zbërthehet lehtë dhe shpjegoni thjesht çfarë të bëjë. Lavdëroni përpjekjet dhe mbani qëndrim të relaksuar."
+      ]
+    },
+    {
+      "heading": "Përballimi i aksidenteve",
+      "paragraphs": [
+        "Aksidentet janë normale, veçanërisht kur fëmija është i zënë, i sëmurë ose i emocionuar. Qëndroni të qetë, pastroni pa fajësim dhe nxiteni të provojë përsëri. Ndëshkimi, turpërimi e presioni mund të shkaktojnë frikë dhe mbajtje të jashtëqitjes. Thatësia gjatë natës vjen më vonë, shpesh vite pas kontrollit gjatë ditës."
+      ]
+    },
+    {
+      "heading": "Vështirësi të zakonshme",
+      "paragraphs": [
+        "Disa fëmijë e refuzojnë tasin ose e mbajnë jashtëqitjen, çka mund të çojë në kapsllëk e dhimbje. Ofroni fibra, ujë e kohë të relaksuara në tualet dhe ndaloni stërvitjen për pak kohë nëse duhet. Kapsllëku ose dhimbja gjatë jashtëqitjes kërkon këshillë mjekësore."
+      ]
+    },
+    {
+      "heading": "Kur të kërkoni këshillë",
+      "paragraphs": [
+        "Flisni me pediatrin nëse fëmija juaj ka kaluar katër vjeç e ende nuk është i thatë gjatë ditës, ka regresion të papritur pasi ishte stërvitur, djegie gjatë urinimit, pikim të vazhdueshëm, urinim shumë të shpeshtë ose kapsllëk të vazhdueshëm. Lagia e shtratit pas moshës pesë ose gjashtë vjeç është e zakonshme e shpesh ndodh në familje, dhe ofrohet ndihmë nëse e shqetëson fëmijën."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vendosja e një rutine",
+      "text": "Imagjinoni që fëmija juaj dy vjeç e gjysmë tregon interes për tualetin. Mund të prezantoni tasin pas vakteve, të lavdëroni uljen edhe pa sukses e të mbani rroba rezervë afër."
+    },
+    {
+      "title": "Përgjigjja ndaj refuzimit",
+      "text": "Supozoni që fëmija qan sa herë përmendni tasin. Mund të bëni pushim për disa javë, të shmangni presionin e të provoni përsëri kur duket gati."
+    }
+  ],
+  "questions": [
+    "A është fëmija im gati të fillojë dhe cila është një kohë realiste?",
+    "Si mund ta ndihmoj një fëmijë që mban jashtëqitjen ose refuzon?",
+    "Kur janë aksidentet ose lagia e shtratit arsye për të kërkuar ndihmë mjekësore?"
+  ]
+}

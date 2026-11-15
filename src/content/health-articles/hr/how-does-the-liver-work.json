@@ -1,0 +1,52 @@
+{
+  "title": "Kako jetra obrađuje hranjive tvari",
+  "intro": "Jetra obrađuje hranjive tvari, stvara važne proteine i žuč te mijenja mnoge lijekove i otpad. Nije filtar koji se ponovno postavlja napitkom za čišćenje. Različite bolesti pogađaju različite funkcije.",
+  "sections": [
+    {
+      "heading": "Krv i obrada",
+      "paragraphs": [
+        "Krv iz probavnih organa donosi tvari portalnom venom; arterija donosi kisik. Stanice obrađuju, pohranjuju ili otpuštaju prema potrebama tijela."
+      ]
+    },
+    {
+      "heading": "Energija",
+      "paragraphs": [
+        "Jetra pohranjuje glukozu kao glikogen i otpušta po potrebi. Obrađuje i masti i proteine. Regulacija surađuje s hormonima, ne ovisi o jednoj namirnici."
+      ]
+    },
+    {
+      "heading": "Stvaranje i uklanjanje",
+      "paragraphs": [
+        "Stvara albumin, mnoge proteine zgrušavanja i žuč za probavu i otpad. Mjehur pohranjuje žuč; organi su povezani ali nezamjenjivi."
+      ]
+    },
+    {
+      "heading": "Zaštita",
+      "paragraphs": [
+        "Izbjegavajte višak alkohola i provjerite lijekove i dodatke sa stručnjakom. Previše paracetamola opasno je i prije simptoma; sumnja na predoziranje traži odmah savjet. Ne prekidajte sami propisano."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Krvne pretrage i snimke procjenjuju različito; izostanak boli ne isključuje bolest. Nova žutica traži procjenu; povraćanje krvi, crna katranasta stolica, jaka zbunjenost ili kolaps traže hitnost.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pita popravlja li detox dodatak oštećenje. Razgovara o uzroku i sigurnosti, ne smatra prirodno bezopasnim."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben slučajno uzima preklapajuće pripravke s paracetamolom. Odmah traži savjet, ne čeka bol jetre."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

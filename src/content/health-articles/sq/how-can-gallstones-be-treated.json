@@ -1,0 +1,51 @@
+{
+  "title": "Trajtimi i gurëve: vëzhgimi dhe procedurat",
+  "intro": "Trajtimi varet nga simptomat, vendi dhe komplikimet. Heqja e fshikëzës ndryshon nga pastrimi i kanalit. Një gur në skanim nuk kërkon automatikisht operacion.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Vëzhgimi është i zakonshëm për shumë gurë pa simptoma, me përjashtime. Për kriza tipike të përsëritura diskutoni përfitimin dhe nëse shqetësime të tjera kanë shkak tjetër që mund të mbetet pas operacionit."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Ekografia, gjaku dhe imazheria e zgjedhur e kanalit udhëheqin. Pyesni për bllokimin, infeksionin ose pankreatitin dhe urgjencën. Shëndeti i përgjithshëm ndikon planin. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Heqja shpesh bëhet laparoskopikisht por ka rrezik anestezie, gjakosjeje, infeksioni dhe dëmtimi kanali. Gurët e kanalit mund të hiqen endoskopikisht me rreziqe si pankreatiti; kjo nuk heq automatikisht gurët e fshikëzës. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Ilaçet lehtësojnë dhimbjen; tretja e gurëve përshtatet vetëm për disa dhe mund të përsëriten. Pastrimet tregtare nuk janë kura të sigurta. Pyesni për rikuperimin, punën, drejtimin dhe ndihmën në shtëpi. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Ethet, verdhëza, dhimbja e fortë e vazhdueshme ose të vjellat kërkojnë urgjencë edhe kur operacioni është caktuar. Pas procedurës ndiqni udhëzimet për përkeqësim, ethe, verdhëz ose plagë pa i quajtur gjithçka shërim normal."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet nëse operacioni do lehtësojë krizat e saj dhe kupton se fryrja e palidhur mund të mbetet."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni mëson se endoskopia pastron kanalin dhe pyet nëse duhet trajtim tjetër i fshikëzës për parandalim."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

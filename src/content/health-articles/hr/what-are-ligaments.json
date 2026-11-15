@@ -1,0 +1,51 @@
+{
+  "title": "Što su ligamenti?",
+  "intro": "Ligamenti su jake vrpce vezivnog tkiva koje povezuju kosti s drugim kostima i stabiliziraju zglobove. Vode pokrete i sprječavaju zglobove da se pomaknu predaleko. Ozljede ligamenata, zvane uganuća, česte su, osobito u gležnju, koljenu i zapešću.",
+  "sections": [
+    {
+      "heading": "Građa i funkcija",
+      "paragraphs": [
+        "Ligamenti su građeni uglavnom od kolagenih vlakana, raspoređenih u usporedne snopove koji daju čvrstoću uz malu elastičnost. Drže kosti zajedno u zglobovima, ograničavaju nenormalne pokrete i sadrže živčane završetke koji pomažu mozgu osjetiti položaj zgloba, što pridonosi ravnoteži. Razlikuju se od tetiva, koje povezuju mišiće s kostima."
+      ]
+    },
+    {
+      "heading": "Važni ligamenti",
+      "paragraphs": [
+        "U koljenu križni ligamenti unutar zgloba kontroliraju kretanje naprijed i natrag te rotaciju, a pobočni ligamenti sa strana stabiliziraju ga u stranu. U gležnju ligamenti s vanjske strane najčešće se uganu. Ostali primjeri uključuju ligamente zapešća, ramena i kralježnice."
+      ]
+    },
+    {
+      "heading": "Uganuća i puknuća",
+      "paragraphs": [
+        "Uganuće je istegnuće ili puknuće ligamenta. Prvi stupanj je blago istegnuće, drugi djelomično puknuće, a treći potpuna ruptura. Simptomi uključuju bol, oticanje, modrice, osjetljivost i nestabilnost. Mnoga uganuća zacijele uz odmor, zaštitu, rano nježno kretanje i fizioterapiju, dok potpuna puknuća nekih ligamenata mogu zahtijevati operaciju."
+      ]
+    },
+    {
+      "heading": "Zacjeljivanje i briga",
+      "paragraphs": [
+        "Ligamenti imaju ograničenu opskrbu krvlju pa zacjeljuju sporo, tijekom tjedana do mjeseci, i možda se ne vrate do pune čvrstoće. Rehabilitacija za povrat pokreta, snage i ravnoteže smanjuje ponovnu ozljedu. Neki ljudi imaju labave ligamente, zvane hipermobilnost, što može uzrokovati bol u zglobovima ili nestabilnost. Jačanje mišića oko zgloba daje dodatnu potporu."
+      ]
+    },
+    {
+      "heading": "Sprječavanje ozljeda",
+      "paragraphs": [
+        "Zagrijavajte se prije vježbanja, gradite snagu i ravnotežu, koristite pravilnu tehniku i obuću te postupno povećavajte trening. Ortoze ili traka mogu se koristiti neko vrijeme nakon ozljede ili u sportovima visokog rizika. Posjetite liječnika zbog jake boli, nemogućnosti opterećivanja, izraženog oticanja ili zgloba koji popušta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Oporavak od uganuća",
+      "text": "Zamislite da ste uganuli gležanj. Mogli biste prvih dana odmarati i štititi ga, započeti nježno kretanje koliko bol dopušta i vježbati ravnotežu."
+    },
+    {
+      "title": "Sprječavanje ponavljanja",
+      "text": "Pretpostavite da često uganete gležanj. Mogli biste pitati fizioterapeuta o programu ravnoteže i savjetu o potpornoj obući."
+    }
+  ],
+  "questions": [
+    "Je li moj ligament istegnut, puknut ili raskinut?",
+    "Trebam li ortozu, terapiju ili operaciju?",
+    "Kada se mogu sigurno vratiti sportu?"
+  ]
+}

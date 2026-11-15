@@ -1,0 +1,51 @@
+{
+  "title": "What types of studies are there?",
+  "intro": "Medical research uses different kinds of studies to answer different questions. Some test whether a treatment works, while others look at causes of disease or how common it is. Knowing the main types helps you judge how reliable a finding is.",
+  "sections": [
+    {
+      "heading": "Randomised controlled trials",
+      "paragraphs": [
+        "In a randomised controlled trial, participants are randomly assigned to receive the treatment being tested or a comparison, such as a placebo or standard care. Chance decides, so that groups are similar. Often neither participants nor researchers know who gets what, which is called blinding. These trials are the best way to test whether a treatment works."
+      ]
+    },
+    {
+      "heading": "Observational studies",
+      "paragraphs": [
+        "Cohort studies follow groups of people over time to see who develops a disease, for example comparing smokers and non-smokers. Case-control studies compare people who have a disease with similar people without it, looking back for differences. Cross-sectional studies measure a condition at a single point in time. They can show links but not prove cause, because other factors may be involved."
+      ]
+    },
+    {
+      "heading": "Other designs",
+      "paragraphs": [
+        "Case reports and case series describe a few patients and can raise ideas but are weak evidence. Diagnostic accuracy studies test how well a test identifies disease. Qualitative studies explore experiences using interviews. Laboratory and animal studies explore mechanisms but do not always apply to people."
+      ]
+    },
+    {
+      "heading": "Reviews",
+      "paragraphs": [
+        "A systematic review gathers and assesses all studies on a question, and a meta-analysis combines their numbers. These give the most complete picture, provided the studies they include are good."
+      ]
+    },
+    {
+      "heading": "Judging studies",
+      "paragraphs": [
+        "Look at the number of participants, how groups were formed, how long the follow-up was, whether results are meaningful for patients and who paid for the study. A study in mice or a single small study should not change what you do. Ask your doctor to explain what a study means for you."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reading a news story",
+      "text": "Imagine a headline says coffee prevents illness. You could check whether the study followed people or randomised them."
+    },
+    {
+      "title": "Asking about reliability",
+      "text": "Suppose a study suggests a supplement works. You might ask how large it was and whether it was repeated."
+    }
+  ],
+  "questions": [
+    "What kind of study supports this claim?",
+    "How strong is the evidence compared with other studies?",
+    "Do the results apply to people like me?"
+  ]
+}

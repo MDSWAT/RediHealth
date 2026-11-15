@@ -1,0 +1,51 @@
+{
+  "title": "Stroke",
+  "intro": "A stroke occurs when blood flow to part of the brain is blocked or a blood vessel bursts. Brain cells are damaged within minutes, so it is a medical emergency. Quick treatment limits damage, and rehabilitation helps recovery. Controlling blood pressure and other risk factors prevents most strokes.",
+  "sections": [
+    {
+      "heading": "Types",
+      "paragraphs": [
+        "Most strokes, about eight in ten, are ischaemic, caused by a clot blocking an artery. A transient ischaemic attack is a short-lived blockage with symptoms that resolve within hours, and is a serious warning requiring urgent assessment. Haemorrhagic strokes result from bleeding into or around the brain."
+      ]
+    },
+    {
+      "heading": "Recognising a stroke",
+      "paragraphs": [
+        "Remember the signs: a drooping face, weakness or numbness of an arm or leg, usually on one side, slurred or confused speech, sudden loss of vision, sudden severe headache, dizziness or loss of balance. Call emergency services immediately, note the time symptoms began, and do not wait to see whether they pass."
+      ]
+    },
+    {
+      "heading": "Emergency treatment",
+      "paragraphs": [
+        "Brain imaging identifies the type. For ischaemic stroke, clot-dissolving medicine given within a few hours of onset, or a procedure to remove the clot through an artery, can save brain tissue and reduce disability. Bleeding strokes may need blood pressure lowering, reversal of blood thinners or surgery. Treatment in a specialised stroke unit improves outcomes."
+      ]
+    },
+    {
+      "heading": "Rehabilitation",
+      "paragraphs": [
+        "Rehabilitation begins early. Physiotherapy, occupational therapy and speech therapy help regain movement, daily skills and communication. Recovery is greatest in the first months but can continue for years. Problems such as fatigue, depression, memory problems and changes in vision may need support, and relatives often need help too."
+      ]
+    },
+    {
+      "heading": "Preventing a stroke",
+      "paragraphs": [
+        "Control of high blood pressure is the most important measure. Others include not smoking, regular activity, healthy diet, limited alcohol, managing diabetes and cholesterol, and treating atrial fibrillation with blood thinners. After a stroke, medicines such as antiplatelets or anticoagulants, blood pressure and cholesterol-lowering drugs prevent another."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Acting fast",
+      "text": "Imagine your relative's face droops and speech is slurred. You could call emergency services at once, note the time and stay with them."
+    },
+    {
+      "title": "Planning recovery",
+      "text": "Suppose you are home after a stroke. You might keep rehabilitation appointments, take medicines as prescribed and ask about driving and returning to work."
+    }
+  ],
+  "questions": [
+    "What caused my stroke, and how can I prevent another?",
+    "Which therapy will help my recovery, and how long will it take?",
+    "When can I drive or return to work?"
+  ]
+}

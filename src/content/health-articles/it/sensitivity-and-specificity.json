@@ -1,0 +1,52 @@
+{
+  "title": "Sensibilità e specificità dei test medici",
+  "intro": "Nessun test medico è perfetto. Sensibilità e specificità descrivono quanto bene un test trova le persone con una malattia e quanto bene scagiona correttamente quelle che non l'hanno. Capire queste idee aiuta a interpretare i risultati, in particolare dello screening, e a capire perché un risultato positivo non è sempre una diagnosi.",
+  "sections": [
+    {
+      "heading": "Sensibilità",
+      "paragraphs": [
+        "La sensibilità è la proporzione di persone con la malattia che il test identifica correttamente come positive. Un test con una sensibilità del novanta per cento individua nove persone su dieci con la malattia e ne perde una. Un test ad alta sensibilità è prezioso quando non individuare una malattia sarebbe grave, perché un risultato negativo rende allora la malattia improbabile."
+      ]
+    },
+    {
+      "heading": "Specificità",
+      "paragraphs": [
+        "La specificità è la proporzione di persone senza la malattia che il test identifica correttamente come negative. Un test con una specificità del novanta per cento segnala erroneamente una persona sana su dieci. Un test ad alta specificità è utile per confermare una diagnosi, poiché un risultato positivo ha meno probabilità di essere un falso allarme."
+      ]
+    },
+    {
+      "heading": "Perché un risultato positivo può essere sbagliato",
+      "paragraphs": [
+        "La probabilità che un risultato positivo sia corretto dipende da quanto è comune la malattia nelle persone testate. Quando una malattia è rara anche un buon test produce più falsi allarmi che casi veri. Immagina mille persone, dieci delle quali hanno una malattia. Un test con una sensibilità del novanta per cento e una specificità del novanta per cento trova nove dei dieci malati, ma segnala erroneamente anche circa novantanove dei novecentonovanta sani. Su circa centootto positivi solo nove hanno davvero la malattia."
+      ]
+    },
+    {
+      "heading": "Conseguenze e domande",
+      "paragraphs": [
+        "I falsi positivi causano ansia e ulteriori esami, a volte dannosi. I falsi negativi possono ritardare il trattamento. I test usati per lo screening di persone sane hanno quindi bisogno di una specificità molto alta e a un risultato di screening positivo segue spesso un secondo test più specifico.",
+        "Chiedi che cosa il test deve mostrare, quanto è affidabile per persone come te, che cosa significa per te un risultato positivo o negativo e che cosa succede dopo. I numeri su cento sono più facili da capire delle percentuali."
+      ]
+    },
+    {
+      "heading": "Usarlo nelle decisioni quotidiane",
+      "paragraphs": [
+        "Conoscere questi termini aiuta quando si leggono notizie su nuovi test o programmi di screening. Un test pubblicizzato come accurato al novantanove per cento può comunque produrre molti falsi allarmi quando la condizione è rara, quindi cerca i numeri dietro l'affermazione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dare un senso a un risultato",
+      "text": "Immagina che il tuo test di screening sia positivo. Potresti chiedere quale proporzione delle persone con un risultato positivo abbia davvero la malattia e quale test di conferma seguirà."
+    },
+    {
+      "title": "Confrontare due test",
+      "text": "Supponi che ti vengano offerti due test diversi. Potresti chiedere quale sia migliore nell'evitare i falsi allarmi e quale nell'evitare i casi persi e perché questo conta nella tua situazione."
+    }
+  ],
+  "questions": [
+    "Quanto è accurato questo test e quali sono i suoi tassi di falsi positivi e falsi negativi?",
+    "Che cosa significa per me un risultato positivo o negativo?",
+    "Quale sarebbe il passo successivo dopo un risultato anomalo?"
+  ]
+}

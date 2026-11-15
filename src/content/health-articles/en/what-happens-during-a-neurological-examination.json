@@ -1,0 +1,51 @@
+{
+  "title": "What happens during a neurological examination?",
+  "intro": "A neurological examination checks how the brain, spinal cord and nerves are working. It involves simple, painless tests of thinking, senses, movement, reflexes and coordination. It helps doctors work out whether a problem comes from the nervous system and where.",
+  "sections": [
+    {
+      "heading": "Thinking and speech",
+      "paragraphs": [
+        "The doctor talks with you to assess alertness, memory, attention, language and understanding. You may be asked questions such as the date, to remember some words, or to follow instructions. Mood and behaviour are also noted. This helps detect conditions like dementia, stroke or infections."
+      ]
+    },
+    {
+      "heading": "Cranial nerves and senses",
+      "paragraphs": [
+        "The doctor tests eyesight, eye movements, pupil responses, facial movement and sensation, hearing, swallowing and tongue movement. They may shine a light in your eyes or ask you to follow a finger. Touch, temperature, pain and vibration are checked with soft cotton, a pin or a tuning fork."
+      ]
+    },
+    {
+      "heading": "Strength, tone and reflexes",
+      "paragraphs": [
+        "You are asked to push and pull against the doctor's hands, and to hold your arms out. Muscles are felt for tension or wasting. Reflexes are tested by tapping tendons at the knee, ankle and elbow with a small hammer. Abnormal reflexes can indicate nerve or spinal problems."
+      ]
+    },
+    {
+      "heading": "Coordination and walking",
+      "paragraphs": [
+        "You may touch your nose and the doctor's finger, run a heel along your shin, and walk in a line. Standing with your eyes closed tests balance. Your posture, arm swing and steps show problems with the cerebellum, muscles or the Parkinson-type movement circuits."
+      ]
+    },
+    {
+      "heading": "After the examination",
+      "paragraphs": [
+        "The doctor may order blood tests, scans such as magnetic resonance imaging, nerve tests or electroencephalography. Ask what was found, what further tests are needed and what the findings mean. Bring a list of symptoms and medicines to the appointment."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing",
+      "text": "Imagine you have numbness in your hand. You could note when it started, what makes it better or worse and bring your medicine list."
+    },
+    {
+      "title": "Understanding results",
+      "text": "Suppose your reflexes are reduced. You might ask what this suggests and which further tests will help."
+    }
+  ],
+  "questions": [
+    "Which part of the nervous system might be involved?",
+    "Which further tests do I need?",
+    "When should I seek urgent help?"
+  ]
+}

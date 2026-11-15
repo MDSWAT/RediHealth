@@ -1,0 +1,52 @@
+{
+  "title": "Infertilitatea",
+  "intro": "Infertilitatea înseamnă că nu se obține o sarcină după un an de raporturi sexuale regulate, neprotejate. Afectează multe cupluri și poate fi cauzată de factori la femeie, la bărbat sau la ambii, iar uneori nu se găsește nicio cauză. Multe cupluri reușesc cu timp, sfaturi sau tratament medical. Există sprijin pentru încordarea emoțională.",
+  "sections": [
+    {
+      "heading": "Cât de frecventă este și ce o cauzează",
+      "paragraphs": [
+        "Aproximativ unul din șase cupluri întâmpină dificultăți în a concepe. La femei, cauzele includ tulburări de ovulație, precum sindromul ovarelor polichistice, trompe uterine blocate, endometrioza, fibroamele și scăderea legată de vârstă a calității ovulelor. La bărbați, numărul scăzut de spermatozoizi, mișcarea sau forma deficitară a acestora și obstrucțiile pot juca un rol. Fumatul, consumul excesiv de alcool, obezitatea și unele boli și medicamente reduc fertilitatea."
+      ]
+    },
+    {
+      "heading": "Vârsta și momentul",
+      "paragraphs": [
+        "Fertilitatea feminină scade cu vârsta, mai ales după aproximativ 35 de ani. Și fertilitatea masculină scade treptat. Raporturile sexuale la fiecare două-trei zile pe parcursul ciclului funcționează la fel de bine ca încercarea de a sincroniza ovulația și evită stresul."
+      ]
+    },
+    {
+      "heading": "Investigații",
+      "paragraphs": [
+        "Medicii examinează ambii parteneri. Pentru femei aceasta include analize hormonale, ecografie și verificarea permeabilității trompelor. Pentru bărbați, spermograma este testul-cheie. Ajutorul se oferă de obicei după un an de încercări sau mai devreme dacă femeia are peste 35 de ani sau există probleme cunoscute."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Tratamentul depinde de cauză. Schimbările stilului de viață, medicamentele care declanșează ovulația, tratamentul afecțiunilor de bază sau chirurgia pot ajuta. Inseminarea intrauterină introduce spermă pregătită în uter. Fertilizarea in vitro combină ovulele și spermatozoizii în laborator și transferă un embrion în uter. ICSI injectează un singur spermatozoid într-un ovul și este folosită mai ales pentru problemele de factor masculin.",
+        "Aceste tratamente implică medicamente hormonale, vizite repetate, costuri și o șansă de sarcină multiplă. Ratele de succes depind de vârstă, de cauză și de numărul de încercări, iar multe cupluri au nevoie de mai mult de un ciclu. Regulile privind finanțarea diferă între țări și asigurători."
+      ]
+    },
+    {
+      "heading": "Gestionarea emoțiilor",
+      "paragraphs": [
+        "Infertilitatea poate provoca durere, stres și tensiuni în relație. Consilierea, grupurile de sprijin și conversațiile sincere ajută. Este în regulă să faceți pauze sau să opriți tratamentul. Alte opțiuni, precum adopția sau viața fără copii, pot fi luate în considerare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea primei vizite",
+      "text": "Imaginați-vă că ați încercat un an fără succes. Ați putea nota amândoi detaliile ciclului, istoricul medical și medicamentele și ați putea cere teste pentru ambii parteneri, în loc să presupuneți că cauza este la unul dintre ei."
+    },
+    {
+      "title": "Decizia privind tratamentul",
+      "text": "Presupuneți că medicul vă propune FIV. Ați putea întreba despre șansele de succes la vârsta dumneavoastră, riscuri, costuri și alternative și ați putea stabili o limită a numărului de cicluri pe care vreți să le încercați."
+    }
+  ],
+  "questions": [
+    "Ce teste ne trebuie amândurora și ce ar putea explica dificultatea noastră?",
+    "Care sunt șansele noastre realiste cu fiecare tratament și care sunt riscurile și costurile?",
+    "Unde putem găsi consiliere sau sprijin în acest proces?"
+  ]
+}

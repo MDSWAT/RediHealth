@@ -1,0 +1,52 @@
+{
+  "title": "Tinea versicolor (pityriasis versicolor)",
+  "intro": "Tinea versicolor is a common, harmless fungal skin condition that causes patches of lighter or darker skin, mainly on the trunk and upper arms. It is not contagious and is caused by yeast that normally lives on skin. It is easily treated, though it often returns, especially in warm, humid weather.",
+  "sections": [
+    {
+      "heading": "What causes it",
+      "paragraphs": [
+        "A yeast called Malassezia lives on healthy skin. In warm, humid conditions, with oily skin, heavy sweating, or sometimes a weakened immune system, it can multiply and interfere with normal skin pigment. It is most common in teenagers and young adults and in tropical climates."
+      ]
+    },
+    {
+      "heading": "What it looks like",
+      "paragraphs": [
+        "Round or oval patches with fine scale appear on the chest, back, shoulders and upper arms. They may be pale, pink, tan or brown and are most noticeable after sun exposure, because the affected skin does not tan. Itching is mild or absent."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Doctors diagnose by appearance, sometimes with a special light or a microscope examination of skin scrapings. Other conditions such as vitiligo, eczema, pityriasis rosea and seborrheic dermatitis can look similar and are distinguished by examination."
+      ]
+    },
+    {
+      "heading": "Treatment and recurrence",
+      "paragraphs": [
+        "Antifungal shampoos such as ketoconazole or selenium sulphide, applied to the skin for a few minutes before washing off, creams or sprays clear the infection. Severe or widespread cases may need antifungal tablets. Skin colour can take weeks to months to even out after the yeast has gone, and sun exposure may make patches more obvious in the meantime. Recurrence is common, so some people use a preventive wash once or twice a month in the season when it tends to return.",
+        "Wear breathable clothing, shower after sweating and avoid heavy oily creams on affected skin."
+      ]
+    },
+    {
+      "heading": "When to see a doctor",
+      "paragraphs": [
+        "See a doctor if the rash is itchy, spreads quickly, does not respond to treatment after several weeks or looks different from the usual pattern. Diagnosis by a professional avoids unnecessary treatment of other skin conditions that look similar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Using a shampoo",
+      "text": "Imagine you have pale patches on your back. You could apply an antifungal shampoo for the time on the label, rinse well and repeat as directed."
+    },
+    {
+      "title": "Preventing relapse",
+      "text": "Suppose the patches return every summer. You might ask your doctor about a monthly preventive wash and wear light, breathable shirts."
+    }
+  ],
+  "questions": [
+    "Is this tinea versicolor or another skin condition?",
+    "Which treatment is best, and how long will colour changes last?",
+    "How can I prevent it from coming back?"
+  ]
+}

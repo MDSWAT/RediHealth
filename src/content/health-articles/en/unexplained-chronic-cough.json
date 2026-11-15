@@ -1,0 +1,51 @@
+{
+  "title": "Unexplained chronic cough",
+  "intro": "A cough that lasts more than eight weeks is called chronic. Common causes include smoking, asthma, reflux, postnasal drip and certain medicines, but sometimes no cause can be found despite tests. Finding and treating any cause is the first step, and special therapies can help when none is found.",
+  "sections": [
+    {
+      "heading": "Common causes",
+      "paragraphs": [
+        "Frequent causes are smoking, asthma, drip from the nose and sinuses into the throat, acid reflux, chronic bronchitis and COPD, and ACE inhibitor blood pressure tablets. Less often, lung infections, bronchiectasis, lung cancer, heart failure or tuberculosis are responsible. More than one cause can exist together."
+      ]
+    },
+    {
+      "heading": "Assessment",
+      "paragraphs": [
+        "The doctor asks about the cough, smoking, medicines, symptoms such as heartburn or wheeze, and weight loss. Examination and a chest X-ray are usually done. Breathing tests check for asthma or COPD. Further tests such as CT, bronchoscopy or tests for reflux are used selectively. Coughing up blood, weight loss, breathlessness, fever or age over fifty with smoking history need prompt evaluation."
+      ]
+    },
+    {
+      "heading": "Treating causes",
+      "paragraphs": [
+        "Stopping smoking is essential. A change from ACE inhibitors to another blood pressure medicine often ends cough in a few weeks. Asthma treatments, nose sprays and reflux treatments are tried, since a trial of treatment can show the cause. Lifestyle measures for reflux include avoiding late meals and raising the head of the bed."
+      ]
+    },
+    {
+      "heading": "When no cause is found",
+      "paragraphs": [
+        "Some people have a hypersensitive cough reflex, sometimes called refractory or unexplained chronic cough. Speech and language therapy techniques to control cough, and some nerve-modulating medicines in low doses, may reduce cough. Newer medicines targeting cough receptors have been studied. Cough suppressants available over the counter do not help much."
+      ]
+    },
+    {
+      "heading": "Living with it",
+      "paragraphs": [
+        "A chronic cough can disturb sleep, cause incontinence, hoarseness, chest or muscle pain and embarrassment. Sip water, avoid irritants, use throat lozenges and humidify the air. Ask about specialist cough clinics, support and techniques such as swallowing or breathing strategies in response to the urge to cough."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reviewing medicines",
+      "text": "Imagine you have had a dry cough since starting a blood pressure tablet. You could ask your doctor whether it is an ACE inhibitor and whether an alternative would be suitable."
+    },
+    {
+      "title": "Learning cough control",
+      "text": "Suppose no cause was found. You might ask for referral to a speech and language therapist for cough suppression techniques."
+    }
+  ],
+  "questions": [
+    "What could be causing my cough, and which tests are needed?",
+    "Could one of my medicines be responsible?",
+    "What treatments exist if no cause is found?"
+  ]
+}

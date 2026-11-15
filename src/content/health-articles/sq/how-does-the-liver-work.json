@@ -1,0 +1,52 @@
+{
+  "title": "Si i përpunon mëlçia lëndët ushqyese",
+  "intro": "Mëlçia përpunon lëndët ushqyese, prodhon proteina dhe bilë dhe ndryshon shumë ilaçe e mbetje. Nuk është filtër që rivendoset me pije pastruese. Probleme të ndryshme prekin funksione të ndryshme.",
+  "sections": [
+    {
+      "heading": "Gjaku dhe përpunimi",
+      "paragraphs": [
+        "Gjaku tretës sjell substancat përmes venës portale; arteria sjell edhe oksigjen. Qelizat përpunojnë, ruajnë ose lëshojnë sipas nevojave të trupit."
+      ]
+    },
+    {
+      "heading": "Energjia",
+      "paragraphs": [
+        "Mëlçia ruan glukozën si glikogjen dhe e lëshon sipas nevojës. Trajton edhe yndyrat e proteinat. Rregullimi punon me hormonet, jo nën kontrollin e një ushqimi të vetëm."
+      ]
+    },
+    {
+      "heading": "Prodhimi dhe largimi",
+      "paragraphs": [
+        "Prodhon albuminë, shumë proteina mpiksjeje dhe bilë për tretje e mbetje. Fshikëza ruan bilën; organet lidhen por nuk zëvendësohen."
+      ]
+    },
+    {
+      "heading": "Mbrojtja",
+      "paragraphs": [
+        "Shmangni alkoolin e tepërt dhe kontrolloni ilaçet e suplementet me profesionistin. Shumë paracetamol është i rrezikshëm edhe para simptomave; mbidoza e dyshuar kërkon këshillë të menjëhershme. Mos ndërprisni vetë terapinë."
+      ]
+    },
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Analizat dhe imazhet matin gjëra të ndryshme; mungesa e dhimbjes nuk përjashton sëmundjen. Verdhëza e re kërkon vlerësim; të vjellat me gjak, jashtëqitja e zezë si katran, hutimi i rëndë ose kolapsi kërkojnë urgjencë.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet nëse suplementi detox riparon dëmin. Diskuton shkakun dhe sigurinë, jo natyralen si të padëmshme."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben merr pa dashje produkte të mbivendosura me paracetamol. Kërkon këshillë menjëherë pa pritur dhimbjen."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

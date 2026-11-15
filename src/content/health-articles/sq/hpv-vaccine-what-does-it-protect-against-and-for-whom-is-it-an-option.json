@@ -1,0 +1,55 @@
+{
+  "title": "Vaksina HPV: nga çfarë mbron dhe për kë është",
+  "intro": "Vaksina kundër virusit të papilomës njerëzore mbron nga infeksioni me llojet e HPV që shkaktojnë më shpesh kancerin e qafës së mitrës dhe disa kancere të tjera, si dhe lythat gjenitale. Vaksinimi rekomandohet në shumë vende për fëmijët dhe adoleshentët para se të bëhen seksualisht aktivë. Të kuptuarit si funksionon ndihmon familjet të marrin një vendim të informuar.",
+  "sections": [
+    {
+      "heading": "Nga çfarë mbrojnë vaksinat HPV",
+      "paragraphs": [
+        "HPV është një grup virusesh shumë i zakonshëm, që përhapet me kontakt të lëkurës dhe të mukozave, kryesisht gjatë seksit. Shumica e infeksioneve kalojnë pa simptoma, por disa lloje me rrezik të lartë mund të vazhdojnë dhe të shkaktojnë ndryshime që zhvillohen në kancer të qafës së mitrës, anusit, vulvës, vaginës, penisit ose fytit. Lloje të tjera shkaktojnë lytha gjenitale.",
+        "Vaksinat aktuale mbrojnë nga llojet më të rëndësishme me rrezik të lartë dhe disa edhe nga llojet që shkaktojnë shumicën e lythave gjenitale. Ato parandalojnë infeksionin, por nuk e trajtojnë një infeksion ekzistues."
+      ]
+    },
+    {
+      "heading": "Kujt i rekomandohet vaksinimi",
+      "paragraphs": [
+        "Vaksinimi rekomandohet zakonisht për vajzat e djemtë rreth moshës nëntë deri në katërmbëdhjetë vjeç, në mënyrë ideale para kontaktit të parë seksual. Vaksinimi në këtë moshë prodhon përgjigje të fortë imune dhe shpesh kërkon vetëm dy doza të dhëna me disa muaj ndarje. Njerëzit që e fillojnë më vonë kanë zakonisht nevojë për tri doza.",
+        "Shumë vende ofrojnë vaksinim i vonuar deri në moshën e re të rritur. Të rriturit përtej moshave të rekomanduara mund të përfitojnë prapëseprapë, në varësi të ekspozimit të tyre të kaluar, dhe duhet ta diskutojnë këtë me mjekun."
+      ]
+    },
+    {
+      "heading": "Siguria dhe efektet anësore",
+      "paragraphs": [
+        "Vaksinat HPV janë studiuar në grupe shumë të mëdha në të gjithë botën. Reagimet e zakonshme janë dhimbja, skuqja ose enjtja në vendin e injeksionit, dhimbja e kokës, lodhja dhe ethet e lehta, që kalojnë zakonisht brenda disa ditëve. Humbja e ndjenjave mund të ndodhë pas çdo injeksioni, prandaj është e arsyeshme të uleni disa minuta më pas.",
+        "Reagimet e rënda alergjike janë shumë të rralla. Sistemet e monitorimit vazhdojnë të ndjekin sigurinë dhe autoritetet shëndetësore nuk kanë gjetur prova për lidhje me sëmundje afatgjata që dikur frikësoheshin."
+      ]
+    },
+    {
+      "heading": "Vaksinimi dhe skriningu",
+      "paragraphs": [
+        "Vaksina nuk mbron nga çdo lloj që shkakton kancer, prandaj gratë duhet të vazhdojnë të marrin pjesë në skriningun e rregullt të qafës së mitrës pas vaksinimit. Prezervativët e ulin, por nuk e parandalojnë plotësisht përhapjen e HPV.",
+        "Provat tregojnë se programet e vaksinimit i kanë ulur ndjeshëm shkallët e ndryshimeve paraprake dhe, në disa vende, të kancerit të qafës së mitrës në grupet e vaksinuara."
+      ]
+    },
+    {
+      "heading": "Pika praktike",
+      "paragraphs": [
+        "Kontrolloni rekomandimet lokale dhe cilat kosto mbulohen nga sigurimi shëndetësor. Ruajeni të sigurt regjistrin e vaksinimeve dhe pyesni për kohën krahasuar me vaksinat e tjera. Nëse fëmija juaj është i sëmurë me ethe, vaksinimi zakonisht mund të shtyhet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Marrja e një vendimi familjar",
+      "text": "Imagjinoni që fëmija juaj dymbëdhjetëvjeçar është i përshtatshëm për vaksinën HPV. Mund të lexoni për përfitimet dhe efektet anësore, të shkruani pyetjet tuaja dhe t'i diskutoni me pediatrin para se të vendosni së bashku."
+    },
+    {
+      "title": "Vaksinimi i vonuar si i ri i rritur",
+      "text": "Supozoni që jeni 22 vjeç dhe nuk jeni vaksinuar kurrë. Mund të pyesni nëse rekomandohet vaksinimi i vonuar për ju, sa doza nevojiten dhe nëse është ende i dobishëm nëse keni qenë tashmë seksualisht aktiv."
+    }
+  ],
+  "questions": [
+    "A rekomandohet vaksina HPV për fëmijën tim ose për mua dhe sa doza nevojiten?",
+    "Çfarë efektesh anësore duhet të presim dhe kur duhet të telefonojmë mjekun?",
+    "A kam ende nevojë për skrining të rregullt pas vaksinimit?"
+  ]
+}

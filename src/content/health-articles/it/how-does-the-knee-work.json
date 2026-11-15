@@ -1,0 +1,52 @@
+{
+  "title": "Come il ginocchio si piega e sostiene il peso",
+  "intro": "Il ginocchio collega coscia e gamba consentendo flessione, estensione e rotazione limitata. La stabilità dipende insieme da ossa, legamenti e controllo muscolare. Dolore o scatti da soli non identificano il tessuto coinvolto.",
+  "sections": [
+    {
+      "heading": "Ossa e leva",
+      "paragraphs": [
+        "Il femore incontra la tibia; la rotula scorre davanti in un solco. Aiuta il muscolo della coscia a estendere il ginocchio attraverso i tendini."
+      ]
+    },
+    {
+      "heading": "Cartilagine e menischi",
+      "paragraphs": [
+        "La cartilagine riduce attrito. I menischi distribuiscono il carico e migliorano il contatto; un reperto radiologico non dimostra automaticamente la causa del dolore o la necessità chirurgica."
+      ]
+    },
+    {
+      "heading": "Stabilità",
+      "paragraphs": [
+        "Legamenti crociati e collaterali limitano movimenti indesiderati. Muscoli e tendini controllano attivamente. Il gonfiore può ridurre attivazione e sicurezza anche senza rottura completa."
+      ]
+    },
+    {
+      "heading": "Funzione",
+      "paragraphs": [
+        "Aumentate gradualmente l'attività e seguite la riabilitazione dopo lesione. Contano forza, equilibrio e movimento tollerabile; forzare un ginocchio bloccato o continuare con gonfiore crescente può peggiorare il danno."
+      ]
+    },
+    {
+      "heading": "Valutazione",
+      "paragraphs": [
+        "Gonfiore persistente o cedimenti richiedono visita. Ginocchio caldo con febbre, deformità, impossibilità di caricare dopo trauma o blocco vero richiedono valutazione rapida, non manipolazioni.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira sente scatti indolori e cammina bene. Discute sintomi nuovi se compaiono senza considerare ogni rumore una lesione."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben torce il ginocchio e non riesce a estenderlo. Cerca una visita invece di forzarlo per continuare il gioco."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

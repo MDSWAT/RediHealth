@@ -1,0 +1,51 @@
+{
+  "title": "Ecografiile în sarcină",
+  "intro": "Ecografia folosește unde sonore pentru a crea imagini ale bebelușului din uter. Este o modalitate sigură și nedureroasă de a verifica creșterea și dezvoltarea bebelușului și de a data sarcina. Cele mai multe femei primesc mai multe ecografii, iar altele suplimentare dacă există un motiv medical.",
+  "sections": [
+    {
+      "heading": "Cum funcționează",
+      "paragraphs": [
+        "O sondă este mișcată pe abdomen cu gel sau, la începutul sarcinii, o sondă mai mică este introdusă în vagin. Ea trimite și primește unde sonore, care sunt transformate în imagini. Nu există radiații. Medicii folosesc cele mai mici setări necesare și nu se folosește doar pentru poze-suvenir fără necesitate."
+      ]
+    },
+    {
+      "heading": "Ecografii tipice",
+      "paragraphs": [
+        "Prima ecografie, în jur de zece până la douăsprezece săptămâni, confirmă sarcina, numărul de bebeluși, bătăile inimii și data probabilă a nașterii și poate include o măsurare a lichidului din spatele gâtului bebelușului, ca parte a screeningului. O ecografie detaliată la aproximativ douăzeci de săptămâni examinează organele bebelușului, placenta și cantitatea de lichid. O ecografie ulterioară verifică creșterea și poziția."
+      ]
+    },
+    {
+      "heading": "Ce pot și ce nu pot arăta ecografiile",
+      "paragraphs": [
+        "Ecografiile pot detecta multe, dar nu toate diferențele structurale, precum problemele inimii, coloanei sau rinichilor. Unele afecțiuni nu sunt vizibile, iar unele constatări sunt incerte. O ecografie normală nu garantează un bebeluș sănătos, iar o constatare anormală nu înseamnă întotdeauna o problemă gravă. Calitatea imaginii depinde de poziția bebelușului și de factori materni."
+      ]
+    },
+    {
+      "heading": "Dacă se vede ceva neașteptat",
+      "paragraphs": [
+        "Dacă o ecografie arată o posibilă diferență, veți fi de obicei trimisă la un specialist pentru o ecografie mai detaliată și consiliere. Acest lucru poate provoca multă îngrijorare. Cereți explicații clare, timp pentru a asimila informațiile și sprijin. Opțiunile pot include teste suplimentare, planificarea tratamentului după naștere, nașterea într-un spital specializat sau, în funcție de circumstanțe și de lege, alte decizii."
+      ]
+    },
+    {
+      "heading": "Alegerile dumneavoastră",
+      "paragraphs": [
+        "Ecografiile sunt oferite, iar dumneavoastră puteți decide pe care să le faceți. Gândiți-vă dinainte la ce ați vrea să aflați, inclusiv dacă doriți să aflați sexul bebelușului. Aduceți o persoană care să vă sprijine și scrieți întrebări de pus. Ecografiile suplimentare fără motiv medical nu sunt recomandate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru ecografia detaliată",
+      "text": "Imaginați-vă că aveți ecografia de la douăzeci de săptămâni. Ați putea întreba dinainte ce poate detecta, cine vă va explica rezultatele și ce se întâmplă dacă ceva este neclar."
+    },
+    {
+      "title": "Gestionarea incertitudinii",
+      "text": "Presupuneți că medicul vă cere să reveniți pentru o nouă examinare. Ați putea întreba de ce, cât de frecvent este acest lucru și cât de curând veți ști mai multe."
+    }
+  ],
+  "questions": [
+    "Ce ecografii îmi vor fi oferite și pentru ce sunt?",
+    "Ce pot rata ecografiile?",
+    "Unde pot primi sprijin dacă se descoperă ceva neașteptat?"
+  ]
+}

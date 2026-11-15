@@ -1,0 +1,51 @@
+{
+  "title": "Cancerul de piele non-melanom",
+  "intro": "Carcinomul bazocelular și carcinomul scuamocelular sunt cele mai frecvente cancere din lume. De obicei se dezvoltă pe pielea expusă la soare și cresc lent. În general sunt vindecabile când sunt tratate devreme și rareori se răspândesc, deși cancerul scuamocelular are mai multe șanse să o facă decât cel bazocelular.",
+  "sections": [
+    {
+      "heading": "Cauze și risc",
+      "paragraphs": [
+        "Expunerea îndelungată la radiația ultravioletă de la soare și de la solarii este cauza principală. Riscul este mai mare la pielea deschisă la culoare, la vârste înaintate, la cei cu arsuri solare în antecedente, cu imunitate scăzută, de exemplu după un transplant de organ, și la cei care au avut un cancer de piele. Petele aspre și solzoase, numite keratoze actinice, pot evolua spre cancer scuamocelular."
+      ]
+    },
+    {
+      "heading": "Cum arată",
+      "paragraphs": [
+        "Cancerul bazocelular arată adesea ca o umflătură sidefie sau cerată, o placă plată asemănătoare unei cicatrici sau o rană care sângerează și nu se vindecă. Cancerul scuamocelular apare ca o pată roșie solzoasă, o umflătură fermă sau un ulcer cu crustă. Orice pată nouă care crește, sângerează sau nu se vindecă într-o lună sau două trebuie examinată."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament",
+      "paragraphs": [
+        "Un medic examinează pielea și de obicei îndepărtează leziunea sau o mică probă pentru examinare la microscop. Cele mai multe tumori sunt îndepărtate chirurgical, cu o margine de piele sănătoasă. Tumorile superficiale pot fi tratate prin chiuretaj, congelare, creme, terapie fotodinamică sau radioterapie. Chirurgia micrografică specializată se folosește pentru zone cu risc mare, precum fața."
+      ]
+    },
+    {
+      "heading": "Urmărire și prevenire",
+      "paragraphs": [
+        "Un cancer de piele crește riscul pentru altele, așa că se recomandă controale regulate ale pielii. Protejați pielea de soare prin umbră, haine, pălării și cremă de protecție solară, evitați solariile și examinați-vă regulat pielea."
+      ]
+    },
+    {
+      "heading": "Viața cu un istoric de cancer de piele",
+      "paragraphs": [
+        "Multe persoane se simt anxioase după un diagnostic. Aflarea a ceea ce trebuie urmărit, respectarea programărilor și protejarea pielii oferă un sentiment de control. Spuneți rudelor, deoarece membrii familiei pot avea factori de risc comuni, precum pielea deschisă la culoare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Observarea unei pete",
+      "text": "Imaginați-vă că aveți o rană pe nas care sângerează și nu se vindecă. Ați putea programa prompt un control al pielii și ați putea veni cu o fotografie care arată când ați observat-o prima dată."
+    },
+    {
+      "title": "Planificarea protecției",
+      "text": "Presupuneți că lucrați în aer liber. Ați putea purta o pălărie cu boruri largi și mâneci lungi, ați putea aplica cremă de protecție solară pe pielea expusă și ați putea face un control anual al pielii."
+    }
+  ],
+  "questions": [
+    "Ce tip de cancer de piele am și ce tratament i se potrivește?",
+    "Cât de des ar trebui să-mi fie verificată pielea după aceea?",
+    "Ce pot face pentru a-mi proteja pielea de acum înainte?"
+  ]
+}

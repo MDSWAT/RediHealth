@@ -1,0 +1,51 @@
+{
+  "title": "Ce implică testarea genetică?",
+  "intro": "Testele genetice examinează gene, cromozomi sau proteine pentru a găsi modificări asociate cu boli ereditare sau cu riscul de boală. Se fac pe o probă de sânge sau de salivă. Testarea poate aduce răspunsuri utile, dar ridică și întrebări personale, de aceea consilierea dinainte este importantă.",
+  "sections": [
+    {
+      "heading": "Tipuri de teste",
+      "paragraphs": [
+        "Testarea de diagnostic confirmă sau exclude o afecțiune suspectată. Testarea predictivă și presimptomatică arată dacă cineva va sau ar putea dezvolta o boală mai târziu. Testarea de purtător arată dacă o persoană poartă o modificare genetică ce ar putea afecta copiii. Testele prenatale și neonatale caută afecțiuni devreme. Testele farmacogenetice orientează alegerea medicamentului."
+      ]
+    },
+    {
+      "heading": "Procesul",
+      "paragraphs": [
+        "Un consilier genetic sau un medic discută motivele, rezultatele posibile și consecințele și verifică antecedentele familiale. O probă de sânge sau de salivă este recoltată și analizată într-un laborator, ceea ce poate dura de la zile la luni. Rezultatele sunt explicate la o consultație ulterioară. În multe țări este necesar consimțământul scris."
+      ]
+    },
+    {
+      "heading": "Rezultate posibile",
+      "paragraphs": [
+        "Un rezultat poate fi pozitiv, ceea ce înseamnă că s-a găsit o modificare genetică, negativ sau incert, când se găsește o variantă cu semnificație necunoscută. Un rezultat negativ nu exclude orice risc, deoarece nu toate cauzele sunt cunoscute. Un rezultat pozitiv nu înseamnă neapărat boală sigură, deoarece multe modificări genetice doar cresc riscul."
+      ]
+    },
+    {
+      "heading": "Aspecte de luat în considerare",
+      "paragraphs": [
+        "Rezultatele pot afecta rudele, care împart gene, și pot avea efecte emoționale, precum anxietate sau vinovăție. Unele țări au legi care protejează împotriva discriminării genetice de către angajatori și asigurători, dar regulile diferă, iar unele produse de asigurare pot fi afectate. Testele oferite direct consumatorului variază ca nivel de calitate, iar rezultatele trebuie discutate cu un profesionist."
+      ]
+    },
+    {
+      "heading": "Luarea unei decizii",
+      "paragraphs": [
+        "Testarea este voluntară. Gândiți-vă ce ați face cu rezultatul, dacă schimbă tratamentul sau screeningul și cum ați spune familiei. Vă puteți lua timp sau puteți refuza. Sprijin este disponibil de la consilieri genetici și de la organizații de pacienți."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru consiliere",
+      "text": "Imaginați-vă că mai multe rude au avut cancer de sân. Ați putea desena un arbore genealogic și nota vârstele la diagnostic, pentru a le aduce consilierului."
+    },
+    {
+      "title": "Cântărirea deciziei",
+      "text": "Presupuneți că vi se oferă testare predictivă. Ați putea întreba cum ar schimba rezultatele îngrijirea dumneavoastră și ce sprijin există după rezultat."
+    }
+  ],
+  "questions": [
+    "Este utilă testarea genetică în situația mea?",
+    "Cum ar putea afecta un rezultat rudele mele și asigurarea?",
+    "Ce sprijin este disponibil după rezultat?"
+  ]
+}

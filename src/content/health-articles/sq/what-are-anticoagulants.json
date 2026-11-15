@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë janë antikoagulantët?",
+  "intro": "Antikoagulantët, shpesh të quajtur holluesa gjaku, janë barna që e bëjnë gjakun të mpikset më pak lehtë. Parandalojnë mpiksjet e dëmshme që mund të shkaktojnë goditje në tru, infarkte e mpiksje në mushkëri e trajtojnë mpiksjet ekzistuese. Në fakt nuk e hollojnë gjakun e nuk i shkrijnë mpiksjet, e bartin rrezik gjakderdhjeje.",
+  "sections": [
+    {
+      "heading": "Si funksionojnë",
+      "paragraphs": [
+        "Mpiksja e gjakut përfshin një zinxhir proteinash në gjak. Antikoagulantët bllokojnë hapa në këtë zinxhir, prandaj mpiksjet formohen më ngadalë. Kjo ndihmon të parandalohen mpiksje të reja e i ndalon ato ekzistuese të rriten, duke i dhënë trupit kohë t'i shpërbëjë vetë. Ndryshojnë nga barnat antiaggreguese si aspirina, që e pengojnë ngjitjen e trombociteve."
+      ]
+    },
+    {
+      "heading": "Llojet",
+      "paragraphs": [
+        "Antagonistët e vitaminës K si varfarina përdoren prej dekadash e kërkojnë analiza të rregullta gjaku për kohën e mpiksjes e vëmendje ndaj dietës e ndërveprimeve. Antikoagulantët e drejtpërdrejtë gojorë, si apiksabani, rivaroksabani, edoksabani e dabigatrani, merren në doza fikse e kërkojnë më pak monitorim. Heparinat jepen me injeksion, shpesh në spital ose afatshkurtër në shtëpi."
+      ]
+    },
+    {
+      "heading": "Pse përdoren",
+      "paragraphs": [
+        "Përdorimet e zakonshme përfshijnë fibrilacionin atrial për të parandaluar goditjen, trajtimin e parandalimin e trombozës së venave të thella e embolisë pulmonare, valvulat mekanike të zemrës e parandalimin e mpiksjeve pas disa operacioneve. Kohëzgjatja varet nga arsyeja, nga javët deri te përjetë."
+      ]
+    },
+    {
+      "heading": "Rreziqet e efektet anësore",
+      "paragraphs": [
+        "Rreziku kryesor është gjakderdhja, që mund të shkojë nga gjakderdhjet e hundës e mavijosjet e lehta deri te gjakderdhja e brendshme e rëndë. Shenjat paralajmëruese përfshijnë jashtëqitje të zeza ose me gjak, vjellje me gjak, dhimbje koke të rëndë, gjak në urinë, gjakderdhje të bollshme ose të zgjatur e gjakderdhje pas rënies ose goditjes në kokë, që kërkon kujdes urgjent. Mjekët peshojnë rrezikun e mpiksjeve kundrejt gjakderdhjes e e rishikojnë trajtimin rregullisht."
+      ]
+    },
+    {
+      "heading": "Përdorimi i sigurt",
+      "paragraphs": [
+        "Merreni barin në të njëjtën kohë çdo ditë e mos kaloni ose dyfishoni doza. Mos e ndaloni pa këshillë, pasi rrezikun e mpiksjeve e rrit. Tregojini të gjithë ofruesve të kujdesit shëndetësor, dentistëve e farmacistëve se merrni antikoagulantë e mbani një kartë. Kontrolloni me farmacistin para se të përdorni qetësues si ibuprofeni e suplemente. Kini kujdes me alkoolin e shmangni lëndimet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për trajtim dentar",
+      "text": "Imagjinoni që merrni një holluese gjaku e keni nevojë të hiqet një dhëmb. Mund t'ia thoni dentistit e ta pyesni mjekun nëse doza duhet ndryshuar."
+    },
+    {
+      "title": "Trajtimi i një doze të harruar",
+      "text": "Supozoni që harroni një dozë. Mund të lexoni fletën e paketimit ose të telefononi farmacistin për rregullin e barit tuaj, e kurrë të mos e dyfishoni dozën tjetër."
+    }
+  ],
+  "questions": [
+    "Cili antikoagulant është më i miri për mua, e për sa kohë?",
+    "Si mund ta zvogëloj rrezikun e gjakderdhjes?",
+    "Cilat barna e ushqime duhet t'i shmang?"
+  ]
+}

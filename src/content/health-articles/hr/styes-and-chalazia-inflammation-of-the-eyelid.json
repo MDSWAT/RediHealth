@@ -1,0 +1,51 @@
+{
+  "title": "Ječmenac i halazion (upala vjeđe)",
+  "intro": "Ječmenac je bolna crvena kvržica na rubu vjeđe uzrokovana infekcijom folikula trepavice ili žlijezde. Halazion je čvršća, obično bezbolna kvržica uzrokovana začepljenom žlijezdom lojnicom dublje u vjeđi. Oboje je često i većina nestane sama uz tople obloge.",
+  "sections": [
+    {
+      "heading": "Ječmenac",
+      "paragraphs": [
+        "Ječmenac, ili hordeolum, izgleda kao crvena, bolna, otečena kvržica na rubu vjeđe, ponekad sa žutim središtem gnoja. Nastaje zbog bakterijske infekcije, obično stafilokoka. Upala vjeđa zvana blefaritis, loša higijena vjeđa, diranje očiju neopranim rukama i stara šminka povećavaju rizik."
+      ]
+    },
+    {
+      "heading": "Halazion",
+      "paragraphs": [
+        "Halazion se razvija kada se žlijezda lojnica u vjeđi začepi i njezin sadržaj iscuri u okolno tkivo, uzrokujući upalu. Tvori čvrstu okruglu kvržicu podalje od ruba vjeđe, često bezbolnu nakon početnog bolnog razdoblja. Ako je velika, može pritiskati oko i zamutiti vid. Može nastati nakon ječmenca."
+      ]
+    },
+    {
+      "heading": "Liječenje kod kuće",
+      "paragraphs": [
+        "Nanesite čisti topli oblog oko deset minuta, tri do četiri puta dnevno, kako biste omekšali začepljenje i potaknuli otjecanje. Nakon toga nježno masirajte vjeđu. Držite vjeđe čistima blagim sredstvom ili maramicama za vjeđe. Ne stišćite i ne probijajte kvržicu. Izbjegavajte šminku za oči i kontaktne leće dok ne zacijeli."
+      ]
+    },
+    {
+      "heading": "Medicinsko liječenje",
+      "paragraphs": [
+        "Većina ječmenaca zacijeli unutar jednog do dva tjedna, a halazionima mogu trebati tjedni do mjeseci. Ako kvržica potraje, vrlo je velika ili utječe na vid, liječnik može ubrizgati steroid ili napraviti mali rez za drenažu pod lokalnom anestezijom. Antibiotici su potrebni samo kod širenja infekcije vjeđe ili kože oko oka."
+      ]
+    },
+    {
+      "heading": "Kada posjetiti liječnika",
+      "paragraphs": [
+        "Potražite brzu skrb kod crvenila i oticanja koji se šire preko vjeđe i obraza, boli pri pomicanju oka, vrućice, promjena vida ili kvržice koja krvari ili se stalno vraća na istom mjestu jer rijetko tumor može oponašati halazion."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rutina toplih obloga",
+      "text": "Zamislite da vaša vjeđa ima bolnu kvržicu. Mogli biste koristiti čistu toplu krpu deset minuta četiri puta dnevno i oprati ruke prije dodirivanja tog područja."
+    },
+    {
+      "title": "Sprječavanje ponavljanja",
+      "text": "Pretpostavite da često dobivate ječmenac. Mogli biste svakodnevno čistiti rubove vjeđa, redovito mijenjati šminku za oči i pitati o liječenju blefaritisa."
+    }
+  ],
+  "questions": [
+    "Je li ovo ječmenac ili halazion i koliko će dugo zacjeljivati?",
+    "Kada bi se razmatrala drenaža ili injekcija?",
+    "Kako mogu spriječiti ponavljanja?"
+  ]
+}

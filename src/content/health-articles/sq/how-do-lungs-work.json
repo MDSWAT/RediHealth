@@ -1,0 +1,51 @@
+{
+  "title": "Si shkëmbejnë mushkëritë gazrat",
+  "intro": "Mushkëritë kalojnë oksigjenin në gjak dhe nxjerrin dioksidin e karbonit. Frymëmarrja kërkon rrugë, alveola, qarkullim dhe muskuj bashkë. Mungesa e ajrit ka edhe shkaqe zemre, gjaku ose të tjera.",
+  "sections": [
+    {
+      "heading": "Degëzimet",
+      "paragraphs": [
+        "Ajri kalon hundë ose gojë, trake dhe bronke deri te rrugët e vogla. Mukusi e qerpikët pastrojnë grimca. Ngushtimi ose mukusi ul rrjedhën pa bllokuar gjithë mushkërinë."
+      ]
+    },
+    {
+      "heading": "Shkëmbimi",
+      "paragraphs": [
+        "Alveolat e holla janë pranë enëve. Oksigjeni hyn dhe dioksidi del. Duhet ajër dhe gjak; lëvizja normale nuk garanton oksigjen të mjaftueshëm."
+      ]
+    },
+    {
+      "heading": "Pompa",
+      "paragraphs": [
+        "Diafragma e muskujt ndryshojnë vëllimin për hyrjen. Rikthimi elastik nxjerr në pushim. Dhimbja, dobësia ose kufizimi ndikojnë edhe me rrugë të hapura."
+      ]
+    },
+    {
+      "heading": "Kontrolli dhe testet",
+      "paragraphs": [
+        "Nervat përshtatin frymën. Funksioni, oksigjeni dhe imazhet japin përgjigje të ndryshme. Matja në shtëpi nuk diagnostikon çdo shkak ose zëvendëson vlerësimin e përkeqësimit."
+      ]
+    },
+    {
+      "heading": "Mbrojtja",
+      "paragraphs": [
+        "Shmangni tymin e ekspozimet, aktivitet i përshtatshëm dhe vaksina. Kolla ose aftësia e ulur kërkojnë kontroll. Frymëmarrja e rëndë, buzët blu a gri, dhimbja e gjoksit ose gjaku kërkojnë urgjencë. Para konsultës, shënoni kur filloi simptoma, çfarë e lehtëson ose përkeqëson dhe si ndikon në veprimtaritë e zakonshme. Merrni raportet e mëparshme nëse i keni. Kërkojini profesionistit ta lidhë shpjegimin me gjetjet tuaja; një përshkrim i përgjithshëm nuk vendos diagnozën."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet pse teste pas skanimit të mirë: ato vlerësojnë funksionin, jo vetëm strukturën."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ka më shumë mungesë ajri me numër të mirë në shtëpi. Kërkon kontroll pa u mbështetur vetëm në pajisje."
+    }
+  ],
+  "questions": [
+    "Cilat hapa sqarohen me diagram?",
+    "Çfarë tregon shpjegimi dhe çfarë nuk parashikon?",
+    "A kërkon shqetësimi im vlerësim profesional?"
+  ]
+}

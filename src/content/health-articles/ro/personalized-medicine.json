@@ -1,0 +1,51 @@
+{
+  "title": "Medicina personalizată",
+  "intro": "Medicina personalizată urmărește adaptarea prevenirii și a tratamentului la caracteristicile unui pacient individual, precum genele, trăsăturile unei tumori sau alți markeri biologici. A dus la progrese reale, de exemplu în tratamentul cancerului, dar termenul este adesea folosit lejer, iar nu orice afirmație de personalizare este susținută de dovezi.",
+  "sections": [
+    {
+      "heading": "Ce înseamnă",
+      "paragraphs": [
+        "Tradițional, tratamentele erau testate pe grupuri și oferite tuturor celor cu un anumit diagnostic. Abordările personalizate folosesc teste pentru a găsi subgrupuri care au mai multe șanse să beneficieze, pentru a evita efectele secundare sau pentru a alege doza. Termenii medicină de precizie și medicină stratificată descriu idei similare."
+      ]
+    },
+    {
+      "heading": "Exemple",
+      "paragraphs": [
+        "În cancer, testele pe țesutul tumoral pot arăta mutații sau receptori care prezic răspunsul la medicamentele țintite, precum receptorii hormonali în cancerul de sân. Testele genetice pot arăta cât de repede descompune o persoană anumite medicamente, astfel încât dozarea poate fi ajustată. Screeningul genetic poate identifica riscuri moștenite, precum modificările genelor BRCA. În îngrijirea de zi cu zi, alegerile de tratament iau în calcul și vârsta, alte boli și preferințele personale."
+      ]
+    },
+    {
+      "heading": "Beneficii",
+      "paragraphs": [
+        "Folosită bine, personalizarea poate crește șansa de beneficiu, poate reduce tratamentul inutil și efectele secundare și poate permite detectarea mai timpurie a riscului în familiile cu boli moștenite. Poate oferi și pacienților un cuvânt mai greu de spus în decizii."
+      ]
+    },
+    {
+      "heading": "Limite și precauții",
+      "paragraphs": [
+        "Multe variante genetice au efecte mici sau incerte asupra bolii. Testele oferite direct consumatorilor pot să nu prezică nimic util și pot provoca îngrijorare sau liniștire falsă. Unele tratamente personalizate sunt scumpe și disponibile doar în centre specializate. Confidențialitatea datelor și posibilitatea discriminării sunt probleme importante. Ar trebui să existe dovezi că un test îmbunătățește rezultatele înainte de a fi folosit de rutină."
+      ]
+    },
+    {
+      "heading": "Luarea deciziilor",
+      "paragraphs": [
+        "Întrebați ce anume se testează, cât de bine prezice testul rezultatul, ce s-ar schimba în tratament și care este costul. Cereți consiliere genetică înainte și după testarea genetică. Țineți minte că stilul de viață, vaccinarea, screeningul și tratamentele bine stabilite rămân importante pentru toată lumea."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Punerea la îndoială a unui test",
+      "text": "Imaginați-vă că vi se oferă un test genetic pentru un medicament. Ați putea întreba cât de fiabil este, cum schimbă rezultatul tratamentul dumneavoastră și dacă asigurătorii îl acoperă."
+    },
+    {
+      "title": "Antecedentele familiale",
+      "text": "Presupuneți că mai multe rude au avut cancer de sân la vârstă tânără. Ați putea întreba medicul despre consilierea genetică, pentru a decide dacă testarea este utilă."
+    }
+  ],
+  "questions": [
+    "Are acest test un beneficiu dovedit în situația mea?",
+    "Cum ar schimba rezultatul tratamentul sau urmărirea mea?",
+    "Care sunt implicațiile pentru familia mea și pentru confidențialitatea mea?"
+  ]
+}

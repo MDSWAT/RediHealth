@@ -1,0 +1,52 @@
+{
+  "title": "Mbajtja e një liste barnash",
+  "intro": "Një listë barnash regjistron çdo ilaç që merrni, përfshirë barnat me recetë, produktet pa recetë, vitaminat dhe remediet bimore. Mbajtja e saj e përditësuar i ndihmon mjekët, farmacistët dhe kujdestarët të shmangin ndërveprime e gabime të rrezikshme. Është veçanërisht e dobishme nëse merrni disa barna ose shihni më shumë se një mjek.",
+  "sections": [
+    {
+      "heading": "Pse ka rëndësi një listë",
+      "paragraphs": [
+        "Shumë njerëz marrin barna të shumta të përshkruara nga profesionistë të ndryshëm. Pa një pasqyrë, dyfishimet, kombinimet e dëmshme dhe ndryshimet e harruara janë më të mundshme. Në një urgjencë ose shtrim në spital, një listë i lejon stafit të kuptojë shpejt trajtimin tuaj."
+      ]
+    },
+    {
+      "heading": "Çfarë të përfshini",
+      "paragraphs": [
+        "Për secilin ilaç, shënoni emrin, fuqinë, dozën, sa shpesh dhe në çfarë orësh e merrni, arsyen, kush e përshkroi dhe datën e fillimit. Shtoni suplementet, produktet bimore, pikat për sy, kremrat, suvatë, inhalatorët dhe barnat e marra vetëm sipas nevojës. Regjistroni alergjitë dhe efektet anësore që keni pasur."
+      ]
+    },
+    {
+      "heading": "Si ta mbani",
+      "paragraphs": [
+        "Mund të përdorni një shabllon të printuar, një fletore ose një aplikacion telefoni. Mbani një kopje në portofol ose çantë dhe jepini një kopje një personi të besuar. Përditësojeni sa herë që një ilaç fillohet, ndalohet ose ndryshohet dhe kryqëzoni qartë barnat e ndërprera me datën. Shumë farmaci e ambulanca mund t'ju printojnë një listë aktuale."
+      ]
+    },
+    {
+      "heading": "Përdorimi në takime",
+      "paragraphs": [
+        "Sillni listën ose kutitë e barnave në çdo vizitë, përfshirë takimet në farmaci e spital, dhe kërkoni që profesionisti ta kontrollojë. Pyesni cilat barna nevojiten ende, cilat mund të ndalohen dhe nëse ndonjë ndërvepron me trajtime të reja ose alkoolin.",
+        "Një rishikim vjetor i barnave me mjekun ose farmacistin është i dobishëm, veçanërisht për të moshuarit që marrin shumë barna."
+      ]
+    },
+    {
+      "heading": "Përdorimi i sigurt",
+      "paragraphs": [
+        "Mos i ndërprisni dhe mos i ndryshoni dozat pa këshillë. Ruajini barnat në mënyrë të sigurt, kontrolloni datat e skadimit dhe hidhini barnat e papërdorura nëpërmjet një farmacie. Tregojuni gjithë ofruesve tuaj shëndetësorë gjithçka që merrni, përfshirë produktet e blera online."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shtrimi në spital",
+      "text": "Imagjinoni që ju çojnë në spital pas një rënieje. Nëse mbani një listë aktuale, stafi mund të shohë menjëherë holluesin e gjakut dhe barnat e zemrës dhe të shmangë shtesa të pasigurta."
+    },
+    {
+      "title": "Rishikimi me një farmacist",
+      "text": "Supozoni që merrni tetë tableta në ditë. Mund ta sillni listën në farmaci dhe të pyesni nëse ndonjë kombinim është i rrezikshëm dhe nëse dozat mund të thjeshtohen."
+    }
+  ],
+  "questions": [
+    "A janë të gjitha barnat në listën time ende të nevojshme?",
+    "A ndërveprojnë ndonjë nga barnat, suplementet ose ushqimet e mia?",
+    "Sa shpesh duhet të rishikohen barnat e mia?"
+  ]
+}

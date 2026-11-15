@@ -1,0 +1,51 @@
+{
+  "title": "Using InformedHealth to prepare for care decisions",
+  "intro": "InformedHealth is the English-language health information service of Germany’s IQWiG. It explains evidence about conditions, tests and treatments. An information page can support a consultation, but cannot examine you or decide which option fits your situation.",
+  "sections": [
+    {
+      "heading": "Start with a question",
+      "paragraphs": [
+        "Begin with a question, not a search for a promised cure. Identify whether you need an overview, a comparison of treatments or preparation for a test. Record unfamiliar terms and select the questions most likely to change your decision."
+      ]
+    },
+    {
+      "heading": "Check date and context",
+      "paragraphs": [
+        "Read the publication or update date and the evidence sources. Distinguish general findings from rules specific to Germany. A translated explanation does not automatically make a German service or insurance arrangement applicable in another country."
+      ]
+    },
+    {
+      "heading": "Compare relevant evidence",
+      "paragraphs": [
+        "Compare benefits and harms with the same time period and baseline risk. Ask whether the evidence concerns people with your age, health and previous treatments. An uncertain result is useful information, not a guarantee that either option is best."
+      ]
+    },
+    {
+      "heading": "Prepare the consultation",
+      "paragraphs": [
+        "Bring relevant points to the clinician and explain priorities such as pain relief, recovery time or avoiding adverse effects. Ask about alternatives, including monitoring when reasonable. Summarize the agreed plan in your own words and request an accessible explanation if needed."
+      ]
+    },
+    {
+      "heading": "Use sources and recognize limits",
+      "paragraphs": [
+        "Use the source links to explore the original context and further reading. Independently written local articles are not official IQWiG translations or individualized advice. New severe symptoms need clinical assessment rather than repeated online searching, and emergency symptoms should not wait for reading."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira reads about a test and brings questions about false results and what would change afterward, rather than requesting the test solely because it exists."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben notices that an article describes German insurance. He asks his local service about coverage instead of assuming the same rule applies where he lives."
+    }
+  ],
+  "questions": [
+    "Does the information apply to my circumstances and country?",
+    "What remains uncertain and which options are compared?",
+    "Which questions should I bring to my clinician?"
+  ]
+}

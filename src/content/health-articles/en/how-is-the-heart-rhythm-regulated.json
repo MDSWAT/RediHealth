@@ -1,0 +1,56 @@
+{
+  "title": "How the heart rhythm is regulated",
+  "intro": "The heart beats because of its own electrical system, which starts each beat and coordinates the chambers so that they contract in the right order. The brain and hormones adjust the rate to your needs. Knowing how this works helps make sense of palpitations, irregular rhythms and tests such as the ECG.",
+  "sections": [
+    {
+      "heading": "The electrical system of the heart",
+      "paragraphs": [
+        "Each beat begins in the sinus node, a small cluster of cells in the upper right part of the heart that acts as the natural pacemaker. It sends an electrical impulse across the two upper chambers, the atria, making them contract and push blood into the lower chambers.",
+        "The signal then reaches the atrioventricular node, which briefly delays it so that the ventricles can fill. It travels down special fibres that spread through the walls of the ventricles, causing them to contract together and pump blood to the lungs and body."
+      ]
+    },
+    {
+      "heading": "Controlling the heart rate",
+      "paragraphs": [
+        "At rest, a typical adult heart beats about 60 to 100 times a minute. During exercise, stress or fever the rate rises, and during sleep it falls. The autonomic nervous system adjusts this: the sympathetic system speeds the heart up, while the parasympathetic system slows it down.",
+        "Hormones such as adrenaline, thyroid hormones, blood minerals like potassium and calcium, and many medicines also influence rhythm. Well-trained athletes often have a slow resting heart rate that is healthy."
+      ]
+    },
+    {
+      "heading": "When the rhythm is disturbed",
+      "paragraphs": [
+        "Arrhythmias are disorders of heart rhythm. The heart may beat too fast, too slow or irregularly. Common examples include atrial fibrillation, in which the atria quiver irregularly, extra beats that feel like a skipped beat, and heart block, in which signals are delayed or blocked.",
+        "Symptoms include palpitations, dizziness, shortness of breath, chest discomfort or fainting. Some people have no symptoms. Atrial fibrillation raises the risk of stroke, which is why it is important to detect and treat it appropriately."
+      ]
+    },
+    {
+      "heading": "Tests for heart rhythm",
+      "paragraphs": [
+        "An electrocardiogram records the heart's electrical activity within minutes. If symptoms come and go, a long-term ECG worn for a day to a few weeks, or an implanted loop recorder, may catch them. Blood tests, an ultrasound of the heart and exercise tests help look for causes.",
+        "Smartwatches may record rhythm, but their results should be confirmed by medical tests before decisions are made."
+      ]
+    },
+    {
+      "heading": "Treatment options",
+      "paragraphs": [
+        "Many harmless extra beats need no treatment beyond avoiding triggers such as excess caffeine, alcohol, nicotine or lack of sleep. Other rhythm disorders may be treated with medicines that control rate or rhythm, blood thinners to reduce the risk of stroke, electrical cardioversion, or catheter ablation, which treats the source of the abnormal signals.",
+        "A pacemaker can support a heart that beats too slowly, and an implantable defibrillator can stop dangerous fast rhythms. Call emergency services for fainting, chest pain, or severe breathlessness with a racing heart."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Describing palpitations",
+      "text": "Imagine you sometimes feel your heart race for a few minutes. You could write down when it happens, how fast the pulse feels, what you were doing and any other symptoms, so that your doctor can choose suitable tests."
+    },
+    {
+      "title": "Understanding a blood thinner decision",
+      "text": "Suppose you have been diagnosed with atrial fibrillation. You might ask how your personal stroke risk was estimated, what the benefits and bleeding risks of blood thinners are, and what signs of bleeding to watch for."
+    }
+  ],
+  "questions": [
+    "Which type of rhythm disturbance could explain my symptoms, and which tests will clarify it?",
+    "Do I need treatment, and how would it reduce my risk of stroke or other complications?",
+    "Which triggers should I avoid, and when should I call emergency services?"
+  ]
+}

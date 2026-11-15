@@ -1,0 +1,51 @@
+{
+  "title": "Torn meniscus",
+  "intro": "The menisci are two C-shaped cartilage pads in each knee that cushion the joint and help stabilise it. A tear can happen suddenly during sport or gradually with age. Many tears settle with exercise and time, while surgery is reserved for those with locking or persistent symptoms.",
+  "sections": [
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "In younger people, meniscus tears usually follow a twisting injury, sometimes with other ligament damage. In middle-aged and older people, the meniscus wears and degenerates, and small tears can occur with minor movements such as squatting or getting up, often alongside early osteoarthritis."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Pain along the joint line, swelling that develops over a day, stiffness, catching or clicking and sometimes locking, in which the knee cannot fully straighten. Pain is often worse with twisting and deep bending. Degenerative tears may cause fewer symptoms, and many tears seen on scans in older people are not the source of pain."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Doctors examine the knee using specific tests and may request an MRI scan if the diagnosis is unclear or a locked knee suggests a displaced tear. MRI often shows meniscus changes in people without symptoms, so findings must be interpreted with symptoms."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Rest, ice and pain relief help initially. Physiotherapy with strengthening of thigh and hip muscles is effective for many people, particularly with degenerative tears, with results similar to surgery for many. Surgery by keyhole, either repairing the meniscus with stitches or trimming damaged parts, is considered for a locked knee, large tears in younger people or persistent symptoms despite therapy. Repair preserves the meniscus and is preferred when possible, but needs a longer recovery."
+      ]
+    },
+    {
+      "heading": "Recovery and prevention",
+      "paragraphs": [
+        "After trimming, people often return to normal activity within weeks, while repair requires protected movement for several weeks and return to sports in months. Strengthening, balance exercises, healthy weight and warm-up before sport help protect knees. Removing meniscus tissue raises the risk of later osteoarthritis, which is another reason to try to preserve it."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trying exercise first",
+      "text": "Imagine you are fifty-five and have knee pain with a degenerative tear on an MRI. You could start a supervised strengthening programme for twelve weeks before considering surgery."
+    },
+    {
+      "title": "Recognising a locked knee",
+      "text": "Suppose your knee suddenly will not straighten after a twist. You might seek prompt medical review, as it may need surgery."
+    }
+  ],
+  "questions": [
+    "Is my symptom actually caused by the meniscus tear?",
+    "Would exercise therapy work as well as surgery for me?",
+    "If surgery is recommended, will the meniscus be repaired or trimmed?"
+  ]
+}

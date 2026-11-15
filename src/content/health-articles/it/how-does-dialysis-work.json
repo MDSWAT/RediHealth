@@ -1,0 +1,51 @@
+{
+  "title": "Come la dialisi depura il sangue",
+  "intro": "La dialisi toglie scorie e acqua quando i reni non bastano. Sostiene equilibrio, non lava ogni sostanza. Non sostituisce tutte le funzioni: farmaci, nutrizione e controlli contano.",
+  "sections": [
+    {
+      "heading": "Membrana selettiva",
+      "paragraphs": [
+        "Sangue e liquido sono separati da membrana che lascia piccole sostanze selezionate e trattiene cellule e molte proteine. La composizione è studiata: non è semplice acqua."
+      ]
+    },
+    {
+      "heading": "Diffusione",
+      "paragraphs": [
+        "Particelle si spostano secondo concentrazione. Liquido appropriato rimuove scorie e regola sali. Parametri dipendono dal sangue; più rapido non significa più sicuro."
+      ]
+    },
+    {
+      "heading": "Acqua",
+      "paragraphs": [
+        "L’ultrafiltrazione usa differenze di pressione. Troppo rapidamente può causare ipotensione o crampi. Il gruppo usa visita, peso e sintomi, non sola sete o caviglie."
+      ]
+    },
+    {
+      "heading": "Due modalità",
+      "paragraphs": [
+        "L’emodialisi usa filtro esterno e accesso vascolare. La peritoneale usa rivestimento addominale e liquido tramite catetere. Orari, infezioni e impegni differiscono; non scegliere da un solo diagramma."
+      ]
+    },
+    {
+      "heading": "Sicurezza",
+      "paragraphs": [
+        "Rispettare trattamento e riferire malessere o sedute saltate. Seguire indicazioni individuali. Grave affanno, dolore toracico, collasso o sangue incontrollato richiedono emergenza; febbre o liquido peritoneale torbido necessitano consiglio urgente. Prima della visita, annotate quando è iniziato il sintomo, cosa lo migliora o peggiora e come influisce sulle attività abituali. Portate i referti precedenti, se disponibili. Chiedete al professionista di collegare la spiegazione ai vostri riscontri: una descrizione generale non stabilisce una diagnosi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira chiede perché si modifica rimozione con crampi, senza pensare che più forza sia sempre meglio."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben confronta casa e centro con sostegno e routine, non solo meccanismo apparentemente semplice."
+    }
+  ],
+  "questions": [
+    "Quali passaggi sarebbero più chiari con un diagramma?",
+    "Cosa spiega questo testo e cosa non può prevedere?",
+    "Il mio dubbio specifico richiede valutazione professionale?"
+  ]
+}

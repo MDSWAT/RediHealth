@@ -1,0 +1,52 @@
+{
+  "title": "Kako crijevo probavlja i upija",
+  "intro": "Crijevo nastavlja probavu, upija hranjive tvari i vodu te pomiče otpad prema anusu. Sluznica, mišići, živci i mikrobi surađuju. Simptomi imaju mnogo uzroka, uključujući izvan probave.",
+  "sections": [
+    {
+      "heading": "Tanko crijevo",
+      "paragraphs": [
+        "Enzimi i žuč miješaju se s hranom. Nabori i sitni izdanci povećavaju površinu; hranjive tvari prelaze u krv ili limfu umjesto jednostavnog prolaska kroz rupu."
+      ]
+    },
+    {
+      "heading": "Debelo crijevo",
+      "paragraphs": [
+        "Upija preostalu vodu i soli, oblikuje stolicu. Bakterije obrađuju dio sadržaja. Sam izgled stolice ne otkriva cijeli mikrobiom niti postavlja dijagnozu."
+      ]
+    },
+    {
+      "heading": "Pokret",
+      "paragraphs": [
+        "Usklađene kontrakcije potiskuju sadržaj. Lokalni živci i mozak utječu na pokret; stres mijenja simptome bez dokaza da su izmišljeni ili isključivanja tjelesne bolesti."
+      ]
+    },
+    {
+      "heading": "Potpora",
+      "paragraphs": [
+        "Redoviti obroci, prikladni napitci i postupna promjena vlakana pomažu navikama. Potrebe variraju s bolešću ili zahvatom; izbjegavajte ponavljana čišćenja i drastične zabrane."
+      ]
+    },
+    {
+      "heading": "Pregled",
+      "paragraphs": [
+        "Trajna promjena, neobjašnjen gubitak težine ili krv traže pregled. Jaka sve gora bol, napuhnut trbuh uz povraćanje ili izostanak vjetrova te veliko krvarenje traže hitnost, ne više laksativa.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira postupno povećava vlakna prema savjetu i bilježi podnošenje umjesto naglog udvostručenja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima napuhnutost, povraćanje i nema vjetrova. Traži hitnost umjesto ponavljanog liječenja navodnog zatvora."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

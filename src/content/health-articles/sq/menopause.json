@@ -1,0 +1,51 @@
+{
+  "title": "Menopauza",
+  "intro": "Menopauza është koha kur menstruacionet ndalojnë përgjithmonë, zakonisht rreth moshës pesëdhjetë vjeç. Vitet para saj, të quajtura perimenopauzë, sjellin ndryshime hormonale që mund të shkaktojnë valë të nxehta, probleme gjumi dhe ndryshime të gjendjes shpirtërore. Është një fazë natyrale e jetës dhe ekzistojnë shumë opsione për ato që i gjejnë simptomat të vështira.",
+  "sections": [
+    {
+      "heading": "Çfarë ndodh në trup",
+      "paragraphs": [
+        "Vezoret prodhojnë gradualisht më pak estrogjen dhe progesteron. Menstruacionet bëhen të parregullta para se të mbarojnë. Menopauza konfirmohet pas dymbëdhjetë muajsh pa menstruacione. Perimenopauza mund të zgjasë disa vjet dhe simptomat ndryshojnë shumë; disa gra kanë pak, të tjera shumë."
+      ]
+    },
+    {
+      "heading": "Simptomat e zakonshme",
+      "paragraphs": [
+        "Valët e nxehta dhe djersitja e natës janë simptomat më të njohura. Të tjera përfshijnë prishjen e gjumit, ndryshime të gjendjes shpirtërore, nervozizëm, vështirësi përqendrimi, dhimbje nyjesh, thatësi vaginale, shqetësim gjatë seksit, simptoma urinare dhe libido të ulur. Gjakderdhja e bollshme ose shumë e parregullt, gjakderdhja pas menopauzës ose midis menstruacioneve duhet vlerësuar nga një mjek."
+      ]
+    },
+    {
+      "heading": "Çfarë mund të bëni vetë",
+      "paragraphs": [
+        "Ushtrimet e rregullta, një dietë e ekuilibruar, kufizimi i alkoolit e kafeinës, ndalimi i duhanit dhe veshja me shtresa mund të ndihmojnë. Dhomat e freskëta të gjumit, teknikat e relaksimit dhe terapia konjitivo-sjellëse i lehtësojnë valët e nxehta e problemet e gjumit. Lagështuesit dhe lubrifikantët vaginalë e lehtësojnë thatësinë."
+      ]
+    },
+    {
+      "heading": "Trajtimet mjekësore",
+      "paragraphs": [
+        "Terapia hormonale e menopauzës është trajtimi më efektiv për valët e nxehta dhe ndihmon edhe simptomat vaginale dhe mbron kockën. Ajo ka rreziqe që varen nga lloji, doza, kohëzgjatja dhe mosha e shëndeti i gruas, si një rrezik pak më i lartë i mpiksjes së gjakut dhe i kancerit të gjirit me përdorim afatgjatë të disa kombinimeve. Estrogjeni vaginal lokal është efektiv për simptomat vaginale me thithje minimale. Barnat johormonale mund të ndihmojnë për valët e nxehta kur hormonet janë të papërshtatshme."
+      ]
+    },
+    {
+      "heading": "Shëndeti afatgjatë",
+      "paragraphs": [
+        "Pas menopauzës, kockat humbasin densitetin më shpejt dhe rreziku i sëmundjes së zemrës rritet. Ushtrimet me peshë, kalciumi dhe vitamina D e mjaftueshme, shmangia e duhanit dhe kontrolli i tensionit të gjakut e kolesterolit janë të arsyeshme. Kontraceptimi nevojitet ende për një kohë pas menstruacionit të fundit derisa të konfirmohet menopauza."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për një vizitë",
+      "text": "Imagjinoni që zgjoheni natën të lagur në djersë. Mund të mbani një ditar simptomash për dy javë, të listoni pyetjet për terapinë hormonale e historinë familjare dhe ta çoni në takim."
+    },
+    {
+      "title": "Diskutimi i intimitetit",
+      "text": "Supozoni që marrëdhënia seksuale është bërë e dhimbshme. Mund ta pyesni mjekun për estrogjen vaginal e lubrifikantë dhe ta diskutoni me partnerin."
+    }
+  ],
+  "questions": [
+    "Cilat trajtime do t'u përshtateshin simptomave dhe historisë sime shëndetësore?",
+    "Cilat janë përfitimet dhe rreziqet e terapisë hormonale në situatën time?",
+    "Si mund t'i mbroj kockat dhe zemrën pas menopauzës?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Cum reglează tiroida metabolismul",
+  "intro": "Tiroida este în fața gâtului și eliberează hormoni care influențează energia, temperatura și multe funcții. Simptomele se suprapun cu alte boli; greutatea sau oboseala singură nu înseamnă diagnostic tiroidian.",
+  "sections": [
+    {
+      "heading": "Producție",
+      "paragraphs": [
+        "Foliculii folosesc iod pentru producerea și stocarea hormonilor. Iodul vine din hrană, dar mai mult nu este mereu mai bine; excesul poate deregla funcția."
+      ]
+    },
+    {
+      "heading": "Feedback",
+      "paragraphs": [
+        "Hormonul de stimulare tiroidiană al hipofizei reglează producția. Hormonii tiroidieni transmit feedback. Rezultatele se interpretează împreună, ținând cont de sarcină, medicamente și posibila boală hipofizară."
+      ]
+    },
+    {
+      "heading": "Prea puțin sau mult",
+      "paragraphs": [
+        "Producția mică poate încetini funcțiile; excesul poate da intoleranță la căldură, tremor ori palpitații. Simptomele variază; umflarea gâtului nu indică singură nivelul producției."
+      ]
+    },
+    {
+      "heading": "Teste și tratament",
+      "paragraphs": [
+        "Sângele evaluează funcția; ecografia structura când este indicată. Tratamentul depinde de cauză. Nu ajustați medicamentele doar după greutate și nu luați hormoni pentru slăbit fără prescripție."
+      ]
+    },
+    {
+      "heading": "Monitorizare",
+      "paragraphs": [
+        "Anunțați planurile de sarcină, suplimentele și alte medicamente și respectați analizele. Palpitațiile severe cu durere în piept, lipsă de aer, febră mare sau confuzie marcată cer evaluare urgentă.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira are oboseală și cere evaluare, fără iod cumpărat ca tratament universal."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are un nodul la ecografie. Întreabă separat despre structură și funcția din analize, fără să presupună exces hormonal."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Sifilis",
+  "intro": "Sifilis je spolno prenosiva infekcija uzrokovana bakterijama, koja se može izliječiti antibioticima, osobito ako se otkrije rano. Ako se ne liječi, može napredovati tijekom godina i oštetiti srce, mozak i druge organe. Može se prenijeti i na nerođeno dijete pa su testiranje i liječenje važni.",
+  "sections": [
+    {
+      "heading": "Kako se širi",
+      "paragraphs": [
+        "Sifilis se širi izravnim kontaktom s lezijom sifilisa tijekom vaginalnog, analnog ili oralnog spolnog odnosa te s majke na dijete tijekom trudnoće. Kondomi smanjuju rizik, ali ne štite potpuno jer se lezije mogu pojaviti na koži koju ne pokrivaju. Više partnera i nezaštićeni spolni odnos povećavaju rizik, a stope rastu u mnogim zemljama."
+      ]
+    },
+    {
+      "heading": "Stadiji i simptomi",
+      "paragraphs": [
+        "U prvom stadiju bezbolna ranica zvana čankir pojavljuje se na mjestu infekcije nekoliko tjedana poslije i može proći neprimijećeno. U drugom stadiju, tjednima do mjesecima kasnije, mogu se pojaviti osip koji često zahvaća dlanove i tabane, vrućica, povećane žlijezde, gubitak kose i rane u ustima. Zatim infekcija može godinama postati tiha, što se naziva latentna. U kasnim stadijima mogu se razviti ozbiljni problemi srca, mozga i živaca."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Krvne pretrage otkrivaju protutijela i ponavljaju se radi potvrde dijagnoze i praćenja liječenja. Tekućina iz lezije može se izravno pregledati. Budući da sifilis često koegzistira s drugim infekcijama, preporučuje se testiranje na HIV i druge spolno prenosive infekcije. Trudnicama se rutinski nudi testiranje."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Injekcije penicilina izliječe sifilis. Jedna injekcija često je dovoljna za rane stadije, a za kasnije se daje nekoliko. Osobe alergične na penicilin mogu dobiti druge antibiotike. Nakon liječenja krvne se pretrage ponavljaju kako bi se potvrdilo da razine padaju. Izbjegavajte spolni odnos dok lezije ne zacijele i liječenje ne završi. Vrućica, zimica i bolovi unutar dana od početka liječenja mogu se javiti i obično prolaze."
+      ]
+    },
+    {
+      "heading": "Partneri i prevencija",
+      "paragraphs": [
+        "Spolne partnere iz proteklih mjeseci treba obavijestiti kako bi se mogli testirati i liječiti. Kondomi, redovito testiranje osoba s novim ili višestrukim partnerima i rano liječenje štite zdravlje. Potražite povjerljive službe za spolno zdravlje ako ste zabrinuti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Testiranje",
+      "text": "Zamislite da primijetite bezbolnu ranicu nakon novog partnera. Mogli biste brzo posjetiti kliniku za spolno zdravlje radi pretraga i pitati o povjerljivosti."
+    },
+    {
+      "title": "Obavještavanje partnera",
+      "text": "Pretpostavite da je vaš test pozitivan. Mogli biste pitati kliniku kako anonimno obavijestiti partnere i dogovoriti kontrolne krvne pretrage."
+    }
+  ],
+  "questions": [
+    "Koje pretrage trebam i kako ću znati da sam izliječen?",
+    "Koje partnere treba testirati i liječiti?",
+    "Kako mogu smanjiti rizik u budućnosti?"
+  ]
+}

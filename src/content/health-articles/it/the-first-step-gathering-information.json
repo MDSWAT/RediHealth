@@ -1,0 +1,51 @@
+{
+  "title": "Il primo passo: raccogliere informazioni sulla salute",
+  "intro": "Prendere buone decisioni sulla salute comincia con il trovare informazioni affidabili. Internet ne offre una quantità enorme, ma la qualità varia molto. Un modo ponderato di cercare fa risparmiare tempo e riduce la probabilità di essere fuorviati o allarmati.",
+  "sections": [
+    {
+      "heading": "Sapere che cosa vuoi scoprire",
+      "paragraphs": [
+        "Scrivi la domanda nel modo più preciso possibile, per esempio quali trattamenti esistono per una condizione, che cosa comporta un esame o quali effetti collaterali ha un farmaco. Annota le tue preoccupazioni, i sintomi e le decisioni che hai davanti. Una domanda chiara aiuta a scegliere fonti e termini di ricerca."
+      ]
+    },
+    {
+      "heading": "Dove cercare",
+      "paragraphs": [
+        "Punti di partenza affidabili sono le autorità di sanità pubblica, gli ospedali universitari, i servizi nazionali di informazione per i pazienti, le società mediche, i fornitori indipendenti di informazioni basate sulle prove e il farmacista o il medico. I foglietti illustrativi e i riassunti delle linee guida per i pazienti danno dettagli su farmaci e trattamenti. Le associazioni di pazienti offrono esperienza e consigli pratici."
+      ]
+    },
+    {
+      "heading": "Consigli di ricerca",
+      "paragraphs": [
+        "Usa termini specifici e il nome della condizione o del trattamento. Aggiungi parole come sintomi, trattamento, rischi o effetti collaterali. Prova più di una fonte e confronta. Evita di affidarti al primo risultato, perché i motori di ricerca possono favorire pubblicità o pagine commerciali. Controlla le date, perché trattamenti e raccomandazioni cambiano."
+      ]
+    },
+    {
+      "heading": "Diffida di",
+      "paragraphs": [
+        "Promesse di cure miracolose, pagine che vendono prodotti accanto ai consigli, testimonianze presentate come prova, assenza di autori o fonti indicati, linguaggio allarmistico e affermazioni secondo cui i medici nascondono la verità. Post sui social e forum possono offrire sostegno ma possono diffondere informazioni inesatte."
+      ]
+    },
+    {
+      "heading": "Tieni traccia e chiedi",
+      "paragraphs": [
+        "Annota ciò che trovi, da dove viene e le tue domande. Portale al medico e chiedigli di quali informazioni si fida. Le informazioni non possono sostituire una visita e non devi cambiare terapia in base a ciò che leggi senza parlarne con un professionista."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi a una visita",
+      "text": "Immagina che ti sia stato prescritto un nuovo farmaco. Potresti leggere il foglietto e una pagina informativa affidabile per i pazienti, scrivere le domande e discuterne alla visita successiva."
+    },
+    {
+      "title": "Riconoscere una pagina dubbia",
+      "text": "Supponi che un sito prometta di curare il diabete con un integratore. Potresti controllare chi gestisce il sito, se cita ricerche e se vende il prodotto."
+    }
+  ],
+  "questions": [
+    "Quali fonti mi consiglia per informazioni affidabili sulla mia condizione?",
+    "Ciò che ho letto è pertinente alla mia situazione?",
+    "Come posso discutere con lei le informazioni che ho trovato?"
+  ]
+}

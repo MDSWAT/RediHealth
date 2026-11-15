@@ -1,0 +1,51 @@
+{
+  "title": "Embolia pulmonare",
+  "intro": "Embolia pulmonare është një bllokim në një nga arteriet e mushkërisë, më shpesh i shkaktuar nga një mpiksje gjaku që ka udhëtuar nga venat e thella të këmbëve. Mund të shkaktojë gulçim e dhimbje gjoksi të papritur dhe mund të jetë kërcënuese për jetën. Diagnoza e trajtimi i shpejtë me holluesit e gjakut shpëtojnë jetë.",
+  "sections": [
+    {
+      "heading": "Shkaqet dhe faktorët e rrezikut",
+      "paragraphs": [
+        "Mpiksjet formohen në venat e këmbëve ose të legenit kur rrjedha e gjakut ngadalësohet ose mpiksja rritet, pastaj shkëputen e ngecin në mushkëri. Faktorët e rrezikut përfshijnë kirurgjinë e fundit, lëndimin ose imobilizimin e gjatë, udhëtimin në largësi të gjata, kancerin, shtatzëninë e periudhën pas lindjes, terapinë hormonale e pilulat kontraceptive, obezitetin, duhanin, moshën e madhe, një mpiksje të mëparshme e prirje të trashëguara për mpiksje."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat tipike janë gulçim i papritur, dhimbje therëse në gjoks që përkeqësohet gjatë thithjes, kollë, nganjëherë me gjak, rrahje të shpejta të zemrës, marramendje e të fikët. Disa njerëz kanë enjtje, dhimbje e ngrohtësi në një këmbë nga mpiksja origjinale. Simptomat mund të jenë të lehta ose të rënda. Telefononi shërbimet e urgjencës për gulçim ose dhimbje gjoksi të papritur pa shpjegim."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Mjekët vlerësojnë gjasën me një sistem pikëzimi e simptoma dhe mund të kontrollojnë një analizë gjaku të quajtur D-dimer. Një skanim CT me ngjyrë kontrasti tregon mpiksjet në arteriet e mushkërisë. Teste të tjera përfshijnë ultratingullin e këmbëve, ultratingullin e zemrës e, nëse nevojitet, skanime të mushkërive."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Barnat antikoagulante e pengojnë mpiksjen të rritet e e lejojnë trupin ta shpërndajë. Fillohen menjëherë, jepen me injeksion ose si tableta e vazhdohen për të paktën tre muaj. Në raste të rënda përdoren barna që shpërndajnë mpiksjen ose procedura për ta hequr. Njerëzit që nuk mund të marrin holluesa gjaku mund të marrin një filtër në venën e madhe. Gjakderdhja është rreziku kryesor i trajtimit, prandaj raportoni mavijosje ose gjakderdhje të pazakontë."
+      ]
+    },
+    {
+      "heading": "Pas një embolie pulmonare",
+      "paragraphs": [
+        "Kohëzgjatja e trajtimit varet nga shkaku. Disa njerëz kanë nevojë për terapi afatgjatë. Disa kanë gulçim të mbetur ose hipertension pulmonar e kanë nevojë për ndjekje. Për të parandaluar rikthimin, lëvizni rregullisht në udhëtime të gjata, qëndroni të hidratuar, përdorni çorape kompresioni nëse këshillohet e diskutoni barna parandaluese para kirurgjisë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Njohja e një urgjence",
+      "text": "Imagjinoni që papritur ju zë fryma pas një fluturimi të gjatë e pulpa juaj është e enjtur. Mund të telefononi menjëherë shërbimet e urgjencës e të mos prisni të shihni nëse përmirësohet."
+    },
+    {
+      "title": "Marrja e sigurt e holluesve të gjakut",
+      "text": "Supozoni që filloni një antikoagulant. Mund të mbani një kartë, t'u tregoni dentistëve e mjekëve, të shmangni aktivitete të rrezikshme e të raportoni çdo gjakderdhje të rëndë ose jashtëqitje të zeza."
+    }
+  ],
+  "questions": [
+    "Sa kohë më duhen holluesit e gjakut dhe cilat janë rreziqet?",
+    "A kam prirje të trashëguar për mpiksje dhe duhet të testohet familja ime?",
+    "Si mund ta ul rrezikun e një mpiksjeje tjetër?"
+  ]
+}

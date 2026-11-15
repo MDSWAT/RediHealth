@@ -1,0 +1,52 @@
+{
+  "title": "Come le difese immunitarie riconoscono e rispondono",
+  "intro": "Il sistema immunitario è una rete di barriere, cellule, organi e proteine, non un unico livello di forza. Deve rispondere alle minacce limitando i danni. Più infiammazione non significa automaticamente più protezione.",
+  "sections": [
+    {
+      "heading": "Prime difese",
+      "paragraphs": [
+        "Pelle e mucose limitano l'ingresso. Le difese innate reagiscono rapidamente con cellule e segnali; l'infiammazione richiama aiuto ma può causare gonfiore e fastidio."
+      ]
+    },
+    {
+      "heading": "Risposte mirate",
+      "paragraphs": [
+        "Linfociti B e T riconoscono bersagli specifici. Gli anticorpi possono legarli; diversi linfociti T coordinano o attaccano cellule infette. I ruoli collaborano."
+      ]
+    },
+    {
+      "heading": "Memoria",
+      "paragraphs": [
+        "Dopo alcune esposizioni le cellule della memoria favoriscono risposte più rapide. I vaccini costruiscono protezione senza la malattia completa, ma l'effetto varia e non garantisce contro ogni infezione."
+      ]
+    },
+    {
+      "heading": "Regolazione alterata",
+      "paragraphs": [
+        "L'allergia risponde a sostanze solitamente innocue; l'autoimmunità colpisce il corpo. L'immunodeficienza riduce certe difese. Sono problemi diversi: un integratore non è una cura universale."
+      ]
+    },
+    {
+      "heading": "Cura pratica",
+      "paragraphs": [
+        "Seguite vaccinazioni e igiene consigliate, soprattutto con immunosoppressione. Infezioni insolite ricorrenti richiedono visita. Malattia grave o febbre durante certe cure richiedono il piano urgente del team, non integratori.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira chiede se più infiammazione significhi migliore immunità. Comprende che controllare una risposta eccessiva può proteggere i tessuti."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben verifica i vaccini prima dell'immunosoppressione anziché scegliere un integratore che promette un potenziamento universale."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

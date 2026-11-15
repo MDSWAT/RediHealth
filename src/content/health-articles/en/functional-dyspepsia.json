@@ -1,0 +1,51 @@
+{
+  "title": "Functional dyspepsia: persistent upper abdominal discomfort",
+  "intro": "Functional dyspepsia can cause early fullness, burning or pain above the navel without an ulcer explaining the symptoms. The discomfort is real even when routine investigations are normal.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Altered stomach sensitivity and movement, together with gut–brain signaling, may contribute. Symptoms can fluctuate; a normal examination does not mean the person is inventing them."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Describe meal timing, weight changes and medicine use. A clinician decides whether Helicobacter testing, blood tests or endoscopy is appropriate rather than ordering every investigation. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Options may include treating confirmed Helicobacter infection, a trial of acid suppression or gut–brain psychological approaches. Response varies; do not keep adding unhelpful medicines indefinitely. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Try regular, smaller meals if helpful, eat slowly and track individual triggers without broad food exclusions. Adequate nutrition matters more than following an unproven restrictive diet. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Vomiting blood, black stools, difficulty swallowing, unexplained weight loss or persistent vomiting need prompt assessment. Sudden severe pain or collapse requires emergency care, not presumed indigestion."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira feels full after large lunches. She tries smaller portions and records symptoms before reviewing whether the change actually helps."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben develops swallowing difficulty despite an earlier functional diagnosis. He seeks reassessment rather than attributing every new symptom to the same condition."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

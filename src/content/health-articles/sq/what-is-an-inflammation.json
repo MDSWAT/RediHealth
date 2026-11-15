@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është inflamacioni?",
+  "intro": "Inflamacioni është reagimi i trupit ndaj lëndimit, infeksionit ose acarimit. Është një proces mbrojtës që ndihmon shërimin, por kur është i tepërt ose zgjat shumë mund të dëmtojë indet e të kontribuojë në shumë sëmundje. Të kuptuarit e tij ndihmon të shpjegohen simptoma si enjtja e ethet.",
+  "sections": [
+    {
+      "heading": "Inflamacioni akut",
+      "paragraphs": [
+        "Inflamacioni akut fillon shpejt e zgjat ditë. Enët e gjakut zgjerohen, më shumë gjak e lëng arrijnë në zonë, e qelizat e bardha vijnë për të luftuar mikrobet e pastruar indin e dëmtuar. Kjo prodhon shenjat klasike të skuqjes, nxehtësisë, enjtjes, dhimbjes e humbjes së funksionit, siç shihet në një prerje, përdredhje ose dhimbje fyti."
+      ]
+    },
+    {
+      "heading": "Inflamacioni kronik",
+      "paragraphs": [
+        "Kur shkaku vazhdon ose sistemi imunitar është i mbiaktiv, inflamacioni mund të vazhdojë muaj ose vite. Përfshihet në sëmundje si artriti reumatoid, sëmundja inflamatore e zorrëve, astma, psoriaza e, pjesërisht, sëmundja e zemrës e diabeti. Inflamacioni kronik mund të dëmtojë indet e shëndetshme e të shkaktojë lodhje e dhimbje."
+      ]
+    },
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Shkaqet përfshijnë infeksionin nga baktere ose viruse, lëndimin, djegiet, kimikatet, alergjitë, sëmundjen autoimune ku sistemi imunitar sulmon trupin, obezitetin, duhanin e stresin afatgjatë. Jo çdo inflamacion është infeksion, e nuk ka gjithmonë nevojë për antibiotikë."
+      ]
+    },
+    {
+      "heading": "Diagnoza e trajtimi",
+      "paragraphs": [
+        "Mjekët shohin simptomat, ekzaminojnë zonën e mund të përdorin analiza gjaku si proteina C-reaktive, skanime ose mostra indi. Trajtimi adreson shkakun. Pushimi, ftohja e qetësuesit antiinflamatorë si ibuprofeni mund t'i lehtësojnë simptomat akute, e steroidet ose barna të tjera modulues të imunitetit përdoren në sëmundje kronike. Kontrolloni me mjekun para se të merrni antiinflamatorë rregullisht."
+      ]
+    },
+    {
+      "heading": "Zakone të shëndetshme",
+      "paragraphs": [
+        "Një dietë e ekuilibruar e pasur me perime, fruta, drithëra të plota e peshk, stërvitja e rregullt, gjumi i mjaftueshëm, mospirja e duhanit, alkooli i kufizuar e një peshë e shëndetshme lidhen me nivele më të ulëta inflamacioni. Pohimet se dieta të veçanta antiinflamatore ose suplemente i shërojnë sëmundjet shpesh janë të ekzagjeruara."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Qetësimi i një përdredhjeje",
+      "text": "Imagjinoni që keni përdredhur kyçin. Mund ta pushoni, të vendosni një paketë të ftohtë të mbështjellë me pëlhurë e ta ngrini këmbën."
+    },
+    {
+      "title": "Shikimi te mjeku",
+      "text": "Supozoni që një nyje mbetet e enjtur për javë. Mund të caktoni një takim, pasi inflamacioni afatgjatë kërkon diagnozë të duhur."
+    }
+  ],
+  "questions": [
+    "Çfarë e shkakton inflamacionin?",
+    "Cili trajtim është më i sigurti për mua?",
+    "Cilat ndryshime të stilit të jetesës mund të ndihmojnë?"
+  ]
+}

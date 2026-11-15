@@ -1,0 +1,51 @@
+{
+  "title": "Systematic searches for evidence",
+  "intro": "To judge whether a treatment works, it is not enough to look at one study or at the studies that happen to be easy to find. A systematic search looks for all relevant research in a planned, repeatable way. Knowing how this works helps you understand why some summaries are more trustworthy than others.",
+  "sections": [
+    {
+      "heading": "Why searching systematically matters",
+      "paragraphs": [
+        "Studies with positive results are more likely to be published and noticed than those with negative results. A reviewer who chooses studies casually may end up with a biased picture. A systematic search aims to avoid this by identifying as much of the relevant evidence as possible, regardless of its results."
+      ]
+    },
+    {
+      "heading": "Planning the question",
+      "paragraphs": [
+        "The first step is a clear question, for example which people are of interest, which treatment is compared with what, and which outcomes matter. Researchers write down in advance which studies will be included and excluded, such as study type, population and time period, so that decisions are not influenced by the results."
+      ]
+    },
+    {
+      "heading": "Searching many sources",
+      "paragraphs": [
+        "Searchers use several databases of medical literature, combining many search terms and synonyms. They also check trial registries for unpublished or ongoing studies, reference lists of key articles, conference reports and contact experts or manufacturers. The search strategy is documented so that others can repeat it."
+      ]
+    },
+    {
+      "heading": "Selecting and checking studies",
+      "paragraphs": [
+        "Two people independently screen titles and abstracts, then full texts, against the inclusion criteria. Disagreements are resolved by discussion. The number of studies found and excluded, and reasons, are reported, often in a flow diagram. Then each included study is assessed for quality and risk of bias."
+      ]
+    },
+    {
+      "heading": "Limits and good practice",
+      "paragraphs": [
+        "No search finds everything, and some evidence stays unpublished. Good reviews are transparent about how they searched and where gaps remain. When you read a summary of research, look for a description of how studies were identified, the dates of the search, and whether the review is up to date."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Judging a review",
+      "text": "Imagine a health website claims that research proves a treatment works. You could check whether the claim is based on a systematic review and how studies were found."
+    },
+    {
+      "title": "Asking a doctor",
+      "text": "Suppose you read conflicting studies. You might ask your doctor whether a systematic review or guideline has summarised all the research on the question."
+    }
+  ],
+  "questions": [
+    "Is this claim based on all the relevant studies or only some?",
+    "Is there a recent systematic review on this question?",
+    "How up to date is this evidence?"
+  ]
+}

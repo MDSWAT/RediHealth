@@ -1,0 +1,51 @@
+{
+  "title": "Stenoza lumbare e shtyllës kurrizore",
+  "intro": "Stenoza lumbare e shtyllës kurrizore është një ngushtim i kanalit kurrizor në shpinën e poshtme që ushtron presion mbi nerva. Zakonisht prek të rritur të moshuar e shkakton dhimbje këmbe, ndjesi therëse ose dobësi kur qëndroni në këmbë ose ecni, që lehtësohet kur uleni ose përkuleni përpara. Shumë njerëz përmirësohen me ushtrime e kujdes konservativ dhe kirurgjia është opsion për raste të rënda.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Me moshën, disqet humbasin lartësi e fryhen, nyjet zmadhohen, ligamentet trashen e formohen gjemba kockorë. Së bashku këto ulin hapësirën për nervat. Lëndimi i mëparshëm, rrëshqitja e shtyllës e lindja me kanal të ngushtë kontribuojnë gjithashtu. Ndryshimet në skanime janë të zakonshme te njerëzit pa simptoma."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptoma karakteristike është dhimbja, pesha, mpirja ose dobësia në vithe e këmbë që vjen me ecjen ose qëndrimin e zgjatur në këmbë e lehtësohet me uljen, përkuljen përpara ose përkulje, për shembull duke u mbështetur te një karrocë pazari. Mund të ketë dhimbje shpine. Largësia e ecjes shkurtohet me kalimin e kohës."
+      ]
+    },
+    {
+      "heading": "Shenjat paralajmëruese",
+      "paragraphs": [
+        "Kërkoni ndihmë urgjente mjekësore për dobësi të papritur në këmbë, mpirje rreth organeve gjenitale ose vithe, ose humbje të kontrollit të fshikëzës a zorrëve, që mund të sinjalizojnë ngjeshje të rëndë të nervave që kërkon trajtim urgjent."
+      ]
+    },
+    {
+      "heading": "Trajtimi pa kirurgji",
+      "paragraphs": [
+        "Qëndrimi aktiv ka rëndësi. Fizioterapia me ushtrime fleksioni, shtrirje e forcim të muskujve të trungut e këmbëve, ndihmesat e ecjes e çiklizmi, që zakonisht është i rehatshëm sepse shtylla është e përkulur përpara, janë të dobishme. Qetësuesit mund t'i lehtësojnë simptomat. Injeksionet epidurale të kortikosteroideve mund të japin lehtësim të përkohshëm por përfitimet janë të kufizuara."
+      ]
+    },
+    {
+      "heading": "Kirurgjia",
+      "paragraphs": [
+        "Kirurgjia e dekompresionit heq kockën e indin që shtypin nervat, nganjëherë me bashkim të rruazave për paqëndrueshmëri. Tenton të përmirësojë dhimbjen e këmbës e largësinë e ecjes te njerëzit që nuk janë përmirësuar me trajtim konservativ, por ka rreziqe si infeksioni, lëndimi i nervit e kirurgjia e përsëritur e rezultatet ndryshojnë. Vendimi varet nga simptomat, aftësia për të ecur, gjendjet e tjera shëndetësore e preferenca."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përdorimi i karrocës së pazarit",
+      "text": "Imagjinoni që mund të ecni më gjatë kur mbështeteni te një karrocë. Mund t'ia përmendni mjekut, pasi ndihmon të karakterizohet problemi, e të pyesni për ndihmesa ecjeje ose ushtrime."
+    },
+    {
+      "title": "Peshimi i kirurgjisë",
+      "text": "Supozoni që mund të ecni vetëm pesëdhjetë metra para se dhimbja e këmbës t'ju detyrojë të ndaleni. Mund ta pyesni një kirurg të shtyllës për përfitimet, rreziqet e shërimin e t'i krahasoni me vazhdimin e ushtrimeve."
+    }
+  ],
+  "questions": [
+    "A shkaktohet dhimbja ime e këmbës nga stenoza e shtyllës?",
+    "Cilat ushtrime e trajtime duhet të provoj së pari?",
+    "Kur do të rekomandohej kirurgjia e cilat janë rreziqet?"
+  ]
+}

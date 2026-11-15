@@ -1,0 +1,51 @@
+{
+  "title": "Transplantul de celule stem pentru tratamentul cancerului",
+  "intro": "Transplantul de celule stem înlocuiește celulele producătoare de sânge bolnave sau deteriorate cu unele sănătoase. Se folosește mai ales pentru cancerele de sânge precum leucemia, limfomul și mielomul. Poate fi curativ, dar este un tratament intensiv, cu riscuri semnificative, așa că deciziile se iau împreună cu o echipă specializată.",
+  "sections": [
+    {
+      "heading": "Ce fac celulele stem",
+      "paragraphs": [
+        "Celulele stem din sânge, din măduva osoasă, produc globule roșii, globule albe și trombocite. Chimioterapia sau radioterapia în doze mari pot distruge celulele canceroase, dar deteriorează și măduva, așa că celulele stem se administrează după aceea pentru a reface formarea sângelui."
+      ]
+    },
+    {
+      "heading": "Tipuri de transplant",
+      "paragraphs": [
+        "Într-un transplant autolog, celulele stem ale pacientului sunt recoltate dinainte, păstrate și returnate după tratamentul în doze mari. Într-un transplant alogenic, celulele provin de la un donator, ideal un frate sau o soră foarte compatibil, un donator necorelat compatibil, o rudă parțial compatibilă sau sânge din cordonul ombilical. Celulele donatorului pot ataca și celulele canceroase rămase, un efect numit grefă contra leucemie."
+      ]
+    },
+    {
+      "heading": "Procesul",
+      "paragraphs": [
+        "Tratamentul începe cu teste și, pentru donatori, cu recoltarea celulelor din sânge după ce un medicament stimulează eliberarea lor sau din măduva osoasă, sub anestezie. Pacientul primește tratament de condiționare, apoi celulele prin perfuzie într-o venă. Numărul de celule din sânge scade și apoi își revine în câteva săptămâni. Internările pot dura câteva săptămâni, în condiții de protecție, urmate de luni de recuperare."
+      ]
+    },
+    {
+      "heading": "Riscuri",
+      "paragraphs": [
+        "Riscurile includ infecțiile, sângerarea, anemia, aftele în gură, greața, afectarea organelor și infertilitatea. După transplanturile alogenice, boala grefă contra gazdă apare când celulele donatorului atacă țesuturile pacientului, afectând pielea, intestinul, ficatul și altele, și poate fi acută sau cronică. Medicamentele care suprimă imunitatea o reduc, dar cresc riscul de infecții. Cancerul poate, de asemenea, să revină."
+      ]
+    },
+    {
+      "heading": "După transplant",
+      "paragraphs": [
+        "Urmărirea regulată monitorizează numărul de celule din sânge, infecțiile, funcția organelor și complicațiile cronice. Vaccinările trebuie repetate, iar sistemul imunitar are nevoie de până la un an sau mai mult pentru a-și reveni. Păstrarea fertilității trebuie discutată înainte de tratament. Sprijinul emoțional, recuperarea și îngrijirea psihosocială ajută pacienții și familiile să facă față."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Luarea în considerare a unui donator",
+      "text": "Imaginați-vă că medicul vă sugerează un transplant alogenic. Ați putea întreba cum se găsește un donator, ce implică procesul de compatibilizare și care sunt șansele de succes."
+    },
+    {
+      "title": "Pregătirea pentru internare",
+      "text": "Presupuneți că veți fi internat câteva săptămâni. Ați putea planifica vizitele și activitățile și ați putea întreba echipa despre măsurile de precauție împotriva infecțiilor și serviciile de sprijin."
+    }
+  ],
+  "questions": [
+    "Este un transplant de celule stem potrivit pentru boala mea și care sunt șansele de succes?",
+    "Care sunt principalele riscuri și cât va dura recuperarea?",
+    "Cum ar putea tratamentul să-mi afecteze fertilitatea și sănătatea pe termen lung?"
+  ]
+}

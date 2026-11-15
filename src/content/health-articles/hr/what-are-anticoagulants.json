@@ -1,0 +1,51 @@
+{
+  "title": "Što su antikoagulansi?",
+  "intro": "Antikoagulansi, često zvani lijekovi za razrjeđivanje krvi, lijekovi su zbog kojih se krv teže zgrušava. Sprječavaju štetne ugruške koji mogu uzrokovati moždane udare, srčane udare i ugruške u plućima te liječe postojeće ugruške. Zapravo ne razrjeđuju krv niti otapaju ugruške i nose rizik od krvarenja.",
+  "sections": [
+    {
+      "heading": "Kako djeluju",
+      "paragraphs": [
+        "Zgrušavanje krvi uključuje lanac bjelančevina u krvi. Antikoagulansi blokiraju korake u tom lancu pa se ugrušci sporije stvaraju. To pomaže spriječiti nove ugruške i zaustavlja rast postojećih, dajući tijelu vremena da ih samo razgradi. Razlikuju se od antitrombocitnih lijekova poput aspirina, koji sprječavaju slijepljivanje trombocita."
+      ]
+    },
+    {
+      "heading": "Vrste",
+      "paragraphs": [
+        "Antagonisti vitamina K poput varfarina koriste se desetljećima i zahtijevaju redovite krvne pretrage vremena zgrušavanja te pozornost na prehranu i interakcije. Izravni oralni antikoagulansi, kao što su apiksaban, rivaroksaban, edoksaban i dabigatran, uzimaju se u fiksnim dozama i trebaju manje praćenja. Heparini se daju injekcijom, često u bolnici ili kratkotrajno kod kuće."
+      ]
+    },
+    {
+      "heading": "Zašto se koriste",
+      "paragraphs": [
+        "Česte uporabe uključuju fibrilaciju atrija radi sprječavanja moždanog udara, liječenje i prevenciju duboke venske tromboze i plućne embolije, mehaničke srčane zaliske i sprječavanje ugrušaka nakon nekih operacija. Trajanje ovisi o razlogu, od tjedana do doživotno."
+      ]
+    },
+    {
+      "heading": "Rizici i nuspojave",
+      "paragraphs": [
+        "Glavni rizik je krvarenje, koje može biti od krvarenja iz nosa i lakog stvaranja modrica do ozbiljnog unutarnjeg krvarenja. Znakovi upozorenja uključuju crnu ili krvavu stolicu, povraćanje krvi, jaku glavobolju, krv u mokraći, obilno ili produljeno krvarenje i krvarenje nakon pada ili ozljede glave, što zahtijeva hitnu skrb. Liječnici vagaju rizik od ugrušaka naspram krvarenja i redovito pregledavaju liječenje."
+      ]
+    },
+    {
+      "heading": "Sigurna uporaba",
+      "paragraphs": [
+        "Uzimajte lijek svaki dan u isto vrijeme i ne preskačite niti udvostručujte doze. Ne prekidajte bez savjeta jer raste rizik od ugrušaka. Recite svim zdravstvenim djelatnicima, stomatolozima i ljekarnicima da uzimate antikoagulanse i nosite karticu. Provjerite kod ljekarnika prije uporabe lijekova protiv bolova poput ibuprofena i dodataka prehrani. Budite oprezni s alkoholom i pazite da izbjegnete ozljede."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za stomatološko liječenje",
+      "text": "Zamislite da uzimate lijek za razrjeđivanje krvi i trebate izvaditi zub. Mogli biste reći stomatologu i pitati liječnika treba li promijeniti dozu."
+    },
+    {
+      "title": "Postupanje s propuštenom dozom",
+      "text": "Pretpostavite da zaboravite dozu. Mogli biste pročitati uputu ili nazvati ljekarnika za pravilo za vaš lijek i nikada ne udvostručiti sljedeću dozu."
+    }
+  ],
+  "questions": [
+    "Koji je antikoagulans najbolji za mene i koliko dugo?",
+    "Kako mogu smanjiti rizik od krvarenja?",
+    "Koje lijekove i hranu trebam izbjegavati?"
+  ]
+}

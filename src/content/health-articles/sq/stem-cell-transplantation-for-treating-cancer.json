@@ -1,0 +1,51 @@
+{
+  "title": "Transplantimi i qelizave staminale për trajtimin e kancerit",
+  "intro": "Transplantimi i qelizave staminale i zëvendëson qelizat e sëmura ose të dëmtuara që formojnë gjak me të shëndetshme. Përdoret kryesisht për kancere të gjakut si leuçemia, limfoma e mieloma. Mund të jetë shërues por është trajtim intensiv me rreziqe të rëndësishme, prandaj vendimet merren së bashku me një ekip të specializuar.",
+  "sections": [
+    {
+      "heading": "Çfarë bëjnë qelizat staminale",
+      "paragraphs": [
+        "Qelizat staminale të gjakut në palcën e kockave prodhojnë qeliza të kuqe, të bardha e trombocite. Kimioterapia ose rrezatimi në doza të larta mund t'i shkatërrojë qelizat e kancerit por e dëmton edhe palcën, prandaj qelizat staminale jepen pas për të rikthyer formimin e gjakut."
+      ]
+    },
+    {
+      "heading": "Llojet e transplantit",
+      "paragraphs": [
+        "Në një transplant autolog, qelizat staminale të vetë pacientit mblidhen paraprakisht, ruhen e kthehen pas trajtimit me dozë të lartë. Në një transplant alogjenik, qelizat vijnë nga një dhurues, në mënyrë ideale një vëlla a motër shumë i përputhshëm, një dhurues i pa lidhur i përputhur, ose një i afërm pjesërisht i përputhur ose gjak kordoni. Qelizat e dhuruesit mund të sulmojnë edhe qelizat e mbetura të kancerit, efekt i quajtur transplant-kundër-leuçemisë."
+      ]
+    },
+    {
+      "heading": "Procesi",
+      "paragraphs": [
+        "Trajtimi fillon me teste e, për dhuruesit, mbledhje të qelizave nga gjaku pasi një ilaç stimulon çlirimin e tyre, ose nga palca e kockave nën anestezi. Pacienti merr trajtim kondicionimi, pastaj qelizat me infuzion përmes një vene. Numërimet e gjakut bien e pastaj rikuperohen gjatë javësh. Qëndrimet në spital mund të zgjasin disa javë, në kushte mbrojtëse, e pasohen nga muaj rikuperimi."
+      ]
+    },
+    {
+      "heading": "Rreziqet",
+      "paragraphs": [
+        "Rreziqet përfshijnë infeksione, gjakderdhje, anemi, plagë në gojë, të përziera, dëmtim organesh e infertilitet. Pas transplanteve alogjenike, sëmundja transplant-kundër-pritësit ndodh kur qelizat e dhuruesit sulmojnë indet e pacientit, duke prekur lëkurën, zorrët, mëlçinë e të tjera, e mund të jetë akute ose kronike. Barnat që shtypin imunitetin e ulin por e rrisin rrezikun e infeksionit. Kanceri mund të kthehet gjithashtu."
+      ]
+    },
+    {
+      "heading": "Pas transplantimit",
+      "paragraphs": [
+        "Ndjekja e rregullt monitoron numërimet e gjakut, infeksionet, funksionin e organeve e komplikimet kronike. Vaksinimet duhet të përsëriten e sistemi imunitar kërkon deri në një vit ose më shumë për t'u rikuperuar. Ruajtja e pjellorisë duhet të diskutohet para trajtimit. Mbështetja emocionale, rehabilitimi e kujdesi psikosocial ndihmojnë pacientët e familjet të përballojnë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Të menduarit për një dhurues",
+      "text": "Imagjinoni që mjeku sugjeron një transplant alogjenik. Mund të pyesni si gjendet një dhurues, çfarë përfshin procesi i përputhjes e cilat janë gjasat e suksesit."
+    },
+    {
+      "title": "Përgatitja për qëndrimin në spital",
+      "text": "Supozoni që do të shtroheni në spital për disa javë. Mund të planifikoni vizita, aktivitete e të pyesni ekipin për masat kundër infeksionit e shërbimet e mbështetjes."
+    }
+  ],
+  "questions": [
+    "A është një transplant qelizash staminale i duhuri për sëmundjen time e cilat janë gjasat e suksesit?",
+    "Cilat janë rreziqet kryesore e sa kohë do të zgjasë rikuperimi?",
+    "Si mund ta ndikojë trajtimi pjellorinë e shëndetin tim afatgjatë?"
+  ]
+}

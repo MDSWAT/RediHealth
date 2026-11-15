@@ -1,0 +1,51 @@
+{
+  "title": "Durerea de gât",
+  "intro": "Durerea de gât este frecventă și este de obicei provocată de încordarea sau rigiditatea musculară din cauza posturii, a poziției de somn sau a unei mișcări bruște. În general se ameliorează în câteva săptămâni. Rămânerea activ, exercițiile blânde și calmarea pe termen scurt a durerii sunt pilonii îngrijirii, în timp ce cauzele grave sunt rare.",
+  "sections": [
+    {
+      "heading": "Cauze frecvente",
+      "paragraphs": [
+        "Sunt tipice tensiunea musculară din statul prelungit pe scaun, postura proastă, folosirea telefonului și a calculatorului, stresul, somnul într-o poziție incomodă, leziunile ușoare tip bici și uzura articulațiilor gâtului legată de vârstă. Constatările de uzură la scanări sunt foarte frecvente chiar și la persoane fără durere și adesea nu explică simptomele."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Durerea de gât poate include rigiditate, durere la mișcare, dureri de cap care încep la baza craniului și sensibilitate în umeri. Durerea, furnicăturile sau slăbiciunea care se extind într-un braț sugerează că o rădăcină nervoasă poate fi iritată, de exemplu de un disc."
+      ]
+    },
+    {
+      "heading": "Îngrijire de sine",
+      "paragraphs": [
+        "Continuați să vă mișcați blând și evitați repausul prelungit la pat sau gulerele cervicale. Căldura poate relaxa mușchii și pot fi folosite calmante simple. Așezați ecranul la nivelul ochilor, faceți pauze regulate de mișcare și folosiți o pernă care susține gâtul. Întinderile blânde ale gâtului și exercițiile pentru umeri ajută."
+      ]
+    },
+    {
+      "heading": "Tratament de specialitate",
+      "paragraphs": [
+        "Dacă durerea persistă, kinetoterapia, programele de exerciții și terapia manuală pot oferi alinare. Injecțiile și chirurgia sunt rar necesare și se iau în considerare pentru compresia severă a nervilor. Gestionarea stresului și relaxarea ajută când tensiunea contribuie."
+      ]
+    },
+    {
+      "heading": "Semne de alarmă",
+      "paragraphs": [
+        "Cereți ajutor urgent pentru durerea de gât după o leziune importantă, cu febră și ceafă înțepenită, durere de cap severă, slăbiciune la brațe sau la picioare, dificultăți la mers, schimbări ale vezicii sau ale intestinului sau durere în piept. Acestea pot indica afecțiuni grave."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ajustarea unui birou",
+      "text": "Imaginați-vă că lucrați toată ziua la un laptop. Ați putea ridica ecranul cu un suport, folosi o tastatură externă și vă ridica în picioare în fiecare oră pentru mișcare."
+    },
+    {
+      "title": "Urmărirea ameliorării",
+      "text": "Presupuneți că gâtul vă este rigid de două săptămâni. Ați putea nota ce mișcări dor, ați putea începe exerciții blânde de mobilitate și ați putea merge la medic dacă apare slăbiciune la braț."
+    }
+  ],
+  "questions": [
+    "Este necesară o scanare sau este mai bine să tratăm fără imagistică?",
+    "Ce exerciții și schimbări de postură mă vor ajuta?",
+    "Ce simptome înseamnă că trebuie să revin urgent?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Oreionul",
+  "intro": "Oreionul este o boală virală contagioasă care provoacă, în forma clasică, umflarea dureroasă a glandelor salivare din fața urechilor. Se răspândește prin tuse, strănut și contact. Astăzi este rar în locurile cu rate mari de vaccinare, dar apar totuși focare. Vaccinul administrat în copilărie este o protecție eficientă.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "După o perioadă de incubație de aproximativ două-trei săptămâni, apar febră, dureri de cap, dureri musculare, oboseală și umflarea și durerea unuia sau ambilor obraji. Mestecatul și înghițitul pot durea. Până la o treime dintre persoane au puține simptome sau niciunul, dar pot totuși răspândi virusul."
+      ]
+    },
+    {
+      "heading": "Complicații",
+      "paragraphs": [
+        "Complicațiile sunt rare, dar pot fi grave. La adolescenții și bărbații adulți, testiculele pot deveni dureroase și umflate. La femei, ovarele se pot inflama. Alte complicații includ meningita, pancreatita și pierderea auzului, care poate fi permanentă. Problemele de fertilitate sunt rare."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament",
+      "paragraphs": [
+        "Diagnosticul se pune de obicei după simptome și este confirmat cu un frotiu sau o analiză de sânge, mai ales în focare. Nu există un tratament antiviral specific. Ajută repausul, lichidele, alimentele moi, calmarea durerii și a febrei cu paracetamol sau ibuprofen și compresele reci sau calde. Evitați băuturile acide, care stimulează saliva și cresc durerea. Cereți sfatul medicului pentru durere de cap severă, ceafă înțepenită, dureri abdominale sau dureri testiculare."
+      ]
+    },
+    {
+      "heading": "Prevenirea răspândirii",
+      "paragraphs": [
+        "Persoanele sunt contagioase de la câteva zile înainte de umflare până la aproximativ cinci zile după apariția ei. Ele trebuie să stea departe de școală sau de serviciu în acest timp, să-și acopere gura când tușesc și să se spele pe mâini. Spuneți medicului înainte de vizită, pentru a se putea lua măsuri de precauție. Contacții cu statut de vaccinare necunoscut trebuie să-și verifice înregistrările."
+      ]
+    },
+    {
+      "heading": "Vaccinarea",
+      "paragraphs": [
+        "Vaccinul combinat împotriva rujeolei, oreionului și rubeolei se administrează în două doze în copilărie și protejează marea majoritate a persoanelor. Imunitatea poate scădea în timp, ceea ce explică cazurile ocazionale la persoane vaccinate, în general cu o boală mai ușoară. Adulții născuți mai târziu și nevaccinați sau cu evidențe incerte trebuie să întrebe despre vaccinarea de recuperare, iar femeile însărcinate nu trebuie vaccinate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Verificarea carnetului de vaccinări",
+      "text": "Imaginați-vă că copilul dumneavoastră face oreion la școală. Ați putea verifica carnetele de vaccinare ale dumneavoastră și ale celorlalți copii și ați putea întreba medicul dacă sunt recomandate doze suplimentare."
+    },
+    {
+      "title": "Rămânerea acasă",
+      "text": "Presupuneți că vi se umflă obrajii și aveți febră. Ați putea suna la cabinet înainte de vizită, ați putea sta acasă aproximativ cinci zile și ați putea bea lichide, urmărind apariția durerii severe."
+    }
+  ],
+  "questions": [
+    "Am făcut eu și familia mea schema completă de vaccinare ROR?",
+    "Cât timp trebuie să stau acasă și ce simptome înseamnă că trebuie să cer îngrijiri urgente?",
+    "Sunt probabile complicații în situația mea?"
+  ]
+}

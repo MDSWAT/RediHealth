@@ -1,0 +1,51 @@
+{
+  "title": "Il secondo passo: valutare le informazioni sulla salute",
+  "intro": "Trovare le informazioni è solo metà del compito. Il secondo passo è giudicare se sono affidabili, pertinenti e applicabili a te. Poche domande semplici possono aiutarti a separare i consigli attendibili da marketing, opinioni o affermazioni superate.",
+  "sections": [
+    {
+      "heading": "Chi c'è dietro le informazioni",
+      "paragraphs": [
+        "Controlla chi ha scritto il testo, quali sono le sue qualifiche e chi finanzia la fonte. I fornitori affidabili indicano i propri autori e spiegano come lavorano. Fai attenzione alle pagine gestite da aziende che vendono trattamenti o prodotti legati all'argomento e ai post anonimi."
+      ]
+    },
+    {
+      "heading": "Quali prove vengono usate",
+      "paragraphs": [
+        "Cerca riferimenti a ricerche come revisioni sistematiche, studi clinici o linee guida, invece di aneddoti o di un singolo studio. Il testo distingue tra affermazioni provate e incerte? Le informazioni sui trattamenti dovrebbero descrivere benefici e rischi, alternative e la possibilità di non fare nulla. Le affermazioni di assenza di effetti collaterali sono un segnale d'allarme."
+      ]
+    },
+    {
+      "heading": "Come sono presentati i numeri",
+      "paragraphs": [
+        "Cifre relative come dimezzare il rischio possono suonare impressionanti ma fuorviano se il rischio di partenza è piccolo. I numeri assoluti, come quante persone su cento ne traggono beneficio, sono più chiari. Controlla se i risultati vengono da persone come te e se gli esiti contano nella vita quotidiana o sono solo valori di laboratorio."
+      ]
+    },
+    {
+      "heading": "Quanto sono attuali",
+      "paragraphs": [
+        "Le conoscenze mediche cambiano, quindi cerca una data e segni di aggiornamenti regolari. Informazioni vecchie possono raccomandare trattamenti ora abbandonati o trascurare opzioni più recenti. Controlla se le informazioni valgono per il tuo paese, perché i sistemi sanitari e le raccomandazioni variano."
+      ]
+    },
+    {
+      "heading": "Farne uso",
+      "paragraphs": [
+        "Confronta più fonti affidabili. Se i consigli sono in conflitto, chiedi al medico quale vale per la tua situazione. Usa le informazioni per preparare domande, non per autodiagnosticarti o sospendere una terapia. Fidati delle tue preoccupazioni e cerca sostegno se le informazioni ti sopraffanno."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mettere alla prova un'affermazione",
+      "text": "Immagina che una pagina dica che un integratore dimezza il rischio di ammalarsi. Potresti chiedere quante persone hanno partecipato, quale è stata la variazione assoluta del rischio e chi ha finanziato la ricerca."
+    },
+    {
+      "title": "Confrontare le fonti",
+      "text": "Supponi che due siti diano consigli diversi. Potresti controllarne date e fonti e chiedere al medico quale sia più adatto a te."
+    }
+  ],
+  "questions": [
+    "Quanto sono affidabili queste informazioni per la mia situazione?",
+    "Quali sono i benefici e i rischi assoluti?",
+    "Esistono prove più recenti o una linea guida che dovrei conoscere?"
+  ]
+}

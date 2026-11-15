@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh nëse merrni pneumoni në spital?",
+  "intro": "Pneumonia e fituar në spital është një infeksion i mushkërive që fillon të paktën dy ditë pas pranimit. Mund të jetë më e rëndë se pneumonia e kapur në shtëpi sepse mikrobet e spitalit shpesh janë rezistente ndaj disa antibiotikëve e pacientët mund të jenë tashmë të dobët. Parandalimi e trajtimi i hershëm janë të rëndësishëm.",
+  "sections": [
+    {
+      "heading": "Pse ndodh",
+      "paragraphs": [
+        "Pacientët janë në rrezik më të lartë nëse janë më të moshuar, kanë sëmundje kronike të mushkërive ose zemrës, janë me ventilator, nuk mund të kollen mirë pas kirurgjisë, kanë probleme gëlltitjeje ose kanë imunitet të dobët. Bakteret nga goja ose stomaku mund të thithen në mushkëri, e disa baktere spitalore i rezistojnë antibiotikëve të zakonshëm."
+      ]
+    },
+    {
+      "heading": "Shenjat",
+      "paragraphs": [
+        "Ethe, kollë e re ose më e keqe, gëlbazë e trashë ose me ngjyrë, gulçim, dhimbje gjoksi, konfuzion e një ritëm më i shpejtë frymëmarrjeje. Te të moshuarit, konfuzioni ose lodhja mund të jenë shenjat e para. Tregojini menjëherë stafit nëse ju ose një anëtar i familjes i zhvilloni këto."
+      ]
+    },
+    {
+      "heading": "Diagnoza e trajtimi",
+      "paragraphs": [
+        "Mjekët ekzaminojnë gjoksin, bëjnë rreze X të gjoksit, analiza gjaku e marrin mostra të gëlbazës. Trajtimi bëhet me antibiotikë, shpesh të dhënë me pika në fillim e të zgjedhur për të mbuluar bakteret rezistente, pastaj të rregulluar sipas rezultateve të testeve. Mund të nevojiten oksigjen, lëngje, fizioterapi e në raste të rënda terapi intensive ose ventilim."
+      ]
+    },
+    {
+      "heading": "Rikuperimi",
+      "paragraphs": [
+        "Shumë njerëz shërohen brenda një deri dy javësh, por pacientët më të moshuar ose më të dobët mund të kenë nevojë për më shumë, e qëndrimi në spital mund të zgjatet. Ushtrimet e frymëmarrjes, ngritja nga shtrati e ushqyerja e mirë ndihmojnë. Disa njerëz ndihen të lodhur për javë pas tij, e mund të rekomandohet një rreze X vijuese e gjoksit."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Spitalet e parandalojnë pneumoninë me higjienë të duarve, kujdes të gojës, uljen e pacientëve drejt, nxitjen e lëvizjes e frymëmarrjes së thellë pas kirurgjisë e përdorimin e kujdesshëm të ventilatorëve e qetësuesve. Pacientët mund të ndihmojnë duke larë dhëmbët, duke lënë duhanin para kirurgjisë, duke pyetur stafin për higjienën e duke lëvizur sa më shpejt që lejohet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Bërja e ushtrimeve të frymëmarrjes",
+      "text": "Imagjinoni që keni pasur kirurgji barku. Mund të merrni frymë thellë, të kolliteni butësisht duke mbështetur plagën e të uleni rregullisht."
+    },
+    {
+      "title": "Ngritja e një shqetësimi",
+      "text": "Supozoni që i afërmi juaj hutohet e merr frymë me vështirësi. Mund t'ia thoni menjëherë infermieres e të kërkoni një vizitë mjekësore."
+    }
+  ],
+  "questions": [
+    "Çfarë e shkaktoi pneumoninë time e cilët antibiotikë po përdoren?",
+    "Sa kohë do të duhet të qëndroj e të rikuperohem?",
+    "Çfarë mund të bëj për ta parandaluar rikthimin?"
+  ]
+}

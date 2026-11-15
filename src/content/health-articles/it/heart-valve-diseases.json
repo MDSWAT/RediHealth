@@ -1,0 +1,51 @@
+{
+  "title": "Malattie valvolari: controlli e trattamento",
+  "intro": "Le valvole mantengono il sangue nella giusta direzione. Una valvola stretta ostacola il flusso, una insufficiente permette reflusso. La gravità varia: un soffio da solo non stabilisce la necessità di intervento.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Possono comparire affanno, minore tolleranza allo sforzo, stanchezza, gonfiore o svenimenti. Alcuni problemi gravi iniziano senza sintomi: contano sintomi e immagini, non aspettare dolore evidente."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "L’ecocardiogramma valuta struttura, flusso e risposta cardiaca. Chiedere valvola interessata, gravità e prossimo controllo. Segnalare cambiamenti nel camminare o salire scale. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Alcuni necessitano solo osservazione; i farmaci alleviano sintomi associati ma non riparano affidabilmente una valvola danneggiata meccanicamente. Riparazione, sostituzione o catetere si scelgono per anatomia, gravità, rischio e priorità. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Curare l’igiene dentale e riferire malattia o protesi ai curanti. Antibiotici prima del dentista servono solo in casi selezionati ad alto rischio secondo consiglio professionale. Il tipo di protesi influenza anticoagulazione e controlli. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Nuovo affanno, svenimenti sotto sforzo o più gonfiore richiedono controllo rapido. Forte dolore toracico, grave affanno o collasso sono emergenze. Febbre persistente inspiegata dopo sostituzione necessita valutazione per infezione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha un problema moderato senza sintomi. Mantiene gli esami e segnala minore autonomia nel cammino senza aspettare il prossimo controllo."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben discute protesi biologica e meccanica, inclusi controlli e anticoagulanti, prima del consenso."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

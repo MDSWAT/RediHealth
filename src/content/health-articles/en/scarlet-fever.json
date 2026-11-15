@@ -1,0 +1,51 @@
+{
+  "title": "Scarlet fever",
+  "intro": "Scarlet fever is a bacterial infection that accompanies a streptococcal throat infection and causes a typical rash. It is mostly seen in children aged five to fifteen. It is treated with antibiotics, which shorten the illness, reduce spread and lower the risk of complications.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Symptoms begin with sore throat, fever, headache, nausea and swollen glands. Within a day or two, a fine red rash like sandpaper appears on the chest and spreads, sparing the area around the mouth. The tongue turns red with a strawberry-like appearance, and later skin may peel on fingers and toes."
+      ]
+    },
+    {
+      "heading": "How it spreads",
+      "paragraphs": [
+        "The bacteria, group A streptococci, spread through droplets and close contact. People remain contagious until they have taken antibiotics for about a day. Children should stay home until at least a day after starting antibiotics and feeling well enough. Hand washing and not sharing cups reduce spread."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Doctors diagnose scarlet fever from the symptoms and a throat swab with a rapid test or culture. Confirming the diagnosis is important because other conditions can cause a similar rash."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Penicillin or related antibiotics are taken for about ten days, though shorter courses with some other antibiotics are used. Complete the course even if the child feels better, to prevent complications. Paracetamol or ibuprofen reduces fever and pain, and plenty of fluids and soft foods ease swallowing."
+      ]
+    },
+    {
+      "heading": "Complications",
+      "paragraphs": [
+        "Rarely, untreated infection can cause rheumatic fever, which can damage the heart, as well as kidney inflammation, abscesses or ear and sinus infections. Seek help if your child has persistent fever, severe throat pain, trouble swallowing, joint pain, dark urine or swelling after apparent recovery."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Keeping siblings safe",
+      "text": "Imagine your child has been diagnosed with scarlet fever. You could use separate cups and towels, wash hands often and tell school about the diagnosis."
+    },
+    {
+      "title": "Finishing the antibiotics",
+      "text": "Suppose your child feels well after four days. You might continue the antibiotic until the whole course is finished as the doctor prescribed."
+    }
+  ],
+  "questions": [
+    "Does my child need antibiotics, and for how long?",
+    "When can they return to nursery or school?",
+    "Which signs would suggest a complication?"
+  ]
+}

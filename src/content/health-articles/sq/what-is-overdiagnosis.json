@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është mbidiagnostikimi?",
+  "intro": "Mbidiagnostikimi do të thotë gjetja e një gjendjeje që nuk do të kishte shkaktuar kurrë simptoma ose dëm gjatë jetës së një personi, e pastaj trajtimi i saj. Ndodh kur testet zbulojnë anomali reale që nuk janë të rrezikshme. Mund të çojë në shqetësim, trajtim e efekte anësore të panevojshme, prandaj është e rëndësishme ta dini.",
+  "sections": [
+    {
+      "heading": "Si ndodh",
+      "paragraphs": [
+        "Testet më të ndjeshme, si skanimet e skriningu, gjejnë shumë anomali të vogla. Disa kancere rriten aq ngadalë ose aspak, e disa njerëz vdesin nga shkaqe të tjera para se gjendja të kishte rëndësi. Mjekët nuk mund të dallojnë gjithmonë cilat anomali do të shkaktojnë dëm, prandaj shumë trajtohen për siguri. Zgjerimi i përkufizimit të një sëmundjeje krijon gjithashtu më shumë diagnoza."
+      ]
+    },
+    {
+      "heading": "Shembuj",
+      "paragraphs": [
+        "Mbidiagnostikimi njihet në disa kancere të gjetura nga skriningu, si disa kancere të gjirit, prostatës e tiroides, e në gjendje ku pragjet janë ulur, si tensioni kufitar ose prediabeti. Gjetjet rastësore në skanime, si nyjet e vogla të tiroides, janë të zakonshme e zakonisht të padëmshme."
+      ]
+    },
+    {
+      "heading": "Dëmet e përfitimet",
+      "paragraphs": [
+        "Njerëzit e mbidiagnostikuar mund të vuajnë ankth, etiketim, teste shtesë, operacione, rrezatim ose bar me efekte anësore, pa përfitim. Testet e skriningu prapë shpëtojnë jetë për shumë, prandaj pyetja është ekuilibri. Dëmi i mbidiagnostikimit është i vështirë për t'u matur sepse nuk shihet në një rast individual."
+      ]
+    },
+    {
+      "heading": "Çfarë mund të bëni",
+      "paragraphs": [
+        "Pyesni nëse një test nevojitet vërtet, çfarë mund të ndodhë me rezultatet e cilat janë mundësitë nëse gjendet diçka, përfshirë vëzhgimin e kujdesshëm. Për disa gjetje, mbikëqyrja aktive me kontrolle të rregullta është alternativë e sigurt ndaj trajtimit të menjëhershëm. Të kuptuarit e numrave ju ndihmon të vendosni."
+      ]
+    },
+    {
+      "heading": "Marrja në konsideratë e skriningut",
+      "paragraphs": [
+        "Para skriningut, mendoni për përfitime si zbulimi më i hershëm, e disavantazhe si alarmet e rreme e mbidiagnostikimi. Fletushkat zyrtare të informacionit i paraqesin këto pika. Jeni të lirë të vendosni nëse do të merrni pjesë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Peshimi i një testi",
+      "text": "Imagjinoni që ju ofrohet një test skriningu. Mund të pyesni sa njerëz përfitojnë e sa mbidiagnostikohen."
+    },
+    {
+      "title": "Marrja në konsideratë e pritjes vigjilente",
+      "text": "Supozoni që një skanim gjen një nyje të vogël. Mund të pyesni nëse mund të monitorohet në vend që të hiqet."
+    }
+  ],
+  "questions": [
+    "A më nevojitet ky test e çfarë do të bëjmë me rezultatin?",
+    "A është monitorimi i kujdesshëm alternativë e sigurt ndaj trajtimit?",
+    "Cilat janë dëmet e mundshme të skriningut?"
+  ]
+}

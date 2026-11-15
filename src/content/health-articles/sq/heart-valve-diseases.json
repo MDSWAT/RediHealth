@@ -1,0 +1,51 @@
+{
+  "title": "Sëmundjet valvulare: monitorimi dhe trajtimi",
+  "intro": "Valvulat mbajnë gjakun në drejtimin e duhur. Ngushtimi pengon rrjedhën, ndërsa rrjedhja lejon kthimin. Shkalla ndryshon; vetëm zhurma e zemrës nuk tregon nevojën e procedurës.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Mund të shfaqen mungesë ajri, tolerancë e ulët ndaj aktivitetit, lodhje, ënjtje ose të fikët. Disa probleme të rënda fillojnë në heshtje; simptomat dhe imazheria vlejnë, jo pritja e dhimbjes."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Ekografia shqyrton strukturën, rrjedhën dhe përgjigjen e zemrës. Pyesni valvulën, shkallën dhe kur përsëritet. Raportoni ndryshime në ecje ose shkallë. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Disa duan vetëm ndjekje; ilaçet lehtësojnë shenjat shoqëruese por nuk riparojnë me siguri dëmtimin mekanik. Riparimi, zëvendësimi ose kateteri zgjidhen sipas anatomisë, rëndesës, rrezikut dhe prioriteteve. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Mbani higjienën dentare dhe tregoni valvulën e sëmurë ose artificiale. Antibiotikët para dentistit duhen vetëm në raste të zgjedhura me rrezik të lartë sipas profesionistit. Lloji i protezës ndikon antikoagulimin dhe ndjekjen. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Mungesa e re e ajrit, të fikëtit në aktivitet ose ënjtja në rritje duan kontroll shpejt. Dhimbja e fortë e gjoksit, frymëmarrja shumë e vështirë ose kolapsi janë urgjencë. Ethet e pashpjeguara pas zëvendësimit duan vlerësim infeksioni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka problem mesatar pa simptoma. Mban ekografitë dhe raporton ecje më të vështirë pa pritur takimin tjetër."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni diskuton protezën biologjike dhe mekanike, përfshirë monitorimin dhe holluesit e gjakut, para pëlqimit."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

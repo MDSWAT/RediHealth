@@ -1,0 +1,51 @@
+{
+  "title": "Wrist injuries",
+  "intro": "The wrist is a complex joint made of many small bones, ligaments and tendons, and it is often injured by falls, sports or repetitive use. Injuries range from sprains to fractures. Early assessment and the right treatment help to prevent lasting stiffness or weakness.",
+  "sections": [
+    {
+      "heading": "Common injuries",
+      "paragraphs": [
+        "A fall onto an outstretched hand can break the radius, the large forearm bone near the wrist, or the small scaphoid bone, or sprain ligaments. Other problems include tendon injuries, tendinitis, ganglion cysts, carpal tunnel syndrome and overuse injuries from repetitive work, sport or phone use."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Pain, swelling, bruising, tenderness, difficulty moving or gripping and a visible deformity after a fall suggest a fracture. Pain at the base of the thumb after a fall can indicate a scaphoid fracture, which is easily missed on first X-rays and may need repeat imaging or an MRI scan. Numbness, tingling or a cold hand needs urgent attention."
+      ]
+    },
+    {
+      "heading": "Diagnosis and treatment",
+      "paragraphs": [
+        "The doctor examines the wrist and arranges X-rays, and sometimes a scan. Minor sprains are treated with rest, ice, compression, elevation and a splint. Fractures are put in a cast or splint, and displaced ones may need to be realigned or fixed with surgery using plates or wires. Treatment of ligament and tendon injuries depends on severity."
+      ]
+    },
+    {
+      "heading": "Recovery",
+      "paragraphs": [
+        "Healing takes six to eight weeks for most fractures, and sprains a few weeks. Physiotherapy or hand therapy restores movement and strength. Keep fingers moving while in a cast, raise the arm to reduce swelling and follow instructions. Some people have stiffness for months, and a minority develop complex regional pain syndrome."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Wrist guards for activities such as skating and snowboarding, strengthening exercises, building bone health with calcium, vitamin D and weight-bearing exercise, and ergonomic work setups reduce risk. See a doctor for pain after a fall that lasts more than a few days, for numbness or deformity."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "First aid",
+      "text": "Imagine you fell and your wrist hurts and swells. You could raise it, apply a cold pack wrapped in cloth and have it checked the same day."
+    },
+    {
+      "title": "Doing hand exercises",
+      "text": "Suppose you are in a cast. You might move your fingers and shoulder regularly and keep the hand elevated."
+    }
+  ],
+  "questions": [
+    "Is my wrist broken or sprained?",
+    "Do I need a cast, a splint or an operation?",
+    "Which exercises will help me recover?"
+  ]
+}

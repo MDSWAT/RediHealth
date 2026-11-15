@@ -1,0 +1,51 @@
+{
+  "title": "Disturbi dopo il grano: celiachia, allergia o sensibilità?",
+  "intro": "I disturbi dopo il grano non hanno tutti la stessa causa. La celiachia è una reazione immunitaria al glutine che danneggia l’intestino tenue; allergia al grano e sensibilità non celiaca richiedono accertamenti e cure diversi.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "La celiachia può causare diarrea, gonfiore, anemia o pochi sintomi digestivi. L’allergia può dare rapidamente orticaria, gonfiore o difficoltà respiratoria. La sensibilità viene considerata escluse altre cause."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Non iniziare una dieta senza glutine prima di discutere i test per celiachia: l’esclusione può falsarli. Dopo una sospetta reazione allergica al grano non fare prove domestiche; consultare uno specialista. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "La celiachia confermata richiede esclusione permanente del glutine e controlli nutrizionali. L’allergia necessita evitamento individuale e piano d’emergenza. La sensibilità non celiaca non impone automaticamente uguali restrizioni rigorose permanenti. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Il dietista aiuta a mantenere fibre, ferro e nutrienti, spiegando etichette e contaminazione crociata. I pannelli commerciali d’intolleranza non stabiliscono queste diagnosi né giustificano ampie eliminazioni. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Difficoltà respiratoria, gonfiore della gola o collasso dopo cibo sono emergenze: usare subito l’adrenalina prescritta e chiamare i soccorsi. Diarrea persistente, dimagrimento o anemia richiedono valutazione anche senza reazioni drammatiche."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira vuole eliminare il glutine per il gonfiore. Discute prima i test per non nascondere un’eventuale celiachia."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha avuto gonfiore dopo il pane. Chiede una valutazione allergologica invece di mangiarlo deliberatamente per verificare un’ipotesi sul glutine."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

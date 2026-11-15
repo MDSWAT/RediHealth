@@ -1,0 +1,52 @@
+{
+  "title": "Çrregullimi obsesiv-kompulsiv (OCD)",
+  "intro": "Çrregullimi obsesiv-kompulsiv përfshin mendime, imazhe ose impulse të padëshiruara e shqetësuese të quajtura obsesione dhe sjellje të përsëritura ose akte mendore të quajtura kompulsione që kryhen për të ulur shqetësimin. Është shumë më tepër se të qenit i rregullt ose i ngatërruar. OCD mund të marrë shumë kohë dhe të shkaktojë vuajtje, por terapia konjitivo-sjellëse dhe ilaçet janë efektive.",
+  "sections": [
+    {
+      "heading": "Si duket OCD",
+      "paragraphs": [
+        "Obsesionet e zakonshme përfshijnë frikën nga ndotja, dyshimet nëse e keni mbyllur derën ose fikur pajisjet, mendime ndërhyrëse agresive ose seksuale dhe nevojën për simetri. Kompulsionet përfshijnë larjen e tepruar, kontrollimin, numërimin, përsëritjen dhe ritualet mendore. Njerëzit zakonisht i njohin mendimet si të tepruara, por ndihen të paaftë t'i ndalojnë."
+      ]
+    },
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "OCD lind nga një kombinim faktorësh gjenetikë, të trurit dhe të mjedisit. Shpesh fillon në fëmijëri ose moshën e re të rritur dhe mund të përkeqësohet nga stresi. Nuk shkaktohet nga karakteri i dobët ose edukimi i keq. Depresioni, ankthi dhe tikët ndodhin shpesh së bashku me të."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Diagnoza bëhet përmes një bisede me një mjek ose psikoterapist, që pyet për natyrën dhe kohën e shpenzuar në obsesione e kompulsione dhe si ndërhyjnë në jetë. Shumë njerëz presin vite para se të kërkojnë ndihmë për shkak të turpit, prandaj trajtimi i hershëm inkurajohet."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Terapia konjitivo-sjellëse me ekspozim dhe parandalim të përgjigjes është trajtimi psikologjik i zgjedhjes së parë. Personi ekspozohet gradualisht ndaj situatave të frikshme dhe mëson t'u rezistojë ritualeve, kështu që ankthi zbehet me kalimin e kohës. Antidepresivët, veçanërisht frenuesit selektivë të rimarrjes së serotoninës, shpesh në doza më të larta, ndihmojnë shumë njerëz dhe mund të kombinohen me terapinë.",
+        "Për raste të rënda që nuk përgjigjen, ofrohen opsione të specializuara si programet intensive."
+      ]
+    },
+    {
+      "heading": "Të jetosh me OCD",
+      "paragraphs": [
+        "Shmangni kërkimin e sigurimit dhe përshtatjen me ritualet, që mund ta mbajnë problemin, dhe përfshini familjen në të kuptuarit. Librat e vetëndihmës dhe grupet e mbështetjes mund ta plotësojnë trajtimin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kërkimi i ndihmës",
+      "text": "Imagjinoni që kaloni orë të tëra duke kontrolluar sobën çdo mëngjes. Mund të shkruani sa kohë merr, t'ia thoni mjekut dhe të kërkoni referim te një terapist me përvojë në terapinë e ekspozimit."
+    },
+    {
+      "title": "Mbështetja e një të afërmi",
+      "text": "Supozoni që një anëtar i familjes ju kërkon vazhdimisht të konfirmoni se gjërat janë të pastra. Mund të bisedoni me terapistin se si të përgjigjeni me mirësi pa e ushqyer kompulsionin."
+    }
+  ],
+  "questions": [
+    "A tregojnë simptomat e mia OCD dhe cilin trajtim rekomandoni?",
+    "Çfarë përfshin ekspozimi dhe parandalimi i përgjigjes dhe sa kohë merr?",
+    "Si mund të më ndihmojë familja ime pa i përforcuar simptomat?"
+  ]
+}

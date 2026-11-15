@@ -1,0 +1,51 @@
+{
+  "title": "Što je upala?",
+  "intro": "Upala je odgovor tijela na ozljedu, infekciju ili nadražaj. To je zaštitni proces koji pomaže zacjeljivanju, ali kada je prekomjeran ili traje predugo može oštetiti tkivo i pridonijeti mnogim bolestima. Razumijevanje upale pomaže objasniti simptome kao što su oticanje i vrućica.",
+  "sections": [
+    {
+      "heading": "Akutna upala",
+      "paragraphs": [
+        "Akutna upala počinje brzo i traje nekoliko dana. Krvne žile se šire, više krvi i tekućine stiže na područje, a bijele krvne stanice dolaze boriti se protiv klica i čistiti oštećeno tkivo. To daje klasične znakove crvenila, topline, oticanja, boli i gubitka funkcije, kao kod posjekotine, uganuća ili upale grla."
+      ]
+    },
+    {
+      "heading": "Kronična upala",
+      "paragraphs": [
+        "Kada uzrok traje ili je imunološki sustav prekomjerno aktivan, upala može potrajati mjesecima ili godinama. Uključena je u bolesti kao što su reumatoidni artritis, upalna bolest crijeva, astma, psorijaza i, djelomično, bolest srca i dijabetes. Kronična upala može oštetiti zdravo tkivo i uzrokovati umor i bol."
+      ]
+    },
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Uzroci uključuju infekciju bakterijama ili virusima, ozljedu, opekline, kemikalije, alergije, autoimunu bolest u kojoj imunološki sustav napada tijelo, pretilost, pušenje i dugotrajni stres. Nije svaka upala infekcija i ne treba uvijek antibiotike."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i liječenje",
+      "paragraphs": [
+        "Liječnici gledaju simptome, pregledavaju područje i mogu koristiti krvne pretrage kao što je C-reaktivni protein, snimanja ili uzorke tkiva. Liječenje se bavi uzrokom. Odmor, hlađenje i protuupalni lijekovi protiv boli kao što je ibuprofen mogu ublažiti akutne simptome, a steroidi ili drugi lijekovi koji modificiraju imunitet koriste se kod kronične bolesti. Provjerite s liječnikom prije redovitog uzimanja protuupalnih lijekova."
+      ]
+    },
+    {
+      "heading": "Zdrave navike",
+      "paragraphs": [
+        "Uravnotežena prehrana bogata povrćem, voćem, cjelovitim žitaricama i ribom, redovita tjelovježba, dovoljno sna, nepušenje, ograničen alkohol i zdrava težina povezani su s nižim razinama upale. Tvrdnje da posebne protuupalne dijete ili dodaci liječe bolesti često su preuveličane."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ublažavanje uganuća",
+      "text": "Zamislite da ste uganuli gležanj. Mogli biste ga odmarati, staviti hladni oblog umotan u krpu i podignuti stopalo."
+    },
+    {
+      "title": "Posjet liječniku",
+      "text": "Pretpostavite da zglob ostane natečen tjednima. Mogli biste zakazati pregled jer dugotrajna upala treba pravu dijagnozu."
+    }
+  ],
+  "questions": [
+    "Što uzrokuje upalu?",
+    "Koje je liječenje najsigurnije za mene?",
+    "Koje promjene načina života mogu pomoći?"
+  ]
+}

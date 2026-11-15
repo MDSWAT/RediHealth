@@ -1,0 +1,51 @@
+{
+  "title": "Pneumonia",
+  "intro": "Pneumonia este o infecție a țesutului pulmonar, provocată de obicei de bacterii sau virusuri, în care alveolele se umplu cu lichid sau puroi. Provoacă tuse, febră și lipsă de aer. Multe persoane sunt tratate acasă, dar poate fi gravă la persoanele în vârstă, la copiii mici și la cei cu alte boli.",
+  "sections": [
+    {
+      "heading": "Cauze și factori de risc",
+      "paragraphs": [
+        "Cauzele frecvente sunt bacteriile pneumococice și virusurile precum gripa și, la copii, virusul sincițial respirator. Infecția se răspândește prin picături sau când microbii din nas și gât ajung în plămâni. Riscul este mai mare la vârste înaintate, la fumători, în bolile cronice de plămâni sau de inimă, în diabet, la imunitate scăzută, în alcoolism și după o boală virală recentă."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele tipice includ tuse cu spută, febră și frisoane, durere în piept la respirație, respirație rapidă și oboseală. Persoanele în vârstă pot fi confuze, în loc să aibă febră. Simptomele se dezvoltă adesea în câteva zile. Cereți ajutor pentru dificultăți de respirație, buze vinete, confuzie, durere în piept sau febră mare."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicii ascultă plămânii, verifică frecvența respiratorie, nivelurile de oxigen și tensiunea arterială și pot recomanda o radiografie pulmonară, analize de sânge și teste ale sputei. Sistemele de scor estimează severitatea și ajută la decizia între îngrijirea la domiciliu și cea în spital."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Pneumonia bacteriană se tratează cu antibiotice, de obicei aproximativ cinci până la șapte zile, iar cea virală cu îngrijire de susținere sau, în unele cazuri, cu antivirale. Ajută repausul, băutul din belșug de lichide și paracetamolul sau ibuprofenul pentru febră și durere. Tratamentul în spital poate include oxigen, antibiotice intravenoase și lichide. Tusea se liniștește de obicei în câteva săptămâni, dar oboseala poate dura mai mult. O radiografie de control poate fi recomandată fumătorilor sau adulților în vârstă."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Vaccinarea împotriva pneumococului și a gripei și, pentru copii, împotriva altor microbi frecvenți reduce riscul. Nu fumați, spălați-vă regulat pe mâini și cereți tratament devreme pentru infecțiile respiratorii. Persoanele cu risc mai mare trebuie să întrebe medicul ce vaccinări sunt recomandate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Decizia privind locul tratamentului",
+      "text": "Imaginați-vă că sunteți o persoană în vârstă cu febră și tuse. Ați putea întreba dacă puteți fi tratat în siguranță acasă și ce simptome ar trebui să vă determine să reveniți."
+    },
+    {
+      "title": "Recuperarea bună",
+      "text": "Presupuneți că ați terminat antibioticele, dar vă simțiți încă slăbit. Ați putea crește treptat activitatea, vă puteți odihni suficient și puteți spune medicului despre tusea sau febra persistentă."
+    }
+  ],
+  "questions": [
+    "Am nevoie de tratament în spital sau mă pot recupera acasă?",
+    "Ce vaccinuri ar trebui să fac pentru a-mi reduce riscul?",
+    "Când ar trebui să-mi fie reverificați plămânii?"
+  ]
+}

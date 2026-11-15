@@ -1,0 +1,51 @@
+{
+  "title": "Što se događa tijekom PET snimanja?",
+  "intro": "Pozitronska emisijska tomografija, ili PET, je slikovna pretraga koja pokazuje kako tkiva rade, a ne samo kako izgledaju. Ubrizgava se mala količina radioaktivnog biljega, a skener otkriva gdje se nakuplja. Koristi se uglavnom kod raka, bolesti srca i poremećaja mozga, često u kombinaciji s CT-om ili MR-om.",
+  "sections": [
+    {
+      "heading": "Zašto se radi",
+      "paragraphs": [
+        "PET može pokazati koliko su tkiva aktivna, što pomaže pronaći rak, pokazati je li se proširio, provjeriti odgovor na liječenje i otkriti povrat. Koristi se i za procjenu opskrbe krvlju srčanog mišića te kod stanja mozga kao što su demencija i epilepsija. Rezultat se kombinira s drugim pretragama."
+      ]
+    },
+    {
+      "heading": "Priprema",
+      "paragraphs": [
+        "Obično se traži da budete natašte četiri do šest sati, iako možete piti vodu. Za neka snimanja trebate prije izbjegavati naporno vježbanje. Osobe s dijabetesom trebaju posebne upute o hrani i lijekovima. Recite osoblju ako ste trudni, dojite ili se bojite zatvorenih prostora."
+      ]
+    },
+    {
+      "heading": "Snimanje",
+      "paragraphs": [
+        "Biljeg, često oblik šećera označen radioaktivnim atomom, ubrizgava se u venu. Mirno odmarate oko sat vremena dok se širi tijelom. Zatim ležite na stolu koji klizi u skener u obliku prstena dvadeset do četrdeset minuta. Morate ležati mirno, a uređaj je otvoren i ne boli."
+      ]
+    },
+    {
+      "heading": "Sigurnost",
+      "paragraphs": [
+        "Doza zračenja je mala i slična nekoliko godina prirodnog pozadinskog zračenja. Biljeg napušta tijelo unutar sati. Pijte dosta tekućine i izbjegavajte blizak kontakt s trudnicama i malim bebama nekoliko sati ako je savjetovano. Alergijske reakcije su vrlo rijetke. Trudnoća je općenito razlog za izbjegavanje pretrage."
+      ]
+    },
+    {
+      "heading": "Rezultati",
+      "paragraphs": [
+        "Specijalist nuklearne medicine i radiolog tumače snimke. Rezultati idu liječniku koji vas je uputio za nekoliko dana. Aktivna područja izgledaju svijetla, ali i upala može izgledati kao rak pa se nalazi tumače uz druge informacije. Pitajte što slijedi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema",
+      "text": "Zamislite da je vaše snimanje poslijepodne. Mogli biste pojesti lagan doručak, nakon toga postiti prema uputi i piti vodu."
+    },
+    {
+      "title": "Mirno ležanje",
+      "text": "Pretpostavite da se osjećate tjeskobno u skeneru. Mogli biste polako disati i reći osoblju ako vam treba pomoć."
+    }
+  ],
+  "questions": [
+    "Zašto je potrebno PET snimanje i kako će rezultat promijeniti moju skrb?",
+    "Kako se trebam pripremiti, osobito ako imam dijabetes?",
+    "Postoje li mjere opreza nakon snimanja?"
+  ]
+}

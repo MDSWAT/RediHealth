@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt programele de management al bolilor (DMP)?",
+  "intro": "Programele de management al bolilor din Germania sunt programe de tratament structurate pentru persoanele cu anumite boli de lungă durată, precum diabetul de tip 2, astmul, BPOC, boala coronariană și cancerul de sân. Ele urmăresc să îmbunătățească calitatea îngrijirii prin controale regulate, obiective convenite și educație a pacientului. Participarea este voluntară. Această prezentare este generală; programele disponibile și regulile se pot schimba.",
+  "sections": [
+    {
+      "heading": "Ce sunt",
+      "paragraphs": [
+        "Un DMP stabilește cum trebuie tratată o boală cronică conform dovezilor actuale. Un medic de familie sau un specialist care participă vă coordonează îngrijirea. Programul definește controale regulate, analize, medicamente, reguli de trimitere și instruire. Asigurătorii de sănătate obligatorii le oferă persoanelor asigurate cu diagnosticul corespunzător."
+      ]
+    },
+    {
+      "heading": "Ce primesc participanții",
+      "paragraphs": [
+        "Participanții au consultații regulate, de obicei la fiecare trei luni pentru afecțiuni precum diabetul, cu analize potrivite bolii. Împreună cu medicul dumneavoastră stabiliți obiective de tratament, de exemplu ținte ale glicemiei sau ale tensiunii arteriale și schimbări ale stilului de viață. Puteți participa la cursuri de educație, precum instruirea pentru diabet sau cursurile pentru astm. Trimiterile către specialiști urmează criterii definite, iar medicul dumneavoastră documentează progresul."
+      ]
+    },
+    {
+      "heading": "Beneficii posibile",
+      "paragraphs": [
+        "Urmărirea structurată poate asigura că verificări importante, precum cele ale ochilor, picioarelor și rinichilor în diabet, nu sunt uitate. Studiile sugerează o respectare mai bună a ghidurilor, o monitorizare mai bună și, în unele afecțiuni, mai puține complicații, deși mărimea beneficiului este dezbătută. Multe persoane apreciază sprijinul și educația."
+      ]
+    },
+    {
+      "heading": "Înscrierea, datele și dezavantajele",
+      "paragraphs": [
+        "Înscrierea se face prin acord cu medicul și cu asigurătorul, după consimțământ scris. Datele dumneavoastră sunt transmise asigurătorului și unui organism central pentru asigurarea calității, conform regulilor de protecție a datelor. Puteți renunța oricând. Dezavantajele includ efortul administrativ, necesitatea de a merge la consultații regulate și posibilitatea de a nu dori ca datele să fie partajate. Dacă pierdeți repetat consultații, asigurătorul poate pune capăt participării."
+      ]
+    },
+    {
+      "heading": "Cum vă alăturați",
+      "paragraphs": [
+        "Întrebați medicul de familie dacă participă la un DMP pentru afecțiunea dumneavoastră sau contactați asigurătorul. Veți avea nevoie de un diagnostic confirmat. Aduceți întrebări despre obiective, protecția datelor și ce se așteaptă de la dumneavoastră."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Stabilirea unui obiectiv",
+      "text": "Imaginați-vă că aveți diabet și vă înscrieți într-un DMP. Ați putea conveni cu medicul asupra unei ținte pentru tensiunea arterială și a unui obiectiv de mers pe jos și le-ați putea nota în fișa dumneavoastră."
+    },
+    {
+      "title": "Cântărirea partajării datelor",
+      "text": "Presupuneți că vă îngrijorează transmiterea datelor. Ați putea întreba cabinetul ce se partajează, cu cine și cum vă puteți retrage."
+    }
+  ],
+  "questions": [
+    "Există un program pentru afecțiunea mea și ce presupune?",
+    "Ce date sunt transmise și pot renunța oricând?",
+    "Ce cursuri de educație sunt incluse?"
+  ]
+}

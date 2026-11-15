@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh gjatë kateterizimit kardiak?",
+  "intro": "Kateterizimi kardiak është një procedurë ku një tub i hollë fleksibël, i quajtur kateter, kalohet përmes një ene gjaku drejt zemrës. Përdoret për të parë arteriet koronare e dhomat e zemrës, e për të trajtuar ngushtimin, për shembull duke hapur arteriet me një stent. Zakonisht bëhet me anestezi lokale.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "Mjekët e kryejnë për të gjetur shkakun e dhimbjes së gjoksit, për të diagnostikuar sëmundjen e arterieve koronare, për të parë valvulat e presionet e zemrës, e në urgjencë gjatë një infarkti. Gjatë të njëjtës procedurë, arteriet e ngushtuara mund të zgjerohen me një balon e të mbahen hapur me një stent."
+      ]
+    },
+    {
+      "heading": "Përgatitja",
+      "paragraphs": [
+        "Zakonisht agjëroni disa orë. Tregojini ekipit për alergjitë, veçanërisht ndaj bojës kontrastuese ose jodit, problemet e veshkave, diabetin e barnat si hollues gjaku ose metformina. Bëhen analiza gjaku e një elektrokardiogramë. Do të jepni pëlqim me shkrim, e dikush duhet t'ju çojë në shtëpi ose qëndroni natën."
+      ]
+    },
+    {
+      "heading": "Gjatë procedurës",
+      "paragraphs": [
+        "Shtriheni mbi një tavolinë e merrni një qetësues nëse dëshironi. Lëkura në kyçin e dorës ose ijë mpihet e një kateter futet drejt zemrës nën udhëheqje me rreze X. Boja kontrastuese injektohet për të treguar arteriet, çka mund të shkaktojë një ndjesi ngrohtësie. Procedura zgjat tridhjetë deri gjashtëdhjetë minuta, më shumë nëse vendoset një stent."
+      ]
+    },
+    {
+      "heading": "Rreziqet",
+      "paragraphs": [
+        "Procedura është përgjithësisht e sigurt. Rreziqet e mundshme përfshijnë gjakderdhje ose mavijosje në vendin e shpimit, reagim alergjik ndaj bojës, probleme të veshkave, rrahje të parregullta të zemrës, dëmtim të një ene e, rrallë, infarkt, goditje ose vdekje. Mjeku i peshon rreziqet kundrejt përfitimeve."
+      ]
+    },
+    {
+      "heading": "Pas procedurës",
+      "paragraphs": [
+        "Pushoni për disa orë, pini lëngje e monitoroheni. Shmangni ngritjen e rëndë për disa ditë. Raportoni menjëherë gjakderdhje, enjtje, dhimbje, mpirje ose dhimbje gjoksi. Nëse vendoset një stent, merrni barna për të parandaluar mpiksjet, e nuk duhet t'i ndaloni pa këshillë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja",
+      "text": "Imagjinoni që nesër keni një test me kateter. Mund të listoni barnat tuaja, të pyesni cilat të ndalen e të organizoni një udhëtim për në shtëpi."
+    },
+    {
+      "title": "Kujdesi për plagën",
+      "text": "Supozoni që shpimi ishte në kyçin e dorës. Mund të shmangni ngritjen e të vëzhgoni për enjtje ose gjakderdhje."
+    }
+  ],
+  "questions": [
+    "Pse më nevojitet kjo procedurë e a ka alternativa?",
+    "Cilat janë rreziqet në situatën time?",
+    "Cilat barna duhet t'i marr pas saj?"
+  ]
+}

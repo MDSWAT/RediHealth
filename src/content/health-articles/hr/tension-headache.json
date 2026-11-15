@@ -1,0 +1,51 @@
+{
+  "title": "Tenzijska glavobolja",
+  "intro": "Tenzijska glavobolja je najčešća vrsta glavobolje i uzrokuje tupu, pritiskajuću bol s obje strane glave, često opisanu kao čvrsta traka. Obično je blaga do umjerena i ne sprječava svakodnevne aktivnosti. Jednostavni lijekovi protiv bolova, opuštanje i dobre navike pomažu, a česte glavobolje mogu se liječiti preventivno.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Bol je tipično ujednačena, a ne pulsirajuća, osjeća se s obje strane glave ili oko čela i vrata te se ne pogoršava uobičajenom aktivnošću. Mučnina je odsutna ili blaga, a osjetljivost na svjetlo ili zvuk je slaba, što pomaže razlikovati je od migrene. Epizode traju od trideset minuta do nekoliko dana."
+      ]
+    },
+    {
+      "heading": "Uzroci i okidači",
+      "paragraphs": [
+        "Točan uzrok nije poznat. Napetost mišića vrata i vlasišta, stres, loš san, preskakanje obroka, dehidracija, dugo vrijeme rada za ekranom s lošim držanjem, naprezanje očiju i emocionalno naprezanje česti su okidači. Okidači se razlikuju među ljudima, a dnevnik glavobolja može pomoći otkriti vaše."
+      ]
+    },
+    {
+      "heading": "Liječenje epizode",
+      "paragraphs": [
+        "Jednostavni lijekovi protiv bolova poput paracetamola, ibuprofena ili aspirina, uzeti rano u dozi preporučenoj na uputi, obično su učinkoviti. Odmor, topli ili hladni oblog, nježna masaža vrata i opuštanje mogu pomoći. Izbjegavajte uzimati lijekove protiv bolova više od otprilike dva ili tri dana u tjednu jer česta uporaba može uzrokovati glavobolju zbog prekomjerne uporabe lijekova."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Redoviti san i obroci, tjelovježba, upravljanje stresom, tehnike opuštanja, dobro držanje i stanke od ekrana smanjuju učestalost. Kognitivno-bihevioralna terapija i biofeedback pomažu mnogim ljudima. Kod čestih ili kroničnih glavobolja liječnik može predložiti antidepresiv u niskoj dozi koji se uzima svaki dan ili drugo preventivno liječenje, a akupunktura ima neke potporne dokaze."
+      ]
+    },
+    {
+      "heading": "Kada potražiti hitnu pomoć",
+      "paragraphs": [
+        "Brzo posjetite liječnika zbog iznenadne, jake glavobolje nalik nijednoj prije, glavobolje s vrućicom i ukočenim vratom, smetenosti, slabosti, promjena vida, teškoća u govoru, nakon ozljede glave ili nove glavobolje nakon pedesete godine. Potražite savjet i ako se glavobolje stalno pogoršavaju ili ometaju svakodnevni život."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vođenje dnevnika",
+      "text": "Zamislite da imate glavobolje nekoliko puta tjedno. Mogli biste zabilježiti vrijeme, stres, san, hranu i uzete lijekove protiv bolova te pregledati obrazac s liječnikom."
+    },
+    {
+      "title": "Prilagodba radnog mjesta",
+      "text": "Pretpostavite da glavobolje slijede nakon dugih sati za ekranom. Mogli biste podići monitor, praviti stanke svaki sat, istezati vrat i ramena te dati pregledati oči."
+    }
+  ],
+  "questions": [
+    "Mogu li moje glavobolje biti druga vrsta koja traži drugo liječenje?",
+    "Koliko često mogu sigurno uzimati lijekove protiv bolova?",
+    "Bi li mi pomoglo preventivno liječenje ili terapija?"
+  ]
+}

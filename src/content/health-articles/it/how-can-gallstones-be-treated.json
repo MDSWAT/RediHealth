@@ -1,0 +1,51 @@
+{
+  "title": "Calcoli biliari: osservazione e procedure a confronto",
+  "intro": "Il trattamento dipende da sintomi, sede e complicazioni. Togliere la colecisti è diverso da liberare un dotto. Un calcolo all’ecografia non richiede automaticamente chirurgia.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Si osservano molti calcoli asintomatici, con eccezioni selezionate. Per coliche tipiche ripetute discutere beneficio e altri sintomi digestivi che potrebbero avere cause diverse e persistere dopo l’intervento."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Ecografia, sangue e immagini dei dotti guidano. Chiedere ostruzione, sospetta infezione o pancreatite e urgenza. La salute generale influisce sul piano. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "La colecistectomia è spesso laparoscopica ma comporta anestesia, sangue, infezione e danno ai dotti. I calcoli nei dotti richiedono talvolta endoscopia con rischi tra cui pancreatite; questa non elimina automaticamente quelli nella colecisti. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Farmaci alleviano dolore; dissoluzione è per casi selezionati e possono tornare calcoli. I lavaggi commerciali non curano affidabilmente. Chiedere recupero, lavoro, guida e aiuto domestico prima della procedura. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Febbre, ittero, dolore persistente forte o vomito richiedono urgenza anche con intervento programmato. Dopo, seguire indicazioni per peggioramento, febbre, ittero o ferite senza attribuire tutto al normale recupero."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira chiede se l’intervento migliorerà le sue coliche e comprende che un gonfiore non collegato può restare."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben apprende che l’endoscopia libera il dotto e chiede se serva altro trattamento della colecisti per prevenire problemi futuri."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

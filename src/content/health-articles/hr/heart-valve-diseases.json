@@ -1,0 +1,51 @@
+{
+  "title": "Bolesti zalistaka: praćenje i liječenje",
+  "intro": "Zalisci usmjeravaju krv pravilno. Sužen zalistak koči protok, a propustan dopušta povrat. Težina varira; sam šum ne određuje potrebu za zahvatom.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Mogu nastati zaduha, manja podnošljivost napora, umor, otoci ili nesvjestica. Neki teški problemi počinju tiho pa su važni simptomi i snimanje, ne čekanje boli."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Ultrazvuk srca procjenjuje strukturu, protok i odgovor srca. Pitajte koji zalistak, težinu i termin ponavljanja. Prijavite promjene hodanja ili penjanja. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Neki trebaju samo praćenje; lijekovi ublažavaju povezane simptome ali ne popravljaju pouzdano mehanički oštećen zalistak. Popravak, zamjena ili kateter biraju se po anatomiji, težini, riziku i prioritetima. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Održavajte dentalnu higijenu i navedite bolest ili umjetni zalistak. Antibiotici prije stomatologije trebaju samo odabranim visokorizičnim situacijama prema savjetu. Vrsta proteze utječe na antikoagulaciju i kontrole. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Nova zaduha, nesvjestica pri naporu ili jači otoci traže brzu kontrolu. Jaka prsna bol, teško disanje ili kolaps su hitni. Trajna neobjašnjiva vrućica nakon zamjene traži procjenu infekcije."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima umjeren problem bez simptoma. Održava snimanja i javlja slabije hodanje bez čekanja sljedećeg termina."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben razmatra biološku i mehaničku protezu, uključujući praćenje i antikoagulanse, prije pristanka."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

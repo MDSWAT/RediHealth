@@ -1,0 +1,51 @@
+{
+  "title": "How cancer cells grow and spread",
+  "intro": "Cancer develops when changes in cells allow abnormal growth and survival. It is not one disease: behavior differs greatly between types. Understanding growth and spread helps explain tests and treatment, but cannot predict an individual outcome.",
+  "sections": [
+    {
+      "heading": "Losing growth control",
+      "paragraphs": [
+        "Normal cells respond to signals about division, repair and death. Cancer cells acquire changes that disrupt these controls. Many changes arise during life rather than being inherited; a cancer diagnosis is not evidence of personal fault."
+      ]
+    },
+    {
+      "heading": "Local growth and invasion",
+      "paragraphs": [
+        "A benign growth does not invade like a malignant cancer, although it may still cause problems. Malignant cells can enter nearby tissue and affect organ function. Some cancers, such as blood cancers, do not form a single solid lump."
+      ]
+    },
+    {
+      "heading": "Spread to distant sites",
+      "paragraphs": [
+        "Cells may travel through lymph or blood and establish metastases elsewhere. A breast cancer deposit in bone is still breast cancer, not automatically a new bone cancer. Enlarged lymph nodes do not by themselves prove spread."
+      ]
+    },
+    {
+      "heading": "Why tests differ",
+      "paragraphs": [
+        "Biopsy identifies cells and their features; imaging and other tests assess extent. Stage describes spread, while grade describes how abnormal cells look under the microscope. Molecular findings may guide treatment, but no single test answers every question."
+      ]
+    },
+    {
+      "heading": "Using this information",
+      "paragraphs": [
+        "Ask where the cancer started, which findings are confirmed and what remains uncertain. Treatments may target a local area, circulate through the body or combine approaches. New severe symptoms need clinical assessment rather than assuming every pain is progression or relying on unproven anticancer diets. Before a consultation, note when a symptom began, what makes it better or worse, and how it affects ordinary activities. Bring previous reports if available. Ask the professional to connect the explanation to your own findings rather than assuming that a general description establishes a diagnosis."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira hears that cancer was found in another organ. She asks whether it is spread from the original cancer or a separate diagnosis before interpreting the treatment plan."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben asks the team to explain stage and grade separately, avoiding the assumption that similar words describe exactly the same risk."
+    }
+  ],
+  "questions": [
+    "Which steps would be clearer with a diagram?",
+    "What does this explanation show, and what can it not predict?",
+    "Would my specific concern need professional assessment?"
+  ]
+}

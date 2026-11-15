@@ -1,0 +1,51 @@
+{
+  "title": "Chisturile ovariene",
+  "intro": "Chisturile ovariene sunt saci plini cu lichid pe ovar sau în interiorul lui. Cele mai multe sunt inofensive, se formează ca parte a ciclului menstrual normal și dispar fără tratament. Unele provoacă durere sau alte simptome, iar câteva necesită o evaluare suplimentară sau îndepărtare. Ecografia îi arată de obicei medicului ce fel de chist este.",
+  "sections": [
+    {
+      "heading": "Tipuri de chisturi",
+      "paragraphs": [
+        "Chisturile funcționale se dezvoltă când un folicul nu eliberează un ovul sau când se închide după eliberare și de obicei dispar în câteva cicluri. Alte tipuri includ endometrioamele, legate de endometrioză, chisturile dermoide, care conțin țesut precum păr sau grăsime, și cistadenoamele, pline cu lichid sau mucus. Sindromul ovarelor polichistice implică mulți foliculi mici și este o altă afecțiune hormonală."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Multe chisturi nu provoacă simptome și sunt găsite întâmplător. Chisturile mai mari pot provoca o durere surdă sau o senzație de greutate în abdomenul inferior, balonare, durere în timpul actului sexual sau presiune pe vezică sau pe intestin. O durere bruscă și severă, uneori cu greață, vărsături sau febră, poate indica faptul că un chist s-a rupt sau s-a răsucit și necesită îngrijiri urgente."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "O ecografie pelvină arată mărimea și aspectul chistului. Se pot face analize de sânge, precum un test de sarcină și, la femeile după menopauză sau cu caracteristici îngrijorătoare, markeri tumorali. Rezonanța magnetică poate aduce informații suplimentare. Aspectul la ecografie ajută la estimarea probabilității ca un chist să fie benign."
+      ]
+    },
+    {
+      "heading": "Tratament și urmărire",
+      "paragraphs": [
+        "Chisturile simple la femeile dinainte de menopauză sunt adesea doar urmărite, cu o nouă scanare după câteva luni. Calmantele ameliorează simptomele. Contracepția hormonală nu micșorează chisturile existente, dar poate reduce apariția altora funcționale. Chirurgia, de obicei laparoscopică, se ia în considerare pentru chisturile mari, persistente, care provoacă simptome, arată suspect sau apar la femei după menopauză. Chirurgii încearcă să îndepărteze chistul păstrând, când este posibil, țesutul ovarian sănătos."
+      ]
+    },
+    {
+      "heading": "Viața cu chisturi",
+      "paragraphs": [
+        "Multe femei se tem de cancer când se găsește un chist. Cele mai multe chisturi sunt benigne, iar o explicație clară a rezultatului scanării de obicei liniștește. Respectați programările de urmărire și spuneți medicului despre balonare nouă, durere pelvină persistentă sau schimbări ale poftei de mâncare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Înțelegerea rezultatului unei scanări",
+      "text": "Imaginați-vă că o ecografie arată un chist mic pe ovar. Ați putea întreba ce tip pare să fie, dacă este nevoie de o nouă scanare și ce simptome ar trebui să vă determine să contactați mai devreme medicul."
+    },
+    {
+      "title": "Reacția la durerea severă",
+      "text": "Presupuneți că apare o durere bruscă și severă pe o parte, cu vărsături. Ați putea merge la o unitate de primiri urgențe, în loc să așteptați, deoarece un ovar răsucit este o urgență în care timpul contează."
+    }
+  ],
+  "questions": [
+    "Ce fel de chist am și este probabil să fie inofensiv?",
+    "Am nevoie de alte teste sau de scanări de urmărire?",
+    "În ce circumstanțe ar fi recomandată operația?"
+  ]
+}

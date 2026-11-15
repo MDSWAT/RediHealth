@@ -1,0 +1,53 @@
+{
+  "title": "Koliko vitamina D trebamo i kako ga dobiti",
+  "intro": "Vitamin D pomaže tijelu apsorbirati kalcij i održava kosti i mišiće zdravima. Većina ljudi stvara velik dio vitamina D u koži uz pomoć sunčeve svjetlosti, a manji dio dolazi iz hrane. Koliko vam treba ovisi o dobi, koži, načinu života i zdravlju, a za većinu zdravih ljudi nisu potrebne posebne mjere.",
+  "sections": [
+    {
+      "heading": "Što radi vitamin D",
+      "paragraphs": [
+        "Vitamin D djeluje kao hormon. Podupire unos kalcija i fosfata iz crijeva, što je bitno za jake kosti. Dugotrajan manjak može uzrokovati rahitis u djece i omekšavanje kostiju u odraslih te može povećati rizik od padova i prijeloma u starijih osoba."
+      ]
+    },
+    {
+      "heading": "Dobivanje vitamina D iz sunčeve svjetlosti",
+      "paragraphs": [
+        "Kad UVB zrake dopru do kože, tijelo pretvara tvar u njoj u vitamin D. U proljeće i ljeto nekoliko minuta dnevnog svjetla na licu, šakama i rukama nekoliko puta tjedno dovoljno je mnogim ljudima. Otprilike između listopada i ožujka na sjevernim geografskim širinama sunce je preslabo da bi proizvelo mnogo.",
+        "Krema za sunčanje, odjeća koja pokriva, tamnija koža, starija dob i provođenje većeg dijela dana u zatvorenom smanjuju stvaranje. Duži boravak na suncu nego što je potrebno ne stvara više vitamina D i povećava rizik od oštećenja kože."
+      ]
+    },
+    {
+      "heading": "Izvori u hrani",
+      "paragraphs": [
+        "Malo namirnica sadrži puno vitamina D. Masne morske ribe kao što su haringa, losos i skuša najbolji su prirodni izvori, a manje količine nalaze se u jajima, jetri i nekim gljivama. Neki proizvodi poput margarina ili žitarica za doručak su obogaćeni. Sama prehrana često osigurava samo dio dnevne potrebe."
+      ]
+    },
+    {
+      "heading": "Kome mogu trebati dodaci",
+      "paragraphs": [
+        "Službene preporuke obično predlažu svakodnevni vitamin D za bebe u prvoj godini, a dodaci mogu biti preporučeni ljudima koji rijetko izlaze van, primjerice u domovima za starije, onima koji pokrivaju većinu kože i ljudima s određenim bolestima crijeva, bubrega ili jetre. Vaš vam liječnik može savjetovati o vašoj situaciji.",
+        "Dodaci dolaze u različitim dozama, a više nije bolje. Vrlo visoke doze tijekom dužeg vremena mogu povisiti kalcij u krvi i mogu oštetiti bubrege. Slijedite dozu koju preporuči liječnik ili uputa o lijeku i recite liječniku za dodatke koje uzimate."
+      ]
+    },
+    {
+      "heading": "Testiranje i svakodnevni savjeti",
+      "paragraphs": [
+        "Rutinske krvne pretrage vitamina D nisu potrebne većini zdravih ljudi. Mogu se razmotriti kod ljudi s bolešću kostiju ili određenim čimbenicima rizika. Zdrave navike uključuju redovitu aktivnost na otvorenom po dnevnom svjetlu, raznoliku prehranu s ribom i vježbe s opterećenjem za zdravlje kostiju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planiranje za zimu",
+      "text": "Zamislite da radite u zatvorenom i zimi rijetko vidite dnevno svjetlo. Mogli biste u vrijeme ručka kratko prošetati vani, uključiti ribu u obroke i pitati liječnika bi li vam odgovarao dodatak niske doze."
+    },
+    {
+      "title": "Provjera dodatka za bebu",
+      "text": "Pretpostavite da imate novorođenče i niste sigurni trebaju li kapi vitamina D. Mogli biste pitati pedijatra koja se doza preporučuje, koliko dugo je davati i kako je uskladiti s hranjenjem."
+    }
+  ],
+  "questions": [
+    "Je li moj unos vitamina D vjerojatno dovoljan ili pripadam skupini kojoj koristi dodatak?",
+    "Koja je doza sigurna za mene i koliko dugo je trebam uzimati?",
+    "Je li krvna pretraga korisna u mojoj situaciji?"
+  ]
+}

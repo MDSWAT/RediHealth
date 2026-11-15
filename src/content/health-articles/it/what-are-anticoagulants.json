@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa sono gli anticoagulanti",
+  "intro": "Gli anticoagulanti, spesso detti fluidificanti del sangue, sono farmaci che rendono il sangue meno incline a coagulare. Prevengono i coaguli dannosi che possono causare ictus, infarti e coaguli nei polmoni e trattano i coaguli esistenti. In realtà non fluidificano il sangue né sciolgono i coaguli e comportano un rischio di sanguinamento.",
+  "sections": [
+    {
+      "heading": "Come agiscono",
+      "paragraphs": [
+        "La coagulazione del sangue coinvolge una catena di proteine nel sangue. Gli anticoagulanti bloccano passaggi di questa catena, così i coaguli si formano più lentamente. Questo aiuta a prevenire nuovi coaguli e impedisce a quelli esistenti di crescere, dando al corpo il tempo di scioglierli da solo. Sono diversi dagli antiaggreganti come l'aspirina, che impediscono alle piastrine di aggregarsi."
+      ]
+    },
+    {
+      "heading": "Tipi",
+      "paragraphs": [
+        "Gli antagonisti della vitamina K come il warfarin si usano da decenni e richiedono esami del sangue regolari del tempo di coagulazione e attenzione a dieta e interazioni. Gli anticoagulanti orali diretti, come apixaban, rivaroxaban, edoxaban e dabigatran, si assumono a dosi fisse e richiedono meno monitoraggio. Le eparine si somministrano per iniezione, spesso in ospedale o per breve tempo a casa."
+      ]
+    },
+    {
+      "heading": "Perché si usano",
+      "paragraphs": [
+        "Gli usi comuni comprendono la fibrillazione atriale per prevenire l'ictus, il trattamento e la prevenzione della trombosi venosa profonda e dell'embolia polmonare, le valvole cardiache meccaniche e la prevenzione dei coaguli dopo alcuni interventi. La durata dipende dal motivo, da settimane a tutta la vita."
+      ]
+    },
+    {
+      "heading": "Rischi ed effetti collaterali",
+      "paragraphs": [
+        "Il rischio principale è il sanguinamento, che può andare da sangue dal naso e lividi facili a gravi emorragie interne. I segni d'allarme comprendono feci nere o con sangue, vomito con sangue, forte mal di testa, sangue nelle urine, sanguinamenti abbondanti o prolungati e sanguinamento dopo una caduta o un trauma cranico, che richiede cure urgenti. I medici valutano il rischio di coaguli rispetto al sanguinamento e rivedono regolarmente il trattamento."
+      ]
+    },
+    {
+      "heading": "Usarli in sicurezza",
+      "paragraphs": [
+        "Prendi il farmaco alla stessa ora ogni giorno e non saltare né raddoppiare le dosi. Non sospenderlo senza consiglio, perché il rischio di coaguli aumenta. Informa tutti gli operatori sanitari, i dentisti e i farmacisti che prendi anticoagulanti e porta con te una tessera. Chiedi al farmacista prima di usare antidolorifici come l'ibuprofene e integratori. Fai attenzione all'alcol ed evita le lesioni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi a un trattamento dentale",
+      "text": "Immagina di prendere un anticoagulante e di dover togliere un dente. Potresti dirlo al dentista e chiedere al medico se la dose debba essere cambiata."
+    },
+    {
+      "title": "Gestire una dose dimenticata",
+      "text": "Supponi di dimenticare una dose. Potresti leggere il foglietto o chiamare il farmacista per la regola del tuo farmaco e non raddoppiare mai la dose successiva."
+    }
+  ],
+  "questions": [
+    "Quale anticoagulante è migliore per me e per quanto tempo?",
+    "Come posso ridurre il rischio di sanguinamento?",
+    "Quali farmaci e cibi devo evitare?"
+  ]
+}

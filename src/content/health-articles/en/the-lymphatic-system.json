@@ -1,0 +1,51 @@
+{
+  "title": "The lymphatic system",
+  "intro": "The lymphatic system is a network of vessels, nodes and organs that drains fluid from tissues, supports the immune system and helps absorb fats from the gut. When it is working well, you hardly notice it. Swollen glands, lymph node problems and lymphoedema show how important it is.",
+  "sections": [
+    {
+      "heading": "Lymph and lymph vessels",
+      "paragraphs": [
+        "Fluid constantly leaks from the smallest blood vessels into tissues. Most is reabsorbed, but the rest enters lymph vessels as lymph. Lymph vessels carry it toward the neck, where it returns to the bloodstream. Muscle movement, breathing and valves in the vessels move the lymph, which is why exercise helps."
+      ]
+    },
+    {
+      "heading": "Lymph nodes",
+      "paragraphs": [
+        "Lymph nodes are small bean-shaped filters found along the vessels, in groups at the neck, armpits, groin and elsewhere in the body. They contain immune cells that detect and fight germs. When you have an infection, nearby nodes may swell and become tender as they produce more immune cells. Cancer can also spread through lymph nodes."
+      ]
+    },
+    {
+      "heading": "Lymphatic organs",
+      "paragraphs": [
+        "The spleen filters blood and stores immune cells, the tonsils protect the throat, the thymus matures T cells in childhood, and bone marrow produces blood cells. Lymphatic tissue in the gut handles germs from food. Lymph also carries fats absorbed from the intestine."
+      ]
+    },
+    {
+      "heading": "Common problems",
+      "paragraphs": [
+        "Swollen lymph nodes most often reflect a harmless infection and settle within weeks. Nodes that are hard, painless, growing, persist beyond several weeks or come with fever, night sweats or weight loss should be checked. Lymphoedema is persistent swelling, usually of an arm or leg, when lymph drainage is impaired, for example after cancer surgery or radiotherapy, infection or inherited conditions. Lymphangitis, a red streak with fever, is an infection spreading along vessels and needs prompt treatment. Blood poisoning, or sepsis, is a different, life-threatening reaction to infection that needs emergency care."
+      ]
+    },
+    {
+      "heading": "Looking after it",
+      "paragraphs": [
+        "Stay active, keep a healthy weight and avoid injuries and infections of the skin of an at-risk limb. People with lymphoedema benefit from compression, skin care, exercise and specialised lymphatic therapy."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Checking a swollen node",
+      "text": "Imagine you feel a tender lump in your neck during a cold. You could watch it for two weeks and see a doctor if it persists or you feel unwell."
+    },
+    {
+      "title": "Protecting an arm",
+      "text": "Suppose you had lymph nodes removed in your armpit. You might protect the skin from cuts and sunburn and ask about exercise and compression advice."
+    }
+  ],
+  "questions": [
+    "Is this swollen lymph node harmless, or does it need tests?",
+    "How can I manage lymphoedema and prevent infections?",
+    "Which symptoms mean I should seek urgent care?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Sindroma premenstruale (PMS)",
+  "intro": "Sindroma premenstruale është një model simptomash fizike e emocionale që shfaqen ditët para menstruacioneve e lehtësohen sapo fillon gjakderdhja. Shumë gra vërejnë ndryshime të lehta, ndërsa për disa simptomat janë aq të rënda sa prishin punën e marrëdhëniet. Masat e stilit të jetesës e, nëse nevojitet, barnat mund të ndihmojnë.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat e zakonshme përfshijnë ndjeshmëri të gjinjve, fryrje, dhimbje koke, lodhje, dëshira për ushqime, nervozizëm, humor të ulët, ankth e vështirësi në gjumë. Simptomat fillojnë në gjysmën e dytë të ciklit, zakonisht rreth një javë para menstruacioneve, dhe zhduken brenda disa ditëve pasi fillon gjakderdhja. Një formë e rëndë me simptoma të theksuara të humorit quhet çrregullim disforik premenstrual."
+      ]
+    },
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Shkaku nuk dihet plotësisht. Duket se lidhet me mënyrën si truri u përgjigjet luhatjeve normale hormonale, duke përfshirë lajmëtarë kimikë si serotonina. Nuk shkaktohet nga karakteri i dobët dhe nuk është thjesht stres. Gratë me histori depresioni, ankthi ose stresi të lartë mund të preken më shumë."
+      ]
+    },
+    {
+      "heading": "Mbajtja e një ditari simptomash",
+      "paragraphs": [
+        "Regjistrimi i simptomave çdo ditë për dy ose më shumë cikle tregon nëse ndjekin modelin tipik e ndihmon të dallohet PMS nga depresioni, problemet e tiroides ose gjendje të tjera që nuk përmirësohen me menstruacionet. Gjithashtu e bën më të lehtë diskutimin e trajtimit me mjekun."
+      ]
+    },
+    {
+      "heading": "Çfarë mund të ndihmojë",
+      "paragraphs": [
+        "Ushtrimet e rregullta, gjumi i mjaftueshëm, një dietë e ekuilibruar me më pak kafeinë, kripë e alkool dhe metodat e relaksimit mund t'i ulin simptomat. Suplementet e kalciumit mund të ndihmojnë disa gra dhe provat për suplemente të tjera janë të përziera. Qetësuesit lehtësojnë ngërçet e dhimbjet e kokës. Terapia konjitivo-sjellëse është efektive për simptomat e humorit."
+      ]
+    },
+    {
+      "heading": "Trajtimi mjekësor",
+      "paragraphs": [
+        "Për simptoma të rënda, antidepresivët e llojit të serotoninës të marrë gjatë gjithë ciklit ose vetëm në gjysmën e dytë mund të jenë shumë efektivë. Disa pilula kontraceptive të kombinuara i ulin simptomat dhe opsione të tjera hormonale ofrohen për gra të përzgjedhura. Diskutoni përfitimet e efektet anësore me mjekun dhe rishikoni trajtimin rregullisht. Kërkoni ndihmë urgjente nëse keni mendime për dëmtim të vetes."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ndjekja e modelit",
+      "text": "Imagjinoni që humori ju bie çdo muaj para menstruacioneve. Mund t'i vlerësoni simptomat çdo ditë për tre muaj e ta çoni grafikun te mjeku për të biseduar mbi opsionet."
+    },
+    {
+      "title": "Planifikimi sipas ciklit",
+      "text": "Supozoni që e dini se java para menstruacioneve është më e vështira. Mund të shmangni caktimin e ngjarjeve stresuese atëherë, të vazhdoni ushtrimet e të planifikoni kohë pushimi."
+    }
+  ],
+  "questions": [
+    "A përputhen simptomat e mia me PMS apo mund të jetë përgjegjëse një gjendje tjetër?",
+    "Cilat trajtime janë më të mirat për simptomat e mia?",
+    "A është një kontraceptiv hormonal ose një antidepresiv i përshtatshëm për mua?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Glaucoma: proteggere la vista residua",
+  "intro": "Il glaucoma danneggia il nervo ottico e può ridurre il campo visivo. La comune forma ad angolo aperto spesso evolve senza sintomi. La terapia preserva la vista residua; il danno già presente normalmente non è reversibile.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "La pressione oculare è un importante fattore di rischio, ma il glaucoma può comparire con valori usuali. Una pressione alta da sola non equivale a danno accertato del nervo."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "La valutazione combina pressione, esame o immagini del nervo e campo visivo. Un singolo valore normale non esclude il glaucoma; ripetere i test può servire a valutare la progressione. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Colliri ipotonizzanti, laser o chirurgia vengono scelti secondo tipo, danno e risposta. Segnalare asma, malattie cardiache e altri farmaci perché anche i colliri possono avere effetti sistemici. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Usare i colliri come indicato, evitare di toccare la punta del flacone e chiedere dimostrazione. Riferire costi, irritazione o dosi saltate invece di sospendere in silenzio. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Continuare i controlli anche con vista apparentemente invariata. Occhio improvvisamente rosso e doloroso con visione annebbiata, aloni, cefalea o nausea richiede valutazione oculistica d’emergenza immediata."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira vede bene, ma i test mostrano una perdita iniziale del campo. Comprende perché la terapia continua senza sintomi evidenti."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha irritazione dai colliri. Chiede informazioni su tecnica e alternative senza sospenderli fino alla visita annuale."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

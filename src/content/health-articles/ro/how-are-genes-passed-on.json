@@ -1,0 +1,51 @@
+{
+  "title": "Cum se moștenesc genele: tipare și incertitudine",
+  "intro": "Genele sunt segmente ADN care ajută celulele să producă și să regleze produse biologice. Moștenirea transmite informație de la părinți la copii, dar genele nu determină orice trăsătură și nu garantează boală. Contează mediul și întâmplarea.",
+  "sections": [
+    {
+      "heading": "Cromozomi și contribuția părinților",
+      "paragraphs": [
+        "Majoritatea celulelor au cromozomi în perechi, cu câte unul de la fiecare părinte biologic de obicei. Formarea ovulului și spermatozoidului rearanjează informația, astfel frații primesc combinații diferite. ADN mitocondrial urmează alt tipar, de obicei matern."
+      ]
+    },
+    {
+      "heading": "Tipare diferite de moștenire",
+      "paragraphs": [
+        "Boala dominantă poate apărea cu modificarea unei copii relevante. Cea recesivă cere de obicei schimbări în ambele copii. Moștenirea legată de X diferă. Aceste descrieri sunt simple; gena exactă și familia stabilesc riscul util."
+      ]
+    },
+    {
+      "heading": "Gene multiple și manifestări variabile",
+      "paragraphs": [
+        "Bolile comune implică adesea multe gene și condiții de viață, nu cauză unică. Persoana poate avea variantă fără simptome ori gravitate diferită de rudă. Poate apărea variantă nouă absentă din testele sanguine obișnuite ale părinților."
+      ]
+    },
+    {
+      "heading": "Testare și rezultate incerte",
+      "paragraphs": [
+        "Testele răspund unor întrebări specifice și pot da incertitudine. Varianta incertă singură nu confirmă diagnostic și nu justifică tratament ireversibil. Discutați confidențialitatea, familia și limitele rapoartelor comerciale de origine ori risc."
+      ]
+    },
+    {
+      "heading": "Consilierea riscului familial",
+      "paragraphs": [
+        "Pentru boală familială, geneticianul poate desena arbore și explica opțiunile proprii. Aduceți raportul exact când există. Riscurile se aplică fiecărei sarcini după tipar, nu garantează un număr fix de copii afectați."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira are o rudă afectată și aduce raportul la consiliere. Echipa explică varianta exactă, nu deduce riscul doar după numele bolii."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben și fratele au simptome diferite cu rezultat genetic înrudit. Înțelege că moștenirea nu garantează manifestare identică și cere sfat pentru rezultat incert."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

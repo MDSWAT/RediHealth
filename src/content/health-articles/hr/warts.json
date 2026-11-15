@@ -1,0 +1,51 @@
+{
+  "title": "Bradavice",
+  "intro": "Bradavice su bezazlene kožne izrasline uzrokovane infekcijom kože ljudskim papilomavirusom. Česte su kod djece i tinejdžera i obično nestanu same, ali to može trajati mjesecima ili godinama. Liječenja mogu ubrzati nestanak, iako nijedno nije zajamčeno.",
+  "sections": [
+    {
+      "heading": "Vrste",
+      "paragraphs": [
+        "Obične bradavice su grube, uzdignute izrasline na rukama i prstima. Plantarne bradavice javljaju se na tabanima i mogu biti utisnute prema unutra, uzrokujući bol pri hodanju. Ravne bradavice su male, glatke i često se pojavljuju na licu i nogama u nakupinama. Genitalne bradavice su zasebna spolno prenosiva vrsta koja zahtijeva drukčiji pristup."
+      ]
+    },
+    {
+      "heading": "Kako se šire",
+      "paragraphs": [
+        "Bradavice se šire izravnim dodirom kože i dodirivanjem površina kao što su podovi bazena i zajedničkih tuševa, osobito gdje je koža oštećena ili mokra. Samo su blago zarazne. Češanje ili čupkanje može ih proširiti na druga područja. Slab imunitet čini ih upornijima."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Mnoge bradavice nestanu bez liječenja unutar jedne do dvije godine. Pripravci salicilne kiseline nanijeti svakodnevno nakon močenja i turpijanja površine standardno su prvo liječenje i trebaju nekoliko tjedana. Krioterapija tekućim dušikom zamrzava bradavicu, ponavlja se svakih nekoliko tjedana. Ljepljiva traka je isprobavana s različitim rezultatima. Kod tvrdokornih bradavica liječnici mogu koristiti druge kreme, manje zahvate ili laser. Izbjegavajte sami rezati bradavice."
+      ]
+    },
+    {
+      "heading": "Sprječavanje širenja",
+      "paragraphs": [
+        "Pokrijte bradavice flasterom, osobito na bazenima, nosite sandale u zajedničkim tuševima, ne dijelite ručnike ni britvice, izbjegavajte čupkanje i držite stopala suhima. Djeca s bradavicama mogu pohađati školu i plivanje, uz pokrivanje gdje je moguće."
+      ]
+    },
+    {
+      "heading": "Kada posjetiti liječnika",
+      "paragraphs": [
+        "Potražite savjet ako izraslina krvari, mijenja boju, boli, širi se, nalazi se u genitalnom području, javlja se kod nekoga s dijabetesom, lošom cirkulacijom ili slabim imunitetom ili ako niste sigurni da je bradavica. Osobe s dijabetesom ne bi trebale same liječiti bradavice na stopalima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Korištenje salicilne kiseline",
+      "text": "Zamislite da vaše dijete ima bradavicu na prstu. Mogli biste natopiti područje u toploj vodi, turpijom skinuti mrtvu kožu i nanositi liječenje svaki dan nekoliko tjedana."
+    },
+    {
+      "title": "Zaštita bazena",
+      "text": "Pretpostavite da imate plantarnu bradavicu. Mogli biste je pokriti vodootpornim flasterom i nositi natikače u svlačionici."
+    }
+  ],
+  "questions": [
+    "Je li ovo bradavica i trebam li je liječiti ili pričekati?",
+    "Koje je liječenje najbolje za ovo mjesto?",
+    "Kada se trebam vratiti ako liječenje ne djeluje?"
+  ]
+}

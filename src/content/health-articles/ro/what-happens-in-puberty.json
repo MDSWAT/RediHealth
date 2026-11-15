@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă în pubertate?",
+  "intro": "Pubertatea este perioada în care corpul unui copil se transformă într-un corp de adult și devine capabil de reproducere. Este determinată de hormoni și aduce schimbări fizice, emoționale și sociale. Momentul variază de la un tânăr la altul, iar acest lucru este normal.",
+  "sections": [
+    {
+      "heading": "Ce declanșează pubertatea",
+      "paragraphs": [
+        "Pubertatea începe când creierul semnalează glandei hipofize să elibereze hormoni care stimulează ovarele sau testiculele. La fete începe de obicei între aproximativ opt și treisprezece ani, iar la băieți între nouă și paisprezece. Genele, nutriția, greutatea și starea generală de sănătate influențează momentul."
+      ]
+    },
+    {
+      "heading": "Schimbări la fete",
+      "paragraphs": [
+        "Dezvoltarea sânilor este de obicei primul semn, urmată de apariția părului pubian și axilar, de un salt de creștere, de șolduri mai late și, la aproximativ doi ani după începutul creșterii sânilor, de prima menstruație. Menstruațiile pot fi neregulate la început. Pielea poate deveni mai grasă și poate apărea acneea."
+      ]
+    },
+    {
+      "heading": "Schimbări la băieți",
+      "paragraphs": [
+        "Testiculele și scrotul se măresc primele, urmate de creșterea penisului, de apariția părului pubian și corporal, de un salt de creștere, de îngroșarea vocii și de apariția părului facial. Erecțiile și ejacularea nocturnă sunt normale. Acneea și transpirația cresc. Mușchii devin mai puternici."
+      ]
+    },
+    {
+      "heading": "Schimbări emoționale și sociale",
+      "paragraphs": [
+        "Tinerii pot avea schimbări de dispoziție, sentimente mai puternice, nevoie de intimitate, mai mult interes pentru relații și griji legate de imaginea corporală. Creierul continuă să se dezvolte, mai ales în zonele de judecată și de control al impulsurilor. Nevoia de somn crește. Sprijinul, informațiile clare și respectul ajută."
+      ]
+    },
+    {
+      "heading": "Când să cereți sfat",
+      "paragraphs": [
+        "Mergeți la medic dacă semnele încep înainte de opt ani la fete sau de nouă la băieți, dacă nu există niciun semn la treisprezece ani la fete sau paisprezece la băieți, dacă menstruația nu a început până la șaisprezece ani, pentru durere severă, sângerare abundentă, acnee severă sau griji legate de dispoziție. Vorbiți deschis despre igienă, consimțământ, sex protejat și schimbările corpului."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Discuția acasă",
+      "text": "Imaginați-vă că copilul dumneavoastră întreabă despre menstruație sau ejacularea nocturnă. Ați putea răspunde calm și sincer și ați putea oferi o carte sau un site bun."
+    },
+    {
+      "title": "Observarea semnelor timpurii",
+      "text": "Presupuneți că fiica dumneavoastră dezvoltă sâni la șapte ani. Ați putea programa un control la medicul pediatru."
+    }
+  ],
+  "questions": [
+    "Este dezvoltarea copilului meu normală pentru vârsta lui?",
+    "Cum pot sprijini schimbările emoționale ale copilului meu?",
+    "Când ar trebui să mergem la medic?"
+  ]
+}

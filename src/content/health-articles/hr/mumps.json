@@ -1,0 +1,51 @@
+{
+  "title": "Zaušnjaci",
+  "intro": "Zaušnjaci su zarazna virusna bolest koja klasično uzrokuje bolno oticanje žlijezda slinovnica ispred ušiju. Šire se kašljanjem, kihanjem i kontaktom. Danas su neuobičajeni tamo gdje je visoka procijepljenost, ali izbijanja se još događaju. Cjepivo koje se daje u djetinjstvu učinkovita je zaštita.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Nakon razdoblja inkubacije od oko dva do tri tjedna ljudi razviju vrućicu, glavobolju, bolove u mišićima, umor te oticanje i bol jednog ili oba obraza. Žvakanje i gutanje mogu boljeti. Do trećine ljudi ima malo simptoma ili ih nema, ali i dalje može širiti virus."
+      ]
+    },
+    {
+      "heading": "Komplikacije",
+      "paragraphs": [
+        "Komplikacije su neuobičajene, ali mogu biti ozbiljne. U tinejdžera i odraslih muškaraca testisi mogu postati bolni i otečeni. U žena jajnici mogu biti upaljeni. Druge komplikacije uključuju meningitis, upalu gušterače i gubitak sluha, koji može biti trajan. Problemi s plodnošću su rijetki."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i liječenje",
+      "paragraphs": [
+        "Dijagnoza se obično postavlja prema simptomima, a potvrđuje brisom ili krvnom pretragom, osobito kod izbijanja. Ne postoji specifično antivirusno liječenje. Pomažu odmor, tekućina, mekana hrana, ublažavanje boli i vrućice paracetamolom ili ibuprofenom te hladni ili topli oblozi. Izbjegavajte kisela pića koja potiču slinu i povećavaju bol. Potražite liječnički savjet zbog jake glavobolje, ukočenog vrata, boli u trbuhu ili boli u testisu."
+      ]
+    },
+    {
+      "heading": "Sprječavanje širenja",
+      "paragraphs": [
+        "Ljudi su zarazni od nekoliko dana prije oticanja do oko pet dana nakon što počne. Za to vrijeme trebaju ostati izvan škole ili posla, pokrivati kašalj i prati ruke. Recite liječniku prije posjeta kako bi se mogle poduzeti mjere opreza. Kontakti s nepoznatim statusom cijepljenja trebaju provjeriti svoje kartone."
+      ]
+    },
+    {
+      "heading": "Cijepljenje",
+      "paragraphs": [
+        "Kombinirano cjepivo protiv ospica, zaušnjaka i rubeole daje se u dvije doze u djetinjstvu i štiti veliku većinu ljudi. Imunitet može s vremenom oslabjeti, što objašnjava povremene slučajeve u cijepljenih osoba, općenito s blažom bolešću. Odrasli rođeni kasnije bez cijepljenja ili s nesigurnim zapisima trebaju pitati o cijepljenju za nadoknadu, a trudnice se ne smiju cijepiti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Provjera cijepnih kartona",
+      "text": "Zamislite da vaše dijete ima zaušnjake u školi. Mogli biste provjeriti svoj i cijepne kartone druge djece i pitati liječnika savjetuju li se dodatne doze."
+    },
+    {
+      "title": "Ostanak kod kuće",
+      "text": "Pretpostavite da vam oteknu obrazi i dobijete vrućicu. Mogli biste nazvati ordinaciju prije posjeta, ostati kod kuće oko pet dana i piti tekućinu uz praćenje jake boli."
+    }
+  ],
+  "questions": [
+    "Jesmo li ja i moja obitelj primili cijeli tijek cijepljenja protiv MMR-a?",
+    "Koliko dugo trebam ostati kod kuće i koji simptomi znače da trebam potražiti hitnu skrb?",
+    "Jesu li komplikacije vjerojatne u mojoj situaciji?"
+  ]
+}

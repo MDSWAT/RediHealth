@@ -1,0 +1,51 @@
+{
+  "title": "Syphilis",
+  "intro": "Syphilis is a sexually transmitted infection caused by bacteria, which can be cured with antibiotics, especially if found early. If untreated it can progress over years and damage the heart, brain and other organs. It can also be passed to an unborn baby, so testing and treatment matter.",
+  "sections": [
+    {
+      "heading": "How it spreads",
+      "paragraphs": [
+        "Syphilis spreads through direct contact with a syphilis sore during vaginal, anal or oral sex, and from mother to baby during pregnancy. Condoms reduce the risk but do not fully protect, as sores can occur on skin they do not cover. Having multiple partners and unprotected sex raise the risk, and rates are rising in many countries."
+      ]
+    },
+    {
+      "heading": "Stages and symptoms",
+      "paragraphs": [
+        "In the first stage, a painless sore called a chancre appears at the site of infection a few weeks later, and may go unnoticed. In the second stage, weeks to months later, a rash often affecting palms and soles, fever, swollen glands, hair loss and mouth sores can occur. Then the infection can become silent for years, called latent. In late stages, serious problems of the heart, brain and nerves can develop."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Blood tests detect antibodies and are repeated to confirm the diagnosis and to monitor treatment. Fluid from a sore can be examined directly. Because syphilis often coexists with other infections, testing for HIV and other sexually transmitted infections is advised. Pregnant women are routinely offered testing."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Penicillin injections cure syphilis. One injection is often enough for early stages, and several are given for later stages. People allergic to penicillin may receive other antibiotics. After treatment, blood tests are repeated to confirm that levels fall. Avoid sex until sores heal and treatment is complete. Fever, chills and aches within a day of starting treatment can occur and usually pass."
+      ]
+    },
+    {
+      "heading": "Partners and prevention",
+      "paragraphs": [
+        "Sexual partners of the past months should be told so that they can be tested and treated. Condoms, regular testing for people with new or multiple partners and early treatment protect health. Seek confidential sexual health services if you are worried."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Getting tested",
+      "text": "Imagine you notice a painless sore after a new partner. You could visit a sexual health clinic promptly for tests and ask about confidentiality."
+    },
+    {
+      "title": "Telling partners",
+      "text": "Suppose you test positive. You might ask the clinic how to inform partners anonymously and arrange follow-up blood tests."
+    }
+  ],
+  "questions": [
+    "Which tests do I need, and how will I know that I am cured?",
+    "Which partners should be tested and treated?",
+    "How can I lower my risk in future?"
+  ]
+}

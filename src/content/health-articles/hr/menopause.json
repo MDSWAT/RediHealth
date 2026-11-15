@@ -1,0 +1,51 @@
+{
+  "title": "Menopauza",
+  "intro": "Menopauza je vrijeme kad menstruacije trajno prestaju, obično oko pedesete godine. Godine koje joj prethode, zvane perimenopauza, donose hormonske promjene koje mogu uzrokovati valove vrućine, probleme sa spavanjem i promjene raspoloženja. To je prirodna životna faza i postoje mnoge mogućnosti za one kojima su simptomi teški.",
+  "sections": [
+    {
+      "heading": "Što se događa u tijelu",
+      "paragraphs": [
+        "Jajnici postupno proizvode manje estrogena i progesterona. Menstruacije postaju nepravilne prije nego što prestanu. Menopauza se potvrđuje nakon dvanaest mjeseci bez menstruacije. Perimenopauza može trajati nekoliko godina, a simptomi se uvelike razlikuju; neke žene imaju malo simptoma, druge mnogo."
+      ]
+    },
+    {
+      "heading": "Uobičajeni simptomi",
+      "paragraphs": [
+        "Valovi vrućine i noćno znojenje najpoznatiji su simptomi. Drugi uključuju poremećaje spavanja, promjene raspoloženja, razdražljivost, teškoće s koncentracijom, bolove u zglobovima, suhoću rodnice, nelagodu pri spolnom odnosu, mokraćne simptome i smanjen libido. Obilno ili vrlo nepravilno krvarenje, krvarenje nakon menopauze ili krvarenje između menstruacija treba procijeniti liječnik."
+      ]
+    },
+    {
+      "heading": "Što možete sami",
+      "paragraphs": [
+        "Redovita tjelovježba, uravnotežena prehrana, ograničavanje alkohola i kofeina, prestanak pušenja i nošenje odjeće u slojevima mogu pomoći. Hladne spavaće sobe, tehnike opuštanja i kognitivno-bihevioralna terapija ublažavaju valove vrućine i probleme sa spavanjem. Vlažila i lubrikanti za rodnicu ublažavaju suhoću."
+      ]
+    },
+    {
+      "heading": "Medicinska liječenja",
+      "paragraphs": [
+        "Menopauzalna hormonska terapija najučinkovitije je liječenje valova vrućine, a pomaže i kod vaginalnih simptoma i štiti kosti. Nosi rizike koji ovise o vrsti, dozi, trajanju te dobi i zdravlju žene, kao što je nešto veći rizik od krvnih ugrušaka i raka dojke uz dugotrajnu uporabu nekih kombinacija. Lokalni vaginalni estrogen učinkovit je za vaginalne simptome uz minimalnu apsorpciju. Nehormonski lijekovi mogu pomoći kod valova vrućine kad hormoni nisu prikladni."
+      ]
+    },
+    {
+      "heading": "Dugoročno zdravlje",
+      "paragraphs": [
+        "Nakon menopauze kosti brže gube gustoću, a rizik od bolesti srca raste. Razumno je vježbanje s opterećenjem, dovoljno kalcija i vitamina D, izbjegavanje pušenja te provjera krvnog tlaka i kolesterola. Kontracepcija je još potrebna neko vrijeme nakon posljednje menstruacije dok se menopauza ne potvrdi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za posjet",
+      "text": "Zamislite da se noću budite natopljeni znojem. Mogli biste dva tjedna voditi dnevnik simptoma, napisati popis pitanja o hormonskoj terapiji i obiteljskoj povijesti i ponijeti ga na pregled."
+    },
+    {
+      "title": "Razgovor o intimnosti",
+      "text": "Pretpostavite da je spolni odnos postao bolan. Mogli biste pitati liječnika o vaginalnom estrogenu i lubrikantima i razgovarati o tome s partnerom."
+    }
+  ],
+  "questions": [
+    "Koja bi liječenja odgovarala mojim simptomima i zdravstvenoj povijesti?",
+    "Koje su koristi i rizici hormonske terapije u mojoj situaciji?",
+    "Kako mogu zaštititi kosti i srce nakon menopauze?"
+  ]
+}

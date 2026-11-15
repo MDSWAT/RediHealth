@@ -1,0 +1,52 @@
+{
+  "title": "Folosirea medicamentelor în afara indicațiilor aprobate: ce trebuie să știți",
+  "intro": "Folosirea în afara indicațiilor aprobate înseamnă utilizarea unui medicament pentru o afecțiune, o grupă de vârstă, o doză sau o cale de administrare care nu sunt acoperite de aprobarea sa oficială. Este frecventă, mai ales la copii, în bolile rare și în cancer, și poate fi rezonabilă când dovezile o susțin. Deoarece se știe sau se documentează mai puțin, necesită o discuție atentă despre beneficii și riscuri.",
+  "sections": [
+    {
+      "heading": "Ce înseamnă în afara indicațiilor",
+      "paragraphs": [
+        "Când un medicament este aprobat, producătorul a demonstrat că este eficient și sigur pentru utilizări specifice, descrise în informațiile despre produs. Folosirea în afara acestora se numește utilizare în afara indicațiilor. Aceasta nu o face ilegală sau nesigură în sine, iar medicii pot prescrie medicamentul unde consideră potrivit. Diferă de medicamentele neautorizate, care nu au nicio aprobare."
+      ]
+    },
+    {
+      "heading": "De ce se întâmplă",
+      "paragraphs": [
+        "Studiile la copii, la femeile însărcinate și la persoanele cu boli rare lipsesc adesea, așa că medicii folosesc medicamentele pe baza experienței și a unor studii mai mici. Utilizări noi pot fi descoperite după aprobare, dar producătorul poate să nu ceară o extindere formală. Unele utilizări în afara indicațiilor au dovezi bune, în timp ce altele se bazează pe dovezi slabe."
+      ]
+    },
+    {
+      "heading": "Riscuri și incertitudini",
+      "paragraphs": [
+        "Pot exista mai puține informații despre dozarea corectă, efectele secundare și interacțiunile pentru utilizările în afara indicațiilor. Răspunderea pentru un prejudiciu și acoperirea de către asigurarea de sănătate pot diferi, deoarece asigurătorii pot plăti doar în anumite condiții. Prospectul nu va menționa utilizarea dumneavoastră, ceea ce poate fi îngrijorător."
+      ]
+    },
+    {
+      "heading": "Ce să întrebați",
+      "paragraphs": [
+        "Întrebați de ce este recomandat medicamentul, ce dovezi îl susțin, care sunt alternativele și ce riscuri se cunosc. Întrebați cum va fi măsurat succesul și când să vă opriți. Verificați dacă asigurarea îl acoperă și cine răspunde de urmărire.",
+        "Respectați doza prescrisă, spuneți despre efectele secundare și informați toți furnizorii de îngrijiri de sănătate. Prospectul oferă în continuare sfaturi valoroase de siguranță, precum interacțiunile și avertismentele."
+      ]
+    },
+    {
+      "heading": "Utilizarea în siguranță",
+      "paragraphs": [
+        "Nu schimbați dozele pe baza a ceea ce raportează alții online. Păstrați o listă cu toate medicamentele dumneavoastră, ca interacțiunile să poată fi verificate, și raportați prompt efectele secundare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Înțelegerea unui prospect",
+      "text": "Imaginați-vă că medicul vă prescrie un medicament pentru o utilizare care nu este menționată în prospect. Ați putea întreba despre motive și dovezi și ați putea cere o notă scrisă despre plan."
+    },
+    {
+      "title": "Întrebări despre costuri",
+      "text": "Presupuneți că rețeta nu este de obicei acoperită de asigurător. Ați putea întreba medicul despre alternative și costurile așteptate înainte de a începe."
+    }
+  ],
+  "questions": [
+    "Este această utilizare a medicamentului susținută de dovezi și există o alternativă aprobată?",
+    "Care sunt riscurile posibile și cum le vom monitoriza?",
+    "Va acoperi asigurarea mea de sănătate acest tratament?"
+  ]
+}

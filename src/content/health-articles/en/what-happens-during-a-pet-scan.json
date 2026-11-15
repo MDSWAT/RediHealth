@@ -1,0 +1,51 @@
+{
+  "title": "What happens during a PET scan?",
+  "intro": "Positron emission tomography, or PET, is an imaging test that shows how tissues work, not only how they look. A small amount of radioactive tracer is injected, and a scanner detects where it collects. It is used mostly for cancer, heart disease and brain disorders, often combined with CT or MRI.",
+  "sections": [
+    {
+      "heading": "Why it is done",
+      "paragraphs": [
+        "PET can show how active tissues are, which helps find cancer, show whether it has spread, check response to treatment and detect recurrence. It is also used to assess blood supply to heart muscle, and for brain conditions such as dementia and epilepsy. The result is combined with other tests."
+      ]
+    },
+    {
+      "heading": "Preparation",
+      "paragraphs": [
+        "You are usually asked to fast for four to six hours, though you can drink water. For some scans you should avoid strenuous exercise beforehand. People with diabetes need special instructions about food and medicine. Tell staff if you are pregnant, breastfeeding or afraid of enclosed spaces."
+      ]
+    },
+    {
+      "heading": "The scan",
+      "paragraphs": [
+        "A tracer, often a form of sugar labelled with a radioactive atom, is injected into a vein. You rest quietly for about an hour while it spreads through the body. You then lie on a table that slides into a ring-shaped scanner for twenty to forty minutes. You must lie still, and the machine is open and not painful."
+      ]
+    },
+    {
+      "heading": "Safety",
+      "paragraphs": [
+        "The radiation dose is small and similar to a few years of natural background radiation. The tracer leaves the body within hours. Drink plenty of fluids and avoid close contact with pregnant women and small babies for several hours if advised. Allergic reactions are very rare. Pregnancy is generally a reason to avoid the test."
+      ]
+    },
+    {
+      "heading": "Results",
+      "paragraphs": [
+        "A nuclear medicine specialist and radiologist interpret the images. Results go to the referring doctor in a few days. Active areas appear bright, but inflammation can also look like cancer, so findings are interpreted with other information. Ask what happens next."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing",
+      "text": "Imagine your scan is in the afternoon. You could eat a light breakfast, fast afterwards as instructed and drink water."
+    },
+    {
+      "title": "Lying still",
+      "text": "Suppose you feel anxious in the scanner. You might breathe slowly and tell staff if you need help."
+    }
+  ],
+  "questions": [
+    "Why is a PET scan needed, and how will the result change my care?",
+    "How should I prepare, especially if I have diabetes?",
+    "Are there any precautions after the scan?"
+  ]
+}

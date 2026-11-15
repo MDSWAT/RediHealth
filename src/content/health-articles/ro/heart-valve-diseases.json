@@ -1,0 +1,51 @@
+{
+  "title": "Boala valvulară: monitorizare și tratament",
+  "intro": "Valvele păstrează sângele în direcția corectă. Valva îngustată împiedică fluxul, iar cea insuficientă permite întoarcerea. Gravitatea diferă; suflul singur nu arată necesitatea procedurii.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Pot apărea dispnee, toleranță redusă la efort, oboseală, umflare ori leșin. Unele probleme severe sunt inițial tăcute; contează simptomele și imagistica, fără a aștepta durere evidentă."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Ecocardiografia examinează structura, fluxul și răspunsul inimii. Întrebați valva afectată, gravitatea și termenul repetării. Raportați schimbarea mersului obișnuit sau urcatului scărilor. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Uneori este suficient controlul; medicamentele pot ameliora simptome asociate, dar nu repară sigur o valvă deteriorată mecanic. Repararea, înlocuirea ori cateterul se aleg după anatomie, gravitate, risc operator și priorități. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Mențineți igiena dentară și informați clinicienii despre boală ori proteză. Antibioticele înainte de stomatologie sunt necesare numai în situații selectate cu risc mare, la recomandare. Tipul protezei influențează anticoagularea și controalele. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Dispneea nouă, leșinul la efort ori umflarea în agravare cer control prompt. Durerea toracică severă, dificultatea respiratorie mare sau colapsul sunt urgențe. Febra persistentă inexplicabilă după protezare cere evaluarea infecției."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira are problemă moderată fără simptome. Păstrează ecografiile și raportează mersul mai dificil fără să aștepte următoarea programare."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben discută proteza biologică și mecanică, inclusiv analizele și anticoagulantele, înaintea consimțământului."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

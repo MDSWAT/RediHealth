@@ -1,0 +1,52 @@
+{
+  "title": "Tumore al seno metastatico",
+  "intro": "Tumore al seno metastatico significa che il tumore nato nella mammella si è diffuso ad altre parti del corpo, come ossa, fegato, polmoni o cervello. Di solito non è guaribile, ma i trattamenti possono controllarlo per mesi o anni, alleviare i sintomi e mantenere la qualità di vita. Esistono molte opzioni e le decisioni sono individuali.",
+  "sections": [
+    {
+      "heading": "Come viene individuato",
+      "paragraphs": [
+        "Può essere scoperto alla prima diagnosi o ripresentarsi anni dopo trattamenti precedenti. I sintomi dipendono da dove si è diffuso, come dolore osseo, mancanza di fiato, tosse persistente, fastidio addominale, mal di testa o perdita di peso. Scansioni, esami del sangue e biopsie delle metastasi confermano i reperti e mostrano le caratteristiche del tumore."
+      ]
+    },
+    {
+      "heading": "Il tipo di tumore conta",
+      "paragraphs": [
+        "Il trattamento dipende dal fatto che le cellule tumorali abbiano recettori ormonali, producano troppa proteina HER2 o siano triplo negative. Testare un nuovo campione può mostrare differenze rispetto al tumore originale. I test genetici possono individuare cambiamenti che rendono utili certi farmaci."
+      ]
+    },
+    {
+      "heading": "Opzioni di trattamento",
+      "paragraphs": [
+        "I tumori sensibili agli ormoni vengono spesso trattati con terapia endocrina combinata con farmaci mirati. I tumori HER2-positivi rispondono agli anticorpi anti-HER2. Chemioterapia, immunoterapia e altri farmaci mirati si usano quando serve. Il trattamento continua finché funziona ed è tollerato e viene cambiato se il tumore progredisce.",
+        "Radioterapia, chirurgia e farmaci che rafforzano le ossa aiutano a controllare i problemi locali e i sintomi. Gli studi clinici possono dare accesso a nuovi trattamenti."
+      ]
+    },
+    {
+      "heading": "Controllo dei sintomi e cure palliative",
+      "paragraphs": [
+        "I team di cure palliative si concentrano sul sollievo da dolore, nausea, stanchezza e tensione emotiva e sono coinvolti insieme al trattamento oncologico, non solo alla fine della vita. Il coinvolgimento precoce è associato a una migliore qualità di vita. Terapie complementari come esercizio e rilassamento possono aiutare, ma vanno discusse con il tuo team."
+      ]
+    },
+    {
+      "heading": "Vivere con un tumore avanzato",
+      "paragraphs": [
+        "Sentimenti di paura, rabbia e tristezza sono normali. Il sostegno psico-oncologico, i gruppi di sostegno e i servizi sociali possono aiutare con le preoccupazioni emotive e pratiche, compresi lavoro, finanze e responsabilità di cura. Parlare di obiettivi, desideri e pianificazione anticipata delle cure è utile."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi a una decisione sul trattamento",
+      "text": "Immagina di aver appena saputo che il tumore si è diffuso. Potresti portare un familiare alle visite, registrare la discussione e scrivere domande su obiettivi, effetti collaterali e su come verrà misurato il successo del trattamento."
+    },
+    {
+      "title": "Cercare sostegno",
+      "text": "Supponi di sentirti isolata. Potresti chiedere al team oncologico di uno psico-oncologo o di un gruppo locale per donne con tumore al seno avanzato."
+    }
+  ],
+  "questions": [
+    "Quali sono le caratteristiche del mio tumore e quali trattamenti sono adatti?",
+    "Quali sono gli obiettivi del trattamento e come giudicheremo se funziona?",
+    "Come possono aiutarmi ora le cure palliative?"
+  ]
+}

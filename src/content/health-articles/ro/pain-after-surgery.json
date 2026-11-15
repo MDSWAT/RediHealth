@@ -1,0 +1,51 @@
+{
+  "title": "Durerea după operație",
+  "intro": "O anumită durere după o operație este normală, dar de obicei poate fi bine controlată. O calmare bună a durerii vă ajută să respirați adânc, să vă mișcați devreme, să dormiți și să vă recuperați mai repede. Cunoașterea opțiunilor și discuția deschisă cu echipa de îngrijire vă ajută să primiți tratamentul potrivit cu cele mai puține efecte secundare.",
+  "sections": [
+    {
+      "heading": "De ce contează calmarea durerii",
+      "paragraphs": [
+        "Durerea prost controlată poate încetini recuperarea, poate duce la infecții pulmonare, cheaguri de sânge și slăbiciune din cauza statului în pat și poate crește riscul unei dureri de lungă durată. Durerea variază de la o persoană la alta și depinde de tipul operației, așa că propria experiență este ghidul. Nu trebuie să fiți curajos și nici să așteptați până când durerea devine severă."
+      ]
+    },
+    {
+      "heading": "Evaluarea durerii",
+      "paragraphs": [
+        "Personalul vă cere adesea să evaluați durerea pe o scală de la zero la zece. Spuneți-le cum vă afectează durerea mersul, tusea și somnul, nu doar cifra. Raportați durerea nouă sau care se agravează brusc, deoarece poate fi semnul unei complicații."
+      ]
+    },
+    {
+      "heading": "Medicamente",
+      "paragraphs": [
+        "Tratamentul combină adesea mai multe tipuri de calmante. Paracetamolul și calmantele antiinflamatoare sunt baza. Medicamentele opioide se folosesc pentru durerea mai puternică și pot provoca somnolență, greață, constipație și încetinirea respirației și trebuie folosite în cea mai mică doză eficientă, pentru cel mai scurt timp. Injecțiile cu anestezic local, blocurile nervoase, epiduralele și perfuziile pot amorți zona."
+      ]
+    },
+    {
+      "heading": "Alte măsuri utile",
+      "paragraphs": [
+        "Poziționarea, compresele reci sau calde, susținerea plăgii cu o pernă când tușiți, relaxarea, muzica și distragerea atenției pot ajuta. Mișcarea blândă timpurie și exercițiile de respirație reduc complicațiile. O bună informare înaintea operației scade anxietatea, ceea ce reduce la rândul său durerea."
+      ]
+    },
+    {
+      "heading": "Plecarea acasă",
+      "paragraphs": [
+        "Cereți un plan pentru durere înainte de a pleca: ce medicamente, cât de des, când să reduceți dozele și ce să faceți pentru constipație. Nu conduceți și nu beți alcool cât luați opioide. Păstrați-le în siguranță și returnați tabletele nefolosite la o farmacie. Contactați medicul dacă durerea crește, dacă aveți febră, roșeață sau secreții de la plagă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Discuția despre durere",
+      "text": "Imaginați-vă că simțiți durere când tușiți după o operație abdominală. Ați putea spune asistentei că durerea vă împiedică să respirați adânc și ați putea cere un calmant înainte de kinetoterapie."
+    },
+    {
+      "title": "Planificarea din timp",
+      "text": "Presupuneți că operația este săptămâna viitoare. Ați putea întreba medicul anestezist ce opțiuni de calmare a durerii vi se vor oferi și cum să gestionați efecte secundare precum greața."
+    }
+  ],
+  "questions": [
+    "Ce calmante voi primi și ce efecte secundare ar trebui să mă aștept?",
+    "Cum voi gestiona durerea acasă și când ar trebui să reduc doza?",
+    "Ce simptome înseamnă că ar trebui să sun echipa chirurgicală?"
+  ]
+}

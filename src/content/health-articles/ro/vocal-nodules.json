@@ -1,0 +1,51 @@
+{
+  "title": "Nodulii vocali și problemele vocii",
+  "intro": "Nodulii vocali sunt mici calusuri benigne pe corzile vocale, provocate de efort repetat, frecvenți la cântăreți, profesori și alții care folosesc mult vocea. Provoacă răgușeală, o voce șuierătoare sau obosită și oboseală vocală. Terapia vocii este tratamentul principal, iar chirurgia este rar necesară.",
+  "sections": [
+    {
+      "heading": "Cum funcționează vocea",
+      "paragraphs": [
+        "Sunetul se produce când aerul din plămâni face cele două corzi vocale să vibreze. Ele trebuie să se închidă complet și să vibreze uniform. Când corzile sunt suprasolicitate, punctele de contact se pot îngroșa și pot forma noduli, care le împiedică să se închidă corect și provoacă un sunet aspru sau suflat. Polipii și chisturile pot provoca simptome asemănătoare."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Răgușeală, voce suflată sau slabă, voce care obosește repede, ton mai grav, dificultate în a atinge notele înalte și disconfort în gât. Simptomele se agravează adesea pe parcursul zilei, odată cu folosirea. Răgușeala persistentă, care durează mai mult de trei-patru săptămâni, trebuie verificată de un medic, deoarece alte cauze, inclusiv cancerul, trebuie excluse, mai ales la fumători."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Un specialist ORL privește corzile vocale cu o mică cameră flexibilă sau cu un endoscop rigid, adesea cu o lumină stroboscopică pentru a arăta cum vibrează. Un terapeut al vocii evaluează folosirea vocii. Scopul este identificarea tipului de leziune și a obiceiurilor care contribuie, precum țipatul, vorbitul peste zgomot, tuse pentru a curăța gâtul, fumatul și refluxul."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Terapia vocii cu un logoped învață folosirea eficientă a vocii, respirația, relaxarea și obiceiurile sănătoase. Cei mai mulți noduli se micșorează sau dispar cu terapia în săptămâni până la luni. Tratați refluxul, opriți fumatul, mențineți-vă hidratat și evitați șoptitul și curățarea gâtului prin tuse. Chirurgia sub anestezie generală se ia în considerare doar dacă terapia eșuează, urmată de repaus vocal și terapie."
+      ]
+    },
+    {
+      "heading": "Îngrijirea vocii",
+      "paragraphs": [
+        "Beți apă, odihniți vocea în timpul bolii, folosiți amplificare în medii zgomotoase, evitați efortul, faceți încălzire înainte de folosirea îndelungată și asigurați un somn adecvat. Profesioniștii care își folosesc vocea pot urma instruire cu antrenori vocali. Cereți ajutor devreme, în loc să forțați vocea răgușită."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Protejarea vocii de profesor",
+      "text": "Imaginați-vă că predați toată ziua și ajungeți răgușit. Ați putea folosi un microfon, ați putea face pauze de tăcere, ați putea bea apă și ați putea întreba despre terapia vocii."
+    },
+    {
+      "title": "Observarea răgușelii persistente",
+      "text": "Presupuneți că sunteți răgușit de șase săptămâni. Ați putea merge la un medic pentru o examinare a corzilor vocale, în loc să așteptați."
+    }
+  ],
+  "questions": [
+    "Ce provoacă răgușeala mea și au fost excluse alte afecțiuni?",
+    "Ar ajuta terapia vocii și cât ar dura?",
+    "Când se ia în considerare operația?"
+  ]
+}

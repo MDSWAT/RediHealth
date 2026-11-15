@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa succede durante una visita neurologica",
+  "intro": "Una visita neurologica controlla come funzionano cervello, midollo spinale e nervi. Comprende semplici esami indolori di pensiero, sensi, movimento, riflessi e coordinazione. Aiuta i medici a capire se un problema viene dal sistema nervoso e dove.",
+  "sections": [
+    {
+      "heading": "Pensiero e linguaggio",
+      "paragraphs": [
+        "Il medico parla con te per valutare vigilanza, memoria, attenzione, linguaggio e comprensione. Possono chiederti domande come la data, di ricordare alcune parole o di seguire istruzioni. Si notano anche umore e comportamento. Questo aiuta a individuare condizioni come demenza, ictus o infezioni."
+      ]
+    },
+    {
+      "heading": "Nervi cranici e sensi",
+      "paragraphs": [
+        "Il medico verifica vista, movimenti degli occhi, risposte delle pupille, movimento e sensibilità del viso, udito, deglutizione e movimento della lingua. Può farti luce negli occhi o chiederti di seguire un dito. Tatto, temperatura, dolore e vibrazione si controllano con cotone morbido, uno spillo o un diapason."
+      ]
+    },
+    {
+      "heading": "Forza, tono e riflessi",
+      "paragraphs": [
+        "Ti viene chiesto di spingere e tirare contro le mani del medico e di tenere le braccia tese. I muscoli vengono palpati per tensione o ipotrofia. I riflessi si testano battendo i tendini di ginocchio, caviglia e gomito con un piccolo martelletto. Riflessi anomali possono indicare problemi dei nervi o del midollo."
+      ]
+    },
+    {
+      "heading": "Coordinazione e camminata",
+      "paragraphs": [
+        "Puoi toccarti il naso e il dito del medico, far scorrere un tallone lungo lo stinco e camminare in linea. Stare in piedi con gli occhi chiusi verifica l'equilibrio. Postura, oscillazione delle braccia e passi mostrano problemi del cervelletto, dei muscoli o dei circuiti del movimento di tipo parkinsoniano."
+      ]
+    },
+    {
+      "heading": "Dopo la visita",
+      "paragraphs": [
+        "Il medico può prescrivere esami del sangue, esami di immagini come la risonanza magnetica, esami dei nervi o l'elettroencefalografia. Chiedi che cosa è stato trovato, quali altri esami servono e che cosa significano i reperti. Porta alla visita un elenco di sintomi e farmaci."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi",
+      "text": "Immagina di avere un intorpidimento alla mano. Potresti annotare quando è iniziato, che cosa lo migliora o peggiora e portare l'elenco dei farmaci."
+    },
+    {
+      "title": "Capire i risultati",
+      "text": "Supponi che i tuoi riflessi siano ridotti. Potresti chiedere che cosa suggerisce e quali altri esami aiuteranno."
+    }
+  ],
+  "questions": [
+    "Quale parte del sistema nervoso potrebbe essere coinvolta?",
+    "Di quali altri esami ho bisogno?",
+    "Quando devo cercare aiuto urgente?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Sfaturi pentru adulții cu pierdere a auzului sau surditate",
+  "intro": "Pierderea auzului poate face conversația, munca și viața socială mai obositoare, dar strategiile practice ajută. Mici schimbări în modul în care comunicați dumneavoastră și ceilalți, împreună cu tehnologia și serviciile de sprijin, fac viața de zi cu zi mai ușoară. A cere ce aveți nevoie este o abilitate care merită exersată.",
+  "sections": [
+    {
+      "heading": "Conversații mai ușoare",
+      "paragraphs": [
+        "Stați cu fața spre persoana cu care vorbiți și asigurați o lumină bună pe fața ei, ca să puteți vedea mișcările buzelor și expresiile. Alegeți locuri liniștite, reduceți zgomotul de fundal și rugați-i pe ceilalți să vorbească clar, într-un ritm normal, fără să strige sau să exagereze. Rugați-i să reformuleze, în loc să repete aceleași cuvinte. Fiți deschis în privința pierderii auzului, ca oamenii să înțeleagă."
+      ]
+    },
+    {
+      "heading": "Folosirea tehnologiei",
+      "paragraphs": [
+        "Aparatele auditive și implanturile cohleare ajută multe persoane și trebuie purtate constant și adaptate de un audiolog. Accesoriile precum microfoanele la distanță, dispozitivele de transmitere a sunetului de la televizor și sistemele cu buclă îmbunătățesc înțelegerea în situații dificile. Subtitrările la video, aplicațiile de transformare a vorbirii în text și telefoanele cu amplificare ajută la media și la apeluri. Alarmele și soneriile luminoase sau cu vibrații fac casa mai sigură."
+      ]
+    },
+    {
+      "heading": "La serviciu și în public",
+      "paragraphs": [
+        "Spuneți angajatorului ce ajută, precum ședințele în camere liniștite, ordinile de zi scrise, ședințele video cu subtitrări sau interpreții de limbaj mimico-gestual. Multe țări oferă drepturi legale la ajustări rezonabile. În locurile publice, întrebați despre sistemele cu buclă și informațiile scrise și alegeți locuri apropiate de vorbitor."
+      ]
+    },
+    {
+      "heading": "Cum vă îngrijiți",
+      "paragraphs": [
+        "Ascultatul obosește, așa că programați pauze și timp de liniște. Protejați auzul rămas de zgomotul puternic. Testați-vă regulat auzul și tratați prompt problemele urechii. Rămâneți conectat social, deoarece izolarea crește riscul de singurătate și dispoziție scăzută. Grupurile de egali și organizațiile pentru pierderea auzului oferă sfaturi și experiență împărtășită."
+      ]
+    },
+    {
+      "heading": "Implicarea familiei și a prietenilor",
+      "paragraphs": [
+        "Explicați familiei și prietenilor cum să comunice cu dumneavoastră, de exemplu să vă atragă atenția înainte de a vorbi și să nu vorbească din altă cameră. Stabiliți semnale pentru când nu înțelegeți. Învățarea citirii pe buze sau a limbajului mimico-gestual, singur sau împreună cu familia, poate îmbogăți comunicarea."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru o ședință",
+      "text": "Imaginați-vă că aveți o ședință de echipă. Ați putea cere ordinea de zi dinainte, ați putea sta cu fața spre vorbitor și ați putea cere ca oamenii să vorbească pe rând."
+    },
+    {
+      "title": "Amenajarea acasă",
+      "text": "Presupuneți că vă este greu să auziți televizorul. Ați putea întreba un audiolog despre un dispozitiv de transmitere a sunetului sau despre căști care se conectează la televizor."
+    }
+  ],
+  "questions": [
+    "Ar ajuta aparatele auditive sau alte dispozitive în situația mea?",
+    "Ce ajustări la locul de muncă pot cere?",
+    "Unde pot găsi grupuri locale de sprijin pentru pierderea auzului?"
+  ]
+}

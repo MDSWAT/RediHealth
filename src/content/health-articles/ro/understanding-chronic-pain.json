@@ -1,0 +1,51 @@
+{
+  "title": "Înțelegerea durerii cronice",
+  "intro": "Durerea cronică este durerea care durează mai mult de trei luni, dincolo de timpul obișnuit de vindecare. Poate apărea de la o leziune sau o boală ori fără o cauză clară și afectează dispoziția, somnul, munca și relațiile. Durerea este reală, iar înțelegerea modului în care funcționează vă ajută să participați la un tratament eficient.",
+  "sections": [
+    {
+      "heading": "Cum funcționează durerea",
+      "paragraphs": [
+        "Durerea este produsă de creier și de sistemul nervos ca răspuns la semnale de amenințare. În durerea acută, ne protejează de rău. În durerea cronică, sistemul nervos poate deveni hipersensibil, astfel încât durerea continuă sau este amplificată chiar dacă țesutul s-a vindecat, iar senzațiile normale pot deveni dureroase. Stresul, somnul slab, dispoziția scăzută și grijile pot ridica și mai mult volumul."
+      ]
+    },
+    {
+      "heading": "Tipuri frecvente",
+      "paragraphs": [
+        "Durerea cronică include durerea de spate și de gât, artroza, durerea nervoasă după zona zoster sau diabet, durerile de cap, fibromialgia, durerea după operații și afecțiuni fără o cauză clară. Multe persoane au mai mult de un tip. Rezultatele imagisticii nu corespund adesea cu intensitatea durerii resimțite."
+      ]
+    },
+    {
+      "heading": "Abordări de tratament",
+      "paragraphs": [
+        "Cele mai bune rezultate vin din combinarea mai multor abordări. Menținerea activității fizice prin exerciții gradate, kinetoterapia, educația despre durere și metodele psihologice, precum terapia cognitiv-comportamentală, terapia prin acceptare și angajament și relaxarea, se numără printre cele mai eficiente tratamente. Medicamentele pot ajuta în anumite tipuri, precum medicamentele pentru durerea nervoasă, dar au efecte secundare. Opioidele nu sunt în general potrivite pentru utilizare pe termen lung în durerea cronică necanceroasă, din cauza beneficiului limitat și a riscurilor de dependență."
+      ]
+    },
+    {
+      "heading": "Dozarea efortului și viața de zi cu zi",
+      "paragraphs": [
+        "Dozarea efortului înseamnă echilibrarea activității și a odihnei, pentru a evita tiparul de a face prea mult în zilele bune și de a ceda după aceea. Ajută stabilirea unor obiective mici, menținerea activităților sociale, somnul regulat și rutina. Spuneți familiei și angajatorilor de ce aveți nevoie. Clinicile de durere, cu echipe de medici, psihologi și kinetoterapeuți, oferă programe cuprinzătoare."
+      ]
+    },
+    {
+      "heading": "Bunăstarea emoțională",
+      "paragraphs": [
+        "Trăitul cu durere continuă poate provoca frustrare, anxietate și depresie, care la rândul lor agravează durerea. Nu ezitați să cereți sprijin pentru dispoziția dumneavoastră. Grupurile de sprijin între egali pot reduce izolarea. Dacă aveți gânduri de a vă face rău, contactați imediat serviciile de urgență sau o linie de criză."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dozarea activității",
+      "text": "Imaginați-vă că faceți curățenie în toată casa în zilele bune și apoi vă odihniți zile întregi. Ați putea împărți treburile în sesiuni scurte pe parcursul săptămânii și ați putea nota cum vă simțiți."
+    },
+    {
+      "title": "Cererea unui program pentru durere",
+      "text": "Presupuneți că medicamentele singure nu funcționează. Ați putea întreba medicul despre un program multidisciplinar pentru durere, care include exerciții și terapie psihologică."
+    }
+  ],
+  "questions": [
+    "Ce abordare este cel mai probabil să ajute tipul meu de durere?",
+    "Ce medicamente sunt potrivite și pe care ar trebui să le evit?",
+    "Am la dispoziție o clinică de durere sau terapie psihologică?"
+  ]
+}

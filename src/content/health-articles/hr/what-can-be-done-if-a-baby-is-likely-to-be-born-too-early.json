@@ -1,0 +1,51 @@
+{
+  "title": "Što se može učiniti ako je vjerojatno da će se beba roditi prerano",
+  "intro": "Beba rođena prije trideset sedmog tjedna trudnoće smatra se nedonošenom. Kada postoje znakovi ranog poroda, liječnici ponekad mogu nakratko odgoditi porod i dati liječenja koja poboljšavaju šanse bebe. Razumijevanje mogućnosti pomaže roditeljima sudjelovati u odlukama.",
+  "sections": [
+    {
+      "heading": "Znakovi i čimbenici rizika",
+      "paragraphs": [
+        "Znakovi upozorenja uključuju redovite kontrakcije, bol u donjem dijelu trbuha ili leđa, pritisak u zdjelici, promjenu vaginalnog iscjetka, krvarenje ili curenje tekućine iz rodnice. Čimbenici rizika uključuju prethodni prijevremeni porod, kratak vrat maternice, višeplodnu trudnoću, infekcije, pušenje, određena medicinska stanja i abnormalnosti maternice. Ako primijetite znakove, odmah kontaktirajte svoju primalju ili bolnicu."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Liječnici vas pregledavaju, provjeravaju bebu CTG-om i ultrazvukom, mogu izmjeriti duljinu vrata maternice i testirati na fetalni fibronektin ili infekciju. Promatraju duljinu trudnoće i položaj bebe. Pretrage pomažu procijeniti hoće li porod vjerojatno početi u sljedećim danima."
+      ]
+    },
+    {
+      "heading": "Liječenja za poboljšanje ishoda",
+      "paragraphs": [
+        "Injekcije kortikosteroida dane majci dozrijevaju pluća bebe i smanjuju probleme s disanjem, krvarenja u mozak i smrt, a najkorisnije su kada se porod očekuje unutar sedam dana, u trudnoći do otprilike trideset četvrtog tjedna. Magnezijev sulfat dan prije vrlo ranog poroda štiti mozak bebe. Antibiotici se daju kada su pukli vodenjaci ili se sumnja na infekciju."
+      ]
+    },
+    {
+      "heading": "Odgađanje poroda i premještaj u specijaliziranu jedinicu",
+      "paragraphs": [
+        "Lijekovi zvani tokolitici mogu usporiti kontrakcije oko dva dana, što daje vrijeme da steroidi djeluju i da se majka prebaci u bolnicu s jedinicom intenzivne neonatalne skrbi. Nije dokazano da mirovanje u krevetu pomaže. Kod žena s kratkim vratom maternice ili ranijim prijevremenim porodom progesteron, šav na vratu maternice ili pesar mogu smanjiti rizik u odabranim slučajevima."
+      ]
+    },
+    {
+      "heading": "Nakon poroda i potpora",
+      "paragraphs": [
+        "Nedonoščad mogu trebati pomoć s disanjem, toplinom i hranjenjem u neonatalnoj jedinici. Roditelje se potiče na sudjelovanje, uz kontakt koža na kožu i majčino mlijeko. Ishodi ovise o gestacijskoj dobi pri rođenju, a kontrolni pregledi prate razvoj. Emocionalna potpora, savjetovanje i grupe roditelja pomažu obiteljima da se nose."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reagiranje na znakove upozorenja",
+      "text": "Zamislite da u tridesetom tjednu osjetite redovito stezanje. Mogli biste odmah nazvati svoju rodilišnu jedinicu i otići na procjenu."
+    },
+    {
+      "title": "Priprema za jedinicu",
+      "text": "Pretpostavite da se savjetuje premještaj. Mogli biste pitati koja su liječenja planirana, tko vas može pratiti i kako ostati u kontaktu s obitelji."
+    }
+  ],
+  "questions": [
+    "Koja liječenja mogu pomoći mojoj bebi ako očekujemo rani porod?",
+    "Trebam li roditi u bolnici s jedinicom intenzivne neonatalne skrbi?",
+    "Što mogu učiniti kako bih smanjila rizik u budućoj trudnoći?"
+  ]
+}

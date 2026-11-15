@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh gjatë një biopsie?",
+  "intro": "Një biopsi është një procedurë ku merret një mostër e vogël indi nga trupi e ekzaminohet nën mikroskop. Përdoret për të diagnostikuar gjendje si kanceri, inflamacioni e infeksionet. Shumica e biopsive janë të shpejta e bëhen me anestezi lokale.",
+  "sections": [
+    {
+      "heading": "Pse bëhet një biopsi",
+      "paragraphs": [
+        "Skanimet e analizat e gjakut mund të sugjerojnë një problem, por ekzaminimi i indit shpesh është mënyra e vetme për të qenë i sigurt çfarë është. Një biopsi mund të tregojë nëse një gungë është beninje apo malinje, të gjejë llojin e kancerit e të ndihmojë planifikimin e trajtimit. Përdoret edhe për diagnostikimin e sëmundjeve të mëlçisë, veshkave, lëkurës e zorrëve."
+      ]
+    },
+    {
+      "heading": "Llojet e biopsisë",
+      "paragraphs": [
+        "Një biopsi me gjilpërë përdor një gjilpërë të hollë ose më të trashë për të marrë qeliza ose një bërthamë të vogël indi, shpesh e udhëhequr nga ultratingulli ose skanimi. Një biopsi endoskopike merr mostra me pinca të vogla përmes një tubi me kamerë. Një biopsi e lëkurës heq një copë të vogël me teh ose stampë. Biopsia kirurgjikale heq një pjesë ose të gjithë gungën përmes një prerjeje."
+      ]
+    },
+    {
+      "heading": "Para e gjatë",
+      "paragraphs": [
+        "Mund t'ju kërkohet të ndaloni holluesit e gjakut e të agjëroni për disa procedura. Zona pastrohet e mpihet. Mund të ndjeni presion ose dhimbje të shkurtër gjatë marrjes së mostrës. Procedurat zgjasin nga disa minuta deri në një orë, e disa kërkojnë qetësim. Zakonisht mund të shkoni në shtëpi po atë ditë."
+      ]
+    },
+    {
+      "heading": "Pas biopsisë",
+      "paragraphs": [
+        "Dhimbja e lehtë, mavijosja ose gjakderdhja e vogël janë të zakonshme. Ndiqni udhëzimet për kujdesin e plagës. Kontaktoni mjekun për gjakderdhje të bollshme, ethe, dhimbje në rritje, skuqje ose enjtje. Komplikimet janë të pazakonta, por përfshijnë gjakderdhje e infeksion."
+      ]
+    },
+    {
+      "heading": "Rezultatet",
+      "paragraphs": [
+        "Një patolog e ekzaminon mostrën, e rezultatet zgjasin nga disa ditë deri në dy javë. Pritja mund të jetë stresuese. Pyesni kur e si do ta merrni rezultatin e kush do ta shpjegojë. Nganjëherë nevojitet biopsi tjetër nëse mostra ishte shumë e vogël ose e paqartë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja",
+      "text": "Imagjinoni që do të bëni një biopsi të mëlçisë. Mund t'i tregoni ekipit për të gjitha barnat, veçanërisht holluesit e gjakut, e të organizoni një udhëtim për në shtëpi."
+    },
+    {
+      "title": "Gjatë pritjes për rezultate",
+      "text": "Supozoni që rezultatet zgjasin dhjetë ditë. Mund të kërkoni datën e një takimi vijues e të sillni dikë me vete."
+    }
+  ],
+  "questions": [
+    "Pse më duhet një biopsi e çfarë do të tregojë?",
+    "Cili lloj biopsie planifikohet e cilat janë rreziqet?",
+    "Kur do t'i marr rezultatet e kush do t'i shpjegojë?"
+  ]
+}

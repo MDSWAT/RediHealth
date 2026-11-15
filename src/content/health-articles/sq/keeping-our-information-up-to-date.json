@@ -1,0 +1,51 @@
+{
+  "title": "Mbajtja e informacionit shëndetësor të përditësuar",
+  "intro": "Njohuritë mjekësore ndryshojnë ndërsa shfaqen studime të reja, prandaj informacioni i besueshëm shëndetësor duhet kontrolluar dhe rishikuar rregullisht. Të kuptuarit si funksionon kjo ju ndihmon të gjykoni sa i përditësuar është një artikull dhe pse këshillat më të vjetra ndonjëherë dallojnë nga rekomandimet më të reja.",
+  "sections": [
+    {
+      "heading": "Pse informacioni vjetërohet",
+      "paragraphs": [
+        "Kërkimet e reja mund të konfirmojnë, saktësojnë ose përmbysin gjetjet e mëparshme. Trajtimet miratohen, shfaqen shqetësime sigurie dhe udhëzuesit rishikohen. Disa tema ndryshojnë shpejt, si vaksinat ose barnat e kancerit, ndërsa anatomia bazë ndryshon ngadalë."
+      ]
+    },
+    {
+      "heading": "Si kontrollohet informacioni",
+      "paragraphs": [
+        "Autorët monitorojnë studimet e reja, udhëzuesit dhe alarmet për barnat. Ata vlerësojnë nëse prova e re është mjaft e fortë për të ndryshuar këshillën. Ndryshimet e rëndësishme çojnë në përditësime dhe zhvillimet e vogla mund të presin rishikimin e radhës të planifikuar. Rishikimet e cilësisë kontrollojnë formulimin, burimet dhe nëse informacioni mbetet i saktë."
+      ]
+    },
+    {
+      "heading": "Çfarë mund të kërkoni",
+      "paragraphs": [
+        "Kontrolloni datën e publikimit ose përditësimit, nëse emërtohen burimet dhe nëse teksti pranon pasigurinë. Informacioni pa datë, pa burime ose që mbështetet në një studim të vetëm meriton kujdes shtesë. Autoritetet zyrtare shëndetësore dhe organet e udhëzuesve publikojnë rekomandime që përditësohen rregullisht."
+      ]
+    },
+    {
+      "heading": "Përdorimi i informacionit më të vjetër",
+      "paragraphs": [
+        "Informacioni më i vjetër nuk është automatikisht i gabuar, por zgjedhjet e trajtimit, rekomandimet e testeve dhe siguria e barnave mund të ndryshojnë. Krahasoni gjithmonë me këshillën aktuale profesionale, veçanërisht para se të ndryshoni trajtimin."
+      ]
+    },
+    {
+      "heading": "Qëndrimi i informuar",
+      "paragraphs": [
+        "Pyesni mjekun ose farmacistin për ndryshime të rëndësishme që ndikojnë në gjendjen tuaj, abonohuni në shërbime të njohura informimi për pacientët nëse dëshironi dhe rishikoni listën e barnave të paktën një herë në vit. Trajtojeni lajmin shëndetësor me kujdes dhe shikoni burimet origjinale kur është e mundur."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kontrolli i një artikulli",
+      "text": "Imagjinoni që lexoni këshillë për një ilaç që duket ndryshe nga ajo që ju tha mjeku. Mund të shikoni datën, të kontrolloni një udhëzues aktual për pacientin dhe ta pyesni mjekun cila këshillë ju vlen."
+    },
+    {
+      "title": "Rishikimi vjetor",
+      "text": "Supozoni që jetoni me një gjendje afatgjatë. Mund të caktoni një takim vjetor për të pyetur për trajtime të reja ose ndryshime të udhëzuesve dhe të sillni listën e pyetjeve tuaja."
+    }
+  ],
+  "questions": [
+    "A është ky informacion i përditësuar dhe a ka ndryshuar rekomandimi së fundmi?",
+    "Cilave burime u besoni për informacion të përditësuar mbi gjendjen time?",
+    "A ka opsione të reja që mund të më përshtaten më mirë se trajtimi im aktual?"
+  ]
+}

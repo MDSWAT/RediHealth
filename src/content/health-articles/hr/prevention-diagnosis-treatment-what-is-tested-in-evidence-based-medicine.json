@@ -1,0 +1,51 @@
+{
+  "title": "Prevencija, dijagnoza, liječenje: što testira medicina utemeljena na dokazima",
+  "intro": "Medicina utemeljena na dokazima koristi najbolja dostupna istraživanja kako bi prosudila djeluju li zdravstvene mjere i premašuju li njihove koristi štetu. Gleda cijeli raspon medicinske skrbi: sprječavanje bolesti, njezino otkrivanje i liječenje. Razumijevanje glavnih vrsta pitanja pomaže vam tumačiti tvrdnje i donositi odluke sa svojim zdravstvenim timom.",
+  "sections": [
+    {
+      "heading": "Testiranje prevencije",
+      "paragraphs": [
+        "Prevencija nastoji zaustaviti bolest prije nego nastane. Primjeri uključuju cjepiva, programe zdravog načina života i lijekove koji se uzimaju radi smanjenja rizika. Istraživanja pitaju razvijaju li ljudi koji koriste mjeru manje slučajeva bolesti ili komplikacija od onih koji ne koriste te postoje li nuspojave za zdrave ljude, što je važno jer zdravi ljudi imaju malo za dobiti od štete."
+      ]
+    },
+    {
+      "heading": "Testiranje dijagnoze i probira",
+      "paragraphs": [
+        "Testovi se prosuđuju prema tome koliko dobro prepoznaju ljude koji imaju stanje i one koji nemaju, ali važnije prema tome vodi li njihova uporaba do boljih ishoda. Rano otkrivanje bolesti ne pomaže uvijek i može dovesti do prekomjerne dijagnostike i nepotrebnog liječenja. Probirna ispitivanja uspoređuju skupine kojima je ponuđen probir sa skupinama kojima nije, gledajući smrti i štete."
+      ]
+    },
+    {
+      "heading": "Testiranje liječenja",
+      "paragraphs": [
+        "Liječenja se najbolje testiraju u randomiziranim ispitivanjima, koja ih uspoređuju s placebom ili standardnom skrbi. Istraživači mjere ishode koji su važni bolesnicima, kao što su preživljenje, simptomi, funkcija i kvaliteta života, kao i nuspojave. Liječenje koje poboljšava krvnu vrijednost nije nužno korisno za zdravlje."
+      ]
+    },
+    {
+      "heading": "Vaganje koristi i štete",
+      "paragraphs": [
+        "Svaka intervencija ima potencijalne koristi i štete. Dokazi pomažu procijeniti koliko je vjerojatno svako. Apsolutni brojevi, kao što je koliko od sto ljudi ima koristi, informativniji su od relativnih podataka. Pojedinačne preferencije također su važne jer ljudi različito vrednuju ishode."
+      ]
+    },
+    {
+      "heading": "Korištenje dokaza u praksi",
+      "paragraphs": [
+        "Smjernice i sustavni pregledi sažimaju dokaze. Liječnici to kombiniraju s iskustvom i željama bolesnika. Kad dokazi nedostaju, nesigurnost treba priznati. Možete pitati o veličini koristi, rizicima, alternativama i kvaliteti istraživanja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tumačenje brojeva",
+      "text": "Zamislite da se za lijek kaže da smanjuje rizik za polovicu. Mogli biste pitati koliko bi od sto ljudi imalo koristi u apsolutnom smislu i koliko bi ih imalo nuspojave."
+    },
+    {
+      "title": "Razmatranje probira",
+      "text": "Pretpostavite da ste pozvani na probirni program. Mogli biste pitati što test može otkriti, koliko često daje lažne alarme i kakve bi štete mogle uslijediti."
+    }
+  ],
+  "questions": [
+    "Koji je dokaz da ovaj test ili liječenje poboljšava ishode koji su mi važni?",
+    "Koliko su velike koristi i rizici u apsolutnim brojevima?",
+    "Postoje li alternative, uključujući ne činiti ništa za sada?"
+  ]
+}

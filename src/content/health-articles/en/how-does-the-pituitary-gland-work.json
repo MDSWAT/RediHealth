@@ -1,0 +1,52 @@
+{
+  "title": "The pituitary gland and hormone feedback",
+  "intro": "The pituitary is a small gland beneath the brain linked to the hypothalamus. It helps coordinate other glands and several direct body functions. Symptoms are often nonspecific; tiredness alone cannot identify a pituitary disorder.",
+  "sections": [
+    {
+      "heading": "The anterior lobe",
+      "paragraphs": [
+        "This part produces hormones that influence the thyroid, adrenal cortex, ovaries and testes, as well as growth hormone and prolactin. Different cell groups have different jobs."
+      ]
+    },
+    {
+      "heading": "The posterior lobe",
+      "paragraphs": [
+        "It stores and releases hormones made in the hypothalamus, including antidiuretic hormone and oxytocin. These support water balance and reproductive functions; storage and production are not the same process."
+      ]
+    },
+    {
+      "heading": "Feedback",
+      "paragraphs": [
+        "Signals from the hypothalamus and target-gland hormone levels regulate output. A test often needs interpretation with a related hormone, time of sampling and medicines rather than a single isolated number."
+      ]
+    },
+    {
+      "heading": "Looking for a problem",
+      "paragraphs": [
+        "Assessment can include blood tests, urine tests, stimulation or suppression tests and imaging when indicated. A small incidental scan finding does not automatically explain every symptom or require surgery."
+      ]
+    },
+    {
+      "heading": "Safety",
+      "paragraphs": [
+        "Marked thirst and excessive urination need review. Sudden severe headache with visual change, vomiting or collapse needs urgent help. People with known hormone deficiency should follow their replacement and emergency plans, not stop hormones independently.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira brings both pituitary and thyroid results for interpretation instead of assuming a result inside one reference range rules out every problem."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben has a known hormone deficiency. He carries his agreed emergency instructions when traveling rather than improvising doses during illness."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

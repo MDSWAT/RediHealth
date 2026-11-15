@@ -1,0 +1,51 @@
+{
+  "title": "Ce tipuri de studii există",
+  "intro": "Cercetarea medicală folosește diferite tipuri de studii pentru a răspunde la întrebări diferite. Unele testează dacă un tratament funcționează, altele privesc cauzele bolii sau cât de frecventă este. Cunoașterea principalelor tipuri vă ajută să judecați cât de fiabilă este o constatare.",
+  "sections": [
+    {
+      "heading": "Studiile controlate randomizate",
+      "paragraphs": [
+        "Într-un studiu controlat randomizat, participanții sunt repartizați aleatoriu pentru a primi tratamentul testat sau o comparație, precum placebo sau îngrijirea standard. Întâmplarea decide, astfel încât grupurile să fie asemănătoare. Adesea nici participanții, nici cercetătorii nu știu cine primește ce, ceea ce se numește orbire. Aceste studii sunt cea mai bună modalitate de a testa dacă un tratament funcționează."
+      ]
+    },
+    {
+      "heading": "Studiile observaționale",
+      "paragraphs": [
+        "Studiile de cohortă urmăresc grupuri de persoane în timp pentru a vedea cine dezvoltă o boală, de exemplu comparând fumătorii cu nefumătorii. Studiile caz-control compară persoanele cu o boală cu persoane asemănătoare fără ea, căutând retrospectiv diferențe. Studiile transversale măsoară o afecțiune la un singur moment în timp. Pot arăta legături, dar nu pot dovedi cauza, deoarece pot fi implicați și alți factori."
+      ]
+    },
+    {
+      "heading": "Alte modele",
+      "paragraphs": [
+        "Prezentările de caz și seriile de cazuri descriu câțiva pacienți și pot ridica idei, dar sunt dovezi slabe. Studiile de acuratețe diagnostică testează cât de bine identifică un test boala. Studiile calitative explorează experiențele folosind interviuri. Studiile de laborator și pe animale explorează mecanismele, dar nu se aplică întotdeauna oamenilor."
+      ]
+    },
+    {
+      "heading": "Revizuirile",
+      "paragraphs": [
+        "O revizuire sistematică adună și evaluează toate studiile despre o întrebare, iar o metaanaliză le combină cifrele. Acestea oferă imaginea cea mai completă, cu condiția ca studiile pe care le includ să fie bune."
+      ]
+    },
+    {
+      "heading": "Judecarea studiilor",
+      "paragraphs": [
+        "Priviți numărul de participanți, modul în care au fost formate grupurile, cât a durat urmărirea, dacă rezultatele sunt semnificative pentru pacienți și cine a plătit studiul. Un studiu pe șoareci sau un singur studiu mic nu trebuie să schimbe ce faceți. Cereți medicului să vă explice ce înseamnă un studiu pentru dumneavoastră."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Citirea unei știri",
+      "text": "Imaginați-vă că un titlu spune că cafeaua previne bolile. Ați putea verifica dacă studiul a urmărit persoane sau le-a randomizat."
+    },
+    {
+      "title": "Întrebări despre fiabilitate",
+      "text": "Presupuneți că un studiu sugerează că un supliment funcționează. Ați putea întreba cât de mare a fost și dacă a fost repetat."
+    }
+  ],
+  "questions": [
+    "Ce fel de studiu susține această afirmație?",
+    "Cât de solide sunt dovezile în comparație cu alte studii?",
+    "Se aplică rezultatele unor persoane ca mine?"
+  ]
+}

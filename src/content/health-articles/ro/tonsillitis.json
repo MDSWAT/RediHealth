@@ -1,0 +1,51 @@
+{
+  "title": "Amigdalita și durerea în gât",
+  "intro": "Amigdalita este inflamația amigdalelor, cele două mase de țesut din spatele gâtului. Provoacă durere în gât, durere la înghițit și adesea febră. Cele mai multe cazuri sunt provocate de virusuri și trec în aproximativ o săptămână fără antibiotice. Calmarea durerii, lichidele și repausul sunt principalele tratamente.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Virusurile, precum cele ale răcelii și ale gripei, provoacă cele mai multe cazuri. Bacteriile, în special streptococii de grup A, sunt responsabile pentru o parte mai mică, mai ales la copiii între cinci și cincisprezece ani. Microbii se răspândesc prin picături și contact apropiat. Fumul și aerul uscat pot irita gâtul."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele tipice sunt durerea în gât, înghițirea dureroasă, febra, amigdalele umflate și roșii, în unele cazuri cu plăci albe, ganglionii umflați de la gât, respirația urât mirositoare, durerea de cap și oboseala. Tusea și nasul care curge sugerează o cauză virală, în timp ce durerea severă în gât, fără tuse și cu ganglioni umflați, crește șansa unei infecții bacteriene."
+      ]
+    },
+    {
+      "heading": "Îngrijire de sine",
+      "paragraphs": [
+        "Odihniți-vă, beți din belșug lichide și mâncați alimente moi. Paracetamolul sau ibuprofenul reduc durerea și febra. Pastilele de supt, gargara cu apă sărată caldă și spray-urile pentru gât pot ameliora disconfortul. Evitați fumatul. Copiii trebuie să stea acasă cât au febră, iar spălarea mâinilor reduce răspândirea."
+      ]
+    },
+    {
+      "heading": "Când se folosesc antibiotice",
+      "paragraphs": [
+        "Antibioticele se folosesc când o infecție streptococică este probabilă sau confirmată printr-un frotiu faringian, mai ales când simptomele sunt severe sau există riscul unor complicații. Ele scurtează ușor simptomele și reduc riscul unor complicații rare, precum reumatismul articular acut și abcesul. O cură de penicilină durează de obicei câteva zile. Antibioticele nu ajută în infecțiile virale."
+      ]
+    },
+    {
+      "heading": "Complicații și chirurgie",
+      "paragraphs": [
+        "Cereți îngrijiri urgente pentru dificultăți de respirație sau de înghițire a salivei, salivă care curge din gură, voce înăbușită, imposibilitatea de a deschide gura, durere severă într-o parte a gâtului sau umflare a gâtului, care pot indica un abces. Chirurgia pentru îndepărtarea amigdalelor se ia în considerare pentru persoanele cu infecții frecvente, severe, bine documentate, care perturbă viața, iar deciziile cântăresc beneficiul față de riscuri precum sângerarea și durerea după operație."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Îngrijirea unui copil",
+      "text": "Imaginați-vă că copilul dumneavoastră are durere în gât și febră. Ați putea oferi băuturi reci și alimente moi, da calmante în doza potrivită și merge la medic dacă înghițitul devine foarte greu."
+    },
+    {
+      "title": "Întrebări despre operație",
+      "text": "Presupuneți că ați avut multe episoade de amigdalită anul acesta. Ați putea ține o evidență a fiecărui episod, cu date și tratament, și ați putea discuta cu un specialist ORL."
+    }
+  ],
+  "questions": [
+    "Este durerea mea în gât probabil virală sau bacteriană și am nevoie de un frotiu?",
+    "Când ar fi recomandată operația de amigdale?",
+    "Ce simptome înseamnă că trebuie să cer ajutor urgent?"
+  ]
+}

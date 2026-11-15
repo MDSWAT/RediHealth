@@ -1,0 +1,51 @@
+{
+  "title": "Înțelegerea analizelor de urină",
+  "intro": "Analizele de urină sunt simple, nedureroase și oferă multe informații despre rinichi, tractul urinar și sănătatea generală. Pot detecta infecții, probleme renale, diabet și sarcină. A ști cum să recoltați corect o probă și ce înseamnă rezultatele ajută la fiabilitatea testului.",
+  "sections": [
+    {
+      "heading": "Tipuri frecvente",
+      "paragraphs": [
+        "Testul cu bandeletă este o bandă introdusă în probă, care își schimbă culoarea pentru a arăta prezența unor substanțe precum sânge, proteine, glucoză, globule albe și nitriți. Oferă rezultate rapide la cabinet. Urocultura crește bacterii pentru a confirma infecția și testează sensibilitatea la antibiotice. Examenul microscopic privește celulele și cristalele. Testele de sarcină detectează hormonul hCG."
+      ]
+    },
+    {
+      "heading": "Recoltarea unei probe",
+      "paragraphs": [
+        "Pentru o probă de la mijlocul jetului, spălați-vă pe mâini, curățați zona genitală, începeți să urinați în toaletă, apoi colectați partea de mijloc a jetului în recipient, fără să atingeți interiorul, și terminați în toaletă. Astfel se reduce contaminarea cu microbii de pe piele. Urina de dimineață este mai concentrată. Duceți proba repede sau păstrați-o la rece, conform instrucțiunilor."
+      ]
+    },
+    {
+      "heading": "Ce pot arăta rezultatele",
+      "paragraphs": [
+        "Sângele în urină poate veni din infecții, pietre, boli de rinichi, tumori sau o leziune recentă și necesită întotdeauna evaluare. Proteinele pot indica afectare renală, dar apar și după efort sau febră. Glucoza sugerează diabet. Globulele albe și nitriții sugerează infecție. O singură constatare anormală este adesea repetată."
+      ]
+    },
+    {
+      "heading": "Testele de sarcină",
+      "paragraphs": [
+        "Testele de sarcină de acasă detectează hCG în urină și sunt cele mai fiabile din prima zi de întârziere a menstruației. Un rezultat pozitiv este aproape întotdeauna corect, în timp ce un rezultat negativ foarte devreme poate fi greșit și poate fi repetat după câteva zile. Confirmați un test pozitiv la medic."
+      ]
+    },
+    {
+      "heading": "Sfaturi practice",
+      "paragraphs": [
+        "Anumite alimente, medicamente, vitamine și deshidratarea pot schimba culoarea urinei și rezultatele. Spuneți medicului tot ce luați. Sângele menstrual poate contamina o probă, așa că menționați-l. Raportați simptome precum arsura, urgența, durerea de spate sau febra împreună cu testul."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Recoltarea unei probe bune",
+      "text": "Imaginați-vă că bănuiți o infecție a vezicii urinare. Ați putea urma cu atenție instrucțiunile pentru proba de la mijlocul jetului, ați putea folosi recipientul furnizat și ați putea duce proba prompt."
+    },
+    {
+      "title": "Întrebarea despre un rezultat",
+      "text": "Presupuneți că bandeleta arată urme de proteine. Ați putea întreba dacă trebuie repetat testul și dacă sunt necesare alte teste renale."
+    }
+  ],
+  "questions": [
+    "De ce analiză de urină am nevoie și cum mă pregătesc?",
+    "Ce înseamnă un rezultat anormal pentru mine?",
+    "Am nevoie de un test repetat sau de investigații suplimentare?"
+  ]
+}

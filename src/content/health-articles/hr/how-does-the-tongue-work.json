@@ -1,0 +1,52 @@
+{
+  "title": "Kako jezik pomaže jelu i govoru",
+  "intro": "Jezik je savitljiv mišićni organ osjetljive površine. Pomiče hranu, pomaže gutanju i oblikuje govor uz okus i dodir. Izgled varira; sama fotografija ne postavlja dijagnozu.",
+  "sections": [
+    {
+      "heading": "Mišići i veze",
+      "paragraphs": [
+        "Neki mišići mijenjaju oblik, drugi pomiču cijeli organ. Veze s okolnim strukturama i podjezična resica podupiru koordinaciju, ne neograničeno istezanje."
+      ]
+    },
+    {
+      "heading": "Priprema hrane",
+      "paragraphs": [
+        "Jezik stavlja hranu među zube i miješa sa slinom. Okuplja zalogaj i gura ga natrag za gutanje; živci koordiniraju zaštitu dišnog puta."
+      ]
+    },
+    {
+      "heading": "Površina i okus",
+      "paragraphs": [
+        "Mnoge papile sadrže okusne pupoljke, druge uglavnom daju teksturu. Okus surađuje s njuhom; nijedna zona ne prepoznaje isključivo jedan okus. Normalna razlika nije automatski infekcija."
+      ]
+    },
+    {
+      "heading": "Govor i njega",
+      "paragraphs": [
+        "Precizni kontakti oblikuju zvukove sa zubima, nepcem i usnama. Blaga higijena i prikladno pijenje pomažu. Ne stružite bolno tkivo ni birajte terapiju samo po boji."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Trajne ranice, kvrge, krv ili teškoće pokreta i gutanja trebaju pregled. Nagli otok s teškim disanjem hitan je. Nova slabost s promjenom govora ili lica također traži hitnost.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima ranicu nakon ugriza jezika. Izbjegava nadražaj i traži pregled ako ne cijeli, bez nagrizajućih lijekova."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima nagli otok i teško diše nakon mogućeg alergena. Obitelj traži hitnost bez čekanja zubara."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

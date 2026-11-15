@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë thotë indeksi i masës trupore për shëndetin tuaj?",
+  "intro": "Indeksi i masës trupore, ose BMI, është një numër i llogaritur nga pesha e gjatësia. Është një mjet i shpejtë skriningu për kategoritë e peshës, por nuk e mat drejtpërdrejt yndyrën e trupit e nuk thotë gjithçka për shëndetin. Përdoret më mirë së bashku me masa të tjera e vlerësimin e mjekut.",
+  "sections": [
+    {
+      "heading": "Si llogaritet BMI",
+      "paragraphs": [
+        "BMI është pesha juaj në kilogramë e pjesëtuar me katrorin e gjatësisë në metra. Për shembull, një person që peshon shtatëdhjetë kilogramë e mat 1.75 metra ka BMI rreth 22.9. Te të rriturit, një BMI nën 18.5 është nënpeshë, 18.5 deri 24.9 është normale, 25 deri 29.9 është mbipeshë e 30 ose më shumë është obezitet."
+      ]
+    },
+    {
+      "heading": "Çfarë ju tregon",
+      "paragraphs": [
+        "Në popullata, një BMI më i lartë lidhet me rrezik më të lartë për gjendje si diabeti i tipit 2, tensioni i lartë, sëmundja e zemrës, disa kancere e problemet e nyjeve. Një BMI shumë i ulët lidhet gjithashtu me rreziqe shëndetësore, si kocka të dobësuara e imunitet i dobët. BMI është i lehtë për t'u matur e krahasuar."
+      ]
+    },
+    {
+      "heading": "Kufijtë",
+      "paragraphs": [
+        "BMI nuk e dallon yndyrën nga muskuli, prandaj njerëzit muskulorë mund të klasifikohen si mbipeshë. Nuk tregon ku ruhet yndyra. Mund të jetë më pak i saktë për të moshuarit, fëmijët, gratë shtatzëna e njerëzit me prejardhje të ndryshme etnike. Për fëmijët, BMI krahasohet me tabela sipas moshës e gjinisë."
+      ]
+    },
+    {
+      "heading": "Masa të tjera",
+      "paragraphs": [
+        "Perimetri i belit, veçanërisht yndyra rreth barkut, lidhet me rrezikun e sëmundjes së zemrës e diabetit. Raporti beli-gjatësi, tensioni, sheqeri në gjak, kolesteroli, forma fizike e zakonet e të ngrënit japin një pamje më të plotë. Shëndeti varet nga shumë faktorë, jo nga një numër i vetëm."
+      ]
+    },
+    {
+      "heading": "Çfarë të bëni me rezultatin",
+      "paragraphs": [
+        "Nëse BMI juaj është jashtë intervalit normal, diskutojeni me mjekun. Hapat e vegjël, si dieta e ekuilibruar, aktiviteti i rregullt, gjumi i mjaftueshëm e kufizimi i pijeve të ëmbla, kanë më shumë rëndësi se ndryshimi i shpejtë i peshës. Shmangni dietat ekstreme e kërkoni mbështetje nëse pesha ose ushqimi ju shqetësojnë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Llogaritja e vetvetes",
+      "text": "Imagjinoni që doni të dini BMI-në tuaj. Mund ta pjesëtoni peshën me katrorin e gjatësisë, pastaj të flisni me mjekun se çfarë do të thotë."
+    },
+    {
+      "title": "Të shikuarit përtej BMI",
+      "text": "Supozoni që BMI juaj është kufitar por stërviteni shpesh. Mund të matni edhe perimetrin e belit e të kërkoni tension e analiza gjaku."
+    }
+  ],
+  "questions": [
+    "Çfarë do të thotë BMI im për shëndetin tim?",
+    "A duhen kontrolluar edhe masa e belit ose teste të tjera?",
+    "Cilat hapa realistë mund ta përmirësonin shëndetin tim?"
+  ]
+}

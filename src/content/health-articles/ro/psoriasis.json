@@ -1,0 +1,51 @@
+{
+  "title": "Psoriazisul",
+  "intro": "Psoriazisul este o afecțiune inflamatorie cronică a pielii, în care celulele pielii se înmulțesc prea repede, producând plăci roșii, solzoase, uneori cu mâncărime. Nu este contagios. Evoluează cu pusee și perioade mai calme și există multe tratamente eficiente, de la creme până la medicamente injectabile moderne.",
+  "sections": [
+    {
+      "heading": "Simptome și tipuri",
+      "paragraphs": [
+        "Cea mai frecventă formă este psoriazisul în plăci, cu plăci roșii bine delimitate, acoperite cu solzi argintii, pe coate, genunchi, scalp și zona lombară. Alte forme includ psoriazisul în picătură, cu mici picături după o infecție în gât, psoriazisul inversat din pliurile pielii, psoriazisul pustulos și modificările unghiilor, precum punctele adânci. Psoriazisul poate afecta și articulațiile."
+      ]
+    },
+    {
+      "heading": "Cauze și factori declanșatori",
+      "paragraphs": [
+        "Psoriazisul apare dintr-un răspuns imun hiperactiv combinat cu factori genetici. Puseele pot fi declanșate de infecții, leziuni ale pielii, stres, anumite medicamente, fumat, alcool și obezitate. Persoanele cu psoriazis au un risc mai mare de boli cardiovasculare, diabet și depresie, așa că sănătatea generală contează."
+      ]
+    },
+    {
+      "heading": "Tratamentul psoriazisului ușor",
+      "paragraphs": [
+        "Hidratantele înmoaie solzii. Cremele cu corticosteroizi, derivați de vitamina D sau o combinație reduc inflamația și descuamarea. Acidul salicilic îndepărtează solzii. Tratamentul se aplică conform indicațiilor, pentru a evita subțierea pielii. Psoriazisul scalpului poate necesita șampoane și soluții speciale."
+      ]
+    },
+    {
+      "heading": "Tratamentul psoriazisului moderat până la sever",
+      "paragraphs": [
+        "Fototerapia cu lumină ultravioletă este eficientă. Tabletele precum metotrexatul, ciclosporina sau medicamentele mai noi cu molecule mici suprimă sistemul imunitar și necesită monitorizare. Medicamentele biologice, administrate prin injecție, țintesc semnale imune specifice și curăță adesea pielea spectaculos, dar cresc riscul de infecții și necesită screening pentru tuberculoză și hepatită. Alegerea depinde de severitate, de afectarea articulațiilor, de alte boli și de preferințe."
+      ]
+    },
+    {
+      "heading": "Viața cu psoriazis",
+      "paragraphs": [
+        "Îngrijirea pielii, evitarea factorilor declanșatori, renunțarea la fumat, reducerea alcoolului, slăbitul dacă este nevoie și gestionarea stresului ajută. Psoriazisul poate afecta stima de sine și relațiile, iar grupurile de sprijin și ajutorul psihologic sunt valoroase. Spuneți medicului dacă articulațiile vă dor sau se umflă, deoarece tratamentul timpuriu al artritei psoriazice previne deteriorarea."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planificarea tratamentului",
+      "text": "Imaginați-vă că plăcile vă revin mereu pe coate. Ați putea întreba despre o cremă combinată, cât timp s-o folosiți și ce să faceți dacă puseele revin."
+    },
+    {
+      "title": "Discutarea durerii articulare",
+      "text": "Presupuneți că degetele vi se umflă și se înțepenesc dimineața. Ați putea spune dermatologului și ați putea cere o trimitere la un reumatolog."
+    }
+  ],
+  "questions": [
+    "Cât de sever este psoriazisul meu și ce tratament mi se potrivește?",
+    "Care sunt riscurile medicamentelor mai puternice și cum sunt monitorizate?",
+    "Ar putea durerea mea articulară să fie legată de psoriazis?"
+  ]
+}

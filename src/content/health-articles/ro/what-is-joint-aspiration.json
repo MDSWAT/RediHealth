@@ -1,0 +1,51 @@
+{
+  "title": "Ce este puncția articulară?",
+  "intro": "Puncția articulară, sau artrocenteza, este o procedură în care se folosește un ac pentru a extrage lichid dintr-o articulație. Se face pentru a găsi cauza umflăturii sau durerii articulare, pentru a ameliora presiunea și uneori pentru a injecta medicamente. Este rapidă și de obicei se face la cabinetul medicului.",
+  "sections": [
+    {
+      "heading": "De ce se face",
+      "paragraphs": [
+        "Analiza lichidului poate identifica infecția, guta, cristalele de pseudogută, sângerarea sau artrita inflamatorie. Îndepărtarea lichidului dintr-o articulație foarte umflată ameliorează durerea și îmbunătățește mișcarea. O suspiciune de infecție articulară este o urgență, iar puncția este necesară de urgență pentru a preveni leziunile permanente."
+      ]
+    },
+    {
+      "heading": "Cum se face",
+      "paragraphs": [
+        "Pielea este curățată și poate fi anesteziată cu anestezic local sau cu spray răcoritor. Folosind o tehnică sterilă, medicul introduce un ac în articulație, uneori ghidat prin ecografie, și extrage lichid. Dacă se dorește, un corticosteroid sau alt medicament este injectat prin același ac. Procedura durează câteva minute."
+      ]
+    },
+    {
+      "heading": "Ce arată lichidul",
+      "paragraphs": [
+        "Lichidul articular normal este limpede și vâscos. Lichidul tulbure sugerează inflamație sau infecție, lichidul sângeros sugerează o leziune sau o tulburare de coagulare, iar cristalele din lichid indică gută sau pseudogută. Proba este trimisă la laborator pentru numărarea celulelor, cristale și cultură bacteriană."
+      ]
+    },
+    {
+      "heading": "Îngrijire ulterioară și riscuri",
+      "paragraphs": [
+        "Odihniți articulația o zi sau două și evitați efortul intens. O mică sensibilitate este frecventă. Riscurile sunt rare și includ infecția, sângerarea și lezarea cartilajului. Contactați un medic dacă dezvoltați febră, durere crescândă, roșeață, căldură sau umflătură după procedură. Spuneți medicului dacă luați anticoagulante."
+      ]
+    },
+    {
+      "heading": "Rezultate",
+      "paragraphs": [
+        "Unele rezultate sunt disponibile în câteva ore, altele, precum cultura, durează zile. Medicul explică constatările și tratamentul, de exemplu antibiotice pentru infecție sau medicamente pentru gută."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea",
+      "text": "Imaginați-vă că aveți un genunchi umflat. Ați putea spune medicului despre anticoagulante și ați putea nota când a început umflătura și dacă ați avut febră."
+    },
+    {
+      "title": "Îngrijirea ulterioară",
+      "text": "Presupuneți că vi s-a extras lichid din genunchi. Ați putea să-l odihniți o zi și să urmăriți căldura, roșeața sau febra."
+    }
+  ],
+  "questions": [
+    "De ce mi se extrage lichid din articulație?",
+    "Se va injecta medicament și care sunt beneficiile și riscurile?",
+    "Când voi afla rezultatele?"
+  ]
+}

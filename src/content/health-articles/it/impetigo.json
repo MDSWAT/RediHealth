@@ -1,0 +1,53 @@
+{
+  "title": "Impetigine",
+  "intro": "L'impetigine è un'infezione batterica della pelle comune e contagiosa, soprattutto nei bambini piccoli. Provoca piaghe rosse che si rompono e formano croste color miele, spesso intorno al naso e alla bocca. Si diffonde facilmente col contatto ma di solito guarisce in un paio di settimane con il trattamento e una buona igiene.",
+  "sections": [
+    {
+      "heading": "Cause e chi la contrae",
+      "paragraphs": [
+        "L'impetigine è causata da batteri, principalmente Staphylococcus aureus e talvolta Streptococcus. I batteri entrano nella pelle attraverso piccole lesioni come punture di insetti, graffi, eczema o herpes labiale. È più comune con tempo caldo e umido e in ambienti affollati come asili e scuole."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "La forma più comune inizia con piccole macchie rosse che diventano vescicole, che si rompono e lasciano croste appiccicose color marrone dorato. Le piaghe possono prudere ma di solito non sono molto dolorose. Una forma meno comune produce vescicole più grandi. La febbre è insolita e, quando c'è, il bambino va visto da un medico."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "L'impetigine lieve in una piccola area viene spesso trattata con una crema o pomata antibiotica applicata qualche volta al giorno per circa una settimana. Infezioni più estese possono richiedere compresse o sciroppo antibiotico. Ammorbidire delicatamente le croste con acqua tiepida prima di applicare il trattamento può aiutarlo ad agire.",
+        "Completa l'intero ciclo anche quando la pelle sembra migliore. Se le piaghe non migliorano in pochi giorni, torna dal medico, perché potrebbero essere coinvolti batteri resistenti o un'altra condizione."
+      ]
+    },
+    {
+      "heading": "Prevenire la diffusione",
+      "paragraphs": [
+        "L'impetigine è contagiosa finché le piaghe non si sono incrostate o dopo circa due giorni di trattamento. Tieni i bambini a casa in quel periodo, come indicano le norme locali. Lava spesso le mani, tieni le unghie corte, evita di grattarti e usa asciugamani, salviette e biancheria separati lavati ad alta temperatura.",
+        "Copri le piaghe senza stringere con una medicazione, se possibile, e informa la scuola o l'asilo."
+      ]
+    },
+    {
+      "heading": "Quando chiedere consiglio urgente",
+      "paragraphs": [
+        "Rivolgiti subito a un medico se l'infezione si diffonde rapidamente, il bambino ha febbre alta, sta male o se la pelle diventa molto rossa, calda e gonfia. Neonati e persone con difese immunitarie deboli richiedono un'attenzione più precoce. Raramente l'infezione può colpire i reni, quindi segnala urine scure o gonfiore."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tornare all'asilo",
+      "text": "Immagina che tuo figlio abbia delle piaghe intorno alla bocca. Potresti iniziare la crema prescritta, tenere tuo figlio a casa finché le piaghe non si incrostano, lavare spesso le sue mani e gli asciugamani e chiedere all'asilo le regole di rientro."
+    },
+    {
+      "title": "Gestire il prurito",
+      "text": "Supponi che tuo figlio continui a grattare le vescicole. Potresti tagliargli le unghie, coprire le piaghe e chiedere al farmacista di misure lenitive sicure per la sua età."
+    }
+  ],
+  "questions": [
+    "Basta una crema o mio figlio ha bisogno di un antibiotico per via orale?",
+    "Quando può tornare in sicurezza a scuola o all'asilo?",
+    "Quali segni indicherebbero che l'infezione richiede una seconda valutazione?"
+  ]
+}

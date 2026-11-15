@@ -1,0 +1,51 @@
+{
+  "title": "Lesioni del polso",
+  "intro": "Il polso è un'articolazione complessa fatta di molte piccole ossa, legamenti e tendini ed è spesso lesionato da cadute, sport o uso ripetitivo. Le lesioni vanno dalle distorsioni alle fratture. Una valutazione precoce e il trattamento giusto aiutano a prevenire rigidità o debolezza durature.",
+  "sections": [
+    {
+      "heading": "Lesioni comuni",
+      "paragraphs": [
+        "Una caduta sulla mano tesa può rompere il radio, il grosso osso dell'avambraccio vicino al polso, o il piccolo osso scafoide, o distorcere i legamenti. Altri problemi comprendono lesioni dei tendini, tendinite, cisti gangliari, sindrome del tunnel carpale e lesioni da sovraccarico per lavoro ripetitivo, sport o uso del telefono."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Dolore, gonfiore, lividi, dolorabilità, difficoltà a muovere o ad afferrare e una deformità visibile dopo una caduta suggeriscono una frattura. Un dolore alla base del pollice dopo una caduta può indicare una frattura dello scafoide, che è facile da non vedere nelle prime radiografie e può richiedere esami ripetuti o una risonanza magnetica. Intorpidimento, formicolio o una mano fredda richiedono attenzione urgente."
+      ]
+    },
+    {
+      "heading": "Diagnosi e trattamento",
+      "paragraphs": [
+        "Il medico esamina il polso e prescrive radiografie e a volte un altro esame. Le distorsioni lievi si trattano con riposo, ghiaccio, compressione, elevazione e un tutore. Le fratture si mettono in gesso o in un tutore e quelle scomposte possono dover essere riallineate o fissate chirurgicamente con placche o fili. Il trattamento delle lesioni di legamenti e tendini dipende dalla gravità."
+      ]
+    },
+    {
+      "heading": "Recupero",
+      "paragraphs": [
+        "La guarigione richiede da sei a otto settimane per la maggior parte delle fratture e poche settimane per le distorsioni. La fisioterapia o la terapia della mano ripristinano movimento e forza. Muovi le dita mentre sei in gesso, solleva il braccio per ridurre il gonfiore e segui le istruzioni. Alcune persone hanno rigidità per mesi e una minoranza sviluppa la sindrome dolorosa regionale complessa."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Protezioni per i polsi per attività come pattinaggio e snowboard, esercizi di rinforzo, la salute delle ossa con calcio, vitamina D ed esercizio con carico e una postazione di lavoro ergonomica riducono il rischio. Vai dal medico per dolore dopo una caduta che dura più di pochi giorni, per intorpidimento o deformità."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Primo soccorso",
+      "text": "Immagina di essere caduto e che il polso faccia male e si gonfi. Potresti sollevarlo, applicare un impacco freddo avvolto in un panno e farlo controllare lo stesso giorno."
+    },
+    {
+      "title": "Fare esercizi per la mano",
+      "text": "Supponi di essere in gesso. Potresti muovere regolarmente le dita e la spalla e tenere la mano sollevata."
+    }
+  ],
+  "questions": [
+    "Il mio polso è rotto o distorto?",
+    "Ho bisogno di un gesso, di un tutore o di un intervento?",
+    "Quali esercizi mi aiuteranno a recuperare?"
+  ]
+}

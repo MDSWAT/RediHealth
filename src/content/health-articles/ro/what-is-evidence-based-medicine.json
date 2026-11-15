@@ -1,0 +1,51 @@
+{
+  "title": "Ce este medicina bazată pe dovezi?",
+  "intro": "Medicina bazată pe dovezi înseamnă luarea deciziilor de sănătate prin combinarea celor mai bune cercetări disponibile, a experienței clinice a medicului și a valorilor și circumstanțelor pacientului. Urmărește să asigure că tratamentele sunt alese pentru că s-a demonstrat că funcționează, nu doar pentru că sunt tradiționale sau populare.",
+  "sections": [
+    {
+      "heading": "Cele trei părți",
+      "paragraphs": [
+        "Prima parte este cea mai bună cercetare actuală, precum studiile bine realizate și revizuirile sistematice. A doua este experiența clinică a medicului, care știe să aplice constatările la pacienți individuali. A treia este preferințele, obiectivele și situația pacientului. Toate trei sunt necesare, deoarece dovezile singure nu pot decide ce este potrivit pentru o persoană."
+      ]
+    },
+    {
+      "heading": "Nivelurile dovezilor",
+      "paragraphs": [
+        "Nu toate dovezile sunt la fel de fiabile. Revizuirile sistematice ale studiilor randomizate se situează cel mai sus, urmate de studiile randomizate singulare, apoi de studiile de cohortă și caz-control și, în final, de prezentările de caz și opinia experților. Dovezile de calitate mai înaltă sunt mai puțin susceptibile de a fi denaturate de întâmplare sau de părtinire. Dovezile trebuie judecate și în privința relevanței pentru persoană."
+      ]
+    },
+    {
+      "heading": "Cum se folosește",
+      "paragraphs": [
+        "Ghidurile rezumă dovezile pentru afecțiuni pentru a-i ajuta pe medici și pe pacienți să aleagă tratamente. Dovezile ajută la decizia dacă un test este util, ce medicament funcționează cel mai bine și ce tratamente trebuie evitate. Ele arată și unde nu știm suficient, astfel încât este nevoie de cercetare."
+      ]
+    },
+    {
+      "heading": "Limite și critici",
+      "paragraphs": [
+        "Studiile pot să nu includă persoane ca dumneavoastră, precum persoane în vârstă sau cu mai multe boli. Dovezile pot lipsi sau pot fi părtinitoare din cauza finanțării și a rezultatelor nepublicate. Urmarea mecanică a ghidurilor poate trece cu vederea nevoile individuale. Din acest motiv, dovezile sunt o bază pentru discuție, nu o regulă."
+      ]
+    },
+    {
+      "heading": "Ce înseamnă pentru dumneavoastră",
+      "paragraphs": [
+        "Puteți întreba medicul ce spun dovezile despre beneficii și riscuri, cât de mari sunt efectele și care sunt alternativele. Împărtășiți-vă deschis preferințele. Fiți prudent față de afirmațiile bazate doar pe mărturii sau pe studii singulare și căutați surse de informare demne de încredere."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Întrebări despre dovezi",
+      "text": "Imaginați-vă că medicul vă propune un tratament nou. Ați putea întreba cât de bine funcționează, care sunt riscurile și cât de siguri suntem."
+    },
+    {
+      "title": "Judecarea unei afirmații",
+      "text": "Presupuneți că o reclamă promite un leac miraculos bazat pe povești personale. Ați putea căuta studii sau revizuiri care îl testează corect."
+    }
+  ],
+  "questions": [
+    "Ce dovezi susțin acest tratament și cât de solide sunt?",
+    "Se aplică cercetarea unei persoane ca mine?",
+    "Care sunt alternativele, inclusiv a nu face nimic?"
+  ]
+}

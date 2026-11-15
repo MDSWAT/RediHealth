@@ -1,0 +1,51 @@
+{
+  "title": "Îngrijirea prenatală și carnetul de gravidă în Germania",
+  "intro": "În Germania, îngrijirea prenatală este oferită de moașe și de ginecologi, iar costurile controalelor standard sunt acoperite de asigurarea de sănătate publică. Constatările dumneavoastră sunt consemnate într-un carnet de gravidă, numit adesea Mutterpass, pe care îl purtați cu dumneavoastră. Acest articol descrie aranjamentele obișnuite; detaliile se pot schimba, așa că verificați la cabinetul dumneavoastră sau la asigurător.",
+  "sections": [
+    {
+      "heading": "Cine oferă îngrijirea",
+      "paragraphs": [
+        "Puteți alege un ginecolog, o moașă sau ambele. Moașele pot efectua multe controale de rutină, iar contactul timpuriu cu o moașă este recomandat, deoarece locurile pentru vizitele la domiciliu după naștere se pot umple repede. Multe cabinete oferă și informații despre locurile de naștere, precum spitalele, centrele de naștere și nașterile la domiciliu."
+      ]
+    },
+    {
+      "heading": "Programări de rutină",
+      "paragraphs": [
+        "Controalele au loc de obicei la patru săptămâni până în săptămâna treizeci și doi, apoi la două săptămâni. Includ cântărirea, tensiunea arterială, analizele de urină, măsurarea uterului și ascultarea bătăilor inimii bebelușului. Analizele de sânge verifică grupa sanguină, anemia și infecții precum sifilisul, cu oferta unui test HIV. Un screening al glicemiei este de obicei oferit între săptămânile douăzeci și patru și douăzeci și opt."
+      ]
+    },
+    {
+      "heading": "Examinările cu ultrasunete",
+      "paragraphs": [
+        "În general se oferă trei ecografii de rutină: în jurul săptămânilor nouă până la douăsprezece, nouăsprezece până la douăzeci și două și douăzeci și nouă până la treizeci și două. Examinări suplimentare se fac dacă există un motiv medical. Testele opționale, precum ecografiile detaliate sau analizele de sânge pentru afecțiunile cromozomiale, pot avea condiții de acoperire, așa că întrebați ce se aplică."
+      ]
+    },
+    {
+      "heading": "Carnetul de gravidă",
+      "paragraphs": [
+        "Mutterpass conține istoricul dumneavoastră medical, rezultatele testelor, datele ecografiilor, grupa sanguină și factorii de risc, precum și notițe de la fiecare vizită. Purtați-l tot timpul, mai ales când călătoriți și când mergeți la spital, astfel încât orice specialist să poată vedea informațiile importante. Cereți explicații pentru orice înscrisuri sau abrevieri pe care nu le înțelegeți."
+      ]
+    },
+    {
+      "heading": "Drepturi și sprijin",
+      "paragraphs": [
+        "Angajatele însărcinate au protecție la locul de muncă, inclusiv perioade de protecție a maternității înainte și după naștere și protecție împotriva concedierii. Centrele de consiliere oferă sfaturi despre beneficii, finanțe și chestiuni juridice și sunt disponibile și pentru persoanele cu cunoștințe limitate de limbă germană sau cu statut de ședere incert. Întrebați despre serviciile de interpretariat."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Găsirea unei moașe",
+      "text": "Imaginați-vă că tocmai ați aflat că sunteți însărcinată. Ați putea contacta devreme o moașă, ați putea întreba dacă face vizite la domiciliu după naștere și ați putea programa și prima vizită la ginecolog."
+    },
+    {
+      "title": "Călătoria cu carnetul",
+      "text": "Presupuneți că călătoriți în Germania la sfârșitul sarcinii. Ați putea purta Mutterpass și cardul de asigurare în geantă, ca orice echipă de urgență să vă vadă rapid informațiile."
+    }
+  ],
+  "questions": [
+    "Ce controale și teste sunt acoperite și care costă suplimentar?",
+    "Unde pot naște și când trebuie să mă înscriu?",
+    "Ce servicii de sprijin pot folosi dacă am dificultăți cu limba sau cu finanțele?"
+  ]
+}

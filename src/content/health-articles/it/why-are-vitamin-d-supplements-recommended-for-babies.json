@@ -1,0 +1,51 @@
+{
+  "title": "Perché si raccomanda la vitamina D ai neonati",
+  "intro": "La vitamina D serve per ossa e denti forti, perché aiuta il corpo ad assorbire il calcio. I neonati ricevono poca vitamina D dal latte materno e non sono esposti a molta luce solare, quindi le autorità sanitarie di molti paesi raccomandano un integratore quotidiano per prevenire il rachitismo. Controlla la raccomandazione del tuo paese con il pediatra.",
+  "sections": [
+    {
+      "heading": "Perché i neonati ne hanno bisogno",
+      "paragraphs": [
+        "Il corpo produce vitamina D quando la pelle è esposta alla luce solare, ma i neonati devono stare lontani dal sole diretto e la crema solare blocca la produzione. Il latte materno contiene solo piccole quantità di vitamina D. Il latte artificiale è arricchito, quindi i bambini nutriti con latte artificiale possono aver bisogno di meno integratore. Senza abbastanza vitamina D le ossa possono diventare molli e curve, una condizione detta rachitismo."
+      ]
+    },
+    {
+      "heading": "Quantità raccomandate",
+      "paragraphs": [
+        "In Germania e in molti altri paesi il consiglio abituale è da cinquecento a mille unità internazionali al giorno, spesso in gocce o in una compressa, dalla prima settimana di vita fino alla seconda estate, a volte combinate con il fluoro, secondo le indicazioni. Il medico ti darà la dose per il tuo bambino, in particolare per i prematuri e per chi ha problemi di salute."
+      ]
+    },
+    {
+      "heading": "Come somministrarla",
+      "paragraphs": [
+        "Le gocce si possono dare su un cucchiaino o mettere in un po' di latte. Dai la dose più o meno alla stessa ora ogni giorno. Usa solo il prodotto e la dose raccomandati. Se salti una dose, continua il giorno dopo e non raddoppiare la dose. Tieni fuori dalla portata dei bambini."
+      ]
+    },
+    {
+      "heading": "Sicurezza",
+      "paragraphs": [
+        "Troppa vitamina D può causare troppo calcio nel sangue, con vomito, scarso appetito e problemi ai reni, quindi evita di dare più di quanto indicato ed evita di dare più prodotti contenenti vitamina D. Alla dose raccomandata gli integratori sono considerati sicuri."
+      ]
+    },
+    {
+      "heading": "Altre fonti",
+      "paragraphs": [
+        "Pesce azzurro, uova e alimenti arricchiti contengono vitamina D e i bambini più grandi e gli adulti producono vitamina D con il sole. Alcuni gruppi, come chi ha la pelle scura, passa poco tempo all'aperto o ha condizioni specifiche, possono aver bisogno di consigli sugli integratori oltre la prima infanzia."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Costruire una routine",
+      "text": "Immagina di dimenticare le gocce quotidiane. Potresti collegarle alla poppata del mattino o impostare un promemoria sul telefono."
+    },
+    {
+      "title": "Controllare la dose",
+      "text": "Supponi che il tuo bambino prenda anche un multivitaminico. Potresti chiedere al pediatra della quantità totale di vitamina D."
+    }
+  ],
+  "questions": [
+    "Quale dose di vitamina D serve al mio bambino e per quanto tempo?",
+    "Il mio bambino ha bisogno di più o di meno per il latte artificiale o la nascita prematura?",
+    "Quali segni suggerirebbero un problema di vitamina D?"
+  ]
+}

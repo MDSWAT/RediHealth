@@ -1,0 +1,56 @@
+{
+  "title": "Sa diell është shumë",
+  "intro": "Drita e diellit mbështet gjendjen shpirtërore dhe prodhimin e vitaminës D, por rrezatimi i tepërt ultravjollcë dëmton qelizat e lëkurës dhe rrit rrezikun e djegies nga dielli, plakjes së parakohshme të lëkurës dhe kancerit të lëkurës. Gjetja e një ekuilibri të arsyeshëm do të thotë të njihni tipin e lëkurës tuaj, forcën e diellit dhe mënyrat praktike të mbrojtjes pa shmangur jashtë.",
+  "sections": [
+    {
+      "heading": "Çfarë bën rrezatimi ultravjollcë",
+      "paragraphs": [
+        "Dy lloje drite ultravjollcë arrijnë në tokë. UVB shkakton djegien nga dielli dhe është nxitësi kryesor i prodhimit të vitaminës D, ndërsa UVA depërton më thellë, kontribuon në plakje dhe luan gjithashtu rol në kancerin e lëkurës. Të dyja mund ta dëmtojnë ADN-në në qelizat e lëkurës.",
+        "Dëmtimi grumbullohet gjatë gjithë jetës. Djegiet e përsëritura nga dielli, veçanërisht në fëmijëri, lidhen me rrezik më të lartë të melanomës, kancerit më të rrezikshëm të lëkurës. Nxirja është përgjigjja e lëkurës ndaj lëndimit dhe nuk është shenjë shëndeti."
+      ]
+    },
+    {
+      "heading": "Sa është shumë",
+      "paragraphs": [
+        "Rreziku varet nga indeksi UV, ora e ditës, stina, lartësia mbi nivelin e detit, pasqyrimi nga uji, bora ose rëra dhe tipi i lëkurës suaj. Njerëzit me lëkurë të çelët, flokë të kuqe ose të verdhë, shumë nishane ose histori familjare të kancerit të lëkurës digjen më lehtë dhe duhet të jenë veçanërisht të kujdesshëm. Retë nuk i bllokojnë të gjitha rrezet UV.",
+        "Dielli është më i fortë rreth mesditës, kështu që hija dhe mbulesa janë më të rëndësishme atëherë. Indeksi UV në parashikimet e motit ju ndihmon të vendosni kur nevojitet mbrojtje. Një vlerë 3 ose më e lartë kërkon përgjithësisht mbrojtje."
+      ]
+    },
+    {
+      "heading": "Mbrojtja praktike",
+      "paragraphs": [
+        "Kërkoni hije midis fundit të paradites dhe mesit të pasdites, vishni kapelë me strehë të gjerë, syze dielli me mbrojtje UV dhe veshje të endura ngushtë që mbulojnë krahët e këmbët. Veshja është më e besueshme se locioni, sepse nuk shpëlahet.",
+        "Përdorni krem dielli me faktor të lartë mbrojtjeje në lëkurën e ekspozuar që veshja nuk e mbulon. Aplikoni një sasi të bollshme rreth 20 minuta para daljes dhe riaplikojeni çdo dy orë dhe pas notit ose djersitjes. Kremi i diellit nuk duhet përdorur për të qëndruar më gjatë në diell."
+      ]
+    },
+    {
+      "heading": "Fëmijët, foshnjat dhe situata të veçanta",
+      "paragraphs": [
+        "Foshnjat nën një vjeç duhet mbajtur larg diellit të drejtpërdrejtë. Lëkura e fëmijëve është më e hollë dhe më e ndjeshme, prandaj hija, veshja dhe kapelat janë mbrojtja më e mirë. Disa barna e bëjnë lëkurën më të ndjeshme ndaj dritës dhe ata që i marrin duhet të pyesin për masat paraprake.",
+        "Shtretërit e nxirjes dhe llambat e nxirjes lëshojnë rrezatim të fortë UV dhe e rrisin rrezikun e kancerit të lëkurës. Autoritetet shëndetësore këshillojnë kundër përdorimit të tyre, veçanërisht për të rinjtë."
+      ]
+    },
+    {
+      "heading": "Dielli dhe vitamina D",
+      "paragraphs": [
+        "Ekspozimi i shkurtër i rregullt i fytyrës, duarve dhe krahëve në dritën e ditës në pranverë e verë ndihmon përgjithësisht trupin të prodhojë mjaftueshëm vitaminë D pa u djegur. Ndalimi para se lëkura të skuqet është i arsyeshëm. Në dimër, në gjerësi veriore, drita e diellit prodhon pak vitaminë D dhe dieta ose suplementet mund të kenë më shumë rëndësi për disa njerëz.",
+        "Kontrolloni lëkurën rregullisht. Shihni një mjek për një nishan që ndryshon madhësi, formë ose ngjyrë, gjakon, kruhet, ose për një plagë që nuk shërohet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planifikimi i një dite në plazh",
+      "text": "Imagjinoni që do të shkoni në plazh në verë me fëmijë. Mund të organizoni hije, të sillni kapela dhe bluza noti me mëngë të gjata, të aplikoni krem dielli para nisjes dhe përsëri pas notit dhe t'i planifikoni orët e qeta të mesditës brenda."
+    },
+    {
+      "title": "Vërejtja e një nishani që ndryshon",
+      "text": "Supozoni që vini re një nishan në shpinë që duket më i errët dhe më i madh se më parë. Mund të bëni një foto të qartë, të shënoni datën dhe të caktoni një kontroll të lëkurës në vend që të prisni nëse ndryshon përsëri."
+    }
+  ],
+  "questions": [
+    "Sa e ndjeshme është lëkura ime dhe çfarë mbrojtjeje u përshtatet tipit të lëkurës dhe aktiviteteve të mia?",
+    "A duhet të bëj kontrolle të rregullta të lëkurës duke pasur parasysh nishanet dhe historinë familjare?",
+    "A kam nevojë për suplemente të vitaminës D apo mjaftojnë ekspozimi im ndaj diellit dhe dieta?"
+  ]
+}

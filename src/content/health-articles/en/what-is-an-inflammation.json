@@ -1,0 +1,51 @@
+{
+  "title": "What is inflammation?",
+  "intro": "Inflammation is the body's response to injury, infection or irritation. It is a protective process that helps healing, but when it is excessive or lasts too long it can damage tissue and contribute to many diseases. Understanding it helps explain symptoms such as swelling and fever.",
+  "sections": [
+    {
+      "heading": "Acute inflammation",
+      "paragraphs": [
+        "Acute inflammation starts quickly and lasts days. Blood vessels widen, more blood and fluid reach the area, and white blood cells arrive to fight germs and clear damaged tissue. This produces the classic signs of redness, heat, swelling, pain and loss of function, as seen in a cut, sprain or sore throat."
+      ]
+    },
+    {
+      "heading": "Chronic inflammation",
+      "paragraphs": [
+        "When the cause persists or the immune system is overactive, inflammation can continue for months or years. It is involved in diseases such as rheumatoid arthritis, inflammatory bowel disease, asthma, psoriasis and, in part, heart disease and diabetes. Chronic inflammation can damage healthy tissue and cause fatigue and pain."
+      ]
+    },
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "Causes include infection by bacteria or viruses, injury, burns, chemicals, allergies, autoimmune disease where the immune system attacks the body, obesity, smoking and long-term stress. Not all inflammation is infection, and it does not always need antibiotics."
+      ]
+    },
+    {
+      "heading": "Diagnosis and treatment",
+      "paragraphs": [
+        "Doctors look at symptoms, examine the area and may use blood tests such as C-reactive protein, scans or tissue samples. Treatment addresses the cause. Rest, cooling and anti-inflammatory painkillers such as ibuprofen can ease acute symptoms, and steroids or other immune-modulating medicines are used in chronic disease. Check with a doctor before taking anti-inflammatories regularly."
+      ]
+    },
+    {
+      "heading": "Healthy habits",
+      "paragraphs": [
+        "A balanced diet rich in vegetables, fruit, whole grains and fish, regular exercise, enough sleep, not smoking, limited alcohol and a healthy weight are linked with lower levels of inflammation. Claims about special anti-inflammatory diets or supplements curing disease are often overstated."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Soothing a sprain",
+      "text": "Imagine you twisted your ankle. You could rest it, apply a cold pack wrapped in cloth and raise the foot."
+    },
+    {
+      "title": "Seeing a doctor",
+      "text": "Suppose a joint remains swollen for weeks. You might book an appointment, since long-term inflammation needs a proper diagnosis."
+    }
+  ],
+  "questions": [
+    "What is causing the inflammation?",
+    "Which treatment is safest for me?",
+    "Which lifestyle changes may help?"
+  ]
+}

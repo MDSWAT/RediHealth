@@ -1,0 +1,51 @@
+{
+  "title": "Zgjebja",
+  "intro": "Zgjebja është një infestim i lëkurës i shkaktuar nga akarët e vegjël që gërmojnë në lëkurë dhe shkaktojnë kruarje të fortë, veçanërisht natën. Përhapet përmes kontaktit të zgjatur të lëkurës dhe nuk është shenjë e higjienës së dobët. Trajtohet lehtë me kremra ose tableta, por të gjithë në kontakt të ngushtë duhet të trajtohen njëkohësisht.",
+  "sections": [
+    {
+      "heading": "Si përhapet",
+      "paragraphs": [
+        "Akarët e zgjebes kalojnë nga një person te tjetri përmes kontaktit të ngushtë e të zgjatur të lëkurës, si brenda familjes, gjatë seksit e në shtëpi pleqsh ose çerdhe. Ndarja e çarçafëve ose rrobave mund t'i përhapë rrallë. Akarët mbijetojnë vetëm disa ditë larg trupit të njeriut."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptoma kryesore është kruarja e fortë, veçanërisht natën, që fillon dy deri gjashtë javë pas infeksionit të parë, ose brenda ditësh pas ri-infektimit. Njolla të vogla të kuqe e vija të holla e të valëzuara galerish shfaqen veçanërisht midis gishtave, në kyçet e duarve, bërryla, sqetulla, mes e organe gjenitale, e te foshnjat në pëllëmbë, tabana e kokë. Gërvishtja mund të çojë në plagë të infektuara."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Një mjek e njeh zgjebën nga pamja e shpërndarja e skuqjes dhe nga kontaktet me kruarje të ngjashme. Ekzaminimi me dermatoskop ose kruarja mikroskopike e lëkurës mund të konfirmojnë akarët. Kruarja mund të vazhdojë disa javë pas trajtimit të suksesshëm për shkak të një reagimi ndaj akarëve të ngordhur."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Kremi me permetrinë përdoret zakonisht në të gjithë trupin nga qafa poshtë, lihet për kohën e caktuar, zakonisht gjatë natës, pastaj lahet e përsëritet pas një jave. Benzil benzoati është alternativë dhe tabletat e ivermektinës përdoren në disa raste, veçanërisht shpërthime. Trajtoni të gjithë familjen e kontaktet e ngushta në të njëjtën kohë, edhe pa simptoma."
+      ]
+    },
+    {
+      "heading": "Masat e pastrimit",
+      "paragraphs": [
+        "Lani çarçafët, peshqirët e rrobat e ditëve të fundit në temperaturë të lartë ose mbyllini në qese plastike për disa ditë. Fshijini me fshesë mobiliet e tapicuara e mbani thonjtë e shkurtër. Ktheni në shkollë ose punë vetëm pasi të jepet trajtimi siç këshillohet. Antihistaminikët ose locionet qetësuese mund ta lehtësojnë kruarjen."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trajtimi i familjes",
+      "text": "Imagjinoni që fëmija juaj ka zgjebe. Mund të koordinoni trajtimin për të gjithë familjen po atë mbrëmje e të lani të gjithë çarçafët të nesërmen në mëngjes."
+    },
+    {
+      "title": "Përballimi i kruarjes së vazhdueshme",
+      "text": "Supozoni që kruarja vazhdon dy javë pas trajtimit. Mund ta pyesni mjekun nëse është kruarja e zakonshme pas zgjebes ose nëse nevojitet trajtim i përsëritur."
+    }
+  ],
+  "questions": [
+    "Cili trajtim është më i miri dhe kush tjetër duhet të trajtohet?",
+    "Kur mund të kthehemi në shkollë ose punë?",
+    "Si mund ta lehtësoj kruarjen më pas?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Ce este terapia ocupațională",
+  "intro": "Terapia ocupațională îi ajută pe oamenii de toate vârstele să facă activitățile zilnice care contează pentru ei, precum îmbrăcatul, gătitul, munca, studiul și jocul, când boala, accidentarea, dizabilitatea sau îmbătrânirea fac acest lucru dificil. Terapeuții ocupaționali se uită la persoană, la activitate și la mediu pentru a găsi soluții practice.",
+  "sections": [
+    {
+      "heading": "Ce fac terapeuții ocupaționali",
+      "paragraphs": [
+        "Ei evaluează ce poate și ce nu poate face o persoană și lucrează cu ea la obiective. Învață modalități noi de a face sarcinile, recomandă ajutoare și adaptează locuința sau locul de muncă, dezvoltă forța și abilitățile prin exerciții și practică și sfătuiesc îngrijitorii. Accentul este pus pe independență, participare și calitatea vieții."
+      ]
+    },
+    {
+      "heading": "Cui îi ajută",
+      "paragraphs": [
+        "Persoanelor care au avut un accident vascular cerebral sau o leziune, celor cu artrită, scleroză multiplă, boala Parkinson sau demență, copiilor cu probleme de dezvoltare sau de coordonare, persoanelor cu afecțiuni de sănătate mintală și persoanelor în vârstă cu risc de căderi. Se folosește în spitale, centre de reabilitare, școli, locuri de muncă și acasă."
+      ]
+    },
+    {
+      "heading": "Exemple de tratament",
+      "paragraphs": [
+        "Instruirea pentru îmbrăcat cu o singură mână după un accident vascular cerebral, protecția articulațiilor și unelte speciale pentru persoanele cu artrită, terapia mâinii după operație, activități senzoriale și de motricitate fină pentru copii, rutine și strategii pentru persoanele cu dificultăți de memorie și modificări ale locuinței, precum barele de sprijin sau liftul pentru scări. Terapeuții pot sfătui și în privința revenirii la muncă."
+      ]
+    },
+    {
+      "heading": "Obținerea terapiei",
+      "paragraphs": [
+        "Un medic o poate prescrie, iar în multe țări asigurarea de sănătate o acoperă cu prescripție. Ședințele pot fi individuale sau în grup, la un cabinet, la o clinică sau acasă. Terapia necesită practică în afara ședințelor. Întrebați despre numărul de ședințe, obiective și cum va fi judecat progresul."
+      ]
+    },
+    {
+      "heading": "Cum să funcționeze",
+      "paragraphs": [
+        "Fiți clar în privința a ceea ce contează cel mai mult pentru dumneavoastră și stabiliți obiective realiste. Implicați familia și îngrijitorii. Raportați dificultățile pentru ca planul să poată fi ajustat și întrebați despre ajutoare, finanțare și servicii locale de sprijin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Stabilirea unui obiectiv",
+      "text": "Imaginați-vă că vă este greu să gătiți după o leziune la umăr. Ați putea spune terapeutului și ați putea exersa sarcinile din bucătărie cu unelte adaptate."
+    },
+    {
+      "title": "Adaptarea locuinței",
+      "text": "Presupuneți că vă temeți de căderi. Ați putea cere o vizită la domiciliu pentru a verifica iluminatul, covoarele și accesoriile din baie."
+    }
+  ],
+  "questions": [
+    "Ce obiective ar trebui să stabilim pentru terapia mea?",
+    "Ce ajutoare sau modificări ale locuinței ar ajuta?",
+    "Acoperă asigurarea mea terapia ocupațională?"
+  ]
+}

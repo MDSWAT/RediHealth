@@ -1,0 +1,51 @@
+{
+  "title": "Bajamet dhe adenoidet: ind imunitar",
+  "intro": "Bajamet janë ind imunitar në hyrjen e frymës e tretjes. Njohin mikrobet sidomos në fëmijëri, jo barrierë e përsosur. Dhimbja e fytit nuk do automatikisht antibiotik ose operacion.",
+  "sections": [
+    {
+      "heading": "Vendet",
+      "paragraphs": [
+        "Bajamet palatine duken në gojë. Adenoidet janë më lart pas hundës, jo të dukshme zakonisht. Ka ind tjetër pranë gjuhës."
+      ]
+    },
+    {
+      "heading": "Imuniteti",
+      "paragraphs": [
+        "Qelizat njohin materiale dhe krijojnë përgjigje. Madhësia ndryshon me moshë e infeksion. Të mëdha nuk provojnë rëndesë, të vogla mund të inflamohen."
+      ]
+    },
+    {
+      "heading": "Infeksioni dhe bllokimi",
+      "paragraphs": [
+        "Viruset e bakteret inflamojnë, pamja nuk i dallon gjithmonë. Indi i madh prek gëlltitjen dhe gjumin. Gërhitja me pauza ose pasoja ditën do kontroll."
+      ]
+    },
+    {
+      "heading": "Vendimet",
+      "paragraphs": [
+        "Varen nga shkaku, rëndesa, përsëritja dhe fryma. Antibiotikët ndihmojnë disa baktere, jo çdo fyt. Operacioni ka përfitim dhe rrezik gjaku e dhimbjeje; nuk heq çdo mbrojtje."
+      ]
+    },
+    {
+      "heading": "Urgjencat",
+      "paragraphs": [
+        "Fryma e vështirë, jargët me pamundësi gëlltitjeje, ënjtja njëanësore, zëri i mbytur ose hapja e vështirë e gojës duan urgjencë. Gjaku pas operacionit është urgjent edhe nëse qetësohet. Mos vononi nga episodi i lehtë më parë. Para konsultës, shënoni kur filloi simptoma, çfarë e lehtëson ose përkeqëson dhe si ndikon në veprimtaritë e zakonshme. Merrni raportet e mëparshme nëse i keni. Kërkojini profesionistit ta lidhë shpjegimin me gjetjet tuaja; një përshkrim i përgjithshëm nuk vendos diagnozën."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira shënon infeksionet dhe shkollën para diskutimit, jo operacion pas një episodi."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni sheh gërhitje me pauza te fëmija. Kërkon kontroll, jo çdo gërhitje e padëmshme."
+    }
+  ],
+  "questions": [
+    "Cilat hapa sqarohen me diagram?",
+    "Çfarë tregon shpjegimi dhe çfarë nuk parashikon?",
+    "A kërkon shqetësimi im vlerësim profesional?"
+  ]
+}

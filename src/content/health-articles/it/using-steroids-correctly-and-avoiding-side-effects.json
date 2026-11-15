@@ -1,0 +1,51 @@
+{
+  "title": "Usare correttamente i corticosteroidi ed evitarne gli effetti collaterali",
+  "intro": "I corticosteroidi, spesso detti steroidi o cortisone, sono potenti farmaci antinfiammatori usati per asma, allergie, artrite, malattie della pelle e molte altre patologie. Sono molto efficaci, ma possono verificarsi effetti collaterali, soprattutto con dosi alte o uso prolungato. Usarli correttamente mantiene alti i benefici e bassi i rischi.",
+  "sections": [
+    {
+      "heading": "Come agiscono e forme",
+      "paragraphs": [
+        "I corticosteroidi imitano gli ormoni prodotti dalle ghiandole surrenali e smorzano l'infiammazione e le reazioni immunitarie. Esistono come compresse, iniezioni, inalatori, spray nasali, colliri e creme per la pelle. Le forme locali come inalatori e creme agiscono soprattutto dove sono applicate, con un effetto molto minore su tutto il corpo rispetto alle compresse."
+      ]
+    },
+    {
+      "heading": "Uso a breve termine",
+      "paragraphs": [
+        "I cicli brevi di compresse sono in genere ben tollerati. Gli effetti possibili comprendono aumento della glicemia, difficoltà a dormire, appetito aumentato, cambiamenti d'umore, ritenzione di liquidi e disturbi di stomaco. Prendi le compresse al mattino con il cibo, come indicato, e completa il ciclo."
+      ]
+    },
+    {
+      "heading": "Uso a lungo termine",
+      "paragraphs": [
+        "L'uso prolungato o ad alte dosi può causare aumento di peso, viso rotondo, pelle sottile e lividi facili, pressione e glicemia alte, ossa indebolite, cataratta e glaucoma, debolezza muscolare, infezioni e rallentamento della crescita nei bambini. I medici puntano alla dose efficace più bassa e possono aggiungere protezioni come calcio, vitamina D, farmaci che rafforzano le ossa o protezione dello stomaco."
+      ]
+    },
+    {
+      "heading": "Non smettere mai di colpo",
+      "paragraphs": [
+        "Dopo settimane di trattamento la produzione ormonale del corpo è soppressa. Smettere di colpo può causare debolezza, nausea, pressione bassa e, raramente, una pericolosa crisi surrenalica. Le dosi vanno ridotte gradualmente come indicato. Porta con te una tessera per gli steroidi se li prendi a lungo e informane medici, dentisti e personale di emergenza. In caso di malattia grave o di intervento le dosi possono dover essere aumentate."
+      ]
+    },
+    {
+      "heading": "Usare le forme locali e restare al sicuro",
+      "paragraphs": [
+        "Sciacqua la bocca dopo aver usato steroidi inalati per prevenire il mughetto. Usa le creme come indicato, in strati sottili sulle zone giuste, evitando il viso salvo indicazione. Controlla pressione, glicemia, ossa e occhi se usi gli steroidi a lungo. Segnala cambiamenti d'umore, alterazioni della vista, forte mal di stomaco o segni di infezione. Molte persone temono gli steroidi, ma anche l'infiammazione non trattata comporta rischi, quindi parla dei dubbi invece di sospendere il trattamento."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Seguire un piano di riduzione",
+      "text": "Immagina di prendere prednisolone per alcune settimane. Potresti scrivere lo schema delle dosi e non smettere di colpo, anche se ti senti meglio."
+    },
+    {
+      "title": "Controllare gli effetti",
+      "text": "Supponi di prendere steroidi a lungo. Potresti chiedere dei controlli di densità ossea, glicemia, pressione e occhi."
+    }
+  ],
+  "questions": [
+    "Per quanto tempo prenderò lo steroide e come verrà ridotto?",
+    "Quali effetti collaterali devo osservare e di quali controlli ho bisogno?",
+    "Posso usare una forma locale invece delle compresse?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Using a public AED in an adult emergency",
+  "intro": "An automated external defibrillator, or AED, analyzes heart rhythm and gives a shock only when indicated. Anyone can follow its prompts. Do not delay emergency action to read: call 112 for an unresponsive person and follow the dispatcher.",
+  "sections": [
+    {
+      "heading": "Recognize and call",
+      "paragraphs": [
+        "Make sure it is safe to approach, check responsiveness and call on speakerphone. Assess breathing while help is summoned; occasional gasps are not normal breathing. If unresponsive and not breathing normally, start CPR and ask a helper to fetch an AED."
+      ]
+    },
+    {
+      "heading": "Continue CPR",
+      "paragraphs": [
+        "For an adult, compress the center of the chest 5–6 cm at 100–120 per minute with full recoil. If trained and able, alternate 30 compressions and 2 rescue breaths; otherwise continue compressions. Do not leave the person alone just to search far away for equipment."
+      ]
+    },
+    {
+      "heading": "Turn on and attach",
+      "paragraphs": [
+        "Open or switch on the AED and follow the pictures and voice. Expose the chest, dry wet skin and place pads as shown. If another rescuer is present, continue compressions while pads are attached. Do not place a pad directly over an implanted device."
+      ]
+    },
+    {
+      "heading": "Stand clear when instructed",
+      "paragraphs": [
+        "Nobody should touch the person while the AED analyzes or delivers a shock. Some models shock automatically; others ask you to press a button. Resume CPR immediately after a shock or a no-shock instruction, following prompts. No shock advised does not mean no help is needed."
+      ]
+    },
+    {
+      "heading": "Keep helping",
+      "paragraphs": [
+        "Leave pads attached and continue until professionals take over, normal breathing returns, danger develops or you cannot continue. Tell the dispatcher about changes. Children and infants need age-appropriate guidance and equipment settings; do not delay help because you are uncertain."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira starts compressions while a helper brings the AED. They share tasks and stop touching the person only when analysis or shock instructions require it."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben hears that no shock is advised. He resumes CPR as instructed rather than assuming the person has recovered."
+    }
+  ],
+  "questions": [
+    "Where can I practice CPR and AED use with an instructor?",
+    "How do rescue instructions differ for a child or drowning?",
+    "How can I obtain support after helping in an emergency?"
+  ]
+}

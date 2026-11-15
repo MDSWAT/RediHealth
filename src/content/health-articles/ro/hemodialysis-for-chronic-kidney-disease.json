@@ -1,0 +1,51 @@
+{
+  "title": "Hemodializa: pregătire și viața zilnică",
+  "intro": "Hemodializa elimină deșeuri și exces de apă când rinichii nu reușesc suficient. Susține viața, dar nu înlocuiește toate funcțiile renale. Programul și tratamentul acasă ori în centru se individualizează.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Sângele trece prin filtru și revine. Accesul sigur poate fi fistulă, grefă ori cateter. Pregătirea poate dura; discutați opțiunile înainte de urgență când este posibil."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Echipa renală evaluează simptomele, analizele, apa și prioritățile. Comparați cu dializa peritoneală, transplantul când sunteți eligibil și îngrijirea conservatoare când este potrivită; nu există alegere universală. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Respectați ședințele și spuneți crampele, amețeala ori oboseala din timpul lor. Extragerea apei și medicamentele pot cere ajustare de echipă. Omiterea ori scurtarea poate lăsa probleme periculoase de apă și electroliți. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Urmați recomandări individuale pentru lichide, sare, potasiu și nutriție, nu diete restrictive generale. Protejați accesul și verificați vibrația obișnuită dacă ați învățat. Organizați transport, muncă și călătorii; anunțați devreme dificultățile. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Sângerarea accesului care nu se oprește, febra cu cateter, durerea toracică, dispneea severă ori colapsul cer ajutor urgent. Fistula fără vibrație, roșie, dureroasă ori umflată cere sfat imediat."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira planifică transportul și munca înainte de începere. Cere dieteticianului mese potrivite analizelor și alimentelor obișnuite."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben nu mai simte fistula ca de obicei. Sună imediat unitatea fără să aștepte următoarea ședință."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

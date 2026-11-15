@@ -1,0 +1,52 @@
+{
+  "title": "Tenere un elenco dei farmaci",
+  "intro": "Un elenco dei farmaci registra ogni medicinale che prendi, compresi farmaci con ricetta, prodotti da banco, vitamine e rimedi a base di erbe. Tenerlo aggiornato aiuta medici, farmacisti e assistenti a evitare interazioni pericolose ed errori. È particolarmente utile se prendi più farmaci o vedi più di un medico.",
+  "sections": [
+    {
+      "heading": "Perché un elenco è importante",
+      "paragraphs": [
+        "Molte persone prendono più farmaci prescritti da professionisti diversi. Senza una visione d'insieme sono più probabili duplicazioni, combinazioni dannose e cambiamenti dimenticati. In un'emergenza o in un ricovero un elenco permette al personale di capire rapidamente la tua terapia."
+      ]
+    },
+    {
+      "heading": "Che cosa includere",
+      "paragraphs": [
+        "Per ogni farmaco annota nome, dosaggio, dose, frequenza e orari di assunzione, il motivo, chi lo ha prescritto e la data di inizio. Aggiungi integratori, prodotti a base di erbe, colliri, creme, cerotti, inalatori e farmaci presi solo al bisogno. Registra allergie ed effetti collaterali avuti."
+      ]
+    },
+    {
+      "heading": "Come tenerlo",
+      "paragraphs": [
+        "Puoi usare un modello stampato, un quaderno o un'app per telefono. Tieni una copia nel portafoglio o nella borsa e dai una copia a una persona di fiducia. Aggiornalo ogni volta che un farmaco viene iniziato, sospeso o cambiato e barra chiaramente i farmaci interrotti con la data. Molte farmacie e ambulatori possono stamparti un elenco aggiornato."
+      ]
+    },
+    {
+      "heading": "Usarlo agli appuntamenti",
+      "paragraphs": [
+        "Porta l'elenco o le confezioni dei farmaci a ogni visita, compresi gli appuntamenti in farmacia e in ospedale, e chiedi al professionista di controllarlo. Chiedi quali farmaci servono ancora, quali si possono sospendere e se qualcuno interagisce con nuovi trattamenti o con l'alcol.",
+        "Una revisione annuale dei farmaci con il medico o il farmacista è utile, in particolare per le persone anziane che prendono molti farmaci."
+      ]
+    },
+    {
+      "heading": "Uso sicuro",
+      "paragraphs": [
+        "Non sospendere né cambiare le dosi senza consiglio. Conserva i farmaci in sicurezza, controlla le date di scadenza e smaltisci i farmaci inutilizzati tramite una farmacia. Informa tutti gli operatori sanitari di tutto ciò che prendi, compresi i prodotti acquistati online."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ricovero in ospedale",
+      "text": "Immagina di essere portato in ospedale dopo una caduta. Se hai con te un elenco aggiornato, il personale può vedere subito il tuo anticoagulante e i farmaci per il cuore ed evitare aggiunte pericolose."
+    },
+    {
+      "title": "Revisione con un farmacista",
+      "text": "Supponi di prendere otto compresse al giorno. Potresti portare l'elenco in farmacia e chiedere se qualche combinazione sia rischiosa e se le dosi possano essere semplificate."
+    }
+  ],
+  "questions": [
+    "Tutti i farmaci del mio elenco sono ancora necessari?",
+    "Alcuni dei miei farmaci, integratori o alimenti interagiscono?",
+    "Con quale frequenza i miei farmaci dovrebbero essere rivisti?"
+  ]
+}

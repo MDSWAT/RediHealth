@@ -1,0 +1,51 @@
+{
+  "title": "Kada je carski rez opcija?",
+  "intro": "Carski rez je operacija u kojoj se beba rađa kroz rez na majčinu trbuhu i maternici. Može biti planiran unaprijed ili učinjen u hitnom slučaju kada vaginalni porod nije siguran. Također je opcija za neke žene koje ga preferiraju nakon razgovora s liječnicima.",
+  "sections": [
+    {
+      "heading": "Medicinski razlozi za planirani carski rez",
+      "paragraphs": [
+        "Razlozi uključuju bebu u poziciji sa stopalima prema dolje ili poprečno u kasnoj trudnoći ako okretanje nije uspjelo, posteljicu koja prekriva vrat maternice, određene infekcije kao što je visoko virusno opterećenje HIV-om, prethodnu kompliciranu operaciju maternice, teška stanja majke i višeplodne trudnoće kod kojih prva beba nije glavom prema dolje. Liječnici vagaju rizike i koristi."
+      ]
+    },
+    {
+      "heading": "Hitni carski rez",
+      "paragraphs": [
+        "Radi se kada porod ne napreduje, kada beba pokazuje znakove ugroženosti, kada postoji jako krvarenje, problem s pupkovinom ili zabrinutost za majčino zdravlje. Odluke se donose brzo, obično uz spinalnu anesteziju ili, ako je hitno, opću anesteziju."
+      ]
+    },
+    {
+      "heading": "Zahtjev majke",
+      "paragraphs": [
+        "Neke žene traže carski rez bez medicinskog razloga, primjerice zbog straha od poroda. Liječnici bi trebali razgovarati o razlozima, ponuditi savjetovanje i objasniti rizike i koristi za majku i bebu. Mnoge smjernice kažu da se taj zahtjev može prihvatiti nakon savjetovanja. Planiranje carskog reza nakon prethodnog također je moguće, kao i pokušaj vaginalnog poroda nakon carskog reza za mnoge žene."
+      ]
+    },
+    {
+      "heading": "Rizici i oporavak",
+      "paragraphs": [
+        "U usporedbi s vaginalnim porodom, carski rez je povezan s većim rizikom od infekcije, krvarenja, krvnih ugrušaka i duljim oporavkom te s mogućim komplikacijama u budućim trudnoćama, kao što su problemi s posteljicom. Oporavak traje nekoliko tjedana, uz lijekove protiv boli, nježno hodanje i pomoć pri podizanju. Bebe mogu imati više problema s disanjem ako se rode prije trideset devetog tjedna."
+      ]
+    },
+    {
+      "heading": "Donošenje odluke",
+      "paragraphs": [
+        "Pitajte o razlozima, alternativama, rizicima za vas i vašu bebu, vremenu i što očekivati. Uključite partnera ili osobu za podršku. Drugo mišljenje ili razgovor s primaljom može pomoći. Možete se predomisliti, a odluke trebaju poštovati vaše vrijednosti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema pitanja",
+      "text": "Zamislite da je vaša beba u zatkom položaju. Mogli biste pitati o okretanju bebe, rizicima svake opcije i najboljem vremenu."
+    },
+    {
+      "title": "Planiranje oporavka",
+      "text": "Pretpostavite da je planirani carski rez zakazan. Mogli biste dogovoriti pomoć kod kuće i pitati o lijekovima protiv boli i kada možete voziti."
+    }
+  ],
+  "questions": [
+    "Zašto se preporučuje carski rez i koje su alternative?",
+    "Koji su rizici za mene i moju bebu?",
+    "Što će uključivati oporavak?"
+  ]
+}

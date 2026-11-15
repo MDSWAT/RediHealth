@@ -1,0 +1,51 @@
+{
+  "title": "Zubni karijes",
+  "intro": "Zubni karijes je oštećenje tvrdog tkiva zuba uzrokovano kiselinama koje stvaraju bakterije u zubnom plaku. Jedan je od najčešćih zdravstvenih problema u svijetu, a ipak se uglavnom može spriječiti. Rani karijes može se poništiti, dok uznapredovali karijes zahtijeva liječenje kod stomatologa.",
+  "sections": [
+    {
+      "heading": "Kako karijes nastaje",
+      "paragraphs": [
+        "Bakterije u plaku hrane se šećerima i stvaraju kiselinu koja otapa minerale iz cakline. Česta slatka hrana i pića, loše čišćenje, suha usta i mala izloženost fluoridu povećavaju rizik. Isprva se na caklini pojavljuje bijela mrlja. Ako proces nastavi, stvara se šupljina koja može doseći dentin i živac."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Rani karijes ne uzrokuje simptome. Kasniji znakovi uključuju osjetljivost na slatko, vruće ili hladno, vidljive smeđe ili crne mrlje, rupe u zubima, zubobolju i neugodan okus. Jaka, pulsirajuća bol, oticanje lica ili vrućica upućuju na infekciju koja zahtijeva hitnu stomatološku skrb."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Rane lezije mogu se remineralizirati fluoridom i boljim čišćenjem. Šupljine se liječe uklanjanjem pokvarenog dijela i plombiranjem zuba. Ako karijes dosegne živac, liječenje korijenskog kanala može spasiti zub, a inače se zub vadi. Krunice štite jako oštećene zube. Rano liječenje je jednostavnije, jeftinije i manje bolno."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Perite zube dvaput dnevno zubnom pastom s fluoridom dvije minute, čistite između zuba svaki dan, ograničite slatke grickalice i pića na vrijeme obroka i isperite usta vodom nakon kiselih ili slatkih pića. Djeca trebaju koristiti malu količinu paste s fluoridom uz nadzor, a stomatolozi mogu nanijeti fluoridni lak ili zaptivače na kutnjake."
+      ]
+    },
+    {
+      "heading": "Redovita stomatološka skrb",
+      "paragraphs": [
+        "Redovito posjećujte stomatologa na pregledima, s učestalošću određenom prema vašem riziku. Bebama se ne smiju davati zaslađena pića u bočicama prije spavanja. Izbjegavajte često ispijanje slatkih pića. Ako imate suha usta, pitajte o prikladnim proizvodima. Brzo potražite pomoć za svaku zubobolju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izgradnja rutine",
+      "text": "Zamislite da vaše dijete ne voli prati zube. Mogli biste zajedno prati zube dvaput dnevno uz mjerač vremena ili pjesmu i ograničiti slatkiše na vrijeme obroka."
+    },
+    {
+      "title": "Uočavanje ranih znakova",
+      "text": "Pretpostavite da primijetite kredasto bijelu mrlju na zubu. Mogli biste pitati stomatologa o fluoridnom tretmanu i savjetima za sprječavanje šupljine."
+    }
+  ],
+  "questions": [
+    "Imam li znakove karijesa i kako ga treba liječiti?",
+    "Koliko često trebam dolaziti na pregled?",
+    "Bi li fluoridni lak ili zaptivači bili korisni za moje dijete?"
+  ]
+}

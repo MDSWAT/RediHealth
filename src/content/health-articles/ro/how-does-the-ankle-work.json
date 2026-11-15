@@ -1,0 +1,52 @@
+{
+  "title": "Cum susține glezna mersul",
+  "intro": "Glezna leagă gamba de picior, suportând greutatea și adaptându-se terenului. Articulațiile, ligamentele, tendoanele și mușchii colaborează; durerea după răsucire nu înseamnă automat entorsă ușoară.",
+  "sections": [
+    {
+      "heading": "Oase și mișcare",
+      "paragraphs": [
+        "Tibia și fibula înconjoară talusul. Articulația superioară mișcă piciorul mai ales sus și jos; cele inferioare contribuie la adaptarea laterală."
+      ]
+    },
+    {
+      "heading": "Contact neted",
+      "paragraphs": [
+        "Cartilajul și lichidul articular reduc frecarea. Forma distribuie încărcarea, dar forța repetată peste toleranța țesuturilor poate produce leziuni."
+      ]
+    },
+    {
+      "heading": "Stabilitate",
+      "paragraphs": [
+        "Ligamentele leagă oasele și limitează mișcarea excesivă. Tendoanele transmit forța musculară; tendonul lui Ahile ajută împingerea. Leziunea ligamentului diferă de ruptura tendonului sau fractură."
+      ]
+    },
+    {
+      "heading": "Recuperare",
+      "paragraphs": [
+        "Protejați glezna după accidentare și cereți sfat despre sprijinul sigur. Forța și echilibrul se refac treptat; instabilitatea repetată cere consult, nu întinderi forțate repetate."
+      ]
+    },
+    {
+      "heading": "Semne de alarmă",
+      "paragraphs": [
+        "Deformarea, imposibilitatea sprijinului, piciorul rece sau amorțit ori pocnetul cu pierderea împingerii necesită evaluare promptă. Mișcarea posibilă nu exclude fractura.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira își răsucește repetat glezna pe teren denivelat. Întreabă despre recuperare și echilibru, fără să considere orteza singura soluție."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben simte un pocnet alergând și nu se poate împinge în picior. Cere evaluare, fără să trateze totul ca entorsă obișnuită."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

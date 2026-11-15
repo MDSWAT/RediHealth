@@ -1,0 +1,52 @@
+{
+  "title": "Razumijevanje menstrualnog ciklusa",
+  "intro": "Ciklus povezuje hormonske signale, rad jajnika i promjene sluznice maternice. Vrijeme varira među osobama i kroz život. Udžbenički obrazac ili aplikacija ne dokazuju ovulaciju ni isključuju trudnoću.",
+  "sections": [
+    {
+      "heading": "Početak",
+      "paragraphs": [
+        "Prvi dan menstruacijskog krvarenja označava novi ciklus. Signali mozga i hipofize potiču folikule jajnika; estrogen obnavlja sluznicu maternice."
+      ]
+    },
+    {
+      "heading": "Ovulacija",
+      "paragraphs": [
+        "Hormonski porast može osloboditi jajnu stanicu u jajovod. Ne događa se svima istog dana, a krvarenje ne jamči da se dogodila."
+      ]
+    },
+    {
+      "heading": "Nakon oslobađanja",
+      "paragraphs": [
+        "Prazni folikul stvara privremenu strukturu koja proizvodi progesteron. Podupire sluznicu; bez trudnoće hormoni padaju i sluznica se ljušti."
+      ]
+    },
+    {
+      "heading": "Praćenje",
+      "paragraphs": [
+        "Bilježite krvarenje, bol i dnevni utjecaj bez proglašavanja svake varijacije bolešću. Pubertet, prijelaz menopauze, bolest, stres i hormonska kontracepcija mijenjaju obrazac; sam kalendar nije pouzdana kontracepcija."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Vrlo obilno krvarenje, nesvjestica, jaka bol, trajna nepravilnost ili krv nakon menopauze traže pregled. Moguća trudnoća s jakom jednostranom boli, kolapsom ili boli vrha ramena traži hitnost i prije pozitivnog testa.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira bilježi bol i propuštene aktivnosti, ne samo datume, radi procjene potrebe liječenja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben pomaže partnerici s kašnjenjem i jakom jednostranom boli tražiti hitnost umjesto vjerovanja aplikaciji."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Ce este o ecocardiogramă?",
+  "intro": "O ecocardiogramă este o ecografie a inimii. Folosește unde sonore pentru a produce imagini în mișcare ale camerelor, valvelor și pereților inimii și arată cât de bine pompează. Este sigură, nedureroasă și nu folosește radiații și este larg folosită pentru diagnosticarea problemelor de inimă.",
+  "sections": [
+    {
+      "heading": "De ce se face",
+      "paragraphs": [
+        "Medicii o folosesc pentru a investiga lipsa de aer, durerea în piept, un suflu cardiac, umflarea picioarelor sau palpitațiile, pentru a evalua insuficiența cardiacă, boala valvelor, leziunile după un infarct, malformațiile congenitale și lichidul din jurul inimii și pentru a monitoriza tratamentul. Măsoară fracția de ejecție, proporția de sânge pompat la fiecare bătaie."
+      ]
+    },
+    {
+      "heading": "Tipuri",
+      "paragraphs": [
+        "O ecocardiogramă transtoracică se face pe piept și este testul standard. O ecocardiogramă transesofagiană introduce o sondă prin esofag pentru imagini mai clare ale părții din spate a inimii, sub sedare. O ecocardiogramă de efort se face în timpul efortului sau după un medicament, pentru a vedea cum se comportă inima sub solicitare. Pot fi injectate substanțe de contrast pentru a îmbunătăți imaginile."
+      ]
+    },
+    {
+      "heading": "Ce se întâmplă",
+      "paragraphs": [
+        "Vă dezbrăcați până la brâu și vă întindeți pe partea stângă. Se aplică mici tampoane lipicioase pentru un electrocardiogram. Un tehnician întinde gel și mișcă o sondă pe piept, apăsând ușor. Vi se poate cere să vă țineți respirația. Aparatul scoate un sunet ca un șuierat. Durează între treizeci și șaizeci de minute."
+      ]
+    },
+    {
+      "heading": "Pregătirea și siguranța",
+      "paragraphs": [
+        "De obicei nu este nevoie de pregătire, cu excepția testului transesofagian, care necesită repaus alimentar, sau a testului de efort. Purtați haine largi. Procedura este sigură. Testele transesofagiene au mici riscuri, precum durerea în gât. Medicul vă explică rezultatele, adesea după ce un specialist a examinat imaginile."
+      ]
+    },
+    {
+      "heading": "Înțelegerea rezultatelor",
+      "paragraphs": [
+        "Rezultatele descriu mărimea camerelor, grosimea pereților, funcția de pompare și modul în care se deschid și se închid valvele. Constatările sunt combinate cu simptomele și cu alte teste. Întrebați ce înseamnă rezultatele pentru tratament, urmărire și activitate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea",
+      "text": "Imaginați-vă că aveți mâine o scanare. Ați putea purta o bluză largă, aduce lista de medicamente și întreba dacă puteți mânca înainte."
+    },
+    {
+      "title": "Discutarea rezultatelor",
+      "text": "Presupuneți că raportul menționează o mică scurgere a unei valve. Ați putea întreba cât de des ar trebui verificată și ce simptome contează."
+    }
+  ],
+  "questions": [
+    "Ce tip de ecocardiogramă îmi trebuie și de ce?",
+    "Ce înseamnă fracția mea de ejecție?",
+    "Cât de des ar trebui repetat testul?"
+  ]
+}

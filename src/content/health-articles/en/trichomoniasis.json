@@ -1,0 +1,51 @@
+{
+  "title": "Trichomoniasis",
+  "intro": "Trichomoniasis is a common sexually transmitted infection caused by a tiny parasite. Many people have no symptoms, but it can cause vaginal discharge, itching and discomfort. It is easily cured with antibiotics, provided that partners are treated at the same time.",
+  "sections": [
+    {
+      "heading": "How it spreads",
+      "paragraphs": [
+        "The parasite spreads through sexual contact, mainly vaginal intercourse, and can be passed on even when no symptoms are present. It lives in the vagina, urethra and sometimes the prostate. Condoms reduce risk. It is not spread by toilet seats or casual contact."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "In women, symptoms include frothy, yellow-green or grey discharge with an unpleasant smell, itching, redness, pain or burning during urination or sex and lower abdominal discomfort. Men often have no symptoms but may notice urethral discharge, burning on urination or irritation. Many infections remain silent for long periods."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Tests include examination of discharge under the microscope, and more sensitive molecular tests on a swab or urine sample. Testing for other sexually transmitted infections is recommended, since they often coexist. Pregnant women with symptoms should be tested, as trichomoniasis can be linked with premature birth."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "A course of metronidazole or a related antibiotic, taken as tablets for several days, cures the infection in most people. Avoid alcohol during treatment and for a day or two afterwards as advised, since it can cause nausea and vomiting. Avoid sex until you and your partners have completed treatment and symptoms have gone, to prevent reinfection."
+      ]
+    },
+    {
+      "heading": "Partners and prevention",
+      "paragraphs": [
+        "Sexual partners need testing and treatment even without symptoms. Repeat testing a few months after treatment is advised because reinfection is common. Condoms, regular testing with new partners and honest conversations lower risk. Sexual health clinics offer confidential testing."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Telling a partner",
+      "text": "Imagine you test positive. You could ask the clinic how to inform your partner, and agree to avoid sex until both have finished treatment."
+    },
+    {
+      "title": "Following up",
+      "text": "Suppose your symptoms disappear after treatment. You might still arrange a repeat test after a few months as advised."
+    }
+  ],
+  "questions": [
+    "Do I need testing for other infections as well?",
+    "Which treatment should I take, and what should I avoid while taking it?",
+    "Which partners need treatment, and when can we resume sex?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Using eye drops properly",
+  "intro": "Eye drops are used for many conditions such as glaucoma, infection, allergy and dry eyes. They only work well if they land in the eye and are used at the right times. A few simple habits help the medicine work, prevent contamination and reduce side effects.",
+  "sections": [
+    {
+      "heading": "Before you start",
+      "paragraphs": [
+        "Wash your hands and check the label for the name, strength and expiry date. Check how long a bottle may be used after opening, as many should be discarded after about four weeks. If you use more than one drop, wait about five minutes between them, and put ointments last. Remove contact lenses unless the drops are approved for use with lenses."
+      ]
+    },
+    {
+      "heading": "Applying the drop",
+      "paragraphs": [
+        "Tilt your head back or lie down. Pull the lower lid down gently to form a pocket. Hold the bottle above the eye, without touching the eye, lashes or skin with the tip, and squeeze a single drop into the pocket. Close the eye gently for one to two minutes without squeezing or blinking hard, and press lightly on the inner corner by the nose to reduce drainage into the nose and absorption into the body. Dab away extra liquid."
+      ]
+    },
+    {
+      "heading": "Making it easier",
+      "paragraphs": [
+        "If you miss, it is better to try again than to use many drops, as the eye holds only about one drop. Aids that help guide the bottle, a mirror, having someone else apply them or lying down can help. Children may need distraction and a calm approach. People with tremor or arthritis can ask about aids or single-dose units."
+      ]
+    },
+    {
+      "heading": "Keeping drops clean",
+      "paragraphs": [
+        "Do not touch the tip to anything, close the cap straight after use and never share eye drops. Do not use drops that have changed colour or become cloudy, or are past their date. Preservative-free drops in single-use containers suit sensitive eyes or frequent use."
+      ]
+    },
+    {
+      "heading": "Side effects and safety",
+      "paragraphs": [
+        "Stinging for a moment is common. Report persistent redness, swelling, pain, vision changes or allergic reactions to your doctor. For glaucoma, regular use is essential even without symptoms, because it prevents vision loss. Do not stop drops for glaucoma without advice. Ask the pharmacist about timing with other medicines."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Building a routine",
+      "text": "Imagine you have glaucoma drops once daily. You could link the drop to brushing your teeth and use a reminder on your phone."
+    },
+    {
+      "title": "Using two drops",
+      "text": "Suppose you have two different eye drops. You might wait five minutes between them and mark the times on a chart."
+    }
+  ],
+  "questions": [
+    "Am I applying my drops correctly?",
+    "How long can I use a bottle after opening?",
+    "What should I do if I miss a dose?"
+  ]
+}

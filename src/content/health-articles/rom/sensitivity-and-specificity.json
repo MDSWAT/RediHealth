@@ -1,0 +1,52 @@
+{
+  "title": "Osjetljivost thaj specifičnost medicinsko testongo",
+  "intro": "Nijedno medicinsko test na si savršeno. Osjetljivost thaj specifičnost opisinen sar lačhes test arakhel manushen sa bolest thaj sar točno oslobađinel manushen bi bolest. Haćaripe kale idejengo azhutil te tumačines rezultate, maj but katar probiranje, thaj te dikhes sostar pozitivno rezultat na si uvijek dijagnoza.",
+  "sections": [
+    {
+      "heading": "Osjetljivost",
+      "paragraphs": [
+        "Osjetljivost si udio manushengo sa bolest save test točno prepoznavinel sar pozitivne. Test sa devedeset posto osjetljivosti otkrivinel devet katar deš manusha sa bolest thaj propuštinel jekhe. Test visoke osjetljivosti si vrijedno kana bi propuštanje bolestako bilo ozbiljno, sostar negativno rezultat tegani čini bolest malo vjerovatno."
+      ]
+    },
+    {
+      "heading": "Specifičnost",
+      "paragraphs": [
+        "Specifičnost si udio manushengo bi bolest save test točno prepoznavinel sar negativne. Test sa devedeset posto specifičnosti pogrešno označinel jekh katar deš zdrave manusha. Test visoke specifičnosti si koristno te potvrdinel pes dijagnoza, sostar pozitivno rezultat si manje vjerovatno lažno uzbunjivanje."
+      ]
+    },
+    {
+      "heading": "Sostar pozitivno rezultat shaj te si pogrešno",
+      "paragraphs": [
+        "Šansa te pozitivno rezultat si točno ovisinel katar sar si uobičajeno bolest ande testirane manusha. Kana si bolest rijetko, isto lačho test kerel više lažnone alarmengo nego pravone slučajengo. Zamisli hiljadu manusha, katar save deš imin bolest. Test sa devedeset posto osjetljivosti thaj devedeset posto specifičnosti arakhel devet katar deš bolesne manusha, numa isto pogrešno označinel pashe devedeset devet katar devetsto devedeset zdrave. Katar pashe šel osam pozitivnone, samo devet stvarno ima bolest."
+      ]
+    },
+    {
+      "heading": "Posljedice thaj pitanja",
+      "paragraphs": [
+        "Lažno pozitivni rezultati keren anksioznost thaj dodatne testove, nekana štetne. Lažno negativni rezultati shaj te odgađinen sastjaripe. Testovi save koristinen pes vash probiranje zdravone manushengo zato trubun jako visoko specifičnost, thaj drugo, specifičnije test butivar slijedinel pozitivno probirno rezultat.",
+        "Pučh so test trubul te sikavel, kobor si pouzdano vash manusha sar tu, so znaćinel pozitivno vaj negativno rezultat vash tut thaj so slijedinel. Brojevi katar šel si lakše te haćaren nego postotci."
+      ]
+    },
+    {
+      "heading": "Korištenje kalo ande sakodyesutne odluke",
+      "paragraphs": [
+        "Džanipe kale terminengo azhutil kana čitines vash nove testove vaj probirne programe. Test reklamirime sar devedeset devet posto točno shaj te isto atunči kerel but lažne alarme kana si stanje rijetko, sostar tražin brojeve palal tvrdnja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Haćaripe rezultatosko",
+      "text": "Zamisli te tiro probirni test si pozitivno. Shaj te pučes savo udio manushengo sa pozitivno rezultat stvarno ima bolest thaj savo potvrdni test ka slijedinel."
+    },
+    {
+      "title": "Usporedba duje testongi",
+      "text": "Zamisli te nudinen tut duj različite testove. Shaj te pučes savo si lačho vash izbjegavanje lažnone alarmengo thaj savo vash izbjegavanje propuštenone slučajengo, thaj sostar kado si važno vash tiri situacija."
+    }
+  ],
+  "questions": [
+    "Kobor si točno kado test, thaj save si stope lažno pozitivnone thaj lažno negativnone rezultatengi?",
+    "So znaćinel pozitivno vaj negativno rezultat vash man?",
+    "Savo bi bilo idući korak palal abnormalno rezultat?"
+  ]
+}

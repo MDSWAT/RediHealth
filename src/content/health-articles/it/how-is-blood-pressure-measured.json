@@ -1,0 +1,56 @@
+{
+  "title": "Come si misura la pressione arteriosa",
+  "intro": "La pressione arteriosa è la forza con cui il sangue spinge contro le pareti delle arterie. Misurarla è rapido, indolore e uno dei controlli più utili in medicina, perché la pressione alta di solito non dà sintomi ma aumenta il rischio di infarto, ictus e malattie renali. Sapere come funziona la misurazione aiuta a ottenere valori affidabili.",
+  "sections": [
+    {
+      "heading": "Cosa significano i due numeri",
+      "paragraphs": [
+        "Una misurazione comprende due valori, per esempio 120 su 80. Il numero superiore, detto pressione sistolica, è la pressione quando il cuore si contrae e spinge fuori il sangue. Il numero inferiore, la pressione diastolica, è la pressione quando il cuore si rilassa e si riempie tra un battito e l'altro. Entrambi si esprimono in millimetri di mercurio.",
+        "La pressione arteriosa varia naturalmente durante la giornata. Sale con l'attività, lo stress, il dolore, la caffeina o il freddo e scende durante il riposo e il sonno. Un singolo valore alto quindi non dimostra la presenza di ipertensione; i medici considerano misurazioni ripetute effettuate in condizioni comparabili."
+      ]
+    },
+    {
+      "heading": "Misurare in ambulatorio",
+      "paragraphs": [
+        "Un bracciale viene avvolto intorno alla parte superiore del braccio all'altezza del cuore e gonfiato fino a interrompere brevemente il flusso di sangue. Mentre si sgonfia, il dispositivo o il clinico rileva quando il sangue ricomincia a scorrere e quando scorre liberamente, ricavando così i due valori. La misura del bracciale è importante, poiché uno troppo piccolo può dare valori falsamente alti.",
+        "Alcune persone hanno valori più alti in ambulatorio che a casa perché si sentono agitate, un effetto spesso chiamato ipertensione da camice bianco. Per questo molte linee guida raccomandano di confermare un valore alto misurato in ambulatorio con misurazioni fuori dallo studio."
+      ]
+    },
+    {
+      "heading": "Misurare a casa",
+      "paragraphs": [
+        "La misurazione a casa con un apparecchio da braccio validato è spesso il modo più utile per seguire la pressione. Siediti tranquillamente per qualche minuto con la schiena appoggiata, i piedi ben piantati a terra e il braccio appoggiato all'altezza del cuore. Evita caffeina, fumo ed esercizio fisico per circa mezz'ora prima e svuota prima la vescica.",
+        "Effettua due misurazioni a circa un minuto di distanza e scrivile, idealmente al mattino e alla sera per diversi giorni, come indica il medico. Gli apparecchi da polso e da dito sono in genere meno affidabili di quelli da braccio. Porta l'apparecchio a una visita in modo da confrontarne la precisione con quella dell'attrezzatura dell'ambulatorio."
+      ]
+    },
+    {
+      "heading": "Monitoraggio nelle ventiquattro ore",
+      "paragraphs": [
+        "Nei casi poco chiari i medici possono usare il monitoraggio ambulatoriale. Si indossa per un giorno e una notte interi un piccolo apparecchio con bracciale, che misura automaticamente ogni 20-30 minuti. Questo mostra come si comporta la pressione durante le normali attività e il sonno e aiuta a distinguere la vera ipertensione dagli effetti legati all'ambulatorio.",
+        "Il dispositivo può stringere il braccio quando si gonfia e può esserti chiesto di tenere un semplice diario di attività e sintomi durante l'esame."
+      ]
+    },
+    {
+      "heading": "Capire i risultati",
+      "paragraphs": [
+        "Gli obiettivi differiscono da persona a persona, a seconda di età, altre malattie e rischio cardiovascolare, quindi il medico ti spiegherà quale intervallo è giusto per te. Valori che restano alti dovrebbero portare a discutere misure di stile di vita come meno sale, esercizio regolare, controllo del peso e limitazione dell'alcol, ed eventualmente farmaci.",
+        "Cerca aiuto urgente se un valore molto alto si associa a dolore al petto, forte mal di testa, disturbi della vista, debolezza o difficoltà a parlare. Anche valori molto bassi con capogiri o svenimenti vanno valutati."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Costruire un registro domestico",
+      "text": "Immagina che il medico sospetti la pressione alta e ti chieda di misurarla a casa. Potresti rilevare i valori ogni mattina e ogni sera per una settimana, scriverli in una semplice tabella e portare la tabella e l'apparecchio alla visita di controllo."
+    },
+    {
+      "title": "Controllare la misura del bracciale",
+      "text": "Supponi di avere le braccia più grandi e che i tuoi valori sembrino sempre alti. Potresti chiedere all'infermiere dello studio di verificare se il bracciale è della misura giusta, poiché un bracciale sbagliato può cambiare i numeri."
+    }
+  ],
+  "questions": [
+    "Quali valori di pressione sono giusti per me e con che frequenza devo misurarla?",
+    "Devo misurare a casa o fare un monitoraggio ambulatoriale e quale apparecchio mi consigliate?",
+    "Quali cambiamenti dello stile di vita farebbero la differenza maggiore nel mio caso?"
+  ]
+}

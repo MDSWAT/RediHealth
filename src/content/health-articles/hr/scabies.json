@@ -1,0 +1,51 @@
+{
+  "title": "Šuga",
+  "intro": "Šuga je zaraza kože sitnim grinjama koje se ukopavaju u kožu i uzrokuju jak svrbež, osobito noću. Širi se dugotrajnim kontaktom kože s kožom i nije znak loše higijene. Lako se liječi kremama ili tabletama, ali svi bliski kontakti moraju se liječiti istodobno.",
+  "sections": [
+    {
+      "heading": "Kako se širi",
+      "paragraphs": [
+        "Grinje šuge prelaze s osobe na osobu bliskim, dugotrajnim kontaktom kože, primjerice u kućanstvima, tijekom spolnog odnosa te u domovima za njegu i vrtićima. Zajednička posteljina ili odjeća povremeno ih mogu prenijeti. Grinje izvan ljudskog tijela prežive samo nekoliko dana."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Glavni simptom je jak svrbež, osobito noću, koji počinje dva do šest tjedana nakon prve zaraze ili unutar nekoliko dana kod ponovne zaraze. Sitne crvene točkice i tanke, vijugave linije ukopavanja pojavljuju se osobito između prstiju, na zapešćima, laktovima, pazusima, struku i genitalijama, a kod beba na dlanovima, tabanima i glavi. Češanje može dovesti do inficiranih rana."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Liječnik prepoznaje šugu po izgledu i rasporedu osipa te po kontaktima sa sličnim svrbežom. Pregled dermatoskopom ili mikroskopsko struganje kože može potvrditi grinje. Svrbež može potrajati nekoliko tjedana nakon uspješnog liječenja zbog reakcije na mrtve grinje."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Krema s permetrinom obično se nanosi na cijelo tijelo od vrata prema dolje, ostavlja se navedeno vrijeme, obično preko noći, zatim ispere i ponavlja nakon tjedan dana. Benzil benzoat je alternativa, a tablete ivermektina koriste se u nekim slučajevima, osobito kod izbijanja zaraze. Liječite sve u kućanstvu i bliske kontakte istodobno, čak i bez simptoma."
+      ]
+    },
+    {
+      "heading": "Mjere čišćenja",
+      "paragraphs": [
+        "Operite posteljinu, ručnike i odjeću iz posljednjih nekoliko dana na visokoj temperaturi ili ih zatvorite u plastične vrećice na nekoliko dana. Usisajte tapecirani namještaj i držite nokte kratkima. U školu ili na posao vratite se tek nakon liječenja prema uputi. Antihistaminici ili umirujući losioni mogu ublažiti svrbež."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Liječenje cijelog kućanstva",
+      "text": "Zamislite da vaše dijete ima šugu. Mogli biste dogovoriti liječenje cijele obitelji iste večeri i sljedeće jutro oprati svu posteljinu."
+    },
+    {
+      "title": "Postupanje s upornim svrbežom",
+      "text": "Pretpostavite da svrbež traje i dva tjedna nakon liječenja. Mogli biste pitati liječnika radi li se o uobičajenom svrbežu nakon šuge ili je potrebno ponovno liječenje."
+    }
+  ],
+  "questions": [
+    "Koje je liječenje najbolje i tko se još mora liječiti?",
+    "Kada se možemo vratiti u školu ili na posao?",
+    "Kako mogu ublažiti svrbež poslije?"
+  ]
+}

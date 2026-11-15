@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është një ekokardiogramë?",
+  "intro": "Një ekokardiogramë është një skanim me ultratingull i zemrës. Përdor valë zanore për të prodhuar imazhe në lëvizje të dhomave, valvulave e mureve të zemrës e tregon sa mirë pompon. Është e sigurt, pa dhimbje e nuk përdor rrezatim, e përdoret gjerësisht për të diagnostikuar probleme të zemrës.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "Mjekët e përdorin për të hetuar gulçimin, dhimbjen e gjoksit, një zhurmë zemre, enjtjen e këmbëve ose palpitacionet, për të vlerësuar dështimin e zemrës, sëmundjen e valvulave, dëmtimin pas infarktit, defektet e lindura e lëngun rreth zemrës, e për të monitoruar trajtimin. Mat fraksionin e nxjerrjes, pjesën e gjakut që pompohet jashtë me çdo rrahje."
+      ]
+    },
+    {
+      "heading": "Llojet",
+      "paragraphs": [
+        "Një ekokardiogramë transtorakale bëhet në gjoks e është testi standard. Një ekokardiogramë transezofageale kalon një sondë poshtë ezofagut për imazhe më të qarta të pjesës së pasme të zemrës, nën qetësim. Një ekokardiogramë me stres bëhet gjatë ushtrimeve ose pas barit për të parë si sillet zemra nën tension. Agjentë kontrasti mund të injektohen për të përmirësuar imazhet."
+      ]
+    },
+    {
+      "heading": "Çfarë ndodh",
+      "paragraphs": [
+        "Zhvishuni deri në mes e shtriheni mbi anën e majtë. Aplikohen jastëkë të vegjël ngjitës për një elektrokardiogramë. Një teknik përhap xhel e lëviz një sondë mbi gjoks, duke shtypur pak. Mund t'ju kërkohet të mbani frymën. Nga makina dëgjohet një tingull si fërshëllimë. Zgjat tridhjetë deri gjashtëdhjetë minuta."
+      ]
+    },
+    {
+      "heading": "Përgatitja e siguria",
+      "paragraphs": [
+        "Zakonisht nuk nevojitet përgatitje, përveç testit transezofageal, që kërkon agjërim, ose testit të stresit. Vishni rroba të lirshme. Procedura është e sigurt. Testet transezofageale kanë rreziqe të vogla si dhimbja e fytit. Mjeku shpjegon rezultatet, shpesh pasi një specialist rishikon imazhet."
+      ]
+    },
+    {
+      "heading": "Të kuptuarit e rezultateve",
+      "paragraphs": [
+        "Rezultatet përshkruajnë madhësinë e dhomave, trashësinë e mureve, funksionin e pompimit e si hapen e mbyllen valvulat. Gjetjet kombinohen me simptomat e teste të tjera. Pyesni çfarë do të thonë rezultatet për trajtimin, ndjekjen e aktivitetin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja",
+      "text": "Imagjinoni që keni një skanim nesër. Mund të vishni një bluzë të lirshme, të sillni listën e barnave e të pyesni nëse mund të hani më parë."
+    },
+    {
+      "title": "Diskutimi i rezultateve",
+      "text": "Supozoni që raporti përmend një rrjedhje të lehtë të valvulës. Mund të pyesni sa shpesh duhet kontrolluar e cilat simptoma kanë rëndësi."
+    }
+  ],
+  "questions": [
+    "Cilin lloj ekokardiograme më duhet e pse?",
+    "Çfarë do të thotë fraksioni im i nxjerrjes?",
+    "Sa shpesh duhet përsëritur testi?"
+  ]
+}

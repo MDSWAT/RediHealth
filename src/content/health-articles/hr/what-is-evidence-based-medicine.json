@@ -1,0 +1,51 @@
+{
+  "title": "Što je medicina utemeljena na dokazima?",
+  "intro": "Medicina utemeljena na dokazima znači donošenje zdravstvenih odluka kombiniranjem najboljih dostupnih istraživanja, kliničkog iskustva liječnika te vrijednosti i okolnosti pacijenta. Cilj joj je osigurati da se liječenja biraju zato što je dokazano da djeluju, a ne samo zato što su tradicionalna ili popularna.",
+  "sections": [
+    {
+      "heading": "Tri dijela",
+      "paragraphs": [
+        "Prvi dio su najbolja trenutačna istraživanja, kao što su dobro provedena ispitivanja i sustavni pregledi. Drugi je klinička stručnost liječnika, koji zna kako primijeniti nalaze na pojedinačne pacijente. Treći su preferencije, ciljevi i situacija pacijenta. Sva tri su potrebna jer dokazi sami ne mogu odlučiti što je ispravno za pojedinca."
+      ]
+    },
+    {
+      "heading": "Razine dokaza",
+      "paragraphs": [
+        "Nisu svi dokazi jednako pouzdani. Sustavni pregledi randomiziranih ispitivanja rangirani su najviše, zatim pojedinačna randomizirana ispitivanja, potom kohortne studije i studije slučajeva i kontrola, a naposljetku prikazi slučajeva i mišljenja stručnjaka. Dokazi više kvalitete manje su podložni izobličenju slučajnošću ili pristranošću. Dokaze treba procijeniti i po važnosti za osobu."
+      ]
+    },
+    {
+      "heading": "Kako se koristi",
+      "paragraphs": [
+        "Smjernice sažimaju dokaze za pojedina stanja kako bi pomogle liječnicima i pacijentima u odabiru liječenja. Dokazi pomažu odlučiti je li pretraga korisna, koji lijek najbolje djeluje i koja liječenja treba izbjegavati. Također pokazuju gdje ne znamo dovoljno pa su potrebna istraživanja."
+      ]
+    },
+    {
+      "heading": "Ograničenja i kritike",
+      "paragraphs": [
+        "Studije možda ne uključuju ljude poput vas, primjerice starije osobe ili one s više bolesti. Dokazi mogu nedostajati ili biti pristrani zbog financiranja i neobjavljenih rezultata. Mehaničko slijeđenje smjernica može previdjeti individualne potrebe. Zbog toga su dokazi temelj za razgovor, a ne pravilo."
+      ]
+    },
+    {
+      "heading": "Što to znači za vas",
+      "paragraphs": [
+        "Možete pitati liječnika što dokazi kažu o koristima i rizicima, koliko su veliki učinci i koje su alternative. Otvoreno podijelite svoje preferencije. Budite oprezni s tvrdnjama koje se temelje samo na iskustvima pojedinaca ili jednoj studiji i tražite pouzdane izvore informacija."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pitanje o dokazima",
+      "text": "Zamislite da vam liječnik predloži novo liječenje. Mogli biste pitati koliko dobro djeluje, koji su rizici i koliko smo sigurni."
+    },
+    {
+      "title": "Procjena tvrdnje",
+      "text": "Pretpostavite da oglas obećava čudesan lijek na temelju osobnih priča. Mogli biste potražiti ispitivanja ili preglede koji ga pošteno testiraju."
+    }
+  ],
+  "questions": [
+    "Koji dokazi podupiru ovo liječenje i koliko su jaki?",
+    "Odnose li se istraživanja na nekoga poput mene?",
+    "Koje su alternative, uključujući ne činiti ništa?"
+  ]
+}

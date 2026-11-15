@@ -1,0 +1,51 @@
+{
+  "title": "Povijest medicine utemeljene na dokazima",
+  "intro": "Medicina utemeljena na dokazima proizašla je iz ideje da liječenja treba procjenjivati pažljivim testiranjem, a ne samo tradicijom ili autoritetom. Njezini korijeni sežu stoljećima unatrag, ali je postala definiran pristup u kasnom dvadesetom stoljeću. Poznavanje njezine povijesti pokazuje zašto se zdravstvo danas oslanja na ispitivanja i sustavne preglede.",
+  "sections": [
+    {
+      "heading": "Rane ideje",
+      "paragraphs": [
+        "Čak su i u antici liječnici primjećivali da bi iskustvo trebalo voditi liječenje. U osamnaestom stoljeću mornarički liječnik James Lind usporedio je liječenja skorbuta među mornarima i otkrio da pomažu naranče i limuni. U devetnaestom stoljeću počele su se koristiti statističke metode za procjenu liječenja i bolničkih ishoda. Reformatori sestrinstva također su koristili podatke za poboljšanje skrbi."
+      ]
+    },
+    {
+      "heading": "Kontrolirana ispitivanja",
+      "paragraphs": [
+        "U dvadesetom stoljeću razvilo se moderno randomizirano kontrolirano ispitivanje. Nakon Drugog svjetskog rata britansko ispitivanje streptomicina za tuberkulozu smatra se prekretnicom. Randomizacija i kontrolne skupine pomogle su razlikovati stvarne učinke od slučajnosti i pristranosti. Tragična iskustva, poput štete od lijeka talidomida, dovela su do strožeg testiranja i regulacije lijekova."
+      ]
+    },
+    {
+      "heading": "Archie Cochrane",
+      "paragraphs": [
+        "Britanski epidemiolog Archie Cochrane tvrdio je 1970-ih da zdravstvene službe treba procjenjivati randomiziranim ispitivanjima te da rezultate treba sustavno sažimati jer su se mnoga liječenja koristila bez dokaza o koristi. Kritizirao je nedostatak redovito ažuriranog sažetka svih ispitivanja. Njegove ideje potaknule su kasniji rad."
+      ]
+    },
+    {
+      "heading": "Pokret utemeljen na dokazima",
+      "paragraphs": [
+        "Početkom 1990-ih skupina liječnika sa Sveučilišta McMaster u Kanadi imenovala je i promicala medicinu utemeljenu na dokazima, učeći kliničare kako pronaći i procijeniti istraživanja. Međunarodna Cochrane suradnja osnovana je 1993. radi pripreme i ažuriranja sustavnih pregleda. Smjernice, agencije za procjenu zdravstvenih tehnologija i informacije za bolesnike sve su više usvajali te metode."
+      ]
+    },
+    {
+      "heading": "Kritike i razvoj",
+      "paragraphs": [
+        "Kritičari ističu da dokazi mogu biti pristrani zbog financiranja industrije, da ispitivanja možda ne odražavaju stvarne bolesnike i da smjernice mogu zanemariti pojedinačne okolnosti. Područje je odgovorilo registracijom ispitivanja, dijeljenjem podataka, standardima izvještavanja i uključivanjem bolesnika. Danas se medicina utemeljena na dokazima nastavlja razvijati s pažnjom na želje bolesnika i kvalitetu dokaza."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Viđenje povijesti u praksi",
+      "text": "Zamislite da pročitate o liječenju koje se nekad široko koristilo, a kasnije napustilo. Mogli biste pitati što su ispitivanja pokazala i kako su dokazi promijenili praksu."
+    },
+    {
+      "title": "Primjena načela",
+      "text": "Pretpostavite da vam prijatelj preporuči lijek na temelju iskustva. Mogli biste potražiti kontrolirana istraživanja i pitati liječnika o dokazima."
+    }
+  ],
+  "questions": [
+    "Je li ovo liječenje testirano u kontroliranim ispitivanjima?",
+    "Gdje mogu pronaći sažetke najboljih dokaza?",
+    "Kako su se dokazi o ovoj temi mijenjali tijekom vremena?"
+  ]
+}

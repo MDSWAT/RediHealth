@@ -1,0 +1,51 @@
+{
+  "title": "Što može pomoći odraslima s gubitkom sluha ili gluhoćom",
+  "intro": "Gubitak sluha kod odraslih je čest i obično postupan. Postoje mnoge mogućnosti, od slušnih aparata do implantata, treninga komunikacije i pomoćne tehnologije. Rano liječenje gubitka sluha povezano je s boljom komunikacijom, manje izolacije i možda boljim zdravljem mozga.",
+  "sections": [
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Test sluha kod otorinolaringologa ili audiologa mjeri vrstu i stupanj gubitka. Pregled uha provjerava ušni vosak i infekcije, koji se mogu liječiti. Daljnje pretrage traže uzroke, kao što su oštećenje bukom, dob, infekcija, lijekovi ili rijetko tumor. Iznenadni gubitak sluha na jednom uhu zahtijeva hitnu pozornost."
+      ]
+    },
+    {
+      "heading": "Slušni aparati",
+      "paragraphs": [
+        "Slušni aparati pojačavaju zvuk i glavno su liječenje za većinu vrsta senzorineuralnog gubitka sluha. Moderni uređaji su mali, digitalni i prilagođavaju se okruženju te se mogu povezati s telefonima i televizijom. Trebaju ih namjestiti i fino podesiti stručnjak i vrijeme da se naviknete na njih, uz redovitu uporabu. Pokrivanje troškova razlikuje se među zemljama i osiguravateljima."
+      ]
+    },
+    {
+      "heading": "Implantati",
+      "paragraphs": [
+        "Kohlearni implantati zaobilaze oštećene dlačice u unutarnjem uhu i izravno stimuliraju slušni živac. Namijenjeni su osobama s teškim ili dubokim gubitkom koje imaju malo koristi od slušnih aparata. Potrebni su operacija i mjeseci rehabilitacije. Uređaji usidreni u kost pomažu kod određenih konduktivnih gubitaka sluha ili jednostrane gluhoće. Implantati srednjeg uha druga su mogućnost za odabrane bolesnike."
+      ]
+    },
+    {
+      "heading": "Pomoćni uređaji i komunikacija",
+      "paragraphs": [
+        "Pojačani telefoni, titlovanje, indukcijske petlje, prijenosnici za televiziju te vizualna ili vibrirajuća upozorenja pomažu u svakodnevnom životu. Čitanje s usana, trening komunikacije i, za gluhe osobe, znakovni jezik otvaraju daljnje načine komuniciranja. Tumači i usluge titlovanja podupiru posao i preglede."
+      ]
+    },
+    {
+      "heading": "Potpora i dobrobit",
+      "paragraphs": [
+        "Gubitak sluha može dovesti do povlačenja i lošeg raspoloženja. Savjetovanje, grupe vršnjaka i uključivanje obitelji pomažu. Tinitus često prati gubitak sluha i može se ublažiti slušnim aparatima i terapijom zvukom. Zaštitite preostali sluh od glasne buke i redovito dolazite na preglede."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Početak sa slušnim aparatima",
+      "text": "Zamislite da vam namještaju nove slušne aparate. Mogli biste ih nositi svaki dan malo dulje, prvo vježbati u tihim prostorijama i vraćati se na prilagodbe."
+    },
+    {
+      "title": "Razmatranje implantata",
+      "text": "Pretpostavite da slušni aparati više ne pomažu. Mogli biste pitati specijalista jeste li kandidat za kohlearni implantat i što postupak uključuje."
+    }
+  ],
+  "questions": [
+    "Koju vrstu gubitka sluha imam i koje je liječenje najbolje?",
+    "Pokriva li moje osiguranje slušne aparate ili implantate?",
+    "Koji bi pomoćni uređaji pomogli kod kuće i na poslu?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Hepatitis C: testing and curative treatment",
+  "intro": "Hepatitis C is a blood-borne viral liver infection that may remain unnoticed for years. Effective tablet treatment can cure most infections, but cure does not automatically reverse established cirrhosis or protect against reinfection.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Sharing injection equipment, unsterile instruments and other blood exposures can transmit infection. Ordinary hugging and shared meals do not. Avoid blame: a positive result does not establish when or how infection occurred."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "An antibody test indicates past exposure, not necessarily active infection. A test detecting viral genetic material confirms current infection. Liver assessment and other blood tests guide treatment and whether ongoing monitoring is needed. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Direct-acting antiviral medicines are selected around liver function, previous treatment and interactions. Complete the prescribed course and confirmation testing. Check all medicines and supplements because interactions can reduce effectiveness or cause harm. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Do not share needles, razors or toothbrushes; use sterile services for tattoos or procedures. There is no hepatitis C vaccine. Ask about hepatitis A and B vaccination when appropriate and avoid alcohol to protect the liver. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Recent blood exposure needs prompt professional advice and testing plans. Confusion, major abdominal swelling, vomiting blood or black stools require urgent care. People with cirrhosis may need liver-cancer surveillance even after the virus is cured."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira has a positive antibody test and asks for the test that determines current infection instead of assuming she definitely still carries the virus."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben completes tablets and attends confirmation testing. He continues the liver follow-up recommended for his previous scarring rather than assuming cure ends every check."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

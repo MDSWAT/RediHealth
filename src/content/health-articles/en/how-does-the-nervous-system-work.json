@@ -1,0 +1,52 @@
+{
+  "title": "How nerves connect sensation, action and regulation",
+  "intro": "The nervous system receives information, processes it and coordinates responses. It includes conscious movement and automatic regulation. Numbness, weakness and pain can arise at different levels, so a symptom map is not a diagnosis.",
+  "sections": [
+    {
+      "heading": "Central and peripheral",
+      "paragraphs": [
+        "The brain and spinal cord form the central system. Peripheral nerves connect them with skin, muscles and organs; damage to a nerve differs from damage in the spinal cord or brain."
+      ]
+    },
+    {
+      "heading": "Passing messages",
+      "paragraphs": [
+        "Neurons use electrical impulses and chemical messengers. Myelin helps many fibers conduct efficiently. Supporting cells and adequate blood supply are also essential, not just the nerve cells themselves."
+      ]
+    },
+    {
+      "heading": "Action and reflexes",
+      "paragraphs": [
+        "Motor signals activate muscles; sensory signals report conditions. Some reflex circuits respond through the spinal cord before conscious interpretation, helping withdraw from danger without deliberate planning."
+      ]
+    },
+    {
+      "heading": "Automatic control",
+      "paragraphs": [
+        "Autonomic pathways regulate functions such as heart rate, digestion and sweating. Sympathetic and parasympathetic activity balance changing demands; symptoms are not proof of a single system being permanently switched on."
+      ]
+    },
+    {
+      "heading": "Assessment and urgency",
+      "paragraphs": [
+        "An examination may assess power, sensation and reflexes, with targeted tests if needed. Sudden weakness or speech change, or new bladder difficulty with saddle numbness and back symptoms, requires urgent help.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira describes where numbness starts and which tasks are difficult, helping distinguish possible nerve pathways rather than diagnosing from an internet drawing."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben develops leg weakness and difficulty passing urine with new back pain. He seeks urgent care rather than stretching through it."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

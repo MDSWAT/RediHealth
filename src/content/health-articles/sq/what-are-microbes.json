@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë janë mikrobet?",
+  "intro": "Mikrobet, ose mikroorganizmat, janë qenie të gjalla shumë të vogla për t'u parë pa mikroskop. Përfshijnë bakteret, viruset, kërpudhat e disa parazitë. Gjenden kudo: në tokë, ujë, ajër e në trupin tonë e brenda tij. Shumica janë të padëmshme ose të dobishme, e vetëm pak shkaktojnë sëmundje.",
+  "sections": [
+    {
+      "heading": "Bakteret",
+      "paragraphs": [
+        "Bakteret janë organizma njëqelizorë që mund të jetojnë të pavarur e shumohen shpejt. Shumë janë të dobishme, për shembull ato në zorrë që ndihmojnë të tretet ushqimi e prodhojnë vitamina, ose përdoren për të bërë kos e djathë. Disa shkaktojnë infeksione si angina streptokoke, infeksionet urinare, tuberkulozi e pneumonia. Antibiotikët veprojnë kundër baktereve."
+      ]
+    },
+    {
+      "heading": "Viruset",
+      "paragraphs": [
+        "Viruset janë shumë më të vogla se bakteret e nuk mund të riprodhohen vetë. Pushtojnë qelizat e i përdorin për të bërë kopje të vetvetes. Shkaktojnë ftohje, grip, fruth, hepatit e COVID-19. Antibiotikët nuk veprojnë kundër viruseve, por vaksinat mund të parandalojnë shumë sëmundje virale e ekzistojnë disa barna antivirale."
+      ]
+    },
+    {
+      "heading": "Kërpudhat e parazitët",
+      "paragraphs": [
+        "Kërpudhat përfshijnë majatë e myqet. Shumica janë të padëmshme, por disa shkaktojnë infeksione si këmba e atletit, kërpudha e thonjve e mykoza, e rrallë infeksione të rënda te njerëz me imunitet të dobët. Parazitët, si krimbat, morrat, marimangat e zgjebes e organizmat që shkaktojnë malarien, jetojnë mbi ose brenda një organizmi tjetër e marrin lëndë ushqyese."
+      ]
+    },
+    {
+      "heading": "Mikrobioma",
+      "paragraphs": [
+        "Mikrobet që jetojnë në trup e mbi të, veçanërisht në zorrë, lëkurë e gojë, quhen mikrobiomë. Ndihmojnë tretjen, stërvitin sistemin imunitar e mbrojnë nga mikrobet e dëmshme. Antibiotikët, dieta, higjiena e sëmundja mund ta prishin këtë ekuilibër. Kërkimi vazhdon për atë se si ndikon shëndetin, e produktet e shitura për shëndetin e zorrëve kanë prova të ndryshme."
+      ]
+    },
+    {
+      "heading": "Mbrojtja e vetes",
+      "paragraphs": [
+        "Lani duart me sapun, përgatitni e ruani ushqimin në mënyrë të sigurt, mbani vaksinimet të përditësuara, mbuloni kollën, shmangni antibiotikët e panevojshëm e mbani plagët të pastra. Higjiena e mirë zvogëlon infeksionet, por sterilizimi ekstrem i shtëpisë nuk është i nevojshëm. Përdorni antibiotikë vetëm kur përshkruhen e përfundoni kurat siç udhëzohet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Larja e duarve",
+      "text": "Imagjinoni që doni të zvogëloni infeksionet në shtëpi. Mund t'i lani duart me sapun për njëzet sekonda pas tualetit, para gatimit e para ngrënies."
+    },
+    {
+      "title": "Përdorimi i saktë i antibiotikëve",
+      "text": "Supozoni që keni ftohje e dëshironi antibiotikë. Mund ta pyesni mjekun nëse është virale e si t'i lehtësoni simptomat në vend të tyre."
+    }
+  ],
+  "questions": [
+    "A shkaktohet sëmundja ime nga virus, bakter apo diçka tjetër?",
+    "A kam nevojë për antibiotikë, apo një trajtim tjetër është më i mirë?",
+    "Cilat vaksinime duhet të bëj?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Dolore mestruale",
+  "intro": "Il dolore mestruale, o dismenorrea, è un dolore crampiforme nel basso addome prima o durante le mestruazioni. È molto comune, soprattutto tra le adolescenti e le giovani donne. La maggior parte dei dolori mestruali non è segno di malattia e si può alleviare con calore, esercizio e antidolorifici, ma un dolore forte merita accertamenti.",
+  "sections": [
+    {
+      "heading": "Perché succede",
+      "paragraphs": [
+        "Prima e durante le mestruazioni l'utero produce sostanze chiamate prostaglandine che fanno contrarre il suo muscolo per eliminare il rivestimento. Livelli alti causano contrazioni più forti e dolore e possono causare anche nausea, diarrea o mal di testa. Questo dolore mestruale primario inizia spesso nei primi anni dopo la prima mestruazione e tende ad attenuarsi con l'età e dopo il parto."
+      ]
+    },
+    {
+      "heading": "Quando è possibile un'altra causa",
+      "paragraphs": [
+        "Il dolore mestruale secondario nasce da condizioni come endometriosi, adenomiosi, fibromi o infezione pelvica. Spesso inizia più avanti nella vita, peggiora nel tempo, dura più del sanguinamento o si accompagna a sanguinamento abbondante, dolore durante i rapporti o tra una mestruazione e l'altra. Questi richiedono una valutazione medica."
+      ]
+    },
+    {
+      "heading": "Che cosa puoi fare",
+      "paragraphs": [
+        "Il calore di una borsa dell'acqua calda o di un bagno caldo rilassa il muscolo. Un esercizio dolce, come camminare, yoga o nuoto, può aiutare. Rilassamento e sonno adeguato possono alleviare i sintomi. Alcune donne trovano utili i dispositivi TENS."
+      ]
+    },
+    {
+      "heading": "Farmaci",
+      "paragraphs": [
+        "Gli antidolorifici antinfiammatori come l'ibuprofene funzionano bene se presi al primo segno di dolore o un giorno prima, se le mestruazioni sono prevedibili, e assunti con il cibo. Il paracetamolo è un'alternativa. La contraccezione ormonale, compresi la pillola, la spirale ormonale o l'impianto, riduce la produzione di prostaglandine e spesso alleggerisce mestruazioni e dolore. Discuti le opzioni con il medico."
+      ]
+    },
+    {
+      "heading": "Quando andare dal medico",
+      "paragraphs": [
+        "Chiedi consiglio se il dolore interferisce con scuola, lavoro o vita quotidiana, non risponde a misure semplici, inizia all'improvviso in età adulta o si accompagna a febbre, perdite insolite o sanguinamento molto abbondante. La visita e l'ecografia possono cercare le cause sottostanti. Il dolore non è qualcosa che devi accettare come normale."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pianificare in anticipo",
+      "text": "Immagina che il tuo dolore mestruale sia peggiore il primo giorno. Potresti prendere ibuprofene con il cibo appena iniziano i crampi, usare un impacco caldo e pianificare attività più leggere se possibile."
+    },
+    {
+      "title": "Parlarne con il medico",
+      "text": "Supponi che il tuo dolore sia peggiorato gradualmente nell'arco di diversi anni. Potresti tenere un diario di dolore, sanguinamento ed effetti sulla vita quotidiana e chiedere dell'endometriosi."
+    }
+  ],
+  "questions": [
+    "Il mio dolore mestruale potrebbe essere causato da una condizione sottostante?",
+    "Quale antidolorifico o opzione ormonale è la migliore per me?",
+    "Quando dovrei fare un'ecografia o vedere uno specialista?"
+  ]
+}

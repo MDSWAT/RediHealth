@@ -1,0 +1,51 @@
+{
+  "title": "Liječenje žučnih kamenaca: praćenje i zahvati",
+  "intro": "Liječenje ovisi o simptomima, mjestu i komplikacijama. Uklanjanje mjehura razlikuje se od čišćenja voda. Sam nalaz kamenca ne znači automatski operaciju.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Mnogi kamenci bez simptoma prate se uz odabrane iznimke. Za ponavljane tipične napadaje raspravite korist i druge probavne tegobe koje mogu imati drugi uzrok i ostati poslije."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Ultrazvuk, krv i odabrano snimanje voda usmjeravaju. Pitajte za blokadu, infekciju ili pankreatitis i hitnost. Ukupno zdravlje utječe na plan. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Uklanjanje mjehura često je laparoskopsko, ali ima rizike anestezije, krvarenja, infekcije i ozljede voda. Kamenci voda mogu trebati endoskopiju s rizikom pankreatitisa; ona ne uklanja automatski one u mjehuru. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Lijekovi olakšavaju bol; otapanje odgovara odabranim slučajevima i kamenci se mogu vratiti. Komercijalna čišćenja nisu pouzdana terapija. Pitajte za oporavak, posao, vožnju i kućnu pomoć. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Vrućica, žutica, jaka trajna bol ili povraćanje traže hitnost i uz zakazanu operaciju. Poslije slijedite upute za pogoršanje, vrućicu, žuticu ili ranu umjesto pretpostavke normalnog oporavka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pita hoće li zahvat ublažiti njezine napadaje i razumije da nepovezana nadutost može ostati."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben saznaje da endoskopija čisti vod i pita treba li zasebno liječiti mjehur radi prevencije."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

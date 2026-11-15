@@ -1,0 +1,51 @@
+{
+  "title": "Cum funcționează chimioterapia: scop, cicluri și siguranță",
+  "intro": "Chimioterapia folosește medicamente care afectează creșterea ori supraviețuirea celulelor canceroase. Diferă de radioterapie și multe terapii țintite sau imune. Schema exactă determină beneficiile, reacțiile și monitorizarea.",
+  "sections": [
+    {
+      "heading": "Clarificați scopul",
+      "paragraphs": [
+        "Poate urmări vindecare, reducerea recidivei, micșorare înaintea altui tratament ori controlul simptomelor și progresiei. Întrebați beneficiul realist și evaluarea; tratamentul paliativ poate ajuta semnificativ."
+      ]
+    },
+    {
+      "heading": "Cicluri și analize",
+      "paragraphs": [
+        "Multe scheme alternează administrarea cu recuperarea deoarece afectează și țesut normal. Hemograma și organele ghidează doza sigură. Amânarea ori ajustarea poate fi siguranță, nu eșec. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Căi și sprijin",
+      "paragraphs": [
+        "Se administrează în venă, pompă, comprimate ori altfel. Comprimatele acasă cer manipulare atentă și aceeași monitorizare. Întrebați greața, gura, fertilitatea, contracepția și interacțiunile înainte. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Plan practic",
+      "paragraphs": [
+        "Păstrați numele schemei, medicamentele și contactul urgent. Notați simptome și luați sprijinul prescris. Întrebați suplimentele și medicamentele noi; nu dublați doze orale omise ori schimbați programul singur. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Urgențe",
+      "paragraphs": [
+        "Febra, frisoanele sau boala bruscă pot indica infecție gravă chiar cu simptome ușoare. Urmați imediat planul oncologic și pragul lui de temperatură; nu așteptați vizita. Dispneea severă, durerea toracică, confuzia ori sângele necontrolat cer urgență."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira întreabă reducerea recidivei după operație și beneficiul absolut, fără să creadă toate schemele au același scop."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are frisoane între cicluri și sună imediat echipa, fără să ascundă cu antitermice și să aștepte."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Come l'intestino digerisce e assorbe",
+  "intro": "L'intestino continua la digestione, assorbe nutrienti e acqua e sposta residui verso l'ano. Rivestimento, muscoli, nervi e microbi collaborano. I sintomi hanno molte cause, anche esterne alla digestione.",
+  "sections": [
+    {
+      "heading": "Intestino tenue",
+      "paragraphs": [
+        "Enzimi e bile si mescolano al cibo. Pieghe e piccole sporgenze aumentano la superficie; i nutrienti passano in sangue o linfa anziché semplicemente cadere attraverso l'intestino."
+      ]
+    },
+    {
+      "heading": "Colon",
+      "paragraphs": [
+        "Assorbe acqua e sali residui e forma le feci. I batteri elaborano parte del materiale. Il solo aspetto delle feci non identifica tutto il microbioma né diagnostica malattie."
+      ]
+    },
+    {
+      "heading": "Movimento",
+      "paragraphs": [
+        "Contrazioni coordinate spingono il contenuto. Nervi locali e cervello influenzano il movimento; lo stress può modificare sintomi senza renderli immaginari o escludere malattie fisiche."
+      ]
+    },
+    {
+      "heading": "Sostegno",
+      "paragraphs": [
+        "Pasti regolari, liquidi adatti e fibre modificate gradualmente aiutano le abitudini intestinali. I bisogni cambiano con malattie o interventi; evitate depurazioni ripetute ed esclusioni drastiche."
+      ]
+    },
+    {
+      "heading": "Valutazione",
+      "paragraphs": [
+        "Cambiamento persistente, dimagrimento inspiegato o sangue richiedono visita. Dolore grave crescente, addome gonfio con vomito o impossibilità di emettere gas, oppure emorragia importante richiedono urgenza, non più lassativi.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira aumenta gradualmente le fibre secondo consiglio e registra la tolleranza invece di raddoppiarle di colpo."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha gonfiore, vomito e non emette gas. Cerca urgenza anziché trattare ripetutamente una presunta stitichezza."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

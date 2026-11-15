@@ -1,0 +1,52 @@
+{
+  "title": "Pitiriasi versicolor",
+  "intro": "La pitiriasi versicolor è una comune e innocua infezione fungina della pelle che causa macchie di pelle più chiara o più scura, soprattutto su tronco e parte superiore delle braccia. Non è contagiosa ed è causata da un lievito che normalmente vive sulla pelle. Si cura facilmente, anche se spesso ritorna, soprattutto con il clima caldo e umido.",
+  "sections": [
+    {
+      "heading": "Che cosa la causa",
+      "paragraphs": [
+        "Un lievito chiamato Malassezia vive sulla pelle sana. In condizioni calde e umide, con pelle grassa, sudorazione abbondante o a volte un sistema immunitario indebolito, può moltiplicarsi e interferire con il normale pigmento della pelle. È più comune negli adolescenti e nei giovani adulti e nei climi tropicali."
+      ]
+    },
+    {
+      "heading": "Come si presenta",
+      "paragraphs": [
+        "Macchie rotonde od ovali con una fine desquamazione compaiono su petto, schiena, spalle e parte superiore delle braccia. Possono essere pallide, rosa, color nocciola o marroni e si notano di più dopo l'esposizione al sole, perché la pelle colpita non si abbronza. Il prurito è lieve o assente."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "I medici diagnosticano dall'aspetto, a volte con una luce speciale o l'esame al microscopio di raschiati cutanei. Altre condizioni come vitiligine, eczema, pitiriasi rosea e dermatite seborroica possono sembrare simili e si distinguono con la visita."
+      ]
+    },
+    {
+      "heading": "Trattamento e recidive",
+      "paragraphs": [
+        "Shampoo antimicotici come ketoconazolo o solfuro di selenio, applicati sulla pelle per alcuni minuti prima di sciacquare, creme o spray eliminano l'infezione. I casi gravi o estesi possono richiedere compresse antimicotiche. Il colore della pelle può impiegare da settimane a mesi per uniformarsi dopo che il lievito è sparito e nel frattempo l'esposizione al sole può rendere le macchie più evidenti. Le recidive sono comuni, quindi alcune persone usano un lavaggio preventivo una o due volte al mese nella stagione in cui tende a tornare.",
+        "Indossa abiti traspiranti, fai la doccia dopo aver sudato ed evita creme grasse e pesanti sulla pelle colpita."
+      ]
+    },
+    {
+      "heading": "Quando andare dal medico",
+      "paragraphs": [
+        "Vai dal medico se l'eruzione prude, si estende rapidamente, non risponde al trattamento dopo alcune settimane o appare diversa dal solito schema. La diagnosi di un professionista evita trattamenti inutili di altre condizioni cutanee simili."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Usare uno shampoo",
+      "text": "Immagina di avere macchie chiare sulla schiena. Potresti applicare uno shampoo antimicotico per il tempo indicato sull'etichetta, sciacquare bene e ripetere come indicato."
+    },
+    {
+      "title": "Prevenire le recidive",
+      "text": "Supponi che le macchie ritornino ogni estate. Potresti chiedere al medico di un lavaggio preventivo mensile e indossare camicie leggere e traspiranti."
+    }
+  ],
+  "questions": [
+    "Si tratta di pitiriasi versicolor o di un'altra condizione della pelle?",
+    "Quale trattamento è migliore e per quanto tempo dureranno le alterazioni del colore?",
+    "Come posso evitare che ritorni?"
+  ]
+}

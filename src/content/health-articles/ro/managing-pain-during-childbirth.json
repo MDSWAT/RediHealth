@@ -1,0 +1,53 @@
+{
+  "title": "Gestionarea durerii în timpul nașterii",
+  "intro": "Contracțiile din travaliu sunt dureroase pentru majoritatea femeilor, dar durerea variază mult de la o persoană la alta. Există multe modalități de a face față, de la relaxare și mișcare la medicamente și anestezie epidurală. Aflarea opțiunilor în prealabil vă ajută să faceți alegeri care vi se potrivesc și vă puteți răzgândi în timpul travaliului.",
+  "sections": [
+    {
+      "heading": "De ce doare nașterea",
+      "paragraphs": [
+        "Durerea provine din contracțiile puternice ale uterului, din întinderea colului uterin și a canalului de naștere și din presiunea asupra structurilor din jur. Crește în valuri și are pauze între contracții. Frica și tensiunea pot crește trăirea durerii, motiv pentru care contează să vă simțiți în siguranță și sprijinită."
+      ]
+    },
+    {
+      "heading": "Metode nemedicale",
+      "paragraphs": [
+        "Multe femei găsesc ajutor în mișcare și schimbarea pozițiilor, apă caldă sau un bazin de naștere, masaj, tehnici de respirație, comprese calde și prezența unei persoane care sprijină. Cursurile prenatale învață relaxarea și respirația. Sprijinul continuu din partea unei moașe sau a unui însoțitor la naștere este asociat cu mai puțină nevoie de medicamente și cu o satisfacție mai mare.",
+        "Alte abordări, precum aparatele TENS, hipnonașterea și acupunctura, sunt folosite de unele femei, cu dovezi mixte de beneficiu."
+      ]
+    },
+    {
+      "heading": "Calmarea medicală a durerii",
+      "paragraphs": [
+        "Opțiunile includ protoxidul de azot, care este inhalat în timpul contracțiilor și dispare repede, și injecțiile cu opioide, care reduc durerea, dar pot provoca somnolență și pot afecta respirația bebelușului. Epiduralul plasează un mic tub lângă nervii spinali pentru a oferi anestezic local continuu și este cea mai eficientă calmare a durerii. Poate prelungi travaliul, poate scădea tensiunea arterială și uneori poate limita mișcarea.",
+        "Tehnicile spinale și combinate sunt de asemenea folosite, mai ales pentru nașterea prin cezariană. Complicațiile sunt rare, dar includ durere de cap, sensibilitate la spate și calmare incompletă a durerii."
+      ]
+    },
+    {
+      "heading": "Planificarea fără așteptări rigide",
+      "paragraphs": [
+        "Notați-vă preferințele, dar rămâneți flexibilă. Travaliul poate fi imprevizibil, iar calmarea durerii disponibilă diferă între spitale și centre de nașteri. Întrebați din timp ce se oferă, cât de repede poate fi aranjat un epidural și ce se întâmplă la nașterile la domiciliu."
+      ]
+    },
+    {
+      "heading": "După naștere",
+      "paragraphs": [
+        "Calmarea durerii poate continua după naștere pentru suturi sau plăgile cezarienei. Discutați cu moașa despre cum vă simțiți în legătură cu experiența, deoarece nașterile dificile pot lăsa suferință de durată."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Alcătuirea unui plan de naștere",
+      "text": "Imaginați-vă că așteptați primul copil. Ați putea discuta cu moașa despre respirație, mișcare și apă, ați putea afla când și cum să cereți un epidural și ați putea discuta ce v-ați dori dacă travaliul își schimbă direcția."
+    },
+    {
+      "title": "Implicarea partenerului",
+      "text": "Presupuneți că partenerul vă va însoți. Ați putea exersa împreună masajul și respirația și ați putea conveni cine va cere ajutor sau sfat."
+    }
+  ],
+  "questions": [
+    "Ce opțiuni de calmare a durerii sunt disponibile acolo unde voi naște?",
+    "Care sunt avantajele și dezavantajele unui epidural pentru mine și pentru bebeluș?",
+    "Cum mă pot pregăti să fac față travaliului cu metode nemedicale?"
+  ]
+}

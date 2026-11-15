@@ -1,0 +1,52 @@
+{
+  "title": "Respirazione assistita durante un intervento",
+  "intro": "L'anestesia generale può ridurre la respirazione e i riflessi che proteggono le vie aeree. Il team può sostenere il respiro sotto controllo continuo; il dispositivo dipende dall'intervento e dai rischi individuali.",
+  "sections": [
+    {
+      "heading": "Perché serve",
+      "paragraphs": [
+        "Anestetici e rilassanti muscolari possono impedire respiri efficaci. Il ventilatore introduce aria contenente ossigeno e permette di eliminare anidride carbonica; il solo ossigeno non sostituisce la ventilazione."
+      ]
+    },
+    {
+      "heading": "Accesso alle vie aeree",
+      "paragraphs": [
+        "La maschera copre naso e bocca. Un dispositivo sovraglottico si colloca sopra la laringe; il tubo tracheale passa tra le corde vocali. Tenuta e protezione differiscono, quindi non sono sempre intercambiabili."
+      ]
+    },
+    {
+      "heading": "Controlli continui",
+      "paragraphs": [
+        "Il team controlla ossigeno, anidride carbonica espirata e altri parametri vitali, regola la ventilazione e verifica il dispositivo. Il ventilatore sostiene il respiro; non produce da solo incoscienza o analgesia."
+      ]
+    },
+    {
+      "heading": "Preparazione",
+      "paragraphs": [
+        "Seguite le istruzioni ospedaliere su cibo, bevande e farmaci. Segnalate apnee, reflusso, denti mobili, allergie e precedenti difficoltà delle vie aeree. Non improvvisate il digiuno o la sospensione dei farmaci."
+      ]
+    },
+    {
+      "heading": "Risveglio",
+      "paragraphs": [
+        "Il supporto si riduce quando respiro e riflessi protettivi recuperano abbastanza. Un fastidio temporaneo alla gola è possibile, ma una grave difficoltà respiratoria dopo l'intervento richiede aiuto urgente.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira usa un dispositivo per l'apnea. Avvisa l'anestesista e chiede se portarlo per il recupero."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha una protesi dentale instabile. Lo segnala prima dell'intervento per adattare il piano delle vie aeree."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

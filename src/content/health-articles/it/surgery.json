@@ -1,0 +1,51 @@
+{
+  "title": "Chirurgia: che cosa aspettarsi",
+  "intro": "Un'operazione può curare una malattia, riparare un infortunio, alleviare i sintomi o aiutare a diagnosticare una condizione. Sapere che cosa succede prima, durante e dopo un intervento aiuta a prepararsi, a fare le domande giuste e a partecipare attivamente alle decisioni. Ogni operazione comporta benefici, rischi e alternative che vanno discussi in anticipo.",
+  "sections": [
+    {
+      "heading": "Decidere sulla chirurgia",
+      "paragraphs": [
+        "La chirurgia è un'opzione tra le altre. Chiedi a che cosa serve l'operazione, quanto è probabile che funzioni, che cosa potrebbe andare storto, che cosa succede senza chirurgia e se ci sono alternative come farmaci o fisioterapia. Le operazioni urgenti lasciano poco tempo per decidere, ma quelle programmate permettono tempo per un secondo parere."
+      ]
+    },
+    {
+      "heading": "Prepararsi all'operazione",
+      "paragraphs": [
+        "Prima dell'intervento vieni valutato per l'idoneità, con esami come esami del sangue, elettrocardiogramma e una discussione sui farmaci. Alcuni farmaci, come gli anticoagulanti, possono dover essere sospesi su indicazione. Informa il team di allergie, precedenti reazioni all'anestesia, fumo e consumo di alcol. Smettere di fumare ed essere attivi prima migliora la guarigione. Segui le istruzioni sul digiuno."
+      ]
+    },
+    {
+      "heading": "Anestesia",
+      "paragraphs": [
+        "L'anestesia generale ti rende incosciente e senza dolore. L'anestesia regionale, come spinale o blocchi nervosi, anestetizza una parte del corpo mentre resti sveglio o leggermente sedato e l'anestesia locale anestetizza una piccola area. L'anestesista sceglie il tipo con te, in base all'operazione e alla tua salute. Gli effetti collaterali possono comprendere nausea, sonnolenza e mal di gola e le complicanze gravi sono rare."
+      ]
+    },
+    {
+      "heading": "Rischi",
+      "paragraphs": [
+        "Ogni operazione ha rischi, compresi sanguinamento, infezione, coaguli di sangue, danni alle strutture vicine, reazioni all'anestesia e guarigione difficile. Il livello di rischio dipende dall'operazione, dalla tua salute generale e dal fatto che sia un'emergenza. Ti viene chiesto di dare il consenso informato dopo che il team ha spiegato benefici e rischi e puoi chiedere tempo per pensarci."
+      ]
+    },
+    {
+      "heading": "Recupero",
+      "paragraphs": [
+        "Dopo l'operazione vieni monitorato e ricevi un sollievo dal dolore. Muoversi presto, respirare profondamente e mangiare appena consentito favoriscono il recupero. Segui le istruzioni su cura della ferita, attività, guida e ritorno al lavoro e sappi chi chiamare se hai febbre, dolore in aumento, arrossamento, gonfiore o altri dubbi. Dopo alcune operazioni può essere necessaria la riabilitazione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparare le domande",
+      "text": "Immagina che ti venga proposta un'operazione. Potresti scrivere domande su benefici, rischi e alternative e portare un familiare alle visite per aiutarti a ricordare le risposte."
+    },
+    {
+      "title": "Pianificare il recupero",
+      "text": "Supponi di tornare a casa il giorno dopo l'intervento. Potresti organizzare il trasporto, l'aiuto a casa, pasti facili e un periodo di assenza dal lavoro."
+    }
+  ],
+  "questions": [
+    "Quali sono i benefici e i rischi di questa operazione e quali sono le alternative?",
+    "Quale tipo di anestesia è previsto e quali sono gli effetti collaterali?",
+    "Che cosa devo aspettarmi durante il recupero e quando posso riprendere le normali attività?"
+  ]
+}

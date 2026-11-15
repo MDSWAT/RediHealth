@@ -1,0 +1,51 @@
+{
+  "title": "Type 2 diabetes",
+  "intro": "In type 2 diabetes the body does not respond properly to insulin and eventually cannot make enough. Blood sugar rises, which over years can damage blood vessels and nerves. It is closely linked with overweight, inactivity and age, and in many people it can be controlled well, sometimes even put into remission, with lifestyle change and treatment.",
+  "sections": [
+    {
+      "heading": "Causes and risk factors",
+      "paragraphs": [
+        "Risk increases with overweight, especially around the waist, little physical activity, age, family history, previous gestational diabetes, high blood pressure and certain ethnic backgrounds. Many people have the condition for years before diagnosis, as symptoms develop slowly and may be mild."
+      ]
+    },
+    {
+      "heading": "Symptoms and diagnosis",
+      "paragraphs": [
+        "Possible symptoms are thirst, frequent urination, tiredness, blurred vision, slow healing wounds and recurrent infections, but many people have none. Diagnosis is made with fasting blood sugar, HbA1c or a glucose tolerance test. Regular checks matter for people with risk factors."
+      ]
+    },
+    {
+      "heading": "Lifestyle",
+      "paragraphs": [
+        "Healthy eating, more physical activity and weight loss are the foundation. Even modest weight loss improves blood sugar, and large weight loss through diet can bring remission in some people. Aim for regular movement, such as brisk walking, and strength training. Limiting sugary drinks, refined carbohydrates and processed foods, and choosing vegetables, wholegrains, legumes and healthy fats help."
+      ]
+    },
+    {
+      "heading": "Medicines",
+      "paragraphs": [
+        "Metformin is often the first medicine. Others include medicines that increase urinary sugar loss, drugs that act on gut hormones and some that stimulate insulin release. Several of them also protect the heart or kidneys in certain patients. Insulin may be needed eventually. Medicines are chosen according to heart and kidney health, weight and side effects, and need regular review."
+      ]
+    },
+    {
+      "heading": "Preventing complications",
+      "paragraphs": [
+        "Regular checks include HbA1c, blood pressure, cholesterol, eyes, feet, kidney tests and dental care. Controlling blood pressure and cholesterol matters as much as blood sugar. Do not smoke. Report foot sores, vision changes or numbness early. Structured education programmes and disease management programmes support self-care."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Setting a first goal",
+      "text": "Imagine you were just diagnosed. You could choose one change, such as a daily thirty-minute walk, add a second change after a month and track progress with your diabetes team."
+    },
+    {
+      "title": "Preparing for a check-up",
+      "text": "Suppose your annual review is next week. You might list questions, bring blood sugar records and ask about eye, foot and kidney checks."
+    }
+  ],
+  "questions": [
+    "What are my targets for blood sugar, blood pressure and cholesterol?",
+    "Which medicine is best for me, and what side effects should I expect?",
+    "Could weight loss put my diabetes into remission?"
+  ]
+}

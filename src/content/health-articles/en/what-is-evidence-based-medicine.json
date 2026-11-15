@@ -1,0 +1,51 @@
+{
+  "title": "What is evidence-based medicine?",
+  "intro": "Evidence-based medicine means making health decisions by combining the best available research, the doctor's clinical experience and the patient's values and circumstances. It aims to ensure that treatments are chosen because they have been shown to work, not just because they are traditional or popular.",
+  "sections": [
+    {
+      "heading": "The three parts",
+      "paragraphs": [
+        "The first part is the best current research, such as well-conducted trials and systematic reviews. The second is the clinical expertise of the doctor, who knows how to apply findings to individual patients. The third is the patient's preferences, goals and situation. All three are needed, since evidence alone cannot decide what is right for a person."
+      ]
+    },
+    {
+      "heading": "Levels of evidence",
+      "paragraphs": [
+        "Not all evidence is equally reliable. Systematic reviews of randomised trials rank highest, followed by single randomised trials, then cohort and case-control studies, and finally case reports and expert opinion. Higher-quality evidence is less likely to be distorted by chance or bias. Evidence should also be judged for relevance to the person."
+      ]
+    },
+    {
+      "heading": "How it is used",
+      "paragraphs": [
+        "Guidelines summarise evidence for conditions to help doctors and patients choose treatments. Evidence helps to decide whether a test is useful, which medicine works best and which treatments should be avoided. It also shows where we do not know enough, so research is needed."
+      ]
+    },
+    {
+      "heading": "Limits and criticism",
+      "paragraphs": [
+        "Studies may not include people like you, such as older people or those with several illnesses. Evidence can be missing or biased by funding and unpublished results. Following guidelines mechanically can overlook individual needs. For this reason, evidence is a basis for discussion, not a rule."
+      ]
+    },
+    {
+      "heading": "What it means for you",
+      "paragraphs": [
+        "You can ask your doctor what the evidence says about benefits and risks, how large the effects are and what the alternatives are. Share your preferences openly. Be careful with claims based only on testimonials or single studies, and look for trustworthy information sources."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Asking about evidence",
+      "text": "Imagine your doctor suggests a new treatment. You could ask how well it works, what the risks are and how sure we are."
+    },
+    {
+      "title": "Judging a claim",
+      "text": "Suppose an advert promises a miracle cure based on personal stories. You might look for trials or reviews that test it fairly."
+    }
+  ],
+  "questions": [
+    "What evidence supports this treatment, and how strong is it?",
+    "Does the research apply to someone like me?",
+    "What are the alternatives, including doing nothing?"
+  ]
+}

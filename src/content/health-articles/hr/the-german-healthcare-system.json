@@ -1,0 +1,51 @@
+{
+  "title": "Njemački zdravstveni sustav",
+  "intro": "Njemačka ima zdravstveni sustav s obveznim zdravstvenim osiguranjem, širokim izborom liječnika i bolnica te gustom mrežom usluga. Razumijevanje načina na koji je organiziran pomaže bolesnicima, uključujući pridošlice, pronaći skrb i znati svoja prava. Ovaj pregled je opći; pravila i iznosi se mijenjaju pa provjerite aktualne pojedinosti kod svog osiguravatelja.",
+  "sections": [
+    {
+      "heading": "Zdravstveno osiguranje",
+      "paragraphs": [
+        "Gotovo svatko tko živi u Njemačkoj mora imati zdravstveno osiguranje. Većina ljudi pokrivena je zakonskim zdravstvenim fondovima u koje zaposlenici i poslodavci uplaćuju postotak dohotka. Neki ljudi, poput onih s višim primanjima, samozaposlenih i državnih službenika, mogu odabrati privatno osiguranje. Djeca i nezaposleni supružnici često su pokriveni besplatno obiteljskim osiguranjem u zakonskom sustavu. Dugotrajna skrb ima vlastito osiguranje."
+      ]
+    },
+    {
+      "heading": "Primarna skrb i specijalisti",
+      "paragraphs": [
+        "Većina ljudi ima obiteljskog liječnika kao prvu kontaktnu točku, koji liječi uobičajene probleme, koordinira skrb i izdaje uputnice. Specijalistima se obično može izravno obratiti, iako neki traže termine ili uputnice. Ljekarne daju lijekove na recept i savjete. Zubarima, primaljama i terapeutima pristupa se na sličan način."
+      ]
+    },
+    {
+      "heading": "Bolnice i hitna stanja",
+      "paragraphs": [
+        "Bolnice pružaju bolničku i dnevnu skrb te imaju ambulante za određena stanja. U hitnim slučajevima nazovite 112 ili idite na hitni prijam. Za hitne, ali ne i životno ugrožavajuće probleme izvan radnog vremena ordinacija, služba dežurnog liječnika dostupna je na broju 116117, koji pomaže i s terminima."
+      ]
+    },
+    {
+      "heading": "Troškovi i participacije",
+      "paragraphs": [
+        "Zakonsko osiguranje pokriva širok katalog usluga, uključujući preglede, cijepljenja, liječenje, lijekove, bolničku skrb i rehabilitaciju. Bolesnici plaćaju neke participacije, primjerice za lijekove, bolničke dane ili određene terapije, uz godišnja ograničenja i izuzeća za osobe niskih primanja i djecu. Neke usluge, poput mnogih zubarskih dodataka, plaćaju se privatno."
+      ]
+    },
+    {
+      "heading": "Prava bolesnika i dobivanje pomoći",
+      "paragraphs": [
+        "Bolesnici imaju pravo na informacije, informirani pristanak, uvid u svoju dokumentaciju i drugo mišljenje. Pritužbe se mogu uputiti ordinaciji, osiguravatelju ili službama za savjetovanje bolesnika. Neovisno savjetovanje dostupno je osobama koje nisu sigurne u svoja prava, uključujući migrante i izbjeglice, a u nekim ustanovama mogu se organizirati usluge tumačenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pronalazak liječnika",
+      "text": "Zamislite da ste novi u Njemačkoj. Mogli biste se prijaviti kod obiteljskog liječnika, tražiti uputnice kada zatrebaju i uvijek imati sa sobom iskaznicu osiguranja."
+    },
+    {
+      "title": "Korištenje skrbi izvan radnog vremena",
+      "text": "Pretpostavite da vaše dijete ima vrućicu u subotu navečer. Mogli biste nazvati dežurnu službu za savjet i, ako je ozbiljno, otići na hitni prijam."
+    }
+  ],
+  "questions": [
+    "Koje usluge pokriva moje osiguranje i što moram sam platiti?",
+    "Kako brzo pronaći specijalista ili termin?",
+    "Gdje mogu dobiti neovisan savjet o svojim pravima?"
+  ]
+}

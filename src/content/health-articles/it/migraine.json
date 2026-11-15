@@ -1,0 +1,51 @@
+{
+  "title": "Emicrania",
+  "intro": "L'emicrania è una condizione neurologica comune che causa attacchi ricorrenti di mal di testa da moderato a forte, spesso con nausea e sensibilità a luce e suoni. Gli attacchi durano da ore a giorni. Anche se non si può guarire, farmaci, misure di stile di vita e consapevolezza dei fattori scatenanti possono ridurre quanto spesso e quanto gravemente ti colpisce.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Il mal di testa dell'emicrania è tipicamente da un solo lato e pulsante, peggiorato dal movimento. Molte persone hanno nausea, vomitano ed evitano luce, rumore e odori. Alcune hanno prima un'aura: disturbi visivi come linee a zigzag, formicolio o difficoltà a parlare della durata fino a un'ora. Una fase di preavviso con sbadigli, cambiamenti dell'umore o voglie alimentari può precedere gli attacchi."
+      ]
+    },
+    {
+      "heading": "Cause e fattori scatenanti",
+      "paragraphs": [
+        "L'emicrania comporta cambiamenti nell'attività dei nervi e nei vasi sanguigni del cervello e una tendenza familiare. I possibili fattori scatenanti comprendono stress, sonno irregolare, pasti saltati, cambiamenti ormonali, certi cibi, alcol, luci intense e cambiamenti del tempo. I fattori scatenanti variano e un diario del mal di testa aiuta a individuare i tuoi."
+      ]
+    },
+    {
+      "heading": "Trattare un attacco",
+      "paragraphs": [
+        "Prendi il farmaco presto durante un attacco. Semplici antidolorifici come ibuprofene, aspirina o paracetamolo possono funzionare per attacchi da lievi a moderati, a volte con un antinausea. I triptani agiscono in modo specifico sull'emicrania e si usano negli attacchi più gravi. Riposare in una stanza buia e silenziosa aiuta. Usare antidolorifici per più di circa dieci giorni al mese può portare a un mal di testa da abuso di farmaci."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Il trattamento preventivo si considera con attacchi frequenti o invalidanti. Le opzioni comprendono certi farmaci per la pressione, antiepilettici, antidepressivi e anticorpi più recenti contro una molecola chiamata CGRP somministrati per iniezione. Gli approcci non farmacologici comprendono sonno regolare, esercizio, rilassamento, biofeedback e agopuntura, che aiutano alcune persone."
+      ]
+    },
+    {
+      "heading": "Quando cercare aiuto urgente",
+      "paragraphs": [
+        "Cerca cure immediate per un mal di testa improvviso e forte diverso da qualsiasi altro prima, mal di testa con febbre e rigidità del collo, confusione, debolezza, difficoltà a parlare, perdita della vista, o un mal di testa dopo un trauma cranico. Anche i nuovi mal di testa dopo i cinquant'anni richiedono una valutazione. L'emicrania con aura aumenta leggermente il rischio di ictus, in particolare con il fumo e alcuni contraccettivi ormonali, quindi parlane con il medico."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tenere un diario",
+      "text": "Immagina di avere due attacchi al mese. Potresti registrare date, cibo, sonno, stress, ciclo mestruale e trattamento e condividere lo schema con il medico."
+    },
+    {
+      "title": "Trattare presto",
+      "text": "Supponi che i tuoi attacchi inizino spesso con un'aura visiva. Potresti tenere a portata di mano il farmaco prescritto e prenderlo al primo segno di mal di testa come consigliato."
+    }
+  ],
+  "questions": [
+    "Quale farmaco è il migliore per i miei attacchi e quando devo prenderlo?",
+    "Un trattamento preventivo mi aiuterebbe e quali sono gli effetti collaterali?",
+    "Quali sintomi significano che ho bisogno di una valutazione urgente?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Što se događa tijekom elektroencefalograma (EEG)?",
+  "intro": "Elektroencefalogram, ili EEG, bilježi električnu aktivnost mozga pomoću malih senzora postavljenih na vlasište. Bezbolan je i siguran. Najčešće se koristi za pomoć u dijagnosticiranju epilepsije i drugih uzroka napadaja, nesvjestica i promjena svijesti.",
+  "sections": [
+    {
+      "heading": "Zašto se radi",
+      "paragraphs": [
+        "Moždane stanice komuniciraju električnim signalima, a EEG pokazuje obrasce te aktivnosti. Može pokazati abnormalna pražnjenja kod epilepsije, pomoći u razvrstavanju vrsta napadaja, procijeniti poremećaje spavanja i smetenost te procijeniti funkciju mozga kod nekih bolesti. Normalan EEG ne isključuje epilepsiju."
+      ]
+    },
+    {
+      "heading": "Priprema",
+      "paragraphs": [
+        "Operite kosu dan prije, bez regeneratora, gelova ili sprejeva. Jedite normalno i uzimajte lijekove osim ako vam nije drukčije rečeno. Ponekad se traži da malo spavate noć prije kako biste zaspali tijekom testa. Ponesite popis lijekova i recite osoblju o svim napadajima."
+      ]
+    },
+    {
+      "heading": "Tijekom testa",
+      "paragraphs": [
+        "Tehničar pričvršćuje oko dvadeset malih metalnih pločica na vlasište pastom ili kapom. Spajaju se na uređaj za snimanje. Ležite ili sjedite opušteno zatvorenih očiju, zatim otvorenih. Mogu vas zamoliti da duboko dišete ili gledate bljeskajuća svjetla, što može izazvati abnormalnu aktivnost. Snimanje traje dvadeset do šezdeset minuta."
+      ]
+    },
+    {
+      "heading": "Druge vrste",
+      "paragraphs": [
+        "EEG spavanja snima tijekom spavanja, a ambulantni EEG snima se jedan do tri dana kod kuće. Video EEG u bolnici snima napadaje zajedno s videom. Oni daju više informacija od rutinskog testa. Test ne daje električni udar."
+      ]
+    },
+    {
+      "heading": "Nakon testa",
+      "paragraphs": [
+        "Obično možete kući i nastaviti normalne aktivnosti. Isperite pastu iz kose. Specijalist pregledava snimku, a rezultat se šalje liječniku za nekoliko dana. Pitajte što pokazuje i koji su sljedeći koraci."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema kose",
+      "text": "Zamislite da je vaš EEG sutra. Mogli biste večeras oprati kosu, izbjegavati proizvode i ponijeti popis lijekova."
+    },
+    {
+      "title": "Razumijevanje normalnog rezultata",
+      "text": "Pretpostavite da je vaš EEG normalan nakon napadaja. Mogli biste pitati bi li pomogao dulji EEG ili EEG spavanja."
+    }
+  ],
+  "questions": [
+    "Zašto trebam EEG i što bi mogao pokazati?",
+    "Trebam li promijeniti lijekove ili san prije testa?",
+    "Što se događa ako je EEG normalan?"
+  ]
+}

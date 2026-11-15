@@ -1,0 +1,51 @@
+{
+  "title": "A gynecology appointment: preparation and consent",
+  "intro": "Gynecology care can address bleeding, pelvic pain, contraception, pregnancy concerns or screening. A first visit does not automatically require an internal examination. You can ask what each part is for and decline or stop it.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Prepare your main questions, period pattern, symptoms, medicines and any possibility of pregnancy. You do not need to shave or use vaginal cleansing products before an appointment."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "The clinician explains proposed examinations and samples, checks consent and offers appropriate privacy. Request a chaperone, interpreter or preferred clinician where available; discuss pain or previous traumatic experiences only as much as you choose. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Tests and treatments depend on the concern. Cervical screening is different from investigation of symptoms; a recent normal screening result does not replace assessment of new bleeding or pain. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Ask about costs, confidentiality, how results will arrive and who to contact if nothing is received. For an intimate examination you may request a pause, smaller equipment or another appointment to discuss options. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Severe pelvic pain, fainting, heavy bleeding or pain with possible pregnancy require urgent assessment. Persistent bleeding after sex or after menopause needs prompt review rather than waiting for routine screening."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira attends for contraception and asks whether an internal examination would change the advice. The clinician explains the options and respects her decision."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben helps a partner write questions before the visit. She chooses whether he enters the room and can speak with the clinician privately."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

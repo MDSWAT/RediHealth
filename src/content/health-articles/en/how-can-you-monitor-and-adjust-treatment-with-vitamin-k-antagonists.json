@@ -1,0 +1,51 @@
+{
+  "title": "Vitamin K antagonists: monitoring and dose safety",
+  "intro": "Vitamin K antagonists such as warfarin reduce clotting and help prevent dangerous clots. Too little effect may leave clot risk; too much increases bleeding. Safe treatment depends on an individual INR target and a clear dosing plan.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "An INR blood test measures the medicine’s effect. The target and testing interval depend on the reason for treatment and stability; there is no universal safe dose or target for every patient. Different tablet strengths must be checked carefully."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Keep an accurate dose and test record, and know who gives the next instruction. Home INR testing or self-adjustment is suitable only after structured training and agreement with the treating service, not by copying an online table. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Illness, vomiting, diarrhea, new medicines, antibiotics and supplements can change the effect. Tell the anticoagulation team about changes and planned procedures. Do not stop or bridge treatment before dental work or surgery without a specific professional plan. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Keep vitamin K intake reasonably consistent rather than avoiding all green vegetables. Discuss alcohol and any major diet change. Follow the specific missed-dose instructions for your medicine; do not double a dose or improvise a correction. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Head injury, uncontrolled bleeding, blood in vomit, black stools, severe headache or stroke symptoms need urgent assessment. A result outside the agreed limits also needs timely service advice even without symptoms. Suspected pregnancy requires prompt prescriber contact."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira starts an antibiotic and tells the monitoring service so it can decide whether an earlier INR is needed."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben receives a different tablet strength and verifies the written dose with the pharmacist, instead of assuming the same tablet count means the same dose."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

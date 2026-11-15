@@ -1,0 +1,51 @@
+{
+  "title": "Leziunile încheieturii mâinii",
+  "intro": "Încheietura mâinii este o articulație complexă alcătuită din multe oase mici, ligamente și tendoane și este adesea accidentată prin căderi, sport sau folosire repetitivă. Leziunile variază de la entorse la fracturi. Evaluarea timpurie și tratamentul potrivit ajută la prevenirea rigidității sau slăbiciunii durabile.",
+  "sections": [
+    {
+      "heading": "Leziuni frecvente",
+      "paragraphs": [
+        "O cădere pe mâna întinsă poate rupe radiusul, osul mare al antebrațului de lângă încheietură, sau osul mic scafoid ori poate întinde ligamentele. Alte probleme includ leziunile tendoanelor, tendinita, chisturile ganglionare, sindromul de tunel carpian și leziunile de suprasolicitare din cauza muncii repetitive, a sportului sau a folosirii telefonului."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Durerea, umflătura, vânătăile, sensibilitatea, dificultatea de a mișca sau de a strânge și o deformare vizibilă după o cădere sugerează o fractură. Durerea la baza degetului mare după o cădere poate indica o fractură de scafoid, ușor de ratat la primele radiografii, care poate necesita imagistică repetată sau o rezonanță magnetică. Amorțeala, furnicăturile sau o mână rece necesită atenție urgentă."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament",
+      "paragraphs": [
+        "Medicul examinează încheietura și programează radiografii și, uneori, o scanare. Entorsele minore se tratează cu repaus, gheață, compresie, ridicare și o atelă. Fracturile sunt puse într-un ghips sau într-o atelă, iar cele deplasate pot necesita realiniere sau fixare chirurgicală cu plăci sau fire. Tratamentul leziunilor ligamentelor și tendoanelor depinde de gravitate."
+      ]
+    },
+    {
+      "heading": "Recuperarea",
+      "paragraphs": [
+        "Vindecarea durează șase până la opt săptămâni pentru majoritatea fracturilor și câteva săptămâni pentru entorse. Kinetoterapia sau terapia mâinii refac mișcarea și forța. Mișcați degetele cât timp sunteți în ghips, ridicați brațul pentru a reduce umflătura și urmați instrucțiunile. Unele persoane au rigiditate luni de zile, iar o minoritate dezvoltă sindromul de durere regională complexă."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Protecțiile pentru încheietură la activități precum patinajul și snowboardul, exercițiile de întărire, sănătatea oaselor prin calciu, vitamina D și exerciții cu încărcare și amenajarea ergonomică a locului de muncă reduc riscul. Mergeți la medic pentru durere care durează mai mult de câteva zile după o cădere, pentru amorțeală sau deformare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Primul ajutor",
+      "text": "Imaginați-vă că ați căzut, iar încheietura vă doare și se umflă. Ați putea să o ridicați, să aplicați o compresă rece înfășurată într-o cârpă și să o verificați în aceeași zi."
+    },
+    {
+      "title": "Exerciții pentru mână",
+      "text": "Presupuneți că sunteți în ghips. Ați putea mișca regulat degetele și umărul și ați putea ține mâna ridicată."
+    }
+  ],
+  "questions": [
+    "Este încheietura mea ruptă sau întinsă?",
+    "Am nevoie de ghips, de atelă sau de operație?",
+    "Ce exerciții mă vor ajuta să mă recuperez?"
+  ]
+}

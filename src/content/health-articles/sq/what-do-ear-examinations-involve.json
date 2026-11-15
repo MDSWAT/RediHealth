@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë përfshijnë ekzaminimet e veshit?",
+  "intro": "Ekzaminimet e veshit i ndihmojnë mjekët të gjejnë shkakun e dhimbjes së veshit, humbjes së dëgjimit, marrjes mendsh ose tingëllimës në vesh. Zakonisht janë pa dhimbje e të shpejta. Cilat teste përdoren varet nga simptomat tuaja, e rezultatet udhëzojnë trajtimin.",
+  "sections": [
+    {
+      "heading": "Shikimi brenda veshit",
+      "paragraphs": [
+        "Mjeku përdor një otoskop ose mikroskop për të parë në kanalin e veshit e daullen. Kjo mund të tregojë dyllë, infeksion, lëndim, lëng pas daulles ose një vrimë. Te fëmijët, veshi tërhiqet butësisht për ta drejtuar kanalin. Ekzaminimi mund të ndihet paksa i pakëndshëm por nuk duhet të dhembë."
+      ]
+    },
+    {
+      "heading": "Testet e dëgjimit",
+      "paragraphs": [
+        "Audiometria me ton të pastër mat tingujt më të qetë që mund t'i dëgjoni në lartësi të ndryshme, me kufje, e rezultatet tregohen në një grafik. Testet e të folurit kontrollojnë sa mirë i kuptoni fjalët. Foshnjat e fëmijët e vegjël kanë teste që nuk kërkojnë bashkëpunim aktiv, si emetimet otoakustike ose reagimet ndaj tingujve."
+      ]
+    },
+    {
+      "heading": "Testet e veshit të mesëm",
+      "paragraphs": [
+        "Timpanometria përdor një sondë të vogël në kanalin e veshit për të matur sa mirë lëviz daullja e nëse ka lëng në veshin e mesëm. Testet me pirun akordues ndihmojnë të dallohet humbja përçuese nga ajo sensorineurale. Këto teste zgjasin vetëm disa minuta e janë pa dhimbje."
+      ]
+    },
+    {
+      "heading": "Ekuilibri e imazheria",
+      "paragraphs": [
+        "Nëse problemi është marrja mendsh, mund të përdoren teste të lëvizjes së syve, manovra pozicionale e ekuilibri. Skanimet si rezonanca magnetike ose tomografia kompjuterike përdoren për humbje të pashpjegueshme dëgjimi njëanshe, rritje të dyshuara ose probleme të kockave, e vetëm kur është e nevojshme."
+      ]
+    },
+    {
+      "heading": "Përgatitja e rezultatet",
+      "paragraphs": [
+        "Tregojini mjekut për simptomat, barnat e problemet e mëparshme të veshit. Shmangni përdorimin e kokrrave të pambukut, pasi mund ta shtyjnë dyllin më thellë. Pyesni çfarë do të thonë rezultatet, nëse nevojiten teste të mëtejshme e cilat janë opsionet e trajtimit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përshkrimi i simptomave",
+      "text": "Imagjinoni që keni dëgjim të mbytur në një vesh. Mund të shënoni kur filloi e nëse keni edhe dhimbje, marrje mendsh ose tingëllimë."
+    },
+    {
+      "title": "Pas testit",
+      "text": "Supozoni që audiograma tregon humbje të lehtë. Mund të pyesni për mbrojtjen e dëgjimit, testet e përsëritura e nëse aparatet janë të përshtatshme."
+    }
+  ],
+  "questions": [
+    "Cilat teste më duhen për simptomat e mia?",
+    "Çfarë tregojnë rezultatet?",
+    "A më nevojitet trajtim ose ndjekje?"
+  ]
+}

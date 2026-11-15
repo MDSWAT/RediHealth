@@ -1,0 +1,52 @@
+{
+  "title": "Intoleranca ndaj laktozës",
+  "intro": "Intoleranca ndaj laktozës do të thotë që trupi nuk mund ta tresë mirë sheqerin e qumështit, duke shkaktuar fryrje, gazra dhe diarre pas produkteve të qumështit. Është e zakonshme te të rriturit në të gjithë botën dhe nuk është e rrezikshme. Shumica e njerëzve mund ta menaxhojnë duke rregulluar sa laktozë hanë, jo duke shmangur plotësisht qumështoret.",
+  "sections": [
+    {
+      "heading": "Çfarë e shkakton",
+      "paragraphs": [
+        "Laktoza tretet nga një enzimë e quajtur laktazë në zorrën e hollë. Te shumica e njerëzve, prodhimi i laktazës bie pas fëmijërisë, kështu që sheqeri kalon në zorrën e trashë ku bakteret e fermentojnë. Kjo prodhon gaz dhe tërheq ujë në zorrë. Më rrallë, sëmundje të zorrëve si sëmundja celiake ose infeksioni e ulin përkohësisht laktazën."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat shfaqen zakonisht brenda tridhjetë minutash deri dy orësh pas ngrënies së qumështoreve dhe përfshijnë ngërçe barku, fryrje, gazra, jashtëqitje të buta dhe ndonjëherë të përzier. Sa laktozë shkakton probleme ndryshon nga personi në person dhe shumë tolerojnë sasi të vogla, si qumështi në kafe."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Mjekët mund të sugjerojnë heqjen e laktozës për një periudhë të shkurtër për të parë nëse simptomat përmirësohen, pastaj rifutjen e saj. Një test i frymëmarrjes me hidrogjen pas pirjes së një solucioni laktoze mund ta konfirmojë. Gjendje të tjera si sindroma e zorrës së irrituar, sëmundja celiake dhe alergjia ndaj qumështit të lopës shkaktojnë simptoma të ngjashme dhe nuk duhen ngatërruar. Alergjia ndaj qumështit është një reagim imunitar dhe është ndryshe."
+      ]
+    },
+    {
+      "heading": "Të ushqyerit mirë me intolerancë ndaj laktozës",
+      "paragraphs": [
+        "Shumë njerëz tolerojnë djathërat e fortë, kosin dhe gjalpin, që përmbajnë pak laktozë. Qumështi dhe produktet e qumështit pa laktozë janë gjerësisht të disponueshme dhe ushqyese në mënyrë të ngjashme. Tabletat e enzimës laktazë mund të merren me vaktet. Kontrolloni etiketat, sepse laktoza shfaqet në ushqime të përpunuara dhe disa barna.",
+        "Nëse i shmangni plotësisht qumështoret, sigurohuni që të merrni mjaftueshëm kalcium dhe vitaminë D nga ushqime të tjera si pije të pasuruara, perime jeshile, arra dhe peshk, ose pyesni për suplemente."
+      ]
+    },
+    {
+      "heading": "Kur të shihni një mjek",
+      "paragraphs": [
+        "Kërkoni këshillë nëse keni gjak në jashtëqitje, humbje peshe, diarre të vazhdueshme, dhimbje të rëndë ose simptoma që nuk përputhen me modelin. Foshnjat me të vjella e diarre pas qumështit kanë nevojë për rishikim mjekësor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gjetja e kufirit tuaj",
+      "text": "Imagjinoni që merrni ngërçe pas një gote qumësht. Mund të provoni qumësht pa laktozë për një javë, pastaj të testoni sasi të vogla kosi ose djathi dhe të shënoni cilat ushqime shkaktojnë simptoma dhe cilat jo."
+    },
+    {
+      "title": "Kontrolli i një etikete",
+      "text": "Supozoni që blini ushqime të gatshme dhe nuk jeni të sigurt për laktozën e fshehur. Mund të kontrolloni listat e përbërësve për qumësht, hirrë dhe qumësht pluhur dhe ta pyesni një dietolog për alternativa të përshtatshme."
+    }
+  ],
+  "questions": [
+    "A i shkakton vërtet laktoza simptomat e mia apo mund të jetë përfshirë një gjendje tjetër?",
+    "Sa qumështore mund të tolerojë me gjasë dhe cilat produkte janë më të lehta për t'u tretur?",
+    "Si mund të marr mjaftueshëm kalcium nëse i kufizoj qumështoret?"
+  ]
+}

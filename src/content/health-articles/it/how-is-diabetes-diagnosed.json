@@ -1,0 +1,56 @@
+{
+  "title": "Come si diagnostica il diabete",
+  "intro": "Il diabete viene diagnosticato con esami del sangue che misurano la quantità di zucchero, o glucosio, nel sangue. Poiché il diabete iniziale può non dare sintomi, il test è importante per le persone a rischio più alto. Capire i principali esami e che cosa significano i valori rende più facile seguire il percorso e porre le domande giuste.",
+  "sections": [
+    {
+      "heading": "Perché si fa il test",
+      "paragraphs": [
+        "I medici cercano il diabete quando qualcuno ha sintomi come grande sete, minzione frequente, stanchezza, visione offuscata o lenta guarigione delle ferite. Testano anche persone senza sintomi che hanno fattori di rischio, per esempio sovrappeso, un parente stretto con diabete, pressione alta o una storia di diabete in gravidanza.",
+        "Scoprire il diabete precocemente permette di trattarlo prima che si sviluppino danni a lungo termine a occhi, reni, nervi e vasi sanguigni. Aiuta anche a distinguere le diverse forme, che vengono gestite in modo diverso."
+      ]
+    },
+    {
+      "heading": "Glicemia a digiuno",
+      "paragraphs": [
+        "Il test della glicemia a digiuno misura il livello di zucchero in un campione di sangue prelevato dopo almeno otto ore senza cibo né bevande caloriche. È semplice e ampiamente disponibile. Un risultato ripetuto superiore alla soglia diagnostica di 126 mg/dl, ovvero 7,0 mmol/l, indica diabete.",
+        "I valori compresi tra la norma e la soglia del diabete si chiamano alterata glicemia a digiuno o prediabete. È un avvertimento che il rischio di sviluppare diabete è aumentato e i cambiamenti dello stile di vita possono spesso ritardare o prevenire la progressione."
+      ]
+    },
+    {
+      "heading": "HbA1c: il valore a lungo termine",
+      "paragraphs": [
+        "L'HbA1c riflette la glicemia media degli ultimi due o tre mesi, perché misura la quota di emoglobina a cui è legato lo zucchero. Non serve il digiuno. Un valore del 6,5 per cento o superiore indica diabete se confermato.",
+        "L'HbA1c può essere poco affidabile in alcune situazioni, come anemia, certe varianti dell'emoglobina, recente perdita di sangue o trasfusione e malattie renali. In questi casi i medici si affidano maggiormente alle misurazioni dirette del glucosio."
+      ]
+    },
+    {
+      "heading": "Test di tolleranza al glucosio",
+      "paragraphs": [
+        "Nel test orale di tolleranza al glucosio, la glicemia viene misurata a digiuno e di nuovo due ore dopo aver bevuto una soluzione zuccherina standard. Può rilevare problemi che i valori a digiuno non evidenziano ed è usato per diagnosticare il diabete gestazionale in gravidanza. Preparazione e condizioni sono importanti, quindi segui le istruzioni che ricevi.",
+        "Anche una glicemia casuale di 200 mg/dl o superiore insieme a sintomi tipici può confermare la diagnosi. In assenza di sintomi, i risultati vengono normalmente verificati con un secondo esame."
+      ]
+    },
+    {
+      "heading": "Dopo la diagnosi",
+      "paragraphs": [
+        "Il medico ti spiegherà quale tipo di diabete hai e organizzerà ulteriori esami, per esempio per la funzione renale, il colesterolo e la salute degli occhi. Il trattamento può comprendere cambiamenti nell'alimentazione, attività fisica, compresse o insulina, insieme all'educazione al monitoraggio.",
+        "Molte persone all'inizio si sentono sopraffatte. I programmi di educazione al diabete e i gruppi di sostegno possono aiutarti a comprendere la tua condizione e a costruire fiducia nella gestione quotidiana."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi a un esame",
+      "text": "Immagina di avere prenotato un esame della glicemia a digiuno. Potresti verificare per quanto tempo evitare il cibo, se puoi bere acqua e prendere i farmaci abituali e programmare un appuntamento presto al mattino in modo che il digiuno sia più facile."
+    },
+    {
+      "title": "Capire un risultato al limite",
+      "text": "Supponi che la tua HbA1c sia leggermente aumentata ma sotto la soglia del diabete. Potresti chiedere che cosa significhi per il tuo rischio, quali misure di stile di vita siano più utili e quando ripetere l'esame."
+    }
+  ],
+  "questions": [
+    "Quale esame è il migliore per me e devo stare a digiuno o prepararmi in qualche modo?",
+    "Se il mio risultato è al limite, quanto è probabile che progredisca e che cosa posso fare?",
+    "Se ho il diabete, quali ulteriori esami e quale educazione mi verranno proposti?"
+  ]
+}

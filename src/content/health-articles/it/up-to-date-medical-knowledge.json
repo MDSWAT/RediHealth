@@ -1,0 +1,51 @@
+{
+  "title": "Conoscenze mediche aggiornate: come si valutano",
+  "intro": "Le conoscenze mediche cambiano di continuo. Per mantenere affidabili le informazioni sulla salute, chi le produce deve seguire la ricerca, giudicarne la qualità e aggiornare i testi. Capire come si fa aiuta a vedere come nascono le informazioni attuali e perché le raccomandazioni a volte cambiano.",
+  "sections": [
+    {
+      "heading": "Seguire la nuova ricerca",
+      "paragraphs": [
+        "Ogni settimana vengono pubblicate migliaia di studi. I gruppi monitorano riviste, registri di studi, linee guida e avvisi di sicurezza per nuove scoperte sugli argomenti che trattano. Decidono se le nuove prove sono pertinenti, abbastanza solide e capaci di cambiare le conclusioni esistenti."
+      ]
+    },
+    {
+      "heading": "Giudicare la qualità delle prove",
+      "paragraphs": [
+        "Non tutti gli studi sono ugualmente affidabili. I revisori valutano disegno, dimensione, distorsioni, coerenza e se gli esiti contano per i pazienti. Un singolo piccolo studio raramente cambia le raccomandazioni, mentre uno studio ampio ben progettato o una revisione sistematica che combina diversi studi possono farlo. Le prove sono classificate, il che esprime quanto possiamo essere sicuri dei risultati."
+      ]
+    },
+    {
+      "heading": "Aggiornare le informazioni",
+      "paragraphs": [
+        "Quando le prove cambiano il quadro, i testi vengono rivisti e la data della revisione viene registrata. Le modifiche minori possono essere fatte nei cicli di revisione regolari e le informazioni urgenti sulla sicurezza vengono aggiornate in fretta. A volte le nuove prove confermano il consiglio attuale e non cambia nulla. I buoni fornitori spiegano che cosa è cambiato e perché."
+      ]
+    },
+    {
+      "heading": "Perché i consigli cambiano",
+      "paragraphs": [
+        "Le raccomandazioni possono cambiare perché nuovi studi mostrano che un trattamento è migliore o peggiore di quanto si pensava, perché i danni emergono solo dopo un uso diffuso o perché si sviluppano esami migliori. Un consiglio che cambia è segno che la scienza funziona, non necessariamente di un fallimento. Alcune affermazioni riportate per prime dai giornali non sono confermate dalla ricerca successiva."
+      ]
+    },
+    {
+      "heading": "Che cosa puoi fare",
+      "paragraphs": [
+        "Controlla la data delle informazioni che usi, preferisci le fonti che mostrano come vengono aggiornate e chiedi al medico delle novità sulla tua condizione. Non sospendere né cambiare una terapia per un solo resoconto, ma parlane con il tuo team sanitario."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Notare un cambiamento",
+      "text": "Immagina che un farmaco che prendi sia citato dai giornali come rischioso. Potresti consultare una fonte affidabile e chiedere al medico o al farmacista prima di fare qualsiasi cambiamento."
+    },
+    {
+      "title": "Cercare le date",
+      "text": "Supponi di leggere un consiglio su una vaccinazione. Potresti guardare quando il testo è stato aggiornato l'ultima volta e confrontarlo con le raccomandazioni nazionali."
+    }
+  ],
+  "questions": [
+    "La raccomandazione per la mia condizione è cambiata di recente?",
+    "Quanto sono affidabili le nuove prove?",
+    "Alla luce di esse, dovrebbe cambiare qualcosa nella mia terapia?"
+  ]
+}

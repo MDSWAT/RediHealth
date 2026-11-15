@@ -1,0 +1,52 @@
+{
+  "title": "How the ankle supports walking",
+  "intro": "The ankle links the lower leg with the foot, carrying weight while adapting to the ground. Its joints, ligaments, tendons and muscles work together; pain after a twist is not automatically a minor sprain.",
+  "sections": [
+    {
+      "heading": "Bones and movement",
+      "paragraphs": [
+        "The tibia and fibula surround the talus. This upper joint mainly moves the foot up and down; lower joints contribute to side-to-side adaptation."
+      ]
+    },
+    {
+      "heading": "Smooth contact",
+      "paragraphs": [
+        "Cartilage and joint fluid reduce friction. Joint shape helps distribute load, but repeated force beyond tissue tolerance can still cause injury."
+      ]
+    },
+    {
+      "heading": "Stability",
+      "paragraphs": [
+        "Ligaments connect bones and limit excessive movement. Tendons transmit muscle force; the Achilles tendon helps push off. A ligament injury differs from a tendon rupture or fracture."
+      ]
+    },
+    {
+      "heading": "Recovery and activity",
+      "paragraphs": [
+        "After injury, protect the ankle and seek advice about safe loading. Gradual strength and balance work may help recovery; repeated giving-way deserves review rather than repeated forced stretching."
+      ]
+    },
+    {
+      "heading": "Warning signs",
+      "paragraphs": [
+        "Deformity, inability to bear weight, a cold or numb foot, or a sudden snap with loss of push-off needs prompt assessment. Being able to move the ankle does not exclude a fracture.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira repeatedly rolls an ankle on uneven ground. She asks about rehabilitation and balance rather than using a support as the whole solution."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben feels a snap while running and cannot push off. He seeks assessment instead of walking it off as a routine sprain."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Si rregullohet gjumi ynë",
+  "intro": "Gjumi kontrollohet nga dy sisteme kryesore: ora e trupit, që ju tregon kur është koha të jeni zgjuar ose të flini, dhe grumbullimi i presionit të gjumit sa më gjatë të qëndroni zgjuar. Njohja e ndërveprimit të tyre shpjegon pse çrregullimi i zonave kohore, puna me turne dhe përdorimi i ekraneve vonë natën e prishin gjumin dhe si mund ta mbështesin zakonet një pushim më të mirë.",
+  "sections": [
+    {
+      "heading": "Ora e brendshme e trupit",
+      "paragraphs": [
+        "Një grup qelizash nervore në tru vepron si ora kryesore që ndjek një ritëm rreth 24-orësh, të quajtur ritëm cirkadian. Ai vendoset kryesisht nga drita që hyn në sy. Drita e mëngjesit e zhvendos orën më herët, ndërsa drita e fortë në mbrëmje e zhvendos më vonë.",
+        "Ora ndikon në temperaturën e trupit, çlirimin e hormoneve dhe zgjuarsinë. Melatonina, një hormon që çlirohet në errësirë, i sinjalizon natën trupit. Njerëzit ndryshojnë natyrshëm në orarin e preferuar, disa janë tipa të hershëm dhe të tjerë tipa të vonë."
+      ]
+    },
+    {
+      "heading": "Presioni i gjumit",
+      "paragraphs": [
+        "Ndërsa jeni zgjuar, substanca si adenozina grumbullohen gradualisht në tru dhe rrisin nevojën për gjumë. Sa më gjatë të qëndroni zgjuar, aq më i fortë bëhet ky presion dhe gjumi e ul përsëri. Kafeina vepron pjesërisht duke bllokuar efektin e adenozinës.",
+        "Dremitja vonë gjatë ditës mund ta ulë presionin e gjumit dhe ta bëjë më të vështirë të flini natën. Dremitjet e shkurtra më herët gjatë ditës zakonisht kanë më pak ndikim."
+      ]
+    },
+    {
+      "heading": "Fazat e gjumit",
+      "paragraphs": [
+        "Gjumi nuk është uniform. Një natë përbëhet nga cikle që përsëriten, rreth 90 minutash secili, me gjumë të lehtë, gjumë të thellë dhe gjumë me lëvizje të shpejta të syve, gjatë të cilit ndodh pjesa më e madhe e ëndrrave të gjalla. Gjumi i thellë mbizotëron në gjysmën e parë të natës dhe mbështet rimëkëmbjen fizike, ndërsa gjumi REM është më i shpeshtë drejt mëngjesit.",
+        "Zgjimet e shkurtra gjatë natës janë normale dhe zakonisht harrohen. Struktura e gjumit ndryshon me moshën dhe të moshuarit shpesh flenë më lehtë dhe zgjohen më herët."
+      ]
+    },
+    {
+      "heading": "Çfarë e prish gjumin",
+      "paragraphs": [
+        "Orarët e parregullt, puna me turne, udhëtimi nëpër zona kohore dhe ekranet e ndritshme vonë natën mund ta nxjerrin orën e trupit jashtë ritmit me planet tuaja. Stresi, dhimbja, alkooli, vaktet e mëdha vonë, nikotina dhe kafeina, një dhomë gjumi e zhurmshme ose e ngrohtë dhe disa barna ndikojnë gjithashtu në cilësinë e gjumit.",
+        "Gjendje mjekësore si apnea e gjumit, këmbët e shqetësuara, depresioni ose ankthi mund të shkaktojnë probleme të vazhdueshme dhe meritojnë vlerësim të duhur, jo vetëtrajtim me ndihmës gjumi."
+      ]
+    },
+    {
+      "heading": "Mbështetja e gjumit të shëndetshëm",
+      "paragraphs": [
+        "Mundohuni të mbani orare të qëndrueshme për të shkuar në shtrat dhe për t'u zgjuar, merrni dritë dite herët gjatë ditës, jini aktiv fizikisht dhe qetësohuni para gjumit. Mbajeni dhomën e gjumit të errët, të freskët dhe të qetë dhe shmangni përdorimin e saj për punë. Kufizoni kafeinën pasdite dhe alkoolin në mbrëmje, pasi alkooli e copëton gjumin.",
+        "Nëse nuk flini dot, ngrihuni dhe bëni diçka të qetë derisa të ndiheni të përgjumur, në vend që të qëndroni zgjuar duke u shqetësuar. Nëse vështirësitë e gjumit zgjasin javë ose ndikojnë në funksionimin gjatë ditës, flisni me një mjek. Terapia konjitivo-sjellëse për pagjumësinë është opsion efektiv."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përshtatja pas një ndryshimi ore",
+      "text": "Imagjinoni që keni fluturuar nëpër disa zona kohore dhe nuk flini dot natën. Mund të kaloni kohë jashtë në dritën e ditës sipas orëve vendase, t'i mbani vaktet dhe orën e gjumit sipas orarit të ri dhe të shmangni dremitjet e gjata derisa ritmi juaj të përshtatet."
+    },
+    {
+      "title": "Përmirësimi i rutinës së mbrëmjes",
+      "text": "Supozoni që zakonisht shfletoni telefonin në shtrat dhe pastaj keni vështirësi të flini. Mund të caktoni një orë fikse për t'i lënë pajisjet mënjanë, t'i zbehni dritat dhe të provoni leximin ose shtrirje të lehta për një javë, për të parë nëse gjumi juaj ndryshon."
+    }
+  ],
+  "questions": [
+    "A mund ta ndikojë gjumin tim një gjendje mjekësore ose një ilaç?",
+    "Cilat ndryshime në orarin tim ditor do të ishin më të dobishme, duke pasur parasysh punën dhe stilin tim të jetesës?",
+    "Kur ia vlen një studim gjumi ose një referim te një specialist gjumi?"
+  ]
+}

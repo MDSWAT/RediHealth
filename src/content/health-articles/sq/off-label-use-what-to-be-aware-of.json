@@ -1,0 +1,52 @@
+{
+  "title": "Përdorimi jashtë indikacionit të barnave: çfarë duhet të dini",
+  "intro": "Përdorimi jashtë indikacionit do të thotë përdorimi i një ilaçi për një gjendje, grupmoshë, dozë ose rrugë që nuk mbulohet nga miratimi i tij zyrtar. Është i zakonshëm, veçanërisht për fëmijët, sëmundjet e rralla dhe kancerin, dhe mund të jetë i arsyeshëm kur provat e mbështesin. Meqenëse dihet ose dokumentohet më pak, kërkon diskutim të kujdesshëm të përfitimeve e rreziqeve.",
+  "sections": [
+    {
+      "heading": "Çfarë do të thotë jashtë indikacionit",
+      "paragraphs": [
+        "Kur një ilaç miratohet, prodhuesi ka treguar se është efektiv e i sigurt për përdorime specifike të përshkruara në informacionin e produktit. Përdorimi jashtë tyre është jashtë indikacionit. Kjo nuk e bën të paligjshëm ose të pasigurt vetvetiu dhe mjekët mund ta përshkruajnë ku e gjykojnë të përshtatshëm. Dallon nga barnat e palicencuara, që nuk kanë miratim fare."
+      ]
+    },
+    {
+      "heading": "Pse ndodh",
+      "paragraphs": [
+        "Studimet te fëmijët, gratë shtatzëna dhe njerëzit me sëmundje të rralla shpesh mungojnë, prandaj mjekët i përdorin barnat bazuar në përvojë dhe studime më të vogla. Përdorime të reja mund të zbulohen pas miratimit, por prodhuesi mund të mos kërkojë zgjerim zyrtar. Disa përdorime jashtë indikacionit kanë prova të mira, ndërsa të tjera mbështeten në prova të dobëta."
+      ]
+    },
+    {
+      "heading": "Rreziqet dhe pasiguritë",
+      "paragraphs": [
+        "Mund të ketë më pak informacion për dozimin e saktë, efektet anësore dhe ndërveprimet për përdorimet jashtë indikacionit. Përgjegjësia për dëmin dhe mbulimi nga sigurimi shëndetësor mund të ndryshojnë, pasi siguruesit mund të paguajnë vetëm në kushte të caktuara. Udhëzuesi i paketimit nuk do ta përmendë përdorimin tuaj, gjë që mund të shqetësojë."
+      ]
+    },
+    {
+      "heading": "Çfarë të pyesni",
+      "paragraphs": [
+        "Pyesni pse po rekomandohet ilaçi, çfarë prove e mbështet, cilat janë alternativat dhe cilat rreziqe njihen. Pyesni si do të matet suksesi dhe kur të ndaloni. Kontrolloni nëse sigurimi e mbulon dhe kush është përgjegjës për ndjekjen.",
+        "Ndiqni dozën e përshkruar, raportoni efektet anësore dhe tregojuni gjithë ofruesve tuaj shëndetësorë. Udhëzuesi ende jep këshilla të vlefshme sigurie si ndërveprimet e paralajmërimet."
+      ]
+    },
+    {
+      "heading": "Marrja e tij në mënyrë të sigurt",
+      "paragraphs": [
+        "Mos i ndryshoni dozat bazuar në atë që raportojnë të tjerë online. Mbani një listë të të gjitha barnave që të kontrollohen ndërveprimet dhe raportoni menjëherë efektet anësore."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Të kuptuarit e një udhëzuesi",
+      "text": "Imagjinoni që mjeku ju përshkruan një ilaç për një përdorim që nuk është në udhëzues. Mund të pyesni për arsyet dhe provat dhe të kërkoni një shënim me shkrim për planin."
+    },
+    {
+      "title": "Pyetja për kostot",
+      "text": "Supozoni që recetën zakonisht nuk e mbulon siguruesi juaj. Mund ta pyesni mjekun për alternativa dhe kosto të pritura para se të filloni."
+    }
+  ],
+  "questions": [
+    "A mbështetet ky përdorim i ilaçit nga prova dhe a ka alternativë të miratuar?",
+    "Cilat janë rreziqet e mundshme dhe si do t'i monitorojmë?",
+    "A do ta mbulojë sigurimi im shëndetësor këtë trajtim?"
+  ]
+}

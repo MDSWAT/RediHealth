@@ -1,0 +1,51 @@
+{
+  "title": "Goditja në tru",
+  "intro": "Goditja në tru ndodh kur rrjedha e gjakut drejt një pjese të trurit bllokohet ose një enë gjaku plas. Qelizat e trurit dëmtohen brenda minutash, prandaj është urgjencë mjekësore. Trajtimi i shpejtë e kufizon dëmin e rehabilitimi ndihmon shërimin. Kontrolli i tensionit e faktorëve të tjerë të rrezikut parandalon shumicën e goditjeve.",
+  "sections": [
+    {
+      "heading": "Llojet",
+      "paragraphs": [
+        "Shumica e goditjeve, rreth tetë nga dhjetë, janë iskemike, të shkaktuara nga një mpiksje që bllokon një arterie. Një sulm kalimtar iskemik është një bllokim jetëshkurtër me simptoma që zhduken brenda orësh e është paralajmërim serioz që kërkon vlerësim urgjent. Goditjet hemorragjike rrjedhin nga gjakderdhja brenda ose rreth trurit."
+      ]
+    },
+    {
+      "heading": "Njohja e një goditjeje",
+      "paragraphs": [
+        "Mbani mend shenjat: fytyrë e rënë, dobësi ose mpirje e një krahu a këmbe, zakonisht në njërën anë, të folur të ngatërruar ose të paqartë, humbje e papritur e shikimit, dhimbje koke e rëndë e papritur, marramendje ose humbje e ekuilibrit. Telefononi menjëherë shërbimet e urgjencës, shënoni kohën kur filluan simptomat e mos prisni të shihni nëse kalojnë."
+      ]
+    },
+    {
+      "heading": "Trajtimi urgjent",
+      "paragraphs": [
+        "Imazheria e trurit identifikon llojin. Për goditjen iskemike, ilaçi që shpërndan mpiksjen i dhënë brenda disa orësh nga fillimi, ose një procedurë për të hequr mpiksjen përmes një arterie, mund të shpëtojë indin e trurit e të ulë paaftësinë. Goditjet me gjakderdhje mund të kërkojnë ulje të tensionit, kthim të efektit të holluesve të gjakut ose kirurgji. Trajtimi në një njësi të specializuar për goditje i përmirëson rezultatet."
+      ]
+    },
+    {
+      "heading": "Rehabilitimi",
+      "paragraphs": [
+        "Rehabilitimi fillon herët. Fizioterapia, terapia profesionale e terapia e të folurit ndihmojnë rikthimin e lëvizjes, aftësive të përditshme e komunikimit. Rikuperimi është më i madh në muajt e parë por mund të vazhdojë vite. Probleme si lodhja, depresioni, problemet e kujtesës e ndryshimet e shikimit mund të kërkojnë mbështetje e të afërmit shpesh kanë nevojë për ndihmë gjithashtu."
+      ]
+    },
+    {
+      "heading": "Parandalimi i një goditjeje",
+      "paragraphs": [
+        "Kontrolli i tensionit të lartë është masa më e rëndësishme. Të tjera përfshijnë moslënien e duhanit, aktivitetin e rregullt, dietë të shëndetshme, alkool të kufizuar, menaxhimin e diabetit e kolesterolit e trajtimin e fibrilacionit atrial me holluesa gjaku. Pas goditjes, barna si antiagreguesit ose antikoagulantët, barnat për tensionin e uljen e kolesterolit parandalojnë një tjetër."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Veprimi i shpejtë",
+      "text": "Imagjinoni që fytyra e të afërmit tuaj bie e të folurit është i paqartë. Mund të telefononi menjëherë shërbimet e urgjencës, të shënoni kohën e të qëndroni me të."
+    },
+    {
+      "title": "Planifikimi i rikuperimit",
+      "text": "Supozoni që jeni në shtëpi pas goditjes. Mund të ndiqni takimet e rehabilitimit, të merrni barnat siç përshkruhen e të pyesni për ngasjen e kthimin në punë."
+    }
+  ],
+  "questions": [
+    "Çfarë e shkaktoi goditjen time e si mund të parandaloj një tjetër?",
+    "Cila terapi do ta ndihmojë rikuperimin tim e sa kohë do të zgjasë?",
+    "Kur mund të ngas ose të kthehem në punë?"
+  ]
+}

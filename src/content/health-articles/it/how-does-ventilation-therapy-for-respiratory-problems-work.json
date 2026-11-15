@@ -1,0 +1,56 @@
+{
+  "title": "Come la ventilazione assistita sostiene la respirazione",
+  "intro": "La ventilazione assistita usa una macchina per aiutare una persona a respirare quando i polmoni o i muscoli respiratori non riescono a farlo abbastanza bene da soli. Può essere utilizzata per un breve periodo durante una malattia o un intervento, oppure per mesi e anni a casa nelle malattie di lunga durata. Comprendere i principali tipi aiuta pazienti e familiari a partecipare alle decisioni.",
+  "sections": [
+    {
+      "heading": "Perché serve un supporto respiratorio",
+      "paragraphs": [
+        "La respirazione dipende da polmoni sani, muscoli respiratori forti e da un cervello che controlla il ritmo degli atti respiratori. Quando uno di questi viene meno, l'organismo può non assumere abbastanza ossigeno o non eliminare abbastanza anidride carbonica. Questo può causare mancanza di fiato, stanchezza, mal di testa, confusione o sonnolenza al mattino.",
+        "Le condizioni che possono portare alla ventilazione assistita comprendono polmoniti gravi, broncopneumopatia cronica ostruttiva avanzata, malattie neuromuscolari, obesità grave con problemi respiratori e alcune lesioni o interventi. La causa e il decorso previsto della malattia influenzano fortemente la scelta dell'approccio."
+      ]
+    },
+    {
+      "heading": "Ventilazione non invasiva",
+      "paragraphs": [
+        "La ventilazione non invasiva eroga aria a una pressione lieve attraverso una maschera aderente sul naso oppure su naso e bocca. Il dispositivo aiuta i polmoni a espandersi e riduce il lavoro dei muscoli respiratori. Viene spesso usata di notte, talvolta anche per diverse ore durante il giorno.",
+        "Molte persone a casa usano questa forma di trattamento, per esempio in caso di malattia polmonare cronica o debolezza muscolare. Una buona aderenza è importante: la maschera deve chiudere bene senza causare lesioni da pressione e le impostazioni della pressione vengono regolate da un team specializzato. Secchezza della bocca, irritazione della pelle e sensazione di pressione dell'aria sono disturbi iniziali comuni che spesso si possono migliorare."
+      ]
+    },
+    {
+      "heading": "Ventilazione invasiva",
+      "paragraphs": [
+        "La ventilazione invasiva utilizza un tubo inserito attraverso la bocca o il naso nella trachea, oppure attraverso una piccola apertura nel collo chiamata tracheostomia. La macchina eroga poi gli atti respiratori. Di solito avviene in terapia intensiva, dove ai pazienti vengono somministrati farmaci per il comfort e vengono monitorati con attenzione.",
+        "I medici cercano di usarla per il tempo più breve che la malattia consente. Le possibili complicanze comprendono infezioni polmonari, lesioni dei polmoni da pressione e debolezza muscolare dopo una lunga degenza, ed è per questo che la riabilitazione è una parte importante del recupero."
+      ]
+    },
+    {
+      "heading": "Vivere con la ventilazione a domicilio",
+      "paragraphs": [
+        "Le persone che usano la ventilazione a casa e i loro familiari vengono formati a utilizzare e pulire l'apparecchio, a gestire gli allarmi e a sapere cosa fare in caso di interruzione della corrente. Controlli regolari valutano quanto bene funziona il trattamento, spesso con esami del sangue per ossigeno e anidride carbonica o misurazioni notturne.",
+        "Tra gli aspetti pratici ci sono i viaggi con il dispositivo, la parola e la deglutizione, l'alimentazione e l'organizzazione dell'aiuto a casa. Il supporto di infermieri specializzati, terapisti respiratori e gruppi di pazienti può rendere più facile la vita quotidiana."
+      ]
+    },
+    {
+      "heading": "Decidere insieme",
+      "paragraphs": [
+        "La ventilazione può migliorare i sintomi e talvolta prolungare la vita, ma comporta anche dei pesi. Le domande su obiettivi, comfort e su ciò che la persona vorrebbe vanno discusse presto, idealmente quando la persona può ancora partecipare. I documenti di pianificazione anticipata delle cure possono registrare queste volontà.",
+        "Se una persona non può esprimersi da sola, ai familiari di fiducia o a un rappresentante legale può essere chiesto di aiutare a interpretarne i desideri insieme all'équipe medica."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Abituarsi alla maschera",
+      "text": "Immagina di aver appena iniziato la ventilazione notturna con maschera e di trovarla scomoda. Potresti annotare quando perde o fa male, poi chiedere al team di adattarla di nuovo, provare un'altra misura o regolare l'umidificatore invece di interrompere semplicemente il trattamento."
+    },
+    {
+      "title": "Pianificare in anticipo con la famiglia",
+      "text": "Supponi che un parente stretto abbia una malattia muscolare progressiva e possa in seguito aver bisogno della ventilazione. La famiglia potrebbe organizzare una conversazione serena con i medici su ciò che il familiare ritiene più importante, quali pesi del trattamento siano accettabili e come queste volontà verranno messe per iscritto."
+    }
+  ],
+  "questions": [
+    "Quale tipo di ventilazione è adatto alla mia condizione e quali sono i benefici e i limiti attesi?",
+    "Come capiremo se il trattamento funziona e con che frequenza verrà controllato?",
+    "Quale supporto è disponibile a casa per l'apparecchio, le emergenze e l'assistenza quotidiana?"
+  ]
+}

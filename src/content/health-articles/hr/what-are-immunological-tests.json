@@ -1,0 +1,51 @@
+{
+  "title": "Što su imunološke pretrage?",
+  "intro": "Imunološke pretrage ispituju komponente imunološkog sustava, kao što su protutijela, imunološke stanice i signalne molekule. Koriste se za dijagnosticiranje infekcija, alergija, autoimunih bolesti i imunoloških nedostataka te za provjeru je li cijepljenje dalo zaštitu. Rezultate treba tumačiti u kontekstu.",
+  "sections": [
+    {
+      "heading": "Testovi protutijela",
+      "paragraphs": [
+        "Testovi protutijela mjere bjelančevine koje imunološki sustav stvara protiv klica ili protiv vlastitih tkiva tijela. Mogu pokazati prošlu ili trenutnu infekciju, kao što su hepatitis ili HIV, imunitet nakon cijepljenja, kao kod rubeole ili hepatitisa B, i autoimunu bolest, kao što su antinuklearna protutijela kod lupusa ili anti-CCP kod reumatoidnog artritisa. Pozitivan test ne znači uvijek bolest, a negativan je ne isključuje uvijek."
+      ]
+    },
+    {
+      "heading": "Alergološke pretrage",
+      "paragraphs": [
+        "Krvne pretrage mogu mjeriti specifična IgE protutijela na tvari kao što su pelud, grinje, hrana ili otrov kukaca. Koriste se zajedno s anamnezom i kožnim prick testovima. Pozitivan rezultat pokazuje senzibilizaciju, što znači da je imunološki sustav stvorio protutijela, ali ne nužno da osoba ima simptome pri izlaganju."
+      ]
+    },
+    {
+      "heading": "Broj i funkcija stanica",
+      "paragraphs": [
+        "Krvne slike pokazuju brojeve bijelih krvnih stanica, a protočna citometrija broji podvrste limfocita, kao što su T stanice i B stanice, što je važno kod HIV-a i imunoloških nedostataka. Druge pretrage mjere koliko dobro imunološke stanice funkcioniraju ili razine bjelančevina kao što su komplement i imunoglobulini."
+      ]
+    },
+    {
+      "heading": "Upala i drugi biljezi",
+      "paragraphs": [
+        "Pretrage kao što su C-reaktivni protein i brzina sedimentacije eritrocita pokazuju opću upalu. Nespecifične su jer rastu kod infekcija i mnogih drugih stanja. Tumorski biljezi se ponekad nazivaju imunološkim pretragama, ali imaju ograničenu vrijednost za probir."
+      ]
+    },
+    {
+      "heading": "Razumijevanje rezultata",
+      "paragraphs": [
+        "Normalni rasponi razlikuju se među laboratorijima. Pretrage se tumače uz simptome i druge nalaze, a ponekad se ponavljaju. Izbjegavajte naručivanje pretraga bez medicinskog razloga jer lažno pozitivni rezultati mogu dovesti do tjeskobe i nepotrebnih zahvata. Pitajte što rezultat znači za liječenje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Provjera zaštite od cjepiva",
+      "text": "Zamislite da radite u zdravstvu i trebate dokaz imuniteta na hepatitis B. Mogli biste zatražiti od liječnika test protutijela i čuvati rezultat uz cijepnu iskaznicu."
+    },
+    {
+      "title": "Tumačenje pozitivnog rezultata",
+      "text": "Pretpostavite da je vaš test antinuklearnih protutijela pozitivan, ali se osjećate dobro. Mogli biste pitati je li to značajno i trebaju li daljnje pretrage."
+    }
+  ],
+  "questions": [
+    "Koja je pretraga prikladna za moj problem?",
+    "Što pozitivan ili negativan rezultat znači za mene?",
+    "Treba li neke rezultate ponoviti?"
+  ]
+}

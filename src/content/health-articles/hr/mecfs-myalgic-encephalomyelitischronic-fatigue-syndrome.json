@@ -1,0 +1,51 @@
+{
+  "title": "ME/CFS (sindrom kroničnog umora)",
+  "intro": "Mijalgijski encefalomijelitis ili sindrom kroničnog umora, obično skraćeno ME/CFS, ozbiljna je dugotrajna bolest s teškom iscrpljenošću koja se ne poboljšava odmorom i pogoršava se nakon čak i manjeg tjelesnog ili mentalnog napora. Može uvelike ograničiti svakodnevni život. Još nema lijeka, ali pažljivo upravljanje može pomoći.",
+  "sections": [
+    {
+      "heading": "Glavni simptomi",
+      "paragraphs": [
+        "Ključna značajka je postnaporna malaksalost: simptomi kao što su ekstremni umor, bol, mentalna magla i osjećaj nalik gripi pogoršavaju se satima ili dan-dva nakon napora i mogu trajati danima ili tjednima. Drugi simptomi uključuju san koji ne osvježava, teškoće s razmišljanjem i koncentracijom, vrtoglavicu pri ustajanju, bol u mišićima i zglobovima, grlobolju i osjetljivost na svjetlo ili buku."
+      ]
+    },
+    {
+      "heading": "Uzroci i dijagnoza",
+      "paragraphs": [
+        "Uzrok nije potpuno razumljiv. Mnogi slučajevi počinju nakon infekcije kao što je infektivna mononukleoza ili, u novije vrijeme, COVID-19. Istražuju se promjene imunološkog sustava, živčanog sustava i energetskog metabolizma. Ne postoji jedna pretraga pa liječnici dijagnosticiraju ME/CFS prema simptomima, koji traju najmanje nekoliko mjeseci, i isključivanjem drugih stanja kao što su anemija, bolest štitnjače, poremećaji spavanja ili depresija."
+      ]
+    },
+    {
+      "heading": "Dozirano raspoređivanje i upravljanje energijom",
+      "paragraphs": [
+        "Dozirano raspoređivanje znači balansiranje aktivnosti i odmora kako biste ostali unutar svojih energetskih granica i izbjegli izazivanje urušavanja. Dijeljenje zadataka na male korake, planiranje odmora prije i poslije aktivnosti i vođenje dnevnika pomažu pronaći vaše granice. Postupno povećavano vježbanje koje se probija kroz simptome može pogoršati bolest i ne preporučuje se osobama s postnaporom malaksalošću."
+      ]
+    },
+    {
+      "heading": "Liječenje simptoma",
+      "paragraphs": [
+        "Liječenje se usredotočuje na pojedinačne simptome. Bol, problemi sa spavanjem, vrtoglavica, probavne tegobe i loše raspoloženje mogu se liječiti prikladnim mjerama ili lijekovima. Psihološka potpora pomaže u nošenju, iako je ME/CFS tjelesna bolest i nije uzrokovana depresijom ili lijenošću. Pomagala kao što su invalidska kolica ili sjedalo za tuš štede energiju."
+      ]
+    },
+    {
+      "heading": "Potpora i svakodnevni život",
+      "paragraphs": [
+        "Mnogi bolesnici suočavaju se s nevjericom pa su informirani liječnici, obitelj i poslodavci važni. Prilagodbe na poslu ili u školi, pomoć kod kuće i financijska potpora mogu napraviti veliku razliku. Udruge bolesnika nude savjete. Osobe s vrlo teškim ME/CFS-om mogu biti prikovane za krevet i trebaju specijaliziranu skrb."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planiranje tjedna",
+      "text": "Zamislite da imate obiteljski događaj u subotu. Mogli biste planirati mirne dane prije i poslije, praviti stanke tijekom događaja i ograničiti druge zadatke tog tjedna."
+    },
+    {
+      "title": "Objašnjavanje drugima",
+      "text": "Pretpostavite da kolege ne razumiju vaša ograničenja. Mogli biste podijeliti kratko pisano objašnjenje od liječnika i predložiti konkretne promjene kao što je fleksibilno radno vrijeme."
+    }
+  ],
+  "questions": [
+    "Može li neko drugo stanje koje se može liječiti objasniti moje simptome i koje su pretrage potrebne?",
+    "Kako mogu dozirano rasporediti aktivnosti i tko mi može pomoći u planiranju?",
+    "Koje su usluge i naknade dostupne za moju potporu?"
+  ]
+}

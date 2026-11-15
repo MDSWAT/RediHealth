@@ -1,0 +1,51 @@
+{
+  "title": "Melanomul",
+  "intro": "Melanomul este un tip de cancer de piele care se dezvoltă din celulele producătoare de pigment. Este mai rar decât alte cancere de piele, dar mai periculos, deoarece se poate răspândi. Descoperit devreme, este de obicei vindecat printr-o mică intervenție chirurgicală, deci este important să cunoașteți semnele de alarmă și să faceți verificarea alunițelor suspecte.",
+  "sections": [
+    {
+      "heading": "Cauze și factori de risc",
+      "paragraphs": [
+        "Cauza principală este radiația ultravioletă de la soare și de la solarii, mai ales arsurile solare repetate. Riscul este mai mare la pielea deschisă la culoare, la persoanele cu multe alunițe, cu alunițe atipice, cu antecedente familiale de melanom, cu un melanom anterior și cu imunitate scăzută. Melanomul poate apărea și pe piele rar expusă la soare, pe unghii sau în ochi."
+      ]
+    },
+    {
+      "heading": "Semne de alarmă",
+      "paragraphs": [
+        "Regula ABCDE ajută: Asimetrie, margine (Border) neregulată, culoare (Colour) neuniformă, diametru mai mare de aproximativ șase milimetri și evoluție sau schimbare. O aluniță nouă sau care se schimbă, care mănâncă, sângerează sau arată diferit de celelalte trebuie verificată. Nu toate melanoamele sunt închise la culoare; unele sunt roz sau fără culoare."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Un dermatolog examinează pielea, adesea cu un dermatoscop. O aluniță suspectă este îndepărtată complet și examinată la microscop. Grosimea tumorii, măsurată în milimetri, este cel mai important factor pentru prognostic. Ganglionii limfatici pot fi verificați, iar scanările se folosesc pentru melanoamele mai groase sau mai avansate."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Melanomul timpuriu se tratează prin excizie largă, îndepărtând tumora și o margine de piele normală. Pentru tumorile mai groase poate fi recomandată o biopsie a ganglionului santinelă. Pentru melanomul în stadiile III și IV, tratamentele moderne includ imunoterapia și medicamentele țintite care blochează anumite mutații, adesea combinate cu chirurgia sau radioterapia. Acestea au îmbunătățit mult supraviețuirea, deși pot provoca efecte secundare importante, care necesită monitorizare."
+      ]
+    },
+    {
+      "heading": "Urmărire și prevenire",
+      "paragraphs": [
+        "După tratament, controalele regulate ale pielii și autoexaminarea depistează recidivele și melanoamele noi. Protejați-vă pielea de soare, evitați solariile și fotografiați-vă alunițele pentru a urmări schimbările. Spuneți rudelor despre riscul lor crescut."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Verificarea pielii",
+      "text": "Imaginați-vă că hotărâți să vă examinați pielea în fiecare lună. Ați putea folosi o oglindă sau ați putea ruga partenerul să se uite la spate, ați putea fotografia alunițele și le-ați putea compara în timp."
+    },
+    {
+      "title": "Înțelegerea unui rezultat",
+      "text": "Presupuneți că alunița dumneavoastră a fost îndepărtată și s-a dovedit a fi un melanom subțire. Ați putea întreba ce înseamnă grosimea pentru urmărire, dacă este nevoie de o nouă operație și cât de des trebuie să vă controlați."
+    }
+  ],
+  "questions": [
+    "Care dintre alunițele mele trebuie monitorizate și cât de des ar trebui să-mi verific pielea?",
+    "În ce stadiu este melanomul meu și ce tratament se recomandă?",
+    "Ce program de urmărire voi avea și cum îmi pot proteja pielea?"
+  ]
+}

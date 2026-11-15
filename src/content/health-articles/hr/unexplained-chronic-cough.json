@@ -1,0 +1,51 @@
+{
+  "title": "Neobjašnjen kronični kašalj",
+  "intro": "Kašalj koji traje dulje od osam tjedana naziva se kroničnim. Česti uzroci uključuju pušenje, astmu, refluks, slijevanje sekreta iz nosa i određene lijekove, ali ponekad se unatoč pretragama uzrok ne može pronaći. Pronalazak i liječenje svakog uzroka je prvi korak, a posebne terapije mogu pomoći kada ga nema.",
+  "sections": [
+    {
+      "heading": "Česti uzroci",
+      "paragraphs": [
+        "Česti uzroci su pušenje, astma, slijevanje sekreta iz nosa i sinusa u grlo, kiselinski refluks, kronični bronhitis i KOPB te tablete za krvni tlak iz skupine ACE inhibitora. Rjeđe su odgovorne infekcije pluća, bronhiektazije, rak pluća, zatajenje srca ili tuberkuloza. Više uzroka može postojati istodobno."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Liječnik pita o kašlju, pušenju, lijekovima, simptomima poput žgaravice ili piskanja i gubitku težine. Obično se radi pregled i rendgen prsnog koša. Testovi disanja provjeravaju postoji li astma ili KOPB. Daljnje pretrage kao što su CT, bronhoskopija ili testovi za refluks koriste se selektivno. Iskašljavanje krvi, gubitak težine, nedostatak zraka, vrućica ili dob preko pedeset godina uz povijest pušenja zahtijevaju žurnu procjenu."
+      ]
+    },
+    {
+      "heading": "Liječenje uzroka",
+      "paragraphs": [
+        "Prestanak pušenja je ključan. Zamjena ACE inhibitora drugim lijekom za krvni tlak često prekida kašalj unutar nekoliko tjedana. Isprobavaju se liječenja astme, sprejevi za nos i liječenja refluksa jer probno liječenje može pokazati uzrok. Mjere načina života kod refluksa uključuju izbjegavanje kasnih obroka i podizanje uzglavlja kreveta."
+      ]
+    },
+    {
+      "heading": "Kada se uzrok ne pronađe",
+      "paragraphs": [
+        "Neki ljudi imaju preosjetljiv refleks kašlja, ponekad zvan refraktorni ili neobjašnjen kronični kašalj. Tehnike logopedske terapije za kontrolu kašlja i neki lijekovi koji moduliraju živce u niskim dozama mogu smanjiti kašalj. Novi lijekovi koji ciljaju receptore kašlja su proučavani. Sredstva za suzbijanje kašlja dostupna bez recepta ne pomažu mnogo."
+      ]
+    },
+    {
+      "heading": "Život s njim",
+      "paragraphs": [
+        "Kronični kašalj može poremetiti san, uzrokovati inkontinenciju, promuklost, bol u prsima ili mišićima i nelagodu. Pijuckajte vodu, izbjegavajte nadražujuće tvari, koristite pastile za grlo i ovlažite zrak. Pitajte o specijaliziranim klinikama za kašalj, potpori i tehnikama poput strategija gutanja ili disanja kao odgovora na potrebu za kašljanjem."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregled lijekova",
+      "text": "Zamislite da imate suh kašalj otkako ste počeli uzimati tabletu za krvni tlak. Mogli biste pitati liječnika je li to ACE inhibitor i bi li prikladna bila alternativa."
+    },
+    {
+      "title": "Učenje kontrole kašlja",
+      "text": "Pretpostavite da uzrok nije pronađen. Mogli biste zatražiti uputnicu logopedu za tehnike suzbijanja kašlja."
+    }
+  ],
+  "questions": [
+    "Što bi moglo uzrokovati moj kašalj i koje su pretrage potrebne?",
+    "Može li jedan od mojih lijekova biti odgovoran?",
+    "Koja liječenja postoje ako se uzrok ne pronađe?"
+  ]
+}

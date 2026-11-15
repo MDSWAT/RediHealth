@@ -1,0 +1,51 @@
+{
+  "title": "Tulburările de dezvoltare motorie la copii",
+  "intro": "Copiii învață să stea în șezut, să se târască, să meargă, să apuce și să alerge în ritmuri diferite, dar unii au întârzieri clare sau dificultăți de mișcare și coordonare. Tulburările de dezvoltare motorie pot afecta jocul, școala și stima de sine. Evaluarea și terapia timpurie ajută mulți copii să recupereze sau să se descurce mai bine.",
+  "sections": [
+    {
+      "heading": "Dezvoltarea normală",
+      "paragraphs": [
+        "Cei mai mulți bebeluși își ridică capul în primele luni, se rostogolesc, stau în șezut fără sprijin în jurul vârstei de șase până la nouă luni, se târăsc sau se deplasează în fund și fac primii pași între aproximativ nouă și optsprezece luni. Abilitățile motorii fine, precum apucarea, desenul și folosirea tacâmurilor, se dezvoltă în anii preșcolari. Există o gamă largă de normalitate."
+      ]
+    },
+    {
+      "heading": "Semne de îngrijorare",
+      "paragraphs": [
+        "Posibilele semne de alarmă includ lipsa mersului la aproximativ optsprezece luni, mușchi foarte moi sau rigizi, folosirea doar a unei jumătăți a corpului, pierderea unor abilități, neîndemânare persistentă, căderi frecvente, dificultăți la legatul șireturilor, la scris sau la jocurile cu mingea, mai mari decât ale celorlalți copii, și evitarea activităților fizice. Nașterea prematură și unele afecțiuni medicale cresc riscul."
+      ]
+    },
+    {
+      "heading": "Cauze și evaluare",
+      "paragraphs": [
+        "Cauzele includ prematuritatea, leziunea cerebrală la naștere, afecțiunile genetice sau musculare și afecțiuni precum tulburarea de coordonare a dezvoltării, în care nu se găsește o cauză clară. Un pediatru examinează copilul, verifică auzul, vederea și creșterea și poate trimite la neurologi sau la centre specializate de dezvoltare. Testele standard evaluează abilitățile motorii și exclud alte afecțiuni."
+      ]
+    },
+    {
+      "heading": "Terapie și sprijin",
+      "paragraphs": [
+        "Kinetoterapia și terapia ocupațională dezvoltă forța, echilibrul, coordonarea și abilitățile de viață zilnică prin exerciții sub formă de joc. Exersarea unor sarcini specifice este cea mai eficientă. Ajutoare precum suporturile speciale pentru creion sau alte sprijine pot ajuta, iar terapeuții îi sfătuiesc pe părinți cu privire la activități acasă. Pentru unele afecțiuni neurologice se adaugă medicamente sau îngrijire ortopedică."
+      ]
+    },
+    {
+      "heading": "Ajutorul acasă și la școală",
+      "paragraphs": [
+        "Încurajați jocul activ, alergatul, cățăratul și jocurile cu mingea, fără presiune. Cereți răbdare din partea profesorilor, timp suplimentar și alternative la sport. Concentrați-vă pe punctele forte și lăudați progresul, deoarece copiii cu probleme motorii se pot simți rușinați sau pot evita activitățile de grup."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exprimarea îngrijorărilor",
+      "text": "Imaginați-vă că cel de doi ani al dumneavoastră încă nu merge și cade des. Ați putea nota ce poate și ce nu poate face, ați putea duce un clip video la pediatru și ați putea întreba despre o trimitere pentru evaluare."
+    },
+    {
+      "title": "Sprijinul la școală",
+      "text": "Presupuneți că copilul dumneavoastră de opt ani are dificultăți la scris. Ați putea discuta cu profesorul opțiuni precum hârtie mai mare, suporturi pentru creion, timp suplimentar sau folosirea unei tastaturi."
+    }
+  ],
+  "questions": [
+    "Se încadrează dezvoltarea copilului meu în limitele normale și ce evaluare suplimentară este necesară?",
+    "Ce terapie ar ajuta copilul meu și cât de des?",
+    "Cum ne putem sprijini copilul acasă și la școală?"
+  ]
+}

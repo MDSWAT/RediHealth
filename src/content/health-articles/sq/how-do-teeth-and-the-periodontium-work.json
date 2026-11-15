@@ -1,0 +1,51 @@
+{
+  "title": "Dhëmbët dhe indet mbështetëse",
+  "intro": "Dhëmbët presin e bluajnë dhe ndihmojnë zërin e pamjen. Mbështeten nga periodonti i gjallë. Pa dhimbje nuk do të thotë i shëndetshëm; sëmundja e mishrave përparon para lëvizjes.",
+  "sections": [
+    {
+      "heading": "Shtresat",
+      "paragraphs": [
+        "Kurora ka smalt, poshtë dentinë. Pulpa ka nerva e enë. Rrënja ka cement, jo smalt; tërheqja e mishrave ekspozon sipërfaqe tjetër me ndjeshmëri."
+      ]
+    },
+    {
+      "heading": "Ankorimi",
+      "paragraphs": [
+        "Ligamenti periodontal lidh rrënjën me kockën dhe amortizon. Mishrat mbyllin e mbrojnë. Dhëmbi nuk është ngjitur thjesht në kockë; mbështetja dëmtohet veç kariesit."
+      ]
+    },
+    {
+      "heading": "Pllaka",
+      "paragraphs": [
+        "Bakteret shkaktojnë karies ose inflamacion. Vazhdueshmëria dëmton lidhjen e kockën. Gjakosja do kujdes e këshillë, jo ndalim pastrimi."
+      ]
+    },
+    {
+      "heading": "Mbrojtja",
+      "paragraphs": [
+        "Lani butësisht me fluor dhe pastroni mes dhëmbëve. Ulni ushqimet e ëmbla të shpeshta, diskutoni gojën e thatë, duhanin e diabetin. Kontrolloni edhe mishrat; zbardhimi nuk trajton sëmundjen."
+      ]
+    },
+    {
+      "heading": "Urgjenca",
+      "paragraphs": [
+        "Dhimbja, ënjtja, thyerja ose dhëmbi i lëvizshëm duan kontroll. Fytyra e ënjtur me ethe do dentist urgjent; fryma ose gëlltitja e vështirë emergjencë. Dhëmbi i përhershëm i dalë do shpejtësi, i qumështit nuk rivendoset. Para konsultës, shënoni kur filloi simptoma, çfarë e lehtëson ose përkeqëson dhe si ndikon në veprimtaritë e zakonshme. Merrni raportet e mëparshme nëse i keni. Kërkojini profesionistit ta lidhë shpjegimin me gjetjet tuaja; një përshkrim i përgjithshëm nuk vendos diagnozën."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka gjakosje pa dhimbje. Shkon te dentisti dhe mëson pastrim ndërmjet, jo mungesën e dhimbjes si shëndet."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ka ndjeshmëri te mishrat e tërhequr. Dentisti kontrollon shkakun para zbardhimeve të përsëritura."
+    }
+  ],
+  "questions": [
+    "Cilat hapa sqarohen me diagram?",
+    "Çfarë tregon shpjegimi dhe çfarë nuk parashikon?",
+    "A kërkon shqetësimi im vlerësim profesional?"
+  ]
+}

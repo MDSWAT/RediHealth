@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă într-un studiu al somnului?",
+  "intro": "Un studiu al somnului, sau polisomnografia, înregistrează activitatea corpului în timpul somnului pentru a afla de ce cineva doarme prost sau se simte obosit ziua. Ajută la diagnosticarea unor afecțiuni precum apneea în somn, sindromul picioarelor neliniștite, narcolepsia și mișcările anormale în somn. Este nedureros, dar durează o noapte întreagă.",
+  "sections": [
+    {
+      "heading": "De ce se face",
+      "paragraphs": [
+        "Poate fi recomandat pentru sforăit puternic cu pauze în respirație, somnolență extremă în timpul zilei, somn neodihnitor, comportament neobișnuit noaptea, precum somnambulismul, picioare neliniștite sau suspiciune de narcolepsie. Studiul arată cât timp dormiți, ce stadii atingeți și cât de des se oprește respirația."
+      ]
+    },
+    {
+      "heading": "Tipuri de studii",
+      "paragraphs": [
+        "Un studiu în laborator se face peste noapte într-un centru de somn, cu un tehnician care monitorizează. Un test simplificat la domiciliu măsoară respirația, oxigenul și frecvența cardiacă și este folosit mai ales când apneea în somn este probabilă. Unele teste, precum testul latențelor multiple ale somnului, se fac ziua pentru a măsura cât de repede adormiți."
+      ]
+    },
+    {
+      "heading": "Ce se măsoară",
+      "paragraphs": [
+        "Mici senzori sunt atașați pe scalp, față, piept, picioare și deget pentru a înregistra undele cerebrale, mișcările ochilor, activitatea musculară, ritmul inimii, efortul respirator, fluxul de aer și nivelul oxigenului. Un microfon și o cameră înregistrează sforăitul și mișcările. Senzorii se atașează cu bandă sau pastă și nu dor."
+      ]
+    },
+    {
+      "heading": "Pregătirea pentru noapte",
+      "paragraphs": [
+        "Păstrați rutina obișnuită, evitați cafeaua după-amiaza și evitați alcoolul și somnul de zi dacă vi se cere. Aduceți haine de noapte comode și medicamentele obișnuite. Cei mai mulți oameni dorm, chiar dacă mai puțin bine decât acasă. Spuneți personalului despre orice probleme cu echipamentul."
+      ]
+    },
+    {
+      "heading": "Rezultate și tratament",
+      "paragraphs": [
+        "Un specialist analizează datele, iar rezultatele sunt comunicate în câteva zile până la săptămâni. Tratamentul depinde de constatare, de exemplu o mască care furnizează aer sub presiune pentru apneea în somn, dispozitive dentare, scădere în greutate, medicamente sau terapie comportamentală. Urmărirea verifică dacă tratamentul funcționează."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea",
+      "text": "Imaginați-vă că aveți mâine seară un test de somn. Ați putea evita cafeaua după-amiaza, aduce medicamentele obișnuite și purta haine de noapte comode."
+    },
+    {
+      "title": "Analiza rezultatelor",
+      "text": "Presupuneți că studiul arată apnee în somn. Ați putea întreba despre tratamentul cu mască și cum vă puteți obișnui cu ea."
+    }
+  ],
+  "questions": [
+    "Ce tip de studiu al somnului este potrivit pentru mine?",
+    "Ce înseamnă rezultatele pentru oboseala mea de peste zi?",
+    "Ce opțiuni de tratament există dacă se găsește o problemă?"
+  ]
+}

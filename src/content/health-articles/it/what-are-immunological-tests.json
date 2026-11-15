@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa sono gli esami immunologici",
+  "intro": "Gli esami immunologici esaminano componenti del sistema immunitario, come anticorpi, cellule immunitarie e molecole di segnalazione. Si usano per diagnosticare infezioni, allergie, malattie autoimmuni e immunodeficienze e per controllare se la vaccinazione ha dato protezione. I risultati vanno interpretati nel contesto.",
+  "sections": [
+    {
+      "heading": "Esami degli anticorpi",
+      "paragraphs": [
+        "Gli esami degli anticorpi misurano proteine che il sistema immunitario produce contro i germi o contro i tessuti del corpo stesso. Possono mostrare un'infezione passata o in corso, come epatite o HIV, l'immunità dopo la vaccinazione, come per rosolia o epatite B, e malattie autoimmuni, come gli anticorpi antinucleo nel lupus o gli anti-CCP nell'artrite reumatoide. Un esame positivo non significa sempre malattia e uno negativo non sempre la esclude."
+      ]
+    },
+    {
+      "heading": "Esami per le allergie",
+      "paragraphs": [
+        "Gli esami del sangue possono misurare gli anticorpi IgE specifici verso sostanze come pollini, acari, cibi o veleno di insetti. Si usano insieme alla storia clinica e ai test cutanei. Un risultato positivo mostra una sensibilizzazione, cioè che il sistema immunitario ha prodotto anticorpi, ma non necessariamente che la persona abbia sintomi quando è esposta."
+      ]
+    },
+    {
+      "heading": "Conta e funzione delle cellule",
+      "paragraphs": [
+        "Gli emocromi mostrano il numero dei globuli bianchi e la citometria a flusso conta i sottotipi di linfociti, come i linfociti T e B, il che è importante nell'HIV e nelle immunodeficienze. Altri esami misurano quanto bene funzionano le cellule immunitarie o i livelli di proteine come il complemento e le immunoglobuline."
+      ]
+    },
+    {
+      "heading": "Infiammazione e altri marcatori",
+      "paragraphs": [
+        "Esami come la proteina C reattiva e la velocità di eritrosedimentazione indicano un'infiammazione generale. Sono aspecifici, perché salgono nelle infezioni e in molte altre condizioni. I marcatori tumorali sono a volte chiamati esami immunologici, ma hanno un valore limitato per lo screening."
+      ]
+    },
+    {
+      "heading": "Capire i risultati",
+      "paragraphs": [
+        "I valori normali differiscono tra i laboratori. Gli esami si interpretano con i sintomi e altri reperti e a volte si ripetono. Evita di richiedere esami senza motivo medico, perché i falsi positivi possono portare ad ansia e procedure inutili. Chiedi che cosa significa il risultato per il trattamento."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Controllare la protezione vaccinale",
+      "text": "Immagina di lavorare in ambito sanitario e di aver bisogno della prova di immunità all'epatite B. Potresti chiedere al medico un esame degli anticorpi e conservare il risultato con il libretto delle vaccinazioni."
+    },
+    {
+      "title": "Interpretare un risultato positivo",
+      "text": "Supponi che il tuo esame degli anticorpi antinucleo sia positivo ma tu stia bene. Potresti chiedere se è significativo e se servano altri esami."
+    }
+  ],
+  "questions": [
+    "Quale esame è appropriato per il mio problema?",
+    "Che cosa significa per me un risultato positivo o negativo?",
+    "Alcuni risultati devono essere ripetuti?"
+  ]
+}

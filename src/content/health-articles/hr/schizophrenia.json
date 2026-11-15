@@ -1,0 +1,52 @@
+{
+  "title": "Shizofrenija",
+  "intro": "Shizofrenija je ozbiljna mentalna bolest koja utječe na mišljenje, percepciju, emocije i ponašanje. Ljudi mogu doživljavati halucinacije ili sumanute misli te se povlačiti od drugih. Liječiva je, a mnogi se osjetno oporave uz lijekove, psihološku terapiju i društvenu potporu. Stigma je veliki teret koji razumijevanje može smanjiti.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Pozitivni simptomi uključuju čuti glasove koje drugi ne čuju, čvrsta pogrešna uvjerenja kao što su da vas netko promatra ili progoni te neorganiziran govor ili ponašanje. Negativni simptomi uključuju gubitak motivacije, smanjeno izražavanje emocija, društveno povlačenje i teškoće u uživanju u aktivnostima. Česti su i problemi s pažnjom i pamćenjem. Simptomi često počinju u kasnoj adolescenciji ili ranoj odrasloj dobi."
+      ]
+    },
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Ne postoji jedan uzrok. Genetska ranjivost, razvoj mozga, komplikacije pri porodu, uporaba kanabisa, snažan stres i trauma mogu imati ulogu. Shizofrenija nije uzrokovana lošim roditeljstvom i ne znači podvojenu osobnost. Većina ljudi sa shizofrenijom nije nasilna i češće su žrtve nego počinitelji nasilja."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Antipsihotici smanjuju halucinacije i sumanute misli te sprječavaju povratak bolesti. Odabir pravog lijeka uključuje ravnotežu između učinkovitosti i nuspojava, kao što su debljanje, pospanost, problemi s pokretima i metaboličke promjene, koje treba pratiti. Injekcije dugog djelovanja mogu pomoći ljudima kojima je teško svakodnevno uzimati tablete. Naglo prekidanje lijekova povećava rizik od povratka bolesti i treba ga činiti samo uz liječnički savjet.",
+        "Kognitivno-bihevioralna terapija, obrazovanje obitelji, trening vještina, podržano zapošljavanje i smještaj pomažu oporavku. Važno je izbjegavati kanabis i druge droge."
+      ]
+    },
+    {
+      "heading": "Kriza i bolničko liječenje",
+      "paragraphs": [
+        "Tijekom akutne epizode može biti potrebno bolničko liječenje, ponekad i nedobrovoljno ako postoji ozbiljna opasnost za sebe ili druge, uz zakonske zaštite. Rano liječenje poboljšava ishode pa potražite pomoć kad se pojave prvi znakovi. U krizi se obratite hitnim službama."
+      ]
+    },
+    {
+      "heading": "Život sa shizofrenijom",
+      "paragraphs": [
+        "Redovite rutine, san, tjelovježba i potporni odnosi smanjuju povratke bolesti. Potpora vršnjaka, grupe samopomoći i usluge usmjerene na oporavak pomažu ljudima da obnove život, a i obitelji imaju koristi od informacija i potpore. Pazite na tjelesno zdravlje jer ljudi sa shizofrenijom imaju veću učestalost bolesti srca i dijabetesa."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Podrška rođaku",
+      "text": "Zamislite da je vaš brat uvjeren da ga drugi promatraju. Mogli biste ostati mirni, ne svađati se oko tog uvjerenja, izraziti brigu zbog njegove patnje i potaknuti ga da posjeti liječnika."
+    },
+    {
+      "title": "Planiranje za povratak bolesti",
+      "text": "Pretpostavite da ste već imali epizodu. Mogli biste sa svojim timom za skrb napisati plan za krizu s popisom ranih znakova upozorenja, osoba od povjerenja i vaših želja o liječenju."
+    }
+  ],
+  "questions": [
+    "Koji je lijek najbolji za mene i kako će se pratiti nuspojave?",
+    "Koje su terapije i usluge potpore dostupne?",
+    "Kako mogu ja i moja obitelj prepoznati rane znakove povratka bolesti?"
+  ]
+}

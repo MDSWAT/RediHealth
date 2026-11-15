@@ -1,0 +1,51 @@
+{
+  "title": "Razumijevanje pretraga štitnjače",
+  "intro": "Pretrage štitnjače pomažu dijagnosticirati pojačanu ili smanjenu funkciju štitnjače, povećanje štitnjače i rak štitnjače. Uključuju krvne pretrage, ultrazvuk te ponekad snimanja ili biopsije. Znati što rezultati znače može olakšati praćenje pregleda.",
+  "sections": [
+    {
+      "heading": "Krvne pretrage",
+      "paragraphs": [
+        "Hormon koji stimulira štitnjaču, koji stvara hipofiza, obično je prva pretraga. Raste kada je štitnjača slabije aktivna, a pada kada je prekomjerno aktivna. Slobodni tiroksin i ponekad slobodni trijodtironin mjere stvarne hormone štitnjače. Zajedno pokazuju radi li štitnjača previše ili premalo."
+      ]
+    },
+    {
+      "heading": "Testovi protutijela",
+      "paragraphs": [
+        "Protutijela protiv štitnjače, kao što su anti-TPO i anti-tireoglobulin, prisutna su kod autoimune bolesti štitnjače poput Hashimotove. Protutijela koja stimuliraju receptor za TSH nalaze se kod Gravesove bolesti. Ti testovi pomažu pronaći uzrok, ali nisu uvijek potrebni."
+      ]
+    },
+    {
+      "heading": "Ultrazvuk",
+      "paragraphs": [
+        "Ultrazvuk koristi zvučne valove za prikaz štitnjače, pokazuje njezinu veličinu i svaki čvor, uključujući jesu li čvrsti ili cistični te koje značajke djeluju sumnjivo. Bezbolan je, brz i ne koristi zračenje. Glavna je metoda snimanja za gušu i čvorove."
+      ]
+    },
+    {
+      "heading": "Snimanja i biopsija",
+      "paragraphs": [
+        "Scintigrafija štitnjače koristi malu količinu radioaktivnog biljega za prikaz područja štitnjače koja su aktivna, što pomaže razlikovati prekomjerno aktivne čvorove od neaktivnih. Ako čvor na ultrazvuku izgleda sumnjivo, aspiracija tankom iglom uzima nekoliko stanica tankom iglom za pregled pod mikroskopom. Većina čvorova pokaže se dobroćudnima."
+      ]
+    },
+    {
+      "heading": "Praktični savjeti",
+      "paragraphs": [
+        "Recite liječniku o lijekovima za štitnjaču, dodacima poput biotina, koji mogu iskriviti rezultate, i trudnoći. Korisnike levotiroksina često se traži da uzmu tabletu nakon vađenja krvi. Rezultati mogu varirati tijekom bolesti pa je ponekad potrebno ponovno testiranje. Pitajte kada je sljedeći test."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za vađenje krvi",
+      "text": "Zamislite da ujutro uzimate levotiroksin. Mogli biste pitati treba li krv izvaditi prije tablete i ponijeti popis dodataka."
+    },
+    {
+      "title": "Razumijevanje čvora",
+      "text": "Pretpostavite da ultrazvuk pokaže čvor na štitnjači. Mogli biste pitati koje su značajke viđene, treba li biopsija i koliko često ga treba provjeravati."
+    }
+  ],
+  "questions": [
+    "Koje pretrage štitnjače trebam i što rezultati znače?",
+    "Mogu li moji lijekovi ili dodaci utjecati na rezultate?",
+    "Treba li moj čvor na štitnjači biopsiju?"
+  ]
+}

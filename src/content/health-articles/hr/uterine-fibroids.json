@@ -1,0 +1,51 @@
+{
+  "title": "Miomi maternice",
+  "intro": "Miomi su nezloćudne tvorbe u mišićnoj stijenci maternice. Vrlo su česti, a mnoge žene nikada ne znaju da ih imaju. Kada uzrokuju obilne menstruacije, bol ili pritisak, postoje mnoge mogućnosti liječenja, od lijekova do operacije.",
+  "sections": [
+    {
+      "heading": "Što su miomi",
+      "paragraphs": [
+        "Miomi variraju u veličini od sitnih do veličine dinje, a mogu biti pojedinačni ili višestruki. Opisuju se prema položaju: unutar stijenke, ispod sluznice, ispupčeni u šupljinu ili na vanjskoj površini. Njihov rast ovisi o estrogenu i progesteronu pa često rastu tijekom reproduktivnih godina i smanjuju se nakon menopauze. Obiteljska povijest, prekomjerna težina i afričko podrijetlo povećavaju rizik."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Mnoge žene nemaju nikakve. Česti simptomi su obilne ili produljene menstruacije koje mogu uzrokovati anemiju, menstrualna bol, zdjelični pritisak ili punoća, često mokrenje, zatvor, bol u leđima, bol pri spolnom odnosu i, ponekad, teškoće sa začećem ili komplikacije u trudnoći. Iznenadna jaka bol može nastati ako mioma izgubi opskrbu krvlju ili se uvrne."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Miomi se otkrivaju pri ginekološkom pregledu i potvrđuju ultrazvukom. MR može pomoći u planiranju liječenja. Krvne pretrage provjeravaju anemiju. Miomi koji ne uzrokuju probleme obično ne trebaju liječenje, samo povremeni pregled. Rak u miomu je izuzetno rijedak."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Kod obilnog krvarenja mogućnosti uključuju hormonske spirale, tablete koje smanjuju krvarenje, hormonska liječenja koja neko vrijeme smanjuju miome te željezo za anemiju. Zahvati uključuju uklanjanje mioma uz očuvanje maternice (miomektomiju), blokiranje njihove opskrbe krvlju embolizacijom, ablaciju toplinom ili ultrazvučnom energijom i histerektomiju, koja uklanja maternicu i trajno rješava problem. Izbor ovisi o simptomima, veličini, položaju, dobi i željama o trudnoći."
+      ]
+    },
+    {
+      "heading": "Plodnost i trudnoća",
+      "paragraphs": [
+        "Većina žena s miomima začne i ima normalne trudnoće. Miomi koji deformiraju šupljinu mogu smanjiti plodnost ili povećati rizik od spontanog pobačaja, a veliki mogu uzrokovati komplikacije pri porodu. Razgovarajte o planovima za trudnoću prije liječenja jer neki zahvati mogu utjecati na nju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Opis menstruacija",
+      "text": "Zamislite da su vam menstruacije postale obilne i duge. Mogli biste voditi evidenciju dana i izmjena uložaka i donijeti je na pregled."
+    },
+    {
+      "title": "Usporedba mogućnosti",
+      "text": "Pretpostavite da želite zadržati maternicu. Mogli biste pitati ginekologa o miomektomiji i embolizaciji te što svaka znači za plodnost."
+    }
+  ],
+  "questions": [
+    "Uzrokuju li moje simptome miomi i trebam li liječenje?",
+    "Koje mogućnosti čuvaju moju maternicu i plodnost?",
+    "Koji su rizici i oporavak za svaki zahvat?"
+  ]
+}

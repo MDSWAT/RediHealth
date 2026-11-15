@@ -1,0 +1,51 @@
+{
+  "title": "Poliartrita reumatoidă",
+  "intro": "Poliartrita reumatoidă este o boală autoimună cronică în care sistemul imunitar atacă căptușeala articulațiilor, provocând durere, umflare și rigiditate, adesea la ambele mâini și picioare. Fără tratament poate deteriora permanent articulațiile. Tratamentul timpuriu cu medicamente care modifică evoluția bolii controlează inflamația la cele mai multe persoane.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele tipice sunt articulații dureroase și umflate de ambele părți ale corpului, în special articulațiile mici ale mâinilor și picioarelor, rigiditatea matinală care durează mai mult de jumătate de oră, oboseala, febra ușoară și pierderea poftei de mâncare. Puseele alternează cu perioade mai liniștite. Boala poate afecta și plămânii, ochii, inima și vasele de sânge."
+      ]
+    },
+    {
+      "heading": "Cauze și factori de risc",
+      "paragraphs": [
+        "Cauza nu este pe deplin înțeleasă. Genele, hormonii și factorii de mediu, precum fumatul, contribuie. Este mai frecventă la femei și începe adesea la vârsta mijlocie, dar poate apărea la orice vârstă. Fumatul crește riscul și reduce efectul tratamentului."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Diagnosticul se bazează pe simptome, pe examinarea articulațiilor, pe analize de sânge, inclusiv factorul reumatoid, anticorpii anti-CCP și markerii de inflamație, și pe imagistică precum radiografia, ecografia sau rezonanța magnetică. Trimiterea timpurie la un reumatolog este importantă, ideal în câteva săptămâni de la apariția simptomelor."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Medicamentele care modifică evoluția bolii, cel mai frecvent metotrexatul, încetinesc boala și protejează articulațiile. Dacă nu sunt suficiente, se adaugă medicamente biologice sau tablete țintite, care blochează semnale imune specifice. Curele scurte de corticosteroizi reduc rapid puseele, deși folosirea pe termen lung provoacă efecte secundare. Aceste medicamente necesită analize de sânge regulate și cresc riscul de infecții, așa că raportați devreme febra sau simptomele de infecție. Tratamentul urmărește remisiunea sau o activitate scăzută a bolii și este revizuit regulat."
+      ]
+    },
+    {
+      "heading": "Viața cu boala",
+      "paragraphs": [
+        "Exercițiile, kinetoterapia și terapia ocupațională mențin mobilitatea și învață protejarea articulațiilor. Renunțarea la fumat, o alimentație echilibrată, protecția oaselor și vaccinările verificate sunt importante. Riscul de boli de inimă este mai mare, așa că tensiunea arterială și colesterolul trebuie monitorizate. Oboseala și dispoziția scăzută sunt frecvente, iar sprijinul ajută."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Consultul timpuriu la un specialist",
+      "text": "Imaginați-vă că aveți articulații umflate la degete și rigiditate dimineața de șase săptămâni. Ați putea cere medicului de familie o trimitere urgentă la un reumatolog și ați putea aduce o listă cu articulațiile afectate."
+    },
+    {
+      "title": "Pregătirea pentru tratament",
+      "text": "Presupuneți că începeți metotrexat. Ați putea întreba despre analizele de sânge, vaccinări, alcool și ce să faceți dacă faceți o infecție."
+    }
+  ],
+  "questions": [
+    "Ce tratament este cel mai bun pentru mine și care sunt riscurile?",
+    "Cum vom verifica dacă boala este sub control?",
+    "Ce pot face singur pentru a-mi proteja articulațiile și sănătatea generală?"
+  ]
+}

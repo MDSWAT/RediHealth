@@ -1,0 +1,51 @@
+{
+  "title": "What happens if you get pneumonia in the hospital?",
+  "intro": "Hospital-acquired pneumonia is a lung infection that starts at least two days after admission. It can be more serious than pneumonia caught at home because hospital germs are often resistant to some antibiotics and patients may already be weak. Prevention and early treatment are important.",
+  "sections": [
+    {
+      "heading": "Why it happens",
+      "paragraphs": [
+        "Patients are at higher risk if they are older, have chronic lung or heart disease, are on a ventilator, are unable to cough well after surgery, have swallowing problems or have a weak immune system. Bacteria from the mouth or stomach can be inhaled into the lungs, and some hospital bacteria resist usual antibiotics."
+      ]
+    },
+    {
+      "heading": "Signs",
+      "paragraphs": [
+        "Fever, new or worse cough, thick or coloured phlegm, breathlessness, chest pain, confusion and a faster breathing rate. In older people, confusion or tiredness may be the first signs. Tell staff immediately if you or a family member develop these."
+      ]
+    },
+    {
+      "heading": "Diagnosis and treatment",
+      "paragraphs": [
+        "Doctors examine the chest, take a chest X-ray, blood tests and samples of phlegm. Treatment is with antibiotics, often given by drip at first and chosen to cover resistant bacteria, then adjusted to test results. Oxygen, fluids, physiotherapy and in severe cases intensive care or ventilation may be needed."
+      ]
+    },
+    {
+      "heading": "Recovery",
+      "paragraphs": [
+        "Many people recover within one to two weeks, but older or frailer patients may need longer, and the hospital stay can be extended. Breathing exercises, getting out of bed and good nutrition help. Some people feel tired for weeks afterwards, and a follow-up chest X-ray may be recommended."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Hospitals prevent pneumonia with hand hygiene, mouth care, sitting patients upright, encouraging movement and deep breathing after surgery, and careful use of ventilators and sedatives. Patients can help by cleaning their teeth, stopping smoking before surgery, asking staff about hygiene and moving as soon as allowed."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Doing breathing exercises",
+      "text": "Imagine you have had abdominal surgery. You could take deep breaths, cough gently while supporting the wound and sit up regularly."
+    },
+    {
+      "title": "Raising a concern",
+      "text": "Suppose your relative becomes confused and breathless. You might tell the nurse immediately and ask for a medical review."
+    }
+  ],
+  "questions": [
+    "What caused my pneumonia and which antibiotics are being used?",
+    "How long will I need to stay and recover?",
+    "What can I do to prevent it from returning?"
+  ]
+}

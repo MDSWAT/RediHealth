@@ -1,0 +1,51 @@
+{
+  "title": "When are statins recommended?",
+  "intro": "Statins are medicines that lower cholesterol and reduce the risk of heart attack and stroke. They are recommended mainly for people who already have heart or vascular disease, and for some people with a high risk. The decision depends on individual risk, so it is made together with your doctor.",
+  "sections": [
+    {
+      "heading": "How statins work",
+      "paragraphs": [
+        "Statins block an enzyme in the liver that makes cholesterol, which lowers LDL cholesterol, the harmful kind. They also stabilise fatty deposits in the arteries. Examples include simvastatin, atorvastatin and rosuvastatin. They are usually taken once a day, long term."
+      ]
+    },
+    {
+      "heading": "Who benefits most",
+      "paragraphs": [
+        "People who have had a heart attack, stroke or other cardiovascular disease benefit most, and statins are generally advised for them. Those with very high cholesterol, such as familial hypercholesterolaemia, and many people with diabetes who are older or have other risk factors are also usually advised to take them."
+      ]
+    },
+    {
+      "heading": "Prevention in people without disease",
+      "paragraphs": [
+        "For people without established disease, doctors estimate the ten-year risk of a cardiovascular event, using factors such as age, sex, blood pressure, cholesterol, smoking and diabetes. Statins are considered when the risk is high enough that the benefit outweighs possible side effects. The benefit is smaller in those at low risk, so lifestyle comes first."
+      ]
+    },
+    {
+      "heading": "Side effects",
+      "paragraphs": [
+        "Most people tolerate statins well. Muscle aches are the most common complaint, serious muscle damage is rare. Liver enzyme rises and a small increase in blood sugar may occur. Report severe muscle pain, weakness or dark urine. Some medicines and grapefruit juice interact with certain statins. Statins are not recommended in pregnancy."
+      ]
+    },
+    {
+      "heading": "Lifestyle remains important",
+      "paragraphs": [
+        "A healthy diet, regular activity, not smoking, healthy weight and limiting alcohol lower risk with or without medicine. Do not stop taking statins without talking to your doctor. Cholesterol levels should be checked at agreed intervals."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Discussing risk",
+      "text": "Imagine your cholesterol is high but you have no heart disease. You could ask your doctor to calculate your ten-year risk and explain the numbers."
+    },
+    {
+      "title": "Handling side effects",
+      "text": "Suppose you have muscle aches after starting a statin. You might ask about a lower dose or a different statin before stopping."
+    }
+  ],
+  "questions": [
+    "What is my risk and how much would a statin help me?",
+    "Which statin and dose are right for me?",
+    "Which side effects should I report?"
+  ]
+}

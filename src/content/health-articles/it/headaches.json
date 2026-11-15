@@ -1,0 +1,51 @@
+{
+  "title": "Mal di testa: andamento, terapia e segnali d’allarme",
+  "intro": "Il mal di testa ha molte cause. Cefalea tensiva ed emicrania sono disturbi primari comuni; infezioni, traumi o altre malattie causano cefalee secondarie. Andamento e segni associati guidano la cura.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Annotare pressione o pulsazione, sede, durata, fattori e impatto sulle attività. Nausea, sensibilità alla luce o cambiamenti visivi contano; nessun singolo elemento conferma l’emicrania per tutti."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Il diario include giorni di dolore e tutti gli analgesici. L’esame guida gli accertamenti; non servono immagini di routine per ogni quadro familiare stabile. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "La terapia dipende dalla diagnosi. Analgesici semplici aiutano alcuni attacchi; farmaci specifici o preventivi per emicrania possono servire ad altri. L’uso frequente di antidolorifici può mantenere la cefalea: discutere un piano supervisionato senza aumentare autonomamente le dosi. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Pasti regolari, idratazione, sonno e attività gestibile sostengono la cura. Evitare colpevolizzazioni e ampie restrizioni basate su elenchi generici di fattori scatenanti. Adattamenti scolastici o lavorativi possono ridurre la disabilità. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Cefalea improvvisa massima, nuova debolezza, confusione, febbre con collo rigido, perdita visiva o dolore dopo trauma importante richiedono urgenza. Nuova cefalea forte in gravidanza o dopo il parto necessita valutazione rapida."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira registra giorni dolorosi e analgesici. Il controllo mostra uso crescente e porta a un cambiamento concordato invece di compresse quotidiane più forti."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, La cefalea abituale di Arben diventa improvvisamente intensissima con debolezza al braccio. Cerca soccorso invece di trattarla come attacco ordinario."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

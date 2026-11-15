@@ -1,0 +1,51 @@
+{
+  "title": "Quality assurance: involving experts and patients",
+  "intro": "Reliable health information depends on more than good writing. It needs careful checking by experts and input from the people it is meant to help. Understanding how quality assurance works helps you judge which sources deserve your trust and shows why patient experience matters in shaping information.",
+  "sections": [
+    {
+      "heading": "Why quality assurance matters",
+      "paragraphs": [
+        "Health decisions can have lasting consequences, so errors, outdated advice or biased presentation can cause harm. Quality assurance reduces these risks through defined steps: checking facts against reliable evidence, reviewing wording for clarity and balance, and updating content as knowledge changes."
+      ]
+    },
+    {
+      "heading": "The role of experts",
+      "paragraphs": [
+        "Medical specialists, researchers and methodologists review texts to confirm that the content is accurate, complete and consistent with current evidence. They can point out missing risks, overstated claims or unclear terms. Independent review helps avoid conflicts of interest influencing the message."
+      ]
+    },
+    {
+      "heading": "The role of patients and the public",
+      "paragraphs": [
+        "People living with a condition know what questions matter in daily life, which words confuse and which topics are missing. Their feedback helps make information more understandable and relevant. Patient representatives and support groups may comment on drafts, suggest topics and test whether texts are useful."
+      ]
+    },
+    {
+      "heading": "Handling conflicts of interest",
+      "paragraphs": [
+        "Anyone who contributes should disclose financial or other ties that might affect their judgement. Good sources state who funds them and how they ensure independence. Information paid for by a manufacturer deserves extra scrutiny."
+      ]
+    },
+    {
+      "heading": "What you can look for",
+      "paragraphs": [
+        "Check whether a source names its authors and reviewers, explains how it was prepared, shows its date and sources, invites feedback and corrects errors openly. These features signal a process aimed at reliability. Even then, general information cannot replace advice from your own healthcare team."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Judging a website",
+      "text": "Imagine you find a page about a new treatment. You could look for named experts, a review date, a list of sources and a statement about funding before trusting it."
+    },
+    {
+      "title": "Giving feedback",
+      "text": "Suppose a leaflet confuses you. You might tell the publisher or a patient organisation what was unclear, since such feedback helps improve information."
+    }
+  ],
+  "questions": [
+    "How reliable is this information, and who reviewed it?",
+    "Are there patient organisations that can recommend trustworthy sources on my condition?",
+    "Could commercial interests be influencing what I am reading?"
+  ]
+}

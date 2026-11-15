@@ -1,0 +1,52 @@
+{
+  "title": "Pityriasis versicolor (šarena tinea)",
+  "intro": "Pityriasis versicolor je čest, bezazlen gljivični kožni problem koji uzrokuje mrlje svjetlije ili tamnije kože, uglavnom na trupu i nadlakticama. Nije zarazan i uzrokuje ga kvasac koji normalno živi na koži. Lako se liječi, iako se često vraća, osobito po toplom, vlažnom vremenu.",
+  "sections": [
+    {
+      "heading": "Što ga uzrokuje",
+      "paragraphs": [
+        "Kvasac zvan Malassezia živi na zdravoj koži. U toplim, vlažnim uvjetima, uz masnu kožu, jako znojenje ili ponekad oslabljen imunitet, može se razmnožiti i ometati normalan kožni pigment. Najčešći je kod tinejdžera i mlađih odraslih te u tropskim klimama."
+      ]
+    },
+    {
+      "heading": "Kako izgleda",
+      "paragraphs": [
+        "Okrugle ili ovalne mrlje s finim ljuskama pojavljuju se na prsima, leđima, ramenima i nadlakticama. Mogu biti blijede, ružičaste, preplanule ili smeđe i najuočljivije su nakon izlaganja suncu jer zahvaćena koža ne preplanuje. Svrbež je blag ili ga nema."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Liječnici dijagnosticiraju prema izgledu, ponekad posebnim svjetlom ili mikroskopskim pregledom struganja kože. Druga stanja kao što su vitiligo, ekcem, pityriasis rosea i seboroični dermatitis mogu izgledati slično i razlikuju se pregledom."
+      ]
+    },
+    {
+      "heading": "Liječenje i ponavljanje",
+      "paragraphs": [
+        "Antifungalni šamponi poput ketokonazola ili selenijevog sulfida, nanijeti na kožu nekoliko minuta prije ispiranja, kreme ili sprejevi uklanjaju infekciju. Teški ili rašireni slučajevi mogu zahtijevati antifungalne tablete. Koži može trebati tjedana do mjeseci da se boja izjednači nakon što kvasac nestane, a izlaganje suncu u međuvremenu može mrlje učiniti uočljivijima. Ponavljanje je često pa neki ljudi koriste preventivno pranje jednom ili dvaput mjesečno u sezoni kada se sklona vratiti.",
+        "Nosite prozračnu odjeću, tuširajte se nakon znojenja i izbjegavajte guste masne kreme na zahvaćenoj koži."
+      ]
+    },
+    {
+      "heading": "Kada posjetiti liječnika",
+      "paragraphs": [
+        "Posjetite liječnika ako osip svrbi, brzo se širi, ne reagira na liječenje nakon nekoliko tjedana ili izgleda drukčije od uobičajenog obrasca. Dijagnoza stručnjaka izbjegava nepotrebno liječenje drugih kožnih stanja koja izgledaju slično."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Korištenje šampona",
+      "text": "Zamislite da imate blijede mrlje na leđima. Mogli biste nanijeti antifungalni šampon za vrijeme navedeno na uputi, dobro isprati i ponoviti prema uputi."
+    },
+    {
+      "title": "Sprječavanje povrata",
+      "text": "Pretpostavite da se mrlje vraćaju svakog ljeta. Mogli biste pitati liječnika o mjesečnom preventivnom pranju i nositi lagane, prozračne majice."
+    }
+  ],
+  "questions": [
+    "Je li ovo pityriasis versicolor ili drugo kožno stanje?",
+    "Koje je liječenje najbolje i koliko dugo će trajati promjene boje?",
+    "Kako mogu spriječiti da se vrati?"
+  ]
+}

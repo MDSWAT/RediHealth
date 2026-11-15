@@ -1,0 +1,51 @@
+{
+  "title": "Ce poate ajuta la ameliorarea anxietății înainte de operație",
+  "intro": "Este foarte frecvent să vă simțiți neliniștit înainte de o operație. Anxietatea poate privi anestezia, durerea, rezultatul sau despărțirea de casă. Informarea bună, pregătirea și tehnicile simple de relaxare pot reduce îngrijorarea, iar echipa medicală poate oferi sprijin suplimentar.",
+  "sections": [
+    {
+      "heading": "De ce apare anxietatea",
+      "paragraphs": [
+        "Operația presupune locuri necunoscute, pierderea controlului și teama de necunoscut. Experiențele anterioare, tipul operației și grijile personale legate de boală sau de familie pot crește anxietatea. Anxietatea mare poate crește frecvența cardiacă și tensiunea arterială, iar unele persoane suportă mai greu durerea, motiv pentru care merită atenție."
+      ]
+    },
+    {
+      "heading": "Informare și pregătire",
+      "paragraphs": [
+        "Întrebați chirurgul și medicul anestezist exact ce se va întâmpla, cât va dura, ce veți simți după aceea și când puteți merge acasă. Materialele scrise, videoclipurile sau o vizită prin secție pot ajuta. Notarea întrebărilor în prealabil asigură că nu uitați nimic. Să știți la ce să vă așteptați reduce adesea teama."
+      ]
+    },
+    {
+      "heading": "Relaxare și tehnici mentale",
+      "paragraphs": [
+        "Respirația lentă, relaxarea musculară progresivă, imageria ghidată, ascultarea muzicii și mindfulness s-au dovedit că reduc anxietatea la multe persoane. Puteți exersa în zilele dinaintea operației și puteți folosi căști în sala de așteptare. Mișcarea blândă, un somn bun și evitarea unei cantități prea mari de cafeină ajută de asemenea."
+      ]
+    },
+    {
+      "heading": "Ajutor medical",
+      "paragraphs": [
+        "Dacă anxietatea este severă, spuneți echipei. Uneori se oferă înainte de operație un medicament calmant ușor, iar medicul anestezist poate explica opțiunile. Psihoterapia poate ajuta persoanele cu anxietate de lungă durată sau cu frică puternică de anestezie sau de ace. Nu luați singur somnifere sau sedative înainte de operație fără a verifica."
+      ]
+    },
+    {
+      "heading": "În ziua operației",
+      "paragraphs": [
+        "Aduceți ceva liniștitor, precum muzică sau o carte, și o persoană de încredere, dacă este permis. Spuneți personalului că sunteți neliniștit, pentru ca el să vă liniștească. După aceea, discutați cum a decurs și întrebați despre calmarea durerii, care ajută și la recuperare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exersarea respirației",
+      "text": "Imaginați-vă că vă simțiți încordat în noaptea dinainte. Ați putea inspira lent numărând până la patru și expira numărând până la șase, repetând câteva minute."
+    },
+    {
+      "title": "Punerea de întrebări",
+      "text": "Presupuneți că vă este teamă de anestezie. Ați putea întreba medicul anestezist cum acționează, cum veți fi monitorizat și ce veți simți la trezire."
+    }
+  ],
+  "questions": [
+    "Ce se va întâmpla exact înainte, în timpul și după operație?",
+    "M-ar ajuta un medicament calmant sau alt tip de sprijin?",
+    "Poate rămâne cineva cu mine până intru în sala de operație?"
+  ]
+}

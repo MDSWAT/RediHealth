@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh në pubertet?",
+  "intro": "Pubertati është koha kur trupi i një fëmije shndërrohet në trup të rritur e bëhet i aftë për riprodhim. Nxitet nga hormonet e sjell ndryshime fizike, emocionale e shoqërore. Koha ndryshon midis të rinjve, e kjo është normale.",
+  "sections": [
+    {
+      "heading": "Çfarë e nis pubertetin",
+      "paragraphs": [
+        "Pubertati fillon kur truri i sinjalizon hipofizës të çlirojë hormone që stimulojnë vezoret ose testisët. Te vajzat zakonisht fillon midis rreth tetë e trembëdhjetë vjetësh, e te djemtë midis nëntë e katërmbëdhjetë. Gjenet, ushqyerja, pesha e shëndeti i përgjithshëm ndikojnë kohën."
+      ]
+    },
+    {
+      "heading": "Ndryshimet te vajzat",
+      "paragraphs": [
+        "Zhvillimi i gjinjve është zakonisht shenja e parë, e ndjekur nga qimet e pubisit e nën sqetulla, një rritje e shpejtë, ijë më të gjera e, rreth dy vjet pasi fillon rritja e gjinjve, menstruacionet e para. Menstruacionet mund të jenë të parregullta në fillim. Lëkura mund të bëhet më e yndyrshme e mund të shfaqet akne."
+      ]
+    },
+    {
+      "heading": "Ndryshimet te djemtë",
+      "paragraphs": [
+        "Testisët e skrotumi zmadhohen të parët, e pasuar nga rritja e penisit, qimet e pubisit e trupit, një rritje e shpejtë, trashja e zërit e qimet e fytyrës. Ereksionet e ejakulimet gjatë natës (ëndrrat e lagëta) janë normale. Aknet e djersitja rriten. Muskujt bëhen më të fortë."
+      ]
+    },
+    {
+      "heading": "Ndryshimet emocionale e shoqërore",
+      "paragraphs": [
+        "Të rinjtë mund të kenë luhatje humori, ndjenja më të forta, nevojë për privatësi, më shumë interes për marrëdhënie e shqetësime për imazhin e trupit. Truri vazhdon gjithashtu të zhvillohet, veçanërisht në zonat e gjykimit e kontrollit të impulseve. Nevojat për gjumë rriten. Mbështetja, informacioni i qartë e respekti ndihmojnë."
+      ]
+    },
+    {
+      "heading": "Kur të kërkoni këshillë",
+      "paragraphs": [
+        "Shihni një mjek nëse shenjat fillojnë para tetë vjetësh te vajzat ose nëntë te djemtë, nëse nuk ka asnjë shenjë deri në trembëdhjetë te vajzat ose katërmbëdhjetë te djemtë, nëse menstruacionet nuk kanë filluar deri në gjashtëmbëdhjetë, ose për dhimbje të rëndë, gjakderdhje të bollshme, akne të rënda ose shqetësime për humorin. Flisni hapur për higjienën, pëlqimin, seksin e sigurt e ndryshimet e trupit."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Biseda në shtëpi",
+      "text": "Imagjinoni që fëmija juaj pyet për menstruacionet ose ëndrrat e lagëta. Mund të përgjigjeni me qetësi e sinqeritet e të ofroni një libër ose faqe interneti të mirë."
+    },
+    {
+      "title": "Vërejtja e shenjave të hershme",
+      "text": "Supozoni që vajza juaj zhvillon gjinj në shtatë vjeç. Mund të caktoni një kontroll me pediatrin."
+    }
+  ],
+  "questions": [
+    "A është normal zhvillimi i fëmijës tim për moshën e tij?",
+    "Si mund t'i mbështes ndryshimet emocionale të fëmijës tim?",
+    "Kur duhet të shkojmë te mjeku?"
+  ]
+}

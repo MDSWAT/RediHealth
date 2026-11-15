@@ -1,0 +1,51 @@
+{
+  "title": "Što su krvni ugrušci i što ih uzrokuje?",
+  "intro": "Krvni ugrušak je nakupina krvi koja je iz tekućeg prešla u polučvrsto stanje. Zgrušavanje je ključan zaštitni proces koji zaustavlja krvarenje nakon ozljede. Problemi nastaju kada se ugrušci bez potrebe stvaraju unutar krvnih žila i blokiraju protok krvi, što može dovesti do srčanog udara, moždanog udara ili tromboze.",
+  "sections": [
+    {
+      "heading": "Kako zgrušavanje funkcionira",
+      "paragraphs": [
+        "Kada je krvna žila ozlijeđena, trombociti se okupljaju na mjestu, a bjelančevine u krvi zvane faktori zgrušavanja stvaraju mrežu fibrina koja zatvara ranu. Poslije tijelo otapa ugrušak dok žila zacjeljuje. Ta ravnoteža između zgrušavanja i razgradnje održava protok krvi, a sprječava krvarenje."
+      ]
+    },
+    {
+      "heading": "Štetni ugrušci",
+      "paragraphs": [
+        "Ugrušci u arterijama često nastaju na masnim naslagama koje su pukle i mogu blokirati protok krvi do srca, uzrokujući srčani udar, ili do mozga, uzrokujući moždani udar. Ugrušci u venama, obično nogu, zovu se duboka venska tromboza i mogu putovati do pluća kao plućna embolija. Ugrušci se mogu stvoriti i u srčanim komorama kod fibrilacije atrija."
+      ]
+    },
+    {
+      "heading": "Što povećava rizik",
+      "paragraphs": [
+        "Rizik raste s nepokretnošću, dugim putovanjem, operacijom, ozljedom, trudnoćom i tjednima nakon poroda, lijekovima koji sadrže estrogen, rakom i njegovim liječenjem, pretilošću, pušenjem, starijom dobi, dehidracijom, prethodnim ugruškom, obiteljskom poviješću i nasljednim poremećajima zgrušavanja. Često se više čimbenika kombinira."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Ugrušak u veni noge uzrokuje oticanje, bol, toplinu i crvenilo, obično na jednoj nozi. Ugrušak u plućima uzrokuje iznenadni nedostatak zraka, bol u prsima i ubrzan puls. Srčani udar i moždani udar imaju vlastite znakove upozorenja, kao što su bol u prsima ili slabost na jednoj strani tijela. Odmah nazovite hitnu pomoć ako se pojave."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Ostanite aktivni, izbjegavajte dugo sjedenje, pijte dovoljno tekućine, održavajte zdravu težinu, ne pušite te kontrolirajte krvni tlak, kolesterol i dijabetes. Nakon operacije ili tijekom boravka u bolnici koriste se preventivne mjere kao što su rano hodanje, kompresija i lijekovi za razrjeđivanje krvi. Razgovarajte s liječnikom o rizicima ako uzimate hormone ili imate obiteljsku povijest ugrušaka."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Sigurno putovanje",
+      "text": "Zamislite da idete na dugi let. Mogli biste redovito hodati prolazom, raditi vježbe za listove, piti vodu i pitati liječnika o kompresijskim čarapama."
+    },
+    {
+      "title": "Prepoznavanje simptoma",
+      "text": "Pretpostavite da vam list postane otečen i bolan. Mogli biste istog dana potražiti liječničku procjenu."
+    }
+  ],
+  "questions": [
+    "Imam li čimbenike rizika za ugruške i što mogu učiniti u vezi s njima?",
+    "Treba li moju obitelj testirati na poremećaje zgrušavanja?",
+    "Koji simptomi zahtijevaju hitnu skrb?"
+  ]
+}

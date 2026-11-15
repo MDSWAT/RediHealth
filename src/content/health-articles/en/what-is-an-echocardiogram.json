@@ -1,0 +1,51 @@
+{
+  "title": "What is an echocardiogram?",
+  "intro": "An echocardiogram is an ultrasound scan of the heart. It uses sound waves to produce moving pictures of the heart's chambers, valves and walls and shows how well it pumps. It is safe, painless and uses no radiation, and is widely used to diagnose heart problems.",
+  "sections": [
+    {
+      "heading": "Why it is done",
+      "paragraphs": [
+        "Doctors use it to investigate breathlessness, chest pain, a heart murmur, swelling of the legs or palpitations, to assess heart failure, valve disease, damage after a heart attack, congenital defects and fluid around the heart, and to monitor treatment. It measures the ejection fraction, the share of blood pumped out with each beat."
+      ]
+    },
+    {
+      "heading": "Types",
+      "paragraphs": [
+        "A transthoracic echocardiogram is done on the chest and is the standard test. A transoesophageal echocardiogram passes a probe down the gullet for clearer pictures of the back of the heart, under sedation. A stress echocardiogram is done during exercise or after medicine to see how the heart behaves under strain. Contrast agents may be injected to improve images."
+      ]
+    },
+    {
+      "heading": "What happens",
+      "paragraphs": [
+        "You undress to the waist and lie on your left side. Small sticky pads for an electrocardiogram are applied. A technician spreads gel and moves a probe over the chest, pressing slightly. You may be asked to hold your breath. A sound like a whooshing is heard from the machine. It takes thirty to sixty minutes."
+      ]
+    },
+    {
+      "heading": "Preparation and safety",
+      "paragraphs": [
+        "Usually no preparation is needed, unless for a transoesophageal test, which requires fasting, or a stress test. Wear loose clothing. The procedure is safe. Transoesophageal tests have small risks such as a sore throat. Your doctor explains the results, often after a specialist reviews the images."
+      ]
+    },
+    {
+      "heading": "Understanding results",
+      "paragraphs": [
+        "Results describe the size of chambers, thickness of walls, pumping function and how valves open and close. Findings are combined with symptoms and other tests. Ask what the results mean for treatment, follow-up and activity."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing",
+      "text": "Imagine you have a scan tomorrow. You could wear a loose top, bring your medicine list and ask whether you may eat beforehand."
+    },
+    {
+      "title": "Discussing results",
+      "text": "Suppose the report mentions a mild valve leak. You might ask how often it should be checked and which symptoms matter."
+    }
+  ],
+  "questions": [
+    "Which type of echocardiogram do I need and why?",
+    "What does my ejection fraction mean?",
+    "How often should the test be repeated?"
+  ]
+}

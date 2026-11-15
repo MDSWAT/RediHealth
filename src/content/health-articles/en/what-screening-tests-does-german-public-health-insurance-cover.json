@@ -1,0 +1,51 @@
+{
+  "title": "What screening tests does German public health insurance cover?",
+  "intro": "Statutory health insurance in Germany pays for a range of preventive check-ups and screening tests for different ages. The details and age limits are set by the Federal Joint Committee and may change, so check current rules with your insurer or doctor. This overview is general.",
+  "sections": [
+    {
+      "heading": "Check-ups for adults",
+      "paragraphs": [
+        "Adults from the age of eighteen can have a one-time health check, and from thirty-five a check-up every three years that looks at blood pressure, blood sugar, cholesterol and risk factors for heart disease and diabetes. A skin cancer screening is offered from thirty-five every two years. Dental check-ups are covered every year."
+      ]
+    },
+    {
+      "heading": "Cancer screening",
+      "paragraphs": [
+        "Women are offered an annual examination for cervical cancer from twenty, with a combined smear and human papillomavirus test every three years from thirty-five. Mammography screening is offered every two years to women in an age range around fifty to seventy-five. Colorectal cancer screening offers stool tests or colonoscopy from around fifty. Men from forty-five can have a prostate examination, while the PSA blood test is generally not covered as a routine screening test."
+      ]
+    },
+    {
+      "heading": "Other screening",
+      "paragraphs": [
+        "An ultrasound of the abdominal aorta is offered to men from sixty-five to detect aneurysms. Hepatitis B and C screening is part of the adult check-up. Hearing screening for newborns, and a screening for chlamydia for young women up to twenty-five, are also covered. Additional programmes exist for pregnant women, such as screening for gestational diabetes."
+      ]
+    },
+    {
+      "heading": "Children and young people",
+      "paragraphs": [
+        "Children have a series of check-ups from birth, called the U-examinations, recorded in the yellow booklet, with a youth check-up as an adolescent. These check growth, development, vision, hearing and vaccination status."
+      ]
+    },
+    {
+      "heading": "Practical points",
+      "paragraphs": [
+        "Participation is voluntary. Some tests are individual health services that you pay for yourself, and doctors should explain the benefits and limits. Ask your practice about what is covered for your age, and bring your insurance card. Screening can have downsides such as false alarms, so informed decisions matter."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Booking a check-up",
+      "text": "Imagine you are thirty-six. You could ask your family doctor for the health check and skin screening offered at your age."
+    },
+    {
+      "title": "Understanding costs",
+      "text": "Suppose you are offered an additional test. You might ask whether it is a covered service or one you must pay for, and why it is recommended."
+    }
+  ],
+  "questions": [
+    "Which screening tests am I entitled to at my age?",
+    "What are the benefits and downsides of this test?",
+    "Is this test covered by my insurance or do I pay?"
+  ]
+}

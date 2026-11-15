@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë janë kaloritë?",
+  "intro": "Kalori është një njësi energjie. Në ushqyerje, energjia në ushqim matet në kilokalori, shpesh shkurtuar kalori, ose në kilozhaul. Trupi ka nevojë për energji për ta mbajtur zemrën të rrahë, për të marrë frymë, lëvizur e rritur. Ekuilibrimi i energjisë që hani me atë që përdorni e mban peshën të qëndrueshme.",
+  "sections": [
+    {
+      "heading": "Nga vijnë kaloritë",
+      "paragraphs": [
+        "Yndyra jep rreth nëntë kilokalori për gram, karbohidratet e proteina rreth katër secila, e alkooli rreth shtatë. Fibrat e uji japin pak ose aspak. Ushqimet e pasura me yndyrë e sheqer, si vajrat, ëmbëlsirat e pastat, janë të dendura me energji, ndërsa perimet, frutat e supat janë më pak, çka do të thotë se pjesët më të mëdha japin më pak kalori."
+      ]
+    },
+    {
+      "heading": "Sa energji ju nevojitet",
+      "paragraphs": [
+        "Nevojat ditore varen nga mosha, gjinia, madhësia, përbërja e trupit, niveli i aktivitetit, shtatzënia e shëndeti. Pjesa më e madhe e energjisë përdoret nga trupi në prehje, e quajtur shpejtësia bazale metabolike. Aktiviteti fizik e energjia e përdorur për të tretur ushqimin e shtojnë. Nevojat tipike janë rreth dy mijë kilokalori për shumë gra e dy mijë e pesëqind për shumë burra, me ndryshime të mëdha individuale."
+      ]
+    },
+    {
+      "heading": "Ekuilibri energjetik e pesha",
+      "paragraphs": [
+        "Kur hani më shumë energji nga ç'përdorni, teprica ruhet si yndyrë, e kur hani më pak, trupi përdor rezervat. Në realitet, pesha e trupit ndikohet edhe nga hormonet, gjumi, gjenetika, barnat e cilësia e ushqimit. Numërimi i kalorive mund të ndihmojë disa njerëz, por është vetëm një udhëzues i përafërt, e etiketat janë vlerësime."
+      ]
+    },
+    {
+      "heading": "Cilësia ka rëndësi",
+      "paragraphs": [
+        "Kaloritë nga ushqime të ndryshme ndikojnë ndryshe shëndetin e ngopjen. Ushqimet e pasura me lëndë ushqyese si perimet, frutat, drithërat e plota, bishtajoret, arrat, peshku e proteina pa yndyrë e mbështesin shëndetin e e plotësojnë urinë më mirë se ushqimet shumë të përpunuara e pijet e ëmbla. Dietat me shumë pak kalori mund të shkaktojnë mungesa e duhen mbikëqyrur mjekësisht. Fëmijët, gratë shtatzëna e njerëzit me çrregullime ushqyerjeje kanë nevojë për këshilla individuale. Preokupimi me numërimin mund të bëhet i dëmshëm."
+      ]
+    },
+    {
+      "heading": "Grupet e veçanta",
+      "paragraphs": [
+        "Fëmijët, adoleshentët, gratë shtatzëna e në ushqyerje me gji, të moshuarit, atletët e njerëzit me sëmundje kanë nevoja të ndryshme energjie. Mos e kufizoni fort kalorinë pa këshillë e kërkoni ndihmë nëse mendimet për ushqimin ose peshën ju pushtojnë jetën."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Leximi i një etikete",
+      "text": "Imagjinoni që krahasoni dy ushqime të lehta. Mund të kontrolloni kaloritë për porcion e për njëqind gramë, e të shihni edhe sheqerin, fibrat e madhësinë e porcionit që do ta hanit në të vërtetë."
+    },
+    {
+      "title": "Planifikimi i një vakti",
+      "text": "Supozoni që doni të ndiheni më të ngopur me më pak kalori. Mund të shtoni perime e bishtajore në pjatë e t'i ndërroni pijet e ëmbla me ujë."
+    }
+  ],
+  "questions": [
+    "Sa energji më duhet çdo ditë?",
+    "A më ndihmon numërimi i kalorive, apo një qasje tjetër është më e mirë?",
+    "Cilat ushqime më mbajnë të ngopur duke mbështetur shëndetin tim?"
+  ]
+}

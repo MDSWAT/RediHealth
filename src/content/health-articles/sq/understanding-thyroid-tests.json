@@ -1,0 +1,51 @@
+{
+  "title": "Të kuptuarit e testeve të tiroides",
+  "intro": "Testet e tiroides ndihmojnë diagnostikimin e tiroides hiperaktive ose hipoaktive, zmadhimit të tiroides e kancerit të tiroides. Përfshijnë analiza gjaku, ultratingull e nganjëherë skanime ose biopsi. Njohja e asaj që do të thonë rezultatet mund t'i bëjë takimet më të lehta për t'u ndjekur.",
+  "sections": [
+    {
+      "heading": "Analizat e gjakut",
+      "paragraphs": [
+        "Hormoni stimulues i tiroides, i prodhuar nga hipofiza, është zakonisht testi i parë. Rritet kur tiroidja është hipoaktive e bie kur është hiperaktive. Tiroksina e lirë e nganjëherë trijodtironina e lirë matin hormonet aktuale tiroide. Së bashku tregojnë nëse tiroidja po punon shumë ose pak."
+      ]
+    },
+    {
+      "heading": "Testet e antitrupave",
+      "paragraphs": [
+        "Antitrupat kundër tiroides, si anti-TPO e anti-tiroglobulina, janë të pranishëm në sëmundjen autoimune të tiroides si Hashimoto. Antitrupat që stimulojnë receptorin e TSH gjenden në sëmundjen e Graves. Këto teste ndihmojnë të gjendet shkaku por nuk janë gjithmonë të nevojshme."
+      ]
+    },
+    {
+      "heading": "Ultratingulli",
+      "paragraphs": [
+        "Ultratingulli përdor valë zanore për të krijuar imazhe të tiroides, duke treguar madhësinë e çdo nyje, përfshirë nëse janë të ngurta ose kistike e cilat veçori duken të dyshimta. Është pa dhimbje, i shpejtë e nuk përdor rrezatim. Është metoda kryesore e imazherisë për gushën e nyjet."
+      ]
+    },
+    {
+      "heading": "Skanimet dhe biopsia",
+      "paragraphs": [
+        "Një shintigrafi e tiroides përdor pak gjurmues radioaktiv për të treguar cilat zona të tiroides janë aktive, duke ndihmuar të dallohen nyjet hiperaktive nga ato joaktive. Nëse një nyje duket e dyshimtë në ultratingull, një aspiratë me gjilpërë të hollë merr disa qeliza me një gjilpërë të hollë për ekzaminim nën mikroskop. Shumica e nyjeve dalin beninje."
+      ]
+    },
+    {
+      "heading": "Këshilla praktike",
+      "paragraphs": [
+        "Tregojini mjekut për barnat e tiroides, suplementet si biotina, që mund t'i shtrembërojnë rezultatet, e për shtatzëninë. Përdoruesve të levotiroksinës shpesh u kërkohet ta marrin tabletën pas mostrës së gjakut. Rezultatet mund të ndryshojnë gjatë sëmundjes, prandaj testimi i përsëritur nevojitet nganjëherë. Pyesni kur ka afat testi tjetër."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për një analizë gjaku",
+      "text": "Imagjinoni që merrni levotiroksinë në mëngjes. Mund të pyesni nëse duhet të merret mostra e gjakut para tabletës e të sillni një listë suplementesh."
+    },
+    {
+      "title": "Të kuptuarit e një nyjeje",
+      "text": "Supozoni që një ultratingull tregon një nyje në tiroide. Mund të pyesni cilat veçori u panë, nëse nevojitet biopsi e sa shpesh duhet kontrolluar."
+    }
+  ],
+  "questions": [
+    "Cilat teste të tiroides më duhen e çfarë do të thonë rezultatet?",
+    "A mund t'i ndikojnë rezultatet barnat ose suplementet e mia?",
+    "A ka nevojë nyja ime e tiroides për biopsi?"
+  ]
+}

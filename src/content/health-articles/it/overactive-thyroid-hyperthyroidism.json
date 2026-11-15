@@ -1,0 +1,51 @@
+{
+  "title": "Tiroide iperattiva (ipertiroidismo)",
+  "intro": "Nell'ipertiroidismo la tiroide produce troppo ormone tiroideo, accelerando il metabolismo del corpo. Causa sintomi come perdita di peso, battito accelerato, nervosismo e intolleranza al caldo. Sono disponibili diversi trattamenti efficaci e trovare la causa guida la scelta.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "La causa più comune è la malattia di Graves, una condizione autoimmune in cui gli anticorpi stimolano la ghiandola. Altre cause sono i noduli che producono ormone in modo indipendente, l'infiammazione della tiroide che rilascia temporaneamente l'ormone immagazzinato e l'eccesso di iodio o certi farmaci. Può essere presente un gozzo, cioè una tiroide ingrossata."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi tipici comprendono perdita di peso nonostante un buon appetito, palpitazioni, sudorazione, mani tremanti, ansia, irritabilità, difficoltà a dormire, stanchezza, evacuazioni frequenti e mestruazioni più leggere. Le persone anziane possono avere meno sintomi, come fibrillazione atriale o debolezza. Nella malattia di Graves gli occhi possono diventare prominenti, rossi o secchi."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "Gli esami del sangue mostrano un ormone tireostimolante basso e livelli alti di ormoni tiroidei. Test degli anticorpi, ecografia e talvolta una scintigrafia con un tracciante radioattivo aiutano a trovare la causa. Si può controllare il ritmo del cuore."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Le compresse antitiroidee riducono la produzione di ormone e sono spesso usate per prime, per uno o due anni, con esami del sangue per monitorare gli effetti collaterali. I betabloccanti alleviano rapidamente palpitazioni e tremore. Se la condizione ritorna o la causa sono i noduli, sono opzioni lo iodio radioattivo o la chirurgia per rimuovere tutta la ghiandola o una parte. Dopo questi, molte persone sviluppano una tiroide poco attiva e hanno bisogno di compresse di ormone per tutta la vita."
+      ]
+    },
+    {
+      "heading": "Situazioni particolari",
+      "paragraphs": [
+        "La gravidanza richiede cure specialistiche, poiché alcuni farmaci e lo iodio radioattivo non sono adatti. L'ipertiroidismo non trattato affatica cuore e ossa. I problemi agli occhi nella malattia di Graves richiedono un oculista. Il fumo peggiora la malattia degli occhi, quindi smettere è fortemente consigliato."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Descrivere i sintomi",
+      "text": "Immagina di aver perso peso e di sentire il cuore battere forte. Potresti elencare quando sono iniziati i sintomi, come dormi e quali farmaci o integratori prendi e chiedere gli esami del sangue per la tiroide."
+    },
+    {
+      "title": "Scegliere un trattamento",
+      "text": "Supponi che il medico proponga compresse, iodio radioattivo o chirurgia. Potresti chiedere dei tassi di recidiva, degli effetti collaterali, degli effetti su fertilità o progetti di gravidanza e della necessità di compresse per tutta la vita."
+    }
+  ],
+  "questions": [
+    "Che cosa causa la mia tiroide iperattiva?",
+    "Quale trattamento fa per me e quali sono gli effetti a lungo termine?",
+    "Con quale frequenza serviranno gli esami del sangue e che cosa devo riferire tra una visita e l'altra?"
+  ]
+}

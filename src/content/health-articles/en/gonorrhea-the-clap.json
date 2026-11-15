@@ -1,0 +1,51 @@
+{
+  "title": "Gonorrhea: testing, treatment and partner care",
+  "intro": "Gonorrhea is a bacterial sexually transmitted infection that may affect the genitals, rectum, throat or eyes. Many infections produce no symptoms; untreated infection can cause serious complications and can be passed on unknowingly.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Burning urination, unusual discharge, pelvic or testicular pain can occur. Throat and rectal infections are often silent. Symptoms cannot reliably distinguish gonorrhea from other sexually transmitted infections."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Testing uses urine or swabs from sites exposed during sex; a urine test alone may miss throat or rectal infection. Culture can help identify antibiotic resistance, particularly if treatment seems unsuccessful. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "A clinician selects antibiotics using current local recommendations and resistance information. Do not use leftover tablets or share treatment. Discuss other infection tests, pregnancy and whether a test of cure or repeat screening is required. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Avoid sex until the clinic says it is safe, including completion of partner treatment requirements. Confidential partner notification prevents reinfection. Condoms reduce risk but regular testing may still be appropriate. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Severe pelvic pain, fever, a painful swollen testicle, eye discharge or a hot swollen joint need urgent assessment. Persistent symptoms after treatment require review rather than repeating the same antibiotic yourself."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira has no symptoms but a partner tests positive. She attends testing and follows the clinic’s advice rather than assuming she cannot be infected."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben reports oral exposure during the consultation so throat sampling can be considered instead of relying only on urine testing."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

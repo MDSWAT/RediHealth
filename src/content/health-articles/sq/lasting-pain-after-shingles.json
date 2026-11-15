@@ -1,0 +1,52 @@
+{
+  "title": "Dhimbja e zgjatur pas zosterit",
+  "intro": "Disa njerëz vazhdojnë të kenë dhimbje djegëse ose therëse në zonën e lëkurës ku ndodhi zosteri, shumë kohë pasi skuqja ka shëruar. Kjo quhet nevralgji postherpetike. Është më e zakonshme te të moshuarit dhe mund të zgjasë muaj ose më shumë, por trajtimet mund ta ulin dhimbjen dhe t'ju ndihmojnë të funksiononi.",
+  "sections": [
+    {
+      "heading": "Çfarë ndodh",
+      "paragraphs": [
+        "Zosteri shkaktohet nga riaktivizimi i virusit të lisë së dhenve, i cili mund t'i dëmtojë nervat. Pasi flluskat shërohen, nervat e dëmtuara mund të vazhdojnë të dërgojnë sinjale dhimbjeje. Dhimbja përkufizohet përgjithësisht si postherpetike kur vazhdon të paktën tre muaj pasi filloi skuqja."
+      ]
+    },
+    {
+      "heading": "Kush është në rrezik",
+      "paragraphs": [
+        "Rreziku rritet me moshën, me dhimbjen e rëndë ose skuqjen e gjerë gjatë sëmundjes akute dhe me imunitetin e dobët. Fillimi i hershëm i ilaçit antiviral pasi shfaqet skuqja mund ta ulë shansin e dhimbjes së zgjatur, që është një nga arsyet pse duhet të shihni shpejt një mjek nëse dyshoni për zoster."
+      ]
+    },
+    {
+      "heading": "Si ndihet",
+      "paragraphs": [
+        "Njerëzit përshkruajnë dhimbje djegëse, therëse ose si shok elektrik, ndjeshmëri ndaj prekjes së lehtë si veshja dhe kruarje ose mpirje. Dhimbja mund ta prishë gjumin, gjendjen shpirtërore dhe aktivitetet e përditshme dhe mund të çojë në lodhje dhe tërheqje nga jeta shoqërore."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Qetësuesit e zakonshëm shpesh nuk ndihmojnë për dhimbjen nervore. Barnat e përdorura përfshijnë disa antikonvulsivë dhe antidepresivë të marrë në doza të ulëta, që rriten gradualisht, si dhe suva me kapsaicinë ose lidokainë të aplikuara në lëkurë. Opioidet përdoren rrallë dhe kanë rreziqe. Efektet anësore si përgjumja dhe marramendja duhen diskutuar. Klinikat e dhimbjes ofrojnë opsione të mëtejshme si bllokimet e nervave.",
+        "Kombinimi i ilaçit me aktivitet fizik, relaksim, gjumë të mirë dhe mbështetje psikologjike mund t'ju ndihmojë ta përballoni. Veshja e lirshme, e butë dhe ftohja mund ta lehtësojnë lëkurën e ndjeshme."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Një vaksinë kundër zosterit rekomandohet në shumë vende për të rriturit më të moshuar dhe disa më të rinj në rrezik. Ajo e ul shansin e zosterit dhe edhe të dhimbjes së zgjatur nervore. Pyesni mjekun nëse vaksinimi është i këshillueshëm për ju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përshkrimi i dhimbjes",
+      "text": "Imagjinoni që ende keni dhimbje djegëse në murin e gjoksit muaj pas zosterit. Mund të mbani një ditar të niveleve dhe nxitësve të dhimbjes dhe të diskutoni me mjekun cilin ilaç për dhimbjen nervore të provoni së pari."
+    },
+    {
+      "title": "Pyetja për vaksinimin",
+      "text": "Supozoni që një i afërm pati zoster së fundmi dhe ju jeni mbi 60 vjeç. Mund ta pyesni mjekun për vaksinën e zosterit dhe nëse do t'ju duheshin më shumë se një dozë."
+    }
+  ],
+  "questions": [
+    "Cilat barna mund të ndihmojnë për dhimbjen nervore dhe çfarë efektesh anësore duhet të pres?",
+    "Kur duhet të referohem në një klinikë dhimbjeje?",
+    "A duhet të vaksinohem kundër zosterit?"
+  ]
+}

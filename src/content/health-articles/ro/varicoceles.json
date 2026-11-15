@@ -1,0 +1,51 @@
+{
+  "title": "Varicocelul",
+  "intro": "Varicocelul este o dilatare a venelor din scrot, asemănătoare varicelor de la picioare. Este frecvent, de obicei pe partea stângă, și adesea nu provoacă probleme. Uneori provoacă disconfort sau este legat de fertilitate scăzută, iar tratamentul se ia în considerare în aceste cazuri.",
+  "sections": [
+    {
+      "heading": "Ce este",
+      "paragraphs": [
+        "Venele care drenează sângele din testicul au valve. Când valvele cedează, sângele stagnează și venele se lărgesc, formând o masă moale, descrisă adesea ca având senzația unui sac de viermi. Umflătura este mai vizibilă în picioare și se poate micșora când stați culcat. Apare de obicei în adolescență sau la vârsta de adult tânăr."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Mulți bărbați nu observă simptome. Alții au o durere surdă sau o senzație de greutate, mai mare după stat mult în picioare sau după efort și care se ameliorează când stau culcați, o umflătură vizibilă sau palpabilă sau un testicul mai mic pe partea afectată. Apariția bruscă la un bărbat în vârstă sau un varicocel care nu se golește când stați culcat trebuie verificat, deoarece rar poate fi provocat de o formațiune."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicul examinează scrotul în picioare și culcat, uneori cu o probă de tuse sau de efort, și folosește adesea ecografia pentru confirmare și pentru excluderea altor cauze. Dacă fertilitatea este o îngrijorare, se face o spermogramă. La adolescenți, dimensiunea testiculului este monitorizată."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Tratamentul nu este necesar dacă nu există simptome și fertilitatea este normală. Durerea poate fi tratată cu lenjerie de susținere și calmante. Procedurile de închidere a venei se oferă pentru durere persistentă, un testicul clar mai mic la un adolescent sau rezultate anormale ale spermogramei, cu dorința de a avea copii. Opțiunile includ chirurgia laparoscopică sau microchirurgicală și embolizarea printr-un cateter. Riscurile includ o colecție de lichid în jurul testiculului, recidiva și, rar, afectarea testiculului."
+      ]
+    },
+    {
+      "heading": "Varicocelul și fertilitatea",
+      "paragraphs": [
+        "Varicocelele se găsesc la mulți bărbați cu infertilitate, dar și la mulți bărbați fertili. Repararea poate îmbunătăți calitatea spermei la unii, deși efectul asupra ratei sarcinilor este incert și depinde de situația cuplului. Discutați opțiunile, inclusiv reproducerea asistată, cu un specialist."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Cererea unei evaluări",
+      "text": "Imaginați-vă că observați o umflătură moale, mai vizibilă în picioare. Ați putea programa o examinare și ați putea întreba dacă este necesară o ecografie."
+    },
+    {
+      "title": "Luarea în considerare a fertilității",
+      "text": "Presupuneți că dumneavoastră și partenera încercați să aveți un copil de un an. Ați putea cere o spermogramă și ați putea discuta dacă repararea ar ajuta."
+    }
+  ],
+  "questions": [
+    "Are varicocelul meu nevoie de tratament?",
+    "Ar putea să-mi afecteze fertilitatea și ar trebui să fac o spermogramă?",
+    "Care sunt beneficiile și riscurile procedurii?"
+  ]
+}

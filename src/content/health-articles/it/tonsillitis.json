@@ -1,0 +1,51 @@
+{
+  "title": "Tonsillite e mal di gola",
+  "intro": "La tonsillite è un'infiammazione delle tonsille, i due ammassi di tessuto in fondo alla gola. Causa mal di gola, dolore a deglutire e spesso febbre. La maggior parte dei casi è causata da virus e passa in circa una settimana senza antibiotici. Sollievo dal dolore, liquidi e riposo sono i trattamenti principali.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "I virus, come quelli del raffreddore e dell'influenza, causano la maggior parte dei casi. I batteri, in particolare gli streptococchi di gruppo A, ne spiegano una quota minore, soprattutto nei bambini da cinque a quindici anni. I germi si diffondono con le goccioline e il contatto stretto. Fumo e aria secca possono irritare la gola."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi tipici sono mal di gola, deglutizione dolorosa, febbre, tonsille gonfie e arrossate con in certi casi placche bianche, ghiandole del collo ingrossate, alito cattivo, mal di testa e stanchezza. Tosse e naso che cola suggeriscono una causa virale, mentre un forte mal di gola senza tosse e con ghiandole ingrossate aumenta la probabilità di un'infezione batterica."
+      ]
+    },
+    {
+      "heading": "Autocura",
+      "paragraphs": [
+        "Riposa, bevi molti liquidi e mangia cibi morbidi. Paracetamolo o ibuprofene riducono dolore e febbre. Pastiglie, gargarismi con acqua tiepida e sale e spray per la gola possono alleviare il fastidio. Evita il fumo. I bambini devono restare a casa finché hanno la febbre e lavarsi le mani riduce la diffusione."
+      ]
+    },
+    {
+      "heading": "Quando si usano gli antibiotici",
+      "paragraphs": [
+        "Gli antibiotici si usano quando è probabile o confermata da un tampone faringeo un'infezione da streptococco, in particolare quando i sintomi sono gravi o c'è il rischio di complicanze. Accorciano un poco i sintomi e riducono il rischio di rare complicanze come la febbre reumatica e l'ascesso. Un ciclo di penicillina dura di solito alcuni giorni. Gli antibiotici non servono nelle infezioni virali."
+      ]
+    },
+    {
+      "heading": "Complicanze e chirurgia",
+      "paragraphs": [
+        "Cerca cure urgenti per difficoltà a respirare o a deglutire la saliva, bava, voce ovattata, impossibilità di aprire la bocca, forte dolore alla gola da un lato o gonfiore del collo, che possono indicare un ascesso. La chirurgia per asportare le tonsille si considera per le persone con infezioni frequenti, gravi e ben documentate che sconvolgono la vita e le decisioni bilanciano il beneficio con rischi come sanguinamento e dolore dopo l'operazione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prendersi cura di un bambino",
+      "text": "Immagina che tuo figlio abbia mal di gola e febbre. Potresti offrire bevande fresche e cibi morbidi, dare l'antidolorifico alla dose giusta e andare dal medico se deglutire diventa molto difficile."
+    },
+    {
+      "title": "Chiedere della chirurgia",
+      "text": "Supponi di aver avuto molti episodi di tonsillite quest'anno. Potresti tenere un registro di ogni episodio con date e trattamento e discuterne con un otorinolaringoiatra."
+    }
+  ],
+  "questions": [
+    "Il mio mal di gola è probabilmente virale o batterico e serve un tampone?",
+    "Quando sarebbe consigliabile la chirurgia delle tonsille?",
+    "Quali sintomi significano che devo cercare aiuto urgente?"
+  ]
+}

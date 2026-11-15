@@ -1,0 +1,51 @@
+{
+  "title": "Što je laparoskopija?",
+  "intro": "Laparoskopija, zvana i operacija ključanice, način je pregleda unutrašnjosti trbuha ili zdjelice i izvođenja operacija kroz male rezove. Uvodi se tanka cijev s kamerom i svjetlom, zvana laparoskop. U usporedbi s otvorenom operacijom obično znači manje boli, manje ožiljke i brži oporavak.",
+  "sections": [
+    {
+      "heading": "Zašto se radi",
+      "paragraphs": [
+        "Laparoskopija se koristi za dijagnosticiranje uzroka boli u zdjelici ili trbuhu i za liječenje stanja. Uobičajene operacije uključuju uklanjanje žučnog mjehura ili slijepog crijeva, popravak kila, liječenje endometrioze, uklanjanje cista jajnika, sterilizaciju, neke operacije crijeva i liječenje izvanmaternične trudnoće."
+      ]
+    },
+    {
+      "heading": "Kako se radi",
+      "paragraphs": [
+        "Obično se radi pod općom anestezijom. Kirurg napravi nekoliko malih rezova, otprilike jedan centimetar, i napuni trbuh plinom ugljikovim dioksidom kako bi stvorio prostor. Kamera prikazuje organe na ekranu, a duge tanke instrumente koristi kroz druge rezove. Plin se na kraju ispušta, a rezovi se zatvaraju."
+      ]
+    },
+    {
+      "heading": "Prednosti",
+      "paragraphs": [
+        "U usporedbi s otvorenom operacijom, bolesnici obično imaju manje boli, manje ožiljke, manji rizik od infekcije rane, kraći boravak u bolnici i brži povratak uobičajenim aktivnostima, često unutar jednog do dva tjedna. Neke se operacije ipak bolje izvode otvoreno ili se tijekom operacije mogu morati pretvoriti."
+      ]
+    },
+    {
+      "heading": "Rizici i oporavak",
+      "paragraphs": [
+        "Rizici uključuju krvarenje, infekciju, ozljedu organa ili krvnih žila, reakcije na anesteziju i, rijetko, krvne ugruške. Bol u vrhu ramena i nadutost od plina uobičajeni su dan-dva. Rano hodajte, uzimajte lijekove protiv boli prema uputi i obratite se liječniku zbog vrućice, pojačane boli, povraćanja ili problema s ranom."
+      ]
+    },
+    {
+      "heading": "Priprema",
+      "paragraphs": [
+        "Tražit će se da postite, prekinete neke lijekove kao što su lijekovi za razrjeđivanje krvi i dogovorite prijevoz. Pitajte kirurga o očekivanom oporavku, bolovanju i što učiniti ako nastupe komplikacije."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planiranje oporavka",
+      "text": "Zamislite da vam uklanjaju žučni mjehur. Mogli biste dogovoriti pomoć kod kuće i planirati nekoliko dana slobodno s posla."
+    },
+    {
+      "title": "Nošenje s boli u ramenu",
+      "text": "Pretpostavite da poslije imate bol u ramenu. Mogli biste lagano hodati i uzeti lijek protiv boli jer ona dolazi od plina."
+    }
+  ],
+  "questions": [
+    "Je li laparoskopija prikladna za moje stanje?",
+    "Koji su rizici i vjerojatnost prelaska na otvorenu operaciju?",
+    "Koliko će trajati oporavak?"
+  ]
+}

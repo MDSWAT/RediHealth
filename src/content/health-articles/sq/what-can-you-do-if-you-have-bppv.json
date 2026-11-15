@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë mund të bëni nëse keni BPPV",
+  "intro": "Vertigoja pozicionale paroksizmale beninje, ose BPPV, shkakton marrje mendsh të shkurtër me rrotullim kur e lëvizni kokën në mënyra të caktuara, si kur ktheheni në shtrat ose shikoni lart. Është problem i zakonshëm i veshit të brendshëm e është i padëmshëm, e zakonisht trajtohet me efektshmëri me manovra të thjeshta të pozicionit të kokës.",
+  "sections": [
+    {
+      "heading": "Çfarë e shkakton",
+      "paragraphs": [
+        "Brenda veshit të brendshëm ka kristale të vogla kalciumi që normalisht qëndrojnë në një thes. Nëse lirohen e lëvizin në kanalet gjysmërrethore, lëvizjet e kokës e bëjnë lëngun të lëvizë gabim e dërgojnë sinjale të rreme te truri. Kjo shkakton një ndjesi të shkurtër e të fortë rrotullimi, shpesh me të përziera. Bëhet më e zakonshme me moshën e mund të pasojë një lëndim të kokës."
+      ]
+    },
+    {
+      "heading": "Simptomat tipike",
+      "paragraphs": [
+        "Episodet zgjasin më pak se një minutë e nxiten nga pozicione si shtrirja, rrotullimi, përkulja përpara ose animi i kokës pas. Nuk ka humbje dëgjimi e jeni mirë midis episodeve. Marrja mendsh e vazhdueshme, dhimbja e rëndë e kokës, dobësia, problemet e të folurit ose shikimi i dyfishtë nuk janë tipike për BPPV e kërkojnë rishikim urgjent mjekësor."
+      ]
+    },
+    {
+      "heading": "Diagnoza e trajtimi",
+      "paragraphs": [
+        "Një mjek mund ta diagnostikojë me teste pozicionale, si manovra Dix-Hallpike, që e sjell marrjen mendsh e lëvizjet e syve. Trajtimi përdor manovra riposicionimi të kristaleve, si manovra Epley, që i lëvizin kristalet përsëri jashtë kanalit. Veprojnë te shumica e njerëzve pas një ose disa seancash. Barnat zakonisht nuk ndihmojnë."
+      ]
+    },
+    {
+      "heading": "Vetëkujdesi",
+      "paragraphs": [
+        "Pas manovrës, ndiqni këshillat për pozicionin e kokës. Në shtëpi, një mjek ose fizioterapist mund t'ju mësojë një vetëtrajtim. Lëvizni ngadalë, ngrihuni në faza e kini kujdes të shmangni rënien, për shembull me një dritë natën. Rikthimi është i zakonshëm, por mund të trajtohet sërish."
+      ]
+    },
+    {
+      "heading": "Kur të kërkoni ndihmë",
+      "paragraphs": [
+        "Shihni një mjek nëse marrja mendsh është e re, e përsëritur, ju pengon aktivitetet ditore, ose ndodh me simptoma të tjera. Ndihma e urgjencës nevojitet për marrje mendsh të papritur të rëndë me dobësi, vështirësi në të folur, ndryshime të shikimit ose dhimbje të rëndë koke."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ngritja e sigurt",
+      "text": "Imagjinoni që ndiheni të trullosur kur ktheheni në shtrat. Mund të ngriheni ngadalë, të prisni një çast e të qëndroni në këmbë vetëm kur rrotullimi pushon."
+    },
+    {
+      "title": "Përgatitja për trajtim",
+      "text": "Supozoni që keni një takim për një manovër. Mund të pyesni nëse mund të drejtoni makinën pas e si ta parandaloni rikthimin."
+    }
+  ],
+  "questions": [
+    "A është marrja mendsh BPPV apo diçka tjetër?",
+    "Cila manovër është e përshtatshme e a mund ta bëj në shtëpi?",
+    "Çfarë të bëj nëse kthehet?"
+  ]
+}

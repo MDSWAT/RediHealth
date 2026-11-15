@@ -1,0 +1,51 @@
+{
+  "title": "Ce rol joacă densitatea sânului",
+  "intro": "Densitatea sânului descrie cât din sân este alcătuit din țesut glandular și conjunctiv, în comparație cu grăsimea, așa cum se vede pe o mamografie. Sânii denși sunt frecvenți și normali. Densitatea contează deoarece poate face cancerele mai greu de văzut și este ea însăși asociată cu un risc ușor mai mare de cancer de sân.",
+  "sections": [
+    {
+      "heading": "Ce înseamnă densitatea",
+      "paragraphs": [
+        "Pe o mamografie, grăsimea apare închisă la culoare, în timp ce țesutul glandular și fibros apare alb. Sânii sunt adesea grupați în patru categorii, de la predominant grași la extrem de denși. Densitatea nu are legătură cu cum se simt sânii sau cu mărimea lor și nu poate fi apreciată prin palpare. Este mai frecventă la femeile tinere și tinde să scadă cu vârsta și după menopauză."
+      ]
+    },
+    {
+      "heading": "De ce contează",
+      "paragraphs": [
+        "Țesutul dens și tumorile apar ambele albe pe o mamografie, deci cancerele pot fi ascunse, ceea ce scade sensibilitatea mamografiei. Femeile cu sâni foarte denși au și un risc mai mare de cancer de sân decât femeile cu sâni grași, dar densitatea este doar unul dintre mulți factori de risc, precum vârsta, antecedentele familiale și genele."
+      ]
+    },
+    {
+      "heading": "Teste suplimentare",
+      "paragraphs": [
+        "Pentru femeile cu sâni denși, investigațiile suplimentare precum ecografia sau rezonanța magnetică pot găsi mai multe cancere, dar duc și la mai multe alarme false și teste suplimentare. Dacă se oferă teste suplimentare diferă între țări și ghiduri, iar beneficiul pentru supraviețuire este încă studiat. Discutați opțiunile cu medicul."
+      ]
+    },
+    {
+      "heading": "Ce puteți face",
+      "paragraphs": [
+        "Participați la screeningul recomandat, cunoașteți-vă sânii și raportați schimbările, precum un nodul, modificări ale pielii, secreții din mamelon sau durere, chiar și după o mamografie normală. Reduceți riscurile modificabile, precum excesul de alcool, supraponderalitatea după menopauză și lipsa activității. Densitatea nu poate fi schimbată intenționat."
+      ]
+    },
+    {
+      "heading": "A fi informată",
+      "paragraphs": [
+        "În unele țări femeile sunt informate despre densitatea lor după o mamografie. Dacă a dumneavoastră este mare, întrebați ce înseamnă pentru dumneavoastră, dacă riscul este crescut și dacă testele suplimentare au sens. A avea sâni denși nu este o boală și nu înseamnă că veți face cancer."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Întrebări despre densitate",
+      "text": "Imaginați-vă că raportul mamografiei menționează sâni denși. Ați putea întreba medicul dacă o imagistică suplimentară este potrivită pentru dumneavoastră."
+    },
+    {
+      "title": "Observarea unei schimbări",
+      "text": "Presupuneți că simțiți un nodul nou după o mamografie normală. Ați putea merge prompt la medic, în loc să așteptați următorul screening."
+    }
+  ],
+  "questions": [
+    "Care este categoria mea de densitate a sânilor și ce înseamnă?",
+    "Ar fi utilă pentru mine o ecografie sau o rezonanță magnetică?",
+    "Cât de des ar trebui să fac screening?"
+  ]
+}

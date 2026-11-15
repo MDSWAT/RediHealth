@@ -1,0 +1,51 @@
+{
+  "title": "Finding reliable health information online",
+  "intro": "Searching online can help you prepare questions, but it can also expose you to advertising, misleading claims and advice that does not fit your situation. Start with a clear question and keep the source and its limitations visible. This guide describes a practical search process, not a method for diagnosing yourself.",
+  "sections": [
+    {
+      "heading": "Define the decision before searching",
+      "paragraphs": [
+        "Write down what you need to understand: a diagnosis already discussed, treatment alternatives, expected recovery or a test result. Use the medical term from your consultation when available. Separate general learning from questions that require your clinician. Urgent symptoms should lead to appropriate care, not a longer search."
+      ]
+    },
+    {
+      "heading": "Identify responsibility and commercial interests",
+      "paragraphs": [
+        "Look for named authors, qualifications, a responsible organization, funding and a contact process. Ask whether the page informs or primarily sells. Sponsored rankings, testimonials and professional-looking graphics are not independent verification. A sales link does not prove every statement false, but it deserves scrutiny alongside the evidence."
+      ]
+    },
+    {
+      "heading": "Follow claims back to usable evidence",
+      "paragraphs": [
+        "Read the actual explanation rather than only a headline or search summary. Look for relevant comparisons, meaningful outcomes, harms and uncertainty. A list of references is useful only if it supports the claim. Check publication and review dates, and whether the information concerns people and services like those relevant to you."
+      ]
+    },
+    {
+      "heading": "Handle personal stories and automated answers carefully",
+      "paragraphs": [
+        "Forums can reveal experiences and practical questions, but cannot reliably establish how often a treatment works. Anonymous accounts may be incomplete or promotional. Automated answers can sound confident while omitting qualifications or inventing references. Verify important claims in identifiable sources and avoid entering unnecessary identifying or medical details into unfamiliar services."
+      ]
+    },
+    {
+      "heading": "Bring a focused question to your appointment",
+      "paragraphs": [
+        "Save the title, date and short passage you want to discuss. Compare explanations from independent reputable organizations rather than collecting many pages repeating the same claim. Ask how the evidence applies to your medicines and conditions. Do not stop prescribed care because of a post. If searching increases anxiety, pause and arrange a professional discussion."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a supplement advertisement",
+      "text": "Mira finds a dramatic cure claim beside a purchase button. She checks the comparison and harms, finds no clear evidence and takes the claim to a pharmacist instead of buying immediately."
+    },
+    {
+      "title": "Hypothetical example: conflicting recovery advice",
+      "text": "Arben finds different recovery timelines. He records which procedures the pages describe and asks his treating team which applies, rather than averaging incompatible advice."
+    }
+  ],
+  "questions": [
+    "Who wrote and funded this information?",
+    "Does the evidence support benefits, harms and alternatives for people like me?",
+    "Which questions need individual advice before I act?"
+  ]
+}

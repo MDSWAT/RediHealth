@@ -1,0 +1,51 @@
+{
+  "title": "Što se događa tijekom pregleda kože?",
+  "intro": "Pregled kože je provjera kože radi promjena kao što su neobični madeži, mrlje ili osipi. Koristi se za rano otkrivanje raka kože i dijagnosticiranje kožnih stanja. Brz je i bezbolan, a može ga obaviti obiteljski liječnik ili dermatolog.",
+  "sections": [
+    {
+      "heading": "Zašto se radi",
+      "paragraphs": [
+        "Rak kože, uključujući melanom, bolje se liječi kada se otkrije rano. Liječnici pregledavaju kožu radi novih ili promijenjenih oznaka, procjenjuju osipe i prate postojeća stanja. Osobe s mnogo madeža, svijetlom kožom, prošlim opeklinama od sunca, obiteljskom poviješću melanoma ili slabim imunitetom imaju koristi od redovitih pregleda."
+      ]
+    },
+    {
+      "heading": "Kako se pregled provodi",
+      "paragraphs": [
+        "Skidate se do donjeg rublja, a liječnik pregledava kožu od glave do pete, uključujući vlasište, između prstiju na nogama, nokte i genitalno područje ako je potrebno, uz vaš pristanak. Ručno povećalo zvano dermatoskop pokazuje strukture unutar madeža. Mogu se napraviti fotografije za praćenje promjena."
+      ]
+    },
+    {
+      "heading": "Što liječnici traže",
+      "paragraphs": [
+        "Promatraju asimetriju, nepravilne rubove, neujednačenu boju, promjer veći od šest milimetara i evoluciju, što znači promjenu tijekom vremena. Madeži koji svrbe, krvare ili rastu te rane koje ne zacjeljuju također su zabrinjavajući. Većina mrlja je bezazlena."
+      ]
+    },
+    {
+      "heading": "Nakon pregleda",
+      "paragraphs": [
+        "Ako nešto izgleda sumnjivo, mali uzorak ili cijela mrlja može se ukloniti pod lokalnom anestezijom i pregledati. Rezultati stižu za nekoliko dana. Dobit ćete savjete o samopregledu kože i zaštiti od sunca. Pitajte koliko često su preporučljivi pregledi."
+      ]
+    },
+    {
+      "heading": "Pregled vlastite kože",
+      "paragraphs": [
+        "Redovito pregledavajte kožu pri dobrom svjetlu, koristeći ogledalo za leđa. Zabilježite nove mrlje ili promjene i fotografirajte radi usporedbe. Koristite hlad, odjeću, šešire i kremu za sunčanje te izbjegavajte solarije. Brzo posjetite liječnika zbog svakog madeža koji se mijenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Redoviti samopregled",
+      "text": "Zamislite da želite pratiti svoje madeže. Mogli biste ih fotografirati svakih nekoliko mjeseci i pokazati promjene liječniku."
+    },
+    {
+      "title": "Prijavljivanje promjene",
+      "text": "Pretpostavite da je madež narastao i svrbi. Mogli biste uskoro zakazati termin i zatražiti dermatoskopski pregled."
+    }
+  ],
+  "questions": [
+    "Treba li neke od mojih mrlja ukloniti ili pratiti?",
+    "Koliko često trebam pregledavati kožu?",
+    "Kako najbolje zaštititi kožu?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "The innate and adaptive immune systems",
+  "intro": "Your immune system protects you against bacteria, viruses, fungi and other invaders, and helps repair damage. It has two main parts: the innate system, which reacts quickly and in a general way, and the adaptive system, which learns to recognise specific germs and remembers them. They work together.",
+  "sections": [
+    {
+      "heading": "The innate immune system",
+      "paragraphs": [
+        "The innate system is the first line of defence. It includes physical barriers such as skin and mucous membranes, stomach acid and tears, as well as cells such as neutrophils and macrophages that engulf germs. Natural killer cells destroy infected cells. This system reacts within minutes to hours, causing inflammation with redness, warmth and swelling that bring more immune cells to the site."
+      ]
+    },
+    {
+      "heading": "The adaptive immune system",
+      "paragraphs": [
+        "The adaptive system is slower, taking days to develop, but highly specific. Its main cells are lymphocytes. B cells make antibodies that bind to particular germs and mark them for destruction. T cells help coordinate the response and kill infected cells directly. Each lymphocyte recognises a particular target."
+      ]
+    },
+    {
+      "heading": "Memory",
+      "paragraphs": [
+        "After an infection, some B and T cells survive as memory cells. If the same germ appears again, they respond faster and stronger, often preventing illness. This is the basis of immunity after infection and of vaccination, which trains the adaptive system with a harmless part or weakened form of a germ."
+      ]
+    },
+    {
+      "heading": "When the system goes wrong",
+      "paragraphs": [
+        "An overactive immune system can cause allergies and autoimmune diseases, in which the body attacks its own tissues. An underactive one, due to illness or medicines, raises vulnerability to infection. Stress, poor sleep, malnutrition and ageing can weaken defences. Healthy habits, vaccination and treating underlying illness help the immune system do its job."
+      ]
+    },
+    {
+      "heading": "Supporting immune health",
+      "paragraphs": [
+        "Regular sleep, balanced nutrition, physical activity, not smoking, moderate alcohol and keeping up to date with vaccinations are the best-supported steps. Supplements marketed as immune boosters have little proof in healthy people. Seek advice if you have repeated or unusual infections."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Understanding a vaccine",
+      "text": "Imagine you wonder why a booster is needed. You could ask your doctor how memory cells work and how long protection lasts."
+    },
+    {
+      "title": "Recognising a problem",
+      "text": "Suppose you get infections far more often than others. You might keep a record and ask your doctor about tests of immune function."
+    }
+  ],
+  "questions": [
+    "How do vaccines make use of immune memory?",
+    "Could my frequent infections signal a problem with my immune system?",
+    "Which habits best support my immune health?"
+  ]
+}

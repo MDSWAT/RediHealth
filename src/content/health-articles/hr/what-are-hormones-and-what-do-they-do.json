@@ -1,0 +1,51 @@
+{
+  "title": "Što su hormoni i što rade?",
+  "intro": "Hormoni su kemijski glasnici koje stvaraju žlijezde i otpuštaju u krv. Putuju do ciljnih organa i tkiva i kontroliraju procese kao što su rast, metabolizam, reprodukcija, raspoloženje i odgovor tijela na stres. Male promjene razina hormona mogu imati velike učinke, zbog čega poremećaji hormona uzrokuju raširene simptome.",
+  "sections": [
+    {
+      "heading": "Glavne žlijezde",
+      "paragraphs": [
+        "Hipofiza u podnožju mozga je glavna žlijezda koja kontrolira mnoge druge. Štitnjača na vratu regulira metabolizam. Nadbubrežne žlijezde iznad bubrega stvaraju kortizol i adrenalin. Gušterača otpušta inzulin i glukagon. Jajnici stvaraju estrogen i progesteron, a testisi testosteron. Paratireoidne žlijezde kontroliraju kalcij, a epifiza stvara melatonin."
+      ]
+    },
+    {
+      "heading": "Kako se hormonski sustavi reguliraju",
+      "paragraphs": [
+        "Većinu hormona kontroliraju povratne petlje. Kada je razina hormona visoka, signal za stvaranje više smanjuje se, a kada je niska, proizvodnja raste, slično termostatu. Primjerice, hipofiza otpušta hormon koji stimulira štitnjaču kada je hormona štitnjače malo, a smanjuje ga kada je hormona štitnjače mnogo."
+      ]
+    },
+    {
+      "heading": "Što hormoni rade",
+      "paragraphs": [
+        "Inzulin snižava šećer u krvi. Hormoni štitnjače određuju tempo potrošnje energije u tijelu. Kortizol pomaže u upravljanju stresom i regulira krvni tlak i šećer. Hormon rasta pokreće rast u djetinjstvu. Spolni hormoni kontroliraju pubertet, plodnost, menstruacije i spolnu funkciju. Hormoni utječu i na san, apetit, raspoloženje i čvrstoću kostiju."
+      ]
+    },
+    {
+      "heading": "Kada stvari krenu po zlu",
+      "paragraphs": [
+        "Previše ili premalo hormona može uzrokovati bolest: dijabetes zbog nedovoljnog učinka inzulina, pojačanu ili smanjenu funkciju štitnjače, Cushingov sindrom zbog viška kortizola, adrenalnu insuficijenciju, simptome menopauze, sindrom policističnih jajnika i nizak testosteron. Simptomi kao što su umor, promjena težine, promjene raspoloženja, netolerancija temperature ili menstrualni problemi mogu upućivati na poremećaje hormona, ali imaju mnoge druge uzroke."
+      ]
+    },
+    {
+      "heading": "Testiranje i liječenje",
+      "paragraphs": [
+        "Krvne pretrage, ponekad pretrage sline ili mokraće, i snimanje pomažu dijagnosticirati hormonske probleme. Liječenje može nadomjestiti hormone koji nedostaju, blokirati višak, liječiti uzrok ili ukloniti tvorbu. Budite oprezni s neregulatornim hormonskim proizvodima i testovima koji se izravno nude potrošačima i razgovarajte o brigama s liječnikom."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Opis simptoma",
+      "text": "Zamislite da se stalno osjećate umorno i hladno. Mogli biste pitati liječnika o pretragama štitnjače i navesti svoje ostale simptome."
+    },
+    {
+      "title": "Razumijevanje nadomjesne terapije",
+      "text": "Pretpostavite da počnete nadomjesnu hormonsku terapiju zbog smanjene funkcije štitnjače. Mogli biste pitati kako se doza prilagođava i koliko često trebaju pretrage."
+    }
+  ],
+  "questions": [
+    "Mogu li moji simptomi biti uzrokovani hormonskim problemom?",
+    "Koje su pretrage potrebne za provjeru?",
+    "Kako će se pratiti liječenje?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Tiroide ipoattiva (ipotiroidismo)",
+  "intro": "Nell'ipotiroidismo la ghiandola tiroidea produce troppo poco ormone tiroideo, rallentando il metabolismo del corpo. Causa stanchezza, aumento di peso e sensazione di freddo e si sviluppa lentamente. È comune, soprattutto nelle donne e negli anziani, e si cura facilmente con compresse ormonali quotidiane.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "La causa più comune nei paesi sviluppati è la tiroidite di Hashimoto, una condizione autoimmune in cui il sistema immunitario attacca la tiroide. Altre cause comprendono il trattamento per una tiroide iperattiva, la chirurgia o la radioterapia della tiroide, certi farmaci, la carenza di iodio e, raramente, problemi dell'ipofisi. I bambini possono nascere con la condizione, ed è per questo che i neonati vengono sottoposti a screening."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi comprendono stanchezza, aumento di peso, stitichezza, pelle secca, diradamento dei capelli, sensibilità al freddo, dolori muscolari, pensiero lento, umore basso, voce rauca, mestruazioni più abbondanti e una tiroide ingrossata o gozzo. I sintomi si sviluppano lentamente e si scambiano facilmente per invecchiamento o stress. La malattia grave non trattata può causare problemi pericolosi per la vita."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "Un esame del sangue che mostri un ormone stimolante la tiroide elevato e un basso livello di ormone tiroideo conferma la diagnosi. I test degli anticorpi aiutano a individuare la malattia autoimmune. Un livello ormonale leggermente elevato con ormone tiroideo normale, detto ipotiroidismo subclinico, spesso si monitora soltanto e il trattamento dipende da livello, sintomi e fattori di rischio."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "La levotiroxina, un ormone tiroideo sintetico, sostituisce ciò che manca al corpo. Si prende una volta al giorno a stomaco vuoto, di solito al mattino con acqua, circa mezz'ora prima di colazione, e va separata da ferro, calcio e alcuni altri farmaci. La dose si adatta in base agli esami del sangue ogni poche settimane all'inizio, poi ogni anno quando è stabile. Il trattamento di solito dura tutta la vita."
+      ]
+    },
+    {
+      "heading": "Convivere con la condizione",
+      "paragraphs": [
+        "Con la dose giusta la maggior parte delle persone sta bene. Informa il medico se resti incinta, perché spesso le dosi vanno aumentate, e segnala i sintomi di troppo ormone come palpitazioni, ansia o perdita di peso. Integratori come la biotina possono alterare i risultati degli esami, quindi informa il laboratorio. Non interrompere le compresse anche se ti senti bene."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prendere le compresse con regolarità",
+      "text": "Immagina di dimenticare la compressa del mattino. Potresti mettere la confezione accanto al bollitore, impostare un promemoria sul telefono e prenderla con costanza a stomaco vuoto."
+    },
+    {
+      "title": "Pianificare una gravidanza",
+      "text": "Supponi di voler restare incinta. Potresti chiedere al medico di controllare prima i livelli tiroidei e di organizzare presto in gravidanza l'adeguamento della dose."
+    }
+  ],
+  "questions": [
+    "Qual è la causa della mia tiroide ipoattiva?",
+    "Quale dose è giusta per me e con che frequenza avrò bisogno di esami del sangue?",
+    "Come devo prendere la levotiroxina per ottenere il migliore effetto?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Generalizirani anksiozni poremećaj: pomoć za trajnu zabrinutost",
+  "intro": "Generalizirani anksiozni poremećaj uključuje teško kontroliranu zabrinutost za mnoga područja života. Mogu se javiti napetost mišića, loš san, nemir i teškoće koncentracije; to nadilazi povremenu uobičajenu brigu.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Briga može prelaziti s financija na obitelj ili zdravlje i trajati nakon umirivanja. Važan je utjecaj na funkcioniranje, a ne smatraju li drugi strah opravdanim."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Procjena obuhvaća trajanje, patnju, san, lijekove, tvari i tjelesne uzroke. Opišite izbjegavanje i ponavljano provjeravanje; upitnik pomaže, ali ne zamjenjuje cjelovit razgovor. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Kognitivno-bihevioralna terapija i odabrani antidepresivi mogu pomoći. Lijekovi trebaju vrijeme i praćenje; benzodiazepini nose rizik ovisnosti i nisu rutinsko dugoročno rješenje. Nemojte naglo prekidati propisanu psihijatrijsku terapiju. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Gradite redovit san, kretanje i male korake prema izbjegavanim aktivnostima. Smanjite pretjerani kofein i alkohol; opuštanje je podrška, ne obveza uklanjanja svakog osjećaja tjeskobe. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Zatražite kontrolu kada briga remeti posao, odnose ili osnovnu skrb. Bol u prsima, nesvjestica ili novi teški tjelesni simptomi trebaju zasebnu procjenu. Neposredna opasnost ili nemogućnost očuvanja sigurnosti zahtijevaju hitnu pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira stalno provjerava obiteljske poruke i gubi san. U terapiji postupno smanjuje provjere umjesto beskonačnog traženja uvjeravanja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben osjeća mučninu pri početku propisane terapije. Javlja se liječniku zbog podnošljivosti umjesto udvostručavanja doze ili naglog prekida."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

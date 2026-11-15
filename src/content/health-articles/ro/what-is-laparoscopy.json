@@ -1,0 +1,51 @@
+{
+  "title": "Ce este laparoscopia?",
+  "intro": "Laparoscopia, numită și chirurgie minim invazivă, este o modalitate de a privi în interiorul abdomenului sau al pelvisului și de a efectua operații prin mici incizii. Se introduce un tub subțire cu cameră și lumină, numit laparoscop. Comparativ cu chirurgia deschisă, înseamnă de obicei mai puțină durere, cicatrici mai mici și recuperare mai rapidă.",
+  "sections": [
+    {
+      "heading": "De ce se face",
+      "paragraphs": [
+        "Laparoscopia este folosită pentru a diagnostica cauzele durerii pelviene sau abdominale și pentru a trata afecțiuni. Operațiile frecvente includ îndepărtarea vezicii biliare sau a apendicelui, repararea herniilor, tratamentul endometriozei, îndepărtarea chisturilor ovariene, sterilizarea, unele operații pe intestin și tratamentul sarcinii ectopice."
+      ]
+    },
+    {
+      "heading": "Cum se face",
+      "paragraphs": [
+        "De obicei se face sub anestezie generală. Chirurgul face câteva mici incizii, de aproximativ un centimetru, și umple abdomenul cu dioxid de carbon pentru a crea spațiu. Camera arată organele pe un ecran, iar instrumente lungi și subțiri sunt folosite prin alte incizii. Gazul este eliberat la sfârșit, iar inciziile sunt închise."
+      ]
+    },
+    {
+      "heading": "Avantaje",
+      "paragraphs": [
+        "Comparativ cu chirurgia deschisă, pacienții au de obicei mai puțină durere, cicatrici mai mici, un risc mai mic de infecție a plăgii, o internare mai scurtă și o revenire mai rapidă la activitățile normale, adesea în una până la două săptămâni. Unele operații, totuși, sunt încă mai bine efectuate deschis sau pot fi convertite în timpul operației."
+      ]
+    },
+    {
+      "heading": "Riscuri și recuperare",
+      "paragraphs": [
+        "Riscurile includ sângerarea, infecția, lezarea organelor sau a vaselor de sânge, reacțiile la anestezie și, rar, cheagurile de sânge. Durerea la vârful umărului și balonarea provocate de gaz sunt frecvente o zi sau două. Mergeți devreme pe jos, luați calmante conform indicațiilor și contactați medicul pentru febră, durere în agravare, vărsături sau probleme ale plăgii."
+      ]
+    },
+    {
+      "heading": "Pregătirea",
+      "paragraphs": [
+        "Vi se va cere să fiți à jeun, să opriți unele medicamente precum anticoagulantele și să aranjați transportul. Întrebați chirurgul despre recuperarea așteptată, concediul medical și ce să faceți dacă apar complicații."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planificarea recuperării",
+      "text": "Imaginați-vă că vi se îndepărtează vezica biliară. Ați putea aranja ajutor acasă și ați putea planifica câteva zile libere de la serviciu."
+    },
+    {
+      "title": "Gestionarea durerii de umăr",
+      "text": "Presupuneți că aveți durere de umăr după operație. Ați putea merge ușor pe jos și ați putea lua calmante, deoarece provine de la gaz."
+    }
+  ],
+  "questions": [
+    "Este laparoscopia potrivită pentru afecțiunea mea?",
+    "Care sunt riscurile și șansa de a trece la chirurgia deschisă?",
+    "Cât va dura recuperarea?"
+  ]
+}

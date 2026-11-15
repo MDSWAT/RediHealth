@@ -1,0 +1,51 @@
+{
+  "title": "Sifilisul",
+  "intro": "Sifilisul este o infecție cu transmitere sexuală provocată de bacterii, care poate fi vindecată cu antibiotice, mai ales dacă este descoperită devreme. Dacă nu este tratat, poate progresa de-a lungul anilor și poate deteriora inima, creierul și alte organe. Poate fi transmis și unui bebeluș nenăscut, așa că testarea și tratamentul contează.",
+  "sections": [
+    {
+      "heading": "Cum se răspândește",
+      "paragraphs": [
+        "Sifilisul se răspândește prin contact direct cu o rană de sifilis în timpul actului sexual vaginal, anal sau oral și de la mamă la bebeluș în timpul sarcinii. Prezervativele reduc riscul, dar nu protejează complet, deoarece rănile pot apărea pe pielea pe care nu o acoperă. Partenerii multipli și actul sexual neprotejat cresc riscul, iar ratele cresc în multe țări."
+      ]
+    },
+    {
+      "heading": "Stadii și simptome",
+      "paragraphs": [
+        "În primul stadiu, o rană nedureroasă numită șancru apare la locul infecției după câteva săptămâni și poate trece neobservată. În al doilea stadiu, la săptămâni până la luni mai târziu, pot apărea o erupție care afectează adesea palmele și tălpile, febră, ganglioni umflați, căderea părului și răni în gură. Apoi infecția poate deveni silențioasă ani de zile, ceea ce se numește latentă. În stadiile tardive se pot dezvolta probleme grave ale inimii, ale creierului și ale nervilor."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Analizele de sânge detectează anticorpii și sunt repetate pentru confirmarea diagnosticului și monitorizarea tratamentului. Lichidul dintr-o rană poate fi examinat direct. Deoarece sifilisul coexistă adesea cu alte infecții, se recomandă testarea pentru HIV și alte infecții cu transmitere sexuală. Femeilor însărcinate li se oferă de rutină testarea."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Injecțiile cu penicilină vindecă sifilisul. O injecție este adesea suficientă în stadiile timpurii, iar în stadiile tardive se administrează mai multe. Persoanele alergice la penicilină pot primi alte antibiotice. După tratament, analizele de sânge sunt repetate pentru a confirma scăderea nivelurilor. Evitați actul sexual până la vindecarea rănilor și terminarea tratamentului. Febra, frisoanele și durerile în prima zi de la începerea tratamentului pot apărea și trec de obicei."
+      ]
+    },
+    {
+      "heading": "Parteneri și prevenire",
+      "paragraphs": [
+        "Partenerii sexuali din ultimele luni trebuie anunțați pentru a fi testați și tratați. Prezervativele, testarea regulată a persoanelor cu parteneri noi sau multipli și tratamentul timpuriu protejează sănătatea. Apelați la servicii confidențiale de sănătate sexuală dacă sunteți îngrijorat."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Testarea",
+      "text": "Imaginați-vă că observați o rană nedureroasă după un partener nou. Ați putea merge prompt la o clinică de sănătate sexuală pentru teste și ați putea întreba despre confidențialitate."
+    },
+    {
+      "title": "Informarea partenerilor",
+      "text": "Presupuneți că testul este pozitiv. Ați putea întreba clinica cum să informați partenerii anonim și să aranjați analize de sânge de urmărire."
+    }
+  ],
+  "questions": [
+    "Ce teste îmi trebuie și cum voi ști că sunt vindecat?",
+    "Ce parteneri trebuie testați și tratați?",
+    "Cum îmi pot reduce riscul pe viitor?"
+  ]
+}

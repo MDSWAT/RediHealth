@@ -1,0 +1,52 @@
+{
+  "title": "Schizofrenia",
+  "intro": "La schizofrenia è una grave malattia mentale che colpisce pensiero, percezione, emozioni e comportamento. Le persone possono avere allucinazioni o deliri e possono ritirarsi dagli altri. È curabile e molte persone guariscono in misura sostanziale con farmaci, terapia psicologica e sostegno sociale. Lo stigma è un grande peso che la comprensione può ridurre.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi positivi comprendono sentire voci che gli altri non sentono, convinzioni false e fisse come essere osservati o perseguitati e linguaggio o comportamento disorganizzato. I sintomi negativi comprendono perdita di motivazione, ridotta espressione emotiva, ritiro sociale e difficoltà a godere delle attività. Sono comuni anche problemi di attenzione e memoria. I sintomi spesso iniziano alla fine dell'adolescenza o nella prima età adulta."
+      ]
+    },
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "Non c'è una causa unica. Possono avere un ruolo vulnerabilità genetica, sviluppo cerebrale, complicanze della nascita, uso di cannabis, forte stress e trauma. La schizofrenia non è causata da una cattiva educazione e non significa doppia personalità. La maggior parte delle persone con schizofrenia non è violenta ed è più spesso vittima che autrice di violenza."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "I farmaci antipsicotici riducono allucinazioni e deliri e prevengono le ricadute. Scegliere quello giusto comporta bilanciare efficacia ed effetti collaterali, come aumento di peso, sonnolenza, problemi di movimento e cambiamenti metabolici, che richiedono monitoraggio. Le iniezioni a lunga durata d'azione possono aiutare chi fa fatica a prendere le compresse ogni giorno. Sospendere improvvisamente il farmaco aumenta il rischio di ricaduta e va fatto solo con consiglio medico.",
+        "Terapia cognitivo-comportamentale, educazione della famiglia, addestramento alle abilità, occupazione e alloggio supportati aiutano la guarigione. Evitare la cannabis e altre droghe è importante."
+      ]
+    },
+    {
+      "heading": "Crisi e cure ospedaliere",
+      "paragraphs": [
+        "Durante un episodio acuto può essere necessario un trattamento ospedaliero, a volte involontario se c'è un grave pericolo per sé o per gli altri, con garanzie legali. Un trattamento precoce migliora gli esiti, quindi cerca aiuto quando compaiono i primi segni. Contatta i servizi di emergenza in una crisi."
+      ]
+    },
+    {
+      "heading": "Vivere con la schizofrenia",
+      "paragraphs": [
+        "Routine regolari, sonno, esercizio e relazioni di sostegno riducono le ricadute. Il sostegno tra pari, i gruppi di auto-aiuto e i servizi orientati alla guarigione aiutano le persone a ricostruire la propria vita e anche le famiglie traggono beneficio da informazioni e sostegno. Tieni d'occhio la salute fisica, perché le persone con schizofrenia hanno tassi più alti di malattie cardiache e diabete."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Sostenere un familiare",
+      "text": "Immagina che tuo fratello sia convinto che gli altri lo osservino. Potresti restare calmo, evitare di discutere la convinzione, esprimere preoccupazione per il suo disagio e incoraggiarlo a vedere un medico."
+    },
+    {
+      "title": "Pianificare le ricadute",
+      "text": "Supponi di aver già avuto un episodio. Potresti scrivere con il tuo team di cura un piano per le crisi che elenchi i segni di allarme precoci, i contatti di fiducia e le tue preferenze di trattamento."
+    }
+  ],
+  "questions": [
+    "Quale farmaco è il migliore per me e come verranno monitorati gli effetti collaterali?",
+    "Quali terapie e servizi di sostegno sono disponibili?",
+    "Come possiamo io e la mia famiglia riconoscere i primi segni di ricaduta?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Operacija: što očekivati",
+  "intro": "Operacija može liječiti bolest, popraviti ozljedu, ublažiti simptome ili pomoći u dijagnosticiranju stanja. Znati što se događa prije, tijekom i nakon operacije pomaže vam pripremiti se, postaviti prava pitanja i aktivno sudjelovati u odlukama. Svaka operacija uključuje koristi, rizike i alternative o kojima treba razgovarati unaprijed.",
+  "sections": [
+    {
+      "heading": "Odlučivanje o operaciji",
+      "paragraphs": [
+        "Operacija je jedna od mogućnosti. Pitajte što operacija treba postići, koliko je vjerojatno da će djelovati, što može poći po zlu, što se događa bez operacije i postoje li alternative poput lijekova ili fizioterapije. Hitne operacije ostavljaju malo vremena za odlučivanje, ali planirane operacije omogućuju vrijeme za drugo mišljenje."
+      ]
+    },
+    {
+      "heading": "Priprema za operaciju",
+      "paragraphs": [
+        "Prije operacije procjenjuje se vaša sposobnost, uz pretrage poput krvnih pretraga, EKG-a i razgovora o lijekovima. Neke lijekove, poput lijekova za razrjeđivanje krvi, možda treba prekinuti prema savjetu. Recite timu o alergijama, prethodnim reakcijama na anesteziju, pušenju i uporabi alkohola. Prestanak pušenja i aktivnost prije operacije poboljšavaju zacjeljivanje. Slijedite upute o postu."
+      ]
+    },
+    {
+      "heading": "Anestezija",
+      "paragraphs": [
+        "Opća anestezija čini vas nesvjesnima i bez boli. Regionalna anestezija, kao što su spinalna ili blokade živaca, umrtvljuje dio tijela dok ostajete budni ili lagano sedirani, a lokalna anestezija umrtvljuje malo područje. Anesteziolog s vama bira vrstu, ovisno o operaciji i vašem zdravlju. Nuspojave mogu uključivati mučninu, pospanost i grlobolju, a ozbiljne komplikacije su rijetke."
+      ]
+    },
+    {
+      "heading": "Rizici",
+      "paragraphs": [
+        "Svaka operacija ima rizike, uključujući krvarenje, infekciju, krvne ugruške, oštećenje obližnjih struktura, reakcije na anesteziju i loše zacjeljivanje. Razina rizika ovisi o operaciji, vašem općem zdravlju i je li riječ o hitnoj situaciji. Od vas se traži informirani pristanak nakon što tim objasni koristi i rizike, a možete zatražiti vrijeme za razmišljanje."
+      ]
+    },
+    {
+      "heading": "Oporavak",
+      "paragraphs": [
+        "Nakon operacije vas se nadzire i daje vam se lijek protiv bolova. Rano kretanje, duboko disanje i jelo čim je dopušteno pomažu oporavku. Slijedite upute o njezi rane, aktivnosti, vožnji i povratku na posao te znajte koga nazvati ako imate vrućicu, sve jaču bol, crvenilo, oticanje ili druge brige. Nakon nekih operacija može biti potrebna rehabilitacija."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema pitanja",
+      "text": "Zamislite da vam nude operaciju. Mogli biste zapisati pitanja o koristima, rizicima i alternativama te povesti rođaka na termine da pomogne zapamtiti odgovore."
+    },
+    {
+      "title": "Planiranje oporavka",
+      "text": "Pretpostavite da ćete ići kući dan nakon operacije. Mogli biste dogovoriti prijevoz, pomoć kod kuće, lagane obroke i slobodno vrijeme s posla."
+    }
+  ],
+  "questions": [
+    "Koje su koristi i rizici ove operacije i koje su alternative?",
+    "Koja vrsta anestezije je planirana i koje su nuspojave?",
+    "Što trebam očekivati tijekom oporavka i kada mogu nastaviti normalne aktivnosti?"
+  ]
+}

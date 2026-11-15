@@ -1,0 +1,51 @@
+{
+  "title": "Program probira raka dojke u Njemačkoj",
+  "intro": "Njemačka ženama određene dobne skupine nudi poziv na probir mamografijom u redovitim razmacima. Program ima za cilj rano otkriti rak dojke, ali kao i svaki probir ima koristi i štete. Ovaj pregled opisuje ga općenito; dobne granice i pravila mogu se mijenjati pa provjerite aktualni poziv i informacije.",
+  "sections": [
+    {
+      "heading": "Tko je pozvan i kako funkcionira",
+      "paragraphs": [
+        "Žene u dobi od otprilike pedeset do sedamdeset pet godina pozivaju se svake dvije godine pismom, s terminom u certificiranoj jedinici za probir. Sudjelovanje je dobrovoljno i besplatno za osigurane žene. Uz poziv dolazi informativni letak koji pomaže pri odluci. Žene sa simptomima ili visokim osobnim rizikom trebaju posjetiti liječnika umjesto čekati probir."
+      ]
+    },
+    {
+      "heading": "Pregled",
+      "paragraphs": [
+        "Mamografija je rendgensko snimanje svake dojke, koje se radi dok je dojka nekoliko sekundi stisnuta između dviju ploča. Može biti neugodna, ali je kratka. Snimke neovisno pregledavaju dva specijalista, a treći se konzultira ako se ne slože. Standardi kvalitete opreme i izobrazbe se nadziru. Rezultati se šalju pisano unutar nekoliko dana."
+      ]
+    },
+    {
+      "heading": "Koristi",
+      "paragraphs": [
+        "Probir može otkriti rakove ranije, kada je liječenje često manje opsežno, i može smanjiti vjerojatnost smrti od raka dojke kod žena koje sudjeluju. Istraživanja procjenjuju da se na svakih tisuću probranih žena tijekom niza godina spriječi skroman broj smrti."
+      ]
+    },
+    {
+      "heading": "Štete i ograničenja",
+      "paragraphs": [
+        "Neki rezultati su lažni alarmi koji vode do daljnjih pretraga poput ultrazvuka ili biopsije, što uzrokuje tjeskobu, a u većini slučajeva nije rak. Neki rakovi se propuste, uključujući one koji se pojave između probira. Prekomjerna dijagnoza nastaje kada se otkriju i liječe sporo rastući rakovi ili predrakave promjene koje nikada ne bi nanijele štetu. Doza zračenja je niska, ali nije nula. Gusto tkivo dojke može otežati čitanje rendgenskih snimki."
+      ]
+    },
+    {
+      "heading": "Odlučivanje o sudjelovanju",
+      "paragraphs": [
+        "Pročitajte letak, razmotrite svoje zdravlje, obiteljsku povijest i osobne vrijednosti te razgovarajte s liječnikom. Možete odbiti ili prihvatiti u bilo kojem trenutku. Što god odabrali, provjeravajte promjene na dojkama i brzo posjetite liječnika zbog kvržice, promjene kože, iscjetka iz bradavice ili boli koja potraje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Čitanje poziva",
+      "text": "Zamislite da primite poziv u dobi od pedeset i dvije godine. Mogli biste pročitati informacije, zabilježiti pitanja o koristima i lažnim alarmima i razgovarati o njima sa svojim ginekologom."
+    },
+    {
+      "title": "Nakon ponovnog poziva",
+      "text": "Pretpostavite da vas nakon probira zamole da se vratite na daljnju pretragu. Mogli biste pitati što je viđeno, koja je pretraga planirana i koliko je vjerojatno da će se pokazati bezazlenom."
+    }
+  ],
+  "questions": [
+    "Koje su koristi i štete probira za ženu poput mene?",
+    "Trebam li sudjelovati ako imam obiteljsku povijest raka dojke?",
+    "Što se događa ako je rezultat probira nejasan?"
+  ]
+}

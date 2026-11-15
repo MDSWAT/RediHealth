@@ -1,0 +1,51 @@
+{
+  "title": "Consultația ginecologică: pregătire și consimțământ",
+  "intro": "Îngrijirea ginecologică poate aborda sângerarea, durerea pelvină, contracepția, sarcina ori screeningul. Prima vizită nu cere automat examen intern. Puteți întreba scopul fiecărei etape și puteți refuza sau opri examinarea.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Pregătiți întrebările principale, tiparul menstruației, simptomele, medicamentele și posibilitatea sarcinii. Nu este necesară epilarea sau folosirea produselor de curățare vaginală înainte de consultație."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Medicul explică examenele și recoltările propuse, verifică acordul și asigură intimitatea. Cereți însoțitor medical, interpret sau clinician preferat când sunt disponibili; vorbiți despre durere ori traumă doar cât doriți. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Testele și tratamentele depind de problemă. Screeningul cervical diferă de investigarea simptomelor; un rezultat recent normal nu înlocuiește evaluarea unei sângerări sau dureri noi. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Întrebați despre cost, confidențialitate, primirea rezultatelor și contact dacă nu sosesc. La examinarea intimă puteți cere pauză, instrumente mai mici sau altă consultație pentru discutarea opțiunilor. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Durerea pelvină severă, leșinul, sângerarea abundentă sau durerea cu posibilă sarcină cer evaluare urgentă. Sângerarea persistentă după sex ori după menopauză necesită consult prompt, nu așteptarea screeningului."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira vine pentru contracepție și întreabă dacă examenul intern ar schimba recomandarea. Medicul explică opțiunile și îi respectă decizia."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben ajută partenera să noteze întrebări. Ea decide dacă intră cu ea în cabinet și poate vorbi privat cu medicul."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

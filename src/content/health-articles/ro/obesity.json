@@ -1,0 +1,51 @@
+{
+  "title": "Obezitatea și slăbitul",
+  "intro": "Obezitatea înseamnă o cantitate mare de grăsime corporală, care crește riscul unor probleme precum diabetul de tip 2, tensiunea arterială mare, bolile de inimă și problemele articulare. Este o afecțiune complexă, influențată de gene, mediu și stil de viață, nu doar de voință. Chiar și o pierdere moderată în greutate poate aduce beneficii vizibile pentru sănătate.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Greutatea este controlată de mulți factori: predispoziția genetică, hormonii, reglarea poftei de mâncare, mediul alimentar, nivelul de activitate, somnul, stresul, anumite medicamente și afecțiuni medicale. Viața modernă, cu alimente bogate în calorii din abundență și puțină mișcare, face creșterea în greutate mai ușoară. Învinuirea nu ajută și poate îngreuna schimbarea."
+      ]
+    },
+    {
+      "heading": "Evaluarea greutății și a sănătății",
+      "paragraphs": [
+        "Indicele de masă corporală este folosit pe scară largă, o valoare de 30 sau mai mare fiind definită în general ca obezitate, dar nu arată unde este depozitată grăsimea. Circumferința taliei și verificarea tensiunii arteriale, a glicemiei și a colesterolului oferă o imagine mai completă. Scopul este o sănătate mai bună, nu doar un număr."
+      ]
+    },
+    {
+      "heading": "Abordări legate de stilul de viață",
+      "paragraphs": [
+        "Programele care combină dieta, activitatea fizică și sprijinul comportamental sunt cele mai eficiente. O reducere moderată a caloriilor cu o alimentație echilibrată, în mare parte neprocesată, este mai sustenabilă decât dietele stricte. Creșteți treptat activitatea regulată, precum mersul vioi, și includeți antrenamentul de forță. Pierderea a cinci până la zece procente din greutatea corporală poate îmbunătăți tensiunea arterială, glicemia și mobilitatea."
+      ]
+    },
+    {
+      "heading": "Medicamente și chirurgie",
+      "paragraphs": [
+        "Anumite medicamente, inclusiv cele injectabile care imită hormonii intestinali, pot sprijini scăderea în greutate alături de schimbările stilului de viață la persoane selectate. Necesită folosire continuă, pot provoca efecte secundare digestive și pot fi costisitoare. Chirurgia bariatrică poate fi luată în considerare în obezitatea severă și duce la o scădere substanțială și durabilă în greutate la mulți, dar implică riscuri și urmărire pe viață."
+      ]
+    },
+    {
+      "heading": "Menținerea greutății",
+      "paragraphs": [
+        "Recâștigarea greutății este frecventă, deoarece corpul încearcă să-și apere greutatea anterioară. Sprijinul pe termen lung, automonitorizarea regulată, activitatea continuă și obiectivele realiste ajută. Cereți sprijin de specialitate în loc să apelați la diete la modă sau la suplimente nedovedite."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Începutul cu pași mici",
+      "text": "Imaginați-vă că vreți să slăbiți. Ați putea înlocui băuturile zaharoase cu apă, ați putea adăuga o plimbare zilnică de douăzeci de minute și ați putea urmări progresul o lună înainte de a stabili alte obiective."
+    },
+    {
+      "title": "Explorarea opțiunilor",
+      "text": "Presupuneți că mai multe încercări de dietă nu au durat. Ați putea întreba medicul despre programe structurate, medicamente sau chirurgie și ce implică fiecare."
+    }
+  ],
+  "questions": [
+    "Care este o țintă de greutate realistă și sănătoasă pentru mine?",
+    "Ce program sau tratament este cel mai potrivit și ce sprijin este disponibil?",
+    "Cum pot preveni recâștigarea greutății după ce am slăbit?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Što se događa tijekom gastroskopije?",
+  "intro": "Gastroskopija je pregled u kojem se tanka savitljiva cijev s kamerom uvodi kroz usta kako bi se pogledali jednjak, želudac i prvi dio tankog crijeva. Pomaže pronaći uzroke boli, refluksa, krvarenja ili problema s gutanjem i traje oko deset do dvadeset minuta.",
+  "sections": [
+    {
+      "heading": "Zašto se radi",
+      "paragraphs": [
+        "Liječnici koriste gastroskopiju za ispitivanje uporne žgaravice, boli u gornjem dijelu trbuha, teškoća s gutanjem, povraćanja, anemije ili krvarenja. Može pokazati čireve, upalu, kile, polipe, tumore i infekcije. Tijekom pregleda mogu se uzeti mali uzorci tkiva, a neki se problemi, kao što je krvarenje, mogu liječiti."
+      ]
+    },
+    {
+      "heading": "Priprema",
+      "paragraphs": [
+        "Trebate prestati jesti oko šest sati, a piti oko dva sata prije. Recite liječniku o lijekovima za razrjeđivanje krvi, dijabetesu, alergijama i bolestima srca ili pluća. Ako ste sedirani, netko vas treba odvesti kući, a ostatak dana ne smijete voziti. Skinite zubnu protezu."
+      ]
+    },
+    {
+      "heading": "Tijekom zahvata",
+      "paragraphs": [
+        "Ležite na lijevom boku, a grlo vam se može umrtviti sprejem. Često se daje sedacija. Štitnik za usta štiti zube. Cijev se vodi preko jezika i traži se da gutnete. Ne blokira disanje. Možete osjetiti pritisak, nagon na povraćanje ili nadutost od zraka koji se uvodi."
+      ]
+    },
+    {
+      "heading": "Poslije",
+      "paragraphs": [
+        "Neko vrijeme odmarate i možete se osjećati naduto ili imati grlobolju jedan dan. Jedite i pijte kada prođe utrnulost grla. Potražite pomoć zbog jake boli u trbuhu ili prsima, vrućice, povraćanja krvi ili crne stolice. Ozbiljne komplikacije, kao što su rascjep ili krvarenje, su rijetke."
+      ]
+    },
+    {
+      "heading": "Rezultati",
+      "paragraphs": [
+        "Liječnik često daje nalaze nakon pregleda, iako rezultati biopsije stižu za nekoliko dana. Pitajte o liječenju, praćenju i svim promjenama lijekova. Bakterija želuca zvana Helicobacter pylori može se otkriti biopsijom i liječiti antibioticima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema dan prije",
+      "text": "Zamislite da je vaša gastroskopija ujutro. Mogli biste postiti nakon ponoći, uzeti samo dogovorene lijekove s gutljajem vode i dogovoriti prijevoz kući."
+    },
+    {
+      "title": "Postupanje sa strahom",
+      "text": "Pretpostavite da se bojite nagona na povraćanje. Mogli biste pitati o sedaciji i vježbati sporo disanje."
+    }
+  ],
+  "questions": [
+    "Je li gastroskopija prava pretraga za moje simptome?",
+    "Hoću li biti sediran i koji su rizici?",
+    "Kada ću dobiti rezultate biopsije?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Cum plămânii schimbă gazele",
+  "intro": "Plămânii transferă oxigenul în sânge și elimină dioxidul de carbon. Respirația cere căi, saci alveolari, circulație și mușchi împreună. Dispneea poate avea cauze pulmonare, cardiace, sanguine ori altele.",
+  "sections": [
+    {
+      "heading": "Ramificații",
+      "paragraphs": [
+        "Aerul trece prin nas ori gură, trahee și bronhii către căi mici. Mucusul și cilii elimină particule. Îngustarea sau mucusul reduc fluxul fără blocarea vizibilă a întregului plămân."
+      ]
+    },
+    {
+      "heading": "Schimb",
+      "paragraphs": [
+        "Alveolele cu pereți subțiri sunt lângă vase. Oxigenul intră și dioxidul iese. Eficiența cere aer și sânge; mișcarea aparent normală nu garantează oxigenarea țesuturilor."
+      ]
+    },
+    {
+      "heading": "Pompa",
+      "paragraphs": [
+        "Diafragma și mușchii toracici schimbă volumul pentru intrarea aerului. Reculul elastic ajută ieșirea în repaus. Durerea, slăbiciunea și mișcarea limitată influențează chiar cu căi deschise."
+      ]
+    },
+    {
+      "heading": "Control și teste",
+      "paragraphs": [
+        "Nervii adaptează respirația. Testele funcției, oxigenului și imaginile răspund diferit. Valoarea acasă nu diagnostichează orice dispnee și nu înlocuiește evaluarea deteriorării."
+      ]
+    },
+    {
+      "heading": "Protecție",
+      "paragraphs": [
+        "Evitați fumul și expunerile, păstrați activitate potrivită și vaccinuri. Tusea persistentă sau efortul redus cer control. Dispneea severă, buzele albastre ori gri, durerea toracică sau sângele la tuse cer ajutor urgent. Înainte de consultație, notați când a început simptomul, ce îl ameliorează sau agravează și cum afectează activitățile obișnuite. Aduceți rezultatele anterioare dacă le aveți. Cereți specialistului să lege explicația de constatările din cazul dumneavoastră; o descriere generală nu stabilește un diagnostic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira întreabă de ce teste respiratorii după scanare liniștitoare: verifică funcția, nu doar structura."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben respiră tot mai greu cu valoare bună acasă. Cere consult, fără să pună numărul deasupra simptomelor."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

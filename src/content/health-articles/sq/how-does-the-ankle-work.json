@@ -1,0 +1,52 @@
+{
+  "title": "Si e mbështet kyçi i këmbës ecjen",
+  "intro": "Kyçi lidh kërcirin me shputën, mban peshën dhe përshtatet me terrenin. Nyjat, ligamentet, tendinat dhe muskujt bashkëpunojnë; dhimbja pas përdredhjes nuk është automatikisht ndrydhje e lehtë.",
+  "sections": [
+    {
+      "heading": "Kockat dhe lëvizja",
+      "paragraphs": [
+        "Tibia dhe fibula rrethojnë talusin. Nyja e sipërme lëviz kryesisht lart e poshtë; nyjat e poshtme ndihmojnë përshtatjen anësore."
+      ]
+    },
+    {
+      "heading": "Kontakti",
+      "paragraphs": [
+        "Kërci dhe lëngu artikular ulin fërkimin. Forma shpërndan ngarkesën, por forca e përsëritur mbi tolerancën e indeve mund t'i dëmtojë."
+      ]
+    },
+    {
+      "heading": "Qëndrueshmëria",
+      "paragraphs": [
+        "Ligamentet lidhin kockat dhe kufizojnë lëvizjen e tepërt. Tendinat përcjellin forcën muskulore; tendina e Akilit ndihmon shtytjen. Dëmtimi ligamentar ndryshon nga këputja e tendinës ose fraktura."
+      ]
+    },
+    {
+      "heading": "Rikuperimi",
+      "paragraphs": [
+        "Mbroni kyçin pas dëmtimit dhe kërkoni udhëzim për ngarkesën e sigurt. Forca dhe ekuilibri rikthehen gradualisht; paqëndrueshmëria e përsëritur kërkon kontroll, jo shtrirje të detyruar."
+      ]
+    },
+    {
+      "heading": "Shenjat paralajmëruese",
+      "paragraphs": [
+        "Deformimi, pamundësia për të mbajtur peshë, këmba e ftohtë ose e mpirë, apo kërcitja me humbje shtytjeje kërkojnë vlerësim të shpejtë. Lëvizja nuk përjashton frakturën.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira përdredh shpesh kyçin në terren të pabarabartë. Pyet për rehabilitim dhe ekuilibër, jo vetëm mbajtëse."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ndien kërcitje duke vrapuar dhe nuk shtyn dot me këmbën. Kërkon kontroll, jo ecje për ta kaluar."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Kidney stones",
+  "intro": "Kidney stones are hard deposits made of minerals and salts that form in the kidneys and may travel down the urinary tract. Small stones often pass unnoticed, while larger ones can cause severe pain. Most stones can be treated, and drinking enough fluid is the best way to prevent new ones.",
+  "sections": [
+    {
+      "heading": "How stones form",
+      "paragraphs": [
+        "When urine contains high levels of certain substances such as calcium, oxalate or uric acid and too little liquid, crystals can clump together. Most stones contain calcium. Risk rises with dehydration, a diet high in salt and animal protein, being overweight, certain medical conditions, some medicines and a family history of stones."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "A stone that stays in the kidney may cause no symptoms. When it moves into the ureter, it can cause sudden, wave-like pain in the side or back that spreads toward the groin, along with nausea, vomiting, blood in the urine and frequent urge to urinate. Fever with pain suggests infection and needs urgent treatment."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Doctors use urine tests, blood tests and imaging, often ultrasound or low-dose CT, to find the stone and see whether the flow of urine is blocked. If you pass a stone, keep it for analysis, since its composition guides prevention."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Many stones smaller than about five millimetres pass by themselves within weeks. Pain relief, such as anti-inflammatory painkillers, plenty of fluid and sometimes medicine to relax the ureter help. Larger stones or stones that block urine or cause infection may need treatment. Shock wave therapy breaks stones into fragments from outside the body, while ureteroscopy uses a thin scope to remove or laser the stone. Large kidney stones may need keyhole surgery through the back."
+      ]
+    },
+    {
+      "heading": "Preventing new stones",
+      "paragraphs": [
+        "Drink enough to produce about two to two and a half litres of urine daily, which usually means three litres or more of fluid. Limit salt and excessive animal protein, eat a balanced diet with normal amounts of calcium, and be careful with high-dose vitamin C or supplements. Depending on the stone type, specific medicines may be recommended. Stones recur in many people, so follow-up matters."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Managing an attack",
+      "text": "Imagine you develop sudden severe flank pain with nausea. You could seek urgent medical help, mention any fever, and ask whether you should strain urine to collect the stone."
+    },
+    {
+      "title": "Building a drinking habit",
+      "text": "Suppose you have had a stone before. You might fill a bottle every morning, spread your drinking through the day and check that your urine is pale."
+    }
+  ],
+  "questions": [
+    "What type of stone do I have, and how can I prevent another?",
+    "Does my stone need to be removed, or can I wait for it to pass?",
+    "Which warning signs mean I should go to the hospital?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Food allergy: diagnosis, meals and an emergency plan",
+  "intro": "Food allergy is an immune reaction to a food protein, and small amounts can sometimes cause serious illness. It differs from food intolerance and does not explain every symptom after eating. Diagnosis matters so that necessary avoidance is effective without unnecessarily restricting nutrition or everyday life.",
+  "sections": [
+    {
+      "heading": "Recognize a severe reaction",
+      "paragraphs": [
+        "Call 112 for breathing or swallowing difficulty, throat or tongue swelling, collapse or marked confusion after food. Anaphylaxis can occur without a rash. Use prescribed emergency adrenaline immediately according to its instructions, then obtain emergency help even if improving. Do not substitute an antihistamine. Lie down; if breathing is difficult, sit supported without standing or walking. Follow the individual plan for repeat treatment while help comes."
+      ]
+    },
+    {
+      "heading": "Get the trigger assessed",
+      "paragraphs": [
+        "Record food, ingredients, quantity, timing and symptoms, including exercise or medicines around the episode. A clinician may arrange skin-prick or specific antibody tests; a positive result alone does not prove a clinical allergy. Supervised food challenges are sometimes needed. Never deliberately test a suspected serious trigger at home or rely on unvalidated commercial intolerance panels."
+      ]
+    },
+    {
+      "heading": "Avoid the confirmed allergen practically",
+      "paragraphs": [
+        "Read ingredient labels every time because recipes change. Ask about preparation, shared utensils and cross-contact when eating out. Removing a visible nut does not make a dish safe. Explain the allergy to school, carers and companions, and keep the action plan and prescribed emergency medicines accessible. Check expiry and learn the specific device rather than assuming all injectors work identically."
+      ]
+    },
+    {
+      "heading": "Protect nutrition and consider specialist options",
+      "paragraphs": [
+        "A dietitian can help replace excluded foods, especially milk or several staple foods in children. Do not remove whole food groups without advice. Some allergies change with age, but reintroduction needs an agreed plan. Selected patients may discuss specialist immunotherapy; it involves risks and monitoring and does not mean unrestricted eating or abandoning emergency precautions."
+      ]
+    },
+    {
+      "heading": "Review the plan as circumstances change",
+      "paragraphs": [
+        "Arrange review after reactions, new symptoms or uncertainty about avoidance. Discuss travel, restaurants, exercise, asthma control and changes in school or work. Previous mild reactions do not guarantee future reactions will remain mild. Bring questions about medicines and emergency access. Family members should know the plan without expecting the affected person to manage a severe reaction alone."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hypothetical example: a school meal",
+      "text": "Mila’s family shares her confirmed allergy and written plan with school. They agree how ingredients and emergency medicines will be checked, rather than assuming a nut-free name guarantees safe preparation."
+    },
+    {
+      "title": "Hypothetical example: avoiding unnecessary restrictions",
+      "text": "Arben develops digestive symptoms and considers excluding many foods. He records the pattern and asks for assessment and dietary advice instead of treating a commercial test as a diagnosis."
+    }
+  ],
+  "questions": [
+    "Which food is genuinely responsible and what testing helps?",
+    "How do I avoid it while maintaining adequate nutrition?",
+    "What should we do during a severe reaction and when review the plan?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Što možete učiniti ako imate BPPV",
+  "intro": "Benigna paroksizmalna pozicijska vrtoglavica, ili BPPV, uzrokuje kratku vrtoglavicu s osjećajem vrtnje kada pomaknete glavu na određene načine, kao što su okretanje u krevetu ili gledanje prema gore. To je čest problem unutarnjeg uha, bezazlen je i obično se može učinkovito liječiti jednostavnim manevrima položaja glave.",
+  "sections": [
+    {
+      "heading": "Što ga uzrokuje",
+      "paragraphs": [
+        "Unutar unutarnjeg uha nalaze se sitni kristali kalcija koji normalno sjede u vrećici. Ako se olabave i prijeđu u polukružne kanale, pokreti glave uzrokuju pogrešno kretanje tekućine i šalju lažne signale mozgu. To uzrokuje kratak, intenzivan osjećaj vrtnje, često uz mučninu. Postaje češća s dobi i može slijediti nakon ozljede glave."
+      ]
+    },
+    {
+      "heading": "Tipični simptomi",
+      "paragraphs": [
+        "Epizode traju manje od minute, a izazivaju ih položaji kao što su ležanje, okretanje, saginjanje naprijed ili zabacivanje glave unatrag. Nema gubitka sluha i između epizoda ste dobro. Stalna vrtoglavica, jaka glavobolja, slabost, problemi s govorom ili dvoslike nisu tipični za BPPV i zahtijevaju hitan liječnički pregled."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i liječenje",
+      "paragraphs": [
+        "Liječnik ga može dijagnosticirati pozicijskim testovima, kao što je Dix-Hallpikeov manevar, koji izaziva vrtoglavicu i pokrete očiju. Liječenje koristi manevre repozicioniranja kristala, kao što je Epleyev manevar, koji kristale vraćaju iz kanala. Djeluju kod većine ljudi nakon jedne ili nekoliko seansi. Lijekovi obično ne pomažu."
+      ]
+    },
+    {
+      "heading": "Samozbrinjavanje",
+      "paragraphs": [
+        "Nakon manevra slijedite savjete o položaju glave. Kod kuće vas liječnik ili fizioterapeut može naučiti samoliječenje. Krećite se polako, ustajte u fazama i pazite da izbjegnete padove, primjerice noćnim svjetlom. Ponavljanje je često, ali se može ponovno liječiti."
+      ]
+    },
+    {
+      "heading": "Kada potražiti pomoć",
+      "paragraphs": [
+        "Posjetite liječnika ako je vrtoglavica nova, ponavlja se, sprječava svakodnevne aktivnosti ili se javlja uz druge simptome. Hitna pomoć potrebna je kod iznenadne jake vrtoglavice sa slabošću, otežanim govorom, promjenama vida ili jakom glavoboljom."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Sigurno ustajanje",
+      "text": "Zamislite da vam se vrti u glavi kad se okrenete u krevetu. Mogli biste polako sjesti, pričekati trenutak i ustati tek kad vrtnja prestane."
+    },
+    {
+      "title": "Priprema za liječenje",
+      "text": "Pretpostavite da imate termin za manevar. Mogli biste pitati smijete li voziti poslije i kako spriječiti ponavljanje."
+    }
+  ],
+  "questions": [
+    "Je li moja vrtoglavica BPPV ili nešto drugo?",
+    "Koji je manevar prikladan i mogu li ga raditi kod kuće?",
+    "Što trebam učiniti ako se vrati?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Dinții și țesuturile de susținere",
+  "intro": "Dinții taie și macină, ajută vorbirea și aspectul. Sunt ținuți de parodonțiul viu. Dintele fără durere nu este automat sănătos, iar boala gingivală poate avansa înaintea mobilității.",
+  "sections": [
+    {
+      "heading": "Straturi",
+      "paragraphs": [
+        "Coroana are smalț dur, dedesubt dentină. Pulpa conține nervi și vase. Rădăcina are cement, nu smalț; retragerea gingiei expune altă suprafață și poate sensibiliza."
+      ]
+    },
+    {
+      "heading": "Ancorare",
+      "paragraphs": [
+        "Ligamentul parodontal leagă rădăcina de os și amortizează. Gingia sigilează și protejează. Dintele nu este lipit direct în os; susținerea se poate deteriora separat de carie."
+      ]
+    },
+    {
+      "heading": "Placă și leziune",
+      "paragraphs": [
+        "Placa bacteriană produce carie ori inflamație. Persistența poate pierde atașament și os. Sângerarea cere îngrijire și sfat, nu oprirea curățării."
+      ]
+    },
+    {
+      "heading": "Protecție",
+      "paragraphs": [
+        "Periați blând cu fluor și curățați interdentar potrivit. Limitați gustările dulci frecvente, discutați gura uscată, fumatul și diabetul. Controlul privește dinții și gingia; albirea nu tratează caria sau parodontita."
+      ]
+    },
+    {
+      "heading": "Urgență",
+      "paragraphs": [
+        "Durerea, umflarea, fractura ori dintele adult mobil cer consult. Fața umflată cu febră cere stomatologie urgentă; respirația sau înghițirea dificilă este urgență. Dintele adult avulsionat cere timp rapid, cel de lapte nu se replantează. Înainte de consultație, notați când a început simptomul, ce îl ameliorează sau agravează și cum afectează activitățile obișnuite. Aduceți rezultatele anterioare dacă le aveți. Cereți specialistului să lege explicația de constatările din cazul dumneavoastră; o descriere generală nu stabilește un diagnostic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira are sânge fără durere. Merge la dentist și învață interdentar, nu consideră lipsa durerii sănătate."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben simte rădăcina expusă. Medicul verifică retragerea și alte cauze înaintea albirilor repetate."
+    }
+  ],
+  "questions": [
+    "Ce etape ar fi mai clare prin diagramă?",
+    "Ce arată explicația și ce nu poate prezice?",
+    "Problema mea specifică necesită evaluare profesională?"
+  ]
+}

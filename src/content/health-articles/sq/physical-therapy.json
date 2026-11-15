@@ -1,0 +1,51 @@
+{
+  "title": "Fizioterapia",
+  "intro": "Fizioterapia përdor lëvizjen, ushtrimet, teknikat manuale e edukimin për të rikthyer e ruajtur funksionin fizik. Përdoret pas lëndimit ose kirurgjisë dhe për gjendje afatgjata që prekin muskujt, nyjet, nervat, zemrën e mushkëritë. Një fizioterapist i mirë do t'ju ndihmojë ta kuptoni problemin tuaj dhe do t'ju mësojë çfarë mund të bëni vetë.",
+  "sections": [
+    {
+      "heading": "Çfarë bëjnë fizioterapistët",
+      "paragraphs": [
+        "Fizioterapistët vlerësojnë si lëvizni, gjejnë shkaqet e dhimbjes ose kufizimit e planifikojnë trajtimin me ju. Punojnë në spitale, praktika, qendra rehabilitimi e në shtëpi. Fushat e praktikës përfshijnë ortopedinë, neurologjinë, kujdesin respirator, shëndetin e grave, pediatrinë e sportin."
+      ]
+    },
+    {
+      "heading": "Trajtimet tipike",
+      "paragraphs": [
+        "Trajtimi shpesh përfshin ushtrime të përshtatura për forcë, fleksibilitet, ekuilibër e qëndrueshmëri, stërvitje në ecje ose detyra të përditshme, terapi manuale, nxehtësi ose ftohtësi e këshilla për qëndrimin e aktivitetin. Teknika si stimulimi elektrik, fashimi ose hidroterapia shtohen nganjëherë. Edukimi për gjendjen tuaj e dozimi i aktiviteteve është pjesë thelbësore."
+      ]
+    },
+    {
+      "heading": "Me çfarë mund të ndihmojë fizioterapia",
+      "paragraphs": [
+        "Arsye të zakonshme përfshijnë dhimbje shpine e qafe, probleme të nyjeve e osteoartritin, rikuperimin pas thyerjeve ose zëvendësimit të nyjes, lëndime sportive, goditjen në tru e sëmundjen e Parkinsonit, sëmundje të mushkërive, probleme të dyshemesë pelvike e probleme zhvillimi te fëmijët. Provat janë më të forta për trajtimin aktiv të bazuar te ushtrimet."
+      ]
+    },
+    {
+      "heading": "Të nxirrni maksimumin",
+      "paragraphs": [
+        "Ndiqni rregullisht, bëni pyetje e praktikoni ushtrimet në shtëpi, pasi përfitimi vjen kryesisht nga ajo që bëni midis seancave. Tregojini terapistit për dhimbjen, sëmundjet e tjera e barnat. Ujdisni synime, si ecja në një largësi të caktuar ose kthimi në punë, dhe rishikoni progresin pas disa seancash."
+      ]
+    },
+    {
+      "heading": "Pika praktike",
+      "paragraphs": [
+        "Në shumë vende, referimi i mjekut e rregullat e sigurimit përcaktojnë sa seanca mbulohen. Mund të duhet të paguani një pjesë të kostos. Nëse nuk përmirësoheni ose simptomat përkeqësohen, tregojini terapistit e mjekut."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vendosja e një synimi",
+      "text": "Imagjinoni që po shëroheni pas kirurgjisë së gjurit. Mund të ujdisni me fizioterapistin synime si ngjitja e shkallëve pa kapëse brenda gjashtë javësh dhe t'i regjistroni ushtrimet në një ditar."
+    },
+    {
+      "title": "Kthimi i ushtrimeve në rutinë",
+      "text": "Supozoni që harroni ushtrimet në shtëpi. Mund t'i lidhni me një zakon ditor, të vendosni një kujtesë dhe t'i kërkoni terapistit ta shkurtojë programin në thelbësoret."
+    }
+  ],
+  "questions": [
+    "Cilat ushtrime do ta ndihmojnë gjendjen time dhe sa shpesh duhet t'i bëj?",
+    "Sa seanca më duhen dhe si do ta masim progresin?",
+    "Çfarë duhet të shmang ndërsa shërohem?"
+  ]
+}

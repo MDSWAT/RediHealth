@@ -1,0 +1,51 @@
+{
+  "title": "Gjetja e informacionit shëndetësor të besueshëm online",
+  "intro": "Kërkimi online ndihmon përgatitjen e pyetjeve, por sjell edhe reklama, pretendime mashtruese dhe këshilla të papërshtatshme. Filloni me pyetje të qartë dhe mbani parasysh burimin dhe kufijtë. Ky udhëzues përshkruan kërkim praktik, jo vetëdiagnostikim.",
+  "sections": [
+    {
+      "heading": "Përcaktoni vendimin para kërkimit",
+      "paragraphs": [
+        "Shënoni çfarë doni të kuptoni: diagnozën e diskutuar, alternativat, rikuperimin ose rezultatin. Përdorni termin nga vizita. Ndani mësimin e përgjithshëm nga pyetjet për mjekun. Simptomat urgjente duan kujdes, jo kërkim më të gjatë."
+      ]
+    },
+    {
+      "heading": "Identifikoni përgjegjësinë dhe tregtinë",
+      "paragraphs": [
+        "Kërkoni autorin, kualifikimet, organizatën, financimin dhe kontaktin. Faqja informon apo shet? Renditja e sponsorizuar, dëshmitë dhe pamja profesionale nuk janë verifikim i pavarur. Lidhja tregtare nuk e bën gjithçka të rreme, por kërkon kontroll provash."
+      ]
+    },
+    {
+      "heading": "Ndiqni pretendimin te provat",
+      "paragraphs": [
+        "Lexoni shpjegimin, jo vetëm titullin ose përmbledhjen. Kërkoni krahasime, rezultate të rëndësishme, dëme dhe pasiguri. Referencat vlejnë nëse mbështesin pretendimin. Kontrolloni datat dhe nëse popullata e shërbimet përputhen me rrethanat tuaja."
+      ]
+    },
+    {
+      "heading": "Trajtoni me kujdes historitë dhe automatizimin",
+      "paragraphs": [
+        "Forumet tregojnë përvoja dhe pyetje praktike, jo sa shpesh funksionon trajtimi. Llogaritë anonime mund të jenë të paplota ose reklamë. Përgjigjja automatike mund të tingëllojë e sigurt duke harruar kushte ose shpikur burime. Verifikoni pretendimet dhe mos jepni të dhëna të panevojshme mjekësore në shërbime të panjohura."
+      ]
+    },
+    {
+      "heading": "Merrni pyetje konkrete në vizitë",
+      "paragraphs": [
+        "Ruani titullin, datën dhe pjesën. Krahasoni organizata të pavarura me reputacion, jo shumë faqe që përsërisin të njëjtën gjë. Pyesni lidhjen me barnat e sëmundjet tuaja. Mos ndaloni trajtimin nga një postim. Nëse kërkimi shton ankthin, pushoni dhe bisedoni me profesionist."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: reklamë suplementi",
+      "text": "Mira sheh premtim shërimi pranë butonit blerje. Kontrollon krahasimin dhe dëmet; pa prova të qarta pyet farmacistin, jo blerje menjëherë."
+    },
+    {
+      "title": "Shembull hipotetik: këshilla të ndryshme",
+      "text": "Arbeni gjen afate rikuperimi të ndryshme. Shënon procedurat dhe pyet ekipin cilat vlejnë, pa bërë mesatare këshillash të papajtueshme."
+    }
+  ],
+  "questions": [
+    "Kush e shkroi dhe financoi?",
+    "A mbështeten përfitimet, dëmet dhe alternativat për njerëz si unë?",
+    "Çfarë duhet diskutuar personalisht para veprimit?"
+  ]
+}

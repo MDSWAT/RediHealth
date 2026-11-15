@@ -1,0 +1,51 @@
+{
+  "title": "Hernia de disc",
+  "intro": "Hernia de disc apare când o parte din centrul moale al unui disc vertebral împinge prin stratul său exterior mai rezistent și poate apăsa pe un nerv din apropiere. Poate provoca dureri de spate și, când este afectat un nerv, durere, amorțeală sau slăbiciune la un picior sau la un braț. Cele mai multe persoane se recuperează în săptămâni până la luni, fără operație.",
+  "sections": [
+    {
+      "heading": "Ce se întâmplă",
+      "paragraphs": [
+        "Între vertebre se află discuri care funcționează ca niște perne. Odată cu vârsta sau cu solicitarea, inelul exterior poate slăbi, iar materialul interior poate bomba sau se poate scurge. Cel mai des sunt afectate zona lombară și gâtul. O bombare nu provoacă întotdeauna simptome, iar scanările arată adesea modificări ale discurilor la persoane fără durere."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "O problemă a unui disc lombar poate provoca dureri de spate bruște sau treptate, cu durere care iradiază pe un picior, adesea sub genunchi, numită sciatică, împreună cu furnicături, amorțeală sau slăbiciune. Un disc de la gât poate provoca durere de gât și simptome la umăr, braț sau mână. Tusea, strănutul sau aplecarea agravează adesea durerea."
+      ]
+    },
+    {
+      "heading": "Semne de alarmă",
+      "paragraphs": [
+        "Cereți ajutor de urgență pentru amorțeală în jurul organelor genitale sau al fesierilor, pierderea controlului vezicii sau al intestinului, slăbiciune progresivă la picioare sau simptome severe, care se agravează, la ambele picioare. Acestea pot semnala o presiune severă asupra nervilor, care necesită tratament urgent."
+      ]
+    },
+    {
+      "heading": "Tratament fără operație",
+      "paragraphs": [
+        "Cele mai multe hernii de disc se ameliorează de la sine, adesea în șase săptămâni. Rămâneți activ cât permite durerea și evitați repausul la pat. Calmantele, căldura și mișcarea blândă ajută, iar kinetoterapia cu exerciții susține recuperarea. Injecțiile lângă nerv pot oferi ameliorare pe termen scurt în cazuri selectate. Scanările sunt de obicei necesare doar când simptomele persistă sau apar semne de alarmă."
+      ]
+    },
+    {
+      "heading": "Chirurgia",
+      "paragraphs": [
+        "Operația de îndepărtare a părții din disc care apasă pe nerv se ia în considerare când durerea severă sau slăbiciunea persistă în ciuda mai multor săptămâni de tratament sau când leziunea nervoasă progresează. Ameliorează durerea de picior mai repede decât așteptarea la mulți oameni, dar implică riscuri precum infecția, lezarea nervilor și recidiva, iar rezultatele pe termen lung sunt similare cu cele ale îngrijirii conservatoare. Recuperarea după operație este importantă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rămânerea activ",
+      "text": "Imaginați-vă că faceți sciatică după ce ați ridicat o greutate. Ați putea continua să mergeți pe distanțe scurte, ați putea evita perioadele lungi culcat și ați putea întreba despre kinetoterapie."
+    },
+    {
+      "title": "Cântărirea operației",
+      "text": "Presupuneți că durerea de picior durează de trei luni. Ați putea întreba un specialist în coloană cât de probabil este ca operația să ajute, care sunt riscurile și ce implică recuperarea."
+    }
+  ],
+  "questions": [
+    "Am nevoie de o scanare sau este mai bine să aștept și să tratez conservator?",
+    "Ce exerciții sunt sigure și utile pentru mine?",
+    "Când ar fi recomandată operația?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Sindrome premestruale (SPM)",
+  "intro": "La sindrome premestruale è un insieme di sintomi fisici ed emotivi che compaiono nei giorni prima delle mestruazioni e si attenuano quando inizia il sanguinamento. Molte donne notano cambiamenti lievi, mentre per alcune i sintomi sono abbastanza gravi da disturbare lavoro e relazioni. Misure di stile di vita e, se serve, farmaci possono aiutare.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi comuni comprendono dolore al seno, gonfiore, mal di testa, stanchezza, voglie alimentari, irritabilità, umore basso, ansia e difficoltà a dormire. I sintomi iniziano nella seconda metà del ciclo, di solito circa una settimana prima delle mestruazioni, e scompaiono entro pochi giorni dall'inizio del sanguinamento. Una forma grave con marcati sintomi dell'umore si chiama disturbo disforico premestruale."
+      ]
+    },
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "La causa non è del tutto nota. Sembra legata a come il cervello risponde alle normali fluttuazioni ormonali, coinvolgendo messaggeri chimici come la serotonina. Non è causata da un carattere debole e non è semplicemente stress. Le donne con una storia di depressione, ansia o forte stress possono essere più colpite."
+      ]
+    },
+    {
+      "heading": "Tenere un diario dei sintomi",
+      "paragraphs": [
+        "Registrare i sintomi ogni giorno per due o più cicli mostra se seguono lo schema tipico e aiuta a distinguere la SPM da depressione, problemi della tiroide o altre condizioni che non migliorano con le mestruazioni. Rende anche più facile discutere il trattamento con il medico."
+      ]
+    },
+    {
+      "heading": "Che cosa può aiutare",
+      "paragraphs": [
+        "Esercizio regolare, sonno sufficiente, un'alimentazione equilibrata con meno caffeina, sale e alcol e metodi di rilassamento possono ridurre i sintomi. Gli integratori di calcio possono aiutare alcune donne e le prove per altri integratori sono contrastanti. Gli antidolorifici alleviano crampi e mal di testa. La terapia cognitivo-comportamentale è efficace per i sintomi dell'umore."
+      ]
+    },
+    {
+      "heading": "Trattamento medico",
+      "paragraphs": [
+        "Per i sintomi gravi gli antidepressivi di tipo serotoninergico assunti per tutto il ciclo o solo nella seconda metà possono essere molto efficaci. Alcune pillole contraccettive combinate riducono i sintomi e altre opzioni ormonali sono disponibili per donne selezionate. Discuti benefici ed effetti collaterali con il medico e rivedi regolarmente il trattamento. Chiedi aiuto con urgenza se hai pensieri di farti del male."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Seguire lo schema",
+      "text": "Immagina che il tuo umore cali ogni mese prima delle mestruazioni. Potresti valutare i sintomi ogni giorno per tre mesi e portare la tabella al medico per parlare delle opzioni."
+    },
+    {
+      "title": "Pianificare in base al ciclo",
+      "text": "Supponi di sapere che la settimana prima delle mestruazioni è la più difficile. Potresti evitare di programmare allora eventi stressanti, mantenere l'esercizio e pianificare del tempo per riposare."
+    }
+  ],
+  "questions": [
+    "I miei sintomi corrispondono alla SPM o un'altra condizione potrebbe esserne responsabile?",
+    "Quali trattamenti sono migliori per i miei sintomi?",
+    "Un contraccettivo ormonale o un antidepressivo è adatto a me?"
+  ]
+}

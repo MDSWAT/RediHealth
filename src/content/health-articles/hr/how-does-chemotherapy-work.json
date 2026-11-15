@@ -1,0 +1,51 @@
+{
+  "title": "Kako radi kemoterapija: cilj, ciklusi i sigurnost",
+  "intro": "Kemoterapija ometa rast ili preživljavanje stanica raka. Razlikuje se od zračenja i mnogih ciljanih ili imunih terapija. Protokol određuje korist, učinke i praćenje.",
+  "sections": [
+    {
+      "heading": "Cilj",
+      "paragraphs": [
+        "Može izliječiti, smanjiti povratak, smanjiti prije druge terapije ili kontrolirati simptome i rast. Pitajte realnu korist i procjenu; palijativna terapija također može mnogo pomoći."
+      ]
+    },
+    {
+      "heading": "Ciklusi i krv",
+      "paragraphs": [
+        "Izmjenjuju se terapija i oporavak jer se zahvaća i normalno tkivo. Krv i organi usmjeravaju dozu. Odgoda ili promjena mogu biti sigurnost, ne neuspjeh. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Put i podrška",
+      "paragraphs": [
+        "Koriste se vena, pumpa, tablete ili drugo. Kućne tablete trebaju oprez i kontrole kao infuzije. Pitajte mučninu, usta, plodnost, kontracepciju i interakcije. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Plan",
+      "paragraphs": [
+        "Čuvajte naziv, lijekove i hitni kontakt. Bilježite simptome i uzimajte propisanu podršku. Pitajte prije dodataka ili novih lijekova; ne udvostručujte niti mijenjajte raspored sami. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Hitnost",
+      "paragraphs": [
+        "Vrućica, tresavica ili nagla bolest mogu značiti ozbiljnu infekciju i uz blage znakove. Odmah slijedite onkološki plan i njegov prag temperature bez čekanja. Teško disanje, prsna bol, zbunjenost ili krvarenje traže hitnost."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira pita smanjenje povratka nakon operacije i apsolutnu korist, ne pretpostavlja isti cilj svake terapije."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima tresavicu između ciklusa i odmah zove, ne skriva je antipiretikom i čeka."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

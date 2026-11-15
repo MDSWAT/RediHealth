@@ -1,0 +1,51 @@
+{
+  "title": "Folosirea InformedHealth pentru decizii medicale",
+  "intro": "InformedHealth este serviciul în engleză al institutului german IQWiG. Explică dovezi despre afecțiuni, teste și tratamente. Pagina sprijină consultația, dar nu vă examinează și nu decide opțiunea personală.",
+  "sections": [
+    {
+      "heading": "Porniți de la întrebare",
+      "paragraphs": [
+        "Porniți cu o întrebare, nu căutarea vindecării promise. Alegeți prezentare, comparație ori pregătire pentru test. Notați termenii necunoscuți și întrebările care pot schimba decizia."
+      ]
+    },
+    {
+      "heading": "Verificați data și contextul",
+      "paragraphs": [
+        "Citiți data publicării ori actualizării și sursele. Separați rezultatele generale de regulile Germaniei. Traducerea explicației nu face automat aplicabile în altă țară serviciul sau asigurarea germană."
+      ]
+    },
+    {
+      "heading": "Comparați dovezi relevante",
+      "paragraphs": [
+        "Comparați beneficii și riscuri în aceeași perioadă și cu risc inițial. Întrebați dacă studiile includ vârsta, sănătatea și tratamentele proprii. Incertitudinea este informație utilă, nu garanția opțiunii celei mai bune."
+      ]
+    },
+    {
+      "heading": "Pregătiți consultația",
+      "paragraphs": [
+        "Aduceți ideile medicului și prioritățile, precum durerea, recuperarea ori reacțiile adverse. Întrebați alternative, inclusiv monitorizare potrivită. Reformulați planul în cuvinte proprii și cereți explicație accesibilă."
+      ]
+    },
+    {
+      "heading": "Surse și limite",
+      "paragraphs": [
+        "Folosiți sursele pentru contextul original și lectură. Articolele locale independente nu sunt traduceri oficiale IQWiG și nici sfat individual. Simptomele noi severe cer evaluare, nu căutare repetată; urgența nu așteaptă lectura."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira citește despre test și întreabă rezultatele false și ce se schimbă ulterior, fără să îl ceară doar fiindcă există."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben vede reguli germane de asigurare. Întreabă serviciul local, fără să presupună aceeași acoperire unde locuiește."
+    }
+  ],
+  "questions": [
+    "Informația se aplică situației și țării mele?",
+    "Ce rămâne incert și ce opțiuni sunt comparate?",
+    "Ce întrebări aduc medicului?"
+  ]
+}

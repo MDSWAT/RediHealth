@@ -1,0 +1,52 @@
+{
+  "title": "Come collaborano i segnali dell'equilibrio",
+  "intro": "L'equilibrio nasce dalla collaborazione fra orecchie interne, occhi, sensori della posizione corporea e cervello. Le vertigini hanno molte possibili cause; conoscere il sistema non stabilisce una diagnosi dell'orecchio.",
+  "sections": [
+    {
+      "heading": "Rotazione",
+      "paragraphs": [
+        "I canali semicircolari pieni di liquido rilevano variazioni della rotazione della testa. Le cellule inviano segnali al cervello; possono proseguire brevemente dopo che ci si ferma, spiegando una sensazione durante il gioco."
+      ]
+    },
+    {
+      "heading": "Gravità e movimento lineare",
+      "paragraphs": [
+        "Gli organi otolitici usano piccoli cristalli e cellule sensoriali per inclinazione e accelerazione lineare. I cristalli normali fanno parte del sistema: la loro presenza non è di per sé una malattia."
+      ]
+    },
+    {
+      "heading": "Integrare i segnali",
+      "paragraphs": [
+        "Il cervello confronta orecchie, vista e informazioni da muscoli e articolazioni. Regola postura e movimenti oculari, aiutando a leggere un cartello mentre la testa si muove."
+      ]
+    },
+    {
+      "heading": "Vita quotidiana",
+      "paragraphs": [
+        "Segnali discordanti possono causare mal d'auto. Scarsa luce, sensibilità ridotta e alcuni farmaci aumentano le cadute. Sedetevi al sicuro se avete capogiri ed evitate guida o arrampicate fino alla valutazione necessaria."
+      ]
+    },
+    {
+      "heading": "Chiedere aiuto",
+      "paragraphs": [
+        "Capogiri ricorrenti richiedono una valutazione, anche dei farmaci. Vertigini improvvise con debolezza, difficoltà a parlare, visione doppia o impossibilità di camminare richiedono emergenza, non manovre casalinghe.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira è meno stabile al buio. Migliora la luce e discute vista, sensibilità ed equilibrio, senza accusare solo le orecchie."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha vertigini nuove e parla male. La famiglia cerca soccorso urgente invece di provare esercizi online."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

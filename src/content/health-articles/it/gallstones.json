@@ -1,0 +1,51 @@
+{
+  "title": "Calcoli biliari: quando serve un trattamento",
+  "intro": "I calcoli sono depositi solidi nella colecisti o nelle vie biliari. Molti non causano sintomi, ma un’ostruzione può provocare intenso dolore addominale superiore e talvolta infezione o pancreatite.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Il dolore biliare tipico è intenso e continuo, spesso in alto a destra o al centro, talvolta irradiato alla schiena. Il solo gonfiore non dimostra che i calcoli siano responsabili."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Ecografia e analisi del sangue aiutano a valutare calcoli, infiammazione e deflusso biliare. Segnalare febbre, ittero e attacchi precedenti; un calcolo occasionale può non spiegare un altro disturbo. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "I calcoli asintomatici della colecisti solitamente richiedono osservazione, salvo casi selezionati. Attacchi ripetuti possono portare a discutere la colecistectomia; i calcoli nei dotti possono richiedere rimozione endoscopica. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Annotare gli attacchi e gli alimenti che sembrano scatenarli. Preferire pasti equilibrati tollerabili nell’attesa del consulto; digiuni drastici, dimagrimenti rapidi e lavaggi biliari commerciali non sono cure affidabili. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Dolore forte persistente, febbre, occhi gialli, urine scure, feci chiare o vomito ripetuto richiedono valutazione urgente. Non aspettare l’intervento programmato se compaiono questi segnali."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha calcoli scoperti per caso senza sintomi biliari. Chiede perché il monitoraggio sia preferibile a un intervento automatico."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Il dolore abituale di Arben è ora accompagnato da febbre e occhi gialli. Cerca assistenza urgente invece di limitarsi a evitare i grassi."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

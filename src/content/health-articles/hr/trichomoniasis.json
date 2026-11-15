@@ -1,0 +1,51 @@
+{
+  "title": "Trihomonijaza",
+  "intro": "Trihomonijaza je česta spolno prenosiva infekcija uzrokovana sitnim parazitom. Mnogi ljudi nemaju simptoma, ali može uzrokovati vaginalni iscjedak, svrbež i nelagodu. Lako se liječi antibioticima, pod uvjetom da se partneri liječe istodobno.",
+  "sections": [
+    {
+      "heading": "Kako se širi",
+      "paragraphs": [
+        "Parazit se širi spolnim kontaktom, uglavnom vaginalnim odnosom, i može se prenijeti čak i kad simptoma nema. Živi u rodnici, mokraćnoj cijevi i ponekad u prostati. Kondomi smanjuju rizik. Ne širi se zahodskim daskama niti običnim kontaktom."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Kod žena simptomi uključuju pjenušav, žuto-zelen ili siv iscjedak neugodnog mirisa, svrbež, crvenilo, bol ili peckanje pri mokrenju ili spolnom odnosu i nelagodu u donjem dijelu trbuha. Muškarci često nemaju simptoma, ali mogu primijetiti iscjedak iz mokraćne cijevi, peckanje pri mokrenju ili nadraženost. Mnoge infekcije dugo ostaju tihe."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Testovi uključuju pregled iscjetka mikroskopom i osjetljivije molekularne testove na obrisku ili uzorku mokraće. Preporučuje se testiranje na druge spolno prenosive infekcije jer često koegzistiraju. Trudnice sa simptomima trebaju se testirati jer trihomonijaza može biti povezana s prijevremenim porodom."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Terapija metronidazolom ili srodnim antibiotikom, uzeta kao tablete nekoliko dana, izliječi infekciju u većine ljudi. Izbjegavajte alkohol tijekom liječenja i dan-dva poslije prema savjetu jer može uzrokovati mučninu i povraćanje. Izbjegavajte spolni odnos dok vi i vaši partneri ne dovršite liječenje i simptomi ne nestanu, kako biste spriječili ponovnu zarazu."
+      ]
+    },
+    {
+      "heading": "Partneri i prevencija",
+      "paragraphs": [
+        "Spolni partneri trebaju testiranje i liječenje čak i bez simptoma. Ponovno testiranje nekoliko mjeseci nakon liječenja se savjetuje jer je ponovna zaraza česta. Kondomi, redovito testiranje s novim partnerima i iskreni razgovori smanjuju rizik. Klinike za spolno zdravlje nude povjerljivo testiranje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Obavještavanje partnera",
+      "text": "Zamislite da je vaš test pozitivan. Mogli biste pitati kliniku kako obavijestiti partnera i dogovoriti izbjegavanje spolnog odnosa dok oboje ne završite liječenje."
+    },
+    {
+      "title": "Praćenje",
+      "text": "Pretpostavite da vaši simptomi nestanu nakon liječenja. Mogli biste ipak dogovoriti ponovni test nakon nekoliko mjeseci prema savjetu."
+    }
+  ],
+  "questions": [
+    "Trebam li testiranje i na druge infekcije?",
+    "Koje liječenje trebam uzeti i što trebam izbjegavati dok ga uzimam?",
+    "Koje partnere treba liječiti i kada možemo nastaviti spolne odnose?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Gastriti: gjetja dhe trajtimi i shkakut",
+  "intro": "Gastriti është inflamacioni i shtresës së brendshme të stomakut. Mund të vijë nga Helicobacter pylori, disa qetësues ose shkaqe të tjera; vetëm dhimbja e sipërme e barkut nuk konfirmon diagnozën.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Inflamacioni akut mund të japë të përziera, djegie dhe mungesë oreksi; ai kronik mund të jetë i heshtur. Gastriti autoimun mund të pengojë përthithjen dhe të shkaktojë mungesë vitaminash, duke kërkuar ndjekje tjetër."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Shpjegoni përdorimin e qetësuesve, alkoolin dhe ulçerat e mëparshme. Mund të nevojiten teste fryme ose feçesh për Helicobacter, hemogramë ose endoskopi me mostra; ilaçet ndikojnë në saktësinë e testeve. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Trajtimi synon shkakun: terapi e përshkruar kundër Helicobacter të konfirmuar, ulje e acidit ose rishikim i ilaçeve irrituese. Mos ndaloni aspirinën e përshkruar ose antikoagulantët pa këshillë mjekësore. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Shmangni alkoolin gjatë simptomave dhe zgjidhni ushqime që toleroni. Nuk ka dietë universale ose nevojë të provuar për agjërim të zgjatur. Pyesni për qetësues të sigurt në vend të ibuprofenit të shpeshtë. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Gjak në të vjella, feçe të zeza si katran, të fikët ose dhimbje e fortë e papritur kërkojnë urgjencë. Rënia në peshë, gëlltitja e vështirë, të vjellat e vazhdueshme ose anemia kërkojnë hetim."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira merr shpesh antiinflamatorë për shpinën. Diskuton një plan më të sigurt për dhimbjen, pa shtuar vetë ilaçe stomaku pafundësisht."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni mbaron terapinë e përshkruar për Helicobacter dhe planifikon testin e konfirmimit, duke kontrolluar si ndikojnë ilaçet e tjera në kohën e testit."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

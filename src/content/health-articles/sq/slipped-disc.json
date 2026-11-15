@@ -1,0 +1,51 @@
+{
+  "title": "Disku i rrëshqitur (hernia e diskut)",
+  "intro": "Disku i rrëshqitur ndodh kur një pjesë e qendrës së butë të një disku të shtyllës kurrizore shtyhet përmes shtresës së jashtme më të fortë e mund të shtypë një nerv pranë. Mund të shkaktojë dhimbje shpine e, kur preket një nerv, dhimbje, mpirje ose dobësi në një këmbë ose krah. Shumica e njerëzve shërohen brenda javësh deri muajsh pa kirurgji.",
+  "sections": [
+    {
+      "heading": "Çfarë ndodh",
+      "paragraphs": [
+        "Midis rruazave ndodhen disqe që veprojnë si jastëkë. Me moshën ose ngarkesën, unaza e jashtme mund të dobësohet e materiali i brendshëm të fryhet ose të rrjedhë. Shpina e poshtme e qafa preken më shpesh. Një fryrje nuk shkakton gjithmonë simptoma e skanimet shpesh tregojnë ndryshime të diskut te njerëz pa dhimbje."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Një problem i diskut lumbar mund të shkaktojë dhimbje shpine të papritur ose graduale me dhimbje që përhapet poshtë një këmbe, shpesh poshtë gjurit, e quajtur ishias, së bashku me ndjesi therëse, mpirje ose dobësi. Një disk i qafës mund të shkaktojë dhimbje qafe e simptoma në shpatull, krah ose dorë. Kollitja, teshtitja ose përkulja shpesh e përkeqësojnë dhimbjen."
+      ]
+    },
+    {
+      "heading": "Shenjat paralajmëruese",
+      "paragraphs": [
+        "Kërkoni ndihmë urgjente për mpirje rreth organeve gjenitale ose vithe, humbje të kontrollit të fshikëzës ose zorrës, dobësi progresive të këmbës ose simptoma të rënda që përkeqësohen në të dyja këmbët. Këto mund të sinjalizojnë presion të rëndë mbi nerva që kërkon trajtim urgjent."
+      ]
+    },
+    {
+      "heading": "Trajtimi pa kirurgji",
+      "paragraphs": [
+        "Shumica e disqeve të rrëshqitur përmirësohen vetë, shpesh brenda gjashtë javësh. Qëndroni aktiv sa e lejon dhimbja e shmangni pushimin në shtrat. Qetësuesit, nxehtësia e lëvizja e butë ndihmojnë e fizioterapia me ushtrime mbështet shërimin. Injeksionet pranë nervit mund të japin lehtësim afatshkurtër në raste të përzgjedhura. Skanimet zakonisht nevojiten vetëm kur simptomat vazhdojnë ose ndodhin shenja paralajmëruese."
+      ]
+    },
+    {
+      "heading": "Kirurgjia",
+      "paragraphs": [
+        "Kirurgjia për heqjen e pjesës së diskut që shtyp nervin merret në konsideratë kur dhimbja e rëndë ose dobësia vazhdon pavarësisht disa javësh trajtimi ose kur përparon dëmtimi i nervit. E lehtëson dhimbjen e këmbës më shpejt se pritja te shumë njerëz por ka rreziqe si infeksioni, lëndimi i nervit e rikthimi e rezultatet afatgjata janë të ngjashme me kujdesin konservativ. Rehabilitimi pas kirurgjisë është i rëndësishëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Qëndrimi aktiv",
+      "text": "Imagjinoni që zhvilloni ishias pas ngritjes. Mund të vazhdoni të ecni distanca të shkurtra, të shmangni periudhat e gjata shtrirjeje e të pyesni për fizioterapi."
+    },
+    {
+      "title": "Peshimi i kirurgjisë",
+      "text": "Supozoni që dhimbja e këmbës zgjat tre muaj. Mund ta pyesni një specialist të shtyllës sa ka gjasa të ndihmojë kirurgjia, cilat janë rreziqet e çfarë kërkon shërimi."
+    }
+  ],
+  "questions": [
+    "A kam nevojë për skanim apo është më mirë të pres e të trajtoj konservativisht?",
+    "Cilat ushtrime janë të sigurta e të dobishme për mua?",
+    "Kur do të rekomandohej kirurgjia?"
+  ]
+}

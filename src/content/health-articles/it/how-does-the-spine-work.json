@@ -1,0 +1,52 @@
+{
+  "title": "Come la colonna sostiene e protegge i nervi",
+  "intro": "La colonna è una catena di ossa, articolazioni e dischi sostenuta da muscoli e legamenti. Porta carico e protegge midollo e radici nervose. Le curve normali fanno parte del progetto, non provano cattiva postura.",
+  "sections": [
+    {
+      "heading": "Regioni",
+      "paragraphs": [
+        "Collo, torace e zona lombare hanno movimenti e carichi diversi. Il sacro collega al bacino; le ossa fuse inferiori si muovono diversamente dalle vertebre mobili."
+      ]
+    },
+    {
+      "heading": "Dischi e articolazioni",
+      "paragraphs": [
+        "I dischi distribuiscono carico tra gran parte dei corpi vertebrali. Le faccette guidano il movimento. Cambiamenti d'età sono comuni nelle immagini e non spiegano automaticamente dolore o chirurgia."
+      ]
+    },
+    {
+      "heading": "Spazio nervoso",
+      "paragraphs": [
+        "Canale e aperture laterali fanno passare strutture nervose. Irritazione o compressione possono causare dolore irradiato, insensibilità o debolezza; sede e visita aiutano l'interpretazione."
+      ]
+    },
+    {
+      "heading": "Movimento",
+      "paragraphs": [
+        "Variate posizioni, mantenete attività tollerabile e rafforzatevi gradualmente. Nessuna postura previene ogni dolore. Dopo trauma maggiore evitate movimenti inutili e cercate soccorso adeguato."
+      ]
+    },
+    {
+      "heading": "Allarmi",
+      "paragraphs": [
+        "Nuovi disturbi vescicali o intestinali, insensibilità a sella o debolezza crescente richiedono urgenza. Dolore con febbre, trauma maggiore o storia preoccupante richiede valutazione, non manipolazione forzata.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira legge cambiamenti degenerativi nel referto. Chiede il rapporto con la visita senza considerare fragile la schiena e fermare ogni attività."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha insensibilità perineale e nuova difficoltà urinaria. Cerca urgenza senza aspettare fisioterapia ordinaria."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

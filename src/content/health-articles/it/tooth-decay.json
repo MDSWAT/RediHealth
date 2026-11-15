@@ -1,0 +1,51 @@
+{
+  "title": "Carie dentale",
+  "intro": "La carie dentale è il danno al tessuto duro di un dente causato dagli acidi prodotti dai batteri nella placca dentale. È uno dei problemi di salute più comuni al mondo, ma in gran parte prevenibile. Una carie iniziale può essere invertita, mentre una avanzata richiede il trattamento di un dentista.",
+  "sections": [
+    {
+      "heading": "Come si sviluppa la carie",
+      "paragraphs": [
+        "I batteri della placca si nutrono di zuccheri e producono acido che scioglie i minerali dallo smalto. Cibi e bevande zuccherati frequenti, pulizia scarsa, bocca secca e poca esposizione al fluoro aumentano il rischio. All'inizio compare una macchia bianca sullo smalto. Se il processo continua si forma una cavità che può raggiungere la dentina e il nervo."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "La carie iniziale non causa sintomi. I segni successivi comprendono sensibilità a dolce, caldo o freddo, macchie marroni o nere visibili, buchi nei denti, mal di denti e cattivo sapore. Dolore forte e pulsante, gonfiore del viso o febbre suggeriscono un'infezione che richiede cure dentistiche urgenti."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Le lesioni iniziali possono essere remineralizzate con fluoro e una migliore pulizia. Le cavità si trattano rimuovendo la parte cariata e otturando il dente. Se la carie raggiunge il nervo, la devitalizzazione può salvare il dente, altrimenti il dente viene estratto. Le corone proteggono i denti molto danneggiati. Il trattamento precoce è più semplice, meno costoso e meno doloroso."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Lavati i denti due volte al giorno con dentifricio al fluoro per due minuti, pulisci tra i denti ogni giorno, limita snack e bevande zuccherati ai pasti e sciacqua con acqua dopo bevande acide o dolci. I bambini devono usare una piccola quantità di dentifricio al fluoro sotto supervisione e i dentisti possono applicare vernice al fluoro o sigillanti sui molari."
+      ]
+    },
+    {
+      "heading": "Cure dentali regolari",
+      "paragraphs": [
+        "Vai regolarmente dal dentista per i controlli, con una frequenza stabilita in base al tuo rischio. Ai neonati non vanno date bevande zuccherate nel biberon prima di dormire. Evita di sorseggiare di continuo bevande zuccherate. Se hai la bocca secca, chiedi di prodotti adatti. Cerca aiuto subito per qualsiasi mal di denti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Costruire una routine",
+      "text": "Immagina che a tuo figlio non piaccia lavarsi i denti. Potresti lavarli insieme due volte al giorno con un timer o una canzone e limitare i dolci ai pasti."
+    },
+    {
+      "title": "Riconoscere i primi segni",
+      "text": "Supponi di notare una macchia bianca opaca su un dente. Potresti chiedere al dentista del trattamento con fluoro e di consigli per prevenire una carie."
+    }
+  ],
+  "questions": [
+    "Ho segni di carie e come si deve trattare?",
+    "Con che frequenza devo fare un controllo?",
+    "La vernice al fluoro o i sigillanti sarebbero utili per mio figlio?"
+  ]
+}

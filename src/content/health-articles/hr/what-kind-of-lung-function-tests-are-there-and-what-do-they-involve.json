@@ -1,0 +1,51 @@
+{
+  "title": "Testovi plućne funkcije: vrste i što uključuju",
+  "intro": "Testovi plućne funkcije mjere koliko dobro pluća rade, uključujući koliko zraka drže i koliko brzo zrak ulazi i izlazi. Pomažu dijagnosticirati astmu, kroničnu opstruktivnu plućnu bolest i druga plućna stanja te pratiti liječenje. Većina je brza, bezbolna i traži vašu suradnju.",
+  "sections": [
+    {
+      "heading": "Spirometrija",
+      "paragraphs": [
+        "Spirometrija je najčešća pretraga. Potpuno udahnete, a zatim izdahnete što jače i brže u usnik, uz štipaljku na nosu. Mjeri ukupnu količinu zraka koju možete izdahnuti, zvanu forsirani vitalni kapacitet, i koliko u prvoj sekundi. Nizak omjer upućuje na suženje dišnih putova kao kod astme ili kronične opstruktivne plućne bolesti."
+      ]
+    },
+    {
+      "heading": "Bronhodilatacijski i provokacijski testovi",
+      "paragraphs": [
+        "Nakon spirometrije udišete lijek za olakšanje i ponavljate test. Veliko poboljšanje upućuje na astmu. Provokacijski test, s udahnutom tvari ili vježbanjem, radi se pod nadzorom kako bi se utvrdilo reagiraju li dišni putovi prejako. Mjerači vršnog protoka jednostavni su uređaji za praćenje kod kuće."
+      ]
+    },
+    {
+      "heading": "Ostale pretrage",
+      "paragraphs": [
+        "Tjelesna pletizmografija koristi zatvorenu kabinu za mjerenje ukupnog volumena pluća. Test difuzije mjeri koliko dobro kisik prelazi iz pluća u krv udisanjem male količine bezopasnog plina. Pulsna oksimetrija koristi senzor na prstu za mjerenje kisika u krvi, a plinske analize krvi mjere razine kisika i ugljikova dioksida. Test hodanja mjeri podnošenje napora."
+      ]
+    },
+    {
+      "heading": "Priprema",
+      "paragraphs": [
+        "Izbjegavajte pušenje nekoliko sati, velike obroke i naporno vježbanje prije testa. Možda će se tražiti da unaprijed prekinete inhalere pa pitajte unaprijed. Obucite široku odjeću. Recite osoblju o nedavnim infekcijama, boli u prsima, operaciji oka ili problemima sa srcem jer će se neki testovi možda morati odgoditi."
+      ]
+    },
+    {
+      "heading": "Rezultati",
+      "paragraphs": [
+        "Rezultati se uspoređuju s očekivanim vrijednostima za vašu dob, visinu, spol i etničku pripadnost. Liječnik ih tumači uz simptome i druge pretrage. Pitajte što rezultati pokazuju, koje je liječenje potrebno i koliko često treba ponavljati testove."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dobro izvođenje spirometrije",
+      "text": "Zamislite da vas zamole da jako izdahnete. Mogli biste duboko udahnuti, čvrsto zatvoriti usne i puhati dok vam ne kažu da stanete."
+    },
+    {
+      "title": "Mjerenje vršnog protoka kod kuće",
+      "text": "Pretpostavite da imate astmu. Mogli biste bilježiti vršni protok ujutro i navečer i donijeti dnevnik liječniku."
+    }
+  ],
+  "questions": [
+    "Koje testove plućne funkcije trebam?",
+    "Trebam li prekinuti inhalere prije testiranja?",
+    "Što rezultati znače za moje liječenje?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë janë ligamentet?",
+  "intro": "Ligamentet janë breza të fortë indi fibroz që lidhin kockat me kocka të tjera e i stabilizojnë nyjet. Udhëheqin lëvizjen e parandalojnë nyjet të lëvizin shumë. Lëndimet e ligamenteve, të quajtura përdredhje, janë të zakonshme, veçanërisht në kyç, gju e kyçin e dorës.",
+  "sections": [
+    {
+      "heading": "Struktura e funksioni",
+      "paragraphs": [
+        "Ligamentet përbëhen kryesisht nga fibra kolagjeni, të renditura në tufa paralele që japin forcë duke lejuar pak elasticitet. I mbajnë kockat bashkë në nyje, kufizojnë lëvizjen jonormale e përmbajnë mbaresa nervore që e ndihmojnë trurin të ndjejë pozicionin e nyjes, çka kontribuon te ekuilibri. Janë ndryshe nga tendinat, që lidhin muskulin me kockën."
+      ]
+    },
+    {
+      "heading": "Ligamentet e rëndësishme",
+      "paragraphs": [
+        "Në gju, ligamentet kryqëzore brenda nyjes kontrollojnë lëvizjen para e prapa e rrotullimin, e ligamentet anësore e stabilizojnë nga një anë te tjetra. Në kyçin e këmbës, ligamentet në anën e jashtme janë ato që përdridhen më shpesh. Shembuj të tjerë janë ligamentet e kyçit të dorës, shpatullës e shtyllës kurrizore."
+      ]
+    },
+    {
+      "heading": "Përdredhjet e këputjet",
+      "paragraphs": [
+        "Një përdredhje është një shtrirje ose këputje e një ligamenti. Shkalla e parë është një shtrirje e lehtë, e dyta një këputje e pjesshme e e treta një këputje e plotë. Simptomat përfshijnë dhimbje, enjtje, mavijosje, ndjeshmëri e paqëndrueshmëri. Shumë përdredhje shërohen me pushim, mbrojtje, lëvizje të hershme të butë e fizioterapi, ndërsa këputjet e plota të disa ligamenteve mund të kenë nevojë për kirurgji."
+      ]
+    },
+    {
+      "heading": "Shërimi e kujdesi",
+      "paragraphs": [
+        "Ligamentet kanë furnizim të kufizuar me gjak, prandaj shërohen ngadalë, brenda javësh deri muajsh, e mund të mos kthehen në forcë të plotë. Rehabilitimi për të rikthyer lëvizjen, forcën e ekuilibrin ul rrezikun e rilëndimit. Disa njerëz kanë ligamente të lëshuara, të quajtura hipermobilitet, që mund të shkaktojë dhimbje ose paqëndrueshmëri nyjesh. Forcimi i muskujve rreth nyjes jep mbështetje shtesë."
+      ]
+    },
+    {
+      "heading": "Parandalimi i lëndimit",
+      "paragraphs": [
+        "Ngrohuni para stërvitjes, ndërtoni forcë e ekuilibër, përdorni teknikë e këpucë të duhura e rritni stërvitjen gradualisht. Mbajtëset ose shiriti mund të përdoren për një kohë pas lëndimit ose në sporte me rrezik të lartë. Shihni një mjek për dhimbje të rëndë, pamundësi për të mbajtur peshën, enjtje të theksuar ose një nyje që lëshon."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rikuperimi nga një përdredhje",
+      "text": "Imagjinoni që keni përdredhur kyçin e këmbës. Mund të pushoni e ta mbroni ditët e para, të filloni lëvizje të butë sa e lejon dhimbja e të praktikoni ushtrime ekuilibri."
+    },
+    {
+      "title": "Parandalimi i përsëritjes",
+      "text": "Supozoni që shpesh e përdridhni kyçin. Mund ta pyesni një fizioterapist për një program ekuilibri e këshilla për këpucë mbështetëse."
+    }
+  ],
+  "questions": [
+    "A është ligamenti im i shtrirë, i këputur pjesërisht apo plotësisht?",
+    "A kam nevojë për mbajtëse, terapi ose kirurgji?",
+    "Kur mund të kthehem me siguri te sporti?"
+  ]
+}

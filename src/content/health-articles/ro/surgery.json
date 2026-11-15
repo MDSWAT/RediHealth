@@ -1,0 +1,51 @@
+{
+  "title": "Operația: la ce să vă așteptați",
+  "intro": "O operație poate trata o boală, repara o leziune, ameliora simptome sau ajuta la diagnosticarea unei afecțiuni. Cunoașterea a ceea ce se întâmplă înainte, în timpul și după operație vă ajută să vă pregătiți, să puneți întrebările potrivite și să participați activ la decizii. Fiecare operație implică beneficii, riscuri și alternative care trebuie discutate dinainte.",
+  "sections": [
+    {
+      "heading": "Decizia asupra operației",
+      "paragraphs": [
+        "Chirurgia este o opțiune printre altele. Întrebați ce urmărește operația, cât de probabil este să funcționeze, ce ar putea merge prost, ce se întâmplă fără operație și dacă există alternative, precum medicamentele sau kinetoterapia. Operațiile urgente lasă puțin timp pentru decizie, dar cele planificate permit timp pentru o a doua opinie."
+      ]
+    },
+    {
+      "heading": "Pregătirea pentru operație",
+      "paragraphs": [
+        "Înainte de operație sunteți evaluat pentru a vedea dacă sunteți apt, cu teste precum analize de sânge, electrocardiogramă și o discuție despre medicamente. Unele medicamente, precum anticoagulantele, pot trebui oprite temporar, la recomandare. Spuneți echipei despre alergii, reacții anterioare la anestezie, fumat și consum de alcool. Renunțarea la fumat și activitatea fizică dinainte îmbunătățesc vindecarea. Urmați instrucțiunile despre postul alimentar."
+      ]
+    },
+    {
+      "heading": "Anestezia",
+      "paragraphs": [
+        "Anestezia generală vă face inconștient și fără durere. Anestezia regională, precum cea spinală sau blocurile nervoase, amorțește o parte a corpului, în timp ce rămâneți treaz sau ușor sedat, iar anestezia locală amorțește o zonă mică. Medicul anestezist alege tipul împreună cu dumneavoastră, în funcție de operație și de sănătatea dumneavoastră. Efectele secundare pot include greață, somnolență și durere în gât, iar complicațiile grave sunt rare."
+      ]
+    },
+    {
+      "heading": "Riscuri",
+      "paragraphs": [
+        "Orice operație are riscuri, inclusiv sângerare, infecție, cheaguri de sânge, lezarea structurilor din apropiere, reacții la anestezie și vindecare slabă. Nivelul riscului depinde de operație, de sănătatea dumneavoastră generală și de faptul dacă este o urgență. Vi se cere să vă dați consimțământul informat după ce echipa explică beneficiile și riscurile și puteți cere timp de gândire."
+      ]
+    },
+    {
+      "heading": "Recuperarea",
+      "paragraphs": [
+        "După operație sunteți monitorizat și primiți calmante. Mișcarea timpurie, respirația profundă și mâncatul imediat ce este permis ajută recuperarea. Urmați instrucțiunile privind îngrijirea plăgii, activitatea, condusul și întoarcerea la muncă și aflați pe cine să sunați dacă aveți febră, durere în creștere, roșeață, umflare sau alte îngrijorări. După unele operații poate fi necesară recuperarea."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea întrebărilor",
+      "text": "Imaginați-vă că vi se oferă o operație. Ați putea nota întrebări despre beneficii, riscuri și alternative și ați putea veni cu o rudă la programări, ca să vă ajute să rețineți răspunsurile."
+    },
+    {
+      "title": "Planificarea recuperării",
+      "text": "Presupuneți că veți merge acasă a doua zi după operație. Ați putea aranja transportul, ajutor acasă, mese ușoare și timp liber de la serviciu."
+    }
+  ],
+  "questions": [
+    "Care sunt beneficiile și riscurile acestei operații și care sunt alternativele?",
+    "Ce tip de anestezie este planificat și care sunt efectele secundare?",
+    "La ce să mă aștept în timpul recuperării și când pot relua activitățile normale?"
+  ]
+}

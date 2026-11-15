@@ -1,0 +1,51 @@
+{
+  "title": "Dëmtimi i kokës: ndihma e parë dhe përkeqësimi",
+  "intro": "Goditja mund të ndikojë trurin pa plagë të dukshme ose humbje ndjenjash. Tronditja mund të japë dhimbje, marramendje, probleme kujtese dhe përqendrimi. Pamja nuk përcakton rëndesën. Ndihma e parë mbron frymëmarrjen dhe shmang dëmtimin tjetër ndërsa kërkohet vlerësimi.",
+  "sections": [
+    {
+      "heading": "Kontrolloni sigurinë dhe frymëmarrjen",
+      "paragraphs": [
+        "Afrohuni vetëm sigurt. Flisni dhe kontrolloni reagimin dhe frymëmarrjen normale. Kërkoni urgjencë kur nuk përgjigjet. Në frymëmarrje të munguar ose jonormale ndiqni dispeçerin për reanimim dhe defibrilator. Dëmtimi i mundshëm i qafës nuk duhet të pengojë mbrojtjen jetike të rrugëve të ajrit."
+      ]
+    },
+    {
+      "heading": "Njihni shenjat e urgjencës",
+      "paragraphs": [
+        "Telefononi 112 për zgjim të vështirë, kriza, dobësi të re, të folur ose ecje jonormale, të vjella të përsëritura, dhimbje të fortë në rritje, lëng nga veshët ose hunda, plagë depërtuese ose aksident të rëndë. Mos transportoni vetë personin e paqëndrueshëm. Simptomat mund të vonohen."
+      ]
+    },
+    {
+      "heading": "Mbroni personin gjatë pritjes",
+      "paragraphs": [
+        "Shmangni lëvizjet e panevojshme dhe mbështetni kokën e qafën pa forcim. Mos hiqni objekte të ngulura ose shtypni frakturën e dyshuar. Ndiqni frymëmarrjen vazhdimisht. Pa ndjenja por me frymëmarrje normale, rruga e ajrit ka përparësi; ndiqni udhëzimin për kthim të sigurt. Qëndroni pranë dhe mbajeni ngrohtë."
+      ]
+    },
+    {
+      "heading": "Tregoni rreziqet",
+      "paragraphs": [
+        "Tregoni mekanizmin, kohën, humbjen e ndjenjave, kujtesën, të vjellat dhe ndryshimet. Përmendni hollues gjaku, çrregullime gjakderdhjeje, kirurgji truri, alkool ose droga. Holluesit kërkojnë këshillë të shpejtë edhe kur duket mirë. Foshnjat dhe personat që nuk përshkruajnë simptomat kërkojnë kujdes të veçantë. Mos e quani hutimin vetëm dehje."
+      ]
+    },
+    {
+      "heading": "Ndiqni vëzhgimin dhe rikuperimin",
+      "paragraphs": [
+        "Kujdesi në shtëpi vetëm pas këshillës ose vlerësimit të duhur. Një i rritur përgjegjës vëzhgon të paktën 24 orë. Lejohet gjumi, por zgjimi i vështirë është urgjencë. Shmangni alkoolin, qetësuesit pa udhëzim dhe goditjen tjetër. Ndiqni plan individual për shkollë, punë, drejtim e sport; kërkoni kontroll për vazhdim ose përkeqësim."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: pas ndeshjes",
+      "text": "Luka hutohet pas përplasjes. Ndalon lojën dhe vlerësohet edhe pa të fikët. Shoqëruesi raporton hutimin dhe ndjek ndryshimet."
+    },
+    {
+      "title": "Shembull hipotetik: rëndësia e barnave",
+      "text": "Ana goditet dhe ndihet mirë por merr hollues gjaku. Kontakton shërbimin shpejt, pa supozuar se mavijosja e vogël mjafton për siguri."
+    }
+  ],
+  "questions": [
+    "A kërkon mekanizmi ose bari kontroll urgjent?",
+    "Kush më vëzhgon dhe cilat ndryshime duan urgjencë?",
+    "Kur rikthehem sigurt në aktivitete?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Okus, miris i doživljaj hrane",
+  "intro": "Doživljaj hrane spaja okus, miris, temperaturu i teksturu. Začepljen nos može učiniti jelo bljutavim uz uredne receptore jezika. Promjena doživljaja zato ne znači uvijek gubitak samog okusa.",
+  "sections": [
+    {
+      "heading": "Otopljene tvari",
+      "paragraphs": [
+        "Slina donosi sastojke hrane receptorskim stanicama okusnih pupoljaka. Živci šalju signale mozgu; suha usta mogu ometati jelo i doživljaj okusa."
+      ]
+    },
+    {
+      "heading": "Osnovne kvalitete",
+      "paragraphs": [
+        "Slatko, kiselo, slano, gorko i umami poznate su kvalitete. Razni dijelovi jezika prepoznaju više njih; karta sa zasebnom isključivom zonom za svaki okus zavarava."
+      ]
+    },
+    {
+      "heading": "Miris i osjet",
+      "paragraphs": [
+        "Arome iz usta dopiru do nosa tijekom jela. Ljutina paprike uglavnom je iritacija koju osjećaju drugi živci, a ne dodatni osnovni okus. Važne su i temperatura i tekstura."
+      ]
+    },
+    {
+      "heading": "Skrb",
+      "paragraphs": [
+        "Održavajte higijenu usta i razgovarajte o trajnoj promjeni, suhoći ili lijekovima sa stručnjakom. Ne prekidajte sami lijekove ni automatski nadoknađujte s mnogo više soli ili šećera."
+      ]
+    },
+    {
+      "heading": "Sigurnost",
+      "paragraphs": [
+        "Gubitak doživljaja može utjecati na apetit i težinu; pregled može uključiti usta i njuh. Ne kušajte hranu ili kemikalije kako biste provjerili sigurnost; slijedite pravila čuvanja i oznake.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira osjeća bljutavu juhu tijekom prehlade. Razlikuje začepljen njuh od ozljede jezika bez suvišnog soljenja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima trajno promijenjen okus nakon zamjene lijeka. Traži kontrolu bez samostalnog prekida liječenja."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

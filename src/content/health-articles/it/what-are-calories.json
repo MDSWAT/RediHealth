@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa sono le calorie",
+  "intro": "Una caloria è un'unità di energia. In nutrizione l'energia degli alimenti si misura in chilocalorie, spesso abbreviate in calorie, o in chilojoule. Il corpo ha bisogno di energia per far battere il cuore, respirare, muoversi e crescere. Bilanciare l'energia che mangi e quella che usi aiuta a mantenere stabile il peso.",
+  "sections": [
+    {
+      "heading": "Da dove vengono le calorie",
+      "paragraphs": [
+        "I grassi forniscono circa nove chilocalorie per grammo, carboidrati e proteine circa quattro ciascuno e l'alcol circa sette. Fibre e acqua ne forniscono poche o nessuna. Gli alimenti ricchi di grassi e zuccheri, come oli, pasticcini e dolci, sono ad alta densità energetica, mentre verdure, frutta e zuppe lo sono meno, il che significa che porzioni più grandi danno meno calorie."
+      ]
+    },
+    {
+      "heading": "Di quanta energia hai bisogno",
+      "paragraphs": [
+        "Il fabbisogno giornaliero dipende da età, sesso, corporatura, composizione corporea, livello di attività, gravidanza e salute. La maggior parte dell'energia è usata dal corpo a riposo, il cosiddetto metabolismo basale. L'attività fisica e l'energia usata per digerire il cibo si aggiungono. I fabbisogni tipici sono circa duemila chilocalorie per molte donne e duemilacinquecento per molti uomini, con grandi variazioni individuali."
+      ]
+    },
+    {
+      "heading": "Bilancio energetico e peso",
+      "paragraphs": [
+        "Quando mangi più energia di quella che usi, l'eccesso si accumula come grasso e quando ne mangi meno il corpo usa le riserve. In realtà il peso corporeo è influenzato anche da ormoni, sonno, genetica, farmaci e qualità del cibo. Contare le calorie può aiutare alcune persone, ma è solo una guida approssimativa e le etichette sono stime."
+      ]
+    },
+    {
+      "heading": "La qualità conta",
+      "paragraphs": [
+        "Le calorie di alimenti diversi influiscono in modo diverso su salute e sazietà. Gli alimenti ricchi di nutrienti come verdure, frutta, cereali integrali, legumi, noci, pesce e proteine magre sostengono la salute e saziano meglio degli alimenti molto processati e delle bevande zuccherate. Le diete a bassissimo contenuto calorico possono causare carenze e vanno supervisionate dal medico. Bambini, donne in gravidanza e persone con disturbi alimentari hanno bisogno di consigli individuali. L'ossessione per il conteggio può diventare dannosa."
+      ]
+    },
+    {
+      "heading": "Gruppi particolari",
+      "paragraphs": [
+        "Bambini, adolescenti, donne in gravidanza e allattamento, anziani, atleti e persone con malattie hanno fabbisogni energetici diversi. Non limitare fortemente le calorie senza consiglio e cerca aiuto se i pensieri su cibo o peso prendono il sopravvento sulla tua vita."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Leggere un'etichetta",
+      "text": "Immagina di confrontare due snack. Potresti controllare le calorie per porzione e per cento grammi e guardare anche zuccheri, fibre e la dimensione della porzione che mangeresti davvero."
+    },
+    {
+      "title": "Pianificare un pasto",
+      "text": "Supponi di voler sentirti più sazio con meno calorie. Potresti aggiungere verdure e legumi al piatto e sostituire le bevande zuccherate con l'acqua."
+    }
+  ],
+  "questions": [
+    "Di quanta energia ho bisogno ogni giorno?",
+    "Contare le calorie è utile per me o è meglio un altro approccio?",
+    "Quali alimenti mi saziano sostenendo la mia salute?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "What is the structure of hair and how does it grow?",
+  "intro": "Hair is made of a tough protein called keratin. Each hair grows from a follicle in the skin and goes through cycles of growth, rest and shedding. Understanding this helps explain normal hair loss, ageing changes and why some treatments work slowly.",
+  "sections": [
+    {
+      "heading": "Structure",
+      "paragraphs": [
+        "The visible part of the hair, the shaft, is made of dead keratin cells in three layers: the outer cuticle of overlapping scales, the cortex that gives strength and colour and, in thicker hairs, a central medulla. Below the skin is the root in the follicle, with the bulb at its base where cells divide quickly. A small gland, the sebaceous gland, adds oil to the hair."
+      ]
+    },
+    {
+      "heading": "Growth cycle",
+      "paragraphs": [
+        "Each follicle cycles independently. The anagen phase is active growth and lasts two to seven years. The catagen phase is a short transition of a few weeks, and the telogen phase is a resting period of about three months, after which the hair falls out and a new one grows. About ninety percent of scalp hairs grow at a time, and losing fifty to a hundred hairs daily is normal."
+      ]
+    },
+    {
+      "heading": "Colour, type and growth rate",
+      "paragraphs": [
+        "Colour comes from melanin made in the follicle. With age the production slows, and hair turns grey or white. Hair shape, whether straight, wavy or curly, depends on the follicle shape and is inherited. Hair grows about one centimetre a month."
+      ]
+    },
+    {
+      "heading": "Common problems",
+      "paragraphs": [
+        "Hair thinning can result from genetics (androgenetic alopecia), hormonal changes, stress, illness, nutrition problems such as iron deficiency, thyroid disease, medicines, chemotherapy and autoimmune alopecia areata. Heavy shedding a few months after illness or childbirth, called telogen effluvium, is usually temporary."
+      ]
+    },
+    {
+      "heading": "Hair care and treatment",
+      "paragraphs": [
+        "Gentle washing and avoiding tight hairstyles, heat and harsh chemicals protect hair. A balanced diet supports growth. Minoxidil and finasteride are used for pattern hair loss, taking months to show results. See a doctor for sudden or patchy loss, scalp problems or hair loss with other symptoms."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Understanding shedding",
+      "text": "Imagine you notice more hair after a fever. You could wait a few months, since this type of shedding often recovers."
+    },
+    {
+      "title": "Seeking advice",
+      "text": "Suppose you have patchy bald spots. You might see a doctor to find the cause and discuss treatment."
+    }
+  ],
+  "questions": [
+    "Is my hair loss normal or a sign of illness?",
+    "Which treatments work, and how long do they take?",
+    "Do I need blood tests for nutrition or thyroid problems?"
+  ]
+}

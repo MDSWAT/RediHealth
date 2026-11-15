@@ -1,0 +1,52 @@
+{
+  "title": "Come il cuore mantiene la circolazione",
+  "intro": "Il cuore è una pompa muscolare fra polmoni e corpo. Camere, valvole, sistema elettrico e apporto sanguigno proprio collaborano. Un polso normale da solo non dimostra che tutto funzioni normalmente.",
+  "sections": [
+    {
+      "heading": "Percorso",
+      "paragraphs": [
+        "Il sangue torna dal corpo a destra e raggiunge i polmoni. Quello ossigenato torna a sinistra ed è spinto nell'aorta verso il corpo."
+      ]
+    },
+    {
+      "heading": "Valvole e muscolo",
+      "paragraphs": [
+        "Le valvole guidano il flusso in una direzione. Il muscolo si rilassa per riempirsi e si contrae per espellere; malattia valvolare e pompaggio debole sono problemi distinti ma collegati."
+      ]
+    },
+    {
+      "heading": "Ritmo",
+      "paragraphs": [
+        "I segnali partono normalmente dal nodo sinusale e percorrono il sistema di conduzione. Ritmo e forza non coincidono; un'irregolarità va interpretata nel contesto."
+      ]
+    },
+    {
+      "heading": "Nutrimento proprio",
+      "paragraphs": [
+        "Le coronarie nutrono il muscolo. Un blocco può danneggiarlo anche con sangue nelle camere. Attività, pressione e farmaci possono modificare il carico di lavoro."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Visita, elettrocardiogramma ed ecografia rispondono a domande diverse. Nuova pressione toracica persistente, grave affanno, collasso o sintomi d'infarto richiedono emergenza, non rassicurazione dallo smartwatch.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira chiede perché fare l'ecografia dopo l'elettrocardiogramma. Comprende struttura e pompaggio rispetto all'attività elettrica."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha pressione toracica persistente e sudore. Cerca soccorso anche se l'orologio indica un polso ordinario."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

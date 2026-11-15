@@ -1,0 +1,53 @@
+{
+  "title": "How to use the different kinds of health information",
+  "intro": "Health information comes in many forms, such as overviews, detailed articles, explanations of tests and treatments, and personal experiences. Knowing what each type offers helps you find answers more quickly and avoid mistaking general information for personal medical advice.",
+  "sections": [
+    {
+      "heading": "Overviews and detailed articles",
+      "paragraphs": [
+        "Overviews give a short introduction to a topic. They explain what a condition is, how it is usually recognised and what the main options are. Detailed articles go further, covering symptoms, causes, tests, treatments and everyday life in more depth.",
+        "Reading an overview first can help you decide which specific articles matter for you and which terms to look up."
+      ]
+    },
+    {
+      "heading": "Explanations of tests and treatments",
+      "paragraphs": [
+        "Some articles focus on how a test or procedure works, what preparation is needed and what the results might mean. These help you know what to expect and can reduce worry before an examination. They also explain benefits, risks and uncertainties, so you can weigh options."
+      ]
+    },
+    {
+      "heading": "Personal experiences and examples",
+      "paragraphs": [
+        "Examples describing how someone might handle a situation can make abstract information easier to understand. Remember that experiences differ, and what helped one person may not suit another. Hypothetical examples are illustrations, not predictions of what will happen to you."
+      ]
+    },
+    {
+      "heading": "Questions to discuss and sources",
+      "paragraphs": [
+        "Questions for your healthcare professional turn information into action. Bring them to appointments and add your own. Source links at the end of an article point to the material that background information was based on, so you can read further.",
+        "Information in articles is general and can never replace an examination. Medicine changes, so check dates and consider whether information fits your country, since health systems and recommendations differ."
+      ]
+    },
+    {
+      "heading": "Using information wisely",
+      "paragraphs": [
+        "Look for clear authorship, up-to-date content, balanced presentation of benefits and risks, and open statements about uncertainty. Be sceptical of promises of miracle cures and of pages that mainly sell products. Use several reliable sources, and speak to a professional about decisions that affect your health."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing for an appointment",
+      "text": "Imagine you have just been diagnosed with a long-term condition. You could read an overview, underline unfamiliar words, then copy the questions at the end into your notes and add personal concerns to take to your next visit."
+    },
+    {
+      "title": "Comparing sources",
+      "text": "Suppose you find two web pages with conflicting advice about a treatment. You might check who wrote each page, when it was updated and what evidence it cites, then ask your doctor which advice applies to you."
+    }
+  ],
+  "questions": [
+    "Which of the information I found applies to my own situation?",
+    "Are there reliable sources or support groups you would recommend for my condition?",
+    "What should I do if information I read contradicts what I am told?"
+  ]
+}

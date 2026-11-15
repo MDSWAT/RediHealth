@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është terapia e zërit?",
+  "intro": "Terapia e zërit është një trajtim që u ndihmon njerëzve me probleme zëri, si ngjirja, tendosja, zëri i dobët ose humbja e zërit. Një terapist i të folurit e gjuhës mëson ushtrime e zakone të shëndetshme. Përdoret për shumë shkaqe, përfshirë përdorimin e tepërt, nyjet, problemet e nervave e ndryshimin e zërit lidhur me gjininë.",
+  "sections": [
+    {
+      "heading": "Pse ndodhin problemet e zërit",
+      "paragraphs": [
+        "Zërat mund të preken nga përdorimi i tepërt ose i gabuar, si bërtitja ose të folurit për periudha të gjata, nga infeksionet, refluksi, duhani, thatësia, nyjet ose polipet në kordat vokale, dëmtimi i nervave, sëmundja neurologjike ose stresi emocional. Ngjirja që zgjat më shumë se tre deri katër javë duhet kontrolluar nga mjeku, veçanërisht te duhanpirësit."
+      ]
+    },
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Një mjek, zakonisht një specialist i veshit, hundës e fytit, i shikon kordat vokale me një kamerë. Terapisti dëgjon zërin, mat sa kohë mund ta mbani një tingull e pyet për zakone, punën e barnat. Së bashku vendosin objektiva, si zë më i qartë, më pak tendosje ose qëndrueshmëri më e madhe."
+      ]
+    },
+    {
+      "heading": "Çfarë përfshin terapia",
+      "paragraphs": [
+        "Terapia përfshin stërvitje frymëmarrjeje, relaksim të muskujve të qafës e shpatullave, ushtrime për rezonancën, lartësinë e forcën e zërit e teknika si ushtrimet e traktit vokal gjysmë të mbyllur, për shembull zukatja ose të folurit përmes kallamit. Mësoni ta përdorni zërin me efikasitet e të shmangni zakonet që shkaktojnë dëm. Seancat janë javore, me praktikë ditore në shtëpi."
+      ]
+    },
+    {
+      "heading": "Kujdesi për zërin",
+      "paragraphs": [
+        "Pini mjaftueshëm ujë, shmangni duhanin e acaruesit, trajtoni refluksin, shmangni pëshpëritjen e pastrimin e tepërt të fytit, pushojeni zërin pas përdorimit të rëndë e përdorni amplifikim në vende të zhurmshme. Mësuesit, këngëtarët e stafi i qendrave telefonike janë veçanërisht në rrezik. Terapia e zërit mund t'u ndihmojë edhe personave transgjinorë të rregullojnë lartësinë e rezonancën."
+      ]
+    },
+    {
+      "heading": "Rezultatet",
+      "paragraphs": [
+        "Shumë njerëz përmirësohen brenda javësh deri muajsh. Disa gjendje, si nyjet, mund të zhduken me terapi, ndërsa të tjerat kanë nevojë edhe për barna ose kirurgji. Praktika e vazhdueshme është çelësi. Kontaktoni mjekun nëse nuk ka përparim ose nëse simptomat përkeqësohen."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktikimi ditor",
+      "text": "Imagjinoni që e keni tendosur zërin në punë. Mund të bëni ushtrimet e zukatjes çdo ditë e ta pushoni zërin gjatë pushimeve."
+    },
+    {
+      "title": "Kërkimi i ekzaminimit",
+      "text": "Supozoni që jeni ngjirur prej gjashtë javësh. Mund të kërkoni një kontroll te specialisti i veshit, hundës e fytit."
+    }
+  ],
+  "questions": [
+    "Çfarë e shkakton problemin tim të zërit?",
+    "Sa kohë do të zgjasë terapia e çfarë duhet të praktikoj?",
+    "A më duhen edhe bar ose kirurgji?"
+  ]
+}

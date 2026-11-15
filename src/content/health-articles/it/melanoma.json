@@ -1,0 +1,51 @@
+{
+  "title": "Melanoma",
+  "intro": "Il melanoma è un tipo di tumore della pelle che si sviluppa dalle cellule che producono pigmento. È meno comune di altri tumori della pelle ma più pericoloso perché può diffondersi. Se scoperto presto, di solito si cura con un piccolo intervento, quindi conoscere i segnali d'allarme e far controllare i nei sospetti è importante.",
+  "sections": [
+    {
+      "heading": "Cause e fattori di rischio",
+      "paragraphs": [
+        "La causa principale è la radiazione ultravioletta del sole e dei lettini solari, soprattutto le scottature ripetute. Il rischio è maggiore con pelle chiara, molti nei, nei atipici, una storia familiare di melanoma, un melanoma precedente e difese immunitarie indebolite. Il melanoma può comparire anche su pelle raramente esposta al sole, sulle unghie o nell'occhio."
+      ]
+    },
+    {
+      "heading": "Segnali d'allarme",
+      "paragraphs": [
+        "La regola ABCDE aiuta: Asimmetria, Bordo irregolare, Colore non uniforme, Diametro superiore a circa sei millimetri ed Evoluzione o cambiamento. Un neo nuovo o che cambia, che prude, sanguina o appare diverso dagli altri va controllato. Non tutti i melanomi sono scuri; alcuni sono rosa o senza colore."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "Un dermatologo esamina la pelle, spesso con un dermatoscopio. Un neo sospetto viene asportato completamente ed esaminato al microscopio. Lo spessore del tumore, misurato in millimetri, è il fattore più importante per la prognosi. I linfonodi possono essere controllati e le scansioni si usano per melanomi più spessi o più avanzati."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Il melanoma precoce si tratta con un'ampia escissione, rimuovendo il tumore e un margine di pelle normale. Per i tumori più spessi può essere consigliata la biopsia del linfonodo sentinella. Per il melanoma di stadio III e IV i trattamenti moderni comprendono l'immunoterapia e farmaci mirati che bloccano specifiche mutazioni, spesso combinati con chirurgia o radioterapia. Hanno migliorato molto la sopravvivenza, anche se possono causare effetti collaterali significativi da monitorare."
+      ]
+    },
+    {
+      "heading": "Controlli e prevenzione",
+      "paragraphs": [
+        "Dopo il trattamento, controlli regolari della pelle e autoesame individuano recidive e nuovi melanomi. Proteggi la pelle dal sole, evita i lettini solari e fotografa i tuoi nei per seguirne i cambiamenti. Informa i familiari del loro maggior rischio."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Controllare la pelle",
+      "text": "Immagina di decidere di esaminare la pelle ogni mese. Potresti usare uno specchio o chiedere al partner di guardarti la schiena, fotografare i nei e confrontarli nel tempo."
+    },
+    {
+      "title": "Capire un risultato",
+      "text": "Supponi che il tuo neo sia stato asportato e risultato un melanoma sottile. Potresti chiedere che cosa significhi lo spessore per i controlli successivi, se serva altra chirurgia e con quale frequenza fare i controlli."
+    }
+  ],
+  "questions": [
+    "Quali dei miei nei vanno monitorati e con quale frequenza devo fare i controlli della pelle?",
+    "In che stadio è il mio melanoma e quale trattamento è raccomandato?",
+    "Quale programma di controlli avrò e come posso proteggere la pelle?"
+  ]
+}

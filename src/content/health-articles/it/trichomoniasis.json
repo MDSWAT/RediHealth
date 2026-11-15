@@ -1,0 +1,51 @@
+{
+  "title": "Tricomoniasi",
+  "intro": "La tricomoniasi è un'infezione sessualmente trasmissibile comune causata da un minuscolo parassita. Molte persone non hanno sintomi, ma può causare perdite vaginali, prurito e fastidio. Si cura facilmente con antibiotici, purché i partner siano trattati nello stesso momento.",
+  "sections": [
+    {
+      "heading": "Come si diffonde",
+      "paragraphs": [
+        "Il parassita si diffonde con il contatto sessuale, soprattutto il rapporto vaginale, e può essere trasmesso anche in assenza di sintomi. Vive nella vagina, nell'uretra e a volte nella prostata. I preservativi riducono il rischio. Non si trasmette tramite i sedili del bagno o il contatto occasionale."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Nelle donne i sintomi comprendono perdite schiumose, giallo-verdastre o grigie con odore sgradevole, prurito, arrossamento, dolore o bruciore durante la minzione o il rapporto e fastidio al basso ventre. Gli uomini spesso non hanno sintomi ma possono notare secrezione uretrale, bruciore urinando o irritazione. Molte infezioni restano silenti per lunghi periodi."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "Gli esami comprendono l'osservazione delle perdite al microscopio e test molecolari più sensibili su un tampone o un campione di urina. Si consiglia il test per altre infezioni sessualmente trasmissibili, perché spesso coesistono. Le donne in gravidanza con sintomi devono fare il test, perché la tricomoniasi può essere collegata al parto prematuro."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Un ciclo di metronidazolo o di un antibiotico affine, assunto in compresse per alcuni giorni, cura l'infezione nella maggior parte delle persone. Evita l'alcol durante il trattamento e per un giorno o due dopo, come indicato, perché può causare nausea e vomito. Evita i rapporti finché tu e i tuoi partner non avete completato il trattamento e i sintomi sono scomparsi, per prevenire la reinfezione."
+      ]
+    },
+    {
+      "heading": "Partner e prevenzione",
+      "paragraphs": [
+        "I partner sessuali devono fare il test ed essere trattati anche senza sintomi. Si consiglia di ripetere il test alcuni mesi dopo il trattamento perché la reinfezione è comune. Preservativi, test regolari con partner nuovi e conversazioni oneste riducono il rischio. Gli ambulatori di salute sessuale offrono test riservati."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Dirlo a un partner",
+      "text": "Immagina di risultare positivo. Potresti chiedere all'ambulatorio come informare il partner e concordare di evitare i rapporti finché entrambi non avete finito il trattamento."
+    },
+    {
+      "title": "Fare il controllo",
+      "text": "Supponi che i sintomi scompaiano dopo il trattamento. Potresti comunque organizzare un nuovo test dopo alcuni mesi come indicato."
+    }
+  ],
+  "questions": [
+    "Ho bisogno del test anche per altre infezioni?",
+    "Quale trattamento devo prendere e che cosa devo evitare mentre lo prendo?",
+    "Quali partner hanno bisogno di trattamento e quando possiamo riprendere i rapporti?"
+  ]
+}

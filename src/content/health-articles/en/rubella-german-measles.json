@@ -1,0 +1,51 @@
+{
+  "title": "Rubella (German measles)",
+  "intro": "Rubella is a viral infection that usually causes a mild illness with a rash, but it can seriously harm an unborn baby if a woman is infected during early pregnancy. Vaccination as part of the combined measles, mumps and rubella vaccine provides reliable protection and has made rubella rare in many countries.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "After an incubation period of two to three weeks, a pink rash begins on the face and spreads to the body, lasting about three days. Other symptoms include low fever, swollen lymph nodes behind the ears and neck, mild cold symptoms and joint pain, especially in adult women. Many infections cause few or no symptoms."
+      ]
+    },
+    {
+      "heading": "How it spreads",
+      "paragraphs": [
+        "Rubella spreads through droplets when an infected person coughs or sneezes. People are contagious from about a week before the rash until about a week afterwards. They should stay away from school, work and pregnant women during this period, and tell the doctor before visiting."
+      ]
+    },
+    {
+      "heading": "Risk in pregnancy",
+      "paragraphs": [
+        "Infection in the first months of pregnancy can cause miscarriage or congenital rubella syndrome, which may include heart defects, cataracts, hearing loss and developmental problems. Women planning pregnancy should check that they are immune. A pregnant woman who is exposed or has a rash should contact her doctor immediately."
+      ]
+    },
+    {
+      "heading": "Diagnosis and treatment",
+      "paragraphs": [
+        "Diagnosis is confirmed by blood or throat swab tests. There is no specific treatment; rest, fluids and paracetamol or ibuprofen ease symptoms. Complications such as arthritis, bleeding problems or brain inflammation are rare."
+      ]
+    },
+    {
+      "heading": "Vaccination",
+      "paragraphs": [
+        "The measles, mumps and rubella vaccine is given in two doses in childhood. Women of childbearing age without proof of immunity should be vaccinated, ideally before pregnancy, since the vaccine should not be given during pregnancy and pregnancy should be avoided for about a month afterwards. Health workers and those caring for children should also ensure their immunity."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Checking immunity",
+      "text": "Imagine you plan to become pregnant. You could check your vaccination record and ask your doctor for a blood test if you are unsure whether you are immune."
+    },
+    {
+      "title": "Responding to exposure",
+      "text": "Suppose a colleague has rubella and you are pregnant. You might phone your doctor right away to arrange an immunity test and advice."
+    }
+  ],
+  "questions": [
+    "Am I protected against rubella, and do I need a vaccine?",
+    "When should I be vaccinated if I want to become pregnant?",
+    "What should I do if I am pregnant and exposed to rubella?"
+  ]
+}

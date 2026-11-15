@@ -1,0 +1,51 @@
+{
+  "title": "Rubeola",
+  "intro": "Rubeola este o infecție virală care provoacă de obicei o boală ușoară cu erupție pe piele, dar poate dăuna grav unui bebeluș nenăscut dacă o femeie se infectează la începutul sarcinii. Vaccinarea, ca parte a vaccinului combinat împotriva rujeolei, oreionului și rubeolei, oferă protecție sigură și a făcut rubeola rară în multe țări.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "După o perioadă de incubație de două-trei săptămâni, o erupție roz începe pe față și se răspândește pe corp, durând aproximativ trei zile. Alte simptome includ febră ușoară, ganglioni umflați în spatele urechilor și pe gât, simptome ușoare de răceală și dureri articulare, mai ales la femeile adulte. Multe infecții provoacă puține simptome sau niciunul."
+      ]
+    },
+    {
+      "heading": "Cum se răspândește",
+      "paragraphs": [
+        "Rubeola se răspândește prin picături când o persoană infectată tușește sau strănută. Persoanele sunt contagioase de la aproximativ o săptămână înainte de erupție până la aproximativ o săptămână după. Ele trebuie să stea departe de școală, de serviciu și de femeile însărcinate în această perioadă și să spună medicului înainte de vizită."
+      ]
+    },
+    {
+      "heading": "Risc în sarcină",
+      "paragraphs": [
+        "Infecția în primele luni de sarcină poate provoca avort spontan sau sindromul rubeolic congenital, care poate include malformații cardiace, cataractă, pierderea auzului și probleme de dezvoltare. Femeile care planifică o sarcină trebuie să verifice dacă sunt imune. O femeie însărcinată care a fost expusă sau are o erupție trebuie să contacteze imediat medicul."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament",
+      "paragraphs": [
+        "Diagnosticul este confirmat prin analize de sânge sau prin frotiu faringian. Nu există tratament specific; repausul, lichidele și paracetamolul sau ibuprofenul ameliorează simptomele. Complicațiile, precum artrita, problemele de sângerare sau inflamația creierului, sunt rare."
+      ]
+    },
+    {
+      "heading": "Vaccinarea",
+      "paragraphs": [
+        "Vaccinul împotriva rujeolei, oreionului și rubeolei se administrează în două doze în copilărie. Femeile aflate la vârsta fertilă, fără dovada imunității, trebuie vaccinate, ideal înainte de sarcină, deoarece vaccinul nu trebuie administrat în timpul sarcinii, iar sarcina trebuie evitată aproximativ o lună după aceea. Lucrătorii din sănătate și cei care îngrijesc copii trebuie să se asigure și ei de imunitatea lor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Verificarea imunității",
+      "text": "Imaginați-vă că planificați o sarcină. Ați putea verifica carnetul de vaccinări și ați putea cere medicului o analiză de sânge dacă nu sunteți sigură că sunteți imună."
+    },
+    {
+      "title": "Reacția la expunere",
+      "text": "Presupuneți că un coleg are rubeolă și sunteți însărcinată. Ați putea telefona imediat medicului pentru a aranja un test de imunitate și a primi sfaturi."
+    }
+  ],
+  "questions": [
+    "Sunt protejată împotriva rubeolei și am nevoie de vaccin?",
+    "Când ar trebui să mă vaccinez dacă vreau să rămân însărcinată?",
+    "Ce ar trebui să fac dacă sunt însărcinată și am fost expusă la rubeolă?"
+  ]
+}

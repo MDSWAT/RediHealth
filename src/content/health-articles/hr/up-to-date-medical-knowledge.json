@@ -1,0 +1,51 @@
+{
+  "title": "Aktualno medicinsko znanje: kako se procjenjuje",
+  "intro": "Medicinsko znanje se neprestano mijenja. Kako bi zdravstvene informacije ostale pouzdane, proizvođači moraju pratiti istraživanja, procjenjivati njihovu kvalitetu i ažurirati svoje tekstove. Razumijevanje kako se to radi pomaže vam vidjeti kako nastaju aktualne informacije i zašto se preporuke ponekad mijenjaju.",
+  "sections": [
+    {
+      "heading": "Praćenje novih istraživanja",
+      "paragraphs": [
+        "Tisuće istraživanja objavljuje se svaki tjedan. Timovi prate časopise, registre ispitivanja, smjernice i sigurnosna upozorenja radi novih nalaza o temama koje pokrivaju. Odlučuju je li novi dokaz relevantan, dovoljno jak i vjerojatno takav da promijeni postojeće zaključke."
+      ]
+    },
+    {
+      "heading": "Procjena kvalitete dokaza",
+      "paragraphs": [
+        "Nije svako istraživanje jednako pouzdano. Recenzenti procjenjuju dizajn, veličinu, pristranost, dosljednost i jesu li ishodi važni bolesnicima. Jedno malo istraživanje rijetko mijenja preporuke, dok dobro osmišljeno veliko ispitivanje ili sustavni pregled koji kombinira nekoliko istraživanja može. Dokazi se ocjenjuju, što izražava koliko možemo biti sigurni u rezultate."
+      ]
+    },
+    {
+      "heading": "Ažuriranje informacija",
+      "paragraphs": [
+        "Kada dokazi promijene sliku, tekstovi se revidiraju i bilježi se datum revizije. Manje promjene mogu se činiti u redovitim ciklusima pregleda, a hitne sigurnosne informacije ažuriraju se brzo. Ponekad novi dokazi potvrde trenutni savjet i ništa se ne mijenja. Dobri pružatelji objašnjavaju što se promijenilo i zašto."
+      ]
+    },
+    {
+      "heading": "Zašto se savjeti mijenjaju",
+      "paragraphs": [
+        "Preporuke se mogu promijeniti jer nova ispitivanja pokažu da je liječenje bolje ili lošije nego što se mislilo, jer štete postanu očite tek nakon široke uporabe ili jer se razviju bolji testovi. Promjena savjeta znak je da znanost funkcionira, a ne nužno neuspjeha. Neke tvrdnje prvo objavljene u vijestima kasnije istraživanje ne potvrdi."
+      ]
+    },
+    {
+      "heading": "Što možete učiniti",
+      "paragraphs": [
+        "Provjerite datum informacija koje koristite, birajte izvore koji pokazuju kako se ažuriraju i pitajte liječnika o novostima kod vašeg stanja. Ne prekidajte i ne mijenjajte liječenje zbog jednog izvješća, nego o tome razgovarajte sa svojim zdravstvenim timom."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Uočavanje promjene",
+      "text": "Zamislite da se lijek koji uzimate u vijestima spominje kao rizičan. Mogli biste provjeriti pouzdan izvor i pitati liječnika ili ljekarnika prije bilo kakve promjene."
+    },
+    {
+      "title": "Traženje datuma",
+      "text": "Pretpostavite da čitate savjet o cijepljenju. Mogli biste pogledati kada je tekst zadnji put ažuriran i usporediti s nacionalnim preporukama."
+    }
+  ],
+  "questions": [
+    "Je li se preporuka za moje stanje nedavno promijenila?",
+    "Koliko su pouzdani novi dokazi?",
+    "Treba li se nešto u mom liječenju promijeniti s obzirom na to?"
+  ]
+}

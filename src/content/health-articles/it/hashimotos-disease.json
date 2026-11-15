@@ -1,0 +1,51 @@
+{
+  "title": "Hashimoto: funzione tiroidea e cura nel tempo",
+  "intro": "Hashimoto è un’infiammazione autoimmune della tiroide. Può ridurre nel tempo la produzione ormonale, ma i soli anticorpi non implicano terapia immediata per tutti. Sintomi e funzione tiroidea guidano il piano.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "L’ipotiroidismo può dare stanchezza, freddolosità, stitichezza e cute secca. Questi sintomi hanno altre cause; stanchezza persistente con esami normalizzati merita valutazione più ampia."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Si misurano ormone tireostimolante e ormone tiroideo libero, con anticorpi quando utili. L’ecografia non serve automaticamente per ogni positività anticorpale; un nodulo cervicale richiede valutazione propria. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "La levotiroxina sostituisce l’ormone mancante quando indicata. La dose è individuale e controllata con analisi, non modificata soltanto secondo peso o elenchi online. Anche un eccesso può danneggiare. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Assumere regolarmente secondo istruzioni e chiedere come cibo, ferro, calcio e altri farmaci influiscano sull’assorbimento. Evitare iodio o integratori tiroidei non prescritti; più ormone non è una cura dimagrante sicura. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Discutere tempestivamente gravidanza o progetti perché dose e controlli possono cambiare. Nuovo gonfiore del collo, difficoltà a deglutire, palpitazioni o sintomi persistenti richiedono controllo; confusione grave o forte deterioramento richiedono urgenza."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha anticorpi positivi ma funzione normale. Concorda monitoraggio invece di acquistare autonomamente integratori ormonali."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben prende ferro insieme alla levotiroxina. Chiede al farmacista come separarli prima di ritenere inefficace la prescrizione."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

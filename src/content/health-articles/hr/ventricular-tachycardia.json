@@ -1,0 +1,51 @@
+{
+  "title": "Ventrikularna tahikardija i iznenadna srčana smrt",
+  "intro": "Ventrikularna tahikardija je brz, abnormalan srčani ritam koji počinje u donjim komorama, ventrikulima. Može uzrokovati slabo pumpanje srca i može prijeći u ventrikularnu fibrilaciju, koja uzrokuje iznenadni srčani zastoj. Brza reakcija oživljavanjem i defibrilacijom spašava živote, a liječenje može spriječiti ponavljanja.",
+  "sections": [
+    {
+      "heading": "Što se događa",
+      "paragraphs": [
+        "Ventrikuli se normalno stežu na organiziran način. Kod ventrikularne tahikardije kucaju vrlo brzo, često iznad sto pedeset otkucaja u minuti, pa se srce ne može učinkovito puniti i pumpati. Kratke epizode mogu uzrokovati samo lupanje srca. Dugotrajne epizode mogu uzrokovati vrtoglavicu, nesvjesticu ili kolaps. Ventrikularna fibrilacija je kaotično titranje bez pumpanja, što je smrtonosno unutar minuta bez liječenja."
+      ]
+    },
+    {
+      "heading": "Uzroci i čimbenici rizika",
+      "paragraphs": [
+        "Većina slučajeva javlja se kod ljudi s bolesti srca, kao što su prethodni srčani udar s ožiljkom, kardiomiopatija i zatajenje srca. Nasljedni poremećaji ritma, kao što je sindrom dugog QT, neravnoteža minerala u krvi, određeni lijekovi i droge također ga mogu uzrokovati. Iznenadna srčana smrt kod mladih ljudi je rijetka i može biti povezana s nasljednim stanjima pa je obiteljska povijest važna."
+      ]
+    },
+    {
+      "heading": "Hitna reakcija",
+      "paragraphs": [
+        "Ako netko kolabira i ne diše normalno, odmah nazovite hitnu pomoć, započnite kompresije prsnog koša u sredini prsnog koša čvrstim, brzim ritmom i koristite javni defibrilator ako je dostupan, slijedeći njegove glasovne upute. Rana defibrilacija znatno povećava šansu za preživljavanje. Učenje osnovnog održavanja života je vrijedno."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i liječenje",
+      "paragraphs": [
+        "EKG bilježi ritam. Dugotrajni uređaji za praćenje, ultrazvuk srca, MR, testovi opterećenja i ponekad elektrofiziološke studije utvrđuju uzroke. Liječenje uključuje lijekove kao što su beta-blokatori i antiaritmici, kateterska ablacija za uništavanje abnormalnih krugova i ugradivi kardioverter-defibrilator koji otkriva opasne ritmove i daje šok. Liječenje temeljne bolesti srca je ključno."
+      ]
+    },
+    {
+      "heading": "Život s rizikom",
+      "paragraphs": [
+        "Osobe s defibrilatorom trebaju redovite preglede, trebaju znati što učiniti ako prime šok i mogu se suočiti s ograničenjima vožnje. Rodbini osoba s iznenadnom smrću ili nasljednim stanjima može se ponuditi probir. Emocionalna potpora pomaže u suočavanju s tjeskobom. Izbjegavajte okidače koje savjetuje liječnik, kao što su određene droge ili jak napor kod nekih stanja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Učenje oživljavanja",
+      "text": "Zamislite da želite biti spremni. Mogli biste pohađati tečaj osnovnog održavanja života i saznati gdje se u vašem susjedstvu nalaze javni defibrilatori."
+    },
+    {
+      "title": "Obiteljski probir",
+      "text": "Pretpostavite da je rođak iznenada umro u mladoj dobi. Mogli biste pitati liječnika o pretragama srca za članove obitelji."
+    }
+  ],
+  "questions": [
+    "Koji je uzrok moje aritmije i koje liječenje preporučujete?",
+    "Trebam li defibrilator i što bi život s njim uključivao?",
+    "Treba li moju rodbinu pregledati?"
+  ]
+}

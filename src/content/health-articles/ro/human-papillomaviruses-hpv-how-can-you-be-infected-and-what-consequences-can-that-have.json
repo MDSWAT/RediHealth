@@ -1,0 +1,54 @@
+{
+  "title": "Infecția cu HPV: cum se transmite și ce poate cauza",
+  "intro": "Papilomavirusurile umane sunt un grup mare de virusuri care infectează pielea și mucoasele. Cei mai mulți oameni se infectează la un moment dat în viață, fără să observe. De obicei sistemul imunitar elimină virusul, dar unele tipuri pot provoca negi sau, după mulți ani, cancer. Cunoașterea modului în care se transmite HPV și a modului de protecție vă ajută să rămâneți informat fără teamă inutilă.",
+  "sections": [
+    {
+      "heading": "Cum se transmite HPV",
+      "paragraphs": [
+        "Tipurile genitale de HPV se transmit prin contact strâns între piele sau mucoase, cel mai frecvent în timpul actului sexual vaginal, anal sau oral. Prezervativele reduc riscul, dar nu îl elimină, deoarece virusul poate infecta pielea neacoperită de prezervativ. Negii de pe mâini și de pe picioare se transmit de obicei prin contactul cu suprafețe sau cu piele contaminate.",
+        "Deoarece infecțiile sunt adesea tăcute, oamenii pot transmite virusul fără să știe. Faptul de a avea un partener de lungă durată nu înseamnă că infecția a fost recentă."
+      ]
+    },
+    {
+      "heading": "Ce pot provoca infecțiile",
+      "paragraphs": [
+        "Majoritatea infecțiilor cu HPV nu provoacă simptome și dispar în decurs de unul sau doi ani. Unele tipuri cu risc scăzut provoacă negi genitali, care sunt de obicei inofensivi, dar pot fi supărători și pot reapărea. Tipurile cu risc crescut pot provoca modificări celulare la nivelul colului uterin, anusului, vulvei, vaginului, penisului sau gâtului, care pot evolua spre cancer după mulți ani."
+      ]
+    },
+    {
+      "heading": "Depistare",
+      "paragraphs": [
+        "Screeningul cervical folosește teste celulare, teste HPV sau ambele pentru a găsi infecția și modificările timpurii ale colului uterin. Nu există un test de rutină pentru HPV la bărbați. Negii sunt de obicei diagnosticați prin examinare vizuală, iar zonele suspecte pot fi examinate cu un instrument de mărire sau printr-o mică probă de țesut."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Nu există un medicament care să vindece virusul în sine. Negii genitali pot fi tratați cu creme, înghețare, laser sau mică intervenție chirurgicală, deși pot reveni. Modificările celulare precanceroase de la nivelul colului uterin se tratează prin îndepărtarea țesutului afectat.",
+        "Tratamentul cancerelor legate de HPV depinde de localizare și de stadiu și poate include chirurgie, radioterapie și medicamente."
+      ]
+    },
+    {
+      "heading": "Prevenție",
+      "paragraphs": [
+        "Vaccinarea înainte de începerea vieții sexuale este cea mai eficientă prevenție. Screeningul regulat, prezervativele și renunțarea la fumat, care slăbește capacitatea organismului de a elimina HPV, reduc și mai mult riscul. Un test HPV pozitiv nu este un diagnostic de cancer, dar înseamnă că este nevoie de urmărire conform sfatului medicului.",
+        "Multe persoane se simt anxioase sau rușinate după un rezultat HPV. Discuția deschisă cu un profesionist din sănătate și, dacă doriți, cu un partener poate reduce îngrijorările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Înțelegerea unui rezultat de test",
+      "text": "Imaginați-vă că testul de screening găsește un tip de HPV cu risc crescut, dar nicio modificare celulară. Ați putea întreba când ar trebui repetat testul, care este riscul de progresie și ce pași legați de stilul de viață, precum renunțarea la fumat, ar ajuta."
+    },
+    {
+      "title": "Discuția cu un partener",
+      "text": "Presupuneți că aflați că aveți negi genitali. Ați putea să vă pregătiți să explicați că HPV este foarte frecvent și că negii pot fi tratați și ați putea întreba medicul cum să reduceți șansa de a-i transmite."
+    }
+  ],
+  "questions": [
+    "Ce înseamnă rezultatul meu HPV și când ar trebui să mă retestez?",
+    "Ce opțiuni de tratament există pentru negi sau modificări celulare și care sunt riscurile?",
+    "M-ar mai ajuta vaccinarea?"
+  ]
+}

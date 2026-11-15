@@ -1,0 +1,51 @@
+{
+  "title": "Rheumatoid arthritis",
+  "intro": "Rheumatoid arthritis is a chronic autoimmune disease in which the immune system attacks the lining of the joints, causing pain, swelling and stiffness, often in both hands and feet. Without treatment it can damage joints permanently. Early treatment with disease-modifying drugs controls inflammation in most people.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical symptoms are painful, swollen joints on both sides of the body, notably the small joints of the hands and feet, morning stiffness lasting more than half an hour, tiredness, mild fever and loss of appetite. Flares alternate with quieter periods. The disease can also affect the lungs, eyes, heart and blood vessels."
+      ]
+    },
+    {
+      "heading": "Causes and risk factors",
+      "paragraphs": [
+        "The cause is not fully understood. Genes, hormones and environmental factors such as smoking contribute. It is more common in women and often begins in middle age, but can occur at any age. Smoking increases the risk and reduces the effect of treatment."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Diagnosis rests on symptoms, examination of the joints, blood tests including rheumatoid factor, anti-CCP antibodies and inflammation markers, and imaging such as X-ray, ultrasound or MRI. Early referral to a rheumatologist is important, ideally within weeks of symptoms starting."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Disease-modifying drugs, most commonly methotrexate, slow the disease and protect joints. If they are not sufficient, biologic medicines or targeted tablets that block specific immune signals are added. Short courses of corticosteroids reduce flares quickly, though long-term use causes side effects. These medicines require regular blood tests and increase infection risk, so report fever or infection symptoms early. Treatment aims at remission or low disease activity and is reviewed regularly."
+      ]
+    },
+    {
+      "heading": "Living with it",
+      "paragraphs": [
+        "Exercise, physiotherapy and occupational therapy maintain mobility and teach joint protection. Stopping smoking, a balanced diet, bone protection and checked vaccinations are important. Heart disease risk is higher, so blood pressure and cholesterol should be monitored. Fatigue and low mood are common, and support helps."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Seeing a specialist early",
+      "text": "Imagine you have had swollen finger joints and morning stiffness for six weeks. You could ask your family doctor for urgent referral to a rheumatologist and bring a list of affected joints."
+    },
+    {
+      "title": "Preparing for treatment",
+      "text": "Suppose you are starting methotrexate. You might ask about blood tests, vaccinations, alcohol and what to do if you get an infection."
+    }
+  ],
+  "questions": [
+    "Which treatment is best for me, and what are the risks?",
+    "How will we check whether the disease is under control?",
+    "What can I do myself to protect my joints and general health?"
+  ]
+}

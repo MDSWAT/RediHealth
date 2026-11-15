@@ -1,0 +1,56 @@
+{
+  "title": "Temperatura e trupit dhe ethet",
+  "intro": "Trupi i njeriut e mban temperaturën e brendshme brenda një intervali të ngushtë, zakonisht rreth 37 gradë Celsius, që qelizat dhe enzimat e tij të funksionojnë mirë. Ethet janë një rritje e përkohshme e kësaj pike të caktuar, më shpesh sepse sistemi imunitar po lufton një infeksion. Të kuptuarit se si kontrollohet temperatura ju ndihmon të vendosni kur ethet mund të menaxhohen në shtëpi dhe kur kërkojnë këshillë mjekësore.",
+  "sections": [
+    {
+      "heading": "Si e kontrollon temperaturën trupi",
+      "paragraphs": [
+        "Një zonë e vogël në tru, hipotalamusi, vepron si një termostat. Ai merr sinjale nga sensorët e temperaturës në lëkurë dhe brenda trupit dhe pastaj nxit reagime. Kur keni shumë ngrohtë, enët e gjakut në lëkurë zgjerohen dhe djersiteni, gjë që e ftoh trupin kur djersa avullon.",
+        "Kur keni shumë ftohtë, enët e lëkurës ngushtohen për të mbajtur ngrohtësinë dhe muskujt mund të dridhen për të krijuar ngrohtësi. Sjellja ka rëndësi gjithashtu: veshja e rrobave, kërkimi i hijes ose pirja e ujit të freskët ndihmojnë trupin të mbetet në ekuilibër."
+      ]
+    },
+    {
+      "heading": "Çfarë janë ethet",
+      "paragraphs": [
+        "Ethet ndodhin kur substanca të çliruara gjatë infeksionit ose inflamacionit e ngrenë pikën e caktuar të termostatit. Atëherë trupi ndihet i ftohtë, duke shkaktuar të dridhura derisa arrihet temperatura e re, më e lartë. Një temperaturë prej rreth 38 gradësh ose më shumë konsiderohet zakonisht ethe te të rriturit, edhe pse përkufizimet ndryshojnë pak.",
+        "Ethet nuk janë vetë një sëmundje, por shenjë se trupi po reagon. Në shumë infeksione mund ta ndihmojnë edhe sistemin imunitar të punojë më efektivisht. Shkaqe të tjera përfshijnë vaksinimet, disa barna, gjendjet inflamatore, sëmundjen nga nxehtësia dhe, më rrallë, kancerët."
+      ]
+    },
+    {
+      "heading": "Matja e temperaturës",
+      "paragraphs": [
+        "Termometrat dixhitalë janë mjeti standard. Vlerat mund të merren në gojë, nën sup, në vesh ose në ballë dhe te foshnjat shpesh në rektum, duke ndjekur udhëzimet e termometrit. Vlerat ndryshojnë pak midis vendeve, prandaj përdorni të njëjtën metodë kur krahasoni vlera me kalimin e kohës.",
+        "Prekja e ballit me dorë është mënyrë e pasigurt për të gjykuar ethet. Prisni pas ushtrimeve, pijeve të nxehta ose një banjoje të nxehtë para se të matni, pasi këto mund ta shtrembërojnë rezultatin."
+      ]
+    },
+    {
+      "heading": "Kujdesi për veten me ethe",
+      "paragraphs": [
+        "Pushimi dhe lëngjet e bollshme janë hapat më të rëndësishëm, sepse ethet e rrisin humbjen e lëngjeve. Veshjet e lehta dhe një temperaturë e rehatshme e dhomës ndihmojnë. Paracetamoli ose ibuprofeni mund ta ulin shqetësimin dhe mund të përdoren sipas udhëzimeve të paketimit, por nuk janë të nevojshëm vetëm për ta ulur numrin nëse ndiheni mjaft mirë.",
+        "Fëmijëve nuk duhet t'u jepet kurrë aspirinë për shkak të rrezikut të një gjendjeje të rrallë por të rëndë. Banjot e ftohta ose fërkimet me alkool nuk rekomandohen, sepse mund të shkaktojnë të dridhura dhe mund të jenë të dëmshme."
+      ]
+    },
+    {
+      "heading": "Kur të kërkoni ndihmë mjekësore",
+      "paragraphs": [
+        "Kërkoni këshillë shpejt për ethe te një foshnjë nën tre muaj, ethe që zgjasin më shumë se tre ditë, qafë të ngurtë, skuqje që nuk zbehet kur shtypet, konfuzion, vështirësi në frymëmarrje, dhimbje të rëndë ose shenja dehidratimi. Njerëzit me sistem imunitar të dobët, sëmundje kronike të rënda ose operacion të fundit duhet të kërkojnë këshillë më herët.",
+        "Ethet pas udhëtimit në disa rajone mund të tregojnë infeksione si malaria dhe kërkojnë vlerësim të menjëhershëm. Nëse një fëmijë ka një konvulsion febril, qëndroni të qetë, vendoseni në njërën anë dhe thirrni ndihmë urgjente nëse zgjat më shumë se disa minuta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kujdesi për një fëmijë në shtëpi",
+      "text": "Imagjinoni që fëmija juaj i vogël ka ethe, por pi, luan pak dhe reagon normalisht. Mund të ofroni lëngje dhe pushim, ta visheni lehtë, t'ia kontrolloni temperaturën në intervale dhe të telefononi mjekun nëse ethet zgjasin më shumë se disa ditë ose sjellja e tij ndryshon."
+    },
+    {
+      "title": "Përgatitja për një telefonatë",
+      "text": "Supozoni që telefononi një linjë ndihme mjekësore për një të afërm me ethe. Të kesh të shkruara vlerat e temperaturës, kohën kur filluan ethet, simptomat e tjera dhe barnat e marra tashmë e ndihmon këshilluesin të japë udhëzime të dobishme shpejt."
+    }
+  ],
+  "questions": [
+    "Sa të larta ose sa të gjata duhet të jenë ethet para se të kontaktoj një mjek në rastin tim?",
+    "Cilat ulës të etheve janë të sigurt për mua ose fëmijën tim dhe çfarë doza duhet të përdor?",
+    "Cilat shenja paralajmëruese duhet të më bëjnë të kërkoj kujdes urgjent?"
+  ]
+}

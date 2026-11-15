@@ -1,0 +1,51 @@
+{
+  "title": "Je li telemonitoring dobra ideja kod uznapredovalog zatajenja srca?",
+  "intro": "Telemonitoring znači mjerenje stvari poput težine, krvnog tlaka, pulsa ili simptoma kod kuće i njihovo elektroničko slanje zdravstvenom timu. Kod uznapredovalog zatajenja srca cilj je rano uočiti pogoršanje i izbjeći boravke u bolnici. Nalazi istraživanja su neujednačeni pa odluka ovisi o osobi i programu.",
+  "sections": [
+    {
+      "heading": "Što uključuje zatajenje srca",
+      "paragraphs": [
+        "Kod zatajenja srca srce ne može pumpati krv onako dobro kako tijelu treba. Simptomi uključuju nedostatak zraka, umor, oticanje gležnjeva i iznenadno povećanje težine zbog tekućine. Pogoršanja se mogu razviti tijekom dana i često dovode do prijma u bolnicu pa je rano prilagođavanje liječenja vrijedno."
+      ]
+    },
+    {
+      "heading": "Kako radi telemonitoring",
+      "paragraphs": [
+        "Ljudi se svaki dan važu i mogu mjeriti krvni tlak, puls ili razine kisika uređajima koji automatski prenose podatke ili putem aplikacije. Neki programi uključuju redovite pozive ili upitnike. Zdravstveno osoblje pregledava očitanja i kontaktira bolesnika ako vrijednosti upućuju na problem. Neki ugrađeni uređaji također mogu prenositi podatke."
+      ]
+    },
+    {
+      "heading": "Što pokazuje istraživanje",
+      "paragraphs": [
+        "Istraživanja telemonitoringa dala su različite rezultate. Neki programi smanjili su prijame u bolnicu ili smrti, drugi su pokazali malu korist. Programi koji uključuju brzu reakciju obučenog osoblja vjerojatnije pomažu nego puko prikupljanje podataka. Rezultati mogu ovisiti o tome koliko je osoba bolesna i koliko je program dobro organiziran."
+      ]
+    },
+    {
+      "heading": "Koristi i nedostaci",
+      "paragraphs": [
+        "Moguće koristi uključuju osjećaj sigurnosti, manje posjeta klinici i ranije prilagođavanje lijekova. Nedostaci uključuju lažne alarme i tjeskobu, dodatni trud za svakodnevna mjerenja, probleme s uređajima, razmatranja privatnosti i potrebu za stabilnim internetom ili digitalnim vještinama. Telemonitoring ne zamjenjuje skrb licem u lice."
+      ]
+    },
+    {
+      "heading": "Odlučivanje hoće li ga koristiti",
+      "paragraphs": [
+        "Pitajte je li usluga dostupna, tko pregledava podatke i koliko brzo, što se događa noću i vikendom te tko plaća. Razmislite možete li vi ili rođak upravljati opremom. Svakodnevno vaganje i praćenje simptoma korisni su i bez sofisticirane tehnologije, a mnogi ljudi imaju koristi od pisanog plana djelovanja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Svakodnevna provjera težine",
+      "text": "Zamislite da se svako jutro vagate nakon odlaska na zahod. Mogli biste zapisati broj, primijetiti povećanje od više od dva kilograma tijekom nekoliko dana i nazvati kliniku kako je dogovoreno u vašem planu."
+    },
+    {
+      "title": "Odabir programa",
+      "text": "Pretpostavite da vaša bolnica nudi telemonitoring. Mogli biste pitati koliko se često pregledavaju podaci, što tim radi kad se očitanja promijene i možete li prestati u bilo kojem trenutku."
+    }
+  ],
+  "questions": [
+    "Je li telemonitoring dostupan za mene i hoće li vjerojatno pomoći u mojoj situaciji?",
+    "Tko će vidjeti moje podatke i kako će reagirati?",
+    "Što trebam učiniti kod kuće ako se promijene moja težina ili simptomi?"
+  ]
+}

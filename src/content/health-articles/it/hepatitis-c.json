@@ -1,0 +1,51 @@
+{
+  "title": "Epatite C: test e trattamento curativo",
+  "intro": "L’epatite C è un’infezione virale del fegato trasmessa col sangue, talvolta inosservata per anni. Le compresse guariscono la maggior parte dei casi, ma non eliminano automaticamente la cirrosi né prevengono una reinfezione.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Attrezzature condivise per iniezioni, strumenti non sterili e altre esposizioni ematiche trasmettono. Abbracci e pasti no. Evitare colpe: un test positivo non stabilisce quando o come sia avvenuto il contagio."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Gli anticorpi indicano esposizione passata, non necessariamente infezione attiva. Il materiale genetico virale conferma infezione attuale. Valutazione epatica e altre analisi guidano terapia e controlli. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Gli antivirali diretti dipendono da fegato, cure precedenti e interazioni. Completare corso e test di conferma. Controllare farmaci e integratori: interazioni riducono efficacia o causano danni. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Non condividere aghi, rasoi o spazzolini; usare servizi sterili. Non esiste vaccino per C. Chiedere vaccini A e B quando appropriati ed evitare alcol. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Esposizione recente al sangue richiede rapido consiglio e piano di test. Confusione, forte gonfiore addominale, vomito ematico o feci nere richiedono urgenza. La cirrosi può richiedere sorveglianza tumorale anche dopo guarigione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha anticorpi positivi e chiede il test per infezione attuale senza presumere di portare ancora sicuramente il virus."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben completa compresse e conferma. Mantiene controlli per cicatrici precedenti senza pensare che la guarigione chiuda ogni controllo."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Kafshimet e rriqrave",
+  "intro": "Rriqrat janë arakinide të vegjël që ushqehen me gjak e mund të transmetojnë infeksione si sëmundja Lyme e encefaliti i bartur nga rriqrat. Shumica e kafshimeve nuk bëjnë dëm. Heqja e shpejtë e saktë e rriqrës e njohja e simptomave për t'u vëzhguar më pas e mbajnë rrezikun të ulët.",
+  "sections": [
+    {
+      "heading": "Ku jetojnë rriqrat",
+      "paragraphs": [
+        "Rriqrat jetojnë në pyje, bar të gjatë, shkurre e kopshte, veçanërisht nga pranvera deri në vjeshtë, megjithëse mund të jenë aktive në dimra të butë. Presin mbi bimësi e ngjiten te njerëzit ose kafshët që kalojnë pranë. Preferojnë zona të ngrohta e të lagështa të trupit si ijët, sqetullat, pas gjunjëve, vijën e flokëve e pas veshëve."
+      ]
+    },
+    {
+      "heading": "Heqja e një rriqre",
+      "paragraphs": [
+        "Hiqeni rriqrën sapo ta gjeni. Përdorni piskatore të holla ose një mjet heqjeje rriqrash, kapeni rriqrën afër lëkurës e tërhiqeni vazhdimisht lart pa e përdredhur, shtrydhur ose vënë vaj a ngjitës. Dezinfektoni zonën më pas e lani duart. Nëse mbeten pjesë të gojës, zakonisht bien vetë. Shënoni datën e vendin e kafshimit."
+      ]
+    },
+    {
+      "heading": "Çfarë të vëzhgoni",
+      "paragraphs": [
+        "Kontrolloni vendin e kafshimit për disa javë. Një unazë e kuqe që përhapet, veçanërisht që rritet gjatë ditëve, mund të sinjalizojë sëmundjen Lyme. Ethet, dhimbja e kokës, lodhja, dhimbjet e muskujve ose simptomat neurologjike në javët në vijim kërkojnë gjithashtu vëmendje. Encefaliti i bartur nga rriqrat mund të shkaktojë simptoma si të gripit e pasuar nga inflamacion i trurit, në rajonet ku ndodh."
+      ]
+    },
+    {
+      "heading": "A ju duhet trajtim pas një kafshimi",
+      "paragraphs": [
+        "Shumica e njerëzve nuk kanë nevojë për antibiotikë pas një kafshimi. Mjekët e trajtojnë sëmundjen Lyme kur shfaqen simptomat. Në rajonet ku ndodh encefaliti i bartur nga rriqrat, vaksinimi këshillohet për njerëzit që kalojnë kohë jashtë, pasi nuk ka trajtim specifik pasi infektohen."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Vishni pantallona të gjata të futura në çorape e këpucë të mbyllura në zonat me rriqra, rroba me ngjyrë të çelët për të zbuluar rriqrat e repelent kundër insekteve. Ecni në shtigje e shmangni barin e gjatë. Pas aktivitetit jashtë, kontrolloni gjithë trupin, përfshirë fëmijët e kafshët shtëpiake, e bëni dush. Lani rrobat e mbani kopshtet të rregullta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pas një ecjeje",
+      "text": "Imagjinoni që gjeni një rriqër në pulpë pas një shëtitjeje. Mund ta hiqni me piskatore, ta dezinfektoni lëkurën, ta shkruani datën në telefon e ta shikoni zonën çdo ditë."
+    },
+    {
+      "title": "Vënia re e një skuqjeje",
+      "text": "Supozoni që një njollë e kuqe zgjerohet tri javë pas një kafshimi. Mund ta fotografoni e të kontaktoni menjëherë mjekun."
+    }
+  ],
+  "questions": [
+    "A më duhet trajtim ose vaksinim pas këtij kafshimi rriqre?",
+    "Cilat simptoma tregojnë se duhet të kthehem?",
+    "A këshillohet vaksinimi kundër encefalitit të bartur nga rriqrat ku jetoj?"
+  ]
+}

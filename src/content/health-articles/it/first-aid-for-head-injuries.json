@@ -1,0 +1,51 @@
+{
+  "title": "Traumi cranici: primo soccorso e peggioramento",
+  "intro": "Una botta può colpire il cervello senza ferita evidente o perdita di coscienza. La commozione può causare cefalea, capogiri, difficoltà di memoria e concentrazione. L’aspetto non determina la gravità. Il soccorso protegge respiro e previene altri danni mentre si organizza la valutazione.",
+  "sections": [
+    {
+      "heading": "Controllare sicurezza e respiro",
+      "paragraphs": [
+        "Avvicinatevi solo in sicurezza. Parlate e controllate risposta e respiro normale. Chiamate soccorsi per chi non risponde. Se il respiro manca o è anormale seguite le istruzioni di rianimazione e usate il defibrillatore disponibile. Una possibile lesione cervicale non deve impedire di salvare le vie aeree."
+      ]
+    },
+    {
+      "heading": "Riconoscere le emergenze",
+      "paragraphs": [
+        "Chiamate il 112 per difficile risveglio, convulsioni, nuova debolezza, parola o cammino alterati, vomito ripetuto, forte cefalea crescente, liquido da naso o orecchie, ferita penetrante o incidente violento. Non trasportate autonomamente una persona instabile. I sintomi possono comparire dopo un intervallo rassicurante."
+      ]
+    },
+    {
+      "heading": "Proteggere durante l’attesa",
+      "paragraphs": [
+        "Evitate movimenti inutili e sostenete testa e collo senza forzare. Non rimuovete oggetti conficcati né premete una sospetta frattura. Controllate continuamente il respiro. Nell’incosciente che respira normalmente, la protezione delle vie aeree prevale: seguite l’operatore per girarlo in sicurezza. Restate vicini e mantenete il calore."
+      ]
+    },
+    {
+      "heading": "Spiegare i rischi",
+      "paragraphs": [
+        "Riferite meccanismo, ora, svenimento, amnesie, vomito e cambiamenti osservati. Segnalate anticoagulanti, disturbi emorragici, chirurgia cerebrale, alcol e droghe. Gli anticoagulanti richiedono consiglio rapido anche se inizialmente bene. Lattanti e persone che non descrivono sintomi necessitano attenzione particolare. Non attribuite la confusione soltanto all’intossicazione."
+      ]
+    },
+    {
+      "heading": "Seguire osservazione e recupero",
+      "paragraphs": [
+        "Casa soltanto dopo consiglio o valutazione appropriati. Un adulto responsabile osserva per almeno 24 ore. Dormire è permesso, ma difficile risveglio è emergenza. Evitate alcol, sedativi senza indicazione e nuove botte. Seguite piano personale per scuola, lavoro, guida e sport; chiedete controllo se i sintomi persistono o peggiorano."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: dopo la partita",
+      "text": "Luka è confuso dopo uno scontro. Smette di giocare e viene valutato pur senza svenimento. Il compagno riferisce la confusione e controlla peggioramenti."
+    },
+    {
+      "title": "Esempio ipotetico: contano i farmaci",
+      "text": "Ana prende una botta e sta bene ma usa anticoagulante. Chiede consiglio subito senza considerare il piccolo livido una garanzia."
+    }
+  ],
+  "questions": [
+    "Meccanismo o farmaci richiedono urgenza?",
+    "Chi osserva e quali cambiamenti richiedono soccorsi?",
+    "Quando riprendere le attività in sicurezza?"
+  ]
+}

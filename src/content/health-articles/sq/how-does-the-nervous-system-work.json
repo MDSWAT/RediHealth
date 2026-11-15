@@ -1,0 +1,52 @@
+{
+  "title": "Si lidhin nervat ndjesinë dhe veprimin",
+  "intro": "Sistemi nervor merr informacion, e përpunon dhe koordinon përgjigjet. Përfshin lëvizjen e vetëdijshme dhe rregullimin automatik. Mpirja, dobësia dhe dhimbja mund të nisin në nivele të ndryshme; harta nuk është diagnozë.",
+  "sections": [
+    {
+      "heading": "Qendror dhe periferik",
+      "paragraphs": [
+        "Truri dhe palca kurrizore formojnë sistemin qendror. Nervat periferikë lidhen me lëkurën, muskujt dhe organet; dëmtimi i nervit ndryshon nga ai i palcës ose trurit."
+      ]
+    },
+    {
+      "heading": "Mesazhet",
+      "paragraphs": [
+        "Neuronet përdorin impulse elektrike dhe lajmëtarë kimikë. Mielina ndihmon përçimin e shumë fibrave. Qelizat mbështetëse dhe gjaku janë gjithashtu thelbësorë."
+      ]
+    },
+    {
+      "heading": "Veprimi dhe reflekset",
+      "paragraphs": [
+        "Sinjalet motorike aktivizojnë muskujt, ndijoret raportojnë gjendjen. Disa reflekse kalojnë nga palca para interpretimit të vetëdijshëm, duke larguar trupin nga rreziku pa plan."
+      ]
+    },
+    {
+      "heading": "Kontrolli automatik",
+      "paragraphs": [
+        "Rrugët autonome rregullojnë pulsin, tretjen dhe djersitjen. Aktiviteti simpatik dhe parasimpatik balancon kërkesat; simptomat nuk provojnë një sistem të ndezur përgjithmonë."
+      ]
+    },
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Ekzaminimi vlerëson forcën, ndjesinë dhe reflekset, pastaj teste të synuara. Dobësia e papritur ose ndryshimi i të folurit, apo vështirësia e re urinare me mpirje në zonën e shalës dhe simptoma shpine kërkojnë urgjencë.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira përshkruan ku nis mpirja dhe detyrat e vështira, pa diagnostikuar nga vizatimi në internet."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ka dobësi këmbësh dhe vështirësi urinimi me dhimbje të re shpine. Kërkon urgjencë, jo shtrirje të detyruar."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

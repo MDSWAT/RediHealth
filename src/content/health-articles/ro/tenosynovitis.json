@@ -1,0 +1,51 @@
+{
+  "title": "Tenosinovita (inflamația tecii tendonului)",
+  "intro": "Tenosinovita este inflamația tecii protectoare care înconjoară un tendon, cel mai frecvent la încheietura mâinii, la mână și la degete. Provoacă durere, umflare și uneori dificultăți de mișcare și poate urma suprasolicitării, unei leziuni sau unei infecții. Tratamentul variază de la repaus și imobilizare la injecții și, ocazional, chirurgie.",
+  "sections": [
+    {
+      "heading": "Ce fac tecile tendoanelor",
+      "paragraphs": [
+        "Tendoanele alunecă prin teci umplute cu un lichid lubrifiant, care le permite să se miște lin peste oase și articulații. Când o teacă se inflamează sau se îngroașă, tendonul nu mai poate aluneca liber, provocând durere și uneori o senzație de agățare sau pocnet."
+      ]
+    },
+    {
+      "heading": "Tipuri frecvente",
+      "paragraphs": [
+        "Tenosinovita De Quervain afectează tendoanele de pe partea policelui a încheieturii mâinii și este frecventă la părinții proaspeți și la persoanele care fac mișcări repetitive cu policele. Degetul în resort apare când un deget se agață sau se blochează în poziție îndoită, deoarece tendonul se îngroașă și se blochează în teacă. Alte forme apar în jurul gleznei și al piciorului. Poliartrita reumatoidă și diabetul cresc riscul."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Durere și sensibilitate de-a lungul tendonului, umflare, căldură și rigiditate, durere la strângere sau la mișcarea policelui și, în degetul în resort, un clic sau o blocare, mai ales dimineața. Durerea care se agravează la mișcare și se ameliorează la repaus sugerează suprasolicitare. Febra, roșeața care se extinde, durerea severă la îndreptarea unui deget și un deget umflat în formă de cârnat sugerează infecție și necesită evaluare urgentă."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Repausul de la activitatea care provoacă durere, o orteză care susține zona, gheața și calmantele sau gelurile antiinflamatoare ajută adesea. Injecțiile cu corticosteroizi în jurul tecii tendonului sunt eficiente la multe persoane, mai ales în boala De Quervain și în degetul în resort. Terapia manuală oferă exerciții și sfaturi privind mișcarea. Infecțiile necesită antibiotice și uneori drenaj chirurgical."
+      ]
+    },
+    {
+      "heading": "Chirurgia și prevenirea",
+      "paragraphs": [
+        "Dacă simptomele persistă sau revin, o mică operație eliberează teaca strâmtă astfel încât tendonul să se miște liber, de obicei sub anestezie locală, cu o recuperare scurtă. Preveniți problemele variind sarcinile repetitive, făcând pauze, folosind unelte ergonomice și evitând strângerea puternică prelungită."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Protejarea încheieturii mâinii",
+      "text": "Imaginați-vă că încheietura vă doare când ridicați bebelușul. Ați putea purta o orteză pentru police câteva săptămâni, ați putea ajusta modul în care țineți bebelușul și ați putea întreba despre injecție dacă durerea persistă."
+    },
+    {
+      "title": "Observarea unui semn de alarmă",
+      "text": "Presupuneți că un deget devine roșu, umflat și foarte dureros la îndreptare. Ați putea cere îngrijiri urgente, deoarece poate fi o infecție."
+    }
+  ],
+  "questions": [
+    "Ce tip de tenosinovită am?",
+    "Ar fi potrivite o orteză, o injecție sau o operație?",
+    "Cum pot evita o nouă leziune?"
+  ]
+}

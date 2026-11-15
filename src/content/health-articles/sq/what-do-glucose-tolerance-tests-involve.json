@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë përfshijnë testet e tolerancës ndaj glukozës?",
+  "intro": "Një test oral i tolerancës ndaj glukozës mat sa mirë e pastron trupi sheqerin nga gjaku. Përdoret për të diagnostikuar diabetin e prediabetin, e në shtatzëni për të zbuluar diabetin gestacional. Testi zgjat rreth dy orë e kërkon agjërim paraprak.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "Testi mund të tregojë përpunim të dëmtuar të glukozës edhe kur sheqeri në gjak në agjërim është normal. Përdoret nëse simptomat ose teste të tjera sugjerojnë diabet, ose për skrining të grave shtatzëna, zakonisht midis javës njëzet e katër e njëzet e tetë. Teste të tjera, si analiza e gjakut HbA1c, mund të përdoren në vend të tij në disa situata."
+      ]
+    },
+    {
+      "heading": "Përgatitja",
+      "paragraphs": [
+        "Duhet të agjëroni tetë deri katërmbëdhjetë orë më parë, duke pirë vetëm ujë. Për disa ditë para, hani normalisht, pa dietë të rreptë, pasi kjo mund ta shtrembërojë rezultatin. Tregojini mjekut për barnat, sëmundjen e gjendjet që ndikojnë sheqerin në gjak. Shmangni duhanin e ushtrimet e forta në mëngjesin e testit."
+      ]
+    },
+    {
+      "heading": "Si bëhet testi",
+      "paragraphs": [
+        "Merret një mostër e parë gjaku për të matur glukozën në agjërim. Pastaj pini një tretësirë sheqeri, zakonisht shtatëdhjetë e pesë gramë glukozë, brenda disa minutash. Mostrat e gjakut merren pas një e dy orësh në shtatzëni e pas dy orësh te të rriturit e tjerë. Duhet të uleni qetë e të mos hani, pini duhan ose pini asgjë tjetër. Disa njerëz ndjejnë të përziera ose marrje mendsh."
+      ]
+    },
+    {
+      "heading": "Të kuptuarit e rezultateve",
+      "paragraphs": [
+        "Rezultatet krahasohen me pragje standarde. Te të rriturit, një vlerë dyorëshe prej 11.1 milimolë për litër (200 miligramë për decilitër) ose më e lartë tregon diabet, ndërsa vlera midis 7.8 e 11.0 sugjerojnë tolerancë të dëmtuar ndaj glukozës. Në shtatzëni, pragjet janë më të ulëta, e një diagnozë e diabetit gestacional çon në këshilla dietike, monitorim e nganjëherë insulinë."
+      ]
+    },
+    {
+      "heading": "Pas testit",
+      "paragraphs": [
+        "Mund të hani e pini normalisht pas tij. Pyesni kur të prisni rezultatet e si të ndiqeni. Nëse gjendet prediabet, ndryshimet e stilit të jetesës si dieta e shëndetshme, aktiviteti fizik e humbja e peshës mund ta ulin rrezikun e kalimit në diabet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për testin",
+      "text": "Imagjinoni që testi juaj është në tetë të mëngjesit. Mund të ndaloni së ngrëni pas darkës, të pini vetëm ujë e të sillni një libër për të pritur."
+    },
+    {
+      "title": "Pas një rezultati të lartë",
+      "text": "Supozoni që rezultati tregon tolerancë të dëmtuar. Mund të pyesni për ndryshime dietike, ushtrime e kur ta përsërisni testin."
+    }
+  ],
+  "questions": [
+    "A është ky testi i duhur për mua, apo ka teste të tjera?",
+    "Si duhet të përgatitem e a mund t'i marr barnat e mia të zakonshme?",
+    "Çfarë ndodh nëse rezultati është jonormal?"
+  ]
+}

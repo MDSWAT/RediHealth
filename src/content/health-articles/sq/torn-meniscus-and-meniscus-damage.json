@@ -1,0 +1,51 @@
+{
+  "title": "Këputja e meniskut",
+  "intro": "Menisqet janë dy jastëkë kërci në formë C në çdo gju që e amortizojnë nyjen e ndihmojnë ta stabilizojnë. Një këputje mund të ndodhë papritur gjatë sportit ose gradualisht me moshën. Shumë këputje qetësohen me ushtrime e kohë, ndërsa kirurgjia rezervohet për ato me bllokim ose simptoma të vazhdueshme.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Te të rinjtë, këputjet e meniskut zakonisht pasojnë një lëndim me përdredhje, nganjëherë me dëmtim të ligamenteve të tjera. Te të moshuarit e të mesmit, menisku konsumohet e degjeneron e këputje të vogla mund të ndodhin me lëvizje të vogla si uljet në gjunjë ose ngritja, shpesh së bashku me osteoartrit të hershëm."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Dhimbje përgjatë vijës së nyjes, enjtje që zhvillohet brenda një dite, ngurtësi, kapje ose klikim e nganjëherë bllokim, ku gjuri nuk mund të drejtohet plotësisht. Dhimbja është shpesh më e keqe me përdredhjen e përkuljen e thellë. Këputjet degjenerative mund të shkaktojnë më pak simptoma e shumë këputje të parë në skanime te të moshuarit nuk janë burimi i dhimbjes."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Mjekët e ekzaminojnë gjurin me teste specifike e mund të kërkojnë një rezonancë nëse diagnoza është e paqartë ose një gju i bllokuar sugjeron një këputje të zhvendosur. Rezonanca shpesh tregon ndryshime të meniskut te njerëz pa simptoma, prandaj gjetjet duhen interpretuar me simptomat."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Pushimi, akulli e lehtësimi i dhimbjes ndihmojnë fillimisht. Fizioterapia me forcim të muskujve të kofshës e ijës është efektive për shumë njerëz, veçanërisht me këputje degjenerative, me rezultate të ngjashme me kirurgjinë për shumë. Kirurgjia artroskopike, qoftë duke riparuar meniskun me qepje ose duke shkurtuar pjesët e dëmtuara, merret në konsideratë për një gju të bllokuar, këputje të mëdha te të rinjtë ose simptoma të vazhdueshme pavarësisht terapisë. Riparimi e ruan meniskun e preferohet kur është e mundur, por kërkon rikuperim më të gjatë."
+      ]
+    },
+    {
+      "heading": "Rikuperimi dhe parandalimi",
+      "paragraphs": [
+        "Pas shkurtimit, njerëzit shpesh kthehen në aktivitet normal brenda javësh, ndërsa riparimi kërkon lëvizje të mbrojtur për disa javë e kthim në sport pas muajsh. Forcimi, ushtrimet e ekuilibrit, pesha e shëndetshme e ngrohja para sportit ndihmojnë t'i mbrojnë gjunjët. Heqja e indit të meniskut e rrit rrezikun e osteoartritit më vonë, çka është një arsye tjetër për ta ruajtur."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Provimi i ushtrimeve së pari",
+      "text": "Imagjinoni që jeni pesëdhjetë e pesë vjeç e keni dhimbje gjuri me një këputje degjenerative në rezonancë. Mund të filloni një program të mbikëqyrur forcimi për dymbëdhjetë javë para se të merrni parasysh kirurgjinë."
+    },
+    {
+      "title": "Njohja e një gjuri të bllokuar",
+      "text": "Supozoni që gjuri papritur nuk drejtohet pas një përdredhjeje. Mund të kërkoni shqyrtim të shpejtë mjekësor, pasi mund të kërkojë kirurgji."
+    }
+  ],
+  "questions": [
+    "A shkaktohet vërtet simptoma ime nga këputja e meniskut?",
+    "A do të funksiononte terapia me ushtrime po aq mirë sa kirurgjia për mua?",
+    "Nëse rekomandohet kirurgjia, a do të riparohet apo shkurtohet menisku?"
+  ]
+}

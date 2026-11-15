@@ -1,0 +1,51 @@
+{
+  "title": "Esami prenatali",
+  "intro": "Gli esami prenatali valutano la salute e lo sviluppo di un bambino non ancora nato. Comprendono le ecografie di routine e test facoltativi per condizioni cromosomiche come la sindrome di Down. Decidere se farli è una scelta personale e la consulenza prima e dopo i test aiuta a capire che cosa i risultati possono e non possono dire.",
+  "sections": [
+    {
+      "heading": "Tipi di esami",
+      "paragraphs": [
+        "I test di screening stimano la probabilità che un bambino abbia una condizione, ma non danno una risposta definitiva. Comprendono misurazioni ecografiche, esami del sangue della madre e un esame del sangue che analizza frammenti del materiale genetico del bambino presenti nel sangue della madre. I test diagnostici come la villocentesi e l'amniocentesi esaminano le cellule del bambino e danno una risposta chiara, ma comportano un piccolo rischio di aborto spontaneo."
+      ]
+    },
+    {
+      "heading": "Che cosa significano i risultati",
+      "paragraphs": [
+        "Il risultato di uno screening è espresso come probabilità, non come diagnosi. Un risultato ad alto rischio non significa che il bambino sia colpito e un risultato a basso rischio non esclude del tutto una condizione. I test possono anche rilevare reperti incerti che causano preoccupazione. L'ecografia può mostrare differenze strutturali negli organi del bambino, anche se non tutte le condizioni sono visibili."
+      ]
+    },
+    {
+      "heading": "Decidere se fare i test",
+      "paragraphs": [
+        "Alcuni genitori vogliono informazioni per prepararsi, pianificare il parto in un centro specializzato o considerare un trattamento prima o dopo la nascita. Altri preferiscono non fare i test. Pensa in anticipo a che cosa faresti con il risultato, come ti sentiresti rispetto all'incertezza e quali valori contano per te. Puoi rifiutare qualsiasi test."
+      ]
+    },
+    {
+      "heading": "Sostegno e consulenza",
+      "paragraphs": [
+        "La consulenza di medici, ostetriche e servizi indipendenti può spiegare le opzioni e le conseguenze. Se un test mostra una possibile condizione, dovresti ricevere tempo e sostegno per decidere i passi successivi, compresi ulteriori esami, la preparazione per un bambino con bisogni speciali o, a seconda della legge, la valutazione dell'interruzione della gravidanza. Gruppi di sostegno e specialisti offrono informazioni sul vivere con condizioni diverse."
+      ]
+    },
+    {
+      "heading": "Ecografie di routine e scelte quotidiane",
+      "paragraphs": [
+        "Le ecografie di routine in gravidanza controllano la crescita, la posizione della placenta e gli organi del bambino e sono offerte a tutte. Fanno parte dell'assistenza prenatale e differiscono dai test per le condizioni cromosomiche. Chiedi che cosa ciascuna ecografia deve cercare, così da sapere che cosa aspettarti dai risultati."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Valutare una decisione",
+      "text": "Immagina che ti venga offerto un esame del sangue per la sindrome di Down. Potresti discutere che cosa cambierebbe per te il risultato, chiedere dell'accuratezza e dei falsi allarmi e decidere con il partner se farlo."
+    },
+    {
+      "title": "Dopo un risultato ad alto rischio",
+      "text": "Supponi che un risultato di screening mostri una probabilità aumentata. Potresti chiedere una consulenza, chiedere dei rischi e dei benefici di un test diagnostico e prenderti del tempo prima di decidere."
+    }
+  ],
+  "questions": [
+    "Quali esami sono disponibili e quanto sono accurati?",
+    "Quali sono i rischi dei test diagnostici come l'amniocentesi?",
+    "Dove posso ottenere una consulenza indipendente prima e dopo i test?"
+  ]
+}

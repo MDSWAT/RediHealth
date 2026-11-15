@@ -1,0 +1,51 @@
+{
+  "title": "Tusea cronică inexplicabilă",
+  "intro": "O tuse care durează mai mult de opt săptămâni se numește cronică. Cauzele frecvente includ fumatul, astmul, refluxul, secrețiile postnazale și anumite medicamente, dar uneori nu se găsește nicio cauză în ciuda testelor. Găsirea și tratarea oricărei cauze este primul pas, iar terapiile speciale pot ajuta când nu se găsește niciuna.",
+  "sections": [
+    {
+      "heading": "Cauze frecvente",
+      "paragraphs": [
+        "Cauzele frecvente sunt fumatul, astmul, scurgerea dinspre nas și sinusuri în gât, refluxul acid, bronșita cronică și BPOC și tabletele pentru tensiune din clasa inhibitorilor ECA. Mai rar, răspunzătoare sunt infecțiile pulmonare, bronșiectazia, cancerul pulmonar, insuficiența cardiacă sau tuberculoza. Pot exista mai multe cauze împreună."
+      ]
+    },
+    {
+      "heading": "Evaluare",
+      "paragraphs": [
+        "Medicul întreabă despre tuse, fumat, medicamente, simptome precum arsurile la stomac sau șuierăturile și scăderea în greutate. De obicei se fac examinarea și o radiografie toracică. Testele respiratorii verifică astmul sau BPOC. Alte teste, precum CT, bronhoscopia sau testele pentru reflux, se folosesc selectiv. Tusea cu sânge, scăderea în greutate, lipsa de aer, febra sau vârsta peste cincizeci de ani cu istoric de fumat necesită evaluare promptă."
+      ]
+    },
+    {
+      "heading": "Tratarea cauzelor",
+      "paragraphs": [
+        "Oprirea fumatului este esențială. Trecerea de la inhibitorii ECA la alt medicament pentru tensiune pune adesea capăt tusei în câteva săptămâni. Se încearcă tratamentele pentru astm, sprayurile nazale și tratamentele pentru reflux, deoarece o probă de tratament poate arăta cauza. Măsurile de stil de viață pentru reflux includ evitarea meselor târzii și ridicarea capătului patului."
+      ]
+    },
+    {
+      "heading": "Când nu se găsește nicio cauză",
+      "paragraphs": [
+        "Unele persoane au un reflex de tuse hipersensibil, numit uneori tuse cronică refractară sau inexplicabilă. Tehnicile de logopedie pentru controlul tusei și unele medicamente care modulează nervii, în doze mici, pot reduce tusea. S-au studiat medicamente mai noi, care vizează receptorii tusei. Calmantele de tuse disponibile fără rețetă nu ajută prea mult."
+      ]
+    },
+    {
+      "heading": "A trăi cu ea",
+      "paragraphs": [
+        "O tuse cronică poate perturba somnul, poate provoca incontinență, răgușeală, durere în piept sau în mușchi și jenă. Sorbiți apă, evitați iritanții, folosiți pastile pentru gât și umidificați aerul. Întrebați despre clinicile specializate în tuse, despre sprijin și despre tehnici precum strategiile de înghițire sau de respirație ca răspuns la nevoia de a tuși."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Revizuirea medicamentelor",
+      "text": "Imaginați-vă că aveți o tuse uscată de când ați început o tabletă pentru tensiune. Ați putea întreba medicul dacă este un inhibitor ECA și dacă o alternativă ar fi potrivită."
+    },
+    {
+      "title": "Învățarea controlului tusei",
+      "text": "Presupuneți că nu s-a găsit nicio cauză. Ați putea cere trimitere la un logoped pentru tehnici de suprimare a tusei."
+    }
+  ],
+  "questions": [
+    "Ce ar putea cauza tusea mea și ce teste sunt necesare?",
+    "Ar putea fi răspunzător unul dintre medicamentele mele?",
+    "Ce tratamente există dacă nu se găsește nicio cauză?"
+  ]
+}

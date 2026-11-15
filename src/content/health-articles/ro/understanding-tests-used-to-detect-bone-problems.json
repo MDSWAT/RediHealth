@@ -1,0 +1,51 @@
+{
+  "title": "Înțelegerea testelor folosite pentru depistarea problemelor osoase",
+  "intro": "Problemele osoase, precum osteoporoza, fracturile, infecțiile, tumorile și boala metabolică osoasă, se investighează cu mai multe teste. Fiecare arată altceva, de la densitatea osoasă la structura osului sau activitatea celulelor osoase. A ști la ce servește un test vă ajută să înțelegeți rezultatele.",
+  "sections": [
+    {
+      "heading": "Radiografiile",
+      "paragraphs": [
+        "Radiografiile obișnuite arată fracturi, deformări, artrită și unele tumori și infecții. Sunt rapide și disponibile pe scară largă. Modificările timpurii pot să nu fie vizibile, iar osul trebuie să fie subțiat substanțial pentru a se vedea pe o radiografie standard, așa că osteoporoza nu se diagnostichează fiabil în acest fel, deși radiografiile coloanei pot dezvălui fracturi."
+      ]
+    },
+    {
+      "heading": "Scanările de densitate osoasă",
+      "paragraphs": [
+        "O scanare DXA folosește doze foarte mici de raze X pentru a măsura densitatea minerală osoasă la șold și la coloană. Rezultatele se dau ca scor T, care vă compară cu un adult tânăr sănătos. Un scor T de minus 2,5 sau mai mic definește osteoporoza. Medicii îl combină cu factori de risc, precum vârsta și fracturile anterioare, pentru a estima riscul de fractură. Scanarea durează câteva minute și este nedureroasă."
+      ]
+    },
+    {
+      "heading": "CT, RMN și scintigrafia",
+      "paragraphs": [
+        "Tomografia computerizată oferă imagini detaliate ale structurii osoase și se folosește pentru fracturi complexe. Rezonanța magnetică arată măduva osoasă, țesuturile moi, tumorile, infecțiile și fracturile de stres pe care radiografiile le ratează. Scintigrafia osoasă folosește o cantitate mică de trasor radioactiv pentru a arăta zonele cu activitate osoasă crescută, utilă în depistarea extinderii cancerului, a infecției sau a fracturilor ascunse. Scanările PET se pot folosi în unele cancere."
+      ]
+    },
+    {
+      "heading": "Analizele de sânge și de urină",
+      "paragraphs": [
+        "Analizele de sânge verifică calciul, fosfatul, vitamina D, hormonul paratiroidian, funcția renală, hormonul tiroidian și markerii remodelării osoase. Ele ajută la găsirea cauzelor pierderii osoase și la monitorizarea tratamentului. Alte teste caută inflamație, mielom sau alte cauze. Rezultatele se interpretează împreună cu imagistica."
+      ]
+    },
+    {
+      "heading": "Biopsia osoasă",
+      "paragraphs": [
+        "O biopsie osoasă îndepărtează o probă mică de os cu un ac, de obicei sub anestezie locală și ghidaj imagistic, pentru a fi examinată la microscop. Se folosește când alte teste nu pot stabili cauza unei leziuni osoase, de exemplu pentru a distinge infecția de tumoră sau pentru a diagnostica boli osoase rare. Riscurile includ sângerarea, durerea și infecția."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru o scanare DXA",
+      "text": "Imaginați-vă că aveți programată o scanare de densitate osoasă. Ați putea întreba dacă trebuie să evitați suplimentele de calciu în acea dimineață, să purtați haine fără metal și să aduceți o listă de medicamente."
+    },
+    {
+      "title": "Înțelegerea rezultatelor",
+      "text": "Presupuneți că scorul T este scăzut. Ați putea întreba cum a fost calculat riscul total de fractură, care sunt pașii următori și când să repetați scanarea."
+    }
+  ],
+  "questions": [
+    "Care test este cel mai potrivit pentru problema mea?",
+    "Ce înseamnă rezultatele mele de densitate osoasă și de risc?",
+    "Cât de des ar trebui să repet testele?"
+  ]
+}

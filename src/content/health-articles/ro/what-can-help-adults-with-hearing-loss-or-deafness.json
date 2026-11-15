@@ -1,0 +1,51 @@
+{
+  "title": "Ce poate ajuta adulții cu pierdere a auzului sau surditate",
+  "intro": "Pierderea auzului la adulți este frecventă și de obicei treptată. Există multe opțiuni, de la aparate auditive la implanturi, instruire în comunicare și tehnologie asistivă. Tratarea timpurie a pierderii auzului este asociată cu o comunicare mai bună, mai puțină izolare și posibil cu o sănătate mai bună a creierului.",
+  "sections": [
+    {
+      "heading": "Evaluarea",
+      "paragraphs": [
+        "Un test auditiv făcut de un medic otorinolaringolog sau de un audiolog măsoară tipul și gradul pierderii. Examinarea urechii verifică dopurile de ceară și infecțiile, care pot fi tratate. Alte teste caută cauze, precum leziunile din cauza zgomotului, vârsta, infecția, medicamentele sau, rareori, o tumoră. Pierderea bruscă a auzului la o ureche necesită atenție urgentă."
+      ]
+    },
+    {
+      "heading": "Aparatele auditive",
+      "paragraphs": [
+        "Aparatele auditive amplifică sunetele și sunt tratamentul principal pentru majoritatea tipurilor de pierdere neurosenzorială a auzului. Dispozitivele moderne sunt mici, digitale și se adaptează mediilor și se pot conecta la telefoane și televizoare. Au nevoie de adaptare și reglaj fin din partea unui profesionist și de timp pentru obișnuire, cu folosire regulată. Acoperirea costurilor diferă între țări și asigurători."
+      ]
+    },
+    {
+      "heading": "Implanturile",
+      "paragraphs": [
+        "Implanturile cohleare ocolesc celulele senzoriale deteriorate din urechea internă și stimulează direct nervul auditiv. Sunt pentru persoanele cu pierdere severă sau profundă, care au puțin beneficiu de la aparatele auditive. Sunt necesare o operație și luni de reabilitare. Dispozitivele ancorate în os ajută în anumite pierderi conductive ale auzului sau în surditatea unilaterală. Implanturile de ureche medie sunt o altă opțiune pentru pacienți selectați."
+      ]
+    },
+    {
+      "heading": "Dispozitive asistive și comunicare",
+      "paragraphs": [
+        "Telefoanele cu amplificare, subtitrarea, sistemele cu buclă de inducție, dispozitivele de transmisie pentru televizor și alertele vizuale sau vibratoare ajută în viața de zi cu zi. Citirea pe buze, instruirea în comunicare și, pentru persoanele surde, limbajul semnelor deschid alte căi de comunicare. Interpreții și serviciile de subtitrare sprijină munca și consultațiile."
+      ]
+    },
+    {
+      "heading": "Sprijin și bunăstare",
+      "paragraphs": [
+        "Pierderea auzului poate duce la retragere și dispoziție scăzută. Consilierea, grupurile de egali și implicarea familiei ajută. Tinitusul însoțește adesea pierderea auzului și poate fi ameliorat prin aparate auditive și terapie sonoră. Protejați auzul rămas de zgomotele puternice și faceți controale regulate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Începerea cu aparatele auditive",
+      "text": "Imaginați-vă că vi se adaptează aparate auditive noi. Ați putea să le purtați puțin mai mult în fiecare zi, să exersați mai întâi în camere liniștite și să reveniți pentru ajustări."
+    },
+    {
+      "title": "Luarea în considerare a unui implant",
+      "text": "Presupuneți că aparatele auditive nu mai ajută. Ați putea întreba specialistul dacă sunteți candidat pentru un implant cohlear și ce presupune procesul."
+    }
+  ],
+  "questions": [
+    "Ce tip de pierdere a auzului am și ce tratament este cel mai bun?",
+    "Sunt acoperite aparatele auditive sau implanturile de asigurarea mea?",
+    "Ce dispozitive asistive m-ar ajuta acasă și la serviciu?"
+  ]
+}

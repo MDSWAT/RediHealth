@@ -1,0 +1,52 @@
+{
+  "title": "Pielea: barieră vie și organ senzorial",
+  "intro": "Pielea protejează corpul, limitează pierderea apei, percepe atingerea și ajută la reglarea temperaturii. Straturile au roluri diferite. Modificările vizibile pot fi locale sau legate de alte boli; aspectul singur nu arată mereu cauza.",
+  "sections": [
+    {
+      "heading": "Bariera externă",
+      "paragraphs": [
+        "Epidermul se reînnoiește și formează suprafața protectoare. Pigmentul ajută împotriva ultravioletelor, fără să elimine leziunile solare. Spălatul agresiv poate deteriora bariera, nu o face mai sănătoasă."
+      ]
+    },
+    {
+      "heading": "Susținere",
+      "paragraphs": [
+        "Dermul conține țesut conjunctiv, vase, nervi, foliculi și glande. Stratul gras de dedesubt amortizează și izolează. O rană mică la suprafață poate atinge structuri profunde, în funcție de adâncime."
+      ]
+    },
+    {
+      "heading": "Temperatură și simțire",
+      "paragraphs": [
+        "Transpirația și modificarea circulației cutanate reglează căldura. Nervii simt atingerea, durerea și temperatura; sensibilitatea redusă crește riscul arsurilor sau leziunilor de presiune neobservate."
+      ]
+    },
+    {
+      "heading": "Protecție zilnică",
+      "paragraphs": [
+        "Folosiți curățare blândă, emolient potrivit și protecție solară. Schimbați poziția când sunteți imobilizați și verificați zonele cu sensibilitate scăzută. Rănile necesită îngrijire adecvată, nu substanțe casnice iritante."
+      ]
+    },
+    {
+      "heading": "Evaluare",
+      "paragraphs": [
+        "O aluniță în schimbare, o rană persistentă sau o erupție neexplicată cere consult. Roșeața dureroasă care se extinde rapid cu febră, veziculele întinse ori erupția cu respirație dificilă cer ajutor urgent.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mirei i se crapă mâinile după spălări agresive. Alege îngrijire blândă și discută inflamația persistentă, fără frecare mai intensă."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are sensibilitate redusă la picioare. Verifică pielea și presiunea încălțămintei, fără să se bazeze doar pe durere."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Iznenadni gubitak sluha",
+  "intro": "Iznenadni senzorineuralni gubitak sluha je brz gubitak sluha na jednom uhu, obično se razvija tijekom sati do nekoliko dana, bez jasnog uzroka. Može ga pratiti tinitus ili osjećaj punoće. Liječnik ga treba brzo procijeniti, a mnogi ljudi povrate barem dio sluha, osobito uz rano liječenje.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Ljudi često primijete iznenadan pad sluha pri buđenju ili tijekom dana, osjećaj začepljenog uha, prigušene zvukove ili zvonjenje. Neki osjećaju i vrtoglavicu. Sluh se može vratiti djelomično ili potpuno unutar dana ili tjedana, ali ne mora."
+      ]
+    },
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "U većini slučajeva uzrok se ne nalazi. Mogući okidači uključuju virusnu infekciju, probleme s cirkulacijom u unutarnjem uhu, imunološke reakcije, ozljedu, određene lijekove i rijetko tumore na slušnom živcu. Začepljeno uho zbog ušnog voska, tekućina iza bubnjića ili upala srednjeg uha mogu oponašati problem i liječe se drukčije."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Liječnik pregledava uho i u kratkom roku organizira test sluha kako bi izmjerio vrstu i stupanj gubitka. Mogu se napraviti krvne pretrage i MR kako bi se potražili uzroci u pozadini. Brzo testiranje je važno jer je liječenje vremenski osjetljivo."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Kortikosteroidi u visokim dozama, uzeti kao tablete ili ubrizgani u srednje uho, uobičajeno su liječenje i najkorisniji su ako se započnu unutar nekoliko dana. Dokazi o koristi su skromni, a liječnici razgovaraju o rizicima kao što su povišen šećer u krvi, promjene raspoloženja i problemi sa spavanjem. Drugi tretmani poput terapije kisikom ili lijekova za protok krvi imaju neizvjesnu vrijednost. Odmor i izbjegavanje glasne buke su razumni."
+      ]
+    },
+    {
+      "heading": "Oporavak i prognoza",
+      "paragraphs": [
+        "Mnogi ljudi poboljšaju se unutar prva dva tjedna. Oko polovica povrati dobar stupanj sluha, a neki ostaju s trajnim gubitkom. Ako se sluh ne vrati, slušni aparati ili implantati mogu pomoći, a dostupna je i potpora kod tinitusa. Kontrolni testovi sluha prate napredak."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Brzo djelovanje",
+      "text": "Zamislite da se probudite s prigušenim sluhom na jednom uhu. Mogli biste dogovoriti pregled kod liječnika isti ili sljedeći dan umjesto da čekate tjedan dana."
+    },
+    {
+      "title": "Dobivanje potpore",
+      "text": "Pretpostavite da se sluh nije vratio nakon nekoliko tjedana. Mogli biste pitati o slušnim aparatima, savjetovanju za tinitus i komunikacijskim strategijama."
+    }
+  ],
+  "questions": [
+    "Može li ovo uzrokovati nešto drugo osim iznenadnog gubitka sluha?",
+    "Trebam li uzimati steroide i na koje nuspojave trebam paziti?",
+    "Koja je potpora dostupna ako mi se sluh ne oporavi?"
+  ]
+}

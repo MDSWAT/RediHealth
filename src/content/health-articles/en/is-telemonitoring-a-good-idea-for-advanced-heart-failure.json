@@ -1,0 +1,51 @@
+{
+  "title": "Is telemonitoring a good idea for advanced heart failure?",
+  "intro": "Telemonitoring means measuring things like weight, blood pressure, pulse or symptoms at home and sending them electronically to a healthcare team. In advanced heart failure, the aim is to notice worsening early and avoid hospital stays. Research findings are mixed, so the decision depends on the person and the programme.",
+  "sections": [
+    {
+      "heading": "What heart failure involves",
+      "paragraphs": [
+        "In heart failure, the heart cannot pump blood as well as the body needs. Symptoms include breathlessness, tiredness, ankle swelling and sudden weight gain from fluid. Flare-ups can develop over days and often lead to hospital admission, so early adjustment of treatment is valuable."
+      ]
+    },
+    {
+      "heading": "How telemonitoring works",
+      "paragraphs": [
+        "People weigh themselves daily and may measure blood pressure, pulse or oxygen levels with devices that transmit data automatically or via an app. Some programmes include regular calls or questionnaires. Healthcare staff review readings and contact the patient if values suggest a problem. Some implanted devices can also transmit data."
+      ]
+    },
+    {
+      "heading": "What research shows",
+      "paragraphs": [
+        "Studies on telemonitoring have given varying results. Some programmes reduced hospital admissions or deaths, others showed little benefit. Programmes that include quick action by trained staff appear more likely to help than simply collecting data. Results may depend on how sick the person is and how well the programme is organised."
+      ]
+    },
+    {
+      "heading": "Benefits and drawbacks",
+      "paragraphs": [
+        "Possible benefits include feeling reassured, fewer clinic visits and earlier adjustment of medicines. Drawbacks include false alarms and anxiety, extra effort for daily measurements, device problems, privacy considerations and the need for stable internet access or digital skills. Telemonitoring does not replace face-to-face care."
+      ]
+    },
+    {
+      "heading": "Deciding whether to use it",
+      "paragraphs": [
+        "Ask whether a service is available, who reviews the data and how quickly, what happens at night and weekends, and who pays. Consider whether you or a relative can manage the equipment. Daily weighing and symptom tracking are useful even without sophisticated technology, and many people benefit from a written action plan."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Daily weight check",
+      "text": "Imagine you weigh yourself each morning after using the toilet. You could write down the number, notice an increase of more than two kilograms over a few days and call your clinic as agreed in your plan."
+    },
+    {
+      "title": "Choosing a programme",
+      "text": "Suppose your hospital offers telemonitoring. You might ask how often data are reviewed, what the team does when readings change and whether you can stop at any time."
+    }
+  ],
+  "questions": [
+    "Is telemonitoring available for me, and is it likely to help in my situation?",
+    "Who will see my data, and how will they respond?",
+    "What should I do at home if my weight or symptoms change?"
+  ]
+}

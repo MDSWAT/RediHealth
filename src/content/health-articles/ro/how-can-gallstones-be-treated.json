@@ -1,0 +1,51 @@
+{
+  "title": "Tratamentul calculilor biliari: supraveghere și proceduri",
+  "intro": "Tratamentul depinde de simptome, loc și complicații. Îndepărtarea vezicii diferă de curățarea canalului biliar. Descoperirea ecografică singură nu înseamnă automat operație.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Supravegherea este obișnuită multor calculi asimptomatici, cu excepții selectate. Pentru crize tipice recurente discutați beneficiul și dacă alte simptome digestive au cauză diferită și pot persista după operație."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Ecografia, analizele și imagistica selectată a canalelor ghidează decizia. Întrebați blocajul, suspiciunea infecției ori pancreatitei și urgența. Sănătatea generală influențează planul procedural. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Colecistectomia este adesea laparoscopică, dar are riscuri anestezice, sângerare, infecție și leziune biliară. Calculii canalului pot cere endoscopie cu riscuri proprii, inclusiv pancreatită; aceasta nu îndepărtează automat calculii vezicii. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Medicamentele reduc durerea; dizolvarea se potrivește numai unor cazuri și pietrele pot reveni. Curele comerciale nu vindecă sigur. Întrebați recuperarea, munca, condusul și ajutorul acasă înainte de procedură. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Febra, icterul, durerea severă persistentă ori vărsăturile repetate cer urgență chiar cu operație programată. După procedură respectați semnele pentru durere mai mare, febră, icter sau plagă, nu presupuneți recuperare normală."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira întreabă dacă operația va reduce crizele proprii și înțelege că balonarea fără legătură poate rămâne."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben află că endoscopia curăță canalul și întreabă dacă este necesar separat tratamentul vezicii pentru prevenirea recidivelor."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

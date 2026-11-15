@@ -1,0 +1,51 @@
+{
+  "title": "Dispepsia funksionale: shqetësim i vazhdueshëm në pjesën e sipërme të barkut",
+  "intro": "Dispepsia funksionale shkakton ngopje të hershme, djegie ose dhimbje mbi kërthizë pa një ulçerë që shpjegon simptomat. Shqetësimi është real edhe kur analizat e zakonshme janë normale.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Ndjeshmëria dhe lëvizja e stomakut, bashkë me komunikimin zorrë–tru, mund të ndikojnë. Simptomat ndryshojnë; ekzaminimi normal nuk do të thotë se personi i shpik."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Përshkruani lidhjen me vaktet, ndryshimet e peshës dhe ilaçet. Mjeku vendos nëse duhen testet për Helicobacter, analizat e gjakut ose endoskopia, jo çdo hetim automatikisht. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Mundësitë përfshijnë trajtimin e infeksionit Helicobacter të vërtetuar, provën me ulës të acidit ose ndërhyrje psikologjike për lidhjen zorrë–tru. Përgjigjja ndryshon; mos shtoni vazhdimisht ilaçe pa përfitim. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Provoni vakte të rregullta më të vogla nëse ndihmojnë, hani ngadalë dhe ndiqni nxitësit individualë pa përjashtime të gjera ushqimore. Ushqyerja e mjaftueshme është më e rëndësishme se dietat e paprovuara. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Të vjellat me gjak, jashtëqitja e zezë, vështirësia në gëlltitje, humbja e pashpjeguar e peshës ose të vjellat e vazhdueshme kërkojnë vlerësim. Dhimbja e papritur e fortë ose kolapsi janë urgjencë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ngopet shpejt pas drekave të mëdha. Provon porcione më të vogla dhe shënon simptomat për të parë nëse ndryshimi ndihmon."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni fillon të ketë vështirësi në gëlltitje pavarësisht diagnozës funksionale. Kërkon rivlerësim dhe nuk ia atribuon çdo simptomë të re të njëjtës gjendje."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Dolore al collo",
+  "intro": "Il dolore al collo è comune e di solito è causato da tensione o rigidità muscolare dovuta alla postura, alla posizione di sonno o a un movimento improvviso. In genere migliora in poche settimane. Restare attivi, fare esercizio dolce e usare un sollievo dal dolore a breve termine sono i cardini della cura, mentre le cause gravi sono rare.",
+  "sections": [
+    {
+      "heading": "Cause comuni",
+      "paragraphs": [
+        "Sono tipiche la tensione muscolare per il lungo stare seduti, la cattiva postura, l'uso di telefono e computer, lo stress, un sonno scomodo, lievi colpi di frusta e l'usura legata all'età delle articolazioni del collo. I reperti di usura agli esami sono molto comuni anche nelle persone senza dolore e spesso non spiegano i sintomi."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Il dolore al collo può comportare rigidità, dolore con il movimento, mal di testa che partono dalla base del cranio e dolorabilità alle spalle. Dolore, formicolio o debolezza che si estendono a un braccio suggeriscono che una radice nervosa possa essere irritata, per esempio da un disco."
+      ]
+    },
+    {
+      "heading": "Autocura",
+      "paragraphs": [
+        "Continua a muoverti dolcemente ed evita il riposo a letto prolungato o i collari. Il calore può rilassare i muscoli e si possono usare semplici antidolorifici. Metti lo schermo all'altezza degli occhi, fai pause regolari di movimento e usa un cuscino di sostegno. Dolci stiramenti del collo ed esercizi per le spalle aiutano."
+      ]
+    },
+    {
+      "heading": "Trattamento professionale",
+      "paragraphs": [
+        "Se il dolore persiste, fisioterapia, programmi di esercizi e terapia manuale possono dare sollievo. Infiltrazioni e chirurgia sono raramente necessarie e si considerano per una grave compressione nervosa. La gestione dello stress e il rilassamento aiutano quando la tensione ha un ruolo."
+      ]
+    },
+    {
+      "heading": "Segnali d'allarme",
+      "paragraphs": [
+        "Cerca aiuto urgente per un dolore al collo dopo un trauma significativo, con febbre e rigidità del collo, forte mal di testa, debolezza a braccia o gambe, difficoltà a camminare, cambiamenti della vescica o dell'intestino o dolore al petto. Possono indicare condizioni gravi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Sistemare la scrivania",
+      "text": "Immagina di lavorare tutto il giorno al portatile. Potresti sollevare lo schermo con un supporto, usare una tastiera esterna e alzarti ogni ora per muoverti."
+    },
+    {
+      "title": "Seguire il miglioramento",
+      "text": "Supponi che il collo sia rigido da due settimane. Potresti annotare quali movimenti fanno male, iniziare esercizi dolci di mobilità e andare dal medico se compare debolezza al braccio."
+    }
+  ],
+  "questions": [
+    "Serve una scansione o è meglio trattare senza esami di imaging?",
+    "Quali esercizi e cambiamenti di postura mi aiuteranno?",
+    "Quali sintomi significano che devo tornare subito?"
+  ]
+}

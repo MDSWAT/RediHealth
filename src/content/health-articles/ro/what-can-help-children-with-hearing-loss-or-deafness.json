@@ -1,0 +1,51 @@
+{
+  "title": "Ce poate ajuta copiii cu pierdere a auzului sau surditate",
+  "intro": "Auzul este esențial pentru învățarea vorbirii și pentru dezvoltare, așa că depistarea timpurie și sprijinul pentru copiii cu pierdere a auzului contează foarte mult. Există multe opțiuni eficiente, de la aparate auditive la implanturi cohleare, logopedie și limbaj mimico-gestual, iar familiile sunt sprijinite de echipe specializate.",
+  "sections": [
+    {
+      "heading": "Depistarea timpurie",
+      "paragraphs": [
+        "În multe țări, nou-născuții beneficiază de un screening auditiv în primele zile de viață. Părinții trebuie să urmărească și mai târziu semne precum lipsa reacției la sunete puternice, vorbirea întârziată, lipsa răspunsului la nume sau mărirea volumului televizorului. Orice îngrijorare trebuie să ducă la un test auditiv făcut de un medic ORL pediatru sau de un audiolog pediatric, fără a aștepta."
+      ]
+    },
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Cauzele includ factorii genetici, infecțiile din timpul sarcinii, precum citomegalovirusul, nașterea prematură, icterul, meningita, infecțiile urechii cu lichid în spatele timpanului și expunerea la zgomot. Pierderea conductivă temporară din otita seromucoasă este frecventă și se ameliorează adesea în timp sau cu mici tuburi în ureche. Pierderea permanentă implică urechea internă sau nervul auditiv."
+      ]
+    },
+    {
+      "heading": "Aparate auditive și implanturi",
+      "paragraphs": [
+        "Aparatele auditive pot fi adaptate de la câteva săptămâni de viață și sunt ajustate pe măsură ce copilul crește. Când aparatele oferă prea puțin beneficiu în pierderea severă sau profundă, se poate oferi un implant cohlear, ideal la vârstă mică. Dispozitivele cu conducere osoasă ajută copiii la care urechea externă sau medie nu s-a format normal. Controalele regulate mențin dispozitivele în stare bună de funcționare."
+      ]
+    },
+    {
+      "heading": "Limbaj și comunicare",
+      "paragraphs": [
+        "Logopedia, antrenamentul de ascultare și programele de intervenție timpurie sprijină dezvoltarea. Unele familii aleg limbajul semnelor, altele limba vorbită sau ambele, iar abordările bilingve sunt posibile. Învățarea este cea mai bună când părinții sunt implicați de la început, vorbind, citind și jucându-se împreună, cu contact față în față."
+      ]
+    },
+    {
+      "heading": "Școala și bunăstarea",
+      "paragraphs": [
+        "Sprijinul la școală poate include așezarea aproape de profesor, sisteme asistive de ascultare, subtitrare și profesori specializați. Contactul cu alte familii și cu adulți surzi ajută copiii să-și dezvolte identitatea și încrederea. Urmăriți oboseala, frustrarea sau hărțuirea și cereți ajutor din timp."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reacția la o îngrijorare",
+      "text": "Imaginați-vă că cel mic abia reacționează la sunete și vorbește puține cuvinte. Ați putea cere medicului pediatru o trimitere pentru un test auditiv fără a aștepta."
+    },
+    {
+      "title": "Sprijinul acasă",
+      "text": "Presupuneți că copilul dumneavoastră are aparate auditive noi. V-ați putea asigura că sunt purtate zilnic, ați putea verifica bateriile și ați putea vorbi față în față în medii liniștite."
+    }
+  ],
+  "questions": [
+    "Ce tip și grad de pierdere a auzului are copilul meu?",
+    "Ce dispozitive și terapii sunt cele mai bune pentru copilul meu?",
+    "Ce sprijin este disponibil la grădiniță și la școală?"
+  ]
+}

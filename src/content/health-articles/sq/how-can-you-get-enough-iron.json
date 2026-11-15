@@ -1,0 +1,51 @@
+{
+  "title": "Marrja e hekurit dhe njohja e mungesës",
+  "intro": "Hekuri ndihmon transportin e oksigjenit dhe funksione të tjera. Nevojat varen nga rritja, shtatzënia, menstruacionet dhe dieta. Lodhja vetëm nuk diagnostikon mungesë; hekuri i tepërt mund të dëmtojë.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Burime janë mishi, peshku, fasulet, thjerrëzat, tofu dhe drithërat e fortifikuara. Hekuri bimor përthithet më pak; vitamina C ndihmon. Dieta bimore e balancuar jep hekur të dobishëm."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Analizat kontrollojnë aneminë dhe rezervat në kontekstin e inflamacionit e sëmundjes. Pyesni pse mungon: cikli i bollshëm, gjakosja tretëse, ushqimi ose përthithja kërkojnë hetim. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Mungesa e konfirmuar mund të kërkojë hekur oral ose intravenoz të zgjedhur. Dieta vetëm nuk korrigjon aneminë e rëndë. Diskutoni efektet dhe analizat e përgjigjes, jo suplemente pa diagnozë. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Zgjidhni kombinime të qëndrueshme dhe ndiqni dozën. Çaji, kafeja, kalciumi dhe ilaçet ndikojnë përthithjen; pyesni kohën. Tabletat errësojnë feçet, por feçet si katran ose shenja gjakosjeje nuk duhen injoruar. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Mbajeni larg fëmijëve: mbidoza është e rrezikshme dhe kërkon këshillë helmimi ose urgjencë. Frymëmarrja shumë e vështirë, të fikëtit, dhimbja e gjoksit ose gjakosja kërkojnë urgjencë pa pritur dietën."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira kombinon thjerrëza me vitaminë C dhe kërkon analiza sepse cikli i bollshëm dhe lodhja nuk shpjegohen vetëm nga dieta."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ka kapsllëk nga hekuri. Diskuton plan të tolerueshëm dhe kontroll, pa braktisur ose dyfishuar dozën."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë janë rishikimet sistematike e meta-analizat?",
+  "intro": "Një rishikim sistematik bashkon gjithë kërkimin për një pyetje specifike me një metodë të planifikuar e transparente. Një meta-analizë është një teknikë statistikore e përdorur brenda disa rishikimeve për të kombinuar rezultatet numerike të disa studimeve në një rezultat të përgjithshëm. Së bashku japin një përgjigje më të besueshme se çdo studim i vetëm.",
+  "sections": [
+    {
+      "heading": "Pse nevojiten",
+      "paragraphs": [
+        "Studimet e vetme mund të jenë të vogla, të njëanshme ose gjetje rastësore, e studime të ndryshme shpesh japin përgjigje të ndryshme. Rishikimet sistematike i zvogëlojnë këto probleme duke parë të gjitha provat e disponueshme për një pyetje e duke vlerësuar cilësinë e tyre, në vend që të zgjedhin studime në mënyrë selektive. Janë qendrore për mjekësinë e bazuar në prova e udhëzuesit."
+      ]
+    },
+    {
+      "heading": "Si bëhet një rishikim sistematik",
+      "paragraphs": [
+        "Rishikuesit përcaktojnë pyetjen e kriteret për përfshirjen e studimeve, kërkojnë në mënyrë sistematike në disa baza të dhënash, zgjedhin studimet në mënyrë të pavarur, vlerësojnë rrezikun e njëanshmërisë e nxjerrin të dhënat. Metodat përshkruhen paraprakisht, që rishikimi të mund të kontrollohet e përsëritet. Gjetjet përmblidhen në tekst e tabela, me një vlerësim se sa të sigurt mund të jemi te rezultatet."
+      ]
+    },
+    {
+      "heading": "Çfarë bën një meta-analizë",
+      "paragraphs": [
+        "Kur studimet janë mjaftueshëm të ngjashme, një meta-analizë bashkon numrat e tyre, duke i dhënë më shumë peshë studimeve më të mëdha. Kjo prodhon një vlerësim të përgjithshëm të efektit me një interval besimi, që është një gamë vlerash të besueshme, e ndihmon të zbulohen efekte që studimet individuale ishin shumë të vogla për t'i treguar. Rezultatet shpesh paraqiten në një grafik pylli ku çdo studim është një vijë e rezultati i përgjithshëm një diamant."
+      ]
+    },
+    {
+      "heading": "Kufijtë",
+      "paragraphs": [
+        "Një rishikim është aq i mirë sa studimet që përmban. Kombinimi i studimeve të dobëta jep rezultat të dobët. Dallimet midis studimeve në njerëz, trajtime ose rezultate mund ta bëjnë bashkimin të papërshtatshëm. Njëanshmëria e botimit, ku studimet me rezultate negative nuk botohen, mund t'i shtrembërojë gjetjet. Rishikimet mund të vjetrohen ndërsa shfaqet kërkim i ri."
+      ]
+    },
+    {
+      "heading": "Leximi i një rishikimi",
+      "paragraphs": [
+        "Kontrolloni nëse pyetja është e qartë, si u gjetën studimet, nëse u vlerësua cilësia, sa konsistente ishin rezultatet e kush e financoi rishikimin. Shihni përfundimin për besimin te provat. Rishikimet nga grupe të pavarura, si Cochrane, ndjekin metoda të rrepta. Një rishikim mund të thotë se provat janë të pamjaftueshme, që është gjithashtu informacion i dobishëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Gjetja e një rishikimi",
+      "text": "Imagjinoni që doni të dini nëse një suplement funksionon. Mund të kërkoni një rishikim sistematik provash e të shihni sa studime e sa njerëz u përfshinë."
+    },
+    {
+      "title": "Pyetja për sigurinë",
+      "text": "Supozoni që një rishikim tregon një përfitim të vogël. Mund ta pyesni mjekun sa të sigurt mund të jemi te rezultati e nëse vlen për ju."
+    }
+  ],
+  "questions": [
+    "A ka rishikim sistematik për pyetjen time?",
+    "Sa të besueshme janë përfundimet e tij?",
+    "A vlen rezultati për dikë si unë?"
+  ]
+}

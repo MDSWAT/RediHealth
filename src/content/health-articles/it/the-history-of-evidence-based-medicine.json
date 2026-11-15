@@ -1,0 +1,51 @@
+{
+  "title": "La storia della medicina basata sulle prove",
+  "intro": "La medicina basata sulle prove nasce dall'idea che i trattamenti vadano giudicati con test accurati e non solo con la tradizione o l'autorità. Le sue radici risalgono a secoli fa, ma è diventata un approccio definito alla fine del Novecento. Conoscerne la storia mostra perché oggi l'assistenza sanitaria si affida a studi e revisioni sistematiche.",
+  "sections": [
+    {
+      "heading": "Le prime idee",
+      "paragraphs": [
+        "Già nell'antichità i medici notavano che l'esperienza doveva guidare il trattamento. Nel Settecento il medico di marina James Lind confrontò trattamenti per lo scorbuto tra i marinai e scoprì che arance e limoni aiutavano. Nell'Ottocento si cominciarono a usare metodi statistici per valutare trattamenti ed esiti ospedalieri. Anche le riformatrici dell'assistenza infermieristica usarono i dati per migliorare le cure."
+      ]
+    },
+    {
+      "heading": "Gli studi controllati",
+      "paragraphs": [
+        "Nel Novecento si sviluppò il moderno studio randomizzato controllato. Dopo la seconda guerra mondiale uno studio britannico sulla streptomicina per la tubercolosi è considerato una pietra miliare. Randomizzazione e gruppi di controllo aiutarono a separare gli effetti reali dal caso e dalla distorsione. Esperienze tragiche, come i danni del farmaco talidomide, portarono a test e regolamentazioni più severi dei medicinali."
+      ]
+    },
+    {
+      "heading": "Archie Cochrane",
+      "paragraphs": [
+        "L'epidemiologo britannico Archie Cochrane sostenne negli anni 1970 che i servizi sanitari andassero valutati con studi randomizzati e che i risultati andassero riassunti in modo sistematico, perché molti trattamenti erano usati senza prova di beneficio. Criticò la mancanza di un riassunto regolarmente aggiornato di tutti gli studi. Le sue idee ispirarono lavori successivi."
+      ]
+    },
+    {
+      "heading": "Il movimento basato sulle prove",
+      "paragraphs": [
+        "All'inizio degli anni 1990 un gruppo di medici della McMaster University in Canada diede un nome alla medicina basata sulle prove e la promosse, insegnando ai clinici a trovare e valutare la ricerca. La Cochrane Collaboration internazionale fu fondata nel 1993 per preparare e aggiornare revisioni sistematiche. Linee guida, agenzie di valutazione delle tecnologie sanitarie e informazioni per i pazienti adottarono sempre più questi metodi."
+      ]
+    },
+    {
+      "heading": "Critiche e sviluppo",
+      "paragraphs": [
+        "I critici osservano che le prove possono essere distorte dai finanziamenti dell'industria, che gli studi possono non rispecchiare i pazienti reali e che le linee guida possono ignorare le circostanze individuali. Il settore ha risposto con la registrazione degli studi, la condivisione dei dati, standard di rendicontazione e il coinvolgimento dei pazienti. Oggi la medicina basata sulle prove continua a svilupparsi con attenzione alle preferenze dei pazienti e alla qualità delle prove."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vedere la storia nella pratica",
+      "text": "Immagina di leggere di un trattamento un tempo molto usato e poi abbandonato. Potresti chiedere che cosa hanno mostrato gli studi e come le prove abbiano cambiato la pratica."
+    },
+    {
+      "title": "Usare il principio",
+      "text": "Supponi che un amico consigli un rimedio in base all'esperienza. Potresti cercare studi controllati e chiedere al medico delle prove."
+    }
+  ],
+  "questions": [
+    "Questo trattamento è stato testato in studi controllati?",
+    "Dove posso trovare riassunti delle migliori prove?",
+    "Come sono cambiate nel tempo le prove su questo argomento?"
+  ]
+}

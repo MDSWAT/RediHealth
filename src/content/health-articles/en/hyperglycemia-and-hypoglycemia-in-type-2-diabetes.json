@@ -1,0 +1,54 @@
+{
+  "title": "High and low blood sugar in type 2 diabetes",
+  "intro": "People with type 2 diabetes may experience blood sugar that is too high, called hyperglycaemia, or too low, called hypoglycaemia. Recognising the signs and knowing what to do helps you stay safe and prevents emergencies. Low blood sugar is much less common with lifestyle changes or metformin alone, but can occur with insulin or certain tablets.",
+  "sections": [
+    {
+      "heading": "High blood sugar",
+      "paragraphs": [
+        "Hyperglycaemia develops gradually. Typical signs are increased thirst, frequent urination, tiredness, blurred vision and slow wound healing. Illness, infection, stress, certain medicines, missed doses, large meals rich in carbohydrates and lack of exercise can all push levels up.",
+        "Persistent high levels harm blood vessels and nerves over time and increase the risk of heart, kidney, eye and foot problems. Very high levels with vomiting, severe dehydration, drowsiness or confusion require urgent medical care."
+      ]
+    },
+    {
+      "heading": "Low blood sugar",
+      "paragraphs": [
+        "Hypoglycaemia occurs when blood sugar falls too low, for example after too much insulin or sulfonylurea tablets, skipped meals, unusual exercise or alcohol. Early signs include trembling, sweating, hunger, palpitations, dizziness and anxiety. If it worsens, concentration problems, confusion, slurred speech and loss of consciousness can follow.",
+        "Some people lose the early warning signs, especially after many years of diabetes, so regular monitoring is important."
+      ]
+    },
+    {
+      "heading": "What to do about low blood sugar",
+      "paragraphs": [
+        "If you can swallow safely, take fast-acting carbohydrate such as glucose tablets, fruit juice or a sugary drink, wait about fifteen minutes and measure again, repeating if the level is still low. Follow with a snack or meal if the next meal is not soon. If someone is unconscious or cannot swallow, call emergency services and do not put food in their mouth.",
+        "Relatives and colleagues can be taught what to do, and some people may have a glucagon emergency kit prescribed."
+      ]
+    },
+    {
+      "heading": "What to do about high blood sugar",
+      "paragraphs": [
+        "Drink plenty of sugar-free fluids and check your level more often, as advised. Follow your treatment plan and contact your diabetes team if levels stay high, especially during illness, since doses may need adjustment. Do not stop medicines without advice."
+      ]
+    },
+    {
+      "heading": "Prevention and planning",
+      "paragraphs": [
+        "Regular measurement according to your plan, balanced meals, consistent timing of medicines, caution with alcohol and planning around exercise help prevent extremes. Carry glucose or a snack, wear identification and always inform people close to you about your diabetes. Do not drive when your blood sugar is low."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Feeling shaky at work",
+      "text": "Imagine you feel shaky and sweaty before lunch after taking your usual tablet. You could measure your blood sugar, take glucose if it is low, then talk with your doctor about whether your medicine or meal timing needs to change."
+    },
+    {
+      "title": "Sick-day plan",
+      "text": "Suppose you have a stomach illness and cannot eat. You might phone your diabetes team about which medicines to adjust, drink small amounts of fluid regularly, and check your blood sugar more often."
+    }
+  ],
+  "questions": [
+    "What target range should I aim for, and how often should I measure?",
+    "Is my medication likely to cause low blood sugar, and what should I do if it happens?",
+    "What is my plan for sick days, travel and exercise?"
+  ]
+}

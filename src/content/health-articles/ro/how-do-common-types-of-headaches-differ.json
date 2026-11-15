@@ -1,0 +1,51 @@
+{
+  "title": "Cefaleea de tensiune, migrena și cefaleea cluster",
+  "intro": "Tipurile se suprapun, iar locul sau gravitatea singure nu stabilesc diagnosticul. Cefaleea de tensiune și migrena sunt frecvente; cluster este mai rară, dar foarte invalidantă. Tiparul nou ori schimbat cere evaluare.",
+  "sections": [
+    {
+      "heading": "Tipar de tensiune",
+      "paragraphs": [
+        "Adesea presiune sau strângere bilaterală, ușoară ori moderată, fără agravare importantă la activitate obișnuită. Vărsăturile intense sunt mai puțin tipice. Cereți ajutor dacă este frecventă ori perturbatoare."
+      ]
+    },
+    {
+      "heading": "Tipar de migrenă",
+      "paragraphs": [
+        "Adesea moderată sau severă, uneori pulsatilă, agravată de mișcare, cu greață ori sensibilitate la lumină și sunet. Aura apare numai unora. Semnele neurologice noi nu trebuie numite automat aură. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Tipar cluster",
+      "paragraphs": [
+        "Durerea foarte severă unilaterală lângă ochi poate avea lăcrimare, nas și neliniște în serii. Diagnosticul prompt contează: tratamentul diferă de calmantele obișnuite. Ochiul roșu dureros are și alte cauze urgente. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Planul potrivit",
+      "paragraphs": [
+        "Notați momentul, durata, simptomele și zilele de medicamente. Planul include tratament acut și prevenție când trebuie; calmantele frecvente întrețin cefaleea. Nu împrumutați medicamente de migrenă doar pentru asemănare. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Alarme",
+      "paragraphs": [
+        "Durerea bruscă maximă, slăbiciunea, confuzia, febra cu ceafă rigidă, vederea pierdută ori trauma mare cer urgență. Cefaleea nouă severă în sarcină sau după naștere cere prompt ajutor și cu migrenă anterioară."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira are cefalee repetată cu greață și lumină deranjantă. Notează tiparul și cere consult, nu presupune numai tensiune."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are durere perioculară severă și lacrimi. Cere evaluare promptă în loc să repete comprimate fără diagnostic."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

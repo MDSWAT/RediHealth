@@ -1,0 +1,51 @@
+{
+  "title": "Tooth decay",
+  "intro": "Tooth decay, or caries, is damage to the hard tissue of a tooth caused by acids made by bacteria in dental plaque. It is one of the most common health problems worldwide, yet largely preventable. Early decay can be reversed, while advanced decay needs treatment by a dentist.",
+  "sections": [
+    {
+      "heading": "How decay develops",
+      "paragraphs": [
+        "Bacteria in plaque feed on sugars and produce acid that dissolves minerals from enamel. Frequent sugary food and drink, poor cleaning, dry mouth and low fluoride exposure raise the risk. At first, a white spot appears on the enamel. If the process continues, a cavity forms and can reach the dentine and the nerve."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Early decay causes no symptoms. Later signs include sensitivity to sweet, hot or cold, visible brown or black spots, holes in teeth, toothache and bad taste. Severe, throbbing pain, swelling of the face or fever suggests an infection that needs urgent dental care."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Early lesions can be remineralised with fluoride and better cleaning. Cavities are treated by removing the decayed part and filling the tooth. If decay reaches the nerve, root canal treatment may save the tooth, otherwise the tooth is removed. Crowns protect heavily damaged teeth. Early treatment is simpler, cheaper and less painful."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Brush twice daily with fluoride toothpaste for two minutes, clean between teeth daily, limit sugary snacks and drinks to mealtimes and rinse with water after acidic or sweet drinks. Children should use a small amount of fluoride toothpaste under supervision, and dentists may apply fluoride varnish or sealants on molars."
+      ]
+    },
+    {
+      "heading": "Regular dental care",
+      "paragraphs": [
+        "Visit a dentist regularly for check-ups, with frequency set according to your risk. Babies should not be given sweetened drinks in bottles at bedtime. Avoid frequent sipping of sugary drinks. If you have dry mouth, ask about suitable products. Seek help promptly for any toothache."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Building a routine",
+      "text": "Imagine your child dislikes brushing. You could brush together twice a day with a timer or a song, and limit sweets to mealtimes."
+    },
+    {
+      "title": "Spotting early signs",
+      "text": "Suppose you notice a chalky white spot on a tooth. You might ask your dentist about fluoride treatment and tips to prevent a cavity."
+    }
+  ],
+  "questions": [
+    "Do I have signs of decay, and how should it be treated?",
+    "How often should I have a check-up?",
+    "Would fluoride varnish or sealants be useful for my child?"
+  ]
+}

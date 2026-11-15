@@ -1,0 +1,52 @@
+{
+  "title": "Breathing support during an operation",
+  "intro": "General anesthesia can reduce breathing and protective airway reflexes. The anesthesia team may support breathing while continuously monitoring the patient; the device chosen depends on the operation and individual risks.",
+  "sections": [
+    {
+      "heading": "Why support is needed",
+      "paragraphs": [
+        "Anesthetic medicines and muscle relaxants can prevent effective breaths. A ventilator moves air containing oxygen into the lungs and allows carbon dioxide to leave; oxygen alone does not replace ventilation."
+      ]
+    },
+    {
+      "heading": "Ways to reach the airway",
+      "paragraphs": [
+        "A face mask covers mouth and nose. A supraglottic airway sits above the larynx; a tracheal tube passes through the vocal cords. They offer different seals and protection, so are not interchangeable in every operation."
+      ]
+    },
+    {
+      "heading": "Checks throughout surgery",
+      "paragraphs": [
+        "The team monitors oxygen, exhaled carbon dioxide and other vital signs, adjusts ventilation and checks the airway. The ventilator supports breathing; it does not itself provide unconsciousness or pain relief."
+      ]
+    },
+    {
+      "heading": "Preparing safely",
+      "paragraphs": [
+        "Follow the hospital's eating, drinking and medicine instructions. Report sleep apnea, reflux, loose teeth, allergies and previous airway problems. Do not invent a fasting schedule or stop prescribed medicines independently."
+      ]
+    },
+    {
+      "heading": "Waking and recovery",
+      "paragraphs": [
+        "Support is reduced when breathing and protective reflexes recover sufficiently. Temporary throat discomfort can occur, but severe breathing difficulty after surgery needs urgent help rather than being dismissed as irritation.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira uses a sleep-apnea device. She tells the anesthetist beforehand and asks whether to bring it for recovery."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben has loose dental work. He reports it before surgery so the airway plan can take it into account."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

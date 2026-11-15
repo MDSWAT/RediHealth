@@ -1,0 +1,52 @@
+{
+  "title": "Keeping a medication list",
+  "intro": "A medication list records every medicine you take, including prescription drugs, over-the-counter products, vitamins and herbal remedies. Keeping it up to date helps doctors, pharmacists and carers avoid dangerous interactions and mistakes. It is especially useful if you take several medicines or see more than one doctor.",
+  "sections": [
+    {
+      "heading": "Why a list matters",
+      "paragraphs": [
+        "Many people take multiple medicines prescribed by different professionals. Without an overview, duplicates, harmful combinations and forgotten changes are more likely. In an emergency or hospital admission, a list lets staff quickly understand your treatment."
+      ]
+    },
+    {
+      "heading": "What to include",
+      "paragraphs": [
+        "For each medicine, note the name, strength, dose, how often and at what times you take it, the reason, who prescribed it, and the start date. Add supplements, herbal products, eye drops, creams, patches, inhalers and medicines taken only as needed. Record allergies and side effects you have had."
+      ]
+    },
+    {
+      "heading": "How to keep it",
+      "paragraphs": [
+        "You can use a printed template, a notebook or a phone app. Keep a copy in your wallet or bag and give one to a trusted person. Update it whenever a medicine is started, stopped or changed, and cross out discontinued medicines clearly with the date. Many pharmacies and practices can print a current list for you."
+      ]
+    },
+    {
+      "heading": "Using it at appointments",
+      "paragraphs": [
+        "Bring the list or the medicine boxes to each visit, including pharmacy and hospital appointments, and ask the professional to check it. Ask which medicines are still needed, which can be stopped and whether any interact with new treatments or alcohol.",
+        "An annual medication review with your doctor or pharmacist is helpful, particularly for older people taking many medicines."
+      ]
+    },
+    {
+      "heading": "Safe use",
+      "paragraphs": [
+        "Do not stop or change doses without advice. Store medicines safely, check expiry dates and dispose of unused medicines through a pharmacy. Tell all your healthcare providers about everything you take, including products bought online."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Hospital admission",
+      "text": "Imagine you are taken to hospital after a fall. If you carry a current list, staff can see your blood thinner and heart medicines immediately and avoid unsafe additions."
+    },
+    {
+      "title": "Review with a pharmacist",
+      "text": "Suppose you take eight tablets daily. You might bring your list to the pharmacy and ask whether any combinations are risky and whether doses could be simplified."
+    }
+  ],
+  "questions": [
+    "Are all of the medicines on my list still necessary?",
+    "Do any of my medicines, supplements or foods interact?",
+    "How often should my medicines be reviewed?"
+  ]
+}

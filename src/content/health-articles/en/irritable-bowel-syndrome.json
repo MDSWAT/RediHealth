@@ -1,0 +1,52 @@
+{
+  "title": "Irritable bowel syndrome",
+  "intro": "Irritable bowel syndrome is a common long-term disorder of the gut that causes abdominal pain with diarrhoea, constipation or both. It does not damage the bowel or raise the risk of cancer, but symptoms can be distressing. Diet, stress management and sometimes medicine bring relief.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical symptoms are cramping abdominal pain related to bowel movements, bloating, wind, and changes in stool frequency or consistency. Some people mainly have diarrhoea, others constipation, and some alternate. Symptoms come and go and often flare up during stress or after certain foods."
+      ]
+    },
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "The exact cause is unknown. Factors include a more sensitive gut, altered movement of the intestines, changes in the gut bacteria, previous gut infection and the connection between the brain and gut. Stress and anxiety do not cause the disorder but can make it worse."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Diagnosis is based on typical symptoms and exclusion of other conditions. Doctors may order blood tests, stool tests and, when needed, a colonoscopy, particularly when there are warning signs such as blood in stool, weight loss, anaemia, fever, symptoms starting after age 50 or a family history of bowel cancer or inflammatory bowel disease."
+      ]
+    },
+    {
+      "heading": "Treatment and self-help",
+      "paragraphs": [
+        "Regular meals, enough fluids, physical activity and good sleep help. Keeping a food and symptom diary can identify triggers such as caffeine, fatty food or sweeteners. Soluble fibre, such as psyllium, helps some people, while insoluble fibre can worsen bloating. A low-FODMAP diet, done with a dietitian, helps some people but should not be followed long-term without guidance.",
+        "Medicines can relieve cramps, diarrhoea or constipation. Peppermint oil may help with pain. Psychological therapies such as cognitive behavioural therapy and gut-directed hypnotherapy are effective for persistent symptoms."
+      ]
+    },
+    {
+      "heading": "Living with IBS",
+      "paragraphs": [
+        "IBS is usually a lifelong condition with changing symptoms. Learning your triggers, managing stress and keeping in touch with your doctor help you cope. Seek advice if symptoms change significantly or new warning signs develop."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Keeping a diary",
+      "text": "Imagine you suspect certain foods set off your symptoms. You could write down meals, stress and symptoms for two weeks and review the pattern with your doctor or dietitian."
+    },
+    {
+      "title": "Trying a diet safely",
+      "text": "Suppose you want to try a low-FODMAP diet. You might ask for referral to a dietitian so that you eliminate foods only for a limited time and reintroduce them carefully."
+    }
+  ],
+  "questions": [
+    "Could my symptoms have another cause, and which tests do I need?",
+    "Which treatments or diets are most likely to help my type of IBS?",
+    "Which warning signs mean I should come back sooner?"
+  ]
+}

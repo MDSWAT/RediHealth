@@ -1,0 +1,51 @@
+{
+  "title": "Overactive thyroid (hyperthyroidism)",
+  "intro": "In hyperthyroidism, the thyroid gland produces too much thyroid hormone, speeding up the body's metabolism. It causes symptoms such as weight loss, a racing heart, nervousness and heat intolerance. Several effective treatments are available, and finding the cause guides the choice.",
+  "sections": [
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "The most common cause is Graves' disease, an autoimmune condition in which antibodies stimulate the gland. Other causes are nodules that produce hormone independently, inflammation of the thyroid that releases stored hormone temporarily, and excess iodine or certain medicines. Goitre, an enlarged thyroid, may be present."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical symptoms include weight loss despite good appetite, palpitations, sweating, trembling hands, anxiety, irritability, trouble sleeping, tiredness, frequent bowel movements and lighter periods. Older people may have fewer symptoms, such as atrial fibrillation or weakness. In Graves' disease, the eyes may become prominent, red or dry."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Blood tests show low thyroid-stimulating hormone and high levels of thyroid hormones. Antibody tests, ultrasound and sometimes a scan using a radioactive tracer help find the cause. Heart rhythm may be checked."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Antithyroid tablets reduce hormone production and are often used first, for one to two years, with blood tests to monitor side effects. Beta-blockers ease palpitations and tremor quickly. If the condition returns or the cause is nodules, radioactive iodine or surgery to remove all or part of the gland are options. After these, many people develop an underactive thyroid and need lifelong hormone tablets."
+      ]
+    },
+    {
+      "heading": "Special situations",
+      "paragraphs": [
+        "Pregnancy needs specialist care, since some medicines and radioactive iodine are not suitable. Untreated hyperthyroidism strains the heart and bones. Eye problems in Graves' disease need an eye specialist. Smoking worsens eye disease, so stopping is strongly advised."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Describing symptoms",
+      "text": "Imagine you have lost weight and feel your heart racing. You could list when symptoms started, how you sleep and what medicines or supplements you take, and ask for thyroid blood tests."
+    },
+    {
+      "title": "Choosing a treatment",
+      "text": "Suppose your doctor offers tablets, radioactive iodine or surgery. You might ask about relapse rates, side effects, effects on fertility or pregnancy plans and the need for lifelong tablets."
+    }
+  ],
+  "questions": [
+    "What is causing my overactive thyroid?",
+    "Which treatment suits me, and what are the long-term effects?",
+    "How often will blood tests be needed, and what should I report between visits?"
+  ]
+}

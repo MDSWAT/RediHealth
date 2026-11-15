@@ -1,0 +1,51 @@
+{
+  "title": "Meiosis: how eggs and sperm carry genetic information",
+  "intro": "Meiosis is a special form of cell division involved in producing eggs and sperm. It reduces the chromosome set so fertilization can combine information from both biological parents. It also helps explain why siblings are genetically different.",
+  "sections": [
+    {
+      "heading": "Chromosome pairs and copying DNA",
+      "paragraphs": [
+        "Most human body cells typically contain 46 chromosomes arranged in pairs. Before meiosis, DNA is copied, but the copied material still needs careful separation. Copying is not the same as immediately making a new ordinary body cell."
+      ]
+    },
+    {
+      "heading": "Recombination and variation",
+      "paragraphs": [
+        "Matching chromosome partners pair and can exchange corresponding DNA segments, called recombination. Their distribution also varies between cells. These processes produce new combinations of inherited information; they do not deliberately select the best traits or guarantee health."
+      ]
+    },
+    {
+      "heading": "The divisions and fertilization",
+      "paragraphs": [
+        "In the first division, chromosome partners separate; in the next, their copied parts separate. Typical mature gametes have 23 chromosomes. At fertilization, egg and sperm combine their sets, restoring the usual paired chromosome arrangement in the new cell."
+      ]
+    },
+    {
+      "heading": "Differences between egg and sperm development",
+      "paragraphs": [
+        "Sperm production and egg maturation follow different timing and cell-development patterns. Egg development divides cell contents unevenly, leaving a large egg and much smaller polar bodies. Therefore a simple diagram showing equal cells does not describe every detail of human reproduction."
+      ]
+    },
+    {
+      "heading": "Chromosome changes and counseling",
+      "paragraphs": [
+        "Sometimes chromosomes fail to separate as expected, producing a different chromosome number. This may affect fertility, pregnancy or a child’s health, but it is not evidence of parental wrongdoing. Genetic counseling can explain specific findings; this biology overview cannot calculate an individual pregnancy’s risk."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira uses a diagram to distinguish copying DNA from separating chromosome pairs. She understands why ordinary cell division cannot simply substitute for making a gamete."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben asks about a chromosome result after a pregnancy loss. A professional explains the specific finding without assuming it happened because of something the parents ate or did."
+    }
+  ],
+  "questions": [
+    "Which steps would be clearer with a diagram?",
+    "What does this explanation show, and what can it not predict?",
+    "Would my specific concern need professional assessment?"
+  ]
+}

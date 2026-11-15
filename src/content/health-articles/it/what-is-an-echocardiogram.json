@@ -1,0 +1,51 @@
+{
+  "title": "Che cos'è un ecocardiogramma",
+  "intro": "Un ecocardiogramma è un'ecografia del cuore. Usa onde sonore per produrre immagini in movimento di camere, valvole e pareti del cuore e mostra quanto bene pompa. È sicuro, indolore e non usa radiazioni ed è molto usato per diagnosticare problemi del cuore.",
+  "sections": [
+    {
+      "heading": "Perché si fa",
+      "paragraphs": [
+        "I medici lo usano per indagare affanno, dolore al petto, un soffio al cuore, gonfiore delle gambe o palpitazioni, per valutare insufficienza cardiaca, malattie delle valvole, danni dopo un infarto, difetti congeniti e liquido attorno al cuore e per monitorare il trattamento. Misura la frazione di eiezione, la quota di sangue pompata a ogni battito."
+      ]
+    },
+    {
+      "heading": "Tipi",
+      "paragraphs": [
+        "Un ecocardiogramma transtoracico si fa sul torace ed è l'esame standard. Un ecocardiogramma transesofageo fa passare una sonda nell'esofago per immagini più chiare della parte posteriore del cuore, con sedazione. Un ecocardiogramma da sforzo si fa durante l'esercizio o dopo un farmaco per vedere come si comporta il cuore sotto sforzo. Si possono iniettare mezzi di contrasto per migliorare le immagini."
+      ]
+    },
+    {
+      "heading": "Che cosa succede",
+      "paragraphs": [
+        "Ti spogli fino alla vita e ti sdrai sul fianco sinistro. Si applicano piccoli cerotti adesivi per un elettrocardiogramma. Un tecnico spalma il gel e muove una sonda sul torace, premendo leggermente. Può esserti chiesto di trattenere il respiro. Dalla macchina si sente un suono simile a un sibilo. Dura da trenta a sessanta minuti."
+      ]
+    },
+    {
+      "heading": "Preparazione e sicurezza",
+      "paragraphs": [
+        "Di solito non serve alcuna preparazione, salvo per l'esame transesofageo, che richiede il digiuno, o per un test da sforzo. Indossa abiti larghi. La procedura è sicura. Gli esami transesofagei hanno piccoli rischi come il mal di gola. Il medico spiega i risultati, spesso dopo che uno specialista ha rivisto le immagini."
+      ]
+    },
+    {
+      "heading": "Capire i risultati",
+      "paragraphs": [
+        "I risultati descrivono dimensioni delle camere, spessore delle pareti, funzione di pompa e come si aprono e si chiudono le valvole. I reperti si combinano con i sintomi e altri esami. Chiedi che cosa significano i risultati per il trattamento, il controllo successivo e l'attività."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi",
+      "text": "Immagina di avere l'esame domani. Potresti indossare una maglia larga, portare l'elenco dei farmaci e chiedere se puoi mangiare prima."
+    },
+    {
+      "title": "Discutere i risultati",
+      "text": "Supponi che il referto citi una lieve perdita valvolare. Potresti chiedere con che frequenza vada controllata e quali sintomi contino."
+    }
+  ],
+  "questions": [
+    "Di quale tipo di ecocardiogramma ho bisogno e perché?",
+    "Che cosa significa la mia frazione di eiezione?",
+    "Con che frequenza va ripetuto l'esame?"
+  ]
+}

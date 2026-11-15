@@ -1,0 +1,51 @@
+{
+  "title": "Aportul de fier și recunoașterea deficitului",
+  "intro": "Fierul ajută sângele să transporte oxigen și alte funcții. Nevoile diferă cu creșterea, sarcina, menstruația și dieta. Oboseala singură nu diagnostichează deficit, iar fierul inutil poate dăuna.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Surse sunt carnea, peștele, fasolea, lintea, tofu și cerealele fortificate. Fierul vegetal se absoarbe mai greu; vitamina C poate ajuta. Dieta vegetală echilibrată poate furniza fier util."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Când suspectați deficit, analizele evaluează anemia și depozitele în contextul inflamației și bolilor. Întrebați cauza: menstruația abundentă, sângerarea digestivă, aportul sau absorbția pot necesita investigații specifice. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Deficitul confirmat poate necesita fier oral prescris ori intravenos în cazuri selectate. Dieta singură nu corectează întotdeauna anemia importantă. Discutați reacțiile și testarea răspunsului, nu suplimente repetate fără diagnostic. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Alegeți combinații sustenabile și respectați doza. Ceaiul, cafeaua, calciul și medicamentele influențează absorbția: întrebați momentul. Comprimatele închid adesea scaunul, dar scaunul suspect de melenă ori alte semne de sângerare nu se ignoră. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Păstrați fierul departe de copii: supradozajul este periculos și cere sfat toxicologic ori urgență. Dispneea severă, leșinul, durerea toracică sau sângerarea activă cer evaluare urgentă, fără a aștepta dieta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira combină linte și legume cu vitamina C și cere analize, deoarece menstruația abundentă și oboseala pot avea altă cauză decât dieta."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are constipație de la fier. Discută plan tolerabil și control, fără abandon sau dublarea dozei singur."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

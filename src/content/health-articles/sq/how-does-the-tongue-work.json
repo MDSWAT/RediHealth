@@ -1,0 +1,52 @@
+{
+  "title": "Si ndihmon gjuha ngrënien dhe të folurit",
+  "intro": "Gjuha është organ muskulor i lëvizshëm me sipërfaqe të ndjeshme. Lëviz ushqimin, ndihmon gëlltitjen dhe formon të folurin duke dalluar shije e prekje. Pamja ndryshon; vetëm fotografia nuk vendos diagnozën.",
+  "sections": [
+    {
+      "heading": "Muskujt dhe lidhjet",
+      "paragraphs": [
+        "Disa muskuj ndryshojnë formën, të tjerë e lëvizin të gjithën. Lidhjet me strukturat pranë dhe freni poshtë mbështesin koordinimin, jo shtrirjen pa kufi."
+      ]
+    },
+    {
+      "heading": "Ushqimi",
+      "paragraphs": [
+        "Gjuha vendos ushqimin mes dhëmbëve dhe e përzien me pështymë. Mbledh kafshatën dhe e shtyn prapa për gëlltitje; nervat koordinojnë mbrojtjen e rrugëve ajrore."
+      ]
+    },
+    {
+      "heading": "Sipërfaqja dhe shija",
+      "paragraphs": [
+        "Shumë papila kanë sytha shijeje, të tjerat japin kryesisht strukturë. Shija bashkëpunon me nuhatjen; asnjë zonë nuk dallon vetëm një shije. Ndryshimi normal nuk është automatikisht infeksion."
+      ]
+    },
+    {
+      "heading": "Të folurit dhe kujdesi",
+      "paragraphs": [
+        "Kontaktet e sakta formojnë tinguj me dhëmbët, qiellzën dhe buzët. Higjiena e butë dhe hidratimi ndihmojnë rehatinë. Mos gërvishtni indin e dhimbshëm ose trajtoni vetëm sipas ngjyrës."
+      ]
+    },
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Plagët e vazhdueshme, masat, gjaku ose vështirësitë në lëvizje e gëlltitje kërkojnë kontroll. Ënjtja e papritur me frymëmarrje të vështirë është emergjencë. Dobësia e re me ndryshime të të folurit ose fytyrës kërkon urgjencë.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka plagë pasi kafshon gjuhën. Shmang irritimin dhe kontrollohet nëse nuk shërohet, pa lëndë kaustike."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ka ënjtje të papritur dhe vështirësi frymëmarrjeje pas një alergjeni të mundshëm. Familja kërkon urgjencë pa pritur dentistin."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

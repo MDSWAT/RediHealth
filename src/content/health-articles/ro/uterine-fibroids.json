@@ -1,0 +1,51 @@
+{
+  "title": "Fibroamele uterine",
+  "intro": "Fibroamele sunt formațiuni necanceroase în peretele muscular al uterului. Sunt foarte frecvente, iar multe femei nu află niciodată că le au. Când provoacă menstruații abundente, durere sau presiune, există multe opțiuni de tratament, de la medicamente la chirurgie.",
+  "sections": [
+    {
+      "heading": "Ce sunt fibroamele",
+      "paragraphs": [
+        "Fibroamele variază ca dimensiune de la minuscule până la cât un pepene și pot fi unice sau multiple. Se descriu după locație: în perete, sub mucoasă, bombând în cavitate sau pe suprafața exterioară. Creșterea lor depinde de estrogen și progesteron, așa că adesea cresc în anii reproductivi și se micșorează după menopauză. Istoricul familial, excesul de greutate și originea africană cresc riscul."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Multe femei nu au niciunul. Simptomele frecvente sunt menstruațiile abundente sau prelungite, care pot provoca anemie, durerea menstruală, presiunea sau senzația de plenitudine pelviană, urinarea frecventă, constipația, durerea de spate, durerea în timpul actului sexual și, uneori, dificultatea de a concepe sau complicațiile sarcinii. Durerea severă bruscă poate apărea dacă un fibrom pierde aportul de sânge sau se răsucește."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Fibroamele se găsesc la examenul pelvin și se confirmă prin ecografie. Rezonanța magnetică poate ajuta la planificarea tratamentului. Analizele de sânge verifică anemia. Fibroamele care nu provoacă probleme nu necesită de obicei tratament, doar o revizuire ocazională. Cancerul într-un fibrom este extrem de rar."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Pentru sângerarea abundentă, opțiunile includ sterilete hormonale, tablete care reduc sângerarea, tratamente hormonale care micșorează fibroamele pentru o vreme și fier pentru anemie. Procedurile includ îndepărtarea fibroamelor cu păstrarea uterului (miomectomia), blocarea aportului lor de sânge prin embolizare, ablația cu căldură sau cu energie ultrasonică și histerectomia, care îndepărtează uterul și rezolvă definitiv problema. Alegerea depinde de simptome, dimensiune, locație, vârstă și dorințele privind sarcina."
+      ]
+    },
+    {
+      "heading": "Fertilitatea și sarcina",
+      "paragraphs": [
+        "Cele mai multe femei cu fibroame concep și au sarcini normale. Fibroamele care deformează cavitatea pot reduce fertilitatea sau pot crește riscul de avort spontan, iar cele mari pot provoca complicații la naștere. Discutați planurile de sarcină înainte de tratament, deoarece unele proceduri o pot influența."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Descrierea menstruațiilor",
+      "text": "Imaginați-vă că menstruațiile au devenit abundente și lungi. Ați putea ține o evidență a zilelor și a schimburilor de absorbante și ați putea-o aduce la consult."
+    },
+    {
+      "title": "Compararea opțiunilor",
+      "text": "Presupuneți că vreți să vă păstrați uterul. Ați putea întreba ginecologul despre miomectomie și embolizare și ce înseamnă fiecare pentru fertilitate."
+    }
+  ],
+  "questions": [
+    "Sunt simptomele mele cauzate de fibroame și am nevoie de tratament?",
+    "Ce opțiuni îmi păstrează uterul și fertilitatea?",
+    "Care sunt riscurile și recuperarea pentru fiecare procedură?"
+  ]
+}

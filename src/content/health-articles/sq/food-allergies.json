@@ -1,0 +1,51 @@
+{
+  "title": "Alergjia ushqimore: diagnoza, ushqimi dhe plani urgjent",
+  "intro": "Alergjia ushqimore është reagim imunitar ndaj proteinës dhe edhe sasi të vogla mund të jenë të rrezikshme. Ndryshon nga intoleranca dhe nuk shpjegon çdo simptomë pas ngrënies. Diagnoza mundëson shmangie të nevojshme pa kufizuar kot ushqyerjen dhe jetën.",
+  "sections": [
+    {
+      "heading": "Njihni reagimin e rëndë",
+      "paragraphs": [
+        "Telefononi 112 për vështirësi frymëmarrjeje ose gëlltitjeje, ënjtje fyti a gjuhe, kolaps ose hutim të madh pas ushqimit. Anafilaksia mund të jetë pa skuqje. Përdorni menjëherë adrenalinën e përshkruar sipas udhëzimit dhe kërkoni urgjencë edhe pas përmirësimit. Antihistamina nuk e zëvendëson. Shtrihuni; me vështirësi frymëmarrjeje uluni të mbështetur pa u ngritur ose ecur. Ndiqni planin për përsëritje."
+      ]
+    },
+    {
+      "heading": "Vlerësoni nxitësin",
+      "paragraphs": [
+        "Shënoni ushqimin, përbërësit, sasinë, kohën dhe simptomat, edhe ushtrimin ose barnat. Mjeku mund të kërkojë test lëkure ose antitrupash; pozitiviteti vetëm nuk provon alergji klinike. Ndonjëherë duhet provokim i mbikëqyrur. Mos provoni qëllimisht në shtëpi ushqim të dyshuar serioz ose panele tregtare të pavërtetuara."
+      ]
+    },
+    {
+      "heading": "Shmangni alergjenin e konfirmuar",
+      "paragraphs": [
+        "Lexoni etiketat çdo herë sepse receta ndryshon. Pyesni për përgatitjen, veglat dhe kontaktin e përbashkët. Heqja e arrës së dukshme nuk e bën gatimin të sigurt. Shpjegoni në shkollë, kujdestarë dhe shoqërues; mbani planin dhe barnat pranë. Kontrolloni skadencën dhe mësoni pajisjen konkrete, jo supozimin se injektorët janë njësoj."
+      ]
+    },
+    {
+      "heading": "Mbroni ushqyerjen dhe diskutoni specialistin",
+      "paragraphs": [
+        "Dietologu ndihmon zëvendësimin e ushqimeve, veçanërisht qumështin dhe bazat te fëmijët. Mos hiqni grupe pa këshillë. Alergjitë mund të ndryshojnë, por rifutja duhet planifikuar. Disa pacientë shqyrtojnë imunoterapi me specialist: ka rreziqe dhe monitorim, jo ngrënie pa kufi ose braktisje masash urgjente."
+      ]
+    },
+    {
+      "heading": "Rishikoni ndryshimet",
+      "paragraphs": [
+        "Kërkoni kontroll pas reagimeve, simptomave të reja ose paqartësive. Diskutoni udhëtimin, restorantet, aktivitetin, astmën dhe shkollën apo punën. Reagimi i lehtë më parë nuk garanton të njëjtën në të ardhmen. Pyesni për barna e akses urgjent. Familja duhet të dijë planin pa pritur që personi ta menaxhojë vetëm reagimin e rëndë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Shembull hipotetik: vakt shkolle",
+      "text": "Familja e Milës ndan alergjinë dhe planin. Bien dakord për kontrollin e përbërësve dhe barnave, jo garanci vetëm nga emri pa arra."
+    },
+    {
+      "title": "Shembull hipotetik: kufizime të kota",
+      "text": "Arbeni ka shqetësim tretjeje dhe do të heqë shumë ushqime. Regjistron modelin dhe kërkon vlerësim e dietolog në vend të diagnozës tregtare."
+    }
+  ],
+  "questions": [
+    "Cili ushqim është përgjegjës dhe cilat teste ndihmojnë?",
+    "Si e shmang duke ruajtur ushqyerjen?",
+    "Çfarë bëjmë gjatë reagimit të rëndë dhe kur rishikojmë?"
+  ]
+}

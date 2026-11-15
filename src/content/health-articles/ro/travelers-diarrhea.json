@@ -1,0 +1,51 @@
+{
+  "title": "Diareea călătorului",
+  "intro": "Diareea călătorului afectează multe persoane care vizitează regiuni cu alte standarde de igienă, de obicei prin alimente sau apă contaminate. Provoacă scaune moi, crampe și uneori greață și este de obicei ușoară și trece în câteva zile. Prevenirea deshidratării este tratamentul principal.",
+  "sections": [
+    {
+      "heading": "Cauze și risc",
+      "paragraphs": [
+        "Cele mai multe cazuri sunt provocate de bacterii, precum anumite tipuri de E. coli, mai rar de virusuri sau paraziți. Microbii sunt ingerați prin alimente, apă sau gheață contaminate. Riscul este cel mai mare în unele părți din Asia, Africa și America Latină și pe vreme caldă. Mâncarea de stradă, salatele, fructele necurățate și apa de la robinet cresc riscul. Copiii mici, persoanele în vârstă și cele cu imunitate slabă sunt mai vulnerabile."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Diaree apoasă bruscă de trei sau mai multe ori pe zi, crampe abdominale, greață, balonare și uneori febră. Cei mai mulți se recuperează în trei până la cinci zile. Sângele în scaun, febra mare, durerea severă sau diareea care persistă peste o săptămână sugerează o infecție mai gravă."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Înlocuiți lichidele și sărurile cu soluție de rehidratare orală, apă, supă și sucuri diluate și mâncați alimente ușoare, după cum le tolerați. Loperamida poate reduce frecvența scaunelor la adulții cu diaree apoasă, dar nu trebuie folosită în caz de febră sau scaun cu sânge și nici la copiii mici. Antibioticele sunt rezervate cazurilor severe și se iau la recomandarea medicului, deoarece au riscuri și pot favoriza bacteriile rezistente."
+      ]
+    },
+    {
+      "heading": "Când cereți îngrijiri medicale",
+      "paragraphs": [
+        "Cereți îngrijiri pentru semne de deshidratare, precum urină închisă la culoare, amețeală, gură foarte uscată, urină puțină sau letargie, pentru sânge în scaun, febră mare, vărsături persistente, simptome care durează mai multe zile sau la sugari, copii mici, femei însărcinate și persoane cu boli cronice."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Spălați-vă pe mâini cu săpun înainte de masă, mâncați alimente proaspăt gătite și servite fierbinți, curățați singur fructele, beți apă îmbuteliată sau fiartă, evitați cuburile de gheață și salatele crude în zonele cu risc ridicat și periați-vă dinții cu apă sigură. Luați în considerare vaccinarea împotriva febrei tifoide sau a holerei, conform recomandării unei clinici pentru călători. Mersul la o clinică pentru călători înainte de călătorie vă ajută să vă planificați."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rehidratarea",
+      "text": "Imaginați-vă că aveți diaree apoasă în vacanță. Ați putea lua săruri de rehidratare orală, ați putea bea regulat, în înghițituri mici, și ați putea mânca alimente simple."
+    },
+    {
+      "title": "Împachetarea inteligentă",
+      "text": "Presupuneți că plecați într-o regiune cu risc ridicat. Ați putea pune în bagaj plicuri de rehidratare și dezinfectant pentru mâini și ați putea cere sfaturi la o clinică pentru călători."
+    }
+  ],
+  "questions": [
+    "Ce medicamente ar trebui să iau într-o călătorie și când să le folosesc?",
+    "Sunt recomandate vaccinări pentru destinația mea?",
+    "Când ar trebui să merg la un medic în străinătate?"
+  ]
+}

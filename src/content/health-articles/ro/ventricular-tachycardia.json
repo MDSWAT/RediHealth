@@ -1,0 +1,51 @@
+{
+  "title": "Tahicardia ventriculară și moartea cardiacă subită",
+  "intro": "Tahicardia ventriculară este un ritm cardiac rapid, anormal, care începe în camerele inferioare, ventriculele. Poate face inima să pompeze slab și se poate agrava în fibrilație ventriculară, care provoacă stopul cardiac subit. Acțiunea rapidă cu resuscitare și defibrilare salvează vieți, iar tratamentul poate preveni recidivele.",
+  "sections": [
+    {
+      "heading": "Ce se întâmplă",
+      "paragraphs": [
+        "Ventriculele se contractă în mod normal într-un mod organizat. În tahicardia ventriculară bat foarte repede, adesea peste o sută cincizeci de bătăi pe minut, astfel încât inima nu se poate umple și nu poate pompa eficient. Episoadele scurte pot provoca doar palpitații. Episoadele susținute pot provoca amețeli, leșin sau colaps. Fibrilația ventriculară este o tremurare haotică, fără pompare, fatală în câteva minute fără tratament."
+      ]
+    },
+    {
+      "heading": "Cauze și factori de risc",
+      "paragraphs": [
+        "Cele mai multe cazuri apar la persoane cu boli de inimă, precum un infarct anterior cu cicatrice, cardiomiopatii și insuficiență cardiacă. Tulburările de ritm ereditare, precum sindromul de QT lung, dezechilibrul mineralelor din sânge, anumite medicamente și droguri o pot provoca și ele. Moartea cardiacă subită la persoanele tinere este rară și poate fi legată de afecțiuni ereditare, așa că istoricul familial este important."
+      ]
+    },
+    {
+      "heading": "Răspunsul de urgență",
+      "paragraphs": [
+        "Dacă cineva se prăbușește și nu respiră normal, sunați imediat la serviciile de urgență, începeți compresiile toracice în centrul pieptului, într-un ritm ferm și rapid, și folosiți un defibrilator public, dacă este disponibil, urmând instrucțiunile lui vocale. Defibrilarea timpurie crește mult șansa de supraviețuire. Învățarea suportului vital de bază este valoroasă."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament",
+      "paragraphs": [
+        "Un ECG înregistrează ritmul. Monitoarele de lungă durată, ecografia cardiacă, rezonanța magnetică, testele de efort și uneori studiile electrofiziologice identifică cauzele. Tratamentul include medicamente precum beta-blocantele și antiaritmicele, ablația prin cateter pentru a distruge circuitele anormale și un defibrilator cardioverter implantabil, care detectează ritmurile periculoase și administrează un șoc. Tratarea bolii de inimă de fond este esențială."
+      ]
+    },
+    {
+      "heading": "A trăi cu riscul",
+      "paragraphs": [
+        "Persoanele cu defibrilator au nevoie de controale regulate, trebuie să știe ce să facă dacă primesc un șoc și pot avea restricții la condus. Rudelor persoanelor cu moarte subită sau cu afecțiuni ereditare li se poate oferi screening. Sprijinul emoțional ajută la gestionarea anxietății. Evitați factorii declanșatori indicați de medic, precum anumite droguri sau efortul intens în unele afecțiuni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Învățarea resuscitării",
+      "text": "Imaginați-vă că vreți să fiți pregătit. Ați putea urma un curs de suport vital de bază și ați putea afla unde se află defibrilatoarele publice din cartierul dumneavoastră."
+    },
+    {
+      "title": "Screeningul familiei",
+      "text": "Presupuneți că o rudă a murit subit la o vârstă tânără. Ați putea întreba medicul despre teste cardiace pentru membrii familiei."
+    }
+  ],
+  "questions": [
+    "Care este cauza aritmiei mele și ce tratament recomandați?",
+    "Am nevoie de un defibrilator și ce ar presupune să trăiesc cu el?",
+    "Ar trebui rudele mele să fie supuse screeningului?"
+  ]
+}

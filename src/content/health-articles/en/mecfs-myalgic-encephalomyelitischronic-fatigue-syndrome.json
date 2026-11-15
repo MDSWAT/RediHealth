@@ -1,0 +1,51 @@
+{
+  "title": "ME/CFS (chronic fatigue syndrome)",
+  "intro": "Myalgic encephalomyelitis or chronic fatigue syndrome, usually shortened to ME/CFS, is a serious long-term illness with severe exhaustion that does not improve with rest and gets worse after even minor physical or mental effort. It can greatly limit daily life. There is no cure yet, but careful management can help.",
+  "sections": [
+    {
+      "heading": "Main symptoms",
+      "paragraphs": [
+        "The key feature is post-exertional malaise: symptoms such as extreme tiredness, pain, brain fog and flu-like feelings worsen hours or a day or two after exertion and can last days or weeks. Other symptoms include unrefreshing sleep, difficulty thinking and concentrating, dizziness on standing, muscle and joint pain, sore throat and sensitivity to light or noise."
+      ]
+    },
+    {
+      "heading": "Causes and diagnosis",
+      "paragraphs": [
+        "The cause is not fully understood. Many cases begin after an infection such as glandular fever or, more recently, COVID-19. Immune, nervous system and energy metabolism changes are being studied. There is no single test, so doctors diagnose ME/CFS by symptoms, lasting at least several months, and by excluding other conditions such as anaemia, thyroid disease, sleep disorders or depression."
+      ]
+    },
+    {
+      "heading": "Pacing and energy management",
+      "paragraphs": [
+        "Pacing means balancing activity and rest to stay within your energy limits and avoid triggering a crash. Breaking tasks into small steps, planning rest before and after activity and keeping a diary help find your limits. Graded exercise that pushes through symptoms can worsen the illness and is not recommended for people with post-exertional malaise."
+      ]
+    },
+    {
+      "heading": "Treating symptoms",
+      "paragraphs": [
+        "Treatment focuses on individual symptoms. Pain, sleep problems, dizziness, digestive issues and low mood may be treated with suitable measures or medicines. Psychological support helps with coping, though ME/CFS is a physical illness and not caused by depression or laziness. Aids such as a wheelchair or shower seat conserve energy."
+      ]
+    },
+    {
+      "heading": "Support and daily life",
+      "paragraphs": [
+        "Many patients face disbelief, so informed doctors, family and employers are important. Adjustments at work or school, help at home and financial support can make a big difference. Patient organisations offer advice. People with very severe ME/CFS may be bedbound and need specialised care."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planning a week",
+      "text": "Imagine you have a family event on Saturday. You could schedule quiet days before and after, take breaks during the event and limit other tasks that week."
+    },
+    {
+      "title": "Explaining to others",
+      "text": "Suppose colleagues do not understand your limitations. You might share a short written explanation from your doctor and propose specific changes such as flexible hours."
+    }
+  ],
+  "questions": [
+    "Could another treatable condition explain my symptoms, and which tests are needed?",
+    "How can I pace my activities, and who can help me plan?",
+    "Which services and benefits are available to support me?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Negii",
+  "intro": "Negii sunt excrescențe inofensive ale pielii, provocate de infecția pielii cu papilomavirus uman. Sunt frecvenți la copii și adolescenți și dispar de obicei de la sine, dar pot dura luni sau ani. Tratamentele pot grăbi dispariția, deși niciunul nu este garantat.",
+  "sections": [
+    {
+      "heading": "Tipuri",
+      "paragraphs": [
+        "Negii obișnuiți sunt excrescențe aspre, ridicate, pe mâini și degete. Negii plantari apar pe tălpile picioarelor și pot fi împinși spre interior, provocând durere la mers. Negii plani sunt mici, netezi și apar adesea pe față și pe picioare, în grupuri. Condiloamele genitale sunt un tip separat, cu transmitere sexuală, care necesită alt mod de abordare."
+      ]
+    },
+    {
+      "heading": "Cum se răspândesc",
+      "paragraphs": [
+        "Negii se răspândesc prin contact direct cu pielea și prin atingerea unor suprafețe precum podelele piscinelor și dușurile comune, mai ales unde pielea este lezată sau umedă. Sunt doar ușor contagioși. Scărpinatul sau ciupitul îi pot răspândi în alte zone. Imunitatea slabă îi face mai persistenți."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Mulți negi dispar fără tratament în unul-doi ani. Preparatele cu acid salicilic, aplicate zilnic după înmuiere și răzuirea suprafeței, sunt primul tratament standard și necesită mai multe săptămâni. Crioterapia cu azot lichid îngheață negul și se repetă la câteva săptămâni. Banda adezivă a fost încercată, cu rezultate mixte. Pentru negii persistenți, medicii pot folosi alte creme, proceduri minore sau laser. Evitați să tăiați negii singur."
+      ]
+    },
+    {
+      "heading": "Prevenirea răspândirii",
+      "paragraphs": [
+        "Acoperiți negii cu un plasture, mai ales la piscină, purtați sandale în dușurile comune, nu folosiți în comun prosoape sau aparate de ras, evitați ciupitul și păstrați picioarele uscate. Copiii cu negi pot merge la școală și la înot, cu acoperire când este posibil."
+      ]
+    },
+    {
+      "heading": "Când mergeți la medic",
+      "paragraphs": [
+        "Cereți sfat dacă o excrescență sângerează, își schimbă culoarea, doare, se răspândește, este în zona genitală, apare la o persoană cu diabet, circulație slabă sau imunitate slabă sau dacă nu sunteți sigur că este un neg. Persoanele cu diabet nu trebuie să-și trateze singure negii de la picioare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Folosirea acidului salicilic",
+      "text": "Imaginați-vă că copilul dumneavoastră are un neg pe un deget. Ați putea înmuia zona în apă caldă, ați putea răzui pielea moartă și ați putea aplica tratamentul zilnic timp de câteva săptămâni."
+    },
+    {
+      "title": "Protejarea piscinei",
+      "text": "Presupuneți că aveți un neg plantar. Ați putea să-l acoperiți cu un plasture rezistent la apă și să purtați papuci de plajă în vestiar."
+    }
+  ],
+  "questions": [
+    "Este un neg și ar trebui să-l tratez sau să aștept?",
+    "Ce tratament este cel mai bun pentru această locație?",
+    "Când ar trebui să revin dacă tratamentul nu funcționează?"
+  ]
+}

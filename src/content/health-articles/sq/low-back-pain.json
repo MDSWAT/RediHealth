@@ -1,0 +1,51 @@
+{
+  "title": "Dhimbja e pjesës së poshtme të shpinës",
+  "intro": "Dhimbja e pjesës së poshtme të shpinës është shumë e zakonshme dhe zakonisht përmirësohet brenda javësh, edhe pa diagnozë specifike. Qëndrimi aktiv, përdorimi i lehtësuesve të thjeshtë të dhimbjes dhe shmangia e pushimit të gjatë në shtrat janë themelet e shërimit. Shkaqet serioze janë të rralla, por disa shenja paralajmëruese tregojnë se duhet të kërkoni shpejt ndihmë mjekësore.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Shumica e dhimbjes së shpinës është jospecifike, që do të thotë se vjen nga muskujt, ligamentet, nyjet ose disqet pa një shkak të vetëm të qartë strukturor. Faktorët kontribuues përfshijnë mungesën e aktivitetit, stresin, gjumin e dobët, një punë fizikisht të rëndë, periudha të gjata ulur dhe duhanin. Gjetjet e skanimit si dalja e diskut janë të zakonshme te njerëzit pa dhimbje dhe jo gjithmonë i shpjegojnë simptomat."
+      ]
+    },
+    {
+      "heading": "Çfarë ndihmon në javët e para",
+      "paragraphs": [
+        "Qëndroni aktiv sa të mundeni dhe ktheni gradualisht te aktivitetet normale. Nxehtësia, lëvizja e butë dhe qetësuesit e thjeshtë si ibuprofeni ose paracetamoli mund ta lehtësojnë dhimbjen, nëse janë të përshtatshëm për ju. Pushimi në shtrat e ngadalëson shërimin. Shumica e njerëzve ndihen dukshëm më mirë brenda disa javësh, megjithëse rikthimet janë të zakonshme."
+      ]
+    },
+    {
+      "heading": "Shenjat paralajmëruese",
+      "paragraphs": [
+        "Kërkoni ndihmë urgjente mjekësore nëse dhimbja e shpinës vjen me mpirje rreth ijës ose vithe, humbje të kontrollit të fshikëzës ose të zorrëve, dobësi në këmbë, ethe, humbje të pashpjegueshme peshe, histori kanceri ose pason një lëndim të rëndësishëm. Dhimbja që është e fortë natën ose që nuk përmirësohet fare duhet vlerësuar."
+      ]
+    },
+    {
+      "heading": "Dhimbja e vazhdueshme",
+      "paragraphs": [
+        "Nëse dhimbja zgjat më shumë se disa javë, terapia me ushtrime, fizioterapia, shtrirja e forcimi dhe qasjet që adresojnë frikën e stresin janë të dobishme. Ecja, noti, joga dhe tai chi mund të ndihmojnë. Terapitë psikologjike dhe edukimi për dhimbjen mund ta ulin paaftësinë. Injeksionet, kirurgjia dhe qetësuesit e fortë nevojiten rrallë dhe rezervohen për situata specifike."
+      ]
+    },
+    {
+      "heading": "Parandalimi i rikthimit",
+      "paragraphs": [
+        "Qëndroni aktiv fizikisht, mbani një peshë të shëndetshme, bëni pauza nga ulja e gjatë, ngrini me teknikë të arsyeshme dhe adresoni stresin e gjumin. Forcimi i bërthamës dhe i këmbëve e mbështet shtyllën kurrizore. Flisni me punëdhënësin për përshtatje nëse puna kontribuon në simptoma."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Qëndrimi aktiv",
+      "text": "Imagjinoni që shpina ju dhemb papritur pas punës në kopsht. Mund të vazhdoni të ecni distanca të shkurtra, të shmangni shtrirjen në shtrat gjithë ditën, të përdorni nxehtësi dhe të merrni një qetësues siç këshillon udhëzuesi dhe të shihni një mjek nëse shfaqet mpirje ose dobësi."
+    },
+    {
+      "title": "Planifikimi i kthimit te ushtrimet",
+      "text": "Supozoni që dhimbja juaj ka zgjatur gjashtë javë. Mund t'i kërkoni një fizioterapisti një plan ushtrimesh që rritet gradualisht dhe t'ju tregojë si t'i menaxhoni përkeqësimet."
+    }
+  ],
+  "questions": [
+    "A kam nevojë për skanim apo ka arsye për të mos e bërë?",
+    "Cilat ushtrime e trajtime janë më të dobishme për llojin tim të dhimbjes?",
+    "Cilat simptoma tregojnë se duhet të kthehem menjëherë?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Koje vrste studija postoje?",
+  "intro": "Medicinska istraživanja koriste različite vrste studija za odgovor na različita pitanja. Neke testiraju djeluje li liječenje, dok druge promatraju uzroke bolesti ili koliko je česta. Poznavanje glavnih vrsta pomaže procijeniti koliko je nalaz pouzdan.",
+  "sections": [
+    {
+      "heading": "Randomizirana kontrolirana ispitivanja",
+      "paragraphs": [
+        "U randomiziranom kontroliranom ispitivanju sudionici se nasumično raspoređuju da dobiju liječenje koje se testira ili usporedbu, kao što je placebo ili standardna skrb. Odlučuje slučaj kako bi skupine bile slične. Često ni sudionici ni istraživači ne znaju tko što dobiva, što se zove zasljepljivanje. Ova ispitivanja najbolji su način testiranja djeluje li liječenje."
+      ]
+    },
+    {
+      "heading": "Opservacijske studije",
+      "paragraphs": [
+        "Kohortne studije prate skupine ljudi tijekom vremena kako bi vidjele tko oboli od bolesti, primjerice uspoređujući pušače i nepušače. Studije slučajeva i kontrola uspoređuju ljude koji imaju bolest sa sličnim ljudima bez nje, gledajući unatrag razlike. Presječne studije mjere stanje u jednoj točki vremena. Mogu pokazati povezanosti, ali ne dokazati uzrok jer mogu biti uključeni drugi čimbenici."
+      ]
+    },
+    {
+      "heading": "Ostali nacrti",
+      "paragraphs": [
+        "Prikazi slučajeva i serije slučajeva opisuju nekoliko bolesnika i mogu potaknuti ideje, ali su slab dokaz. Studije dijagnostičke točnosti testiraju koliko dobro pretraga prepoznaje bolest. Kvalitativne studije istražuju iskustva intervjuima. Laboratorijske i životinjske studije istražuju mehanizme, ali ne vrijede uvijek za ljude."
+      ]
+    },
+    {
+      "heading": "Pregledi",
+      "paragraphs": [
+        "Sustavni pregled prikuplja i procjenjuje sve studije o pitanju, a metaanaliza kombinira njihove brojke. Oni daju najpotpuniju sliku, pod uvjetom da su studije koje uključuju dobre."
+      ]
+    },
+    {
+      "heading": "Procjena studija",
+      "paragraphs": [
+        "Pogledajte broj sudionika, kako su skupine formirane, koliko je dugo trajalo praćenje, jesu li rezultati značajni za bolesnike i tko je platio studiju. Studija na miševima ili jedna mala studija ne bi trebala promijeniti što radite. Zamolite liječnika da objasni što studija znači za vas."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Čitanje vijesti",
+      "text": "Zamislite da naslov kaže kako kava sprječava bolesti. Mogli biste provjeriti jesu li studijom praćeni ljudi ili su bili randomizirani."
+    },
+    {
+      "title": "Pitanje o pouzdanosti",
+      "text": "Pretpostavite da studija sugerira kako dodatak djeluje. Mogli biste pitati koliko je bila velika i je li ponovljena."
+    }
+  ],
+  "questions": [
+    "Koja vrsta studije podupire ovu tvrdnju?",
+    "Koliko su dokazi jaki u usporedbi s drugim studijama?",
+    "Vrijede li rezultati za ljude poput mene?"
+  ]
+}

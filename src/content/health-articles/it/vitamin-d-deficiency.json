@@ -1,0 +1,51 @@
+{
+  "title": "Carenza di vitamina D",
+  "intro": "La carenza di vitamina D significa che il corpo ne ha troppo poca, mentre serve per ossa e muscoli forti. È comune, soprattutto in inverno nei paesi del nord, in chi copre la pelle o esce di rado e negli anziani. È facile da trattare e la prevenzione è semplice.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "Le cause comprendono troppa poca esposizione al sole, pelle scura, abiti coprenti, uso costante di protezione solare, età, obesità, malassorbimento per malattie dell'intestino, malattie del fegato o dei reni e alcuni farmaci. La dieta da sola raramente ne fornisce abbastanza, perché pochi alimenti contengono molta vitamina D."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "La carenza lieve spesso non causa sintomi. La carenza grave può causare dolore osseo, debolezza e dolorabilità muscolare, stanchezza e a volte si riferiscono infezioni frequenti. Nei bambini causa il rachitismo, con ossa molli, gambe arcuate e crescita ritardata. Negli adulti causa l'osteomalacia, con dolore osseo e fratture. Molti sintomi sono aspecifici e hanno altre cause."
+      ]
+    },
+    {
+      "heading": "Esami",
+      "paragraphs": [
+        "Un esame del sangue misura la vitamina D, nella forma chiamata 25-idrossivitamina D. Gli esami di routine non servono alle persone sane, ma sono appropriati per chi ha malattie delle ossa, malassorbimento, malattie dei reni o sintomi. I livelli sotto la soglia fissata dalle linee guida sono considerati carenti. L'interpretazione dipende dal laboratorio e dalle linee guida."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "I medici prescrivono integratori di vitamina D in dosi che dipendono dal livello, per esempio dosi più alte per alcune settimane seguite da dosi di mantenimento più basse. L'apporto di calcio deve essere adeguato. Se serve, ripeti l'esame dopo alcuni mesi. Prendere gli integratori con un pasto che contiene grassi favorisce l'assorbimento. Troppa vitamina D per molto tempo può alzare il calcio e danneggiare i reni, quindi segui le istruzioni ed evita dosi molto alte senza supervisione."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Trascorri del tempo all'aperto alla luce del giorno, con una ragionevole protezione solare, mangia pesce, uova e alimenti arricchiti e chiedi degli integratori se fai parte di un gruppo a rischio. Ai neonati si danno comunemente gocce di vitamina D secondo le indicazioni nazionali. Gli anziani nelle case di cura traggono spesso beneficio dagli integratori."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Iniziare il trattamento",
+      "text": "Immagina che l'esame mostri una vitamina D bassa. Potresti prendere l'integratore con il pasto principale, segnare sul calendario un nuovo controllo e aggiungere passeggiate all'aperto."
+    },
+    {
+      "title": "Valutare il rischio",
+      "text": "Supponi di coprire gran parte della pelle quando sei all'aperto. Potresti chiedere al medico di integratori di mantenimento durante l'inverno."
+    }
+  ],
+  "questions": [
+    "Quale dose devo prendere e per quanto tempo?",
+    "Ho bisogno di ricontrollare i miei livelli?",
+    "Quali fattori di rischio valgono per me?"
+  ]
+}

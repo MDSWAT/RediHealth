@@ -1,0 +1,51 @@
+{
+  "title": "What is overdiagnosis?",
+  "intro": "Overdiagnosis means finding a condition that would never have caused symptoms or harm during a person's life, and then treating it. It happens when tests detect real abnormalities that are not dangerous. It can lead to unnecessary worry, treatment and side effects, so it is important to know about it.",
+  "sections": [
+    {
+      "heading": "How it happens",
+      "paragraphs": [
+        "More sensitive tests, such as scans and screening, find many small abnormalities. Some cancers grow so slowly or not at all, and some people die of other causes before the condition would ever matter. Doctors cannot always tell which abnormalities will cause harm, so many are treated to be safe. Widening the definition of a disease also creates more diagnoses."
+      ]
+    },
+    {
+      "heading": "Examples",
+      "paragraphs": [
+        "Overdiagnosis is recognised in some cancers found by screening, such as certain breast, prostate and thyroid cancers, and in conditions where the thresholds have been lowered, such as borderline blood pressure or prediabetes. Incidental findings on scans, such as small thyroid nodules, are common and usually harmless."
+      ]
+    },
+    {
+      "heading": "Harms and benefits",
+      "paragraphs": [
+        "People who are overdiagnosed can suffer anxiety, labelling, additional tests, operations, radiation or medicine with side effects, without benefit. Tests and screening still save lives for many, so the question is balance. The harm of overdiagnosis is hard to measure because it cannot be seen in an individual case."
+      ]
+    },
+    {
+      "heading": "What you can do",
+      "paragraphs": [
+        "Ask whether a test is really needed, what could happen with the results, and what the possibilities are if something is found, including careful watching. For some findings, active surveillance with regular checks is a safe alternative to immediate treatment. Understanding the numbers helps you decide."
+      ]
+    },
+    {
+      "heading": "Considering screening",
+      "paragraphs": [
+        "Before screening, think about benefits such as earlier detection, and drawbacks such as false alarms and overdiagnosis. Official information leaflets lay out these points. You are free to decide whether to take part."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Weighing a test",
+      "text": "Imagine you are offered a screening test. You could ask how many people benefit and how many are overdiagnosed."
+    },
+    {
+      "title": "Considering watchful waiting",
+      "text": "Suppose a scan finds a small nodule. You might ask whether it can be monitored instead of removed."
+    }
+  ],
+  "questions": [
+    "Do I need this test, and what will we do with the result?",
+    "Is careful monitoring a safe alternative to treatment?",
+    "What are the possible harms of screening?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Come cresce la conoscenza medica: un punto di partenza",
+  "intro": "La conoscenza medica cambia quando si verificano domande, confrontano terapie e studiano danni. L’informazione affidabile spiega ciò che è noto e incerto. Un nuovo studio contribuisce, senza essere automaticamente la risposta definitiva.",
+  "sections": [
+    {
+      "heading": "Formulare una domanda precisa",
+      "paragraphs": [
+        "Partire da una domanda chiara su persone, intervento o esposizione, confronto e risultati importanti. Sollievo, funzione, malattia grave e qualità di vita possono contare più di un cambiamento di laboratorio. Una spiegazione plausibile richiede prove."
+      ]
+    },
+    {
+      "heading": "Confrontare gruppi equamente",
+      "paragraphs": [
+        "Confrontare gruppi equamente. L’assegnazione casuale riduce differenze; l’osservazione mostra associazioni ma può confondere cause e altri fattori. Dimensioni, perdite al controllo e pubblicazione selettiva influiscono sulla fiducia nei risultati."
+      ]
+    },
+    {
+      "heading": "Capire le revisioni sistematiche",
+      "paragraphs": [
+        "Una revisione sistematica usa metodi espliciti per cercare e valutare studi invece di scegliere esempi favorevoli. Può restare incerta se le ricerche sono deboli o incoerenti. Combinare molti studi distorti non elimina automaticamente la distorsione."
+      ]
+    },
+    {
+      "heading": "Verificare rilevanza e trasparenza",
+      "paragraphs": [
+        "Verificare finanziatori, misurazione dei danni e applicabilità a persone simili. Cercare valutazioni indipendenti e date degli aggiornamenti. L’esperienza dei pazienti identifica domande importanti, ma da sola non dimostra che una terapia abbia causato il miglioramento."
+      ]
+    },
+    {
+      "heading": "Usare con attenzione nuove prove",
+      "paragraphs": [
+        "Discutere nuove scoperte prima di cambiare cure prescritte. Le raccomandazioni possono cambiare per prove migliori o nuovi dati di sicurezza, non per disonestà precedente. Chiedere quale incertezza cambierebbe la scelta e se sia più sicuro agire, monitorare o aspettare."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira legge un piccolo studio senza controllo su un integratore. Prima di spendere chiede se il miglioramento sia stato confrontato con un gruppo simile."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben vede titoli contrastanti. Cerca revisione sistematica e risultati effettivi invece di contare articoli che ripetono affermazioni."
+    }
+  ],
+  "questions": [
+    "Il confronto era equo e pertinente al mio caso?",
+    "Quali benefici, danni e incertezze sono stati misurati?",
+    "Queste prove giustificano modificare le mie cure?"
+  ]
+}

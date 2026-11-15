@@ -1,0 +1,51 @@
+{
+  "title": "What kinds of allergy tests are there?",
+  "intro": "Allergy tests help find out which substances trigger an allergic reaction. They include skin tests, blood tests and supervised challenge tests. Results always have to be interpreted together with your symptoms, since a positive test alone does not prove an allergy.",
+  "sections": [
+    {
+      "heading": "Skin prick test",
+      "paragraphs": [
+        "A drop of allergen extract is placed on the forearm or back and the skin is pricked with a tiny lancet. If you are allergic, a small itchy red bump appears within fifteen to twenty minutes. It is quick, cheap and widely used for pollen, mites, animals, foods and venom. Antihistamines must be stopped for several days before. Rarely, a severe reaction can occur, so it is done in a medical setting."
+      ]
+    },
+    {
+      "heading": "Blood tests",
+      "paragraphs": [
+        "These measure specific IgE antibodies to allergens, and are useful if skin testing is not possible, for example due to skin disease or if antihistamines cannot be stopped. They are safe, but slightly less sensitive in some cases and results take several days. Component testing identifies specific proteins in an allergen and helps predict severity."
+      ]
+    },
+    {
+      "heading": "Other skin tests",
+      "paragraphs": [
+        "Patch testing is used for contact allergies, such as to nickel or perfumes. Patches with allergens are stuck on the back for two days and the skin is checked after two and three to four days. Intradermal tests inject a tiny amount into the skin, mostly used for drug and insect venom allergies."
+      ]
+    },
+    {
+      "heading": "Challenge tests",
+      "paragraphs": [
+        "Food, drug or nasal provocation tests give the suspected allergen under medical supervision to see whether a reaction occurs. They are the most reliable way to confirm many food and drug allergies, but carry a risk of reaction and are done only where emergency treatment is available. Elimination diets help to identify triggers."
+      ]
+    },
+    {
+      "heading": "Tests to avoid",
+      "paragraphs": [
+        "Hair analysis, IgG blood tests for food intolerance, kinesiology and similar tests are not reliable and may lead to unnecessary dietary restrictions. Ask an allergy specialist which tests are appropriate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing for skin testing",
+      "text": "Imagine you have a skin prick test next week. You could ask which antihistamines to stop and for how many days."
+    },
+    {
+      "title": "Interpreting results",
+      "text": "Suppose your blood test is positive for peanuts but you eat them without problems. You might ask whether a supervised challenge is needed."
+    }
+  ],
+  "questions": [
+    "Which allergy test is best for my symptoms?",
+    "Do I need to stop any medicines beforehand?",
+    "What does a positive result mean for me?"
+  ]
+}

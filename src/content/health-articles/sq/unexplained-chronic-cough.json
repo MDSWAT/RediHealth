@@ -1,0 +1,51 @@
+{
+  "title": "Kolla kronike e pashpjegueshme",
+  "intro": "Një kollë që zgjat më shumë se tetë javë quhet kronike. Shkaqet e zakonshme përfshijnë duhanin, astmën, refluksin, pikimin e pasmë të hundës e disa barna, por nganjëherë nuk gjendet shkak pavarësisht testeve. Gjetja e trajtimi i çdo shkaku është hapi i parë e terapi të veçanta mund të ndihmojnë kur nuk gjendet asnjë.",
+  "sections": [
+    {
+      "heading": "Shkaqet e zakonshme",
+      "paragraphs": [
+        "Shkaqe të shpeshta janë duhani, astma, pikimi nga hundët e sinuset në fyt, refluksi acid, bronkiti kronik e COPD dhe tabletat e tensionit frenuese të ACE. Më rrallë janë përgjegjës infeksionet e mushkërive, bronkiektazia, kanceri i mushkërive, dështimi i zemrës ose tuberkulozi. Mund të ekzistojë më shumë se një shkak së bashku."
+      ]
+    },
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Mjeku pyet për kollën, duhanin, barnat, simptoma si djegia e stomakut ose fishkëllima e humbjen e peshës. Ekzaminimi e një rreze X e gjoksit bëhen zakonisht. Testet e frymëmarrjes kontrollojnë për astmë ose COPD. Teste të mëtejshme si CT, bronkoskopia ose teste për refluks përdoren në mënyrë selektive. Kollitja me gjak, humbja e peshës, gulçimi, ethet ose mosha mbi pesëdhjetë vjeç me histori duhani kërkojnë vlerësim të shpejtë."
+      ]
+    },
+    {
+      "heading": "Trajtimi i shkaqeve",
+      "paragraphs": [
+        "Lënia e duhanit është thelbësore. Kalimi nga frenuesit e ACE te një ilaç tjetër tensioni shpesh e mbaron kollën brenda disa javësh. Trajtimet e astmës, spërkatësit e hundës e trajtimet e refluksit provohen, pasi një provë trajtimi mund të tregojë shkakun. Masat e stilit të jetesës për refluksin përfshijnë shmangien e vakteve vonë e ngritjen e kokës së shtratit."
+      ]
+    },
+    {
+      "heading": "Kur nuk gjendet shkak",
+      "paragraphs": [
+        "Disa njerëz kanë një refleks kolle të mbindjeshëm, nganjëherë i quajtur kollë kronike refraktare ose e pashpjegueshme. Teknikat e terapisë së të folurit e gjuhës për të kontrolluar kollën e disa barna që moderojnë nervat në doza të ulëta mund ta ulin kollën. Barna më të reja që synojnë receptorët e kollës janë studiuar. Frenuesit e kollës pa recetë nuk ndihmojnë shumë."
+      ]
+    },
+    {
+      "heading": "Të jetosh me të",
+      "paragraphs": [
+        "Një kollë kronike mund ta prishë gjumin, të shkaktojë inkontinencë, ngjirje, dhimbje gjoksi ose muskujsh e siklet. Pini gllënjka uji, shmangni acaruesit, përdorni pastila fyti e lagështoni ajrin. Pyesni për klinika të specializuara për kollën, mbështetje e teknika si strategjitë e gëlltitjes ose frymëmarrjes në përgjigje të nxitjes për të kolluar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rishikimi i barnave",
+      "text": "Imagjinoni që keni kollë të thatë që nga fillimi i një tablete tensioni. Mund ta pyesni mjekun nëse është frenues i ACE e nëse një alternativë do të ishte e përshtatshme."
+    },
+    {
+      "title": "Mësimi i kontrollit të kollës",
+      "text": "Supozoni që nuk u gjet shkak. Mund të kërkoni referim te një terapist i të folurit e gjuhës për teknika frenimi të kollës."
+    }
+  ],
+  "questions": [
+    "Çfarë mund ta shkaktojë kollën time e cilat teste nevojiten?",
+    "A mund të jetë përgjegjës një nga barnat e mia?",
+    "Çfarë trajtimesh ekzistojnë nëse nuk gjendet shkak?"
+  ]
+}

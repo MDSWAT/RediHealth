@@ -1,0 +1,51 @@
+{
+  "title": "Come si ereditano i geni: schemi e incertezza",
+  "intro": "I geni sono tratti di DNA che aiutano le cellule a produrre e regolare prodotti biologici. L’eredità passa informazioni ai figli, ma non determina ogni caratteristica né garantisce malattia. Ambiente e casualità contano.",
+  "sections": [
+    {
+      "heading": "Cromosomi e contributi parentali",
+      "paragraphs": [
+        "Quasi tutte le cellule hanno cromosomi in coppie, solitamente uno da ciascun genitore biologico. Formare ovuli e spermatozoi rimescola informazioni: fratelli ricevono combinazioni diverse. Il DNA mitocondriale segue altro schema, solitamente materno."
+      ]
+    },
+    {
+      "heading": "Schemi di ereditarietà",
+      "paragraphs": [
+        "Una condizione dominante può derivare da una copia alterata. Una recessiva richiede solitamente entrambe. L’eredità legata a X ha altro schema. Sono semplificazioni: gene preciso e famiglia definiscono il rischio significativo."
+      ]
+    },
+    {
+      "heading": "Molti geni ed espressione variabile",
+      "paragraphs": [
+        "Molte malattie comuni coinvolgono numerosi geni e circostanze, non una causa sola. Una variante può essere senza sintomi o con gravità diversa da un familiare. Può anche essere nuova e assente nei normali test dei genitori."
+      ]
+    },
+    {
+      "heading": "Test e reperti incerti",
+      "paragraphs": [
+        "I test rispondono a quesiti specifici e producono risultati incerti. Una variante incerta non conferma da sola diagnosi né giustifica cure irreversibili. Discutere privacy, famiglia e limiti dei rapporti commerciali di ascendenza o rischio."
+      ]
+    },
+    {
+      "heading": "Consulenza sul rischio familiare",
+      "paragraphs": [
+        "Per condizioni familiari il genetista disegna l’albero e spiega opzioni personali. Portare il referto esatto se disponibile. I rischi valgono per ogni gravidanza secondo lo schema, non promettono un numero fisso di figli colpiti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha un parente colpito e porta il referto. Il gruppo spiega la variante precisa senza inferire rischio dal solo nome della malattia."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben e un fratello hanno sintomi diversi con un reperto collegato. Impara che eredità non garantisce espressione identica e chiede consiglio sull’incertezza."
+    }
+  ],
+  "questions": [
+    "Quali passaggi sarebbero più chiari con un diagramma?",
+    "Cosa spiega questo testo e cosa non può prevedere?",
+    "Il mio dubbio specifico richiede valutazione professionale?"
+  ]
+}

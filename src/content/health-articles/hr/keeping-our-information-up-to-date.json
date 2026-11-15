@@ -1,0 +1,51 @@
+{
+  "title": "Održavanje zdravstvenih informacija ažurnima",
+  "intro": "Medicinsko znanje se mijenja kako se pojavljuju nova istraživanja pa se pouzdane zdravstvene informacije moraju redovito provjeravati i revidirati. Razumijevanje kako to funkcionira pomaže vam procijeniti koliko je članak aktualan i zašto se stariji savjeti ponekad razlikuju od novijih preporuka.",
+  "sections": [
+    {
+      "heading": "Zašto informacije zastarijevaju",
+      "paragraphs": [
+        "Nova istraživanja mogu potvrditi, doraditi ili opovrgnuti ranije nalaze. Liječenja se odobravaju, pojavljuju se sigurnosna pitanja i smjernice se revidiraju. Neke teme se brzo mijenjaju, kao što su cjepiva ili lijekovi za rak, dok se osnovna anatomija mijenja sporo."
+      ]
+    },
+    {
+      "heading": "Kako se informacije provjeravaju",
+      "paragraphs": [
+        "Autori prate nova istraživanja, smjernice i upozorenja o lijekovima. Procjenjuju je li novi dokaz dovoljno jak da promijeni savjet. Važne promjene dovode do ažuriranja, a manji razvoj može čekati sljedeći planirani pregled. Provjere kvalitete provjeravaju izričaj, izvore i ostaju li informacije točne."
+      ]
+    },
+    {
+      "heading": "Što možete tražiti",
+      "paragraphs": [
+        "Provjerite datum objave ili ažuriranja, jesu li izvori navedeni i priznaje li tekst nesigurnost. Informacije bez datuma, bez izvora ili koje se oslanjaju na jedno istraživanje zaslužuju dodatni oprez. Službena zdravstvena tijela i tijela za smjernice objavljuju redovito ažurirane preporuke."
+      ]
+    },
+    {
+      "heading": "Korištenje starijih informacija",
+      "paragraphs": [
+        "Starije informacije nisu automatski pogrešne, ali izbor liječenja, preporuke za pretrage i sigurnost lijekova mogu se promijeniti. Uvijek usporedite s aktualnim stručnim savjetom, osobito prije promjene liječenja."
+      ]
+    },
+    {
+      "heading": "Ostati informiran",
+      "paragraphs": [
+        "Pitajte liječnika ili ljekarnika o važnim promjenama koje utječu na vaše stanje, pretplatite se na ugledne servise informacija za bolesnike ako želite i pregledajte popis svojih lijekova najmanje jednom godišnje. Zdravstvene vijesti tretirajte s pažnjom i gledajte izvorne izvore gdje je moguće."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Provjera članka",
+      "text": "Zamislite da pročitate savjet o lijeku koji se čini drukčijim od onoga što vam je rekao liječnik. Mogli biste pogledati datum, provjeriti aktualnu uputu o lijeku i pitati liječnika koji se savjet odnosi na vas."
+    },
+    {
+      "title": "Godišnji pregled",
+      "text": "Pretpostavite da živite s dugotrajnim stanjem. Mogli biste zakazati godišnji termin kako biste pitali o novim liječenjima ili promjenama smjernica i donijeti popis pitanja."
+    }
+  ],
+  "questions": [
+    "Je li ova informacija aktualna i je li se preporuka nedavno promijenila?",
+    "Kojim izvorima vjerujete za ažurne informacije o mom stanju?",
+    "Postoje li nove mogućnosti koje bi mi mogle bolje odgovarati od mog sadašnjeg liječenja?"
+  ]
+}

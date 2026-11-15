@@ -1,0 +1,51 @@
+{
+  "title": "Deficitul de vitamina D",
+  "intro": "Deficitul de vitamina D înseamnă că organismul are prea puțină vitamină D, necesară pentru oase și mușchi puternici. Este frecvent, mai ales iarna în țările nordice, la persoanele care își acoperă pielea sau ies rar afară și la persoanele în vârstă. Se tratează ușor, iar prevenirea este simplă.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Cauzele includ expunerea insuficientă la soare, pielea închisă la culoare, hainele acoperitoare, crema de protecție solară folosită tot timpul, vârsta, obezitatea, malabsorbția din bolile intestinului, bolile de ficat sau de rinichi și unele medicamente. Doar dieta oferă rar suficientă, deoarece puține alimente conțin multă vitamină D."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Deficitul ușor nu provoacă adesea simptome. Deficitul sever poate provoca dureri osoase, slăbiciune și sensibilitate musculară, oboseală, iar uneori se raportează infecții frecvente. La copii provoacă rahitism, cu oase moi, picioare arcuite și creștere întârziată. La adulți provoacă osteomalacie, cu dureri osoase și fracturi. Multe simptome sunt nespecifice și au alte cauze."
+      ]
+    },
+    {
+      "heading": "Testare",
+      "paragraphs": [
+        "O analiză de sânge măsoară vitamina D, sub forma numită 25-hidroxivitamina D. Testarea de rutină nu este necesară pentru persoanele sănătoase, dar este potrivită pentru cele cu boli osoase, malabsorbție, boli renale sau simptome. Nivelurile sub pragul stabilit de ghiduri sunt considerate deficitare. Interpretarea depinde de laborator și de ghiduri."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Medicii prescriu suplimente de vitamina D în doze care depind de nivel, de exemplu doze mai mari timp de câteva săptămâni, urmate de doze mai mici de întreținere. Aportul de calciu trebuie să fie adecvat. Repetați testul după câteva luni, dacă este necesar. Luarea suplimentelor la o masă care conține grăsimi ajută absorbția. Prea multă vitamină D pe termen lung poate crește calciul și poate dăuna rinichilor, așa că urmați instrucțiunile și evitați dozele foarte mari fără supraveghere."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Petreceți timp afară, la lumina zilei, cu o protecție solară rezonabilă, mâncați pește, ouă și alimente îmbogățite și întrebați despre suplimente dacă faceți parte dintr-un grup de risc. Bebelușilor li se dau frecvent picături de vitamina D, conform recomandărilor naționale. Persoanele în vârstă din cămine beneficiază adesea de suplimente."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Începerea tratamentului",
+      "text": "Imaginați-vă că testul arată vitamina D scăzută. Ați putea lua suplimentul la masa principală, ați putea marca în calendar o nouă verificare și ați putea adăuga plimbări în aer liber."
+    },
+    {
+      "title": "Analiza riscului",
+      "text": "Presupuneți că vă acoperiți cea mai mare parte a pielii când sunteți afară. Ați putea întreba medicul despre suplimente de întreținere pe timpul iernii."
+    }
+  ],
+  "questions": [
+    "Ce doză și pentru cât timp ar trebui să iau vitamina D?",
+    "Am nevoie de o nouă verificare a nivelurilor?",
+    "Ce factori de risc mi se aplică?"
+  ]
+}

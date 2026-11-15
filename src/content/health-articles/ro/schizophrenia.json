@@ -1,0 +1,52 @@
+{
+  "title": "Schizofrenia",
+  "intro": "Schizofrenia este o boală psihică gravă, care afectează gândirea, percepția, emoțiile și comportamentul. Persoanele pot avea halucinații sau idei delirante și se pot retrage din relațiile cu ceilalți. Este tratabilă, iar multe persoane se recuperează substanțial cu medicamente, terapie psihologică și sprijin social. Stigmatizarea este o povară majoră pe care înțelegerea o poate reduce.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele pozitive includ auzirea unor voci pe care ceilalți nu le aud, convingeri false și rigide, precum a fi urmărit sau persecutat, și vorbirea sau comportamentul dezorganizat. Simptomele negative includ pierderea motivației, exprimarea emoțională redusă, retragerea socială și dificultatea de a se bucura de activități. Problemele de atenție și de memorie sunt, de asemenea, frecvente. Simptomele încep adesea la sfârșitul adolescenței sau la începutul vârstei adulte."
+      ]
+    },
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Nu există o singură cauză. Vulnerabilitatea genetică, dezvoltarea creierului, complicațiile la naștere, consumul de canabis, stresul sever și trauma pot juca un rol. Schizofrenia nu este cauzată de o educație proastă și nu înseamnă personalitate dublă. Cele mai multe persoane cu schizofrenie nu sunt violente și sunt mai des victime decât autori ai violenței."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Medicamentele antipsihotice reduc halucinațiile și ideile delirante și previn recăderea. Alegerea celui potrivit implică echilibrarea eficacității cu efectele secundare, precum creșterea în greutate, somnolența, problemele de mișcare și schimbările metabolice, care necesită monitorizare. Injecțiile cu acțiune prelungită pot ajuta persoanele care au dificultăți să ia zilnic tablete. Oprirea bruscă a medicației crește riscul de recădere și trebuie făcută doar cu sfat medical.",
+        "Terapia cognitiv-comportamentală, educația familiei, antrenamentul abilităților, angajarea asistată și locuința asistată ajută recuperarea. Evitarea canabisului și a altor droguri este importantă."
+      ]
+    },
+    {
+      "heading": "Criza și îngrijirea în spital",
+      "paragraphs": [
+        "În timpul unui episod acut poate fi necesar tratamentul în spital, uneori involuntar, dacă există pericol serios pentru sine sau pentru alții, cu garanții legale. Tratamentul timpuriu îmbunătățește rezultatele, așa că cereți ajutor când apar primele semne. Contactați serviciile de urgență într-o criză."
+      ]
+    },
+    {
+      "heading": "Viața cu schizofrenie",
+      "paragraphs": [
+        "Rutinele regulate, somnul, exercițiile și relațiile de sprijin reduc recăderile. Sprijinul între egali, grupurile de autoajutorare și serviciile orientate spre recuperare ajută persoanele să-și reconstruiască viața, iar familiile beneficiază și ele de informații și sprijin. Păstrați în atenție sănătatea fizică, deoarece persoanele cu schizofrenie au rate mai mari de boli de inimă și diabet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Sprijinirea unei rude",
+      "text": "Imaginați-vă că fratele dumneavoastră este convins că ceilalți îl urmăresc. Ați putea rămâne calm, evita să vă certați pe tema convingerii, exprima îngrijorare pentru suferința lui și l-ați putea încuraja să meargă la medic."
+    },
+    {
+      "title": "Planificarea pentru recădere",
+      "text": "Presupuneți că ați avut un episod înainte. Ați putea scrie un plan de criză împreună cu echipa de îngrijire, cu semnele timpurii de alarmă, persoanele de încredere și preferințele dumneavoastră de tratament."
+    }
+  ],
+  "questions": [
+    "Ce medicament este cel mai bun pentru mine și cum vor fi monitorizate efectele secundare?",
+    "Ce terapii și servicii de sprijin sunt disponibile?",
+    "Cum putem eu și familia mea să recunoaștem semnele timpurii ale unei recăderi?"
+  ]
+}

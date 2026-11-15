@@ -1,0 +1,51 @@
+{
+  "title": "Ulcere peptiche",
+  "intro": "Un'ulcera peptica è una piaga aperta nel rivestimento dello stomaco o della prima parte dell'intestino tenue. Causa spesso un dolore bruciante nella parte alta dell'addome. La maggior parte delle ulcere è causata da un'infezione batterica o da antidolorifici antinfiammatori e guarisce bene una volta trattata la causa.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "Il rivestimento dello stomaco è normalmente protetto dall'acido dal muco. L'infezione da Helicobacter pylori e l'uso regolare di antidolorifici antinfiammatori come ibuprofene, diclofenac o aspirina danneggiano questa protezione. Fumo, forte consumo di alcol e malattie gravi aumentano il rischio. Stress e cibi piccanti non causano di per sé le ulcere, anche se possono peggiorare i sintomi."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi tipici sono dolore bruciante o rodente nella parte alta dell'addome, spesso tra i pasti o di notte, gonfiore, nausea e sensazione di sazietà rapida. Il dolore dell'ulcera gastrica può peggiorare mangiando, mentre quello dell'ulcera duodenale può attenuarsi. Alcune ulcere non causano sintomi finché non sanguinano."
+      ]
+    },
+    {
+      "heading": "Segnali d'allarme",
+      "paragraphs": [
+        "Cerca aiuto urgente se vomiti sangue o materiale simile a fondi di caffè, hai feci nere e catramose, un improvviso forte dolore addominale, svenimenti o pallore, perché possono indicare un sanguinamento o una perforazione. Anche una perdita di peso non voluta, vomito persistente o difficoltà a deglutire richiedono una valutazione tempestiva."
+      ]
+    },
+    {
+      "heading": "Diagnosi e trattamento",
+      "paragraphs": [
+        "I medici possono cercare l'Helicobacter con un test del respiro, delle feci o dei tessuti e spesso eseguono una gastroscopia per osservare l'ulcera e prelevare campioni. Il trattamento combina farmaci che riducono l'acido chiamati inibitori di pompa protonica, di solito per diverse settimane, con un ciclo di antibiotici se è presente l'Helicobacter. Sospendi o sostituisci gli antidolorifici antinfiammatori se possibile. Test di controllo confermano che l'infezione è scomparsa."
+      ]
+    },
+    {
+      "heading": "Prevenire le recidive",
+      "paragraphs": [
+        "Assumi l'intero ciclo di antibiotici, evita antidolorifici antinfiammatori non necessari o usa una protezione dello stomaco quando sono essenziali, smetti di fumare e limita l'alcol. Informa medici e farmacisti di aver avuto un'ulcera."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rivedere gli antidolorifici",
+      "text": "Immagina di prendere ibuprofene ogni giorno per il dolore al ginocchio e di sviluppare dolore allo stomaco. Potresti discutere con il medico alternative per il dolore e la protezione dello stomaco prima di continuare."
+    },
+    {
+      "title": "Completare il trattamento",
+      "text": "Supponi di sentirti meglio dopo una settimana di antibiotici. Potresti comunque finire l'intero ciclo e fare il test di controllo, perché smettere prima può lasciare l'infezione."
+    }
+  ],
+  "questions": [
+    "La mia ulcera è causata da un'infezione o da farmaci?",
+    "Quale trattamento prenderò e per quanto tempo?",
+    "Come controlleremo che l'ulcera sia guarita?"
+  ]
+}

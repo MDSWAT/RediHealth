@@ -1,0 +1,51 @@
+{
+  "title": "Tiroida hiperactivă (hipertiroidismul)",
+  "intro": "În hipertiroidism, glanda tiroidă produce prea mult hormon tiroidian, accelerând metabolismul corpului. Provoacă simptome precum scăderea în greutate, bătăi rapide ale inimii, nervozitate și intoleranță la căldură. Există mai multe tratamente eficiente, iar găsirea cauzei orientează alegerea.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Cea mai frecventă cauză este boala Basedow-Graves, o afecțiune autoimună în care anticorpii stimulează glanda. Alte cauze sunt nodulii care produc hormon independent, inflamația tiroidei care eliberează temporar hormonul stocat și excesul de iod sau anumite medicamente. Poate fi prezentă gușa, adică o tiroidă mărită."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele tipice includ scăderea în greutate în ciuda poftei bune de mâncare, palpitații, transpirație, tremurul mâinilor, anxietate, iritabilitate, tulburări de somn, oboseală, scaune frecvente și menstruații mai slabe. Persoanele în vârstă pot avea mai puține simptome, precum fibrilația atrială sau slăbiciunea. În boala Basedow-Graves, ochii pot deveni bombați, roșii sau uscați."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Analizele de sânge arată un hormon de stimulare a tiroidei scăzut și niveluri mari de hormoni tiroidieni. Testele pentru anticorpi, ecografia și uneori o scintigrafie cu un trasor radioactiv ajută la găsirea cauzei. Ritmul inimii poate fi verificat."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Tabletele antitiroidiene reduc producția de hormon și sunt adesea folosite primele, unu până la doi ani, cu analize de sânge pentru monitorizarea efectelor secundare. Beta-blocantele ameliorează rapid palpitațiile și tremorul. Dacă boala revine sau cauza este nodulii, iodul radioactiv sau chirurgia pentru îndepărtarea întregii glande sau a unei părți a ei sunt opțiuni. După acestea, multe persoane dezvoltă o tiroidă hipoactivă și au nevoie de tablete hormonale pe viață."
+      ]
+    },
+    {
+      "heading": "Situații speciale",
+      "paragraphs": [
+        "Sarcina necesită îngrijire de specialitate, deoarece unele medicamente și iodul radioactiv nu sunt potrivite. Hipertiroidismul netratat suprasolicită inima și oasele. Problemele oculare din boala Basedow-Graves necesită un specialist oftalmolog. Fumatul agravează boala oculară, așa că se recomandă insistent să renunțați."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Descrierea simptomelor",
+      "text": "Imaginați-vă că ați slăbit și simțiți că inima vă bate repede. Ați putea face o listă cu momentul apariției simptomelor, cu modul în care dormiți și cu medicamentele sau suplimentele pe care le luați și ați putea cere analize de sânge pentru tiroidă."
+    },
+    {
+      "title": "Alegerea unui tratament",
+      "text": "Presupuneți că medicul vă oferă tablete, iod radioactiv sau chirurgie. Ați putea întreba despre ratele de recidivă, efectele secundare, efectele asupra fertilității sau planurilor de sarcină și despre nevoia de tablete pe viață."
+    }
+  ],
+  "questions": [
+    "Ce provoacă tiroida mea hiperactivă?",
+    "Ce tratament mi se potrivește și care sunt efectele pe termen lung?",
+    "Cât de des vor fi necesare analizele de sânge și ce ar trebui să raportez între vizite?"
+  ]
+}

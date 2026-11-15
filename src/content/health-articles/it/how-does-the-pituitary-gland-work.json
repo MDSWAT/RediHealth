@@ -1,0 +1,52 @@
+{
+  "title": "Ipofisi e controllo ormonale",
+  "intro": "L'ipofisi è una piccola ghiandola sotto il cervello collegata all'ipotalamo. Coordina altre ghiandole e funzioni dirette. I sintomi sono spesso aspecifici: la sola stanchezza non identifica una malattia ipofisaria.",
+  "sections": [
+    {
+      "heading": "Lobo anteriore",
+      "paragraphs": [
+        "Produce ormoni che influenzano tiroide, corteccia surrenale, ovaie e testicoli, oltre a ormone della crescita e prolattina. Gruppi cellulari diversi svolgono compiti diversi."
+      ]
+    },
+    {
+      "heading": "Lobo posteriore",
+      "paragraphs": [
+        "Conserva e rilascia ormoni prodotti nell'ipotalamo, compresi antidiuretico e ossitocina. Sostengono equilibrio idrico e riproduzione; conservazione e produzione non coincidono."
+      ]
+    },
+    {
+      "heading": "Feedback",
+      "paragraphs": [
+        "Segnali ipotalamici e livelli delle ghiandole bersaglio regolano l'uscita. Un test si interpreta spesso con l'ormone associato, orario e farmaci, non come numero isolato."
+      ]
+    },
+    {
+      "heading": "Indagini",
+      "paragraphs": [
+        "Possono comprendere sangue, urine, stimolazione o soppressione e immagini quando indicate. Un piccolo reperto incidentale non spiega ogni sintomo né impone automaticamente chirurgia."
+      ]
+    },
+    {
+      "heading": "Sicurezza",
+      "paragraphs": [
+        "Sete marcata e urina eccessiva richiedono visita. Cefalea improvvisa grave con alterazioni visive, vomito o collasso richiede urgenza. Chi ha deficit noti segue i piani sostitutivi e d'emergenza senza interrompere ormoni da solo.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira porta esami ipofisari e tiroidei senza pensare che un solo numero nei limiti escluda ogni problema."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha un deficit ormonale noto. Porta le istruzioni d'emergenza in viaggio senza improvvisare dosi durante una malattia."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

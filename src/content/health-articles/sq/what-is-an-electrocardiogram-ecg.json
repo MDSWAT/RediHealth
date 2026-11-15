@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është një elektrokardiogramë (EKG)?",
+  "intro": "Një elektrokardiogramë, e njohur si EKG, është një test i shpejtë e pa dhimbje që regjistron aktivitetin elektrik të zemrës. Tregon ritmin e rrahjet e zemrës e mund të ndihmojë të zbulohen infarkti, çrregullimet e ritmit e tendosja e zemrës. Është një nga testet më të zakonshme të zemrës.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "Një EKG përdoret për dhimbje gjoksi, palpitacione, marrje mendsh, të fikët e gulçim. Ndihmon gjithashtu të monitorohet sëmundja e njohur e zemrës, të kontrollohet efekti i barnave e të bëhet skrining para kirurgjisë. Mund të tregojë ritme të parregullta si fibrilacioni atrial, shenja të një infarkti të kaluar ose aktual e muskul të trashur të zemrës."
+      ]
+    },
+    {
+      "heading": "Si funksionon",
+      "paragraphs": [
+        "Me çdo rrahje zemre, një sinjal elektrik përhapet nëpër zemër e e bën të tkurret. Sensorët në lëkurë i kapin këto sinjale të vogla e një makinë i vizaton si valë. Mjekët lexojnë formën e kohën e valëve për të gjykuar si po punon zemra. Testi nuk dërgon elektricitet në trup."
+      ]
+    },
+    {
+      "heading": "Testi",
+      "paragraphs": [
+        "Shtriheni e vendosen dhjetë elektroda ngjitëse në gjoks, krahë e këmbë. Mund të nevojitet rruajtja e qimeve. Qëndroni të palëvizshëm e merrni frymë normalisht për rreth një minutë. Regjistrimi zgjat vetëm disa minuta. Është pa dhimbje, por jastëkët ngjitës mund të tërheqin kur hiqen."
+      ]
+    },
+    {
+      "heading": "Lloje të tjera",
+      "paragraphs": [
+        "Një monitor njëzet e katër orësh ose më i gjatë, ose një regjistrues ngjarjesh, mbahet në shtëpi për të kapur ritme që vijnë e shkojnë. Një EKG me ushtrim regjistrohet në një shirit vrapimi ose biçikletë për të parë si reagon zemra ndaj përpjekjes. Disa orë e pajisje regjistrojnë një EKG me një derivacion, që mund të zbulojë disa ritme por nuk është zëvendësim për testet mjekësore."
+      ]
+    },
+    {
+      "heading": "Të kuptuarit e rezultateve",
+      "paragraphs": [
+        "Një EKG normale nuk i përjashton të gjitha problemet e zemrës, sepse anomalitë mund të vijnë e të shkojnë. Mjekët e interpretojnë së bashku me simptomat e teste të tjera. Pyesni çfarë do të thotë rezultati e nëse nevojiten teste të mëtejshme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mbajtja e një regjistri",
+      "text": "Imagjinoni që ndjeni palpitacione. Mund të shënoni kur ndodhin e të pyesni nëse një monitor afatgjatë është i dobishëm."
+    },
+    {
+      "title": "Diskutimi i leximit nga ora",
+      "text": "Supozoni që ora juaj e zgjuar tregon një ritëm të parregullt. Mund të shihni mjekun për një EKG të duhur."
+    }
+  ],
+  "questions": [
+    "A mjafton një EKG, apo më duhen teste të tjera të zemrës?",
+    "Çfarë tregon rezultati?",
+    "A duhet të mbaj një monitor për të kapur problemet e ritmit?"
+  ]
+}

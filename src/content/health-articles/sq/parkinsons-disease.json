@@ -1,0 +1,51 @@
+{
+  "title": "Sëmundja e Parkinsonit",
+  "intro": "Sëmundja e Parkinsonit është një gjendje progresive që prek lëvizjen, e shkaktuar nga humbja e qelizave nervore që prodhojnë dopaminë në tru. Çon në ngadalësi, ngurtësi dhe dridhje, si dhe simptoma jolëvizëse. Nuk ka kurë, por barnat, terapitë dhe mbështetja mund t'i kontrollojnë simptomat dhe ta ruajnë cilësinë e jetës për shumë vite.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat kryesore motorike janë ngadalësia e lëvizjes, ngurtësia e muskujve, një dridhje në pushim që shpesh fillon në një dorë dhe probleme me ekuilibrin e ecjen. Shkrimi i dorës mund të bëhet i vogël, zëri më i ulët dhe shprehja e fytyrës e reduktuar. Simptomat jomotorike përfshijnë kapsllëk, probleme gjumi, humbje të nuhatjes, humor të ulët, ankth dhe probleme me kujtesën dhe mund të shfaqen vite para problemeve të lëvizjes."
+      ]
+    },
+    {
+      "heading": "Shkaqet dhe diagnoza",
+      "paragraphs": [
+        "Shkaku është kryesisht i panjohur. Mosha është faktori më i madh i rrezikut dhe gjenet e faktorët mjedisorë luajnë rol në disa raste. Diagnoza bazohet në simptomat dhe ekzaminimin nga një neurolog. Imazheria e trurit dhe skanime të veçanta mund të ndihmojnë të përjashtohen gjendje të tjera. Përgjigja ndaj barit të dopaminës e mbështet diagnozën."
+      ]
+    },
+    {
+      "heading": "Barnat",
+      "paragraphs": [
+        "Levodopa, të cilën truri e shndërron në dopaminë, është ilaçi më efektiv. Barna të tjera si agonistët e dopaminës, frenuesit e MAO-B dhe frenuesit e COMT mund të përdoren vetëm ose në kombinim. Gjatë viteve, efekti i levodopës mund të shuhet midis dozave dhe mund të ndodhin lëvizje të pavullnetshme, gjë që kërkon rregullim të kohës e dozave. Efektet anësore mund të përfshijnë të përziera, përgjumje, tension të ulët dhe probleme të kontrollit të impulseve si bixhozi kompulsiv, që duhen raportuar."
+      ]
+    },
+    {
+      "heading": "Trajtime të tjera",
+      "paragraphs": [
+        "Fizioterapia, ushtrimet, terapia e të folurit e gjuhës dhe terapia profesionale janë të rëndësishme dhe përmirësojnë lëvizshmërinë, zërin dhe aktivitetet e përditshme. Ushtrimet e rregullta si ecja, çiklizmi, vallëzimi ose boksi ndihmojnë. Stimulimi i thellë i trurit, ku vendosen elektroda në tru, mund të ndihmojë pacientë të përzgjedhur me luhatje të rënda."
+      ]
+    },
+    {
+      "heading": "Të jetosh me Parkinsonin",
+      "paragraphs": [
+        "Qëndroni aktiv, hani ushqim të ekuilibruar me fibra e lëngje të mjaftueshme, planifikoni me kujdes kohët e barnave, merrni masa kundër rënieve dhe kërkoni trajtim për problemet e humorit e gjumit. Grupet e mbështetjes e infermierët specialistë ndihmojnë pacientët e familjet. Planifikoni paraprakisht nevojat për kujdes."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Marrja e barit në kohë",
+      "text": "Imagjinoni që ngurtësia kthehet një orë para dozës tjetër. Mund të mbani një ditar simptomash e kohësh dozash dhe t'ia tregoni neurologut që orari të rregullohet."
+    },
+    {
+      "title": "Qëndrimi aktiv",
+      "text": "Supozoni që ndiheni të lodhur dhe doni të tërhiqeni nga aktivitetet. Mund të pyesni për një grup ushtrimesh vendor ose program fizioterapie të krijuar për njerëz me Parkinson."
+    }
+  ],
+  "questions": [
+    "Cili ilaç e dozë është më e mira për mua dhe cilat efekte anësore duhet të ndjek?",
+    "Cilat terapi e ushtrime mund të më ndihmojnë të mbetem i lëvizshëm?",
+    "Çfarë mbështetjeje ofrohet për familjen time dhe mua?"
+  ]
+}

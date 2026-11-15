@@ -1,0 +1,51 @@
+{
+  "title": "Embolia polmonare",
+  "intro": "Un'embolia polmonare è un'ostruzione di una delle arterie del polmone, più spesso causata da un coagulo di sangue partito dalle vene profonde delle gambe. Può causare improvvisa mancanza di fiato e dolore al petto e può essere pericolosa per la vita. Una diagnosi e un trattamento tempestivi con anticoagulanti salvano vite.",
+  "sections": [
+    {
+      "heading": "Cause e fattori di rischio",
+      "paragraphs": [
+        "I coaguli si formano nelle vene delle gambe o del bacino quando il flusso di sangue rallenta o la coagulazione aumenta, poi si staccano e si fermano nei polmoni. I fattori di rischio comprendono un recente intervento, trauma o lunga immobilizzazione, viaggi a lunga distanza, cancro, gravidanza e periodo dopo il parto, terapia ormonale e pillole anticoncezionali, obesità, fumo, età avanzata, un precedente coagulo e tendenze ereditarie alla coagulazione."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi tipici sono improvvisa mancanza di fiato, dolore acuto al petto peggiore quando si inspira, tosse, a volte con sangue, battito veloce, capogiri e svenimenti. Alcune persone hanno gonfiore, dolore e calore a una gamba a causa del coagulo originario. I sintomi possono essere lievi o gravi. Chiama i servizi di emergenza per un'improvvisa mancanza di fiato o un dolore al petto inspiegabili."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "I medici valutano la probabilità con un sistema di punteggio e i sintomi e possono controllare un esame del sangue chiamato D-dimero. Una TC con mezzo di contrasto mostra i coaguli nelle arterie polmonari. Altri esami comprendono l'ecografia delle gambe, l'ecografia del cuore e, se necessario, scintigrafie polmonari."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "I farmaci anticoagulanti impediscono al coagulo di crescere e permettono al corpo di scioglierlo. Si iniziano subito, somministrati per iniezione o come compresse, e si continuano per almeno tre mesi. Nei casi gravi si usano farmaci che sciolgono i coaguli o procedure per rimuoverli. Chi non può prendere anticoagulanti può ricevere un filtro nella grande vena. Il sanguinamento è il principale rischio del trattamento, quindi segnala lividi o sanguinamenti insoliti."
+      ]
+    },
+    {
+      "heading": "Dopo un'embolia polmonare",
+      "paragraphs": [
+        "La durata del trattamento dipende dalla causa. Alcune persone hanno bisogno di una terapia a lungo termine. Alcune hanno una mancanza di fiato persistente o ipertensione polmonare e hanno bisogno di controlli. Per prevenire le recidive muoviti regolarmente nei lunghi viaggi, mantieniti idratato, usa calze a compressione se consigliato e discuti i farmaci preventivi prima di un intervento."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Riconoscere un'emergenza",
+      "text": "Immagina di rimanere improvvisamente senza fiato dopo un lungo volo e di avere il polpaccio gonfio. Potresti chiamare subito i servizi di emergenza e non aspettare per vedere se migliora."
+    },
+    {
+      "title": "Prendere gli anticoagulanti in sicurezza",
+      "text": "Supponi di iniziare un anticoagulante. Potresti portare con te una tessera, dirlo a dentisti e medici, evitare attività rischiose e segnalare qualsiasi sanguinamento abbondante o feci nere."
+    }
+  ],
+  "questions": [
+    "Per quanto tempo ho bisogno degli anticoagulanti e quali sono i rischi?",
+    "Ho una tendenza ereditaria alla coagulazione e la mia famiglia dovrebbe fare dei test?",
+    "Come posso ridurre il rischio di un altro coagulo?"
+  ]
+}

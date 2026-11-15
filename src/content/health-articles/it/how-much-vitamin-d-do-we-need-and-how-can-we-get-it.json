@@ -1,0 +1,53 @@
+{
+  "title": "Di quanta vitamina D abbiamo bisogno e come ottenerla",
+  "intro": "La vitamina D aiuta il corpo ad assorbire il calcio e mantiene sani ossa e muscoli. La maggior parte delle persone produce gran parte della propria vitamina D nella pelle con l'aiuto della luce solare e una parte minore proviene dal cibo. Quanta ne serva dipende da età, pelle, stile di vita e salute, e per la maggior parte delle persone sane non sono necessarie misure particolari.",
+  "sections": [
+    {
+      "heading": "Cosa fa la vitamina D",
+      "paragraphs": [
+        "La vitamina D agisce come un ormone. Favorisce l'assorbimento di calcio e fosfato dall'intestino, essenziale per ossa forti. Una carenza prolungata può causare rachitismo nei bambini e rammollimento delle ossa negli adulti e può aumentare il rischio di cadute e fratture negli anziani."
+      ]
+    },
+    {
+      "heading": "Ottenere vitamina D dalla luce solare",
+      "paragraphs": [
+        "Quando i raggi UVB raggiungono la pelle, il corpo converte una sostanza in essa presente in vitamina D. In primavera ed estate, pochi minuti di luce del giorno su viso, mani e braccia più volte alla settimana bastano a molte persone. Tra circa ottobre e marzo alle latitudini settentrionali il sole è troppo debole per produrne molta.",
+        "Crema solare, abiti coprenti, pelle più scura, età avanzata e trascorrere la maggior parte della giornata al chiuso riducono la produzione. Restare al sole più a lungo del necessario non crea più vitamina D e aumenta il rischio di danni alla pelle."
+      ]
+    },
+    {
+      "heading": "Fonti alimentari",
+      "paragraphs": [
+        "Pochi alimenti contengono molta vitamina D. I pesci grassi di mare come aringa, salmone e sgombro sono le migliori fonti naturali, con quantità minori in uova, fegato e alcuni funghi. Alcuni prodotti come la margarina o i cereali per la colazione sono arricchiti. La sola dieta spesso fornisce solo una parte del fabbisogno giornaliero."
+      ]
+    },
+    {
+      "heading": "Chi può aver bisogno di integratori",
+      "paragraphs": [
+        "Le raccomandazioni ufficiali suggeriscono comunemente vitamina D quotidiana per i neonati nel primo anno, e gli integratori possono essere consigliati a chi esce raramente, per esempio nelle case di riposo, a chi copre la maggior parte della pelle e a persone con alcune malattie dell'intestino, dei reni o del fegato. Il medico può consigliarti in base alla tua situazione.",
+        "Gli integratori esistono in dosaggi diversi, e di più non è meglio. Dosi molto alte per lungo tempo possono aumentare il calcio nel sangue e danneggiare i reni. Segui la dose raccomandata dal medico o dal foglietto illustrativo e informa il medico degli integratori che assumi."
+      ]
+    },
+    {
+      "heading": "Esami e consigli quotidiani",
+      "paragraphs": [
+        "Gli esami del sangue di routine per la vitamina D non sono necessari per la maggior parte delle persone sane. Possono essere presi in considerazione in persone con malattie delle ossa o fattori di rischio specifici. Le buone abitudini comprendono attività regolare all'aperto alla luce del giorno, una dieta varia con pesce ed esercizio con carico per sostenere la salute delle ossa."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pianificare per l'inverno",
+      "text": "Immagina di lavorare al chiuso e di vedere raramente la luce del giorno in inverno. Potresti fare una breve passeggiata fuori all'ora di pranzo, includere pesce nei pasti e chiedere al medico se un integratore a basso dosaggio sia adatto a te."
+    },
+    {
+      "title": "Controllare l'integratore di un neonato",
+      "text": "Supponi di avere un neonato e di non essere sicuro che servano le gocce di vitamina D. Potresti chiedere al pediatra quale dose sia raccomandata, per quanto tempo darla e come abbinarla all'allattamento."
+    }
+  ],
+  "questions": [
+    "Il mio apporto di vitamina D è probabilmente sufficiente o appartengo a un gruppo che beneficia di un integratore?",
+    "Quale dose è sicura per me e per quanto tempo dovrei assumerla?",
+    "Un esame del sangue è utile nel mio caso?"
+  ]
+}

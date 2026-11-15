@@ -1,0 +1,51 @@
+{
+  "title": "Sinuzita acută",
+  "intro": "Sinuzita acută este inflamația mucoasei sinusurilor, spațiile pline cu aer din jurul nasului și al ochilor, de obicei după o răceală. Provoacă nas înfundat, presiune în față și uneori secreții groase. Cele mai multe cazuri sunt cauzate de virusuri și trec în aproximativ două săptămâni fără antibiotice.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "O răceală sau o alergie pot umfla mucoasa nasului și pot bloca orificiile înguste ale sinusurilor, astfel încât mucusul se acumulează. Cele mai multe infecții sunt virale. Bacteriile preiau ocazional. Fumatul, aerul uscat, înotul, infecțiile dentare și probleme precum deviația de sept sau polipii cresc riscul."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele tipice sunt nasul înfundat sau care curge, presiunea sau durerea în obraji, frunte sau în jurul ochilor, care se agravează la aplecarea în față, mirosul diminuat, tusea și uneori febra ușoară. Mucusul gros, galben sau verde, nu înseamnă în sine o infecție bacteriană."
+      ]
+    },
+    {
+      "heading": "Îngrijire de sine",
+      "paragraphs": [
+        "Clătiți nasul cu ser fiziologic, inhalați aburi, beți din belșug lichide și odihniți-vă. Spray-urile nazale decongestionante pot reduce umflarea, dar trebuie folosite cel mult o săptămână, pentru a evita congestia de rebound. Calmantele precum paracetamolul sau ibuprofenul ameliorează durerea. Spray-urile nazale cu steroizi pot ajuta unele persoane."
+      ]
+    },
+    {
+      "heading": "Când se iau în considerare antibioticele",
+      "paragraphs": [
+        "Antibioticele sunt rar necesare. Se iau în considerare când simptomele sunt severe, cu febră mare și durere facială, durează mai mult de aproximativ zece zile fără ameliorare sau se agravează după o îmbunătățire inițială. Persoanele cu imunitate scăzută sau cu alte boli pot avea nevoie de tratament mai devreme."
+      ]
+    },
+    {
+      "heading": "Semne de alarmă și prevenire",
+      "paragraphs": [
+        "Cereți îngrijiri urgente pentru umflare sau roșeață în jurul ochiului, vedere dublă, durere de cap severă, ceafă înțepenită, confuzie sau schimbări ale vederii, deoarece infecția se poate răspândi rar la ochi sau la creier. Dacă sinuzita revine mereu sau durează mai mult de douăsprezece săptămâni, un specialist ORL poate căuta cauze de fond. Evitați fumatul, tratați alergiile și spălați-vă pe mâini pentru a limita răcelile."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tratarea unei răceli care a trecut la sinusuri",
+      "text": "Imaginați-vă că răceala v-a lăsat cu presiune în față și nas înfundat. Ați putea clăti nasul cu ser fiziologic de două ori pe zi, v-ați putea odihni și ați putea folosi un spray decongestionant cel mult o săptămână."
+    },
+    {
+      "title": "Cunoașterea momentului când să sunați",
+      "text": "Presupuneți că pleoapa vi se înroșește și se umflă. Ați putea cere imediat ajutor medical."
+    }
+  ],
+  "questions": [
+    "Am nevoie de antibiotice sau pot aștepta?",
+    "Ce pot face pentru a ameliora nasul înfundat?",
+    "Ar trebui să merg la un specialist dacă sinuzita revine?"
+  ]
+}

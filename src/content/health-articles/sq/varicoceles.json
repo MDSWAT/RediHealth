@@ -1,0 +1,51 @@
+{
+  "title": "Varikoceli",
+  "intro": "Varikoceli është një enjtje e venave brenda skrotumit, e ngjashme me venat varikoze në këmbë. Është e zakonshme, zakonisht në anën e majtë, e shpesh nuk shkakton probleme. Nganjëherë shkakton siklet ose lidhet me pjellshmëri të reduktuar e trajtimi merret në konsideratë në këto raste.",
+  "sections": [
+    {
+      "heading": "Çfarë është",
+      "paragraphs": [
+        "Venat që kullojnë gjakun nga testisi kanë valvula. Kur valvulat dështojnë, gjaku grumbullohet e venat zgjerohen, duke formuar një gungë të butë që shpesh përshkruhet sikur një qese me krimba. Enjtja duket më shumë kur qëndroni në këmbë e mund të zvogëlohet kur shtriheni. Zakonisht shfaqet në adoleshencë ose moshë të re të rritur."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Shumë burra nuk vërejnë simptoma. Të tjerët kanë një dhimbje të mpirë ose rëndim, më keq pas qëndrimit të gjatë në këmbë ose ushtrimeve e që lehtësohet kur shtriheni, një enjtje të dukshme ose të prekshme ose një testis më të vogël në anën e prekur. Fillimi i papritur te një burrë më i moshuar ose një varikoceli që nuk zbrazet kur shtriheni duhet kontrolluar, pasi rrallë mund ta shkaktojë një rritje."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Mjeku ekzaminon skrotumin kur qëndroni në këmbë e kur shtriheni, nganjëherë me një provë kollitjeje ose shtyrjeje, e shpesh përdor ultratingull për ta konfirmuar e për të përjashtuar shkaqe të tjera. Nëse shqetëson pjellshmëria, bëhet një analizë sperme. Te adoleshentët monitorohet madhësia e testisit."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Trajtimi nuk nevojitet nëse nuk ka simptoma e pjellshmëria është normale. Dhimbja mund të trajtohet me të brendshme mbështetëse e qetësues. Procedurat për mbylljen e venës ofrohen për dhimbje të vazhdueshme, një testis qartësisht më të vogël te një adoleshent, ose rezultate jonormale të spermës kur ka synime pjellorie. Opsionet përfshijnë kirurgjinë laparoskopike ose mikrokirurgjike e embolizimin përmes një kateteri. Rreziqet përfshijnë grumbullim lëngu rreth testisit, rikthim e, rrallë, dëmtim të testisit."
+      ]
+    },
+    {
+      "heading": "Varikoceli e pjellshmëria",
+      "paragraphs": [
+        "Varikocelet gjenden te shumë burra me infertilitet, por edhe te shumë burra pjellorë. Riparimi mund ta përmirësojë cilësinë e spermës te disa, megjithëse efekti në shkallën e shtatzënisë është i pasigurt e varet nga situata e çiftit. Diskutoni opsionet, përfshirë riprodhimin e asistuar, me një specialist."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kërkimi i vlerësimit",
+      "text": "Imagjinoni që vini re një enjtje të butë që duket më shumë kur qëndroni në këmbë. Mund të caktoni një ekzaminim e të pyesni nëse nevojitet ultratingull."
+    },
+    {
+      "title": "Marrja në konsideratë e pjellshmërisë",
+      "text": "Supozoni që ju e partneri po provoni të keni fëmijë prej një viti. Mund të kërkoni një analizë sperme e të diskutoni nëse riparimi do të ndihmonte."
+    }
+  ],
+  "questions": [
+    "A ka nevojë për trajtim varikocelja ime?",
+    "A mund ta ndikojë pjellshmërinë time e a duhet të bëj analizë sperme?",
+    "Cilat janë përfitimet e rreziqet e procedurës?"
+  ]
+}

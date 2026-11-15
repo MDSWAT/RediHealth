@@ -1,0 +1,51 @@
+{
+  "title": "Demența vasculară",
+  "intro": "Demența vasculară este o formă de demență provocată de reducerea fluxului de sânge către creier, adesea după accidente vasculare cerebrale sau afectarea vaselor mici. Afectează gândirea, planificarea și dispoziția și poate progresa în trepte sau treptat. Controlul factorilor de risc vasculari poate încetini progresia și poate chiar preveni boala.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Afectarea vaselor de sânge din creier poate fi provocată de tensiunea arterială mare, diabet, colesterolul mare, fumat, fibrilația atrială, bolile de inimă și obezitate. Accidentele vasculare mari, mai multe accidente mici sau afectarea treptată a vaselor minuscule pot distruge țesutul cerebral. Demența vasculară poate coexista cu boala Alzheimer, ca demență mixtă."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele timpurii includ adesea gândirea lentă, dificultatea de a planifica și organiza, probleme de atenție și concentrare și schimbări de dispoziție sau de personalitate, memoria fiind afectată mai puțin devreme decât în boala Alzheimer. Alte semne sunt dificultățile la mers, problemele de echilibru, urgența urinară și agravarea bruscă după un accident vascular cerebral. Evoluția variază, unele persoane rămânând stabile perioade de timp."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicii iau anamneza, examinează persoana și folosesc teste de memorie și de gândire. Scanările cerebrale cu CT sau RMN arată accidentele vasculare și afectarea vaselor. Analizele de sânge verifică alte cauze de declin cognitiv, precum deficitul de vitamine sau problemele tiroidiene. Poate fi implicat un specialist."
+      ]
+    },
+    {
+      "heading": "Tratament și prevenire",
+      "paragraphs": [
+        "Nu există leac, iar medicamentele pentru boala Alzheimer au beneficiu limitat în demența vasculară, cu excepția celei mixte. Cel mai important tratament este controlul factorilor de risc: scăderea tensiunii arteriale, gestionarea diabetului și a colesterolului, tratarea fibrilației atriale cu anticoagulante, oprirea fumatului, activitatea regulată și o dietă sănătoasă. După accidentele vasculare se pot da medicamente antiagregante plachetare. Depresia și problemele de somn trebuie tratate."
+      ]
+    },
+    {
+      "heading": "A trăi cu demența vasculară",
+      "paragraphs": [
+        "Rutina, ajutoarele pentru memorie, activitatea, contactul social și mediul sigur ajută. Terapia ocupațională și reabilitarea mențin independența. Îngrijitorii au nevoie de sprijin, informații și pauze. Planificați din timp aspectele juridice și financiare, inclusiv procurile și preferințele de îngrijire. Dacă se suspectează un accident vascular cerebral, sunați imediat la serviciile de urgență."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reducerea riscului",
+      "text": "Imaginați-vă că ruda dumneavoastră a avut un accident vascular cerebral mic. Ați putea întreba medicul cum pot fi controlate tensiunea arterială și colesterolul și dacă sunt necesare anticoagulante."
+    },
+    {
+      "title": "Planificarea în avans",
+      "text": "Presupuneți că diagnosticul a fost pus recent. Ați putea stabili planificarea juridică și a îngrijirii cât timp persoana poate încă lua parte la decizii."
+    }
+  ],
+  "questions": [
+    "Ce factori de risc putem trata pentru a încetini progresia?",
+    "Ce sprijin și ce terapii sunt disponibile pentru viața de zi cu zi?",
+    "Cum putem planifica îngrijirea viitoare?"
+  ]
+}

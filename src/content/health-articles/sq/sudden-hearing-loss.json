@@ -1,0 +1,51 @@
+{
+  "title": "Humbja e papritur e dëgjimit",
+  "intro": "Humbja e papritur sensorineurale e dëgjimit është një humbje e shpejtë e dëgjimit në një vesh, zakonisht e zhvilluar brenda orësh deri disa ditë, pa shkak të qartë. Mund të shoqërohet me zhurmë në vesh ose ndjenjë mbushjeje. Duhet vlerësuar shpejt nga një mjek e shumë njerëz rimarrin të paktën pak dëgjim, veçanërisht me trajtim të hershëm.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Njerëzit shpesh vënë re një rënie të papritur të dëgjimit kur zgjohen ose gjatë ditës, një ndjenjë veshi të bllokuar, tinguj të mbytur ose zhurmë. Disa ndiejnë edhe marramendje. Dëgjimi mund të kthehet pjesërisht ose plotësisht brenda ditësh a javësh, por mund të mos kthehet."
+      ]
+    },
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Në shumicën e rasteve nuk gjendet shkak. Nxitës të mundshëm përfshijnë infeksionin viral, probleme të qarkullimit në veshin e brendshëm, reagime imune, lëndimin, disa barna e, rrallë, tumore në nervin e dëgjimit. Një vesh i bllokuar nga dylli, lëngu pas daulles së veshit ose infeksioni i veshit të mesëm mund ta imitojnë problemin e trajtohen ndryshe."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Një mjek e ekzaminon veshin e organizon një test dëgjimi brenda kohe të shkurtër për të matur llojin e shkallën e humbjes. Analizat e gjakut e një rezonancë mund të bëhen për të kërkuar shkaqe themelore. Testimi i shpejtë është i rëndësishëm sepse trajtimi është i ndjeshëm ndaj kohës."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Kortikosteroidet në dozë të lartë, të marra si tableta ose të injektuara në veshin e mesëm, janë trajtimi i zakonshëm e janë më të dobishëm kur fillohen brenda ditësh. Provat për përfitim janë modeste e mjekët diskutojnë rreziqe si sheqeri i ngritur në gjak, ndryshimet e humorit e problemet e gjumit. Trajtime të tjera si terapia me oksigjen ose barnat e rrjedhës së gjakut kanë vlerë të pasigurt. Pushimi e shmangia e zhurmës së fortë janë të arsyeshme."
+      ]
+    },
+    {
+      "heading": "Rikuperimi e perspektiva",
+      "paragraphs": [
+        "Shumë njerëz përmirësohen brenda dy javëve të para. Rreth gjysma rimarrin shkallë të mirë dëgjimi e disa mbeten me humbje të qëndrueshme. Nëse dëgjimi nuk kthehet, aparatet e dëgjimit ose implantet mund të ndihmojnë e ofrohet mbështetje për zhurmën në vesh. Testet e dëgjimit të ndjekjes monitorojnë progresin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Veprimi i shpejtë",
+      "text": "Imagjinoni që zgjoheni me dëgjim të mbytur në një vesh. Mund të organizoni të shihni një mjek po atë ditë ose të nesërmen, në vend që të prisni një javë."
+    },
+    {
+      "title": "Marrja e mbështetjes",
+      "text": "Supozoni që dëgjimi nuk është kthyer pas disa javësh. Mund të pyesni për aparate dëgjimi, këshillim për zhurmën në vesh e strategji komunikimi."
+    }
+  ],
+  "questions": [
+    "A mund ta shkaktojë këtë diçka tjetër përveç humbjes së papritur të dëgjimit?",
+    "A duhet të marr steroide e cilat efekte anësore duhet të ndjek?",
+    "Çfarë mbështetjeje ofrohet nëse dëgjimi nuk rikuperohet?"
+  ]
+}

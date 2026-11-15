@@ -1,0 +1,55 @@
+{
+  "title": "HPV cjepivo: od čega štiti i kome je namijenjeno",
+  "intro": "Cjepivo protiv humanog papilomavirusa štiti od infekcije tipovima HPV-a koji najčešće uzrokuju rak vrata maternice i nekoliko drugih vrsta raka, kao i genitalne bradavice. Cijepljenje se u mnogim zemljama preporučuje djeci i adolescentima prije nego postanu spolno aktivni. Razumijevanje kako djeluje pomaže obiteljima donijeti informiranu odluku.",
+  "sections": [
+    {
+      "heading": "Od čega HPV cjepiva štite",
+      "paragraphs": [
+        "HPV je vrlo česta skupina virusa koji se prenosi dodirom kože i sluznice, uglavnom tijekom spolnog odnosa. Većina infekcija nestaje bez simptoma, ali određeni visokorizični tipovi mogu ustrajati i uzrokovati promjene koje se razvijaju u rak vrata maternice, anusa, stidnice, rodnice, penisa ili grla. Drugi tipovi uzrokuju genitalne bradavice.",
+        "Sadašnja cjepiva štite od najvažnijih visokorizičnih tipova, a neka i od tipova koji uzrokuju većinu genitalnih bradavica. Sprječavaju infekciju, ali ne liječe postojeću infekciju."
+      ]
+    },
+    {
+      "heading": "Kome se preporučuje cijepljenje",
+      "paragraphs": [
+        "Cijepljenje se obično preporučuje djevojčicama i dječacima u dobi od oko devet do četrnaest godina, idealno prije prvog spolnog kontakta. Cijepljenje u toj dobi daje snažan imunološki odgovor i često trebaju samo dvije doze u razmaku od nekoliko mjeseci. Osobe koje počnu kasnije obično trebaju tri doze.",
+        "Mnoge zemlje nude cijepljenje za nadoknadu do mlade odrasle dobi. Odrasli izvan preporučene dobi još uvijek mogu imati koristi, ovisno o prijašnjoj izloženosti, i trebaju o tome razgovarati s liječnikom."
+      ]
+    },
+    {
+      "heading": "Sigurnost i nuspojave",
+      "paragraphs": [
+        "HPV cjepiva istraživana su u vrlo velikim skupinama diljem svijeta. Uobičajene reakcije su bol, crvenilo ili oteklina na mjestu uboda, glavobolja, umor i blaga vrućica, koje obično prođu u nekoliko dana. Nesvjestica se može pojaviti nakon bilo koje injekcije pa je razumno sjediti nekoliko minuta poslije.",
+        "Ozbiljne alergijske reakcije vrlo su rijetke. Sustavi nadzora i dalje prate sigurnost, a zdravstvena tijela nisu našla dokaze o povezanosti s dugoročnim bolestima kojih se nekad strahovalo."
+      ]
+    },
+    {
+      "heading": "Cijepljenje i probir",
+      "paragraphs": [
+        "Cjepivo ne štiti od svakog tipa koji uzrokuje rak pa žene i nakon cijepljenja trebaju sudjelovati u redovitom probiru vrata maternice. Kondomi smanjuju, ali ne sprječavaju u potpunosti prijenos HPV-a.",
+        "Dokazi pokazuju da su programi cijepljenja znatno snizili stope prekanceroznih promjena i, u nekim zemljama, raka vrata maternice u cijepljenim skupinama."
+      ]
+    },
+    {
+      "heading": "Praktične napomene",
+      "paragraphs": [
+        "Provjerite lokalne preporuke i koje troškove pokriva zdravstveno osiguranje. Čuvajte svoj cijepni karton i pitajte o vremenu u odnosu na druga cjepiva. Ako je vaše dijete bolesno s vrućicom, cijepljenje se obično može odgoditi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Donošenje obiteljske odluke",
+      "text": "Zamislite da vaše dvanaestogodišnje dijete ispunjava uvjete za HPV cjepivo. Mogli biste pročitati o koristima i nuspojavama, zapisati pitanja i razgovarati o njima s pedijatrom prije nego zajedno odlučite."
+    },
+    {
+      "title": "Nadoknada u mladoj odrasloj dobi",
+      "text": "Pretpostavite da imate 22 godine i nikad niste cijepljeni. Mogli biste pitati preporučuje li se nadoknada za vas, koliko je doza potrebno i je li još korisno ako ste već bili spolno aktivni."
+    }
+  ],
+  "questions": [
+    "Preporučuje li se HPV cjepivo za moje dijete ili za mene i koliko je doza potrebno?",
+    "Koje nuspojave trebamo očekivati i kada trebamo nazvati liječnika?",
+    "Trebam li i dalje redoviti probir nakon cijepljenja?"
+  ]
+}

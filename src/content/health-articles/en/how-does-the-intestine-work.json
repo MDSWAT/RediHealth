@@ -1,0 +1,52 @@
+{
+  "title": "How the intestine digests, absorbs and moves food",
+  "intro": "The intestine continues digestion after the stomach, absorbs nutrients and water, and moves waste toward the anus. Its lining, muscles, nerves and microbes cooperate. Bowel symptoms can have many causes, including ones outside digestion.",
+  "sections": [
+    {
+      "heading": "Small intestine",
+      "paragraphs": [
+        "Digestive enzymes and bile mix with food. Folds and tiny projections increase the absorbing surface; nutrients pass into blood or lymph rather than simply falling through the bowel."
+      ]
+    },
+    {
+      "heading": "Large intestine",
+      "paragraphs": [
+        "The colon absorbs remaining water and salts and shapes stool. Gut bacteria process some remaining material. A particular stool appearance alone does not identify the whole microbiome or diagnose disease."
+      ]
+    },
+    {
+      "heading": "Movement and control",
+      "paragraphs": [
+        "Coordinated muscle contractions propel contents. Local nerves and brain signals influence movement; stress can affect symptoms without proving they are imaginary or excluding physical disease."
+      ]
+    },
+    {
+      "heading": "Everyday support",
+      "paragraphs": [
+        "Regular meals, suitable fluids and gradually adjusted fiber can support bowel habits. Needs differ with illness or surgery; severe symptoms are not a reason to start repeated cleanses or drastic exclusions."
+      ]
+    },
+    {
+      "heading": "When to seek care",
+      "paragraphs": [
+        "Persistent change, unexplained weight loss or blood needs assessment. Severe worsening pain, a swollen abdomen with vomiting or inability to pass gas, or major bleeding requires urgent care rather than extra laxatives.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira increases fiber gradually after advice and records tolerance rather than doubling it abruptly."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben has abdominal swelling, vomiting and cannot pass gas. He seeks urgent care instead of treating presumed constipation repeatedly."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

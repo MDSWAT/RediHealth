@@ -1,0 +1,51 @@
+{
+  "title": "Understanding urine tests",
+  "intro": "Urine tests are simple, painless and provide a lot of information about the kidneys, urinary tract and general health. They can detect infection, kidney problems, diabetes and pregnancy. Knowing how to collect a sample properly and what the results mean helps make the test reliable.",
+  "sections": [
+    {
+      "heading": "Common types",
+      "paragraphs": [
+        "A urine dipstick is a strip dipped into the sample that changes colour to show the presence of substances such as blood, protein, glucose, white blood cells and nitrites. It gives quick results in a practice. Urine culture grows bacteria to confirm infection and tests antibiotic sensitivity. A microscopic examination looks at cells and crystals. Pregnancy tests detect the hormone hCG."
+      ]
+    },
+    {
+      "heading": "Collecting a sample",
+      "paragraphs": [
+        "For a mid-stream sample, wash hands, clean the genital area, start urinating into the toilet, then collect the middle part of the flow in the container, without touching the inside, and finish in the toilet. This reduces contamination from skin germs. Early-morning urine is more concentrated. Deliver the sample quickly or keep it cool as instructed."
+      ]
+    },
+    {
+      "heading": "What results may show",
+      "paragraphs": [
+        "Blood in the urine can come from infection, stones, kidney disease, tumours or a recent injury, and always needs evaluation. Protein can point to kidney damage but also appears after exercise or fever. Glucose suggests diabetes. White cells and nitrites suggest infection. A single abnormal finding is often repeated."
+      ]
+    },
+    {
+      "heading": "Pregnancy tests",
+      "paragraphs": [
+        "Home pregnancy tests detect hCG in urine, and are most reliable from the first day of a missed period. A positive result is almost always correct, while a negative result very early may be wrong and can be repeated after a few days. Confirm a positive test with a doctor."
+      ]
+    },
+    {
+      "heading": "Practical tips",
+      "paragraphs": [
+        "Certain foods, medicines, vitamins and dehydration can change urine colour and results. Tell your doctor about all you take. Menstrual blood can contaminate a sample, so mention it. Report symptoms such as burning, urgency, back pain or fever together with the test."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Giving a good sample",
+      "text": "Imagine you suspect a bladder infection. You could follow mid-stream instructions carefully, use the container provided and deliver the sample promptly."
+    },
+    {
+      "title": "Asking about a result",
+      "text": "Suppose your dipstick shows trace protein. You might ask whether it should be repeated and whether other kidney tests are needed."
+    }
+  ],
+  "questions": [
+    "Which urine test do I need, and how should I prepare?",
+    "What does an abnormal result mean for me?",
+    "Do I need a repeat test or further investigation?"
+  ]
+}

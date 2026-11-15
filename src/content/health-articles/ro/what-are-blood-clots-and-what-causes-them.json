@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt cheagurile de sânge și ce le provoacă?",
+  "intro": "Un cheag de sânge este un aglomerat de sânge care a trecut de la starea lichidă la una semisolidă. Coagularea este un proces protector vital, care oprește sângerarea după o rănire. Problemele apar când cheaguri se formează inutil în interiorul vaselor de sânge și blochează fluxul sanguin, ceea ce poate duce la infarct, accident vascular cerebral sau tromboză.",
+  "sections": [
+    {
+      "heading": "Cum funcționează coagularea",
+      "paragraphs": [
+        "Când un vas de sânge este lezat, plachetele se adună la locul respectiv, iar proteinele din sânge numite factori de coagulare formează o rețea de fibrină care sigilează rana. Apoi organismul dizolvă cheagul pe măsură ce vasul se vindecă. Acest echilibru între coagulare și descompunere menține sângele în circulație și previne sângerarea."
+      ]
+    },
+    {
+      "heading": "Cheaguri dăunătoare",
+      "paragraphs": [
+        "Cheagurile din artere se formează adesea pe depozite de grăsime care s-au fisurat și pot bloca fluxul de sânge către inimă, provocând un infarct, sau către creier, provocând un accident vascular cerebral. Cheagurile din vene, de obicei la picioare, se numesc tromboză venoasă profundă și pot ajunge la plămâni ca embolie pulmonară. Cheagurile se pot forma și în camerele inimii în fibrilația atrială."
+      ]
+    },
+    {
+      "heading": "Ce crește riscul",
+      "paragraphs": [
+        "Riscul crește cu imobilitatea, călătoriile lungi, operațiile, rănirile, sarcina și săptămânile după naștere, medicamentele cu estrogen, cancerul și tratamentul lui, obezitatea, fumatul, vârsta înaintată, deshidratarea, cheagurile anterioare, istoricul familial și tulburările ereditare de coagulare. Adesea se combină mai mulți factori."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Un cheag într-o venă a piciorului provoacă umflare, durere, căldură și roșeață, de obicei la un singur picior. Un cheag în plămâni provoacă lipsă bruscă de aer, durere în piept și puls rapid. Infarctul și accidentul vascular cerebral au propriile semne de avertizare, precum durerea în piept sau slăbiciunea pe o parte a corpului. Sunați imediat la serviciile de urgență dacă apar."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Rămâneți activ, evitați perioadele lungi de stat așezat, beți suficiente lichide, mențineți o greutate sănătoasă, nu fumați și controlați tensiunea arterială, colesterolul și diabetul. După operații sau în timpul spitalizării se folosesc măsuri preventive, precum mersul timpuriu, compresia și anticoagulantele. Discutați riscurile cu medicul dacă luați hormoni sau aveți istoric familial de cheaguri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Călătoria în siguranță",
+      "text": "Imaginați-vă că faceți un zbor lung. Ați putea merge regulat pe culoar, ați putea face exerciții pentru gambe, ați putea bea apă și ați putea întreba medicul despre ciorapi compresivi."
+    },
+    {
+      "title": "Recunoașterea simptomelor",
+      "text": "Presupuneți că o gambă devine umflată și dureroasă. Ați putea cere o evaluare medicală în aceeași zi."
+    }
+  ],
+  "questions": [
+    "Am factori de risc pentru cheaguri și ce pot face în privința lor?",
+    "Ar trebui familia mea să fie testată pentru tulburări de coagulare?",
+    "Ce simptome necesită îngrijiri de urgență?"
+  ]
+}

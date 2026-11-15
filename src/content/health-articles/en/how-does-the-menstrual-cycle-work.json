@@ -1,0 +1,52 @@
+{
+  "title": "Understanding the menstrual cycle",
+  "intro": "The menstrual cycle links hormone signals, ovarian activity and changes in the uterine lining. Timing varies between people and across life. A textbook pattern or calendar app cannot reliably prove ovulation or exclude pregnancy.",
+  "sections": [
+    {
+      "heading": "Starting a cycle",
+      "paragraphs": [
+        "The first day of menstrual bleeding marks a new cycle. Brain and pituitary signals stimulate follicles in the ovaries; estrogen helps rebuild the uterine lining."
+      ]
+    },
+    {
+      "heading": "Ovulation",
+      "paragraphs": [
+        "A hormone surge can trigger release of an egg into a fallopian tube. Ovulation does not occur on an identical calendar day for everyone, and bleeding does not guarantee that it occurred."
+      ]
+    },
+    {
+      "heading": "After release",
+      "paragraphs": [
+        "The emptied follicle forms a temporary structure that produces progesterone. This supports the lining; if pregnancy does not develop, hormone levels fall and the lining sheds."
+      ]
+    },
+    {
+      "heading": "Everyday tracking",
+      "paragraphs": [
+        "Record bleeding, pain and effects on daily life without treating every variation as disease. Puberty, menopause transition, illness, stress and hormonal contraception can alter patterns; calendar counting alone is unreliable contraception."
+      ]
+    },
+    {
+      "heading": "Seeking care",
+      "paragraphs": [
+        "Very heavy bleeding, faintness, severe pain, persistent irregularity or bleeding after menopause needs assessment. Possible pregnancy with severe one-sided pain, collapse or shoulder-tip pain needs urgent care even before a positive home test.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira tracks pain and missed activities rather than only dates, helping a clinician assess whether symptoms need treatment."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben supports a partner with a late period and severe one-sided pain in seeking urgent care instead of relying on an app's prediction."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

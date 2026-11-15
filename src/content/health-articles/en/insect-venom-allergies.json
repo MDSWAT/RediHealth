@@ -1,0 +1,51 @@
+{
+  "title": "Insect venom allergy",
+  "intro": "Most insect stings cause only brief pain and swelling. In some people, the immune system overreacts to the venom of bees, wasps or hornets and causes a dangerous allergic reaction. Knowing the warning signs, carrying emergency medicine and considering venom immunotherapy can protect people at risk.",
+  "sections": [
+    {
+      "heading": "Normal versus allergic reactions",
+      "paragraphs": [
+        "A normal sting causes pain, redness and a small swelling that fades within hours. A large local reaction produces swelling bigger than ten centimetres that lasts for days. A true allergic reaction involves the whole body and may cause hives, swelling of the face, tightness in the throat, wheezing, dizziness, vomiting or collapse, which is called anaphylaxis."
+      ]
+    },
+    {
+      "heading": "Emergency treatment",
+      "paragraphs": [
+        "Anaphylaxis is an emergency. Call emergency services immediately. People prescribed an adrenaline auto-injector should use it right away in the outer thigh, lie down with legs raised unless breathing is easier sitting, and wait for help even if they feel better. A second dose may be needed."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "An allergy specialist takes a history of the reaction and performs skin tests and blood tests for antibodies to venom. In some cases, a blood test for tryptase helps identify people at increased risk. Testing is usually done weeks after a reaction."
+      ]
+    },
+    {
+      "heading": "Venom immunotherapy",
+      "paragraphs": [
+        "Venom immunotherapy gives gradually increasing doses of purified venom over weeks, followed by maintenance injections every month or so for three to five years. It prevents serious reactions in most patients and is recommended for people who had systemic reactions and have confirmed allergy. Treatment is started under close supervision."
+      ]
+    },
+    {
+      "heading": "Avoiding stings",
+      "paragraphs": [
+        "Avoid walking barefoot on grass, wear shoes outdoors, keep food and sweet drinks covered, and be careful around rubbish bins and fruit. Stay calm near wasps and bees and move away slowly. Do not wave your arms. Use screens at windows. Carry your emergency kit and inform family, friends and colleagues of the plan."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Picnic preparation",
+      "text": "Imagine you are allergic to wasps and going on a picnic. You could take your auto-injector, cover drinks, keep a phone nearby and tell your companions what to do if you react."
+    },
+    {
+      "title": "Asking about immunotherapy",
+      "text": "Suppose you had a strong reaction last summer. You might ask a specialist whether testing and venom immunotherapy are suitable for you and how long the treatment would last."
+    }
+  ],
+  "questions": [
+    "Is my reaction a true allergy, and which tests should I have?",
+    "Do I need an adrenaline auto-injector, and how do I use it correctly?",
+    "Would venom immunotherapy be suitable for me?"
+  ]
+}

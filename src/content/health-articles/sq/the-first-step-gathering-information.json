@@ -1,0 +1,51 @@
+{
+  "title": "Hapi i parë: mbledhja e informacionit shëndetësor",
+  "intro": "Marrja e vendimeve të mira për shëndetin fillon me gjetjen e informacionit të besueshëm. Interneti ofron një sasi të madhe prej tij, por cilësia ndryshon shumë. Një qasje e menduar ndaj kërkimit kursen kohë e ul gjasën për t'u mashtruar ose alarmuar.",
+  "sections": [
+    {
+      "heading": "Dijeni çfarë doni të zbuloni",
+      "paragraphs": [
+        "Shkruani pyetjen sa më saktë që mundeni, për shembull çfarë trajtimesh ekzistojnë për një gjendje, çfarë përfshin një test ose çfarë efekte anësore ka një ilaç. Shënoni shqetësimet, simptomat e vendimet para jush. Një pyetje e qartë ju ndihmon të zgjidhni burime e terma kërkimi."
+      ]
+    },
+    {
+      "heading": "Ku të kërkoni",
+      "paragraphs": [
+        "Pika të besueshme fillimi përfshijnë autoritetet e shëndetit publik, spitalet universitare, shërbimet kombëtare të informacionit për pacientët, shoqatat mjekësore, ofruesit e pavarur të informacionit të bazuar në prova e farmacistin ose mjekun tuaj. Fletët e paketimit e përmbledhjet e udhëzuesve për pacientët japin detaje mbi barnat e trajtimet. Organizatat e pacientëve ofrojnë përvojë e këshilla praktike."
+      ]
+    },
+    {
+      "heading": "Këshilla kërkimi",
+      "paragraphs": [
+        "Përdorni terma specifikë e emrin e gjendjes ose trajtimit. Shtoni fjalë si simptoma, trajtim, rreziqe ose efekte anësore. Provoni më shumë se një burim e krahasoni. Shmangni mbështetjen te rezultati i parë, pasi motorët e kërkimit mund të favorizojnë reklamat ose faqet tregtare. Kontrolloni datat, pasi trajtimet e rekomandimet ndryshojnë."
+      ]
+    },
+    {
+      "heading": "Kini kujdes ndaj",
+      "paragraphs": [
+        "Premtimeve për kura mrekulli, faqeve që shesin produkte krahas këshillave, dëshmive të paraqitura si provë, mungesës së autorëve ose burimeve të emërtuara, gjuhës alarmuese e pretendimeve se mjekët po e fshehin të vërtetën. Postimet në rrjete sociale e forumet mund të ofrojnë mbështetje por mund të përhapin informacion të pasaktë."
+      ]
+    },
+    {
+      "heading": "Mbani shënim e pyesni",
+      "paragraphs": [
+        "Shënoni çfarë gjeni, nga erdhi e pyetjet tuaja. Sillini te mjeku e pyesni cilin informacion e besojnë. Informacioni nuk mund të zëvendësojë një ekzaminim e nuk duhet ta ndryshoni trajtimin bazuar në atë që lexoni pa folur me një profesionist."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për një konsultë",
+      "text": "Imagjinoni që ju është përshkruar një ilaç i ri. Mund të lexoni fletën e paketimit e një faqe të besuar informacioni për pacientët, të shkruani pyetjet e t'i diskutoni në vizitën tjetër."
+    },
+    {
+      "title": "Zbulimi i një faqeje të dyshimtë",
+      "text": "Supozoni që një faqe interneti premton të shërojë diabetin me një suplement. Mund të kontrolloni kush e drejton faqen, nëse citon kërkime e nëse e shet produktin."
+    }
+  ],
+  "questions": [
+    "Cilat burime rekomandoni për informacion të besueshëm mbi gjendjen time?",
+    "A është ajo që lexoj e rëndësishme për situatën time?",
+    "Si mund ta diskutoj me ju informacionin që kam gjetur?"
+  ]
+}

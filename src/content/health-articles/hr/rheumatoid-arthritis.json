@@ -1,0 +1,51 @@
+{
+  "title": "Reumatoidni artritis",
+  "intro": "Reumatoidni artritis je kronična autoimuna bolest u kojoj imunološki sustav napada ovojnicu zglobova, uzrokujući bol, oticanje i ukočenost, često u objema šakama i stopalima. Bez liječenja može trajno oštetiti zglobove. Rano liječenje lijekovima koji mijenjaju tijek bolesti kontrolira upalu u većine ljudi.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipični simptomi su bolni, otečeni zglobovi s obje strane tijela, osobito mali zglobovi šaka i stopala, jutarnja ukočenost koja traje dulje od pola sata, umor, blaga vrućica i gubitak apetita. Pogoršanja se izmjenjuju s mirnijim razdobljima. Bolest može zahvatiti i pluća, oči, srce i krvne žile."
+      ]
+    },
+    {
+      "heading": "Uzroci i čimbenici rizika",
+      "paragraphs": [
+        "Uzrok nije potpuno razumljiv. Geni, hormoni i okolišni čimbenici kao što je pušenje pridonose. Češći je u žena i često počinje u srednjoj dobi, ali se može pojaviti u bilo kojoj dobi. Pušenje povećava rizik i smanjuje učinak liječenja."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Dijagnoza se temelji na simptomima, pregledu zglobova, krvnim pretragama uključujući reumatoidni faktor, anti-CCP protutijela i markere upale te slikovnim pretragama kao što su rendgen, ultrazvuk ili MR. Rana uputnica reumatologu je važna, idealno unutar tjedana od početka simptoma."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Lijekovi koji mijenjaju tijek bolesti, najčešće metotreksat, usporavaju bolest i štite zglobove. Ako nisu dovoljni, dodaju se biološki lijekovi ili ciljane tablete koje blokiraju specifične imunološke signale. Kratki tijekovi kortikosteroida brzo smanjuju pogoršanja, iako dugotrajna uporaba uzrokuje nuspojave. Ti lijekovi zahtijevaju redovite krvne pretrage i povećavaju rizik infekcije pa rano prijavite vrućicu ili simptome infekcije. Liječenje cilja na remisiju ili nisku aktivnost bolesti i redovito se pregledava."
+      ]
+    },
+    {
+      "heading": "Život s njim",
+      "paragraphs": [
+        "Vježbanje, fizioterapija i radna terapija održavaju pokretljivost i uče zaštiti zglobova. Prestanak pušenja, uravnotežena prehrana, zaštita kostiju i provjerena cijepljenja su važni. Rizik od bolesti srca je veći pa treba pratiti krvni tlak i kolesterol. Umor i loše raspoloženje su česti, a potpora pomaže."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rani posjet specijalistu",
+      "text": "Zamislite da šest tjedana imate otečene zglobove prstiju i jutarnju ukočenost. Mogli biste zatražiti od obiteljskog liječnika hitnu uputnicu reumatologu i ponijeti popis zahvaćenih zglobova."
+    },
+    {
+      "title": "Priprema za liječenje",
+      "text": "Pretpostavite da počinjete metotreksat. Mogli biste pitati o krvnim pretragama, cijepljenjima, alkoholu i što učiniti ako dobijete infekciju."
+    }
+  ],
+  "questions": [
+    "Koje je liječenje najbolje za mene i koji su rizici?",
+    "Kako ćemo provjeriti je li bolest pod kontrolom?",
+    "Što mogu sam učiniti da zaštitim zglobove i opće zdravlje?"
+  ]
+}

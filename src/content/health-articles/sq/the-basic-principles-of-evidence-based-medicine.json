@@ -1,0 +1,51 @@
+{
+  "title": "Parimet themelore të mjekësisë së bazuar në prova",
+  "intro": "Mjekësia e bazuar në prova do të thotë marrja e vendimeve të kujdesit shëndetësor duke përdorur kërkimin më të mirë në dispozicion së bashku me përvojën klinike e vlerat e pacientit. Synon të zëvendësojë hamendjen e zakonin me dije të besueshme për atë që ndihmon e atë që dëmton. Të kuptuarit e parimeve të saj ju ndihmon të merrni pjesë në vendimet për kujdesin tuaj.",
+  "sections": [
+    {
+      "heading": "Tri shtyllat",
+      "paragraphs": [
+        "Mjekësia e bazuar në prova mbështetet te tri elemente: prova më e mirë aktuale e kërkimit, ekspertiza e klinicistit e preferencat e rrethanat e pacientit. Asnjëri nuk mjafton vetëm. Kërkimi tregon çfarë funksionon mesatarisht, mjeku e interpreton për individin e pacienti vendos çfarë ka rëndësi për të."
+      ]
+    },
+    {
+      "heading": "Bërja e pyetjeve të përgjigjshme",
+      "paragraphs": [
+        "Procesi fillon duke e kthyer një problem në pyetje të saktë: kush janë pacientët, cili është trajtimi ose testi, me çfarë krahasohet e cilat rezultate kanë rëndësi. Për shembull, te njerëzit me osteoartrit të gjurit, a e ul ushtrimi dhimbjen më shumë se kujdesi i zakonshëm?"
+      ]
+    },
+    {
+      "heading": "Gjetja e vlerësimi i provave",
+      "paragraphs": [
+        "Pastaj kërkohen studimet e rëndësishme e gjykohet cilësia e tyre. Provat e rastësishme të ndërtuara mirë e rishikimet sistematike japin përgjigje më të besueshme për trajtimet se opinionet ose vëzhgimet e vetme. Rishikuesit kontrollojnë rrezikun e njëanshmërisë, madhësinë e efektit, nëse rezultatet janë të qëndrueshme e nëse vlejnë për pacientin."
+      ]
+    },
+    {
+      "heading": "Zbatimi te pacienti",
+      "paragraphs": [
+        "Prova përshkruan grupe e individët mund të ndryshojnë. Klinicistët marrin parasysh moshën, sëmundjet e tjera, rreziqet e atë që pacienti vlerëson, përfshirë cilësinë e jetës e barrët e trajtimit. Vendimmarrja e përbashkët do të thotë shpjegimi i përfitimeve e rreziqeve në terma të kuptueshëm, shpesh me numra e ndihmesa vendimi, që zgjedhja t'i pasqyrojë përparësitë e pacientit."
+      ]
+    },
+    {
+      "heading": "Kufijtë",
+      "paragraphs": [
+        "Prova e mirë mungon për shumë pyetje e studimet mund t'i përjashtojnë njerëz si të moshuarit ose fëmijët. Mungesa e provës së përfitimit nuk është e njëjtë me provën e mungesës së përfitimit. Prova ndryshon me kohën, prandaj rekomandimet kërkojnë rishikim. Mjekësia e bazuar në prova nuk do të thotë mosnjohje e përvojës, por kontrollim i saj me të dhëna."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kërkimi i numrave",
+      "text": "Imagjinoni që mjeku rekomandon një ilaç. Mund të pyesni sa njerëz si ju përfitojnë, sa përjetojnë efekte anësore e çfarë ndodh pa trajtim."
+    },
+    {
+      "title": "Shprehja e preferencave",
+      "text": "Supozoni që dy trajtime janë njëlloj efektive por ndryshojnë në efekte anësore. Mund të shpjegoni cilat barrë kanë më shumë rëndësi për ju që vendimi të përshtatet me jetën tuaj."
+    }
+  ],
+  "questions": [
+    "Çfarë thotë prova më e mirë për opsionet e mia?",
+    "Sa e sigurt është kjo provë e a vlen për dikë si unë?",
+    "Cili opsion i përshtatet më mirë vlerave e rrethanave të mia?"
+  ]
+}

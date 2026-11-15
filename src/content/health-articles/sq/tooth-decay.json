@@ -1,0 +1,51 @@
+{
+  "title": "Prishja e dhëmbëve",
+  "intro": "Prishja e dhëmbëve, ose kariesi, është dëmtim i indit të fortë të një dhëmbi i shkaktuar nga acidet e prodhuara nga bakteret në pllakën dentare. Është një nga problemet më të zakonshme shëndetësore në botë, por kryesisht e parandalueshme. Prishja e hershme mund të kthehet mbrapsht, ndërsa ajo e përparuar kërkon trajtim nga një dentist.",
+  "sections": [
+    {
+      "heading": "Si zhvillohet prishja",
+      "paragraphs": [
+        "Bakteret në pllakë ushqehen me sheqerna e prodhojnë acid që shpërndan mineralet nga smalti. Ushqimi e pijet e shpeshta me sheqer, pastrimi i dobët, goja e thatë e ekspozimi i ulët ndaj fluorit e rrisin rrezikun. Fillimisht shfaqet një njollë e bardhë në smalt. Nëse procesi vazhdon, formohet një gropë që mund të arrijë dentinën e nervin."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Prishja e hershme nuk shkakton simptoma. Shenjat e mëvonshme përfshijnë ndjeshmëri ndaj të ëmblës, të nxehtit ose të ftohtit, njolla të dukshme kafe ose të zeza, vrima në dhëmbë, dhimbje dhëmbi e shije të keqe. Dhimbja e rëndë, pulsuese, enjtja e fytyrës ose ethet sugjerojnë infeksion që kërkon kujdes urgjent dentar."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Lezionet e hershme mund të remineralizohen me fluor e pastrim më të mirë. Gropat trajtohen duke hequr pjesën e prishur e duke mbushur dhëmbin. Nëse prishja arrin nervin, trajtimi i kanalit të rrënjës mund ta shpëtojë dhëmbin, përndryshe dhëmbi hiqet. Kurorat mbrojnë dhëmbët shumë të dëmtuar. Trajtimi i hershëm është më i thjeshtë, më i lirë e më pak i dhimbshëm."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Lani dhëmbët dy herë në ditë me pastë dhëmbësh me fluor për dy minuta, pastroni midis dhëmbëve çdo ditë, kufizoni ushqimet e pijet me sheqer në kohën e vakteve e shpëlani me ujë pas pijeve acide ose të ëmbla. Fëmijët duhet të përdorin një sasi të vogël paste me fluor nën mbikëqyrje e dentistët mund të aplikojnë llak fluori ose mbyllës në molarët."
+      ]
+    },
+    {
+      "heading": "Kujdesi i rregullt dentar",
+      "paragraphs": [
+        "Vizitoni një dentist rregullisht për kontrolle, me shpeshtësi të caktuar sipas rrezikut tuaj. Foshnjave nuk duhet t'u jepen pije të ëmbëlsuara në biberonë para gjumit. Shmangni gllënjkat e shpeshta të pijeve me sheqer. Nëse keni gojë të thatë, pyesni për produkte të përshtatshme. Kërkoni ndihmë menjëherë për çdo dhimbje dhëmbi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ndërtimi i një rutine",
+      "text": "Imagjinoni që fëmija juaj nuk e do larjen e dhëmbëve. Mund të lani bashkë dy herë në ditë me një kohëmatës ose këngë e t'i kufizoni ëmbëlsirat në kohën e vakteve."
+    },
+    {
+      "title": "Zbulimi i shenjave të hershme",
+      "text": "Supozoni që vini re një njollë të bardhë si shkumës në një dhëmb. Mund ta pyesni dentistin për trajtim me fluor e këshilla për të parandaluar një gropë."
+    }
+  ],
+  "questions": [
+    "A kam shenja prishjeje e si duhet trajtuar?",
+    "Sa shpesh duhet të bëj kontroll?",
+    "A do të ishin të dobishëm llaku i fluorit ose mbyllësit për fëmijën tim?"
+  ]
+}

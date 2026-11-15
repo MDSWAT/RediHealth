@@ -1,0 +1,52 @@
+{
+  "title": "Kako gležanj podupire hod",
+  "intro": "Gležanj povezuje potkoljenicu i stopalo, nosi težinu i prilagođava se podlozi. Zglobovi, ligamenti, tetive i mišići surađuju; bol nakon uvrtanja nije automatski blago uganuće.",
+  "sections": [
+    {
+      "heading": "Kosti i pokret",
+      "paragraphs": [
+        "Goljenična i lisna kost okružuju gležanjsku kost. Gornji zglob uglavnom pomiče stopalo gore i dolje; donji pomažu bočnoj prilagodbi."
+      ]
+    },
+    {
+      "heading": "Kontakt",
+      "paragraphs": [
+        "Hrskavica i zglobna tekućina smanjuju trenje. Oblik raspoređuje opterećenje, ali ponavljana sila iznad podnošljivosti tkiva može ozlijediti."
+      ]
+    },
+    {
+      "heading": "Stabilnost",
+      "paragraphs": [
+        "Ligamenti povezuju kosti i ograničavaju pretjeran pokret. Tetive prenose mišićnu silu; Ahilova pomaže odrazu. Ozljeda ligamenta razlikuje se od puknuća tetive ili prijeloma."
+      ]
+    },
+    {
+      "heading": "Oporavak",
+      "paragraphs": [
+        "Zaštitite ozlijeđen gležanj i pitajte o sigurnom opterećenju. Snaga i ravnoteža vraćaju se postupno; ponavljano popuštanje traži pregled, ne prisilno istezanje."
+      ]
+    },
+    {
+      "heading": "Upozorenja",
+      "paragraphs": [
+        "Deformacija, nemogućnost oslonca, hladno ili utrnulo stopalo te prasak uz gubitak odraza zahtijevaju brzu procjenu. Mogućnost pokreta ne isključuje prijelom.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira često izvrne gležanj na neravnoj podlozi. Pita o rehabilitaciji i ravnoteži, ne oslanja se samo na steznik."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben osjeti prasak pri trčanju i ne može se odraziti. Traži pregled umjesto pokušaja da razhoda ozljedu."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

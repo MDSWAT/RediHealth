@@ -1,0 +1,52 @@
+{
+  "title": "Sensibilitatea și specificitatea testelor medicale",
+  "intro": "Niciun test medical nu este perfect. Sensibilitatea și specificitatea descriu cât de bine găsește un test persoanele cu o boală și cât de bine le dă corect drept sănătoase pe cele fără ea. Înțelegerea acestor idei vă ajută să interpretați rezultatele, mai ales de la screening, și să vedeți de ce un rezultat pozitiv nu este întotdeauna un diagnostic.",
+  "sections": [
+    {
+      "heading": "Sensibilitatea",
+      "paragraphs": [
+        "Sensibilitatea este proporția persoanelor cu boala pe care testul le identifică corect ca fiind pozitive. Un test cu sensibilitate de nouăzeci la sută depistează nouă din zece persoane cu boala și ratează una. Un test cu sensibilitate mare este valoros când ratarea unei boli ar fi gravă, deoarece un rezultat negativ face atunci boala improbabilă."
+      ]
+    },
+    {
+      "heading": "Specificitatea",
+      "paragraphs": [
+        "Specificitatea este proporția persoanelor fără boala pe care testul le identifică corect ca fiind negative. Un test cu specificitate de nouăzeci la sută marchează greșit una din zece persoane sănătoase. Un test cu specificitate mare este util pentru confirmarea unui diagnostic, deoarece un rezultat pozitiv este mai puțin probabil să fie o alarmă falsă."
+      ]
+    },
+    {
+      "heading": "De ce un rezultat pozitiv poate fi greșit",
+      "paragraphs": [
+        "Șansa ca un rezultat pozitiv să fie corect depinde de cât de frecventă este boala la persoanele testate. Când o boală este rară, chiar și un test bun produce mai multe alarme false decât cazuri adevărate. Imaginați-vă o mie de persoane, dintre care zece au o boală. Un test cu sensibilitate de nouăzeci la sută și specificitate de nouăzeci la sută găsește nouă din cele zece persoane bolnave, dar marchează greșit și aproximativ nouăzeci și nouă din cele nouă sute nouăzeci de persoane sănătoase. Din aproximativ o sută opt rezultate pozitive, doar nouă au cu adevărat boala."
+      ]
+    },
+    {
+      "heading": "Consecințe și întrebări",
+      "paragraphs": [
+        "Rezultatele fals pozitive provoacă anxietate și teste suplimentare, uneori dăunătoare. Rezultatele fals negative pot întârzia tratamentul. Testele folosite pentru screeningul persoanelor sănătoase au deci nevoie de specificitate foarte mare, iar după un rezultat pozitiv de screening urmează adesea un al doilea test, mai specific.",
+        "Întrebați ce trebuie să arate testul, cât de fiabil este pentru persoane ca dumneavoastră, ce înseamnă un rezultat pozitiv sau negativ pentru dumneavoastră și ce urmează. Cifrele raportate la o sută sunt mai ușor de înțeles decât procentele."
+      ]
+    },
+    {
+      "heading": "Folosirea acestor noțiuni în deciziile de zi cu zi",
+      "paragraphs": [
+        "Cunoașterea acestor termeni ajută când citiți despre teste noi sau programe de screening. Un test promovat ca având acuratețe de nouăzeci și nouă la sută poate totuși produce multe alarme false când afecțiunea este rară, așa că căutați cifrele din spatele afirmației."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Înțelegerea unui rezultat",
+      "text": "Imaginați-vă că testul dumneavoastră de screening este pozitiv. Ați putea întreba ce proporție dintre persoanele cu un rezultat pozitiv au cu adevărat boala și ce test de confirmare va urma."
+    },
+    {
+      "title": "Compararea a două teste",
+      "text": "Presupuneți că vi se oferă două teste diferite. Ați putea întreba care este mai bun la evitarea alarmelor false și care la evitarea cazurilor ratate și de ce contează aceasta în situația dumneavoastră."
+    }
+  ],
+  "questions": [
+    "Cât de precis este acest test și care sunt ratele lui de fals pozitive și de fals negative?",
+    "Ce înseamnă un rezultat pozitiv sau negativ pentru mine?",
+    "Care ar fi pasul următor după un rezultat anormal?"
+  ]
+}

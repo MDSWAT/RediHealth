@@ -1,0 +1,52 @@
+{
+  "title": "Tinea versicolor (pitiriaza versikolor)",
+  "intro": "Tinea versicolor është një gjendje e zakonshme e padëmshme kërpudhore e lëkurës që shkakton njolla lëkure më të çelëta ose më të errëta, kryesisht në trung e krahët e sipërm. Nuk është ngjitëse e shkaktohet nga një majaja që jeton normalisht në lëkurë. Trajtohet lehtë, megjithëse shpesh kthehet, veçanërisht në mot të ngrohtë e të lagësht.",
+  "sections": [
+    {
+      "heading": "Çfarë e shkakton",
+      "paragraphs": [
+        "Një majaja e quajtur Malassezia jeton në lëkurë të shëndetshme. Në kushte të ngrohta e të lagështa, me lëkurë yndyrore, djersitje të fortë, ose nganjëherë me sistem imunitar të dobësuar, mund të shumohet e të ndërhyjë në pigmentin normal të lëkurës. Është më e zakonshme te adoleshentët e të rinjtë e në klimat tropikale."
+      ]
+    },
+    {
+      "heading": "Si duket",
+      "paragraphs": [
+        "Njolla të rrumbullakëta ose ovale me luspa të holla shfaqen në gjoks, shpinë, shpatulla e krahët e sipërm. Mund të jenë të zbehta, rozë, bezhë ose kafe e dallohen më shumë pas ekspozimit ndaj diellit, sepse lëkura e prekur nuk nxihet. Kruarja është e lehtë ose mungon."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Mjekët diagnostikojnë nga pamja, nganjëherë me një dritë të veçantë ose ekzaminim mikroskopik të kruarjeve të lëkurës. Gjendje të tjera si vitiligo, ekzema, pitiriaza rozea e dermatiti seboreik mund të duken të ngjashme e dallohen me ekzaminim."
+      ]
+    },
+    {
+      "heading": "Trajtimi dhe rikthimi",
+      "paragraphs": [
+        "Shampot antifungale si ketokonazoli ose sulfuri i selenit, të aplikuara në lëkurë për disa minuta para shpëlarjes, kremrat ose spërkatësit e pastrojnë infeksionin. Rastet e rënda ose të përhapura mund të kenë nevojë për tableta antifungale. Ngjyra e lëkurës mund të marrë javë deri muaj për t'u barazuar pasi ka ikur majaja e rrezatimi i diellit mund t'i bëjë njollat më të dukshme ndërkohë. Rikthimi është i zakonshëm, prandaj disa njerëz përdorin një larje parandaluese një a dy herë në muaj në stinën kur tenton të kthehet.",
+        "Vishni rroba që marrin frymë, bëni dush pas djersitjes e shmangni kremrat e rëndë yndyrorë në lëkurën e prekur."
+      ]
+    },
+    {
+      "heading": "Kur të shihni një mjek",
+      "paragraphs": [
+        "Shihni një mjek nëse skuqja ka kruarje, përhapet shpejt, nuk i përgjigjet trajtimit pas disa javësh ose duket ndryshe nga modeli i zakonshëm. Diagnoza nga një profesionist shmang trajtimin e panevojshëm të gjendjeve të tjera të lëkurës që duken të ngjashme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përdorimi i një shampoje",
+      "text": "Imagjinoni që keni njolla të zbehta në shpinë. Mund të aplikoni një shampo antifungale për kohën në etiketë, ta shpëlani mirë e ta përsërisni siç udhëzohet."
+    },
+    {
+      "title": "Parandalimi i rikthimit",
+      "text": "Supozoni që njollat kthehen çdo verë. Mund ta pyesni mjekun për një larje parandaluese mujore e të vishni këmisha të lehta që marrin frymë."
+    }
+  ],
+  "questions": [
+    "A është kjo tinea versicolor apo gjendje tjetër e lëkurës?",
+    "Cili trajtim është më i miri e sa kohë do të zgjasin ndryshimet e ngjyrës?",
+    "Si mund ta parandaloj të kthehet?"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Cum să folosiți diferitele tipuri de informații despre sănătate",
+  "intro": "Informațiile despre sănătate vin în multe forme, precum prezentări generale, articole detaliate, explicații despre teste și tratamente și experiențe personale. Cunoașterea a ceea ce oferă fiecare tip vă ajută să găsiți răspunsuri mai repede și să nu confundați informațiile generale cu sfaturi medicale personale.",
+  "sections": [
+    {
+      "heading": "Prezentări generale și articole detaliate",
+      "paragraphs": [
+        "Prezentările generale oferă o scurtă introducere într-un subiect. Ele explică ce este o afecțiune, cum este recunoscută de obicei și care sunt principalele opțiuni. Articolele detaliate merg mai departe, tratând simptomele, cauzele, testele, tratamentele și viața de zi cu zi mai în profunzime.",
+        "Citirea mai întâi a unei prezentări generale vă poate ajuta să decideți care articole specifice contează pentru dumneavoastră și ce termeni să căutați."
+      ]
+    },
+    {
+      "heading": "Explicații despre teste și tratamente",
+      "paragraphs": [
+        "Unele articole se concentrează pe modul în care funcționează un test sau o procedură, ce pregătire este necesară și ce ar putea însemna rezultatele. Ele vă ajută să știți la ce să vă așteptați și pot reduce îngrijorarea înainte de un consult. Explică de asemenea beneficiile, riscurile și incertitudinile, pentru ca dumneavoastră să puteți cântări opțiunile."
+      ]
+    },
+    {
+      "heading": "Experiențe personale și exemple",
+      "paragraphs": [
+        "Exemplele care descriu cum ar putea cineva gestiona o situație pot face informațiile abstracte mai ușor de înțeles. Rețineți că experiențele diferă, iar ceea ce a ajutat o persoană poate să nu se potrivească alteia. Exemplele ipotetice sunt ilustrări, nu previziuni despre ceea ce se va întâmpla cu dumneavoastră."
+      ]
+    },
+    {
+      "heading": "Întrebări de discutat și surse",
+      "paragraphs": [
+        "Întrebările pentru profesionistul din sănătate transformă informația în acțiune. Aduceți-le la consultații și adăugați-le pe ale dumneavoastră. Linkurile către surse de la sfârșitul unui articol trimit la materialele pe care s-au bazat informațiile de fundal, ca să puteți citi mai departe.",
+        "Informațiile din articole sunt generale și nu pot înlocui niciodată un consult. Medicina se schimbă, așa că verificați datele și gândiți-vă dacă informațiile se potrivesc țării dumneavoastră, deoarece sistemele de sănătate și recomandările diferă."
+      ]
+    },
+    {
+      "heading": "Folosirea înțeleaptă a informațiilor",
+      "paragraphs": [
+        "Căutați autori clar identificați, conținut actualizat, o prezentare echilibrată a beneficiilor și riscurilor și declarații deschise despre incertitudine. Fiți sceptici față de promisiunile de vindecări miraculoase și față de paginile care vând în principal produse. Folosiți mai multe surse de încredere și vorbiți cu un profesionist despre deciziile care vă afectează sănătatea."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea unei consultații",
+      "text": "Imaginați-vă că tocmai ați primit diagnosticul unei afecțiuni de lungă durată. Ați putea citi o prezentare generală, sublinia cuvintele necunoscute, apoi copia întrebările de la sfârșit în notițe și adăuga grijile personale pentru următoarea vizită."
+    },
+    {
+      "title": "Compararea surselor",
+      "text": "Presupuneți că găsiți două pagini web cu sfaturi contradictorii despre un tratament. Ați putea verifica cine a scris fiecare pagină, când a fost actualizată și ce dovezi citează, apoi ați putea întreba medicul care sfat se aplică în cazul dumneavoastră."
+    }
+  ],
+  "questions": [
+    "Care dintre informațiile pe care le-am găsit se aplică propriei mele situații?",
+    "Există surse de încredere sau grupuri de sprijin pe care le-ați recomanda pentru afecțiunea mea?",
+    "Ce ar trebui să fac dacă informațiile citite contrazic ceea ce mi se spune?"
+  ]
+}

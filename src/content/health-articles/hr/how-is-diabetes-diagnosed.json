@@ -1,0 +1,56 @@
+{
+  "title": "Kako se dijagnosticira dijabetes",
+  "intro": "Dijabetes se dijagnosticira krvnim pretragama koje mjere koliko je šećera, odnosno glukoze, u krvi. Budući da rani dijabetes može proći bez simptoma, testiranje je važno za ljude pod većim rizikom. Razumijevanje glavnih pretraga i što brojevi znače olakšava praćenje i postavljanje pravih pitanja.",
+  "sections": [
+    {
+      "heading": "Zašto se testira",
+      "paragraphs": [
+        "Liječnici testiraju na dijabetes kad netko ima simptome kao što su jaka žeđ, često mokrenje, umor, zamagljen vid ili sporo cijeljenje rana. Testiraju i ljude bez simptoma koji imaju čimbenike rizika, primjerice prekomjernu tjelesnu težinu, bliskog srodnika s dijabetesom, visok krvni tlak ili dijabetes u trudnoći u povijesti.",
+        "Rano otkrivanje dijabetesa omogućuje liječenje prije nego što se razvije dugoročno oštećenje očiju, bubrega, živaca i krvnih žila. Također pomaže razlikovati različite oblike koji se liječe različito."
+      ]
+    },
+    {
+      "heading": "Glukoza u krvi natašte",
+      "paragraphs": [
+        "Test glukoze natašte mjeri razinu šećera u uzorku krvi uzetom nakon najmanje osam sati bez hrane ili kaloričnih pića. Jednostavan je i široko dostupan. Ponovljeni rezultat iznad dijagnostičkog praga od 126 mg/dl, ili 7.0 mmol/l, upućuje na dijabetes.",
+        "Vrijednosti između normalnih i praga za dijabetes zovu se poremećena glukoza natašte ili predijabetes. To je upozorenje da je rizik od razvoja dijabetesa povećan, a promjene načina života često mogu odgoditi ili spriječiti napredovanje."
+      ]
+    },
+    {
+      "heading": "HbA1c: dugoročna vrijednost",
+      "paragraphs": [
+        "HbA1c odražava prosječan šećer u krvi tijekom posljednja dva do tri mjeseca jer mjeri udio hemoglobina na koji je vezan šećer. Nije potrebno biti natašte. Vrijednost od 6.5 posto ili više upućuje na dijabetes kad se potvrdi.",
+        "HbA1c može biti nepouzdan u nekim situacijama, kao što su anemija, određene varijante hemoglobina, nedavni gubitak krvi ili transfuzija i bolest bubrega. U tim slučajevima liječnici se više oslanjaju na izravna mjerenja glukoze."
+      ]
+    },
+    {
+      "heading": "Test opterećenja glukozom",
+      "paragraphs": [
+        "U oralnom testu opterećenja glukozom šećer u krvi mjeri se natašte i ponovno dva sata nakon pijenja standardne otopine šećera. Može otkriti probleme koje vrijednosti natašte propuste i koristi se za dijagnosticiranje gestacijskog dijabetesa u trudnoći. Priprema i uvjeti su važni pa slijedite upute koje dobijete.",
+        "Slučajna vrijednost šećera u krvi od 200 mg/dl ili viša zajedno s tipičnim simptomima također može potvrditi dijagnozu. Bez simptoma rezultati se obično provjeravaju drugim testom."
+      ]
+    },
+    {
+      "heading": "Nakon dijagnoze",
+      "paragraphs": [
+        "Vaš će liječnik objasniti koju vrstu dijabetesa imate i dogovoriti daljnje pretrage, primjerice za funkciju bubrega, kolesterol i zdravlje očiju. Liječenje može uključivati promjene prehrane, tjelesnu aktivnost, tablete ili inzulin, uz edukaciju o praćenju.",
+        "Mnogi se ljudi isprva osjećaju preplavljeno. Edukacijski programi o dijabetesu i grupe podrške mogu vam pomoći razumjeti vaše stanje i izgraditi samopouzdanje u svakodnevnom nošenju s njim."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za pretragu",
+      "text": "Zamislite da ste naručeni na test glukoze u krvi natašte. Mogli biste potvrditi koliko dugo izbjegavati hranu, smijete li piti vodu i uzimati uobičajene lijekove te planirati rani termin kako bi vam post bio lakši."
+    },
+    {
+      "title": "Razumijevanje graničnog rezultata",
+      "text": "Pretpostavite da je vaš HbA1c blago povišen, ali ispod praga za dijabetes. Mogli biste pitati što to znači za vaš rizik, koji su koraci načina života najkorisniji i kada treba ponoviti test."
+    }
+  ],
+  "questions": [
+    "Koja je pretraga najbolja za mene i trebam li biti natašte ili se na neki drugi način pripremiti?",
+    "Ako je moj rezultat granični, koliko je vjerojatno da će napredovati i što mogu učiniti u vezi s tim?",
+    "Ako imam dijabetes, koje će mi se daljnje pretrage i edukacija ponuditi?"
+  ]
+}

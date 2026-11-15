@@ -1,0 +1,51 @@
+{
+  "title": "So si mikrobi?",
+  "intro": "Mikrobi, vaj mikroorganizmi, si živa bića but tikne te dikhen len bi mikroskoposke. Ande lende si bakterije, virusi, gljivice thaj nesave paraziti. Si sajekh: ande phuv, paniha, vazduh thaj pe amaro trup thaj andre ande leste. Većina si bezopasna vaj korisno, thaj samo nekobor keren bolest.",
+  "sections": [
+    {
+      "heading": "Bakterije",
+      "paragraphs": [
+        "Bakterije si jednoćelijski organizmi save shaj te dživen korkore thaj brzo te bajraren pes. But si korisne, sar primjer kala ande crijeva save azhutin te probavinel pes xabe thaj te proizvodinen vitamine, vaj kala save koristinen pes vash jogurt thaj sir. Nesave keren infekcije sar angina, infekcije mutrakone puteskere, tuberkuloza thaj upala pluća. Antibiotici radinen protiv bakterije."
+      ]
+    },
+    {
+      "heading": "Virusi",
+      "paragraphs": [
+        "Virusi si but tikne katar bakterije thaj na shaj te razmnožinen pes korkore. Upadinen ande ćelije thaj koristinen len te keren kopije korkoro pestar. Keren prehlada, gripa, ospice, hepatitis thaj COVID-19. Antibiotici na radinen protiv virusi, numa cjepiva shaj te spriječinen but virusne bolesti, thaj postojinen nesave antivirusni lekovi."
+      ]
+    },
+    {
+      "heading": "Gljivice thaj paraziti",
+      "paragraphs": [
+        "Gljivice uključinen kvasce thaj plijesni. Većina si bezopasna, numa nesave keren infekcije sar gljivica pe pičora, gljivica pe nokhja thaj afte, thaj rijetko teške infekcije ande manusha sa slabo imunitet. Paraziti, sar gliste, vaši, grinje šuga thaj organizmi save keren malaria, dživen pe vaj andre ande aver organizam thaj lan lestar hranjive tvari."
+      ]
+    },
+    {
+      "heading": "Mikrobiom",
+      "paragraphs": [
+        "Mikrobi save dživen pe trup thaj andre ande leste, maj but ande crijeva, koža thaj muj, vičinen pes mikrobiom. Azhutin probavu, uče imunološki sustav thaj štitinen katar štetne klice. Antibiotici, prehrana, higijena thaj bolest shaj te poremetinen kado ravnoteža. Istraživanje nastavinel pes vash sar utičinel pe zdravlje, thaj proizvodi save reklamirinen pes vash zdravlje crijevengo si razlikinen ande dokazi."
+      ]
+    },
+    {
+      "heading": "Zaštita",
+      "paragraphs": [
+        "Thov vas sapunoha, pripremin thaj ačh xabe sigurno, ačh cjepiva ažurno, pokrin kašljanje, izbjegin nepotrebne antibiotike thaj ačh rane čiste. Dobra higijena smanjinel infekcije, numa ekstremno sterilizacija kher na trubul. Koristin antibiotike samo kana propisinen pes, thaj završin terapija sar si phendo."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pranje vasengo",
+      "text": "Zamisli te mangesa te smanjines infekcije ande tiri familija. Shaj te thoves vas sapunoha dvadeset sekundi palal toalet, angle te kuhines thaj angle te xas."
+    },
+    {
+      "title": "Pravilno korištenje antibiotikengo",
+      "text": "Zamisli te si tut prehlada thaj mangesa antibiotike. Shaj te pučes doktores dali si virusno thaj sar te lokharines simptome."
+    }
+  ],
+  "questions": [
+    "Si li miri bolest uzrokuvime virusonoha, bakterijaja vaj aver sasto?",
+    "Trubul li man antibiotik, vaj si aver sastjaripe lačhe?",
+    "Save cjepiva trubun te lav?"
+  ]
+}

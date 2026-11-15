@@ -1,0 +1,51 @@
+{
+  "title": "Structura și funcția picioarelor",
+  "intro": "Picioarele poartă toată greutatea corpului, absorb șocurile și vă propulsează înainte la fiecare pas. Fiecare picior are 26 de oase, multe articulații, ligamente puternice, tendoane și mușchi care lucrează împreună. Înțelegerea modului în care este construit piciorul ajută la explicarea problemelor frecvente și a modului de îngrijire.",
+  "sections": [
+    {
+      "heading": "Oase și articulații",
+      "paragraphs": [
+        "Piciorul are trei regiuni principale: retropiciorul, cu osul călcâiului și osul gleznei, mediopiciorul, cu mai multe oase mai mici care formează bolta, și antepiciorul, cu cele cinci oase lungi și degetele. Degetul mare are două oase, iar celelalte degete trei. Articulațiile dintre ele permit piciorului să se adapteze la terenul denivelat și să se rigidizeze la împingere."
+      ]
+    },
+    {
+      "heading": "Bolțile",
+      "paragraphs": [
+        "Piciorul formează bolți pe lungime și pe lățime. Acestea acționează ca niște arcuri, distribuind sarcina și absorbind șocurile. Picioarele plate au bolți mai joase, iar bolta înaltă este mai rigidă. Ambele pot fi normale și nu provoacă probleme, dar uneori pot duce la durere sau oboseală."
+      ]
+    },
+    {
+      "heading": "Ligamente, tendoane și mușchi",
+      "paragraphs": [
+        "Ligamentele leagă oasele și stabilizează articulațiile. Fascia plantară, o bandă groasă de sub talpă, susține bolta. Tendoanele leagă mușchii gambei și ai piciorului de oase, precum tendonul lui Ahile, cel mai puternic din corp, care leagă mușchii gambei de călcâi. Mușchii mici din picior controlează degetele și susțin bolta."
+      ]
+    },
+    {
+      "heading": "Piele, nervi și circulație",
+      "paragraphs": [
+        "Talpa are piele groasă și o pernă de grăsime sub călcâi și sub partea din față, care amortizează impactul. Nervii oferă simțul tactil și al echilibrului, iar vasele de sânge aduc oxigen. Sensibilitatea sau circulația redusă, ca în diabet, fac leziunile și infecțiile mai probabile."
+      ]
+    },
+    {
+      "heading": "Îngrijirea picioarelor",
+      "paragraphs": [
+        "Purtați pantofi potriviți, cu spațiu pentru degete și susținere bună, schimbați-i regulat și evitați tocurile înalte perioade lungi. Mergeți desculț pe suprafețe sigure pentru a întări mușchii piciorului, păstrați pielea curată și hidratată, tăiați unghiile drept și verificați regulat picioarele. Durerea persistentă, deformările sau schimbările pielii și ale unghiilor trebuie evaluate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Alegerea pantofilor",
+      "text": "Imaginați-vă că vă cumpărați pantofi noi pentru mers. Ați putea să-i probați după-amiaza, să verificați dacă degetele se pot mișca liber și să vă plimbați prin magazin înainte de a cumpăra."
+    },
+    {
+      "title": "Întărirea piciorului",
+      "text": "Presupuneți că bolțile vă obosesc după statul îndelungat în picioare. Ați putea exersa ridicarea unui prosop cu degetele și rularea piciorului pe o minge câteva minute zilnic."
+    }
+  ],
+  "questions": [
+    "Am picioare plate sau boltă înaltă și contează aceasta pentru mine?",
+    "Am nevoie de branțuri sau de pantofi speciali?",
+    "Ce exerciții pentru picior mi-ar ajuta simptomele?"
+  ]
+}

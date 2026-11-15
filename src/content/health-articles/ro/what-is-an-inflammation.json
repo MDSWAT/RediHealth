@@ -1,0 +1,51 @@
+{
+  "title": "Ce este inflamația",
+  "intro": "Inflamația este răspunsul organismului la leziune, infecție sau iritație. Este un proces de protecție care ajută la vindecare, dar când este excesivă sau durează prea mult poate deteriora țesuturile și poate contribui la multe boli. Înțelegerea ei ajută la explicarea unor simptome precum umflarea și febra.",
+  "sections": [
+    {
+      "heading": "Inflamația acută",
+      "paragraphs": [
+        "Inflamația acută începe rapid și durează zile. Vasele de sânge se dilată, ajung mai mult sânge și lichid în zonă, iar globulele albe sosesc să lupte cu microbii și să curețe țesutul deteriorat. Aceasta produce semnele clasice de roșeață, căldură, umflătură, durere și pierderea funcției, ca la o tăietură, o entorsă sau o durere în gât."
+      ]
+    },
+    {
+      "heading": "Inflamația cronică",
+      "paragraphs": [
+        "Când cauza persistă sau sistemul imunitar este hiperactiv, inflamația poate continua luni sau ani. Este implicată în boli precum poliartrita reumatoidă, bolile inflamatorii intestinale, astmul, psoriazisul și, în parte, bolile de inimă și diabetul. Inflamația cronică poate deteriora țesutul sănătos și poate provoca oboseală și durere."
+      ]
+    },
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Cauzele includ infecția cu bacterii sau virusuri, leziunile, arsurile, substanțele chimice, alergiile, boala autoimună în care sistemul imunitar atacă corpul, obezitatea, fumatul și stresul de lungă durată. Nu orice inflamație este o infecție și nu necesită întotdeauna antibiotice."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament",
+      "paragraphs": [
+        "Medicii urmăresc simptomele, examinează zona și pot folosi analize de sânge precum proteina C reactivă, investigații imagistice sau probe de țesut. Tratamentul abordează cauza. Odihna, răcirea și analgezicele antiinflamatoare precum ibuprofenul pot ameliora simptomele acute, iar steroizii sau alte medicamente imunomodulatoare sunt folosite în boala cronică. Verificați cu un medic înainte de a lua regulat antiinflamatoare."
+      ]
+    },
+    {
+      "heading": "Obiceiuri sănătoase",
+      "paragraphs": [
+        "O alimentație echilibrată bogată în legume, fructe, cereale integrale și pește, mișcarea regulată, somnul suficient, nefumatul, alcoolul limitat și o greutate sănătoasă sunt asociate cu niveluri mai scăzute de inflamație. Afirmațiile despre diete sau suplimente speciale antiinflamatoare care vindecă boli sunt adesea exagerate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Calmarea unei entorse",
+      "text": "Imaginați-vă că v-ați răsucit glezna. Ați putea să o odihniți, să aplicați o compresă rece înfășurată într-o cârpă și să ridicați piciorul."
+    },
+    {
+      "title": "Vizita la medic",
+      "text": "Presupuneți că o articulație rămâne umflată săptămâni la rând. Ați putea face o programare, deoarece inflamația de lungă durată necesită un diagnostic corespunzător."
+    }
+  ],
+  "questions": [
+    "Ce provoacă inflamația?",
+    "Ce tratament este cel mai sigur pentru mine?",
+    "Ce schimbări ale stilului de viață ar putea ajuta?"
+  ]
+}

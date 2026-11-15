@@ -1,0 +1,51 @@
+{
+  "title": "Hormonska terapija menopauze: individualna odluka",
+  "intro": "Hormonska terapija ublažava valove vrućine, noćno znojenje i neke povezane simptome. Mogućnost je, ne obveza. Koristi i rizici ovise o dobi, povijesti, pripravku i putu te traže individualan razgovor.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Sistemska terapija djeluje u tijelu; niskodozni vaginalni estrogen uglavnom liječi lokalnu suhoću s drukčijim rizikom. Osoba s maternicom obično treba zaštitu endometrija uz sistemski estrogen."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Procjena uključuje simptome, neobjašnjivo krvarenje, dojke, ugruške, jetru i lijekove. Hormonski testovi ne trebaju uvijek u tipičnoj menopauzi. Ranu raspravite zasebno jer ciljevi mogu biti drukčiji. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Postoje tablete, flasteri ili gelovi uz prikladan progestogen kada treba i nehormonski pristupi. Oralni i transdermalni estrogen imaju različite rizike ugrušaka. Miješani ili biljni pripravci nisu automatski sigurniji. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Dogovorite ciljeve i redovite kontrole doze, nuspojava i koristi. Nema istog datuma prekida za sve. Terapija nije kontracepcija: raspravite zaštitu od trudnoće kada je potrebna. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Neobjašnjivo krvarenje procjenjuje se prije, novo ili trajno tijekom terapije prijavljuje se. Prsna bol, teška zaduha, bolna otečena noga ili znakovi udara traže hitnost bez čekanja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima valunge koji remete san pa pita za puteve i alternative prema svom riziku, ne prijateljičinu receptu."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben pomaže partnerici s dnevnikom. Ona raspravlja trajno krvarenje bez pretpostavke da je svaka promjena obična menopauza."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

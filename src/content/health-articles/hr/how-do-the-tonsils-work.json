@@ -1,0 +1,51 @@
+{
+  "title": "Krajnici i adenoidi: imunološko tkivo",
+  "intro": "Krajnici su imunološko tkivo na ulazu dišnog i probavnog puta. Prepoznaju klice posebno u djetinjstvu, ne savršena prepreka. Grlobolja nije automatski antibiotik ili operacija.",
+  "sections": [
+    {
+      "heading": "Mjesta",
+      "paragraphs": [
+        "Nepčani su vidljivi u ustima. Adenoidi su više iza nosa, obično nevidljivi. Drugo tkivo je blizu jezika."
+      ]
+    },
+    {
+      "heading": "Imunitet",
+      "paragraphs": [
+        "Stanice prepoznaju materijal i razvijaju odgovor. Veličina se mijenja s dobi i infekcijom. Veliki nisu dokaz težine; mali se također upale."
+      ]
+    },
+    {
+      "heading": "Infekcija i zapreka",
+      "paragraphs": [
+        "Virusi i bakterije upale, izgled ne razlikuje uvijek. Veće tkivo ometa gutanje ili san. Hrkanje s pauzama i dnevnim učincima traži pregled."
+      ]
+    },
+    {
+      "heading": "Odluke",
+      "paragraphs": [
+        "Ovise o uzroku, težini, ponavljanju i disanju. Antibiotik pomaže nekim bakterijama, ne svakom grlu. Operacija ima korist i rizik krvi i boli, ne uklanja svu obranu."
+      ]
+    },
+    {
+      "heading": "Hitnost",
+      "paragraphs": [
+        "Teško disanje, slinjenje uz nemoguće gutanje, jednostran otok, prigušen glas ili teško otvaranje traže hitnost. Krv nakon operacije hitna je i ako prestane. Ne čekajte zbog ranijeg blagoga slučaja. Prije pregleda zapišite kada je simptom počeo, što ga ublažava ili pogoršava i kako utječe na uobičajene aktivnosti. Ponesite prethodne nalaze ako ih imate. Zamolite stručnjaka da objašnjenje poveže s vašim nalazima: opći opis sam po sebi ne postavlja dijagnozu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira zapisuje infekcije i školu prije rasprave, ne traži operaciju nakon jednog slučaja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben vidi dječje hrkanje s pauzama. Traži pregled bez pretpostavke bezazlenosti."
+    }
+  ],
+  "questions": [
+    "Koji bi koraci bili jasniji uz dijagram?",
+    "Što objašnjenje pokazuje i što ne predviđa?",
+    "Treba li moja konkretna briga stručnu procjenu?"
+  ]
+}

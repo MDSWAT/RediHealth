@@ -1,0 +1,54 @@
+{
+  "title": "Visoki i niski šećer u krvi kod dijabetesa tipa 2",
+  "intro": "Osobe s dijabetesom tipa 2 mogu imati šećer u krvi koji je previsok, što se zove hiperglikemija, ili prenizak, što se zove hipoglikemija. Prepoznavanje znakova i znanje što učiniti pomaže vam ostati sigurni i spriječiti hitne slučajeve. Niski šećer u krvi mnogo je rjeđi uz promjene načina života ili sam metformin, ali se može pojaviti uz inzulin ili određene tablete.",
+  "sections": [
+    {
+      "heading": "Visoki šećer u krvi",
+      "paragraphs": [
+        "Hiperglikemija se razvija postupno. Tipični znakovi su pojačana žeđ, često mokrenje, umor, zamagljen vid i sporo cijeljenje rana. Bolest, infekcija, stres, određeni lijekovi, propuštene doze, veliki obroci bogati ugljikohidratima i nedostatak tjelovježbe mogu podići razine.",
+        "Trajno visoke razine s vremenom oštećuju krvne žile i živce i povećavaju rizik od problema sa srcem, bubrezima, očima i stopalima. Vrlo visoke razine uz povraćanje, tešku dehidraciju, pospanost ili smetenost zahtijevaju hitnu liječničku skrb."
+      ]
+    },
+    {
+      "heading": "Niski šećer u krvi",
+      "paragraphs": [
+        "Hipoglikemija nastaje kad šećer u krvi padne prenisko, primjerice nakon previše inzulina ili tableta sulfonilureje, preskočenih obroka, neuobičajene tjelovježbe ili alkohola. Rani znakovi uključuju drhtanje, znojenje, glad, lupanje srca, vrtoglavicu i tjeskobu. Ako se pogorša, mogu uslijediti problemi s koncentracijom, smetenost, nerazgovjetan govor i gubitak svijesti.",
+        "Neki ljudi gube rane znakove upozorenja, osobito nakon mnogo godina dijabetesa, pa je redovito praćenje važno."
+      ]
+    },
+    {
+      "heading": "Što učiniti kod niskog šećera u krvi",
+      "paragraphs": [
+        "Ako možete sigurno gutati, uzmite brzodjelujući ugljikohidrat kao što su tablete glukoze, voćni sok ili zaslađeno piće, pričekajte oko petnaest minuta i ponovno izmjerite, ponavljajući ako je razina još niska. Zatim pojedite užinu ili obrok ako sljedeći obrok nije uskoro. Ako je netko bez svijesti ili ne može gutati, nazovite hitnu pomoć i ne stavljajte hranu u usta.",
+        "Bližnji i kolege mogu se poučiti što učiniti, a nekim ljudima može biti propisan hitni komplet s glukagonom."
+      ]
+    },
+    {
+      "heading": "Što učiniti kod visokog šećera u krvi",
+      "paragraphs": [
+        "Pijte puno tekućine bez šećera i češće provjeravajte razinu, kako vam je savjetovano. Slijedite plan liječenja i obratite se timu za dijabetes ako razine ostanu visoke, osobito tijekom bolesti, jer će se doze možda trebati prilagoditi. Ne prekidajte lijekove bez savjeta."
+      ]
+    },
+    {
+      "heading": "Prevencija i planiranje",
+      "paragraphs": [
+        "Redovito mjerenje prema vašem planu, uravnoteženi obroci, dosljedno vrijeme uzimanja lijekova, oprez s alkoholom i planiranje oko tjelovježbe pomažu spriječiti krajnosti. Nosite glukozu ili užinu, nosite identifikaciju i uvijek obavijestite ljude bliske vama o svom dijabetesu. Ne vozite kad vam je šećer u krvi nizak."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Drhtanje na poslu",
+      "text": "Zamislite da se prije ručka osjećate drhtavo i znojno nakon uzimanja uobičajene tablete. Mogli biste izmjeriti šećer u krvi, uzeti glukozu ako je nizak, a zatim razgovarati s liječnikom treba li promijeniti lijek ili vrijeme obroka."
+    },
+    {
+      "title": "Plan za dane bolesti",
+      "text": "Pretpostavite da imate bolest želuca i ne možete jesti. Mogli biste nazvati tim za dijabetes zbog toga koje lijekove prilagoditi, redovito piti male količine tekućine i češće provjeravati šećer u krvi."
+    }
+  ],
+  "questions": [
+    "Koji ciljni raspon trebam ciljati i koliko često trebam mjeriti?",
+    "Je li vjerojatno da moj lijek uzrokuje niski šećer u krvi i što trebam učiniti ako se to dogodi?",
+    "Koji je moj plan za dane bolesti, putovanja i tjelovježbu?"
+  ]
+}

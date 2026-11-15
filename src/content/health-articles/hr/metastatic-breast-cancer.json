@@ -1,0 +1,52 @@
+{
+  "title": "Metastatski rak dojke",
+  "intro": "Metastatski rak dojke znači da se rak koji je počeo u dojci proširio na druge dijelove tijela, kao što su kosti, jetra, pluća ili mozak. Obično nije izlječiv, ali liječenja ga mogu kontrolirati mjesecima ili godinama, ublažiti simptome i očuvati kvalitetu života. Postoje mnoge mogućnosti, a odluke su individualne.",
+  "sections": [
+    {
+      "heading": "Kako se otkriva",
+      "paragraphs": [
+        "Može se naći pri prvoj dijagnozi ili se vratiti godinama nakon ranijeg liječenja. Simptomi ovise o tome gdje se proširio, kao što su bol u kostima, nedostatak zraka, uporan kašalj, nelagoda u trbuhu, glavobolje ili gubitak težine. Pretrage, krvne pretrage i biopsije metastaza potvrđuju nalaze i pokazuju značajke raka."
+      ]
+    },
+    {
+      "heading": "Vrsta raka je važna",
+      "paragraphs": [
+        "Liječenje ovisi o tome nose li stanice raka hormonske receptore, proizvode li previše bjelančevine HER2 ili su trostruko negativne. Testiranje novog uzorka može pokazati razlike od izvornog tumora. Genetske pretrage mogu utvrditi promjene zbog kojih su određeni lijekovi korisni."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Hormonski osjetljivi rakovi često se liječe endokrinom terapijom u kombinaciji s ciljanim lijekovima. Rakovi pozitivni na HER2 reagiraju na anti-HER2 protutijela. Kemoterapija, imunoterapija i drugi ciljani lijekovi koriste se kad je potrebno. Liječenje se nastavlja dokle god djeluje i dobro se podnosi, a mijenja se ako rak napreduje.",
+        "Radioterapija, operacija i lijekovi za jačanje kostiju pomažu kontrolirati lokalne probleme i simptome. Klinička ispitivanja mogu omogućiti pristup novim liječenjima."
+      ]
+    },
+    {
+      "heading": "Kontrola simptoma i palijativna skrb",
+      "paragraphs": [
+        "Palijativni timovi usredotočuju se na ublažavanje boli, mučnine, umora i emocionalnog opterećenja i uključeni su uz liječenje raka, a ne samo na kraju života. Rano uključivanje povezano je s boljom kvalitetom života. Komplementarne terapije kao što su vježbanje i opuštanje mogu pomoći, ali ih treba razgovarati s vašim timom."
+      ]
+    },
+    {
+      "heading": "Život s uznapredovalim rakom",
+      "paragraphs": [
+        "Osjećaji straha, ljutnje i tuge su normalni. Psihoonkološka potpora, grupe podrške i socijalne službe mogu pomoći kod emocionalnih i praktičnih briga, uključujući posao, financije i obveze skrbi. Razgovor o ciljevima, željama i planiranju skrbi unaprijed je koristan."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za odluku o liječenju",
+      "text": "Zamislite da ste upravo saznali da se vaš rak proširio. Mogli biste povesti rođaka na preglede, snimiti razgovor i zapisati pitanja o ciljevima, nuspojavama i kako će se mjeriti uspjeh liječenja."
+    },
+    {
+      "title": "Traženje potpore",
+      "text": "Pretpostavite da se osjećate izolirano. Mogli biste pitati onkološki tim o psihoonkološkom savjetniku ili lokalnoj grupi za žene s uznapredovalim rakom dojke."
+    }
+  ],
+  "questions": [
+    "Koje su značajke mog raka i koja liječenja im odgovaraju?",
+    "Koji su ciljevi liječenja i kako ćemo prosuditi djeluje li?",
+    "Kako mi palijativna skrb može pomoći sada?"
+  ]
+}

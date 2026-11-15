@@ -1,0 +1,51 @@
+{
+  "title": "Problemi del sonno e insonnia",
+  "intro": "Quasi tutti hanno problemi di sonno a un certo punto. L'insonnia significa difficoltà persistente ad addormentarsi, a restare addormentati o a svegliarsi troppo presto, insieme a stanchezza o scarso funzionamento durante il giorno. I problemi a breve termine di solito passano e per l'insonnia di lunga durata la terapia comportamentale funziona meglio e in modo più duraturo dei sonniferi.",
+  "sections": [
+    {
+      "heading": "Che cos'è l'insonnia",
+      "paragraphs": [
+        "L'insonnia si diagnostica quando i problemi si verificano almeno tre notti a settimana per un mese o più e influiscono sul funzionamento diurno. Le lamentele tipiche sono restare svegli a letto, svegliarsi di notte, svegliarsi presto, sonno non ristoratore, affaticamento, irritabilità e difficoltà di concentrazione. La preoccupazione per il sonno stesso spesso mantiene il problema."
+      ]
+    },
+    {
+      "heading": "Cause e fattori che contribuiscono",
+      "paragraphs": [
+        "Stress, preoccupazioni, cambiamenti di routine, lavoro a turni, dolore, rumore, caffeina, alcol, nicotina e alcuni farmaci possono disturbare il sonno. L'insonnia spesso accompagna depressione e ansia. Altri disturbi del sonno come l'apnea notturna e le gambe senza riposo possono causare un sonno scarso e vanno verificati se sospettati."
+      ]
+    },
+    {
+      "heading": "Abitudini del sonno che aiutano",
+      "paragraphs": [
+        "Mantieni orari regolari per andare a letto e svegliarti, anche nei fine settimana, prendi luce del giorno e fai esercizio ed evita caffeina nel pomeriggio e pasti pesanti o alcol vicino all'ora di dormire. Crea una camera buia, silenziosa e fresca e riserva il letto al sonno. Evita schermi e attività stimolanti a sera tarda. Se non riesci a dormire dopo circa venti minuti, alzati e fai qualcosa di rilassante finché non senti sonno."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "La terapia cognitivo-comportamentale per l'insonnia è il primo trattamento raccomandato. Comprende programmazione del sonno, limitazione del tempo a letto, cambiamento dei pensieri non utili sul sonno e rilassamento. Può essere offerta da un terapeuta, in gruppo o tramite programmi digitali approvati. I sonniferi possono aiutare a breve termine ma causano dipendenza, sonnolenza diurna e cadute, quindi si usano solo per brevi periodi. I rimedi a base di erbe come la valeriana hanno un beneficio incerto."
+      ]
+    },
+    {
+      "heading": "Quando chiedere aiuto",
+      "paragraphs": [
+        "Vai dal medico se il sonno scarso persiste per diverse settimane, se russi forte con pause del respiro, ti addormenti involontariamente durante il giorno o ti senti giù o in ansia. Non guidare se sei assonnato."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tenere un diario del sonno",
+      "text": "Immagina di dormire male quasi ogni notte. Potresti registrare l'ora di andare a letto, quella di svegliarti, i sonnellini, la caffeina e l'umore per due settimane e portare il diario al medico."
+    },
+    {
+      "title": "Spezzare il circolo della preoccupazione",
+      "text": "Supponi di restare sveglio a preoccuparti per il domani. Potresti scrivere su carta i compiti di domani prima di dormire e alzarti per un'attività calma se non riesci a dormire dopo venti minuti."
+    }
+  ],
+  "questions": [
+    "Una condizione medica o un farmaco potrebbe causare la mia insonnia?",
+    "La terapia cognitivo-comportamentale per l'insonnia è disponibile per me?",
+    "Per quanto tempo è sicuro usare i sonniferi?"
+  ]
+}

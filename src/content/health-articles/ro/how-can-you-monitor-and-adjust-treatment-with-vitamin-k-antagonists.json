@@ -1,0 +1,51 @@
+{
+  "title": "Antagoniștii vitaminei K: monitorizare și doză sigură",
+  "intro": "Antagoniștii vitaminei K, precum warfarina, reduc coagularea și previn cheaguri periculoase. Efectul prea mic lasă risc, cel prea mare crește sângerarea. Siguranța depinde de ținta INR individuală și plan clar.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "INR măsoară efectul medicamentului. Ținta și intervalul depind de motiv și stabilitate; nu există doză ori țintă universală. Concentrațiile diferite ale comprimatelor trebuie verificate atent."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Păstrați evidența dozelor și analizelor și știți cine dă următoarea instrucțiune. Testarea acasă ori autoajustarea se fac numai după pregătire structurată și acordul serviciului, nu după tabel online. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Boala, vărsăturile, diareea, medicamentele noi, antibioticele și suplimentele schimbă efectul. Anunțați echipa despre schimbări și proceduri. Nu opriți și nu înlocuiți temporar tratamentul înainte de dentist ori operație fără plan profesional. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Păstrați aportul vitaminei K relativ constant, fără interzicerea tuturor verdețurilor. Discutați alcoolul și dieta schimbată. Urmați instrucțiunile specifice dozei omise; nu dublați și nu improvizați corecția. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Trauma capului, sângele necontrolat, vărsăturile cu sânge, scaunele negre, cefaleea severă ori semnele vasculare cerebrale cer urgență. INR în afara limitelor cere sfat la timp și fără simptome. Sarcina suspectă cere contact prompt."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira începe antibiotic și anunță serviciul, care decide dacă trebuie INR mai devreme."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben primește altă concentrație și verifică doza scrisă cu farmacistul, fără să presupună că același număr de comprimate înseamnă aceeași doză."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Dispepsia funzionale: disturbi persistenti nella parte alta dell’addome",
+  "intro": "La dispepsia funzionale può causare sazietà precoce, bruciore o dolore sopra l’ombelico senza un’ulcera che spieghi i sintomi. Il disturbo è reale anche quando gli esami abituali sono normali.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Sensibilità e motilità dello stomaco, insieme alla comunicazione intestino–cervello, possono contribuire. I sintomi oscillano: un esame normale non significa che siano inventati."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Descrivere rapporto con i pasti, variazioni di peso e farmaci. Il medico decide se servono test per Helicobacter, analisi del sangue o endoscopia, evitando indagini automatiche indiscriminate. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Le possibilità includono terapia dell’infezione da Helicobacter confermata, prova con riduzione dell’acidità o interventi psicologici sulla relazione intestino–cervello. La risposta varia; non accumulare farmaci inutili. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Provare pasti regolari più piccoli se utili, mangiare lentamente e individuare fattori personali senza ampie esclusioni alimentari. Una nutrizione adeguata conta più delle diete restrittive non dimostrate. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Vomito con sangue, feci nere, difficoltà a deglutire, calo ponderale inspiegato o vomito persistente richiedono valutazione tempestiva. Dolore improvviso intenso o collasso richiedono soccorso urgente."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira si sente subito sazia dopo pranzi abbondanti. Prova porzioni più piccole e annota i sintomi per verificare se il cambiamento aiuta."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben sviluppa difficoltà a deglutire dopo una precedente diagnosi funzionale. Chiede una rivalutazione invece di attribuire ogni novità allo stesso disturbo."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

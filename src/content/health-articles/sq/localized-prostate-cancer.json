@@ -1,0 +1,51 @@
+{
+  "title": "Kanceri i lokalizuar i prostatës",
+  "intro": "Kanceri i prostatës është një nga kancerët më të zakonshëm te burrat. Në shumë raste gjendet kur është ende i kufizuar në prostatë dhe rritet ngadalë. Meqenëse trajtimi mund të shkaktojë efekte anësore si inkontinenca dhe probleme të ereksionit, burrat kanë shpesh disa zgjedhje, përfshirë mbikëqyrjen aktive, kirurgjinë dhe radioterapinë.",
+  "sections": [
+    {
+      "heading": "Si gjendet",
+      "paragraphs": [
+        "Kanceri i prostatës mund të dyshohet pas një analize PSA të ngritur ose një gjetjeje jonormale në ekzaminim. Skanimet me rezonancë magnetike dhe një biopsi e konfirmojnë diagnozën dhe e gradojnë kancerin. Pikët Gleason ose të grupit të shkallës përshkruajnë sa agresive duken qelizat dhe, së bashku me nivelin e PSA-së dhe shtrirjen e tumorit, përcaktojnë kategorinë e rrezikut."
+      ]
+    },
+    {
+      "heading": "Mbikëqyrja aktive dhe pritja e vëmendshme",
+      "paragraphs": [
+        "Për kancerët me rrezik të ulët, trajtimi mund të mos nevojitet menjëherë. Mbikëqyrja aktive do të thotë analiza të rregullta PSA, skanime dhe ndonjëherë biopsi të përsëritura, me trajtim që fillohet nëse kanceri përparon. Kjo shmang efektet anësore për shumë burra duke ruajtur shansin e shërimit. Pritja e vëmendshme është një qasje më pak intensive për burra më të moshuar ose me sëmundje të tjera, që trajton vetëm simptomat."
+      ]
+    },
+    {
+      "heading": "Kirurgjia",
+      "paragraphs": [
+        "Prostatektomia radikale e heq prostatën, ndonjëherë me nyjet limfatike aty pranë, shpesh përmes teknikave laparoskopike ose të ndihmuara nga roboti. Efektet e mundshme përfshijnë rrjedhje urine dhe disfunksion erektil, që shpesh përmirësohen brenda muajsh, por mund të vazhdojnë. Ushtrimet e dyshemesë pelvike para dhe pas operacionit mund të ndihmojnë."
+      ]
+    },
+    {
+      "heading": "Radioterapia",
+      "paragraphs": [
+        "Rrezatimi i jashtëm synon prostatën gjatë disa javësh, ose në seanca më të pakta me dozë më të lartë, ndonjëherë i kombinuar me terapi hormonale. Rrezatimi i brendshëm vendos burime radioaktive në prostatë. Efektet anësore përfshijnë acarim të zorrëve e fshikëzës, probleme erektile dhe lodhje, që mund të shfaqen muaj ose vite më vonë."
+      ]
+    },
+    {
+      "heading": "Marrja e një vendimi",
+      "paragraphs": [
+        "Provat sugjerojnë se për shumë burra me kancer me rrezik të ulët, rezultatet janë të ngjashme midis opsioneve për sa i përket mbijetesës për dhjetë vjet, ndërsa efektet anësore ndryshojnë. Mendoni për moshën, shëndetin, vlerat personale, si i peshoni efektet anësore dhe ndjenjat tuaja për monitorimin. Kërkoni një mendim të dytë ose të flisni me një infermiere specialiste. Edhe grupet e mbështetjes mund të ndihmojnë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Peshimi i efekteve anësore",
+      "text": "Imagjinoni që jeni 62 vjeç dhe keni kancer prostate me rrezik të ulët. Mund ta pyesni urologun sa e mundshme është që çdo trajtim të shkaktojë rrjedhje ose probleme të ereksionit dhe çfarë përfshin orari i mbikëqyrjes aktive."
+    },
+    {
+      "title": "Përfshirja e partneres",
+      "text": "Supozoni që trajtimi mund të ndikojë në intimitet. Mund ta sillni partneren në takimin tjetër dhe të pyesni për opsionet e rehabilitimit dhe këshillimin."
+    }
+  ],
+  "questions": [
+    "A është kanceri im me rrezik të ulët, të mesëm apo të lartë dhe çfarë do të thotë kjo për trajtimin?",
+    "Cilat janë efektet e mundshme anësore të secilit opsion në rastin tim?",
+    "Çfarë do të përfshinte mbikëqyrja aktive dhe kur do të fillonte trajtimi?"
+  ]
+}

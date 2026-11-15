@@ -1,0 +1,51 @@
+{
+  "title": "Gravidanza",
+  "intro": "La gravidanza dura circa quaranta settimane e porta molti cambiamenti fisici ed emotivi. Controlli prenatali regolari, abitudini sane e la conoscenza dei segnali d'allarme aiutano la maggior parte delle persone ad avere una gravidanza e un parto sicuri. Ogni gravidanza è diversa e il tuo team di cura può adattare i consigli alla tua salute e alle tue circostanze.",
+  "sections": [
+    {
+      "heading": "Le fasi della gravidanza",
+      "paragraphs": [
+        "La gravidanza è divisa in tre trimestri. Nel primo si sviluppa l'embrione e sono comuni sintomi come nausea, stanchezza e seno dolente. Nel secondo spesso l'energia ritorna e i movimenti si sentono da circa la metà della gravidanza. Nel terzo il bambino cresce rapidamente e possono comparire disturbi come mal di schiena e affanno."
+      ]
+    },
+    {
+      "heading": "Controlli prenatali",
+      "paragraphs": [
+        "Visite regolari con un'ostetrica o un medico monitorano la tua salute e la crescita del bambino con controlli della pressione, esami delle urine, esami del sangue, misurazioni ed ecografie. Puoi discutere di test di screening facoltativi per le condizioni cromosomiche, piani del parto, vaccinazioni e alimentazione. I corsi preparto preparano al parto e ai primi tempi da genitori."
+      ]
+    },
+    {
+      "heading": "Abitudini sane",
+      "paragraphs": [
+        "Segui un'alimentazione varia, assumi acido folico prima e all'inizio della gravidanza come consigliato e chiedi di vitamina D e iodio. Evita alcol, fumo e droghe ricreative. Limita la caffeina, evita carne cruda, latticini non pastorizzati e certi pesci ricchi di mercurio. Resta attiva con camminate, nuoto o esercizio per la gravidanza salvo diversa indicazione e riposa abbastanza. Chiedi a un medico o a un farmacista prima di prendere qualsiasi farmaco."
+      ]
+    },
+    {
+      "heading": "Disturbi comuni e segnali d'allarme",
+      "paragraphs": [
+        "Nausea, bruciore di stomaco, stitichezza, mal di schiena, caviglie gonfie e stanchezza sono comuni e spesso gestibili con semplici misure. Cerca aiuto subito per sanguinamento vaginale, forte dolore addominale, forte mal di testa o disturbi della vista, improvviso gonfiore di viso e mani, febbre, perdita di liquido dalla vagina, movimenti del bambino ridotti o vomito intenso e persistente."
+      ]
+    },
+    {
+      "heading": "Benessere emotivo e pianificazione",
+      "paragraphs": [
+        "I cambiamenti d'umore sono normali, ma tristezza persistente, ansia o pensieri angoscianti richiedono attenzione e c'è sostegno disponibile. Pianifica il parto, discuti del sollievo dal dolore, di dove partorire e di ciò di cui avrai bisogno dopo l'arrivo del bambino. Coinvolgi il partner o la famiglia e organizza un aiuto pratico."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Scrivere le domande",
+      "text": "Immagina di essere alla tredicesima settimana di gravidanza e di avere molte domande. Potresti tenere un elenco sul telefono e portarlo a ogni visita prenatale, comprese domande su lavoro e viaggi."
+    },
+    {
+      "title": "Notare un cambiamento",
+      "text": "Supponi di notare che il tuo bambino si muove meno del solito a fine gravidanza. Potresti contattare l'ostetrica o l'ospedale lo stesso giorno invece di aspettare."
+    }
+  ],
+  "questions": [
+    "Quali esami ed ecografie mi verranno offerti e sono facoltativi?",
+    "Quali cibi, farmaci o attività devo evitare?",
+    "Quali sintomi significano che devo chiamare subito?"
+  ]
+}

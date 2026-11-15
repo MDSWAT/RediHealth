@@ -1,0 +1,51 @@
+{
+  "title": "Lung function tests: types and what they involve",
+  "intro": "Lung function tests measure how well the lungs work, including how much air they hold and how quickly air moves in and out. They help diagnose asthma, chronic obstructive pulmonary disease and other lung conditions, and monitor treatment. Most are quick, painless and need your cooperation.",
+  "sections": [
+    {
+      "heading": "Spirometry",
+      "paragraphs": [
+        "Spirometry is the most common test. You breathe in fully and then blow out as hard and fast as you can into a mouthpiece, with a clip on your nose. It measures the total amount of air you can breathe out, called forced vital capacity, and how much in the first second. A low ratio suggests airway narrowing as in asthma or chronic obstructive pulmonary disease."
+      ]
+    },
+    {
+      "heading": "Bronchodilator and challenge tests",
+      "paragraphs": [
+        "After spirometry, you inhale a reliever medicine and repeat the test. A large improvement points to asthma. A challenge test, with an inhaled substance or exercise, is done under supervision to find out whether the airways overreact. Peak flow meters are simple devices for home monitoring."
+      ]
+    },
+    {
+      "heading": "Other tests",
+      "paragraphs": [
+        "Body plethysmography uses an enclosed booth to measure total lung volume. A diffusion test measures how well oxygen moves from the lungs into the blood by breathing a small amount of harmless gas. Pulse oximetry uses a finger sensor to measure oxygen in the blood, and blood gas tests measure oxygen and carbon dioxide levels. A walking test measures exercise tolerance."
+      ]
+    },
+    {
+      "heading": "Preparation",
+      "paragraphs": [
+        "Avoid smoking for several hours, large meals and strenuous exercise before the test. You may be asked to stop inhalers beforehand, so ask in advance. Wear loose clothing. Tell staff about recent infections, chest pain, eye surgery or heart problems, because some tests may need to be postponed."
+      ]
+    },
+    {
+      "heading": "Results",
+      "paragraphs": [
+        "Results are compared with expected values for your age, height, sex and ethnicity. The doctor interprets them with symptoms and other tests. Ask what the results show, what treatment is needed and how often tests should be repeated."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Doing spirometry well",
+      "text": "Imagine you are asked to blow out hard. You could take a full breath, seal your lips and keep blowing until told to stop."
+    },
+    {
+      "title": "Using peak flow at home",
+      "text": "Suppose you have asthma. You might record peak flow morning and evening and bring the diary to your doctor."
+    }
+  ],
+  "questions": [
+    "Which lung function tests do I need?",
+    "Should I stop my inhalers before testing?",
+    "What do the results mean for my treatment?"
+  ]
+}

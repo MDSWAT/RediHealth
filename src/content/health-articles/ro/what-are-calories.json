@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt caloriile?",
+  "intro": "O calorie este o unitate de energie. În nutriție, energia din alimente se măsoară în kilocalorii, adesea prescurtate calorii, sau în kilojouli. Organismul are nevoie de energie pentru ca inima să bată, pentru a respira, a se mișca și a crește. Echilibrarea energiei pe care o mâncați cu cea pe care o folosiți ajută la menținerea stabilă a greutății.",
+  "sections": [
+    {
+      "heading": "De unde vin caloriile",
+      "paragraphs": [
+        "Grăsimile furnizează aproximativ nouă kilocalorii pe gram, carbohidrații și proteinele aproximativ patru fiecare, iar alcoolul aproximativ șapte. Fibrele și apa furnizează puțin sau deloc. Alimentele bogate în grăsimi și zahăr, precum uleiurile, produsele de patiserie și dulciurile, sunt dense energetic, în timp ce legumele, fructele și supele sunt mai puțin, ceea ce înseamnă că porțiile mai mari dau mai puține calorii."
+      ]
+    },
+    {
+      "heading": "De câtă energie aveți nevoie",
+      "paragraphs": [
+        "Nevoile zilnice depind de vârstă, sex, mărime, compoziția corporală, nivelul de activitate, sarcină și sănătate. Cea mai mare parte a energiei este folosită de organism în repaus, ceea ce se numește rata metabolică bazală. Activitatea fizică și energia folosită pentru digerarea alimentelor se adaugă la ea. Necesarul tipic este în jur de două mii de kilocalorii pentru multe femei și două mii cinci sute pentru mulți bărbați, cu mari variații individuale."
+      ]
+    },
+    {
+      "heading": "Echilibrul energetic și greutatea",
+      "paragraphs": [
+        "Când mâncați mai multă energie decât folosiți, excesul se depozitează sub formă de grăsime, iar când mâncați mai puțin, organismul folosește rezervele. În realitate, greutatea corporală este influențată și de hormoni, somn, genetică, medicamente și calitatea alimentelor. Numărarea caloriilor poate ajuta unele persoane, dar este doar un ghid aproximativ, iar etichetele sunt estimări."
+      ]
+    },
+    {
+      "heading": "Calitatea contează",
+      "paragraphs": [
+        "Caloriile din alimente diferite afectează sănătatea și senzația de sațietate în moduri diferite. Alimentele bogate în nutrienți, precum legumele, fructele, cerealele integrale, leguminoasele, nucile, peștele și proteinele slabe, susțin sănătatea și potolesc foamea mai bine decât alimentele foarte procesate și băuturile zaharoase. Dietele cu foarte puține calorii pot provoca deficiențe și trebuie supravegheate medical. Copiii, femeile însărcinate și persoanele cu tulburări de alimentație au nevoie de sfaturi individuale. Preocuparea excesivă pentru numărare poate deveni nesănătoasă."
+      ]
+    },
+    {
+      "heading": "Grupuri speciale",
+      "paragraphs": [
+        "Copiii, adolescenții, femeile însărcinate și care alăptează, adulții în vârstă, sportivii și persoanele bolnave au nevoi energetice diferite. Nu restricționați puternic caloriile fără sfat și cereți ajutor dacă gândurile despre mâncare sau greutate vă acaparează viața."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Citirea unei etichete",
+      "text": "Imaginați-vă că comparați două gustări. Ați putea verifica caloriile pe porție și la sută de grame și v-ați uita și la zahăr, fibre și la mărimea porției pe care ați mânca-o de fapt."
+    },
+    {
+      "title": "Planificarea unei mese",
+      "text": "Presupuneți că vreți să vă simțiți sătul cu mai puține calorii. Ați putea adăuga legume și leguminoase în farfurie și ați putea înlocui băuturile zaharoase cu apă."
+    }
+  ],
+  "questions": [
+    "De câtă energie am nevoie în fiecare zi?",
+    "Mă ajută numărarea caloriilor sau este mai bună o altă abordare?",
+    "Ce alimente mă țin sătul și îmi susțin sănătatea?"
+  ]
+}

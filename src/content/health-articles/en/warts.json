@@ -1,0 +1,51 @@
+{
+  "title": "Warts",
+  "intro": "Warts are harmless skin growths caused by human papillomavirus infection of the skin. They are common in children and teenagers and usually disappear by themselves, but may take months or years. Treatments can speed up clearing, though none is guaranteed.",
+  "sections": [
+    {
+      "heading": "Types",
+      "paragraphs": [
+        "Common warts are rough, raised growths on hands and fingers. Plantar warts occur on the soles of the feet and may be pushed inwards, causing pain when walking. Flat warts are small, smooth and often appear on the face and legs in clusters. Genital warts are a separate sexually transmitted type that need different handling."
+      ]
+    },
+    {
+      "heading": "How they spread",
+      "paragraphs": [
+        "Warts spread through direct skin contact and by touching surfaces such as swimming pool floors and shared showers, especially where skin is damaged or wet. They are only mildly contagious. Scratching or picking can spread them to other areas. Weak immunity makes them more persistent."
+      ]
+    },
+    {
+      "heading": "Treatment options",
+      "paragraphs": [
+        "Many warts clear without treatment within one to two years. Salicylic acid preparations applied daily after soaking and filing the surface are the standard first treatment and need several weeks. Cryotherapy with liquid nitrogen freezes the wart, repeated every couple of weeks. Duct tape has been tried with mixed results. For stubborn warts doctors may use other creams, minor procedures or laser. Avoid cutting warts yourself."
+      ]
+    },
+    {
+      "heading": "Preventing spread",
+      "paragraphs": [
+        "Cover warts with a plaster, particularly in swimming pools, wear sandals in communal showers, do not share towels or razors, avoid picking, and keep feet dry. Children with warts can attend school and swimming, with covering where possible."
+      ]
+    },
+    {
+      "heading": "When to see a doctor",
+      "paragraphs": [
+        "Seek advice if a growth bleeds, changes colour, is painful, spreads, is in the genital area, occurs in someone with diabetes, poor circulation or weak immunity, or if you are unsure it is a wart. People with diabetes should not self-treat warts on the feet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Using salicylic acid",
+      "text": "Imagine your child has a wart on a finger. You could soak the area in warm water, file off dead skin and apply the treatment daily for several weeks."
+    },
+    {
+      "title": "Protecting the pool",
+      "text": "Suppose you have a plantar wart. You might cover it with a waterproof plaster and wear flip-flops in the changing room."
+    }
+  ],
+  "questions": [
+    "Is this a wart, and should I treat it or wait?",
+    "Which treatment is best for this location?",
+    "When should I return if treatment does not work?"
+  ]
+}

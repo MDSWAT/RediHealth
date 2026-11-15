@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa succede durante un elettroencefalogramma (EEG)",
+  "intro": "Un elettroencefalogramma, o EEG, registra l'attività elettrica del cervello tramite piccoli sensori posti sul cuoio capelluto. È indolore e sicuro. Si usa più spesso per aiutare a diagnosticare l'epilessia e altre cause di convulsioni, svenimenti e alterazioni della coscienza.",
+  "sections": [
+    {
+      "heading": "Perché si fa",
+      "paragraphs": [
+        "Le cellule cerebrali comunicano con segnali elettrici e un EEG mostra gli schemi di questa attività. Può mostrare scariche anomale nell'epilessia, aiutare a classificare i tipi di crisi, valutare disturbi del sonno e confusione e valutare la funzione cerebrale in alcune malattie. Un EEG normale non esclude l'epilessia."
+      ]
+    },
+    {
+      "heading": "Preparazione",
+      "paragraphs": [
+        "Lavati i capelli il giorno prima, senza balsamo, gel o spray. Mangia normalmente e prendi i farmaci se non diversamente indicato. A volte ti viene chiesto di dormire meno la notte prima, così da addormentarti durante l'esame. Porta un elenco dei farmaci e informa il personale di eventuali crisi."
+      ]
+    },
+    {
+      "heading": "Durante l'esame",
+      "paragraphs": [
+        "Un tecnico fissa circa venti piccoli dischi di metallo sul cuoio capelluto con una pasta o una cuffia. Si collegano a una macchina di registrazione. Stai sdraiato o seduto rilassato con gli occhi chiusi, poi aperti. Può esserti chiesto di respirare profondamente o di guardare luci lampeggianti, che possono scatenare attività anomala. La registrazione dura da venti a sessanta minuti."
+      ]
+    },
+    {
+      "heading": "Altri tipi",
+      "paragraphs": [
+        "L'EEG del sonno registra durante il sonno e l'EEG ambulatoriale si registra per uno-tre giorni a casa. Il video-EEG in ospedale registra le crisi insieme al video. Danno più informazioni di un esame di routine. L'esame non dà scosse elettriche."
+      ]
+    },
+    {
+      "heading": "Dopo l'esame",
+      "paragraphs": [
+        "Di solito puoi tornare a casa e riprendere le normali attività. Lava via la pasta dai capelli. Uno specialista rivede la registrazione e il risultato viene inviato al medico in alcuni giorni. Chiedi che cosa mostra e quali sono i passi successivi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparare i capelli",
+      "text": "Immagina che l'EEG sia domani. Potresti lavarti i capelli stasera, evitare prodotti e portare un elenco dei farmaci."
+    },
+    {
+      "title": "Capire un risultato normale",
+      "text": "Supponi che l'EEG sia normale dopo una crisi. Potresti chiedere se un EEG più lungo o del sonno aiuterebbe."
+    }
+  ],
+  "questions": [
+    "Perché ho bisogno di un EEG e che cosa potrebbe mostrare?",
+    "Devo cambiare i farmaci o il sonno prima dell'esame?",
+    "Che cosa succede se l'EEG è normale?"
+  ]
+}

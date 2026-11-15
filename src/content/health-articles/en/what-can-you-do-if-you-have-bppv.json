@@ -1,0 +1,51 @@
+{
+  "title": "What you can do if you have BPPV",
+  "intro": "Benign paroxysmal positional vertigo, or BPPV, causes brief spinning dizziness when you move your head in certain ways, such as turning over in bed or looking up. It is a common inner ear problem and is harmless, and it can usually be treated effectively with simple head-position manoeuvres.",
+  "sections": [
+    {
+      "heading": "What causes it",
+      "paragraphs": [
+        "Inside the inner ear are tiny calcium crystals that normally sit in a sac. If they become loose and move into the semicircular canals, head movements make the fluid move wrongly and send false signals to the brain. This causes a short, intense sense of spinning, often with nausea. It becomes more common with age and can follow a head injury."
+      ]
+    },
+    {
+      "heading": "Typical symptoms",
+      "paragraphs": [
+        "Episodes last less than a minute and are triggered by positions such as lying down, rolling over, bending forward or tilting the head back. There is no hearing loss, and you are well between episodes. Constant dizziness, severe headache, weakness, speech problems or double vision are not typical of BPPV and need urgent medical review."
+      ]
+    },
+    {
+      "heading": "Diagnosis and treatment",
+      "paragraphs": [
+        "A doctor can diagnose it with positional tests, such as the Dix-Hallpike manoeuvre, which brings on the dizziness and eye movements. Treatment uses canalith repositioning manoeuvres, such as the Epley manoeuvre, which move crystals back out of the canal. They work in most people after one or a few sessions. Medicines usually do not help."
+      ]
+    },
+    {
+      "heading": "Self-care",
+      "paragraphs": [
+        "After the manoeuvre, follow the advice about head position. At home, a doctor or physiotherapist may teach you a self-treatment. Move slowly, get up in stages, and take care to avoid falls, for instance by using a light at night. Recurrence is common, but can be treated again."
+      ]
+    },
+    {
+      "heading": "When to seek help",
+      "paragraphs": [
+        "See a doctor if dizziness is new, repeated, prevents daily activities, or occurs with other symptoms. Emergency help is needed for sudden severe dizziness with weakness, difficulty speaking, vision changes or severe headache."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Getting up safely",
+      "text": "Imagine you feel dizzy when you roll over in bed. You could sit up slowly, wait a moment and stand only when the spinning stops."
+    },
+    {
+      "title": "Preparing for treatment",
+      "text": "Suppose you have an appointment for a manoeuvre. You might ask whether you can drive afterwards and how to prevent a recurrence."
+    }
+  ],
+  "questions": [
+    "Is my dizziness BPPV or something else?",
+    "Which manoeuvre is suitable, and can I do it at home?",
+    "What should I do if it comes back?"
+  ]
+}

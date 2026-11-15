@@ -1,0 +1,52 @@
+{
+  "title": "Çrregullimet e të nxënit (disleksia dhe diskalkulia)",
+  "intro": "Çrregullimet specifike të të nxënit janë vështirësi të qëndrueshme në mësimin e leximit, drejtshkrimit ose aritmetikës që nuk mund të shpjegohen me inteligjencë të ulët ose mësimdhënie të dobët. Disleksia prek leximin e drejtshkrimin dhe diskalkulia prek numrat dhe llogaritjen. Me njohje të hershme dhe mbështetje të përshtatur, fëmijët mund të bëjnë përparim të mirë dhe të ndërtojnë besim.",
+  "sections": [
+    {
+      "heading": "Çfarë janë",
+      "paragraphs": [
+        "Disleksia përfshin probleme në lidhjen e shkronjave me tingujt, leximin rrjedhshëm dhe drejtshkrimin. Diskalkulia shkakton vështirësi në të kuptuarit e koncepteve numerike, memorizimin e fakteve të numrave dhe kryerjen e llogaritjeve. Këto çrregullime shpesh trashëgohen në familje dhe mendohet se përfshijnë dallime në mënyrën si truri përpunon gjuhën dhe numrat."
+      ]
+    },
+    {
+      "heading": "Shenjat për t'u vëzhguar",
+      "paragraphs": [
+        "Në disleksi, një fëmijë mund të jetë i ngadaltë në mësimin e shkronjave, të ngatërrojë shkronja të ngjashme, të lexojë me ndërprerje, të shmangë leximin me zë të lartë ose ta shkruajë të njëjtën fjalë ndryshe. Në diskalkuli, fëmijët mund të numërojnë me gishta gjatë pas shokëve, të kenë vështirësi me kohën e paratë ose t'i duket detyra e matematikës dërrmuese. Fëmijët mund të zhvillojnë edhe vetëvlerësim të ulët, dhimbje koke ose ngurrim për të shkuar në shkollë."
+      ]
+    },
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Vlerësimi bëhet nga psikologë arsimorë ose klinikë, pediatër ose shërbime specialistësh, shpesh së bashku me shkollën. Ai përfshin teste të leximit, drejtshkrimit, matematikës dhe aftësive të përgjithshme dhe kontrollon dëgjimin, shikimin dhe shkaqe të tjera të mundshme, si problemet e vëmendjes ose stresi emocional, që mund të bashkëzhvillohen."
+      ]
+    },
+    {
+      "heading": "Mbështetja dhe mësimdhënia",
+      "paragraphs": [
+        "Mësimdhënia e strukturuar që përqendrohet te lidhjet tingull-shkronjë, praktika e leximit dhe drejtshkrimi ose te ndjenja e numrave dhe strategjitë e llogaritjes është më e dobishmja. Hapat e vegjël, praktika e përsëritur, ndihmesat vizuale dhe inkurajimi mbështesin përparimin. Shkollat mund të ofrojnë kohë shtesë në teste, hapësirë të qetë ose përdorim kompjuterësh dhe korrektuesish drejtshkrimi.",
+        "Lëndët e forta dhe interesat duhen ushqyer, sepse suksesi ndërton besim. Praktika e rregullt në seanca të shkurtra është më e mirë se ato të gjata e lodhëse."
+      ]
+    },
+    {
+      "heading": "Prindërit dhe mësuesit",
+      "paragraphs": [
+        "Lavdëroni përpjekjen dhe shmangni krahasimet. Qëndroni në kontakt me mësuesit dhe pyesni për plane specifike mbështetjeje. Disa vende ofrojnë të drejta ligjore për përshtatje e financim. Të rriturit me këto vështirësi mund të marrin gjithashtu ndihmë në punë dhe në arsimin e mëtejshëm."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Nisja e një bisede",
+      "text": "Imagjinoni që fëmija juaj shmang leximin me zë të lartë dhe thotë se është budalla. Mund të takoni mësuesin, të ndani çfarë vini re në shtëpi dhe të pyesni për skrining dhe mbështetje shtesë."
+    },
+    {
+      "title": "Mbështetja e detyrave të shtëpisë",
+      "text": "Supozoni që detyrat e matematikës shkaktojnë lot çdo mbrëmje. Mund të merrni vesh me mësuesin për një detyrë më të shkurtër, të përdorni objekte ose vizatime për të shpjeguar numrat dhe të bëni pauza."
+    }
+  ],
+  "questions": [
+    "A ka nevojë fëmija im për një vlerësim formal dhe kush mund ta kryejë?",
+    "Çfarë mbështetjeje dhe përshtatjesh mund të ofrojë shkolla?",
+    "Si mund të ndihmojmë në shtëpi pa shkaktuar zhgënjim?"
+  ]
+}

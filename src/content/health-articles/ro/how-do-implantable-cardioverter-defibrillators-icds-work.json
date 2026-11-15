@@ -1,0 +1,51 @@
+{
+  "title": "Defibrilatorul implantabil: protecție și controale",
+  "intro": "Defibrilatorul cardioverter implantabil, ICD, urmărește ritmuri periculoase și le poate trata automat. Poate reduce moartea subită în cazuri selectate, fără să vindece orice problemă sau să înlocuiască medicamentele și controlul.",
+  "sections": [
+    {
+      "heading": "Detectare și tratament",
+      "paragraphs": [
+        "Aparatul interpretează semnale după programare. După tip poate stimula rapid ori aplica șoc pentru întreruperea ritmului periculos. Nu șochează orice puls rapid și poate da șoc nepotrivit."
+      ]
+    },
+    {
+      "heading": "Alegere și implantare",
+      "paragraphs": [
+        "Unele au sonde în inimă, altele sub piele fără sonde intracardiace. Beneficiile, stimularea și riscurile diferă. Întrebați motivul dispozitivului și discutați infecția, sângele, sondele și obiectivele."
+      ]
+    },
+    {
+      "heading": "Viața cu ICD",
+      "paragraphs": [
+        "Purtați cardul și anunțați înainte de investigații ori proceduri. Compatibilitatea depinde de sistem: rezonanța nu este automat interzisă sau sigură. Întrebați magneții, echipamentele, condusul și activitatea după instrucțiuni proprii."
+      ]
+    },
+    {
+      "heading": "Control și plan",
+      "paragraphs": [
+        "Păstrați verificările și ale bateriei chiar bine. Monitorizarea la distanță ajută, dar nu este serviciu de urgență supravegheat continuu. Discutați anxietatea și revizuirea șocurilor dacă sănătatea ori obiectivele se schimbă."
+      ]
+    },
+    {
+      "heading": "Răspuns la șoc",
+      "paragraphs": [
+        "Cereți plan scris. După șoc contactați prompt echipa chiar dacă vă simțiți bine. Șocuri repetate, leșin, durere toracică ori dispnee persistentă cer urgență. Persoana inconștientă cu respirație anormală necesită urgență, resuscitare și AED disponibil."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira întreabă dacă aparatul oferă stimulare și șoc și discută obiectivele înainte de implantare."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are șoc și apoi se simte bine. Urmează planul fără să presupună că transmisia la distanță a fost deja evaluată."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

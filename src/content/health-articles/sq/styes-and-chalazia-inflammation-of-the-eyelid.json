@@ -1,0 +1,51 @@
+{
+  "title": "Orcullat e kalazat (inflamacioni i qepallës)",
+  "intro": "Orculli është një gungë e kuqe e dhimbshme në buzën e qepallës e shkaktuar nga infeksioni i një follikuli ose gjëndre të qerpikut. Kalazioni është një gungë më e fortë, zakonisht pa dhimbje, e shkaktuar nga një gjëndër yndyrore e bllokuar më thellë në qepallë. Të dyja janë të zakonshme e shumica kalojnë vetë me kompresa të ngrohta.",
+  "sections": [
+    {
+      "heading": "Orculli",
+      "paragraphs": [
+        "Një orcull, ose hordeolum, duket si një gungë e kuqe, e ndjeshme, e enjtur në skajin e qepallës, nganjëherë me një qendër të verdhë me qelb. Rrjedh nga infeksioni bakterial, zakonisht Staphylococcus. Inflamacioni i qepallës i quajtur blefarit, higjiena e dobët e qepallave, prekja e syve me duar të palara e grimi i vjetër e rrisin rrezikun."
+      ]
+    },
+    {
+      "heading": "Kalazioni",
+      "paragraphs": [
+        "Kalazioni zhvillohet kur një gjëndër yndyrore në qepallë bllokohet e përmbajtja e saj rrjedh në indin përreth, duke shkaktuar inflamacion. Formon një gungë të fortë të rrumbullakët larg skajit të qepallës, shpesh pa dhimbje pas një periudhe fillestare të ndjeshme. Mund ta shtypë syrin e ta turbullojë shikimin nëse është i madh. Mund të vijë pas një orculli."
+      ]
+    },
+    {
+      "heading": "Trajtimi në shtëpi",
+      "paragraphs": [
+        "Aplikoni një kompresë të pastër të ngrohtë për rreth dhjetë minuta, tri a katër herë në ditë, për të zbutur bllokimin e nxitur kullimin. Masazhoni butë qepallën më pas. Mbajini qepallat të pastra me një pastrues të butë ose shami për qepalla. Mos e shtrydhni ose çani gungën. Shmangni grimin e syve e lentet e kontaktit derisa të shërohet."
+      ]
+    },
+    {
+      "heading": "Trajtimi mjekësor",
+      "paragraphs": [
+        "Shumica e orcullave shërohen brenda një deri dy javësh e kalazat mund të zgjasin javë deri muaj. Nëse një gungë vazhdon, është shumë e madhe ose ndikon shikimin, një mjek mund të injektojë një steroid ose të bëjë një prerje të vogël për ta kulluar nën anestezi lokale. Antibiotikët nevojiten vetëm për infeksion që përhapet të qepallës ose lëkurës rreth syrit."
+      ]
+    },
+    {
+      "heading": "Kur të shihni një mjek",
+      "paragraphs": [
+        "Kërkoni kujdes të shpejtë për skuqje e enjtje që përhapet mbi qepallë e faqe, dhimbje kur lëvizni syrin, ethe, ndryshime të shikimit ose një gungë që gjakderdh ose kthehet vazhdimisht në të njëjtin vend, pasi rrallë një tumor mund të imitojë një kalazion."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rutina e kompresës së ngrohtë",
+      "text": "Imagjinoni që qepalla ka një gungë të ndjeshme. Mund të përdorni një leckë të pastër të ngrohtë dhjetë minuta katër herë në ditë e të lani duart para se të prekni zonën."
+    },
+    {
+      "title": "Parandalimi i rikthimit",
+      "text": "Supozoni që merrni orcullat shpesh. Mund t'i pastroni çdo ditë skajet e qepallave, ta ndërroni rregullisht grimin e syve e të pyesni për trajtim të blefaritit."
+    }
+  ],
+  "questions": [
+    "A është ky orcull apo kalazion e sa kohë do të zgjasë shërimi?",
+    "Kur do të merreshin parasysh kullimi ose injeksioni?",
+    "Si mund t'i parandaloj rikthimet?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Herpes zoster",
+  "intro": "Herpes zoster është një skuqje e dhimbshme e shkaktuar nga riaktivizimi i virusit të lisë së pulave, që mbetet në gjumë në qelizat nervore pasi personi ka pasur lis pule. Zakonisht shfaqet si një rrip flluskash në njërën anë të trupit e shërohet brenda disa javësh. Trajtimi i hershëm e vaksinimi mund t'i ulin komplikimet.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Zakonisht ka djegie, ndjesi therëse ose dhimbje në një zonë të lëkurës për disa ditë, e ndjekur nga një skuqje e kuqe me grupe flluskash me lëng në formë rripi në njërën anë të trungut, fytyrës ose një zone tjetër. Flluskat thahen me kore brenda rreth dhjetë ditësh. Disa njerëz kanë ethe, dhimbje koke e lodhje."
+      ]
+    },
+    {
+      "heading": "Kush e merr",
+      "paragraphs": [
+        "Çdokush që ka pasur lis pule mund të marrë zoster, por rreziku rritet me moshën, veçanërisht pas pesëdhjetë vjeç, e me imunitet të dobësuar nga sëmundja, barnat ose stresi. Zosteri nuk merret nga një person tjetër, por një person me flluska aktive mund t'ia kalojë virusin e lisë së pulave dikujt që nuk ka pasur kurrë lis pule ose vaksinën."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Ilaçi antiviral, i filluar brenda tre ditësh nga shfaqja e skuqjes, mund të ulë ashpërsinë e ta shkurtojë sëmundjen e mund të ulë rrezikun e dhimbjes së qëndrueshme. Këshillohet veçanërisht për njerëzit mbi pesëdhjetë vjeç, ata me skuqje në fytyrë ose dhimbje të rëndë e njerëzit me imunitet të dobësuar. Qetësuesit, kompresat e freskëta e rrobat e lirshme lehtësojnë parehatinë. Mbajini flluskat të pastra e të mbuluara e shmangni kontaktin me gratë shtatzëna, të porsalindurit e njerëzit me imunitet të dobët derisa të thahen me kore."
+      ]
+    },
+    {
+      "heading": "Komplikimet dhe vaksinimi",
+      "paragraphs": [
+        "Disa njerëz zhvillojnë dhimbje të qëndrueshme nervore të quajtur nevralgji postherpetike. Zosteri pranë syrit mund ta kërcënojë shikimin e kërkon vlerësim urgjent. Komplikime të tjera përfshijnë infeksion bakterial të lëkurës, paralizë të fytyrës e probleme dëgjimi.",
+        "Një vaksinë e ul rrezikun e zosterit e komplikimeve të tij e rekomandohet për të moshuarit e disa të rinj në rrezik, me orar dy dozash. Pyesni mjekun nëse është e përshtatshme për ju e nëse kostot mbulohen."
+      ]
+    },
+    {
+      "heading": "Kujdesi për veten",
+      "paragraphs": [
+        "Pushimi, lehtësimi i butë i dhimbjes e mbajtja e lëkurës së pastër ndihmojnë shërimin. Shmangni gërvishtjen e tregojini mjekut nëse skuqja përhapet, bëhet shumë e dhimbshme ose ndiheni keq. Shumica e njerëzve shërohen plotësisht brenda disa javësh."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Veprimi i shpejtë",
+      "text": "Imagjinoni që ndjeni djegie në njërën anë të gjoksit e pastaj shihni flluska. Mund të kontaktoni mjekun po atë ditë për të pyetur për trajtim antiviral."
+    },
+    {
+      "title": "Të menduarit për vaksinim",
+      "text": "Supozoni që jeni gjashtëdhjetë vjeç. Mund ta pyesni mjekun nëse këshillohet vaksina e zosterit e sa doza ju duhen."
+    }
+  ],
+  "questions": [
+    "A duhet të filloj trajtim antiviral dhe sa shpejt?",
+    "Si mund t'i mbroj të tjerët rreth meje ndërsa kam flluska?",
+    "A jam i kualifikuar për vaksinimin kundër zosterit?"
+  ]
+}

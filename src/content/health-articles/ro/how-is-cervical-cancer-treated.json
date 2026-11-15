@@ -1,0 +1,56 @@
+{
+  "title": "Tratamentul cancerului de col uterin și al leziunilor precursoare",
+  "intro": "Cancerul de col uterin apare în partea inferioară a uterului, colul uterin, de obicei după o infecție de lungă durată cu anumite tipuri de papilomavirus uman. Celulele anormale apar adesea cu ani înainte de formarea cancerului și pot fi depistate prin screening. Tratamentul depinde de existența doar a unor modificări precanceroase sau a unui cancer invaziv, precum și de dimensiunea și extinderea acestuia.",
+  "sections": [
+    {
+      "heading": "Tratamentul modificărilor precanceroase",
+      "paragraphs": [
+        "Screeningul poate arăta modificări celulare care nu sunt încă cancer. Modificările ușoare dispar adesea de la sine și pot necesita doar controale repetate. Modificările mai avansate sunt tratate de obicei prin îndepărtarea țesutului afectat, deoarece aceasta previne dezvoltarea cancerului.",
+        "Procedura obișnuită este conizația, care îndepărtează o mică bucată de col în formă de con, folosind o ansă subțire încălzită sau un bisturiu. Se face adesea sub anestezie locală sau scurtă anestezie generală, ambulatoriu sau cu o scurtă internare. Țesutul este examinat pentru a confirma că celulele anormale au fost îndepărtate complet."
+      ]
+    },
+    {
+      "heading": "Cancerul invaziv în stadiu incipient",
+      "paragraphs": [
+        "Când cancerul este mic și limitat la col, chirurgia este tratamentul principal. Opțiunile merg de la o conizație mai extinsă până la îndepărtarea uterului, adesea împreună cu ganglionii limfatici din apropiere, pentru a vedea dacă cancerul s-a răspândit. La unele femei tinere selectate pot fi posibile operații care păstrează fertilitatea.",
+        "Chirurgii iau tot mai mult în considerare dimensiunea exactă și adâncimea tumorii, precum și dorința femeii de a avea copii. Este un bun moment să întrebați despre opțiunile care păstrează fertilitatea și despre beneficiile și riscurile diferitelor abordări chirurgicale."
+      ]
+    },
+    {
+      "heading": "Cancerul avansat",
+      "paragraphs": [
+        "Tumorile mai mari sau cele care s-au răspândit în țesuturile din apropiere sunt tratate de obicei cu radioterapie combinată cu chimioterapie. Radiațiile pot fi administrate din exteriorul corpului și din interior, prin plasarea unei surse radioactive aproape de tumoră. Tratamentul durează de obicei câteva săptămâni.",
+        "Efectele secundare pot include oboseală, iritația intestinului și a vezicii, uscăciune sau îngustare vaginală și menopauză precoce când ovarele sunt afectate. Medicamente mai noi, inclusiv imunoterapia, pot fi luate în considerare pentru cancerul care revine sau s-a răspândit în alte organe."
+      ]
+    },
+    {
+      "heading": "Viața după tratament",
+      "paragraphs": [
+        "Vizitele regulate de urmărire verifică o eventuală recidivă și ajută la gestionarea efectelor secundare. Unele femei dezvoltă limfedem, modificări ale vezicii sau intestinului ori dificultăți sexuale. Kinetoterapia planșeului pelvin, hidratantele vaginale și consilierea pot ajuta, iar simptomele trebuie raportate, nu îndurate.",
+        "Sprijinul emoțional este la fel de important. Frica de recidivă, schimbările imaginii corporale și grijile legate de fertilitate sunt frecvente, iar serviciile de psiho-oncologie, grupurile de sprijin și rudele de încredere pot oferi ajutor."
+      ]
+    },
+    {
+      "heading": "Prevenție și screening",
+      "paragraphs": [
+        "Vaccinarea împotriva papilomavirusului uman, ideal înainte de începerea vieții sexuale, reduce mult riscul de cancer de col uterin. Screeningul regulat cu un test celular, un test HPV sau ambele depistează modificările devreme, când sunt cel mai ușor de tratat.",
+        "Renunțarea la fumat reduce de asemenea riscul. Femeile vaccinate trebuie totuși să meargă la screening, deoarece vaccinul nu protejează împotriva tuturor tipurilor care provoacă cancer."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Înțelegerea unui rezultat de screening",
+      "text": "Imaginați-vă că screeningul arată modificări celulare ușoare. Ați putea întreba ce înseamnă rezultatul, dacă o repetare a testului peste câteva luni este suficientă și ce simptome să raportați între timp, ca să nu vă simțiți lăsată în incertitudine."
+    },
+    {
+      "title": "Cântărirea dorinței de a avea copii",
+      "text": "Presupuneți că aveți 29 de ani și un cancer de col uterin în stadiu incipient, dar sperați să aveți copii. Ați putea întreba comisia oncologică dacă o operație care păstrează fertilitatea este potrivită, care ar fi riscul de recidivă și dacă are sens o trimitere la un specialist în fertilitate înainte de tratament."
+    }
+  ],
+  "questions": [
+    "În ce stadiu se află modificarea sau cancerul și ce opțiuni de tratament i se potrivesc?",
+    "Cum ar putea afecta tratamentul fertilitatea, viața sexuală și funcția vezicii sau a intestinului?",
+    "Ce program de urmărire și ce servicii de sprijin vor fi disponibile după tratament?"
+  ]
+}

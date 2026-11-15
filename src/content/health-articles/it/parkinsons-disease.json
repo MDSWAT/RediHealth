@@ -1,0 +1,51 @@
+{
+  "title": "Malattia di Parkinson",
+  "intro": "La malattia di Parkinson è una condizione progressiva che colpisce il movimento, causata dalla perdita di cellule nervose che producono dopamina nel cervello. Porta a lentezza, rigidità e tremore e anche a sintomi non motori. Non esiste una cura, ma farmaci, terapie e sostegno possono controllare i sintomi e mantenere la qualità di vita per molti anni.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I principali sintomi motori sono lentezza dei movimenti, rigidità muscolare, un tremore a riposo che spesso inizia in una mano e problemi di equilibrio e di cammino. La scrittura può diventare piccola, la voce più debole e l'espressione del viso ridotta. I sintomi non motori comprendono stitichezza, problemi del sonno, perdita dell'olfatto, umore basso, ansia e problemi di memoria e possono comparire anni prima dei problemi di movimento."
+      ]
+    },
+    {
+      "heading": "Cause e diagnosi",
+      "paragraphs": [
+        "La causa è per lo più sconosciuta. L'età è il maggior fattore di rischio e in alcuni casi hanno un ruolo geni e fattori ambientali. La diagnosi si basa sui sintomi e sulla visita di un neurologo. L'imaging cerebrale e scansioni speciali possono aiutare a escludere altre condizioni. La risposta al farmaco dopaminergico sostiene la diagnosi."
+      ]
+    },
+    {
+      "heading": "Farmaci",
+      "paragraphs": [
+        "La levodopa, che il cervello converte in dopamina, è il farmaco più efficace. Altri farmaci come gli agonisti della dopamina, gli inibitori delle MAO-B e gli inibitori delle COMT possono essere usati da soli o in combinazione. Negli anni gli effetti della levodopa possono svanire tra una dose e l'altra e possono comparire movimenti involontari, il che richiede di regolare orari e dosi. Gli effetti collaterali possono comprendere nausea, sonnolenza, pressione bassa e problemi di controllo degli impulsi come il gioco d'azzardo compulsivo, che vanno segnalati."
+      ]
+    },
+    {
+      "heading": "Altri trattamenti",
+      "paragraphs": [
+        "Fisioterapia, esercizio, logopedia e terapia occupazionale sono importanti e migliorano mobilità, voce e attività quotidiane. Aiuta un esercizio regolare come camminare, andare in bicicletta, ballare o fare boxe. La stimolazione cerebrale profonda, in cui vengono collocati elettrodi nel cervello, può aiutare pazienti selezionati con gravi fluttuazioni."
+      ]
+    },
+    {
+      "heading": "Vivere con il Parkinson",
+      "paragraphs": [
+        "Resta attivo, segui un'alimentazione equilibrata con abbastanza fibre e liquidi, pianifica con cura gli orari dei farmaci, prendi precauzioni contro le cadute e cerca un trattamento per i problemi di umore e sonno. Gruppi di sostegno e infermieri specializzati aiutano pazienti e famiglie. Pianifica in anticipo i bisogni di cura."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prendere il farmaco in orario",
+      "text": "Immagina che la rigidità ritorni un'ora prima della dose successiva. Potresti tenere un diario dei sintomi e degli orari delle dosi e mostrarlo al neurologo così da poter regolare lo schema."
+    },
+    {
+      "title": "Restare attivi",
+      "text": "Supponi di sentirti stanco e di voler abbandonare le attività. Potresti chiedere di un gruppo di esercizio locale o di un programma di fisioterapia pensato per le persone con Parkinson."
+    }
+  ],
+  "questions": [
+    "Quale farmaco e quale dose sono migliori per me e a quali effetti collaterali devo fare attenzione?",
+    "Quali terapie ed esercizi possono aiutarmi a restare mobile?",
+    "Quale sostegno è disponibile per la mia famiglia e per me?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "What is occupational therapy?",
+  "intro": "Occupational therapy helps people of all ages to do the everyday activities that matter to them, such as dressing, cooking, working, studying and playing, when illness, injury, disability or ageing makes this difficult. Occupational therapists look at the person, the activity and the environment to find practical solutions.",
+  "sections": [
+    {
+      "heading": "What occupational therapists do",
+      "paragraphs": [
+        "They assess what a person can and cannot do, and work with them on goals. They teach new ways of doing tasks, recommend aids and adapt the home or workplace, build strength and skills through exercise and practice, and advise carers. The focus is on independence, participation and quality of life."
+      ]
+    },
+    {
+      "heading": "Who it helps",
+      "paragraphs": [
+        "People who have had a stroke or injury, those with arthritis, multiple sclerosis, Parkinson's disease or dementia, children with developmental or coordination problems, people with mental health conditions, and older people at risk of falls. It is used in hospitals, rehabilitation centres, schools, workplaces and at home."
+      ]
+    },
+    {
+      "heading": "Examples of treatment",
+      "paragraphs": [
+        "Training to dress with one hand after a stroke, joint protection and special tools for people with arthritis, hand therapy after surgery, sensory and fine motor activities for children, routines and strategies for people with memory difficulties and home changes such as grab rails or a stair lift. Therapists may also advise on returning to work."
+      ]
+    },
+    {
+      "heading": "Getting therapy",
+      "paragraphs": [
+        "A doctor can prescribe it, and in many countries health insurance covers it with a prescription. Sessions may be individual or in groups, at a practice, clinic or at home. Therapy requires practice outside sessions. Ask about the number of sessions, goals and how progress will be judged."
+      ]
+    },
+    {
+      "heading": "Making it work",
+      "paragraphs": [
+        "Be clear about what matters most to you, and set realistic goals. Involve family and carers. Report difficulties so the plan can be adjusted, and ask about aids, funding and local support services."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Setting a goal",
+      "text": "Imagine you find it hard to cook after a shoulder injury. You could tell the therapist and practise kitchen tasks with adapted tools."
+    },
+    {
+      "title": "Adapting the home",
+      "text": "Suppose you worry about falls. You might ask for a home visit to check lighting, rugs and bathroom aids."
+    }
+  ],
+  "questions": [
+    "Which goals should we set for my therapy?",
+    "Which aids or home changes would help?",
+    "Does my insurance cover occupational therapy?"
+  ]
+}

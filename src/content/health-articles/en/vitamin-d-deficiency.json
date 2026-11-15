@@ -1,0 +1,51 @@
+{
+  "title": "Vitamin D deficiency",
+  "intro": "Vitamin D deficiency means that the body has too little vitamin D, which is needed for strong bones and muscles. It is common, particularly in winter in northern countries, in people who cover their skin or rarely go outside and in older people. It is easy to treat, and prevention is simple.",
+  "sections": [
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "Causes include too little sun exposure, dark skin, covering clothing, sunscreen used all the time, age, obesity, malabsorption from diseases of the gut, liver or kidney disease and some medicines. Diet alone rarely provides enough, since few foods contain much vitamin D."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Mild deficiency often causes no symptoms. Severe deficiency can cause bone pain, muscle weakness and tenderness, tiredness, and frequent infections are sometimes reported. In children it causes rickets, with soft bones, bowed legs and delayed growth. In adults it causes osteomalacia, with bone pain and fractures. Many symptoms are non-specific and have other causes."
+      ]
+    },
+    {
+      "heading": "Testing",
+      "paragraphs": [
+        "A blood test measures vitamin D, in the form called 25-hydroxyvitamin D. Routine testing is not needed for healthy people, but is appropriate for people with bone disease, malabsorption, kidney disease or symptoms. Levels below the threshold set by guidelines are considered deficient. Interpretation depends on the laboratory and guidelines."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Doctors prescribe vitamin D supplements in doses depending on the level, for example higher doses for several weeks followed by lower maintenance doses. Calcium intake should be adequate. Retest after a few months if needed. Taking supplements with a meal containing fat helps absorption. Too much vitamin D over a long time can raise calcium and harm the kidneys, so follow instructions and avoid very high doses without supervision."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Spend time outdoors in daylight, with sensible sun protection, eat fish, eggs and fortified foods, and ask about supplements if you are in a risk group. Babies are commonly given vitamin D drops according to national advice. Older people in care homes often benefit from supplements."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Starting treatment",
+      "text": "Imagine your test shows low vitamin D. You could take your supplement with a main meal, mark your calendar for a recheck and add outdoor walks."
+    },
+    {
+      "title": "Looking at risk",
+      "text": "Suppose you cover most of your skin when outdoors. You might ask your doctor about maintenance supplements through the winter."
+    }
+  ],
+  "questions": [
+    "Which dose and for how long should I take vitamin D?",
+    "Do I need a recheck of my levels?",
+    "Which risk factors apply to me?"
+  ]
+}

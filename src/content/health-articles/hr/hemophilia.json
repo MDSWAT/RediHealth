@@ -1,0 +1,51 @@
+{
+  "title": "Hemofilija: prevencija i odgovor na krvarenje",
+  "intro": "Hemofilija zahvaća proteine zgrušavanja i može izazvati produljeno ili unutarnje krvarenje. Nasljedni oblici češći su u muškaraca, ali i žene mogu značajno krvariti. Težina varira i specijalistička skrb je važna.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Krvarenje u zglob ili mišić izaziva bol, otok i ograničenje bez rane. Ponavljanje oštećuje zglobove; ne procjenjujte samo prema krvi izvana."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Specijalistički testovi određuju vrstu i razinu faktora, uz inhibitore kada treba. Navedite obitelj, operacije i dentalna krvarenja. Genetsko savjetovanje objašnjava nasljeđivanje bez pretpostavke iste težine u obitelji. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Liječenje nadoknađuje faktor ili koristi druge specijalističke lijekove za prevenciju ili krvarenje. Hitni plan ovisi o terapiji i inhibitorima: ne zamjenjujte lijekove ni čekajte velik otok. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Nosite informacije i dogovorite dentalnu skrb, operacije i sigurnu aktivnost. Kućno liječenje učite samo pod nadzorom. Provjerite analgetike: aspirin i neki protuupalni lijekovi povećavaju rizik. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Ozljeda glave, jaka glavobolja, povraćanje, otok vrata, teško disanje ili sumnja na veliko unutarnje krvarenje traže hitnu pomoć i odmah propisani plan. Javite sumnju na zglobno krvarenje i bez modrice."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira navodi krvarenje prije vađenja zuba kako bi se stomatolog povezao sa specijalistom umjesto kasnog otkrivanja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben prepoznaje topao bolan zglob kao moguće krvarenje i slijedi plan bez nastavka sporta jer nema vanjske rane."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

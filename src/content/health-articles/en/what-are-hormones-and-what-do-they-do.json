@@ -1,0 +1,51 @@
+{
+  "title": "What are hormones and what do they do?",
+  "intro": "Hormones are chemical messengers made by glands and released into the blood. They travel to target organs and tissues and control processes such as growth, metabolism, reproduction, mood and the body's response to stress. Small changes in hormone levels can have large effects, which is why hormone disorders cause widespread symptoms.",
+  "sections": [
+    {
+      "heading": "The main glands",
+      "paragraphs": [
+        "The pituitary gland at the base of the brain is the master gland that controls many others. The thyroid in the neck regulates metabolism. The adrenal glands above the kidneys produce cortisol and adrenaline. The pancreas releases insulin and glucagon. The ovaries make oestrogen and progesterone, and the testes make testosterone. The parathyroid glands control calcium, and the pineal gland produces melatonin."
+      ]
+    },
+    {
+      "heading": "How hormone systems are regulated",
+      "paragraphs": [
+        "Most hormones are controlled by feedback loops. When the level of a hormone is high, the signal to produce more is reduced, and when it is low, production rises, similar to a thermostat. For example, the pituitary releases thyroid-stimulating hormone when thyroid hormone is low and reduces it when thyroid hormone is high."
+      ]
+    },
+    {
+      "heading": "What hormones do",
+      "paragraphs": [
+        "Insulin lowers blood sugar. Thyroid hormones set the body's pace of energy use. Cortisol helps manage stress and regulates blood pressure and sugar. Growth hormone drives growth in childhood. Sex hormones control puberty, fertility, periods and sexual function. Hormones also influence sleep, appetite, mood and bone strength."
+      ]
+    },
+    {
+      "heading": "When things go wrong",
+      "paragraphs": [
+        "Too much or too little hormone can cause illness: diabetes from insufficient insulin effect, an overactive or underactive thyroid, Cushing's syndrome from excess cortisol, adrenal insufficiency, menopause symptoms, polycystic ovary syndrome and low testosterone. Symptoms such as tiredness, weight change, mood changes, temperature intolerance or menstrual problems may signal hormone disorders but have many other causes."
+      ]
+    },
+    {
+      "heading": "Testing and treatment",
+      "paragraphs": [
+        "Blood tests, sometimes saliva or urine tests, and imaging help diagnose hormone problems. Treatment may replace missing hormones, block excess ones, treat the cause or remove a growth. Be careful with unregulated hormone products and tests marketed directly to consumers, and discuss concerns with a doctor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Describing symptoms",
+      "text": "Imagine you feel constantly tired and cold. You could ask your doctor about thyroid tests and list your other symptoms."
+    },
+    {
+      "title": "Understanding replacement",
+      "text": "Suppose you start hormone replacement for an underactive thyroid. You might ask how the dose is adjusted and how often tests are needed."
+    }
+  ],
+  "questions": [
+    "Could my symptoms be caused by a hormone problem?",
+    "Which tests are needed to check?",
+    "How will treatment be monitored?"
+  ]
+}

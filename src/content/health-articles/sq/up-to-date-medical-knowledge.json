@@ -1,0 +1,51 @@
+{
+  "title": "Dija mjekësore e përditësuar: si vlerësohet",
+  "intro": "Dija mjekësore ndryshon vazhdimisht. Për ta mbajtur informacionin shëndetësor të besueshëm, prodhuesit duhet të ndjekin kërkimin, të gjykojnë cilësinë e tij e të përditësojnë tekstet. Të kuptuarit si bëhet kjo ju ndihmon të shihni si krijohet informacioni aktual e pse rekomandimet nganjëherë ndryshojnë.",
+  "sections": [
+    {
+      "heading": "Ndjekja e kërkimit të ri",
+      "paragraphs": [
+        "Mijëra studime botohen çdo javë. Ekipet monitorojnë revistat, regjistrat e provave, udhëzuesit e paralajmërimet e sigurisë për gjetje të reja mbi temat që mbulojnë. Vendosin nëse prova e re është e rëndësishme, mjaftueshëm e fortë e ka gjasa të ndryshojë përfundimet ekzistuese."
+      ]
+    },
+    {
+      "heading": "Gjykimi i cilësisë së provave",
+      "paragraphs": [
+        "Jo çdo studim është njëlloj i besueshëm. Rishikuesit vlerësojnë dizajnin, madhësinë, njëanshmërinë, qëndrueshmërinë e nëse rezultatet kanë rëndësi për pacientët. Një studim i vetëm i vogël rrallë i ndryshon rekomandimet, ndërsa një provë e madhe e ndërtuar mirë ose një rishikim sistematik që kombinon disa studime mund t'i ndryshojë. Prova klasifikohet, çka shpreh sa i sigurt mund të jemi te rezultatet."
+      ]
+    },
+    {
+      "heading": "Përditësimi i informacionit",
+      "paragraphs": [
+        "Kur prova ndryshon pamjen, tekstet rishikohen e data e rishikimit regjistrohet. Ndryshime të vogla mund të bëhen në cikle të rregullta rishikimi e informacioni urgjent i sigurisë përditësohet shpejt. Nganjëherë prova e re konfirmon këshillën aktuale e asgjë nuk ndryshon. Ofruesit e mirë shpjegojnë çfarë ndryshoi e pse."
+      ]
+    },
+    {
+      "heading": "Pse ndryshon këshilla",
+      "paragraphs": [
+        "Rekomandimet mund të ndryshojnë sepse prova të reja tregojnë se një trajtim është më i mirë ose më i keq nga sa mendohej, sepse dëmet bëhen të dukshme vetëm pas përdorimit të gjerë, ose sepse zhvillohen teste më të mira. Ndryshimi i këshillës është shenjë e shkencës që funksionon, jo domosdoshmërisht e dështimit. Disa pretendime të raportuara së pari në lajme nuk konfirmohen nga kërkimi i mëvonshëm."
+      ]
+    },
+    {
+      "heading": "Çfarë mund të bëni",
+      "paragraphs": [
+        "Kontrolloni datën e informacionit që përdorni, preferoni burime që tregojnë si përditësohen e pyesni mjekun për zhvillime të reja në gjendjen tuaj. Mos e ndalni ose ndryshoni trajtimin për shkak të një raporti, por flisni për të me ekipin tuaj të kujdesit shëndetësor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vënia re e një ndryshimi",
+      "text": "Imagjinoni që një ilaç që merrni përmendet në lajme si i rrezikshëm. Mund të kontrolloni një burim të besueshëm e të pyesni mjekun ose farmacistin para se të bëni ndonjë ndryshim."
+    },
+    {
+      "title": "Kërkimi i datave",
+      "text": "Supozoni që lexoni këshilla për një vaksinim. Mund të shihni kur është përditësuar teksti për herë të fundit e ta krahasoni me rekomandimet tuaja kombëtare."
+    }
+  ],
+  "questions": [
+    "A ka ndryshuar së fundmi rekomandimi për gjendjen time?",
+    "Sa e besueshme është prova e re?",
+    "A duhet të ndryshojë diçka në trajtimin tim në dritën e saj?"
+  ]
+}

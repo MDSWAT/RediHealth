@@ -1,0 +1,51 @@
+{
+  "title": "Parkinson's disease",
+  "intro": "Parkinson's disease is a progressive condition affecting movement, caused by the loss of nerve cells that produce dopamine in the brain. It leads to slowness, stiffness and tremor, and also non-motor symptoms. There is no cure, but medicines, therapies and support can control symptoms and maintain quality of life for many years.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "The main motor symptoms are slowness of movement, muscle stiffness, a resting tremor often starting in one hand, and problems with balance and walking. Handwriting may become small, the voice softer and facial expression reduced. Non-motor symptoms include constipation, sleep problems, loss of smell, low mood, anxiety and memory problems, and may appear years before movement problems."
+      ]
+    },
+    {
+      "heading": "Causes and diagnosis",
+      "paragraphs": [
+        "The cause is mostly unknown. Age is the biggest risk factor, and genes and environmental factors play a role in some cases. Diagnosis is based on symptoms and examination by a neurologist. Brain imaging and special scans may help exclude other conditions. Response to dopamine medicine supports the diagnosis."
+      ]
+    },
+    {
+      "heading": "Medicines",
+      "paragraphs": [
+        "Levodopa, which the brain converts to dopamine, is the most effective drug. Other medicines such as dopamine agonists, MAO-B inhibitors and COMT inhibitors can be used alone or in combination. Over years, levodopa effects may wear off between doses and involuntary movements may occur, which requires adjusting timing and doses. Side effects can include nausea, sleepiness, low blood pressure and impulse control problems such as compulsive gambling, which should be reported."
+      ]
+    },
+    {
+      "heading": "Other treatments",
+      "paragraphs": [
+        "Physiotherapy, exercise, speech and language therapy and occupational therapy are important and improve mobility, voice and daily activities. Regular exercise such as walking, cycling, dance or boxing helps. Deep brain stimulation, where electrodes are placed in the brain, can help selected patients with severe fluctuations."
+      ]
+    },
+    {
+      "heading": "Living with Parkinson's",
+      "paragraphs": [
+        "Keep active, eat a balanced diet with enough fibre and fluids, plan medicine times carefully, take precautions against falls and seek treatment for mood and sleep problems. Support groups and specialist nurses help patients and families. Plan ahead for care needs."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Taking medicine on time",
+      "text": "Imagine your stiffness returns an hour before the next dose. You could keep a diary of symptoms and dose times and show it to your neurologist so that the schedule can be adjusted."
+    },
+    {
+      "title": "Staying active",
+      "text": "Suppose you feel tired and want to withdraw from activities. You might ask about a local exercise group or physiotherapy programme designed for people with Parkinson's."
+    }
+  ],
+  "questions": [
+    "Which medicine and dose is best for me, and what side effects should I look out for?",
+    "Which therapies and exercises can help me stay mobile?",
+    "What support is available for my family and me?"
+  ]
+}

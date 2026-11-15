@@ -1,0 +1,51 @@
+{
+  "title": "Psoriaza",
+  "intro": "Psoriaza është një gjendje inflamatore afatgjatë e lëkurës ku qelizat e lëkurës shumëzohen shumë shpejt, duke prodhuar njolla të kuqe, me luspa, nganjëherë me kruarje. Nuk është ngjitëse. Ndjek një rrjedhë me përkeqësime e periudha më të qeta dhe ka shumë trajtime efektive, nga kremrat te barnat moderne me injeksion.",
+  "sections": [
+    {
+      "heading": "Simptomat dhe llojet",
+      "paragraphs": [
+        "Forma më e zakonshme është psoriaza me pllaka, me njolla të kuqe të mprehta të mbuluara me luspa argjendi te bërrylat, gjunjët, koka e shpina e poshtme. Forma të tjera përfshijnë psoriazën guttate, me pika të vogla pas një infeksioni të fytit, psoriazën inverse në palosjet e lëkurës, psoriazën pustulare e ndryshime të thonjve si gropëzat. Psoriaza mund të prekë edhe nyjet."
+      ]
+    },
+    {
+      "heading": "Shkaqet dhe nxitësit",
+      "paragraphs": [
+        "Psoriaza lind nga një përgjigje imune e tepruar e kombinuar me faktorë gjenetikë. Përkeqësimet mund të nxiten nga infeksionet, lëndimi i lëkurës, stresi, disa barna, duhani, alkooli e obeziteti. Njerëzit me psoriazë kanë rrezik më të lartë për sëmundje kardiovaskulare, diabet e depresion, prandaj shëndeti i përgjithshëm ka rëndësi."
+      ]
+    },
+    {
+      "heading": "Trajtimi i psoriazës së lehtë",
+      "paragraphs": [
+        "Lagështuesit i zbutin luspat. Kremrat me kortikosteroide, derivate të vitaminës D ose një kombinim e ulin inflamacionin e luspëzimin. Acidi salicilik i heq luspat. Trajtimi aplikohet siç udhëzohet për të shmangur holimin e lëkurës. Psoriaza e kokës mund të kërkojë shampo e tretësira të veçanta."
+      ]
+    },
+    {
+      "heading": "Trajtimi i psoriazës mesatare deri të rëndë",
+      "paragraphs": [
+        "Fototerapia me dritë ultravjollcë është efektive. Tabletat si metotreksati, ciklosporina ose barnat më të reja me molekula të vogla e shtypin sistemin imunitar dhe kërkojnë monitorim. Barnat biologjike, të dhëna me injeksion, synojnë sinjale specifike imune e shpesh e pastrojnë lëkurën në mënyrë dramatike, por e rrisin rrezikun e infeksioneve dhe kërkojnë skrining për tuberkuloz e hepatit. Zgjedhja varet nga ashpërsia, përfshirja e nyjeve, sëmundjet e tjera e preferencat."
+      ]
+    },
+    {
+      "heading": "Të jetosh me psoriazën",
+      "paragraphs": [
+        "Kujdesi i lëkurës, shmangia e nxitësve, lënia e duhanit, ulja e alkoolit, humbja e peshës nëse nevojitet e menaxhimi i stresit ndihmojnë. Psoriaza mund të ndikojë te vetëvlerësimi e marrëdhëniet dhe grupet e mbështetjes e ndihma psikologjike janë të vlefshme. Tregojini mjekut nëse nyjet dhembin ose enjten, pasi trajtimi i hershëm i artritit psoriatik parandalon dëmtimin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planifikimi i trajtimit",
+      "text": "Imagjinoni që njollat tuaja kthehen vazhdimisht te bërrylat. Mund të pyesni për një krem të kombinuar, sa kohë ta përdorni e çfarë të bëni nëse përkeqësimet kthehen."
+    },
+    {
+      "title": "Diskutimi i dhimbjes së nyjeve",
+      "text": "Supozoni që gishtat tuaj enjten e ngurtësohen në mëngjes. Mund t'ia thoni dermatologut e të kërkoni referim te një reumatolog."
+    }
+  ],
+  "questions": [
+    "Sa e rëndë është psoriaza ime dhe cili trajtim më përshtatet?",
+    "Cilat janë rreziqet e barnave më të forta e si monitorohen?",
+    "A mund të lidhet dhimbja e nyjeve me psoriazën?"
+  ]
+}

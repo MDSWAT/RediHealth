@@ -1,0 +1,52 @@
+{
+  "title": "Zona zoster",
+  "intro": "Zona zoster este o erupție dureroasă provocată de reactivarea virusului varicelei, care rămâne latent în celulele nervoase după ce o persoană a avut varicelă. De obicei apare ca o bandă de vezicule pe o parte a corpului și se vindecă în câteva săptămâni. Tratamentul timpuriu și vaccinarea pot reduce complicațiile.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "De obicei apar arsuri, furnicături sau durere într-o zonă de piele timp de câteva zile, urmate de o erupție roșie, cu grupuri de vezicule pline cu lichid, în formă de bandă, pe o parte a trunchiului, a feței sau a altei zone. Veziculele fac crustă în aproximativ zece zile. Unele persoane au febră, dureri de cap și oboseală."
+      ]
+    },
+    {
+      "heading": "Cine o face",
+      "paragraphs": [
+        "Oricine a avut varicelă poate face zona zoster, dar riscul crește cu vârsta, mai ales după cincizeci de ani, și cu imunitatea scăzută din cauza bolii, a medicamentelor sau a stresului. Zona zoster nu se poate lua de la altă persoană, dar o persoană cu vezicule active poate transmite virusul varicelei cuiva care nu a avut niciodată varicelă sau vaccinul."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Medicamentul antiviral, început în trei zile de la apariția erupției, poate reduce severitatea, poate scurta boala și poate scădea riscul de durere persistentă. Este recomandat mai ales persoanelor de peste cincizeci de ani, celor cu erupție pe față sau durere severă și celor cu imunitate scăzută. Calmantele, compresele reci și hainele largi ameliorează disconfortul. Păstrați veziculele curate și acoperite și evitați contactul cu femeile însărcinate, nou-născuții și persoanele cu imunitate scăzută până când fac crustă."
+      ]
+    },
+    {
+      "heading": "Complicații și vaccinare",
+      "paragraphs": [
+        "Unele persoane dezvoltă o durere nervoasă persistentă, numită nevralgie postherpetică. Zona zoster lângă ochi poate pune în pericol vederea și necesită evaluare urgentă. Alte complicații includ infecția bacteriană a pielii, paralizia facială și problemele de auz.",
+        "Un vaccin reduce riscul de zona zoster și complicațiile ei și este recomandat adulților în vârstă și anumitor persoane mai tinere, cu risc, în schema cu două doze. Întrebați medicul dacă este potrivit pentru dumneavoastră și dacă costurile sunt acoperite."
+      ]
+    },
+    {
+      "heading": "Cum vă îngrijiți",
+      "paragraphs": [
+        "Repausul, calmarea blândă a durerii și menținerea pielii curate ajută recuperarea. Evitați scărpinatul și spuneți medicului dacă erupția se extinde, devine foarte dureroasă sau vă simțiți rău. Cele mai multe persoane se vindecă complet în câteva săptămâni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Acțiunea rapidă",
+      "text": "Imaginați-vă că simțiți arsuri pe o parte a pieptului și apoi vedeți vezicule. Ați putea contacta medicul în aceeași zi pentru a întreba despre tratamentul antiviral."
+    },
+    {
+      "title": "Luarea în considerare a vaccinării",
+      "text": "Presupuneți că aveți șaizeci de ani. Ați putea întreba medicul dacă vaccinul împotriva zonei zoster este recomandat și de câte doze aveți nevoie."
+    }
+  ],
+  "questions": [
+    "Ar trebui să încep tratamentul antiviral și cât de curând?",
+    "Cum îi pot proteja pe cei din jur cât timp am vezicule?",
+    "Sunt eligibil pentru vaccinarea împotriva zonei zoster?"
+  ]
+}

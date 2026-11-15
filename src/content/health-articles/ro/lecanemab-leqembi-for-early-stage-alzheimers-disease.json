@@ -1,0 +1,51 @@
+{
+  "title": "Lecanemab în boala Alzheimer în stadiu incipient",
+  "intro": "Lecanemab este un medicament anticorp administrat prin perfuzie, care țintește amiloidul, o proteină care se acumulează în creier în boala Alzheimer. Este destinat persoanelor aflate în stadiile incipiente și poate încetini modest declinul memoriei și gândirii. Nu vindecă boala și comportă riscuri notabile, așa că este necesară o evaluare atentă.",
+  "sections": [
+    {
+      "heading": "Cum acționează",
+      "paragraphs": [
+        "În boala Alzheimer, aglomerări de proteină amiloidă formează plăci între celulele nervoase. Lecanemab se atașează de amiloid și ajută sistemul imunitar să-l elimine din creier. Cercetătorii cred că reducerea amiloidului poate încetini evoluția bolii, deși cât de mult se traduce aceasta în beneficiu în viața de zi cu zi este dezbătut."
+      ]
+    },
+    {
+      "heading": "Cine poate fi luat în considerare",
+      "paragraphs": [
+        "Medicamentul este destinat persoanelor cu tulburare cognitivă ușoară sau demență ușoară cauzată de boala Alzheimer, la care amiloidul a fost confirmat printr-o scanare cerebrală sau un test al lichidului cefalorahidian. Persoanele cu anumiți factori de risc, precum sângerări în creier, folosirea anticoagulantelor sau caracteristici genetice care cresc șansa de efecte secundare, pot să nu fie potrivite. Disponibilitatea și aprobarea diferă între țări."
+      ]
+    },
+    {
+      "heading": "Ce au găsit studiile",
+      "paragraphs": [
+        "Într-un studiu mare, care a durat optsprezece luni, persoanele care au primit lecanemab au avut un declin ceva mai lent pe o scală de evaluare decât cele care au primit placebo. Diferența a fost mică, iar experții nu sunt de acord dacă este vizibilă în viața de zi cu zi. Beneficiile pe termen mai lung sunt încă studiate."
+      ]
+    },
+    {
+      "heading": "Riscuri și monitorizare",
+      "paragraphs": [
+        "Tratamentul se administrează prin perfuzie la fiecare două săptămâni, iar scanările cerebrale sunt necesare înainte și în timpul tratamentului. Un efect secundar cunoscut este umflarea sau micile sângerări în creier, numite anomalii imagistice legate de amiloid. Cele mai multe nu au simptome, dar unele provoacă dureri de cap, confuzie sau amețeală și, rar, pot fi grave. Persoanele care poartă două copii ale unei variante genetice numite APOE4 au un risc mai mare. Pot apărea și reacții la perfuzie, precum febră sau frisoane."
+      ]
+    },
+    {
+      "heading": "Luarea unei decizii",
+      "paragraphs": [
+        "Decizia implică cântărirea unei posibile încetiniri modeste a declinului față de perfuziile regulate, scanări, riscuri și povara asupra familiei. Discutați cu un specialist despre obiectivele dumneavoastră. Sprijinul, medicamentele pentru simptome, activitatea, contactul social și planificarea îngrijirii rămân importante cu sau fără acest tratament."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru o vizită la specialist",
+      "text": "Imaginați-vă că vi s-a diagnosticat Alzheimer în stadiu incipient. Ați putea nota întrebări despre dacă îndepliniți criteriile, care sunt beneficiile în viața de zi cu zi și ce implică monitorizarea și ați putea veni cu o rudă."
+    },
+    {
+      "title": "Cântărirea poverii",
+      "text": "Presupuneți că locuiți departe de spital. Ați putea discuta cât de des ar fi nevoie de deplasare pentru perfuzii și scanări și dacă aceasta se potrivește cu viața dumneavoastră de zi cu zi."
+    }
+  ],
+  "questions": [
+    "Sunt un candidat potrivit și ce teste sunt necesare?",
+    "Ce beneficiu realist și ce riscuri ar trebui să mă aștept?",
+    "Ce alt sprijin este disponibil dacă hotărăsc să nu-l iau?"
+  ]
+}

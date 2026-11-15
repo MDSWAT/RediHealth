@@ -1,0 +1,51 @@
+{
+  "title": "Colesterolo alto: valutare il rischio complessivo",
+  "intro": "Il colesterolo circola in particelle e svolge funzioni normali. LDL persistentemente alto contribuisce alla malattia arteriosa. Solitamente non si sente; le scelte considerano rischio cardiovascolare globale, non un numero isolato.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Il rischio dipende anche da età, pressione, fumo, diabete e precedenti malattie vascolari. Familiarità forte o valori molto alti suggeriscono ereditarietà anche con buona alimentazione."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Profilo lipidico e storia guidano la valutazione. Tiroide, reni e farmaci possono richiedere controllo come cause. Chiedere significato per il rischio assoluto e opportunità di test familiari. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Le statine sono comuni prime opzioni quando indicate; alternative o aggiunte aiutano alcuni. I benefici dipendono dal rischio iniziale. Discutere gravidanza, interazioni e sintomi senza modifiche autonome. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Preferire fibre e grassi insaturi riducendo saturi eccessivi, muoversi e non fumare. Diete estreme e integratori non sostituiscono cure dimostrate quando necessarie. Cambiamenti sostenibili contano più della colpa. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Controllare risposta ed effetti. Forte dolore muscolare inspiegato o debolezza, soprattutto con urine scure, richiedono consiglio rapido. Dolore toracico o segni di ictus richiedono emergenza indipendentemente dall’ultimo colesterolo."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha familiarità e valori elevati nonostante pasti equilibrati. Chiede ereditarietà e test familiari senza colpevolizzare il cibo."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben chiede riduzione del proprio rischio con statina e discute sintomi muscolari senza abbandonare in silenzio la prevenzione."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

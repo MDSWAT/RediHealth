@@ -1,0 +1,56 @@
+{
+  "title": "Si matet tensioni i gjakut",
+  "intro": "Tensioni i gjakut është forca me të cilën gjaku shtyn mbi muret e arterieve tuaja. Matja e tij është e shpejtë, pa dhimbje dhe një nga kontrollet më të dobishme në mjekësi, sepse tensioni i lartë zakonisht nuk jep simptoma, por rrit rrezikun e infarktit, goditjes në tru dhe sëmundjes së veshkave. Njohja e mënyrës si bëhet matja ju ndihmon të merrni vlera të besueshme.",
+  "sections": [
+    {
+      "heading": "Çfarë nënkuptojnë dy numrat",
+      "paragraphs": [
+        "Një matje ka dy vlera, për shembull 120 mbi 80. Numri i sipërm, i quajtur tension sistolik, është presioni kur zemra tkurret dhe shtyn gjakun jashtë. Numri i poshtëm, tensioni diastolik, është presioni kur zemra çlirohet dhe mbushet përsëri midis rrahjeve. Të dyja jepen në milimetra merkuri.",
+        "Tensioni i gjakut ndryshon natyrshëm gjatë ditës. Ngrihet me aktivitetin, stresin, dhimbjen, kafeinën ose të ftohtin dhe bie gjatë pushimit dhe gjumit. Prandaj një vlerë e vetme e lartë nuk provon tension të lartë; mjekët shikojnë matje të përsëritura, të marra në kushte të krahasueshme."
+      ]
+    },
+    {
+      "heading": "Matja në zyrën e mjekut",
+      "paragraphs": [
+        "Një manshetë mbështillet rreth krahut të sipërm në nivelin e zemrës dhe fryhet derisa ndalon shkurtimisht rrjedhën e gjakut. Ndërsa shfryhet, pajisja ose klinicisti zbulon kur gjaku fillon të rrjedhë përsëri dhe kur rrjedh lirshëm, gjë që jep dy vlerat. Madhësia e manshetës ka rëndësi, sepse një manshetë shumë e vogël mund të japë vlera të rreme të larta.",
+        "Disa njerëz kanë vlera më të larta në klinikë sesa në shtëpi sepse ndihen nervozë, efekt që shpesh quhet hipertension i përparëses së bardhë. Për këtë arsye, shumë udhëzues rekomandojnë konfirmimin e një vlere të lartë në zyrë me matje jashtë klinikës."
+      ]
+    },
+    {
+      "heading": "Matja në shtëpi",
+      "paragraphs": [
+        "Matja në shtëpi me një pajisje të vlerësuar për krahun e sipërm është shpesh mënyra më e dobishme për ta ndjekur tensionin e gjakut. Uluni të qetë për disa minuta me shpinën të mbështetur, këmbët të sheshta në dysheme dhe krahun të pushuar në nivelin e zemrës. Shmangni kafeinën, duhanin dhe ushtrimet për rreth gjysmë ore më parë dhe zbrazni fshikëzën më parë.",
+        "Bëni dy matje me rreth një minutë ndarje dhe shënojini, në mënyrë ideale në mëngjes dhe në mbrëmje gjatë disa ditëve, siç ju këshillon mjeku. Pajisjet për kyç dore dhe gisht janë përgjithësisht më pak të besueshme se ato për krahun e sipërm. Sillni pajisjen tuaj në një takim, që saktësia e saj të krahasohet me pajisjet e klinikës."
+      ]
+    },
+    {
+      "heading": "Monitorimi njëzet e katër orësh",
+      "paragraphs": [
+        "Për raste të paqarta, mjekët mund të përdorin monitorimin ambulator. Ju mbani një pajisje të vogël me manshetë për një ditë e natë të plotë dhe ajo mat automatikisht çdo 20 deri në 30 minuta. Kjo tregon si sillet tensioni i gjakut gjatë aktiviteteve normale dhe gjumit dhe ndihmon ta veçojë tensionin e lartë të vërtetë nga efektet e lidhura me klinikën.",
+        "Pajisja mund ta shtrëngojë krahun kur fryhet dhe mund t'ju kërkohet të mbani një ditar të thjeshtë të aktiviteteve dhe simptomave gjatë testit."
+      ]
+    },
+    {
+      "heading": "Të kuptuarit e rezultateve",
+      "paragraphs": [
+        "Objektivat ndryshojnë nga personi në person, në varësi të moshës, sëmundjeve të tjera dhe rrezikut të sëmundjes së zemrës, kështu që mjeku juaj do t'ju shpjegojë çfarë intervali është i duhuri për ju. Vlerat që mbeten të larta duhet të çojnë në diskutim për masa të stilit të jetesës, si më pak kripë, ushtrime të rregullta, kontroll të peshës dhe kufizim të alkoolit dhe, ndoshta, ilaçe.",
+        "Kërkoni ndihmë urgjente nëse një vlerë shumë e lartë vjen me dhimbje në gjoks, dhimbje koke të rëndë, ndryshime të shikimit, dobësi ose vështirësi në të folur. Edhe vlerat shumë të ulëta me marramendje ose humbje ndjenjash duhen vlerësuar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Ndërtimi i një regjistri në shtëpi",
+      "text": "Imagjinoni që mjeku dyshon për tension të lartë dhe ju kërkon të matni në shtëpi. Mund të bëni matje çdo mëngjes dhe mbrëmje për një javë, t'i shkruani në një tabelë të thjeshtë dhe ta sillni tabelën dhe pajisjen në vizitën e ndjekjes."
+    },
+    {
+      "title": "Kontrolli i madhësisë së manshetës",
+      "text": "Supozoni që keni krahë të sipërm më të mëdhenj dhe matjet tuaja duken gjithmonë të larta. Mund t'i kërkoni infermieres së ambulancës të kontrollojë nëse manshetja ka madhësinë e duhur, sepse manshetja e gabuar mund t'i ndryshojë numrat."
+    }
+  ],
+  "questions": [
+    "Cilat vlera të tensionit të gjakut janë të duhurat për mua dhe sa shpesh duhet të matem?",
+    "A duhet të matem në shtëpi apo të bëj monitorim ambulator dhe cilën pajisje do të rekomandonit?",
+    "Cilat ndryshime të stilit të jetesës do të bënin diferencën më të madhe në rastin tim?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Scabbia",
+  "intro": "La scabbia è un'infestazione della pelle causata da minuscoli acari che scavano nella pelle e causano un prurito intenso, soprattutto di notte. Si diffonde con il contatto prolungato con la pelle e non è segno di scarsa igiene. Si cura facilmente con creme o compresse, ma tutti coloro che hanno contatti stretti devono essere trattati nello stesso momento.",
+  "sections": [
+    {
+      "heading": "Come si diffonde",
+      "paragraphs": [
+        "Gli acari della scabbia passano da persona a persona con un contatto stretto e prolungato con la pelle, come in famiglia, durante il sesso e nelle case di cura o negli asili nido. La condivisione di lenzuola o abiti può occasionalmente diffonderli. Gli acari sopravvivono solo pochi giorni lontano dal corpo umano."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Il sintomo principale è un prurito intenso, in particolare di notte, che inizia da due a sei settimane dopo la prima infezione o entro pochi giorni in caso di reinfezione. Compaiono piccole macchie rosse e sottili linee ondulate dei cunicoli soprattutto tra le dita, sui polsi, sui gomiti, sotto le ascelle, in vita e sui genitali e, nei neonati, su palmi, piante dei piedi e testa. Grattarsi può portare a piaghe infette."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "Un medico riconosce la scabbia dall'aspetto e dalla distribuzione dell'eruzione e dai contatti con prurito simile. L'esame con un dermatoscopio o il raschiamento cutaneo al microscopio possono confermare la presenza di acari. Il prurito può persistere per diverse settimane dopo un trattamento riuscito a causa di una reazione agli acari morti."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "La crema alla permetrina si usa comunemente su tutto il corpo dal collo in giù, lasciata per il tempo indicato, di solito per tutta la notte, poi sciacquata e ripetuta dopo una settimana. Il benzoato di benzile è un'alternativa e le compresse di ivermectina si usano in alcuni casi, in particolare nei focolai. Tratta tutti i componenti della famiglia e i contatti stretti nello stesso momento, anche senza sintomi."
+      ]
+    },
+    {
+      "heading": "Misure di pulizia",
+      "paragraphs": [
+        "Lava lenzuola, asciugamani e abiti degli ultimi giorni ad alta temperatura oppure chiudili in sacchi di plastica per diversi giorni. Passa l'aspirapolvere sui mobili imbottiti e tieni corte le unghie. Torna a scuola o al lavoro solo dopo aver fatto il trattamento come indicato. Antistaminici o lozioni lenitive possono alleviare il prurito."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trattare la famiglia",
+      "text": "Immagina che tuo figlio abbia la scabbia. Potresti coordinare il trattamento di tutta la famiglia nella stessa sera e lavare tutta la biancheria la mattina dopo."
+    },
+    {
+      "title": "Gestire il prurito persistente",
+      "text": "Supponi che il prurito continui due settimane dopo il trattamento. Potresti chiedere al medico se sia il solito prurito post-scabbia o se serva un nuovo trattamento."
+    }
+  ],
+  "questions": [
+    "Quale trattamento è il migliore e chi altro deve essere trattato?",
+    "Quando possiamo tornare a scuola o al lavoro?",
+    "Come posso alleviare il prurito dopo?"
+  ]
+}

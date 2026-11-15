@@ -1,0 +1,52 @@
+{
+  "title": "Kuptimi i ciklit menstrual",
+  "intro": "Cikli lidh sinjalet hormonale, veprimtarinë ovariane dhe ndryshimet e shtresës së mitrës. Koha ndryshon mes personave dhe gjatë jetës. Modeli i librit ose aplikacioni nuk provon ovulimin dhe nuk përjashton shtatzëninë.",
+  "sections": [
+    {
+      "heading": "Fillimi",
+      "paragraphs": [
+        "Dita e parë e gjakderdhjes shënon ciklin e ri. Sinjalet e trurit dhe hipofizës nxisin folikulat në vezore; estrogjeni rindërton shtresën e mitrës."
+      ]
+    },
+    {
+      "heading": "Ovulimi",
+      "paragraphs": [
+        "Një rritje hormonale mund të lëshojë vezën në tubin fallopian. Ovulimi nuk vjen në të njëjtën ditë për të gjithë dhe gjakderdhja nuk garanton se ka ndodhur."
+      ]
+    },
+    {
+      "heading": "Pas lëshimit",
+      "paragraphs": [
+        "Folikuli i zbrazur formon strukturë të përkohshme që prodhon progesteron. Mban shtresën; pa shtatzëni hormonet bien dhe shtresa shkëputet."
+      ]
+    },
+    {
+      "heading": "Ndjekja",
+      "paragraphs": [
+        "Shënoni gjakderdhjen, dhimbjen dhe ndikimin ditor pa quajtur çdo ndryshim sëmundje. Puberteti, kalimi menopauzal, sëmundja, stresi dhe kontracepsioni hormonal ndryshojnë ciklin; vetëm kalendari nuk është kontracepsion i besueshëm."
+      ]
+    },
+    {
+      "heading": "Vlerësimi",
+      "paragraphs": [
+        "Gjakderdhja shumë e madhe, ndjenja e të fikëtit, dhimbja e fortë, parregullsia e vazhdueshme ose gjaku pas menopauzës kërkojnë kontroll. Shtatzënia e mundshme me dhimbje të fortë anësore, kolaps ose dhimbje në majë shpatulle kërkon urgjencë edhe pa test pozitiv.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira shënon dhimbjen dhe aktivitetet e humbura, jo vetëm datat, për të vlerësuar nevojën e trajtimit."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ndihmon partneren me vonesë dhe dhimbje të fortë anësore të kërkojë urgjencë, jo parashikimin e aplikacionit."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Što su dodaci prehrani?",
+  "intro": "Dodaci prehrani su proizvodi kao što su vitamini, minerali, biljni ekstrakti i druge tvari koji se uzimaju kao dopuna prehrani. Prodaju se u tabletama, kapsulama, prašku i pićima. Većini zdravih ljudi koji se raznoliko hrane nisu potrebni, a neki mogu biti štetni. U određenim situacijama ciljani dodaci su korisni.",
+  "sections": [
+    {
+      "heading": "Po čemu se razlikuju od lijekova",
+      "paragraphs": [
+        "U mnogim zemljama dodaci se reguliraju kao hrana, a ne kao lijekovi pa ne moraju dokazati učinkovitost prije prodaje, iako vrijede sigurnosna pravila. Njihove oznake mogu iznositi opće tvrdnje, ali ne smiju tvrditi da liječe ili izlječuju bolest. Kvaliteta i sadržaj mogu se razlikovati među proizvodima, a neki sadrže više ili manje nego što piše na oznaci."
+      ]
+    },
+    {
+      "heading": "Kada dodaci mogu biti korisni",
+      "paragraphs": [
+        "Dodaci mogu pomoći kada postoji dokazana potreba: folna kiselina prije i u ranoj trudnoći, vitamin D za dojenčad i određene rizične skupine, vitamin B12 za vegane i osobe s problemima upijanja, željezo kod nedostatka željeza, jod u trudnoći u nekim regijama te kalcij i vitamin D za neke osobe u riziku od osteoporoze. Liječnik može potvrditi potrebu pretragama."
+      ]
+    },
+    {
+      "heading": "Rizici",
+      "paragraphs": [
+        "Vrlo visoke doze nekih vitamina i minerala mogu naškoditi, primjerice višak vitamina A u trudnoći može oštetiti dijete, visoke doze vitamina D mogu povisiti kalcij u krvi, a velike količine željeza su otrovne, osobito za djecu. Biljni proizvodi mogu stupati u interakciju s lijekovima, kao što je gospina trava s kontraceptivima i lijekovima za razrjeđivanje krvi. Neki proizvodi sadrže neprijavljene tvari. Uzimanje više proizvoda može dovesti do predoziranja."
+      ]
+    },
+    {
+      "heading": "Mudar odabir",
+      "paragraphs": [
+        "Pitajte trebate li uopće dodatak i nastojte hranjive tvari dobiti najprije iz hrane. Recite liječniku i ljekarniku što uzimate. Birajte proizvode uglednih marki i provjerite doze prema preporučenim dnevnim količinama. Budite skeptični prema tvrdnjama o čudotvornim učincima, detoksu ili jačanju imuniteta. Prestanite i potražite pomoć ako imate nuspojave. Držite proizvode izvan dosega djece."
+      ]
+    },
+    {
+      "heading": "Razgovor sa zdravstvenim timom",
+      "paragraphs": [
+        "Spomenite dodatke na svakom pregledu jer mogu promijeniti rezultate pretraga i stupati u interakciju s liječenjem. Ponesite ambalažu kako bi se znali točni sastojci i doze te redovito provjeravajte trebaju li vam još."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Provjera potrebe",
+      "text": "Zamislite da se pitate trebate li uzimati multivitamin. Mogli biste s liječnikom ili nutricionistom pregledati prehranu i pitati trebaju li kakve pretrage."
+    },
+    {
+      "title": "Provjera interakcija",
+      "text": "Pretpostavite da počnete uzimati biljni pripravak uz redoviti lijek. Mogli biste prije početka pitati ljekarnika o interakcijama."
+    }
+  ],
+  "questions": [
+    "Trebam li doista dodatak i koji?",
+    "Može li stupiti u interakciju s mojim lijekovima?",
+    "Koja je doza sigurna za mene?"
+  ]
+}

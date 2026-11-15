@@ -1,0 +1,51 @@
+{
+  "title": "Urthi dhe refluksi: kontroll i sigurt",
+  "intro": "Refluksi është kthimi i përmbajtjes së stomakut në ezofag. Urthi i rastësishëm është i zakonshëm; simptomat e përsëritura ose komplikimet mund të tregojnë sëmundje refluksi. Djegia në gjoks nuk duhet quajtur automatikisht mostretje.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Mund të ketë djegie pas vakteve, kthim të thartë dhe shqetësim shtrirë. Kolla ose ngjirja kanë shumë shkaqe; vetëm ato nuk provojnë refluks ose trajtim pa fund kundër acidit."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Tregoni shpeshtësinë, gëlltitjen, peshën dhe ilaçet. Mjeku mund të sugjerojë provë trajtimi ose endoskopi a teste të zgjedhura. Shenjat e reja alarmuese duan rivlerësim edhe pas ekzaminimit qetësues. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Ulësit e acidit, përfshirë frenuesit e pompës protonike, ndihmojnë kur duhen. Diskutoni dozën, kohëzgjatjen dhe kontrollin pa rritur pafund sasinë. Procedurat ose kirurgjia rezervohen për raste të konfirmuara të zgjedhura. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Shmangni vakte të mëdha vonë dhe shtrirjen menjëherë pas tyre; ngritja e kreut të shtratit ndihmon natën. Ndiqni nxitësit personalë pa hequr grupe ushqimesh pa nevojë. Lënia e duhanit dhe mbështetja e peshës ndihmojnë. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Gëlltitja e vështirë, ushqimi i ngecur, të vjellat me gjak, feçet e zeza, të vjellat e vazhdueshme ose dobësimi duan kontroll. Dhimbja e gjoksit me aktivitet, mungesë ajri, djersë ose kolaps kërkon urgjencë, jo provë antiacidi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka simptoma pas darkave të vona. Ndryshon orarin dhe vlerëson efektin para ndalimeve të gjera ushqimore."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ka shtypje gjoksi dhe djersë gjatë ecjes. Kërkon urgjencë pa supozuar urthin e zakonshëm."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Dolore alla spalla",
+  "intro": "Il dolore alla spalla è comune e ha molte cause, più spesso problemi dei tendini e dei muscoli della cuffia dei rotatori. La maggior parte dei casi migliora con il tempo, l'adeguamento dell'attività e l'esercizio. La tendinite calcifica, in cui si formano depositi di calcio in un tendine, è una causa specifica che spesso si risolve da sola.",
+  "sections": [
+    {
+      "heading": "Cause comuni",
+      "paragraphs": [
+        "La spalla è un'articolazione molto mobile tenuta da muscoli e tendini. Sovraccarico, usura legata all'età, infortuni, irritazione o lacerazioni dei tendini, infiammazione della borsa, spalla congelata e artrite possono tutti causare dolore. Anche problemi del collo e condizioni di cuore, polmoni o addome possono riferire dolore alla spalla."
+      ]
+    },
+    {
+      "heading": "Tendinite calcifica",
+      "paragraphs": [
+        "Nella tendinite calcifica si formano depositi di calcio all'interno di un tendine, di solito nella cuffia dei rotatori, e possono causare un forte dolore, soprattutto di notte e quando si solleva il braccio. La causa non è chiara. I depositi spesso si dissolvono da soli nell'arco di mesi e a quel punto il dolore di solito si attenua."
+      ]
+    },
+    {
+      "heading": "Autoaiuto",
+      "paragraphs": [
+        "Evita i movimenti che provocano forte dolore, ma continua a muovere la spalla entro il limite del confort invece di riposarla del tutto. Antidolorifici e impacchi freddi o caldi possono alleviare i sintomi per breve tempo. Aiutano la mobilità dolce e, più avanti, gli esercizi di rinforzo. Adatta le posizioni del sonno, per esempio con un cuscino che sostenga il braccio."
+      ]
+    },
+    {
+      "heading": "Trattamento medico",
+      "paragraphs": [
+        "La fisioterapia con un programma di esercizi mirato è il cardine. Le infiltrazioni di corticosteroidi possono alleviare il dolore per alcune settimane e permettere l'esercizio. La terapia a onde d'urto o il trattamento con ago possono aiutare a frantumare grandi depositi di calcio. La chirurgia, di solito mini-invasiva, si considera quando depositi o lacerazioni persistono e causano disabilità nonostante mesi di trattamento."
+      ]
+    },
+    {
+      "heading": "Quando chiedere aiuto urgente",
+      "paragraphs": [
+        "Chiedi aiuto immediato per dolore alla spalla dopo un trauma significativo, con dolore al petto, mancanza di fiato o sudorazione, un'articolazione calda, rossa e gonfia con febbre o improvvisa perdita di forza del braccio. Anche il dolore con intorpidimento o debolezza che si estende lungo il braccio va valutato."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Alleviare il dolore notturno",
+      "text": "Immagina che il dolore alla spalla ti svegli di notte. Potresti provare a sdraiarti sull'altro lato con un cuscino che sostenga il braccio dolente, prendere un antidolorifico come consigliato e chiedere di un programma di fisioterapia."
+    },
+    {
+      "title": "Tornare all'attività",
+      "text": "Supponi che il dolore sia migliorato dopo alcune settimane. Potresti tornare gradualmente alle attività sopra la testa e continuare gli esercizi per prevenire le recidive."
+    }
+  ],
+  "questions": [
+    "Che cosa causa il dolore alla mia spalla e ho bisogno di una scansione?",
+    "Quali esercizi o infiltrazioni mi aiuterebbero?",
+    "Quando si considererebbe la chirurgia?"
+  ]
+}

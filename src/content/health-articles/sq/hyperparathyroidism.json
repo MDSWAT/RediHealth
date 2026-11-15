@@ -1,0 +1,53 @@
+{
+  "title": "Hiperparatiroidizmi",
+  "intro": "Gjëndrat paratiroide janë katër gjëndra të vogla në qafë që kontrollojnë nivelet e kalciumit në gjak. Në hiperparatiroidizëm, një ose më shumë prej tyre prodhojnë shumë hormon paratiroid, që e rrit kalciumin në gjak dhe mund t'i dobësojë kockat. Gjendja zbulohet shpesh rastësisht në një analizë gjaku dhe shumë njerëz kanë pak simptoma.",
+  "sections": [
+    {
+      "heading": "Llojet dhe shkaqet",
+      "paragraphs": [
+        "Në hiperparatiroidizmin primar, zakonisht një rritje e vetme beninje e quajtur adenomë e bën gjëndrën të prodhojë tepër hormon. Më rrallë, disa gjëndra janë të zmadhuara. Në hiperparatiroidizmin sekondar, gjëndrat punojnë tepër sepse një problem tjetër, si sëmundja e veshkave ose mungesa e rëndë e vitaminës D, e ul kalciumin."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Shumë njerëz nuk ndiejnë asgjë. Të tjerë kanë lodhje, dobësi, gjendje të ulët shpirtërore, vështirësi përqendrimi, etje dhe urinim të shtuar, kapsllëk, dhimbje kockash e nyjesh ose gurë të përsëritur në veshka. Me kalimin e kohës, kockat mund të hollohen dhe rreziku i frakturave rritet. Nivelet shumë të larta të kalciumit mund të shkaktojnë konfuzion dhe rrahje të parregullta të zemrës dhe kërkojnë trajtim urgjent."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Analizat e gjakut tregojnë kalcium të lartë me hormon paratiroid të lartë ose në mënyrë të papërshtatshme normal. Mjekët kontrollojnë edhe vitaminën D e funksionin e veshkave dhe shpesh masin densitetin e kockave dhe kërkojnë gurë në veshka. Ultratingulli ose imazheri tjetër mund ta lokalizojë gjëndrën e prekur, veçanërisht para operacionit."
+      ]
+    },
+    {
+      "heading": "Opsionet e trajtimit",
+      "paragraphs": [
+        "Kirurgjia për heqjen e gjëndrës ose gjëndrave të mbiaktive mund ta shërojë hiperparatiroidizmin primar dhe rekomandohet zakonisht për njerëzit me simptoma, humbje kockore, gurë në veshka ose nivele më të larta të kalciumit. Operacioni bëhet shpesh përmes një prerjeje të vogël dhe zgjat pak, me shërim të shpejtë. Disa njerëz zhvillojnë përkohësisht kalcium të ulët pas operacionit.",
+        "Nëse simptomat mungojnë ose janë të lehta, monitorimi i kujdesshëm me analiza të rregullta gjaku dhe matje të densitetit kockor është një opsion. Mund të këshillohet pirja e mjaftueshme e ujit, qëndrimi aktiv dhe shmangia e barnave që rrisin kalciumin. Disa barna mund ta ulin kalciumin ose ta mbrojnë kockën kur kirurgjia nuk është e përshtatshme.",
+        "Te format sekondare, trajtimi përqendrohet te shkaku themelor, si zëvendësimi i vitaminës D ose kujdesi për veshkat."
+      ]
+    },
+    {
+      "heading": "Të jetosh me gjendjen",
+      "paragraphs": [
+        "Ndjekja e rregullt është e rëndësishme edhe pas një operacioni të suksesshëm, pasi shëndeti i kockave mund të kërkojë vëmendje afatgjatë. Kërkoni këshillë mjekësore për dhimbje të re kockash, simptoma të gurëve në veshka ose etje të theksuar e konfuzion."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Peshimi i kirurgjisë kundrejt monitorimit",
+      "text": "Imagjinoni që kalciumi juaj është vetëm pak i ngritur dhe ndiheni mirë. Mund ta pyesni mjekun cilat gjetje do ta bënin të këshillueshëm operacionin, sa shpesh do të nevojiteshin analizat dhe çfarë tregojnë skanimet e kockave."
+    },
+    {
+      "title": "Përgatitja për operacionin",
+      "text": "Supozoni që keni caktuar një operacion paratiroid. Mund të pyesni për llojin e anestezisë, kohën e mundshme të shërimit dhe cilat simptoma të kalciumit të ulët të vëzhgoni më pas."
+    }
+  ],
+  "questions": [
+    "Çfarë lloji hiperparatiroidizmi kam dhe çfarë e shkakton?",
+    "A kam nevojë për operacion apo është monitorimi një zgjedhje e arsyeshme për mua?",
+    "Si do të kontrollohen kockat dhe veshkat e mia me kalimin e kohës?"
+  ]
+}

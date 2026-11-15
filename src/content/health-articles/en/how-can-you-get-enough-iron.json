@@ -1,0 +1,51 @@
+{
+  "title": "Getting enough iron and recognizing deficiency",
+  "intro": "Iron helps blood carry oxygen and supports other body functions. Needs vary with growth, pregnancy, menstruation and diet. Tiredness alone cannot diagnose deficiency, and extra iron can be harmful when it is not needed.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "Foods include meat, fish, beans, lentils, tofu and fortified cereals. Plant iron is generally absorbed less efficiently; vitamin-C-containing foods can improve its uptake. A balanced plant-based diet can still provide useful iron."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "If deficiency is suspected, blood tests assess anemia and iron stores, interpreted around inflammation and other illness. Ask why iron is low: heavy periods, digestive bleeding, reduced intake or absorption may need specific investigation. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Confirmed deficiency may require prescribed oral iron or, in selected situations, intravenous treatment. Diet alone may not correct significant anemia. Discuss side effects and response testing rather than repeatedly taking supplements without a diagnosis. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Choose sustainable food combinations and follow dosing advice. Tea, coffee, calcium and certain medicines can affect absorption, so ask about timing. Iron tablets commonly darken stools, but concerning tarry stools or other bleeding symptoms should not be dismissed. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Keep iron medicines securely away from children: overdose can be dangerous and needs urgent poison or emergency advice. Severe breathlessness, fainting, chest pain or active bleeding requires urgent assessment rather than waiting for food changes to work."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira combines lentils with vegetables rich in vitamin C and asks about tests because heavy periods and fatigue may mean diet is not the only issue."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben develops constipation on prescribed iron. He discusses a tolerable treatment plan and follow-up instead of abandoning therapy or doubling the dose himself."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

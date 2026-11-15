@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë ndodh gjatë një skanimi PET?",
+  "intro": "Tomografia me emetim pozitronesh, ose PET, është një test imazherie që tregon si punojnë indet, jo vetëm si duken. Injektohet një sasi e vogël gjurmuesi radioaktiv, e një skaner zbulon ku mblidhet. Përdoret kryesisht për kancerin, sëmundjen e zemrës e çrregullimet e trurit, shpesh e kombinuar me CT ose rezonancë.",
+  "sections": [
+    {
+      "heading": "Pse bëhet",
+      "paragraphs": [
+        "PET mund të tregojë sa aktivë janë indet, çka ndihmon të gjendet kanceri, të shihet nëse është përhapur, të kontrollohet reagimi ndaj trajtimit e të zbulohet rikthimi. Përdoret edhe për të vlerësuar furnizimin me gjak të muskulit të zemrës, e për gjendje të trurit si demenca e epilepsia. Rezultati kombinohet me teste të tjera."
+      ]
+    },
+    {
+      "heading": "Përgatitja",
+      "paragraphs": [
+        "Zakonisht ju kërkohet të agjëroni katër deri gjashtë orë, megjithëse mund të pini ujë. Për disa skanime duhet të shmangni ushtrimet e forta më parë. Njerëzit me diabet kanë nevojë për udhëzime të veçanta për ushqimin e barnat. Tregojini stafit nëse jeni shtatzënë, ushqeni me gji ose keni frikë nga hapësirat e mbyllura."
+      ]
+    },
+    {
+      "heading": "Skanimi",
+      "paragraphs": [
+        "Një gjurmues, shpesh një formë sheqeri e shënuar me një atom radioaktiv, injektohet në një venë. Pushoni qetë për rreth një orë ndërsa shpërndahet nëpër trup. Pastaj shtriheni mbi një tavolinë që rrëshqet në një skaner në formë unaze për njëzet deri dyzet minuta. Duhet të qëndroni të palëvizshëm, e makina është e hapur e jo e dhimbshme."
+      ]
+    },
+    {
+      "heading": "Siguria",
+      "paragraphs": [
+        "Doza e rrezatimit është e vogël e e ngjashme me disa vjet rrezatim natyror të sfondit. Gjurmuesi largohet nga trupi brenda orësh. Pini shumë lëngje e shmangni kontaktin e ngushtë me gratë shtatzëna e foshnjat e vogla për disa orë nëse këshillohet. Reagimet alergjike janë shumë të rralla. Shtatzënia është përgjithësisht arsye për të shmangur testin."
+      ]
+    },
+    {
+      "heading": "Rezultatet",
+      "paragraphs": [
+        "Një specialist i mjekësisë bërthamore e një radiolog i interpretojnë imazhet. Rezultatet shkojnë te mjeku që ju dërgoi brenda disa ditësh. Zonat aktive duken të ndritshme, por edhe inflamacioni mund të duket si kancer, prandaj gjetjet interpretohen me informacione të tjera. Pyesni çfarë ndodh më pas."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja",
+      "text": "Imagjinoni që skanimi juaj është pasdite. Mund të hani një mëngjes të lehtë, të agjëroni pas tij siç udhëzohet e të pini ujë."
+    },
+    {
+      "title": "Qëndrimi i palëvizshëm",
+      "text": "Supozoni që ndiheni me ankth në skaner. Mund të merrni frymë ngadalë e t'i thoni stafit nëse keni nevojë për ndihmë."
+    }
+  ],
+  "questions": [
+    "Pse nevojitet një skanim PET e si do ta ndryshojë rezultati kujdesin tim?",
+    "Si duhet të përgatitem, veçanërisht nëse kam diabet?",
+    "A ka masa paraprake pas skanimit?"
+  ]
+}

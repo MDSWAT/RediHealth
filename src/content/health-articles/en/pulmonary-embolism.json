@@ -1,0 +1,51 @@
+{
+  "title": "Pulmonary embolism",
+  "intro": "A pulmonary embolism is a blockage in one of the arteries of the lung, most often caused by a blood clot that has travelled from the deep veins of the legs. It can cause sudden breathlessness and chest pain and may be life-threatening. Prompt diagnosis and treatment with blood thinners save lives.",
+  "sections": [
+    {
+      "heading": "Causes and risk factors",
+      "paragraphs": [
+        "Clots form in leg or pelvic veins when blood flow slows or clotting increases, then break off and lodge in the lungs. Risk factors include recent surgery, injury or long immobilisation, long-distance travel, cancer, pregnancy and the period after birth, hormone therapy and birth control pills, obesity, smoking, older age, a previous clot and inherited clotting tendencies."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical symptoms are sudden shortness of breath, sharp chest pain worse on breathing in, cough, sometimes with blood, a fast heartbeat, dizziness and fainting. Some people have swelling, pain and warmth in a leg from the original clot. Symptoms can be mild or severe. Call emergency services for sudden unexplained breathlessness or chest pain."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Doctors assess the likelihood using a scoring system and symptoms, and may check a blood test called D-dimer. A CT scan with contrast dye shows clots in the lung arteries. Other tests include ultrasound of the legs, heart ultrasound and, if needed, lung scans."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Anticoagulant medicines prevent the clot from growing and allow the body to dissolve it. They are started right away, given by injection or as tablets, and continued for at least three months. In severe cases, clot-dissolving drugs or procedures to remove the clot are used. People who cannot take blood thinners may receive a filter in the large vein. Bleeding is the main risk of treatment, so report unusual bruising or bleeding."
+      ]
+    },
+    {
+      "heading": "After a pulmonary embolism",
+      "paragraphs": [
+        "Treatment length depends on the cause. Some people need long-term therapy. Some have lingering breathlessness or pulmonary hypertension and need follow-up. To prevent recurrence, move regularly on long journeys, stay hydrated, use compression stockings if advised and discuss preventive medicines before surgery."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Recognising an emergency",
+      "text": "Imagine you suddenly become short of breath after a long flight and your calf is swollen. You could call emergency services immediately and not wait to see if it improves."
+    },
+    {
+      "title": "Taking blood thinners safely",
+      "text": "Suppose you start an anticoagulant. You might carry a card, tell dentists and doctors, avoid risky activities and report any heavy bleeding or black stools."
+    }
+  ],
+  "questions": [
+    "How long do I need blood thinners, and what are the risks?",
+    "Do I have an inherited tendency to clotting, and should my family be tested?",
+    "How can I lower the risk of another clot?"
+  ]
+}

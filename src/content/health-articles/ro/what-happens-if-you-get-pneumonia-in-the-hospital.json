@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă dacă faceți pneumonie în spital?",
+  "intro": "Pneumonia dobândită în spital este o infecție pulmonară care începe la cel puțin două zile după internare. Poate fi mai gravă decât pneumonia contractată acasă, deoarece microbii din spital sunt adesea rezistenți la unele antibiotice, iar pacienții pot fi deja slăbiți. Prevenirea și tratamentul timpuriu sunt importante.",
+  "sections": [
+    {
+      "heading": "De ce apare",
+      "paragraphs": [
+        "Pacienții sunt mai expuși dacă sunt în vârstă, au boli pulmonare sau cardiace cronice, sunt la ventilator, nu pot tuși bine după operație, au probleme de înghițire sau au imunitate slabă. Bacteriile din gură sau din stomac pot fi inhalate în plămâni, iar unele bacterii din spital rezistă la antibioticele obișnuite."
+      ]
+    },
+    {
+      "heading": "Semne",
+      "paragraphs": [
+        "Febră, tuse nouă sau agravată, spută groasă sau colorată, lipsă de aer, durere în piept, confuzie și o frecvență respiratorie mai mare. La persoanele în vârstă, confuzia sau oboseala pot fi primele semne. Spuneți imediat personalului dacă dumneavoastră sau un membru al familiei dezvoltați acestea."
+      ]
+    },
+    {
+      "heading": "Diagnostic și tratament",
+      "paragraphs": [
+        "Medicii examinează toracele, fac o radiografie toracică, analize de sânge și recoltează probe de spută. Tratamentul este cu antibiotice, adesea administrate la început prin perfuzie și alese pentru a acoperi bacteriile rezistente, apoi ajustate după rezultatele testelor. Pot fi necesare oxigen, lichide, kinetoterapie și, în cazuri severe, terapie intensivă sau ventilație."
+      ]
+    },
+    {
+      "heading": "Recuperarea",
+      "paragraphs": [
+        "Multe persoane se recuperează în una până la două săptămâni, dar pacienții mai în vârstă sau mai fragili pot avea nevoie de mai mult, iar internarea poate fi prelungită. Exercițiile de respirație, ridicarea din pat și o nutriție bună ajută. Unele persoane se simt obosite săptămâni la rând după aceea, iar o radiografie toracică de control poate fi recomandată."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Spitalele previn pneumonia prin igiena mâinilor, igiena gurii, așezarea pacienților în poziție șezândă, încurajarea mișcării și a respirației profunde după operație și folosirea atentă a ventilatoarelor și a sedativelor. Pacienții pot ajuta curățându-și dinții, renunțând la fumat înainte de operație, întrebând personalul despre igienă și mișcându-se imediat ce este permis."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exerciții de respirație",
+      "text": "Imaginați-vă că ați avut o operație abdominală. Ați putea respira adânc, tuși ușor sprijinind plaga și vă ridica regulat în șezut."
+    },
+    {
+      "title": "Exprimarea unei îngrijorări",
+      "text": "Presupuneți că ruda dumneavoastră devine confuză și are lipsă de aer. Ați putea spune imediat asistentei și ați putea cere un consult medical."
+    }
+  ],
+  "questions": [
+    "Ce a cauzat pneumonia mea și ce antibiotice se folosesc?",
+    "Cât timp va trebui să rămân și să mă recuperez?",
+    "Ce pot face pentru a preveni revenirea ei?"
+  ]
+}

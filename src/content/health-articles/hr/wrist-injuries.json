@@ -1,0 +1,51 @@
+{
+  "title": "Ozljede zapešća",
+  "intro": "Zapešće je složen zglob građen od mnogih malih kostiju, ligamenata i tetiva, a često se ozljeđuje padovima, sportom ili ponavljanom uporabom. Ozljede se kreću od uganuća do prijeloma. Rana procjena i pravo liječenje pomažu spriječiti trajnu ukočenost ili slabost.",
+  "sections": [
+    {
+      "heading": "Uobičajene ozljede",
+      "paragraphs": [
+        "Pad na ispruženu ruku može slomiti palčanu kost, veliku kost podlaktice blizu zapešća, ili malu čunastu kost, ili uganuti ligamente. Ostali problemi uključuju ozljede tetiva, tendinitis, ganglione, sindrom karpalnog tunela i ozljede prekomjernom uporabom zbog ponavljanog rada, sporta ili uporabe telefona."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Bol, oticanje, modrice, osjetljivost, teškoće pri pokretanju ili hvatanju i vidljiva deformacija nakon pada upućuju na prijelom. Bol u podnožju palca nakon pada može ukazivati na prijelom čunaste kosti, koji se lako previdi na prvim rendgenskim snimkama i može zahtijevati ponovno snimanje ili magnetsku rezonanciju. Utrnulost, trnci ili hladna ruka zahtijevaju hitnu pažnju."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i liječenje",
+      "paragraphs": [
+        "Liječnik pregledava zapešće i naručuje rendgenske snimke, a ponekad i snimanje. Manja uganuća liječe se mirovanjem, ledom, kompresijom, podizanjem i udlagom. Prijelomi se stavljaju u gips ili udlagu, a pomaknuti mogu zahtijevati ponovno namještanje ili učvršćivanje operacijom pločicama ili žicama. Liječenje ozljeda ligamenata i tetiva ovisi o težini."
+      ]
+    },
+    {
+      "heading": "Oporavak",
+      "paragraphs": [
+        "Zacjeljivanje traje šest do osam tjedana kod većine prijeloma, a uganuća nekoliko tjedana. Fizioterapija ili terapija ruke vraća pokretljivost i snagu. Pomičite prste dok ste u gipsu, podižite ruku radi smanjenja oticanja i slijedite upute. Neki ljudi imaju ukočenost mjesecima, a manjina razvije kompleksni regionalni bolni sindrom."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Štitnici za zapešća za aktivnosti kao što su klizanje i snowboard, vježbe jačanja, izgradnja zdravlja kostiju kalcijem, vitaminom D i vježbama s opterećenjem te ergonomske postavke rada smanjuju rizik. Posjetite liječnika zbog boli nakon pada koja traje dulje od nekoliko dana, zbog utrnulosti ili deformacije."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prva pomoć",
+      "text": "Zamislite da ste pali i zapešće vas boli i oteče. Mogli biste ga podići, staviti hladni oblog umotan u krpu i dati ga pregledati istog dana."
+    },
+    {
+      "title": "Vježbanje ruke",
+      "text": "Pretpostavite da ste u gipsu. Mogli biste redovito pomicati prste i rame te držati ruku podignutom."
+    }
+  ],
+  "questions": [
+    "Je li moje zapešće slomljeno ili uganuto?",
+    "Trebam li gips, udlagu ili operaciju?",
+    "Koje će mi vježbe pomoći u oporavku?"
+  ]
+}

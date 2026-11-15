@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa comportano le curve da carico di glucosio",
+  "intro": "La curva da carico orale di glucosio misura quanto bene il corpo elimina lo zucchero dal sangue. Si usa per diagnosticare il diabete e il prediabete e in gravidanza per individuare il diabete gestazionale. L'esame dura circa due ore e richiede il digiuno prima.",
+  "sections": [
+    {
+      "heading": "Perché si fa",
+      "paragraphs": [
+        "L'esame può mostrare una gestione alterata del glucosio anche quando la glicemia a digiuno è normale. Si usa se sintomi o altri esami suggeriscono un diabete, o per lo screening delle donne in gravidanza, di solito tra le ventiquattro e le ventotto settimane. In alcune situazioni si possono usare invece altri esami, come l'esame del sangue dell'HbA1c."
+      ]
+    },
+    {
+      "heading": "Preparazione",
+      "paragraphs": [
+        "Devi digiunare da otto a quattordici ore prima, bevendo solo acqua. Nei giorni precedenti mangia normalmente, senza diete rigide, perché possono alterare il risultato. Informa il medico di farmaci, malattie e condizioni che influenzano la glicemia. Evita di fumare e di fare esercizio intenso la mattina dell'esame."
+      ]
+    },
+    {
+      "heading": "Come si svolge l'esame",
+      "paragraphs": [
+        "Si preleva un primo campione di sangue per misurare il glucosio a digiuno. Poi bevi una soluzione zuccherata, di solito settantacinque grammi di glucosio, in pochi minuti. I prelievi si fanno dopo una e due ore in gravidanza e dopo due ore negli altri adulti. Devi stare seduto tranquillo e non mangiare, fumare né bere altro. Alcune persone provano nausea o capogiri."
+      ]
+    },
+    {
+      "heading": "Capire i risultati",
+      "paragraphs": [
+        "I risultati si confrontano con soglie standard. Negli adulti un valore a due ore di 11,1 millimoli per litro (200 milligrammi per decilitro) o superiore indica il diabete, mentre valori tra 7,8 e 11,0 suggeriscono una ridotta tolleranza al glucosio. In gravidanza le soglie sono più basse e una diagnosi di diabete gestazionale porta a consigli dietetici, monitoraggio e a volte insulina."
+      ]
+    },
+    {
+      "heading": "Dopo l'esame",
+      "paragraphs": [
+        "Dopo puoi mangiare e bere normalmente. Chiedi quando aspettarti i risultati e come proseguire. Se si trova un prediabete, cambiamenti dello stile di vita come dieta sana, attività fisica e perdita di peso possono ridurre il rischio di progredire verso il diabete."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi all'esame",
+      "text": "Immagina che il tuo esame sia alle otto del mattino. Potresti smettere di mangiare dopo cena, bere solo acqua e portare un libro per l'attesa."
+    },
+    {
+      "title": "Dopo un risultato alto",
+      "text": "Supponi che il risultato mostri una tolleranza ridotta. Potresti chiedere di modifiche alla dieta, di esercizio e di quando ripetere l'esame."
+    }
+  ],
+  "questions": [
+    "È l'esame giusto per me o ci sono altri esami disponibili?",
+    "Come devo prepararmi e posso prendere i miei farmaci abituali?",
+    "Che cosa succede se il risultato è anomalo?"
+  ]
+}

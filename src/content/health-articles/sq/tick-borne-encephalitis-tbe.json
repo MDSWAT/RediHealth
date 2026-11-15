@@ -1,0 +1,51 @@
+{
+  "title": "Encefaliti i bartur nga rriqrat (TBE)",
+  "intro": "Encefaliti i bartur nga rriqrat është një infeksion viral i përhapur nga kafshimet e rriqrave në pjesë të Evropës e Azisë. Shumë infeksione shkaktojnë pak ose simptoma të lehta, por disa çojnë në inflamacion të trurit e membranave të tij. Nuk ka kurë, por vaksinimi jep mbrojtje të besueshme për njerëzit në rajonet e prekura.",
+  "sections": [
+    {
+      "heading": "Si transmetohet",
+      "paragraphs": [
+        "Virusi bartet nga rriqrat në zona të caktuara rreziku, që hartohen nga autoritetet shëndetësore. Transmetohet brenda minutash nga një kafshim, ndryshe nga sëmundja Lyme që kërkon orë. Rrallë mund të kalojë përmes qumështit të papasterizuar nga kafshë të infektuara."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Shumë njerëz nuk kanë simptoma. Në fazën e parë, simptoma si të gripit, si ethe, dhimbje koke e lodhje, ndodhin një deri dy javë pas kafshimit e zgjasin disa ditë. Pas një periudhe pa simptoma, disa njerëz zhvillojnë një fazë të dytë me ethe të larta, dhimbje koke të rëndë, qafë të ngurtë, hutim, probleme ekuilibri ose dobësi. Të rriturit tentojnë të kenë sëmundje më të rëndë se fëmijët."
+      ]
+    },
+    {
+      "heading": "Diagnoza dhe trajtimi",
+      "paragraphs": [
+        "Analizat e gjakut zbulojnë antitrupa e ekzaminimi i lëngut kurrizor mund të tregojë shenja inflamacioni. Nuk ka trajtim specifik antiviral, prandaj kujdesi është mbështetës: pushim, lëngje, lehtësim dhimbjeje e kujdes në spital për raste të rënda. Shumica e njerëzve shërohen plotësisht, por disa mbeten me probleme të qëndrueshme si dhimbje koke, vështirësi përqendrimi ose paralizë e një numër i vogël vdesin."
+      ]
+    },
+    {
+      "heading": "Vaksinimi",
+      "paragraphs": [
+        "Vaksinimi rekomandohet për njerëzit që jetojnë ose udhëtojnë në zona rreziku e mund të ekspozohen ndaj rriqrave. Kursi bazë përbëhet nga tri doza gjatë rreth një viti, me dozat përforcuese në intervale të caktuara nga prodhuesi e udhëzimet kombëtare. Ekziston një orar i shpejtë për udhëtarët. Vaksina tolerohet mirë e efektet anësore janë zakonisht të lehta, si dhimbja e krahut."
+      ]
+    },
+    {
+      "heading": "Mbrojtje tjetër",
+      "paragraphs": [
+        "Vaksinimi nuk mbron nga sëmundja Lyme, prandaj masat e mbrojtjes nga rriqrat mbeten të rëndësishme. Hiqini rriqrat menjëherë, vishni rroba mbrojtëse, përdorni repelent e kontrolloni trupin pas aktiviteteve jashtë. Shmangni produktet e qumështit të papasterizuara në zonat e rrezikut."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planifikimi i një udhëtimi",
+      "text": "Imagjinoni që planifikoni një pushim kampingu në një zonë rreziku. Mund ta pyesni mjekun për një orar vaksinimi të shpejtë të paktën disa javë para nisjes."
+    },
+    {
+      "title": "Mbajtja e dozave përforcuese të përditësuara",
+      "text": "Supozoni që e keni përfunduar kursin bazë vite më parë. Mund ta kontrolloni kartën e vaksinimit e të pyesni kur ka afat doza juaj tjetër përforcuese."
+    }
+  ],
+  "questions": [
+    "A jetoj ose udhëtoj në një zonë rreziku të TBE?",
+    "Cili orar vaksinimi më përshtatet?",
+    "Cilat simptoma pas një kafshimi rriqre tregojnë se duhet të kërkoj ndihmë mjekësore?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Sudden hearing loss",
+  "intro": "Sudden sensorineural hearing loss is a rapid loss of hearing in one ear, usually developing over hours to a few days, without clear cause. It may be accompanied by tinnitus or a feeling of fullness. It should be assessed quickly by a doctor, and many people regain at least some hearing, especially with early treatment.",
+  "sections": [
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "People often notice a sudden drop in hearing on waking or during the day, a blocked-ear feeling, muffled sounds, or ringing. Some also feel dizzy. Hearing may return partially or fully within days or weeks, but it may not."
+      ]
+    },
+    {
+      "heading": "Causes",
+      "paragraphs": [
+        "In most cases, no cause is found. Possible triggers include viral infection, circulation problems in the inner ear, immune reactions, injury, certain medicines and rarely, tumours on the hearing nerve. A blocked ear from wax, fluid behind the eardrum or a middle ear infection can mimic the problem and is treated differently."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "A doctor examines the ear and arranges a hearing test within a short time to measure the type and degree of loss. Blood tests and an MRI scan may be done to look for underlying causes. Prompt testing is important because treatment is time-sensitive."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "High-dose corticosteroids, taken as tablets or injected into the middle ear, are the usual treatment and are most useful when started within days. Evidence for benefit is modest, and doctors discuss risks such as raised blood sugar, mood changes and sleep problems. Other treatments such as oxygen therapy or blood flow medicines have uncertain value. Rest and avoiding loud noise are sensible."
+      ]
+    },
+    {
+      "heading": "Recovery and outlook",
+      "paragraphs": [
+        "Many people improve within the first two weeks. About half regain a good degree of hearing, and some remain with lasting loss. If hearing does not return, hearing aids or implants can help, and tinnitus support is available. Follow-up hearing tests monitor progress."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Acting quickly",
+      "text": "Imagine you wake with muffled hearing in one ear. You could arrange to see a doctor the same day or the next, rather than waiting a week."
+    },
+    {
+      "title": "Getting support",
+      "text": "Suppose hearing has not returned after several weeks. You might ask about hearing aids, tinnitus counselling and communication strategies."
+    }
+  ],
+  "questions": [
+    "Could something other than sudden hearing loss be causing this?",
+    "Should I take steroids, and what side effects should I watch for?",
+    "What support is available if my hearing does not recover?"
+  ]
+}

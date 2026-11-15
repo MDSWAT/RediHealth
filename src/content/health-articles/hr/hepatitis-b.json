@@ -1,0 +1,51 @@
+{
+  "title": "Hepatitis B: testiranje, prevencija i jetra",
+  "intro": "Hepatitis B je virusna infekcija jetre. Neke prolaze, druge traju i trebaju nadzor ili terapiju. Može biti bez simptoma: dobro stanje ne dokazuje odsutnost virusa ili oštećenja.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Prenosi se krvlju ili nekim tekućinama, uključujući spolni kontakt i porod. Ne prenosi se običnim obrocima ili zagrljajem. Ne isključujte ljude iz svakodnevice zbog dijagnoze."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Testovi razlikuju infekciju, imunitet i druge obrasce; može trebati ponavljanje. Jetreni nalazi i ožiljci usmjeravaju praćenje. Raspravite trudnoću, ukućane i buduću imunosupresiju. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Kronična infekcija može trebati antivirotike za suzbijanje i manje komplikacija. Ne trebaju svi lijek odmah, ali kontrole ostaju važne. Ne prekidajte terapiju bez plana specijalista. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Cjepivo štiti osjetljive; kontakti trebaju pitati za testiranje i cijepljenje. Ne dijelite igle, britvice ili četkice. Trudnoća omogućuje zaštitu bebe; nedavna izloženost traži brz savjet o profilaksi. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Zbunjenost, teško povraćanje, velik otok trbuha ili krvarenje traže hitnost. Nova žutica treba brz pregled. Izbjegavajte alkohol i provjerite lijekove ili dodatke umjesto komercijalnih čišćenja jetre."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira saznaje infekciju u trudnoći i odmah razgovara o porodu i zaštiti novorođenčeta, ne čeka rođenje."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben se dobro osjeća ali održava kontrole i pita za cijepljenje obitelji bez izbjegavanja zajedničkih obroka."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

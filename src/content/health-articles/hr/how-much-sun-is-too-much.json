@@ -1,0 +1,56 @@
+{
+  "title": "Koliko je sunca previše",
+  "intro": "Sunčeva svjetlost podupire raspoloženje i stvaranje vitamina D, ali previše ultraljubičastog zračenja oštećuje stanice kože i povećava rizik od opeklina, preranog starenja kože i raka kože. Razumna ravnoteža znači poznavati svoj tip kože, jačinu sunca i praktične načine zaštite bez izbjegavanja boravka na otvorenom.",
+  "sections": [
+    {
+      "heading": "Što radi ultraljubičasto zračenje",
+      "paragraphs": [
+        "Do tla dolaze dvije vrste ultraljubičastog svjetla. UVB uzrokuje opekline i glavni je okidač za stvaranje vitamina D, dok UVA prodire dublje, pridonosi starenju i također ima ulogu u raku kože. Oba mogu oštetiti DNK u stanicama kože.",
+        "Oštećenje se zbraja tijekom života. Ponovljene opekline, osobito u djetinjstvu, povezane su s većim rizikom od melanoma, najopasnijeg raka kože. Preplanulost je odgovor kože na ozljedu i nije znak zdravlja."
+      ]
+    },
+    {
+      "heading": "Koliko je previše",
+      "paragraphs": [
+        "Rizik ovisi o UV indeksu, dobu dana, godišnjem dobu, nadmorskoj visini, odbijanju od vode, snijega ili pijeska i vašem tipu kože. Ljudi svijetle kože, crvene ili plave kose, s mnogo madeža ili obiteljskom poviješću raka kože najlakše izgore i trebaju biti posebno oprezni. Oblaci ne blokiraju sve UV zrake.",
+        "Sunce je najjače oko podneva pa su hlad i pokrivenost tada najvažniji. UV indeks u vremenskim prognozama pomaže vam odlučiti kad je zaštita potrebna. Vrijednost od 3 ili više općenito zahtijeva zaštitu."
+      ]
+    },
+    {
+      "heading": "Praktična zaštita",
+      "paragraphs": [
+        "Potražite hlad između kasnog jutra i sredine poslijepodneva, nosite šešir širokog oboda, sunčane naočale sa UV zaštitom i gusto tkanu odjeću koja pokriva ruke i noge. Odjeća je pouzdanija od losiona jer se ne ispire.",
+        "Koristite kremu za sunčanje s visokim zaštitnim faktorom na izloženoj koži koju odjeća ne pokriva. Nanesite obilnu količinu oko 20 minuta prije izlaska i ponovno nanosite svaka dva sata te nakon plivanja ili znojenja. Kremu za sunčanje ne treba koristiti da biste dulje ostali na suncu."
+      ]
+    },
+    {
+      "heading": "Djeca, bebe i posebne situacije",
+      "paragraphs": [
+        "Bebe mlađe od jedne godine treba držati izvan izravnog sunca. Dječja koža je tanja i osjetljivija pa su hlad, odjeća i šeširi najbolja zaštita. Neki lijekovi čine kožu osjetljivijom na svjetlo, a ljudi koji ih uzimaju trebaju pitati o mjerama opreza.",
+        "Solariji i lampe za sunčanje emitiraju jako UV zračenje i povećavaju rizik od raka kože. Zdravstvena tijela odvraćaju od njihove uporabe, osobito mladima."
+      ]
+    },
+    {
+      "heading": "Sunce i vitamin D",
+      "paragraphs": [
+        "Kratko redovito izlaganje lica, šaka i ruku dnevnom svjetlu u proljeće i ljeto općenito pomaže tijelu da stvori dovoljno vitamina D bez opeklina. Razumno je prestati prije nego što koža pocrveni. Zimi na sjevernim geografskim širinama sunčeva svjetlost proizvodi malo vitamina D pa prehrana ili dodaci mogu biti važniji za neke ljude.",
+        "Redovito pregledavajte kožu. Posjetite liječnika zbog madeža koji mijenja veličinu, oblik ili boju, krvari, svrbi ili zbog rane koja ne zacjeljuje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planiranje dana na plaži",
+      "text": "Zamislite da ljeti idete na plažu s djecom. Mogli biste organizirati hlad, ponijeti šešire i majice dugih rukava za kupanje, nanijeti kremu prije odlaska i ponovno nakon kupanja te mirne podnevne sate planirati u zatvorenom."
+    },
+    {
+      "title": "Uočavanje madeža koji se mijenja",
+      "text": "Pretpostavite da primijetite madež na leđima koji izgleda tamnije i veće nego prije. Mogli biste snimiti jasnu fotografiju, zabilježiti datum i naručiti se na pregled kože umjesto da čekate hoće li se opet promijeniti."
+    }
+  ],
+  "questions": [
+    "Koliko je moja koža osjetljiva i koja zaštita odgovara mom tipu kože i aktivnostima?",
+    "Trebam li redovite preglede kože s obzirom na moje madeže i obiteljsku povijest?",
+    "Trebam li dodatke vitamina D ili su moje izlaganje suncu i prehrana dovoljni?"
+  ]
+}

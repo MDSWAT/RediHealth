@@ -1,0 +1,51 @@
+{
+  "title": "Građa i funkcija stopala",
+  "intro": "Stopala nose cijelu težinu vašeg tijela, upijaju udarce i potiču vas naprijed pri svakom koraku. Svako stopalo ima 26 kostiju, mnogo zglobova, snažne ligamente, tetive i mišiće koji rade zajedno. Razumijevanje građe stopala pomaže objasniti česte probleme i kako se brinuti o njima.",
+  "sections": [
+    {
+      "heading": "Kosti i zglobovi",
+      "paragraphs": [
+        "Stopalo ima tri glavna područja: stražnji dio s petnom kosti i gležanjskom kosti, srednji dio s nekoliko manjih kostiju koje tvore svod i prednji dio s pet dugih kostiju i prstima. Palac ima dvije kosti, a ostali prsti tri. Zglobovi među njima omogućuju stopalu da se prilagodi neravnom terenu i ukruti pri odgurivanju."
+      ]
+    },
+    {
+      "heading": "Svodovi",
+      "paragraphs": [
+        "Stopalo tvori svodove po dužini i širini. Oni djeluju poput opruga, raspoređuju opterećenje i upijaju udarce. Ravna stopala imaju niže svodove, a visoki svodovi su krući. Oboje može biti normalno i ne uzrokovati probleme, ali ponekad mogu dovesti do boli ili umora."
+      ]
+    },
+    {
+      "heading": "Ligamenti, tetive i mišići",
+      "paragraphs": [
+        "Ligamenti povezuju kosti i stabiliziraju zglobove. Plantarna fascija, debela traka ispod stopala, podupire svod. Tetive povezuju mišiće potkoljenice i stopala s kostima, poput Ahilove tetive, najjače u tijelu, koja povezuje mišiće lista s petom. Mali mišići u stopalu kontroliraju prste i podupiru svod."
+      ]
+    },
+    {
+      "heading": "Koža, živci i cirkulacija",
+      "paragraphs": [
+        "Taban ima debelu kožu i masni jastučić ispod pete i prednjeg dijela stopala koji ublažavaju udarce. Živci pružaju osjet dodira i ravnotežu, a krvne žile dostavljaju kisik. Smanjen osjet ili cirkulacija, kao kod dijabetesa, čine ozljedu i infekciju vjerojatnijima."
+      ]
+    },
+    {
+      "heading": "Briga o stopalima",
+      "paragraphs": [
+        "Nosite dobro pristajajuću obuću s prostorom za prste i dobrom potporom, redovito je mijenjajte i izbjegavajte visoke pete dulje vrijeme. Hodajte bosi po sigurnim podlogama za jačanje mišića stopala, držite kožu čistom i hidratiziranom, režite nokte ravno i redovito provjeravajte stopala. Uporna bol, deformacija ili promjene kože i noktiju trebaju se procijeniti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Odabir obuće",
+      "text": "Zamislite da kupujete nove cipele za hodanje. Mogli biste ih probati poslijepodne, provjeriti mogu li vam se prsti slobodno micati i prošetati po trgovini prije kupnje."
+    },
+    {
+      "title": "Jačanje stopala",
+      "text": "Pretpostavite da vam se svodovi osjećaju umorno nakon dugog stajanja. Mogli biste vježbati podizanje ručnika prstima i kotrljanje stopala po lopti nekoliko minuta dnevno."
+    }
+  ],
+  "questions": [
+    "Imam li ravna stopala ili visoke svodove i je li to važno za mene?",
+    "Trebam li ulošce ili posebnu obuću?",
+    "Koje bi vježbe za stopala pomogle mojim simptomima?"
+  ]
+}

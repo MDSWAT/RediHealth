@@ -1,0 +1,53 @@
+{
+  "title": "De câtă vitamina D avem nevoie și cum o putem obține",
+  "intro": "Vitamina D ajută organismul să absoarbă calciul și menține oasele și mușchii sănătoși. Cei mai mulți oameni produc o mare parte din vitamina D în piele, cu ajutorul luminii soarelui, iar o parte mai mică provine din alimente. Cantitatea necesară depinde de vârstă, piele, stil de viață și sănătate, iar pentru majoritatea persoanelor sănătoase nu sunt necesare măsuri speciale.",
+  "sections": [
+    {
+      "heading": "Ce face vitamina D",
+      "paragraphs": [
+        "Vitamina D acționează ca un hormon. Ea susține absorbția calciului și a fosfatului din intestin, esențială pentru oase puternice. O lipsă de lungă durată poate provoca rahitism la copii și înmuierea oaselor la adulți și poate mări riscul de căderi și fracturi la persoanele în vârstă."
+      ]
+    },
+    {
+      "heading": "Obținerea vitaminei D din lumina soarelui",
+      "paragraphs": [
+        "Când razele UVB ajung la piele, organismul transformă o substanță din ea în vitamina D. Primăvara și vara, câteva minute de lumină a zilei pe față, mâini și brațe, de câteva ori pe săptămână, sunt suficiente pentru mulți oameni. Aproximativ între octombrie și martie, la latitudini nordice, soarele este prea slab pentru a produce mult.",
+        "Crema de protecție, hainele care acoperă, pielea mai închisă la culoare, vârsta înaintată și petrecerea celei mai mari părți a zilei în interior reduc producția. Statul la soare mai mult decât este necesar nu creează mai multă vitamina D și mărește riscul de leziuni ale pielii."
+      ]
+    },
+    {
+      "heading": "Surse alimentare",
+      "paragraphs": [
+        "Puține alimente conțin multă vitamina D. Peștii grași de mare, precum heringul, somonul și macroul, sunt cele mai bune surse naturale, cu cantități mai mici în ouă, ficat și unele ciuperci. Unele produse, precum margarina sau cerealele pentru micul dejun, sunt îmbogățite. Alimentația singură furnizează adesea doar o parte din necesarul zilnic."
+      ]
+    },
+    {
+      "heading": "Cine ar putea avea nevoie de suplimente",
+      "paragraphs": [
+        "Recomandările oficiale sugerează de obicei vitamina D zilnic pentru sugari în primul an de viață, iar suplimentele pot fi indicate persoanelor care ies rar afară, de exemplu în cămine, celor care își acoperă cea mai mare parte a pielii și celor cu anumite boli ale intestinului, rinichilor sau ficatului. Medicul vă poate sfătui în situația dumneavoastră.",
+        "Suplimentele vin în doze diferite, iar mai mult nu înseamnă mai bine. Dozele foarte mari, luate mult timp, pot crește calciul din sânge și pot afecta rinichii. Respectați doza recomandată de medic sau din prospectul produsului și spuneți medicului ce suplimente luați."
+      ]
+    },
+    {
+      "heading": "Testare și sfaturi de zi cu zi",
+      "paragraphs": [
+        "Analizele de sânge de rutină pentru vitamina D nu sunt necesare pentru majoritatea persoanelor sănătoase. Ele pot fi luate în considerare la persoanele cu boli ale oaselor sau cu factori de risc specifici. Obiceiurile sănătoase includ activitatea regulată în aer liber la lumina zilei, o alimentație variată cu pește și exerciții cu încărcare, pentru sănătatea oaselor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planificarea pentru iarnă",
+      "text": "Imaginați-vă că lucrați în interior și vedeți rar lumina zilei iarna. Ați putea face o scurtă plimbare afară la prânz, ați putea include pește în mese și ați putea întreba medicul dacă ar fi potrivit un supliment în doză mică."
+    },
+    {
+      "title": "Verificarea suplimentului unui bebeluș",
+      "text": "Presupuneți că aveți un nou-născut și nu sunteți sigură dacă sunt necesare picăturile cu vitamina D. Ați putea întreba medicul pediatru ce doză este recomandată, cât timp se administrează și cum se combină cu hrănirea."
+    }
+  ],
+  "questions": [
+    "Este probabil ca aportul meu de vitamina D să fie suficient sau fac parte dintr-un grup care beneficiază de un supliment?",
+    "Ce doză este sigură pentru mine și cât timp ar trebui s-o iau?",
+    "Este utilă o analiză de sânge în situația mea?"
+  ]
+}

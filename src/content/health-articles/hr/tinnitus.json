@@ -1,0 +1,51 @@
+{
+  "title": "Tinitus",
+  "intro": "Tinitus je percepcija zvukova poput zvonjenja, zujanja ili šuštanja bez vanjskog izvora. Mnogi ljudi ga primijete kratko, a za neke postaje trajan i smetajući. Rijetko je znak ozbiljne bolesti i iako za većinu slučajeva nema lijeka, postoje učinkoviti načini smanjenja njegova utjecaja.",
+  "sections": [
+    {
+      "heading": "Što je i zašto nastaje",
+      "paragraphs": [
+        "Tinitus nastaje u slušnom sustavu i obradi zvuka u mozgu. Često prati gubitak sluha, primjerice zbog starenja ili glasne buke, jer mozak pojačava vlastitu aktivnost. Ostali okidači uključuju ušni vosak, upale uha, određene lijekove, probleme s čeljusti, stres te ozljede glave ili vrata. U mnogim slučajevima uzrok se ne nalazi."
+      ]
+    },
+    {
+      "heading": "Kada posjetiti liječnika",
+      "paragraphs": [
+        "Posjetite liječnika ako je tinitus nov, javlja se samo na jednom uhu, pulsira u ritmu otkucaja srca, dolazi s iznenadnim gubitkom sluha, vrtoglavicom ili slabošću lica ili slijedi nakon ozljede glave. Ti znakovi mogu zahtijevati daljnje pretrage, kao što su testovi sluha ili snimanje."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Liječnik pregledava uši, testira sluh i pita o izloženosti buci, lijekovima i stresu. Testovi sluha provjeravaju postoji li gubitak sluha koji bi se mogao liječiti slušnim aparatima. Upitnici procjenjuju koliko tinitus smeta. Krvne pretrage ili snimanja koriste se kada se sumnja na određeni uzrok."
+      ]
+    },
+    {
+      "heading": "Liječenje i suočavanje",
+      "paragraphs": [
+        "Ne postoji dokazan lijek koji uklanja tinitus. Liječenje bilo kojeg temeljnog uzroka, kao što je uklanjanje ušnog voska ili liječenje gubitka sluha slušnim aparatima, može pomoći. Savjetovanje i kognitivno-bihevioralna terapija učinkoviti su u smanjenju patnje. Terapija zvukom pomoću pozadinskog zvuka, generatora šuma ili aplikacija te tehnike opuštanja čine tinitus manje uočljivim, osobito noću. Izbjegavajte potpunu tišinu. San, upravljanje stresom i tjelovježba su važni."
+      ]
+    },
+    {
+      "heading": "Prevencija i zablude",
+      "paragraphs": [
+        "Zaštitite sluh od glasne buke čepićima ili štitnicima za uši te smanjenjem glasnoće slušalica. Dodaci prehrani i skupi uređaji koji se reklamiraju kao lijekovi nemaju dokaza. Većina ljudi se s vremenom navikne na tinitus i često postaje manje smetajući. Potražite pomoć ako utječe na san, raspoloženje ili koncentraciju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Suočavanje noću",
+      "text": "Zamislite da je tinitus glasan kad pokušavate zaspati. Mogli biste pustiti tihi pozadinski zvuk iz zvučnika, vježbati opuštanje prije spavanja i izbjegavati tišinu."
+    },
+    {
+      "title": "Traženje testa sluha",
+      "text": "Pretpostavite da primijetite zvonjenje i neke teškoće u praćenju razgovora. Mogli biste dogovoriti test sluha da vidite bi li slušni aparati mogli pomoći."
+    }
+  ],
+  "questions": [
+    "Je li moj tinitus povezan s gubitkom sluha i bi li slušni aparat mogao pomoći?",
+    "Koje su terapije najučinkovitije za smanjenje patnje?",
+    "Koji bi znakovi značili da trebam daljnje pretrage?"
+  ]
+}

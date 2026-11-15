@@ -1,0 +1,52 @@
+{
+  "title": "How the ear turns sound into hearing",
+  "intro": "Hearing involves the outer, middle and inner ear together with nerves and the brain. The inner ear also contains balance organs. Hearing difficulty can start at different points, so the same symptom can need different treatment.",
+  "sections": [
+    {
+      "heading": "Collecting sound",
+      "paragraphs": [
+        "The visible ear guides sound along the canal to the eardrum. Earwax helps protect the canal; pushing objects inside can injure it or pack wax deeper."
+      ]
+    },
+    {
+      "heading": "Passing vibration",
+      "paragraphs": [
+        "The eardrum moves tiny middle-ear bones, which transmit vibration inward. The Eustachian tube helps equalize pressure with the throat; swelling can disturb this process."
+      ]
+    },
+    {
+      "heading": "Producing signals",
+      "paragraphs": [
+        "Sensory hair cells in the cochlea turn movement into nerve signals. The brain interprets them as meaningful sound. Damage here differs from blockage that prevents sound reaching the cochlea."
+      ]
+    },
+    {
+      "heading": "Protecting hearing",
+      "paragraphs": [
+        "Limit loud exposure and use suitable hearing protection. Lower headphone volume and take breaks. Hearing tests assess different parts of the pathway; a normal-looking outer ear does not prove normal hearing."
+      ]
+    },
+    {
+      "heading": "Seeking care",
+      "paragraphs": [
+        "Persistent hearing change, discharge or pain needs review. Sudden hearing loss requires urgent assessment even without pain; do not assume wax and wait. Do not insert tools or use ear candles.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira hears poorly after pressure changes. She describes the timing and asks whether the middle ear is involved rather than cleaning deeply."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben wakes with sudden hearing loss. He seeks urgent assessment instead of waiting for it to clear as wax."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

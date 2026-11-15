@@ -1,0 +1,51 @@
+{
+  "title": "Što je terapija glasa?",
+  "intro": "Terapija glasa je liječenje koje pomaže ljudima s problemima glasa, kao što su promuklost, naprezanje, slab glas ili gubitak glasa. Logoped podučava vježbama i zdravim navikama. Koristi se kod mnogih uzroka, uključujući prekomjernu uporabu, čvoriće, probleme sa živcima i promjenu glasa povezanu s rodom.",
+  "sections": [
+    {
+      "heading": "Zašto nastaju problemi s glasom",
+      "paragraphs": [
+        "Na glas mogu utjecati prekomjerna ili pogrešna uporaba, kao što je vikanje ili dugo govorenje, infekcije, refluks, pušenje, suhoća, čvorići ili polipi na glasnicama, oštećenje živaca, neurološka bolest ili emocionalni stres. Promuklost koja traje dulje od tri do četiri tjedna treba provjeriti liječnik, osobito kod pušača."
+      ]
+    },
+    {
+      "heading": "Procjena",
+      "paragraphs": [
+        "Liječnik, obično specijalist za uho, nos i grlo, kamerom pregledava glasnice. Terapeut sluša glas, mjeri koliko dugo možete držati ton i pita o navikama, poslu i lijekovima. Zajedno postavljaju ciljeve, kao što su jasniji glas, manje naprezanja ili veća izdržljivost."
+      ]
+    },
+    {
+      "heading": "Što terapija uključuje",
+      "paragraphs": [
+        "Terapija uključuje trening disanja, opuštanje mišića vrata i ramena, vježbe za rezonanciju, visinu i glasnoću te tehnike kao što su vježbe poluzatvorenog glasnog trakta, primjerice zujanje ili govorenje kroz slamku. Učite učinkovito koristiti glas i izbjegavati navike koje štete. Seanse su tjedne, uz svakodnevno vježbanje kod kuće."
+      ]
+    },
+    {
+      "heading": "Njega glasa",
+      "paragraphs": [
+        "Pijte dovoljno vode, izbjegavajte pušenje i nadražujuće tvari, liječite refluks, izbjegavajte šaptanje i prečesto pročišćavanje grla, odmarajte glas nakon jakog opterećenja i koristite pojačalo na bučnim mjestima. Učitelji, pjevači i djelatnici pozivnih centara posebno su izloženi riziku. Terapija glasa može pomoći i transrodnim osobama u prilagodbi visine i rezonancije."
+      ]
+    },
+    {
+      "heading": "Ishodi",
+      "paragraphs": [
+        "Mnogi ljudi se poboljšaju unutar tjedana do mjeseci. Neka stanja, kao što su čvorići, mogu nestati terapijom, dok drugima trebaju i lijekovi ili operacija. Dosljedno vježbanje je ključno. Obratite se liječniku ako nema napretka ili ako se simptomi pogoršaju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Svakodnevno vježbanje",
+      "text": "Zamislite da ste naprezali glas na poslu. Mogli biste svaki dan raditi vježbe zujanja i odmarati glas tijekom stanki."
+    },
+    {
+      "title": "Traženje pregleda",
+      "text": "Pretpostavite da ste promukli šest tjedana. Mogli biste zatražiti pregled kod specijalista za uho, nos i grlo."
+    }
+  ],
+  "questions": [
+    "Što uzrokuje moj problem s glasom?",
+    "Koliko će terapija trajati i što trebam vježbati?",
+    "Trebam li i lijekove ili operaciju?"
+  ]
+}

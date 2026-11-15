@@ -1,0 +1,51 @@
+{
+  "title": "Prenatal testing",
+  "intro": "Prenatal tests examine the health and development of an unborn baby. They include routine ultrasound scans and optional tests for chromosomal conditions such as Down syndrome. Deciding whether to have them is a personal choice, and counselling before and after testing helps you understand what results can and cannot tell you.",
+  "sections": [
+    {
+      "heading": "Types of tests",
+      "paragraphs": [
+        "Screening tests estimate the chance that a baby has a condition, but do not give a definite answer. They include ultrasound measurements, blood tests of the mother and a blood test that analyses fragments of the baby's genetic material found in the mother's blood. Diagnostic tests such as chorionic villus sampling and amniocentesis examine the baby's cells and give a clear answer, but carry a small risk of miscarriage."
+      ]
+    },
+    {
+      "heading": "What results mean",
+      "paragraphs": [
+        "A screening result is expressed as a probability, not a diagnosis. A high-risk result does not mean the baby is affected, and a low-risk result does not completely exclude a condition. Tests may also detect uncertain findings that cause worry. Ultrasound can show structural differences in the baby's organs, though not all conditions are visible."
+      ]
+    },
+    {
+      "heading": "Deciding whether to test",
+      "paragraphs": [
+        "Some parents want information to prepare, plan delivery in a specialised centre or consider treatment before or after birth. Others prefer not to test. Think in advance about what you would do with the result, how you would feel about uncertainty and what values matter to you. You may decline any test."
+      ]
+    },
+    {
+      "heading": "Support and counselling",
+      "paragraphs": [
+        "Counselling by doctors, midwives and independent services can explain the options and the consequences. If a test shows a possible condition, you should receive time and support to decide on further steps, including more testing, preparing for a child with special needs, or, depending on the law, considering ending the pregnancy. Support groups and specialists offer information about living with different conditions."
+      ]
+    },
+    {
+      "heading": "Routine scans and everyday choices",
+      "paragraphs": [
+        "Routine ultrasound scans during pregnancy check growth, the position of the placenta and the baby's organs, and are offered to everyone. They are part of prenatal care and differ from tests for chromosomal conditions. Ask what each scan is meant to look for, so that you know what to expect from the results."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Weighing a decision",
+      "text": "Imagine you are offered a blood test for Down syndrome. You could discuss what the result would change for you, ask about accuracy and false alarms, and decide with your partner whether to take it."
+    },
+    {
+      "title": "After a high-risk result",
+      "text": "Suppose a screening result shows a raised chance. You might ask for counselling, ask about the risks and benefits of a diagnostic test and take time before deciding."
+    }
+  ],
+  "questions": [
+    "Which tests are available, and how accurate are they?",
+    "What are the risks of diagnostic tests such as amniocentesis?",
+    "Where can I get independent counselling before and after testing?"
+  ]
+}

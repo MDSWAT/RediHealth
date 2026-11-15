@@ -1,0 +1,51 @@
+{
+  "title": "How medical knowledge grows: a starting point",
+  "intro": "Medical knowledge changes as researchers test questions, compare treatments and examine harms. Reliable health information explains both what is known and what remains uncertain. A newly published study is a contribution, not automatically the final answer.",
+  "sections": [
+    {
+      "heading": "Ask a focused question",
+      "paragraphs": [
+        "Start with a clear question about people, an intervention or exposure, a comparison and outcomes that matter. Relief, function, serious illness and quality of life may be more useful than a laboratory change alone. A plausible explanation still needs testing."
+      ]
+    },
+    {
+      "heading": "Compare groups fairly",
+      "paragraphs": [
+        "Compare groups fairly. Random allocation can reduce differences between groups; observation can reveal patterns but may confuse cause with other factors. Study size, losses to follow-up and selective reporting affect how much confidence results deserve."
+      ]
+    },
+    {
+      "heading": "Understand systematic reviews",
+      "paragraphs": [
+        "A systematic review uses explicit methods to find and assess relevant studies, rather than choosing favorable examples. It may still reach uncertain conclusions when the underlying research is weak or inconsistent. Combining many biased studies does not automatically remove the bias."
+      ]
+    },
+    {
+      "heading": "Check relevance and transparency",
+      "paragraphs": [
+        "Check who funded the work, whether important harms were measured and whether findings apply to people like you. Look for independent assessments and the date of an update. Patient experience helps identify meaningful questions but cannot by itself establish that a treatment caused improvement."
+      ]
+    },
+    {
+      "heading": "Use new evidence thoughtfully",
+      "paragraphs": [
+        "Discuss new findings with a clinician before changing prescribed care. A recommendation may change because better evidence or new safety information becomes available, not because earlier researchers were dishonest. Ask which uncertainty could change the decision and whether it is safer to act, monitor or wait for further evidence."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira reads a small uncontrolled study of a supplement. She asks whether improvement was compared with a similar group before spending money."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben sees conflicting headlines. He looks for a systematic review and the actual outcomes instead of counting how many articles repeat each claim."
+    }
+  ],
+  "questions": [
+    "Was the comparison fair and relevant to me?",
+    "What benefits, harms and uncertainty were measured?",
+    "Does this evidence justify changing my care?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Kako mozak koordinira tijelo",
+  "intro": "Mozak povezuje osjete, pokret, pamćenje i emocije te regulira vitalne funkcije. Regije su specijalizirane, ali rade u mrežama; jednostavna slika ne predviđa sposobnosti, osobnost ni oporavak.",
+  "sections": [
+    {
+      "heading": "Signali i potpora",
+      "paragraphs": [
+        "Neuroni razmjenjuju električne i kemijske poruke. Potporne stanice održavaju okoliš. Krv donosi kisik i energiju; prekidi mogu brzo oštetiti tkivo."
+      ]
+    },
+    {
+      "heading": "Povezane regije",
+      "paragraphs": [
+        "Kora pomaže percepciji, jeziku i planiranoj radnji. Veze povezuju hemisfere; podjela ljudi na potpuno lijevi ili desni mozak pretjerano pojednostavljuje."
+      ]
+    },
+    {
+      "heading": "Koordinacija i opstanak",
+      "paragraphs": [
+        "Mali mozak pomaže vremenskom usklađivanju i ravnoteži. Moždano deblo podupire disanje i budnost; hipotalamus povezuje temperaturu, apetit i hormone."
+      ]
+    },
+    {
+      "heading": "Zaštita i učenje",
+      "paragraphs": [
+        "Lubanja, ovojnice i tekućina štite bez sprečavanja svake ozljede. Vježba mijenja mreže, ali oporavak varira; ne jamči povrat izgubljene funkcije."
+      ]
+    },
+    {
+      "heading": "Hitni znakovi",
+      "paragraphs": [
+        "Nagla slabost lica ili ruke, smetnje govora, jaka neobična glavobolja, nova zbunjenost ili nesvijest traže hitnu procjenu. Ne čekajte internetski test.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira vježba novu vještinu u podnošljivim dijelovima. Razumije ulogu povezanih sustava, ne neiskorištenog područja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben odjednom ne govori jasno. Rođak traži hitnu pomoć iako još može hodati."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Plućna embolija",
+  "intro": "Plućna embolija je začepljenje jedne od arterija pluća, najčešće uzrokovano krvnim ugruškom koji je došao iz dubokih vena nogu. Može uzrokovati iznenadni nedostatak zraka i bol u prsima i može biti opasna po život. Brza dijagnoza i liječenje lijekovima za razrjeđivanje krvi spašavaju živote.",
+  "sections": [
+    {
+      "heading": "Uzroci i čimbenici rizika",
+      "paragraphs": [
+        "Ugrušci nastaju u venama nogu ili zdjelice kad se protok krvi uspori ili zgrušavanje poveća, zatim se odlome i zaglave u plućima. Čimbenici rizika uključuju nedavnu operaciju, ozljedu ili dugotrajnu nepokretnost, putovanje na velike udaljenosti, rak, trudnoću i razdoblje nakon poroda, hormonsku terapiju i kontracepcijske pilule, pretilost, pušenje, stariju dob, prethodni ugrušak i nasljedne sklonosti zgrušavanju."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipični simptomi su iznenadni nedostatak zraka, oštra bol u prsima koja se pogoršava pri udisanju, kašalj, ponekad s krvlju, ubrzani otkucaji srca, vrtoglavica i nesvjestica. Neki ljudi imaju oticanje, bol i toplinu u nozi od izvornog ugruška. Simptomi mogu biti blagi ili teški. Nazovite hitnu pomoć zbog iznenadnog neobjašnjivog nedostatka zraka ili boli u prsima."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Liječnici procjenjuju vjerojatnost pomoću sustava bodovanja i simptoma i mogu provjeriti krvnu pretragu zvanu D-dimer. CT pretraga s kontrastnom bojom pokazuje ugruške u plućnim arterijama. Druge pretrage uključuju ultrazvuk nogu, ultrazvuk srca i, po potrebi, pretrage pluća."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Antikoagulansi sprječavaju rast ugruška i omogućuju tijelu da ga otopi. Započinju se odmah, daju se injekcijom ili kao tablete i nastavljaju najmanje tri mjeseca. U teškim slučajevima koriste se lijekovi za otapanje ugrušaka ili zahvati za uklanjanje ugruška. Osobe koje ne mogu uzimati lijekove za razrjeđivanje krvi mogu dobiti filtar u veliku venu. Krvarenje je glavni rizik liječenja pa prijavite neobične modrice ili krvarenje."
+      ]
+    },
+    {
+      "heading": "Nakon plućne embolije",
+      "paragraphs": [
+        "Duljina liječenja ovisi o uzroku. Neki ljudi trebaju dugotrajnu terapiju. Neki imaju zaostali nedostatak zraka ili plućnu hipertenziju i trebaju praćenje. Kako biste spriječili ponavljanje, redovito se krećite na dugim putovanjima, održavajte hidraciju, koristite kompresijske čarape ako je savjetovano i razgovarajte o preventivnim lijekovima prije operacije."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepoznavanje hitnog stanja",
+      "text": "Zamislite da vam nakon dugog leta iznenada nestane zraka i list vam je otečen. Mogli biste odmah nazvati hitnu pomoć i ne čekati hoće li se poboljšati."
+    },
+    {
+      "title": "Sigurno uzimanje lijekova za razrjeđivanje krvi",
+      "text": "Pretpostavite da počnete uzimati antikoagulans. Mogli biste nositi karticu, reći stomatolozima i liječnicima, izbjegavati rizične aktivnosti i prijaviti svako jako krvarenje ili crnu stolicu."
+    }
+  ],
+  "questions": [
+    "Koliko dugo trebam lijekove za razrjeđivanje krvi i koji su rizici?",
+    "Imam li nasljednu sklonost zgrušavanju i treba li testirati moju obitelj?",
+    "Kako mogu smanjiti rizik od novog ugruška?"
+  ]
+}

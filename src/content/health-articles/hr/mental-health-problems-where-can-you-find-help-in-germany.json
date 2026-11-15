@@ -1,0 +1,52 @@
+{
+  "title": "Problemi s mentalnim zdravljem: gdje pronaći pomoć u Njemačkoj",
+  "intro": "U Njemačkoj postoje mnoga mjesta kojima se možete obratiti za pomoć kod problema s mentalnim zdravljem, od obiteljskog liječnika do psihoterapeuta, ambulanti, savjetovališta i telefonskih linija za pomoć. Sustav može djelovati složeno, a čekanja mogu biti duga, ali postoje putovi do brže pomoći. Ovaj članak opisuje glavne kontaktne točke općenito; pravila i ponude se mijenjaju pa provjerite aktualne pojedinosti.",
+  "sections": [
+    {
+      "heading": "Prvi koraci",
+      "paragraphs": [
+        "Dobar prvi korak je posjet obiteljskom liječniku, koji može procijeniti simptome, provjeriti tjelesne uzroke, pružiti početno liječenje i uputiti vas specijalistu. Možete se izravno obratiti i psihoterapeutu. Mnogi terapeuti nude prvi razgovor kako bi razjasnili kakva je pomoć potrebna."
+      ]
+    },
+    {
+      "heading": "Psihoterapija i psihijatrija",
+      "paragraphs": [
+        "Obvezno zdravstveno osiguranje pokriva psihoterapiju koju provode licencirani psihoterapeuti i liječnici za priznata stanja kao što su depresija, anksiozni poremećaji i problemi povezani s traumom. Psihijatri su liječnici koji također mogu propisati lijekove. Nacionalna služba za termine, dostupna na broju 116117, može pomoći pronaći termin za prvi razgovor, a mnogi osiguravatelji također mogu pomoći u traženju mjesta."
+      ]
+    },
+    {
+      "heading": "Klinike i dnevne usluge",
+      "paragraphs": [
+        "Ako su simptomi teški, dostupne su psihijatrijske ambulante, dnevne klinike ili bolničko liječenje u psihijatrijskoj ili psihosomatskoj bolnici. Mogu uslijediti rehabilitacijski programi. Vaš liječnik može izdati uputnicu, a u hitnim slučajevima možete otići izravno u bolnicu."
+      ]
+    },
+    {
+      "heading": "Savjetovanje i samopomoć",
+      "paragraphs": [
+        "Savjetovališta nude savjete o ovisnosti, obiteljskim i partnerskim problemima, stresu, dugovima i drugim životnim pitanjima, često besplatno. Grupe samopomoći okupljaju ljude sa sličnim iskustvima. Mrežni programi i odobrene digitalne zdravstvene aplikacije mogu ponuditi potporu dok čekate terapiju."
+      ]
+    },
+    {
+      "heading": "Krize i hitni slučajevi",
+      "paragraphs": [
+        "Ako ste vi ili netko drugi u akutnoj opasnosti, nazovite broj za hitne slučajeve 112 ili idite u najbližu hitnu službu. Telefonske službe savjetovanja dostupne su danonoćno, besplatno i anonimno, za ljude u nevolji. Ne čekajte ako imate misli o samoozljeđivanju.",
+        "Praktična pitanja kao što su jezične barijere, status osiguranja i status izbjeglice mogu otežati pristup. Pitajte savjetovališta o tumačima i o uslugama na koje imate pravo."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Traženje terapeuta",
+      "text": "Zamislite da se mjesecima osjećate loše i tjeskobno. Mogli biste posjetiti obiteljskog liječnika, pitati o uputnici, nazvati službu za termine i također kontaktirati nekoliko terapeuta za prvi razgovor kako biste skratili čekanje."
+    },
+    {
+      "title": "Pomaganje prijatelju",
+      "text": "Pretpostavite da vam prijatelj kaže da se osjeća beznadno. Mogli biste slušati bez osuđivanja, potaknuti ga da razgovara s liječnikom ili savjetovalištem i ponuditi da ga pratite."
+    }
+  ],
+  "questions": [
+    "Koja je vrsta stručnjaka najprikladnija za moje simptome?",
+    "Kako mogu brže pronaći termin i što mogu učiniti dok čekam?",
+    "Gdje mogu dobiti pomoć na svom jeziku i što će pokriti moje osiguranje?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Lekanemabi për sëmundjen e Alzheimerit në fazë të hershme",
+  "intro": "Lekanemabi është një ilaç antitrup i dhënë me infuzion që synon amiloidin, një proteinë që grumbullohet në tru në sëmundjen e Alzheimerit. Është menduar për njerëzit në fazat e hershme dhe mund ta ngadalësojë modestisht rënien e kujtesës e të të menduarit. Nuk e shëron sëmundjen dhe ka rreziqe të dukshme, prandaj nevojitet vlerësim i kujdesshëm.",
+  "sections": [
+    {
+      "heading": "Si funksionon",
+      "paragraphs": [
+        "Në sëmundjen e Alzheimerit, grumbuj të proteinës amiloide formojnë pllaka midis qelizave nervore. Lekanemabi lidhet me amiloidin dhe e ndihmon sistemin imunitar ta pastrojë nga truri. Studiuesit mendojnë se reduktimi i amiloidit mund ta ngadalësojë përparimin e sëmundjes, megjithëse debatohet saktësisht sa kjo shndërrohet në përfitim të përditshëm."
+      ]
+    },
+    {
+      "heading": "Kush mund të merret në konsideratë",
+      "paragraphs": [
+        "Ilaçi është menduar për njerëzit me dëmtim të lehtë konjitiv ose çmenduri të lehtë për shkak të sëmundjes së Alzheimerit te të cilët amiloidi është konfirmuar me një skanim truri ose test të lëngut kurrizor. Njerëzit me faktorë të caktuar rreziku, si gjakderdhje në tru, përdorim holluesish gjaku ose veçori gjenetike që rrisin shansin e efekteve anësore, mund të mos jenë të përshtatshëm. Disponueshmëria dhe miratimi ndryshojnë midis vendeve."
+      ]
+    },
+    {
+      "heading": "Çfarë gjetën studimet",
+      "paragraphs": [
+        "Në një provë të madhe që zgjati tetëmbëdhjetë muaj, njerëzit që morën lekanemab u keqësuan disi më ngadalë në një shkallë vlerësimi sesa njerëzit që morën placebo. Dallimi ishte i vogël dhe ekspertët nuk bien dakord nëse vihet re në jetën e përditshme. Përfitimet afatgjata janë ende në studim."
+      ]
+    },
+    {
+      "heading": "Rreziqet dhe monitorimi",
+      "paragraphs": [
+        "Trajtimi jepet si infuzion çdo dy javë dhe nevojiten skanime truri para dhe gjatë trajtimit. Një efekt anësor i njohur është enjtja ose gjakderdhje e vogël në tru, e quajtur anomali imazherike të lidhura me amiloidin. Shumica janë pa simptoma, por disa shkaktojnë dhimbje koke, konfuzion ose marramendje dhe rrallë mund të jenë serioze. Njerëzit që bartin dy kopje të një varianti gjeni të quajtur APOE4 janë në rrezik më të lartë. Mund të ndodhin edhe reagime ndaj infuzionit si ethe ose të dridhura."
+      ]
+    },
+    {
+      "heading": "Marrja e një vendimi",
+      "paragraphs": [
+        "Vendimi përfshin peshimin e një ngadalësimi modest të mundshëm të rënies kundrejt infuzioneve të rregullta, skanimeve, rreziqeve dhe barrës për familjen. Flisni me një specialist për qëllimet tuaja. Mbështetja, barnat për simptomat, aktiviteti, kontakti shoqëror dhe planifikimi i kujdesit mbeten të rëndësishme me ose pa këtë trajtim."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për një vizitë te specialisti",
+      "text": "Imagjinoni që keni marrë diagnozën e Alzheimerit të hershëm. Mund të shkruani pyetje nëse kualifikoheni, cilat janë përfitimet në jetën e përditshme dhe çfarë përfshin monitorimi dhe të sillni një të afërm me vete."
+    },
+    {
+      "title": "Peshimi i barrës",
+      "text": "Supozoni që jetoni larg spitalit. Mund të diskutoni sa shpesh do të nevojitej udhëtimi për infuzione e skanime dhe nëse kjo përputhet me jetën tuaj të përditshme."
+    }
+  ],
+  "questions": [
+    "A jam kandidat i përshtatshëm dhe cilat teste nevojiten?",
+    "Çfarë përfitimi realist dhe çfarë rreziqesh duhet të pres?",
+    "Çfarë mbështetjeje tjetër është e disponueshme nëse vendos të mos e marr?"
+  ]
+}

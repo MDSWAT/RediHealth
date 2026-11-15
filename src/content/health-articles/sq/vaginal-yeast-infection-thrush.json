@@ -1,0 +1,51 @@
+{
+  "title": "Infeksioni vaginal me maja (mykoza)",
+  "intro": "Mykoza vaginale është një infeksion i zakonshëm i shkaktuar nga shtimi i tepërt i majasë Candida, që normalisht jeton në sasi të vogla në vaginë. Shkakton kruarje, dhimbje e rrjedhje të trasha të bardha. Nuk është infeksion seksualisht i transmetueshëm e trajtohet lehtë me kremra, pesare ose tableta kundër kërpudhave.",
+  "sections": [
+    {
+      "heading": "Shkaqet e nxitësit",
+      "paragraphs": [
+        "Mykoza ndodh kur prishet ekuilibri i organizmave vaginalë. Nxitësit përfshijnë antibiotikët, shtatzëninë, diabetin e pakontrolluar, imunitetin e dobësuar, ndryshimet hormonale e, nganjëherë, sapunët acarues, rrobat sintetike të ngushta ose dushet vaginale. Shumë gra e marrin herë pas here, e disa kanë episode të përsëritura."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat tipike janë kruarja e acarimi i vaginës e vulvës, skuqja e enjtja, djegia gjatë urinimit ose seksit e një rrjedhje e trashë, e bardhë, pa erë, si djathi i grirë. Simptoma të ngjashme mund t'i shkaktojnë gjendje të tjera si vaginoza bakteriale, trikomoniaza, gjendjet e lëkurës e alergjitë, prandaj episodi i parë konfirmohet më mirë nga mjeku."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Trajtimi antimikotik jepet si pesare vaginale, kremra ose një tabletë e vetme gojore. Shumica e grave përmirësohen brenda disa ditësh e e përfundojnë kurën siç udhëzohet. Kremi antimikotik në vulvë ndihmon me kruarjen e jashtme. Tabletat nuk rekomandohen në shtatzëni, prandaj kërkoni trajtim lokal. Mos përdorni tampona e mos bëni seks para trajtimit nëse shkakton siklet."
+      ]
+    },
+    {
+      "heading": "Mykoza e përsëritur",
+      "paragraphs": [
+        "Katër ose më shumë episode në vit kërkojnë rishikim mjekësor. Mjekët mund ta konfirmojnë diagnozën me një shtupë, të kontrollojnë për diabet e të përshkruajnë një kurë më të gjatë e pastaj trajtim parandalues javor për disa muaj. Identifikoni nxitësit e mundshëm e rishikoni barnat."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Vishni të brendshme pambuku që marrin frymë, shmangni produktet me aromë e dushet vaginale, lahuni me ujë të thjeshtë ose pastrues të butë pa aromë, ndërroni shpejt rrobat e lagura të plazhit ose të djersitura e kontrolloni sheqerin në gjak nëse keni diabet. Probiotikët kanë dobi të pasigurt. Kërkoni këshillë nëse simptomat nuk përmirësohen brenda një jave, ose nëse ka ethe, dhimbje barku ose rrjedhje me erë të keqe."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Zgjedhja e trajtimit",
+      "text": "Imagjinoni që keni simptoma tipike e një diagnozë të mëparshme. Mund ta pyesni farmacistin për një pesar ose tabletë antimikotike e ta ndiqni kurën e plotë."
+    },
+    {
+      "title": "Përballja me episode të shpeshta",
+      "text": "Supozoni që keni mykozë pas çdo kure antibiotikësh. Mund ta diskutoni parandalimin me mjekun e ta shënoni modelin në një ditar."
+    }
+  ],
+  "questions": [
+    "A është kjo mykozë, apo mund të jetë një infeksion tjetër?",
+    "Cili trajtim është i sigurt për mua, përfshirë në shtatzëni?",
+    "Çfarë mund të bëj për të parandaluar rikthimin e saj?"
+  ]
+}

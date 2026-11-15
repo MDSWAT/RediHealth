@@ -1,0 +1,51 @@
+{
+  "title": "Înțelegerea testelor tiroidiene",
+  "intro": "Testele tiroidiene ajută la diagnosticarea unei tiroide hiperactive sau hipoactive, a măririi tiroidei și a cancerului tiroidian. Includ analize de sânge, ecografie și uneori scanări sau biopsii. A ști ce înseamnă rezultatele poate face consultațiile mai ușor de urmărit.",
+  "sections": [
+    {
+      "heading": "Analizele de sânge",
+      "paragraphs": [
+        "Hormonul de stimulare a tiroidei, produs de glanda hipofiză, este de obicei primul test. Crește când tiroida este hipoactivă și scade când este hiperactivă. Tiroxina liberă și uneori triiodotironina liberă măsoară hormonii tiroidieni propriu-ziși. Împreună arată dacă tiroida lucrează prea mult sau prea puțin."
+      ]
+    },
+    {
+      "heading": "Testele de anticorpi",
+      "paragraphs": [
+        "Anticorpii împotriva tiroidei, precum anti-TPO și anti-tiroglobulină, sunt prezenți în boala tiroidiană autoimună, precum Hashimoto. Anticorpii care stimulează receptorul TSH se găsesc în boala Graves. Aceste teste ajută la găsirea cauzei, dar nu sunt întotdeauna necesare."
+      ]
+    },
+    {
+      "heading": "Ecografia",
+      "paragraphs": [
+        "Ecografia folosește unde sonore pentru a imagina tiroida, arătându-i dimensiunea și orice noduli, inclusiv dacă sunt solizi sau chistici și ce caracteristici par suspecte. Este nedureroasă, rapidă și nu folosește radiații. Este metoda principală de imagistică pentru gușă și noduli."
+      ]
+    },
+    {
+      "heading": "Scanările și biopsia",
+      "paragraphs": [
+        "O scintigrafie tiroidiană folosește o cantitate mică de trasor radioactiv pentru a arăta care zone ale tiroidei sunt active, ajutând la distingerea nodulilor hiperactivi de cei inactivi. Dacă un nodul pare suspect la ecografie, o puncție aspirativă cu ac fin ia câteva celule cu un ac subțire pentru examinare la microscop. Cei mai mulți noduli se dovedesc benigni."
+      ]
+    },
+    {
+      "heading": "Sfaturi practice",
+      "paragraphs": [
+        "Spuneți medicului despre medicamentele pentru tiroidă, despre suplimentele precum biotina, care pot denatura rezultatele, și despre sarcină. Persoanele care iau levotiroxină sunt adesea rugate să ia tableta după recoltarea de sânge. Rezultatele pot varia în timpul unei boli, așa că uneori este nevoie de repetarea testelor. Întrebați când urmează următorul test."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru o analiză de sânge",
+      "text": "Imaginați-vă că luați levotiroxină dimineața. Ați putea întreba dacă recoltarea trebuie făcută înainte de tabletă și ați putea aduce o listă de suplimente."
+    },
+    {
+      "title": "Înțelegerea unui nodul",
+      "text": "Presupuneți că o ecografie arată un nodul tiroidian. Ați putea întreba ce caracteristici s-au văzut, dacă este necesară o biopsie și cât de des trebuie verificat."
+    }
+  ],
+  "questions": [
+    "De ce teste tiroidiene am nevoie și ce înseamnă rezultatele?",
+    "Ar putea medicamentele sau suplimentele mele să afecteze rezultatele?",
+    "Are nevoie nodulul meu tiroidian de biopsie?"
+  ]
+}

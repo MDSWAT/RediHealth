@@ -1,0 +1,51 @@
+{
+  "title": "Što se događa u pubertetu?",
+  "intro": "Pubertet je razdoblje u kojem se tijelo djeteta mijenja u tijelo odrasle osobe i postaje sposobno za razmnožavanje. Pokreću ga hormoni, a donosi tjelesne, emocionalne i društvene promjene. Vrijeme početka razlikuje se među mladima i to je normalno.",
+  "sections": [
+    {
+      "heading": "Što pokreće pubertet",
+      "paragraphs": [
+        "Pubertet počinje kada mozak signalizira hipofizi da otpusti hormone koji potiču jajnike ili testise. Kod djevojčica to obično počinje između osme i trinaeste godine, a kod dječaka između devete i četrnaeste. Geni, prehrana, težina i opće zdravlje utječu na vrijeme početka."
+      ]
+    },
+    {
+      "heading": "Promjene kod djevojčica",
+      "paragraphs": [
+        "Razvoj grudi obično je prvi znak, nakon čega slijede stidne i pazušne dlake, nagli rast, šire bokove i, otprilike dvije godine nakon početka rasta grudi, prva menstruacija. Menstruacija isprva može biti nepravilna. Koža može postati masnija i može se pojaviti akne."
+      ]
+    },
+    {
+      "heading": "Promjene kod dječaka",
+      "paragraphs": [
+        "Prvo se povećavaju testisi i skrotum, zatim slijedi rast penisa, stidnih i tjelesnih dlaka, nagli rast, produbljivanje glasa i dlake na licu. Erekcije i noćne ejakulacije (mokri snovi) su normalne. Akne i znojenje se pojačavaju. Mišići postaju jači."
+      ]
+    },
+    {
+      "heading": "Emocionalne i društvene promjene",
+      "paragraphs": [
+        "Mladi mogu imati promjene raspoloženja, jače osjećaje, potrebu za privatnošću, veći interes za veze i brige oko slike o tijelu. Mozak se također nastavlja razvijati, osobito u područjima prosudbe i kontrole impulsa. Potreba za snom raste. Potpora, jasne informacije i poštovanje pomažu."
+      ]
+    },
+    {
+      "heading": "Kada potražiti savjet",
+      "paragraphs": [
+        "Posjetite liječnika ako znakovi počnu prije osme godine kod djevojčica ili devete kod dječaka, ako nema znakova do trinaeste kod djevojčica ili četrnaeste kod dječaka, ako menstruacija nije počela do šesnaeste ili zbog jake boli, obilnog krvarenja, teških akni ili briga oko raspoloženja. Otvoreno razgovarajte o higijeni, pristanku, sigurnom seksu i promjenama tijela."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razgovor kod kuće",
+      "text": "Zamislite da vas dijete pita o menstruaciji ili mokrim snovima. Mogli biste odgovoriti mirno i iskreno te ponuditi dobru knjigu ili web-stranicu."
+    },
+    {
+      "title": "Uočavanje ranih znakova",
+      "text": "Pretpostavite da vašoj kćeri narastu grudi sa sedam godina. Mogli biste dogovoriti pregled kod pedijatra."
+    }
+  ],
+  "questions": [
+    "Je li razvoj mog djeteta normalan za njegovu dob?",
+    "Kako mogu podržati emocionalne promjene svog djeteta?",
+    "Kada trebamo posjetiti liječnika?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Diabetul gestațional: glicemia în sarcină",
+  "intro": "Diabetul gestațional este glicemia crescută diagnosticată prima dată în sarcină. Adesea nu are simptome. Monitorizarea și tratamentul reduc riscurile pentru gravidă și copil; diagnosticul nu înseamnă eșec personal.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Hormonii sarcinii pot reduce eficiența insulinei. Glicemia persistent crescută poate influența creșterea fetală și nașterea, dar un rezultat nu înseamnă inevitabil complicații."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Diagnosticul folosește analize recomandate, nu numai simptome sau zahăr urinar. Învățați pregătirea testului, tehnica, momentele și țintele individuale ale măsurării glicemiei acasă. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Sprijinul alimentar distribuie carbohidrații în mese echilibrate fără înfometare. Mișcarea sigură ajută când este permisă. Pot fi necesare insulină ori alte medicamente recomandate local; aceasta nu dovedește lipsa efortului. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Păstrați jurnalul glicemiei și meselor și materialele de măsurare. Dacă tratamentul poate da hipoglicemie, învățați planul de răspuns. Discutați vărsăturile, boala și valorile în afara țintei fără ajustări după internet. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Contactați maternitatea pentru mișcări fetale reduse, vărsături persistente sau boală importantă. Programați reevaluare după naștere și controale ulterioare chiar la normalizare; riscul viitor de diabet rămâne crescut."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira arată valorile mari după micul dejun și jurnalul meselor. Echipa modifică planul fără omiterea meselor sau eliminarea tuturor carbohidraților."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben ajută partenera gravidă să programeze controlul după naștere, fără să presupună că o naștere normală încheie verificările glicemiei."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Înțelegerea ciclului menstrual",
+  "intro": "Ciclul leagă semnalele hormonale, activitatea ovariană și modificările mucoasei uterine. Durata diferă între persoane și etapele vieții. Un model de manual sau o aplicație nu dovedește sigur ovulația și nu exclude sarcina.",
+  "sections": [
+    {
+      "heading": "Început",
+      "paragraphs": [
+        "Prima zi de sângerare menstruală marchează ciclul nou. Semnalele creierului și hipofizei stimulează foliculii ovarieni; estrogenul ajută refacerea mucoasei uterine."
+      ]
+    },
+    {
+      "heading": "Ovulație",
+      "paragraphs": [
+        "Un vârf hormonal poate elibera ovulul într-o trompă. Ovulația nu apare în aceeași zi calendaristică la toate persoanele, iar sângerarea nu garantează că a avut loc."
+      ]
+    },
+    {
+      "heading": "După eliberare",
+      "paragraphs": [
+        "Foliculul gol formează o structură temporară producătoare de progesteron. Susține mucoasa; fără sarcină, hormonii scad și mucoasa se elimină."
+      ]
+    },
+    {
+      "heading": "Urmărire",
+      "paragraphs": [
+        "Notați sângerarea, durerea și efectele zilnice, fără să considerați orice variație boală. Pubertatea, tranziția menopauzală, boala, stresul și contracepția hormonală schimbă tiparul; calendarul singur nu este contracepție sigură."
+      ]
+    },
+    {
+      "heading": "Evaluare",
+      "paragraphs": [
+        "Sângerarea foarte abundentă, leșinul, durerea severă, neregularitatea persistentă ori sângerarea după menopauză cer consult. Sarcina posibilă cu durere severă unilaterală, colaps sau durere la vârful umărului cere urgență chiar înainte de test pozitiv.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira notează durerea și activitățile ratate, nu doar datele, ajutând evaluarea necesității tratamentului."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben sprijină partenera cu întârziere și durere severă unilaterală să ceară urgență, fără predicția aplicației."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

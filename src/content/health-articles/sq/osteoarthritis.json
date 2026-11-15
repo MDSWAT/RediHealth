@@ -1,0 +1,52 @@
+{
+  "title": "Osteoartriti",
+  "intro": "Osteoartriti është gjendja më e zakonshme e nyjeve. Përfshin konsumim e ndryshime në kërcin dhe indet përreth, duke shkaktuar dhimbje, ngurtësi dhe lëvizje të reduktuar, më shpesh në gju, ijë, duar dhe shtyllë kurrizore. Zhvillohet gjatë vitesh dhe mund ta kufizojë jetën e përditshme, por ushtrimet, menaxhimi i peshës dhe masa të tjera ndihmojnë ta kontrollojnë simptomat.",
+  "sections": [
+    {
+      "heading": "Shkaqet dhe faktorët e rrezikut",
+      "paragraphs": [
+        "Rreziku rritet me moshën, mbipeshën, lëndimin e mëparshëm të nyjes, stresin e përsëritur, historinë familjare dhe seksin femëror, veçanërisht për duart. Nuk është thjesht konsumim; preket gjithë nyja, përfshirë kockën, kërcin, mbulesën e nyjes dhe muskujt."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Dhimbja e nyjeve që është më e fortë me aktivitetin dhe më e mirë me pushimin, ngurtësia e mëngjesit që zgjat më pak se gjysmë ore, enjtja, kërcitja dhe lëvizja e reduktuar janë tipike. Te gishtat mund të formohen gunga kockore te nyjet, të njohura si nyjet e Heberdenit te nyjet e fundit dhe nyjet e Bouchardit te nyjet e mesit."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Mjekët e diagnostikojnë osteoartritin nga simptomat dhe ekzaminimi. Rrezet X mund të tregojnë ngushtim të nyjes dhe ndryshime kockore, por lidhen dobët me dhimbjen, kështu që nuk janë gjithmonë të nevojshme. Analizat e gjakut ndihmojnë të përjashtohet artriti inflamator."
+      ]
+    },
+    {
+      "heading": "Vetëmenaxhimi dhe trajtimi",
+      "paragraphs": [
+        "Ushtrimet janë trajtimi më efektiv: ecja, çiklizmi, noti e forcimi ulin dhimbjen dhe përmirësojnë funksionin. Humbja e peshës heq presionin nga gjunjët e ijët. Nxehtësia ose ftohtësia, këpucët mbështetëse, ndihmesat për ecje dhe mbajtëset mund të ndihmojnë. Gelet antiinflamatore dhe tabletat ose paracetamoli për periudha të shkurtra e lehtësojnë dhimbjen, me kujdes për rreziqet te stomaku, veshkat e zemra.",
+        "Kirurgjia e zëvendësimit të nyjes është opsion kur dhimbja e rëndë dhe paaftësia vazhdojnë pavarësisht trajtimeve të tjera dhe është shumë efektive për ijët e gjunjët."
+      ]
+    },
+    {
+      "heading": "Të jetosh mirë me të",
+      "paragraphs": [
+        "Qëndroni aktiv, dozoni aktivitetet, mbani një peshë të shëndetshme dhe merrni në konsideratë programet e edukimit e ushtrimet në grup. Rishikimet e rregullta kontrollojnë si funksionon trajtimi juaj."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fillimi i ushtrimeve",
+      "text": "Imagjinoni që gjuri ju dhemb kur ngjiteni shkallëve. Mund të filloni me shëtitje të shkurtra në rrafsh e forcim të butë, duke ndërtuar gradualisht, me udhëzimin e një fizioterapisti."
+    },
+    {
+      "title": "Diskutimi i zëvendësimit",
+      "text": "Supozoni që dhimbja ju pengon të flini pavarësisht trajtimit. Mund të pyesni një specialist ortoped çfarë të prisni nga kirurgjia, sa kohë merr shërimi dhe çfarë alternativash ekzistojnë."
+    }
+  ],
+  "questions": [
+    "Cilat ushtrime janë të sigurta e më të dobishme për nyjet e mia?",
+    "Cili lehtësues dhimbjeje është i përshtatshëm për mua, duke pasur parasysh gjendjet e mia të tjera shëndetësore?",
+    "Kur duhet të marr në konsideratë injeksionet ose kirurgjinë?"
+  ]
+}

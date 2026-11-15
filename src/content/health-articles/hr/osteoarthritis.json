@@ -1,0 +1,52 @@
+{
+  "title": "Osteoartritis",
+  "intro": "Osteoartritis je najčešće stanje zglobova. Uključuje trošenje i promjene hrskavice i okolnih tkiva, uzrokujući bol, ukočenost i smanjenu pokretljivost, najčešće u koljenima, kukovima, šakama i kralježnici. Razvija se godinama i može ograničiti svakodnevni život, ali vježbanje, kontrola težine i druge mjere pomažu kontrolirati simptome.",
+  "sections": [
+    {
+      "heading": "Uzroci i čimbenici rizika",
+      "paragraphs": [
+        "Rizik raste s dobi, prekomjernom težinom, prethodnom ozljedom zgloba, ponavljajućim naprezanjem, obiteljskom poviješću i ženskim spolom, osobito za šake. Nije puko trošenje; zahvaćen je cijeli zglob, uključujući kost, hrskavicu, ovojnicu zgloba i mišiće."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Bol u zglobu koja je jača pri aktivnosti i bolja u mirovanju, jutarnja ukočenost koja traje kraće od pola sata, oticanje, krckanje i smanjena pokretljivost tipični su. U prstima se mogu stvoriti koštane kvržice na zglobovima, poznate kao Heberdenovi čvorići na krajnjim zglobovima i Bouchardovi čvorići na srednjim zglobovima."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Liječnici dijagnosticiraju osteoartritis prema simptomima i pregledu. Rendgenske snimke mogu pokazati suženje zgloba i koštane promjene, ali slabo koreliraju s boli pa nisu uvijek potrebne. Krvne pretrage pomažu isključiti upalni artritis."
+      ]
+    },
+    {
+      "heading": "Samozbrinjavanje i liječenje",
+      "paragraphs": [
+        "Vježbanje je najučinkovitije liječenje: hodanje, vožnja bicikla, plivanje i jačanje smanjuju bol i poboljšavaju funkciju. Gubitak težine rasterećuje koljena i kukove. Toplina ili hladnoća, potporna obuća, pomagala za hodanje i ortoze mogu pomoći. Protuupalni gelovi i tablete ili paracetamol kratko vrijeme ublažavaju bol, uz oprez zbog rizika za želudac, bubrege i srce.",
+        "Operacija zamjene zgloba je mogućnost kad teška bol i invalidnost potraju unatoč drugim liječenjima i vrlo je učinkovita za kukove i koljena."
+      ]
+    },
+    {
+      "heading": "Dobar život s njim",
+      "paragraphs": [
+        "Ostanite aktivni, dozirajte aktivnosti, održavajte zdravu težinu i razmislite o edukacijskim programima i grupnom vježbanju. Redoviti pregledi provjeravaju kako vaše liječenje djeluje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Početak vježbanja",
+      "text": "Zamislite da vas koljeno boli pri penjanju stepenicama. Mogli biste početi kratkim ravnim šetnjama i nježnim jačanjem, postupno povećavajući, uz vodstvo fizioterapeuta."
+    },
+    {
+      "title": "Razgovor o zamjeni",
+      "text": "Pretpostavite da vas bol sprječava da spavate unatoč liječenju. Mogli biste pitati ortopeda što očekivati od operacije, koliko dugo traje oporavak i koje alternative postoje."
+    }
+  ],
+  "questions": [
+    "Koje su vježbe sigurne i najkorisnije za moje zglobove?",
+    "Koje je ublažavanje boli prikladno za mene s obzirom na moja druga zdravstvena stanja?",
+    "Kada trebam razmotriti injekcije ili operaciju?"
+  ]
+}

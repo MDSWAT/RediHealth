@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă în timpul unei gastroscopii?",
+  "intro": "Gastroscopia este o examinare în care un tub subțire flexibil cu cameră este introdus prin gură pentru a privi esofagul, stomacul și prima parte a intestinului subțire. Ajută la găsirea cauzelor durerii, refluxului, sângerării sau problemelor de înghițire și durează aproximativ zece până la douăzeci de minute.",
+  "sections": [
+    {
+      "heading": "De ce se face",
+      "paragraphs": [
+        "Medicii folosesc gastroscopia pentru a investiga arsurile persistente, durerea abdominală superioară, dificultatea la înghițire, vărsăturile, anemia sau sângerarea. Poate arăta ulcere, inflamații, hernii, polipi, tumori și infecții. În timpul examinării se pot lua mici probe de țesut, iar unele probleme, precum sângerarea, pot fi tratate."
+      ]
+    },
+    {
+      "heading": "Pregătirea",
+      "paragraphs": [
+        "Trebuie să nu mâncați aproximativ șase ore și să nu beți aproximativ două ore înainte. Spuneți medicului despre anticoagulante, diabet, alergii și afecțiuni ale inimii sau plămânilor. Dacă sunteți sedat, cineva trebuie să vă ducă acasă, iar în restul zilei nu trebuie să conduceți. Scoateți protezele dentare."
+      ]
+    },
+    {
+      "heading": "În timpul procedurii",
+      "paragraphs": [
+        "Vă întindeți pe partea stângă, iar gâtul vă poate fi anesteziat cu un spray. Adesea se administrează sedare. Un protector bucal protejează dinții. Tubul este trecut peste limbă, iar vi se cere să înghițiți. Nu blochează respirația. Puteți simți presiune, reflex de vomă sau balonare din cauza aerului introdus."
+      ]
+    },
+    {
+      "heading": "După procedură",
+      "paragraphs": [
+        "Vă odihniți un timp și puteți simți balonare sau durere în gât o zi. Mâncați și beți după ce a trecut amorțeala gâtului. Cereți ajutor pentru durere severă în abdomen sau în piept, febră, vărsături cu sânge sau scaune negre. Complicațiile grave, precum o ruptură sau o sângerare, sunt rare."
+      ]
+    },
+    {
+      "heading": "Rezultatele",
+      "paragraphs": [
+        "Medicul oferă adesea constatările după examinare, deși rezultatele biopsiei durează câteva zile. Întrebați despre tratament, urmărire și orice modificări ale medicamentelor. O bacterie din stomac numită Helicobacter pylori poate fi găsită prin biopsie și tratată cu antibiotice."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea cu o zi înainte",
+      "text": "Imaginați-vă că gastroscopia este dimineața. Ați putea să nu mai mâncați după miezul nopții, să luați doar medicamentele convenite cu o gură de apă și să aranjați un transport acasă."
+    },
+    {
+      "title": "Gestionarea emoțiilor",
+      "text": "Presupuneți că vă este teamă de reflexul de vomă. Ați putea întreba despre sedare și ați putea exersa respirația lentă."
+    }
+  ],
+  "questions": [
+    "Este gastroscopia testul potrivit pentru simptomele mele?",
+    "Voi fi sedat și care sunt riscurile?",
+    "Când voi primi rezultatele biopsiei?"
+  ]
+}

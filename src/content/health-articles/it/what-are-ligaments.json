@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa sono i legamenti",
+  "intro": "I legamenti sono robuste bande di tessuto fibroso che collegano le ossa ad altre ossa e stabilizzano le articolazioni. Guidano il movimento e impediscono alle articolazioni di muoversi troppo. Le lesioni dei legamenti, dette distorsioni, sono comuni, in particolare a caviglia, ginocchio e polso.",
+  "sections": [
+    {
+      "heading": "Struttura e funzione",
+      "paragraphs": [
+        "I legamenti sono fatti soprattutto di fibre di collagene, disposte in fasci paralleli che danno resistenza permettendo un po' di elasticità. Tengono insieme le ossa nelle articolazioni, limitano i movimenti anomali e contengono terminazioni nervose che aiutano il cervello a percepire la posizione dell'articolazione, il che contribuisce all'equilibrio. Sono diversi dai tendini, che collegano il muscolo all'osso."
+      ]
+    },
+    {
+      "heading": "Legamenti importanti",
+      "paragraphs": [
+        "Nel ginocchio i legamenti crociati all'interno dell'articolazione controllano il movimento avanti e indietro e la rotazione e i legamenti collaterali ai lati la stabilizzano da un lato all'altro. Nella caviglia i legamenti sul lato esterno sono quelli più spesso distorti. Altri esempi sono i legamenti di polso, spalla e colonna."
+      ]
+    },
+    {
+      "heading": "Distorsioni e lesioni",
+      "paragraphs": [
+        "Una distorsione è uno stiramento o una lesione di un legamento. Il grado uno è uno stiramento lieve, il grado due una lesione parziale e il grado tre una rottura completa. I sintomi comprendono dolore, gonfiore, lividi, dolorabilità e instabilità. Molte distorsioni guariscono con riposo, protezione, movimento delicato precoce e fisioterapia, mentre le lesioni complete di alcuni legamenti possono richiedere la chirurgia."
+      ]
+    },
+    {
+      "heading": "Guarigione e cura",
+      "paragraphs": [
+        "I legamenti hanno un apporto di sangue limitato, quindi guariscono lentamente, in settimane o mesi, e possono non tornare alla piena forza. La riabilitazione per recuperare movimento, forza ed equilibrio riduce le nuove lesioni. Alcune persone hanno legamenti lassi, detta ipermobilità, che può causare dolore o instabilità articolare. Rinforzare i muscoli attorno all'articolazione offre un sostegno in più."
+      ]
+    },
+    {
+      "heading": "Prevenire le lesioni",
+      "paragraphs": [
+        "Scaldati prima dell'esercizio, costruisci forza ed equilibrio, usa una tecnica e calzature adeguate e aumenta gradualmente l'allenamento. Tutori o bendaggi si possono usare per un periodo dopo una lesione o negli sport ad alto rischio. Rivolgiti a un medico per dolore forte, impossibilità di caricare il peso, gonfiore marcato o un'articolazione che cede."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Guarire da una distorsione",
+      "text": "Immagina di esserti distorto la caviglia. Potresti riposarla e proteggerla nei primi giorni, iniziare un movimento delicato quando il dolore lo permette ed esercitare l'equilibrio."
+    },
+    {
+      "title": "Prevenire le recidive",
+      "text": "Supponi di storcerti spesso la caviglia. Potresti chiedere a un fisioterapista un programma per l'equilibrio e consigli su scarpe di sostegno."
+    }
+  ],
+  "questions": [
+    "Il mio legamento è stirato, lesionato o rotto?",
+    "Ho bisogno di un tutore, di una terapia o della chirurgia?",
+    "Quando posso tornare allo sport in sicurezza?"
+  ]
+}

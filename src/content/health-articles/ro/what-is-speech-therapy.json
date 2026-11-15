@@ -1,0 +1,51 @@
+{
+  "title": "Ce este logopedia",
+  "intro": "Logopedia și terapia limbajului îi ajută pe cei cu dificultăți de vorbire, de înțelegere, de citire, de voce, de fluență sau de înghițire. Este oferită de terapeuți instruiți copiilor și adulților și urmărește să îmbunătățească comunicarea și calitatea vieții.",
+  "sections": [
+    {
+      "heading": "Cui îi ajută",
+      "paragraphs": [
+        "Copiilor cu vorbire întârziată, pronunție neclară, bâlbâială sau tulburări de limbaj și adulților care și-au pierdut vorbirea după un accident vascular cerebral sau o leziune cerebrală, cu probleme de voce, boală Parkinson sau dificultăți de înghițire. Persoanele după chirurgia laringelui și cele cu pierdere a auzului beneficiază de asemenea."
+      ]
+    },
+    {
+      "heading": "Ce fac terapeuții",
+      "paragraphs": [
+        "Ei evaluează vorbirea, limbajul, vocea și înghițirea prin teste și observație. Apoi planifică terapia cu exerciții și strategii, de exemplu exersarea sunetelor, dezvoltarea vocabularului, îmbunătățirea fluenței, antrenarea vocii sau învățarea înghițirii în siguranță. Instruiesc și familia și profesorii și pot recomanda dispozitive de comunicare."
+      ]
+    },
+    {
+      "heading": "Ce implică ședințele",
+      "paragraphs": [
+        "Ședințele sunt de obicei săptămânale, individuale sau în grup, adesea folosind jocuri pentru copii. Exersarea acasă este importantă. Durata terapiei depinde de problemă, de la câteva săptămâni la ani. Progresul este revizuit regulat, iar obiectivele ajustate."
+      ]
+    },
+    {
+      "heading": "Obținerea logopediei",
+      "paragraphs": [
+        "Un medic o prescrie de obicei, iar asigurarea de sănătate o poate acoperi, în funcție de țară și de reguli. Timpii de așteptare pot fi lungi, așa că întrebați din timp. Ajutorul timpuriu este cel mai eficient la copii, dar și adulții beneficiază de terapie chiar și la ani după o leziune."
+      ]
+    },
+    {
+      "heading": "Ce pot face familiile",
+      "paragraphs": [
+        "Vorbiți, citiți și jucați-vă cu copiii, dați-le timp să răspundă, evitați să-i corectați prea mult și lăudați eforturile. Pentru adulții cu probleme de vorbire, fiți răbdător, reduceți zgomotul, folosiți propoziții simple și dați timp suplimentar. Alăturați-vă grupurilor de sprijin dacă este de ajutor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Exersarea acasă",
+      "text": "Imaginați-vă că copilul dumneavoastră face terapie pentru sunete neclare. Ați putea face zilnic, câteva minute, jocurile cu sunete."
+    },
+    {
+      "title": "Sprijinirea comunicării",
+      "text": "Presupuneți că un părinte și-a pierdut vorbirea după un accident vascular cerebral. Ați putea vorbi rar, pune întrebări cu răspuns da sau nu și da timp pentru răspuns."
+    }
+  ],
+  "questions": [
+    "Au copilul meu sau eu nevoie de logopedie?",
+    "Câte ședințe vor fi necesare și ce putem exersa acasă?",
+    "Ce acoperă asigurarea?"
+  ]
+}

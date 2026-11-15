@@ -1,0 +1,51 @@
+{
+  "title": "Lyme disease",
+  "intro": "Lyme disease is a bacterial infection transmitted through tick bites. It is common in forests and grassland in Europe and North America. Early infection is treated successfully with antibiotics, so recognising the typical skin rash and seeking treatment promptly matter.",
+  "sections": [
+    {
+      "heading": "How you get infected",
+      "paragraphs": [
+        "The bacteria, called Borrelia, live in ticks, which pick them up from animals. They are usually transmitted after the tick has been attached for many hours, so finding and removing a tick promptly reduces the risk. Not every tick carries bacteria, and not every bite leads to infection."
+      ]
+    },
+    {
+      "heading": "Early signs",
+      "paragraphs": [
+        "A spreading red ring, called erythema migrans, often appears days to weeks after the bite and grows over days, sometimes clearing in the centre. It is usually painless and not itchy. Flu-like symptoms such as fever, tiredness, headache and muscle aches may occur. Not everyone notices the rash or remembers a bite."
+      ]
+    },
+    {
+      "heading": "Later complications",
+      "paragraphs": [
+        "If untreated, the infection may spread to joints, the nervous system or the heart weeks to months later. This can cause joint swelling, especially in the knee, facial weakness, nerve pain, meningitis or heart rhythm problems. These complications are treatable with antibiotics but often need a longer course."
+      ]
+    },
+    {
+      "heading": "Diagnosis and treatment",
+      "paragraphs": [
+        "A typical rash is diagnosed by sight and does not need blood tests. For other symptoms, blood tests for antibodies are used, though they can be negative early and positive after past infection, so results must be interpreted with symptoms. Treatment is usually doxycycline or amoxicillin for a couple of weeks. Most people recover fully."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Wear long trousers and closed shoes in tick areas, use repellent, check your body and clothes after outdoor activity and remove ticks promptly with fine tweezers or a tick tool. Clean the area afterwards and watch it for several weeks. There is no routine preventive antibiotic after a bite for most people. Seek advice if a rash or symptoms develop."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "After a walk",
+      "text": "Imagine you spent the afternoon in tall grass. You could check your skin, especially behind knees, in groin and armpits, hairline and behind ears, and note the date if you find a tick."
+    },
+    {
+      "title": "Watching a bite",
+      "text": "Suppose you removed a tick last week and a red patch is now growing. You might photograph it daily, note the dates and contact your doctor soon."
+    }
+  ],
+  "questions": [
+    "Could my symptoms be Lyme disease, and do I need a blood test?",
+    "How long will treatment last, and what side effects are possible?",
+    "What should I do if symptoms persist after treatment?"
+  ]
+}

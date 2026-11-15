@@ -1,0 +1,51 @@
+{
+  "title": "Gubitak sluha u odraslih: procjena i komunikacija",
+  "intro": "Gubitak sluha otežava razgovor, rad i upozoravajuće zvukove. Može biti postupan ili nagao, u jednom ili oba uha. Gluhoća ne određuje inteligenciju, a komunikacijske sklonosti se razlikuju.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Uzroci su cerumen, srednje uho, buka, starenje i bolesti unutarnjeg uha ili živca. Glasniji televizor ili teškoće u buci mogu biti početni znakovi; nemojte sve pripisati dobi."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Procjena obuhvaća pregled i slušne testove, uz obradu asimetričnih ili neobičnih nalaza. Navedite početak, zujanje, vrtoglavicu, lijekove i buku. Internetska provjera ne isključuje hitne uzroke. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Izlječiva začepljenja ili infekcije trebaju odgovarajuću skrb. Pomagala, asistivni uređaji ili procjena za implantat mogu pomoći trajnom gubitku. Rehabilitacija uključuje prilagodbu, vježbu i podešavanje, ne samo kupnju najglasnijeg uređaja. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Gledajte osobu, smanjite buku i govorite jasno bez vikanja. Koristite titlove, pisane podatke ili znakovno tumačenje prema želji. Razgovarajte o pristupu poslu i skrbi bez oslanjanja samo na čitanje usana. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Nagli gubitak treba hitnu procjenu isti dan, posebno jednostrano: ne čekajte pomagalo i ne pretpostavljajte cerumen. Slabost lica, jaka vrtoglavica ili neurološki znakovi traže odmah pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira propušta riječi na sastancima i traži obradu. Također traži titlove i tiše mjesto dok istražuje pomagala."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben se budi s bitno slabijim sluhom jednog uha. Traži hitan pregled umjesto višednevnog isprobavanja kapi."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë është terapia profesionale?",
+  "intro": "Terapia profesionale u ndihmon njerëzve të të gjitha moshave të bëjnë aktivitetet e përditshme që kanë rëndësi për ta, si veshja, gatimi, puna, studimi e loja, kur sëmundja, lëndimi, paaftësia ose plakja e bën këtë të vështirë. Terapistët profesionalë shohin personin, aktivitetin e mjedisin për të gjetur zgjidhje praktike.",
+  "sections": [
+    {
+      "heading": "Çfarë bëjnë terapistët profesionalë",
+      "paragraphs": [
+        "Vlerësojnë çfarë mund e çfarë nuk mund të bëjë një person, e punojnë me të për objektiva. Mësojnë mënyra të reja për të bërë detyrat, rekomandojnë ndihmesa e përshtatin shtëpinë ose vendin e punës, ndërtojnë forcë e aftësi përmes ushtrimeve e praktikës e këshillojnë kujdestarët. Fokusi është pavarësia, pjesëmarrja e cilësia e jetës."
+      ]
+    },
+    {
+      "heading": "Kujt i ndihmon",
+      "paragraphs": [
+        "Njerëzve që kanë pasur goditje në tru ose lëndim, atyre me artrit, skleroze të shumëfishtë, sëmundjen e Parkinsonit ose demencë, fëmijëve me probleme zhvillimi ose koordinimi, njerëzve me gjendje të shëndetit mendor e të moshuarve në rrezik rëniesh. Përdoret në spitale, qendra rehabilitimi, shkolla, vende pune e në shtëpi."
+      ]
+    },
+    {
+      "heading": "Shembuj trajtimi",
+      "paragraphs": [
+        "Stërvitje për t'u veshur me një dorë pas goditjes në tru, mbrojtje e nyjeve e mjete të veçanta për njerëzit me artrit, terapi e dorës pas kirurgjisë, aktivitete shqisore e motorike të imta për fëmijët, rutina e strategji për njerëzit me vështirësi kujtese e ndryshime të shtëpisë si mbajtëse mure ose ashensor shkallësh. Terapistët mund të këshillojnë edhe për kthimin në punë."
+      ]
+    },
+    {
+      "heading": "Marrja e terapisë",
+      "paragraphs": [
+        "Një mjek mund ta përshkruajë, e në shumë vende sigurimi shëndetësor e mbulon me recetë. Seancat mund të jenë individuale ose në grup, në një praktikë, klinikë ose në shtëpi. Terapia kërkon praktikë jashtë seancave. Pyesni për numrin e seancave, objektivat e si do të gjykohet përparimi."
+      ]
+    },
+    {
+      "heading": "Si ta bëni të funksionojë",
+      "paragraphs": [
+        "Jini të qartë për çfarë ka më shumë rëndësi për ju, e vendosni objektiva realiste. Përfshini familjen e kujdestarët. Raportoni vështirësitë që plani të rregullohet, e pyesni për ndihmesa, financim e shërbime mbështetëse vendore."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vendosja e një objektivi",
+      "text": "Imagjinoni që e keni të vështirë të gatuani pas një lëndimi të shpatullës. Mund t'i tregoni terapistit e të praktikoni detyra kuzhine me mjete të përshtatura."
+    },
+    {
+      "title": "Përshtatja e shtëpisë",
+      "text": "Supozoni që shqetësoheni për rënie. Mund të kërkoni një vizitë në shtëpi për të kontrolluar ndriçimin, qilimat e ndihmesat e banjës."
+    }
+  ],
+  "questions": [
+    "Cilët objektiva duhet të vendosim për terapinë time?",
+    "Cilat ndihmesa ose ndryshime të shtëpisë do të ndihmonin?",
+    "A e mbulon sigurimi im terapinë profesionale?"
+  ]
+}

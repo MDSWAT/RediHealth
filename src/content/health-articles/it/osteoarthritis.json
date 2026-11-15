@@ -1,0 +1,52 @@
+{
+  "title": "Artrosi",
+  "intro": "L'artrosi è la condizione articolare più comune. Comporta usura e cambiamenti della cartilagine e dei tessuti circostanti, causando dolore, rigidità e movimento ridotto, più spesso in ginocchia, anche, mani e colonna. Si sviluppa nell'arco di anni e può limitare la vita quotidiana, ma esercizio, controllo del peso e altre misure aiutano a gestire i sintomi.",
+  "sections": [
+    {
+      "heading": "Cause e fattori di rischio",
+      "paragraphs": [
+        "Il rischio aumenta con l'età, il sovrappeso, un precedente infortunio articolare, lo stress ripetitivo, la storia familiare e il sesso femminile, soprattutto per le mani. Non è semplicemente usura; è coinvolta l'intera articolazione, compresi osso, cartilagine, rivestimento articolare e muscoli."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Sono tipici il dolore articolare peggiore con l'attività e migliore con il riposo, la rigidità mattutina che dura meno di mezz'ora, il gonfiore, gli scricchiolii e il movimento ridotto. Nelle dita possono formarsi noduli ossei alle articolazioni, noti come noduli di Heberden alle articolazioni terminali e noduli di Bouchard a quelle intermedie."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "I medici diagnosticano l'artrosi dai sintomi e dalla visita. Le radiografie possono mostrare restringimento articolare e alterazioni ossee ma correlano poco con il dolore, quindi non sono sempre necessarie. Gli esami del sangue aiutano a escludere l'artrite infiammatoria."
+      ]
+    },
+    {
+      "heading": "Autogestione e trattamento",
+      "paragraphs": [
+        "L'esercizio è il trattamento più efficace: camminare, andare in bicicletta, nuotare e fare rinforzo riducono il dolore e migliorano la funzione. Perdere peso toglie pressione da ginocchia e anche. Calore o freddo, calzature di sostegno, ausili per camminare e tutori possono aiutare. Gel antinfiammatori e compresse o paracetamolo per brevi periodi alleviano il dolore, con attenzione ai rischi per stomaco, reni e cuore.",
+        "La chirurgia di sostituzione articolare è un'opzione quando dolore e disabilità gravi persistono nonostante gli altri trattamenti ed è molto efficace per anche e ginocchia."
+      ]
+    },
+    {
+      "heading": "Vivere bene con l'artrosi",
+      "paragraphs": [
+        "Resta attivo, dosa le attività, mantieni un peso sano e considera programmi educativi e esercizio di gruppo. Controlli regolari verificano come funziona il tuo trattamento."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Iniziare a fare esercizio",
+      "text": "Immagina che il ginocchio ti faccia male quando sali le scale. Potresti iniziare con brevi camminate in piano e un rinforzo dolce, aumentando gradualmente, con la guida di un fisioterapista."
+    },
+    {
+      "title": "Parlare della sostituzione",
+      "text": "Supponi che il dolore ti impedisca di dormire nonostante il trattamento. Potresti chiedere a un ortopedico che cosa aspettarti dall'intervento, quanto dura il recupero e quali alternative esistono."
+    }
+  ],
+  "questions": [
+    "Quali esercizi sono sicuri e più utili per le mie articolazioni?",
+    "Quale sollievo dal dolore è adatto a me, date le mie altre condizioni di salute?",
+    "Quando dovrei considerare infiltrazioni o chirurgia?"
+  ]
+}

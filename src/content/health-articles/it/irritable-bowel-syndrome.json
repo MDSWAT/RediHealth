@@ -1,0 +1,52 @@
+{
+  "title": "Sindrome dell'intestino irritabile",
+  "intro": "La sindrome dell'intestino irritabile è un disturbo intestinale cronico comune che provoca dolore addominale con diarrea, stitichezza o entrambe. Non danneggia l'intestino né aumenta il rischio di cancro, ma i sintomi possono essere angoscianti. Alimentazione, gestione dello stress e talvolta i farmaci portano sollievo.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi tipici sono dolore addominale crampiforme legato all'evacuazione, gonfiore, aria nell'intestino e cambiamenti nella frequenza o nella consistenza delle feci. Alcune persone hanno soprattutto diarrea, altre stitichezza e altre ancora alternano. I sintomi vanno e vengono e spesso si accentuano durante lo stress o dopo certi cibi."
+      ]
+    },
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "La causa esatta non è nota. I fattori comprendono un intestino più sensibile, un movimento alterato dell'intestino, cambiamenti nei batteri intestinali, una precedente infezione intestinale e il collegamento tra cervello e intestino. Stress e ansia non causano il disturbo ma possono peggiorarlo."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "La diagnosi si basa sui sintomi tipici e sull'esclusione di altre condizioni. I medici possono prescrivere esami del sangue, esami delle feci e, se necessario, una colonscopia, in particolare quando ci sono segnali d'allarme come sangue nelle feci, perdita di peso, anemia, febbre, sintomi che iniziano dopo i 50 anni o una storia familiare di tumore intestinale o malattia infiammatoria intestinale."
+      ]
+    },
+    {
+      "heading": "Trattamento e autoaiuto",
+      "paragraphs": [
+        "Pasti regolari, liquidi a sufficienza, attività fisica e un buon sonno aiutano. Tenere un diario di alimentazione e sintomi può individuare fattori scatenanti come caffeina, cibi grassi o dolcificanti. La fibra solubile, come lo psyllium, aiuta alcune persone, mentre la fibra insolubile può peggiorare il gonfiore. Una dieta a basso contenuto di FODMAP, seguita con un dietista, aiuta alcune persone ma non va seguita a lungo termine senza guida.",
+        "I farmaci possono alleviare crampi, diarrea o stitichezza. L'olio di menta piperita può aiutare contro il dolore. Le terapie psicologiche come la terapia cognitivo-comportamentale e l'ipnoterapia diretta all'intestino sono efficaci per i sintomi persistenti."
+      ]
+    },
+    {
+      "heading": "Vivere con la sindrome",
+      "paragraphs": [
+        "La sindrome dell'intestino irritabile è di solito una condizione che dura tutta la vita con sintomi variabili. Imparare a conoscere i propri fattori scatenanti, gestire lo stress e restare in contatto con il medico aiutano a farvi fronte. Chiedi consiglio se i sintomi cambiano in modo significativo o compaiono nuovi segnali d'allarme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tenere un diario",
+      "text": "Immagina di sospettare che certi cibi scatenino i sintomi. Potresti annotare pasti, stress e sintomi per due settimane e rivedere lo schema con il medico o il dietista."
+    },
+    {
+      "title": "Provare una dieta in sicurezza",
+      "text": "Supponi di voler provare una dieta a basso contenuto di FODMAP. Potresti chiedere l'invio a un dietista così da eliminare gli alimenti solo per un tempo limitato e reintrodurli con attenzione."
+    }
+  ],
+  "questions": [
+    "I miei sintomi potrebbero avere un'altra causa e di quali esami ho bisogno?",
+    "Quali trattamenti o diete hanno più probabilità di aiutare il mio tipo di sindrome?",
+    "Quali segnali d'allarme significano che devo tornare prima?"
+  ]
+}

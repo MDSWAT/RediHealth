@@ -1,0 +1,51 @@
+{
+  "title": "Osnovna načela medicine utemeljene na dokazima",
+  "intro": "Medicina utemeljena na dokazima znači donošenje zdravstvenih odluka na temelju najboljih dostupnih istraživanja uz kliničko iskustvo i vrijednosti bolesnika. Cilj joj je zamijeniti nagađanje i naviku pouzdanim znanjem o tome što pomaže, a što šteti. Razumijevanje njezinih načela pomaže vam sudjelovati u odlukama o vašoj skrbi.",
+  "sections": [
+    {
+      "heading": "Tri stupa",
+      "paragraphs": [
+        "Medicina utemeljena na dokazima počiva na tri elementa: najboljim aktualnim dokazima iz istraživanja, stručnosti kliničara te željama i okolnostima bolesnika. Nijedan sam po sebi nije dovoljan. Istraživanja pokazuju što u prosjeku djeluje, liječnik to tumači za pojedinca, a bolesnik odlučuje što mu je važno."
+      ]
+    },
+    {
+      "heading": "Postavljanje pitanja na koja se može odgovoriti",
+      "paragraphs": [
+        "Postupak počinje pretvaranjem problema u precizno pitanje: tko su bolesnici, koje je liječenje ili test, s čime se uspoređuje i koji su ishodi važni. Na primjer, smanjuje li kod osoba s osteoartritisom koljena vježbanje bol više od uobičajene skrbi?"
+      ]
+    },
+    {
+      "heading": "Pronalaženje i procjena dokaza",
+      "paragraphs": [
+        "Zatim se traže relevantna istraživanja i procjenjuje njihova kvaliteta. Dobro osmišljena randomizirana ispitivanja i sustavni pregledi daju pouzdanije odgovore o liječenjima od mišljenja ili pojedinačnih opažanja. Recenzenti provjeravaju rizik pristranosti, veličinu učinka, jesu li rezultati dosljedni i primjenjuju li se na bolesnika."
+      ]
+    },
+    {
+      "heading": "Primjena na bolesnika",
+      "paragraphs": [
+        "Dokazi opisuju skupine, a pojedinci se mogu razlikovati. Kliničari razmatraju dob, druge bolesti, rizike i ono što bolesnik cijeni, uključujući kvalitetu života i opterećenja liječenja. Zajedničko odlučivanje znači objašnjavanje koristi i rizika razumljivim jezikom, često uz brojke i pomagala za odlučivanje, kako bi izbor odražavao prioritete bolesnika."
+      ]
+    },
+    {
+      "heading": "Ograničenja",
+      "paragraphs": [
+        "Za mnoga pitanja nedostaju dobri dokazi, a istraživanja mogu isključiti ljude poput starijih odraslih ili djece. Nedostatak dokaza o koristi nije isto što i dokaz o nepostojanju koristi. Dokazi se mijenjaju s vremenom pa preporuke treba pregledavati. Medicina utemeljena na dokazima ne znači zanemarivanje iskustva, nego njegovu provjeru podacima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Traženje brojki",
+      "text": "Zamislite da vam liječnik preporuči lijek. Mogli biste pitati koliko ljudi poput vas ima koristi, koliko ih ima nuspojave i što se događa bez liječenja."
+    },
+    {
+      "title": "Izražavanje želja",
+      "text": "Pretpostavite da su dva liječenja podjednako učinkovita, ali se razlikuju po nuspojavama. Mogli biste objasniti koja opterećenja vam najviše znače kako bi se odluka uklopila u vaš život."
+    }
+  ],
+  "questions": [
+    "Što najbolji dokazi kažu o mojim mogućnostima?",
+    "Koliko su ti dokazi sigurni i primjenjuju li se na nekoga poput mene?",
+    "Koja mogućnost najbolje odgovara mojim vrijednostima i okolnostima?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt anticoagulantele?",
+  "intro": "Anticoagulantele, numite adesea subțiratoare de sânge, sunt medicamente care fac sângele să se coaguleze mai greu. Previn cheagurile dăunătoare, care pot provoca accidente vasculare cerebrale, infarcturi și cheaguri în plămâni, și tratează cheagurile existente. Ele nu subțiază de fapt sângele și nu dizolvă cheagurile și au un risc de sângerare.",
+  "sections": [
+    {
+      "heading": "Cum funcționează",
+      "paragraphs": [
+        "Coagularea sângelui implică un lanț de proteine din sânge. Anticoagulantele blochează etape din acest lanț, astfel încât cheagurile se formează mai lent. Acest lucru ajută la prevenirea cheagurilor noi și oprește creșterea celor existente, dând organismului timp să le descompună singur. Ele diferă de medicamentele antiagregante plachetare, precum aspirina, care împiedică lipirea plachetelor între ele."
+      ]
+    },
+    {
+      "heading": "Tipuri",
+      "paragraphs": [
+        "Antagoniștii vitaminei K, precum warfarina, se folosesc de zeci de ani și necesită analize regulate ale timpului de coagulare și atenție la dietă și interacțiuni. Anticoagulantele orale directe, precum apixabanul, rivaroxabanul, edoxabanul și dabigatranul, se iau în doze fixe și necesită mai puțină monitorizare. Heparinele se administrează prin injecție, adesea în spital sau pe termen scurt acasă."
+      ]
+    },
+    {
+      "heading": "De ce se folosesc",
+      "paragraphs": [
+        "Utilizările frecvente includ fibrilația atrială pentru prevenirea accidentului vascular cerebral, tratamentul și prevenirea trombozei venoase profunde și a emboliei pulmonare, valvele cardiace mecanice și prevenirea cheagurilor după unele operații. Durata depinde de motiv, de la săptămâni până la toată viața."
+      ]
+    },
+    {
+      "heading": "Riscuri și efecte secundare",
+      "paragraphs": [
+        "Riscul principal este sângerarea, care poate varia de la sângerări nazale și vânătăi ușoare până la hemoragii interne grave. Semnele de avertizare includ scaune negre sau cu sânge, vărsături cu sânge, dureri de cap severe, sânge în urină, sângerare abundentă sau prelungită și sângerare după o cădere sau o lovitură la cap, care necesită îngrijiri urgente. Medicii cântăresc riscul de cheaguri față de cel de sângerare și revizuiesc regulat tratamentul."
+      ]
+    },
+    {
+      "heading": "Folosirea lor în siguranță",
+      "paragraphs": [
+        "Luați medicamentul la aceeași oră în fiecare zi și nu săriți și nu dublați dozele. Nu opriți fără sfat medical, deoarece riscul de cheaguri crește. Spuneți tuturor furnizorilor de servicii medicale, stomatologilor și farmaciștilor că luați anticoagulante și purtați un card. Verificați cu farmacistul înainte de a folosi calmante precum ibuprofenul și suplimente. Fiți prudent cu alcoolul și aveți grijă să evitați rănile."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea pentru un tratament stomatologic",
+      "text": "Imaginați-vă că luați un anticoagulant și aveți nevoie de extracția unui dinte. Ați putea spune stomatologului și ați putea întreba medicul dacă doza trebuie schimbată."
+    },
+    {
+      "title": "Gestionarea unei doze omise",
+      "text": "Presupuneți că uitați o doză. Ați putea citi prospectul sau suna farmacistul pentru regula medicamentului dumneavoastră și nu ați dubla niciodată doza următoare."
+    }
+  ],
+  "questions": [
+    "Ce anticoagulant este cel mai bun pentru mine și pentru cât timp?",
+    "Cum îmi pot reduce riscul de sângerare?",
+    "Ce medicamente și alimente ar trebui să evit?"
+  ]
+}

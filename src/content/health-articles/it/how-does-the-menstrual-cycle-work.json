@@ -1,0 +1,52 @@
+{
+  "title": "Capire il ciclo mestruale",
+  "intro": "Il ciclo collega segnali ormonali, attività ovarica e cambiamenti del rivestimento uterino. I tempi variano tra persone e fasi della vita. Un modello scolastico o un'app non prova l'ovulazione né esclude la gravidanza.",
+  "sections": [
+    {
+      "heading": "Inizio",
+      "paragraphs": [
+        "Il primo giorno di flusso segna un nuovo ciclo. Segnali cerebrali e ipofisari stimolano follicoli ovarici; gli estrogeni aiutano a ricostruire il rivestimento uterino."
+      ]
+    },
+    {
+      "heading": "Ovulazione",
+      "paragraphs": [
+        "Un picco ormonale può liberare un ovulo nella tuba. Non avviene nello stesso giorno per tutte e il sanguinamento non garantisce che sia avvenuta."
+      ]
+    },
+    {
+      "heading": "Dopo il rilascio",
+      "paragraphs": [
+        "Il follicolo svuotato forma una struttura temporanea che produce progesterone. Sostiene il rivestimento; senza gravidanza gli ormoni calano e il rivestimento si sfalda."
+      ]
+    },
+    {
+      "heading": "Registrazione",
+      "paragraphs": [
+        "Annotate flusso, dolore ed effetti quotidiani senza considerare ogni variazione una malattia. Pubertà, transizione menopausale, malattie, stress e contraccezione ormonale modificano i cicli; il solo calendario non è contraccezione affidabile."
+      ]
+    },
+    {
+      "heading": "Valutazione",
+      "paragraphs": [
+        "Flusso molto abbondante, mancamento, dolore grave, irregolarità persistente o sangue dopo menopausa richiedono visita. Possibile gravidanza con forte dolore laterale, collasso o dolore alla punta della spalla richiede urgenza anche senza test positivo.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira registra dolore e attività perse, non solo date, aiutando a valutare il bisogno di cure."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben aiuta la partner con ritardo e forte dolore laterale a cercare urgenza invece di fidarsi dell'app."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

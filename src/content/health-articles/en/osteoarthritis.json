@@ -1,0 +1,52 @@
+{
+  "title": "Osteoarthritis",
+  "intro": "Osteoarthritis is the most common joint condition. It involves wear and changes in the cartilage and surrounding tissues, causing pain, stiffness and reduced movement, most often in knees, hips, hands and spine. It develops over years and can limit daily life, but exercise, weight management and other measures help control symptoms.",
+  "sections": [
+    {
+      "heading": "Causes and risk factors",
+      "paragraphs": [
+        "Risk increases with age, being overweight, previous joint injury, repetitive stress, family history and female sex, especially for the hands. It is not simply wear and tear; the whole joint, including bone, cartilage, joint lining and muscles, is affected."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Joint pain that is worse with activity and better with rest, morning stiffness lasting less than half an hour, swelling, creaking and reduced movement are typical. In the fingers, bony lumps may form at the joints, known as Heberden's nodes at the end joints and Bouchard's nodes in the middle joints."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Doctors diagnose osteoarthritis from symptoms and examination. X-rays can show joint narrowing and bony changes but correlate poorly with pain, so they are not always necessary. Blood tests help exclude inflammatory arthritis."
+      ]
+    },
+    {
+      "heading": "Self-management and treatment",
+      "paragraphs": [
+        "Exercise is the most effective treatment: walking, cycling, swimming and strengthening reduce pain and improve function. Losing weight takes pressure off the knees and hips. Heat or cold, supportive footwear, walking aids and braces can help. Anti-inflammatory gels, and tablets or paracetamol for short periods, relieve pain, with care about stomach, kidney and heart risks.",
+        "Joint replacement surgery is an option when severe pain and disability persist despite other treatments, and it is very effective for hips and knees."
+      ]
+    },
+    {
+      "heading": "Living well with it",
+      "paragraphs": [
+        "Keep active, pace activities, maintain a healthy weight and consider education programmes and group exercise. Regular reviews check how your treatment works."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Starting to exercise",
+      "text": "Imagine your knee hurts when you climb stairs. You could start with short, flat walks and gentle strengthening, building up gradually, with a physiotherapist's guidance."
+    },
+    {
+      "title": "Discussing replacement",
+      "text": "Suppose pain keeps you from sleeping despite treatment. You might ask an orthopaedic specialist what to expect from surgery, how long recovery takes and what alternatives exist."
+    }
+  ],
+  "questions": [
+    "Which exercises are safe and most helpful for my joints?",
+    "Which pain relief is appropriate for me, given my other health conditions?",
+    "When should I consider injections or surgery?"
+  ]
+}

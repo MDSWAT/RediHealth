@@ -1,0 +1,53 @@
+{
+  "title": "Impetigo",
+  "intro": "Impetigo este o infecție bacteriană contagioasă frecventă a pielii, mai ales la copiii mici. Provoacă leziuni roșii care se sparg și formează cruste de culoarea mierii, adesea în jurul nasului și al gurii. Se transmite ușor prin atingere, dar de obicei se vindecă în câteva săptămâni cu tratament și igienă bună.",
+  "sections": [
+    {
+      "heading": "Cauze și cine se îmbolnăvește",
+      "paragraphs": [
+        "Impetigo este cauzat de bacterii, în principal Staphylococcus aureus și uneori Streptococcus. Bacteriile pătrund în piele prin mici soluții de continuitate, precum mușcăturile de insecte, zgârieturile, eczema sau herpesul labial. Este mai frecvent pe vreme caldă și umedă și în colectivități aglomerate, precum creșele și școlile."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Cea mai frecventă formă începe ca mici pete roșii care se transformă în vezicule, care se sparg și lasă cruste lipicioase, brun-aurii. Leziunile pot mânca, dar de obicei nu sunt foarte dureroase. O formă mai rară produce vezicule mai mari. Febra este neobișnuită, iar atunci când apare, copilul trebuie examinat de medic."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Impetigo ușor, pe o suprafață mică, este adesea tratat cu o cremă sau un unguent antibiotic aplicat de câteva ori pe zi, timp de aproximativ o săptămână. Infecțiile mai extinse pot necesita tablete sau suspensie cu antibiotic. Înmuierea blândă a crustelor cu apă caldă înainte de aplicarea tratamentului poate ajuta la eficiența lui.",
+        "Terminați tot tratamentul, chiar dacă pielea arată mai bine. Dacă leziunile nu se ameliorează în câteva zile, mergeți din nou la medic, deoarece ar putea fi implicate bacterii rezistente sau o altă afecțiune."
+      ]
+    },
+    {
+      "heading": "Prevenirea răspândirii",
+      "paragraphs": [
+        "Impetigo este contagios până când leziunile s-au acoperit cu crustă sau după aproximativ două zile de tratament. Țineți copiii acasă în acest interval, conform regulilor locale. Spălați-vă des pe mâini, țineți unghiile scurte, evitați scărpinatul și folosiți prosoape, șervețele și lenjerie separate, spălate la temperatură ridicată.",
+        "Acoperiți leziunile lejer cu un pansament, dacă este posibil, și anunțați școala sau creșa."
+      ]
+    },
+    {
+      "heading": "Când să cereți sfat urgent",
+      "paragraphs": [
+        "Mergeți prompt la medic dacă infecția se răspândește rapid, copilul are febră mare, se simte rău sau dacă pielea devine foarte roșie, fierbinte și umflată. Sugarii și persoanele cu imunitate slăbită necesită atenție mai devreme. Rareori, infecția poate afecta rinichii, așa că raportați urina închisă la culoare sau umflăturile."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Revenirea la creșă",
+      "text": "Imaginați-vă că copilul are leziuni în jurul gurii. Ați putea începe crema prescrisă, ați putea să-l țineți acasă până când leziunile se acoperă cu crustă, să-i spălați des mâinile și prosoapele și să întrebați creșa despre regulile de revenire."
+    },
+    {
+      "title": "Gestionarea mâncărimii",
+      "text": "Presupuneți că cel mic continuă să se scarpine pe vezicule. I-ați putea tăia unghiile, ați putea acoperi leziunile și ați putea întreba farmacistul despre măsuri calmante sigure pentru vârsta lui."
+    }
+  ],
+  "questions": [
+    "Este suficientă o cremă sau copilul meu are nevoie de medicament antibiotic?",
+    "Când se poate întoarce copilul meu în siguranță la școală sau la creșă?",
+    "Ce semne ar însemna că infecția necesită o a doua evaluare?"
+  ]
+}

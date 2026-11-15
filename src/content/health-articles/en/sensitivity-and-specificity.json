@@ -1,0 +1,52 @@
+{
+  "title": "Sensitivity and specificity of medical tests",
+  "intro": "No medical test is perfect. Sensitivity and specificity describe how well a test finds people with a disease and how well it correctly clears people without it. Understanding these ideas helps you interpret results, particularly from screening, and see why a positive result is not always a diagnosis.",
+  "sections": [
+    {
+      "heading": "Sensitivity",
+      "paragraphs": [
+        "Sensitivity is the proportion of people with the disease whom the test correctly identifies as positive. A test with ninety percent sensitivity detects nine out of ten people with the disease and misses one. A high-sensitivity test is valuable when missing a disease would be serious, because a negative result then makes the disease unlikely."
+      ]
+    },
+    {
+      "heading": "Specificity",
+      "paragraphs": [
+        "Specificity is the proportion of people without the disease whom the test correctly identifies as negative. A test with ninety percent specificity wrongly flags one in ten healthy people. A high-specificity test is useful to confirm a diagnosis, since a positive result is less likely to be a false alarm."
+      ]
+    },
+    {
+      "heading": "Why a positive result may be wrong",
+      "paragraphs": [
+        "The chance that a positive result is correct depends on how common the disease is in the people tested. When a disease is rare, even a good test produces more false alarms than true cases. Imagine one thousand people, ten of whom have a disease. A test with ninety percent sensitivity and ninety percent specificity finds nine of the ten sick people, but also wrongly flags about ninety-nine of the nine hundred ninety healthy ones. Of about one hundred eight positives, only nine truly have the disease."
+      ]
+    },
+    {
+      "heading": "Consequences and questions",
+      "paragraphs": [
+        "False positives cause anxiety and further tests, sometimes harmful ones. False negatives can delay treatment. Tests used for screening healthy people therefore need very high specificity, and a second, more specific test often follows a positive screening result.",
+        "Ask what the test is meant to show, how reliable it is for people like you, what a positive or negative result means for you and what happens next. Numbers out of one hundred are easier to understand than percentages."
+      ]
+    },
+    {
+      "heading": "Using this in everyday decisions",
+      "paragraphs": [
+        "Knowing these terms helps when reading about new tests or screening programmes. A test advertised as ninety-nine percent accurate may still produce many false alarms when the condition is rare, so look for the numbers behind the claim."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Making sense of a result",
+      "text": "Imagine your screening test is positive. You could ask what proportion of people with a positive result actually have the disease and what confirmatory test will follow."
+    },
+    {
+      "title": "Comparing two tests",
+      "text": "Suppose you are offered two different tests. You might ask which is better at avoiding false alarms and which at avoiding missed cases, and why that matters for your situation."
+    }
+  ],
+  "questions": [
+    "How accurate is this test, and what are its false-positive and false-negative rates?",
+    "What does a positive or negative result mean for me?",
+    "What would be the next step after an abnormal result?"
+  ]
+}

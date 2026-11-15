@@ -1,0 +1,52 @@
+{
+  "title": "Si bashkohen sinjalet për ekuilibrin",
+  "intro": "Ekuilibri vjen nga bashkëpunimi i veshëve të brendshëm, syve, receptorëve të pozicionit dhe trurit. Marramendja ka shumë shkaqe; njohja e sistemit nuk vendos diagnozë të veshit.",
+  "sections": [
+    {
+      "heading": "Rrotullimi",
+      "paragraphs": [
+        "Kanalet gjysmërrethore me lëng dallojnë ndryshimet në rrotullimin e kokës. Qelizat ndijore dërgojnë sinjale; ato mund të vazhdojnë shkurt pas ndalimit të rrotullimit, duke shpjeguar një ndjesi gjatë lojës."
+      ]
+    },
+    {
+      "heading": "Graviteti dhe lëvizja drejt",
+      "paragraphs": [
+        "Organet otolitike përdorin kristale të vogla dhe qeliza ndijore për pjerrësinë dhe përshpejtimin linear. Kristalet normale janë pjesë e sistemit; prania e tyre vetë nuk është sëmundje."
+      ]
+    },
+    {
+      "heading": "Bashkimi i informacionit",
+      "paragraphs": [
+        "Truri krahason sinjalet e veshit me shikimin dhe informacionin nga muskujt e kyçet. Rregullon qëndrimin dhe sytë, duke ndihmuar leximin e një tabele gjatë lëvizjes së kokës."
+      ]
+    },
+    {
+      "heading": "Përditshmëria",
+      "paragraphs": [
+        "Sinjalet kundërshtuese mund të japin sëmundjen e udhëtimit. Drita e dobët, ndjeshmëria e ulur dhe disa ilaçe rrisin rrëzimet. Uluni në vend të sigurt dhe shmangni drejtimin ose ngjitjet deri në vlerësimin e nevojshëm."
+      ]
+    },
+    {
+      "heading": "Kur kërkohet ndihmë",
+      "paragraphs": [
+        "Marramendja e përsëritur kërkon vlerësim të ilaçeve dhe shkaqeve të tjera. Fillimi i papritur me dobësi, të folur të vështirë, shikim të dyfishtë ose pamundësi ecjeje kërkon urgjencë, jo manovra në shtëpi.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira është më e pasigurt në errësirë. Përmirëson dritën dhe diskuton shikimin, ndjeshmërinë dhe ekuilibrin, jo vetëm veshët."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ka vertigo të re dhe të folur të paqartë. Familja kërkon ndihmë urgjente në vend të ushtrimeve në internet."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

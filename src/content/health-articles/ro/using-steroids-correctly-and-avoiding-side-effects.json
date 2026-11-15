@@ -1,0 +1,51 @@
+{
+  "title": "Folosirea corectă a corticosteroizilor și evitarea efectelor secundare",
+  "intro": "Corticosteroizii, numiți adesea steroizi sau cortizon, sunt medicamente antiinflamatoare puternice, folosite în astm, alergii, artrită, afecțiuni ale pielii și multe alte boli. Sunt foarte eficienți, dar pot apărea efecte secundare, mai ales la doze mari sau la utilizare îndelungată. Folosirea lor corectă păstrează beneficiile ridicate și riscurile scăzute.",
+  "sections": [
+    {
+      "heading": "Cum funcționează și formele lor",
+      "paragraphs": [
+        "Corticosteroizii imită hormonii produși de glandele suprarenale și reduc inflamația și reacțiile imune. Se prezintă sub formă de tablete, injecții, inhalatoare, spray-uri nazale, picături pentru ochi și creme pentru piele. Formele locale, precum inhalatoarele și cremele, acționează mai ales unde sunt aplicate, cu un efect mult mai mic asupra întregului organism decât tabletele."
+      ]
+    },
+    {
+      "heading": "Utilizarea pe termen scurt",
+      "paragraphs": [
+        "Curele scurte de tablete sunt în general bine tolerate. Efectele posibile includ glicemie crescută, dificultăți de somn, apetit crescut, schimbări de dispoziție, retenție de lichide și stomac deranjat. Luați tabletele dimineața, cu alimente, conform indicațiilor, și terminați cura."
+      ]
+    },
+    {
+      "heading": "Utilizarea pe termen lung",
+      "paragraphs": [
+        "Utilizarea pe termen lung sau în doze mari poate provoca creștere în greutate, față rotunjită, piele subțire și vânătăi ușoare, tensiune arterială și glicemie mari, oase slăbite, cataractă și glaucom, slăbiciune musculară, infecții și încetinirea creșterii la copii. Medicii urmăresc cea mai mică doză eficientă și pot adăuga protecție, precum calciu, vitamina D, medicamente pentru întărirea oaselor sau protecția stomacului."
+      ]
+    },
+    {
+      "heading": "Nu opriți niciodată brusc",
+      "paragraphs": [
+        "După săptămâni de tratament, producția proprie de hormoni a organismului este suprimată. Oprirea bruscă poate provoca slăbiciune, greață, tensiune arterială scăzută și, rar, o criză suprarenală periculoasă. Dozele trebuie reduse treptat, conform instrucțiunilor. Purtați un card de steroizi dacă îi luați pe termen lung și spuneți medicilor, stomatologilor și personalului de urgență. În timpul unei boli grave sau al unei operații, dozele pot trebui crescute."
+      ]
+    },
+    {
+      "heading": "Folosirea formelor locale și siguranța",
+      "paragraphs": [
+        "Clătiți-vă gura după folosirea steroizilor inhalați, pentru a preveni candidoza. Folosiți cremele conform indicațiilor, în straturi subțiri, pe zonele potrivite, evitând fața, dacă nu vi se spune altfel. Monitorizați tensiunea arterială, glicemia, oasele și ochii dacă folosiți steroizi pe termen lung. Raportați schimbările de dispoziție, schimbările de vedere, durerea severă de stomac sau semnele de infecție. Mulți se tem de steroizi, dar inflamația netratată are și ea riscuri, așa că discutați îngrijorările, în loc să opriți tratamentul."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Urmarea unui plan de reducere treptată",
+      "text": "Imaginați-vă că luați prednisolon câteva săptămâni. Ați putea nota schema dozelor și nu l-ați opri brusc, chiar dacă vă simțiți mai bine."
+    },
+    {
+      "title": "Verificarea efectelor",
+      "text": "Presupuneți că luați steroizi pe termen lung. Ați putea întreba despre controale ale densității osoase, glicemiei, tensiunii arteriale și ochilor."
+    }
+  ],
+  "questions": [
+    "Cât timp voi lua steroidul și cum va fi redus?",
+    "La ce efecte secundare ar trebui să fiu atent și de ce controale am nevoie?",
+    "Pot folosi o formă locală în loc de tablete?"
+  ]
+}

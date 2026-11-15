@@ -1,0 +1,51 @@
+{
+  "title": "Leziunile tendoanelor prin suprasolicitare (tendinopatia)",
+  "intro": "Tendinopatia este o afecțiune dureroasă și de lungă durată a unui tendon, de obicei provocată de solicitarea repetată peste ceea ce poate tolera tendonul. Afectează frecvent tendonul lui Ahile, umărul, cotul, genunchiul și șoldul. Tratamentul se concentrează pe exerciții cu încărcare treptată, nu pe repaus complet, iar recuperarea durează adesea luni.",
+  "sections": [
+    {
+      "heading": "Ce se întâmplă în tendon",
+      "paragraphs": [
+        "Tendoanele leagă mușchiul de os și transmit forța. Când sarcina crește mai repede decât se poate adapta tendonul, structura lui se schimbă, devenind îngroșată și dezorganizată, și apare durerea. În ciuda vechiului termen de tendinită, inflamația nu este trăsătura principală în cazurile cronice. Vârsta, excesul de greutate, anumite medicamente, diabetul și creșterile bruște ale activității cresc riscul."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele tipice sunt durerea și rigiditatea localizate la nivelul tendonului, mai intense la începutul activității, care se pot ameliora cu încălzirea, apoi revin după aceea sau a doua zi dimineață. Tendonul poate fi sensibil și îngroșat. Durerea la mișcări specifice, precum împingerea la alergat în problemele tendonului lui Ahile, este caracteristică."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicii diagnostichează după istoric și examinare. Ecografia sau rezonanța magnetică pot arăta modificări ale tendonului, dar constatările nu se potrivesc întotdeauna cu simptomele. Imagistica se folosește mai ales când se suspectează o ruptură sau diagnosticul este neclar. Durerea ascuțită bruscă, cu senzația de pocnet și pierderea funcției, sugerează o ruptură și necesită evaluare urgentă."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Exercițiile de întărire cu progresie treptată, precum încărcarea lentă și grea, sunt tratamentul cel mai bine susținut. Reduceți, dar nu opriți activitatea care provoacă durere și evitați creșterile bruște ale antrenamentului. Calmantele pot ameliora simptomele pe termen scurt. Injecțiile cu corticosteroizi pot oferi o ameliorare scurtă, dar pot slăbi tendoanele și se folosesc cu prudență. Terapia cu unde de șoc și alte tratamente au dovezi mixte. Chirurgia se ia în considerare doar după luni de recuperare eșuată."
+      ]
+    },
+    {
+      "heading": "Prevenire și perspective",
+      "paragraphs": [
+        "Creșteți antrenamentul treptat, faceți încălzire, variați activitățile, folosiți încălțăminte potrivită și păstrați forța și flexibilitatea mușchilor. Cele mai multe persoane se îmbunătățesc după câteva luni de exerciții constante, deși tendoanele se vindecă lent, iar simptomele pot reveni dacă sarcina crește prea repede."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reluarea treptată a alergării",
+      "text": "Imaginați-vă că tendonul lui Ahile vă doare la începutul alergărilor. Ați putea reduce distanța, face exercițiile de întărire a gambei, așa cum ați fost învățat, și crește alergarea lent, pe parcursul săptămânilor."
+    },
+    {
+      "title": "Perseverența",
+      "text": "Presupuneți că vedeți puțină schimbare după două săptămâni. Ați putea continua programul, deoarece recuperarea tendonului durează luni, și ați putea revizui progresul cu un kinetoterapeut."
+    }
+  ],
+  "questions": [
+    "Este aceasta tendinopatie și am nevoie de imagistică?",
+    "Ce exerciții ar trebui să fac și cât timp?",
+    "Sunt utile injecțiile sau alte tratamente în cazul meu?"
+  ]
+}

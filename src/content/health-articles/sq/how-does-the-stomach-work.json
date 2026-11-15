@@ -1,0 +1,52 @@
+{
+  "title": "Si e përgatit stomaku ushqimin",
+  "intro": "Stomaku merr ushqim nga ezofagu, e përzien dhe lëshon sasi të vogla në zorrë. Fillon një pjesë të tretjes por nuk përthith të gjitha lëndët. Dhimbja në zonë mund të vijë nga organe të tjera.",
+  "sections": [
+    {
+      "heading": "Hyrja dhe ruajtja",
+      "paragraphs": [
+        "Koordinimi muskulor në ezofag kufizon refluksin. Stomaku zgjerohet për vaktet; forma dhe mbushja ndryshojnë, ndaj fryrja nuk mat saktë madhësinë."
+      ]
+    },
+    {
+      "heading": "Acidi dhe enzimat",
+      "paragraphs": [
+        "Acidi krijon kushte tretjeje dhe kufizon disa mikrobe. Enzimat fillojnë zbërthimin e proteinave. Jo çdo dhimbje vjen nga acid i tepërt dhe ulja e tij nuk trajton gjithçka."
+      ]
+    },
+    {
+      "heading": "Mukoza",
+      "paragraphs": [
+        "Mukusi dhe mbrojtje të tjera ruajnë indin nga përmbajtja. Disa ilaçe dhe infeksione i prishin. Stomaku prodhon edhe faktor të brendshëm për përthithjen e mëvonshme të vitaminës B12 në zorrë."
+      ]
+    },
+    {
+      "heading": "Përzierja",
+      "paragraphs": [
+        "Tkurrjet përziejnë; pilori rregullon kalimin në zorrën e hollë. Ushqimi dhe sëmundjet ndikojnë zbrazjen; të vjellat e vazhdueshme ose ngopja e shpejtë kërkojnë kontroll."
+      ]
+    },
+    {
+      "heading": "Kujdesi",
+      "paragraphs": [
+        "Vëreni modelet dhe rishikoni ilaçet, jo dieta kufizuese të përsëritura. Të vjellat me gjak, jashtëqitja e zezë si katran, kolapsi, dhimbja e fortë e vazhdueshme ose pamundësia për të mbajtur lëngje kërkojnë këshillë urgjente.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira shënon mbushjen dhe të vjellat dhe merr ilaçet në vizitë, pa supozuar acid të tepërt për çdo shqetësim."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben vjell material si llum kafeje. Kërkon ndihmë urgjente, jo vetëm antiacid pa recetë."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

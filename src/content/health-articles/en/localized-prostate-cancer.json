@@ -1,0 +1,51 @@
+{
+  "title": "Localised prostate cancer",
+  "intro": "Prostate cancer is one of the most common cancers in men. In many cases it is found while still confined to the prostate and grows slowly. Because treatment can cause side effects such as incontinence and erection problems, men often have several choices, including active surveillance, surgery and radiotherapy.",
+  "sections": [
+    {
+      "heading": "How it is found",
+      "paragraphs": [
+        "Prostate cancer may be suspected after a raised PSA blood test or an abnormal finding on examination. MRI scans and a biopsy confirm the diagnosis and grade the cancer. The Gleason or grade group score describes how aggressive the cells look, and together with the PSA level and the extent of the tumour determines the risk category."
+      ]
+    },
+    {
+      "heading": "Active surveillance and watchful waiting",
+      "paragraphs": [
+        "For low-risk cancers, treatment may not be needed immediately. Active surveillance means regular PSA tests, scans and sometimes repeat biopsies, with treatment started if the cancer progresses. This avoids side effects for many men while keeping the chance of cure. Watchful waiting is a less intensive approach for older men or those with other illnesses, treating symptoms only."
+      ]
+    },
+    {
+      "heading": "Surgery",
+      "paragraphs": [
+        "Radical prostatectomy removes the prostate, sometimes with nearby lymph nodes, often through keyhole or robot-assisted techniques. Possible effects include urinary leakage and erectile dysfunction, which often improve over months but may persist. Pelvic floor exercises before and after surgery can help."
+      ]
+    },
+    {
+      "heading": "Radiotherapy",
+      "paragraphs": [
+        "External radiation targets the prostate over several weeks, or in fewer, higher-dose sessions, sometimes combined with hormone therapy. Internal radiation places radioactive sources in the prostate. Side effects include bowel and bladder irritation, erectile problems and fatigue, which may appear months or years later."
+      ]
+    },
+    {
+      "heading": "Making a decision",
+      "paragraphs": [
+        "Evidence suggests that for many men with low-risk cancer, outcomes are similar across options in terms of survival over ten years, while side effects differ. Consider your age, health, personal values, how you weigh side effects, and your feelings about monitoring. Ask for a second opinion or to speak to a specialist nurse. Support groups can also help."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Weighing side effects",
+      "text": "Imagine you are 62 and have low-risk prostate cancer. You could ask your urologist how likely each treatment is to cause leakage or erection problems and what the active surveillance schedule involves."
+    },
+    {
+      "title": "Involving your partner",
+      "text": "Suppose treatment may affect intimacy. You might bring your partner to the next appointment and ask about rehabilitation options and counselling."
+    }
+  ],
+  "questions": [
+    "Is my cancer low, intermediate or high risk, and what does that mean for treatment?",
+    "What are the likely side effects of each option in my case?",
+    "What would active surveillance involve, and when would treatment start?"
+  ]
+}

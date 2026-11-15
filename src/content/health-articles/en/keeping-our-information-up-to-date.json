@@ -1,0 +1,51 @@
+{
+  "title": "Keeping health information up to date",
+  "intro": "Medical knowledge changes as new studies appear, so reliable health information must be checked and revised regularly. Understanding how this works helps you judge how current an article is and why older advice sometimes differs from newer recommendations.",
+  "sections": [
+    {
+      "heading": "Why information goes out of date",
+      "paragraphs": [
+        "New research can confirm, refine or overturn earlier findings. Treatments are approved, safety concerns appear, and guidelines are revised. Some topics change quickly, such as vaccines or cancer drugs, while basic anatomy changes slowly."
+      ]
+    },
+    {
+      "heading": "How information is checked",
+      "paragraphs": [
+        "Authors monitor new studies, guidelines and drug alerts. They assess whether new evidence is strong enough to change the advice. Important changes lead to updates, and minor developments may wait for the next scheduled review. Quality reviews check wording, sources and whether the information remains correct."
+      ]
+    },
+    {
+      "heading": "What you can look for",
+      "paragraphs": [
+        "Check the publication or update date, whether sources are named, and whether the text acknowledges uncertainty. Information without a date, with no sources, or that relies on a single study deserves extra caution. Official health authorities and guideline bodies publish regularly updated recommendations."
+      ]
+    },
+    {
+      "heading": "Using older information",
+      "paragraphs": [
+        "Older information is not automatically wrong, but treatment choices, test recommendations and drug safety can change. Always compare with current professional advice, especially before changing treatment."
+      ]
+    },
+    {
+      "heading": "Staying informed",
+      "paragraphs": [
+        "Ask your doctor or pharmacist about important changes affecting your condition, subscribe to reputable patient information services if you wish, and review your medication list at least once a year. Treat health news with care and look at the original sources where possible."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Checking an article",
+      "text": "Imagine you read advice about a medicine that seems different from what your doctor told you. You could look at the date, check a current patient leaflet and ask your doctor which advice applies to you."
+    },
+    {
+      "title": "Annual review",
+      "text": "Suppose you live with a long-term condition. You might schedule a yearly appointment to ask about new treatments or guideline changes and bring your list of questions."
+    }
+  ],
+  "questions": [
+    "Is this information current, and has the recommendation changed recently?",
+    "Which sources do you trust for up-to-date information on my condition?",
+    "Are there new options that might suit me better than my current treatment?"
+  ]
+}

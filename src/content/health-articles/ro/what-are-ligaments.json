@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt ligamentele?",
+  "intro": "Ligamentele sunt benzi puternice de țesut fibros care leagă oasele între ele și stabilizează articulațiile. Ele ghidează mișcarea și împiedică articulațiile să se miște prea mult. Leziunile ligamentelor, numite entorse, sunt frecvente, mai ales la gleznă, genunchi și încheietura mâinii.",
+  "sections": [
+    {
+      "heading": "Structură și funcție",
+      "paragraphs": [
+        "Ligamentele sunt alcătuite în principal din fibre de colagen, aranjate în fascicule paralele care oferă rezistență și permit o mică elasticitate. Ele țin oasele împreună la nivelul articulațiilor, limitează mișcarea anormală și conțin terminații nervoase care ajută creierul să perceapă poziția articulației, ceea ce contribuie la echilibru. Sunt diferite de tendoane, care leagă mușchiul de os."
+      ]
+    },
+    {
+      "heading": "Ligamente importante",
+      "paragraphs": [
+        "La genunchi, ligamentele încrucișate din interiorul articulației controlează mișcarea înainte și înapoi și rotația, iar ligamentele colaterale de pe părți îl stabilizează lateral. La gleznă, ligamentele de pe partea exterioară sunt cele mai des întinse. Alte exemple includ ligamentele încheieturii mâinii, umărului și coloanei vertebrale."
+      ]
+    },
+    {
+      "heading": "Entorse și rupturi",
+      "paragraphs": [
+        "O entorsă este o întindere sau o ruptură a unui ligament. Gradul unu este o întindere ușoară, gradul doi o ruptură parțială, iar gradul trei o ruptură completă. Simptomele includ durere, umflătură, vânătăi, sensibilitate și instabilitate. Multe entorse se vindecă prin repaus, protecție, mișcare blândă timpurie și kinetoterapie, în timp ce rupturile complete ale unor ligamente pot necesita intervenție chirurgicală."
+      ]
+    },
+    {
+      "heading": "Vindecare și îngrijire",
+      "paragraphs": [
+        "Ligamentele au o irigare sanguină limitată, așa că se vindecă lent, în săptămâni până la luni, și este posibil să nu revină la rezistența completă. Reabilitarea pentru a reface mișcarea, forța și echilibrul reduce riscul unei noi leziuni. Unele persoane au ligamente laxe, fenomen numit hipermobilitate, ceea ce poate provoca durere sau instabilitate articulară. Întărirea mușchilor din jurul articulației oferă sprijin suplimentar."
+      ]
+    },
+    {
+      "heading": "Prevenirea leziunilor",
+      "paragraphs": [
+        "Încălziți-vă înainte de efort, dezvoltați forța și echilibrul, folosiți o tehnică corectă și încălțăminte potrivită și creșteți antrenamentul treptat. Orteze sau bandaje pot fi folosite o perioadă după leziune sau în sporturi cu risc ridicat. Mergeți la medic pentru durere severă, imposibilitatea de a sprijini greutatea, umflături marcate sau o articulație care cedează."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Recuperarea după o entorsă",
+      "text": "Imaginați-vă că v-ați întins glezna. Ați putea să o odihniți și să o protejați în primele zile, să începeți mișcarea blândă pe măsură ce durerea permite și să exersați exerciții de echilibru."
+    },
+    {
+      "title": "Prevenirea recidivei",
+      "text": "Presupuneți că vă răsuciți des glezna. Ați putea cere unui kinetoterapeut un program de echilibru și sfaturi despre încălțăminte de susținere."
+    }
+  ],
+  "questions": [
+    "Ligamentul meu este întins, rupt parțial sau rupt complet?",
+    "Am nevoie de orteză, terapie sau operație?",
+    "Când mă pot întoarce în siguranță la sport?"
+  ]
+}

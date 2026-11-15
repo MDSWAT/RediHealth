@@ -1,0 +1,56 @@
+{
+  "title": "Body temperature and fever",
+  "intro": "The human body keeps its core temperature within a narrow range, usually around 37 degrees Celsius, so that its cells and enzymes work well. Fever is a temporary rise in this set point, most often because the immune system is fighting an infection. Understanding how temperature is controlled helps you decide when fever can be managed at home and when it needs medical advice.",
+  "sections": [
+    {
+      "heading": "How the body controls temperature",
+      "paragraphs": [
+        "A small area in the brain, the hypothalamus, acts like a thermostat. It receives signals from temperature sensors in the skin and inside the body and then triggers responses. When you are too warm, blood vessels in the skin widen and you sweat, which cools the body as the sweat evaporates.",
+        "When you are too cold, skin vessels narrow to keep heat in, and muscles may shiver to generate warmth. Behaviour matters as well: putting on clothes, seeking shade or drinking cool water all help the body stay in balance."
+      ]
+    },
+    {
+      "heading": "What fever is",
+      "paragraphs": [
+        "Fever happens when substances released during infection or inflammation raise the thermostat's set point. The body then feels cold, causing chills and shivering until the new, higher temperature is reached. A temperature of about 38 degrees or above is commonly counted as fever in adults, though definitions vary slightly.",
+        "Fever is not itself an illness but a sign that the body is responding. In many infections it may even help the immune system work more effectively. Other causes include vaccinations, some medicines, inflammatory conditions, heat illness and, less often, cancers."
+      ]
+    },
+    {
+      "heading": "Measuring temperature",
+      "paragraphs": [
+        "Digital thermometers are the standard tool. Readings can be taken in the mouth, under the arm, in the ear or on the forehead, and in babies often rectally, following the thermometer's instructions. Values differ slightly between sites, so use the same method when you compare readings over time.",
+        "Hands touching the forehead are an unreliable way to judge fever. Wait after exercise, hot drinks or a hot bath before measuring, as these can distort the result."
+      ]
+    },
+    {
+      "heading": "Looking after yourself with a fever",
+      "paragraphs": [
+        "Rest and plenty of fluids are the most important steps, since fever increases fluid loss. Light clothing and a comfortable room temperature help. Paracetamol or ibuprofen can reduce discomfort and may be used according to the package instructions, but they are not necessary just to bring the number down if you feel reasonably well.",
+        "Children should never be given aspirin because of the risk of a rare but serious condition. Cold baths or alcohol rubs are not recommended, as they can cause shivering and may be harmful."
+      ]
+    },
+    {
+      "heading": "When to seek medical help",
+      "paragraphs": [
+        "Get advice quickly for a fever in a baby under three months, a fever lasting more than three days, a stiff neck, a rash that does not fade when pressed, confusion, trouble breathing, severe pain, or signs of dehydration. People with weakened immune systems, serious chronic diseases or recent surgery should also seek advice earlier.",
+        "Fever after travel to certain regions can point to infections such as malaria and needs prompt assessment. If a child has a febrile seizure, stay calm, place them on their side and call for emergency help if it lasts longer than a few minutes."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Caring for a child at home",
+      "text": "Imagine your toddler has a fever but is drinking, playing a little and responds normally. You could offer fluids and rest, dress them lightly, check their temperature at intervals, and call the doctor if the fever lasts longer than a few days or their behaviour changes."
+    },
+    {
+      "title": "Preparing for a call",
+      "text": "Suppose you phone a medical helpline about a feverish relative. Having the temperature readings, the time the fever began, other symptoms and the medicines already taken written down helps the advisor give useful guidance quickly."
+    }
+  ],
+  "questions": [
+    "How high or how long should a fever be before I contact a doctor in my situation?",
+    "Which fever reducers are safe for me or my child, and what doses should I use?",
+    "Which warning signs should make me seek emergency care?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Sifilide",
+  "intro": "La sifilide è un'infezione sessualmente trasmissibile causata da batteri, che si può curare con antibiotici, soprattutto se scoperta presto. Se non trattata può progredire nell'arco di anni e danneggiare cuore, cervello e altri organi. Può anche essere trasmessa a un bambino non ancora nato, quindi test e trattamento sono importanti.",
+  "sections": [
+    {
+      "heading": "Come si diffonde",
+      "paragraphs": [
+        "La sifilide si diffonde con il contatto diretto con una lesione sifilitica durante rapporti vaginali, anali o orali e da madre a bambino durante la gravidanza. I preservativi riducono il rischio ma non proteggono del tutto, perché le lesioni possono comparire sulla pelle che non coprono. Avere più partner e rapporti non protetti aumenta il rischio e i tassi stanno crescendo in molti paesi."
+      ]
+    },
+    {
+      "heading": "Stadi e sintomi",
+      "paragraphs": [
+        "Nel primo stadio compare una lesione indolore chiamata sifiloma nel punto dell'infezione dopo alcune settimane e può passare inosservata. Nel secondo stadio, da settimane a mesi dopo, possono comparire un'eruzione che colpisce spesso palmi e piante dei piedi, febbre, ghiandole ingrossate, perdita di capelli e lesioni in bocca. Poi l'infezione può diventare silenziosa per anni, detta latente. Negli stadi tardivi possono svilupparsi gravi problemi di cuore, cervello e nervi."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "Gli esami del sangue rilevano gli anticorpi e si ripetono per confermare la diagnosi e monitorare il trattamento. Il liquido di una lesione può essere esaminato direttamente. Poiché la sifilide spesso coesiste con altre infezioni, si consiglia il test per l'HIV e per altre infezioni sessualmente trasmissibili. Alle donne in gravidanza il test viene offerto di routine."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Le iniezioni di penicillina curano la sifilide. Una sola iniezione basta spesso per gli stadi precoci e per quelli tardivi se ne danno diverse. Chi è allergico alla penicillina può ricevere altri antibiotici. Dopo il trattamento gli esami del sangue si ripetono per confermare che i livelli calino. Evita i rapporti finché le lesioni non sono guarite e il trattamento non è completo. Febbre, brividi e dolori entro un giorno dall'inizio del trattamento possono verificarsi e di solito passano."
+      ]
+    },
+    {
+      "heading": "Partner e prevenzione",
+      "paragraphs": [
+        "I partner sessuali dei mesi passati vanno informati così da poter fare il test ed essere trattati. Preservativi, test regolari per chi ha partner nuovi o multipli e trattamento precoce proteggono la salute. Rivolgiti a servizi di salute sessuale riservati se sei preoccupato."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fare il test",
+      "text": "Immagina di notare una lesione indolore dopo un nuovo partner. Potresti andare subito in un ambulatorio di salute sessuale per gli esami e chiedere della riservatezza."
+    },
+    {
+      "title": "Informare i partner",
+      "text": "Supponi di risultare positivo. Potresti chiedere all'ambulatorio come informare i partner in forma anonima e organizzare gli esami del sangue di controllo."
+    }
+  ],
+  "questions": [
+    "Di quali esami ho bisogno e come saprò di essere guarito?",
+    "Quali partner devono fare il test ed essere trattati?",
+    "Come posso ridurre il mio rischio in futuro?"
+  ]
+}

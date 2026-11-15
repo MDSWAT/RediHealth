@@ -1,0 +1,52 @@
+{
+  "title": "Mbështetja e frymëmarrjes gjatë operacionit",
+  "intro": "Anestezia e përgjithshme mund të ulë frymëmarrjen dhe reflekset mbrojtëse të rrugëve ajrore. Ekipi e mbështet frymëmarrjen nën monitorim të vazhdueshëm; pajisja varet nga operacioni dhe rreziqet individuale.",
+  "sections": [
+    {
+      "heading": "Pse nevojitet",
+      "paragraphs": [
+        "Anestetikët dhe relaksuesit muskulorë mund të pengojnë frymëmarrjen efektive. Ventilatori fut ajër me oksigjen dhe lejon largimin e dioksidit të karbonit; oksigjeni vetëm nuk zëvendëson ventilimin."
+      ]
+    },
+    {
+      "heading": "Rrugët e mbështetjes",
+      "paragraphs": [
+        "Maska mbulon gojën dhe hundën. Pajisja supraglotike qëndron mbi laring, ndërsa tubi trakeal kalon mes kordave zanore. Mbyllja dhe mbrojtja ndryshojnë; nuk shkëmbehen në çdo operacion."
+      ]
+    },
+    {
+      "heading": "Kontrollet",
+      "paragraphs": [
+        "Ekipi ndjek oksigjenin, dioksidin e karbonit të nxjerrë dhe shenjat e tjera jetësore, rregullon ventilimin dhe kontrollon pajisjen. Ventilatori nuk jep vetë pavetëdije ose lehtësim dhimbjeje."
+      ]
+    },
+    {
+      "heading": "Përgatitja",
+      "paragraphs": [
+        "Ndiqni udhëzimet e spitalit për ushqim, lëngje dhe ilaçe. Tregoni apnenë, refluksin, dhëmbët e lëvizshëm, alergjitë dhe problemet e mëparshme me rrugët ajrore. Mos caktoni vetë agjërimin ose ndërprerjen e ilaçeve."
+      ]
+    },
+    {
+      "heading": "Zgjimi",
+      "paragraphs": [
+        "Mbështetja ulet kur frymëmarrja dhe reflekset kthehen mjaftueshëm. Mund të ketë shqetësim kalimtar në fyt, por vështirësia e rëndë në frymëmarrje pas operacionit kërkon ndihmë urgjente.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira përdor aparat për apnenë. Njofton anestezistin dhe pyet nëse duhet ta sjellë gjatë rikuperimit."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ka punim dentar të lëvizshëm. E tregon përpara operacionit që plani i rrugëve ajrore ta marrë parasysh."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

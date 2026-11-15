@@ -1,0 +1,51 @@
+{
+  "title": "Pravilna uporaba kortikosteroida i izbjegavanje nuspojava",
+  "intro": "Kortikosteroidi, često zvani steroidi ili kortizon, snažni su protuupalni lijekovi koji se koriste kod astme, alergija, artritisa, kožnih stanja i mnogih drugih bolesti. Vrlo su učinkoviti, ali se mogu javiti nuspojave, osobito kod visokih doza ili dugotrajne uporabe. Pravilna uporaba održava koristi visokima, a rizike niskima.",
+  "sections": [
+    {
+      "heading": "Kako djeluju i oblici",
+      "paragraphs": [
+        "Kortikosteroidi oponašaju hormone koje stvaraju nadbubrežne žlijezde i smiruju upalu i imunološke reakcije. Dolaze kao tablete, injekcije, inhalatori, sprejevi za nos, kapi za oči i kreme za kožu. Lokalni oblici poput inhalatora i krema djeluju uglavnom tamo gdje se primijene, s mnogo manjim učinkom na cijelo tijelo nego tablete."
+      ]
+    },
+    {
+      "heading": "Kratkotrajna uporaba",
+      "paragraphs": [
+        "Kratke terapije tabletama općenito se dobro podnose. Mogući učinci uključuju povišen šećer u krvi, teškoće sa spavanjem, pojačan apetit, promjene raspoloženja, zadržavanje tekućine i nelagodu u želucu. Uzimajte tablete ujutro uz hranu, prema uputi, i dovršite terapiju."
+      ]
+    },
+    {
+      "heading": "Dugotrajna uporaba",
+      "paragraphs": [
+        "Dugotrajna uporaba ili uporaba visokih doza može uzrokovati debljanje, zaobljeno lice, tanku kožu i lako stvaranje modrica, visok krvni tlak i šećer u krvi, oslabljene kosti, sivu mrenu i glaukom, slabost mišića, infekcije i usporen rast kod djece. Liječnici ciljaju najnižu učinkovitu dozu i mogu dodati zaštitu poput kalcija, vitamina D, lijekova za jačanje kostiju ili zaštite želuca."
+      ]
+    },
+    {
+      "heading": "Nikada ne prekidajte naglo",
+      "paragraphs": [
+        "Nakon tjedana liječenja potiskuje se vlastita proizvodnja hormona u tijelu. Naglo prekidanje može uzrokovati slabost, mučninu, nizak krvni tlak i, rijetko, opasnu adrenalnu krizu. Doze se moraju postupno smanjivati prema uputi. Nosite karticu o steroidima ako ih uzimate dugotrajno i recite liječnicima, stomatolozima i hitnom osoblju. Tijekom teške bolesti ili operacije doze se možda trebaju povećati."
+      ]
+    },
+    {
+      "heading": "Korištenje lokalnih oblika i ostanak siguran",
+      "paragraphs": [
+        "Isperite usta nakon uporabe udisanih steroida kako biste spriječili kandidijazu. Kreme koristite prema uputi, tanke slojeve na pravim područjima, izbjegavajući lice osim ako je savjetovano. Pratite krvni tlak, šećer u krvi, kosti i oči ako dugotrajno koristite steroide. Prijavite promjene raspoloženja, promjene vida, jaku bol u želucu ili znakove infekcije. Mnogi ljudi se boje steroida, ali i neliječena upala nosi rizike pa o brigama razgovarajte umjesto prekidanja liječenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praćenje plana smanjivanja",
+      "text": "Zamislite da nekoliko tjedana uzimate prednizolon. Mogli biste zapisati raspored doza i ne prekidati naglo, čak i ako se osjećate bolje."
+    },
+    {
+      "title": "Provjera učinaka",
+      "text": "Pretpostavite da dugotrajno uzimate steroide. Mogli biste pitati o provjerama gustoće kostiju, šećera u krvi, krvnog tlaka i očiju."
+    }
+  ],
+  "questions": [
+    "Koliko dugo ću uzimati steroid i kako će se smanjivati?",
+    "Na koje nuspojave trebam paziti i koje preglede trebam?",
+    "Mogu li koristiti lokalni oblik umjesto tableta?"
+  ]
+}

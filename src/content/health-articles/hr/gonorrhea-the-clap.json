@@ -1,0 +1,51 @@
+{
+  "title": "Gonoreja: testiranje, liječenje i skrb za partnere",
+  "intro": "Gonoreja je bakterijska spolna infekcija genitalija, rektuma, grla ili očiju. Mnoge infekcije nemaju simptome; bez liječenja moguće su ozbiljne komplikacije i nesvjestan prijenos.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Mogući su pečenje pri mokrenju, neobičan iscjedak te zdjelična ili testikularna bol. Infekcije grla i rektuma često su tihe. Simptomi ne razlikuju pouzdano gonoreju od drugih spolnih infekcija."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Testira se mokraća ili brisevi izloženih mjesta; sama mokraća može propustiti infekciju grla ili rektuma. Kultura pomaže utvrditi otpornost na antibiotike, posebno pri mogućem neuspjehu liječenja. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Liječnik bira antibiotike prema aktualnim lokalnim preporukama i otpornosti. Ne koristite ostatke niti dijelite terapiju. Razgovarajte o drugim testovima, trudnoći, potvrdi izlječenja i ponovnom testiranju. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Izbjegavajte spolni odnos dok klinika ne potvrdi sigurnost, uključujući uvjete liječenja partnera. Povjerljivo obavještavanje sprječava ponovnu zarazu. Kondomi smanjuju rizik, ali redoviti testovi mogu i dalje trebati. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Jaka zdjelična bol, vrućica, bolan otečen testis, očni iscjedak ili vruć otečen zglob trebaju hitnu procjenu. Trajne tegobe nakon terapije traže pregled, ne samostalno ponavljanje antibiotika."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira nema simptome, ali partner je pozitivan. Dolazi na testiranje i slijedi kliniku bez pretpostavke da nije zaražena."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben navodi oralnu izloženost kako bi se razmotrio bris grla umjesto oslanjanja samo na mokraću."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

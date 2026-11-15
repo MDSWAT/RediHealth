@@ -1,0 +1,51 @@
+{
+  "title": "Mitoza: dioba tjelesnih stanica",
+  "intro": "Dioba podupire rast, obnovu i popravak. Mitoza dijeli kopirani materijal u jezgre, obično zatim stanice kćeri. Razlikuje se od mejoze reproduktivnih stanica sa smanjenim skupom.",
+  "sections": [
+    {
+      "heading": "Priprema",
+      "paragraphs": [
+        "Stanica raste i kopira DNA. Kopiranje stvara kromosomske kopije, ne odmah stanice. Kontrole provjeravaju spremnost i štetu, ali nisu savršene."
+      ]
+    },
+    {
+      "heading": "Organizacija",
+      "paragraphs": [
+        "Kromosomi se zbijaju i vežu na vreteno radi položaja. Poravnaju se prije razdvajanja. Crtež pojednostavljuje dinamiku; ne biraju svjesno odredište."
+      ]
+    },
+    {
+      "heading": "Razdvajanje",
+      "paragraphs": [
+        "Kopije idu na strane i nastaju jezgre. Podjela sadržaja obično dovršava proces. Kćeri čuvaju skup, ne prepolove kao mejoza."
+      ]
+    },
+    {
+      "heading": "Tkiva",
+      "paragraphs": [
+        "Koža i crijevo često se obnavljaju, mnogi zreli neuroni malo ili nikako. Nije svugdje isto. Rana treba krv, imunitet i organizaciju, ne samo množenje."
+      ]
+    },
+    {
+      "heading": "Pogreške",
+      "paragraphs": [
+        "Popravljaju se, vode smrti ili ostaju. Neke pridonose raku, ali jedna nije automatski rak. Treba kontekst; tekst ne tumači osobnu biopsiju. Prije pregleda zapišite kada je simptom počeo, što ga ublažava ili pogoršava i kako utječe na uobičajene aktivnosti. Ponesite prethodne nalaze ako ih imate. Zamolite stručnjaka da objašnjenje poveže s vašim nalazima: opći opis sam po sebi ne postavlja dijagnozu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira uspoređuje kožu i mejozu, razumije zašto cijeljenje ne stvara jajne stanice ili spermije."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben pita za učinak na kosu i crijevo. Tim objašnjava aktivnu diobu i normalnih tkiva."
+    }
+  ],
+  "questions": [
+    "Koji bi koraci bili jasniji uz dijagram?",
+    "Što objašnjenje pokazuje i što ne predviđa?",
+    "Treba li moja konkretna briga stručnu procjenu?"
+  ]
+}

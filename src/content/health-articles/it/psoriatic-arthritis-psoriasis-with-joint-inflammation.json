@@ -1,0 +1,51 @@
+{
+  "title": "Artrite psoriasica (psoriasi con infiammazione articolare)",
+  "intro": "L'artrite psoriasica è una malattia infiammatoria delle articolazioni che colpisce alcune persone con psoriasi. Causa dolore, gonfiore e rigidità nelle articolazioni e nei tendini e può danneggiare le articolazioni se non trattata. Una diagnosi e un trattamento precoci possono controllare l'infiammazione e proteggere la funzione articolare.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi comprendono articolazioni gonfie e dolorose, rigidità soprattutto al mattino che si attenua con il movimento, un intero dito della mano o del piede gonfio noto come dito a salsiccia, dolore al tallone da tendini infiammati, rigidità di schiena e collo e alterazioni delle unghie. La stanchezza è comune. Lo schema varia da poche articolazioni a molte e le riacutizzazioni si alternano a fasi più calme."
+      ]
+    },
+    {
+      "heading": "Chi la contrae",
+      "paragraphs": [
+        "Circa una persona su cinque con psoriasi sviluppa un coinvolgimento articolare, spesso entro anni dalla malattia della pelle, anche se le articolazioni possono essere colpite per prime. Il rischio è maggiore con psoriasi grave, coinvolgimento delle unghie e storia familiare. Sono coinvolti i geni e l'iperattività del sistema immunitario."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "I medici considerano i sintomi, visitano articolazioni e pelle e usano esami del sangue per controllare l'infiammazione ed escludere altri tipi di artrite, come l'artrite reumatoide. Radiografie, ecografia o risonanza magnetica rilevano infiammazione e danni di articolazioni e tendini. Di solito è un reumatologo a confermare la diagnosi."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Gli antidolorifici antinfiammatori aiutano i sintomi. I farmaci modificanti la malattia, come il metotrexato, riducono l'infiammazione e proteggono le articolazioni. Se non basta, sono efficaci sia per la pelle sia per le articolazioni i farmaci biologici che bloccano specifici segnali immunitari e le compresse più recenti. Le infiltrazioni di corticosteroidi nelle articolazioni aiutano nelle riacutizzazioni locali. Per molti di questi farmaci è necessario un monitoraggio regolare con esami del sangue."
+      ]
+    },
+    {
+      "heading": "Vivere con l'artrite psoriasica",
+      "paragraphs": [
+        "Esercizio, fisioterapia e terapia occupazionale proteggono il movimento e riducono la rigidità. Mantenere un peso sano, smettere di fumare e gestire lo stress aiutano. Salute del cuore e metabolica vanno controllate regolarmente, perché sono colpite più spesso. Il sostegno dei gruppi di pazienti può aiutare con l'aspetto emotivo."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Segnalare presto i sintomi",
+      "text": "Immagina di avere la psoriasi e di notare rigidità mattutina alle mani. Potresti annotare quanto dura e dirlo presto al medico, invece di pensare che sia il normale invecchiamento."
+    },
+    {
+      "title": "Restare attivi",
+      "text": "Supponi che le articolazioni facciano male dopo il riposo. Potresti inserire nella giornata un esercizio dolce, come nuoto o bicicletta, e chiedere della fisioterapia."
+    }
+  ],
+  "questions": [
+    "I miei sintomi articolari indicano un'artrite psoriasica e di quali esami ho bisogno?",
+    "Quali farmaci possono proteggere articolazioni e pelle?",
+    "Con quale frequenza avrò bisogno di controlli ed esami del sangue?"
+  ]
+}

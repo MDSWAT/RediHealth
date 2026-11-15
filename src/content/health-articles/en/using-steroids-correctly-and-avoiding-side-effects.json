@@ -1,0 +1,51 @@
+{
+  "title": "Using corticosteroids correctly and avoiding side effects",
+  "intro": "Corticosteroids, often called steroids or cortisone, are powerful anti-inflammatory medicines used for asthma, allergies, arthritis, skin conditions and many other illnesses. They are very effective, but side effects can occur, especially with high doses or long use. Using them correctly keeps benefits high and risks low.",
+  "sections": [
+    {
+      "heading": "How they work and forms",
+      "paragraphs": [
+        "Corticosteroids mimic hormones made by the adrenal glands and dampen inflammation and immune reactions. They come as tablets, injections, inhalers, nasal sprays, eye drops and skin creams. Local forms such as inhalers and creams act mainly where applied, with much less effect on the whole body than tablets."
+      ]
+    },
+    {
+      "heading": "Short-term use",
+      "paragraphs": [
+        "Short courses of tablets are generally well tolerated. Possible effects include raised blood sugar, difficulty sleeping, increased appetite, mood changes, fluid retention and stomach upset. Take tablets in the morning with food, as directed, and complete the course."
+      ]
+    },
+    {
+      "heading": "Long-term use",
+      "paragraphs": [
+        "Long-term or high-dose use can cause weight gain, a rounded face, thin skin and easy bruising, high blood pressure and blood sugar, weakened bones, cataracts and glaucoma, muscle weakness, infections and slowed growth in children. Doctors aim for the lowest effective dose and may add protection such as calcium, vitamin D, bone-strengthening medicines, or stomach protection."
+      ]
+    },
+    {
+      "heading": "Never stop suddenly",
+      "paragraphs": [
+        "After weeks of treatment, the body's own hormone production is suppressed. Stopping suddenly can cause weakness, nausea, low blood pressure and, rarely, a dangerous adrenal crisis. Doses must be reduced gradually as instructed. Carry a steroid card if you take them long term, and tell doctors, dentists and emergency staff. During serious illness or surgery, doses may need to be increased."
+      ]
+    },
+    {
+      "heading": "Using local forms and staying safe",
+      "paragraphs": [
+        "Rinse your mouth after using inhaled steroids to prevent thrush. Use creams as directed, thin layers on the right areas, avoiding the face unless advised. Monitor blood pressure, blood sugar, bones and eyes if you use steroids long-term. Report mood changes, vision changes, severe stomach pain or signs of infection. Many people fear steroids, but untreated inflammation also carries risks, so discuss concerns rather than stopping treatment."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Following a tapering plan",
+      "text": "Imagine you take prednisolone for several weeks. You could write down the dose schedule and not stop suddenly, even if you feel better."
+    },
+    {
+      "title": "Checking for effects",
+      "text": "Suppose you take steroids long term. You might ask about checks of bone density, blood sugar, blood pressure and eyes."
+    }
+  ],
+  "questions": [
+    "How long will I take the steroid, and how will it be reduced?",
+    "Which side effects should I watch for, and which checks do I need?",
+    "Can I use a local form instead of tablets?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Tenzijska glavobolja, migrena i cluster",
+  "intro": "Vrste se preklapaju: mjesto ili jačina ne određuju dijagnozu. Tenzijska i migrena česte su, cluster rjeđi ali vrlo onesposobljavajući. Nov ili promijenjen obrazac traži procjenu.",
+  "sections": [
+    {
+      "heading": "Tenzijski obrazac",
+      "paragraphs": [
+        "Često obostrani pritisak ili stezanje, blago do umjereno, ne puno gore u običnoj aktivnosti. Jako povraćanje manje je tipično. Česte smetnje zaslužuju pomoć."
+      ]
+    },
+    {
+      "heading": "Migrena",
+      "paragraphs": [
+        "Često umjerena ili jaka, katkad pulsirajuća i gora uz kretanje, s mučninom ili osjetljivošću na svjetlo i zvuk. Aura nije kod svih. Novi neurološki znakovi nisu automatski aura. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Cluster",
+      "paragraphs": [
+        "Vrlo jaka jednostrana bol uz oko sa suzenjem, nosnim simptomima i nemirom u serijama. Brza dijagnoza važna je jer liječenje nije običan analgetik. Crveno bolno oko ima i druge hitne uzroke. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Plan",
+      "paragraphs": [
+        "Bilježite vrijeme, trajanje, znakove i dane lijekova. Akutna terapija i prevencija mogu trebati; česti analgetici održavaju glavobolju. Ne uzimajte tuđu terapiju samo zbog sličnosti. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Upozorenja",
+      "paragraphs": [
+        "Nagla najjača bol, slabost, zbunjenost, vrućica s ukočenim vratom, gubitak vida ili veća ozljeda traže hitnost. Nova jaka bol u trudnoći ili nakon poroda procjenjuje se i uz migrenu."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima mučninu i osjetljivost na svjetlo. Bilježi obrazac i traži pregled bez pretpostavke napetosti."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben ima jaku bol oko oka i suzenje. Traži procjenu umjesto ponavljanja tableta bez dijagnoze."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

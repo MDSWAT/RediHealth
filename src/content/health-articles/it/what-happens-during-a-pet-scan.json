@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa succede durante una PET",
+  "intro": "La tomografia a emissione di positroni, o PET, è un esame di immagini che mostra come funzionano i tessuti, non solo come appaiono. Si inietta una piccola quantità di tracciante radioattivo e uno scanner rileva dove si raccoglie. Si usa soprattutto per tumori, malattie del cuore e disturbi del cervello, spesso combinata con TC o risonanza.",
+  "sections": [
+    {
+      "heading": "Perché si fa",
+      "paragraphs": [
+        "La PET può mostrare quanto sono attivi i tessuti, il che aiuta a individuare il cancro, a mostrare se si è diffuso, a controllare la risposta al trattamento e a rilevare una recidiva. Si usa anche per valutare l'apporto di sangue al muscolo cardiaco e per condizioni del cervello come demenza ed epilessia. Il risultato si combina con altri esami."
+      ]
+    },
+    {
+      "heading": "Preparazione",
+      "paragraphs": [
+        "Di solito ti viene chiesto di digiunare per quattro-sei ore, anche se puoi bere acqua. Per alcuni esami devi evitare prima sforzi intensi. Le persone con diabete hanno bisogno di istruzioni speciali su cibo e farmaci. Informa il personale se sei in gravidanza, se allatti o se hai paura degli spazi chiusi."
+      ]
+    },
+    {
+      "heading": "L'esame",
+      "paragraphs": [
+        "Un tracciante, spesso una forma di zucchero marcata con un atomo radioattivo, viene iniettato in una vena. Riposi tranquillo per circa un'ora mentre si diffonde nel corpo. Poi ti sdrai su un lettino che scorre dentro uno scanner a forma di anello per venti-quaranta minuti. Devi stare immobile e la macchina è aperta e non fa male."
+      ]
+    },
+    {
+      "heading": "Sicurezza",
+      "paragraphs": [
+        "La dose di radiazioni è piccola e simile a pochi anni di radiazione naturale di fondo. Il tracciante lascia il corpo entro poche ore. Bevi molti liquidi ed evita il contatto stretto con donne in gravidanza e neonati per alcune ore se indicato. Le reazioni allergiche sono molto rare. La gravidanza è in genere un motivo per evitare l'esame."
+      ]
+    },
+    {
+      "heading": "Risultati",
+      "paragraphs": [
+        "Un medico nucleare e un radiologo interpretano le immagini. I risultati vanno al medico che ha richiesto l'esame in pochi giorni. Le aree attive appaiono luminose, ma anche l'infiammazione può somigliare al cancro, quindi i reperti si interpretano con altre informazioni. Chiedi che cosa succede dopo."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prepararsi",
+      "text": "Immagina che l'esame sia nel pomeriggio. Potresti fare una colazione leggera, digiunare dopo come indicato e bere acqua."
+    },
+    {
+      "title": "Restare immobili",
+      "text": "Supponi di sentirti ansioso nello scanner. Potresti respirare lentamente e dire al personale se hai bisogno di aiuto."
+    }
+  ],
+  "questions": [
+    "Perché serve una PET e come cambierà il risultato le mie cure?",
+    "Come devo prepararmi, soprattutto se ho il diabete?",
+    "Ci sono precauzioni dopo l'esame?"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "How the quality of medical studies is assessed",
+  "intro": "Not all studies are equally trustworthy. Some are designed and carried out in ways that make their results more reliable, while others carry a high risk of misleading conclusions. Knowing how researchers judge study quality helps you understand why some health claims are stronger than others, and why headlines should be read with care.",
+  "sections": [
+    {
+      "heading": "Why quality matters",
+      "paragraphs": [
+        "A study may report that a treatment works, but its design can make the result look better or worse than the truth. Chance, hidden differences between groups, and expectations of participants and researchers can all distort findings. Assessing quality means checking how well a study avoided these problems.",
+        "Poorly conducted studies tend to overestimate benefits. Reliable conclusions therefore depend on the strength of the methods, not only on the size of the reported effect."
+      ]
+    },
+    {
+      "heading": "Study design",
+      "paragraphs": [
+        "Randomised controlled trials are generally the most reliable design for testing treatments. Participants are assigned by chance to receive the new treatment or a comparison, which makes the groups similar at the start so that differences afterwards are more likely due to the treatment.",
+        "Observational studies, such as cohort and case-control studies, follow or compare people without assigning treatments. They are useful for rare harms and long-term outcomes but are more prone to confounding, where another factor explains the apparent effect."
+      ]
+    },
+    {
+      "heading": "Blinding and concealment",
+      "paragraphs": [
+        "Blinding means that participants, doctors and those assessing outcomes do not know who receives which treatment. This prevents expectations from affecting reports of symptoms and judgments about results. Where blinding is impossible, for example in surgery compared with exercise, researchers use objective outcomes as far as possible.",
+        "Allocation concealment means that those enrolling participants cannot predict the next assignment, which prevents selective entry into groups."
+      ]
+    },
+    {
+      "heading": "Other points reviewers check",
+      "paragraphs": [
+        "Reviewers look at whether many participants dropped out or were lost to follow-up, whether analysis included everyone as originally assigned, and whether the study reported all planned outcomes. Selective reporting can make a treatment look better than it is.",
+        "They also consider the sample size, how long people were followed, whether outcomes matter to patients, such as survival, symptoms and quality of life, and who funded the study. Industry funding does not make a result false, but it calls for extra attention to design and reporting."
+      ]
+    },
+    {
+      "heading": "Using this when reading health news",
+      "paragraphs": [
+        "Ask what kind of study it was, how many people took part, who they were, what was compared, and what outcomes were measured. Be cautious about results from animal or cell studies, very small studies, and single studies that contradict a large body of evidence.",
+        "Systematic reviews that combine all high-quality studies on a question usually give a more reliable picture than any single study. Discuss important decisions with a healthcare professional who can place a study in context."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reading a news report",
+      "text": "Imagine you read a headline saying a supplement halves the risk of a disease. You could check whether the study involved people or laboratory animals, how many participants there were, and whether the result was confirmed by other research before changing your habits."
+    },
+    {
+      "title": "Asking about the evidence",
+      "text": "Suppose a doctor offers a new treatment. You might ask what studies support it, whether they compared it with existing treatment or placebo, and how large the benefit and the side effects were."
+    }
+  ],
+  "questions": [
+    "What kind of evidence supports this treatment, and how reliable is it?",
+    "Were people like me included in the studies, and did the results matter for symptoms or survival?",
+    "Is there a systematic review or guideline that summarises the research?"
+  ]
+}

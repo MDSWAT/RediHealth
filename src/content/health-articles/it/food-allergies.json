@@ -1,0 +1,51 @@
+{
+  "title": "Allergia alimentare: diagnosi, pasti e piano d’emergenza",
+  "intro": "L’allergia alimentare è una reazione immunitaria a una proteina; anche piccole quantità possono causare problemi gravi. È diversa dall’intolleranza e non spiega ogni sintomo dopo i pasti. La diagnosi permette un’esclusione necessaria senza limitare inutilmente nutrizione e vita quotidiana.",
+  "sections": [
+    {
+      "heading": "Riconoscere una reazione grave",
+      "paragraphs": [
+        "Chiamate il 112 per difficoltà respiratoria o deglutitoria, gonfiore di gola o lingua, collasso o forte confusione dopo cibo. L’anafilassi può non avere eruzione. Usate subito l’adrenalina prescritta secondo istruzioni e chiedete soccorsi anche se migliora. Non sostituitela con antistaminico. Sdraiatevi; se respirare è difficile sedete sostenuti senza alzarvi o camminare. Seguite il piano per ripetere la terapia."
+      ]
+    },
+    {
+      "heading": "Valutare il fattore scatenante",
+      "paragraphs": [
+        "Annotate cibo, ingredienti, quantità, tempi e sintomi, esercizio e medicine. Il medico può proporre test cutanei o anticorpi specifici: il positivo da solo non prova allergia clinica. Talvolta serve provocazione sorvegliata. Non provate volontariamente a casa un alimento sospetto grave o pannelli commerciali non validati."
+      ]
+    },
+    {
+      "heading": "Evitare concretamente l’allergene",
+      "paragraphs": [
+        "Leggete le etichette ogni volta perché le ricette cambiano. Chiedete preparazione, utensili comuni e contatto incrociato. Togliere una noce visibile non rende sicuro il piatto. Informate scuola, assistenti e compagni e tenete piano e medicine accessibili. Controllate scadenza e dispositivo specifico senza presumere iniettori identici."
+      ]
+    },
+    {
+      "heading": "Proteggere nutrizione e valutare lo specialista",
+      "paragraphs": [
+        "Il dietista aiuta le sostituzioni, soprattutto latte o più alimenti fondamentali nei bambini. Non eliminate interi gruppi senza consiglio. Le allergie cambiano ma la reintroduzione richiede piano. Pazienti selezionati discutono immunoterapia specialistica: rischi e controlli restano, non significa mangiare liberamente o abbandonare precauzioni."
+      ]
+    },
+    {
+      "heading": "Rivedere il piano",
+      "paragraphs": [
+        "Chiedete controllo dopo reazioni, nuovi sintomi o dubbi. Discutete viaggio, ristoranti, esercizio, asma e cambiamenti scolastici o lavorativi. La precedente reazione lieve non garantisce quelle future. Chiedete farmaci e accesso urgente. I familiari devono conoscere il piano senza aspettare che la persona gestisca da sola una reazione grave."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Esempio ipotetico: pasto scolastico",
+      "text": "La famiglia di Mila condivide allergia e piano scritto. Concorda controllo degli ingredienti e delle medicine anziché fidarsi soltanto del nome senza noci."
+    },
+    {
+      "title": "Esempio ipotetico: esclusioni inutili",
+      "text": "Arben ha disturbi digestivi e pensa di togliere molti cibi. Registra il quadro e chiede valutazione e dietista invece di diagnosticarsi con un test commerciale."
+    }
+  ],
+  "questions": [
+    "Quale alimento è responsabile e quali test servono?",
+    "Come evitarlo mantenendo nutrizione adeguata?",
+    "Cosa fare nella reazione grave e quando rivedere il piano?"
+  ]
+}

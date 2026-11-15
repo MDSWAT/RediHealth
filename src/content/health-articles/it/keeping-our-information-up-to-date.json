@@ -1,0 +1,51 @@
+{
+  "title": "Mantenere aggiornate le informazioni sulla salute",
+  "intro": "La conoscenza medica cambia con la comparsa di nuovi studi, quindi le informazioni affidabili sulla salute devono essere verificate e riviste con regolarità. Capire come funziona aiuta a giudicare quanto sia aggiornato un articolo e perché i vecchi consigli a volte differiscono dalle raccomandazioni più recenti.",
+  "sections": [
+    {
+      "heading": "Perché le informazioni diventano obsolete",
+      "paragraphs": [
+        "Nuove ricerche possono confermare, precisare o ribaltare risultati precedenti. Vengono approvati trattamenti, emergono problemi di sicurezza e le linee guida vengono riviste. Alcuni argomenti cambiano rapidamente, come i vaccini o i farmaci oncologici, mentre l'anatomia di base cambia lentamente."
+      ]
+    },
+    {
+      "heading": "Come vengono verificate le informazioni",
+      "paragraphs": [
+        "Gli autori monitorano nuovi studi, linee guida e allerte sui farmaci. Valutano se le nuove prove siano abbastanza solide da cambiare il consiglio. I cambiamenti importanti portano ad aggiornamenti, mentre sviluppi minori possono attendere la successiva revisione programmata. Le revisioni di qualità controllano formulazione, fonti e se l'informazione resta corretta."
+      ]
+    },
+    {
+      "heading": "Che cosa puoi cercare",
+      "paragraphs": [
+        "Controlla la data di pubblicazione o di aggiornamento, se le fonti sono indicate e se il testo riconosce l'incertezza. Le informazioni senza data, senza fonti o basate su un solo studio meritano ulteriore cautela. Le autorità sanitarie ufficiali e gli organismi che producono le linee guida pubblicano raccomandazioni aggiornate con regolarità."
+      ]
+    },
+    {
+      "heading": "Usare informazioni più vecchie",
+      "paragraphs": [
+        "Le informazioni più vecchie non sono automaticamente sbagliate, ma le scelte di trattamento, le raccomandazioni sugli esami e la sicurezza dei farmaci possono cambiare. Confronta sempre con il consiglio professionale attuale, soprattutto prima di cambiare terapia."
+      ]
+    },
+    {
+      "heading": "Restare informati",
+      "paragraphs": [
+        "Chiedi al medico o al farmacista dei cambiamenti importanti che riguardano la tua condizione, iscriviti a servizi di informazione per pazienti affidabili se vuoi e rivedi l'elenco dei tuoi farmaci almeno una volta all'anno. Tratta le notizie sulla salute con cautela e guarda le fonti originali quando possibile."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Controllare un articolo",
+      "text": "Immagina di leggere un consiglio su un farmaco che sembra diverso da quello che ti ha detto il medico. Potresti guardare la data, controllare un foglietto illustrativo aggiornato e chiedere al medico quale consiglio vale per te."
+    },
+    {
+      "title": "Revisione annuale",
+      "text": "Supponi di convivere con una malattia cronica. Potresti fissare una visita annuale per chiedere di nuovi trattamenti o cambiamenti nelle linee guida e portare l'elenco delle tue domande."
+    }
+  ],
+  "questions": [
+    "Questa informazione è aggiornata e la raccomandazione è cambiata di recente?",
+    "Di quali fonti ti fidi per informazioni aggiornate sulla mia condizione?",
+    "Ci sono nuove opzioni che potrebbero adattarsi a me meglio della terapia attuale?"
+  ]
+}

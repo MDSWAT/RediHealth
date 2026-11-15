@@ -1,0 +1,51 @@
+{
+  "title": "Gripa",
+  "intro": "Gripa este o infecție virală contagioasă a nasului, gâtului și plămânilor, care apare mai ales iarna. Este mai severă decât o răceală obișnuită și poate duce la complicații grave la persoanele în vârstă, la copiii mici, la femeile însărcinate și la persoanele cu boli cronice. Vaccinarea, igiena și odihna sunt principalele instrumente.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Gripa începe de obicei brusc, cu febră, frisoane, dureri musculare și articulare, dureri de cap, oboseală, tuse uscată și durere în gât. Simptomele durează de obicei aproximativ o săptămână, deși tusea și oboseala pot persista mai mult. O răceală obișnuită tinde să fie mai ușoară, cu nas care curge și strănut."
+      ]
+    },
+    {
+      "heading": "Cum se transmite",
+      "paragraphs": [
+        "Virusul se răspândește prin picăturile eliminate la tuse și strănut și prin mâini și suprafețe contaminate. Persoanele sunt contagioase de la aproximativ o zi înainte de simptome până la aproximativ cinci-șapte zile după. Spălatul pe mâini, acoperirea gurii la tuse și rămânerea acasă când sunteți bolnav reduc răspândirea."
+      ]
+    },
+    {
+      "heading": "Tratarea gripei acasă",
+      "paragraphs": [
+        "Majoritatea persoanelor sănătoase se vindecă fără tratament medical. Odihniți-vă, beți multe lichide și folosiți paracetamol sau ibuprofen pentru a ameliora febra și durerea, conform prospectului. Antibioticele nu acționează asupra virusurilor. Copiii nu trebuie să ia aspirină. Medicamentele antivirale pot fi prescrise persoanelor cu risc crescut dacă sunt începute devreme."
+      ]
+    },
+    {
+      "heading": "Complicații",
+      "paragraphs": [
+        "Gripa poate duce la pneumonie, agravarea astmului, probleme cardiace și deshidratare. Cereți ajutor medical pentru dificultăți de respirație, durere în piept, confuzie, febră mare persistentă, febră care revine după o ameliorare sau când un sugar, o persoană în vârstă sau cineva cu o boală cronică se simte rău."
+      ]
+    },
+    {
+      "heading": "Vaccinarea",
+      "paragraphs": [
+        "Vaccinarea anuală este recomandată persoanelor în vârstă, femeilor însărcinate, persoanelor cu afecțiuni cronice, lucrătorilor din sănătate și altor persoane cu risc mai mare. Vaccinul este actualizat în fiecare an pentru a se potrivi virusurilor aflate în circulație. Nu oferă protecție completă, dar reduce riscul de îmbolnăvire și mai ales de complicații grave. Efectele secundare ușoare, precum brațul dureros, sunt frecvente."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rămânerea acasă",
+      "text": "Imaginați-vă că vă treziți cu febră și dureri. Ați putea rămâne acasă, să vă odihniți, să beți lichide, să anunțați locul de muncă și să evitați contactul apropiat cu rudele vulnerabile până vă simțiți mai bine."
+    },
+    {
+      "title": "Decizia privind vaccinarea",
+      "text": "Presupuneți că aveți astm și nu sunteți sigur în privința vaccinului antigripal. Ați putea întreba medicul despre momentul potrivit, protecție și efecte secundare și ați putea programa vizita toamna."
+    }
+  ],
+  "questions": [
+    "Fac parte dintr-un grup care ar trebui să primească anual vaccinul antigripal?",
+    "Când ar fi util un medicament antiviral pentru mine?",
+    "Ce simptome ar trebui să mă facă să caut îngrijiri urgente?"
+  ]
+}

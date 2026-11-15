@@ -1,0 +1,54 @@
+{
+  "title": "Glicemia mare și mică în diabetul de tip 2",
+  "intro": "Persoanele cu diabet de tip 2 pot avea glicemia prea mare, numită hiperglicemie, sau prea mică, numită hipoglicemie. Recunoașterea semnelor și știința ce trebuie făcut vă ajută să rămâneți în siguranță și previn urgențele. Glicemia mică este mult mai rară în cazul modificărilor stilului de viață sau al metforminului singur, dar poate apărea cu insulina sau cu anumite tablete.",
+  "sections": [
+    {
+      "heading": "Glicemia mare",
+      "paragraphs": [
+        "Hiperglicemia se instalează treptat. Semnele tipice sunt setea crescută, urinarea frecventă, oboseala, vederea încețoșată și vindecarea lentă a rănilor. Boala, infecția, stresul, unele medicamente, dozele omise, mesele mari bogate în carbohidrați și lipsa mișcării pot ridica toate nivelurile.",
+        "Nivelurile mari persistente afectează în timp vasele de sânge și nervii și cresc riscul de probleme ale inimii, rinichilor, ochilor și picioarelor. Nivelurile foarte mari, cu vărsături, deshidratare severă, somnolență sau confuzie, necesită îngrijire medicală urgentă."
+      ]
+    },
+    {
+      "heading": "Glicemia mică",
+      "paragraphs": [
+        "Hipoglicemia apare când glicemia scade prea mult, de exemplu după prea multă insulină sau tablete cu sulfoniluree, mese omise, efort neobișnuit sau alcool. Semnele timpurii includ tremur, transpirație, foame, palpitații, amețeală și anxietate. Dacă se agravează, pot urma probleme de concentrare, confuzie, vorbire neclară și pierderea conștienței.",
+        "Unele persoane pierd semnele de avertizare timpurii, mai ales după mulți ani de diabet, așa că monitorizarea regulată este importantă."
+      ]
+    },
+    {
+      "heading": "Ce trebuie făcut în caz de glicemie mică",
+      "paragraphs": [
+        "Dacă puteți înghiți în siguranță, luați carbohidrați cu absorbție rapidă, precum tablete de glucoză, suc de fructe sau o băutură îndulcită, așteptați cam cincisprezece minute și măsurați din nou, repetând dacă nivelul este încă mic. Urmați cu o gustare sau o masă dacă următoarea masă nu este curând. Dacă cineva este inconștient sau nu poate înghiți, chemați serviciul de urgență și nu-i puneți mâncare în gură.",
+        "Rudele și colegii pot fi instruiți ce să facă, iar unele persoane pot avea prescrisă o trusă de urgență cu glucagon."
+      ]
+    },
+    {
+      "heading": "Ce trebuie făcut în caz de glicemie mare",
+      "paragraphs": [
+        "Beți multe lichide fără zahăr și verificați-vă nivelul mai des, conform indicațiilor. Respectați planul de tratament și contactați echipa de diabet dacă nivelurile rămân mari, mai ales în timpul bolii, deoarece dozele pot necesita ajustare. Nu opriți medicamentele fără sfat."
+      ]
+    },
+    {
+      "heading": "Prevenire și planificare",
+      "paragraphs": [
+        "Măsurarea regulată conform planului, mesele echilibrate, orele constante ale medicamentelor, prudența cu alcoolul și planificarea în jurul efortului ajută la prevenirea extremelor. Purtați cu dumneavoastră glucoză sau o gustare, purtați un act de identificare și informați întotdeauna persoanele apropiate despre diabetul dumneavoastră. Nu conduceți când glicemia este mică."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Tremurat la serviciu",
+      "text": "Imaginați-vă că tremurați și transpirați înainte de prânz, după ce ați luat tableta obișnuită. Ați putea să vă măsurați glicemia, să luați glucoză dacă este mică, apoi să discutați cu medicul dacă medicamentul sau orele meselor trebuie schimbate."
+    },
+    {
+      "title": "Planul pentru zilele de boală",
+      "text": "Presupuneți că aveți o boală gastrică și nu puteți mânca. Ați putea suna echipa de diabet pentru a afla ce medicamente să ajustați, ați putea bea regulat cantități mici de lichide și ați putea verifica mai des glicemia."
+    }
+  ],
+  "questions": [
+    "Ce interval țintă ar trebui să urmăresc și cât de des ar trebui să măsor?",
+    "Este probabil ca medicația mea să provoace glicemie mică și ce ar trebui să fac dacă se întâmplă?",
+    "Care este planul meu pentru zilele de boală, călătorii și efort?"
+  ]
+}

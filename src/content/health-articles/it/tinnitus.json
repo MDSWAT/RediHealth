@@ -1,0 +1,51 @@
+{
+  "title": "Acufene",
+  "intro": "L'acufene è la percezione di suoni come fischi, ronzii o sibili senza una fonte esterna. Molte persone lo notano brevemente e per alcune diventa persistente e fastidioso. Raramente è segno di una malattia grave e, anche se per la maggior parte dei casi non esiste una cura, ci sono modi efficaci per ridurne l'impatto.",
+  "sections": [
+    {
+      "heading": "Che cos'è e perché si verifica",
+      "paragraphs": [
+        "L'acufene nasce nel sistema uditivo e nell'elaborazione dei suoni da parte del cervello. Spesso accompagna una perdita dell'udito, per esempio per l'età o per rumori forti, perché il cervello alza la propria attività. Altri fattori scatenanti sono cerume, infezioni dell'orecchio, certi farmaci, problemi della mandibola, stress e traumi della testa o del collo. In molti casi non si trova una causa."
+      ]
+    },
+    {
+      "heading": "Quando andare dal medico",
+      "paragraphs": [
+        "Vai dal medico se l'acufene è nuovo, è presente in un solo orecchio, è pulsante a tempo con il battito cardiaco, si accompagna a perdita improvvisa dell'udito, capogiri o debolezza del viso o segue un trauma cranico. Queste caratteristiche possono richiedere ulteriori esami, come test dell'udito o imaging."
+      ]
+    },
+    {
+      "heading": "Valutazione",
+      "paragraphs": [
+        "Il medico esamina le orecchie, testa l'udito e chiede di esposizione al rumore, farmaci e stress. Gli esami dell'udito cercano una perdita che potrebbe essere trattata con apparecchi acustici. I questionari valutano quanto sia fastidioso l'acufene. Esami del sangue o scansioni si usano quando si sospetta una causa particolare."
+      ]
+    },
+    {
+      "heading": "Trattamento e come farvi fronte",
+      "paragraphs": [
+        "Non esiste un farmaco provato che elimini l'acufene. Può aiutare il trattamento di un'eventuale causa di base, come la rimozione del cerume o la cura della perdita dell'udito con apparecchi acustici. La consulenza e la terapia cognitivo-comportamentale sono efficaci nel ridurre il disagio. La terapia sonora con suoni di fondo, generatori di rumore o app e le tecniche di rilassamento rendono l'acufene meno percepibile, soprattutto di notte. Evita il silenzio completo. Contano sonno, gestione dello stress ed esercizio fisico."
+      ]
+    },
+    {
+      "heading": "Prevenzione e idee sbagliate",
+      "paragraphs": [
+        "Proteggi l'udito dai rumori forti con tappi o cuffie protettive e abbassando il volume delle cuffie. Integratori e dispositivi costosi venduti come cure non hanno prove. La maggior parte delle persone si abitua all'acufene col tempo e spesso diventa meno fastidioso. Cerca aiuto se influisce su sonno, umore o concentrazione."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Affrontare la notte",
+      "text": "Immagina che l'acufene sia forte quando cerchi di dormire. Potresti riprodurre un leggero suono di fondo da un altoparlante, praticare il rilassamento prima di dormire ed evitare il silenzio."
+    },
+    {
+      "title": "Cercare un esame dell'udito",
+      "text": "Supponi di notare un fischio e qualche difficoltà a seguire le conversazioni. Potresti prenotare un esame dell'udito per vedere se gli apparecchi acustici potrebbero aiutare."
+    }
+  ],
+  "questions": [
+    "Il mio acufene è legato a una perdita dell'udito e un apparecchio acustico potrebbe aiutare?",
+    "Quali terapie sono più efficaci per ridurre il disagio?",
+    "Quali segni significherebbero che servono ulteriori esami?"
+  ]
+}

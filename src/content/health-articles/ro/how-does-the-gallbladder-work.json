@@ -1,0 +1,52 @@
+{
+  "title": "Rolul vezicii biliare în digestie",
+  "intro": "Vezica biliară stochează și concentrează bila produsă de ficat. Ajută la livrarea ei pentru digestie, dar nu o produce. Distincția explică de ce digestia poate continua după îndepărtarea vezicii.",
+  "sections": [
+    {
+      "heading": "Stocare",
+      "paragraphs": [
+        "Între mese, bila poate intra în vezică prin canalul ei. Eliminarea apei o concentrează; conține săruri și pigmenți reziduali, alături de alte substanțe."
+      ]
+    },
+    {
+      "heading": "Eliberare",
+      "paragraphs": [
+        "Semnalele după masă contractă vezica. Bila trece prin canale în intestinul subțire; sărurile ajută dispersarea grăsimilor pentru digestie și absorbție."
+      ]
+    },
+    {
+      "heading": "Blocaj",
+      "paragraphs": [
+        "Calculii pot fi silențioși sau bloca un canal. Locul contează: pot apărea durere, inflamație ori icter. Durerea abdominală superioară singură nu identifică organul."
+      ]
+    },
+    {
+      "heading": "După operație",
+      "paragraphs": [
+        "Ficatul produce în continuare bilă, care ajunge în intestin fără rezervor. Mulți digeră adecvat; diareea sau durerea persistentă cere consult, nu acceptare inevitabilă ori dietă extremă permanentă."
+      ]
+    },
+    {
+      "heading": "Ajutor medical",
+      "paragraphs": [
+        "Durerea severă sau persistentă în abdomenul superior cere evaluare. Asocierea cu febră, icter ori vărsături repetate impune urgență. Evitați curele casnice pentru presupusa eliminare a calculilor.",
+        "O diagramă explică structura obișnuită, nu cauza unui simptom individual. Înainte de consultație, notați când a început schimbarea, ce o declanșează și cum afectează activitățile zilnice. Aduceți rezultatele anterioare și întrebați cum se leagă constatările."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira se teme că operația oprește bila. Întreabă cum ajunge bila ficatului în intestin după intervenție."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are durere cu febră și ochi galbeni. Cere ajutor urgent, nu o băutură de curățare."
+    }
+  ],
+  "questions": [
+    "Ce structuri sau procese explică problema care mă preocupă?",
+    "Ce poate arăta un consult, spre deosebire de această explicație generală?",
+    "Ce schimbări impun o reevaluare sau ajutor urgent?"
+  ]
+}

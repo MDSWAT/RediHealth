@@ -1,0 +1,51 @@
+{
+  "title": "Osteoporosi e fratture ossee",
+  "intro": "L'osteoporosi è una condizione in cui le ossa perdono densità e resistenza così da rompersi più facilmente, spesso dopo una caduta lieve. Si sviluppa in silenzio nell'arco di anni ed è più comune nelle donne dopo la menopausa e nelle persone anziane. Esercizio, alimentazione e farmaci possono ridurre il rischio di fratture.",
+  "sections": [
+    {
+      "heading": "Cause e fattori di rischio",
+      "paragraphs": [
+        "L'osso viene ricostruito di continuo e con l'età la demolizione supera la formazione. Il rischio aumenta con la menopausa, la storia familiare, il basso peso corporeo, il fumo, il forte consumo di alcol, poco calcio e vitamina D, scarsa attività fisica, l'uso a lungo termine di corticosteroidi e malattie come l'artrite reumatoide, le malattie della tiroide o la celiachia."
+      ]
+    },
+    {
+      "heading": "Fratture",
+      "paragraphs": [
+        "Le fratture tipiche avvengono alla colonna, all'anca e al polso. Le fratture vertebrali possono causare un improvviso dolore alla schiena, perdita di altezza o postura curva, anche se alcune non causano dolore. Una frattura dell'anca di solito richiede un intervento e può avere gravi conseguenze sull'autonomia, ed è per questo che la prevenzione conta."
+      ]
+    },
+    {
+      "heading": "Valutazione",
+      "paragraphs": [
+        "I medici considerano i fattori di rischio e possono misurare la densità ossea con una speciale scansione a raggi X. Alcuni strumenti stimano il rischio di frattura a dieci anni in base a età, sesso, peso, fratture precedenti e altri fattori. Gli esami del sangue cercano le cause. Non tutti coloro che hanno una densità bassa hanno bisogno di farmaci, quindi la valutazione del rischio guida le decisioni."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Calcio e vitamina D adeguati, esercizi con carico e di equilibrio, smettere di fumare e limitare l'alcol sono la base. I farmaci comprendono i bifosfonati, che rallentano la perdita ossea, e altri farmaci che rinforzano l'osso, somministrati come compresse o iniezioni. Il trattamento è di solito a lungo termine e richiede controlli, compresa la cura dentale prima di alcuni farmaci. Gli effetti collaterali differiscono tra i farmaci e vanno discussi."
+      ]
+    },
+    {
+      "heading": "Prevenire le cadute",
+      "paragraphs": [
+        "Ridurre le cadute è importante quanto rinforzare le ossa. Rimuovi gli ostacoli, usa una buona illuminazione e calzature antiscivolo, fai controllare la vista, rivedi i farmaci che causano capogiri ed esercita l'equilibrio, per esempio con il tai chi. I protettori dell'anca possono aiutare nelle case di cura."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rivedere il proprio rischio",
+      "text": "Immagina di esserti rotto il polso dopo una caduta lieve a sessant'anni. Potresti chiedere al medico una densitometria ossea, una valutazione del rischio e quali passi potrebbero prevenire un'altra frattura."
+    },
+    {
+      "title": "Rendere la casa più sicura",
+      "text": "Supponi che il tuo genitore anziano viva da solo. Potresti aiutarlo a togliere i tappeti sciolti, aggiungere corrimano e luci notturne e organizzare una revisione dei farmaci."
+    }
+  ],
+  "questions": [
+    "Qual è il mio rischio di frattura e ho bisogno di un trattamento?",
+    "Quale farmaco è adatto, per quanto tempo lo prenderei e quali sono gli effetti collaterali?",
+    "Quali esercizi e cambiamenti in casa ridurrebbero il mio rischio di cadere?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Carenza di ferro e anemia da carenza di ferro",
+  "intro": "Il ferro serve a produrre l'emoglobina, la proteina dei globuli rossi che trasporta l'ossigeno. Quando all'organismo manca ferro compaiono stanchezza e altri sintomi e può svilupparsi un'anemia. La carenza di ferro è comune, soprattutto nelle donne con mestruazioni, nelle donne in gravidanza e nei bambini, ed è di solito curabile una volta trovata la causa.",
+  "sections": [
+    {
+      "heading": "Cause",
+      "paragraphs": [
+        "Le cause più comuni sono la perdita di sangue, per esempio per mestruazioni abbondanti o sanguinamenti nell'apparato digerente, un'alimentazione povera di ferro, un maggior fabbisogno in gravidanza e durante la crescita e un ridotto assorbimento dovuto a condizioni come la celiachia o dopo un intervento allo stomaco. Negli uomini e nelle donne dopo la menopausa una perdita di sangue nascosta va indagata."
+      ]
+    },
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi comprendono affaticamento, debolezza, pelle pallida, mancanza di fiato sotto sforzo, mal di testa, capogiri, unghie fragili, perdita di capelli, mani e piedi freddi e gambe senza riposo. Alcune persone hanno voglia di ghiaccio o di sostanze non alimentari. I sintomi si sviluppano lentamente e molte persone si abituano."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "L'emocromo mostra se è presente anemia e la ferritina misura le riserve di ferro. Ulteriori esami possono includere la ricerca di una fonte di sanguinamento, test per la celiachia e, a seconda di età e sintomi, l'esame dell'apparato digerente."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "Il trattamento affronta la causa e reintegra il ferro. Le compresse di ferro assunte una volta al giorno o a giorni alterni sono spesso ben assorbite, preferibilmente lontano da tè, caffè e latticini. Gli effetti collaterali comprendono stitichezza, nausea e feci scure. Il ferro può essere dato per infusione quando le compresse non sono tollerate, non funzionano o quando serve una correzione rapida. L'emoglobina di solito migliora in poche settimane, ma le riserve richiedono diversi mesi per riempirsi."
+      ]
+    },
+    {
+      "heading": "Alimentazione e prevenzione",
+      "paragraphs": [
+        "Gli alimenti ricchi di ferro comprendono carne rossa, pollame, pesce, legumi, verdure a foglia verde scuro, frutta secca e cereali fortificati. La vitamina C favorisce l'assorbimento del ferro vegetale, mentre tè, caffè e calcio lo riducono. Donne in gravidanza, vegetariani e persone con mestruazioni abbondanti dovrebbero chiedere se gli integratori abbiano senso. Non assumere integratori di ferro senza una diagnosi, perché un eccesso può essere dannoso."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Capire la stanchezza",
+      "text": "Immagina di sentirti esausto da mesi. Potresti chiedere al medico un emocromo e il dosaggio della ferritina e riferire dettagli su mestruazioni abbondanti o sintomi digestivi."
+    },
+    {
+      "title": "Assumere bene le compresse",
+      "text": "Supponi che le compresse di ferro ti diano fastidio allo stomaco. Potresti chiedere se assumerle a giorni alterni, con una formulazione diversa o con del cibo possa aiutare, invece di smettere."
+    }
+  ],
+  "questions": [
+    "Che cosa causa la mia carenza di ferro e servono altri esami?",
+    "Per quanto tempo devo assumere il ferro e quando verranno ricontrollati i valori?",
+    "Quali alimenti o abitudini possono migliorare il mio apporto di ferro?"
+  ]
+}

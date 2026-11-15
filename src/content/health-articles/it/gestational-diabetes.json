@@ -1,0 +1,51 @@
+{
+  "title": "Diabete gestazionale: glicemia in gravidanza",
+  "intro": "Il diabete gestazionale è una glicemia elevata diagnosticata per la prima volta in gravidanza. Spesso non dà sintomi. Controlli e trattamento riducono i rischi per gestante e bambino; non è un fallimento personale.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Gli ormoni della gravidanza possono ridurre l’efficacia dell’insulina. Glicemia persistentemente alta può influire su crescita fetale e parto, ma un risultato non implica complicazioni inevitabili."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "La diagnosi usa esami raccomandati, non solo sintomi o zucchero urinario. Imparare preparazione, tecnica, orari e obiettivi individuali delle misurazioni domestiche. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "Il supporto alimentare distribuisce carboidrati in pasti equilibrati senza digiuni. L’attività sicura aiuta quando consentita. Possono servire insulina o altri farmaci raccomandati localmente; non significa scarso impegno. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "Tenere diario di glicemia e pasti e materiali disponibili. Se la terapia può causare ipoglicemia, conoscere il piano di risposta. Discutere vomito, malattie e valori fuori obiettivo senza modifiche da internet. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Contattare l’ostetricia per movimenti fetali ridotti, vomito persistente o malessere importante. Programmare rivalutazione dopo il parto e controlli successivi anche con normalizzazione; il rischio futuro di diabete resta aumentato."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira mostra valori alti dopo colazione e il diario. Il gruppo modifica il piano senza saltare pasti né eliminare tutti i carboidrati."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben aiuta la compagna incinta a prenotare il controllo dopo il parto, senza pensare che una nascita normale concluda i controlli glicemici."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

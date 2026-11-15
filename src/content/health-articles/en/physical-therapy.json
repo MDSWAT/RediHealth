@@ -1,0 +1,51 @@
+{
+  "title": "Physiotherapy",
+  "intro": "Physiotherapy uses movement, exercise, manual techniques and education to restore and maintain physical function. It is used after injury or surgery and for long-term conditions affecting muscles, joints, nerves, the heart and lungs. A good physiotherapist will help you understand your problem and teach you what you can do yourself.",
+  "sections": [
+    {
+      "heading": "What physiotherapists do",
+      "paragraphs": [
+        "Physiotherapists assess how you move, find causes of pain or limitation and plan treatment with you. They work in hospitals, practices, rehabilitation centres and at home. Areas of practice include orthopaedics, neurology, respiratory care, women's health, paediatrics and sports."
+      ]
+    },
+    {
+      "heading": "Typical treatments",
+      "paragraphs": [
+        "Treatment often includes tailored exercises for strength, flexibility, balance and endurance, training in walking or everyday tasks, manual therapy, heat or cold, and advice on posture and activity. Techniques such as electrical stimulation, taping or hydrotherapy are sometimes added. Education about your condition and pacing activities is a core part."
+      ]
+    },
+    {
+      "heading": "What physiotherapy can help with",
+      "paragraphs": [
+        "Common reasons include back and neck pain, joint problems and osteoarthritis, recovery after fractures or joint replacement, sports injuries, stroke and Parkinson's disease, lung diseases, pelvic floor problems, and developmental problems in children. Evidence is strongest for active exercise-based treatment."
+      ]
+    },
+    {
+      "heading": "Getting the most from it",
+      "paragraphs": [
+        "Attend regularly, ask questions, and practise your home exercises, since the benefit comes mostly from what you do between sessions. Tell the therapist about pain, other illnesses and medicines. Agree on goals, such as walking a certain distance or returning to work, and review progress after a few sessions."
+      ]
+    },
+    {
+      "heading": "Practical points",
+      "paragraphs": [
+        "In many countries, a doctor's referral and insurance rules determine how many sessions are covered. You may need to pay part of the cost. If you do not improve or your symptoms worsen, tell your therapist and doctor."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Setting a goal",
+      "text": "Imagine you are recovering from knee surgery. You could agree with your physiotherapist on goals such as climbing stairs without a rail within six weeks, and track your exercises in a diary."
+    },
+    {
+      "title": "Making exercises routine",
+      "text": "Suppose you forget your home exercises. You might link them to a daily habit, set a reminder and ask the therapist to shorten the programme to the essentials."
+    }
+  ],
+  "questions": [
+    "Which exercises will help my condition, and how often should I do them?",
+    "How many sessions do I need, and how will we measure progress?",
+    "What should I avoid while I recover?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Tachicardia ventricolare e morte cardiaca improvvisa",
+  "intro": "La tachicardia ventricolare è un ritmo cardiaco anomalo e veloce che inizia nelle camere inferiori, i ventricoli. Può far pompare male il cuore e può degenerare in fibrillazione ventricolare, che causa un arresto cardiaco improvviso. Un'azione rapida con rianimazione e defibrillazione salva vite e il trattamento può prevenire le recidive.",
+  "sections": [
+    {
+      "heading": "Che cosa succede",
+      "paragraphs": [
+        "I ventricoli normalmente si contraggono in modo organizzato. Nella tachicardia ventricolare battono molto velocemente, spesso sopra centocinquanta battiti al minuto, così il cuore non riesce a riempirsi e a pompare in modo efficace. Gli episodi brevi possono causare solo palpitazioni. Gli episodi prolungati possono causare capogiri, svenimento o collasso. La fibrillazione ventricolare è un tremolio caotico senza pompaggio, mortale in pochi minuti senza trattamento."
+      ]
+    },
+    {
+      "heading": "Cause e fattori di rischio",
+      "paragraphs": [
+        "La maggior parte dei casi si verifica in persone con una malattia cardiaca, come un precedente infarto con cicatrice, cardiomiopatia e insufficienza cardiaca. Possono causarla anche disturbi ereditari del ritmo, come la sindrome del QT lungo, squilibri dei minerali nel sangue, certi farmaci e droghe. La morte cardiaca improvvisa nei giovani è rara e può essere legata a condizioni ereditarie, quindi la storia familiare è importante."
+      ]
+    },
+    {
+      "heading": "Risposta di emergenza",
+      "paragraphs": [
+        "Se qualcuno collassa e non respira normalmente, chiama subito i servizi di emergenza, inizia le compressioni toraciche al centro del torace a un ritmo deciso e veloce e usa un defibrillatore pubblico se disponibile, seguendo le sue istruzioni vocali. La defibrillazione precoce aumenta molto la probabilità di sopravvivenza. Imparare il supporto vitale di base è utile."
+      ]
+    },
+    {
+      "heading": "Diagnosi e trattamento",
+      "paragraphs": [
+        "Un ECG registra il ritmo. Monitor a lungo termine, ecografia del cuore, risonanza, test da sforzo e talvolta studi elettrofisiologici individuano le cause. Il trattamento comprende farmaci come i beta-bloccanti e gli antiaritmici, l'ablazione con catetere per distruggere i circuiti anomali e un defibrillatore impiantabile che rileva i ritmi pericolosi ed eroga una scarica. Trattare la malattia cardiaca di base è essenziale."
+      ]
+    },
+    {
+      "heading": "Vivere con il rischio",
+      "paragraphs": [
+        "Chi ha un defibrillatore ha bisogno di controlli regolari, deve sapere che cosa fare se riceve una scarica e può affrontare restrizioni alla guida. Ai familiari di persone con morte improvvisa o condizioni ereditarie si può proporre lo screening. Il sostegno emotivo aiuta a gestire l'ansia. Evita i fattori scatenanti indicati dal medico, come certe droghe o sforzi intensi in alcune condizioni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Imparare la rianimazione",
+      "text": "Immagina di voler essere preparato. Potresti frequentare un corso di supporto vitale di base e scoprire dove si trovano i defibrillatori pubblici nel tuo quartiere."
+    },
+    {
+      "title": "Screening familiare",
+      "text": "Supponi che un familiare sia morto improvvisamente in giovane età. Potresti chiedere al medico di esami del cuore per i familiari."
+    }
+  ],
+  "questions": [
+    "Qual è la causa della mia aritmia e quale trattamento mi consiglia?",
+    "Ho bisogno di un defibrillatore e che cosa comporterebbe convivere con uno?",
+    "I miei familiari dovrebbero fare lo screening?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "How the eye and brain create vision",
+  "intro": "Vision requires clear optical surfaces, a working retina, optic nerves and brain processing. Different structures do different jobs; poor sight is not always solved by stronger glasses, and a normal surface appearance cannot exclude disease.",
+  "sections": [
+    {
+      "heading": "Focusing light",
+      "paragraphs": [
+        "The cornea bends incoming light; the lens adjusts focus. The iris changes pupil size to control entry. Glasses correct certain focusing errors rather than repair every cause of sight loss."
+      ]
+    },
+    {
+      "heading": "Receiving the image",
+      "paragraphs": [
+        "The retina's rods help in dim light and cones support color and detail. The macula provides fine central vision. Damage to different retinal areas causes different difficulties."
+      ]
+    },
+    {
+      "heading": "Messages and support",
+      "paragraphs": [
+        "The optic nerve carries signals to the brain. Tears protect the surface, and eye muscles align gaze. Eye pressure relates to fluid production and drainage, not simply blood pressure."
+      ]
+    },
+    {
+      "heading": "Everyday protection",
+      "paragraphs": [
+        "Use appropriate protective eyewear for hazardous tasks and follow contact-lens hygiene. Have changes assessed; increasing screen brightness does not treat an underlying eye condition."
+      ]
+    },
+    {
+      "heading": "Urgent changes",
+      "paragraphs": [
+        "Sudden loss of vision or severe eye pain requires emergency assessment. New flashes, many floaters or a shadow across vision need urgent eye care; do not drive yourself with unsafe sight.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira sees a new shadow across her vision. She seeks urgent eye assessment instead of booking only a routine glasses check."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben's reading blur improves with prescribed lenses. He still attends recommended eye checks because focusing and retinal health differ."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": "How diabetes is diagnosed",
+  "intro": "Diabetes is diagnosed with blood tests that measure how much sugar, or glucose, is in the blood. Because early diabetes may cause no symptoms, testing is important for people at higher risk. Understanding the main tests and what the numbers mean makes it easier to follow up and to ask the right questions.",
+  "sections": [
+    {
+      "heading": "Why testing is done",
+      "paragraphs": [
+        "Doctors test for diabetes when someone has symptoms such as great thirst, frequent urination, tiredness, blurred vision or slow wound healing. They also test people without symptoms who have risk factors, for example being overweight, having a close relative with diabetes, high blood pressure, or a history of diabetes during pregnancy.",
+        "Finding diabetes early allows treatment before long-term damage develops in the eyes, kidneys, nerves and blood vessels. It also helps distinguish different forms, which are managed differently."
+      ]
+    },
+    {
+      "heading": "Fasting blood glucose",
+      "paragraphs": [
+        "The fasting glucose test measures the sugar level in a blood sample taken after at least eight hours without food or caloric drinks. It is simple and widely available. A repeated result above the diagnostic threshold of 126 mg/dl, or 7.0 mmol/l, points to diabetes.",
+        "Values between normal and the diabetes threshold are called impaired fasting glucose or prediabetes. This is a warning that the risk of developing diabetes is raised, and lifestyle changes can often delay or prevent progress."
+      ]
+    },
+    {
+      "heading": "HbA1c: the long-term value",
+      "paragraphs": [
+        "HbA1c reflects the average blood sugar over the past two to three months, because it measures the share of haemoglobin that has sugar attached. No fasting is needed. A value of 6.5 percent or above indicates diabetes when confirmed.",
+        "HbA1c can be unreliable in some situations, such as anaemia, certain haemoglobin variants, recent blood loss or transfusion, and kidney disease. In those cases doctors rely more on direct glucose measurements."
+      ]
+    },
+    {
+      "heading": "Glucose tolerance test",
+      "paragraphs": [
+        "In an oral glucose tolerance test, blood sugar is measured fasting and again two hours after drinking a standard sugar solution. It can detect problems that fasting values miss and is used for diagnosing gestational diabetes in pregnancy. Preparation and conditions matter, so follow the instructions you receive.",
+        "A random blood sugar of 200 mg/dl or higher together with typical symptoms can also confirm the diagnosis. Without symptoms, results are normally checked with a second test."
+      ]
+    },
+    {
+      "heading": "After the diagnosis",
+      "paragraphs": [
+        "Your doctor will explain which type of diabetes you have and arrange further tests, for example for kidney function, cholesterol and eye health. Treatment may include diet changes, physical activity, tablets or insulin, along with education about monitoring.",
+        "Many people feel overwhelmed at first. Diabetes education programmes and support groups can help you understand your condition and build confidence in daily management."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing for a test",
+      "text": "Imagine you are booked for a fasting blood glucose test. You might confirm how long to avoid food, whether you can drink water and take your usual medicines, and plan an early appointment so that fasting is easier."
+    },
+    {
+      "title": "Understanding a borderline result",
+      "text": "Suppose your HbA1c is slightly raised but below the diabetes threshold. You could ask what this means for your risk, which lifestyle steps are most helpful and when the test should be repeated."
+    }
+  ],
+  "questions": [
+    "Which test is best for me, and do I need to fast or prepare in any way?",
+    "If my result is borderline, how likely is it to progress, and what can I do about it?",
+    "If I have diabetes, what further tests and education will I be offered?"
+  ]
+}

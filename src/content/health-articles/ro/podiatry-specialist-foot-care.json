@@ -1,0 +1,51 @@
+{
+  "title": "Podologia: îngrijirea specializată a picioarelor",
+  "intro": "Podologii sunt specialiști în îngrijirea picioarelor. Tratează unghiile, bătăturile, calusurile și problemele picioarelor și ajută persoanele cu diabet sau cu probleme de circulație să prevină complicațiile grave ale piciorului. Îngrijirea profesională regulată poate proteja mobilitatea și independența, mai ales la persoanele cu risc mai mare.",
+  "sections": [
+    {
+      "heading": "Ce fac podologii",
+      "paragraphs": [
+        "Podologii evaluează picioarele, taie unghiile, îndepărtează pielea îngroșată și bătăturile, tratează unghiile încarnate și veruci, potrivesc căptușeli și branțuri, sfătuiesc privind încălțămintea și educă despre îngrijirea zilnică a picioarelor. Îngrijirea medicală a piciorului înseamnă de obicei tratarea picioarelor afectate de boli, precum diabetul sau leziunile nervoase."
+      ]
+    },
+    {
+      "heading": "Cine beneficiază cel mai mult",
+      "paragraphs": [
+        "Persoanele cu diabet care au leziuni nervoase, circulație slabă sau ulcere anterioare ale piciorului au cel mai mare risc de plăgi care se vindecă greu și se pot infecta. Beneficiază și persoanele în vârstă care nu își pot ajunge la picioare, cele cu unghii cu ciuperci sau deformate, cu poliartrită reumatoidă sau cu deformări severe ale piciorului."
+      ]
+    },
+    {
+      "heading": "Ce puteți face acasă",
+      "paragraphs": [
+        "Priviți-vă zilnic picioarele, inclusiv tălpile și spațiile dintre degete, sau cereți ajutorul cuiva. Spălați-le cu apă călduță, uscați-le bine, aplicați cremă hidratantă, dar nu între degete, tăiați unghiile drept, purtați pantofi potriviți și șosete curate, fără cusături, și nu mergeți niciodată desculț. Nu folosiți scule ascuțite, substanțe chimice puternice sau sticle cu apă fierbinte pe picioarele cu sensibilitate redusă."
+      ]
+    },
+    {
+      "heading": "Încălțăminte și ajutoare",
+      "paragraphs": [
+        "Pantofii trebuie să fie spațioși în zona degetelor, cu susținere bună și fără puncte de presiune. Branțurile, căptușelile sau pantofii personalizați pot fi prescriși pentru picioarele cu risc ridicat. Verificați interiorul pantofilor pentru obiecte înainte de a-i încălța. Înlocuiți pantofii uzați."
+      ]
+    },
+    {
+      "heading": "Când să cereți rapid ajutor",
+      "paragraphs": [
+        "Cereți sfat urgent pentru o bășică, o rană, roșeață, umflare, căldură, o schimbare de culoare sau febră, mai ales la persoanele cu diabet. Problemele picioarelor pot progresa rapid. Întrebați medicul dacă aveți dreptul la îngrijiri podologice prin asigurarea de sănătate, deoarece regulile diferă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Verificarea zilnică a picioarelor",
+      "text": "Imaginați-vă că aveți diabet și sensibilitate redusă la picioare. Ați putea să vă examinați picioarele în fiecare seară cu o oglindă și ați putea suna medicul dacă observați o bășică sau o zonă roșie."
+    },
+    {
+      "title": "Alegerea pantofilor",
+      "text": "Presupuneți că aveți nevoie de pantofi noi. Ați putea face cumpărăturile după-amiaza, când picioarele sunt ușor umflate, ați putea verifica lățimea și ați putea cere sfatul podologului."
+    }
+  ],
+  "questions": [
+    "Am risc mare de probleme ale picioarelor și cât de des ar trebui verificate?",
+    "Am nevoie de încălțăminte specială sau de branțuri?",
+    "Ce probleme ale picioarelor pot trata singur și pe care ar trebui să le las unui specialist?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Si e rregullon tiroidja metabolizmin",
+  "intro": "Tiroidja është përpara qafës dhe lëshon hormone që ndikojnë energjinë, temperaturën dhe shumë funksione. Simptomat mbivendosen me sëmundje të tjera; vetëm pesha ose lodhja nuk është diagnozë tiroide.",
+  "sections": [
+    {
+      "heading": "Prodhimi",
+      "paragraphs": [
+        "Folikulat përdorin jod për të prodhuar dhe ruajtur hormone. Jodi merret nga ushqimi, por më shumë nuk është gjithmonë më mirë; teprica mund të prishë funksionin."
+      ]
+    },
+    {
+      "heading": "Feedback",
+      "paragraphs": [
+        "Hormoni stimulues nga hipofiza rregullon prodhimin. Hormonet tiroide japin sinjale prapa. Rezultatet interpretohen bashkë me shtatzëninë, ilaçet dhe mundësinë e sëmundjes hipofizare."
+      ]
+    },
+    {
+      "heading": "Pak ose shumë",
+      "paragraphs": [
+        "Prodhimi i ulët ngadalëson; teprica mund të japë mosdurim nxehtësie, dridhje ose rrahje të forta. Simptomat ndryshojnë; ënjtja e qafës nuk tregon vetë prodhimin."
+      ]
+    },
+    {
+      "heading": "Testet",
+      "paragraphs": [
+        "Gjaku vlerëson funksionin, ekografia strukturën kur duhet. Trajtimi varet nga shkaku. Mos rregulloni ilaçet vetëm nga pesha ose merrni hormone për dobësim pa recetë."
+      ]
+    },
+    {
+      "heading": "Ndjekja",
+      "paragraphs": [
+        "Tregoni planet e shtatzënisë, suplementet dhe ilaçet e tjera, dhe mbani analizat. Rrahjet e rënda me dhimbje gjoksi, frymëmarrje të vështirë, ethe të larta ose hutim të madh kërkojnë urgjencë.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka lodhje dhe kërkon vlerësim, jo jod si kurë universale."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben ka nyjë në ekografi. Pyet veçmas për strukturën dhe funksionin në gjak, pa supozuar hormone të tepërta."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

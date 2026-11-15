@@ -1,0 +1,52 @@
+{
+  "title": "The pancreas: digestion and blood-sugar regulation",
+  "intro": "The pancreas lies behind the stomach and has digestive and hormonal functions. These use different routes out of the organ. Trouble with one function does not automatically mean that the other has completely failed.",
+  "sections": [
+    {
+      "heading": "Digestive enzymes",
+      "paragraphs": [
+        "Exocrine cells send enzymes through ducts to the small intestine. These help break down fats, proteins and carbohydrates; they are not normally delivered into the bloodstream to digest food."
+      ]
+    },
+    {
+      "heading": "Neutralizing acid",
+      "paragraphs": [
+        "Pancreatic fluid contains bicarbonate that helps neutralize stomach acid entering the intestine. This creates conditions for enzymes to work and helps protect the intestinal lining."
+      ]
+    },
+    {
+      "heading": "Hormones",
+      "paragraphs": [
+        "Islet cells release insulin and glucagon into the blood. Insulin supports uptake and storage of glucose; glucagon helps the liver release glucose when needed. Their balance works with other signals."
+      ]
+    },
+    {
+      "heading": "Understanding problems",
+      "paragraphs": [
+        "Inflammation, reduced enzyme production and diabetes are distinct though sometimes connected. Greasy stools, weight loss or persistent thirst need assessment rather than self-prescribed enzymes or a universal sugar ban."
+      ]
+    },
+    {
+      "heading": "Practical safety",
+      "paragraphs": [
+        "Severe persistent upper abdominal pain, especially with vomiting or collapse, needs urgent care. With diabetes, follow the individual sick-day and low-glucose plans; do not stop necessary insulin because a meal was missed without advice.",
+        "A diagram explains typical structure, not the cause of an individual symptom. Before a consultation, note when a change began, what brings it on and how it affects daily activities. Bring previous results and ask how the findings fit together."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira asks why prescribed digestive enzymes accompany meals. She learns they help food breakdown, unlike hormones released into blood."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben has thirst and unexpected weight loss. He seeks glucose testing rather than diagnosing a pancreas disorder from a diagram."
+    }
+  ],
+  "questions": [
+    "Which parts or processes explain the problem I am concerned about?",
+    "What can an examination show that this general explanation cannot?",
+    "Which changes should prompt a review or urgent help?"
+  ]
+}

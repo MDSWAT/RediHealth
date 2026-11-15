@@ -1,0 +1,51 @@
+{
+  "title": "Piccoli oggetti nell'occhio",
+  "intro": "Polvere, sabbia, ciglia o minuscole particelle di metallo entrano spesso nell'occhio e causano bruciore, lacrimazione e arrossamento. La maggior parte si può lavare via in sicurezza. Può risultarne un graffio sulla superficie dell'occhio, chiamato abrasione corneale, di solito doloroso ma che guarisce in pochi giorni. Alcune lesioni sono emergenze.",
+  "sections": [
+    {
+      "heading": "Che cosa fare per prima cosa",
+      "paragraphs": [
+        "Lavati le mani. Non strofinare l'occhio, perché strofinare può graffiare la superficie. Sbatti le palpebre più volte e lascia che le lacrime lavino via l'oggetto. Sciacqua l'occhio con acqua pulita o soluzione salina sterile, inclinando la testa in modo che l'acqua scorra dal lato del naso verso l'esterno. Tira la palpebra superiore sopra quella inferiore per aiutare a rimuovere le particelle."
+      ]
+    },
+    {
+      "heading": "Cercare l'oggetto",
+      "paragraphs": [
+        "Con buona luce guarda sotto le palpebre tirando delicatamente giù la palpebra inferiore e, se serve, rovesciando la palpebra superiore su un cotton fioc. Rimuovi le particelle libere con un cotton fioc pulito e umido o con l'angolo di un fazzoletto pulito. Non cercare di rimuovere nulla di conficcato nell'occhio o che tocchi la parte colorata."
+      ]
+    },
+    {
+      "heading": "Abrasione corneale",
+      "paragraphs": [
+        "Un graffio sulla superficie anteriore trasparente può causare un dolore acuto, sensibilità alla luce, lacrimazione, arrossamento e la sensazione di qualcosa nell'occhio anche dopo che l'oggetto non c'è più. I medici lo esaminano con un colorante e una luce e lo trattano con pomata o gocce antibiotiche e talvolta con un antidolorifico. La maggior parte delle abrasioni guarisce in uno-tre giorni. Non portare lenti a contatto finché non è guarita."
+      ]
+    },
+    {
+      "heading": "Quando è un'emergenza",
+      "paragraphs": [
+        "Vai subito al pronto soccorso se qualcosa è conficcato nell'occhio, se l'oggetto proviene da lavori ad alta velocità come smerigliatura, martellatura di metallo o foratura, se c'è un taglio, sangue nell'occhio, perdita della vista, forte dolore, spruzzo di sostanze chimiche o se non riesci ad aprire l'occhio. Per le sostanze chimiche sciacqua prima con acqua per almeno quindici minuti e poi cerca cure urgenti."
+      ]
+    },
+    {
+      "heading": "Prevenzione",
+      "paragraphs": [
+        "Indossa occhiali di sicurezza per smerigliatura, foratura, lavori in legno e giardinaggio e occhialini per sostanze chimiche e alcuni sport. Togli le lenti a contatto e vai dal medico se l'irritazione persiste."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Aiutare con un ciglio",
+      "text": "Immagina che un ciglio sia rimasto nell'occhio. Potresti lavarti le mani, sbattere le palpebre, sciacquare con acqua pulita ed evitare di strofinare."
+    },
+    {
+      "title": "Scegliere le cure d'emergenza",
+      "text": "Supponi che un frammento di metallo ti sia volato nell'occhio durante una smerigliatura. Potresti coprire leggermente l'occhio senza premere, evitare di strofinare e andare a un pronto soccorso oculistico."
+    }
+  ],
+  "questions": [
+    "Come posso capire se la superficie del mio occhio è graffiata?",
+    "Quali gocce o pomate devo usare e per quanto tempo?",
+    "Quale tipo di lavoro richiede una protezione per gli occhi?"
+  ]
+}

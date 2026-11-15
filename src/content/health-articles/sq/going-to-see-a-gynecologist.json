@@ -1,0 +1,51 @@
+{
+  "title": "Vizita gjinekologjike: përgatitja dhe pëlqimi",
+  "intro": "Kujdesi gjinekologjik trajton gjakosjen, dhimbjen pelvike, kontracepsionin, shtatzëninë ose depistimin. Vizita e parë nuk kërkon automatikisht ekzaminim të brendshëm. Mund të pyesni qëllimin dhe ta refuzoni ose ndaloni.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Përgatitni pyetjet kryesore, ciklin menstrual, simptomat, ilaçet dhe mundësinë e shtatzënisë. Nuk duhet të rruheni ose të përdorni produkte pastrimi vaginal para takimit."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Mjeku shpjegon ekzaminimet dhe mostrat, kontrollon pëlqimin dhe ofron privatësi. Kërkoni shoqërues shëndetësor, përkthyes ose mjek të preferuar kur mundet; tregoni dhimbjen apo traumën vetëm aq sa dëshironi. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Testet dhe trajtimet varen nga shqetësimi. Depistimi i qafës së mitrës ndryshon nga hetimi i simptomave; rezultat normal i fundit nuk zëvendëson vlerësimin e gjakosjes ose dhimbjes së re. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Pyesni për koston, konfidencialitetin, marrjen e rezultateve dhe kontaktin nëse nuk vijnë. Gjatë ekzaminimit intim mund të kërkoni pushim, pajisje më të vogla ose takim tjetër për mundësitë. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Dhimbja e fortë pelvike, të fikëtit, gjakosja e madhe ose dhimbja me shtatzëni të mundshme kërkojnë urgjencë. Gjakosja e vazhdueshme pas seksit ose menopauzës kërkon kontroll të shpejtë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira shkon për kontracepsion dhe pyet nëse ekzaminimi i brendshëm ndryshon këshillën. Mjeku shpjegon mundësitë dhe respekton vendimin."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ndihmon partneren të shkruajë pyetje. Ajo zgjedh nëse hyn me të dhe mund të flasë privatisht me mjekun."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

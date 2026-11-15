@@ -1,0 +1,51 @@
+{
+  "title": "Este telemonitorizarea o idee bună în insuficiența cardiacă avansată?",
+  "intro": "Telemonitorizarea înseamnă măsurarea acasă a unor lucruri precum greutatea, tensiunea arterială, pulsul sau simptomele și trimiterea lor electronică către o echipă medicală. În insuficiența cardiacă avansată, scopul este de a observa din timp agravarea și de a evita internările. Rezultatele cercetărilor sunt mixte, așa că decizia depinde de persoană și de program.",
+  "sections": [
+    {
+      "heading": "Ce implică insuficiența cardiacă",
+      "paragraphs": [
+        "În insuficiența cardiacă, inima nu poate pompa sângele atât de bine pe cât are nevoie organismul. Simptomele includ lipsa de aer, oboseala, umflarea gleznelor și creșterea bruscă în greutate din cauza lichidului. Agravările se pot dezvolta în câteva zile și duc adesea la internare, așa că ajustarea timpurie a tratamentului este valoroasă."
+      ]
+    },
+    {
+      "heading": "Cum funcționează telemonitorizarea",
+      "paragraphs": [
+        "Persoanele se cântăresc zilnic și pot măsura tensiunea arterială, pulsul sau nivelul oxigenului cu dispozitive care transmit datele automat sau printr-o aplicație. Unele programe includ apeluri sau chestionare regulate. Personalul medical examinează valorile și contactează pacientul dacă acestea sugerează o problemă. Unele dispozitive implantate pot transmite de asemenea date."
+      ]
+    },
+    {
+      "heading": "Ce arată cercetările",
+      "paragraphs": [
+        "Studiile privind telemonitorizarea au dat rezultate variabile. Unele programe au redus internările sau decesele, altele au arătat puțin beneficiu. Programele care includ acțiune rapidă din partea unui personal instruit par mai probabil să ajute decât simpla colectare a datelor. Rezultatele pot depinde de cât de bolnavă este persoana și de cât de bine este organizat programul."
+      ]
+    },
+    {
+      "heading": "Beneficii și dezavantaje",
+      "paragraphs": [
+        "Beneficiile posibile includ sentimentul de liniștire, mai puține vizite la clinică și ajustarea mai timpurie a medicamentelor. Dezavantajele includ alarmele false și anxietatea, efortul suplimentar al măsurătorilor zilnice, problemele cu dispozitivele, aspectele legate de confidențialitate și nevoia unui acces stabil la internet sau a unor abilități digitale. Telemonitorizarea nu înlocuiește îngrijirea față în față."
+      ]
+    },
+    {
+      "heading": "Decizia de a o folosi",
+      "paragraphs": [
+        "Întrebați dacă un serviciu este disponibil, cine examinează datele și cât de repede, ce se întâmplă noaptea și în weekend și cine plătește. Gândiți-vă dacă dumneavoastră sau o rudă puteți gestiona echipamentul. Cântărirea zilnică și urmărirea simptomelor sunt utile chiar și fără tehnologie sofisticată, iar multe persoane beneficiază de un plan de acțiune scris."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Verificarea zilnică a greutății",
+      "text": "Imaginați-vă că vă cântăriți în fiecare dimineață după ce ați fost la toaletă. Ați putea nota cifra, observa o creștere de peste două kilograme în câteva zile și suna clinica așa cum ați convenit în plan."
+    },
+    {
+      "title": "Alegerea unui program",
+      "text": "Presupuneți că spitalul dumneavoastră oferă telemonitorizare. Ați putea întreba cât de des sunt examinate datele, ce face echipa când valorile se schimbă și dacă vă puteți opri oricând."
+    }
+  ],
+  "questions": [
+    "Este telemonitorizarea disponibilă pentru mine și este probabil să ajute în situația mea?",
+    "Cine îmi va vedea datele și cum vor reacționa?",
+    "Ce ar trebui să fac acasă dacă greutatea sau simptomele mi se schimbă?"
+  ]
+}

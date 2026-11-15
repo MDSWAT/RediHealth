@@ -1,0 +1,52 @@
+{
+  "title": "Skriningu e zbulimi i hershëm",
+  "intro": "Skriningu do të thotë testimi i njerëzve që nuk kanë simptoma për të gjetur një sëmundje herët. Mund të shpëtojë jetë në disa gjendje, por jo çdo test skriningu ia vlen. Të gjitha testet kanë edhe anë negative si alarmet e rreme e mbidiagnoza. Njohja e të dyja anëve ju ndihmon të vendosni nëse do të merrni pjesë.",
+  "sections": [
+    {
+      "heading": "Për çfarë shërben skriningu",
+      "paragraphs": [
+        "Programet e skriningut ftojnë njerëz në një grupmoshë ose grup rreziku të caktuar të testohen, për shembull për kancerin e gjirit, të qafës së mitrës ose të zorrës, ose për tensionin e lartë. Ideja është që gjetja më e hershme e një sëmundjeje lejon trajtim më efektiv. Kjo funksionon vetëm nëse sëmundja mund të zbulohet para simptomave e trajtimi i hershëm është më i mirë se ai i vonshëm."
+      ]
+    },
+    {
+      "heading": "Përfitimet e mundshme",
+      "paragraphs": [
+        "Skriningu i mirë ul vdekjet ose komplikimet nga një sëmundje e mund të lejojë trajtim më të butë. Mund të japë edhe qetësim kur rezultatet janë normale. Për shembull, skriningu i qafës së mitrës mund të gjejë ndryshime parakancerore që trajtohen para se të zhvillohet kanceri."
+      ]
+    },
+    {
+      "heading": "Dëmet e mundshme",
+      "paragraphs": [
+        "Testet e skriningut nuk janë kurrë të përsosura. Rezultatet false-pozitive shkaktojnë shqetësim e teste të mëtejshme, disa prej të cilave kanë rrezik. Rezultatet false-negative mund të japin qetësim të rremë. Mbidiagnoza do të thotë zbulimi i gjendjeve që nuk do të kishin shkaktuar kurrë dëm gjatë jetës, duke çuar në trajtim të panevojshëm. Disa teste përfshijnë rrezatim ose parehati."
+      ]
+    },
+    {
+      "heading": "Si të vendosni",
+      "paragraphs": [
+        "Shikoni informacion të qartë për sa njerëz përfitojnë e sa dëmtohen, për shembull për çdo mijë persona të kontrolluar. Merrni parasysh rrezikun, shëndetin, vlerat tuaja e si do t'i përballonit gjetjet e pasigurta. Mund ta refuzoni skriningun pa disavantazh në kujdesin tuaj rutinë. Simptomat duhen kontrolluar gjithmonë pavarësisht skriningut.",
+        "Një test skriningu pozitiv nuk është diagnozë. Çon në teste të mëtejshme për të konfirmuar ose përjashtuar sëmundjen, prandaj pyesni cilët janë hapat e radhës, sa kohë do të marrin rezultatet e kë të kontaktoni."
+      ]
+    },
+    {
+      "heading": "Shembuj të zakonshëm",
+      "paragraphs": [
+        "Programet e njohura përfshijnë mamografinë për kancerin e gjirit, testet e qelizave të qafës së mitrës e HPV, testet e jashtëqitjes ose kolonoskopinë për kancerin e zorrës e kontrollet e tensionit e kolesterolit. Cilat teste ofrohen e nga çfarë moshe varet nga vendi e ndryshon me zhvillimin e provave."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Leximi i një ftese",
+      "text": "Imagjinoni që merrni një ftesë për skrining. Mund ta lexoni me kujdes fletëpalosjen e informacionit, të shënoni sa njerëz përfitojnë e sa dëmtohen e të diskutoni çdo pyetje me mjekun."
+    },
+    {
+      "title": "Përballimi i një rezultati të pasigurt",
+      "text": "Supozoni që testi juaj duhet përsëritur. Mund të pyesni sa shpesh del i padëmshëm e kur do të dini më shumë."
+    }
+  ],
+  "questions": [
+    "Cilat janë përfitimet e dëmet e këtij testi skriningu për dikë si unë?",
+    "Çfarë ndodh nëse rezultati i testit është jonormal?",
+    "Sa shpesh duhet të kontrollohem dhe deri në çfarë moshe?"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "title": "Glicemia alta e bassa nel diabete di tipo 2",
+  "intro": "Le persone con diabete di tipo 2 possono avere una glicemia troppo alta, detta iperglicemia, o troppo bassa, detta ipoglicemia. Riconoscere i segni e sapere che cosa fare aiuta a restare al sicuro e previene le emergenze. La glicemia bassa è molto meno comune con i soli cambiamenti dello stile di vita o con la sola metformina, ma può verificarsi con l'insulina o certe compresse.",
+  "sections": [
+    {
+      "heading": "Glicemia alta",
+      "paragraphs": [
+        "L'iperglicemia si sviluppa gradualmente. I segni tipici sono aumento della sete, minzione frequente, stanchezza, visione offuscata e lenta guarigione delle ferite. Malattia, infezione, stress, certi farmaci, dosi dimenticate, pasti abbondanti ricchi di carboidrati e mancanza di esercizio possono tutti far salire i livelli.",
+        "Livelli elevati persistenti danneggiano nel tempo i vasi sanguigni e i nervi e aumentano il rischio di problemi a cuore, reni, occhi e piedi. Livelli molto alti con vomito, grave disidratazione, sonnolenza o confusione richiedono cure mediche urgenti."
+      ]
+    },
+    {
+      "heading": "Glicemia bassa",
+      "paragraphs": [
+        "L'ipoglicemia si verifica quando la glicemia scende troppo, per esempio dopo troppa insulina o compresse a base di sulfaniluree, pasti saltati, esercizio insolito o alcol. I primi segni comprendono tremore, sudorazione, fame, palpitazioni, capogiri e ansia. Se peggiora, possono seguire difficoltà di concentrazione, confusione, eloquio impastato e perdita di coscienza.",
+        "Alcune persone perdono i primi segnali di allarme, soprattutto dopo molti anni di diabete, quindi il monitoraggio regolare è importante."
+      ]
+    },
+    {
+      "heading": "Cosa fare con la glicemia bassa",
+      "paragraphs": [
+        "Se riesci a deglutire in sicurezza, assumi carboidrati a rapido assorbimento come compresse di glucosio, succo di frutta o una bevanda zuccherata, attendi circa quindici minuti e misura di nuovo, ripetendo se il livello è ancora basso. Fai seguire uno spuntino o un pasto se il pasto successivo non è vicino. Se qualcuno è incosciente o non riesce a deglutire, chiama i servizi di emergenza e non mettergli cibo in bocca.",
+        "Familiari e colleghi possono essere istruiti su cosa fare e ad alcune persone può essere prescritto un kit di emergenza con glucagone."
+      ]
+    },
+    {
+      "heading": "Cosa fare con la glicemia alta",
+      "paragraphs": [
+        "Bevi molti liquidi senza zucchero e controlla il livello più spesso, come consigliato. Segui il tuo piano di trattamento e contatta il team diabetologico se i livelli restano alti, soprattutto durante una malattia, poiché le dosi potrebbero dover essere aggiustate. Non interrompere i farmaci senza consiglio."
+      ]
+    },
+    {
+      "heading": "Prevenzione e pianificazione",
+      "paragraphs": [
+        "Misurazione regolare secondo il tuo piano, pasti equilibrati, orari costanti dei farmaci, cautela con l'alcol e pianificazione intorno all'esercizio aiutano a prevenire gli estremi. Porta con te glucosio o uno spuntino, indossa un'identificazione e informa sempre le persone vicine del tuo diabete. Non guidare quando la glicemia è bassa."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Sentirsi tremanti al lavoro",
+      "text": "Immagina di sentirti tremante e sudato prima di pranzo dopo aver preso la solita compressa. Potresti misurare la glicemia, assumere glucosio se è bassa, poi parlare con il medico per capire se la terapia o l'orario dei pasti debba cambiare."
+    },
+    {
+      "title": "Piano per i giorni di malattia",
+      "text": "Supponi di avere un disturbo di stomaco e di non riuscire a mangiare. Potresti telefonare al tuo team diabetologico per sapere quali farmaci aggiustare, bere regolarmente piccole quantità di liquidi e controllare la glicemia più spesso."
+    }
+  ],
+  "questions": [
+    "Quale intervallo obiettivo dovrei perseguire e con che frequenza devo misurare?",
+    "La mia terapia può causare glicemia bassa e che cosa devo fare se succede?",
+    "Qual è il mio piano per i giorni di malattia, i viaggi e l'esercizio?"
+  ]
+}

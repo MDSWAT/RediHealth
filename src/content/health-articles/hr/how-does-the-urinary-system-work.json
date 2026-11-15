@@ -1,0 +1,56 @@
+{
+  "title": "Kako radi mokraćni sustav",
+  "intro": "Mokraćni sustav filtrira otpadne tvari i višak vode iz krvi i izlučuje ih kao mokraću. Čine ga bubrezi, mokraćovodi, mjehur i mokraćna cijev. Kad znate kako ti dijelovi zajedno rade, lakše je razumjeti uobičajene probleme kao što su infekcije, kamenci ili teškoće s kontrolom mjehura te o njima razgovarati sa zdravstvenim djelatnikom.",
+  "sections": [
+    {
+      "heading": "Bubrezi: filtriranje krvi",
+      "paragraphs": [
+        "Imate dva bubrega, svaki otprilike veličine šake, smještena s obje strane kralježnice ispod rebara. Zajedno filtriraju svu vašu krv mnogo puta na dan. Sitne filtracijske jedinice uklanjaju otpadne tvari, suvišne soli i višak vode, a zadržavaju ono što tijelu treba, poput bjelančevina i većine hranjivih tvari.",
+        "Osim što stvaraju mokraću, bubrezi pomažu regulirati krvni tlak, uravnotežuju minerale kao što su natrij i kalij, održavaju odgovarajuću kiselost krvi i proizvode hormone koji potiču stvaranje crvenih krvnih stanica i zdravlje kostiju. Budući da obavljaju toliko zadaća, problemi s bubrezima mogu utjecati na cijelo tijelo."
+      ]
+    },
+    {
+      "heading": "Od bubrega do mjehura",
+      "paragraphs": [
+        "Mokraća se skuplja u području oblika lijevka unutar svakog bubrega, a zatim teče niz tanku mišićnu cijev koja se zove mokraćovod. Blagi, valoviti mišićni stezi potiskuju mokraću naprijed pa se ona kreće i kad ležite. Svaki mokraćovod ulazi u mjehur pod kutom koji pomaže spriječiti povratak mokraće.",
+        "Ako nešto zapriječi mokraćovod, primjerice bubrežni kamenac, mokraća se može zaustaviti i uzrokovati bol koja se često opisuje kao iznenadna i grčevita, u boku ili leđima. Liječnici takve simptome shvaćaju ozbiljno jer opstrukcija zajedno s infekcijom može oštetiti bubreg."
+      ]
+    },
+    {
+      "heading": "Pohranjivanje i izlučivanje mokraće",
+      "paragraphs": [
+        "Mokraćni mjehur je rastezljiv, mišićni organ koji pohranjuje mokraću dok je ne bude zgodno isprazniti. Kad se puni, živci šalju signale mozgu, a većina odraslih prvi put osjeti potrebu za mokrenjem kad mjehur sadrži nekoliko stotina mililitara. Zdrav mjehur može zadržati mokraću nekoliko sati bez curenja.",
+        "Kad odlučite mokriti, mozak daje signal mišiću mjehura da se stegne, a mišićima zapirača oko izlaza da se opuste. Mokraća potom izlazi iz tijela kroz mokraćnu cijev. Mokraćna cijev je kraća u žena nego u muškaraca, što je jedan od razloga zašto su infekcije mjehura češće u žena."
+      ]
+    },
+    {
+      "heading": "Uobičajeni problemi",
+      "paragraphs": [
+        "Tipični problemi uključuju infekcije mokraćnog sustava, kamence u bubregu i mjehuru, prekomjerno aktivan mjehur, curenje mokraće pri kašljanju ili vježbanju te, u muškaraca, otežano pražnjenje mjehura zbog povećane prostate. Simptomi mogu biti žarenje pri mokrenju, često ili hitno mokrenje, krv u mokraći ili bol u boku ili donjem dijelu trbuha.",
+        "Mnoga od tih stanja mogu se liječiti. Krv u mokraći, vrućicu uz bol u leđima ili nemogućnost mokrenja treba što prije provjeriti jer mogu upućivati na nešto što zahtijeva hitnu pozornost."
+      ]
+    },
+    {
+      "heading": "Briga za zdravlje mokraćnog sustava",
+      "paragraphs": [
+        "Dovoljan unos tekućine, obično nešto više kad je vruće ili kad ste aktivni, pomaže održavati mokraću razrijeđenom i ispirati sustav. Ne zadržavanje mokraće predugo, potpuno pražnjenje mjehura i dobra higijena mogu smanjiti rizik od infekcije.",
+        "Kontrola krvnog tlaka i šećera u krvi dugoročno štiti bubrege, a potreban je oprez s nekim lijekovima protiv bolova i drugim lijekovima koji ih mogu opteretiti. Redoviti pregledi važniji su ako imate dijabetes, visok krvni tlak ili obiteljsku povijest bolesti bubrega."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rano uočavanje promjena",
+      "text": "Zamislite da ste počeli puno češće noću ići na zahod, a mokrenje vas ponekad peče. Nekoliko dana možete bilježiti koliko često idete i koliko pijete te to donijeti na pregled kako bi liječnik vidio obrazac i odlučio je li pretraga mokraće korisna."
+    },
+    {
+      "title": "Razgovor o curenju",
+      "text": "Pretpostavite da vam malo mokraće iscuri kad se smijete ili nešto podižete, a stidite se toga. Mogli biste vježbati kako točno opisati kada se to događa i kako utječe na vaš dan, a zatim pitati mogu li pomoći vježbe mišića dna zdjelice ili druge mogućnosti, znajući da je to čest problem koji se može liječiti."
+    }
+  ],
+  "questions": [
+    "Mogu li moji simptomi potjecati od infekcije, kamenca ili problema s kontrolom mjehura i koje bi pretrage pomogle da se to utvrdi?",
+    "Koliko tekućine trebam piti svaki dan s obzirom na svoje zdravlje i lijekove?",
+    "Koji simptomi trebaju značiti da odmah potražim pomoć umjesto da čekam redoviti pregled?"
+  ]
+}

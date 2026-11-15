@@ -1,0 +1,56 @@
+{
+  "title": "Cum este reglat ritmul inimii",
+  "intro": "Inima bate datorită propriului sistem electric, care declanșează fiecare bătaie și coordonează camerele astfel încât să se contracte în ordinea corectă. Creierul și hormonii ajustează ritmul în funcție de nevoile dumneavoastră. Înțelegerea modului în care funcționează ajută la interpretarea palpitațiilor, a ritmurilor neregulate și a unor teste precum EKG-ul.",
+  "sections": [
+    {
+      "heading": "Sistemul electric al inimii",
+      "paragraphs": [
+        "Fiecare bătaie începe în nodul sinusal, un mic grup de celule din partea superioară dreaptă a inimii, care acționează ca stimulator natural. El trimite un impuls electric prin cele două camere superioare, atriile, făcându-le să se contracte și să împingă sângele în camerele inferioare.",
+        "Semnalul ajunge apoi la nodul atrioventricular, care îl întârzie scurt timp pentru ca ventriculele să se umple. El coboară prin fibre speciale care se răspândesc în pereții ventriculelor, determinându-le să se contracte împreună și să pompeze sângele spre plămâni și spre restul corpului."
+      ]
+    },
+    {
+      "heading": "Controlul frecvenței cardiace",
+      "paragraphs": [
+        "În repaus, inima unui adult bate de obicei de 60 până la 100 de ori pe minut. În timpul efortului, al stresului sau al febrei ritmul crește, iar în somn scade. Sistemul nervos autonom îl ajustează: sistemul simpatic accelerează inima, iar cel parasimpatic o încetinește.",
+        "Hormoni precum adrenalina, hormonii tiroidieni, minerale din sânge precum potasiul și calciul și multe medicamente influențează de asemenea ritmul. Sportivii bine antrenați au adesea un puls de repaus lent, care este sănătos."
+      ]
+    },
+    {
+      "heading": "Când ritmul este perturbat",
+      "paragraphs": [
+        "Aritmiile sunt tulburări ale ritmului inimii. Inima poate bate prea repede, prea încet sau neregulat. Exemple frecvente sunt fibrilația atrială, în care atriile tremură neregulat, bătăile suplimentare care se simt ca o bătaie sărită și blocul cardiac, în care semnalele sunt întârziate sau blocate.",
+        "Simptomele includ palpitații, amețeală, lipsă de aer, disconfort în piept sau leșin. Unele persoane nu au simptome. Fibrilația atrială mărește riscul de accident vascular cerebral, motiv pentru care este important să fie depistată și tratată corespunzător."
+      ]
+    },
+    {
+      "heading": "Teste pentru ritmul inimii",
+      "paragraphs": [
+        "Un electrocardiogram înregistrează activitatea electrică a inimii în câteva minute. Dacă simptomele apar și dispar, un EKG de lungă durată purtat de la o zi până la câteva săptămâni sau un înregistrator implantat le pot surprinde. Analizele de sânge, ecografia inimii și testele de efort ajută la căutarea cauzelor.",
+        "Ceasurile inteligente pot înregistra ritmul, dar rezultatele lor trebuie confirmate prin teste medicale înainte de a lua decizii."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Multe bătăi suplimentare nevinovate nu necesită alt tratament decât evitarea factorilor declanșatori, precum excesul de cafea, alcoolul, nicotina sau lipsa somnului. Alte tulburări de ritm pot fi tratate cu medicamente care controlează frecvența sau ritmul, anticoagulante pentru reducerea riscului de accident vascular cerebral, cardioversie electrică sau ablație prin cateter, care tratează sursa semnalelor anormale.",
+        "Un stimulator cardiac poate susține o inimă care bate prea încet, iar un defibrilator implantabil poate opri ritmurile rapide periculoase. Sunați la serviciul de urgență în caz de leșin, durere în piept sau lipsă severă de aer cu bătăi rapide ale inimii."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Descrierea palpitațiilor",
+      "text": "Imaginați-vă că uneori simțiți inima bătând repede câteva minute. Ați putea nota când se întâmplă, cât de rapid pare pulsul, ce făceați și alte simptome, pentru ca medicul să aleagă testele potrivite."
+    },
+    {
+      "title": "Înțelegerea deciziei privind anticoagulantul",
+      "text": "Presupuneți că vi s-a diagnosticat fibrilație atrială. Ați putea întreba cum a fost estimat riscul dumneavoastră personal de accident vascular cerebral, care sunt beneficiile și riscurile de sângerare ale anticoagulantelor și ce semne de sângerare să urmăriți."
+    }
+  ],
+  "questions": [
+    "Ce tip de tulburare de ritm ar putea explica simptomele mele și ce teste o vor clarifica?",
+    "Am nevoie de tratament și cum mi-ar reduce riscul de accident vascular cerebral sau de alte complicații?",
+    "Ce factori declanșatori ar trebui să evit și când ar trebui să sun la urgențe?"
+  ]
+}

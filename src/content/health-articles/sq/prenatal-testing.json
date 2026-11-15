@@ -1,0 +1,51 @@
+{
+  "title": "Testimi prenatal",
+  "intro": "Testet prenatale shqyrtojnë shëndetin e zhvillimin e një foshnje të palindur. Përfshijnë ultratinguj rutinë dhe teste opsionale për gjendje kromozomale si sindroma Down. Vendimi nëse do t'i bëni është zgjedhje personale dhe këshillimi para e pas testimit ju ndihmon të kuptoni çfarë mund e çfarë nuk mund t'ju thonë rezultatet.",
+  "sections": [
+    {
+      "heading": "Llojet e testeve",
+      "paragraphs": [
+        "Testet e skriningut vlerësojnë gjasën që një foshnje ka një gjendje, por nuk japin përgjigje të prerë. Përfshijnë matje me ultratingull, analiza gjaku të nënës e një analizë gjaku që analizon fragmente të materialit gjenetik të foshnjës të gjetura në gjakun e nënës. Testet diagnostikuese si marrja e mostrës së vileve korionike e amniocenteza shqyrtojnë qelizat e foshnjës dhe japin përgjigje të qartë, por ngrenë një rrezik të vogël aborti spontan."
+      ]
+    },
+    {
+      "heading": "Çfarë do të thonë rezultatet",
+      "paragraphs": [
+        "Rezultati i skriningut shprehet si probabilitet, jo si diagnozë. Një rezultat me rrezik të lartë nuk do të thotë se foshnja është e prekur dhe një rezultat me rrezik të ulët nuk e përjashton plotësisht një gjendje. Testet mund të zbulojnë gjithashtu gjetje të pasigurta që shkaktojnë shqetësim. Ultratingulli mund të tregojë ndryshime strukturore në organet e foshnjës, megjithëse jo të gjitha gjendjet duken."
+      ]
+    },
+    {
+      "heading": "Vendimi nëse do të testoni",
+      "paragraphs": [
+        "Disa prindër duan informacion për t'u përgatitur, për të planifikuar lindjen në një qendër të specializuar ose për të marrë parasysh trajtimin para ose pas lindjes. Të tjerë preferojnë të mos testojnë. Mendoni paraprakisht çfarë do të bënit me rezultatin, si do të ndiheshit për pasigurinë e cilat vlera ju kanë rëndësi. Mund të refuzoni çdo test."
+      ]
+    },
+    {
+      "heading": "Mbështetja e këshillimi",
+      "paragraphs": [
+        "Këshillimi nga mjekët, mamitë e shërbimet e pavarura mund t'i shpjegojë opsionet e pasojat. Nëse një test tregon një gjendje të mundshme, duhet të merrni kohë e mbështetje për të vendosur hapat e mëtejshëm, përfshirë testime shtesë, përgatitjen për një fëmijë me nevoja të veçanta ose, sipas ligjit, shqyrtimin e ndërprerjes së shtatzënisë. Grupet e mbështetjes e specialistët ofrojnë informacion për jetën me gjendje të ndryshme."
+      ]
+    },
+    {
+      "heading": "Ultratingujt rutinë e zgjedhjet e përditshme",
+      "paragraphs": [
+        "Ultratingujt rutinë gjatë shtatzënisë kontrollojnë rritjen, pozicionin e placentës e organet e foshnjës dhe ofrohen për të gjithë. Janë pjesë e kujdesit prenatal dhe ndryshojnë nga testet për gjendje kromozomale. Pyesni çfarë synon të kërkojë çdo skanim, që të dini çfarë të prisni nga rezultatet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Peshimi i një vendimi",
+      "text": "Imagjinoni që ju ofrohet një analizë gjaku për sindromën Down. Mund të diskutoni çfarë do të ndryshonte rezultati për ju, të pyesni për saktësinë e alarmet e rreme e të vendosni me partnerin nëse do ta bëni."
+    },
+    {
+      "title": "Pas një rezultati me rrezik të lartë",
+      "text": "Supozoni që një rezultat skriningu tregon gjasë të ngritur. Mund të kërkoni këshillim, të pyesni për rreziqet e përfitimet e një testi diagnostikues e të merrni kohë para se të vendosni."
+    }
+  ],
+  "questions": [
+    "Cilat teste ofrohen dhe sa të sakta janë?",
+    "Cilat janë rreziqet e testeve diagnostikuese si amniocenteza?",
+    "Ku mund të gjej këshillim të pavarur para e pas testimit?"
+  ]
+}

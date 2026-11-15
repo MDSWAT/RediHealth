@@ -1,0 +1,51 @@
+{
+  "title": "What can help adults with hearing loss or deafness",
+  "intro": "Hearing loss in adults is common and usually gradual. Many options exist, from hearing aids to implants, communication training and assistive technology. Treating hearing loss early is linked with better communication, less isolation and possibly better brain health.",
+  "sections": [
+    {
+      "heading": "Getting assessed",
+      "paragraphs": [
+        "A hearing test by an ear, nose and throat doctor or audiologist measures the type and degree of loss. Ear examination checks for earwax and infections, which can be treated. Further tests look for causes, such as noise damage, age, infection, medicines or rarely a tumour. Sudden hearing loss in one ear needs urgent attention."
+      ]
+    },
+    {
+      "heading": "Hearing aids",
+      "paragraphs": [
+        "Hearing aids amplify sound and are the main treatment for most types of sensorineural hearing loss. Modern devices are small, digital and adjust to environments, and can connect to phones and televisions. They need fitting and fine-tuning by a professional, and time to get used to them, with regular use. Cost coverage differs between countries and insurers."
+      ]
+    },
+    {
+      "heading": "Implants",
+      "paragraphs": [
+        "Cochlear implants bypass damaged hair cells in the inner ear and stimulate the hearing nerve directly. They are for people with severe or profound loss who get little benefit from hearing aids. Surgery and months of rehabilitation are needed. Bone-anchored devices help with certain conductive hearing loss or one-sided deafness. Middle ear implants are another option for selected patients."
+      ]
+    },
+    {
+      "heading": "Assistive devices and communication",
+      "paragraphs": [
+        "Amplified telephones, captioning, loop systems, television streamers, and visual or vibrating alerts help in daily life. Speech reading, communication training and, for people who are deaf, sign language open further ways to communicate. Interpreters and captioning services support work and appointments."
+      ]
+    },
+    {
+      "heading": "Support and wellbeing",
+      "paragraphs": [
+        "Hearing loss can lead to withdrawal and low mood. Counselling, peer groups and involving family help. Tinnitus often accompanies hearing loss and can be eased by hearing aids and sound therapy. Protect remaining hearing from loud noise, and have regular check-ups."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Starting with hearing aids",
+      "text": "Imagine you are fitted with new hearing aids. You could wear them a little longer each day, practise in quiet rooms first and return for adjustments."
+    },
+    {
+      "title": "Considering an implant",
+      "text": "Suppose hearing aids no longer help. You might ask your specialist whether you are a candidate for a cochlear implant and what the process involves."
+    }
+  ],
+  "questions": [
+    "Which type of hearing loss do I have, and what treatment is best?",
+    "Are hearing aids or implants covered by my insurance?",
+    "Which assistive devices would help at home and at work?"
+  ]
+}

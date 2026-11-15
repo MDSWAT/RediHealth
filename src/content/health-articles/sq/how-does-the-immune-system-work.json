@@ -1,0 +1,52 @@
+{
+  "title": "Si i njeh dhe u përgjigjet imuniteti kërcënimeve",
+  "intro": "Imuniteti është rrjet barrierash, qelizash, organesh e proteinash, jo një shkallë e vetme fuqie. Përgjigjet ndaj kërcënimeve duke kufizuar dëmin. Më shumë inflamacion nuk është gjithmonë mbrojtje më e mirë.",
+  "sections": [
+    {
+      "heading": "Mbrojtja e parë",
+      "paragraphs": [
+        "Lëkura dhe mukozat kufizojnë hyrjen. Mbrojtja e lindur përgjigjet shpejt përmes qelizave e sinjaleve; inflamacioni sjell ndihmë por edhe ënjtje e shqetësim."
+      ]
+    },
+    {
+      "heading": "Përgjigjja e synuar",
+      "paragraphs": [
+        "Limfocitet B dhe T njohin objektiva të veçantë. Antitrupat lidhen me ta, ndërsa qeliza të ndryshme T koordinojnë ose sulmojnë qelizat e infektuara. Rolet bashkëpunojnë."
+      ]
+    },
+    {
+      "heading": "Kujtesa",
+      "paragraphs": [
+        "Pas disa ekspozimeve qelizat e kujtesës ndihmojnë përgjigje më të shpejtë. Vaksinat japin mbrojtje pa sëmundjen e plotë, por efekti ndryshon dhe nuk garanton shmangien e çdo infeksioni."
+      ]
+    },
+    {
+      "heading": "Çrregullimi",
+      "paragraphs": [
+        "Alergjia reagon ndaj substancave zakonisht të padëmshme; autoimuniteti kundër trupit. Imunodeficienca ul mbrojtje të caktuara. Janë probleme të ndryshme; suplementi nuk është trajtim universal."
+      ]
+    },
+    {
+      "heading": "Kujdesi",
+      "paragraphs": [
+        "Ndiqni vaksinimin dhe higjienën e rekomanduar, sidomos me imunosupresion. Infeksionet e pazakonta të përsëritura kërkojnë kontroll. Sëmundja e rëndë ose ethet me disa terapi kërkojnë planin urgjent të ekipit, jo pritje për suplemente.",
+        "Një skemë shpjegon ndërtimin e zakonshëm, jo shkakun e një simptome individuale. Para konsultës, shënoni kur filloi ndryshimi, çfarë e nxit dhe si ndikon në aktivitetet e përditshme. Merrni rezultatet e mëparshme dhe pyesni si lidhen gjetjet."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet nëse inflamacioni i madh është imunitet më i mirë. Mëson se kontrolli i përgjigjes së tepruar mund të mbrojë indet."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arben kontrollon vaksinat para imunosupresionit në vend të një suplementi që premton forcim universal."
+    }
+  ],
+  "questions": [
+    "Cilat struktura ose procese shpjegojnë problemin që më shqetëson?",
+    "Çfarë mund të tregojë ekzaminimi që ky shpjegim i përgjithshëm nuk tregon?",
+    "Cilat ndryshime kërkojnë rivlerësim ose ndihmë urgjente?"
+  ]
+}

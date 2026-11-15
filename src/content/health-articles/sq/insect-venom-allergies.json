@@ -1,0 +1,51 @@
+{
+  "title": "Alergjia ndaj helmit të insekteve",
+  "intro": "Shumica e thumbimeve të insekteve shkaktojnë vetëm dhimbje e enjtje të shkurtër. Te disa njerëz, sistemi imunitar reagon tepër ndaj helmit të bletëve, grerëzave ose grerëzave të mëdha dhe shkakton një reagim alergjik të rrezikshëm. Njohja e shenjave paralajmëruese, mbajtja e ilaçit të urgjencës dhe marrja në konsideratë e imunoterapisë me helm mund t'i mbrojnë njerëzit në rrezik.",
+  "sections": [
+    {
+      "heading": "Reagimet normale kundrejt atyre alergjike",
+      "paragraphs": [
+        "Një thumbim normal shkakton dhimbje, skuqje dhe një enjtje të vogël që zbehet brenda disa orësh. Një reagim i madh lokal prodhon enjtje më të madhe se dhjetë centimetra që zgjat ditë. Një reagim i vërtetë alergjik përfshin gjithë trupin dhe mund të shkaktojë shpuza, enjtje të fytyrës, ngushtim në fyt, fishkëllimë, marramendje, të vjella ose rrëzim, që quhet anafilaksi."
+      ]
+    },
+    {
+      "heading": "Trajtimi i urgjencës",
+      "paragraphs": [
+        "Anafilaksia është urgjencë. Thirrni menjëherë shërbimet e urgjencës. Njerëzit që u është përshkruar një autoinjektor adrenaline duhet ta përdorin menjëherë në kofshën e jashtme, të shtrihen me këmbët e ngritura, përveç nëse frymëmarrja është më e lehtë ulur, dhe të presin ndihmën edhe nëse ndihen më mirë. Mund të nevojitet një dozë e dytë."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Një specialist i alergjisë merr historikun e reagimit dhe kryen teste të lëkurës dhe analiza gjaku për antitrupa ndaj helmit. Në disa raste, një analizë gjaku për triptazën ndihmon të identifikohen njerëzit me rrezik të shtuar. Testimi bëhet zakonisht javë pas një reagimi."
+      ]
+    },
+    {
+      "heading": "Imunoterapia me helm",
+      "paragraphs": [
+        "Imunoterapia me helm jep doza gradualisht në rritje të helmit të pastruar gjatë javësh, e ndjekur nga injeksione mirëmbajtjeje çdo muaj a më shumë për tre deri në pesë vjet. Ajo parandalon reagimet e rënda te shumica e pacientëve dhe rekomandohet për njerëzit që kanë pasur reagime sistemike dhe kanë alergji të konfirmuar. Trajtimi fillohet nën mbikëqyrje të afërt."
+      ]
+    },
+    {
+      "heading": "Shmangia e thumbimeve",
+      "paragraphs": [
+        "Shmangni ecjen zbathur në bar, vishni këpucë jashtë, mbajini ushqimet e pijet e ëmbla të mbuluara dhe kini kujdes rreth kosheve të plehrave e frutave. Qëndroni të qetë pranë grerëzave e bletëve dhe largohuni ngadalë. Mos tundni krahët. Përdorni rrjeta në dritare. Mbani me vete kitin e urgjencës dhe informoni familjen, miqtë e kolegët për planin."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për piknik",
+      "text": "Imagjinoni që jeni alergjik ndaj grerëzave dhe shkoni për piknik. Mund të merrni autoinjektorin, t'i mbuloni pijet, ta mbani telefonin afër dhe t'u tregoni shoqëruesve çfarë të bëjnë nëse reagoni."
+    },
+    {
+      "title": "Pyetja për imunoterapinë",
+      "text": "Supozoni që keni pasur një reagim të fortë verën e kaluar. Mund ta pyesni një specialist nëse testimi dhe imunoterapia me helm janë të përshtatshme për ju dhe sa kohë do të zgjaste trajtimi."
+    }
+  ],
+  "questions": [
+    "A është reagimi im alergji e vërtetë dhe cilat teste duhet të bëj?",
+    "A kam nevojë për autoinjektor adrenaline dhe si ta përdor saktë?",
+    "A do të ishte i përshtatshëm imunoterapia me helm për mua?"
+  ]
+}

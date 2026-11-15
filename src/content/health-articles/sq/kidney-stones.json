@@ -1,0 +1,51 @@
+{
+  "title": "Gurët e veshkave",
+  "intro": "Gurët e veshkave janë depozitime të forta të bëra nga minerale dhe kripëra që formohen në veshka dhe mund të udhëtojnë poshtë nëpër traktin urinar. Gurët e vegjël shpesh kalojnë pa u vënë re, ndërsa ata më të mëdhenj mund të shkaktojnë dhimbje të rëndë. Shumica e gurëve mund të trajtohen dhe pirja e mjaftueshme e lëngjeve është mënyra më e mirë për të parandaluar të rinj.",
+  "sections": [
+    {
+      "heading": "Si formohen gurët",
+      "paragraphs": [
+        "Kur urina përmban nivele të larta të substancave të caktuara si kalciumi, oksalati ose acidi urik dhe shumë pak lëng, kristalet mund të bashkohen. Shumica e gurëve përmbajnë kalcium. Rreziku rritet me dehidratimin, një dietë të pasur me kripë e proteina shtazore, mbipeshën, disa gjendje mjekësore, disa barna dhe historinë familjare të gurëve."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Një gur që mbetet në veshkë mund të mos shkaktojë simptoma. Kur lëviz në ureter, mund të shkaktojë dhimbje të papritur, si valë, në anë ose në shpinë që përhapet drejt ijës, së bashku me të përziera, të vjella, gjak në urinë dhe nevojë të shpeshtë për të urinuar. Ethet me dhimbje sugjerojnë infeksion dhe kërkojnë trajtim urgjent."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Mjekët përdorin analiza urine, analiza gjaku dhe imazheri, shpesh ultratingull ose CT me dozë të ulët, për të gjetur gurin dhe për të parë nëse rrjedha e urinës është e bllokuar. Nëse hidhni një gur, ruajeni për analizë, sepse përbërja e tij udhëzon parandalimin."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Shumë gurë më të vegjël se rreth pesë milimetra kalojnë vetë brenda javësh. Lehtësimi i dhimbjes, si qetësuesit antiinflamatorë, lëngjet e bollshme dhe ndonjëherë ilaçi për të çlodhur ureterin ndihmojnë. Gurët më të mëdhenj ose ata që bllokojnë urinën ose shkaktojnë infeksion mund të kenë nevojë për trajtim. Terapia me valë goditëse i thyen gurët në copëza nga jashtë trupit, ndërsa ureteroskopia përdor një instrument të hollë për ta hequr ose djegur gurin me lazer. Gurët e mëdhenj të veshkave mund të kërkojnë kirurgji laparoskopike përmes shpinës."
+      ]
+    },
+    {
+      "heading": "Parandalimi i gurëve të rinj",
+      "paragraphs": [
+        "Pini aq sa të prodhoni rreth dy deri në dy e gjysmë litra urinë në ditë, që zakonisht do të thotë tre litra lëng ose më shumë. Kufizoni kripën dhe proteinat shtazore të tepërta, hani një dietë të ekuilibruar me sasi normale kalciumi dhe kini kujdes me vitaminën C me dozë të lartë ose suplementet. Sipas llojit të gurit, mund të rekomandohen barna specifike. Gurët përsëriten te shumë njerëz, prandaj ndjekja ka rëndësi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Menaxhimi i një krize",
+      "text": "Imagjinoni që zhvilloni papritur dhimbje të rëndë në anë me të përzier. Mund të kërkoni ndihmë urgjente mjekësore, të përmendni çdo ethe dhe të pyesni nëse duhet ta filtroni urinën për të mbledhur gurin."
+    },
+    {
+      "title": "Ndërtimi i një zakoni pirjeje",
+      "text": "Supozoni që keni pasur një gur më parë. Mund të mbushni një shishe çdo mëngjes, ta shpërndani pirjen gjatë ditës dhe të kontrolloni që urina të jetë e çelët."
+    }
+  ],
+  "questions": [
+    "Çfarë lloji guri kam dhe si mund të parandaloj një tjetër?",
+    "A duhet hequr guri im apo mund të pres që të kalojë?",
+    "Cilat shenja paralajmëruese do të thotë të shkoj në spital?"
+  ]
+}

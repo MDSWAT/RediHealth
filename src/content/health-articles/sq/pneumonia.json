@@ -1,0 +1,51 @@
+{
+  "title": "Pneumonia",
+  "intro": "Pneumonia është një infeksion i indit të mushkërive, zakonisht i shkaktuar nga bakteret ose viruset, ku qeset e ajrit mbushen me lëng ose qelb. Shkakton kollë, ethe e gulçim. Shumë njerëz trajtohen në shtëpi, por mund të jetë serioze te të moshuarit, fëmijët e vegjël e ata me sëmundje të tjera.",
+  "sections": [
+    {
+      "heading": "Shkaqet dhe faktorët e rrezikut",
+      "paragraphs": [
+        "Shkaqe të zakonshme janë bakteret pneumokoke dhe viruse si gripi e, te fëmijët, virusi sincicial respirator. Infeksioni përhapet me pika ose kur mikrobet nga hundët e fyti hyjnë në mushkëri. Rreziku është më i lartë me moshën e madhe, duhanin, sëmundjen kronike të mushkërive ose zemrës, diabetin, imunitetin e dobët, alkoolizmin e një sëmundje të fundit virale."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat tipike përfshijnë kollë me gëlbazë, ethe e dridhje, dhimbje gjoksi gjatë frymëmarrjes, frymëmarrje të shpejtë e lodhje. Të moshuarit mund të jenë të hutuar në vend të etheve. Simptomat shpesh zhvillohen gjatë ditëve. Kërkoni ndihmë për vështirësi në frymëmarrje, buzë të kaltra, hutim, dhimbje gjoksi ose ethe të larta."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Mjekët dëgjojnë gjoksin, kontrollojnë shpejtësinë e frymëmarrjes, nivelin e oksigjenit e tensionin dhe mund të caktojnë rreze X të gjoksit, analiza gjaku e teste të pështymës. Sistemet e pikëzimit vlerësojnë ashpërsinë e ndihmojnë të vendoset midis kujdesit në shtëpi dhe në spital."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Pneumonia bakteriale trajtohet me antibiotikë, zakonisht për rreth pesë deri në shtatë ditë, dhe ajo virale me kujdes mbështetës ose antiviralë në disa raste. Pushimi, pirja e shumë lëngjeve e paracetamoli ose ibuprofeni për ethe e dhimbje ndihmojnë. Trajtimi në spital mund të përfshijë oksigjen, antibiotikë e lëngje intravenoze. Kolla zakonisht qetësohet brenda disa javësh, por lodhja mund të zgjasë më shumë. Një rreze X ndjekjeje mund të këshillohet për duhanpirësit ose të moshuarit."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Vaksinimi kundër pneumokokut e gripit, e për fëmijët kundër mikrobeve të tjera të zakonshme, ul rrezikun. Mos pini duhan, lani duart rregullisht e kërkoni trajtim të hershëm të infeksioneve respiratore. Njerëzit me rrezik më të lartë duhet të pyesin mjekun cilat vaksina këshillohen."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vendimi ku të trajtoheni",
+      "text": "Imagjinoni që jeni i moshuar me ethe e kollë. Mund të pyesni nëse mund të trajtoheni në shtëpi në mënyrë të sigurt dhe cilat simptoma duhet t'ju shtyjnë të ktheheni."
+    },
+    {
+      "title": "Shërimi i mirë",
+      "text": "Supozoni që keni mbaruar antibiotikët, por ende ndiheni të dobët. Mund ta rrisni aktivitetin gradualisht, të pushoni sa duhet e t'i përmendni mjekut kollën ose ethet e vazhdueshme."
+    }
+  ],
+  "questions": [
+    "A kam nevojë për trajtim në spital apo mund të shërohem në shtëpi?",
+    "Cilat vaksina duhet të bëj për të ulur rrezikun?",
+    "Kur duhet të rikontrollohet gjoksi im?"
+  ]
+}

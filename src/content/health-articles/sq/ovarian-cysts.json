@@ -1,0 +1,51 @@
+{
+  "title": "Kistet e vezoreve",
+  "intro": "Kistet e vezoreve janë qeska të mbushura me lëng mbi ose brenda vezores. Shumica janë të padëmshme, formohen si pjesë e ciklit normal menstrual dhe zhduken pa trajtim. Disa shkaktojnë dhimbje ose simptoma të tjera dhe pak kërkojnë vlerësim të mëtejshëm ose heqje. Ultratingulli zakonisht i tregon mjekëve çfarë lloji është kisti.",
+  "sections": [
+    {
+      "heading": "Llojet e kisteve",
+      "paragraphs": [
+        "Kistet funksionale zhvillohen kur një follikul nuk liron një vezë ose kur mbyllet pas çlirimit dhe zgjidhen zakonisht brenda disa cikleve. Lloje të tjera përfshijnë endometriomat, të lidhura me endometriozën, kistet dermoide që përmbajnë ind si flokë ose dhjamë dhe kistadenomat e mbushura me lëng ose mukus. Sindroma e vezoreve polikistike përfshin shumë follikula të vegjël dhe është një gjendje tjetër hormonale."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Shumë kiste nuk shkaktojnë simptoma dhe gjenden rastësisht. Kistet më të mëdha mund të shkaktojnë dhimbje të ngjyer ose ndjenjë peshe në pjesën e poshtme të barkut, fryrje, dhimbje gjatë seksit ose presion mbi fshikëzën ose zorrën. Dhimbja e papritur e rëndë, ndonjëherë me të përziera, të vjella ose ethe, mund të tregojë se një kist është çarë ose përdredhur dhe kërkon kujdes urgjent."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Një ultratingull pelvik tregon madhësinë dhe pamjen e kistit. Mund të bëhen analiza gjaku si testi i shtatzënisë dhe, te gratë pas menopauzës ose me veçori shqetësuese, shënues tumorësh. Rezonanca magnetike mund të shtojë informacion. Pamja në ultratingull ndihmon të vlerësohet gjasa që një kist është beninj."
+      ]
+    },
+    {
+      "heading": "Trajtimi dhe ndjekja",
+      "paragraphs": [
+        "Kistet e thjeshta te gratë para menopauzës shpesh vetëm vëzhgohen me një skanim të përsëritur pas disa muajsh. Qetësuesit e lehtësojnë dhimbjen. Kontraceptimi hormonal nuk i zvogëlon kistet ekzistuese, por mund të reduktojë ato funksionale të reja. Kirurgjia, zakonisht laparoskopike, merret në konsideratë për kistet që janë të mëdha, vazhdojnë, shkaktojnë simptoma, duken të dyshimta ose janë te gratë pas menopauzës. Kirurgët përpiqen ta heqin kistin duke ruajtur indin e shëndetshëm të vezores kur është e mundur."
+      ]
+    },
+    {
+      "heading": "Të jetosh me kistet",
+      "paragraphs": [
+        "Shumë gra shqetësohen për kancerin kur gjendet një kist. Shumica e kisteve janë beninje dhe një shpjegim i qartë i rezultatit të skanimit zakonisht qetëson. Mbani takimet e ndjekjes dhe tregojini mjekut për fryrje të re, dhimbje pelvike të vazhdueshme ose ndryshime në oreks."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Të kuptuarit e një rezultati skanimi",
+      "text": "Imagjinoni që një ultratingull tregon një kist të vogël në vezore. Mund të pyesni çfarë lloji duket se është, nëse keni nevojë për një skanim të përsëritur dhe cilat simptoma duhet të nxisin kontakt më të hershëm."
+    },
+    {
+      "title": "Veprimi me dhimbje të rëndë",
+      "text": "Supozoni që zhvilloni dhimbje të papritur të rëndë në njërën anë me të vjella. Mund të shkoni në një departament urgjence në vend që të prisni, pasi një vezore e përdredhur është urgjencë kohore."
+    }
+  ],
+  "questions": [
+    "Çfarë lloji kisti kam dhe a ka gjasa të jetë i padëmshëm?",
+    "A kam nevojë për teste të mëtejshme ose skanime ndjekjeje?",
+    "Në çfarë rrethanash do të rekomandohej kirurgjia?"
+  ]
+}

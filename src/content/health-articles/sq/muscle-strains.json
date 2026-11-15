@@ -1,0 +1,51 @@
+{
+  "title": "Tendosjet e muskujve",
+  "intro": "Një tendosje muskuli është një shtrirje ose këputje e vogël në një muskul ose në tendinën e lidhur me të, zakonisht nga mbingarkesa e papritur gjatë sportit ose ngritjes. Shkakton dhimbje, ndjeshmëri dhe ndonjëherë mavijosje. Shumica e tendosjeve shërohen mirë brenda ditësh deri javësh me pushim relativ, kthim gradual në lëvizje dhe rehabilitim të arsyeshëm.",
+  "sections": [
+    {
+      "heading": "Shkaqet dhe vendet tipike",
+      "paragraphs": [
+        "Tendosjet ndodhin kur një muskul shtrihet përtej kapacitetit ose tkurret me forcë, si gjatë vrapimit të shpejtë, goditjes me këmbë ose ngritjes së një objekti të rëndë. Muskujt e kofshës, pulpa, ija dhe pjesa e poshtme e shpinës preken zakonisht. Rreziku rritet me lodhjen, ngrohjen e pamjaftueshme, lëndimin e mëparshëm dhe rritjet e papritura të stërvitjes."
+      ]
+    },
+    {
+      "heading": "Simptomat dhe ashpërsia",
+      "paragraphs": [
+        "Tendosjet e lehta shkaktojnë ngurtësi e dhimbje të lehtë. Tendosjet mesatare shkaktojnë dhimbje të mprehtë, enjtje, mavijosje dhe dobësi. Një këputje e rëndë mund të shkaktojë një kërcitje, një boshllëk të dukshëm ose pamundësi për ta përdorur muskulin. Dhimbja përkeqësohet kur muskuli shtrihet ose tkurret."
+      ]
+    },
+    {
+      "heading": "Hapat e parë",
+      "paragraphs": [
+        "Në ditët e para, zvogëloni aktivitetin që provokon dhimbje, por shmangni imobilizimin e plotë. Paketat e ftohta për periudha të shkurtra mund ta lehtësojnë dhimbjen dhe kompresioni e ngritja e zvogëlojnë enjtjen. Qetësuesit e thjeshtë mund të ndihmojnë. Lëvizja e hershme e butë brenda kufijve të rehatshëm e nxit shërimin më mirë se pushimi i zgjatur."
+      ]
+    },
+    {
+      "heading": "Rehabilitimi dhe kthimi te sporti",
+      "paragraphs": [
+        "Kur dhimbja qetësohet, filloni shtrirjen e forcimin e butë, duke rritur gradualisht. Ktheni te sporti vetëm kur mund të lëvizni pa dhimbje, keni rifituar forcën e fleksibilitetin dhe mund të kryeni veprime specifike të sportit. Kthimi shumë herët çon shpesh në lëndim të ri. Një fizioterapist mund të udhëheqë një plan të sigurt, veçanërisht pas tendosjesh të përsëritura."
+      ]
+    },
+    {
+      "heading": "Kur të shihni një mjek",
+      "paragraphs": [
+        "Kërkoni këshillë mjekësore nëse nuk mund të ecni ose ta përdorni muskulin, dëgjuat një kërcitje me dobësi të rëndë, keni deformim të dukshëm, enjtje të fortë ose mpirje, ose nëse dhimbja nuk përmirësohet pas rreth një jave. Ngrohuni, ndërtoni stërvitjen gradualisht dhe ndaloni kur ndieni dhimbje të mprehtë për të ulur rrezikun e tendosjeve."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kthimi te vrapimi",
+      "text": "Imagjinoni që e tendosët pulpën gjatë një vrapimi. Mund të ecni e të shtrihni butë, të shtoni forcim të lehtë pas disa ditësh dhe të ktheheni te vrapimi me seanca të shkurtra vetëm kur nuk ndieni dhimbje."
+    },
+    {
+      "title": "Kërkimi i këshillës",
+      "text": "Supozoni që një lëndim i kofshës lë një gropë të dukshme dhe nuk mund ta drejtoni këmbën. Mund të shkoni në një departament urgjence ose klinikë mjekësie sportive për vlerësim."
+    }
+  ],
+  "questions": [
+    "A është kjo tendosje apo lëndim më i rëndë dhe a kam nevojë për skanim?",
+    "Çfarë ushtrimesh duhet të bëj dhe kur mund të kthehem te sporti?",
+    "Si mund ta zvogëloj rrezikun e tendosjeve të përsëritura?"
+  ]
+}

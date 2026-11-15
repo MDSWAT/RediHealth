@@ -1,0 +1,51 @@
+{
+  "title": "Što se događa tijekom biopsije?",
+  "intro": "Biopsija je zahvat u kojem se mali uzorak tkiva uzima iz tijela i pregledava pod mikroskopom. Koristi se za dijagnosticiranje stanja kao što su rak, upala i infekcije. Većina biopsija je brza i radi se uz lokalnu anesteziju.",
+  "sections": [
+    {
+      "heading": "Zašto se radi biopsija",
+      "paragraphs": [
+        "Snimanja i krvne pretrage mogu upućivati na problem, ali pregled tkiva često je jedini način da se bude siguran što je. Biopsija može pokazati je li kvržica dobroćudna ili zloćudna, utvrditi vrstu raka i pomoći planirati liječenje. Koristi se i za dijagnosticiranje bolesti jetre, bubrega, kože i crijeva."
+      ]
+    },
+    {
+      "heading": "Vrste biopsije",
+      "paragraphs": [
+        "Biopsija iglom koristi finu ili deblju iglu za uzimanje stanica ili malog valjka tkiva, često uz vođenje ultrazvukom ili snimanjem. Endoskopska biopsija uzima uzorke malim kliještima kroz cijev s kamerom. Biopsija kože uklanja mali komad nožićem ili probojcem. Kirurška biopsija uklanja dio ili cijelu kvržicu kroz rez."
+      ]
+    },
+    {
+      "heading": "Prije i tijekom",
+      "paragraphs": [
+        "Možda će se od vas tražiti da prestanete uzimati lijekove za razrjeđivanje krvi i da budete natašte za neke zahvate. Područje se čisti i umrtvljuje. Možete osjetiti pritisak ili kratku bol tijekom uzimanja uzorka. Zahvati traju od nekoliko minuta do sat vremena, a neki trebaju sedaciju. Obično možete kući isti dan."
+      ]
+    },
+    {
+      "heading": "Nakon biopsije",
+      "paragraphs": [
+        "Blaga bolnost, modrice ili neznatno krvarenje su česti. Slijedite upute o njezi rane. Kontaktirajte liječnika zbog jakog krvarenja, vrućice, sve jače boli, crvenila ili oticanja. Komplikacije su rijetke, ali uključuju krvarenje i infekciju."
+      ]
+    },
+    {
+      "heading": "Rezultati",
+      "paragraphs": [
+        "Patolog pregledava uzorak, a rezultati stižu od nekoliko dana do dva tjedna. Čekanje može biti stresno. Pitajte kada i kako ćete primiti rezultat i tko će ga objasniti. Ponekad je potrebna još jedna biopsija ako je uzorak bio premalen ili nejasan."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema",
+      "text": "Zamislite da imate biopsiju jetre. Mogli biste reći timu o svim lijekovima, osobito lijekovima za razrjeđivanje krvi, i dogovoriti prijevoz kući."
+    },
+    {
+      "title": "Dok čekate rezultate",
+      "text": "Pretpostavite da rezultati stižu za deset dana. Mogli biste pitati za datum kontrolnog pregleda i povesti nekoga."
+    }
+  ],
+  "questions": [
+    "Zašto trebam biopsiju i što će pokazati?",
+    "Koja je vrsta biopsije planirana i koji su rizici?",
+    "Kada ću dobiti rezultate i tko će ih objasniti?"
+  ]
+}

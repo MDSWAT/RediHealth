@@ -1,0 +1,51 @@
+{
+  "title": "Defibrillatori impiantabili: protezione e controlli",
+  "intro": "L’ICD sorveglia alcuni ritmi pericolosi e li tratta automaticamente. Riduce la morte improvvisa in persone selezionate, ma non cura ogni problema né sostituisce farmaci e controlli.",
+  "sections": [
+    {
+      "heading": "Rilevazione e cura",
+      "paragraphs": [
+        "Interpreta segnali secondo programmazione. Può usare stimolazione rapida o scarica per interrompere ritmi pericolosi. Non scarica per ogni frequenza alta, e sono possibili scariche inappropriate."
+      ]
+    },
+    {
+      "heading": "Scelta e impianto",
+      "paragraphs": [
+        "Alcuni sistemi hanno elettrocateteri nel cuore, altri sottocutanei senza fili intracardiaci. Benefici, stimolazione e rischi differiscono. Chiedere motivazione e discutere infezione, sangue, fili e obiettivi."
+      ]
+    },
+    {
+      "heading": "Vivere con ICD",
+      "paragraphs": [
+        "Portare tessera e informare prima di esami o procedure. Compatibilità dipende dal sistema: risonanza non automaticamente vietata né sicura. Chiedere magneti, attrezzature, guida e attività con istruzioni personali."
+      ]
+    },
+    {
+      "heading": "Controlli e pianificazione",
+      "paragraphs": [
+        "Controllare dispositivo e batteria anche stando bene. Il monitoraggio remoto non è emergenza sorvegliata continuamente. Discutere ansia e revisione delle scariche se cambiano salute o obiettivi."
+      ]
+    },
+    {
+      "heading": "Dopo una scarica",
+      "paragraphs": [
+        "Ottenere piano scritto. Contattare presto il gruppo anche se bene. Scariche ripetute, svenimento, dolore toracico o affanno persistente richiedono emergenza. Incoscienza senza respiro normale richiede soccorsi, RCP e DAE disponibile."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira chiede se il sistema stimola oltre alle scariche e discute obiettivi prima dell’impianto."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben riceve una scarica e poi sta bene. Segue il piano senza presumere che la trasmissione remota sia già valutata."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

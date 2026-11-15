@@ -1,0 +1,51 @@
+{
+  "title": "Mbledhja e qelizave staminale të gjakut: pritshmëritë e dhuruesit",
+  "intro": "Qelizat që formojnë gjakun mblidhen nga qarkullimi ose palca kockore për transplant. Mbledhja ndryshon nga përgatitja dhe transplanti i marrësit. Metoda varet nga situata klinike, jo vetëm lehtësia e dhuruesit.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Mbledhja periferike filtron gjakun me makinë afereze dhe kthen pjesën tjetër. Mbledhja nga palca përdor gjilpëra në legen me anestezi; nuk merr qeliza nga palca kurrizore."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Vlerësimi përfshin historinë shëndetësore, analizat dhe pëlqimin e informuar. Tregoni ilaçet e mundësinë e shtatzënisë; pyesni për udhëtimin, lejen e punës dhe kalendarin para përgatitjes së marrësit. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Para mbledhjes periferike, injeksionet e përshkruara me faktor rritjeje zhvendosin qelizat në gjak dhe mund të shkaktojnë dhimbje kockash. Mbledhja mund të përsëritet; ajo medulare përfshin anestezi, dhimbje lokale e rreziqe të veçanta. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Ndiqni udhëzimet për ilaçet, hidratimin dhe aktivitetin pa qetësues të pamiratuar. Tregojini stafit menjëherë therjet, ngërçet ose gjendjen e keqe në aferezë; shpesh mund të zgjidhen shpejt. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Përdorni kontaktin e ekipit për ethe, dhimbje në rritje, gjakosje ose simptoma të vazhdueshme pas mbledhjes. Dhimbja e fortë e gjoksit apo barkut, frymëmarrja e vështirë ose kolapsi kërkojnë urgjencë. Rikthimi në aktivitet është individual."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira pyet metodën dhe organizon transportin e lejen e punës para se të pranojë kalendarin."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Arbeni ndien therje rreth gojës gjatë aferezës. Njofton menjëherë stafin në vend të heshtjes deri në fund."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

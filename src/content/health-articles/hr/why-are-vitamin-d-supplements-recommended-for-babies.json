@@ -1,0 +1,51 @@
+{
+  "title": "Zašto se bebama preporučuju dodaci vitamina D?",
+  "intro": "Vitamin D potreban je za jake kosti i zube jer pomaže tijelu apsorbirati kalcij. Bebe dobivaju malo vitamina D iz majčina mlijeka i nisu izložene puno sunčevoj svjetlosti pa zdravstvena tijela u mnogim državama preporučuju dnevni dodatak za sprječavanje rahitisa. Provjerite preporuku u svojoj državi s pedijatrom.",
+  "sections": [
+    {
+      "heading": "Zašto bebama treba",
+      "paragraphs": [
+        "Tijelo stvara vitamin D kada je koža izložena sunčevoj svjetlosti, ali bebe treba držati izvan izravnog sunca, a krema za sunčanje blokira proizvodnju. Majčino mlijeko sadrži samo male količine vitamina D. Adaptirano mlijeko je obogaćeno pa bebama koje se hrane adaptiranim mlijekom može trebati manje dodatka. Bez dovoljno vitamina D kosti mogu postati mekane i savijene, što se zove rahitis."
+      ]
+    },
+    {
+      "heading": "Preporučene količine",
+      "paragraphs": [
+        "U Njemačkoj i mnogim drugim državama uobičajeni savjet je petsto do tisuću međunarodnih jedinica dnevno, često u kapima ili tableti, od prvog tjedna života do drugog ljeta, ponekad u kombinaciji s fluorom, ovisno o savjetu. Liječnik će odrediti dozu za vašu bebu, osobito za prijevremeno rođene bebe i one sa zdravstvenim stanjima."
+      ]
+    },
+    {
+      "heading": "Kako ga dati",
+      "paragraphs": [
+        "Kapi se mogu dati na žlici ili staviti u malo mlijeka. Dozu dajte otprilike u isto vrijeme svaki dan. Koristite samo preporučeni proizvod i dozu. Ako propustite dozu, nastavite sljedeći dan i nemojte udvostručiti dozu. Držite izvan dosega djece."
+      ]
+    },
+    {
+      "heading": "Sigurnost",
+      "paragraphs": [
+        "Prekomjeran vitamin D može uzrokovati previše kalcija u krvi, uz povraćanje, slab apetit i probleme s bubrezima pa izbjegavajte davati više od savjetovanog i izbjegavajte davati više proizvoda koji sadrže vitamin D. Pri preporučenoj dozi dodaci se smatraju sigurnima."
+      ]
+    },
+    {
+      "heading": "Ostali izvori",
+      "paragraphs": [
+        "Masna riba, jaja i obogaćena hrana sadrže vitamin D, a starija djeca i odrasli stvaraju vitamin D iz sunca. Nekim skupinama, kao što su osobe tamne puti, s malo vremena na otvorenom ili specifičnim stanjima, može trebati savjet o dodacima i nakon dojenačke dobi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Izgradnja rutine",
+      "text": "Zamislite da zaboravljate dnevne kapi. Mogli biste ih povezati s jutarnjim hranjenjem ili postaviti podsjetnik na telefonu."
+    },
+    {
+      "title": "Provjera doze",
+      "text": "Pretpostavite da vaša beba uzima i multivitamin. Mogli biste pitati pedijatra o ukupnoj količini vitamina D."
+    }
+  ],
+  "questions": [
+    "Koju dozu vitamina D treba moja beba i koliko dugo?",
+    "Treba li mojoj bebi više ili manje zbog adaptiranog mlijeka ili prijevremenog rođenja?",
+    "Koji bi znakovi upućivali na problem s vitaminom D?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Visok kolesterol: procjena ukupnog rizika",
+  "intro": "Kolesterol putuje česticama krvi i ima normalne funkcije. Trajno visok LDL pridonosi arterijskoj bolesti. Obično se ne osjeti; terapija uzima ukupni kardiovaskularni rizik, ne samo jedan broj.",
+  "sections": [
+    {
+      "heading": "Razumijevanje problema",
+      "paragraphs": [
+        "Rizik ovisi o dobi, tlaku, pušenju, dijabetesu i prethodnoj vaskularnoj bolesti. Jaka obiteljska povijest ili vrlo visoki nalazi sugeriraju nasljeđe i uz dobru prehranu."
+      ]
+    },
+    {
+      "heading": "Pregled i pretrage",
+      "paragraphs": [
+        "Lipidni profil i povijest usmjeravaju procjenu. Štitnjača, bubrezi i lijekovi mogu trebati provjeru kao uzroci. Pitajte značenje za apsolutni rizik i obiteljsko testiranje. Ponesite popis lijekova i prethodne nalaze; pitajte koji bi nalazi promijenili plan."
+      ]
+    },
+    {
+      "heading": "Mogućnosti liječenja",
+      "paragraphs": [
+        "Statini su čest prvi izbor kada trebaju lijekovi; alternative ili dodaci pomažu odabranima. Korist ovisi o početnom riziku. Raspravite trudnoću, interakcije i simptome bez samostalnih promjena. Prije promjene liječenja dogovorite procjenu koristi i nuspojava."
+      ]
+    },
+    {
+      "heading": "Svakodnevna skrb",
+      "paragraphs": [
+        "Birajte vlakna i nezasićene masti uz smanjenje viška zasićenih, krećite se i ne pušite. Ekstremne dijete i dodaci ne zamjenjuju dokazanu terapiju kada treba. Održivost je važnija od krivnje. Odaberite održivu rutinu i razgovarajte o preprekama poput troškova, posla ili jezika."
+      ]
+    },
+    {
+      "heading": "Praćenje i znakovi upozorenja",
+      "paragraphs": [
+        "Kontrolirajte odgovor i nuspojave. Jaka neobjašnjiva mišićna bol ili slabost, posebno uz tamnu mokraću, traže brz savjet. Prsna bol ili znakovi udara traže hitnost bez obzira na kolesterol."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira ima obiteljsku povijest i visoke nalaze unatoč dobroj hrani. Pita za nasljedni oblik i obitelj, ne okrivljuje obroke."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben pita koliko statin smanjuje njegov rizik i raspravlja mišićne tegobe bez tihog napuštanja prevencije."
+    }
+  ],
+  "questions": [
+    "Koji nalazi podupiru dijagnozu ili preporuku?",
+    "Koje su koristi, rizici i alternative za mene?",
+    "Kada tražiti pomoć ili dogovoriti kontrolu?"
+  ]
+}

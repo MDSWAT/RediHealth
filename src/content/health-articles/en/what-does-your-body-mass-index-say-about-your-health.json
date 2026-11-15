@@ -1,0 +1,51 @@
+{
+  "title": "What does your body mass index say about your health?",
+  "intro": "Body mass index, or BMI, is a number calculated from weight and height. It is a quick screening tool for weight categories, but it does not measure body fat directly or say everything about health. It is best used together with other measures and a doctor's assessment.",
+  "sections": [
+    {
+      "heading": "How BMI is calculated",
+      "paragraphs": [
+        "BMI is your weight in kilograms divided by your height in metres squared. For example, a person weighing seventy kilograms and measuring 1.75 metres has a BMI of about 22.9. For adults, a BMI under 18.5 is underweight, 18.5 to 24.9 is normal, 25 to 29.9 is overweight and 30 or above is obesity."
+      ]
+    },
+    {
+      "heading": "What it tells you",
+      "paragraphs": [
+        "Across populations, a higher BMI is linked to a higher risk of conditions such as type 2 diabetes, high blood pressure, heart disease, some cancers and joint problems. A very low BMI is also linked to health risks, such as weakened bones and poor immunity. BMI is easy to measure and compare."
+      ]
+    },
+    {
+      "heading": "Limits",
+      "paragraphs": [
+        "BMI does not distinguish fat from muscle, so muscular people may be classified as overweight. It does not show where fat is stored. It may be less accurate for older people, children, pregnant women and people of different ethnic backgrounds. For children, BMI is compared with age and sex charts."
+      ]
+    },
+    {
+      "heading": "Other measures",
+      "paragraphs": [
+        "Waist circumference, especially fat around the abdomen, is linked to risk of heart disease and diabetes. Waist-to-height ratio, blood pressure, blood sugar, cholesterol, fitness and eating habits give a fuller picture. Health depends on many factors, not on a single number."
+      ]
+    },
+    {
+      "heading": "What to do with your result",
+      "paragraphs": [
+        "If your BMI is outside the normal range, discuss it with your doctor. Small steps, such as a balanced diet, regular activity, enough sleep and limiting sugary drinks, matter more than rapid weight change. Avoid extreme diets, and seek support if weight or food worry you."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Calculating your own",
+      "text": "Imagine you want to know your BMI. You could divide your weight by your height squared, then talk with your doctor about what it means."
+    },
+    {
+      "title": "Looking beyond BMI",
+      "text": "Suppose your BMI is borderline but you train often. You might also measure waist circumference and ask for blood pressure and blood tests."
+    }
+  ],
+  "questions": [
+    "What does my BMI mean for my health?",
+    "Should my waist measurement or other tests be checked as well?",
+    "What realistic steps could improve my health?"
+  ]
+}

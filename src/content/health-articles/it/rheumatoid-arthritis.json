@@ -1,0 +1,51 @@
+{
+  "title": "Artrite reumatoide",
+  "intro": "L'artrite reumatoide è una malattia autoimmune cronica in cui il sistema immunitario attacca il rivestimento delle articolazioni, causando dolore, gonfiore e rigidità, spesso a entrambe le mani e ai piedi. Senza trattamento può danneggiare le articolazioni in modo permanente. Un trattamento precoce con farmaci modificanti la malattia controlla l'infiammazione nella maggior parte delle persone.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "I sintomi tipici sono articolazioni dolorose e gonfie su entrambi i lati del corpo, in particolare le piccole articolazioni di mani e piedi, rigidità mattutina che dura più di mezz'ora, stanchezza, lieve febbre e perdita di appetito. Le riacutizzazioni si alternano a periodi più tranquilli. La malattia può colpire anche polmoni, occhi, cuore e vasi sanguigni."
+      ]
+    },
+    {
+      "heading": "Cause e fattori di rischio",
+      "paragraphs": [
+        "La causa non è del tutto compresa. Contribuiscono geni, ormoni e fattori ambientali come il fumo. È più comune nelle donne e spesso inizia nella mezza età, ma può comparire a qualsiasi età. Il fumo aumenta il rischio e riduce l'effetto del trattamento."
+      ]
+    },
+    {
+      "heading": "Diagnosi",
+      "paragraphs": [
+        "La diagnosi si basa sui sintomi, sulla visita delle articolazioni, su esami del sangue tra cui fattore reumatoide, anticorpi anti-CCP e marcatori di infiammazione e su immagini come radiografia, ecografia o risonanza magnetica. L'invio precoce a un reumatologo è importante, idealmente entro settimane dall'inizio dei sintomi."
+      ]
+    },
+    {
+      "heading": "Trattamento",
+      "paragraphs": [
+        "I farmaci modificanti la malattia, più comunemente il metotrexato, rallentano la malattia e proteggono le articolazioni. Se non bastano si aggiungono farmaci biologici o compresse mirate che bloccano specifici segnali immunitari. Brevi cicli di corticosteroidi riducono rapidamente le riacutizzazioni, anche se l'uso a lungo termine causa effetti collaterali. Questi farmaci richiedono esami del sangue regolari e aumentano il rischio di infezioni, quindi segnala presto febbre o sintomi di infezione. Il trattamento mira alla remissione o a una bassa attività di malattia e viene rivisto regolarmente."
+      ]
+    },
+    {
+      "heading": "Vivere con la malattia",
+      "paragraphs": [
+        "Esercizio, fisioterapia e terapia occupazionale mantengono la mobilità e insegnano la protezione delle articolazioni. Smettere di fumare, un'alimentazione equilibrata, la protezione delle ossa e vaccinazioni controllate sono importanti. Il rischio di malattie cardiache è più alto, quindi pressione e colesterolo vanno monitorati. Stanchezza e umore basso sono comuni e il sostegno aiuta."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vedere presto uno specialista",
+      "text": "Immagina di avere le articolazioni delle dita gonfie e rigidità mattutina da sei settimane. Potresti chiedere al medico di famiglia un invio urgente a un reumatologo e portare un elenco delle articolazioni colpite."
+    },
+    {
+      "title": "Prepararsi al trattamento",
+      "text": "Supponi di iniziare il metotrexato. Potresti chiedere di esami del sangue, vaccinazioni, alcol e che cosa fare se prendi un'infezione."
+    }
+  ],
+  "questions": [
+    "Quale trattamento è il migliore per me e quali sono i rischi?",
+    "Come verificheremo se la malattia è sotto controllo?",
+    "Che cosa posso fare io stesso per proteggere le mie articolazioni e la salute in generale?"
+  ]
+}

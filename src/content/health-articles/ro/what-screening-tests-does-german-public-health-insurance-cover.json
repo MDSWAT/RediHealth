@@ -1,0 +1,51 @@
+{
+  "title": "Ce teste de screening acoperă asigurarea publică de sănătate din Germania",
+  "intro": "Asigurarea obligatorie de sănătate din Germania plătește o gamă de controale preventive și teste de screening pentru diferite vârste. Detaliile și limitele de vârstă sunt stabilite de Comitetul Federal Comun și se pot schimba, așa că verificați regulile actuale cu asigurătorul sau cu medicul. Această prezentare este generală.",
+  "sections": [
+    {
+      "heading": "Controale pentru adulți",
+      "paragraphs": [
+        "Adulții de la optsprezece ani pot face un control unic de sănătate, iar de la treizeci și cinci de ani un control la fiecare trei ani, care urmărește tensiunea arterială, glicemia, colesterolul și factorii de risc pentru boli de inimă și diabet. Un screening pentru cancerul de piele este oferit de la treizeci și cinci de ani, la fiecare doi ani. Controalele stomatologice sunt acoperite în fiecare an."
+      ]
+    },
+    {
+      "heading": "Screeningul pentru cancer",
+      "paragraphs": [
+        "Femeilor li se oferă un examen anual pentru cancerul de col uterin de la douăzeci de ani, cu un test combinat Babeș-Papanicolau și test pentru papilomavirusul uman la fiecare trei ani de la treizeci și cinci de ani. Screeningul prin mamografie este oferit la doi ani femeilor dintr-un interval de vârstă în jur de cincizeci până la șaptezeci și cinci de ani. Screeningul pentru cancerul colorectal oferă teste de scaun sau colonoscopie de la aproximativ cincizeci de ani. Bărbații de la patruzeci și cinci de ani pot face un examen al prostatei, în timp ce analiza de sânge PSA nu este în general acoperită ca test de screening de rutină."
+      ]
+    },
+    {
+      "heading": "Alt screening",
+      "paragraphs": [
+        "O ecografie a aortei abdominale este oferită bărbaților de la șaizeci și cinci de ani pentru depistarea anevrismelor. Screeningul pentru hepatita B și C face parte din controlul adulților. Screeningul auditiv pentru nou-născuți și un screening pentru chlamydia la femeile tinere până la douăzeci și cinci de ani sunt de asemenea acoperite. Există programe suplimentare pentru femeile însărcinate, precum screeningul pentru diabetul gestațional."
+      ]
+    },
+    {
+      "heading": "Copii și tineri",
+      "paragraphs": [
+        "Copiii au o serie de controale de la naștere, numite examinările U, consemnate în carnetul galben, cu un control pentru tineri în adolescență. Acestea verifică creșterea, dezvoltarea, vederea, auzul și starea vaccinărilor."
+      ]
+    },
+    {
+      "heading": "Aspecte practice",
+      "paragraphs": [
+        "Participarea este voluntară. Unele teste sunt servicii de sănătate individuale pe care le plătiți singur, iar medicii trebuie să explice beneficiile și limitele. Întrebați cabinetul ce este acoperit pentru vârsta dumneavoastră și aduceți cardul de asigurat. Screeningul poate avea dezavantaje precum alarmele false, deci deciziile informate contează."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Programarea unui control",
+      "text": "Imaginați-vă că aveți treizeci și șase de ani. Ați putea cere medicului de familie controlul de sănătate și screeningul pielii oferite la vârsta dumneavoastră."
+    },
+    {
+      "title": "Înțelegerea costurilor",
+      "text": "Presupuneți că vi se oferă un test suplimentar. Ați putea întreba dacă este un serviciu acoperit sau unul pe care trebuie să-l plătiți și de ce este recomandat."
+    }
+  ],
+  "questions": [
+    "La ce teste de screening am dreptul la vârsta mea?",
+    "Care sunt beneficiile și dezavantajele acestui test?",
+    "Este acest test acoperit de asigurarea mea sau plătesc eu?"
+  ]
+}

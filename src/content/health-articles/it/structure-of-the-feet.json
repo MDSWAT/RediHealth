@@ -1,0 +1,51 @@
+{
+  "title": "Struttura e funzione dei piedi",
+  "intro": "I piedi sostengono tutto il peso del corpo, assorbono gli urti e ti spingono in avanti a ogni passo. Ogni piede ha 26 ossa, molte articolazioni, legamenti robusti, tendini e muscoli che lavorano insieme. Capire come è costruito il piede aiuta a spiegare i problemi comuni e come prendersene cura.",
+  "sections": [
+    {
+      "heading": "Ossa e articolazioni",
+      "paragraphs": [
+        "Il piede ha tre regioni principali: il retropiede con l'osso del tallone e l'osso della caviglia, il mesopiede con diverse ossa più piccole che formano l'arco e l'avampiede con le cinque ossa lunghe e le dita. L'alluce ha due ossa e le altre dita tre. Le articolazioni tra di esse permettono al piede di adattarsi al terreno irregolare e di irrigidirsi quando spinge."
+      ]
+    },
+    {
+      "heading": "Archi",
+      "paragraphs": [
+        "Il piede forma archi lungo la sua lunghezza e attraverso la sua larghezza. Questi agiscono come molle, distribuendo il carico e assorbendo gli urti. I piedi piatti hanno archi più bassi e quelli cavi sono più rigidi. Entrambi possono essere normali e non causare problemi, ma a volte possono portare a dolore o affaticamento."
+      ]
+    },
+    {
+      "heading": "Legamenti, tendini e muscoli",
+      "paragraphs": [
+        "I legamenti collegano le ossa e stabilizzano le articolazioni. La fascia plantare, una spessa banda sotto il piede, sostiene l'arco. I tendini collegano i muscoli della parte inferiore della gamba e del piede alle ossa, come il tendine d'Achille, il più forte del corpo, che collega i muscoli del polpaccio al tallone. I piccoli muscoli del piede controllano le dita e sostengono l'arco."
+      ]
+    },
+    {
+      "heading": "Pelle, nervi e circolazione",
+      "paragraphs": [
+        "La pianta ha pelle spessa e un cuscinetto di grasso sotto il tallone e l'avampiede che ammortizza l'impatto. I nervi forniscono il senso del tatto e dell'equilibrio e i vasi sanguigni portano ossigeno. Una sensibilità o una circolazione ridotte, come nel diabete, rendono più probabili lesioni e infezioni."
+      ]
+    },
+    {
+      "heading": "Prendersi cura dei piedi",
+      "paragraphs": [
+        "Porta scarpe che calzano bene con spazio per le dita e buon sostegno, cambiale regolarmente ed evita i tacchi alti per lunghi periodi. Cammina scalzo su superfici sicure per rinforzare i muscoli del piede, tieni la pelle pulita e idratata, taglia le unghie dritte e controlla regolarmente i piedi. Dolore persistente, deformità o cambiamenti di pelle e unghie vanno valutati."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Scegliere le scarpe",
+      "text": "Immagina di cercare nuove scarpe da camminata. Potresti provarle nel pomeriggio, controllare che le dita possano muoversi liberamente e camminare per il negozio prima di comprare."
+    },
+    {
+      "title": "Rinforzare il piede",
+      "text": "Supponi che gli archi ti sembrino stanchi dopo essere stato a lungo in piedi. Potresti esercitarti a raccogliere un asciugamano con le dita dei piedi e a far rotolare il piede su una palla per alcuni minuti al giorno."
+    }
+  ],
+  "questions": [
+    "Ho i piedi piatti o cavi e questo conta per me?",
+    "Ho bisogno di plantari o di scarpe speciali?",
+    "Quali esercizi per il piede aiuterebbero i miei sintomi?"
+  ]
+}

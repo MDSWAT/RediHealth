@@ -1,0 +1,51 @@
+{
+  "title": "Gurët në tëmth: kur nevojitet trajtimi",
+  "intro": "Gurët janë depozita të forta në fshikëzën ose kanalet biliare. Shumë nuk japin simptoma, ndërsa bllokimi mund të shkaktojë dhimbje të fortë në barkun e sipërm, infeksion ose pankreatit.",
+  "sections": [
+    {
+      "heading": "Kuptimi i problemit",
+      "paragraphs": [
+        "Dhimbja tipike biliare është e fortë dhe e vazhdueshme, shpesh djathtas lart ose në qendër, ndonjëherë drejt shpinës. Vetëm fryrja nuk provon se shkaku janë gurët."
+      ]
+    },
+    {
+      "heading": "Vlerësimi dhe analizat",
+      "paragraphs": [
+        "Ekografia dhe analizat e gjakut vlerësojnë gurët, inflamacionin dhe kullimin biliar. Tregoni ethet, verdhëzën dhe krizat e mëparshme; një gur rastësor mund të mos shpjegojë një ankesë tjetër. Merrni listën e ilaçeve dhe rezultatet e mëparshme; pyesni cilat gjetje do ta ndryshonin planin."
+      ]
+    },
+    {
+      "heading": "Mundësitë e trajtimit",
+      "paragraphs": [
+        "Gurët pa simptoma zakonisht ndiqen pa trajtim, me përjashtime të zgjedhura. Krizat e përsëritura mund të çojnë në heqjen e fshikëzës; gurët e kanalit mund të kërkojnë heqje endoskopike. Përcaktoni si do të vlerësohen përfitimi dhe efektet anësore para ndryshimit të trajtimit."
+      ]
+    },
+    {
+      "heading": "Kujdesi i përditshëm",
+      "paragraphs": [
+        "Shënoni krizat dhe ushqimet që duket se nxisin shqetësimin. Zgjidhni vakte të balancuara që toleroni; agjërimi drastik, dietat e shpejta dhe pastrimet tregtare të tëmthit nuk janë kura të besueshme. Zgjidhni një rutinë të përballueshme dhe diskutoni pengesa si kostoja, puna ose gjuha."
+      ]
+    },
+    {
+      "heading": "Ndjekja dhe shenjat paralajmëruese",
+      "paragraphs": [
+        "Dhimbja e fortë e vazhdueshme, ethet, sytë e verdhë, urina e errët, jashtëqitja e zbehtë ose të vjellat e përsëritura kërkojnë vlerësim urgjent. Mos prisni operacionin e planifikuar."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Një shembull praktik",
+      "text": "Në këtë shembull hipotetik, Mira ka gurë të zbuluar rastësisht, por pa simptoma biliare. Pyet pse ndjekja është më e përshtatshme se operacioni automatik."
+    },
+    {
+      "title": "Një shembull tjetër praktik",
+      "text": "Në këtë shembull hipotetik, Dhimbja e zakonshme e Arbenit tani shoqërohet me ethe dhe sy të verdhë. Ai kërkon vlerësim urgjent, jo thjesht shmangie të yndyrës."
+    }
+  ],
+  "questions": [
+    "Cilat gjetje mbështesin diagnozën ose rekomandimin?",
+    "Cilat janë përfitimet, rreziqet dhe alternativat për mua?",
+    "Kur duhet të kërkoj ndihmë ose rivlerësim?"
+  ]
+}

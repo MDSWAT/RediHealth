@@ -1,0 +1,51 @@
+{
+  "title": "Ce sunt revizuirile sistematice și metaanalizele?",
+  "intro": "O revizuire sistematică adună toate cercetările despre o întrebare specifică folosind o metodă planificată și transparentă. O metaanaliză este o tehnică statistică folosită în unele revizuiri pentru a combina rezultatele numerice ale mai multor studii într-un singur rezultat general. Împreună oferă un răspuns mai fiabil decât orice studiu singur.",
+  "sections": [
+    {
+      "heading": "De ce sunt necesare",
+      "paragraphs": [
+        "Studiile singulare pot fi mici, părtinitoare sau rezultate întâmplătoare, iar studii diferite dau adesea răspunsuri diferite. Revizuirile sistematice reduc aceste probleme analizând toate dovezile disponibile despre o întrebare și evaluându-le calitatea, în loc să aleagă studii selectiv. Ele sunt esențiale pentru medicina bazată pe dovezi și pentru ghiduri."
+      ]
+    },
+    {
+      "heading": "Cum se realizează o revizuire sistematică",
+      "paragraphs": [
+        "Evaluatorii definesc întrebarea și criteriile de includere a studiilor, caută sistematic în mai multe baze de date, selectează studiile independent, evaluează riscul de părtinire și extrag datele. Metodele sunt descrise în prealabil, astfel încât revizuirea să poată fi verificată și repetată. Rezultatele sunt rezumate în text și tabele, cu o evaluare a gradului de încredere pe care îl putem avea în rezultate."
+      ]
+    },
+    {
+      "heading": "Ce face o metaanaliză",
+      "paragraphs": [
+        "Când studiile sunt suficient de asemănătoare, o metaanaliză combină cifrele lor, dând mai multă pondere studiilor mari. Aceasta produce o estimare generală a efectului, cu un interval de încredere, adică un interval de valori plauzibile, și ajută la detectarea efectelor pe care studiile individuale erau prea mici să le arate. Rezultatele sunt adesea prezentate într-un grafic forest plot, cu fiecare studiu ca o linie și rezultatul general ca un romb."
+      ]
+    },
+    {
+      "heading": "Limite",
+      "paragraphs": [
+        "O revizuire este la fel de bună ca studiile pe care le conține. Combinarea studiilor slabe produce un rezultat slab. Diferențele dintre studii în ce privește persoanele, tratamentele sau rezultatele pot face combinarea nepotrivită. Părtinirea de publicare, când studiile cu rezultate negative nu sunt publicate, poate denatura concluziile. Revizuirile pot deveni depășite pe măsură ce apar cercetări noi."
+      ]
+    },
+    {
+      "heading": "Citirea unei revizuiri",
+      "paragraphs": [
+        "Verificați dacă întrebarea este clară, cum au fost găsite studiile, dacă s-a evaluat calitatea, cât de consecvente au fost rezultatele și cine a finanțat revizuirea. Priviți concluzia privind gradul de încredere în dovezi. Revizuirile realizate de grupuri independente, precum Cochrane, urmează metode stricte. O revizuire poate spune că dovezile sunt insuficiente, ceea ce este de asemenea o informație utilă."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Găsirea unei revizuiri",
+      "text": "Imaginați-vă că vreți să știți dacă un supliment funcționează. Ați putea căuta o revizuire sistematică a studiilor și ați putea vedea câte studii și câte persoane au fost incluse."
+    },
+    {
+      "title": "Întrebări despre certitudine",
+      "text": "Presupuneți că o revizuire arată un beneficiu mic. Ați putea întreba medicul cât de încrezători putem fi în rezultat și dacă se aplică în cazul dumneavoastră."
+    }
+  ],
+  "questions": [
+    "Există o revizuire sistematică pentru întrebarea mea?",
+    "Cât de fiabile sunt concluziile ei?",
+    "Se aplică rezultatul unei persoane ca mine?"
+  ]
+}

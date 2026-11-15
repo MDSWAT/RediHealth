@@ -1,0 +1,51 @@
+{
+  "title": "Što je logopedska terapija?",
+  "intro": "Logopedska terapija pomaže ljudima s teškoćama u govoru, razumijevanju, čitanju, glasu, tečnosti govora ili gutanju. Provode je educirani terapeuti za djecu i odrasle, a cilj joj je poboljšati komunikaciju i kvalitetu života.",
+  "sections": [
+    {
+      "heading": "Kome pomaže",
+      "paragraphs": [
+        "Djeci s kašnjenjem govora, nejasnim izgovorom, mucanjem ili jezičnim poremećajima te odraslima koji su izgubili govor nakon moždanog udara ili ozljede mozga, s problemima glasa, Parkinsonovom bolešću ili teškoćama gutanja. Koristi imaju i osobe nakon operacije grkljana te one s gubitkom sluha."
+      ]
+    },
+    {
+      "heading": "Što rade terapeuti",
+      "paragraphs": [
+        "Procjenjuju govor, jezik, glas i gutanje testovima i promatranjem. Zatim planiraju terapiju s vježbama i strategijama, primjerice uvježbavanje glasova, izgradnju rječnika, poboljšanje tečnosti, vježbanje glasa ili podučavanje sigurnom gutanju. Također educiraju obitelj i učitelje i mogu preporučiti pomagala za komunikaciju."
+      ]
+    },
+    {
+      "heading": "Što seanse uključuju",
+      "paragraphs": [
+        "Seanse su obično tjedne, individualne ili u grupama, a kod djece se često koriste igre. Vježbanje kod kuće je važno. Trajanje terapije ovisi o problemu, od nekoliko tjedana do godina. Napredak se redovito pregledava, a ciljevi prilagođavaju."
+      ]
+    },
+    {
+      "heading": "Dobivanje logopedske terapije",
+      "paragraphs": [
+        "Obično je propisuje liječnik, a zdravstveno osiguranje može je pokriti, ovisno o državi i pravilima. Čekanje može biti dugo pa pitajte rano. Rana pomoć najučinkovitija je kod djece, ali i odrasli imaju koristi od terapije čak i godinama nakon ozljede."
+      ]
+    },
+    {
+      "heading": "Što obitelji mogu učiniti",
+      "paragraphs": [
+        "Razgovarajte, čitajte i igrajte se s djecom, dajte im vremena za odgovor, izbjegavajte previše ispravljanja i pohvalite trud. Kod odraslih s govornim problemima budite strpljivi, smanjite buku, koristite jednostavne rečenice i dajte dodatno vrijeme. Pridružite se grupama za potporu ako je korisno."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vježbanje kod kuće",
+      "text": "Zamislite da vaše dijete ima terapiju zbog nejasnih glasova. Mogli biste svaki dan nekoliko minuta igrati igre s glasovima."
+    },
+    {
+      "title": "Podrška komunikaciji",
+      "text": "Pretpostavite da je roditelj izgubio govor nakon moždanog udara. Mogli biste govoriti sporo, postavljati pitanja na koja se odgovara s da ili ne i dati vremena za odgovor."
+    }
+  ],
+  "questions": [
+    "Trebamo li ja ili moje dijete logopedsku terapiju?",
+    "Koliko će seansi biti potrebno i što možemo vježbati kod kuće?",
+    "Što pokriva osiguranje?"
+  ]
+}

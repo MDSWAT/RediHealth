@@ -1,0 +1,51 @@
+{
+  "title": "Tiroidja hipoaktive (hipotiroidizmi)",
+  "intro": "Në hipotiroidizëm, gjëndra tiroide prodhon shumë pak hormon tiroid, duke e ngadalësuar metabolizmin e trupit. Shkakton lodhje, shtim peshe e ndjenjë të ftohtit e zhvillohet ngadalë. Është e zakonshme, veçanërisht te gratë e të moshuarit, e trajtohet lehtë me tableta hormonale ditore.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Shkaku më i zakonshëm në vendet e zhvilluara është tiroiditi i Hashimotos, një gjendje autoimune ku sistemi imunitar sulmon tiroiden. Shkaqe të tjera përfshijnë trajtimin për tiroide hiperaktive, kirurgjinë ose rrezatimin e tiroides, disa barna, mungesën e jodit e, rrallë, probleme me gjëndrën e hipofizës. Foshnjat mund të lindin me të, prandaj të porsalindurit kontrollohen me skrining."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Simptomat përfshijnë lodhje, shtim peshe, kapsllëk, lëkurë të thatë, hollim flokësh, ndjeshmëri ndaj të ftohtit, dhimbje muskujsh, të menduarit e ngadaltë, humor të ulët, zë të ngjirur, cikle më të bollshme e tiroide të enjtur ose gusha. Simptomat zhvillohen ngadalë e ngatërrohen lehtë me plakjen ose stresin. Sëmundja e rëndë e patrajtuar mund të shkaktojë probleme kërcënuese për jetën."
+      ]
+    },
+    {
+      "heading": "Diagnoza",
+      "paragraphs": [
+        "Një analizë gjaku që tregon hormon stimulues të tiroides të ngritur e nivel të ulët të hormonit tiroid e konfirmon diagnozën. Testet e antitrupave ndihmojnë të identifikohet sëmundja autoimune. Një nivel paksa i ngritur i hormonit me hormon tiroid normal, i quajtur hipotiroidizëm subklinik, shpesh vetëm monitorohet e trajtimi varet nga niveli, simptomat e faktorët e rrezikut."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Levotiroksina, një hormon tiroid sintetik, zëvendëson atë që i mungon trupit. Merret një herë në ditë me stomak bosh, zakonisht në mëngjes me ujë, rreth gjysmë ore para mëngjesit, e ndahet nga hekuri, kalciumi e disa barna të tjera. Doza rregullohet sipas analizave të gjakut çdo disa javë fillimisht, pastaj çdo vit kur stabilizohet. Trajtimi është zakonisht i përjetshëm."
+      ]
+    },
+    {
+      "heading": "Të jetosh me të",
+      "paragraphs": [
+        "Me dozën e duhur shumica e njerëzve ndihen mirë. Tregojini mjekut nëse mbeteni shtatzënë, pasi dozat shpesh duhen rritur, e raportoni simptomat e hormonit të tepërt si palpitacione, ankth ose humbje peshe. Suplementet si biotina mund t'i shtrembërojnë rezultatet e testeve, prandaj tregojini laboratorit. Mos i ndalni tabletat edhe nëse ndiheni mirë."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Marrja e besueshme e tabletave",
+      "text": "Imagjinoni që harroni tabletën e mëngjesit. Mund ta vendosni paketën pranë çajnikut, të vendosni një kujtesë në telefon e ta merrni vazhdimisht me stomak bosh."
+    },
+    {
+      "title": "Planifikimi i shtatzënisë",
+      "text": "Supozoni që planifikoni të mbeteni shtatzënë. Mund t'i kërkoni mjekut të kontrollojë nivelet e tiroides paraprakisht e të ujdisë rregullimin e dozës herët në shtatzëni."
+    }
+  ],
+  "questions": [
+    "Çfarë e shkakton tiroiden time hipoaktive?",
+    "Cila dozë është e duhura për mua e sa shpesh do të më duhen analiza gjaku?",
+    "Si ta marr levotiroksinën për efektin më të mirë?"
+  ]
+}

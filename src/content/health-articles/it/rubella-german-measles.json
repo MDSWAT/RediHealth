@@ -1,0 +1,51 @@
+{
+  "title": "Rosolia",
+  "intro": "La rosolia è un'infezione virale che di solito causa una malattia lieve con un'eruzione cutanea, ma può danneggiare gravemente il nascituro se una donna si infetta all'inizio della gravidanza. La vaccinazione, parte del vaccino combinato contro morbillo, parotite e rosolia, offre una protezione affidabile e ha reso rara la rosolia in molti paesi.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Dopo un periodo di incubazione di due o tre settimane inizia un'eruzione rosa sul viso che si estende al corpo e dura circa tre giorni. Altri sintomi comprendono febbre bassa, linfonodi ingrossati dietro le orecchie e sul collo, lievi sintomi da raffreddamento e dolori articolari, soprattutto nelle donne adulte. Molte infezioni causano pochi sintomi o nessuno."
+      ]
+    },
+    {
+      "heading": "Come si diffonde",
+      "paragraphs": [
+        "La rosolia si diffonde con le goccioline quando una persona infetta tossisce o starnutisce. Le persone sono contagiose da circa una settimana prima dell'eruzione fino a circa una settimana dopo. Dovrebbero stare lontane da scuola, lavoro e donne in gravidanza in questo periodo e avvisare il medico prima di andare in visita."
+      ]
+    },
+    {
+      "heading": "Rischio in gravidanza",
+      "paragraphs": [
+        "L'infezione nei primi mesi di gravidanza può causare aborto spontaneo o sindrome della rosolia congenita, che può comprendere difetti cardiaci, cataratta, perdita dell'udito e problemi di sviluppo. Le donne che pianificano una gravidanza dovrebbero verificare di essere immuni. Una donna in gravidanza che è stata esposta o ha un'eruzione deve contattare subito il medico."
+      ]
+    },
+    {
+      "heading": "Diagnosi e trattamento",
+      "paragraphs": [
+        "La diagnosi si conferma con esami del sangue o con un tampone della gola. Non esiste un trattamento specifico; riposo, liquidi e paracetamolo o ibuprofene alleviano i sintomi. Complicanze come artrite, problemi di sanguinamento o infiammazione del cervello sono rare."
+      ]
+    },
+    {
+      "heading": "Vaccinazione",
+      "paragraphs": [
+        "Il vaccino contro morbillo, parotite e rosolia viene dato in due dosi nell'infanzia. Le donne in età fertile senza prova di immunità dovrebbero essere vaccinate, idealmente prima della gravidanza, perché il vaccino non deve essere dato in gravidanza e la gravidanza va evitata per circa un mese dopo. Anche gli operatori sanitari e chi si occupa di bambini dovrebbero assicurarsi della propria immunità."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Verificare l'immunità",
+      "text": "Immagina di pianificare una gravidanza. Potresti controllare il libretto vaccinale e chiedere al medico un esame del sangue se non sei sicura di essere immune."
+    },
+    {
+      "title": "Rispondere a un'esposizione",
+      "text": "Supponi che una collega abbia la rosolia e tu sia incinta. Potresti telefonare subito al medico per organizzare un test dell'immunità e ricevere consigli."
+    }
+  ],
+  "questions": [
+    "Sono protetta contro la rosolia e ho bisogno di un vaccino?",
+    "Quando devo essere vaccinata se voglio una gravidanza?",
+    "Che cosa devo fare se sono incinta e sono stata esposta alla rosolia?"
+  ]
+}

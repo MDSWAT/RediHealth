@@ -1,0 +1,51 @@
+{
+  "title": "Moždani udar",
+  "intro": "Moždani udar nastaje kada je protok krvi do dijela mozga blokiran ili pukne krvna žila. Moždane stanice oštećuju se u nekoliko minuta pa je to medicinsko hitno stanje. Brzo liječenje ograničava štetu, a rehabilitacija pomaže oporavku. Kontrola krvnog tlaka i drugih čimbenika rizika sprječava većinu moždanih udara.",
+  "sections": [
+    {
+      "heading": "Vrste",
+      "paragraphs": [
+        "Većina moždanih udara, oko osam od deset, je ishemijska, uzrokovana ugruškom koji blokira arteriju. Tranzitorna ishemijska ataka je kratkotrajna blokada sa simptomima koji prolaze unutar nekoliko sati i ozbiljno je upozorenje koje zahtijeva hitnu procjenu. Hemoragijski moždani udari nastaju zbog krvarenja u mozak ili oko njega."
+      ]
+    },
+    {
+      "heading": "Prepoznavanje moždanog udara",
+      "paragraphs": [
+        "Zapamtite znakove: opušteno lice, slabost ili utrnulost ruke ili noge, obično na jednoj strani, nerazgovijetan ili zbunjen govor, iznenadan gubitak vida, iznenadna jaka glavobolja, vrtoglavica ili gubitak ravnoteže. Odmah nazovite hitnu pomoć, zabilježite vrijeme kada su simptomi počeli i nemojte čekati hoće li proći."
+      ]
+    },
+    {
+      "heading": "Hitno liječenje",
+      "paragraphs": [
+        "Snimanje mozga utvrđuje vrstu. Kod ishemijskog moždanog udara lijek za otapanje ugruška dan unutar nekoliko sati od početka ili zahvat uklanjanja ugruška kroz arteriju mogu spasiti moždano tkivo i smanjiti onesposobljenost. Krvareći moždani udari mogu zahtijevati snižavanje krvnog tlaka, poništavanje djelovanja lijekova za razrjeđivanje krvi ili operaciju. Liječenje u specijaliziranoj jedinici za moždani udar poboljšava ishode."
+      ]
+    },
+    {
+      "heading": "Rehabilitacija",
+      "paragraphs": [
+        "Rehabilitacija počinje rano. Fizioterapija, radna terapija i logopedska terapija pomažu povratiti pokrete, svakodnevne vještine i komunikaciju. Oporavak je najveći u prvim mjesecima, ali može trajati godinama. Problemi kao što su umor, depresija, problemi s pamćenjem i promjene vida mogu zahtijevati potporu, a i rodbini je često potrebna pomoć."
+      ]
+    },
+    {
+      "heading": "Sprječavanje moždanog udara",
+      "paragraphs": [
+        "Kontrola visokog krvnog tlaka je najvažnija mjera. Ostale uključuju nepušenje, redovitu aktivnost, zdravu prehranu, ograničen alkohol, upravljanje dijabetesom i kolesterolom te liječenje fibrilacije atrija lijekovima za razrjeđivanje krvi. Nakon moždanog udara lijekovi kao što su antitrombocitni ili antikoagulansi te lijekovi za snižavanje krvnog tlaka i kolesterola sprječavaju novi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Brzo djelovanje",
+      "text": "Zamislite da vašem rođaku opusti lice i govor je nerazgovijetan. Mogli biste odmah nazvati hitnu pomoć, zabilježiti vrijeme i ostati uz njega."
+    },
+    {
+      "title": "Planiranje oporavka",
+      "text": "Pretpostavite da ste kod kuće nakon moždanog udara. Mogli biste dolaziti na termine rehabilitacije, uzimati lijekove prema propisu i pitati o vožnji i povratku na posao."
+    }
+  ],
+  "questions": [
+    "Što je uzrokovalo moj moždani udar i kako mogu spriječiti novi?",
+    "Koja će terapija pomoći mom oporavku i koliko će trajati?",
+    "Kada mogu voziti ili se vratiti na posao?"
+  ]
+}

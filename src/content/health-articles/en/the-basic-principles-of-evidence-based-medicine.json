@@ -1,0 +1,51 @@
+{
+  "title": "The basic principles of evidence-based medicine",
+  "intro": "Evidence-based medicine means making healthcare decisions using the best available research together with clinical experience and the patient's values. It aims to replace guesswork and habit with reliable knowledge about what helps and what harms. Understanding its principles helps you take part in decisions about your care.",
+  "sections": [
+    {
+      "heading": "Three pillars",
+      "paragraphs": [
+        "Evidence-based medicine rests on three elements: the best current research evidence, the expertise of the clinician and the preferences and circumstances of the patient. None is enough by itself. Research shows what works on average, the doctor interprets it for the individual, and the patient decides what matters to them."
+      ]
+    },
+    {
+      "heading": "Asking answerable questions",
+      "paragraphs": [
+        "The process begins by turning a problem into a precise question: who are the patients, what is the treatment or test, what is it compared with and which outcomes matter. For example, in people with knee osteoarthritis, does exercise reduce pain more than usual care?"
+      ]
+    },
+    {
+      "heading": "Finding and assessing evidence",
+      "paragraphs": [
+        "Next, relevant studies are searched for and their quality judged. Well-designed randomised trials and systematic reviews give more reliable answers about treatments than opinions or single observations. Reviewers check the risk of bias, the size of the effect, whether the results are consistent and whether they apply to the patient."
+      ]
+    },
+    {
+      "heading": "Applying it to the patient",
+      "paragraphs": [
+        "Evidence describes groups, and individuals may differ. Clinicians consider age, other illnesses, risks and what the patient values, including quality of life and burdens of treatment. Shared decision-making means explaining benefits and risks in understandable terms, often with numbers and decision aids, so that the choice reflects the patient's priorities."
+      ]
+    },
+    {
+      "heading": "Limits",
+      "paragraphs": [
+        "Good evidence is lacking for many questions, and studies may exclude people such as older adults or children. Lack of evidence of benefit is not the same as evidence of no benefit. Evidence changes over time, so recommendations need review. Evidence-based medicine does not mean ignoring experience, but checking it against data."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Asking for the numbers",
+      "text": "Imagine your doctor recommends a medicine. You could ask how many people like you benefit, how many experience side effects and what happens without treatment."
+    },
+    {
+      "title": "Voicing preferences",
+      "text": "Suppose two treatments are similarly effective but differ in side effects. You might explain which burdens matter most to you so that the decision fits your life."
+    }
+  ],
+  "questions": [
+    "What does the best evidence say about my options?",
+    "How certain is that evidence, and does it apply to someone like me?",
+    "Which option best fits my values and circumstances?"
+  ]
+}

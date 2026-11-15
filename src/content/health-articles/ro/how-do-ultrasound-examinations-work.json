@@ -1,0 +1,51 @@
+{
+  "title": "Ecografia: pregătire, consimțământ și rezultate",
+  "intro": "Ecografia folosește sunete înalte și ecourile lor pentru imagini interne. Nu folosește radiație ionizantă. Valoarea depinde de întrebare, zonă și interpretare pregătită; nu arată toate afecțiunile.",
+  "sections": [
+    {
+      "heading": "Imagine",
+      "paragraphs": [
+        "Sonda trimite sunet și primește ecou de la țesuturi. Gelul îndepărtează aerul dintre piele și sondă. Mișcarea oferă perspective, iar Doppler adaugă informație despre sânge."
+      ]
+    },
+    {
+      "heading": "Pregătire",
+      "paragraphs": [
+        "Unele examene abdominale cer post, unele pelvine vezică plină. Urmați programarea și întrebați, mai ales cu diabet ori medicamente. Nu opriți tratamentul prescris doar pentru scanare."
+      ]
+    },
+    {
+      "heading": "Examinare",
+      "paragraphs": [
+        "Multe folosesc pielea, altele sondă internă pentru imagini potrivite. Profesionistul explică motivul, alternativele și acordul. Puteți cere însoțitor medical, interpret, pauză sau oprirea examenului intim."
+      ]
+    },
+    {
+      "heading": "Limite",
+      "paragraphs": [
+        "Gazele și osul ascund structuri, iar rezultatul depinde de vedere și context. Normal nu exclude toate cauzele. Descoperirea incidentală nu este automat periculoasă; întrebați necesitatea testelor ori monitorizării."
+      ]
+    },
+    {
+      "heading": "După",
+      "paragraphs": [
+        "Întrebați când și cine explică și ce faceți dacă persistă simptomele. Ecografia diagnostică se folosește potrivit, nu repetat pentru distracție. Simptomele severe noi cer ajutor, nu așteptarea programării ori garanția rezultatului vechi. Înainte de consultație, notați când a început simptomul, ce îl ameliorează sau agravează și cum afectează activitățile obișnuite. Aduceți rezultatele anterioare dacă le aveți. Cereți specialistului să lege explicația de constatările din cazul dumneavoastră; o descriere generală nu stabilește un diagnostic."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira verifică vezica plină și medicamentele înainte de ecografie pelvină, nu urmează reguli online fără legătură."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben are durere după ecografie normală. Cere control pentru alte cauze, nu repetă fără întrebare clară."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

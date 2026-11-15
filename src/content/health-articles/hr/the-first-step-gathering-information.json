@@ -1,0 +1,51 @@
+{
+  "title": "Prvi korak: prikupljanje zdravstvenih informacija",
+  "intro": "Donošenje dobrih odluka o zdravlju počinje pronalaženjem pouzdanih informacija. Internet nudi ogromnu količinu informacija, ali kvaliteta uvelike varira. Promišljen pristup pretraživanju štedi vrijeme i smanjuje mogućnost da vas se zavede ili uplaši.",
+  "sections": [
+    {
+      "heading": "Znajte što želite saznati",
+      "paragraphs": [
+        "Zapišite svoje pitanje što preciznije, primjerice koja liječenja postoje za neko stanje, što uključuje neki test ili koje nuspojave ima neki lijek. Zabilježite svoje brige, simptome i odluke pred vama. Jasno pitanje pomaže vam odabrati izvore i pojmove za pretraživanje."
+      ]
+    },
+    {
+      "heading": "Gdje tražiti",
+      "paragraphs": [
+        "Pouzdana polazišta uključuju javnozdravstvene ustanove, sveučilišne bolnice, nacionalne službe za informiranje bolesnika, liječnička društva, neovisne pružatelje informacija utemeljenih na dokazima te vašeg ljekarnika ili liječnika. Upute o lijeku i sažeci smjernica za bolesnike daju pojedinosti o lijekovima i liječenjima. Udruge bolesnika nude iskustvo i praktične savjete."
+      ]
+    },
+    {
+      "heading": "Savjeti za pretraživanje",
+      "paragraphs": [
+        "Koristite specifične pojmove i naziv stanja ili liječenja. Dodajte riječi poput simptomi, liječenje, rizici ili nuspojave. Isprobajte više od jednog izvora i usporedite. Nemojte se oslanjati na prvi rezultat jer tražilice mogu favorizirati oglase ili komercijalne stranice. Provjerite datume jer se liječenja i preporuke mijenjaju."
+      ]
+    },
+    {
+      "heading": "Budite oprezni zbog",
+      "paragraphs": [
+        "Obećanja čudotvornih lijekova, stranica koje uz savjete prodaju proizvode, svjedočanstava predstavljenih kao dokaz, nenavedenih autora ili izvora, alarmističkog jezika i tvrdnji da liječnici kriju istinu. Objave na društvenim mrežama i forumi mogu pružiti potporu, ali mogu širiti netočne informacije."
+      ]
+    },
+    {
+      "heading": "Vodite bilješke i pitajte",
+      "paragraphs": [
+        "Zabilježite što ste pronašli, odakle je došlo i svoja pitanja. Donesite ih svom liječniku i pitajte kojim informacijama vjeruje. Informacije ne mogu zamijeniti pregled i ne biste trebali mijenjati liječenje na temelju pročitanog bez razgovora sa stručnjakom."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema za konzultaciju",
+      "text": "Zamislite da vam je propisan novi lijek. Mogli biste pročitati uputu i pouzdanu stranicu s informacijama za bolesnike, zapisati pitanja i razgovarati o njima na sljedećem posjetu."
+    },
+    {
+      "title": "Uočavanje sumnjive stranice",
+      "text": "Pretpostavite da web-stranica obećava izliječiti dijabetes dodatkom prehrani. Mogli biste provjeriti tko vodi stranicu, navodi li istraživanja i prodaje li proizvod."
+    }
+  ],
+  "questions": [
+    "Koje izvore preporučujete za pouzdane informacije o mom stanju?",
+    "Odnosi li se ono što sam pročitao na moju situaciju?",
+    "Kako mogu s vama razgovarati o informacijama koje sam pronašao?"
+  ]
+}

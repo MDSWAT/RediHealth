@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë bën gjaku?",
+  "intro": "Gjaku është sistemi i transportit e mbrojtjes së trupit. Mbart oksigjen, lëndë ushqyese, hormone e mbetje, ndihmon të kontrollohet temperatura e lufton infeksionin. Një i rritur ka rreth pesë litra gjak, që qarkullon vazhdimisht nëpër zemër e enët e gjakut.",
+  "sections": [
+    {
+      "heading": "Çfarë përmban gjaku",
+      "paragraphs": [
+        "Gjaku përbëhet nga plazma, një lëng i verdhë i zbehtë që është kryesisht ujë me proteina, kripëra, sheqerna e yndyrna, e qelizat e gjakut. Qelizat e kuqe e mbartin oksigjenin, qelizat e bardha mbrojnë nga infeksioni, e trombocitet ndihmojnë ta ndalojnë gjakderdhjen. Të gjitha qelizat e gjakut prodhohen në palcën e kockave."
+      ]
+    },
+    {
+      "heading": "Qelizat e kuqe e oksigjeni",
+      "paragraphs": [
+        "Qelizat e kuqe të gjakut përmbajnë hemoglobinë, një proteinë me hekur që e lidh oksigjenin në mushkëri e e çliron në inde. Mbartin edhe pak dioksid karboni përsëri te mushkëritë. Qelizat e kuqe ose hemoglobina e ulët shkaktojnë anemi, me lodhje, zbehtësi e gulçim. Qelizat e kuqe jetojnë rreth katër muaj."
+      ]
+    },
+    {
+      "heading": "Mbrojtja e mpiksja",
+      "paragraphs": [
+        "Qelizat e bardha, përfshirë neutrofilet e limfocitet, i gjejnë e shkatërrojnë mikrobet e qelizat jonormale. Trombocitet ngjiten bashkë në lëndime e, së bashku me proteinat e mpiksjes, formojnë një mpiksje për ta ndalur gjakderdhjen. Shumë pak mpiksje shkakton probleme gjakderdhjeje, e shumë mund të shkaktojë mpiksje të rrezikshme."
+      ]
+    },
+    {
+      "heading": "Role të tjera e teste",
+      "paragraphs": [
+        "Gjaku shpërndan nxehtësi, e mban të qëndrueshëm ekuilibrin acid të trupit e transporton hormone e lëndë ushqyese si glukoza. Analizat e gjakut masin qelizat, sheqerin, kolesterolin, funksionin e veshkave e mëlçisë e shumë gjëra të tjera, duke e bërë një nga mjetet më të dobishme mjekësore."
+      ]
+    },
+    {
+      "heading": "Mbajtja e gjakut të shëndetshëm",
+      "paragraphs": [
+        "Një dietë e larmishme me hekur, vitaminë B12 e folat, stërvitja e rregullt, mospirja e duhanit e kufizimi i alkoolit ndihmojnë. Dhurimi i gjakut u ndihmon të tjerëve e është i sigurt për shumicën e të rriturve të shëndetshëm. Shihni një mjek për mavijosje të pashpjegueshme, gjakderdhje, lodhje të vazhdueshme ose zbehtësi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Leximi i një analize gjaku",
+      "text": "Imagjinoni që raporti tregon hemoglobinë të ulët. Mund ta pyesni mjekun për shkakun, si mungesa e hekurit, e për trajtimin."
+    },
+    {
+      "title": "Dhurimi i gjakut",
+      "text": "Supozoni që doni të dhuroni. Mund të kontrolloni rregullat e përshtatshmërisë, të hani mirë e të pini ujë më parë."
+    }
+  ],
+  "questions": [
+    "A janë normale rezultatet e analizave të mia të gjakut?",
+    "Çfarë mund ta shpjegojë një numërim të ulët ose të lartë gjaku?",
+    "A kam nevojë për teste të mëtejshme ose trajtim?"
+  ]
+}

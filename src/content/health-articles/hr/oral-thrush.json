@@ -1,0 +1,51 @@
+{
+  "title": "Oralna kandidijaza",
+  "intro": "Oralna kandidijaza je gljivična infekcija usta uzrokovana kvascem Candida. Stvara kremaste bijele naslage na jeziku i obrazima, bolnost i osjećaj pamuka. Česta je u beba, starijih osoba, osoba koje koriste inhalacijske steroide ili proteze i onih s oslabljenim imunitetom. Obično se lako liječi.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Candida normalno živi u malom broju u ustima. Može se prekomjerno razmnožiti nakon antibiotika, uz suha usta, kad se koriste inhalacijski ili oralni kortikosteroidi, uz dijabetes, nakon kemoterapije, uz HIV ili u pušača. Proteze koje loše pristaju i nisu dobro očišćene mogu skrivati kvasac."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Bijele ili žućkaste naslage koje se mogu sastrugati, ostavljajući crvena, bolna područja, tipične su. Drugi simptomi uključuju pečenje u ustima, gubitak okusa, pukotine u kutovima usta i nelagodu pri jelu ili gutanju. Bebe mogu odbijati hranjenje i imati bijele naslage unutar obraza."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Antifungalni gelovi, kapi ili pastile koriste se u ustima oko tjedan dana ili kako je propisano i nastavljaju se još nekoliko dana nakon nestanka simptoma. Tablete se koriste kod teških ili upornih infekcija. Isperite usta nakon uporabe inhalacijskih steroida. Očistite proteze i namačite ih preko noći u antifungalnoj otopini kako je savjetovano. Majke koje doje mogu trebati liječenje i bradavica."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Perite zube dvaput dnevno, čistite proteze, ne nosite proteze noću, prestanite pušiti, kontrolirajte šećer u krvi i održavajte usta vlažnima. Sterilizirajte sisaljke bočica za bebe i dude."
+      ]
+    },
+    {
+      "heading": "Kada potražiti pomoć",
+      "paragraphs": [
+        "Posjetite liječnika ako kandidijaza traje dulje od dva tjedna, često se vraća, uzrokuje teškoće s gutanjem ili se javlja bez jasnog razloga jer može upućivati na osnovnu bolest."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Liječenje bebe",
+      "text": "Zamislite da vaša beba ima bijele naslage unutar obraza. Mogli biste pitati liječnika ili ljekarnika za prikladan antifungalni gel, pažljivo čistiti dude i sisaljke bočica te koristiti lijek cijelo propisano razdoblje."
+    },
+    {
+      "title": "Njega proteza",
+      "text": "Pretpostavite da nosite protezu i imate bolan jezik. Mogli biste ostavljati protezu noću, temeljito je čistiti i pitati stomatologa ili liječnika o antifungalnom liječenju."
+    }
+  ],
+  "questions": [
+    "Što uzrokuje moju kandidijazu i koje liječenje trebam koristiti?",
+    "Trebam li daljnje pretrage ako se stalno vraća?",
+    "Kako trebam čistiti proteze, inhalatore i opremu za bebe?"
+  ]
+}

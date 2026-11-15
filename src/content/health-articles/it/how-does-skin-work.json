@@ -1,0 +1,52 @@
+{
+  "title": "Pelle: barriera viva e organo sensoriale",
+  "intro": "La pelle protegge il corpo, limita la perdita d'acqua, sente il contatto e regola la temperatura. Gli strati hanno compiti diversi. Cambiamenti visibili possono derivare da irritazioni locali o malattie generali: l'aspetto non rivela sempre la causa.",
+  "sections": [
+    {
+      "heading": "Barriera esterna",
+      "paragraphs": [
+        "L'epidermide si rinnova e forma una superficie protettiva. Il pigmento aiuta contro gli ultravioletti senza eliminare i danni solari. Lavaggi aggressivi possono danneggiare la barriera anziché migliorarla."
+      ]
+    },
+    {
+      "heading": "Sostegno",
+      "paragraphs": [
+        "Il derma contiene tessuto connettivo, vasi, nervi, follicoli e ghiandole. Il grasso sottostante ammortizza e isola. Una ferita piccola in superficie può raggiungere strutture profonde secondo la profondità."
+      ]
+    },
+    {
+      "heading": "Temperatura e sensibilità",
+      "paragraphs": [
+        "Sudore e variazioni del flusso sanguigno cutaneo regolano il calore. I nervi rilevano contatto, dolore e temperatura; sensibilità ridotta aumenta ustioni o lesioni da pressione non avvertite."
+      ]
+    },
+    {
+      "heading": "Protezione quotidiana",
+      "paragraphs": [
+        "Usate detergenza delicata, idratante adatto e protezione solare. Cambiate posizione se immobili e controllate zone poco sensibili. Le ferite richiedono cure appropriate, non sostanze domestiche irritanti."
+      ]
+    },
+    {
+      "heading": "Quando farsi visitare",
+      "paragraphs": [
+        "Un neo che cambia, una piaga persistente o un'eruzione inspiegata richiedono visita. Rossore doloroso che si estende rapidamente con febbre, vesciche diffuse o eruzione con difficoltà respiratoria richiedono urgenza.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira ha mani screpolate dopo lavaggi aggressivi. Passa a cure delicate e discute l'infiammazione invece di strofinare più forte."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben ha poca sensibilità ai piedi. Controlla pelle e pressione delle scarpe senza affidarsi solo al dolore."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Osjetljivost i specifičnost medicinskih testova",
+  "intro": "Nijedan medicinski test nije savršen. Osjetljivost i specifičnost opisuju koliko dobro test pronalazi ljude s bolešću i koliko ispravno isključuje ljude bez nje. Razumijevanje tih pojmova pomaže vam tumačiti rezultate, osobito probira, i vidjeti zašto pozitivan rezultat nije uvijek dijagnoza.",
+  "sections": [
+    {
+      "heading": "Osjetljivost",
+      "paragraphs": [
+        "Osjetljivost je udio ljudi s bolešću koje test ispravno prepoznaje kao pozitivne. Test s devedeset posto osjetljivosti otkriva devet od deset ljudi s bolešću, a jednog propušta. Test visoke osjetljivosti vrijedan je kada bi propuštanje bolesti bilo ozbiljno jer negativan rezultat tada čini bolest malo vjerojatnom."
+      ]
+    },
+    {
+      "heading": "Specifičnost",
+      "paragraphs": [
+        "Specifičnost je udio ljudi bez bolesti koje test ispravno prepoznaje kao negativne. Test s devedeset posto specifičnosti pogrešno označi jednog od deset zdravih ljudi. Test visoke specifičnosti koristan je za potvrdu dijagnoze jer je pozitivan rezultat manje vjerojatno lažni alarm."
+      ]
+    },
+    {
+      "heading": "Zašto pozitivan rezultat može biti pogrešan",
+      "paragraphs": [
+        "Vjerojatnost da je pozitivan rezultat točan ovisi o tome koliko je bolest česta među testiranim ljudima. Kada je bolest rijetka, čak i dobar test daje više lažnih alarma nego pravih slučajeva. Zamislite tisuću ljudi, od kojih deset ima bolest. Test s devedeset posto osjetljivosti i devedeset posto specifičnosti pronalazi devet od deset bolesnih, ali pogrešno označi i oko devedeset devet od devetsto devedeset zdravih. Od oko sto osam pozitivnih samo devet doista ima bolest."
+      ]
+    },
+    {
+      "heading": "Posljedice i pitanja",
+      "paragraphs": [
+        "Lažno pozitivni rezultati uzrokuju tjeskobu i daljnje pretrage, ponekad štetne. Lažno negativni mogu odgoditi liječenje. Testovi koji se koriste za probir zdravih ljudi stoga trebaju vrlo visoku specifičnost, a nakon pozitivnog probirnog rezultata često slijedi drugi, specifičniji test.",
+        "Pitajte što test treba pokazati, koliko je pouzdan za ljude poput vas, što pozitivan ili negativan rezultat znači za vas i što slijedi. Brojke od sto lakše je razumjeti nego postotke."
+      ]
+    },
+    {
+      "heading": "Primjena u svakodnevnim odlukama",
+      "paragraphs": [
+        "Poznavanje ovih pojmova pomaže pri čitanju o novim testovima ili programima probira. Test koji se reklamira kao točan devedeset devet posto i dalje može dati mnogo lažnih alarma kada je stanje rijetko pa potražite brojke iza tvrdnje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razumijevanje nalaza",
+      "text": "Zamislite da je vaš probirni test pozitivan. Mogli biste pitati koliki udio ljudi s pozitivnim nalazom doista ima bolest i koji potvrdni test slijedi."
+    },
+    {
+      "title": "Usporedba dvaju testova",
+      "text": "Pretpostavite da vam nude dva različita testa. Mogli biste pitati koji je bolji u izbjegavanju lažnih alarma, a koji u izbjegavanju propuštenih slučajeva i zašto je to važno u vašoj situaciji."
+    }
+  ],
+  "questions": [
+    "Koliko je ovaj test točan i kolike su mu stope lažno pozitivnih i lažno negativnih rezultata?",
+    "Što pozitivan ili negativan rezultat znači za mene?",
+    "Koji bi bio sljedeći korak nakon abnormalnog rezultata?"
+  ]
+}

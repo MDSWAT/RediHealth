@@ -1,0 +1,51 @@
+{
+  "title": "Sigurna uporaba lijekova",
+  "intro": "Lijekovi mogu mnogo pomoći, ali mogu i naškoditi ako se koriste nepravilno. Uzimanje pravog lijeka u pravoj dozi i u pravo vrijeme te znanje na što paziti čine liječenje sigurnijim i učinkovitijim. Otvorena komunikacija s liječnicima i ljekarnicima je ključna.",
+  "sections": [
+    {
+      "heading": "Razumijevanje vaših lijekova",
+      "paragraphs": [
+        "Za svaki lijek znajte naziv, svrhu, dozu, vrijeme uzimanja, koliko dugo ga uzimati i što učiniti ako propustite dozu. Pročitajte uputu o lijeku, koja navodi nuspojave i interakcije. Pitajte treba li se uzimati s hranom te koju hranu, alkohol ili druge lijekove izbjegavati. Imajte ažuran popis svega što uzimate."
+      ]
+    },
+    {
+      "heading": "Pravilno uzimanje lijekova",
+      "paragraphs": [
+        "Slijedite upute točno. Ne prekidajte propisane lijekove niti mijenjajte doze bez savjeta, čak i ako se osjećate bolje ili gore. Dovršite terapije antibioticima prema uputi. Koristite mjerne pribore priložene uz tekućine jer se kuhinjske žlice razlikuju. Ne drobite i ne dijelite tablete osim ako je dopušteno. Organizatori za tablete i podsjetnici pomažu kod više lijekova."
+      ]
+    },
+    {
+      "heading": "Nuspojave i interakcije",
+      "paragraphs": [
+        "Većina nuspojava je blaga, ali prijavite teške, neobične ili uporne simptome i znakove alergijske reakcije kao što su osip, oticanje ili otežano disanje. Interakcije mogu nastati među lijekovima, s dodacima, biljnim proizvodima, hranom i alkoholom. Recite svakom liječniku i ljekarniku sve što uzimate, uključujući proizvode kupljene bez recepta."
+      ]
+    },
+    {
+      "heading": "Pohrana i zbrinjavanje",
+      "paragraphs": [
+        "Lijekove čuvajte prema uputi, obično na hladnom, suhom mjestu izvan dosega djece, i držite ih u originalnoj ambalaži. Provjeravajte rokove trajanja. Ne čuvajte preostale antibiotike niti dijelite lijekove s drugima. Neiskorištene ili istekle lijekove vratite u ljekarnu umjesto da ih bacate u zahod ili smeće."
+      ]
+    },
+    {
+      "heading": "Posebne situacije",
+      "paragraphs": [
+        "Trudnoća, dojenje, starija dob, problemi s bubrezima ili jetrom i djetinjstvo zahtijevaju posebnu pažnju kod doza i izbora. Pitajte prije uzimanja bilo kojeg lijeka, uključujući one bez recepta. Redoviti pregledi lijekova s liječnikom ili ljekarnikom mogu smanjiti nepotrebna liječenja. Potražite hitnu pomoć nakon predoziranja ili ako netko uzme pogrešan lijek."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Slaganje tjednog organizatora",
+      "text": "Zamislite da svaki dan uzimate šest lijekova. Mogli biste napuniti tjedni organizator uz pomoć ljekarnika i imati ažuran popis u novčaniku."
+    },
+    {
+      "title": "Provjera prije kupnje",
+      "text": "Pretpostavite da želite kupiti lijek protiv prehlade. Mogli biste pitati ljekarnika je li siguran uz vaše trenutne lijekove."
+    }
+  ],
+  "questions": [
+    "Zašto uzimam ovaj lijek i koliko dugo?",
+    "Koje nuspojave trebam prijaviti?",
+    "Postoje li interakcije s mojim drugim lijekovima, dodacima ili hranom?"
+  ]
+}

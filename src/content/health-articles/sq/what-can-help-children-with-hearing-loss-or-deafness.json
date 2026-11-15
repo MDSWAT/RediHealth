@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë mund t'u ndihmojë fëmijëve me humbje dëgjimi ose shurdhim",
+  "intro": "Dëgjimi është thelbësor për të mësuar të flasësh e për zhvillimin, prandaj zbulimi i hershëm e mbështetja për fëmijët me humbje dëgjimi kanë shumë rëndësi. Ekzistojnë shumë opsione efektive, nga aparatet e dëgjimit te implantet kokleare, terapia e të folurit e gjuha e shenjave, e familjet mbështeten nga ekipe specialistësh.",
+  "sections": [
+    {
+      "heading": "Zbulimi i hershëm",
+      "paragraphs": [
+        "Në shumë vende të porsalindurit kanë skrining dëgjimi në ditët e para të jetës. Prindërit duhet të vëzhgojnë edhe më vonë për shenja, si mosreagimi ndaj tingujve të fortë, të folurit i vonuar, mospërgjigjja ndaj emrit ose ngritja e zërit të televizorit. Çdo shqetësim duhet të çojë në një test dëgjimi nga një specialist veshi për fëmijë ose audiolog pediatrik, pa pritur."
+      ]
+    },
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Shkaqet përfshijnë faktorë gjenetikë, infeksione gjatë shtatzënisë si citomegalovirusi, lindjen e parakohshme, verdhëzën, meningjitin, infeksionet e veshit me lëng pas daulles së veshit e ekspozimin ndaj zhurmës. Humbja e përkohshme përçuese nga veshi ngjitës është e zakonshme e shpesh përmirësohet me kohën ose me tuba të vegjël veshi. Humbja e përhershme përfshin veshin e brendshëm ose nervin e dëgjimit."
+      ]
+    },
+    {
+      "heading": "Aparatet e dëgjimit e implantet",
+      "paragraphs": [
+        "Aparatet e dëgjimit mund të vendosen nga disa javë moshë e rregullohen ndërsa fëmija rritet. Kur aparatet japin shumë pak përfitim në humbje të rëndë ose të thellë, mund të ofrohet një implant koklear, ideal në moshë të vogël. Pajisjet e përcjelljes nëpër kockë ndihmojnë fëmijët që veshi i jashtëm ose i mesëm nuk është formuar normalisht. Kontrollet e rregullta i mbajnë pajisjet të funksionojnë mirë."
+      ]
+    },
+    {
+      "heading": "Gjuha e komunikimi",
+      "paragraphs": [
+        "Terapia e të folurit e gjuhës, trajnimi i dëgjimit e programet e ndërhyrjes së hershme mbështesin zhvillimin. Disa familje zgjedhin gjuhën e shenjave, gjuhën e folur ose të dyja, e qasjet dygjuhëse janë të mundshme. Të mësuarit është më i miri kur prindërit përfshihen që në fillim, duke folur, lexuar e luajtur së bashku me kontakt ballë për ballë."
+      ]
+    },
+    {
+      "heading": "Shkolla e mirëqenia",
+      "paragraphs": [
+        "Mbështetja në shkollë mund të përfshijë uljen pranë mësuesit, sisteme dëgjimi ndihmëse, titrim e mësues specialistë. Kontakti me familje të tjera e të rritur shurdhë i ndihmon fëmijët të zhvillojnë identitet e vetëbesim. Vëzhgoni lodhjen, zhgënjimin ose ngacmimin e kërkoni ndihmë herët."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reagimi ndaj një shqetësimi",
+      "text": "Imagjinoni që fëmija juaj i vogël rrallë reagon ndaj tingujve e flet pak fjalë. Mund ta pyesni pediatrin për një referim për test dëgjimi pa pritur."
+    },
+    {
+      "title": "Mbështetja në shtëpi",
+      "text": "Supozoni që fëmija juaj ka aparate të reja dëgjimi. Mund të siguroheni që mbahen çdo ditë, të kontrolloni bateritë e të flisni ballë për ballë në ambiente të qeta."
+    }
+  ],
+  "questions": [
+    "Çfarë lloji e shkalle humbjeje dëgjimi ka fëmija im?",
+    "Cilat pajisje e terapi janë më të mirat për fëmijën tim?",
+    "Çfarë mbështetjeje ofrohet në çerdhe e shkollë?"
+  ]
+}

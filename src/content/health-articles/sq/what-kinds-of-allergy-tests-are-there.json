@@ -1,0 +1,51 @@
+{
+  "title": "Çfarë llojesh testesh alergjie ka?",
+  "intro": "Testet e alergjisë ndihmojnë të zbulohet cilat substanca nxisin një reagim alergjik. Përfshijnë teste lëkure, analiza gjaku e teste provokimi nën mbikëqyrje. Rezultatet duhen interpretuar gjithmonë së bashku me simptomat tuaja, pasi një test pozitiv vetëm nuk e provon alergjinë.",
+  "sections": [
+    {
+      "heading": "Testi i shpimit të lëkurës",
+      "paragraphs": [
+        "Një pikë ekstrakti alergjeni vendoset në parakrah ose shpinë e lëkura shpohet me një lancetë të vogël. Nëse jeni alergjik, shfaqet një gungë e vogël e kuqe me kruarje brenda pesëmbëdhjetë deri njëzet minutash. Është i shpejtë, i lirë e përdoret gjerësisht për polen, marimanga, kafshë, ushqime e helm. Antihistaminikët duhen ndaluar disa ditë para. Rrallë mund të ndodhë reagim i rëndë, prandaj bëhet në ambient mjekësor."
+      ]
+    },
+    {
+      "heading": "Analizat e gjakut",
+      "paragraphs": [
+        "Këto masin antitrupa specifikë IgE ndaj alergjenëve, e janë të dobishme nëse testimi i lëkurës nuk është i mundur, për shembull për shkak të sëmundjes së lëkurës ose nëse antihistaminikët nuk mund të ndalen. Janë të sigurta, por paksa më pak të ndjeshme në disa raste e rezultatet zgjasin disa ditë. Testimi i përbërësve identifikon proteina specifike në një alergjen e ndihmon të parashikohet rëndësia."
+      ]
+    },
+    {
+      "heading": "Teste të tjera të lëkurës",
+      "paragraphs": [
+        "Testi me ngjitëse përdoret për alergji kontakti, si ndaj nikelit ose parfumeve. Ngjitëse me alergjene ngjiten në shpinë për dy ditë e lëkura kontrollohet pas dy e tri deri katër ditësh. Testet intradermale injektojnë një sasi të vogël në lëkurë, kryesisht për alergji ndaj barnave e helmit të insekteve."
+      ]
+    },
+    {
+      "heading": "Testet e provokimit",
+      "paragraphs": [
+        "Testet e provokimit me ushqim, bar ose hundë japin alergjenin e dyshuar nën mbikëqyrje mjekësore për të parë nëse ndodh reagim. Janë mënyra më e besueshme për të konfirmuar shumë alergji ushqimore e barnash, por bartin rrezik reagimi e bëhen vetëm ku ka trajtim urgjent. Dietat e eliminimit ndihmojnë të identifikohen nxitësit."
+      ]
+    },
+    {
+      "heading": "Teste për t'u shmangur",
+      "paragraphs": [
+        "Analiza e flokëve, analizat e gjakut IgG për papërshtatshmëri ushqimore, kineziologjia e teste të ngjashme nuk janë të besueshme e mund të çojnë në kufizime dietike të panevojshme. Pyesni një specialist alergjie cilat teste janë të përshtatshme."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për testimin e lëkurës",
+      "text": "Imagjinoni që keni një test shpimi lëkure javën e ardhshme. Mund të pyesni cilët antihistaminikë të ndaloni e për sa ditë."
+    },
+    {
+      "title": "Interpretimi i rezultateve",
+      "text": "Supozoni që analiza juaj e gjakut është pozitive për kikirikët por i hani pa probleme. Mund të pyesni nëse nevojitet një provokim nën mbikëqyrje."
+    }
+  ],
+  "questions": [
+    "Cili test alergjie është më i miri për simptomat e mia?",
+    "A duhet të ndaloj ndonjë bar më parë?",
+    "Çfarë do të thotë një rezultat pozitiv për mua?"
+  ]
+}

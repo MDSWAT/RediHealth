@@ -1,0 +1,51 @@
+{
+  "title": "What does genetic testing involve?",
+  "intro": "Genetic tests look at genes, chromosomes or proteins to find changes linked to inherited conditions or to the risk of disease. They are done on a blood or saliva sample. Testing can bring useful answers but also raises personal questions, so counselling beforehand is important.",
+  "sections": [
+    {
+      "heading": "Types of tests",
+      "paragraphs": [
+        "Diagnostic testing confirms or rules out a suspected condition. Predictive and presymptomatic testing shows whether someone will or may develop a disease later. Carrier testing shows whether a person carries a gene change that could affect children. Prenatal and newborn tests look for conditions early. Pharmacogenetic tests guide medicine choice."
+      ]
+    },
+    {
+      "heading": "The process",
+      "paragraphs": [
+        "A genetic counsellor or doctor discusses reasons, possible results, and consequences, and checks the family history. A blood or saliva sample is taken and analysed in a laboratory, which can take days to months. Results are explained in a follow-up appointment. In many countries written consent is required."
+      ]
+    },
+    {
+      "heading": "Possible results",
+      "paragraphs": [
+        "A result can be positive, which means a gene change was found, negative, or uncertain, when a variant of unknown significance is found. A negative result does not exclude all risk, since not all causes are known. A positive result may not mean certain disease, since many gene changes only raise risk."
+      ]
+    },
+    {
+      "heading": "Considerations",
+      "paragraphs": [
+        "Results can affect relatives, who share genes, and may have emotional effects, such as anxiety or guilt. Some countries have laws that protect against genetic discrimination by employers and insurers, but rules differ and some insurance products may be affected. Direct-to-consumer tests vary in quality, and results should be discussed with a professional."
+      ]
+    },
+    {
+      "heading": "Making a decision",
+      "paragraphs": [
+        "Testing is voluntary. Think about what you would do with the result, whether it changes treatment or screening, and how you would tell family. You can take time or decline. Support is available from genetic counsellors and patient organisations."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing for counselling",
+      "text": "Imagine several relatives had breast cancer. You could draw up a family tree and note ages at diagnosis to bring to the counsellor."
+    },
+    {
+      "title": "Weighing the decision",
+      "text": "Suppose you are offered predictive testing. You might ask how results would change your care and what support exists afterwards."
+    }
+  ],
+  "questions": [
+    "Is genetic testing useful for my situation?",
+    "How might a result affect my relatives and insurance?",
+    "What support is available after the result?"
+  ]
+}

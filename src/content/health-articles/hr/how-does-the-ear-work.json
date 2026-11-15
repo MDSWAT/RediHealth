@@ -1,0 +1,52 @@
+{
+  "title": "Kako uho pretvara zvuk u sluh",
+  "intro": "Sluh uključuje vanjsko, srednje i unutarnje uho, živce i mozak. Unutarnje uho sadrži i organe ravnoteže. Teškoća može nastati na različitim mjestima i trebati različitu skrb.",
+  "sections": [
+    {
+      "heading": "Prikupljanje",
+      "paragraphs": [
+        "Uška vodi zvuk kroz zvukovod do bubnjića. Cerumen štiti zvukovod; umetanje predmeta može ga ozlijediti ili potisnuti vosak dublje."
+      ]
+    },
+    {
+      "heading": "Vibracije",
+      "paragraphs": [
+        "Bubnjić pomiče slušne koščice srednjeg uha. Eustahijeva cijev izjednačuje tlak sa ždrijelom; otok može poremetiti proces."
+      ]
+    },
+    {
+      "heading": "Signali",
+      "paragraphs": [
+        "Osjetne stanice s dlačicama u pužnici pretvaraju pokret u živčane signale. Mozak im daje značenje. Oštećenje ovdje razlikuje se od zapreke prolasku zvuka."
+      ]
+    },
+    {
+      "heading": "Zaštita",
+      "paragraphs": [
+        "Ograničite buku i koristite prikladnu zaštitu. Smanjite glasnoću slušalica i odmarajte. Testovi procjenjuju različite dijelove; uredno vanjsko uho ne dokazuje uredan sluh."
+      ]
+    },
+    {
+      "heading": "Pregled",
+      "paragraphs": [
+        "Trajna promjena, iscjedak ili bol trebaju pregled. Nagli gubitak sluha zahtijeva hitnu procjenu i bez boli; ne pretpostavljajte vosak i ne čekajte. Izbjegavajte alate i ušne svijeće.",
+        "Dijagram objašnjava tipičnu građu, a ne uzrok pojedinog simptoma. Prije pregleda zapišite kada je promjena počela, što je izaziva i kako utječe na svakodnevne aktivnosti. Ponesite prethodne nalaze i pitajte kako se nalazi međusobno povezuju."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Mira slabije čuje nakon promjene tlaka. Opisuje vrijeme i pita za srednje uho umjesto dubokog čišćenja."
+    },
+    {
+      "title": "Drugi praktičan primjer",
+      "text": "U ovom zamišljenom primjeru Arben se budi s naglim gubitkom sluha. Traži hitnu procjenu umjesto čekanja da prođe kao čep."
+    }
+  ],
+  "questions": [
+    "Koje strukture ili procesi objašnjavaju problem koji me brine?",
+    "Što pregled može pokazati, a ovo opće objašnjenje ne može?",
+    "Koje promjene zahtijevaju kontrolu ili hitnu pomoć?"
+  ]
+}

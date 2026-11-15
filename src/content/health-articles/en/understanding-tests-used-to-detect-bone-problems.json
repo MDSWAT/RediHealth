@@ -1,0 +1,51 @@
+{
+  "title": "Understanding tests used to detect bone problems",
+  "intro": "Bone problems such as osteoporosis, fractures, infections, tumours and metabolic bone disease are investigated with several tests. Each shows something different, from bone density to the structure of the bone or the activity of bone cells. Knowing what a test is for helps you understand the results.",
+  "sections": [
+    {
+      "heading": "X-rays",
+      "paragraphs": [
+        "Ordinary X-rays show fractures, deformities, arthritis, and some tumours and infections. They are quick and widely available. Early changes may not be visible, and bone must be substantially thinned before it is seen on a standard X-ray, so osteoporosis is not reliably diagnosed this way, although spine X-rays can reveal fractures."
+      ]
+    },
+    {
+      "heading": "Bone density scans",
+      "paragraphs": [
+        "A DXA scan uses very low doses of X-rays to measure bone mineral density at the hip and spine. Results are given as a T-score, comparing you to a healthy young adult. A T-score of minus 2.5 or lower defines osteoporosis. Doctors combine this with risk factors such as age and previous fractures to estimate fracture risk. The scan takes a few minutes and is painless."
+      ]
+    },
+    {
+      "heading": "CT, MRI and scintigraphy",
+      "paragraphs": [
+        "CT scans give detailed pictures of bone structure and are used for complex fractures. MRI shows bone marrow, soft tissue, tumours, infection and stress fractures that X-rays miss. Bone scintigraphy uses a small amount of radioactive tracer to show areas of increased bone activity, helpful in detecting spread of cancer, infection or hidden fractures. PET scans may be used in some cancers."
+      ]
+    },
+    {
+      "heading": "Blood and urine tests",
+      "paragraphs": [
+        "Blood tests check calcium, phosphate, vitamin D, parathyroid hormone, kidney function, thyroid hormone and markers of bone turnover. They help find causes of bone loss and monitor treatment. Other tests look for inflammation, myeloma or other causes. Results are interpreted together with imaging."
+      ]
+    },
+    {
+      "heading": "Bone biopsy",
+      "paragraphs": [
+        "A bone biopsy removes a tiny sample of bone with a needle, usually under local anaesthetic and imaging guidance, to examine under the microscope. It is used when other tests cannot determine the cause of a bone lesion, for example to distinguish infection from tumour or to diagnose rare bone diseases. Risks include bleeding, pain and infection."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Preparing for a DXA scan",
+      "text": "Imagine you are scheduled for a bone density scan. You could ask whether to avoid calcium supplements that morning, wear clothing without metal and bring a list of medicines."
+    },
+    {
+      "title": "Understanding results",
+      "text": "Suppose your T-score is low. You might ask how your overall fracture risk was calculated, what the next steps are and when to repeat the scan."
+    }
+  ],
+  "questions": [
+    "Which test is best for my problem?",
+    "What do my bone density and risk results mean?",
+    "How often should I repeat tests?"
+  ]
+}

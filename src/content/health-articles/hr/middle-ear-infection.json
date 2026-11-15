@@ -1,0 +1,52 @@
+{
+  "title": "Upala srednjeg uha",
+  "intro": "Upala srednjeg uha, ili otitis media, nastaje kad se prostor iza bubnjića upali, obično nakon prehlade. Vrlo je česta u male djece i uzrokuje bol u uhu, a ponekad i vrućicu. Većina infekcija prođe unutar nekoliko dana bez antibiotika, a glavno liječenje je ublažavanje boli.",
+  "sections": [
+    {
+      "heading": "Zašto se događa",
+      "paragraphs": [
+        "Srednje uho povezano je sa stražnjim dijelom nosa Eustahijevom cijevi. Tijekom prehlade ili alergije ta se cijev može oteći i začepiti, a tekućina se nakuplja iza bubnjića, gdje se klice mogu razmnožavati. Djeca su pogođenija jer su njihove cijevi kratke i uske. Izloženost dimu, nedostatak dojenja i pohađanje jaslica povećavaju rizik."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipični znakovi su bol u uhu, koja može biti jača pri ležanju, vrućica, razdražljivost, loš san, smanjen apetit i ponekad smanjen sluh. Bebe mogu vući uši i plakati. Ako bubnjić pukne, tekućina može istjecati, a bol često brzo popušta."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Ublažavanje boli i vrućice paracetamolom ili ibuprofenom u preporučenoj dozi glavno je liječenje. Toplina na uhu može umiriti. Mnoge smjernice predlažu oprezno čekanje 48 do 72 sata za djecu starije od određene dobi s blagom bolešću jer se većina oporavi bez antibiotika. Antibiotici se razmatraju za vrlo malu djecu, teške simptome, kad su zahvaćena oba uha, kod iscjetka iz uha ili ako se simptomi ne poboljšaju.",
+        "Nazalni dekongestivni sprejevi i antihistaminici ne pomažu. Držite uho suhim ako curi."
+      ]
+    },
+    {
+      "heading": "Komplikacije",
+      "paragraphs": [
+        "Tekućina može ostati iza bubnjića tjednima i privremeno smanjiti sluh. Ponovljene infekcije ili trajna tekućina mogu se liječiti malim ventilacijskim cjevčicama umetnutim u bubnjić. Rijetko se infekcija širi na obližnju kost ili mozak. Potražite hitnu skrb zbog oticanja ili crvenila iza uha, ukočenog vrata, jake glavobolje, pospanosti ili slabosti lica."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Izbjegavajte izloženost dimu, potičite dojenje u dojenačkoj dobi i održavajte cijepljenja ažurnima jer pneumokokna cjepiva i cjepiva protiv gripe smanjuju infekcije. Perite ruke da ograničite prehlade."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Promatranje i čekanje",
+      "text": "Zamislite da vaše četverogodišnje dijete ima bol u uhu nakon prehlade. Mogli biste dati lijek protiv boli, ponuditi tekućinu, promatrati dva dana i nazvati liječnika ako vrućica raste, bol se pogoršava ili se pojavi iscjedak."
+    },
+    {
+      "title": "Razgovor o ponovljenim infekcijama",
+      "text": "Pretpostavite da je vaše dijete ove godine imalo nekoliko upala uha. Mogli biste pitati bi li test sluha ili posjet specijalistu za uho bio koristan."
+    }
+  ],
+  "questions": [
+    "Treba li mom djetetu antibiotik ili možemo čekati?",
+    "Kako mogu ublažiti bol kod kuće i koliko dugo?",
+    "Trebamo li provjeriti sluh ako se infekcije stalno vraćaju?"
+  ]
+}

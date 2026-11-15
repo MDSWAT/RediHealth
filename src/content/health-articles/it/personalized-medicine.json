@@ -1,0 +1,51 @@
+{
+  "title": "Medicina personalizzata",
+  "intro": "La medicina personalizzata mira ad adattare prevenzione e trattamento alle caratteristiche di un singolo paziente, come i geni, le caratteristiche di un tumore o altri marcatori biologici. Ha portato progressi reali, per esempio nel trattamento dei tumori, ma il termine è spesso usato in modo vago e non ogni affermazione di personalizzazione è sostenuta da prove.",
+  "sections": [
+    {
+      "heading": "Che cosa significa",
+      "paragraphs": [
+        "Tradizionalmente i trattamenti venivano testati su gruppi e offerti a chiunque avesse una certa diagnosi. Gli approcci personalizzati usano test per trovare sottogruppi con più probabilità di trarre beneficio, per evitare effetti collaterali o per scegliere la dose. I termini medicina di precisione e medicina stratificata descrivono idee simili."
+      ]
+    },
+    {
+      "heading": "Esempi",
+      "paragraphs": [
+        "Nel cancro, i test sul tessuto tumorale possono mostrare mutazioni o recettori che predicono la risposta a farmaci mirati, come i recettori ormonali nel tumore al seno. I test genetici possono mostrare quanto in fretta una persona smaltisce certi farmaci, così che il dosaggio possa essere adattato. Lo screening genetico può individuare rischi ereditari come le alterazioni dei geni BRCA. Nell'assistenza quotidiana le scelte di trattamento considerano anche età, altre malattie e preferenze personali."
+      ]
+    },
+    {
+      "heading": "Benefici",
+      "paragraphs": [
+        "Se usata bene, la personalizzazione può migliorare la probabilità di beneficio, ridurre trattamenti ed effetti collaterali inutili e consentire una rilevazione più precoce del rischio nelle famiglie con condizioni ereditarie. Può anche dare ai pazienti una voce più forte nelle decisioni."
+      ]
+    },
+    {
+      "heading": "Limiti e cautele",
+      "paragraphs": [
+        "Molte varianti genetiche hanno solo effetti piccoli o incerti sulla malattia. I test offerti direttamente ai consumatori possono non predire nulla di utile e causare preoccupazione o falsa rassicurazione. Alcuni trattamenti su misura sono costosi e disponibili solo in centri specializzati. La privacy dei dati e la possibilità di discriminazione sono questioni importanti. Dovrebbero esistere prove che un test migliori gli esiti prima di usarlo di routine."
+      ]
+    },
+    {
+      "heading": "Prendere decisioni",
+      "paragraphs": [
+        "Chiedi che cosa viene esattamente testato, quanto bene il test predice l'esito, che cosa cambierebbe nel trattamento e quale sia il costo. Cerca una consulenza genetica prima e dopo un test genetico. Ricorda che stile di vita, vaccinazione, screening e trattamenti consolidati restano importanti per tutti."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Mettere in discussione un test",
+      "text": "Immagina che ti venga offerto un test genetico per un farmaco. Potresti chiedere quanto sia affidabile, come il risultato cambi il tuo trattamento e se le assicurazioni lo coprano."
+    },
+    {
+      "title": "Storia familiare",
+      "text": "Supponi che diversi familiari abbiano avuto un tumore al seno in giovane età. Potresti chiedere al medico di una consulenza genetica per decidere se il test sia utile."
+    }
+  ],
+  "questions": [
+    "Questo test ha un beneficio dimostrato nella mia situazione?",
+    "Come cambierebbe il risultato il mio trattamento o i miei controlli?",
+    "Quali sono le implicazioni per la mia famiglia e la mia privacy?"
+  ]
+}

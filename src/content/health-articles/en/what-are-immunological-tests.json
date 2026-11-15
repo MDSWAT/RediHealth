@@ -1,0 +1,51 @@
+{
+  "title": "What are immunological tests?",
+  "intro": "Immunological tests examine components of the immune system, such as antibodies, immune cells and signalling molecules. They are used to diagnose infections, allergies, autoimmune diseases and immune deficiencies, and to check whether vaccination has given protection. Results have to be interpreted in context.",
+  "sections": [
+    {
+      "heading": "Antibody tests",
+      "paragraphs": [
+        "Antibody tests measure proteins the immune system makes against germs or against the body's own tissues. They can show past or current infection, such as hepatitis or HIV, immunity after vaccination, as in rubella or hepatitis B, and autoimmune disease, such as antinuclear antibodies in lupus or anti-CCP in rheumatoid arthritis. A positive test does not always mean disease, and a negative test does not always exclude it."
+      ]
+    },
+    {
+      "heading": "Allergy tests",
+      "paragraphs": [
+        "Blood tests can measure specific IgE antibodies to substances such as pollen, mites, foods or insect venom. They are used together with the history and skin prick tests. A positive result shows sensitisation, which means the immune system has made antibodies, but not necessarily that the person has symptoms when exposed."
+      ]
+    },
+    {
+      "heading": "Cell counts and function",
+      "paragraphs": [
+        "Blood counts show numbers of white blood cells, and flow cytometry counts subtypes of lymphocytes, such as T cells and B cells, which is important in HIV and immune deficiencies. Other tests measure how well immune cells function or the levels of proteins such as complement and immunoglobulins."
+      ]
+    },
+    {
+      "heading": "Inflammation and other markers",
+      "paragraphs": [
+        "Tests such as C-reactive protein and the erythrocyte sedimentation rate indicate general inflammation. They are non-specific, since they rise in infections and many other conditions. Tumour markers are sometimes called immunological tests, but they have limited value for screening."
+      ]
+    },
+    {
+      "heading": "Understanding the results",
+      "paragraphs": [
+        "Normal ranges differ between laboratories. Tests are interpreted with symptoms and other findings, and sometimes repeated. Avoid ordering tests without medical reason, since false positives can lead to anxiety and unnecessary procedures. Ask what the result means for treatment."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Checking vaccine protection",
+      "text": "Imagine you work in healthcare and need proof of hepatitis B immunity. You could ask your doctor for an antibody test and keep the result with your vaccination record."
+    },
+    {
+      "title": "Interpreting a positive result",
+      "text": "Suppose your antinuclear antibody test is positive but you feel well. You might ask whether this is significant and whether further tests are needed."
+    }
+  ],
+  "questions": [
+    "Which test is appropriate for my problem?",
+    "What does a positive or negative result mean for me?",
+    "Do any results need to be repeated?"
+  ]
+}

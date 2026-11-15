@@ -1,0 +1,51 @@
+{
+  "title": "Mala strana tijela u oku",
+  "intro": "Prašina, pijesak, trepavice ili sitne metalne čestice često uđu u oko i uzrokuju grebanje, suzenje i crvenilo. Većina se može sigurno isprati. Može nastati ogrebotina na površini oka, zvana abrazija rožnice, koja je obično bolna, ali zacijeli za nekoliko dana. Neke ozljede su hitna stanja.",
+  "sections": [
+    {
+      "heading": "Što učiniti najprije",
+      "paragraphs": [
+        "Operite ruke. Ne trljajte oko jer trljanje može ogrepsti površinu. Nekoliko puta trepnite i pustite da suze isperu predmet. Isperite oko čistom vodom ili sterilnom fiziološkom otopinom, nagnuvši glavu tako da voda teče od strane nosa prema van. Povucite gornji kapak preko donjeg kako biste pomogli ukloniti čestice."
+      ]
+    },
+    {
+      "heading": "Traženje predmeta",
+      "paragraphs": [
+        "Na dobrom svjetlu pogledajte ispod kapaka nježno povlačeći donji kapak prema dolje i, ako je potrebno, preokrenite gornji kapak preko štapića s vatom. Slobodne čestice uklonite čistim vlažnim štapićem s vatom ili kutom čistog rupčića. Ne pokušavajte ukloniti ništa što je zaglavljeno u oku ili dodiruje obojeni dio."
+      ]
+    },
+    {
+      "heading": "Abrazija rožnice",
+      "paragraphs": [
+        "Ogrebotina na prozirnoj prednjoj površini može uzrokovati oštru bol, osjetljivost na svjetlo, suzenje, crvenilo i osjećaj da je nešto u oku čak i nakon što je predmet nestao. Liječnici je pregledavaju bojom i svjetlom te liječe antibiotskom mašću ili kapima i ponekad lijekom protiv bolova. Većina abrazija zacijeli unutar jednog do tri dana. Ne nosite kontaktne leće dok ne zacijeli."
+      ]
+    },
+    {
+      "heading": "Kada je hitno",
+      "paragraphs": [
+        "Odmah idite na hitni prijam ako je nešto zabodeno u oku, ako je predmet nastao pri radu velikom brzinom poput brušenja, udaranja po metalu ili bušenja, ako postoji porez, krv u oku, gubitak vida, jaka bol, prskanje kemikalije ili ne možete otvoriti oko. Kod kemikalija najprije ispirite vodom barem petnaest minuta, a zatim potražite hitnu skrb."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Nosite zaštitne naočale pri brušenju, bušenju, radu s drvom i vrtlarstvu te zaštitne naočale za kemikalije i neke sportove. Skinite kontaktne leće i posjetite liječnika ako nadraženost potraje."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pomoć kod trepavice",
+      "text": "Zamislite da vam je trepavica zaglavila u oku. Mogli biste oprati ruke, trepnuti, isprati čistom vodom i izbjegavati trljanje."
+    },
+    {
+      "title": "Odabir hitne skrbi",
+      "text": "Pretpostavite da vam je metalni djelić uletio u oko pri brušenju. Mogli biste lagano pokriti oko bez pritiskanja, izbjegavati trljanje i otići na očni hitni prijam."
+    }
+  ],
+  "questions": [
+    "Kako mogu znati je li površina mog oka ogrebena?",
+    "Koje kapi ili masti trebam koristiti i koliko dugo?",
+    "Koja vrsta posla zahtijeva zaštitne naočale?"
+  ]
+}

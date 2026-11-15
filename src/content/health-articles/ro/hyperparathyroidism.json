@@ -1,0 +1,53 @@
+{
+  "title": "Hiperparatiroidismul",
+  "intro": "Glandele paratiroide sunt patru glande minuscule din gât care controlează nivelul calciului din sânge. În hiperparatiroidism, una sau mai multe dintre ele produc prea mult hormon paratiroidian, ceea ce crește calciul din sânge și poate slăbi oasele. Afecțiunea este adesea descoperită întâmplător la o analiză de sânge, iar multe persoane au puține simptome.",
+  "sections": [
+    {
+      "heading": "Tipuri și cauze",
+      "paragraphs": [
+        "În hiperparatiroidismul primar, de obicei o singură formațiune benignă numită adenom face ca glanda să producă prea mult hormon. Mai rar, mai multe glande sunt mărite. În hiperparatiroidismul secundar, glandele lucrează în exces deoarece o altă problemă, precum boala renală sau deficitul sever de vitamina D, scade calciul."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Multe persoane nu simt nimic. Altele au oboseală, slăbiciune, dispoziție scăzută, dificultăți de concentrare, sete și urinare crescute, constipație, dureri de oase și articulații sau pietre la rinichi recurente. În timp, oasele se pot subția, iar riscul de fracturi crește. Nivelurile foarte mari de calciu pot provoca confuzie și bătăi neregulate ale inimii și necesită tratament urgent."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Analizele de sânge arată calciu mare, cu hormon paratiroidian mare sau nepotrivit de normal. Medicii verifică și vitamina D și funcția rinichilor și măsoară adesea densitatea osoasă și caută pietre la rinichi. Ecografia sau alte investigații imagistice pot localiza glanda afectată, mai ales înainte de operație."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Operația de îndepărtare a glandei sau a glandelor hiperactive poate vindeca hiperparatiroidismul primar și este de obicei recomandată persoanelor cu simptome, pierdere osoasă, pietre la rinichi sau niveluri mai mari de calciu. Operația se face adesea printr-o incizie mică și durează puțin, cu o recuperare rapidă. Unele persoane dezvoltă temporar calciu scăzut după aceea.",
+        "Dacă simptomele lipsesc sau sunt ușoare, o opțiune este monitorizarea atentă cu analize de sânge regulate și măsurători ale densității osoase. Poate fi recomandat să beți suficientă apă, să rămâneți activ și să evitați medicamentele care cresc calciul. Anumite medicamente pot scădea calciul sau proteja osul atunci când operația nu este potrivită.",
+        "În formele secundare, tratamentul se concentrează pe cauza de bază, precum suplimentarea cu vitamina D sau îngrijirea rinichilor."
+      ]
+    },
+    {
+      "heading": "Viața cu afecțiunea",
+      "paragraphs": [
+        "Urmărirea regulată este importantă chiar și după o operație reușită, deoarece sănătatea oaselor poate necesita atenție pe termen lung. Cereți sfatul medicului pentru dureri noi de oase, simptome de pietre la rinichi sau sete marcată și confuzie."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Cântărirea operației față de monitorizare",
+      "text": "Imaginați-vă că aveți calciul doar ușor crescut și vă simțiți bine. Ați putea întreba medicul ce constatări ar face operația recomandabilă, cât de des ar fi necesare analizele și ce arată scanările osoase."
+    },
+    {
+      "title": "Pregătirea pentru operație",
+      "text": "Presupuneți că sunteți programat pentru o operație la paratiroide. Ați putea întreba despre tipul de anestezie, timpul probabil de recuperare și ce simptome de calciu scăzut să urmăriți după aceea."
+    }
+  ],
+  "questions": [
+    "Ce tip de hiperparatiroidism am și ce îl provoacă?",
+    "Am nevoie de operație sau este monitorizarea o alegere rezonabilă pentru mine?",
+    "Cum vor fi verificate oasele și rinichii mei în timp?"
+  ]
+}

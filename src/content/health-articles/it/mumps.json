@@ -1,0 +1,51 @@
+{
+  "title": "Parotite",
+  "intro": "La parotite è una malattia virale contagiosa che classicamente causa gonfiore doloroso delle ghiandole salivari davanti alle orecchie. Si diffonde con tosse, starnuti e contatto. Oggi è rara nei luoghi con alti tassi di vaccinazione, ma i focolai si verificano ancora. Il vaccino somministrato nell'infanzia è una protezione efficace.",
+  "sections": [
+    {
+      "heading": "Sintomi",
+      "paragraphs": [
+        "Dopo un periodo di incubazione di circa due o tre settimane le persone sviluppano febbre, mal di testa, dolori muscolari, stanchezza e gonfiore e dolore di una o di entrambe le guance. Masticare e deglutire può far male. Fino a un terzo delle persone ha pochi sintomi o nessuno ma può comunque diffondere il virus."
+      ]
+    },
+    {
+      "heading": "Complicanze",
+      "paragraphs": [
+        "Le complicanze sono rare ma possono essere gravi. Negli adolescenti e negli uomini adulti i testicoli possono diventare dolenti e gonfi. Nelle donne le ovaie possono infiammarsi. Altre complicanze comprendono meningite, pancreatite e perdita dell'udito, che può essere permanente. I problemi di fertilità sono rari."
+      ]
+    },
+    {
+      "heading": "Diagnosi e trattamento",
+      "paragraphs": [
+        "La diagnosi si fa di solito in base ai sintomi e si conferma con un tampone o un esame del sangue, soprattutto nei focolai. Non esiste un trattamento antivirale specifico. Aiutano riposo, liquidi, cibi morbidi, sollievo dal dolore e dalla febbre con paracetamolo o ibuprofene e impacchi freddi o caldi. Evita le bevande acide che stimolano la saliva e aumentano il dolore. Chiedi consiglio medico per forte mal di testa, rigidità del collo, dolore addominale o dolore ai testicoli."
+      ]
+    },
+    {
+      "heading": "Prevenire la diffusione",
+      "paragraphs": [
+        "Le persone sono contagiose da qualche giorno prima del gonfiore fino a circa cinque giorni dopo il suo inizio. Dovrebbero restare lontane da scuola o lavoro in quel periodo, coprire la tosse e lavare le mani. Informa il medico prima di andare in visita, così da poter adottare le precauzioni. I contatti con stato vaccinale sconosciuto dovrebbero controllare i propri documenti."
+      ]
+    },
+    {
+      "heading": "Vaccinazione",
+      "paragraphs": [
+        "Il vaccino combinato contro morbillo, parotite e rosolia viene dato in due dosi nell'infanzia e protegge la grande maggioranza delle persone. L'immunità può calare nel tempo, il che spiega i casi occasionali nelle persone vaccinate, in genere con una malattia più lieve. Gli adulti nati dopo senza vaccinazione o con documenti incerti dovrebbero chiedere del recupero vaccinale e le donne in gravidanza non devono essere vaccinate."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Controllare i documenti vaccinali",
+      "text": "Immagina che tuo figlio abbia la parotite a scuola. Potresti controllare i libretti vaccinali tuoi e degli altri tuoi figli e chiedere al medico se siano consigliate ulteriori dosi."
+    },
+    {
+      "title": "Restare a casa",
+      "text": "Supponi di sviluppare guance gonfie e febbre. Potresti chiamare il tuo ambulatorio prima di andare, restare a casa per circa cinque giorni e bere liquidi osservando se compare un forte dolore."
+    }
+  ],
+  "questions": [
+    "Io e la mia famiglia abbiamo completato il ciclo vaccinale MPR?",
+    "Per quanto tempo devo restare a casa e quali sintomi significano che devo cercare cure urgenti?",
+    "Le complicanze sono probabili nella mia situazione?"
+  ]
+}

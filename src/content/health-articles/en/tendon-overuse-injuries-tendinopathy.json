@@ -1,0 +1,51 @@
+{
+  "title": "Tendon overuse injuries (tendinopathy)",
+  "intro": "Tendinopathy is a painful, long-lasting condition of a tendon, usually caused by repeated strain beyond what the tendon can tolerate. It commonly affects the Achilles tendon, shoulder, elbow, knee and hip. Treatment centres on gradually loaded exercise rather than complete rest, and recovery often takes months.",
+  "sections": [
+    {
+      "heading": "What happens in the tendon",
+      "paragraphs": [
+        "Tendons connect muscle to bone and transmit force. When load increases faster than the tendon can adapt, its structure changes, becoming thickened and disorganised, and pain develops. Despite the old term tendonitis, inflammation is not the main feature in chronic cases. Age, overweight, certain medicines, diabetes and sudden increases in activity raise risk."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical symptoms are pain and stiffness localised to the tendon that is worse at the start of activity, may ease with warming up, then returns afterwards or the next morning. The tendon may be tender and thickened. Pain with specific movements, such as pushing off when running in Achilles problems, is characteristic."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Doctors diagnose by history and examination. Ultrasound or MRI may show tendon changes, but findings do not always match symptoms. Imaging is mainly used when a tear is suspected or the diagnosis is unclear. Sudden sharp pain with a snapping feeling and loss of function suggests a rupture and needs urgent assessment."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Gradually progressive strengthening exercises, such as slow heavy loading, are the best-supported treatment. Reduce but do not stop activity that provokes pain, and avoid sudden increases in training. Painkillers may ease symptoms for a short time. Corticosteroid injections can give brief relief but may weaken tendons and are used cautiously. Shock wave therapy and other treatments have mixed evidence. Surgery is considered only after months of failed rehabilitation."
+      ]
+    },
+    {
+      "heading": "Prevention and outlook",
+      "paragraphs": [
+        "Increase training gradually, warm up, vary activities, use suitable footwear and keep strength and flexibility in muscles. Most people improve with several months of consistent exercise, though tendons heal slowly and symptoms can recur if load rises too quickly."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pacing a return to running",
+      "text": "Imagine your Achilles tendon hurts at the start of runs. You could reduce distance, do calf-strengthening exercises as taught and increase running slowly over weeks."
+    },
+    {
+      "title": "Staying consistent",
+      "text": "Suppose you see little change after two weeks. You might continue the programme, since tendon recovery takes months, and review progress with a physiotherapist."
+    }
+  ],
+  "questions": [
+    "Is this tendinopathy, and do I need imaging?",
+    "Which exercises should I do and for how long?",
+    "Are injections or other treatments helpful in my case?"
+  ]
+}

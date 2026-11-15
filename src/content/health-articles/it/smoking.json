@@ -1,0 +1,51 @@
+{
+  "title": "Fumo, sigarette elettroniche e smettere",
+  "intro": "Il fumo è la principale causa evitabile di malattia e morte precoce e danneggia quasi ogni organo. Smettere a qualsiasi età porta benefici e le probabilità di successo aumentano con sostegno e farmaci. Le sigarette elettroniche sono meno dannose delle sigarette ma non sono prive di rischi e gli effetti a lungo termine sono ancora in studio.",
+  "sections": [
+    {
+      "heading": "Effetti sulla salute",
+      "paragraphs": [
+        "Il fumo di tabacco contiene migliaia di sostanze chimiche, molte tossiche e cancerogene. Il fumo causa tumori del polmone e di altri organi, infarti, ictus, malattie polmonari croniche, problemi di circolazione, problemi di fertilità e complica la gravidanza. Il fumo passivo danneggia i bambini e i non fumatori. Più a lungo e più si fuma, più alto è il rischio."
+      ]
+    },
+    {
+      "heading": "Sigarette elettroniche",
+      "paragraphs": [
+        "Le sigarette elettroniche riscaldano un liquido, di solito contenente nicotina, trasformandolo in vapore. Espongono gli utenti a meno sostanze tossiche rispetto al tabacco che brucia, ma continuano a fornire nicotina, che dà dipendenza, e altre sostanze chimiche i cui effetti a lungo termine sono sconosciuti. Le prove suggeriscono che possano aiutare alcuni fumatori a smettere se usate come sostituzione completa, ma non sono raccomandate per giovani o non fumatori e molte persone finiscono per usare entrambi i prodotti."
+      ]
+    },
+    {
+      "heading": "Benefici dello smettere",
+      "paragraphs": [
+        "In pochi giorni migliorano circolazione e respirazione. Entro un anno il rischio di malattie cardiache cala in modo sostanziale e nel corso degli anni calano il rischio di cancro e di ictus. Smettere prima della mezza età evita la maggior parte del rischio in eccesso. Smettere fa anche risparmiare denaro e protegge la famiglia."
+      ]
+    },
+    {
+      "heading": "Come smettere",
+      "paragraphs": [
+        "Fissa una data per smettere, dillo ad amici e familiari e togli le sigarette. Il sostegno comportamentale, come consulenza, linee telefoniche per smettere, programmi di gruppo e app, aumenta il successo. La terapia sostitutiva della nicotina con cerotti, gomme o pastiglie e farmaci su prescrizione come vareniclina o bupropione raddoppiano grosso modo la probabilità di successo. Combinare farmaci e consulenza funziona meglio. Molte persone hanno bisogno di diversi tentativi."
+      ]
+    },
+    {
+      "heading": "Restare senza fumo",
+      "paragraphs": [
+        "Le voglie di solito passano in pochi minuti. Evita i fattori scatenanti, trova sostituti come camminare o masticare una gomma e pianifica per lo stress. Una ricaduta non è un fallimento e puoi ricominciare. Chiedi al medico o al farmacista del sostegno disponibile nella tua zona."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pianificare una data per smettere",
+      "text": "Immagina di decidere di smettere. Potresti scegliere una data entro due settimane, chiedere al medico di cerotti e farmaci e dirlo alla famiglia così che possa sostenerti."
+    },
+    {
+      "title": "Affrontare una voglia",
+      "text": "Supponi di avere voglia di una sigaretta dopo i pasti. Potresti lavarti i denti, fare una breve passeggiata o masticare una gomma finché la voglia passa."
+    }
+  ],
+  "questions": [
+    "Quale metodo o farmaco per smettere è il migliore per me?",
+    "Le sigarette elettroniche sono una buona opzione per me o un rischio?",
+    "Quale sostegno è disponibile se ho una ricaduta?"
+  ]
+}

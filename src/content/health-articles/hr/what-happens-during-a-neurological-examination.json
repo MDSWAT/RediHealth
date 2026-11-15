@@ -1,0 +1,51 @@
+{
+  "title": "Što se događa tijekom neurološkog pregleda?",
+  "intro": "Neurološki pregled provjerava kako rade mozak, leđna moždina i živci. Uključuje jednostavne, bezbolne testove mišljenja, osjeta, pokreta, refleksa i koordinacije. Pomaže liječnicima utvrditi dolazi li problem iz živčanog sustava i gdje.",
+  "sections": [
+    {
+      "heading": "Mišljenje i govor",
+      "paragraphs": [
+        "Liječnik razgovara s vama kako bi procijenio budnost, pamćenje, pažnju, jezik i razumijevanje. Mogu vas pitati pitanja kao što je datum, zamoliti da zapamtite nekoliko riječi ili slijedite upute. Raspoloženje i ponašanje također se bilježe. To pomaže otkriti stanja kao što su demencija, moždani udar ili infekcije."
+      ]
+    },
+    {
+      "heading": "Kranijalni živci i osjeti",
+      "paragraphs": [
+        "Liječnik testira vid, pokrete očiju, reakcije zjenica, pokrete i osjet lica, sluh, gutanje i pokrete jezika. Mogu vam svijetliti u oči ili tražiti da pratite prst. Dodir, temperatura, bol i vibracije provjeravaju se mekom vatom, iglom ili ugađalicom."
+      ]
+    },
+    {
+      "heading": "Snaga, tonus i refleksi",
+      "paragraphs": [
+        "Traži se da gurate i povlačite protiv liječnikovih ruku i da držite ruke ispružene. Mišići se opipavaju radi napetosti ili propadanja. Refleksi se testiraju udaranjem tetiva na koljenu, gležnju i laktu malim čekićem. Abnormalni refleksi mogu upućivati na probleme živaca ili kralježnice."
+      ]
+    },
+    {
+      "heading": "Koordinacija i hodanje",
+      "paragraphs": [
+        "Možete dodirnuti nos i liječnikov prst, prijeći petom niz potkoljenicu i hodati po liniji. Stajanje zatvorenih očiju testira ravnotežu. Vaše držanje, njihanje ruku i koraci pokazuju probleme s malim mozgom, mišićima ili krugovima pokreta tipa Parkinsonove bolesti."
+      ]
+    },
+    {
+      "heading": "Nakon pregleda",
+      "paragraphs": [
+        "Liječnik može naručiti krvne pretrage, snimanja kao što je magnetska rezonancija, testove živaca ili elektroencefalografiju. Pitajte što je nađeno, koje su daljnje pretrage potrebne i što nalazi znače. Ponesite popis simptoma i lijekova na pregled."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Priprema",
+      "text": "Zamislite da imate utrnulost u ruci. Mogli biste zabilježiti kada je počelo, što je poboljšava ili pogoršava i ponijeti popis lijekova."
+    },
+    {
+      "title": "Razumijevanje rezultata",
+      "text": "Pretpostavite da su vam refleksi smanjeni. Mogli biste pitati na što to upućuje i koje će daljnje pretrage pomoći."
+    }
+  ],
+  "questions": [
+    "Koji bi dio živčanog sustava mogao biti uključen?",
+    "Koje daljnje pretrage trebam?",
+    "Kada trebam potražiti hitnu pomoć?"
+  ]
+}

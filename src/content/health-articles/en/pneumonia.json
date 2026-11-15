@@ -1,0 +1,51 @@
+{
+  "title": "Pneumonia",
+  "intro": "Pneumonia is an infection of the lung tissue, usually caused by bacteria or viruses, in which the air sacs fill with fluid or pus. It causes cough, fever and shortness of breath. Many people are treated at home, but it can be serious in older people, young children and those with other illnesses.",
+  "sections": [
+    {
+      "heading": "Causes and risk factors",
+      "paragraphs": [
+        "Common causes are pneumococcal bacteria and viruses such as influenza and, in children, respiratory syncytial virus. Infection spreads through droplets or when germs from the nose and throat enter the lungs. Risk is higher with older age, smoking, chronic lung or heart disease, diabetes, weak immunity, alcoholism and a recent viral illness."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical symptoms include cough with phlegm, fever and chills, chest pain when breathing, rapid breathing and tiredness. Older people may be confused rather than febrile. Symptoms often develop over days. Seek help for breathing difficulty, bluish lips, confusion, chest pain or high fever."
+      ]
+    },
+    {
+      "heading": "Diagnosis",
+      "paragraphs": [
+        "Doctors listen to the chest, check breathing rate, oxygen levels and blood pressure, and may arrange a chest X-ray, blood tests and sputum tests. Scoring systems estimate severity and help decide between home care and hospital care."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Bacterial pneumonia is treated with antibiotics, usually for about five to seven days, and viral pneumonia with supportive care or antivirals in some cases. Rest, drinking plenty of fluids and paracetamol or ibuprofen for fever and pain help. Hospital treatment may include oxygen, intravenous antibiotics and fluids. Cough usually settles within a few weeks, but tiredness can last longer. A follow-up X-ray may be advised for smokers or older adults."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Vaccination against pneumococcus and influenza, and for children against other common germs, lowers the risk. Do not smoke, wash hands regularly, and seek early treatment of respiratory infections. People at higher risk should ask their doctor which vaccinations are advised."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Deciding where to be treated",
+      "text": "Imagine you are an older person with fever and cough. You could ask whether you can be treated at home safely, and what symptoms should prompt you to return."
+    },
+    {
+      "title": "Recovering well",
+      "text": "Suppose you finished antibiotics but still feel weak. You might increase activity gradually, rest enough and mention persistent cough or fever to your doctor."
+    }
+  ],
+  "questions": [
+    "Do I need hospital treatment, or can I recover at home?",
+    "Which vaccines should I have to reduce my risk?",
+    "When should my chest be rechecked?"
+  ]
+}

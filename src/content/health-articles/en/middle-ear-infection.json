@@ -1,0 +1,52 @@
+{
+  "title": "Middle ear infection",
+  "intro": "Middle ear infection, or otitis media, occurs when the space behind the eardrum becomes inflamed, usually after a cold. It is very common in young children and causes earache and sometimes fever. Most infections clear within a few days without antibiotics, with pain relief being the main treatment.",
+  "sections": [
+    {
+      "heading": "Why it happens",
+      "paragraphs": [
+        "The middle ear is connected to the back of the nose by the eustachian tube. During a cold or allergy, this tube can swell and block, and fluid builds up behind the eardrum, where germs may multiply. Children are more affected because their tubes are short and narrow. Exposure to smoke, lack of breastfeeding and nursery attendance raise the risk."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Typical signs are earache, which may be worse when lying down, fever, irritability, poor sleep, reduced appetite and sometimes reduced hearing. Babies may tug at their ears and cry. If the eardrum bursts, fluid may drain and pain often eases quickly."
+      ]
+    },
+    {
+      "heading": "Treatment",
+      "paragraphs": [
+        "Pain and fever relief with paracetamol or ibuprofen at the recommended dose is the main treatment. Warmth on the ear may comfort. Many guidelines suggest watchful waiting for 48 to 72 hours for children over a certain age with mild illness, because most recover without antibiotics. Antibiotics are considered for very young children, severe symptoms, both ears affected, discharge from the ear or if symptoms do not improve.",
+        "Nasal decongestant sprays and antihistamines do not help. Keep the ear dry if it is draining."
+      ]
+    },
+    {
+      "heading": "Complications",
+      "paragraphs": [
+        "Fluid may remain behind the eardrum for weeks and temporarily reduce hearing. Repeated infections or persistent fluid may be treated with small ventilation tubes inserted in the eardrum. Rarely, infection spreads to nearby bone or the brain. Seek urgent care for swelling or redness behind the ear, stiff neck, severe headache, drowsiness or facial weakness."
+      ]
+    },
+    {
+      "heading": "Prevention",
+      "paragraphs": [
+        "Avoid exposure to smoke, encourage breastfeeding in infancy, and keep vaccinations up to date, since pneumococcal and flu vaccines reduce infections. Wash hands to limit colds."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Watching and waiting",
+      "text": "Imagine your four-year-old has earache after a cold. You could give pain relief, offer fluids, observe for two days and call the doctor if fever rises, the pain worsens or discharge appears."
+    },
+    {
+      "title": "Discussing repeated infections",
+      "text": "Suppose your child has had several ear infections this year. You might ask whether a hearing test or an ear specialist visit would be useful."
+    }
+  ],
+  "questions": [
+    "Does my child need antibiotics, or can we wait?",
+    "How can I manage pain at home and for how long?",
+    "Should we have a hearing check if infections keep returning?"
+  ]
+}

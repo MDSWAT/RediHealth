@@ -1,0 +1,51 @@
+{
+  "title": "Transplantacija matičnih stanica za liječenje raka",
+  "intro": "Transplantacija matičnih stanica zamjenjuje bolesne ili oštećene stanice koje stvaraju krv zdravima. Koristi se uglavnom za rakove krvi kao što su leukemija, limfom i mijelom. Može biti izlječiva, ali je intenzivno liječenje sa značajnim rizicima pa se odluke donose zajedno sa specijaliziranim timom.",
+  "sections": [
+    {
+      "heading": "Što rade matične stanice",
+      "paragraphs": [
+        "Matične stanice krvi u koštanoj srži stvaraju crvene krvne stanice, bijele krvne stanice i trombocite. Kemoterapija ili zračenje u visokim dozama mogu uništiti stanice raka, ali oštećuju i srž pa se matične stanice daju poslije kako bi se obnovilo stvaranje krvi."
+      ]
+    },
+    {
+      "heading": "Vrste transplantacije",
+      "paragraphs": [
+        "Kod autologne transplantacije vlastite matične stanice bolesnika prikupljaju se unaprijed, pohranjuju i vraćaju nakon liječenja visokim dozama. Kod alogene transplantacije stanice dolaze od darivatelja, idealno blisko podudarnog brata ili sestre, podudarnog nesrodnog darivatelja ili djelomično podudarnog srodnika ili iz pupkovinske krvi. Stanice darivatelja mogu napasti i preostale stanice raka, što se naziva učinak presatka protiv leukemije."
+      ]
+    },
+    {
+      "heading": "Postupak",
+      "paragraphs": [
+        "Liječenje počinje pretragama i, kod darivatelja, prikupljanjem stanica iz krvi nakon što lijek potakne njihovo otpuštanje ili iz koštane srži u anesteziji. Bolesnik prima kondicioniranje, zatim stanice infuzijom kroz venu. Krvna slika pada, a zatim se oporavlja tijekom tjedana. Boravak u bolnici može trajati nekoliko tjedana, u zaštitnim uvjetima, a slijede mjeseci oporavka."
+      ]
+    },
+    {
+      "heading": "Rizici",
+      "paragraphs": [
+        "Rizici uključuju infekcije, krvarenje, anemiju, rane u ustima, mučninu, oštećenje organa i neplodnost. Nakon alogenih transplantacija javlja se bolest presatka protiv primatelja kada stanice darivatelja napadaju tkiva bolesnika, zahvaćajući kožu, crijeva, jetru i druge organe, a može biti akutna ili kronična. Lijekovi koji potiskuju imunitet smanjuju je, ali povećavaju rizik infekcije. Rak se također može vratiti."
+      ]
+    },
+    {
+      "heading": "Nakon transplantacije",
+      "paragraphs": [
+        "Redovito praćenje nadzire krvnu sliku, infekcije, funkciju organa i kronične komplikacije. Cijepljenja se moraju ponoviti, a imunološkom sustavu treba do godinu dana ili dulje da se oporavi. O očuvanju plodnosti treba razgovarati prije liječenja. Emocionalna potpora, rehabilitacija i psihosocijalna skrb pomažu bolesnicima i obiteljima."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Razmatranje darivatelja",
+      "text": "Zamislite da vam liječnik predloži alogenu transplantaciju. Mogli biste pitati kako se pronalazi darivatelj, što uključuje postupak podudaranja i kolike su šanse za uspjeh."
+    },
+    {
+      "title": "Priprema za boravak u bolnici",
+      "text": "Pretpostavite da ćete biti hospitalizirani nekoliko tjedana. Mogli biste planirati posjete, aktivnosti te pitati tim o mjerama opreza protiv infekcija i uslugama potpore."
+    }
+  ],
+  "questions": [
+    "Je li transplantacija matičnih stanica prava za moju bolest i kolike su šanse za uspjeh?",
+    "Koji su glavni rizici i koliko će trajati oporavak?",
+    "Kako bi liječenje moglo utjecati na moju plodnost i dugoročno zdravlje?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Terapia me dritë, tabletat dhe injeksionet për ekzemën",
+  "intro": "Kur kremrat dhe kujdesi i lëkurës nuk mjaftojnë për ta kontrolluar ekzemën atopike, mjekët mund të marrin në konsideratë trajtime që veprojnë në gjithë trupin ose përdorin dritë të veçantë. Këto opsione mund ta ulin kruajtjen dhe përkeqësimet në ekzemën mesatare deri të rëndë, por kërkojnë monitorim për shkak të efekteve anësore dhe kostove.",
+  "sections": [
+    {
+      "heading": "Kur merret në konsideratë trajtim më i fortë",
+      "paragraphs": [
+        "Trajtimi përforcohet kur ekzema është e përhapur ose e rëndë, gjumi e jeta e përditshme prishen ose trajtimet lokale nuk japin kontroll të mjaftueshëm. Para kësaj, mjeku juaj do të kontrollojë që kujdesi bazë i lëkurës dhe përdorimi i saktë i kremrave antiinflamatorë janë provuar, si dhe nxitësit e infeksionet."
+      ]
+    },
+    {
+      "heading": "Terapia me dritë",
+      "paragraphs": [
+        "Fototerapia përdor dritë ultravjollcë, zakonisht UVB me brez të ngushtë, në një kabinë disa herë në javë për disa javë. Ajo ul inflamacionin e kruajtjen te shumë njerëz. Efektet anësore përfshijnë skuqje si nga dielli, lëkurë të thatë dhe, me përdorim të përsëritur afatgjatë, rrezik të shtuar të plakjes së lëkurës dhe ndoshta të kancerit të lëkurës. Mbahet mbrojtje për sytë dhe numri i seancave kufizohet. Kërkon vizita të rregullta, që mund të jenë të vështira me punën ose shkollën."
+      ]
+    },
+    {
+      "heading": "Tabletat",
+      "paragraphs": [
+        "Barnat si ciklosporina e shtypin sistemin imunitar dhe mund ta kontrollojnë shpejt ekzemën e rëndë, por mund të ndikojnë në tensionin e gjakut dhe funksionin e veshkave dhe përdoren zakonisht për periudha të kufizuara me analiza gjaku. Tabletat më të reja që bllokojnë molekulat sinjalizuese, të quajtura frenues JAK, mund të jenë efektive, por kanë paralajmërime për infeksione, mpiksje gjaku dhe rreziqe të tjera, prandaj përdoren kur opsionet e tjera janë të papërshtatshme."
+      ]
+    },
+    {
+      "heading": "Injeksionet",
+      "paragraphs": [
+        "Barnat biologjike si dupilumabi dhe tralokinumabi synojnë sinjale specifike imune të përfshira në ekzemë. Ato jepen me injeksion nën lëkurë me intervale javësh, shpesh në shtëpi pas udhëzimit. Shpesh tolerohen mirë, por mund të ndodhin probleme të syve si skuqja ose konjuktiviti dhe reagime në vendin e injeksionit. Përshkruhen përgjithësisht nga specialistë."
+      ]
+    },
+    {
+      "heading": "Zgjedhja dhe monitorimi",
+      "paragraphs": [
+        "Opsioni më i mirë varet nga mosha, shëndeti, planet për shtatzëni, gjendjet e tjera, sa e rëndë është ekzema dhe preferencat tuaja. Vazhdoni të përdorni zbutës gjatë gjithë kohës. Tregojini mjekut për infeksione, vaksinime të planifikuara ose shtatzëni. Nevojiten kontrolle për të gjykuar përfitimet dhe efektet anësore."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Peshimi i faktorëve praktikë",
+      "text": "Imagjinoni që mjeku sugjeron terapi me dritë. Mund të pyesni sa vizita në javë nevojiten, sa kohë duhet për të parë përmirësim dhe nëse mund ta kombinoni me punën ose shkollën."
+    },
+    {
+      "title": "Krahasimi i opsioneve",
+      "text": "Supozoni që ofrohen edhe një injeksion edhe një tabletë. Mund të pyesni për efektivitetin, efektet anësore, monitorimin dhe çfarë ndodh nëse ndaloni."
+    }
+  ],
+  "questions": [
+    "Cili trajtim është më i përshtatshëm për ekzemën time dhe cilat janë rreziqet e tij?",
+    "Si do ta di nëse po funksionon dhe kur do ta rishqyrtojmë?",
+    "Si duhet ta vazhdoj kujdesin e lëkurës gjatë trajtimit?"
+  ]
+}

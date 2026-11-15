@@ -1,0 +1,51 @@
+{
+  "title": "What are digital health applications (DiGA)?",
+  "intro": "In Germany, certain apps and web programmes can be prescribed by doctors and psychotherapists like medicines, and the costs are covered by statutory health insurance. They are called digital health applications, or DiGA. They aim to support treatment of conditions such as depression, insomnia, tinnitus and back pain. This overview is general; the list changes, so check current details.",
+  "sections": [
+    {
+      "heading": "What a DiGA is",
+      "paragraphs": [
+        "A DiGA is a medical product based on digital technology, used by the patient to detect, monitor, treat or ease illness or to compensate for disability. Examples include programmes with cognitive behavioural therapy exercises, symptom diaries and training modules. They are not simply wellness apps. They are assessed as medical devices of low risk."
+      ]
+    },
+    {
+      "heading": "How they are approved",
+      "paragraphs": [
+        "The federal institute responsible for medicines and medical devices reviews safety, function, data protection and quality. Manufacturers must show a positive effect on care, for example improved health or better handling of illness. Some apps are listed provisionally while evidence is gathered. The official directory shows the indications, evidence and requirements, including languages."
+      ]
+    },
+    {
+      "heading": "How to get one",
+      "paragraphs": [
+        "A doctor or psychotherapist can prescribe a DiGA, or your health insurer can approve it if you show that you have a suitable diagnosis. You then receive a code to activate the app, and the insurer pays the manufacturer directly, so you typically pay nothing. The prescription covers a set period, often ninety days, after which continuation is decided."
+      ]
+    },
+    {
+      "heading": "Benefits and limits",
+      "paragraphs": [
+        "Benefits include flexibility, availability at any time and the ability to practise skills between appointments. Studies suggest benefits for some applications, but effects are often modest and depend on engagement. They do not replace a doctor or therapy in serious illness. Not everyone feels comfortable with digital tools, and language availability may be limited."
+      ]
+    },
+    {
+      "heading": "Data protection",
+      "paragraphs": [
+        "DiGA must meet strict data protection requirements, and health data is processed in line with German and European law, with data stored in approved locations. Read what the app asks permission for, and ask the manufacturer or your doctor about how your data is used. You can stop using the app and request deletion of data."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Asking your doctor",
+      "text": "Imagine you have trouble sleeping and prefer not to start medicines. You could ask your doctor whether a DiGA for insomnia is suitable and how to get a code."
+    },
+    {
+      "title": "Checking the directory",
+      "text": "Suppose you read about a DiGA online. You might check the official directory for the approved indication and the evidence before you start."
+    }
+  ],
+  "questions": [
+    "Is there a DiGA suitable for my condition, and does my insurer cover it?",
+    "How will my data be used?",
+    "How will we judge whether it works for me?"
+  ]
+}

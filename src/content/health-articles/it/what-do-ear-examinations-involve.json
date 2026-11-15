@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa comportano gli esami dell'orecchio",
+  "intro": "Gli esami dell'orecchio aiutano i medici a trovare la causa di dolore all'orecchio, perdita dell'udito, capogiri o fischi nelle orecchie. Di solito sono indolori e rapidi. Gli esami usati dipendono dai sintomi e i risultati guidano il trattamento.",
+  "sections": [
+    {
+      "heading": "Guardare dentro l'orecchio",
+      "paragraphs": [
+        "Il medico usa un otoscopio o un microscopio per guardare nel condotto uditivo e il timpano. Questo può mostrare cerume, infezione, lesione, liquido dietro il timpano o un foro. Nei bambini l'orecchio viene tirato delicatamente per raddrizzare il condotto. La visita può essere leggermente fastidiosa ma non deve far male."
+      ]
+    },
+    {
+      "heading": "Esami dell'udito",
+      "paragraphs": [
+        "L'audiometria tonale misura i suoni più deboli che riesci a sentire a diverse altezze, usando le cuffie, e i risultati sono mostrati su un grafico. I test vocali verificano quanto bene capisci le parole. I neonati e i bambini piccoli fanno esami che non richiedono collaborazione attiva, come le otoemissioni acustiche o le risposte ai suoni."
+      ]
+    },
+    {
+      "heading": "Esami dell'orecchio medio",
+      "paragraphs": [
+        "La timpanometria usa una piccola sonda nel condotto uditivo per misurare quanto bene si muove il timpano e se c'è liquido nell'orecchio medio. I test con il diapason aiutano a distinguere tra perdita dell'udito di conduzione e neurosensoriale. Questi esami richiedono solo pochi minuti e sono indolori."
+      ]
+    },
+    {
+      "heading": "Equilibrio e immagini",
+      "paragraphs": [
+        "Se il problema sono i capogiri, si possono usare test dei movimenti oculari, manovre posizionali ed esami dell'equilibrio. Esami come la risonanza magnetica o la tomografia computerizzata si usano per una perdita dell'udito unilaterale inspiegata, sospette masse o problemi ossei e solo quando necessario."
+      ]
+    },
+    {
+      "heading": "Preparazione e risultati",
+      "paragraphs": [
+        "Informa il medico di sintomi, farmaci e precedenti problemi dell'orecchio. Evita di usare i cotton fioc, perché possono spingere il cerume più in profondità. Chiedi che cosa significano i risultati, se servono altri esami e quali sono le opzioni di trattamento."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Descrivere i sintomi",
+      "text": "Immagina di avere un udito ovattato in un orecchio. Potresti annotare quando è iniziato e se hai anche dolore, capogiri o fischi."
+    },
+    {
+      "title": "Dopo l'esame",
+      "text": "Supponi che l'audiogramma mostri una perdita lieve. Potresti chiedere della protezione dell'udito, di esami di controllo e se gli apparecchi siano adatti."
+    }
+  ],
+  "questions": [
+    "Di quali esami ho bisogno per i miei sintomi?",
+    "Che cosa mostrano i risultati?",
+    "Ho bisogno di un trattamento o di un controllo?"
+  ]
+}

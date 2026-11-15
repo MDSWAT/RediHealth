@@ -1,0 +1,51 @@
+{
+  "title": "Rubeola (fruthi gjerman)",
+  "intro": "Rubeola është një infeksion viral që zakonisht shkakton një sëmundje të lehtë me skuqje në lëkurë, por mund ta dëmtojë rëndë një foshnje të palindur nëse gruaja infektohet në shtatzëninë e hershme. Vaksinimi si pjesë e vaksinës së kombinuar kundër fruthit, shytave e rubeolës jep mbrojtje të besueshme dhe e ka bërë rubeolën të rrallë në shumë vende.",
+  "sections": [
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Pas një periudhe inkubacioni dy deri tre javë, një skuqje rozë fillon në fytyrë e përhapet në trup, duke zgjatur rreth tre ditë. Simptoma të tjera përfshijnë ethe të ulëta, gjëndra limfatike të enjtura pas veshëve e në qafë, simptoma të lehta të ftohjes e dhimbje nyjesh, veçanërisht te gratë e rritura. Shumë infeksione japin pak ose aspak simptoma."
+      ]
+    },
+    {
+      "heading": "Si përhapet",
+      "paragraphs": [
+        "Rubeola përhapet me pika kur një person i infektuar kollitet ose teshtin. Njerëzit janë ngjitës nga rreth një javë para skuqjes deri rreth një javë pas saj. Duhet të qëndrojnë larg shkollës, punës e grave shtatzëna gjatë kësaj periudhe dhe t'i thonë mjekut para se ta vizitojnë."
+      ]
+    },
+    {
+      "heading": "Rreziku në shtatzëni",
+      "paragraphs": [
+        "Infeksioni në muajt e parë të shtatzënisë mund të shkaktojë abort spontan ose sindromën e rubeolës kongjenitale, që mund të përfshijë defekte të zemrës, katarakt, humbje dëgjimi e probleme zhvillimi. Gratë që planifikojnë shtatzëni duhet të kontrollojnë nëse janë imune. Një grua shtatzënë që është ekspozuar ose ka skuqje duhet të kontaktojë menjëherë mjekun."
+      ]
+    },
+    {
+      "heading": "Diagnoza dhe trajtimi",
+      "paragraphs": [
+        "Diagnoza konfirmohet me teste gjaku ose brisku të fytit. Nuk ka trajtim specifik; pushimi, lëngjet e paracetamoli ose ibuprofeni lehtësojnë simptomat. Komplikimet si artriti, problemet e gjakderdhjes ose inflamacioni i trurit janë të rralla."
+      ]
+    },
+    {
+      "heading": "Vaksinimi",
+      "paragraphs": [
+        "Vaksina kundër fruthit, shytave e rubeolës jepet në dy doza në fëmijëri. Gratë në moshë riprodhuese pa dëshmi imuniteti duhet të vaksinohen, në mënyrë ideale para shtatzënisë, pasi vaksina nuk duhet të jepet gjatë shtatzënisë e shtatzënia duhet shmangur për rreth një muaj më pas. Punonjësit e shëndetësisë e ata që kujdesen për fëmijë duhet të sigurojnë gjithashtu imunitetin e tyre."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Kontrolli i imunitetit",
+      "text": "Imagjinoni që planifikoni të mbeteni shtatzënë. Mund të kontrolloni kartelën e vaksinimit e t'i kërkoni mjekut një analizë gjaku nëse nuk jeni të sigurt se jeni imune."
+    },
+    {
+      "title": "Përgjigjja ndaj ekspozimit",
+      "text": "Supozoni që një koleg ka rubeolë e ju jeni shtatzënë. Mund ta telefononi menjëherë mjekun për të organizuar një test imuniteti e këshillë."
+    }
+  ],
+  "questions": [
+    "A jam e mbrojtur nga rubeola dhe a më duhet vaksinë?",
+    "Kur duhet të vaksinohem nëse dua të mbetem shtatzënë?",
+    "Çfarë të bëj nëse jam shtatzënë e ekspozuar ndaj rubeolës?"
+  ]
+}

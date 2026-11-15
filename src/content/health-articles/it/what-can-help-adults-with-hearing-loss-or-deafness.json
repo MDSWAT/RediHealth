@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa può aiutare gli adulti con perdita dell'udito o sordità",
+  "intro": "La perdita dell'udito negli adulti è comune e di solito graduale. Esistono molte opzioni, dagli apparecchi acustici agli impianti, dall'addestramento alla comunicazione alla tecnologia di supporto. Trattare presto la perdita dell'udito è collegato a una migliore comunicazione, minore isolamento e forse a una migliore salute del cervello.",
+  "sections": [
+    {
+      "heading": "Farsi valutare",
+      "paragraphs": [
+        "Un esame dell'udito da parte di un otorinolaringoiatra o di un audiologo misura il tipo e il grado della perdita. La visita dell'orecchio cerca cerume e infezioni, che si possono trattare. Altri esami cercano le cause, come danno da rumore, età, infezioni, farmaci o raramente un tumore. Una perdita improvvisa dell'udito in un orecchio richiede attenzione urgente."
+      ]
+    },
+    {
+      "heading": "Apparecchi acustici",
+      "paragraphs": [
+        "Gli apparecchi acustici amplificano il suono e sono il trattamento principale per la maggior parte dei tipi di perdita dell'udito neurosensoriale. I dispositivi moderni sono piccoli, digitali, si adattano agli ambienti e possono collegarsi a telefoni e televisori. Richiedono una regolazione e una messa a punto da parte di un professionista e tempo per abituarsi, con un uso regolare. La copertura dei costi differisce tra paesi e assicurazioni."
+      ]
+    },
+    {
+      "heading": "Impianti",
+      "paragraphs": [
+        "Gli impianti cocleari aggirano le cellule ciliate danneggiate dell'orecchio interno e stimolano direttamente il nervo acustico. Sono per le persone con perdita grave o profonda che traggono poco beneficio dagli apparecchi acustici. Servono un intervento e mesi di riabilitazione. I dispositivi ancorati all'osso aiutano in certe perdite dell'udito di conduzione o nella sordità unilaterale. Gli impianti dell'orecchio medio sono un'altra opzione per pazienti selezionati."
+      ]
+    },
+    {
+      "heading": "Dispositivi di supporto e comunicazione",
+      "paragraphs": [
+        "Telefoni amplificati, sottotitoli, impianti a induzione, trasmettitori per la televisione e avvisi visivi o a vibrazione aiutano nella vita quotidiana. La lettura labiale, l'addestramento alla comunicazione e, per le persone sorde, la lingua dei segni aprono altri modi di comunicare. Interpreti e servizi di sottotitolazione sostengono lavoro e appuntamenti."
+      ]
+    },
+    {
+      "heading": "Sostegno e benessere",
+      "paragraphs": [
+        "La perdita dell'udito può portare a ritiro sociale e umore basso. Consulenza, gruppi di pari e il coinvolgimento dei familiari aiutano. L'acufene spesso accompagna la perdita dell'udito e può essere alleviato da apparecchi acustici e terapia sonora. Proteggi l'udito residuo dai rumori forti e fai controlli regolari."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Iniziare con gli apparecchi acustici",
+      "text": "Immagina di ricevere nuovi apparecchi acustici. Potresti portarli un po' più a lungo ogni giorno, esercitarti prima in stanze silenziose e tornare per le regolazioni."
+    },
+    {
+      "title": "Considerare un impianto",
+      "text": "Supponi che gli apparecchi acustici non aiutino più. Potresti chiedere allo specialista se sei candidato a un impianto cocleare e che cosa comporta il percorso."
+    }
+  ],
+  "questions": [
+    "Che tipo di perdita dell'udito ho e qual è il trattamento migliore?",
+    "Gli apparecchi acustici o gli impianti sono coperti dalla mia assicurazione?",
+    "Quali dispositivi di supporto aiuterebbero a casa e al lavoro?"
+  ]
+}

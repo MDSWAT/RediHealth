@@ -1,0 +1,51 @@
+{
+  "title": "Dermatomes: using a skin map carefully",
+  "intro": "A dermatome is an area of skin mainly linked to a spinal nerve root. Patterns of pain, tingling or reduced sensation can help localize a problem, but a diagram is a guide rather than a diagnosis.",
+  "sections": [
+    {
+      "heading": "Roots and peripheral nerves",
+      "paragraphs": [
+        "A nerve root leaves the spine and its fibers may join several peripheral nerves. A dermatome map is therefore different from the territory of a named peripheral nerve. Confusing the two can lead to an incorrect explanation of symptoms."
+      ]
+    },
+    {
+      "heading": "Patterns and overlap",
+      "paragraphs": [
+        "Neighboring dermatomes overlap and maps vary between people. Symptoms may not follow a perfect stripe. Skin irritation, circulation problems and other conditions can also cause burning or numbness; not every patch proves a compressed spinal root."
+      ]
+    },
+    {
+      "heading": "The examination",
+      "paragraphs": [
+        "A clinician combines the distribution with strength, reflexes, history and examination. Imaging or nerve tests are selected when they will clarify the problem. A scan finding alone may not explain where a person feels symptoms."
+      ]
+    },
+    {
+      "heading": "A useful clinical example",
+      "paragraphs": [
+        "Shingles can produce pain and a blistering rash in a nerve-related pattern, often on one side. Early assessment matters, especially near an eye or in someone with reduced immunity. Do not diagnose every painful stripe as shingles without examination."
+      ]
+    },
+    {
+      "heading": "When to seek urgent help",
+      "paragraphs": [
+        "New progressive weakness, loss of bladder or bowel control or numbness around the genitals and seat area with back symptoms requires urgent assessment. Sudden facial or limb weakness or speech difficulty may indicate stroke, not an ordinary dermatome problem."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira marks where tingling occurs and describes weakness as well. The clinician checks both nerve-root and peripheral-nerve possibilities instead of relying only on a chart."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben develops a painful blistering stripe near an eye. He seeks prompt care rather than comparing pictures online for several days."
+    }
+  ],
+  "questions": [
+    "Which steps would be clearer with a diagram?",
+    "What does this explanation show, and what can it not predict?",
+    "Would my specific concern need professional assessment?"
+  ]
+}

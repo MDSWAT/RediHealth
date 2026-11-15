@@ -1,0 +1,51 @@
+{
+  "title": "Epatite B: test, prevenzione e cura del fegato",
+  "intro": "L’epatite B è un’infezione virale del fegato. Alcune guariscono, altre persistono e richiedono controlli o terapia. Può essere senza sintomi: sentirsi bene non prova assenza di virus o danni.",
+  "sections": [
+    {
+      "heading": "Capire il problema",
+      "paragraphs": [
+        "Si trasmette con sangue o alcuni liquidi, compresi rapporti sessuali e nascita. Non con pasti ordinari o abbracci. Non escludere persone dalla vita quotidiana per la diagnosi."
+      ]
+    },
+    {
+      "heading": "Valutazione ed esami",
+      "paragraphs": [
+        "Gli esami distinguono infezione, immunità e altri quadri; possono servire ripetizioni. Funzione epatica e fibrosi guidano i controlli. Discutere gravidanza, conviventi e futura immunosoppressione. Portare elenco dei farmaci e risultati precedenti; chiedere quali riscontri cambierebbero il piano."
+      ]
+    },
+    {
+      "heading": "Possibilità di trattamento",
+      "paragraphs": [
+        "L’infezione cronica può richiedere antivirali per sopprimere il virus e ridurre complicazioni. Non tutti necessitano farmaci immediati, ma i controlli contano. Non sospendere senza piano specialistico. Concordare come valutare benefici ed effetti indesiderati prima di cambiare il trattamento."
+      ]
+    },
+    {
+      "heading": "Cura quotidiana",
+      "paragraphs": [
+        "La vaccinazione protegge i suscettibili; i contatti chiedano test e vaccino. Non condividere aghi, rasoi o spazzolini. La gravidanza permette prevenzione per il neonato; esposizioni recenti richiedono rapido consiglio sulla profilassi. Scegliere una routine sostenibile e discutere ostacoli come costi, lavoro o lingua."
+      ]
+    },
+    {
+      "heading": "Controlli e segnali di allarme",
+      "paragraphs": [
+        "Confusione, vomito grave, grande gonfiore addominale o sangue richiedono urgenza. Nuovo ittero va valutato presto. Evitare alcol e controllare farmaci e integratori anziché fidarsi di depurazioni commerciali."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira scopre l’infezione in gravidanza e discute subito parto e prevenzione neonatale senza aspettare la nascita."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben sta bene ma mantiene controlli e chiede vaccinazione familiare senza evitare pasti condivisi."
+    }
+  ],
+  "questions": [
+    "Quali riscontri sostengono la diagnosi o raccomandazione?",
+    "Quali sono benefici, rischi e alternative nel mio caso?",
+    "Quando chiedere aiuto o programmare una rivalutazione?"
+  ]
+}

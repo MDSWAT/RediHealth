@@ -1,0 +1,51 @@
+{
+  "title": "Types of insulin",
+  "intro": "Insulin comes in several forms that differ in how quickly they start working and how long they last. People with diabetes who need insulin usually combine types to cover meals and to provide a steady background level. Understanding the types helps you use them safely and discuss changes with your diabetes team.",
+  "sections": [
+    {
+      "heading": "Rapid-acting and short-acting insulin",
+      "paragraphs": [
+        "Rapid-acting insulin starts working within about fifteen minutes, peaks after one to two hours and lasts three to five hours. It is taken at or just before meals and to correct high blood sugar. Short-acting, or regular, insulin starts after about half an hour, peaks later and lasts longer, so it is taken some time before eating."
+      ]
+    },
+    {
+      "heading": "Intermediate and long-acting insulin",
+      "paragraphs": [
+        "Intermediate-acting insulin, often cloudy and needing mixing, acts for around half a day with a peak. Long-acting insulin works for a day or longer with a flatter profile, and provides background cover between meals and overnight. Ultra-long-acting forms last even longer. These are usually taken once or twice a day at the same times."
+      ]
+    },
+    {
+      "heading": "Mixed insulin",
+      "paragraphs": [
+        "Premixed insulin contains a fixed combination of fast and slower insulin in one injection, often used twice daily. It is simpler but less flexible, since the meal and activity timing needs to be regular. Doses are adjusted by the doctor."
+      ]
+    },
+    {
+      "heading": "Delivery and storage",
+      "paragraphs": [
+        "Insulin is injected under the skin of the abdomen, thigh or buttock with a pen or syringe, or delivered by an insulin pump. Rotate injection sites to prevent lumps that affect absorption. Store unopened insulin in the refrigerator, and keep the one in use at room temperature for the time stated in the leaflet. Never freeze insulin or leave it in a hot car, and check the expiry date."
+      ]
+    },
+    {
+      "heading": "Safe use",
+      "paragraphs": [
+        "Always check the type and dose before injecting, since confusion between insulins can be dangerous. Learn to recognise and treat low blood sugar, adjust doses for food, activity and illness according to your plan, and measure glucose regularly. Do not change doses or switch brands without advice. Carry supplies when travelling."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Matching insulin to meals",
+      "text": "Imagine you take rapid-acting insulin with meals. You could inject just before eating, measure glucose at set times and note meals and doses for your team to review."
+    },
+    {
+      "title": "Rotating sites",
+      "text": "Suppose you notice a lump where you often inject. You might switch to a different area, avoid injecting into the lump and show it to your nurse."
+    }
+  ],
+  "questions": [
+    "Which insulin types and doses are best suited to my daily routine?",
+    "How should I adjust insulin for exercise, illness and travel?",
+    "How should I store my insulin and rotate injection sites?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Sindromul premenstrual (SPM)",
+  "intro": "Sindromul premenstrual este un tipar de simptome fizice și emoționale care apar în zilele dinaintea menstruației și se ameliorează odată ce începe sângerarea. Multe femei observă schimbări ușoare, în timp ce pentru unele simptomele sunt suficient de severe încât să perturbe munca și relațiile. Măsurile de stil de viață și, la nevoie, medicamentele pot ajuta.",
+  "sections": [
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Simptomele frecvente includ sensibilitatea sânilor, balonarea, durerile de cap, oboseala, poftele alimentare, iritabilitatea, dispoziția scăzută, anxietatea și dificultățile de somn. Simptomele încep în a doua jumătate a ciclului, de obicei cu aproximativ o săptămână înainte de menstruație, și dispar în câteva zile după începerea sângerării. O formă severă, cu simptome marcate de dispoziție, se numește tulburare disforică premenstruală."
+      ]
+    },
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Cauza nu este pe deplin cunoscută. Pare să se lege de modul în care creierul răspunde la fluctuațiile hormonale normale, implicând mesageri chimici precum serotonina. Nu este cauzat de un caracter slab și nu este doar stres. Femeile cu antecedente de depresie, anxietate sau stres ridicat pot fi mai afectate."
+      ]
+    },
+    {
+      "heading": "Ținerea unui jurnal al simptomelor",
+      "paragraphs": [
+        "Notarea zilnică a simptomelor timp de două sau mai multe cicluri arată dacă urmează tiparul tipic și ajută la diferențierea SPM de depresie, de problemele tiroidiene sau de alte afecțiuni care nu se ameliorează odată cu menstruația. Face mai ușoară și discuția despre tratament cu medicul."
+      ]
+    },
+    {
+      "heading": "Ce poate ajuta",
+      "paragraphs": [
+        "Exercițiile regulate, somnul suficient, o alimentație echilibrată, cu mai puțină cafea, sare și alcool, și metodele de relaxare pot reduce simptomele. Suplimentele de calciu pot ajuta unele femei, iar dovezile pentru alte suplimente sunt mixte. Calmantele ameliorează crampele și durerile de cap. Terapia cognitiv-comportamentală este eficientă pentru simptomele de dispoziție."
+      ]
+    },
+    {
+      "heading": "Tratament medical",
+      "paragraphs": [
+        "Pentru simptomele severe, antidepresivele de tip serotoninergic, luate pe tot parcursul ciclului sau doar în a doua jumătate, pot fi foarte eficiente. Unele pilule contraceptive combinate reduc simptomele, iar alte opțiuni hormonale sunt disponibile pentru anumite femei. Discutați beneficiile și efectele secundare cu medicul și revizuiți regulat tratamentul. Cereți ajutor urgent dacă aveți gânduri de a vă face rău."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Urmărirea tiparului",
+      "text": "Imaginați-vă că dispoziția vă scade în fiecare lună înainte de menstruație. Ați putea nota zilnic simptomele timp de trei luni și ați putea aduce graficul medicului pentru a discuta opțiunile."
+    },
+    {
+      "title": "Planificarea în jurul ciclului",
+      "text": "Presupuneți că știți că săptămâna dinaintea menstruației este cea mai grea. Ați putea evita să programați atunci evenimente stresante, ați putea continua exercițiile și ați putea planifica timp de odihnă."
+    }
+  ],
+  "questions": [
+    "Se potrivesc simptomele mele cu SPM sau ar putea fi responsabilă altă afecțiune?",
+    "Ce tratamente sunt cele mai bune pentru simptomele mele?",
+    "Este potrivit pentru mine un contraceptiv hormonal sau un antidepresiv?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "High blood pressure: measurement and long-term protection",
+  "intro": "High blood pressure often causes no symptoms but increases the risk of stroke, heart disease and kidney damage. Diagnosis and targets depend on repeated measurements and individual circumstances, not whether you feel tense or have a headache.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "A single high result can reflect pain, recent activity or measurement conditions. It still deserves follow-up. Persistent elevation can have lifestyle, inherited, medicine-related or occasionally specific medical causes."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Use a validated upper-arm device and correct cuff size, rest quietly and support the arm. Follow the agreed home or ambulatory measurement schedule. Bring readings and the device if accuracy is uncertain. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Treatment combines appropriate daily habits and, when indicated, medicines chosen around other illnesses and pregnancy possibility. Targets differ between people. Feeling well is not a reason to stop treatment, and side effects should prompt review rather than silent discontinuation. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Reduce excess salt, stay active safely, moderate alcohol and seek smoking-cessation support. Discuss sleep and practical food choices without blaming yourself. Do not take extra tablets for an isolated reading unless specifically instructed. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "A very high reading with chest pain, severe breathlessness, confusion, weakness or vision changes requires emergency help. Repeated very high readings without symptoms still need urgent professional advice. Pregnancy with high readings or severe headache needs prompt maternity assessment."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira’s clinic reading is high. She learns correct home technique and records a series rather than making a diagnosis from one rushed measurement."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben feels healthy on medicine and asks about a troublesome side effect. The clinician reviews options instead of him stopping treatment without advice."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

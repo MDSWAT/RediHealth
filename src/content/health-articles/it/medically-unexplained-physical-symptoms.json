@@ -1,0 +1,52 @@
+{
+  "title": "Sintomi fisici non spiegati dal punto di vista medico",
+  "intro": "Molte persone hanno sintomi fisici reali, come dolore, capogiri, stanchezza o palpitazioni, per i quali i medici non trovano una chiara malattia fisica. Sono chiamati anche sintomi funzionali. Sono comuni, reali e spesso gestibili. Capire come interagiscono corpo e mente può ridurre la paura e migliorare la vita quotidiana.",
+  "sections": [
+    {
+      "heading": "Che cosa sono",
+      "paragraphs": [
+        "Esempi comuni sono mal di testa, mal di schiena, disturbi di stomaco, oppressione al petto, stanchezza e capogiri senza reperti agli esami. I sintomi sono reali, non immaginari. Spesso nascono da cambiamenti nel modo in cui il sistema nervoso elabora i segnali, per esempio dopo stress, infezione o trauma."
+      ]
+    },
+    {
+      "heading": "Perché non si trova una causa",
+      "paragraphs": [
+        "Gli esami standard mostrano soprattutto danni strutturali o cambiamenti chimici, ma i sintomi funzionali riguardano cambiamenti nel modo in cui il corpo funziona più che nel suo aspetto. Stress, sonno scarso, preoccupazione, umore basso e concentrarsi sul corpo possono amplificare le sensazioni e a loro volta i sintomi aumentano la preoccupazione, creando un circolo."
+      ]
+    },
+    {
+      "heading": "Ottenere una buona valutazione",
+      "paragraphs": [
+        "Un'anamnesi e una visita accurate con esami sensati aiutano a escludere una malattia grave. Esami ripetuti e molte visite specialistiche di solito non aiutano e possono fare danni. Un medico di famiglia di fiducia che ti vede regolarmente può coordinare le cure ed evitare procedure inutili."
+      ]
+    },
+    {
+      "heading": "Che cosa aiuta",
+      "paragraphs": [
+        "L'educazione sulla condizione, l'attività fisica regolare, buone routine del sonno, la riduzione dello stress e un dosaggio strutturato delle attività aiutano. Le terapie psicologiche come la terapia cognitivo-comportamentale hanno buone prove, come anche la mindfulness e il rilassamento. Farmaci come certi antidepressivi a basse dosi possono aiutare alcune persone, soprattutto contro il dolore, e la fisioterapia può aiutare i sintomi muscolari.",
+        "Trattare un'ansia o una depressione coesistenti è importante, ma i sintomi non vanno liquidati come semplice stress."
+      ]
+    },
+    {
+      "heading": "Vivere con i sintomi",
+      "paragraphs": [
+        "Fissa obiettivi realistici, continua a fare le attività che ti stanno a cuore ed evita di controllare continuamente il tuo corpo. Condividi la tua esperienza con persone che ti credono e chiedi aiuto se i sintomi peggiorano o ne compaiono di nuovi diversi dal solito."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Spezzare il circolo",
+      "text": "Immagina di avere mal di stomaco da mesi con esami normali. Potresti tenere un diario di sintomi e fattori di stress, iniziare a camminare con regolarità e chiedere del sostegno psicologico per la gestione del dolore."
+    },
+    {
+      "title": "Comunicare con il medico",
+      "text": "Supponi di sentire che i tuoi sintomi non vengono presi sul serio. Potresti dire chiaramente come i sintomi influiscono sulla tua vita e chiedere un piano di trattamento invece di altri esami."
+    }
+  ],
+  "questions": [
+    "Che cosa significano i miei sintomi e potrebbe essere sfuggito qualcosa di grave?",
+    "Quali trattamenti hanno le prove migliori per il mio tipo di sintomi?",
+    "Chi coordinerà le mie cure così da evitare esami inutili?"
+  ]
+}

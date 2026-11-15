@@ -1,0 +1,51 @@
+{
+  "title": "Trudnoća",
+  "intro": "Trudnoća traje oko četrdeset tjedana i donosi mnoge tjelesne i emocionalne promjene. Redovita prenatalna skrb, zdrave navike i poznavanje znakova upozorenja pomažu većini ljudi imati sigurnu trudnoću i porod. Svaka je trudnoća drukčija, a vaš zdravstveni tim može prilagoditi savjete vašem zdravlju i okolnostima.",
+  "sections": [
+    {
+      "heading": "Faze trudnoće",
+      "paragraphs": [
+        "Trudnoća se dijeli na tri trimestra. U prvom se razvija zametak, a česti su simptomi kao što su mučnina, umor i osjetljive dojke. U drugom se energija često vraća i pokreti se osjećaju od otprilike sredine trudnoće. U trećem beba brzo raste, a mogu se pojaviti tegobe kao što su bol u leđima i nedostatak zraka."
+      ]
+    },
+    {
+      "heading": "Prenatalna skrb",
+      "paragraphs": [
+        "Redoviti posjeti primalji ili liječniku prate vaše zdravlje i rast bebe provjerom krvnog tlaka, pretragama mokraće, krvnim pretragama, mjerenjima i ultrazvučnim pregledima. Možete razgovarati o izbornim probirnim testovima za kromosomska stanja, planovima poroda, cijepljenjima i hranjenju. Tečajevi za trudnice pripremaju za porod i rano roditeljstvo."
+      ]
+    },
+    {
+      "heading": "Zdrave navike",
+      "paragraphs": [
+        "Jedite raznoliku prehranu, uzimajte folnu kiselinu prije i u ranoj trudnoći kako je savjetovano i pitajte o vitaminu D i jodu. Izbjegavajte alkohol, pušenje i rekreativne droge. Ograničite kofein, izbjegavajte sirovo meso, nepasterizirane mliječne proizvode i određenu ribu s visokim udjelom žive. Ostanite aktivni hodanjem, plivanjem ili vježbama za trudnice osim ako vam nije savjetovano drukčije i dovoljno se odmarajte. Provjerite s liječnikom ili ljekarnikom prije uzimanja bilo kojeg lijeka."
+      ]
+    },
+    {
+      "heading": "Uobičajene tegobe i znakovi upozorenja",
+      "paragraphs": [
+        "Mučnina, žgaravica, zatvor, bol u leđima, otečeni gležnjevi i umor su česti i često se mogu ublažiti jednostavnim mjerama. Potražite hitnu pomoć zbog krvarenja iz rodnice, jake boli u trbuhu, jake glavobolje ili poremećaja vida, iznenadnog oticanja lica i ruku, vrućice, curenja tekućine iz rodnice, smanjenih pokreta bebe ili teškog upornog povraćanja."
+      ]
+    },
+    {
+      "heading": "Emocionalna dobrobit i planiranje",
+      "paragraphs": [
+        "Promjene raspoloženja su normalne, ali uporna tuga, tjeskoba ili uznemirujuće misli zahtijevaju pozornost, a potpora je dostupna. Planirajte porod, razgovarajte o ublažavanju boli, mjestu poroda i onome što trebate nakon dolaska bebe. Uključite partnera ili obitelj i dogovorite praktičnu pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pisanje pitanja",
+      "text": "Zamislite da ste trinaest tjedana trudni i imate mnogo pitanja. Mogli biste voditi popis na telefonu i donijeti ga na svaki prenatalni pregled, uključujući pitanja o poslu i putovanjima."
+    },
+    {
+      "title": "Primjećivanje promjene",
+      "text": "Pretpostavite da primijetite da se vaša beba u kasnoj trudnoći pomiče manje nego uobičajeno. Mogli biste kontaktirati primalju ili bolnicu isti dan umjesto čekati."
+    }
+  ],
+  "questions": [
+    "Koje će mi se pretrage i ultrazvuci ponuditi i jesu li izborni?",
+    "Koju hranu, lijekove ili aktivnosti trebam izbjegavati?",
+    "Koji simptomi znače da trebam odmah nazvati?"
+  ]
+}

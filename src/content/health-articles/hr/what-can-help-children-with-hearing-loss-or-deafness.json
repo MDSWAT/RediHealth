@@ -1,0 +1,51 @@
+{
+  "title": "Što može pomoći djeci s gubitkom sluha ili gluhoćom",
+  "intro": "Sluh je ključan za učenje govora i razvoj pa su rano otkrivanje i potpora za djecu s gubitkom sluha vrlo važni. Postoje mnoge učinkovite mogućnosti, od slušnih aparata do kohlearnih implantata, logopedske terapije i znakovnog jezika, a obitelji podupiru specijalistički timovi.",
+  "sections": [
+    {
+      "heading": "Rano otkrivanje",
+      "paragraphs": [
+        "U mnogim zemljama novorođenčad ima probir sluha u prvim danima života. Roditelji također trebaju kasnije paziti na znakove, kao što su nereagiranje na glasne zvukove, zakašnjeli govor, neodazivanje na ime ili pojačavanje televizije. Svaka briga treba dovesti do testa sluha kod dječjeg otorinolaringologa ili pedijatrijskog audiologa, bez čekanja."
+      ]
+    },
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Uzroci uključuju genetske čimbenike, infekcije tijekom trudnoće kao što je citomegalovirus, prijevremeni porod, žuticu, meningitis, upale uha s tekućinom iza bubnjića i izloženost buci. Privremeni konduktivni gubitak zbog ljepljivog uha je čest i često se poboljšava s vremenom ili malim cjevčicama u uhu. Trajni gubitak zahvaća unutarnje uho ili slušni živac."
+      ]
+    },
+    {
+      "heading": "Slušni aparati i implantati",
+      "paragraphs": [
+        "Slušni aparati mogu se namjestiti od nekoliko tjedana starosti i prilagođavaju se kako dijete raste. Kada aparati daju premalo koristi kod teškog ili dubokog gubitka, može se ponuditi kohlearni implantat, idealno u maloj dobi. Uređaji za koštanu provodljivost pomažu djeci čije vanjsko ili srednje uho nije normalno oblikovano. Redovite provjere održavaju uređaje u dobrom radu."
+      ]
+    },
+    {
+      "heading": "Jezik i komunikacija",
+      "paragraphs": [
+        "Logopedska terapija, trening slušanja i programi rane intervencije podupiru razvoj. Neke obitelji biraju znakovni jezik, govorni jezik ili oboje, a moguće su i dvojezične metode. Učenje je najbolje kada su roditelji uključeni od početka, razgovaraju, čitaju i igraju se zajedno uz kontakt licem u lice."
+      ]
+    },
+    {
+      "heading": "Škola i dobrobit",
+      "paragraphs": [
+        "Potpora u školi može uključivati sjedenje blizu učitelja, pomoćne slušne sustave, titlovanje i specijalizirane učitelje. Kontakt s drugim obiteljima i gluhim odraslima pomaže djeci razviti identitet i samopouzdanje. Pazite na umor, frustraciju ili zlostavljanje i rano tražite pomoć."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reagiranje na zabrinutost",
+      "text": "Zamislite da vaše malo dijete rijetko reagira na zvukove i govori malo riječi. Mogli biste zatražiti od pedijatra uputnicu za test sluha bez čekanja."
+    },
+    {
+      "title": "Potpora kod kuće",
+      "text": "Pretpostavite da vaše dijete ima nove slušne aparate. Mogli biste osigurati da se nose svaki dan, provjeravati baterije i razgovarati licem u lice u tihim prostorima."
+    }
+  ],
+  "questions": [
+    "Koju vrstu i stupanj gubitka sluha ima moje dijete?",
+    "Koji su uređaji i terapije najbolji za moje dijete?",
+    "Koja je potpora dostupna u vrtiću i školi?"
+  ]
+}

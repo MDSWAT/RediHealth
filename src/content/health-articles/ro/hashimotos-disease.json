@@ -1,0 +1,51 @@
+{
+  "title": "Boala Hashimoto: funcția tiroidei și îngrijirea continuă",
+  "intro": "Boala Hashimoto este inflamația autoimună a tiroidei. În timp poate reduce hormonii, dar anticorpii singuri nu înseamnă că toți au nevoie imediat de tratament. Simptomele și analizele funcției ghidează planul.",
+  "sections": [
+    {
+      "heading": "Înțelegerea problemei",
+      "paragraphs": [
+        "Hipotiroidismul poate da oboseală, frig, constipație și piele uscată. Aceste simptome au și alte cauze; oboseala persistentă după normalizarea analizelor cere evaluare mai largă."
+      ]
+    },
+    {
+      "heading": "Evaluare și investigații",
+      "paragraphs": [
+        "Analizele măsoară hormonul de stimulare tiroidiană și hormonul liber, cu anticorpi când ajută. Ecografia nu este necesară automat pentru fiecare rezultat pozitiv de anticorpi; un nodul cervical necesită evaluare separată. Aduceți lista medicamentelor și rezultatele anterioare; întrebați ce constatări ar schimba planul."
+      ]
+    },
+    {
+      "heading": "Opțiuni de tratament",
+      "paragraphs": [
+        "Levotiroxina înlocuiește hormonul lipsă când este indicată. Doza se individualizează și se verifică prin analize, nu numai după greutate ori liste online. Excesul de substituție poate dăuna. Stabiliți cum vor fi evaluate beneficiul și reacțiile adverse înainte de schimbarea tratamentului."
+      ]
+    },
+    {
+      "heading": "Îngrijirea de zi cu zi",
+      "paragraphs": [
+        "Luați medicamentul consecvent conform instrucțiunilor și întrebați despre absorbție în raport cu mâncarea, fierul, calciul și alte medicamente. Evitați iodul ori suplimentele tiroidiene neprescrise; hormonul în plus nu este tratament sigur de slăbire. Alegeți o rutină sustenabilă și discutați obstacole precum costul, munca sau limba."
+      ]
+    },
+    {
+      "heading": "Monitorizare și semne de alarmă",
+      "paragraphs": [
+        "Discutați prompt sarcina ori planurile ei deoarece doza și monitorizarea se pot schimba. Umflarea nouă a gâtului, înghițirea dificilă, palpitațiile ori simptomele persistente cer control; confuzia severă sau deteriorarea marcată sunt urgente."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un exemplu practic",
+      "text": "În acest exemplu ipotetic, Mira are anticorpi pozitivi, dar funcție normală. Stabilește un plan de monitorizare în loc să cumpere singură suplimente hormonale."
+    },
+    {
+      "title": "Un alt exemplu practic",
+      "text": "În acest exemplu ipotetic, Arben ia fier simultan cu levotiroxina. Întreabă farmacistul despre separarea dozelor înainte să considere rețeta ineficientă."
+    }
+  ],
+  "questions": [
+    "Ce constatări susțin diagnosticul sau recomandarea?",
+    "Care sunt beneficiile, riscurile și alternativele pentru mine?",
+    "Când trebuie să cer ajutor sau să programez o reevaluare?"
+  ]
+}

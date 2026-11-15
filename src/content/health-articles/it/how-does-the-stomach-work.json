@@ -1,0 +1,52 @@
+{
+  "title": "Come lo stomaco prepara il cibo",
+  "intro": "Lo stomaco riceve cibo dall'esofago, lo mescola e ne rilascia piccole quantità nell'intestino. Inizia parte della digestione ma non assorbe tutti i nutrienti. Il dolore nella zona può provenire da altri organi.",
+  "sections": [
+    {
+      "heading": "Ingresso e riserva",
+      "paragraphs": [
+        "La coordinazione muscolare esofagea limita il reflusso. Lo stomaco si espande per i pasti; forma e pienezza cambiano, quindi il gonfiore non ne misura precisamente le dimensioni."
+      ]
+    },
+    {
+      "heading": "Acido ed enzimi",
+      "paragraphs": [
+        "L'acido crea condizioni digestive e limita alcuni germi. Gli enzimi iniziano a scomporre proteine. Non ogni dolore deriva da troppo acido e ridurlo non cura tutto."
+      ]
+    },
+    {
+      "heading": "Rivestimento",
+      "paragraphs": [
+        "Muco e altre difese proteggono il tessuto. Alcuni farmaci e infezioni le alterano. Lo stomaco produce anche fattore intrinseco, necessario al successivo assorbimento della vitamina B12 nell'intestino."
+      ]
+    },
+    {
+      "heading": "Mescolamento",
+      "paragraphs": [
+        "Le contrazioni mescolano; il piloro regola il passaggio nell'intestino tenue. Cibo e malattie influenzano lo svuotamento; vomito persistente o sazietà precoce richiedono visita."
+      ]
+    },
+    {
+      "heading": "Cura",
+      "paragraphs": [
+        "Notate gli schemi e rivedete i farmaci senza diete restrittive ripetute. Vomito di sangue, feci nere catramose, collasso, dolore grave persistente o impossibilità di trattenere liquidi richiedono consiglio urgente.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira registra pienezza e vomito e porta i farmaci alla visita senza attribuire tutto a troppo acido."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben vomita materiale simile a fondi di caffè. Cerca aiuto urgente invece di un semplice antiacido da banco."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

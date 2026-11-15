@@ -1,0 +1,51 @@
+{
+  "title": "Što se događa ako dobijete upalu pluća u bolnici?",
+  "intro": "Bolnička upala pluća je infekcija pluća koja počinje najmanje dva dana nakon prijema. Može biti ozbiljnija od upale pluća stečene kod kuće jer su bolničke klice često otporne na neke antibiotike, a bolesnici su možda već oslabljeni. Prevencija i rano liječenje su važni.",
+  "sections": [
+    {
+      "heading": "Zašto se događa",
+      "paragraphs": [
+        "Bolesnici su u većem riziku ako su stariji, imaju kroničnu bolest pluća ili srca, na ventilatoru su, ne mogu dobro kašljati nakon operacije, imaju probleme s gutanjem ili slab imunitet. Bakterije iz usta ili želuca mogu se udahnuti u pluća, a neke bolničke bakterije su otporne na uobičajene antibiotike."
+      ]
+    },
+    {
+      "heading": "Znakovi",
+      "paragraphs": [
+        "Vrućica, novi ili pojačan kašalj, gust ili obojen iskašljaj, nedostatak zraka, bol u prsima, smetenost i brže disanje. Kod starijih osoba smetenost ili umor mogu biti prvi znakovi. Odmah recite osoblju ako se to javi kod vas ili člana obitelji."
+      ]
+    },
+    {
+      "heading": "Dijagnoza i liječenje",
+      "paragraphs": [
+        "Liječnici pregledavaju prsni koš, rade rendgen prsnog koša, krvne pretrage i uzimaju uzorke iskašljaja. Liječenje je antibioticima, koji se isprva često daju infuzijom i biraju se tako da pokriju otporne bakterije, zatim se prilagođavaju rezultatima pretraga. Mogu biti potrebni kisik, tekućina, fizioterapija i u teškim slučajevima intenzivna njega ili ventilacija."
+      ]
+    },
+    {
+      "heading": "Oporavak",
+      "paragraphs": [
+        "Mnogi se ljudi oporave unutar jednog do dva tjedna, ali stariji ili slabiji bolesnici mogu trebati dulje, a boravak u bolnici se može produljiti. Vježbe disanja, ustajanje iz kreveta i dobra prehrana pomažu. Neki se ljudi osjećaju umorno tjednima poslije, a može se preporučiti kontrolni rendgen prsnog koša."
+      ]
+    },
+    {
+      "heading": "Prevencija",
+      "paragraphs": [
+        "Bolnice sprječavaju upalu pluća higijenom ruku, njegom usta, uspravnim sjedenjem bolesnika, poticanjem kretanja i dubokog disanja nakon operacije te pažljivom uporabom ventilatora i sedativa. Bolesnici mogu pomoći pranjem zubi, prestankom pušenja prije operacije, pitanjem osoblja o higijeni i kretanjem čim je dopušteno."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vježbanje disanja",
+      "text": "Zamislite da ste imali operaciju trbuha. Mogli biste duboko disati, nježno kašljati uz pridržavanje rane i redovito sjediti uspravno."
+    },
+    {
+      "title": "Isticanje zabrinutosti",
+      "text": "Pretpostavite da vaš rođak postane smeten i dahće. Mogli biste odmah reći medicinskoj sestri i zatražiti liječnički pregled."
+    }
+  ],
+  "questions": [
+    "Što je uzrokovalo moju upalu pluća i koji se antibiotici koriste?",
+    "Koliko dugo trebam ostati i oporavljati se?",
+    "Što mogu učiniti kako bih spriječio da se vrati?"
+  ]
+}

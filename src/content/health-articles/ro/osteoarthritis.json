@@ -1,0 +1,52 @@
+{
+  "title": "Artroza",
+  "intro": "Artroza este cea mai frecventă afecțiune a articulațiilor. Implică uzura și schimbări ale cartilajului și ale țesuturilor din jur, provocând durere, rigiditate și mișcare redusă, cel mai des la genunchi, șolduri, mâini și coloană. Se dezvoltă de-a lungul anilor și poate limita viața de zi cu zi, dar exercițiile, controlul greutății și alte măsuri ajută la controlul simptomelor.",
+  "sections": [
+    {
+      "heading": "Cauze și factori de risc",
+      "paragraphs": [
+        "Riscul crește cu vârsta, excesul de greutate, o leziune articulară anterioară, solicitarea repetitivă, antecedentele familiale și sexul feminin, mai ales pentru mâini. Nu este doar uzură; întreaga articulație, inclusiv osul, cartilajul, căptușeala articulară și mușchii, este afectată."
+      ]
+    },
+    {
+      "heading": "Simptome",
+      "paragraphs": [
+        "Sunt tipice durerea articulară mai intensă la activitate și mai slabă în repaus, rigiditatea matinală care durează mai puțin de jumătate de oră, umflarea, scrâșnetele și mișcarea redusă. La degete se pot forma umflături osoase la articulații, cunoscute drept noduli Heberden la articulațiile de la capăt și noduli Bouchard la articulațiile din mijloc."
+      ]
+    },
+    {
+      "heading": "Diagnostic",
+      "paragraphs": [
+        "Medicii diagnostichează artroza pe baza simptomelor și a examinării. Radiografiile pot arăta îngustarea articulației și modificări osoase, dar se corelează slab cu durerea, așa că nu sunt întotdeauna necesare. Analizele de sânge ajută la excluderea artritei inflamatorii."
+      ]
+    },
+    {
+      "heading": "Autogestionare și tratament",
+      "paragraphs": [
+        "Exercițiile sunt cel mai eficient tratament: mersul, ciclismul, înotul și întărirea musculară reduc durerea și îmbunătățesc funcția. Slăbitul reduce presiunea asupra genunchilor și șoldurilor. Căldura sau frigul, încălțămintea de susținere, ajutoarele pentru mers și orteze pot ajuta. Gelurile antiinflamatoare, precum și tabletele sau paracetamolul pe perioade scurte, calmează durerea, cu atenție la riscurile pentru stomac, rinichi și inimă.",
+        "Operația de înlocuire a articulației este o opțiune când durerea severă și dizabilitatea persistă în ciuda altor tratamente și este foarte eficientă pentru șolduri și genunchi."
+      ]
+    },
+    {
+      "heading": "Cum puteți trăi bine cu ea",
+      "paragraphs": [
+        "Rămâneți activ, dozați-vă activitățile, mențineți o greutate sănătoasă și luați în considerare programele de educație și exercițiile în grup. Controalele regulate verifică cum funcționează tratamentul."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Începerea exercițiilor",
+      "text": "Imaginați-vă că vă doare genunchiul când urcați scările. Ați putea începe cu plimbări scurte pe teren plat și cu întărire blândă, crescând treptat, cu îndrumarea unui kinetoterapeut."
+    },
+    {
+      "title": "Discutarea înlocuirii",
+      "text": "Presupuneți că durerea vă împiedică să dormiți în ciuda tratamentului. Ați putea întreba un specialist ortoped la ce să vă așteptați de la operație, cât durează recuperarea și ce alternative există."
+    }
+  ],
+  "questions": [
+    "Ce exerciții sunt sigure și cele mai utile pentru articulațiile mele?",
+    "Ce calmante sunt potrivite pentru mine, având în vedere celelalte afecțiuni ale mele?",
+    "Când ar trebui să iau în considerare injecțiile sau chirurgia?"
+  ]
+}

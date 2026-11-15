@@ -1,0 +1,51 @@
+{
+  "title": "Stem cell transplantation for treating cancer",
+  "intro": "Stem cell transplantation replaces diseased or damaged blood-forming cells with healthy ones. It is used mainly for blood cancers such as leukaemia, lymphoma and myeloma. It can be curative but is an intensive treatment with significant risks, so decisions are made together with a specialised team.",
+  "sections": [
+    {
+      "heading": "What stem cells do",
+      "paragraphs": [
+        "Blood stem cells in the bone marrow produce red cells, white cells and platelets. High-dose chemotherapy or radiation can destroy cancer cells but also damages the marrow, so stem cells are given afterwards to restore blood formation."
+      ]
+    },
+    {
+      "heading": "Types of transplant",
+      "paragraphs": [
+        "In an autologous transplant, a patient's own stem cells are collected beforehand, stored and returned after high-dose treatment. In an allogeneic transplant, cells come from a donor, ideally a closely matched sibling, a matched unrelated donor, or a partly matched relative or cord blood. Donor cells can also attack remaining cancer cells, an effect called graft-versus-leukaemia."
+      ]
+    },
+    {
+      "heading": "The process",
+      "paragraphs": [
+        "Treatment begins with tests and, for donors, collection of cells from the blood after a drug stimulates their release, or from the bone marrow under anaesthetic. The patient receives conditioning treatment, then the cells by infusion through a vein. Blood counts fall and then recover over weeks. Hospital stays can last several weeks, in protective conditions, followed by months of recovery."
+      ]
+    },
+    {
+      "heading": "Risks",
+      "paragraphs": [
+        "Risks include infections, bleeding, anaemia, mouth sores, nausea, organ damage and infertility. After allogeneic transplants, graft-versus-host disease occurs when donor cells attack the patient's tissues, affecting skin, gut, liver and others, and may be acute or chronic. Immune suppressing medicines reduce it but increase infection risk. Cancer may also return."
+      ]
+    },
+    {
+      "heading": "After transplantation",
+      "paragraphs": [
+        "Regular follow-up monitors blood counts, infections, organ function and chronic complications. Vaccinations must be repeated and the immune system takes up to a year or longer to recover. Fertility preservation should be discussed before treatment. Emotional support, rehabilitation and psychosocial care help patients and families cope."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Considering a donor",
+      "text": "Imagine your doctor suggests an allogeneic transplant. You could ask how a donor is found, what the matching process involves and what the chances of success are."
+    },
+    {
+      "title": "Preparing for the hospital stay",
+      "text": "Suppose you will be hospitalised for several weeks. You might plan visits, activities, and ask the team about infection precautions and support services."
+    }
+  ],
+  "questions": [
+    "Is a stem cell transplant right for my illness, and what are the chances of success?",
+    "What are the main risks and how long will recovery take?",
+    "How might treatment affect my fertility and long-term health?"
+  ]
+}

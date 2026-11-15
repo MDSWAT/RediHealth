@@ -1,0 +1,51 @@
+{
+  "title": "Che cosa sono le revisioni sistematiche e le metanalisi",
+  "intro": "Una revisione sistematica riunisce tutta la ricerca su una domanda specifica con un metodo pianificato e trasparente. Una metanalisi è una tecnica statistica usata all'interno di alcune revisioni per combinare i risultati numerici di più studi in un unico risultato complessivo. Insieme danno una risposta più affidabile di qualsiasi singolo studio.",
+  "sections": [
+    {
+      "heading": "Perché servono",
+      "paragraphs": [
+        "I singoli studi possono essere piccoli, distorti o risultati casuali e studi diversi spesso danno risposte diverse. Le revisioni sistematiche riducono questi problemi guardando a tutte le prove disponibili su una domanda e valutandone la qualità, invece di scegliere gli studi in modo selettivo. Sono centrali per la medicina basata sulle prove e per le linee guida."
+      ]
+    },
+    {
+      "heading": "Come si fa una revisione sistematica",
+      "paragraphs": [
+        "I revisori definiscono la domanda e i criteri per includere gli studi, cercano sistematicamente in diverse banche dati, selezionano gli studi in modo indipendente, valutano il rischio di distorsione ed estraggono i dati. I metodi sono descritti in anticipo, così che la revisione possa essere controllata e ripetuta. I risultati sono riassunti in testo e tabelle, con una valutazione di quanto possiamo essere sicuri dei risultati."
+      ]
+    },
+    {
+      "heading": "Che cosa fa una metanalisi",
+      "paragraphs": [
+        "Quando gli studi sono abbastanza simili, una metanalisi ne riunisce i numeri, dando più peso agli studi più grandi. Questo produce una stima complessiva dell'effetto con un intervallo di confidenza, che è un intervallo di valori plausibili, e aiuta a individuare effetti che i singoli studi erano troppo piccoli per mostrare. I risultati sono spesso presentati in un forest plot con ogni studio come una linea e il risultato complessivo come un diamante."
+      ]
+    },
+    {
+      "heading": "Limiti",
+      "paragraphs": [
+        "Una revisione vale quanto gli studi che contiene. Combinare studi scadenti produce un risultato scadente. Le differenze tra gli studi nelle persone, nei trattamenti o negli esiti possono rendere inappropriata l'unione. La distorsione da pubblicazione, in cui gli studi con risultati negativi non vengono pubblicati, può alterare i risultati. Le revisioni possono diventare obsolete quando emerge nuova ricerca."
+      ]
+    },
+    {
+      "heading": "Leggere una revisione",
+      "paragraphs": [
+        "Controlla se la domanda è chiara, come sono stati trovati gli studi, se la qualità è stata valutata, quanto erano coerenti i risultati e chi ha finanziato la revisione. Guarda la conclusione sulla fiducia nelle prove. Le revisioni di gruppi indipendenti, come Cochrane, seguono metodi rigorosi. Una revisione può dire che le prove sono insufficienti, il che è anch'essa un'informazione utile."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Trovare una revisione",
+      "text": "Immagina di voler sapere se un integratore funziona. Potresti cercare una revisione sistematica di studi e guardare quanti studi e quante persone sono stati inclusi."
+    },
+    {
+      "title": "Chiedere della certezza",
+      "text": "Supponi che una revisione mostri un piccolo beneficio. Potresti chiedere al medico quanto possiamo essere sicuri del risultato e se vale per te."
+    }
+  ],
+  "questions": [
+    "Esiste una revisione sistematica sulla mia domanda?",
+    "Quanto sono affidabili le sue conclusioni?",
+    "Il risultato vale per una persona come me?"
+  ]
+}

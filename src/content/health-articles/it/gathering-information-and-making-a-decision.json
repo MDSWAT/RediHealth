@@ -1,0 +1,51 @@
+{
+  "title": "Decisioni di salute: confrontare possibilità e priorità",
+  "intro": "Una decisione sanitaria può riguardare esame, trattamento, procedura o osservazione. L’informazione affidabile aiuta, ma la scelta dipende anche da circostanze e priorità. La decisione condivisa unisce competenza clinica e ciò che conta per voi.",
+  "sections": [
+    {
+      "heading": "Definire la decisione",
+      "paragraphs": [
+        "Definire prima decisione e urgenza. Chiedere quale problema risolve l’opzione e cosa accade senza. L’osservazione con controllo programmato può essere una scelta attiva quando ragionevole clinicamente, non semplice inattività."
+      ]
+    },
+    {
+      "heading": "Trovare informazioni affidabili",
+      "paragraphs": [
+        "Cercare autori identificati, date, fonti e finanziamenti trasparenti. Separare pubblicità e prove, testimonianze e confronti affidabili. Chiedere se i partecipanti somigliano a voi: risultati in un’altra situazione possono non valere allo stesso modo."
+      ]
+    },
+    {
+      "heading": "Confrontare benefici e danni",
+      "paragraphs": [
+        "Confrontare benefici e danni nella stessa popolazione e periodo. Chiedere probabilità assolute, anche senza trattamento, non soltanto percentuali relative impressionanti. Confrontare recupero, inconvenienti, incertezza e alternative, inclusa la possibilità di cambiare piano."
+      ]
+    },
+    {
+      "heading": "Identificare le priorità",
+      "paragraphs": [
+        "Scrivere priorità: sollievo, mobilità, evitare effetti avversi, fertilità, assistenza familiare o costi. Portare domande o persona fidata se desiderato e chiedere interprete. Far spiegare termini poco chiari e riassumere il piano con parole proprie."
+      ]
+    },
+    {
+      "heading": "Concordare i prossimi passi",
+      "paragraphs": [
+        "Concordare passi, controllo e sintomi per aiuto anticipato. Chiedere quanto tempo è sicuro per decidere; richiedere altro parere se possibile. Non ritardare urgenze per informazioni infinite né acquistare per pressioni commerciali a scadenza."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira confronta una procedura con l’osservazione. Chiede possibilità di sollievo, complicazioni e recupero prima di scegliere secondo gli impegni familiari."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben legge una grande riduzione del rischio. Chiede rischi assoluti e periodo pertinente prima di giudicare il beneficio personale."
+    }
+  ],
+  "questions": [
+    "Cosa accade con ogni opzione, compresa l’osservazione?",
+    "Quali esiti e oneri contano maggiormente per me?",
+    "Quanto tempo posso prendere in sicurezza per decidere?"
+  ]
+}

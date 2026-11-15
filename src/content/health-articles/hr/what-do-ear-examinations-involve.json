@@ -1,0 +1,51 @@
+{
+  "title": "Što uključuju pregledi uha?",
+  "intro": "Pregledi uha pomažu liječnicima pronaći uzrok boli u uhu, gubitka sluha, vrtoglavice ili zujanja u ušima. Obično su bezbolni i brzi. Koje se pretrage koriste ovisi o vašim simptomima, a rezultati vode liječenje.",
+  "sections": [
+    {
+      "heading": "Pregled unutrašnjosti uha",
+      "paragraphs": [
+        "Liječnik koristi otoskop ili mikroskop za pregled zvukovoda i bubnjića. To može pokazati ušni vosak, infekciju, ozljedu, tekućinu iza bubnjića ili rupu. Kod djece se uho nježno povlači kako bi se ispravio kanal. Pregled može biti blago neugodan, ali ne bi trebao boljeti."
+      ]
+    },
+    {
+      "heading": "Testovi sluha",
+      "paragraphs": [
+        "Tonska audiometrija mjeri najtiše zvukove koje možete čuti na različitim visinama, pomoću slušalica, a rezultati se prikazuju na grafikonu. Govorni testovi provjeravaju koliko dobro razumijete riječi. Bebe i mala djeca imaju testove koji ne trebaju aktivnu suradnju, kao što su otoakustičke emisije ili odgovori na zvukove."
+      ]
+    },
+    {
+      "heading": "Testovi srednjeg uha",
+      "paragraphs": [
+        "Timpanometrija koristi malu sondu u zvukovodu za mjerenje koliko se dobro bubnjić pomiče i ima li tekućine u srednjem uhu. Testovi s ugađalicom pomažu razlikovati konduktivni od senzorineuralnog gubitka sluha. Ti testovi traju samo nekoliko minuta i bezbolni su."
+      ]
+    },
+    {
+      "heading": "Ravnoteža i snimanje",
+      "paragraphs": [
+        "Ako je problem vrtoglavica, mogu se koristiti testovi pokreta očiju, pozicijski manevri i ravnoteže. Snimanja kao što su magnetska rezonancija ili kompjutorizirana tomografija koriste se kod neobjašnjenog jednostranog gubitka sluha, sumnje na tvorbe ili probleme kostiju, i samo kada je potrebno."
+      ]
+    },
+    {
+      "heading": "Priprema i rezultati",
+      "paragraphs": [
+        "Recite liječniku o simptomima, lijekovima i prethodnim problemima s ušima. Izbjegavajte štapiće s vatom jer mogu gurnuti vosak dublje. Pitajte što rezultati znače, trebaju li daljnje pretrage i koje su mogućnosti liječenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Opis simptoma",
+      "text": "Zamislite da imate prigušen sluh na jednom uhu. Mogli biste zabilježiti kada je počelo i imate li i bol, vrtoglavicu ili zujanje."
+    },
+    {
+      "title": "Nakon testa",
+      "text": "Pretpostavite da vaš audiogram pokazuje blagi gubitak. Mogli biste pitati o zaštiti sluha, ponovnim testovima i jesu li aparati prikladni."
+    }
+  ],
+  "questions": [
+    "Koje pretrage trebam za svoje simptome?",
+    "Što rezultati pokazuju?",
+    "Trebam li liječenje ili praćenje?"
+  ]
+}

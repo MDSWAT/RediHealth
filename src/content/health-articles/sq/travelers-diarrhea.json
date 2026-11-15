@@ -1,0 +1,51 @@
+{
+  "title": "Diarreja e udhëtarit",
+  "intro": "Diarreja e udhëtarit prek shumë njerëz që vizitojnë rajone me standarde të ndryshme higjiene, zakonisht përmes ushqimit ose ujit të ndotur. Shkakton jashtëqitje të lëngshme, ngërçe e nganjëherë të përziera e zakonisht është e lehtë e kalon brenda disa ditësh. Parandalimi i dehidrimit është trajtimi kryesor.",
+  "sections": [
+    {
+      "heading": "Shkaqet dhe rreziku",
+      "paragraphs": [
+        "Shumica e rasteve shkaktohen nga bakteret si disa lloje të E. coli, më rrallë nga viruse ose parazitë. Mikrobet merren përmes ushqimit, ujit ose akullit të ndotur. Rreziku është më i lartë në pjesë të Azisë, Afrikës e Amerikës Latine e në mot të nxehtë. Ushqimi i rrugës, sallatat, frutat e pahequra e uji i çezmës e rrisin rrezikun. Fëmijët e vegjël, të moshuarit e njerëzit me imunitet të dobët janë më të cenueshëm."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Diarre e papritur ujore tri ose më shumë herë në ditë, ngërçe barku, të përziera, fryrje e nganjëherë ethe. Shumica e njerëzve shërohen brenda tre deri pesë ditësh. Gjaku në jashtëqitje, ethet e larta, dhimbja e rëndë ose diarreja e vazhdueshme përtej një jave sugjerojnë infeksion më serioz."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Zëvendësoni lëngjet e kripërat me tretësirë rehidratimi oral, ujë, lëng mishi e lëngje të holluara frutash e hani ushqim të lehtë sa toleroni. Loperamidi mund ta ulë shpeshtësinë e jashtëqitjeve te të rriturit me diarre ujore por nuk duhet përdorur me ethe ose jashtëqitje me gjak ose te fëmijët e vegjël. Antibiotikët rezervohen për raste të rënda e merren me këshillë mjekësore, pasi kanë rreziqe e mund të nxisin bakteret rezistente."
+      ]
+    },
+    {
+      "heading": "Kur të kërkoni kujdes mjekësor",
+      "paragraphs": [
+        "Kërkoni kujdes për shenja dehidrimi si urinë e errët, marramendje, gojë shumë e thatë, pak urinë ose letargji, për gjak në jashtëqitje, ethe të larta, të vjella të vazhdueshme, simptoma përtej disa ditësh ose te foshnjat, fëmijët e vegjël, gratë shtatzëna e njerëzit me sëmundje kronike."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Lani duart me sapun para ngrënies, hani ushqim të gatuar të freskët e të shërbyer të nxehtë, qëroni vetë frutat, pini ujë të ambalazhuar ose të zier, shmangni kubet e akullit e sallatat e papjekura në zona me rrezik të lartë e lani dhëmbët me ujë të sigurt. Merrni parasysh vaksinimin kundër tifos ose kolerës siç këshillohet nga një klinikë udhëtimi. Vizita në një klinikë udhëtimi para udhëtimit ju ndihmon të planifikoni."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rehidratimi",
+      "text": "Imagjinoni që keni diarre ujore në pushime. Mund të merrni kripëra rehidratimi orale, të pini rregullisht me gllënjka të vogla e të hani ushqim të lehtë."
+    },
+    {
+      "title": "Paketimi i mençur",
+      "text": "Supozoni që po udhëtoni në një rajon me rrezik të lartë. Mund të paketoni qeska rehidratimi e dezinfektues duarsh e t'i kërkoni këshillë një klinike udhëtimi."
+    }
+  ],
+  "questions": [
+    "Cilat barna duhet të marr në udhëtim e kur t'i përdor?",
+    "A këshillohen vaksinime për destinacionin tim?",
+    "Kur duhet të shoh një mjek jashtë vendit?"
+  ]
+}

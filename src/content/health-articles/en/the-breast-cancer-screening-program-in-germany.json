@@ -1,0 +1,51 @@
+{
+  "title": "The breast cancer screening programme in Germany",
+  "intro": "Germany offers women in a defined age range an invitation to mammography screening at regular intervals. The programme aims to find breast cancer early, but like all screening it has benefits and harms. This overview describes it in general terms; age limits and rules can change, so check the current invitation and information.",
+  "sections": [
+    {
+      "heading": "Who is invited and how it works",
+      "paragraphs": [
+        "Women between about fifty and seventy-five years are invited every two years by letter, with an appointment at a certified screening unit. Participation is voluntary and free of charge for insured women. The invitation comes with an information leaflet to help you decide. Women with symptoms or a high personal risk should see their doctor instead of waiting for screening."
+      ]
+    },
+    {
+      "heading": "The examination",
+      "paragraphs": [
+        "Mammography is an X-ray of each breast, taken while the breast is compressed between two plates for a few seconds. It can be uncomfortable but is brief. Images are checked independently by two specialists, and a third is consulted if they disagree. Quality standards for equipment and training are monitored. Results are sent in writing within a few days."
+      ]
+    },
+    {
+      "heading": "Benefits",
+      "paragraphs": [
+        "Screening can detect cancers earlier, when treatment is often less extensive, and may lower the chance of dying from breast cancer in women who take part. Studies estimate that a modest number of deaths are prevented for every thousand women screened over a number of years."
+      ]
+    },
+    {
+      "heading": "Harms and limits",
+      "paragraphs": [
+        "Some results are false alarms, leading to further tests such as ultrasound or biopsy, which cause anxiety and are not cancer in most cases. Some cancers are missed, including those appearing between screenings. Overdiagnosis occurs when slow-growing cancers or precancerous changes that would never have caused harm are found and treated. Radiation dose is low but not zero. Dense breast tissue can make X-ray images harder to read."
+      ]
+    },
+    {
+      "heading": "Deciding whether to take part",
+      "paragraphs": [
+        "Read the leaflet, consider your health, family history and personal values, and talk to your doctor. You can decline or accept at any time. Whatever you choose, check your breasts for changes and see a doctor promptly about a lump, skin change, nipple discharge or pain that persists."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Reading the invitation",
+      "text": "Imagine you receive an invitation at age fifty-two. You could read the information, note questions about benefits and false alarms and discuss them with your gynaecologist."
+    },
+    {
+      "title": "After a recall",
+      "text": "Suppose you are asked to return for a further test after screening. You might ask what was seen, which test is planned and how likely it is to turn out harmless."
+    }
+  ],
+  "questions": [
+    "What are the benefits and harms of screening for a woman like me?",
+    "Should I take part if I have a family history of breast cancer?",
+    "What happens if the screening result is unclear?"
+  ]
+}

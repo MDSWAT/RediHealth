@@ -1,0 +1,51 @@
+{
+  "title": "Smanjena funkcija štitnjače (hipotireoza)",
+  "intro": "Kod hipotireoze štitnjača stvara premalo hormona štitnjače, što usporava metabolizam tijela. Uzrokuje umor, debljanje i osjećaj hladnoće, a razvija se polako. Česta je, osobito kod žena i starijih ljudi, a lako se liječi dnevnim tabletama hormona.",
+  "sections": [
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Najčešći uzrok u razvijenim zemljama je Hashimotov tireoiditis, autoimuno stanje u kojem imunološki sustav napada štitnjaču. Ostali uzroci uključuju liječenje pojačane funkcije štitnjače, operaciju ili zračenje štitnjače, određene lijekove, nedostatak joda i, rijetko, probleme s hipofizom. Bebe se mogu roditi s njom, zbog čega se novorođenčad probire."
+      ]
+    },
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Simptomi uključuju umor, debljanje, zatvor, suhu kožu, prorjeđivanje kose, osjetljivost na hladnoću, bolove u mišićima, sporo razmišljanje, loše raspoloženje, promukao glas, obilnije menstruacije i povećanu štitnjaču ili gušu. Simptomi se razvijaju polako i lako se zamijene sa starenjem ili stresom. Teška neliječena bolest može uzrokovati životno ugrožavajuće probleme."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Krvna pretraga koja pokazuje povišen hormon koji stimulira štitnjaču i nisku razinu hormona štitnjače potvrđuje dijagnozu. Testovi protutijela pomažu prepoznati autoimunu bolest. Neznatno povišena razina hormona uz normalne hormone štitnjače, zvana subklinička hipotireoza, često se samo prati, a liječenje ovisi o razini, simptomima i čimbenicima rizika."
+      ]
+    },
+    {
+      "heading": "Liječenje",
+      "paragraphs": [
+        "Levotiroksin, sintetski hormon štitnjače, nadoknađuje ono što tijelu nedostaje. Uzima se jednom dnevno natašte, obično ujutro s vodom, otprilike pola sata prije doručka, i odvaja se od željeza, kalcija i nekih drugih lijekova. Doza se prilagođava prema krvnim pretragama svakih nekoliko tjedana na početku, a zatim godišnje kada je stabilna. Liječenje je obično doživotno."
+      ]
+    },
+    {
+      "heading": "Život s njom",
+      "paragraphs": [
+        "Uz pravu dozu većina ljudi se osjeća dobro. Recite liječniku ako zatrudnite jer se doze često trebaju povećati i prijavite simptome previše hormona kao što su lupanje srca, tjeskoba ili gubitak težine. Dodaci poput biotina mogu iskriviti rezultate pretraga pa recite laboratoriju. Ne prekidajte tablete čak i ako se osjećate dobro."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pouzdano uzimanje tableta",
+      "text": "Zamislite da zaboravljate jutarnju tabletu. Mogli biste staviti pakiranje pokraj kuhala, postaviti podsjetnik na telefonu i uzimati je dosljedno natašte."
+    },
+    {
+      "title": "Planiranje trudnoće",
+      "text": "Pretpostavite da planirate trudnoću. Mogli biste zamoliti liječnika da unaprijed provjeri razine hormona štitnjače i dogovoriti ranu prilagodbu doze u trudnoći."
+    }
+  ],
+  "questions": [
+    "Koji je uzrok moje smanjene funkcije štitnjače?",
+    "Koja je doza prava za mene i koliko ću često trebati krvne pretrage?",
+    "Kako trebam uzimati levotiroksin za najbolji učinak?"
+  ]
+}

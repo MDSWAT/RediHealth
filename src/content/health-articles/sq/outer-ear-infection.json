@@ -1,0 +1,52 @@
+{
+  "title": "Infeksioni i veshit të jashtëm",
+  "intro": "Infeksioni i veshit të jashtëm, ose otiti ekstern, është inflamacion i lëkurës së kanalit të veshit, i quajtur shpesh veshi i notarit. Shkakton dhimbje, kruarje dhe ndonjëherë rrjedhje. Trajtohet zakonisht me pika veshi dhe kalon brenda një a dy javësh. Mbajtja e kanalit të thatë dhe mosgërmimi në të ndihmojnë ta parandalojnë.",
+  "sections": [
+    {
+      "heading": "Shkaqet",
+      "paragraphs": [
+        "Lëkura që veshin kanalin e veshit mbrohet normalisht nga një shtresë e hollë dyllore. Uji që mbetet në vesh, shkopinjtë e pambukut, aparatet e dëgjimit, tapat e veshëve, ekzema dhe gërvishtja mund ta thyejnë këtë pengesë, duke lejuar rritjen e bakterieve ose ndonjëherë të kërpudhave. Noti, moti i lagësht dhe kanalet e ngushta e rrisin rrezikun."
+      ]
+    },
+    {
+      "heading": "Simptomat",
+      "paragraphs": [
+        "Shenjat tipike janë dhimbje veshi që përkeqësohet kur tërhiqet ose shtypet veshi i jashtëm, kruarje, skuqje, ndjenjë mbushjeje, dëgjim i mbytur dhe rrjedhje e pastër ose e verdhërt. Ethet janë të pazakonta. Dhimbja mund të jetë e fortë dhe ta prishë gjumin."
+      ]
+    },
+    {
+      "heading": "Trajtimi",
+      "paragraphs": [
+        "Një mjek e ekzaminon kanalin e veshit dhe shpesh e pastron me kujdes. Pika antibiotike ose antiseptike, ndonjëherë të kombinuara me një steroid të lehtë, përdoren për rreth një javë. Nëse kanali është i enjtur deri në mbyllje, mund të futet një fitil i vogël për të bartur pikat. Qetësuesit si paracetamoli ose ibuprofeni e lehtësojnë shqetësimin. Infeksionet kërpudhore kërkojnë pika antifungale.",
+        "Mbajeni veshin të thatë gjatë trajtimit dhe mos përdorni shkopinj pambuku ose objekte. Ndaloni notin derisa mjeku të thotë se është në rregull."
+      ]
+    },
+    {
+      "heading": "Parandalimi",
+      "paragraphs": [
+        "Thajini veshët butë pas notit ose dushit, duke e anuar kokën dhe duke përdorur një peshqir vetëm nga jashtë. Shmangni pastrimin brenda kanalit, përdorni tapa veshësh për not nëse jeni të prirur ndaj infeksioneve dhe pastroni aparatet e dëgjimit siç këshillohet. Trajtoni ekzemën themelore."
+      ]
+    },
+    {
+      "heading": "Kur të kërkoni ndihmë",
+      "paragraphs": [
+        "Shihni një mjek menjëherë nëse dhimbja është e rëndë, ka enjtje të fytyrës, ethe, humbje dëgjimi, marramendje ose nëse keni diabet ose imunitet të dobësuar, pasi një formë e rrallë e rëndë mund të përhapet në kockë. Kërkoni këshillë nëse simptomat nuk përmirësohen pas disa ditësh trajtimi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pas notit",
+      "text": "Imagjinoni që veshi ju dhemb ditën pas një pushimi në det. Mund të shmangni shkopinjtë e pambukut, të shihni mjekun dhe t'i përdorni pikat e përshkruara saktësisht siç udhëzohet."
+    },
+    {
+      "title": "Parandalimi i përsëritjes",
+      "text": "Supozoni që e keni pasur këtë disa herë. Mund të pyesni nëse tapat e veshëve ose pikat tharëse do të ndihmonin dhe të shmangni futjen e çdo gjëje në vesh."
+    }
+  ],
+  "questions": [
+    "A është infeksioni im i veshit bakterial apo kërpudhor dhe cilat pika më nevojiten?",
+    "Si mund ta mbaj ujin larg veshit ndërsa shërohet?",
+    "Çfarë mund të bëj për të shmangur rikthimin?"
+  ]
+}

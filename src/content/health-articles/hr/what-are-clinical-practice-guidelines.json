@@ -1,0 +1,51 @@
+{
+  "title": "Što su smjernice kliničke prakse?",
+  "intro": "Smjernice kliničke prakse su dokumenti koji sažimaju najbolje dostupne dokaze i daju preporuke o tome kako spriječiti, dijagnosticirati i liječiti zdravstvena stanja. Pomažu liječnicima i bolesnicima u donošenju odluka i nastoje smanjiti neopravdane razlike u skrbi. Razumijevanje što jesu, a što nisu, pomaže vam da ih mudro koristite.",
+  "sections": [
+    {
+      "heading": "Što sadrže",
+      "paragraphs": [
+        "Smjernice razvijaju stručne skupine, liječnička društva ili zdravstvene vlasti. Pregledavaju dokaze iz istraživanja i navode preporuke kao što su koje testove koristiti, koja liječenja ponuditi i kada uputiti dalje. Mnoge ocjenjuju snagu preporuke i kvalitetu dokaza iza nje. Neke su verzije napisane za bolesnike."
+      ]
+    },
+    {
+      "heading": "Kako nastaju dobre smjernice",
+      "paragraphs": [
+        "Pouzdane smjernice koriste sustavne preglede dokaza, uključuju niz stručnjaka i često predstavnike bolesnika, otkrivaju sukobe interesa, opisuju metode i redovito se ažuriraju. Gdje dokaza nema, to kažu i oslanjaju se na stručni konsenzus. Smjernice koje financira tvrtka zainteresirana za ishod zaslužuju dodatnu provjeru."
+      ]
+    },
+    {
+      "heading": "Kako ih liječnici koriste",
+      "paragraphs": [
+        "Smjernice su vodiči, a ne pravila. Opisuju što je prikladno za većinu bolesnika. Liječnici ih prilagođavaju pojedincu uzimajući u obzir druge bolesti, dob, želje i okolnosti. Odstupanja od smjernica mogu biti opravdana, ali ih treba objasniti. Smjernice se mogu razlikovati među zemljama ili organizacijama."
+      ]
+    },
+    {
+      "heading": "Ograničenja",
+      "paragraphs": [
+        "Mnoge smjernice temelje se na istraživanjima ljudi koji ne nalikuju bolesnicima s više stanja. Mogu zastarjeti, a preporuke za jednu bolest mogu biti u sukobu s drugom kod osobe s više bolesti. Mogu previdjeti ono što je važno pojedincima. Bolesnici ne bi trebali osjećati da smjernica zamjenjuje razgovor."
+      ]
+    },
+    {
+      "heading": "Kako ih možete koristiti",
+      "paragraphs": [
+        "Pitajte liječnika postoji li smjernica za vaše stanje i zatražite verziju za bolesnike. Provjerite datum i organizaciju koja ju je izdala. Koristite sadržaj za pripremu pitanja i razumijevanje zašto se nude određeni testovi ili liječenja. Razgovarajte s liječnikom o svakoj razlici između smjernice i vašeg plana liječenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pronalazak smjernice",
+      "text": "Zamislite da vam je upravo dijagnosticirana astma. Mogli biste pitati liječnika postoji li verzija smjernice za bolesnike i pogledati što preporučuje."
+    },
+    {
+      "title": "Razgovor o razlikama",
+      "text": "Pretpostavite da se vaše liječenje razlikuje od onoga što ste pročitali. Mogli biste pitati liječnika zašto i objašnjavaju li to vaše okolnosti."
+    }
+  ],
+  "questions": [
+    "Postoji li smjernica za moje stanje i slijedi li je moje liječenje?",
+    "Zašto se moj plan razlikuje od onoga što smjernica kaže?",
+    "Koliko je smjernica ažurna?"
+  ]
+}

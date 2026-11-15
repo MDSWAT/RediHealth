@@ -1,0 +1,52 @@
+{
+  "title": "Come l'orecchio trasforma il suono in udito",
+  "intro": "L'udito coinvolge orecchio esterno, medio e interno, nervi e cervello. L'orecchio interno ospita anche organi dell'equilibrio. Una difficoltà può iniziare in punti diversi e richiedere cure diverse.",
+  "sections": [
+    {
+      "heading": "Raccogliere il suono",
+      "paragraphs": [
+        "Il padiglione guida il suono lungo il condotto al timpano. Il cerume protegge il condotto; introdurre oggetti può ferirlo o spingere il cerume più in fondo."
+      ]
+    },
+    {
+      "heading": "Trasmettere vibrazioni",
+      "paragraphs": [
+        "Il timpano muove gli ossicini dell'orecchio medio. La tuba di Eustachio equilibra la pressione con la gola; il gonfiore può ostacolare questo processo."
+      ]
+    },
+    {
+      "heading": "Creare segnali",
+      "paragraphs": [
+        "Le cellule ciliate della coclea trasformano movimenti in segnali nervosi. Il cervello attribuisce significato. Un danno qui differisce da un'ostruzione che impedisce al suono di arrivare."
+      ]
+    },
+    {
+      "heading": "Protezione",
+      "paragraphs": [
+        "Limitate il rumore e usate protezioni adatte. Abbassate il volume delle cuffie e fate pause. I test valutano parti diverse; un orecchio esterno normale non dimostra udito normale."
+      ]
+    },
+    {
+      "heading": "Assistenza",
+      "paragraphs": [
+        "Alterazione persistente, secrezioni o dolore richiedono visita. La perdita improvvisa richiede valutazione urgente anche senza dolore: non presumete cerume e non aspettate. Evitate strumenti e candele auricolari.",
+        "Un diagramma spiega la struttura tipica, non la causa di un sintomo individuale. Prima della visita, annotate quando è iniziato il cambiamento, cosa lo provoca e come influisce sulle attività quotidiane. Portate i referti precedenti e chiedete come si collegano i riscontri."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Un esempio pratico",
+      "text": "In questo esempio ipotetico, Mira sente meno dopo variazioni di pressione. Descrive i tempi e chiede dell'orecchio medio invece di pulire in profondità."
+    },
+    {
+      "title": "Un altro esempio pratico",
+      "text": "In questo esempio ipotetico, Arben si sveglia con perdita improvvisa di udito. Cerca una visita urgente anziché aspettare che passi come un tappo."
+    }
+  ],
+  "questions": [
+    "Quali strutture o processi spiegano il problema che mi preoccupa?",
+    "Cosa può mostrare una visita rispetto a questa spiegazione generale?",
+    "Quali cambiamenti richiedono un controllo o aiuto urgente?"
+  ]
+}

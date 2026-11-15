@@ -1,0 +1,52 @@
+{
+  "title": "Sindrom iritabilnog crijeva",
+  "intro": "Sindrom iritabilnog crijeva je čest dugotrajan poremećaj crijeva koji uzrokuje bol u trbuhu uz proljev, zatvor ili oboje. Ne oštećuje crijevo niti povećava rizik od raka, ali simptomi mogu biti mučni. Prehrana, upravljanje stresom i ponekad lijekovi donose olakšanje.",
+  "sections": [
+    {
+      "heading": "Simptomi",
+      "paragraphs": [
+        "Tipični simptomi su grčevita bol u trbuhu povezana s pražnjenjem crijeva, nadutost, vjetrovi i promjene u učestalosti ili konzistenciji stolice. Neki ljudi uglavnom imaju proljev, drugi zatvor, a neki se izmjenjuju. Simptomi dolaze i odlaze i često se pogoršavaju tijekom stresa ili nakon određene hrane."
+      ]
+    },
+    {
+      "heading": "Uzroci",
+      "paragraphs": [
+        "Točan uzrok nije poznat. Čimbenici uključuju osjetljivije crijevo, promijenjeno kretanje crijeva, promjene u crijevnim bakterijama, prijašnju crijevnu infekciju i vezu između mozga i crijeva. Stres i tjeskoba ne uzrokuju poremećaj, ali ga mogu pogoršati."
+      ]
+    },
+    {
+      "heading": "Dijagnoza",
+      "paragraphs": [
+        "Dijagnoza se temelji na tipičnim simptomima i isključivanju drugih stanja. Liječnici mogu naložiti krvne pretrage, pretrage stolice i, kad je potrebno, kolonoskopiju, osobito kad postoje znakovi upozorenja kao što su krv u stolici, gubitak težine, anemija, vrućica, simptomi koji počinju nakon 50. godine ili obiteljska povijest raka crijeva ili upalne bolesti crijeva."
+      ]
+    },
+    {
+      "heading": "Liječenje i samopomoć",
+      "paragraphs": [
+        "Redoviti obroci, dovoljno tekućine, tjelesna aktivnost i dobar san pomažu. Vođenje dnevnika hrane i simptoma može otkriti okidače kao što su kofein, masna hrana ili zaslađivači. Topljiva vlakna, kao što je psilij, pomažu nekim ljudima, dok netopljiva vlakna mogu pogoršati nadutost. Dijeta s niskim udjelom FODMAP-a, provedena s dijetetičarom, pomaže nekim ljudima, ali se ne smije dugoročno slijediti bez vodstva.",
+        "Lijekovi mogu ublažiti grčeve, proljev ili zatvor. Ulje metvice može pomoći kod boli. Psihološke terapije kao što su kognitivno-bihevioralna terapija i hipnoterapija usmjerena na crijeva učinkovite su kod trajnih simptoma."
+      ]
+    },
+    {
+      "heading": "Život sa sindromom iritabilnog crijeva",
+      "paragraphs": [
+        "Sindrom iritabilnog crijeva obično je doživotno stanje s promjenjivim simptomima. Učenje o svojim okidačima, upravljanje stresom i održavanje kontakta s liječnikom pomažu vam nositi se. Potražite savjet ako se simptomi značajno promijene ili se razviju novi znakovi upozorenja."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Vođenje dnevnika",
+      "text": "Zamislite da sumnjate da određena hrana pokreće vaše simptome. Mogli biste dva tjedna zapisivati obroke, stres i simptome i pregledati obrazac s liječnikom ili dijetetičarom."
+    },
+    {
+      "title": "Sigurno isprobavanje dijete",
+      "text": "Pretpostavite da želite isprobati dijetu s niskim udjelom FODMAP-a. Mogli biste zatražiti uputnicu dijetetičaru kako biste izbacili namirnice samo na ograničeno vrijeme i pažljivo ih ponovno uvodili."
+    }
+  ],
+  "questions": [
+    "Mogu li moji simptomi imati drugi uzrok i koje pretrage trebam?",
+    "Koja liječenja ili dijete će najvjerojatnije pomoći mom tipu sindroma iritabilnog crijeva?",
+    "Koji znakovi upozorenja znače da se trebam ranije vratiti?"
+  ]
+}

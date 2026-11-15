@@ -1,0 +1,53 @@
+{
+  "title": "Si t'i përdorni llojet e ndryshme të informacionit shëndetësor",
+  "intro": "Informacioni shëndetësor vjen në shumë forma, si përmbledhje, artikuj të detajuar, shpjegime të testeve e trajtimeve dhe përvoja personale. Njohja e asaj që ofron çdo lloj ju ndihmon të gjeni përgjigje më shpejt dhe të shmangni ngatërrimin e informacionit të përgjithshëm me këshillën personale mjekësore.",
+  "sections": [
+    {
+      "heading": "Përmbledhjet dhe artikujt e detajuar",
+      "paragraphs": [
+        "Përmbledhjet japin një hyrje të shkurtër për një temë. Ato shpjegojnë çfarë është një gjendje, si njihet zakonisht dhe cilat janë opsionet kryesore. Artikujt e detajuar shkojnë më tej, duke trajtuar simptomat, shkaqet, testet, trajtimet dhe jetën e përditshme me më shumë thellësi.",
+        "Leximi i një përmbledhjeje së pari mund t'ju ndihmojë të vendosni cilët artikuj specifikë ju duhen dhe cilët terma të kërkoni."
+      ]
+    },
+    {
+      "heading": "Shpjegimet e testeve dhe trajtimeve",
+      "paragraphs": [
+        "Disa artikuj përqendrohen te mënyra si funksionon një test ose procedurë, çfarë përgatitjeje nevojitet dhe çfarë mund të nënkuptojnë rezultatet. Këto ju ndihmojnë të dini çfarë të prisni dhe mund ta zvogëlojnë shqetësimin para një ekzaminimi. Ato shpjegojnë edhe përfitimet, rreziqet dhe pasigurinë, që të peshoni opsionet."
+      ]
+    },
+    {
+      "heading": "Përvojat personale dhe shembujt",
+      "paragraphs": [
+        "Shembujt që përshkruajnë si mund ta përballojë dikush një situatë mund ta bëjnë më të lehtë për t'u kuptuar informacionin abstrakt. Mbani mend që përvojat ndryshojnë dhe ajo që ndihmoi një person mund të mos i përshtatet një tjetri. Shembujt hipotetikë janë ilustrime, jo parashikime të asaj që do t'ju ndodhë."
+      ]
+    },
+    {
+      "heading": "Pyetjet për diskutim dhe burimet",
+      "paragraphs": [
+        "Pyetjet për profesionistin tuaj shëndetësor e kthejnë informacionin në veprim. Sillini në takime dhe shtoni të tuatat. Lidhjet e burimeve në fund të një artikulli tregojnë materialin mbi të cilin u bazua informacioni, që të lexoni më tej.",
+        "Informacioni në artikuj është i përgjithshëm dhe nuk mund ta zëvendësojë kurrë një ekzaminim. Mjekësia ndryshon, prandaj kontrolloni datat dhe merrni parasysh nëse informacioni i përshtatet vendit tuaj, pasi sistemet shëndetësore dhe rekomandimet ndryshojnë."
+      ]
+    },
+    {
+      "heading": "Përdorimi i mençur i informacionit",
+      "paragraphs": [
+        "Kërkoni autorësi të qartë, përmbajtje të përditësuar, paraqitje të ekuilibruar të përfitimeve e rreziqeve dhe deklarata të hapura për pasigurinë. Jini skeptikë ndaj premtimeve për kura mrekulli dhe ndaj faqeve që kryesisht shesin produkte. Përdorni disa burime të besueshme dhe flisni me një profesionist për vendimet që ndikojnë në shëndetin tuaj."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Përgatitja për një takim",
+      "text": "Imagjinoni që sapo keni marrë diagnozën e një gjendjeje afatgjatë. Mund të lexoni një përmbledhje, të nënvizoni fjalët e panjohura, pastaj t'i kopjoni pyetjet në fund në shënimet tuaja dhe të shtoni shqetësimet personale për ta çuar në vizitën tjetër."
+    },
+    {
+      "title": "Krahasimi i burimeve",
+      "text": "Supozoni që gjeni dy faqe në internet me këshilla të kundërta për një trajtim. Mund të kontrolloni kush e shkroi secilën, kur u përditësua dhe çfarë provash citon, pastaj ta pyesni mjekun cila këshillë ju vlen."
+    }
+  ],
+  "questions": [
+    "Cila nga informacionet që gjeta vlen për situatën time?",
+    "A ka burime të besueshme ose grupe mbështetjeje që do të rekomandonit për gjendjen time?",
+    "Çfarë duhet të bëj nëse informacioni që lexoj bie ndesh me atë që më thuhet?"
+  ]
+}

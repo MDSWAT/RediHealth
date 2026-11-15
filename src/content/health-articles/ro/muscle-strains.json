@@ -1,0 +1,51 @@
+{
+  "title": "Întinderile musculare",
+  "intro": "O întindere musculară este o elongație sau o mică ruptură a unui mușchi sau a tendonului atașat de el, de obicei din cauza unei suprasolicitări bruște în timpul sportului sau al ridicării unor greutăți. Provoacă durere, sensibilitate și uneori vânătăi. Cele mai multe întinderi se vindecă bine în câteva zile până la săptămâni, cu repaus relativ, revenire treptată la mișcare și recuperare rezonabilă.",
+  "sections": [
+    {
+      "heading": "Cauze și locuri tipice",
+      "paragraphs": [
+        "Întinderile apar când un mușchi este întins peste capacitatea sa sau se contractă puternic, de exemplu la sprint, la lovirea mingii sau la ridicarea unui obiect greu. Sunt afectate frecvent mușchii coapsei, gamba, zona inghinală și zona lombară. Riscul crește cu oboseala, încălzirea insuficientă, o leziune anterioară și creșterile bruște ale antrenamentului."
+      ]
+    },
+    {
+      "heading": "Simptome și severitate",
+      "paragraphs": [
+        "Întinderile ușoare provoacă încordare și durere. Cele moderate provoacă durere ascuțită, umflare, vânătăi și slăbiciune. O ruptură severă poate provoca un pocnet, un gol vizibil sau imposibilitatea de a folosi mușchiul. Durerea se agravează când mușchiul este întins sau contractat."
+      ]
+    },
+    {
+      "heading": "Primii pași",
+      "paragraphs": [
+        "În primele zile, reduceți activitatea care provoacă durere, dar evitați imobilizarea completă. Compresele reci aplicate pentru perioade scurte pot ameliora durerea, iar compresia și ridicarea reduc umflarea. Calmantele simple pot ajuta. Mișcarea blândă timpurie, în limite confortabile, favorizează vindecarea mai bine decât repausul prelungit."
+      ]
+    },
+    {
+      "heading": "Recuperarea și revenirea la sport",
+      "paragraphs": [
+        "Pe măsură ce durerea se liniștește, începeți întinderi blânde și întărire musculară, crescând treptat. Reveniți la sport doar când vă puteți mișca fără durere, v-ați recăpătat forța și flexibilitatea și puteți executa acțiunile specifice sportului. Revenirea prea devreme duce adesea la o nouă leziune. Un kinetoterapeut vă poate ghida într-un plan sigur, mai ales după întinderi repetate."
+      ]
+    },
+    {
+      "heading": "Când mergeți la medic",
+      "paragraphs": [
+        "Cereți sfatul medicului dacă nu puteți merge sau folosi mușchiul, ați auzit un pocnet cu slăbiciune severă, aveți o deformare vizibilă, umflare intensă sau amorțeală sau dacă durerea nu se ameliorează după aproximativ o săptămână. Încălziți-vă, creșteți antrenamentul treptat și opriți-vă când simțiți durere ascuțită, pentru a reduce riscul de întinderi."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Revenirea la alergare",
+      "text": "Imaginați-vă că v-ați întins mușchiul gambei în timpul unei alergări. Ați putea merge și face întinderi blânde, ați putea adăuga o întărire ușoară după câteva zile și ați putea reveni la alergare cu sesiuni scurte doar când nu simțiți durere."
+    },
+    {
+      "title": "Cererea unui sfat",
+      "text": "Presupuneți că o leziune la coapsă lasă o adâncitură vizibilă și nu vă puteți îndrepta piciorul. Ați putea merge la o unitate de primiri urgențe sau la o clinică de medicină sportivă pentru evaluare."
+    }
+  ],
+  "questions": [
+    "Este aceasta o întindere sau o leziune mai gravă și am nevoie de o scanare?",
+    "Ce exerciții ar trebui să fac și când pot reveni la sport?",
+    "Cum îmi pot reduce riscul de întinderi recurente?"
+  ]
+}

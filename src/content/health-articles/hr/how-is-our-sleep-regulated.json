@@ -1,0 +1,56 @@
+{
+  "title": "Kako se regulira san",
+  "intro": "San kontroliraju dva glavna sustava: biološki sat, koji vam govori kad je vrijeme za budnost ili spavanje, i nakupljanje pritiska spavanja što dulje ostajete budni. Znanje kako djeluju zajedno objašnjava zašto jet lag, smjenski rad i kasno korištenje ekrana remete san te kako navike mogu podržati bolji odmor.",
+  "sections": [
+    {
+      "heading": "Unutarnji biološki sat",
+      "paragraphs": [
+        "Skupina živčanih stanica u mozgu djeluje kao glavni sat koji slijedi ritam od otprilike 24 sata, a zove se cirkadijalni ritam. Postavlja ga uglavnom svjetlo koje ulazi u oči. Jutarnje svjetlo pomiče sat ranije, a jako svjetlo navečer pomiče ga kasnije.",
+        "Sat utječe na tjelesnu temperaturu, otpuštanje hormona i budnost. Melatonin, hormon koji se oslobađa u tami, signalizira tijelu noć. Ljudi se prirodno razlikuju u željenom vremenu, pa su neki jutarnji, a drugi večernji tipovi."
+      ]
+    },
+    {
+      "heading": "Pritisak spavanja",
+      "paragraphs": [
+        "Dok ste budni, tvari kao što je adenozin postupno se nakupljaju u mozgu i povećavaju potrebu za spavanjem. Što dulje ostajete budni, taj je pritisak jači, a san ga ponovno smanjuje. Kofein djeluje djelomično blokiranjem učinka adenozina.",
+        "Drijemanje kasno tijekom dana može smanjiti pritisak spavanja i otežati uspavljivanje noću. Kratki drijemeži ranije tijekom dana obično imaju manji učinak."
+      ]
+    },
+    {
+      "heading": "Faze sna",
+      "paragraphs": [
+        "San nije ujednačen. Noć se sastoji od ponavljajućih ciklusa od otprilike 90 minuta s laganim snom, dubokim snom i REM snom, tijekom kojeg se događa većina živopisnih snova. Duboki san prevladava u prvoj polovici noći i podržava tjelesni oporavak, dok je REM san češći pred jutro.",
+        "Kratka buđenja tijekom noći su normalna i obično se zaboravljaju. Struktura sna mijenja se s dobi, a stariji ljudi često spavaju lakše i bude se ranije."
+      ]
+    },
+    {
+      "heading": "Što remeti san",
+      "paragraphs": [
+        "Nepravilni rasporedi, smjenski rad, putovanje preko vremenskih zona i svijetli ekrani kasno navečer mogu izbaciti biološki sat iz koraka s vašim planovima. Stres, bol, alkohol, veliki kasni obroci, nikotin i kofein, bučna ili topla spavaća soba i neki lijekovi također utječu na kvalitetu sna.",
+        "Medicinska stanja kao što su apneja u snu, sindrom nemirnih nogu, depresija ili anksioznost mogu uzrokovati trajne probleme i zaslužuju pravilnu procjenu umjesto samoliječenja sredstvima za spavanje."
+      ]
+    },
+    {
+      "heading": "Podrška zdravom snu",
+      "paragraphs": [
+        "Pokušajte održavati dosljedno vrijeme odlaska na spavanje i buđenja, izlažite se dnevnom svjetlu rano tijekom dana, budite tjelesno aktivni i opustite se prije spavanja. Držite spavaću sobu tamnom, hladnom i tihom te je ne koristite za rad. Ograničite kofein poslijepodne i alkohol navečer jer alkohol rastavlja san.",
+        "Ako ne možete spavati, ustanite i radite nešto mirno dok ne osjetite pospanost, umjesto da ležite budni i brinete. Ako teškoće sa spavanjem traju tjednima ili utječu na vaše funkcioniranje tijekom dana, razgovarajte s liječnikom. Kognitivno-bihevioralna terapija nesanice učinkovita je mogućnost."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Prilagodba nakon promjene vremena",
+      "text": "Zamislite da ste letjeli preko nekoliko vremenskih zona i ne možete noću spavati. Mogli biste provoditi vrijeme vani na dnevnom svjetlu u lokalno vrijeme, držati obroke i vrijeme spavanja prema novom rasporedu i izbjegavati duge drijemeže dok se vaš ritam ne prilagodi."
+    },
+    {
+      "title": "Poboljšanje večernje rutine",
+      "text": "Pretpostavite da obično listate telefon u krevetu pa se teško uspavljujete. Mogli biste odrediti stalno vrijeme kad odlažete uređaje, prigušiti svjetla i tjedan dana probati čitanje ili lagano istezanje da vidite hoće li se vaš san promijeniti."
+    }
+  ],
+  "questions": [
+    "Može li neko medicinsko stanje ili lijek utjecati na moj san?",
+    "Koje bi promjene mog dnevnog rasporeda bile najkorisnije s obzirom na moj posao i način života?",
+    "Kada se isplati studija spavanja ili upućivanje specijalistu za san?"
+  ]
+}

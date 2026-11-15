@@ -1,0 +1,52 @@
+{
+  "title": "Probleme de sănătate mintală: unde găsiți ajutor în Germania",
+  "intro": "În Germania există multe locuri la care puteți apela pentru probleme de sănătate mintală, de la medicul de familie la psihoterapeuți, clinici ambulatorii, centre de consiliere și linii telefonice de ajutor. Sistemul poate părea complicat, iar timpii de așteptare pot fi lungi, dar există căi către ajutor mai rapid. Acest articol descrie în linii mari principalele puncte de contact; regulile și ofertele se schimbă, așa că verificați detaliile actuale.",
+  "sections": [
+    {
+      "heading": "Primii pași",
+      "paragraphs": [
+        "Un prim pas bun este o vizită la medicul de familie, care poate evalua simptomele, verifica cauzele fizice, oferi un prim tratament și vă poate trimite la un specialist. Puteți contacta și direct un psihoterapeut. Mulți terapeuți oferă o primă consultație pentru a clarifica ce fel de ajutor este necesar."
+      ]
+    },
+    {
+      "heading": "Psihoterapie și psihiatrie",
+      "paragraphs": [
+        "Asigurarea de sănătate publică acoperă psihoterapia efectuată de psihoterapeuți și medici autorizați pentru afecțiuni recunoscute precum depresia, tulburările de anxietate și problemele legate de traumă. Psihiatrii sunt medici care pot prescrie și medicamente. Un serviciu național de programări, la numărul 116117, vă poate ajuta să găsiți o programare pentru o consultație inițială, iar multe asigurări vă pot ajuta și ele să căutați locuri."
+      ]
+    },
+    {
+      "heading": "Clinici și servicii de zi",
+      "paragraphs": [
+        "Dacă simptomele sunt severe, sunt disponibile clinici psihiatrice ambulatorii, clinici de zi sau tratament în spital la o clinică de psihiatrie sau de psihosomatică. Poate urma un program de recuperare. Medicul vă poate da un bilet de trimitere, iar în urgențe vă puteți duce direct la un spital."
+      ]
+    },
+    {
+      "heading": "Consiliere și autoajutorare",
+      "paragraphs": [
+        "Centrele de consiliere oferă sfaturi despre dependențe, probleme de familie și de cuplu, stres, datorii și alte probleme de viață, adesea gratuit. Grupurile de autoajutorare reunesc persoane cu experiențe asemănătoare. Programele online și aplicațiile digitale de sănătate aprobate pot oferi sprijin cât așteptați terapia."
+      ]
+    },
+    {
+      "heading": "Criză și urgențe",
+      "paragraphs": [
+        "Dacă dumneavoastră sau altcineva sunteți în pericol acut, sunați la numărul de urgență 112 sau mergeți la cea mai apropiată unitate de primiri urgențe. Serviciile de consiliere telefonică sunt disponibile non-stop, gratuit și anonim, pentru persoanele aflate în dificultate. Nu așteptați dacă aveți gânduri de a vă face rău.",
+        "Probleme practice precum barierele de limbă, statutul de asigurat și situația de refugiat pot îngreuna accesul. Întrebați centrele de consiliere despre interpreți și despre serviciile la care aveți dreptul."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Căutarea unui terapeut",
+      "text": "Imaginați-vă că vă simțiți deprimat și anxios de luni de zile. Ați putea merge la medicul de familie, ați putea cere un bilet de trimitere, ați putea suna la serviciul de programări și ați putea contacta mai mulți terapeuți pentru o primă consultație, ca să scurtați așteptarea."
+    },
+    {
+      "title": "Ajutarea unui prieten",
+      "text": "Presupuneți că un prieten vă spune că se simte fără speranță. Ați putea asculta fără a judeca, l-ați putea încuraja să vorbească cu un medic sau cu un serviciu de consiliere și v-ați putea oferi să-l însoțiți."
+    }
+  ],
+  "questions": [
+    "Ce tip de specialist se potrivește cel mai bine simptomelor mele?",
+    "Cum pot găsi mai repede o programare și ce pot face cât aștept?",
+    "Unde pot primi ajutor în limba mea și ce va acoperi asigurarea mea?"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Durerea lombară",
+  "intro": "Durerea lombară este foarte frecventă și de obicei se ameliorează în câteva săptămâni, chiar și fără un diagnostic specific. Rămânerea activ, folosirea unor calmante simple și evitarea repausului prelungit la pat sunt pietrele de temelie ale recuperării. Cauzele grave sunt rare, dar anumite semne de alarmă înseamnă că trebuie să cereți rapid ajutor medical.",
+  "sections": [
+    {
+      "heading": "Cauze",
+      "paragraphs": [
+        "Cea mai mare parte a durerilor de spate sunt nespecifice, adică provin din mușchi, ligamente, articulații sau discuri fără o singură cauză structurală clară. Factorii care contribuie includ lipsa activității, stresul, somnul slab, o muncă solicitantă fizic, perioadele lungi petrecute pe scaun și fumatul. Constatările de pe scanări, precum bombările de disc, sunt frecvente la persoane fără durere și nu explică întotdeauna simptomele."
+      ]
+    },
+    {
+      "heading": "Ce ajută în primele săptămâni",
+      "paragraphs": [
+        "Rămâneți activ cât puteți și reveniți treptat la activitățile normale. Căldura, mișcarea blândă și calmantele simple precum ibuprofenul sau paracetamolul pot ameliora durerea, dacă sunt potrivite pentru dumneavoastră. Repausul la pat încetinește recuperarea. Cele mai multe persoane se simt mult mai bine în câteva săptămâni, deși recidivele sunt frecvente."
+      ]
+    },
+    {
+      "heading": "Semne de alarmă",
+      "paragraphs": [
+        "Cereți ajutor medical urgent dacă durerea de spate apare împreună cu amorțeală în jurul zonei inghinale sau a fesierilor, pierderea controlului vezicii sau intestinului, slăbiciune la picioare, febră, scădere în greutate neexplicată, antecedente de cancer sau urmează unei leziuni semnificative. Durerea care este severă noaptea sau care nu se ameliorează deloc trebuie evaluată."
+      ]
+    },
+    {
+      "heading": "Durerea persistentă",
+      "paragraphs": [
+        "Dacă durerea durează mai mult de câteva săptămâni, terapia prin exerciții, kinetoterapia, întinderile și întărirea musculară și abordările care tratează frica și stresul sunt utile. Mersul pe jos, înotul, yoga și tai chi pot ajuta. Terapiile psihologice și educația despre durere pot reduce dizabilitatea. Injecțiile, chirurgia și calmantele puternice sunt rar necesare și sunt rezervate unor situații specifice."
+      ]
+    },
+    {
+      "heading": "Prevenirea recidivei",
+      "paragraphs": [
+        "Rămâneți activ fizic, păstrați o greutate sănătoasă, faceți pauze din statul îndelungat pe scaun, ridicați cu o tehnică rezonabilă și tratați stresul și somnul. Întărirea abdomenului și a picioarelor susține coloana. Discutați cu angajatorul despre adaptări dacă munca contribuie la simptome."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Rămânerea activ",
+      "text": "Imaginați-vă că spatele vă doare brusc după grădinărit. Ați putea continua să mergeți pe distanțe scurte, evita să stați culcat toată ziua, folosi căldură și lua un calmant conform prospectului și ați putea merge la medic dacă apare amorțeală sau slăbiciune."
+    },
+    {
+      "title": "Planificarea revenirii la exerciții",
+      "text": "Presupuneți că durerea a durat șase săptămâni. Ați putea cere unui kinetoterapeut un plan de exerciții care crește treptat și care vă arată cum să gestionați puseele."
+    }
+  ],
+  "questions": [
+    "Am nevoie de o scanare sau există motive să nu fac una?",
+    "Ce exerciții și tratamente sunt cele mai utile pentru tipul meu de durere?",
+    "Ce simptome înseamnă că trebuie să revin imediat?"
+  ]
+}

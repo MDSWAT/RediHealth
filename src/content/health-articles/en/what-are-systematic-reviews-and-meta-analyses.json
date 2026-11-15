@@ -1,0 +1,51 @@
+{
+  "title": "What are systematic reviews and meta-analyses?",
+  "intro": "A systematic review brings together all the research on a specific question using a planned, transparent method. A meta-analysis is a statistical technique used within some reviews to combine the numerical results of several studies into one overall result. Together they provide a more reliable answer than any single study.",
+  "sections": [
+    {
+      "heading": "Why they are needed",
+      "paragraphs": [
+        "Single studies can be small, biased or chance findings, and different studies often give different answers. Systematic reviews reduce these problems by looking at all the available evidence on a question and assessing its quality, rather than choosing studies selectively. They are central to evidence-based medicine and guidelines."
+      ]
+    },
+    {
+      "heading": "How a systematic review is done",
+      "paragraphs": [
+        "Reviewers define the question and criteria for including studies, search several databases systematically, select studies independently, assess the risk of bias and extract data. The methods are described in advance, so that the review can be checked and repeated. Findings are summarised in text and tables, with an assessment of how confident we can be in the results."
+      ]
+    },
+    {
+      "heading": "What a meta-analysis does",
+      "paragraphs": [
+        "When studies are similar enough, a meta-analysis pools their numbers, giving more weight to larger studies. This produces an overall estimate of the effect with a confidence interval, which is a range of plausible values, and helps detect effects that individual studies were too small to show. Results are often presented in a forest plot with each study as a line and the overall result as a diamond."
+      ]
+    },
+    {
+      "heading": "Limits",
+      "paragraphs": [
+        "A review is only as good as the studies it contains. Combining poor studies produces a poor result. Differences between studies in people, treatments or outcomes can make pooling inappropriate. Publication bias, where studies with negative results are not published, can distort findings. Reviews can become outdated as new research appears."
+      ]
+    },
+    {
+      "heading": "Reading a review",
+      "paragraphs": [
+        "Check whether the question is clear, how studies were found, whether quality was assessed, how consistent the results were and who funded the review. Look at the conclusion about confidence in the evidence. Reviews by independent groups, such as Cochrane, follow strict methods. A review can say that evidence is insufficient, which is also useful information."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Finding a review",
+      "text": "Imagine you want to know whether a supplement works. You could search for a systematic review of trials, and look at how many studies and people were included."
+    },
+    {
+      "title": "Asking about certainty",
+      "text": "Suppose a review shows a small benefit. You might ask your doctor how confident we can be in the result and whether it applies to you."
+    }
+  ],
+  "questions": [
+    "Is there a systematic review on my question?",
+    "How reliable are its conclusions?",
+    "Does the result apply to someone like me?"
+  ]
+}

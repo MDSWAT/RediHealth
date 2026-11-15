@@ -1,0 +1,51 @@
+{
+  "title": "Ce se întâmplă în timpul unui examen neurologic?",
+  "intro": "Examenul neurologic verifică modul în care funcționează creierul, măduva spinării și nervii. Implică teste simple, nedureroase, ale gândirii, simțurilor, mișcării, reflexelor și coordonării. Ajută medicii să stabilească dacă o problemă provine din sistemul nervos și unde.",
+  "sections": [
+    {
+      "heading": "Gândirea și vorbirea",
+      "paragraphs": [
+        "Medicul vorbește cu dumneavoastră pentru a evalua starea de alertă, memoria, atenția, limbajul și înțelegerea. Vi se pot pune întrebări precum data, să rețineți câteva cuvinte sau să urmați instrucțiuni. Se notează și dispoziția și comportamentul. Aceasta ajută la depistarea unor afecțiuni precum demența, accidentul vascular cerebral sau infecțiile."
+      ]
+    },
+    {
+      "heading": "Nervii cranieni și simțurile",
+      "paragraphs": [
+        "Medicul testează vederea, mișcările ochilor, reacția pupilelor, mișcarea și sensibilitatea feței, auzul, înghițirea și mișcarea limbii. Poate lumina ochii cu o lanternă sau vă poate cere să urmăriți un deget. Atingerea, temperatura, durerea și vibrația sunt verificate cu vată moale, un ac sau un diapazon."
+      ]
+    },
+    {
+      "heading": "Forța, tonusul și reflexele",
+      "paragraphs": [
+        "Vi se cere să împingeți și să trageți împotriva mâinilor medicului și să țineți brațele întinse. Mușchii sunt palpați pentru tensiune sau atrofie. Reflexele sunt testate prin lovirea tendoanelor de la genunchi, gleznă și cot cu un mic ciocan. Reflexele anormale pot indica probleme ale nervilor sau ale măduvei spinării."
+      ]
+    },
+    {
+      "heading": "Coordonarea și mersul",
+      "paragraphs": [
+        "Vi se poate cere să vă atingeți nasul și degetul medicului, să alunecați călcâiul pe tibie și să mergeți pe o linie. Statul în picioare cu ochii închiși testează echilibrul. Postura, balansul brațelor și pașii arată probleme ale cerebelului, ale mușchilor sau ale circuitelor de mișcare de tip Parkinson."
+      ]
+    },
+    {
+      "heading": "După examinare",
+      "paragraphs": [
+        "Medicul poate comanda analize de sânge, scanări precum rezonanța magnetică, teste ale nervilor sau electroencefalografie. Întrebați ce s-a găsit, ce alte teste sunt necesare și ce înseamnă constatările. Aduceți o listă cu simptomele și medicamentele la consultație."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Pregătirea",
+      "text": "Imaginați-vă că aveți amorțeală la mână. Ați putea nota când a început, ce o ameliorează sau o agravează și ați putea aduce lista de medicamente."
+    },
+    {
+      "title": "Înțelegerea rezultatelor",
+      "text": "Presupuneți că reflexele dumneavoastră sunt reduse. Ați putea întreba ce sugerează acest lucru și ce alte teste vor ajuta."
+    }
+  ],
+  "questions": [
+    "Ce parte a sistemului nervos ar putea fi implicată?",
+    "Ce alte teste îmi trebuie?",
+    "Când trebuie să cer ajutor urgent?"
+  ]
+}

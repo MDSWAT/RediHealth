@@ -1,0 +1,51 @@
+{
+  "title": "Escarele (ulcerele de presiune)",
+  "intro": "Escarele sunt leziuni ale pielii și ale țesutului de dedesubt, provocate de presiunea prelungită, de obicei peste zonele osoase precum călcâiele, șoldurile, coccisul și coatele. Afectează persoanele care nu se pot mișca ușor, precum cele imobilizate la pat sau în scaun cu rotile. În cele mai multe cazuri pot fi prevenite prin repoziționare regulată și îngrijire atentă a pielii.",
+  "sections": [
+    {
+      "heading": "Cum apar",
+      "paragraphs": [
+        "Când presiunea comprimă pielea de os mult timp, aportul de sânge scade, iar țesutul este lezat. Frecarea, forfecarea la alunecarea în pat, umezeala de la transpirație sau incontinență, nutriția slabă, sensibilitatea redusă și vârsta înaintată cresc riscul. Diabetul, bolile de circulație și paralizia contribuie și ele."
+      ]
+    },
+    {
+      "heading": "Stadii",
+      "paragraphs": [
+        "Primul semn este roșeața persistentă, care nu dispare la apăsare. Apoi pielea se poate acoperi cu bășici sau se poate rupe, iar apoi leziunile mai adânci dezvăluie grăsimea, mușchiul sau osul. Durerea, căldura, umflarea și secreția pot semnala infecția. Recunoașterea timpurie previne progresia."
+      ]
+    },
+    {
+      "heading": "Prevenire",
+      "paragraphs": [
+        "Schimbați poziția cel puțin la câteva ore în pat sau mutați greutatea la fiecare cincisprezece până la treizeci de minute într-un scaun, conform recomandărilor pentru persoana respectivă. Folosiți saltele și perne care reduc presiunea, păstrați pielea curată și uscată, gestionați incontinența, evitați târârea pielii peste cearșafuri și țineți călcâiele fără presiune cu ajutorul pernelor. Inspectați zilnic pielea, mai ales peste zonele osoase. Un aport adecvat de proteine, calorii și lichide susține sănătatea pielii."
+      ]
+    },
+    {
+      "heading": "Tratament",
+      "paragraphs": [
+        "Ameliorarea presiunii este esențială, altfel plăgile nu se vor vindeca. Plăgile sunt curățate, menținute umede cu pansamente potrivite, iar țesutul mort poate fi îndepărtat de specialiști în plăgi. Infecția se tratează cu antibiotice când este necesar. Ulcerele profunde pot necesita chirurgie. Calmarea durerii și sprijinul nutrițional sunt importante. Tratamentul cu presiune negativă este uneori folosit."
+      ]
+    },
+    {
+      "heading": "Sprijin pentru îngrijitori",
+      "paragraphs": [
+        "Îngrijitorii trebuie să învețe tehnici sigure de întoarcere și mișcare a unei persoane. Cereți asistentelor să vă demonstreze. Cereți rapid ajutor dacă roșeața persistă, apare o plagă sau persoana are febră. Planurile de îngrijire și ajutoarele pot fi aranjate prin serviciile de îngrijire."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Stabilirea unui program de întoarcere",
+      "text": "Imaginați-vă că îngrijiți o rudă care stă în pat mare parte din zi. Ați putea scrie un program de repoziționare, ați putea folosi o saltea care reduce presiunea și ați putea verifica călcâiele și coccisul în fiecare dimineață și seară."
+    },
+    {
+      "title": "Observarea semnelor timpurii",
+      "text": "Presupuneți că observați o pată roșie care rămâne roșie după ce presiunea este îndepărtată. Ați putea elibera imediat zona de presiune și ați putea contacta asistenta sau medicul."
+    }
+  ],
+  "questions": [
+    "Cum putem reduce riscul de escare în situația rudei mele?",
+    "Ce saltea, pernă sau ajutoare sunt potrivite?",
+    "Cum ar trebui tratată o plagă în acest stadiu?"
+  ]
+}

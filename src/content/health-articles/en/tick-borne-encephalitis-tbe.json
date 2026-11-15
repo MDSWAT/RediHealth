@@ -1,0 +1,51 @@
+{
+  "title": "Tick-borne encephalitis (TBE)",
+  "intro": "Tick-borne encephalitis is a viral infection spread by tick bites in parts of Europe and Asia. Many infections cause few or mild symptoms, but some lead to inflammation of the brain and its membranes. There is no cure, but vaccination provides reliable protection for people in affected regions.",
+  "sections": [
+    {
+      "heading": "How it is transmitted",
+      "paragraphs": [
+        "The virus is carried by ticks in certain risk areas, which are mapped by health authorities. It is transmitted within minutes of a bite, unlike Lyme disease which takes hours. Rarely, it can be passed through unpasteurised milk from infected animals."
+      ]
+    },
+    {
+      "heading": "Symptoms",
+      "paragraphs": [
+        "Many people have no symptoms. In the first phase, flu-like symptoms such as fever, headache and tiredness occur one to two weeks after the bite and last several days. After a symptom-free period, some people develop a second phase with high fever, severe headache, stiff neck, confusion, balance problems or weakness. Adults tend to have more severe illness than children."
+      ]
+    },
+    {
+      "heading": "Diagnosis and treatment",
+      "paragraphs": [
+        "Blood tests detect antibodies, and spinal fluid examination may show signs of inflammation. There is no specific antiviral treatment, so care is supportive: rest, fluids, pain relief and hospital care for severe cases. Most people recover fully, but some are left with long-lasting problems such as headaches, concentration difficulties or paralysis, and a small number die."
+      ]
+    },
+    {
+      "heading": "Vaccination",
+      "paragraphs": [
+        "Vaccination is recommended for people living in or travelling to risk areas who may be exposed to ticks. The basic course consists of three doses over about a year, with boosters at intervals set by the manufacturer and national guidance. A quick schedule exists for travellers. The vaccine is well tolerated, and side effects are usually mild, such as arm soreness."
+      ]
+    },
+    {
+      "heading": "Other protection",
+      "paragraphs": [
+        "Vaccination does not protect against Lyme disease, so tick protection measures remain important. Remove ticks promptly, wear protective clothing, use repellent, and check the body after outdoor activities. Avoid unpasteurised dairy products in risk areas."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Planning a trip",
+      "text": "Imagine you plan a camping holiday in a risk area. You could ask your doctor about a quick vaccination schedule at least a few weeks before leaving."
+    },
+    {
+      "title": "Keeping boosters up to date",
+      "text": "Suppose you completed the basic course years ago. You might check your vaccination card and ask when your next booster is due."
+    }
+  ],
+  "questions": [
+    "Do I live in or travel to a TBE risk area?",
+    "Which vaccination schedule is suitable for me?",
+    "Which symptoms after a tick bite mean I should seek medical help?"
+  ]
+}

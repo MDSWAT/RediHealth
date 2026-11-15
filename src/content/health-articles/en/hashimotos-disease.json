@@ -1,0 +1,51 @@
+{
+  "title": "Hashimoto’s disease: thyroid function and ongoing care",
+  "intro": "Hashimoto’s disease is autoimmune inflammation of the thyroid. Over time it may reduce hormone production, but antibodies alone do not mean everyone needs immediate treatment. Symptoms and thyroid-function results guide the plan.",
+  "sections": [
+    {
+      "heading": "Understanding the problem",
+      "paragraphs": [
+        "An underactive thyroid may cause fatigue, feeling cold, constipation and dry skin. These symptoms have other causes too; persistent tiredness despite normalized thyroid tests deserves broader assessment."
+      ]
+    },
+    {
+      "heading": "Assessment and tests",
+      "paragraphs": [
+        "Blood tests assess thyroid-stimulating hormone and free thyroid hormone, with antibodies when useful. Ultrasound is not automatically required for every positive antibody result; a neck lump needs its own assessment. Bring your medicine list and previous results; ask which findings would change the plan."
+      ]
+    },
+    {
+      "heading": "Treatment choices",
+      "paragraphs": [
+        "Levothyroxine replaces missing hormone when indicated. The dose is individualized and reviewed with blood tests, not adjusted solely according to weight or online symptom lists. Excess replacement can also cause harm. Agree how benefit and adverse effects will be checked before changing treatment."
+      ]
+    },
+    {
+      "heading": "Everyday care",
+      "paragraphs": [
+        "Take medicine consistently as instructed and ask how food, iron, calcium and other medicines affect absorption. Avoid unprescribed iodine or thyroid supplements; more hormone is not a safe weight-loss treatment. Choose a routine you can maintain, and discuss barriers such as cost, work or language."
+      ]
+    },
+    {
+      "heading": "Follow-up and warning signs",
+      "paragraphs": [
+        "Discuss pregnancy or pregnancy plans promptly because monitoring and doses may change. New neck swelling, difficulty swallowing, palpitations or persistent symptoms need review; severe confusion or marked deterioration requires urgent care."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "A practical example",
+      "text": "In this hypothetical example, Mira has positive antibodies but normal thyroid function. She agrees a monitoring plan rather than buying hormone supplements herself."
+    },
+    {
+      "title": "Another practical example",
+      "text": "In this hypothetical example, Arben takes iron at the same time as levothyroxine. He asks a pharmacist about separating doses before assuming his prescription has failed."
+    }
+  ],
+  "questions": [
+    "What findings support the diagnosis or recommendation?",
+    "What are the benefits, risks and alternatives for me?",
+    "When should I seek help or arrange a review?"
+  ]
+}

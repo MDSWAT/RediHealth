@@ -1,0 +1,51 @@
+{
+  "title": "Menținerea la zi a informațiilor despre sănătate",
+  "intro": "Cunoștințele medicale se schimbă pe măsură ce apar studii noi, așa că informațiile fiabile despre sănătate trebuie verificate și revizuite regulat. Înțelegerea modului în care funcționează acest lucru vă ajută să judecați cât de actual este un articol și de ce sfaturile mai vechi diferă uneori de recomandările mai noi.",
+  "sections": [
+    {
+      "heading": "De ce informațiile devin depășite",
+      "paragraphs": [
+        "Cercetările noi pot confirma, rafina sau răsturna constatări anterioare. Tratamentele sunt aprobate, apar probleme de siguranță, iar ghidurile sunt revizuite. Unele subiecte se schimbă rapid, precum vaccinurile sau medicamentele pentru cancer, în timp ce anatomia de bază se schimbă lent."
+      ]
+    },
+    {
+      "heading": "Cum sunt verificate informațiile",
+      "paragraphs": [
+        "Autorii urmăresc studiile noi, ghidurile și alertele privind medicamentele. Ei evaluează dacă dovezile noi sunt suficient de solide pentru a schimba sfatul. Schimbările importante duc la actualizări, iar evoluțiile minore pot aștepta următoarea revizuire programată. Verificările de calitate controlează formularea, sursele și dacă informația rămâne corectă."
+      ]
+    },
+    {
+      "heading": "Ce puteți urmări",
+      "paragraphs": [
+        "Verificați data publicării sau a actualizării, dacă sursele sunt menționate și dacă textul recunoaște incertitudinea. Informațiile fără dată, fără surse sau care se bazează pe un singur studiu merită o prudență suplimentară. Autoritățile oficiale de sănătate și organismele care elaborează ghiduri publică recomandări actualizate regulat."
+      ]
+    },
+    {
+      "heading": "Folosirea informațiilor mai vechi",
+      "paragraphs": [
+        "Informațiile mai vechi nu sunt automat greșite, dar alegerile de tratament, recomandările privind testele și siguranța medicamentelor se pot schimba. Comparați întotdeauna cu sfatul profesional actual, mai ales înainte de a schimba tratamentul."
+      ]
+    },
+    {
+      "heading": "Rămânerea informat",
+      "paragraphs": [
+        "Întrebați medicul sau farmacistul despre schimbările importante care vă afectează afecțiunea, abonați-vă la servicii de informare a pacienților de încredere dacă doriți și revizuiți lista de medicamente cel puțin o dată pe an. Tratați cu grijă știrile despre sănătate și priviți sursele originale acolo unde este posibil."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Verificarea unui articol",
+      "text": "Imaginați-vă că citiți un sfat despre un medicament care pare diferit de ce v-a spus medicul. Ați putea verifica data, un prospect actual și ați putea întreba medicul ce sfat se aplică în cazul dumneavoastră."
+    },
+    {
+      "title": "Revizuirea anuală",
+      "text": "Presupuneți că trăiți cu o afecțiune de lungă durată. Ați putea programa o vizită anuală pentru a întreba despre tratamente noi sau schimbări ale ghidurilor și ați putea aduce lista de întrebări."
+    }
+  ],
+  "questions": [
+    "Este această informație actuală și s-a schimbat recent recomandarea?",
+    "În ce surse aveți încredere pentru informații actualizate despre afecțiunea mea?",
+    "Există opțiuni noi care mi s-ar potrivi mai bine decât tratamentul actual?"
+  ]
+}
