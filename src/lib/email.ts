@@ -750,7 +750,7 @@ export function renderSignInCodeEmail({ email, code, lang }: { email: string; co
   const auth = copy.code;
   return {
     subject: auth.subject,
-    text: [`${copy.greeting},`, auth.intro, code, `${auth.expires} ${auth.duration}.`, auth.ignored, auth.secret, `${copy.closing}\n${copy.team}`].join("\n\n"),
+    text: [`${copy.greeting},`, auth.intro, `${auth.label}: ${code}`, `${auth.expires} ${auth.duration}.`, auth.ignored, auth.secret, `${copy.closing}\n${copy.team}`].join("\n\n"),
     html: renderBrandEmail({
       lang, previewText: auth.subject, badgeText: auth.badge, heading: auth.heading, recipientName: email,
       intro: auth.intro, codeBlock: { code }, closingText: auth.secret, footerReason: auth.reason,
