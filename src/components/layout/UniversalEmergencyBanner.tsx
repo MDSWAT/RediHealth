@@ -1,28 +1,34 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import React, { useEffect, useState, useSyncExternalStore } from "react";
 import { CloseIcon, PhoneIcon } from "@/components/ui/icons";
 import { Container, type ContainerSize } from "@/components/ui/Container";
-import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { translations } from "@/lib/i18n/translations";
 import { DURATION, useCalmReducedMotion } from "@/lib/motion/tokens";
 import { EMERGENCY_DISMISS_COOKIE } from "@/lib/emergency-bar";
+
+const EmergencyDialerGate = dynamic(
+  () => import("@/components/emergency/EmergencyDialerGate").then((mod) => mod.EmergencyDialerGate),
+  { ssr: false },
+);
+
+const FALLBACK_EMERGENCY_RO = {
+  bannerAriaLabel: "Avertisment de urgență 112",
+  bannerText: "Pentru o urgență medicală, sună la 112. Aplicația nu poate suna în locul tău.",
+  dismissBannerAria: "Ascunde mesajul despre 112",
+  call112: "Sună la 112",
+};
 
 function useSafeLanguage() {
   try {
     const ctx = useLanguage();
     const lang = ctx?.lang || "ro";
-    const baseT = translations[lang] ?? translations.ro;
-    const t = {
-      ...baseT,
-      ...(ctx?.t || {}),
-      emergency: ctx?.t?.emergency ?? baseT.emergency,
-    };
-    return { lang, t };
+    const e = ctx?.t?.emergency;
+    return { lang, e: e ?? FALLBACK_EMERGENCY_RO };
   } catch {
-    return { lang: "ro" as const, t: translations.ro };
+    return { lang: "ro" as const, e: FALLBACK_EMERGENCY_RO };
   }
 }
 
@@ -78,8 +84,7 @@ export function UniversalEmergencyBanner({
   /** From the request's cookie: the reader closed the bar on this device, so render nothing. */
   initiallyDismissed?: boolean;
 }) {
-  const { lang, t } = useSafeLanguage();
-  const e = t.emergency;
+  const { lang, e } = useSafeLanguage();
   const chrome = getChromeCopy(lang);
 
   const [dialerOpen, setDialerOpen] = useState(false);
@@ -161,7 +166,7 @@ export function UniversalEmergencyBanner({
         </div>
       </div>
 
-      <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} />
+      {dialerOpen ? <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} /> : null}
     </>
   );
 }

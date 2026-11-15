@@ -232,6 +232,7 @@ export function NewsHub() {
               {voice.available && (
                 <ListenButton
                   uiLang={lang}
+                  autoRead
                   isPlaying={voice.speaking}
                   onToggle={() => {
                     if (voice.speaking) {

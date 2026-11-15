@@ -190,6 +190,7 @@ export function MedicOnlineHero() {
             voice.available ? (
               <ListenButton
                 uiLang={lang}
+                autoRead
                 isPlaying={voice.speaking}
                 onToggle={() => {
                   if (voice.speaking) {
@@ -217,7 +218,7 @@ export function MedicOnlineHero() {
                 {isOnDuty ? mp.cardOnCallTitle : c.offDutyTitle}
               </h2>
               <p className="mt-2 text-body text-muted-foreground tabular-nums">{isOnDuty ? mp.cardOnCallSubtitle : c.offDuty}</p>
-              <div className="mt-auto flex flex-col items-start gap-2 pt-6">
+              <div className="mt-auto flex flex-col items-center gap-2 pt-6 sm:items-start">
                 <div className="flex w-full flex-nowrap items-center">
                   <Button
                     href={withLangPrefix("/medic-online/asteptare", lang)}

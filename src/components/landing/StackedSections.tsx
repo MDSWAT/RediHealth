@@ -54,26 +54,36 @@ export function StackedSections({ children }: { children: ReactNode }) {
 
     const enableStacking = () => {
       // A layer taller than the visible area holds by its bottom edge, so all of it is read first.
-      const measure = () => {
+      let rafId = 0;
+      const runMeasure = () => {
+        rafId = 0;
         if (shouldDisableStacking()) {
           clearStackProps();
           return;
         }
+        // Batch all DOM measurements before writing inline CSS variables to avoid layout thrashing.
         const screen = window.innerHeight;
         const slim = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--site-header-slim-h"));
         const header = Number.isFinite(slim)
           ? slim
           : (document.querySelector<HTMLElement>(".site-header")?.getBoundingClientRect().height ?? 0);
+        const layerHeights = layers.map((layer) => layer.offsetHeight);
+
         layers.forEach((layer, index) => {
-          const fromBottom = screen - layer.offsetHeight;
+          const fromBottom = screen - layerHeights[index];
           layer.style.setProperty("--stack-top", `${index === 0 ? fromBottom : Math.min(header, fromBottom)}px`);
         });
       };
 
-      const resize = new ResizeObserver(measure);
+      const scheduleMeasure = () => {
+        if (rafId !== 0) return;
+        rafId = window.requestAnimationFrame(runMeasure);
+      };
+
+      const resize = new ResizeObserver(scheduleMeasure);
       for (const layer of layers) resize.observe(layer);
-      window.addEventListener("resize", measure);
-      measure();
+      window.addEventListener("resize", scheduleMeasure);
+      runMeasure();
 
       const atTop = new Set<number>();
       const cover = new IntersectionObserver(
@@ -91,9 +101,10 @@ export function StackedSections({ children }: { children: ReactNode }) {
       for (const layer of layers) cover.observe(layer);
 
       return () => {
+        if (rafId !== 0) window.cancelAnimationFrame(rafId);
         resize.disconnect();
         cover.disconnect();
-        window.removeEventListener("resize", measure);
+        window.removeEventListener("resize", scheduleMeasure);
         clearStackProps();
       };
     };

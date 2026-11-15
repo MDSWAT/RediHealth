@@ -77,7 +77,7 @@ const copy: Record<
     stepsTitle: "How it works",
     stepsSubtitle: "No bank account, health card or app needed.",
     step1Title: "Choose when to talk",
-    step1Desc: "Talk to the on-call doctor now or book a time that suits you.",
+    step1Desc: "Talk to the on\u2011call doctor now or book a time that suits you.",
     step2Title: "Get a link by SMS",
     step2Desc: "Tap the link. The call opens in your browser.",
     step3Title: "Get the advice in writing",

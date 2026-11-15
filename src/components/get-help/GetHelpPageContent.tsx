@@ -54,6 +54,7 @@ export function GetHelpPageContent({
             voice.available ? (
               <ListenButton
                 uiLang={lang}
+                autoRead
                 isPlaying={voice.speaking}
                 onToggle={() =>
                   voice.speaking

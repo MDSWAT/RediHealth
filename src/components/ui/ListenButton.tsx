@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { VolumeIcon } from "@/components/ui/icons";
 import { playEarcon } from "@/lib/audio/earcon";
+import { usePageAutoRead } from "@/lib/audio/page-auto-read";
 import { formatSpeechText, speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { cn } from "@/lib/cn";
-import { SPEECH_LANG_BY_LOCALE } from "@/lib/i18n/health-myths";
+import { SPEECH_LANG_BY_LOCALE } from "@/lib/i18n/speech-locales";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { LISTEN_COPY } from "@/lib/i18n/listen-copy";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
@@ -69,6 +70,10 @@ export interface ListenButtonProps {
   playStartEarcon?: boolean;
   /** Close any registered global audio bar when stopping playback. */
   closePlayerOnStop?: boolean;
+  /** Automatically read when the reader enabled Auto-read in ComfortMenu and page voice rules allow it. */
+  autoRead?: boolean;
+  /** Optional content key to re-trigger Auto-read when dynamic content updates in place. */
+  autoReadKey?: string;
   className?: string;
   /** Speaker icon colour. Defaults to sapphire; pass a light colour on ink or sapphire grounds. */
   iconClassName?: string;
@@ -92,6 +97,8 @@ export function ListenButton({
   disabled,
   playStartEarcon = false,
   closePlayerOnStop = false,
+  autoRead = false,
+  autoReadKey,
   className,
   iconClassName = "text-sapphire dark:text-sapphire-border",
 }: ListenButtonProps) {
@@ -102,9 +109,55 @@ export function ListenButton({
 
   const [isPlayingLocal, setIsPlayingLocal] = useState(false);
   const playingLocalRef = useRef(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const controlled = isPlayingProp !== undefined;
   const playing = controlled ? isPlayingProp : isPlayingLocal;
+
+  const onToggleRef = useRef(onToggle);
+  const getTextRef = useRef(getText);
+  const textRef = useRef(text);
+  useEffect(() => {
+    onToggleRef.current = onToggle;
+    getTextRef.current = getText;
+    textRef.current = text;
+  }, [onToggle, getText, text]);
+
+  const startAutoRead = useCallback(() => {
+    if (disabled) return;
+    if (onToggleRef.current) {
+      onToggleRef.current();
+      return;
+    }
+    const rawText = (getTextRef.current ? getTextRef.current() : textRef.current) ?? "";
+    if (!rawText.trim()) return;
+
+    const speechLang = resolveSpeechLang(effectiveContentLang);
+    playingLocalRef.current = true;
+    setIsPlayingLocal(true);
+    speechEngine.speak(formatSpeechText(rawText, speechLang), {
+      lang: speechLang,
+      rate: 1.0,
+      onEnd: () => {
+        playingLocalRef.current = false;
+        setIsPlayingLocal(false);
+      },
+      onError: () => {
+        playingLocalRef.current = false;
+        setIsPlayingLocal(false);
+      },
+    });
+  }, [disabled, effectiveContentLang]);
+
+  usePageAutoRead({
+    enabled: Boolean(autoRead && !disabled),
+    uiLang: lang,
+    contentLang: effectiveContentLang,
+    anchorRef: buttonRef,
+    isPlaying: Boolean(playing),
+    onStart: startAutoRead,
+    contentKey: autoReadKey ?? (text ? text.slice(0, 64) : ""),
+  });
 
   useEffect(() => {
     if (voiceAvailable) {
@@ -172,6 +225,7 @@ export function ListenButton({
 
   return (
     <Button
+      ref={buttonRef}
       type="button"
       variant="outline"
       size="md"

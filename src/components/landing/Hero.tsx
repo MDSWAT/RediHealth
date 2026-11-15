@@ -101,6 +101,7 @@ export function Hero({ wheelTopics = [] }: { wheelTopics?: WheelTopicNote[] }) {
               {voiceEnabled && (
                 <ListenButton
                   uiLang={lang}
+                  autoRead
                   getText={() =>
                     [copy.title, who, panel.question, ...HERO_NEED_ORDER.map((id) => panel.needs[id].label), panel.mediators].join(" ")
                   }

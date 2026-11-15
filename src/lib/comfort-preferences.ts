@@ -10,6 +10,7 @@ export const COMFORT_CHANGE_EVENT = "redihealth:comfort-change";
 const TEXT_SCALE_KEY = "redihealth-text-scale";
 const LEGACY_LARGE_TEXT_KEY = "redihealth-large-text";
 const CALM_MOTION_KEY = "redihealth-calm-motion";
+const AUTO_READ_KEY = "redihealth-auto-read";
 const READING_LEVEL_KEY = "redihealth_reading_level";
 const LEGACY_PLAIN_LANGUAGE_KEY = "redihealth_plain_language";
 
@@ -32,6 +33,7 @@ function bindStorageListener() {
       event.key === TEXT_SCALE_KEY ||
       event.key === LEGACY_LARGE_TEXT_KEY ||
       event.key === CALM_MOTION_KEY ||
+      event.key === AUTO_READ_KEY ||
       event.key === READING_LEVEL_KEY
     ) {
       applyComfortToDom();
@@ -67,6 +69,15 @@ export function getCalmMotionSnapshot(): boolean {
   }
 }
 
+export function getAutoReadSnapshot(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return window.localStorage.getItem(AUTO_READ_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 export function getReadingLevelSnapshot(): ReadingLevel {
   if (typeof window === "undefined") return "simple";
   try {
@@ -84,6 +95,7 @@ export function applyComfortToDom() {
   const root = document.documentElement;
   const textScale = getTextScaleSnapshot();
   const calmMotion = getCalmMotionSnapshot();
+  const autoRead = getAutoReadSnapshot();
   const readingLevel = getReadingLevelSnapshot();
 
   if (textScale === "xl") {
@@ -102,6 +114,13 @@ export function applyComfortToDom() {
   } else {
     root.removeAttribute("data-calm-motion");
   }
+
+  if (autoRead) {
+    root.setAttribute("data-auto-read", "true");
+  } else {
+    root.removeAttribute("data-auto-read");
+  }
+
   root.setAttribute("data-reading-level", readingLevel);
 }
 
@@ -140,6 +159,18 @@ export function setCalmMotion(next: boolean) {
   notifyComfortListeners();
 }
 
+export function setAutoRead(next: boolean) {
+  if (typeof window === "undefined") return;
+  if (getAutoReadSnapshot() === next) return;
+  try {
+    window.localStorage.setItem(AUTO_READ_KEY, next ? "1" : "0");
+  } catch {
+    // Storage blocked.
+  }
+  applyComfortToDom();
+  notifyComfortListeners();
+}
+
 export function setReadingLevel(next: ReadingLevel) {
   if (typeof window === "undefined") return;
   if (getReadingLevelSnapshot() === next) return;
@@ -159,6 +190,7 @@ export function resetComfortPreferences() {
     window.localStorage.removeItem(TEXT_SCALE_KEY);
     window.localStorage.removeItem(LEGACY_LARGE_TEXT_KEY);
     window.localStorage.removeItem(CALM_MOTION_KEY);
+    window.localStorage.removeItem(AUTO_READ_KEY);
     window.localStorage.removeItem(READING_LEVEL_KEY);
     window.localStorage.removeItem(LEGACY_PLAIN_LANGUAGE_KEY);
   } catch {
@@ -181,6 +213,12 @@ export function useTextScale(): [TextScale, (next: TextScale) => void] {
 export function useCalmMotion(): [boolean, (next: boolean) => void] {
   const enabled = useSyncExternalStore(subscribeComfort, getCalmMotionSnapshot, () => false);
   const update = useCallback((next: boolean) => setCalmMotion(next), []);
+  return [enabled, update];
+}
+
+export function useAutoRead(): [boolean, (next: boolean) => void] {
+  const enabled = useSyncExternalStore(subscribeComfort, getAutoReadSnapshot, () => false);
+  const update = useCallback((next: boolean) => setAutoRead(next), []);
   return [enabled, update];
 }
 

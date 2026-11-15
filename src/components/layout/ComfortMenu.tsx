@@ -4,9 +4,13 @@ import { useCallback, useEffect, useId, useRef, useState, type CSSProperties } f
 import { useIsPhone } from "@/lib/use-is-phone";
 import { ChevronDownIcon, CloseIcon } from "@/components/ui/icons";
 import { CAPSULE_PANEL, capsuleItem } from "@/components/layout/chrome-capsule";
+import { isVoiceEnabled } from "@/lib/audio/voice-availability";
+import { speechEngine } from "@/lib/audio/speech-engine";
+import { clearPageAutoReadSession } from "@/lib/audio/page-auto-read";
 import { cn } from "@/lib/cn";
 import {
   resetComfortPreferences,
+  useAutoRead,
   useCalmMotion,
   useReadingLevel,
   useTextScale,
@@ -26,6 +30,8 @@ type ComfortCopy = {
   explanationLabel: string;
   simpleLabel: string;
   completeLabel: string;
+  autoReadToggle: string;
+  autoReadHelp: string;
   motionLabel: string;
   calmMotionToggle: string;
   calmMotionHelp: string;
@@ -45,6 +51,8 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     explanationLabel: "Mod de citire",
     simpleLabel: "Pe scurt",
     completeLabel: "Detaliat",
+    autoReadToggle: "Citire automată cu voce",
+    autoReadHelp: "Pornește automat citirea pe paginile cu audio disponibil.",
     motionLabel: "Mișcări pe ecran",
     calmMotionToggle: "Oprește elementele care se mișcă",
     calmMotionHelp: "Paginile și știrile rămân nemișcate, fără efecte de derulare.",
@@ -62,6 +70,8 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     explanationLabel: "Reading mode",
     simpleLabel: "Simple",
     completeLabel: "Detailed",
+    autoReadToggle: "Auto-read pages",
+    autoReadHelp: "Reads aloud automatically on pages where voice is available.",
     motionLabel: "Screen motion",
     calmMotionToggle: "Stop moving screen elements",
     calmMotionHelp: "Keeps news tickers and sections still while you read.",
@@ -79,6 +89,8 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     explanationLabel: "Mënyra e leximit",
     simpleLabel: "Shkurt",
     completeLabel: "Detajuar",
+    autoReadToggle: "Lexim automatik me zë",
+    autoReadHelp: "Nis leximin me zë automatikisht në faqet ku audio ofrohet.",
     motionLabel: "Lëvizjet në ekran",
     calmMotionToggle: "Ndalo elementet që lëvizin",
     calmMotionHelp: "Lajmet dhe faqet qëndrojnë të qeta ndërsa lexon.",
@@ -96,6 +108,8 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     explanationLabel: "Modalità di lettura",
     simpleLabel: "Semplice",
     completeLabel: "Dettagliato",
+    autoReadToggle: "Lettura vocale automatica",
+    autoReadHelp: "Avvia automaticamente la voce nelle pagine con audio disponibile.",
     motionLabel: "Movimenti sullo schermo",
     calmMotionToggle: "Ferma gli elementi in movimento",
     calmMotionHelp: "Notizie e sezioni restano ferme mentre leggi.",
@@ -113,6 +127,8 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     explanationLabel: "Način čitanja",
     simpleLabel: "Ukratko",
     completeLabel: "Detaljno",
+    autoReadToggle: "Automatsko čitanje naglas",
+    autoReadHelp: "Automatski pokreće čitanje na stranicama s dostupnim glasom.",
     motionLabel: "Pokreti na zaslonu",
     calmMotionToggle: "Zaustavi pokretne elemente",
     calmMotionHelp: "Vijesti i stranice ostaju mirne dok čitaš.",
@@ -130,6 +146,8 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     explanationLabel: "Sar drabares",
     simpleLabel: "Skurto",
     completeLabel: "Detaliime",
+    autoReadToggle: "Drabar korkoro avazesa",
+    autoReadHelp: "Putrel korkoro o avazi pe riga kaj si audio.",
     motionLabel: "Miškipen pe ekrano",
     calmMotionToggle: "Ačhav so miškisajvel",
     calmMotionHelp: "E nevimata thaj e riga ačhon phandade kana drabares.",
@@ -147,6 +165,8 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     explanationLabel: "Режим чтения",
     simpleLabel: "Коротко",
     completeLabel: "Подробно",
+    autoReadToggle: "Авточтение вслух",
+    autoReadHelp: "Автоматически включает озвучивание на страницах с поддержкой голоса.",
     motionLabel: "Движение на экране",
     calmMotionToggle: "Остановить движущиеся элементы",
     calmMotionHelp: "Строка новостей и блоки остаются неподвижными при чтении.",
@@ -176,9 +196,11 @@ export function ComfortMenu({
 }: ComfortMenuProps) {
   const { lang } = useLanguage();
   const copy = COMFORT_COPY[lang] ?? COMFORT_COPY.ro;
+  const voiceAvailable = isVoiceEnabled(lang);
   const [textScale, setTextScale] = useTextScale();
   const [readingLevel, setReadingLevel] = useReadingLevel();
   const [calmMotion, setCalmMotion] = useCalmMotion();
+  const [autoRead, setAutoRead] = useAutoRead();
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
 
   const isControlled = open !== undefined;
@@ -212,8 +234,12 @@ export function ComfortMenu({
   const scaleRadioRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const panelId = useId();
 
-  const isCustomized = textScale !== "normal" || calmMotion || readingLevel === "complete";
-  const hasComfortBoost = textScale !== "normal" || calmMotion;
+  const isCustomized =
+    textScale !== "normal" ||
+    calmMotion ||
+    readingLevel === "complete" ||
+    (voiceAvailable && autoRead);
+  const hasComfortBoost = textScale !== "normal" || calmMotion || (voiceAvailable && autoRead);
 
   useEffect(() => {
     if (!isOpen || variant !== "header") return;
@@ -277,7 +303,7 @@ export function ComfortMenu({
     <div className="space-y-4 text-left">
       <div style={{ "--i": 0 } as CSSProperties} className={cn(isOpen && "list-in")}>
         <p className="text-body font-semibold text-foreground dark:text-paper">{copy.textSizeLabel}</p>
-        <div role="radiogroup" aria-label={copy.textSizeLabel} className="mt-1.5 flex flex-col gap-1.5">
+        <div role="radiogroup" aria-label={copy.textSizeLabel} className="mt-1.5 grid grid-cols-3 gap-2">
           {scaleOptions.map((option, idx) => {
             const active = textScale === option.value;
             return (
@@ -289,18 +315,20 @@ export function ComfortMenu({
                 type="button"
                 role="radio"
                 aria-checked={active}
+                aria-label={`${copy.textSizeLabel}: ${option.label}`}
+                title={option.label}
                 tabIndex={active ? 0 : -1}
                 onClick={() => setTextScale(option.value)}
                 onKeyDown={(event) => handleScaleKeyDown(event, idx)}
                 className={cn(
-                  "press-row flex min-h-12 w-full items-center justify-start whitespace-nowrap rounded-xl border px-3 py-2 text-left text-body font-medium transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:px-3.5",
+                  "press-row flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-xl border px-2 py-2 text-center text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
                   active
-                    ? "border-sapphire bg-sapphire-soft/75 font-semibold text-sapphire shadow-xs ring-1 ring-sapphire/20 dark:border-paper dark:bg-white/15 dark:text-paper dark:ring-white/20"
+                    ? "border-sapphire bg-sapphire-soft/75 font-bold text-sapphire shadow-xs ring-1 ring-sapphire/20 dark:border-paper dark:bg-white/15 dark:text-paper dark:ring-white/20"
                     : "border-border-control bg-muted/35 text-foreground hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:text-paper dark:hover:bg-white/10",
                 )}
               >
-                <span style={{ fontSize: option.previewSize }} className="leading-snug">
-                  {option.label}
+                <span style={{ fontSize: option.previewSize }} className="leading-none">
+                  Aa
                 </span>
               </button>
             );
@@ -310,7 +338,7 @@ export function ComfortMenu({
 
       <div style={{ "--i": 1 } as CSSProperties} className={cn(isOpen && "list-in")}>
         <p className="text-body font-semibold text-foreground dark:text-paper">{copy.explanationLabel}</p>
-        <div role="group" aria-label={copy.explanationLabel} className="mt-1.5 flex flex-col gap-1.5">
+        <div role="group" aria-label={copy.explanationLabel} className="mt-1.5 grid grid-cols-2 gap-2">
           {(
             [
               { value: "simple", label: copy.simpleLabel },
@@ -325,7 +353,7 @@ export function ComfortMenu({
                 aria-pressed={active}
                 onClick={() => setReadingLevel(option.value)}
                 className={cn(
-                  "press-row flex min-h-12 w-full items-center justify-start whitespace-nowrap rounded-xl border px-3 py-2 text-left text-body font-semibold leading-tight transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:px-3.5",
+                  "press-row flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-xl border px-3 py-2 text-center text-body font-semibold leading-tight transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
                   active
                     ? "border-sapphire bg-sapphire-soft/75 text-sapphire shadow-xs ring-1 ring-sapphire/20 dark:border-paper dark:bg-white/15 dark:text-paper dark:ring-white/20"
                     : "border-border-control bg-muted/35 text-foreground hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:text-paper dark:hover:bg-white/10",
@@ -338,8 +366,60 @@ export function ComfortMenu({
         </div>
       </div>
 
+      {voiceAvailable && (
+        <div
+          style={{ "--i": 2 } as CSSProperties}
+          className={cn(isOpen && "list-in", "border-t border-border/70 pt-2 dark:border-white/10")}
+        >
+          <button
+            type="button"
+            role="switch"
+            aria-checked={autoRead}
+            onClick={() => {
+              const next = !autoRead;
+              if (next) {
+                clearPageAutoReadSession();
+              } else {
+                speechEngine.stop();
+                speechEngine.requestClose();
+              }
+              setAutoRead(next);
+            }}
+            className={cn(
+              "press-row flex min-h-11 w-full max-w-full items-center justify-between gap-3 rounded-xl border px-3 py-2 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+              autoRead
+                ? "border-sapphire bg-sapphire-soft/60 dark:border-paper dark:bg-white/12"
+                : "border-border-control bg-muted/35 hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:hover:bg-white/10",
+            )}
+          >
+            <span className="min-w-0 flex-1">
+              <span className="block text-body font-semibold text-foreground dark:text-paper">
+                {copy.autoReadToggle}
+              </span>
+              <span className="mt-0.5 block text-meta leading-snug text-muted-foreground dark:text-mist">
+                {copy.autoReadHelp}
+              </span>
+            </span>
+            <span
+              aria-hidden="true"
+              className={cn(
+                "inline-flex h-6 w-11 shrink-0 items-center justify-start rounded-md p-0.5 transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                autoRead ? "bg-sapphire dark:bg-sapphire-border" : "bg-border-control dark:bg-white/30",
+              )}
+            >
+              <span
+                className={cn(
+                  "h-5 w-5 rounded-sm bg-white shadow-xs transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                  autoRead ? "translate-x-5" : "translate-x-0",
+                )}
+              />
+            </span>
+          </button>
+        </div>
+      )}
+
       <div
-        style={{ "--i": 2 } as CSSProperties}
+        style={{ "--i": voiceAvailable ? 3 : 2 } as CSSProperties}
         className={cn(isOpen && "list-in", "border-t border-border/70 pt-2 dark:border-white/10")}
       >
         <button
@@ -384,6 +464,8 @@ export function ComfortMenu({
         <button
           type="button"
           onClick={() => {
+            speechEngine.stop();
+            speechEngine.requestClose();
             resetComfortPreferences();
             onDone?.();
           }}

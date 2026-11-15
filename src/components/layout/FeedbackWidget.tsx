@@ -11,6 +11,7 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   CloseIcon,
+  MessageDotsIcon,
   ShieldIcon,
 } from "@/components/ui/icons";
 import { feedbackWidgetCopy, type FeedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
@@ -28,10 +29,12 @@ import {
   type RatingKey,
 } from "@/lib/platform-feedback-shared";
 
-/** Wait 2.5 minutes of active browsing so visitors can explore the platform first. */
-const INITIAL_EXPLORE_MS = 150_000;
-/** Never show the floating invite in the first 12 seconds after a page load or refresh. */
-const PAGE_SETTLE_GRACE_MS = 12_000;
+/** Wait 45 seconds of active browsing so visitors can explore the platform first, then gently invite feedback. */
+const INITIAL_EXPLORE_MS = 45_000;
+/** Allow earlier invite (after 20 seconds) when a reader finishes scrolling a health guide or article. */
+const READ_COMPLETE_MIN_MS = 20_000;
+/** Never show the floating invite in the first 10 seconds after a page load or route transition. */
+const PAGE_SETTLE_GRACE_MS = 10_000;
 /** Heartbeat interval while the tab is visible. */
 const HEARTBEAT_INTERVAL_MS = 4_000;
 /** Treat a return after 6+ hours away as a fresh browsing session. */
@@ -45,12 +48,30 @@ const SNOOZE_STEPS_MS = [
 
 const SCHEDULE_STORAGE_KEY = "redihealth:feedback-schedule:v2";
 const DRAFT_SESSION_KEY = "redihealth:feedback-draft:v2";
-const OPEN_FEEDBACK_EVENT = "redi:feedback-open";
+import {
+  consumePendingFeedbackOpen,
+  OPEN_FEEDBACK_EVENT,
+  openSiteFeedback,
+} from "@/components/layout/chrome-widget-events";
 
-const AUTO_INVITE_PATHS = new Set(["/", "/health-information", "/about"]);
+export { openSiteFeedback };
 
-function isGuideDetailPath(barePath: string): boolean {
-  return barePath.startsWith("/health-information/") && barePath !== "/health-information";
+const AUTO_INVITE_PATHS = new Set([
+  "/",
+  "/health-information",
+  "/stiri",
+  "/find-help",
+  "/medic-online",
+  "/mediatori",
+  "/about",
+  "/get-help",
+]);
+
+function isReadingDetailPath(barePath: string): boolean {
+  return (
+    (barePath.startsWith("/health-information/") && barePath !== "/health-information") ||
+    (barePath.startsWith("/stiri/") && barePath !== "/stiri")
+  );
 }
 
 function hasReachedGuideEnd(): boolean {
@@ -63,9 +84,7 @@ function hasReachedGuideEnd(): boolean {
 }
 
 function isAutoInviteAllowedPath(barePath: string): boolean {
-  if (AUTO_INVITE_PATHS.has(barePath)) return true;
-  if (isGuideDetailPath(barePath)) return hasReachedGuideEnd();
-  return false;
+  return AUTO_INVITE_PATHS.has(barePath) || isReadingDetailPath(barePath);
 }
 
 type StepIndex = 0 | 1 | 2;
@@ -194,16 +213,6 @@ function clearDraft(): void {
   }
 }
 
-/**
- * Opens the dedicated feedback modal from anywhere on the website (such as the footer link).
- * Returns false if the widget is not mounted on the current chromeless surface.
- */
-export function openSiteFeedback(): boolean {
-  if (typeof window === "undefined") return false;
-  const event = new Event(OPEN_FEEDBACK_EVENT, { cancelable: true });
-  return !window.dispatchEvent(event);
-}
-
 function errorForResponse(status: number, code: string | undefined, t: FeedbackWidgetCopy): string {
   if (status === 429 || code === "rate_limited") return t.errorTooMany;
   if (code === "captcha_invalid") return t.errorCaptcha;
@@ -251,7 +260,13 @@ export function FeedbackWidget() {
 
   const barePath = stripLangFromPathname(pathname);
   const isConsultationOrPortal =
-    barePath.startsWith("/medic-online/meet") || barePath.startsWith("/patient-portal");
+    barePath.startsWith("/medic-online/meet") ||
+    barePath.startsWith("/patient-portal") ||
+    barePath === "/contul-meu" ||
+    barePath === "/sign-in";
+  const isClinicalTaskSurface =
+    barePath === "/health-check" || barePath === "/prescription-review";
+  const [mobileHeroTop, setMobileHeroTop] = useState(false);
 
   // Hydrate any unfinished in-session draft so closing and reopening never loses progress
   useEffect(() => {
@@ -272,10 +287,26 @@ export function FeedbackWidget() {
     });
   }, []);
 
+  // Keep mobile full-viewport Hero completely unobstructed while at top of `/`, showing side tab once scrolled or on inner routes
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const syncHeroTop = () => {
+      const isPhone = window.matchMedia("(max-width: 639px)").matches;
+      setMobileHeroTop(isPhone && barePath === "/" && window.scrollY < 160);
+    };
+    syncHeroTop();
+    window.addEventListener("scroll", syncHeroTop, { passive: true });
+    window.addEventListener("resize", syncHeroTop, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", syncHeroTop);
+      window.removeEventListener("resize", syncHeroTop);
+    };
+  }, [barePath]);
+
   // Reset settle grace on route navigation and hide any open invite card on disallowed surfaces
   useEffect(() => {
     pageMountedAtRef.current = Date.now();
-    if (!AUTO_INVITE_PATHS.has(barePath) && !isGuideDetailPath(barePath)) {
+    if (!isAutoInviteAllowedPath(barePath)) {
       queueMicrotask(() => setInviteVisible(false));
     }
   }, [pathname, barePath]);
@@ -366,21 +397,28 @@ export function FeedbackWidget() {
     };
     window.addEventListener(OPEN_FEEDBACK_EVENT, handleCustomOpen);
 
-    try {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get("feedback") === "1") {
-        queueMicrotask(() => openModal());
+    if (consumePendingFeedbackOpen()) {
+      queueMicrotask(() => {
+        setSubmitted(false);
+        openModal();
+      });
+    } else {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("feedback") === "1") {
+          queueMicrotask(() => openModal());
+        }
+      } catch {
+        // Ignore malformed URL edge cases
       }
-    } catch {
-      // Ignore malformed URL edge cases
     }
 
     return () => window.removeEventListener(OPEN_FEEDBACK_EVENT, handleCustomOpen);
   }, [openModal]);
 
-  // Active browsing timer (2.5m initial exploration + progressive snooze reminders)
+  // Active browsing timer (45s general exploration or 20s + reading completion, plus progressive snooze)
   useEffect(() => {
-    if (modalOpen || submitted || isConsultationOrPortal) {
+    if (modalOpen || submitted || isConsultationOrPortal || isClinicalTaskSurface) {
       return;
     }
 
@@ -407,24 +445,43 @@ export function FeedbackWidget() {
       });
 
       if (document.visibilityState !== "visible") return;
-      if (!window.matchMedia("(min-width: 1024px)").matches) return;
       if (!isAutoInviteAllowedPath(barePath)) return;
       if (now - pageMountedAtRef.current < PAGE_SETTLE_GRACE_MS) return;
-      if (nextActiveMs < INITIAL_EXPLORE_MS) return;
       if (schedule.snoozedUntil > now) return;
-      if (document.querySelector("dialog[open], [data-bottom-bar], .hh-dialog")) return;
+
+      const isPhoneAtHeroTop =
+        window.matchMedia("(max-width: 639px)").matches &&
+        barePath === "/" &&
+        window.scrollY < 160;
+      if (isPhoneAtHeroTop) return;
+
+      const reachedReadingCompletion =
+        isReadingDetailPath(barePath) &&
+        nextActiveMs >= READ_COMPLETE_MIN_MS &&
+        hasReachedGuideEnd();
+      if (nextActiveMs < INITIAL_EXPLORE_MS && !reachedReadingCompletion) return;
+
+      if (
+        document.querySelector(
+          'dialog[open], [data-bottom-bar], .hh-dialog, [data-audio-player-open="true"], #mobile-menu[data-open="true"]',
+        )
+      ) {
+        return;
+      }
 
       setInviteVisible(true);
     };
 
     const intervalId = window.setInterval(evaluateAndTick, HEARTBEAT_INTERVAL_MS);
     const settleTimerId = window.setTimeout(evaluateAndTick, PAGE_SETTLE_GRACE_MS + 250);
+    window.addEventListener("scroll", evaluateAndTick, { passive: true });
 
     return () => {
       window.clearInterval(intervalId);
       window.clearTimeout(settleTimerId);
+      window.removeEventListener("scroll", evaluateAndTick);
     };
-  }, [modalOpen, submitted, isConsultationOrPortal, barePath, pathname]);
+  }, [modalOpen, submitted, isConsultationOrPortal, isClinicalTaskSurface, barePath, pathname]);
 
   // Native <dialog> synchronization (focus trap, Escape key, inert background)
   useEffect(() => {
@@ -579,7 +636,20 @@ export function FeedbackWidget() {
 
   return (
     <>
-      {/* Calm, non-disruptive floating invitation card after 2.5 minutes of active browsing (desktop allow-list only) */}
+      {!isConsultationOrPortal && !isClinicalTaskSurface && !inviteVisible && !modalOpen && !mobileHeroTop ? (
+        <button
+          type="button"
+          onClick={() => openModal()}
+          aria-label={t.footerLink}
+          data-feedback-trigger=""
+          className="feedback-edge-trigger press-solid fixed right-0 bottom-24 z-30 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-l-lg border border-r-0 border-border bg-card/95 px-3.5 py-2 text-meta font-semibold text-foreground shadow-[0_12px_28px_-10px_rgba(15,23,42,0.28)] backdrop-blur-md transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:bottom-6 dark:border-white/15 dark:bg-ink-950/95 dark:text-paper"
+        >
+          <MessageDotsIcon className="h-4 w-4 shrink-0 text-sapphire transition-colors group-hover:text-current dark:text-primary-soft" />
+          <span>{t.compactTriggerLabel}</span>
+        </button>
+      ) : null}
+
+      {/* Calm, non-disruptive floating invitation card after 45 seconds of active browsing (or 20s after reading an article) */}
       <AnimatePresence>
         {inviteVisible && !modalOpen ? (
           <m.aside
@@ -589,7 +659,7 @@ export function FeedbackWidget() {
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
             transition={reducedMotion ? { duration: 0 } : CLINICAL_SETTLE_SPRING}
-            className="feedback-invite-card max-lg:hidden fixed bottom-4 right-4 z-30 w-[22rem] overflow-hidden rounded-(--radius-surface) border border-transparent bg-card text-foreground shadow-[0_20px_48px_-14px_rgba(15,23,42,0.34)] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
+            className="feedback-invite-card fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-30 mx-auto max-w-md overflow-hidden rounded-(--radius-surface) border border-border bg-card text-foreground shadow-[0_20px_48px_-14px_rgba(15,23,42,0.34)] sm:inset-x-auto sm:right-4 sm:bottom-4 sm:mx-0 sm:w-[22rem] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
           >
             <div className="p-4">
               <div className="flex items-start justify-between gap-2.5">

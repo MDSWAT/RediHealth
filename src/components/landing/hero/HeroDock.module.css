@@ -90,9 +90,10 @@
 .sun {
   position: relative;
   flex: none;
-  /* At least 12.5rem: the wheel is never smaller than 404px, and below this its star tips would
-     stand into the subtitle. Short phones scroll the hero anyway. */
-  height: clamp(12.5rem, 24svh, 14rem);
+  /* Scales with the viewport space remaining below `--site-header-h` so the dock stays flush at
+     the bottom of the screen whether the 112 emergency banner is shown or dismissed. */
+  height: clamp(5.5rem, calc((100svh - var(--site-header-h, 4.6875rem)) * 0.28 - 2.5rem), 14rem);
+  height: clamp(5.5rem, calc((100dvh - var(--site-header-h, 4.6875rem)) * 0.28 - 2.5rem), 14rem);
   clip-path: inset(
     calc((var(--sun-over, 0px) + var(--dock-down) * (var(--sun-rise, 12rem) - var(--sun-over, 0px))) * -1) 0
       calc(var(--dock-down) * var(--sun-reach, 0px) * -1) 0

@@ -21,7 +21,7 @@ export function PrescriptionAudioPlayer({
 
   return (
     <div className={className}>
-      <ListenButton text={speechText} uiLang={lang} />
+      <ListenButton text={speechText} uiLang={lang} autoRead />
     </div>
   );
 }

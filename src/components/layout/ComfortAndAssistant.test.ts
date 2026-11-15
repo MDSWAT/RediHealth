@@ -186,4 +186,26 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
     );
     expect(switcherSrc).toContain("syncingRef");
   });
+
+  it("renders single-line Aa Aa Aa buttons and shows Auto-read only on voice-enabled locales", () => {
+    const enHtml = renderToStaticMarkup(
+      createElement(
+        LanguageContext.Provider,
+        { value: { lang: "en", t: translations.en, setLang: () => {} } },
+        createElement(ComfortMenu, { variant: "drawer" }),
+      ),
+    );
+    expect(enHtml).toContain("grid-cols-3");
+    expect((enHtml.match(/>Aa</g) ?? []).length).toBe(3);
+    expect(enHtml).toContain(COMFORT_COPY.en.autoReadToggle);
+
+    const romHtml = renderToStaticMarkup(
+      createElement(
+        LanguageContext.Provider,
+        { value: { lang: "rom", t: translations.rom, setLang: () => {} } },
+        createElement(ComfortMenu, { variant: "drawer" }),
+      ),
+    );
+    expect(romHtml).not.toContain(COMFORT_COPY.rom.autoReadToggle);
+  });
 });

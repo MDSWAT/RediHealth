@@ -184,19 +184,13 @@ export const reportIssueCopy: Record<Lang, ReportIssueCopy> = {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const OPEN_EVENT = "redi:report-issue-open";
+import {
+  consumePendingReportIssueOpen,
+  OPEN_REPORT_ISSUE_EVENT,
+  openReportIssue,
+} from "@/components/layout/chrome-widget-events";
 
-/**
- * Opens the report form from anywhere in the chrome (the footer link on phones and tablets,
- * where the floating button is hidden so it never sits on page text or a bottom action bar).
- * Returns false when the widget is not mounted, so the caller can fall back to its link.
- */
-export function openReportIssue(): boolean {
-  if (typeof window === "undefined") return false;
-  const event = new Event(OPEN_EVENT, { cancelable: true });
-  // The mounted widget cancels the event to say it handled it.
-  return !window.dispatchEvent(event);
-}
+export { openReportIssue };
 
 /** The server answers in English; show the visitor's own language instead, chosen by status and code. */
 function errorForResponse(status: number, code: string | undefined, t: ReportIssueCopy): string {
@@ -252,8 +246,15 @@ export function ReportIssueWidget() {
       setSuccess(null);
       setOpen(true);
     };
-    window.addEventListener(OPEN_EVENT, handleOpen);
-    return () => window.removeEventListener(OPEN_EVENT, handleOpen);
+    window.addEventListener(OPEN_REPORT_ISSUE_EVENT, handleOpen);
+    if (consumePendingReportIssueOpen()) {
+      queueMicrotask(() => {
+        setError(null);
+        setSuccess(null);
+        setOpen(true);
+      });
+    }
+    return () => window.removeEventListener(OPEN_REPORT_ISSUE_EVENT, handleOpen);
   }, []);
 
   function handleBackdropClick(event: MouseEvent<HTMLDialogElement>) {

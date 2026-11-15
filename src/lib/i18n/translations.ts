@@ -1,16 +1,6 @@
 import { LISTEN_COPY } from "./listen-copy";
-
-export type Lang = "en" | "ro" | "sq" | "it" | "hr" | "rom" | "ru";
-
-export const languages: { code: Lang; label: string }[] = [
-  { code: "en", label: "English" },
-  { code: "ro", label: "Română" },
-  { code: "sq", label: "Shqip" },
-  { code: "it", label: "Italiano" },
-  { code: "hr", label: "Hrvatski" },
-  { code: "rom", label: "Romani" },
-  { code: "ru", label: "Русский" },
-];
+export { languages, type Lang } from "./languages";
+import type { Lang } from "./languages";
 
 /**
  * Canonical public destination names (P17 / LIT-P01 + RED-P04).
@@ -1722,7 +1712,7 @@ export const translations: Record<Lang, Translations> = {
     medicOnlinePage: {
       heroTitle: "Talk to a doctor from home",
       heroSubtitle: "No queues and no long trips. The doctor listens to you on the phone and tells you what to do.",
-      cardOnCallTitle: "Talk to the on-call doctor now",
+      cardOnCallTitle: "Talk to the on\u2011call doctor now",
       cardOnCallSubtitle: "You usually wait less than 10 minutes",
       cardOnCallAction: "Enter the waiting room",
       cardBookingTitle: "Book a call with a doctor",

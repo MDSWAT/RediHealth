@@ -216,8 +216,15 @@ export function HeroDock({ copy, lang, topics = [], onNote }: HeroDockProps) {
   useEffect(() => {
     measure();
     const observer = new ResizeObserver(measure);
-    for (const el of [dockRef.current, sunRef.current, menuRef.current]) if (el) observer.observe(el);
-    return () => observer.disconnect();
+    const section = rootRef.current?.closest("section");
+    for (const el of [section, dockRef.current, sunRef.current, menuRef.current]) {
+      if (el) observer.observe(el);
+    }
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
   }, [measure]);
 
   /*
@@ -605,6 +612,7 @@ export function HeroDock({ copy, lang, topics = [], onNote }: HeroDockProps) {
             {voiceEnabled && (
               <ListenButton
                 uiLang={lang}
+                autoRead
                 getText={() =>
                   [...copy.mobileTitle, copy.lead.split(/(?<=\.)\s+/)[0], panel.question, copy.primaryCta, panel.needs.problem.label, panel.mediators].join(" ")
                 }

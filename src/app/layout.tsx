@@ -6,6 +6,8 @@ import { getRequestLang } from "@/lib/i18n/server-routing";
 import { siteMetadata } from "@/lib/i18n/site-metadata";
 import { getSiteUrl } from "@/lib/site-url";
 import { EMERGENCY_DISMISS_COOKIE } from "@/lib/emergency-bar";
+import { serializeTranslations } from "@/lib/i18n/languages";
+import { translations } from "@/lib/i18n/translations";
 import { cookies, headers } from "next/headers";
 import { isRecaptchaEnabled } from "@/lib/security/recaptcha-config";
 
@@ -19,7 +21,7 @@ const bodyFont = Atkinson_Hyperlegible_Next({
   variable: "--font-body",
   subsets: ["latin", "latin-ext"],
   display: "swap",
-  preload: false,
+  preload: true,
   adjustFontFallback: false,
   fallback: ["Body Fallback", "Arial", "Helvetica", "sans-serif"],
 });
@@ -32,7 +34,7 @@ const headingFont = Bricolage_Grotesque({
   subsets: ["latin", "latin-ext"],
   axes: ["opsz"],
   display: "swap",
-  preload: false,
+  preload: true,
   adjustFontFallback: false,
   fallback: ["Heading Fallback", "Arial", "Helvetica", "sans-serif"],
 });
@@ -125,7 +127,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         >
           {siteMetadata[lang].skipLink}
         </a>
-        <SiteChrome lang={lang} nonce={nonce} captchaEnabled={isRecaptchaEnabled()} emergencyDismissed={emergencyDismissed}>{children}</SiteChrome>
+        <SiteChrome lang={lang} initialTranslations={serializeTranslations(translations[lang])} nonce={nonce} captchaEnabled={isRecaptchaEnabled()} emergencyDismissed={emergencyDismissed}>{children}</SiteChrome>
       </body>
     </html>
   );

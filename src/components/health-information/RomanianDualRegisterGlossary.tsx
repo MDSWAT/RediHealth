@@ -24,7 +24,7 @@ import { speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
-import { SPEECH_LANG_BY_LOCALE } from "@/lib/i18n/health-myths";
+import { SPEECH_LANG_BY_LOCALE } from "@/lib/i18n/speech-locales";
 import {
   DUAL_REGISTER_GLOSSARY_UI_COPY,
   ROMANIAN_MEDICAL_GLOSSARY,

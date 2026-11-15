@@ -118,6 +118,10 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  outputFileTracingIncludes: {
+    "/health-information/articles/[article]": ["./src/content/health-articles/**/*.json"],
+  },
+  turbopack: {},
   webpack: (config) => {
     if (isWindowsDev) {
       config.resolve.symlinks = false;

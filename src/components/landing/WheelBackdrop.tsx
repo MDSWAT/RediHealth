@@ -1,4 +1,6 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   INNER_STARS,
   OUTER_STARS,
@@ -24,8 +26,31 @@ import styles from "./WheelBackdrop.module.css";
  */
 export function WheelBackdrop({ placement }: { placement: "hero" | "footer" }) {
   const idPrefix = `${placement}-htw`;
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const [offscreen, setOffscreen] = useState(false);
+
+  useEffect(() => {
+    const node = backdropRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        setOffscreen(!entry.isIntersecting);
+      },
+      { rootMargin: "120px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div aria-hidden="true" className={`${styles.backdrop} ${styles[placement]}`}>
+    <div
+      ref={backdropRef}
+      aria-hidden="true"
+      data-offscreen={offscreen ? "" : undefined}
+      className={`${styles.backdrop} ${styles[placement]}`}
+    >
       <div className={styles.wheel}>
         <div className={`${styles.layer} ${styles.outer}`}>
           <svg className={styles.layer} viewBox={WHEEL_VIEW_BOX} focusable="false">

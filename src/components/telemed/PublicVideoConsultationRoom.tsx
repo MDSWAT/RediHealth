@@ -1,9 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { CheckCircleIcon, CheckIcon, PhoneIcon, StethoscopeIcon } from "@/components/ui/icons";
+import {
+  buildJitsiEmbedUrl,
+  PATIENT_VOICE_TOOLBAR,
+  subscribeJitsiCallEnd,
+} from "@/lib/jitsi-embed";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -160,12 +165,9 @@ interface PublicVideoConsultationRoomProps {
   doctorName?: string;
 }
 
-/** Jitsi toolbar limited to the microphone, hang-up and device settings: the consultation is voice only. */
-const JITSI_TOOLBAR = encodeURIComponent(JSON.stringify(["microphone", "hangup", "settings"]));
-
 /**
  * The patient's call room. RediHealth consultations are voice only: a microphone permission step,
- * the call (Jitsi, started audio-only with no camera button), and a short ending screen.
+ * the call (Jitsi, started audio-only with no camera or duplicate hang-up button), and a short ending screen.
  * During the call the room covers the screen (with a 112 link in its header) so "End call" never falls below the fold.
  */
 export function PublicVideoConsultationRoom({ roomId, patientName: patientNameProp, doctorName }: PublicVideoConsultationRoomProps) {
@@ -174,11 +176,13 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
   const patientName = patientNameProp ?? copy.patient;
   const [hasPermissions, setHasPermissions] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   // During the call the room covers the whole screen, so "End call" is always in reach; the page behind stays still.
   const inCall = hasPermissions && !callEnded;
   useEffect(() => {
     if (!inCall) return;
+    window.scrollTo(0, 0);
     const { overflow } = document.body.style;
     document.body.style.overflow = "hidden";
     return () => {
@@ -186,10 +190,20 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
     };
   }, [inCall]);
 
+  useEffect(() => {
+    if (!inCall) return;
+    return subscribeJitsiCallEnd(iframeRef.current, 1, () => {
+      setCallEnded(true);
+    });
+  }, [inCall]);
+
   const sanitizedRoom = roomId.replace(/[^a-zA-Z0-9-_]/g, "");
-  const jitsiUrl =
-    `https://meet.jit.si/redihealth-${sanitizedRoom}#config.prejoinPageEnabled=false&config.disableDeepLinking=true` +
-    `&config.startAudioOnly=true&config.startWithVideoMuted=true&config.toolbarButtons=${JITSI_TOOLBAR}`;
+  const jitsiUrl = buildJitsiEmbedUrl({
+    baseRoomUrl: `https://meet.jit.si/redihealth-${sanitizedRoom}`,
+    apiId: 1,
+    audioOnly: true,
+    toolbarButtons: PATIENT_VOICE_TOOLBAR,
+  });
 
   const requestMediaPermissions = async () => {
     try {
@@ -291,15 +305,18 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
         </div>
         <a
           href="tel:112"
+          aria-label={copy.emergency}
           className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-body font-semibold text-ruby-300 transition-colors duration-[var(--dur-fast)] hover:text-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70"
         >
-          <PhoneIcon className="h-4 w-4" />
-          {copy.emergency}
+          <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
+          <span className="sm:hidden">112</span>
+          <span className="hidden sm:inline">{copy.emergency}</span>
         </a>
       </header>
 
       <main id="main-content" className="relative min-h-0 flex-1 bg-ink-950">
         <iframe
+          ref={iframeRef}
           src={jitsiUrl}
           title={copy.callTitle}
           allow="microphone; autoplay"

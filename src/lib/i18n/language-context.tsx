@@ -1,8 +1,9 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { translations, type Lang, type Translations } from "@/lib/i18n/translations";
+import type { Lang, Translations } from "@/lib/i18n/translations";
+import { hydrateTranslations, type SerializableTranslations } from "@/lib/i18n/languages";
 import { DEFAULT_LANG, LOCALE_COOKIE, getLangFromPathname, isSupportedLang, withLangPrefix } from "@/lib/i18n/routing";
 import {
   LOCALE_CHECKED_STORAGE_KEY,
@@ -39,9 +40,40 @@ function redirectToLocale(nextLang: Lang) {
  * path on one side of hydration, which has no locale in it. Falling back to the request's
  * locale (instead of DEFAULT_LANG) keeps the server and client renders in the same language.
  */
-export function LanguageProvider({ children, requestLang }: { children: ReactNode; requestLang?: Lang }) {
+export function LanguageProvider({
+  children,
+  requestLang,
+  initialTranslations,
+}: {
+  children: ReactNode;
+  requestLang?: Lang;
+  initialTranslations?: Translations | SerializableTranslations;
+}) {
   const pathname = usePathname();
   const lang = getLangFromPathname(pathname) ?? requestLang ?? DEFAULT_LANG;
+  const hydratedInitial = useMemo(
+    () => hydrateTranslations(initialTranslations),
+    [initialTranslations],
+  );
+  const [loadedByLang, setLoadedByLang] = useState<Partial<Record<Lang, Translations>>>(() =>
+    requestLang && hydratedInitial ? { [requestLang]: hydratedInitial } : {},
+  );
+  const currentT =
+    (requestLang === lang && hydratedInitial ? hydratedInitial : undefined) ??
+    loadedByLang[lang] ??
+    hydratedInitial;
+
+  useEffect(() => {
+    if ((requestLang === lang && hydratedInitial) || loadedByLang[lang]) return;
+    let cancelled = false;
+    void import("@/lib/i18n/translations").then((mod) => {
+      if (cancelled) return;
+      setLoadedByLang((prev) => ({ ...prev, ...mod.translations }));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang, requestLang, hydratedInitial, loadedByLang]);
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -87,28 +119,48 @@ export function LanguageProvider({ children, requestLang }: { children: ReactNod
       return;
     }
 
+    let cancelled = false;
+    let idleId = 0;
+    let timerId = 0;
     const controller = new AbortController();
-    fetch("/api/geo-locale", {
-      method: "GET",
-      credentials: "same-origin",
-      signal: controller.signal,
-    })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data: { lang?: unknown } | null) => {
-        if (controller.signal.aborted) return;
-        markLocaleChecked();
-        if (!data || hasManualLocaleCookie(document.cookie)) return;
-        if (typeof data.lang === "string" && isSupportedLang(data.lang) && data.lang !== DEFAULT_LANG) {
-          redirectToLocale(data.lang);
-        }
+    const win = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+
+    const runGeoCheck = () => {
+      if (cancelled) return;
+      fetch("/api/geo-locale", {
+        method: "GET",
+        credentials: "same-origin",
+        signal: controller.signal,
       })
-      .catch(() => {
-        if (!controller.signal.aborted) {
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data: { lang?: unknown } | null) => {
+          if (controller.signal.aborted) return;
           markLocaleChecked();
-        }
-      });
+          if (!data || hasManualLocaleCookie(document.cookie)) return;
+          if (typeof data.lang === "string" && isSupportedLang(data.lang) && data.lang !== DEFAULT_LANG) {
+            redirectToLocale(data.lang);
+          }
+        })
+        .catch(() => {
+          if (!controller.signal.aborted) {
+            markLocaleChecked();
+          }
+        });
+    };
+
+    if (typeof win.requestIdleCallback === "function") {
+      idleId = win.requestIdleCallback(runGeoCheck, { timeout: 1500 });
+    } else {
+      timerId = window.setTimeout(runGeoCheck, 1500);
+    }
 
     return () => {
+      cancelled = true;
+      if (idleId) win.cancelIdleCallback?.(idleId);
+      if (timerId) window.clearTimeout(timerId);
       controller.abort();
     };
   }, [lang]);
@@ -121,7 +173,10 @@ export function LanguageProvider({ children, requestLang }: { children: ReactNod
     window.location.assign(currentUrl.toString());
   }, [lang]);
 
-  const value = useMemo(() => ({ lang, setLang, t: translations[lang] }), [lang, setLang]);
+  const value = useMemo(
+    () => ({ lang, setLang, t: currentT as Translations }),
+    [lang, setLang, currentT],
+  );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }

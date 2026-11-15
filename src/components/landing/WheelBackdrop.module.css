@@ -180,6 +180,10 @@
 :global(html[data-calm-motion]) .outer,
 :global(html[data-calm-motion]) .inner,
 :global(html[data-calm-motion]) .hub,
-:global(html[data-calm-motion]) .face {
+:global(html[data-calm-motion]) .face,
+.backdrop[data-offscreen] .outer,
+.backdrop[data-offscreen] .inner,
+.backdrop[data-offscreen] .hub,
+.backdrop[data-offscreen] .face {
   animation: none;
 }

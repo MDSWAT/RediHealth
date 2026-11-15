@@ -550,9 +550,18 @@ html[data-calm-motion] .hero {
 
 /* ---------- Landing hero ---------- */
 
-/* One motion language for the hero: the shared calm ease-out, no overshoot. */
+/* One motion language for the hero: the shared calm ease-out, no overshoot.
+   The upward 2px ink shadow seals subpixel rounding seams at y=0 under fractional zoom. */
 .hero {
   --hero-ease: var(--ease-out-calm);
+  box-shadow: 0 -2px 0 0 var(--color-ink-950);
+}
+
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 100svh;
+    min-height: 100dvh;
+  }
 }
 
 .hero ::selection {
@@ -1395,17 +1404,58 @@ html[data-calm-motion] .triage-sheet[open] {
 
 
 /*
- * Height of the sticky site header (its 112 strip, 2.75rem, plus the bar, 3.5rem below md or
- * 4rem from md up, plus 1px border), for the first paint. The header publishes its measured
- * height over this once it runs, including after the 112 strip is closed.
+ * Height of the sticky site header (its 112 strip, 2.75rem + 1px border, plus the 4rem bar + 0.625rem
+ * top offset + 1px border), for the first paint, with an exact fallback when the 112 strip was already dismissed.
+ * The header publishes its subpixel-measured height over this once mounted.
  */
 :root:has(.site-header) {
-  --site-header-h: 6.8125rem;
+  --site-header-h: 7.5rem;
 }
 
 @media (min-width: 768px) {
   :root:has(.site-header) {
-    --site-header-h: 7.3125rem;
+    --site-header-h: 8rem;
+  }
+}
+
+:root:has(.site-header:not(:has(.emergency-banner))) {
+  --site-header-h: 4.6875rem;
+}
+
+/* Hide the floating Google reCAPTCHA v3 badge on mobile and tablet (< lg) so it never covers bottom
+   dock controls while keeping the iframe mounted (`visibility: hidden`, not `display: none`) so
+   `grecaptcha.execute()` remains fully functional; `<RecaptchaNotice />` renders the required notice. */
+@media (max-width: 1023px) {
+  .grecaptcha-badge {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Compact mobile viewports: tighten hero vertical rhythm so the entire first screen (including
+   HeroDock) fits 100% of the viewport even while the 112 emergency banner is open. */
+@media (max-width: 1023px) and (max-height: 820px) {
+  .hero .hero-grid {
+    padding-block: 0.75rem;
+  }
+
+  .hero .hero-cross-slot {
+    margin-bottom: 0.75rem;
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 720px) {
+  .hero .hero-grid {
+    padding-block: 0.375rem;
+  }
+
+  .hero .hero-cross-slot {
+    margin-bottom: 0.5rem;
+  }
+
+  .hero .hero-title {
+    font-size: clamp(1.625rem, 0.85rem + 4.2vw, 2rem);
   }
 }
 

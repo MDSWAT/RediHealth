@@ -17,7 +17,7 @@ import { ArrowRightIcon, ChevronDownIcon, GlobeIcon } from "@/components/ui/icon
 import { useLanguage } from "@/lib/i18n/language-context";
 import { markManualLocaleSelection } from "@/lib/i18n/locale-detection";
 import { withLangPrefix } from "@/lib/i18n/routing";
-import { languages, type Lang } from "@/lib/i18n/translations";
+import { languages, type Lang } from "@/lib/i18n/languages";
 import { CAPSULE_PANEL, CAPSULE_PANEL_LABEL, capsuleItem } from "@/components/layout/chrome-capsule";
 import { cn } from "@/lib/cn";
 

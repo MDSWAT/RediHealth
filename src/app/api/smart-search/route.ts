@@ -3,9 +3,11 @@ import { normalizeJsonPayload } from "@/lib/health-assistant";
 import { DEFAULT_LANG, isSupportedLang } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import { LlmError, generateText } from "@/lib/llm";
+import type { SmartSearchCategory } from "@/lib/i18n/smart-search-copy";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import {
   detectEmergencyQuery,
+  getContextualSuggestions,
   normalizeSearchText,
   searchSmartCatalog,
   type SmartSearchReadingLevel,
@@ -13,6 +15,79 @@ import {
 } from "@/lib/search/smart-search-engine";
 
 export const runtime = "nodejs";
+
+const VALID_CATEGORIES = new Set<SmartSearchCategory>([
+  "all",
+  "tools",
+  "guides",
+  "glossary",
+  "myths",
+  "articles",
+  "news",
+]);
+
+export async function GET(req: Request) {
+  const rateLimit = await checkRateLimit(`smart-search-get:${getClientIp(req)}`, {
+    limit: 300,
+    windowMs: 60_000,
+  });
+
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Wait a moment and try again." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(rateLimit.retryAfterSeconds) },
+      },
+    );
+  }
+
+  const url = new URL(req.url);
+  const rawQuery = (url.searchParams.get("q") ?? "").slice(0, 300);
+  const rawLang = url.searchParams.get("lang") ?? "";
+  const lang = isSupportedLang(rawLang) ? rawLang : DEFAULT_LANG;
+  const pathname = (url.searchParams.get("pathname") ?? "/").slice(0, 200);
+  const readingLevel: SmartSearchReadingLevel =
+    url.searchParams.get("readingLevel") === "simple" ? "simple" : "standard";
+  const rawCategory = url.searchParams.get("category") ?? "all";
+  const category: SmartSearchCategory = VALID_CATEGORIES.has(rawCategory as SmartSearchCategory)
+    ? (rawCategory as SmartSearchCategory)
+    : "all";
+  const includeContextual = url.searchParams.get("includeContextual") === "1";
+
+  const hasSearchable = /[\p{L}\p{N}]/u.test(rawQuery.trim());
+  const contextual =
+    includeContextual || !hasSearchable ? getContextualSuggestions(pathname, lang) : undefined;
+  const allCatalog = hasSearchable
+    ? searchSmartCatalog(rawQuery, {
+        lang,
+        category: "all",
+        readingLevel,
+        pathname,
+        limit: 8,
+      })
+    : undefined;
+  const categoryCatalog =
+    hasSearchable && category !== "all"
+      ? searchSmartCatalog(rawQuery, {
+          lang,
+          category,
+          readingLevel,
+          pathname,
+          limit: 8,
+        })
+      : undefined;
+
+  return NextResponse.json(
+    { contextual, allCatalog, categoryCatalog },
+    {
+      status: 200,
+      headers: {
+        "Cache-Control": "public, max-age=120, stale-while-revalidate=600",
+      },
+    },
+  );
+}
 
 type SmartSearchApiRequest = {
   query?: unknown;

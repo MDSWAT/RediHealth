@@ -1,6 +1,7 @@
 "use client";
 
 import { WheelBackdrop } from "@/components/landing/WheelBackdrop";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
@@ -8,16 +9,24 @@ import { Logo } from "@/components/ui/Logo";
 import { Reveal } from "@/components/ui/Reveal";
 import { PhoneIcon } from "@/components/ui/icons";
 import { getChromeCopy } from "@/components/layout/chrome-copy";
-import { EmergencySignsModal } from "@/components/emergency/EmergencySignsModal";
-import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
-import { openSiteFeedback } from "@/components/layout/FeedbackWidget";
-import { openReportIssue } from "@/components/layout/ReportIssueWidget";
-import { feedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
+import {
+  feedbackTriggerCopy,
+  openReportIssue,
+  openSiteFeedback,
+} from "@/components/layout/chrome-widget-events";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { withLangPrefix } from "@/lib/i18n/routing";
-import { translations } from "@/lib/i18n/translations";
 import { applyPwaUpdate, openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-state";
+
+const EmergencySignsModal = dynamic(
+  () => import("@/components/emergency/EmergencySignsModal").then((mod) => mod.EmergencySignsModal),
+  { ssr: false },
+);
+const EmergencyDialerGate = dynamic(
+  () => import("@/components/emergency/EmergencyDialerGate").then((mod) => mod.EmergencyDialerGate),
+  { ssr: false },
+);
 
 /**
  * Footer: the ink ground that closes every page, mirroring the ink hero. A short statement of
@@ -26,8 +35,7 @@ import { applyPwaUpdate, openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-st
  * The two dialogs render beside the footer, not inside it, so they keep their own text colour.
  */
 export function Footer() {
-  const { lang, t: rawT } = useLanguage();
-  const t = rawT ?? translations[lang || "ro"] ?? translations.ro;
+  const { lang, t } = useLanguage();
   const tFooter = t.footer;
   const chrome = getChromeCopy(lang);
   const pwa = usePwaSnapshot();
@@ -174,7 +182,7 @@ export function Footer() {
                 }}
                 className="hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none whitespace-nowrap"
               >
-                {(feedbackWidgetCopy[lang] ?? feedbackWidgetCopy.ro).footerLink}
+                {(feedbackTriggerCopy[lang] ?? feedbackTriggerCopy.ro).footerLink}
               </button>
               {/* Opens the report form in place (it records this page); the floating button is desktop-only. */}
               <Link
@@ -192,8 +200,8 @@ export function Footer() {
         </Container>
       </footer>
 
-      <EmergencySignsModal open={emergencySignsOpen} onOpenChange={setEmergencySignsOpen} />
-      <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} />
+      {emergencySignsOpen ? <EmergencySignsModal open={emergencySignsOpen} onOpenChange={setEmergencySignsOpen} /> : null}
+      {dialerOpen ? <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} /> : null}
     </>
   );
 }

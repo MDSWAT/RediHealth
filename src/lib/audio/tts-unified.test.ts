@@ -596,10 +596,12 @@ describe("Source invariants: zero ro-RO speech leaks for rom", () => {
     expect(legalRights).toMatch(/rom:\s*\{[^}]*speechLang:\s*["']rom["']/);
     expect(legalRights).not.toMatch(/rom:\s*\{[^}]*speechLang:\s*["']ro-RO["']/);
 
+    const speechLocales = readRepoFile("src/lib/i18n/speech-locales.ts");
     const myths = readRepoFile("src/lib/i18n/health-myths.ts");
     expect(SPEECH_LANG_BY_LOCALE.rom).toBe("rom");
-    expect(myths).toMatch(/SPEECH_LANG_BY_LOCALE[\s\S]*rom:\s*["']rom["']/);
-    expect(myths).not.toMatch(/SPEECH_LANG_BY_LOCALE[\s\S]*rom:\s*["']ro-RO["']/);
+    expect(speechLocales).toMatch(/SPEECH_LANG_BY_LOCALE[\s\S]*rom:\s*["']rom["']/);
+    expect(speechLocales).not.toMatch(/SPEECH_LANG_BY_LOCALE[\s\S]*rom:\s*["']ro-RO["']/);
+    expect(myths).not.toMatch(/rom:\s*["']ro-RO["']/);
 
     expect(EXPLAINER_SPEECH_LANG.rom).toBe("rom");
     const quiz = readRepoFile("src/components/landing/TrueFalseQuizSection.tsx");

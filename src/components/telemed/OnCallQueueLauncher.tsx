@@ -262,6 +262,7 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
           {voice.available ? (
             <ListenButton
               uiLang={lang}
+              autoRead
               isPlaying={voice.speaking}
               onToggle={() => (voice.speaking ? voice.stop() : voice.speak(readParts))}
             />

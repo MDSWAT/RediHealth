@@ -1,6 +1,7 @@
 "use client";
 
 import { UniversalEmergencyBanner } from "@/components/layout/UniversalEmergencyBanner";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getSession } from "next-auth/react";
@@ -13,16 +14,21 @@ import {
   DownloadIcon,
   ExternalLinkIcon,
   MenuIcon,
+  MessageDotsIcon,
   PhoneIcon,
   ChevronRightIcon,
   RefreshIcon,
   SearchIcon,
   UserIcon,
 } from "@/components/ui/icons";
-import { openSiteFeedback } from "@/components/layout/FeedbackWidget";
+import {
+  feedbackTriggerCopy,
+  openReportIssue,
+  openSiteFeedback,
+  reportIssueTriggerCopy,
+} from "@/components/layout/chrome-widget-events";
 import { ComfortMenu } from "@/components/layout/ComfortMenu";
 import { LanguageSelector } from "@/components/layout/LanguageSelector";
-import { openReportIssue, reportIssueCopy } from "@/components/layout/ReportIssueWidget";
 import {
   NAV_FULL_NAME_ON_WIDE,
   NAV_LINK_ICONS,
@@ -37,17 +43,22 @@ import {
 } from "@/components/layout/chrome-capsule";
 import { CapsuleGlidePlate, useCapsuleGlide } from "@/components/layout/CapsuleGlide";
 import { getChromeCopy } from "@/components/layout/chrome-copy";
-import { openSmartSearch } from "@/components/search/smart-search-events";
-import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
+import {
+  getSmartSearchTriggerCopy,
+  openSmartSearch,
+  preloadSmartSearch,
+} from "@/components/search/smart-search-events";
 import { cn } from "@/lib/cn";
-import { feedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { withLangPrefix, stripLangFromPathname } from "@/lib/i18n/routing";
-import { getSmartSearchCopy } from "@/lib/i18n/smart-search-copy";
-import { translations } from "@/lib/i18n/translations";
 import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { applyPwaUpdate, openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-state";
+
+const EmergencyDialerGate = dynamic(
+  () => import("@/components/emergency/EmergencyDialerGate").then((mod) => mod.EmergencyDialerGate),
+  { ssr: false },
+);
 
 const FOCUSABLE_SELECTOR =
   'a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), input:not([disabled]):not([tabindex="-1"]), select:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])';
@@ -74,12 +85,12 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
     const el = headerRef.current;
     if (!el) return;
     const root = document.documentElement;
-    // Constant 64px (h-16) bar height prevents scroll-height oscillation and gives the capsule balanced breathing room.
+    // Measure the sticky header's full border-box height (including its 1px bottom border and optional 112 strip)
+    // so `--site-header-h` matches to the subpixel whether the emergency banner is shown or dismissed.
     const publish = () => {
       const pinned = getComputedStyle(el).position === "sticky";
-      const strip = el.querySelector<HTMLElement>(".emergency-banner")?.offsetHeight ?? 0;
-      const bar = 64;
-      const height = pinned ? `${strip + bar}px` : "0px";
+      const measured = el.getBoundingClientRect().height;
+      const height = pinned && measured > 0 ? `${measured}px` : "0px";
       root.style.setProperty("--site-header-h", height);
       root.style.setProperty("--site-header-slim-h", height);
     };
@@ -104,11 +115,10 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname() || "/";
   const currentPath = stripLangFromPathname(pathname);
-  const { lang, t: rawT } = useLanguage();
-  const t = rawT ?? translations[lang || "ro"] ?? translations.ro;
+  const { lang, t } = useLanguage();
   const tHeader = t.header;
   const chrome = getChromeCopy(lang);
-  const searchCopy = getSmartSearchCopy(lang);
+  const searchCopy = getSmartSearchTriggerCopy(lang);
   const pwa = usePwaSnapshot();
   const pwaCopy = getPwaCopy(lang);
   const showInstallTrigger = !pwa.isStandalone && !pwa.hasUpdate;
@@ -289,7 +299,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
         <Container
           size={containerSize}
           data-header-bar=""
-          className="max-w-[80rem] max-sm:px-3 max-[359px]:px-2 2xl:max-w-[96rem] 2xl:px-5"
+          className="max-w-[80rem] pt-2.5 max-sm:px-3 max-[359px]:px-2 2xl:max-w-[96rem] 2xl:px-5"
         >
           <div className="flex h-16 items-center justify-between gap-1 sm:gap-3 2xl:gap-2">
             <Logo
@@ -354,6 +364,8 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
               <div className="hidden shrink-0 items-center gap-0.5 md:flex">
                 <button
                   type="button"
+                  onPointerEnter={preloadSmartSearch}
+                  onFocus={preloadSmartSearch}
                   onClick={() => {
                     setOpenHeaderMenu(null);
                     openSmartSearch();
@@ -419,6 +431,8 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                 <div className="flex items-center gap-0.5 md:hidden">
                   <button
                     type="button"
+                    onPointerEnter={preloadSmartSearch}
+                    onFocus={preloadSmartSearch}
                     onClick={() => {
                       setOpenHeaderMenu(null);
                       openSmartSearch();
@@ -509,6 +523,8 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
           <Container className="flex min-h-full flex-col gap-2 py-2.5 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
             <button
               type="button"
+              onPointerEnter={preloadSmartSearch}
+              onFocus={preloadSmartSearch}
               onClick={() => {
                 closeMobile();
                 openSmartSearch();
@@ -728,6 +744,35 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                   <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-foreground motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
                 </button>
                 </li>
+
+                <li className="border-t border-ink-900/8 pt-1 dark:border-white/10">
+                <button
+                  type="button"
+                  onClick={() => {
+                    closeMobile();
+                    openSiteFeedback();
+                  }}
+                  className={cn(
+                    "group flex min-h-12 w-full items-center gap-3 rounded-lg bg-sapphire/[0.06] px-2.5 py-2 text-left hover:bg-sapphire/[0.11] dark:bg-white/[0.07] dark:hover:bg-white/[0.12]",
+                    DRAWER_ROW_MOTION,
+                    DRAWER_FOCUS,
+                  )}
+                >
+                  <MessageDotsIcon
+                    className="h-4.5 w-4.5 shrink-0 text-sapphire dark:text-sapphire-border"
+                    aria-hidden="true"
+                  />
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-body font-semibold leading-snug text-sapphire dark:text-paper">
+                      {(feedbackTriggerCopy[lang] ?? feedbackTriggerCopy.ro).footerLink}
+                    </span>
+                    <span className="block text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
+                      {(feedbackTriggerCopy[lang] ?? feedbackTriggerCopy.ro).mobileDrawerSub}
+                    </span>
+                  </span>
+                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-sapphire/60 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper/55 dark:group-hover:text-paper" />
+                </button>
+                </li>
               </ul>
             </div>
 
@@ -783,7 +828,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     DRAWER_FOCUS,
                   )}
                 >
-                  {(feedbackWidgetCopy[lang] ?? feedbackWidgetCopy.ro).compactTriggerLabel}
+                  {(feedbackTriggerCopy[lang] ?? feedbackTriggerCopy.ro).compactTriggerLabel}
                 </button>
 
                 <Link
@@ -804,7 +849,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     DRAWER_FOCUS,
                   )}
                 >
-                  {(reportIssueCopy[lang] ?? reportIssueCopy.ro).trigger}
+                  {(reportIssueTriggerCopy[lang] ?? reportIssueTriggerCopy.ro).trigger}
                 </Link>
               </div>
             </div>
@@ -812,7 +857,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
         </div>
       </header>
 
-      <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} />
+      {dialerOpen ? <EmergencyDialerGate open={dialerOpen} onOpenChange={setDialerOpen} /> : null}
     </>
   );
 }

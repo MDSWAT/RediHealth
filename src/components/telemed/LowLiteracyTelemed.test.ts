@@ -3,10 +3,15 @@ import { join } from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import type { Lang } from "@/lib/i18n/translations";
+import { translations, type Lang } from "@/lib/i18n/translations";
 import { calendarCopy, groupTimeSlotsByPeriod, normalizeBookingPhone } from "./AppointmentBookingCalendar";
 import { heroCopy, MedicOnlineHero } from "./MedicOnlineHero";
 import { OnCallQueueLauncher, queueCopy } from "./OnCallQueueLauncher";
+import {
+  buildJitsiEmbedUrl,
+  PATIENT_VOICE_TOOLBAR,
+  subscribeJitsiCallEnd,
+} from "@/lib/jitsi-embed";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn() }),
@@ -129,5 +134,55 @@ describe("Scenario 8: phone-call booking", () => {
     expect(src).not.toContain("rounded-full");
     expect(src).toContain("useReadAloud");
     expect(src).toContain("normalizeBookingPhone(partyData.patientPhone)");
+  });
+
+  it("strips Jitsi promotional close screens and internal hangup button, and reacts to postis call-end events", () => {
+    expect(PATIENT_VOICE_TOOLBAR).not.toContain("hangup");
+    const url = buildJitsiEmbedUrl({
+      baseRoomUrl: "https://meet.jit.si/redihealth-live-101",
+      apiId: 1,
+      audioOnly: true,
+      toolbarButtons: PATIENT_VOICE_TOOLBAR,
+    });
+    expect(url).toContain("config.enableClosePage=false");
+    expect(url).toContain("interfaceConfig.SHOW_PROMOTIONAL_CLOSE_PAGE=false");
+    expect(url).toContain("config.startAudioOnly=true");
+    expect(url).not.toContain("hangup");
+    expect(translations.en.medicOnlinePage.cardOnCallTitle).toContain("on\u2011call");
+
+    const listeners = new Set<(event: MessageEvent) => void>();
+    vi.stubGlobal("window", {
+      addEventListener: (_type: string, cb: (event: MessageEvent) => void) => listeners.add(cb),
+      removeEventListener: (_type: string, cb: (event: MessageEvent) => void) => listeners.delete(cb),
+    });
+
+    try {
+      let ended = 0;
+      const fakeIframe = {
+        src: url,
+        contentWindow: null,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      } as unknown as HTMLIFrameElement;
+      const unsub = subscribeJitsiCallEnd(fakeIframe, 1, () => {
+        ended += 1;
+      });
+      for (const cb of listeners) {
+        cb({
+          origin: "https://meet.jit.si",
+          source: null,
+          data: JSON.stringify({
+            postis: true,
+            scope: "jitsi_meet_external_api_1",
+            method: "message",
+            params: { type: "event", name: "video-conference-left" },
+          }),
+        } as unknown as MessageEvent);
+      }
+      expect(ended).toBe(1);
+      unsub();
+    } finally {
+      vi.unstubAllGlobals();
+    }
   });
 });

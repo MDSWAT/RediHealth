@@ -19,6 +19,11 @@ import { meetingWorkspaceTranslations } from "@/lib/i18n/meeting-workspace-trans
 import { langToLocale } from "@/lib/i18n/panel-translations";
 import { ConsultationVitalsStreamOverlay } from "./ConsultationVitalsStreamOverlay";
 import { DoctorRecommendationPublisher } from "@/components/telemed/DoctorRecommendationPublisher";
+import {
+  buildJitsiEmbedUrl,
+  DOCTOR_WORKSPACE_TOOLBAR,
+  subscribeJitsiCallEnd,
+} from "@/lib/jitsi-embed";
 
 type Meeting = {
   id: number;
@@ -45,15 +50,28 @@ type CockpitCopy = {
   draftRecoveredNotice: string;
   discardDraftBtn: string;
   saveShortcutHint: string;
+  callEndedNotice: string;
+  rejoinCallBtn: string;
 };
 
 const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
-
-
-
-
-"ru": {"presetsAria":"Режим рабочего пространства","presetStandard":"Обычный","presetWideNotes":"Широкие заметки","presetFocusVideo":"Основное видео","sessionTimerAria":"Время консультации","micLevelAria":"Уровень микрофона","stampNotesBtn":"Добавить время","stampTranscriptBtn":"Отметить время","sendToNotesBtn":"Вставить в заметки со временем","sentToNotesStatus":"Фрагмент расшифровки со временем добавлен в медицинские заметки.","draftRecoveredNotice":"Восстановлен несохраненный медицинский черновик из этого сеанса браузера.","discardDraftBtn":"Удалить черновик","saveShortcutHint":"Ctrl+S / ⌘S"},
-
+  ru: {
+    presetsAria: "Режим рабочего пространства",
+    presetStandard: "Обычный",
+    presetWideNotes: "Широкие заметки",
+    presetFocusVideo: "Основное видео",
+    sessionTimerAria: "Время консультации",
+    micLevelAria: "Уровень микрофона",
+    stampNotesBtn: "Добавить время",
+    stampTranscriptBtn: "Отметить время",
+    sendToNotesBtn: "Вставить в заметки со временем",
+    sentToNotesStatus: "Фрагмент расшифровки со временем добавлен в медицинские заметки.",
+    draftRecoveredNotice: "Восстановлен несохраненный медицинский черновик из этого сеанса браузера.",
+    discardDraftBtn: "Удалить черновик",
+    saveShortcutHint: "Ctrl+S / ⌘S",
+    callEndedNotice: "Звонок завершен. Вы можете продолжить работу с заметками или переподключиться.",
+    rejoinCallBtn: "Переподключиться к звонку",
+  },
   en: {
     presetsAria: "Workspace layout preset",
     presetStandard: "Standard",
@@ -68,6 +86,8 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     draftRecoveredNotice: "Unsaved clinical draft recovered from this browser session.",
     discardDraftBtn: "Discard local draft",
     saveShortcutHint: "Ctrl+S / ⌘S",
+    callEndedNotice: "The call has ended. You can keep editing clinical notes or rejoin the room.",
+    rejoinCallBtn: "Rejoin call",
   },
   ro: {
     presetsAria: "Mod de afișare pentru consultație",
@@ -83,6 +103,8 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     draftRecoveredNotice: "Ciorna nesalvată a fost recuperată din această sesiune.",
     discardDraftBtn: "Renunță la ciorna locală",
     saveShortcutHint: "Ctrl+S / ⌘S",
+    callEndedNotice: "Apelul s-a încheiat. Poți continua notițele clinice sau poți reveni în apel.",
+    rejoinCallBtn: "Intră din nou în apel",
   },
   sq: {
     presetsAria: "Pamja e hapësirës së vizitës",
@@ -98,6 +120,8 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     draftRecoveredNotice: "Drafti i paruajtur u rikthye nga ky sesion shfletuesi.",
     discardDraftBtn: "Hiq draftin lokal",
     saveShortcutHint: "Ctrl+S / ⌘S",
+    callEndedNotice: "Thirrja përfundoi. Mund të vazhdoni shënimet klinike ose të hyni sërish në thirrje.",
+    rejoinCallBtn: "Hyr sërish në thirrje",
   },
   it: {
     presetsAria: "Disposizione dello spazio visita",
@@ -113,6 +137,8 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     draftRecoveredNotice: "Bozza non salvata recuperata da questa sessione.",
     discardDraftBtn: "Scarta bozza locale",
     saveShortcutHint: "Ctrl+S / ⌘S",
+    callEndedNotice: "La chiamata è terminata. Puoi continuare a scrivere le note cliniche o rientrare.",
+    rejoinCallBtn: "Rientra nella chiamata",
   },
   hr: {
     presetsAria: "Raspored radnog prostora",
@@ -128,6 +154,8 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     draftRecoveredNotice: "Nespremljeni nacrt vraćen je iz ove sesije preglednika.",
     discardDraftBtn: "Odbaci lokalni nacrt",
     saveShortcutHint: "Ctrl+S / ⌘S",
+    callEndedNotice: "Poziv je završen. Možete nastaviti uređivati bilješke ili se ponovno uključiti.",
+    rejoinCallBtn: "Ponovno uđi u poziv",
   },
   rom: {
     presetsAria: "Dikhiben e bukyako",
@@ -143,6 +171,8 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     draftRecoveredNotice: "Bi-arakhlo lekhavipe sas palpale lino katar kadi sesia.",
     discardDraftBtn: "Muk lokalno lekhavipe",
     saveShortcutHint: "Ctrl+S / ⌘S",
+    callEndedNotice: "O akharipen getosardilo. Shai te lekhaves maj dur vaj te khuves palpale.",
+    rejoinCallBtn: "Khuv palpale and-o akharipen",
   },
 };
 
@@ -265,7 +295,9 @@ export function FollowupMeetingWorkspace({
   const [error, setError] = useState("");
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [hasRecoveredDraft, setHasRecoveredDraft] = useState(false);
+  const [jitsiCallEnded, setJitsiCallEnded] = useState(false);
 
+  const jitsiIframeRef = useRef<HTMLIFrameElement | null>(null);
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
   const recorderRef = useRef<BrowserMediaRecorder | null>(null);
   const recorderStreamRef = useRef<MediaStream | null>(null);
@@ -281,9 +313,23 @@ export function FollowupMeetingWorkspace({
 
   const sidebarOpen = preset !== "focus_video";
   const roomUrl = meeting ? toStableMeetingUrl(meeting.meeting_url, meetingId) : "";
+  const jitsiEmbedUrl = roomUrl
+    ? buildJitsiEmbedUrl({
+        baseRoomUrl: roomUrl,
+        apiId: 3,
+        toolbarButtons: DOCTOR_WORKSPACE_TOOLBAR,
+      })
+    : "";
   const dirty = notes !== savedRecord.notes || transcript !== savedRecord.transcript;
   const formattedClock = formatSessionClock(elapsedSeconds);
   const activeMicCapture = isListening || isRecordingFallback;
+
+  useEffect(() => {
+    if (demo || !jitsiEmbedUrl || jitsiCallEnded) return;
+    return subscribeJitsiCallEnd(jitsiIframeRef.current, 3, () => {
+      setJitsiCallEnded(true);
+    });
+  }, [demo, jitsiEmbedUrl, jitsiCallEnded]);
 
   useEffect(() => {
     loadedDraftRef.current = false;
@@ -1028,9 +1074,24 @@ export function FollowupMeetingWorkspace({
                         {demoPanelTranslations[lang].video}
                       </p>
                     </div>
+                  ) : jitsiCallEnded ? (
+                    <div className="flex h-[55dvh] min-h-80 flex-col items-center justify-center gap-4 p-6 text-center lg:h-[68dvh]">
+                      <CheckCircleIcon className="h-7 w-7 text-live-sage" />
+                      <p className="max-w-md text-sm leading-relaxed text-slate-200">
+                        {cockpit.callEndedNotice}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setJitsiCallEnded(false)}
+                        className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        {cockpit.rejoinCallBtn}
+                      </button>
+                    </div>
                   ) : (
                     <iframe
-                      src={`${roomUrl}#config.prejoinPageEnabled=false`}
+                      ref={jitsiIframeRef}
+                      src={jitsiEmbedUrl}
                       title={meeting.title}
                       allow="camera; microphone; fullscreen; display-capture; autoplay"
                       allowFullScreen

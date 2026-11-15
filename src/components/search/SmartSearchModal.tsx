@@ -42,12 +42,13 @@ import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { scrollExpandedIntoModalView, useSheetDialog } from "@/components/news/use-sheet-dialog";
 import {
   SMART_SEARCH_OPEN_EVENT,
+  SMART_SEARCH_WARM_EVENT,
   type SmartSearchOpenDetail,
 } from "@/components/search/smart-search-events";
-import {
-  getSmartSearchCopy,
-  type GuidedJourneyId,
-  type SmartSearchCategory,
+import type {
+  GuidedJourneyId,
+  SmartSearchCategory,
+  SmartSearchCopy,
 } from "@/lib/i18n/smart-search-copy";
 import type {
   ContextualSuggestionBundle,
@@ -55,35 +56,61 @@ import type {
   SmartSearchResult,
 } from "@/lib/search/smart-search-engine";
 
-type SmartSearchEngineModule = typeof import("@/lib/search/smart-search-engine");
+type SmartSearchCopyModule = typeof import("@/lib/i18n/smart-search-copy");
 
-let loadedEngine: SmartSearchEngineModule | null = null;
-let enginePromise: Promise<SmartSearchEngineModule> | null = null;
+let loadedCopyModule: SmartSearchCopyModule | null = null;
+let copyModulePromise: Promise<SmartSearchCopyModule> | null = null;
 
-function loadSearchEngine(): Promise<SmartSearchEngineModule> {
-  if (loadedEngine) {
-    return Promise.resolve(loadedEngine);
+function loadSmartSearchCopyModule(): Promise<SmartSearchCopyModule> {
+  if (loadedCopyModule) {
+    return Promise.resolve(loadedCopyModule);
   }
-  if (!enginePromise) {
-    enginePromise = import("@/lib/search/smart-search-engine")
+  if (!copyModulePromise) {
+    copyModulePromise = import("@/lib/i18n/smart-search-copy")
       .then((mod) => {
-        loadedEngine = mod;
+        loadedCopyModule = mod;
         return mod;
       })
       .catch((error) => {
-        enginePromise = null;
+        copyModulePromise = null;
         throw error;
       });
   }
-  return enginePromise;
+  return copyModulePromise;
 }
 
-function isAutomatedAuditBrowser(): boolean {
-  if (typeof navigator === "undefined") return true;
-  return (
-    Boolean(navigator.webdriver) ||
-    /lighthouse|chrome-lighthouse|headless/i.test(navigator.userAgent)
-  );
+const MAX_CLIENT_CACHE = 40;
+const contextualCache = new Map<string, ContextualSuggestionBundle>();
+const catalogAllCache = new Map<string, SmartSearchResponse>();
+const catalogCategoryCache = new Map<string, SmartSearchResponse>();
+
+function setBoundedCache<V>(cache: Map<string, V>, key: string, value: V): void {
+  if (cache.has(key)) {
+    cache.delete(key);
+  } else if (cache.size >= MAX_CLIENT_CACHE) {
+    const oldest = cache.keys().next().value;
+    if (oldest !== undefined) cache.delete(oldest);
+  }
+  cache.set(key, value);
+}
+
+type SmartSearchGetPayload = {
+  contextual?: ContextualSuggestionBundle;
+  allCatalog?: SmartSearchResponse;
+  categoryCatalog?: SmartSearchResponse;
+};
+
+async function fetchSmartSearchGet(
+  params: URLSearchParams,
+  signal?: AbortSignal,
+): Promise<SmartSearchGetPayload | null> {
+  const res = await fetch(`/api/smart-search?${params.toString()}`, {
+    method: "GET",
+    credentials: "same-origin",
+    signal,
+  });
+  if (!res.ok) return null;
+  return (await res.json()) as SmartSearchGetPayload;
 }
 
 const RECENT_SEARCHES_KEY = "redihealth-smart-search-recent";
@@ -188,7 +215,11 @@ export function SmartSearchModal() {
   const reducedMotion = useCalmReducedMotion();
   const pathname = usePathname() || "/";
   const router = useRouter();
-  const copy = useMemo(() => getSmartSearchCopy(lang), [lang]);
+  const [copyModule, setCopyModule] = useState<SmartSearchCopyModule | null>(() => loadedCopyModule);
+  const copy: SmartSearchCopy | null = useMemo(
+    () => (copyModule ? copyModule.getSmartSearchCopy(lang) : null),
+    [copyModule, lang],
+  );
   const voiceEnabled = isVoiceEnabled(lang);
   const { available: canSpeak, speaking, speak, stop } = useSpeech(lang);
 
@@ -204,11 +235,44 @@ export function SmartSearchModal() {
   const [expandedQuestionId, setExpandedQuestionId] = useState<string | null>(null);
   const [speakingResultId, setSpeakingResultId] = useState<string | null>(null);
   const [aiState, setAiState] = useState<AiAnswerState>({ query: "", answer: null });
-  const [engine, setEngine] = useState<SmartSearchEngineModule | null>(() => loadedEngine);
+  const [contextualState, setContextualState] = useState<{
+    key: string;
+    bundle: ContextualSuggestionBundle;
+  } | null>(null);
+  const [catalogState, setCatalogState] = useState<{
+    resolvedAllKey: string;
+    allCatalog: SmartSearchResponse;
+    resolvedCatKey: string;
+    categoryCatalog: SmartSearchResponse;
+  }>({
+    resolvedAllKey: "",
+    allCatalog: EMPTY_SEARCH_RESPONSE,
+    resolvedCatKey: "",
+    categoryCatalog: EMPTY_SEARCH_RESPONSE,
+  });
 
-  const syncEngine = useCallback((mod: SmartSearchEngineModule) => {
-    setEngine((prev) => prev ?? mod);
-  }, []);
+  const warmSearchAssets = useCallback(() => {
+    void loadSmartSearchCopyModule()
+      .then((mod) => setCopyModule((prev) => prev ?? mod))
+      .catch(() => {});
+
+    const ctxKey = `${lang}|${pathname}`;
+    if (!contextualCache.has(ctxKey)) {
+      const params = new URLSearchParams({
+        lang,
+        pathname,
+        includeContextual: "1",
+      });
+      void fetchSmartSearchGet(params)
+        .then((data) => {
+          if (data?.contextual) {
+            setBoundedCache(contextualCache, ctxKey, data.contextual);
+            setContextualState({ key: ctxKey, bundle: data.contextual });
+          }
+        })
+        .catch(() => {});
+    }
+  }, [lang, pathname]);
 
   const panelRef = useRef<HTMLDivElement>(null);
   const scrollBodyRef = useRef<HTMLDivElement>(null);
@@ -259,7 +323,7 @@ export function SmartSearchModal() {
 
   const handleOpen = useCallback(
     (initialQuery?: string) => {
-      void loadSearchEngine().then(syncEngine).catch(() => {});
+      warmSearchAssets();
       shouldRestoreFocusRef.current = true;
       setRecentByLang((prev) => ({ ...prev, [lang]: readRecentSearches(lang) }));
       setExpandedJourneyId(null);
@@ -273,7 +337,7 @@ export function SmartSearchModal() {
       }
       setOpen(true);
     },
-    [lang, syncEngine],
+    [lang, warmSearchAssets],
   );
 
   const handleClose = useCallback(() => {
@@ -282,56 +346,17 @@ export function SmartSearchModal() {
     setOpen(false);
   }, [speaking, stop]);
 
-  useSheetDialog(open, panelRef, handleClose, inputRef, shouldRestoreFocusRef);
+  useSheetDialog(Boolean(open && copy), panelRef, handleClose, inputRef, shouldRestoreFocusRef);
 
   useEffect(() => {
-    if (!open || engine) return;
-    let cancelled = false;
-    loadSearchEngine()
-      .then((mod) => {
-        if (!cancelled) syncEngine(mod);
-      })
-      .catch(() => {});
+    const onWarmEvent = () => {
+      warmSearchAssets();
+    };
+    window.addEventListener(SMART_SEARCH_WARM_EVENT, onWarmEvent);
     return () => {
-      cancelled = true;
+      window.removeEventListener(SMART_SEARCH_WARM_EVENT, onWarmEvent);
     };
-  }, [open, engine, syncEngine]);
-
-  useEffect(() => {
-    if (engine || isAutomatedAuditBrowser()) return;
-    let cancelled = false;
-    let idleId = 0;
-
-    const warm = () => {
-      if (cancelled) return;
-      loadSearchEngine()
-        .then((mod) => {
-          if (!cancelled) syncEngine(mod);
-        })
-        .catch(() => {});
-    };
-
-    const win = window as Window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
-    };
-
-    const timerId = window.setTimeout(() => {
-      if (typeof win.requestIdleCallback === "function") {
-        idleId = win.requestIdleCallback(warm, { timeout: 2500 });
-      } else {
-        warm();
-      }
-    }, 2500);
-
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timerId);
-      if (idleId) {
-        win.cancelIdleCallback?.(idleId);
-      }
-    };
-  }, [engine, syncEngine]);
+  }, [warmSearchAssets]);
 
   useEffect(() => {
     const onOpenEvent = (event: Event) => {
@@ -377,25 +402,51 @@ export function SmartSearchModal() {
 
   const trimmedQuery = query.trim();
   const hasSearchableQuery = hasSearchableText(trimmedQuery);
+  const contextualKey = `${lang}|${pathname}`;
+  const cachedContextual = contextualCache.get(contextualKey);
 
   const contextual = useMemo(
-    () => (open && engine ? engine.getContextualSuggestions(pathname, lang) : EMPTY_CONTEXTUAL_SUGGESTIONS),
-    [open, engine, pathname, lang],
+    () =>
+      cachedContextual ??
+      (contextualState?.key === contextualKey
+        ? contextualState.bundle
+        : EMPTY_CONTEXTUAL_SUGGESTIONS),
+    [cachedContextual, contextualState, contextualKey],
   );
+
+  const allCacheKey = hasSearchableQuery
+    ? `${lang}|${readingLevel}|${pathname}|${query}`
+    : "";
+  const cachedAllCatalog = allCacheKey ? catalogAllCache.get(allCacheKey) : undefined;
 
   const allCatalogResponse = useMemo(
     () =>
-      open && engine
-        ? engine.searchSmartCatalog(query, {
-            lang,
-            category: "all",
-            readingLevel,
-            pathname,
-            limit: 8,
-          })
-        : EMPTY_SEARCH_RESPONSE,
-    [open, engine, query, lang, readingLevel, pathname],
+      !hasSearchableQuery
+        ? EMPTY_SEARCH_RESPONSE
+        : cachedAllCatalog ?? catalogState.allCatalog,
+    [hasSearchableQuery, cachedAllCatalog, catalogState.allCatalog],
   );
+
+  useEffect(() => {
+    if (!open || cachedContextual) return;
+    const controller = new AbortController();
+    const params = new URLSearchParams({
+      lang,
+      pathname,
+      includeContextual: "1",
+    });
+    fetchSmartSearchGet(params, controller.signal)
+      .then((data) => {
+        if (controller.signal.aborted || !data?.contextual) return;
+        setBoundedCache(contextualCache, contextualKey, data.contextual);
+        setContextualState({ key: contextualKey, bundle: data.contextual });
+      })
+      .catch(() => {});
+
+    return () => {
+      controller.abort();
+    };
+  }, [open, cachedContextual, contextualKey, lang, pathname]);
 
   useEffect(() => {
     if (!open || !hasSearchableQuery || trimmedQuery.length < 3) return;
@@ -453,7 +504,7 @@ export function SmartSearchModal() {
       }
     }
 
-    for (const popular of copy.popularQueries) {
+    for (const popular of copy?.popularQueries ?? []) {
       if (rows.length >= 5) break;
       const key = popular.toLowerCase();
       if (!seen.has(key)) {
@@ -463,7 +514,7 @@ export function SmartSearchModal() {
     }
 
     return rows.slice(0, 5);
-  }, [recentSearches, contextual.chips, copy.popularQueries]);
+  }, [recentSearches, contextual.chips, copy]);
 
   const populatedCategories = useMemo(
     () =>
@@ -478,20 +529,83 @@ export function SmartSearchModal() {
       ? category
       : "all";
 
+  const catCacheKey =
+    hasSearchableQuery && effectiveCategory !== "all"
+      ? `${lang}|${readingLevel}|${pathname}|${effectiveCategory}|${query}`
+      : "";
+  const cachedCategoryCatalog = catCacheKey ? catalogCategoryCache.get(catCacheKey) : undefined;
+
+  useEffect(() => {
+    if (!open || !hasSearchableQuery) return;
+    if (cachedAllCatalog && (effectiveCategory === "all" || cachedCategoryCatalog)) return;
+
+    const controller = new AbortController();
+    const params = new URLSearchParams({
+      q: query,
+      lang,
+      pathname,
+      readingLevel,
+      category: effectiveCategory,
+    });
+
+    fetchSmartSearchGet(params, controller.signal)
+      .then((data) => {
+        if (controller.signal.aborted || !data?.allCatalog) return;
+        setBoundedCache(catalogAllCache, allCacheKey, data.allCatalog);
+        if (effectiveCategory !== "all" && data.categoryCatalog && catCacheKey) {
+          setBoundedCache(catalogCategoryCache, catCacheKey, data.categoryCatalog);
+        }
+        setCatalogState({
+          resolvedAllKey: allCacheKey,
+          allCatalog: data.allCatalog,
+          resolvedCatKey: catCacheKey,
+          categoryCatalog: data.categoryCatalog ?? data.allCatalog,
+        });
+      })
+      .catch(() => {});
+
+    return () => {
+      controller.abort();
+    };
+  }, [
+    open,
+    hasSearchableQuery,
+    cachedAllCatalog,
+    cachedCategoryCatalog,
+    allCacheKey,
+    catCacheKey,
+    query,
+    lang,
+    pathname,
+    readingLevel,
+    effectiveCategory,
+  ]);
+
+  const isWaitingForCatalog = Boolean(
+    hasSearchableQuery &&
+      !cachedAllCatalog &&
+      catalogState.resolvedAllKey !== allCacheKey,
+  );
+
   const catalogResponse = useMemo(
     () =>
-      effectiveCategory === "all"
-        ? allCatalogResponse
-        : open && engine
-          ? engine.searchSmartCatalog(query, {
-              lang,
-              category: effectiveCategory,
-              readingLevel,
-              pathname,
-              limit: 8,
-            })
-          : EMPTY_SEARCH_RESPONSE,
-    [effectiveCategory, allCatalogResponse, open, engine, query, lang, readingLevel, pathname],
+      !hasSearchableQuery
+        ? EMPTY_SEARCH_RESPONSE
+        : effectiveCategory === "all"
+          ? allCatalogResponse
+          : cachedCategoryCatalog ??
+            (catalogState.resolvedCatKey === catCacheKey
+              ? catalogState.categoryCatalog
+              : allCatalogResponse),
+    [
+      hasSearchableQuery,
+      effectiveCategory,
+      allCatalogResponse,
+      cachedCategoryCatalog,
+      catalogState.resolvedCatKey,
+      catalogState.categoryCatalog,
+      catCacheKey,
+    ],
   );
 
   const showCategoryTabs =
@@ -671,7 +785,7 @@ export function SmartSearchModal() {
     }
   };
 
-  if (!open || typeof document === "undefined") return null;
+  if (!open || !copy || typeof document === "undefined") return null;
 
   const liveAnnouncement = !trimmedQuery
     ? copy.journeysHeading
@@ -1192,7 +1306,7 @@ export function SmartSearchModal() {
               ) : null}
 
               {/* Clean single-column Google result rows */}
-              {!engine ? null : results.length === 0 ? (
+              {isWaitingForCatalog && results.length === 0 ? null : results.length === 0 ? (
                 <div className="swap-in rounded-xl border border-ink-900/10 px-5 py-7 text-center dark:border-paper/10">
                   <p className="text-body font-semibold text-foreground dark:text-paper">
                     {copy.emptyTitle}
