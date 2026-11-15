@@ -2230,3 +2230,118 @@ html[data-calm-motion] .capsule-panel {
 html[data-calm-motion] .capsule-panel[data-open="false"] {
   transform: none;
 }
+
+/* ---------- Inclusive Accessibility Preferences (ComfortMenu) ---------- */
+
+/* High contrast: crisp ink and pure surfaces in light and dark modes, plus bolder focus outlines. */
+html[data-high-contrast]:not(.dark) {
+  --color-background: #ffffff;
+  --color-card: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-surface-card: #ffffff;
+  --color-surface-subtle: #e2e8f0;
+  --color-muted: #e2e8f0;
+  --color-sand: #f1f5f9;
+  --color-sand-line: #64748b;
+  --color-foreground: #000000;
+  --color-muted-foreground: #1e293b;
+  --color-border: #64748b;
+  --color-border-subtle: #94a3b8;
+  --color-border-control: #0f172a;
+  --color-ink-950: #020617;
+  --color-sapphire: #0f2547;
+  --color-sapphire-light: #1e3a6d;
+  --color-sapphire-soft: #dbeafe;
+  --color-sapphire-border: #1e40af;
+  --color-ring: #0f2547;
+  --color-primary: #9e1b26;
+  --color-primary-hover: #7f151e;
+  --color-amber-care: #7c2d12;
+  --color-live-sage: #047857;
+}
+
+html[data-high-contrast].dark {
+  --color-background: #020617;
+  --color-card: #020617;
+  --color-surface-elevated: #0f172a;
+  --color-surface-card: #0f172a;
+  --color-surface-subtle: #1e293b;
+  --color-muted: #1e293b;
+  --color-foreground: #ffffff;
+  --color-paper: #ffffff;
+  --color-mist: #e2e8f0;
+  --color-muted-foreground: #e2e8f0;
+  --color-border: #94a3b8;
+  --color-border-subtle: #64748b;
+  --color-border-control: #f8fafc;
+  --color-ink-950: #020617;
+  --color-ink-900: #0f172a;
+  --color-ink-800: #1e293b;
+  --color-sapphire: #1e40af;
+  --color-sapphire-light: #2563eb;
+  --color-sapphire-soft: #1e293b;
+  --color-sapphire-border: #bfdbfe;
+  --color-ring: #f8fafc;
+}
+
+html[data-high-contrast] :is(footer, .bg-ink-950, .bg-ink-900, .dark, .phone-sheet) {
+  --color-ink-950: #020617;
+  --color-ink-900: #0f172a;
+  --color-ink-800: #1e293b;
+  --color-foreground: #ffffff;
+  --color-muted-foreground: #f1f5f9;
+  --color-paper: #ffffff;
+  --color-mist: #f1f5f9;
+  --color-border: #94a3b8;
+  --color-border-subtle: #64748b;
+  --color-border-control: #f8fafc;
+  --color-ring: #f8fafc;
+}
+
+html[data-high-contrast] :focus-visible {
+  outline: 3px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+html[data-high-contrast] [tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
+/* Underline links: clear persistent link indicator across prose and capsule navigation. */
+html[data-underline-links] a[href] {
+  text-decoration-line: underline !important;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: max(1.5px, 0.09em);
+  text-decoration-skip-ink: auto;
+}
+
+html[data-underline-links] a[href][data-capsule-item] > span:not(.sr-only),
+html[data-underline-links] a[href].tab-ink > span:not(.sr-only) {
+  text-decoration-line: underline !important;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: max(1.5px, 0.09em);
+  text-decoration-skip-ink: auto;
+}
+
+html[data-underline-links] a[href] .link-draw,
+html[data-underline-links] a[href].link-draw {
+  background-image: none;
+}
+
+/* Wider text spacing: WCAG 2.2 SC 1.4.12 readability spacing while keeping single-line buttons compact. */
+html[data-wide-spacing] :where(p, li, dd, dt, blockquote, label, td, th, .prose) {
+  letter-spacing: 0.035em;
+  word-spacing: 0.12em;
+  line-height: 1.75;
+}
+
+html[data-wide-spacing] :where(h1, h2, h3, h4) {
+  letter-spacing: 0.015em;
+  word-spacing: 0.06em;
+}
+
+html[data-wide-spacing] :where(button, a, [role="button"], [role="radio"], [role="switch"], [role="tab"]).whitespace-nowrap,
+html[data-wide-spacing] :where(button, a, [role="button"], [role="radio"], [role="switch"], [role="tab"]) .whitespace-nowrap {
+  letter-spacing: normal;
+  word-spacing: normal;
+}

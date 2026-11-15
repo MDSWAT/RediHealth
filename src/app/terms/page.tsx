@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { PageListenAction } from "@/components/ui/PageListenAction";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { getLegalCopy } from "@/lib/i18n/legal-translations";
 
@@ -9,11 +10,25 @@ export async function generateMetadata() {
 }
 
 export default async function TermsPage() {
-  const copy = getLegalCopy(await getRequestLang()).terms;
+  const lang = await getRequestLang();
+  const copy = getLegalCopy(lang).terms;
   return (
     <main id="main-content" className="flex-1 pb-12 sm:pb-16">
       <Container>
-        <PageHeader title={copy.title} lead={copy.description} />
+        <PageHeader
+          title={copy.title}
+          lead={copy.description}
+          actions={
+            <PageListenAction
+              lang={lang}
+              segments={[
+                copy.title,
+                copy.description,
+                ...copy.sections.slice(0, 2).flatMap((section) => [section.title, section.body]),
+              ]}
+            />
+          }
+        />
 
         {/* Each clause on its own hairline: the heading in a left rail on wide screens, the text at a
             readable measure beside it. */}

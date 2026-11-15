@@ -548,3 +548,58 @@ export function ExternalLinkIcon(props: IconProps) {
     </svg>
   );
 }
+
+// Universal accessibility figure in a circle (in-house outline, matches Boxicons line weight)
+export function AccessibilityIcon(props: IconProps) {
+  return (
+    <svg {...strokeProps(props)}>
+      <circle cx="12" cy="12" r="9.5" />
+      <circle cx="12" cy="7.5" r="1.25" fill="currentColor" stroke="none" />
+      <path d="M7.5 10.5c1.5.5 3 .7 4.5.7s3-.2 4.5-.7" />
+      <path d="M12 11.2v3.3l-2.5 3.8M12 14.5l2.5 3.8" />
+    </svg>
+  );
+}
+
+// Half-filled contrast circle (in-house outline, matches Boxicons line weight)
+export function ContrastIcon(props: IconProps) {
+  return (
+    <svg {...strokeProps(props)}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+// Letter U with underline stroke below (in-house outline, matches Boxicons line weight)
+export function UnderlineIcon(props: IconProps) {
+  return (
+    <svg {...strokeProps(props)}>
+      <path d="M7 4v7a5 5 0 0 0 10 0V4" />
+      <path d="M5 20h14" />
+    </svg>
+  );
+}
+
+// Horizontal text spacing indicator strokes (in-house outline, matches Boxicons line weight)
+export function TextSpacingIcon(props: IconProps) {
+  return (
+    <svg {...strokeProps(props)}>
+      <path d="M3 6v12" />
+      <path d="M21 6v12" />
+      <path d="M7 12h10" />
+      <path d="M10 9l-3 3 3 3" />
+      <path d="M14 9l3 3-3 3" />
+    </svg>
+  );
+}
+
+// Pause circle for calm motion toggle (in-house outline, matches Boxicons line weight)
+export function PauseCircleIcon(props: IconProps) {
+  return (
+    <svg {...strokeProps(props)}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M10 9v6M14 9v6" />
+    </svg>
+  );
+}

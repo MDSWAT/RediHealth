@@ -2169,6 +2169,8 @@ export function HealthCheckExplorer() {
                 {voice.available && (
                   <ListenButton
                     uiLang={activeLang}
+                    autoRead
+                    autoReadKey={stepId}
                     isPlaying={voice.speaking}
                     onToggle={handleToggleStepVoice}
                   />

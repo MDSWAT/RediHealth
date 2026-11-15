@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { PageListenAction } from "@/components/ui/PageListenAction";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -191,7 +192,11 @@ export function ReportIssuePageContent() {
   return (
     <main id="main-content" className="flex-1 pb-12 sm:pb-16">
       <Container>
-        <PageHeader title={t.title} lead={t.subtitle} />
+        <PageHeader
+          title={t.title}
+          lead={t.subtitle}
+          actions={<PageListenAction lang={lang} segments={[t.title, t.subtitle]} />}
+        />
 
         <div className="mt-6">
           <form onSubmit={onSubmit} className="max-w-2xl space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6">

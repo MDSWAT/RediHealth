@@ -7,10 +7,17 @@ import { COMFORT_COPY, ComfortMenu } from "@/components/layout/ComfortMenu";
 import { READING_LEVEL_COPY } from "@/components/health-information/ReadingLevelSwitcher";
 import {
   applyComfortToDom,
+  getHighContrastSnapshot,
+  getUnderlineLinksSnapshot,
+  getWideSpacingSnapshot,
   prefersCalmOrReducedMotion,
+  resetComfortPreferences,
   setCalmMotion,
+  setHighContrastPreference,
   setReadingLevel,
   setTextScale,
+  setUnderlineLinksPreference,
+  setWideSpacingPreference,
   subscribeComfort,
 } from "@/lib/comfort-preferences";
 import type { Lang } from "@/lib/i18n/translations";
@@ -207,5 +214,161 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
       ),
     );
     expect(romHtml).not.toContain(COMFORT_COPY.rom.autoReadToggle);
+  });
+
+  it("renders AccessibilityIcon on header and collapsible triggers and exposes all inclusive switches across 7 locales", () => {
+    const headerCompactHtml = renderToStaticMarkup(
+      createElement(
+        LanguageContext.Provider,
+        { value: { lang: "en", t: translations.en, setLang: () => {} } },
+        createElement(ComfortMenu, { variant: "header" }),
+      ),
+    );
+    const headerCompactTrigger = headerCompactHtml.slice(0, headerCompactHtml.indexOf("</button>") + 9);
+    expect(headerCompactTrigger).toContain("<svg");
+    expect(headerCompactTrigger).not.toContain("Aa");
+    expect(headerCompactHtml).toContain('role="dialog"');
+
+    const headerLabeledHtml = renderToStaticMarkup(
+      createElement(
+        LanguageContext.Provider,
+        { value: { lang: "ro", t: translations.ro, setLang: () => {} } },
+        createElement(ComfortMenu, { variant: "header", showLabel: true }),
+      ),
+    );
+    const headerLabeledTrigger = headerLabeledHtml.slice(0, headerLabeledHtml.indexOf("</button>") + 9);
+    expect(headerLabeledTrigger).toContain("<svg");
+    expect(headerLabeledTrigger).toContain('data-comfort-glyph=""');
+    expect(headerLabeledTrigger).toContain(COMFORT_COPY.ro.comfortShort);
+    expect(headerLabeledTrigger).not.toContain("Aa");
+
+    const drawerCollapsedHtml = renderToStaticMarkup(
+      createElement(
+        LanguageContext.Provider,
+        { value: { lang: "en", t: translations.en, setLang: () => {} } },
+        createElement(ComfortMenu, { variant: "drawer", collapsible: true, open: false }),
+      ),
+    );
+    const drawerCollapsedTrigger = drawerCollapsedHtml.slice(0, drawerCollapsedHtml.indexOf("</button>") + 9);
+    expect(drawerCollapsedTrigger).toContain("<svg");
+    expect(drawerCollapsedTrigger).not.toContain("Aa");
+
+    for (const lang of LANGS) {
+      const html = renderToStaticMarkup(
+        createElement(
+          LanguageContext.Provider,
+          { value: { lang, t: translations[lang], setLang: () => {} } },
+          createElement(ComfortMenu, { variant: "drawer" }),
+        ),
+      );
+      const copy = COMFORT_COPY[lang];
+      expect(html, lang).toContain(copy.highContrastToggle);
+      expect(html, lang).toContain(copy.underlineLinksToggle);
+      expect(html, lang).toContain(copy.wideSpacingToggle);
+      expect(html, lang).toContain(copy.calmMotionToggle);
+      expect(html, lang).toContain('role="switch"');
+      expect(html, lang).toContain("rounded-full");
+      expect(html, lang).toContain("rounded-2xl");
+      expect(html, lang).not.toContain("hidden 2xl:inline");
+    }
+
+    const comfortSrc = readFileSync(resolve(process.cwd(), "src/components/layout/ComfortMenu.tsx"), "utf8");
+    expect(comfortSrc).toContain("sm:rounded-3xl");
+    expect(comfortSrc).toContain("max-h-[min(78dvh,38rem)] overflow-y-auto");
+    expect(comfortSrc).not.toContain("sheet-close");
+    expect(comfortSrc).not.toContain("list-in");
+    expect(comfortSrc).toContain("redihealth:unlock-audio");
+    expect(comfortSrc).toContain("AccessibilityIcon");
+  });
+});
+
+describe("inclusive accessibility preferences (highContrast, underlineLinks, wideSpacing)", () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it("defaults to false, persists to localStorage, syncs html attributes, and resets cleanly", () => {
+    const storage = new Map<string, string>();
+    const attrs = new Map<string, string>();
+    const styles = new Map<string, string>();
+
+    vi.stubGlobal("window", {
+      localStorage: {
+        getItem: (key: string) => storage.get(key) ?? null,
+        setItem: (key: string, value: string) => storage.set(key, value),
+        removeItem: (key: string) => storage.delete(key),
+      },
+      matchMedia: () => ({
+        matches: false,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      }),
+      dispatchEvent: () => true,
+    });
+    vi.stubGlobal("document", {
+      documentElement: {
+        setAttribute: (name: string, value: string) => attrs.set(name, value),
+        removeAttribute: (name: string) => attrs.delete(name),
+        hasAttribute: (name: string) => attrs.has(name),
+        style: {
+          fontSize: "",
+          removeProperty: (name: string) => styles.delete(name),
+        },
+      },
+    });
+
+    resetComfortPreferences();
+    expect(getHighContrastSnapshot()).toBe(false);
+    expect(getUnderlineLinksSnapshot()).toBe(false);
+    expect(getWideSpacingSnapshot()).toBe(false);
+
+    let notifications = 0;
+    const unsubscribe = subscribeComfort(() => {
+      notifications += 1;
+    });
+    try {
+      setHighContrastPreference(true);
+      setHighContrastPreference(true);
+      setUnderlineLinksPreference(true);
+      setWideSpacingPreference(true);
+
+      expect(notifications).toBe(3);
+      expect(getHighContrastSnapshot()).toBe(true);
+      expect(getUnderlineLinksSnapshot()).toBe(true);
+      expect(getWideSpacingSnapshot()).toBe(true);
+      expect(storage.get("redihealth-high-contrast")).toBe("1");
+      expect(storage.get("redihealth-underline-links")).toBe("1");
+      expect(storage.get("redihealth-wide-spacing")).toBe("1");
+      expect(attrs.get("data-high-contrast")).toBe("true");
+      expect(attrs.get("data-underline-links")).toBe("true");
+      expect(attrs.get("data-wide-spacing")).toBe("true");
+
+      attrs.clear();
+      applyComfortToDom();
+      expect(attrs.get("data-high-contrast")).toBe("true");
+      expect(attrs.get("data-underline-links")).toBe("true");
+      expect(attrs.get("data-wide-spacing")).toBe("true");
+
+      resetComfortPreferences();
+      expect(getHighContrastSnapshot()).toBe(false);
+      expect(getUnderlineLinksSnapshot()).toBe(false);
+      expect(getWideSpacingSnapshot()).toBe(false);
+      expect(attrs.has("data-high-contrast")).toBe(false);
+      expect(attrs.has("data-underline-links")).toBe(false);
+      expect(attrs.has("data-wide-spacing")).toBe(false);
+    } finally {
+      unsubscribe();
+    }
+  });
+
+  it("styles high-contrast, underline-links, and wide-spacing with presence selectors in globals.css", () => {
+    const css = readFileSync(resolve(process.cwd(), "src/app/globals.css"), "utf8");
+    expect(css).toContain("html[data-high-contrast]:not(.dark)");
+    expect(css).toContain("html[data-high-contrast].dark");
+    expect(css).toContain("html[data-high-contrast] :is(footer, .bg-ink-950, .bg-ink-900, .dark, .phone-sheet)");
+    expect(css).toContain("html[data-high-contrast] :focus-visible");
+    expect(css).toContain("html[data-underline-links] a[href]");
+    expect(css).toContain("html[data-wide-spacing]");
+    expect(css).not.toContain('html[data-calm-motion="true"]');
   });
 });

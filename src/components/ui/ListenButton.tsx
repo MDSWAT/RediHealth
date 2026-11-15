@@ -109,7 +109,7 @@ export function ListenButton({
 
   const [isPlayingLocal, setIsPlayingLocal] = useState(false);
   const playingLocalRef = useRef(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const controlled = isPlayingProp !== undefined;
   const playing = controlled ? isPlayingProp : isPlayingLocal;
@@ -150,7 +150,7 @@ export function ListenButton({
   }, [disabled, effectiveContentLang]);
 
   usePageAutoRead({
-    enabled: Boolean(autoRead && !disabled),
+    enabled: Boolean(autoRead && !disabled && voiceAvailable),
     uiLang: lang,
     contentLang: effectiveContentLang,
     anchorRef: buttonRef,

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { UsersIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { PageListenAction } from "@/components/ui/PageListenAction";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -122,15 +123,18 @@ export function MediatorPublicHero() {
           title={copy.title}
           lead={copy.subtitle}
           actions={
-            <Button
-              href={withLangPrefix("/get-help?mode=mediator", lang)}
-              variant="action"
-              size="lg"
-              className="px-6"
-            >
-              <UsersIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-              <span>{copy.ctaRequest}</span>
-            </Button>
+            <div className="flex flex-wrap items-center gap-2.5">
+              <Button
+                href={withLangPrefix("/get-help?mode=mediator", lang)}
+                variant="action"
+                size="lg"
+                className="px-6"
+              >
+                <UsersIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>{copy.ctaRequest}</span>
+              </Button>
+              <PageListenAction lang={lang} segments={[copy.title, copy.subtitle, copy.ctaRequest]} />
+            </div>
           }
           below={
             <p className="mt-3">

@@ -4,10 +4,11 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { chromeCopy } from "@/components/layout/chrome-copy";
-import { COMFORT_COPY } from "@/components/layout/ComfortMenu";
+import { COMFORT_COPY, ComfortMenu } from "@/components/layout/ComfortMenu";
 import { languageSelectorCopy } from "@/components/layout/LanguageSelector";
 import { Container } from "@/components/ui/Container";
-import type { Lang } from "@/lib/i18n/translations";
+import { LanguageContext } from "@/lib/i18n/language-context";
+import { translations, type Lang } from "@/lib/i18n/translations";
 
 const LANGS: Lang[] = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
 
@@ -62,6 +63,8 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
       const comfortCopy = COMFORT_COPY[lang];
 
       for (const value of [...Object.values(langCopy), ...Object.values(comfortCopy)]) {
+        expect(typeof value, `${lang}`).toBe("string");
+        expect(value.trim().length, `${lang}: "${value}"`).toBeGreaterThan(0);
         expect(value, `${lang}: "${value}"`).not.toContain("·");
         expect(value, `${lang}: "${value}"`).not.toContain("&");
         expect(value[0], `${lang}: "${value}"`).toBe(value[0].toLocaleUpperCase());
@@ -69,7 +72,7 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     }
   });
 
-  it("shows search icon, Aa-only comfort trigger, and single-line menu trigger on phones while keeping search in the drawer", () => {
+  it("shows search icon, universal accessibility comfort trigger, and single-line menu trigger on phones while keeping search in the drawer", () => {
     const mobileClusterStart = HEADER_SOURCE.indexOf("{!mobileOpen &&");
     const mobileBarSlice = HEADER_SOURCE.slice(mobileClusterStart, mobileMenuStart);
     expect(mobileClusterStart).toBeGreaterThan(-1);
@@ -82,6 +85,29 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(MOBILE_MENU_SOURCE).toContain("openSmartSearch()");
 
     for (const lang of LANGS) {
+      const compactHtml = renderToStaticMarkup(
+        createElement(
+          LanguageContext.Provider,
+          { value: { lang, t: translations[lang], setLang: () => {} } },
+          createElement(ComfortMenu),
+        ),
+      );
+      const compactTrigger = compactHtml.slice(0, compactHtml.indexOf("</button>") + 9);
+      expect(compactTrigger, lang).toContain("<svg");
+      expect(compactTrigger, lang).not.toContain("Aa");
+
+      const labeledHtml = renderToStaticMarkup(
+        createElement(
+          LanguageContext.Provider,
+          { value: { lang, t: translations[lang], setLang: () => {} } },
+          createElement(ComfortMenu, { showLabel: true }),
+        ),
+      );
+      const labeledTrigger = labeledHtml.slice(0, labeledHtml.indexOf("</button>") + 9);
+      expect(labeledTrigger, lang).toContain("<svg");
+      expect(labeledTrigger, lang).toContain('data-comfort-glyph=""');
+      expect(labeledTrigger, lang).not.toContain("Aa");
+
       const comfortShort = COMFORT_COPY[lang].comfortShort;
       const { menuWord, closeWord } = chromeCopy[lang];
       expect(comfortShort.length, `${lang}.comfortShort`).toBeLessThanOrEqual(10);

@@ -35,10 +35,15 @@ Defined in `src/app/globals.css` (`@theme`):
 - **Display / Section / Title / Body**: Fluid tokens (`--text-display` `clamp(2rem, 1.2rem + 2.3vw, 3.25rem)`, `--text-section`, `--text-title`, `--text-body`, `--text-meta`) defined in `src/app/globals.css`.
 - **Weight hierarchy:** `text-display`, `text-page`, and `text-section` carry weight `700` from tokens. Spend weight `600` (`text-title` / `font-semibold`) only on `text-title` / `<h3>` headings, button labels, field labels, and at most one key fact per row or card; keep values, notes, list items, and descriptions at weight `400` (`font-normal`) or `500` (`text-meta`).
 - **No arbitrary micro-labels:** Do not downgrade sibling card headings or add tiny pill badges inside hero cards.
-- **Persistent Comfort Menu (`src/components/layout/ComfortMenu.tsx` + `src/lib/comfort-preferences.ts`):**
+- **Persistent Accessibility Menu (`src/components/layout/ComfortMenu.tsx` + `src/lib/comfort-preferences.ts`):**
+  - Universal accessibility trigger (`AccessibilityIcon`) on the header capsule (`data-comfort-glyph`) and collapsible drawer row; preserves the 3 `Aa` scale preview cards inside the panel.
   - `textScale`: `"normal"` (`100%`), `"large"` (`114%`), `"xl"` (`126%`) applied via `html[data-text-scale]` root font scaling.
-  - `calmMotion`: boolean persisted in `localStorage`, setting `html[data-calm-motion="true"]` and hooked into `useCalmReducedMotion()`.
-  - `readingLevel`: `"simple"` vs `"full"` synchronized across reading surfaces.
+  - `readingLevel`: `"simple"` vs `"complete"` synchronized across reading surfaces (`ComfortMenu` and `ReadingLevelSwitcher`).
+  - `autoRead`: boolean persisted in `localStorage` for voice-enabled locales.
+  - `highContrast`: boolean persisted in `localStorage` (`redihealth-high-contrast`), synced to `html[data-high-contrast="true"]`; styles crisp black-on-white (light) / white-on-obsidian (dark) tokens and 3px `:focus-visible` outlines via presence selector `html[data-high-contrast]`.
+  - `underlineLinks`: boolean persisted in `localStorage` (`redihealth-underline-links`), synced to `html[data-underline-links="true"]`; forces clear underlines on links via `html[data-underline-links]`.
+  - `wideSpacing`: boolean persisted in `localStorage` (`redihealth-wide-spacing`), synced to `html[data-wide-spacing="true"]`; applies relaxed WCAG 2.2 SC 1.4.12 line/word/letter spacing via `html[data-wide-spacing]` while preserving single-line `whitespace-nowrap` UI controls.
+  - `calmMotion`: boolean persisted in `localStorage`, hooked into `useCalmReducedMotion()` / `prefersCalmOrReducedMotion()` (never styled with `html[data-calm-motion="true"]` in `globals.css`).
 
 ---
 
@@ -82,10 +87,10 @@ Enforced across all 7 locales (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`) and au
 
 One pattern for every menu bar, defined in `src/components/layout/chrome-capsule.ts`.
 
-- **Header capsule:** search, text size, language, account and the `Start here` action are segments of one fully rounded bar (`capsuleSurface`, `capsuleItem`, `capsuleDivider`, `capsuleAction`). No segment carries a box of its own. Below `xl` the bar also holds the menu button; on phones it holds search, text size and the menu button.
+- **Header capsule:** search, accessibility (`AccessibilityIcon` trigger in `ComfortMenu`), language, account and the `Start here` action are segments of one fully rounded bar (`capsuleSurface`, `capsuleItem`, `capsuleDivider`, `capsuleAction`). No segment carries a box of its own. Below `xl` the bar also holds the menu button; on phones it holds search, accessibility and the menu button.
 - **Outline only:** the bar has no fill. Its only mark is a half-pixel hairline: white while the header floats over the dark landing hero, neutral grey (`ink-950/40`) once the header is solid. Nothing in the bar is red; `--color-primary` stays reserved for 112.
 - **One gliding highlight:** a single plate (`CapsuleGlide.tsx`, `.capsule-plate`) moves to the segment under the mouse or keyboard focus. Segments have no hover fill of their own. Touch keeps the existing press feedback.
-- **Panels open from their segment:** text size, language, account and `Start here` panels share `CAPSULE_PANEL` and the `.capsule-panel` motion (scale and fade from the top-right corner under the trigger). The search overlay grows from the search segment on `md+`.
+- **Panels open from their segment:** accessibility, language, account and `Start here` panels share `CAPSULE_PANEL` and the `.capsule-panel` motion (scale and fade from the top-right corner under the trigger). The desktop accessibility dialog uses cohesive rounded surfaces (`sm:rounded-3xl`, `rounded-2xl` text-size and switch cards, `CAPSULE_SHAPE` close button, segmented reading-mode switcher, toggle tracks/thumbs, and bordered Reset pill) inside a `max-h-[min(78dvh,38rem)] overflow-y-auto` scroll container so options never clip on short viewports. The search overlay grows from the search segment on `md+`.
 - **Account segment:** one segment opens a panel with the account link and the install or update action, each with a text label.
 - **In-page capsule menus:** menus that switch between sibling pages or sections (`AssistantNavigation`, the guides section menu in `HealthInformationPageContent`) use `CAPSULE_TABS` and `capsuleTab`, with the same hairline and gliding plate. The current destination sits on a soft plate.
 - **Two-way switches:** `ReadingLevelSwitcher` and `DictionaryTabs` use the capsule shape and hairline (`CAPSULE_SHAPE`, `CAPSULE_OUTLINE`) with their sliding sapphire thumb. Each marks its root with `data-capsule-switch`; tests allow pill shapes on reading pages only inside these switches.

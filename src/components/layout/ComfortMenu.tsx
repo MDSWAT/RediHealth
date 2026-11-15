@@ -1,9 +1,18 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type ComponentType, type CSSProperties, type SVGProps } from "react";
 import { useIsPhone } from "@/lib/use-is-phone";
-import { ChevronDownIcon, CloseIcon } from "@/components/ui/icons";
-import { CAPSULE_PANEL, capsuleItem } from "@/components/layout/chrome-capsule";
+import {
+  AccessibilityIcon,
+  ChevronDownIcon,
+  CloseIcon,
+  ContrastIcon,
+  PauseCircleIcon,
+  TextSpacingIcon,
+  UnderlineIcon,
+  VolumeIcon,
+} from "@/components/ui/icons";
+import { CAPSULE_PANEL, CAPSULE_SHAPE, capsuleItem } from "@/components/layout/chrome-capsule";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { clearPageAutoReadSession } from "@/lib/audio/page-auto-read";
@@ -12,8 +21,11 @@ import {
   resetComfortPreferences,
   useAutoRead,
   useCalmMotion,
+  useHighContrast,
   useReadingLevel,
   useTextScale,
+  useUnderlineLinks,
+  useWideSpacing,
   type TextScale,
 } from "@/lib/comfort-preferences";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -32,6 +44,12 @@ type ComfortCopy = {
   completeLabel: string;
   autoReadToggle: string;
   autoReadHelp: string;
+  highContrastToggle: string;
+  highContrastHelp: string;
+  underlineLinksToggle: string;
+  underlineLinksHelp: string;
+  wideSpacingToggle: string;
+  wideSpacingHelp: string;
   motionLabel: string;
   calmMotionToggle: string;
   calmMotionHelp: string;
@@ -41,9 +59,9 @@ type ComfortCopy = {
 
 export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
   ro: {
-    buttonLabel: "Scris și confort",
-    comfortShort: "Text mare",
-    title: "Citește mai ușor",
+    buttonLabel: "Accesibilitate",
+    comfortShort: "Acces",
+    title: "Accesibilitate și citire",
     textSizeLabel: "Mărimea scrisului",
     scaleNormal: "Obișnuit",
     scaleLarge: "Mare",
@@ -53,6 +71,12 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     completeLabel: "Detaliat",
     autoReadToggle: "Citire automată cu voce",
     autoReadHelp: "Pornește automat citirea pe paginile cu audio disponibil.",
+    highContrastToggle: "Contrast ridicat",
+    highContrastHelp: "Text mai închis și margini clare pentru o citire ușoară.",
+    underlineLinksToggle: "Subliniază linkurile",
+    underlineLinksHelp: "Fiecare link rămâne subliniat vizibil în pagină.",
+    wideSpacingToggle: "Spațiere mărită",
+    wideSpacingHelp: "Mai mult spațiu între litere, cuvinte și rânduri.",
     motionLabel: "Mișcări pe ecran",
     calmMotionToggle: "Oprește elementele care se mișcă",
     calmMotionHelp: "Paginile și știrile rămân nemișcate, fără efecte de derulare.",
@@ -60,9 +84,9 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     close: "Închide",
   },
   en: {
-    buttonLabel: "Text and comfort",
-    comfortShort: "Text size",
-    title: "Easier reading",
+    buttonLabel: "Accessibility",
+    comfortShort: "Access",
+    title: "Accessibility and reading",
     textSizeLabel: "Text size",
     scaleNormal: "Normal",
     scaleLarge: "Large",
@@ -72,6 +96,12 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     completeLabel: "Detailed",
     autoReadToggle: "Auto-read pages",
     autoReadHelp: "Reads aloud automatically on pages where voice is available.",
+    highContrastToggle: "High contrast",
+    highContrastHelp: "Sharper ink, pure canvas, and bolder control borders.",
+    underlineLinksToggle: "Underline links",
+    underlineLinksHelp: "Keeps every clickable link clearly underlined.",
+    wideSpacingToggle: "Wider text spacing",
+    wideSpacingHelp: "Adds breathing room between letters, words, and lines.",
     motionLabel: "Screen motion",
     calmMotionToggle: "Stop moving screen elements",
     calmMotionHelp: "Keeps news tickers and sections still while you read.",
@@ -79,9 +109,9 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     close: "Close",
   },
   sq: {
-    buttonLabel: "Shkrimi dhe leximi",
-    comfortShort: "Teksti",
-    title: "Lexim më i lehtë",
+    buttonLabel: "Aksesueshmëria",
+    comfortShort: "Qasje",
+    title: "Qasje dhe lexim i lehtë",
     textSizeLabel: "Madhësia e shkrimit",
     scaleNormal: "Normale",
     scaleLarge: "E madhe",
@@ -91,6 +121,12 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     completeLabel: "Detajuar",
     autoReadToggle: "Lexim automatik me zë",
     autoReadHelp: "Nis leximin me zë automatikisht në faqet ku audio ofrohet.",
+    highContrastToggle: "Kontrast i lartë",
+    highContrastHelp: "Shkrim më i mprehtë dhe korniza më të qarta.",
+    underlineLinksToggle: "Nënvizo lidhjet",
+    underlineLinksHelp: "Të gjitha lidhjet shfaqen të nënvizuara qartë.",
+    wideSpacingToggle: "Hapësirë më e gjerë e tekstit",
+    wideSpacingHelp: "Shton hapësirë mes shkronjave, fjalëve dhe rreshtave.",
     motionLabel: "Lëvizjet në ekran",
     calmMotionToggle: "Ndalo elementet që lëvizin",
     calmMotionHelp: "Lajmet dhe faqet qëndrojnë të qeta ndërsa lexon.",
@@ -98,9 +134,9 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     close: "Mbyll",
   },
   it: {
-    buttonLabel: "Testo e lettura",
-    comfortShort: "Testo",
-    title: "Leggi più facilmente",
+    buttonLabel: "Accessibilità",
+    comfortShort: "Accesso",
+    title: "Accessibilità e lettura",
     textSizeLabel: "Grandezza del testo",
     scaleNormal: "Normale",
     scaleLarge: "Grande",
@@ -110,6 +146,12 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     completeLabel: "Dettagliato",
     autoReadToggle: "Lettura vocale automatica",
     autoReadHelp: "Avvia automaticamente la voce nelle pagine con audio disponibile.",
+    highContrastToggle: "Contrasto elevato",
+    highContrastHelp: "Testo più scuro e bordi nitidi per leggere meglio.",
+    underlineLinksToggle: "Sottolinea i link",
+    underlineLinksHelp: "Mantiene ogni collegamento chiaramente sottolineato.",
+    wideSpacingToggle: "Spaziatura ampia",
+    wideSpacingHelp: "Più spazio tra lettere, parole e righe di testo.",
     motionLabel: "Movimenti sullo schermo",
     calmMotionToggle: "Ferma gli elementi in movimento",
     calmMotionHelp: "Notizie e sezioni restano ferme mentre leggi.",
@@ -117,9 +159,9 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     close: "Chiudi",
   },
   hr: {
-    buttonLabel: "Tekst i čitanje",
-    comfortShort: "Tekst",
-    title: "Lakše čitanje",
+    buttonLabel: "Pristupačnost",
+    comfortShort: "Pristup",
+    title: "Pristupačnost i čitanje",
     textSizeLabel: "Veličina slova",
     scaleNormal: "Uobičajeno",
     scaleLarge: "Veliko",
@@ -129,6 +171,12 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     completeLabel: "Detaljno",
     autoReadToggle: "Automatsko čitanje naglas",
     autoReadHelp: "Automatski pokreće čitanje na stranicama s dostupnim glasom.",
+    highContrastToggle: "Visoki kontrast",
+    highContrastHelp: "Oštrija slova i jasniji rubovi za lakše čitanje.",
+    underlineLinksToggle: "Podcrtaj poveznice",
+    underlineLinksHelp: "Svaka poveznica ostaje jasno podcrtana.",
+    wideSpacingToggle: "Veći razmak teksta",
+    wideSpacingHelp: "Više prostora između slova, riječi i redaka.",
     motionLabel: "Pokreti na zaslonu",
     calmMotionToggle: "Zaustavi pokretne elemente",
     calmMotionHelp: "Vijesti i stranice ostaju mirne dok čitaš.",
@@ -136,9 +184,9 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     close: "Zatvori",
   },
   rom: {
-    buttonLabel: "Lekhipen thaj dikhipen",
-    comfortShort: "Lil",
-    title: "Mai lokho drabaripe",
+    buttonLabel: "Akceso thaj drabaripe",
+    comfortShort: "Akceso",
+    title: "Akceso thaj mai lokho drabaripe",
     textSizeLabel: "Baripen le alfabetosko",
     scaleNormal: "Normalno",
     scaleLarge: "Baro",
@@ -148,6 +196,12 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     completeLabel: "Detaliime",
     autoReadToggle: "Drabar korkoro avazesa",
     autoReadHelp: "Putrel korkoro o avazi pe riga kaj si audio.",
+    highContrastToggle: "Zoralo kontrasto",
+    highContrastHelp: "Mai kale lekha thaj klaro borduri te dikhes mai mishto.",
+    underlineLinksToggle: "Linia telal e linkura",
+    underlineLinksHelp: "Sako linko ačhol liniasa telal te dikhjol.",
+    wideSpacingToggle: "Mai baro than maškar e lava",
+    wideSpacingHelp: "Mai but than maškar e buchave, lava thaj riga.",
     motionLabel: "Miškipen pe ekrano",
     calmMotionToggle: "Ačhav so miškisajvel",
     calmMotionHelp: "E nevimata thaj e riga ačhon phandade kana drabares.",
@@ -155,9 +209,9 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     close: "Phandav",
   },
   ru: {
-    buttonLabel: "Текст и чтение",
-    comfortShort: "Шрифт",
-    title: "Удобнее читать",
+    buttonLabel: "Доступность",
+    comfortShort: "Доступ",
+    title: "Доступность и чтение",
     textSizeLabel: "Размер текста",
     scaleNormal: "Обычный",
     scaleLarge: "Крупный",
@@ -167,6 +221,12 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     completeLabel: "Подробно",
     autoReadToggle: "Авточтение вслух",
     autoReadHelp: "Автоматически включает озвучивание на страницах с поддержкой голоса.",
+    highContrastToggle: "Высокий контраст",
+    highContrastHelp: "Более чёткий шрифт, фон и выраженные границы кнопок.",
+    underlineLinksToggle: "Подчёркивать ссылки",
+    underlineLinksHelp: "Все ссылки на странице остаются заметно подчёркнутыми.",
+    wideSpacingToggle: "Увеличенный интервал",
+    wideSpacingHelp: "Больше пространства между буквами, словами и строками.",
     motionLabel: "Движение на экране",
     calmMotionToggle: "Остановить движущиеся элементы",
     calmMotionHelp: "Строка новостей и блоки остаются неподвижными при чтении.",
@@ -185,6 +245,15 @@ type ComfortMenuProps = {
   onDone?: () => void;
 };
 
+type SwitchOption = {
+  id: string;
+  label: string;
+  help: string;
+  checked: boolean;
+  Icon: ComponentType<SVGProps<SVGSVGElement>>;
+  onToggle: () => void;
+};
+
 export function ComfortMenu({
   variant = "header",
   tone = "default",
@@ -201,6 +270,9 @@ export function ComfortMenu({
   const [readingLevel, setReadingLevel] = useReadingLevel();
   const [calmMotion, setCalmMotion] = useCalmMotion();
   const [autoRead, setAutoRead] = useAutoRead();
+  const [highContrast, setHighContrast] = useHighContrast();
+  const [underlineLinks, setUnderlineLinks] = useUnderlineLinks();
+  const [wideSpacing, setWideSpacing] = useWideSpacing();
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
 
   const isControlled = open !== undefined;
@@ -237,9 +309,18 @@ export function ComfortMenu({
   const isCustomized =
     textScale !== "normal" ||
     calmMotion ||
+    highContrast ||
+    underlineLinks ||
+    wideSpacing ||
     readingLevel === "complete" ||
     (voiceAvailable && autoRead);
-  const hasComfortBoost = textScale !== "normal" || calmMotion || (voiceAvailable && autoRead);
+  const hasComfortBoost =
+    textScale !== "normal" ||
+    calmMotion ||
+    highContrast ||
+    underlineLinks ||
+    wideSpacing ||
+    (voiceAvailable && autoRead);
 
   useEffect(() => {
     if (!isOpen || variant !== "header") return;
@@ -299,11 +380,70 @@ export function ComfortMenu({
     scaleRadioRefs.current[targetIdx]?.focus();
   }
 
+  const switchOptions: SwitchOption[] = [
+    ...(voiceAvailable
+      ? [
+          {
+            id: "auto-read",
+            label: copy.autoReadToggle,
+            help: copy.autoReadHelp,
+            checked: autoRead,
+            Icon: VolumeIcon,
+            onToggle: () => {
+              const next = !autoRead;
+              if (next) {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("redihealth:unlock-audio"));
+                }
+                clearPageAutoReadSession();
+              } else {
+                speechEngine.stop();
+                speechEngine.requestClose();
+              }
+              setAutoRead(next);
+            },
+          },
+        ]
+      : []),
+    {
+      id: "high-contrast",
+      label: copy.highContrastToggle,
+      help: copy.highContrastHelp,
+      checked: highContrast,
+      Icon: ContrastIcon,
+      onToggle: () => setHighContrast(!highContrast),
+    },
+    {
+      id: "underline-links",
+      label: copy.underlineLinksToggle,
+      help: copy.underlineLinksHelp,
+      checked: underlineLinks,
+      Icon: UnderlineIcon,
+      onToggle: () => setUnderlineLinks(!underlineLinks),
+    },
+    {
+      id: "wide-spacing",
+      label: copy.wideSpacingToggle,
+      help: copy.wideSpacingHelp,
+      checked: wideSpacing,
+      Icon: TextSpacingIcon,
+      onToggle: () => setWideSpacing(!wideSpacing),
+    },
+    {
+      id: "calm-motion",
+      label: copy.calmMotionToggle,
+      help: copy.calmMotionHelp,
+      checked: calmMotion,
+      Icon: PauseCircleIcon,
+      onToggle: () => setCalmMotion(!calmMotion),
+    },
+  ];
+
   const controlsBody = (
     <div className="space-y-4 text-left">
-      <div style={{ "--i": 0 } as CSSProperties} className={cn(isOpen && "list-in")}>
+      <div>
         <p className="text-body font-semibold text-foreground dark:text-paper">{copy.textSizeLabel}</p>
-        <div role="radiogroup" aria-label={copy.textSizeLabel} className="mt-1.5 grid grid-cols-3 gap-2">
+        <div role="radiogroup" aria-label={copy.textSizeLabel} className="mt-2 grid grid-cols-3 gap-2.5">
           {scaleOptions.map((option, idx) => {
             const active = textScale === option.value;
             return (
@@ -321,9 +461,9 @@ export function ComfortMenu({
                 onClick={() => setTextScale(option.value)}
                 onKeyDown={(event) => handleScaleKeyDown(event, idx)}
                 className={cn(
-                  "press-row flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-xl border px-2 py-2 text-center text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+                  "press-row flex min-h-14 w-full items-center justify-center whitespace-nowrap rounded-2xl border px-2 py-2 text-center text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
                   active
-                    ? "border-sapphire bg-sapphire-soft/75 font-bold text-sapphire shadow-xs ring-1 ring-sapphire/20 dark:border-paper dark:bg-white/15 dark:text-paper dark:ring-white/20"
+                    ? "border-sapphire bg-sapphire-soft/85 font-bold text-sapphire shadow-xs ring-1 ring-sapphire/25 dark:border-paper dark:bg-white/15 dark:text-paper dark:ring-white/25"
                     : "border-border-control bg-muted/35 text-foreground hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:text-paper dark:hover:bg-white/10",
                 )}
               >
@@ -336,9 +476,16 @@ export function ComfortMenu({
         </div>
       </div>
 
-      <div style={{ "--i": 1 } as CSSProperties} className={cn(isOpen && "list-in")}>
+      <div>
         <p className="text-body font-semibold text-foreground dark:text-paper">{copy.explanationLabel}</p>
-        <div role="group" aria-label={copy.explanationLabel} className="mt-1.5 grid grid-cols-2 gap-2">
+        <div
+          role="group"
+          aria-label={copy.explanationLabel}
+          className={cn(
+            "mt-2 grid grid-cols-2 gap-1 border border-border-control bg-muted/50 p-1 dark:border-white/15 dark:bg-white/10",
+            CAPSULE_SHAPE,
+          )}
+        >
           {(
             [
               { value: "simple", label: copy.simpleLabel },
@@ -353,10 +500,11 @@ export function ComfortMenu({
                 aria-pressed={active}
                 onClick={() => setReadingLevel(option.value)}
                 className={cn(
-                  "press-row flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-xl border px-3 py-2 text-center text-body font-semibold leading-tight transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+                  "press-row flex min-h-11 w-full items-center justify-center whitespace-nowrap px-3 py-2 text-center text-body leading-tight transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+                  CAPSULE_SHAPE,
                   active
-                    ? "border-sapphire bg-sapphire-soft/75 text-sapphire shadow-xs ring-1 ring-sapphire/20 dark:border-paper dark:bg-white/15 dark:text-paper dark:ring-white/20"
-                    : "border-border-control bg-muted/35 text-foreground hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:text-paper dark:hover:bg-white/10",
+                    ? "bg-sapphire font-semibold text-white shadow-xs dark:bg-sapphire-light dark:text-white"
+                    : "font-medium text-foreground/80 hover:bg-card/70 hover:text-foreground dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper",
                 )}
               >
                 <span>{option.label}</span>
@@ -366,98 +514,64 @@ export function ComfortMenu({
         </div>
       </div>
 
-      {voiceAvailable && (
-        <div
-          style={{ "--i": 2 } as CSSProperties}
-          className={cn(isOpen && "list-in", "border-t border-border/70 pt-2 dark:border-white/10")}
-        >
-          <button
-            type="button"
-            role="switch"
-            aria-checked={autoRead}
-            onClick={() => {
-              const next = !autoRead;
-              if (next) {
-                clearPageAutoReadSession();
-              } else {
-                speechEngine.stop();
-                speechEngine.requestClose();
-              }
-              setAutoRead(next);
-            }}
-            className={cn(
-              "press-row flex min-h-11 w-full max-w-full items-center justify-between gap-3 rounded-xl border px-3 py-2 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
-              autoRead
-                ? "border-sapphire bg-sapphire-soft/60 dark:border-paper dark:bg-white/12"
-                : "border-border-control bg-muted/35 hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:hover:bg-white/10",
-            )}
-          >
-            <span className="min-w-0 flex-1">
-              <span className="block text-body font-semibold text-foreground dark:text-paper">
-                {copy.autoReadToggle}
-              </span>
-              <span className="mt-0.5 block text-meta leading-snug text-muted-foreground dark:text-mist">
-                {copy.autoReadHelp}
-              </span>
-            </span>
-            <span
-              aria-hidden="true"
+      <div className="space-y-1.5 border-t border-border/70 pt-3 dark:border-white/10">
+        {switchOptions.map((option) => {
+          const { Icon } = option;
+          return (
+            <button
+              key={option.id}
+              type="button"
+              role="switch"
+              aria-checked={option.checked}
+              onClick={option.onToggle}
               className={cn(
-                "inline-flex h-6 w-11 shrink-0 items-center justify-start rounded-md p-0.5 transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
-                autoRead ? "bg-sapphire dark:bg-sapphire-border" : "bg-border-control dark:bg-white/30",
+                "press-row flex min-h-11 w-full max-w-full items-center justify-between gap-3 rounded-2xl border px-3 py-2 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+                option.checked
+                  ? "border-sapphire bg-sapphire-soft/75 dark:border-paper dark:bg-white/12"
+                  : "border-border-control bg-muted/35 hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:hover:bg-white/10",
               )}
             >
+              <span className="flex min-w-0 flex-1 items-start gap-3">
+                <Icon
+                  className={cn(
+                    "mt-0.5 h-5 w-5 shrink-0 transition-colors duration-(--dur-fast)",
+                    option.checked
+                      ? "text-sapphire dark:text-sapphire-border"
+                      : "text-muted-foreground dark:text-mist",
+                  )}
+                  aria-hidden="true"
+                />
+                <span className="min-w-0 flex-1">
+                  <span className="block text-body font-semibold leading-snug text-foreground dark:text-paper">
+                    {option.label}
+                  </span>
+                  <span className="mt-0.5 block text-meta leading-snug text-muted-foreground dark:text-mist">
+                    {option.help}
+                  </span>
+                </span>
+              </span>
               <span
+                aria-hidden="true"
                 className={cn(
-                  "h-5 w-5 rounded-sm bg-white shadow-xs transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
-                  autoRead ? "translate-x-5" : "translate-x-0",
+                  "inline-flex h-6 w-11 shrink-0 items-center justify-start p-0.5 transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                  CAPSULE_SHAPE,
+                  option.checked
+                    ? "border border-sapphire bg-sapphire dark:border-sapphire-light dark:bg-sapphire-light"
+                    : "border border-border-control bg-muted dark:border-white/35 dark:bg-white/15",
                 )}
-              />
-            </span>
-          </button>
-        </div>
-      )}
-
-      <div
-        style={{ "--i": voiceAvailable ? 3 : 2 } as CSSProperties}
-        className={cn(isOpen && "list-in", "border-t border-border/70 pt-2 dark:border-white/10")}
-      >
-        <button
-          type="button"
-          role="switch"
-          aria-checked={calmMotion}
-          onClick={() => setCalmMotion(!calmMotion)}
-          className={cn(
-            "press-row flex min-h-11 w-full max-w-full items-center justify-between gap-3 rounded-xl border px-3 py-2 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
-            calmMotion
-              ? "border-sapphire bg-sapphire-soft/60 dark:border-paper dark:bg-white/12"
-              : "border-border-control bg-muted/35 hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:hover:bg-white/10",
-          )}
-        >
-          <span className="min-w-0 flex-1">
-            <span className="block text-body font-semibold text-foreground dark:text-paper">
-              {copy.calmMotionToggle}
-            </span>
-            <span className="mt-0.5 block text-meta leading-snug text-muted-foreground dark:text-mist">
-              {copy.calmMotionHelp}
-            </span>
-          </span>
-          <span
-            aria-hidden="true"
-            className={cn(
-              "inline-flex h-6 w-11 shrink-0 items-center justify-start rounded-md p-0.5 transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
-              calmMotion ? "bg-sapphire dark:bg-sapphire-border" : "bg-border-control dark:bg-white/30",
-            )}
-          >
-            {/* The thumb travels the track (20px) rather than jumping between ends. */}
-            <span
-              className={cn(
-                "h-5 w-5 rounded-sm bg-white shadow-xs transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
-                calmMotion ? "translate-x-5" : "translate-x-0",
-              )}
-            />
-          </span>
-        </button>
+              >
+                {/* The thumb (18px) travels the 38px inner track (20px) cleanly inside the 1px border. */}
+                <span
+                  className={cn(
+                    "h-4.5 w-4.5 shadow-xs transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                    CAPSULE_SHAPE,
+                    option.checked ? "translate-x-5 bg-white" : "translate-x-0 bg-foreground/75 dark:bg-white/85",
+                  )}
+                />
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       {isCustomized && (
@@ -469,7 +583,10 @@ export function ComfortMenu({
             resetComfortPreferences();
             onDone?.();
           }}
-          className="inline-flex min-h-11 w-full items-center justify-center max-w-full whitespace-nowrap rounded-lg px-2 text-body font-semibold text-sapphire underline decoration-sapphire/35 underline-offset-4 transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-sapphire-soft/45 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-paper dark:hover:bg-white/10"
+          className={cn(
+            "press-row inline-flex min-h-11 w-full max-w-full items-center justify-center whitespace-nowrap border border-border-control bg-card/80 px-4 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/20 dark:bg-white/5 dark:text-paper dark:hover:bg-white/10",
+            CAPSULE_SHAPE,
+          )}
         >
           {copy.reset}
         </button>
@@ -496,17 +613,14 @@ export function ComfortMenu({
               : "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05]",
           )}
         >
-          <span
-            aria-hidden="true"
+          <AccessibilityIcon
             className={cn(
-              "inline-flex w-4.5 shrink-0 items-center justify-center text-body font-bold transition-colors duration-(--dur-fast)",
+              "h-4.5 w-4.5 shrink-0 transition-colors duration-(--dur-fast)",
               isOpen || isCustomized
                 ? "text-sapphire dark:text-sapphire-border"
                 : "text-muted-foreground group-hover:text-foreground dark:text-mist dark:group-hover:text-paper",
             )}
-          >
-            Aa
-          </span>
+          />
           <span className="min-w-0 flex-1 truncate text-body font-medium leading-snug text-foreground dark:text-paper">
             {copy.buttonLabel}
           </span>
@@ -573,13 +687,10 @@ export function ComfortMenu({
             : "w-11",
         )}
       >
-        <span
-          aria-hidden="true"
+        <AccessibilityIcon
           data-comfort-glyph={showLabel ? "" : undefined}
-          className={cn("text-body font-bold leading-none", showLabel && "max-[359px]:hidden")}
-        >
-          Aa
-        </span>
+          className={cn("h-4.5 w-4.5 shrink-0", showLabel && "max-[359px]:hidden")}
+        />
         {showLabel ? <span>{copy.comfortShort}</span> : <span className="sr-only">{copy.buttonLabel}</span>}
       </button>
 
@@ -597,20 +708,19 @@ export function ComfortMenu({
       <div
         id={panelId}
         role="dialog"
+        data-comfort-dialog={panelId}
         aria-label={copy.title}
         inert={!isOpen}
         data-open={isOpen}
         style={isPhone ? ({ "--panel-origin": "bottom center" } as CSSProperties) : undefined}
-        className={cn(
-          "capsule-panel fixed inset-x-0 bottom-0 z-50 sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-full sm:pt-3",
-        )}
+        className="capsule-panel fixed inset-x-0 bottom-0 z-50 sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-full sm:pt-3"
       >
         <div
           className={cn(
             CAPSULE_PANEL,
             // Phones: a white sheet from the bottom edge, like search; dark only when the site is.
             isPhone && "phone-sheet-light",
-            "w-auto max-w-full overflow-x-hidden p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:w-84 sm:p-4",
+            "w-auto max-w-full overflow-x-hidden p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:w-96 sm:rounded-3xl sm:p-5",
           )}
         >
           <div className="mb-3 flex items-center justify-between gap-2 border-b border-border/70 pb-2.5 dark:border-white/10">
@@ -622,16 +732,17 @@ export function ComfortMenu({
                 triggerRef.current?.focus();
               }}
               aria-label={copy.close}
-              className={
-                isPhone
-                  ? "sheet-close"
-                  : "-mr-2 -mt-1.5 inline-flex h-11 w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-mist dark:hover:bg-white/10 dark:hover:text-paper"
-              }
+              className={cn(
+                "-mr-1 -mt-1 inline-flex h-11 w-11 shrink-0 items-center justify-center whitespace-nowrap border border-border-control/45 bg-muted/80 text-foreground transition-colors duration-(--dur-fast) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/25 dark:bg-white/10 dark:text-paper dark:hover:bg-white/20",
+                CAPSULE_SHAPE,
+              )}
             >
               <CloseIcon className="h-4 w-4" />
             </button>
           </div>
-          {controlsBody}
+          <div className="-m-0.5 max-h-[min(78dvh,38rem)] overflow-y-auto overscroll-contain py-0.5 pl-0.5 pr-1.5">
+            {controlsBody}
+          </div>
         </div>
       </div>
     </div>

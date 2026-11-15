@@ -450,6 +450,8 @@ export function AppointmentBookingCalendar() {
     voice.available ? (
       <ListenButton
         uiLang={lang}
+        autoRead
+        autoReadKey={String(step)}
         isPlaying={voice.speaking}
         onToggle={() => (voice.speaking ? voice.stop() : voice.speak(parts))}
       />

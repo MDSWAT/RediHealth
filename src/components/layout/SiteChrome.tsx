@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { LazyMotion, MotionConfig } from "motion/react";
@@ -82,11 +82,24 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTrans
   const [widgetsReady, setWidgetsReady] = useState(false);
   useSkipLinkTarget(pathname);
   useComfortDomSync();
+  const routeKey = `${pathname ?? ""}|${lang}`;
+  const prevRouteKeyRef = useRef<string | null>(null);
   useEffect(() => {
-    clearPageAutoReadSession();
-    speechEngine.stop();
-    speechEngine.requestClose();
-  }, [pathname, lang]);
+    if (prevRouteKeyRef.current !== null && prevRouteKeyRef.current !== routeKey) {
+      clearPageAutoReadSession();
+      speechEngine.stop();
+      speechEngine.requestClose();
+    }
+    prevRouteKeyRef.current = routeKey;
+  }, [routeKey]);
+
+  useEffect(() => {
+    return () => {
+      clearPageAutoReadSession();
+      speechEngine.stop();
+      speechEngine.requestClose();
+    };
+  }, []);
   useEffect(() => {
     initPwaRuntime();
   }, []);

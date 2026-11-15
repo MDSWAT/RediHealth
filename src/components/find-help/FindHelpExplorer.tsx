@@ -1032,6 +1032,7 @@ export function FindHelpExplorer({
           voice.available ? (
             <ListenButton
               uiLang={lang}
+              autoRead
               isPlaying={activeSpeech === "intro"}
               onToggle={toggleIntroSpeech}
             />

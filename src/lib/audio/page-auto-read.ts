@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, type RefObject } from "react";
+import { useEffect, useRef, type RefObject } from "react";
+import { usePathname } from "next/navigation";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useAutoRead } from "@/lib/comfort-preferences";
@@ -38,16 +39,27 @@ export function isPageAutoReadAllowedRoute(pathname: string): boolean {
   return true;
 }
 
-function isElementVisiblyRendered(el: HTMLElement | null): boolean {
-  if (!el || typeof window === "undefined") return true;
-  if (el.getClientRects().length === 0) return false;
-  const computed = window.getComputedStyle(el);
-  return computed.display !== "none" && computed.visibility !== "hidden";
+function isAnchorEligible(el: HTMLElement | null): boolean {
+  if (!el) return false;
+  if (el.closest?.("[inert], [aria-hidden='true']")) return false;
+  if (typeof window === "undefined") return true;
+  if (
+    typeof document !== "undefined" &&
+    (document.body?.getClientRects?.().length ?? 0) > 0 &&
+    el.getClientRects().length === 0
+  ) {
+    return false;
+  }
+  if (typeof window.getComputedStyle === "function") {
+    const computed = window.getComputedStyle(el);
+    if (computed.display === "none" || computed.visibility === "hidden") return false;
+  }
+  return true;
 }
 
 function hasBlockingDialogOpen(): boolean {
-  if (typeof document === "undefined") return false;
-  return Boolean(document.querySelector("dialog[open], #mobile-menu[data-open='true']"));
+  if (typeof document === "undefined" || typeof document.querySelector !== "function") return false;
+  return Boolean(document.querySelector("dialog[open], #mobile-menu:not([inert])"));
 }
 
 function hasBrowserUserActivation(): boolean {
@@ -83,61 +95,144 @@ export function usePageAutoRead({
   contentKey = "",
 }: UsePageAutoReadOptions): void {
   const [autoRead] = useAutoRead();
+  const nextPathname = usePathname();
+  const pathname =
+    nextPathname || (typeof window !== "undefined" ? window.location.pathname : "/");
   const effectiveContentLang = contentLang ?? uiLang;
   const voiceAllowed = isVoiceEnabled(uiLang) && isVoiceEnabled(effectiveContentLang);
+
+  const isPlayingRef = useRef(isPlaying);
+  const onStartRef = useRef(onStart);
+  const anchorRefRef = useRef(anchorRef);
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+    onStartRef.current = onStart;
+    anchorRefRef.current = anchorRef;
+  }, [isPlaying, onStart, anchorRef]);
 
   useEffect(() => {
     if (!enabled || !autoRead || !voiceAllowed) return;
     if (typeof window === "undefined") return;
-
-    const pathname = window.location.pathname;
     if (!isPageAutoReadAllowedRoute(pathname)) return;
 
     const signature = `${pathname}::${uiLang}::${String(effectiveContentLang)}::${contentKey}`;
-    if (lastAutoReadSignature === signature) return;
 
     let cancelled = false;
     let timerId = 0;
+    let blockerObserver: MutationObserver | null = null;
 
-    const attemptStart = () => {
+    const clearTimer = () => {
+      if (timerId) {
+        window.clearTimeout(timerId);
+        timerId = 0;
+      }
+    };
+
+    const stopBlockerObserver = () => {
+      if (blockerObserver) {
+        blockerObserver.disconnect();
+        blockerObserver = null;
+      }
+    };
+
+    const scheduleAttempt = (delayMs: number) => {
+      if (cancelled) return;
+      clearTimer();
+      timerId = window.setTimeout(attemptStart, delayMs);
+    };
+
+    const watchForUnblock = () => {
+      if (
+        cancelled ||
+        blockerObserver ||
+        typeof MutationObserver === "undefined" ||
+        typeof document === "undefined" ||
+        !document.body
+      ) {
+        return;
+      }
+      blockerObserver = new MutationObserver(() => {
+        if (cancelled) return;
+        if (lastAutoReadSignature === signature) {
+          stopBlockerObserver();
+          return;
+        }
+        const el = anchorRefRef.current?.current ?? null;
+        const blockedByAncestor = Boolean(el?.closest?.("[inert], [aria-hidden='true']"));
+        if (!hasBlockingDialogOpen() && !blockedByAncestor) {
+          stopBlockerObserver();
+          scheduleAttempt(220);
+        }
+      });
+      blockerObserver.observe(document.body, {
+        subtree: true,
+        childList: true,
+        attributes: true,
+        attributeFilter: ["open", "inert", "aria-hidden"],
+      });
+    };
+
+    function attemptStart() {
       if (cancelled) return;
       if (lastAutoReadSignature === signature) return;
-      if (isPlaying || speechEngine.isSpeaking()) {
+      if (isPlayingRef.current || speechEngine.isSpeaking()) {
         lastAutoReadSignature = signature;
         return;
       }
-      if (anchorRef && !isElementVisiblyRendered(anchorRef.current)) return;
-      if (hasBlockingDialogOpen()) return;
+
+      const currentAnchorRef = anchorRefRef.current;
+      if (currentAnchorRef) {
+        const el = currentAnchorRef.current;
+        if (!isAnchorEligible(el)) {
+          if (el?.closest?.("[inert], [aria-hidden='true']")) {
+            watchForUnblock();
+          }
+          return;
+        }
+      }
+
+      if (hasBlockingDialogOpen()) {
+        watchForUnblock();
+        return;
+      }
 
       lastAutoReadSignature = signature;
-      onStart();
-    };
+      onStartRef.current();
+    }
 
     const cleanupUnlockListeners = () => {
-      window.removeEventListener("pointerdown", onFirstGesture, true);
+      window.removeEventListener("click", onFirstGesture, true);
+      window.removeEventListener("touchend", onFirstGesture, true);
       window.removeEventListener("keydown", onFirstGesture, true);
     };
 
     function onFirstGesture(event: Event) {
+      speechEngine.unlockFromGesture();
+      if (cancelled) {
+        cleanupUnlockListeners();
+        return;
+      }
+      const target =
+        typeof Element !== "undefined" && event.target instanceof Element ? event.target : null;
+      // Do not hijack clicks on links, explicit audio controls, or open modal dialogs.
+      if (target?.closest("a[href], button[aria-pressed], dialog[open]")) return;
       cleanupUnlockListeners();
-      if (cancelled) return;
-      const target = event.target instanceof Element ? event.target : null;
-      // Do not hijack clicks on links, dialogs, or explicit audio controls.
-      if (target?.closest("a[href], button[aria-pressed], dialog")) return;
-      timerId = window.setTimeout(attemptStart, 120);
+      scheduleAttempt(120);
     }
 
     if (hasBrowserUserActivation()) {
-      timerId = window.setTimeout(attemptStart, 420);
+      scheduleAttempt(420);
     } else {
-      window.addEventListener("pointerdown", onFirstGesture, { capture: true, passive: true });
-      window.addEventListener("keydown", onFirstGesture, { capture: true });
+      window.addEventListener("click", onFirstGesture, { capture: true, passive: true });
+      window.addEventListener("touchend", onFirstGesture, { capture: true, passive: true });
+      window.addEventListener("keydown", onFirstGesture, { capture: true, passive: true });
     }
 
     return () => {
       cancelled = true;
-      if (timerId) window.clearTimeout(timerId);
+      clearTimer();
+      stopBlockerObserver();
       cleanupUnlockListeners();
     };
-  }, [enabled, autoRead, voiceAllowed, uiLang, effectiveContentLang, contentKey, anchorRef, isPlaying, onStart]);
+  }, [autoRead, enabled, voiceAllowed, uiLang, effectiveContentLang, contentKey, pathname]);
 }

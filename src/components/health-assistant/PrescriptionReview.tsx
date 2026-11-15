@@ -764,6 +764,7 @@ export function PrescriptionReview() {
             voice.available ? (
               <ListenButton
                 uiLang={lang}
+                autoRead
                 isPlaying={voice.speaking}
                 onToggle={handleHeaderListen}
               />

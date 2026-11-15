@@ -8,6 +8,7 @@ import { AssistantNavigation, AssistantOtherTools } from "@/components/health-as
 import { TriageStateMachine } from "@/components/health-assistant/TriageStateMachine";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { PageListenAction } from "@/components/ui/PageListenAction";
 import { parseTriageUrlParams } from "@/lib/triage-url-params";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { PLAIN_ALARM_SIGNS } from "@/lib/i18n/emergency-signs";
@@ -108,7 +109,11 @@ export function HealthAssistant() {
       <Container>
         <AssistantNavigation />
 
-        <PageHeader title={t.title} lead={t.subtitle} />
+        <PageHeader
+          title={t.title}
+          lead={t.subtitle}
+          actions={<PageListenAction lang={lang} segments={[t.title, t.subtitle]} />}
+        />
 
         <div className="mt-5 grid gap-6 sm:mt-6 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start lg:gap-6 xl:grid-cols-[minmax(0,1fr)_22.5rem] xl:gap-8 2xl:grid-cols-[minmax(0,1fr)_24rem]">
           {/* Links across the site point at /health-assistant#triage. */}
