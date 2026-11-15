@@ -951,7 +951,7 @@ export function evaluateBloodPressure(
       diastolic,
       tier: "hypotension",
       label: {
-  ru: tierData.en.label,
+  ru: tierData.ru.label,
 
         ro: tierData.ro.label,
         en: tierData.en.label,
@@ -963,7 +963,7 @@ export function evaluateBloodPressure(
       labelRo: tierData.ro.label,
       badgeTone: "amber",
       physiologicEffect: {
-  ru: tierData.en.physiologicEffect,
+  ru: tierData.ru.physiologicEffect,
 
         ro: tierData.ro.physiologicEffect,
         en: tierData.en.physiologicEffect,
@@ -974,7 +974,7 @@ export function evaluateBloodPressure(
       },
       physiologicEffectRo: tierData.ro.physiologicEffect,
       actionProtocol: {
-  ru: tierData.en.actionProtocol,
+  ru: tierData.ru.actionProtocol,
 
         ro: tierData.ro.actionProtocol,
         en: tierData.en.actionProtocol,
@@ -1017,7 +1017,7 @@ export function evaluateBloodPressure(
         diastolic,
         tier: "hypertensive_crisis",
         label: {
-  ru: tierData.en.label,
+  ru: tierData.ru.label,
 
           ro: tierData.ro.label,
           en: tierData.en.label,
@@ -1029,7 +1029,7 @@ export function evaluateBloodPressure(
         labelRo: tierData.ro.label,
         badgeTone: "ruby",
         physiologicEffect: {
-  ru: tierData.en.physiologicEffect,
+  ru: tierData.ru.physiologicEffect,
 
           ro: tierData.ro.physiologicEffect,
           en: tierData.en.physiologicEffect,
@@ -1040,7 +1040,7 @@ export function evaluateBloodPressure(
         },
         physiologicEffectRo: tierData.ro.physiologicEffect,
         actionProtocol: {
-  ru: tierData.en.actionProtocol,
+  ru: tierData.ru.actionProtocol,
 
           ro: tierData.ro.actionProtocol,
           en: tierData.en.actionProtocol,
@@ -1062,7 +1062,7 @@ export function evaluateBloodPressure(
       diastolic,
       tier: "grade_3_hypertension",
       label: {
-  ru: tierData.en.label,
+  ru: tierData.ru.label,
 
         ro: tierData.ro.label,
         en: tierData.en.label,
@@ -1074,7 +1074,7 @@ export function evaluateBloodPressure(
       labelRo: tierData.ro.label,
       badgeTone: "ruby",
       physiologicEffect: {
-  ru: tierData.en.physiologicEffect,
+  ru: tierData.ru.physiologicEffect,
 
         ro: tierData.ro.physiologicEffect,
         en: tierData.en.physiologicEffect,
@@ -1085,7 +1085,7 @@ export function evaluateBloodPressure(
       },
       physiologicEffectRo: tierData.ro.physiologicEffect,
       actionProtocol: {
-  ru: tierData.en.actionProtocol,
+  ru: tierData.ru.actionProtocol,
 
         ro: tierData.ro.actionProtocol,
         en: tierData.en.actionProtocol,
@@ -1139,7 +1139,7 @@ export function evaluateBloodPressure(
     diastolic,
     tier: selectedTier,
     label: {
-  ru: tierData.en.label,
+  ru: tierData.ru.label,
 
       ro: tierData.ro.label,
       en: tierData.en.label,
@@ -1151,7 +1151,7 @@ export function evaluateBloodPressure(
     labelRo: tierData.ro.label,
     badgeTone,
     physiologicEffect: {
-  ru: tierData.en.physiologicEffect,
+  ru: tierData.ru.physiologicEffect,
 
       ro: tierData.ro.physiologicEffect,
       en: tierData.en.physiologicEffect,
@@ -1162,7 +1162,7 @@ export function evaluateBloodPressure(
     },
     physiologicEffectRo: tierData.ro.physiologicEffect,
     actionProtocol: {
-  ru: tierData.en.actionProtocol,
+  ru: tierData.ru.actionProtocol,
 
       ro: tierData.ro.actionProtocol,
       en: tierData.en.actionProtocol,

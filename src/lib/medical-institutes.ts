@@ -24,6 +24,8 @@ const COUNTRY_TO_LANG: Record<string, Lang> = {
   SM: "it",
   VA: "it",
   HR: "hr",
+  RU: "ru",
+  BY: "ru",
 };
 
 const LANG_TO_COUNTRY: Record<Lang, CountryCode> = {
@@ -96,6 +98,10 @@ const COUNTRY_HEADERS = [
   "cf-ipcountry",
   "x-vercel-ip-country",
   "cloudfront-viewer-country",
+  "x-appengine-country",
+  "x-nf-country-code",
+  "fly-client-country",
+  "fastly-client-country",
   "x-country-code",
   "x-geo-country",
 ];
@@ -104,7 +110,7 @@ const COUNTRY_HEADERS = [
 export function countryFromHeaders(headers: Pick<Headers, "get">): string | null {
   for (const name of COUNTRY_HEADERS) {
     const value = headers.get(name)?.trim().toUpperCase();
-    if (value && /^[A-Z]{2}$/.test(value) && value !== "XX" && value !== "T1") {
+    if (value && /^[A-Z]{2}$/.test(value) && value !== "XX" && value !== "T1" && value !== "ZZ") {
       return value;
     }
   }

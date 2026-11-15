@@ -70,6 +70,8 @@ export interface ListenButtonProps {
   /** Close any registered global audio bar when stopping playback. */
   closePlayerOnStop?: boolean;
   className?: string;
+  /** Speaker icon colour. Defaults to sapphire; pass a light colour on ink or sapphire grounds. */
+  iconClassName?: string;
 }
 
 /**
@@ -91,6 +93,7 @@ export function ListenButton({
   playStartEarcon = false,
   closePlayerOnStop = false,
   className,
+  iconClassName = "text-sapphire dark:text-sapphire-border",
 }: ListenButtonProps) {
   const contextLang = useOptionalLanguage();
   const lang = normalizeUiLang(uiLang ?? contextLang);
@@ -189,7 +192,7 @@ export function ListenButton({
         />
       ) : (
         <VolumeIcon
-          className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"
+          className={cn("h-4 w-4 shrink-0", iconClassName)}
           aria-hidden="true"
         />
       )}

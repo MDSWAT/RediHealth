@@ -1,0 +1,237 @@
+/* The ground seen around a sheet that has eased back: the page's own white, so the rounded
+   corners and the sides of a covered sheet read as page, not as a dark frame. */
+.stack {
+  background: var(--color-background);
+}
+
+:global(.dark) .stack {
+  background: var(--color-ink-950);
+}
+
+/* Phones and tablets (< 1024px): plain scrolling, nothing pinned and nothing moving. Each section
+   only carries the sheet's shape: a rounded top edge that sits a little over the section before,
+   like the dock in the hero. The first sheet keeps that much room at its end so nothing is covered. */
+@media (max-width: 1023px) {
+  .layer {
+    position: relative;
+  }
+
+  .layer:first-child {
+    padding-bottom: 1.5rem;
+  }
+
+  .layer + .layer {
+    margin-top: -1.5rem;
+    overflow: clip;
+    border-radius: 1.75rem 1.75rem 0 0;
+    background: var(--color-background);
+    box-shadow: 0 -0.75rem 2rem -1rem rgb(8 12 24 / 0.35);
+  }
+
+  /* The sheet's own edge replaces the section's top rule. */
+  .layer + .layer > :first-child {
+    border-top-width: 0;
+  }
+}
+
+/* Phones and tablets (< 1024px): natural document flow with zero sticky sheet trapping.
+   Desktop (>= 1024px): subtle stacked sheet cover-up when motion is normal and font scale is standard. */
+@media (min-width: 1024px) {
+  /* Holds where `--stack-top` says (set once per resize by StackedSections.tsx). Each sheet is its
+     own stacking context, so its dimming veil can never paint over the sticky site header. */
+  .layer {
+    position: sticky;
+    top: var(--stack-top, 0px);
+    isolation: isolate;
+  }
+
+  .layer:not(:last-child) {
+    --stack-hold: 25svh;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100svh - var(--site-header-h, 4rem));
+    margin-bottom: var(--stack-hold);
+  }
+
+  .layer:not(:last-child) > :first-child {
+    flex: 1 0 auto;
+  }
+
+  .layer:not(:last-child) > :only-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .layer + .layer {
+    overflow: clip;
+    border-radius: 2.5rem 2.5rem 0 0;
+    box-shadow: 0 -1rem 2.5rem -1rem rgb(8 12 24 / 0.4);
+  }
+
+  /* A sheet that is wholly covered rests: nothing in it keeps animating out of sight. */
+  .layer[data-buried] :global(*),
+  .layer[data-buried] :global(*)::before,
+  .layer[data-buried] :global(*)::after {
+    animation-play-state: paused !important;
+  }
+
+  @supports (animation-timeline: view()) {
+    .stack {
+      timeline-scope: --stack-sheet-2, --stack-sheet-3, --stack-sheet-4, --stack-sheet-5, --stack-sheet-6, --stack-sheet-7, --stack-sheet-8;
+    }
+
+    .layer {
+      transform-origin: 50% calc(100% - 50svh);
+      animation: stack-recede linear both;
+      animation-range: entry 0% entry 100%;
+    }
+
+    .layer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 60;
+      background: var(--color-ink-950);
+      opacity: 0;
+      pointer-events: none;
+      animation: stack-dim linear both;
+      animation-range: entry 0% entry 100%;
+    }
+
+    .layer:nth-child(2) {
+      view-timeline-name: --stack-sheet-2;
+    }
+
+    .layer:nth-child(1),
+    .layer:nth-child(1)::after {
+      animation-timeline: --stack-sheet-2;
+    }
+
+    .layer:nth-child(3) {
+      view-timeline-name: --stack-sheet-3;
+    }
+
+    .layer:nth-child(2),
+    .layer:nth-child(2)::after {
+      animation-timeline: --stack-sheet-3;
+    }
+
+    .layer:nth-child(4) {
+      view-timeline-name: --stack-sheet-4;
+    }
+
+    .layer:nth-child(3),
+    .layer:nth-child(3)::after {
+      animation-timeline: --stack-sheet-4;
+    }
+
+    .layer:nth-child(5) {
+      view-timeline-name: --stack-sheet-5;
+    }
+
+    .layer:nth-child(4),
+    .layer:nth-child(4)::after {
+      animation-timeline: --stack-sheet-5;
+    }
+
+    .layer:nth-child(6) {
+      view-timeline-name: --stack-sheet-6;
+    }
+
+    .layer:nth-child(5),
+    .layer:nth-child(5)::after {
+      animation-timeline: --stack-sheet-6;
+    }
+
+    .layer:nth-child(7) {
+      view-timeline-name: --stack-sheet-7;
+    }
+
+    .layer:nth-child(6),
+    .layer:nth-child(6)::after {
+      animation-timeline: --stack-sheet-7;
+    }
+
+    .layer:nth-child(8) {
+      view-timeline-name: --stack-sheet-8;
+    }
+
+    .layer:nth-child(7),
+    .layer:nth-child(7)::after {
+      animation-timeline: --stack-sheet-8;
+    }
+  }
+}
+
+@keyframes stack-recede {
+  to {
+    transform: scale(0.95);
+  }
+}
+
+@keyframes stack-dim {
+  to {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .layer {
+    position: static;
+    animation: none;
+  }
+
+  .layer:not(:last-child) {
+    display: block;
+    min-height: 0;
+    margin-bottom: 0;
+  }
+
+  .layer:not(:last-child) > :only-child {
+    display: block;
+  }
+
+  .layer::after {
+    display: none;
+  }
+
+  .layer + .layer {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+:global(html[data-calm-motion]) .layer,
+:global(html[data-text-scale="large"]) .layer,
+:global(html[data-text-scale="xl"]) .layer {
+  position: static;
+  animation: none;
+}
+
+:global(html[data-calm-motion]) .layer:not(:last-child),
+:global(html[data-text-scale="large"]) .layer:not(:last-child),
+:global(html[data-text-scale="xl"]) .layer:not(:last-child) {
+  display: block;
+  min-height: 0;
+  margin-bottom: 0;
+}
+
+:global(html[data-calm-motion]) .layer:not(:last-child) > :only-child,
+:global(html[data-text-scale="large"]) .layer:not(:last-child) > :only-child,
+:global(html[data-text-scale="xl"]) .layer:not(:last-child) > :only-child {
+  display: block;
+}
+
+:global(html[data-calm-motion]) .layer::after,
+:global(html[data-text-scale="large"]) .layer::after,
+:global(html[data-text-scale="xl"]) .layer::after {
+  display: none;
+}
+
+:global(html[data-calm-motion]) .layer + .layer,
+:global(html[data-text-scale="large"]) .layer + .layer,
+:global(html[data-text-scale="xl"]) .layer + .layer {
+  border-radius: 0;
+  box-shadow: none;
+}

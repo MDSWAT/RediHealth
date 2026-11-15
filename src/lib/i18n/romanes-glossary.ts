@@ -30,6 +30,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Pressione arteriosa (ipertensione)",
       hr: "Krvni tlak (hipertenzija)",
       rom: "Uchi tensija e rateski (hipertenzija)",
+      ru: "Артериальное давление (гипертония)",
     },
     categoryLabelByLang: {
       en: "Heart and circulation",
@@ -37,6 +38,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Cuore e circolazione",
       hr: "Srce i krvotok",
       rom: "O ilo thaj o phirimos e ratesko",
+      ru: "Сердце и кровообращение",
     },
     explanation:
       "Forța cu care sângele apasă pe pereții arterelor. Când rămâne ridicată (hipertensiune), suprasolicită inima și vasele de sânge chiar și fără simptome vizibile.",
@@ -63,6 +65,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Cuore",
       hr: "Srce",
       rom: "O ilo",
+      ru: "Сердце",
     },
     categoryLabelByLang: {
       en: "Body",
@@ -70,6 +73,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Corpo",
       hr: "Tijelo",
       rom: "O trupo",
+      ru: "Организм",
     },
     explanation:
       "Organul muscular din piept care pompează neîncetat sângele încărcat cu oxigen și substanțe hrănitoare către toate organele și țesuturile corpului.",
@@ -96,6 +100,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Sangue",
       hr: "Krv",
       rom: "O rat",
+      ru: "Кровь",
     },
     categoryLabelByLang: {
       en: "Body",
@@ -103,6 +108,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Corpo",
       hr: "Tijelo",
       rom: "O trupo",
+      ru: "Организм",
     },
     explanation:
       "Lichidul vital care circulă prin vasele de sânge, transportă oxigenul și substanțele hrănitoare la toate organele și ajută la apărarea corpului împotriva infecțiilor.",
@@ -129,6 +135,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Diabete (glicemia alta nel sangue)",
       hr: "Dijabetes / šećerna bolest (povišena glukoza u krvi)",
       rom: "Dijabeto (gudlo rat / uchi glukoza ando rat)",
+      ru: "Сахарный диабет (повышенный сахар в крови)",
     },
     categoryLabelByLang: {
       en: "Chronic conditions",
@@ -136,6 +143,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Malattie croniche",
       hr: "Kronične bolesti",
       rom: "Kronikane nasvalipena",
+      ru: "Хронические заболевания",
     },
     explanation:
       "Afecțiune cronică în care concentrația de glucoză (zahăr) în sânge rămâne crescută deoarece insulina lipsește sau nu acționează eficient, provocând sete puternică, urinare frecventă și oboseală.",
@@ -162,6 +170,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Dolore",
       hr: "Bol",
       rom: "I dukh",
+      ru: "Боль",
     },
     categoryLabelByLang: {
       en: "Symptoms and signs",
@@ -169,6 +178,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Sintomi e segni",
       hr: "Simptomi i znakovi",
       rom: "Simptomura thaj semnja",
+      ru: "Симптомы и признаки",
     },
     explanation:
       "Semnalul de avertizare transmis de sistemul nervos care arată că o parte a corpului este rănită, inflamată sau afectată de o boală.",
@@ -195,6 +205,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Febbre (temperatura elevata)",
       hr: "Vrućica (povišena temperatura)",
       rom: "O tatipen (temperatura)",
+      ru: "Лихорадка (повышенная температура)",
     },
     categoryLabelByLang: {
       en: "Symptoms and signs",
@@ -202,6 +213,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Sintomi e segni",
       hr: "Simptomi i znakovi",
       rom: "Simptomura thaj semnja",
+      ru: "Симптомы и признаки",
     },
     explanation:
       "Creșterea temperaturii corpului la 38 °C sau mai mult, ca răspuns natural de apărare al sistemului imunitar împotriva unei infecții virale sau bacteriene.",
@@ -228,6 +240,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Farmaco (medicinale)",
       hr: "Lijek (medikament)",
       rom: "O drab (e draba)",
+      ru: "Лекарство (препарат)",
     },
     categoryLabelByLang: {
       en: "Treatment",
@@ -235,6 +248,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Trattamento",
       hr: "Liječenje",
       rom: "Sastjarimos",
+      ru: "Лечение",
     },
     explanation:
       "Preparat medical sub formă de comprimate, sirop, picături sau injecții, luat în doza exactă prescrisă de medic pentru a trata o boală sau a calma simptomele.",
@@ -261,6 +275,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Medico (dottore)",
       hr: "Liječnik (doktor)",
       rom: "O doktori / o drabari",
+      ru: "Врач (доктор)",
     },
     categoryLabelByLang: {
       en: "Healthcare staff",
@@ -268,6 +283,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Personale sanitario",
       hr: "Zdravstveno osoblje",
       rom: "Sastipnaske bukjarne",
+      ru: "Медицинский персонал",
     },
     explanation:
       "Specialist cu pregătire medicală care te consultă cu respect, stabilește diagnosticul corect, îți recomandă măsuri de prevenție și îți prescrie tratamentul potrivit.",
@@ -294,6 +310,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Ospedale",
       hr: "Bolnica",
       rom: "I bolnitsa / o spitalo",
+      ru: "Больница",
     },
     categoryLabelByLang: {
       en: "Healthcare services",
@@ -301,6 +318,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Servizi sanitari",
       hr: "Zdravstvene ustanove",
       rom: "Sastipnaske thana",
+      ru: "Медицинские учреждения",
     },
     explanation:
       "Unitate medicală unde primești îngrijire de specialitate, investigații amănunțite, intervenții chirurgicale, asistență la naștere sau ajutor medical de urgență.",
@@ -327,6 +345,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Difficoltà respiratoria (dispnea / fiato corto)",
       hr: "Otežano disanje (dispneja / nedostatak zraka)",
       rom: "Pharo phurdinimos (bi balvaljako)",
+      ru: "Затруднённое дыхание (одышка)",
     },
     categoryLabelByLang: {
       en: "Symptoms and emergencies",
@@ -334,6 +353,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Sintomi ed emergenze",
       hr: "Simptomi i hitna stanja",
       rom: "Simptomura thaj sigardiarja",
+      ru: "Симптомы и неотложная помощь",
     },
     explanation:
       "Senzația că nu îți ajunge aerul sau că respiri cu efort (dispnee). Dacă apare brusc în repaus sau este însoțită de durere în piept, sună imediat la 112.",
@@ -360,6 +380,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Capogiro (vertigine)",
       hr: "Vrtoglavica (vertigo)",
       rom: "O shero phirel",
+      ru: "Головокружение",
     },
     categoryLabelByLang: {
       en: "Symptoms and signs",
@@ -367,6 +388,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Sintomi e segni",
       hr: "Simptomi i znakovi",
       rom: "Simptomura thaj semnja",
+      ru: "Симптомы и признаки",
     },
     explanation:
       "Senzație de învârtire (vertij) sau pierdere a echilibrului, cauzată adesea de deshidratare, tensiune scăzută sau glicemie scăzută. Așază-te imediat ca să previi căderea.",
@@ -393,6 +415,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Esami del sangue",
       hr: "Krvne pretrage",
       rom: "Ratesko dikhiben (analize e rateske)",
+      ru: "Анализы крови",
     },
     categoryLabelByLang: {
       en: "Tests and prevention",
@@ -400,6 +423,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Esami e prevenzione",
       hr: "Pretrage i prevencija",
       rom: "Dikhibena thaj arakhimos",
+      ru: "Обследования и профилактика",
     },
     explanation:
       "Recoltarea unei mici probe de sânge din venă sau din deget pentru a măsura concentrația de glucoză, colesterolul, hemoglobina și funcționarea organelor.",
@@ -426,6 +450,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Gravidanza (donna incinta)",
       hr: "Trudnoća (trudnica)",
       rom: "O khabnipen (khabni romni)",
+      ru: "Беременность (беременная женщина)",
     },
     categoryLabelByLang: {
       en: "Maternal health",
@@ -433,6 +458,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Salute materna",
       hr: "Zdravlje majke",
       rom: "E dajako sastipen",
+      ru: "Здоровье матери",
     },
     explanation:
       "Perioada de aproximativ 9 luni în care fătul se dezvoltă în uterul mamei. Controalele prenatale regulate protejează sănătatea mamei și a copilului.",
@@ -459,6 +485,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Vaccino (immunizzazione)",
       hr: "Cjepivo (cijepljenje / imunizacija)",
       rom: "I vakcina (imunizacija)",
+      ru: "Вакцина (прививка)",
     },
     categoryLabelByLang: {
       en: "Prevention",
@@ -466,6 +493,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Prevenzione",
       hr: "Prevencija",
       rom: "Arakhimos",
+      ru: "Профилактика",
     },
     explanation:
       "Preparat medical preventiv, administrat prin injecție sau picături pe gură, care antrenează în siguranță sistemul imunitar (anticorpii) să recunoască și să prevină boli infecțioase grave la copii și adulți.",
@@ -492,6 +520,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Emergenza medica (112)",
       hr: "Hitno medicinsko stanje (112)",
       rom: "Sastipnaski sigardiari (urgencija 112)",
+      ru: "Неотложная медицинская помощь (112)",
     },
     categoryLabelByLang: {
       en: "Emergencies",
@@ -499,6 +528,7 @@ export const ROMANES_GLOSSARY_TERMS: RomanesGlossaryTerm[] = [
       it: "Emergenze",
       hr: "Hitna stanja",
       rom: "Sigardiarja",
+      ru: "Неотложная помощь",
     },
     explanation:
       "Stare gravă care pune viața în pericol imediat, precum durere puternică în piept, lipsă bruscă de aer, paralizie sau sângerare abundentă. Sună gratuit și imediat la 112.",

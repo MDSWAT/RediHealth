@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import { useCallback, useEffect, useId, useRef, useState, type FormEvent, type MouseEvent } from "react";
 import { usePathname } from "next/navigation";
 import styles from "@/components/layout/ChromeDialogs.module.css";
@@ -582,7 +582,7 @@ export function FeedbackWidget() {
       {/* Calm, non-disruptive floating invitation card after 2.5 minutes of active browsing (desktop allow-list only) */}
       <AnimatePresence>
         {inviteVisible && !modalOpen ? (
-          <motion.aside
+          <m.aside
             role="region"
             aria-label={t.inviteOpenCta}
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
@@ -654,7 +654,7 @@ export function FeedbackWidget() {
                 </Button>
               </div>
             </div>
-          </motion.aside>
+          </m.aside>
         ) : null}
       </AnimatePresence>
 
@@ -776,7 +776,7 @@ export function FeedbackWidget() {
                 className="flex-1 overflow-y-auto overscroll-contain px-4 pt-3 pb-4 sm:px-6 sm:py-5"
               >
                 <AnimatePresence mode="wait" initial={false}>
-                  <motion.div
+                  <m.div
                     key={step}
                     initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: stepDir * 10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -1038,7 +1038,7 @@ export function FeedbackWidget() {
                         </div>
                       </div>
                     ) : null}
-                  </motion.div>
+                  </m.div>
                 </AnimatePresence>
 
                 {error ? (

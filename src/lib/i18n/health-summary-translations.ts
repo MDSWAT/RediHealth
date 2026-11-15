@@ -37,7 +37,18 @@ const translatedCopy: Record<HealthContentLang, SummaryPageCopy> = {
     sourceLink: "Прочитать источник на InformedHealth.org", authorship: "Этот образовательный обзор самостоятельно написан RediHealth. Это не копия и не перевод статьи IQWiG. Он не проверен и не одобрен IQWiG.",
     related: "Другие обзоры в этой группе тем", read: "Прочитать обзор",
   },
+  hr: {
+    back: "Sve zdravstvene teme", overview: "Razumijevanje ove teme", questions: "Pitanja za razgovor sa zdravstvenim timom",
+    sourceHeading: "Izvor i dodatno čitanje", sourceText: "Istražite izvorno područje i pripadajuće članke na stranici InformedHealth.org, koju objavljuje IQWiG u Njemačkoj. Povezani materijal je na engleskom jeziku; informacije o uslugama u Njemačkoj možda ne vrijede u drugim zemljama.",
+    sourceLink: "Pročitajte izvor na InformedHealth.org", authorship: "Ovo je neovisno napisan edukativni pregled platforme RediHealth, a ne reprodukcija ili prijevod članka instituta IQWiG. IQWiG ga nije pregledao niti odobrio.",
+    related: "Više sažetaka u ovoj skupini tema", read: "Pročitajte sažetak",
+  },
+  rom: {
+    back: "Savore sastipnaske teme", overview: "Hatjarimos kadale temako", questions: "Pushimata vash tumaro sastipnasko timo",
+    sourceHeading: "Izvoro thaj maj dur ginavimos", sourceText: "Rodisaren i originalno tema thaj lake artikulura pe InformedHealth.org, publikisardi katar o IQWiG ande Germanija. O phanglo materijalo si pe anglikani chib; e informaciye vash sastipnaske servisura ande Germanija shaj te na vazhin ande kolaver thema.",
+    sourceLink: "Ginaven o izvoro pe InformedHealth.org", authorship: "Kadava si jekh edukativno dikhiben pishime korkori katar o RediHealth, naj kopija vaj nakhavimos jekhe artikulosko katar o IQWiG. Naj dikhlo vaj mukhlo katar o IQWiG.",
+    related: "Maj but rezumatura ande kadi grupa temengi", read: "Ginav o rezumato",
+  },
 };
 
-// New site languages use clearly identified English library content until translated.
-export const healthSummaryCopy: Record<Lang, SummaryPageCopy> = {...translatedCopy, hr: translatedCopy.en, rom: translatedCopy.en};
+export const healthSummaryCopy: Record<Lang, SummaryPageCopy> = translatedCopy;

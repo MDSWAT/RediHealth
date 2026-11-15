@@ -190,6 +190,15 @@ export function ZoomInIcon(props: IconProps) {
   );
 }
 
+// Four corners pulling outward: opens the body in full screen.
+export function FullScreenIcon(props: IconProps) {
+  return (
+    <svg {...boxicon(props)}>
+      <path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z"/>
+    </svg>
+  );
+}
+
 // Boxicons: bx-zoom-out
 export function ZoomOutIcon(props: IconProps) {
   return (

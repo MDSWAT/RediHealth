@@ -58,11 +58,22 @@ export default async function HealthSummaryPage({ params }: Props) {
   const readMinutes = Math.max(2, Math.round(wordCount / 180));
   const audioMinutes = Math.max(2, Math.round(wordCount / 145));
 
+  const toc = {
+    title: tocCopy.contents,
+    ariaLabel: tocCopy.contents,
+    items: [
+      { href: "#summary-overview", label: copy.overview },
+      { href: "#summary-questions", label: copy.questions },
+      { href: "#topic-articles", label: tocCopy.inCategory },
+      ...(related.length > 0 ? [{ href: "#summary-related", label: copy.related }] : []),
+    ],
+  };
+
   return (
     <main id="main-content" className="flex-1">
       {/* Long read: a hairline under the header fills as the page is read. */}
       <div className="read-progress" aria-hidden="true" />
-      <HealthArticleShell>
+      <HealthArticleShell toc={toc}>
         <HealthArticleBackLink
           href={withLangPrefix("/health-information#informedhealth-library", lang)}
           label={copy.back}
@@ -91,16 +102,7 @@ export default async function HealthSummaryPage({ params }: Props) {
             }
           />
 
-          <HealthArticleToc
-            title={tocCopy.contents}
-            ariaLabel={tocCopy.contents}
-            items={[
-              { href: "#summary-overview", label: copy.overview },
-              { href: "#summary-questions", label: copy.questions },
-              { href: "#topic-articles", label: tocCopy.inCategory },
-              ...(related.length > 0 ? [{ href: "#summary-related", label: copy.related }] : []),
-            ]}
-          />
+          <HealthArticleToc {...toc} className="lg:hidden" />
 
           <section aria-labelledby="summary-overview" className="mt-10">
             <h2 id="summary-overview" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>

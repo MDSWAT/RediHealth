@@ -1,14 +1,24 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { MotionConfig } from "motion/react";
+import { LazyMotion, MotionConfig } from "motion/react";
+
+const loadMotionFeatures = () => import("@/lib/motion/dom-features").then((mod) => mod.domAnimation);
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { FeedbackWidget } from "@/components/layout/FeedbackWidget";
-import { ReportIssueWidget } from "@/components/layout/ReportIssueWidget";
 import { SmartSearchModal } from "@/components/search/SmartSearchModal";
 import { PwaExperience } from "@/components/pwa/PwaExperience";
+
+const FeedbackWidget = dynamic(
+  () => import("@/components/layout/FeedbackWidget").then((mod) => mod.FeedbackWidget),
+  { ssr: false },
+);
+const ReportIssueWidget = dynamic(
+  () => import("@/components/layout/ReportIssueWidget").then((mod) => mod.ReportIssueWidget),
+  { ssr: false },
+);
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
 import { RecaptchaProvider, RecaptchaNotice } from "@/components/security/RecaptchaProvider";
@@ -28,6 +38,8 @@ type SiteChromeProps = {
   captchaEnabled: boolean;
   /** Locale resolved on the server for this request; see LanguageProvider. */
   lang: Lang;
+  /** The reader closed the 112 bar on this device (a cookie), so the header leaves it out. */
+  emergencyDismissed?: boolean;
 };
 
 /**
@@ -51,7 +63,7 @@ function useSkipLinkTarget(pathname: string) {
   }, [pathname]);
 }
 
-export function SiteChrome({ children, nonce, captchaEnabled, lang }: SiteChromeProps) {
+export function SiteChrome({ children, nonce, captchaEnabled, lang, emergencyDismissed = false }: SiteChromeProps) {
   const pathname = usePathname();
   const path = stripLangFromPathname(pathname);
   const isWorkerPanel = path.startsWith("/panel") || path === "/demo" || path.startsWith("/demo/") || path === "/offline" || path.startsWith("/offline/");
@@ -67,18 +79,20 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang }: SiteChrome
 
   return (
     <MotionConfig reducedMotion={calmMotion ? "always" : "user"}>
-      <LanguageProvider requestLang={lang}>
-        <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isChromelessSurface}>
-          {isChromelessSurface ? null : <Header />}
-          {isChromelessSurface ? null : <SmartSearchModal />}
-          {isChromelessSurface ? null : <PwaExperience />}
-          {children}
-          {isChromelessSurface ? null : <FeedbackWidget />}
-          {isChromelessSurface ? null : <ReportIssueWidget />}
-          {isChromelessSurface ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
-          {hideFooter ? null : <Footer />}
-        </RecaptchaProvider>
-      </LanguageProvider>
+      <LazyMotion features={loadMotionFeatures}>
+        <LanguageProvider requestLang={lang}>
+          <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isChromelessSurface}>
+            {isChromelessSurface ? null : <Header emergencyDismissed={emergencyDismissed} />}
+            {isChromelessSurface ? null : <SmartSearchModal />}
+            {isChromelessSurface ? null : <PwaExperience />}
+            {children}
+            {isChromelessSurface ? null : <FeedbackWidget />}
+            {isChromelessSurface ? null : <ReportIssueWidget />}
+            {isChromelessSurface ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
+            {hideFooter ? null : <Footer />}
+          </RecaptchaProvider>
+        </LanguageProvider>
+      </LazyMotion>
     </MotionConfig>
   );
 }

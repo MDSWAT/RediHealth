@@ -6,6 +6,7 @@ import { LlmError, generateText } from "@/lib/llm";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import {
   detectEmergencyQuery,
+  normalizeSearchText,
   searchSmartCatalog,
   type SmartSearchReadingLevel,
   type SmartSearchResult,
@@ -174,7 +175,7 @@ export async function POST(req: Request) {
     });
   }
 
-  if (query.length < 3 || local.results.length === 0) {
+  if (normalizeSearchText(query).length < 2 || query.length < 3 || local.results.length === 0) {
     return NextResponse.json({
       mode: "local",
       isEmergency: false,

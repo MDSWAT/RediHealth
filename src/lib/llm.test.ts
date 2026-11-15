@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { LlmError, generateText } from "@/lib/llm";
+import { LlmError, generateText, resolveLlmConfig } from "@/lib/llm";
 
 const fetchMock = vi.fn();
 
@@ -24,6 +24,7 @@ describe("generateText", () => {
     vi.stubEnv("ANTHROPIC_API_KEY", "anthropic-key");
     vi.stubEnv("LLMSRELAY_MODEL", "");
     vi.stubEnv("ANTHROPIC_MODEL", "");
+    vi.stubEnv("ANTHROPIC_VISION_MODEL", "");
     vi.stubEnv("ANTHROPIC_BASE_URL", "");
     vi.stubEnv("LLMSRELAY_BASE_URL", "");
   });
@@ -111,5 +112,24 @@ describe("generateText", () => {
   it("rejects a reply without any text", async () => {
     fetchMock.mockResolvedValue(jsonResponse({ content: [] }));
     expect(await failure(generateText({ system: "s", text: "t" }))).toMatchObject({ kind: "bad-response" });
+  });
+
+  it("uses ANTHROPIC_VISION_MODEL only when reading an image and falls back otherwise", async () => {
+    vi.stubEnv("ANTHROPIC_MODEL", "claude-haiku-4-5-20251001");
+    vi.stubEnv("ANTHROPIC_VISION_MODEL", "claude-sonnet-4-5-20250929");
+
+    expect(resolveLlmConfig({ hasImage: false }).model).toBe("claude-haiku-4-5-20251001");
+    expect(resolveLlmConfig({ hasImage: true }).model).toBe("claude-sonnet-4-5-20250929");
+
+    fetchMock.mockImplementation(() => Promise.resolve(jsonResponse({ content: [{ type: "text", text: "ok" }] })));
+    const visionReply = await generateText({
+      system: "s",
+      text: "t",
+      image: { mimeType: "image/jpeg", data: "YWJj" },
+    });
+    expect(visionReply.model).toBe("claude-sonnet-4-5-20250929");
+
+    const textReply = await generateText({ system: "s", text: "t" });
+    expect(textReply.model).toBe("claude-haiku-4-5-20251001");
   });
 });

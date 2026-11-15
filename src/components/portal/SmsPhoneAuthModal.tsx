@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, type PointerEvent as ReactPointerEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import {
   ArrowRightIcon,
   ChevronRightIcon,
@@ -474,7 +474,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
         </h1>
 
         <AnimatePresence mode="wait" initial={false}>
-          <motion.p
+          <m.p
             key={activeSubtitleKey}
             initial={calmMotion ? false : { opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
@@ -483,7 +483,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
             className="mt-2 text-body text-muted-foreground dark:text-mist"
           >
             {activeSubtitle}
-          </motion.p>
+          </m.p>
         </AnimatePresence>
 
         {error && (
@@ -511,7 +511,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
 
         <AnimatePresence mode="wait" initial={false}>
           {step === 1 ? (
-            <motion.form
+            <m.form
               key="step-phone"
               initial={calmMotion ? false : { opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
@@ -551,9 +551,9 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                 <span>{isLoading ? copy.sending : page.sendCode}</span>
                 {!isLoading && <ArrowRightIcon aria-hidden="true" className="arrow-travel h-5 w-5 shrink-0" />}
               </Button>
-            </motion.form>
+            </m.form>
           ) : (
-            <motion.div
+            <m.div
               key="step-otp"
               initial={calmMotion ? false : { opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
@@ -649,7 +649,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                   <span>{copy.resendSms}</span>
                 </button>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 

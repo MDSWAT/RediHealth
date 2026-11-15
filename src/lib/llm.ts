@@ -43,8 +43,11 @@ function readEnv(name: string): string {
   return process.env[name]?.trim().replace(/^["']|["']$/g, "") || "";
 }
 
-export function resolveLlmConfig(): LlmConfig {
-  const model = readEnv("ANTHROPIC_MODEL") || DEFAULT_MODEL;
+export function resolveLlmConfig(options?: { hasImage?: boolean }): LlmConfig {
+  const configuredModel = options?.hasImage
+    ? readEnv("ANTHROPIC_VISION_MODEL") || readEnv("ANTHROPIC_MODEL")
+    : readEnv("ANTHROPIC_MODEL");
+  const model = configuredModel || DEFAULT_MODEL;
   const apiKey = readEnv("ANTHROPIC_API_KEY");
   if (!apiKey) throw new LlmError("not-configured", "ANTHROPIC_API_KEY is missing.");
   if (!model.startsWith("claude-")) throw new LlmError("not-configured", "ANTHROPIC_MODEL must be a Claude model ID.");
@@ -117,7 +120,7 @@ async function requestAnthropic(config: LlmConfig, request: LlmRequest): Promise
 
 /** Sends one prompt to the configured model and returns its text. Always rejects with an LlmError. */
 export async function generateText(request: LlmRequest): Promise<{ text: string; model: string }> {
-  const config = resolveLlmConfig();
+  const config = resolveLlmConfig({ hasImage: Boolean(request.image) });
   let text: string | undefined;
   try {
     text = await requestAnthropic(config, request);

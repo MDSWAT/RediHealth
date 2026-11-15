@@ -229,9 +229,15 @@ describe("Care tools design-system consistency", () => {
     expect(completedHtml).not.toContain(roRisk.questions.q1.title);
   });
 
-  it("opens HealthCheckExplorer on list on phones, keeps list mode across non-result steps, and defers 3D mount (P01)", () => {
+  it("opens HealthCheckExplorer on the 3D body on phones, keeps the list one tap away, and defers 3D mount in list mode (P01)", () => {
     const explorerSrc = readSrc("src/components/health-check/HealthCheckExplorer.tsx");
-    expect(explorerSrc).toContain('const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "list";');
+    expect(explorerSrc).toContain('const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "3d";');
+    // Full screen: a tap selects without moving on; Save selection confirms.
+    expect(explorerSrc).toContain('stepRef.current === "area" && !bodyFullScreenRef.current');
+    const bodyMapSrc = readSrc("src/components/health-check/AnatomicalBodyMap.tsx");
+    expect(bodyMapSrc).toContain("data-hc-fullscreen");
+    expect(bodyMapSrc).toContain("onConfirmSelection?.()");
+    expect(bodyMapSrc).toContain("{dict.ui.backButton}");
     expect(explorerSrc).toContain('const mobileListOnly = effectiveMobileAreaMode === "list" && stepId !== "result";');
     expect(explorerSrc).not.toContain('stepId === "area" && effectiveMobileAreaMode');
     expect(explorerSrc).toContain("deferred={mobileListOnly && !isDesktop}");

@@ -86,8 +86,8 @@ export function Footer() {
   return (
     <>
       <footer className="relative z-10 bg-ink-950 text-paper">
-        {/* The topic wheel, small and faint, behind the brand block on desktop; hidden below lg. */}
-        <div aria-hidden="true" className="hidden lg:block">
+        {/* The topic wheel with its eight icons, soft, behind the footer's content at every width. */}
+        <div aria-hidden="true">
           <WheelBackdrop placement="footer" />
         </div>
         <Container className="py-12 sm:py-16">

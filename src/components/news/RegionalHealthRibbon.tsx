@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import {
@@ -11,13 +12,17 @@ import {
   EXTRA_MAP_COPY,
   mapCountriesForLang,
   type MapCountry,
-} from "@/components/ui/RomaniaCountyMap";
+} from "@/components/ui/romania-county-map-helpers";
 import { useUserCounty } from "@/lib/geo-ip";
 import { ChevronLeftIcon, ChevronRightIcon, PinIcon } from "@/components/ui/icons";
 import styles from "@/components/news/RegionalHealthRibbon.module.css";
 import { useTextScale } from "@/lib/comfort-preferences";
 import { useCalmReducedMotion } from "@/lib/motion/tokens";
-import { CountyOverrideModal } from "@/components/news/CountyOverrideModal";
+
+const CountyOverrideModal = dynamic(
+  () => import("@/components/news/CountyOverrideModal").then((mod) => mod.CountyOverrideModal),
+  { ssr: false },
+);
 import { countyLabel, placeName } from "@/components/news/news-format";
 import {
   NEWS_ARTICLES,
@@ -368,14 +373,16 @@ export function RegionalHealthRibbon() {
         </Container>
       </section>
 
-      <CountyOverrideModal
-        open={modalOpen}
-        onOpenChange={setModalOpen}
-        currentCounty={activeArea}
-        onSelectCounty={handleSelectArea}
-        country={ribbonCountry}
-        countries={allowedCountries}
-      />
+      {modalOpen ? (
+        <CountyOverrideModal
+          open={modalOpen}
+          onOpenChange={setModalOpen}
+          currentCounty={activeArea}
+          onSelectCounty={handleSelectArea}
+          country={ribbonCountry}
+          countries={allowedCountries}
+        />
+      ) : null}
     </>
   );
 }

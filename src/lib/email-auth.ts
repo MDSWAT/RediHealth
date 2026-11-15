@@ -9,8 +9,14 @@ type EmailCodePayload = {
   code: string;
 };
 
+const devFallbackSecret =
+  process.env.NODE_ENV !== "production"
+    ? "redihealth-local-dev-only-auth-secret-32chars"
+    : undefined;
+
 function secretKey() {
-  const secret = process.env.AUTH_SECRET;
+  const secret =
+    process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || devFallbackSecret;
   if (!secret) {
     throw new Error("AUTH_SECRET is not configured.");
   }

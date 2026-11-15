@@ -52,8 +52,13 @@ if (isWindowsDev) {
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 31536000,
+  },
   experimental: {
     proxyClientMaxBodySize: "16mb",
+    optimizePackageImports: ["motion"],
   },
   allowedDevOrigins: (process.env.DEV_ALLOWED_ORIGINS || "")
     .split(",")
@@ -74,6 +79,24 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "Content-Type", value: "application/manifest+json; charset=utf-8" },
           { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+        ],
+      },
+      {
+        source: "/images/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/Icons/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/pwa/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
       {

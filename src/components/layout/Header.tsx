@@ -61,9 +61,9 @@ const DRAWER_ROW_MOTION =
 /**
  * Site header: six one-word destinations on xl+ (including health mediators),
  * compact utility actions (search trigger, comfort menu, language ISO selector,
- * 44px account link) from md+ upward, and below xl a focus-trapped menu drawer.
+ * 44px account link) from md+ upward, and below lg a focus-trapped menu drawer.
  */
-export function Header() {
+export function Header({ emergencyDismissed = false }: { emergencyDismissed?: boolean } = {}) {
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -141,14 +141,16 @@ export function Header() {
   }, []);
 
   // Phone/tablet menu: lock the page behind it, fit it to the screen, move initial focus inside,
-  // trap Tab/Shift+Tab, and close on Escape, browser back/forward, or resizing to xl+.
+  // trap Tab/Shift+Tab, and close on Escape, browser back/forward, or resizing to lg+.
   useEffect(() => {
     if (!mobileOpen) return;
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     const fit = () => {
-      if (window.innerWidth >= 1280) {
+      // With larger comfort text the bar keeps the menu up to 1280px (see globals.css).
+      const largeText = ["large", "xl"].includes(document.documentElement.dataset.textScale ?? "");
+      if (window.innerWidth >= (largeText ? 1280 : 1024)) {
         setOpenDrawerSection(null);
         setMobileOpen(false);
         return;
@@ -277,10 +279,13 @@ export function Header() {
           isTransparent
             ? "border-b border-transparent bg-transparent text-paper"
             : "border-b border-border bg-background text-foreground dark:border-white/10 dark:bg-ink-950 dark:text-paper",
+          // While the phone menu is open the whole header (112 line, bar and menu) takes its deep blue
+          // styling, so the open menu is one calm full-screen surface under the button that opened it.
+          mobileOpen && "dark",
         )}
       >
         {/* The 112 line rides on top of the bar, so it stays in view while the page scrolls. */}
-        <UniversalEmergencyBanner tone={isTransparent ? "dark" : "light"} size={containerSize} />
+        <UniversalEmergencyBanner tone={isTransparent || mobileOpen ? "dark" : "light"} size={containerSize} initiallyDismissed={emergencyDismissed} />
         <Container
           size={containerSize}
           data-header-bar=""
@@ -289,18 +294,19 @@ export function Header() {
           <div className="flex h-16 items-center justify-between gap-1 sm:gap-3 2xl:gap-2">
             <Logo
               className="shrink-0 whitespace-nowrap"
-              tone={isTransparent ? "light" : "default"}
+              tone={isTransparent || mobileOpen ? "light" : "default"}
               href={withLangPrefix("/", lang)}
               label={chrome.homeLink}
             />
 
-            {/* Desktop destinations (from 1280px: six one-word links fit alongside the utilities in all 7 locales) */}
-            <nav aria-label={chrome.primaryNav} className="hidden min-w-0 xl:block">
+            {/* Desktop destinations (from 1024px: six one-word links fit alongside the utilities in all 7 locales,
+                because search drops to its icon until xl) */}
+            <nav aria-label={chrome.primaryNav} data-desktop-nav="" className="hidden min-w-0 lg:block">
               <ul className="flex items-center gap-0.5">
                 {desktopLinks.map((link) => {
                   const isActive = isActiveHref(link.href);
                   const shortLabel = (NAV_SHORT_LABELS[lang] ?? NAV_SHORT_LABELS.ro)[link.href];
-                  // One word from 1280px; from 1536px the unclear names get their second word.
+                  // One word from 1024px; from 1536px the unclear names get their second word.
                   const wideLabel =
                     link.href === "/medic-online"
                       ? (NAV_ONLINE_DOCTOR_LABEL[lang] ?? NAV_ONLINE_DOCTOR_LABEL.ro)
@@ -316,7 +322,7 @@ export function Header() {
                         aria-current={isActive ? "page" : undefined}
                         title={link.label}
                         className={cn(
-                          "tab-ink relative flex min-h-11 flex-col justify-center rounded-lg px-2.5 py-1.5 min-[1400px]:px-3 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
+                          "tab-ink relative flex min-h-11 flex-col justify-center rounded-lg px-2 py-1.5 xl:px-2.5 min-[1400px]:px-3 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
                           isTransparent
                             ? isActive
                               ? "font-semibold text-white focus-visible:ring-paper/70"
@@ -358,14 +364,15 @@ export function Header() {
                   data-capsule-item=""
                   data-search-trigger=""
                   data-testid="header-search-trigger"
-                  className={cn(capsuleItem(isTransparent), "pl-3.5 pr-3 text-[0.9375rem]")}
+                  className={cn(capsuleItem(isTransparent), "pl-3.5 pr-3 text-[0.9375rem] lg:max-xl:w-11 lg:max-xl:px-0")}
                 >
                   <SearchIcon className="h-4.5 w-4.5 shrink-0 opacity-85" aria-hidden="true" />
-                  <span>{searchCopy.triggerLabel}</span>
+                  {/* From lg to xl the six links need the room, so search shows its icon alone (the label stays in aria-label). */}
+                  <span className="lg:max-xl:hidden">{searchCopy.triggerLabel}</span>
                   <kbd
                     aria-hidden="true"
                     className={cn(
-                      "hidden min-w-5 items-center justify-center rounded border px-1 py-0.5 font-sans text-meta font-medium leading-none lg:inline-flex",
+                      "hidden min-w-5 items-center justify-center rounded border px-1 py-0.5 font-sans text-meta font-medium leading-none xl:inline-flex",
                       isTransparent
                         ? "border-white/20 bg-white/10 text-paper/75"
                         : "border-ink-950/12 bg-white/80 text-foreground/65 dark:border-white/15 dark:bg-white/10 dark:text-paper/75",
@@ -433,7 +440,7 @@ export function Header() {
                 </div>
               )}
 
-              {/* Menu button (phones, tablets and small laptops below xl) */}
+              {/* Menu button (phones and portrait tablets, below lg) */}
               <button
                 ref={menuButtonRef}
                 type="button"
@@ -442,7 +449,7 @@ export function Header() {
                 title={mobileOpen ? tHeader.closeMenu : tHeader.openMenu}
                 className={cn(
                   capsuleItem(isTransparent, mobileOpen),
-                  "gap-1.5 px-2.5 whitespace-nowrap text-meta font-semibold max-[359px]:gap-1 max-[359px]:px-2 xl:hidden",
+                  "gap-1.5 px-2.5 whitespace-nowrap text-meta font-semibold max-[359px]:gap-1 max-[359px]:px-2 lg:hidden",
                 )}
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
@@ -469,15 +476,18 @@ export function Header() {
         {/* Scrim behind the phone/tablet menu, anchored below the header. */}
         <div
           aria-hidden="true"
+          data-menu-scrim=""
           onClick={closeMobileAndRestoreFocus}
           style={{ top: "var(--site-header-h, 4rem)" }}
           className={cn(
-            "fixed inset-x-0 bottom-0 z-40 bg-ink-950/45 transition-[opacity,visibility] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none print:hidden xl:hidden",
+            "fixed inset-x-0 bottom-0 z-40 bg-ink-950/45 transition-[opacity,visibility] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none print:hidden lg:hidden",
             mobileOpen ? "visible opacity-100" : "pointer-events-none invisible opacity-0",
           )}
         />
 
-        {/* Phone/tablet menu: full-screen below the bar, traps Tab focus, and scrolls independently. */}
+        {/* Phone/tablet menu: full screen below the bar, in the same deep blue as the bar while it is open.
+            It opens downward from the Menu button that owns it (a short fade and settle, nothing flying
+            in), traps Tab focus, and scrolls independently. The same button, now Close, shuts it. */}
         <div
           ref={mobileMenuRef}
           id="mobile-menu"
@@ -487,14 +497,16 @@ export function Header() {
           inert={!mobileOpen}
           style={{ height: drawerHeight ?? "calc(100dvh - var(--site-header-h, 4rem))" }}
           className={cn(
-            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain border-t border-border bg-paper text-foreground shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-950 dark:text-paper print:hidden xl:hidden",
+            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain border-t border-border bg-paper text-foreground dark:border-white/10 dark:bg-ink-950 dark:text-paper print:hidden lg:hidden",
             "transition-[opacity,translate,visibility] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
             mobileOpen
               ? "visible translate-y-0 opacity-100"
               : "pointer-events-none invisible -translate-y-2 opacity-0",
           )}
         >
-          <Container className="mx-auto flex min-h-full w-full max-w-xl flex-col gap-2 py-2.5 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+          {/* Same width and side padding as the bar, so the rows line up under the logo instead of
+              sitting in a narrow centred column on tablets. */}
+          <Container className="flex min-h-full flex-col gap-2 py-2.5 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
             <button
               type="button"
               onClick={() => {
@@ -560,7 +572,7 @@ export function Header() {
                           >
                             {link.label}
                           </span>
-                          <span className="block text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
+                          <span className="block whitespace-nowrap text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
                             {link.subtext}
                           </span>
                         </span>

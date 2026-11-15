@@ -22,7 +22,7 @@ export type FindHelpLinkCopy = {
 export const FIND_HELP_LINKS: Record<Lang, FindHelpLinkCopy> = {
   ru: {
     nav: "Аптеки и клиники",
-    navDescription: "Найдите место рядом с вами",
+    navDescription: "Найдите место рядом",
     heroOption: "Мне нужна аптека или врач поблизости",
     heroOptionHint: "Аптеки, кабинеты и больницы на карте",
     pharmacyFirst: "Спросите в аптеке",
@@ -36,7 +36,7 @@ export const FIND_HELP_LINKS: Record<Lang, FindHelpLinkCopy> = {
 
   ro: {
     nav: "Farmacii și clinici",
-    navDescription: "Găsește un loc aproape de tine",
+    navDescription: "Găsește un loc aproape",
     heroOption: "Caut o farmacie sau un medic aproape",
     heroOptionHint: "Farmacii, cabinete și spitale pe hartă",
     pharmacyFirst: "Întreabă la farmacie",

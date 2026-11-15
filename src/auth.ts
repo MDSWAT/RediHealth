@@ -19,7 +19,14 @@ async function getLocalizedSignInPath(errorCode: string) {
   return `${withLangPrefix("/sign-in", lang)}?error=${errorCode}`;
 }
 
+const devFallbackSecret =
+  process.env.NODE_ENV !== "production"
+    ? "redihealth-local-dev-only-auth-secret-32chars"
+    : undefined;
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  secret:
+    process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || devFallbackSecret,
   providers: [
     ...(googleConfigured ? [Google] : []),
     Credentials({

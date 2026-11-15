@@ -3,6 +3,8 @@ import {
   buildEmergencyResponse,
   buildSystemInstruction,
   buildUserText,
+  buildVisionSystemInstruction,
+  buildVisionUserText,
   parseAssistantReply,
   urgentPattern,
 } from "@/lib/health-assistant";
@@ -24,8 +26,8 @@ type AssistantRequest = {
 const MAX_TEXT_LENGTH = 4_000;
 const MAX_HISTORY_ITEMS = 12;
 const MAX_HISTORY_ITEM_LENGTH = 1_000;
-// Base64 of an 8 MB image.
-const MAX_IMAGE_DATA_LENGTH = 11_200_000;
+// Base64 safely under Anthropic's 5 MB image cap and Vercel's 4.5 MB request body limit.
+const MAX_IMAGE_DATA_LENGTH = 5_000_000;
 
 function parseHistory(value: unknown): string[] {
   if (!Array.isArray(value)) return [];
@@ -61,23 +63,23 @@ function failureResponse(error: LlmError) {
   switch (error.kind) {
     case "rate-limited":
       return NextResponse.json(
-        { error: "The assistant is busy. Try again in a few minutes." },
+        { error: "The assistant is busy. Try again in a few minutes.", code: error.kind },
         { status: 429 },
       );
     case "not-configured":
     case "unauthorized":
       return NextResponse.json(
-        { error: "The assistant is not available right now. Contact us if this keeps happening." },
+        { error: "The assistant is not available right now. Contact us if this keeps happening.", code: error.kind },
         { status: 503 },
       );
     case "bad-response":
       return NextResponse.json(
-        { error: "The assistant gave an answer we could not read. Try again." },
+        { error: "The assistant gave an answer we could not read. Try again.", code: error.kind },
         { status: 502 },
       );
     default:
       return NextResponse.json(
-        { error: "The assistant is not working right now. Try again in a few minutes." },
+        { error: "The assistant is not working right now. Try again in a few minutes.", code: error.kind },
         { status: 502 },
       );
   }
@@ -112,7 +114,10 @@ export async function POST(request: Request) {
   const imageMimeType = typeof body.prescription?.mimeType === "string" ? body.prescription.mimeType : "";
 
   if (imageData && (!/^image\/(jpeg|png|webp)$/.test(imageMimeType) || imageData.length > MAX_IMAGE_DATA_LENGTH)) {
-    return NextResponse.json({ error: "Choose a JPEG, PNG or WebP image under 8 MB." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Choose a clearer JPEG, PNG or WebP image under 4 MB.", code: "image-too-large" },
+      { status: 400 },
+    );
   }
 
   if (!symptoms && !imageData) {
@@ -127,12 +132,18 @@ export async function POST(request: Request) {
     return NextResponse.json(buildEmergencyResponse(lang));
   }
 
+  const hasImage = Boolean(imageData);
+  const parsedHistory = parseHistory(body.history);
+
   let generated: { text: string; model: string };
   try {
     generated = await generateText({
-      system: buildSystemInstruction(lang),
-      text: buildUserText({ symptoms, history: parseHistory(body.history), prescriptionContext }),
-      image: imageData ? { mimeType: imageMimeType, data: imageData } : undefined,
+      system: hasImage ? buildVisionSystemInstruction(lang) : buildSystemInstruction(lang),
+      text: hasImage
+        ? buildVisionUserText({ symptoms, history: parsedHistory, prescriptionContext })
+        : buildUserText({ symptoms, history: parsedHistory, prescriptionContext }),
+      image: hasImage ? { mimeType: imageMimeType, data: imageData } : undefined,
+      maxTokens: hasImage ? 2048 : 900,
     });
   } catch (error) {
     if (!(error instanceof LlmError)) throw error;
@@ -142,7 +153,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    return NextResponse.json(parseAssistantReply(generated.text, lang));
+    return NextResponse.json(parseAssistantReply(generated.text, lang, { hasImage }));
   } catch {
     console.error("AI assistant returned a reply that is not valid JSON");
     alertProviderFailure(new LlmError("bad-response", "The AI provider returned a reply that could not be parsed."));

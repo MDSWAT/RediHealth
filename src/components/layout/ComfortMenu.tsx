@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState, type CSSProperties } from "react";
+import { useIsPhone } from "@/lib/use-is-phone";
 import { ChevronDownIcon, CloseIcon } from "@/components/ui/icons";
 import { CAPSULE_PANEL, capsuleItem } from "@/components/layout/chrome-capsule";
 import { cn } from "@/lib/cn";
@@ -182,6 +183,7 @@ export function ComfortMenu({
 
   const isControlled = open !== undefined;
   const isOpen = isControlled ? open : uncontrolledOpen;
+  const isPhone = useIsPhone();
   const isOpenRef = useRef(isOpen);
   const onOpenChangeRef = useRef(onOpenChange);
 
@@ -499,15 +501,36 @@ export function ComfortMenu({
         {showLabel ? <span>{copy.comfortShort}</span> : <span className="sr-only">{copy.buttonLabel}</span>}
       </button>
 
+      {/* Phones: the panel is a bottom sheet (the shared phone-sheet surface) over a dimmed page. */}
+      {isPhone && (
+        <div
+          aria-hidden="true"
+          onClick={() => setOpen(false)}
+          className={cn(
+            "fixed inset-0 z-40 bg-ink-950/45 transition-opacity duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+            isOpen ? "opacity-100" : "pointer-events-none opacity-0",
+          )}
+        />
+      )}
       <div
         id={panelId}
         role="dialog"
         aria-label={copy.title}
         inert={!isOpen}
         data-open={isOpen}
-        className="capsule-panel fixed inset-x-2 top-[calc(var(--site-header-h,4rem)+0.5rem)] z-50 sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:pt-3"
+        style={isPhone ? ({ "--panel-origin": "bottom center" } as CSSProperties) : undefined}
+        className={cn(
+          "capsule-panel fixed inset-x-0 bottom-0 z-50 sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-full sm:pt-3",
+        )}
       >
-        <div className={cn(CAPSULE_PANEL, "w-auto max-w-full overflow-x-hidden p-2.5 sm:w-84 sm:p-4")}>
+        <div
+          className={cn(
+            CAPSULE_PANEL,
+            // Phones: a white sheet from the bottom edge, like search; dark only when the site is.
+            isPhone && "phone-sheet-light",
+            "w-auto max-w-full overflow-x-hidden p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:w-84 sm:p-4",
+          )}
+        >
           <div className="mb-3 flex items-center justify-between gap-2 border-b border-border/70 pb-2.5 dark:border-white/10">
             <h2 className="text-body font-semibold text-foreground dark:text-paper">{copy.title}</h2>
             <button
@@ -517,7 +540,11 @@ export function ComfortMenu({
                 triggerRef.current?.focus();
               }}
               aria-label={copy.close}
-              className="-mr-2 -mt-1.5 inline-flex h-11 w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-mist dark:hover:bg-white/10 dark:hover:text-paper"
+              className={
+                isPhone
+                  ? "sheet-close"
+                  : "-mr-2 -mt-1.5 inline-flex h-11 w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-mist dark:hover:bg-white/10 dark:hover:text-paper"
+              }
             >
               <CloseIcon className="h-4 w-4" />
             </button>

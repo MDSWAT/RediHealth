@@ -8,6 +8,7 @@ describe("local health topic summaries", () => {
     for (const area of informedHealthAreas) {
       const summary = getHealthSummary(code, area.id);
       expect(summary, `${code}/${area.id}`).toBeDefined();
+      expect(summary!.contentLanguage).toBe(code);
       expect(summary!.title).toBe(area.titles[code]);
       expect(summary!.intro.length).toBeGreaterThan(40);
       expect(summary!.details.length).toBeGreaterThan(40);

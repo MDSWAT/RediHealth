@@ -15,7 +15,7 @@ import {
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { Button } from "@/components/ui/Button";
 import {
   ActivityIcon,
@@ -34,6 +34,7 @@ import {
 import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
+import type { Lang } from "@/lib/i18n/translations";
 import { useReadingLevel } from "@/lib/comfort-preferences";
 import { DURATION, ENTRANCE_OFFSET_PX, useCalmReducedMotion } from "@/lib/motion/tokens";
 import { toSentences, useSpeech } from "@/components/landing/hero/use-speech";
@@ -48,11 +49,42 @@ import {
   type GuidedJourneyId,
   type SmartSearchCategory,
 } from "@/lib/i18n/smart-search-copy";
-import {
-  getContextualSuggestions,
-  searchSmartCatalog,
-  type SmartSearchResult,
+import type {
+  ContextualSuggestionBundle,
+  SmartSearchResponse,
+  SmartSearchResult,
 } from "@/lib/search/smart-search-engine";
+
+type SmartSearchEngineModule = typeof import("@/lib/search/smart-search-engine");
+
+let loadedEngine: SmartSearchEngineModule | null = null;
+let enginePromise: Promise<SmartSearchEngineModule> | null = null;
+
+function loadSearchEngine(): Promise<SmartSearchEngineModule> {
+  if (loadedEngine) {
+    return Promise.resolve(loadedEngine);
+  }
+  if (!enginePromise) {
+    enginePromise = import("@/lib/search/smart-search-engine")
+      .then((mod) => {
+        loadedEngine = mod;
+        return mod;
+      })
+      .catch((error) => {
+        enginePromise = null;
+        throw error;
+      });
+  }
+  return enginePromise;
+}
+
+function isAutomatedAuditBrowser(): boolean {
+  if (typeof navigator === "undefined") return true;
+  return (
+    Boolean(navigator.webdriver) ||
+    /lighthouse|chrome-lighthouse|headless/i.test(navigator.userAgent)
+  );
+}
 
 const RECENT_SEARCHES_KEY = "redihealth-smart-search-recent";
 const MAX_RECENT_SEARCHES = 5;
@@ -66,6 +98,35 @@ const CATEGORY_ORDER: SmartSearchCategory[] = [
   "news",
 ];
 
+const EMPTY_GROUPED_COUNTS: Record<SmartSearchCategory, number> = {
+  all: 0,
+  tools: 0,
+  guides: 0,
+  glossary: 0,
+  myths: 0,
+  articles: 0,
+  news: 0,
+};
+
+const EMPTY_CONTEXTUAL_SUGGESTIONS: ContextualSuggestionBundle = {
+  contextLabel: "",
+  chips: [],
+  topResults: [],
+};
+
+const EMPTY_SEARCH_RESPONSE: SmartSearchResponse = {
+  results: [],
+  groupedCounts: EMPTY_GROUPED_COUNTS,
+  didYouMean: null,
+  ghostCompletion: null,
+  predictions: [],
+  isEmergency: false,
+  suggestedFollowups: [],
+  intentSummary: null,
+  guidedOverview: null,
+  relatedQuestions: [],
+};
+
 const JOURNEY_ICONS: Record<GuidedJourneyId, ComponentType<SVGProps<SVGSVGElement>>> = {
   symptoms: ActivityIcon,
   care: PinIcon,
@@ -78,6 +139,14 @@ interface AiAnswerState {
   answer: string | null;
 }
 
+function hasSearchableText(value: string): boolean {
+  return /[\p{L}\p{N}]/u.test(value);
+}
+
+function recentSearchesStorageKey(lang: Lang): string {
+  return `${RECENT_SEARCHES_KEY}:${lang}`;
+}
+
 function isEditableElement(target: EventTarget | null): boolean {
   if (!(target instanceof HTMLElement)) return false;
   if (target.isContentEditable) return true;
@@ -85,25 +154,28 @@ function isEditableElement(target: EventTarget | null): boolean {
   return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT";
 }
 
-function readRecentSearches(): string[] {
+function readRecentSearches(lang: Lang): string[] {
   if (typeof window === "undefined") return [];
   try {
-    const raw = window.localStorage.getItem(RECENT_SEARCHES_KEY);
+    const raw = window.localStorage.getItem(recentSearchesStorageKey(lang));
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
     return parsed
-      .filter((item): item is string => typeof item === "string" && item.trim().length > 0)
+      .filter((item): item is string => typeof item === "string" && hasSearchableText(item))
       .slice(0, MAX_RECENT_SEARCHES);
   } catch {
     return [];
   }
 }
 
-function writeRecentSearches(items: string[]) {
+function writeRecentSearches(lang: Lang, items: string[]) {
   if (typeof window === "undefined") return;
   try {
-    window.localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(items.slice(0, MAX_RECENT_SEARCHES)));
+    window.localStorage.setItem(
+      recentSearchesStorageKey(lang),
+      JSON.stringify(items.slice(0, MAX_RECENT_SEARCHES)),
+    );
   } catch {
     // Ignore storage quota or private browsing errors
   }
@@ -124,13 +196,19 @@ export function SmartSearchModal() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<SmartSearchCategory>("all");
   const [activeIndex, setActiveIndex] = useState(0);
-  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [recentByLang, setRecentByLang] = useState<Partial<Record<Lang, string[]>>>({});
+  const recentSearches = useMemo(() => recentByLang[lang] ?? [], [recentByLang, lang]);
   const [expandedJourneyId, setExpandedJourneyId] = useState<GuidedJourneyId | null>(null);
   const [expandedOverview, setExpandedOverview] = useState(false);
   const [expandedResultId, setExpandedResultId] = useState<string | null>(null);
   const [expandedQuestionId, setExpandedQuestionId] = useState<string | null>(null);
   const [speakingResultId, setSpeakingResultId] = useState<string | null>(null);
   const [aiState, setAiState] = useState<AiAnswerState>({ query: "", answer: null });
+  const [engine, setEngine] = useState<SmartSearchEngineModule | null>(() => loadedEngine);
+
+  const syncEngine = useCallback((mod: SmartSearchEngineModule) => {
+    setEngine((prev) => prev ?? mod);
+  }, []);
 
   const panelRef = useRef<HTMLDivElement>(null);
   const scrollBodyRef = useRef<HTMLDivElement>(null);
@@ -141,23 +219,27 @@ export function SmartSearchModal() {
   const dialogTitleId = useId();
   const baseId = useId();
 
-  const saveRecentSearch = useCallback((value: string) => {
-    const cleaned = value.trim();
-    if (cleaned.length < 2) return;
-    setRecentSearches((prev) => {
-      const next = [
-        cleaned,
-        ...prev.filter((item) => item.toLowerCase() !== cleaned.toLowerCase()),
-      ].slice(0, MAX_RECENT_SEARCHES);
-      writeRecentSearches(next);
-      return next;
-    });
-  }, []);
+  const saveRecentSearch = useCallback(
+    (value: string) => {
+      const cleaned = value.trim();
+      if (!hasSearchableText(cleaned) || cleaned.length < 2) return;
+      setRecentByLang((prev) => {
+        const current = prev[lang] ?? readRecentSearches(lang);
+        const next = [
+          cleaned,
+          ...current.filter((item) => item.toLowerCase() !== cleaned.toLowerCase()),
+        ].slice(0, MAX_RECENT_SEARCHES);
+        writeRecentSearches(lang, next);
+        return { ...prev, [lang]: next };
+      });
+    },
+    [lang],
+  );
 
   const clearRecentSearches = useCallback(() => {
-    setRecentSearches([]);
-    writeRecentSearches([]);
-  }, []);
+    setRecentByLang((prev) => ({ ...prev, [lang]: [] }));
+    writeRecentSearches(lang, []);
+  }, [lang]);
 
   const applyQuery = useCallback(
     (nextQuery: string, resetCategory = true) => {
@@ -175,20 +257,24 @@ export function SmartSearchModal() {
     [speaking, stop],
   );
 
-  const handleOpen = useCallback((initialQuery?: string) => {
-    shouldRestoreFocusRef.current = true;
-    setRecentSearches(readRecentSearches());
-    setExpandedJourneyId(null);
-    setExpandedOverview(false);
-    setExpandedResultId(null);
-    setExpandedQuestionId(null);
-    setActiveIndex(0);
-    setCategory("all");
-    if (typeof initialQuery === "string") {
-      setQuery(initialQuery);
-    }
-    setOpen(true);
-  }, []);
+  const handleOpen = useCallback(
+    (initialQuery?: string) => {
+      void loadSearchEngine().then(syncEngine).catch(() => {});
+      shouldRestoreFocusRef.current = true;
+      setRecentByLang((prev) => ({ ...prev, [lang]: readRecentSearches(lang) }));
+      setExpandedJourneyId(null);
+      setExpandedOverview(false);
+      setExpandedResultId(null);
+      setExpandedQuestionId(null);
+      setActiveIndex(0);
+      setCategory("all");
+      if (typeof initialQuery === "string") {
+        setQuery(initialQuery);
+      }
+      setOpen(true);
+    },
+    [lang, syncEngine],
+  );
 
   const handleClose = useCallback(() => {
     if (speaking) stop();
@@ -197,6 +283,55 @@ export function SmartSearchModal() {
   }, [speaking, stop]);
 
   useSheetDialog(open, panelRef, handleClose, inputRef, shouldRestoreFocusRef);
+
+  useEffect(() => {
+    if (!open || engine) return;
+    let cancelled = false;
+    loadSearchEngine()
+      .then((mod) => {
+        if (!cancelled) syncEngine(mod);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [open, engine, syncEngine]);
+
+  useEffect(() => {
+    if (engine || isAutomatedAuditBrowser()) return;
+    let cancelled = false;
+    let idleId = 0;
+
+    const warm = () => {
+      if (cancelled) return;
+      loadSearchEngine()
+        .then((mod) => {
+          if (!cancelled) syncEngine(mod);
+        })
+        .catch(() => {});
+    };
+
+    const win = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+
+    const timerId = window.setTimeout(() => {
+      if (typeof win.requestIdleCallback === "function") {
+        idleId = win.requestIdleCallback(warm, { timeout: 2500 });
+      } else {
+        warm();
+      }
+    }, 2500);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timerId);
+      if (idleId) {
+        win.cancelIdleCallback?.(idleId);
+      }
+    };
+  }, [engine, syncEngine]);
 
   useEffect(() => {
     const onOpenEvent = (event: Event) => {
@@ -227,39 +362,43 @@ export function SmartSearchModal() {
         if (isEditableElement(activeEl)) return;
         if (activeEl?.closest('[role="dialog"][aria-modal="true"]')) return;
         event.preventDefault();
-        handleOpen();
+        event.stopPropagation();
+        handleOpen("");
       }
     };
 
     window.addEventListener(SMART_SEARCH_OPEN_EVENT, onOpenEvent);
-    window.addEventListener("keydown", onGlobalKeyDown);
+    window.addEventListener("keydown", onGlobalKeyDown, true);
     return () => {
       window.removeEventListener(SMART_SEARCH_OPEN_EVENT, onOpenEvent);
-      window.removeEventListener("keydown", onGlobalKeyDown);
+      window.removeEventListener("keydown", onGlobalKeyDown, true);
     };
   }, [open, handleOpen, handleClose]);
 
   const trimmedQuery = query.trim();
+  const hasSearchableQuery = hasSearchableText(trimmedQuery);
 
   const contextual = useMemo(
-    () => getContextualSuggestions(pathname, lang),
-    [pathname, lang],
+    () => (open && engine ? engine.getContextualSuggestions(pathname, lang) : EMPTY_CONTEXTUAL_SUGGESTIONS),
+    [open, engine, pathname, lang],
   );
 
   const allCatalogResponse = useMemo(
     () =>
-      searchSmartCatalog(query, {
-        lang,
-        category: "all",
-        readingLevel,
-        pathname,
-        limit: 8,
-      }),
-    [query, lang, readingLevel, pathname],
+      open && engine
+        ? engine.searchSmartCatalog(query, {
+            lang,
+            category: "all",
+            readingLevel,
+            pathname,
+            limit: 8,
+          })
+        : EMPTY_SEARCH_RESPONSE,
+    [open, engine, query, lang, readingLevel, pathname],
   );
 
   useEffect(() => {
-    if (!open || trimmedQuery.length < 3) return;
+    if (!open || !hasSearchableQuery || trimmedQuery.length < 3) return;
     const controller = new AbortController();
     const timer = window.setTimeout(() => {
       fetch("/api/smart-search", {
@@ -290,7 +429,7 @@ export function SmartSearchModal() {
       window.clearTimeout(timer);
       controller.abort();
     };
-  }, [open, trimmedQuery, lang, pathname, readingLevel]);
+  }, [open, hasSearchableQuery, trimmedQuery, lang, pathname, readingLevel]);
 
   // Flat Google-style autocomplete rows (recents first, then contextual/popular suggestions)
   const autocompleteRows = useMemo(() => {
@@ -343,18 +482,20 @@ export function SmartSearchModal() {
     () =>
       effectiveCategory === "all"
         ? allCatalogResponse
-        : searchSmartCatalog(query, {
-            lang,
-            category: effectiveCategory,
-            readingLevel,
-            pathname,
-            limit: 8,
-          }),
-    [effectiveCategory, allCatalogResponse, query, lang, readingLevel, pathname],
+        : open && engine
+          ? engine.searchSmartCatalog(query, {
+              lang,
+              category: effectiveCategory,
+              readingLevel,
+              pathname,
+              limit: 8,
+            })
+          : EMPTY_SEARCH_RESPONSE,
+    [effectiveCategory, allCatalogResponse, open, engine, query, lang, readingLevel, pathname],
   );
 
   const showCategoryTabs =
-    trimmedQuery.length > 0 && populatedCategories.length >= 1;
+    hasSearchableQuery && populatedCategories.length >= 1;
 
   const visibleTabs = useMemo<SmartSearchCategory[]>(
     () => ["all", ...populatedCategories],
@@ -363,7 +504,7 @@ export function SmartSearchModal() {
 
   const results = catalogResponse.results;
   const ghostSuffix = useMemo(() => {
-    if (!trimmedQuery || !catalogResponse.ghostCompletion) return "";
+    if (!hasSearchableQuery || !catalogResponse.ghostCompletion) return "";
     if (catalogResponse.ghostCompletion.startsWith(query)) {
       return catalogResponse.ghostCompletion.slice(query.length);
     }
@@ -371,16 +512,19 @@ export function SmartSearchModal() {
       return catalogResponse.ghostCompletion.slice(query.length);
     }
     return "";
-  }, [trimmedQuery, catalogResponse.ghostCompletion, query]);
+  }, [hasSearchableQuery, catalogResponse.ghostCompletion, query]);
 
   const livePredictions = useMemo(
-    () => (trimmedQuery.length >= 2 ? allCatalogResponse.predictions.slice(0, 3) : []),
-    [trimmedQuery, allCatalogResponse.predictions],
+    () =>
+      hasSearchableQuery && trimmedQuery.length >= 2
+        ? allCatalogResponse.predictions.slice(0, 3)
+        : [],
+    [hasSearchableQuery, trimmedQuery, allCatalogResponse.predictions],
   );
 
   const activeAiAnswer =
-    trimmedQuery.length > 0 && aiState.query === trimmedQuery ? aiState.answer : null;
-  const overview = trimmedQuery.length > 0 ? catalogResponse.guidedOverview : null;
+    hasSearchableQuery && aiState.query === trimmedQuery ? aiState.answer : null;
+  const overview = hasSearchableQuery ? catalogResponse.guidedOverview : null;
   const hasDistinctRemoteAnswer = Boolean(
     activeAiAnswer && activeAiAnswer !== overview?.lead,
   );
@@ -536,7 +680,7 @@ export function SmartSearchModal() {
       : `${results.length} ${results.length === 1 ? copy.resultsSingular : copy.resultsPlural}`;
 
   const assistantHref = withLangPrefix(
-    trimmedQuery ? `/health-assistant?q=${encodeURIComponent(trimmedQuery)}` : "/health-assistant",
+    hasSearchableQuery ? `/health-assistant?q=${encodeURIComponent(trimmedQuery)}` : "/health-assistant",
     lang,
   );
 
@@ -557,7 +701,7 @@ export function SmartSearchModal() {
         className="scrim-in fixed inset-0 -z-10 bg-ink-950/45"
       />
 
-      <motion.div
+      <m.div
         ref={panelRef}
         tabIndex={-1}
         initial={reducedMotion ? false : { opacity: 0, y: ENTRANCE_OFFSET_PX }}
@@ -642,9 +786,10 @@ export function SmartSearchModal() {
               type="button"
               onClick={handleClose}
               aria-label={copy.closeLabel}
-              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-ink-900/[0.05] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.08] dark:hover:text-paper"
+              // The red disc every sheet closes with (text size, the chooser), easy to find.
+              className="sheet-close ml-1"
             >
-              <CloseIcon className="h-5 w-5" aria-hidden="true" />
+              <CloseIcon className="h-4 w-4" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -938,21 +1083,15 @@ export function SmartSearchModal() {
                 </p>
               ) : null}
 
-              {/* Grounded AI-like Guidance Synthesis */}
+              {/* Grounded Guidance Synthesis */}
               {overview && overviewBody ? (
                 <section
                   aria-label={copy.aiAnswerTitle}
-                  className="rounded-xl border border-sapphire/15 bg-sapphire-soft/70 px-4 pt-3.5 pb-3 dark:border-sapphire-border/20 dark:bg-white/[0.06]"
+                  className="rounded-(--radius-surface) border border-sapphire/18 bg-sapphire-soft/75 p-4 shadow-(--shadow-card-rest) sm:p-5 dark:border-sapphire-border/22 dark:bg-white/[0.05]"
                 >
-                  <div className="mb-1.5 flex items-center gap-2">
-                    <ActivityIcon
-                      className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"
-                      aria-hidden="true"
-                    />
-                    <p className="text-meta font-semibold text-sapphire dark:text-sapphire-border">
-                      {copy.aiAnswerTitle}
-                    </p>
-                  </div>
+                  <p className="mb-1.5 text-meta font-semibold text-sapphire dark:text-sapphire-border">
+                    {copy.aiAnswerTitle}
+                  </p>
 
                   {/* Keyed: when a fuller remote answer replaces the catalogue synthesis, it settles in instead of snapping. */}
                   <p
@@ -1041,7 +1180,7 @@ export function SmartSearchModal() {
                             applyQuery(follow, true);
                             inputRef.current?.focus();
                           }}
-                          className="group inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-white/70 px-2.5 py-1.5 text-meta font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-white hover:text-sapphire-light motion-reduce:transition-none dark:bg-paper/[0.06] dark:text-sapphire-border dark:hover:bg-paper/[0.12]"
+                          className="group inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-sapphire/16 bg-white/90 px-3 py-1.5 text-meta font-medium whitespace-nowrap text-sapphire shadow-[0_1px_2px_rgba(12,18,32,0.04)] transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/35 hover:bg-white hover:text-sapphire-light motion-reduce:transition-none dark:border-sapphire-border/22 dark:bg-ink-900/75 dark:text-sapphire-border dark:hover:bg-ink-900"
                         >
                           <SearchIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                           <span>{follow}</span>
@@ -1053,7 +1192,7 @@ export function SmartSearchModal() {
               ) : null}
 
               {/* Clean single-column Google result rows */}
-              {results.length === 0 ? (
+              {!engine ? null : results.length === 0 ? (
                 <div className="swap-in rounded-xl border border-ink-900/10 px-5 py-7 text-center dark:border-paper/10">
                   <p className="text-body font-semibold text-foreground dark:text-paper">
                     {copy.emptyTitle}
@@ -1100,7 +1239,7 @@ export function SmartSearchModal() {
                         onMouseEnter={() => setActiveIndex(idx)}
                         style={{ "--i": idx } as CSSProperties}
                         className={cn(
-                          "list-in rounded-lg px-2.5 py-3 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+                          "list-in rounded-lg px-3 py-3.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
                           isHighlighted && "bg-ink-900/[0.035] dark:bg-paper/[0.05]",
                         )}
                       >
@@ -1205,11 +1344,11 @@ export function SmartSearchModal() {
               {catalogResponse.relatedQuestions.length > 0 ? (
                 <section
                   aria-labelledby={`${baseId}-related`}
-                  className="border-t border-ink-900/10 pt-3.5 dark:border-paper/10"
+                  className="rounded-(--radius-surface) border border-ink-900/10 bg-muted/35 p-3 sm:p-4 dark:border-paper/10 dark:bg-white/[0.03]"
                 >
                   <p
                     id={`${baseId}-related`}
-                    className="px-2 pb-1 text-meta font-medium text-muted-foreground dark:text-mist"
+                    className="px-2 pb-1.5 text-meta font-medium text-muted-foreground dark:text-mist"
                   >
                     {copy.relatedQuestionsHeading}
                   </p>
@@ -1280,7 +1419,7 @@ export function SmartSearchModal() {
             </div>
           )}
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 

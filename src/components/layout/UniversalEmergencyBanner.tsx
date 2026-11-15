@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useSyncExternalStore } from "react";
+import React, { useEffect, useState, useSyncExternalStore } from "react";
 import { CloseIcon, PhoneIcon } from "@/components/ui/icons";
 import { Container, type ContainerSize } from "@/components/ui/Container";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
@@ -8,6 +8,7 @@ import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations } from "@/lib/i18n/translations";
 import { DURATION, useCalmReducedMotion } from "@/lib/motion/tokens";
+import { EMERGENCY_DISMISS_COOKIE } from "@/lib/emergency-bar";
 
 function useSafeLanguage() {
   try {
@@ -26,6 +27,14 @@ function useSafeLanguage() {
 }
 
 const DISMISS_KEY = "redi:emergency-bar-dismissed";
+
+function rememberForServer() {
+  try {
+    document.cookie = `${EMERGENCY_DISMISS_COOKIE}=1; Max-Age=31536000; Path=/; SameSite=Lax`;
+  } catch {
+    // Cookies blocked: local storage still hides the bar after the page has loaded.
+  }
+}
 const listeners = new Set<() => void>();
 let dismissedThisView = false;
 
@@ -48,6 +57,7 @@ function dismiss() {
   } catch {
     // Storage blocked: the bar still hides for this page view.
   }
+  rememberForServer();
   dismissedThisView = true;
   listeners.forEach((listener) => listener());
 }
@@ -61,9 +71,12 @@ function dismiss() {
 export function UniversalEmergencyBanner({
   tone = "light",
   size = "default",
+  initiallyDismissed = false,
 }: {
   tone?: "light" | "dark";
   size?: ContainerSize;
+  /** From the request's cookie: the reader closed the bar on this device, so render nothing. */
+  initiallyDismissed?: boolean;
 }) {
   const { lang, t } = useSafeLanguage();
   const e = t.emergency;
@@ -74,9 +87,14 @@ export function UniversalEmergencyBanner({
   const reducedMotion = useCalmReducedMotion();
   const dismissed = useSyncExternalStore(
     subscribe,
-    () => dismissedThisView || readDismissed(),
-    () => false,
+    () => initiallyDismissed || dismissedThisView || readDismissed(),
+    () => initiallyDismissed,
   );
+
+  // Closed before the cookie existed: write it now, so from the next visit the server leaves the bar out.
+  useEffect(() => {
+    if (!initiallyDismissed && readDismissed()) rememberForServer();
+  }, [initiallyDismissed]);
 
   if (dismissed) {
     return null;

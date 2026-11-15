@@ -2,7 +2,7 @@ import { cn } from "@/lib/cn";
 
 /**
  * The header's utility capsule: one rounded bar that holds search, text size, language, account,
- * install, the "Start here" action and (below xl) the menu button. Every control in it is a
+ * install, the "Start here" action and (below lg) the menu button. Every control in it is a
  * segment of the same bar, so none of them carries a box of its own.
  *
  * `onHero` is true while the header floats over the dark landing hero (glass on ink); otherwise

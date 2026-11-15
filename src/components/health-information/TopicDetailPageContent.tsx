@@ -22,8 +22,10 @@ import { getHealthMyths, type HealthMyth } from "@/lib/i18n/health-myths";
 import { TopicHeroSection } from "./TopicHeroSection";
 import {
   HEALTH_ARTICLE_CONTAINER_CLASS,
+  HEALTH_ARTICLE_WITH_TOC_GRID_CLASS,
   HealthArticleToc,
 } from "./HealthArticleShell";
+import { HealthArticleTocRail } from "./HealthArticleTocRail";
 import { WhyItMattersInfographic } from "./WhyItMattersInfographic";
 import { ActionableStepsChecklist } from "./ActionableStepsChecklist";
 import { WarningSignsEmergencyCard } from "./WarningSignsEmergencyCard";
@@ -316,19 +318,22 @@ export function TopicDetailPageContent({
 
       <div className="bg-background pb-12 pt-6 sm:pb-16 sm:pt-8 print:py-4">
         <Container>
-          <div
-            className={`${HEALTH_ARTICLE_CONTAINER_CLASS} space-y-10 sm:space-y-12 print:space-y-6`}
-            data-health-article-column
-          >
-            <HealthArticleToc
-              title={ui.tocHeading}
-              ariaLabel={ui.tocAria}
-              items={tocSections.map((item) => ({
+          {(() => {
+            const toc = {
+              title: ui.tocHeading,
+              ariaLabel: ui.tocAria,
+              items: tocSections.map((item) => ({
                 href: `#${item.id}`,
                 label: item.label,
-              }))}
-              className="mt-0"
-            />
+              })),
+            };
+            return (
+              <div className={HEALTH_ARTICLE_WITH_TOC_GRID_CLASS}>
+                <div
+                  className={`${HEALTH_ARTICLE_CONTAINER_CLASS} space-y-10 sm:space-y-12 print:space-y-6`}
+                  data-health-article-column
+                >
+                  <HealthArticleToc {...toc} className="mt-0 lg:hidden" />
 
             {/* Lead paragraph */}
             <section
@@ -404,6 +409,10 @@ export function TopicDetailPageContent({
               className="mt-12 print:mt-6"
             />
           </div>
+                <HealthArticleTocRail {...toc} />
+              </div>
+            );
+          })()}
         </Container>
       </div>
 

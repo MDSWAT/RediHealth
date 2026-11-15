@@ -27,6 +27,8 @@ interface BeforeInstallPromptEvent extends Event {
 
 const INSTALLED_STORAGE_KEY = "redihealth:pwa-installed:v1";
 const SNOOZE_STORAGE_KEY = "redihealth:pwa-snooze:v1";
+const VISITS_STORAGE_KEY = "redihealth:pwa-visits:v1";
+const VISIT_COUNTED_SESSION_KEY = "redihealth:pwa-visit-counted:v1";
 const BANNER_DELAY_MS = 4_000;
 const SNOOZE_DURATION_MS = 7 * 24 * 60 * 60 * 1_000;
 const VISIBILITY_UPDATE_THROTTLE_MS = 60_000;
@@ -61,6 +63,12 @@ let initialized = false;
 let deferredPrompt: BeforeInstallPromptEvent | null = null;
 let swRegistration: ServiceWorkerRegistration | null = null;
 let bannerTimer: number | null = null;
+/**
+ * The install banner sits over the bottom of the screen, where the home page's main action is.
+ * It is held back on a first visit until the visitor has moved to a second page; on a later
+ * visit it may show after the usual delay.
+ */
+let bannerEarned = false;
 let updateInterval: number | null = null;
 let lastUpdateCheckAt = 0;
 
@@ -114,6 +122,28 @@ function isSnoozeExpired(): boolean {
   const snoozeUntil = Number(raw);
   if (!Number.isFinite(snoozeUntil)) return true;
   return Date.now() >= snoozeUntil;
+}
+
+/** Counts this browser session once and returns how many sessions this device has had. */
+function countVisit(): number {
+  if (typeof window === "undefined") return 0;
+  const previous = Number(safeGetStorage(VISITS_STORAGE_KEY)) || 0;
+  try {
+    if (window.sessionStorage.getItem(VISIT_COUNTED_SESSION_KEY) === "1") return previous;
+    window.sessionStorage.setItem(VISIT_COUNTED_SESSION_KEY, "1");
+  } catch {
+    // No session storage (private mode): treat every load as a first visit.
+    return previous;
+  }
+  safeSetStorage(VISITS_STORAGE_KEY, String(previous + 1));
+  return previous + 1;
+}
+
+/** Called when the visitor moves to another page: from then on the install banner may show. */
+export function markPwaEngaged(): void {
+  if (bannerEarned) return;
+  bannerEarned = true;
+  if (initialized) scheduleBanner();
 }
 
 function clearBannerTimer(): void {
@@ -188,6 +218,7 @@ function scheduleBanner(): void {
   if (typeof window === "undefined") return;
   clearBannerTimer();
   if (
+    !bannerEarned ||
     snapshot.isStandalone ||
     isInstalledFlagSet() ||
     !isSnoozeExpired() ||
@@ -200,6 +231,7 @@ function scheduleBanner(): void {
   bannerTimer = window.setTimeout(() => {
     bannerTimer = null;
     if (
+      bannerEarned &&
       !snapshot.isStandalone &&
       !isInstalledFlagSet() &&
       isSnoozeExpired() &&
@@ -243,6 +275,7 @@ function attachRegistrationLifecycle(registration: ServiceWorkerRegistration): v
 export function initPwaRuntime(): void {
   if (typeof window === "undefined" || initialized) return;
   initialized = true;
+  if (countVisit() >= 2) bannerEarned = true;
 
   const isStandalone = checkIsStandalone();
   const platform = computeCurrentPlatform(false);
@@ -490,6 +523,7 @@ export function _resetPwaRuntimeForTest(): void {
   }
   updateInterval = null;
   initialized = false;
+  bannerEarned = false;
   deferredPrompt = null;
   swRegistration = null;
   lastUpdateCheckAt = 0;

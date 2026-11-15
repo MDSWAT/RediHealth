@@ -912,10 +912,14 @@ export function HealthCheckExplorer() {
   const gridRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLElement>(null);
-  /** Phones open in list-first mode without fetching 3D assets until Body picture is selected. */
+  /** Phones open on the 3D body; the list stays one tap away, and is the fallback where the body cannot be drawn. */
   const [stageExpanded, setStageExpanded] = useState(false);
   const [mobileAreaModeOverride, setMobileAreaModeOverride] = useState<"3d" | "list" | null>(null);
-  const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "list";
+  const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "3d";
+  /** While the body fills the screen, a tap only selects: Save selection moves on. */
+  const bodyFullScreenRef = useRef(false);
+  /** Lifts the stage above the question sheet and the site header while the body fills the screen. */
+  const [bodyFullScreen, setBodyFullScreen] = useState(false);
   const mobileListOnly = effectiveMobileAreaMode === "list" && stepId !== "result";
   const stageExpandedRef = useRef(false);
   const sheetDragRef = useRef<{ y: number; dy: number } | null>(null);
@@ -1417,7 +1421,7 @@ export function HealthCheckExplorer() {
     collapseSheetSoon();
     setDetail(null);
     handleSelectPart(partId);
-    if (stepRef.current === "area") {
+    if (stepRef.current === "area" && !bodyFullScreenRef.current) {
       advanceSoon("area", nextStepAfterArea(partId));
     }
   }
@@ -2003,7 +2007,9 @@ export function HealthCheckExplorer() {
             stepId === "result"
               ? "hidden"
               : bodyShown
-                ? `${mobileListOnly ? "max-lg:hidden " : ""}mt-4 sm:mt-5 max-lg:sticky max-lg:top-[var(--chrome-h,0px)] max-lg:z-0 lg:col-start-1 lg:row-start-2 lg:mt-3.5`
+                ? `${mobileListOnly ? "max-lg:hidden " : ""}mt-4 sm:mt-5 max-lg:sticky max-lg:top-[var(--chrome-h,0px)] ${
+                    bodyFullScreen ? "relative z-[70]" : "max-lg:z-0"
+                  } lg:col-start-1 lg:row-start-2 lg:mt-3.5`
                 : stepId === "area"
                   ? "mt-5 mb-4"
                   : "hidden"
@@ -2039,6 +2045,13 @@ export function HealthCheckExplorer() {
             decorative={stepId !== "area" && stepId !== "spot"}
             selectionLabel={detailLabel ?? areaLabel}
             onBodyShownChange={setBodyShown}
+            onFullScreenChange={(fullScreen) => {
+              bodyFullScreenRef.current = fullScreen;
+              setBodyFullScreen(fullScreen);
+            }}
+            onConfirmSelection={() => {
+              if (selectedPart && stepRef.current === "area") goToStep(nextStepAfterArea(selectedPart));
+            }}
           />
         </section>
 

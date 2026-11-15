@@ -13,8 +13,9 @@ import {
   type MouseEvent,
 } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowRightIcon, CheckIcon, ChevronDownIcon, GlobeIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, ChevronDownIcon, GlobeIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { markManualLocaleSelection } from "@/lib/i18n/locale-detection";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { languages, type Lang } from "@/lib/i18n/translations";
 import { CAPSULE_PANEL, CAPSULE_PANEL_LABEL, capsuleItem } from "@/components/layout/chrome-capsule";
@@ -80,6 +81,20 @@ const ISO_BADGE: Record<Lang, string> = {
   rom: "ROM",
 };
 
+/**
+ * Each language's name in the reader's current language, shown quietly beside its own name so a
+ * reader can find their language either way. Romani readers see only the native names: the
+ * Romani names for the other languages are not settled enough to print.
+ */
+const NAME_IN: Partial<Record<Lang, Record<Lang, string>>> = {
+  en: { ro: "Romanian", en: "English", hr: "Croatian", rom: "Romani", sq: "Albanian", it: "Italian", ru: "Russian" },
+  ro: { ro: "Română", en: "Engleză", hr: "Croată", rom: "Romani", sq: "Albaneză", it: "Italiană", ru: "Rusă" },
+  sq: { ro: "Rumanisht", en: "Anglisht", hr: "Kroatisht", rom: "Gjuha rome", sq: "Shqip", it: "Italisht", ru: "Rusisht" },
+  it: { ro: "Rumeno", en: "Inglese", hr: "Croato", rom: "Romanì", sq: "Albanese", it: "Italiano", ru: "Russo" },
+  hr: { ro: "Rumunjski", en: "Engleski", hr: "Hrvatski", rom: "Romski", sq: "Albanski", it: "Talijanski", ru: "Ruski" },
+  ru: { ro: "Румынский", en: "Английский", hr: "Хорватский", rom: "Романи", sq: "Албанский", it: "Итальянский", ru: "Русский" },
+};
+
 // Romanian first (the site's default language), then the others in a fixed order on every page.
 const LANGUAGE_ORDER: Lang[] = ["ro", "en", "hr", "rom", "sq", "it", "ru"];
 const orderedLanguages = [...languages].sort(
@@ -89,7 +104,8 @@ const orderedLanguages = [...languages].sort(
 /**
  * Language choice. Each option is a real link to the same page in that language
  * (hreflang, and the name is spoken in its own language); a click keeps the query and hash.
- * Both variants are one trigger that opens the same list; the current language is bold and ticked.
+ * Both variants are one trigger that opens the same list; the current language is bold on a light
+ * tint inside the site's chosen-option outline (no tick: status icons are not used on this site).
  * Desktop/tablet: a compact ISO trigger with the list in a popover.
  * Phone menu: one full-width 44px row showing the current language name; the list opens in the
  * flow below it, so the closed menu spends a single row on language.
@@ -243,6 +259,7 @@ export function LanguageSelector({
   }
 
   function handleSelect(event: MouseEvent<HTMLAnchorElement>, code: Lang) {
+    markManualLocaleSelection();
     // Plain clicks go through setLang so the query string and hash survive; modified clicks open the link.
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
     event.preventDefault();
@@ -268,7 +285,7 @@ export function LanguageSelector({
         {orderedLanguages.map((item, idx) => {
           const isSelected = item.code === lang;
           return (
-            <li key={item.code} style={{ "--i": idx } as CSSProperties} className={cn(isOpen && "list-in")}>
+            <li key={item.code}>
               <a
                 ref={(el) => {
                   optionRefs.current[idx] = el;
@@ -281,12 +298,11 @@ export function LanguageSelector({
                 className={cn(
                   "flex min-h-11 w-full max-w-full items-center justify-between gap-2 whitespace-nowrap rounded-(--radius-control) px-3 py-2 text-body leading-snug press-row focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
                   isSelected
-                    ? "bg-sapphire-soft font-semibold text-sapphire dark:bg-white/10 dark:text-paper"
-                    : "text-foreground hover:bg-muted dark:text-paper dark:hover:bg-white/5",
+                    ? "bg-sapphire/[0.08] font-semibold text-sapphire dark:bg-white/12 dark:text-paper"
+                    : "text-foreground hover:bg-muted/80 dark:text-paper dark:hover:bg-white/[0.07]",
                 )}
               >
                 <span className="min-w-0 flex-1 truncate">{item.label}</span>
-                {isSelected ? <CheckIcon className="h-5 w-5 shrink-0" /> : null}
               </a>
             </li>
           );
@@ -295,21 +311,19 @@ export function LanguageSelector({
 
       {/* The glossary pointer is for Romani readers, so it shows only when the site is in Romani: one short line. */}
       {showRomaniNote ? (
-        <Link
-          href={glossaryHref}
-          onClick={() => {
-            setOpen(false);
-            onNavigate?.();
-          }}
-          style={{ "--i": orderedLanguages.length } as CSSProperties}
-          className={cn(
-            isOpen && "list-in",
-            "mt-1 flex min-h-11 max-w-full items-center justify-between gap-3 whitespace-nowrap rounded-(--radius-control) px-3 text-meta leading-snug text-muted-foreground press-row hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper dark:text-mist dark:hover:bg-white/5 dark:hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
-          )}
-        >
-          <span className="min-w-0 flex-1">{copy.romaniNote}</span>
-          <ArrowRightIcon className="h-3.5 w-3.5 shrink-0 opacity-70" />
-        </Link>
+        <div className="mt-1.5 border-t border-border/80 pt-1.5 dark:border-white/10">
+          <Link
+            href={glossaryHref}
+            onClick={() => {
+              setOpen(false);
+              onNavigate?.();
+            }}
+            className="flex min-h-11 max-w-full items-center justify-between gap-2.5 whitespace-nowrap rounded-(--radius-control) px-3 text-[13.5px] font-medium leading-snug text-sapphire/90 press-row hover:bg-sapphire/[0.06] hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper dark:text-sapphire-border dark:hover:bg-white/[0.06] dark:hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+          >
+            <span className="min-w-0 flex-1">{copy.romaniNote}</span>
+            <ArrowRightIcon className="h-3.5 w-3.5 shrink-0 opacity-75" />
+          </Link>
+        </div>
       ) : null}
     </>
   );
@@ -367,29 +381,52 @@ export function LanguageSelector({
         >
           <div className="overflow-hidden" inert={!isOpen}>
             <div className="px-1 pt-1.5 pb-3">
-              <ul aria-label={copy.label} onKeyDown={handleListKeyDown} className="grid grid-cols-2 gap-1.5">
+              {/* One grouped list, like a phone's own settings: each language in its own name, and
+                  quietly beside it the same name in the reader's language. The current one is bold on
+                  a light tint inside the site's chosen-option outline, no tick. Rows settle in one
+                  after another as the list grows open. */}
+              <ul
+                aria-label={copy.label}
+                onKeyDown={handleListKeyDown}
+                data-open={isOpen ? "" : undefined}
+                className="lang-rows divide-y divide-ink-900/8 overflow-hidden rounded-2xl border border-ink-900/10 bg-white dark:divide-white/8 dark:border-white/10 dark:bg-white/[0.04]"
+              >
                 {orderedLanguages.map((item, idx) => {
                   const isSelected = item.code === lang;
+                  const nameHere = NAME_IN[lang]?.[item.code];
                   return (
-                    <li key={item.code} style={{ "--i": idx } as CSSProperties} className={cn(isOpen && "list-in")}>
+                    <li key={item.code} className="lang-row" style={{ "--row": idx } as CSSProperties}>
                       <a
                         ref={(el) => {
                           optionRefs.current[idx] = el;
                         }}
                         href={withLangPrefix(pathname, item.code)}
                         hrefLang={item.code}
-                        lang={item.code}
                         aria-current={isSelected ? "true" : undefined}
                         onClick={(event) => handleSelect(event, item.code)}
                         className={cn(
-                          "flex min-h-11 max-w-full items-center justify-between gap-2 whitespace-nowrap rounded-lg border px-3 py-2 text-body leading-snug press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper",
+                          "flex min-h-13 max-w-full items-center gap-3 whitespace-nowrap px-4 py-2 text-left press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper",
                           isSelected
-                            ? "border-sapphire bg-sapphire/[0.06] font-semibold text-sapphire dark:border-paper dark:bg-white/15 dark:text-paper"
-                            : "border-ink-900/12 bg-white text-foreground hover:bg-ink-900/[0.03] dark:border-white/12 dark:bg-white/5 dark:text-paper dark:hover:bg-white/10",
+                            ? "bg-sapphire/[0.07] dark:bg-white/[0.09]"
+                            : "hover:bg-ink-900/[0.03] active:bg-ink-900/[0.05] dark:hover:bg-white/[0.05] dark:active:bg-white/[0.08]",
                         )}
                       >
-                        <span className="min-w-0 flex-1 truncate">{item.label}</span>
-                        {isSelected ? <CheckIcon className="h-4 w-4 shrink-0" /> : null}
+                        <span
+                          lang={item.code}
+                          className={cn(
+                            "min-w-0 flex-1 truncate text-body",
+                            isSelected
+                              ? "font-semibold text-sapphire dark:text-paper"
+                              : "font-medium text-foreground dark:text-paper",
+                          )}
+                        >
+                          {item.label}
+                        </span>
+                        {nameHere && nameHere !== item.label ? (
+                          <span lang={lang} className="shrink-0 text-meta text-muted-foreground dark:text-mist">
+                            {nameHere}
+                          </span>
+                        ) : null}
                       </a>
                     </li>
                   );
@@ -502,9 +539,15 @@ export function LanguageSelector({
         id={panelId}
         inert={!isOpen}
         data-open={isOpen}
-        className={cn(CAPSULE_PANEL, "capsule-panel absolute right-0 top-full z-50 mt-3 w-80 p-2")}
+        className={cn(CAPSULE_PANEL, "capsule-panel absolute right-0 top-full z-50 mt-3 w-[17.5rem] p-2")}
       >
-        <p aria-hidden="true" className={cn(CAPSULE_PANEL_LABEL, "px-3 pt-2 pb-2")}>
+        <p
+          aria-hidden="true"
+          className={cn(
+            CAPSULE_PANEL_LABEL,
+            "mb-1.5 border-b border-border/80 px-3 pt-1.5 pb-2 dark:border-white/10",
+          )}
+        >
           {copy.label}
         </p>
         {panelBody}

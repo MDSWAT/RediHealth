@@ -1,10 +1,26 @@
+import { placeName } from "@/components/news/news-format";
+import { EXTRA_MAP_COPY, mapCountriesForLang } from "@/components/ui/romania-county-map-helpers";
 import { formatHealthArticleTitle, healthArticleIndex, healthArticlePath } from "@/lib/data/health-article-index";
+import { getHealthArticleExcerpt } from "@/lib/data/health-article-excerpts";
 import { getHealthSummary } from "@/lib/data/health-summaries";
 import {
   healthSummaryPath,
   informedHealthAreas,
 } from "@/lib/data/informedhealth-directory";
-import { NEWS_ARTICLES, getLocalizedArticle } from "@/lib/data/news";
+import {
+  ALBANIA_WIDE,
+  CROATIA_WIDE,
+  ITALY_WIDE,
+  LOCALIZED_COUNTY_ALL,
+  LOCALIZED_NEWS_DATA,
+  MOLDOVA_WIDE,
+  NEWS_ARTICLES,
+  articleCountry,
+  getLocalizedArticle,
+  isNationalCounty,
+  type NewsArticle,
+} from "@/lib/data/news";
+import { translations } from "@/lib/i18n/translations";
 import { classifyLocalIntent } from "@/components/health-assistant/intent-keywords";
 import { urgentPattern } from "@/lib/health-assistant";
 import {
@@ -14,6 +30,7 @@ import {
   getHealthTopicBySlug,
   getHealthTopicsList,
 } from "@/lib/i18n/health-information-topics";
+import { informedHealthCopy } from "@/lib/i18n/informedhealth-translations";
 import { ROMANES_GLOSSARY_TERMS } from "@/lib/i18n/romanes-glossary";
 import {
   DUAL_REGISTER_GLOSSARY_UI_COPY,
@@ -540,6 +557,231 @@ const HIGHLIGHT_SYNONYM_PREFIX_BY_LANG: Record<Lang, string> = {
   ru: "Совпадение по теме",
 };
 
+const SYNONYM_TOPIC_LABELS_BY_LANG: Record<string, Record<Lang, string>> = {
+  toothache: {
+    ro: "durere de măsea",
+    en: "toothache",
+    sq: "dhimbje dhëmbi",
+    it: "mal di denti",
+    hr: "zubobolja",
+    rom: "dandengi dukh",
+    ru: "зубная боль",
+  },
+  fever: {
+    ro: "febră",
+    en: "fever",
+    sq: "ethe dhe temperaturë",
+    it: "febbre",
+    hr: "povišena temperatura",
+    rom: "tatipen",
+    ru: "температура",
+  },
+  "open-pharmacy": {
+    ro: "farmacie deschisă",
+    en: "open pharmacy",
+    sq: "farmaci e hapur",
+    it: "farmacia aperta",
+    hr: "dežurna ljekarna",
+    rom: "farmaciya phuterdi",
+    ru: "дежурная аптека",
+  },
+  "insurance-rights": {
+    ro: "asigurare și drepturi",
+    en: "insurance card and rights",
+    sq: "sigurime dhe të drejta",
+    it: "assicurazione e diritti",
+    hr: "osiguranje i prava",
+    rom: "asigurimo thaj hakaya",
+    ru: "страховка и права",
+  },
+  "chest-pain": {
+    ro: "durere în piept",
+    en: "chest pain",
+    sq: "dhimbje gjoksi",
+    it: "dolore al petto",
+    hr: "bol u prsima",
+    rom: "dukh ando kolin",
+    ru: "боль в груди",
+  },
+  diabetes: {
+    ro: "diabet",
+    en: "diabetes",
+    sq: "diabeti",
+    it: "diabete",
+    hr: "dijabetes",
+    rom: "diyabeto",
+    ru: "диабет",
+  },
+  "blood-pressure": {
+    ro: "tensiune arterială",
+    en: "blood pressure",
+    sq: "tensioni i gjakut",
+    it: "pressione alta",
+    hr: "krvni tlak",
+    rom: "ratvali presiya",
+    ru: "артериальное давление",
+  },
+  headache: {
+    ro: "durere de cap",
+    en: "headache",
+    sq: "dhimbje koke",
+    it: "mal di testa",
+    hr: "glavobolja",
+    rom: "shereski dukh",
+    ru: "головная боль",
+  },
+  "pregnancy-pediatrics": {
+    ro: "sarcină și copii",
+    en: "pregnancy and child care",
+    sq: "shtatzëni dhe fëmijë",
+    it: "gravidanza e bambini",
+    hr: "trudnoća i djeca",
+    rom: "khamnipen thaj chave",
+    ru: "беременность и дети",
+  },
+  "mental-health": {
+    ro: "sănătate mintală",
+    en: "mental health",
+    sq: "shëndeti mendor",
+    it: "salute mentale",
+    hr: "mentalno zdravlje",
+    rom: "godyako sastipen",
+    ru: "психическое здоровье",
+  },
+  "antibiotics-prescription": {
+    ro: "rețetă și antibiotice",
+    en: "prescription and antibiotics",
+    sq: "recetë dhe antibiotikë",
+    it: "ricetta e antibiotici",
+    hr: "recept i antibiotici",
+    rom: "receto thaj antibiotikurya",
+    ru: "рецепт и антибиотики",
+  },
+  "uti-kidney": {
+    ro: "infecție urinară",
+    en: "urinary infection",
+    sq: "infeksion urinar",
+    it: "infezione urinaria",
+    hr: "mokraćna infekcija",
+    rom: "mutresko infekciyo",
+    ru: "инфекция мочевых путей",
+  },
+  allergy: {
+    ro: "alergie",
+    en: "allergy",
+    sq: "alergji",
+    it: "allergia",
+    hr: "alergija",
+    rom: "alergiya",
+    ru: "аллергия",
+  },
+  "skin-rash": {
+    ro: "erupție pe piele",
+    en: "skin rash",
+    sq: "skuqje e lëkurës",
+    it: "sfogo cutaneo",
+    hr: "osip na koži",
+    rom: "mortyako rash",
+    ru: "кожная сыпь",
+  },
+  "sore-throat-cough": {
+    ro: "durere în gât și tuse",
+    en: "sore throat and cough",
+    sq: "dhimbje fyti dhe kollë",
+    it: "mal di gola e tosse",
+    hr: "grlobolja i kašalj",
+    rom: "kurlo dukh thaj khas",
+    ru: "боль в горле и кашель",
+  },
+  "asthma-breathing": {
+    ro: "respirație și astm",
+    en: "breathing and asthma",
+    sq: "frymëmarrje dhe astmë",
+    it: "respiro e asma",
+    hr: "disanje i astma",
+    rom: "phurdipen thaj astma",
+    ru: "дыхание и астма",
+  },
+  "emergency-112": {
+    ro: "urgență 112",
+    en: "emergency 112",
+    sq: "urgjencë 112",
+    it: "emergenza 112",
+    hr: "hitna pomoć 112",
+    rom: "urgenca 112",
+    ru: "экстренная помощь 112",
+  },
+  "family-doctor-visit": {
+    ro: "medic de familie",
+    en: "family doctor",
+    sq: "mjeku i familjes",
+    it: "medico di famiglia",
+    hr: "obiteljski liječnik",
+    rom: "familijako doktori",
+    ru: "семейный врач",
+  },
+  "health-mediator": {
+    ro: "mediator sanitar",
+    en: "health mediator",
+    sq: "mediator shëndetësor",
+    it: "mediatore sanitario",
+    hr: "zdravstveni medijator",
+    rom: "sastipnasko mediatoro",
+    ru: "медицинский посредник",
+  },
+  "stomach-digestion": {
+    ro: "dureri de stomac",
+    en: "stomach pain",
+    sq: "dhimbje stomaku",
+    it: "mal di stomaco",
+    hr: "bolovi u želucu",
+    rom: "pereski dukh",
+    ru: "боль в желудке",
+  },
+  "vaccines-prevention": {
+    ro: "vaccinare",
+    en: "vaccination",
+    sq: "vaksinim",
+    it: "vaccinazione",
+    hr: "cijepljenje",
+    rom: "vakcinaciya",
+    ru: "вакцинация",
+  },
+};
+
+function isNewsArticleAllowedForLang(rawArticle: NewsArticle, lang: Lang): boolean {
+  const allowedCountries = mapCountriesForLang(lang);
+  if (!allowedCountries.includes(articleCountry(rawArticle))) {
+    return false;
+  }
+  if (rawArticle.language && rawArticle.language !== lang) {
+    return false;
+  }
+  if (lang !== "ro" && rawArticle.language !== lang && !LOCALIZED_NEWS_DATA[lang]?.[rawArticle.id]) {
+    return false;
+  }
+  return true;
+}
+
+function formatLocalizedNewsAreaLabel(rawArticle: NewsArticle, lang: Lang): string {
+  if (rawArticle.county === ITALY_WIDE) {
+    return translations[lang]?.countyMap?.allItaly ?? ITALY_WIDE;
+  }
+  if (rawArticle.county === MOLDOVA_WIDE) {
+    return EXTRA_MAP_COPY[lang]?.allMoldova ?? MOLDOVA_WIDE;
+  }
+  if (rawArticle.county === CROATIA_WIDE) {
+    return EXTRA_MAP_COPY[lang]?.allCroatia ?? CROATIA_WIDE;
+  }
+  if (rawArticle.county === ALBANIA_WIDE) {
+    return EXTRA_MAP_COPY[lang]?.allAlbania ?? ALBANIA_WIDE;
+  }
+  if (isNationalCounty(rawArticle.county)) {
+    return LOCALIZED_COUNTY_ALL[lang] ?? "All counties";
+  }
+  return placeName(rawArticle.county, lang);
+}
+
 const ALL_CATEGORIES: SmartSearchCategory[] = [
   "all",
   "tools",
@@ -990,8 +1232,7 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
         simpleSummary: topic.description,
         href,
         keywords: [
-          topic.slug.replaceAll("-", " "),
-          topic.categorySlug,
+          ...(lang === "en" ? [topic.slug.replaceAll("-", " "), topic.categorySlug] : []),
           ...(fullTopic?.keyFacts ?? []),
           ...(fullTopic?.warningSigns ?? []),
         ],
@@ -1015,6 +1256,7 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
     seenHrefs.add(href);
 
     const areaTitle = area.titles[lang] ?? area.titles.en;
+    const localizedAreaGroups = area.groups.map((g) => informedHealthCopy[lang].groups[g]);
     const summaryObj = getHealthSummary(lang, area.id);
     const introText = summaryObj?.intro ?? areaTitle;
     const detailsText = summaryObj?.details ? `${introText} ${summaryObj.details}` : introText;
@@ -1038,14 +1280,13 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
         simpleSummary: introText,
         href,
         keywords: [
-          area.id.replaceAll("-", " "),
-          area.titles.en,
-          area.titles.ro,
-          ...area.groups,
+          ...(lang === "en" ? [area.id.replaceAll("-", " ")] : []),
+          areaTitle,
+          ...localizedAreaGroups,
         ],
         nextSteps,
         qaPairs,
-        tags: [copy.kindLabels.guides, ...area.groups.slice(0, 2)],
+        tags: [copy.kindLabels.guides, ...localizedAreaGroups.slice(0, 2)],
         priorityBoost: 5,
         routeHints: ["healthInfo"],
         pathwayHints: area.groups.includes("services") ? ["navigation", "learn"] : ["learn"],
@@ -1064,13 +1305,18 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
     const primaryAreaId = article.areaIds[0];
     const areaTitle = primaryAreaId ? areaTitleById.get(primaryAreaId) : undefined;
     const areaSummary = primaryAreaId ? getHealthSummary(lang, primaryAreaId) : undefined;
+    const articleIntro = getHealthArticleExcerpt(lang, article.id);
 
-    const standardSummary = areaSummary?.intro
-      ? `${areaTitle ? `${areaTitle}. ` : ""}${areaSummary.intro}`
-      : areaTitle || title;
-    const simpleSummary = areaSummary?.intro
-      ? firstSentence(areaSummary.intro)
-      : areaTitle || title;
+    const standardSummary = articleIntro
+      ? articleIntro
+      : areaSummary?.intro
+        ? `${areaTitle ? `${areaTitle}. ` : ""}${areaSummary.intro}`
+        : areaTitle || title;
+    const simpleSummary = articleIntro
+      ? firstSentence(articleIntro)
+      : areaSummary?.intro
+        ? firstSentence(areaSummary.intro)
+        : areaTitle || title;
 
     const nextSteps = areaSummary?.questions?.slice(0, 2) ?? [];
     const qaPairs = (areaSummary?.questions ?? []).slice(0, 2).map((q) => ({
@@ -1089,10 +1335,11 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
         simpleSummary,
         href,
         keywords: [
-          article.id.replaceAll("-", " "),
-          article.titles.en,
-          article.titles.ro,
-          ...article.areaIds.map((id) => areaTitleById.get(id) ?? id.replaceAll("-", " ")),
+          ...(lang === "en" ? [article.id.replaceAll("-", " ")] : []),
+          title,
+          ...article.areaIds
+            .map((id) => areaTitleById.get(id))
+            .filter((val): val is string => Boolean(val)),
         ],
         nextSteps,
         qaPairs,
@@ -1132,13 +1379,11 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
         simpleSummary: loc.layExplanation,
         href: withLangPrefix("/health-information#medical-glossary", lang),
         keywords: [
-          item.id.replaceAll("-", " "),
-          item.plainTermRo,
-          item.formalTermRo,
+          ...(lang === "ro" ? [item.id.replaceAll("-", " "), item.plainTermRo, item.formalTermRo] : []),
           loc.plainTerm,
           loc.formalTerm,
           categoryLabel,
-          ...(item.relatedTopicSlug ? [item.relatedTopicSlug.replaceAll("-", " ")] : []),
+          ...(lang === "en" && item.relatedTopicSlug ? [item.relatedTopicSlug.replaceAll("-", " ")] : []),
         ],
         nextSteps,
         qaPairs,
@@ -1190,8 +1435,7 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
         simpleSummary: localizedExplanation,
         href: withLangPrefix("/health-information#romanes-glossary", lang),
         keywords: [
-          term.id.replaceAll("-", " "),
-          term.romanianTerm,
+          ...(lang === "ro" ? [term.id.replaceAll("-", " "), term.romanianTerm] : []),
           term.romanesTerm,
           localizedTerm,
           localizedCategory,
@@ -1225,9 +1469,8 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
         href: withLangPrefix("/health-information#quiz-section-heading", lang),
         keywords: [
           myth.category,
-          myth.categorySlug,
           myth.statusTag,
-          myth.relatedTopicSlug.replaceAll("-", " "),
+          ...(lang === "en" ? [myth.categorySlug, myth.relatedTopicSlug.replaceAll("-", " ")] : []),
         ],
         nextSteps,
         qaPairs,
@@ -1240,9 +1483,12 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
     );
   }
 
-  // 8. News & mobile clinics
+  // 8. News & mobile clinics (strictly scoped by active language and country view)
   for (const rawArticle of NEWS_ARTICLES) {
+    if (!isNewsArticleAllowedForLang(rawArticle, lang)) continue;
+
     const article = getLocalizedArticle(rawArticle, lang);
+    const areaLabel = formatLocalizedNewsAreaLabel(rawArticle, lang);
     const href = withLangPrefix(`/news/${encodeURIComponent(article.slug)}`, lang);
     const nextSteps: string[] = [];
     if (article.preventiveSteps?.length) {
@@ -1271,14 +1517,13 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
         simpleSummary: article.summary,
         href,
         keywords: [
-          article.slug.replaceAll("-", " "),
           article.categoryLabel ?? article.category,
-          article.county,
+          areaLabel,
           ...article.tags,
         ],
         nextSteps,
         qaPairs: [{ question: article.title, answer: fullSummary }],
-        tags: [article.categoryLabel ?? copy.kindLabels.news, article.county, ...article.tags].slice(0, 3),
+        tags: [article.categoryLabel ?? copy.kindLabels.news, areaLabel, ...article.tags].slice(0, 3),
         priorityBoost: 2,
         routeHints: ["news", "home"],
         pathwayHints: ["learn", "navigation"],
@@ -1409,14 +1654,17 @@ function scoreEntry(
       }
       if (groupBoosted && !matchedReason) {
         const prefix = HIGHLIGHT_SYNONYM_PREFIX_BY_LANG[lang];
-        const matchingTerms = group.terms
+        const exactTerms = group.terms
           .filter((t) => {
             const nt = normalizeSearchText(t);
-            return nt && (` ${normQuery} `.includes(` ${nt} `) || queryTokens.some((q) => q === nt || (q.length >= 5 && nt.startsWith(q))));
+            return Boolean(nt) && (normQuery === nt || ` ${normQuery} `.includes(` ${nt} `));
           })
           .sort((a, b) => b.length - a.length);
-        const matchedTerm = matchingTerms[0] ?? group.terms[0] ?? group.canonical;
-        matchedReason = `${prefix}: ${matchedTerm}`;
+        const localizedTopic =
+          SYNONYM_TOPIC_LABELS_BY_LANG[group.canonical]?.[lang] ??
+          exactTerms[0] ??
+          group.canonical.replaceAll("-", " ");
+        matchedReason = `${prefix}: ${localizedTopic}`;
       }
     }
 
@@ -1951,6 +2199,20 @@ export function searchSmartCatalog(
   }
 
   const normQuery = normalizeSearchText(trimmed);
+  if (!normQuery) {
+    return {
+      results: [],
+      groupedCounts,
+      didYouMean: null,
+      ghostCompletion: null,
+      predictions: [],
+      isEmergency: false,
+      suggestedFollowups: copy.popularQueries.slice(0, 3).map((q) => cleanDisplayText(q, lang)),
+      intentSummary: null,
+      guidedOverview: null,
+      relatedQuestions: [],
+    };
+  }
   const queryTokens = tokenizeNormalized(normQuery);
   const synonyms = matchSynonymGroups(normQuery, queryTokens);
   const pathway = inferPathway(trimmed, lang, synonyms);

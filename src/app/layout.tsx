@@ -5,7 +5,8 @@ import { SiteChrome } from "@/components/layout/SiteChrome";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { siteMetadata } from "@/lib/i18n/site-metadata";
 import { getSiteUrl } from "@/lib/site-url";
-import { headers } from "next/headers";
+import { EMERGENCY_DISMISS_COOKIE } from "@/lib/emergency-bar";
+import { cookies, headers } from "next/headers";
 import { isRecaptchaEnabled } from "@/lib/security/recaptcha-config";
 
 // latin-ext carries ă, ș, ț, č, ć, đ, š, ž across Romanian, Croatian, Albanian, and Romani.
@@ -24,12 +25,16 @@ const bodyFont = Atkinson_Hyperlegible_Next({
 });
 
 // Headings (h1, h2): Bricolage Grotesque, with its optical-size axis so large titles tighten up.
+// Bold headings (700) run ~2.5% wider than Next's weight-400 auto-fallback, so "Heading Fallback"
+// is calibrated directly against the rendered 700 weight in globals.css.
 const headingFont = Bricolage_Grotesque({
   variable: "--font-heading",
   subsets: ["latin", "latin-ext"],
   axes: ["opsz"],
   display: "swap",
   preload: false,
+  adjustFontFallback: false,
+  fallback: ["Heading Fallback", "Arial", "Helvetica", "sans-serif"],
 });
 
 const geistMono = Geist_Mono({
@@ -52,6 +57,9 @@ export const viewport: Viewport = {
 
 export async function generateMetadata(): Promise<Metadata> {
   const site = siteMetadata[await getRequestLang()];
+  const alternateLocale = Object.values(siteMetadata)
+    .map((entry) => entry.openGraphLocale)
+    .filter((locale) => locale !== site.openGraphLocale);
 
   return {
     metadataBase: new URL(getSiteUrl()),
@@ -76,6 +84,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: site.title,
       description: site.description,
       locale: site.openGraphLocale,
+      alternateLocale,
     },
     twitter: {
       card: "summary",
@@ -88,6 +97,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const lang = await getRequestLang();
   const nonce = (await headers()).get("x-nonce") || undefined;
+  // Set when the reader closes the 112 bar (UniversalEmergencyBanner), so it is never sent at all.
+  const emergencyDismissed = (await cookies()).get(EMERGENCY_DISMISS_COOKIE)?.value === "1";
   // Links that leave this device (QR codes, copied notes) use the configured public address,
   // never a loopback one. See components/health-check/public-origin.ts.
   const configuredOrigin = process.env.APP_URL?.trim().replace(/\/+$/, "");
@@ -114,7 +125,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         >
           {siteMetadata[lang].skipLink}
         </a>
-        <SiteChrome lang={lang} nonce={nonce} captchaEnabled={isRecaptchaEnabled()}>{children}</SiteChrome>
+        <SiteChrome lang={lang} nonce={nonce} captchaEnabled={isRecaptchaEnabled()} emergencyDismissed={emergencyDismissed}>{children}</SiteChrome>
       </body>
     </html>
   );

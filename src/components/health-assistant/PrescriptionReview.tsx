@@ -24,7 +24,8 @@ import { PrescriptionStructuredResult } from "@/components/health-assistant/Pres
 import { useReadAloud } from "@/components/health-check/readingTools";
 import { prefersCalmOrReducedMotion, useReadingLevel } from "@/lib/comfort-preferences";
 import { Container } from "@/components/ui/Container";
-import type { PrescribedMedicineItem } from "@/lib/health-assistant";
+import type { DocumentSourceKind, PrescribedMedicineItem } from "@/lib/health-assistant";
+import { prepareMedicalImageForUpload } from "@/lib/image";
 import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
@@ -34,6 +35,9 @@ type ReviewResponse = {
   message: string;
   prescriptionText?: string;
   medicines?: PrescribedMedicineItem[];
+  sourceKind?: DocumentSourceKind;
+  confidenceScore?: number;
+  confidenceReason?: string;
   urgency?: "emergency" | "routine";
   careLevel?: "emergency" | "urgent" | "soon" | "routine";
 };
@@ -71,6 +75,7 @@ interface PrescriptionReviewCopy {
   uploadReqErr: string;
   fileErr: string;
   readErr: string;
+  serviceErr: string;
   reviewErr: string;
   reviewErrLink: string;
   rateLimitErr: string;
@@ -191,7 +196,7 @@ export function PrescriptionReview() {
 "stepOneBadge": "Шаг 1 из 2",
 "photoReady": "Фото готово",
 "retakeLight": "Переснять при хорошем освещении",
-"tipLine": "Положите лист ровно при дневном свете, чтобы была видна вся страница.",
+"tipLine": "Положите лист или коробку ровно при дневном свете, чтобы название и текст были чёткими.",
 "dragOrBrowse": "или перетащите фото сюда",
 "stepTwoBadge": "Шаг 2 из 2",
 "reasons": {"feverPain":"Температура или боль","coughCold":"Кашель или простуда","heartBp":"Сердце или давление","stomach":"Желудок или пищеварение","child":"Для ребёнка","notSure":"Не знаю"},
@@ -213,8 +218,8 @@ export function PrescriptionReview() {
 "skeletonHeading": "Подготовка понятного объяснения…",
 
       title: "Объяснить рецепт",
-      subtitle: "Сфотографируйте свой рецепт. Ассистент читает текст и объясняет его простыми словами. Всегда уточняйте это у своего фармацевта или врача.",
-      dropTitle: "Сфотографируйте свой рецепт.",
+      subtitle: "Сфотографируйте рецепт или коробку с лекарством — объясним всё простыми словами. Всегда уточняйте детали у фармацевта или врача.",
+      dropTitle: "Добавьте фото рецепта или упаковки",
       cameraCapture: "Сфотографироваться",
       galleryUpload: "Выбрать из галереи",
 
@@ -229,6 +234,8 @@ export function PrescriptionReview() {
       uploadReqErr: "Чтобы продолжить, сделайте или загрузите фотографию вашего рецепта.",
       fileErr: "Этот файл не удаётся открыть как фото. Сделайте новое фото.",
       readErr: "Нам не удалось прочитать этот файл изображения. Попробуйте другое фото.",
+      serviceErr:
+        "Автоматическое чтение фото временно недоступно. Попробуйте позже или покажите рецепт или упаковку фармацевту.",
       reviewErr: "Не удалось прочитать рецепт. Покажите его фармацевту или",
       reviewErrLink: "попросите помощи у человека",
       rateLimitErr: "Подождите одну минуту и попробуйте снова.",
@@ -238,18 +245,18 @@ export function PrescriptionReview() {
     en: {
       title: "Explain my prescription",
       subtitle:
-        "Photograph your prescription and we explain it clearly. Always check with your pharmacist or doctor.",
+        "Photograph your prescription or medicine box and we explain it clearly. Always check with your pharmacist or doctor.",
       listenPage: "Listen",
       stopListening: "Stop",
       largeTextLabel: "Larger text",
       stepOneBadge: "Step 1 of 2",
-      dropTitle: "Add your prescription",
+      dropTitle: "Add your prescription or medicine box",
       cameraCapture: "Take a photo",
       galleryUpload: "Choose a photo",
       removePhoto: "Remove photo",
       photoReady: "Photo is ready",
       retakeLight: "Take another photo in good light",
-      tipLine: "Lay it flat, in daylight, with the whole page showing.",
+      tipLine: "Lay the sheet or box flat in daylight so the text and name are easy to read.",
       dragOrBrowse: "or drag a photo here",
       skeletonHeading: "Preparing clear explanation…",
       qualityWarning:
@@ -273,6 +280,8 @@ export function PrescriptionReview() {
       uploadReqErr: "Take or upload a photo of your prescription to continue.",
       fileErr: "This file is not a photo we can open. Take a new photo instead.",
       readErr: "We could not read that image file. Try another photo.",
+      serviceErr:
+        "Automatic photo reading is temporarily unavailable. Please try again later or show the prescription or medicine box to your pharmacist.",
       reviewErr: "We could not read this prescription. Show it to your pharmacist, or",
       reviewErrLink: "ask a person for help",
       rateLimitErr: "Please wait one minute, then try again.",
@@ -281,18 +290,18 @@ export function PrescriptionReview() {
     ro: {
       title: "Explică-mi rețeta",
       subtitle:
-        "Fă o poză rețetei și ți-o explicăm pe înțeles. Verifică mereu cu farmacistul sau medicul.",
+        "Fă o poză rețetei sau cutiei de medicamente și ți-o explicăm pe înțeles. Verifică mereu cu farmacistul sau medicul.",
       listenPage: "Ascultă",
       stopListening: "Oprește",
       largeTextLabel: "Scris mai mare",
       stepOneBadge: "Pasul 1 din 2",
-      dropTitle: "Adaugă rețeta",
+      dropTitle: "Adaugă rețeta sau cutia medicamentului",
       cameraCapture: "Fă o poză",
       galleryUpload: "Alege o poză",
       removePhoto: "Șterge poza",
       photoReady: "Poza este pregătită",
       retakeLight: "Fă altă poză la lumină",
-      tipLine: "Pune foaia întinsă pe masă, la lumină naturală, cu toată pagina în cadru.",
+      tipLine: "Pune foaia sau cutia pe masă, la lumină naturală, cu numele și textul bine încadrate.",
       dragOrBrowse: "sau trage o poză aici",
       skeletonHeading: "Pregătim explicația pe înțeles…",
       qualityWarning:
@@ -316,6 +325,8 @@ export function PrescriptionReview() {
       uploadReqErr: "Fă sau încarcă o poză a rețetei ca să continui.",
       fileErr: "Acest fișier nu este o poză pe care o putem deschide. Fă o poză nouă.",
       readErr: "Nu am putut deschide poza. Încearcă altă poză.",
+      serviceErr:
+        "Citirea automată a pozelor este temporar indisponibilă. Încearcă mai târziu sau arată rețeta ori cutia farmacistului.",
       reviewErr: "Nu am putut citi această rețetă. Arat-o farmacistului sau",
       reviewErrLink: "cere ajutor unei persoane",
       rateLimitErr: "Așteaptă un minut, apoi încearcă din nou.",
@@ -324,18 +335,18 @@ export function PrescriptionReview() {
     sq: {
       title: "Shpjego recetën time",
       subtitle:
-        "Fotografo recetën dhe ta shpjegojmë qartë. Kontrolloje gjithmonë me farmacistin ose mjekun.",
+        "Fotografo recetën ose kutinë e ilaçit dhe ta shpjegojmë qartë. Kontrolloje gjithmonë me farmacistin ose mjekun.",
       listenPage: "Dëgjo",
       stopListening: "Ndalo",
       largeTextLabel: "Shkrim më i madh",
       stepOneBadge: "Hapi 1 nga 2",
-      dropTitle: "Shto recetën",
+      dropTitle: "Shto recetën ose kutinë e ilaçit",
       cameraCapture: "Bëj një foto",
       galleryUpload: "Zgjidh një foto",
       removePhoto: "Hiq foton",
       photoReady: "Fotoja është gati",
       retakeLight: "Bëj një foto tjetër në dritë",
-      tipLine: "Shtrije fletën drejt, në dritë të ditës, me gjithë faqen të dukshme.",
+      tipLine: "Vendose fletën ose kutinë drejt, në dritë natyrale, që emri dhe teksti të lexohen qartë.",
       dragOrBrowse: "ose tërhiq një foto këtu",
       skeletonHeading: "Po përgatitet shpjegimi i qartë…",
       qualityWarning:
@@ -359,6 +370,8 @@ export function PrescriptionReview() {
       uploadReqErr: "Bëj ose ngarko një foto të recetës për të vazhduar.",
       fileErr: "Ky skedar nuk është një foto që mund ta hapim. Bëj një foto të re.",
       readErr: "Nuk mundëm ta hapim këtë foto. Provo një foto tjetër.",
+      serviceErr:
+        "Leximi automatik i fotove është përkohësisht i padisponueshëm. Provo më vonë ose tregoja recetën apo kutinë farmacistit.",
       reviewErr: "Nuk mundëm ta lexojmë këtë recetë. Tregoja farmacistit ose",
       reviewErrLink: "kërko ndihmë nga një person",
       rateLimitErr: "Të lutem prit një minutë, pastaj provo përsëri.",
@@ -367,18 +380,18 @@ export function PrescriptionReview() {
     it: {
       title: "Spiegami la ricetta",
       subtitle:
-        "Fotografa la ricetta e te la spieghiamo con chiarezza. Verifica sempre con il farmacista o il medico.",
+        "Fotografa la ricetta o la scatola del farmaco e te la spieghiamo con chiarezza. Verifica sempre con il farmacista o il medico.",
       listenPage: "Ascolta",
       stopListening: "Ferma",
       largeTextLabel: "Testo più grande",
       stepOneBadge: "Passo 1 di 2",
-      dropTitle: "Aggiungi la ricetta",
+      dropTitle: "Aggiungi la ricetta o la scatola",
       cameraCapture: "Scatta una foto",
       galleryUpload: "Scegli una foto",
       removePhoto: "Rimuovi foto",
       photoReady: "La foto è pronta",
       retakeLight: "Scatta un'altra foto alla luce",
-      tipLine: "Stendi il foglio in piano, alla luce del giorno, con tutta la pagina visibile.",
+      tipLine: "Appoggia il foglio o la scatola in piano alla luce del giorno, con nome e testo ben visibili.",
       dragOrBrowse: "oppure trascina una foto qui",
       skeletonHeading: "Preparazione della spiegazione chiara…",
       qualityWarning:
@@ -402,6 +415,8 @@ export function PrescriptionReview() {
       uploadReqErr: "Scatta o carica una foto della ricetta per continuare.",
       fileErr: "Questo file non è una foto che possiamo aprire. Scatta una nuova foto.",
       readErr: "Non siamo riusciti a leggere il file dell'immagine. Prova con un'altra foto.",
+      serviceErr:
+        "La lettura automatica delle foto non è temporaneamente disponibile. Riprova più tardi o mostra la ricetta o la scatola al farmacista.",
       reviewErr: "Non siamo riusciti a leggere questa ricetta. Mostrala al tuo farmacista, oppure",
       reviewErrLink: "chiedi aiuto a una persona",
       rateLimitErr: "Attendi un minuto, poi riprova.",
@@ -410,18 +425,18 @@ export function PrescriptionReview() {
     hr: {
       title: "Objasni mi recept",
       subtitle:
-        "Fotografiraj recept i objasnit ćemo ti ga jasno. Uvijek provjeri s ljekarnikom ili liječnikom.",
+        "Fotografiraj recept ili kutiju lijeka i objasnit ćemo ti sve jasno. Uvijek provjeri s ljekarnikom ili liječnikom.",
       listenPage: "Poslušaj",
       stopListening: "Zaustavi",
       largeTextLabel: "Veća slova",
       stepOneBadge: "Korak 1 od 2",
-      dropTitle: "Dodaj recept",
+      dropTitle: "Dodaj recept ili kutiju lijeka",
       cameraCapture: "Snimi fotografiju",
       galleryUpload: "Odaberi fotografiju",
       removePhoto: "Ukloni fotografiju",
       photoReady: "Fotografija je spremna",
       retakeLight: "Snimi drugu fotografiju na svjetlu",
-      tipLine: "Položi list ravno, na dnevnom svjetlu, tako da se vidi cijela stranica.",
+      tipLine: "Položi list ili kutiju ravno na dnevnom svjetlu tako da se naziv i tekst jasno vide.",
       dragOrBrowse: "ili povuci fotografiju ovdje",
       skeletonHeading: "Pripremamo jasno objašnjenje…",
       qualityWarning:
@@ -445,6 +460,8 @@ export function PrescriptionReview() {
       uploadReqErr: "Snimi ili učitaj fotografiju recepta za nastavak.",
       fileErr: "Ova datoteka nije fotografija koju možemo otvoriti. Snimi novu fotografiju.",
       readErr: "Nismo uspjeli otvoriti tu slikovnu datoteku. Pokušaj s drugom fotografijom.",
+      serviceErr:
+        "Automatsko čitanje fotografija trenutačno nije dostupno. Pokušaj kasnije ili pokaži recept ili kutiju ljekarniku.",
       reviewErr: "Nismo uspjeli pročitati ovaj recept. Pokaži ga ljekarniku ili",
       reviewErrLink: "zatraži pomoć osobe",
       rateLimitErr: "Pričekaj jednu minutu, pa pokušaj ponovno.",
@@ -453,18 +470,18 @@ export function PrescriptionReview() {
     rom: {
       title: "Xatyar mange i receta",
       subtitle:
-        "Ker poza chire recetake thaj shpjeginas la tuke chaches. Dikh la svako data le farmacistosa vaj le doktoresa.",
+        "Ker poza chire recetake vaj e drabaki kutijake thaj shpjeginas la tuke chaches. Dikh svako data le farmacistosa vaj le doktoresa.",
       listenPage: "Ashun",
       stopListening: "Achav",
       largeTextLabel: "Maj baro ramovimos",
       stepOneBadge: "Pasho 1 katar 2",
-      dropTitle: "Thov i receta",
+      dropTitle: "Thov i receta vaj i drabaki kutija",
       cameraCapture: "Ker poza",
       galleryUpload: "Alosar jekh poza",
       removePhoto: "Khos i poza",
       photoReady: "I poza si gata",
       retakeLight: "Ker aver poza ko vudud",
-      tipLine: "Thov o lil pre masi, and-o divesko vudud, te dikhel pe sasti rig.",
+      tipLine: "Thov o lil vaj i kutija pre masi, and-o divesko vudud, te dikhljol o anav thaj o teksto mishto.",
       dragOrBrowse: "vaj thov jekh poza kathe",
       skeletonHeading: "Pregatisaras o chacho shpjegimos…",
       qualityWarning:
@@ -488,6 +505,8 @@ export function PrescriptionReview() {
       uploadReqErr: "Ker vaj thov jekh poza e recetaki te djas maj dur.",
       fileErr: "Kadava fajlo naj poza kaj shaj phuteras la. Ker jekh nevi poza.",
       readErr: "Nashti phuterdas kadaja poza. Zumav aver poza.",
+      serviceErr:
+        "O automatikano ginavimos e pozengo na kamel akana. Zumav maj palal vaj sikav i receta ori i kutija ke farmacisto.",
       reviewErr: "Nashti ginadas kadaja receta. Sikav la ke farmacisto vaj",
       reviewErrLink: "mang zhutimos katar ekh manush",
       rateLimitErr: "Azhuker jekh minuta, porme zumav pale.",
@@ -507,12 +526,15 @@ export function PrescriptionReview() {
   const [context, setContext] = useState("");
   const [result, setResult] = useState<ReviewResponse | null>(null);
   const [qualityState, setQualityState] = useState<"idle" | "checking" | "good" | "warn">("idle");
-  const [errorKind, setErrorKind] = useState<"file" | "uploadReq" | "read" | "rateLimit" | "review" | null>(null);
+  const [errorKind, setErrorKind] = useState<
+    "file" | "uploadReq" | "read" | "rateLimit" | "service" | "review" | null
+  >(null);
   const errorMessages = {
     file: t.fileErr,
     uploadReq: t.uploadReqErr,
     read: t.readErr,
     rateLimit: t.rateLimitErr,
+    service: t.serviceErr,
     review: t.reviewErr,
   };
   const errorAlert = errorKind ? (
@@ -650,7 +672,11 @@ export function PrescriptionReview() {
     setResult(null);
     if (!selected) return;
 
-    if (!selected.type.startsWith("image/") || selected.size > 8 * 1024 * 1024) {
+    const looksLikeImage =
+      selected.type.startsWith("image/") ||
+      /\.(heic|heif|jpg|jpeg|png|webp|avif)$/i.test(selected.name);
+
+    if (!looksLikeImage || selected.size > 15 * 1024 * 1024) {
       if (preview) URL.revokeObjectURL(preview);
       setFile(null);
       setPreview(null);
@@ -685,17 +711,12 @@ export function PrescriptionReview() {
       .join(". ");
 
     try {
-      const prescription = await new Promise<{ mimeType: string; data: string }>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const dataUrl = typeof reader.result === "string" ? reader.result : "";
-          const data = dataUrl.split(",")[1];
-          if (data) resolve({ mimeType: file.type, data });
-          else reject(new ReadError());
-        };
-        reader.onerror = () => reject(new ReadError());
-        reader.readAsDataURL(file);
-      });
+      let prescription: { mimeType: string; data: string };
+      try {
+        prescription = await prepareMedicalImageForUpload(file);
+      } catch {
+        throw new ReadError();
+      }
 
       const captchaToken = await executeCaptcha("health_assistant");
       const response = await fetch("/api/health-assistant", {
@@ -711,7 +732,9 @@ export function PrescriptionReview() {
 
       // Server errors are written in English; the person always sees a message in their language.
       if (!response.ok) {
-        setErrorKind(response.status === 429 ? "rateLimit" : "review");
+        if (response.status === 429) setErrorKind("rateLimit");
+        else if (response.status === 503) setErrorKind("service");
+        else setErrorKind("review");
         return;
       }
       setResult((await response.json()) as ReviewResponse);
@@ -793,7 +816,7 @@ export function PrescriptionReview() {
             <input
               ref={galleryInput}
               type="file"
-              accept="image/jpeg,image/png,image/webp"
+              accept="image/*"
               tabIndex={-1}
               aria-hidden="true"
               onChange={(e) => handleFileSelected(e.target.files?.[0] ?? null)}
@@ -1093,6 +1116,9 @@ export function PrescriptionReview() {
               aiMessage={result.message}
               prescriptionText={result.prescriptionText}
               medicines={result.medicines}
+              sourceKind={result.sourceKind}
+              confidenceScore={result.confidenceScore}
+              confidenceReason={result.confidenceReason}
               emergency={result.urgency === "emergency" || result.careLevel === "emergency"}
             />
           </section>

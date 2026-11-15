@@ -102,6 +102,11 @@ describe("unified layout and elderly WCAG consistency across health reading surf
           'aria-pressed="false"',
         );
         expect(html, `${surfaceName} (${lang}) missing 48px target`).toContain("min-h-12");
+        if (surfaceName !== "news-article") {
+          expect(html, `${surfaceName} (${lang}) missing sticky desktop TOC rail`).toContain(
+            "data-health-toc-rail",
+          );
+        }
 
         expect(html, `${surfaceName} (${lang}) must not use 2-col sidebar`).not.toContain(
           "lg:grid-cols-[1fr_320px]",

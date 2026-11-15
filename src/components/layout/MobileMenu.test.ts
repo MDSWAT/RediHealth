@@ -27,7 +27,7 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
 
     expect(MOBILE_MENU_SOURCE).toContain("bg-paper");
     expect(MOBILE_MENU_SOURCE).toContain("dark:bg-ink-950");
-    expect(MOBILE_MENU_SOURCE).toContain("max-w-xl");
+    expect(MOBILE_MENU_SOURCE).not.toContain("max-w-xl");
     expect(MOBILE_MENU_SOURCE).not.toContain("/health-assistant#triage");
     expect(MOBILE_MENU_SOURCE).not.toContain("tHeader.startHere");
     expect(MOBILE_MENU_SOURCE).not.toContain("truncate");
