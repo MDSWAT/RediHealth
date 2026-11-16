@@ -39,22 +39,33 @@ export async function setSetting(key: string, value: string | null, updatedBy: s
   cache.delete(key);
 }
 
-export type AlertRecipient = {
-  email: string | null;
+export const MAX_ALERT_RECIPIENTS = 10;
+
+/** Splits a stored or typed list ("a@x.org, b@y.org") into unique, valid, lower-case addresses. */
+export function parseAlertEmails(value: string | null | undefined): string[] {
+  if (!value) return [];
+  const emails = value
+    .split(/[\s,;]+/)
+    .map((email) => email.trim().toLowerCase())
+    .filter((email) => email && isValidEmail(email));
+  return [...new Set(emails)].slice(0, MAX_ALERT_RECIPIENTS);
+}
+
+export type AlertRecipients = {
+  emails: string[];
   source: "panel" | "env" | "none";
 };
 
-/** The address that receives issue reports and operational alerts: panel setting first, then the environment. */
-export async function getAlertRecipient(): Promise<AlertRecipient> {
-  const fromPanel = await getSetting(ALERT_EMAIL_SETTING);
-  if (fromPanel && isValidEmail(fromPanel)) {
-    return { email: fromPanel, source: "panel" };
-  }
+/**
+ * The addresses that receive issue reports, error reports and operational alerts: the list saved
+ * in the panel first, then OPERATIONAL_ALERT_EMAIL from the environment (also a comma-separated list).
+ */
+export async function getAlertRecipients(): Promise<AlertRecipients> {
+  const fromPanel = parseAlertEmails(await getSetting(ALERT_EMAIL_SETTING));
+  if (fromPanel.length > 0) return { emails: fromPanel, source: "panel" };
 
-  const fromEnv = process.env.OPERATIONAL_ALERT_EMAIL?.trim();
-  if (fromEnv && isValidEmail(fromEnv)) {
-    return { email: fromEnv, source: "env" };
-  }
+  const fromEnv = parseAlertEmails(process.env.OPERATIONAL_ALERT_EMAIL);
+  if (fromEnv.length > 0) return { emails: fromEnv, source: "env" };
 
-  return { email: null, source: "none" };
+  return { emails: [], source: "none" };
 }

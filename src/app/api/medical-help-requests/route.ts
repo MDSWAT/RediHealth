@@ -113,7 +113,6 @@ export async function POST(request: Request) {
       details: {
         has_name: Boolean(name),
         has_email: Boolean(email),
-        phone,
         description_length: description.length,
       },
       ipAddress: getClientIp(request),
@@ -186,6 +185,9 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Invalid request payload." }, { status: 400 });
   }
 
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid request payload." }, { status: 400 });
+  }
   const id = body.id ? String(body.id) : null;
   if (!id) {
     return NextResponse.json({ error: "Request ID is required." }, { status: 400 });
@@ -219,6 +221,9 @@ export async function PATCH(request: Request) {
   }
 
   if (body.internal_notes !== undefined) {
+    if (body.internal_notes !== null && (typeof body.internal_notes !== "string" || body.internal_notes.length > 10_000)) {
+      return NextResponse.json({ error: "Internal notes are invalid or too long." }, { status: 400 });
+    }
     updates.push("internal_notes = ?");
     params.push(body.internal_notes);
   }

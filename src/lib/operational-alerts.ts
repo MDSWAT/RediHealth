@@ -1,6 +1,6 @@
 import { isEmailConfigured, renderBrandEmail, sendEmail } from "@/lib/email";
 import { checkRateLimit } from "@/lib/rate-limit";
-import { getAlertRecipient } from "@/lib/settings";
+import { getAlertRecipients } from "@/lib/settings";
 import { escapeHtml } from "@/lib/text";
 
 type OperationalAlertInput = {
@@ -11,6 +11,7 @@ type OperationalAlertInput = {
   severity?: "info" | "warning" | "critical";
   details?: Record<string, unknown>;
   cooldownMs?: number;
+  hourlyCap?: { key: string; limit: number };
 };
 
 const DEFAULT_COOLDOWN_MS = 15 * 60_000;
@@ -19,13 +20,14 @@ function formatDetails(details?: Record<string, unknown>): string {
   if (!details) return "";
   const lines = Object.entries(details)
     .slice(0, 12)
+    .filter(([, value]) => value !== undefined && value !== null && value !== "")
     .map(([key, value]) => `${key}: ${String(value)}`);
   return lines.join("\n");
 }
 
 export async function notifyOperationalIssue(input: OperationalAlertInput) {
-  const { email: toAddress } = await getAlertRecipient();
-  if (!toAddress || !isEmailConfigured()) {
+  const { emails: recipients } = await getAlertRecipients();
+  if (recipients.length === 0 || !isEmailConfigured()) {
     return false;
   }
 
@@ -36,6 +38,17 @@ export async function notifyOperationalIssue(input: OperationalAlertInput) {
   });
   if (!cooldown.allowed) {
     return false;
+  }
+
+  // Optional ceiling shared by a whole class of alerts, so a burst of different errors cannot flood the inbox.
+  if (input.hourlyCap) {
+    const cap = await checkRateLimit(`operational-alert-cap:${input.hourlyCap.key}`, {
+      limit: input.hourlyCap.limit,
+      windowMs: 60 * 60_000,
+    });
+    if (!cap.allowed) {
+      return false;
+    }
   }
 
   const severity = input.severity || "warning";
@@ -81,7 +94,7 @@ export async function notifyOperationalIssue(input: OperationalAlertInput) {
 
   try {
     await sendEmail({
-      to: toAddress,
+      to: recipients,
       subject: `[RediHealth ${severity.toUpperCase()}] ${input.title}`,
       text: textBody,
       html: htmlBody,

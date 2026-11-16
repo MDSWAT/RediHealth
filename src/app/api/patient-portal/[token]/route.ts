@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { logActivity } from "@/lib/activity-log";
-import { getCountryDatabase, type ResultSetHeader } from "@/lib/database";
+import { getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { parseCountry } from "@/lib/countries";
 import { findPatientByPortalToken } from "@/lib/data/portal";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
@@ -73,98 +73,126 @@ export async function PATCH(request: Request, { params }: Params) {
     const patient = lookup.row;
     const patientId = patient.id;
 
-    const updates: string[] = [];
-    const updateParams: unknown[] = [];
-
-    if (body.condition_notes !== undefined) {
-      if (typeof body.condition_notes !== "string") {
-        return NextResponse.json({ error: "Invalid symptom notes." }, { status: 400 });
-      }
-      const notes = body.condition_notes.trim();
-      if (notes.length > MAX_CONDITION_NOTES_LENGTH) {
-        return NextResponse.json({ error: "Symptom notes are too long." }, { status: 400 });
-      }
-      updates.push("condition_notes = ?");
-      updateParams.push(notes);
-    }
-
-    if (body.priority !== undefined) {
-      if (!isPatientPriority(body.priority)) {
-        return NextResponse.json({ error: "Invalid priority value." }, { status: 400 });
-      }
-      updates.push("priority = ?");
-      updateParams.push(body.priority);
-    }
-
-    if (body.new_followup !== undefined) {
-      const result = validateFollowupInput(body.new_followup);
-      if (!result.ok) {
-        return NextResponse.json({ error: result.error }, { status: 400 });
-      }
-      const existingFollowups =
-        parseJsonColumn<FollowupItem[]>(patient.followups) || [];
-      updates.push("followups = ?");
-      updateParams.push(stringifyJsonColumn([result.value, ...existingFollowups]));
-    }
-
-    if (body.new_photo !== undefined) {
-      const result = validatePhotoInput(body.new_photo);
-      if (!result.ok) {
-        return NextResponse.json({ error: result.error }, { status: 400 });
-      }
-      const existingPhotos =
-        parseJsonColumn<PatientPhoto[]>(decryptField(lookup.country, patient.photos)) || [];
-      updates.push("photos = ?");
-      updateParams.push(encryptField(lookup.country, stringifyJsonColumn([result.value, ...existingPhotos])));
-    }
-
-    if (body.complete_followup !== undefined) {
-      const result = validateFollowupCompletionInput(body.complete_followup);
-      if (!result.ok) {
-        return NextResponse.json({ error: result.error }, { status: 400 });
-      }
-
-      const existingFollowups = parseJsonColumn<FollowupItem[]>(patient.followups) || [];
-      const followupIndex = existingFollowups.findIndex(
-        (item) => item.id === result.value.followup_id,
+    // Lock the patient's row and re-read the lists inside the transaction, so two saves at the
+    // same time (two photos, or the patient and a staff member) cannot overwrite each other.
+    let changedKeys: (string | undefined)[] = [];
+    const connection = await getCountryDatabase(lookup.country).getConnection();
+    try {
+      await connection.beginTransaction();
+      const [freshRows] = await connection.query<RowDataPacket[]>(
+        "SELECT followups, photos FROM patients WHERE id = ? FOR UPDATE",
+        [patientId],
       );
+      const fresh = freshRows[0];
+      const failure = await (async (): Promise<NextResponse | null> => {
+        if (!fresh) {
+          return NextResponse.json({ error: "Patient portal link not found." }, { status: 404 });
+        }
+        const updates: string[] = [];
+        const updateParams: unknown[] = [];
 
-      if (followupIndex < 0) {
-        return NextResponse.json({ error: "Follow-up not found." }, { status: 404 });
+        if (body.condition_notes !== undefined) {
+          if (typeof body.condition_notes !== "string") {
+            return NextResponse.json({ error: "Invalid symptom notes." }, { status: 400 });
+          }
+          const notes = body.condition_notes.trim();
+          if (notes.length > MAX_CONDITION_NOTES_LENGTH) {
+            return NextResponse.json({ error: "Symptom notes are too long." }, { status: 400 });
+          }
+          updates.push("condition_notes = ?");
+          updateParams.push(notes);
+        }
+
+        if (body.priority !== undefined) {
+          if (!isPatientPriority(body.priority)) {
+            return NextResponse.json({ error: "Invalid priority value." }, { status: 400 });
+          }
+          updates.push("priority = ?");
+          updateParams.push(body.priority);
+        }
+
+        if (body.new_followup !== undefined) {
+          const result = validateFollowupInput(body.new_followup);
+          if (!result.ok) {
+            return NextResponse.json({ error: result.error }, { status: 400 });
+          }
+          const existingFollowups =
+            parseJsonColumn<FollowupItem[]>(fresh.followups) || [];
+          updates.push("followups = ?");
+          updateParams.push(stringifyJsonColumn([result.value, ...existingFollowups]));
+        }
+
+        if (body.new_photo !== undefined) {
+          const result = validatePhotoInput(body.new_photo);
+          if (!result.ok) {
+            return NextResponse.json({ error: result.error }, { status: 400 });
+          }
+          const existingPhotos =
+            parseJsonColumn<PatientPhoto[]>(decryptField(lookup.country, fresh.photos)) || [];
+          updates.push("photos = ?");
+          updateParams.push(encryptField(lookup.country, stringifyJsonColumn([result.value, ...existingPhotos])));
+        }
+
+        if (body.complete_followup !== undefined) {
+          const result = validateFollowupCompletionInput(body.complete_followup);
+          if (!result.ok) {
+            return NextResponse.json({ error: result.error }, { status: 400 });
+          }
+
+          const existingFollowups = parseJsonColumn<FollowupItem[]>(fresh.followups) || [];
+          const followupIndex = existingFollowups.findIndex(
+            (item) => item.id === result.value.followup_id,
+          );
+
+          if (followupIndex < 0) {
+            return NextResponse.json({ error: "Follow-up not found." }, { status: 404 });
+          }
+
+          const current = existingFollowups[followupIndex];
+          const completionPhotos = result.value.completion_photos;
+          const merged: FollowupItem = {
+            ...current,
+            status: "completed",
+            completion_notes: result.value.completion_notes || current.completion_notes,
+            completed_at: result.value.completed_at,
+            completion_photos:
+              completionPhotos.length > 0
+                ? completionPhotos
+                : current.completion_photos || [],
+          };
+
+          existingFollowups[followupIndex] = merged;
+          updates.push("followups = ?");
+          updateParams.push(stringifyJsonColumn(existingFollowups));
+        }
+
+        if (updates.length === 0) {
+          return NextResponse.json({ error: "No update fields provided." }, { status: 400 });
+        }
+
+        updateParams.push(patientId);
+
+        await connection.query<ResultSetHeader>(
+          `UPDATE patients SET ${updates.join(", ")} WHERE id = ?`,
+          updateParams,
+        );
+
+        changedKeys = updates
+          .map((entry) => entry.split("=")[0]?.trim())
+          .filter(Boolean);
+        return null;
+      })();
+      if (failure) {
+        await connection.rollback();
+        return failure;
       }
-
-      const current = existingFollowups[followupIndex];
-      const completionPhotos = result.value.completion_photos;
-      const merged: FollowupItem = {
-        ...current,
-        status: "completed",
-        completion_notes: result.value.completion_notes || current.completion_notes,
-        completed_at: result.value.completed_at,
-        completion_photos:
-          completionPhotos.length > 0
-            ? completionPhotos
-            : current.completion_photos || [],
-      };
-
-      existingFollowups[followupIndex] = merged;
-      updates.push("followups = ?");
-      updateParams.push(stringifyJsonColumn(existingFollowups));
+      await connection.commit();
+    } catch (error) {
+      await connection.rollback().catch(() => undefined);
+      throw error;
+    } finally {
+      connection.release();
     }
-
-    if (updates.length === 0) {
-      return NextResponse.json({ error: "No update fields provided." }, { status: 400 });
-    }
-
-    updateParams.push(patientId);
-
-    await getCountryDatabase(lookup.country).query<ResultSetHeader>(
-      `UPDATE patients SET ${updates.join(", ")} WHERE id = ?`,
-      updateParams,
-    );
-
-    const changedKeys = updates
-      .map((entry) => entry.split("=")[0]?.trim())
-      .filter(Boolean);
 
     await logActivity({
       country: lookup.country,

@@ -19,7 +19,7 @@ export async function createFollowup(country: CountryCode, patientId: string, wo
   try {
     await connection.beginTransaction();
     const [rows] = await connection.query<RowDataPacket[]>(
-      `SELECT id, full_name, email, followups FROM patients WHERE id = ?${isAdmin ? "" : " AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0)"} FOR UPDATE`,
+      `SELECT id, full_name, email, followups FROM patients WHERE id = ?${isAdmin ? "" : " AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0)"} FOR UPDATE`,
       isAdmin ? [patientId] : [patientId, workerId, workerId],
     );
     if (!rows[0]) throw new FollowupError("Patient not found or not assigned to you.", 404);

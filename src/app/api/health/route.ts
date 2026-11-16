@@ -4,6 +4,8 @@ import { configuredCountries, getControlDatabase, getCountryDatabase, hasControl
 import { isEmailConfigured } from "@/lib/email";
 import { notifyOperationalIssue } from "@/lib/operational-alerts";
 import { resolveLlmConfig } from "@/lib/llm";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { isEncryptionConfigured } from "@/lib/security/field-encryption";
 
 export const dynamic = "force-dynamic";
 
@@ -32,6 +34,17 @@ async function checkDatabase(label: string, connect: () => { query: (sql: string
 }
 
 export async function GET(request: Request) {
+  // Each call queries every database, so anonymous callers are limited. Monitors with the token are not.
+  if (!hasMonitorAccess(request)) {
+    const rateLimit = await checkRateLimit(`health:${getClientIp(request)}`, { limit: 30, windowMs: 60_000 });
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: "Too many requests." },
+        { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
+      );
+    }
+  }
+
   const checks: Record<string, Check> = {};
 
   if (hasControlDatabase()) {
@@ -50,6 +63,18 @@ export async function GET(request: Request) {
   }
   if (countries.length === 0) {
     checks["database:countries"] = { status: "not-configured" };
+  }
+
+  // Without a country's key, medical history and photos are stored unencrypted.
+  for (const country of countries) {
+    checks[`encryption:${country}`] = { status: isEncryptionConfigured(country) ? "configured" : "not-configured" };
+  }
+
+  // Without a trusted proxy every visitor shares one rate-limit bucket, so one client can exhaust
+  // the sign-in and form limits for everybody.
+  if (process.env.NODE_ENV === "production") {
+    const proxyTrusted = process.env.REDIHEALTH_TRUST_PROXY_HEADERS === "true" || process.env.VERCEL === "1";
+    checks.clientIp = { status: proxyTrusted ? "configured" : "not-configured" };
   }
 
   checks.email = { status: isEmailConfigured() ? "configured" : "not-configured" };

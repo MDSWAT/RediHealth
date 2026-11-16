@@ -1,5 +1,6 @@
+import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
+import { requireStaff } from "@/lib/staff-access";
 
 interface HandoverVignette {
   meetingId?: string | number;
@@ -19,40 +20,59 @@ interface HandoverVignette {
   timestamp?: string;
 }
 
-// In-memory active handover store for physician video room ingestion
-const activeHandoverStore = new Map<string, HandoverVignette>();
+// Short-lived, per-instance hand-off buffer. Nothing reads it across server instances yet, so it is
+// kept small and temporary instead of growing for as long as the server runs.
+const HANDOVER_TTL_MS = 2 * 60 * 60_000;
+const MAX_HANDOVERS = 500;
+const activeHandoverStore = new Map<string, { vignette: HandoverVignette; expiresAt: number }>();
+
+function pruneHandovers(now: number) {
+  for (const [key, entry] of activeHandoverStore) {
+    if (entry.expiresAt <= now) activeHandoverStore.delete(key);
+  }
+  // Maps iterate in insertion order, so this drops the oldest entries first.
+  for (const key of activeHandoverStore.keys()) {
+    if (activeHandoverStore.size <= MAX_HANDOVERS) break;
+    activeHandoverStore.delete(key);
+  }
+}
+
+function readHandover(key: string): HandoverVignette | null {
+  const entry = activeHandoverStore.get(key);
+  return entry && entry.expiresAt > Date.now() ? entry.vignette : null;
+}
 
 export async function POST(request: Request) {
   try {
-    const session = await auth();
-    let mediatorName = "Elena Rădulescu (Mediator sanitar)";
+    // A handover carries a patient's name, vitals and complaint: staff only.
+    const access = await requireStaff();
+    if ("error" in access) return access.error;
+    const mediatorName = access.worker.workerName || access.name || access.email;
+    const country = access.worker.country;
 
-    if (session?.user?.name) {
-      mediatorName = session.user.name;
-    }
+    const body = (await request.json().catch(() => null)) as HandoverVignette | null;
 
-    const body = (await request.json()) as HandoverVignette;
-
-    if (!body.patientName || !body.reasonForVisit) {
+    if (!body || typeof body !== "object" || !body.patientName || !body.reasonForVisit) {
       return NextResponse.json(
         { error: "Numele pacientului și motivul consultației sunt obligatorii." },
         { status: 400 },
       );
     }
 
-    const handoverId = `handover-${Date.now()}`;
+    const handoverId = `handover-${randomUUID()}`;
     const vignette: HandoverVignette = {
       ...body,
       mediatorName,
       timestamp: new Date().toISOString(),
     };
 
-    activeHandoverStore.set(handoverId, vignette);
+    const now = Date.now();
+    const stored = { vignette, expiresAt: now + HANDOVER_TTL_MS };
+    activeHandoverStore.set(`${country}:${handoverId}`, stored);
     if (body.meetingId) {
-      activeHandoverStore.set(String(body.meetingId), vignette);
+      activeHandoverStore.set(`${country}:meeting:${body.meetingId}`, stored);
     }
-
-    console.info(`[MEDIATOR_HANDOVER] Transmitted clinical vignette for ${body.patientName} by ${mediatorName}`);
+    pruneHandovers(now);
 
     return NextResponse.json({
       success: true,
@@ -67,16 +87,18 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
+  const access = await requireStaff();
+  if ("error" in access) return access.error;
+  const country = access.worker.country;
+
   const { searchParams } = new URL(request.url);
   const meetingId = searchParams.get("meetingId");
   const handoverId = searchParams.get("handoverId");
 
-  if (meetingId && activeHandoverStore.has(meetingId)) {
-    return NextResponse.json({ vignette: activeHandoverStore.get(meetingId) });
-  }
-  if (handoverId && activeHandoverStore.has(handoverId)) {
-    return NextResponse.json({ vignette: activeHandoverStore.get(handoverId) });
-  }
+  const vignette =
+    (meetingId ? readHandover(`${country}:meeting:${meetingId}`) : null) ??
+    (handoverId ? readHandover(`${country}:${handoverId}`) : null);
+  if (vignette) return NextResponse.json({ vignette });
 
   return NextResponse.json({ vignette: null });
 }

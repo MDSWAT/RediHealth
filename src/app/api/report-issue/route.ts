@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { isEmailConfigured, renderBrandEmail, sendEmail } from "@/lib/email";
-import { getAlertRecipient } from "@/lib/settings";
+import { getAlertRecipients } from "@/lib/settings";
 import { escapeHtml, isValidEmail, text } from "@/lib/text";
 import { auth } from "@/auth";
 import { getUserWorkerContext } from "@/lib/worker-auth";
@@ -72,8 +72,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
   }
 
-  const { email: recipient } = await getAlertRecipient();
-  if (!recipient || !isEmailConfigured()) {
+  const { emails: recipients } = await getAlertRecipients();
+  if (recipients.length === 0 || !isEmailConfigured()) {
     return NextResponse.json(
       { error: "Issue reporting is temporarily unavailable." },
       { status: 503 },
@@ -132,7 +132,7 @@ export async function POST(request: Request) {
 
   try {
     await sendEmail({
-      to: recipient,
+      to: recipients,
       subject: `RediHealth issue report: ${subjectPreview}`,
       text: textBody,
       html: htmlBody,

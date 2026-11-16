@@ -31,7 +31,7 @@ vi.mock("@/lib/email", () => ({
   sendEmail: mocks.sendEmail,
   sendHelpRequestConfirmationEmail: mocks.sendEmail,
 }));
-vi.mock("@/lib/settings", () => ({ getAlertRecipient: async () => ({ email: "alerts@example.com" }) }));
+vi.mock("@/lib/settings", () => ({ getAlertRecipients: async () => ({ emails: ["alerts@example.com"], source: "panel" }) }));
 vi.mock("@/lib/data/portal", () => ({ findPatientByPortalToken: mocks.lookup }));
 vi.mock("@/lib/llm", () => ({ generateText: mocks.generate, LlmError: class extends Error {} }));
 vi.mock("@/lib/operational-alerts", () => ({ notifyOperationalIssue: vi.fn() }));

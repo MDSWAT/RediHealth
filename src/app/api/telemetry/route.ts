@@ -1,28 +1,27 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
-import { getUserWorkerContext } from "@/lib/worker-auth";
+import { requireStaff } from "@/lib/staff-access";
 import { getCountryDatabase, isCountryConfigured, type RowDataPacket, type ResultSetHeader } from "@/lib/database";
 import { validateVitals, type VitalsTelemetryRecord } from "@/lib/types/telemetry";
-import { parseCountry, type CountryCode } from "@/lib/countries";
 
-// In-memory telemetry cache for real-time overlay during live consultations
-const liveTelemetryCache = new Map<string, VitalsTelemetryRecord>();
+// Readings live in the country database only, so every server instance sees the same data.
+function recordId(value: unknown): number | null {
+  const id = typeof value === "number" ? String(value) : typeof value === "string" ? value.trim() : "";
+  return /^\d{1,18}$/.test(id) ? Number(id) : null;
+}
 
 export async function POST(request: Request) {
   try {
-    const session = await auth();
-    let workerId: string | number | null = null;
-    let workerName = "Mediator sanitar";
-    let country: CountryCode = "RO";
+    // Vitals are patient health data: only signed-in staff may record them.
+    const access = await requireStaff();
+    if ("error" in access) return access.error;
+    const workerId = access.worker.workerId;
+    const workerName = access.worker.workerName || access.name || access.email;
+    const country = access.worker.country;
 
-    if (session?.user?.email) {
-      const workerContext = await getUserWorkerContext(session.user.email);
-      workerId = workerContext.workerId;
-      country = parseCountry(workerContext.country) || "RO";
-      workerName = session.user.name || session.user.email;
+    const body = (await request.json().catch(() => null)) as Partial<VitalsTelemetryRecord> | null;
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return NextResponse.json({ error: "Date biometrice invalide." }, { status: 400 });
     }
-
-    const body = (await request.json()) as Partial<VitalsTelemetryRecord>;
 
     const validation = validateVitals(body);
     if (!validation.isValid) {
@@ -34,61 +33,53 @@ export async function POST(request: Request) {
 
     const record: VitalsTelemetryRecord = {
       id: Date.now(),
-      patientId: body.patientId || null,
-      meetingId: body.meetingId || null,
+      patientId: recordId(body.patientId),
+      meetingId: recordId(body.meetingId),
       recordedByWorkerId: workerId,
       recordedByWorkerName: workerName,
-      deviceKitId: body.deviceKitId || "kit-standard-01",
+      deviceKitId: typeof body.deviceKitId === "string" && body.deviceKitId.trim() ? body.deviceKitId.trim().slice(0, 64) : "kit-standard-01",
       bloodPressureSystolic: body.bloodPressureSystolic ?? null,
       bloodPressureDiastolic: body.bloodPressureDiastolic ?? null,
       pulseBpm: body.pulseBpm ?? null,
       oxygenSaturationPct: body.oxygenSaturationPct ?? null,
       bloodGlucoseMgDl: body.bloodGlucoseMgDl ?? null,
-      glucoseContext: body.glucoseContext || "random",
+      glucoseContext: body.glucoseContext === "fasting" || body.glucoseContext === "postprandial" ? body.glucoseContext : "random",
       bodyTemperatureC: body.bodyTemperatureC ?? null,
-      notes: body.notes || null,
+      notes: typeof body.notes === "string" && body.notes.trim() ? body.notes.trim().slice(0, 4000) : null,
       recordedAt: new Date().toISOString(),
     };
 
-    // Store in live cache for quick doctor HUD overlay polling
-    if (record.meetingId) {
-      liveTelemetryCache.set(String(record.meetingId), record);
+    if (!isCountryConfigured(country)) {
+      return NextResponse.json({ error: "Datele nu au putut fi salvate." }, { status: 503 });
     }
-    if (record.patientId) {
-      liveTelemetryCache.set(`patient_${record.patientId}`, record);
-    }
-
-    // Attempt database persistence if country database is configured
-    if (isCountryConfigured(country)) {
-      try {
-        const db = getCountryDatabase(country);
-        const [result] = await db.query<ResultSetHeader>(
-          `INSERT INTO patient_vitals_telemetry (
-            patient_id, meeting_id, recorded_by_worker_id, device_kit_id,
-            blood_pressure_systolic, blood_pressure_diastolic, pulse_bpm,
-            oxygen_saturation_pct, blood_glucose_mg_dl, glucose_context,
-            body_temperature_c, notes, recorded_at
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
-          [
-            record.patientId ? Number(record.patientId) : null,
-            record.meetingId ? Number(record.meetingId) : null,
-            record.recordedByWorkerId ? Number(record.recordedByWorkerId) : null,
-            record.deviceKitId,
-            record.bloodPressureSystolic,
-            record.bloodPressureDiastolic,
-            record.pulseBpm,
-            record.oxygenSaturationPct,
-            record.bloodGlucoseMgDl,
-            record.glucoseContext,
-            record.bodyTemperatureC,
-            record.notes,
-          ],
-        );
-        record.id = result.insertId;
-      } catch (dbErr) {
-        // Fallback gracefully if database table is pending migration
-        console.warn("Telemetry database insert skipped or failed:", dbErr);
-      }
+    try {
+      const [result] = await getCountryDatabase(country).query<ResultSetHeader>(
+        `INSERT INTO patient_vitals_telemetry (
+          patient_id, meeting_id, recorded_by_worker_id, device_kit_id,
+          blood_pressure_systolic, blood_pressure_diastolic, pulse_bpm,
+          oxygen_saturation_pct, blood_glucose_mg_dl, glucose_context,
+          body_temperature_c, notes, recorded_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
+        [
+          record.patientId,
+          record.meetingId,
+          Number(workerId),
+          record.deviceKitId,
+          record.bloodPressureSystolic,
+          record.bloodPressureDiastolic,
+          record.pulseBpm,
+          record.oxygenSaturationPct,
+          record.bloodGlucoseMgDl,
+          record.glucoseContext,
+          record.bodyTemperatureC,
+          record.notes,
+        ],
+      );
+      record.id = result.insertId;
+    } catch (dbError) {
+      // Never report a reading as saved when it was not (for example before migration 015 is applied).
+      console.error("Telemetry could not be saved", dbError);
+      return NextResponse.json({ error: "Datele nu au putut fi salvate." }, { status: 503 });
     }
 
     return NextResponse.json({
@@ -103,6 +94,11 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
+  // Only signed-in staff may read vitals, and only from the country they work in.
+  const access = await requireStaff();
+  if ("error" in access) return access.error;
+  const country = access.worker.country;
+
   const { searchParams } = new URL(request.url);
   const meetingId = searchParams.get("meetingId");
   const patientId = searchParams.get("patientId");
@@ -111,23 +107,13 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Lipsește întâlnirea sau pacientul." }, { status: 400 });
   }
 
-  // Check live cache first
-  if (meetingId && liveTelemetryCache.has(meetingId)) {
-    return NextResponse.json({ telemetry: liveTelemetryCache.get(meetingId) });
-  }
-  if (patientId && liveTelemetryCache.has(`patient_${patientId}`)) {
-    return NextResponse.json({ telemetry: liveTelemetryCache.get(`patient_${patientId}`) });
-  }
-
-  // If in database, query latest
-  const country: CountryCode = "RO";
   if (isCountryConfigured(country)) {
     try {
       const db = getCountryDatabase(country);
       const query = meetingId
         ? `SELECT * FROM patient_vitals_telemetry WHERE meeting_id = ? ORDER BY recorded_at DESC LIMIT 1`
         : `SELECT * FROM patient_vitals_telemetry WHERE patient_id = ? ORDER BY recorded_at DESC LIMIT 1`;
-      const [rows] = await db.query<RowDataPacket[]>(query, [meetingId || patientId]);
+      const [rows] = await db.query<RowDataPacket[]>(query, [meetingId ? recordId(meetingId) : recordId(patientId)]);
       if (rows.length > 0) {
         const row = rows[0];
         const record: VitalsTelemetryRecord = {
@@ -148,8 +134,9 @@ export async function GET(request: Request) {
         };
         return NextResponse.json({ telemetry: record });
       }
-    } catch {
-      // Return null telemetry if not found
+    } catch (error) {
+      console.error("Telemetry could not be loaded", error);
+      return NextResponse.json({ error: "Datele nu au putut fi încărcate." }, { status: 503 });
     }
   }
 

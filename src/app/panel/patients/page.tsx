@@ -32,6 +32,7 @@ export default async function PatientsPage() {
         loadPatients({
           country: workerContext.country,
           scopeToWorkerId: workerContext.isAdmin ? null : workerContext.workerId,
+          projection: "list",
         }),
         countAttentionRequests(workerContext.country),
       ]);

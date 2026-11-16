@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useSyncExternalStore } from "react";
+import { reportClientError } from "@/lib/client-error-report";
 import { errorTranslations } from "@/lib/i18n/error-translations";
 import type { Lang } from "@/lib/i18n/translations";
 
@@ -44,6 +45,7 @@ export default function GlobalError({
 
   useEffect(() => {
     console.error(error);
+    reportClientError(error, "render");
   }, [error]);
 
   const copy = errorTranslations[lang];

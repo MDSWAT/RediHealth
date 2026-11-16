@@ -33,6 +33,7 @@ export default async function CalendarPage() {
         loadPatients({
           country: workerContext.country,
           scopeToWorkerId: workerContext.isAdmin ? null : workerContext.workerId,
+          projection: "list",
         }),
         countAttentionRequests(workerContext.country),
       ]);

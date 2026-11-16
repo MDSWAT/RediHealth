@@ -409,7 +409,8 @@ const emailSignOffByLang: Record<Lang, string> = {
 };
 
 type EmailMessage = {
-  to: string;
+  /** One address, or several that all receive the same message. */
+  to: string | string[];
   subject: string;
   text: string;
   html?: string;
@@ -458,7 +459,7 @@ export async function sendEmail({ to, subject, text, html, displayName }: EmailM
   }
 
   const message = {
-    to: [to],
+    to: Array.isArray(to) ? to : [to],
     displayName: displayName || config.displayName,
     subject,
     text,

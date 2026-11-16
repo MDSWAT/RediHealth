@@ -54,7 +54,7 @@ export default async function MeetPage() {
   if (databaseAvailable) {
     try {
       const [patients, pendingCount] = await Promise.all([
-        loadPatients({ country: workerContext.country, scopeToWorkerId: workerContext.isAdmin ? null : workerContext.workerId, limit: 200 }),
+        loadPatients({ country: workerContext.country, scopeToWorkerId: workerContext.isAdmin ? null : workerContext.workerId, limit: 200, projection: "list" }),
         countAttentionRequests(workerContext.country),
       ]);
 

@@ -4,13 +4,19 @@ import { logActivity } from "@/lib/activity-log";
 import { getCountryDatabase, isOfflineSyncTransaction, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { parseJsonColumn, stringifyJsonColumn } from "@/lib/json";
 import {
-  PATIENT_COLUMNS,
+  PATIENT_LIST_COLUMNS,
   PATIENT_ASSIGNMENT_COLUMNS,
   PATIENT_FROM,
   mapPatientRow,
   type DBPatientRow,
 } from "@/lib/data/patients";
-import { isPatientPriority, isPatientStatus, validateTreatmentPlanInput } from "@/lib/validation";
+import {
+  isPatientPriority,
+  isPatientStatus,
+  validateFollowupList,
+  validatePhotoList,
+  validateTreatmentPlanInput,
+} from "@/lib/validation";
 import type {
   CreatePatientPayload,
   PatientPriority,
@@ -36,6 +42,10 @@ function isDuplicateEntryError(error: unknown): boolean {
     || /duplicate entry/i.test(dbError.message || "")
   );
 }
+
+const MAX_CONDITION_NOTES_LENGTH = 20_000;
+const MAX_MEDICAL_HISTORY_LENGTH = 15_000;
+const MAX_SHORT_FIELD_LENGTH = 50;
 
 function normalizeWorkerIds(value: unknown): string[] {
   if (!Array.isArray(value)) return [];
@@ -74,19 +84,19 @@ export async function GET(request: Request) {
 
   try {
     const db = getCountryDatabase(workerContext.country);
-    let query = `SELECT ${assignmentView ? PATIENT_ASSIGNMENT_COLUMNS : PATIENT_COLUMNS} ${PATIENT_FROM}`;
+    let query = `SELECT ${assignmentView ? PATIENT_ASSIGNMENT_COLUMNS : PATIENT_LIST_COLUMNS} ${PATIENT_FROM}`;
     const params: unknown[] = [];
     const conditions: string[] = [];
 
     // Non-admins may only ever see patients assigned to them.
     if (!workerContext.isAdmin && workerContext.workerId) {
-      conditions.push("(p.assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0)");
+      conditions.push("(p.assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0)");
       params.push(workerContext.workerId, workerContext.workerId);
     } else if (workerIdParam && workerIdParam !== "all") {
       if (workerIdParam === "unassigned") {
         conditions.push("(p.assigned_worker_id IS NULL AND (p.assigned_worker_ids IS NULL OR JSON_LENGTH(p.assigned_worker_ids) = 0))");
       } else {
-        conditions.push("(p.assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0)");
+        conditions.push("(p.assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0)");
         params.push(workerIdParam, workerIdParam);
       }
     }
@@ -207,7 +217,11 @@ export async function POST(request: Request) {
     fullName.length > 200 ||
     phone.length > 50 ||
     email.length > 320 ||
-    address.length > 500
+    address.length > 500 ||
+    dateOfBirth.length > MAX_SHORT_FIELD_LENGTH ||
+    gender.length > MAX_SHORT_FIELD_LENGTH ||
+    conditionNotes.length > MAX_CONDITION_NOTES_LENGTH ||
+    medicalHistory.length > MAX_MEDICAL_HISTORY_LENGTH
   ) {
     return NextResponse.json(
       { error: "One or more fields are too long." },
@@ -220,6 +234,14 @@ export async function POST(request: Request) {
   }
   if (body.priority !== undefined && !isPatientPriority(body.priority)) {
     return NextResponse.json({ error: "Invalid patient priority." }, { status: 400 });
+  }
+  const validatedFollowups = body.followups == null ? null : validateFollowupList(body.followups);
+  if (validatedFollowups && !validatedFollowups.ok) {
+    return NextResponse.json({ error: validatedFollowups.error }, { status: 400 });
+  }
+  const validatedPhotos = body.photos == null ? null : validatePhotoList(body.photos);
+  if (validatedPhotos && !validatedPhotos.ok) {
+    return NextResponse.json({ error: validatedPhotos.error }, { status: 400 });
   }
 
   if (!workerContext.isAdmin) {
@@ -242,8 +264,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: validatedTreatment.error }, { status: 400 });
   }
   const treatmentPlan = stringifyJsonColumn(validatedTreatment.value);
-  const followups = stringifyJsonColumn(body.followups);
-  const photos = encryptField(workerContext.country, stringifyJsonColumn(body.photos));
+  const followups = stringifyJsonColumn(validatedFollowups?.value);
+  const photos = encryptField(workerContext.country, stringifyJsonColumn(validatedPhotos?.value));
   const assignedWorkerIds = workerContext.isAdmin
     ? requestedAssignedWorkerIds
     : [workerContext.workerId];
@@ -430,12 +452,20 @@ export async function PATCH(request: Request) {
     params.push(nextEmail);
   }
   if (body.date_of_birth !== undefined) {
+    const nextDateOfBirth = text(body.date_of_birth);
+    if (nextDateOfBirth.length > MAX_SHORT_FIELD_LENGTH) {
+      return NextResponse.json({ error: "Date of birth is too long." }, { status: 400 });
+    }
     updates.push("date_of_birth = ?");
-    params.push(text(body.date_of_birth) || null);
+    params.push(nextDateOfBirth || null);
   }
   if (body.gender !== undefined) {
+    const nextGender = text(body.gender);
+    if (nextGender.length > MAX_SHORT_FIELD_LENGTH) {
+      return NextResponse.json({ error: "Gender is too long." }, { status: 400 });
+    }
     updates.push("gender = ?");
-    params.push(text(body.gender) || null);
+    params.push(nextGender || null);
   }
   if (body.address !== undefined) {
     const nextAddress = text(body.address);
@@ -454,12 +484,20 @@ export async function PATCH(request: Request) {
     params.push(nextCounty || null);
   }
   if (body.condition_notes !== undefined) {
+    const nextNotes = text(body.condition_notes);
+    if (nextNotes.length > MAX_CONDITION_NOTES_LENGTH) {
+      return NextResponse.json({ error: "Condition notes are too long." }, { status: 400 });
+    }
     updates.push("condition_notes = ?");
-    params.push(text(body.condition_notes) || null);
+    params.push(nextNotes || null);
   }
   if (body.medical_history !== undefined) {
+    const nextHistory = text(body.medical_history);
+    if (nextHistory.length > MAX_MEDICAL_HISTORY_LENGTH) {
+      return NextResponse.json({ error: "Medical history is too long." }, { status: 400 });
+    }
     updates.push("medical_history = ?");
-    params.push(encryptField(workerContext.country, text(body.medical_history) || null));
+    params.push(encryptField(workerContext.country, nextHistory || null));
   }
   if (body.profile_photo !== undefined) {
     if (body.profile_photo === null || body.profile_photo === "") {
@@ -491,18 +529,20 @@ export async function PATCH(request: Request) {
     params.push(stringifyJsonColumn(validatedTreatment.value));
   }
   if (body.followups !== undefined) {
-    if (!Array.isArray(body.followups)) {
-      return NextResponse.json({ error: "Follow-ups must be an array." }, { status: 400 });
+    const validatedFollowups = validateFollowupList(body.followups);
+    if (!validatedFollowups.ok) {
+      return NextResponse.json({ error: validatedFollowups.error }, { status: 400 });
     }
     updates.push("followups = ?");
-    params.push(stringifyJsonColumn(body.followups));
+    params.push(stringifyJsonColumn(validatedFollowups.value));
   }
   if (body.photos !== undefined) {
-    if (!Array.isArray(body.photos)) {
-      return NextResponse.json({ error: "Photos must be an array." }, { status: 400 });
+    const validatedPhotos = validatePhotoList(body.photos);
+    if (!validatedPhotos.ok) {
+      return NextResponse.json({ error: validatedPhotos.error }, { status: 400 });
     }
     updates.push("photos = ?");
-    params.push(encryptField(workerContext.country, stringifyJsonColumn(body.photos)));
+    params.push(encryptField(workerContext.country, stringifyJsonColumn(validatedPhotos.value)));
   }
   if (body.status !== undefined) {
     updates.push("status = ?");
@@ -550,7 +590,7 @@ export async function PATCH(request: Request) {
   // Non-admins may only update patients assigned to them.
   let whereClause = "id = ?";
   if (!workerContext.isAdmin) {
-    whereClause += " AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0)";
+    whereClause += " AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0)";
     params.push(workerContext.workerId, workerContext.workerId);
   }
 
@@ -637,7 +677,7 @@ export async function DELETE(request: Request) {
   let whereClause = "id = ?";
   const deleteParams: unknown[] = [id];
   if (!workerContext.isAdmin) {
-    whereClause += " AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0)";
+    whereClause += " AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0)";
     deleteParams.push(workerContext.workerId, workerContext.workerId);
   }
 

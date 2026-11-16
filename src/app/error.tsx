@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { reportClientError } from "@/lib/client-error-report";
 import { errorTranslations } from "@/lib/i18n/error-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
@@ -50,6 +51,7 @@ export default function ErrorPage({
 
   useEffect(() => {
     console.error(error);
+    reportClientError(error, "render");
   }, [error]);
 
   return (

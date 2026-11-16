@@ -4,9 +4,7 @@ import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { sendPatientPortalLinkEmail, isEmailConfigured } from "@/lib/email";
 import { PORTAL_LINK_TTL_DAYS, generatePortalToken, hashPortalToken } from "@/lib/security/portal-token";
 import { getRequestLang } from "@/lib/i18n/server-routing";
-import { parseJsonColumn } from "@/lib/json";
 import { isValidEmail } from "@/lib/text";
-import type { TreatmentPlan } from "@/lib/types/patient";
 import { verifyRecaptcha } from "@/lib/security/recaptcha";
 
 const genericResponse = {
@@ -70,7 +68,7 @@ export async function POST(request: Request) {
     try {
       const db = getCountryDatabase(country);
       const [rows] = await db.query<RowDataPacket[]>(
-        `SELECT id, full_name, email, condition_notes, treatment_plan
+        `SELECT id, full_name, email
          FROM patients
          WHERE LOWER(email) = ?
          LIMIT 1`,
@@ -93,8 +91,8 @@ export async function POST(request: Request) {
         accessToken,
         country,
         lang,
-        treatmentPlan: parseJsonColumn<TreatmentPlan>(patient.treatment_plan),
-        conditionNotes: patient.condition_notes,
+        // Anyone who knows the address can trigger this email, so it carries the link only:
+        // no diagnosis, medication or condition notes.
         baseUrl,
       });
       if (!emailSent) {

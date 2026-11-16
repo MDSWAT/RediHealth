@@ -19,7 +19,7 @@ export function recordRevision(row: RowDataPacket): string {
 export async function offlineRecord(identity: OfflineIdentity, entity: "patient" | "request", id: string, lock = false) {
   const table = entity === "patient" ? "patients" : "medical_help_requests";
   const [rows] = await getCountryDatabase(identity.country).query<RowDataPacket[]>(
-    `SELECT * FROM ${table} WHERE id = ?${entity === "patient" ? ` AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', '')) > 0)` : ""}${lock ? " FOR UPDATE" : ""}`,
+    `SELECT * FROM ${table} WHERE id = ?${entity === "patient" ? ` AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', ''), ' ', '')) > 0)` : ""}${lock ? " FOR UPDATE" : ""}`,
     entity === "patient" ? [id, identity.workerId, identity.workerId] : [id],
   );
   return rows[0] || null;

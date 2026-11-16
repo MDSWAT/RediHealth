@@ -288,3 +288,98 @@ export function validateFollowupCompletionInput(
     },
   };
 }
+
+// Staff-side limits are deliberately generous: they bound size and shape without rejecting
+// records that were valid before validation was added.
+const MAX_STAFF_FOLLOWUPS = 500;
+const MAX_STAFF_PHOTOS = 100;
+const MAX_STAFF_NOTE_LENGTH = 10_000;
+const MAX_MEETING_TRANSCRIPT_LENGTH = 100_000;
+
+function optionalText(value: unknown, maxLength: number): ValidationResult<string | undefined> {
+  if (value === undefined || value === null) return { ok: true, value: undefined };
+  if (typeof value !== "string" || value.length > maxLength) return { ok: false, error: "Follow-up text is invalid or too long." };
+  return { ok: true, value: value || undefined };
+}
+
+function validateStoredPhoto(value: unknown): ValidationResult<PatientPhoto> {
+  const result = validatePhotoInput(value);
+  if (!result.ok) return result;
+  // Keep a full timestamp when the stored photo has one; validatePhotoInput keeps only the day.
+  const originalDate = isRecord(value) && typeof value.date === "string" ? value.date : "";
+  const keepsOriginal = originalDate.length <= 40 && ISO_DATE_PATTERN.test(originalDate.slice(0, 10))
+    && !Number.isNaN(new Date(originalDate).getTime());
+  return { ok: true, value: { ...result.value, date: keepsOriginal ? originalDate : result.value.date } };
+}
+
+/** A patient's whole photo list as saved by staff. */
+export function validatePhotoList(value: unknown): ValidationResult<PatientPhoto[]> {
+  if (!Array.isArray(value)) return { ok: false, error: "Photos must be an array." };
+  if (value.length > MAX_STAFF_PHOTOS) return { ok: false, error: `Too many photos (max ${MAX_STAFF_PHOTOS}).` };
+  const photos: PatientPhoto[] = [];
+  for (const item of value) {
+    const result = validateStoredPhoto(item);
+    if (!result.ok) return result;
+    photos.push(result.value);
+  }
+  return { ok: true, value: photos };
+}
+
+/** A patient's whole follow-up list as saved by staff. Unknown fields are dropped. */
+export function validateFollowupList(value: unknown): ValidationResult<FollowupItem[]> {
+  if (!Array.isArray(value)) return { ok: false, error: "Follow-ups must be an array." };
+  if (value.length > MAX_STAFF_FOLLOWUPS) return { ok: false, error: `Too many follow-ups (max ${MAX_STAFF_FOLLOWUPS}).` };
+
+  const followups: FollowupItem[] = [];
+  for (const item of value) {
+    if (!isRecord(item)) return { ok: false, error: "Each follow-up must be an object." };
+
+    const id = typeof item.id === "string" ? item.id.trim() : typeof item.id === "number" ? String(item.id) : "";
+    const title = typeof item.title === "string" ? item.title.trim() : "";
+    const date = typeof item.date === "string" ? item.date.trim() : "";
+    if (!id || id.length > 64) return { ok: false, error: "Each follow-up needs an identifier (max 64 characters)." };
+    if (!title || title.length > 300) return { ok: false, error: "Each follow-up needs a title (max 300 characters)." };
+    if (date.length > 40 || !ISO_DATE_PATTERN.test(date.slice(0, 10))) {
+      return { ok: false, error: "Each follow-up needs a valid date (YYYY-MM-DD)." };
+    }
+    if (typeof item.status !== "string" || !(FOLLOWUP_STATUSES as readonly string[]).includes(item.status)) {
+      return { ok: false, error: "Invalid follow-up status." };
+    }
+
+    const texts = {
+      time: optionalText(item.time, 5),
+      timezone: optionalText(item.timezone, 64),
+      notes: optionalText(item.notes, MAX_STAFF_NOTE_LENGTH),
+      completion_notes: optionalText(item.completion_notes, MAX_STAFF_NOTE_LENGTH),
+      completed_at: optionalText(item.completed_at, 40),
+      meeting_id: optionalText(typeof item.meeting_id === "number" ? String(item.meeting_id) : item.meeting_id, 32),
+      meeting_url: optionalText(item.meeting_url, 2048),
+      meeting_transcript: optionalText(item.meeting_transcript, MAX_MEETING_TRANSCRIPT_LENGTH),
+      meeting_notes: optionalText(item.meeting_notes, MAX_STAFF_NOTE_LENGTH),
+    };
+    const followup: FollowupItem = { id, title, date, status: item.status as FollowupItem["status"] };
+    for (const [key, result] of Object.entries(texts) as [keyof typeof texts, ValidationResult<string | undefined>][]) {
+      if (!result.ok) return result;
+      if (result.value !== undefined) followup[key] = result.value;
+    }
+    if (followup.time && !/^([01]\d|2[0-3]):[0-5]\d$/.test(followup.time)) {
+      return { ok: false, error: "Appointment time must be HH:mm." };
+    }
+    // Meeting links are opened by patients and staff, so only web links are accepted.
+    if (followup.meeting_url && !/^https:\/\/[^\s]+$/i.test(followup.meeting_url)) {
+      return { ok: false, error: "Meeting links must start with https://." };
+    }
+    if (typeof item.reminder_set === "boolean") followup.reminder_set = item.reminder_set;
+
+    if (item.completion_photos !== undefined && item.completion_photos !== null) {
+      if (!Array.isArray(item.completion_photos) || item.completion_photos.length > 20) {
+        return { ok: false, error: "Too many completion photos (max 20)." };
+      }
+      const photos = validatePhotoList(item.completion_photos);
+      if (!photos.ok) return photos;
+      followup.completion_photos = photos.value;
+    }
+    followups.push(followup);
+  }
+  return { ok: true, value: followups };
+}

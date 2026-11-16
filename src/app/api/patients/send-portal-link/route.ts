@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     const params: unknown[] = [patientId];
 
     if (!workerContext.isAdmin) {
-      query += ` AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', '')) > 0)`;
+      query += ` AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', ''), ' ', '')) > 0)`;
       params.push(workerContext.workerId, workerContext.workerId);
     }
 

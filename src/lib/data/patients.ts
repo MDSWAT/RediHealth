@@ -25,7 +25,7 @@ export const PATIENT_COLUMNS = `p.id, p.request_id, p.assigned_worker_id, w.full
     FROM workers w2
     WHERE FIND_IN_SET(
       CAST(w2.id AS CHAR(32)),
-      REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', '')
+      REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', ''), ' ', '')
     ) > 0
   ) AS assigned_worker_names_concat,
   p.access_token_hash, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, p.county,
@@ -33,6 +33,12 @@ export const PATIENT_COLUMNS = `p.id, p.request_id, p.assigned_worker_id, w.full
   COALESCE(p.status, 'active') AS status,
   COALESCE(p.priority, 'moderate') AS priority,
   p.created_at, p.updated_at`;
+
+/**
+ * Lists never show the photo gallery, which is by far the largest column (up to several megabytes
+ * per photo). Leaving it out keeps patient lists fast; the patient's own page loads the full record.
+ */
+export const PATIENT_LIST_COLUMNS = PATIENT_COLUMNS.replace("p.followups, p.photos, p.intake", "p.followups, p.intake");
 
 export const PATIENT_FROM = `FROM patients p LEFT JOIN workers w ON w.id = p.assigned_worker_id`;
 
@@ -131,7 +137,8 @@ export interface LoadPatientsOptions {
   scopeToWorkerId?: string | null;
   limit?: number;
   id?: string;
-  projection?: "full" | "assignment";
+  /** "list" omits the photo gallery; "assignment" keeps only what assignment controls need. */
+  projection?: "full" | "list" | "assignment";
 }
 
 export async function loadPatients(
@@ -141,14 +148,15 @@ export async function loadPatients(
   const db = getCountryDatabase(country);
 
   const params: unknown[] = [];
-  let sql = `SELECT ${projection === "assignment" ? PATIENT_ASSIGNMENT_COLUMNS : PATIENT_COLUMNS} ${PATIENT_FROM}`;
+  const columns = projection === "assignment" ? PATIENT_ASSIGNMENT_COLUMNS : projection === "list" ? PATIENT_LIST_COLUMNS : PATIENT_COLUMNS;
+  let sql = `SELECT ${columns} ${PATIENT_FROM}`;
 
   if (scopeToWorkerId) {
     sql += ` WHERE (
       p.assigned_worker_id = ?
       OR FIND_IN_SET(
         ?,
-        REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', '')
+        REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', ''), ' ', '')
       ) > 0
     )`;
     params.push(scopeToWorkerId, scopeToWorkerId);

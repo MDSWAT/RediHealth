@@ -1658,3 +1658,10 @@ html[data-calm-motion] .capsule-panel {
 html[data-calm-motion] .capsule-panel[data-open="false"] {
   transform: none;
 }
+
+/* reCAPTCHA v3 floating badge. Google allows hiding it when the page shows the reCAPTCHA notice
+   with links to Google's Privacy Policy and Terms instead (RecaptchaNotice, rendered on every page
+   by SiteChrome). Keep `visibility`, not `display: none`, so the bot check keeps working. */
+.grecaptcha-badge {
+  visibility: hidden;
+}

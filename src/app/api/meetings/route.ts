@@ -123,7 +123,7 @@ export async function POST(request: Request) {
       if (patientId) {
         const patientQuery = access.worker.isAdmin
           ? "SELECT id, full_name, email, followups FROM patients WHERE id = ? LIMIT 1 FOR UPDATE"
-          : "SELECT id, full_name, email, followups FROM patients WHERE id = ? AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', '')) > 0) LIMIT 1 FOR UPDATE";
+          : "SELECT id, full_name, email, followups FROM patients WHERE id = ? AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0) LIMIT 1 FOR UPDATE";
         const patientParams = access.worker.isAdmin
           ? [patientId]
           : [patientId, access.worker.workerId, access.worker.workerId];
