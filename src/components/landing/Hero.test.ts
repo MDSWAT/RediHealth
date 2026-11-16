@@ -16,6 +16,7 @@ vi.mock("@/lib/i18n/language-context", async () => {
 });
 
 const { Hero } = await import("./Hero");
+const await_panel = await import("./hero/TriagePanel");
 
 const LANGS: Lang[] = ["en", "ro", "sq", "it"];
 
@@ -155,9 +156,11 @@ describe("hero render", () => {
     for (const id of HERO_NEED_ORDER) expect(html).toContain(copy.panel.needs[id].label.replace(/'/g, "&#x27;"));
     expect(html).not.toContain('role="tooltip"');
     expect(html).not.toContain("<dialog");
-    expect(html).toContain('href="tel:112"');
+    // The 112 call lives in the "I feel unwell" answer, which opens from its row in a dialog.
+    expect(html).toMatch(/<button[^>]*id="triage-option-problem"[^>]*aria-haspopup="dialog"/);
     expect(html).toContain(`href="/${lang}/mediatori"`);
-    expect(html).toContain(`href="/${lang}/medic-online"`);
+    // The doctor route opens its answer (with the link to /medic-online) from its own row.
+    expect(html).toMatch(/<button[^>]*id="triage-option-doctor"[^>]*aria-haspopup="dialog"/);
     expect(html).not.toContain(`href="/${lang}/health-information"`);
   });
 
@@ -171,22 +174,24 @@ describe("hero render", () => {
     expect(html).not.toMatch(/rounded-full[^"]*px-2\.5[^"]*py-0\.5/); // no badge pills
   });
 
-  it("renders non-direct panel views in one grid cell and links risk/prescription directly (P29)", () => {
-    // Direct rows act straight from Step 1; only views with content stay stacked in the grid cell.
+  it("opens non-direct needs in the panel dialog and links risk/prescription directly (P29)", () => {
+    // Direct rows act straight from the quick options; the others open their answer in a dialog,
+    // mounted on first use, so the server markup holds no panel views at all.
     const viewNeeds = HERO_NEED_ORDER.filter((id) => !heroCopy.en.panel.needs[id].direct);
     const html = renderHero("en");
     expect(viewNeeds).toEqual(["problem", "doctor", "nearby", "navigate"]);
-    expect(html.match(/class="triage-view /g)).toHaveLength(1 + viewNeeds.length);
-    expect(html.match(/data-active="true"/g)).toHaveLength(1);
-    expect(html.match(/\binert=""/g)).toHaveLength(viewNeeds.length);
+    expect(html).not.toContain('class="triage-view ');
+    for (const id of viewNeeds) {
+      expect(html).toMatch(new RegExp(`<button[^>]*id="triage-option-${id}"[^>]*aria-haspopup="dialog"`));
+    }
     expect(html).toMatch(/<a[^>]*id="triage-option-risk"[^>]*href="\/en\/health-check"/);
     expect(html).toMatch(/<a[^>]*id="triage-option-prescription"[^>]*href="\/en\/prescription-review"/);
     expect(heroCopy.en.panel.needs.nearby.action.label).toBe("See places near you");
   });
 
-  it("fills the first screen below the sticky header", () => {
+  it("fills the first screen: the whole screen below lg, the screen below the sticky header from lg", () => {
     // The header's height (bar plus its 112 line) comes from --site-header-h, not a fixed number.
-    expect(renderHero("en")).toMatch(/min-h-\[calc\(100svh-var\(--site-header-h\)\)\]/);
+    expect(renderHero("en")).toMatch(/min-h-svh[^"]*lg:min-h-\[calc\(100svh-var\(--site-header-h\)\)\]/);
   });
 
   it.each(LANGS)("keeps the hero column compact without an inline step list in %s", (lang) => {
@@ -197,17 +202,28 @@ describe("hero render", () => {
   it("makes the hero panel the only router on the home page (P06)", () => {
     const pageSrc = readFileSync(path.resolve(__dirname, "../../app/page.tsx"), "utf8");
     expect(pageSrc).not.toContain("HelpOptions");
-    expect(pageSrc).toMatch(/<Hero\s*\/>[\s\S]*<RegionalHealthRibbon\s*\/>[\s\S]*<HealthTopics\s*\/>/);
+    expect(pageSrc).toMatch(/<Hero\b[^>]*\/>[\s\S]*<RegionalHealthRibbon\s*\/>[\s\S]*<HealthTopics\s*\/>/);
     expect(existsSync(path.resolve(__dirname, "HelpOptions.tsx"))).toBe(false);
     expect(existsSync(path.resolve(__dirname, "HelpOptionsMediatorBand.tsx"))).toBe(false);
   });
 
-  it("sets the headline as one plain sentence: no per-word spans, no aria-label override", () => {
+  it("sets the headline as plain sentences: the concept's one sentence from lg, two short ones below it", () => {
     const html = renderHero("ro");
     const h1 = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/);
-    expect(h1?.[1]).toBe(heroCopy.ro.title);
+    // Desktop keeps the concept wording as one sentence; phones get two short sentences, the second quieter.
+    expect(h1?.[1]).toContain(`<span class="hero-in hidden [--in:140ms] lg:inline-block">${heroCopy.ro.title}</span>`);
+    // The two phone sentences each start a line; the second carries the warm tint.
+    expect(h1?.[1]).toContain(`<span class="hero-in block [--in:140ms]">${heroCopy.ro.mobileTitle[0]}</span><span class="hero-title-warm hero-in block [--in:230ms]">${heroCopy.ro.mobileTitle[1]}</span>`);
     expect(h1?.[0]).not.toContain("aria-label");
     expect(html).not.toContain("hero-word");
+    for (const lang of ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const) {
+      // Short enough to hold a display size on a phone, and each part is a full sentence.
+      for (const part of heroCopy[lang].mobileTitle) {
+        expect(part.length, `${lang}: ${part}`).toBeLessThanOrEqual(34);
+        expect(part, lang).toMatch(/\.$/);
+      }
+      expect(heroCopy[lang].mobileLead.length, lang).toBeLessThanOrEqual(36);
+    }
   });
 
   it.each(LANGS)("leaves the 112 line to the sticky header in %s", (lang) => {
@@ -256,22 +272,58 @@ describe("landing interaction rules", () => {
     expect(hero).not.toMatch(/hero-scroll|will-change|translate3d|addEventListener\("scroll"/);
   });
 
-  it("keeps the hero photo desktop-only via getImageProps and <picture> source while hiding WheelBackdrop below lg", () => {
+  it("keeps the desktop photos desktop-only via getImageProps and <picture> source while hiding WheelBackdrop below lg", () => {
     const hero = sources.find(([file]) => file === "Hero.tsx")![1];
-    expect(hero).toMatch(/absolute inset-x-0 top-0 -z-30 h-56 lg:inset-0 lg:h-auto/);
-    expect(hero).toMatch(/getImageProps\(/);
-    expect(hero).toMatch(/<source\s+media="\(min-width: 1024px\)"/);
-    expect(hero).toMatch(/loading:\s*"eager"[\s\S]*fetchPriority:\s*"high"/);
+    const photos = readFileSync(path.join(landingDir, "hero/HeroPhotos.tsx"), "utf8");
+    const css = readFileSync(path.join(landingDir, "hero/HeroPhotos.module.css"), "utf8");
+    expect(hero).toMatch(/<HeroPhotos \/>/);
     expect(hero).toMatch(/hidden lg:block[\s\S]*<WheelBackdrop placement="hero"/);
-    expect(hero).not.toMatch(/\bpriority\b|\bquality=/);
-    // Phones read every line on solid ink: both full-bleed scrims exist from lg only.
-    expect(hero.match(/-z-20 hidden bg-\[linear-gradient[^"]*lg:block/g)).toHaveLength(2);
+    expect(photos).toMatch(/getImageProps\(/);
+    expect(photos).toMatch(/<source media="\(min-width: 1024px\)"/); // phones never request them
+    expect(photos).toMatch(/loading: index === 0 \? "eager" : "lazy"[\s\S]*fetchPriority: index === 0 \? "high" : "low"/);
+    expect(photos).toMatch(/aria-hidden="true"/);
+    expect(photos).not.toMatch(/\bpriority\b|\bquality=/);
+    // Still on the first photo under reduced and calm motion.
+    expect(css).toMatch(/prefers-reduced-motion: reduce[\s\S]*animation: none/);
+    expect(css).toMatch(/html\[data-calm-motion\]\) \.photo[\s\S]*animation: none/);
   });
 
-  it("renders the triage panel inline at all viewport sizes without hiding it below lg", () => {
+  it("shows the quick options from lg and opens the panel from the paper dock as a sheet below lg", () => {
     const hero = sources.find(([file]) => file === "Hero.tsx")![1];
-    expect(hero).toMatch(/<div id="triage" className="scroll-mt-24">/);
-    expect(hero).not.toMatch(/id="triage" className="[^"]*hidden/);
+    expect(hero).toMatch(/<div id="triage" className="hero-in hidden scroll-mt-24 \[--in:300ms\] lg:block">\s*<HeroRoutes copy=\{copy\} lang=\{lang\} \/>/);
+    expect(hero).toMatch(/<HeroDock copy=\{copy\} lang=\{lang\} topics=\{wheelTopics\} onNote=\{setNote\} \/>/);
+
+    const dock = readFileSync(path.join(landingDir, "hero/HeroDock.tsx"), "utf8");
+    // One main action (sapphire) plus the unwell-now shortcut; both open the same panel in a modal sheet.
+    expect(dock).toMatch(/className=\{`flex flex-col lg:hidden \$\{styles\.sheetRoot\}`\}/);
+    expect(dock.match(/variant="action"/g)).toHaveLength(1);
+    expect(dock).toMatch(/openSheet\("question"\)/);
+    expect(dock).toMatch(/openSheet\("problem"\)/);
+    expect(dock).toMatch(/<TriagePanel[\s\S]*variant="sheet"/);
+    expect(dock).toMatch(/showModal\(\)/);
+    expect(dock).not.toMatch(/pushState|popstate/); // the modal dialog handles Escape and Android back itself
+    expect(dock).not.toMatch(/bg-primary|text-primary|active:scale|\btruncate\b/);
+    // The sheet is mounted on first use, so the server markup has one chooser, not two.
+    expect(renderHero("en")).not.toContain("triage-sheet");
+  });
+
+  it("keeps the phone backdrop decorative and still under reduced and calm motion", () => {
+    const dock = readFileSync(path.join(landingDir, "hero/HeroDock.tsx"), "utf8");
+    const css = readFileSync(path.join(landingDir, "hero/HeroDock.module.css"), "utf8");
+    // The photos are hidden whole; the wheel's drawing is hidden part by part, because its chakra
+    // is a real button (the easter egg that shows the topic icons), labelled and pressed-aware.
+    expect(dock).toMatch(/aria-hidden="true" className=\{styles\.backdrop\}/);
+    expect(dock).toMatch(/aria-hidden="true" className=\{styles\.glow\}/);
+    expect(dock).toMatch(/ref=\{outerRef\} aria-hidden="true"/);
+    expect(dock).toMatch(/aria-pressed=\{ringOn\}\s*aria-label=\{toggleCopy\.ring\}/);
+    expect(dock).toMatch(/<source media="\(max-width: 1023px\)"/); // never requested on desktop
+    expect(css).toMatch(/prefers-reduced-motion: reduce[\s\S]*animation: none/);
+    expect(css).toMatch(/html\[data-calm-motion\]\) \.photo[\s\S]*animation: none/);
+    // The whole wheel is drawn, chakra included, and it keeps turning.
+    expect(dock).toMatch(/<WheelStars stars=\{OUTER_STARS\}[\s\S]*<WheelStars stars=\{INNER_STARS\}[\s\S]*<WheelSpokes/);
+    expect(css).toMatch(/\.hub \{[\s\S]*?animation: hero-dock-wheel-spin/);
+    expect(css).toMatch(/\.outer \{\s*--outer-turn: \d+s;\s*animation: hero-dock-wheel-spin/);
+    expect(css).toMatch(/\.inner \{\s*animation: hero-dock-wheel-spin/);
   });
 
   it("exposes quiz keys through aria-keyshortcuts, with 'r' for the Albanian 'e rreme'", () => {
@@ -287,10 +339,22 @@ describe("landing accent roles and one source of copy", () => {
 
   it("keeps red in the triage panel for the 112 call only, and focus on the ring token", () => {
     const panel = read("hero/TriagePanel.tsx");
-    expect(panel).not.toMatch(/outline-primary|ring-primary|text-primary/);
+    expect(panel).not.toMatch(/outline-primary|ring-primary/);
+    // The 112 call is a secondary, outlined red button: a soft red ground and red label, once each.
     expect(panel.match(/(?<!:)bg-primary(?![\w-])/g) ?? []).toHaveLength(1);
-    expect(panel).toMatch(/href="tel:112"[\s\S]{0,200}bg-primary/);
+    expect(panel.match(/(?<!:)text-primary(?![\w-])/g) ?? []).toHaveLength(1);
+    expect(panel).toMatch(/href="tel:112"[\s\S]{0,300}bg-primary\/\[0\.06\][^"]*text-primary/);
     expect(panel).toMatch(/outline-ring/);
+  });
+
+  it("makes the doctor the main action on the health-problem branch, with the 112 call above it", () => {
+    const panel = read("hero/TriagePanel.tsx");
+    const call = panel.indexOf('href="tel:112"');
+    const doctor = panel.indexOf("copy.needs.doctor.action.label");
+    expect(call).toBeGreaterThan(-1);
+    expect(doctor).toBeGreaterThan(call);
+    // The sapphire action on this branch goes to the doctor, not to 112.
+    expect(panel.slice(call, doctor)).toMatch(/href=\{localHref\("\/medic-online", lang\)\}\s*variant="action"/);
   });
 
   it("renders the triage footer mediator link as plain text without decorative UsersIcon (P06)", () => {
@@ -359,13 +423,27 @@ describe("landing accent roles and one source of copy", () => {
   });
 
   it("places the behavioural context dock below the 6 options inside Step 1", () => {
-    const html = renderHero("ro");
+    const { TriagePanel } = await_panel;
+    const html = renderToStaticMarkup(
+      createElement(TriagePanel, { copy: heroCopy.ro.panel, alarmSigns: heroCopy.ro.emergency.alarmSigns, lang: "ro" }),
+    );
     const listEnd = html.indexOf("</ul>");
     const dockIdx = html.indexOf(heroCopy.ro.panel.subtitles.default);
     const mediatorsIdx = html.indexOf(heroCopy.ro.panel.mediators);
     expect(listEnd).toBeGreaterThan(-1);
     expect(dockIdx).toBeGreaterThan(listEnd);
     expect(mediatorsIdx).toBeGreaterThan(dockIdx);
+  });
+
+  it("avoids orphaned leading dividers when fact strips wrap on Hero and MediatorsSection", () => {
+    const hero = read("Hero.tsx");
+    const mediators = read("MediatorsSection.tsx");
+
+    expect(hero).not.toContain("first:border-l-0");
+    expect(mediators).not.toContain("first:border-l-0");
+    expect(hero).toMatch(/overflow-hidden[\s\S]*-ml-3\.5/);
+    expect(mediators).toMatch(/overflow-hidden[\s\S]*sm:-ml-3\.5/);
+    expect(mediators).toMatch(/flex flex-col[\s\S]*sm:flex-row sm:flex-wrap/);
   });
 });
 
@@ -380,12 +458,23 @@ describe("hero motion safety", () => {
     expect(heroEnd).toBeGreaterThan(heroStart);
   });
 
-  it("has no travelling shapes, loops, blur or staggered word reveal", () => {
+  it("has no travelling shapes, loops, blur or per-word reveal", () => {
     expect(css).not.toMatch(/offset-path/);
     expect(heroRules).not.toMatch(/infinite/);
     expect(heroRules).not.toMatch(/filter:\s*blur/);
     expect(heroRules).not.toMatch(/hero-word|hero-spotlight|care-rail/);
-    expect(heroRules).not.toMatch(/var\(--i/); // no per-item stagger delays
+  });
+
+  it("keeps the load sequence short: whole blocks only, every step started within half a second", () => {
+    const hero = readFileSync(path.resolve(__dirname, "Hero.tsx"), "utf8");
+    const delays = [...hero.matchAll(/\[--in:(\d+)ms\]/g)].map((match) => Number(match[1]));
+    expect(delays.length).toBeGreaterThan(0);
+    for (const delay of delays) expect(delay).toBeLessThanOrEqual(500);
+    // The sequence only runs when motion is welcome, and never under the in-app calm setting.
+    expect(heroRules).toMatch(/prefers-reduced-motion: no-preference[\s\S]*html:not\(\[data-calm-motion\]\) \.hero-in/);
+    // Only position, scale, rotation and opacity move on arrival.
+    const intro = heroRules.slice(heroRules.indexOf("@keyframes hero-in"), heroRules.indexOf("@keyframes hero-dock-in") + 120);
+    expect(intro).not.toMatch(/\b(height|width|top|left|margin|padding|filter)\s*:/);
   });
 
   it("renders the hero headline visible on first paint with the shared calm ease token", () => {

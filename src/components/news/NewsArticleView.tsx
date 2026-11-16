@@ -13,6 +13,7 @@ import {
 import { TopicNextSteps } from "@/components/health-information/TopicNextSteps";
 import { ClockIcon, PinIcon } from "@/components/ui/icons";
 import { EXTRA_MAP_COPY } from "@/components/ui/RomaniaCountyMap";
+import { CaravanPassActions } from "@/components/news/CaravanPassActions";
 import { formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
 import {
   ALBANIA_WIDE,
@@ -291,7 +292,11 @@ export function NewsArticleView({ id }: { id: string }) {
                 <div className="flex items-start gap-2.5">
                   <dt className="sr-only">{c.when}</dt>
                   <ClockIcon aria-hidden="true" className="mt-1.5 h-4 w-4 shrink-0 text-sapphire" />
-                  <dd className="tabular-nums">{article.caravanDetails.hours}</dd>
+                  <dd className="tabular-nums">
+                    <time dateTime={article.date}>{formatNewsDate(article.date, lang)}</time>
+                    <span aria-hidden="true" className="mx-2 inline-block h-3.5 w-px align-middle bg-border" />
+                    <span>{article.caravanDetails.hours}</span>
+                  </dd>
                 </div>
                 {article.caravanDetails.freeServices.length > 0 && (
                   <div className="pt-1 text-muted-foreground">
@@ -302,6 +307,7 @@ export function NewsArticleView({ id }: { id: string }) {
                   </div>
                 )}
               </dl>
+              <CaravanPassActions article={article} lang={lang} />
             </section>
           )}
 

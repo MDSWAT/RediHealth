@@ -1,10 +1,12 @@
 import { stripLangFromPathname } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
-import { ROMANIA_COUNTIES_MAP } from "@/lib/geo/romania-counties";
-import { MOLDOVA_REGIONS_MAP } from "@/lib/geo/moldova-regions";
-import { CROATIA_COUNTIES_MAP } from "@/lib/geo/croatia-counties";
-import { ITALY_REGIONS_MAP } from "@/lib/geo/italy-regions";
-import { ALBANIA_COUNTIES_MAP } from "@/lib/geo/albania-counties";
+import {
+  AL_AREA_NAMES,
+  HR_AREA_NAMES,
+  IT_AREA_NAMES,
+  MD_AREA_NAMES,
+  RO_AREA_NAMES,
+} from "@/lib/geo/area-names";
 
 export type GeoCountryCode = "ro" | "md" | "it" | "hr" | "al";
 
@@ -15,8 +17,8 @@ export type GeoCountryCode = "ro" | "md" | "it" | "hr" | "al";
  */
 const MONTHS: Record<Lang, { long: string[]; short: string[] }> = {
   ru: {
-    long: ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "Октябрь", "ноябрь", "декабрь"],
-    short: ["Ян", "февраль", "Мар", "апрель", "май", "июнь", "июль", "август", "Сентябрь", "октябрь", "ноябрь", "декабрь"],
+    long: ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"],
+    short: ["янв.", "февр.", "мар.", "апр.", "мая", "июн.", "июл.", "авг.", "сент.", "окт.", "нояб.", "дек."],
   },
 
   ro: {
@@ -188,11 +190,11 @@ const PLACE_EXONYMS: Record<string, Record<Lang, string>> = {
   },
 };
 
-const RO_SET = new Set(ROMANIA_COUNTIES_MAP.areas.map((a) => a.name));
-const MD_SET = new Set(MOLDOVA_REGIONS_MAP.areas.map((a) => a.name));
-const HR_SET = new Set(CROATIA_COUNTIES_MAP.areas.map((a) => a.name));
-const IT_SET = new Set(ITALY_REGIONS_MAP.areas.map((a) => a.name));
-const AL_SET = new Set(ALBANIA_COUNTIES_MAP.areas.map((a) => a.name));
+const RO_SET = new Set<string>(RO_AREA_NAMES);
+const MD_SET = new Set<string>(MD_AREA_NAMES);
+const HR_SET = new Set<string>(HR_AREA_NAMES);
+const IT_SET = new Set<string>(IT_AREA_NAMES);
+const AL_SET = new Set<string>(AL_AREA_NAMES);
 
 const MOLDOVA_MUNICIPALITIES = new Set(["Chișinău", "Bălți", "Bender"]);
 
@@ -240,6 +242,8 @@ export function countyLabel(county: string, lang: Lang, countryHint?: GeoCountry
         return `Okrug ${p}`;
       case "rom":
         return `Qarko ${p}`;
+      case "ru":
+        return `Область ${p}`;
     }
   }
 
@@ -258,6 +262,8 @@ export function countyLabel(county: string, lang: Lang, countryHint?: GeoCountry
         return `Regione ${county}`;
       case "rom":
         return `Zhupaniya ${county}`;
+      case "ru":
+        return `Жупания ${county}`;
     }
   }
 
@@ -281,6 +287,8 @@ export function countyLabel(county: string, lang: Lang, countryHint?: GeoCountry
           return `Grad ${p}`;
         case "rom":
           return `Foro ${p}`;
+        case "ru":
+          return `Муниципий ${p}`;
         default:
           return `Municipiul ${p}`;
       }
@@ -296,6 +304,8 @@ export function countyLabel(county: string, lang: Lang, countryHint?: GeoCountry
         return `Rajon ${county}`;
       case "rom":
         return `Rayono ${county}`;
+      case "ru":
+        return `Район ${county}`;
       default:
         return `Raionul ${county}`;
     }

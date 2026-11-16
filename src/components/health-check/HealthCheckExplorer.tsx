@@ -912,13 +912,19 @@ export function HealthCheckExplorer() {
   const gridRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLElement>(null);
-  /** Phones open in list-first mode without fetching 3D assets until Body picture is selected. */
+  /** Phones open on the 3D body; the list stays one tap away, and is the fallback where the body cannot be drawn. */
   const [stageExpanded, setStageExpanded] = useState(false);
   const [mobileAreaModeOverride, setMobileAreaModeOverride] = useState<"3d" | "list" | null>(null);
-  const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "list";
+  const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "3d";
+  /** While the body fills the screen, a tap only selects: Save selection moves on. */
+  const bodyFullScreenRef = useRef(false);
+  /** Lifts the stage above the question sheet and the site header while the body fills the screen. */
+  const [bodyFullScreen, setBodyFullScreen] = useState(false);
   const mobileListOnly = effectiveMobileAreaMode === "list" && stepId !== "result";
   const stageExpandedRef = useRef(false);
-  const sheetDragRef = useRef<{ y: number; dy: number } | null>(null);
+  const sheetDragRef = useRef<{ y: number; dy: number; atTop: boolean } | null>(null);
+  /** Phones: the sheet sits at the top of the screen, over the body (kept in step with scrolling). */
+  const [sheetAtTop, setSheetAtTop] = useState(false);
   useEffect(() => {
     stageExpandedRef.current = stageExpanded;
   }, [stageExpanded]);
@@ -1051,6 +1057,16 @@ export function HealthCheckExplorer() {
   useEffect(() => {
     modalOpenRef.current = showEmergencyOverlay || doctorOpen;
   }, [showEmergencyOverlay, doctorOpen]);
+
+  // Each step places itself on screen; the browser restoring an old scroll position on Back would
+  // fight that (and leave the sheet half way), so scroll restoration is manual while the check is open.
+  useEffect(() => {
+    const previous = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    return () => {
+      window.history.scrollRestoration = previous;
+    };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -1250,11 +1266,18 @@ export function HealthCheckExplorer() {
       card.style.transition = "none";
       card.style.transform = "";
     }
+    const wasAtTop = sheetCoversBodyNow();
     if (expand !== stageExpandedRef.current) {
       stageExpandedRef.current = expand;
       flushSync(() => setStageExpanded(expand));
     }
     if (!card) return;
+    // A sheet that sits at the top stays there: the body grows or shrinks behind it.
+    if (wasAtTop) {
+      window.scrollTo({ top: sheetTopScrollY(), behavior: "instant" });
+      card.style.transition = "";
+      return;
+    }
     const offset = before - card.getBoundingClientRect().top;
     if (Math.abs(offset) < 1 || prefersReducedMotion()) {
       card.style.transition = "";
@@ -1272,6 +1295,84 @@ export function HealthCheckExplorer() {
       { once: true },
     );
   }
+
+  /**
+   * Phones: the scroll position at which the sheet rests under the pinned body. The stage is
+   * sticky and the sheet overlaps it by 1rem, so this is where the stage has just pinned.
+   */
+  function sheetRestScrollY(): number {
+    const card = cardRef.current;
+    const stageHeight = stageRef.current?.getBoundingClientRect().height ?? 0;
+    if (!card) return window.scrollY;
+    return Math.max(0, window.scrollY + card.getBoundingClientRect().top - pinnedChromeBottom() - (stageHeight - 16));
+  }
+
+  /** Phones: the scroll position at which the sheet's top meets the site header, covering the body. */
+  function sheetTopScrollY(): number {
+    const card = cardRef.current;
+    if (!card) return window.scrollY;
+    return Math.max(0, window.scrollY + card.getBoundingClientRect().top - pinnedChromeBottom());
+  }
+
+  /** Phones: true while the sheet sits at the top of the screen, over the body. */
+  function sheetCoversBodyNow(): boolean {
+    const card = cardRef.current;
+    if (!card) return false;
+    const stageHeight = stageRef.current?.getBoundingClientRect().height ?? 0;
+    return card.getBoundingClientRect().top - pinnedChromeBottom() < Math.max(stageHeight - 16, 0) / 2;
+  }
+
+  /**
+   * Phones: move the sheet between "under the body" and "at the top" as one glide. The page jumps
+   * to its new scroll position and the sheet animates from where it was (the body stays pinned).
+   */
+  function glideSheetTo(place: "top" | "rest") {
+    const card = cardRef.current;
+    if (!card) return;
+    const before = card.getBoundingClientRect().top;
+    card.style.transition = "none";
+    card.style.transform = "";
+    const targetScrollY = place === "top" ? sheetTopScrollY() : sheetRestScrollY();
+    const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    window.scrollTo({ top: Math.min(Math.max(0, targetScrollY), maxScroll), behavior: "instant" });
+    const offset = before - card.getBoundingClientRect().top;
+    if (Math.abs(offset) < 1 || prefersReducedMotion()) {
+      card.style.transition = "";
+      return;
+    }
+    card.style.transform = `translateY(${offset}px)`;
+    void card.offsetHeight;
+    card.style.transition = "transform 420ms cubic-bezier(0.32, 0.72, 0, 1)";
+    card.style.transform = "";
+    card.addEventListener(
+      "transitionend",
+      () => {
+        card.style.transition = "";
+      },
+      { once: true },
+    );
+  }
+
+  // Phones: keep track of whether the sheet covers the body, for the handle's label and gestures.
+  useEffect(() => {
+    if (isDesktop || !bodyShown || stepId === "result" || mobileListOnly) return;
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      setSheetAtTop(sheetCoversBodyNow());
+    };
+    const onScroll = () => {
+      if (!raf) raf = window.requestAnimationFrame(measure);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) window.cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [isDesktop, bodyShown, mobileListOnly, stepId]);
 
   /** After a tap on the body, tuck the sheet back up once the camera has settled on the spot. */
   function collapseSheetSoon() {
@@ -1334,18 +1435,18 @@ export function HealthCheckExplorer() {
     voice.stop();
     setSpeakingCardId(null);
 
-    // Desktop keeps the title and both columns in view; phones bring the sheet up under the pinned body.
+    // Desktop keeps the title and both columns in view. Phones open every step after the first with
+    // the sheet at the top of the screen, right under the site header, so each question starts in
+    // the same place; the body behind it is one tap (or swipe) on the handle away.
     const keepHeader = stepId === "area" || (isDesktop && stepId !== "result");
     const anchor = keepHeader ? headerRef.current : cardRef.current;
     if (anchor) {
       const covered = pinnedChromeBottom();
       const top = anchor.getBoundingClientRect().top;
-      const stageHeight =
-        stepId !== "result" && bodyShown ? (stageRef.current?.getBoundingClientRect().height ?? 0) : 0;
-      const targetOffset = keepHeader ? 12 : stageHeight > 0 ? stageHeight - 16 : 8;
+      const targetOffset = keepHeader ? 12 : 0;
       const misplaced = keepHeader
         ? top < covered || top > window.innerHeight * 0.45
-        : Math.abs(top - covered - targetOffset) > 20;
+        : Math.abs(top - covered - targetOffset) > 2;
       if (misplaced) {
         const reduce = prefersReducedMotion();
         window.scrollTo({
@@ -1417,7 +1518,7 @@ export function HealthCheckExplorer() {
     collapseSheetSoon();
     setDetail(null);
     handleSelectPart(partId);
-    if (stepRef.current === "area") {
+    if (stepRef.current === "area" && !bodyFullScreenRef.current) {
       advanceSoon("area", nextStepAfterArea(partId));
     }
   }
@@ -2003,7 +2104,9 @@ export function HealthCheckExplorer() {
             stepId === "result"
               ? "hidden"
               : bodyShown
-                ? `${mobileListOnly ? "max-lg:hidden " : ""}mt-4 sm:mt-5 max-lg:sticky max-lg:top-[var(--chrome-h,0px)] max-lg:z-0 lg:col-start-1 lg:row-start-2 lg:mt-3.5`
+                ? `${mobileListOnly ? "max-lg:hidden " : ""}mt-4 sm:mt-5 max-lg:sticky max-lg:top-[var(--chrome-h,0px)] ${
+                    bodyFullScreen ? "relative z-[70]" : "max-lg:z-0"
+                  } lg:col-start-1 lg:row-start-2 lg:mt-3.5`
                 : stepId === "area"
                   ? "mt-5 mb-4"
                   : "hidden"
@@ -2039,6 +2142,13 @@ export function HealthCheckExplorer() {
             decorative={stepId !== "area" && stepId !== "spot"}
             selectionLabel={detailLabel ?? areaLabel}
             onBodyShownChange={setBodyShown}
+            onFullScreenChange={(fullScreen) => {
+              bodyFullScreenRef.current = fullScreen;
+              setBodyFullScreen(fullScreen);
+            }}
+            onConfirmSelection={() => {
+              if (selectedPart && stepRef.current === "area") goToStep(nextStepAfterArea(selectedPart));
+            }}
           />
         </section>
 
@@ -2051,19 +2161,21 @@ export function HealthCheckExplorer() {
             stageVisibleInLayout
               ? mobileListOnly
                 ? "max-lg:mt-4 max-lg:p-4 max-lg:pb-6 sm:max-lg:p-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-2.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
-                : "max-lg:relative max-lg:z-10 max-lg:-mt-4 max-lg:overflow-x-clip max-lg:rounded-t-[1.5rem] max-lg:border-0 max-lg:bg-muted max-lg:px-4 max-lg:pb-6 max-lg:pt-2 max-lg:shadow-[0_-10px_30px_-18px_rgb(15_23_42/0.35)] max-sm:-mx-4 max-sm:rounded-b-none sm:max-lg:px-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-2.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
+                : "max-lg:relative max-lg:z-10 max-lg:-mt-4 max-lg:min-h-[calc(100dvh-var(--chrome-h,0px))] max-lg:overflow-x-clip max-lg:rounded-t-[1.5rem] max-lg:border-0 max-lg:bg-muted max-lg:px-4 max-lg:pb-6 max-lg:pt-2 max-lg:shadow-[0_-10px_30px_-18px_rgb(15_23_42/0.35)] max-sm:-mx-4 max-sm:rounded-b-none sm:max-lg:px-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-2.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
               : "mt-6 w-full p-4 sm:mt-8 sm:p-8"
           }`}
         >
           {stageVisibleInLayout && !mobileListOnly && (
-            // Sheet handle (phones): drag down for a bigger body, up (or tap) to bring the questions back.
+            // Sheet handle (phones). At the top of the screen: tap or drag down to bring the body back.
+            // Under the body: drag down (or tap) for a bigger body, drag up to send the sheet to the top.
             <button
               type="button"
-              aria-expanded={stageExpanded}
-              aria-label={stageExpanded ? c.showLessBody : c.showMoreBody}
+              aria-expanded={stageExpanded && !sheetAtTop}
+              aria-label={stageExpanded && !sheetAtTop ? c.showLessBody : c.showMoreBody}
               className="mx-auto -mt-1 mb-1 flex h-7 w-24 touch-none items-center justify-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
               onPointerDown={(e) => {
-                sheetDragRef.current = { y: e.clientY, dy: 0 };
+                if (cardRef.current) cardRef.current.style.transform = "";
+                sheetDragRef.current = { y: e.clientY, dy: 0, atTop: sheetCoversBodyNow() };
                 try {
                   e.currentTarget.setPointerCapture(e.pointerId);
                 } catch {
@@ -2076,32 +2188,45 @@ export function HealthCheckExplorer() {
                 const card = cardRef.current;
                 if (!drag || !card) return;
                 const raw = e.clientY - drag.y;
-                // Follows the finger in the allowed direction, resists gently in the other.
-                drag.dy = stageExpanded
-                  ? raw > 0
+                // Follows the finger in the allowed direction, resists gently in the other. At the top
+                // the sheet can only come down; under a big body it can only go up.
+                drag.dy = drag.atTop
+                  ? raw < 0
                     ? raw * 0.25
-                    : Math.max(raw, -320)
-                  : raw < 0
-                    ? raw * 0.25
-                    : Math.min(raw, 320);
+                    : Math.min(raw, 480)
+                  : stageExpanded
+                    ? raw > 0
+                      ? raw * 0.25
+                      : Math.max(raw, -320)
+                    : Math.max(Math.min(raw, 320), -480);
                 card.style.transform = `translateY(${drag.dy}px)`;
               }}
               onPointerUp={() => {
                 const drag = sheetDragRef.current;
                 sheetDragRef.current = null;
                 if (!drag) return;
-                if (Math.abs(drag.dy) < 6) snapSheet(!stageExpanded);
+                if (drag.atTop) {
+                  if (Math.abs(drag.dy) < 6 || drag.dy > 36) glideSheetTo("rest");
+                  else glideSheetTo("top");
+                  return;
+                }
+                if (!stageExpanded && drag.dy < -36) glideSheetTo("top");
+                else if (Math.abs(drag.dy) < 6) snapSheet(!stageExpanded);
                 else if (drag.dy > 36) snapSheet(true);
                 else if (drag.dy < -36) snapSheet(false);
                 else snapSheet(stageExpanded);
               }}
               onPointerCancel={() => {
+                const drag = sheetDragRef.current;
                 sheetDragRef.current = null;
-                snapSheet(stageExpanded);
+                if (drag?.atTop) glideSheetTo("top");
+                else snapSheet(stageExpanded);
               }}
               onClick={(e) => {
-                // Keyboard and screen readers: Enter/Space toggles.
-                if (e.detail === 0) snapSheet(!stageExpanded);
+                // Keyboard and screen readers: Enter/Space brings the body back, or toggles its size.
+                if (e.detail !== 0) return;
+                if (sheetCoversBodyNow()) glideSheetTo("rest");
+                else snapSheet(!stageExpanded);
               }}
             >
               <span aria-hidden="true" className="h-1 w-9 rounded-sm bg-foreground/20" />
@@ -2109,8 +2234,9 @@ export function HealthCheckExplorer() {
           )}
           {/* Top bar: Back + Step X of Y + reading tools + progress + answer chips */}
           <div className={stageVisibleInLayout ? "mb-4 lg:mb-0 lg:shrink-0 lg:px-6 lg:pb-4 lg:pt-4" : "mb-7"}>
-            <div className="flex flex-nowrap items-center justify-between gap-1.5 sm:gap-2">
-              <div className="flex min-h-11 min-w-0 items-center gap-1.5 sm:gap-2">
+            {/* With large text the reading tools drop to their own line instead of covering "Step X of Y". */}
+            <div className="flex flex-wrap items-center justify-between gap-x-1.5 gap-y-1 sm:gap-x-2">
+              <div className="flex min-h-11 min-w-0 flex-nowrap items-center gap-1.5 sm:gap-2">
                 {displayStep > 1 ? (
                   <button
                     type="button"
@@ -2129,7 +2255,7 @@ export function HealthCheckExplorer() {
                 </p>
               </div>
 
-              <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+              <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-1 sm:gap-2">
                 {stepId === "result" && (
                   <button
                     type="button"
@@ -2156,6 +2282,8 @@ export function HealthCheckExplorer() {
                 {voice.available && (
                   <ListenButton
                     uiLang={activeLang}
+                    autoRead
+                    autoReadKey={stepId}
                     isPlaying={voice.speaking}
                     onToggle={handleToggleStepVoice}
                   />

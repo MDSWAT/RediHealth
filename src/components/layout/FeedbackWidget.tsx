@@ -1,7 +1,17 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
-import { useCallback, useEffect, useId, useRef, useState, type FormEvent, type MouseEvent } from "react";
+import { AnimatePresence, m } from "motion/react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type FormEvent,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type MouseEvent,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { usePathname } from "next/navigation";
 import styles from "@/components/layout/ChromeDialogs.module.css";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
@@ -11,6 +21,7 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   CloseIcon,
+  MessageDotsIcon,
   ShieldIcon,
 } from "@/components/ui/icons";
 import { feedbackWidgetCopy, type FeedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
@@ -28,10 +39,12 @@ import {
   type RatingKey,
 } from "@/lib/platform-feedback-shared";
 
-/** Wait 2.5 minutes of active browsing so visitors can explore the platform first. */
-const INITIAL_EXPLORE_MS = 150_000;
-/** Never show the floating invite in the first 12 seconds after a page load or refresh. */
-const PAGE_SETTLE_GRACE_MS = 12_000;
+/** Wait 45 seconds of active browsing so visitors can explore the platform first, then gently invite feedback. */
+const INITIAL_EXPLORE_MS = 45_000;
+/** Allow earlier invite (after 20 seconds) when a reader finishes scrolling a health guide or article. */
+const READ_COMPLETE_MIN_MS = 20_000;
+/** Never show the floating invite in the first 10 seconds after a page load or route transition. */
+const PAGE_SETTLE_GRACE_MS = 10_000;
 /** Heartbeat interval while the tab is visible. */
 const HEARTBEAT_INTERVAL_MS = 4_000;
 /** Treat a return after 6+ hours away as a fresh browsing session. */
@@ -45,12 +58,31 @@ const SNOOZE_STEPS_MS = [
 
 const SCHEDULE_STORAGE_KEY = "redihealth:feedback-schedule:v2";
 const DRAFT_SESSION_KEY = "redihealth:feedback-draft:v2";
-const OPEN_FEEDBACK_EVENT = "redi:feedback-open";
+const EDGE_DISMISSED_SESSION_KEY = "redihealth:feedback-edge-dismissed:v1";
+import {
+  consumePendingFeedbackOpen,
+  OPEN_FEEDBACK_EVENT,
+  openSiteFeedback,
+} from "@/components/layout/chrome-widget-events";
 
-const AUTO_INVITE_PATHS = new Set(["/", "/health-information", "/about"]);
+export { openSiteFeedback };
 
-function isGuideDetailPath(barePath: string): boolean {
-  return barePath.startsWith("/health-information/") && barePath !== "/health-information";
+const AUTO_INVITE_PATHS = new Set([
+  "/",
+  "/health-information",
+  "/stiri",
+  "/find-help",
+  "/medic-online",
+  "/mediatori",
+  "/about",
+  "/get-help",
+]);
+
+function isReadingDetailPath(barePath: string): boolean {
+  return (
+    (barePath.startsWith("/health-information/") && barePath !== "/health-information") ||
+    (barePath.startsWith("/stiri/") && barePath !== "/stiri")
+  );
 }
 
 function hasReachedGuideEnd(): boolean {
@@ -63,9 +95,7 @@ function hasReachedGuideEnd(): boolean {
 }
 
 function isAutoInviteAllowedPath(barePath: string): boolean {
-  if (AUTO_INVITE_PATHS.has(barePath)) return true;
-  if (isGuideDetailPath(barePath)) return hasReachedGuideEnd();
-  return false;
+  return AUTO_INVITE_PATHS.has(barePath) || isReadingDetailPath(barePath);
 }
 
 type StepIndex = 0 | 1 | 2;
@@ -194,16 +224,6 @@ function clearDraft(): void {
   }
 }
 
-/**
- * Opens the dedicated feedback modal from anywhere on the website (such as the footer link).
- * Returns false if the widget is not mounted on the current chromeless surface.
- */
-export function openSiteFeedback(): boolean {
-  if (typeof window === "undefined") return false;
-  const event = new Event(OPEN_FEEDBACK_EVENT, { cancelable: true });
-  return !window.dispatchEvent(event);
-}
-
 function errorForResponse(status: number, code: string | undefined, t: FeedbackWidgetCopy): string {
   if (status === 429 || code === "rate_limited") return t.errorTooMany;
   if (code === "captcha_invalid") return t.errorCaptcha;
@@ -251,12 +271,50 @@ export function FeedbackWidget() {
 
   const barePath = stripLangFromPathname(pathname);
   const isConsultationOrPortal =
-    barePath.startsWith("/medic-online/meet") || barePath.startsWith("/patient-portal");
+    barePath.startsWith("/medic-online/meet") ||
+    barePath.startsWith("/patient-portal") ||
+    barePath === "/contul-meu" ||
+    barePath === "/sign-in";
+  const isClinicalTaskSurface =
+    barePath === "/health-check" || barePath === "/prescription-review";
+  const [mobileHeroTop, setMobileHeroTop] = useState(false);
+  const [edgeDismissed, setEdgeDismissed] = useState(false);
+  const [edgeDismissing, setEdgeDismissing] = useState(false);
+  const [edgeDragX, setEdgeDragX] = useState(0);
+  const [edgeDragging, setEdgeDragging] = useState(false);
+  const [inviteDrag, setInviteDrag] = useState({ x: 0, y: 0 });
+  const [inviteDragging, setInviteDragging] = useState(false);
 
-  // Hydrate any unfinished in-session draft so closing and reopening never loses progress
+  const edgeDragRef = useRef<{
+    pointerId: number;
+    startX: number;
+    startTime: number;
+    maxAbsDx: number;
+    captured: boolean;
+  } | null>(null);
+  const inviteDragRef = useRef<{
+    pointerId: number;
+    startX: number;
+    startY: number;
+    startTime: number;
+    maxDist: number;
+    captured: boolean;
+  } | null>(null);
+  const suppressEdgeClickRef = useRef(false);
+  const edgeDismissTimerRef = useRef<number | null>(null);
+  const suppressEdgeClickTimerRef = useRef<number | null>(null);
+
+  // Hydrate any unfinished in-session draft and edge-tab dismissal state
   useEffect(() => {
     pageMountedAtRef.current = Date.now();
     queueMicrotask(() => {
+      try {
+        if (window.sessionStorage.getItem(EDGE_DISMISSED_SESSION_KEY) === "1") {
+          setEdgeDismissed(true);
+        }
+      } catch {
+        // Ignore sessionStorage read errors
+      }
       const draft = readDraft();
       if (draft) {
         setStep(draft.step);
@@ -270,12 +328,36 @@ export function FeedbackWidget() {
       }
       setDraftHydrated(true);
     });
+    return () => {
+      if (edgeDismissTimerRef.current !== null) {
+        window.clearTimeout(edgeDismissTimerRef.current);
+      }
+      if (suppressEdgeClickTimerRef.current !== null) {
+        window.clearTimeout(suppressEdgeClickTimerRef.current);
+      }
+    };
   }, []);
+
+  // Keep mobile full-viewport Hero completely unobstructed while at top of `/`, showing side tab once scrolled or on inner routes
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const syncHeroTop = () => {
+      const isPhone = window.matchMedia("(max-width: 639px)").matches;
+      setMobileHeroTop(isPhone && barePath === "/" && window.scrollY < 160);
+    };
+    syncHeroTop();
+    window.addEventListener("scroll", syncHeroTop, { passive: true });
+    window.addEventListener("resize", syncHeroTop, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", syncHeroTop);
+      window.removeEventListener("resize", syncHeroTop);
+    };
+  }, [barePath]);
 
   // Reset settle grace on route navigation and hide any open invite card on disallowed surfaces
   useEffect(() => {
     pageMountedAtRef.current = Date.now();
-    if (!AUTO_INVITE_PATHS.has(barePath) && !isGuideDetailPath(barePath)) {
+    if (!isAutoInviteAllowedPath(barePath)) {
       queueMicrotask(() => setInviteVisible(false));
     }
   }, [pathname, barePath]);
@@ -322,6 +404,8 @@ export function FeedbackWidget() {
 
   const snoozeInvite = useCallback(() => {
     setInviteVisible(false);
+    setInviteDragging(false);
+    setInviteDrag({ x: 0, y: 0 });
     const now = Date.now();
     const current = readSchedule(now);
     const snoozeDuration =
@@ -333,6 +417,174 @@ export function FeedbackWidget() {
       dismissCount: current.dismissCount + 1,
     });
   }, []);
+
+  const dismissEdgeTrigger = useCallback(() => {
+    try {
+      window.sessionStorage.setItem(EDGE_DISMISSED_SESSION_KEY, "1");
+    } catch {
+      // Ignore sessionStorage errors
+    }
+    snoozeInvite();
+    setEdgeDragging(false);
+    if (reducedMotion) {
+      setEdgeDismissed(true);
+      setEdgeDismissing(false);
+      setEdgeDragX(0);
+      return;
+    }
+    setEdgeDismissing(true);
+    if (edgeDismissTimerRef.current !== null) {
+      window.clearTimeout(edgeDismissTimerRef.current);
+    }
+    edgeDismissTimerRef.current = window.setTimeout(() => {
+      setEdgeDismissed(true);
+      setEdgeDismissing(false);
+      setEdgeDragX(0);
+      edgeDismissTimerRef.current = null;
+    }, 180);
+  }, [reducedMotion, snoozeInvite]);
+
+  const handleEdgePointerDown = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    edgeDragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startTime: performance.now(),
+      maxAbsDx: 0,
+      captured: false,
+    };
+  }, []);
+
+  const handleEdgePointerMove = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
+    const drag = edgeDragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    const dx = event.clientX - drag.startX;
+    drag.maxAbsDx = Math.max(drag.maxAbsDx, Math.abs(dx));
+    if (drag.maxAbsDx > 6) {
+      if (!drag.captured) {
+        drag.captured = true;
+        try {
+          event.currentTarget.setPointerCapture(event.pointerId);
+        } catch {
+          // Ignore pointer capture errors
+        }
+      }
+      suppressEdgeClickRef.current = true;
+      setEdgeDragging(true);
+      setEdgeDragX(dx > 0 ? Math.min(dx, 96) : Math.max(-5, dx * 0.12));
+    }
+  }, []);
+
+  const handleEdgePointerEnd = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      const drag = edgeDragRef.current;
+      if (!drag || drag.pointerId !== event.pointerId) return;
+      edgeDragRef.current = null;
+      if (drag.captured) {
+        try {
+          event.currentTarget.releasePointerCapture(event.pointerId);
+        } catch {
+          // Ignore release errors
+        }
+      }
+      setEdgeDragging(false);
+
+      const dx = event.clientX - drag.startX;
+      const elapsed = Math.max(1, performance.now() - drag.startTime);
+      const vx = dx / elapsed;
+
+      if (drag.maxAbsDx > 6) {
+        suppressEdgeClickRef.current = true;
+        if (suppressEdgeClickTimerRef.current !== null) {
+          window.clearTimeout(suppressEdgeClickTimerRef.current);
+        }
+        suppressEdgeClickTimerRef.current = window.setTimeout(() => {
+          suppressEdgeClickRef.current = false;
+          suppressEdgeClickTimerRef.current = null;
+        }, 120);
+      }
+
+      if (event.type !== "pointercancel" && (dx >= 20 || vx >= 0.25)) {
+        dismissEdgeTrigger();
+      } else {
+        setEdgeDragX(0);
+      }
+    },
+    [dismissEdgeTrigger],
+  );
+
+  const handleEdgeKeyDown = useCallback(
+    (event: ReactKeyboardEvent<HTMLDivElement>) => {
+      if (event.key === "ArrowRight" || event.key === "Delete" || event.key === "Backspace") {
+        event.preventDefault();
+        dismissEdgeTrigger();
+      }
+    },
+    [dismissEdgeTrigger],
+  );
+
+  const handleInvitePointerDown = useCallback((event: ReactPointerEvent<HTMLElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    inviteDragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      startTime: performance.now(),
+      maxDist: 0,
+      captured: false,
+    };
+  }, []);
+
+  const handleInvitePointerMove = useCallback((event: ReactPointerEvent<HTMLElement>) => {
+    const drag = inviteDragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    const dx = Math.max(0, event.clientX - drag.startX);
+    const dy = Math.max(0, event.clientY - drag.startY);
+    drag.maxDist = Math.max(drag.maxDist, dx, dy);
+    if (drag.maxDist > 8) {
+      if (!drag.captured) {
+        drag.captured = true;
+        try {
+          event.currentTarget.setPointerCapture(event.pointerId);
+        } catch {
+          // Ignore pointer capture errors
+        }
+      }
+      setInviteDragging(true);
+      setInviteDrag({ x: Math.min(dx, 160), y: Math.min(dy, 120) });
+    }
+  }, []);
+
+  const handleInvitePointerEnd = useCallback(
+    (event: ReactPointerEvent<HTMLElement>) => {
+      const drag = inviteDragRef.current;
+      if (!drag || drag.pointerId !== event.pointerId) return;
+      inviteDragRef.current = null;
+      if (drag.captured) {
+        try {
+          event.currentTarget.releasePointerCapture(event.pointerId);
+        } catch {
+          // Ignore release errors
+        }
+      }
+      setInviteDragging(false);
+      const dx = event.clientX - drag.startX;
+      const dy = event.clientY - drag.startY;
+      const elapsed = Math.max(1, performance.now() - drag.startTime);
+      const vx = dx / elapsed;
+      const vy = dy / elapsed;
+
+      if (
+        event.type !== "pointercancel" &&
+        (dx >= 48 || dy >= 48 || vx >= 0.35 || vy >= 0.35)
+      ) {
+        snoozeInvite();
+      } else {
+        setInviteDrag({ x: 0, y: 0 });
+      }
+    },
+    [snoozeInvite],
+  );
 
   const openModal = useCallback((prefillUsefulness?: number) => {
     setInviteVisible(false);
@@ -366,21 +618,28 @@ export function FeedbackWidget() {
     };
     window.addEventListener(OPEN_FEEDBACK_EVENT, handleCustomOpen);
 
-    try {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get("feedback") === "1") {
-        queueMicrotask(() => openModal());
+    if (consumePendingFeedbackOpen()) {
+      queueMicrotask(() => {
+        setSubmitted(false);
+        openModal();
+      });
+    } else {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("feedback") === "1") {
+          queueMicrotask(() => openModal());
+        }
+      } catch {
+        // Ignore malformed URL edge cases
       }
-    } catch {
-      // Ignore malformed URL edge cases
     }
 
     return () => window.removeEventListener(OPEN_FEEDBACK_EVENT, handleCustomOpen);
   }, [openModal]);
 
-  // Active browsing timer (2.5m initial exploration + progressive snooze reminders)
+  // Active browsing timer (45s general exploration or 20s + reading completion, plus progressive snooze)
   useEffect(() => {
-    if (modalOpen || submitted || isConsultationOrPortal) {
+    if (modalOpen || submitted || isConsultationOrPortal || isClinicalTaskSurface) {
       return;
     }
 
@@ -407,24 +666,43 @@ export function FeedbackWidget() {
       });
 
       if (document.visibilityState !== "visible") return;
-      if (!window.matchMedia("(min-width: 1024px)").matches) return;
       if (!isAutoInviteAllowedPath(barePath)) return;
       if (now - pageMountedAtRef.current < PAGE_SETTLE_GRACE_MS) return;
-      if (nextActiveMs < INITIAL_EXPLORE_MS) return;
       if (schedule.snoozedUntil > now) return;
-      if (document.querySelector("dialog[open], [data-bottom-bar], .hh-dialog")) return;
+
+      const isPhoneAtHeroTop =
+        window.matchMedia("(max-width: 639px)").matches &&
+        barePath === "/" &&
+        window.scrollY < 160;
+      if (isPhoneAtHeroTop) return;
+
+      const reachedReadingCompletion =
+        isReadingDetailPath(barePath) &&
+        nextActiveMs >= READ_COMPLETE_MIN_MS &&
+        hasReachedGuideEnd();
+      if (nextActiveMs < INITIAL_EXPLORE_MS && !reachedReadingCompletion) return;
+
+      if (
+        document.querySelector(
+          'dialog[open], [data-bottom-bar], .hh-dialog, [data-audio-player-open="true"], #mobile-menu[data-open="true"]',
+        )
+      ) {
+        return;
+      }
 
       setInviteVisible(true);
     };
 
     const intervalId = window.setInterval(evaluateAndTick, HEARTBEAT_INTERVAL_MS);
     const settleTimerId = window.setTimeout(evaluateAndTick, PAGE_SETTLE_GRACE_MS + 250);
+    window.addEventListener("scroll", evaluateAndTick, { passive: true });
 
     return () => {
       window.clearInterval(intervalId);
       window.clearTimeout(settleTimerId);
+      window.removeEventListener("scroll", evaluateAndTick);
     };
-  }, [modalOpen, submitted, isConsultationOrPortal, barePath, pathname]);
+  }, [modalOpen, submitted, isConsultationOrPortal, isClinicalTaskSurface, barePath, pathname]);
 
   // Native <dialog> synchronization (focus trap, Escape key, inert background)
   useEffect(() => {
@@ -579,17 +857,98 @@ export function FeedbackWidget() {
 
   return (
     <>
-      {/* Calm, non-disruptive floating invitation card after 2.5 minutes of active browsing (desktop allow-list only) */}
+      {!isConsultationOrPortal &&
+      !isClinicalTaskSurface &&
+      !inviteVisible &&
+      !modalOpen &&
+      !mobileHeroTop &&
+      (!edgeDismissed || edgeDismissing) ? (
+        <div
+          onPointerDown={handleEdgePointerDown}
+          onPointerMove={handleEdgePointerMove}
+          onPointerUp={handleEdgePointerEnd}
+          onPointerCancel={handleEdgePointerEnd}
+          onKeyDown={handleEdgeKeyDown}
+          style={{
+            transform: edgeDismissing
+              ? "translate3d(115%, 0, 0)"
+              : edgeDragX !== 0
+                ? `translate3d(${edgeDragX}px, 0, 0)`
+                : undefined,
+            opacity: edgeDismissing
+              ? 0
+              : edgeDragX > 0
+                ? Math.max(0.28, 1 - edgeDragX / 64)
+                : undefined,
+          }}
+          className={[
+            "feedback-edge-trigger fixed right-0 top-1/2 z-30 -translate-y-1/2 flex w-9 sm:w-10 flex-col items-stretch rounded-l-xl border border-r-0 border-border bg-card/95 text-foreground shadow-[0_12px_28px_-10px_rgba(15,23,42,0.28)] backdrop-blur-md touch-pan-y select-none print:hidden dark:border-white/15 dark:bg-ink-950/95 dark:text-paper",
+            edgeDragging || reducedMotion
+              ? "transition-none"
+              : "transition-[transform,opacity,border-color] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+          ].join(" ")}
+        >
+          <button
+            type="button"
+            onClick={() => {
+              if (suppressEdgeClickRef.current) {
+                suppressEdgeClickRef.current = false;
+                return;
+              }
+              dismissEdgeTrigger();
+            }}
+            aria-label={t.inviteCloseAria}
+            title={t.inviteCloseAria}
+            className="relative inline-flex h-8 w-full items-center justify-center rounded-tl-xl border-b border-border/60 text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted/80 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring before:absolute before:-top-1.5 before:-left-2 before:right-0 before:bottom-0 dark:border-white/10 dark:text-mist dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper"
+          >
+            <CloseIcon className="h-3.5 w-3.5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              if (suppressEdgeClickRef.current) {
+                suppressEdgeClickRef.current = false;
+                return;
+              }
+              openModal();
+            }}
+            aria-label={t.footerLink}
+            title={t.footerLink}
+            data-feedback-trigger=""
+            className="press-solid group relative flex min-h-24 w-full flex-col items-center justify-center gap-2 rounded-bl-xl px-1.5 py-3 text-meta font-semibold text-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring before:absolute before:inset-y-0 before:-left-2 before:right-0 dark:text-paper dark:hover:bg-sapphire dark:focus-visible:ring-paper"
+          >
+            <MessageDotsIcon className="h-4 w-4 shrink-0 text-sapphire transition-colors group-hover:text-current dark:text-sapphire-border" />
+            <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap tracking-wide">
+              {t.compactTriggerLabel}
+            </span>
+          </button>
+        </div>
+      ) : null}
+
+      {/* Calm, non-disruptive floating invitation card after 45 seconds of active browsing (or 20s after reading an article) */}
       <AnimatePresence>
         {inviteVisible && !modalOpen ? (
-          <motion.aside
+          <m.aside
             role="region"
             aria-label={t.inviteOpenCta}
+            onPointerDown={handleInvitePointerDown}
+            onPointerMove={handleInvitePointerMove}
+            onPointerUp={handleInvitePointerEnd}
+            onPointerCancel={handleInvitePointerEnd}
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{
+              opacity:
+                inviteDrag.x > 0 || inviteDrag.y > 0
+                  ? Math.max(0.35, 1 - Math.max(inviteDrag.x, inviteDrag.y) / 140)
+                  : 1,
+              x: inviteDrag.x,
+              y: inviteDrag.y,
+            }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
-            transition={reducedMotion ? { duration: 0 } : CLINICAL_SETTLE_SPRING}
-            className="feedback-invite-card max-lg:hidden fixed bottom-4 right-4 z-30 w-[22rem] overflow-hidden rounded-(--radius-surface) border border-transparent bg-card text-foreground shadow-[0_20px_48px_-14px_rgba(15,23,42,0.34)] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
+            transition={
+              reducedMotion || inviteDragging ? { duration: 0 } : CLINICAL_SETTLE_SPRING
+            }
+            className="feedback-invite-card fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-30 mx-auto max-w-md overflow-hidden rounded-(--radius-surface) border border-border bg-card text-foreground shadow-[0_20px_48px_-14px_rgba(15,23,42,0.34)] touch-pan-y sm:inset-x-auto sm:right-4 sm:bottom-4 sm:mx-0 sm:w-[22rem] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
           >
             <div className="p-4">
               <div className="flex items-start justify-between gap-2.5">
@@ -654,7 +1013,7 @@ export function FeedbackWidget() {
                 </Button>
               </div>
             </div>
-          </motion.aside>
+          </m.aside>
         ) : null}
       </AnimatePresence>
 
@@ -776,7 +1135,7 @@ export function FeedbackWidget() {
                 className="flex-1 overflow-y-auto overscroll-contain px-4 pt-3 pb-4 sm:px-6 sm:py-5"
               >
                 <AnimatePresence mode="wait" initial={false}>
-                  <motion.div
+                  <m.div
                     key={step}
                     initial={reducedMotion ? { opacity: 1 } : { opacity: 0, x: stepDir * 10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -1038,7 +1397,7 @@ export function FeedbackWidget() {
                         </div>
                       </div>
                     ) : null}
-                  </motion.div>
+                  </m.div>
                 </AnimatePresence>
 
                 {error ? (

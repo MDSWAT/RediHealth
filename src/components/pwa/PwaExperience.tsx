@@ -24,6 +24,7 @@ import {
   closePwaInstallDialog,
   dismissPwaBanner,
   dismissPwaUpdate,
+  markPwaEngaged,
   openPwaInstall,
   usePwaSnapshot,
   type InstallPlatform,
@@ -89,6 +90,12 @@ export function PwaExperience() {
   const snapshot = usePwaSnapshot();
   const copy = getPwaCopy(lang);
   const reducedMotion = useCalmReducedMotion();
+
+  // A first-time visitor sees the install banner only after moving on from the page they landed on.
+  const landingPathRef = useRef(pathname);
+  useEffect(() => {
+    if (pathname !== landingPathRef.current) markPwaEngaged();
+  }, [pathname]);
 
   const dialogRef = useRef<HTMLDialogElement>(null);
   const dialogHeadingRef = useRef<HTMLHeadingElement>(null);

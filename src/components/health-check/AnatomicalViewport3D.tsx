@@ -8,7 +8,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import { getHealthCheckTranslations, type BodyPartId } from "@/lib/i18n/health-check-translations";
-import { DURATION, EASE_IN_OUT, EASE_OUT } from "@/lib/motion/tokens";
+import { DURATION, EASE_OUT } from "@/lib/motion/tokens";
 import { WEBGL_ERROR, hasWebGL } from "./webgl-support";
 import {
   REFERRED_PAIN_BY_SUB_REGION,
@@ -139,10 +139,15 @@ function cubicBezier([x1, y1, x2, y2]: readonly [number, number, number, number]
     return bez(t, y1, y2);
   };
 }
-/** Turning round the body: starts and settles gently, never a jolt. */
-const easeOrbit = cubicBezier(EASE_IN_OUT);
+/**
+ * Turning round the body: a soft start and a long, gentle settle. Softer than the site's
+ * symmetric EASE_IN_OUT, whose steep middle reads as a lurch on a large 3D move.
+ */
+const easeOrbit = cubicBezier([0.45, 0, 0.2, 1]);
 /** Small nudges (rotate buttons): decelerate into place. */
 const easeNudge = cubicBezier(EASE_OUT);
+/** A move that takes over from one still in flight: already moving, so it only decelerates. */
+const easeHandOff = cubicBezier([0.2, 0.6, 0.25, 1]);
 /** Base and longest duration of a camera move. */
 const CALM_MOVE_MS = 760;
 const CALM_MOVE_MAX_MS = 1300;
@@ -1162,6 +1167,8 @@ export function AnatomicalViewport3D({
     let disposed = false;
     let renderRequested = false;
     let isAnimating = false;
+    /** Advances the camera move in flight; called by the render loop so each frame is drawn once. */
+    let cameraTick: ((now: number) => void) | null = null;
     let pointerMoveRafId: number | null = null;
     let pendingPointer: { clientX: number; clientY: number } | null = null;
     let idealDistance = compact ? 16.8 : 17.8;
@@ -1243,9 +1250,11 @@ export function AnatomicalViewport3D({
       }
     }
 
-    function renderFrame() {
+    function renderFrame(now: number = performance.now()) {
       renderRequested = false;
       if (disposed) return;
+      // A camera move in flight sets this frame's position first, so the frame is drawn exactly once.
+      cameraTick?.(now);
       // The body never turns by itself; frames are drawn only while something changes.
       controls.update();
       renderer.render(scene, camera);
@@ -1877,13 +1886,14 @@ export function AnatomicalViewport3D({
     function cancelCameraMove() {
       animationToken += 1;
       inFlight = null;
+      cameraTick = null;
       isAnimating = false;
     }
 
     function animateCamera(
       destination: THREE.Vector3,
       target: THREE.Vector3,
-      { ease = easeOrbit, duration }: { ease?: (t: number) => number; duration?: number } = {}
+      { ease: askedEase, duration }: { ease?: (t: number) => number; duration?: number } = {}
     ) {
       // The same move asked for twice (a tap, then the state update it causes) keeps its course.
       if (
@@ -1902,9 +1912,12 @@ export function AnatomicalViewport3D({
       const turn = Math.abs(dTheta) / Math.PI;
       const zoom = Math.min(Math.abs(to.radius - from.radius) / Math.max(from.radius, 0.001), 1);
       const pan = Math.min(fromTarget.distanceTo(toTarget) / 4, 1);
+      // Taking over from a move still in flight: carry on without first slowing to a stop.
+      const ease = askedEase ?? (inFlight ? easeHandOff : easeOrbit);
       const token = ++animationToken;
       if (turn < 0.002 && zoom < 0.002 && pan < 0.002 && Math.abs(to.phi - from.phi) < 0.002) {
         inFlight = null;
+        cameraTick = null;
         isAnimating = false;
         return;
       }
@@ -1929,28 +1942,27 @@ export function AnatomicalViewport3D({
         );
         camera.position.setFromSpherical(sph).add(tgt);
         controls.target.copy(tgt);
-        controls.update();
-        renderer.render(scene, camera);
       }
       function finish() {
         inFlight = null;
+        cameraTick = null;
         isAnimating = false;
-        requestRender();
       }
       // Reduced motion: the camera is simply in its new place.
       if (ms <= 0) {
         apply(1);
         finish();
+        requestRender();
         return;
       }
-      function step(now: number) {
-        if (disposed || token !== animationToken) return;
-        const raw = Math.min((now - start) / ms, 1);
+      // Driven by the render loop (renderFrame), which keeps asking for frames while isAnimating.
+      cameraTick = (now: number) => {
+        if (token !== animationToken) return;
+        const raw = Math.min(Math.max((now - start) / ms, 0), 1);
         apply(ease(raw));
-        if (raw < 1) requestAnimationFrame(step);
-        else finish();
-      }
-      requestAnimationFrame(step);
+        if (raw >= 1) finish();
+      };
+      requestRender();
     }
 
     type MoveOptions = { ease?: (t: number) => number; duration?: number };

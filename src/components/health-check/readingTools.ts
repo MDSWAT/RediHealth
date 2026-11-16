@@ -49,9 +49,22 @@ function toSentenceString(lang: Lang, queue: string[]): string {
 }
 
 function subscribeVoices(listener: () => void) {
-  if (typeof window === "undefined" || !("speechSynthesis" in window)) return () => {};
-  window.speechSynthesis.addEventListener("voiceschanged", listener);
-  return () => window.speechSynthesis.removeEventListener("voiceschanged", listener);
+  if (typeof window === "undefined" || !("speechSynthesis" in window) || !window.speechSynthesis) {
+    return () => {};
+  }
+  const synth = window.speechSynthesis;
+  const initialVoices = synth.getVoices?.() ?? [];
+  const timers: Array<ReturnType<typeof setTimeout>> = [];
+
+  if (initialVoices.length === 0) {
+    timers.push(setTimeout(listener, 250), setTimeout(listener, 800));
+  }
+
+  synth.addEventListener?.("voiceschanged", listener);
+  return () => {
+    for (const id of timers) clearTimeout(id);
+    synth.removeEventListener?.("voiceschanged", listener);
+  };
 }
 
 function subscribeSpeechEngine(listener: () => void) {

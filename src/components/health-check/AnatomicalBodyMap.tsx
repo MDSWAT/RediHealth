@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode, type RefObject } from "react";
 import { createPortal } from "react-dom";
 import dynamic from "next/dynamic";
-import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, SearchIcon } from "@/components/ui/icons";
+import { ArrowLeftIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, SearchIcon } from "@/components/ui/icons";
+import { Button } from "@/components/ui/Button";
 import { ListenButton } from "@/components/ui/ListenButton";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
@@ -17,6 +18,7 @@ import {
   CloseIcon,
   FemaleBodyIcon,
   FrontViewIcon,
+  FullScreenIcon,
   MusclesIcon,
   OrgansIcon,
   ResetViewIcon,
@@ -87,6 +89,10 @@ export interface AnatomicalBodyMapProps {
   decorative?: boolean;
   /** Told whether the 3D body is on screen (false: data saver, no WebGL, or it failed to load). */
   onBodyShownChange?: (shown: boolean) => void;
+  /** Tells the parent when the body fills the screen, so a tap there selects without moving on. */
+  onFullScreenChange?: (fullScreen: boolean) => void;
+  /** "Save selection" in full screen: the parent moves on with the chosen area. */
+  onConfirmSelection?: () => void;
   /** Driven visceral X-ray mode on desktop when a visceral symptom is active. */
   forcedLayerMode?: LayerModeId | null;
   /** Driven sub-region focus on desktop when a visceral symptom maps to an internal organ. */
@@ -568,6 +574,21 @@ function LayerSelectorRows({
   );
 }
 
+/**
+ * Full screen body: the label of the button that opens it and of the one that saves the choice.
+ * Back uses the page's own back label. Romani has no reviewed wording for "save", so it falls
+ * back to the page's "next" label there.
+ */
+export const FULL_SCREEN_COPY: Record<Lang, { open: string; save: string | null }> = {
+  ro: { open: "Ecran complet", save: "Salvează selecția" },
+  en: { open: "Full screen", save: "Save selection" },
+  sq: { open: "Ekran i plotë", save: "Ruaj zgjedhjen" },
+  it: { open: "Schermo intero", save: "Salva la selezione" },
+  hr: { open: "Cijeli zaslon", save: "Spremi odabir" },
+  rom: { open: "Baro ekrano", save: null },
+  ru: { open: "На весь экран", save: "Сохранить выбор" },
+};
+
 function StageOverlayPortal({ portal, children }: { portal: boolean; children: ReactNode }) {
   if (portal && typeof document !== "undefined") return createPortal(children, document.body);
   return <>{children}</>;
@@ -630,6 +651,8 @@ function AnatomicalBodyMapContent({
   selectionLabel,
   decorative = false,
   onBodyShownChange,
+  onFullScreenChange,
+  onConfirmSelection,
   forcedLayerMode = null,
   focusSubRegion = null,
   focusSide,
@@ -682,7 +705,8 @@ function AnatomicalBodyMapContent({
   useLayoutEffect(() => {
     onBodyShownRef.current?.(bodyShown);
   }, [bodyShown]);
-  const [layerMode, setLayerMode] = useState<LayerModeId>("surface");
+  /** The body opens on the muscles, like an anatomy atlas; skin, bones and organs are one tap away. */
+  const [layerMode, setLayerMode] = useState<LayerModeId>("muscular");
   const [userOverrodeLayer, setUserOverrodeLayer] = useState(false);
   const [prevForcedKey, setPrevForcedKey] = useState<string | null>(null);
   const forcedKey = forcedLayerMode || focusSubRegion ? `${forcedLayerMode ?? ""}:${focusSubRegion ?? ""}` : null;
@@ -845,6 +869,33 @@ function AnatomicalBodyMapContent({
   useDismissiblePanel(panelOpen, panelRef, openerRef, dismissPanel);
   useDismissiblePanel(layerOpen, layerPanelRef, insideOpenerRef, dismissLayerMenu);
 
+  // Full screen: the body fills the phone, with the turn, move and zoom buttons laid over it and
+  // Back and Save selection always in view. A CSS full screen (not the browser's), so it also works on iPhones.
+  const [fullScreen, setFullScreen] = useState(false);
+  const fullScreenCopy = FULL_SCREEN_COPY[activeLang] ?? FULL_SCREEN_COPY[DEFAULT_LANG];
+  const onFullScreenChangeRef = useRef(onFullScreenChange);
+  useEffect(() => {
+    onFullScreenChangeRef.current = onFullScreenChange;
+  });
+  useEffect(() => {
+    onFullScreenChangeRef.current?.(fullScreen);
+    // The canvas follows its box; nudge anything that listens to the window instead.
+    const raf = window.requestAnimationFrame(() => window.dispatchEvent(new Event("resize")));
+    if (!fullScreen) return () => window.cancelAnimationFrame(raf);
+    const root = document.documentElement;
+    const previousOverflow = root.style.overflow;
+    root.style.overflow = "hidden";
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setFullScreen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      window.cancelAnimationFrame(raf);
+      root.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [fullScreen]);
+
   const handlePadMove = (move: PadMove) => {
     const cam = cameraRef.current;
     if (!cam) return;
@@ -884,6 +935,96 @@ function AnatomicalBodyMapContent({
     setLayerOpen(false);
     insideOpenerRef.current?.focus({ preventScroll: true });
   };
+
+  /**
+   * Phones: Front, Back, Inside (and zoom in full screen). Under the body on the page; in full screen
+   * it sits in one column with the turn buttons above the Save bar.
+   */
+  const mobileViewBar =
+    showTools && !isDesktopLayout ? (
+      <div
+        role="toolbar"
+        aria-label={`${t.views}, ${t.camera}, ${t.layer}`}
+        className={`z-30 mx-auto w-fit max-w-[calc(100%-0.5rem)] rounded-xl border border-border/90 bg-card/95 p-0.5 shadow-xs backdrop-blur-md sm:max-w-[calc(100%-1rem)] sm:p-1 ${
+          // In full screen it sits in the column above the Save bar, under the turn buttons.
+          fullScreen ? "pointer-events-auto relative" : "absolute inset-x-1 bottom-5 sm:inset-x-2"
+        }`}
+      >
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          {(["front", "back"] as const).map((preset) => {
+            const active = !freeView && viewAngle === preset;
+            const label = preset === "front" ? dict.ui.viewer3D.front : dict.ui.viewer3D.back;
+            return (
+              <button
+                key={preset}
+                type="button"
+                aria-pressed={active}
+                onClick={() => {
+                  setUserAngle(preset);
+                  setFreeView(false);
+                  setViewRequest((n) => n + 1);
+                  announceMobileHint(label);
+                }}
+                className={`inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-3 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  active
+                    ? "bg-sapphire-soft text-sapphire"
+                    : "text-foreground/80 hover:bg-muted hover:text-foreground"
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
+
+          <button
+            ref={insideOpenerRef}
+            type="button"
+            aria-expanded={layerOpen}
+            aria-controls={layerMenuId}
+            onClick={() => {
+              setPanelOpen(false);
+              setLayerOpen((open) => !open);
+            }}
+            className={`inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-3 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              layerOpen || effectiveLayerMode !== "surface"
+                ? "bg-sapphire-soft text-sapphire"
+                : "text-foreground/80 hover:bg-muted hover:text-foreground"
+            }`}
+          >
+            {t.inside}
+          </button>
+
+          {fullScreen && (
+            <>
+          <button
+            type="button"
+            aria-label={t.zoomOut}
+            title={t.zoomOut}
+            onClick={() => {
+              cameraRef.current?.zoomOut();
+              announceMobileHint(t.zoomOut);
+            }}
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <ZoomOutIcon className="h-5 w-5 shrink-0" />
+          </button>
+          <button
+            type="button"
+            aria-label={t.zoomIn}
+            title={t.zoomIn}
+            onClick={() => {
+              cameraRef.current?.zoomIn();
+              announceMobileHint(t.zoomIn);
+            }}
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <ZoomInIcon className="h-5 w-5 shrink-0" />
+          </button>
+            </>
+          )}
+        </div>
+      </div>
+    ) : null;
 
   const sectionTitle = "mb-1.5 text-body font-semibold text-foreground";
 
@@ -992,10 +1133,29 @@ function AnatomicalBodyMapContent({
         </p>
       ) : (
         <>
-          <div className="relative isolate">
-            {renderLiteracyCard("bar")}
-            <div ref={stageRef} data-hc-stage className={`relative isolate overflow-hidden bg-surface-subtle ${stageClassName ?? "h-[460px]"}`}>
-            {hudRaw && hudLocalized ? (
+          <div
+            data-hc-fullscreen={fullScreen ? "" : undefined}
+            className={fullScreen ? "fixed inset-0 z-[70] isolate flex flex-col bg-surface-subtle" : "relative isolate"}
+          >
+            {!fullScreen && renderLiteracyCard("bar")}
+            <div
+              ref={stageRef}
+              data-hc-stage
+              className={`relative isolate overflow-hidden bg-surface-subtle ${
+                fullScreen ? "min-h-0 flex-1" : (stageClassName ?? "h-[460px]")
+              }`}
+            >
+            {fullScreen && (
+              <button
+                type="button"
+                onClick={() => setFullScreen(false)}
+                className="absolute left-2.5 top-[max(0.625rem,env(safe-area-inset-top))] z-30 inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-xl border border-border-control bg-card/95 px-3 text-body font-semibold text-foreground shadow-xs backdrop-blur-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <ArrowLeftIcon className="h-4 w-4 shrink-0" />
+                <span>{dict.ui.backButton}</span>
+              </button>
+            )}
+            {fullScreen ? null : hudRaw && hudLocalized ? (
               <>
                 {/* Compact label pill inside the stage below lg; from lg the card is a bar above the stage. */}
                 <div
@@ -1015,12 +1175,28 @@ function AnatomicalBodyMapContent({
               </div>
             ) : null}
 
-            {showTools && (
+            {showTools && !fullScreen && (
               <div
-                className={`absolute right-2.5 top-2.5 z-30 items-center gap-1.5 ${controlsClassName ?? "flex"}`}
+                // Whole buttons wrap onto a second row when the stage is narrow, so none is cut off.
+                className={`absolute left-2.5 right-2.5 top-2.5 z-30 pointer-events-none flex-wrap items-center justify-end gap-1.5 [&>*]:pointer-events-auto ${controlsClassName ?? "flex"}`}
               >
+                {/* One tap to a body that fills the screen, with every control laid over it. */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPanelOpen(false);
+                    setLayerOpen(false);
+                    setFullScreen(true);
+                  }}
+                  className="inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-xl border border-border-control bg-card/95 px-3 text-body font-semibold text-foreground shadow-xs backdrop-blur-md transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <FullScreenIcon className="h-4 w-4 shrink-0 text-sapphire" />
+                  <span>{fullScreenCopy.open}</span>
+                </button>
+                {/* Search and options is a desktop tool: on phones its controls sit on the body in full screen. */}
                 <button
                   ref={openerRef}
+                  hidden={!isDesktopLayout}
                   type="button"
                   aria-expanded={panelOpen}
                   aria-controls={panelId}
@@ -1080,6 +1256,28 @@ function AnatomicalBodyMapContent({
               )}
             </AnatomicalViewport3D>
             </div>
+
+            {fullScreen && (
+              // Always in view: what is selected, and one button that saves it and carries on.
+              <div className="flex items-center justify-between gap-3 border-t border-border bg-card px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+                <p aria-live="polite" className="min-w-0 text-body font-semibold leading-snug text-foreground">
+                  {hudLocalized ? `${hudLocalized.label}${hudSideLabel}` : (selectionLabel ?? "")}
+                </p>
+                <Button
+                  type="button"
+                  variant="action"
+                  size="lg"
+                  disabled={!selectedPart}
+                  onClick={() => {
+                    setFullScreen(false);
+                    onConfirmSelection?.();
+                  }}
+                  className="shrink-0"
+                >
+                  {fullScreenCopy.save ?? dict.ui.nextButton}
+                </Button>
+              </div>
+            )}
 
             {showTools && panelOpen && (
               <StageOverlayPortal portal={!isDesktopLayout}>
@@ -1233,7 +1431,8 @@ function AnatomicalBodyMapContent({
                   onClick={(e) => {
                     if (e.target === e.currentTarget) closeLayerMenu();
                   }}
-                  className="fixed inset-0 z-[60] flex items-end justify-center bg-black/50 p-3 sm:items-center"
+                  // Above the full screen body (z-70), and only lightly dimmed so the body stays in view.
+                  className="fixed inset-0 z-[80] flex items-end justify-center bg-black/25 p-3 sm:items-center"
                 >
                   <div
                     ref={layerPanelRef}
@@ -1280,83 +1479,25 @@ function AnatomicalBodyMapContent({
               />
             )}
 
-            {showTools && !isDesktopLayout && (
-              <div
-                role="toolbar"
-                aria-label={`${t.views}, ${t.camera}, ${t.layer}`}
-                className="absolute inset-x-1 bottom-5 z-30 mx-auto w-fit max-w-[calc(100%-0.5rem)] rounded-xl border border-border/90 bg-card/95 p-0.5 shadow-xs backdrop-blur-md sm:inset-x-2 sm:max-w-[calc(100%-1rem)] sm:p-1"
-              >
-                <div className="flex flex-wrap items-center justify-center gap-2">
-                  {(["front", "back"] as const).map((preset) => {
-                    const active = !freeView && viewAngle === preset;
-                    const label = preset === "front" ? dict.ui.viewer3D.front : dict.ui.viewer3D.back;
-                    return (
-                      <button
-                        key={preset}
-                        type="button"
-                        aria-pressed={active}
-                        onClick={() => {
-                          setUserAngle(preset);
-                          setFreeView(false);
-                          setViewRequest((n) => n + 1);
-                          announceMobileHint(label);
-                        }}
-                        className={`inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-3 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                          active
-                            ? "bg-sapphire-soft text-sapphire"
-                            : "text-foreground/80 hover:bg-muted hover:text-foreground"
-                        }`}
-                      >
-                        {label}
-                      </button>
-                    );
-                  })}
-
-                  <button
-                    ref={insideOpenerRef}
-                    type="button"
-                    aria-expanded={layerOpen}
-                    aria-controls={layerMenuId}
-                    onClick={() => {
-                      setPanelOpen(false);
-                      setLayerOpen((open) => !open);
-                    }}
-                    className={`inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-3 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                      layerOpen || effectiveLayerMode !== "surface"
-                        ? "bg-sapphire-soft text-sapphire"
-                        : "text-foreground/80 hover:bg-muted hover:text-foreground"
-                    }`}
-                  >
-                    {t.inside}
-                  </button>
-
-                  <button
-                    type="button"
-                    aria-label={t.zoomOut}
-                    title={t.zoomOut}
-                    onClick={() => {
-                      cameraRef.current?.zoomOut();
-                      announceMobileHint(t.zoomOut);
-                    }}
-                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    <ZoomOutIcon className="h-5 w-5 shrink-0" />
-                  </button>
-                  <button
-                    type="button"
-                    aria-label={t.zoomIn}
-                    title={t.zoomIn}
-                    onClick={() => {
-                      cameraRef.current?.zoomIn();
-                      announceMobileHint(t.zoomIn);
-                    }}
-                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground/80 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    <ZoomInIcon className="h-5 w-5 shrink-0" />
-                  </button>
+            {showTools && !isDesktopLayout && fullScreen && (
+              // Full screen: the turn buttons stack above the view buttons, above the Save bar. One column,
+              // so however many rows the view buttons take (large text), nothing covers anything else.
+              <div className="pointer-events-none absolute inset-x-1 bottom-[5.75rem] z-30 flex flex-col items-center gap-2 sm:inset-x-2">
+                <div role="group" aria-label={t.turnBody} className="pointer-events-auto mr-1.5 self-end">
+                  <DirectionPad
+                    size="panel"
+                    className="grid rounded-2xl border border-border/90 bg-card/90 p-1.5 shadow-xs backdrop-blur-md"
+                    labels={{ up: t.moveUp, down: t.moveDown, left: t.turnLeft, right: t.turnRight, reset: t.resetView }}
+                    onMove={handlePadMove}
+                    onReset={handlePadReset}
+                    onAnnounce={announceMobileHint}
+                  />
                 </div>
+                {mobileViewBar}
               </div>
             )}
+
+            {!fullScreen && mobileViewBar}
 
             {showTools && isDesktopLayout && (
               <div

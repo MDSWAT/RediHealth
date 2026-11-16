@@ -20,9 +20,9 @@ import {
 } from "@/components/ui/romania-county-map-helpers";
 import { useUserCounty } from "@/lib/geo-ip";
 import { CountyOverrideModal } from "@/components/news/CountyOverrideModal";
-import { PlaceNewsModal } from "@/components/news/PlaceNewsModal";
+import { isWholeCountry, newsForPlace } from "@/components/news/PlaceNewsModal";
 import { countyLabel, formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
-import { ArrowRightIcon, PinIcon, StethoscopeIcon, UsersIcon } from "@/components/ui/icons";
+import { PinIcon, StethoscopeIcon, UsersIcon } from "@/components/ui/icons";
 import { useReadAloud } from "@/components/health-check/readingTools";
 
 const RomaniaCountyMap = dynamic(
@@ -45,12 +45,96 @@ import {
   ITALY_WIDE,
   MOLDOVA_WIDE,
   NEWS_ARTICLES,
+  NEWS_CATEGORIES,
   articleCountry,
   getLocalizedArticle,
   isCountryWide,
   isNationalCounty,
+  type NewsArticle,
+  type NewsCategory,
   type NewsCountry,
 } from "@/lib/data/news";
+
+type CategoryFilter = "all" | NewsCategory;
+
+function pluralSuffix(lang: Lang, n: number): string {
+  switch (lang) {
+    case "ro":
+      return n === 1 ? "1 articol" : `${n} articole`;
+    case "en":
+      return n === 1 ? "1 article" : `${n} articles`;
+    case "sq":
+      return n === 1 ? "1 artikull" : `${n} artikuj`;
+    case "it":
+      return n === 1 ? "1 articolo" : `${n} articoli`;
+    case "hr": {
+      const mod10 = n % 10;
+      const mod100 = n % 100;
+      if (mod10 === 1 && mod100 !== 11) return `${n} članak`;
+      if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return `${n} članka`;
+      return `${n} članaka`;
+    }
+    case "rom":
+      return n === 1 ? "1 artiklo" : `${n} artikluri`;
+    case "ru": {
+      const mod10 = n % 10;
+      const mod100 = n % 100;
+      if (mod10 === 1 && mod100 !== 11) return `${n} статья`;
+      if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return `${n} статьи`;
+      return `${n} статей`;
+    }
+  }
+}
+
+const FEED_COPY: Record<Lang, {
+  categoriesLabel: string;
+  local: string;
+  national: string;
+  noLocal: (place: string) => string;
+}> = {
+  ro: {
+    categoriesLabel: "Filtrează după categorie",
+    local: "Anunțuri locale",
+    national: "La nivel național",
+    noLocal: (place) => `Nu sunt alerte locale pentru ${place}. Mai jos apar anunțurile naționale.`,
+  },
+  en: {
+    categoriesLabel: "Filter by category",
+    local: "Local updates",
+    national: "Nationwide",
+    noLocal: (place) => `No local alerts for ${place}. Nationwide updates appear below.`,
+  },
+  sq: {
+    categoriesLabel: "Filtro sipas kategorisë",
+    local: "Njoftime lokale",
+    national: "Në nivel kombëtar",
+    noLocal: (place) => `Nuk ka njoftime lokale për ${place}. Njoftimet kombëtare shfaqen më poshtë.`,
+  },
+  it: {
+    categoriesLabel: "Filtra per categoria",
+    local: "Avvisi locali",
+    national: "A livello nazionale",
+    noLocal: (place) => `Nessun avviso locale per ${place}. Gli avvisi nazionali appaiono qui sotto.`,
+  },
+  hr: {
+    categoriesLabel: "Filtriraj po kategoriji",
+    local: "Lokalne obavijesti",
+    national: "Na nacionalnoj razini",
+    noLocal: (place) => `Nema lokalnih obavijesti za ${place}. Nacionalne obavijesti su ispod.`,
+  },
+  rom: {
+    categoriesLabel: "Alosar pala kategoria",
+    local: "Lokalni neve",
+    national: "Pe saoro them",
+    noLocal: (place) => `Nane lokalni neve vaš ${place}. Tele si e themaqe neve.`,
+  },
+  ru: {
+    categoriesLabel: "Фильтр по категории",
+    local: "Местные новости",
+    national: "По всей стране",
+    noLocal: (place) => `Для ${place} нет местных объявлений. Ниже показаны новости по стране.`,
+  },
+};
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -122,16 +206,12 @@ export function NewsHub() {
   const mapCountries = useMemo(() => mapCountriesForLang(lang), [lang]);
   const [selectedMapCountry, setSelectedMapCountry] = useState<MapCountry>(() => mapCountries[0]);
   const activeCountry: MapCountry = mapCountries.includes(selectedMapCountry) ? selectedMapCountry : mapCountries[0];
-  if (selectedMapCountry !== activeCountry) {
-    setSelectedMapCountry(activeCountry);
-  }
 
   // Per-country selections outside Romania stay page-local so the saved Romanian county cookie is preserved.
   const [roNationalSelected, setRoNationalSelected] = useState(false);
   const [nonRoSelections, setNonRoSelections] = useState<Partial<Record<Exclude<MapCountry, "ro">, string>>>({});
+  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
 
-  // Modal state carries both the chosen place and its country so shared names ("Călărași") never collide.
-  const [modalState, setModalState] = useState<{ place: string; country: NewsCountry } | null>(null);
   const [countyModalOpen, setCountyModalOpen] = useState(false);
   const isDesktopLayout = useSyncExternalStore(subscribeDesktopLayout, readDesktopLayout, () => false);
   const [mapOverride, setMapOverride] = useState<boolean | null>(null);
@@ -154,12 +234,23 @@ export function NewsHub() {
     } else {
       setNonRoSelections((prev) => ({ ...prev, [targetCountry]: name }));
     }
-    setModalState({ place: name, country: targetCountry });
   };
 
-  const closeNews = useCallback(() => setModalState(null), []);
+  const resetFilters = useCallback(() => {
+    setSelectedCategory("all");
+    if (activeCountry === "ro") {
+      setRoNationalSelected(true);
+    } else {
+      setNonRoSelections((prev) => ({
+        ...prev,
+        [activeCountry]: countryAllValue(activeCountry),
+      }));
+    }
+  }, [activeCountry]);
 
-  const categoryLabels: Record<string, string> = {
+  const fc = FEED_COPY[lang];
+
+  const categoryLabels: Record<NewsCategory, string> = {
     "Alerte locale": np.categories.epidemics,
     "Caravane medicale": np.categories.caravan,
     "Campanii de vaccinare": np.categories.vaccinationCampaigns,
@@ -168,14 +259,46 @@ export function NewsHub() {
 
   const localizedArticles = useMemo(() => NEWS_ARTICLES.map((article) => getLocalizedArticle(article, lang)), [lang]);
 
-  const latest = useMemo(
+  const countryArticles = useMemo(
     () =>
       localizedArticles
         .filter((a) => articleCountry(a) === activeCountry)
-        .sort((a, b) => b.date.localeCompare(a.date))
-        .slice(0, 3),
+        .sort((a, b) => b.date.localeCompare(a.date)),
     [localizedArticles, activeCountry],
   );
+
+  const placeIsNational = isWholeCountry(selectedAreaForMap);
+
+  const filteredFeed = useMemo(() => {
+    const byCategory = (items: NewsArticle[]) =>
+      selectedCategory === "all" ? items : items.filter((item) => item.category === selectedCategory);
+
+    if (placeIsNational) {
+      return {
+        local: [] as NewsArticle[],
+        national: byCategory(countryArticles),
+        hasAnyLocalForPlace: false,
+      };
+    }
+
+    const groups = newsForPlace(selectedAreaForMap, countryArticles, activeCountry);
+    return {
+      local: byCategory(groups.local),
+      national: byCategory(groups.national),
+      hasAnyLocalForPlace: groups.local.length > 0,
+    };
+  }, [activeCountry, countryArticles, placeIsNational, selectedAreaForMap, selectedCategory]);
+
+  const filteredTotal = filteredFeed.local.length + filteredFeed.national.length;
+  const isFiltered = !placeIsNational || selectedCategory !== "all";
+  const feedGroups = [
+    ...(filteredFeed.local.length > 0
+      ? [{ id: "local", heading: filteredFeed.national.length > 0 ? fc.local : null, items: filteredFeed.local }]
+      : []),
+    ...(filteredFeed.national.length > 0
+      ? [{ id: "national", heading: filteredFeed.local.length > 0 ? fc.national : null, items: filteredFeed.national }]
+      : []),
+  ];
 
   // Places with local news in the active country are tinted on the map and offered as quick picks.
   const hubs = useMemo(
@@ -221,6 +344,8 @@ export function NewsHub() {
     return placeName(place, lang);
   };
 
+  const areaHeading = placeIsNational ? c.latest : placeLabel(selectedAreaForMap, activeCountry);
+
   return (
     <main id="main-content" className="flex-1 bg-background pb-12 sm:pb-16">
       <Container>
@@ -232,6 +357,7 @@ export function NewsHub() {
               {voice.available && (
                 <ListenButton
                   uiLang={lang}
+                  autoRead
                   isPlaying={voice.speaking}
                   onToggle={() => {
                     if (voice.speaking) {
@@ -288,45 +414,102 @@ export function NewsHub() {
           </div>
 
           <section aria-labelledby="news-latest-heading">
-            <div className="flex items-baseline justify-between gap-3 border-b border-border pb-2">
-              <h2 id="news-latest-heading" className="text-body font-semibold text-foreground">
-                {c.latest}
-              </h2>
-              <button
-                type="button"
-                onClick={() => setModalState({ place: countryAllValue(activeCountry), country: activeCountry })}
-                className="group inline-flex min-h-[44px] max-w-full shrink-0 items-center gap-1 whitespace-nowrap rounded-sm text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <span className="min-w-0 truncate">{np.resetFilter}</span>
-                <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
-              </button>
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-3">
+              <div className="min-w-0">
+                <h2 id="news-latest-heading" className="text-body font-semibold text-foreground">
+                  {areaHeading}
+                </h2>
+                <p aria-live="polite" className="mt-0.5 text-meta text-muted-foreground tabular-nums">
+                  {pluralSuffix(lang, filteredTotal)}
+                </p>
+              </div>
+              {isFiltered && (
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="inline-flex min-h-11 max-w-full shrink-0 items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-3.5 text-meta font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <span>{np.resetFilter}</span>
+                </button>
+              )}
             </div>
-            {/* Keyed on the country: switching the map re-lists the latest items in order, not all at once. */}
-            <ul key={activeCountry} className="divide-y divide-border">
-              {latest.map((article, index) => (
-                <li key={article.id} className="list-in" style={{ "--i": index } as React.CSSProperties}>
-                  <Link
-                    href={withLangPrefix(`${basePath}/${article.slug}`, lang)}
-                    className="group press-row -mx-2.5 flex min-h-12 flex-col gap-1 rounded-lg px-2.5 py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/45 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+
+            <div
+              role="group"
+              aria-label={fc.categoriesLabel}
+              className="mt-4 flex flex-wrap items-center gap-2"
+            >
+              {(["all", ...NEWS_CATEGORIES] as const).map((cat) => {
+                const selected = selectedCategory === cat;
+                const label = cat === "all" ? np.categories.all : categoryLabels[cat];
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={
+                      selected
+                        ? "inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-(--radius-control) border border-foreground bg-foreground px-3.5 text-meta font-semibold text-background transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        : "inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-3.5 text-meta font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    }
                   >
-                    <span lang={article.language} className="text-body font-medium leading-snug text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none dark:group-hover:text-sapphire-border">
-                      <span>{article.title}</span>
-                    </span>
-                    <span className="shrink-0 text-meta text-muted-foreground tabular-nums">
-                      {categoryLabels[article.category] ?? article.category}
-                      <span aria-hidden="true" className="mx-1.5 inline-block h-3 w-px align-middle bg-border" />
-                      {placeLabel(article.county, articleCountry(article))}
-                      <span aria-hidden="true" className="mx-1.5 inline-block h-3 w-px align-middle bg-border" />
-                      <time dateTime={article.date}>{formatNewsDate(article.date, lang, { short: true, year: false })}</time>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            {latest.length === 0 && (
-              <div key={`empty-${activeCountry}`} className="swap-in border-b border-border py-8">
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {!placeIsNational && !filteredFeed.hasAnyLocalForPlace && selectedCategory === "all" && filteredTotal > 0 && (
+              <p className="mt-4 text-meta text-muted-foreground">
+                {fc.noLocal(placeLabel(selectedAreaForMap, activeCountry))}
+              </p>
+            )}
+
+            {feedGroups.map((group) => (
+              <div key={group.id} className="mt-4">
+                {group.heading && (
+                  <h3 className="pb-1 text-meta font-semibold text-muted-foreground">
+                    {group.heading}
+                  </h3>
+                )}
+                <ul key={`${group.id}-${activeCountry}-${selectedAreaForMap}-${selectedCategory}`} className="divide-y divide-border">
+                  {group.items.map((article, index) => (
+                    <li key={article.id} className="list-in" style={{ "--i": index } as React.CSSProperties}>
+                      <Link
+                        href={withLangPrefix(`${basePath}/${article.slug}`, lang)}
+                        className="group press-row -mx-2.5 flex min-h-12 flex-col gap-1 rounded-lg px-2.5 py-3.5 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/45 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+                      >
+                        <span lang={article.language} className="text-body font-medium leading-snug text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none dark:group-hover:text-sapphire-border">
+                          <span>{article.title}</span>
+                        </span>
+                        <span className="shrink-0 text-meta text-muted-foreground tabular-nums">
+                          {categoryLabels[article.category] ?? article.category}
+                          <span aria-hidden="true" className="mx-1.5 inline-block h-3 w-px align-middle bg-border" />
+                          {placeLabel(article.county, articleCountry(article))}
+                          <span aria-hidden="true" className="mx-1.5 inline-block h-3 w-px align-middle bg-border" />
+                          <time dateTime={article.date}>{formatNewsDate(article.date, lang, { short: true, year: false })}</time>
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+            {filteredTotal === 0 && (
+              <div key={`empty-${activeCountry}-${selectedAreaForMap}-${selectedCategory}`} className="swap-in border-b border-border py-8">
                 <p className="text-body font-semibold text-foreground">{np.emptyTitle}</p>
                 <p className="mt-1 max-w-(--measure-reading) text-body text-muted-foreground">{np.emptySubtitle}</p>
+                {isFiltered && (
+                  <button
+                    type="button"
+                    onClick={resetFilters}
+                    className="mt-4 inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-4 text-meta font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    {np.resetFilter}
+                  </button>
+                )}
               </div>
             )}
           </section>
@@ -362,13 +545,6 @@ export function NewsHub() {
           </section>
         </Container>
       </div>
-
-      <PlaceNewsModal
-        place={modalState?.place ?? null}
-        countryHint={modalState?.country}
-        articles={localizedArticles}
-        onClose={closeNews}
-      />
 
       <CountyOverrideModal
         open={countyModalOpen}

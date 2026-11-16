@@ -5,10 +5,12 @@ import ro from "@/content/health-summaries/ro.json";
 import sq from "@/content/health-summaries/sq.json";
 import it from "@/content/health-summaries/it.json";
 import ru from "@/content/health-summaries/ru.json";
+import hr from "@/content/health-summaries/hr.json";
+import rom from "@/content/health-summaries/rom.json";
 import { informedHealthAreas, informedHealthSourceUrl } from "./informedhealth-directory";
 
 export type HealthSummaryText = { intro: string; details: string; questions: string[] };
-const summaries: Record<HealthContentLang, Record<string, HealthSummaryText>> = { en, ro, sq, it, ru };
+const summaries: Record<HealthContentLang, Record<string, HealthSummaryText>> = { en, ro, sq, it, ru, hr, rom };
 
 export function getHealthSummary(lang: Lang, id: string) {
   const contentLanguage = healthContentLanguage(lang);

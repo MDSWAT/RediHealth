@@ -4,9 +4,13 @@ import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ArrowRightIcon, ChevronDownIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
+import { HealthArticleTocRail } from "./HealthArticleTocRail";
 
 /** Unified left-aligned editorial reading column width across every health reading route. */
 export const HEALTH_ARTICLE_CONTAINER_CLASS = "w-full max-w-3xl";
+
+export const HEALTH_ARTICLE_WITH_TOC_GRID_CLASS =
+  "lg:grid lg:grid-cols-[minmax(0,48rem)_minmax(16.5rem,21rem)] lg:items-start lg:justify-between lg:gap-10 xl:gap-14 print:block";
 
 /** Elderly-first WCAG 2.2 AAA body prose scale: 18px base, 1.75 leading, 36rem unified reading measure. */
 export const HEALTH_ARTICLE_PROSE_CLASS =
@@ -18,16 +22,21 @@ export const HEALTH_ARTICLE_SECTION_H2_CLASS =
 
 export interface HealthArticleShellProps {
   children: ReactNode;
+  toc?: HealthArticleTocProps;
   className?: string;
 }
 
 /** Shared outer shell enforcing one identical max-w-3xl reading column across topics, articles, and news. */
-export function HealthArticleShell({ children, className }: HealthArticleShellProps) {
+export function HealthArticleShell({ children, toc, className }: HealthArticleShellProps) {
+  const hasToc = Boolean(toc && toc.items.length > 0);
   return (
     <div className={cn("bg-background py-8 sm:py-12 print:py-4", className)}>
       <Container>
-        <div className={HEALTH_ARTICLE_CONTAINER_CLASS} data-health-article-column>
-          {children}
+        <div className={cn(hasToc && HEALTH_ARTICLE_WITH_TOC_GRID_CLASS)}>
+          <div className={HEALTH_ARTICLE_CONTAINER_CLASS} data-health-article-column>
+            {children}
+          </div>
+          {toc && toc.items.length > 0 ? <HealthArticleTocRail {...toc} /> : null}
         </div>
       </Container>
     </div>

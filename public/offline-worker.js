@@ -326,6 +326,8 @@ self.addEventListener("fetch", (event) => {
     event.request.mode !== "navigate" &&
     (url.pathname.startsWith("/pwa/") ||
       url.pathname === "/favicon.ico" ||
+      url.pathname.startsWith("/favicon-") ||
+      url.pathname === "/safari-pinned-tab.svg" ||
       url.pathname.startsWith("/apple-icon") ||
       url.pathname.startsWith("/icon"))
   ) {

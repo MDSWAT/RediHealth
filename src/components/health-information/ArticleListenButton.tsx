@@ -12,6 +12,8 @@ export interface ArticleListenButtonProps {
   onStartOverride?: () => void;
   onStopOverride?: () => void;
   isPlayingExternal?: boolean;
+  /** Defaults to true so topic guides, topic summaries, articles, and news stories respect the Auto-read preference. */
+  autoRead?: boolean;
   className?: string;
 }
 
@@ -28,6 +30,7 @@ export function ArticleListenButton({
   onStartOverride,
   onStopOverride,
   isPlayingExternal,
+  autoRead = true,
   className,
 }: ArticleListenButtonProps) {
   const handleOverrideToggle =
@@ -52,6 +55,7 @@ export function ArticleListenButton({
       stopLabel={stopLabel}
       playStartEarcon
       closePlayerOnStop
+      autoRead={autoRead}
       className={className}
     />
   );

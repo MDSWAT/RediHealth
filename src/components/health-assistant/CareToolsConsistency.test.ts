@@ -28,7 +28,6 @@ const OWNED_SOURCE_FILES = [
   "src/components/health-assistant/MediatorRequestModal.tsx",
   "src/components/health-assistant/pathways/PathwayRisk.tsx",
   "src/components/health-assistant/pathways/PathwayNavigation.tsx",
-  "src/components/health-assistant/pathways/PathwaySymptomsMild.tsx",
   "src/components/health-check/HealthCheckExplorer.tsx",
   "src/components/health-check/AnatomicalBodyMap.tsx",
   "src/components/health-check/TriageNoteView.tsx",
@@ -173,14 +172,6 @@ describe("Care tools design-system consistency", () => {
     expect(findHelp).not.toContain("min-h-9");
   });
 
-  it("keeps mild self-care list markers sapphire while preserving primary for emergency warnings", () => {
-    const mild = readSrc("src/components/health-assistant/pathways/PathwaySymptomsMild.tsx");
-    expect(mild).toContain("marker:text-sapphire");
-    expect(mild).not.toMatch(/<ol[^>]*marker:text-primary/);
-    expect(mild).toContain("shrink-0 text-primary");
-    expect(mild).toContain("list-disc marker:text-primary");
-  });
-
   it("wraps /health-check/note top bar and note card in a readable max-w-3xl Container with print classes intact", () => {
     const noteView = readSrc("src/components/health-check/TriageNoteView.tsx");
     expect(noteView).toContain('<Container className="max-w-3xl">');
@@ -229,9 +220,15 @@ describe("Care tools design-system consistency", () => {
     expect(completedHtml).not.toContain(roRisk.questions.q1.title);
   });
 
-  it("opens HealthCheckExplorer on list on phones, keeps list mode across non-result steps, and defers 3D mount (P01)", () => {
+  it("opens HealthCheckExplorer on the 3D body on phones, keeps the list one tap away, and defers 3D mount in list mode (P01)", () => {
     const explorerSrc = readSrc("src/components/health-check/HealthCheckExplorer.tsx");
-    expect(explorerSrc).toContain('const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "list";');
+    expect(explorerSrc).toContain('const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "3d";');
+    // Full screen: a tap selects without moving on; Save selection confirms.
+    expect(explorerSrc).toContain('stepRef.current === "area" && !bodyFullScreenRef.current');
+    const bodyMapSrc = readSrc("src/components/health-check/AnatomicalBodyMap.tsx");
+    expect(bodyMapSrc).toContain("data-hc-fullscreen");
+    expect(bodyMapSrc).toContain("onConfirmSelection?.()");
+    expect(bodyMapSrc).toContain("{dict.ui.backButton}");
     expect(explorerSrc).toContain('const mobileListOnly = effectiveMobileAreaMode === "list" && stepId !== "result";');
     expect(explorerSrc).not.toContain('stepId === "area" && effectiveMobileAreaMode');
     expect(explorerSrc).toContain("deferred={mobileListOnly && !isDesktop}");

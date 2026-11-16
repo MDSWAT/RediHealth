@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { PageListenAction } from "@/components/ui/PageListenAction";
 import { MailIcon, PhoneIcon } from "@/components/ui/icons";
 import Link from "next/link";
 import { getRequestLang } from "@/lib/i18n/server-routing";
@@ -17,7 +18,16 @@ export default async function ContactPage() {
   return (
     <main id="main-content" className="flex-1 pb-12 sm:pb-16">
       <Container>
-        <PageHeader title={copy.title} lead={copy.description} />
+        <PageHeader
+          title={copy.title}
+          lead={copy.description}
+          actions={
+            <PageListenAction
+              lang={lang}
+              segments={[copy.title, copy.description, copy.emergencies, copy.emergencyBody]}
+            />
+          }
+        />
 
         <div className="mt-8 max-w-(--measure-reading) space-y-8 text-body text-muted-foreground">
             <div>

@@ -1,4 +1,4 @@
-import { languages, type Lang } from "@/lib/i18n/translations";
+import { languages, type Lang } from "@/lib/i18n/languages";
 
 export const DEFAULT_LANG: Lang = "en";
 export const LOCALE_COOKIE = "redihealth-lang";

@@ -3,12 +3,11 @@
 import {
   useCallback,
   useEffect,
-  useId,
   useRef,
   useState,
   type CSSProperties,
 } from "react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import type { MythCategory } from "@/lib/i18n/health-myths";
@@ -48,7 +47,7 @@ export function MythCategoryFilter({
   const { t } = useLanguage();
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ start: false, end: false });
-  const markerId = useId();
+  const [marker, setMarker] = useState({ y: 0, h: 0, ready: false });
   const calmMotion = useCalmReducedMotion();
 
   const measure = useCallback(() => {
@@ -59,6 +58,14 @@ export function MythCategoryFilter({
     setEdges((prev) =>
       prev.start === start && prev.end === end ? prev : { start, end },
     );
+    const active = el.querySelector<HTMLElement>("[aria-pressed='true']");
+    if (active) {
+      const y = active.offsetTop;
+      const h = active.offsetHeight;
+      setMarker((prev) =>
+        prev.ready && prev.y === y && prev.h === h ? prev : { y, h, ready: true },
+      );
+    }
   }, []);
 
   useEffect(() => {
@@ -76,6 +83,7 @@ export function MythCategoryFilter({
 
   // Keep the chosen category fully visible, without moving the page itself.
   useEffect(() => {
+    measure();
     const el = scrollerRef.current;
     const active = el?.querySelector<HTMLElement>("[aria-pressed='true']");
     if (!el || !active) return;
@@ -89,7 +97,7 @@ export function MythCategoryFilter({
     if (target === null) return;
     const reduced = prefersCalmOrReducedMotion();
     el.scrollTo({ left: target, behavior: reduced ? "auto" : "smooth" });
-  }, [activeCategory]);
+  }, [activeCategory, measure]);
 
   const mask =
     edges.start || edges.end
@@ -120,8 +128,17 @@ export function MythCategoryFilter({
         role="group"
         aria-label={t.quiz.filterAriaLabel}
         style={maskStyle}
-        className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] lg:flex-col lg:items-start lg:gap-0 lg:overflow-visible lg:border-l lg:border-sapphire-border/80 lg:pb-0 dark:lg:border-ink-800 [&::-webkit-scrollbar]:hidden"
+        className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] lg:relative lg:flex-col lg:items-start lg:gap-0 lg:overflow-visible lg:border-l lg:border-sapphire-border/80 lg:pb-0 dark:lg:border-ink-800 [&::-webkit-scrollbar]:hidden"
       >
+        {/* From lg the active rule glides down the list to the chosen category. */}
+        <m.span
+          aria-hidden="true"
+          initial={false}
+          animate={{ y: marker.y, opacity: marker.ready ? 1 : 0 }}
+          transition={calmMotion ? { duration: 0 } : { duration: DURATION.base, ease: EASE_OUT }}
+          style={{ height: marker.h }}
+          className="pointer-events-none absolute top-0 -left-px z-10 hidden w-0.5 bg-foreground lg:block dark:bg-paper"
+        />
         {categories.map((cat) => {
           const isActive = activeCategory === cat.slug;
           const tally = progress?.[cat.slug];
@@ -139,13 +156,10 @@ export function MythCategoryFilter({
                   : "border-border-control bg-card font-medium text-foreground hover:border-sapphire/40 hover:text-foreground active:text-foreground dark:border-ink-700 dark:bg-ink-900 dark:text-mist dark:hover:border-ink-500 dark:hover:text-paper dark:active:text-paper lg:border-transparent lg:bg-transparent lg:text-muted-foreground dark:lg:border-transparent dark:lg:bg-transparent",
               )}
             >
-              {/* From lg the active rule glides down the list to the chosen category. */}
-              {isActive && (
-                <motion.span
+              {isActive && !marker.ready && (
+                <span
                   aria-hidden="true"
-                  layoutId={`myth-category-marker-${markerId}`}
-                  transition={calmMotion ? { duration: 0 } : { duration: DURATION.base, ease: EASE_OUT }}
-                  className="pointer-events-none absolute inset-y-0 -left-0.5 hidden w-0.5 bg-foreground lg:block dark:bg-paper"
+                  className="pointer-events-none absolute inset-y-0 left-0 hidden w-0.5 bg-foreground lg:block dark:bg-paper"
                 />
               )}
               <span>{cat.label}</span>

@@ -145,6 +145,10 @@ describe("proxy matcher metadata exclusions", () => {
       "/manifest.webmanifest",
       "/manifest.json",
       "/favicon.ico",
+      "/favicon-16x16.png",
+      "/favicon-32x32.png",
+      "/favicon-48x48.png",
+      "/safari-pinned-tab.svg",
       "/robots.txt",
       "/sitemap.xml",
       "/offline-worker.js",
@@ -169,5 +173,26 @@ describe("proxy matcher metadata exclusions", () => {
     for (const pathname of includedPaths) {
       expect(matchesNextRegex(matcherPattern, pathname), `Should match ${pathname}`).toBe(true);
     }
+  });
+
+  it("ships synchronous <head> favicon links and valid PNG/SVG icon assets on disk", () => {
+    expect(readPngDimensions("/favicon-16x16.png")).toEqual({ width: 16, height: 16 });
+    expect(readPngDimensions("/favicon-32x32.png")).toEqual({ width: 32, height: 32 });
+    expect(readPngDimensions("/favicon-48x48.png")).toEqual({ width: 48, height: 48 });
+
+    const pinnedSvg = fs.readFileSync(path.join(process.cwd(), "public/safari-pinned-tab.svg"), "utf8");
+    expect(pinnedSvg).toContain("<svg");
+    expect(pinnedSvg).toContain('fill="#000000"');
+
+    const iconSvg = fs.readFileSync(path.join(process.cwd(), "src/app/icon.svg"), "utf8");
+    expect(iconSvg).toContain('fill="#CC3746"');
+    expect(iconSvg).toContain('fill="#AC2A39"');
+
+    const layoutSrc = fs.readFileSync(path.join(process.cwd(), "src/app/layout.tsx"), "utf8");
+    expect(layoutSrc).toContain("<head>");
+    expect(layoutSrc).toContain('/icon.svg?v=3');
+    expect(layoutSrc).toContain('/favicon-32x32.png?v=3');
+    expect(layoutSrc).toContain('/favicon.ico?v=3');
+    expect(layoutSrc).toContain('/safari-pinned-tab.svg?v=3');
   });
 });

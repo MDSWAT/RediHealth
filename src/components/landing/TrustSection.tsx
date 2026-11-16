@@ -6,14 +6,14 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRightIcon, GlobeIcon, HandHelpingIcon, CheckCircleIcon, HeartIcon, LockIcon, MessageDotsIcon } from "@/components/ui/icons";
-import { NAV_LINK_ICONS, type NavIcon } from "@/components/layout/nav-links";
+import type { NavIcon } from "@/components/layout/nav-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 
 /** The promises, in order: free for everyone, data stays private, clear guidance. */
 const PROMISE_ICONS = [HeartIcon, LockIcon, MessageDotsIcon];
 
-type SourceId = "oms" | "mediatori" | "redi";
+type SourceId = "oms" | "redi";
 
 type SourceOrPartner = {
   id: SourceId;
@@ -51,11 +51,6 @@ const COPY: Record<Lang, TrustCopy> = {
         hrefLabel: "who.int",
       },
       {
-        id: "mediatori",
-        name: "Медицинские медиаторы в сообществах",
-        role: "Работаем с медицинскими медиаторами в сёлах и уязвимых сообществах.",
-      },
-      {
         id: "redi",
         name: "REDI",
         role: "Европейский проект, который помогает людям проще попасть к врачу.",
@@ -76,11 +71,6 @@ const COPY: Record<Lang, TrustCopy> = {
         role: "Folosim recomandările publice OMS pentru sănătate și prevenție.",
         href: "https://www.who.int/health-topics/health-promotion",
         hrefLabel: "who.int",
-      },
-      {
-        id: "mediatori",
-        name: "Mediatori sanitari comunitari",
-        role: "Lucrăm cu mediatori sanitari la sate și în comunități vulnerabile.",
       },
       {
         id: "redi",
@@ -104,11 +94,6 @@ const COPY: Record<Lang, TrustCopy> = {
         hrefLabel: "who.int",
       },
       {
-        id: "mediatori",
-        name: "Community health mediators",
-        role: "We work with health mediators in villages and vulnerable communities.",
-      },
-      {
         id: "redi",
         name: "REDI",
         role: "A European project that helps people reach a doctor more easily.",
@@ -128,11 +113,6 @@ const COPY: Record<Lang, TrustCopy> = {
         role: "Mbështetemi në udhëzimet publike të OBSH-së për shëndetin dhe parandalimin.",
         href: "https://www.who.int/health-topics/health-promotion",
         hrefLabel: "who.int",
-      },
-      {
-        id: "mediatori",
-        name: "Mediatorë shëndetësorë komunitarë",
-        role: "Punojmë me mediatorë shëndetësorë në fshatra dhe komunitete në nevojë.",
       },
       {
         id: "redi",
@@ -156,11 +136,6 @@ const COPY: Record<Lang, TrustCopy> = {
         hrefLabel: "who.int",
       },
       {
-        id: "mediatori",
-        name: "Mediatori sanitari di comunità",
-        role: "Lavoriamo con mediatori sanitari nei paesi e nelle comunità più vulnerabili.",
-      },
-      {
         id: "redi",
         name: "REDI",
         role: "Progetto europeo che ti aiuta ad andare dal medico più facilmente.",
@@ -180,11 +155,6 @@ const COPY: Record<Lang, TrustCopy> = {
         role: "Pratimo javne smjernice SZO-a o zdravlju i prevenciji.",
         href: "https://www.who.int/health-topics/health-promotion",
         hrefLabel: "who.int",
-      },
-      {
-        id: "mediatori",
-        name: "Zdravstveni medijatori u zajednici",
-        role: "Radimo sa zdravstvenim medijatorima na selu i u osjetljivim zajednicama.",
       },
       {
         id: "redi",
@@ -208,11 +178,6 @@ const COPY: Record<Lang, TrustCopy> = {
         hrefLabel: "who.int",
       },
       {
-        id: "mediatori",
-        name: "Sastipnaske mediatorura and-i komuniteta",
-        role: "Keras buchi sastipnaske mediatorensa and-e gava thaj kovle komunitete.",
-      },
-      {
         id: "redi",
         name: "REDI",
         role: "Europako projekto so azhutinel le manushen te aresen maj lokhes ko doktori.",
@@ -221,16 +186,15 @@ const COPY: Record<Lang, TrustCopy> = {
   },
 };
 
-// Amber marks the health mediators, here as everywhere else; the other partners are sapphire.
+// The health mediators have their own section on the homepage, so the ledger lists the partners only.
 const SOURCE_TILES: Record<SourceId, { icon: NavIcon; tone: IconTileTone }> = {
   oms: { icon: GlobeIcon, tone: "sapphire-soft" },
-  mediatori: { icon: NAV_LINK_ICONS["/mediatori"], tone: "amber" },
   redi: { icon: HandHelpingIcon, tone: "sapphire-soft" },
 };
 
 /**
  * Who we work with (a 4/8 split: heading beside a ledger of partners, each with the same blue icon
- * tile) and what we promise (three commitments, each with an icon, under a heavy top rule), on the paper ground
+ * tile) and what we promise (three commitments, the icon beside each title, under a heavy top rule), on the paper ground
  * with no emblems or seals. On phones the ledger is plain divided rows on the ground; from sm
  * it is one card. The heading blocks and each row settle in as they are scrolled to.
  */
@@ -298,8 +262,11 @@ export function TrustSection() {
                     className="block h-0.5 bg-foreground/80 dark:bg-paper/80"
                   />
                   <div className="pt-5">
-                    <Icon aria-hidden="true" className="h-6 w-6 text-sapphire dark:text-sapphire-border" />
-                    <p className="mt-3 text-lead font-semibold tabular-nums">{title}</p>
+                    {/* The icon sits beside the title, on its first line, not on a line of its own. */}
+                    <p className="flex items-start gap-2.5 text-lead font-semibold tabular-nums">
+                      <Icon aria-hidden="true" className="mt-[0.2em] h-5.5 w-5.5 shrink-0 text-sapphire dark:text-sapphire-border" />
+                      <span className="min-w-0 text-balance">{title}</span>
+                    </p>
                     <p className="mt-2 text-pretty text-body tabular-nums text-muted-foreground dark:text-mist">
                       {description}
                     </p>

@@ -41,6 +41,12 @@ export type HeroCopy = {
   };
   title: string;
   lead: string;
+  /** Phones and tablets: the headline as two short sentences (the second is set quieter). */
+  mobileTitle: [string, string];
+  /** Phones and tablets: the two trust facts under the headline. */
+  mobileLead: string;
+  /** Desktop: the three facts under the lead, as plain words with a hairline between them. */
+  trust: [string, string, string];
   /** The concept's three-step journey, shown on the care path. */
   journey: [string, string, string];
   /** Shown on small screens only, where the panel sits below the fold. */
@@ -90,6 +96,9 @@ const en: HeroCopy = {
   },
   title: "Clear medical advice and help finding the right care.",
   lead: "Open to everyone, with dedicated support for Roma communities. Free, private, and no account needed.",
+  mobileTitle: ["Free health advice.", "Help finding the right care."],
+  mobileLead: "Private. No account needed.",
+  trust: ["Free", "Private", "No account needed"],
   journey: ["Say what worries you", "Get clear next steps", "Talk to a doctor"],
   primaryCta: "Tell us what worries you",
   panel: {
@@ -179,6 +188,9 @@ const ro: HeroCopy = {
   },
   title: "Informații medicale clare și ajutor să ajungi la medic.",
   lead: "Deschis tuturor, cu sprijin dedicat comunităților rome. Gratuit, confidențial și fără cont.",
+  mobileTitle: ["Sfat medical gratuit.", "Ajutor să ajungi la medic."],
+  mobileLead: "Confidențial. Fără cont.",
+  trust: ["Gratuit", "Confidențial", "Fără cont"],
   journey: ["Spui ce te îngrijorează", "Primești pașii de urmat", "Vorbești cu un medic"],
   primaryCta: "Spune-ne ce te îngrijorează",
   panel: {
@@ -268,6 +280,9 @@ const sq: HeroCopy = {
   },
   title: "Këshilla mjekësore të qarta dhe ndihmë për kujdesin e duhur.",
   lead: "E hapur për të gjithë, me mbështetje për komunitetet rome. Falas, konfidenciale dhe pa llogari.",
+  mobileTitle: ["Këshilla mjekësore falas.", "Ndihmë për kujdesin e duhur."],
+  mobileLead: "Konfidenciale. Pa llogari.",
+  trust: ["Falas", "Konfidenciale", "Pa llogari"],
   journey: ["Thua çfarë të shqetëson", "Merr hapat e radhës", "Flet me një mjek"],
   primaryCta: "Na trego çfarë të shqetëson",
   panel: {
@@ -357,6 +372,9 @@ const it: HeroCopy = {
   },
   title: "Consigli medici chiari e aiuto per trovare le cure giuste.",
   lead: "Aperto a tutti, con supporto dedicato alle comunità rom. Gratuito, riservato e senza registrazione.",
+  mobileTitle: ["Consigli medici gratuiti.", "Aiuto per trovare le cure giuste."],
+  mobileLead: "Riservato. Senza registrazione.",
+  trust: ["Gratuito", "Riservato", "Senza registrazione"],
   journey: ["Dici cosa ti preoccupa", "Ricevi i passi da seguire", "Parli con un medico"],
   primaryCta: "Dicci cosa ti preoccupa",
   panel: {
@@ -446,6 +464,9 @@ const hr: HeroCopy = {
   },
   title: "Jasni medicinski savjeti i pomoć do prave skrbi.",
   lead: "Otvoreno svima, uz podršku romskim zajednicama. Besplatno, povjerljivo i bez prijave.",
+  mobileTitle: ["Besplatni medicinski savjeti.", "Pomoć do prave skrbi."],
+  mobileLead: "Povjerljivo. Bez prijave.",
+  trust: ["Besplatno", "Povjerljivo", "Bez prijave"],
   journey: ["Reci što te brine", "Dobij jasne sljedeće korake", "Razgovaraj s liječnikom"],
   primaryCta: "Reci nam što te brine",
   panel: {
@@ -535,6 +556,9 @@ const rom: HeroCopy = {
   },
   title: "Chache doktoreske vorbi thaj zhutimos te reses ko doktori.",
   lead: "Putardo savorenge, zhutipnasa vash e romane komunitetya. Bi lovesko, garavdo thaj bi kontosko.",
+  mobileTitle: ["Doktoreske vorbi bi lovesko.", "Zhutimos te reses ko doktori."],
+  mobileLead: "Garavdo. Bi kontosko.",
+  trust: ["Bi lovesko", "Garavdo", "Bi kontosko"],
   journey: ["Phen so daravel tut", "Le chache pasha", "Vaker ekhe doktoreya"],
   primaryCta: "Phen amenge so daravel tut",
   panel: {
@@ -625,6 +649,9 @@ ru: {
   },
   title: "Понятные медицинские советы и помощь в поиске врача.",
   lead: "Открыто для всех, с поддержкой ромских общин. Бесплатно, конфиденциально и без регистрации.",
+  mobileTitle: ["Бесплатные медицинские советы.", "Помощь в поиске врача."],
+  mobileLead: "Конфиденциально. Без регистрации.",
+  trust: ["Бесплатно", "Конфиденциально", "Без регистрации"],
   journey: ["Расскажите, что вас беспокоит", "Узнайте, что делать дальше", "Поговорите с врачом"],
   primaryCta: "Расскажите, что вас беспокоит",
   panel: {

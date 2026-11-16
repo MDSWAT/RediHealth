@@ -1,0 +1,410 @@
+{
+  "allergies": {
+    "intro": "I alergija avel kana o imunitarno sistemo reagisarel ko vareso so obicno naj daravno. E faktora save shurden la shaj te aven poleno, zhivotinje, xaben vaj draba. E simptomura zavisinen katar o faktoro thaj katar o than kaj avel i reakcija.",
+    "details": "Na sako osipo pe morkhi, phanglo nakh vaj reakcija ko xaben si alergija. O doktori dikhel o modelo e simptomurengo thaj shaj te preporuchil specifice testura. O dikhiben shaj te inkavel te durjoves katar o konfirmime faktoro thaj te des duma vash o adekvatno sastjarimos. Jekh phari reakcija savi afektisarel o phurdinimos vaj kerel perimos mangel sigardo azhutimos.",
+    "questions": [
+      "Savo modelo e simptomurengo sikavel alergija maj but sar aver uzroko?",
+      "Ka paruvel li o testirimos sar inkerav mire simptomura tela kontrola?"
+    ]
+  },
+  "airway-diseases": {
+    "intro": "E balvaljake droma ingaren i balval ko phuka thaj palpale. Infekcije, astma thaj aver kondicije shaj te tangjaren vaj te iritaren len, anindoj xasavimos, svirimos kana phurdines vaj pharo phurdinimos. Simptomura save miazon jekh avresa shaj te aven len aver uzrokura.",
+    "details": "I vrjama kana aven e simptomura, o thuvjarimos vaj i ekspozicija ki buchi, thaj e purane nasvalipena azhutin i evaluacija. E phurdinimaske testura shaj te aven korisne vash nesave kondicije. O sastjarimos zavisinel katar i diagnoza, na numaj katar o korkoro simptomo. Nevo pharo phurdinimos mangel sigo medikalno azhutimos.",
+    "questions": [
+      "So shaj te eksplikil mire phurdinimaske simptomura?",
+      "Shaj li jekh phurdinimasko testo te klarisarel o uzroko?"
+    ]
+  },
+  "eyes-nose-ears": {
+    "intro": "E jakha, o nakh thaj e kana azhutin o dikhiben, o khandimos, o ashunimos thaj o balanso. E problemura shaj te inkaven iritacija, infekcija, alergija vaj paruvimata sar keren buchi kadala organura. Lenge efektura shaj te aven katar lokhi nelagoda dzhi ko pharimos ande sako-diveske aktivitete.",
+    "details": "I evaluacija zavisinel katar savo simco si afektime, kobor sigo astarda o paruvimos thaj te si dukh vaj aver simptomura. Nesave problemura nakhen korkore, dzhikaj aver mangen specialistoski grizha. Jekh sigo xasarimos e dikhibnasko vaj e ashunimasko trubul te dikhel pes sigo, na te azhukeres jekh rutinako termino.",
+    "questions": [
+      "Mangel li akava paruvimos sigo evaluacija?",
+      "Savo dikhiben shaj te azhutil te arakhel pes i problema?"
+    ]
+  },
+  "diabetes": {
+    "intro": "O dijabeto znachil kaj i glukoza ando rat achel but uchi soske o inzulino falil vaj na kerel buchi efektivno. O dijabeto tip 1 thaj tip 2 si len aver uzrokura thaj aver trubujimata vash sastjarimos. Aver forme shaj te aven kana i dzhuvli si khamni vaj varesave nasvalipnenca.",
+    "details": "I diagnoza labarel rateske testura, na numaj e simptomura. I grizha rodel te inkerel i glukoza tela kontrola thaj te arakhel o sastipen pe lungo vrjama, maladjovindoj e sako-diveske trajosa. O xaben, i aktivnost, e draba thaj o rengro dikhiben shaj sa te khelen rolo, palal o tipo e dijabetosko. E decizije vash o sastjarimos trubun te keren pes khetane e sastipnaske ekipasa.",
+    "questions": [
+      "Savo tipo e dijabetosko si man?",
+      "Savo rengro dikhiben thaj zhutimos maladjoven mire sastjarimaske planosa?"
+    ]
+  },
+  "gland-and-hormone-disorders": {
+    "intro": "E hormonura si kemikane semnja kerde katar e glande. Von azhutin te regulisaren o barjovimos, o labarimos e energijako, o bijandimos thaj but aver funkcije e truposke. Problemura shaj te aven kana jekh glanda kerel but vaj xanci katar jekh hormono.",
+    "details": "E hormonalne kondicije shaj te keren diferentne simptomura save aven vi ande aver nasvalipena. E rezultatura e testurenge trubun te hatjaren pes khetane e simptomurenca, e drabenca thaj e manusheske okolnostenca. Jekh korkoro bi-normalno rezultato na eksplikil sako data sar hatjarel pes varekon. Neve testura vaj specialistosko sfato shaj te aven adekvatne.",
+    "questions": [
+      "So znachil akava hormonalno testo ande miri situacija?",
+      "Trubul man aver testo vaj specialistosko dikhiben?"
+    ]
+  },
+  "womens-health": {
+    "intro": "O sastipen e dzhuvljako inkavel o menstrualno thaj reproduktivno sastipen, o sastipen e chuchjengo, i menopauza thaj but kondicije save afektisaren o sako-divesko mishtimos. E trubujimata paruven pes ando trajo, thaj o isto simptomo shaj te avel les aver eksplikacije ko aver bersha.",
+    "details": "I korisni grizha astarel jekhe svatosa vash e simptomura, lengo efekto thaj personalne prioritete. O skriningo si aver katar o dikhiben jekhe neve simptomosko: jekh pashutno skriningosko rezultato na eksplikil sako nevo paruvimos. E decizije vash e testura vaj sastjarimata trubun te inkaven e ashukerde benefitora, posibilne phagerimata thaj dostupne alternative.",
+    "questions": [
+      "Mangel li akava simptomo konkretno dikhiben maj but sar rutinako skriningo?",
+      "Save opcije maladjoven mire simptomurenca thaj prioritetenca?"
+    ]
+  },
+  "urinary-disorders-and-kidney-problems": {
+    "intro": "E bobrege filtrisaren o rat thaj keren i mutra, savi nakhel prekal o mutrimasko drom. Infekcije, bara, mutrako ikljimos thaj paruvimata andi funkcija e bobrege si aver problemura save shaj te afektisaren akava sistemo.",
+    "details": "I dukh, e paruvimata ko mutrimos vaj o shuvljarimos shaj te mangen mutrake testura, rateske testura vaj imagistika, palal i situacija. E simptomura korkore na sikaven kobor mishto keren buchi e bobrege. Dikhlo rat andi mutra, tatipen mutrimaske simptomurenca vaj pharimos te mutres trubun te vakeren pes sigo jekhe sastipnaske profesionistosa.",
+    "questions": [
+      "Save testura shaj te azhutin te eksplikin e paruvimata ko mutrimos?",
+      "Shaj li mire draba te afektisaren i funkcija e bobrege?"
+    ]
+  },
+  "skin-and-hair": {
+    "intro": "I morkhi arakhel o trupo, dzhikaj o bal barjol katar e folikula andre ande late. I inflamacija, i infekcija, e nasvalipena linde katar i familija thaj aver faktora shaj te afektisaren solduj. Jekh osipo vaj jekh than kaj pelo o bal save miazon jekh avresa shaj te aven len maj but eksplikacije.",
+    "details": "O than, o dikhiben thaj i vrjama jekhe paruvimaski azhutin i evaluacija. E produktura labarde pe morkhi, e draba thaj aver simptomura shaj te aven vazhne. O sastjarimos trubul te maladjol e uzrokosa. Jekh rana vaj semno pe morkhi savo paruvel pes vaj jekh bi-eksplikime problema savi achel mangel dikhiben, na repetime zumavimata bi planasko.",
+    "questions": [
+      "Save semnja azhutin te pinzharas mashkar e posibilne uzrokura?",
+      "Save paruvimata trubun te ingaren ko aver termino?"
+    ]
+  },
+  "heart-and-circulation": {
+    "intro": "O ilo pompisarel o rat prekal arterije, kapilare thaj vene. Akava bichhalel oksigeno thaj xabnaske materije thaj ingarel avri o pharipen. E problemura shaj te afektisaren i rateski tensija, o ritmos e ilesko, e rateske droma vaj i zor e ileski te pompisarel.",
+    "details": "Nesave ileske thaj rateske dromenge rizikura den xanci anglune simptomura, kade kaj adekvatne kontrole shaj te aven vazhne. I evaluacija thaj o arakhimos zavisinen katar o sasto sastipen thaj i istorija e manusheski. O tasavimos ko kolin, o perimos vaj o sigo pharo phurdinimos shaj te aven sigardiarja; ma pakja numaj jekhe internetoske eksplikacijake te phenes kaj kadala simptomura naj daravne.",
+    "questions": [
+      "Save rizikura vash o ilo thaj e rateske droma si vazhne mange?",
+      "Save dikhibena vaj avutne termine si korisne?"
+    ]
+  },
+  "infections-and-immune-system": {
+    "intro": "O imunitarno sistemo pinzharel thaj del atveto ko daravimata sar bakterije thaj virusura. E infekcije astaren kana jekh mikroorganizmo del andre ando trupo thaj kerel nasvalipen. Aver organismura shaj te keren simptomura save miazon, numa mangen aver sastjarimaske droma.",
+    "details": "O probabilno uzroko, i zor e nasvalipnaski thaj o sastipen e manushesko sikaven e decizije vash testirimos thaj sastjarimos. E antibiotikura keren buchi mamuj bakterije, na mamuj virusura, thaj naj adekvatne vash sako infekcija. I vakcinacija thaj i lachi higiena shaj te azhutin te achhaven nesave infekcije. Nasvalipen savo avel maj nasul vaj neobicne simptomura shaj te mangen nevo dikhiben.",
+    "questions": [
+      "Shaj li jekh testo te paruvel i decizija vash o sastjarimos?",
+      "Save semnja znachin kaj trubul pale te mangav azhutimos?"
+    ]
+  },
+  "childrens-health": {
+    "intro": "O sastipen e chavorengo inkavel o barjovimos, e obicne nasvalipena, o arakhimos thaj o zhutimos e familijenge. E chavoreske bersha thaj lesko obicno purtarimos si vazhne kana dikhen pes e simptomura. O sfato dino vash bare manusha shaj te na avel adekvatno jekhe chavoreske.",
+    "details": "O doktori dikhel khetane o xaben, o pijimos, i aktivnost, o barjovimos thaj aver simptomura. E dada, e deja thaj e grizhitora shaj te azhutin phenindoj so paruvdilo thaj kana. O alosarimos thaj i doza e drabengi mangen sfato vorta vash chavore. Jekh chavoro saves si les baro pharimos ko phurdinimos, savo phares ushtjol vaj dikhol but nasvalo mangel sigo azhutimos.",
+    "questions": [
+      "So trubul te dikhav ko bersha mire chavoreske?",
+      "Kana trubul te kerav aver termino vash dikhiben?"
+    ]
+  },
+  "cancer": {
+    "intro": "O kancero si jekh grupa nasvalipnangi kote bi-normalne celule barjon bi kontrolako. Aver kancerura keren pes aver felyo. O organo savo si afektime, o tipo e celulengo thaj kozom dur gelo o nasvalipen azhutin te sikaven i grizha.",
+    "details": "I diagnoza shaj te inkavel imagistika, laboratorijake testura thaj dikhiben jekhe tkivoske probako. O sastjarimos shaj te avel les aver resimata, sar sastjarimos, kontrola e nasvalipnaski vaj lokharimos e simptomurengo. E decizije trubun te dikhen e probabilne benefitora, e sekundarne efektura thaj e personalne cilura. Jekhe manusheski prognoza nashti te phenel pes katar jekh generalno sikavimos vaj katar jekh korkori statistika.",
+    "questions": [
+      "Savo si o resimos sako sastjarimaske opcijako?",
+      "Sar shaj o sastjarimos te afektisarel miro sako-divesko trajo?"
+    ]
+  },
+  "mens-health": {
+    "intro": "O sastipen e murshango inkavel e kondicije e prostatake thaj e testikulenge, o seksualno sastipen, i fertiliteta thaj o sasto fizikano thaj mentalno mishtimos. E simptomura shaj te afektisaren o komforo, e relacije thaj o sako-divesko trajo, vi kana si phares te des duma vash lende.",
+    "details": "E mutrimaske vaj seksualne paruvimata naj diagnoza korkore. Jekh garavdo svato shaj te azhutil te arakhen pes e posibilne uzrokura thaj e adekvatne dikhibena. E alosarimata vash o skriningo trubun te inkaven solduj benefitora thaj phagerimata. Jekh nevi guka vaj paruvimos savo achel bi eksplikacijako trubul te dikhel pes, na te gindis kaj si normalno kotor e phuripnasko.",
+    "questions": [
+      "So shaj te kerel akava paruvimos?",
+      "Save si e benefitora thaj e negativne strane e testirimoske?"
+    ]
+  },
+  "muscle-and-joint-disorders": {
+    "intro": "E muskulura, e tetive, e globura thaj e pashutne tkiva azhutin o phirimos thaj o mishkimos. O dukhaimos, i bari buchi, i inflamacija thaj aver kondicije shaj te keren dukh vaj phanglimos. I zor e dukhaki na maladjol sako data odolesa so dikhol pes po snimkimos.",
+    "details": "I evaluacija dikhel i funkcija, e simptomura thaj e okolnostura ande save astardile. Na sako manusheske trubul snimkimos. O dikhiben shaj te inkavel paruvimata ande aktivitete, rehabilitacija vaj aver sastjarimata alosarde vash i diagnoza. De duma vash simptomura save aven maj nasul vaj phanden e normalne aktivitete, namesto te gindis kaj sako dukh si les o isto uzroko.",
+    "questions": [
+      "Save aktivitete shaj te kerav maj dur sigur?",
+      "Ka paruvel li o snimkimos vaj i rehabilitacija miri grizha?"
+    ]
+  },
+  "mental-health-brain-and-nerves": {
+    "intro": "I godi thaj o nervno sistemo influencisaren o mishkimos, o hatjarimos, o gindimos, i dispozicija thaj o purtarimos. E mentalne kondicije thaj e neurologikane nasvalipena shaj solduj te afektisaren o sako-divesko trajo, numa mangen individualno evaluacija, na gindura vash o karaktero e manushesko.",
+    "details": "I grizha shaj te inkavel svatoske terapije, draba, rehabilitacija vaj praktikano zhutimos, palal i problema. Phen e doktoreske vash paruvimata ando sako-divesko kerimos thaj aver sastipnaske kondicije. Nevo sigo slabipen, pharimos te vakeres vaj xasarimos e godjako mangen sigardo dikhiben, vi kana aver simptomura si presentne maj but vrjama.",
+    "questions": [
+      "Save simptomura azhutin te pinzharas mashkar e posibilne uzrokura?",
+      "Savo zhutimos shaj te lacharel miro sako-divesko trajo?"
+    ]
+  },
+  "pregnancy-and-birth": {
+    "intro": "O khamnipen anel paruvimata ando trupo thaj neve alosarimata vash i grizha, e testura thaj o bijandimos. O redovno kontakto e maternitateske ekipasa azhutil te dikhel pes o mishtimos e khamne manushesko thaj e bebako thaj del shansa te vakeren pes e grije.",
+    "details": "Nesave testura den pes rutinake, dzhikaj aver zavisinen katar e personalne okolnostura. Te hatjares so shaj thaj so nashti te sikavel jekh testo azhutil informirime decizije. E draba thaj e suplementura trubun te vakeren pes jekhe kvalifikuime profesionistosa kana san khamni. Push e maternitateske ekipa save simptomura mangen sigo kontakto thaj sar te reses lende.",
+    "questions": [
+      "Save informaciye ka del akava testo vash o khamnipen?",
+      "Kas trubul te kontaktisarav te si man briga mashkar e termine?"
+    ]
+  },
+  "sexual-health-and-contraception": {
+    "intro": "O seksualno sastipen inkavel o mishtimos, o akordo, o arakhimos katar e infekcije thaj e alosarimata vash te na avel khamnipen. E kontraceptivne metode si aver sar keren buchi, sar labaren pes thaj save manusha shaj te labaren len sigur.",
+    "details": "Jekh adekvatno metodo zavisinel katar i medikalni istorija, e preferencije thaj e praktikane trubujimata. Te achhaves o khamnipen thaj te arakhes tut katar seksualno nakhlje infekcije si aver resimata; na sako metodo del solduj. O garavdo sfato shaj vi te azhutil e simptomurenca, e testirimosko thaj e grijenca vash i seksualno funkcija. E servisura thaj o pravo zavisinen katar o them.",
+    "questions": [
+      "Save opcije maladjoven mire sastipnaske istorijasa thaj preferencijenca?",
+      "Trubul man vi arakhimos vaj testirimos vash infekcije?"
+    ]
+  },
+  "metabolic-disorders": {
+    "intro": "O metabolizmo si e procesura save paruven o xaben ande energija savi shaj te labarel pes thaj ande materije vash o trupo. E metabolikane nasvalipena afektisaren jekh vaj maj but katar kadala procesura. Inkaven kondicije glukozasa, masnimatenca thaj aver substancenca ando trupo.",
+    "details": "Nesave nasvalipena aven katar i familija, dzhikaj aver barjon katar maj but faktora khetane. E rateske testura shaj te azhutin te arakhel pes i problema, numa lengo znachimos zavisinel katar o klinikano konteksto. I grizha shaj te inkavel xabnaske alosarimata, draba vaj aver mere alosarde vash i diagnoza. Generalne xabnaske zabrane naj adekvatne vash sako metabolikani kondicija.",
+    "questions": [
+      "So znachil o bi-normalno rezultato vash miro sastipen?",
+      "Save paruvimata si adekvatne vash akaja konkretno kondicija?"
+    ]
+  },
+  "addiction": {
+    "intro": "I dependenca shaj te inkavel alkoholo, nikotina, aver substancije vaj varesave purtarimata. Shaj te afektisarel i kontrola, o sastipen, e relacije thaj e sako-diveske responsibilitete. Te rodes zhutimos si jekh sastipnaski decizija, na sikavimos kaj o manush naj les moralo.",
+    "details": "O zhutimos shaj te kombinisarel svatosko azhutimos, praktikano zhutimos thaj draba kana trubul. O maj sigur drom zavisinel katar so labarel pes thaj katar o sastipen e manushesko. Te mukhes nesave substancije jekhdata shaj te avel daravno, maj but kana imar avel i dependenca. Vaker jekh plano jekhe sastipnaske profesionistosa, namesto te labares jekh generalno internetosko ghido sar programo te mukhes len.",
+    "questions": [
+      "Savo zhutimos si dostupno ando miro than?",
+      "Trubul man medikalno dikhiben kana tiknjarav vaj mukhav len?"
+    ]
+  },
+  "digestive-system-disorders": {
+    "intro": "O xabenasko sistemo kerel buchi e xabenasa, lel e xabnaske materije thaj ikalel avri o pharipen. E problemura shaj te afektisaren o xabenasko drom (ezofago), o stomako, e intestinura vaj pashutne organura. I dukh, o reflukso, o pharo buko thaj e paruvimata andi stolica shaj te aven len but uzrokura.",
+    "details": "I evaluacija zavisinel katar sar barjile e simptomura, kozom vrjama achhen thaj save aver paruvimata aven lenca. E testura alosaren pes te den atveto jekhe specificke pushimaske, na rutinake vash sako simptomo. Simptomura save achhen vaj bi-eksplikime xasarimos kilengo mangen medikalno svato. Zurali dukh ando por vaj semnja baro ratjarimaske mangen sigo evaluacija.",
+    "questions": [
+      "Save semnja azhutin te arakhas o uzroko mire simptomurengo?",
+      "So ka paruvel o proponime testo ande miri grizha?"
+    ]
+  },
+  "teeth-and-gums": {
+    "intro": "E dand thaj e gingive azhutin o xaben, o vorbimos thaj o sastipen e mujesko. I karia e dandeski thaj o nasvalipen e gingivengo shaj te barjon lokhes thaj shaj te na dukhan anglal. E problemura e dandenca shaj vi te afektisaren o patjajimos ande peste thaj o sako-divesko komforo.",
+    "details": "O redovno uzharimos e mujesko thaj e adekvatne kontrole ko dantisto azhutin te arakhen pes e problemura. O maj lacho sastjarimos zavisinel katar i kondicija e dandeski vaj e gingivaki thaj katar e manusheske trubujimata. I dandeski dukh na sikavel sigur kobor phari si i problema. O shuvljarimos pharimasa te nakaves vaj te phurdines mangel sigo azhutimos, na te azhukeres jekh rutinaki vizita ko dantisto.",
+    "questions": [
+      "So kerel i problema kadale dandeske vaj kadala gingivake?",
+      "Save si e benefitora thaj e negativne strane e sastjarimaske opcijenge?"
+    ]
+  },
+  "early-benefit-assessment-of-medications": {
+    "intro": "I Germanija evaluisarel varesave neve draba te dikhel te den maj baro benefito komparime jekhe phurane sastjarimasa savo imar si. Akaja evaluacija dikhel e evidencija katar grupe pacienturengo thaj si kotor katar o germanikano sistemo vash drabengi evaluacija.",
+    "details": "Jekh evaluacija shaj te dikhel rezultatura vazhne e pacienturenge, sar e simptomura, o trajo, i kaliteta e trajoski thaj e sekundarne efektura. O rezultato zavisinel katar i komparacija thaj e dostupno evidencija. Naj jekh personalno preskripcijaki rekomendacija, thaj e germanikane evaluacijake vaj pokinimaske reguli na aven automatik ko aver thema.",
+    "questions": [
+      "Savi grupa pacienturengo thaj savi komparacija dikhel akaja evaluacija?",
+      "Kobor si vazhne kadala rezultatura mire sastjarimaske alosarimange?"
+    ]
+  },
+  "health-care-in-germany": {
+    "intro": "E sastipnaske sistemura si aver sar organizisaren e termine, i asiguracija, e uputnice thaj o pokinimos. Akaja tema si vash i Germanija. Te hatjares savo serviso del savi sorta grizha shaj te kerel maj lokhes te arakhes o chacho than vash kontakto.",
+    "details": "E reguli sikavde ande germanikane informaciye shaj te na aven chache andi Rumunija, Moldova, Albanija vaj Italija. Anglal te organizisares jekh serviso, dikh e lokalne akcesoske trubujimata thaj e posibilne lovenge kostoja e servisosa vaj e asiguratorosa. Kana drabares vash jekh sastipnasko sistemo, pinzhar i diferenca mashkar generalne medikalne informaciye thaj administrativne reguli specifice jekhe themeske.",
+    "questions": [
+      "Maladjol li akaja informacija ando them kaj lav sastipnaski grizha?",
+      "Savo serviso vaj asiguratori shaj te konfirmil o akceso thaj e kostoja?"
+    ]
+  },
+  "individual-health-care-services-igel": {
+    "intro": "Andi Germanija, nesave testura thaj sastjarimata dende avri katar o standardno publiko asiguracijako pokripe akharen pes individualne sastipnaske servisura, vaj IGeL. E pacientura shaj te trubun te pokinen korkore vash kadala servisura. Kodo kaj jekh serviso bikinel pes na sikavel korkore kaj lacharel o sastipen.",
+    "details": "Anglal te keres decizija, push savo benefito si azhutime katar o rodipen, save phagerimata vaj aver testura shaj te aven palal thaj te si jekh alternativa pokrdi katar i asiguracija. Jekh mol thaj jekh klaro eksplikacija trubun te aven dostupne. IGeL si jekh germanikani kategorija; e pokinimaske reguli thaj e dostupne servisura si aver ande aver thana.",
+    "questions": [
+      "Savo benefito si sikavdo, thaj savo bi-sigurimos achel?",
+      "Save si e kostoja, e rizikura thaj e pokrde alternative?"
+    ]
+  },
+  "nursing-care": {
+    "intro": "I sastipnaski grizha thaj nega azhutin e manushen sastipnaske trubujimatenca thaj sako-diveske aktivitetenca. Shaj te del pes khere, ando komuniteto vaj ande jekh grizhako centro. E trubujimata shaj te paruven pes pala nasvalipen, dukhaimos vaj xasarimos e independentnosko.",
+    "details": "O planirimos e grizhako inkavel te hatjares so shaj te kerel o manush, kaj trubul zhutimos thaj so si vazhno leske. E familijake grizhitora shaj vi te mangen zhutimos. E dostupne servisura, e evaluacije thaj e lovenge reguli si aver palal o them. Jekh grizhako plano trubul te dikhel pes palem kana o sastipen vaj e praktikane okolnostura paruven pes.",
+    "questions": [
+      "Savo zhutimos shaj te azhutil miri independentnost thaj siguranca?",
+      "Save lokalne servisura shaj te dikhen mire grizhake trubujimata?"
+    ]
+  },
+  "screening": {
+    "intro": "O skriningo rodel jekh kondicija vaj barjardo risko ko manusha bi pashutne simptomurengo. Si aver katar e testura labarde te dikhen jekh nevi problema. Jekh skriningosko alosarimos trubul te dikhel pes palal solduj posibilne benefitora thaj posibilne phagerimata.",
+    "details": "O skriningo shaj varekana te arakhel o nasvalipen maj rano, numa shaj vi te del xoxamne alarme, te bisterel o nasvalipen vaj te arakhel paruvimata save nikana na bi kerde problemura. Maj dur testura vaj sastjarimos shaj te aven palal. E adekvatne programura zavisinen katar e bersha, o personalno risko thaj e lokalne rekomendacije. Neve simptomura mangen dikhiben vi pala jekh mirno skriningosko rezultato.",
+    "questions": [
+      "Kozom baro benefito ashukerel pes vash manusha sar mande?",
+      "So shaj te avel palal jekh pozitivo vaj bi-siguro rezultato?"
+    ]
+  },
+  "second-opinions-before-surgery": {
+    "intro": "Jekh dujto opinio si jekh evaluacija katar aver doktori vash jekh proponime operacija. Shaj te azhutil te klarisarel i diagnoza, e motivura vash i operacija thaj e dostupne alternative. Si maj but korisno kana i decizija inkavel vazhne kompromisura.",
+    "details": "An relevantne raportura, snimkimata thaj jekh lista pushimatenca. Push sar e ashukerde benefitora komparinen pes e posibilne phagerimatenca thaj so shaj te avel bi operacijako. O pravo vaj o pokinimos vash jekh formalno dujto opinio si aver palal o them. Ma mukh vash maj palal jekh sigardo sastjarimos dzhikaj rodes rutinako dujto sfato.",
+    "questions": [
+      "Save si e alternative akala operacijake?",
+      "Sar komparinen pes e ashukerde rezultatura e azhukerimasa vaj bi-operacijake grizhasa?"
+    ]
+  },
+  "blood-and-immune-system": {
+    "intro": "O rat ingarel oksigeno, xabnaske materije thaj aver substancije ando sasto trupo. Leske celule thaj proteinura vi azhutin te arakhen katar i infekcija thaj te achhaven o ratjarimos. O imunitarno sistemo inkavel specijalne celule thaj organura save keren buchi khetane te pinzharen e daravimata.",
+    "details": "E rateske testura merisaren aver kotora kadale sistemoske. Jekh rezultato avri katar e normalne granice na znachil sako data pharo nasvalipen, thaj jekh normalno rezultato na del atveto sako klinikane pushimaske. I interpretacija zavisinel katar e simptomura, i medikalni istorija thaj o motivo vash o testo.",
+    "questions": [
+      "Savo kotor e ratesko vaj e imunitarno sistemosko merisarel akava testo?",
+      "Mangel li o rezultato maj dur kontrolo ande miri situacija?"
+    ]
+  },
+  "brain-and-nerves": {
+    "intro": "O nervno sistemo phandel i godi, i kichmaki zhica thaj e nervura ando sasto trupo. Kerel buchi e informacijenca, kontrolisarel o mishkimos thaj azhutil te regulisarel but automatikane funkcije. Aver kotora si len aver rolura, kade kaj o modelo e simptomurengo si vazhno.",
+    "details": "Jekh neurologikano dikhiben shaj te merisarel i zor, o hatjarimos, i koordinacija thaj aver funkcije. Maj dur testura alosaren pes palal o klinikano pushimos. Sige paruvimata sar nevo slabipen, pharimos te vakeres vaj xasarimos e godjako mangen sigo evaluacija, na te zumaves te arakhes o uzroko korkoro po interneto.",
+    "questions": [
+      "So sikavel o modelo e simptomurengo?",
+      "Savo dikhiben vaj testo shaj te klarisarel i problema?"
+    ]
+  },
+  "sex-organs": {
+    "intro": "E reproduktivne organura keren buchi ando bijandimos, ando kerimos e hormonengo thaj andi seksualno funkcija. Lengi struktura thaj funkcija paruven pes ando trajo. Te hatjares i normalno anatomija shaj te kerel maj lokhes te phenes e simptomura thaj te des duma vash e sastipnaske grije.",
+    "details": "I dukh, o ratjarimos, o ikljimos vaj jekh nevi guka shaj te aven len aver eksplikacije. Jekh sastipnasko profesionisto shaj te del duma garavdes vash o adekvatno dikhiben vaj testirimos. So si normalno jekhe manusheske shaj te avel aver avreske, numa jekh paruvimos savo achel vaj avel bi-azhukerde na trubul te mukhel pes bi evaluacijako.",
+    "questions": [
+      "Si li akava paruvimos normalno ande mire okolnostura?",
+      "So shaj jekh dikhiben vaj testo te azhutil te konfirmil?"
+    ]
+  },
+  "limbs": {
+    "intro": "E vasta thaj e punre phanden kokala, globura, muskulura, nervura thaj rateske droma te azhutin o mishkimos thaj o hatjarimos. Problemura ande savi godi katar kadala strukture shaj te afektisaren i zor, o balanso vaj i shansa te keres e sako-diveske butja.",
+    "details": "Simptomura sar i dukh, o shuvljarimos, o slabipen vaj o pamortimos trubun te dikhen pes khetane. I evaluacija shaj te inkavel o mishkimos, o phirimos e ratesko thaj i funkcija e nervengi. I rehabilitacija shaj te azhutil nesave problemurenca, numa o adekvatno drom zavisinel katar o uzroko. Bare thaj sige paruvimata ando mishkimos vaj hatjarimos mangen sigo medikalno atencija.",
+    "questions": [
+      "Save strukture shaj te aven afektime ande mire simptomura?",
+      "So shaj te azhutil te irinas i funkcija sigur?"
+    ]
+  },
+  "skin-hair-and-nails": {
+    "intro": "I morkhi kerel jekh arakhipnaski bariera, azhutil te regulisarel i temperatura thaj del hatjarimos. O bal thaj e vundzhija si pashutne strukture save barjon katar specijalne celule. E paruvimata shaj te sikaven jekh lokalno problema vaj, varekana, aver sastipnaski kondicija.",
+    "details": "O kolor, i tekstura, o than thaj o sigipen jekhe paruvimasko shaj te azhutin i evaluacija. I ekspozicija ko kemikalije, sako-diveske grizhake produktura thaj draba shaj te aven vazhne. Ma gindis kaj jekh kosmetikano paruvimos phenel jekh konkretno nasvalipen. Jekh dukhado paruvimos savo achel vaj naj les eksplikacija shaj te vakerel pes e doktoresa.",
+    "questions": [
+      "Shaj li jekh ekspozicija vaj jekh drab te eksplikil akava paruvimos?",
+      "Save semnja mangen maj dur evaluacija?"
+    ]
+  },
+  "endocrine-hormone-system": {
+    "intro": "O endokrino sistemo kerel pes katar glande thaj tkiva save mukhen hormonura. Kadala semnja phiren prekal o rat thaj azhutin te koordinisaren procesura sar o metabolizmo, o barjovimos thaj o bijandimos. E balanso-mekanizmura normalno inkeren i hormonalno aktivnost ande jekh adekvatno granica.",
+    "details": "E hormonenge nivoja shaj te paruven pes e vrjamasa, e bershenca, e khamnipnasa thaj e nasvalipnasa. Akava si jekh motivo sostar e testurenge rezultatura mangen klinikani interpretacija, na numa komparacija jekhe korkoro numerosa. O sastjarimos jekhe hormonalne nasvalipnasko zavisinel katar savo semno vaj savi glanda si afektime.",
+    "questions": [
+      "Shaj li i vrjama vaj aver kondicija te influencisarel miro hormonalno rezultato?",
+      "So kontrolisarel obicno akaja glanda?"
+    ]
+  },
+  "bones-muscles-and-joints": {
+    "intro": "E kokala inkaren thaj arakhen o trupo. E globura phanden e kokala, dzhikaj e muskulura thaj e tetive keren o mishkimos. I hrskavica, e ligamentura thaj aver tkiva azhutin e globuren te phiren thaj te achhen stabilne. Khetane kadala strukture keren o kokalengo thaj muskulengo sistemo.",
+    "details": "I zor, i koordinacija thaj o mishkimos e globurengo sa kontribuisaren ki funkcija. O dukhaimos thaj o nasvalipen shaj te afektisaren aver kotora e sistemoske, varekana simptomurenca save miazon. Jekh dikhiben dikhel maj dur katar jekh korkoro dukhado than te hatjarel sar si afektime o mishkimos. O sastjarimos thaj i rehabilitacija trubun te maladjoven e chache problemasa.",
+    "questions": [
+      "Sar afektisarel akaja problema miro mishkimos thaj miri funkcija?",
+      "Save resimata trubun te sikaven i rehabilitacija?"
+    ]
+  },
+  "lungs-and-airways": {
+    "intro": "I balval phirel prekal e balvaljake droma ande phuka. Ande tikne balvaljake kesice, o oksigeno nakhel ando rat thaj o karbon-dioksido ikljol lestar. O phurdinimos vi zavisinel katar e muskulura, o zido e kolinesko thaj e semnja katar o nervno sistemo.",
+    "details": "O pharo phurdinimos shaj te avel katar problemura ande phuka vaj ko aver than ando trupo. O doktori dikhel e okolnostura thaj aver simptomura anglal te alosarel testura. E phurdinimaske testura thaj o merimos e oksigenosko den atveto ko aver pushimata thaj nashti te len o than jekhe pherde dikhibnasko kana varekon si but nasvalo.",
+    "questions": [
+      "Shaj li vareso aver katar e phuka te eksplikil miro pharo phurdinimos?",
+      "So ka sikavel o proponime phurdinimasko testo?"
+    ]
+  },
+  "stomach-bowel-and-digestion": {
+    "intro": "I digestija phagerel o xaben kaj o trupo te shaj lel thaj te labarel e xabnaske materije. O stomako mishkil o xaben, e intestinura len e xabnaske materije thaj o pani, thaj aver organura den substancije trubutne vash i digestija. O achhilo pharipen ikljol katar o trupo sar stolica.",
+    "details": "I normalno digestija si aver mashkar e manusha. Jekh lungo paruvimos ande stolicake tabijetura vaj jekh nelagoda savi achel si maj korisno te phenes la sar jekh korkoro komparacija avreske rutinasa. E draba, o xaben thaj o nasvalipen shaj sa te influencisaren i digestija. O dikhiben zavisinel katar o sasto modelo thaj e simptomura save aven lesa.",
+    "questions": [
+      "Save paruvimata katar miro obicno modelo si vazhne?",
+      "Shaj li e draba vaj aver nasvalipen te kontribuisaren?"
+    ]
+  },
+  "mouth-and-teeth": {
+    "intro": "O muj astarel i digestija prekal o chamimos thaj i chungar, thaj si vazhno vash o vorbimos thaj o nakavimos. E dand, e gingive, i chib thaj aver tkiva keren buchi khetane. Lengo sastipen afektisarel o komforo thaj i shansa te xas aver felyongo xaben.",
+    "details": "E problemura shaj te inkaven e dand, e azhutimaske tkiva vaj i mukoza e mujeski. Jekh dikhiben ko dantisto shaj te azhutil te pinzhares kadala uzrokura. Jekh rana savi achel, jekh bi-eksplikime guka vaj pharimos ko nakavimos savo durjol mangen evaluacija. O sako-divesko uzharimos e mujesko si korisno, numa na lel o than e evaluacijako vash jekh paruvimos savo achel.",
+    "questions": [
+      "Avel li i problema katar jekh dand vaj katar aver tkivo ando muj?",
+      "So trubul te kerav te o paruvimos na sastjol?"
+    ]
+  },
+  "kidneys-bladder-and-urinary-tract": {
+    "intro": "E bobrege filtrisaren o rat, inkeren ando balanso e panja thaj e lona, thaj keren i mutra. I mutra phirel prekal e uretere dzhi ki mutraki vezika, kaj khedel pes anglal te ikljol prekal i uretra. Kadala strukture si len specifice rolura.",
+    "details": "O dikhiben e mutrako korkoro na merisarel sigur o sastipen e bobrege. E rateske thaj mutrake testura shaj te dikhen aver funkcije vaj semnja nasvalipnaske. Paruvimata ko mutrimos shaj te aven katar e bobrege, i mutraki vezika vaj katar aver than. O doktori interpretisarel e rezultatura khetane e simptomurenca, e drabenca thaj e purane rezultaturenca.",
+    "questions": [
+      "Savo kotor e mutrimaske sistemosko dikhel pes?",
+      "So merisaren e rateske thaj e mutrake testura?"
+    ]
+  },
+  "sensory-organs": {
+    "intro": "E simcurenge organura kheden informaciye vash o lumja thaj o trupo. E jakha thaj e kana azhutin o dikhiben, o ashunimos thaj o balanso, dzhikaj e receptora vi azhutin ko khandimos, o vkus thaj o azbavimos. I godi interpretisarel kadala semnja.",
+    "details": "E paruvimata ande jekh simco shaj te afektisaren i siguranca, i komunikacija thaj i independentnost. Lengo uzroko shaj te inkavel o simcosko organo, e nervura vaj aver kondicije. Phen te jekh paruvimos si sigo, lokho vaj kana avel thaj nakhel. Sigo xasarimos e dikhibnasko vaj e ashunimasko trubul te lel sigo medikalno evaluacija.",
+    "questions": [
+      "Kaj shaj te kerel pes o paruvimos kadale simcosko?",
+      "Shaj li jekh azhutimasko aparato vaj rehabilitacija te lacharel o sako-divesko kerimos?"
+    ]
+  },
+  "metabolism": {
+    "intro": "O metabolizmo inkavel e truposke kemikane procesura te lel energija, te kerel tkiva thaj te ikalel o pharipen. E enzime thaj e hormonura azhutin te kontrolisaren kadala procesura. O metabolizmo inkavel but organura, na numaj jekh korkoro kotor e truposko.",
+    "details": "O trupo paruvel sar labarel e xabnaske materije palal i aktivnost, o lino xaben thaj aver influencije. O alav metabolizmo na eksplikil korkoro jekh simptomo vaj paruvimos e kilengo. Kana gindil pes pe jekh konkretno metabolikani problema, e korisne testura thaj o sastjarimos zavisinen katar o klinikano pushimos.",
+    "questions": [
+      "Savo metabolikano proceso si vazhno vash miri briga?",
+      "Save informaciye shaj te azhutin te arakhas jekh konkretno problema?"
+    ]
+  },
+  "growth-and-aging": {
+    "intro": "O barjovimos thaj o phurimos inkaven paruvimata andi struktura thaj funkcija e truposki e vrjamasa. E manusha barjon thaj phurjon ko aver sigipen. O sastipen, o than kaj train thaj e sako-diveske okolnostura shaj te influencisaren so znachin kadala paruvimata jekhe manusheske sako-diveske trajoske.",
+    "details": "E manusheske obicne shajimata thaj o sigipen jekhe paruvimasko si vazhne kana dikhel pes te trubul evaluacija. Neve problemura na trubun automatik te chiven pes pe bersha. I grizha shaj te dikhel o barjovimos, i independentnost, o komforo thaj e aktivitete save si vazhne e manusheske.",
+    "questions": [
+      "Si li akava modelo ashukerdo ande akaja faza e trajoski?",
+      "So shaj te azhutil te inkeras i funkcija vaj te azhutinas o barjovimos?"
+    ]
+  },
+  "drugs-and-vaccines": {
+    "intro": "E draba shaj te arakhen katar o nasvalipen, te lokhjaren e simptomura vaj te sastjaren jekh kondicija. E vakcine sajdisaren o imunitarno sistemo te del atveto ko specifice infekcije. Solduj dikhen pes vash benefitora thaj posibilne phagerimata, numa lengi adekvatnost zavisinel katar o manush thaj o resimos.",
+    "details": "Te hatjares o ashukerdo benefito, e obicne sekundarne efektura thaj o vorta labarimos azhutin maj sigur decizije. Phen e sastipnaske ekipake vash aver draba thaj suplementura. Ma paruv jekh preskribime sastjarimos numaj katar jekh generalno rezume. Pushimata vash vakcinacija vaj draba shaj te vakeren pes jekhe kvalifikuime profesionistosa.",
+    "questions": [
+      "Savo benefito trubul te ashukerav katar akava sastjarimos?",
+      "Save interakcije vaj sekundarne efektura trubul te vakerav?"
+    ]
+  },
+  "diagnosis-and-tests": {
+    "intro": "E diagnozake testura azhutin te den atveto ko pushimata vash jekhe manushesko sastipen. Shaj te inkaven dikhibena, rateske vaj mutrake testura, imagistika thaj tkivoske probe. Jekh testo si maj korisno kana lesko rezultato shaj te klarisarel jekh problema vaj te influencisarel i grizha.",
+    "details": "Nijekh testo naj perfekto. Nesave rezultatura si xoxamne mirne vaj sikaven nasvalipen kana naj. I interpretacija zavisinel katar e simptomura, i probabiliteta e kondicijaki thaj aver nalazura. Anglal o testirimos, si korisno te hatjares posibilno nelagoda, rizikura thaj so bi znachinde aver rezultatura.",
+    "questions": [
+      "Save specificke pushimaske trubul te del atveto akava testo?",
+      "Sar ka paruvel sako posibilno rezultato o avutno pash?"
+    ]
+  },
+  "non-drug-treatments": {
+    "intro": "I sastipnaski grizha inkavel sastjarimata save na mangen te les drab. Misala si i rehabilitacija, e svatoske terapije thaj paruvimata ande aktivitete vaj ando than kaj trais. Lengi korist zavisinel katar i kondicija, o sastjarimos thaj e manusheske resimata.",
+    "details": "Jekh sastjarimos bi drabengo shaj inke te avel les pharimata, lovenge kostoja vaj sekundarne efektura. Push savi evidencija azhutil les, so mangel i participacija thaj sar ka dikhel pes o progreso. Aver droma shaj te kombinisaren pes kana si adekvatno. Jekh shuzhi eksplikacija vaj i vorba kaj vareso si naturalno na sikavel kaj kerel buchi.",
+    "questions": [
+      "Savi evidencija azhutil akaja opcija vash miri kondicija?",
+      "Sar ka dikhas te azhutil man?"
+    ]
+  },
+  "surgery": {
+    "intro": "I kirurgija labarel pes te kerel diagnoza, te lacharel, te ikalel vaj te paruvel tkivo, vaj te lokhjarel simptomura. E operacije si but aver ando lengo resimos, rizikura thaj sastjarimos palal. Te si i operacija adekvatni zavisinel katar i kondicija thaj e manusheske okolnostura.",
+    "details": "Jekh informirime decizija inkavel te des duma vash ashukerde benefitora, posibilne komplikacije, anestezija thaj alternative. O sastjarimos palal shaj te mangel vrjamake paruvimata ki buchi, aktivnost vaj grizhake trubujimata. Push so shaj te avel bi operacijako thaj kobor sigardi si i decizija. Generalno informacija nashti te phenel anglal jekhe manushesko rezultato katar i operacija.",
+    "questions": [
+      "Sostar proponil pes i operacija, thaj save si e alternative?",
+      "Savo zhutimos thaj kozom vrjama sastjarimaski shaj te trubul man?"
+    ]
+  },
+  "physical-therapy-and-daily-living-aids": {
+    "intro": "I fizioterapija thaj e praktikane azhutimata shaj te azhutin e manushen te phiren, te inkeren e simptomura tela kontrola thaj te keren e sako-diveske aktivitete. E trubujimata shaj te aven palal dukhaimos, nasvalipen vaj jekh lungo kondicija. O resimos si korisni funkcija, na te kerel sako manush o isto programo.",
+    "details": "I evaluacija shaj te arakhel adekvatne vjezhbe, adaptacije vaj aparatura. Jekh azhutimasko aparato trubul te maladjol e manushesa thaj e thanesa kote ka labarel pes. O sikljovimos, i praktika thaj o kontrolo shaj te aven vazhne. Vaker resimata sar o phirimos, o uravimos vaj o irimos ki buchi kaj o zhutimos te del atveto ko chache trubujimata.",
+    "questions": [
+      "Savi sako-diveski aktivnost trubul te chivas anglunes?",
+      "Sar trubul te labarav thaj te kontrolisarav akava aparato vaj vjezhbengo plano?"
+    ]
+  },
+  "prevention": {
+    "intro": "O arakhimos (prevencija) rodel te tiknjarel i shansa e nasvalipnaski vaj leske konsekvencije. Shaj te inkavel vakcinacija, tiknjarimos nasul ekspozicijengo, sako-diveske tabijetura vaj adekvatno skriningo. I mol jekhe arakhipnaske meraki zavisinel katar o risko mamuj savo kerel buchi.",
+    "details": "Na sako preventivno opcija del o isto benefito, thaj nesave shaj te keren phagerimos vaj bi-trubuimasko kontrolo. O personalno risko thaj e praktikane okolnostura si vazhne. Dikh so si azhutime katar i evidencija thaj so si realistikano te inkeres. O arakhimos tiknjarel nesave rizikura, numa nashti te garantisarel kaj jekh manush nikana na ka nasvaljol.",
+    "questions": [
+      "Save rizikura save shaj te achhaven pes si maj vazhne mange?",
+      "Savo benefito thaj posibilno phagerimos inkavel akaja mera?"
+    ]
+  },
+  "what-is-evidence-based-medicine": {
+    "intro": "I medicina bazirime pe evidencija khedel e rezultatura katar o rodipen e klinikane dzhanipnasa thaj e trubujimatenca thaj preferencijenca e pacientoske. Pushel te jekh testo vaj sastjarimos lacharel rezultatura save si vazhne e manushenge, namesto te pakjal numaj jekhe shajutne eksplikacijake.",
+    "details": "O rodipen shaj te sikavel solduj benefitora thaj phagerimata, numa butivar achel bi-sigurimos. I evidencija katar jekh grupa na phenel korkore sako individualno decizija. E korisne svatura keren te hatjaren pes i baripa e ashukerde efektengi, e granice e evidencijake thaj e dostupne alternative.",
+    "questions": [
+      "Savo rodipen azhutil akaja rekomendacija?",
+      "Sar maladjoven e rezultatura mire okolnostenca thaj preferencijenca?"
+    ]
+  },
+  "studies-co": {
+    "intro": "E medikalne studije roden pushimata vash o sastipen, e testura thaj e sastjarimata. Lengo plano afektisarel save konkluzije shaj te ikalen pes. Jekh komparacija mashkar grupe shaj te azhutil te pinzhares o efekto jekhe sastjarimasko katar paruvimata save bi avile sajekh.",
+    "details": "Jekh baro efekto ande titlura shaj te dikhol aver kana dikhen pes e chache gina, i vrjama e kontroloski thaj e phagerimata. E rezultatura vi zavisinen katar kon sas studirime thaj kobor sigur merisarde pes e rezultatura. Jekh studija retko del atveto sako pushimaske; e sistematske pregledura kheden o rodipen khetane planime dromesa.",
+    "questions": [
+      "Kobor baro si o benefito ande chache gina?",
+      "Save granice vaj xasarde rezultatura afektisaren i konkluzija?"
+    ]
+  },
+  "making-an-informed-decision": {
+    "intro": "Jekh informirime sastipnaski decizija anel khetane hatjardi informacija thaj so si vazhno e manusheske savo kerel la. Butivar si maj but sar jekh shajutni opcija. E benefitora, e phagerimata, e praktikane trubujimata thaj o bi-sigurimos shaj te afektisaren sar varekon merisarel kadala opcije.",
+    "details": "Mang eksplikacije lokha chibasa thaj vrjama te gindis vash bi-sigarde alosarimata. De duma so shaj te avel sako opcijasa, inkavindoj bi sastjarimasko vaj azhukerimos kana si adekvatno. Jekh decizijako azhutitori shaj te azhutil o svato, numa na lel o than e individualno sfatosko vaj e akordosko.",
+    "questions": [
+      "Save si mire opcije, inkavindoj o azhukerimos kaj si adekvatno?",
+      "Save rezultatura thaj kompromisura si maj vazhne mange?"
+    ]
+  },
+  "our-methods-and-processes": {
+    "intro": "I pakjandi sastipnaski informacija eksplikil sar lake autorura arakhen o rodipen, dikhen les thaj phenen so te publikisaren. I phandli IQWiG tema sikavel lako drom te kerel informaciye bazirime pe evidencija. Te dzhanes e metode azhutil e drabarnen te dikhen sar si azhutime e vorbi.",
+    "details": "Korisne kontrole inkaven kon kerda i informacija, savi evidencija dikhlis, kana sas nevisardi thaj te eksplikil pes o bi-sigurimos. O linko katar i sursa telal ingarel ko materialo e IQWiG-osko. Akava RediHealth rezume si ramome bi-phanglimasko thaj naj publikacija vaj rekomendacija katar IQWiG.",
+    "questions": [
+      "Shaj li te pinzharav e editores thaj i evidencija savi azhutil?",
+      "Eksplikil li i informacija o bi-sigurimos thaj o proceso sar nevisarel pes?"
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { PageListenAction } from "@/components/ui/PageListenAction";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { getLegalCopy } from "@/lib/i18n/legal-translations";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
@@ -16,11 +17,21 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PrivacyPage() {
-  const copy = getLegalCopy(await getRequestLang()).privacy;
+  const lang = await getRequestLang();
+  const copy = getLegalCopy(lang).privacy;
   return (
     <main id="main-content" className="flex-1 pb-12 sm:pb-16">
       <Container>
-        <PageHeader title={copy.title} lead={copy.description} />
+        <PageHeader
+          title={copy.title}
+          lead={copy.description}
+          actions={
+            <PageListenAction
+              lang={lang}
+              segments={[copy.title, copy.description, copy.botTitle, copy.botBody, copy.collectTitle, copy.collectBody]}
+            />
+          }
+        />
 
         {/* Same clause rhythm as the terms: hairline, heading rail, readable measure. */}
         <div className="mt-8 max-w-4xl text-body text-muted-foreground">

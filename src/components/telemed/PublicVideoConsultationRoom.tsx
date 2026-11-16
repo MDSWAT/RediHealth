@@ -1,9 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { CheckCircleIcon, CheckIcon, PhoneIcon, StethoscopeIcon } from "@/components/ui/icons";
+import {
+  buildJitsiEmbedUrl,
+  PATIENT_VOICE_TOOLBAR,
+  subscribeJitsiCallEnd,
+} from "@/lib/jitsi-embed";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -30,7 +35,8 @@ const roomCopy = {
     permHeadphones: "Если у вас есть наушники, наденьте их, чтобы лучше слышать",
     permAllow: "Разрешите и присоединяйтесь",
     permCancel: "Отмена",
-    statusLine: (patient: string, room: string) => `Шифрованный звонок, Пациент: ${patient}, Комната: ${room}`,
+    encryptedCall: "Шифрованный голосовой звонок",
+    statusLine: (patient: string) => `Шифрованный звонок, ${patient}`,
     callTitle: "Позвонить врачу",
     voiceOnly: "Только голос, использует мало данных",
     emergency: "Чрезвычайная ситуация? Позвоните 112",
@@ -50,7 +56,8 @@ const roomCopy = {
     permHeadphones: "Dacă ai căști, pune-le: auzi mai bine",
     permAllow: "Permite și intră",
     permCancel: "Renunță",
-    statusLine: (patient: string, room: string) => `Apel criptat, Pacient: ${patient}, Sala: ${room}`,
+    encryptedCall: "Apel vocal criptat",
+    statusLine: (patient: string) => `Apel criptat, ${patient}`,
     callTitle: "Apel cu medicul",
     voiceOnly: "Doar voce, consumă puține date",
     emergency: "Urgență? Sună la 112",
@@ -69,7 +76,8 @@ const roomCopy = {
     permHeadphones: "If you have headphones, put them on to hear better",
     permAllow: "Allow and join",
     permCancel: "Cancel",
-    statusLine: (patient: string, room: string) => `Encrypted call, Patient: ${patient}, Room: ${room}`,
+    encryptedCall: "Encrypted voice call",
+    statusLine: (patient: string) => `Encrypted call, ${patient}`,
     callTitle: "Call with the doctor",
     voiceOnly: "Voice only, uses little data",
     emergency: "Emergency? Call 112",
@@ -88,7 +96,8 @@ const roomCopy = {
     permHeadphones: "Nëse ke kufje, vendosi që të dëgjosh më mirë",
     permAllow: "Lejo dhe hyr",
     permCancel: "Anulo",
-    statusLine: (patient: string, room: string) => `Thirrje e enkriptuar, Pacienti: ${patient}, Dhoma: ${room}`,
+    encryptedCall: "Thirrje zanore e enkriptuar",
+    statusLine: (patient: string) => `Thirrje e enkriptuar, ${patient}`,
     callTitle: "Thirrje me mjekun",
     voiceOnly: "Vetëm zë, harxhon pak të dhëna",
     emergency: "Urgjencë? Telefono 112",
@@ -107,7 +116,8 @@ const roomCopy = {
     permHeadphones: "Se hai le cuffie, mettile: senti meglio",
     permAllow: "Consenti ed entra",
     permCancel: "Annulla",
-    statusLine: (patient: string, room: string) => `Chiamata criptata, Paziente: ${patient}, Stanza: ${room}`,
+    encryptedCall: "Chiamata vocale criptata",
+    statusLine: (patient: string) => `Chiamata criptata, ${patient}`,
     callTitle: "Chiamata con il medico",
     voiceOnly: "Solo voce, usa pochi dati",
     emergency: "Emergenza? Chiama il 112",
@@ -126,7 +136,8 @@ const roomCopy = {
     permHeadphones: "Ako imaš slušalice, stavi ih kako bi bolje čuo",
     permAllow: "Dopusti i pridruži se",
     permCancel: "Odustani",
-    statusLine: (patient: string, room: string) => `Šifrirani poziv, Pacijent: ${patient}, Soba: ${room}`,
+    encryptedCall: "Šifrirani glasovni poziv",
+    statusLine: (patient: string) => `Šifrirani poziv, ${patient}`,
     callTitle: "Poziv s liječnikom",
     voiceOnly: "Samo glas, troši malo podatkovnog prometa",
     emergency: "Hitno stanje? Nazovi 112",
@@ -145,7 +156,8 @@ const roomCopy = {
     permHeadphones: "Te si tut kanenge kufiye, tho len te shunes may mishto",
     permAllow: "Muk thaj khuves",
     permCancel: "Mekh",
-    statusLine: (patient: string, room: string) => `Garavdo svato, Paciento: ${patient}, Soba: ${room}`,
+    encryptedCall: "Garavdo avazesko svato",
+    statusLine: (patient: string) => `Garavdo svato, ${patient}`,
     callTitle: "Svato e doktoresa",
     voiceOnly: "Numay avazi, xal zalag interneto",
     emergency: "Sigo pharipe? Mar 112",
@@ -160,25 +172,28 @@ interface PublicVideoConsultationRoomProps {
   doctorName?: string;
 }
 
-/** Jitsi toolbar limited to the microphone, hang-up and device settings: the consultation is voice only. */
-const JITSI_TOOLBAR = encodeURIComponent(JSON.stringify(["microphone", "hangup", "settings"]));
-
 /**
  * The patient's call room. RediHealth consultations are voice only: a microphone permission step,
- * the call (Jitsi, started audio-only with no camera button), and a short ending screen.
+ * the call (Jitsi, started audio-only with no camera or duplicate hang-up button), and a short ending screen.
  * During the call the room covers the screen (with a 112 link in its header) so "End call" never falls below the fold.
  */
 export function PublicVideoConsultationRoom({ roomId, patientName: patientNameProp, doctorName }: PublicVideoConsultationRoomProps) {
   const { lang } = useSafeLanguage();
   const copy = roomCopy[lang] ?? roomCopy.ro;
-  const patientName = patientNameProp ?? copy.patient;
+  const trimmedPatientName = patientNameProp?.trim();
+  const statusSubtitle =
+    trimmedPatientName && trimmedPatientName.toLowerCase() !== copy.patient.toLowerCase()
+      ? copy.statusLine(trimmedPatientName)
+      : copy.encryptedCall;
   const [hasPermissions, setHasPermissions] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   // During the call the room covers the whole screen, so "End call" is always in reach; the page behind stays still.
   const inCall = hasPermissions && !callEnded;
   useEffect(() => {
     if (!inCall) return;
+    window.scrollTo(0, 0);
     const { overflow } = document.body.style;
     document.body.style.overflow = "hidden";
     return () => {
@@ -186,10 +201,20 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
     };
   }, [inCall]);
 
+  useEffect(() => {
+    if (!inCall) return;
+    return subscribeJitsiCallEnd(iframeRef.current, 1, () => {
+      setCallEnded(true);
+    });
+  }, [inCall]);
+
   const sanitizedRoom = roomId.replace(/[^a-zA-Z0-9-_]/g, "");
-  const jitsiUrl =
-    `https://meet.jit.si/redihealth-${sanitizedRoom}#config.prejoinPageEnabled=false&config.disableDeepLinking=true` +
-    `&config.startAudioOnly=true&config.startWithVideoMuted=true&config.toolbarButtons=${JITSI_TOOLBAR}`;
+  const jitsiUrl = buildJitsiEmbedUrl({
+    baseRoomUrl: `https://meet.jit.si/redihealth-${sanitizedRoom}`,
+    apiId: 1,
+    audioOnly: true,
+    toolbarButtons: PATIENT_VOICE_TOOLBAR,
+  });
 
   const requestMediaPermissions = async () => {
     try {
@@ -287,23 +312,28 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
         <StethoscopeIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-live-sage" />
         <div className="min-w-0 flex-1">
           <h1 className="truncate text-body font-semibold text-paper">{doctorName ?? copy.callTitle}</h1>
-          <p className="truncate text-meta text-mist">{copy.statusLine(patientName, roomId)}</p>
+          <p className="truncate text-meta text-mist">{statusSubtitle}</p>
         </div>
         <a
           href="tel:112"
+          aria-label={copy.emergency}
           className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-body font-semibold text-ruby-300 transition-colors duration-[var(--dur-fast)] hover:text-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper/70"
         >
-          <PhoneIcon className="h-4 w-4" />
-          {copy.emergency}
+          <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
+          <span className="sm:hidden">112</span>
+          <span className="hidden sm:inline">{copy.emergency}</span>
         </a>
       </header>
 
-      <main id="main-content" className="relative min-h-0 flex-1 bg-ink-950">
+      <main id="main-content" className="relative min-h-0 flex-1 overflow-hidden bg-ink-950">
         <iframe
+          ref={iframeRef}
           src={jitsiUrl}
           title={copy.callTitle}
           allow="microphone; autoplay"
-          className="h-full w-full border-0"
+          scrolling="no"
+          style={{ colorScheme: "dark" }}
+          className="block h-full w-full overflow-hidden border-0 bg-ink-950"
         />
       </main>
 

@@ -162,6 +162,8 @@ export interface AssistantCopy {
     pharmacistBannerBody: string;
     medicinesHeading: string;
     medicinesLead: string;
+    boxMedicinesHeading: string;
+    boxMedicinesLead: string;
     scheduleSlots: {
       morning: string;
       midday: string;
@@ -170,6 +172,8 @@ export interface AssistantCopy {
     };
     noDoseAria: string;
     strengthLabel: string;
+    activeIngredientLabel: string;
+    formLabel: string;
     foodTiming: {
       before_meal: string;
       with_meal: string;
@@ -189,7 +193,13 @@ export interface AssistantCopy {
     listenMedicineAria: (medicineName: string) => string;
     assistantHeading: string;
     transcriptHeading: string;
+    boxTranscriptHeading: string;
     transcriptNote: string;
+    confidenceHeading: string;
+    confidenceExact: (score: number) => string;
+    confidencePartial: (score: number) => string;
+    confidenceItemLine: (score: number) => string;
+    confidenceCheckNote: string;
     rulesHeading: string;
     emergency: string;
     print: string;
@@ -225,7 +235,7 @@ const ro: AssistantCopy = {
       symptoms: {
         title: "Am o problemă de sănătate",
         plainTitle: "Nu mă simt bine chiar acum",
-        subtitle: "Verificăm întâi semnele de alarmă, apoi te îndrumăm spre un medic",
+        subtitle: "Arată pe corp unde te doare, apoi te îndrumăm spre un medic",
       },
       prescription: {
         title: "Am o rețetă medicală",
@@ -427,8 +437,8 @@ const ro: AssistantCopy = {
   },
   rx: {
     heading: "Cum vrei să verifici rețeta sau tratamentul?",
-    lead: "Fă o poză rețetei sau caută direct un medicament.",
-    photoTitle: "Încarcă o poză a rețetei",
+    lead: "Fă o poză rețetei sau cutiei de medicamente, ori caută direct un medicament.",
+    photoTitle: "Încarcă o poză a rețetei sau a cutiei",
     photoDesc: "Cu camera telefonului sau din galerie",
     searchTitle: "Scrie numele medicamentului",
     searchDesc: "Afli regulile de bază ca să-l iei în siguranță",
@@ -525,6 +535,9 @@ const ro: AssistantCopy = {
       "Unele cuvinte sau doze nu s-au putut citi clar în poză. Arată telefonul sau foaia tipărită farmacistului ca să îți confirme exact cum se ia tratamentul.",
     medicinesHeading: "Medicamentele citite de pe rețetă",
     medicinesLead: "Orele de mai jos apar doar dacă s-au putut citi clar pe rețetă.",
+    boxMedicinesHeading: "Medicamente recunoscute de pe cutie",
+    boxMedicinesLead:
+      "Cutia arată numele și concentrația medicamentului. Urmează doza stabilită de medic sau farmacist.",
     scheduleSlots: {
       morning: "Dimineața",
       midday: "Prânz",
@@ -533,6 +546,8 @@ const ro: AssistantCopy = {
     },
     noDoseAria: "Nicio doză trecută la această oră",
     strengthLabel: "Concentrație",
+    activeIngredientLabel: "Substanță activă",
+    formLabel: "Formă",
     foodTiming: {
       before_meal: "Înainte de masă",
       with_meal: "În timpul mesei",
@@ -553,7 +568,15 @@ const ro: AssistantCopy = {
     listenMedicineAria: (medicineName) => `Ascultă instrucțiunile pentru ${medicineName}`,
     assistantHeading: "Explicația asistentului",
     transcriptHeading: "Textul citit de pe rețetă",
+    boxTranscriptHeading: "Textul citit de pe cutie",
     transcriptNote: "Copiat cum apare pe rețetă. Unde scrie [unclear], textul nu s-a putut citi.",
+    confidenceHeading: "Siguranța citirii",
+    confidenceExact: (score) => `Citire ${score}% clară — tot textul vizibil a fost lizibil`,
+    confidencePartial: (score) => `Scor de siguranță: ${score}%`,
+    confidenceItemLine: (score) =>
+      score === 100 ? "Citire 100% clară din poză" : `Siguranța citirii: ${score}%`,
+    confidenceCheckNote:
+      "Confirmă întotdeauna numele medicamentului și doza cu farmacistul înainte de administrare.",
     rulesHeading: "De reținut",
     emergency: "Asistentul a observat semne care pot fi urgente. Dacă te simți rău acum, sună la 112.",
     print: "Tipărește",
@@ -589,7 +612,7 @@ const en: AssistantCopy = {
       symptoms: {
         title: "I have a health problem",
         plainTitle: "I don't feel well right now",
-        subtitle: "We check for warning signs first, then point you to a doctor",
+        subtitle: "Show where it hurts on a body picture, then we point you to a doctor",
       },
       prescription: {
         title: "I have a prescription",
@@ -790,8 +813,8 @@ const en: AssistantCopy = {
   },
   rx: {
     heading: "How would you like to check your prescription?",
-    lead: "Take a photo of the prescription, or look up a medicine by name.",
-    photoTitle: "Upload a photo of the prescription",
+    lead: "Take a photo of the prescription or medicine box, or look up a medicine by name.",
+    photoTitle: "Upload a photo of the prescription or medicine box",
     photoDesc: "With your phone camera or from your gallery",
     searchTitle: "Type the name of the medicine",
     searchDesc: "The basic rules for taking it safely",
@@ -888,6 +911,9 @@ const en: AssistantCopy = {
       "Some words or doses were not clear in the photo. Show your phone or printed sheet to the pharmacist so they can confirm the exact instructions.",
     medicinesHeading: "Medicines read from your prescription",
     medicinesLead: "Times of day appear below only when clearly written on the prescription.",
+    boxMedicinesHeading: "Medicines recognised from the box",
+    boxMedicinesLead:
+      "A medicine box shows the product name and strength. Follow the dose given by your doctor or pharmacist.",
     scheduleSlots: {
       morning: "Morning",
       midday: "Midday",
@@ -896,6 +922,8 @@ const en: AssistantCopy = {
     },
     noDoseAria: "No dose listed for this time",
     strengthLabel: "Strength",
+    activeIngredientLabel: "Active ingredient",
+    formLabel: "Form",
     foodTiming: {
       before_meal: "Before food",
       with_meal: "With food",
@@ -916,7 +944,15 @@ const en: AssistantCopy = {
     listenMedicineAria: (medicineName) => `Listen to instructions for ${medicineName}`,
     assistantHeading: "The assistant's explanation",
     transcriptHeading: "Text read from the prescription",
+    boxTranscriptHeading: "Text read from the box",
     transcriptNote: "Copied as written. Where it says [unclear], the text could not be read.",
+    confidenceHeading: "Reading confidence",
+    confidenceExact: (score) => `${score}% accurate reading — all visible text was clear`,
+    confidencePartial: (score) => `Confidence score: ${score}%`,
+    confidenceItemLine: (score) =>
+      score === 100 ? "100% clear match on photo" : `Reading confidence: ${score}%`,
+    confidenceCheckNote:
+      "Always confirm the medicine name and dose with your pharmacist before taking it.",
     rulesHeading: "Keep in mind",
     emergency: "The assistant noticed signs that may be urgent. If you feel unwell now, call 112.",
     print: "Print",
@@ -952,7 +988,7 @@ const sq: AssistantCopy = {
       symptoms: {
         title: "Kam një problem shëndetësor",
         plainTitle: "Nuk ndihem mirë tani",
-        subtitle: "Së pari shohim shenjat e rrezikut, pastaj të drejtojmë te një mjek",
+        subtitle: "Trego në trup ku të dhemb, pastaj të drejtojmë te një mjek",
       },
       prescription: {
         title: "Kam një recetë mjekësore",
@@ -1153,8 +1189,8 @@ const sq: AssistantCopy = {
   },
   rx: {
     heading: "Si do ta kontrollosh recetën ose trajtimin?",
-    lead: "Bëj një foto të recetës ose kërko direkt një ilaç.",
-    photoTitle: "Ngarko një foto të recetës",
+    lead: "Bëj një foto të recetës ose kutisë së ilaçit, ose kërko direkt një ilaç.",
+    photoTitle: "Ngarko një foto të recetës ose kutisë",
     photoDesc: "Me kamerën e telefonit ose nga galeria",
     searchTitle: "Shkruaj emrin e ilaçit",
     searchDesc: "Rregullat bazë për ta marrë pa rrezik",
@@ -1251,6 +1287,9 @@ const sq: AssistantCopy = {
       "Disa fjalë ose doza nuk u lexuan qartë në foto. Tregoji telefonin ose fletën e printuar farmacistit që të konfirmojë saktë si merren.",
     medicinesHeading: "Ilaçet e lexuara nga receta",
     medicinesLead: "Oraret më poshtë shfaqen vetëm kur shkruhen qartë në recetë.",
+    boxMedicinesHeading: "Ilaçet e njohura nga kutia",
+    boxMedicinesLead:
+      "Kutia tregon emrin dhe përqendrimin e ilaçit. Ndiq dozën e dhënë nga mjeku ose farmacisti.",
     scheduleSlots: {
       morning: "Mëngjes",
       midday: "Drekë",
@@ -1259,6 +1298,8 @@ const sq: AssistantCopy = {
     },
     noDoseAria: "Nuk ka dozë të shënuar për këtë orar",
     strengthLabel: "Përqendrimi",
+    activeIngredientLabel: "Substanca aktive",
+    formLabel: "Forma",
     foodTiming: {
       before_meal: "Para buke",
       with_meal: "Gjatë bukës",
@@ -1279,7 +1320,15 @@ const sq: AssistantCopy = {
     listenMedicineAria: (medicineName) => `Dëgjo udhëzimet për ${medicineName}`,
     assistantHeading: "Shpjegimi i asistentit",
     transcriptHeading: "Teksti i lexuar nga receta",
+    boxTranscriptHeading: "Teksti i lexuar nga kutia",
     transcriptNote: "Kopjuar siç është shkruar. Aty ku shkruhet [unclear], teksti nuk u lexua dot.",
+    confidenceHeading: "Siguria e leximit",
+    confidenceExact: (score) => `Lexim ${score}% i qartë — i gjithë teksti i dukshëm ishte i lexueshëm`,
+    confidencePartial: (score) => `Shkalla e sigurisë: ${score}%`,
+    confidenceItemLine: (score) =>
+      score === 100 ? "Përputhje 100% e qartë në foto" : `Siguria e leximit: ${score}%`,
+    confidenceCheckNote:
+      "Konfirmo gjithmonë emrin e ilaçit dhe dozën me farmacistin para se ta marrësh.",
     rulesHeading: "Mbaj parasysh",
     emergency: "Asistenti vuri re shenja që mund të jenë urgjente. Nëse ndihesh keq tani, telefono 112.",
     print: "Printo",
@@ -1315,7 +1364,7 @@ const it: AssistantCopy = {
       symptoms: {
         title: "Ho un problema di salute",
         plainTitle: "Non mi sento bene in questo momento",
-        subtitle: "Prima controlliamo i segnali d'allarme, poi ti indirizziamo a un medico",
+        subtitle: "Mostra sul corpo dove ti fa male, poi ti indirizziamo a un medico",
       },
       prescription: {
         title: "Ho una ricetta medica",
@@ -1516,8 +1565,8 @@ const it: AssistantCopy = {
   },
   rx: {
     heading: "Come vuoi controllare la ricetta o la terapia?",
-    lead: "Fai una foto alla ricetta o cerca direttamente un farmaco.",
-    photoTitle: "Carica una foto della ricetta",
+    lead: "Fai una foto alla ricetta o alla scatola del farmaco, oppure cerca un farmaco.",
+    photoTitle: "Carica una foto della ricetta o della scatola",
     photoDesc: "Con la fotocamera del telefono o dalla galleria",
     searchTitle: "Scrivi il nome del farmaco",
     searchDesc: "Le regole di base per prenderlo in sicurezza",
@@ -1614,6 +1663,9 @@ const it: AssistantCopy = {
       "Alcune parole o dosi non si leggevano bene nella foto. Mostra il telefono o il foglio stampato al farmacista per confermare le dosi esatte.",
     medicinesHeading: "Farmaci letti dalla ricetta",
     medicinesLead: "Gli orari qui sotto compaiono solo se scritti chiaramente sulla ricetta.",
+    boxMedicinesHeading: "Farmaci riconosciuti dalla confezione",
+    boxMedicinesLead:
+      "La confezione mostra il nome e il dosaggio del prodotto. Segui la dose indicata dal medico o dal farmacista.",
     scheduleSlots: {
       morning: "Mattina",
       midday: "Pranzo",
@@ -1622,6 +1674,8 @@ const it: AssistantCopy = {
     },
     noDoseAria: "Nessuna dose indicata per questo orario",
     strengthLabel: "Concentrazione",
+    activeIngredientLabel: "Principio attivo",
+    formLabel: "Forma",
     foodTiming: {
       before_meal: "Prima dei pasti",
       with_meal: "Durante i pasti",
@@ -1642,7 +1696,15 @@ const it: AssistantCopy = {
     listenMedicineAria: (medicineName) => `Ascolta le indicazioni per ${medicineName}`,
     assistantHeading: "La spiegazione dell'assistente",
     transcriptHeading: "Testo letto dalla ricetta",
+    boxTranscriptHeading: "Testo letto dalla confezione",
     transcriptNote: "Copiato così com'è scritto. Dove compare [unclear], il testo non era leggibile.",
+    confidenceHeading: "Affidabilità della lettura",
+    confidenceExact: (score) => `Lettura accurata al ${score}% — tutto il testo visibile era chiaro`,
+    confidencePartial: (score) => `Livello di affidabilità: ${score}%`,
+    confidenceItemLine: (score) =>
+      score === 100 ? "Lettura chiara al 100% dalla foto" : `Affidabilità della lettura: ${score}%`,
+    confidenceCheckNote:
+      "Conferma sempre il nome del farmaco e la dose con il farmacista prima di prenderlo.",
     rulesHeading: "Da ricordare",
     emergency: "L'assistente ha notato segnali che potrebbero essere urgenti. Se ora ti senti male, chiama il 112.",
     print: "Stampa",
@@ -1678,7 +1740,7 @@ const hr: AssistantCopy = {
       symptoms: {
         title: "Imam zdravstveni problem",
         plainTitle: "Trenutno se ne osjećam dobro",
-        subtitle: "Prvo provjeravamo znakove uzbune, a zatim te usmjeravamo liječniku",
+        subtitle: "Pokaži na tijelu gdje te boli, a zatim te usmjeravamo liječniku",
       },
       prescription: {
         title: "Imam liječnički recept",
@@ -1879,8 +1941,8 @@ const hr: AssistantCopy = {
   },
   rx: {
     heading: "Kako želiš provjeriti recept ili terapiju?",
-    lead: "Fotografiraj recept ili izravno potraži lijek.",
-    photoTitle: "Učitaj fotografiju recepta",
+    lead: "Fotografiraj recept ili kutiju lijeka, ili izravno potraži lijek.",
+    photoTitle: "Učitaj fotografiju recepta ili kutije",
     photoDesc: "Kamerom telefona ili iz galerije",
     searchTitle: "Upiši naziv lijeka",
     searchDesc: "Saznaj osnovna pravila za sigurno uzimanje",
@@ -1977,6 +2039,9 @@ const hr: AssistantCopy = {
       "Neke riječi ili doze nisu bile sasvim čitljive na fotografiji. Pokaži telefon ili ispisani list ljekarniku kako bi potvrdio točan način uzimanja.",
     medicinesHeading: "Lijekovi pročitani s recepta",
     medicinesLead: "Raspored u nastavku prikazuje se samo ako je jasno napisan na receptu.",
+    boxMedicinesHeading: "Lijekovi prepoznati s kutije",
+    boxMedicinesLead:
+      "Kutija prikazuje naziv i jačinu lijeka. Slijedi dozu koju je odredio liječnik ili ljekarnik.",
     scheduleSlots: {
       morning: "Jutro",
       midday: "Podne",
@@ -1985,6 +2050,8 @@ const hr: AssistantCopy = {
     },
     noDoseAria: "Nema navedene doze u ovo vrijeme",
     strengthLabel: "Jačina",
+    activeIngredientLabel: "Djelatna tvar",
+    formLabel: "Oblik",
     foodTiming: {
       before_meal: "Prije jela",
       with_meal: "Uz jelo",
@@ -2005,7 +2072,15 @@ const hr: AssistantCopy = {
     listenMedicineAria: (medicineName) => `Poslušaj upute za ${medicineName}`,
     assistantHeading: "Objašnjenje asistenta",
     transcriptHeading: "Tekst pročitan s recepta",
+    boxTranscriptHeading: "Tekst pročitan s kutije",
     transcriptNote: "Prepisano kako piše na receptu. Tamo gdje piše [unclear], tekst nije bio čitljiv.",
+    confidenceHeading: "Pouzdanost čitanja",
+    confidenceExact: (score) => `${score}% točno čitanje — sav vidljivi tekst bio je jasan`,
+    confidencePartial: (score) => `Razina pouzdanosti: ${score}%`,
+    confidenceItemLine: (score) =>
+      score === 100 ? "100% jasno očitanje sa slike" : `Pouzdanost čitanja: ${score}%`,
+    confidenceCheckNote:
+      "Uvijek potvrdi naziv lijeka i dozu s ljekarnikom prije uzimanja.",
     rulesHeading: "Važno zapamtiti",
     emergency: "Asistent je primijetio znakove koji mogu biti hitni. Ako se sada osjećaš loše, nazovi 112.",
     print: "Ispiši",
@@ -2041,7 +2116,7 @@ const rom: AssistantCopy = {
       symptoms: {
         title: "Si man jekh sastipnaski problema",
         plainTitle: "Na hatjarav man mishto akana",
-        subtitle: "Anglunivar dikhas le znakoja vash dar, pala kodoja ingaras tut ko doktori",
+        subtitle: "Sikav pe trupo kaj dukhal tut, pala kodoja ingaras tut ko doktori",
       },
       prescription: {
         title: "Si man jekh receta",
@@ -2242,8 +2317,8 @@ const rom: AssistantCopy = {
   },
   rx: {
     heading: "Sar manges te dikhes i receta vaj i drab?",
-    lead: "Ker poza e recetake vaj rode o anav e drabako.",
-    photoTitle: "Thov poza katar i receta",
+    lead: "Ker poza e recetake vaj e drabaki kutijake, vaj rode o anav e drabako.",
+    photoTitle: "Thov poza katar i receta vaj i kutija",
     photoDesc: "Le telefoneske kamerasa vaj katar i galerija",
     searchTitle: "Ramov o anav e drabako",
     searchDesc: "Sikljov le anglune regule te les la sigurime",
@@ -2340,6 +2415,9 @@ const rom: AssistantCopy = {
       "Nesave vorbe vaj doze na dikhljile uzo and-i poza. Sikav o telefono vaj o printime lil le farmacistoske te phenel tuke chaches sar te les len.",
     medicinesHeading: "Drabura ginade katar i receta",
     medicinesLead: "Le chasura telal dikhljon numa kana si ramome uzo pe receta.",
+    boxMedicinesHeading: "Drabura prindzarde katar i kutija",
+    boxMedicinesLead:
+      "I kutija sikavel o anav thaj o zor e drabako. Le i doza sar phendjas o doktori vaj o farmacisto.",
     scheduleSlots: {
       morning: "Teharin",
       midday: "Mashkar divese",
@@ -2348,6 +2426,8 @@ const rom: AssistantCopy = {
     },
     noDoseAria: "Na-i ramomi doza ko kadava chaso",
     strengthLabel: "Zor",
+    activeIngredientLabel: "Substanca bazutni",
+    formLabel: "Forma",
     foodTiming: {
       before_meal: "Angla xabem",
       with_meal: "Le xabemasa",
@@ -2368,7 +2448,15 @@ const rom: AssistantCopy = {
     listenMedicineAria: (medicineName) => `Ashun sar te les ${medicineName}`,
     assistantHeading: "O shpjegimos e azhutitoresko",
     transcriptHeading: "O teksto ginado katar i receta",
+    boxTranscriptHeading: "O teksto ginado katar i kutija",
     transcriptNote: "Kopijime sar ramol pe receta. Kaj ramol [unclear], o teksto nashti ginadilo.",
+    confidenceHeading: "Siguripen e ginavimasko",
+    confidenceExact: (score) => `${score}% uzo ginavimos — sa o dikhlo teksto sas chacho`,
+    confidencePartial: (score) => `Nivelo e siguripnasko: ${score}%`,
+    confidenceItemLine: (score) =>
+      score === 100 ? "100% uzo ginavimos and-i poza" : `Siguripen e ginavimasko: ${score}%`,
+    confidenceCheckNote:
+      "Verifikisar svako data o anav e drabako thaj i doza le farmacistosa angla te les les.",
     rulesHeading: "Te na bistres",
     emergency: "O azhutitori dikhljas znakoja so shaj aven sigardiari. Te hatjares tut nasul akana, akhar ko 112.",
     print: "Printisar",
@@ -2407,7 +2495,7 @@ ru: {
       symptoms: {
         title: "У меня проблемы со здоровьем",
         plainTitle: "Я сейчас нехорошо себя чувствую",
-        subtitle: "Сначала мы проверяем наличие настораживающих признаков, а затем направляем вас к врачу.",
+        subtitle: "Покажите на схеме тела, где болит, а затем мы направим вас к врачу.",
       },
       prescription: {
         title: "У меня есть рецепт",
@@ -2585,8 +2673,8 @@ ru: {
   },
   rx: {
     heading: "Как бы вы хотели проверить свой рецепт?",
-    lead: "Сфотографируйте рецепт или найдите лекарство по названию.",
-    photoTitle: "Загрузите фотографию рецепта.",
+    lead: "Сфотографируйте рецепт или упаковку лекарства либо найдите лекарство по названию.",
+    photoTitle: "Загрузите фото рецепта или упаковки",
     photoDesc: "С помощью камеры телефона или из галереи.",
     searchTitle: "Введите название лекарства",
     searchDesc: "Основные правила безопасного приема",
@@ -2680,9 +2768,13 @@ ru: {
 "pharmacistBannerBody": "Ассистент может ошибиться. Уточните название, дозу и время приёма у фармацевта или врача.",
 "medicinesHeading": "Лекарства, прочитанные из рецепта",
 "medicinesLead": "Проверьте каждое лекарство по оригиналу рецепта.",
+"boxMedicinesHeading": "Лекарства, распознанные по упаковке",
+"boxMedicinesLead": "На упаковке указаны название и дозировка препарата. Следуйте схеме приёма, назначенной врачом или фармацевтом.",
 "scheduleSlots": {"morning":"Утро","midday":"День","evening":"Вечер","bedtime":"Перед сном"},
 "noDoseAria": "Доза не указана",
 "strengthLabel": "Дозировка",
+"activeIngredientLabel": "Действующее вещество",
+"formLabel": "Форма выпуска",
 "foodTiming": {"before_meal":"До еды","with_meal":"Во время еды","after_meal":"После еды"},
 "foodTimingSentence": {"before_meal":"Принимайте до еды.","with_meal":"Принимайте во время еды.","after_meal":"Принимайте после еды."},
 "durationLabel": (duration) => `Длительность: ${duration}`,
@@ -2697,7 +2789,14 @@ ru: {
     lead: "Ассистент может неправильно прочитать рецепт. Всегда консультируйтесь со своим фармацевтом или врачом, прежде чем принимать лекарства.",
     assistantHeading: "Объяснение ассистента",
     transcriptHeading: "Текст, прочитанный из рецепта",
+    boxTranscriptHeading: "Текст, прочитанный с упаковки",
     transcriptNote: "Скопировал как написано. Там, где написано [неразборчиво], текст прочитать невозможно.",
+    confidenceHeading: "Точность распознавания",
+    confidenceExact: (score) => `Точность распознавания ${score}% — весь видимый текст разборчив`,
+    confidencePartial: (score) => `Уровень уверенности: ${score}%`,
+    confidenceItemLine: (score) =>
+      score === 100 ? "100% чёткое распознавание по фото" : `Уровень уверенности: ${score}%`,
+    confidenceCheckNote: "Всегда уточняйте название препарата и дозировку у фармацевта перед приёмом.",
     rulesHeading: "Имейте в виду",
     emergency: "Ассистент заметил признаки, которые могут быть неотложными. Если вы чувствуете себя плохо сейчас, позвоните 112.",
     print: "Распечатать",

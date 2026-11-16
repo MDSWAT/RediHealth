@@ -5,7 +5,10 @@ import { SiteChrome } from "@/components/layout/SiteChrome";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { siteMetadata } from "@/lib/i18n/site-metadata";
 import { getSiteUrl } from "@/lib/site-url";
-import { headers } from "next/headers";
+import { EMERGENCY_DISMISS_COOKIE } from "@/lib/emergency-bar";
+import { serializeTranslations } from "@/lib/i18n/languages";
+import { translations } from "@/lib/i18n/translations";
+import { cookies, headers } from "next/headers";
 import { isRecaptchaEnabled } from "@/lib/security/recaptcha-config";
 
 // latin-ext carries ă, ș, ț, č, ć, đ, š, ž across Romanian, Croatian, Albanian, and Romani.
@@ -18,18 +21,22 @@ const bodyFont = Atkinson_Hyperlegible_Next({
   variable: "--font-body",
   subsets: ["latin", "latin-ext"],
   display: "swap",
-  preload: false,
+  preload: true,
   adjustFontFallback: false,
   fallback: ["Body Fallback", "Arial", "Helvetica", "sans-serif"],
 });
 
 // Headings (h1, h2): Bricolage Grotesque, with its optical-size axis so large titles tighten up.
+// Bold headings (700) run ~2.5% wider than Next's weight-400 auto-fallback, so "Heading Fallback"
+// is calibrated directly against the rendered 700 weight in globals.css.
 const headingFont = Bricolage_Grotesque({
   variable: "--font-heading",
   subsets: ["latin", "latin-ext"],
   axes: ["opsz"],
   display: "swap",
-  preload: false,
+  preload: true,
+  adjustFontFallback: false,
+  fallback: ["Heading Fallback", "Arial", "Helvetica", "sans-serif"],
 });
 
 const geistMono = Geist_Mono({
@@ -52,6 +59,9 @@ export const viewport: Viewport = {
 
 export async function generateMetadata(): Promise<Metadata> {
   const site = siteMetadata[await getRequestLang()];
+  const alternateLocale = Object.values(siteMetadata)
+    .map((entry) => entry.openGraphLocale)
+    .filter((locale) => locale !== site.openGraphLocale);
 
   return {
     metadataBase: new URL(getSiteUrl()),
@@ -76,6 +86,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: site.title,
       description: site.description,
       locale: site.openGraphLocale,
+      alternateLocale,
     },
     twitter: {
       card: "summary",
@@ -88,6 +99,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const lang = await getRequestLang();
   const nonce = (await headers()).get("x-nonce") || undefined;
+  // Set when the reader closes the 112 bar (UniversalEmergencyBanner), so it is never sent at all.
+  const emergencyDismissed = (await cookies()).get(EMERGENCY_DISMISS_COOKIE)?.value === "1";
   // Links that leave this device (QR codes, copied notes) use the configured public address,
   // never a loopback one. See components/health-check/public-origin.ts.
   const configuredOrigin = process.env.APP_URL?.trim().replace(/\/+$/, "");
@@ -104,6 +117,16 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${bodyFont.variable} ${headingFont.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Synchronous <head> icons so Safari/WebKit and Chromium never miss streamed metadata in <body> or fall back to stale domain caches. */}
+        <link rel="icon" href="/icon.svg?v=3" type="image/svg+xml" sizes="any" />
+        <link rel="icon" href="/favicon-48x48.png?v=3" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/favicon-32x32.png?v=3" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/favicon-16x16.png?v=3" type="image/png" sizes="16x16" />
+        <link rel="shortcut icon" href="/favicon.ico?v=3" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/pwa/apple-touch-icon.png?v=3" sizes="180x180" type="image/png" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg?v=3" color="#cc3746" />
+      </head>
       <body
         suppressHydrationWarning
         className={`${bodyFont.className} min-h-full flex flex-col font-sans`}
@@ -114,7 +137,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         >
           {siteMetadata[lang].skipLink}
         </a>
-        <SiteChrome lang={lang} nonce={nonce} captchaEnabled={isRecaptchaEnabled()}>{children}</SiteChrome>
+        <SiteChrome lang={lang} initialTranslations={serializeTranslations(translations[lang])} nonce={nonce} captchaEnabled={isRecaptchaEnabled()} emergencyDismissed={emergencyDismissed}>{children}</SiteChrome>
       </body>
     </html>
   );

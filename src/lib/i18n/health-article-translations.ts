@@ -1,5 +1,4 @@
 import type { Lang } from "./translations";
-import type { HealthContentLang } from "./health-content-language";
 
 type ArticleCopy = {
   title: string; intro: string; search: string; category: string; all: string; read: string; examples: string;
@@ -7,7 +6,7 @@ type ArticleCopy = {
   authorship: string; review: string; sourceLanguage: string; related: string; empty: string; clear: string;
   showMore: string; showLess: string; inGermanyPrefix: string; count: (n: number) => string; coverage: (ready: number, total: number) => string;
 };
-const translatedCopy: Record<HealthContentLang, ArticleCopy> = {
+const translatedCopy: Record<Exclude<Lang, "hr" | "rom">, ArticleCopy> = {
   en: {
     title: "Detailed health articles", intro: "Explore individual conditions, tests, treatments and health questions, with everyday examples and questions for your healthcare team.",
     search: "Search articles", category: "Topic area", all: "All topic areas", read: "Read the article", examples: "Practical examples", exampleNote: "These hypothetical situations illustrate decisions and questions. They do not predict a diagnosis or treatment result.",

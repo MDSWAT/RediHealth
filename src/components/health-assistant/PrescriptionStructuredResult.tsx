@@ -13,7 +13,7 @@ import { PrescriptionAudioPlayer } from "@/components/health-assistant/Prescript
 import { PrescriptionDoctorBridge } from "@/components/health-assistant/PrescriptionDoctorBridge";
 import { type AssistantCopy, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import { useReadAloud } from "@/components/health-check/readingTools";
-import type { PrescribedMedicineItem } from "@/lib/health-assistant";
+import type { DocumentSourceKind, PrescribedMedicineItem } from "@/lib/health-assistant";
 import type { Lang } from "@/lib/i18n/translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 
@@ -22,21 +22,27 @@ interface PrescriptionStructuredResultProps {
   aiMessage?: string;
   /** Text transcribed from the photo exactly as written (unreadable words are marked [unclear]). */
   prescriptionText?: string;
-  /** Structured medicines extracted from legible prescription lines only. */
+  /** Structured medicines extracted from legible prescription lines or boxes. */
   medicines?: PrescribedMedicineItem[];
+  /** Whether the image was recognized as a prescription, medication box, mixed, or unreadable. */
+  sourceKind?: DocumentSourceKind;
+  /** Calibrated 0-100 confidence score for the reading. */
+  confidenceScore?: number;
+  /** Plain-language explanation for the confidence score. */
+  confidenceReason?: string;
   /** True when the assistant flagged the request as a possible emergency. */
   emergency?: boolean;
   className?: string;
 }
 
 const UNCLEAR_CAPTURE_REGEX =
-  /(\[(?:unclear|illegible|unreadable|neclar|indescifrabil|illeggibile|non chiaro|e paqartë|paqartë|nečitko|nejasno|na uzi|\?{2,})\])/gi;
+  /(\[(?:unclear|illegible|unreadable|neclar|indescifrabil|illeggibile|non chiaro|e paqartë|paqartë|nečitko|nejasno|na uzi|неразборчиво|неясно|\?{2,})\])/gi;
 
 const UNCLEAR_DETECT_REGEX =
-  /\[(?:unclear|illegible|unreadable|neclar|indescifrabil|illeggibile|non chiaro|e paqartë|paqartë|nečitko|nejasno|na uzi|\?{2,})\]/i;
+  /\[(?:unclear|illegible|unreadable|neclar|indescifrabil|illeggibile|non chiaro|e paqartë|paqartë|nečitko|nejasno|na uzi|неразборчиво|неясно|\?{2,})\]/i;
 
 function isUnclearMarker(token: string): boolean {
-  return /^\[(?:unclear|illegible|unreadable|neclar|indescifrabil|illeggibile|non chiaro|e paqartë|paqartë|nečitko|nejasno|na uzi|\?{2,})\]$/i.test(
+  return /^\[(?:unclear|illegible|unreadable|neclar|indescifrabil|illeggibile|non chiaro|e paqartë|paqartë|nečitko|nejasno|na uzi|неразборчиво|неясно|\?{2,})\]$/i.test(
     token
   );
 }
@@ -49,6 +55,8 @@ function isMedicineUnclear(med: PrescribedMedicineItem): boolean {
   return Boolean(
     med.unclear ||
       containsUnclearMarker(med.name) ||
+      containsUnclearMarker(med.activeIngredient) ||
+      containsUnclearMarker(med.form) ||
       containsUnclearMarker(med.strength) ||
       containsUnclearMarker(med.purpose) ||
       containsUnclearMarker(med.morning) ||
@@ -247,12 +255,19 @@ export function buildPrescriptionSpeechText(
   medicines: PrescribedMedicineItem[],
   aiMessage: string,
   resultCopy: AssistantCopy["result"],
-  rules: string[]
+  rules: string[],
+  confidenceScore?: number
 ): string {
   const medicinesSpeech = medicines
     .flatMap((med) => buildMedicineSpeechParts(med, resultCopy))
     .join(" ");
-  const summary = [medicinesSpeech, aiMessage.trim()].filter(Boolean).join(" ");
+  const confidenceLine =
+    typeof confidenceScore === "number"
+      ? confidenceScore === 100
+        ? resultCopy.confidenceExact(100)
+        : resultCopy.confidencePartial(confidenceScore)
+      : "";
+  const summary = [medicinesSpeech, aiMessage.trim(), confidenceLine].filter(Boolean).join(" ");
   return resultCopy.speech(summary, rules.join(" "));
 }
 
@@ -429,6 +444,9 @@ export function PrescriptionStructuredResult({
   aiMessage,
   prescriptionText,
   medicines,
+  sourceKind,
+  confidenceScore,
+  confidenceReason,
   emergency = false,
   className = "",
 }: PrescriptionStructuredResultProps) {
@@ -440,12 +458,39 @@ export function PrescriptionStructuredResult({
   const transcript = prescriptionText?.trim() ?? "";
   const explanationBlocks = splitExplanationIntoBlocks(message);
   const validMedicines = medicines?.filter((med) => Boolean(med.name?.trim())) ?? [];
-  const speechText = buildPrescriptionSpeechText(validMedicines, message, result, rx.rules);
 
   const hasUnclearContent =
     containsUnclearMarker(message) ||
     containsUnclearMarker(transcript) ||
     validMedicines.some((med) => isMedicineUnclear(med));
+
+  const effectiveConfidence =
+    typeof confidenceScore === "number"
+      ? sourceKind === "unreadable"
+        ? Math.min(Math.max(0, Math.round(confidenceScore)), 20)
+        : hasUnclearContent
+          ? Math.min(Math.max(0, Math.round(confidenceScore)), 79)
+          : Math.max(0, Math.min(100, Math.round(confidenceScore)))
+      : undefined;
+
+  const isMedicationBox = sourceKind === "medication_box";
+  const medicinesSectionHeading = isMedicationBox
+    ? result.boxMedicinesHeading
+    : result.medicinesHeading;
+  const medicinesSectionLead = isMedicationBox
+    ? result.boxMedicinesLead
+    : result.medicinesLead;
+  const transcriptSectionHeading = isMedicationBox
+    ? result.boxTranscriptHeading
+    : result.transcriptHeading;
+
+  const speechText = buildPrescriptionSpeechText(
+    validMedicines,
+    message,
+    result,
+    rx.rules,
+    effectiveConfidence
+  );
 
   const [transcriptOpen, setTranscriptOpen] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
@@ -583,8 +628,8 @@ export function PrescriptionStructuredResult({
         {validMedicines.length > 0 ? (
           <section className="mt-6">
           <div className="mb-3.5">
-            <h3 className="text-title text-foreground">{result.medicinesHeading}</h3>
-            <p className="mt-0.5 text-body text-muted-foreground">{result.medicinesLead}</p>
+            <h3 className="text-title text-foreground">{medicinesSectionHeading}</h3>
+            <p className="mt-0.5 text-body text-muted-foreground">{medicinesSectionLead}</p>
           </div>
 
           <div
@@ -596,6 +641,11 @@ export function PrescriptionStructuredResult({
           >
             {validMedicines.map((med, index) => {
               const medUnclear = isMedicineUnclear(med);
+              const distinctActiveIngredient =
+                med.activeIngredient &&
+                med.activeIngredient.trim().toLowerCase() !== med.name.trim().toLowerCase()
+                  ? med.activeIngredient.trim()
+                  : undefined;
               const derivedSlots = deriveSafeTimeSlots(med);
               const hasSchedule = Boolean(
                 derivedSlots.morning ||
@@ -648,6 +698,22 @@ export function PrescriptionStructuredResult({
                       {med.strength ? (
                         <p className="mt-0.5 text-body font-medium text-muted-foreground tabular-nums">
                           {result.strengthLabel}: {renderWithUnclearHighlights(med.strength)}
+                        </p>
+                      ) : null}
+                      {distinctActiveIngredient || med.form ? (
+                        <p className="mt-0.5 text-body text-muted-foreground">
+                          {distinctActiveIngredient ? (
+                            <>
+                              {result.activeIngredientLabel}:{" "}
+                              {renderWithUnclearHighlights(distinctActiveIngredient)}
+                            </>
+                          ) : null}
+                          {distinctActiveIngredient && med.form ? " · " : null}
+                          {med.form ? (
+                            <>
+                              {result.formLabel}: {renderWithUnclearHighlights(med.form)}
+                            </>
+                          ) : null}
                         </p>
                       ) : null}
                       {med.purpose ? (
@@ -755,6 +821,16 @@ export function PrescriptionStructuredResult({
                       ))}
                     </ul>
                   ) : null}
+
+                  {typeof med.confidence === "number" ? (
+                    <p className="mt-2.5 text-meta font-medium text-muted-foreground tabular-nums">
+                      {result.confidenceItemLine(
+                        medUnclear
+                          ? Math.min(Math.round(med.confidence), 65)
+                          : Math.max(0, Math.min(100, Math.round(med.confidence)))
+                      )}
+                    </p>
+                  ) : null}
                 </article>
               );
             })}
@@ -786,7 +862,7 @@ export function PrescriptionStructuredResult({
           className="group mt-6 rounded-lg border border-border bg-background/60 p-4 print:[&>div]:block print:[&_pre]:block"
         >
           <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-md text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire motion-reduce:transition-none dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&::-webkit-details-marker]:hidden">
-            <span>{result.transcriptHeading}</span>
+            <span>{transcriptSectionHeading}</span>
             <ChevronDownIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-open:rotate-180 motion-reduce:transition-none print:hidden" />
           </summary>
           <div className="swap-in mt-2 border-t border-border pt-3">
@@ -796,6 +872,44 @@ export function PrescriptionStructuredResult({
             </pre>
           </div>
         </details>
+      ) : null}
+
+      {effectiveConfidence !== undefined ? (
+        <section
+          data-confidence-summary
+          className="mt-6 rounded-xl border border-border bg-surface-subtle/50 p-4 sm:p-5 print:break-inside-avoid"
+        >
+          <h3 className="text-body font-semibold text-foreground">{result.confidenceHeading}</h3>
+          <p className="mt-1 text-body font-semibold text-foreground tabular-nums">
+            {effectiveConfidence === 100
+              ? result.confidenceExact(100)
+              : result.confidencePartial(effectiveConfidence)}
+          </p>
+          <div
+            role="progressbar"
+            aria-label={result.confidenceHeading}
+            aria-valuenow={effectiveConfidence}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            className="mt-2.5 h-1.5 w-full overflow-hidden rounded-sm bg-muted print:hidden"
+          >
+            <div
+              className={`h-full rounded-sm transition-[width] duration-[var(--dur-base)] motion-reduce:transition-none ${
+                effectiveConfidence >= 75
+                  ? "bg-sapphire dark:bg-sapphire-border"
+                  : "bg-amber-care dark:bg-amber-care-border"
+              }`}
+              style={{ width: `${effectiveConfidence}%` }}
+            />
+          </div>
+          {confidenceReason || effectiveConfidence < 100 ? (
+            <p className="mt-2 text-body text-muted-foreground">
+              {confidenceReason ? renderWithUnclearHighlights(confidenceReason) : null}
+              {confidenceReason && effectiveConfidence < 100 ? " " : null}
+              {effectiveConfidence < 100 ? result.confidenceCheckNote : null}
+            </p>
+          ) : null}
+        </section>
       ) : null}
 
       <section className="mt-8 border-t border-border pt-6">

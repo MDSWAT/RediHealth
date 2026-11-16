@@ -164,8 +164,19 @@ html[data-audio-player-open="true"] main {
 @font-face {
   font-family: "Body Fallback";
   src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("Arimo");
-  ascent-override: 98.33%;
-  descent-override: 31.58%;
+  size-adjust: 98.2%;
+  ascent-override: 100.13%;
+  descent-override: 32.16%;
+  line-gap-override: 0%;
+}
+
+/* Calibrated to Bricolage Grotesque at weight 700 (hero/section headings) so wrapping matches on /ro and all 7 locales. */
+@font-face {
+  font-family: "Heading Fallback";
+  src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("Arimo");
+  size-adjust: 108%;
+  ascent-override: 86.11%;
+  descent-override: 25%;
   line-gap-override: 0%;
 }
 
@@ -297,14 +308,17 @@ h2 {
   }
 }
 
-/* Phones: the next question pushes in from the side, like a settings menu (back comes from the left). */
+/*
+ * Phones: the next question glides in from the side, like a settings menu (back comes from the left).
+ * A short travel and a long settle, so it reads as one smooth move rather than a swipe.
+ */
 .hc-step {
-  --hc-step-x: 28%;
-  animation: hc-step-in 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  --hc-step-x: 12%;
+  animation: hc-step-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hc-step[data-dir="back"] {
-  --hc-step-x: -28%;
+  --hc-step-x: -12%;
 }
 
 /* Desktop: the next question rises in gently, like a form; back drops in from above. */
@@ -359,11 +373,201 @@ h2 {
   outline: none;
 }
 
+/* ---------- Phone bottom sheets ---------- */
+
+/* One surface for everything that opens on a phone (the chooser, the menu, text size): deep blue,
+   rising from the bottom edge, rounded at the top, with a hairline that catches the light. The
+   element using it also carries the `dark` class (or re-points its tokens) so its content is light. */
+.phone-sheet {
+  border: 0;
+  border-top: 1px solid rgb(251 250 246 / 0.16);
+  border-radius: 1.75rem 1.75rem 0 0;
+  background: linear-gradient(180deg, #13203f 0%, #0c1730 38%, #0a1226 100%);
+  color: #fbfaf6;
+  box-shadow: 0 -24px 60px -20px rgb(2 6 23 / 0.7);
+}
+
+/* ---------- Chosen options ---------- */
+
+/* The option that is currently chosen in a list (a health check answer, text size, reading mode,
+   language) carries a red outline, so it is unmistakable for older eyes. It keys on the ARIA state
+   the controls already set, so every such list gets it without its own classes. Lighter red on the
+   dark sheets and menu, where the standard red is too dim. */
+:where(.dark, .phone-sheet) {
+  --choice-outline: #ff8f98;
+  --preference-outline: var(--color-sapphire-border);
+}
+
+:where([data-triage-card]) :is([role="radio"][aria-checked="true"], a[hreflang][aria-current="true"]) {
+  outline: 2px solid var(--choice-outline, #c62f3c);
+  outline-offset: -2px;
+}
+
+:where(.capsule-panel, #mobile-menu) :is([role="radio"][aria-checked="true"], a[hreflang][aria-current="true"]),
+:where(.capsule-panel, #mobile-menu) button[aria-pressed="true"]:not([role="switch"]) {
+  outline: 2px solid var(--preference-outline, var(--color-sapphire));
+  outline-offset: -2px;
+}
+
+/* The close button of a phone sheet: a red disc with a white cross, easy to find for older eyes.
+   Fixed colours on purpose: inside the chooser sheet the red token is re-pointed to a lighter tint. */
+.sheet-close {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  background: #c62f3c;
+  color: #fff;
+  box-shadow: 0 2px 8px -2px rgb(2 6 23 / 0.5);
+  transition: background-color var(--dur-fast) var(--ease-out-calm);
+}
+
+.sheet-close:hover {
+  background: #a82733;
+}
+
+/* A red ring with a gap reads on the white sheets (search, text size) and the deep-blue ones alike. */
+.sheet-close:focus-visible {
+  outline: 2px solid #c62f3c;
+  outline-offset: 3px;
+}
+
+:where(.dark, .phone-sheet) .sheet-close:focus-visible {
+  outline-color: #ff8f98;
+}
+
+/* The light phone sheet (text size): white like search, rising from the bottom edge, rounded at
+   the top; its controls keep the light styles they have in the desktop panel. Dark with the site. */
+.phone-sheet-light {
+  border: 0;
+  border-radius: 1.75rem 1.75rem 0 0;
+  background: #fff;
+  color: var(--color-foreground);
+  box-shadow: 0 -24px 60px -24px rgb(12 24 48 / 0.38);
+}
+
+.dark .phone-sheet-light {
+  border-top: 1px solid rgb(251 250 246 / 0.16);
+  background: var(--color-ink-950);
+  color: var(--color-paper);
+}
+
+/* The phone hero's dock position, 0 open to 1 tucked away (HeroDock). Registered as a number so
+   it can ease between the two detents and every length that depends on it eases with it. */
+@property --dock-p {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+/* The phone hero shares the dock's position with everything in it: 0.55s on the iOS sheet curve
+   between detents, nothing while a finger drags. --dock-down is the half toward the peek (0..1),
+   --dock-up the half toward the full menu (0..1). */
+@property --ring {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+.hero {
+  --dock-down: max(var(--dock-p), 0);
+  --dock-up: max(calc(var(--dock-p) * -1), 0);
+  transition:
+    --dock-p 0.55s cubic-bezier(0.32, 0.72, 0, 1),
+    --ring 0.55s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* The wheel's topic icons are out (a tap on the chakra): --ring eases 0 to 1. */
+.hero[data-ring] {
+  --ring: 1;
+}
+
+.hero[data-dragging] {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    transition: none;
+  }
+}
+
+html[data-calm-motion] .hero {
+  transition: none;
+}
+
+/* Phones: with the dock tucked away, the headline block moves up by what the whole wheel and
+   the caption need (--text-lift, measured by HeroDock), never under the header. */
+@media (max-width: 1023px) {
+  .hero-phone-drift {
+    transform: translateY(
+      calc(
+        (
+          var(--dock-down, 0) *
+            (var(--text-lift, 0px) + var(--ring, 0) * (var(--text-lift-ring, 0px) - var(--text-lift, 0px))) +
+          (1 - var(--dock-down, 0)) * var(--ring, 0) * var(--text-lift-open-ring, 0px)
+        ) * -1
+      )
+    );
+  }
+
+  /* With the topic icons out, the cross gives way to the wheel and its room goes to the caption. */
+  .hero-cross-slot {
+    opacity: calc(1 - var(--dock-down, 0) * var(--ring, 0));
+    scale: calc(1 - var(--dock-down, 0) * var(--ring, 0) * 0.25);
+  }
+}
+
+/* The easter egg's caption under the subtitle: the topic at the top of the ring, small and quiet,
+   arriving with a short rise each time it changes. */
+.hero-topic-note {
+  opacity: 0.92;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-calm-motion]) .hero-topic-note {
+    animation: hero-topic-note-in 0.5s var(--ease-out-calm) both;
+  }
+}
+
+@keyframes hero-topic-note-in {
+  from {
+    opacity: 0;
+    translate: 0 4px;
+  }
+}
+
+/* Phone menu language list: as it grows open, its rows settle in one after another (30ms apart). */
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-calm-motion]) .lang-rows[data-open] > .lang-row {
+    animation: lang-row-in 0.36s var(--ease-out-calm) calc(var(--row, 0) * 30ms) both;
+  }
+}
+
+@keyframes lang-row-in {
+  from {
+    opacity: 0;
+    translate: 0 6px;
+  }
+}
+
 /* ---------- Landing hero ---------- */
 
-/* One motion language for the hero: the shared calm ease-out, no overshoot. */
+/* One motion language for the hero: the shared calm ease-out, no overshoot.
+   The upward 2px ink shadow seals subpixel rounding seams at y=0 under fractional zoom. */
 .hero {
   --hero-ease: var(--ease-out-calm);
+  box-shadow: 0 -2px 0 0 var(--color-ink-950);
+}
+
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 100svh;
+    min-height: 100dvh;
+  }
 }
 
 .hero ::selection {
@@ -377,25 +581,350 @@ h2 {
 }
 
 .hero-title {
-  font-size: clamp(1.4375rem, 1.1rem + 1.45vw, 1.875rem);
-  line-height: 1.14;
-  letter-spacing: -0.025em;
+  /* Phones and tablets: a short two-sentence headline, about 34px on a 390px screen. */
+  font-size: clamp(1.875rem, 0.9rem + 4.9vw, 2.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
   overflow-wrap: break-word;
   min-width: 0;
 }
 
+/* The headline's second sentence on phones: a warm light from the site's soft blue toward the
+   mediators' amber, so the line reads as one voice with two tones. Plain mist without clip support. */
+.hero-title-warm {
+  color: var(--color-mist);
+}
+
+@supports (background-clip: text) {
+  .hero-title-warm {
+    /* The gradient is drawn twice as wide as the line: its left half is the warm light the line
+       settles on, its right half plain paper, so on load the line can arrive white and warm up. */
+    background-image: linear-gradient(
+      100deg,
+      var(--color-sapphire-border) 0%,
+      #f3ead8 26%,
+      var(--color-amber-care-border) 50%,
+      var(--color-paper) 72%,
+      var(--color-paper) 100%
+    );
+    background-size: 200% 100%;
+    background-position: 0% 0;
+    background-clip: text;
+    color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+}
+
+/*
+ * The hero's arrival, one short sequence on first paint (pure CSS, so it starts with the server
+ * HTML and never waits for JavaScript):
+ *   the cross turns into place → each headline line rises into place → the warm line warms
+ *   up from white → the supporting line → the dock (phones) or the quick options (desktop) → the
+ *   wheel rises last (HeroDock.module.css). Delays come from --in on each element.
+ * Everything is readable within about half a second, and nothing runs under reduced or calm motion.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-calm-motion]) .hero-in {
+    animation: hero-in 0.8s var(--ease-out-calm) var(--in, 0ms) both;
+  }
+
+  html:not([data-calm-motion]) .hero-cross-in {
+    animation: hero-cross-in 0.9s var(--ease-out-calm) 40ms both;
+  }
+
+  html:not([data-calm-motion]) .hero-title-warm.hero-in {
+    animation:
+      hero-in 0.8s var(--ease-out-calm) var(--in, 0ms) both,
+      hero-warm-up 1.6s var(--ease-out-calm) calc(var(--in, 0ms) + 260ms) both;
+  }
+
+  html:not([data-calm-motion]) .hero-dock-in {
+    animation: hero-dock-in 0.9s var(--ease-out-calm) 380ms both;
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+  }
+}
+
+@keyframes hero-cross-in {
+  from {
+    opacity: 0;
+    scale: 0.6;
+    rotate: -90deg;
+  }
+}
+
+@keyframes hero-warm-up {
+  from {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes hero-dock-in {
+  from {
+    opacity: 0;
+    translate: 0 48px;
+  }
+}
+
+/*
+ * The hero cross, after it turns into place:
+ * - a halo of warm light blooms behind it and settles to a soft glow;
+ * - a single glint of the same light sweeps across the mark (BrandCross `sheen`);
+ * - as the hero scrolls away the cross and its halo grow (a scroll timeline, on the compositor).
+ * One pass each, never a loop; at rest under reduced and calm motion, where the halo is a still glow.
+ */
+.hero-cross-halo {
+  position: absolute;
+  inset: -70%;
+  border-radius: 9999px;
+  background: radial-gradient(
+    closest-side,
+    rgb(253 230 138 / 0.34),
+    rgb(251 250 246 / 0.1) 46%,
+    transparent 72%
+  );
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.hero-cross-slot {
+  transform-origin: 50% 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-calm-motion]) .hero-cross-halo {
+    animation: hero-cross-halo-bloom 1.6s var(--ease-out-calm) 0.45s both;
+  }
+
+  html:not([data-calm-motion]) .brand-cross-sheen {
+    animation: hero-cross-sheen 1.3s cubic-bezier(0.45, 0, 0.2, 1) 0.95s both;
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    html:not([data-calm-motion]) .hero-cross-slot {
+      animation: hero-cross-grow linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 60svh;
+    }
+  }
+}
+
+@keyframes hero-cross-halo-bloom {
+  0% {
+    opacity: 0;
+    scale: 0.5;
+  }
+  45% {
+    opacity: 0.95;
+    scale: 1.12;
+  }
+}
+
+@keyframes hero-cross-sheen {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 96px 0;
+  }
+}
+
+/* Transform, not scale: the slot's own scale belongs to the phone wheel's easter egg. */
+@keyframes hero-cross-grow {
+  to {
+    transform: scale(1.5);
+  }
+}
+
+/*
+ * Phones: a type scale with real contrast between levels, the way current apps set it. Headings
+ * one step larger and tighter, supporting text one step smaller and closer set, so a screen reads
+ * as heading then text instead of one size of large print. Readers who want larger text still
+ * get it from the text-size control, which scales every step.
+ */
+@media (max-width: 639px) {
+  :root {
+    --text-page: clamp(1.75rem, 1.35rem + 2vw, 2rem);
+    --text-page--line-height: 1.08;
+    --text-section: clamp(1.625rem, 1.25rem + 1.9vw, 1.875rem);
+    --text-section--line-height: 1.1;
+    --text-section--letter-spacing: -0.03em;
+    --text-lead: 1.0625rem;
+    --text-lead--line-height: 1.5;
+    --text-body--line-height: 1.55;
+  }
+}
+
+/* Desktop: the headline leads the page, about 62px on a 1440x900 screen. The height term keeps
+   it in proportion on short laptops, so the whole hero still fits the first screen. */
 @media (min-width: 1024px) {
   .hero-title {
-    font-size: clamp(1.875rem, 1.35rem + 1.65vw, 2.625rem);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
+    font-size: clamp(2.5rem, min(1rem + 3.15vw, 6.2svh), 4.125rem);
+    line-height: 1.03;
+    letter-spacing: -0.035em;
   }
+}
+
+/* Phones and tablets: as the hero scrolls away the headline drifts up a little and dims, so the
+   next sheet takes over. A scroll timeline on the compositor; none under reduced or calm motion. */
+@supports (animation-timeline: scroll()) {
+  @media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
+    .hero-phone-drift {
+      animation: hero-phone-drift linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 65svh;
+    }
+  }
+}
+
+/* The headline rises a little and dissolves: slowly at first, so it stays readable while the
+   reader is still on it, then all the way, so nothing ghostly lingers under the next sheet. */
+@keyframes hero-phone-drift {
+  0% {
+    translate: 0 0;
+    opacity: 1;
+  }
+  35% {
+    opacity: 0.85;
+  }
+  100% {
+    translate: 0 -3rem;
+    opacity: 0;
+  }
+}
+
+/*
+ * Desktop: as the next sheet slides up over the hero (StackedSections), the hero's content rises a
+ * little and dissolves under the sheet's dimming, and the turning wheel behind it fades with it, so
+ * the hand-off reads as one soft dissolve rather than a grey-out. Same timeline as the sheet.
+ */
+@supports (animation-timeline: view()) {
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    html:not([data-calm-motion]):not([data-text-scale]) .hero .hero-grid,
+    html:not([data-calm-motion]):not([data-text-scale]) .hero .hero-wheel-dissolve {
+      animation: hero-sheet-dissolve linear both;
+      animation-timeline: --stack-sheet-2;
+      animation-range: entry 0% entry 90%;
+    }
+  }
+}
+
+@keyframes hero-sheet-dissolve {
+  0% {
+    opacity: 1;
+    translate: 0 0;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 -2rem;
+  }
+}
+
+html[data-calm-motion] .hero-phone-drift {
+  animation: none;
 }
 
 /* Focus ring for any ink or sapphire ground, where the sapphire ring is invisible. */
 .hero-focus:focus-visible {
   outline: 2px solid var(--color-paper);
   outline-offset: 3px;
+}
+
+/* Phones and tablets: the chooser as a bottom sheet (a native modal dialog) on the dimmed page.
+   The sheet is deep blue. Inside it the colour tokens the panel uses are re-pointed (ink reads as
+   paper, paper as the sheet's ground, sapphire and the 112 red as lighter tints), so every class
+   in the panel keeps its meaning and its contrast on the dark ground. */
+.triage-sheet {
+  --color-ink-950: #fbfaf6;
+  --color-paper: #0c1730;
+  --color-muted-foreground: #a9b3c6;
+  --color-sapphire: #a9c6f2;
+  --color-sapphire-light: #cfe0fa;
+  --color-sapphire-soft: rgb(251 250 246 / 0.1);
+  --color-primary: #ff9aa2;
+  --color-ring: #fbfaf6;
+  position: fixed;
+  inset: auto 0 0 0;
+  width: 100%;
+  max-width: 100%;
+  max-height: calc(100dvh - 2.5rem);
+  margin: 0;
+  padding: 0 0 env(safe-area-inset-bottom, 0px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Desktop: the same panel (paper card) in a centred modal dialog, opened from a hero route.
+   It settles up from 8px as it fades in; the page behind dims. */
+.triage-dialog {
+  width: min(468px, calc(100vw - 2rem));
+  max-width: none;
+  max-height: calc(100dvh - 3rem);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.triage-dialog::backdrop {
+  background: rgb(6 11 26 / 0.72);
+}
+
+.triage-dialog[open] {
+  animation: triage-dialog-in var(--dur-base) var(--ease-out-calm);
+}
+
+@keyframes triage-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .triage-dialog[open] {
+    animation: none;
+  }
+}
+
+html[data-calm-motion] .triage-dialog[open] {
+  animation: none;
+}
+
+.triage-sheet::backdrop {
+  background: rgb(6 11 26 / 0.7);
+}
+
+.triage-sheet[open] {
+  animation: triage-sheet-in var(--dur-slow) var(--ease-out-calm);
+}
+
+@keyframes triage-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .triage-sheet[open] {
+    animation: none;
+  }
+}
+
+html[data-calm-motion] .triage-sheet[open] {
+  animation: none;
 }
 
 /* Triage panel views share one grid cell; only the active one is visible.
@@ -527,7 +1056,13 @@ h2 {
 @media (max-width: 1023.98px) {
   body:has(.news-sheet) .report-issue-trigger,
   body:has(.news-sheet) .feedback-trigger,
+  body:has(.news-sheet) .feedback-edge-trigger,
   body:has(.news-sheet) .feedback-invite-card { display: none; }
+}
+
+body:has(#mobile-menu:not([inert])) .feedback-edge-trigger,
+body:has(dialog[open]) .feedback-edge-trigger {
+  display: none;
 }
 
 /* News modals (/stiri, county picker): rise from the bottom on phones, settle in place from sm up.
@@ -846,6 +1381,7 @@ h2 {
   footer,
   .report-issue-trigger,
   .feedback-trigger,
+  .feedback-edge-trigger,
   .feedback-invite-card,
   [data-bottom-bar],
   [data-sticky-actions] {
@@ -881,23 +1417,58 @@ h2 {
 
 
 /*
- * Height of the sticky site header (its 112 strip, 2.75rem, plus the bar, 3.5rem below md or
- * 4rem from md up, plus 1px border), for the first paint. The header publishes its measured
- * height over this once it runs, including after the 112 strip is closed.
+ * Height of the sticky site header (its 112 strip, 2.75rem + 1px border, plus the 4rem bar + 0.625rem
+ * top offset + 1px border), for the first paint, with an exact fallback when the 112 strip was already dismissed.
+ * The header publishes its subpixel-measured height over this once mounted.
  */
 :root:has(.site-header) {
-  --site-header-h: 6.3125rem;
+  --site-header-h: 7.5rem;
 }
 
 @media (min-width: 768px) {
   :root:has(.site-header) {
-    --site-header-h: 6.8125rem;
+    --site-header-h: 8rem;
   }
 }
 
-@media (min-width: 1280px) {
-  :root:has(.site-header) {
-    --site-header-h: 7rem;
+:root:has(.site-header:not(:has(.emergency-banner))) {
+  --site-header-h: 4.6875rem;
+}
+
+/* Hide the floating Google reCAPTCHA v3 badge on mobile and tablet (< lg) so it never covers bottom
+   dock controls while keeping the iframe mounted (`visibility: hidden`, not `display: none`) so
+   `grecaptcha.execute()` remains fully functional; `<RecaptchaNotice />` renders the required notice. */
+@media (max-width: 1023px) {
+  .grecaptcha-badge {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Compact mobile viewports: tighten hero vertical rhythm so the entire first screen (including
+   HeroDock) fits 100% of the viewport even while the 112 emergency banner is open. */
+@media (max-width: 1023px) and (max-height: 820px) {
+  .hero .hero-grid {
+    padding-block: 0.75rem;
+  }
+
+  .hero .hero-cross-slot {
+    margin-bottom: 0.75rem;
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 720px) {
+  .hero .hero-grid {
+    padding-block: 0.375rem;
+  }
+
+  .hero .hero-cross-slot {
+    margin-bottom: 0.5rem;
+  }
+
+  .hero .hero-title {
+    font-size: clamp(1.625rem, 0.85rem + 4.2vw, 2rem);
   }
 }
 
@@ -993,6 +1564,20 @@ html[data-text-scale="xl"] .site-header :is(button, a)[class~="w-11"] {
   min-width: 44px;
   height: 44px;
   min-height: 44px;
+}
+
+/* Larger comfort text makes the six desktop links too wide for 1024px, so the header keeps its
+   menu button and drawer until 1280px (Header.tsx closes the drawer from the same width). */
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  html:is([data-text-scale="large"], [data-text-scale="xl"]) .site-header [data-desktop-nav] {
+    display: none;
+  }
+  html:is([data-text-scale="large"], [data-text-scale="xl"]) .site-header [data-header-trigger] {
+    display: inline-flex;
+  }
+  html:is([data-text-scale="large"], [data-text-scale="xl"]) .site-header :is(#mobile-menu, [data-menu-scrim]) {
+    display: block;
+  }
 }
 
 @media (max-width: 359.98px) {
@@ -1664,4 +2249,184 @@ html[data-calm-motion] .capsule-panel[data-open="false"] {
    by SiteChrome). Keep `visibility`, not `display: none`, so the bot check keeps working. */
 .grecaptcha-badge {
   visibility: hidden;
+}
+
+/* ---------- Inclusive Accessibility Preferences (ComfortMenu) ---------- */
+
+/* High contrast: crisp ink and pure surfaces in light and dark modes, plus bolder focus outlines. */
+html[data-high-contrast]:not(.dark) {
+  --color-background: #ffffff;
+  --color-card: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-surface-card: #ffffff;
+  --color-surface-subtle: #e2e8f0;
+  --color-muted: #e2e8f0;
+  --color-sand: #f1f5f9;
+  --color-sand-line: #64748b;
+  --color-foreground: #000000;
+  --color-muted-foreground: #1e293b;
+  --color-border: #64748b;
+  --color-border-subtle: #94a3b8;
+  --color-border-control: #0f172a;
+  --color-ink-950: #020617;
+  --color-sapphire: #0f2547;
+  --color-sapphire-light: #1e3a6d;
+  --color-sapphire-soft: #dbeafe;
+  --color-sapphire-border: #1e40af;
+  --color-ring: #0f2547;
+  --color-primary: #9e1b26;
+  --color-primary-hover: #7f151e;
+  --color-amber-care: #7c2d12;
+  --color-live-sage: #047857;
+}
+
+html[data-high-contrast].dark {
+  --color-background: #020617;
+  --color-card: #020617;
+  --color-surface-elevated: #0f172a;
+  --color-surface-card: #0f172a;
+  --color-surface-subtle: #1e293b;
+  --color-muted: #1e293b;
+  --color-foreground: #ffffff;
+  --color-paper: #ffffff;
+  --color-mist: #e2e8f0;
+  --color-muted-foreground: #e2e8f0;
+  --color-border: #94a3b8;
+  --color-border-subtle: #64748b;
+  --color-border-control: #f8fafc;
+  --color-ink-950: #020617;
+  --color-ink-900: #0f172a;
+  --color-ink-800: #1e293b;
+  --color-sapphire: #1e40af;
+  --color-sapphire-light: #2563eb;
+  --color-sapphire-soft: #1e293b;
+  --color-sapphire-border: #bfdbfe;
+  --color-ring: #f8fafc;
+}
+
+html[data-high-contrast] :is(footer, .bg-ink-950, .bg-ink-900, .dark, .phone-sheet) {
+  --color-ink-950: #020617;
+  --color-ink-900: #0f172a;
+  --color-ink-800: #1e293b;
+  --color-foreground: #ffffff;
+  --color-muted-foreground: #f1f5f9;
+  --color-paper: #ffffff;
+  --color-mist: #f1f5f9;
+  --color-border: #94a3b8;
+  --color-border-subtle: #64748b;
+  --color-border-control: #f8fafc;
+  --color-ring: #f8fafc;
+}
+
+html[data-high-contrast] :focus-visible {
+  outline: 3px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+html[data-high-contrast] [tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
+/* Underline links: clear persistent link indicator across prose and capsule navigation. */
+html[data-underline-links] a[href] {
+  text-decoration-line: underline !important;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: max(1.5px, 0.09em);
+  text-decoration-skip-ink: auto;
+}
+
+html[data-underline-links] a[href][data-capsule-item] > span:not(.sr-only),
+html[data-underline-links] a[href].tab-ink > span:not(.sr-only) {
+  text-decoration-line: underline !important;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: max(1.5px, 0.09em);
+  text-decoration-skip-ink: auto;
+}
+
+html[data-underline-links] a[href] .link-draw,
+html[data-underline-links] a[href].link-draw {
+  background-image: none;
+}
+
+/* Grey colours: the whole page in shades of grey, for people who find colour tiring or hard to tell apart.
+   On the root element a filter does not trap fixed-position headers, sheets or dialogs. */
+html[data-grayscale] {
+  filter: grayscale(1);
+}
+
+/* Text size slider (Accessibility menu): a 44px-tall touch target with a 6px track and a 26px thumb.
+   --fill is the share of the track left of the thumb, set inline from the current step. */
+.comfort-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2.75rem;
+  background: transparent;
+  cursor: pointer;
+  --track-on: var(--color-sapphire);
+  --track-off: color-mix(in oklab, var(--color-border-control) 45%, transparent);
+}
+.dark .comfort-slider {
+  --track-on: var(--color-sapphire-border);
+  --track-off: rgb(255 255 255 / 0.22);
+}
+.comfort-slider:focus-visible {
+  outline: none;
+}
+.comfort-slider::-webkit-slider-runnable-track {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: linear-gradient(to right, var(--track-on) var(--fill, 0%), var(--track-off) var(--fill, 0%));
+}
+.comfort-slider::-moz-range-track {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: var(--track-off);
+}
+.comfort-slider::-moz-range-progress {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: var(--track-on);
+}
+.comfort-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.625rem;
+  height: 1.625rem;
+  margin-top: -0.625rem;
+  border-radius: 9999px;
+  border: 3px solid #fff;
+  background: var(--track-on);
+  box-shadow: 0 1px 4px rgb(2 6 23 / 0.3);
+}
+.comfort-slider::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  border: 3px solid #fff;
+  background: var(--track-on);
+  box-shadow: 0 1px 4px rgb(2 6 23 / 0.3);
+}
+.comfort-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--color-background), 0 0 0 5px var(--color-ring, var(--track-on));
+}
+.comfort-slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 3px var(--color-background), 0 0 0 5px var(--color-ring, var(--track-on));
+}
+
+/* Wider text spacing: WCAG 2.2 SC 1.4.12 readability spacing while keeping single-line buttons compact. */
+html[data-wide-spacing] :where(p, li, dd, dt, blockquote, label, td, th, .prose) {
+  letter-spacing: 0.035em;
+  word-spacing: 0.12em;
+  line-height: 1.75;
+}
+
+html[data-wide-spacing] :where(h1, h2, h3, h4) {
+  letter-spacing: 0.015em;
+  word-spacing: 0.06em;
+}
+
+html[data-wide-spacing] :where(button, a, [role="button"], [role="radio"], [role="switch"], [role="tab"]).whitespace-nowrap,
+html[data-wide-spacing] :where(button, a, [role="button"], [role="radio"], [role="switch"], [role="tab"]) .whitespace-nowrap {
+  letter-spacing: normal;
+  word-spacing: normal;
 }

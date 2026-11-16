@@ -1,4 +1,6 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   INNER_STARS,
   OUTER_STARS,
@@ -16,16 +18,39 @@ import styles from "./WheelBackdrop.module.css";
  * The topic wheel as decoration on an ink ground: paper-white and faint, turning slowly.
  * In the footer the eight topic icons ride the outer ring and stay upright, as outlines only:
  * they are not buttons. The hero shows the stars and the chakra alone. Put it inside a positioned element that makes its own stacking context.
- * - `hero`: on phones and tablets it sits in the right corridor of the ink ground below the photo
- *   band, keeping the chakra whole and clear of the photograph and CTA; on desktop it is larger
- *   than the hero and centred behind the triage panel, fading out toward the headline.
- * - `footer`: a small wheel on the left, behind the brand block.
+ * - `hero`: desktop only (phones and tablets draw their own wheel in HeroDock); larger than the
+ *   hero and centred behind the headline on the left, fading out before the quick options.
+ * - `footer`: a small wheel behind the footer's content: beside the brand block on desktop, centred
+ *   behind the link columns on phones and tablets.
  * Purely decorative: hidden from assistive technology, never clickable, still under reduced motion.
  */
 export function WheelBackdrop({ placement }: { placement: "hero" | "footer" }) {
   const idPrefix = `${placement}-htw`;
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const [offscreen, setOffscreen] = useState(false);
+
+  useEffect(() => {
+    const node = backdropRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        setOffscreen(!entry.isIntersecting);
+      },
+      { rootMargin: "120px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div aria-hidden="true" className={`${styles.backdrop} ${styles[placement]}`}>
+    <div
+      ref={backdropRef}
+      aria-hidden="true"
+      data-offscreen={offscreen ? "" : undefined}
+      className={`${styles.backdrop} ${styles[placement]}`}
+    >
       <div className={styles.wheel}>
         <div className={`${styles.layer} ${styles.outer}`}>
           <svg className={styles.layer} viewBox={WHEEL_VIEW_BOX} focusable="false">

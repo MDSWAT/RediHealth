@@ -26,7 +26,6 @@ export async function generateMetadata(): Promise<Metadata> {
 const copy: Record<
   Lang,
   {
-    stepsBadge: string;
     stepsTitle: string;
     stepsSubtitle: string;
     step1Title: string;
@@ -35,6 +34,14 @@ const copy: Record<
     step2Desc: string;
     step3Title: string;
     step3Desc: string;
+    previewHeading: string;
+    smsSender: string;
+    smsTime: string;
+    smsBody: string;
+    smsLinkText: string;
+    adviceTitle: string;
+    adviceDoctor: string;
+    adviceItems: [string, string, string];
     heading: string;
     desc: string;
     privacyTitle: string;
@@ -42,15 +49,26 @@ const copy: Record<
   }
 > = {
   ru: {
-    stepsBadge: "Три простых шага",
     stepsTitle: "Как это работает",
-    stepsSubtitle: "Банковская карта, страховой полис и приложение не нужны.",
-    step1Title: "Выберите время звонка",
-    step1Desc: "Поговорите с дежурным врачом сейчас или запишитесь на удобное время.",
-    step2Title: "Получите ссылку по SMS",
-    step2Desc: "Нажмите на ссылку — звонок откроется в браузере.",
-    step3Title: "Получите рекомендации в письменном виде",
-    step3Desc: "После звонка врач пришлёт рекомендации. Они останутся в вашем профиле и придут по SMS.",
+    stepsSubtitle: "Бесплатно для всех, без банковской карты, страхового полиса и установки приложения.",
+    step1Title: "Поговорите сейчас или выберите время",
+    step1Desc: "Зайдите сразу в зал ожидания дежурного врача или запишитесь на 20-минутный звонок для себя или близкого.",
+    step2Title: "Откройте ссылку из SMS в браузере",
+    step2Desc: "Перед звонком мы пришлём прямую ссылку по SMS. Нажмите на неё на любом телефоне, без регистрации.",
+    step3Title: "Сохраните письменные рекомендации",
+    step3Desc: "После звонка врач отправит следующие шаги по SMS и сохранит их в вашем профиле.",
+    previewHeading: "Пример SMS и письменных рекомендаций",
+    smsSender: "SMS от RediHealth",
+    smsTime: "14:15",
+    smsBody: "Звонок с врачом Еленой Попеску начнётся в 14:20. Откройте в браузере:",
+    smsLinkText: "redihealth.org/call",
+    adviceTitle: "Письменные рекомендации после звонка",
+    adviceDoctor: "Д-р Елена Попеску",
+    adviceItems: [
+      "Отдыхайте сегодня и регулярно пейте воду или тёплый чай.",
+      "Парацетамол 500 мг каждые 6–8 часов при температуре выше 38 °C.",
+      "Позвоните снова или обратитесь в клинику, если жар держится дольше 3 дней.",
+    ],
     heading: "Лицензированные врачи",
     desc: "Врачи RediHealth — семейные врачи, педиатры и терапевты. Они работают как волонтёры и понятно объясняют, что делать.",
     privacyTitle: "Всё сказанное остаётся между вами и врачом",
@@ -58,90 +76,156 @@ const copy: Record<
   },
 
   ro: {
-    stepsBadge: "Trei pași simpli",
     stepsTitle: "Cum funcționează",
-    stepsSubtitle: "Nu ai nevoie de cont bancar, card de sănătate sau aplicație.",
-    step1Title: "Alegi când vorbești",
-    step1Desc: "Intri acum la medicul de gardă sau îți alegi o oră potrivită.",
-    step2Title: "Primești un link prin SMS",
-    step2Desc: "Apeși pe link. Apelul se deschide în browser.",
-    step3Title: "Primești sfaturile în scris",
-    step3Desc: "După apel, medicul îți trimite ce ai de făcut. Găsești totul în cont și prin SMS.",
+    stepsSubtitle: "Gratuit pentru oricine, fără cont bancar, card de sănătate sau aplicație de instalat.",
+    step1Title: "Vorbești acum sau alegi o oră",
+    step1Desc: "Intri în sala de așteptare a medicului de gardă sau programezi un apel de 20 de minute, pentru tine sau pentru familie.",
+    step2Title: "Deschizi linkul primit prin SMS",
+    step2Desc: "Îți trimitem un link direct înainte de apel. Apeși pe el din browser, pe orice telefon, fără cont.",
+    step3Title: "Păstrezi sfaturile în scris",
+    step3Desc: "După apel, medicul îți trimite pașii următori prin SMS și îi salvează în contul tău.",
+    previewHeading: "Exemplu de SMS și sfaturi scrise",
+    smsSender: "SMS de la RediHealth",
+    smsTime: "14:15",
+    smsBody: "Apelul cu dr. Elena Popescu începe la 14:20. Deschide în browser:",
+    smsLinkText: "redihealth.org/apel",
+    adviceTitle: "Sfaturi scrise după apel",
+    adviceDoctor: "Dr. Elena Popescu",
+    adviceItems: [
+      "Odihnește-te astăzi și bea apă sau ceai cald des.",
+      "Paracetamol 500 mg la nevoie, la 6–8 ore, dacă febra depășește 38 °C.",
+      "Revino la apel sau la cabinet dacă febra ține mai mult de 3 zile.",
+    ],
     heading: "Medici cu drept de practică",
     desc: "Medicii RediHealth sunt medici de familie, pediatri sau medici de medicină internă. Sunt voluntari și îți explică pe înțeles ce ai de făcut.",
     privacyTitle: "Ce spui rămâne între tine și medic",
     privacyDesc: "Apelurile sunt criptate.",
   },
   en: {
-    stepsBadge: "Three simple steps",
     stepsTitle: "How it works",
-    stepsSubtitle: "No bank account, health card or app needed.",
-    step1Title: "Choose when to talk",
-    step1Desc: "Talk to the on-call doctor now or book a time that suits you.",
-    step2Title: "Get a link by SMS",
-    step2Desc: "Tap the link. The call opens in your browser.",
-    step3Title: "Get the advice in writing",
-    step3Desc: "After the call, the doctor sends your next steps. Find them in your account and by SMS.",
+    stepsSubtitle: "Free for anyone, with no bank account, health card or app to install.",
+    step1Title: "Talk now or choose a time",
+    step1Desc: "Enter the on\u2011call waiting room right away or book a 20\u2011minute call for yourself or someone in your family.",
+    step2Title: "Open the SMS link in your browser",
+    step2Desc: "We text you a direct link before the call. Tap it on any phone, with no account needed.",
+    step3Title: "Keep the advice in writing",
+    step3Desc: "After the call, the doctor sends your next steps by SMS and saves them in your account.",
+    previewHeading: "Sample SMS and written advice",
+    smsSender: "SMS from RediHealth",
+    smsTime: "14:15",
+    smsBody: "Your call with Dr. Elena Popescu starts at 14:20. Open in your browser:",
+    smsLinkText: "redihealth.org/call",
+    adviceTitle: "Written advice after the call",
+    adviceDoctor: "Dr. Elena Popescu",
+    adviceItems: [
+      "Rest today and drink water or warm tea regularly.",
+      "Paracetamol 500 mg every 6 to 8 hours if needed for fever over 38 °C.",
+      "Call again or visit a clinic if fever lasts longer than 3 days.",
+    ],
     heading: "Licensed doctors",
     desc: "RediHealth doctors are family doctors, paediatricians or internal medicine doctors. They are volunteers and explain clearly what to do.",
     privacyTitle: "What you say stays between you and the doctor",
     privacyDesc: "Calls are encrypted.",
   },
   sq: {
-    stepsBadge: "Tre hapa të thjeshtë",
     stepsTitle: "Si funksionon",
-    stepsSubtitle: "Nuk të duhet llogari bankare, kartë shëndetësore apo aplikacion.",
-    step1Title: "Zgjidh kur flet",
-    step1Desc: "Fol tani me mjekun kujdestar ose zgjidh një orar që të përshtatet.",
-    step2Title: "Merr një lidhje me SMS",
-    step2Desc: "Shtyp lidhjen. Thirrja hapet në shfletues.",
-    step3Title: "Merr këshillat me shkrim",
-    step3Desc: "Pas thirrjes, mjeku të dërgon hapat e radhës. I gjen në llogari dhe me SMS.",
+    stepsSubtitle: "Falas për këdo, pa llogari bankare, kartë shëndetësore apo aplikacion për t'u instaluar.",
+    step1Title: "Flit tani ose zgjidh një orar",
+    step1Desc: "Hyr menjëherë në dhomën e pritjes së mjekut kujdestar ose cakto një thirrje 20\u2011minutëshe për vete apo familjen.",
+    step2Title: "Hap lidhjen me SMS në shfletues",
+    step2Desc: "Të dërgojmë një lidhje të drejtpërdrejtë para thirrjes. Shtype në çdo telefon, pa pasur nevojë për llogari.",
+    step3Title: "Mbaji këshillat me shkrim",
+    step3Desc: "Pas thirrjes, mjeku të dërgon hapat e radhës me SMS dhe i ruan në llogarinë tënde.",
+    previewHeading: "Shembull SMS dhe këshillash me shkrim",
+    smsSender: "SMS nga RediHealth",
+    smsTime: "14:15",
+    smsBody: "Thirrja me dr. Elena Popescu fillon në 14:20. Hape në shfletues:",
+    smsLinkText: "redihealth.org/call",
+    adviceTitle: "Këshilla me shkrim pas thirrjes",
+    adviceDoctor: "Dr. Elena Popescu",
+    adviceItems: [
+      "Pusho sot dhe pi shpesh ujë ose çaj të ngrohtë.",
+      "Paracetamol 500 mg çdo 6 deri në 8 orë nëse nevojitet për temperaturë mbi 38 °C.",
+      "Telefono përsëri ose shko në klinikë nëse temperatura zgjat më shumë se 3 ditë.",
+    ],
     heading: "Mjekë me licencë",
     desc: "Mjekët e RediHealth janë mjekë familjeje, pediatër ose mjekë të sëmundjeve të brendshme. Janë vullnetarë dhe të shpjegojnë qartë çfarë të bësh.",
     privacyTitle: "Çfarë thua mbetet mes teje dhe mjekut",
     privacyDesc: "Thirrjet janë të enkriptuara.",
   },
   it: {
-    stepsBadge: "Tre semplici passi",
     stepsTitle: "Come funziona",
-    stepsSubtitle: "Non ti servono conto in banca, tessera sanitaria o app.",
-    step1Title: "Scegli quando parlare",
-    step1Desc: "Parla subito con il medico di guardia o prenota un orario che ti va bene.",
-    step2Title: "Ricevi un link via SMS",
-    step2Desc: "Tocca il link. La chiamata si apre nel browser.",
-    step3Title: "Ricevi i consigli per iscritto",
-    step3Desc: "Dopo la chiamata, il medico ti manda cosa fare. Lo trovi nel tuo account e via SMS.",
+    stepsSubtitle: "Gratuito per tutti, senza conto in banca, tessera sanitaria né app da installare.",
+    step1Title: "Parla ora o scegli un orario",
+    step1Desc: "Entra subito nella sala d'attesa del medico di guardia o prenota una chiamata di 20 minuti per te o un familiare.",
+    step2Title: "Apri il link SMS nel browser",
+    step2Desc: "Prima della chiamata ti mandiamo un link diretto. Toccalo su qualsiasi telefono, senza creare un account.",
+    step3Title: "Conserva i consigli per iscritto",
+    step3Desc: "Dopo la chiamata, il medico ti invia i prossimi passi via SMS e li salva nel tuo account.",
+    previewHeading: "Esempio di SMS e consigli scritti",
+    smsSender: "SMS da RediHealth",
+    smsTime: "14:15",
+    smsBody: "La chiamata con la dott.ssa Elena Popescu inizia alle 14:20. Apri nel browser:",
+    smsLinkText: "redihealth.org/call",
+    adviceTitle: "Consigli scritti dopo la chiamata",
+    adviceDoctor: "Dott.ssa Elena Popescu",
+    adviceItems: [
+      "Riposa oggi e bevi acqua o tè caldo con regolarità.",
+      "Paracetamolo 500 mg ogni 6–8 ore se serve per febbre sopra i 38 °C.",
+      "Richiama o vai in ambulatorio se la febbre dura più di 3 giorni.",
+    ],
     heading: "Medici abilitati",
     desc: "I medici di RediHealth sono medici di famiglia, pediatri o internisti. Sono volontari e ti spiegano con chiarezza cosa fare.",
     privacyTitle: "Quello che dici resta tra te e il medico",
     privacyDesc: "Le chiamate sono criptate.",
   },
   hr: {
-    stepsBadge: "Tri jednostavna koraka",
     stepsTitle: "Kako funkcionira",
-    stepsSubtitle: "Ne trebaš bankovni račun, zdravstvenu iskaznicu HZZO ni aplikaciju.",
-    step1Title: "Odaberi kada želiš razgovarati",
-    step1Desc: "Javi se odmah dežurnom liječniku ili rezerviraj termin koji ti odgovara.",
-    step2Title: "Primi poveznicu SMS porukom",
-    step2Desc: "Dodirni poveznicu. Poziv se otvara u tvojem pregledniku.",
-    step3Title: "Primi pisane upute",
-    step3Desc: "Nakon poziva liječnik ti šalje upute što dalje. Sve pronalaziš na svojem računu i putem SMS poruke.",
+    stepsSubtitle: "Besplatno za svakoga, bez bankovnog računa, zdravstvene iskaznice HZZO ili aplikacije za preuzimanje.",
+    step1Title: "Razgovaraj sada ili odaberi termin",
+    step1Desc: "Uđi odmah u čekaonicu dežurnog liječnika ili rezerviraj 20\u2011minutni poziv za sebe ili člana obitelji.",
+    step2Title: "Otvori SMS poveznicu u pregledniku",
+    step2Desc: "Prije poziva šaljemo ti izravnu poveznicu. Dodirni je na bilo kojem telefonu, bez prijave ili računa.",
+    step3Title: "Sačuvaj pisane upute liječnika",
+    step3Desc: "Nakon poziva liječnik ti šalje sljedeće korake SMS porukom i sprema ih na tvoj račun.",
+    previewHeading: "Primjer SMS poruke i pisanih uputa",
+    smsSender: "SMS od RediHealth",
+    smsTime: "14:15",
+    smsBody: "Poziv s dr. Elenom Popescu počinje u 14:20. Otvori u pregledniku:",
+    smsLinkText: "redihealth.org/call",
+    adviceTitle: "Pisani savjet nakon poziva",
+    adviceDoctor: "Dr. Elena Popescu",
+    adviceItems: [
+      "Odmori se danas i redovito pij vodu ili topli čaj.",
+      "Paracetamol 500 mg svakih 6 do 8 sati po potrebi za temperaturu iznad 38 °C.",
+      "Javi se ponovno ili posjeti ambulantu ako temperatura traje dulje od 3 dana.",
+    ],
     heading: "Licencirani liječnici",
     desc: "Liječnici na platformi RediHealth su obiteljski liječnici, pedijatri i internisti. Rade volonterski i jasno objašnjavaju što dalje.",
     privacyTitle: "Ono što kažeš ostaje između tebe i liječnika",
     privacyDesc: "Pozivi su šifrirani.",
   },
   rom: {
-    stepsBadge: "Trin lokhe pash",
     stepsTitle: "Sar kerel buchi",
-    stepsSubtitle: "Na trebul tuke bankako konto, sastipnaski karta vay aplikacia.",
-    step1Title: "Alosar kana kames te des svato",
-    step1Desc: "De svato akana e doktoresa kay si pe buchi vay alosar vrama kay avel tuke mishto.",
-    step2Title: "Le ekh linko katar SMS",
-    step2Desc: "Azba o linko. O svato putrel pes and-o brauzero.",
-    step3Title: "Le e sikavimata lekhavde",
-    step3Desc: "Palo svato, o doktori bichhalel tuke so te keres may dur. Arakhes sa ande cho konto thaj katar SMS.",
+    stepsSubtitle: "Bi lovesko vash sakon, bi bankake kontosko, sastipnaske kartako vay aplikaciyako te thos.",
+    step1Title: "De svato akana vay alosar chaso",
+    step1Desc: "Khuv akana and-i azhukeripnaski soba e doktoreski vay alosar ekh svato 20 minutengo vash tuke vay chi familiya.",
+    step2Title: "Putar o linko katar SMS and-o brauzero",
+    step2Desc: "Anglal o svato bichhalas tuke direktno linko. Azba les pe sako telefono, bi kontosko.",
+    step3Title: "Inker e sikavimata lekhavde",
+    step3Desc: "Palo svato, o doktori bichhalel tuke e pash may dur katar SMS thaj garavel len ande cho konto.",
+    previewHeading: "Misal SMS thaj lekhavde sikavimata",
+    smsSender: "SMS katar RediHealth",
+    smsTime: "14:15",
+    smsBody: "O svato e dr. Elena Popescu shirdel ko 14:20. Putar and-o brauzero:",
+    smsLinkText: "redihealth.org/call",
+    adviceTitle: "Lekhavde sikavimata palo svato",
+    adviceDoctor: "Dr. Elena Popescu",
+    adviceItems: [
+      "Hodisar tut avdive thaj pi may but pani vay tato chayo.",
+      "Paracetamol 500 mg sako 6 zhi ko 8 chasurya kana o tatipen nakhel 38 °C.",
+      "De svato palem vay zha ki klinika kana o tatipen inkerel may but katar 3 divesa.",
+    ],
     heading: "Doktorya licenciyasa",
     desc: "E doktorya ko RediHealth si familiyake doktorya, chhavorenge doktorya vay doktorya vash andrutni medicina. Von keren buchi bi lovesko thaj phenen tuke chaches so te keres.",
     privacyTitle: "So phenes achel mashkar tute thaj o doktori",
@@ -155,39 +239,79 @@ export default async function MedicOnlinePage() {
 
   return (
     <main id="main-content" className="min-h-screen bg-background">
-      {/* The two ways to talk to a doctor, with the pharmacy as the last row of the same surface. */}
+      {/* The two ways to talk to a doctor, with the pharmacy as a single quiet line below. */}
       <MedicOnlineHero />
 
-      {/* How it works: editorial 3-step sequence with tactile step cards */}
-      <section aria-labelledby="medic-steps-heading" className="border-b border-border bg-card py-14 sm:py-20">
+      {/* How it works: asymmetric 2-column guide paired with an authentic SMS and written advice preview */}
+      <section aria-labelledby="medic-steps-heading" className="border-b border-border bg-card py-12 sm:py-16">
         <Container>
-          <div className="max-w-2xl">
-            <h2 id="medic-steps-heading" className="text-balance text-section font-semibold text-foreground">
-              {c.stepsTitle}
-            </h2>
-            <p className="mt-2 text-body text-muted-foreground">{c.stepsSubtitle}</p>
-          </div>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-start lg:gap-12 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,28rem)]">
+            <div className="min-w-0">
+              <h2 id="medic-steps-heading" className="text-balance text-section font-semibold text-foreground">
+                {c.stepsTitle}
+              </h2>
+              <p className="mt-2 max-w-(--measure-lead) text-pretty text-body text-muted-foreground">
+                {c.stepsSubtitle}
+              </p>
 
-          <ol className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
-            {[
-              { num: "01", title: c.step1Title, desc: c.step1Desc },
-              { num: "02", title: c.step2Title, desc: c.step2Desc },
-              { num: "03", title: c.step3Title, desc: c.step3Desc },
-            ].map(({ num, title, desc }) => (
-              <li
-                key={title}
-                className="rounded-xl border border-border bg-background p-6"
-              >
-                <span className="text-meta font-semibold tabular-nums text-sapphire">{num}</span>
-                <h3 className="mt-3 text-balance text-title font-semibold text-foreground">
-                  {title}
+              <ol className="mt-8 divide-y divide-border border-t border-border">
+                {[
+                  { title: c.step1Title, desc: c.step1Desc },
+                  { title: c.step2Title, desc: c.step2Desc },
+                  { title: c.step3Title, desc: c.step3Desc },
+                ].map(({ title, desc }) => (
+                  <li key={title} className="py-5 first:pt-5 last:pb-0">
+                    <h3 className="text-balance text-title font-semibold text-foreground">
+                      {title}
+                    </h3>
+                    <p className="mt-1.5 max-w-(--measure-reading) text-pretty text-body text-muted-foreground">
+                      {desc}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <aside
+              aria-label={c.previewHeading}
+              className="min-w-0 divide-y divide-border rounded-xl border border-border bg-background"
+            >
+              <div className="px-5 py-4 sm:px-6">
+                <h3 className="text-balance text-title font-semibold text-foreground">
+                  {c.previewHeading}
                 </h3>
-                <p className="mt-2 text-body text-muted-foreground">
-                  {desc}
+              </div>
+
+              <div className="px-5 py-5 sm:px-6">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <p className="text-meta font-semibold text-foreground">{c.smsSender}</p>
+                  <span className="text-meta tabular-nums text-muted-foreground">{c.smsTime}</span>
+                </div>
+                <p className="mt-2 text-pretty text-body text-foreground">
+                  {c.smsBody}{" "}
+                  <span className="break-all font-mono text-meta font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 dark:text-sapphire-border dark:decoration-sapphire-border/40">
+                    {c.smsLinkText}
+                  </span>
                 </p>
-              </li>
-            ))}
-          </ol>
+              </div>
+
+              <div className="px-5 py-5 sm:px-6">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <p className="text-meta font-semibold text-sapphire dark:text-sapphire-border">
+                    {c.adviceTitle}
+                  </p>
+                  <span className="text-meta text-muted-foreground">{c.adviceDoctor}</span>
+                </div>
+                <ul className="mt-3 space-y-2 border-l border-border pl-3.5 text-body text-foreground">
+                  {c.adviceItems.map((item) => (
+                    <li key={item} className="text-pretty">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          </div>
         </Container>
       </section>
 

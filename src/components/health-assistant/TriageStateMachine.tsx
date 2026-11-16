@@ -1,13 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useReducer, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { ArrowLeftIcon } from "@/components/ui/icons";
 import { TriageDecisionTree } from "@/components/health-assistant/TriageDecisionTree";
 import { ReadingLevelSwitcher } from "@/components/health-information/ReadingLevelSwitcher";
 import { PathwayLearn } from "@/components/health-assistant/pathways/PathwayLearn";
 import { PathwayRisk } from "@/components/health-assistant/pathways/PathwayRisk";
-import { PathwaySymptomsEmergencyGate } from "@/components/health-assistant/pathways/PathwaySymptomsEmergencyGate";
-import { PathwaySymptomsMild } from "@/components/health-assistant/pathways/PathwaySymptomsMild";
 import { PathwayPrescription } from "@/components/health-assistant/pathways/PathwayPrescription";
 import { PathwayNavigation } from "@/components/health-assistant/pathways/PathwayNavigation";
 import {
@@ -18,12 +17,14 @@ import {
 } from "@/components/health-assistant/assistant-copy";
 import { classifyLocalIntent } from "@/components/health-assistant/intent-keywords";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { withLangPrefix } from "@/lib/i18n/routing";
 import {
   getCalmMotionSnapshot,
   getReadingLevelSnapshot,
   subscribeComfort,
 } from "@/lib/comfort-preferences";
 import {
+  classifyIntentToPathway,
   initialTriageState,
   PathwayId,
   triageReducer,
@@ -112,15 +113,32 @@ export function TriageStateMachine({
 }: TriageStateMachineProps) {
   const copy = useAssistantCopy();
   const { lang } = useLanguage();
+  const router = useRouter();
+  // "I don't feel well" opens the 3D body symptom tool. The danger signs and 112 are already in the
+  // site-wide top bar, so the assistant does not ask about them again first.
+  const opensBodyTool = initialPathway === "symptoms";
   const [state, dispatch] = useReducer(enhancedTriageReducer, {
     ...initialTriageState,
     // Plain language is the default reading level, as on the topic pages.
     plainLanguage: true,
-    step: initialPathway ? 2 : 1,
-    pathway: initialPathway || null,
+    step: initialPathway && !opensBodyTool ? 2 : 1,
+    pathway: (!opensBodyTool && initialPathway) || null,
     campaign: initialCampaign,
     entry: initialEntry,
   });
+
+  const openBodyTool = useCallback(
+    (replace = false) => {
+      const href = withLangPrefix("/health-check", lang);
+      if (replace) router.replace(href);
+      else router.push(href);
+    },
+    [lang, router],
+  );
+
+  useEffect(() => {
+    if (opensBodyTool) openBodyTool(true);
+  }, [opensBodyTool, openBodyTool]);
 
   const totalSteps = state.pathway === "symptoms" ? 4 : 3;
   const displayStep = computeDisplayStep(state);
@@ -457,11 +475,16 @@ export function TriageStateMachine({
         >
         {state.step === 1 && (
           <TriageDecisionTree
-            onSelectPathway={(pathway) => dispatch({ type: "SELECT_PATHWAY", pathway })}
+            onSelectPathway={(pathway) => {
+              if (pathway === "symptoms") openBodyTool();
+              else dispatch({ type: "SELECT_PATHWAY", pathway });
+            }}
             onSubmitIntentQuery={(query) => {
               // English, Albanian and Italian text is routed here first; the shared classifier is Romanian-only.
               const localPathway = classifyLocalIntent(query, lang);
-              if (localPathway) {
+              if ((localPathway ?? classifyIntentToPathway(query)) === "symptoms") {
+                openBodyTool();
+              } else if (localPathway) {
                 dispatch({ type: "SUBMIT_INTENT_SEARCH", query });
                 dispatch({ type: "SELECT_PATHWAY", pathway: localPathway });
               } else {
@@ -489,26 +512,6 @@ export function TriageStateMachine({
             onQuickResolve={() => dispatch({ type: "COMPLETE_RISK_ASSESSMENT" })}
             plainLanguage={state.plainLanguage}
           />
-        )}
-
-        {state.step >= 2 && state.pathway === "symptoms" && (
-          <>
-            {state.step === 2 && state.symptomData.hasEmergencySigns === undefined ? (
-              <PathwaySymptomsEmergencyGate
-                onSelectEmergency={() => dispatch({ type: "SET_SYMPTOM_EMERGENCY", hasEmergency: true })}
-                onSelectMild={() => dispatch({ type: "SET_SYMPTOM_EMERGENCY", hasEmergency: false })}
-                plainLanguage={state.plainLanguage}
-              />
-            ) : (
-              <PathwaySymptomsMild
-                step={state.step as 2 | 3}
-                hasEmergencySigns={state.symptomData.hasEmergencySigns}
-                mildCategory={state.symptomData.mildCategory}
-                onSelectCategory={(category) => dispatch({ type: "SET_MILD_CATEGORY", category })}
-                plainLanguage={state.plainLanguage}
-              />
-            )}
-          </>
         )}
 
         {state.step >= 2 && state.pathway === "prescription" && (

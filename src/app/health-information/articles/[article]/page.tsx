@@ -53,12 +53,24 @@ export default async function HealthArticlePage({ params }: Props) {
   const wordCount = narrationText.trim().split(/\s+/).length;
   const readMinutes = Math.max(3, Math.round(wordCount / 180));
   const audioMinutes = Math.max(3, Math.round(wordCount / 145));
+  const toc = {
+    title: copy.contents,
+    ariaLabel: copy.contents,
+    items: [
+      ...article.sections.map((section, i) => ({
+        href: `#article-section-${i}`,
+        label: section.heading,
+      })),
+      { href: "#article-examples", label: copy.examples },
+      { href: "#article-questions", label: copy.questions },
+    ],
+  };
 
   return (
     <main id="main-content" className="flex-1">
       {/* Long read: a hairline under the header fills as the page is read. */}
       <div className="read-progress" aria-hidden="true" />
-      <HealthArticleShell>
+      <HealthArticleShell toc={toc}>
         <HealthArticleBackLink
           href={withLangPrefix("/health-information#health-articles", lang)}
           label={copy.back}
@@ -88,18 +100,7 @@ export default async function HealthArticlePage({ params }: Props) {
             }
           />
 
-          <HealthArticleToc
-            title={copy.contents}
-            ariaLabel={copy.contents}
-            items={[
-              ...article.sections.map((section, i) => ({
-                href: `#article-section-${i}`,
-                label: section.heading,
-              })),
-              { href: "#article-examples", label: copy.examples },
-              { href: "#article-questions", label: copy.questions },
-            ]}
-          />
+          <HealthArticleToc {...toc} className="lg:hidden" />
 
           {article.sections.map((section, i) => (
             <section key={i} aria-labelledby={`article-section-${i}`} className="mt-10">

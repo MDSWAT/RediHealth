@@ -190,7 +190,7 @@ export function BookingSmsConfirmation({
   };
 
   return (
-    <div className="fhs-enter w-full rounded-xl border border-border bg-card p-6 sm:p-8">
+    <div className="w-full rounded-xl border border-border bg-card p-6 sm:p-8">
       <h2 ref={headingRef} tabIndex={-1} className="text-balance text-section font-semibold text-foreground focus:outline-none">{copy.title}</h2>
 
       <p className="mt-2 text-body font-medium text-foreground tabular-nums">

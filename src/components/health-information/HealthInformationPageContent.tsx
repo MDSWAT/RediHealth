@@ -7,6 +7,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
+import { useReadingLevel } from "@/lib/comfort-preferences";
 import { ArticleListenButton } from "./ArticleListenButton";
 import { HealthInformationTopicGrid } from "./HealthInformationTopicGrid";
 import { DICTIONARY_TAB_LABELS } from "./DictionaryTabs";
@@ -132,7 +133,7 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
   const { lang, t } = useSafeLanguage();
   const page = t.healthInfoPage;
 
-  const [readingLevel, setReadingLevel] = useState<"simple" | "complete">("simple");
+  const [readingLevel, setReadingLevel] = useReadingLevel();
   const [openDrawer, setOpenDrawer] = useState<"dictionary" | "romanes" | null>(null);
   const explorer = HEALTH_HUB_EXPLORER_COPY[lang] ?? HEALTH_HUB_EXPLORER_COPY.ro;
 

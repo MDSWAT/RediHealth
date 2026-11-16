@@ -639,8 +639,13 @@ export function synthesizeGroundedOverview(params: {
 
   // 3. Specific, clear primary CTA label preferring interactive tools & guides over myth entries
   const actionTarget =
-    scored.slice(0, 3).find((item) => item.kind === "tools" || item.kind === "guides") ??
-    topOverviewResult;
+    scored
+      .slice(0, 3)
+      .find(
+        (item) =>
+          (item.kind === "tools" || item.kind === "guides") &&
+          item.score >= topOverviewResult.score - 24,
+      ) ?? topOverviewResult;
   const toolActionLabel = resolveToolActionLabel(actionTarget.id, lang);
   const primaryLabel =
     toolActionLabel && toolActionLabel.length <= 28

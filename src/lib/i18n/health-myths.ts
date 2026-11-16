@@ -885,16 +885,7 @@ export function getMythCategories(lang: Lang): MythCategory[] {
   return MYTH_CATEGORIES_RO;
 }
 
-export const SPEECH_LANG_BY_LOCALE: Record<Lang, string> = {
-  ru: "ru-RU",
-
-  ro: "ro-RO",
-  en: "en-GB",
-  sq: "sq-AL",
-  it: "it-IT",
-  hr: "hr-HR",
-  rom: "rom",
-};
+export { SPEECH_LANG_BY_LOCALE } from "./speech-locales";
 
 export const HEALTH_DETAIL_SHARED_STRINGS = {
   whyItMatters: {

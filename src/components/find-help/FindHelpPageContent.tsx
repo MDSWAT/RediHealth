@@ -36,16 +36,16 @@ export function FindHelpPageContent({
         </Container>
       </section>
 
-      <section className="border-t border-border bg-muted/40 py-10 sm:py-12">
-        <Container className="max-sm:px-3.5">
+      <section className="border-t border-border bg-muted/40 py-10 sm:py-12 dark:border-ink-800">
+        <Container>
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-            {/* Community Health Mediator Guidance Card (amber-care) */}
-            <div className="flex flex-col justify-between gap-5 rounded-xl border border-amber-care-border bg-amber-care-soft/55 p-4 dark:border-amber-care/40 dark:bg-amber-care/10 sm:p-7">
+            {/* Community health mediator guidance card (amber-care) */}
+            <div className="flex flex-col justify-between gap-5 rounded-2xl border border-amber-care-border bg-amber-care-soft/55 p-6 sm:p-7 dark:border-amber-care/40 dark:bg-amber-care/10">
               <div>
                 <h2 className="text-balance text-section font-semibold text-foreground">
                   {basePage.mediatorTitle}
                 </h2>
-                <p className="mt-1.5 text-body text-muted-foreground">
+                <p className="mt-2 max-w-(--measure-reading) text-body text-foreground/90">
                   {basePage.mediatorBody}
                 </p>
               </div>
@@ -54,7 +54,6 @@ export function FindHelpPageContent({
                   href={withLangPrefix("/mediatori", lang)}
                   variant="outline"
                   size="lg"
-                  className="border-amber-care/35 hover:bg-amber-care-soft dark:hover:bg-amber-care/20"
                 >
                   <span>{basePage.mediatorButton}</span>
                   <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -62,18 +61,18 @@ export function FindHelpPageContent({
               </div>
             </div>
 
-            {/* General Care Navigation CTA */}
-            <div className="flex flex-col justify-between gap-5 rounded-xl border border-border bg-card p-4 sm:p-7">
+            {/* General care navigation CTA */}
+            <div className="flex flex-col justify-between gap-5 rounded-2xl border border-border bg-card p-6 sm:p-7 dark:border-ink-800">
               <div>
                 <h2 className="text-balance text-section font-semibold text-foreground">{page.ctaTitle}</h2>
-                <p className="mt-1.5 text-body text-muted-foreground">
+                <p className="mt-2 max-w-(--measure-reading) text-body text-muted-foreground">
                   {page.ctaBody}
                 </p>
               </div>
               <div>
                 <Button
                   href={withLangPrefix("/get-help", lang)}
-                  variant="outline"
+                  variant="action"
                   size="lg"
                 >
                   <span>{page.ctaButton}</span>

@@ -7,7 +7,8 @@ import { Container } from "@/components/ui/Container";
 import { ListenButton } from "@/components/ui/ListenButton";
 import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon, CheckCircleIcon, PhoneIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
-import { FamilyBookingSelector, type BookingPartyData } from "./FamilyBookingSelector";
+import { useCalmReducedMotion } from "@/lib/motion/tokens";
+import { FamilyBookingSelector, type BookingFieldErrors, type BookingPartyData } from "./FamilyBookingSelector";
 import { BookingSmsConfirmation, type BookingConfirmationData } from "./BookingSmsConfirmation";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -32,6 +33,7 @@ export const calendarCopy = {
     availableHours: (formatted: string) => `Время на выбор, ${formatted}`,
     slotDuration: "Звонок длится 20 минут",
     continueToContact: "Продолжить",
+    continueWithTime: (time: string) => `Продолжить на ${time}`,
     contactTitle: "Куда мы отправляем подтверждение",
     bookingFor: (formatted: string, time: string) => `Звонок: ${formatted} в ${time}`,
     changeTime: "Изменить время",
@@ -71,6 +73,7 @@ export const calendarCopy = {
     availableHours: (formatted: string) => `Ore pe care le poți alege, ${formatted}`,
     slotDuration: "Un apel durează 20 de minute",
     continueToContact: "Continuă",
+    continueWithTime: (time: string) => `Continuă cu ${time}`,
     contactTitle: "Unde îți trimitem confirmarea",
     bookingFor: (formatted: string, time: string) => `Programare: ${formatted}, ora ${time}`,
     changeTime: "Schimbă ora",
@@ -109,6 +112,7 @@ export const calendarCopy = {
     availableHours: (formatted: string) => `Times you can choose, ${formatted}`,
     slotDuration: "A call lasts 20 minutes",
     continueToContact: "Continue",
+    continueWithTime: (time: string) => `Continue with ${time}`,
     contactTitle: "Where we send the confirmation",
     bookingFor: (formatted: string, time: string) => `Call: ${formatted} at ${time}`,
     changeTime: "Change time",
@@ -147,6 +151,7 @@ export const calendarCopy = {
     availableHours: (formatted: string) => `Orë që mund të zgjedhësh, ${formatted}`,
     slotDuration: "Një thirrje zgjat 20 minuta",
     continueToContact: "Vazhdo",
+    continueWithTime: (time: string) => `Vazhdo me ${time}`,
     contactTitle: "Ku ta dërgojmë konfirmimin",
     bookingFor: (formatted: string, time: string) => `Thirrja: ${formatted}, ora ${time}`,
     changeTime: "Ndrysho orën",
@@ -185,6 +190,7 @@ export const calendarCopy = {
     availableHours: (formatted: string) => `Orari tra cui scegliere, ${formatted}`,
     slotDuration: "Una chiamata dura 20 minuti",
     continueToContact: "Continua",
+    continueWithTime: (time: string) => `Continua con ${time}`,
     contactTitle: "Dove ti mandiamo la conferma",
     bookingFor: (formatted: string, time: string) => `Chiamata: ${formatted}, ore ${time}`,
     changeTime: "Cambia orario",
@@ -223,6 +229,7 @@ export const calendarCopy = {
     availableHours: (formatted: string) => `Termini koje možeš odabrati, ${formatted}`,
     slotDuration: "Poziv traje 20 minuta",
     continueToContact: "Nastavi",
+    continueWithTime: (time: string) => `Nastavi za ${time}`,
     contactTitle: "Kamo šaljemo potvrdu",
     bookingFor: (formatted: string, time: string) => `Poziv: ${formatted} u ${time}`,
     changeTime: "Promijeni vrijeme",
@@ -261,6 +268,7 @@ export const calendarCopy = {
     availableHours: (formatted: string) => `Chasurya kaj shaj alosares, ${formatted}`,
     slotDuration: "Ekh svato inkerel 20 minutya",
     continueToContact: "Zha may dur",
+    continueWithTime: (time: string) => `Zha may dur ko ${time}`,
     contactTitle: "Kay bichhalas o chacharipe",
     bookingFor: (formatted: string, time: string) => `Svato: ${formatted}, ko ${time}`,
     changeTime: "Paruv o chaso",
@@ -343,19 +351,21 @@ const AVAILABLE_TIME_SLOTS = [
 // Selection crossfades at --dur-base, and the chosen cell gains a short bar under its figure that
 // draws out from the centre, so the choice is marked by shape as well as by the inverted colours.
 const cellBase =
-  "press-row relative whitespace-nowrap text-center transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring " +
+  "relative whitespace-nowrap text-center transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring " +
   "after:pointer-events-none after:absolute after:inset-x-[30%] after:bottom-1 after:h-0.5 after:rounded-xs after:bg-current after:scale-x-0 after:transition-transform after:duration-[var(--dur-base)] after:ease-[var(--ease-out-calm)] aria-pressed:after:scale-x-100 motion-reduce:after:transition-none";
 const cellOn = "bg-foreground text-background";
-const cellOff = "bg-card text-foreground hover:bg-muted";
+const cellOff = "press-row bg-card text-foreground hover:bg-muted";
 
 /** Booking a voice call with a doctor: pick a day and time, give contact details, see the confirmation. */
 export function AppointmentBookingCalendar() {
   const { lang } = useSafeLanguage();
   const copy = calendarCopy[lang] ?? calendarCopy.ro;
   const days = getNext7Days(lang);
+  const reducedMotion = useCalmReducedMotion();
 
   // 1 = date and time, 2 = contact details, 3 = confirmed
   const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [stepDir, setStepDir] = useState<"forward" | "back" | null>(null);
   const [selectedDate, setSelectedDate] = useState<string>(days[0].isoDate);
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [partyData, setPartyData] = useState<BookingPartyData>({
@@ -364,6 +374,7 @@ export function AppointmentBookingCalendar() {
     patientPhone: "",
     sendWhatsApp: true,
   });
+  const [fieldErrors, setFieldErrors] = useState<BookingFieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string>("");
   const [confirmationData, setConfirmationData] = useState<BookingConfirmationData | null>(null);
@@ -383,7 +394,36 @@ export function AppointmentBookingCalendar() {
   const goTo = (next: 1 | 2) => {
     movedStep.current = true;
     setError("");
+    setFieldErrors({});
+    setStepDir(next > step ? "forward" : "back");
     setStep(next);
+  };
+
+  const getFieldError = (field: keyof BookingFieldErrors, data: BookingPartyData): string | undefined => {
+    if (field === "patientName") {
+      return data.patientName.trim() ? undefined : copy.errorName;
+    }
+    const normalized = normalizeBookingPhone(data.patientPhone);
+    const digits = normalized.replace(/\D/g, "");
+    return normalized.length >= 9 && digits.length >= 9 ? undefined : copy.errorPhone;
+  };
+
+  const handlePartyChange = (updated: BookingPartyData) => {
+    setPartyData(updated);
+    if (error) setError("");
+    setFieldErrors((prev) => {
+      if (!prev.patientName && !prev.patientPhone) return prev;
+      const next: BookingFieldErrors = {};
+      if (prev.patientName) next.patientName = getFieldError("patientName", updated);
+      if (prev.patientPhone) next.patientPhone = getFieldError("patientPhone", updated);
+      return next;
+    });
+  };
+
+  const handleFieldBlur = (field: keyof BookingFieldErrors, relatedTarget: EventTarget | null) => {
+    if (relatedTarget instanceof Element && relatedTarget.closest("[data-step-back]")) return;
+    const message = getFieldError(field, partyData);
+    setFieldErrors((prev) => (prev[field] === message ? prev : { ...prev, [field]: message }));
   };
 
   const handleNextToContact = () => {
@@ -396,16 +436,18 @@ export function AppointmentBookingCalendar() {
   };
 
   const handleConfirmBooking = async () => {
-    if (!partyData.patientName.trim()) {
-      setError(copy.errorName);
-      return;
-    }
+    const nameError = getFieldError("patientName", partyData);
     const phone = normalizeBookingPhone(partyData.patientPhone);
-    if (phone.length < 9) {
-      setError(copy.errorPhone);
+    const phoneError = phone.length >= 9 && phone.replace(/\D/g, "").length >= 9 ? undefined : copy.errorPhone;
+
+    if (nameError || phoneError) {
+      setFieldErrors({ patientName: nameError, patientPhone: phoneError });
+      const firstInvalidId = nameError ? "patientName" : "patientPhone";
+      document.getElementById(firstInvalidId)?.focus();
       return;
     }
 
+    setFieldErrors({});
     setError("");
     setIsSubmitting(true);
     try {
@@ -438,6 +480,8 @@ export function AppointmentBookingCalendar() {
         patientName: partyData.patientName,
         patientPhone: phone,
       });
+      movedStep.current = true;
+      setStepDir("forward");
       setStep(3);
     } catch {
       setError(copy.errorGeneric);
@@ -450,6 +494,8 @@ export function AppointmentBookingCalendar() {
     voice.available ? (
       <ListenButton
         uiLang={lang}
+        autoRead
+        autoReadKey={String(step)}
         isPlaying={voice.speaking}
         onToggle={() => (voice.speaking ? voice.stop() : voice.speak(parts))}
       />
@@ -491,155 +537,188 @@ export function AppointmentBookingCalendar() {
       </ol>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,0.95fr)] lg:items-start lg:gap-8 xl:gap-10">
-        <div className="min-w-0">
-          {step === 1 && (
-            <div className="fhs-enter rounded-xl border border-border bg-card p-3.5 sm:p-7">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <h2 ref={stepHeadingRef} tabIndex={-1} className="text-balance text-title font-semibold text-foreground focus:outline-none">
-                  {copy.chooseDay}
-                </h2>
-                {listenButton([copy.chooseDay, copy.availableHours(selectedDayObj.fullFormatted), copy.slotDuration])}
-              </div>
-
-              <p className="mt-4 text-body font-medium text-muted-foreground">
-                {days[0].monthHeading === days[days.length - 1].monthHeading
-                  ? days[0].monthHeading
-                  : `${days[0].monthHeading} – ${days[days.length - 1].monthHeading}`}
-              </p>
-
-              <div className="mt-2 grid grid-cols-7 divide-x divide-border overflow-hidden rounded-lg border border-border-control">
-                {days.map((d) => {
-                  const isSelected = selectedDate === d.isoDate;
-                  return (
-                    <button
-                      key={d.isoDate}
-                      type="button"
-                      aria-pressed={isSelected}
-                      aria-label={d.fullFormatted}
-                      onClick={() => {
-                        setSelectedDate(d.isoDate);
-                        setSelectedTime("");
-                      }}
-                      className={cn(cellBase, "flex min-h-[68px] min-w-0 flex-col items-center justify-center px-0 py-2 sm:px-0.5", isSelected ? cellOn : cellOff)}
-                    >
-                      <span className={cn("text-meta", isSelected ? "text-background/80" : "text-muted-foreground")}>{d.dayName}</span>
-                      <span className="text-title font-semibold tabular-nums leading-tight">{d.dayNum}</span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Keyed on the day: a new day's hours replace the last ones in place. */}
-              <div key={selectedDate} className="swap-in mt-6 border-t border-border pt-5">
-                <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="text-balance text-body font-semibold text-foreground">
-                    {copy.availableHours(selectedDayObj.fullFormatted)}
-                  </h3>
-                  <span className="text-meta text-muted-foreground">{copy.slotDuration}</span>
-                </div>
-
-                {([["morning", copy.morning], ["afternoon", copy.afternoon]] as const).map(([period, label]) => (
-                  <div key={period} className="mt-4 first:mt-0">
-                    <h4 className="mb-2 text-meta font-medium text-muted-foreground">{label}</h4>
-                    <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
-                      {groupedSlots[period].map((slot) => {
-                        const isSelected = selectedTime === slot;
-                        return (
-                          <button
-                            key={slot}
-                            type="button"
-                            aria-pressed={isSelected}
-                            onClick={() => {
-                              setSelectedTime(slot);
-                              setError("");
-                            }}
-                            className={cn(
-                              cellBase,
-                              "min-h-12 rounded-lg border whitespace-nowrap text-body font-semibold tabular-nums",
-                              isSelected ? `${cellOn} border-foreground` : `${cellOff} border-border-control`,
-                            )}
-                          >
-                            {slot}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {errorNote}
-
-              <div className="btn-row mt-6 flex flex-wrap justify-end gap-3 border-t border-border pt-4">
-                <Button type="button" variant="action" size="lg" onClick={handleNextToContact}>
-                  <span>{copy.continueToContact}</span>
-                  <ArrowRightIcon aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0" />
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {step === 2 && (
-            <div className="fhs-enter rounded-xl border border-border bg-card p-3.5 sm:p-7">
-              <div className="mb-5 flex flex-wrap items-start justify-between gap-3 border-b border-border pb-4">
-                <div>
+        <div className="min-w-0 overflow-x-clip">
+          <div
+            key={step}
+            className={!reducedMotion && stepDir ? "hc-step" : undefined}
+            data-dir={!reducedMotion && stepDir ? stepDir : undefined}
+          >
+            {step === 1 && (
+              <div className="rounded-xl border border-border bg-card p-3.5 sm:p-7">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                   <h2 ref={stepHeadingRef} tabIndex={-1} className="text-balance text-title font-semibold text-foreground focus:outline-none">
-                    {copy.contactTitle}
+                    {copy.chooseDay}
                   </h2>
-                  <p className="mt-0.5 text-body text-muted-foreground tabular-nums">{copy.bookingFor(selectedDayObj.fullFormatted, selectedTime)}</p>
+                  {listenButton([copy.chooseDay, copy.availableHours(selectedDayObj.fullFormatted), copy.slotDuration])}
                 </div>
-                <div className="btn-row flex flex-wrap items-center gap-3">
-                  {listenButton([copy.contactTitle, copy.bookingFor(selectedDayObj.fullFormatted, selectedTime)])}
-                  <button
-                    type="button"
-                    onClick={() => goTo(1)}
-                    className="group press-row min-h-11 max-w-full whitespace-nowrap rounded-sm text-body font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+
+                <p className="mt-4 text-body font-medium text-muted-foreground">
+                  {days[0].monthHeading === days[days.length - 1].monthHeading
+                    ? days[0].monthHeading
+                    : `${days[0].monthHeading} – ${days[days.length - 1].monthHeading}`}
+                </p>
+
+                <div className="mt-2 overflow-hidden rounded-lg border border-border-control">
+                  <div
+                    role="group"
+                    aria-label={copy.chooseDay}
+                    className="no-scrollbar flex snap-x snap-mandatory divide-x divide-border overflow-x-auto overscroll-x-contain sm:grid sm:grid-cols-7 sm:overflow-visible"
                   >
-                    <span className="hover:text-sapphire-light">{copy.changeTime}</span>
-                  </button>
+                    {days.map((d) => {
+                      const isSelected = selectedDate === d.isoDate;
+                      return (
+                        <button
+                          key={d.isoDate}
+                          type="button"
+                          aria-pressed={isSelected}
+                          aria-label={d.fullFormatted}
+                          onClick={() => {
+                            setSelectedDate(d.isoDate);
+                            setSelectedTime("");
+                          }}
+                          className={cn(
+                            cellBase,
+                            "flex min-h-[68px] min-w-[3.5rem] flex-1 shrink-0 snap-start flex-col items-center justify-center px-2 py-2 sm:min-w-0 sm:px-0.5",
+                            isSelected ? cellOn : cellOff,
+                          )}
+                        >
+                          <span className={cn("text-meta", isSelected ? "text-background/80" : "text-muted-foreground")}>{d.dayName}</span>
+                          <span className="text-title font-semibold tabular-nums leading-tight">{d.dayNum}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Keyed on the day: a new day's hours replace the last ones in place. */}
+                <div key={selectedDate} className="swap-in mt-6 border-t border-border pt-5">
+                  <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h3 className="text-balance text-body font-semibold text-foreground">
+                      {copy.availableHours(selectedDayObj.fullFormatted)}
+                    </h3>
+                    <span className="text-meta text-muted-foreground">{copy.slotDuration}</span>
+                  </div>
+
+                  {([["morning", copy.morning], ["afternoon", copy.afternoon]] as const).map(([period, label]) => (
+                    <div key={period} className="mt-4 first:mt-0">
+                      <h4 className="mb-2 text-meta font-medium text-muted-foreground">{label}</h4>
+                      <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
+                        {groupedSlots[period].map((slot) => {
+                          const isSelected = selectedTime === slot;
+                          return (
+                            <button
+                              key={slot}
+                              type="button"
+                              aria-pressed={isSelected}
+                              onClick={() => {
+                                setSelectedTime(slot);
+                                setError("");
+                              }}
+                              className={cn(
+                                cellBase,
+                                "min-h-12 rounded-lg border px-2 whitespace-nowrap text-body font-semibold tabular-nums",
+                                isSelected ? `${cellOn} border-foreground` : `${cellOff} border-border-control`,
+                              )}
+                            >
+                              {slot}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {errorNote}
+
+                <div className="btn-row mt-6 flex flex-wrap justify-end gap-3 border-t border-border pt-4">
+                  <Button type="button" variant="action" size="lg" onClick={handleNextToContact} className="w-full sm:w-auto">
+                    <span className="tabular-nums">{selectedTime ? copy.continueWithTime(selectedTime) : copy.continueToContact}</span>
+                    <ArrowRightIcon aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0" />
+                  </Button>
                 </div>
               </div>
+            )}
 
-              <FamilyBookingSelector value={partyData} onChange={setPartyData} />
+            {step === 2 && (
+              <div className="rounded-xl border border-border bg-card p-3.5 sm:p-7">
+                <div className="mb-5 flex flex-wrap items-start justify-between gap-3 border-b border-border pb-4">
+                  <div>
+                    <h2 ref={stepHeadingRef} tabIndex={-1} className="text-balance text-title font-semibold text-foreground focus:outline-none">
+                      {copy.contactTitle}
+                    </h2>
+                    <p className="mt-0.5 text-body text-muted-foreground tabular-nums">{copy.bookingFor(selectedDayObj.fullFormatted, selectedTime)}</p>
+                  </div>
+                  <div className="btn-row flex flex-wrap items-center gap-3">
+                    {listenButton([copy.contactTitle, copy.bookingFor(selectedDayObj.fullFormatted, selectedTime)])}
+                    <button
+                      type="button"
+                      data-step-back="true"
+                      onClick={() => goTo(1)}
+                      className="group press-row min-h-11 max-w-full whitespace-nowrap rounded-sm text-body font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <span className="hover:text-sapphire-light">{copy.changeTime}</span>
+                    </button>
+                  </div>
+                </div>
 
-              {errorNote}
-
-              <div className="btn-row mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="md"
-                  onClick={() => goTo(1)}
-                  className="-mx-2 px-2 text-muted-foreground hover:text-foreground"
+                <form
+                  noValidate
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    void handleConfirmBooking();
+                  }}
                 >
-                  <ArrowLeftIcon className="h-4 w-4 shrink-0" />
-                  <span>{copy.back}</span>
-                </Button>
+                  <FamilyBookingSelector
+                    value={partyData}
+                    onChange={handlePartyChange}
+                    errors={fieldErrors}
+                    onFieldBlur={handleFieldBlur}
+                  />
 
-                <Button
-                  type="button"
-                  variant="action"
-                  size="lg"
-                  disabled={isSubmitting}
-                  onClick={handleConfirmBooking}
-                >
-                  <span>{isSubmitting ? copy.confirming : copy.confirmBooking}</span>
-                </Button>
+                  {errorNote}
+
+                  <div className="btn-row mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="md"
+                      data-step-back="true"
+                      onClick={() => goTo(1)}
+                      className="-mx-2 px-2 text-muted-foreground hover:text-foreground"
+                    >
+                      <ArrowLeftIcon className="h-4 w-4 shrink-0" />
+                      <span>{copy.back}</span>
+                    </Button>
+
+                    <Button
+                      type="submit"
+                      variant="action"
+                      size="lg"
+                      disabled={isSubmitting}
+                    >
+                      <span>{isSubmitting ? copy.confirming : copy.confirmBooking}</span>
+                    </Button>
+                  </div>
+                </form>
               </div>
-            </div>
-          )}
+            )}
 
-          {step === 3 && confirmationData && (
-            <BookingSmsConfirmation
-              confirmation={confirmationData}
-              onReset={() => {
-                movedStep.current = true;
-                setStep(1);
-                setSelectedTime("");
-                setConfirmationData(null);
-              }}
-            />
-          )}
+            {step === 3 && confirmationData && (
+              <BookingSmsConfirmation
+                confirmation={confirmationData}
+                onReset={() => {
+                  movedStep.current = true;
+                  setStepDir("back");
+                  setError("");
+                  setFieldErrors({});
+                  setStep(1);
+                  setSelectedTime("");
+                  setConfirmationData(null);
+                }}
+              />
+            )}
+          </div>
         </div>
 
         <aside className="space-y-6 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1.5rem)]">

@@ -1,22 +1,40 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { MotionConfig } from "motion/react";
+import { LazyMotion, MotionConfig } from "motion/react";
+
+const loadMotionFeatures = () => import("@/lib/motion/dom-features").then((mod) => mod.domAnimation);
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { FeedbackWidget } from "@/components/layout/FeedbackWidget";
-import { ReportIssueWidget } from "@/components/layout/ReportIssueWidget";
 import { SmartSearchModal } from "@/components/search/SmartSearchModal";
 import { PwaExperience } from "@/components/pwa/PwaExperience";
+
+const FeedbackWidget = dynamic(
+  () => import("@/components/layout/FeedbackWidget").then((mod) => mod.FeedbackWidget),
+  { ssr: false },
+);
+const ReportIssueWidget = dynamic(
+  () => import("@/components/layout/ReportIssueWidget").then((mod) => mod.ReportIssueWidget),
+  { ssr: false },
+);
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
 import { RecaptchaProvider, RecaptchaNotice } from "@/components/security/RecaptchaProvider";
 import { initClientNoiseFilter } from "@/lib/client-noise-filter";
+import {
+  MOUNT_CHROME_WIDGETS_EVENT,
+  setChromeWidgetsAvailable,
+} from "@/components/layout/chrome-widget-events";
 import { initPwaRuntime } from "@/lib/pwa/pwa-state";
+import { clearPageAutoReadSession } from "@/lib/audio/page-auto-read";
+import { speechEngine } from "@/lib/audio/speech-engine";
 import { useComfortDomSync } from "@/lib/comfort-preferences";
+import { ReadingGuide } from "@/components/layout/ReadingGuide";
 import { useCalmReducedMotion } from "@/lib/motion/tokens";
-import type { Lang } from "@/lib/i18n/translations";
+import type { Lang, SerializableTranslations } from "@/lib/i18n/languages";
+import type { Translations } from "@/lib/i18n/translations";
 
 if (typeof window !== "undefined") {
   initClientNoiseFilter();
@@ -28,6 +46,10 @@ type SiteChromeProps = {
   captchaEnabled: boolean;
   /** Locale resolved on the server for this request; see LanguageProvider. */
   lang: Lang;
+  /** Active locale translations passed from the server layout so client chrome doesn't bundle all 7 locales. */
+  initialTranslations?: Translations | SerializableTranslations;
+  /** The reader closed the 112 bar on this device (a cookie), so the header leaves it out. */
+  emergencyDismissed?: boolean;
 };
 
 /**
@@ -51,34 +73,103 @@ function useSkipLinkTarget(pathname: string) {
   }, [pathname]);
 }
 
-export function SiteChrome({ children, nonce, captchaEnabled, lang }: SiteChromeProps) {
+export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTranslations, emergencyDismissed = false }: SiteChromeProps) {
   const pathname = usePathname();
   const path = stripLangFromPathname(pathname);
   const isWorkerPanel = path.startsWith("/panel") || path === "/demo" || path.startsWith("/demo/") || path === "/offline" || path.startsWith("/offline/");
   const isChromelessSurface = isWorkerPanel || path === "/health-check/note";
   // Symptom check and prescription review are interactive tasks: they end at their action button, with no footer after them.
   const hideFooter = isChromelessSurface || path === "/health-check" || path === "/prescription-review";
+  const [widgetsReady, setWidgetsReady] = useState(false);
   useSkipLinkTarget(pathname);
   useComfortDomSync();
+  const routeKey = `${pathname ?? ""}|${lang}`;
+  const prevRouteKeyRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (prevRouteKeyRef.current !== null && prevRouteKeyRef.current !== routeKey) {
+      clearPageAutoReadSession();
+      speechEngine.stop();
+      speechEngine.requestClose();
+    }
+    prevRouteKeyRef.current = routeKey;
+  }, [routeKey]);
+
+  useEffect(() => {
+    return () => {
+      clearPageAutoReadSession();
+      speechEngine.stop();
+      speechEngine.requestClose();
+    };
+  }, []);
   useEffect(() => {
     initPwaRuntime();
   }, []);
+  useEffect(() => {
+    setChromeWidgetsAvailable(!isChromelessSurface);
+    return () => setChromeWidgetsAvailable(false);
+  }, [isChromelessSurface]);
+  useEffect(() => {
+    if (isChromelessSurface) return;
+    let cancelled = false;
+    let idleId = 0;
+    let timerId = 0;
+
+    const mountWidgets = () => {
+      if (!cancelled) setWidgetsReady(true);
+    };
+
+    const onWake = () => mountWidgets();
+    window.addEventListener(MOUNT_CHROME_WIDGETS_EVENT, onWake, { once: true });
+
+    let hasFeedbackParam = false;
+    try {
+      hasFeedbackParam = new URLSearchParams(window.location.search).get("feedback") === "1";
+    } catch {
+      hasFeedbackParam = false;
+    }
+
+    if (hasFeedbackParam) {
+      timerId = window.setTimeout(mountWidgets, 0);
+    } else {
+      const win = window as Window & {
+        requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
+        cancelIdleCallback?: (id: number) => void;
+      };
+      if (typeof win.requestIdleCallback === "function") {
+        idleId = win.requestIdleCallback(mountWidgets, { timeout: 1000 });
+      } else {
+        timerId = window.setTimeout(mountWidgets, 1000);
+      }
+    }
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener(MOUNT_CHROME_WIDGETS_EVENT, onWake);
+      if (idleId) {
+        (window as Window & { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(idleId);
+      }
+      if (timerId) window.clearTimeout(timerId);
+    };
+  }, [isChromelessSurface]);
   const calmMotion = useCalmReducedMotion();
 
   return (
     <MotionConfig reducedMotion={calmMotion ? "always" : "user"}>
-      <LanguageProvider requestLang={lang}>
-        <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isChromelessSurface}>
-          {isChromelessSurface ? null : <Header />}
-          {isChromelessSurface ? null : <SmartSearchModal />}
-          {isChromelessSurface ? null : <PwaExperience />}
-          {children}
-          {isChromelessSurface ? null : <FeedbackWidget />}
-          {isChromelessSurface ? null : <ReportIssueWidget />}
-          {isChromelessSurface ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
-          {hideFooter ? null : <Footer />}
-        </RecaptchaProvider>
-      </LanguageProvider>
+      <LazyMotion features={loadMotionFeatures}>
+        <LanguageProvider requestLang={lang} initialTranslations={initialTranslations}>
+          <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isChromelessSurface}>
+            {isChromelessSurface ? null : <Header emergencyDismissed={emergencyDismissed} />}
+            {isChromelessSurface ? null : <SmartSearchModal />}
+            {isChromelessSurface ? null : <PwaExperience />}
+            {children}
+            {isChromelessSurface || !widgetsReady ? null : <FeedbackWidget />}
+            {isChromelessSurface || !widgetsReady ? null : <ReportIssueWidget />}
+            {isChromelessSurface ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
+            {hideFooter ? null : <Footer />}
+            <ReadingGuide />
+          </RecaptchaProvider>
+        </LanguageProvider>
+      </LazyMotion>
     </MotionConfig>
   );
 }

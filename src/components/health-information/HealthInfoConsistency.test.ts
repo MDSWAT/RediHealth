@@ -16,6 +16,13 @@ import { HealthInformationTopicGrid } from "./HealthInformationTopicGrid";
 import { TopicMetaBadge } from "./TopicMetaBadge";
 import { HEALTH_HUB_EXPLORER_COPY } from "./HealthInformationPageContent";
 import { HealthArticleDirectory } from "./HealthArticleDirectory";
+import { MobileGuideJumpBar } from "./MobileGuideJumpBar";
+import { SynchronizedSentenceReader } from "./SynchronizedSentenceReader";
+import { TopicDetailPageContent } from "./TopicDetailPageContent";
+import {
+  HEALTH_TOPICS_BASE,
+  getHealthTopicBySlug,
+} from "@/lib/i18n/health-information-topics";
 import { formatHealthArticleTitle, healthArticleIndex } from "@/lib/data/health-article-index";
 import { healthArticleCopy } from "@/lib/i18n/health-article-translations";
 
@@ -382,5 +389,130 @@ describe("health information, glossary, myth card, and topic grid design consist
     );
     expect(dirHtml).toContain("In Germany: At the doctor&#x27;s:");
     expect(dirHtml).not.toContain("indexed topics");
+  });
+
+  it("syncs reading level globally across hub and topic detail pages via useReadingLevel", () => {
+    const hubSrc = readSrc(
+      "src/components/health-information/HealthInformationPageContent.tsx",
+    );
+    const detailSrc = readSrc(
+      "src/components/health-information/TopicDetailPageContent.tsx",
+    );
+
+    expect(hubSrc).toContain('from "@/lib/comfort-preferences"');
+    expect(hubSrc).toContain("useReadingLevel()");
+    expect(hubSrc).not.toContain('useState<"simple" | "complete">');
+
+    expect(detailSrc).toContain('from "@/lib/comfort-preferences"');
+    expect(detailSrc).toContain("useReadingLevel()");
+    expect(detailSrc).not.toContain('useState<"simple" | "complete">');
+  });
+
+  it("renders sticky MobileGuideJumpBar (< lg) across all 7 locales with IntersectionObserver and single-line controls", () => {
+    const jumpBarSrc = readSrc(
+      "src/components/health-information/MobileGuideJumpBar.tsx",
+    );
+    expect(jumpBarSrc).toContain("IntersectionObserver");
+    expect(jumpBarSrc).toContain("prefersCalmOrReducedMotion");
+    expect(jumpBarSrc).toContain("lg:hidden");
+    expect(jumpBarSrc).toContain("min-h-11");
+    expect(jumpBarSrc).toContain("whitespace-nowrap");
+    expect(jumpBarSrc).toContain("focus-visible:ring-ring");
+    expect(jumpBarSrc).not.toContain("rounded-full");
+    expect(jumpBarSrc).not.toContain("transition-all");
+    expect(jumpBarSrc).not.toContain("data-bottom-bar");
+
+    const sampleBarHtml = renderToStaticMarkup(
+      createElement(MobileGuideJumpBar, {
+        ariaLabel: "Article sections",
+        sections: [
+          { id: "section-overview", label: "Overview" },
+          { id: "section-steps", label: "What to do" },
+          { id: "section-warning-signs", label: "Warning signs" },
+        ],
+      }),
+    );
+    expect(sampleBarHtml).toContain("data-mobile-guide-jump-bar");
+    expect(sampleBarHtml).toContain("lg:hidden");
+    expect(sampleBarHtml).toContain("sticky");
+    expect(sampleBarHtml).toContain("min-h-11");
+    expect(sampleBarHtml).toContain("whitespace-nowrap");
+    expect(sampleBarHtml).toContain('href="#section-overview"');
+    expect(sampleBarHtml).toContain('aria-current="location"');
+    expect(sampleBarHtml).not.toContain("rounded-full");
+    expect(sampleBarHtml).not.toContain("\u00b7");
+    expect(sampleBarHtml).not.toContain("&amp;");
+
+    const baseTopic = HEALTH_TOPICS_BASE[0]!;
+    for (const loc of ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const) {
+      const topic = getHealthTopicBySlug(loc, baseTopic.slug)!;
+      const detailHtml = renderToStaticMarkup(
+        createElement(
+          LanguageContext.Provider,
+          { value: { lang: loc, t: translations[loc], setLang: () => {} } },
+          createElement(TopicDetailPageContent, {
+            topic,
+            relatedTopics: [],
+          }),
+        ),
+      );
+      expect(detailHtml).toContain("data-mobile-guide-jump-bar");
+      expect(detailHtml).not.toContain("group/toc");
+      expect(detailHtml).not.toContain("\u00b7");
+      const pillCount = detailHtml.match(/rounded-full/g)?.length ?? 0;
+      const switchCount = detailHtml.match(/data-capsule-switch=""/g)?.length ?? 0;
+      expect(pillCount).toBe(switchCount * 4);
+      const jumpStart = detailHtml.indexOf("data-mobile-guide-jump-bar");
+      const jumpSectionHtml = detailHtml.slice(
+        jumpStart,
+        detailHtml.indexOf("</nav>", jumpStart) + 6,
+      );
+      expect(jumpSectionHtml).not.toContain("&amp;");
+    }
+  });
+
+  it("keeps active sentence scrolling unobscured and pauses auto-scroll on manual scroll until audio play/seek", () => {
+    const readerSrc = readSrc(
+      "src/components/health-information/SynchronizedSentenceReader.tsx",
+    );
+    const playerSrc = readSrc(
+      "src/components/health-information/GlobalHealthAudioPlayer.tsx",
+    );
+    const detailSrc = readSrc(
+      "src/components/health-information/TopicDetailPageContent.tsx",
+    );
+
+    expect(readerSrc).toContain('block: "nearest"');
+    expect(readerSrc).not.toContain('block: "center"');
+    expect(readerSrc).toContain("scroll-mt-20");
+    expect(readerSrc).toContain("scroll-mb-20");
+    expect(readerSrc).toContain("autoScrollResumeKey");
+    expect(readerSrc).toContain("userPausedAutoScrollRef");
+    expect(readerSrc).toContain('addEventListener("wheel"');
+    expect(readerSrc).toContain('addEventListener("touchmove"');
+    expect(readerSrc).toContain('addEventListener("scroll"');
+    expect(readerSrc).toContain("speechEngine.subscribeState");
+
+    expect(playerSrc).toContain("onUserPlayOrSeek");
+    expect(playerSrc).toContain("onUserPlayOrSeekRef.current?.()");
+
+    expect(detailSrc).toContain("autoScrollResumeKey={");
+    expect(detailSrc).toContain("onUserPlayOrSeek={");
+
+    const readerHtml = renderToStaticMarkup(
+      createElement(
+        LanguageContext.Provider,
+        { value: { lang: "en", t: translations.en, setLang: () => {} } },
+        createElement(SynchronizedSentenceReader, {
+          paragraphs: ["Drink water slowly. Rest if dizzy."],
+          activeSentenceIndex: 0,
+          autoScrollResumeKey: 1,
+          lang: "en",
+        }),
+      ),
+    );
+    expect(readerHtml).toContain('data-sentence-id="0"');
+    expect(readerHtml).toContain("scroll-mt-20");
+    expect(readerHtml).toContain("scroll-mb-20");
   });
 });

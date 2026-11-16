@@ -1,0 +1,116 @@
+/*
+ * Desktop hero ground (HeroPhotos): three consultation photos cross-fading slowly under one
+ * sapphire tint and ink scrims, so the scene reads as a soft, blue-toned picture and the
+ * headline, wheel and quick options keep their contrast. Decorative only.
+ * - Photo 1 is opaque from the first frame; photos 2 and 3 fade over it in turn (10s each).
+ * - Each photo drifts from 104% to 100% while it is on screen, too slowly to notice as movement.
+ * Everything holds still on the first photo under reduced motion and the calm motion setting.
+ */
+.ground {
+  position: absolute;
+  inset: 0;
+  z-index: -30;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--color-ink-950);
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 50%;
+  filter: grayscale(0.35) brightness(0.78) contrast(1.05);
+  opacity: 0;
+  animation:
+    hero-photos-fade 30s linear infinite,
+    hero-photos-drift 30s linear infinite;
+}
+
+.ground picture:nth-of-type(1) .photo {
+  opacity: 1;
+  animation: hero-photos-drift 30s linear infinite;
+}
+
+.ground picture:nth-of-type(2) .photo {
+  animation-delay: 9s;
+}
+
+.ground picture:nth-of-type(3) .photo {
+  animation-delay: 19s;
+}
+
+/* On for a third of the cycle, with a 2.4s cross-fade at each end. */
+@keyframes hero-photos-fade {
+  0% {
+    opacity: 0;
+  }
+  8%,
+  33.33% {
+    opacity: 1;
+  }
+  41.33%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-photos-drift {
+  0% {
+    scale: 1.04;
+  }
+  41.33%,
+  100% {
+    scale: 1;
+  }
+}
+
+/* One brand tint over every photo, so all three share the ink and sapphire of the page. */
+.tint {
+  position: absolute;
+  inset: 0;
+  background: var(--color-sapphire);
+  mix-blend-mode: color;
+  opacity: 0.55;
+}
+
+/* Deep ink behind the headline and wheel on the left, lighter in the middle where the photo
+   shows, ink again behind the quick options; dark at the top under the header and at the
+   bottom where the news ribbon starts. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-ink-950) 78%, transparent) 0%,
+      transparent 24%,
+      transparent 72%,
+      var(--color-ink-950) 100%
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-ink-950) 90%, transparent) 0%,
+      color-mix(in srgb, var(--color-ink-950) 80%, transparent) 34%,
+      color-mix(in srgb, var(--color-ink-950) 52%, transparent) 54%,
+      color-mix(in srgb, var(--color-ink-950) 74%, transparent) 74%,
+      color-mix(in srgb, var(--color-ink-950) 84%, transparent) 100%
+    );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo,
+  .ground picture:nth-of-type(1) .photo {
+    animation: none;
+    scale: 1;
+  }
+}
+
+:global(html[data-calm-motion]) .photo,
+:global(html[data-calm-motion]) .ground picture:nth-of-type(1) .photo {
+  animation: none;
+  scale: 1;
+}

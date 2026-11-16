@@ -52,19 +52,24 @@
 
 @media (min-width: 1024px) {
   .hero {
-    opacity: 0.1;
-    /* Only the right 70% of the hero, so the surface the mask works on stays small. */
-    left: 30%;
-    /* Clear of the headline: nothing at the box's left edge, full strength from the panel column on. */
-    mask-image: linear-gradient(90deg, transparent 0%, #000 40%);
+    opacity: 0.08;
+    /* Only the left 64% of the hero, so the surface the mask works on stays small. */
+    right: 36%;
+    /* Quiet behind the headline and lead (a soft oval at a fifth of the strength), fuller toward
+       the screen edges where there is no text, and fading out before the quick options on the right. */
+    mask-image:
+      radial-gradient(ellipse 46% 32% at 40% 55%, rgb(0 0 0 / 0.2) 0%, rgb(0 0 0 / 0.2) 50%, #000 100%),
+      linear-gradient(90deg, #000 0%, #000 58%, transparent 100%);
+    mask-composite: intersect;
   }
 
-  /* Centred on the panel column and taller than the hero, so the rings frame the panel. */
+  /* Centred behind the headline column and taller than the hero: the left edge of the screen
+     cuts through the rings, so the wheel reads as large and still lets the headline lead. */
   .hero .wheel {
-    left: 61.4%;
+    left: 30%;
     top: 50%;
     width: auto;
-    height: 132%;
+    height: 124%;
   }
 }
 
@@ -77,11 +82,22 @@
   width: var(--footer-wheel);
 }
 
+/* Phones and tablets: the hero has its own wheel (HeroDock), so only the hero placement is dropped.
+   The footer wheel stays whole, icons included, woven in behind the link columns: a little stronger
+   than on desktop so the icons read, still soft enough that the text over it stays clear. */
 @media (max-width: 1023px) {
-  .backdrop,
-  .hero,
-  .footer {
+  .hero {
     display: none;
+  }
+
+  .footer {
+    opacity: 0.12;
+  }
+
+  .footer .wheel {
+    --footer-wheel: min(21rem, 86vw);
+    left: 50%;
+    top: 52%;
   }
 }
 
@@ -164,6 +180,10 @@
 :global(html[data-calm-motion]) .outer,
 :global(html[data-calm-motion]) .inner,
 :global(html[data-calm-motion]) .hub,
-:global(html[data-calm-motion]) .face {
+:global(html[data-calm-motion]) .face,
+.backdrop[data-offscreen] .outer,
+.backdrop[data-offscreen] .inner,
+.backdrop[data-offscreen] .hub,
+.backdrop[data-offscreen] .face {
   animation: none;
 }

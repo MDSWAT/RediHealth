@@ -10,6 +10,12 @@ export const COMFORT_CHANGE_EVENT = "redihealth:comfort-change";
 const TEXT_SCALE_KEY = "redihealth-text-scale";
 const LEGACY_LARGE_TEXT_KEY = "redihealth-large-text";
 const CALM_MOTION_KEY = "redihealth-calm-motion";
+const AUTO_READ_KEY = "redihealth-auto-read";
+const HIGH_CONTRAST_KEY = "redihealth-high-contrast";
+const UNDERLINE_LINKS_KEY = "redihealth-underline-links";
+const WIDE_SPACING_KEY = "redihealth-wide-spacing";
+const READING_GUIDE_KEY = "redihealth-reading-guide";
+const GRAYSCALE_KEY = "redihealth-grayscale";
 const READING_LEVEL_KEY = "redihealth_reading_level";
 const LEGACY_PLAIN_LANGUAGE_KEY = "redihealth_plain_language";
 
@@ -32,12 +38,48 @@ function bindStorageListener() {
       event.key === TEXT_SCALE_KEY ||
       event.key === LEGACY_LARGE_TEXT_KEY ||
       event.key === CALM_MOTION_KEY ||
-      event.key === READING_LEVEL_KEY
+      event.key === AUTO_READ_KEY ||
+      event.key === HIGH_CONTRAST_KEY ||
+      event.key === UNDERLINE_LINKS_KEY ||
+      event.key === WIDE_SPACING_KEY ||
+      event.key === READING_GUIDE_KEY ||
+      event.key === GRAYSCALE_KEY ||
+      event.key === READING_LEVEL_KEY ||
+      event.key === LEGACY_PLAIN_LANGUAGE_KEY
     ) {
       applyComfortToDom();
       listeners.forEach((listener) => listener());
     }
   });
+}
+
+function readBooleanPreference(key: string): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return window.localStorage.getItem(key) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function writeBooleanPreference(key: string, next: boolean, getSnapshot: () => boolean) {
+  if (typeof window === "undefined") return;
+  if (getSnapshot() === next) return;
+  try {
+    window.localStorage.setItem(key, next ? "1" : "0");
+  } catch {
+    // Storage blocked: DOM still updates for the active session.
+  }
+  applyComfortToDom();
+  notifyComfortListeners();
+}
+
+function syncBooleanAttribute(root: HTMLElement, attribute: string, enabled: boolean) {
+  if (enabled) {
+    root.setAttribute(attribute, "true");
+  } else {
+    root.removeAttribute(attribute);
+  }
 }
 
 export function subscribeComfort(listener: () => void): () => void {
@@ -59,12 +101,33 @@ export function getTextScaleSnapshot(): TextScale {
 }
 
 export function getCalmMotionSnapshot(): boolean {
-  if (typeof window === "undefined") return false;
-  try {
-    return window.localStorage.getItem(CALM_MOTION_KEY) === "1";
-  } catch {
-    return false;
-  }
+  return readBooleanPreference(CALM_MOTION_KEY);
+}
+
+export function getAutoReadSnapshot(): boolean {
+  return readBooleanPreference(AUTO_READ_KEY);
+}
+
+export function getHighContrastSnapshot(): boolean {
+  return readBooleanPreference(HIGH_CONTRAST_KEY);
+}
+
+export function getUnderlineLinksSnapshot(): boolean {
+  return readBooleanPreference(UNDERLINE_LINKS_KEY);
+}
+
+export function getWideSpacingSnapshot(): boolean {
+  return readBooleanPreference(WIDE_SPACING_KEY);
+}
+
+/** A band that follows the pointer or finger and dims the lines above and below it. */
+export function getReadingGuideSnapshot(): boolean {
+  return readBooleanPreference(READING_GUIDE_KEY);
+}
+
+/** Shows the site in shades of grey, for people who find colour tiring or hard to tell apart. */
+export function getGrayscaleSnapshot(): boolean {
+  return readBooleanPreference(GRAYSCALE_KEY);
 }
 
 export function getReadingLevelSnapshot(): ReadingLevel {
@@ -84,6 +147,12 @@ export function applyComfortToDom() {
   const root = document.documentElement;
   const textScale = getTextScaleSnapshot();
   const calmMotion = getCalmMotionSnapshot();
+  const autoRead = getAutoReadSnapshot();
+  const highContrast = getHighContrastSnapshot();
+  const underlineLinks = getUnderlineLinksSnapshot();
+  const wideSpacing = getWideSpacingSnapshot();
+  const readingGuide = getReadingGuideSnapshot();
+  const grayscale = getGrayscaleSnapshot();
   const readingLevel = getReadingLevelSnapshot();
 
   if (textScale === "xl") {
@@ -97,11 +166,14 @@ export function applyComfortToDom() {
     root.removeAttribute("data-text-scale");
   }
 
-  if (calmMotion) {
-    root.setAttribute("data-calm-motion", "true");
-  } else {
-    root.removeAttribute("data-calm-motion");
-  }
+  syncBooleanAttribute(root, "data-calm-motion", calmMotion);
+  syncBooleanAttribute(root, "data-auto-read", autoRead);
+  syncBooleanAttribute(root, "data-high-contrast", highContrast);
+  syncBooleanAttribute(root, "data-underline-links", underlineLinks);
+  syncBooleanAttribute(root, "data-wide-spacing", wideSpacing);
+  syncBooleanAttribute(root, "data-reading-guide", readingGuide);
+  syncBooleanAttribute(root, "data-grayscale", grayscale);
+
   root.setAttribute("data-reading-level", readingLevel);
 }
 
@@ -129,15 +201,31 @@ export function setTextScale(next: TextScale) {
 }
 
 export function setCalmMotion(next: boolean) {
-  if (typeof window === "undefined") return;
-  if (getCalmMotionSnapshot() === next) return;
-  try {
-    window.localStorage.setItem(CALM_MOTION_KEY, next ? "1" : "0");
-  } catch {
-    // Storage blocked.
-  }
-  applyComfortToDom();
-  notifyComfortListeners();
+  writeBooleanPreference(CALM_MOTION_KEY, next, getCalmMotionSnapshot);
+}
+
+export function setAutoRead(next: boolean) {
+  writeBooleanPreference(AUTO_READ_KEY, next, getAutoReadSnapshot);
+}
+
+export function setHighContrastPreference(next: boolean) {
+  writeBooleanPreference(HIGH_CONTRAST_KEY, next, getHighContrastSnapshot);
+}
+
+export function setUnderlineLinksPreference(next: boolean) {
+  writeBooleanPreference(UNDERLINE_LINKS_KEY, next, getUnderlineLinksSnapshot);
+}
+
+export function setWideSpacingPreference(next: boolean) {
+  writeBooleanPreference(WIDE_SPACING_KEY, next, getWideSpacingSnapshot);
+}
+
+export function setReadingGuidePreference(next: boolean) {
+  writeBooleanPreference(READING_GUIDE_KEY, next, getReadingGuideSnapshot);
+}
+
+export function setGrayscalePreference(next: boolean) {
+  writeBooleanPreference(GRAYSCALE_KEY, next, getGrayscaleSnapshot);
 }
 
 export function setReadingLevel(next: ReadingLevel) {
@@ -159,6 +247,12 @@ export function resetComfortPreferences() {
     window.localStorage.removeItem(TEXT_SCALE_KEY);
     window.localStorage.removeItem(LEGACY_LARGE_TEXT_KEY);
     window.localStorage.removeItem(CALM_MOTION_KEY);
+    window.localStorage.removeItem(AUTO_READ_KEY);
+    window.localStorage.removeItem(HIGH_CONTRAST_KEY);
+    window.localStorage.removeItem(UNDERLINE_LINKS_KEY);
+    window.localStorage.removeItem(WIDE_SPACING_KEY);
+    window.localStorage.removeItem(READING_GUIDE_KEY);
+    window.localStorage.removeItem(GRAYSCALE_KEY);
     window.localStorage.removeItem(READING_LEVEL_KEY);
     window.localStorage.removeItem(LEGACY_PLAIN_LANGUAGE_KEY);
   } catch {
@@ -181,6 +275,42 @@ export function useTextScale(): [TextScale, (next: TextScale) => void] {
 export function useCalmMotion(): [boolean, (next: boolean) => void] {
   const enabled = useSyncExternalStore(subscribeComfort, getCalmMotionSnapshot, () => false);
   const update = useCallback((next: boolean) => setCalmMotion(next), []);
+  return [enabled, update];
+}
+
+export function useAutoRead(): [boolean, (next: boolean) => void] {
+  const enabled = useSyncExternalStore(subscribeComfort, getAutoReadSnapshot, () => false);
+  const update = useCallback((next: boolean) => setAutoRead(next), []);
+  return [enabled, update];
+}
+
+export function useHighContrast(): [boolean, (next: boolean) => void] {
+  const enabled = useSyncExternalStore(subscribeComfort, getHighContrastSnapshot, () => false);
+  const update = useCallback((next: boolean) => setHighContrastPreference(next), []);
+  return [enabled, update];
+}
+
+export function useUnderlineLinks(): [boolean, (next: boolean) => void] {
+  const enabled = useSyncExternalStore(subscribeComfort, getUnderlineLinksSnapshot, () => false);
+  const update = useCallback((next: boolean) => setUnderlineLinksPreference(next), []);
+  return [enabled, update];
+}
+
+export function useWideSpacing(): [boolean, (next: boolean) => void] {
+  const enabled = useSyncExternalStore(subscribeComfort, getWideSpacingSnapshot, () => false);
+  const update = useCallback((next: boolean) => setWideSpacingPreference(next), []);
+  return [enabled, update];
+}
+
+export function useReadingGuide(): [boolean, (next: boolean) => void] {
+  const enabled = useSyncExternalStore(subscribeComfort, getReadingGuideSnapshot, () => false);
+  const update = useCallback((next: boolean) => setReadingGuidePreference(next), []);
+  return [enabled, update];
+}
+
+export function useGrayscale(): [boolean, (next: boolean) => void] {
+  const enabled = useSyncExternalStore(subscribeComfort, getGrayscaleSnapshot, () => false);
+  const update = useCallback((next: boolean) => setGrayscalePreference(next), []);
   return [enabled, update];
 }
 

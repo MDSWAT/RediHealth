@@ -28,6 +28,7 @@ export interface GlobalHealthAudioPlayerProps {
   onActiveSentenceIndexChange?: (index: number) => void;
   lang?: Lang;
   chapterMarkers?: AudioChapterMarker[];
+  onUserPlayOrSeek?: () => void;
 }
 
 const STEP_COPY: Record<
@@ -130,6 +131,7 @@ export function GlobalHealthAudioPlayer({
   onActiveSentenceIndexChange,
   lang,
   chapterMarkers,
+  onUserPlayOrSeek,
 }: GlobalHealthAudioPlayerProps) {
   const { lang: ctxLang } = useSafeLanguageContext();
   const currentLang: Lang = lang ?? ctxLang ?? "ro";
@@ -155,6 +157,7 @@ export function GlobalHealthAudioPlayer({
 
   const onCloseRef = useRef(onClose);
   const onSentenceChangeRef = useRef(onActiveSentenceIndexChange);
+  const onUserPlayOrSeekRef = useRef(onUserPlayOrSeek);
   const speedRef = useRef(speed);
   const lastSentenceRef = useRef<number>(0);
   const currentOffsetRef = useRef<number>(0);
@@ -171,6 +174,10 @@ export function GlobalHealthAudioPlayer({
   useEffect(() => {
     onSentenceChangeRef.current = onActiveSentenceIndexChange;
   }, [onActiveSentenceIndexChange]);
+
+  useEffect(() => {
+    onUserPlayOrSeekRef.current = onUserPlayOrSeek;
+  }, [onUserPlayOrSeek]);
 
   useEffect(() => {
     speedRef.current = speed;
@@ -364,6 +371,7 @@ export function GlobalHealthAudioPlayer({
       speechEngine.pause();
       setIsPlaying(false);
     } else {
+      onUserPlayOrSeekRef.current?.();
       playEarcon("start");
       if (speechEngine.isPaused()) {
         speechEngine.resume();
@@ -403,6 +411,7 @@ export function GlobalHealthAudioPlayer({
     setProgressPercent(clamped);
     currentOffsetRef.current = alignedOffset;
     lastSentenceRef.current = sentenceIdx;
+    onUserPlayOrSeekRef.current?.();
     onSentenceChangeRef.current?.(sentenceIdx);
 
     playbackGenRef.current += 1;
@@ -427,6 +436,7 @@ export function GlobalHealthAudioPlayer({
     setProgressPercent(pct);
     currentOffsetRef.current = targetOffset;
     lastSentenceRef.current = nextIdx;
+    onUserPlayOrSeekRef.current?.();
     onSentenceChangeRef.current?.(nextIdx);
 
     playbackGenRef.current += 1;

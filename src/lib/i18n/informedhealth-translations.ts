@@ -59,7 +59,26 @@ const translatedCopy: Record<HealthContentLang, DirectoryCopy> = {
     results: count => `Найдено тем: ${count}`, showAll: "Показать все найденные темы", showLess: "Показать меньше тем",
     empty: "Темы не найдены. Попробуйте другое слово или группу.", clear: "Очистить поиск и фильтры",
   },
+  hr: {
+    jump: "Istražite više zdravstvenih tema", title: "Zdravstvene teme objašnjene jednostavno",
+    intro: "Pročitajte izvorne RediHealth preglede o bolestima, ljudskom tijelu, pretragama i mogućnostima liječenja.",
+    source: "RediHealth sažeci — Dodatno čitanje: InformedHealth.org / IQWiG",
+    languageNote: "Ovdje čitate svaki sažetak na odabranom jeziku. Na dnu se nalazi poveznica na izvorni materijal. Teme o zdravstvenim uslugama u Njemačkoj posebno su označene.",
+    search: "Pretražite ove teme", group: "Skupina tema", all: "Sve teme",
+    groups: { conditions: "Zdravlje i bolesti", services: "Zdravstvene usluge", body: "Ljudsko tijelo", treatments: "Pretrage i liječenje", evidence: "Istraživanja i odluke" },
+    results: count => `Pronađeno tema: ${count}`, showAll: "Prikaži sve pronađene teme", showLess: "Prikaži manje tema",
+    empty: "Nema pronađenih tema. Pokušajte s drugom riječju ili skupinom.", clear: "Očisti pretragu i filtre",
+  },
+  rom: {
+    jump: "Rodisaren maj but sastipnaske teme", title: "Sastipnaske teme shpjegime lokhes",
+    intro: "Ginaven originalne RediHealth rezumatura vash nasvalipena, o manushesko trupo, dikhibena thaj sastjarimaske alosarimata.",
+    source: "RediHealth rezumatura — Maj dur ginavimos: InformedHealth.org / IQWiG",
+    languageNote: "Ginaven sako rezumato kate pe tumari alosardi chib. Ko agor arakhen o phanglimos ko originalno izvoro. E teme vash sastipnaske servisura ande Germanija si sikade ulavdes.",
+    search: "Rode ande kadala teme", group: "Grupa temengi", all: "Savore teme",
+    groups: { conditions: "Sastipen thaj nasvalipena", services: "Sastipnaske servisura", body: "O manushesko trupo", treatments: "Dikhibena thaj sastjarimos", evidence: "Rodimos thaj alosarimata" },
+    results: count => `Arakhle teme: ${count}`, showAll: "Sikav savore arakhle teme", showLess: "Sikav maj xantsi teme",
+    empty: "Naj arakhle teme. Probisaren kolaver alav vaj grupa.", clear: "Khos o rodimos thaj e filtrura",
+  },
 };
 
-// New site languages use clearly identified English library content until translated.
-export const informedHealthCopy: Record<Lang, DirectoryCopy> = {...translatedCopy, hr: translatedCopy.en, rom: translatedCopy.en};
+export const informedHealthCopy: Record<Lang, DirectoryCopy> = translatedCopy;

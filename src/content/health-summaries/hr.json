@@ -1,0 +1,410 @@
+{
+  "allergies": {
+    "intro": "Alergija nastaje kada imunosni sustav reagira na nešto što je inače bezopasno. Okidači mogu uključivati pelud, životinje, hranu ili lijekove. Simptomi ovise o okidaču i mjestu na kojem se reakcija javlja.",
+    "details": "Nije svaki osip, začepljen nos ili reakcija na hranu alergija. Liječnik razmatra obrazac simptoma i može preporučiti ciljane pretrage. Zbrinjavanje može uključivati izbjegavanje potvrđenog okidača i razgovor o prikladnom liječenju. Teška reakcija koja otežava disanje ili uzrokuje gubitak svijesti zahtijeva hitnu pomoć.",
+    "questions": [
+      "Koji obrazac upućuje na alergiju, a ne na neki drugi uzrok?",
+      "Bi li testiranje promijenilo način na koji ublažavam svoje simptome?"
+    ]
+  },
+  "airway-diseases": {
+    "intro": "Dišni putovi dovode zrak u pluća i odvode ga iz njih. Infekcije, astma i druga stanja mogu ih suziti ili nadražiti te uzrokovati kašalj, piskanje pri disanju ili nedostatak zraka. Slični simptomi mogu imati različite uzroke.",
+    "details": "Vrijeme pojave simptoma, pušenje ili izloženost na radnom mjestu te prijašnje bolesti pomažu usmjeriti procjenu. Testovi plućne funkcije mogu biti korisni za određena stanja. Liječenje ovisi o dijagnozi, a ne samo o simptomu. Novo, izrazito otežano disanje zahtijeva hitnu medicinsku pomoć.",
+    "questions": [
+      "Što bi moglo objasniti moje simptome s disanjem?",
+      "Bi li test disanja pomogao razjasniti uzrok?"
+    ]
+  },
+  "eyes-nose-ears": {
+    "intro": "Oči, nos i uši omogućuju vid, njuh, sluh i ravnotežu. Tegobe mogu uključivati nadraženost, infekciju, alergiju ili promjene u radu tih organa. Njihov utjecaj može se kretati od blage nelagode do poteškoća u svakodnevnim aktivnostima.",
+    "details": "Procjena ovisi o tome koje je osjetilo zahvaćeno, koliko je brzo promjena počela te jesu li prisutni bol ili drugi simptomi. Neke tegobe prolaze same od sebe, dok druge zahtijevaju specijalističku skrb. Nagli gubitak vida ili sluha potrebno je procijeniti odmah, umjesto čekanja na redoviti termin.",
+    "questions": [
+      "Zahtijeva li ova promjena hitnu procjenu?",
+      "Koji pregled može pomoći u otkrivanju problema?"
+    ]
+  },
+  "diabetes": {
+    "intro": "Dijabetes znači da razina glukoze u krvi ostaje previsoka jer nedostaje inzulina ili on ne djeluje učinkovito. Dijabetes tipa 1 i tipa 2 imaju različite uzroke i potrebe liječenja. Drugi oblici mogu se razviti tijekom trudnoće ili uz određene bolesti.",
+    "details": "Dijagnoza se postavlja krvnim pretragama, a ne samo na temelju simptoma. Skrb ima za cilj regulirati glukozu i dugoročno zaštititi zdravlje, uz prilagodbu svakodnevnom životu. Prehrana, tjelesna aktivnost, lijekovi i praćenje mogu imati važnu ulogu, ovisno o tipu dijabetesa. Odluke o liječenju treba donositi zajedno sa zdravstvenim timom.",
+    "questions": [
+      "Koji tip dijabetesa imam?",
+      "Kakvo praćenje i podrška odgovaraju mojem planu liječenja?"
+    ]
+  },
+  "gland-and-hormone-disorders": {
+    "intro": "Hormoni su kemijski glasnici koje proizvode žlijezde. Pomažu u regulaciji rasta, iskorištavanja energije, reprodukcije i mnogih drugih tjelesnih funkcija. Tegobe mogu nastati kada žlijezda proizvodi previše ili premalo nekog hormona.",
+    "details": "Hormonski poremećaji mogu izazvati različite simptome koji se javljaju i kod drugih bolesti. Nalaze pretraga treba tumačiti uz simptome, lijekove i osobne okolnosti. Jedna odstupajuća vrijednost ne objašnjava uvijek kako se osoba osjeća. Ponovne pretrage ili savjet specijalista mogu biti prikladni.",
+    "questions": [
+      "Što ovaj nalaz hormona znači u mojoj situaciji?",
+      "Trebam li dodatnu pretragu ili specijalističku procjenu?"
+    ]
+  },
+  "womens-health": {
+    "intro": "Zdravlje žena obuhvaća menstrualno i reproduktivno zdravlje, zdravlje dojki, menopauzu te mnoga stanja koja utječu na svakodnevnu dobrobit. Potrebe se mijenjaju tijekom života, a isti simptom može imati različita objašnjenja u različitoj životnoj dobi.",
+    "details": "Korisna skrb počinje razgovorom o simptomima, njihovu utjecaju i osobnim prioritetima. Probir se razlikuje od obrade novog simptoma: nedavni uredan nalaz probira ne objašnjava svaku novu promjenu. Odluke o pretragama ili liječenju trebaju obuhvatiti očekivane koristi, moguće štete i dostupne mogućnosti.",
+    "questions": [
+      "Zahtijeva li ovaj simptom dijagnostičku obradu umjesto rutinskog probira?",
+      "Koje mogućnosti odgovaraju mojim simptomima i prioritetima?"
+    ]
+  },
+  "urinary-disorders-and-kidney-problems": {
+    "intro": "Bubrezi filtriraju krv i stvaraju mokraću koja prolazi kroz mokraćni sustav. Infekcije, kamenci, nevoljno otjecanje mokraće i promjene u radu bubrega različiti su problemi koji mogu zahvatiti ovaj sustav.",
+    "details": "Bol, promjene u mokrenju ili otekline mogu biti razlog za pretrage mokraće, krvne pretrage ili slikovnu dijagnostiku, ovisno o situaciji. Sami simptomi ne pokazuju koliko dobro bubrezi rade. Vidljiva krv u mokraći, povišena temperatura uz mokraćne tegobe ili otežano mokrenje zahtijevaju žuran razgovor sa zdravstvenim djelatnikom.",
+    "questions": [
+      "Koje bi pretrage pomogle objasniti promjene u mokrenju?",
+      "Mogu li moji lijekovi utjecati na rad bubrega?"
+    ]
+  },
+  "skin-and-hair": {
+    "intro": "Koža štiti tijelo, dok kosa i dlake rastu iz folikula u njoj. Upala, infekcija, nasljedna stanja i drugi čimbenici mogu zahvatiti i kožu i kosu. Sličan osip ili gubitak kose na pojedinim mjestima može imati više objašnjenja.",
+    "details": "Mjesto, izgled i vrijeme nastanka promjene pomažu usmjeriti procjenu. Proizvodi koji se nanose na kožu, lijekovi i drugi simptomi također mogu biti važni. Liječenje treba odgovarati uzroku. Kožna promjena koja se mijenja ili dugotrajan neobjašnjen problem zahtijeva stručnu procjenu umjesto ponavljanog isprobavanja raznih pripravaka.",
+    "questions": [
+      "Koja obilježja pomažu razlikovati moguće uzroke?",
+      "Koje bi promjene trebale biti razlog za ponovni pregled?"
+    ]
+  },
+  "heart-and-circulation": {
+    "intro": "Srce pumpa krv kroz arterije, kapilare i vene. Time se dopremaju kisik i hranjive tvari, a odnose otpadne tvari. Tegobe mogu zahvatiti krvni tlak, srčani ritam, krvne žile ili sposobnost pumpanja srca.",
+    "details": "Neki rizici za srce i krvne žile u početku izazivaju malo simptoma, pa odgovarajuće kontrole mogu biti važne. Procjena i prevencija ovise o općem zdravlju i dosadašnjoj medicinskoj povijesti osobe. Pritisak u prsima, gubitak svijesti ili nagli, teški nedostatak zraka mogu biti hitna stanja; nemojte se oslanjati na internetsko objašnjenje kako biste zaključili da su takvi simptomi bezopasni.",
+    "questions": [
+      "Koji su rizici za srce i krvne žile važni za mene?",
+      "Koje su pretrage ili kontrolni pregledi korisni?"
+    ]
+  },
+  "infections-and-immune-system": {
+    "intro": "Imunosni sustav prepoznaje prijetnje poput bakterija i virusa te reagira na njih. Infekcije nastaju kada mikroorganizam uđe u tijelo i izazove bolest. Različiti uzročnici mogu uzrokovati slične simptome, ali zahtijevaju različit pristup.",
+    "details": "Vjerojatni uzrok, težina bolesti i osjetljivost osobe usmjeravaju odluke o testiranju i liječenju. Antibiotici djeluju na bakterije, a ne na viruse, i nisu prikladni za svaku infekciju. Cijepljenje i odgovarajuća higijena mogu pomoći u sprječavanju nekih infekcija. Pogoršanje bolesti ili neuobičajeni simptomi mogu zahtijevati ponovnu procjenu.",
+    "questions": [
+      "Može li nalaz pretrage promijeniti odluku o liječenju?",
+      "Koji znakovi znače da trebam ponovno potražiti pomoć?"
+    ]
+  },
+  "childrens-health": {
+    "intro": "Zdravlje djece obuhvaća razvoj, česte bolesti, prevenciju i podršku obiteljima. Dob djeteta i njegovo uobičajeno ponašanje važni su pri procjeni simptoma. Savjeti namijenjeni odraslima možda nisu prikladni za dijete.",
+    "details": "Liječnik zajedno procjenjuje hranjenje, uzimanje tekućine, aktivnost, rast i druge simptome. Roditelji i skrbnici mogu pomoći tako da opišu što se promijenilo i kada. Izbor i doziranje lijekova zahtijevaju savjet prilagođen djeci. Dijete koje teško diše, teško se budi ili djeluje ozbiljno bolesno treba hitnu pomoć.",
+    "questions": [
+      "Na što trebam obratiti pozornost u dobi svojega djeteta?",
+      "Kada trebam dogovoriti ponovni pregled?"
+    ]
+  },
+  "cancer": {
+    "intro": "Rak je skupina bolesti u kojima se promijenjene stanice nekontrolirano razmnožavaju. Različite vrste raka ponašaju se različito. Zahvaćeni organ, vrsta stanica i proširenost bolesti pomažu u određivanju skrbi.",
+    "details": "Dijagnoza može uključivati slikovne pretrage, laboratorijske nalaze i analizu uzorka tkiva. Liječenje može imati različite ciljeve, uključujući izlječenje, kontrolu bolesti ili ublažavanje simptoma. Pri odlukama treba uzeti u obzir očekivane koristi, nuspojave i osobne ciljeve. Pojedinačna prognoza ne može se odrediti iz općeg opisa ili jednog statističkog podatka.",
+    "questions": [
+      "Koji je cilj svake mogućnosti liječenja?",
+      "Kako bi liječenje moglo utjecati na moj svakodnevni život?"
+    ]
+  },
+  "mens-health": {
+    "intro": "Zdravlje muškaraca obuhvaća stanja prostate i testisa, spolno zdravlje, plodnost te šire tjelesno i mentalno zdravlje. Simptomi mogu utjecati na ugodu, odnose i svakodnevni život, čak i kada je o njima teško razgovarati.",
+    "details": "Promjene u mokrenju ili spolnoj funkciji same po sebi nisu dijagnoza. Povjerljiv razgovor može pomoći u otkrivanju mogućih uzroka i odgovarajućih pregleda. Odluke o probiru trebaju uključivati i prednosti i nedostatke. Novu kvržicu ili dugotrajnu neobjašnjenu promjenu treba provjeriti, umjesto pretpostavke da je to uobičajen dio starenja.",
+    "questions": [
+      "Što bi moglo uzrokovati ovu promjenu?",
+      "Koje su prednosti i nedostaci testiranja?"
+    ]
+  },
+  "muscle-and-joint-disorders": {
+    "intro": "Mišići, tetive, zglobovi i povezana tkiva omogućuju kretanje. Ozljeda, preopterećenje, upala i druga stanja mogu uzrokovati bol ili ukočenost. Jačina boli ne odgovara uvijek onome što se vidi na snimci.",
+    "details": "Procjena obuhvaća funkciju, simptome i okolnosti u kojima su započeli. Nije svakome potrebna slikovna dijagnostika. Zbrinjavanje može uključivati prilagodbu aktivnosti, rehabilitaciju ili druge postupke odabrane prema dijagnozi. Razgovarajte o simptomima koji se pogoršavaju ili ograničavaju uobičajene aktivnosti umjesto pretpostavke da svaka bol ima isti uzrok.",
+    "questions": [
+      "Koje aktivnosti mogu sigurno nastaviti?",
+      "Bi li snimanje ili rehabilitacija promijenili moje liječenje?"
+    ]
+  },
+  "mental-health-brain-and-nerves": {
+    "intro": "Mozak i živčani sustav utječu na kretanje, osjet, razmišljanje, raspoloženje i ponašanje. I poremećaji mentalnog zdravlja i neurološke bolesti mogu utjecati na svakodnevni život, ali zahtijevaju individualnu procjenu, a ne pretpostavke o nečijem karakteru.",
+    "details": "Skrb može uključivati psihoterapiju ili savjetovanje, lijekove, rehabilitaciju ili praktičnu podršku, ovisno o problemu. Obavijestite liječnika o promjenama u funkcioniranju i drugim zdravstvenim stanjima. Iznenadna nova slabost, poteškoće s govorom ili gubitak svijesti zahtijevaju hitnu procjenu, čak i ako su drugi simptomi prisutni dulje vrijeme.",
+    "questions": [
+      "Koji simptomi pomažu razlikovati moguće uzroke?",
+      "Koja bi podrška mogla poboljšati moje svakodnevno funkcioniranje?"
+    ]
+  },
+  "pregnancy-and-birth": {
+    "intro": "Trudnoća donosi promjene u tijelu te nove odluke o skrbi, pretragama i porodu. Redovit kontakt sa zdravstvenim timom za trudničku skrb pomaže pratiti dobrobit trudnice i djeteta te pruža priliku za razgovor o nedoumicama.",
+    "details": "Neke se pretrage nude rutinski, dok druge ovise o osobnim okolnostima. Razumijevanje što pretraga može, a što ne može pokazati pomaže u donošenju informiranih odluka. O lijekovima i dodacima prehrani tijekom trudnoće treba razgovarati sa stručnom osobom. Pitajte tim za trudničku skrb koji simptomi zahtijevaju hitno javljanje i kako ih kontaktirati.",
+    "questions": [
+      "Koje bi podatke dala ova pretraga u trudnoći?",
+      "Kome se trebam obratiti ako se zabrinem između pregleda?"
+    ]
+  },
+  "sexual-health-and-contraception": {
+    "intro": "Spolno zdravlje obuhvaća dobrobit, pristanak, zaštitu od infekcija i odabir metoda sprječavanja trudnoće. Kontracepcijske metode razlikuju se po načinu djelovanja, načinu primjene i tome tko ih može sigurno koristiti.",
+    "details": "Prikladna metoda ovisi o zdravstvenoj povijesti, osobnim željama i praktičnim potrebama. Sprječavanje trudnoće i zaštita od spolno prenosivih infekcija različiti su ciljevi; ne pruža svaka metoda oboje. Povjerljivo savjetovanje može pomoći i kod simptoma, testiranja i pitanja o spolnoj funkciji. Usluge i prava razlikuju se od zemlje do zemlje.",
+    "questions": [
+      "Koje mogućnosti odgovaraju mojoj zdravstvenoj povijesti i željama?",
+      "Trebam li i zaštitu ili testiranje na infekcije?"
+    ]
+  },
+  "metabolic-disorders": {
+    "intro": "Metabolizam je skup procesa koji hranu pretvaraju u iskoristivu energiju i gradivne tvari. Metabolički poremećaji zahvaćaju jedan ili više tih procesa. Oni uključuju stanja povezana s glukozom, mastima i drugim tvarima u tijelu.",
+    "details": "Neki su poremećaji nasljedni, dok se drugi razvijaju djelovanjem više čimbenika. Krvne pretrage mogu pomoći u prepoznavanju problema, no njihovo značenje ovisi o kliničkom kontekstu. Skrb može uključivati odabir namirnica, lijekove ili druge mjere prilagođene dijagnozi. Općenita ograničenja u prehrani nisu prikladna za svako metaboličko stanje.",
+    "questions": [
+      "Što odstupajući nalaz znači za moje zdravlje?",
+      "Koje su promjene prikladne za ovo konkretno stanje?"
+    ]
+  },
+  "addiction": {
+    "intro": "Ovisnost može uključivati alkohol, nikotin, druge tvari ili određena ponašanja. Može utjecati na kontrolu, zdravlje, odnose i svakodnevne obveze. Traženje pomoći zdravstvena je odluka, a ne znak moralne slabosti.",
+    "details": "Podrška može kombinirati savjetovanje, praktičnu pomoć i lijekove kada je to prikladno. Najsigurniji pristup ovisi o tome što se koristi i o zdravstvenom stanju osobe. Nagli prekid uzimanja nekih tvari može biti opasan, osobito kada se već razvila ovisnost. Razgovarajte o planu sa zdravstvenim djelatnikom umjesto da općenite internetske upute koristite kao raspored odvikavanja.",
+    "questions": [
+      "Kakva je podrška dostupna lokalno?",
+      "Trebam li liječnički nadzor pri smanjenju ili prestanku uzimanja?"
+    ]
+  },
+  "digestive-system-disorders": {
+    "intro": "Probavni sustav prerađuje hranu, apsorbira hranjive tvari i uklanja otpad. Tegobe mogu zahvatiti jednjak, želudac, crijeva ili povezane organe. Bol, refluks, mučnina i promjene u pražnjenju crijeva mogu imati mnogo uzroka.",
+    "details": "Procjena ovisi o tome kako su se simptomi razvijali, koliko traju i postoje li popratne promjene. Pretrage se biraju kako bi odgovorile na konkretno pitanje, a ne rutinski za svaki simptom. Dugotrajni simptomi ili neobjašnjen gubitak tjelesne težine zahtijevaju razgovor s liječnikom. Jaka bol u trbuhu ili znakovi jačeg krvarenja zahtijevaju hitnu procjenu.",
+    "questions": [
+      "Koji znakovi pomažu otkriti uzrok mojih simptoma?",
+      "Što bi predložena pretraga promijenila u mojem liječenju?"
+    ]
+  },
+  "teeth-and-gums": {
+    "intro": "Zubi i desni podržavaju hranjenje, govor i zdravlje usne šupljine. Karijes i bolesti desni mogu se razvijati postupno te u početku ne moraju izazivati bol. Problemi sa zubima mogu utjecati i na samopouzdanje te svakodnevnu ugodu.",
+    "details": "Redovita njega usne šupljine i odgovarajući stomatološki pregledi pomažu u ranom otkrivanju problema. Najbolje liječenje ovisi o stanju zuba ili desni te o potrebama osobe. Zubobolja ne pokazuje pouzdano koliko je problem ozbiljan. Oteklina uz otežano gutanje ili disanje zahtijeva hitnu pomoć umjesto čekanja na redoviti posjet stomatologu.",
+    "questions": [
+      "Što uzrokuje problem s ovim zubom ili desnima?",
+      "Koje su prednosti i nedostaci mogućnosti liječenja?"
+    ]
+  },
+  "early-benefit-assessment-of-medications": {
+    "intro": "U Njemačkoj se procjenjuju određeni novi lijekovi kako bi se ispitalo pružaju li dodatnu korist u usporedbi s već uspostavljenim liječenjem. Ta se procjena temelji na dokazima iz skupina pacijenata i dio je njemačkog sustava vrednovanja lijekova.",
+    "details": "Procjena može uzeti u obzir ishode važne za pacijente, poput simptoma, preživljenja, kvalitete života i nuspojava. Rezultat ovisi o usporedbi i dostupnim dokazima. To nije osobna preporuka za propisivanje lijeka, a njemačke procjene ili pravila plaćanja ne primjenjuju se automatski u drugim zemljama.",
+    "questions": [
+      "Na koju se skupinu pacijenata i usporedbu odnosi ova procjena?",
+      "Koliko su ti nalazi važni za moje mogućnosti liječenja?"
+    ]
+  },
+  "health-care-in-germany": {
+    "intro": "Zdravstveni sustavi razlikuju se po načinu organizacije naručivanja, osiguranja, uputnica i plaćanja. Ova se tema odnosi na Njemačku. Razumijevanje koja služba pruža koju vrstu skrbi može olakšati pronalaženje prave adrese za kontakt.",
+    "details": "Pravila opisana u njemačkim informacijama možda ne vrijede u Rumunjskoj, Moldaviji, Albaniji ili Italiji. Prije dogovaranja usluge provjerite lokalne uvjete pristupa i moguće troškove kod pružatelja usluge ili osiguravatelja. Pri čitanju o zdravstvenom sustavu razlikujte opće medicinske informacije od administrativnih pravila pojedine zemlje.",
+    "questions": [
+      "Vrijedi li ova informacija u zemlji u kojoj primam skrb?",
+      "Koji pružatelj usluge ili osiguravatelj može potvrditi uvjete pristupa i troškove?"
+    ]
+  },
+  "individual-health-care-services-igel": {
+    "intro": "U Njemačkoj se neke pretrage i postupci koji se nude izvan standardnog obveznog zdravstvenog osiguranja nazivaju individualne zdravstvene usluge ili IGeL. Pacijenti će te usluge možda morati platiti sami. Činjenica da se usluga može kupiti sama po sebi ne dokazuje da ona poboljšava zdravlje.",
+    "details": "Prije donošenja odluke pitajte koja je korist potkrijepljena istraživanjima, kakve bi štete ili dodatne pretrage mogle uslijediti te postoji li alternativa pokrivena osiguranjem. Cijena i jasno objašnjenje trebaju biti dostupni. IGeL je njemačka kategorija; pravila plaćanja i dostupne usluge drugdje se razlikuju.",
+    "questions": [
+      "Koja je korist dokazana, a koja neizvjesnost ostaje?",
+      "Koji su troškovi, rizici i mogućnosti pokrivene osiguranjem?"
+    ]
+  },
+  "nursing-care": {
+    "intro": "Zdravstvena njega pruža podršku osobama sa zdravstvenim potrebama i u svakodnevnim aktivnostima. Može se provoditi kod kuće, u zajednici ili u ustanovi za skrb. Potrebe se mogu promijeniti nakon bolesti, ozljede ili gubitka samostalnosti.",
+    "details": "Planiranje njege uključuje razumijevanje onoga što osoba može učiniti sama, gdje joj je potrebna pomoć i što joj je važno. Članovima obitelji koji pružaju skrb podrška također može biti potrebna. Dostupne usluge, procjene i financijski uvjeti razlikuju se među državama. Plan njege treba preispitati kada se promijene zdravstveno stanje ili praktične okolnosti.",
+    "questions": [
+      "Koja bi pomoć podržala moju samostalnost i sigurnost?",
+      "Koje lokalne službe mogu procijeniti moje potrebe za njegom?"
+    ]
+  },
+  "screening": {
+    "intro": "Probirom se traži bolest ili povećani rizik kod osoba koje nemaju povezane simptome. On se razlikuje od pretraga kojima se istražuje nova tegoba. Ponudu za probir treba sagledati s obzirom na moguće koristi i moguće štete.",
+    "details": "Probir ponekad može otkriti bolest ranije, ali može dati i lažne uzbune, propustiti bolest ili otkriti promjene koje nikada ne bi izazvale tegobe. Nakon toga mogu uslijediti dodatne pretrage ili liječenje. Prikladni programi ovise o dobi, osobnom riziku i lokalnim smjernicama. Novi simptomi zahtijevaju procjenu čak i nakon urednog nalaza probira.",
+    "questions": [
+      "Kolika se korist očekuje za osobe u mojoj situaciji?",
+      "Što bi moglo uslijediti nakon pozitivnog ili nejasnog nalaza?"
+    ]
+  },
+  "second-opinions-before-surgery": {
+    "intro": "Drugo mišljenje je procjena drugog liječnika o predloženoj operaciji. Može pomoći razjasniti dijagnozu, razloge za kirurški zahvat i dostupne alternative. Osobito je korisno kada odluka uključuje važne kompromise.",
+    "details": "Ponesite relevantne nalaze, snimke i popis pitanja. Pitajte kako se očekivane koristi odnose prema mogućim štetama te što bi se moglo dogoditi bez operacije. Pravo na službeno drugo mišljenje i njegovo plaćanje razlikuju se od zemlje do zemlje. Nemojte odgađati hitno liječenje dok tražite dodatno rutinsko mišljenje.",
+    "questions": [
+      "Koje su alternative ovoj operaciji?",
+      "Kako se očekivani ishodi uspoređuju s čekanjem ili nekirurškim liječenjem?"
+    ]
+  },
+  "blood-and-immune-system": {
+    "intro": "Krv prenosi kisik, hranjive tvari i druge tvari po tijelu. Njezine stanice i bjelančevine također pomažu u obrani od infekcija i zaustavljanju krvarenja. Imunosni sustav obuhvaća specijalizirane stanice i organe koji zajedno prepoznaju prijetnje.",
+    "details": "Krvne pretrage mjere različite dijelove tog sustava. Vrijednost izvan referentnog raspona ne znači uvijek tešku bolest, a uredan nalaz ne daje odgovor na svako kliničko pitanje. Tumačenje ovisi o simptomima, zdravstvenoj povijesti i razlogu upućivanja na pretragu.",
+    "questions": [
+      "Koji dio krvi ili imunosnog sustava mjeri ova pretraga?",
+      "Zahtijeva li nalaz daljnje praćenje u mojoj situaciji?"
+    ]
+  },
+  "brain-and-nerves": {
+    "intro": "Živčani sustav povezuje mozak, leđnu moždinu i živce po cijelom tijelu. Obrađuje informacije, upravlja kretanjem i pomaže u regulaciji mnogih automatskih funkcija. Različiti dijelovi imaju različite uloge, pa je obrazac simptoma važan.",
+    "details": "Neurološkim pregledom mogu se procijeniti snaga, osjet, koordinacija i druge funkcije. Daljnje pretrage odabiru se prema kliničkom pitanju. Nagle promjene poput iznenadne slabosti, poteškoća s govorom ili gubitka svijesti zahtijevaju hitnu procjenu umjesto pokušaja otkrivanja uzroka putem interneta.",
+    "questions": [
+      "Na što upućuje ovakav obrazac simptoma?",
+      "Koji bi pregled ili pretraga mogli razjasniti problem?"
+    ]
+  },
+  "sex-organs": {
+    "intro": "Spolni organi sudjeluju u reprodukciji, proizvodnji hormona i spolnoj funkciji. Njihova građa i rad mijenjaju se tijekom života. Poznavanje uobičajene anatomije može olakšati opisivanje simptoma i razgovor o zdravstvenim brigama.",
+    "details": "Bol, krvarenje, iscjedak ili nova kvržica mogu imati različita objašnjenja. Zdravstveni djelatnik može s vama u povjerenju razgovarati o prikladnom pregledu ili pretrazi. Ono što je uobičajeno za jednu osobu može se razlikovati od druge, no trajnu ili neočekivanu promjenu ne treba zanemariti bez pregleda.",
+    "questions": [
+      "Je li ova promjena očekivana u mojim okolnostima?",
+      "Što bi pregled ili pretraga pomogli utvrditi?"
+    ]
+  },
+  "limbs": {
+    "intro": "Ruke i noge spajaju kosti, zglobove, mišiće, živce i krvne žile kako bi omogućile kretanje i osjet. Poteškoće u bilo kojoj od tih struktura mogu utjecati na snagu, ravnotežu ili sposobnost obavljanja svakodnevnih zadataka.",
+    "details": "Simptome poput boli, otekline, slabosti ili utrnulosti treba promatrati zajedno. Procjena može uključivati pokretljivost, cirkulaciju i funkciju živaca. Rehabilitacija može pomoći kod nekih tegoba, no prikladan pristup ovisi o uzroku. Nagle, izražene promjene u kretanju ili osjetu zahtijevaju brzu liječničku pomoć.",
+    "questions": [
+      "Koje bi strukture mogle biti zahvaćene mojim simptomima?",
+      "Što bi moglo pomoći u sigurnom vraćanju funkcije?"
+    ]
+  },
+  "skin-hair-and-nails": {
+    "intro": "Koža stvara zaštitnu barijeru, pomaže u regulaciji tjelesne temperature i omogućuje osjet. Kosa, dlake i nokti povezane su strukture koje rastu iz specijaliziranih stanica. Promjene mogu odražavati lokalni problem ili, katkad, drugo zdravstveno stanje.",
+    "details": "Boja, tekstura, mjesto i brzina nastanka promjene mogu pomoći u procjeni. Izloženost kemikalijama, proizvodi za svakodnevnu njegu i lijekovi također mogu biti važni. Nemojte pretpostavljati da vanjska promjena sama po sebi upućuje na određenu bolest. O trajnoj, bolnoj ili neobjašnjenoj promjeni možete razgovarati s liječnikom.",
+    "questions": [
+      "Bi li izloženost nekoj tvari ili lijek mogli objasniti ovu promjenu?",
+      "Koja bi obilježja zahtijevala daljnju procjenu?"
+    ]
+  },
+  "endocrine-hormone-system": {
+    "intro": "Endokrini sustav čine žlijezde i tkiva koja izlučuju hormone. Ti glasnici putuju krvotokom i pomažu uskladiti procese poput metabolizma, rasta i reprodukcije. Povratne sprege uobičajeno održavaju djelovanje hormona unutar odgovarajućeg raspona.",
+    "details": "Razine hormona mogu se mijenjati ovisno o dobu dana, starosti, trudnoći i bolesti. To je jedan od razloga zašto nalazi pretraga zahtijevaju kliničko tumačenje, a ne uspoređivanje samo s jednim izdvojenim brojem. Liječenje hormonskog poremećaja ovisi o tome koji je hormon ili žlijezda zahvaćena.",
+    "questions": [
+      "Može li vrijeme vađenja ili neko drugo stanje utjecati na moj nalaz hormona?",
+      "Što ova žlijezda uobičajeno regulira?"
+    ]
+  },
+  "bones-muscles-and-joints": {
+    "intro": "Kosti podupiru i štite tijelo. Zglobovi povezuju kosti, dok mišići i tetive proizvode pokret. Hrskavica, ligamenti i druga tkiva pomažu zglobovima da se pomiču i ostanu stabilni. Zajedno te strukture čine koštano-mišićni sustav.",
+    "details": "Snaga, koordinacija i pokretljivost zglobova doprinose tjelesnoj funkciji. Ozljeda i bolest mogu zahvatiti različite dijelove sustava, katkad sa simptomima koji se preklapaju. Pregledom se promatra šire od jednog bolnog mjesta kako bi se razumjelo kako je kretanje narušeno. Liječenje i rehabilitacija trebaju odgovarati stvarnom problemu.",
+    "questions": [
+      "Kako ovaj problem utječe na moje kretanje i funkcioniranje?",
+      "Koji bi ciljevi trebali usmjeravati rehabilitaciju?"
+    ]
+  },
+  "lungs-and-airways": {
+    "intro": "Zrak putuje kroz dišne putove u pluća. U sitnim zračnim mjehurićima kisik prelazi u krv, a ugljikov dioksid izlazi iz nje. Disanje ovisi i o mišićima, stijenci prsnog koša te signalima iz živčanog sustava.",
+    "details": "Nedostatak zraka može nastati zbog problema u plućima ili negdje drugdje u tijelu. Liječnik prije odabira pretraga uzima u obzir okolnosti i ostale simptome. Testovi disanja i mjerenje kisika daju odgovore na različita pitanja i ne mogu zamijeniti cjelovit pregled kada je osoba teško bolesna.",
+    "questions": [
+      "Može li nešto drugo osim pluća objasniti moj nedostatak zraka?",
+      "Što će pokazati predloženi test disanja?"
+    ]
+  },
+  "stomach-bowel-and-digestion": {
+    "intro": "Probava razgrađuje hranu kako bi tijelo moglo apsorbirati i iskoristiti hranjive tvari. Želudac miješa hranu, crijeva upijaju hranjive tvari i vodu, a drugi organi osiguravaju tvari potrebne za probavu. Preostali otpad napušta tijelo kao stolica.",
+    "details": "Uobičajena probava razlikuje se od osobe do osobe. Trajniju promjenu u pražnjenju crijeva ili stalnu nelagodu korisnije je opisati nego uspoređivati se s nečijim tuđim ritmom. Lijekovi, prehrana i bolesti mogu utjecati na probavu. Obrada ovisi o ukupnom obrascu i popratnim simptomima.",
+    "questions": [
+      "Koje su promjene u odnosu na moj uobičajeni obrazac važne?",
+      "Mogu li lijekovi ili neka druga bolest pridonositi ovim tegobama?"
+    ]
+  },
+  "mouth-and-teeth": {
+    "intro": "U usnoj šupljini probava započinje žvakanjem i djelovanjem sline, a važna je i za govor te gutanje. Zubi, desni, jezik i ostala tkiva djeluju zajedno. Njihovo zdravlje utječe na ugodu i mogućnost raznolike prehrane.",
+    "details": "Tegobe mogu zahvatiti zube, potporna tkiva ili sluznicu usne šupljine. Stomatološki pregled može pomoći u razlikovanju tih uzroka. Ranica koja ne prolazi, neobjašnjena kvržica ili stalna poteškoća pri gutanju zahtijevaju pregled. Svakodnevna njega usne šupljine je korisna, ali ne zamjenjuje procjenu trajne promjene.",
+    "questions": [
+      "Potječe li problem od zuba ili drugog tkiva u ustima?",
+      "Što trebam učiniti ako promjena ne zacijeli?"
+    ]
+  },
+  "kidneys-bladder-and-urinary-tract": {
+    "intro": "Bubrezi filtriraju krv, održavaju ravnotežu tekućine i soli te stvaraju mokraću. Mokraća putuje mokraćovodima do mokraćnog mjehura, gdje se nakuplja prije nego što izađe kroz mokraćnu cijev. Svaka od tih struktura ima svoju ulogu.",
+    "details": "Sam izgled mokraće nije pouzdano mjerilo zdravlja bubrega. Pretrage krvi i mokraće mogu procijeniti različite funkcije ili znakove bolesti. Promjene u mokrenju mogu potjecati iz bubrega, mokraćnog mjehura ili drugog dijela tijela. Liječnik tumači nalaze uz simptome, lijekove i prijašnje rezultate.",
+    "questions": [
+      "Koji se dio mokraćnog sustava procjenjuje?",
+      "Što mjere ove pretrage krvi i mokraće?"
+    ]
+  },
+  "sensory-organs": {
+    "intro": "Osjetilni organi prikupljaju informacije o okolini i tijelu. Oči i uši omogućuju vid, sluh i ravnotežu, dok receptori pomažu i kod njuha, okusa i dodira. Mozak tumači te signale.",
+    "details": "Promjene nekog osjetila mogu utjecati na sigurnost, komunikaciju i samostalnost. Uzrok može biti u samom osjetilnom organu, živcima ili drugim stanjima. Opišite je li promjena nastala naglo, postupno ili se javlja povremeno. Nagli gubitak vida ili sluha zahtijeva brzu liječničku procjenu.",
+    "questions": [
+      "Gdje bi se mogla događati promjena ovog osjetila?",
+      "Bi li pomagalo ili rehabilitacija mogli poboljšati svakodnevno funkcioniranje?"
+    ]
+  },
+  "metabolism": {
+    "intro": "Metabolizam obuhvaća kemijske procese u tijelu kojima se dobiva energija, grade tkiva i obrađuju otpadne tvari. Enzimi i hormoni pomažu u nadzoru tih procesa. U metabolizmu sudjeluju mnogi organi, a ne samo jedan dio tijela.",
+    "details": "Tijelo prilagođava iskorištavanje hranjivih tvari prema tjelesnoj aktivnosti, unosu hrane i drugim utjecajima. Sama riječ metabolizam ne objašnjava simptom ili promjenu tjelesne težine. Kada se sumnja na određeni metabolički problem, korisne pretrage i liječenje ovise o kliničkom pitanju.",
+    "questions": [
+      "Koji je metabolički proces važan za moju tegobu?",
+      "Koji bi podaci pomogli otkriti određeni problem?"
+    ]
+  },
+  "growth-and-aging": {
+    "intro": "Rast i starenje uključuju promjene u građi i radu tijela tijekom vremena. Ljudi se razvijaju i stare različitom brzinom. Zdravlje, okolina i svakodnevne okolnosti mogu utjecati na to što te promjene znače za svakodnevni život pojedinca.",
+    "details": "Uobičajene sposobnosti osobe i brzina promjene važni su pri procjeni je li potreban pregled. Nove tegobe ne treba automatski pripisivati dobi. Skrb se može usmjeriti na razvoj, samostalnost, ugodu i aktivnosti koje su osobi važne.",
+    "questions": [
+      "Je li ovakav tijek očekivan u ovoj životnoj dobi?",
+      "Što bi moglo pomoći očuvanju funkcije ili poticanju razvoja?"
+    ]
+  },
+  "drugs-and-vaccines": {
+    "intro": "Lijekovi mogu spriječiti bolest, ublažiti simptome ili liječiti određeno stanje. Cjepiva pripremaju imunosni sustav na odgovor protiv pojedinih infekcija. I lijekovi i cjepiva procjenjuju se s obzirom na koristi i moguće štete, ali njihova prikladnost ovisi o osobi i svrsi.",
+    "details": "Razumijevanje očekivane koristi, čestih nuspojava i pravilne primjene pridonosi sigurnijim odlukama. Obavijestite zdravstveni tim o drugim lijekovima i dodacima prehrani koje uzimate. Nemojte mijenjati propisano liječenje na temelju općenitog sažetka. O pitanjima o cijepljenju ili lijekovima možete razgovarati sa stručnom osobom.",
+    "questions": [
+      "Kakvu korist mogu očekivati od ovog liječenja?",
+      "Koje interakcije ili nuspojave trebam raspraviti?"
+    ]
+  },
+  "diagnosis-and-tests": {
+    "intro": "Dijagnostičke pretrage pomažu odgovoriti na pitanja o zdravlju osobe. Mogu uključivati preglede, pretrage krvi ili mokraće, slikovnu dijagnostiku i uzorke tkiva. Pretraga je najkorisnija kada njezin nalaz može razjasniti problem ili utjecati na liječenje.",
+    "details": "Nijedna pretraga nije savršena. Neki nalazi mogu biti lažno umirujući ili upućivati na bolest kada ona ne postoji. Tumačenje ovisi o simptomima, vjerojatnosti stanja i drugim nalazima. Prije testiranja korisno je razumjeti moguću nelagodu, rizike i što bi različiti rezultati značili.",
+    "questions": [
+      "Na koje konkretno pitanje ova pretraga treba odgovoriti?",
+      "Kako bi svaki mogući nalaz promijenio sljedeći korak?"
+    ]
+  },
+  "non-drug-treatments": {
+    "intro": "Zdravstvena skrb uključuje i terapije koje ne podrazumijevaju uzimanje lijekova. Primjeri su rehabilitacija, terapije razgovorom te promjene aktivnosti ili okoline. Njihova korisnost ovisi o stanju, vrsti postupka i ciljevima osobe.",
+    "details": "Terapija bez lijekova također može donijeti opterećenje, troškove ili neželjene učinke. Pitajte koji je dokazi podupiru, što uključuje sudjelovanje i kako će se procjenjivati napredak. Različiti se pristupi mogu kombinirati kada je to prikladno. Privlačno objašnjenje ili tvrdnja da je nešto prirodno ne dokazuje da to doista djeluje.",
+    "questions": [
+      "Koji dokazi podupiru ovu mogućnost za moje stanje?",
+      "Kako ćemo procijeniti pomaže li mi?"
+    ]
+  },
+  "surgery": {
+    "intro": "Kirurški zahvati koriste se za postavljanje dijagnoze, popravak, uklanjanje ili zamjenu tkiva te za ublažavanje simptoma. Operacije se uvelike razlikuju po svojoj svrsi, rizicima i oporavku. Je li operacija prikladna ovisi o stanju i osobnim okolnostima.",
+    "details": "Informirana odluka uključuje razgovor o očekivanim koristima, mogućim komplikacijama, anesteziji i alternativama. Oporavak može zahtijevati privremene promjene na poslu, u aktivnostima ili u potrebama za njegom. Pitajte što bi se moglo dogoditi bez operacije i koliko je odluka hitna. Općenite informacije ne mogu predvidjeti pojedinačni ishod operacije.",
+    "questions": [
+      "Zašto se predlaže operacija i koje su alternative?",
+      "Kakva bi mi podrška i koliko vremena za oporavak mogli trebati?"
+    ]
+  },
+  "physical-therapy-and-daily-living-aids": {
+    "intro": "Fizikalna terapija i praktična pomagala mogu pomoći ljudima pri kretanju, ublažavanju simptoma i obavljanju svakodnevnih aktivnosti. Potreba se može javiti nakon ozljede, bolesti ili zbog kroničnog stanja. Cilj je smislena funkcionalnost, a ne provođenje jednakog programa za sve.",
+    "details": "Procjenom se mogu odrediti prikladne vježbe, prilagodbe ili oprema. Pomagalo treba odgovarati osobi i okruženju u kojem će se koristiti. Upute, uvježbavanje i daljnje praćenje mogu biti važni. Razgovarajte o ciljevima poput hodanja, odijevanja ili povratka na posao kako bi podrška odgovarala stvarnim potrebama.",
+    "questions": [
+      "Kojoj svakodnevnoj aktivnosti trebamo dati prednost?",
+      "Kako trebam koristiti i provjeravati ovo pomagalo ili plan vježbi?"
+    ]
+  },
+  "prevention": {
+    "intro": "Prevencija ima za cilj smanjiti vjerojatnost nastanka bolesti ili njezinih posljedica. Može uključivati cijepljenje, smanjenje štetnih izloženosti, svakodnevne navike ili prikladan probir. Vrijednost preventivne mjere ovisi o riziku na koji je usmjerena.",
+    "details": "Ne pruža svaka preventivna ponuda jednaku korist, a neke mogu uzrokovati štetu ili nepotrebne daljnje pretrage. Važni su osobni rizik i praktične okolnosti. Uzmite u obzir ono što je potkrijepljeno dokazima i što je realno održavati. Prevencija smanjuje određene rizike, ali ne može jamčiti da osoba nikada neće oboljeti.",
+    "questions": [
+      "Koji su za mene najvažniji rizici koji se mogu spriječiti?",
+      "Kakvu korist i moguću štetu uključuje ova mjera?"
+    ]
+  },
+  "what-is-evidence-based-medicine": {
+    "intro": "Medicina temeljena na dokazima spaja rezultate istraživanja s kliničkim iskustvom te potrebama i željama pacijenta. Postavlja pitanje poboljšava li pretraga ili liječenje ishode koji su ljudima važni, umjesto oslanjanja samo na uvjerljivo objašnjenje.",
+    "details": "Istraživanja mogu pokazati i koristi i štete, no određena neizvjesnost često ostaje. Dokazi dobiveni na skupini ljudi ne određuju unaprijed svaku pojedinačnu odluku. Korisni razgovori jasno objašnjavaju veličinu očekivanih učinaka, ograničenja dokaza i dostupne alternative.",
+    "questions": [
+      "Koja istraživanja podupiru ovu preporuku?",
+      "Kako se ti nalazi odnose na moje okolnosti i želje?"
+    ]
+  },
+  "studies-co": {
+    "intro": "Medicinske studije istražuju pitanja o zdravlju, pretragama i liječenju. Način na koji su oblikovane utječe na to kakvi se zaključci mogu donijeti. Usporedba između skupina može pomoći razlikovati učinak liječenja od promjena koje bi se ionako dogodile.",
+    "details": "Učinak koji u naslovu djeluje velik može izgledati drukčije kada se uzmu u obzir apsolutni brojevi, trajanje praćenja i štete. Rezultati ovise i o tome tko je sudjelovao u istraživanju te koliko su pouzdano mjereni ishodi. Jedna studija rijetko daje odgovor na svako pitanje; sustavni pregledi objedinjuju istraživanja prema unaprijed planiranom pristupu.",
+    "questions": [
+      "Kolika je korist u apsolutnim brojevima?",
+      "Koja ograničenja ili nedostajući ishodi utječu na zaključak?"
+    ]
+  },
+  "making-an-informed-decision": {
+    "intro": "Informirana zdravstvena odluka povezuje razumljive informacije s onim što je važno osobi koja odlučuje. Često postoji više od jedne razumne mogućnosti. Koristi, štete, praktični zahtjevi i neizvjesnost mogu utjecati na to kako osoba važe te mogućnosti.",
+    "details": "Zatražite objašnjenja jednostavnim jezikom i vrijeme za razmišljanje o odlukama koje nisu hitne. Razgovarajte o tome što bi se moglo dogoditi kod svake mogućnosti, uključujući izostanak liječenja ili čekanje kada je to prikladno. Pomagalo za donošenje odluka može podržati razgovor, ali ne zamjenjuje individualni savjet ni pristanak.",
+    "questions": [
+      "Koje su moje mogućnosti, uključujući čekanje ako je prikladno?",
+      "Koji su mi ishodi i kompromisi najvažniji?"
+    ]
+  },
+  "our-methods-and-processes": {
+    "intro": "Pouzdane zdravstvene informacije objašnjavaju kako autori pronalaze istraživanja, procjenjuju ih i odlučuju što će objaviti. Povezana tema instituta IQWiG opisuje njegov pristup izradi informacija temeljenih na dokazima. Poznavanje metoda pomaže čitateljima procijeniti čime su tvrdnje potkrijepljene.",
+    "details": "Korisno je provjeriti tko je izradio informacije, koji su dokazi uzeti u obzir, kada su podaci ažurirani i je li objašnjena neizvjesnost. Poveznica na izvor u nastavku vodi na izvorni materijal instituta IQWiG. Ovaj pregled platforme RediHealth napisan je neovisno te nije publikacija ni preporuka instituta IQWiG.",
+    "questions": [
+      "Mogu li prepoznati izdavača i dokaze koji podupiru tekst?",
+      "Objašnjava li tekst neizvjesnost i postupak ažuriranja?"
+    ]
+  }
+}

@@ -438,9 +438,234 @@ describe("smart search engine", () => {
       }
     }
   });
+
+  it("scopes regional and fixed-language news strictly to the active locale and never leaks Italian content onto English", () => {
+    const enQueries = [
+      "",
+      "vaccine",
+      "vaccin",
+      "vaccino",
+      "influenza",
+      "clinic",
+      "mediator",
+      "roma",
+      "ambulatorio",
+    ];
+
+    for (const q of enQueries) {
+      const allRes = searchSmartCatalog(q, { lang: "en", category: "all", limit: 50 });
+      const newsRes = searchSmartCatalog(q, { lang: "en", category: "news", limit: 50 });
+
+      for (const item of [...allRes.results, ...newsRes.results]) {
+        expect(item.id, `en query "${q}" leaked it/hr/al news ${item.id}`).not.toMatch(
+          /^news:(it|hr|al)-/,
+        );
+        expect(item.title, `en query "${q}" leaked Italian title`).not.toMatch(
+          /Vaccino antinfluenzale|Ambulatorio mobile a Roma/i,
+        );
+        expect(item.summary, `en query "${q}" leaked Italian summary`).not.toMatch(
+          /Il vaccino contro l'influenza|Un camper con medici volontari/i,
+        );
+        expect(item.highlights, `en query "${q}" leaked Italian highlight`).not.toContain(
+          "vaccinazione",
+        );
+        expect(item.tags.join(" "), `en query "${q}" leaked Romanian Moldova sentinel`).not.toContain(
+          "Toată Moldova",
+        );
+      }
+    }
+
+    for (const nonItLang of ["ro", "en", "sq", "hr", "rom", "ru"] as const) {
+      for (const q of ["", "vaccino", "ambulatorio", "vaccine"]) {
+        const res = searchSmartCatalog(q, { lang: nonItLang, category: "news", limit: 50 });
+        for (const item of res.results) {
+          expect(
+            item.id,
+            `${nonItLang} query "${q}" must not include Italy-only articles`,
+          ).not.toBe("news:it-campagna-antinfluenzale");
+          expect(
+            item.id,
+            `${nonItLang} query "${q}" must not include Italy-only Rome clinic article`,
+          ).not.toBe("news:it-ambulatorio-mobile-roma");
+        }
+      }
+    }
+
+    const itVaccino = searchSmartCatalog("vaccino", { lang: "it", limit: 30 });
+    expect(itVaccino.results.some((r) => r.id === "news:it-campagna-antinfluenzale")).toBe(true);
+
+    const itAmbulatorio = searchSmartCatalog("ambulatorio", { lang: "it", limit: 30 });
+    expect(itAmbulatorio.results.some((r) => r.id === "news:it-ambulatorio-mobile-roma")).toBe(
+      true,
+    );
+
+    for (const q of ["vaccino", "ambulatorio", "influenza"]) {
+      const itNews = searchSmartCatalog(q, { lang: "it", category: "news", limit: 50 });
+      expect(itNews.results.length, `it query "${q}"`).toBeGreaterThan(0);
+      for (const item of itNews.results) {
+        expect(item.id).toMatch(/^news:it-/);
+      }
+    }
+
+    for (const q of ["ambulanta", "cijepljenje", "zagreb", "split"]) {
+      const hrNews = searchSmartCatalog(q, { lang: "hr", category: "news", limit: 50 });
+      expect(hrNews.results.length, `hr query "${q}"`).toBeGreaterThan(0);
+      for (const item of hrNews.results) {
+        expect(item.id).toMatch(/^news:hr-/);
+      }
+    }
+
+    for (const q of ["tirane", "shkoder", "grip", "elbasan"]) {
+      const sqNews = searchSmartCatalog(q, { lang: "sq", category: "news", limit: 50 });
+      expect(sqNews.results.length, `sq query "${q}"`).toBeGreaterThan(0);
+      for (const item of sqNews.results) {
+        expect(item.id).toMatch(/^news:al-/);
+      }
+    }
+  });
+
+  it("returns zero results and null synthesis for punctuation-only queries across all 7 languages", () => {
+    for (const lang of ALL_LANGS) {
+      for (const query of ["/", "?", "...", "---"]) {
+        const res = searchSmartCatalog(query, { lang });
+        expect(res.results, `${lang} "${query}" results`).toEqual([]);
+        expect(res.groupedCounts.all, `${lang} "${query}" total count`).toBe(0);
+        expect(res.guidedOverview, `${lang} "${query}" guidedOverview`).toBeNull();
+        expect(res.relatedQuestions, `${lang} "${query}" relatedQuestions`).toEqual([]);
+      }
+    }
+  });
+
+  it("returns strictly native results, overviews, and related questions for Romani and Croatian queries without English fallback", () => {
+    const englishFallbacks = [
+      "Understanding this topic",
+      "Questions to discuss",
+      "Health topics, explained simply",
+    ];
+
+    for (const query of ["dijabeto", "sasto xaben", "doktori"]) {
+      const res = searchSmartCatalog(query, { lang: "rom" });
+      expect(res.results.length, `rom "${query}"`).toBeGreaterThan(0);
+      expect(res.guidedOverview, `rom "${query}" overview`).not.toBeNull();
+      expect(res.relatedQuestions.length, `rom "${query}" relatedQuestions`).toBeGreaterThan(0);
+
+      const serialized = JSON.stringify({
+        results: res.results,
+        overview: res.guidedOverview,
+        relatedQuestions: res.relatedQuestions,
+      });
+      for (const banned of englishFallbacks) {
+        expect(serialized, `rom "${query}" leaked English "${banned}"`).not.toContain(banned);
+      }
+    }
+
+    for (const query of ["dijabetes", "krvni tlak"]) {
+      const res = searchSmartCatalog(query, { lang: "hr" });
+      expect(res.results.length, `hr "${query}"`).toBeGreaterThan(0);
+      expect(res.guidedOverview, `hr "${query}" overview`).not.toBeNull();
+      expect(res.relatedQuestions.length, `hr "${query}" relatedQuestions`).toBeGreaterThan(0);
+
+      const serialized = JSON.stringify({
+        results: res.results,
+        overview: res.guidedOverview,
+        relatedQuestions: res.relatedQuestions,
+      });
+      for (const banned of englishFallbacks) {
+        expect(serialized, `hr "${query}" leaked English "${banned}"`).not.toContain(banned);
+      }
+    }
+  });
+
+  it("uses distinct, localized per-article excerpts instead of parent-area boilerplate or English tags", () => {
+    const englishPhrases = [
+      "The immune system recognises and responds",
+      "An allergy happens when the immune system reacts",
+      "What signs mean I should seek help",
+    ];
+
+    const allergyIds = [
+      "article:gluten-and-wheat-sensitivity-allergy-or-celiac-disease",
+      "article:hay-fever",
+      "article:insect-venom-allergies",
+      "article:dust-mite-allergies",
+    ];
+
+    for (const [lang, query] of [
+      ["rom", "alergia"],
+      ["hr", "alergija"],
+    ] as const) {
+      const res = searchSmartCatalog(query, { lang, category: "articles", limit: 60 });
+      const summaries = allergyIds.map((id) => {
+        const hit = res.results.find((r) => r.id === id);
+        expect(hit, `${lang} "${query}" should return ${id}`).toBeDefined();
+        for (const phrase of englishPhrases) {
+          expect(hit!.summary, `${lang} ${id} leaked English`).not.toContain(phrase);
+        }
+        return hit!.summary;
+      });
+      expect(new Set(summaries).size, `${lang} article summaries must be distinct`).toBe(
+        allergyIds.length,
+      );
+    }
+
+    const romCeliac = searchSmartCatalog("celiakia", { lang: "rom", limit: 10 });
+    const celiacArticle = romCeliac.results.find(
+      (r) => r.id === "article:gluten-and-wheat-sensitivity-allergy-or-celiac-disease",
+    );
+    expect(celiacArticle).toBeDefined();
+    expect(celiacArticle!.summary.toLowerCase()).toContain("celiakia");
+    expect(celiacArticle!.summary.toLowerCase()).not.toContain("bakterije thaj virusura");
+
+    const romGrinje = searchSmartCatalog("grinje", { lang: "rom", limit: 20 });
+    expect(romGrinje.guidedOverview?.primaryAction.href).toBe(
+      "/rom/health-information/articles/dust-mite-allergies",
+    );
+
+    const rawAreaGroups = new Set(["conditions", "services", "body", "treatments", "evidence"]);
+    for (const lang of ALL_LANGS) {
+      if (lang === "en") continue;
+      const guideRes = searchSmartCatalog("", { lang, category: "guides", limit: 80 });
+      const summaryEntries = guideRes.results.filter((r) => r.id.startsWith("summary:"));
+      expect(summaryEntries.length).toBeGreaterThan(0);
+      for (const entry of summaryEntries) {
+        for (const tag of entry.tags) {
+          expect(rawAreaGroups.has(tag), `${lang} ${entry.id} leaked raw group tag "${tag}"`).toBe(
+            false,
+          );
+        }
+        expect(
+          rawAreaGroups.has(entry.highlights),
+          `${lang} ${entry.id} leaked raw group highlight "${entry.highlights}"`,
+        ).toBe(false);
+      }
+    }
+  });
 });
 
 describe("POST /api/smart-search", () => {
+  it("returns empty citations and null answer for punctuation-only queries", async () => {
+    const req = new Request("http://localhost:3000/api/smart-search", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-forwarded-for": "127.0.10.3",
+      },
+      body: JSON.stringify({
+        query: "/",
+        lang: "rom",
+        pathname: "/rom",
+      }),
+    });
+
+    const res = await postSmartSearch(req);
+    expect(res.status).toBe(200);
+    const data = (await res.json()) as {
+      answer: string | null;
+      citations: unknown[];
+    };
+    expect(data.citations).toEqual([]);
+    expect(data.answer).toBeNull();
+  });
   it("returns immediate emergency mode without calling LLM for red-flag queries", async () => {
     const req = new Request("http://localhost:3000/api/smart-search", {
       method: "POST",
@@ -539,7 +764,7 @@ describe("CLAUDE.md and MobileMenu source invariants", () => {
 
     expect(mobileMenuSource).toContain("bg-paper");
     expect(mobileMenuSource).toContain("dark:bg-ink-950");
-    expect(mobileMenuSource).toContain("max-w-xl");
+    expect(mobileMenuSource).not.toContain("max-w-xl");
     expect(mobileMenuSource).not.toContain("/health-assistant#triage");
     expect(mobileMenuSource).not.toContain("tHeader.startHere");
     expect(mobileMenuSource).not.toContain("line-clamp-1");
@@ -604,6 +829,8 @@ describe("CLAUDE.md and MobileMenu source invariants", () => {
     expect(feedbackWidgetSource).toContain("disabled={step === 0 && !allRatingsComplete}");
     expect(feedbackWidgetSource).toContain("nextUnansweredAny");
     expect(feedbackWidgetSource).toContain("scrollIntoView");
+    expect(feedbackWidgetSource).toContain("[writing-mode:vertical-rl]");
+    expect(feedbackWidgetSource).toContain("EDGE_DISMISSED_SESSION_KEY");
     expect(feedbackWidgetSource).not.toContain("rounded-full");
   });
 });

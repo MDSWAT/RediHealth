@@ -19,6 +19,7 @@ import {
 export interface SynchronizedSentenceReaderProps {
   paragraphs: string[];
   activeSentenceIndex?: number | null;
+  autoScrollResumeKey?: number;
   onSentenceClick?: (sentence: string, index: number) => void;
   className?: string;
   lang?: Lang;
@@ -141,11 +142,12 @@ function pickSpeechLang(lang: Lang): string {
  * reduced motion it simply appears.
  */
 const SENTENCE_CLASS =
-  "box-decoration-clone rounded-xs bg-[linear-gradient(var(--color-sapphire),var(--color-sapphire))] bg-no-repeat bg-position-[0_100%] transition-[background-color,background-size] duration-[var(--dur-slow)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none";
+  "scroll-mt-20 lg:scroll-mt-8 scroll-mb-20 sm:scroll-mb-24 box-decoration-clone rounded-xs bg-[linear-gradient(var(--color-sapphire),var(--color-sapphire))] bg-no-repeat bg-position-[0_100%] transition-[background-color,background-size] duration-[var(--dur-slow)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none";
 
 export function SynchronizedSentenceReader({
   paragraphs,
   activeSentenceIndex = null,
+  autoScrollResumeKey = 0,
   onSentenceClick,
   className = "",
   lang,
@@ -173,6 +175,41 @@ export function SynchronizedSentenceReader({
   const anchorElRef = useRef<HTMLElement | null>(null);
   const popoverRef = useRef<HTMLDivElement | null>(null);
   const popoverCloseRef = useRef<HTMLButtonElement | null>(null);
+  const userPausedAutoScrollRef = useRef(false);
+  const programmaticScrollRef = useRef(false);
+  const programmaticClearTimerRef = useRef<number | null>(null);
+  const programmaticIdleTimerRef = useRef<number | null>(null);
+  const prevActiveSentenceRef = useRef<number | null>(null);
+  const prevResumeKeyRef = useRef<number>(autoScrollResumeKey);
+  const isActiveNarrationRef = useRef(
+    activeSentenceIndex !== null && activeSentenceIndex !== undefined,
+  );
+  const [engineResumeTick, setEngineResumeTick] = useState(0);
+
+  useEffect(() => {
+    isActiveNarrationRef.current =
+      activeSentenceIndex !== null && activeSentenceIndex !== undefined;
+  }, [activeSentenceIndex]);
+
+  const clearProgrammaticScrollTimers = useCallback(() => {
+    if (programmaticClearTimerRef.current !== null) {
+      window.clearTimeout(programmaticClearTimerRef.current);
+      programmaticClearTimerRef.current = null;
+    }
+    if (programmaticIdleTimerRef.current !== null) {
+      window.clearTimeout(programmaticIdleTimerRef.current);
+      programmaticIdleTimerRef.current = null;
+    }
+  }, []);
+
+  const beginProgrammaticScroll = useCallback(() => {
+    programmaticScrollRef.current = true;
+    clearProgrammaticScrollTimers();
+    programmaticClearTimerRef.current = window.setTimeout(() => {
+      programmaticScrollRef.current = false;
+      programmaticClearTimerRef.current = null;
+    }, 180);
+  }, [clearProgrammaticScrollTimers]);
 
   const updateAnchorPosition = useCallback(() => {
     const el = anchorElRef.current;
@@ -256,10 +293,111 @@ export function SynchronizedSentenceReader({
     });
   });
 
-  // Autoscroll active sentence into view
+  // Pause auto-scroll when the user manually scrolls during narration
   useEffect(() => {
-    if (activeSentenceIndex === null || activeSentenceIndex === undefined)
+    if (typeof window === "undefined") return;
+
+    const pauseOnUserScroll = () => {
+      programmaticScrollRef.current = false;
+      clearProgrammaticScrollTimers();
+      if (isActiveNarrationRef.current) {
+        userPausedAutoScrollRef.current = true;
+      }
+    };
+
+    const handleScroll = () => {
+      if (programmaticScrollRef.current) {
+        if (programmaticClearTimerRef.current !== null) {
+          window.clearTimeout(programmaticClearTimerRef.current);
+          programmaticClearTimerRef.current = null;
+        }
+        if (programmaticIdleTimerRef.current !== null) {
+          window.clearTimeout(programmaticIdleTimerRef.current);
+        }
+        programmaticIdleTimerRef.current = window.setTimeout(() => {
+          programmaticScrollRef.current = false;
+          programmaticIdleTimerRef.current = null;
+        }, 150);
+        return;
+      }
+      if (isActiveNarrationRef.current) {
+        userPausedAutoScrollRef.current = true;
+      }
+    };
+
+    const handleScrollEnd = () => {
+      programmaticScrollRef.current = false;
+      clearProgrammaticScrollTimers();
+    };
+
+    const handleKeyScroll = (e: KeyboardEvent) => {
+      if (
+        e.key !== "PageDown" &&
+        e.key !== "PageUp" &&
+        e.key !== "Home" &&
+        e.key !== "End" &&
+        e.key !== "ArrowDown" &&
+        e.key !== "ArrowUp" &&
+        e.key !== " "
+      ) {
+        return;
+      }
+      if (
+        e.target instanceof HTMLElement &&
+        e.target.closest("button, a, input, select, textarea, [role='slider']")
+      ) {
+        return;
+      }
+      pauseOnUserScroll();
+    };
+
+    window.addEventListener("wheel", pauseOnUserScroll, { passive: true });
+    window.addEventListener("touchmove", pauseOnUserScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scrollend", handleScrollEnd, { passive: true });
+    window.addEventListener("keydown", handleKeyScroll);
+
+    return () => {
+      clearProgrammaticScrollTimers();
+      window.removeEventListener("wheel", pauseOnUserScroll);
+      window.removeEventListener("touchmove", pauseOnUserScroll);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scrollend", handleScrollEnd);
+      window.removeEventListener("keydown", handleKeyScroll);
+    };
+  }, [clearProgrammaticScrollTimers]);
+
+  // Resume auto-scroll when playback resumes from pause in speechEngine
+  useEffect(() => {
+    let wasPaused = false;
+    return speechEngine.subscribeState((state) => {
+      if (wasPaused && state.isSpeaking && !state.isPaused) {
+        userPausedAutoScrollRef.current = false;
+        setEngineResumeTick((tick) => tick + 1);
+      }
+      wasPaused = state.isPaused;
+    });
+  }, []);
+
+  // Autoscroll active sentence into view unless user manually scrolled
+  useEffect(() => {
+    if (autoScrollResumeKey !== prevResumeKeyRef.current) {
+      prevResumeKeyRef.current = autoScrollResumeKey;
+      userPausedAutoScrollRef.current = false;
+    }
+
+    if (activeSentenceIndex === null || activeSentenceIndex === undefined) {
+      prevActiveSentenceRef.current = null;
+      userPausedAutoScrollRef.current = false;
       return;
+    }
+
+    if (prevActiveSentenceRef.current === null) {
+      userPausedAutoScrollRef.current = false;
+    }
+    prevActiveSentenceRef.current = activeSentenceIndex;
+
+    if (userPausedAutoScrollRef.current) return;
     if (!containerRef.current) return;
 
     const activeEl = containerRef.current.querySelector(
@@ -267,14 +405,21 @@ export function SynchronizedSentenceReader({
     );
     if (activeEl) {
       const reduce = prefersCalmOrReducedMotion();
+      beginProgrammaticScroll();
       activeEl.scrollIntoView({
         behavior: reduce ? "auto" : "smooth",
         block: "nearest",
       });
     }
-  }, [activeSentenceIndex]);
+  }, [
+    activeSentenceIndex,
+    autoScrollResumeKey,
+    engineResumeTick,
+    beginProgrammaticScroll,
+  ]);
 
   const handleSentenceClick = (sentence: string, index: number) => {
+    userPausedAutoScrollRef.current = false;
     if (onSentenceClick) {
       onSentenceClick(sentence, index);
     } else if (voiceEnabled) {

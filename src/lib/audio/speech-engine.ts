@@ -68,6 +68,12 @@ const PREFERRED_REGIONAL_TAGS: Record<string, string[]> = {
 
 const MAX_NEURAL_SEGMENT_CHARS = 4000;
 const MAX_CLIENT_AUDIO_BLOBS = 64;
+const SILENT_WAV_BYTES = new Uint8Array([
+  82, 73, 70, 70, 40, 0, 0, 0, 87, 65, 86, 69, 102, 109, 116, 32, 18, 0, 0, 0, 1, 0, 1, 0, 68,
+  172, 0, 0, 136, 88, 1, 0, 2, 0, 16, 0, 0, 0, 100, 97, 116, 97, 2, 0, 0, 0, 0, 0,
+]);
+const SILENT_WAV_DATA_URI =
+  "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
 
 type SpeechPrefix = "ro" | "en" | "sq" | "it" | "hr" | "ru";
 type InflectableUnit = "mg" | "mcg" | "ml" | "kg" | "g" | "celsius" | "percent";
@@ -604,13 +610,24 @@ export class HealthSpeechEngine {
   private listeners: SpeechOptions = {};
   private playerCloseHandlers: Set<() => void> = new Set();
   private stateSubscribers: Set<(state: SpeechEngineState) => void> = new Set();
+  private audioUnlocked = false;
+  private gestureListenersInstalled = false;
+  private gestureUnlockInFlight = false;
+  private unlockPrevMuted: boolean | null = null;
+  private activeUnlockUrl: string | null = null;
+  private gestureBoundWindow: unknown = null;
+  private gestureUnlockHandler: (() => void) | null = null;
+  private customUnlockHandler: (() => void) | null = null;
 
   private constructor() {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.addEventListener?.("voiceschanged", () => {
-        // Pre-warm voices list
-        window.speechSynthesis.getVoices();
-      });
+    if (typeof window !== "undefined") {
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.addEventListener?.("voiceschanged", () => {
+          // Pre-warm voices list
+          window.speechSynthesis.getVoices();
+        });
+      }
+      this.installGestureUnlockListeners();
     }
   }
 
@@ -649,6 +666,155 @@ export class HealthSpeechEngine {
     return this.lastEndReason;
   }
 
+  public isAudioUnlocked(): boolean {
+    return this.audioUnlocked;
+  }
+
+  public unlockFromGesture(): void {
+    if (typeof window === "undefined") return;
+
+    if ("speechSynthesis" in window && window.speechSynthesis) {
+      try {
+        window.speechSynthesis.getVoices?.();
+      } catch {
+        // Ignore voice pre-warm errors
+      }
+    }
+
+    const audio = this.getSharedAudioElement();
+    if (!this.audioUnlocked && !this.isSpeakingState && audio && !this.gestureUnlockInFlight) {
+      const prevMuted = Boolean(audio.muted);
+      const canCreateBlobUrl =
+        typeof Blob !== "undefined" &&
+        typeof URL !== "undefined" &&
+        typeof URL.createObjectURL === "function";
+      const unlockUrl = canCreateBlobUrl
+        ? URL.createObjectURL(new Blob([SILENT_WAV_BYTES], { type: "audio/wav" }))
+        : SILENT_WAV_DATA_URI;
+      const isObjectUrl = canCreateBlobUrl && unlockUrl.startsWith("blob:");
+
+      this.gestureUnlockInFlight = true;
+      this.unlockPrevMuted = prevMuted;
+      this.activeUnlockUrl = unlockUrl;
+
+      const cleanupUnlockMedia = (succeeded: boolean) => {
+        this.gestureUnlockInFlight = false;
+        if (succeeded) {
+          this.audioUnlocked = true;
+          this.removeUserGestureUnlockListeners();
+        }
+
+        const stillHoldingUnlockUrl =
+          Boolean(this.activeUnlockUrl) &&
+          (audio.src === this.activeUnlockUrl || audio.src.startsWith("data:audio/wav"));
+        if (!this.isSpeakingState && stillHoldingUnlockUrl) {
+          try {
+            audio.pause?.();
+            audio.currentTime = 0;
+          } catch {
+            // Safe reset
+          }
+          if (typeof audio.removeAttribute === "function") {
+            audio.removeAttribute("src");
+          } else {
+            audio.src = "";
+          }
+        }
+
+        if (!this.isSpeakingState && this.unlockPrevMuted !== null) {
+          audio.muted = this.unlockPrevMuted;
+          this.unlockPrevMuted = null;
+        }
+
+        if (this.activeUnlockUrl === unlockUrl) {
+          this.activeUnlockUrl = null;
+        }
+        if (isObjectUrl) {
+          try {
+            URL.revokeObjectURL?.(unlockUrl);
+          } catch {
+            // Safe cleanup
+          }
+        }
+      };
+
+      try {
+        audio.muted = true;
+        audio.src = unlockUrl;
+        const playResult = audio.play?.();
+        if (playResult && typeof playResult.then === "function") {
+          playResult.then(
+            () => cleanupUnlockMedia(true),
+            () => cleanupUnlockMedia(false),
+          );
+        } else {
+          cleanupUnlockMedia(true);
+        }
+      } catch {
+        cleanupUnlockMedia(false);
+      }
+    }
+  }
+
+  private removeUserGestureUnlockListeners(targetWindow?: unknown): void {
+    const win = (targetWindow ??
+      this.gestureBoundWindow ??
+      (typeof window !== "undefined" ? window : null)) as
+      | { removeEventListener?: Window["removeEventListener"] }
+      | null;
+    if (!win || typeof win.removeEventListener !== "function" || !this.gestureUnlockHandler) {
+      return;
+    }
+    win.removeEventListener("click", this.gestureUnlockHandler, true);
+    win.removeEventListener("touchend", this.gestureUnlockHandler, true);
+    win.removeEventListener("keydown", this.gestureUnlockHandler, true);
+  }
+
+  private removeAllGestureUnlockListeners(): void {
+    const win = (this.gestureBoundWindow ?? (typeof window !== "undefined" ? window : null)) as
+      | { removeEventListener?: Window["removeEventListener"] }
+      | null;
+    this.removeUserGestureUnlockListeners(win);
+    if (win && typeof win.removeEventListener === "function" && this.customUnlockHandler) {
+      win.removeEventListener("redihealth:unlock-audio", this.customUnlockHandler);
+    }
+    this.gestureListenersInstalled = false;
+    this.gestureBoundWindow = null;
+    this.gestureUnlockHandler = null;
+    this.customUnlockHandler = null;
+  }
+
+  private installGestureUnlockListeners(): void {
+    if (typeof window === "undefined") return;
+    if (this.gestureListenersInstalled && this.gestureBoundWindow === window) {
+      return;
+    }
+    this.removeAllGestureUnlockListeners();
+
+    if (typeof window.addEventListener !== "function") {
+      return;
+    }
+
+    const onUserGesture = () => {
+      this.unlockFromGesture();
+    };
+    const onCustomUnlock = () => {
+      this.unlockFromGesture();
+    };
+
+    this.gestureBoundWindow = window;
+    this.gestureUnlockHandler = onUserGesture;
+    this.customUnlockHandler = onCustomUnlock;
+    this.gestureListenersInstalled = true;
+
+    if (!this.audioUnlocked) {
+      window.addEventListener("click", onUserGesture, { capture: true, passive: true });
+      window.addEventListener("touchend", onUserGesture, { capture: true, passive: true });
+      window.addEventListener("keydown", onUserGesture, { capture: true, passive: true });
+    }
+    window.addEventListener("redihealth:unlock-audio", onCustomUnlock);
+  }
+
   public setRate(rate: number): void {
     this.playbackRate = rate;
     if (this.currentUtterance) {
@@ -664,6 +830,7 @@ export class HealthSpeechEngine {
     if (typeof window === "undefined") {
       return false;
     }
+    this.installGestureUnlockListeners();
     if (this.neuralServerAvailable !== null) {
       return this.neuralServerAvailable;
     }
@@ -697,6 +864,11 @@ export class HealthSpeechEngine {
     this.listeners = {};
     this.stop();
     this.clearBlobUrlCache();
+    this.removeAllGestureUnlockListeners();
+    this.audioUnlocked = false;
+    this.gestureUnlockInFlight = false;
+    this.unlockPrevMuted = null;
+    this.activeUnlockUrl = null;
     this.sharedAudioElement = null;
     this.neuralServerAvailable = null;
     this.probePromise = null;
@@ -791,6 +963,11 @@ export class HealthSpeechEngine {
     }
   }
 
+  private getSharedAudioElement(): HTMLAudioElement | null {
+    this.primeSharedAudioElement();
+    return this.sharedAudioElement;
+  }
+
   private getCachedBlobUrl(key: string): string | null {
     const existing = this.blobUrlCache.get(key);
     if (!existing) return null;
@@ -868,6 +1045,13 @@ export class HealthSpeechEngine {
         this.currentAudioElement = null;
       }
     }
+
+    if (this.sharedAudioElement && this.unlockPrevMuted !== null) {
+      this.sharedAudioElement.muted = this.unlockPrevMuted;
+      this.unlockPrevMuted = null;
+    }
+    this.gestureUnlockInFlight = false;
+    this.activeUnlockUrl = null;
 
     this.activeUtterances.clear();
     this.currentUtterance = null;
@@ -1313,6 +1497,12 @@ export class HealthSpeechEngine {
       const audio = this.sharedAudioElement ?? new Audio();
       this.sharedAudioElement = audio;
       this.clearAudioHandlers(audio);
+      if (this.unlockPrevMuted !== null) {
+        audio.muted = this.unlockPrevMuted;
+        this.unlockPrevMuted = null;
+      }
+      this.gestureUnlockInFlight = false;
+      this.activeUnlockUrl = null;
       audio.src = url;
       this.currentAudioElement = audio;
       audio.playbackRate = this.playbackRate;
@@ -1393,7 +1583,13 @@ export class HealthSpeechEngine {
 
     if (typeof window !== "undefined" && "speechSynthesis" in window && window.speechSynthesis) {
       try {
-        this.speakWithWebSpeechChunks(remainingText, lang, undefined, baseOffset);
+        const expectedRun = this.runId + 1;
+        void this.speakWithWebSpeechChunks(remainingText, lang, undefined, baseOffset).catch((err) => {
+          console.warn("Web Speech API execution failed, falling back to transcript:", err);
+          if (this.runId === expectedRun) {
+            this.fallbackToTranscript();
+          }
+        });
         return;
       } catch (err) {
         console.warn("Web Speech API execution failed, falling back to transcript:", err);
@@ -1403,19 +1599,79 @@ export class HealthSpeechEngine {
     this.fallbackToTranscript();
   }
 
-  private speakWithWebSpeechChunks(
+  public async resolveVoices(timeoutMs = 800): Promise<SpeechSynthesisVoice[]> {
+    if (typeof window === "undefined" || !("speechSynthesis" in window) || !window.speechSynthesis) {
+      return [];
+    }
+    const synth = window.speechSynthesis;
+    const initial = synth.getVoices?.() ?? [];
+    if (initial.length > 0 || timeoutMs <= 0) {
+      return initial;
+    }
+
+    return new Promise<SpeechSynthesisVoice[]>((resolve) => {
+      let settled = false;
+      let timeoutId: ReturnType<typeof setTimeout> | null = null;
+      let pollId: ReturnType<typeof setInterval> | null = null;
+
+      const cleanup = () => {
+        if (timeoutId !== null) clearTimeout(timeoutId);
+        if (pollId !== null) clearInterval(pollId);
+        synth.removeEventListener?.("voiceschanged", onVoicesChanged);
+      };
+
+      const finish = (voices: SpeechSynthesisVoice[]) => {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        resolve(voices);
+      };
+
+      const checkVoices = () => {
+        const current = synth.getVoices?.() ?? [];
+        if (current.length > 0) {
+          finish(current);
+        }
+      };
+
+      const onVoicesChanged = () => {
+        checkVoices();
+      };
+
+      synth.addEventListener?.("voiceschanged", onVoicesChanged);
+      pollId = setInterval(checkVoices, 100);
+      timeoutId = setTimeout(() => {
+        finish(synth.getVoices?.() ?? []);
+      }, timeoutMs);
+    });
+  }
+
+  private async speakWithWebSpeechChunks(
     fullText: string,
     lang: string,
     mp3FallbackUrl?: string,
     baseOffset = 0,
-  ): void {
+  ): Promise<void> {
     if (typeof window === "undefined" || !("speechSynthesis" in window) || !window.speechSynthesis) {
       this.fallbackToTranscript();
       return;
     }
 
+    const currentRun = ++this.runId;
+    let voices = window.speechSynthesis.getVoices?.() ?? [];
+    if (voices.length === 0) {
+      this.activeTier = "webspeech";
+      this.isSpeakingState = true;
+      this.isPausedState = false;
+      this.notifyState();
+
+      voices = await this.resolveVoices(800);
+      if (this.runId !== currentRun) {
+        return;
+      }
+    }
+
     // Discover matching voice; never fall back to a wrong-language voice
-    const voices = window.speechSynthesis.getVoices();
     const { voice, isFallback } = findBestVoice(voices, lang);
     this.isFallbackVoiceState = isFallback;
 
@@ -1433,7 +1689,6 @@ export class HealthSpeechEngine {
     this.pausedChunkIndex = 0;
     this.chunkCharOffsets = computeChunkOffsets(fullText, chunks, baseOffset);
 
-    const currentRun = ++this.runId;
     this.isSpeakingState = true;
     this.isPausedState = false;
     this.notifyState();

@@ -41,7 +41,11 @@ function subscribeCounty(listener: () => void) {
   return () => countyListeners.delete(listener);
 }
 
-export function useUserCounty(initialCounty: string = DEFAULT_COUNTY) {
+export function useUserCounty(
+  initialCounty: string = DEFAULT_COUNTY,
+  options?: { enabled?: boolean },
+) {
+  const enabled = options?.enabled ?? true;
   // The saved cookie is an external store: the server snapshot is null, so the first
   // client render matches the server HTML and the saved county appears right after.
   const savedCounty = useSyncExternalStore(subscribeCounty, getClientCountyCookie, () => null);
@@ -50,19 +54,45 @@ export function useUserCounty(initialCounty: string = DEFAULT_COUNTY) {
   const isManualOverride = Boolean(savedCounty) || Boolean(detected?.isOverride);
 
   useEffect(() => {
-    // Only ask the server when nothing is saved on this device.
-    if (getClientCountyCookie()) return;
-    fetch("/api/geo-ip")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data: { county?: string; isOverride?: boolean } | null) => {
-        if (data?.county && isRomanianCounty(data.county)) {
-          setDetected({ county: data.county, isOverride: Boolean(data.isOverride) });
-        }
-      })
-      .catch(() => {
-        // fallback to default
-      });
-  }, []);
+    // Only ask the server when geo lookup is enabled and nothing is saved on this device.
+    if (!enabled || getClientCountyCookie()) return;
+    let cancelled = false;
+    let idleId = 0;
+    let timerId = 0;
+    const controller = new AbortController();
+    const win = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+
+    const runGeoIp = () => {
+      if (cancelled) return;
+      fetch("/api/geo-ip", { signal: controller.signal })
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data: { county?: string; isOverride?: boolean } | null) => {
+          if (controller.signal.aborted) return;
+          if (data?.county && isRomanianCounty(data.county)) {
+            setDetected({ county: data.county, isOverride: Boolean(data.isOverride) });
+          }
+        })
+        .catch(() => {
+          // fallback to default
+        });
+    };
+
+    if (typeof win.requestIdleCallback === "function") {
+      idleId = win.requestIdleCallback(runGeoIp, { timeout: 1200 });
+    } else {
+      timerId = window.setTimeout(runGeoIp, 1200);
+    }
+
+    return () => {
+      cancelled = true;
+      if (idleId) win.cancelIdleCallback?.(idleId);
+      if (timerId) window.clearTimeout(timerId);
+      controller.abort();
+    };
+  }, [enabled]);
 
   const setCounty = useCallback((newCounty: string) => {
     if (!isRomanianCounty(newCounty)) return;

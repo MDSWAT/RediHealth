@@ -1,6 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import {
+  buildJitsiEmbedUrl,
+  MEDIATOR_VIDEO_TOOLBAR,
+  subscribeJitsiCallEnd,
+} from "@/lib/jitsi-embed";
 import { Button } from "@/components/ui/Button";
 import { VideoIcon, AlertCircleIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -276,6 +281,21 @@ export function MediatorDoctorHandoverProtocol({
   const [isTransmitting, setIsTransmitting] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const handoverIframeRef = useRef<HTMLIFrameElement | null>(null);
+
+  useEffect(() => {
+    if (!isCallActive) return;
+    return subscribeJitsiCallEnd(handoverIframeRef.current, 2, () => {
+      setIsCallActive(false);
+    });
+  }, [isCallActive]);
+
+  const sanitizedMeetingId = String(meetingId).replace(/[^a-zA-Z0-9-_]/g, "");
+  const handoverJitsiUrl = buildJitsiEmbedUrl({
+    baseRoomUrl: `https://meet.jit.si/redihealth-handover-${sanitizedMeetingId}`,
+    apiId: 2,
+    toolbarButtons: MEDIATOR_VIDEO_TOOLBAR,
+  });
 
   const handleStartHandover = async () => {
     setIsTransmitting(true);
@@ -332,12 +352,15 @@ export function MediatorDoctorHandoverProtocol({
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
           {/* Main video area */}
-          <div className="lg:col-span-2 h-[50dvh] lg:h-[60dvh] bg-black relative">
+          <div className="lg:col-span-2 h-[50dvh] lg:h-[60dvh] overflow-hidden bg-ink-950 relative">
             <iframe
-              src={`https://meet.jit.si/redihealth-handover-${meetingId}#config.prejoinPageEnabled=false`}
+              ref={handoverIframeRef}
+              src={handoverJitsiUrl}
               title={copy.iframeTitle}
               allow="camera; microphone; fullscreen; display-capture; autoplay"
-              className="h-full w-full border-0"
+              scrolling="no"
+              style={{ colorScheme: "dark" }}
+              className="block h-full w-full overflow-hidden border-0 bg-ink-950"
             />
           </div>
 

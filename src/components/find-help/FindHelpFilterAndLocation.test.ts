@@ -2,8 +2,14 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/en/find-help",
+}));
+
 import { FindHelpExplorer, PlaceCardActions } from "@/components/find-help/FindHelpExplorer";
+import { FindHelpPageContent } from "@/components/find-help/FindHelpPageContent";
 import {
   LocationFilterPopover,
   type LocationFilterPopoverProps,
@@ -554,5 +560,111 @@ describe("FindHelp location popover, inline FilterDropdown, and filter toolbar",
     expect(readSrc("src/components/ui/FilterDropdown.tsx")).toContain(
       "event.stopPropagation();",
     );
+  });
+
+  it("surfaces 1-tap category and Open now quick chips on mobile (< lg) synced across all 7 locales", () => {
+    for (const lang of ALL_LANGS) {
+      const copy = findHelpTranslations[lang];
+      const html = renderWithLang(
+        lang,
+        createElement(FindHelpExplorer, {
+          initialCountry: "RO",
+          initialCategory: "pharmacy",
+        }),
+      );
+
+      const groupPattern = new RegExp(
+        `<div role="group" aria-label="${copy.filtersTitle}"[^>]*>([\\s\\S]*?)<\\/div>`,
+      );
+      const groupMatch = html.match(groupPattern);
+      expect(groupMatch, `${lang}: missing mobile quick filter chip group`).not.toBeNull();
+      const groupHtml = groupMatch![0];
+
+      const chipButtons = assertCleanButtons(groupHtml, `${lang} mobile quick chips`);
+      const labels = chipButtons.map((button) => button.text);
+      expect(labels).toContain(copy.openNowFilter);
+      expect(labels).toContain(copy.allCategories);
+      expect(labels).toContain(copy.categories.pharmacy);
+      expect(labels).toContain(copy.categories.hospital);
+      expect(labels).toContain(copy.categories.gp);
+      expect(labels).toContain(copy.categories.clinic);
+      expect(labels).toContain(copy.categories.dentist);
+      expect(labels).toContain(copy.clearFilters);
+
+      const pharmacyBtn = chipButtons.find((button) => button.text === copy.categories.pharmacy);
+      const allBtn = chipButtons.find((button) => button.text === copy.allCategories);
+      const openNowBtn = chipButtons.find((button) => button.text === copy.openNowFilter);
+      expect(pharmacyBtn?.attrs).toContain('aria-pressed="true"');
+      expect(allBtn?.attrs).toContain('aria-pressed="false"');
+      expect(openNowBtn?.attrs).toContain('aria-pressed="false"');
+
+      expect(groupHtml).not.toContain("rounded-full");
+      expect(groupHtml).not.toContain('role="switch"');
+      expect(groupHtml).not.toContain("aria-checked=");
+      const groupText = extractVisibleText(groupHtml);
+      expect(groupText).not.toContain("&");
+      expect(groupText).not.toContain("\u00b7");
+      for (const attrValue of extractAttributeValues(groupHtml, ["aria-label", "title"])) {
+        expect(attrValue).not.toContain("&");
+        expect(attrValue).not.toContain("\u00b7");
+      }
+      if (lang === "sq") {
+        expect(labels.join(" ")).not.toMatch(/ndërmjetës/i);
+      }
+    }
+  });
+
+  it("improves open/closed scanability without dots/pills and unifies bottom guidance cards across all 7 locales", () => {
+    const explorerSrc = readSrc("src/components/find-help/FindHelpExplorer.tsx");
+    expect(explorerSrc).toContain("border-t border-border/60 pt-2.5 text-body dark:border-ink-800");
+    expect(explorerSrc).toContain('<span className="tabular-nums text-muted-foreground">{hours}</span>');
+    expect(explorerSrc).toContain('<span className="tabular-nums text-muted-foreground">{previewHours}</span>');
+    expect(explorerSrc).not.toContain("transition-all");
+    expect(explorerSrc).not.toContain("rounded-full");
+
+    const pageSrc = readSrc("src/components/find-help/FindHelpPageContent.tsx");
+    expect(pageSrc).toContain("p-6 sm:p-7");
+    expect(pageSrc).not.toContain("p-4 sm:p-7");
+    expect(pageSrc).toContain('variant="action"');
+    expect(pageSrc).toContain('variant="outline"');
+    expect(pageSrc).not.toContain('variant="primary"');
+    expect(pageSrc).not.toContain("rounded-full");
+    expect(pageSrc).not.toContain("transition-all");
+
+    for (const lang of ALL_LANGS) {
+      const copy = findHelpTranslations[lang];
+      const pageHtml = renderWithLang(
+        lang,
+        createElement(FindHelpPageContent, {
+          initialCountry: "RO",
+        }),
+      );
+
+      const guidanceMatch = pageHtml.match(/<section class="border-t border-border bg-muted\/40[\s\S]*<\/section>/);
+      expect(guidanceMatch, `${lang}: missing bottom guidance section`).not.toBeNull();
+      const guidanceHtml = guidanceMatch![0];
+      const guidanceText = extractVisibleText(guidanceHtml);
+      expect(guidanceHtml).toContain("p-6 sm:p-7");
+      expect(guidanceHtml).toContain(`href="/${lang}/mediatori"`);
+      expect(guidanceHtml).toContain(`href="/${lang}/get-help"`);
+      expect(guidanceText).toContain(copy.page.mediatorTitle);
+      expect(guidanceText).toContain(copy.page.mediatorButton);
+      expect(guidanceText).toContain(translations[lang].findHelpPage.ctaTitle);
+      expect(guidanceText).toContain(translations[lang].findHelpPage.ctaButton);
+      expect(guidanceHtml).toContain("bg-sapphire text-white");
+      expect(guidanceHtml).not.toContain("bg-primary");
+      expect(guidanceHtml).not.toContain("p-4 sm:p-7");
+      expect(guidanceHtml.match(/p-6 sm:p-7/g)?.length).toBe(2);
+      expect(guidanceHtml).not.toContain("rounded-full");
+      expect(guidanceText).not.toContain("&");
+      expect(guidanceText).not.toContain("\u00b7");
+      for (const attrValue of extractAttributeValues(guidanceHtml, ["aria-label", "title"])) {
+        expect(attrValue).not.toContain("&");
+        expect(attrValue).not.toContain("\u00b7");
+      }
+      if (lang === "sq") {
+        expect(guidanceText).not.toMatch(/ndërmjetës/i);
+      }
+    }
   });
 });
