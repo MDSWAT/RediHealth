@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { parseCountry } from "@/lib/countries";
-import { STAFF_COUNTRY_COOKIE, getUserWorkerContext, getWorkerMemberships } from "@/lib/worker-auth";
+import { STAFF_COUNTRY_COOKIE, getPanelMemberships, getUserWorkerContext } from "@/lib/worker-auth";
 
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
 function describe(
   active: string | null,
-  memberships: Awaited<ReturnType<typeof getWorkerMemberships>>["memberships"],
+  memberships: Awaited<ReturnType<typeof getPanelMemberships>>["memberships"],
 ) {
   return {
     active,
@@ -23,7 +23,7 @@ export async function GET() {
 
   const [context, { memberships }] = await Promise.all([
     getUserWorkerContext(session.user.email),
-    getWorkerMemberships(session.user.email),
+    getPanelMemberships(session.user.email),
   ]);
   return NextResponse.json(describe(context.workerId ? context.country : null, memberships));
 }
@@ -40,7 +40,8 @@ export async function PUT(request: Request) {
     return NextResponse.json({ error: "Unknown country." }, { status: 400 });
   }
 
-  const { memberships } = await getWorkerMemberships(session.user.email);
+  // Only countries where this person holds a panel role; a plain worker record elsewhere is not access.
+  const { memberships } = await getPanelMemberships(session.user.email);
   if (!memberships.some((membership) => membership.country === country)) {
     return NextResponse.json({ error: "You do not have access to that country." }, { status: 403 });
   }

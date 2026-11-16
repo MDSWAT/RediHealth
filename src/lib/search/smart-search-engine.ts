@@ -23,6 +23,7 @@ import {
 import { translations } from "@/lib/i18n/translations";
 import { classifyLocalIntent } from "@/components/health-assistant/intent-keywords";
 import { urgentPattern } from "@/lib/health-assistant";
+import { detectEmergencyText } from "@/lib/emergency-detection";
 import {
   getHealthMyths,
 } from "@/lib/i18n/health-myths";
@@ -941,6 +942,7 @@ function inferPathway(
     return "navigation";
   }
 
+  if (detectEmergencyText(query)) return "symptoms";
   const local = classifyLocalIntent(query, lang);
   if (local) return local;
   return classifyIntentToPathway(query);
@@ -987,7 +989,7 @@ export function detectEmergencyQuery(query: string, lang: Lang): boolean {
   const trimmed = query.trim();
   if (!trimmed) return false;
 
-  if (urgentPattern.test(trimmed)) return true;
+  if (detectEmergencyText(trimmed)) return true;
 
   const normQuery = normalizeSearchText(trimmed);
   if (!normQuery) return false;

@@ -6,6 +6,7 @@ import { ArrowRightIcon, SearchIcon } from "@/components/ui/icons";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import { classifyLocalIntent } from "@/components/health-assistant/intent-keywords";
 import { classifyIntentToPathway, type PathwayId } from "@/lib/triage-state";
+import { detectEmergencyText } from "@/lib/emergency-detection";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -133,7 +134,9 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
 
   const previewPathway: PathwayId | null =
     trimmed.length >= 3
-      ? classifyLocalIntent(trimmed, lang) ?? classifyIntentToPathway(trimmed)
+      ? detectEmergencyText(trimmed)
+        ? "symptoms"
+        : classifyLocalIntent(trimmed, lang) ?? classifyIntentToPathway(trimmed)
       : null;
 
   const previewTitle = previewPathway

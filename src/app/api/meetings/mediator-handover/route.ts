@@ -1,6 +1,7 @@
 import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
 import { requireStaff } from "@/lib/staff-access";
+import { canAccessMeeting } from "@/lib/record-access";
 
 interface HandoverVignette {
   meetingId?: string | number;
@@ -37,6 +38,11 @@ function pruneHandovers(now: number) {
   }
 }
 
+function parseMeetingId(value: unknown): number | null {
+  const id = typeof value === "number" ? String(value) : typeof value === "string" ? value.trim() : "";
+  return /^\d{1,18}$/.test(id) ? Number(id) : null;
+}
+
 function readHandover(key: string): HandoverVignette | null {
   const entry = activeHandoverStore.get(key);
   return entry && entry.expiresAt > Date.now() ? entry.vignette : null;
@@ -59,6 +65,13 @@ export async function POST(request: Request) {
       );
     }
 
+    // A handover can only be attached to a meeting this staff member organises or whose patient they look after.
+    // A non-numeric id (the field kit's own room names) is not a meeting record, so the handover is kept by its id only.
+    const meetingId = parseMeetingId(body.meetingId);
+    if (meetingId !== null && !(await canAccessMeeting(access.worker, meetingId))) {
+      return NextResponse.json({ error: "Întâlnirea nu a fost găsită." }, { status: 404 });
+    }
+
     const handoverId = `handover-${randomUUID()}`;
     const vignette: HandoverVignette = {
       ...body,
@@ -69,8 +82,8 @@ export async function POST(request: Request) {
     const now = Date.now();
     const stored = { vignette, expiresAt: now + HANDOVER_TTL_MS };
     activeHandoverStore.set(`${country}:${handoverId}`, stored);
-    if (body.meetingId) {
-      activeHandoverStore.set(`${country}:meeting:${body.meetingId}`, stored);
+    if (meetingId !== null) {
+      activeHandoverStore.set(`${country}:meeting:${meetingId}`, stored);
     }
     pruneHandovers(now);
 
@@ -95,8 +108,13 @@ export async function GET(request: Request) {
   const meetingId = searchParams.get("meetingId");
   const handoverId = searchParams.get("handoverId");
 
+  const meetingRecordId = parseMeetingId(meetingId);
+  if (meetingRecordId !== null && !(await canAccessMeeting(access.worker, meetingRecordId))) {
+    return NextResponse.json({ vignette: null });
+  }
+
   const vignette =
-    (meetingId ? readHandover(`${country}:meeting:${meetingId}`) : null) ??
+    (meetingRecordId !== null ? readHandover(`${country}:meeting:${meetingRecordId}`) : null) ??
     (handoverId ? readHandover(`${country}:${handoverId}`) : null);
   if (vignette) return NextResponse.json({ vignette });
 

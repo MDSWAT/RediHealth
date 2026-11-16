@@ -67,6 +67,24 @@ describe("staff access across country databases", () => {
     expect((await getUserWorkerContext("ana@example.com")).country).toBe("IT");
   });
 
+  it("gives no panel access to a staff member demoted to a non-panel role", async () => {
+    mocks.queries.RO.mockResolvedValue(worker(4, "Healthcare Worker"));
+
+    const context = await getUserWorkerContext("ana@example.com");
+
+    expect(context).toMatchObject({ workerId: null, role: "Unauthorized", isAdmin: false });
+  });
+
+  it("ignores a preferred country where the person holds only a non-panel role", async () => {
+    mocks.queries.RO.mockResolvedValue(worker(4, "Mediator"));
+    mocks.queries.IT.mockResolvedValue(worker(2, "Healthcare Worker"));
+    mocks.cookie.mockReturnValue({ value: "IT" });
+
+    const context = await getUserWorkerContext("ana@example.com");
+
+    expect(context).toMatchObject({ country: "RO", workerId: "4" });
+  });
+
   it("gives no access to people who are not staff anywhere", async () => {
     const context = await getUserWorkerContext("stranger@example.com");
     expect(context).toMatchObject({ workerId: null, role: "Unauthorized", isAdmin: false, lookupFailed: false });

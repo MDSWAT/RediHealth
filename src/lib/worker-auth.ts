@@ -75,6 +75,14 @@ async function lookupWorker(country: CountryCode, email: string): Promise<Lookup
 }
 
 /** Every country in which this email is an active staff member. Each country keeps its own worker record. */
+/** Memberships that may open the panel, i.e. the countries a staff member can switch to. */
+export async function getPanelMemberships(
+  email: string | null | undefined,
+): Promise<{ memberships: WorkerMembership[]; lookupFailed: boolean }> {
+  const result = await getWorkerMemberships(email);
+  return { ...result, memberships: result.memberships.filter(hasPanelRole) };
+}
+
 export async function getWorkerMemberships(
   email: string | null | undefined,
 ): Promise<{ memberships: WorkerMembership[]; lookupFailed: boolean }> {
@@ -124,6 +132,10 @@ function unauthorizedContext(country: CountryCode, lookupFailed: boolean): UserW
 /**
  * Resolves who is acting and in which country. The country comes from the staff member's own
  * preference when they work there, otherwise the first country they belong to.
+ *
+ * Only memberships with a panel role count. Sign-in checks the role once, but a session lives on
+ * for weeks, so a staff member demoted to "Healthcare Worker" (or deactivated) loses access on
+ * their next request, and a non-panel membership in another country never grants access there.
  */
 export async function getUserWorkerContext(
   userEmail: string | null | undefined,
@@ -136,11 +148,12 @@ export async function getUserWorkerContext(
 
   if (preferred && configuredCountries().includes(preferred)) {
     const result = await lookupWorker(preferred, email);
-    if (result.status === "found") return contextFor(result.membership);
+    if (result.status === "found" && hasPanelRole(result.membership)) return contextFor(result.membership);
   }
 
   const { memberships, lookupFailed } = await getWorkerMemberships(email);
-  if (memberships.length > 0) return contextFor(memberships.find(hasPanelRole) ?? memberships[0]);
+  const panelMembership = memberships.find(hasPanelRole);
+  if (panelMembership) return contextFor(panelMembership);
 
   return unauthorizedContext(preferred ?? fallbackCountry, lookupFailed);
 }

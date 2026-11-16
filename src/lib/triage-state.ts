@@ -1,3 +1,4 @@
+import { detectEmergencyText } from "@/lib/emergency-detection";
 /**
  * RediHealth Conversational Triage State Machine (Change 27)
  * Strictly enforces a 3-click budget:
@@ -88,6 +89,9 @@ export function classifyIntentToPathway(query: string): PathwayId {
     .replace(/\s+/g, " ")
     .trim();
 
+  // Emergencies in any language go to the symptoms pathway, never to information pages.
+  if (detectEmergencyText(query)) return "symptoms";
+
   // Pathway 3: Symptoms / pain / acute illness / emergency 112
   if (
     q.includes("112") ||
@@ -108,7 +112,7 @@ export function classifyIntentToPathway(query: string): PathwayId {
     q.includes("varsat") ||
     q.includes("vom") ||
     q.includes("tuse") ||
-    q.includes("tus") ||
+    /\btus/.test(q) ||
     q.includes("greata") ||
     q.includes("amet") ||
     q.includes("diaree") ||

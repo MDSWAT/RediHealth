@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useReducer, useRef } from "react";
+import { useCallback, useEffect, useReducer, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { ArrowLeftIcon } from "@/components/ui/icons";
 import { TriageDecisionTree } from "@/components/health-assistant/TriageDecisionTree";
@@ -16,6 +17,7 @@ import {
   useAssistantCopy,
 } from "@/components/health-assistant/assistant-copy";
 import { classifyLocalIntent } from "@/components/health-assistant/intent-keywords";
+import { detectEmergencyText } from "@/lib/emergency-detection";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import {
@@ -31,6 +33,11 @@ import {
   type TriageAction,
   type TriageState,
 } from "@/lib/triage-state";
+
+const EmergencyDialerGate = dynamic(
+  () => import("@/components/emergency/EmergencyDialerGate").then((mod) => mod.EmergencyDialerGate),
+  { ssr: false },
+);
 
 type TrailActionType = "JUMP_TO_START" | "JUMP_TO_GATE" | "JUMP_TO_STEP2";
 
@@ -126,6 +133,9 @@ export function TriageStateMachine({
     campaign: initialCampaign,
     entry: initialEntry,
   });
+
+  // Typed emergencies (any language) go straight to the 112 screen instead of a pathway.
+  const [emergencyOpen, setEmergencyOpen] = useState(false);
 
   const openBodyTool = useCallback(
     (replace = false) => {
@@ -480,6 +490,10 @@ export function TriageStateMachine({
               else dispatch({ type: "SELECT_PATHWAY", pathway });
             }}
             onSubmitIntentQuery={(query) => {
+              if (detectEmergencyText(query)) {
+                setEmergencyOpen(true);
+                return;
+              }
               // English, Albanian and Italian text is routed here first; the shared classifier is Romanian-only.
               const localPathway = classifyLocalIntent(query, lang);
               if ((localPathway ?? classifyIntentToPathway(query)) === "symptoms") {
@@ -539,6 +553,8 @@ export function TriageStateMachine({
       <p className="sr-only" aria-live="polite" aria-atomic="true">
         {accessibleStepText}
       </p>
+
+      {emergencyOpen && <EmergencyDialerGate open={emergencyOpen} onOpenChange={setEmergencyOpen} />}
     </section>
   );
 }

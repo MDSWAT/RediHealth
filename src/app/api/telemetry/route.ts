@@ -2,11 +2,24 @@ import { NextResponse } from "next/server";
 import { requireStaff } from "@/lib/staff-access";
 import { getCountryDatabase, isCountryConfigured, type RowDataPacket, type ResultSetHeader } from "@/lib/database";
 import { validateVitals, type VitalsTelemetryRecord } from "@/lib/types/telemetry";
+import { canAccessMeeting, canAccessPatient } from "@/lib/record-access";
 
 // Readings live in the country database only, so every server instance sees the same data.
 function recordId(value: unknown): number | null {
   const id = typeof value === "number" ? String(value) : typeof value === "string" ? value.trim() : "";
   return /^\d{1,18}$/.test(id) ? Number(id) : null;
+}
+
+async function canRecordFor(
+  worker: Parameters<typeof canAccessPatient>[0],
+  patientId: number | null,
+  meetingId: number | null,
+): Promise<boolean> {
+  // A reading not linked to any patient or meeting (the field kit's demo visits) touches no one's record.
+  if (patientId === null && meetingId === null) return true;
+  if (patientId !== null && !(await canAccessPatient(worker, patientId))) return false;
+  if (meetingId !== null && !(await canAccessMeeting(worker, meetingId))) return false;
+  return true;
 }
 
 export async function POST(request: Request) {
@@ -51,6 +64,10 @@ export async function POST(request: Request) {
 
     if (!isCountryConfigured(country)) {
       return NextResponse.json({ error: "Datele nu au putut fi salvate." }, { status: 503 });
+    }
+    // A reading may only be attached to a patient or meeting this staff member works with.
+    if (!(await canRecordFor(access.worker, recordId(body.patientId), recordId(body.meetingId)))) {
+      return NextResponse.json({ error: "Pacientul sau întâlnirea nu a fost găsită." }, { status: 404 });
     }
     try {
       const [result] = await getCountryDatabase(country).query<ResultSetHeader>(
@@ -109,6 +126,15 @@ export async function GET(request: Request) {
 
   if (isCountryConfigured(country)) {
     try {
+      const meetingRecordId = meetingId ? recordId(meetingId) : null;
+      const patientRecordId = meetingId ? null : recordId(patientId);
+      // Same rule as writing: only vitals of a patient or meeting this staff member works with.
+      if (
+        (patientRecordId === null && meetingRecordId === null) ||
+        !(await canRecordFor(access.worker, patientRecordId, meetingRecordId))
+      ) {
+        return NextResponse.json({ telemetry: null });
+      }
       const db = getCountryDatabase(country);
       const query = meetingId
         ? `SELECT * FROM patient_vitals_telemetry WHERE meeting_id = ? ORDER BY recorded_at DESC LIMIT 1`

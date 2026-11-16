@@ -6,8 +6,8 @@ import {
   buildVisionSystemInstruction,
   buildVisionUserText,
   parseAssistantReply,
-  urgentPattern,
 } from "@/lib/health-assistant";
+import { detectEmergencyText } from "@/lib/emergency-detection";
 import { DEFAULT_LANG, isSupportedLang } from "@/lib/i18n/routing";
 import { LlmError, generateText } from "@/lib/llm";
 import { notifyOperationalIssue } from "@/lib/operational-alerts";
@@ -128,7 +128,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Make your message shorter." }, { status: 400 });
   }
 
-  if (urgentPattern.test(symptoms)) {
+  // Checked before the LLM in every language, including text typed alongside a prescription photo.
+  if (detectEmergencyText(symptoms) || detectEmergencyText(prescriptionContext)) {
     return NextResponse.json(buildEmergencyResponse(lang));
   }
 
