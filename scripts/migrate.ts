@@ -4,6 +4,8 @@
  *   npm run migrate              # the main database (DATABASE_URL or DB_*), every migration
  *   npm run migrate -- RO        # one country database (DATABASE_URL_RO or DB_RO_*)
  *   npm run migrate -- RO IT     # several country databases
+ *   npm run migrate -- --baseline  # record every migration as applied WITHOUT running it; for a
+ *                                  # database that "npm run db:check" shows is already complete
  *
  * Country databases skip the migrations that belong to the control database only.
  * Settings are read from .env.local and then .env, whichever exist.
@@ -106,7 +108,7 @@ function splitStatements(sql: string): string[] {
   return statements;
 }
 
-async function migrate(target: string, files: string[], migrationsDir: string): Promise<number> {
+async function migrate(target: string, files: string[], migrationsDir: string, baseline: boolean): Promise<number> {
   const options = connectionOptions(target);
   console.log(`\n=== ${target === "main" ? "Main database" : `Country ${target}`}: ${options.database} on ${options.host} ===`);
 
@@ -130,6 +132,11 @@ async function migrate(target: string, files: string[], migrationsDir: string): 
       }
       if (applied.has(file)) {
         console.log(`- ${file}: already applied`);
+        continue;
+      }
+      if (baseline) {
+        await connection.query("INSERT INTO schema_migrations (name) VALUES (?)", [file]);
+        console.log(`- ${file}: recorded as applied (not run)`);
         continue;
       }
 
@@ -164,14 +171,16 @@ async function main() {
     .filter((file) => file.endsWith(".sql"))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
-  const targets = process.argv.slice(2).map((value) => value.trim().toUpperCase()).filter(Boolean);
+  const args = process.argv.slice(2).map((value) => value.trim()).filter(Boolean);
+  const baseline = args.includes("--baseline");
+  const targets = args.filter((value) => value !== "--baseline").map((value) => value.toUpperCase());
   for (const target of targets) {
     if (!/^[A-Z]{2}$/.test(target)) throw new Error(`"${target}" is not a country code such as RO or IT.`);
   }
 
   let skipped = 0;
   for (const target of targets.length > 0 ? targets : ["main"]) {
-    skipped += await migrate(target, files, migrationsDir);
+    skipped += await migrate(target, files, migrationsDir, baseline);
   }
 
   console.log("\nMigration complete.");
