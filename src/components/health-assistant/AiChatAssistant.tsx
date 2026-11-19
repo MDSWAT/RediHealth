@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
-import { AssistantNavigation, AssistantOtherTools } from "@/components/health-assistant/AssistantNavigation";
+import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
 import { AI_CHAT_COPY, AI_CHAT_MAX_LENGTH } from "@/components/health-assistant/ai-chat-copy";
 import { dangerPanel, textInput } from "@/components/health-assistant/step-ui";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
@@ -215,8 +215,6 @@ export function AiChatAssistant() {
             <p className="mt-2 text-meta text-foreground">{t.emergencyNote}</p>
           </form>
         </section>
-
-        <AssistantOtherTools />
       </Container>
     </main>
   );

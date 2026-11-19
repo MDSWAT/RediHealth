@@ -3,7 +3,7 @@
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { AssistantNavigation, AssistantOtherTools } from "@/components/health-assistant/AssistantNavigation";
+import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
 import { FindHelpExplorer } from "@/components/find-help/FindHelpExplorer";
 import { findHelpTranslations } from "@/lib/i18n/find-help-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -81,8 +81,6 @@ export function FindHelpPageContent({
               </div>
             </div>
           </div>
-
-          <AssistantOtherTools />
         </Container>
       </section>
     </main>

@@ -1,6 +1,5 @@
 "use client";
 
-import { useId } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
@@ -15,56 +14,49 @@ import type { Lang } from "@/lib/i18n/translations";
 
 export const ASSISTANT_NAV_COPY: Record<
   Lang,
-  { navLabel: string; assistant: string; symptoms: string; prescription: string; otherTools: string }
+  { navLabel: string; assistant: string; symptoms: string; prescription: string }
 > = {
   ru: {
     navLabel: "Разделы помощника по здоровью",
     assistant: "Врач и документы",
     symptoms: "Проверить симптомы",
     prescription: "Объяснить рецепт",
-    otherTools: "Другие способы помочь",
   },
   en: {
     navLabel: "Health assistant sections",
     assistant: "Doctor and documents",
     symptoms: "Check my symptoms",
     prescription: "Explain my prescription",
-    otherTools: "Other ways we can help",
   },
   ro: {
     navLabel: "Secțiunile asistentului virtual",
     assistant: "Doctor și acte",
     symptoms: "Verifică simptomele",
     prescription: "Explică-mi rețeta",
-    otherTools: "Alte moduri prin care te putem ajuta",
   },
   sq: {
     navLabel: "Pjesët e asistentit shëndetësor",
     assistant: "Mjeku dhe dokumentet",
     symptoms: "Kontrollo simptomat",
     prescription: "Shpjego recetën time",
-    otherTools: "Mënyra të tjera si mund të ndihmojmë",
   },
   it: {
     navLabel: "Sezioni dell'assistente sanitario",
     assistant: "Medico e documenti",
     symptoms: "Controlla i sintomi",
     prescription: "Spiegami la ricetta",
-    otherTools: "Altri modi in cui possiamo aiutare",
   },
   hr: {
     navLabel: "Odjeljci zdravstvenog asistenta",
     assistant: "Liječnik i dokumenti",
     symptoms: "Provjeri simptome",
     prescription: "Objasni mi recept",
-    otherTools: "Drugi načini na koje možemo pomoći",
   },
   rom: {
     navLabel: "Riga le sastipnaske azhutitoreske",
     assistant: "Doktori thaj lila",
     symptoms: "Dikh e simptome",
     prescription: "Xatyar mange i receta",
-    otherTools: "Aver droma sar shaj azhutis tut",
   },
 };
 
@@ -107,9 +99,9 @@ export function AssistantNavigation() {
   const { lang, t, items, trackRef, plateRef } = useAssistantNavState();
 
   return (
-    // Desktop/tablet horizontal capsule menu; phones use AssistantOtherTools at page bottom (P24 + 8ee82c9).
+    // Horizontal capsule menu on every width; on phones it scrolls sideways with the current tool in view.
     // Centred over the page, on every tool page that shares it.
-    <nav aria-label={t.navLabel} className="max-md:hidden mb-4 flex justify-center sm:mb-5">
+    <nav aria-label={t.navLabel} className="mb-4 flex justify-center sm:mb-5">
       <div ref={trackRef} className={CAPSULE_TABS}>
         <CapsuleGlidePlate plateRef={plateRef} />
         {items.map(({ href, label, Icon, isActive }) => (
@@ -132,33 +124,3 @@ export function AssistantNavigation() {
   );
 }
 
-/** Below md, renders sibling tools as a vertical icon-and-label list at the end of the page. */
-export function AssistantOtherTools() {
-  const headingId = useId();
-  const { lang, t, items } = useAssistantNavState();
-  const otherItems = items.filter((item) => !item.isActive);
-
-  return (
-    <section
-      aria-labelledby={headingId}
-      className="mt-8 border-t border-border pt-6 md:hidden dark:border-ink-800 print:hidden"
-    >
-      <h2 id={headingId} className="text-body font-semibold text-foreground">
-        {t.otherTools}
-      </h2>
-      <ul className="mt-3 divide-y divide-border border-y border-border dark:divide-ink-800 dark:border-ink-800">
-        {otherItems.map(({ href, label, Icon }) => (
-          <li key={href}>
-            <Link
-              href={withLangPrefix(href, lang)}
-              className="press-row flex min-h-12 w-full items-center gap-3 whitespace-nowrap py-2.5 text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none dark:hover:text-sapphire-border"
-            >
-              <Icon className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-              <span>{label}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}

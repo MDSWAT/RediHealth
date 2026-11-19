@@ -3,7 +3,6 @@
 import {
   ASSISTANT_NAV_COPY,
   AssistantNavigation,
-  AssistantOtherTools,
 } from "@/components/health-assistant/AssistantNavigation";
 import { Button } from "@/components/ui/Button";
 import { ActivityIcon } from "@/components/ui/icons";
@@ -53,8 +52,6 @@ export function HealthAssistant() {
         <div id="triage" className="mt-8 min-w-0 sm:mt-10">
           <WhereToGoGuide />
         </div>
-
-        <AssistantOtherTools />
         </div>
       </Container>
     </main>

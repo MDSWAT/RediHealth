@@ -18,7 +18,7 @@ import {
   TrashIcon,
 } from "@/components/ui/icons";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
-import { AssistantNavigation, AssistantOtherTools } from "@/components/health-assistant/AssistantNavigation";
+import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
 import { getPrescriptionDoctorBridgeCopy } from "@/components/health-assistant/PrescriptionDoctorBridge";
 import { PrescriptionStructuredResult } from "@/components/health-assistant/PrescriptionStructuredResult";
 import { useReadAloud } from "@/components/health-check/readingTools";
@@ -1179,8 +1179,6 @@ export function PrescriptionReview() {
             </div>
           </aside>
         </div>
-
-        <AssistantOtherTools />
       </Container>
     </main>
   );

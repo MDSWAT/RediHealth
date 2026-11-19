@@ -38,7 +38,7 @@ import {
 import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
 import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
 import type { InstituteCategory } from "@/lib/medical-institutes";
-import { AssistantNavigation, AssistantOtherTools } from "@/components/health-assistant/AssistantNavigation";
+import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
 import { AnatomicalBodyMap } from "@/components/health-check/AnatomicalBodyMap";
 import {
   AbdomenRegionIcon,
@@ -3172,8 +3172,6 @@ export function HealthCheckExplorer() {
           </div>
         </section>
       </div>
-
-      <AssistantOtherTools />
 
       {/* Emergency 112 Alert Dialog */}
       {showEmergencyOverlay && urgentSymptom && (
