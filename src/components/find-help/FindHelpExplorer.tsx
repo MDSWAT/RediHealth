@@ -32,6 +32,7 @@ import {
   type InstituteCategory,
   type MedicalInstitute,
 } from "@/lib/medical-institutes";
+import type { InstituteOwnership } from "@/lib/institute-ownership";
 import {
   readSavedFindHelpLocation,
   resolveSmartLocation,
@@ -421,6 +422,8 @@ export function FindHelpExplorer({
   const [category, setCategory] = useState<InstituteCategory | null>(initialCategory);
   const [emergencyOnly, setEmergencyOnly] = useState(false);
   const [openNowOnly, setOpenNowOnly] = useState(false);
+  /** Public (state) or private only; null lists both, including places whose ownership is unknown. */
+  const [ownership, setOwnership] = useState<InstituteOwnership | null>(null);
   const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState("");
   const [institutes, setInstitutes] = useState<MedicalInstitute[]>([]);
@@ -577,8 +580,12 @@ export function FindHelpExplorer({
     }
     if (category) params.set("category", category);
     if (search) params.set("q", search);
+    // Public or private is filtered here, on the nearest places, so fetch the most the API allows:
+    // otherwise "public only" in a city centre keeps a handful out of 80 mostly private pharmacies.
+    // (A whole-country browse is already paged in 500s and ignores the limit.)
+    if (ownership && area.kind === "point") params.set("limit", "200");
     return params.toString();
-  }, [area, category, search]);
+  }, [area, category, search, ownership]);
   const requestKey = `${requestQuery}#${reloadKey}`;
   const loading = settled?.key !== requestKey;
   const isColdLoad = loading && settled === null;
@@ -653,9 +660,10 @@ export function FindHelpExplorer({
     return institutes.filter((item) => {
       if (emergencyOnly && !item.emergency) return false;
       if (openNowOnly && !isInstituteOpenNow(item.hours)) return false;
+      if (ownership && item.ownership !== ownership) return false;
       return true;
     });
-  }, [institutes, emergencyOnly, openNowOnly]);
+  }, [institutes, emergencyOnly, openNowOnly, ownership]);
 
   // Desktop pin tap scrolls list row into view; mobile pin tap anchors a facility preview sheet with zero page-yanking.
   const selectInstitute = useCallback(
@@ -747,6 +755,7 @@ export function FindHelpExplorer({
     setCategory(null);
     setEmergencyOnly(false);
     setOpenNowOnly(false);
+    setOwnership(null);
     setSearch("");
     setSearchInput("");
   }
@@ -807,11 +816,11 @@ export function FindHelpExplorer({
     voice.speak([copy.emergencyRightsCallout]);
   };
 
-  const filtered = Boolean(category || search || emergencyOnly || openNowOnly);
+  const filtered = Boolean(category || search || emergencyOnly || openNowOnly || ownership);
   /** Placeholders on the first load, and again when a retry or a new search has nothing on screen yet. */
   const showSkeleton = isColdLoad || (isRevalidating && displayedInstitutes.length === 0);
   /** Changes whenever a fresh set of results lands, so the rows arrive in order once per set. */
-  const resultSetKey = `${settled?.key ?? ""}|${emergencyOnly ? 1 : 0}${openNowOnly ? 1 : 0}`;
+  const resultSetKey = `${settled?.key ?? ""}|${emergencyOnly ? 1 : 0}${openNowOnly ? 1 : 0}|${ownership ?? ""}`;
   const mobilePreviewInstitute = useMemo(
     () => (mobilePreviewId ? displayedInstitutes.find((item) => item.id === mobilePreviewId) ?? null : null),
     [displayedInstitutes, mobilePreviewId],
@@ -836,6 +845,7 @@ export function FindHelpExplorer({
     category ? copy.categories[category] : copy.allPlaces,
     emergencyOnly ? copy.emergencyWalkInFilter : null,
     openNowOnly ? copy.openNowFilter : null,
+    ownership === "public" ? copy.ownershipPublicOnly : ownership === "private" ? copy.ownershipPrivateOnly : null,
     search || null,
   ]
     .filter(Boolean)
@@ -853,7 +863,7 @@ export function FindHelpExplorer({
         className={
           isSheet
             ? "flex flex-col gap-4"
-            : "grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.28fr)_minmax(0,1.24fr)_minmax(0,0.68fr)] lg:items-center xl:grid-cols-[minmax(0,1.28fr)_minmax(0,1.24fr)_minmax(0,0.68fr)_auto_auto]"
+            : "grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.28fr)_minmax(0,1.24fr)_minmax(0,0.68fr)] lg:items-center 2xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)_minmax(0,0.62fr)_auto_auto_auto]"
         }
       >
         <form
@@ -962,7 +972,38 @@ export function FindHelpExplorer({
           </FilterDropdown>
         </div>
 
-        <div className={isSheet ? "flex flex-wrap gap-2" : "col-span-1 flex flex-wrap gap-2 sm:col-span-2 lg:col-span-3 xl:contents"}>
+        <div className={isSheet ? "flex flex-wrap gap-2" : "col-span-1 flex flex-wrap gap-2 sm:col-span-2 lg:col-span-3 2xl:contents"}>
+          {/* Public or private: the value says it all ("Doar de stat"), so the trigger shows no label. */}
+          <div className={isSheet ? "w-full min-w-0" : "min-w-0"}>
+            {isSheet ? (
+              <p className="mb-1.5 text-meta font-medium text-foreground">{copy.ownershipLabel}</p>
+            ) : null}
+            <FilterDropdown
+              label={copy.ownershipLabel}
+              value={
+                ownership === "public"
+                  ? copy.ownershipPublicOnly
+                  : ownership === "private"
+                    ? copy.ownershipPrivateOnly
+                    : copy.ownershipAll
+              }
+              align="left"
+              hideLabel
+            >
+              <div className="space-y-0.5">
+                {([null, "public", "private"] as const).map((item) => (
+                  <MenuOption key={item ?? "all"} selected={ownership === item} onSelect={() => setOwnership(item)}>
+                    {item === "public"
+                      ? copy.ownershipPublicOnly
+                      : item === "private"
+                        ? copy.ownershipPrivateOnly
+                        : copy.ownershipAll}
+                  </MenuOption>
+                ))}
+              </div>
+            </FilterDropdown>
+          </div>
+
           <FilterToggleButton
             checked={emergencyOnly}
             onToggle={() => {
@@ -1345,6 +1386,12 @@ export function FindHelpExplorer({
                             <CategoryIcon category={institute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" />
                             <span>{copy.categories[institute.category]}</span>
                           </span>
+                          {institute.ownership ? (
+                            <>
+                              <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
+                              <span className="font-medium text-muted-foreground">{copy.ownership[institute.ownership]}</span>
+                            </>
+                          ) : null}
                           {institute.emergency ? (
                             <>
                               <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
@@ -1487,6 +1534,12 @@ export function FindHelpExplorer({
                       <CategoryIcon category={mobilePreviewInstitute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" />
                       <span>{copy.categories[mobilePreviewInstitute.category]}</span>
                     </span>
+                    {mobilePreviewInstitute.ownership ? (
+                      <>
+                        <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
+                        <span className="font-medium text-muted-foreground">{copy.ownership[mobilePreviewInstitute.ownership]}</span>
+                      </>
+                    ) : null}
                     {mobilePreviewInstitute.emergency && (
                       <>
                         <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />

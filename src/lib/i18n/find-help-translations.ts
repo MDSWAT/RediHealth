@@ -16,6 +16,12 @@ export type FindHelpCopy = {
   myLocation: string;
   mapArea: string;
   categoryLabel: string;
+  /** Public (state) or private filter: its label and the three choices, then the word on a result. */
+  ownershipLabel: string;
+  ownershipAll: string;
+  ownershipPublicOnly: string;
+  ownershipPrivateOnly: string;
+  ownership: { public: string; private: string };
   searchPlaceholder: string;
   /** Short placeholder that fits a 375px phone; the label keeps the full searchPlaceholder. */
   searchHint: string;
@@ -216,6 +222,11 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     allCategories: "Все",
     countryLabel: "Страна",
     categoryLabel: "Тип",
+    ownershipLabel: "Государственные или частные",
+    ownershipAll: "Государственные и частные",
+    ownershipPublicOnly: "Только государственные",
+    ownershipPrivateOnly: "Только частные",
+    ownership: { public: "Государственное", private: "Частное" },
     searchPlaceholder: "Поиск по названию, городу или адресу",
     searchHint: "напр. Бухарест",
     searchButton: "Поиск",
@@ -260,6 +271,11 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     myLocation: "My location",
     mapArea: "Map area",
     categoryLabel: "Type",
+    ownershipLabel: "Public or private",
+    ownershipAll: "Public and private",
+    ownershipPublicOnly: "Public only",
+    ownershipPrivateOnly: "Private only",
+    ownership: { public: "Public", private: "Private" },
     searchPlaceholder: "Search by name, city or address",
     searchHint: "e.g. Bucharest",
     searchButton: "Search",
@@ -353,6 +369,11 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     myLocation: "Locația mea",
     mapArea: "Zona de pe hartă",
     categoryLabel: "Tip",
+    ownershipLabel: "De stat sau private",
+    ownershipAll: "De stat și private",
+    ownershipPublicOnly: "Doar de stat",
+    ownershipPrivateOnly: "Doar private",
+    ownership: { public: "De stat", private: "Privat" },
     searchPlaceholder: "Caută după nume, oraș sau adresă",
     searchHint: "de ex. București",
     searchButton: "Caută",
@@ -466,6 +487,11 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     myLocation: "Vendndodhja ime",
     mapArea: "Zona në hartë",
     categoryLabel: "Lloji",
+    ownershipLabel: "Publike apo private",
+    ownershipAll: "Publike dhe private",
+    ownershipPublicOnly: "Vetëm publike",
+    ownershipPrivateOnly: "Vetëm private",
+    ownership: { public: "Publik", private: "Privat" },
     searchPlaceholder: "Kërko sipas emrit, qytetit ose adresës",
     searchHint: "p.sh. Bukuresht",
     searchButton: "Kërko",
@@ -559,6 +585,11 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     myLocation: "La mia posizione",
     mapArea: "Zona della mappa",
     categoryLabel: "Tipo",
+    ownershipLabel: "Pubblico o privato",
+    ownershipAll: "Pubblici e privati",
+    ownershipPublicOnly: "Solo pubblici",
+    ownershipPrivateOnly: "Solo privati",
+    ownership: { public: "Pubblico", private: "Privato" },
     searchPlaceholder: "Cerca per nome, città o indirizzo",
     searchHint: "es. Bucarest",
     searchButton: "Cerca",
@@ -652,6 +683,11 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     myLocation: "Moja lokacija",
     mapArea: "Područje karte",
     categoryLabel: "Vrsta",
+    ownershipLabel: "Javno ili privatno",
+    ownershipAll: "Javne i privatne",
+    ownershipPublicOnly: "Samo javne",
+    ownershipPrivateOnly: "Samo privatne",
+    ownership: { public: "Javno", private: "Privatno" },
     searchPlaceholder: "Pretraži po nazivu, gradu ili adresi",
     searchHint: "npr. Zagreb",
     searchButton: "Traži",
@@ -745,6 +781,11 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     myLocation: "Kaj sem me",
     mapArea: "Zona pi mapa",
     categoryLabel: "Felo",
+    ownershipLabel: "Themeske vaj privatno",
+    ownershipAll: "Themeske thaj privatno",
+    ownershipPublicOnly: "Numa themeske",
+    ownershipPrivateOnly: "Numa privatno",
+    ownership: { public: "Themesko", private: "Privatno" },
     searchPlaceholder: "Rod pala anav, foro vaj adresa",
     searchHint: "misal: Bukuresht",
     searchButton: "Rod",

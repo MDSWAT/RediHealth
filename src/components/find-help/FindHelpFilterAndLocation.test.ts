@@ -552,7 +552,7 @@ describe("FindHelp location popover, inline FilterDropdown, and filter toolbar",
     expect(explorerSrc).toContain("useSheetDialog(filterSheetOpen");
     expect(explorerSrc).toContain("sheet-in");
     expect(explorerSrc).toContain(
-      "xl:grid-cols-[minmax(0,1.28fr)_minmax(0,1.24fr)_minmax(0,0.68fr)_auto_auto]",
+      "2xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)_minmax(0,0.62fr)_auto_auto_auto]",
     );
     expect(readSrc("src/components/find-help/LocationFilterPopover.tsx")).toContain(
       "event.stopPropagation();",

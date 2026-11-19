@@ -52,14 +52,15 @@ export function WhereToGoGuide() {
     <section
       ref={cardRef}
       aria-label={copy.tree.options.navigation.plainTitle}
-      className="min-w-0 overflow-hidden scroll-mt-[calc(var(--chrome-h,0px)+1rem)] rounded-2xl border border-border bg-card shadow-(--shadow-card-rest) dark:border-ink-800"
+      className="min-w-0 scroll-mt-[calc(var(--chrome-h,0px)+1rem)]"
     >
-      <div className="p-5 sm:p-7">
+      {/* No wrapping card: the situation rows are the only boxes, so nothing is a box in a box. */}
+      <div>
         {scenario && (
           <button
             type="button"
             onClick={back}
-            className="mb-5 inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-3.5 py-2 text-body font-semibold text-sapphire shadow-2xs press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/40 hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="-ml-1 mb-4 inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-1 text-body font-semibold text-sapphire press-row transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
           >
             <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span>{copy.machine.back}</span>

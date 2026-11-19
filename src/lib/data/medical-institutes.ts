@@ -1,4 +1,5 @@
 import { getControlDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { classifyInstituteOwnership } from "@/lib/institute-ownership";
 import {
   COUNTRY_INFO,
   isInstituteCategory,
@@ -37,11 +38,14 @@ const PUBLIC_COLUMNS =
 
 function toInstitute(row: InstituteRow): MedicalInstitute {
   const country = row.country_code.toUpperCase();
+  const countryCode = isSupportedCountry(country) ? country : "RO";
+  const category = isInstituteCategory(row.category) ? row.category : "other";
   return {
     id: String(row.id),
-    country_code: isSupportedCountry(country) ? country : "RO",
+    country_code: countryCode,
     name: row.name,
-    category: isInstituteCategory(row.category) ? row.category : "other",
+    category,
+    ownership: classifyInstituteOwnership(row.name, category, countryCode),
     address: row.address,
     city: row.city,
     phone: normalizeInstitutePhone(row.phone, country),

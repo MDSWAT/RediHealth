@@ -30,13 +30,17 @@ export function HealthAssistant() {
       <Container>
         <AssistantNavigation />
 
+        {/* One centred reading column for the header and the guide; text inside stays left-aligned. */}
+        <div className="mx-auto w-full max-w-3xl">
         <PageHeader
           title={title}
           lead={lead}
           actions={
             <>
-              {/* Straight into the 3D body symptom tool; on phones the tool tabs above are hidden. */}
-              <Button href={withLangPrefix("/health-check", lang)} variant="action" size="md">
+              {/* Straight into the 3D body symptom tool; on phones the tool tabs above are hidden.
+                  Outline, not filled: this page's main job is choosing a situation below, so a
+                  sibling tool must not carry the strongest button on the page. */}
+              <Button href={withLangPrefix("/health-check", lang)} variant="outline" size="md">
                 <ActivityIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{nav.symptoms}</span>
               </Button>
@@ -46,11 +50,12 @@ export function HealthAssistant() {
         />
 
         {/* Links across the site point at /health-assistant#triage. */}
-        <div id="triage" className="mt-5 max-w-4xl min-w-0 sm:mt-6">
+        <div id="triage" className="mt-8 min-w-0 sm:mt-10">
           <WhereToGoGuide />
         </div>
 
         <AssistantOtherTools />
+        </div>
       </Container>
     </main>
   );

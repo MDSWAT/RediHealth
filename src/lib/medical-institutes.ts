@@ -1,4 +1,5 @@
 import type { Lang } from "@/lib/i18n/translations";
+import type { InstituteOwnership } from "@/lib/institute-ownership";
 import { COUNTRY_INFO, SUPPORTED_COUNTRIES, isSupportedCountry, type CountryCode } from "@/lib/countries";
 
 export { COUNTRY_INFO, SUPPORTED_COUNTRIES, isSupportedCountry };
@@ -53,6 +54,8 @@ export type MedicalInstitute = {
   lat: number;
   lng: number;
   distance_km?: number | null;
+  /** Public (state) or private, read from the name and type; null when that cannot be told. */
+  ownership?: InstituteOwnership | null;
 };
 
 export type AdminMedicalInstitute = MedicalInstitute & {

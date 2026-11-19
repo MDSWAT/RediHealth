@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CheckCircleIcon, VolumeIcon, VolumeMuteIcon } from "@/components/ui/icons";
+import { VolumeIcon, VolumeMuteIcon } from "@/components/ui/icons";
 import { formatSpeechText, speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -161,11 +161,15 @@ ru: {
   }
 
   return (
-    <section className={`border-t border-border pt-6 ${className}`}>
+    // Set like a cited statute: a sapphire rule down the left, the right in plain words, then the
+    // article it comes from. No icons on the lines; the rule already marks this as the law.
+    <section
+      className={`border-l-4 border-sapphire bg-sapphire-soft/40 py-5 pl-5 pr-4 sm:pl-6 sm:pr-6 dark:border-sapphire-border dark:bg-sapphire/10 ${className}`}
+    >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h3 className="text-balance text-body font-semibold text-foreground">{t.heading}</h3>
-          <p className="mt-0.5 text-body text-muted-foreground">{t.lawRef}</p>
+          <h3 className="text-balance text-title font-semibold leading-snug text-foreground">{t.heading}</h3>
+          <p className="mt-1 text-body text-muted-foreground">{t.lawRef}</p>
         </div>
         {voiceEnabled && (
           <button
@@ -182,12 +186,9 @@ ru: {
 
       <p className="mt-3 max-w-(--measure-reading) text-body text-foreground">{t.body}</p>
 
-      <ul className="mt-4 space-y-2">
+      <ul className="mt-4 max-w-(--measure-reading) list-disc space-y-2 pl-5 text-body text-foreground marker:text-sapphire dark:marker:text-sapphire-border">
         {t.keyRights.map((right) => (
-          <li key={right} className="flex items-start gap-2.5 text-body text-foreground">
-            <CheckCircleIcon className="mt-1 h-4.5 w-4.5 shrink-0 text-sapphire dark:text-sapphire-border" />
-            <span>{right}</span>
-          </li>
+          <li key={right}>{right}</li>
         ))}
       </ul>
     </section>

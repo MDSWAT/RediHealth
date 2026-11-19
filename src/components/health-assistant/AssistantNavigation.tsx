@@ -108,7 +108,8 @@ export function AssistantNavigation() {
 
   return (
     // Desktop/tablet horizontal capsule menu; phones use AssistantOtherTools at page bottom (P24 + 8ee82c9).
-    <nav aria-label={t.navLabel} className="max-md:hidden mb-4 flex sm:mb-5">
+    // Centred over the page, on every tool page that shares it.
+    <nav aria-label={t.navLabel} className="max-md:hidden mb-4 flex justify-center sm:mb-5">
       <div ref={trackRef} className={CAPSULE_TABS}>
         <CapsuleGlidePlate plateRef={plateRef} />
         {items.map(({ href, label, Icon, isActive }) => (
