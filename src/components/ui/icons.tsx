@@ -207,7 +207,6 @@ export function CloseIcon(props: IconProps) {
   );
 }
 export const XIcon = CloseIcon;
-export const ShieldCheckIcon = ShieldIcon;
 
 // bx-trash
 export function TrashIcon(props: IconProps) {
@@ -516,15 +515,6 @@ export function MessageDotsIcon(props: IconProps) {
       <circle cx="9.5" cy="9.5" r="1.5" />
       <circle cx="14.5" cy="9.5" r="1.5" />
       <path d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.897 5.515 5 6.934V22l5.34-4.004C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8zm0 14h-.333L9 18v-2.417l-.641-.247C5.671 14.301 4 12.256 4 10c0-3.309 3.589-6 8-6s8 2.691 8 6-3.589 6-8 6z" />
-    </svg>
-  );
-}
-
-// bx-list-check
-export function ListCheckIcon(props: IconProps) {
-  return (
-    <svg {...baseProps(props)}>
-      <path d="M4 7h11v2H4zm0 4h11v2H4zm0 4h7v2H4zm15.299-2.708-4.3 4.291-1.292-1.291-1.414 1.415 2.706 2.704 5.712-5.703z" />
     </svg>
   );
 }

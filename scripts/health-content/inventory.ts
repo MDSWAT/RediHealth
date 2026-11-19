@@ -1,5 +1,5 @@
 import { mkdir, writeFile } from "node:fs/promises";
-import { informedHealthAreas, informedHealthSourceUrl } from "../../src/lib/data/informedhealth-directory";
+import { EXCLUDED_ARTICLE_IDS, informedHealthAreas, informedHealthSourceUrl } from "../../src/lib/data/informedhealth-directory";
 
 const root = new URL("../../src/content/health-articles/", import.meta.url);
 async function main() {
@@ -27,6 +27,7 @@ await Promise.all(Array.from({ length: 3 }, async () => {
       if (url.includes("/topic-areas/")) continue;
       const title = decode(label);
       const id = new URL(url).pathname.slice(1, -5);
+      if (EXCLUDED_ARTICLE_IDS.has(id)) continue;
       const item = topics.get(id) ?? { id, sourceUrl: url, sourceTitle: title, aliases: [], areaIds: [] };
       if (!item.aliases.includes(title)) item.aliases.push(title);
       if (!item.areaIds.includes(area.id)) item.areaIds.push(area.id);
@@ -36,7 +37,7 @@ await Promise.all(Array.from({ length: 3 }, async () => {
   }
 }));
 await mkdir(root, { recursive: true });
-await writeFile(new URL("inventory.json", root), JSON.stringify({ checkedOn: "2026-11-10", scope: "Unique individual topics linked from the alphabetical indexes of the 51 topic areas; excludes glossary entries, quizzes, videos and separate learn-more articles.", failedAreas: failures, topics: [...topics.values()].sort((a, b) => a.id.localeCompare(b.id)) }, null, 2) + "\n");
+await writeFile(new URL("inventory.json", root), JSON.stringify({ checkedOn: "2026-11-10", scope: `Unique individual topics linked from the alphabetical indexes of the ${informedHealthAreas.length} topic areas; excludes glossary entries, quizzes, videos, separate learn-more articles and Germany-specific articles.`, failedAreas: failures, topics: [...topics.values()].sort((a, b) => a.id.localeCompare(b.id)) }, null, 2) + "\n");
 console.log("Unique topics:", topics.size, "Failed areas:", failures);
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });

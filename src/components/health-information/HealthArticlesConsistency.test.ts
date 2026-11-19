@@ -27,7 +27,7 @@ import HealthArticlePage from "@/app/health-information/articles/[article]/page"
 
 describe("unified layout and elderly WCAG consistency across health reading surfaces", () => {
   it.each(["ro", "en"] as const)(
-    "renders identical single-column max-w-3xl structure, 18px prose, audio action, next-steps, and zero UI clutter in %s",
+    "renders identical centred single-column structure, 18px prose, audio action, next-steps, and zero UI clutter in %s",
     async (lang) => {
       state.lang = lang;
       const dictionary = getHealthInformationDictionary(lang);
@@ -82,7 +82,7 @@ describe("unified layout and elderly WCAG consistency across health reading surf
       ] as const;
 
       for (const [surfaceName, html] of surfaces) {
-        expect(html, `${surfaceName} (${lang}) missing max-w-3xl`).toContain("max-w-3xl");
+        expect(html, `${surfaceName} (${lang}) missing the reading column width`).toContain("max-w-[44rem]");
         expect(html, `${surfaceName} (${lang}) missing column marker`).toContain(
           "data-health-article-column",
         );
@@ -102,11 +102,11 @@ describe("unified layout and elderly WCAG consistency across health reading surf
           'aria-pressed="false"',
         );
         expect(html, `${surfaceName} (${lang}) missing 48px target`).toContain("min-h-12");
-        if (surfaceName !== "news-article") {
-          expect(html, `${surfaceName} (${lang}) missing sticky desktop TOC rail`).toContain(
-            "data-health-toc-rail",
-          );
-        }
+        // Content is one centred column; the side table of contents was removed on every width.
+        expect(html, `${surfaceName} (${lang}) still renders the side TOC rail`).not.toContain(
+          "data-health-toc-rail",
+        );
+        expect(html, `${surfaceName} (${lang}) reading column is not centred`).toContain("mx-auto w-full max-w-[44rem]");
 
         expect(html, `${surfaceName} (${lang}) must not use 2-col sidebar`).not.toContain(
           "lg:grid-cols-[1fr_320px]",

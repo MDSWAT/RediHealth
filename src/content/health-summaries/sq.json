@@ -167,30 +167,6 @@
       "Cilat janë përfitimet dhe disavantazhet e opsioneve të trajtimit?"
     ]
   },
-  "early-benefit-assessment-of-medications": {
-    "intro": "Gjermania vlerëson disa ilaçe të rinj për të ekzaminuar nëse ata ofrojnë përfitim shtesë në krahasim me një trajtim të vendosur. Kjo vlerësim përfshin dëshmi nga grupe pacientësh dhe është pjesë e sistemit gjerman për vlerësimin e ilaçeve.",
-    "details": "Një vlerësim mund të shqyrtojë rezultate të rëndësishme për pacientët, të tilla si simptomat, mbijetesa, cilësia e jetës dhe efektet anësore. Rezultati varet nga krahasimi dhe dëshma e disponueshme. Nuk është një rekomandim personal për përshkrim, dhe vlerësimi ose masat e pagesës gjermane nuk zbatohen automatikisht në vende të tjera.",
-    "questions": [
-      "Cilës grupe pacientësh dhe krahasimi i përket kjo vlerësim?",
-      "Sa të rëndësishme janë gjetjet për zgjedhjet e mi të trajtimit?"
-    ]
-  },
-  "health-care-in-germany": {
-    "intro": "Sistemet shëndetësore ndryshojnë në mënyrën se si organizohen takimet, sigurimi, dërgesa dhe pagesa. Ky temë përfshin Gjermaninë. Kuptimi i shërbimit që ofron çfarë lloji kujdesi mund ta bëjë më të lehtë gjetjen e pikës së kontaktit të duhur.",
-    "details": "Rregullat e përshkruara në informacionet gjermane mund të mos zbatohen në Rumani, Moldavi, Shqipëri ose Itali. Para organizimit të një shërbimi, kontrolloni kërkesat e aksesit lokal dhe kostot e mundshme me ofruesin ose siguruesen. Gjatë leximit për një sistem shëndetësor, dallojini informacionin mjekësor të përgjithshëm nga rregullat administrative specifike të vendit.",
-    "questions": [
-      "A zbatohet ky informacion në vendin ku marr kujdes?",
-      "Cili ofrues ose siguruese mund të konfirmojë aksesin dhe kostot?"
-    ]
-  },
-  "individual-health-care-services-igel": {
-    "intro": "Në Gjermani, disa teste dhe trajtimesh të ofruara jashtë mbrojtjes standarde të sigurimeve ligjore quhen shërbime individuale shëndetësore, ose IGeL. Pacientët mund të duhet të paguajnë për këto shërbime vetë. Disponueshmëria për blerje nuk tregon në vetvete se një shërbim përmirëson shëndetin.",
-    "details": "Para se të vendosni, pyesni se çfarë përfitimi mbështetet nga kërkimet, çfarë dëmesh ose testesh të mëtejshme mund të ndjekin dhe nëse ekziston një alternativë e mbuluar. Një çmim dhe një shpjegim i qartë duhet të jenë të disponueshëm. IGeL është një kategori gjermane; rregullat e pagesës dhe shërbimët e disponueshëm ndryshojnë diku tjetër.",
-    "questions": [
-      "Çfarë përfitimi është provuar, dhe çfarë pasigurie mbetet?",
-      "Cilat janë kostot, rreziqet dhe alternativat e mbuluara?"
-    ]
-  },
   "nursing-care": {
     "intro": "Kujdesi infermieror mbështet njerëzit me nevojat shëndetësore dhe aktivitetet e përditshme. Ai mund të sigurohet në shtëpi, në komunitet ose në një zyrë kujdesi. Nevojat mund të ndryshojnë pas sëmundjeje, lëndimi ose humbjes së pavarësisë.",
     "details": "Planifikimi i kujdesit përfshin kuptimin e asaj që personi mund të bëjë, ku është e nevojshme ndihma dhe çfarë është e rëndësishme për të. Të afërmit që ofrojnë kujdes mund të kenë nevojë për mbështetje gjithashtu. Shërbimet, vlerësimet dhe marrëveshjet financiare të disponueshme ndryshojnë sipas vendit. Një plan kujdesi duhet të rishqyrtohet kur ndryshojnë shëndeti ose rrethanat praktike.",

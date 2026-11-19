@@ -167,30 +167,6 @@
       "Quali sono i vantaggi e gli svantaggi delle opzioni di trattamento?"
     ]
   },
-  "early-benefit-assessment-of-medications": {
-    "intro": "La Germania valuta alcuni nuovi medicinali per esaminare se offrono un beneficio aggiunto rispetto a un trattamento già consolidato. Questa valutazione riguarda le evidenze da gruppi di pazienti e fa parte del sistema tedesco di valutazione dei medicinali.",
-    "details": "Una valutazione può considerare esiti importanti per i pazienti, come i sintomi, la sopravvivenza, la qualità della vita e gli effetti avversi. Il risultato dipende dal confronto e dalle evidenze disponibili. Non è una raccomandazione di prescrizione personale, e la valutazione o gli accordi di pagamento tedeschi non si applicano automaticamente in altri paesi.",
-    "questions": [
-      "Quale gruppo di pazienti e quale confronto riguarda questa valutazione?",
-      "Quanto sono rilevanti questi risultati per le mie scelte di trattamento?"
-    ]
-  },
-  "health-care-in-germany": {
-    "intro": "I sistemi sanitari differiscono nel modo in cui sono organizzati gli appuntamenti, l'assicurazione, i rinvii e i pagamenti. Questo argomento riguarda la Germania. Capire quale servizio offre quale tipo di assistenza può rendere più facile trovare il punto di contatto giusto.",
-    "details": "Le regole descritte nelle informazioni tedesche potrebbero non applicarsi in Romania, Moldova, Albania o Italia. Prima di organizzare un servizio, verificare con il fornitore o l'assicuratore i requisiti di accesso locali e i possibili costi. Quando si legge su un sistema sanitario, distinguere le informazioni mediche generali dalle regole amministrative specifiche del paese.",
-    "questions": [
-      "Queste informazioni si applicano nel paese dove ricevo assistenza?",
-      "Quale fornitore o assicuratore può confermare l'accesso e i costi?"
-    ]
-  },
-  "individual-health-care-services-igel": {
-    "intro": "In Germania, alcuni test e trattamenti offerti al di fuori della copertura assicurativa statutaria standard sono chiamati servizi sanitari individuali, o IGeL. I pazienti potrebbero dover pagare questi servizi di tasca propria. La disponibilità all'acquisto non dimostra di per sé che un servizio migliora la salute.",
-    "details": "Prima di decidere, chiedere quale beneficio è supportato dalla ricerca, quali danni o ulteriori test potrebbero seguire e se esiste un'alternativa coperta. Dovrebbero essere disponibili un prezzo e una spiegazione chiara. IGeL è una categoria tedesca; le regole di pagamento e i servizi disponibili differiscono altrove.",
-    "questions": [
-      "Quale beneficio è provato e quale incertezza rimane?",
-      "Quali sono i costi, i rischi e le alternative coperte?"
-    ]
-  },
   "nursing-care": {
     "intro": "L'assistenza infermieristica sostiene le persone con esigenze di salute e nelle attività quotidiane. Può essere fornita a casa, nella comunità o in una struttura di cura. Le esigenze possono cambiare dopo una malattia, un infortunio o una perdita di indipendenza.",
     "details": "La pianificazione dell'assistenza include comprendere cosa la persona può fare, dove è necessario aiuto e cosa è importante per lei. Anche i familiari che prestano assistenza possono aver bisogno di sostegno. I servizi disponibili, le valutazioni e gli accordi finanziari variano per paese. Un piano di assistenza dovrebbe essere rivisto quando le circostanze di salute o pratiche cambiano.",

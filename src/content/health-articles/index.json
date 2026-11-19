@@ -25,32 +25,6 @@
     ]
   },
   {
-    "id": "abortion-in-germany",
-    "areaIds": [
-      "womens-health",
-      "pregnancy-and-birth"
-    ],
-    "titles": {
-      "en": "Abortion in Germany: arranging advice, care and follow-up",
-      "ro": "Avortul în Germania: consiliere, îngrijire și urmărire",
-      "sq": "Aborti në Gjermani: këshillimi, kujdesi dhe ndjekja",
-      "it": "Aborto in Germania: consulenza, assistenza e controlli",
-      "ru": "Аборт в Германии: консультации, помощь и наблюдение",
-      "hr": "Pobačaj u Njemačkoj: savjetovanje, skrb i praćenje",
-      "rom": "Abortos ande Germania: sfato, sastipnaski grizha thaj kontrola"
-    },
-    "sourceUrl": "https://www.informedhealth.org/abortion-in-germany.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
     "id": "acne",
     "areaIds": [
       "gland-and-hormone-disorders",
@@ -544,7 +518,7 @@
   {
     "id": "at-the-doctors",
     "areaIds": [
-      "health-care-in-germany"
+      "making-an-informed-decision"
     ],
     "titles": {
       "en": "At the doctor's: prepare, ask and leave with a clear plan",
@@ -569,7 +543,8 @@
   {
     "id": "at-the-hospital",
     "areaIds": [
-      "health-care-in-germany"
+      "making-an-informed-decision",
+      "surgery"
     ],
     "titles": {
       "en": "At the hospital: understand your care and prepare to go home",
@@ -1389,7 +1364,7 @@
   {
     "id": "cancer-what-do-the-codes-in-the-doctors-letter-mean",
     "areaIds": [
-      "health-care-in-germany"
+      "cancer"
     ],
     "titles": {
       "en": "Understanding cancer codes in a medical letter",
@@ -2473,7 +2448,6 @@
     "areaIds": [
       "childrens-health",
       "addiction",
-      "health-care-in-germany",
       "nursing-care",
       "drugs-and-vaccines"
     ],
@@ -2487,31 +2461,6 @@
       "rom": "Xabnaske suplementura: beneficija thaj sigurno uzo"
     },
     "sourceUrl": "https://www.informedhealth.org/dietary-supplements-what-do-you-need-to-know.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
-    "id": "disease-management-program-for-type-1-diabetes-in-germany",
-    "areaIds": [
-      "health-care-in-germany"
-    ],
-    "titles": {
-      "en": "Structured care for type 1 diabetes: the German DMP",
-      "ro": "Îngrijire structurată pentru diabetul de tip 1: DMP în Germania",
-      "sq": "Kujdesi i strukturuar për diabetin tip 1: DMP gjermane",
-      "it": "Cure strutturate per il diabete tipo 1: il DMP tedesco",
-      "ru": "Структурированная помощь при диабете типа 1: немецкий DMP",
-      "hr": "Strukturirana skrb za dijabetes tipa 1: njemački DMP",
-      "rom": "Strukturime griža vaš diabeto tipo 1: germanikano DMP"
-    },
-    "sourceUrl": "https://www.informedhealth.org/disease-management-program-for-type-1-diabetes-in-germany.html",
     "availableLanguages": [
       "en",
       "ro",
@@ -2575,7 +2524,8 @@
   {
     "id": "donanemab-kisunla-for-early-stage-alzheimers-disease",
     "areaIds": [
-      "early-benefit-assessment-of-medications"
+      "mental-health-brain-and-nerves",
+      "drugs-and-vaccines"
     ],
     "titles": {
       "en": "Donanemab (Kisunla) for early Alzheimer's disease: weighing benefit and risk",
@@ -2637,31 +2587,6 @@
       "rom": "Drabenge alergije: reakcijako prinžaripe thaj čačo registraripe"
     },
     "sourceUrl": "https://www.informedhealth.org/drug-allergies.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
-    "id": "drugs-assessed-by-iqwig",
-    "areaIds": [
-      "early-benefit-assessment-of-medications"
-    ],
-    "titles": {
-      "en": "Medicines assessed by IQWiG: how to read a benefit assessment",
-      "ro": "Medicamente evaluate de IQWiG: înțelegerea evaluării beneficiului",
-      "sq": "Barnat e vlerësuara nga IQWiG: si lexohet përfitimi",
-      "it": "Farmaci valutati da IQWiG: leggere una valutazione del beneficio",
-      "ru": "Лекарства, оценённые IQWiG: как читать оценку пользы",
-      "hr": "Lijekovi koje procjenjuje IQWiG: kako čitati procjenu koristi",
-      "rom": "Draba evalujime katar IQWiG: sar te ginen benefitoski evaluacija"
-    },
-    "sourceUrl": "https://www.informedhealth.org/drugs-assessed-by-iqwig.html",
     "availableLanguages": [
       "en",
       "ro",
@@ -2956,31 +2881,6 @@
     ]
   },
   {
-    "id": "evidence-based-medicine-in-germany",
-    "areaIds": [
-      "what-is-evidence-based-medicine"
-    ],
-    "titles": {
-      "en": "Evidence-based medicine in Germany: research, recommendations and care",
-      "ro": "Medicina bazată pe dovezi în Germania: cercetare, recomandări și îngrijire",
-      "sq": "Mjekësia e bazuar në prova në Gjermani: kërkimi, rekomandimet dhe kujdesi",
-      "it": "Medicina basata sulle prove in Germania: ricerca, raccomandazioni e cure",
-      "ru": "Доказательная медицина в Германии: исследования, рекомендации и помощь",
-      "hr": "Medicina utemeljena na dokazima u Njemačkoj: istraživanje i skrb",
-      "rom": "Dokazurengi medicina ande Germanija: istraživanje, preporuke thaj grizha"
-    },
-    "sourceUrl": "https://www.informedhealth.org/evidence-based-medicine-in-germany.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
     "id": "evidence-the-cornerstone-of-our-information",
     "areaIds": [
       "our-methods-and-processes"
@@ -3033,7 +2933,7 @@
   {
     "id": "eye-health-who-can-you-go-to",
     "areaIds": [
-      "health-care-in-germany"
+      "eyes-nose-ears"
     ],
     "titles": {
       "en": "Eye health: choosing the right professional and recognizing urgency",
@@ -3600,7 +3500,6 @@
     "id": "glaucoma",
     "areaIds": [
       "eyes-nose-ears",
-      "individual-health-care-services-igel",
       "screening"
     ],
     "titles": {
@@ -3977,56 +3876,6 @@
       "rom": "Śeresqe dukha: modelura, draba thaj alarmosqe semnura"
     },
     "sourceUrl": "https://www.informedhealth.org/headaches.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
-    "id": "health-care-in-germany",
-    "areaIds": [
-      "health-care-in-germany"
-    ],
-    "titles": {
-      "en": "Finding health care in Germany",
-      "ro": "Găsirea îngrijirii medicale în Germania",
-      "sq": "Gjetja e kujdesit shëndetësor në Gjermani",
-      "it": "Trovare assistenza sanitaria in Germania",
-      "ru": "Как получить медицинскую помощь в Германии",
-      "hr": "Pronalaženje zdravstvene skrbi u Njemačkoj",
-      "rom": "Sar te arakhen sastipnasqi grizha ande Germania"
-    },
-    "sourceUrl": "https://www.informedhealth.org/health-care-in-germany.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
-    "id": "health-insurance-in-germany",
-    "areaIds": [
-      "health-care-in-germany"
-    ],
-    "titles": {
-      "en": "Health insurance in Germany: clarifying your coverage",
-      "ro": "Asigurarea medicală în Germania: clarificarea acoperirii",
-      "sq": "Sigurimi shëndetësor në Gjermani: sqarimi i mbulimit",
-      "it": "Assicurazione sanitaria in Germania: chiarire la copertura",
-      "ru": "Медицинское страхование в Германии: уточнение покрытия",
-      "hr": "Zdravstveno osiguranje u Njemačkoj: razjasnite pokriće",
-      "rom": "Sastipnasqi asiguracia ande Germania: klarin o pokripe"
-    },
-    "sourceUrl": "https://www.informedhealth.org/health-insurance-in-germany.html",
     "availableLanguages": [
       "en",
       "ro",
@@ -4613,31 +4462,6 @@
       "rom": "Śunipnasqo arakhipen: tiknjaripe e aćhavdutne dukhalipnasqo"
     },
     "sourceUrl": "https://www.informedhealth.org/how-can-hearing-loss-be-prevented.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
-    "id": "how-can-i-find-support-groups-and-information-centers-in-germany",
-    "areaIds": [
-      "making-an-informed-decision"
-    ],
-    "titles": {
-      "en": "Finding support groups and patient advice in Germany",
-      "ro": "Grupuri de sprijin și consiliere pentru pacienți în Germania",
-      "sq": "Gjetja e grupeve dhe këshillimit në Gjermani",
-      "it": "Gruppi di sostegno e consulenza in Germania",
-      "ru": "Группы поддержки и консультации в Германии",
-      "hr": "Grupe podrške i savjetovanje u Njemačkoj",
-      "rom": "Suportosqe grupura thaj pacientengo konsilto ande Germania"
-    },
-    "sourceUrl": "https://www.informedhealth.org/how-can-i-find-support-groups-and-information-centers-in-germany.html",
     "availableLanguages": [
       "en",
       "ro",
@@ -6826,7 +6650,8 @@
   {
     "id": "lecanemab-leqembi-for-early-stage-alzheimers-disease",
     "areaIds": [
-      "early-benefit-assessment-of-medications"
+      "mental-health-brain-and-nerves",
+      "drugs-and-vaccines"
     ],
     "titles": {
       "en": "Lecanemab for early-stage Alzheimer's disease",
@@ -6881,7 +6706,6 @@
       "cancer",
       "mens-health",
       "sexual-health-and-contraception",
-      "individual-health-care-services-igel",
       "screening"
     ],
     "titles": {
@@ -7064,7 +6888,6 @@
     "areaIds": [
       "skin-and-hair",
       "cancer",
-      "individual-health-care-services-igel",
       "screening"
     ],
     "titles": {
@@ -7104,32 +6927,6 @@
       "rom": "Menopauza"
     },
     "sourceUrl": "https://www.informedhealth.org/menopause.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
-    "id": "mental-health-problems-where-can-you-find-help-in-germany",
-    "areaIds": [
-      "health-care-in-germany",
-      "non-drug-treatments"
-    ],
-    "titles": {
-      "en": "Mental health problems: where to find help in Germany",
-      "ro": "Probleme de sănătate mintală: unde găsiți ajutor în Germania",
-      "sq": "Problemet e shëndetit mendor: ku të gjeni ndihmë në Gjermani",
-      "it": "Problemi di salute mentale: dove trovare aiuto in Germania",
-      "ru": "Проблемы с психическим здоровьем: где найти помощь в Германии",
-      "hr": "Problemi s mentalnim zdravljem: gdje pronaći pomoć u Njemačkoj",
-      "rom": "Problemi mentalnone zdravljesko: kaj te arakhes pomoć ande Njemačka"
-    },
-    "sourceUrl": "https://www.informedhealth.org/mental-health-problems-where-can-you-find-help-in-germany.html",
     "availableLanguages": [
       "en",
       "ro",
@@ -7456,7 +7253,6 @@
     "areaIds": [
       "skin-and-hair",
       "cancer",
-      "individual-health-care-services-igel",
       "screening"
     ],
     "titles": {
@@ -7790,7 +7586,6 @@
     "id": "pain-after-surgery",
     "areaIds": [
       "childrens-health",
-      "health-care-in-germany",
       "surgery"
     ],
     "titles": {
@@ -8328,31 +8123,6 @@
     ]
   },
   {
-    "id": "prenatal-care-and-maternity-records-in-germany",
-    "areaIds": [
-      "pregnancy-and-birth"
-    ],
-    "titles": {
-      "en": "Prenatal care and the maternity record in Germany",
-      "ro": "Îngrijirea prenatală și carnetul de gravidă în Germania",
-      "sq": "Kujdesi para lindjes dhe libreza e shtatzënisë në Gjermani",
-      "it": "Assistenza prenatale e libretto di gravidanza in Germania",
-      "ru": "Наблюдение во время беременности и карта беременной в Германии",
-      "hr": "Prenatalna skrb i trudnička knjižica u Njemačkoj",
-      "rom": "Predporođajno njega thaj knjižica trudnice ando Njemačko"
-    },
-    "sourceUrl": "https://www.informedhealth.org/prenatal-care-and-maternity-records-in-germany.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
     "id": "prenatal-testing",
     "areaIds": [
       "pregnancy-and-birth"
@@ -8435,7 +8205,6 @@
       "cancer",
       "mens-health",
       "sexual-health-and-contraception",
-      "individual-health-care-services-igel",
       "screening"
     ],
     "titles": {
@@ -8499,32 +8268,6 @@
       "rom": "Psorijatični artritis (psorijaza sa upalom zglobongi)"
     },
     "sourceUrl": "https://www.informedhealth.org/psoriatic-arthritis-psoriasis-with-joint-inflammation.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
-    "id": "psychotherapy-providers-in-germany",
-    "areaIds": [
-      "health-care-in-germany",
-      "non-drug-treatments"
-    ],
-    "titles": {
-      "en": "Psychotherapy providers in Germany",
-      "ro": "Furnizori de psihoterapie în Germania",
-      "sq": "Ofruesit e psikoterapisë në Gjermani",
-      "it": "Fornitori di psicoterapia in Germania",
-      "ru": "Кто оказывает психотерапию в Германии",
-      "hr": "Pružatelji psihoterapije u Njemačkoj",
-      "rom": "Pružatelji psihoterapije ando Njemačko"
-    },
-    "sourceUrl": "https://www.informedhealth.org/psychotherapy-providers-in-germany.html",
     "availableLanguages": [
       "en",
       "ro",
@@ -9182,33 +8925,6 @@
     ]
   },
   {
-    "id": "standard-check-ups-for-children-and-teenagers-in-germany",
-    "areaIds": [
-      "growth-and-aging",
-      "diagnosis-and-tests",
-      "prevention"
-    ],
-    "titles": {
-      "en": "Standard check-ups for children and teenagers in Germany",
-      "ro": "Controalele standard pentru copii și adolescenți în Germania",
-      "sq": "Kontrollet standarde për fëmijët e adoleshentët në Gjermani",
-      "it": "Controlli standard per bambini e adolescenti in Germania",
-      "ru": "Стандартные профилактические осмотры детей и подростков в Германии",
-      "hr": "Standardni pregledi za djecu i tinejdžere u Njemačkoj",
-      "rom": "Standardne kontrole vash čhave thaj tinejdžere ando Njemačko"
-    },
-    "sourceUrl": "https://www.informedhealth.org/standard-check-ups-for-children-and-teenagers-in-germany.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
     "id": "stem-cell-transplantation-for-treating-cancer",
     "areaIds": [
       "blood-and-immune-system",
@@ -9441,7 +9157,6 @@
     "id": "surgery",
     "areaIds": [
       "childrens-health",
-      "health-care-in-germany",
       "surgery"
     ],
     "titles": {
@@ -9669,33 +9384,6 @@
     ]
   },
   {
-    "id": "the-breast-cancer-screening-program-in-germany",
-    "areaIds": [
-      "womens-health",
-      "cancer",
-      "screening"
-    ],
-    "titles": {
-      "en": "The breast cancer screening programme in Germany",
-      "ro": "Programul de screening al cancerului de sân în Germania",
-      "sq": "Programi i skriningut të kancerit të gjirit në Gjermani",
-      "it": "Il programma di screening del tumore al seno in Germania",
-      "ru": "Программа скрининга рака молочной железы в Германии",
-      "hr": "Program probira raka dojke u Njemačkoj",
-      "rom": "Program probiranja karcinomosko sanjengo ando Njemačko"
-    },
-    "sourceUrl": "https://www.informedhealth.org/the-breast-cancer-screening-program-in-germany.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
     "id": "the-classic-and-asian-forms-of-massage",
     "areaIds": [
       "bones-muscles-and-joints",
@@ -9736,31 +9424,6 @@
       "rom": "Prvo korak: prikupljanje zdravstvenone informacijengo"
     },
     "sourceUrl": "https://www.informedhealth.org/the-first-step-gathering-information.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
-    "id": "the-german-healthcare-system",
-    "areaIds": [
-      "health-care-in-germany"
-    ],
-    "titles": {
-      "en": "The German healthcare system",
-      "ro": "Sistemul de sănătate german",
-      "sq": "Sistemi shëndetësor gjerman",
-      "it": "Il sistema sanitario tedesco",
-      "ru": "Система здравоохранения Германии",
-      "hr": "Njemački zdravstveni sustav",
-      "rom": "Njemačko zdravstveno sustav"
-    },
-    "sourceUrl": "https://www.informedhealth.org/the-german-healthcare-system.html",
     "availableLanguages": [
       "en",
       "ro",
@@ -10466,7 +10129,6 @@
     "areaIds": [
       "childrens-health",
       "addiction",
-      "health-care-in-germany",
       "nursing-care",
       "drugs-and-vaccines"
     ],
@@ -10879,57 +10541,6 @@
     ]
   },
   {
-    "id": "what-are-digital-health-applications-digas",
-    "areaIds": [
-      "health-care-in-germany",
-      "non-drug-treatments"
-    ],
-    "titles": {
-      "en": "What are digital health applications (DiGA)?",
-      "ro": "Ce sunt aplicațiile digitale de sănătate (DiGA)?",
-      "sq": "Çfarë janë aplikacionet dixhitale të shëndetit (DiGA)?",
-      "it": "Che cosa sono le applicazioni sanitarie digitali (DiGA)",
-      "ru": "Что такое цифровые приложения для здоровья (DiGA)?",
-      "hr": "Što su digitalne zdravstvene aplikacije (DiGA)?",
-      "rom": "So si digitalne zdravstvene aplikacije (DiGA)?"
-    },
-    "sourceUrl": "https://www.informedhealth.org/what-are-digital-health-applications-digas.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
-    "id": "what-are-disease-management-programs-dmps",
-    "areaIds": [
-      "health-care-in-germany"
-    ],
-    "titles": {
-      "en": "What are disease management programmes (DMPs)?",
-      "ro": "Ce sunt programele de management al bolilor (DMP)?",
-      "sq": "Çfarë janë programet e menaxhimit të sëmundjeve (DMP)?",
-      "it": "Che cosa sono i programmi di gestione delle malattie (DMP)",
-      "ru": "Что такое программы управления заболеваниями (DMP)?",
-      "hr": "Što su programi upravljanja bolestima (DMP)?",
-      "rom": "So si programi upravljanje bolestenca (DMP)?"
-    },
-    "sourceUrl": "https://www.informedhealth.org/what-are-disease-management-programs-dmps.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
     "id": "what-are-hormones-and-what-do-they-do",
     "areaIds": [
       "endocrine-hormone-system"
@@ -11236,7 +10847,6 @@
     "id": "what-can-help-relieve-anxiety-before-surgery",
     "areaIds": [
       "childrens-health",
-      "health-care-in-germany",
       "surgery"
     ],
     "titles": {
@@ -11773,7 +11383,6 @@
     "id": "what-helps-children-cope-with-anxiety-before-an-operation",
     "areaIds": [
       "childrens-health",
-      "health-care-in-germany",
       "surgery"
     ],
     "titles": {
@@ -12103,7 +11712,6 @@
   {
     "id": "what-is-psychotherapy-and-what-does-it-involve",
     "areaIds": [
-      "health-care-in-germany",
       "non-drug-treatments"
     ],
     "titles": {
@@ -12305,36 +11913,6 @@
     ]
   },
   {
-    "id": "what-screening-tests-does-german-public-health-insurance-cover",
-    "areaIds": [
-      "womens-health",
-      "skin-and-hair",
-      "cancer",
-      "mens-health",
-      "digestive-system-disorders",
-      "screening"
-    ],
-    "titles": {
-      "en": "What screening tests does German public health insurance cover?",
-      "ro": "Ce teste de screening acoperă asigurarea publică de sănătate din Germania",
-      "sq": "Çfarë testesh skriningu mbulon sigurimi publik shëndetësor gjerman?",
-      "it": "Quali esami di screening copre l'assicurazione sanitaria pubblica tedesca",
-      "ru": "Какие скрининговые тесты покрывает немецкое государственное медицинское страхование?",
-      "hr": "Koje probirne pretrage pokriva njemačko javno zdravstveno osiguranje?",
-      "rom": "Save probirne testove pokrivinel njemačko javno zdravstveno osiguranje?"
-    },
-    "sourceUrl": "https://www.informedhealth.org/what-screening-tests-does-german-public-health-insurance-cover.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
     "id": "what-types-of-studies-are-there",
     "areaIds": [
       "studies-co"
@@ -12400,31 +11978,6 @@
       "rom": "Kana si carski rez mogućnost?"
     },
     "sourceUrl": "https://www.informedhealth.org/when-is-a-c-section-an-option.html",
-    "availableLanguages": [
-      "en",
-      "ro",
-      "sq",
-      "it",
-      "ru",
-      "hr",
-      "rom"
-    ]
-  },
-  {
-    "id": "which-vaccinations-are-recommended-in-germany",
-    "areaIds": [
-      "drugs-and-vaccines"
-    ],
-    "titles": {
-      "en": "Which vaccinations are recommended in Germany?",
-      "ro": "Ce vaccinări sunt recomandate în Germania",
-      "sq": "Cilat vaksinime rekomandohen në Gjermani?",
-      "it": "Quali vaccinazioni sono raccomandate in Germania",
-      "ru": "Какие прививки рекомендованы в Германии?",
-      "hr": "Koja se cijepljenja preporučuju u Njemačkoj?",
-      "rom": "Save cjepiva preporučinen pes ando Njemačko?"
-    },
-    "sourceUrl": "https://www.informedhealth.org/which-vaccinations-are-recommended-in-germany.html",
     "availableLanguages": [
       "en",
       "ro",

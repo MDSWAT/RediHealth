@@ -41,7 +41,7 @@ describe("individual article reading", () => {
     expect(html).toContain(article!.title.replaceAll("&", "&amp;").replaceAll("'", "&#x27;"));
     expect(html).toContain(healthArticleCopy[code].examples);
     expect(html).toContain(healthArticleCopy[code].review);
-    expect(html).toContain(`href="/${code}/health-information#health-articles"`);
+    expect(html).toContain(`href="/${code}/health-information#health-topics"`);
     const footerIndex = html.indexOf("<footer");
     expect(footerIndex).toBeGreaterThan(html.indexOf('id="article-examples"'));
     expect(html.slice(0, footerIndex)).not.toMatch(/href="https?:/);

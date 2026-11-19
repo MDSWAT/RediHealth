@@ -4,7 +4,7 @@ import { getHealthSummary, getRelatedHealthSummaries } from "./health-summaries"
 import { healthSummaryPath, informedHealthAreas, informedHealthSourceUrl } from "./informedhealth-directory";
 
 describe("local health topic summaries", () => {
-  it.each(languages)("provides original summary text for all 51 topics in $code", ({ code }) => {
+  it.each(languages)("provides original summary text for all 48 topics in $code", ({ code }) => {
     for (const area of informedHealthAreas) {
       const summary = getHealthSummary(code, area.id);
       expect(summary, `${code}/${area.id}`).toBeDefined();

@@ -4,13 +4,13 @@ import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ArrowRightIcon, ChevronDownIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
-import { HealthArticleTocRail } from "./HealthArticleTocRail";
 
-/** Unified left-aligned editorial reading column width across every health reading route. */
-export const HEALTH_ARTICLE_CONTAINER_CLASS = "w-full max-w-3xl";
-
-export const HEALTH_ARTICLE_WITH_TOC_GRID_CLASS =
-  "lg:grid lg:grid-cols-[minmax(0,48rem)_minmax(16.5rem,21rem)] lg:items-start lg:justify-between lg:gap-10 xl:gap-14 print:block";
+/**
+ * One centred reading column, the same width on every health reading route. Inside it the
+ * reading measure matches the column, so text, cards and headings share both edges instead of
+ * leaving an empty strip on the right.
+ */
+export const HEALTH_ARTICLE_CONTAINER_CLASS = "mx-auto w-full max-w-[44rem] [--measure-reading:44rem]";
 
 /** Elderly-first WCAG 2.2 AAA body prose scale: 18px base, 1.75 leading, 36rem unified reading measure. */
 export const HEALTH_ARTICLE_PROSE_CLASS =
@@ -18,25 +18,26 @@ export const HEALTH_ARTICLE_PROSE_CLASS =
 
 /** Consistent section heading scale and scroll offset under the top bar. */
 export const HEALTH_ARTICLE_SECTION_H2_CLASS =
-  "scroll-mt-28 text-section font-semibold leading-snug text-foreground";
+  "scroll-mt-6 text-section font-semibold leading-snug text-foreground";
 
 export interface HealthArticleShellProps {
   children: ReactNode;
+  /** @deprecated The side table of contents was removed; render HealthArticleToc inside the column instead. */
   toc?: HealthArticleTocProps;
   className?: string;
 }
 
-/** Shared outer shell enforcing one identical max-w-3xl reading column across topics, articles, and news. */
-export function HealthArticleShell({ children, toc, className }: HealthArticleShellProps) {
-  const hasToc = Boolean(toc && toc.items.length > 0);
+/**
+ * Shared outer shell: one centred max-w-3xl reading column across topics, articles and news.
+ * The table of contents is no longer a side column; pages show it inside the column as the
+ * collapsible HealthArticleToc, under the header.
+ */
+export function HealthArticleShell({ children, className }: HealthArticleShellProps) {
   return (
     <div className={cn("bg-background py-8 sm:py-12 print:py-4", className)}>
       <Container>
-        <div className={cn(hasToc && HEALTH_ARTICLE_WITH_TOC_GRID_CLASS)}>
-          <div className={HEALTH_ARTICLE_CONTAINER_CLASS} data-health-article-column>
-            {children}
-          </div>
-          {toc && toc.items.length > 0 ? <HealthArticleTocRail {...toc} /> : null}
+        <div className={HEALTH_ARTICLE_CONTAINER_CLASS} data-health-article-column>
+          {children}
         </div>
       </Container>
     </div>

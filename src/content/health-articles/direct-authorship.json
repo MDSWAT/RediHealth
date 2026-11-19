@@ -479,22 +479,6 @@
       "rom": "dd6f9a82a3ad464e93dac29b3ba89f58a23ebaea1f921cacc6a2435e685f350c"
     }
   },
-  "abortion-in-germany": {
-    "sourceCheckedOn": "2026-11-11",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "c4519a365249a2447611af82a900f88f477ad08dee91de4adecb1edd56c28cf5",
-      "ro": "65838b94fab0e84cd5634239e5e68d45947bfdf9efd813cb57b48bce91179dc2",
-      "sq": "25ccdde0c964b336787c42f8f35ce13e235b56ec6a07109c276664f8e78f0705",
-      "it": "111f9402c6b4429d6d2fbcd5ab99fb846eff259560117fbee99beb5981e713ae",
-      "ru": "92653f447f0c37ba2377556c97866a6888311c7c69bb9103a79cbfe17ceb2966",
-      "hr": "0153802371feb669988b6e3b16625eb7b5be65c1a087c3eb505b378a692739dd",
-      "rom": "2fb37688e7d8180a2fc8112e97ddbd134c7d36dff877373e71ebce83a6a684ec"
-    }
-  },
   "babys-first-weeks-newborn-check-ups": {
     "sourceCheckedOn": "2026-11-11",
     "authoringMethod": "direct-assistant",
@@ -1503,22 +1487,6 @@
       "rom": "6ac70fbefb47e5f3725c8fd04b260dcb9f9f180bc8683ac57790c9ad45bc7cce"
     }
   },
-  "disease-management-program-for-type-1-diabetes-in-germany": {
-    "sourceCheckedOn": "2026-11-12",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "8b3a59546fb0eb14098800afd75180fcf59d29d79ffa2a644b061d981bb3e682",
-      "ro": "5d7fead9794402757351bd1ba88fdd3dae173f9b8aa3c91d84a20acfaddd1c24",
-      "sq": "1b7879d3bdbba82d77c45f2d37fc9453c70b84d98cf50322d577fe3b526d5220",
-      "it": "4ddbc7a8a823012825bedcdc359f25adce5e38289f03ee88b8985130e95759bd",
-      "ru": "b952faed3b883c77b15332d31c10b36e7774d07d4aef06f772e570d097241f4d",
-      "hr": "2a462a86a4b142853c116021ee10037a128b8e6ee68cb3c0dd6e635b2acd2620",
-      "rom": "31a39082dac4b09733ca2533490ecdc035f0cb4a4011eea9fa923fe389dc692c"
-    }
-  },
   "dislocated-kneecap": {
     "sourceCheckedOn": "2026-11-12",
     "authoringMethod": "direct-assistant",
@@ -1597,22 +1565,6 @@
       "ru": "c16bd22e8eb6467c285cbe91784e949a914521cc98762204873d9d5540454cd7",
       "hr": "686d80167a08f66e301b9be1ef07a2b5fb928d7e1e1bcd70a049b748b5f8a1e7",
       "rom": "aef540ee65801450c4992c34753b795a51b32891474327583334b4ae6bb67403"
-    }
-  },
-  "drugs-assessed-by-iqwig": {
-    "sourceCheckedOn": "2026-11-12",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "57a1dace13c4a8d4caddf593b6c1dd4419c5606c805fc195d3134d04b3075139",
-      "ro": "388f80913ddb2da21770be54805649b49421634c1c7deca36392cdd6062c735b",
-      "sq": "201280abba7e3d8ab324e2fc89e90b1a578dc7473a2253b585f077e3cf1cd817",
-      "it": "c25b351c05b08fc3bf3b412ca618fc72365c3af6487af8f34019e9e0dcd44943",
-      "ru": "c68e3f32e4c885b3331d1a1bd1525df355632904069845cd7fc6a266aa404b45",
-      "hr": "53386def767b35c755eab180fceb71c2d5e68ee6899e641150b76becd9aa61ca",
-      "rom": "aa00ec43071ea22b64195bb5d4d0abd4a59dc5b777c54beffd39f112e1c47085"
     }
   },
   "eczema": {
@@ -1806,22 +1758,6 @@
       "ru": "36220811a4b6d9c74728aaabb3cae7ad37e739e4b628be09e65144e77e6d8715",
       "hr": "c84dec7f339257a0deab31d9f50255a85c8f42c6351d2dc5d9d9e35c453ba9a6",
       "rom": "593a0ba48bfbde2b806b1016167c6a603a4ebb17eb12bf4a94ad55ffcf32a147"
-    }
-  },
-  "evidence-based-medicine-in-germany": {
-    "sourceCheckedOn": "2026-11-12",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "7066cc5923b1f49a1eb6e1bff01af872d5415c24f7fe302b51870e107b3f7b1c",
-      "ro": "2c27bb785f8528e9830993ce5a7d720ce99ed45a772ef3435a264f09419f41c1",
-      "sq": "be7cbe262b9195bd2618622e3b219eaaffd6be7e40db0c9e949f0698a4e0b5e6",
-      "it": "fa0f543a100bd2bb7de0cbff9d6a219aec9518520f1040ac8926cbcd71ba2fa5",
-      "ru": "7c8c07fd938f47cb90ad242c130d91ccdc196e2974f1c3db00eebc21346af941",
-      "hr": "f8d80117c9da51d44b08c1bdbb9c7612fd832e308b4a99b28351e251c785b36f",
-      "rom": "716655e718fc05bf52574e025eab1e7824739a7a5ff572ee81e719d6213480a0"
     }
   },
   "evidence-the-cornerstone-of-our-information": {
@@ -2464,38 +2400,6 @@
       "rom": "acf3d527b7916b892acce7e7dbdcc122f111d136f22d018bcc0e45361e363858"
     }
   },
-  "health-care-in-germany": {
-    "sourceCheckedOn": "2026-11-13",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "dd2aeaa2b9ceccb7d7f6b482facdd67b7e3d53e88434106334eb21f039c10b9f",
-      "ro": "1d65a811770881067aab5169fc82303887e53a6febbdf3282338b585663f468f",
-      "sq": "448200789a992ce14270ddd73588ac6eb1c6a627d1b42dcbc4c17ba1c31ffb3a",
-      "it": "ca3b5da8d6467094b463275976e0d7493df23b800853f26626a21b757bd66082",
-      "ru": "ac3e712d151bad3c3fe31f938723e87669f02fe1ef1d5a55cf52d5b9d56e5fc2",
-      "hr": "56a9cd7a7f4be00326028343d1d9d167fc7c2a146b3195dcbccd65d896b68075",
-      "rom": "b744bc6ab8110cede797220b21c631823fb1a2e5092afd09be151e77d1d9be50"
-    }
-  },
-  "health-insurance-in-germany": {
-    "sourceCheckedOn": "2026-11-13",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "a16afec1289ff26b79413ea13bc806e16f0a97a1f7f97798a9e7422263d8bdc8",
-      "ro": "7b9543bb3d345d1e3e10dd796d72f3619986fbaadce34feb164b15292d10a637",
-      "sq": "cc2abfde3098cfbc10b6336ba2ea53a5b340694004dc900a2999b8e996e6b1fb",
-      "it": "47bbeb0e9f1bb265f507c9dc52049d9df4844f3b94879d9a358da90b25b5e1f0",
-      "ru": "fb6eefc38dad30763ab24e1062b5e828c3ae217a9d8d77d56706f31a69705963",
-      "hr": "afa3148fa08f55cd4a400c5e6b6f80dc4c27f51548be32457bc02b57d9351484",
-      "rom": "aecd4dac899f9cc3a9641e6ace3da61205952d666bfd36f66584c8fa13d67522"
-    }
-  },
   "hearing-loss-and-deafness-in-adults": {
     "sourceCheckedOn": "2026-11-13",
     "authoringMethod": "direct-assistant",
@@ -2862,22 +2766,6 @@
       "ru": "918e0df7624d6da3952ebc95c740fe3a368ff0b28c8c783635f6edacb46ccf68",
       "hr": "1280ce64f71016a133d8eaa0a00b4d80a5c68577aa160a3cc8e8804255f733ce",
       "rom": "c68269de0421f6260e8e39f81c789e92e2db9788871608f42aa2539bea53f2ac"
-    }
-  },
-  "how-can-i-find-support-groups-and-information-centers-in-germany": {
-    "sourceCheckedOn": "2026-11-13",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "4597e9b43a1ada9d534dae42141c34db9a5349dc34a2f1f8954c1495a05d458e",
-      "ro": "ad391a965c92bd5dca8d5724a3075cbf37c8e616847b1485b295990a1b96392a",
-      "sq": "68261e38574bc425b96727448005ca4a68a1d0b6dc4a42224c84ad32f148427d",
-      "it": "573ff0da189e5fec624306fad31b893544dbf3340288d5e8e81e194b4d8e4920",
-      "ru": "79e1d6ea70a7b32ca20ce6032ae6ebbbfcaa2c6352af53df148846f8a93a49dd",
-      "hr": "62aca29ff09374158f5134f1ee78575c1fc67ff588931d551a31dc692cdd0f97",
-      "rom": "971969cc79634c6acd78bca8b9420bdc21bbb6cd09a391eb6b27662df3d445b0"
     }
   },
   "how-can-informedhealthorg-help": {
@@ -4416,22 +4304,6 @@
       "rom": "16de23e4eaffa3d4890e5850d61d67242c6439c2d32a193ea8713cf2396c1d8d"
     }
   },
-  "mental-health-problems-where-can-you-find-help-in-germany": {
-    "sourceCheckedOn": "2026-11-15",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "b4fd8104ec51c45b16525c32a271665ea92aef5599f7b02fcfc6fadd266f61ba",
-      "ro": "4283d729a6de312b94c19b6a2e65064c15469f79a22887ff616f33b1ca22e715",
-      "sq": "270b793d52f9d3bb91781c733668e9a5599e152592faa8693e0a8b3d9db5821a",
-      "it": "f22865f02a5c00abb2a01cf969e80bc41ddcdacd067d069b19373a8d79f47edf",
-      "ru": "e2629afd5b09f9c80d2c1e45028f3b6ce2b5164e503bbec62f4ca4630bfa2b4c",
-      "hr": "3938c605f96f2e8d81b82f2da0b17e73846c58bcd3ed3d600b6f7e4c28e36ccb",
-      "rom": "d4136956ae105b85747c259e9dfdc9dccdc2d7c200157865d1b3049fcecd4c0a"
-    }
-  },
   "metastatic-breast-cancer": {
     "sourceCheckedOn": "2026-11-15",
     "authoringMethod": "direct-assistant",
@@ -5168,22 +5040,6 @@
       "rom": "28e890398b22ec72445e14e7d35853a210189c115c270e54c87ed5223c0e4214"
     }
   },
-  "prenatal-care-and-maternity-records-in-germany": {
-    "sourceCheckedOn": "2026-11-15",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "916e2c7b9b6e48f20e1be835c0a9658cb6a08d84448c1b53f8908edf52b1479d",
-      "ro": "e14448113adeafb9f509a6fb650b53256d1dac2931395cc2119fb46dabb4870f",
-      "sq": "eb01f67f725d4ae58040e62c8e2395c8e9061973656eb8aad21cf3c2f22d734e",
-      "it": "3fddd72bcd9d45c960cb174d81a3a916ccdb4130df36f650aa0530e8c2fde985",
-      "ru": "49451c083a7ecc444412af59835a8ecc1ed5344635b11c3d83eca36f1a8f1c31",
-      "hr": "d726d2307721db327ebd96f43e1bb4aafd06b10ae8c47f30d85a80dfe9ace2bd",
-      "rom": "2ebf84fbb4a44137d8156bc7076282d71ba6f00cf8628da6e92a336bcc44e394"
-    }
-  },
   "prenatal-testing": {
     "sourceCheckedOn": "2026-11-15",
     "authoringMethod": "direct-assistant",
@@ -5278,22 +5134,6 @@
       "ru": "6c1c8fada1b7bdd6e7a9f6f9bdcef02563c8ed6459098a9f4ef1ea033979aa3c",
       "hr": "6be967ce4c441214319d85480b5e62a04607ff9f6d4ebe57d940c666e160d0f8",
       "rom": "90c3d5c707e4c2ccbbbd913a9a3db35b7f6a9ebf17b3df6bb3fcf2942bb42d60"
-    }
-  },
-  "psychotherapy-providers-in-germany": {
-    "sourceCheckedOn": "2026-11-15",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "8f6debd08ab43bb74baef176b50eb90ba0acb4ebcadb25eb37d4b56213f4f8e9",
-      "ro": "ff7553477d607ebae268ecf847f3d2cc63de6e3454780dd82f34dba1e84fbf83",
-      "sq": "77faea1b4fedb3d40f8578eecfdb786e941bedc6cae3cdbefee9d930cfae2dfe",
-      "it": "3b6ca0db22085a885373dcb97492ff73ed38c7ca6799664b6d78898865eb877c",
-      "ru": "dd37162a2e467a3af455f4049f281880a686107c302f65436843cb6ceff9a304",
-      "hr": "736a2793737b2151cbb3373fd25160c70b80ac1ea692f7807588ffc0872ef36f",
-      "rom": "e5569c9b20b6916b581fe2637aba53e4e4a439dca9487d93a4b78bef83b65355"
     }
   },
   "pubic-lice": {
@@ -5664,22 +5504,6 @@
       "rom": "4a99f7639e559686c02a4f490acf53275879b1e04348fd5e9e1dc861403b8dc8"
     }
   },
-  "standard-check-ups-for-children-and-teenagers-in-germany": {
-    "sourceCheckedOn": "2026-11-15",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "dc17766fe559a3459acafe00e3aa13ce93380f620ccd09e289e74dfcdc3bd6ea",
-      "ro": "e0c2e523d0c16c330dfbe09f4188d8e7ccea228239b2929bc1267dcdb61a909b",
-      "sq": "1a37738bce02de110909f449af9bdf133528655a8a74e5f5c5a5f9b083bafa12",
-      "it": "1852bca2643013960ab1ca8c83ae9b911aa4bc95fc6e6949e85f616d09dcffcb",
-      "ru": "1bf020e256870f1664c12673051939e269088606cf9d8aad41a5285957bb0084",
-      "hr": "63fe4fdc12da13b0b64fa4bb1ba5608c4186e30c814f0ee7dbdeb5ed2e3bb3b5",
-      "rom": "476ddbad465b0500239778f6bf673f0bbd53fa2e0cc75eab8ced99c1bcca8373"
-    }
-  },
   "stem-cell-transplantation-for-treating-cancer": {
     "sourceCheckedOn": "2026-11-15",
     "authoringMethod": "direct-assistant",
@@ -6000,22 +5824,6 @@
       "rom": "22edf155a3464e7681cede45b7cbce076a828dde9046779419cd3eb728b71d42"
     }
   },
-  "the-breast-cancer-screening-program-in-germany": {
-    "sourceCheckedOn": "2026-11-15",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "b0715e1caebc5e0034feb6c0ed4501f8ff496dc0b8ebfd8abc9a295df2bdd2ea",
-      "ro": "bc7420dc9eaa05b4a649f4cff2f378763da39c83782a792e11769e2139aeb28b",
-      "sq": "af343c0881edaff115aa2b5c6ec60f57e888da1eaee353357671b0c0ddf52992",
-      "it": "a5838018e37fa65e8a47bd4eb38f3b1321b0dab53321b00f279c5eefe8894fa6",
-      "ru": "7702713e5bed796d39827a2177acf265295d6ac19620cb2f9294eb8b3cb5b31c",
-      "hr": "7ecb245251d7e29a79c4b05997c90f096042d5d822c4503227fa164a87e53d50",
-      "rom": "263bd0968ab7506efeaa91ceaae21fd45b1b24c6565185f869a6f5b812cdc1ad"
-    }
-  },
   "the-classic-and-asian-forms-of-massage": {
     "sourceCheckedOn": "2026-11-15",
     "authoringMethod": "direct-assistant",
@@ -6046,22 +5854,6 @@
       "ru": "f67592e6d2940e1325e90f11ed8bd050f78e2701d70c25f4d482acfd9f391a2f",
       "hr": "ff658a3224e72f13773fe0ba1a2925f7d2715d7f562fc46fc46f8da4d2584938",
       "rom": "cc93f8ef6bc1d72c2e027e1bd054470c4ed4a471ea92a73489aeb94e283baabf"
-    }
-  },
-  "the-german-healthcare-system": {
-    "sourceCheckedOn": "2026-11-15",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "8e3c2b44040e492dbf879bc088d930f8c740669c0be1e2ccd7c9dc3779308319",
-      "ro": "48fe67e2be6823149579a12bed1ca6dfaa9c1c5bf9c050cff3f8f3d412aaec49",
-      "sq": "e8f3c0cdae5498c550dbf50f515bd368d780a0ba154439ac2f48b9983d996175",
-      "it": "bd3bcc936d0bd47031a7488f972769e215533377f8b303e2e469ae34b9120fe4",
-      "ru": "a46a8b5b050c63187478cab5766da0db7e4952bdfe5db0f5003f7294cf6506dc",
-      "hr": "606349917d6c51577f9e3eead1f589e2282ab5cc08b4d3298f3b95d058d39a95",
-      "rom": "0c4511aee671f302763d051a48a8afbe29ec58a6ee3f7436aee7020570735049"
     }
   },
   "the-history-of-evidence-based-medicine": {
@@ -6750,38 +6542,6 @@
       "ru": "702b3b400212a0347a05bbdaa9b40988ef396b4b3748f8a9d13e7b0c7a0cf65f",
       "hr": "9d2ad510abfeef5fbba2e15b08c65fccbcc369f0d3894ecce371b8151a2fc3ba",
       "rom": "fba22a33139d70125db82febe611e8f66f80f7fc42cbe5c29fbbb00d3dfe2d1f"
-    }
-  },
-  "what-are-digital-health-applications-digas": {
-    "sourceCheckedOn": "2026-11-15",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "e556dde418d97adb0663fa9d27d045f7aee895d809c645b0ecacc6129b12c5ba",
-      "ro": "29492553ddf76982da99e0c273a32c6886b1ac2ddcf428e185ff29c202664a67",
-      "sq": "31610b55ee1e91e51219168acde94bd574d1f11dbdabcb9e14520342bc11e571",
-      "it": "71e313d32b24d51a1659a43940682cea7b15fb404dc542bb9cda7e7f59b9d8a9",
-      "ru": "e96d7e9c0d7e6dff627be60ca948d7b5926115d63f61a321a757f309878a7997",
-      "hr": "79f6dda32171f60b81945ed0f9bba44b93dd1eaf751741bd2d8c9c6fa46cddb4",
-      "rom": "4a874a3e1a90766d133ae7926dbba2691ccb20f988105862b9fb52a9877cc87e"
-    }
-  },
-  "what-are-disease-management-programs-dmps": {
-    "sourceCheckedOn": "2026-11-15",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "1953a77e977eda6fd7f9cb3ea2b2531a374f3eefa6423d71cddf4ec093fcaeb7",
-      "ro": "fc29e83f27b043aaa85184a1133303de2a8eb812922e485862907b6a1284bd8b",
-      "sq": "0682dabeeb858ede8e7cd5bfe039ec7bbef1c147167893c2acd89e643d55e825",
-      "it": "06b3f26b0c90354c310bb163352cb5d181ea4998bbbb001e473d59e74e531cc9",
-      "ru": "9a03bc479748a6825d9dcc36c1e4ffd36d94d2b5f4d8f900f2b6b9dd4ec3253f",
-      "hr": "9a059ada97e87bad2a867e77624db113fce47e2749596485369eb618e8f7a2af",
-      "rom": "54f17f6b0b605c45ec6afc73ced5c7b46e77d4493947c45fa2cdd7a4337c0923"
     }
   },
   "what-are-hormones-and-what-do-they-do": {
@@ -7648,22 +7408,6 @@
       "rom": "d721836cc91da2fe7a9bd672771a0bb4752cde1de74a1f599952cdd55941660b"
     }
   },
-  "what-screening-tests-does-german-public-health-insurance-cover": {
-    "sourceCheckedOn": "2026-11-15",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "8da019ef814a993c7fb2316bbc7b818a21739c7eea4e09132416702588c0f2d3",
-      "ro": "e03e5f1e8f56f70c5843f8c0f09003fe596e6636991d38e7fb5e727b6c81fe3d",
-      "sq": "944834f03d7abda9848e96c4003e180555552681ed54ac325fec54797a2a3bc7",
-      "it": "aee68a3cf249a878aeb657105d44354aaf0859eecd76de8308b7c2397c2dbcaf",
-      "ru": "8056afcfe6af9f5dbe63d3e6470526323c5fcc66aeec68e5838e5b89fa876448",
-      "hr": "e890a24cc20a0f1639025d191fc75dae355dbf6d463ae28e36accb774838987b",
-      "rom": "5ecece21da381c97e258998788a637ad5db5caf22275ad0e5ca7c8a27caa7a95"
-    }
-  },
   "what-types-of-studies-are-there": {
     "sourceCheckedOn": "2026-11-15",
     "authoringMethod": "direct-assistant",
@@ -7710,22 +7454,6 @@
       "ru": "a5e456fa54f0ef87ad8bb5dcdf55fb8fbe87ee86b2647200bb7e5530da92fd3c",
       "hr": "16719a1f1759343458a0d4ea60bf0785533a73348ed1143a091bccc59884b354",
       "rom": "c042ac7f697c3caf064f3e4528a3d63ad5e803bf8db11b1eb86c0937f13696c2"
-    }
-  },
-  "which-vaccinations-are-recommended-in-germany": {
-    "sourceCheckedOn": "2026-11-15",
-    "authoringMethod": "direct-assistant",
-    "sourceCheckMethod": "assistant-source-comparison",
-    "translationCheckMethod": "direct-assistant-comparison",
-    "humanClinicalReview": false,
-    "contentHashes": {
-      "en": "cae9f4f0228e312cfc0d479e42ff644cfd30ff8113ab0f37850b13903c327ed8",
-      "ro": "bcf840d8583619d387a0ca08e814c59706b831152cd5356094b07b88325943b1",
-      "sq": "f840a3c15771296786a3cbcfcd42daae8e3c9b1aff14b88ad7cba39be1046a88",
-      "it": "09b49f714f66e204d80c793585053a645043718792d4d89cce31f383d132ffef",
-      "ru": "2cc85c3b740bc22cb0907c079ea7892d21087635e9855bb6b5083d07a55b7cd9",
-      "hr": "57e0cac7bfe9567b0300aa9125c729031b10b2164501713cb426c9a5a37d8a6f",
-      "rom": "37337092279ecb5649b17150b73d82557c10d8cb3b9ee794f985191c76f93a46"
     }
   },
   "why-are-vitamin-d-supplements-recommended-for-babies": {

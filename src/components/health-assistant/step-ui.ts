@@ -23,9 +23,6 @@ const optionRowBase = `group flex w-full items-start gap-4 rounded-xl border p-4
 
 export const optionRow = `${optionRowBase} press-row border-border bg-card shadow-2xs hover:border-sapphire/45 hover:bg-sapphire-soft/25 dark:border-ink-800`;
 
-/** The same row once chosen (radio rows). */
-export const optionRowSelected = `${optionRowBase} border-sapphire bg-sapphire-soft/40 shadow-2xs`;
-
 export const optionIcon = `mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center text-sapphire transition-colors ${motion} dark:text-sapphire-border`;
 
 export const optionTitle = "block text-base font-semibold leading-snug text-foreground";

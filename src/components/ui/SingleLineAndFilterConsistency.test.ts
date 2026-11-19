@@ -169,13 +169,12 @@ describe("Single-line icon actions & cross-page filter consistency", () => {
         uiLang: "ro",
         contentLang: "ro",
         textToSpeak: "Informație medicală clară despre alergii.",
-        simpleTakeaway: "Simptomele ușoare răspund bine la evitarea declanșatorilor.",
       }),
     );
 
-    expect(toolbarHtml).toContain("aria-pressed=");
-    expect(toolbarHtml).toContain("role=\"note\"");
-    expect(toolbarHtml).toContain("Pe scurt");
+    // The Simple / Detailed reading switch and its "Pe scurt" summary were removed from every page.
+    expect(toolbarHtml).not.toContain("role=\"note\"");
+    expect(toolbarHtml).not.toContain("Pe scurt");
   });
 
   it("keeps all 7 locales of HEALTH_HUB_EXPLORER_COPY and SUMMARY_COPY free of ampersands and middle dots", () => {

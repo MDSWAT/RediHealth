@@ -139,24 +139,10 @@ export type Translations = {
     nonEmergencyWarning: string;
   };
   landing: {
-    mythBuster: { title: string; subtitle: string; messageLabel: string };
-    helpOptions: {
-      title: string;
-      subtitle: string;
-      options: { title: string; description: string; cta: string; href: string }[];
-      mediatorBand: { text: string; cta: string };
-    };
     healthTopics: {
       title: string;
       subtitle: string;
       viewAll: string;
-    };
-    medicalAssistance: {
-      title: string;
-      subtitle: string;
-      requestHelp: string;
-      findServices: string;
-      steps: { title: string; description: string }[];
     };
     trustSection: {
       title: string;
@@ -407,11 +393,6 @@ export type Translations = {
     prevMythAria: string;
     nextMythAria: string;
   };
-  mediatorBand: {
-    question: string;
-    description: string;
-    cta: string;
-  };
   newsPage: {
     heroTitle: string;
     heroSubtitle: string;
@@ -467,18 +448,6 @@ export type Translations = {
     queueWarning: string;
     bandwidthLow: string;
     bandwidthAudioOnly: string;
-  };
-  mediatorsPage: {
-    heroTitle: string;
-    heroSubtitle: string;
-    requestHelpButton: string;
-    modalTitle: string;
-    nameLabel: string;
-    phoneLabel: string;
-    countyLabel: string;
-    localityLabel: string;
-    helpTypeLabel: string;
-    submitButton: string;
   };
   countyMap: {
     title: string;
@@ -683,61 +652,10 @@ export const translations: Record<Lang, Translations> = {
         "Приложение предоставляет вам информацию и рекомендации. Оно не заменяет неотложную помощь.",
     },
     landing: {
-      mythBuster: {
-        title: "Самые частые мифы о здоровье и проверенные факты",
-        subtitle: "Слухи о здоровье распространялись быстро. Проверьте их, прежде чем что-либо решить.",
-        messageLabel: "Сообщение",
-      },
-      helpOptions: {
-        title: "Как мы можем помочь?",
-        subtitle: "Выбирайте то, что вам нужно, и мы покажем вам, что будет дальше.",
-        options: [
-          {
-            title: "Справочник о здоровье",
-            description: "Узнайте об распространенных рисках для здоровья и о том, как защитить себя.",
-            cta: "Справочник о здоровье",
-            href: "/health-information",
-          },
-          {
-            title: "Проверить симптомы",
-            description: "Ответьте на несколько коротких вопросов о том, как вы себя чувствуете.",
-            cta: "Проверить симптомы",
-            href: "/health-check",
-          },
-          {
-            title: "Аптеки и клиники",
-            description: "Найдите медицинские услуги или попросите помочь записаться на прием.",
-            cta: "Аптеки и клиники",
-            href: "/find-help",
-          },
-        ],
-        mediatorBand: { text: "Вы медицинский медиатор?", cta: "Для медиаторов" },
-      },
       healthTopics: {
         title: "Позаботьтесь о своем здоровье",
         subtitle: "Простые руководства о давлении, диабете, питании и плановых осмотрах.",
         viewAll: "Просмотреть все руководства по здоровью",
-      },
-      medicalAssistance: {
-        title: "Поможем попасть к врачу",
-        subtitle:
-          "Не можете записаться на приём? Наша команда прочитает ваше сообщение и свяжется с вами.",
-        requestHelp: "Попросить помощь",
-        findServices: "Найти медицинские услуги",
-        steps: [
-          {
-            title: "Расскажите, что вас беспокоит",
-            description: "Коротко опишите проблему. Без сложных форм.",
-          },
-          {
-            title: "Получите чёткий ответ",
-            description: "Показываем понятные следующие шаги.",
-          },
-          {
-            title: "Поговорите с врачом онлайн",
-            description: "Если нужно, соединим вас со специалистом.",
-          },
-        ],
       },
       trustSection: {
         title: "Служба общественного здравоохранения",
@@ -1042,11 +960,6 @@ export const translations: Record<Lang, Translations> = {
       prevMythAria: "Предыдущий миф",
       nextMythAria: "Следующий миф",
     },
-    mediatorBand: {
-      question: "Вы медицинский медиатор?",
-      description: "Простые инструменты для работы на выезде и помощи людям в общинах.",
-      cta: "Для медиаторов",
-    },
     newsPage: {
       heroTitle: "Новости здоровья и местные оповещения",
       heroSubtitle: "Оповещения о состоянии здоровья, мобильные клиники и кампании вакцинации в вашем районе.",
@@ -1102,18 +1015,6 @@ export const translations: Record<Lang, Translations> = {
       queueWarning: "Не закрывайте эту страницу. Мы свяжемся с вами, как только врач будет готов.",
       bandwidthLow: "У тебя медленный интернет",
       bandwidthAudioOnly: "Включаю только звук, чтобы звонок не сбросился",
-    },
-    mediatorsPage: {
-      heroTitle: "Медицинские медиаторы",
-      heroSubtitle: "Медицинский медиатор поможет вам оформить документы, удостоверяющие личность, зарегистрироваться у семейного врача, записаться на прием в больницу и получить бесплатное лечение.",
-      requestHelpButton: "Обратиться к медиатору",
-      modalTitle: "Обратиться к медиатору в вашем регионе",
-      nameLabel: "Полное имя",
-      phoneLabel: "Телефон",
-      countyLabel: "Округ",
-      localityLabel: "Город или деревня",
-      helpTypeLabel: "В чем вам нужна помощь?",
-      submitButton: "Отправить запрос",
     },
     countyMap: {
       title: "Карта округа",
@@ -1316,61 +1217,10 @@ export const translations: Record<Lang, Translations> = {
         "For guidance only, not a substitute for emergency or medical care.",
     },
     landing: {
-      mythBuster: {
-        title: "Common health myths, explained with verified facts",
-        subtitle: "Health rumours spread fast. Check them before you decide anything.",
-        messageLabel: "Message",
-      },
-      helpOptions: {
-        title: "How can we help?",
-        subtitle: "Choose what you need and we'll show you what comes next.",
-        options: [
-          {
-            title: "Health guides",
-            description: "Find out about common health risks and how to protect yourself.",
-            cta: "Health guides",
-            href: "/health-information",
-          },
-          {
-            title: "Check my symptoms",
-            description: "Answer a few short questions about how you feel.",
-            cta: "Check my symptoms",
-            href: "/health-check",
-          },
-          {
-            title: "Pharmacies and clinics",
-            description: "Find health services or ask for help getting an appointment.",
-            cta: "Pharmacies and clinics",
-            href: "/find-help",
-          },
-        ],
-        mediatorBand: { text: "Are you a health mediator?", cta: "Mediator tools" },
-      },
       healthTopics: {
         title: "Take care of your health",
         subtitle: "Plain guides on blood pressure, diabetes, food and preventive checkups.",
         viewAll: "See all health guides",
-      },
-      medicalAssistance: {
-        title: "We help you reach a doctor",
-        subtitle:
-          "Need a doctor or an appointment? Someone on our team reads your message and gets back to you.",
-        requestHelp: "Ask for help",
-        findServices: "Find health services",
-        steps: [
-          {
-            title: "Tell us what you need",
-            description: "Write a short note about your problem. No long forms.",
-          },
-          {
-            title: "Get a clear answer",
-            description: "We show you simple next steps.",
-          },
-          {
-            title: "Talk to a doctor online",
-            description: "If needed, we arrange a call for you.",
-          },
-        ],
       },
       trustSection: {
         title: "Public health service",
@@ -1675,11 +1525,6 @@ export const translations: Record<Lang, Translations> = {
       prevMythAria: "Previous myth",
       nextMythAria: "Next myth",
     },
-    mediatorBand: {
-      question: "Are you a health mediator?",
-      description: "Simple tools for home visits and supporting people in your community.",
-      cta: "Mediator tools",
-    },
     newsPage: {
       heroTitle: "Health news and local alerts",
       heroSubtitle: "Health alerts, mobile clinics and vaccination campaigns in your area.",
@@ -1735,18 +1580,6 @@ export const translations: Record<Lang, Translations> = {
       queueWarning: "Do not close this page. We will connect you as soon as the doctor is ready.",
       bandwidthLow: "Your internet is slow",
       bandwidthAudioOnly: "Switching to sound only so the call doesn't drop",
-    },
-    mediatorsPage: {
-      heroTitle: "Health mediators",
-      heroSubtitle: "A health mediator helps you with ID papers, registering with a family doctor, hospital appointments and free treatment.",
-      requestHelpButton: "Ask for a mediator",
-      modalTitle: "Ask for a mediator in your area",
-      nameLabel: "Full name",
-      phoneLabel: "Phone",
-      countyLabel: "County",
-      localityLabel: "Town or village",
-      helpTypeLabel: "What do you need help with?",
-      submitButton: "Send request",
     },
     countyMap: {
       title: "County map",
@@ -1948,60 +1781,10 @@ export const translations: Record<Lang, Translations> = {
         "Informațiile sunt orientative și nu înlocuiesc consultul medical.",
     },
     landing: {
-      mythBuster: {
-        title: "Cele mai frecvente mituri, explicate cu informații verificate",
-        subtitle: "Zvonurile despre sănătate circulă repede. Verifică-le înainte să hotărăști ceva.",
-        messageLabel: "Mesaj",
-      },
-      helpOptions: {
-        title: "Cu ce te putem ajuta?",
-        subtitle: "Alege de ce ai nevoie și îți arătăm ce urmează.",
-        options: [
-          {
-            title: "Ghiduri de sănătate",
-            description: "Află care sunt riscurile obișnuite pentru sănătate și cum te poți proteja.",
-            cta: "Ghiduri de sănătate",
-            href: "/health-information",
-          },
-          {
-            title: "Cere ajutor unei persoane",
-            description: "Spune-ne ce te îngrijorează. Îți arătăm clar ce pași poți urma.",
-            cta: "Cere ajutor",
-            href: "/get-help",
-          },
-          {
-            title: "Farmacii și clinici",
-            description: "Dacă e nevoie, vorbești cu un medic online.",
-            cta: "Farmacii și clinici",
-            href: "/find-help",
-          },
-        ],
-        mediatorBand: { text: "Ești mediator sanitar?", cta: "Modulul mediatorilor" },
-      },
       healthTopics: {
         title: "Ai grijă de sănătatea ta",
         subtitle: "Ghiduri simple despre tensiune, diabet, alimentație și controale la timp.",
         viewAll: "Vezi toate ghidurile de sănătate",
-      },
-      medicalAssistance: {
-        title: "Te ajutăm să ajungi la medic",
-        subtitle: "Nu reușești să faci o programare? Cineva din echipa noastră îți citește mesajul și îți răspunde.",
-        requestHelp: "Cere ajutor",
-        findServices: "Caută servicii medicale",
-        steps: [
-          {
-            title: "Spune ce te îngrijorează",
-            description: "Scrie pe scurt de ce ai nevoie. Fără formulare complicate.",
-          },
-          {
-            title: "Primești un răspuns clar",
-            description: "Îți arătăm pe scurt ce ai de făcut.",
-          },
-          {
-            title: "Vorbești cu un medic online",
-            description: "Dacă e nevoie, te punem în legătură directă.",
-          },
-        ],
       },
       trustSection: {
         title: "Serviciu public de sănătate",
@@ -2306,11 +2089,6 @@ export const translations: Record<Lang, Translations> = {
       prevMythAria: "Mitul anterior",
       nextMythAria: "Mitul următor",
     },
-    mediatorBand: {
-      question: "Ești mediator sanitar?",
-      description: "Instrumente simple pentru vizite pe teren și sprijin în comunitate.",
-      cta: "Modulul mediatorilor",
-    },
     newsPage: {
       heroTitle: "Știri de sănătate și alerte locale",
       heroSubtitle: "Alerte de sănătate, caravane medicale și campanii de vaccinare din zona ta.",
@@ -2366,18 +2144,6 @@ export const translations: Record<Lang, Translations> = {
       queueWarning: "Nu închide pagina. Te conectăm imediat ce medicul e gata.",
       bandwidthLow: "Internetul merge slab",
       bandwidthAudioOnly: "Trecem doar pe sunet, ca să nu se întrerupă",
-    },
-    mediatorsPage: {
-      heroTitle: "Mediatori sanitari",
-      heroSubtitle: "Un mediator sanitar te ajută cu actele de identitate, înscrierea la medicul de familie, programările la spital și tratamentele gratuite.",
-      requestHelpButton: "Cere un mediator",
-      modalTitle: "Cere un mediator în zona ta",
-      nameLabel: "Nume și prenume",
-      phoneLabel: "Telefon",
-      countyLabel: "Județ",
-      localityLabel: "Localitate sau sat",
-      helpTypeLabel: "Cu ce ai nevoie de ajutor?",
-      submitButton: "Trimite cererea",
     },
     countyMap: {
       title: "Harta județelor",
@@ -2579,61 +2345,10 @@ export const translations: Record<Lang, Translations> = {
         "Informacion orientues, nuk zëvendëson vizitën te mjeku.",
     },
     landing: {
-      mythBuster: {
-        title: "Mitet më të shpeshta, të shpjeguara me fakte të verifikuara",
-        subtitle: "Thashethemet për shëndetin përhapen shpejt. Kontrolloji para se të vendosësh diçka.",
-        messageLabel: "Mesazh",
-      },
-      helpOptions: {
-        title: "Si mund të të ndihmojmë?",
-        subtitle: "Zgjidh çfarë të duhet dhe të tregojmë çfarë vjen më pas.",
-        options: [
-          {
-            title: "Udhëzues për shëndetin",
-            description: "Mëso cilat janë rreziqet e zakonshme dhe si të mbrohesh.",
-            cta: "Udhëzues për shëndetin",
-            href: "/health-information",
-          },
-          {
-            title: "Kontrollo simptomat",
-            description: "Përgjigju disa pyetjeve të shkurtra për si ndihesh.",
-            cta: "Kontrollo simptomat",
-            href: "/health-check",
-          },
-          {
-            title: "Farmaci dhe klinika",
-            description: "Gjej shërbime shëndetësore ose kërko ndihmë për të marrë një takim.",
-            cta: "Farmaci dhe klinika",
-            href: "/find-help",
-          },
-        ],
-        mediatorBand: { text: "Je mediator shëndetësor?", cta: "Mjetet e mediatorit" },
-      },
       healthTopics: {
         title: "Kujdesu për shëndetin tënd",
         subtitle: "Udhëzues të thjeshtë për tensionin, diabetin, ushqimin dhe kontrollet në kohë.",
         viewAll: "Shiko të gjithë udhëzuesit shëndetësorë",
-      },
-      medicalAssistance: {
-        title: "Të ndihmojmë të arrish te mjeku",
-        subtitle:
-          "Nuk merr dot një takim? Ekipi ynë lexon mesazhin tënd dhe të kthen përgjigje.",
-        requestHelp: "Kërko ndihmë",
-        findServices: "Gjej shërbime shëndetësore",
-        steps: [
-          {
-            title: "Na thuaj çfarë të duhet",
-            description: "Shkruaj shkurt shqetësimin tënd. Pa formularë të gjatë.",
-          },
-          {
-            title: "Merr një përgjigje të qartë",
-            description: "Të tregojmë thjesht çfarë mund të bësh më pas.",
-          },
-          {
-            title: "Fol me një mjek online",
-            description: "Nëse duhet, të lidhim drejtpërdrejt për një bisedë.",
-          },
-        ],
       },
       trustSection: {
         title: "Shërbim publik shëndetësor",
@@ -2938,11 +2653,6 @@ export const translations: Record<Lang, Translations> = {
       prevMythAria: "Miti i mëparshëm",
       nextMythAria: "Miti tjetër",
     },
-    mediatorBand: {
-      question: "Je mediator shëndetësor?",
-      description: "Mjete të thjeshta për vizitat në shtëpi dhe mbështetjen e njerëzve në komunitet.",
-      cta: "Mjetet e mediatorit",
-    },
     newsPage: {
       heroTitle: "Lajme për shëndetin dhe njoftime lokale",
       heroSubtitle: "Njoftime shëndetësore, karvane mjekësore dhe fushata vaksinimi në zonën tënde.",
@@ -2998,18 +2708,6 @@ export const translations: Record<Lang, Translations> = {
       queueWarning: "Mos e mbyll këtë faqe. Të lidhim sapo mjeku të jetë gati.",
       bandwidthLow: "Interneti është i dobët",
       bandwidthAudioOnly: "Kalojmë vetëm me zë që të mos ndërpritet",
-    },
-    mediatorsPage: {
-      heroTitle: "Mediatorët shëndetësorë",
-      heroSubtitle: "Një mediator shëndetësor të ndihmon me dokumentet e identitetit, regjistrimin te mjeku i familjes, vizitat në spital dhe trajtimet falas.",
-      requestHelpButton: "Kërko një mediator",
-      modalTitle: "Kërko një mediator në zonën tënde",
-      nameLabel: "Emri dhe mbiemri",
-      phoneLabel: "Telefoni",
-      countyLabel: "Qarku",
-      localityLabel: "Qyteti ose fshati",
-      helpTypeLabel: "Për çfarë të duhet ndihmë?",
-      submitButton: "Dërgo kërkesën",
     },
     countyMap: {
       title: "Harta e qarqeve",
@@ -3211,61 +2909,10 @@ export const translations: Record<Lang, Translations> = {
         "Informazioni orientative, non sostituiscono la visita medica.",
     },
     landing: {
-      mythBuster: {
-        title: "I falsi miti più comuni, spiegati con informazioni verificate",
-        subtitle: "Le voci sulla salute girano in fretta. Controllale prima di decidere qualcosa.",
-        messageLabel: "Messaggio",
-      },
-      helpOptions: {
-        title: "Come possiamo aiutarti?",
-        subtitle: "Scegli di cosa hai bisogno e ti mostriamo cosa fare dopo.",
-        options: [
-          {
-            title: "Guide sulla salute",
-            description: "Scopri quali sono i rischi più comuni e come proteggerti.",
-            cta: "Guide sulla salute",
-            href: "/health-information",
-          },
-          {
-            title: "Controlla i sintomi",
-            description: "Rispondi a poche domande brevi su come ti senti.",
-            cta: "Controlla i sintomi",
-            href: "/health-check",
-          },
-          {
-            title: "Farmacie e ambulatori",
-            description: "Trova servizi sanitari o chiedi aiuto per avere un appuntamento.",
-            cta: "Farmacie e ambulatori",
-            href: "/find-help",
-          },
-        ],
-        mediatorBand: { text: "Sei un mediatore sanitario?", cta: "Per mediatori" },
-      },
       healthTopics: {
         title: "Prenditi cura della tua salute",
         subtitle: "Guide semplici su pressione, diabete, alimentazione e controlli preventivi.",
         viewAll: "Vedi tutte le guide alla salute",
-      },
-      medicalAssistance: {
-        title: "Ti aiutiamo ad arrivare dal medico",
-        subtitle:
-          "Non riesci a prenotare una visita? Il nostro team legge il tuo messaggio e ti risponde.",
-        requestHelp: "Chiedi aiuto",
-        findServices: "Trova servizi sanitari",
-        steps: [
-          {
-            title: "Dicci di cosa hai bisogno",
-            description: "Scrivi in breve qual è il problema. Niente moduli complicati.",
-          },
-          {
-            title: "Ricevi una risposta chiara",
-            description: "Ti mostriamo in modo semplice i prossimi passi.",
-          },
-          {
-            title: "Parla con un medico online",
-            description: "Se serve, ti mettiamo subito in contatto.",
-          },
-        ],
       },
       trustSection: {
         title: "Servizio sanitario pubblico",
@@ -3570,11 +3217,6 @@ export const translations: Record<Lang, Translations> = {
       prevMythAria: "Mito precedente",
       nextMythAria: "Mito successivo",
     },
-    mediatorBand: {
-      question: "Sei un mediatore sanitario?",
-      description: "Strumenti semplici per le visite a domicilio e il supporto nella tua comunità.",
-      cta: "Per mediatori",
-    },
     newsPage: {
       heroTitle: "Notizie sulla salute e avvisi locali",
       heroSubtitle: "Avvisi sanitari, ambulatori mobili e campagne di vaccinazione nella tua zona.",
@@ -3630,18 +3272,6 @@ export const translations: Record<Lang, Translations> = {
       queueWarning: "Non chiudere questa pagina. Ti colleghiamo appena il medico è pronto.",
       bandwidthLow: "Internet è lento",
       bandwidthAudioOnly: "Passiamo solo all'audio per non far cadere la chiamata",
-    },
-    mediatorsPage: {
-      heroTitle: "Mediatori sanitari",
-      heroSubtitle: "Un mediatore sanitario ti aiuta con i documenti di identità, l'iscrizione dal medico di base, le visite in ospedale e le cure gratuite.",
-      requestHelpButton: "Chiedi un mediatore",
-      modalTitle: "Chiedi un mediatore nella tua zona",
-      nameLabel: "Nome e cognome",
-      phoneLabel: "Telefono",
-      countyLabel: "Provincia",
-      localityLabel: "Località o paese",
-      helpTypeLabel: "Per cosa ti serve aiuto?",
-      submitButton: "Invia richiesta",
     },
     countyMap: {
       title: "Mappa delle province",
@@ -3843,61 +3473,10 @@ export const translations: Record<Lang, Translations> = {
         "Informativne smjernice, ne zamjenjuju liječnički pregled.",
     },
     landing: {
-      mythBuster: {
-        title: "Najčešći mitovi o zdravlju uz provjerene informacije",
-        subtitle: "Glasine o zdravlju brzo se šire. Provjeri ih prije nego što doneseš odluku.",
-        messageLabel: "Poruka",
-      },
-      helpOptions: {
-        title: "Kako ti možemo pomoći?",
-        subtitle: "Odaberi što ti treba i pokazat ćemo ti sljedeći korak.",
-        options: [
-          {
-            title: "Zdravstveni vodiči",
-            description: "Upoznaj najčešće zdravstvene rizike i načine kako se zaštititi.",
-            cta: "Zdravstveni vodiči",
-            href: "/health-information",
-          },
-          {
-            title: "Provjeri simptome",
-            description: "Odgovori na nekoliko kratkih pitanja o tome kako se osjećaš.",
-            cta: "Provjeri simptome",
-            href: "/health-check",
-          },
-          {
-            title: "Ljekarne i klinike",
-            description: "Pronađi ljekarne i klinike ili zatraži pomoć pri naručivanju.",
-            cta: "Ljekarne i klinike",
-            href: "/find-help",
-          },
-        ],
-        mediatorBand: { text: "Jesi li zdravstveni medijator?", cta: "Alati za medijatore" },
-      },
       healthTopics: {
         title: "Brini o svom zdravlju",
         subtitle: "Jednostavni vodiči o krvnom tlaku, šećernoj bolesti, prehrani i preventivnim pregledima.",
         viewAll: "Pogledaj sve zdravstvene vodiče",
-      },
-      medicalAssistance: {
-        title: "Pomažemo ti doći do liječnika",
-        subtitle:
-          "Ne možeš dogovoriti pregled? Netko iz našeg tima čita tvoju poruku i javlja ti se.",
-        requestHelp: "Potraži pomoć",
-        findServices: "Ljekarne i klinike",
-        steps: [
-          {
-            title: "Reci što ti treba",
-            description: "Kratko napiši što te muči. Bez složenih obrazaca.",
-          },
-          {
-            title: "Dobij jasan odgovor",
-            description: "Pokažemo ti jednostavne sljedeće korake.",
-          },
-          {
-            title: "Razgovaraj s liječnikom online",
-            description: "Po potrebi te odmah spajamo na razgovor.",
-          },
-        ],
       },
       trustSection: {
         title: "Javnozdravstvena usluga",
@@ -4202,11 +3781,6 @@ export const translations: Record<Lang, Translations> = {
       prevMythAria: "Prethodni mit",
       nextMythAria: "Sljedeći mit",
     },
-    mediatorBand: {
-      question: "Jesi li zdravstveni medijator?",
-      description: "Jednostavni alati za kućne posjete i podršku ljudima u zajednici.",
-      cta: "Alati za medijatore",
-    },
     newsPage: {
       heroTitle: "Zdravstvene vijesti i lokalna upozorenja",
       heroSubtitle: "Zdravstvena upozorenja, mobilne ambulante, cjepiva i akcije preventivnih pregleda u tvom kraju.",
@@ -4262,18 +3836,6 @@ export const translations: Record<Lang, Translations> = {
       queueWarning: "Nemoj zatvarati ovu stranicu. Spojit ćemo te čim liječnik bude spreman.",
       bandwidthLow: "Internetska veza je spora",
       bandwidthAudioOnly: "Prebacujemo samo na zvuk kako se poziv ne bi prekinuo",
-    },
-    mediatorsPage: {
-      heroTitle: "Zdravstveni medijatori",
-      heroSubtitle: "Zdravstveni medijator pomaže ti oko osobnih dokumenata, HZZO osiguranja, upisa kod obiteljskog liječnika, uputnica i bolničkih termina.",
-      requestHelpButton: "Zatraži medijatora",
-      modalTitle: "Zatraži zdravstvenog medijatora u svom kraju",
-      nameLabel: "Ime i prezime",
-      phoneLabel: "Telefon",
-      countyLabel: "Županija",
-      localityLabel: "Grad ili naselje",
-      helpTypeLabel: "Oko čega ti treba pomoć?",
-      submitButton: "Pošalji zahtjev",
     },
     countyMap: {
       title: "Karta županija",
@@ -4475,61 +4037,10 @@ export const translations: Record<Lang, Translations> = {
         "Orientirime informaciye, na paraven o dikhipe ko doktori.",
     },
     landing: {
-      mythBuster: {
-        title: "E may but ashunde xoxamne vorbi thaj dikhle informaciye",
-        subtitle: "E xoxamne vorbi vash o sastipen phiren sigo. Dikh len anglal te alosares vareso.",
-        messageLabel: "Mesazho",
-      },
-      helpOptions: {
-        title: "Sar shay te zhutinas tut?",
-        subtitle: "Alosar so trubul tuke thaj ka sikavas tuke so avel may dur.",
-        options: [
-          {
-            title: "Sastipnaske sikavimata",
-            description: "Sikljov vash e rizikurya pe o ilo, gudlo rat thaj sar te arakhes tut.",
-            cta: "Sastipnaske sikavimata",
-            href: "/health-information",
-          },
-          {
-            title: "Dikh e simptome",
-            description: "De palpale pe nekobor khurdeline phuchimata sar xatyares tut.",
-            cta: "Dikh e simptome",
-            href: "/health-check",
-          },
-          {
-            title: "Farmaciye thaj klinike",
-            description: "Arakh farmaciye thaj klinike vay mang zhutimos vash ekh programiripe.",
-            cta: "Farmaciye thaj klinike",
-            href: "/find-help",
-          },
-        ],
-        mediatorBand: { text: "San sastipnasko mediatori?", cta: "Vash mediatorya" },
-      },
       healthTopics: {
         title: "Arakh cho sastipen",
         subtitle: "Ashkarde sikavimata vash sar phurdel o rat, o gudlo rat, o xabe thaj o preventivno dikhiben.",
         viewAll: "Dikh savore sastipnaske sikavimata",
-      },
-      medicalAssistance: {
-        title: "Zhutinas tut te areses ko doktori",
-        subtitle:
-          "Nashti keres programiripe? Amaro timo ginel cho mesazho thaj akharel tut.",
-        requestHelp: "Rod zhutimos",
-        findServices: "Farmaciye thaj klinike",
-        steps: [
-          {
-            title: "Phen so trubul tuke",
-            description: "Lekhav khurdeles so dukhal tut. Bi phare formularengo.",
-          },
-          {
-            title: "Le ashkardo palpale",
-            description: "Sikavas tuke loke save pasha te keres may dur.",
-          },
-          {
-            title: "Vaker ekhe doktoreya online",
-            description: "Te trubul, phandas tut direktno.",
-          },
-        ],
       },
       trustSection: {
         title: "Putardo sastipnasko servisi",
@@ -4834,11 +4345,6 @@ export const translations: Record<Lang, Translations> = {
       prevMythAria: "Angluno phuchipe",
       nextMythAria: "Aver phuchipe",
     },
-    mediatorBand: {
-      question: "San sastipnasko mediatori?",
-      description: "Loke instrumenturya vash o vizite khere thaj zhutimos ando komuniteto.",
-      cta: "Vash mediatorya",
-    },
     newsPage: {
       heroTitle: "Sastipnaske nevimata thaj thanune avizurya",
       heroSubtitle: "Sastipnaske avizurya, mobilne klinike thaj kampaniye vash i vakcina ando cho than.",
@@ -4894,18 +4400,6 @@ export const translations: Record<Lang, Translations> = {
       queueWarning: "Ma phandav kadi rig. Ka phandas tut sigo kana o doktori si gata.",
       bandwidthLow: "Cho interneto phirel lokhes",
       bandwidthAudioOnly: "Nakhas numay pe glaso te na chhinadyol o akharipe",
-    },
-    mediatorsPage: {
-      heroTitle: "Sastipnaske mediatorya",
-      heroSubtitle: "Ekh sastipnasko mediatori zhutil tut e buletinasa, te lekhaves tut ko familiyako doktori, programiripnasa ki bolnitsa thaj e drabasa bi lovesko.",
-      requestHelpButton: "Mang ekhe mediatore",
-      modalTitle: "Mang sastipnasko mediatori ando cho than",
-      nameLabel: "Sasto anav",
-      phoneLabel: "Telefono",
-      countyLabel: "Rig",
-      localityLabel: "Foro vay gav",
-      helpTypeLabel: "Sosa trubul tuke zhutimos?",
-      submitButton: "Bichhal o mangipe",
     },
     countyMap: {
       title: "Rigengi mapa",

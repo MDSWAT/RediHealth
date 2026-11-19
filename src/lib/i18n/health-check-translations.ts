@@ -3968,26 +3968,3 @@ export function getHealthCheckTranslations(lang?: Lang): HealthCheckWizardLocale
   const targetLang = lang && lang in healthCheckTranslations ? lang : DEFAULT_LANG;
   return healthCheckTranslations[targetLang] ?? healthCheckTranslations[DEFAULT_LANG];
 }
-
-/**
- * Convenience alias for getHealthCheckTranslations.
- */
-export function getHealthCheckWizard(lang?: Lang): HealthCheckWizardLocaleData {
-  return getHealthCheckTranslations(lang);
-}
-
-/**
- * Returns localized prefixes for clipboard and WhatsApp export.
- */
-export function getSummaryExportPrefixes(lang?: Lang): HealthCheckSummaryExportPrefixes {
-  const d = getHealthCheckTranslations(lang);
-  const targetLang = lang && lang in healthCheckTranslations ? lang : DEFAULT_LANG;
-  return {
-    structure3D: d.ui.structure3DLabel ?? (targetLang === "ro" ? "Structură 3D" : targetLang === "en" ? "3D structure" : targetLang === "sq" ? "Struktura 3D" : targetLang === "hr" ? "3D struktura" : targetLang === "rom" ? "3D struktura" : "Struttura 3D"),
-    sensation: d.ui.sensationLabel ?? (targetLang === "ro" ? "Senzație" : targetLang === "en" ? "Sensation" : targetLang === "sq" ? "Ndjesi" : targetLang === "hr" ? "Osjet" : targetLang === "rom" ? "Hatjarimos" : "Sensazione"),
-    triggers: d.ui.triggersLabel ?? (targetLang === "ro" ? "Ce agravează" : targetLang === "en" ? "What makes it worse" : targetLang === "sq" ? "Çfarë e përkeqëson" : targetLang === "hr" ? "Što pogoršava" : targetLang === "rom" ? "So kerel maj nasul" : "Cosa lo peggiora"),
-    specialty: d.ui.specialtyLabel ?? (targetLang === "ro" ? "Medic specialist" : targetLang === "en" ? "Specialist to see" : targetLang === "sq" ? "Mjeku specialist" : targetLang === "hr" ? "Liječnik specijalist" : targetLang === "rom" ? "Doktori specijalisto" : "Specialista da vedere"),
-    warningNoticeRedFlag: d.ui.warningNoticeRedFlag ?? (targetLang === "ro" ? "Au apărut semne de urgență." : targetLang === "en" ? "Emergency warning signs reported." : targetLang === "sq" ? "U raportuan shenja urgjence." : targetLang === "hr" ? "Zabilježeni su znakovi za hitnost." : targetLang === "rom" ? "Sikadile semnja vash sigardiari." : "Segnalati segni di emergenza."),
-    warningNoticeSafe: d.ui.warningNoticeSafe ?? (targetLang === "ro" ? "Nu au apărut semne de urgență." : targetLang === "en" ? "No emergency warning signs reported." : targetLang === "sq" ? "Nuk u raportuan shenja urgjence." : targetLang === "hr" ? "Nisu zabilježeni znakovi za hitnost." : targetLang === "rom" ? "Na sikadile semnja vash sigardiari." : "Nessun segno di emergenza segnalato."),
-  };
-}

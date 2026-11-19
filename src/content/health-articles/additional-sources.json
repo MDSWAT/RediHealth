@@ -263,16 +263,6 @@
       "url": "https://doi.org/10.1161/CIR.0000000000000628"
     }
   ],
-  "abortion-in-germany": [
-    {
-      "label": "BIÖG — Legal requirements and time limits in Germany",
-      "url": "https://www.familienplanung.de/schwangerschaftskonflikt/schwangerschaftsabbruch/schwangerschaftsabbruch-rechtslage-indikationen-und-fristen/"
-    },
-    {
-      "label": "BMG — Family planning and abortion costs",
-      "url": "https://www.bundesgesundheitsministerium.de/familienplanung-schwangerschaftsabbruch"
-    }
-  ],
   "babys-first-weeks-newborn-check-ups": [
     {
       "label": "NHS — Newborn physical examination",
@@ -1387,24 +1377,6 @@
       "url": "https://www.canada.ca/en/health-canada/services/drugs-health-products/medical-devices/biotin-risk-false-lab-test-results.html"
     }
   ],
-  "disease-management-program-for-type-1-diabetes-in-germany": [
-    {
-      "label": "G-BA: Current DMP requirements, including type one diabetes",
-      "url": "https://www.g-ba.de/richtlinien/83/"
-    },
-    {
-      "label": "German Federal Ministry of Health: Disease management programmes",
-      "url": "https://gesund.bund.de/wege-im-gesundheitswesen/erwachsenenleben/chronisch-krank/disease-management-programme"
-    },
-    {
-      "label": "Federal Office for Social Security: Basic DMP information",
-      "url": "https://www.bundesamtsozialesicherung.de/de/themen/disease-management-programme/dmp-grundlegende-informationen/"
-    },
-    {
-      "label": "NHS: Diabetic ketoacidosis",
-      "url": "https://www.nhs.uk/conditions/diabetic-ketoacidosis/"
-    }
-  ],
   "dislocated-kneecap": [
     {
       "label": "NHS: Dislocated kneecap",
@@ -1493,16 +1465,6 @@
     {
       "label": "NHS: Stevens-Johnson syndrome",
       "url": "https://www.nhs.uk/conditions/stevens-johnson-syndrome/"
-    }
-  ],
-  "drugs-assessed-by-iqwig": [
-    {
-      "label": "G-BA: Benefit assessment of medicinal products in Germany",
-      "url": "https://www.g-ba.de/english/benefitassessment/"
-    },
-    {
-      "label": "G-BA: European joint clinical assessment and national benefit assessment",
-      "url": "https://www.g-ba.de/themen/arzneimittel/arzneimittel-richtlinie-anlagen/nutzenbewertung-35a/eu-hta-verordnung/"
     }
   ],
   "eczema": [
@@ -1627,16 +1589,6 @@
     {
       "label": "NHS — Allergies",
       "url": "https://www.nhs.uk/conditions/allergies/"
-    }
-  ],
-  "evidence-based-medicine-in-germany": [
-    {
-      "label": "IQWiG — Responsibilities and objectives",
-      "url": "https://www.iqwig.de/en/about-us/responsibilities-and-objectives-of-iqwig/"
-    },
-    {
-      "label": "Federal Joint Committee — Role and responsibilities",
-      "url": "https://www.g-ba.de/english/"
     }
   ],
   "evaluating-the-evidence": [
@@ -1767,18 +1719,6 @@
       "url": "https://www.nhs.uk/conditions/underactive-thyroid-hypothyroidism/"
     }
   ],
-  "health-care-in-germany": [
-    {
-      "label": "KBV — Medical help in Germany",
-      "url": "https://www.116117.de/de/englisch.php"
-    }
-  ],
-  "health-insurance-in-germany": [
-    {
-      "label": "German Federal Ministry of Health — Statutory health insurance",
-      "url": "https://www.bundesgesundheitsministerium.de/en/themen/krankenversicherung/online-ratgeber-krankenversicherung/krankenversicherung/statutory-health-insurance-shi"
-    }
-  ],
   "heart-failure": [
     {
       "label": "NHS — Heart failure",
@@ -1823,12 +1763,6 @@
     {
       "label": "NIDCD — Sign language and early language learning",
       "url": "https://www.nidcd.nih.gov/health/american-sign-language"
-    }
-  ],
-  "how-can-i-find-support-groups-and-information-centers-in-germany": [
-    {
-      "label": "Stiftung Unabhängige Patientenberatung Deutschland — Patient advice",
-      "url": "https://patientenberatung.de/"
     }
   ],
   "how-can-labor-be-induced": [

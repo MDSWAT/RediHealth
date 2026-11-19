@@ -14,6 +14,7 @@ import {
   resetComfortPreferences,
   setCalmMotion,
   setHighContrastPreference,
+  getReadingLevelSnapshot,
   setReadingLevel,
   setTextScale,
   setUnderlineLinksPreference,
@@ -159,16 +160,19 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
     let calls = 0;
     const unsubscribe = subscribeComfort(() => {
       calls += 1;
-      setReadingLevel("complete");
+      setTextScale("large");
     });
     try {
-      setReadingLevel("complete");
-      expect(calls).toBe(1);
-      setReadingLevel("complete");
+      // The reading switch is gone: everyone reads the detailed text, even with an old stored choice.
+      storage.set("redihealth_reading_level", "simple");
+      expect(getReadingLevelSnapshot()).toBe("complete");
+      setReadingLevel("simple");
+      expect(getReadingLevelSnapshot()).toBe("complete");
+      calls = 0;
+      setTextScale("large");
       expect(calls).toBe(1);
       setTextScale("large");
-      setTextScale("large");
-      expect(calls).toBe(2);
+      expect(calls).toBe(1);
     } finally {
       unsubscribe();
       vi.unstubAllGlobals();

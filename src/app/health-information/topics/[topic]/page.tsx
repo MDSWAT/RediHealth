@@ -10,8 +10,8 @@ import {
   HealthArticleHeader,
   HealthArticleRelatedList,
   HealthArticleShell,
-  HealthArticleToc,
 } from "@/components/health-information/HealthArticleShell";
+import { MobileGuideJumpBar } from "@/components/health-information/MobileGuideJumpBar";
 import { SubjectHeaderToolbar } from "@/components/health-information/SubjectHeaderToolbar";
 import { TopicMetaBadge } from "@/components/health-information/TopicMetaBadge";
 import { TopicNextSteps } from "@/components/health-information/TopicNextSteps";
@@ -59,7 +59,6 @@ export default async function HealthSummaryPage({ params }: Props) {
   const audioMinutes = Math.max(2, Math.round(wordCount / 145));
 
   const toc = {
-    title: tocCopy.contents,
     ariaLabel: tocCopy.contents,
     items: [
       { href: "#summary-overview", label: copy.overview },
@@ -73,12 +72,12 @@ export default async function HealthSummaryPage({ params }: Props) {
     <main id="main-content" className="flex-1">
       {/* Long read: a hairline under the header fills as the page is read. */}
       <div className="read-progress" aria-hidden="true" />
-      <HealthArticleShell toc={toc}>
+      <article lang={summary.contentLanguage}>
+      <HealthArticleShell className="pb-0 sm:pb-0">
         <HealthArticleBackLink
-          href={withLangPrefix("/health-information#informedhealth-library", lang)}
+          href={withLangPrefix("/health-information#health-topics", lang)}
           label={copy.back}
         />
-        <article lang={summary.contentLanguage}>
           <HealthArticleHeader
             title={summary.title}
             lead={summary.intro}
@@ -97,12 +96,19 @@ export default async function HealthSummaryPage({ params }: Props) {
                 uiLang={lang}
                 contentLang={summary.contentLanguage}
                 textToSpeak={narrationText}
-                simpleTakeaway={summary.intro}
               />
             }
           />
 
-          <HealthArticleToc {...toc} className="lg:hidden" />
+      </HealthArticleShell>
+
+      {/* Same section bar as the guides: under the site header, it stays visible and follows the reading. */}
+      <MobileGuideJumpBar
+        ariaLabel={toc.ariaLabel}
+        sections={toc.items.map((item) => ({ id: item.href.slice(1), label: item.label }))}
+      />
+
+      <HealthArticleShell className="pt-6 sm:pt-8">
 
           <section aria-labelledby="summary-overview" className="mt-10">
             <h2 id="summary-overview" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
@@ -157,8 +163,8 @@ export default async function HealthSummaryPage({ params }: Props) {
               <ArrowRightIcon className="h-4 w-4 shrink-0 -rotate-45" aria-hidden="true" />
             </a>
           </footer>
-        </article>
       </HealthArticleShell>
+      </article>
     </main>
   );
 }

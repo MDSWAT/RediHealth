@@ -1104,7 +1104,7 @@ export const SMART_SEARCH_TOOLS: SmartSearchToolEntry[] = [
   },
   {
     id: "care-navigation-rights",
-    href: "/health-information/topics/health-care-in-germany",
+    href: "/health-assistant",
     category: "guides",
     keywords: [
       "rights",

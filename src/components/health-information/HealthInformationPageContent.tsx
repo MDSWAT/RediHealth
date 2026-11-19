@@ -14,11 +14,9 @@ import { DICTIONARY_TAB_LABELS } from "./DictionaryTabs";
 import { RomanesGlossaryDrawer } from "./RomanesGlossaryDrawer";
 import { RomanianDualRegisterGlossary } from "./RomanianDualRegisterGlossary";
 import { TopicNextSteps } from "./TopicNextSteps";
-import { TrueFalseQuizSection } from "@/components/landing/TrueFalseQuizSection";
 import { ROMANIAN_MEDICAL_GLOSSARY } from "@/lib/i18n/romanian-medical-glossary";
 import { ROMANES_GLOSSARY_TERMS } from "@/lib/i18n/romanes-glossary";
-import { InformedHealthDirectory } from "./InformedHealthDirectory";
-import { HealthArticleDirectory } from "./HealthArticleDirectory";
+import { HealthTopicCategories } from "./HealthTopicCategories";
 
 export const HEALTH_HUB_EXPLORER_COPY: Record<
   Lang,
@@ -38,7 +36,7 @@ export const HEALTH_HUB_EXPLORER_COPY: Record<
     onThisPage: "Pe această pagină",
     guides: "Ghiduri",
     articles: "Articole",
-    topics: "Subiecte A–Z",
+    topics: "Teme de sănătate",
     myths: "Mituri",
     feelingUnwell: "Te simți rău?",
     checkSymptom: "Verifică un simptom",
@@ -48,7 +46,7 @@ export const HEALTH_HUB_EXPLORER_COPY: Record<
     onThisPage: "On this page",
     guides: "Guides",
     articles: "Articles",
-    topics: "Topics A–Z",
+    topics: "Health topics",
     myths: "Myths",
     feelingUnwell: "Feeling unwell?",
     checkSymptom: "Check a symptom",
@@ -58,7 +56,7 @@ export const HEALTH_HUB_EXPLORER_COPY: Record<
     onThisPage: "Në këtë faqe",
     guides: "Udhëzues",
     articles: "Artikuj",
-    topics: "Tema A–Z",
+    topics: "Tema shëndetësore",
     myths: "Mite",
     feelingUnwell: "Ndihesh keq?",
     checkSymptom: "Kontrollo një simptomë",
@@ -68,7 +66,7 @@ export const HEALTH_HUB_EXPLORER_COPY: Record<
     onThisPage: "In questa pagina",
     guides: "Guide",
     articles: "Articoli",
-    topics: "Argomenti A–Z",
+    topics: "Temi di salute",
     myths: "Miti",
     feelingUnwell: "Non ti senti bene?",
     checkSymptom: "Controlla un sintomo",
@@ -78,7 +76,7 @@ export const HEALTH_HUB_EXPLORER_COPY: Record<
     onThisPage: "Na ovoj stranici",
     guides: "Vodiči",
     articles: "Članci",
-    topics: "Teme A–Z",
+    topics: "Zdravstvene teme",
     myths: "Mitovi",
     feelingUnwell: "Osjećate se loše?",
     checkSymptom: "Provjeri simptom",
@@ -88,7 +86,7 @@ export const HEALTH_HUB_EXPLORER_COPY: Record<
     onThisPage: "Pe kadaja patrin",
     guides: "Sikavimata",
     articles: "Artikolura",
-    topics: "Teme A–Z",
+    topics: "Sastipnaske teme",
     myths: "Mitura",
     feelingUnwell: "Nakhli tut mishto?",
     checkSymptom: "Dikh e simptome",
@@ -98,7 +96,7 @@ export const HEALTH_HUB_EXPLORER_COPY: Record<
     onThisPage: "На этой странице",
     guides: "Руководства",
     articles: "Статьи",
-    topics: "Темы А–Я",
+    topics: "Темы о здоровье",
     myths: "Мифы",
     feelingUnwell: "Плохо себя чувствуете?",
     checkSymptom: "Проверьте симптом",
@@ -125,7 +123,7 @@ function useSafeLanguage() {
 
 /**
  * Health information is a library: the title, then search, topics, reading tools and the guides,
- * all on one surface. After the guides come the true-or-false quiz and the "talk to a doctor" close.
+ * all on one surface. After the guides and health topics comes the "talk to a doctor" close.
  * "Check a symptom" opens the 3D health check at /health-check.
  */
 export function HealthInformationPageContent(props: HealthInformationPageContentProps = {}) {
@@ -133,7 +131,7 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
   const { lang, t } = useSafeLanguage();
   const page = t.healthInfoPage;
 
-  const [readingLevel, setReadingLevel] = useReadingLevel();
+  const [readingLevel] = useReadingLevel();
   const [openDrawer, setOpenDrawer] = useState<"dictionary" | "romanes" | null>(null);
   const explorer = HEALTH_HUB_EXPLORER_COPY[lang] ?? HEALTH_HUB_EXPLORER_COPY.ro;
 
@@ -188,14 +186,8 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
             <a href="#health-guides" className={explorerLinkClass}>
               {explorer.guides}
             </a>
-            <a href="#health-articles" className={explorerLinkClass}>
-              {explorer.articles}
-            </a>
-            <a href="#informedhealth-library" className={explorerLinkClass}>
+            <a href="#health-topics" className={explorerLinkClass}>
               {explorer.topics}
-            </a>
-            <a href="#myths-quiz" className={explorerLinkClass}>
-              {explorer.myths}
             </a>
           </nav>
 
@@ -203,18 +195,12 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
             className="mt-7 sm:mt-8"
             initialCategory={initialCategory}
             readingLevel={readingLevel}
-            onReadingLevelChange={setReadingLevel}
             onOpenDictionary={() => setOpenDrawer("dictionary")}
           />
         </Container>
       </section>
 
-      <div className="border-t border-border py-10 sm:py-14"><Container><HealthArticleDirectory /></Container></div>
-      <InformedHealthDirectory />
-
-      <div id="myths-quiz" className="scroll-mt-24">
-        <TrueFalseQuizSection className="border-t border-border" />
-      </div>
+      <HealthTopicCategories />
 
       {/* One closing surface: talk to a doctor, ask at a pharmacy, the safety note. */}
       <section className="border-t border-border">

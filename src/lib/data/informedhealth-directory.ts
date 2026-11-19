@@ -30,9 +30,6 @@ const areas: [string, AreaGroup[], [string, string, string, string, string, stri
   ["addiction", ["conditions"], ["Addiction", "Dependențe", "Varësitë", "Dipendenze", "Зависимости", "Ovisnosti", "Ovisnostura"]],
   ["digestive-system-disorders", ["conditions"], ["Digestive system disorders", "Afecțiuni digestive", "Sëmundjet e sistemit tretës", "Disturbi digestivi", "Заболевания пищеварительной системы", "Bolesti probavnog sustava", "Nasvalipena e xabnaske sistemosko"]],
   ["teeth-and-gums", ["conditions"], ["Teeth and gums", "Dinți și gingii", "Dhëmbët dhe mishrat e dhëmbëve", "Denti e gengive", "Зубы и дёсны", "Zubi i desni", "Danda thaj mase"]],
-  ["early-benefit-assessment-of-medications", ["services"], ["Early benefit assessment of medications", "Evaluarea timpurie a beneficiilor medicamentelor", "Vlerësimi i hershëm i përfitimeve të barnave", "Valutazione precoce dei benefici dei farmaci", "Ранняя оценка пользы лекарств", "Rana procjena koristi lijekova", "Angluno dikhiben vash o lačhipen e drabengo"]],
-  ["health-care-in-germany", ["services"], ["Health care in Germany", "Servicii medicale în Germania", "Kujdesi shëndetësor në Gjermani", "Assistenza sanitaria in Germania", "Медицинская помощь в Германии", "Zdravstvena skrb u Njemačkoj", "Sastipnasko arakhimos ande Germanija"]],
-  ["individual-health-care-services-igel", ["services"], ["Individual health care services (IGeL)", "Servicii medicale plătite individual în Germania (IGeL)", "Shërbimet shëndetësore me pagesë individuale në Gjermani (IGeL)", "Prestazioni sanitarie individuali a pagamento in Germania (IGeL)", "Индивидуальные платные медицинские услуги в Германии (IGeL)", "Individualne zdravstvene usluge uz nadoplatu u Njemačkoj (IGeL)", "Individualne pokinde sastipnaske servisura ande Germanija (IGeL)"]],
   ["nursing-care", ["services"], ["Nursing care", "Îngrijire medicală", "Kujdesi infermieror", "Assistenza infermieristica", "Сестринский уход", "Sestrinska i dugotrajna njega", "Sastipnasko arakhimos thaj griža"]],
   ["screening", ["services"], ["Screening", "Screening și depistare precoce", "Depistimi i hershëm", "Screening e diagnosi precoce", "Скрининг и раннее выявление заболеваний", "Probiri i rano otkrivanje bolesti", "Angluno dikhiben thaj arakhimos"]],
   ["second-opinions-before-surgery", ["services"], ["Second opinions before surgery", "A doua opinie înainte de operație", "Mendimi i dytë para operacionit", "Secondo parere prima di un intervento", "Второе мнение перед операцией", "Drugo mišljenje prije operacije", "Dujto gindo angla i operacija"]],
@@ -61,6 +58,31 @@ const areas: [string, AreaGroup[], [string, string, string, string, string, stri
   ["making-an-informed-decision", ["evidence"], ["Making an informed decision", "Cum iei o decizie informată", "Si të marrim një vendim të informuar", "Prendere una decisione informata", "Как принять обоснованное решение", "Donošenje informirane odluke", "Sar te les jekh informirimo alosarimos"]],
   ["our-methods-and-processes", ["evidence"], ["How IQWiG develops its information", "Cum elaborează IQWiG informațiile medicale", "Si e përgatit IQWiG informacionin shëndetësor", "Come IQWiG prepara le informazioni sanitarie", "Как IQWiG готовит медицинскую информацию", "Kako IQWiG izrađuje zdravstvene informacije", "Sar o IQWiG lačharel peske sastipnaske informaciye"]],
 ];
+
+/**
+ * Articles about how health care works in Germany (insurance, German programmes and services).
+ * They are not published on RediHealth, and the inventory script skips them if the source lists them again.
+ * The German-only topic areas (Health care in Germany, IGeL, early benefit assessment) are left out of `areas` above.
+ */
+export const EXCLUDED_ARTICLE_IDS: ReadonlySet<string> = new Set([
+  "abortion-in-germany",
+  "disease-management-program-for-type-1-diabetes-in-germany",
+  "drugs-assessed-by-iqwig",
+  "evidence-based-medicine-in-germany",
+  "health-care-in-germany",
+  "health-insurance-in-germany",
+  "how-can-i-find-support-groups-and-information-centers-in-germany",
+  "mental-health-problems-where-can-you-find-help-in-germany",
+  "prenatal-care-and-maternity-records-in-germany",
+  "psychotherapy-providers-in-germany",
+  "standard-check-ups-for-children-and-teenagers-in-germany",
+  "the-breast-cancer-screening-program-in-germany",
+  "the-german-healthcare-system",
+  "what-are-digital-health-applications-digas",
+  "what-are-disease-management-programs-dmps",
+  "what-screening-tests-does-german-public-health-insurance-cover",
+  "which-vaccinations-are-recommended-in-germany",
+]);
 
 export const informedHealthAreas = areas.map(([id, groups, [en, ro, sq, it, ru, hr, rom]]) => ({
   id, groups, url: `https://www.informedhealth.org/topic-areas/${id}.html`,

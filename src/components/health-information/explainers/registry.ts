@@ -66,9 +66,6 @@ export const TOPIC_EXPLAINERS: Record<TopicSlug, TopicExplainerEntry> = {
   },
 };
 
-/** Canonical registry export */
-export const EXPLAINER_REGISTRY = TOPIC_EXPLAINERS;
-
 export function getTopicExplainer(slug: string): TopicExplainerEntry | null {
   return isTopicSlug(slug) ? TOPIC_EXPLAINERS[slug] : null;
 }

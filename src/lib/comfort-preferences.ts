@@ -130,16 +130,12 @@ export function getGrayscaleSnapshot(): boolean {
   return readBooleanPreference(GRAYSCALE_KEY);
 }
 
+/**
+ * The "Simple / Detailed" reading switch was removed: every visitor reads the regular (detailed)
+ * text, whatever an earlier visit stored in the browser.
+ */
 export function getReadingLevelSnapshot(): ReadingLevel {
-  if (typeof window === "undefined") return "simple";
-  try {
-    const raw = window.localStorage.getItem(READING_LEVEL_KEY);
-    if (raw === "simple" || raw === "complete") return raw;
-    if (window.localStorage.getItem(LEGACY_PLAIN_LANGUAGE_KEY) === "false") return "complete";
-  } catch {
-    // Private browsing or blocked storage: keep plain-language default.
-  }
-  return "simple";
+  return "complete";
 }
 
 export function applyComfortToDom() {
@@ -228,17 +224,9 @@ export function setGrayscalePreference(next: boolean) {
   writeBooleanPreference(GRAYSCALE_KEY, next, getGrayscaleSnapshot);
 }
 
+/** Kept so older callers still compile; the reading level can no longer be changed. */
 export function setReadingLevel(next: ReadingLevel) {
-  if (typeof window === "undefined") return;
-  if (getReadingLevelSnapshot() === next) return;
-  try {
-    window.localStorage.setItem(READING_LEVEL_KEY, next);
-    window.localStorage.setItem(LEGACY_PLAIN_LANGUAGE_KEY, next === "simple" ? "true" : "false");
-  } catch {
-    // Storage blocked.
-  }
-  applyComfortToDom();
-  notifyComfortListeners();
+  void next;
 }
 
 export function resetComfortPreferences() {
@@ -318,7 +306,7 @@ export function useReadingLevel(): [ReadingLevel, (next: ReadingLevel) => void] 
   const level = useSyncExternalStore(
     subscribeComfort,
     getReadingLevelSnapshot,
-    (): ReadingLevel => "simple"
+    (): ReadingLevel => "complete"
   );
   const update = useCallback((next: ReadingLevel) => setReadingLevel(next), []);
   return [level, update];

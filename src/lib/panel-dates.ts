@@ -44,15 +44,6 @@ const ROM_MONTHS_SHORT = ["yan", "feb", "mar", "apr", "may", "yun", "yul", "avg"
 const ROM_WEEKDAYS = ["kurko", "luni", "marsi", "tetrad", "zboya", "parashtuy", "savato"];
 const ROM_WEEKDAYS_SHORT = ["kur", "lun", "mar", "tet", "zbo", "par", "sav"];
 
-/** True when this runtime ships Intl data for the locale (headless Chromium has none for sq or rom). */
-export function hasIntlLocale(locale: string): boolean {
-  try {
-    return Intl.DateTimeFormat.supportedLocalesOf([locale]).length > 0;
-  } catch {
-    return false;
-  }
-}
-
 /**
  * Albanian, Croatian and Romani use built-in month and weekday names and a 24-hour clock.
  * Chromium builds without Albanian or Romani ICU data would otherwise print English or diverge

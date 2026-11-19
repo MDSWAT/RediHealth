@@ -23,9 +23,7 @@ import { getHealthMyths, type HealthMyth } from "@/lib/i18n/health-myths";
 import { TopicHeroSection } from "./TopicHeroSection";
 import {
   HEALTH_ARTICLE_CONTAINER_CLASS,
-  HEALTH_ARTICLE_WITH_TOC_GRID_CLASS,
 } from "./HealthArticleShell";
-import { HealthArticleTocRail } from "./HealthArticleTocRail";
 import { MobileGuideJumpBar } from "./MobileGuideJumpBar";
 import { WhyItMattersInfographic } from "./WhyItMattersInfographic";
 import { ActionableStepsChecklist } from "./ActionableStepsChecklist";
@@ -206,7 +204,7 @@ export function TopicDetailPageContent({
   relatedTopics,
 }: TopicDetailPageContentProps) {
   const { lang } = useLanguage();
-  const [readingLevel, setReadingLevel] = useReadingLevel();
+  const [readingLevel] = useReadingLevel();
   const [isAudioPlayerOpen, setIsAudioPlayerOpen] = useState(false);
   const [followResumeNonce, setFollowResumeNonce] = useState(0);
   const [activeSentenceIndex, setActiveSentenceIndex] = useState<number | null>(
@@ -292,7 +290,6 @@ export function TopicDetailPageContent({
         readingLevel={readingLevel}
         readMinutes={readMinutes}
         audioMinutes={audioMinutes}
-        onReadingLevelChange={setReadingLevel}
         onListenClick={() => {
           resumeAutoScroll();
           setIsAudioPlayerOpen(true);
@@ -327,17 +324,7 @@ export function TopicDetailPageContent({
 
       <div className="bg-background pb-12 pt-6 sm:pb-16 sm:pt-8 print:py-4">
         <Container>
-          {(() => {
-            const toc = {
-              title: ui.tocHeading,
-              ariaLabel: ui.tocAria,
-              items: tocSections.map((item) => ({
-                href: `#${item.id}`,
-                label: item.label,
-              })),
-            };
-            return (
-              <div className={HEALTH_ARTICLE_WITH_TOC_GRID_CLASS}>
+          {/* One centred reading column; the floating section control replaces the side table of contents. */}
                 <div
                   className={`${HEALTH_ARTICLE_CONTAINER_CLASS} space-y-10 sm:space-y-12 print:space-y-6`}
                   data-health-article-column
@@ -346,7 +333,7 @@ export function TopicDetailPageContent({
             <section
               id="section-overview"
               aria-label={ui.ariaSentenceSection}
-              className="scroll-mt-28 print:hidden"
+              className="scroll-mt-6 print:hidden"
             >
               <SynchronizedSentenceReader
                 paragraphs={[topic.intro]}
@@ -360,7 +347,7 @@ export function TopicDetailPageContent({
             <div
               id="section-why-it-matters"
               data-print-guide-section
-              className="scroll-mt-28"
+              className="scroll-mt-6"
             >
               <WhyItMattersInfographic
                 topicTitle={topic.title}
@@ -370,7 +357,7 @@ export function TopicDetailPageContent({
             </div>
 
             {/* Interactive health literacy visualizer or anatomical explainer */}
-            <div id="section-explainer" className="scroll-mt-28 overflow-x-hidden">
+            <div id="section-explainer" className="scroll-mt-6 overflow-x-hidden">
               <TopicExplainer slug={topic.slug} lang={lang} />
             </div>
 
@@ -378,7 +365,7 @@ export function TopicDetailPageContent({
             <div
               id="section-steps"
               data-print-guide-section
-              className="scroll-mt-28"
+              className="scroll-mt-6"
             >
               <ActionableStepsChecklist
                 slug={topic.slug}
@@ -392,7 +379,7 @@ export function TopicDetailPageContent({
             <div
               id="section-warning-signs"
               data-print-guide-section
-              className="scroll-mt-28"
+              className="scroll-mt-6"
             >
               <WarningSignsEmergencyCard
                 topicTitle={topic.title}
@@ -402,7 +389,7 @@ export function TopicDetailPageContent({
             </div>
 
             {/* Topic myth challenge */}
-            <div id="section-myth" className="scroll-mt-28 print:hidden">
+            <div id="section-myth" className="scroll-mt-6 print:hidden">
               <TopicMythCard myth={topicMyth} lang={lang} />
             </div>
 
@@ -417,10 +404,6 @@ export function TopicDetailPageContent({
               className="mt-12 print:mt-6"
             />
           </div>
-                <HealthArticleTocRail {...toc} />
-              </div>
-            );
-          })()}
         </Container>
       </div>
 

@@ -9,6 +9,7 @@ import { healthArticleIndex, healthArticlePath } from "@/lib/data/health-article
 const publicPaths = [
   "/",
   "/about",
+  "/ai-assistant",
   "/accessibility",
   "/contact",
   "/demo",

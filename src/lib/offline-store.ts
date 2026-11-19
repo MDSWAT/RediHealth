@@ -4,7 +4,6 @@ import { isRomanianCounty } from "./romanian-counties";
 import { validateFollowupInput } from "./validation";
 import { isPatientPriority, isPatientStatus, validateTreatmentPlanInput } from "./validation";
 import { validatePatientIntake } from "./patient-intake";
-import type { PatientItem } from "./types/patient";
 import type { OfflineData, OfflineOperation, OfflineSnapshot } from "./offline-types";
 import { OFFLINE_PENDING_MESSAGE } from "./offline-types";
 import { filterLocalInbox } from "./request-inbox";
@@ -12,9 +11,6 @@ import { filterLocalInbox } from "./request-inbox";
 const json = (value: unknown, status = 200) => Response.json(value, { status });
 const fail = (error: string, status = 400) => json({ error }, status);
 export const patientOfflineFields = ["full_name", "phone", "email", "date_of_birth", "gender", "address", "county", "condition_notes", "medical_history", "profile_photo", "treatment_plan", "followups", "photos", "intake", "status", "priority", "request_id"] as const;
-export function offlinePatientChanges(patient: PatientItem) {
-  return Object.fromEntries(patientOfflineFields.filter((field) => patient[field] !== undefined).map((field) => [field, patient[field]]));
-}
 
 export class OfflineStore {
   private tail: Promise<unknown> = Promise.resolve();

@@ -1,8 +1,8 @@
 {
   "checkedOn": "2026-11-15",
-  "indexedTopics": 488,
-  "completedTopics": 488,
-  "availableTopics": 488,
+  "indexedTopics": 471,
+  "completedTopics": 471,
+  "availableTopics": 471,
   "languages": [
     "en",
     "ro",
@@ -13,13 +13,13 @@
     "rom"
   ],
   "availableByLanguage": {
-    "en": 488,
-    "ro": 488,
-    "sq": 488,
-    "it": 488,
-    "ru": 488,
-    "hr": 488,
-    "rom": 488
+    "en": 471,
+    "ro": 471,
+    "sq": 471,
+    "it": 471,
+    "ru": 471,
+    "hr": 471,
+    "rom": 471
   },
   "missingByLanguage": {
     "en": [],
@@ -33,5 +33,5 @@
   "missing": [],
   "unavailableTopics": [],
   "humanClinicalReview": false,
-  "scope": "Unique individual entries in the alphabetical indexes of all 51 topic areas. Separate learn-more pages, glossary entries, media and personal stories are not replicated."
+  "scope": "Unique individual entries in the alphabetical indexes of all 48 topic areas. Separate learn-more pages, glossary entries, media and personal stories are not replicated."
 }

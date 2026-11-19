@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import {
+  FEATURED_GUIDE_SLUGS,
   getHealthInformationDictionary,
   getHealthTopicBySlug,
   healthTopicSlugs,
@@ -41,8 +42,10 @@ export default async function HealthTopicPage({
     notFound();
   }
 
-  const related = dictionary.topics
-    .filter((item) => item.slug !== topic.slug)
+  // "Other guides" offers the other main guides shown on the guides page.
+  const related = FEATURED_GUIDE_SLUGS
+    .filter((slug) => slug !== topic.slug)
+    .flatMap((slug) => dictionary.topics.filter((item) => item.slug === slug))
     .slice(0, 3);
 
   return (

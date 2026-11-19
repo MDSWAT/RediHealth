@@ -5,8 +5,9 @@ import { AREA_GROUPS, findInformedHealthAreas, informedHealthAreas } from "./inf
 
 describe("InformedHealth topic links", () => {
   it("contains every named topic area once with an original-source URL", () => {
-    expect(informedHealthAreas).toHaveLength(51);
-    expect(new Set(informedHealthAreas.map(area => area.id)).size).toBe(51);
+    // 51 InformedHealth areas minus the three German-only ones (health care in Germany, IGeL, early benefit assessment).
+    expect(informedHealthAreas).toHaveLength(48);
+    expect(new Set(informedHealthAreas.map(area => area.id)).size).toBe(48);
     for (const area of informedHealthAreas) {
       const url = new URL(area.url);
       expect(url.origin).toBe("https://www.informedhealth.org");
@@ -35,6 +36,6 @@ describe("InformedHealth topic links", () => {
       expect(findInformedHealthAreas("en", "heart", group).map(area => area.id)).toContain("heart-and-circulation");
     }
     expect(findInformedHealthAreas("en", "heart", "evidence")).toEqual([]);
-    expect(findInformedHealthAreas("en", "", "all")).toHaveLength(51);
+    expect(findInformedHealthAreas("en", "", "all")).toHaveLength(48);
   });
 });

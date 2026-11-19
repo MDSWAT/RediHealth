@@ -9,8 +9,8 @@ import {
   HealthArticleHeader,
   HealthArticleRelatedList,
   HealthArticleShell,
-  HealthArticleToc,
 } from "@/components/health-information/HealthArticleShell";
+import { MobileGuideJumpBar } from "@/components/health-information/MobileGuideJumpBar";
 import { SubjectHeaderToolbar } from "@/components/health-information/SubjectHeaderToolbar";
 import { TopicMetaBadge } from "@/components/health-information/TopicMetaBadge";
 import { TopicNextSteps } from "@/components/health-information/TopicNextSteps";
@@ -54,7 +54,6 @@ export default async function HealthArticlePage({ params }: Props) {
   const readMinutes = Math.max(3, Math.round(wordCount / 180));
   const audioMinutes = Math.max(3, Math.round(wordCount / 145));
   const toc = {
-    title: copy.contents,
     ariaLabel: copy.contents,
     items: [
       ...article.sections.map((section, i) => ({
@@ -70,12 +69,12 @@ export default async function HealthArticlePage({ params }: Props) {
     <main id="main-content" className="flex-1">
       {/* Long read: a hairline under the header fills as the page is read. */}
       <div className="read-progress" aria-hidden="true" />
-      <HealthArticleShell toc={toc}>
+      <article lang={article.contentLanguage}>
+      <HealthArticleShell className="pb-0 sm:pb-0">
         <HealthArticleBackLink
-          href={withLangPrefix("/health-information#health-articles", lang)}
+          href={withLangPrefix("/health-information#health-topics", lang)}
           label={copy.back}
         />
-        <article lang={article.contentLanguage}>
           <HealthArticleHeader
             title={displayTitle}
             lead={article.intro}
@@ -95,12 +94,19 @@ export default async function HealthArticlePage({ params }: Props) {
                 uiLang={lang}
                 contentLang={article.contentLanguage}
                 textToSpeak={narrationText}
-                simpleTakeaway={article.intro}
               />
             }
           />
 
-          <HealthArticleToc {...toc} className="lg:hidden" />
+      </HealthArticleShell>
+
+      {/* Same section bar as the guides: under the site header, it stays visible and follows the reading. */}
+      <MobileGuideJumpBar
+        ariaLabel={toc.ariaLabel}
+        sections={toc.items.map((item) => ({ id: item.href.slice(1), label: item.label }))}
+      />
+
+      <HealthArticleShell className="pt-6 sm:pt-8">
 
           {article.sections.map((section, i) => (
             <section key={i} aria-labelledby={`article-section-${i}`} className="mt-10">
@@ -186,8 +192,8 @@ export default async function HealthArticlePage({ params }: Props) {
               ))}
             </ul>
           </footer>
-        </article>
       </HealthArticleShell>
+      </article>
     </main>
   );
 }

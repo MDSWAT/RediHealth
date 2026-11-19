@@ -22,7 +22,7 @@ describe("on-site health summary reading", () => {
     const summary = getHealthSummary(code, "allergies")!;
     expect(html).toContain(summary.title);
     expect(html).toContain(healthSummaryCopy[code].questions);
-    expect(html).toContain(`href="/${code}/health-information#informedhealth-library"`);
+    expect(html).toContain(`href="/${code}/health-information#health-topics"`);
     const footer = html.slice(html.indexOf("<footer"));
     expect(footer).toContain('href="https://www.informedhealth.org/topic-areas/allergies.html"');
     expect(html.slice(0, html.indexOf("<footer"))).not.toContain('href="https://www.informedhealth.org');
@@ -33,7 +33,7 @@ describe("on-site health summary reading", () => {
     const html = renderToStaticMarkup(createElement(LanguageContext.Provider, { value: { lang: "ro", t: translations.ro, setLang: () => {} } }, createElement(InformedHealthDirectory)));
     expect(html).toContain('href="/ro/health-information/topics/allergies"');
     expect(html).not.toContain('href="https://www.informedhealth.org');
-    expect(generateStaticParams()).toHaveLength(51);
+    expect(generateStaticParams()).toHaveLength(48);
   });
 
   it("returns not-found for an unknown topic instead of showing an English fallback", async () => {

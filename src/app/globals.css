@@ -157,6 +157,79 @@ html[data-audio-player-open="true"] main {
 }
 
 /*
+ * Floating section control on articles and guides: sits where a thumb rests and rises above the
+ * audio player (--player-h is only set while the player is open).
+ * Motion: the control fades in when reading starts and out after the last section; the section
+ * list fades in when opened and out when closed (display transitions as a discrete step, so
+ * `hidden` waits for the fade). With full motion both also rise and sink a little.
+ * Calm or reduced motion keeps the fade but drops the movement: a fade is not motion, and an
+ * element that pops in at the bottom of the screen is more startling than one that fades. The
+ * global reduced-motion and calm-motion rules cut every transition to ~0ms with !important, so
+ * the durations here are !important too, behind a selector that outranks theirs.
+ */
+.guide-contents-float {
+  bottom: calc(env(safe-area-inset-bottom) + 1rem + var(--player-h, 0px));
+}
+
+.guide-contents-float[data-shown="false"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.guide-contents-panel[hidden] {
+  opacity: 0;
+}
+
+.guide-contents-backdrop[data-open="false"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@starting-style {
+  .guide-contents-panel:not([hidden]) {
+    opacity: 0;
+  }
+}
+
+html body .guide-contents-float {
+  transition-property: opacity, translate;
+  transition-duration: var(--dur-slow) !important;
+  transition-timing-function: var(--ease-out-calm);
+  transition-delay: 0s !important;
+}
+
+html body .guide-contents-panel {
+  transition-property: opacity, translate, display;
+  transition-duration: var(--dur-base) !important;
+  transition-timing-function: var(--ease-out-calm);
+  transition-delay: 0s !important;
+  transition-behavior: allow-discrete;
+}
+
+html body .guide-contents-backdrop {
+  transition-property: opacity;
+  transition-duration: var(--dur-base) !important;
+  transition-timing-function: var(--ease-out-calm);
+  transition-delay: 0s !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-calm-motion]) .guide-contents-float[data-shown="false"] {
+    translate: 0 1.25rem;
+  }
+
+  html:not([data-calm-motion]) .guide-contents-panel[hidden] {
+    translate: 0 0.75rem;
+  }
+
+  @starting-style {
+    html:not([data-calm-motion]) .guide-contents-panel:not([hidden]) {
+      translate: 0 0.75rem;
+    }
+  }
+}
+
+/*
  * Shown until Atkinson Hyperlegible Next loads. Its letters are as wide as Arial's on average
  * (measured: 100.07%), so only the line box differs; matching ascent and descent keeps text from
  * jumping when the web font swaps in.

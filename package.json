@@ -26,17 +26,14 @@
     "tts:warm": "tsx --env-file=.env.local scripts/tts-warm.ts"
   },
   "dependencies": {
-    "@types/three": "^0.187.0",
     "hostinger-mail-api-sdk": "^1.19.0",
     "jose": "^6.2.10",
     "leaflet": "^1.9.4",
-    "lottie-web": "^5.13.0",
     "motion": "^14.10.1",
     "mysql2": "^3.24.3",
     "next": "16.4.1",
     "next-auth": "^5.0.0-beta.32",
     "react": "19.2.8",
-    "react-body-highlighter": "^2.0.5",
     "react-dom": "19.2.8",
     "react-leaflet": "^5.0.0",
     "three": "^0.187.0"
@@ -47,6 +44,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.187.0",
     "eslint": "^9",
     "eslint-config-next": "16.4.1",
     "tailwindcss": "^4",

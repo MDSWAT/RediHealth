@@ -14,7 +14,6 @@ import {
   HealthArticleBackLink,
   HealthArticleHeader,
 } from "./HealthArticleShell";
-import { ReadingLevelSwitcher } from "./ReadingLevelSwitcher";
 import { TopicMetaBadge } from "./TopicMetaBadge";
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
@@ -26,7 +25,6 @@ export interface TopicHeroSectionProps {
   /** Estimated reading and listening time for this topic, in minutes. */
   readMinutes?: number;
   audioMinutes?: number;
-  onReadingLevelChange: (level: "simple" | "complete") => void;
   onListenClick: () => void;
   onStopClick?: () => void;
   isPlayingAudio?: boolean;
@@ -55,7 +53,6 @@ export function TopicHeroSection({
   readingLevel,
   readMinutes = 3,
   audioMinutes = 2,
-  onReadingLevelChange,
   onListenClick,
   onStopClick,
   isPlayingAudio = false,
@@ -109,10 +106,6 @@ export function TopicHeroSection({
                   onStopOverride={() => {
                     if (onStopClick) onStopClick();
                   }}
-                />
-                <ReadingLevelSwitcher
-                  level={readingLevel}
-                  onChange={onReadingLevelChange}
                 />
               </>
             }

@@ -24,7 +24,7 @@ import {
   getHealthTopicBySlug,
 } from "@/lib/i18n/health-information-topics";
 import { formatHealthArticleTitle, healthArticleIndex } from "@/lib/data/health-article-index";
-import { healthArticleCopy } from "@/lib/i18n/health-article-translations";
+import { EXCLUDED_ARTICLE_IDS } from "@/lib/data/informedhealth-directory";
 
 const readSrc = (relPath: string) =>
   readFileSync(resolve(process.cwd(), relPath), "utf8");
@@ -236,7 +236,7 @@ describe("health information, glossary, myth card, and topic grid design consist
       createElement(
         LanguageContext.Provider,
         { value: { lang: "ro", t: translations.ro, setLang: () => {} } },
-        createElement(HealthInformationTopicGrid, {}),
+        createElement(HealthInformationTopicGrid, { onOpenDictionary: () => {} }),
       ),
     );
     expect(html).toContain("min-h-11");
@@ -362,7 +362,7 @@ describe("health information, glossary, myth card, and topic grid design consist
     expect(badgeHtml).not.toContain("<svg");
   });
 
-  it("P50 (Steps 1, 4, 5): omits indexed coverage banner and prefixes German-service articles in all 7 locales", () => {
+  it("P50 (Steps 1, 4, 5): omits indexed coverage banner and publishes no Germany-specific articles", () => {
     const dirSrc = readSrc("src/components/health-information/HealthArticleDirectory.tsx");
     expect(dirSrc).not.toContain("coverage.json");
     expect(dirSrc).not.toContain("copy.coverage");
@@ -370,24 +370,27 @@ describe("health information, glossary, myth card, and topic grid design consist
     const gridSrc = readSrc("src/components/health-information/HealthInformationTopicGrid.tsx");
     expect(gridSrc).not.toContain("keyFactLabel");
 
-    const germanEntry = healthArticleIndex.find((item) => item.id === "at-the-doctors")!;
-    const generalEntry = healthArticleIndex.find((item) => item.id === "dust-mite-allergies")!;
+    // Articles about the German health system were removed in every language, and no title is prefixed with a country.
+    const germanAreas = ["health-care-in-germany", "individual-health-care-services-igel", "early-benefit-assessment-of-medications"];
+    for (const item of healthArticleIndex) {
+      expect(EXCLUDED_ARTICLE_IDS.has(item.id), item.id).toBe(false);
+      expect(item.areaIds.some((areaId) => germanAreas.includes(areaId)), item.id).toBe(false);
+      expect(item.areaIds.length, item.id).toBeGreaterThan(0);
+    }
+    const doctorEntry = healthArticleIndex.find((item) => item.id === "at-the-doctors")!;
     for (const loc of ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const) {
-      const prefix = healthArticleCopy[loc].inGermanyPrefix;
-      expect(prefix.trim().length).toBeGreaterThan(0);
-      expect(prefix).not.toContain("&");
-      expect(formatHealthArticleTitle(germanEntry, loc)).toMatch(new RegExp(`^${prefix}\\s+`));
-      expect(formatHealthArticleTitle(generalEntry, loc)).toBe(generalEntry.titles[loc]);
+      expect(formatHealthArticleTitle(doctorEntry, loc)).toBe(doctorEntry.titles[loc]);
     }
 
     const dirHtml = renderToStaticMarkup(
       createElement(
         LanguageContext.Provider,
         { value: { lang: "en", t: translations.en, setLang: () => {} } },
-        createElement(HealthArticleDirectory, { areaId: "health-care-in-germany" }),
+        createElement(HealthArticleDirectory, { areaId: "making-an-informed-decision" }),
       ),
     );
-    expect(dirHtml).toContain("In Germany: At the doctor&#x27;s:");
+    expect(dirHtml).toContain("At the doctor&#x27;s:");
+    expect(dirHtml).not.toContain("In Germany");
     expect(dirHtml).not.toContain("indexed topics");
   });
 
@@ -408,33 +411,45 @@ describe("health information, glossary, myth card, and topic grid design consist
     expect(detailSrc).not.toContain('useState<"simple" | "complete">');
   });
 
-  it("renders sticky MobileGuideJumpBar (< lg) across all 7 locales with IntersectionObserver and single-line controls", () => {
+  it("renders the floating guide section control on every width across all 7 locales with a reachable, single-line trigger", () => {
     const jumpBarSrc = readSrc(
       "src/components/health-information/MobileGuideJumpBar.tsx",
     );
-    expect(jumpBarSrc).toContain("IntersectionObserver");
     expect(jumpBarSrc).toContain("prefersCalmOrReducedMotion");
-    expect(jumpBarSrc).toContain("lg:hidden");
+    expect(jumpBarSrc).not.toContain("lg:hidden");
     expect(jumpBarSrc).toContain("min-h-11");
     expect(jumpBarSrc).toContain("whitespace-nowrap");
     expect(jumpBarSrc).toContain("focus-visible:ring-ring");
+    expect(jumpBarSrc).toContain("aria-expanded");
+    expect(jumpBarSrc).toContain("Escape");
     expect(jumpBarSrc).not.toContain("rounded-full");
     expect(jumpBarSrc).not.toContain("transition-all");
     expect(jumpBarSrc).not.toContain("data-bottom-bar");
+    // Rises above the audio player instead of hiding under it.
+    expect(readSrc("src/app/globals.css")).toMatch(
+      /\.guide-contents-float\s*\{[^}]*var\(--player-h/,
+    );
 
     const sampleBarHtml = renderToStaticMarkup(
-      createElement(MobileGuideJumpBar, {
-        ariaLabel: "Article sections",
-        sections: [
-          { id: "section-overview", label: "Overview" },
-          { id: "section-steps", label: "What to do" },
-          { id: "section-warning-signs", label: "Warning signs" },
-        ],
-      }),
+      createElement(
+        LanguageContext.Provider,
+        { value: { lang: "en", t: translations.en, setLang: () => {} } },
+        createElement(MobileGuideJumpBar, {
+          ariaLabel: "Article sections",
+          sections: [
+            { id: "section-overview", label: "Overview" },
+            { id: "section-steps", label: "What to do" },
+            { id: "section-warning-signs", label: "Warning signs" },
+          ],
+        }),
+      ),
     );
     expect(sampleBarHtml).toContain("data-mobile-guide-jump-bar");
-    expect(sampleBarHtml).toContain("lg:hidden");
-    expect(sampleBarHtml).toContain("sticky");
+    expect(sampleBarHtml).not.toContain("lg:hidden");
+    expect(sampleBarHtml).toContain("fixed");
+    expect(sampleBarHtml).toContain("guide-contents-float");
+    expect(sampleBarHtml).toContain('aria-expanded="false"');
+    expect(sampleBarHtml).toContain("1 / 3");
     expect(sampleBarHtml).toContain("min-h-11");
     expect(sampleBarHtml).toContain("whitespace-nowrap");
     expect(sampleBarHtml).toContain('href="#section-overview"');

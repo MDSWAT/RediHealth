@@ -1,6 +1,6 @@
 {
   "checkedOn": "2026-11-10",
-  "scope": "Unique individual topics linked from the alphabetical indexes of the 51 topic areas; excludes glossary entries, quizzes, videos and separate learn-more articles.",
+  "scope": "Unique individual topics linked from the alphabetical indexes of the 48 topic areas; excludes glossary entries, quizzes, videos and separate learn-more articles.",
   "failedAreas": [],
   "topics": [
     {
@@ -12,18 +12,6 @@
       ],
       "areaIds": [
         "heart-and-circulation"
-      ]
-    },
-    {
-      "id": "abortion-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/abortion-in-germany.html",
-      "sourceTitle": "Abortion",
-      "aliases": [
-        "Abortion"
-      ],
-      "areaIds": [
-        "womens-health",
-        "pregnancy-and-birth"
       ]
     },
     {
@@ -285,7 +273,7 @@
         "Doctor’s practice"
       ],
       "areaIds": [
-        "health-care-in-germany"
+        "making-an-informed-decision"
       ]
     },
     {
@@ -296,7 +284,8 @@
         "Hospital"
       ],
       "areaIds": [
-        "health-care-in-germany"
+        "making-an-informed-decision",
+        "surgery"
       ]
     },
     {
@@ -707,7 +696,7 @@
         "TNM classification"
       ],
       "areaIds": [
-        "health-care-in-germany"
+        "cancer"
       ]
     },
     {
@@ -1247,21 +1236,8 @@
       "areaIds": [
         "childrens-health",
         "addiction",
-        "health-care-in-germany",
         "nursing-care",
         "drugs-and-vaccines"
-      ]
-    },
-    {
-      "id": "disease-management-program-for-type-1-diabetes-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/disease-management-program-for-type-1-diabetes-in-germany.html",
-      "sourceTitle": "Disease management program, Diabetes",
-      "aliases": [
-        "Disease management program, Diabetes",
-        "DMP, Diabetes"
-      ],
-      "areaIds": [
-        "health-care-in-germany"
       ]
     },
     {
@@ -1297,7 +1273,8 @@
         "Kisunla, Alzheimer&#39;s disease"
       ],
       "areaIds": [
-        "early-benefit-assessment-of-medications"
+        "mental-health-brain-and-nerves",
+        "drugs-and-vaccines"
       ]
     },
     {
@@ -1324,19 +1301,6 @@
       ],
       "areaIds": [
         "allergies"
-      ]
-    },
-    {
-      "id": "drugs-assessed-by-iqwig",
-      "sourceUrl": "https://www.informedhealth.org/drugs-assessed-by-iqwig.html",
-      "sourceTitle": "AMNOG assessments",
-      "aliases": [
-        "AMNOG assessments",
-        "Early assessments of medications",
-        "Early benefit assessment"
-      ],
-      "areaIds": [
-        "early-benefit-assessment-of-medications"
       ]
     },
     {
@@ -1477,23 +1441,6 @@
       ]
     },
     {
-      "id": "evidence-based-medicine-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/evidence-based-medicine-in-germany.html",
-      "sourceTitle": "AQuMed",
-      "aliases": [
-        "AQuMed",
-        "AWMF",
-        "Cochrane Germany",
-        "Evidence-based medicine, Germany",
-        "Federal Joint Committee (G-BA)",
-        "German Network for Evidence-based Medicine",
-        "Social Code Book V"
-      ],
-      "areaIds": [
-        "what-is-evidence-based-medicine"
-      ]
-    },
-    {
       "id": "evidence-the-cornerstone-of-our-information",
       "sourceUrl": "https://www.informedhealth.org/evidence-the-cornerstone-of-our-information.html",
       "sourceTitle": "Evidence-based health information",
@@ -1529,7 +1476,7 @@
         "Orthopist"
       ],
       "areaIds": [
-        "health-care-in-germany"
+        "eyes-nose-ears"
       ]
     },
     {
@@ -1827,7 +1774,6 @@
       ],
       "areaIds": [
         "eyes-nose-ears",
-        "individual-health-care-services-igel",
         "screening"
       ]
     },
@@ -2013,29 +1959,6 @@
       ],
       "areaIds": [
         "mental-health-brain-and-nerves"
-      ]
-    },
-    {
-      "id": "health-care-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/health-care-in-germany.html",
-      "sourceTitle": "Inpatient care",
-      "aliases": [
-        "Inpatient care",
-        "Outpatient care"
-      ],
-      "areaIds": [
-        "health-care-in-germany"
-      ]
-    },
-    {
-      "id": "health-insurance-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/health-insurance-in-germany.html",
-      "sourceTitle": "Health insurance",
-      "aliases": [
-        "Health insurance"
-      ],
-      "areaIds": [
-        "health-care-in-germany"
       ]
     },
     {
@@ -2323,19 +2246,6 @@
       ],
       "areaIds": [
         "eyes-nose-ears"
-      ]
-    },
-    {
-      "id": "how-can-i-find-support-groups-and-information-centers-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/how-can-i-find-support-groups-and-information-centers-in-germany.html",
-      "sourceTitle": "Independent Patient Counseling Germany (UPD)",
-      "aliases": [
-        "Independent Patient Counseling Germany (UPD)",
-        "Information center",
-        "Self-help"
-      ],
-      "areaIds": [
-        "making-an-informed-decision"
       ]
     },
     {
@@ -3459,7 +3369,8 @@
         "Leqembi, Alzheimer&#39;s disease"
       ],
       "areaIds": [
-        "early-benefit-assessment-of-medications"
+        "mental-health-brain-and-nerves",
+        "drugs-and-vaccines"
       ]
     },
     {
@@ -3486,7 +3397,6 @@
         "cancer",
         "mens-health",
         "sexual-health-and-contraception",
-        "individual-health-care-services-igel",
         "screening"
       ]
     },
@@ -3577,7 +3487,6 @@
       "areaIds": [
         "skin-and-hair",
         "cancer",
-        "individual-health-care-services-igel",
         "screening"
       ]
     },
@@ -3595,18 +3504,6 @@
         "gland-and-hormone-disorders",
         "womens-health",
         "sexual-health-and-contraception"
-      ]
-    },
-    {
-      "id": "mental-health-problems-where-can-you-find-help-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/mental-health-problems-where-can-you-find-help-in-germany.html",
-      "sourceTitle": "Psychotherapy, help",
-      "aliases": [
-        "Psychotherapy, help"
-      ],
-      "areaIds": [
-        "health-care-in-germany",
-        "non-drug-treatments"
       ]
     },
     {
@@ -3778,7 +3675,6 @@
       "areaIds": [
         "skin-and-hair",
         "cancer",
-        "individual-health-care-services-igel",
         "screening"
       ]
     },
@@ -3946,7 +3842,6 @@
       ],
       "areaIds": [
         "childrens-health",
-        "health-care-in-germany",
         "surgery"
       ]
     },
@@ -4204,19 +4099,6 @@
       ]
     },
     {
-      "id": "prenatal-care-and-maternity-records-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/prenatal-care-and-maternity-records-in-germany.html",
-      "sourceTitle": "Maternity log",
-      "aliases": [
-        "Maternity log",
-        "Rhesus factor",
-        "Screening in pregnancy"
-      ],
-      "areaIds": [
-        "pregnancy-and-birth"
-      ]
-    },
-    {
       "id": "prenatal-testing",
       "sourceUrl": "https://www.informedhealth.org/prenatal-testing.html",
       "sourceTitle": "Prenatal diagnostics",
@@ -4268,7 +4150,6 @@
         "cancer",
         "mens-health",
         "sexual-health-and-contraception",
-        "individual-health-care-services-igel",
         "screening"
       ]
     },
@@ -4294,18 +4175,6 @@
       "areaIds": [
         "skin-and-hair",
         "muscle-and-joint-disorders"
-      ]
-    },
-    {
-      "id": "psychotherapy-providers-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/psychotherapy-providers-in-germany.html",
-      "sourceTitle": "Psychotherapy, professions",
-      "aliases": [
-        "Psychotherapy, professions"
-      ],
-      "areaIds": [
-        "health-care-in-germany",
-        "non-drug-treatments"
       ]
     },
     {
@@ -4635,19 +4504,6 @@
       ]
     },
     {
-      "id": "standard-check-ups-for-children-and-teenagers-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/standard-check-ups-for-children-and-teenagers-in-germany.html",
-      "sourceTitle": "Standard check-ups",
-      "aliases": [
-        "Standard check-ups"
-      ],
-      "areaIds": [
-        "growth-and-aging",
-        "diagnosis-and-tests",
-        "prevention"
-      ]
-    },
-    {
       "id": "stem-cell-transplantation-for-treating-cancer",
       "sourceUrl": "https://www.informedhealth.org/stem-cell-transplantation-for-treating-cancer.html",
       "sourceTitle": "Stem cell transplantation",
@@ -4767,7 +4623,6 @@
       ],
       "areaIds": [
         "childrens-health",
-        "health-care-in-germany",
         "surgery"
       ]
     },
@@ -4874,19 +4729,6 @@
       ]
     },
     {
-      "id": "the-breast-cancer-screening-program-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/the-breast-cancer-screening-program-in-germany.html",
-      "sourceTitle": "Mammography",
-      "aliases": [
-        "Mammography"
-      ],
-      "areaIds": [
-        "womens-health",
-        "cancer",
-        "screening"
-      ]
-    },
-    {
       "id": "the-classic-and-asian-forms-of-massage",
       "sourceUrl": "https://www.informedhealth.org/the-classic-and-asian-forms-of-massage.html",
       "sourceTitle": "Massages",
@@ -4908,17 +4750,6 @@
       ],
       "areaIds": [
         "making-an-informed-decision"
-      ]
-    },
-    {
-      "id": "the-german-healthcare-system",
-      "sourceUrl": "https://www.informedhealth.org/the-german-healthcare-system.html",
-      "sourceTitle": "Health care system",
-      "aliases": [
-        "Health care system"
-      ],
-      "areaIds": [
-        "health-care-in-germany"
       ]
     },
     {
@@ -5282,7 +5113,6 @@
       "areaIds": [
         "childrens-health",
         "addiction",
-        "health-care-in-germany",
         "nursing-care",
         "drugs-and-vaccines"
       ]
@@ -5483,30 +5313,6 @@
       ]
     },
     {
-      "id": "what-are-digital-health-applications-digas",
-      "sourceUrl": "https://www.informedhealth.org/what-are-digital-health-applications-digas.html",
-      "sourceTitle": "Digital Health Applications (DiHA)",
-      "aliases": [
-        "Digital Health Applications (DiHA)"
-      ],
-      "areaIds": [
-        "health-care-in-germany",
-        "non-drug-treatments"
-      ]
-    },
-    {
-      "id": "what-are-disease-management-programs-dmps",
-      "sourceUrl": "https://www.informedhealth.org/what-are-disease-management-programs-dmps.html",
-      "sourceTitle": "Disease management program",
-      "aliases": [
-        "Disease management program",
-        "DMP"
-      ],
-      "areaIds": [
-        "health-care-in-germany"
-      ]
-    },
-    {
       "id": "what-are-hormones-and-what-do-they-do",
       "sourceUrl": "https://www.informedhealth.org/what-are-hormones-and-what-do-they-do.html",
       "sourceTitle": "Chemical messengers",
@@ -5666,7 +5472,6 @@
       ],
       "areaIds": [
         "childrens-health",
-        "health-care-in-germany",
         "surgery"
       ]
     },
@@ -5943,7 +5748,6 @@
       ],
       "areaIds": [
         "childrens-health",
-        "health-care-in-germany",
         "surgery"
       ]
     },
@@ -6106,7 +5910,6 @@
         "Psychotherapy, what it involves"
       ],
       "areaIds": [
-        "health-care-in-germany",
         "non-drug-treatments"
       ]
     },
@@ -6203,22 +6006,6 @@
       ]
     },
     {
-      "id": "what-screening-tests-does-german-public-health-insurance-cover",
-      "sourceUrl": "https://www.informedhealth.org/what-screening-tests-does-german-public-health-insurance-cover.html",
-      "sourceTitle": "Cancer screening",
-      "aliases": [
-        "Cancer screening"
-      ],
-      "areaIds": [
-        "womens-health",
-        "skin-and-hair",
-        "cancer",
-        "mens-health",
-        "digestive-system-disorders",
-        "screening"
-      ]
-    },
-    {
       "id": "what-types-of-studies-are-there",
       "sourceUrl": "https://www.informedhealth.org/what-types-of-studies-are-there.html",
       "sourceTitle": "Case control studies",
@@ -6261,19 +6048,6 @@
       ],
       "areaIds": [
         "pregnancy-and-birth"
-      ]
-    },
-    {
-      "id": "which-vaccinations-are-recommended-in-germany",
-      "sourceUrl": "https://www.informedhealth.org/which-vaccinations-are-recommended-in-germany.html",
-      "sourceTitle": "MMR vaccine",
-      "aliases": [
-        "MMR vaccine",
-        "Vaccine",
-        "6-in-1 vaccine"
-      ],
-      "areaIds": [
-        "drugs-and-vaccines"
       ]
     },
     {

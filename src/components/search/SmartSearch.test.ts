@@ -290,7 +290,7 @@ describe("smart search engine", () => {
     expect(
       roCnas.results.some(
         (item) =>
-          item.href.includes("health-care-in-germany") ||
+          item.href.includes("/health-assistant") ||
           item.href.includes("/mediatori") ||
           item.href.includes("/get-help"),
       ),

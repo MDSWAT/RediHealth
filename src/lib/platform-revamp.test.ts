@@ -6,7 +6,6 @@ import { getLocalizedSubRegion, SUB_REGION_INFO } from "@/components/health-chec
 import { getHealthTopicsList } from "@/lib/i18n/health-information-topics";
 import { getHealthMyths } from "@/lib/i18n/health-myths";
 import { evaluateBloodPressure } from "@/lib/simulators/blood-pressure-types";
-import { parsePrescriptionText } from "@/lib/prescription-parser";
 import { NEWS_ARTICLES, getLocalizedArticle } from "@/lib/data/news";
 import type { Lang } from "@/lib/i18n/translations";
 
@@ -98,12 +97,6 @@ describe("Platform core capabilities and multi-locale contracts", () => {
     expect(evaluateBloodPressure(135, 86).tier).toBe("high_normal");
     expect(evaluateBloodPressure(150, 95).tier).toBe("grade_1_hypertension");
     expect(evaluateBloodPressure(185, 122).tier).toBe("grade_3_hypertension");
-  });
-
-  it("parses structured medication schedules from prescription text", () => {
-    const parsed = parsePrescriptionText("Metformin 500mg 1x2 pe zi după masă timp de 30 zile");
-    expect(parsed.medicines.length).toBeGreaterThanOrEqual(1);
-    expect(parsed.medicines[0].name.toLowerCase()).toContain("metformin");
   });
 
   it("provides localized regional health news articles across all 4 locales", () => {

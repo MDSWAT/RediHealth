@@ -64,6 +64,6 @@ async function main() {
   await writeFile(statusPath, JSON.stringify(status, null, 2) + "\n");
   await writeFile(new URL("coverage.json", contentRoot), JSON.stringify({ checkedOn: new Date().toISOString().slice(0, 10), indexedTopics: topics.length,
     completedTopics, availableTopics: index.length, languages: langs, availableByLanguage, missingByLanguage, missing, unavailableTopics,
-    humanClinicalReview: false, scope: "Unique individual entries in the alphabetical indexes of all 51 topic areas. Separate learn-more pages, glossary entries, media and personal stories are not replicated." }, null, 2) + "\n");
+    humanClinicalReview: false, scope: "Unique individual entries in the alphabetical indexes of all 48 topic areas. Separate learn-more pages, glossary entries, media and personal stories are not replicated." }, null, 2) + "\n");
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });

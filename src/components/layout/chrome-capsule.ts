@@ -77,16 +77,6 @@ export function capsuleDivider(onHero: boolean) {
   );
 }
 
-/** The filled action that closes the capsule. */
-export function capsuleAction(onHero: boolean) {
-  return cn(
-    "relative z-10 inline-flex items-center rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.14)] transition-[background-color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
-    onHero
-      ? "bg-paper text-foreground hover:bg-white hover:shadow-[0_4px_14px_-4px_rgba(0,0,0,0.45)]"
-      : "bg-ink-950 text-white hover:bg-ink-900 dark:bg-paper dark:text-ink-950 dark:hover:bg-white",
-  );
-}
-
 /** Shared surface of every panel that drops from the capsule (text size, language, start here). */
 export const CAPSULE_PANEL =
   "rounded-(--radius-surface) border border-border bg-card text-foreground shadow-(--shadow-card-hover) dark:border-white/10 dark:bg-ink-900 dark:text-paper";

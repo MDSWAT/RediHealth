@@ -12,17 +12,11 @@ import { informedHealthCopy } from "@/lib/i18n/informedhealth-translations";
 import { healthSummaryCopy } from "@/lib/i18n/health-summary-translations";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import Link from "next/link";
-import { healthArticleCopy } from "@/lib/i18n/health-article-translations";
 import { AREA_GROUPS, healthSummaryPath, findInformedHealthAreas, type AreaGroup } from "@/lib/data/informedhealth-directory";
 import { openSmartSearch } from "@/components/search/smart-search-events";
 import { getSmartSearchCopy } from "@/lib/i18n/smart-search-copy";
 
 const PAGE_SIZE = 12;
-
-export function InformedHealthDirectoryJumpLink() {
-  const { lang } = useLanguage();
-  return <a href="#health-articles" className="mt-4 inline-flex min-h-11 items-center gap-2 whitespace-nowrap text-body font-semibold text-foreground underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">{healthArticleCopy[lang].title}<ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" /></a>;
-}
 
 export function InformedHealthDirectory() {
   const { lang } = useLanguage();

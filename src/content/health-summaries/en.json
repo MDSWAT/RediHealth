@@ -104,21 +104,6 @@
     "details": "Regular oral care and suitable dental checks help identify problems. The best treatment depends on the tooth or gum condition and the person's needs. Dental pain does not reliably show how serious a problem is. Swelling with difficulty swallowing or breathing requires urgent help rather than waiting for a routine dental visit.",
     "questions": ["What is causing the problem with this tooth or gum?", "What are the benefits and disadvantages of the treatment options?"]
   },
-  "early-benefit-assessment-of-medications": {
-    "intro": "Germany evaluates certain new medicines to examine whether they offer added benefit compared with an established treatment. This assessment concerns evidence from groups of patients and is part of the German system for evaluating medicines.",
-    "details": "An assessment may consider outcomes important to patients, such as symptoms, survival, quality of life and adverse effects. The result depends on the comparison and the evidence available. It is not a personal prescribing recommendation, and German assessment or payment arrangements do not automatically apply in other countries.",
-    "questions": ["Which patient group and comparison does this assessment concern?", "How relevant are the findings to my treatment choices?"]
-  },
-  "health-care-in-germany": {
-    "intro": "Health systems differ in how appointments, insurance, referrals and payment are organised. This topic concerns Germany. Understanding which service provides which kind of care can make it easier to find the right point of contact.",
-    "details": "The rules described in German information may not apply in Romania, Moldova, Albania or Italy. Before arranging a service, check local access requirements and possible costs with the provider or insurer. When reading about a health system, distinguish general medical information from country-specific administrative rules.",
-    "questions": ["Does this information apply in the country where I receive care?", "Which provider or insurer can confirm access and costs?"]
-  },
-  "individual-health-care-services-igel": {
-    "intro": "In Germany, some tests and treatments offered outside standard statutory insurance coverage are called individual health services, or IGeL. Patients may have to pay for these services themselves. Being available for purchase does not by itself show that a service improves health.",
-    "details": "Before deciding, ask what benefit is supported by research, what harms or further tests could follow and whether a covered alternative exists. A price and a clear explanation should be available. IGeL is a German category; payment rules and available services differ elsewhere.",
-    "questions": ["What benefit is proven, and what uncertainty remains?", "What are the costs, risks and covered alternatives?"]
-  },
   "nursing-care": {
     "intro": "Nursing care supports people with health needs and everyday activities. It may be provided at home, in the community or in a care facility. Needs can change after illness, injury or a loss of independence.",
     "details": "Planning care includes understanding what the person can do, where help is needed and what matters to them. Family carers may need support too. Available services, assessments and financial arrangements vary by country. A care plan should be reviewed when health or practical circumstances change.",

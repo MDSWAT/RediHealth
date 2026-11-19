@@ -234,37 +234,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "smoking",
-        title: "Отказ от курения",
+        title: "Курение и алкоголь",
         description:
-          "Зачем бросать курить и что помогает справиться.",
+          "Как бросить курить, пить меньше и кто может помочь.",
         intro:
-          "Отказ от курения — лучшее, что вы можете сделать для своего здоровья. Организм начинает восстанавливаться очень быстро. Многие пробуют несколько раз, прежде чем бросить окончательно.",
+          "Курение и алкоголь вредят сердцу, лёгким и печени и повышают риск рака. Важен каждый шаг: организм быстро начинает восстанавливаться, когда вы бросаете или пьёте меньше.",
         keyFacts: [
-          "Уже через несколько часов после последней сигареты уровень кислорода растет, сосуды расслабляются, а легкие начинают очищаться.",
-          "По мере восстановления легких и сосудов вам легче подниматься по лестнице, уменьшается кашель, возвращаются вкус и обоняние.",
-          "Если выбрать дату отказа, переждать трехминутный порыв закурить и попросить поддержки у врача, шансы бросить удваиваются.",
+          "Уже через несколько часов после последней сигареты кислорода в крови становится больше, сосуды расслабляются, а лёгкие начинают очищаться.",
+          "Чем меньше алкоголя вы пьёте, тем лучше для печени, сердца и давления. Полностью безопасного количества нет.",
+          "Если выбрать день отказа, переждать 3 минуты тяги и попросить поддержки у врача, шансы на успех удваиваются.",
         ],
         recommendations: [
           {
-            title: "Выберите день отказа",
+            title: "Выберите день",
             description:
-              "Наметьте день и скажите об этом близким. Заранее решите, чем займетесь, когда потянет закурить.",
+              "Выберите день, когда бросаете курить или начинаете пить меньше. Заранее решите, что будете делать, когда придёт тяга.",
           },
           {
-            title: "Обратитесь за помощью",
+            title: "Пейте меньше",
             description:
-              "Программы помощи и одобренные средства от курения повышают шансы бросить насовсем.",
+              "Оставляйте несколько дней в неделю без алкоголя. Не пейте совсем при беременности, за рулём и с лекарствами, которые несовместимы с алкоголем.",
           },
           {
-            title: "Не сдавайтесь",
+            title: "Попросите помощи",
             description:
-              "Если сорвались и закурили снова — не опускайте руки. Сделайте вывод и попробуйте еще раз.",
+              "Семейный врач поможет бросить курить или пить. Если сорвались, не сдавайтесь: попробуйте снова.",
           },
         ],
         warningSigns: [
-          "Кашель, который не проходит, или изменение привычного долгого кашля.",
-          "Кашель с кровью или боль в груди, которая не проходит.",
-          "Нарастающая одышка при обычных повседневных делах.",
+          "Кашель с кровью, боль в груди, которая не проходит, или одышка всё чаще.",
+          "Кашель, который не проходит, или изменение привычного кашля.",
+          "Вы не можете перестать пить, вам нужен алкоголь по утрам, или вас трясёт и бросает в пот, когда вы не пьёте. Резкий отказ может быть опасен: обратитесь к врачу.",
         ],
       },
       {
@@ -304,37 +304,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "womens-health",
-        title: "Женское здоровье",
+        title: "Беременность",
         description:
-          "Здоровье женщины в любом возрасте — от цикла до менопаузы.",
+          "Как заботиться о себе и малыше: от первого теста до родов.",
         intro:
-          "Задачи женского здоровья меняются с возрастом: от месячных и беременности до менопаузы и позже. Когда вы знаете, что для вас норма, легче сразу заметить перемены.",
+          "Беременность длится около 40 недель. Регулярные осмотры, несколько полезных привычек и своевременная помощь защищают вас и малыша.",
         keyFacts: [
-          "Организм женщины проходит естественные гормональные этапы от месячных и беременности до менопаузы — это влияет на кости, сердце и настроение.",
-          "Знание особенностей своего тела помогает вовремя заметить изменения в груди, необычные кровотечения или тянущую боль внизу живота.",
-          "Регулярный мазок шейки матки, ежемесячный самоосмотр груди и плановые осмотры при беременности выявляют проблемы рано, когда их легче лечить.",
+          "Фолиевая кислота до беременности и в первые 3 месяца снижает риск некоторых пороков развития у ребёнка.",
+          "Регулярные осмотры проверяют давление, анализы и рост малыша, даже когда вы хорошо себя чувствуете.",
+          "Алкоголь и курение попадают к ребёнку через кровь. Безопасного количества алкоголя при беременности нет.",
         ],
         recommendations: [
           {
-            title: "Знайте, что для вас норма",
+            title: "Рано обратитесь к врачу",
             description:
-              "Наблюдайте за своим обычным циклом и самочувствием, чтобы сразу замечать перемены.",
+              "Когда узнаете о беременности, обратитесь к семейному врачу или гинекологу.",
           },
           {
-            title: "Проходите регулярные осмотры",
+            title: "Принимайте фолиевую кислоту",
             description:
-              "Приходите на осмотры и обследования, рекомендованные для вашего возраста.",
+              "Спросите врача, какую дозу принимать и как долго. Не принимайте другие лекарства, не спросив его.",
           },
           {
-            title: "Обращайтесь к врачу вовремя",
+            title: "Берегите себя",
             description:
-              "Поговорите с врачом о любом симптоме, который вас беспокоит.",
+              "Питайтесь разнообразно, отдыхайте, не пейте алкоголь и не курите. Попросите помощи, если трудно остановиться.",
           },
         ],
         warningSigns: [
-          "Необычные кровотечения между менструациями или после менопаузы.",
-          "Сильная или продолжительная боль в нижней части живота или таза.",
-          "Новые изменения в груди: уплотнение, втяжение или изменение кожи.",
+          "Кровотечение из влагалища или сильная боль в животе.",
+          "Сильная головная боль, нечёткое зрение или внезапный отёк лица и рук.",
+          "Малыш шевелится меньше обычного или из влагалища подтекает жидкость.",
         ],
       },
     ],
@@ -537,37 +537,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "smoking",
-        title: "Quitting smoking",
+        title: "Smoking and alcohol",
         description:
-          "Why quitting is worth it and what makes it easier.",
+          "How to stop smoking, drink less and who can help you.",
         intro:
-          "Stopping smoking is one of the best things you can do for your health. Your body starts to recover quickly. Most people try several times before they stop for good.",
+          "Smoking and alcohol harm your heart, lungs and liver and raise the risk of cancer. Every step counts: your body starts to recover quickly once you stop or cut down.",
         keyFacts: [
           "Within hours of your last cigarette, oxygen levels rise, blood vessels relax and your lungs begin clearing themselves.",
-          "As your lungs and circulation recover, you breathe more easily on stairs, cough less and regain your sense of taste.",
+          "The less alcohol you drink, the better for your liver, heart and blood pressure. No amount is completely risk-free.",
           "Setting a quit date, waiting out 3-minute cravings and asking your doctor for support double your chances of stopping.",
         ],
         recommendations: [
           {
-            title: "Pick a quit date",
+            title: "Pick a date",
             description:
-              "Choose a day and tell people you trust. Plan what you will do when you want to smoke.",
+              "Choose the day you stop smoking or start drinking less. Plan what you will do when the craving comes.",
+          },
+          {
+            title: "Drink less",
+            description:
+              "Keep several alcohol-free days each week. Do not drink at all in pregnancy, when driving or with medicines that do not mix with alcohol.",
           },
           {
             title: "Get help",
             description:
-              "Stop-smoking services and approved aids make it more likely you stay smoke-free.",
-          },
-          {
-            title: "Keep trying",
-            description:
-              "If you smoke again, do not give up. Learn from it and try again.",
+              "Your family doctor can help you stop smoking or drinking. If you smoke or drink again, do not give up: try again.",
           },
         ],
         warningSigns: [
+          "Coughing up blood, chest pain that does not go away, or getting more and more out of breath.",
           "A cough that will not go away, or a change in a cough you have had for a long time.",
-          "Coughing up blood, or chest pain that does not go away.",
-          "Getting more and more out of breath doing everyday things.",
+          "You cannot stop drinking, you need alcohol in the morning, or you shake and sweat when you do not drink. Stopping suddenly can be dangerous: see a doctor.",
         ],
       },
       {
@@ -607,37 +607,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "womens-health",
-        title: "Women's health",
+        title: "Pregnancy",
         description:
-          "Your health at every age, from periods to menopause.",
+          "How to look after yourself and your baby, from the first test to the birth.",
         intro:
-          "Women's health needs change through life, from periods and pregnancy to menopause and after. Knowing what is normal for you helps you notice when something changes.",
+          "Pregnancy lasts about 40 weeks. Regular check-ups, a few healthy habits and asking for help early protect you and your baby.",
         keyFacts: [
-          "A woman's body goes through natural hormone shifts from menstruation and pregnancy to menopause, affecting bones, heart and mood.",
-          "Knowing what is normal for your body helps you spot breast changes, unusual bleeding or persistent pelvic pain early.",
-          "Regular cervical screening, monthly breast self-checks and routine pregnancy visits find problems early when they are easiest to treat.",
+          "Folic acid, taken before pregnancy and in the first 3 months, lowers the risk of some birth defects.",
+          "Regular check-ups look at your blood pressure, your tests and how the baby is growing, even when you feel well.",
+          "Alcohol and smoking reach the baby through the blood. There is no safe amount of alcohol in pregnancy.",
         ],
         recommendations: [
           {
-            title: "Know your normal",
+            title: "See a doctor early",
             description:
-              "Notice your usual cycle and body, so changes stand out.",
+              "When you find out you are pregnant, go to your family doctor or a gynaecologist.",
           },
           {
-            title: "Keep up with check-ups",
+            title: "Take folic acid",
             description:
-              "Go to the screenings and appointments recommended for your age.",
+              "Ask your doctor what dose to take and for how long. Do not take other medicines without asking.",
           },
           {
-            title: "Get help early",
+            title: "Look after yourself",
             description:
-              "Talk to a doctor about any symptom that worries you.",
+              "Eat a varied diet, rest, and do not drink alcohol or smoke. Ask for help if it is hard to stop.",
           },
         ],
         warningSigns: [
-          "Unusual bleeding, between periods or after menopause.",
-          "Strong or long-lasting pain in your lower belly or pelvis.",
-          "A new change in your breast, such as a lump, a dent or a change in the skin.",
+          "Bleeding from the vagina or strong pain in your belly.",
+          "A bad headache, blurred vision or sudden swelling of your face and hands.",
+          "The baby is moving less than usual, or fluid is leaking from your vagina.",
         ],
       },
     ],
@@ -839,37 +839,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "smoking",
-        title: "Renunțarea la fumat",
+        title: "Fumat și alcool",
         description:
-          "De ce merită să te lași și ce te ajută.",
+          "Cum renunți la țigări, cum bei mai puțin și cine te ajută.",
         intro:
-          "Când te lași de fumat, faci unul dintre cele mai bune lucruri pentru sănătatea ta. Corpul începe repede să se refacă.",
+          "Fumatul și alcoolul fac rău inimii, plămânilor, ficatului și cresc riscul de cancer. Orice pas contează: corpul începe repede să se refacă după ce te oprești sau bei mai puțin.",
         keyFacts: [
           "Din primele ore după ultima țigară, nivelul de oxigen din sânge urcă, vasele se relaxează și plămânii încep să se curețe.",
-          "Pe măsură ce corpul se reface, respiri mai ușor când urci scările, tușești mai puțin și îți revin gustul și mirosul.",
+          "Cu cât bei mai puțin alcool, cu atât e mai bine pentru ficat, inimă și tensiune. Nu există o cantitate fără niciun risc.",
           "Dacă îți alegi o zi de oprire, lași să treacă cele 3 minute de poftă și ceri sprijinul medicului, îți dublezi șansele de reușită.",
         ],
         recommendations: [
           {
             title: "Alege o zi",
             description:
-              "Alege ziua în care te lași. Gândește-te dinainte ce faci când ai poftă de țigară.",
+              "Alege ziua în care te lași de fumat sau în care începi să bei mai puțin. Gândește-te dinainte ce faci când ai poftă.",
+          },
+          {
+            title: "Bea mai puțin",
+            description:
+              "Păstrează câteva zile pe săptămână fără alcool. Nu bea deloc în sarcină, când conduci sau când iei medicamente care nu se potrivesc cu alcoolul.",
           },
           {
             title: "Cere ajutor",
             description:
-              "Programele de renunțare la fumat și tratamentele aprobate te ajută.",
-          },
-          {
-            title: "Nu renunța",
-            description:
-              "Dacă ai fumat din nou, încearcă iar.",
+              "Medicul de familie te poate ajuta să renunți la fumat sau la băutură. Dacă ai fumat sau ai băut din nou, nu renunța: încearcă iar.",
           },
         ],
         warningSigns: [
+          "Tuși cu sânge, ai durere în piept care nu trece sau rămâi tot mai des fără aer.",
           "Tuse care nu trece sau tuse obișnuită care se schimbă.",
-          "Tuși cu sânge sau ai durere în piept care nu trece.",
-          "Rămâi tot mai des fără aer la treburile de zi cu zi.",
+          "Nu te poți opri din băut, ai nevoie de alcool dimineața sau tremuri și transpiri când nu bei. Oprirea bruscă poate fi periculoasă: mergi la medic.",
         ],
       },
       {
@@ -909,37 +909,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "womens-health",
-        title: "Sănătatea femeii",
+        title: "Sarcina",
         description:
-          "Sănătatea ta la fiecare vârstă, de la menstruație la menopauză.",
+          "Cum ai grijă de tine și de copil, de la primul test până la naștere.",
         intro:
-          "Nevoile tale de sănătate se schimbă de-a lungul vieții. Dacă știi ce e normal pentru tine, observi mai ușor când ceva se schimbă.",
+          "Sarcina durează cam 40 de săptămâni. Controalele regulate, câteva obiceiuri sănătoase și ajutorul cerut la timp te protejează pe tine și pe copil.",
         keyFacts: [
-          "Corpul femeii trece prin etape firești, de la menstruație și sarcină până la menopauză, ghidate de hormoni care influențează oasele și inima.",
-          "Când îți cunoști corpul, observi din timp orice schimbare la sâni, sângerare neobișnuită sau durere care nu trece.",
-          "Testul Babeș-Papanicolau, autoexaminarea lunară a sânilor și controalele regulate în sarcină depistează problemele devreme.",
+          "Acidul folic, luat înainte de sarcină și în primele 3 luni, scade riscul unor malformații la copil.",
+          "Controalele regulate la medic verifică tensiunea, analizele și creșterea copilului, chiar dacă te simți bine.",
+          "Alcoolul și fumatul ajung la copil prin sânge. Nu există o cantitate sigură de alcool în sarcină.",
         ],
         recommendations: [
           {
-            title: "Cunoaște-ți corpul",
+            title: "Mergi devreme la medic",
             description:
-              "Fii atentă la ciclul tău și la corpul tău, ca să observi schimbările.",
+              "Când afli că ești însărcinată, mergi la medicul de familie sau la ginecolog. Consultațiile în sarcină sunt gratuite, chiar și fără asigurare.",
           },
           {
-            title: "Mergi la controale",
+            title: "Ia acid folic",
             description:
-              "Mergi la consultațiile și screeningurile recomandate pentru vârsta ta.",
+              "Întreabă medicul ce doză să iei și cât timp. Nu lua alte medicamente fără să-l întrebi.",
           },
           {
-            title: "Cere ajutor din timp",
+            title: "Ai grijă de tine",
             description:
-              "Vorbește devreme cu medicul despre orice semn care te îngrijorează.",
+              "Mănâncă variat, odihnește-te și nu bea alcool și nu fuma. Cere ajutor dacă îți este greu să te oprești.",
           },
         ],
         warningSigns: [
-          "Sângerări neobișnuite, între menstruații sau după menopauză.",
-          "Durere puternică sau care nu trece în partea de jos a burții.",
-          "O schimbare nouă la sân, de exemplu un nodul sau pielea schimbată.",
+          "Sângerare din vagin sau durere puternică de burtă.",
+          "Durere de cap puternică, vedere încețoșată sau umflarea bruscă a feței și a mâinilor.",
+          "Copilul se mișcă mai puțin decât de obicei sau îți curge lichid din vagin.",
         ],
       },
     ],
@@ -1141,37 +1141,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "smoking",
-        title: "Lënia e duhanit",
+        title: "Duhani dhe alkooli",
         description:
-          "Pse ia vlen ta lësh duhanin dhe çfarë të ndihmon.",
+          "Si të lësh duhanin, të pish më pak dhe kush të ndihmon.",
         intro:
-          "Lënia e duhanit është një nga gjërat më të mira që mund të bësh për shëndetin. Trupi fillon të rimëkëmbet shpejt.",
+          "Duhani dhe alkooli dëmtojnë zemrën, mushkëritë dhe mëlçinë dhe rritin rrezikun e kancerit. Çdo hap ka rëndësi: trupi fillon të shërohet shpejt kur ndalon ose pi më pak.",
         keyFacts: [
-          "Që në orët e para pas cigares së fundit, niveli i oksigjenit rritet, enët e gjakut çlirohen dhe mushkëritë nisin të pastrohen.",
-          "Ndërsa trupi rimëkëmbet, merr frymë më lehtë në shkallë, kollitesh më pak dhe të kthehen shija e nuhatja.",
-          "Nëse zgjedh një ditë për ta lënë, kalon 3 minutat e dëshirës dhe kërkon mbështetjen e mjekut, i dyfishon shanset për t'ia dalë.",
+          "Në orët e para pas cigares së fundit, oksigjeni në gjak rritet, enët e gjakut çlirohen dhe mushkëritë nisin të pastrohen.",
+          "Sa më pak alkool të pish, aq më mirë për mëlçinë, zemrën dhe tensionin. Asnjë sasi nuk është pa rrezik.",
+          "Nëse zgjedh një ditë ndalimi, pret që të kalojnë 3 minutat e dëshirës dhe kërkon ndihmën e mjekut, i dyfishon shanset.",
         ],
         recommendations: [
           {
-            title: "Zgjidh një datë",
+            title: "Zgjidh një ditë",
             description:
-              "Vendos ditën kur e lë. Mendo që më parë çfarë do të bësh kur të vijë dëshira për cigare.",
+              "Zgjidh ditën kur e lë duhanin ose fillon të pish më pak. Mendo që më parë çfarë do të bësh kur të vijë dëshira.",
+          },
+          {
+            title: "Pi më pak",
+            description:
+              "Mbaj disa ditë në javë pa alkool. Mos pi fare në shtatzëni, kur nget makinën ose me ilaçe që nuk shkojnë me alkoolin.",
           },
           {
             title: "Kërko ndihmë",
             description:
-              "Programet për lënien e duhanit dhe mjetet e miratuara e bëjnë më të lehtë.",
-          },
-          {
-            title: "Mos u dorëzo",
-            description:
-              "Nëse e ndez sërish, provo përsëri.",
+              "Mjeku i familjes të ndihmon ta lësh duhanin ose pijen. Nëse pi përsëri, mos u dorëzo: provo sërish.",
           },
         ],
         warningSigns: [
-          "Kollë që nuk kalon ose ndryshim i kollës së zakonshme.",
-          "Kollë me gjak ose dhimbje gjoksi që nuk kalon.",
-          "Të mungon ajri gjithnjë e më shumë në punët e përditshme.",
+          "Kollitesh me gjak, ke dhimbje gjoksi që nuk kalon ose të merret fryma gjithnjë e më shpesh.",
+          "Kollë që nuk kalon ose kollë e vjetër që ndryshon.",
+          "Nuk mund të ndalosh së piri, të duhet alkool në mëngjes ose dridhesh e djersitesh kur nuk pi. Ndalimi i papritur mund të jetë i rrezikshëm: shko te mjeku.",
         ],
       },
       {
@@ -1211,37 +1211,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "womens-health",
-        title: "Shëndeti i gruas",
+        title: "Shtatzënia",
         description:
-          "Shëndeti yt në çdo moshë, nga cikli te menopauza.",
+          "Si të kujdesesh për veten dhe për foshnjën, nga testi i parë deri te lindja.",
         intro:
-          "Nevojat e tua për shëndetin ndryshojnë gjatë jetës. Kur di çfarë është normale për ty, e vë re më lehtë një ndryshim.",
+          "Shtatzënia zgjat rreth 40 javë. Kontrollet e rregullta, disa zakone të shëndetshme dhe ndihma e kërkuar me kohë të mbrojnë ty dhe foshnjën.",
         keyFacts: [
-          "Trupi i gruas kalon nëpër faza të natyrshme nga cikli dhe shtatzënia deri te menopauza, të udhëhequra nga hormonet që ndikojnë kockat dhe zemrën.",
-          "Kur e njeh trupin tënd, vë re me kohë çdo ndryshim në gji, gjakderdhje të pazakontë ose dhimbje që nuk kalon.",
-          "Pap-testi, vetëkontrolli mujor i gjirit dhe vizitat e rregullta në shtatzëni i zbulojnë problemet herët.",
+          "Acidi folik, i marrë para shtatzënisë dhe në 3 muajt e parë, ul rrezikun e disa keqformimeve te foshnja.",
+          "Kontrollet e rregullta te mjeku shohin tensionin, analizat dhe rritjen e foshnjës, edhe kur ndihesh mirë.",
+          "Alkooli dhe duhani arrijnë te foshnja përmes gjakut. Nuk ka sasi të sigurt alkooli gjatë shtatzënisë.",
         ],
         recommendations: [
           {
-            title: "Njih trupin tënd",
+            title: "Shko herët te mjeku",
             description:
-              "Ki parasysh ciklin dhe trupin tënd, që të vësh re ndryshimet.",
+              "Kur mëson se je shtatzënë, shko te mjeku i familjes ose te gjinekologu.",
           },
           {
-            title: "Shko në kontrolle",
+            title: "Merr acid folik",
             description:
-              "Shko në vizitat dhe kontrollet e rekomanduara për moshën tënde.",
+              "Pyet mjekun çfarë doze të marrësh dhe për sa kohë. Mos merr ilaçe të tjera pa e pyetur.",
           },
           {
-            title: "Kërko ndihmë herët",
+            title: "Kujdesu për veten",
             description:
-              "Fol me mjekun për çdo shenjë që të shqetëson.",
+              "Ha ushqime të larmishme, pusho dhe mos pi alkool e mos pi duhan. Kërko ndihmë nëse e ke të vështirë të ndalosh.",
           },
         ],
         warningSigns: [
-          "Gjakderdhje e pazakontë, mes cikleve ose pas menopauzës.",
-          "Dhimbje e fortë ose që nuk kalon në fund të barkut.",
-          "Ndryshim i ri në gji, si gungë ose ndryshim i lëkurës.",
+          "Gjakderdhje nga vagina ose dhimbje e fortë barku.",
+          "Dhimbje koke e fortë, shikim i turbullt ose ënjtje e papritur e fytyrës dhe e duarve.",
+          "Foshnja lëviz më pak se zakonisht ose të rrjedh lëng nga vagina.",
         ],
       },
     ],
@@ -1443,37 +1443,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "smoking",
-        title: "Smettere di fumare",
+        title: "Fumo e alcol",
         description:
-          "Perché conviene smettere e cosa ti aiuta.",
+          "Come smettere di fumare, bere meno e chi può aiutarti.",
         intro:
-          "Smettere di fumare è una delle cose migliori che puoi fare per la tua salute. Il corpo comincia presto a riprendersi.",
+          "Fumo e alcol danneggiano cuore, polmoni e fegato e aumentano il rischio di tumori. Ogni passo conta: il corpo inizia presto a riprendersi quando smetti o bevi meno.",
         keyFacts: [
-          "Già nelle prime ore dopo l'ultima sigaretta l'ossigeno nel sangue sale, i vasi si rilassano e i polmoni iniziano a pulirsi.",
-          "Man mano che il corpo recupera respiri meglio sulle scale, tossisci meno e ritrovi gusto e olfatto.",
-          "Scegliere un giorno per smettere, superare i 3 minuti di voglia e chiedere il supporto del medico raddoppiano le probabilità di riuscita.",
+          "Già poche ore dopo l'ultima sigaretta l'ossigeno nel sangue sale, i vasi si rilassano e i polmoni iniziano a pulirsi.",
+          "Meno alcol bevi, meglio è per fegato, cuore e pressione. Nessuna quantità è del tutto senza rischi.",
+          "Scegliere un giorno per smettere, aspettare che passino i 3 minuti di voglia e chiedere aiuto al medico raddoppia le probabilità di riuscire.",
         ],
         recommendations: [
           {
-            title: "Scegli una data",
+            title: "Scegli un giorno",
             description:
-              "Scegli il giorno in cui smetti. Pensa prima a cosa fare quando hai voglia di fumare.",
+              "Scegli il giorno in cui smetti di fumare o inizi a bere meno. Pensa prima a cosa farai quando arriva la voglia.",
           },
           {
-            title: "Fatti aiutare",
+            title: "Bevi meno",
             description:
-              "I centri antifumo e i prodotti approvati ti rendono tutto più facile.",
+              "Tieni alcuni giorni a settimana senza alcol. Non bere affatto in gravidanza, quando guidi o con farmaci che non vanno con l'alcol.",
           },
           {
-            title: "Non arrenderti",
+            title: "Chiedi aiuto",
             description:
-              "Se ricominci a fumare, riprova.",
+              "Il medico di famiglia può aiutarti a smettere di fumare o di bere. Se ricominci, non arrenderti: riprova.",
           },
         ],
         warningSigns: [
-          "Tosse che non passa o tosse abituale che cambia.",
-          "Sangue quando tossisci o dolore al petto che non passa.",
-          "Fiato sempre più corto nelle attività di tutti i giorni.",
+          "Tossisci sangue, hai dolore al petto che non passa o ti manca il fiato sempre più spesso.",
+          "Una tosse che non passa o una tosse abituale che cambia.",
+          "Non riesci a smettere di bere, ti serve alcol al mattino o tremi e sudi quando non bevi. Smettere di colpo può essere pericoloso: vai dal medico.",
         ],
       },
       {
@@ -1513,37 +1513,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "womens-health",
-        title: "Salute della donna",
+        title: "Gravidanza",
         description:
-          "La tua salute a ogni età, dal ciclo alla menopausa.",
+          "Come prenderti cura di te e del bambino, dal primo test al parto.",
         intro:
-          "I tuoi bisogni di salute cambiano nel corso della vita. Se sai cosa è normale per te, noti prima quando qualcosa cambia.",
+          "La gravidanza dura circa 40 settimane. Controlli regolari, poche abitudini sane e un aiuto chiesto in tempo proteggono te e il bambino.",
         keyFacts: [
-          "Il corpo femminile attraversa fasi naturali dal ciclo e dalla gravidanza fino alla menopausa, guidate da ormoni che agiscono su ossa e cuore.",
-          "Quando conosci il tuo corpo noti subito qualsiasi cambiamento al seno, sanguinamento insolito o dolore che non passa.",
-          "Il Pap test, l'autoesame mensile del seno e le visite regolari in gravidanza individuano i problemi precocemente.",
+          "L'acido folico, preso prima della gravidanza e nei primi 3 mesi, riduce il rischio di alcune malformazioni del bambino.",
+          "I controlli regolari verificano la pressione, gli esami e la crescita del bambino, anche quando ti senti bene.",
+          "Alcol e fumo arrivano al bambino attraverso il sangue. In gravidanza non esiste una quantità sicura di alcol.",
         ],
         recommendations: [
           {
-            title: "Conosci il tuo corpo",
+            title: "Vai presto dal medico",
             description:
-              "Fai caso al tuo ciclo e al tuo corpo, così noti i cambiamenti.",
+              "Quando scopri di essere incinta, vai dal medico di famiglia, in consultorio o dal ginecologo.",
           },
           {
-            title: "Fai i controlli",
+            title: "Prendi l'acido folico",
             description:
-              "Vai alle visite e agli screening consigliati per la tua età.",
+              "Chiedi al medico quale dose prendere e per quanto tempo. Non prendere altri farmaci senza chiedere.",
           },
           {
-            title: "Chiedi aiuto presto",
+            title: "Prenditi cura di te",
             description:
-              "Parla con il medico di qualsiasi sintomo che ti preoccupa.",
+              "Mangia in modo vario, riposa e non bere alcol e non fumare. Chiedi aiuto se è difficile smettere.",
           },
         ],
         warningSigns: [
-          "Sanguinamenti insoliti, tra un ciclo e l'altro o dopo la menopausa.",
-          "Dolore forte o che non passa al basso ventre.",
-          "Un cambiamento nuovo al seno, come un nodulo o la pelle diversa.",
+          "Perdite di sangue dalla vagina o forte dolore alla pancia.",
+          "Forte mal di testa, vista offuscata o gonfiore improvviso di viso e mani.",
+          "Il bambino si muove meno del solito o perdi liquido dalla vagina.",
         ],
       },
     ],
@@ -1745,37 +1745,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "smoking",
-        title: "Prestanak pušenja",
+        title: "Pušenje i alkohol",
         description:
-          "Zašto se isplati prestati pušiti i što ti olakšava.",
+          "Kako prestati pušiti, piti manje i tko ti može pomoći.",
         intro:
-          "Prestanak pušenja jedna je od najboljih odluka za tvoje zdravlje. Tijelo se počinje brzo oporavljati. Većina ljudi pokuša više puta prije nego što potpuno prestane.",
+          "Pušenje i alkohol štete srcu, plućima i jetri i povećavaju rizik od raka. Svaki korak je važan: tijelo se brzo počinje oporavljati kad prestaneš ili piješ manje.",
         keyFacts: [
-          "Već nekoliko sati nakon zadnje cigarete raste razina kisika u krvi, žile se opuštaju i pluća se počinju čistiti.",
-          "Kako se pluća i krvotok oporavljaju, lakše dišeš na stepenicama, manje kašlješ i vraćaju ti se okus i miris.",
-          "Odabir datuma prestanka, čekanje da prođu 3 minute želje za cigaretom i podrška liječnika udvostručuju šanse za uspjeh.",
+          "Već nekoliko sati nakon zadnje cigarete razina kisika u krvi raste, žile se opuštaju i pluća se počinju čistiti.",
+          "Što manje alkohola piješ, to bolje za jetru, srce i tlak. Nijedna količina nije potpuno bez rizika.",
+          "Ako odabereš dan prestanka, pričekaš da prođu 3 minute žudnje i zatražiš podršku liječnika, udvostručuješ šanse za uspjeh.",
         ],
         recommendations: [
           {
-            title: "Odaberi dan prestanka",
+            title: "Odaberi dan",
             description:
-              "Odredi datum i reci bliskim ljudima. Unaprijed isplaniraj što ćeš učiniti kada te uhvati želja.",
+              "Odaberi dan kad prestaješ pušiti ili počinješ piti manje. Unaprijed smisli što ćeš raditi kad dođe žudnja.",
           },
           {
-            title: "Potraži podršku",
+            title: "Pij manje",
             description:
-              "Savjetovališta za nepušenje i odobrena pomagala povećavaju šansu da ostaneš nepušač.",
+              "Imaj nekoliko dana u tjednu bez alkohola. Ne pij uopće u trudnoći, kad voziš ili uz lijekove koji ne idu s alkoholom.",
           },
           {
-            title: "Nemoj odustati",
+            title: "Zatraži pomoć",
             description:
-              "Ako ponovno zapališ, nemoj odustati. Nauči iz toga i pokušaj ponovno.",
+              "Obiteljski liječnik ti može pomoći da prestaneš pušiti ili piti. Ako ponovno zapališ ili popiješ, ne odustaj: pokušaj opet.",
           },
         ],
         warningSigns: [
-          "Kašalj koji ne prolazi ili promjena dugotrajnog kašlja.",
-          "Iskašljavanje krvi ili bol u prsima koja ne prolazi.",
-          "Sve češći nedostatak zraka pri uobičajenim dnevnim poslovima.",
+          "Iskašljavaš krv, imaš bol u prsima koja ne prolazi ili sve češće ostaješ bez zraka.",
+          "Kašalj koji ne prolazi ili stari kašalj koji se mijenja.",
+          "Ne možeš prestati piti, trebaš alkohol ujutro ili se treseš i znojiš kad ne piješ. Nagli prestanak može biti opasan: javi se liječniku.",
         ],
       },
       {
@@ -1815,37 +1815,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "womens-health",
-        title: "Zdravlje žena",
+        title: "Trudnoća",
         description:
-          "Tvoje zdravlje u svakoj dobi, od menstruacije do menopauze.",
+          "Kako se brinuti za sebe i dijete, od prvog testa do poroda.",
         intro:
-          "Zdravstvene potrebe žena mijenjaju se kroz život, od menstruacije i trudnoće do menopauze i kasnijih godina. Kada poznaješ svoje tijelo, lakše primijetiš promjene.",
+          "Trudnoća traje oko 40 tjedana. Redoviti pregledi, nekoliko zdravih navika i pravodobno traženje pomoći štite tebe i dijete.",
         keyFacts: [
-          "Žensko tijelo prolazi kroz prirodne hormonske promjene od menstruacije i trudnoće do menopauze, što utječe na kosti, srce i raspoloženje.",
-          "Kada znaš što je za tebe uobičajeno, na vrijeme uočavaš promjene na dojkama, neobično krvarenje ili trajnu bol u zdjelici.",
-          "Redoviti Papa-test, mjesečni samopregled dojki i redovite kontrole u trudnoći otkrivaju tegobe rano, kada se najlakše liječe.",
+          "Folna kiselina, uzeta prije trudnoće i u prva 3 mjeseca, smanjuje rizik od nekih prirođenih mana kod djeteta.",
+          "Redoviti pregledi prate tlak, nalaze i rast djeteta, čak i kad se osjećaš dobro.",
+          "Alkohol i pušenje dolaze do djeteta kroz krv. U trudnoći ne postoji sigurna količina alkohola.",
         ],
         recommendations: [
           {
-            title: "Upoznaj svoje tijelo",
+            title: "Rano se javi liječniku",
             description:
-              "Prati svoj uobičajeni ciklus i tijelo kako bi lakše uočila promjene.",
+              "Kad saznaš da si trudna, javi se obiteljskom liječniku ili ginekologu.",
           },
           {
-            title: "Idi na redovite preglede",
+            title: "Uzimaj folnu kiselinu",
             description:
-              "Obavljaj ginekološke preglede i probire preporučene za tvoju dob.",
+              "Pitaj liječnika koju dozu uzimati i koliko dugo. Ne uzimaj druge lijekove bez pitanja.",
           },
           {
-            title: "Potraži pomoć na vrijeme",
+            title: "Brini se o sebi",
             description:
-              "Razgovaraj s liječnikom o svakom simptomu koji te zabrinjava.",
+              "Jedi raznoliko, odmaraj se i ne pij alkohol i ne puši. Zatraži pomoć ako ti je teško prestati.",
           },
         ],
         warningSigns: [
-          "Neobično krvarenje između menstruacija ili nakon menopauze.",
-          "Jaka ili dugotrajna bol u donjem dijelu trbuha ili zdjelici.",
-          "Nova promjena na dojci, poput kvržice, uvlačenja ili promjene na koži.",
+          "Krvarenje iz rodnice ili jaka bol u trbuhu.",
+          "Jaka glavobolja, zamućen vid ili naglo oticanje lica i ruku.",
+          "Dijete se miče manje nego inače ili ti iz rodnice curi tekućina.",
         ],
       },
     ],
@@ -2047,37 +2047,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "smoking",
-        title: "Mukhimos e thuvjarimasko",
+        title: "Duhano thaj pimos",
         description:
-          "Sostar vazhil te mukhes e cigare thaj so azhutil tut.",
+          "Sar te mukes o duhano, te pes maj tsera thaj kon azhutil tut.",
         intro:
-          "Te mukhes o thuvjarimos si jekh katar e maj lačhe bukja vash tiro sastipen. Tiro trupo astarel sigo te sastjovel.",
+          "O duhano thaj o pimos keren nasul e ileske, e bukenge thaj e buklakiake thaj barjaren o riziko vash kancero. Sako pash si importanto: o trupo sigo lel te sastyol kana achhaves vaj pes maj tsera.",
         keyFacts: [
-          "Ande anglune ore pala i palutni cigara, o oksigeno ando rat vazdel pes, e rateske droma lokhjon thaj e phuka astaren te uzhon.",
-          "Sar sastjol o trupo, phurdines maj lokhes pe skale, xasaves maj xanci thaj irinel pes o vkus thaj o khandimos.",
-          "Te alosares dives kana ačhaves, te azhukeres te nakhen e 3 minute mangimaske thaj te manges azhutimos katar o doktori, dujvar barjarel tire shanse.",
+          "Ande angluno ore pala i palutni cigara, o oksigeno ando rat barjol, e vine relaksisaren pe thaj e buke lenas te uzharen pe.",
+          "Sar maj tsera pimos pes, ajsi maj lasho e buklakiake, e ileske thaj e tenziake. Nai kantitato bi khanchesko riziko.",
+          "Te alos jekh dyes te achhaves, azhukeres te nakhen e 3 minutura e kamlimaske thaj mangle azhutipe katar o doktori, duvar maj but shansura si tut.",
         ],
         recommendations: [
           {
-            title: "Alosar jekh dives",
+            title: "Alosar jekh dyes",
             description:
-              "Alosar o dives kana mukhes e cigare thaj phen e manushenge kaste pakjas.",
+              "Alosar o dyes kana mukes o duhano vaj las te pes maj tsera. Gindisar anglal so keres kana avel tuke kamlimos.",
           },
           {
-            title: "Mang azhutimos",
+            title: "Pi maj tsera",
             description:
-              "Programura thaj draba vash mukhimos e thuvjarimasko azhutin te ačhes bi cigarengo.",
+              "Ingre nesave dyes ando kurko bi pimasko. Na pi ande khabnipen, kana tradés i masina vaj kana les draba save na djan pimasa.",
           },
           {
-            title: "Ma mukh tut",
+            title: "Mang azhutipe",
             description:
-              "Te thuvjardjan pale, ma mukh tut. Sikljo katar kodo thaj probin pale.",
+              "O familiako doktori shaj azhutil tut te mukes o duhano vaj o pimos. Te pilan palem, na mukh: zumav palem.",
           },
         ],
         warningSigns: [
-          "Xasavimos savo na nakhel vaj paruvimos ko purano xasavimos.",
-          "Xasavimos ratesa vaj dukh ko kolin savi na nakhel.",
-          "Sako dives maj but ačhes bi balvaljako ko lokhe bukja.",
+          "Ankales rat, dukhal tut o kolin thaj na nakhel, vaj sa maj but na resel tuke o phurdipen.",
+          "Kashlipen savo na nakhel vaj phuro kashlipen savo parudel pe.",
+          "Na shaj achhaves te pes, trebul tuke pimos ande sabaile, vaj izdras thaj xamles kana na pes. Te achhaves sigo shaj te avel dandzheresko: ja ko doktori.",
         ],
       },
       {
@@ -2117,37 +2117,37 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "womens-health",
-        title: "Sastipen e dzhuvljako",
+        title: "Khabnipen",
         description:
-          "Tiro sastipen ki sako vrjama, katar o ciklo dzhi ki menopauza.",
+          "Sar te las sama tutar thaj e chavorestar, katar o angluno testo dzi ko bijandipen.",
         intro:
-          "E trubujimata vash sastipen e dzhuvljako paruven pes ando trajo, katar o ciklo thaj i khabni romni dzhi ki menopauza. Kana dzhanes so si normalno vash tute, dikhes sigo kana vareso paruvel pes.",
+          "O khabnipen lel pashe 40 kurke. E kontrolura, nesave sastipnaske obichaya thaj o azhutipe mangle ande vrjama arakhen tut thaj e chavores.",
         keyFacts: [
-          "O trupo e dzhuvljako nakhel katar prirodne paruvimata e hormonenge, katar o ciklo thaj khabnipen dzhi ki menopauza.",
-          "Kana pinzhares tiro trupo, dikhes rano sako paruvimos ki chuchi, neobicno ratjarimos vaj dukh savi na nakhel.",
-          "Redovno Pap-testi, sako-chonesko dikhiben e chuchjengo thaj kontrole kana i romni si khabni arakhen e problemura rano.",
+          "O folno acido, lino anglal o khabnipen thaj ande angluno 3 chhon, tikjarel o riziko vash nesave bilashimata ko chavoro.",
+          "E kontrolura ko doktori dikhen i tenzia, e analize thaj sar barol o chavoro, vi kana hatyares tut mishto.",
+          "O pimos thaj o duhano resen ko chavoro prekal o rat. Ando khabnipen nai pimos savo te avel bi dandzheresko.",
         ],
         recommendations: [
           {
-            title: "Pinzhar tiro trupo",
+            title: "Ja sigo ko doktori",
             description:
-              "Dikh tiro obicno ciklo thaj trupo, kaj te dikhes sigo e paruvimata.",
+              "Kana dzanes kaj san khabni, ja ko familiako doktori vaj ko ginekologo.",
           },
           {
-            title: "Dzha ko kontrole",
+            title: "Le folno acido",
             description:
-              "Dzha ko dikhibena save si phende vash tiri vrjama.",
+              "Puch e doktores savi doza te les thaj kozom vrjama. Na le aver draba bi te puches.",
           },
           {
-            title: "Mang azhutimos rano",
+            title: "Le sama tutar",
             description:
-              "De duma e doktoresa vash sako semno savo daravel tut.",
+              "Xa felo felo xabe, odihnisar thaj na pi pimos thaj na pi duhano. Mang azhutipe te si tuke phares te achhaves.",
           },
         ],
         warningSigns: [
-          "Neobicno ratjarimos mashkar e ciklura vaj pala i menopauza.",
-          "Zurali vaj lungi dukh telal ando por.",
-          "Nevo paruvimos ki chuchi, sar guka vaj paruvimos pe morti.",
+          "Avel tutar rat katar i vagina vaj but dukhal tut o por.",
+          "But zuralo dukh e sheresko, na dikhes lasho vaj shuvlilo sigo o mui thaj o vasta.",
+          "O chavoro mishkisarel maj tsera sar sas, vaj zhal tutar pani katar i vagina.",
         ],
       },
     ],
@@ -2209,9 +2209,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Как заметить затяжной стресс и тревогу и где найти бесплатную помощь.",
     },
     smoking: {
-      title: "Отказ от курения",
+      title: "Курение и алкоголь",
       description:
-        "Как бросить курить и кто может вам помочь.",
+        "Как бросить курить, пить меньше и кто может помочь.",
     },
     "preventive-screening": {
       title: "Проверка здоровья",
@@ -2219,9 +2219,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Бесплатные осмотры, которые находят болезнь раньше, чем появятся боли.",
     },
     "womens-health": {
-      title: "Женское здоровье",
+      title: "Беременность",
       description:
-        "Беременность, осмотры у гинеколога и что нормально в каждом возрасте.",
+        "Осмотры, фолиевая кислота и признаки, при которых нужно звонить врачу.",
     },
   },
 
@@ -2252,9 +2252,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Recunoaște stresul și grijile care nu trec și găsește ajutor gratuit.",
     },
     smoking: {
-      title: "Renunțarea la fumat",
+      title: "Fumat și alcool",
       description:
-        "Cum te lași de fumat și cine te poate ajuta.",
+        "Cum renunți la țigări, cum bei mai puțin și cine te ajută.",
     },
     "preventive-screening": {
       title: "Screening preventiv",
@@ -2262,9 +2262,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Controale gratuite care găsesc bolile devreme, înainte să doară.",
     },
     "womens-health": {
-      title: "Sănătatea femeii",
+      title: "Sarcina",
       description:
-        "Sarcina, controlul ginecologic și ce e normal la fiecare vârstă.",
+        "Controale, acid folic și semnele la care chemi medicul în sarcină.",
     },
   },
   en: {
@@ -2294,9 +2294,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Spot stress and worry that stay too long, and find free help.",
     },
     smoking: {
-      title: "Quitting smoking",
+      title: "Smoking and alcohol",
       description:
-        "How to stop smoking and who can help you.",
+        "How to stop smoking, drink less and who can help you.",
     },
     "preventive-screening": {
       title: "Health screening",
@@ -2304,9 +2304,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Free check-ups that catch illness early, before it hurts.",
     },
     "womens-health": {
-      title: "Women's health",
+      title: "Pregnancy",
       description:
-        "Pregnancy, gynaecologist visits and what is normal at each age.",
+        "Check-ups, folic acid and the signs that mean you should call a doctor.",
     },
   },
   sq: {
@@ -2336,9 +2336,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Njih stresin dhe ankthin që zgjatin dhe gjej ndihmë falas.",
     },
     smoking: {
-      title: "Lënia e duhanit",
+      title: "Duhani dhe alkooli",
       description:
-        "Si ta lësh duhanin dhe kush mund të të ndihmojë.",
+        "Si të lësh duhanin, të pish më pak dhe kush të ndihmon.",
     },
     "preventive-screening": {
       title: "Kontrollet parandaluese",
@@ -2346,9 +2346,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Kontrolle falas që zbulojnë sëmundjet herët, para dhimbjes.",
     },
     "womens-health": {
-      title: "Shëndeti i gruas",
+      title: "Shtatzënia",
       description:
-        "Shtatzënia, vizitat te gjinekologu dhe çfarë është normale në çdo moshë.",
+        "Kontrollet, acidi folik dhe shenjat kur duhet të thërrasësh mjekun.",
     },
   },
   it: {
@@ -2378,9 +2378,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Riconosci stress e ansia che non passano e trova aiuto gratuito.",
     },
     smoking: {
-      title: "Smettere di fumare",
+      title: "Fumo e alcol",
       description:
-        "Come smettere di fumare e chi può aiutarti.",
+        "Come smettere di fumare, bere meno e chi può aiutarti.",
     },
     "preventive-screening": {
       title: "Screening preventivo",
@@ -2388,9 +2388,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Controlli gratuiti per scoprire i problemi presto, prima del dolore.",
     },
     "womens-health": {
-      title: "Salute della donna",
+      title: "Gravidanza",
       description:
-        "Gravidanza, visite ginecologiche e cosa è normale a ogni età.",
+        "Controlli, acido folico e i segnali per cui chiamare il medico.",
     },
   },
   hr: {
@@ -2420,9 +2420,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Prepoznaj stres i brige koje ne prolaze i pronađi besplatnu pomoć.",
     },
     smoking: {
-      title: "Prestanak pušenja",
+      title: "Pušenje i alkohol",
       description:
-        "Kako prestati pušiti i tko ti može pomoći.",
+        "Kako prestati pušiti, piti manje i tko ti može pomoći.",
     },
     "preventive-screening": {
       title: "Preventivni pregledi",
@@ -2430,9 +2430,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Besplatni pregledi koji otkrivaju bolesti rano, prije boli.",
     },
     "womens-health": {
-      title: "Zdravlje žena",
+      title: "Trudnoća",
       description:
-        "Trudnoća, ginekološki pregledi i što je normalno u svakoj dobi.",
+        "Pregledi, folna kiselina i znakovi zbog kojih treba zvati liječnika.",
     },
   },
   rom: {
@@ -2462,9 +2462,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Pinzhar o streso thaj e brige save na nakhen thaj arakh bi-lovesko azhutimos.",
     },
     smoking: {
-      title: "Mukhimos e thuvjarimasko",
+      title: "Duhano thaj pimos",
       description:
-        "Sar te mukhes e cigare thaj kon shaj te azhutil tut.",
+        "Sar te mukes o duhano, te pes maj tsera thaj kon azhutil tut.",
     },
     "preventive-screening": {
       title: "Preventivno dikhiben",
@@ -2472,9 +2472,9 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Bi-loveske dikhibena save arakhen nasvalipena rano, anglal te dukhal.",
     },
     "womens-health": {
-      title: "Sastipen e dzhuvljako",
+      title: "Khabnipen",
       description:
-        "Khabnipen, dikhiben ko ginekologo thaj so si normalno ki sako vrjama.",
+        "Kontrolura, folno acido thaj e semnura kana akhares e doktores.",
     },
   },
 };
@@ -2536,6 +2536,14 @@ export function getHealthTopicsList(lang: Lang = "ro"): TopicItem[] {
 }
 
 export const HEALTH_TOPICS_LIST: TopicItem[] = getHealthTopicsList("ro");
+
+/** The four main guides shown on the guides page, in this order. */
+export const FEATURED_GUIDE_SLUGS = ["womens-health", "heart-health", "mental-wellbeing", "smoking"] as const;
+
+export function getFeaturedHealthTopics(lang: Lang = "ro"): TopicItem[] {
+  const topics = getHealthTopicsList(lang);
+  return FEATURED_GUIDE_SLUGS.flatMap((slug) => topics.filter((topic) => topic.slug === slug));
+}
 
 export function getHealthTopicGridDictionary(lang: Lang) {
   return (
