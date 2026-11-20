@@ -121,9 +121,18 @@ describe("Care tools design-system consistency", () => {
     expect(accordion).toContain("tabular-nums");
 
     const explorer = readSrc("src/components/health-check/HealthCheckExplorer.tsx");
-    expect(explorer).toContain("<AssistantNavigation />");
+    expect(explorer).not.toContain("<AssistantNavigation");
     expect(explorer).toContain("h-1 flex-1 rounded-sm");
     expect(explorer).toContain("inline-flex min-h-11 max-w-full items-center gap-1.5 rounded-lg");
+
+    for (const file of [
+      "src/components/health-assistant/HealthAssistant.tsx",
+      "src/components/health-assistant/AiChatAssistant.tsx",
+      "src/components/health-assistant/PrescriptionReview.tsx",
+      "src/components/find-help/FindHelpPageContent.tsx",
+    ]) {
+      expect(readSrc(file), `${file} still renders <AssistantNavigation`).not.toContain("<AssistantNavigation");
+    }
   });
 
   it("enforces 44px touch targets (min-h-11) and border-border-control across controls", () => {
@@ -136,7 +145,7 @@ describe("Care tools design-system consistency", () => {
     expect(switcher).toContain("min-h-11");
     expect(switcher).not.toContain("min-h-10");
     expect(Object.keys(READING_LEVEL_COPY)).toEqual(["ru", "ro", "en", "sq", "it", "hr", "rom"]);
-    expect(stateMachine).toContain("<ReadingLevelSwitcher");
+    expect(stateMachine).not.toContain("<ReadingLevelSwitcher");
     expect(stateMachine).not.toContain("TriagePlainLanguageToggle");
 
     const readingTools = readSrc("src/components/health-check/readingTools.ts");

@@ -82,6 +82,8 @@ describe("Expanded 3D body pain regions and women's health triage safety", () =>
     expect(getCareLevel("mild", "today", ["pelvis_pressure_floor"], "self")).toBe("medium");
     // Mild menstrual cramps today can safely show gentle home care + doctor guidance
     expect(getCareLevel("mild", "today", ["pelvis_period_cramps"], "self")).toBe("low");
+    // Persistent low mood also guarantees at least medium doctor follow-up
+    expect(getCareLevel("mild", "today", ["mind_low_mood"], "self")).toBe("medium");
 
     for (const lang of LOCALES) {
       const dict = getHealthCheckTranslations(lang);
@@ -97,6 +99,9 @@ describe("Expanded 3D body pain regions and women's health triage safety", () =>
       expect(pelvisSymptoms).toHaveLength(5);
       const emergency = pelvisSymptoms.find((s) => s.id === "pelvis_pregnancy_bleeding") ?? null;
       expect(isAcuteSurgicalOrEmergency(emergency)).toBe(true);
+
+      const mindCrisis = dict.mentalSymptoms.find((s) => s.id === "mind_crisis_self_harm") ?? null;
+      expect(isAcuteSurgicalOrEmergency(mindCrisis)).toBe(true);
 
       for (const part of BODY_PARTS) {
         expect(dict.bodyParts[part].title).not.toContain("&");

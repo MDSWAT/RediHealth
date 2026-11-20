@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { ArrowLeftIcon } from "@/components/ui/icons";
 import { TriageDecisionTree } from "@/components/health-assistant/TriageDecisionTree";
-import { ReadingLevelSwitcher } from "@/components/health-information/ReadingLevelSwitcher";
 import { PathwayLearn } from "@/components/health-assistant/pathways/PathwayLearn";
 import { PathwayRisk } from "@/components/health-assistant/pathways/PathwayRisk";
 import { PathwayPrescription } from "@/components/health-assistant/pathways/PathwayPrescription";
@@ -20,11 +19,7 @@ import { classifyLocalIntent } from "@/components/health-assistant/intent-keywor
 import { detectEmergencyText } from "@/lib/emergency-detection";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
-import {
-  getCalmMotionSnapshot,
-  getReadingLevelSnapshot,
-  subscribeComfort,
-} from "@/lib/comfort-preferences";
+import { getCalmMotionSnapshot } from "@/lib/comfort-preferences";
 import {
   classifyIntentToPathway,
   initialTriageState,
@@ -126,8 +121,8 @@ export function TriageStateMachine({
   const opensBodyTool = initialPathway === "symptoms";
   const [state, dispatch] = useReducer(enhancedTriageReducer, {
     ...initialTriageState,
-    // Plain language is the default reading level, as on the topic pages.
-    plainLanguage: true,
+    // Plain complete language everywhere without a secondary reading switcher.
+    plainLanguage: false,
     step: initialPathway && !opensBodyTool ? 2 : 1,
     pathway: (!opensBodyTool && initialPathway) || null,
     campaign: initialCampaign,
@@ -269,23 +264,6 @@ export function TriageStateMachine({
     return () => window.cancelAnimationFrame(rafId);
   }, [viewKey, displayStep]);
 
-  // Keep reading level synced with the global comfort preferences store.
-  const plainLanguageRef = useRef(state.plainLanguage);
-  useEffect(() => {
-    plainLanguageRef.current = state.plainLanguage;
-  }, [state.plainLanguage]);
-
-  useEffect(() => {
-    const syncReadingLevel = () => {
-      const nextPlain = getReadingLevelSnapshot() === "simple";
-      if (nextPlain !== plainLanguageRef.current) {
-        dispatch({ type: "TOGGLE_PLAIN_LANGUAGE", value: nextPlain });
-      }
-    };
-    syncReadingLevel();
-    return subscribeComfort(syncReadingLevel);
-  }, []);
-
   // Handle keyboard Escape to go back
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -421,17 +399,6 @@ export function TriageStateMachine({
             </div>
           )}
         </div>
-
-        <ReadingLevelSwitcher
-          level={state.plainLanguage ? "simple" : "complete"}
-          onChange={(nextLevel) => {
-            const nextPlain = nextLevel === "simple";
-            if (nextPlain !== state.plainLanguage) {
-              dispatch({ type: "TOGGLE_PLAIN_LANGUAGE", value: nextPlain });
-            }
-          }}
-          className="max-w-full sm:shrink-0"
-        />
 
         {/* Full-bleed 2px sapphire progress hairline along bottom edge of instrument header */}
         <div

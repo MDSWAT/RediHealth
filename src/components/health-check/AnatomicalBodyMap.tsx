@@ -167,7 +167,7 @@ const COPY: Record<
 
 
 "bodyType": "Модель тела",
-"bodyGeneral": "Общая",
+"bodyGeneral": "Мужская",
 "bodyFemale": "Женская",
 
     views: "Посмотреть",
@@ -200,7 +200,7 @@ const COPY: Record<
   ro: {
     views: "Unghi",
     bodyType: "Anatomie afișată",
-    bodyGeneral: "Generală",
+    bodyGeneral: "Masculină",
     bodyFemale: "Feminină",
     open: "Caută și opțiuni",
     camera: "Apropiere",
@@ -235,7 +235,7 @@ const COPY: Record<
   en: {
     views: "View",
     bodyType: "Body model",
-    bodyGeneral: "General",
+    bodyGeneral: "Male",
     bodyFemale: "Female",
     open: "Search and options",
     camera: "Zoom",
@@ -270,7 +270,7 @@ const COPY: Record<
   sq: {
     views: "Pamja",
     bodyType: "Modeli i trupit",
-    bodyGeneral: "I përgjithshëm",
+    bodyGeneral: "Mashkullor",
     bodyFemale: "Femëror",
     open: "Kërko dhe opsione",
     camera: "Zmadhimi",
@@ -305,7 +305,7 @@ const COPY: Record<
   it: {
     views: "Vista",
     bodyType: "Modello del corpo",
-    bodyGeneral: "Generale",
+    bodyGeneral: "Maschile",
     bodyFemale: "Femminile",
     open: "Cerca e opzioni",
     camera: "Zoom",
@@ -340,7 +340,7 @@ const COPY: Record<
   hr: {
     views: "Pogled",
     bodyType: "Model tijela",
-    bodyGeneral: "Opći",
+    bodyGeneral: "Muški",
     bodyFemale: "Ženski",
     open: "Pretraži i opcije",
     camera: "Zumiranje",
@@ -375,7 +375,7 @@ const COPY: Record<
   rom: {
     views: "Dikhimos",
     bodyType: "Modelo e truposko",
-    bodyGeneral: "Generalno",
+    bodyGeneral: "Murshikano",
     bodyFemale: "Dzhuvlikano",
     open: "Rode thaj opcie",
     camera: "Kamera",

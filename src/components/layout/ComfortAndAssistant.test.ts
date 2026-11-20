@@ -183,7 +183,8 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
       "utf8",
     );
     expect(triageSrc).not.toContain("setReadingLevel");
-    expect(triageSrc).toContain('dispatch({ type: "TOGGLE_PLAIN_LANGUAGE", value: nextPlain })');
+    expect(triageSrc).not.toContain("ReadingLevelSwitcher");
+    expect(triageSrc).toContain("plainLanguage: false");
 
     const switcherSrc = readFileSync(
       resolve(process.cwd(), "src/components/health-information/ReadingLevelSwitcher.tsx"),

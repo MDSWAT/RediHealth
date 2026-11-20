@@ -22,6 +22,7 @@ export type FindHelpCopy = {
   ownershipPublicOnly: string;
   ownershipPrivateOnly: string;
   ownership: { public: string; private: string };
+  ownershipDetail: { public: string; private: string; unknown: string };
   searchPlaceholder: string;
   /** Short placeholder that fits a 375px phone; the label keeps the full searchPlaceholder. */
   searchHint: string;
@@ -138,6 +139,8 @@ export const REGIONAL_CITY_PRESETS: Record<CountryCode, CityPreset[]> = {
     { name: "Rijeka", lat: 45.3271, lng: 14.4422 },
     { name: "Osijek", lat: 45.555, lng: 18.6955 },
     { name: "Zadar", lat: 44.1194, lng: 15.2313 },
+    { name: "Varaždin", lat: 46.3044, lng: 16.3378 },
+    { name: "Čakovec", lat: 46.3844, lng: 16.4339 },
   ],
 };
 
@@ -204,7 +207,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
 "viewMap": "Карта",
 "viewList": "Список",
 "closePreview": "Закрыть",
-"page": {"heroParagraph":"Медицинские службы рядом с вами на карте. Выберите место, чтобы увидеть адрес и телефон.","listTitle":"Аптеки и клиники","listSubtitle":"Выберите место, чтобы увидеть его на карте.","loadingMap":"Загрузка карты…","mapAttribution":"Данные карты © участники OpenStreetMap.","ctaTitle":"Не знаете, куда обратиться?","ctaBody":"Мы поможем выбрать врача или службу. В экстренной ситуации сразу звоните 112.","ctaButton":"Попросить помощь","mediatorTag":"Медицинский посредник сообщества","mediatorTitle":"Нужна помощь с регистрацией или разговором в приемной?","mediatorBody":"Посредник объяснит, какие документы нужны, поможет зарегистрироваться у семейного врача и поддержит при отказе.","mediatorButton":"Найти посредника"},
+"page": {"heroParagraph":"Медицинские службы рядом с вами на карте. Выберите место, чтобы увидеть адрес и телефон.","listTitle":"Аптеки и клиники","listSubtitle":"Введите адрес, улицу или город, чтобы увидеть ближайшие места по расстоянию.","loadingMap":"Загрузка карты…","mapAttribution":"Данные карты © участники OpenStreetMap.","ctaTitle":"Не знаете, куда обратиться?","ctaBody":"Мы поможем выбрать врача или службу. В экстренной ситуации сразу звоните 112.","ctaButton":"Попросить помощь","mediatorTag":"Медицинский посредник сообщества","mediatorTitle":"Нужна помощь с регистрацией или разговором в приемной?","mediatorBody":"Посредник объяснит, какие документы нужны, поможет зарегистрироваться у семейного врача и поддержит при отказе.","mediatorButton":"Найти посредника"},
 
     countries: {
 
@@ -227,8 +230,13 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipPublicOnly: "Только государственные",
     ownershipPrivateOnly: "Только частные",
     ownership: { public: "Государственное", private: "Частное" },
-    searchPlaceholder: "Поиск по названию, городу или адресу",
-    searchHint: "напр. Бухарест",
+    ownershipDetail: {
+      public: "Государственная клиника или больница (госфинансирование)",
+      private: "Частная клиника или кабинет (платно)",
+      unknown: "Статус не указан — уточните по телефону",
+    },
+    searchPlaceholder: "Введите адрес, улицу, город или название",
+    searchHint: "ул. или город",
     searchButton: "Поиск",
     useMyLocation: "Использовать мое местоположение",
     locating: "Поиск вашего местоположения…",
@@ -276,8 +284,13 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipPublicOnly: "Public only",
     ownershipPrivateOnly: "Private only",
     ownership: { public: "Public", private: "Private" },
-    searchPlaceholder: "Search by name, city or address",
-    searchHint: "e.g. Bucharest",
+    ownershipDetail: {
+      public: "Public clinic (state-funded)",
+      private: "Private clinic (paid)",
+      unknown: "Ownership not listed — confirm by phone",
+    },
+    searchPlaceholder: "Enter address, street, town or clinic name",
+    searchHint: "Street or town",
     searchButton: "Search",
     useMyLocation: "Use my location",
     locating: "Finding your location…",
@@ -340,7 +353,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     page: {
       heroParagraph: "See health services near you on the map. Tap a place to see its address and phone number.",
       listTitle: "Pharmacies and clinics",
-      listSubtitle: "Tap a place to see it on the map.",
+      listSubtitle: "Enter an address, street or town to see the nearest places listed by distance.",
       loadingMap: "Loading map…",
       mapAttribution: "Map data © OpenStreetMap contributors.",
       ctaTitle: "Not sure where to go?",
@@ -374,8 +387,13 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipPublicOnly: "Doar de stat",
     ownershipPrivateOnly: "Doar private",
     ownership: { public: "De stat", private: "Privat" },
-    searchPlaceholder: "Caută după nume, oraș sau adresă",
-    searchHint: "de ex. București",
+    ownershipDetail: {
+      public: "Clinică publică (de stat)",
+      private: "Clinică privată (cu plată)",
+      unknown: "Statut nespecificat — confirmă telefonic",
+    },
+    searchPlaceholder: "Scrie adresa, strada, orașul sau numele",
+    searchHint: "Stradă sau oraș",
     searchButton: "Caută",
     useMyLocation: "Folosește locația mea",
     locating: "Căutăm unde ești…",
@@ -458,7 +476,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     page: {
       heroParagraph: "Vezi pe hartă unitățile medicale din apropiere. Apasă pe un loc ca să vezi adresa și telefonul.",
       listTitle: "Farmacii și clinici",
-      listSubtitle: "Apasă pe un loc ca să-l vezi pe hartă.",
+      listSubtitle: "Introdu adresa, strada sau orașul ca să vezi cele mai apropiate locuri ordonate după distanță.",
       loadingMap: "Se încarcă harta…",
       mapAttribution: "Date hartă © contribuitori OpenStreetMap.",
       ctaTitle: "Nu știi unde să mergi?",
@@ -492,8 +510,13 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipPublicOnly: "Vetëm publike",
     ownershipPrivateOnly: "Vetëm private",
     ownership: { public: "Publik", private: "Privat" },
-    searchPlaceholder: "Kërko sipas emrit, qytetit ose adresës",
-    searchHint: "p.sh. Bukuresht",
+    ownershipDetail: {
+      public: "Klinikë publike (shtetërore)",
+      private: "Klinikë private (me pagesë)",
+      unknown: "Pronësia nuk është shënuar — konfirmo me telefon",
+    },
+    searchPlaceholder: "Shkruaj adresën, rrugën, qytetin ose emrin",
+    searchHint: "Rrugë ose qytet",
     searchButton: "Kërko",
     useMyLocation: "Përdor vendndodhjen time",
     locating: "Po kërkojmë ku je…",
@@ -556,7 +579,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     page: {
       heroParagraph: "Shiko në hartë shërbimet shëndetësore pranë teje. Prek një vend për të parë adresën dhe telefonin.",
       listTitle: "Farmaci dhe klinika",
-      listSubtitle: "Prek një vend për ta parë në hartë.",
+      listSubtitle: "Shkruaj një adresë, rrugë ose qytet për të parë vendet më të afërta sipas largësisë.",
       loadingMap: "Duke ngarkuar hartën…",
       mapAttribution: "Të dhënat e hartës © kontribuesit e OpenStreetMap.",
       ctaTitle: "Nuk di ku të shkosh?",
@@ -590,8 +613,13 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipPublicOnly: "Solo pubblici",
     ownershipPrivateOnly: "Solo privati",
     ownership: { public: "Pubblico", private: "Privato" },
-    searchPlaceholder: "Cerca per nome, città o indirizzo",
-    searchHint: "es. Bucarest",
+    ownershipDetail: {
+      public: "Struttura pubblica (servizio sanitario)",
+      private: "Struttura privata (a pagamento)",
+      unknown: "Tipo non indicato — conferma al telefono",
+    },
+    searchPlaceholder: "Inserisci indirizzo, via, città o nome",
+    searchHint: "Via o città",
     searchButton: "Cerca",
     useMyLocation: "Usa la mia posizione",
     locating: "Cerchiamo dove sei…",
@@ -654,7 +682,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     page: {
       heroParagraph: "Guarda sulla mappa i servizi sanitari vicino a te. Tocca un luogo per vedere indirizzo e telefono.",
       listTitle: "Farmacie e ambulatori",
-      listSubtitle: "Tocca un luogo per vederlo sulla mappa.",
+      listSubtitle: "Inserisci un indirizzo, una via o un comune per vedere i posti più vicini in ordine di distanza.",
       loadingMap: "Caricamento mappa…",
       mapAttribution: "Dati mappa © collaboratori di OpenStreetMap.",
       ctaTitle: "Non sai dove andare?",
@@ -688,8 +716,13 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipPublicOnly: "Samo javne",
     ownershipPrivateOnly: "Samo privatne",
     ownership: { public: "Javno", private: "Privatno" },
-    searchPlaceholder: "Pretraži po nazivu, gradu ili adresi",
-    searchHint: "npr. Zagreb",
+    ownershipDetail: {
+      public: "Javna ustanova (HZZO)",
+      private: "Privatna ustanova (plaćanje)",
+      unknown: "Vlasništvo nije navedeno — provjeri telefonom",
+    },
+    searchPlaceholder: "Upiši adresu, ulicu, grad ili naziv ustanove",
+    searchHint: "Ulica ili grad",
     searchButton: "Traži",
     useMyLocation: "Koristi moju lokaciju",
     locating: "Tražimo tvoju lokaciju…",
@@ -752,7 +785,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     page: {
       heroParagraph: "Pogledaj zdravstvene ustanove u blizini na karti. Dodirni mjesto za adresu i broj telefona.",
       listTitle: "Ljekarne i klinike",
-      listSubtitle: "Dodirni mjesto za prikaz na karti.",
+      listSubtitle: "Upiši adresu, ulicu ili grad kako bi vidio najbliža mjesta poredana po udaljenosti.",
       loadingMap: "Učitavanje karte…",
       mapAttribution: "Podaci karte © OpenStreetMap suradnici.",
       ctaTitle: "Ne znaš kamo otići?",
@@ -786,8 +819,13 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipPublicOnly: "Numa themeske",
     ownershipPrivateOnly: "Numa privatno",
     ownership: { public: "Themesko", private: "Privatno" },
-    searchPlaceholder: "Rod pala anav, foro vaj adresa",
-    searchHint: "misal: Bukuresht",
+    ownershipDetail: {
+      public: "Themeski klinika (bizo love)",
+      private: "Privatno klinika (pe love)",
+      unknown: "Na phenel pe te si themeski vaj privatno — phuch pe telefono",
+    },
+    searchPlaceholder: "Ramov i adresa, o drom, o foro vaj o anav",
+    searchHint: "Drom vaj foro",
     searchButton: "Rod",
     useMyLocation: "Le miro than",
     locating: "Rodas kai san…",
@@ -850,7 +888,7 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     page: {
       heroParagraph: "Dikh pe mapa e sastipaske thana pashe tuke. Azba jekh than te dikhes i adresa thaj o telefono.",
       listTitle: "Farmaciye thaj klinike",
-      listSubtitle: "Azba jekh than te dikhes les pe mapa.",
+      listSubtitle: "Ramov i adresa, o drom vaj o foro te dikhes le maj pashe thana.",
       loadingMap: "Pharel pes i mapa…",
       mapAttribution: "Mapa © OpenStreetMap.",
       ctaTitle: "Na zhanes kai te zhas?",

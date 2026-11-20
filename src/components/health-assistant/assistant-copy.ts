@@ -164,6 +164,8 @@ export interface AssistantCopy {
     medicinesLead: string;
     boxMedicinesHeading: string;
     boxMedicinesLead: string;
+    lookupMedicinesHeading: string;
+    lookupMedicinesLead: string;
     scheduleSlots: {
       morning: string;
       midday: string;
@@ -174,6 +176,9 @@ export interface AssistantCopy {
     strengthLabel: string;
     activeIngredientLabel: string;
     formLabel: string;
+    sideEffectsLabel: string;
+    benefitTimelineLabel: string;
+    stoppingGuidanceLabel: string;
     foodTiming: {
       before_meal: string;
       with_meal: string;
@@ -341,7 +346,7 @@ const ro: AssistantCopy = {
     nextSteps: [
       "Măsoară-ți tensiunea la farmacie sau la medicul de familie.",
       "Pune mai puțină sare în mâncare și bea cel puțin 6 pahare de apă pe zi.",
-      "Fă o programare gratuită online ca să discuți rezultatul cu un medic.",
+      "Cere medicului de familie sau farmacistului să discutați rezultatul la următorul control.",
     ],
     summary: (level, count) => `Evaluare risc: ${level} (${count}/3 factori confirmați)`,
   },
@@ -365,7 +370,7 @@ const ro: AssistantCopy = {
   },
   symptoms: {
     heading: "Ce te deranjează cel mai mult?",
-    lead: "Alege categoria, apoi poți vorbi cu un medic online.",
+    lead: "Alege categoria pentru pașii siguri acasă și când este nevoie să mergi la medic.",
     bodyMapHint: "Ai durere într-o zonă anume? Arată unde te doare.",
     bodyMapCta: "Arată pe imaginea corpului",
     categories: {
@@ -433,7 +438,7 @@ const ro: AssistantCopy = {
     ],
     emergencyExitTitle: "Ai nevoie de sprijin până sosește ambulanța?",
     emergencyExitBody:
-      "Sună întâi la 112. Dacă situația permite, un medic online te poate îndruma la telefon până sosește ajutorul.",
+      "Sună întâi la 112. Rămâi la telefon cu dispecerul și urmează indicațiile până sosește ajutorul.",
   },
   rx: {
     heading: "Cum vrei să verifici rețeta sau tratamentul?",
@@ -460,7 +465,7 @@ const ro: AssistantCopy = {
       "Nu opri tratamentul când te simți mai bine. Termină toate zilele scrise de doctor.",
     ],
     exitTitle: "Nu știi sigur ce doză iei sau ce medicamente merg împreună?",
-    exitBody: "Un medic online îți poate verifica rețeta și îți explică cum să iei fiecare medicament fără riscuri.",
+    exitBody: "Un farmacist sau medicul de familie îți poate verifica rețeta și îți poate explica cum să iei fiecare medicament fără riscuri.",
     summary: (medicine) => `Întrebări despre rețetă sau medicament: ${medicine}`,
   },
   nav: {
@@ -538,6 +543,9 @@ const ro: AssistantCopy = {
     boxMedicinesHeading: "Medicamente recunoscute de pe cutie",
     boxMedicinesLead:
       "Cutia arată numele și concentrația medicamentului. Urmează doza stabilită de medic sau farmacist.",
+    lookupMedicinesHeading: "Informații despre medicamentul căutat",
+    lookupMedicinesLead:
+      "Explicație generală pentru medicamentul căutat. Urmează întotdeauna doza scrisă de medicul sau farmacistul tău.",
     scheduleSlots: {
       morning: "Dimineața",
       midday: "Prânz",
@@ -548,6 +556,9 @@ const ro: AssistantCopy = {
     strengthLabel: "Concentrație",
     activeIngredientLabel: "Substanță activă",
     formLabel: "Formă",
+    sideEffectsLabel: "Reacții posibile",
+    benefitTimelineLabel: "Când începe să ajute",
+    stoppingGuidanceLabel: "Oprire și doze omise",
     foodTiming: {
       before_meal: "Înainte de masă",
       with_meal: "În timpul mesei",
@@ -718,7 +729,7 @@ const en: AssistantCopy = {
     nextSteps: [
       "Have your blood pressure measured at a pharmacy or by your family doctor.",
       "Use less salt in your food and drink at least 6 glasses of water a day.",
-      "Book a free online appointment to go through the result with a doctor.",
+      "Ask a family doctor or pharmacist to review this result with you at your next visit.",
     ],
     summary: (level, count) => `Risk check: ${level} (${count}/3 factors confirmed)`,
   },
@@ -742,7 +753,7 @@ const en: AssistantCopy = {
   },
   symptoms: {
     heading: "What is bothering you most?",
-    lead: "Choose a category, then you can talk to a doctor online.",
+    lead: "Choose a category for safe steps at home and when to see a doctor.",
     bodyMapHint: "Have pain in a specific spot? Show where it hurts.",
     bodyMapCta: "Show on a body picture",
     categories: {
@@ -809,7 +820,7 @@ const en: AssistantCopy = {
     ],
     emergencyExitTitle: "Need support until the ambulance arrives?",
     emergencyExitBody:
-      "Call 112 first. If the situation allows, an online doctor can guide you by phone until help arrives.",
+      "Call 112 first. Stay on the line with the operator and follow their instructions until help arrives.",
   },
   rx: {
     heading: "How would you like to check your prescription?",
@@ -836,7 +847,7 @@ const en: AssistantCopy = {
       "Don't stop when you feel better. Finish all the days your doctor wrote down.",
     ],
     exitTitle: "Not sure about doses, or which medicines go together?",
-    exitBody: "An online doctor can check your prescription and explain how to take each medicine safely.",
+    exitBody: "A pharmacist or doctor can check your prescription and explain how to take each medicine safely.",
     summary: (medicine) => `Questions about a prescription or medicine: ${medicine}`,
   },
   nav: {
@@ -914,6 +925,9 @@ const en: AssistantCopy = {
     boxMedicinesHeading: "Medicines recognised from the box",
     boxMedicinesLead:
       "A medicine box shows the product name and strength. Follow the dose given by your doctor or pharmacist.",
+    lookupMedicinesHeading: "Medicine information",
+    lookupMedicinesLead:
+      "General guidance for the medicine you typed. Always follow the dose set by your doctor or pharmacist.",
     scheduleSlots: {
       morning: "Morning",
       midday: "Midday",
@@ -924,6 +938,9 @@ const en: AssistantCopy = {
     strengthLabel: "Strength",
     activeIngredientLabel: "Active ingredient",
     formLabel: "Form",
+    sideEffectsLabel: "Possible side effects",
+    benefitTimelineLabel: "When it starts to help",
+    stoppingGuidanceLabel: "Stopping and missed doses",
     foodTiming: {
       before_meal: "Before food",
       with_meal: "With food",
@@ -1094,7 +1111,7 @@ const sq: AssistantCopy = {
     nextSteps: [
       "Mat presionin e gjakut në farmaci ose te mjeku i familjes.",
       "Përdor më pak kripë në ushqim dhe pi të paktën 6 gota ujë në ditë.",
-      "Rezervo falas një takim online për ta diskutuar rezultatin me një mjek.",
+      "Kërkoji mjekut të familjes ose farmacistit ta shohë këtë rezultat në vizitën e radhës.",
     ],
     summary: (level, count) => `Kontrolli i rrezikut: ${level} (${count}/3 faktorë të konfirmuar)`,
   },
@@ -1118,7 +1135,7 @@ const sq: AssistantCopy = {
   },
   symptoms: {
     heading: "Çfarë të shqetëson më shumë?",
-    lead: "Zgjidh kategorinë, pastaj mund të flasësh me një mjek online.",
+    lead: "Zgjidh kategorinë për hapa të sigurt në shtëpi dhe kur duhet të shkosh te mjeku.",
     bodyMapHint: "Ke dhimbje në një vend të caktuar? Trego ku të dhemb.",
     bodyMapCta: "Trego në figurën e trupit",
     categories: {
@@ -1185,7 +1202,7 @@ const sq: AssistantCopy = {
     ],
     emergencyExitTitle: "Të duhet ndihmë derisa të vijë ambulanca?",
     emergencyExitBody:
-      "Telefono së pari 112. Nëse situata e lejon, një mjek online mund të të udhëzojë në telefon derisa të vijë ndihma.",
+      "Telefono së pari 112. Qëndro në telefon me operatorin dhe ndiq udhëzimet derisa të vijë ndihma.",
   },
   rx: {
     heading: "Si do ta kontrollosh recetën ose trajtimin?",
@@ -1212,7 +1229,7 @@ const sq: AssistantCopy = {
       "Mos e ndërprit kur ndihesh më mirë. Përfundo të gjitha ditët që ka shkruar mjeku.",
     ],
     exitTitle: "Nuk je i sigurt për dozat ose cilat ilaçe shkojnë bashkë?",
-    exitBody: "Një mjek online mund ta kontrollojë recetën tënde dhe të të shpjegojë si ta marrësh çdo ilaç pa rrezik.",
+    exitBody: "Një farmacist ose mjek mund ta kontrollojë recetën tënde dhe të të shpjegojë si ta marrësh çdo ilaç pa rrezik.",
     summary: (medicine) => `Pyetje për recetën ose ilaçin: ${medicine}`,
   },
   nav: {
@@ -1290,6 +1307,9 @@ const sq: AssistantCopy = {
     boxMedicinesHeading: "Ilaçet e njohura nga kutia",
     boxMedicinesLead:
       "Kutia tregon emrin dhe përqendrimin e ilaçit. Ndiq dozën e dhënë nga mjeku ose farmacisti.",
+    lookupMedicinesHeading: "Informacion për ilaçin e kërkuar",
+    lookupMedicinesLead:
+      "Shpjegim i përgjithshëm për ilaçin që shkrove. Ndiq gjithmonë dozën e dhënë nga mjeku ose farmacisti.",
     scheduleSlots: {
       morning: "Mëngjes",
       midday: "Drekë",
@@ -1300,6 +1320,9 @@ const sq: AssistantCopy = {
     strengthLabel: "Përqendrimi",
     activeIngredientLabel: "Substanca aktive",
     formLabel: "Forma",
+    sideEffectsLabel: "Efektet e mundshme anësore",
+    benefitTimelineLabel: "Kur fillon të ndihmojë",
+    stoppingGuidanceLabel: "Ndërprerja dhe dozat e harruara",
     foodTiming: {
       before_meal: "Para buke",
       with_meal: "Gjatë bukës",
@@ -1470,7 +1493,7 @@ const it: AssistantCopy = {
     nextSteps: [
       "Misura la pressione in farmacia o dal medico di famiglia.",
       "Usa meno sale nei cibi e bevi almeno 6 bicchieri d'acqua al giorno.",
-      "Prenota gratuitamente una visita online per parlare del risultato con un medico.",
+      "Chiedi al medico di famiglia o al farmacista di rivedere questo risultato alla prossima visita.",
     ],
     summary: (level, count) => `Controllo del rischio: ${level} (${count}/3 fattori confermati)`,
   },
@@ -1494,7 +1517,7 @@ const it: AssistantCopy = {
   },
   symptoms: {
     heading: "Cosa ti dà più fastidio?",
-    lead: "Scegli la categoria, poi potrai parlare con un medico online.",
+    lead: "Scegli la categoria per indicazioni sicure a casa e quando rivolgersi a un medico.",
     bodyMapHint: "Hai dolore in un punto preciso? Indica dove fa male.",
     bodyMapCta: "Mostra su figura del corpo",
     categories: {
@@ -1561,7 +1584,7 @@ const it: AssistantCopy = {
     ],
     emergencyExitTitle: "Ti serve supporto finché arriva l'ambulanza?",
     emergencyExitBody:
-      "Chiama prima il 112. Se la situazione lo permette, un medico online può guidarti al telefono finché arrivano i soccorsi.",
+      "Chiama prima il 112. Resta al telefono con l'operatore e segui le sue indicazioni finché arrivano i soccorsi.",
   },
   rx: {
     heading: "Come vuoi controllare la ricetta o la terapia?",
@@ -1588,7 +1611,7 @@ const it: AssistantCopy = {
       "Non smettere quando ti senti meglio. Finisci tutti i giorni indicati dal medico.",
     ],
     exitTitle: "Hai dubbi sulle dosi o su quali farmaci prendere insieme?",
-    exitBody: "Un medico online può controllare la tua ricetta e spiegarti come prendere ogni farmaco senza rischi.",
+    exitBody: "Un farmacista o un medico può controllare la tua ricetta e spiegarti come prendere ogni farmaco senza rischi.",
     summary: (medicine) => `Domande su ricetta o farmaco: ${medicine}`,
   },
   nav: {
@@ -1666,6 +1689,9 @@ const it: AssistantCopy = {
     boxMedicinesHeading: "Farmaci riconosciuti dalla confezione",
     boxMedicinesLead:
       "La confezione mostra il nome e il dosaggio del prodotto. Segui la dose indicata dal medico o dal farmacista.",
+    lookupMedicinesHeading: "Informazioni sul farmaco cercato",
+    lookupMedicinesLead:
+      "Spiegazione generale del farmaco inserito. Segui sempre la dose indicata dal tuo medico o farmacista.",
     scheduleSlots: {
       morning: "Mattina",
       midday: "Pranzo",
@@ -1676,6 +1702,9 @@ const it: AssistantCopy = {
     strengthLabel: "Concentrazione",
     activeIngredientLabel: "Principio attivo",
     formLabel: "Forma",
+    sideEffectsLabel: "Possibili effetti collaterali",
+    benefitTimelineLabel: "Quando inizia a fare effetto",
+    stoppingGuidanceLabel: "Sospensione e dosi dimenticate",
     foodTiming: {
       before_meal: "Prima dei pasti",
       with_meal: "Durante i pasti",
@@ -1846,7 +1875,7 @@ const hr: AssistantCopy = {
     nextSteps: [
       "Izmjeri krvni tlak u ljekarni ili kod obiteljskog liječnika.",
       "Koristi manje soli u hrani i pij najmanje 6 čaša vode dnevno.",
-      "Dogovori besplatan online razgovor kako bi s liječnikom prošao ili prošla kroz rezultat.",
+      "Zamoli obiteljskog liječnika ili ljekarnika da pregleda ovaj rezultat na sljedećem posjetu.",
     ],
     summary: (level, count) => `Procjena rizika: ${level} (${count}/3 potvrđena čimbenika)`,
   },
@@ -1870,7 +1899,7 @@ const hr: AssistantCopy = {
   },
   symptoms: {
     heading: "Što ti najviše smeta?",
-    lead: "Odaberi kategoriju, a zatim možeš razgovarati s liječnikom online.",
+    lead: "Odaberi kategoriju za sigurne korake kod kuće i kada se javiti liječniku.",
     bodyMapHint: "Imaš bol na određenom mjestu? Pokaži gdje boli.",
     bodyMapCta: "Pokaži na slici tijela",
     categories: {
@@ -1937,7 +1966,7 @@ const hr: AssistantCopy = {
     ],
     emergencyExitTitle: "Trebaš li podršku dok ne stigne hitna pomoć?",
     emergencyExitBody:
-      "Prvo nazovi 112. Ako situacija dopušta, liječnik online može te telefonom voditi dok pomoć ne stigne.",
+      "Prvo nazovi 112. Ostani na liniji s operaterom i slijedi upute dok pomoć ne stigne.",
   },
   rx: {
     heading: "Kako želiš provjeriti recept ili terapiju?",
@@ -1964,7 +1993,7 @@ const hr: AssistantCopy = {
       "Nemoj prestati uzimati lijek čim ti bude bolje. Popij terapiju sve dane kako je liječnik odredio.",
     ],
     exitTitle: "Nisi siguran ili sigurna oko doze ili kombinacije lijekova?",
-    exitBody: "Liječnik online može provjeriti tvoj recept i objasniti ti kako sigurno uzimati svaki lijek.",
+    exitBody: "Ljekarnik ili liječnik može provjeriti tvoj recept i objasniti ti kako sigurno uzimati svaki lijek.",
     summary: (medicine) => `Pitanja o receptu ili lijeku: ${medicine}`,
   },
   nav: {
@@ -2042,6 +2071,9 @@ const hr: AssistantCopy = {
     boxMedicinesHeading: "Lijekovi prepoznati s kutije",
     boxMedicinesLead:
       "Kutija prikazuje naziv i jačinu lijeka. Slijedi dozu koju je odredio liječnik ili ljekarnik.",
+    lookupMedicinesHeading: "Informacije o traženom lijeku",
+    lookupMedicinesLead:
+      "Opće upute za lijek koji si upisao ili upisala. Uvijek slijedi dozu koju ti je odredio liječnik ili ljekarnik.",
     scheduleSlots: {
       morning: "Jutro",
       midday: "Podne",
@@ -2052,6 +2084,9 @@ const hr: AssistantCopy = {
     strengthLabel: "Jačina",
     activeIngredientLabel: "Djelatna tvar",
     formLabel: "Oblik",
+    sideEffectsLabel: "Moguće nuspojave",
+    benefitTimelineLabel: "Kada počinje djelovati",
+    stoppingGuidanceLabel: "Prekid terapije i propuštene doze",
     foodTiming: {
       before_meal: "Prije jela",
       with_meal: "Uz jelo",
@@ -2222,7 +2257,7 @@ const rom: AssistantCopy = {
     nextSteps: [
       "Mazerisar chiri tensia e rateski ki farmacia vaj ko familijako doktori.",
       "Thov maj xantsi lon and-o xabem thaj pij barem 6 taxtaja paj ko dives.",
-      "Ker bi lovengi online programacia te vorbis vash o rezultato jekhe doktoresa.",
+      "Mang e familijake doktores vaj e farmacistos te dikhen kadava rezultato kana djas lende.",
     ],
     summary: (level, count) => `Dikhimos e rizikosko: ${level} (${count}/3 faktorura)`,
   },
@@ -2246,7 +2281,7 @@ const rom: AssistantCopy = {
   },
   symptoms: {
     heading: "So dukhavel tut maj but?",
-    lead: "Alosar i kategorija, pala kodoja shaj vorbis jekhe doktoresa online.",
+    lead: "Alosar i kategorija te dikhes sigurime pashura khere thaj kana trebul te djas ko doktori.",
     bodyMapHint: "Si tut dukh pe jekh than? Sikav kaj dukhal.",
     bodyMapCta: "Sikav pe sliko e truposko",
     categories: {
@@ -2313,7 +2348,7 @@ const rom: AssistantCopy = {
     ],
     emergencyExitTitle: "Trebul tuke azhutimos dji kaj avel i salvarea?",
     emergencyExitBody:
-      "Anglunivar akhar ko 112. Te shaj, jekh doktori online shaj ingarel tut pe telefono dji kaj avel o azhutimos.",
+      "Anglunivar akhar ko 112. Ach pe telefono le operatoresa thaj ker sar phenel tuke dji kaj avel o azhutimos.",
   },
   rx: {
     heading: "Sar manges te dikhes i receta vaj i drab?",
@@ -2340,7 +2375,7 @@ const rom: AssistantCopy = {
       "Ma astav i drab kana hatjares tut maj mishto. Ker sa le divesa sar ramodjas o doktori.",
     ],
     exitTitle: "Na dzanes sode drab te les vaj save drabura djan khetane?",
-    exitBody: "Jekh doktori online shaj dikhel chiri receta thaj shpjeginel tuke sar te les svako drab bi rizikosko.",
+    exitBody: "Jekh farmacisto vaj doktori shaj dikhel chiri receta thaj shpjeginel tuke sar te les svako drab bi rizikosko.",
     summary: (medicine) => `Phuchimata vash receta vaj drab: ${medicine}`,
   },
   nav: {
@@ -2418,6 +2453,9 @@ const rom: AssistantCopy = {
     boxMedicinesHeading: "Drabura prindzarde katar i kutija",
     boxMedicinesLead:
       "I kutija sikavel o anav thaj o zor e drabako. Le i doza sar phendjas o doktori vaj o farmacisto.",
+    lookupMedicinesHeading: "Informacija vash o drab so rodjan",
+    lookupMedicinesLead:
+      "Sikaimos vash o drab so ramosardjan. Le svako data i doza so phendjas o doktori vaj o farmacisto.",
     scheduleSlots: {
       morning: "Teharin",
       midday: "Mashkar divese",
@@ -2428,6 +2466,9 @@ const rom: AssistantCopy = {
     strengthLabel: "Zor",
     activeIngredientLabel: "Substanca bazutni",
     formLabel: "Forma",
+    sideEffectsLabel: "Reakcije so shaj aven",
+    benefitTimelineLabel: "Kana shuruil te azhutinel",
+    stoppingGuidanceLabel: "Astavimos thaj bisterde doze",
     foodTiming: {
       before_meal: "Angla xabem",
       with_meal: "Le xabemasa",
@@ -2601,7 +2642,7 @@ ru: {
     nextSteps: [
       "Измерьте артериальное давление в аптеке или у семейного врача.",
       "Используйте меньше соли в пище и пейте не менее 6 стаканов воды в день.",
-      "Запишитесь на бесплатный онлайн-прием, чтобы обсудить результат с врачом.",
+      "Попросите семейного врача или фармацевта обсудить этот результат на следующем приёме.",
     ],
     summary: (level, count) => `Проверка рисков: ${level} (${count}/3 factors confirmed)`,
   },
@@ -2633,7 +2674,7 @@ ru: {
 "whenToCallTips": ["Температура выше 38,5 °C держится более 3 дней или болен маленький ребенок.","Боль внезапно усилилась, живот стал твердым или не удается удержать жидкость.","При одышке, давлении в груди, спутанности или внезапной слабости сразу звоните 112."],
 
     heading: "Что вас беспокоит больше всего?",
-    lead: "Выберите категорию, после чего вы сможете поговорить с врачом онлайн.",
+    lead: "Выберите категорию, чтобы узнать безопасные шаги дома и когда обратиться к врачу.",
     categories: {
       fever: {
         title: "Лихорадка или простуда",
@@ -2669,7 +2710,7 @@ ru: {
     ],
     emergencyExitTitle: "Нужна поддержка до приезда скорой помощи?",
     emergencyExitBody:
-      "Сначала позвоните по номеру 112. Если позволяет ситуация, онлайн-врач может сопровождать вас по телефону до прибытия помощи.",
+      "Сначала позвоните по номеру 112. Оставайтесь на линии с оператором и следуйте его указаниям до прибытия помощи.",
   },
   rx: {
     heading: "Как бы вы хотели проверить свой рецепт?",
@@ -2696,7 +2737,7 @@ ru: {
       "Не останавливайтесь, когда почувствуете себя лучше. Закончите все дни, записанные врачом.",
     ],
     exitTitle: "Не уверены в дозах или о том, какие лекарства следует сочетать?",
-    exitBody: "Онлайн-врач может проверить ваш рецепт и объяснить, как безопасно принимать каждое лекарство.",
+    exitBody: "Фармацевт или врач может проверить ваш рецепт и объяснить, как безопасно принимать каждое лекарство.",
     summary: (medicine) => `Вопросы о рецепте или лекарстве: ${medicine}`,
   },
   nav: {
@@ -2770,11 +2811,16 @@ ru: {
 "medicinesLead": "Проверьте каждое лекарство по оригиналу рецепта.",
 "boxMedicinesHeading": "Лекарства, распознанные по упаковке",
 "boxMedicinesLead": "На упаковке указаны название и дозировка препарата. Следуйте схеме приёма, назначенной врачом или фармацевтом.",
+"lookupMedicinesHeading": "Информация о лекарстве",
+"lookupMedicinesLead": "Общее описание для введённого препарата. Всегда следуйте дозировке, назначенной вашим врачом или фармацевтом.",
 "scheduleSlots": {"morning":"Утро","midday":"День","evening":"Вечер","bedtime":"Перед сном"},
 "noDoseAria": "Доза не указана",
 "strengthLabel": "Дозировка",
 "activeIngredientLabel": "Действующее вещество",
 "formLabel": "Форма выпуска",
+"sideEffectsLabel": "Возможные побочные эффекты",
+"benefitTimelineLabel": "Когда начинает действовать",
+"stoppingGuidanceLabel": "Отмена и пропущенные дозы",
 "foodTiming": {"before_meal":"До еды","with_meal":"Во время еды","after_meal":"После еды"},
 "foodTimingSentence": {"before_meal":"Принимайте до еды.","with_meal":"Принимайте во время еды.","after_meal":"Принимайте после еды."},
 "durationLabel": (duration) => `Длительность: ${duration}`,

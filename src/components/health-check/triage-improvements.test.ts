@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   getHealthCheckTranslations,
+  isBodyPartId,
   type BodyPartId,
 } from "@/lib/i18n/health-check-translations";
 import { getHealthTopicBySlug } from "@/lib/i18n/health-information-topics";
@@ -278,6 +279,47 @@ describe("Health Check triage improvements", () => {
       if (roLoc) {
         expect(roLoc.slice(1).match(/[A-ZĂÂÎȘȚ][a-zăâîșț]+/g)).toBeNull();
       }
+    }
+  });
+
+  it("supports Mind and mood non-somatic pathway, crisis red flag, permalink round-trip, and Male/Female relabeling across all 7 locales", () => {
+    expect(isBodyPartId("mind")).toBe(false);
+    expect(isBodyPartId("head")).toBe(true);
+
+    for (const lang of LANGUAGES) {
+      const dict = getHealthCheckTranslations(lang);
+      const copy = COPY[lang];
+
+      expect(Object.keys(dict.bodyParts)).toHaveLength(7);
+      expect(dict.mentalArea.title.length).toBeGreaterThan(2);
+      expect(dict.mentalArea.title).not.toContain("&");
+      expect(dict.mentalArea.subtitle).not.toContain("&");
+      expect(dict.mentalSymptoms).toHaveLength(5);
+
+      const crisis = dict.mentalSymptoms.find((s) => s.id === "mind_crisis_self_harm");
+      expect(crisis?.isRedFlag).toBe(true);
+
+      const mindTopic = getTopicForSymptom("mind", "mind_low_mood", lang);
+      expect(mindTopic.slug).toBe("mental-wellbeing");
+      expect(getHealthTopicBySlug(lang, mindTopic.slug)).toBeDefined();
+      expect(mindTopic.title).not.toContain("&");
+
+      const url = buildTriageReproductionUrl("https://redihealth.org", lang, {
+        part: "mind",
+        symptomId: "mind_low_mood",
+        severity: "moderate",
+        duration: "weeks",
+        forWhom: "self",
+        bodyProfile: "general",
+      });
+      const restored = parseTriageReproductionSearch(new URL(url).search, lang);
+      expect(restored).not.toBeNull();
+      expect(restored?.part).toBe("mind");
+      expect(restored?.subRegion).toBeNull();
+      expect(restored?.symptomId).toBe("mind_low_mood");
+
+      expect(copy.bodyGeneral.toLowerCase()).not.toContain("general");
+      expect(copy.bodyFemale.length).toBeGreaterThan(2);
     }
   });
 });

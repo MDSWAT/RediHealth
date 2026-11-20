@@ -16,6 +16,7 @@ export const ACUTE_RED_FLAG_SYMPTOM_IDS = new Set<string>([
   "back_severe_difficulty", // Cauda equina syndrome / severe neurovascular deficit
   "arm_sudden_swelling", // Sudden arm weakness: stroke until proven otherwise
   "leg_sudden_swelling", // Deep vein thrombosis / pulmonary embolism risk
+  "mind_crisis_self_harm", // Acute self-harm or suicidal crisis: immediate 112 emergency
 ]);
 
 export function isAcuteSurgicalOrEmergency(symptom: Pick<SymptomChoice, "id" | "isRedFlag"> | null): boolean {
@@ -36,6 +37,7 @@ const MIN_CARE_BY_SYMPTOM: Record<string, UrgencyLevel> = {
   arm_numbness: "medium",
   back_chronic: "medium",
   back_flank_kidney: "high", // suspected pyelonephritis or renal colic: same-day medical evaluation
+  mind_low_mood: "medium", // persistent low mood warrants timely doctor or counsellor follow-up
 };
 
 const CARE_RANK: Record<UrgencyLevel, number> = { low: 0, medium: 1, high: 2 };
