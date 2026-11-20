@@ -99,15 +99,14 @@ describe("PWA web app manifest", () => {
     });
   });
 
-  it("defines 4 sentence-cased shortcuts and narrow/wide screenshots with valid PNG assets", () => {
+  it("defines 3 sentence-cased shortcuts and narrow/wide screenshots with valid PNG assets", () => {
     const data = manifest();
     const shortcuts = data.shortcuts ?? [];
 
     expect(shortcuts.map((s) => ({ name: s.name, url: s.url }))).toEqual([
       { name: "Check symptoms", url: "/health-check" },
-      { name: "Health assistant", url: "/health-assistant" },
+      { name: "Medicine check", url: "/prescription-review" },
       { name: "Find clinics and pharmacies", url: "/find-help" },
-      { name: "Online doctor", url: "/medic-online" },
     ]);
 
     for (const shortcut of shortcuts) {

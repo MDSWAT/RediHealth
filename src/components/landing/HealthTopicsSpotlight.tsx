@@ -174,7 +174,7 @@ export function HealthTopicsSpotlight({ topics, wheel, heading, children }: Heal
                 <div className="flex min-w-0 flex-1 items-start gap-4 p-5 [@media(max-height:820px)]:self-center [@media(max-height:820px)]:gap-3 [@media(max-height:820px)]:p-4">
                   <span
                     aria-hidden="true"
-                    className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-primary text-white [--wheel-face-bg:var(--color-primary)] [&>svg]:h-6 [&>svg]:w-6"
+                    className="grid h-12 w-12 shrink-0 place-items-center rounded-(--radius-control) bg-sapphire text-white [--wheel-face-bg:var(--color-sapphire)] [&>svg]:h-6 [&>svg]:w-6"
                   >
                     {icon}
                   </span>

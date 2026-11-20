@@ -43,12 +43,36 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(HEADER_SOURCE).toContain("capsuleCloseItem()");
   });
 
-  it("shows primary navigation and mediator subtitles visibly without sr-only or line clipping", () => {
+  it("places all 6 core destinations including /mediatori in the primary list and wraps subtitles cleanly", () => {
+    expect(HEADER_SOURCE).toContain('href: "/health-information"');
+    expect(HEADER_SOURCE).toContain('href: "/health-check"');
+    expect(HEADER_SOURCE).toContain('href: "/prescription-review"');
+    expect(HEADER_SOURCE).toContain('href: "/find-help"');
+    expect(HEADER_SOURCE).toContain('href: "/mediatori"');
+    expect(HEADER_SOURCE).toContain('href: "/stiri"');
+
+    // Desktop nav and mobile drawer share primaryLinks, with /mediatori inside the primary <nav>.
+    expect(MOBILE_MENU_SOURCE).toContain("primaryLinks.map");
+    expect(MOBILE_MENU_SOURCE).not.toContain("{tHeader.forMediatorsSub}");
     expect(MOBILE_MENU_SOURCE).toContain("{link.subtext}");
-    expect(MOBILE_MENU_SOURCE).toContain("{tHeader.forMediatorsSub}");
     expect(MOBILE_MENU_SOURCE).toContain("text-meta font-normal leading-snug text-muted-foreground");
+    expect(MOBILE_MENU_SOURCE).not.toContain("block whitespace-nowrap text-meta");
     expect(MOBILE_MENU_SOURCE).not.toContain("sr-only");
     expect(MOBILE_MENU_SOURCE).not.toContain("line-clamp-1");
+  });
+
+  it("maps active routes 1-to-1 including /stiri and /news across locales, and keeps Footer public", () => {
+    expect(HEADER_SOURCE).toContain('currentPath === "/news"');
+    expect(HEADER_SOURCE).toContain('currentPath.startsWith("/news/")');
+    expect(HEADER_SOURCE).not.toContain("isGuidanceRoute");
+
+    const footerSource = readFileSync(
+      path.resolve(process.cwd(), "src/components/layout/Footer.tsx"),
+      "utf8",
+    );
+    expect(footerSource).not.toContain("/medic-online/programare");
+    expect(footerSource).not.toContain("/panel");
+    expect(footerSource).not.toContain("/health-assistant");
   });
 
   it("wires listRow, collapsible, and openDrawerSection mutual exclusion", () => {

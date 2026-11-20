@@ -61,6 +61,12 @@
   --color-amber-care-soft: #fef3c7;
   --color-amber-care-border: #fde68a;
 
+  /* Wellness Teal (Learning, prevention and self-check guides - WCAG AA 6.38:1) */
+  --color-wellness: #0f6b5b;
+  --color-wellness-light: #148571;
+  --color-wellness-soft: #eef8f5;
+  --color-wellness-border: #99d5c9;
+
   /* Micro-status Sage (Restricted strictly to micro indicators) */
   --color-live-sage: #059669;
   --color-live-sage-soft: #ecfdf5;
@@ -127,6 +133,8 @@
 }
 
 .dark {
+  --color-wellness-soft: rgb(15 107 91 / 0.24);
+  --color-wellness-border: #7ed8c6;
   --shadow-card-rest:
     0 1px 2px oklch(0.08 0.02 255 / 0.32),
     0 8px 20px -10px oklch(0.08 0.02 255 / 0.45);
@@ -528,91 +536,6 @@ h2 {
   color: var(--color-paper);
 }
 
-/* The phone hero's dock position, 0 open to 1 tucked away (HeroDock). Registered as a number so
-   it can ease between the two detents and every length that depends on it eases with it. */
-@property --dock-p {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-
-/* The phone hero shares the dock's position with everything in it: 0.55s on the iOS sheet curve
-   between detents, nothing while a finger drags. --dock-down is the half toward the peek (0..1),
-   --dock-up the half toward the full menu (0..1). */
-@property --ring {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
-
-.hero {
-  --dock-down: max(var(--dock-p), 0);
-  --dock-up: max(calc(var(--dock-p) * -1), 0);
-  transition:
-    --dock-p 0.55s cubic-bezier(0.32, 0.72, 0, 1),
-    --ring 0.55s cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-/* The wheel's topic icons are out (a tap on the chakra): --ring eases 0 to 1. */
-.hero[data-ring] {
-  --ring: 1;
-}
-
-.hero[data-dragging] {
-  transition: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero {
-    transition: none;
-  }
-}
-
-html[data-calm-motion] .hero {
-  transition: none;
-}
-
-/* Phones: with the dock tucked away, the headline block moves up by what the whole wheel and
-   the caption need (--text-lift, measured by HeroDock), never under the header. */
-@media (max-width: 1023px) {
-  .hero-phone-drift {
-    transform: translateY(
-      calc(
-        (
-          var(--dock-down, 0) *
-            (var(--text-lift, 0px) + var(--ring, 0) * (var(--text-lift-ring, 0px) - var(--text-lift, 0px))) +
-          (1 - var(--dock-down, 0)) * var(--ring, 0) * var(--text-lift-open-ring, 0px)
-        ) * -1
-      )
-    );
-  }
-
-  /* With the topic icons out, the cross gives way to the wheel and its room goes to the caption. */
-  .hero-cross-slot {
-    opacity: calc(1 - var(--dock-down, 0) * var(--ring, 0));
-    scale: calc(1 - var(--dock-down, 0) * var(--ring, 0) * 0.25);
-  }
-}
-
-/* The easter egg's caption under the subtitle: the topic at the top of the ring, small and quiet,
-   arriving with a short rise each time it changes. */
-.hero-topic-note {
-  opacity: 0.92;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html:not([data-calm-motion]) .hero-topic-note {
-    animation: hero-topic-note-in 0.5s var(--ease-out-calm) both;
-  }
-}
-
-@keyframes hero-topic-note-in {
-  from {
-    opacity: 0;
-    translate: 0 4px;
-  }
-}
-
 /* Phone menu language list: as it grows open, its rows settle in one after another (30ms apart). */
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-calm-motion]) .lang-rows[data-open] > .lang-row {
@@ -871,36 +794,6 @@ html[data-calm-motion] .hero {
   100% {
     translate: 0 -3rem;
     opacity: 0;
-  }
-}
-
-/*
- * Desktop: as the next sheet slides up over the hero (StackedSections), the hero's content rises a
- * little and dissolves under the sheet's dimming, and the turning wheel behind it fades with it, so
- * the hand-off reads as one soft dissolve rather than a grey-out. Same timeline as the sheet.
- */
-@supports (animation-timeline: view()) {
-  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
-    html:not([data-calm-motion]):not([data-text-scale]) .hero .hero-grid,
-    html:not([data-calm-motion]):not([data-text-scale]) .hero .hero-wheel-dissolve {
-      animation: hero-sheet-dissolve linear both;
-      animation-timeline: --stack-sheet-2;
-      animation-range: entry 0% entry 90%;
-    }
-  }
-}
-
-@keyframes hero-sheet-dissolve {
-  0% {
-    opacity: 1;
-    translate: 0 0;
-  }
-  30% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    translate: 0 -2rem;
   }
 }
 
@@ -2350,6 +2243,10 @@ html[data-high-contrast]:not(.dark) {
   --color-primary: #9e1b26;
   --color-primary-hover: #7f151e;
   --color-amber-care: #7c2d12;
+  --color-wellness: #0a4d41;
+  --color-wellness-light: #0f6b5b;
+  --color-wellness-soft: #d9f3ec;
+  --color-wellness-border: #0a4d41;
   --color-live-sage: #047857;
 }
 
@@ -2374,6 +2271,10 @@ html[data-high-contrast].dark {
   --color-sapphire-light: #2563eb;
   --color-sapphire-soft: #1e293b;
   --color-sapphire-border: #bfdbfe;
+  --color-wellness: #0f6b5b;
+  --color-wellness-light: #148571;
+  --color-wellness-soft: #0f2d2a;
+  --color-wellness-border: #99f6e4;
   --color-ring: #f8fafc;
 }
 
@@ -2388,6 +2289,7 @@ html[data-high-contrast] :is(footer, .bg-ink-950, .bg-ink-900, .dark, .phone-she
   --color-border: #94a3b8;
   --color-border-subtle: #64748b;
   --color-border-control: #f8fafc;
+  --color-wellness-border: #99f6e4;
   --color-ring: #f8fafc;
 }
 

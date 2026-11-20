@@ -2,14 +2,14 @@
   --wheel-outer-dur: 90s;
   --wheel-inner-dur: 60s;
   --wheel-hub-dur: 24s;
-  --wheel-pink: color-mix(in srgb, var(--color-primary) 56%, #fff);
+  --wheel-accent: color-mix(in srgb, var(--color-sapphire) 56%, #fff);
   position: relative;
   width: 100%;
   max-width: 42.5rem;
   aspect-ratio: 1;
   margin-inline: auto;
   container-type: inline-size;
-  color: var(--color-primary);
+  color: var(--color-sapphire);
 }
 
 .layer {
@@ -40,7 +40,7 @@
 }
 
 .hubDisc {
-  fill: color-mix(in srgb, var(--color-primary) 60%, #fff);
+  fill: color-mix(in srgb, var(--color-sapphire) 60%, #fff);
 }
 
 .star {
@@ -96,8 +96,8 @@
 
 .rest {
   --wheel-face-bg: #fff;
-  --wheel-face-fg: var(--wheel-pink);
-  --wheel-face-ring: var(--wheel-pink);
+  --wheel-face-fg: var(--wheel-accent);
+  --wheel-face-ring: var(--wheel-accent);
 }
 
 /* Runs on the ring's clock, so the button lights up at a fixed screen angle. */
