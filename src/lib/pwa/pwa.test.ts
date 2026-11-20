@@ -17,6 +17,10 @@ import {
   openPwaInstall,
   usePwaSnapshot,
 } from "./pwa-state";
+import {
+  GUIDE_OFFLINE_PRINT_COPY,
+  GuideOfflinePrintActions,
+} from "@/components/health-information/GuideOfflinePrintActions";
 
 const ALL_LANGS: Lang[] = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
 const ALLOWED_MID_SENTENCE_CAPS = new Set([
@@ -658,5 +662,56 @@ describe("pwa-state runtime and SSR safety", () => {
     }
     await updatePromise;
     expect(reload).toHaveBeenCalledTimes(1);
+  });
+
+  it("isolates redihealth-guides-v1 strictly to non-PHI /health-information routes and provides 7-locale print/offline actions", () => {
+    const swSrc = readFileSync(resolve(process.cwd(), "public/offline-worker.js"), "utf8");
+    expect(swSrc).toContain('GUIDES_CACHE = "redihealth-guides-v1"');
+    expect(swSrc).toContain("isHealthGuidePath");
+    expect(swSrc).toContain("CACHE_GUIDE");
+
+    const fnStart = swSrc.indexOf("function isHealthGuidePath");
+    const sandbox: { isHealthGuidePath?: (p: string) => boolean } = {};
+    vm.runInNewContext(
+      swSrc.slice(swSrc.indexOf("const SUPPORTED_LOCALES"), swSrc.indexOf("function buildOfflineFallbackResponse")),
+      sandbox,
+    );
+    expect(fnStart).toBeGreaterThan(-1);
+    expect(sandbox.isHealthGuidePath?.("/ro/health-information/heart-health")).toBe(true);
+    expect(sandbox.isHealthGuidePath?.("/en/health-information/articles/flu")).toBe(true);
+    expect(sandbox.isHealthGuidePath?.("/ro/health-information")).toBe(true);
+    for (const sensitivePath of [
+      "/ro/panel",
+      "/ro/panel/patient-1",
+      "/en/patient-portal",
+      "/ro/sign-in",
+      "/en/health-check/note",
+      "/api/tts",
+      "/ro/mediatori",
+    ]) {
+      expect(sandbox.isHealthGuidePath?.(sensitivePath), sensitivePath).toBe(false);
+    }
+
+    const actionsSrc = readFileSync(
+      resolve(process.cwd(), "src/components/health-information/GuideOfflinePrintActions.tsx"),
+      "utf8",
+    );
+    expect(actionsSrc).toContain("window.print()");
+    expect(actionsSrc).toContain("redihealth-guides-v1");
+    expect(actionsSrc).not.toContain("rounded-full");
+
+    for (const loc of ALL_LANGS) {
+      const copy = GUIDE_OFFLINE_PRINT_COPY[loc];
+      expect(copy.printLabel.trim().length).toBeGreaterThan(0);
+      expect(copy.saveLabel.trim().length).toBeGreaterThan(0);
+      expect(copy.savedStatus.trim().length).toBeGreaterThan(0);
+      expect(copy.printLabel).not.toContain("&");
+      expect(copy.saveLabel).not.toContain("&");
+      const html = renderToStaticMarkup(createElement(GuideOfflinePrintActions, { lang: loc, title: "Test" }));
+      expect(html).toContain("min-h-11");
+      expect(html).toContain("whitespace-nowrap");
+      expect(html).toContain(copy.printLabel);
+      expect(html).toContain(copy.saveLabel);
+    }
   });
 });

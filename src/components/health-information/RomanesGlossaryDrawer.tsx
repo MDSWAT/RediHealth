@@ -3,6 +3,7 @@
 import {
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ComponentType,
   type CSSProperties,
@@ -11,6 +12,7 @@ import {
 import {
   ActivityIcon,
   AlertCircleIcon,
+  BrainIcon,
   GlobeIcon,
   HandHelpingIcon,
   HeartIcon,
@@ -129,10 +131,31 @@ const ROMANES_CATEGORY_ICON_MAP: Record<string, IconComponent> = {
   simptome: ActivityIcon,
   anatomie: UserIcon,
   tratamente: PrescriptionIcon,
+  "sanatate-mintala": BrainIcon,
   general: HandHelpingIcon,
   urgenta: AlertCircleIcon,
   urgente: AlertCircleIcon,
 };
+
+const ROMANES_LARGE_TEXT_KEY = "redihealth_dict_large_text";
+
+function readInitialRomanesLargeText(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return window.localStorage.getItem(ROMANES_LARGE_TEXT_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function romanesScaleStyle(largeText: boolean): CSSProperties {
+  return {
+    "--dict-formal-size": largeText ? "1.09375rem" : "0.96875rem",
+    "--dict-plain-size": largeText ? "1.28125rem" : "1.125rem",
+    "--dict-body-size": largeText ? "1.0625rem" : "0.9375rem",
+    "--dict-note-size": largeText ? "0.96875rem" : "0.84375rem",
+  } as CSSProperties;
+}
 
 function isEmergencyRomanesCategory(category: string): boolean {
   return category === "urgenta" || category === "urgente";
@@ -213,40 +236,305 @@ function useSafeLanguageContext(): { lang: Lang } {
   }
 }
 
-export function RomanesGlossaryDrawer({
-  isOpen,
-  onClose,
-  tabs,
-  className = "",
-  lang,
-}: RomanesGlossaryDrawerProps) {
-  const { lang: ctxLang } = useSafeLanguageContext();
-  const currentLang: Lang = lang ?? ctxLang ?? "ro";
+function RomanesGlossaryBody({
+  currentLang,
+  searchQuery,
+  selectedCategory,
+  onSelectCategory,
+  onResetFilters,
+  activeSpeakingId,
+  onPronounce,
+  categories,
+  categoryCounts,
+  filteredTerms,
+  specimenNumberById,
+  inline,
+}: {
+  currentLang: Lang;
+  searchQuery: string;
+  selectedCategory: string;
+  onSelectCategory: (cat: string) => void;
+  onResetFilters: () => void;
+  activeSpeakingId: string | null;
+  onPronounce: (term: RomanesGlossaryTerm) => void;
+  categories: { slug: string; label: string }[];
+  categoryCounts: Record<string, number>;
+  filteredTerms: RomanesGlossaryTerm[];
+  specimenNumberById: Map<string, number>;
+  inline?: boolean;
+}) {
   const s = HEALTH_DETAIL_SHARED_STRINGS.romanesGlossaryDrawer;
-  const sRecord = s as unknown as Record<string, Record<Lang, string> | undefined>;
   const listenButtonLabels =
     HEALTH_DETAIL_SHARED_STRINGS.synchronizedReader.listenPronunciationButton;
   const countUi =
     ROMANES_COUNT_BY_LANG[currentLang] ?? ROMANES_COUNT_BY_LANG.ro;
   const util =
     DICTIONARY_UTILITY_COPY[currentLang] ?? DICTIONARY_UTILITY_COPY.ro;
-  const tabFallback =
-    DICTIONARY_TAB_LABELS[currentLang] ?? DICTIONARY_TAB_LABELS.ro;
+  const voiceEnabled = isVoiceEnabled("rom");
 
+  const isFiltered =
+    selectedCategory !== "all" || searchQuery.trim().length > 0;
+  const countText =
+    filteredTerms.length === 1
+      ? countUi.one
+      : countUi.many(filteredTerms.length);
+  const listenText = pickLocale(listenButtonLabels, currentLang);
+  const pronunciationHeading = pickLocale(s.pronunciationLabel, currentLang);
+
+  return (
+    <>
+      <DictionaryFilters
+        label={pickLocale(s.title, currentLang)}
+        options={categories.map((c) => {
+          const Icon = ROMANES_CATEGORY_ICON_MAP[c.slug] ?? ShieldIcon;
+          return {
+            value: c.slug,
+            label: c.label,
+            count: categoryCounts[c.slug] ?? 0,
+            tone: isEmergencyRomanesCategory(c.slug) ? "emergency" : "default",
+            icon: <Icon className="h-3.5 w-3.5" />,
+          };
+        })}
+        selected={selectedCategory}
+        onSelect={onSelectCategory}
+      />
+
+      {/* Unclipped status and reset strip */}
+      <div className="mt-3 mb-3.5 flex flex-wrap items-center justify-between gap-2 border-b border-border/80 pb-2.5">
+        <p
+          role="status"
+          className="text-meta font-semibold tabular-nums text-muted-foreground"
+        >
+          {countText}
+        </p>
+        {isFiltered && (
+          <button
+            type="button"
+            onClick={onResetFilters}
+            className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg bg-sapphire-soft px-3.5 py-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            {util.resetFilters}
+          </button>
+        )}
+      </div>
+
+      {/* Community lexicon specimen cards */}
+      {filteredTerms.length === 0 ? (
+        <div className="swap-in rounded-2xl border border-dashed border-border bg-surface-subtle/50 px-5 py-10 text-center">
+          <p className="text-body text-muted-foreground">
+            {pickLocale(s.emptyState, currentLang)}
+          </p>
+          {isFiltered && (
+            <Button
+              type="button"
+              variant="action"
+              size="md"
+              onClick={onResetFilters}
+              className="mt-4"
+            >
+              {util.resetFilters}
+            </Button>
+          )}
+        </div>
+      ) : (
+        <ul key={selectedCategory} className={inline ? "grid gap-4 lg:grid-cols-2" : "space-y-3.5"}>
+          {filteredTerms.map((term, index) => {
+            const translated = getTranslatedTerm(term, currentLang);
+            const categoryLabel = getCategoryLabel(term, currentLang);
+            const explanation = getExplanation(term, currentLang);
+            const catSlug = term.category as string;
+            const isEmergency = isEmergencyRomanesCategory(catSlug);
+            const isThisSpeaking = activeSpeakingId === term.id;
+            const CatIcon = ROMANES_CATEGORY_ICON_MAP[catSlug] ?? ShieldIcon;
+            const specimenNum = specimenNumberById.get(term.id) ?? index + 1;
+            const syllableWords = splitPhoneticWords(
+              term.phoneticPronunciation,
+            );
+            const speakAria = isThisSpeaking
+              ? `${util.stopAudio}: ${term.romanesTerm}`
+              : pickLocale(s.pronounceAriaTemplate, currentLang).replace(
+                  "{term}",
+                  term.romanesTerm,
+                );
+
+            return (
+              <li
+                key={term.id}
+                style={{ "--i": index } as CSSProperties}
+                className={cn(
+                  "list-in flex flex-col overflow-hidden rounded-2xl border bg-card p-4 shadow-[var(--shadow-card-rest)] transition-shadow duration-[var(--dur-base)] hover:shadow-[var(--shadow-card-hover)] sm:p-5",
+                  isEmergency ? "border-primary/35" : "border-border",
+                )}
+              >
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={cn(
+                          "inline-flex items-center gap-1.5 text-meta font-semibold",
+                          isEmergency ? "text-primary" : "text-foreground",
+                        )}
+                      >
+                        <CatIcon className="h-3.5 w-3.5 shrink-0" />
+                        <span>{categoryLabel}</span>
+                      </span>
+                      <span className="font-mono text-meta font-medium tabular-nums text-muted-foreground">
+                        #{String(specimenNum).padStart(2, "0")}
+                      </span>
+                    </div>
+
+                    <h3
+                      style={{ fontSize: "var(--dict-plain-size)" }}
+                      className="mt-2 font-semibold leading-snug text-foreground text-balance"
+                    >
+                      <HighlightGlossaryText
+                        text={term.romanesTerm}
+                        query={searchQuery}
+                      />
+                    </h3>
+                  </div>
+
+                  {voiceEnabled && (
+                    <DictionarySpeakButton
+                      speaking={isThisSpeaking}
+                      onClick={() => onPronounce(term)}
+                      tone={isEmergency ? "emergency" : "default"}
+                      listenText={listenText}
+                      stopText={util.stopAudio}
+                      label={speakAria}
+                    />
+                  )}
+                </div>
+
+                {/* Medical meaning bridge ticket */}
+                <div
+                  className={cn(
+                    "mt-3 rounded-xl border px-3.5 py-2.5",
+                    isEmergency
+                      ? "border-primary/25 bg-primary-soft/35"
+                      : "border-border/90 bg-surface-subtle/90",
+                  )}
+                >
+                  <span className="flex items-center gap-1.5 text-meta font-medium text-muted-foreground">
+                    <StethoscopeIcon
+                      className={cn(
+                        "h-3.5 w-3.5 shrink-0",
+                        isEmergency ? "text-primary" : "text-sapphire",
+                      )}
+                    />
+                    <span>{countUi.bridgeLabel}</span>
+                  </span>
+                  <span
+                    style={{ fontSize: "var(--dict-formal-size)" }}
+                    className="mt-0.5 block font-semibold leading-snug text-foreground"
+                  >
+                    <HighlightGlossaryText
+                      text={translated}
+                      query={searchQuery}
+                    />
+                  </span>
+                </div>
+
+                {/* Plain-language explanation */}
+                <p
+                  style={{ fontSize: "var(--dict-body-size)" }}
+                  className="mt-3 leading-relaxed text-foreground/90"
+                >
+                  <HighlightGlossaryText
+                    text={explanation}
+                    query={searchQuery}
+                  />
+                </p>
+
+                {/* Syllable rhythm guide in plain monospace text (zero pills) */}
+                <div className="mt-auto pt-3.5">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 border-t border-border/70 pt-3">
+                    <span className="text-meta font-semibold text-muted-foreground">
+                      {pronunciationHeading}
+                      <span className="sr-only">
+                        {" "}
+                        {term.phoneticPronunciation}
+                      </span>
+                    </span>
+                    <div
+                      aria-hidden="true"
+                      className="flex flex-wrap items-center gap-x-2 gap-y-1.5"
+                    >
+                      {syllableWords.map((wordObj, wordIdx) => (
+                        <span
+                          key={`${term.id}-w-${wordIdx}`}
+                          className="inline-flex flex-wrap items-center gap-0.5"
+                        >
+                          {wordObj.prefix && (
+                            <span className="text-meta font-medium text-muted-foreground">
+                              {wordObj.prefix}
+                            </span>
+                          )}
+                          {wordObj.syllables.map((syllable, sylIdx) => (
+                            <span
+                              key={`${term.id}-w-${wordIdx}-s-${sylIdx}`}
+                              className="inline-flex items-center gap-0.5"
+                            >
+                              {sylIdx > 0 && (
+                                <span className="text-meta font-bold text-sapphire/60">
+                                  {" — "}
+                                </span>
+                              )}
+                              <span className="font-mono text-meta font-semibold text-sapphire dark:text-sapphire-border">
+                                {syllable}
+                              </span>
+                            </span>
+                          ))}
+                          {wordObj.suffix && (
+                            <span className="text-meta font-medium text-muted-foreground">
+                              {wordObj.suffix}
+                            </span>
+                          )}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </>
+  );
+}
+
+function useRomanesGlossaryState(currentLang: Lang, isActive: boolean) {
+  const s = HEALTH_DETAIL_SHARED_STRINGS.romanesGlossaryDrawer;
+  const sRecord = s as unknown as Record<string, Record<Lang, string> | undefined>;
   const voiceEnabled = isVoiceEnabled("rom");
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [speakingId, setSpeakingId] = useState<string | null>(null);
+  const speakingIdRef = useRef<string | null>(null);
+  const wasActiveRef = useRef(isActive);
 
   useEffect(() => {
-    if (!isOpen) {
+    speakingIdRef.current = speakingId;
+  }, [speakingId]);
+
+  useEffect(() => {
+    if (wasActiveRef.current && !isActive && speakingIdRef.current) {
       speechEngine.stop();
+      speakingIdRef.current = null;
     }
+    wasActiveRef.current = isActive;
+  }, [isActive]);
+
+  useEffect(() => {
     return () => {
-      speechEngine.stop();
+      if (speakingIdRef.current) {
+        speechEngine.stop();
+        speakingIdRef.current = null;
+      }
     };
-  }, [isOpen]);
+  }, []);
 
   const specimenNumberById = useMemo(
     () => new Map(ROMANES_GLOSSARY_TERMS.map((term, idx) => [term.id, idx + 1])),
@@ -318,13 +606,7 @@ export function RomanesGlossaryDrawer({
     );
   }, [searchMatchedTerms, selectedCategory]);
 
-  const activeSpeakingId = isOpen ? speakingId : null;
-
-  const handleClose = () => {
-    speechEngine.stop();
-    setSpeakingId(null);
-    onClose();
-  };
+  const activeSpeakingId = isActive ? speakingId : null;
 
   const handlePronounce = (term: RomanesGlossaryTerm) => {
     if (!voiceEnabled) return;
@@ -335,7 +617,6 @@ export function RomanesGlossaryDrawer({
       return;
     }
 
-    speechEngine.stop();
     setSpeakingId(term.id);
     speechEngine.speak(term.audioPronunciationText, {
       lang: "rom",
@@ -349,16 +630,161 @@ export function RomanesGlossaryDrawer({
     setSearchQuery("");
   };
 
-  if (!isOpen) return null;
+  const stopSpeaking = () => {
+    if (speakingIdRef.current) {
+      speechEngine.stop();
+      speakingIdRef.current = null;
+    }
+    setSpeakingId(null);
+  };
 
-  const isFiltered =
-    selectedCategory !== "all" || searchQuery.trim().length > 0;
-  const countText =
-    filteredTerms.length === 1
-      ? countUi.one
-      : countUi.many(filteredTerms.length);
-  const listenText = pickLocale(listenButtonLabels, currentLang);
-  const pronunciationHeading = pickLocale(s.pronunciationLabel, currentLang);
+  return {
+    searchQuery,
+    setSearchQuery,
+    selectedCategory,
+    setSelectedCategory,
+    activeSpeakingId,
+    specimenNumberById,
+    categories,
+    categoryCounts,
+    filteredTerms,
+    handlePronounce,
+    handleResetFilters,
+    stopSpeaking,
+  };
+}
+
+export interface RomanesGlossaryContentProps {
+  tabs?: Omit<DictionaryTabsProps, "active">;
+  className?: string;
+  lang?: Lang;
+  inline?: boolean;
+  isActive?: boolean;
+}
+
+export function RomanesGlossaryContent({
+  tabs,
+  className = "",
+  lang,
+  isActive = true,
+}: RomanesGlossaryContentProps) {
+  const { lang: ctxLang } = useSafeLanguageContext();
+  const currentLang: Lang = lang ?? ctxLang ?? "ro";
+  const s = HEALTH_DETAIL_SHARED_STRINGS.romanesGlossaryDrawer;
+  const util = DICTIONARY_UTILITY_COPY[currentLang] ?? DICTIONARY_UTILITY_COPY.ro;
+  const tabFallback = DICTIONARY_TAB_LABELS[currentLang] ?? DICTIONARY_TAB_LABELS.ro;
+  const [largeText, setLargeText] = useState<boolean>(readInitialRomanesLargeText);
+  const state = useRomanesGlossaryState(currentLang, isActive);
+
+  const handleToggleLargeText = () => {
+    setLargeText((prev) => {
+      const next = !prev;
+      try {
+        window.localStorage.setItem(ROMANES_LARGE_TEXT_KEY, String(next));
+      } catch {
+        // Ignore storage errors
+      }
+      return next;
+    });
+  };
+
+  return (
+    <div
+      style={romanesScaleStyle(largeText)}
+      data-large-text={largeText ? "true" : "false"}
+      className={cn("rounded-2xl border border-border bg-card p-5 sm:p-7", className)}
+    >
+      <div className="flex flex-wrap items-start justify-between gap-3 border-b border-border pb-4">
+        <div className="min-w-0 flex-1">
+          <h2 className="text-section font-semibold text-foreground text-balance">
+            {pickLocale(s.title, currentLang)}
+          </h2>
+          <p className="mt-1 max-w-(--measure-reading) text-body text-muted-foreground text-pretty">
+            {pickLocale(s.subtitle, currentLang)}
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={handleToggleLargeText}
+          aria-pressed={largeText}
+          aria-label={util.largeTextAria}
+          title={util.largeTextAria}
+          className={cn(
+            "inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-3 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            largeText
+              ? "press-solid border-sapphire bg-sapphire text-white shadow-xs"
+              : "press-row border-border-control bg-card text-foreground hover:bg-muted",
+          )}
+        >
+          <span aria-hidden="true" className="text-body font-bold">
+            A+
+          </span>
+          <span>{util.largeTextLabel}</span>
+        </button>
+      </div>
+
+      <div className="mt-4 space-y-3">
+        {tabs && (
+          <DictionaryTabs
+            active="romanes"
+            tablistAriaLabel={tabs.tablistAriaLabel ?? tabFallback.tablistAria}
+            {...tabs}
+            onSelect={(nextTab) => {
+              state.stopSpeaking();
+              tabs.onSelect(nextTab);
+            }}
+          />
+        )}
+        <DictionarySearch
+          value={state.searchQuery}
+          onChange={state.setSearchQuery}
+          placeholder={pickLocale(s.searchPlaceholder, currentLang)}
+          clearLabel={util.clearSearch}
+        />
+      </div>
+
+      <div className="mt-5" aria-live="polite">
+        <RomanesGlossaryBody
+          currentLang={currentLang}
+          searchQuery={state.searchQuery}
+          selectedCategory={state.selectedCategory}
+          onSelectCategory={state.setSelectedCategory}
+          onResetFilters={state.handleResetFilters}
+          activeSpeakingId={state.activeSpeakingId}
+          onPronounce={state.handlePronounce}
+          categories={state.categories}
+          categoryCounts={state.categoryCounts}
+          filteredTerms={state.filteredTerms}
+          specimenNumberById={state.specimenNumberById}
+          inline
+        />
+      </div>
+    </div>
+  );
+}
+
+export function RomanesGlossaryDrawer({
+  isOpen,
+  onClose,
+  tabs,
+  className = "",
+  lang,
+}: RomanesGlossaryDrawerProps) {
+  const { lang: ctxLang } = useSafeLanguageContext();
+  const currentLang: Lang = lang ?? ctxLang ?? "ro";
+  const s = HEALTH_DETAIL_SHARED_STRINGS.romanesGlossaryDrawer;
+  const util =
+    DICTIONARY_UTILITY_COPY[currentLang] ?? DICTIONARY_UTILITY_COPY.ro;
+  const tabFallback =
+    DICTIONARY_TAB_LABELS[currentLang] ?? DICTIONARY_TAB_LABELS.ro;
+  const state = useRomanesGlossaryState(currentLang, isOpen);
+
+  const handleClose = () => {
+    state.stopSpeaking();
+    onClose();
+  };
+
+  if (!isOpen) return null;
 
   return (
     <DictionaryDrawerFrame
@@ -377,15 +803,14 @@ export function RomanesGlossaryDrawer({
               tablistAriaLabel={tabs.tablistAriaLabel ?? tabFallback.tablistAria}
               {...tabs}
               onSelect={(nextTab) => {
-                speechEngine.stop();
-                setSpeakingId(null);
+                state.stopSpeaking();
                 tabs.onSelect(nextTab);
               }}
             />
           )}
           <DictionarySearch
-            value={searchQuery}
-            onChange={setSearchQuery}
+            value={state.searchQuery}
+            onChange={state.setSearchQuery}
             placeholder={pickLocale(s.searchPlaceholder, currentLang)}
             clearLabel={util.clearSearch}
           />
@@ -396,222 +821,19 @@ export function RomanesGlossaryDrawer({
         className="rh-dict-tab-body min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pt-3.5 pb-6 sm:px-6 sm:pt-4"
         aria-live="polite"
       >
-        <DictionaryFilters
-          label={pickLocale(s.title, currentLang)}
-          options={categories.map((c) => {
-            const Icon = ROMANES_CATEGORY_ICON_MAP[c.slug] ?? ShieldIcon;
-            return {
-              value: c.slug,
-              label: c.label,
-              count: categoryCounts[c.slug] ?? 0,
-              tone: isEmergencyRomanesCategory(c.slug) ? "emergency" : "default",
-              icon: <Icon className="h-3.5 w-3.5" />,
-            };
-          })}
-          selected={selectedCategory}
-          onSelect={setSelectedCategory}
+        <RomanesGlossaryBody
+          currentLang={currentLang}
+          searchQuery={state.searchQuery}
+          selectedCategory={state.selectedCategory}
+          onSelectCategory={state.setSelectedCategory}
+          onResetFilters={state.handleResetFilters}
+          activeSpeakingId={state.activeSpeakingId}
+          onPronounce={state.handlePronounce}
+          categories={state.categories}
+          categoryCounts={state.categoryCounts}
+          filteredTerms={state.filteredTerms}
+          specimenNumberById={state.specimenNumberById}
         />
-
-        {/* Unclipped status and reset strip */}
-        <div className="mt-3 mb-3.5 flex flex-wrap items-center justify-between gap-2 border-b border-border/80 pb-2.5">
-          <p
-            role="status"
-            className="text-meta font-semibold tabular-nums text-muted-foreground"
-          >
-            {countText}
-          </p>
-          {isFiltered && (
-            <button
-              type="button"
-              onClick={handleResetFilters}
-              className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg bg-sapphire-soft px-3.5 py-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              {util.resetFilters}
-            </button>
-          )}
-        </div>
-
-        {/* Community lexicon specimen cards */}
-        {filteredTerms.length === 0 ? (
-          <div className="swap-in rounded-2xl border border-dashed border-border bg-surface-subtle/50 px-5 py-10 text-center">
-            <p className="text-body text-muted-foreground">
-              {pickLocale(s.emptyState, currentLang)}
-            </p>
-            {isFiltered && (
-              <Button
-                type="button"
-                variant="action"
-                size="md"
-                onClick={handleResetFilters}
-                className="mt-4"
-              >
-                {util.resetFilters}
-              </Button>
-            )}
-          </div>
-        ) : (
-          // Keyed by category: choosing a filter deals the matching cards in again, in order.
-          <ul key={selectedCategory} className="space-y-3.5">
-            {filteredTerms.map((term, index) => {
-              const translated = getTranslatedTerm(term, currentLang);
-              const categoryLabel = getCategoryLabel(term, currentLang);
-              const explanation = getExplanation(term, currentLang);
-              const catSlug = term.category as string;
-              const isEmergency = isEmergencyRomanesCategory(catSlug);
-              const isThisSpeaking = activeSpeakingId === term.id;
-              const CatIcon = ROMANES_CATEGORY_ICON_MAP[catSlug] ?? ShieldIcon;
-              const specimenNum = specimenNumberById.get(term.id) ?? index + 1;
-              const syllableWords = splitPhoneticWords(
-                term.phoneticPronunciation,
-              );
-              const speakAria = isThisSpeaking
-                ? `${util.stopAudio}: ${term.romanesTerm}`
-                : pickLocale(s.pronounceAriaTemplate, currentLang).replace(
-                    "{term}",
-                    term.romanesTerm,
-                  );
-
-              return (
-                <li
-                  key={term.id}
-                  style={{ "--i": index } as CSSProperties}
-                  className={cn(
-                    "list-in overflow-hidden rounded-2xl border bg-card p-4 shadow-[var(--shadow-card-rest)] transition-shadow duration-[var(--dur-base)] hover:shadow-[var(--shadow-card-hover)] sm:p-5",
-                    isEmergency ? "border-primary/35" : "border-border",
-                  )}
-                >
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span
-                          className={cn(
-                            "inline-flex items-center gap-1.5 text-meta font-semibold",
-                            isEmergency ? "text-primary" : "text-foreground",
-                          )}
-                        >
-                          <CatIcon className="h-3.5 w-3.5 shrink-0" />
-                          <span>{categoryLabel}</span>
-                        </span>
-                        <span className="font-mono text-meta font-medium tabular-nums text-muted-foreground">
-                          #{String(specimenNum).padStart(2, "0")}
-                        </span>
-                      </div>
-
-                      <h3
-                        style={{ fontSize: "var(--dict-plain-size)" }}
-                        className="mt-2 font-semibold leading-snug text-foreground text-balance"
-                      >
-                        <HighlightGlossaryText
-                          text={term.romanesTerm}
-                          query={searchQuery}
-                        />
-                      </h3>
-                    </div>
-
-                    {voiceEnabled && (
-                      <DictionarySpeakButton
-                        speaking={isThisSpeaking}
-                        onClick={() => handlePronounce(term)}
-                        tone={isEmergency ? "emergency" : "default"}
-                        listenText={listenText}
-                        stopText={util.stopAudio}
-                        label={speakAria}
-                      />
-                    )}
-                  </div>
-
-                  {/* Medical meaning bridge ticket */}
-                  <div
-                    className={cn(
-                      "mt-3 rounded-xl border px-3.5 py-2.5",
-                      isEmergency
-                        ? "border-primary/25 bg-primary-soft/35"
-                        : "border-border/90 bg-surface-subtle/90",
-                    )}
-                  >
-                    <span className="flex items-center gap-1.5 text-meta font-medium text-muted-foreground">
-                      <StethoscopeIcon
-                        className={cn(
-                          "h-3.5 w-3.5 shrink-0",
-                          isEmergency ? "text-primary" : "text-sapphire",
-                        )}
-                      />
-                      <span>{countUi.bridgeLabel}</span>
-                    </span>
-                    <span
-                      style={{ fontSize: "var(--dict-formal-size)" }}
-                      className="mt-0.5 block font-semibold leading-snug text-foreground"
-                    >
-                      <HighlightGlossaryText
-                        text={translated}
-                        query={searchQuery}
-                      />
-                    </span>
-                  </div>
-
-                  {/* Plain-language explanation */}
-                  <p
-                    style={{ fontSize: "var(--dict-body-size)" }}
-                    className="mt-3 leading-relaxed text-foreground/90"
-                  >
-                    <HighlightGlossaryText
-                      text={explanation}
-                      query={searchQuery}
-                    />
-                  </p>
-
-                  {/* Syllable rhythm pronunciation pills */}
-                  <div className="mt-3.5 flex flex-wrap items-center gap-x-2 gap-y-1.5 border-t border-border/70 pt-3">
-                    <span className="text-meta font-semibold text-muted-foreground">
-                      {pronunciationHeading}
-                      <span className="sr-only">
-                        {" "}
-                        {term.phoneticPronunciation}
-                      </span>
-                    </span>
-                    <div
-                      aria-hidden="true"
-                      className="flex flex-wrap items-center gap-x-2 gap-y-1.5"
-                    >
-                      {syllableWords.map((wordObj, wordIdx) => (
-                        <span
-                          key={`${term.id}-w-${wordIdx}`}
-                          className="inline-flex flex-wrap items-center gap-0.5"
-                        >
-                          {wordObj.prefix && (
-                            <span className="text-meta font-medium text-muted-foreground">
-                              {wordObj.prefix}
-                            </span>
-                          )}
-                          {wordObj.syllables.map((syllable, sylIdx) => (
-                            <span
-                              key={`${term.id}-w-${wordIdx}-s-${sylIdx}`}
-                              className="inline-flex items-center gap-0.5"
-                            >
-                              {sylIdx > 0 && (
-                                <span className="text-meta font-bold text-sapphire/60">
-                                  {" — "}
-                                </span>
-                              )}
-                              <span className="rounded-md border border-sapphire-border bg-sapphire-soft/85 px-2 py-0.5 font-mono text-meta font-semibold text-sapphire">
-                                {syllable}
-                              </span>
-                            </span>
-                          ))}
-                          {wordObj.suffix && (
-                            <span className="text-meta font-medium text-muted-foreground">
-                              {wordObj.suffix}
-                            </span>
-                          )}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        )}
       </div>
     </DictionaryDrawerFrame>
   );

@@ -615,6 +615,7 @@ export class HealthSpeechEngine {
   private gestureUnlockInFlight = false;
   private unlockPrevMuted: boolean | null = null;
   private activeUnlockUrl: string | null = null;
+  private webSpeechRetryTimer: ReturnType<typeof setTimeout> | null = null;
   private gestureBoundWindow: unknown = null;
   private gestureUnlockHandler: (() => void) | null = null;
   private customUnlockHandler: (() => void) | null = null;
@@ -704,10 +705,15 @@ export class HealthSpeechEngine {
           this.removeUserGestureUnlockListeners();
         }
 
+        const audioTakenOver =
+          this.currentAudioElement === audio ||
+          (Boolean(audio.src) &&
+            audio.src !== unlockUrl &&
+            !audio.src.startsWith("data:audio/wav"));
         const stillHoldingUnlockUrl =
           Boolean(this.activeUnlockUrl) &&
           (audio.src === this.activeUnlockUrl || audio.src.startsWith("data:audio/wav"));
-        if (!this.isSpeakingState && stillHoldingUnlockUrl) {
+        if (!audioTakenOver && stillHoldingUnlockUrl) {
           try {
             audio.pause?.();
             audio.currentTime = 0;
@@ -721,7 +727,7 @@ export class HealthSpeechEngine {
           }
         }
 
-        if (!this.isSpeakingState && this.unlockPrevMuted !== null) {
+        if (!audioTakenOver && this.unlockPrevMuted !== null) {
           audio.muted = this.unlockPrevMuted;
           this.unlockPrevMuted = null;
         }
@@ -869,6 +875,10 @@ export class HealthSpeechEngine {
     this.gestureUnlockInFlight = false;
     this.unlockPrevMuted = null;
     this.activeUnlockUrl = null;
+    if (this.webSpeechRetryTimer !== null) {
+      clearTimeout(this.webSpeechRetryTimer);
+      this.webSpeechRetryTimer = null;
+    }
     this.sharedAudioElement = null;
     this.neuralServerAvailable = null;
     this.probePromise = null;
@@ -1018,6 +1028,11 @@ export class HealthSpeechEngine {
   public stop(): void {
     this.runId += 1;
 
+    if (this.webSpeechRetryTimer !== null) {
+      clearTimeout(this.webSpeechRetryTimer);
+      this.webSpeechRetryTimer = null;
+    }
+
     if (this.playbackAbortController) {
       this.playbackAbortController.abort();
       this.playbackAbortController = null;
@@ -1027,10 +1042,18 @@ export class HealthSpeechEngine {
 
     if (typeof window !== "undefined") {
       if (window.speechSynthesis) {
-        try {
-          window.speechSynthesis.cancel();
-        } catch {
-          // Ignore cancellation errors
+        const synth = window.speechSynthesis;
+        const hasActiveSpeech =
+          this.currentUtterance !== null ||
+          this.activeUtterances.size > 0 ||
+          Boolean(synth.speaking) ||
+          Boolean(synth.pending);
+        if (hasActiveSpeech) {
+          try {
+            synth.cancel();
+          } catch {
+            // Ignore cancellation errors
+          }
         }
       }
 
@@ -1046,12 +1069,14 @@ export class HealthSpeechEngine {
       }
     }
 
-    if (this.sharedAudioElement && this.unlockPrevMuted !== null) {
-      this.sharedAudioElement.muted = this.unlockPrevMuted;
-      this.unlockPrevMuted = null;
+    // Preserve an in-flight capture-phase gesture unlock started on this same tap.
+    if (!this.gestureUnlockInFlight) {
+      if (this.sharedAudioElement && this.unlockPrevMuted !== null) {
+        this.sharedAudioElement.muted = this.unlockPrevMuted;
+        this.unlockPrevMuted = null;
+      }
+      this.activeUnlockUrl = null;
     }
-    this.gestureUnlockInFlight = false;
-    this.activeUnlockUrl = null;
 
     this.activeUtterances.clear();
     this.currentUtterance = null;
@@ -1072,6 +1097,11 @@ export class HealthSpeechEngine {
 
   public pause(): void {
     if (typeof window === "undefined") return;
+
+    if (this.webSpeechRetryTimer !== null) {
+      clearTimeout(this.webSpeechRetryTimer);
+      this.webSpeechRetryTimer = null;
+    }
 
     if (this.activeTier === "webspeech" && window.speechSynthesis) {
       // Simulate pause by bookmarking current chunk index and cancelling engine
@@ -1208,6 +1238,7 @@ export class HealthSpeechEngine {
     }
 
     // (c) Matching Web Speech API voice (never cross-language fallback) or transcript mode
+    this.activeTier = "webspeech";
     this.fallbackFromNeuralToWebSpeech(normalized, lang);
   }
 
@@ -1496,6 +1527,7 @@ export class HealthSpeechEngine {
       }
       const audio = this.sharedAudioElement ?? new Audio();
       this.sharedAudioElement = audio;
+      this.currentAudioElement = audio;
       this.clearAudioHandlers(audio);
       if (this.unlockPrevMuted !== null) {
         audio.muted = this.unlockPrevMuted;
@@ -1504,7 +1536,6 @@ export class HealthSpeechEngine {
       this.gestureUnlockInFlight = false;
       this.activeUnlockUrl = null;
       audio.src = url;
-      this.currentAudioElement = audio;
       audio.playbackRate = this.playbackRate;
 
       audio.onplay = () => {
@@ -1551,6 +1582,10 @@ export class HealthSpeechEngine {
       };
 
       await audio.play();
+      if (this.runId === session.run) {
+        this.audioUnlocked = true;
+        this.removeUserGestureUnlockListeners();
+      }
     } catch {
       if (this.runId !== session.run || this.isPausedState) return;
       if (this.currentAudioElement) {
@@ -1699,7 +1734,8 @@ export class HealthSpeechEngine {
   private speakChunkQueue(
     currentRun: number,
     voice?: SpeechSynthesisVoice | null,
-    mp3FallbackUrl?: string
+    mp3FallbackUrl?: string,
+    retryAttempt = 0,
   ): void {
     if (this.runId !== currentRun || this.currentChunkIndex >= this.currentChunks.length) {
       if (this.runId === currentRun) {
@@ -1737,6 +1773,7 @@ export class HealthSpeechEngine {
     this.currentUtterance = utterance;
     // Retain in persistent Set so V8 cannot garbage-collect during playback
     this.activeUtterances.add(utterance);
+    let utteranceStarted = false;
 
     utterance.lang = resolvedVoice.lang || targetLang;
     utterance.rate = this.playbackRate;
@@ -1745,6 +1782,7 @@ export class HealthSpeechEngine {
 
     utterance.onstart = () => {
       if (this.runId !== currentRun) return;
+      utteranceStarted = true;
       this.isSpeakingState = true;
       this.isPausedState = false;
       this.notifyState();
@@ -1776,10 +1814,28 @@ export class HealthSpeechEngine {
 
     utterance.onerror = (event) => {
       this.activeUtterances.delete(utterance);
-      if (this.runId !== currentRun) return;
+      if (this.runId !== currentRun || this.currentUtterance !== utterance) return;
 
-      // Intentional aborts (e.g. cancel, pause, navigation) must not emit fallback errors
       if (event.error === "canceled" || event.error === "interrupted") {
+        // If an active utterance is dropped immediately after an earlier cancel(), retry once
+        // once the speech queue clears instead of swallowing the error and sticking in speaking state.
+        if (!utteranceStarted && retryAttempt < 1 && typeof setTimeout === "function") {
+          if (this.webSpeechRetryTimer !== null) {
+            clearTimeout(this.webSpeechRetryTimer);
+          }
+          this.webSpeechRetryTimer = setTimeout(() => {
+            this.webSpeechRetryTimer = null;
+            if (this.runId === currentRun && !this.isPausedState) {
+              this.speakChunkQueue(currentRun, resolvedVoice, mp3FallbackUrl, retryAttempt + 1);
+            }
+          }, 50);
+          return;
+        }
+        if (mp3FallbackUrl) {
+          this.playStaticMp3Queue(this.currentChunks.join(" "), targetLang, mp3FallbackUrl, currentRun);
+        } else {
+          this.fallbackToTranscript();
+        }
         return;
       }
 

@@ -92,9 +92,18 @@ describe("unified layout and elderly WCAG consistency across health reading surf
         expect(html, `${surfaceName} (${lang}) missing measure constraint`).toContain(
           "max-w-(--measure-reading)",
         );
-        expect(html, `${surfaceName} (${lang}) missing TopicNextSteps`).toContain(
-          'id="next-steps-heading"',
-        );
+        if (surfaceName === "news-article") {
+          expect(html, `${surfaceName} (${lang}) must not embed TopicNextSteps detours`).not.toContain(
+            'id="next-steps-heading"',
+          );
+          expect(html, `${surfaceName} (${lang}) must not push online doctor`).not.toContain(
+            "/medic-online",
+          );
+        } else {
+          expect(html, `${surfaceName} (${lang}) missing TopicNextSteps`).toContain(
+            'id="next-steps-heading"',
+          );
+        }
         expect(html, `${surfaceName} (${lang}) missing safety disclaimer`).toContain(
           'data-testid="medical-safety-disclaimer"',
         );

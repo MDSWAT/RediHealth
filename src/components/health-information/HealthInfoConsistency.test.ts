@@ -313,22 +313,26 @@ describe("health information, glossary, myth card, and topic grid design consist
     }
   });
 
-  it("P20: keeps plain wrapping jump links, single-control search, lead symptom link, and lighter cards", () => {
+  it("P20: renders Learn and test yourself 4-tab hub, all 8 guides with tool links, single-control search, and lighter cards", () => {
     const pageSrc = readSrc("src/components/health-information/HealthInformationPageContent.tsx");
-    expect(pageSrc).toContain("flex-wrap items-center gap-x-4 gap-y-1");
+    expect(pageSrc).toContain('role="tablist"');
+    expect(pageSrc).toContain('role="tabpanel"');
+    expect(pageSrc).toContain("TAB_LIST_CLASS");
+    expect(pageSrc).toContain("DualRegisterGlossaryContent");
+    expect(pageSrc).toContain("TrueFalseQuizSection");
     expect(pageSrc).not.toContain("shadow-2xs");
-    expect(pageSrc).toContain("/health-check");
-    const navSlice = pageSrc.slice(pageSrc.indexOf("<nav"), pageSrc.indexOf("</nav>"));
-    expect(navSlice).not.toContain("setOpenDrawer");
-    expect(navSlice).not.toContain("border-border-control");
+    expect(pageSrc).not.toContain("/health-check");
 
     for (const loc of ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const) {
       expect(HEALTH_HUB_EXPLORER_COPY[loc].onThisPage.trim().length).toBeGreaterThan(0);
-      expect(HEALTH_HUB_EXPLORER_COPY[loc].feelingUnwell.trim().length).toBeGreaterThan(0);
-      expect(HEALTH_HUB_EXPLORER_COPY[loc].checkSymptom.trim().length).toBeGreaterThan(0);
+      expect(HEALTH_HUB_EXPLORER_COPY[loc].title.trim().length).toBeGreaterThan(0);
+      expect(HEALTH_HUB_EXPLORER_COPY[loc].subtitle.trim().length).toBeGreaterThan(0);
+      expect(HEALTH_HUB_EXPLORER_COPY[loc].dictionary.trim().length).toBeGreaterThan(0);
     }
 
     const gridSrc = readSrc("src/components/health-information/HealthInformationTopicGrid.tsx");
+    expect(gridSrc).toContain("getHealthTopicsList");
+    expect(gridSrc).not.toContain("getFeaturedHealthTopics");
     expect(gridSrc).not.toContain("searchCopy.triggerLabel");
     expect(gridSrc).not.toContain("CardCategory");
     expect(gridSrc).not.toContain("h-9 w-9");
@@ -343,11 +347,13 @@ describe("health information, glossary, myth card, and topic grid design consist
       createElement(
         LanguageContext.Provider,
         { value: { lang: "en", t: translations.en, setLang: () => {} } },
-        createElement(HealthInformationTopicGrid, { readingLevel: "complete", onOpenDictionary: () => {} }),
+        createElement(HealthInformationTopicGrid, { onOpenDictionary: () => {} }),
       ),
     );
     expect(gridHtml).not.toContain("Key clinical fact");
-    expect(gridHtml).toContain("5 min read");
+    expect(gridHtml).toContain("Blood pressure check");
+    expect(gridHtml).toContain("#section-explainer");
+    expect(gridHtml).toContain("3 min read");
     expect(gridHtml).toContain("Medical dictionary");
 
     const badgeHtml = renderToStaticMarkup(
@@ -394,21 +400,24 @@ describe("health information, glossary, myth card, and topic grid design consist
     expect(dirHtml).not.toContain("indexed topics");
   });
 
-  it("syncs reading level globally across hub and topic detail pages via useReadingLevel", () => {
-    const hubSrc = readSrc(
+  it("eliminates simple-vs-complete reading-level splits and adds print/offline actions across guides", () => {
+    for (const filePath of [
       "src/components/health-information/HealthInformationPageContent.tsx",
-    );
-    const detailSrc = readSrc(
+      "src/components/health-information/HealthInformationTopicGrid.tsx",
       "src/components/health-information/TopicDetailPageContent.tsx",
+      "src/components/health-information/TopicHeroSection.tsx",
+    ]) {
+      const src = readSrc(filePath);
+      expect(src, `${filePath} must not use useReadingLevel()`).not.toContain("useReadingLevel()");
+      expect(src, `${filePath} must not split simple vs complete`).not.toContain('useState<"simple" | "complete">');
+    }
+
+    expect(readSrc("src/components/health-information/TopicHeroSection.tsx")).toContain(
+      "GuideOfflinePrintActions",
     );
-
-    expect(hubSrc).toContain('from "@/lib/comfort-preferences"');
-    expect(hubSrc).toContain("useReadingLevel()");
-    expect(hubSrc).not.toContain('useState<"simple" | "complete">');
-
-    expect(detailSrc).toContain('from "@/lib/comfort-preferences"');
-    expect(detailSrc).toContain("useReadingLevel()");
-    expect(detailSrc).not.toContain('useState<"simple" | "complete">');
+    expect(readSrc("src/components/health-information/SubjectHeaderToolbar.tsx")).toContain(
+      "GuideOfflinePrintActions",
+    );
   });
 
   it("renders the floating guide section control on every width across all 7 locales with a reachable, single-line trigger", () => {

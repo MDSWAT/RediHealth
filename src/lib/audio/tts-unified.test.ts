@@ -28,6 +28,7 @@ import {
 } from "@/lib/audio/tts-voices";
 import { SPEECH_LANG_BY_LOCALE } from "@/lib/i18n/health-myths";
 import { languages } from "@/lib/i18n/translations";
+import { LISTEN_UNAVAILABLE_COPY } from "@/components/ui/ListenButton";
 import { buildContentSecurityPolicy } from "@/lib/security/csp";
 
 const LOCAL_CACHE_DIR = path.join(os.tmpdir(), "redihealth-tts-cache");
@@ -938,5 +939,123 @@ describe("Sentence splitting, quiz spoiler guard, player lifecycle, and endReaso
     expect(audioInstances).toHaveLength(1);
     expect(audioInstances[0]?.src).toMatch(/^blob:/);
     expect(postCount).toBe(1);
+  });
+
+  it("does not clobber in-flight unlockFromGesture() mute state on stop() and only stops GlobalHealthAudioPlayer when closing", async () => {
+    const globalPlayerSrc = readFileSync(
+      path.join(process.cwd(), "src/components/health-information/GlobalHealthAudioPlayer.tsx"),
+      "utf8",
+    );
+    expect(globalPlayerSrc).toContain("wasActiveRef");
+    expect(globalPlayerSrc).toContain("if (!wasActiveRef.current)");
+    const closeGuardIdx = globalPlayerSrc.indexOf("if (!wasActiveRef.current)");
+    expect(globalPlayerSrc.indexOf("speechEngine.stop()", closeGuardIdx)).toBeGreaterThan(
+      closeGuardIdx,
+    );
+
+    const listenSrc = readFileSync(
+      path.join(process.cwd(), "src/components/ui/ListenButton.tsx"),
+      "utf8",
+    );
+    expect(listenSrc).toContain("playbackError");
+    expect(listenSrc).toContain('role="status"');
+    expect(listenSrc).toContain('aria-live="polite"');
+    for (const loc of ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const) {
+      expect(LISTEN_UNAVAILABLE_COPY[loc]?.trim().length).toBeGreaterThan(0);
+    }
+
+    let resolvePlay: (() => void) | null = null;
+    const sharedMockAudio = {
+      preload: "auto",
+      src: "",
+      muted: false,
+      currentTime: 0,
+      play: vi.fn(
+        () =>
+          new Promise<void>((resolve) => {
+            resolvePlay = resolve;
+          }),
+      ),
+      pause: vi.fn(),
+      removeAttribute: vi.fn(),
+      load: vi.fn(),
+    };
+    const MockAudio = vi.fn(() => sharedMockAudio);
+    vi.stubGlobal("window", { addEventListener: vi.fn(), removeEventListener: vi.fn() });
+    vi.stubGlobal("document", {});
+    vi.stubGlobal("Audio", MockAudio);
+
+    const engine = HealthSpeechEngine.getInstance();
+    engine.resetForTests();
+
+    const unlockPromise = engine.unlockFromGesture();
+    // stop() triggered immediately before unlock promise resolves must NOT force sharedAudio.muted = false while muted unlock is finishing, then restore muted cleanly
+    engine.stop();
+    resolvePlay!();
+    await unlockPromise;
+
+    expect(engine.isAudioUnlocked()).toBe(true);
+    expect(sharedMockAudio.muted).toBe(false);
+  });
+
+  it("retries once on synchronous WebSpeech canceled/interrupted error before failing loudly", async () => {
+    vi.useFakeTimers();
+    class MockUtterance {
+      lang = "";
+      rate = 1;
+      voice: SpeechSynthesisVoice | null = null;
+      onboundary: ((e: unknown) => void) | null = null;
+      onstart: (() => void) | null = null;
+      onend: (() => void) | null = null;
+      onerror: ((e: { error: string }) => void) | null = null;
+      constructor(public text: string) {}
+    }
+    const spoken: MockUtterance[] = [];
+
+    let speakAttempt = 0;
+    const synthMock = {
+      speaking: false,
+      pending: false,
+      getVoices: () => [makeVoice({ name: "Ioana", lang: "ro-RO", localService: true })],
+      speak: vi.fn((u: MockUtterance) => {
+        speakAttempt += 1;
+        spoken.push(u);
+        if (speakAttempt === 1) {
+          u.onerror?.({ error: "canceled" });
+        } else {
+          u.onstart?.();
+          u.onend?.();
+        }
+      }),
+      cancel: vi.fn(),
+    };
+
+    vi.stubGlobal("window", { speechSynthesis: synthMock });
+    vi.stubGlobal("SpeechSynthesisUtterance", MockUtterance);
+    globalThis.fetch = vi.fn<typeof fetch>().mockResolvedValue(
+      new Response(JSON.stringify({ configured: false }), { status: 200 }),
+    );
+
+    const engine = HealthSpeechEngine.getInstance();
+    engine.resetForTests();
+    await engine.probeNeuralServer();
+
+    let endCalls = 0;
+    let errorCalls = 0;
+    engine.speak("Text cu retry.", {
+      lang: "ro-RO",
+      onEnd: () => {
+        endCalls += 1;
+      },
+      onError: () => {
+        errorCalls += 1;
+      },
+    });
+
+    await vi.advanceTimersByTimeAsync(60);
+    expect(speakAttempt).toBe(2);
+    expect(endCalls).toBe(1);
+    expect(errorCalls).toBe(0);
+    vi.useRealTimers();
   });
 });

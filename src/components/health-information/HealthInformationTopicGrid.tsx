@@ -3,13 +3,12 @@
 import { useMemo, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BookIcon, SearchIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, BookIcon, SearchIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import {
   type TopicItem,
-  getFeaturedHealthTopics,
   getHealthTopicsList,
   HEALTH_TOPICS_LIST,
   getHealthTopicGridDictionary,
@@ -22,13 +21,86 @@ export type { TopicItem };
 export { getHealthTopicsList, HEALTH_TOPICS_LIST };
 
 export interface HealthInformationTopicGridProps {
-  /** No longer used: the guides page shows the four main guides without filters. */
+  /** Legacy filter prop kept optional for compatibility; all 8 guides and tools are shown. */
   initialCategory?: string;
   className?: string;
-  /** Library tools: reading time and the dictionary. */
-  readingLevel?: "simple" | "complete";
   onOpenDictionary?: () => void;
 }
+
+const TOOL_LABELS_BY_SLUG: Record<string, Record<Lang, string>> = {
+  "heart-health": {
+    ro: "Simulator tensiune arterială",
+    en: "Blood pressure check",
+    sq: "Kontrolli i tensionit",
+    it: "Controllo della pressione",
+    hr: "Provjera krvnog tlaka",
+    rom: "Dikhiben e ratesko presia",
+    ru: "Проверка давления",
+  },
+  diabetes: {
+    ro: "Calculator glicemie și farfurie",
+    en: "Glucose and plate check",
+    sq: "Kontrolli i glicemisë dhe pjatës",
+    it: "Controllo glicemia e piatto",
+    hr: "Provjera glukoze i tanjura",
+    rom: "Dikhiben e guglimasko",
+    ru: "Глюкоза и тарелка",
+  },
+  "healthy-eating": {
+    ro: "Calculator de sare",
+    en: "Salt calculator",
+    sq: "Llogaritësi i kripës",
+    it: "Calcolatore del sale",
+    hr: "Kalkulator soli",
+    rom: "Kalkulatoro e lonesko",
+    ru: "Калькулятор соли",
+  },
+  "physical-activity": {
+    ro: "Planificator de mișcare",
+    en: "Activity planner",
+    sq: "Planifikuesi i lëvizjes",
+    it: "Pianificatore di movimento",
+    hr: "Planer kretanja",
+    rom: "Plano e miškipnasko",
+    ru: "План движения",
+  },
+  "mental-wellbeing": {
+    ro: "Exercițiu de respirație",
+    en: "Breathing pacer",
+    sq: "Ushtrimi i frymëmarrjes",
+    it: "Guida alla respirazione",
+    hr: "Vodič disanja",
+    rom: "Phurdipen thaj relaksacia",
+    ru: "Дыхательное упражнение",
+  },
+  smoking: {
+    ro: "Calculator renunțare la fumat",
+    en: "Smoking coach",
+    sq: "Mbështetje për lënien e duhanit",
+    it: "Supporto per smettere di fumare",
+    hr: "Podrška za prestanak pušenja",
+    rom: "Ažutipen te mekes o duvano",
+    ru: "Помощник отказа от курения",
+  },
+  "preventive-screening": {
+    ro: "Selector analize preventive",
+    en: "Screening selector",
+    sq: "Zgjedhësi i kontrolleve",
+    it: "Selettore screening",
+    hr: "Odabir preventivnih pregleda",
+    rom: "Alosaripen e kontrolengo",
+    ru: "Выбор обследований",
+  },
+  "womens-health": {
+    ro: "Ghid interactiv sănătatea femeii",
+    en: "Women's health check",
+    sq: "Kontrolli i shëndetit të gruas",
+    it: "Controllo salute della donna",
+    hr: "Provjera zdravlja žena",
+    rom: "Dikhiben sastipen e džuvljengo",
+    ru: "Женское здоровье",
+  },
+};
 
 const LIBRARY_COPY: Record<
   Lang,
@@ -36,64 +108,71 @@ const LIBRARY_COPY: Record<
     dictionary: string;
     title: string;
     firstStepLabel: string;
+    defaultToolLabel: string;
   }
 > = {
   ru: {
     dictionary: "Словарь",
-    title: "Путеводители по здоровью",
+    title: "Путеводители и самопроверка",
     firstStepLabel: "Первый практический шаг",
+    defaultToolLabel: "Открыть инструмент",
   },
   ro: {
     dictionary: "Dicționar medical",
-    title: "Ghiduri de sănătate",
+    title: "Ghiduri și exerciții practice",
     firstStepLabel: "Primul pas practic",
+    defaultToolLabel: "Deschide exercițiul",
   },
   en: {
     dictionary: "Medical dictionary",
-    title: "Health guides",
+    title: "Guides and interactive tools",
     firstStepLabel: "Practical first step",
+    defaultToolLabel: "Open interactive tool",
   },
   sq: {
     dictionary: "Fjalori mjekësor",
-    title: "Udhëzues shëndetësorë",
+    title: "Udhëzues dhe ushtrime",
     firstStepLabel: "Hapi i parë praktik",
+    defaultToolLabel: "Hap mjetin praktik",
   },
   it: {
     dictionary: "Dizionario medico",
-    title: "Guide alla salute",
+    title: "Guide e strumenti pratici",
     firstStepLabel: "Primo passo pratico",
+    defaultToolLabel: "Apri strumento pratico",
   },
   hr: {
     dictionary: "Medicinski rječnik",
-    title: "Zdravstveni vodiči",
+    title: "Vodiči i praktični alati",
     firstStepLabel: "Prvi praktični korak",
+    defaultToolLabel: "Otvori praktični alat",
   },
   rom: {
     dictionary: "Doktorengo lavustik",
-    title: "Sikavimata vaš o sastipen",
+    title: "Sikavimata thaj praktikane buća",
     firstStepLabel: "Angluno praktikano paso",
+    defaultToolLabel: "Putar o instrumenti",
   },
 };
 
 export function HealthInformationTopicGrid({
   className = "",
-  readingLevel = "complete",
   onOpenDictionary,
 }: HealthInformationTopicGridProps) {
   const { lang, t } = useLanguage();
   const gridCopy =
     t?.healthInfoPage?.topicGrid ?? getHealthTopicGridDictionary(lang);
-  // Only the four main guides are shown; every other subject is under "Health topics" below.
-  const topics = useMemo(() => getFeaturedHealthTopics(lang), [lang]);
+  const topics = useMemo(() => getHealthTopicsList(lang), [lang]);
   const searchCopy = getSmartSearchCopy(lang);
   const lib = LIBRARY_COPY[lang] ?? LIBRARY_COPY.ro;
 
   const cardData = (topic: TopicItem) => ({
     topic,
     href: withLangPrefix(`/health-information/${topic.slug}`, lang),
-    readMinutes: readingLevel === "complete" ? topic.readMinutes + 2 : topic.readMinutes,
-    audioMinutes: readingLevel === "complete" ? topic.audioMinutes + 1 : topic.audioMinutes,
+    readMinutes: topic.readMinutes,
+    audioMinutes: topic.audioMinutes,
     firstStepLabel: lib.firstStepLabel,
+    toolLabel: TOOL_LABELS_BY_SLUG[topic.slug]?.[lang] ?? lib.defaultToolLabel,
     actionLabel: gridCopy.cardActionLabel,
     lang,
   });
@@ -151,21 +230,23 @@ type TopicCardProps = {
   readMinutes: number;
   audioMinutes: number;
   firstStepLabel: string;
+  toolLabel: string;
   actionLabel: string;
   lang: Lang;
 };
 
-/** The card is one link: the shared card hover (shadow deepens, edge tints, nothing moves). */
-const cardLinkClass =
-  "card-interactive press-row group flex w-full overflow-hidden rounded-2xl border border-border bg-card motion-reduce:transition-none " +
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+const cardShellClass =
+  "card-interactive flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-(--shadow-card-rest) motion-reduce:transition-none";
+
+const cardMainLinkClass =
+  "press-row group flex flex-1 flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset";
 
 const photoClass =
   "object-cover transition-opacity duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none";
 
 function CardFooter({ readMinutes, audioMinutes, lang, actionLabel }: Pick<TopicCardProps, "readMinutes" | "audioMinutes" | "lang" | "actionLabel">) {
   return (
-    <div className="mt-auto pt-5">
+    <div className="mt-auto pt-4">
       <TopicMetaBadge readMinutes={readMinutes} audioMinutes={audioMinutes} compact bordered={false} lang={lang} />
       <span className="sr-only">{actionLabel}</span>
     </div>
@@ -173,28 +254,40 @@ function CardFooter({ readMinutes, audioMinutes, lang, actionLabel }: Pick<Topic
 }
 
 function TopicCard(props: TopicCardProps & { priority?: boolean }) {
-  const { topic, href, priority = false } = props;
+  const { topic, href, toolLabel, priority = false } = props;
   return (
-    <Link href={href} className={`${cardLinkClass} flex-col`}>
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-subtle">
-        <Image
-          src={topic.image}
-          alt=""
-          fill
-          priority={priority}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className={photoClass}
-        />
-      </div>
+    <article className={cardShellClass}>
+      <Link href={href} className={cardMainLinkClass}>
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-subtle">
+          <Image
+            src={topic.image}
+            alt=""
+            fill
+            priority={priority}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className={photoClass}
+          />
+        </div>
 
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <h3 className="text-title font-semibold leading-snug text-foreground text-balance transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none">
-          {topic.title}
-        </h3>
-        <p className="mt-2 text-body text-muted-foreground text-pretty">{topic.description}</p>
+        <div className="flex flex-1 flex-col p-5 sm:p-6">
+          <h3 className="text-title font-semibold leading-snug text-foreground text-balance transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none">
+            {topic.title}
+          </h3>
+          <p className="mt-2 text-body text-muted-foreground text-pretty">{topic.description}</p>
 
-        <CardFooter {...props} />
+          <CardFooter {...props} />
+        </div>
+      </Link>
+
+      <div className="border-t border-border/80 bg-surface-subtle/50 px-5 py-2.5 sm:px-6">
+        <Link
+          href={`${href}#section-explainer`}
+          className="press-row inline-flex min-h-11 w-full items-center justify-between gap-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
+        >
+          <span className="min-w-0 text-pretty">{toolLabel}</span>
+          <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+        </Link>
       </div>
-    </Link>
+    </article>
   );
 }

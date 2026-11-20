@@ -35,6 +35,16 @@ export default async function MediatoriPublicPage() {
     <main id="main-content" className="flex-1 bg-background">
       <MediatorPublicHero lang={lang} />
 
+      <section
+        id="solicita"
+        aria-labelledby="solicita-heading"
+        className="scroll-mt-20 border-b border-border bg-muted/35 py-10 sm:py-16"
+      >
+        <Container>
+          <MediatorCallbackStarter lang={lang} country={initialCountry} />
+        </Container>
+      </section>
+
       <MediatorAccompanimentTimeline lang={lang} />
 
       <section className="border-t border-border py-10 sm:py-16">
@@ -55,16 +65,6 @@ export default async function MediatoriPublicPage() {
               </ul>
             </div>
           </div>
-        </Container>
-      </section>
-
-      <section
-        id="solicita"
-        aria-labelledby="solicita-heading"
-        className="scroll-mt-20 border-t border-border bg-muted/35 py-10 sm:py-16"
-      >
-        <Container>
-          <MediatorCallbackStarter lang={lang} country={initialCountry} />
         </Container>
       </section>
 

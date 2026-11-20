@@ -4,7 +4,6 @@ import { useState, useCallback, useMemo } from "react";
 import type { ComponentType, SVGProps } from "react";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { useReadingLevel } from "@/lib/comfort-preferences";
 import {
   ActivityIcon,
   AppleIcon,
@@ -204,7 +203,6 @@ export function TopicDetailPageContent({
   relatedTopics,
 }: TopicDetailPageContentProps) {
   const { lang } = useLanguage();
-  const [readingLevel] = useReadingLevel();
   const [isAudioPlayerOpen, setIsAudioPlayerOpen] = useState(false);
   const [followResumeNonce, setFollowResumeNonce] = useState(0);
   const [activeSentenceIndex, setActiveSentenceIndex] = useState<number | null>(
@@ -234,8 +232,6 @@ export function TopicDetailPageContent({
   const timing = HEALTH_TOPICS_BASE.find((t) => t.slug === topic.slug);
   const readMinutes = timing?.readMinutes ?? 3;
   const audioMinutes = timing?.audioMinutes ?? 2;
-  const effectiveAudioMinutes =
-    readingLevel === "complete" ? audioMinutes + 1 : audioMinutes;
   const closeAudioPlayer = useCallback(() => {
     setIsAudioPlayerOpen(false);
     setActiveSentenceIndex(null);
@@ -287,7 +283,6 @@ export function TopicDetailPageContent({
       <TopicHeroSection
         topic={topic}
         icon={Icon}
-        readingLevel={readingLevel}
         readMinutes={readMinutes}
         audioMinutes={audioMinutes}
         onListenClick={() => {
@@ -296,6 +291,7 @@ export function TopicDetailPageContent({
         }}
         onStopClick={closeAudioPlayer}
         isPlayingAudio={isAudioPlayerOpen}
+        saveText={narrationScript}
         afterActions={
           <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-body text-muted-foreground">
             <span>{ui.dictionaryPrompt}</span>
@@ -411,7 +407,7 @@ export function TopicDetailPageContent({
       <GlobalHealthAudioPlayer
         title={topic.title}
         textToNarrate={narrationScript}
-        durationMinutes={effectiveAudioMinutes}
+        durationMinutes={audioMinutes}
         isOpen={isAudioPlayerOpen}
         onClose={closeAudioPlayer}
         onActiveSentenceIndexChange={followNarration}

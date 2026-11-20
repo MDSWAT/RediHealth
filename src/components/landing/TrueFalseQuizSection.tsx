@@ -188,6 +188,7 @@ const answerStore = (() => {
 export interface TrueFalseQuizSectionProps {
   className?: string;
   initialCategory?: string;
+  embedded?: boolean;
 }
 
 /**
@@ -198,6 +199,7 @@ export interface TrueFalseQuizSectionProps {
 export function TrueFalseQuizSection({
   className,
   initialCategory = "toate",
+  embedded = false,
 }: TrueFalseQuizSectionProps) {
   const { lang, t } = useLanguage();
   const q = t.quiz;
@@ -321,24 +323,17 @@ export function TrueFalseQuizSection({
   const isMatch = currentAnswer === currentMyth.isTrue;
   const quotes = QUOTES[lang as Lang] ?? QUOTES.ro;
 
-  return (
-    <Section
-      id="mituri-sanatate"
-      aria-labelledby="quiz-section-heading"
-      tone="sapphire-soft"
-      className={cn("py-10 sm:py-16 lg:py-24", className)}
-    >
-      <Container>
-        <Reveal>
-          <SectionHeading
-            as="h2"
-            title={<span id="quiz-section-heading">{q.sectionTitle}</span>}
-            subtitle={q.sectionSubtitle}
-          />
+  const content = (
+    <>
+      <SectionHeading
+        as="h2"
+        title={<span id="quiz-section-heading">{q.sectionTitle}</span>}
+        subtitle={q.sectionSubtitle}
+      />
 
-          {/* From lg: the categories as a list on the left, the myth quiz on the right.
-              Below lg: the categories as one row above the quiz. */}
-          <div className="mt-6 lg:mt-8 lg:grid lg:grid-cols-12 lg:items-start lg:gap-12">
+      {/* From lg: the categories as a list on the left, the myth quiz on the right.
+          Below lg: the categories as one row above the quiz. */}
+      <div className="mt-6 lg:mt-8 lg:grid lg:grid-cols-12 lg:items-start lg:gap-12">
           <MythCategoryFilter
             className="lg:col-span-4"
             categories={categories}
@@ -497,7 +492,33 @@ export function TrueFalseQuizSection({
             )}
           </div>
         </div>
-        </Reveal>
+    </>
+  );
+
+  if (embedded) {
+    return (
+      <section
+        id="mituri-sanatate"
+        aria-labelledby="quiz-section-heading"
+        className={cn(
+          "scroll-mt-24 rounded-2xl border border-sapphire-border/60 bg-sapphire-soft/45 p-5 sm:p-7",
+          className,
+        )}
+      >
+        {content}
+      </section>
+    );
+  }
+
+  return (
+    <Section
+      id="mituri-sanatate"
+      aria-labelledby="quiz-section-heading"
+      tone="sapphire-soft"
+      className={cn("py-10 sm:py-16 lg:py-24", className)}
+    >
+      <Container>
+        <Reveal>{content}</Reveal>
       </Container>
     </Section>
   );

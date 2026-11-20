@@ -94,6 +94,7 @@ export default async function HealthArticlePage({ params }: Props) {
                 uiLang={lang}
                 contentLang={article.contentLanguage}
                 textToSpeak={narrationText}
+                saveTitle={displayTitle}
               />
             }
           />

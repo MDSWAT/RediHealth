@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
-import { ArrowRightIcon, ClockIcon, CloseIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, ClockIcon, CloseIcon, PinIcon } from "@/components/ui/icons";
 import {
   ALL_ALBANIA,
   ALL_CROATIA,
@@ -579,7 +579,7 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
 }
 
 function AlertItem(props: ItemProps & { article: NewsArticle }) {
-  const { article: a, c, lang, np, basePath } = props;
+  const { article: a, c, lang, basePath } = props;
   const high = a.epidemicSeverity === "high";
   const href = withLangPrefix(`${basePath}/${a.slug}`, lang);
   const tone = high
@@ -621,15 +621,6 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
 
       <div className={cn("mt-4 border-t pt-3", tone.rule)}>
         <div className="flex flex-wrap items-center gap-2">
-          <Button
-            href={withLangPrefix("/medic-online", lang)}
-            variant="outline"
-            size="md"
-            className="text-sapphire dark:text-sapphire-border"
-          >
-            <StethoscopeIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
-            {np.handoverTelemed}
-          </Button>
           <Button
             href={href}
             variant="ghost"

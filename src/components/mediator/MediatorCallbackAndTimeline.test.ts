@@ -234,13 +234,11 @@ describe("/mediatori page layout, accompaniment timeline, and calm patient hero"
     const element = await MediatoriPublicPage();
     const html = renderWithProviders(lang, element);
 
-    const requestHref = `href="${withLangPrefix("/get-help?mode=mediator", lang)}"`;
     const callbackAnchorHref = 'href="#solicita"';
     const solicitaId = 'id="solicita"';
     const signInHref = `href="${withLangPrefix("/sign-in", lang)}"`;
 
     expect(html).toContain(heroCopy[lang].title);
-    expect(html).toContain(requestHref);
     expect(html).toContain(callbackAnchorHref);
 
     // Accompaniment timeline tokens and 3 numbered steps without decorative prefixes.
@@ -255,7 +253,7 @@ describe("/mediatori page layout, accompaniment timeline, and calm patient hero"
     expect(html).toContain(">2<");
     expect(html).toContain(">3<");
 
-    // Patient callback starter & quiet bottom staff strip ordering.
+    // Patient callback starter comes immediately after hero (before timeline) & sign-in strip at the bottom.
     expect(html).toContain(solicitaId);
     expect(html).toContain(mediatorStaffStripCopy[lang].prompt);
     expect(html).toContain(mediatorStaffStripCopy[lang].signIn);
@@ -264,15 +262,19 @@ describe("/mediatori page layout, accompaniment timeline, and calm patient hero"
     const heroEnd = html.indexOf("</section>");
     const signInIndex = html.indexOf(signInHref);
     const solicitaIndex = html.indexOf(solicitaId);
+    const timelineIndex = html.indexOf(mediatorTimelineCopy[lang].title);
     expect(heroEnd).toBeGreaterThan(-1);
+    expect(html.slice(0, heroEnd)).not.toContain("/get-help?mode=mediator");
     expect(solicitaIndex).toBeGreaterThan(heroEnd);
-    expect(signInIndex).toBeGreaterThan(solicitaIndex);
+    expect(timelineIndex).toBeGreaterThan(solicitaIndex);
+    expect(signInIndex).toBeGreaterThan(timelineIndex);
   });
 
-  it("keeps MediatorPublicHero free of /sign-in chrome", () => {
+  it("keeps MediatorPublicHero free of /sign-in chrome and /get-help detours", () => {
     for (const lang of SUPPORTED_LANGS) {
       const heroHtml = renderWithProviders(lang, createElement(MediatorPublicHero, { lang }));
       expect(heroHtml).not.toContain("/sign-in");
+      expect(heroHtml).not.toContain("/get-help?mode=mediator");
       expect(heroHtml).toContain('href="#solicita"');
       expect(heroHtml).toContain(heroCopy[lang].ctaCallback);
     }
@@ -304,7 +306,6 @@ describe("mediator localization, casing, and UI source invariants across all 7 l
         ...page.bullets,
         hero.title,
         hero.subtitle,
-        hero.ctaRequest,
         hero.ctaCallback,
         hero.card1Title,
         hero.card1Desc,
@@ -357,7 +358,6 @@ describe("mediator localization, casing, and UI source invariants across all 7 l
 
       // Single-line CTA labels must start uppercase and stay concise across all 7 locales.
       const buttonLabels = [
-        hero.ctaRequest,
         hero.ctaCallback,
         starter.submit,
         starter.submitting,
