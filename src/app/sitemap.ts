@@ -12,6 +12,7 @@ const publicPaths = [
   "/ai-assistant",
   "/accessibility",
   "/contact",
+  "/cookies",
   "/demo",
   "/find-help",
   "/get-help",

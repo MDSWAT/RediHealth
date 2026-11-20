@@ -22,6 +22,8 @@ const ReportIssueWidget = dynamic(
 import { LanguageProvider } from "@/lib/i18n/language-context";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
 import { RecaptchaProvider, RecaptchaNotice } from "@/components/security/RecaptchaProvider";
+import { CookieConsentBanner } from "@/components/security/CookieConsentBanner";
+import { MetaPixel } from "@/components/security/MetaPixel";
 import { initClientNoiseFilter } from "@/lib/client-noise-filter";
 import {
   MOUNT_CHROME_WIDGETS_EVENT,
@@ -166,6 +168,8 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTrans
             {isChromelessSurface || !widgetsReady ? null : <ReportIssueWidget />}
             {isChromelessSurface ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
             {hideFooter ? null : <Footer />}
+            {isChromelessSurface ? null : <CookieConsentBanner />}
+            {isChromelessSurface ? null : <MetaPixel nonce={nonce} />}
             <ReadingGuide />
           </RecaptchaProvider>
         </LanguageProvider>

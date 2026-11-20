@@ -5,6 +5,7 @@ import { PageListenAction } from "@/components/ui/PageListenAction";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { getLegalCopy } from "@/lib/i18n/legal-translations";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
+import { LEGAL_OPERATOR } from "@/lib/legal-config";
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLang();
@@ -40,8 +41,8 @@ export default async function AccessibilityPage() {
           ))}
           <p>
             {copy.contactLead}{" "}
-            <a href="mailto:support@redihealth.app" className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-              support@redihealth.app
+            <a href={`mailto:${LEGAL_OPERATOR.contactEmail}`} className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border">
+              {LEGAL_OPERATOR.contactEmail}
             </a>{" "}
             {copy.contact}
           </p>

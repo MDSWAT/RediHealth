@@ -61,7 +61,7 @@ const copy: Record<
     smsSender: "SMS от RediHealth",
     smsTime: "14:15",
     smsBody: "Звонок с врачом Еленой Попеску начнётся в 14:20. Откройте в браузере:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Письменные рекомендации после звонка",
     adviceDoctor: "Д-р Елена Попеску",
     adviceItems: [
@@ -88,7 +88,7 @@ const copy: Record<
     smsSender: "SMS de la RediHealth",
     smsTime: "14:15",
     smsBody: "Apelul cu dr. Elena Popescu începe la 14:20. Deschide în browser:",
-    smsLinkText: "redihealth.org/apel",
+    smsLinkText: "redi.healthcare/apel",
     adviceTitle: "Sfaturi scrise după apel",
     adviceDoctor: "Dr. Elena Popescu",
     adviceItems: [
@@ -114,7 +114,7 @@ const copy: Record<
     smsSender: "SMS from RediHealth",
     smsTime: "14:15",
     smsBody: "Your call with Dr. Elena Popescu starts at 14:20. Open in your browser:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Written advice after the call",
     adviceDoctor: "Dr. Elena Popescu",
     adviceItems: [
@@ -140,7 +140,7 @@ const copy: Record<
     smsSender: "SMS nga RediHealth",
     smsTime: "14:15",
     smsBody: "Thirrja me dr. Elena Popescu fillon në 14:20. Hape në shfletues:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Këshilla me shkrim pas thirrjes",
     adviceDoctor: "Dr. Elena Popescu",
     adviceItems: [
@@ -166,7 +166,7 @@ const copy: Record<
     smsSender: "SMS da RediHealth",
     smsTime: "14:15",
     smsBody: "La chiamata con la dott.ssa Elena Popescu inizia alle 14:20. Apri nel browser:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Consigli scritti dopo la chiamata",
     adviceDoctor: "Dott.ssa Elena Popescu",
     adviceItems: [
@@ -192,7 +192,7 @@ const copy: Record<
     smsSender: "SMS od RediHealth",
     smsTime: "14:15",
     smsBody: "Poziv s dr. Elenom Popescu počinje u 14:20. Otvori u pregledniku:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Pisani savjet nakon poziva",
     adviceDoctor: "Dr. Elena Popescu",
     adviceItems: [
@@ -218,7 +218,7 @@ const copy: Record<
     smsSender: "SMS katar RediHealth",
     smsTime: "14:15",
     smsBody: "O svato e dr. Elena Popescu shirdel ko 14:20. Putar and-o brauzero:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Lekhavde sikavimata palo svato",
     adviceDoctor: "Dr. Elena Popescu",
     adviceItems: [

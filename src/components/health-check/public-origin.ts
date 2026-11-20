@@ -1,4 +1,4 @@
-const FALLBACK_ORIGIN = "https://redihealth.org";
+const FALLBACK_ORIGIN = "https://redi.healthcare";
 
 /**
  * The origin to put in links that leave this device: the QR code and the copied note. It is the

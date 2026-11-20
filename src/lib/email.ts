@@ -10,6 +10,7 @@ import type { Lang } from "@/lib/i18n/translations";
 import type { CountryCode } from "@/lib/countries";
 import { portalPath } from "@/lib/security/portal-token";
 import { escapeHtml } from "@/lib/text";
+import { LEGAL_OPERATOR } from "@/lib/legal-config";
 import { emailTranslations, helpReplyContent, type HelpReplyInput } from "@/lib/i18n/email-translations";
 import { withLangPrefix } from "@/lib/i18n/routing";
 
@@ -734,7 +735,7 @@ export function renderBrandEmail({
                   ${safeFooterReason}
                 </p>
                 <p class="email-footer-text" style="margin: 0; font-size: 12px; line-height: 18px; color: #94a3b8;">
-                  ${escapeHtml(copy.footerContactLead)} <a href="mailto:support@redihealth.app" style="color: #cc3846; text-decoration: underline;">${escapeHtml(copy.footerContactLink)}</a>
+                  ${escapeHtml(copy.footerContactLead)} <a href="mailto:${escapeHtml(LEGAL_OPERATOR.contactEmail)}" style="color: #cc3846; text-decoration: underline;">${escapeHtml(copy.footerContactLink)}</a>
                 </p>
               </td>
             </tr>

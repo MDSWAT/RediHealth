@@ -18,6 +18,9 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { applyPwaUpdate, openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-state";
+import { cookieConsentCopy } from "@/components/security/cookie-consent-copy";
+import { openCookiePreferences } from "@/lib/privacy/cookie-consent";
+import { LEGAL_OPERATOR } from "@/lib/legal-config";
 
 const EmergencySignsModal = dynamic(
   () => import("@/components/emergency/EmergencySignsModal").then((mod) => mod.EmergencySignsModal),
@@ -38,6 +41,7 @@ export function Footer() {
   const { lang, t } = useLanguage();
   const tFooter = t.footer;
   const chrome = getChromeCopy(lang);
+  const cookieCopy = cookieConsentCopy[lang] ?? cookieConsentCopy.ro;
   const pwa = usePwaSnapshot();
   const pwaCopy = getPwaCopy(lang);
   const showInstallTrigger = !pwa.isStandalone && !pwa.hasUpdate;
@@ -86,6 +90,7 @@ export function Footer() {
         { label: tFooter.col4Link2, href: "/contact" },
         { label: tFooter.col4Link3, href: "/accessibility" },
         { label: tFooter.col4Link4, href: "/privacy" },
+        { label: cookieCopy.policyLinkLabel, href: "/cookies" },
         { label: tFooter.col4Link5, href: "/terms" },
       ],
     },
@@ -103,6 +108,9 @@ export function Footer() {
             <div className="max-w-sm space-y-4">
               <Logo className="hero-focus" tone="light" href={withLangPrefix("/", lang)} label={chrome.homeLink} />
               <p className="text-body text-mist">{tFooter.brandDescription}</p>
+              <p className="text-meta text-mist/85">
+                {LEGAL_OPERATOR.name} · {LEGAL_OPERATOR.streetAddress}, {LEGAL_OPERATOR.cityCountry[lang] ?? LEGAL_OPERATOR.cityCountry.en} · BCE {LEGAL_OPERATOR.bceNumber}
+              </p>
             </div>
 
             <nav aria-label={chrome.footerNav}>
@@ -161,6 +169,13 @@ export function Footer() {
               <span>{tFooter.nonEmergencyWarning}</span>
             </p>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:shrink-0">
+              <button
+                type="button"
+                onClick={openCookiePreferences}
+                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+              >
+                {cookieCopy.footerSettingsLink}
+              </button>
               <button
                 type="button"
                 disabled={!showInstallTrigger && pwa.isRefreshing}

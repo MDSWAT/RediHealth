@@ -1,4 +1,4 @@
-const FALLBACK_SITE_URL = "https://redihealth.org";
+const FALLBACK_SITE_URL = "https://redi.healthcare";
 
 /** Public origin of the site, without a trailing slash. */
 export function getSiteUrl(): string {

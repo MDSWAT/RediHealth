@@ -160,7 +160,7 @@ export function helpReplyContent({ templateId, name, phone, description, lang }:
   const template = reply.templates[templateId];
   const trimmed = description.trim();
   const excerpt = trimmed.length > 100 ? `${trimmed.slice(0, 100).trimEnd()}…` : trimmed;
-  const mapUrl = `https://redihealth.org${withLangPrefix("/find-help", lang)}`;
+  const mapUrl = `https://redi.healthcare${withLangPrefix("/find-help", lang)}`;
   const details = templateId === "acknowledgment"
     ? [`${reply.topic}: ${excerpt}`, `${reply.call} ${phone}`]
     : templateId === "consultation" ? [reply.preferredTime, `${reply.phone}: ${phone}`] : [];
