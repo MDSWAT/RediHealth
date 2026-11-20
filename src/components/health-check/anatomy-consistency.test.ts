@@ -4,7 +4,7 @@ import { beforeAll, describe, expect, it } from "vitest";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
-import type { SubRegionId } from "./anatomy-3d-data";
+import { SUB_REGION_INFO, type SubRegionId } from "./anatomy-3d-data";
 import {
   ARM_MUSCLE_NODE_NAMES,
   armSplitX,
@@ -12,6 +12,8 @@ import {
   buildCompartmentSkinVoxels,
   classifySkinVertexSubRegions,
   computeFloat32Normals,
+  computeVertexSculptAO,
+  decodeSkeletonPartBinary,
   extractOuterManifold,
   morphFemaleCoordinate,
   smoothPelvicGroinContour,
@@ -23,6 +25,7 @@ import {
   VOXEL_ORIGIN_Y,
   VOXEL_ORIGIN_Z,
   type MuscleDonorInput,
+  type SkeletonBundleManifest,
 } from "./anatomy-geometry";
 import { buildPainAreaDiagramSvg } from "./pain-area-diagram";
 
@@ -667,5 +670,145 @@ describe("3D & 2D anatomical consistency across General and Female profiles", ()
       lang: "ro",
     });
     expect(autoFemaleUterus).not.toContain(generalPelvis.match(/<path d="([^"]+)"/)?.[1] ?? "");
+  });
+
+  it("decodes all 17 real BodyParts3D skeletal parts inside General and Female contours with clean normals and AO", () => {
+    const root = process.cwd();
+    const skelManifest = JSON.parse(
+      fs.readFileSync(path.join(root, "public/models/human-atlas-skeleton.json"), "utf8")
+    ) as SkeletonBundleManifest;
+    const skelBin = fs.readFileSync(path.join(root, "public/models/human-atlas-skeleton.bin"));
+    const skelAb = skelBin.buffer.slice(skelBin.byteOffset, skelBin.byteOffset + skelBin.byteLength);
+
+    expect(skelManifest.totalBytes).toBe(skelBin.byteLength);
+    expect(skelManifest.totalBytes).toBeLessThanOrEqual(1_200_000);
+    expect(skelManifest.parts.length).toBe(17);
+
+    const computeBounds = (pos: Float32Array) => {
+      let minX = Infinity;
+      let minY = Infinity;
+      let minZ = Infinity;
+      let maxX = -Infinity;
+      let maxY = -Infinity;
+      let maxZ = -Infinity;
+      for (let i = 0; i < pos.length; i += 3) {
+        if (pos[i] < minX) minX = pos[i];
+        if (pos[i] > maxX) maxX = pos[i];
+        if (pos[i + 1] < minY) minY = pos[i + 1];
+        if (pos[i + 1] > maxY) maxY = pos[i + 1];
+        if (pos[i + 2] < minZ) minZ = pos[i + 2];
+        if (pos[i + 2] > maxZ) maxZ = pos[i + 2];
+      }
+      return { minX, minY, minZ, maxX, maxY, maxZ };
+    };
+
+    const gSkinBounds = computeBounds(generalSkinPositions);
+    const fSkinBounds = computeBounds(femaleSkinPositions);
+
+    const seenIds = new Set<string>();
+    for (const part of skelManifest.parts) {
+      const decoded = decodeSkeletonPartBinary(part, skelAb);
+      expect(decoded, `failed decoding ${part.id}`).not.toBeNull();
+      if (!decoded) continue;
+
+      seenIds.add(decoded.id);
+      expect(SUB_REGION_INFO[decoded.subRegion], `invalid subRegion on ${part.id}`).toBeDefined();
+      expect(countInvalidNormals(decoded.normals), `bad general normals on ${part.id}`).toBe(0);
+      expect(countInvalidNormals(decoded.femaleNormals), `bad female normals on ${part.id}`).toBe(0);
+      expect(decoded.sculptAO.length).toBe(part.vertexCount);
+
+      for (let i = 0; i < decoded.sculptAO.length; i += 1) {
+        expect(decoded.sculptAO[i]).toBeGreaterThanOrEqual(0.74);
+        expect(decoded.sculptAO[i]).toBeLessThanOrEqual(1.04);
+      }
+
+      const gb = computeBounds(decoded.positions);
+      const fb = computeBounds(decoded.femalePositions);
+      expect(gb.minX, `${part.id} minX`).toBeGreaterThanOrEqual(gSkinBounds.minX);
+      expect(gb.maxX, `${part.id} maxX`).toBeLessThanOrEqual(gSkinBounds.maxX);
+      expect(gb.minY, `${part.id} minY`).toBeGreaterThanOrEqual(gSkinBounds.minY);
+      expect(gb.maxY, `${part.id} maxY`).toBeLessThanOrEqual(gSkinBounds.maxY);
+      expect(gb.minZ, `${part.id} minZ`).toBeGreaterThanOrEqual(gSkinBounds.minZ);
+      expect(gb.maxZ, `${part.id} maxZ`).toBeLessThanOrEqual(gSkinBounds.maxZ);
+
+      expect(fb.minX, `${part.id} female minX`).toBeGreaterThanOrEqual(fSkinBounds.minX);
+      expect(fb.maxX, `${part.id} female maxX`).toBeLessThanOrEqual(fSkinBounds.maxX);
+      expect(fb.minY, `${part.id} female minY`).toBeGreaterThanOrEqual(fSkinBounds.minY);
+      expect(fb.maxY, `${part.id} female maxY`).toBeLessThanOrEqual(fSkinBounds.maxY);
+      expect(fb.minZ, `${part.id} female minZ`).toBeGreaterThanOrEqual(fSkinBounds.minZ);
+      expect(fb.maxZ, `${part.id} female maxZ`).toBeLessThanOrEqual(fSkinBounds.maxZ);
+    }
+
+    for (const required of [
+      "skull_cranium",
+      "mandible",
+      "cervical_spine",
+      "thoracic_spine",
+      "lumbar_spine",
+      "sacrum_coccyx",
+      "rib_cage",
+      "clavicle_scapula",
+      "pelvis",
+      "humerus",
+      "radius_ulna",
+      "wrist_carpals",
+      "hand_bones",
+      "femur",
+      "patella",
+      "tibia_fibula",
+      "foot_bones",
+    ]) {
+      expect(seenIds.has(required), `missing skeletal part ${required}`).toBe(true);
+    }
+  });
+
+  it("classifies all 7 macro body zones cleanly on skin even before muscular.glb loads and enforces lazy-load + UI invariants", () => {
+    const geometricOnly = classifySkinVertexSubRegions(generalSkinPositions, [], null, null);
+    const generalMacros = new Set(geometricOnly.general.map((id) => SUB_REGION_INFO[id].macroPart));
+    for (const macro of ["head", "chest", "stomach", "pelvis", "back", "arm", "leg"] as const) {
+      expect(generalMacros.has(macro), `missing macro ${macro} in fallback skin map`).toBe(true);
+    }
+    expect(geometricOnly.female.filter((id) => id === "breast").length).toBeGreaterThan(20);
+    expect(geometricOnly.female.filter((id) => id === "uterus_ovaries").length).toBeGreaterThan(5);
+
+    // Sculptural AO helper produces finite bounded shading values on skin
+    const skinAO = computeVertexSculptAO(generalSkinPositions, generalSkinNormals, skinIndices, 0.52);
+    expect(skinAO.length).toBe(generalSkinPositions.length / 3);
+    expect(skinAO.some((v) => v < 0.92)).toBe(true);
+    expect(skinAO.some((v) => v > 0.99)).toBe(true);
+
+    // Viewport strictly lazy-loads skeleton and muscular bundles on demand
+    const viewportSrc = fs.readFileSync(
+      path.join(process.cwd(), "src/components/health-check/AnatomicalViewport3D.tsx"),
+      "utf8"
+    );
+    expect(viewportSrc).toContain('fetch("/models/human-atlas-skeleton.json")');
+    expect(viewportSrc).toContain('fetch("/models/human-atlas-skeleton.bin")');
+    expect(viewportSrc).toContain("needsSkeletonLayer(");
+    expect(viewportSrc).toContain("needsMuscularLayer(");
+    expect(viewportSrc).toContain("motion-reduce:transition-none");
+    expect(viewportSrc).toContain("focus-visible:ring-ring");
+
+    // Learning preview stage respects all RediHealth UI/a11y invariants & docks toolbar cleanly below canvas
+    const previewSrc = fs.readFileSync(
+      path.join(process.cwd(), "src/components/health-check/HumanAtlasPreviewStage.tsx"),
+      "utf8"
+    );
+    expect(previewSrc).toContain("min-h-11");
+    expect(previewSrc).toContain("focus-visible:ring-ring");
+    expect(previewSrc).toContain("motion-reduce:transition-none");
+    expect(previewSrc).toContain("border-border-control");
+    expect(previewSrc).toContain("border-t border-border bg-card px-2.5 py-2");
+    expect(previewSrc).not.toContain("absolute inset-x-2 bottom-2.5");
+    expect(previewSrc).not.toMatch(/\b(?:active|hover|group-hover):scale-/);
+    expect(previewSrc).not.toContain("·");
+
+    // AnatomicalBodyMap keeps desktop selectionLabel above stage (zero button overlap) and drops orphan toolbar divider
+    const bodyMapSrc = fs.readFileSync(
+      path.join(process.cwd(), "src/components/health-check/AnatomicalBodyMap.tsx"),
+      "utf8"
+    );
+    expect(bodyMapSrc).not.toContain("mx-0.5 hidden h-4 w-px shrink-0 bg-border sm:block");
+    expect(bodyMapSrc).toContain("gap-x-3 gap-y-1");
   });
 });

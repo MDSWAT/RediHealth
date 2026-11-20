@@ -98,6 +98,8 @@ export interface AnatomicalBodyMapProps {
   onConfirmSelection?: () => void;
   /** Driven visceral X-ray mode on desktop when a visceral symptom is active. */
   forcedLayerMode?: LayerModeId | null;
+  /** Optional starting layer mode (defaults to "muscular" on health check). */
+  initialLayerMode?: LayerModeId;
   /** Driven sub-region focus on desktop when a visceral symptom maps to an internal organ. */
   focusSubRegion?: SubRegionId | null;
   focusSide?: Side;
@@ -421,11 +423,13 @@ const SURFACE_ORGANS: ReadonlySet<SubRegionId> = new Set<SubRegionId>([
   "bladder",
   "uterus_ovaries",
 ]);
-/** The spine lies under the back muscles: it shows only on the bones view. */
+/** Deep skeletal landmarks sit under muscle and skin: choosing them opens the real bones view. */
 const SPINE_SUB_REGIONS: ReadonlySet<SubRegionId> = new Set<SubRegionId>([
+  "skull",
   "cervical_spine",
   "thoracic_spine",
   "lumbar_spine",
+  "sacroiliac_coccyx",
 ]);
 
 const LAYER_ORDER: LayerModeId[] = ["surface", "muscular", "skeletal", "organs", "hybrid"];
@@ -657,6 +661,7 @@ function AnatomicalBodyMapContent({
   onFullScreenChange,
   onConfirmSelection,
   forcedLayerMode = null,
+  initialLayerMode = "muscular",
   focusSubRegion = null,
   focusSide,
   lang,
@@ -709,7 +714,7 @@ function AnatomicalBodyMapContent({
     onBodyShownRef.current?.(bodyShown);
   }, [bodyShown]);
   /** The body opens on the muscles, like an anatomy atlas; skin, bones and organs are one tap away. */
-  const [layerMode, setLayerMode] = useState<LayerModeId>("muscular");
+  const [layerMode, setLayerMode] = useState<LayerModeId>(initialLayerMode);
   const [userOverrodeLayer, setUserOverrodeLayer] = useState(false);
   const [prevForcedKey, setPrevForcedKey] = useState<string | null>(null);
   const forcedKey = forcedLayerMode || focusSubRegion ? `${forcedLayerMode ?? ""}:${focusSubRegion ?? ""}` : null;
@@ -1049,12 +1054,12 @@ function AnatomicalBodyMapContent({
       <div
         className={
           bar
-            ? "hidden border-b border-border bg-card px-4 py-3 lg:block"
+            ? "hidden mb-2.5 rounded-2xl border border-border bg-card px-4 py-3 shadow-2xs lg:block"
             : "lg:hidden mt-2.5 rounded-xl border border-border bg-card p-3.5 shadow-xs"
         }
       >
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
+        <div className="flex items-start justify-between gap-2.5">
+          <div className="min-w-0 flex-1">
             <p className="text-body font-semibold leading-snug text-foreground">
               {hudLocalized.label}
               {hudSideLabel}
@@ -1063,39 +1068,40 @@ function AnatomicalBodyMapContent({
               {hudLocalized.tissueLabel}
             </p>
           </div>
-          <div className="flex shrink-0 flex-wrap items-center justify-end gap-1.5">
-            <button
-              type="button"
-              aria-expanded={literacyOpen}
-              onClick={() => setLiteracyOpen((v) => !v)}
-              className="inline-flex h-8 max-w-full items-center gap-1 whitespace-nowrap rounded-lg px-2 text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <span className="min-w-0 truncate">{literacyOpen ? t.hideWhy : t.whyHurt}</span>
-              <ChevronDownIcon
-                className={`h-3.5 w-3.5 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${literacyOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-            {voice.available && (
-              <ListenButton
-                uiLang={activeLang}
-                isPlaying={voice.speaking}
-                onToggle={() => (voice.speaking ? voice.stop() : voice.speak(speechParts))}
-                ariaLabel={`${voice.speaking ? t.stopListen : t.listen}: ${hudLocalized.label}`}
-              />
-            )}
-            <button
-              type="button"
-              onClick={() => {
-                voice.stop();
-                setLiteracyOpen(false);
-                setDismissedSpot(effectiveSubRegion);
-              }}
-              aria-label={`${t.dismissInfo}: ${hudLocalized.label}`}
-              className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <CloseIcon className="h-4 w-4" />
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => {
+              voice.stop();
+              setLiteracyOpen(false);
+              setDismissedSpot(effectiveSubRegion);
+            }}
+            aria-label={`${t.dismissInfo}: ${hudLocalized.label}`}
+            className="-mr-1 -mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <CloseIcon className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2 border-t border-border/60 pt-2.5">
+          <button
+            type="button"
+            aria-expanded={literacyOpen}
+            onClick={() => setLiteracyOpen((v) => !v)}
+            className="-ml-2 inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg px-2.5 text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <span className="min-w-0 truncate">{literacyOpen ? t.hideWhy : t.whyHurt}</span>
+            <ChevronDownIcon
+              className={`h-3.5 w-3.5 shrink-0 transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${literacyOpen ? "rotate-180" : ""}`}
+            />
+          </button>
+          {voice.available && (
+            <ListenButton
+              uiLang={activeLang}
+              isPlaying={voice.speaking}
+              onToggle={() => (voice.speaking ? voice.stop() : voice.speak(speechParts))}
+              ariaLabel={`${voice.speaking ? t.stopListen : t.listen}: ${hudLocalized.label}`}
+            />
+          )}
         </div>
 
         {literacyOpen && (
@@ -1141,6 +1147,14 @@ function AnatomicalBodyMapContent({
             className={fullScreen ? "fixed inset-0 z-[70] isolate flex flex-col bg-surface-subtle" : "relative isolate"}
           >
             {!fullScreen && renderLiteracyCard("bar")}
+            {!fullScreen && !(hudRaw && hudLocalized) && selectionLabel && (
+              <div
+                aria-hidden="true"
+                className="hidden mb-2.5 rounded-2xl border border-border bg-card px-4 py-2.5 text-body font-semibold leading-snug text-foreground shadow-2xs lg:block"
+              >
+                {selectionLabel}
+              </div>
+            )}
             <div
               ref={stageRef}
               data-hc-stage
@@ -1163,7 +1177,7 @@ function AnatomicalBodyMapContent({
                 {/* Compact label pill inside the stage below lg; from lg the card is a bar above the stage. */}
                 <div
                   aria-hidden="true"
-                  className="lg:hidden pointer-events-none absolute left-2.5 top-2.5 z-30 max-w-[calc(100%-6.5rem)] rounded-xl border border-border/90 bg-card/92 px-2.5 py-1.5 text-meta font-semibold leading-snug text-foreground shadow-xs backdrop-blur-md"
+                  className="lg:hidden pointer-events-none absolute left-2.5 top-2.5 z-30 max-w-[calc(100%-9.5rem)] rounded-xl border border-border/90 bg-card/92 px-2.5 py-1.5 text-meta font-semibold leading-snug text-foreground shadow-xs backdrop-blur-md"
                 >
                   {hudLocalized.label}
                   {hudSideLabel}
@@ -1172,7 +1186,7 @@ function AnatomicalBodyMapContent({
             ) : selectionLabel ? (
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute left-2.5 top-2.5 z-30 max-w-[calc(100%-6.5rem)] rounded-xl border border-border bg-card/92 px-2.5 py-1.5 text-body font-semibold leading-snug text-foreground shadow-xs backdrop-blur-md lg:left-3 lg:top-3 lg:max-w-[calc(100%-11rem)] lg:px-3"
+                className="lg:hidden pointer-events-none absolute left-2.5 top-2.5 z-30 max-w-[calc(100%-9.5rem)] rounded-xl border border-border bg-card/92 px-2.5 py-1.5 text-meta font-semibold leading-snug text-foreground shadow-xs backdrop-blur-md"
               >
                 {selectionLabel}
               </div>
@@ -1508,7 +1522,7 @@ function AnatomicalBodyMapContent({
                 aria-label={`${t.views}, ${t.camera}, ${t.layer}`}
                 className="absolute inset-x-2 bottom-3 z-30 mx-auto w-fit max-w-[calc(100%-1rem)] rounded-xl border border-border/90 bg-card/95 p-1 shadow-sm backdrop-blur-md"
               >
-                <div className="flex flex-wrap items-center justify-center gap-1">
+                <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
                   <div className="flex shrink-0 items-center gap-1">
                     {(["front", "back"] as const).map((preset) => {
                       const active = !freeView && viewAngle === preset;
@@ -1565,8 +1579,6 @@ function AnatomicalBodyMapContent({
                       <ZoomInIcon className="h-4 w-4 shrink-0" />
                     </button>
                   </div>
-
-                  <span aria-hidden="true" className="mx-0.5 hidden h-4 w-px shrink-0 bg-border sm:block" />
 
                   <div className="flex shrink-0 items-center gap-1">
                     {LAYER_ORDER.map((id) => {

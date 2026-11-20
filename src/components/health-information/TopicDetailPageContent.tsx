@@ -7,6 +7,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import {
   ActivityIcon,
   AppleIcon,
+  BookIcon,
   BrainIcon,
   DropletIcon,
   HeartIcon,
@@ -31,6 +32,8 @@ import { TopicMythCard } from "./TopicMythCard";
 import { RelatedTopicsCarousel } from "./RelatedTopicsCarousel";
 import { TopicNextSteps } from "./TopicNextSteps";
 import { TopicExplainer } from "./explainers/TopicExplainer";
+import { TopicAnatomyExplorer } from "./TopicAnatomyExplorer";
+import { isTopicAnatomySlug } from "./topic-anatomy-config";
 import { GlobalHealthAudioPlayer } from "./GlobalHealthAudioPlayer";
 import { SynchronizedSentenceReader } from "./SynchronizedSentenceReader";
 import { DICTIONARY_TAB_LABELS } from "./DictionaryTabs";
@@ -54,6 +57,7 @@ interface TopicPageUiStrings {
   tocHeading: string;
   tocAria: string;
   tocOverview: string;
+  tocAnatomy: string;
   tocExplainer: string;
   tocMyth: string;
 }
@@ -63,12 +67,13 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocHeading: "В этом руководстве",
     tocAria: "Содержание руководства",
     tocOverview: "Обзор",
+    tocAnatomy: "3D атлас тела",
     tocExplainer: "Наглядное объяснение",
     tocMyth: "Правда или миф",
     whyItMattersAudioPrefix: "Почему это важно",
     stepsAudioPrefix: "Что вы можете сделать",
     warningSignsAudioPrefix: "Когда получить помощь",
-    dictionaryPrompt: "Сложные слова?",
+    dictionaryPrompt: "Медицинские термины",
     dualGlossaryCta: "Открыть словарь",
     romanesGlossaryCta: "Слова на цыганском",
     listenGuideLabel: "Слушайте руководство",
@@ -80,7 +85,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     whyItMattersAudioPrefix: "De ce contează",
     stepsAudioPrefix: "Ce poți face",
     warningSignsAudioPrefix: "Când ai nevoie de ajutor",
-    dictionaryPrompt: "Cuvinte grele?",
+    dictionaryPrompt: "Termeni medicali",
     dualGlossaryCta: "Deschide dicționarul",
     romanesGlossaryCta: "Cuvinte în romani",
     listenGuideLabel: "Ascultă ghidul",
@@ -90,6 +95,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocHeading: "În acest ghid",
     tocAria: "Cuprinsul ghidului",
     tocOverview: "Introducere",
+    tocAnatomy: "Atlas 3D",
     tocExplainer: "Ghid vizual",
     tocMyth: "Adevărat sau fals",
   },
@@ -97,7 +103,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     whyItMattersAudioPrefix: "Why it matters",
     stepsAudioPrefix: "What you can do",
     warningSignsAudioPrefix: "When to get help",
-    dictionaryPrompt: "Hard words?",
+    dictionaryPrompt: "Medical terms",
     dualGlossaryCta: "Open the dictionary",
     romanesGlossaryCta: "Words in Romani",
     listenGuideLabel: "Listen to the guide",
@@ -107,6 +113,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocHeading: "In this guide",
     tocAria: "Guide contents",
     tocOverview: "Overview",
+    tocAnatomy: "3D body atlas",
     tocExplainer: "Visual guide",
     tocMyth: "True or false",
   },
@@ -114,7 +121,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     whyItMattersAudioPrefix: "Pse ka rëndësi",
     stepsAudioPrefix: "Çfarë mund të bësh",
     warningSignsAudioPrefix: "Kur të duhet ndihmë",
-    dictionaryPrompt: "Fjalë të vështira?",
+    dictionaryPrompt: "Terma mjekësorë",
     dualGlossaryCta: "Hap fjalorin",
     romanesGlossaryCta: "Fjalë në gjuhën rome",
     listenGuideLabel: "Dëgjo udhëzuesin",
@@ -124,6 +131,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocHeading: "Në këtë udhëzues",
     tocAria: "Përmbajtja e udhëzuesit",
     tocOverview: "Hyrje",
+    tocAnatomy: "Atlasi 3D",
     tocExplainer: "Udhëzues pamor",
     tocMyth: "E vërtetë apo e gabuar",
   },
@@ -131,7 +139,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     whyItMattersAudioPrefix: "Perché è importante",
     stepsAudioPrefix: "Cosa puoi fare",
     warningSignsAudioPrefix: "Quando chiedere aiuto",
-    dictionaryPrompt: "Parole difficili?",
+    dictionaryPrompt: "Termini medici",
     dualGlossaryCta: "Apri il dizionario",
     romanesGlossaryCta: "Parole in romanì",
     listenGuideLabel: "Ascolta la guida",
@@ -141,6 +149,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocHeading: "In questa guida",
     tocAria: "Indice della guida",
     tocOverview: "Panoramica",
+    tocAnatomy: "Atlante 3D",
     tocExplainer: "Guida visiva",
     tocMyth: "Vero o falso",
   },
@@ -148,7 +157,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     whyItMattersAudioPrefix: "Zašto je važno",
     stepsAudioPrefix: "Što možeš učiniti",
     warningSignsAudioPrefix: "Kada potražiti pomoć",
-    dictionaryPrompt: "Teške riječi?",
+    dictionaryPrompt: "Medicinski pojmovi",
     dualGlossaryCta: "Otvori rječnik",
     romanesGlossaryCta: "Riječi na romskom",
     listenGuideLabel: "Poslušaj vodič",
@@ -158,6 +167,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocHeading: "U ovom vodiču",
     tocAria: "Sadržaj vodiča",
     tocOverview: "Uvod",
+    tocAnatomy: "3D atlas tijela",
     tocExplainer: "Vizualni vodič",
     tocMyth: "Točno ili netočno",
   },
@@ -165,7 +175,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     whyItMattersAudioPrefix: "Sostar si baro",
     stepsAudioPrefix: "So shay te keres",
     warningSignsAudioPrefix: "Kana trebul zhutimos",
-    dictionaryPrompt: "Phare lava?",
+    dictionaryPrompt: "Doktoroske lava",
     dualGlossaryCta: "Phuter o lavustik",
     romanesGlossaryCta: "Lava pe romani chib",
     listenGuideLabel: "Ashun o sikavimos",
@@ -175,6 +185,7 @@ const TOPIC_PAGE_UI_STRINGS: Record<Lang, TopicPageUiStrings> = {
     tocHeading: "Ande kadava sikavimos",
     tocAria: "So si ando sikavimos",
     tocOverview: "Angluno lav",
+    tocAnatomy: "3D atlaso",
     tocExplainer: "Vizualno sikavimos",
     tocMyth: "Chacho vay xoxamno",
   },
@@ -246,16 +257,21 @@ export function TopicDetailPageContent({
   const topicMyth: HealthMyth =
     myths.find((m) => m.relatedTopicSlug === topic.slug) || myths[0];
 
+  const hasAnatomyExplorer = isTopicAnatomySlug(topic.slug);
+
   const tocSections = useMemo(
     () => [
       { id: "section-overview", label: ui.tocOverview },
       { id: "section-why-it-matters", label: ui.whyItMattersAudioPrefix },
+      ...(hasAnatomyExplorer
+        ? [{ id: "section-anatomy", label: ui.tocAnatomy }]
+        : []),
       { id: "section-explainer", label: ui.tocExplainer },
       { id: "section-steps", label: ui.stepsAudioPrefix },
       { id: "section-warning-signs", label: ui.warningSignsAudioPrefix },
       { id: "section-myth", label: ui.tocMyth },
     ],
-    [ui],
+    [ui, hasAnatomyExplorer],
   );
 
   // Construct full narration text
@@ -294,20 +310,23 @@ export function TopicDetailPageContent({
         listenLabel={ui.listenGuideLabel}
         saveText={narrationScript}
         afterActions={
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-body text-muted-foreground">
-            <span>{ui.dictionaryPrompt}</span>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-0">
+          <div className="flex flex-col gap-2.5 rounded-xl border border-sand-line/85 bg-sand/50 p-3 sm:flex-row sm:items-center sm:justify-between sm:px-4 sm:py-2.5 dark:border-white/10 dark:bg-white/[0.04]">
+            <span className="inline-flex items-center gap-2 text-meta font-semibold text-foreground/85">
+              <BookIcon className="h-4 w-4 shrink-0 text-rose-ink" aria-hidden="true" />
+              <span>{ui.dictionaryPrompt}</span>
+            </span>
+            <div className="grid w-full grid-cols-2 gap-2 sm:flex sm:w-auto sm:items-center">
               <button
                 type="button"
                 onClick={() => setOpenDrawer("dictionary")}
-                className="-mx-1 inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+                className="press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-border-control/85 bg-card px-3.5 text-meta font-semibold text-foreground shadow-2xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-rose-border hover:bg-rose-tint hover:text-rose-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
               >
                 {ui.dualGlossaryCta}
               </button>
               <button
                 type="button"
                 onClick={() => setOpenDrawer("romanes")}
-                className="-mx-1 inline-flex min-h-11 items-center whitespace-nowrap rounded-sm px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+                className="press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-border-control/85 bg-card px-3.5 text-meta font-semibold text-foreground shadow-2xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-rose-border hover:bg-rose-tint hover:text-rose-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
               >
                 {ui.romanesGlossaryCta}
               </button>
@@ -352,6 +371,11 @@ export function TopicDetailPageContent({
                 lang={lang}
               />
             </div>
+
+            {/* Interactive on-demand 3D Human Atlas learning module */}
+            {hasAnatomyExplorer && (
+              <TopicAnatomyExplorer slug={topic.slug} lang={lang} />
+            )}
 
             {/* Interactive health literacy visualizer or anatomical explainer */}
             <div id="section-explainer" className="scroll-mt-6 overflow-x-hidden">

@@ -1,0 +1,433 @@
+{
+  "version": "BodyParts3D 4.0",
+  "source": "https://github.com/ashemag/human-atlas@1c38bf35c254a891200d3cedecfd57abebe83d8d",
+  "license": "CC BY 4.0 (BodyParts3D 4.0, DBCLS)",
+  "totalBytes": 758760,
+  "parts": [
+    {
+      "id": "skull_cranium",
+      "system": "skeletal",
+      "subRegion": "skull",
+      "showInHybrid": false,
+      "sourceMeshCount": 35,
+      "vertexCount": 4053,
+      "indexCount": 24066,
+      "positions": 0,
+      "normals": 48636,
+      "indices": 72956,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.07568359375,
+          1.52978515625,
+          -0.117919921875
+        ],
+        [
+          0.07470703125,
+          1.71435546875,
+          0.0908203125
+        ]
+      ]
+    },
+    {
+      "id": "mandible",
+      "system": "skeletal",
+      "subRegion": "jaw_ear",
+      "showInHybrid": false,
+      "sourceMeshCount": 15,
+      "vertexCount": 807,
+      "indexCount": 4662,
+      "positions": 121088,
+      "normals": 130772,
+      "indices": 135616,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.0537109375,
+          1.499755859375,
+          -0.01025390625
+        ],
+        [
+          0.052490234375,
+          1.584228515625,
+          0.078369140625
+        ]
+      ]
+    },
+    {
+      "id": "cervical_spine",
+      "system": "skeletal",
+      "subRegion": "cervical_spine",
+      "showInHybrid": true,
+      "sourceMeshCount": 13,
+      "vertexCount": 1156,
+      "indexCount": 7032,
+      "positions": 144940,
+      "normals": 158812,
+      "indices": 165748,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.041259765625,
+          1.4384765625,
+          -0.07861328125
+        ],
+        [
+          0.0400390625,
+          1.5595703125,
+          -0.00830078125
+        ]
+      ]
+    },
+    {
+      "id": "thoracic_spine",
+      "system": "skeletal",
+      "subRegion": "thoracic_spine",
+      "showInHybrid": true,
+      "sourceMeshCount": 24,
+      "vertexCount": 2292,
+      "indexCount": 13608,
+      "positions": 179812,
+      "normals": 207316,
+      "indices": 221068,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.037353515625,
+          1.128173828125,
+          -0.099609375
+        ],
+        [
+          0.0361328125,
+          1.45458984375,
+          0.005126953125
+        ]
+      ]
+    },
+    {
+      "id": "lumbar_spine",
+      "system": "skeletal",
+      "subRegion": "lumbar_spine",
+      "showInHybrid": true,
+      "sourceMeshCount": 10,
+      "vertexCount": 1195,
+      "indexCount": 7110,
+      "positions": 248284,
+      "normals": 262624,
+      "indices": 269796,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.05029296875,
+          0.97412109375,
+          -0.081787109375
+        ],
+        [
+          0.049560546875,
+          1.149658203125,
+          0.015380859375
+        ]
+      ]
+    },
+    {
+      "id": "sacrum_coccyx",
+      "system": "skeletal",
+      "subRegion": "sacroiliac_coccyx",
+      "showInHybrid": true,
+      "sourceMeshCount": 1,
+      "vertexCount": 466,
+      "indexCount": 2880,
+      "positions": 284016,
+      "normals": 289608,
+      "indices": 292404,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.059326171875,
+          0.861328125,
+          -0.10693359375
+        ],
+        [
+          0.05810546875,
+          1.0048828125,
+          -0.01904296875
+        ]
+      ]
+    },
+    {
+      "id": "rib_cage",
+      "system": "skeletal",
+      "subRegion": "rib_cage",
+      "showInHybrid": false,
+      "sourceMeshCount": 41,
+      "vertexCount": 4665,
+      "indexCount": 27498,
+      "positions": 298164,
+      "normals": 354144,
+      "indices": 382136,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.136962890625,
+          1.086181640625,
+          -0.09619140625
+        ],
+        [
+          0.135498046875,
+          1.448486328125,
+          0.11376953125
+        ]
+      ]
+    },
+    {
+      "id": "clavicle_scapula",
+      "system": "skeletal",
+      "subRegion": "rotator_cuff",
+      "showInHybrid": false,
+      "sourceMeshCount": 4,
+      "vertexCount": 1328,
+      "indexCount": 7920,
+      "positions": 437132,
+      "normals": 453068,
+      "indices": 461036,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.166259765625,
+          1.261962890625,
+          -0.10498046875
+        ],
+        [
+          0.166259765625,
+          1.43310546875,
+          0.047119140625
+        ]
+      ]
+    },
+    {
+      "id": "pelvis",
+      "system": "skeletal",
+      "subRegion": "hip_groin",
+      "showInHybrid": false,
+      "sourceMeshCount": 2,
+      "vertexCount": 1853,
+      "indexCount": 11118,
+      "positions": 476876,
+      "normals": 499112,
+      "indices": 510232,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.144775390625,
+          0.830078125,
+          -0.098876953125
+        ],
+        [
+          0.144775390625,
+          1.035888671875,
+          0.0390625
+        ]
+      ]
+    },
+    {
+      "id": "humerus",
+      "system": "skeletal",
+      "subRegion": "biceps",
+      "showInHybrid": false,
+      "sourceMeshCount": 2,
+      "vertexCount": 1020,
+      "indexCount": 6096,
+      "positions": 532468,
+      "normals": 544708,
+      "indices": 550828,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.24072265625,
+          1.107421875,
+          -0.049072265625
+        ],
+        [
+          0.24072265625,
+          1.41455078125,
+          0.000244140625
+        ]
+      ]
+    },
+    {
+      "id": "radius_ulna",
+      "system": "skeletal",
+      "subRegion": "forearm_extensor",
+      "showInHybrid": false,
+      "sourceMeshCount": 4,
+      "vertexCount": 873,
+      "indexCount": 5190,
+      "positions": 563020,
+      "normals": 573496,
+      "indices": 578736,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.279296875,
+          0.88330078125,
+          -0.055419921875
+        ],
+        [
+          0.279052734375,
+          1.130615234375,
+          0.02734375
+        ]
+      ]
+    },
+    {
+      "id": "wrist_carpals",
+      "system": "skeletal",
+      "subRegion": "wrist_tendon",
+      "showInHybrid": false,
+      "sourceMeshCount": 16,
+      "vertexCount": 480,
+      "indexCount": 2688,
+      "positions": 589116,
+      "normals": 594876,
+      "indices": 597756,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.28173828125,
+          0.859375,
+          0.010498046875
+        ],
+        [
+          0.281494140625,
+          0.889892578125,
+          0.03759765625
+        ]
+      ]
+    },
+    {
+      "id": "hand_bones",
+      "system": "skeletal",
+      "subRegion": "hands_fingers",
+      "showInHybrid": false,
+      "sourceMeshCount": 38,
+      "vertexCount": 1243,
+      "indexCount": 7002,
+      "positions": 603132,
+      "normals": 618048,
+      "indices": 625508,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.323974609375,
+          0.731201171875,
+          0.012451171875
+        ],
+        [
+          0.323974609375,
+          0.87548828125,
+          0.095458984375
+        ]
+      ]
+    },
+    {
+      "id": "femur",
+      "system": "skeletal",
+      "subRegion": "quadriceps",
+      "showInHybrid": false,
+      "sourceMeshCount": 2,
+      "vertexCount": 911,
+      "indexCount": 5442,
+      "positions": 639512,
+      "normals": 650444,
+      "indices": 655912,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.14990234375,
+          0.4462890625,
+          -0.050537109375
+        ],
+        [
+          0.150146484375,
+          0.911865234375,
+          0.01220703125
+        ]
+      ]
+    },
+    {
+      "id": "patella",
+      "system": "skeletal",
+      "subRegion": "patellar_tendon",
+      "showInHybrid": false,
+      "sourceMeshCount": 2,
+      "vertexCount": 308,
+      "indexCount": 1824,
+      "positions": 666796,
+      "normals": 670492,
+      "indices": 672340,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.102294921875,
+          0.439697265625,
+          0.0009765625
+        ],
+        [
+          0.102294921875,
+          0.47900390625,
+          0.022705078125
+        ]
+      ]
+    },
+    {
+      "id": "tibia_fibula",
+      "system": "skeletal",
+      "subRegion": "calves",
+      "showInHybrid": false,
+      "sourceMeshCount": 4,
+      "vertexCount": 923,
+      "indexCount": 5490,
+      "positions": 675988,
+      "normals": 687064,
+      "indices": 692604,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.1201171875,
+          0.052734375,
+          -0.051513671875
+        ],
+        [
+          0.1201171875,
+          0.4521484375,
+          0.014892578125
+        ]
+      ]
+    },
+    {
+      "id": "foot_bones",
+      "system": "skeletal",
+      "subRegion": "feet_soles",
+      "showInHybrid": false,
+      "sourceMeshCount": 56,
+      "vertexCount": 1884,
+      "indexCount": 10632,
+      "positions": 703584,
+      "normals": 726192,
+      "indices": 737496,
+      "indexType": "uint16",
+      "bounds": [
+        [
+          -0.16943359375,
+          0.0078125,
+          -0.075927734375
+        ],
+        [
+          0.16943359375,
+          0.0810546875,
+          0.1357421875
+        ]
+      ]
+    }
+  ]
+}
