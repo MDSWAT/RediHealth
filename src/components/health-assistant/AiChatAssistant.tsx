@@ -20,8 +20,8 @@ import { captchaErrorMessage, useRecaptcha } from "@/components/security/Recaptc
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import {
+  AiAssistantIcon,
   ArrowRightIcon,
-  MessageDotsIcon,
   RefreshIcon,
   VolumeIcon,
   VolumeMuteIcon,
@@ -39,6 +39,8 @@ type ChatMessage = {
   role: "user" | "assistant";
   content: string;
   time: string;
+  outOfScope?: boolean;
+  responseKind?: AssistantResponse["responseKind"];
   careLevel?: CareLevel;
   possibleCause?: string;
   questions?: string[];
@@ -250,7 +252,7 @@ export function AiChatAssistant() {
   const nextId = useRef(1);
   const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const recognitionRef = useRef<BrowserSpeechRecognition | null>(null);
+  const recognitionRef = useRef<{ stop: () => void } | null>(null);
   const transcriptRef = useRef("");
   const cancelledMicRef = useRef(false);
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -306,14 +308,23 @@ export function AiChatAssistant() {
   }, []);
 
   const speakAssistantReply = useCallback(
-    (msg: { id: number; content: string; careLevel?: CareLevel; possibleCause?: string; questions?: string[] }) => {
+    (msg: {
+      id: number;
+      content: string;
+      outOfScope?: boolean;
+      careLevel?: CareLevel;
+      possibleCause?: string;
+      questions?: string[];
+    }) => {
       if (!voice.available) return;
-      const parts = [
-        msg.content,
-        msg.careLevel ? `${t.careLevelLabel}: ${t.careLevels[msg.careLevel]}` : "",
-        msg.possibleCause ? `${t.possibleCause}: ${msg.possibleCause}` : "",
-        msg.questions && msg.questions.length > 0 ? `${t.questionsHeading}: ${msg.questions.join(". ")}` : "",
-      ].filter(Boolean);
+      const parts = msg.outOfScope
+        ? [msg.content]
+        : [
+            msg.content,
+            msg.careLevel ? `${t.careLevelLabel}: ${t.careLevels[msg.careLevel]}` : "",
+            msg.possibleCause ? `${t.possibleCause}: ${msg.possibleCause}` : "",
+            msg.questions && msg.questions.length > 0 ? `${t.questionsHeading}: ${msg.questions.join(". ")}` : "",
+          ].filter(Boolean);
       setSpeakingMessageId(msg.id);
       voice.speak(parts);
     },
@@ -467,14 +478,22 @@ export function AiChatAssistant() {
         }
         const data = (await response.json()) as AssistantResponse;
         const replyId = nextId.current++;
+        const isOutOfScope = Boolean(data.outOfScope || data.responseKind === "out_of_scope");
+        const isInfoOnly =
+          !isOutOfScope &&
+          (data.responseKind === "medical_info" || data.responseKind === "platform_info") &&
+          data.careLevel === "routine" &&
+          !data.possibleCause;
         const replyMsg: ChatMessage = {
           id: replyId,
           role: "assistant",
           content: data.message,
           time: formatTime(),
-          careLevel: data.careLevel,
-          possibleCause: data.possibleCause,
-          questions: Array.isArray(data.questions) ? data.questions.filter(Boolean) : [],
+          outOfScope: isOutOfScope,
+          responseKind: data.responseKind,
+          careLevel: isOutOfScope || isInfoOnly ? undefined : data.careLevel,
+          possibleCause: isOutOfScope ? undefined : data.possibleCause,
+          questions: isOutOfScope ? [] : Array.isArray(data.questions) ? data.questions.filter(Boolean) : [],
         };
         setMessages((current) => [...current, replyMsg]);
 
@@ -545,9 +564,9 @@ export function AiChatAssistant() {
         <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
           <div
             aria-hidden="true"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ink-950 text-amber-care-border dark:bg-paper dark:text-ink-950"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-rose-border/80 bg-rose-tint text-rose-ink"
           >
-            <MessageDotsIcon className="h-5 w-5" />
+            <AiAssistantIcon className="h-5 w-5" />
           </div>
           <div className="min-w-0">
             <h1 className="truncate text-body font-semibold leading-tight text-foreground sm:text-title">
@@ -689,11 +708,17 @@ export function AiChatAssistant() {
           ) : (
             <div key={message.id} className="flex justify-start">
               <div className="max-w-[90%] space-y-3 sm:max-w-[82%]">
-                <div className="rounded-2xl rounded-tl-sm border border-border bg-card px-4 py-3.5 text-body text-foreground shadow-2xs dark:border-ink-800 dark:bg-ink-900">
+                <div
+                  className={
+                    message.outOfScope
+                      ? "rounded-2xl rounded-tl-sm border border-rose-border bg-rose-tint/45 px-4 py-3.5 text-body text-foreground shadow-2xs"
+                      : "rounded-2xl rounded-tl-sm border border-border bg-card px-4 py-3.5 text-body text-foreground shadow-2xs dark:border-ink-800 dark:bg-ink-900"
+                  }
+                >
                   <span className="sr-only">{t.assistant}: </span>
                   <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
 
-                  {message.careLevel && (
+                  {!message.outOfScope && message.careLevel && (
                     <div
                       className={
                         message.careLevel === "emergency"
@@ -818,11 +843,11 @@ export function AiChatAssistant() {
 
         <div
           ref={faqPopoverRef}
-          className="relative flex items-end gap-1.5 rounded-2xl border border-border-control bg-background p-1.5 focus-within:border-foreground focus-within:ring-2 focus-within:ring-ring/25 sm:gap-2"
+          className="relative flex flex-col rounded-2xl border border-border-control bg-background transition-[border-color,box-shadow] duration-(--dur-fast) focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/30"
         >
           {/* Upward FAQ popover anchored right above the chatbox */}
           {openPopover === "faq" && showFaqInComposer && (
-            <div className="fhs-enter absolute right-0 bottom-full z-30 mb-2 w-[min(calc(100vw-2rem),26rem)] rounded-2xl border border-border bg-card p-3 shadow-xl shadow-ink-950/15 dark:border-white/12 dark:bg-ink-900">
+            <div className="fhs-enter absolute inset-x-0 bottom-full z-30 mb-2 max-w-[26rem] rounded-2xl border border-border bg-card p-3 shadow-xl shadow-ink-950/15 dark:border-white/12 dark:bg-ink-900">
               <p className="px-2 pb-2 text-meta font-semibold text-muted-foreground">{chrome.faqButton}</p>
               <div className="space-y-1.5">
                 {[...t.quickPrompts, ...chrome.extraPrompts].map((prompt) => (
@@ -831,7 +856,7 @@ export function AiChatAssistant() {
                     type="button"
                     disabled={isSubmitting}
                     onClick={() => void send(prompt)}
-                    className="press-row flex w-full items-center justify-between gap-2.5 rounded-xl border border-border bg-background px-3.5 py-2.5 text-left text-meta font-medium text-foreground transition-colors duration-(--dur-fast) hover:border-foreground/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="press-row flex w-full items-center justify-between gap-2.5 rounded-xl border border-border bg-background px-3.5 py-2.5 text-left text-meta font-medium text-foreground transition-colors duration-(--dur-fast) hover:border-rose-border hover:bg-rose-tint/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <span>{prompt}</span>
                     <ArrowRightIcon className="h-3.5 w-3.5 shrink-0 opacity-50" aria-hidden="true" />
@@ -840,22 +865,6 @@ export function AiChatAssistant() {
               </div>
             </div>
           )}
-
-          <button
-            type="button"
-            onClick={toggleMicrophone}
-            disabled={isSubmitting}
-            aria-label={isListening ? t.micStop : t.micStart}
-            title={isListening ? t.micStop : t.micStart}
-            aria-pressed={isListening}
-            className={`inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl transition-colors duration-(--dur-fast) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-              isListening
-                ? "bg-ink-950 text-amber-care-border dark:bg-paper dark:text-ink-950"
-                : "text-muted-foreground hover:bg-muted hover:text-foreground"
-            }`}
-          >
-            <MicIcon className="h-5 w-5" />
-          </button>
 
           <label htmlFor="ai-chat-input" className="sr-only">
             {t.inputLabel}
@@ -873,47 +882,67 @@ export function AiChatAssistant() {
             }}
             onKeyDown={handleKeyDown}
             placeholder={t.placeholder}
-            className="max-h-36 min-h-11 flex-1 resize-none bg-transparent px-2 py-2.5 text-body leading-snug text-foreground [field-sizing:content] placeholder:text-muted-foreground focus:outline-none"
+            className="max-h-40 min-h-12 w-full resize-none bg-transparent px-3.5 pt-3 pb-1.5 text-body leading-snug text-foreground [field-sizing:content] placeholder:text-muted-foreground focus:outline-none! focus-visible:outline-none!"
           />
 
-          {/* Common questions icon button lives inside the chatbox until a message is sent or >5 chars are typed */}
-          {showFaqInComposer && (
-            <div className="group relative shrink-0">
+          <div className="flex items-center justify-between gap-2 px-1.5 pt-0.5 pb-1.5">
+            <div className="flex items-center gap-1">
               <button
                 type="button"
-                onClick={() => setOpenPopover((prev) => (prev === "faq" ? null : "faq"))}
-                aria-expanded={openPopover === "faq"}
-                aria-label={chrome.faqButton}
-                title={chrome.faqButton}
-                className={`press-row inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-xl border transition-colors duration-(--dur-fast) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                  openPopover === "faq"
-                    ? "border-ink-950 bg-ink-950 text-paper dark:border-paper dark:bg-paper dark:text-ink-950"
-                    : "border-transparent text-muted-foreground hover:bg-muted hover:text-foreground"
+                onClick={toggleMicrophone}
+                disabled={isSubmitting}
+                aria-label={isListening ? t.micStop : t.micStart}
+                title={isListening ? t.micStop : t.micStart}
+                aria-pressed={isListening}
+                className={`inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl transition-colors duration-(--dur-fast) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  isListening
+                    ? "bg-rose-tint text-rose-ink ring-1 ring-rose-border"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 }`}
               >
-                <HelpCircleIcon className="h-5 w-5 shrink-0" />
+                <MicIcon className="h-5 w-5" />
               </button>
-              {openPopover !== "faq" && (
-                <span
-                  role="tooltip"
-                  className="pointer-events-none absolute right-0 bottom-full z-20 mb-2 whitespace-nowrap rounded-lg bg-ink-950 px-2.5 py-1 text-meta font-medium text-paper opacity-0 shadow-md transition-opacity duration-(--dur-fast) group-hover:opacity-100 group-focus-within:opacity-100 dark:bg-paper dark:text-ink-950"
-                >
-                  {chrome.faqButton}
-                </span>
+
+              {/* Common questions icon button lives inside the chatbox until a message is sent or >5 chars are typed */}
+              {showFaqInComposer && (
+                <div className="group relative shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setOpenPopover((prev) => (prev === "faq" ? null : "faq"))}
+                    aria-expanded={openPopover === "faq"}
+                    aria-label={chrome.faqButton}
+                    title={chrome.faqButton}
+                    className={`press-row inline-flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-xl border transition-colors duration-(--dur-fast) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      openPopover === "faq"
+                        ? "border-rose-border bg-rose-tint text-rose-ink shadow-2xs"
+                        : "border-transparent text-muted-foreground hover:bg-muted hover:text-foreground"
+                    }`}
+                  >
+                    <HelpCircleIcon className="h-5 w-5 shrink-0" />
+                  </button>
+                  {openPopover !== "faq" && (
+                    <span
+                      role="tooltip"
+                      className="pointer-events-none absolute left-0 bottom-full z-20 mb-2 whitespace-nowrap rounded-lg bg-ink-950 px-2.5 py-1 text-meta font-medium text-paper opacity-0 shadow-md transition-opacity duration-(--dur-fast) group-hover:opacity-100 group-focus-within:opacity-100 dark:bg-paper dark:text-ink-950"
+                    >
+                      {chrome.faqButton}
+                    </span>
+                  )}
+                </div>
               )}
             </div>
-          )}
 
-          <button
-            type="submit"
-            disabled={isSubmitting || !draft.trim()}
-            aria-label={t.send}
-            title={t.send}
-            className="press-solid inline-flex h-11 min-h-11 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-ink-950 px-4 text-body font-semibold text-paper transition-colors duration-(--dur-fast) hover:bg-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:bg-muted disabled:text-muted-foreground dark:bg-paper dark:text-ink-950"
-          >
-            <span className="hidden sm:inline">{t.send}</span>
-            <ArrowRightIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-          </button>
+            <button
+              type="submit"
+              disabled={isSubmitting || !draft.trim()}
+              aria-label={t.send}
+              title={t.send}
+              className="press-solid inline-flex h-11 min-h-11 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-ink-950 px-4 text-body font-semibold text-paper transition-colors duration-(--dur-fast) hover:bg-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:bg-muted disabled:text-muted-foreground dark:bg-paper dark:text-ink-950"
+            >
+              <span className="hidden sm:inline">{t.send}</span>
+              <ArrowRightIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </form>
     </section>

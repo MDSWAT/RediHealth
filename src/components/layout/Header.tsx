@@ -10,12 +10,12 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import {
+  AiAssistantIcon,
   ArrowRightIcon,
   CloseIcon,
   DownloadIcon,
   HomeIcon,
   MenuIcon,
-  MessageDotsIcon,
   PhoneIcon,
   RefreshIcon,
   SearchIcon,
@@ -340,7 +340,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                   data-capsule-item=""
                   className={cn(capsuleItem(onDarkBar, isAiAssistantActive), "px-3 text-[0.9375rem]")}
                 >
-                  <MessageDotsIcon className="h-4.5 w-4.5 shrink-0 opacity-85" aria-hidden="true" />
+                  <AiAssistantIcon className="h-4.5 w-4.5 shrink-0 opacity-90" aria-hidden="true" />
                   <span>{aiCopy.shortLabel}</span>
                 </Link>
                 <span aria-hidden="true" className={capsuleDivider(onDarkBar)} />
@@ -592,7 +592,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     aria-hidden="true"
                     className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-care-soft text-amber-care dark:bg-amber-care/25 dark:text-amber-care-border"
                   >
-                    <MessageDotsIcon className="h-4.5 w-4.5" />
+                    <AiAssistantIcon className="h-4.5 w-4.5" />
                   </span>
                   <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-amber-care/70 dark:text-amber-care-border/75" aria-hidden="true" />
                 </span>

@@ -323,4 +323,25 @@ describe("/api/health-assistant vision route", () => {
     expect(html).not.toContain("data-confidence-summary");
     expect(html).not.toContain("rounded-full");
   });
+
+  it("deterministically blocks off-topic chat requests before invoking the LLM", async () => {
+    const req = new Request("http://localhost:3000/api/health-assistant", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        lang: "it",
+        symptoms: "Dammi la ricetta della carbonara per favore",
+      }),
+    });
+
+    const res = await POST(req);
+    expect(res.status).toBe(200);
+    const data = (await res.json()) as Record<string, unknown>;
+    expect(data.outOfScope).toBe(true);
+    expect(data.responseKind).toBe("out_of_scope");
+    expect(data.possibleCause).toBe("");
+    expect(data.questions).toEqual([]);
+    expect(String(data.message)).toContain("RediHealth");
+    expect(generateTextMock).not.toHaveBeenCalled();
+  });
 });

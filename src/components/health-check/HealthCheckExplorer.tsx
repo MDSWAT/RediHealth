@@ -2244,7 +2244,7 @@ export function HealthCheckExplorer() {
                 aria-checked={active}
                 tabIndex={active ? 0 : -1}
                 onClick={() => handleForWhomChange(opt.id)}
-                className={`inline-flex min-h-11 items-center justify-center rounded-lg border px-3 text-body whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                className={`inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-body border whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                   active
                     ? "border-rose-border bg-rose-tint font-semibold text-rose-ink shadow-2xs"
                     : "border-transparent font-medium text-muted-foreground hover:bg-card/70 hover:text-foreground"
@@ -2283,7 +2283,7 @@ export function HealthCheckExplorer() {
                 aria-checked={active}
                 tabIndex={active ? 0 : -1}
                 onClick={() => handleBodyProfileChange(opt.id)}
-                className={`inline-flex min-h-11 items-center justify-center rounded-lg border px-3 text-body whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                className={`inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-body border whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                   active
                     ? "border-rose-border bg-rose-tint font-semibold text-rose-ink shadow-2xs"
                     : "border-transparent font-medium text-muted-foreground hover:bg-card/70 hover:text-foreground"

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { CAPSULE_TABS, capsuleTab } from "@/components/layout/chrome-capsule";
 import { CapsuleGlidePlate, useCapsuleGlide } from "@/components/layout/CapsuleGlide";
-import { ActivityIcon, FileTextIcon, HandHelpingIcon, MessageDotsIcon, PinIcon } from "@/components/ui/icons";
+import { ActivityIcon, AiAssistantIcon, FileTextIcon, HandHelpingIcon, PinIcon } from "@/components/ui/icons";
 import { AI_CHAT_COPY } from "@/components/health-assistant/ai-chat-copy";
 import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -81,7 +81,7 @@ function useAssistantNavState() {
   const items = [
     { href: "/health-check", label: t.symptoms, Icon: ActivityIcon },
     // Free-text AI assistant: describe symptoms, learn how soon to see a doctor.
-    { href: "/ai-assistant", label: (AI_CHAT_COPY[lang] ?? AI_CHAT_COPY[DEFAULT_LANG]).navLabel, Icon: MessageDotsIcon },
+    { href: "/ai-assistant", label: (AI_CHAT_COPY[lang] ?? AI_CHAT_COPY[DEFAULT_LANG]).navLabel, Icon: AiAssistantIcon },
     { href: "/prescription-review", label: t.prescription, Icon: FileTextIcon },
     // The former step-by-step assistant: now the "which doctor, or no ID card" guide.
     { href: "/health-assistant", label: t.assistant, Icon: HandHelpingIcon },

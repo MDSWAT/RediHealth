@@ -589,9 +589,9 @@ h2 {
   min-width: 0;
 }
 
-/* The headline's second sentence on phones: crisp REDI obsidian matching desktop typography. */
+/* The headline's second sentence on phones: inherits crisp hero typography color. */
 .hero-title-warm {
-  color: var(--color-foreground);
+  color: inherit;
 }
 
 /*

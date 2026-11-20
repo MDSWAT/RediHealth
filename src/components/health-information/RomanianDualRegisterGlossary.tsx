@@ -182,6 +182,7 @@ export interface DualRegisterGlossaryContentProps {
   tabs?: Omit<DictionaryTabsProps, "active">;
   priorityTopicSlug?: string;
   initialCategory?: "all" | MedicalGlossaryCategory;
+  initialQuery?: string;
   className?: string;
   lang?: Lang;
   inline?: boolean;
@@ -191,11 +192,13 @@ export interface DualRegisterGlossaryContentProps {
 function useDualRegisterGlossaryState({
   priorityTopicSlug,
   initialCategory = "all",
+  initialQuery = "",
   propLang,
   isActive = true,
 }: {
   priorityTopicSlug?: string;
   initialCategory?: "all" | MedicalGlossaryCategory;
+  initialQuery?: string;
   propLang?: Lang;
   isActive?: boolean;
 }) {
@@ -210,7 +213,7 @@ function useDualRegisterGlossaryState({
   const util = DICTIONARY_UTILITY_COPY[lang] ?? DICTIONARY_UTILITY_COPY.ro;
   const tabFallback = DICTIONARY_TAB_LABELS[lang] ?? DICTIONARY_TAB_LABELS.ro;
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState<
     "all" | MedicalGlossaryCategory
   >(initialCategory);
@@ -667,6 +670,7 @@ export function DualRegisterGlossaryContent({
   tabs,
   priorityTopicSlug,
   initialCategory = "all",
+  initialQuery = "",
   className = "",
   lang: propLang,
   inline = false,
@@ -675,6 +679,7 @@ export function DualRegisterGlossaryContent({
   const state = useDualRegisterGlossaryState({
     priorityTopicSlug,
     initialCategory,
+    initialQuery,
     propLang,
     isActive,
   });

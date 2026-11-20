@@ -3,10 +3,12 @@ import {
   buildEmergencyResponse,
   buildMedicineLookupSystemInstruction,
   buildMedicineLookupUserText,
+  buildOutOfScopeResponse,
   buildSystemInstruction,
   buildUserText,
   buildVisionSystemInstruction,
   buildVisionUserText,
+  detectOffTopicRequest,
   parseAssistantReply,
 } from "@/lib/health-assistant";
 import { detectEmergencyText } from "@/lib/emergency-detection";
@@ -154,6 +156,12 @@ export async function POST(request: Request) {
   }
 
   const hasImage = !isMedicineLookup && Boolean(imageData);
+
+  // Deterministically block prompt injections and clearly off-topic chat requests before calling the LLM.
+  if (!isMedicineLookup && !hasImage && detectOffTopicRequest(symptoms)) {
+    return NextResponse.json(buildOutOfScopeResponse(lang));
+  }
+
   const parsedHistory = parseHistory(body.history);
 
   let generated: { text: string; model: string };

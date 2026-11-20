@@ -4,7 +4,7 @@
   z-index: -20;
   overflow: hidden;
   pointer-events: none;
-  background: var(--color-background);
+  background: var(--color-ink-950);
 }
 
 .photo {
@@ -16,7 +16,7 @@
   user-select: none;
   pointer-events: none;
   will-change: opacity, transform;
-  filter: saturate(0.95) brightness(1.01) contrast(1.03) sepia(0.03);
+  filter: saturate(0.32) brightness(0.74) contrast(1.06);
 }
 
 .photo1 {
@@ -43,20 +43,20 @@
   animation: hero-fade-4 32s linear infinite;
 }
 
-/* Warm daylight documentary grade unifies lighting across all four consultation photos. */
+/* Deep REDI obsidian-navy documentary grade unifies all four consultation photos. */
 .tint {
   position: absolute;
   inset: 0;
   z-index: 4;
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--color-sand) 16%, transparent) 0%,
-    color-mix(in srgb, var(--color-sapphire) 4%, transparent) 100%
+    color-mix(in srgb, var(--color-ink-950) 58%, transparent) 0%,
+    color-mix(in srgb, var(--color-sapphire) 34%, transparent) 100%
   );
 }
 
-/* Sculpted warm-paper editorial veil: keeps typography crystal clear while revealing rich,
-   vivid consultation photography through the mobile daylight window and desktop right stage. */
+/* Sculpted obsidian-navy editorial veil: keeps white typography crystal clear while letting
+   the clinical photography glow softly through on mobile and desktop like REDI-ngo.eu. */
 .veil {
   position: absolute;
   inset: 0;
@@ -64,12 +64,11 @@
   background:
     linear-gradient(
       180deg,
-      var(--color-background) 0%,
-      color-mix(in srgb, var(--color-background) 98%, transparent) 27%,
-      color-mix(in srgb, var(--color-background) 34%, transparent) 42%,
-      color-mix(in srgb, var(--color-background) 8%, transparent) 58%,
-      color-mix(in srgb, var(--color-background) 42%, transparent) 76%,
-      color-mix(in srgb, var(--color-background) 92%, transparent) 100%
+      color-mix(in srgb, var(--color-ink-950) 92%, transparent) 0%,
+      color-mix(in srgb, var(--color-ink-950) 78%, transparent) 30%,
+      color-mix(in srgb, var(--color-ink-950) 48%, transparent) 54%,
+      color-mix(in srgb, var(--color-ink-950) 76%, transparent) 78%,
+      var(--color-ink-950) 100%
     );
 }
 
@@ -78,19 +77,18 @@
     background:
       linear-gradient(
         180deg,
-        color-mix(in srgb, var(--color-background) 55%, transparent) 0%,
-        transparent 14%,
-        transparent 84%,
-        color-mix(in srgb, var(--color-background) 62%, transparent) 100%
+        color-mix(in srgb, var(--color-ink-950) 68%, transparent) 0%,
+        color-mix(in srgb, var(--color-ink-950) 24%, transparent) 22%,
+        color-mix(in srgb, var(--color-ink-950) 24%, transparent) 76%,
+        var(--color-ink-950) 100%
       ),
       linear-gradient(
         90deg,
-        var(--color-background) 0%,
-        var(--color-background) 40%,
-        color-mix(in srgb, var(--color-background) 92%, transparent) 49%,
-        color-mix(in srgb, var(--color-background) 42%, transparent) 61%,
-        color-mix(in srgb, var(--color-background) 8%, transparent) 78%,
-        color-mix(in srgb, var(--color-background) 18%, transparent) 100%
+        color-mix(in srgb, var(--color-ink-950) 94%, transparent) 0%,
+        color-mix(in srgb, var(--color-ink-950) 86%, transparent) 38%,
+        color-mix(in srgb, var(--color-ink-950) 64%, transparent) 58%,
+        color-mix(in srgb, var(--color-ink-950) 46%, transparent) 80%,
+        color-mix(in srgb, var(--color-ink-950) 74%, transparent) 100%
       );
   }
 }
@@ -211,5 +209,5 @@
 }
 
 :global(html[data-high-contrast]) .veil {
-  background: color-mix(in srgb, var(--color-background) 92%, transparent);
+  background: color-mix(in srgb, var(--color-ink-950) 92%, transparent);
 }

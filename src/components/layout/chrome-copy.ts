@@ -45,7 +45,7 @@ export const chromeCopy: Record<Lang, ChromeCopy> = {
     homeShort: "Главная",
     liveDoctor: "Врач онлайн",
     liveDoctorSub: "Видеоконсультация",
-    aiAssistantSub: "Чат и голос",
+    aiAssistantSub: "Медицинский гид",
     moreOptions: "Настройки и аккаунт",
   },
 
@@ -60,7 +60,7 @@ export const chromeCopy: Record<Lang, ChromeCopy> = {
     homeShort: "Acasă",
     liveDoctor: "Medic online",
     liveDoctorSub: "Consultație video live",
-    aiAssistantSub: "Chat cu voce",
+    aiAssistantSub: "Ghid medical",
     moreOptions: "Setări și cont",
   },
   en: {
@@ -74,7 +74,7 @@ export const chromeCopy: Record<Lang, ChromeCopy> = {
     homeShort: "Home",
     liveDoctor: "Live doctor",
     liveDoctorSub: "Video consultation",
-    aiAssistantSub: "Chat with voice",
+    aiAssistantSub: "Medical guide",
     moreOptions: "Settings and account",
   },
   sq: {
@@ -88,7 +88,7 @@ export const chromeCopy: Record<Lang, ChromeCopy> = {
     homeShort: "Kreu",
     liveDoctor: "Mjek online",
     liveDoctorSub: "Konsultë me video",
-    aiAssistantSub: "Bisedë me zë",
+    aiAssistantSub: "Udhëzues mjekësor",
     moreOptions: "Cilësimet dhe llogaria",
   },
   it: {
@@ -102,7 +102,7 @@ export const chromeCopy: Record<Lang, ChromeCopy> = {
     homeShort: "Home",
     liveDoctor: "Medico online",
     liveDoctorSub: "Videochiamata live",
-    aiAssistantSub: "Chat con voce",
+    aiAssistantSub: "Guida medica",
     moreOptions: "Impostazioni e account",
   },
   hr: {
@@ -116,7 +116,7 @@ export const chromeCopy: Record<Lang, ChromeCopy> = {
     homeShort: "Početna",
     liveDoctor: "Liječnik online",
     liveDoctorSub: "Video konzultacija",
-    aiAssistantSub: "Razgovor i glas",
+    aiAssistantSub: "Medicinski vodič",
     moreOptions: "Postavke i račun",
   },
   rom: {
@@ -130,7 +130,7 @@ export const chromeCopy: Record<Lang, ChromeCopy> = {
     homeShort: "Kher",
     liveDoctor: "Doktoro online",
     liveDoctorSub: "Video akharipe",
-    aiAssistantSub: "Vakeripe glasosa",
+    aiAssistantSub: "Sastipnasko drom",
     moreOptions: "Setimata thaj konto",
   },
 };

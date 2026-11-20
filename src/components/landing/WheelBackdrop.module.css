@@ -18,11 +18,11 @@
   container-type: inline-size;
 }
 
-/* Hero: subtle geometric motif layered cleanly over the editorial veil and multi-photo ground. */
+/* Hero: subtle geometric motif layered cleanly over the obsidian-navy veil and multi-photo ground. */
 .hero {
-  color: var(--color-sapphire);
-  opacity: 0.16;
-  --wheel-face-bg: var(--color-background);
+  color: var(--color-paper);
+  opacity: 0.12;
+  --wheel-face-bg: var(--color-ink-950);
 }
 
 .hero .wheel {

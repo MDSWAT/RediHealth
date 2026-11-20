@@ -528,6 +528,17 @@ export function MessageDotsIcon(props: IconProps) {
   );
 }
 
+// In-house clinical AI mark: four-point AI star paired with a crisp medical cross.
+export function AiAssistantIcon(props: IconProps) {
+  return (
+    <svg {...strokeProps(props)}>
+      <path d="M10 6.5c.6 4.4 2.1 5.9 6.5 6.5-4.4.6-5.9 2.1-6.5 6.5-.6-4.4-2.1-5.9-6.5-6.5 4.4-.6 5.9-2.1 6.5-6.5Z" />
+      <path d="M18.5 3v5" />
+      <path d="M16 5.5h5" />
+    </svg>
+  );
+}
+
 export function ShareIcon(props: IconProps) {
   return (
     <svg {...strokeProps(props)}>

@@ -504,12 +504,12 @@ function RomanesGlossaryBody({
   );
 }
 
-function useRomanesGlossaryState(currentLang: Lang, isActive: boolean) {
+function useRomanesGlossaryState(currentLang: Lang, isActive: boolean, initialQuery = "") {
   const s = HEALTH_DETAIL_SHARED_STRINGS.romanesGlossaryDrawer;
   const sRecord = s as unknown as Record<string, Record<Lang, string> | undefined>;
   const voiceEnabled = isVoiceEnabled("rom");
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [speakingId, setSpeakingId] = useState<string | null>(null);
   const speakingIdRef = useRef<string | null>(null);
@@ -656,6 +656,7 @@ function useRomanesGlossaryState(currentLang: Lang, isActive: boolean) {
 
 export interface RomanesGlossaryContentProps {
   tabs?: Omit<DictionaryTabsProps, "active">;
+  initialQuery?: string;
   className?: string;
   lang?: Lang;
   inline?: boolean;
@@ -664,6 +665,7 @@ export interface RomanesGlossaryContentProps {
 
 export function RomanesGlossaryContent({
   tabs,
+  initialQuery = "",
   className = "",
   lang,
   isActive = true,
@@ -674,7 +676,7 @@ export function RomanesGlossaryContent({
   const util = DICTIONARY_UTILITY_COPY[currentLang] ?? DICTIONARY_UTILITY_COPY.ro;
   const tabFallback = DICTIONARY_TAB_LABELS[currentLang] ?? DICTIONARY_TAB_LABELS.ro;
   const [largeText, setLargeText] = useState<boolean>(readInitialRomanesLargeText);
-  const state = useRomanesGlossaryState(currentLang, isActive);
+  const state = useRomanesGlossaryState(currentLang, isActive, initialQuery);
 
   const handleToggleLargeText = () => {
     setLargeText((prev) => {
