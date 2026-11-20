@@ -7,6 +7,6 @@ export interface MythDoctorHandoverButtonProps {
 }
 
 /** Educational quiz verdicts remain self-contained without routing readers directly to an online doctor. */
-export function MythDoctorHandoverButton(_props: MythDoctorHandoverButtonProps) {
+export function MythDoctorHandoverButton() {
   return null;
 }

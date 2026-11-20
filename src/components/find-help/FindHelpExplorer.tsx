@@ -1035,14 +1035,16 @@ export function FindHelpExplorer({
                 </button>
               )}
             </div>
-            <button
+            <Button
               type="button"
+              variant="action"
+              size="lg"
               disabled={addressSearching}
               onClick={() => void resolveAndApplySearch(searchInput)}
-              className="inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-(--radius-control) bg-sapphire px-3.5 text-body font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60"
+              className="shrink-0"
             >
               {copy.searchButton}
-            </button>
+            </Button>
           </div>
         </form>
 
@@ -1297,14 +1299,16 @@ export function FindHelpExplorer({
                 </button>
               )}
             </div>
-            <button
+            <Button
               type="button"
+              variant="action"
+              size="md"
               disabled={addressSearching}
               onClick={() => void resolveAndApplySearch(searchInput)}
-              className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-(--radius-control) bg-sapphire px-3.5 text-body font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60"
+              className="shrink-0"
             >
               {copy.searchButton}
-            </button>
+            </Button>
           </form>
 
           <div

@@ -805,7 +805,7 @@ const rawTranslations = {
       "emergency": {
         "badge": "Urgență medicală 112",
         "title": "Poate fi o urgență: sună acum la 112",
-        "description": "Nu aștepta. Dacă nu poți suna, mergi repede la Urgențe. Nu conduce singur.",
+        "description": "Nu aștepta. Dacă nu poți suna, mergi repede la urgențe. Nu conduce singur.",
         "whyEmergencyPrefix": "Ai ales:",
         "call112Now": "Sună la 112",
         "continueReview": "Am înțeles"
@@ -1019,7 +1019,7 @@ const rawTranslations = {
           "id": "stomach_severe_widespread",
           "label": "Durere de burtă foarte puternică și continuă, cu vărsături repetate, burtă tare sau febră",
           "isRedFlag": true,
-          "selfCareTip": "Nu mânca și nu bea mult. Mergi imediat la Urgențe sau sună la 112.",
+          "selfCareTip": "Nu mânca și nu bea mult. Mergi imediat la urgențe sau sună la 112.",
           "guidance": "O durere foarte puternică, cu burta tare, poate cere o operație de urgență.",
           "title": "Durere foarte puternică în toată burta",
           "description": "Burta te doare tare și e tare ca lemnul, vomiți întruna sau te simți gata să leșini."
@@ -1066,7 +1066,7 @@ const rawTranslations = {
           "id": "pelvis_pregnancy_bleeding",
           "label": "Durere pelvină bruscă și foarte puternică, sângerare abundentă sau durere când ai putea fi însărcinată",
           "isRedFlag": true,
-          "selfCareTip": "Întinde-te, nu lua medicamente pe cont propriu și sună imediat la 112 sau mergi la Urgențe.",
+          "selfCareTip": "Întinde-te, nu lua medicamente pe cont propriu și sună imediat la 112 sau mergi la urgențe.",
           "guidance": "Durerea pelvină severă cu sângerare, amețeală sau o posibilă sarcină poate fi o urgență ginecologică și cere consult imediat.",
           "title": "Durere pelvină severă, sângerare mare sau sarcină",
           "description": "Durere bruscă jos în burtă cu sângerare vaginală puternică, amețeală, febră sau dacă știi ori bănuiești că ești însărcinată."
@@ -1207,7 +1207,7 @@ const rawTranslations = {
           "id": "leg_sudden_swelling",
           "label": "Un singur picior umflat brusc, cald, roșu și foarte dureros, sau nu poți călca pe el",
           "isRedFlag": true,
-          "selfCareTip": "Stai liniștit și nu masa gamba. Mergi repede la un medic sau la Urgențe.",
+          "selfCareTip": "Stai liniștit și nu masa gamba. Mergi repede la un medic sau la urgențe.",
           "guidance": "O gambă umflată brusc poate fi un cheag de sânge (tromboză). Trebuie tratată de urgență.",
           "title": "Gambă umflată brusc, doar pe un picior",
           "description": "O singură gambă s-a umflat brusc, e caldă, roșie și dureroasă."
@@ -1326,7 +1326,7 @@ const rawTranslations = {
         "description": "Simți că nu ești în siguranță ori ai gânduri să îți iei viața sau să te rănești.",
         "isRedFlag": true,
         "selfCareTip": "",
-        "guidance": "Este o urgență medicală. Sună acum la 112 sau mergi imediat la Urgențe și nu rămâne singur."
+        "guidance": "Este o urgență medicală. Sună acum la 112 sau mergi imediat la urgențe și nu rămâne singur."
       }
     ]
   },
@@ -1997,7 +1997,7 @@ const rawTranslations = {
       "emergency": {
         "badge": "Urgjencë mjekësore 112",
         "title": "Mund të jetë urgjencë: telefono tani 112",
-        "description": "Mos prit. Nëse nuk mund të telefonosh, shko shpejt në Urgjencë. Mos e drejto vetë makinën.",
+        "description": "Mos prit. Nëse nuk mund të telefonosh, shko shpejt në urgjencë. Mos e drejto vetë makinën.",
         "whyEmergencyPrefix": "Zgjodhe:",
         "call112Now": "Telefono 112",
         "continueReview": "E kuptova"
@@ -2211,7 +2211,7 @@ const rawTranslations = {
           "id": "stomach_severe_widespread",
           "label": "Dhimbje barku shumë e fortë dhe e vazhdueshme, me të vjella të përsëritura, bark të fortë ose temperaturë",
           "isRedFlag": true,
-          "selfCareTip": "Mos ha dhe mos pi shumë. Shko menjëherë në Urgjencë ose telefono 112.",
+          "selfCareTip": "Mos ha dhe mos pi shumë. Shko menjëherë në urgjencë ose telefono 112.",
           "guidance": "Dhimbja shumë e fortë me bark të fortë mund të kërkojë operacion urgjent.",
           "title": "Dhimbje shumë e fortë në gjithë barkun",
           "description": "Gjithë barku të dhemb shumë dhe është i fortë, vjell vazhdimisht ose ndihesh sikur do të të bjerë të fikët."
@@ -2258,7 +2258,7 @@ const rawTranslations = {
           "id": "pelvis_pregnancy_bleeding",
           "label": "Dhimbje e papritur shumë e fortë në pelvis, gjakderdhje e madhe ose dhimbje kur mund të jesh shtatzënë",
           "isRedFlag": true,
-          "selfCareTip": "Shtrihu në vend të sigurt, mos merr ilaçe vetë dhe telefono menjëherë 112 ose shko në Urgjencë.",
+          "selfCareTip": "Shtrihu në vend të sigurt, mos merr ilaçe vetë dhe telefono menjëherë 112 ose shko në urgjencë.",
           "guidance": "Dhimbja e fortë në pelvis me gjakderdhje, marramendje ose shtatzëni të mundshme është urgjencë gjinekologjike dhe kërkon spital menjëherë.",
           "title": "Dhimbje e fortë në pelvis, gjakderdhje ose shtatzëni",
           "description": "Dhimbje e fortë e papritur në fund të barkut me gjakderdhje të madhe, marramendje, temperaturë ose kur je a dyshon se je shtatzënë."
@@ -2399,7 +2399,7 @@ const rawTranslations = {
           "id": "leg_sudden_swelling",
           "label": "Njëra këmbë e ënjtur papritur, e nxehtë, e kuqe dhe me shumë dhimbje, ose nuk shkel dot mbi të",
           "isRedFlag": true,
-          "selfCareTip": "Rri i qetë dhe mos e masazho pulpën. Shko shpejt te mjeku ose në Urgjencë.",
+          "selfCareTip": "Rri i qetë dhe mos e masazho pulpën. Shko shpejt te mjeku ose në urgjencë.",
           "guidance": "Ënjtja e papritur e njërës këmbë mund të jetë mpiksje gjaku (trombozë). Duhet trajtuar shpejt.",
           "title": "Pulpë e ënjtur papritur, vetëm në një këmbë",
           "description": "Vetëm njëra pulpë u ënjt papritur dhe është e ngrohtë, e kuqe dhe me dhimbje."

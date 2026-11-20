@@ -859,10 +859,7 @@ export function PrescriptionStructuredResult({
 
                   {med.stoppingGuidance ? (
                     <div className="mt-3.5 rounded-lg border border-amber-care-border/75 bg-amber-care-soft/45 p-3 text-body text-foreground dark:border-amber-care/35 dark:bg-amber-care/10">
-                      <p className="flex items-start gap-2 font-semibold text-foreground">
-                        <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
-                        <span>{result.stoppingGuidanceLabel}</span>
-                      </p>
+                      <p className="font-semibold text-foreground">{result.stoppingGuidanceLabel}</p>
                       <p className="mt-1 text-foreground/90">{renderWithUnclearHighlights(med.stoppingGuidance)}</p>
                     </div>
                   ) : null}

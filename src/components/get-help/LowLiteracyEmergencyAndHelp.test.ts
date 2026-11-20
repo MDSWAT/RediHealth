@@ -169,7 +169,7 @@ describe("P44: get-help mediator mode & mediatori request link", () => {
     expect(translations.sq.getHelpPage.mediatorHeroParagraph).not.toContain("ndërmjetës");
   });
 
-  it("wires mode=mediator from /get-help page searchParams and routes /mediatori CTA there", () => {
+  it("wires mode=mediator from /get-help page searchParams and points /mediatori hero CTA to #solicita", () => {
     const pageSrc = read("app/get-help/page.tsx");
     expect(pageSrc).toContain("searchParams");
     expect(pageSrc).toContain('=== "mediator"');
@@ -177,10 +177,12 @@ describe("P44: get-help mediator mode & mediatori request link", () => {
 
     const mediatorHeroSrc = read("components/mediator/MediatorPublicHero.tsx");
     expect(mediatorHeroSrc).not.toContain('aria-haspopup="dialog"');
-    expect(mediatorHeroSrc).toContain("/get-help?mode=mediator");
+    expect(mediatorHeroSrc).not.toContain("/get-help?mode=mediator");
+    expect(mediatorHeroSrc).toContain('href="#solicita"');
 
     const mediatorHeroHtml = renderToStaticMarkup(createElement(MediatorPublicHero));
-    expect(mediatorHeroHtml).toContain('href="/ro/get-help?mode=mediator"');
+    expect(mediatorHeroHtml).toContain('href="#solicita"');
+    expect(mediatorHeroHtml).not.toContain("/get-help?mode=mediator");
 
     const enMediatorHeroHtml = renderToStaticMarkup(
       createElement(
@@ -189,7 +191,8 @@ describe("P44: get-help mediator mode & mediatori request link", () => {
         createElement(MediatorPublicHero),
       ),
     );
-    expect(enMediatorHeroHtml).toContain('href="/en/get-help?mode=mediator"');
+    expect(enMediatorHeroHtml).toContain('href="#solicita"');
+    expect(enMediatorHeroHtml).not.toContain("/get-help?mode=mediator");
   });
 });
 

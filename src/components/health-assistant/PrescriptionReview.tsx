@@ -934,35 +934,35 @@ nameReqErr: "Введите название лекарства, чтобы пр
                 <div
                   role="tablist"
                   aria-label={t.modeLabel}
-                  className="grid grid-cols-1 gap-2 rounded-xl bg-muted/65 p-1.5 sm:grid-cols-2"
+                  className="flex w-fit max-w-full flex-wrap gap-2.5 rounded-xl bg-muted/65 p-1.5"
                 >
                   <button
                     type="button"
                     role="tab"
                     aria-selected={inputMode === "name"}
                     onClick={() => handleModeSwitch("name")}
-                    className={`flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                    className={`inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                       inputMode === "name"
                         ? "bg-card text-foreground shadow-2xs ring-1 ring-border"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     <SearchIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-                    <span className="truncate">{t.modeName}</span>
+                    <span>{t.modeName}</span>
                   </button>
                   <button
                     type="button"
                     role="tab"
                     aria-selected={inputMode === "photo"}
                     onClick={() => handleModeSwitch("photo")}
-                    className={`flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                    className={`inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                       inputMode === "photo"
                         ? "bg-card text-foreground shadow-2xs ring-1 ring-border"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     <CameraIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-                    <span className="truncate">{t.modePhoto}</span>
+                    <span>{t.modePhoto}</span>
                   </button>
                 </div>
 
@@ -1211,7 +1211,7 @@ nameReqErr: "Введите название лекарства, чтобы пр
                     {t.whyHint}
                   </p>
 
-                  <div className="mt-3.5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                  <div className="mt-3.5 flex flex-wrap gap-2.5">
                     {REASON_ORDER.map((reasonKey, index) => {
                       const active = selectedReasons.includes(reasonKey);
                       return (
@@ -1221,7 +1221,7 @@ nameReqErr: "Введите название лекарства, чтобы пр
                           onClick={() => toggleReasonChip(reasonKey)}
                           aria-pressed={active}
                           style={{ "--i": index } as CSSProperties}
-                          className={`list-in press-row flex min-h-11 max-w-full items-center gap-2.5 whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-left text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                          className={`list-in press-row inline-flex min-h-11 items-center gap-2.5 whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-left text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                             active
                               ? "border-sapphire bg-sapphire-soft font-semibold text-foreground dark:border-sapphire/65 dark:bg-sapphire/20 dark:text-foreground"
                               : "border-border bg-background text-foreground hover:bg-muted"
@@ -1236,7 +1236,7 @@ nameReqErr: "Введите название лекарства, чтобы пр
                           >
                             <ReasonChipIcon reason={reasonKey} />
                           </span>
-                          <span className="min-w-0 flex-1 truncate leading-snug">{t.reasons[reasonKey]}</span>
+                          <span className="leading-snug">{t.reasons[reasonKey]}</span>
                           {active ? (
                             <CheckCircleIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" />
                           ) : null}

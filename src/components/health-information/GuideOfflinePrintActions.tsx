@@ -29,7 +29,7 @@ export const GUIDE_OFFLINE_PRINT_COPY: Record<Lang, OfflinePrintCopy> = {
     savedLabel: "Salvat offline",
     savedStatus: "Ghid salvat pentru citire fără internet.",
     downloadedStatus: "Ghidul a fost descărcat ca fișier text.",
-    errorStatus: "Nu s-a putut salva automat. Folosește Tipărește sau salvează PDF.",
+    errorStatus: "Nu s-a putut salva automat. Folosește tipărirea sau salvarea ca PDF.",
   },
   en: {
     printLabel: "Print or save PDF",
@@ -39,7 +39,7 @@ export const GUIDE_OFFLINE_PRINT_COPY: Record<Lang, OfflinePrintCopy> = {
     savedLabel: "Saved offline",
     savedStatus: "Guide saved for offline reading.",
     downloadedStatus: "Guide downloaded as a text file.",
-    errorStatus: "Could not save automatically. Use Print or save PDF instead.",
+    errorStatus: "Could not save automatically. Use print or save PDF instead.",
   },
   sq: {
     printLabel: "Printo ose ruaj PDF",
@@ -49,7 +49,7 @@ export const GUIDE_OFFLINE_PRINT_COPY: Record<Lang, OfflinePrintCopy> = {
     savedLabel: "Ruajtur jashtë linje",
     savedStatus: "Udhëzuesi u ruajt për lexim jashtë linje.",
     downloadedStatus: "Udhëzuesi u shkarkua si skedar tekst.",
-    errorStatus: "Nuk u ruajt dot automatikisht. Përdor Printo ose ruaj PDF.",
+    errorStatus: "Nuk u ruajt dot automatikisht. Përdor printimin ose ruajtjen si PDF.",
   },
   it: {
     printLabel: "Stampa o salva PDF",
@@ -59,7 +59,7 @@ export const GUIDE_OFFLINE_PRINT_COPY: Record<Lang, OfflinePrintCopy> = {
     savedLabel: "Salvato offline",
     savedStatus: "Guida salvata per la lettura offline.",
     downloadedStatus: "Guida scaricata come file di testo.",
-    errorStatus: "Impossibile salvare automaticamente. Usa Stampa o salva PDF.",
+    errorStatus: "Impossibile salvare automaticamente. Usa la stampa o il salvataggio in PDF.",
   },
   hr: {
     printLabel: "Ispiši ili spremi PDF",
@@ -69,7 +69,7 @@ export const GUIDE_OFFLINE_PRINT_COPY: Record<Lang, OfflinePrintCopy> = {
     savedLabel: "Spremljeno offline",
     savedStatus: "Vodič je spremljen za čitanje izvan mreže.",
     downloadedStatus: "Vodič je preuzet kao tekstualna datoteka.",
-    errorStatus: "Automatsko spremanje nije uspjelo. Upotrijebi Ispiši ili spremi PDF.",
+    errorStatus: "Automatsko spremanje nije uspjelo. Upotrijebi ispis ili spremanje u PDF.",
   },
   rom: {
     printLabel: "Printisardes vaj garav",
@@ -79,7 +79,7 @@ export const GUIDE_OFFLINE_PRINT_COPY: Record<Lang, OfflinePrintCopy> = {
     savedLabel: "Garavdo offline",
     savedStatus: "O drom si garavdo te drabares bi-internetesko.",
     downloadedStatus: "O drom si telardo sar tekstosko fajlo.",
-    errorStatus: "Naštisajlo te garavel pes korkoro. Lelab Printisardes vaj garav.",
+    errorStatus: "Naštisajlo te garavel pes korkoro. Lelab printisardes vaj garav.",
   },
   ru: {
     printLabel: "Печать или PDF",
@@ -89,7 +89,7 @@ export const GUIDE_OFFLINE_PRINT_COPY: Record<Lang, OfflinePrintCopy> = {
     savedLabel: "Сохранено офлайн",
     savedStatus: "Памятка сохранена для чтения без интернета.",
     downloadedStatus: "Памятка скачана в виде текстового файла.",
-    errorStatus: "Не удалось сохранить автоматически. Используйте Печать или PDF.",
+    errorStatus: "Не удалось сохранить автоматически. Используйте печать или PDF.",
   },
 };
 
