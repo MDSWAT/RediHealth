@@ -5,13 +5,37 @@ import { IconTile, type IconTileTone } from "@/components/ui/IconTile";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
-import { ArrowRightIcon, GlobeIcon, HandHelpingIcon, CheckCircleIcon, HeartIcon, LockIcon, MessageDotsIcon } from "@/components/ui/icons";
+import {
+  ArrowRightIcon,
+  CheckCircleIcon,
+  GlobeIcon,
+  HandHelpingIcon,
+  HeartIcon,
+  LockIcon,
+  MessageDotsIcon,
+} from "@/components/ui/icons";
 import type { NavIcon } from "@/components/layout/nav-links";
+import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 
 /** The promises, in order: free for everyone, data stays private, clear guidance. */
 const PROMISE_ICONS = [HeartIcon, LockIcon, MessageDotsIcon];
+
+const COMMITMENT_ACCENTS = [
+  {
+    rule: "bg-sapphire dark:bg-sapphire-border",
+    icon: "text-sapphire dark:text-sapphire-border",
+  },
+  {
+    rule: "bg-wellness dark:bg-wellness-border",
+    icon: "text-wellness dark:text-wellness-border",
+  },
+  {
+    rule: "bg-amber-care dark:bg-amber-care-border",
+    icon: "text-amber-care dark:text-amber-care-border",
+  },
+] as const;
 
 type SourceId = "oms" | "redi";
 
@@ -57,7 +81,6 @@ const COPY: Record<Lang, TrustCopy> = {
       },
     ],
   },
-
   ro: {
     title: "Cu cine lucrăm",
     subtitle:
@@ -186,17 +209,14 @@ const COPY: Record<Lang, TrustCopy> = {
   },
 };
 
-// The health mediators have their own section on the homepage, so the ledger lists the partners only.
 const SOURCE_TILES: Record<SourceId, { icon: NavIcon; tone: IconTileTone }> = {
   oms: { icon: GlobeIcon, tone: "sapphire-soft" },
-  redi: { icon: HandHelpingIcon, tone: "sapphire-soft" },
+  redi: { icon: HandHelpingIcon, tone: "amber" },
 };
 
 /**
- * Who we work with (a 4/8 split: heading beside a ledger of partners, each with the same blue icon
- * tile) and what we promise (three commitments, the icon beside each title, under a heavy top rule), on the paper ground
- * with no emblems or seals. On phones the ledger is plain divided rows on the ground; from sm
- * it is one card. The heading blocks and each row settle in as they are scrolled to.
+ * Who we work with (partner ledger) and what we promise (three bordered cards with distinct
+ * semantic token top rules using sapphire, wellness teal, and amber-care) on the paper ground.
  */
 export function TrustSection() {
   const { lang, t } = useLanguage();
@@ -217,11 +237,9 @@ export function TrustSection() {
             </div>
 
             <div className="lg:col-span-8">
-              <ul className="divide-y divide-border border-y border-border sm:overflow-hidden sm:rounded-(--radius-surface) sm:border sm:bg-card sm:shadow-(--shadow-card-rest) dark:divide-white/10 dark:border-white/10 dark:sm:bg-ink-800">
+              <ul className="divide-y divide-border overflow-hidden rounded-(--radius-surface) border border-border bg-card shadow-(--shadow-card-rest) dark:divide-white/10 dark:border-white/10 dark:bg-ink-800">
                 {copy.sources.map((item) => (
-                  <li key={item.id} className="py-5 sm:p-6">
-                    {/* Every row the same: blue tile, name, one line. A partner's website, where there is
-                        one, is a plain link under that line rather than a button only one row has. */}
+                  <li key={item.id} className="p-5 sm:p-6">
                     <div className="flex min-w-0 items-start gap-4">
                       <IconTile size={40} {...SOURCE_TILES[item.id]} />
                       <div className="min-w-0">
@@ -234,7 +252,7 @@ export function TrustSection() {
                             href={item.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group -my-2 -mx-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:bg-white/10 dark:focus-visible:ring-paper"
+                            className="group -mx-2 -my-2 mt-1 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:bg-white/10 dark:focus-visible:ring-paper"
                           >
                             <span>{item.hrefLabel}</span>
                             <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0 -rotate-45" />
@@ -251,27 +269,26 @@ export function TrustSection() {
 
           <div className="mt-14 sm:mt-16">
             <h3 className="text-balance text-title font-bold">{copy.commitmentsTitle}</h3>
-            {/* Three promises, not steps: an icon each, no numbers. */}
-            <ul className="mt-6 grid gap-8 sm:grid-cols-3 lg:gap-10">
+            <ul className="mt-6 grid gap-5 sm:grid-cols-3 lg:gap-6">
               {t.landing.trustSection.commitments.map(({ title, description }, index) => {
                 const Icon = PROMISE_ICONS[index] ?? CheckCircleIcon;
+                const accent = COMMITMENT_ACCENTS[index % COMMITMENT_ACCENTS.length];
                 return (
-                <li key={title}>
-                  <span
-                    aria-hidden="true"
-                    className="block h-0.5 bg-foreground/80 dark:bg-paper/80"
-                  />
-                  <div className="pt-5">
-                    {/* The icon sits beside the title, on its first line, not on a line of its own. */}
-                    <p className="flex items-start gap-2.5 text-lead font-semibold tabular-nums">
-                      <Icon aria-hidden="true" className="mt-[0.2em] h-5.5 w-5.5 shrink-0 text-sapphire dark:text-sapphire-border" />
-                      <span className="min-w-0 text-balance">{title}</span>
-                    </p>
-                    <p className="mt-2 text-pretty text-body tabular-nums text-muted-foreground dark:text-mist">
-                      {description}
-                    </p>
-                  </div>
-                </li>
+                  <li
+                    key={title}
+                    className="overflow-hidden rounded-(--radius-surface) border border-border bg-card shadow-(--shadow-card-rest) dark:border-white/10 dark:bg-ink-800"
+                  >
+                    <span aria-hidden="true" className={cn("block h-0.5", accent.rule)} />
+                    <div className="p-5 sm:p-6">
+                      <p className="flex items-start gap-2.5 text-lead font-semibold tabular-nums">
+                        <Icon aria-hidden="true" className={cn("mt-[0.2em] h-5.5 w-5.5 shrink-0", accent.icon)} />
+                        <span className="min-w-0 text-balance">{title}</span>
+                      </p>
+                      <p className="mt-2 text-pretty text-body tabular-nums text-muted-foreground dark:text-mist">
+                        {description}
+                      </p>
+                    </div>
+                  </li>
                 );
               })}
             </ul>

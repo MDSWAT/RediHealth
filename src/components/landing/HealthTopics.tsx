@@ -2,43 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRightIcon } from "@/components/ui/icons";
-import { HealthTopicsSpotlight } from "@/components/landing/HealthTopicsSpotlight";
-import { HealthTopicsWheel } from "@/components/landing/HealthTopicsWheel";
-import { WHEEL_ICONS } from "@/components/landing/HealthTopicsWheelIcons";
-import { WHEEL_ORDER } from "@/components/landing/health-topics-wheel-config";
 import { cn } from "@/lib/cn";
 import { getHealthTopicsList } from "@/lib/i18n/health-information-topics";
 import { getRequestLang, withLangPrefix } from "@/lib/i18n/server-routing";
 import { translations } from "@/lib/i18n/translations";
 
-/** The link to every guide. It renders below the grid on phones and beside the heading from sm. */
-function ViewAllLink({ href, label, className }: { href: string; label: string; className?: string }) {
-  return (
-    <Button
-      href={href}
-      variant="action"
-      size="lg"
-      className={cn("sm:px-5", className)}
-    >
-      <span className="min-w-0 overflow-hidden text-ellipsis">{label}</span>
-      <ArrowRightIcon className="arrow-travel h-5 w-5 shrink-0" />
-    </Button>
-  );
-}
+const WELLNESS_TOPIC_SLUGS = new Set([
+  "healthy-eating",
+  "physical-activity",
+  "mental-wellbeing",
+  "smoking",
+]);
 
 /**
- * Eight health topics on the sand ground. Phones: two columns of photo tiles,
- * a rounded photo with the title beneath it straight on the sand, no card.
- * From sm: three columns of bordered cards with the blurb. From lg the grid
- * gives way to the topic wheel beside one card that follows it
- * (`HealthTopicsSpotlight`). The heading and each tile settle in as they
- * scroll into view.
- * Titles, blurbs and photos come from `getHealthTopicsList(lang)` in a Server
- * Component, so the guide dictionary never ships to the browser here.
+ * Eight health topics and self-check guides on the warm sand ground.
+ * Clean, colorful, scannable cards on both mobile and desktop:
+ * - Everyday habits & mental wellbeing carry the wellness teal top bar and icon plate.
+ * - Clinical prevention & screening guides carry the clinical sapphire top bar and icon plate.
+ * - One single action button at the foot takes visitors straight to "Learn and test yourself".
  */
 export async function HealthTopics() {
   const lang = await getRequestLang();
@@ -46,77 +31,88 @@ export async function HealthTopics() {
   const topics = getHealthTopicsList(lang);
   const viewAllHref = withLangPrefix("/health-information", lang);
 
-  const spotlightTopics = WHEEL_ORDER.flatMap((slug) => {
-    const topic = topics.find((item) => item.slug === slug);
-    if (!topic) return [];
-    const Icon = WHEEL_ICONS[slug] ?? topic.icon;
-    return [
-      {
-        slug,
-        title: topic.title,
-        description: topic.description,
-        image: topic.image,
-        href: withLangPrefix(`/health-information/${slug}`, lang),
-        icon: <Icon />,
-      },
-    ];
-  });
-
   return (
-    <Section tone="sand" className="lg:py-[clamp(1.5rem,5svh,4rem)]!">
+    <Section tone="sand">
       <Container>
         <Reveal>
-          <HealthTopicsSpotlight
-            topics={spotlightTopics}
-            wheel={
-              <div>
-                <HealthTopicsWheel label={title} className="lg:max-w-[min(42.5rem,calc(100svh-var(--site-header-h)-4rem))]!" />
-              </div>
-            }
-            heading={
-              // Short desktop screens (under 760px tall) drop the subtitle, so the section fits.
-              <div className="lg:[@media(max-height:760px)]:[&_p]:hidden">
-                <SectionHeading
-                  as="h2"
-                  title={title}
-                  subtitle={subtitle}
-                  action={
-                    <div className="hidden sm:block lg:hidden">
-                      <ViewAllLink href={viewAllHref} label={viewAll} />
-                    </div>
-                  }
-                />
-              </div>
-            }
-          >
-            {/* Phones: the heading's empty action slot already adds a 16px gap, so the grid adds the other 16px. */}
-            <ul className="mt-4 grid grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3 lg:hidden">
-              {topics.map(({ slug, title: topicTitle, description, image }) => (
+          <SectionHeading as="h2" title={title} subtitle={subtitle} />
+
+          <ul className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            {topics.map(({ slug, title: topicTitle, description, image, icon: TopicIcon }) => {
+              const isWellness = WELLNESS_TOPIC_SLUGS.has(slug);
+              return (
                 <li key={slug}>
                   <Link
                     href={withLangPrefix(`/health-information/${slug}`, lang)}
-                    className="press-row group flex h-full flex-col rounded-(--radius-surface) transition-[background-color,border-color,box-shadow] duration-(--dur-base) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:overflow-hidden sm:border sm:border-sand-line sm:bg-card sm:shadow-(--shadow-card-rest) sm:hover:border-sapphire/35 sm:hover:shadow-(--shadow-card-hover) sm:active:shadow-(--shadow-card-rest) dark:focus-visible:ring-paper dark:sm:border-white/10 dark:sm:bg-ink-800 dark:sm:hover:border-white/25"
+                    className="press-row card-interactive group flex h-full flex-col overflow-hidden rounded-(--radius-surface) border border-sand-line bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/10 dark:bg-ink-800 dark:hover:border-white/25 dark:focus-visible:ring-paper"
                   >
-                    <div className="relative aspect-4/3 overflow-hidden rounded-(--radius-surface) bg-surface-subtle sm:rounded-none">
-                      <Image src={image} alt="" fill sizes="(min-width: 640px) 33vw, 50vw" className="object-cover" />
-                    </div>
-                    <div className="min-w-0 px-1 pb-1 pt-2 sm:p-4">
-                      <h3 className="text-balance wrap-break-word text-body font-semibold leading-snug text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper dark:group-hover:text-sapphire-border">
-                        {topicTitle}
-                      </h3>
-                      <p className="mt-1 hidden text-pretty text-body text-muted-foreground sm:block dark:text-mist">
-                        {description}
-                      </p>
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        "block h-1 w-full shrink-0",
+                        isWellness
+                          ? "bg-wellness dark:bg-wellness-border"
+                          : "bg-sapphire dark:bg-sapphire-border",
+                      )}
+                    />
+                    <div className="flex flex-1 flex-row sm:flex-col">
+                      <div className="relative w-28 shrink-0 overflow-hidden bg-surface-subtle sm:aspect-4/3 sm:w-full">
+                        <Image
+                          src={image}
+                          alt=""
+                          fill
+                          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 112px"
+                          className="object-cover"
+                        />
+                      </div>
+
+                      <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:justify-start sm:p-5">
+                        <div className="flex items-start gap-3">
+                          <span
+                            aria-hidden="true"
+                            className={cn(
+                              "flex h-9 w-9 shrink-0 items-center justify-center rounded-(--radius-control)",
+                              isWellness
+                                ? "bg-wellness-soft text-wellness dark:text-wellness-border"
+                                : "bg-sapphire-soft text-sapphire dark:bg-white/10 dark:text-sapphire-border",
+                            )}
+                          >
+                            <TopicIcon className="h-4.5 w-4.5" />
+                          </span>
+                          <h3
+                            className={cn(
+                              "min-w-0 flex-1 self-center text-balance wrap-break-word text-body font-semibold leading-snug text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-paper",
+                              isWellness
+                                ? "group-hover:text-wellness dark:group-hover:text-wellness-border"
+                                : "group-hover:text-sapphire dark:group-hover:text-sapphire-border",
+                            )}
+                          >
+                            {topicTitle}
+                          </h3>
+                        </div>
+
+                        <p className="mt-2.5 text-pretty text-meta font-normal text-muted-foreground dark:text-mist">
+                          {description}
+                        </p>
+                      </div>
                     </div>
                   </Link>
                 </li>
-              ))}
-            </ul>
+              );
+            })}
+          </ul>
 
-            <div className="mt-6 sm:hidden lg:mt-[clamp(1rem,2.5svh,1.5rem)] lg:block">
-              <ViewAllLink href={viewAllHref} label={viewAll} className="w-full lg:w-auto" />
-            </div>
-          </HealthTopicsSpotlight>
+          <div className="mt-8">
+            <Button
+              href={viewAllHref}
+              variant="action"
+              size="lg"
+              className="w-full bg-wellness! text-white! hover:bg-wellness-light! sm:w-auto"
+            >
+              <span>{viewAll}</span>
+              <ArrowRightIcon className="arrow-travel h-5 w-5 shrink-0" />
+            </Button>
+          </div>
         </Reveal>
       </Container>
     </Section>

@@ -60,27 +60,24 @@ export function Footer() {
       heading: tFooter.col1Heading,
       links: [
         { label: tFooter.col1Link1, href: "/health-information" },
-        { label: tFooter.col1Link2, href: "/health-assistant" },
-        { label: tFooter.col1Link3, href: "/health-check" },
-        { label: tFooter.col1Link4, href: "/stiri" },
+        { label: tFooter.col1Link2, href: "/health-check" },
+        { label: tFooter.col1Link3, href: "/prescription-review" },
       ],
     },
     {
       heading: tFooter.col2Heading,
       links: [
-        { label: tFooter.col2Link1, href: "/medic-online" },
-        { label: tFooter.col2Link2, href: "/medic-online/programare" },
-        { label: tFooter.col2Link3, href: "/find-help" },
-        { label: tFooter.col2Link4, href: "/contul-meu" },
+        { label: tFooter.col2Link1, href: "/find-help" },
+        { label: tFooter.col2Link2, href: "/stiri" },
+        { label: tFooter.col2Link3, href: "/contul-meu" },
       ],
     },
     {
       heading: tFooter.col3Heading,
       links: [
         { label: tFooter.col3Link1, href: "/mediatori" },
-        { label: tFooter.col3Link2, href: "/panel/mediator" },
-        { label: tFooter.col3Link3, href: "/panel" },
-        { label: tFooter.col3Link4, href: "/mediatori#protocol" },
+        { label: tFooter.col3Link2, href: "/mediatori#solicita" },
+        { label: tFooter.col3Link3, href: "/mediatori#protocol" },
       ],
     },
     {
