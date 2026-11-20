@@ -19,6 +19,7 @@ import {
 import { useLanguage } from "@/lib/i18n/language-context";
 import {
   type CityPreset,
+  REGIONAL_CITY_PRESETS,
   findHelpTranslations,
   formatHumanDistance,
   formatOpeningHours,
@@ -93,6 +94,51 @@ function RetryIcon({ className = "h-4 w-4" }: { className?: string }) {
 
 function prefersReducedMotion() {
   return prefersCalmOrReducedMotion();
+}
+
+function normalizeLocationToken(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\u0111/g, "d")
+    .replace(/\u0110/g, "D")
+    .toLowerCase()
+    .trim();
+}
+
+function findPresetCityMatch(
+  rawQuery: string,
+  preferredCountry: CountryCode,
+): (CityPreset & { country: CountryCode }) | null {
+  const token = normalizeLocationToken(rawQuery);
+  if (!token) return null;
+
+  if (["medimurje", "medjimurje", "cakovec", "medimurska", "medjimurska"].includes(token)) {
+    const cakovec = REGIONAL_CITY_PRESETS.HR.find(
+      (c) => normalizeLocationToken(c.name) === "cakovec",
+    );
+    if (cakovec) return { ...cakovec, country: "HR" };
+  }
+  if (["varazdin", "varazdinska"].includes(token)) {
+    const varazdin = REGIONAL_CITY_PRESETS.HR.find(
+      (c) => normalizeLocationToken(c.name) === "varazdin",
+    );
+    if (varazdin) return { ...varazdin, country: "HR" };
+  }
+
+  const orderedCountries: CountryCode[] = [
+    preferredCountry,
+    ...(Object.keys(REGIONAL_CITY_PRESETS) as CountryCode[]).filter((c) => c !== preferredCountry),
+  ];
+  for (const country of orderedCountries) {
+    const cities = REGIONAL_CITY_PRESETS[country] ?? [];
+    for (const city of cities) {
+      if (normalizeLocationToken(city.name) === token) {
+        return { ...city, country };
+      }
+    }
+  }
+  return null;
 }
 
 function isDesktopViewport() {
@@ -426,6 +472,9 @@ export function FindHelpExplorer({
   const [ownership, setOwnership] = useState<InstituteOwnership | null>(null);
   const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState("");
+  const [searchedPointLabel, setSearchedPointLabel] = useState<string | null>(null);
+  const [addressSearching, setAddressSearching] = useState(false);
+  const resolvedAddressInputRef = useRef<string | null>(null);
   const [institutes, setInstitutes] = useState<MedicalInstitute[]>([]);
   const [reloadKey, setReloadKey] = useState(0);
   const [settled, setSettled] = useState<{ key: string; failed: boolean } | null>(null);
@@ -459,6 +508,7 @@ export function FindHelpExplorer({
   const filterSheetTitleId = useId();
   const desktopSearchInputId = useId();
   const sheetSearchInputId = useId();
+  const mobileSearchInputId = useId();
   const closeFilterSheet = useCallback(() => setFilterSheetOpen(false), []);
   useSheetDialog(filterSheetOpen, filterSheetPanelRef, closeFilterSheet);
   useEffect(() => {
@@ -499,6 +549,8 @@ export function FindHelpExplorer({
         setLocationStatus("active");
         setFarFromServices(false);
         setGuessReason(null);
+        setSearchedPointLabel(null);
+        resolvedAddressInputRef.current = null;
         setArea({ kind: "point", ...point, source: "gps" });
       },
       () => setLocationStatus("denied"),
@@ -557,15 +609,20 @@ export function FindHelpExplorer({
   useEffect(() => {
     const trimmed = searchInput.trim();
     if (searchInput === "") {
+      resolvedAddressInputRef.current = null;
+      if (searchedPointLabel !== null) queueMicrotask(() => setSearchedPointLabel(null));
       if (search !== "") queueMicrotask(() => setSearch(""));
       return;
     }
+    if (resolvedAddressInputRef.current === trimmed) return;
+    resolvedAddressInputRef.current = null;
     if (trimmed === search) return;
     const timer = window.setTimeout(() => {
+      if (resolvedAddressInputRef.current === trimmed) return;
       setSearch(trimmed);
     }, 280);
     return () => window.clearTimeout(timer);
-  }, [searchInput, search]);
+  }, [searchInput, search, searchedPointLabel]);
 
   const requestQuery = useMemo(() => {
     const params = new URLSearchParams();
@@ -704,19 +761,17 @@ export function FindHelpExplorer({
     });
   }
 
-  /** Tapping a place in the list: on a phone, open the map on that place with its card under it. */
+  /** Tapping a place selects it cleanly without forced tab jumps on phones. */
   function showInstitute(id: string) {
     setSelectedId(id);
-    if (!isDesktopViewport()) {
-      setMobilePreviewId(id);
-      switchMobileView("map");
-    }
   }
 
   function chooseCountry(country: CountryCode) {
     userPickedManuallyRef.current = true;
     setGuessReason(null);
     setFarFromServices(false);
+    setSearchedPointLabel(null);
+    resolvedAddressInputRef.current = null;
     setActiveCountry(country);
     setArea({ kind: "country", country });
     writeSavedFindHelpLocation({ mode: "country", country, chosenOnLang: lang });
@@ -727,6 +782,7 @@ export function FindHelpExplorer({
     userPickedManuallyRef.current = true;
     setGuessReason(null);
     setFarFromServices(false);
+    setSearchedPointLabel(null);
     setActiveCountry(targetCountry);
     setArea({
       kind: "point",
@@ -746,9 +802,63 @@ export function FindHelpExplorer({
     });
   }
 
+  async function resolveAndApplySearch(rawQuery: string) {
+    const trimmed = rawQuery.trim();
+    if (!trimmed) {
+      resolvedAddressInputRef.current = null;
+      setSearchedPointLabel(null);
+      setSearch("");
+      return;
+    }
+
+    const presetMatch = findPresetCityMatch(trimmed, activeCountry);
+    if (presetMatch) {
+      resolvedAddressInputRef.current = trimmed;
+      setSearch("");
+      chooseCity(presetMatch);
+      return;
+    }
+
+    setAddressSearching(true);
+    try {
+      const response = await fetch(
+        `/api/geocode?q=${encodeURIComponent(trimmed)}&country=${encodeURIComponent(activeCountry)}`,
+      );
+      if (response.ok) {
+        const payload = (await response.json()) as {
+          match?: { lat: number; lng: number; label: string; country?: CountryCode } | null;
+        };
+        if (payload.match && Number.isFinite(payload.match.lat) && Number.isFinite(payload.match.lng)) {
+          const targetCountry = payload.match.country ?? activeCountry;
+          resolvedAddressInputRef.current = trimmed;
+          userPickedManuallyRef.current = true;
+          setGuessReason(null);
+          setFarFromServices(false);
+          setActiveCountry(targetCountry);
+          setSearchedPointLabel(payload.match.label || trimmed);
+          setSearch("");
+          setArea({
+            kind: "point",
+            lat: payload.match.lat,
+            lng: payload.match.lng,
+            source: "area",
+          });
+          return;
+        }
+      }
+    } catch {
+      // Graceful fallback to local text match
+    } finally {
+      setAddressSearching(false);
+    }
+
+    setSearchedPointLabel(null);
+    setSearch(trimmed);
+  }
+
   function submitSearch(event: FormEvent) {
     event.preventDefault();
-    setSearch(searchInput.trim());
+    void resolveAndApplySearch(searchInput);
   }
 
   function clearFilters() {
@@ -756,6 +866,8 @@ export function FindHelpExplorer({
     setEmergencyOnly(false);
     setOpenNowOnly(false);
     setOwnership(null);
+    resolvedAddressInputRef.current = null;
+    setSearchedPointLabel(null);
     setSearch("");
     setSearchInput("");
   }
@@ -770,9 +882,11 @@ export function FindHelpExplorer({
         ? copy.myLocation
         : activeCityName
           ? `${activeCityName}, ${copy.countries[activeCountry]}`
-          : area.kind === "country"
-            ? copy.countries[area.country]
-            : copy.mapArea;
+          : area.kind === "point" && searchedPointLabel
+            ? `${searchedPointLabel}, ${copy.countries[activeCountry]}`
+            : area.kind === "country"
+              ? copy.countries[area.country]
+              : copy.mapArea;
 
   const locationSummary =
     locationStatus === "locating"
@@ -781,9 +895,11 @@ export function FindHelpExplorer({
         ? copy.locationActive
         : activeCityName
           ? copy.nearCity(activeCityName)
-          : area.kind === "country"
-            ? copy.showingCountry(copy.countries[area.country])
-            : copy.placesInArea;
+          : area.kind === "point" && searchedPointLabel
+            ? copy.nearPlace(searchedPointLabel)
+            : area.kind === "country"
+              ? copy.showingCountry(copy.countries[area.country])
+              : copy.placesInArea;
 
   const spokenStatusLine =
     locationStatus === "locating"
@@ -879,42 +995,54 @@ export function FindHelpExplorer({
           >
             {copy.searchPlaceholder}
           </label>
-          <div className="relative min-w-0">
-            <input
-              id={searchId}
-              type="search"
-              name="q"
-              value={searchInput}
-              onChange={(event) => {
-                const next = event.target.value;
-                setSearchInput(next);
-                if (!next) setSearch("");
-              }}
-              placeholder={isSheet ? copy.searchHint : copy.searchPlaceholder}
-              title={copy.searchPlaceholder}
-              className={`field-focus peer min-h-12 w-full rounded-(--radius-control) border border-border-control bg-card py-2 pl-10 text-body text-foreground shadow-(--shadow-card-rest) motion-reduce:transition-none placeholder:text-muted-foreground dark:bg-ink-950/40 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
-                searchInput ? "pr-12" : "pr-3.5"
-              }`}
-            />
-            {/* After the input so it can follow its focus: the glass takes the focus colour with the edge. */}
-            <SearchIcon
-              className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none peer-focus-visible:text-sapphire dark:peer-focus-visible:text-sapphire-border"
-              aria-hidden="true"
-            />
-            {searchInput && (
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchInput("");
-                  setSearch("");
+          <div className="flex min-w-0 items-center gap-1.5">
+            <div className="relative min-w-0 flex-1">
+              <input
+                id={searchId}
+                type="search"
+                name="q"
+                value={searchInput}
+                onChange={(event) => {
+                  const next = event.target.value;
+                  setSearchInput(next);
+                  if (!next) setSearch("");
                 }}
-                aria-label={copy.clearFilters}
-                title={copy.clearFilters}
-                className="absolute right-1 top-1/2 inline-flex h-11 w-11 min-h-11 min-w-11 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-              </button>
-            )}
+                placeholder={isSheet ? copy.searchHint : copy.searchPlaceholder}
+                title={copy.searchPlaceholder}
+                className={`field-focus peer min-h-12 w-full rounded-(--radius-control) border border-border-control bg-card py-2 pl-10 text-body text-foreground shadow-(--shadow-card-rest) motion-reduce:transition-none placeholder:text-muted-foreground dark:bg-ink-950/40 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
+                  searchInput ? "pr-12" : "pr-3.5"
+                }`}
+              />
+              {/* After the input so it can follow its focus: the glass takes the focus colour with the edge. */}
+              <SearchIcon
+                className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none peer-focus-visible:text-sapphire dark:peer-focus-visible:text-sapphire-border"
+                aria-hidden="true"
+              />
+              {searchInput && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    resolvedAddressInputRef.current = null;
+                    setSearchedPointLabel(null);
+                    setSearchInput("");
+                    setSearch("");
+                  }}
+                  aria-label={copy.clearFilters}
+                  title={copy.clearFilters}
+                  className="absolute right-1 top-1/2 inline-flex h-11 w-11 min-h-11 min-w-11 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </button>
+              )}
+            </div>
+            <button
+              type="button"
+              disabled={addressSearching}
+              onClick={() => void resolveAndApplySearch(searchInput)}
+              className="inline-flex min-h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-(--radius-control) bg-sapphire px-3.5 text-body font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60"
+            >
+              {copy.searchButton}
+            </button>
           </div>
         </form>
 
@@ -1123,6 +1251,62 @@ export function FindHelpExplorer({
             </Button>
           </div>
 
+          <form
+            onSubmit={submitSearch}
+            role="search"
+            className="mt-2.5 flex items-center gap-1.5 border-t border-border/70 pt-2.5 dark:border-ink-800"
+          >
+            <label htmlFor={mobileSearchInputId} className="sr-only">
+              {copy.searchPlaceholder}
+            </label>
+            <div className="relative min-w-0 flex-1">
+              <input
+                id={mobileSearchInputId}
+                type="search"
+                name="q"
+                value={searchInput}
+                onChange={(event) => {
+                  const next = event.target.value;
+                  setSearchInput(next);
+                  if (!next) setSearch("");
+                }}
+                placeholder={copy.searchPlaceholder}
+                title={copy.searchPlaceholder}
+                className={`field-focus peer min-h-11 w-full rounded-(--radius-control) border border-border-control bg-background py-2 pl-9 text-body text-foreground placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
+                  searchInput ? "pr-11" : "pr-3"
+                }`}
+              />
+              <SearchIcon
+                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground peer-focus-visible:text-sapphire dark:peer-focus-visible:text-sapphire-border"
+                aria-hidden="true"
+              />
+              {searchInput && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    resolvedAddressInputRef.current = null;
+                    setSearchedPointLabel(null);
+                    setSearchInput("");
+                    setSearch("");
+                  }}
+                  aria-label={copy.clearFilters}
+                  title={copy.clearFilters}
+                  className="absolute right-0.5 top-1/2 inline-flex h-11 w-11 min-h-11 min-w-11 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </button>
+              )}
+            </div>
+            <button
+              type="button"
+              disabled={addressSearching}
+              onClick={() => void resolveAndApplySearch(searchInput)}
+              className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-(--radius-control) bg-sapphire px-3.5 text-body font-semibold text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60"
+            >
+              {copy.searchButton}
+            </button>
+          </form>
+
           <div
             role="group"
             aria-label={copy.filtersTitle}
@@ -1243,8 +1427,8 @@ export function FindHelpExplorer({
         </p>
       </section>
 
-      {/* Row 3: Aligned two-column workspace — results list and sticky map share the same top edge */}
-      <div className="mt-5 grid gap-6 lg:grid-cols-[minmax(22rem,0.85fr)_minmax(0,1.35fr)] 2xl:grid-cols-[minmax(26rem,0.75fr)_minmax(0,1.45fr)] lg:items-start lg:gap-8">
+      {/* Row 3: Aligned two-column workspace — distance-sorted list leads cleanly on the left */}
+      <div className="mt-5 grid gap-6 lg:grid-cols-[minmax(24rem,1.15fr)_minmax(0,1fr)] 2xl:grid-cols-[minmax(28rem,1.2fr)_minmax(0,1fr)] lg:items-start lg:gap-8">
         {/* Facility list column (first in DOM, left on desktop) */}
         <div
           ref={listColumnRef}
@@ -1386,12 +1570,6 @@ export function FindHelpExplorer({
                             <CategoryIcon category={institute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" />
                             <span>{copy.categories[institute.category]}</span>
                           </span>
-                          {institute.ownership ? (
-                            <>
-                              <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
-                              <span className="font-medium text-muted-foreground">{copy.ownership[institute.ownership]}</span>
-                            </>
-                          ) : null}
                           {institute.emergency ? (
                             <>
                               <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
@@ -1401,6 +1579,12 @@ export function FindHelpExplorer({
                             </>
                           ) : null}
                         </div>
+
+                        <p className="mt-1 text-body font-medium text-foreground">
+                          {institute.category === "pharmacy" && institute.ownership
+                            ? copy.ownership[institute.ownership]
+                            : copy.ownershipDetail[institute.ownership ?? "unknown"]}
+                        </p>
 
                         <h3 className="mt-1 text-title font-semibold leading-snug text-foreground">
                           <button
@@ -1514,6 +1698,8 @@ export function FindHelpExplorer({
                   userPickedManuallyRef.current = true;
                   setGuessReason(null);
                   setFarFromServices(false);
+                  setSearchedPointLabel(null);
+                  resolvedAddressInputRef.current = null;
                   setArea({ kind: "point", ...center, source: "area" });
                 }}
               />
@@ -1534,12 +1720,6 @@ export function FindHelpExplorer({
                       <CategoryIcon category={mobilePreviewInstitute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" />
                       <span>{copy.categories[mobilePreviewInstitute.category]}</span>
                     </span>
-                    {mobilePreviewInstitute.ownership ? (
-                      <>
-                        <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
-                        <span className="font-medium text-muted-foreground">{copy.ownership[mobilePreviewInstitute.ownership]}</span>
-                      </>
-                    ) : null}
                     {mobilePreviewInstitute.emergency && (
                       <>
                         <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
@@ -1549,6 +1729,11 @@ export function FindHelpExplorer({
                       </>
                     )}
                   </div>
+                  <p className="mt-1 text-body font-medium text-foreground">
+                    {mobilePreviewInstitute.category === "pharmacy" && mobilePreviewInstitute.ownership
+                      ? copy.ownership[mobilePreviewInstitute.ownership]
+                      : copy.ownershipDetail[mobilePreviewInstitute.ownership ?? "unknown"]}
+                  </p>
                   <h3 className="mt-1.5 text-title font-semibold leading-snug text-foreground">
                     {mobilePreviewInstitute.name}
                   </h3>

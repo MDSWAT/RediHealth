@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
-import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
 import { AI_CHAT_COPY, AI_CHAT_MAX_LENGTH } from "@/components/health-assistant/ai-chat-copy";
 import { dangerPanel, textInput } from "@/components/health-assistant/step-ui";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
@@ -120,7 +119,6 @@ export function AiChatAssistant() {
   return (
     <main id="main-content" className="flex-1 pt-2 pb-10 sm:pt-3 sm:pb-14">
       <Container>
-        <AssistantNavigation />
         <PageHeader title={t.title} lead={t.lead} />
 
         <section

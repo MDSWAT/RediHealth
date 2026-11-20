@@ -16,6 +16,8 @@ import { AlertCircleIcon, ArrowRightIcon, PhoneIcon } from "@/components/ui/icon
 import { Logo } from "@/components/ui/Logo";
 import {
   getHealthCheckTranslations,
+  isBodyPartId,
+  type CheckAreaId,
   type SymptomChoice,
 } from "@/lib/i18n/health-check-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -146,7 +148,16 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
   const structuredProps = useMemo(() => {
     if (!parsed) return null;
 
-    const regionSymptoms = dict.symptoms[parsed.part] ?? [];
+    const getAreaTitle = (
+      d: ReturnType<typeof getHealthCheckTranslations>,
+      part: CheckAreaId,
+    ): string => (isBodyPartId(part) ? d.bodyParts[part].title : d.mentalArea.title);
+    const getAreaSymptoms = (
+      d: ReturnType<typeof getHealthCheckTranslations>,
+      part: CheckAreaId,
+    ): SymptomChoice[] => (isBodyPartId(part) ? (d.symptoms[part] ?? []) : (d.mentalSymptoms ?? []));
+
+    const regionSymptoms = getAreaSymptoms(dict, parsed.part);
     const selectedSymptom = regionSymptoms.find((s) => s.id === parsed.symptomId) ?? null;
     const extraSymptoms = parsed.extraSymptomIds
       .map((id) => regionSymptoms.find((s) => s.id === id) ?? null)
@@ -167,7 +178,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
           )
         : null;
 
-    const areaTitle = dict.bodyParts[parsed.part].title;
+    const areaTitle = getAreaTitle(dict, parsed.part);
     const bodyArea = `${areaTitle}${parsed.forWhom === "child" ? ` — ${c.childRow}` : ""}`;
     const subData = parsed.subRegion ? getLocalizedSubRegion(parsed.subRegion, activeLang) : null;
     const anatomicalStructure = subData
@@ -221,7 +232,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
       childLabel: string,
     ): string[] {
       const notes: string[] = [];
-      const partSymptoms = d.symptoms[parsed!.part] ?? [];
+      const partSymptoms = getAreaSymptoms(d, parsed!.part);
       const localizedUrgent = urgentSymptom
         ? partSymptoms.find((x) => x.id === urgentSymptom.id) ?? null
         : null;
@@ -245,7 +256,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
       activeLang === "ro"
         ? undefined
         : (() => {
-            const roPartSymptoms = roDict.symptoms[parsed.part] ?? [];
+            const roPartSymptoms = getAreaSymptoms(roDict, parsed.part);
             const roAllSymptoms = [parsed.symptomId, ...parsed.extraSymptomIds]
               .map((id) => roPartSymptoms.find((x) => x.id === id) ?? null)
               .filter((s): s is SymptomChoice => Boolean(s));
@@ -254,7 +265,7 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               : null;
             const roRows: SummaryRow[] = [
               ...(parsed.forWhom === "child" ? [{ label: "Pentru", value: COPY.ro.childRow }] : []),
-              { label: roDict.ui.areaLabel, value: roDict.bodyParts[parsed.part].title },
+              { label: roDict.ui.areaLabel, value: getAreaTitle(roDict, parsed.part) },
               ...(roSubData
                 ? [
                     {
@@ -310,12 +321,14 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
     return {
       bodyArea,
       anatomicalStructure,
-      painLocation: {
-        part: parsed.part,
-        subRegion: parsed.subRegion,
-        side: parsed.side,
-        bodyProfile: parsed.bodyProfile,
-      },
+      painLocation: isBodyPartId(parsed.part)
+        ? {
+            part: parsed.part,
+            subRegion: parsed.subRegion,
+            side: parsed.side,
+            bodyProfile: parsed.bodyProfile,
+          }
+        : undefined,
       symptoms,
       selfCareTips,
       redFlagNoticed,

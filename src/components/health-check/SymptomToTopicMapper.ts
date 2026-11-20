@@ -53,6 +53,11 @@ const TOPIC_TRANSLATIONS: Record<
       recommendation:
         "Как стресс и плохой сон вызывают головные боли и как их предотвратить.",
     },
+    "mind-wellbeing": {
+      title: "Эмоциональное благополучие и поддержка при стрессе",
+      recommendation:
+        "Что помогает при стойкой грусти, тревоге, бессоннице и когда стоит обратиться к врачу.",
+    },
     "healthy-habits-back": {
       title: "Здоровая осанка, уход за позвоночником и движение",
       recommendation:
@@ -95,6 +100,11 @@ const TOPIC_TRANSLATIONS: Record<
       title: "Gestionarea stresului și durerile de cap de tensiune",
       recommendation:
         "Cum stresul și somnul puțin aduc dureri de cap și cum le previi.",
+    },
+    "mind-wellbeing": {
+      title: "Starea sufletească și sprijinul pentru minte",
+      recommendation:
+        "Ce ajută când ai tristețe persistentă, anxietate, insomnie și când este bine să vorbești cu un medic.",
     },
     "healthy-habits-back": {
       title: "Postura corectă, coloana vertebrală și mișcarea",
@@ -148,6 +158,11 @@ const TOPIC_TRANSLATIONS: Record<
       recommendation:
         "How stress and poor sleep cause headaches, and how to prevent them.",
     },
+    "mind-wellbeing": {
+      title: "Mental wellbeing and emotional support",
+      recommendation:
+        "What helps with lasting sadness, worry or poor sleep, and when to speak with a doctor.",
+    },
     "healthy-habits-back": {
       title: "Healthy posture, spine care, and movement",
       recommendation:
@@ -199,6 +214,11 @@ const TOPIC_TRANSLATIONS: Record<
       title: "Menaxhimi i stresit dhe dhimbjet e kokës nga tensioni",
       recommendation:
         "Si stresi dhe gjumi i pakët sjellin dhimbje koke dhe si t'i parandalosh.",
+    },
+    "mind-wellbeing": {
+      title: "Mirëqenia mendore dhe mbështetja emocionale",
+      recommendation:
+        "Çfarë ndihmon te trishtimi i zgjatur, ankthi ose pagjumësia dhe kur të flasësh me një mjek.",
     },
     "healthy-habits-back": {
       title: "Qëndrimi i saktë, shtylla kurrizore dhe lëvizja",
@@ -252,6 +272,11 @@ const TOPIC_TRANSLATIONS: Record<
       recommendation:
         "Come lo stress e il poco sonno causano mal di testa e come prevenirli.",
     },
+    "mind-wellbeing": {
+      title: "Benessere mentale e sostegno emotivo",
+      recommendation:
+        "Cosa aiuta in caso di tristezza prolungata, ansia o insonnia e quando parlarne con un medico.",
+    },
     "healthy-habits-back": {
       title: "Postura corretta, colonna vertebrale e movimento",
       recommendation:
@@ -303,6 +328,11 @@ const TOPIC_TRANSLATIONS: Record<
       title: "Upravljanje stresom i tenzijske glavobolje",
       recommendation:
         "Kako stres i manjak sna izazivaju glavobolje i kako ih spriječiti.",
+    },
+    "mind-wellbeing": {
+      title: "Mentalno zdravlje i podrška kod stresa",
+      recommendation:
+        "Što pomaže kod dugotrajne tuge, tjeskobe ili lošeg sna i kada se javiti liječniku.",
     },
     "healthy-habits-back": {
       title: "Pravilno držanje, kralježnica i kretanje",
@@ -356,6 +386,11 @@ const TOPIC_TRANSLATIONS: Record<
       recommendation:
         "Sar o streso thaj o tikno soven anen dukh and-o shero thaj sar te arakhes tut.",
     },
+    "mind-wellbeing": {
+      title: "Godji, vilo thaj azhutimos ko streso",
+      recommendation:
+        "So azhutinel kana si phari briga, dar vaj nasul sovimos thaj kana te vorbis jekhe doktoresa.",
+    },
     "healthy-habits-back": {
       title: "Lacho beshimos, o dumo thaj o phirimos",
       recommendation:
@@ -386,6 +421,15 @@ export function getTopicForSymptom(
   subRegion?: string | null
 ): TopicMapping {
   const loc = TOPIC_TRANSLATIONS[lang] ?? TOPIC_TRANSLATIONS.ro;
+
+  if (partId === "mind") {
+    const data = loc["mind-wellbeing"] ?? loc["mental-wellbeing"];
+    return {
+      slug: "mental-wellbeing",
+      title: data.title,
+      recommendation: data.recommendation,
+    };
+  }
 
   if (symptomId === "chest_breast_lump" || symptomId === "back_flank_kidney") {
     const data = loc["preventive-screening"];

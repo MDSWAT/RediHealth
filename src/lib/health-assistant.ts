@@ -15,6 +15,9 @@ export type PrescribedMedicineItem = {
   foodTiming?: "before_meal" | "with_meal" | "after_meal" | "any";
   duration?: string;
   warnings?: string[];
+  sideEffects?: string[];
+  benefitTimeline?: string;
+  stoppingGuidance?: string;
   unclear?: boolean;
   confidence?: number;
 };
@@ -119,7 +122,7 @@ export function buildVisionSystemInstruction(lang: Lang) {
   const language = responseLanguageLabel[lang];
   return `You are RediHealth's medical prescription and medication packaging reader. You read photos of BOTH:
 1. Medical prescriptions ("recipes", e-prescriptions, CNAS forms, pharmacy slips, and handwritten doctor notes with markings like Rp., DS, 1-0-1, 2x1/zi, compr., cps.) -> set sourceKind to "prescription".
-2. Medication boxes, outer retail cartons, blister packs, bottle labels, and pharmacy stickers (recognizing common and basic medicines such as Paracetamol/Panadol/Efferalgan, Ibuprofen/Nurofen/Paduden, Augmentin/Amoxicillin, Metformin/Siofor, Enalapril/Renitec, Omeprazol/Omeran, Aspenter/Aspirin, No-Spa/Drotaverine, Algocalmin/Metamizole, antibiotics, pain relievers, stomach medicines, blood pressure medicines, cold syrups, etc. from the printed brand name, active ingredient/INN, dosage strength, and form) -> set sourceKind to "medication_box".
+2. Medication boxes, outer retail cartons, blister packs, bottle labels, and pharmacy stickers (recognizing common and psychiatric or contraceptive medicines such as Paracetamol/Panadol/Efferalgan, Ibuprofen/Nurofen/Paduden, Augmentin/Amoxicillin, Metformin/Siofor, Enalapril/Renitec, Omeprazol/Omeran, Aspenter/Aspirin, No-Spa/Drotaverine, Algocalmin/Metamizole, antidepressants/SSRIs such as Sertraline/Zoloft, Escitalopram/Cipralex, Fluoxetine, anxiolytics, antipsychotics, mood stabilizers, combined or progestogen-only contraceptive pills, emergency contraception, antibiotics, stomach medicines, blood pressure medicines, and cold syrups from the printed brand name, active ingredient/INN, dosage strength, and form) -> set sourceKind to "medication_box".
 3. Combined photos showing both a prescription and medication boxes -> set sourceKind to "mixed".
 4. Blurry, blank, cropped, or unrelated non-medical photos where no medicine or prescription text can be verified -> set sourceKind to "unreadable".
 
@@ -137,6 +140,9 @@ Safety and extraction rules:
   - foodTiming (optional: "before_meal", "with_meal", "after_meal", or "any", ONLY if written)
   - duration (optional string in ${language}: ONLY if written)
   - warnings (optional array of 1-2 short plain-language safety notes in ${language})
+  - sideEffects (optional array of 1-3 short plain-language common side effects or urgent reactions to watch for in ${language})
+  - benefitTimeline (optional string in ${language}: when the medicine usually starts helping, e.g. quickly for painkillers or 2 to 6 weeks of steady use for antidepressants)
+  - stoppingGuidance (optional string in ${language}: safe rules for stopping or missed doses, especially warning never to stop antidepressants, anxiolytics, antipsychotics, mood stabilizers, blood pressure medicines, or insulin abruptly without talking to a doctor, plus safe handling of missed contraceptive pills)
   - unclear (optional boolean: true if any part of that medicine's name, strength, or dose was [unclear])
   - confidence (integer 0-100 for that specific item)
 - Provide calibrated confidenceScore (integer 0-100) and confidenceReason (1 short plain-language sentence in ${language} explaining why reading accuracy is 100% or what lowered confidence, such as handwriting, glare, angle, or a box lacking personal prescription instructions):
@@ -147,6 +153,37 @@ Safety and extraction rules:
   - 0-24 when unreadable or not a medical document or box.
 - Write all patient-facing text fields (possibleCause, message, questions, confidenceReason, and medicines descriptions) in ${language} using calm plain language, sentence casing, and no "&" character.
 - Return ONLY valid JSON with urgency, careLevel, possibleCause, message, questions (array), sourceKind, confidenceScore, confidenceReason, prescriptionText, and medicines (array).`;
+}
+
+export function buildMedicineLookupSystemInstruction(lang: Lang) {
+  const language = responseLanguageLabel[lang];
+  return `You are RediHealth's plain-language medicine information assistant. A patient typed the name of a medicine (by brand or active substance) and optional context why they take it. Give accurate, calm, non-judgmental patient education across general medicines, painkillers, antibiotics, chronic-condition treatments, psychiatric medicines (antidepressants such as SSRIs/SNRIs, anxiolytics, antipsychotics, mood stabilizers), and contraceptive medicines (daily pills, progestogen-only pills, emergency contraception, patches/rings).
+
+Safety and output rules:
+- Never diagnose as fact, prescribe, recommend starting or changing a personal dose, or state that a medicine is safe without medical review. Always remind the patient to check with their pharmacist or doctor before changing treatment.
+- Never invent personal dosing schedules: OMIT morning, midday, evening, bedtime, and personal duration unless clearly standard general context (better to leave personal slot fields omitted because no written prescription was uploaded).
+- Set urgency to "emergency" ONLY if the patient's message describes overdose, self-harm, severe allergic reaction, chest pain, or other emergency signs; otherwise set urgency to "routine" and careLevel to "routine".
+- Populate medicines with 1 object for the named medicine (or closest clear match noted gently) containing:
+  - name (string: medicine name in clear capitalization)
+  - activeIngredient (optional string in ${language}: active substance / INN)
+  - form (optional string in ${language}: common form such as tablets or capsules)
+  - purpose (string in ${language}: what this medicine is commonly used for, using plain non-stigmatizing words)
+  - foodTiming (optional: "before_meal", "with_meal", "after_meal", or "any" if standard)
+  - warnings (optional array of 1-3 short key safety warnings in ${language}, including urgent warning signs that require calling a doctor or 112)
+  - sideEffects (optional array of 1-4 short plain-language common side effects in ${language}, e.g. mild nausea, drowsiness, dry mouth, headache, or irregular spotting for contraception)
+  - benefitTimeline (string in ${language}: clear realistic timeline of when it usually starts to help — for example within an hour for pain relievers, 2 to 6 weeks of steady daily use for antidepressants, or when contraceptive protection begins)
+  - stoppingGuidance (string in ${language}: essential guidance on stopping and missed doses — for psychiatric medicines such as antidepressants, anxiolytics, antipsychotics, and mood stabilizers, clearly explain NEVER to stop abruptly without talking to a doctor because sudden stopping can cause uncomfortable discontinuation symptoms or return of illness; for contraceptives, explain what to do if a pill is missed or if vomiting occurs and how to protect against unplanned pregnancy; for antibiotics, explain finishing the prescribed course)
+- Write possibleCause and message in warm plain ${language} with sentence casing and no "&" character. Never claim photo reading or invent confidenceScore. Return ONLY valid JSON with urgency, careLevel, possibleCause, message, questions (array), and medicines (array).`;
+}
+
+export function buildMedicineLookupUserText({
+  medicineName,
+  prescriptionContext,
+}: {
+  medicineName: string;
+  prescriptionContext: string;
+}) {
+  return `Task: Explain the typed medicine in plain patient language.\nMedicine name: ${medicineName || "Not provided"}\nReason selected or note: ${prescriptionContext || "Not provided"}`;
 }
 
 export function buildUserText({
@@ -228,7 +265,10 @@ function hasUnclearInMedicine(med: PrescribedMedicineItem): boolean {
       (med.evening && UNCLEAR_TEXT_REGEX.test(med.evening)) ||
       (med.bedtime && UNCLEAR_TEXT_REGEX.test(med.bedtime)) ||
       (med.duration && UNCLEAR_TEXT_REGEX.test(med.duration)) ||
-      med.warnings?.some((warning) => UNCLEAR_TEXT_REGEX.test(warning)),
+      med.warnings?.some((warning) => UNCLEAR_TEXT_REGEX.test(warning)) ||
+      med.sideEffects?.some((effect) => UNCLEAR_TEXT_REGEX.test(effect)) ||
+      (med.benefitTimeline && UNCLEAR_TEXT_REGEX.test(med.benefitTimeline)) ||
+      (med.stoppingGuidance && UNCLEAR_TEXT_REGEX.test(med.stoppingGuidance)),
   );
 }
 
@@ -260,6 +300,14 @@ function sanitizePrescribedMedicines(rawMedicines: unknown): PrescribedMedicineI
           .filter((warning): warning is string => Boolean(warning))
           .slice(0, 4)
       : undefined;
+    const sideEffects = Array.isArray(record.sideEffects)
+      ? record.sideEffects
+          .map((effect) => clampOptionalString(effect, 160))
+          .filter((effect): effect is string => Boolean(effect))
+          .slice(0, 4)
+      : undefined;
+    const benefitTimeline = clampOptionalString(record.benefitTimeline, 240);
+    const stoppingGuidance = clampOptionalString(record.stoppingGuidance, 320);
     const unclear = typeof record.unclear === "boolean" ? record.unclear : undefined;
 
     const candidate: PrescribedMedicineItem = {
@@ -275,6 +323,9 @@ function sanitizePrescribedMedicines(rawMedicines: unknown): PrescribedMedicineI
       ...(foodTiming ? { foodTiming } : {}),
       ...(duration ? { duration } : {}),
       ...(warnings && warnings.length > 0 ? { warnings } : {}),
+      ...(sideEffects && sideEffects.length > 0 ? { sideEffects } : {}),
+      ...(benefitTimeline ? { benefitTimeline } : {}),
+      ...(stoppingGuidance ? { stoppingGuidance } : {}),
       ...(unclear !== undefined ? { unclear } : {}),
     };
 
@@ -293,7 +344,7 @@ function sanitizePrescribedMedicines(rawMedicines: unknown): PrescribedMedicineI
 export function parseAssistantReply(
   raw: string,
   lang: Lang,
-  options?: { hasImage?: boolean },
+  options?: { hasImage?: boolean; isMedicineLookup?: boolean },
 ): AssistantResponse {
   const generated = JSON.parse(normalizeJsonPayload(raw)) as Partial<AssistantResponse> & {
     medicines?: unknown;
@@ -304,8 +355,8 @@ export function parseAssistantReply(
   const medicines = sanitizePrescribedMedicines(generated.medicines);
   const message = typeof generated.message === "string" ? generated.message : defaultMessageByLang[lang];
   const prescriptionText = typeof generated.prescriptionText === "string" ? generated.prescriptionText : undefined;
-  const sourceKind = parseSourceKind(generated.sourceKind);
-  const confidenceReason = clampOptionalString(generated.confidenceReason, 240);
+  const sourceKind = options?.isMedicineLookup ? undefined : parseSourceKind(generated.sourceKind);
+  const confidenceReason = options?.isMedicineLookup ? undefined : clampOptionalString(generated.confidenceReason, 240);
 
   const anyUnclearText =
     Boolean(medicines?.some((med) => hasUnclearInMedicine(med))) ||
@@ -314,7 +365,7 @@ export function parseAssistantReply(
 
   const rawConfidenceScore = clampScore(generated.confidenceScore);
   let confidenceScore: number | undefined;
-  if (rawConfidenceScore !== undefined || options?.hasImage) {
+  if (!options?.isMedicineLookup && (rawConfidenceScore !== undefined || options?.hasImage)) {
     let fallbackScore = 12;
     if (medicines && medicines.length > 0) {
       const itemScores = medicines

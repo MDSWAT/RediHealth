@@ -10,7 +10,6 @@ import {
 import { Button } from "@/components/ui/Button";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
 import { PrescriptionAudioPlayer } from "@/components/health-assistant/PrescriptionAudioPlayer";
-import { PrescriptionDoctorBridge } from "@/components/health-assistant/PrescriptionDoctorBridge";
 import { type AssistantCopy, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import { useReadAloud } from "@/components/health-check/readingTools";
 import type { DocumentSourceKind, PrescribedMedicineItem } from "@/lib/health-assistant";
@@ -18,6 +17,8 @@ import type { Lang } from "@/lib/i18n/translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 
 interface PrescriptionStructuredResultProps {
+  /** Whether this result came from a photo scan or typing a medicine name. */
+  mode?: "photo" | "name";
   /** The assistant's own explanation, written in the page language by the API. */
   aiMessage?: string;
   /** Text transcribed from the photo exactly as written (unreadable words are marked [unclear]). */
@@ -242,6 +243,27 @@ export function buildMedicineSpeechParts(
       if (cleanWarning) parts.push(cleanWarning);
     }
   }
+  if (med.benefitTimeline) {
+    const cleanTimeline = stripUnclearForSpeech(med.benefitTimeline);
+    if (cleanTimeline) {
+      parts.push(`${resultCopy.benefitTimelineLabel}: ${cleanTimeline}`);
+    }
+  }
+  if (med.sideEffects?.length) {
+    const cleanEffects = med.sideEffects
+      .map((effect) => stripUnclearForSpeech(effect))
+      .filter(Boolean)
+      .join(", ");
+    if (cleanEffects) {
+      parts.push(`${resultCopy.sideEffectsLabel}: ${cleanEffects}.`);
+    }
+  }
+  if (med.stoppingGuidance) {
+    const cleanStop = stripUnclearForSpeech(med.stoppingGuidance);
+    if (cleanStop) {
+      parts.push(`${resultCopy.stoppingGuidanceLabel}: ${cleanStop}`);
+    }
+  }
   if (isMedicineUnclear(med)) {
     const spokenName = cleanName || med.name.trim();
     if (spokenName) {
@@ -441,6 +463,7 @@ function SpeakerListenSvg({ className = "h-4 w-4" }: { className?: string }) {
  * pharmacist stay the source of truth.
  */
 export function PrescriptionStructuredResult({
+  mode = "photo",
   aiMessage,
   prescriptionText,
   medicines,
@@ -454,18 +477,20 @@ export function PrescriptionStructuredResult({
   const { result, rx, symptoms } = useAssistantCopy();
   const voice = useReadAloud(lang);
 
+  const isLookup = mode === "name";
   const message = aiMessage?.trim() ?? "";
-  const transcript = prescriptionText?.trim() ?? "";
+  const transcript = isLookup ? "" : (prescriptionText?.trim() ?? "");
   const explanationBlocks = splitExplanationIntoBlocks(message);
   const validMedicines = medicines?.filter((med) => Boolean(med.name?.trim())) ?? [];
 
   const hasUnclearContent =
-    containsUnclearMarker(message) ||
-    containsUnclearMarker(transcript) ||
-    validMedicines.some((med) => isMedicineUnclear(med));
+    !isLookup &&
+    (containsUnclearMarker(message) ||
+      containsUnclearMarker(transcript) ||
+      validMedicines.some((med) => isMedicineUnclear(med)));
 
   const effectiveConfidence =
-    typeof confidenceScore === "number"
+    !isLookup && typeof confidenceScore === "number"
       ? sourceKind === "unreadable"
         ? Math.min(Math.max(0, Math.round(confidenceScore)), 20)
         : hasUnclearContent
@@ -473,13 +498,17 @@ export function PrescriptionStructuredResult({
           : Math.max(0, Math.min(100, Math.round(confidenceScore)))
       : undefined;
 
-  const isMedicationBox = sourceKind === "medication_box";
-  const medicinesSectionHeading = isMedicationBox
-    ? result.boxMedicinesHeading
-    : result.medicinesHeading;
-  const medicinesSectionLead = isMedicationBox
-    ? result.boxMedicinesLead
-    : result.medicinesLead;
+  const isMedicationBox = !isLookup && sourceKind === "medication_box";
+  const medicinesSectionHeading = isLookup
+    ? result.lookupMedicinesHeading
+    : isMedicationBox
+      ? result.boxMedicinesHeading
+      : result.medicinesHeading;
+  const medicinesSectionLead = isLookup
+    ? result.lookupMedicinesLead
+    : isMedicationBox
+      ? result.boxMedicinesLead
+      : result.medicinesLead;
   const transcriptSectionHeading = isMedicationBox
     ? result.boxTranscriptHeading
     : result.transcriptHeading;
@@ -512,6 +541,8 @@ export function PrescriptionStructuredResult({
       activeSlotLabels.join(", "),
       med.foodTiming && med.foodTiming !== "any" ? result.foodTiming[med.foodTiming] : null,
       med.duration ? result.durationLabel(med.duration) : null,
+      med.benefitTimeline ? `${result.benefitTimelineLabel}: ${med.benefitTimeline}` : null,
+      med.stoppingGuidance ? `${result.stoppingGuidanceLabel}: ${med.stoppingGuidance}` : null,
     ].filter(Boolean);
     const head = `${med.name}${med.strength ? ` (${med.strength})` : ""}`;
     return metaParts.length > 0 ? `${head} — ${metaParts.join(", ")}` : head;
@@ -708,7 +739,7 @@ export function PrescriptionStructuredResult({
                               {renderWithUnclearHighlights(distinctActiveIngredient)}
                             </>
                           ) : null}
-                          {distinctActiveIngredient && med.form ? " · " : null}
+                          {distinctActiveIngredient && med.form ? ", " : null}
                           {med.form ? (
                             <>
                               {result.formLabel}: {renderWithUnclearHighlights(med.form)}
@@ -808,6 +839,34 @@ export function PrescriptionStructuredResult({
                     </p>
                   ) : null}
 
+                  {med.benefitTimeline ? (
+                    <div className="mt-3.5 rounded-lg border border-border bg-surface-subtle/50 p-3 text-body text-foreground">
+                      <p className="font-semibold text-foreground">{result.benefitTimelineLabel}</p>
+                      <p className="mt-1 text-muted-foreground">{renderWithUnclearHighlights(med.benefitTimeline)}</p>
+                    </div>
+                  ) : null}
+
+                  {med.sideEffects && med.sideEffects.length > 0 ? (
+                    <div className="mt-3.5 rounded-lg border border-border bg-surface-subtle/50 p-3 text-body text-foreground">
+                      <p className="font-semibold text-foreground">{result.sideEffectsLabel}</p>
+                      <ul className="mt-1.5 list-disc space-y-1 pl-5 text-muted-foreground">
+                        {med.sideEffects.map((effect, effectIdx) => (
+                          <li key={effectIdx}>{renderWithUnclearHighlights(effect)}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+
+                  {med.stoppingGuidance ? (
+                    <div className="mt-3.5 rounded-lg border border-amber-care-border/75 bg-amber-care-soft/45 p-3 text-body text-foreground dark:border-amber-care/35 dark:bg-amber-care/10">
+                      <p className="flex items-start gap-2 font-semibold text-foreground">
+                        <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
+                        <span>{result.stoppingGuidanceLabel}</span>
+                      </p>
+                      <p className="mt-1 text-foreground/90">{renderWithUnclearHighlights(med.stoppingGuidance)}</p>
+                    </div>
+                  ) : null}
+
                   {med.warnings && med.warnings.length > 0 ? (
                     <ul className="mt-3.5 space-y-1.5 rounded-lg border border-amber-care-border/75 bg-amber-care-soft/45 p-3 dark:border-amber-care/35 dark:bg-amber-care/10">
                       {med.warnings.map((warning, warningIdx) => (
@@ -822,7 +881,7 @@ export function PrescriptionStructuredResult({
                     </ul>
                   ) : null}
 
-                  {typeof med.confidence === "number" ? (
+                  {!isLookup && typeof med.confidence === "number" ? (
                     <p className="mt-2.5 text-meta font-medium text-muted-foreground tabular-nums">
                       {result.confidenceItemLine(
                         medUnclear
@@ -922,8 +981,6 @@ export function PrescriptionStructuredResult({
           ))}
         </ol>
       </section>
-
-      <PrescriptionDoctorBridge />
       </div>
 
       {hasFridgeSchedule ? (
@@ -967,6 +1024,9 @@ export function PrescriptionStructuredResult({
                     ? result.foodTiming[med.foodTiming]
                     : null,
                   med.duration ? result.durationLabel(med.duration) : null,
+                  med.benefitTimeline ? `${result.benefitTimelineLabel}: ${med.benefitTimeline}` : null,
+                  med.sideEffects?.length ? `${result.sideEffectsLabel}: ${med.sideEffects.join(", ")}` : null,
+                  med.stoppingGuidance ? `${result.stoppingGuidanceLabel}: ${med.stoppingGuidance}` : null,
                   ...(med.warnings ?? []),
                 ]
                   .filter(Boolean)

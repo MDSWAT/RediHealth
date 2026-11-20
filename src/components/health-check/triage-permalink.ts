@@ -6,7 +6,8 @@ import {
 } from "@/components/health-check/anatomy-3d-data";
 import {
   getHealthCheckTranslations,
-  type BodyPartId,
+  isBodyPartId,
+  type CheckAreaId,
   type DurationId,
   type SeverityId,
 } from "@/lib/i18n/health-check-translations";
@@ -16,13 +17,13 @@ import type { Lang } from "@/lib/i18n/translations";
 export type TriageSide = "Left" | "Right" | "Center";
 export type TriageForWhom = "self" | "child";
 
-const VALID_PARTS = new Set<BodyPartId>(["head", "chest", "stomach", "pelvis", "back", "arm", "leg"]);
+const VALID_PARTS = new Set<CheckAreaId>(["head", "chest", "stomach", "pelvis", "back", "arm", "leg", "mind"]);
 const VALID_SIDES = new Set<TriageSide>(["Left", "Right", "Center"]);
 const VALID_SEVERITIES = new Set<SeverityId>(["mild", "moderate", "severe"]);
 const VALID_DURATIONS = new Set<DurationId>(["today", "days", "weeks", "chronic"]);
 
 export interface TriagePermalinkState {
-  part: BodyPartId;
+  part: CheckAreaId;
   subRegion?: SubRegionId | null;
   side?: TriageSide;
   symptomId: string;
@@ -154,7 +155,7 @@ export function parseTriageNoteDate(search: string): Date | null {
 }
 
 export interface ParsedTriageReproduction {
-  part: BodyPartId;
+  part: CheckAreaId;
   subRegion: SubRegionId | null;
   side: TriageSide;
   symptomId: string;
@@ -175,14 +176,14 @@ export function parseTriageReproductionSearch(
 ): ParsedTriageReproduction | null {
   if (!search) return null;
   const params = new URLSearchParams(search.startsWith("?") ? search.slice(1) : search);
-  const rawPart = params.get("p") as BodyPartId | null;
+  const rawPart = params.get("p") as CheckAreaId | null;
   const rawSymptom = params.get("sy");
   if (!rawPart || !VALID_PARTS.has(rawPart) || !rawSymptom) {
     return null;
   }
 
   const dict = getHealthCheckTranslations(lang);
-  const regionSymptoms = dict.symptoms[rawPart] ?? [];
+  const regionSymptoms = isBodyPartId(rawPart) ? (dict.symptoms[rawPart] ?? []) : (dict.mentalSymptoms ?? []);
   const validIds = new Set(regionSymptoms.map((s) => s.id));
   if (!validIds.has(rawSymptom)) {
     return null;
@@ -190,7 +191,7 @@ export function parseTriageReproductionSearch(
 
   const rawSub = params.get("sr") as SubRegionId | null;
   const subRegion =
-    rawSub && SUB_REGION_INFO[rawSub] && SUB_REGION_INFO[rawSub].macroPart === rawPart
+    isBodyPartId(rawPart) && rawSub && SUB_REGION_INFO[rawSub] && SUB_REGION_INFO[rawSub].macroPart === rawPart
       ? rawSub
       : null;
 

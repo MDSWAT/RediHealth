@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { StethoscopeIcon } from "@/components/ui/icons";
+import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -15,81 +16,53 @@ interface UniversalDoctorExitProps {
 }
 
 export function UniversalDoctorExit({
-  pathway = "general",
-  summary = "",
   title,
   description,
   className = "",
 }: UniversalDoctorExitProps) {
   const { lang } = useLanguage();
+  const places = findHelpLinks(lang);
 
-  const dict: Record<Lang, { heading: string; body: string; bookOnline: string; checkOnCall: string }> = {
-ru: {
-      heading: "Хотите поговорить с врачом?",
-      body: "Если что-то неясно, вы можете бесплатно поговорить с врачом-волонтером по телефону.",
-      bookOnline: "Забронировать звонок",
-      checkOnCall: "Посмотреть часы дежурства",
+  const dict: Record<Lang, { heading: string; body: string }> = {
+    ru: {
+      heading: "Нужно поговорить с врачом или фармацевтом?",
+      body: "Найдите ближайшую аптеку, кабинет врача или клинику рядом с вами.",
     },
-
     en: {
-      heading: "Would you like to talk to a doctor?",
-      body: "If something is unclear, you can talk to a volunteer doctor for free, by phone.",
-      bookOnline: "Book a call",
-      checkOnCall: "See on-call hours",
+      heading: "Need to check with a doctor or pharmacist?",
+      body: "Find the closest pharmacy, family doctor practice or clinic near you.",
     },
     ro: {
-      heading: "Vrei să vorbești cu un medic?",
-      body: "Dacă nu înțelegi ceva, poți vorbi gratuit cu un medic voluntar, la telefon.",
-      bookOnline: "Programează-te",
-      checkOnCall: "Vezi orele de gardă",
+      heading: "Ai nevoie să verifici cu un medic sau farmacist?",
+      body: "Găsește cea mai apropiată farmacie, cabinet de medic de familie sau clinică lângă tine.",
     },
     sq: {
-      heading: "Do të flasësh me një mjek?",
-      body: "Nëse diçka nuk është e qartë, mund të flasësh falas me një mjek vullnetar, në telefon.",
-      bookOnline: "Rezervo",
-      checkOnCall: "Shiko orët e kujdestarisë",
+      heading: "Ke nevojë të flasësh me një mjek ose farmacist?",
+      body: "Gjej farmacinë, mjekun e familjes ose klinikën më të afërt pranë teje.",
     },
     it: {
-      heading: "Vuoi parlare con un medico?",
-      body: "Se qualcosa non ti è chiaro, puoi parlare gratis con un medico volontario, al telefono.",
-      bookOnline: "Prenota",
-      checkOnCall: "Vedi gli orari di guardia",
+      heading: "Hai bisogno di sentire un medico o un farmacista?",
+      body: "Trova la farmacia, il medico di famiglia o l'ambulatorio più vicino a te.",
     },
     hr: {
-      heading: "Želiš li razgovarati s liječnikom?",
-      body: "Ako ti nešto nije jasno, možeš besplatno telefonom razgovarati s liječnikom volonterom.",
-      bookOnline: "Dogovori poziv",
-      checkOnCall: "Vrijeme dežurstva",
+      heading: "Trebaš li provjeriti s liječnikom ili ljekarnikom?",
+      body: "Pronađi najbližu ljekarnu, obiteljskog liječnika ili kliniku u svojoj blizini.",
     },
     rom: {
-      heading: "Manges te vorbis jekhe doktorestar?",
-      body: "Te na haljares vareso, shaj vorbis bi lovengo jekhe doktoresa pe telefono.",
-      bookOnline: "Ker programacia",
-      checkOnCall: "Dikh le chasura pe straza",
+      heading: "Trebul tut te vorbis jekhe doktoresa vaj farmacistosa?",
+      body: "Arakh i maj pashe farmacia, familijako doktori vaj klinika pashe tute.",
     },
   };
   const t = dict[lang] || dict[DEFAULT_LANG];
-
-  const queryParams = new URLSearchParams({
-    source: "triage",
-    pathway,
-    ...(summary ? { summary } : {}),
-  });
-
-  const consultUrl = withLangPrefix(`/medic-online?${queryParams.toString()}`, lang);
-  const onCallUrl = withLangPrefix(`/medic-online?queue=now&${queryParams.toString()}`, lang);
 
   return (
     <section className={`mt-8 border-t border-border pt-6 ${className}`}>
       <h3 className="text-title font-semibold leading-snug text-foreground">{title || t.heading}</h3>
       <p className="mt-1.5 max-w-(--measure-reading) text-body text-muted-foreground">{description || t.body}</p>
       <div className="mt-4 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-        <Button href={consultUrl} variant="action" size="lg">
+        <Button href={withLangPrefix("/find-help", lang)} variant="action" size="lg">
           <StethoscopeIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-          <span className="min-w-0 truncate">{t.bookOnline}</span>
-        </Button>
-        <Button href={onCallUrl} variant="outline" size="lg">
-          <span className="min-w-0 truncate">{t.checkOnCall}</span>
+          <span className="min-w-0 truncate">{places.nav}</span>
         </Button>
       </div>
     </section>

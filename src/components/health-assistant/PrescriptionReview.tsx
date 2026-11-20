@@ -10,26 +10,24 @@ import { ListenButton } from "@/components/ui/ListenButton";
 import { PageHeader } from "@/components/ui/PageHeader";
 import {
   AlertCircleIcon,
-  ArrowRightIcon,
   CameraIcon,
   CheckCircleIcon,
   ImageIcon,
-  PinIcon,
+  SearchIcon,
   TrashIcon,
 } from "@/components/ui/icons";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
-import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
-import { getPrescriptionDoctorBridgeCopy } from "@/components/health-assistant/PrescriptionDoctorBridge";
 import { PrescriptionStructuredResult } from "@/components/health-assistant/PrescriptionStructuredResult";
 import { useReadAloud } from "@/components/health-check/readingTools";
 import { prefersCalmOrReducedMotion, useReadingLevel } from "@/lib/comfort-preferences";
 import { Container } from "@/components/ui/Container";
 import type { DocumentSourceKind, PrescribedMedicineItem } from "@/lib/health-assistant";
 import { prepareMedicalImageForUpload } from "@/lib/image";
-import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
-import { translations, type Lang } from "@/lib/i18n/translations";
+import type { Lang } from "@/lib/i18n/translations";
+
+type InputMode = "name" | "photo";
 
 type ReviewResponse = {
   message: string;
@@ -42,9 +40,26 @@ type ReviewResponse = {
   careLevel?: "emergency" | "urgent" | "soon" | "routine";
 };
 
-type ReasonChipKey = "feverPain" | "coughCold" | "heartBp" | "stomach" | "child" | "notSure";
+type ReasonChipKey =
+  | "feverPain"
+  | "coughCold"
+  | "heartBp"
+  | "stomach"
+  | "moodSleep"
+  | "contraception"
+  | "child"
+  | "notSure";
 
-const REASON_ORDER: ReasonChipKey[] = ["feverPain", "coughCold", "heartBp", "stomach", "child", "notSure"];
+const REASON_ORDER: ReasonChipKey[] = [
+  "feverPain",
+  "coughCold",
+  "heartBp",
+  "stomach",
+  "moodSleep",
+  "contraception",
+  "child",
+  "notSure",
+];
 
 interface PrescriptionReviewCopy {
   title: string;
@@ -52,6 +67,16 @@ interface PrescriptionReviewCopy {
   listenPage: string;
   stopListening: string;
   largeTextLabel: string;
+  modeLabel: string;
+  modeName: string;
+  modePhoto: string;
+  nameTitle: string;
+  nameHint: string;
+  nameLabel: string;
+  namePh: string;
+  nameSubmit: string;
+  nameReviewing: string;
+  nameReqErr: string;
   stepOneBadge: string;
   dropTitle: string;
   cameraCapture: string;
@@ -135,6 +160,25 @@ function ReasonChipIcon({ reason }: { reason: ReasonChipKey }) {
           />
         </svg>
       );
+    case "moodSleep":
+      return (
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+          <path
+            d="M14.2 12.6A5.6 5.6 0 0 1 7.4 5.8a5.8 5.8 0 1 0 6.8 6.8Z"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "contraception":
+      return (
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+          <circle cx="10" cy="10" r="6" stroke="currentColor" strokeWidth="1.6" />
+          <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        </svg>
+      );
     case "child":
       return (
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
@@ -183,9 +227,6 @@ export function PrescriptionReview() {
   const voice = useReadAloud(lang);
   const [readingLevel] = useReadingLevel();
   const assistantCopy = useAssistantCopy();
-  const doctorBridge = getPrescriptionDoctorBridgeCopy(lang);
-  const helpLinks = findHelpLinks(lang);
-  const headerCopy = translations[lang]?.header ?? translations[DEFAULT_LANG].header;
   const safetyRules = readingLevel === "simple" ? assistantCopy.rx.plainRules : assistantCopy.rx.rules;
 
   const dict: Record<Lang, PrescriptionReviewCopy> = {
@@ -193,13 +234,23 @@ export function PrescriptionReview() {
 "listenPage": "Слушать",
 "stopListening": "Стоп",
 "largeTextLabel": "Крупнее",
+modeLabel: "Способ проверки",
+modeName: "Ввести название лекарства",
+modePhoto: "Сделать фото",
+nameTitle: "Введите название лекарства",
+nameHint: "Укажите название с упаковки или рецепта — обезболивающее, препарат для настроения, сна или контрацептив.",
+nameLabel: "Название лекарства",
+namePh: "Например: Ибупрофен, Сертралин, Ясмин",
+nameSubmit: "Объяснить лекарство",
+nameReviewing: "Готовим объяснение лекарства…",
+nameReqErr: "Введите название лекарства, чтобы продолжить.",
 "stepOneBadge": "Шаг 1 из 2",
 "photoReady": "Фото готово",
 "retakeLight": "Переснять при хорошем освещении",
 "tipLine": "Положите лист или коробку ровно при дневном свете, чтобы название и текст были чёткими.",
 "dragOrBrowse": "или перетащите фото сюда",
 "stepTwoBadge": "Шаг 2 из 2",
-"reasons": {"feverPain":"Температура или боль","coughCold":"Кашель или простуда","heartBp":"Сердце или давление","stomach":"Желудок или пищеварение","child":"Для ребёнка","notSure":"Не знаю"},
+"reasons": {"feverPain":"Температура или боль","coughCold":"Кашель или простуда","heartBp":"Сердце или давление","stomach":"Желудок или пищеварение","moodSleep":"Настроение, тревога или сон","contraception":"Контрацепция или женское здоровье","child":"Для ребёнка","notSure":"Не знаю"},
 "noteLabel": "Или кратко опишите своими словами (необязательно)",
 
 
@@ -249,6 +300,16 @@ export function PrescriptionReview() {
       listenPage: "Listen",
       stopListening: "Stop",
       largeTextLabel: "Larger text",
+      modeLabel: "Check method",
+      modeName: "Type a medicine name",
+      modePhoto: "Take a photo",
+      nameTitle: "Type the name of the medicine",
+      nameHint: "Enter the name from the box or prescription, including painkillers, mental health or contraceptive medicines.",
+      nameLabel: "Medicine name",
+      namePh: "For example: Ibuprofen, Sertraline, Yasmin",
+      nameSubmit: "Explain medicine",
+      nameReviewing: "Preparing explanation…",
+      nameReqErr: "Enter a medicine name to continue.",
       stepOneBadge: "Step 1 of 2",
       dropTitle: "Add your prescription or medicine box",
       cameraCapture: "Take a photo",
@@ -269,6 +330,8 @@ export function PrescriptionReview() {
         coughCold: "Cough or cold",
         heartBp: "Heart or blood pressure",
         stomach: "Stomach or digestion",
+        moodSleep: "Mood, anxiety or sleep",
+        contraception: "Contraception or women's health",
         child: "For a child",
         notSure: "Not sure",
       },
@@ -294,6 +357,16 @@ export function PrescriptionReview() {
       listenPage: "Ascultă",
       stopListening: "Oprește",
       largeTextLabel: "Scris mai mare",
+      modeLabel: "Cum vrei să verifici",
+      modeName: "Scrie numele medicamentului",
+      modePhoto: "Fă o poză",
+      nameTitle: "Scrie numele medicamentului",
+      nameHint: "Introdu numele de pe cutie sau rețetă — analgezice, medicamente pentru psihic, somn sau contraceptive.",
+      nameLabel: "Numele medicamentului",
+      namePh: "De exemplu: Ibuprofen, Sertralină, Yasmin",
+      nameSubmit: "Explică medicamentul",
+      nameReviewing: "Pregătim explicația…",
+      nameReqErr: "Scrie numele medicamentului ca să continui.",
       stepOneBadge: "Pasul 1 din 2",
       dropTitle: "Adaugă rețeta sau cutia medicamentului",
       cameraCapture: "Fă o poză",
@@ -314,6 +387,8 @@ export function PrescriptionReview() {
         coughCold: "Tuse sau răceală",
         heartBp: "Inimă sau tensiune",
         stomach: "Stomac sau digestie",
+        moodSleep: "Stare, anxietate sau somn",
+        contraception: "Contracepție sau sănătatea femeii",
         child: "Pentru un copil",
         notSure: "Nu știu exact",
       },
@@ -339,6 +414,16 @@ export function PrescriptionReview() {
       listenPage: "Dëgjo",
       stopListening: "Ndalo",
       largeTextLabel: "Shkrim më i madh",
+      modeLabel: "Mënyra e kontrollit",
+      modeName: "Shkruaj emrin e ilaçit",
+      modePhoto: "Bëj një foto",
+      nameTitle: "Shkruaj emrin e ilaçit",
+      nameHint: "Shkruaj emrin nga kutia ose receta, përfshirë qetësues, ilaçe për gjendjen shpirtërore, gjumin ose kontraceptivë.",
+      nameLabel: "Emri i ilaçit",
+      namePh: "Për shembull: Ibuprofen, Sertralin, Yasmin",
+      nameSubmit: "Shpjego ilaçin",
+      nameReviewing: "Po përgatitet shpjegimi…",
+      nameReqErr: "Shkruaj emrin e ilaçit për të vazhduar.",
       stepOneBadge: "Hapi 1 nga 2",
       dropTitle: "Shto recetën ose kutinë e ilaçit",
       cameraCapture: "Bëj një foto",
@@ -359,6 +444,8 @@ export function PrescriptionReview() {
         coughCold: "Kollë ose ftohje",
         heartBp: "Zemër ose presion",
         stomach: "Stomak ose tretje",
+        moodSleep: "Gjendje shpirtërore, ankth ose gjumë",
+        contraception: "Kontracepsion ose shëndeti i gruas",
         child: "Për një fëmijë",
         notSure: "Nuk jam i sigurt",
       },
@@ -384,6 +471,16 @@ export function PrescriptionReview() {
       listenPage: "Ascolta",
       stopListening: "Ferma",
       largeTextLabel: "Testo più grande",
+      modeLabel: "Metodo di verifica",
+      modeName: "Scrivi il nome del farmaco",
+      modePhoto: "Scatta una foto",
+      nameTitle: "Scrivi il nome del farmaco",
+      nameHint: "Inserisci il nome dalla scatola o dalla ricetta, inclusi antidolorifici, psicofarmaci, sonniferi o contraccettivi.",
+      nameLabel: "Nome del farmaco",
+      namePh: "Ad esempio: Ibuprofene, Sertralina, Yasmin",
+      nameSubmit: "Spiega il farmaco",
+      nameReviewing: "Preparazione della spiegazione…",
+      nameReqErr: "Inserisci il nome del farmaco per continuare.",
       stepOneBadge: "Passo 1 di 2",
       dropTitle: "Aggiungi la ricetta o la scatola",
       cameraCapture: "Scatta una foto",
@@ -404,6 +501,8 @@ export function PrescriptionReview() {
         coughCold: "Tosse o raffreddore",
         heartBp: "Cuore o pressione",
         stomach: "Stomaco o digestione",
+        moodSleep: "Umore, ansia o sonno",
+        contraception: "Contraccezione o salute femminile",
         child: "Per un bambino",
         notSure: "Non lo so di preciso",
       },
@@ -429,6 +528,16 @@ export function PrescriptionReview() {
       listenPage: "Poslušaj",
       stopListening: "Zaustavi",
       largeTextLabel: "Veća slova",
+      modeLabel: "Način provjere",
+      modeName: "Upiši naziv lijeka",
+      modePhoto: "Snimi fotografiju",
+      nameTitle: "Upiši naziv lijeka",
+      nameHint: "Upiši naziv s kutije ili recepta, uključujući lijekove protiv bolova, za mentalno zdravlje, san ili kontracepciju.",
+      nameLabel: "Naziv lijeka",
+      namePh: "Na primjer: Ibuprofen, Sertralin, Yasmin",
+      nameSubmit: "Objasni lijek",
+      nameReviewing: "Pripremamo objašnjenje…",
+      nameReqErr: "Upiši naziv lijeka za nastavak.",
       stepOneBadge: "Korak 1 od 2",
       dropTitle: "Dodaj recept ili kutiju lijeka",
       cameraCapture: "Snimi fotografiju",
@@ -449,6 +558,8 @@ export function PrescriptionReview() {
         coughCold: "Kašalj ili prehlada",
         heartBp: "Srce ili tlak",
         stomach: "Želudac ili probava",
+        moodSleep: "Raspoloženje, tjeskoba ili san",
+        contraception: "Kontracepcija ili zdravlje žena",
         child: "Za dijete",
         notSure: "Nisam siguran",
       },
@@ -474,6 +585,16 @@ export function PrescriptionReview() {
       listenPage: "Ashun",
       stopListening: "Achav",
       largeTextLabel: "Maj baro ramovimos",
+      modeLabel: "Sar te dikhes o drab",
+      modeName: "Ramov o anav e drabako",
+      modePhoto: "Ker jekh poza",
+      nameTitle: "Ramov o anav e drabako",
+      nameHint: "Thov o anav katar i kutija vaj i receta, vi drabura vash dukh, vilo, sovimos vaj kontracepcia.",
+      nameLabel: "Anav e drabako",
+      namePh: "Misal: Ibuprofen, Sertralin, Yasmin",
+      nameSubmit: "Shpjegin o drab",
+      nameReviewing: "Pregatisaras o shpjegimos…",
+      nameReqErr: "Ramov o anav e drabako te djas maj dur.",
       stepOneBadge: "Pasho 1 katar 2",
       dropTitle: "Thov i receta vaj i drabaki kutija",
       cameraCapture: "Ker poza",
@@ -494,6 +615,8 @@ export function PrescriptionReview() {
         coughCold: "Khas vaj shil",
         heartBp: "Ilo vaj tensia",
         stomach: "Ogi vaj xabem",
+        moodSleep: "Vilo, dar vaj sovimos",
+        contraception: "Kontracepcia vaj sastipen dzhuvljengo",
         child: "Vash jekh chavoro",
         notSure: "Na dzanav chaches",
       },
@@ -520,6 +643,9 @@ export function PrescriptionReview() {
   const stepTwoRef = useRef<HTMLDivElement>(null);
   const resultSectionRef = useRef<HTMLElement>(null);
 
+  const [inputMode, setInputMode] = useState<InputMode>("name");
+  const [medicineName, setMedicineName] = useState("");
+  const [submittedMode, setSubmittedMode] = useState<InputMode>("name");
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [selectedReasons, setSelectedReasons] = useState<ReasonChipKey[]>([]);
@@ -527,9 +653,10 @@ export function PrescriptionReview() {
   const [result, setResult] = useState<ReviewResponse | null>(null);
   const [qualityState, setQualityState] = useState<"idle" | "checking" | "good" | "warn">("idle");
   const [errorKind, setErrorKind] = useState<
-    "file" | "uploadReq" | "read" | "rateLimit" | "service" | "review" | null
+    "nameReq" | "file" | "uploadReq" | "read" | "rateLimit" | "service" | "review" | null
   >(null);
   const errorMessages = {
+    nameReq: t.nameReqErr,
     file: t.fileErr,
     uploadReq: t.uploadReqErr,
     read: t.readErr,
@@ -692,15 +819,30 @@ export function PrescriptionReview() {
     checkImageQuality(objectUrl);
   }
 
+  function handleModeSwitch(nextMode: InputMode) {
+    if (nextMode === inputMode) return;
+    setInputMode(nextMode);
+    setErrorKind(null);
+    setResult(null);
+  }
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!file) {
+    const isNameMode = inputMode === "name";
+    const trimmedMedicineName = medicineName.trim();
+
+    if (isNameMode && !trimmedMedicineName) {
+      setErrorKind("nameReq");
+      return;
+    }
+    if (!isNameMode && !file) {
       setErrorKind("uploadReq");
       return;
     }
 
     setErrorKind(null);
     setResult(null);
+    setSubmittedMode(inputMode);
     setIsSubmitting(true);
 
     const selectedChipLabels = REASON_ORDER.filter((key) => selectedReasons.includes(key)).map(
@@ -711,23 +853,37 @@ export function PrescriptionReview() {
       .join(". ");
 
     try {
-      let prescription: { mimeType: string; data: string };
-      try {
-        prescription = await prepareMedicalImageForUpload(file);
-      } catch {
-        throw new ReadError();
-      }
+      let requestPayload: Record<string, unknown>;
+      if (isNameMode) {
+        const captchaToken = await executeCaptcha("health_assistant");
+        requestPayload = {
+          mode: "medicine_lookup",
+          medicineName: trimmedMedicineName,
+          prescriptionContext: combinedPrescriptionContext,
+          lang,
+          captchaToken,
+        };
+      } else {
+        let prescription: { mimeType: string; data: string };
+        try {
+          prescription = await prepareMedicalImageForUpload(file!);
+        } catch {
+          throw new ReadError();
+        }
 
-      const captchaToken = await executeCaptcha("health_assistant");
-      const response = await fetch("/api/health-assistant", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+        const captchaToken = await executeCaptcha("health_assistant");
+        requestPayload = {
           prescriptionContext: combinedPrescriptionContext,
           prescription,
           lang,
           captchaToken,
-        }),
+        };
+      }
+
+      const response = await fetch("/api/health-assistant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestPayload),
       });
 
       // Server errors are written in English; the person always sees a message in their language.
@@ -747,6 +903,7 @@ export function PrescriptionReview() {
 
   const currentStep = preview ? 2 : 1;
   const currentStepLabel = preview ? t.stepTwoBadge : t.stepOneBadge;
+  const showStepTwo = inputMode === "name" || Boolean(preview);
 
   return (
     <main
@@ -754,8 +911,6 @@ export function PrescriptionReview() {
       className="flex-1 pt-2 pb-10 sm:pt-3 sm:pb-14"
     >
       <Container>
-        <AssistantNavigation />
-
         <PageHeader
           className="print:hidden"
           title={t.title}
@@ -772,36 +927,73 @@ export function PrescriptionReview() {
           }
         />
 
-        <div className="mt-5 grid gap-6 sm:mt-6 lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_24rem] xl:gap-8 print:block">
+        <div className="mt-5 max-w-4xl space-y-6 sm:mt-6 print:block">
           <div className="min-w-0 space-y-6">
             <section className="rounded-2xl border border-border bg-card shadow-xs print:hidden">
               <form onSubmit={handleSubmit} className="space-y-6 p-5 sm:p-8" aria-busy={isSubmitting}>
-                <div>
-                  <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2.5">
-                    <p className="whitespace-nowrap text-meta font-medium text-muted-foreground tabular-nums">
-                      {currentStepLabel}
-                    </p>
-                  </div>
-
-                  <div
-                    className="mt-3 flex h-1 w-full gap-1.5"
-                    role="progressbar"
-                    aria-label={t.title}
-                    aria-valuenow={currentStep}
-                    aria-valuemin={1}
-                    aria-valuemax={2}
-                    aria-valuetext={currentStepLabel}
+                <div
+                  role="tablist"
+                  aria-label={t.modeLabel}
+                  className="grid grid-cols-1 gap-2 rounded-xl bg-muted/65 p-1.5 sm:grid-cols-2"
+                >
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={inputMode === "name"}
+                    onClick={() => handleModeSwitch("name")}
+                    className={`flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      inputMode === "name"
+                        ? "bg-card text-foreground shadow-2xs ring-1 ring-border"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
                   >
-                    {[1, 2].map((segment) => (
-                      <div
-                        key={segment}
-                        className={`h-1 flex-1 rounded-sm transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
-                          currentStep >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-border"
-                        }`}
-                      />
-                    ))}
-                  </div>
+                    <SearchIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+                    <span className="truncate">{t.modeName}</span>
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={inputMode === "photo"}
+                    onClick={() => handleModeSwitch("photo")}
+                    className={`flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      inputMode === "photo"
+                        ? "bg-card text-foreground shadow-2xs ring-1 ring-border"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <CameraIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+                    <span className="truncate">{t.modePhoto}</span>
+                  </button>
                 </div>
+
+                {inputMode === "photo" ? (
+                  <div>
+                    <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2.5">
+                      <p className="whitespace-nowrap text-meta font-medium text-muted-foreground tabular-nums">
+                        {currentStepLabel}
+                      </p>
+                    </div>
+
+                    <div
+                      className="mt-3 flex h-1 w-full gap-1.5"
+                      role="progressbar"
+                      aria-label={t.title}
+                      aria-valuenow={currentStep}
+                      aria-valuemin={1}
+                      aria-valuemax={2}
+                      aria-valuetext={currentStepLabel}
+                    >
+                      {[1, 2].map((segment) => (
+                        <div
+                          key={segment}
+                          className={`h-1 flex-1 rounded-sm transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] ${
+                            currentStep >= segment ? "bg-sapphire dark:bg-sapphire-border" : "bg-border"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
 
             {/* Separate inputs: one opens the camera directly on phones, the other the gallery. */}
             <input
@@ -824,8 +1016,34 @@ export function PrescriptionReview() {
               className="sr-only"
             />
 
-            {/* Step 1: Visual capture dropzone */}
-            {preview ? (
+            {/* Step 1: Type a medicine name OR capture photo */}
+            {inputMode === "name" ? (
+              <div className="swap-in space-y-3 rounded-2xl border border-border bg-surface-subtle/30 p-5 sm:p-6">
+                <h2 className="text-title font-semibold text-foreground text-balance">{t.nameTitle}</h2>
+                <p id="medicine-name-hint" className="text-body leading-relaxed text-muted-foreground">
+                  {t.nameHint}
+                </p>
+                <div className="pt-1">
+                  <label htmlFor="medicine-name-input" className="block text-body font-medium text-foreground">
+                    {t.nameLabel}
+                  </label>
+                  <input
+                    id="medicine-name-input"
+                    type="text"
+                    maxLength={240}
+                    autoComplete="off"
+                    value={medicineName}
+                    aria-describedby="medicine-name-hint"
+                    onChange={(event) => {
+                      setMedicineName(event.target.value);
+                      if (errorKind === "nameReq") setErrorKind(null);
+                    }}
+                    placeholder={t.namePh}
+                    className="field-focus mt-2 min-h-12 w-full rounded-xl border border-border-control bg-background px-4 py-3 text-body text-foreground placeholder:text-muted-foreground"
+                  />
+                </div>
+              </div>
+            ) : preview ? (
               <div className="swap-in rounded-2xl border border-border bg-surface-subtle/30 p-5 text-center sm:p-7">
                 <p className="text-body font-semibold text-foreground">{t.photoReady}</p>
 
@@ -948,16 +1166,16 @@ export function PrescriptionReview() {
               </div>
             )}
 
-            {!preview ? errorAlert : null}
+            {inputMode === "photo" && !preview ? errorAlert : null}
 
-            {/* Step 2: Revealed smoothly ONLY after a photo is selected */}
-            {preview ? (
+            {/* Step 2: Immediately shown in name mode, or revealed after a photo is selected */}
+            {showStepTwo ? (
               <div
                 ref={stepTwoRef}
                 className="assistant-step-in space-y-6 border-t border-border pt-6"
               >
                 {/* Photo quality status banner */}
-                {qualityState === "warn" ? (
+                {inputMode === "photo" && qualityState === "warn" ? (
                   <div
                     role="status"
                     className="flex flex-col gap-3 rounded-xl border border-amber-care-border bg-amber-care-soft/60 p-4 text-left dark:border-amber-care/40 dark:bg-amber-care/15 sm:flex-row sm:items-center sm:justify-between"
@@ -975,7 +1193,7 @@ export function PrescriptionReview() {
                       <span className="min-w-0 truncate">{t.retakeLight}</span>
                     </button>
                   </div>
-                ) : qualityState === "good" ? (
+                ) : inputMode === "photo" && qualityState === "good" ? (
                   <p role="status" className="text-body font-semibold text-live-sage">
                     {t.photoReady}
                   </p>
@@ -1054,10 +1272,18 @@ export function PrescriptionReview() {
                     type="submit"
                     variant="action"
                     size="lg"
-                    disabled={isSubmitting || !file}
+                    disabled={isSubmitting || (inputMode === "name" ? !medicineName.trim() : !file)}
                     className="min-h-13 w-full sm:w-auto sm:px-7"
                   >
-                    <span className="min-w-0 truncate">{isSubmitting ? t.reviewing : t.reviewButton}</span>
+                    <span className="min-w-0 truncate">
+                      {isSubmitting
+                        ? inputMode === "name"
+                          ? t.nameReviewing
+                          : t.reviewing
+                        : inputMode === "name"
+                          ? t.nameSubmit
+                          : t.reviewButton}
+                    </span>
                     {!isSubmitting ? <ArrowRightSvg /> : null}
                   </Button>
 
@@ -1114,6 +1340,7 @@ export function PrescriptionReview() {
             className="assistant-step-in rounded-2xl border border-border bg-card p-5 shadow-xs sm:p-8"
           >
             <PrescriptionStructuredResult
+              mode={submittedMode}
               aiMessage={result.message}
               prescriptionText={result.prescriptionText}
               medicines={result.medicines}
@@ -1126,58 +1353,24 @@ export function PrescriptionReview() {
         )}
           </div>
 
-          <aside className="min-w-0 space-y-4 lg:sticky lg:top-[calc(var(--site-header-h,4rem)+1.5rem)] print:hidden">
-            <div className="rounded-2xl border border-border bg-card p-5 shadow-xs sm:p-6">
-              <h2 className="text-balance text-body font-semibold text-foreground">
-                {assistantCopy.rx.rulesHeading}
-              </h2>
-              <ol className="mt-4 space-y-3">
-                {safetyRules.map((rule, index) => (
-                  <li key={rule} className="flex items-start gap-3">
-                    <span
-                      aria-hidden="true"
-                      className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-meta font-semibold text-sapphire tabular-nums dark:bg-sapphire/20 dark:text-sapphire-light"
-                    >
-                      {index + 1}
-                    </span>
-                    <span className="text-body text-muted-foreground">{rule}</span>
-                  </li>
-                ))}
-              </ol>
-              <Button
-                href={withLangPrefix("/find-help?category=pharmacy", lang)}
-                variant="outline"
-                size="md"
-                fullWidth
-                className="mt-5 hover:border-sapphire hover:bg-sapphire-soft/45 dark:bg-ink-900"
-              >
-                <PinIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-                <span className="min-w-0 truncate">{helpLinks.nav}</span>
-                <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none" aria-hidden="true" />
-              </Button>
-            </div>
-
-            <div className="rounded-2xl border border-border bg-surface-subtle/60 p-5 shadow-xs dark:bg-card sm:p-6">
-              <div className="min-w-0">
-                <h2 className="text-balance text-body font-semibold text-foreground">
-                  {doctorBridge.heading}
-                </h2>
-                <p className="mt-1.5 text-body text-muted-foreground">
-                  {doctorBridge.body}
-                </p>
-              </div>
-              <Button
-                href={withLangPrefix("/medic-online?source=prescription", lang)}
-                variant="action"
-                size="md"
-                fullWidth
-                className="mt-5"
-              >
-                <span className="min-w-0 truncate">{headerCopy.navMedic}</span>
-                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-              </Button>
-            </div>
-          </aside>
+          <section className="rounded-2xl border border-border bg-card p-5 shadow-xs print:hidden sm:p-6">
+            <h2 className="text-balance text-body font-semibold text-foreground">
+              {assistantCopy.rx.rulesHeading}
+            </h2>
+            <ol className="mt-4 space-y-3">
+              {safetyRules.map((rule, index) => (
+                <li key={rule} className="flex items-start gap-3">
+                  <span
+                    aria-hidden="true"
+                    className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-sapphire-soft text-meta font-semibold text-sapphire tabular-nums dark:bg-sapphire/20 dark:text-sapphire-light"
+                  >
+                    {index + 1}
+                  </span>
+                  <span className="text-body text-muted-foreground">{rule}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
         </div>
       </Container>
     </main>

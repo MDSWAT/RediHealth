@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   buildEmergencyResponse,
+  buildMedicineLookupSystemInstruction,
+  buildMedicineLookupUserText,
   buildSystemInstruction,
   buildUserText,
   buildVisionSystemInstruction,
@@ -209,5 +211,55 @@ describe("vision recognition confidence calibration", () => {
       { hasImage: true },
     );
     expect(averaged.confidenceScore).toBe(88);
+  });
+
+  it("parses expanded medicine guidance (sideEffects, benefitTimeline, stoppingGuidance) and omits photo confidence in medicine_lookup mode", () => {
+    const systemPrompt = buildMedicineLookupSystemInstruction("en");
+    expect(systemPrompt).toContain("psychiatric medicines");
+    expect(systemPrompt).toContain("contraceptive");
+    expect(systemPrompt).toContain("stoppingGuidance");
+
+    const userText = buildMedicineLookupUserText({
+      medicineName: "Sertraline",
+      prescriptionContext: "Mood, anxiety or sleep",
+    });
+    expect(userText).toContain("Sertraline");
+
+    const reply = parseAssistantReply(
+      JSON.stringify({
+        urgency: "routine",
+        careLevel: "routine",
+        possibleCause: "Daily SSRI antidepressant.",
+        message: "Used for low mood and anxiety.",
+        questions: [],
+        sourceKind: "medication_box",
+        confidenceScore: 95,
+        confidenceReason: "Should be ignored in lookup mode.",
+        medicines: [
+          {
+            name: "Sertraline",
+            activeIngredient: "Sertraline",
+            purpose: "Supports mood balance and eases anxiety.",
+            benefitTimeline: "Often starts helping after 2 to 6 weeks of steady daily use.",
+            sideEffects: ["Mild nausea", "Dry mouth", "Sleep changes"],
+            stoppingGuidance:
+              "Never stop taking it suddenly without speaking to your doctor, because abrupt stopping can trigger withdrawal symptoms.",
+          },
+        ],
+      }),
+      "en",
+      { isMedicineLookup: true },
+    );
+
+    expect(reply.sourceKind).toBeUndefined();
+    expect(reply.confidenceScore).toBeUndefined();
+    expect(reply.confidenceReason).toBeUndefined();
+    expect(reply.medicines?.[0]).toMatchObject({
+      name: "Sertraline",
+      benefitTimeline: "Often starts helping after 2 to 6 weeks of steady daily use.",
+      sideEffects: ["Mild nausea", "Dry mouth", "Sleep changes"],
+      stoppingGuidance:
+        "Never stop taking it suddenly without speaking to your doctor, because abrupt stopping can trigger withdrawal symptoms.",
+    });
   });
 });

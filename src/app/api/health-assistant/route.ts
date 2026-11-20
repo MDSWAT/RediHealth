@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import {
   buildEmergencyResponse,
+  buildMedicineLookupSystemInstruction,
+  buildMedicineLookupUserText,
   buildSystemInstruction,
   buildUserText,
   buildVisionSystemInstruction,
@@ -15,6 +17,8 @@ import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { verifyRecaptcha } from "@/lib/security/recaptcha";
 
 type AssistantRequest = {
+  mode?: unknown;
+  medicineName?: unknown;
   symptoms?: unknown;
   history?: unknown;
   lang?: unknown;
@@ -107,6 +111,8 @@ export async function POST(request: Request) {
   const captchaError = await verifyRecaptcha(body.captchaToken, "health_assistant");
   if (captchaError) return captchaError;
 
+  const mode = body.mode === "medicine_lookup" ? "medicine_lookup" : undefined;
+  const medicineName = typeof body.medicineName === "string" ? body.medicineName.trim() : "";
   const symptoms = typeof body.symptoms === "string" ? body.symptoms.trim() : "";
   const lang = typeof body.lang === "string" && isSupportedLang(body.lang) ? body.lang : DEFAULT_LANG;
   const prescriptionContext = typeof body.prescriptionContext === "string" ? body.prescriptionContext.trim() : "";
@@ -120,31 +126,51 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!symptoms && !imageData) {
+  const isMedicineLookup = mode === "medicine_lookup";
+
+  if (isMedicineLookup && !medicineName) {
+    return NextResponse.json({ error: "Enter the name of the medicine." }, { status: 400 });
+  }
+
+  if (!isMedicineLookup && !symptoms && !imageData) {
     return NextResponse.json({ error: "Describe the symptoms or add a photo of the prescription." }, { status: 400 });
   }
 
-  if (symptoms.length > MAX_TEXT_LENGTH || prescriptionContext.length > MAX_TEXT_LENGTH) {
+  if (
+    medicineName.length > 240 ||
+    symptoms.length > MAX_TEXT_LENGTH ||
+    prescriptionContext.length > MAX_TEXT_LENGTH
+  ) {
     return NextResponse.json({ error: "Make your message shorter." }, { status: 400 });
   }
 
-  // Checked before the LLM in every language, including text typed alongside a prescription photo.
-  if (detectEmergencyText(symptoms) || detectEmergencyText(prescriptionContext)) {
+  // Checked before the LLM in every language, including text typed alongside a prescription photo or medicine name.
+  if (
+    detectEmergencyText(medicineName) ||
+    detectEmergencyText(symptoms) ||
+    detectEmergencyText(prescriptionContext)
+  ) {
     return NextResponse.json(buildEmergencyResponse(lang));
   }
 
-  const hasImage = Boolean(imageData);
+  const hasImage = !isMedicineLookup && Boolean(imageData);
   const parsedHistory = parseHistory(body.history);
 
   let generated: { text: string; model: string };
   try {
     generated = await generateText({
-      system: hasImage ? buildVisionSystemInstruction(lang) : buildSystemInstruction(lang),
-      text: hasImage
-        ? buildVisionUserText({ symptoms, history: parsedHistory, prescriptionContext })
-        : buildUserText({ symptoms, history: parsedHistory, prescriptionContext }),
+      system: isMedicineLookup
+        ? buildMedicineLookupSystemInstruction(lang)
+        : hasImage
+          ? buildVisionSystemInstruction(lang)
+          : buildSystemInstruction(lang),
+      text: isMedicineLookup
+        ? buildMedicineLookupUserText({ medicineName, prescriptionContext })
+        : hasImage
+          ? buildVisionUserText({ symptoms, history: parsedHistory, prescriptionContext })
+          : buildUserText({ symptoms, history: parsedHistory, prescriptionContext }),
       image: hasImage ? { mimeType: imageMimeType, data: imageData } : undefined,
-      maxTokens: hasImage ? 2048 : 900,
+      maxTokens: hasImage || isMedicineLookup ? 2048 : 900,
     });
   } catch (error) {
     if (!(error instanceof LlmError)) throw error;
@@ -154,7 +180,9 @@ export async function POST(request: Request) {
   }
 
   try {
-    return NextResponse.json(parseAssistantReply(generated.text, lang, { hasImage }));
+    return NextResponse.json(
+      parseAssistantReply(generated.text, lang, { hasImage, isMedicineLookup }),
+    );
   } catch {
     console.error("AI assistant returned a reply that is not valid JSON");
     alertProviderFailure(new LlmError("bad-response", "The AI provider returned a reply that could not be parsed."));
