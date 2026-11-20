@@ -315,14 +315,14 @@ export function GuideOfflinePrintActions({
           : null;
 
   return (
-    <div className={cn("print:hidden flex flex-wrap items-center gap-2.5", className)}>
+    <div className={cn("print:hidden grid w-full grid-cols-2 gap-2 sm:flex sm:w-auto sm:flex-wrap sm:items-center", className)}>
       <button
         type="button"
         onClick={handlePrint}
         aria-label={copy.printAria}
-        className="press-row inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2 text-body font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="group press-row inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control/90 bg-card px-3.5 py-2 text-meta font-semibold text-foreground shadow-2xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-border-control hover:bg-muted/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
-        <PrinterIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" />
+        <PrinterIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-(--dur-fast) group-hover:text-foreground motion-reduce:transition-none" />
         <span>{copy.printLabel}</span>
       </button>
 
@@ -331,18 +331,23 @@ export function GuideOfflinePrintActions({
         onClick={() => void handleSaveOffline()}
         disabled={saveState === "saving"}
         className={cn(
-          "press-row inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border px-4 py-2 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "group press-row inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border px-3.5 py-2 text-meta font-semibold shadow-2xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           showsSaved
-            ? "border-sapphire/50 bg-sapphire-soft/70 text-sapphire dark:text-sapphire-border"
-            : "border-border-control bg-card text-foreground hover:bg-muted",
+            ? "border-rose-border bg-rose-tint text-rose-ink"
+            : "border-border-control/90 bg-card text-foreground hover:border-border-control hover:bg-muted/75",
         )}
       >
-        <DownloadIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" />
+        <DownloadIcon
+          className={cn(
+            "h-4 w-4 shrink-0 transition-colors duration-(--dur-fast) motion-reduce:transition-none",
+            showsSaved ? "text-rose-ink" : "text-muted-foreground group-hover:text-foreground",
+          )}
+        />
         <span>{saveButtonText}</span>
       </button>
 
       {statusMessage && (
-        <p role="status" aria-live="polite" className="text-meta text-muted-foreground">
+        <p role="status" aria-live="polite" className="col-span-2 basis-full pt-1 text-meta text-muted-foreground">
           {statusMessage}
         </p>
       )}

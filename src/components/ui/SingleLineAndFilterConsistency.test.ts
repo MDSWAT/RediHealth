@@ -53,6 +53,8 @@ describe("Single-line icon actions & cross-page filter consistency", () => {
     const source = readSrc("src/components/ui/FamilyShareButton.tsx");
     expect(source).toContain("resolvedAlign === \"right\"");
     expect(source).toContain("right-0");
+    expect(source).toContain("bottom-full mb-2");
+    expect(source).toContain("findVerticalClipBounds");
   });
 
   it("renders shared FilterDropdown and FilterMenuOption with uniform tokens and zero pills", () => {
