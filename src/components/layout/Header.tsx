@@ -504,7 +504,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
               style={{ "--i": 0 } as CSSProperties}
               className={cn(
                 mobileOpen && "list-in",
-                "border-b border-ink-900/10 pb-1.5 dark:border-white/12 md:hidden",
+                "border-b border-ink-950/16 pb-1.5 dark:border-white/15 md:hidden",
               )}
             >
               <LanguageSelector
@@ -528,15 +528,18 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                 aria-current={isLiveDoctorActive ? "page" : undefined}
                 onClick={closeMobile}
                 className={cn(
-                  "btn-sheen press-solid group relative flex min-h-27 flex-col justify-between overflow-hidden rounded-xl bg-sapphire p-3.5 text-paper shadow-[0_10px_24px_-14px_rgb(29_53_87/0.55)] transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-light motion-reduce:transition-none dark:bg-paper dark:text-ink-950 dark:hover:bg-paper/92",
+                  "btn-sheen press-row group relative flex min-h-27 flex-col justify-between overflow-hidden rounded-xl border p-3.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
                   DRAWER_FOCUS,
+                  isLiveDoctorActive
+                    ? "border-ink-950/45 bg-rose-tint text-rose-ink shadow-[0_8px_20px_-14px_rgb(140_50_59/0.35)] ring-1 ring-ink-950/20 dark:border-white/35"
+                    : "border-ink-950/24 bg-rose-tint text-rose-ink shadow-[0_8px_20px_-14px_rgb(140_50_59/0.25)] hover:border-ink-950/40 dark:border-white/20",
                 )}
               >
                 {/* Faint concentric geometry echoing RediHealth's signature wheel */}
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 120 120"
-                  className="pointer-events-none absolute -right-5 -bottom-6 h-28 w-28 text-paper/[0.11] dark:text-ink-950/[0.08]"
+                  className="pointer-events-none absolute -right-5 -bottom-6 h-28 w-28 text-rose-mid/[0.18]"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="1.5"
@@ -549,17 +552,17 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                 <span className="relative flex items-center justify-between gap-2">
                   <span
                     aria-hidden="true"
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/14 text-paper dark:bg-ink-950/10 dark:text-ink-950"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-rose-ink text-white shadow-2xs dark:bg-rose-ink dark:text-ink-950"
                   >
                     <VideoIcon className="h-4.5 w-4.5" />
                   </span>
-                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
+                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-rose-ink/75" aria-hidden="true" />
                 </span>
                 <span className="relative mt-3 block">
-                  <span className="block font-display text-[1.0625rem] font-semibold leading-tight tracking-[-0.015em]">
+                  <span className="block font-display text-[1.0625rem] font-semibold leading-tight tracking-[-0.015em] text-rose-ink">
                     {chrome.liveDoctor}
                   </span>
-                  <span className="mt-0.5 block text-meta leading-snug opacity-80">{chrome.liveDoctorSub}</span>
+                  <span className="mt-0.5 block text-meta leading-snug text-rose-ink/80">{chrome.liveDoctorSub}</span>
                 </span>
               </Link>
 
@@ -571,33 +574,21 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                   "press-row group relative flex min-h-27 flex-col justify-between overflow-hidden rounded-xl border p-3.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
                   DRAWER_FOCUS,
                   isAiAssistantActive
-                    ? "border-amber-care/45 bg-amber-care-soft/70 text-foreground dark:border-amber-care-border/45 dark:bg-amber-care/20 dark:text-paper"
-                    : "border-sand-line bg-sand/65 text-foreground hover:bg-sand/90 dark:border-white/12 dark:bg-white/[0.06] dark:text-paper dark:hover:bg-white/[0.1]",
+                    ? "border-ink-950/45 bg-card text-foreground shadow-2xs ring-1 ring-ink-950/15 dark:border-white/35 dark:bg-white/[0.09] dark:text-paper"
+                    : "border-ink-950/24 bg-surface-subtle/90 text-foreground hover:border-ink-950/40 hover:bg-muted/75 dark:border-white/20 dark:bg-white/[0.04] dark:text-paper dark:hover:bg-white/[0.08]",
                 )}
               >
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 120 120"
-                  className="pointer-events-none absolute -right-6 -bottom-6 h-28 w-28 text-amber-care/[0.1] dark:text-amber-care-border/[0.1]"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                >
-                  <circle cx="60" cy="60" r="24" />
-                  <circle cx="60" cy="60" r="44" />
-                </svg>
-
                 <span className="relative flex items-center justify-between gap-2">
                   <span
                     aria-hidden="true"
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-care-soft text-amber-care dark:bg-amber-care/25 dark:text-amber-care-border"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-card text-muted-foreground ring-1 ring-ink-950/14 dark:bg-white/[0.08] dark:text-mist dark:ring-white/15"
                   >
                     <AiAssistantIcon className="h-4.5 w-4.5" />
                   </span>
-                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-amber-care/70 dark:text-amber-care-border/75" aria-hidden="true" />
+                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/65" aria-hidden="true" />
                 </span>
                 <span className="relative mt-3 block">
-                  <span className="block font-display text-[1.0625rem] font-semibold leading-tight tracking-[-0.015em]">
+                  <span className="block font-display text-[1.0625rem] font-semibold leading-tight tracking-[-0.015em] text-foreground/90 dark:text-paper/90">
                     {aiCopy.navLabel}
                   </span>
                   <span className="mt-0.5 block text-meta leading-snug text-muted-foreground dark:text-mist">
@@ -613,7 +604,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
               style={{ "--i": 2 } as CSSProperties}
               className={cn(mobileOpen && "list-in")}
             >
-              <ul className="grid grid-cols-2 overflow-hidden rounded-xl border border-ink-900/10 bg-card shadow-(--shadow-card-rest) dark:border-white/12 dark:bg-ink-900">
+              <ul className="grid grid-cols-2 overflow-hidden rounded-xl border border-ink-950/24 bg-card shadow-(--shadow-card-rest) dark:border-white/20 dark:bg-ink-900">
                 {primaryLinks.map((link, index) => {
                   const isActive = isActiveHref(link.href);
                   const NavIcon = NAV_LINK_ICONS[link.href];
@@ -627,8 +618,8 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                       key={link.href}
                       className={cn(
                         "flex min-w-0",
-                        !isTopRow && "border-t border-ink-900/8 dark:border-white/10",
-                        isRightCol && "border-l border-ink-900/8 dark:border-white/10",
+                        !isTopRow && "border-t border-ink-950/16 dark:border-white/14",
+                        isRightCol && "border-l border-ink-950/16 dark:border-white/14",
                       )}
                     >
                       <Link
@@ -640,7 +631,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                           DRAWER_ROW_MOTION,
                           DRAWER_FOCUS,
                           isActive
-                            ? "bg-rose-tint font-bold text-rose-ink dark:bg-rose-tint dark:text-rose-ink"
+                            ? "bg-sapphire-soft/75 font-bold text-sapphire dark:bg-sapphire/25 dark:text-sapphire-border"
                             : "font-semibold text-foreground hover:bg-sand/35 dark:text-paper/92 dark:hover:bg-white/[0.05]",
                         )}
                       >
@@ -648,11 +639,11 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                           aria-hidden="true"
                           className={cn(
                             "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-(--dur-fast)",
-                            isMediatorLink
+                            isMediatorLink && !isActive
                               ? "bg-amber-care-soft text-amber-care dark:bg-amber-care/20 dark:text-amber-care-border"
                               : isActive
-                                ? "bg-rose-ink text-white dark:bg-rose-mid dark:text-ink-950"
-                                : "bg-surface-subtle text-ink-900/65 group-hover:bg-rose-tint group-hover:text-rose-ink dark:bg-white/[0.06] dark:text-paper/70 dark:group-hover:text-rose-ink",
+                                ? "bg-sapphire text-white dark:bg-sapphire-border dark:text-ink-950"
+                                : "bg-surface-subtle text-ink-900/65 group-hover:bg-sapphire-soft group-hover:text-sapphire dark:bg-white/[0.06] dark:text-paper/70 dark:group-hover:text-sapphire-border",
                           )}
                         >
                           <NavIcon className="h-4.5 w-4.5" />
@@ -683,8 +674,8 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                     isHomeActive
-                      ? "border-rose-border bg-rose-tint font-semibold text-rose-ink"
-                      : "border-sand-line/85 bg-sand/45 font-medium text-foreground hover:bg-sand/75 dark:border-white/12 dark:bg-white/[0.05] dark:text-paper dark:hover:bg-white/[0.09]",
+                      ? "border-ink-950/45 bg-card font-semibold text-foreground shadow-2xs dark:border-white/35 dark:bg-white/12 dark:text-paper"
+                      : "border-ink-950/24 bg-sand/45 font-medium text-foreground hover:border-ink-950/40 hover:bg-sand/75 dark:border-white/20 dark:bg-white/[0.05] dark:text-paper dark:hover:bg-white/[0.09]",
                   )}
                 >
                   <HomeIcon className="h-4.5 w-4.5 shrink-0 opacity-75" aria-hidden="true" />
@@ -702,8 +693,8 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                     isPortalActive
-                      ? "border-wellness bg-wellness font-semibold text-white dark:border-wellness-border dark:bg-wellness dark:text-white"
-                      : "border-wellness-border bg-wellness-soft font-semibold text-wellness hover:bg-wellness-soft/80 dark:border-wellness-border/40 dark:bg-wellness/25 dark:text-wellness-border dark:hover:bg-wellness/35",
+                      ? "border-ink-950/45 bg-wellness font-semibold text-white dark:border-wellness-border dark:bg-wellness dark:text-white"
+                      : "border-ink-950/24 bg-wellness-soft font-semibold text-wellness hover:border-ink-950/40 hover:bg-wellness-soft/80 dark:border-wellness-border/45 dark:bg-wellness/25 dark:text-wellness-border dark:hover:bg-wellness/35",
                   )}
                 >
                   <span className="flex min-w-0 items-center gap-2.5">
@@ -736,7 +727,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                   }
                 }}
                 className={cn(
-                  "flex min-h-12 w-full items-center gap-2.5 rounded-xl border border-ink-900/10 bg-card px-3.5 py-2 text-left text-body font-medium text-foreground shadow-2xs hover:bg-sand/35 disabled:cursor-wait disabled:opacity-75 dark:border-white/12 dark:bg-ink-900 dark:text-paper dark:hover:bg-white/[0.06]",
+                  "flex min-h-12 w-full items-center gap-2.5 rounded-xl border border-ink-950/24 bg-card px-3.5 py-2 text-left text-body font-medium text-foreground shadow-2xs hover:border-ink-950/40 hover:bg-sand/35 disabled:cursor-wait disabled:opacity-75 dark:border-white/20 dark:bg-ink-900 dark:text-paper dark:hover:bg-white/[0.06]",
                   DRAWER_ROW_MOTION,
                   DRAWER_FOCUS,
                 )}
@@ -749,7 +740,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                 <span className="leading-snug">{pwaTriggerLabel}</span>
               </button>
 
-              <div className="border-t border-ink-900/10 pt-1.5 dark:border-white/12">
+              <div className="border-t border-ink-950/16 pt-1.5 dark:border-white/15">
                 <ComfortMenu
                   variant="drawer"
                   collapsible

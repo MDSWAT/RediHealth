@@ -153,9 +153,9 @@ describe("hero render", () => {
     expect(html).not.toMatch(/rounded-full[^"]*px-2\.5[^"]*py-0\.5/);
   });
 
-  it("fills the first fold above the regional ribbon on both mobile and desktop", () => {
+  it("fills the first fold cleanly on both mobile (full-screen) and desktop (above the regional ribbon)", () => {
     const html = renderHero("en");
-    expect(html).toMatch(/min-h-\[calc\(100svh-var\(--site-header-h\)-6\.5rem\)\]/);
+    expect(html).toMatch(/min-h-\[calc\(100svh-var\(--site-header-h\)\)\]/);
     expect(html).toMatch(/lg:min-h-\[calc\(100svh-var\(--site-header-h\)-3\.5rem\)\]/);
     expect(html).toContain("hero-mobile-stage");
     expect(html).not.toMatch(/\bmin-h-svh\b/);

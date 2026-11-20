@@ -21,7 +21,7 @@
 /* Hero: subtle geometric motif layered cleanly over the obsidian-navy veil and multi-photo ground. */
 .hero {
   color: var(--color-paper);
-  opacity: 0.12;
+  opacity: 0.22;
   --wheel-face-bg: var(--color-ink-950);
 }
 
@@ -33,14 +33,33 @@
 
 @media (min-width: 1024px) {
   .hero {
-    opacity: 0.13;
+    opacity: 0.22;
   }
 
   .hero .wheel {
-    left: 82%;
-    top: 48%;
-    width: min(46rem, 58vw);
+    left: 78%;
+    top: 50%;
+    width: min(36rem, 44vw);
   }
+}
+
+/* Mobile inline hero centerpiece: sits cleanly above the headline text in full form with icons. */
+.heroTop {
+  position: relative;
+  inset: auto;
+  z-index: 0;
+  overflow: visible;
+  width: min(11.5rem, 48vw);
+  aspect-ratio: 1;
+  color: var(--color-paper);
+  opacity: 0.62;
+  --wheel-face-bg: var(--color-ink-950);
+}
+
+.heroTop .wheel {
+  left: 50%;
+  top: 50%;
+  width: 100%;
 }
 
 /* A small wheel on the left, kept whole: its centre sits a little more than half its drawn width

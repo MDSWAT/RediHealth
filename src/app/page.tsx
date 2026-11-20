@@ -42,10 +42,10 @@ export default async function Home() {
   return (
     <main id="main-content" className="flex-1">
       <StackedSections>
-        <StackLayer className="bg-background">
+        <StackLayer className="bg-ink-950">
           <div className="flex flex-1 flex-col">
             <Hero />
-            <div className="bg-ink-950">
+            <div className="hidden bg-ink-950 lg:block">
               <RegionalHealthRibbon />
             </div>
           </div>
@@ -60,6 +60,9 @@ export default async function Home() {
           <TrustSection />
         </StackLayer>
       </StackedSections>
+      <div className="bg-ink-950 lg:hidden">
+        <RegionalHealthRibbon />
+      </div>
     </main>
   );
 }

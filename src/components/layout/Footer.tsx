@@ -97,6 +97,7 @@ export function Footer() {
     {
       heading: tFooter.col2Heading,
       links: [
+        { label: chrome.liveDoctor, href: "/medic-online" },
         { label: tFooter.col2Link1, href: "/find-help" },
         { label: tFooter.col2Link2, href: "/stiri" },
         { label: tFooter.col2Link3, href: "/contul-meu" },
@@ -108,16 +109,15 @@ export function Footer() {
         { label: tFooter.col3Link1, href: "/mediatori" },
         { label: tFooter.col3Link2, href: "/mediatori#solicita" },
         { label: tFooter.col3Link3, href: "/mediatori#protocol" },
+        { label: tFooter.col4Link2, href: "/contact" },
       ],
     },
     {
       heading: tFooter.col4Heading,
       links: [
         { label: tFooter.col4Link1, href: "/about" },
-        { label: tFooter.col4Link2, href: "/contact" },
         { label: tFooter.col4Link3, href: "/accessibility" },
         { label: tFooter.col4Link4, href: "/privacy" },
-        { label: cookieCopy.policyLinkLabel, href: "/cookies" },
         { label: tFooter.col4Link5, href: "/terms" },
       ],
     },
@@ -255,6 +255,12 @@ export function Footer() {
               <span>{tFooter.nonEmergencyWarning}</span>
             </p>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:shrink-0">
+              <Link
+                href={withLangPrefix("/cookies", lang)}
+                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+              >
+                {cookieCopy.policyLinkLabel}
+              </Link>
               <button
                 type="button"
                 onClick={openCookiePreferences}
