@@ -4,8 +4,10 @@ import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ArrowLeftIcon } from "@/components/ui/icons";
 import { AppointmentBookingCalendar } from "@/components/telemed/AppointmentBookingCalendar";
+import { OnlineDoctorUnavailable } from "@/components/telemed/OnlineDoctorUnavailable";
 import { getRequestLang, withLangPrefix } from "@/lib/i18n/server-routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
+import { isOnlineDoctorAvailable } from "@/lib/online-doctor";
 
 // Own titles here: the shared page-title table still says "video" for this page, and the call is voice only.
 const META: Record<Lang, { title: string; description: string }> = {
@@ -28,6 +30,14 @@ export default async function AppointmentBookingPage() {
   const lang = await getRequestLang();
   const t = translations[lang] ?? translations.ro;
   const mp = t.medicOnlinePage;
+
+  if (!isOnlineDoctorAvailable(lang)) {
+    return (
+      <main id="main-content" className="min-h-screen bg-background">
+        <OnlineDoctorUnavailable lang={lang} />
+      </main>
+    );
+  }
 
   return (
     <main id="main-content" className="min-h-screen bg-background">

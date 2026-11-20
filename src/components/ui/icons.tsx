@@ -235,6 +235,15 @@ export function UserIcon(props: IconProps) {
   );
 }
 
+// Home (in-house outline, matches Boxicons line weight): a house with a door, for the phone menu's Home row
+export function HomeIcon(props: IconProps) {
+  return (
+    <svg {...strokeProps(props)}>
+      <path d="M4 10.5 12 4l8 6.5V20h-5v-5H9v5H4z" />
+    </svg>
+  );
+}
+
 // bx-group
 export function UsersIcon(props: IconProps) {
   return (

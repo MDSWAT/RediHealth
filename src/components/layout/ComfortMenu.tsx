@@ -458,10 +458,10 @@ export function ComfortMenu({
   ];
 
   const controlsBody = (
-    <div className="space-y-4 text-left max-sm:space-y-2">
-      <div>
+    <div className="space-y-3 text-left max-sm:space-y-2">
+      <div className="rounded-2xl px-2.5 pt-1 pb-0.5">
         <div className="flex items-baseline justify-between gap-3">
-          <label htmlFor={sliderId} className="text-body font-semibold text-foreground dark:text-paper">
+          <label htmlFor={sliderId} className="text-body font-medium text-foreground dark:text-paper">
             {copy.textSizeLabel}
           </label>
           <span aria-hidden="true" className="whitespace-nowrap text-body font-medium text-sapphire dark:text-sapphire-border">
@@ -469,7 +469,7 @@ export function ComfortMenu({
           </span>
         </div>
         {/* Three stops (normal, large, extra large); the small and big A show which way makes text bigger. */}
-        <div className="mt-1 flex items-center gap-3 max-sm:mt-0">
+        <div className="mt-1 flex items-center gap-3 max-sm:mt-0.5">
           <span aria-hidden="true" className="w-4 shrink-0 text-center text-[0.95rem] font-semibold leading-none text-foreground dark:text-paper">
             A
           </span>
@@ -491,63 +491,71 @@ export function ComfortMenu({
         </div>
       </div>
 
-      <div className="space-y-1.5 border-t border-border/70 pt-3 max-sm:space-y-1 max-sm:pt-2 dark:border-white/10">
+      <div className="divide-y divide-ink-900/8 border-t border-ink-900/10 pt-1 dark:divide-white/10 dark:border-white/10">
         {switchOptions.map((option) => {
           const { Icon } = option;
           return (
-            <button
-              key={option.id}
-              type="button"
-              role="switch"
-              aria-checked={option.checked}
-              onClick={option.onToggle}
-              className={cn(
-                "press-row flex min-h-11 w-full max-w-full items-center justify-between gap-3 rounded-2xl border px-3 py-2 max-sm:py-1.5 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
-                option.checked
-                  ? "border-sapphire bg-sapphire-soft/75 dark:border-paper dark:bg-white/12"
-                  : "border-border-control bg-muted/35 hover:bg-muted/75 dark:border-white/15 dark:bg-white/5 dark:hover:bg-white/10",
-              )}
-            >
-              <span className="flex min-w-0 flex-1 items-start gap-3">
-                <Icon
-                  className={cn(
-                    "mt-0.5 h-5 w-5 shrink-0 transition-colors duration-(--dur-fast)",
-                    option.checked
-                      ? "text-sapphire dark:text-sapphire-border"
-                      : "text-muted-foreground dark:text-mist",
-                  )}
-                  aria-hidden="true"
-                />
-                <span className="min-w-0 flex-1">
-                  <span className="block text-body font-semibold leading-snug text-foreground dark:text-paper">
-                    {option.label}
-                  </span>
-                  {/* Phones: the help line is read out but not shown, so the whole sheet fits on screen. */}
-                  <span className="mt-0.5 block text-meta leading-snug text-muted-foreground max-sm:sr-only dark:text-mist">
-                    {option.help}
-                  </span>
-                </span>
-              </span>
-              <span
-                aria-hidden="true"
+            <div key={option.id} className="py-0.5">
+              <button
+                type="button"
+                role="switch"
+                aria-checked={option.checked}
+                onClick={option.onToggle}
                 className={cn(
-                  "inline-flex h-6 w-11 shrink-0 items-center justify-start p-0.5 transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
-                  CAPSULE_SHAPE,
+                  "press-row flex min-h-11 w-full max-w-full items-center justify-between gap-3 rounded-lg px-2.5 py-2 max-sm:py-1.5 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none dark:focus-visible:ring-paper",
                   option.checked
-                    ? "border border-sapphire bg-sapphire dark:border-sapphire-light dark:bg-sapphire-light"
-                    : "border border-border-control bg-muted dark:border-white/35 dark:bg-white/15",
+                    ? "bg-sapphire/[0.06] dark:bg-white/[0.08]"
+                    : "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05]",
                 )}
               >
-                {/* The thumb (18px) travels the 38px inner track (20px) cleanly inside the 1px border. */}
+                <span className="flex min-w-0 flex-1 items-center gap-3">
+                  <Icon
+                    className={cn(
+                      "h-4.5 w-4.5 shrink-0 transition-colors duration-(--dur-fast)",
+                      option.checked
+                        ? "text-sapphire dark:text-sapphire-border"
+                        : "text-muted-foreground dark:text-mist",
+                    )}
+                    aria-hidden="true"
+                  />
+                  <span className="min-w-0 flex-1">
+                    <span
+                      className={cn(
+                        "block text-body leading-snug",
+                        option.checked
+                          ? "font-semibold text-sapphire dark:text-paper"
+                          : "font-medium text-foreground dark:text-paper",
+                      )}
+                    >
+                      {option.label}
+                    </span>
+                    {/* Phones: the help line is read out but not shown, so the whole sheet fits on screen. */}
+                    <span className="mt-0.5 block text-meta leading-snug text-muted-foreground max-sm:sr-only dark:text-mist">
+                      {option.help}
+                    </span>
+                  </span>
+                </span>
                 <span
+                  aria-hidden="true"
                   className={cn(
-                    "h-4.5 w-4.5 shadow-xs transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                    "inline-flex h-6 w-11 shrink-0 items-center justify-start p-0.5 transition-colors duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
                     CAPSULE_SHAPE,
-                    option.checked ? "translate-x-5 bg-white" : "translate-x-0 bg-foreground/75 dark:bg-white/85",
+                    option.checked
+                      ? "border border-sapphire bg-sapphire dark:border-sapphire-light dark:bg-sapphire-light"
+                      : "border border-border-control bg-muted dark:border-white/35 dark:bg-white/15",
                   )}
-                />
-              </span>
-            </button>
+                >
+                  {/* The thumb (18px) travels the 38px inner track (20px) cleanly inside the 1px border. */}
+                  <span
+                    className={cn(
+                      "h-4.5 w-4.5 shadow-xs transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                      CAPSULE_SHAPE,
+                      option.checked ? "translate-x-5 bg-white" : "translate-x-0 bg-foreground/75 dark:bg-white/85",
+                    )}
+                  />
+                </span>
+              </button>
+            </div>
           );
         })}
       </div>
@@ -630,7 +638,7 @@ export function ComfortMenu({
           )}
         >
           <div className="overflow-hidden" inert={!isOpen}>
-            <div className="px-1 pt-1.5 pb-3">{controlsBody}</div>
+            <div className="pt-1.5 pb-2">{controlsBody}</div>
           </div>
         </div>
       </div>

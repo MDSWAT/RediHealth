@@ -33,6 +33,8 @@ import {
   stepHeading,
   stepLead,
   subHeading,
+  textLink,
+  textLinkLabel,
 } from "@/components/health-assistant/step-ui";
 import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
 import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
@@ -52,6 +54,7 @@ import { predictSymptomsForSelection } from "@/components/health-check/symptom-p
 import {
   buildTriageNoteUrl,
   buildTriageReproductionUrl,
+  buildTriageSessionSearch,
   parseTriageReproductionSearch,
 } from "@/components/health-check/triage-permalink";
 import {
@@ -186,11 +189,50 @@ const SEVERITY_KEYS: readonly SeverityId[] = ["mild", "moderate", "severe"] as c
 const DURATION_KEYS: readonly DurationId[] = ["today", "days", "weeks", "chronic"] as const;
 const BODY_PARTS: readonly BodyPartId[] = ["head", "chest", "stomach", "pelvis", "back", "arm", "leg"] as const;
 const AREA_CHOICES: readonly CheckAreaId[] = [...BODY_PARTS, "mind"] as const;
+/** Phones: the last "List" or "Body picture" choice, so a returning visitor is not sent the 3D body again. */
+const AREA_MODE_KEY = "rh:hc-area-mode";
+const subscribeNothing = () => () => {};
+function readStoredAreaMode(): "3d" | "list" | null {
+  try {
+    const stored = window.localStorage.getItem(AREA_MODE_KEY);
+    return stored === "list" || stored === "3d" ? stored : null;
+  } catch {
+    return null;
+  }
+}
+function writeStoredAreaMode(mode: "3d" | "list") {
+  try {
+    window.localStorage.setItem(AREA_MODE_KEY, mode);
+  } catch {
+    // Storage blocked: the choice holds for this visit only.
+  }
+}
 /** Calm pause after a pointer tap so the person sees their choice before advancing. */
 const AUTO_ADVANCE_MS = 320;
 
 function prefersReducedMotion(): boolean {
   return prefersCalmOrReducedMotion();
+}
+
+/**
+ * The answers behind the last result, kept for this tab only (sessionStorage). The result's main
+ * button opens the map; Back from there finds the result again. Never written to the address bar.
+ */
+const SAVED_RESULT_KEY = "rh:hc-result";
+function readSavedResult(): string {
+  try {
+    return window.sessionStorage.getItem(SAVED_RESULT_KEY) ?? "";
+  } catch {
+    return "";
+  }
+}
+function writeSavedResult(search: string | null) {
+  try {
+    if (search) window.sessionStorage.setItem(SAVED_RESULT_KEY, search);
+    else window.sessionStorage.removeItem(SAVED_RESULT_KEY);
+  } catch {
+    // Storage blocked (private mode): the check still works, it just starts again after the map.
+  }
 }
 
 /** How much of the top of the screen is covered by pinned site chrome once scrolled. */
@@ -372,6 +414,7 @@ function AreaOptionCard({
   title,
   description,
   hotkey,
+  className = "",
 }: {
   partId: CheckAreaId;
   checked: boolean;
@@ -380,6 +423,7 @@ function AreaOptionCard({
   title: string;
   description: string;
   hotkey?: string;
+  className?: string;
 }) {
   const Icon = AREA_ICONS[partId];
   return (
@@ -396,7 +440,7 @@ function AreaOptionCard({
         checked
           ? "max-lg:bg-sapphire-soft/40 lg:border-sapphire lg:bg-sapphire-soft/45"
           : "lg:border-border lg:bg-card lg:hover:border-sapphire/50 lg:hover:bg-sapphire-soft/25"
-      }`}
+      } ${className}`}
     >
       <span
         aria-hidden="true"
@@ -732,7 +776,7 @@ function OptionRow({
         tabIndex={checked || focusable ? 0 : -1}
         onClick={(e: ReactMouseEvent<HTMLButtonElement>) => onSelect(e.detail > 0)}
         className={`flex w-full items-start gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:min-h-[3.25rem] max-lg:px-4 max-lg:py-3 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:min-h-12 lg:rounded-xl lg:border lg:px-3 lg:py-2.5 lg:focus-visible:ring-offset-2 ${
-          onSpeak ? "pr-12" : ""
+          onSpeak ? "max-lg:pr-14 lg:pr-12" : ""
         } ${
           checked
             ? urgent
@@ -786,7 +830,7 @@ function OptionRow({
           onClick={onSpeak}
           aria-pressed={speakingThis}
           aria-label={speakLabel}
-          className={`absolute right-2 top-1/2 z-10 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:h-8 lg:w-8 ${
+          className={`absolute right-1 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-lg lg:right-2 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:h-8 lg:w-8 ${
             speakingThis
               ? "bg-sapphire-soft text-sapphire"
               : "text-muted-foreground hover:bg-sapphire-soft/60 hover:text-sapphire"
@@ -945,7 +989,8 @@ export function HealthCheckExplorer() {
   /** Phones open on the 3D body; the list stays one tap away, and is the fallback where the body cannot be drawn. */
   const [stageExpanded, setStageExpanded] = useState(false);
   const [mobileAreaModeOverride, setMobileAreaModeOverride] = useState<"3d" | "list" | null>(null);
-  const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "3d";
+  const storedAreaMode = useSyncExternalStore(subscribeNothing, readStoredAreaMode, () => null);
+  const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? storedAreaMode ?? "3d";
   /** While the body fills the screen, a tap only selects: Save selection moves on. */
   const bodyFullScreenRef = useRef(false);
   /** Lifts the stage above the question sheet and the site header while the body fills the screen. */
@@ -1011,6 +1056,16 @@ export function HealthCheckExplorer() {
   const hasExtrasStep = !selectedPart || extraCandidates.length > 0;
 
   const isDesktop = useIsDesktop();
+  /** A phone showing the list only: no body on screen to tap or to name. */
+  const phoneListOnly = mobileListOnly && !isDesktop;
+  /** "Mind and mood" has no place on the body, so its questions are shown without it. */
+  const mindPastArea = selectedPart === "mind" && stepId !== "area";
+  /**
+   * Phones with the body on screen list "Mind and mood" first: the seven body areas can be tapped on
+   * the picture, the mind cannot. Desktop keeps it last through CSS order, so letters stay A to H.
+   */
+  const mindFirst = bodyShown && !phoneListOnly;
+  const areaOrder: readonly CheckAreaId[] = mindFirst ? ["mind", ...BODY_PARTS] : AREA_CHOICES;
   /** On desktop, strength, duration and "also feeling" are one screen, shown under the "severity" step. */
   const viewStep: StepId =
     isDesktop && (stepId === "duration" || stepId === "extras") ? "severity" : stepId;
@@ -1089,6 +1144,8 @@ export function HealthCheckExplorer() {
   const stackRef = useRef<StepId[]>(["area"]);
   const posRef = useRef(0);
   const pendingTargetRef = useRef<StepId | null>(null);
+  /** "Start over" is walking the browser history back to the first entry of this check. */
+  const resetPendingRef = useRef(false);
   const modalOpenRef = useRef(false);
   useEffect(() => {
     modalOpenRef.current = showEmergencyOverlay || doctorOpen;
@@ -1106,7 +1163,16 @@ export function HealthCheckExplorer() {
 
   useEffect(() => {
     let cancelled = false;
-    const parsed = parseTriageReproductionSearch(window.location.search, activeLang);
+    const entryState = (window.history.state ?? {}) as { hcStepId?: StepId; hcIdx?: number };
+    const fromLink = parseTriageReproductionSearch(window.location.search, activeLang);
+    // Back from the map (or a reload) onto the entry that showed the result: bring the answers back
+    // from this tab's storage. A fresh visit starts clean, so the next person on a shared phone
+    // does not open someone else's result.
+    const fromSession =
+      !fromLink && !window.location.search && entryState.hcStepId === "result"
+        ? parseTriageReproductionSearch(readSavedResult(), activeLang)
+        : null;
+    const parsed = fromLink ?? fromSession;
     if (parsed) {
       const currentDict = getHealthCheckTranslations(activeLang);
       const regionSyms = isBodyPartId(parsed.part)
@@ -1149,8 +1215,19 @@ export function HealthCheckExplorer() {
           restoredStack = ["area", ...(spots.length > 0 ? (["spot"] as const) : []), "symptom", "severity"];
         }
         const targetStepId = restoredStack[restoredStack.length - 1];
-        stackRef.current = restoredStack;
-        posRef.current = restoredStack.length - 1;
+        // A shared link or QR code opens on a single history entry, so Back and the answer links
+        // move within that entry (they used to call history.go() onto pages that were never there).
+        // A return to the result entry still has this check's earlier entries behind it.
+        const keptIdx =
+          fromSession && typeof entryState.hcIdx === "number" && entryState.hcIdx > 0 ? entryState.hcIdx : 0;
+        if (keptIdx === restoredStack.length - 1) {
+          stackRef.current = restoredStack;
+        } else {
+          const filled: StepId[] = Array.from({ length: keptIdx + 1 }, () => "area");
+          filled[keptIdx] = targetStepId;
+          stackRef.current = filled;
+        }
+        posRef.current = keptIdx;
         answersRef.current = {
           part: true,
           hasSpotStep: spots.length > 0,
@@ -1195,10 +1272,14 @@ export function HealthCheckExplorer() {
       const next = clampAllowedStep(wanted);
       stackRef.current = stackRef.current.slice(0, idx + 1);
       stackRef.current[idx] = next;
-      if (next !== state.hcStepId) {
+      const resetting = resetPendingRef.current;
+      resetPendingRef.current = false;
+      if (resetting || next !== state.hcStepId) {
         window.history.replaceState(
           { ...(window.history.state ?? {}), hcStepId: next, hcIdx: idx, hcModal: false },
           "",
+          // "Start over" also drops a shared link's answers from the address.
+          resetting ? window.location.pathname : undefined,
         );
       }
       setShowEmergencyOverlay(false);
@@ -1266,8 +1347,27 @@ export function HealthCheckExplorer() {
       advanceTimer.current = null;
     }
     if (!modalOpenRef.current) pushEntry(stepRef.current, true);
-    if (which === "emergency") setShowEmergencyOverlay(true);
-    else setDoctorOpen(true);
+    if (which === "emergency") {
+      // The list behind must not keep talking over the pop-up; with the voice guide on, it is read out.
+      if (autoSpeakTimer.current) {
+        clearTimeout(autoSpeakTimer.current);
+        autoSpeakTimer.current = null;
+      }
+      voice.stop();
+      setSpeakingCardId(null);
+      if (autoVoiceGuideRef.current && voiceAvailableRef.current) {
+        voice.speak([dict.ui.emergency.title, dict.ui.emergency.description]);
+      }
+      setShowEmergencyOverlay(true);
+    } else setDoctorOpen(true);
+  }
+
+  /** "That is not what I have": unpick the emergency sign chosen by mistake and close the pop-up. */
+  function handleNotThisEmergency() {
+    clearQrIfNeeded();
+    if (selectedSymptom && isAcuteSurgicalOrEmergency(selectedSymptom)) setSelectedSymptom(null);
+    setExtraSymptoms((prev) => prev.filter((s) => !isAcuteSurgicalOrEmergency(s)));
+    closeModal();
   }
 
   function closeModal() {
@@ -1295,6 +1395,13 @@ export function HealthCheckExplorer() {
   }
 
   useDialogFocus(emergencyRef, showEmergencyOverlay, closeModal);
+
+  // However the pop-up closes, its reading stops with it.
+  const stopVoice = voice.stop;
+  useEffect(() => {
+    if (!showEmergencyOverlay) return;
+    return () => stopVoice();
+  }, [showEmergencyOverlay, stopVoice]);
 
   /**
    * Phones: snap the sheet to "body small" or "body large". The layout changes once (so the camera
@@ -1692,12 +1799,22 @@ export function HealthCheckExplorer() {
     setAutoVoiceGuide(false);
     setRestoredFromQr(false);
     setShowAllAreaSymptoms(false);
-    stackRef.current[posRef.current] = "area";
-    window.history.replaceState(
-      { ...(window.history.state ?? {}), hcStepId: "area", hcIdx: posRef.current, hcModal: false },
-      "",
-      window.location.pathname,
-    );
+    writeSavedResult(null);
+    const entriesBack = posRef.current;
+    if (entriesBack > 0 && window.history.state?.hcIdx === entriesBack) {
+      // Walk back to the first entry of this check. Left in place, each cleared question would
+      // still answer one press of the browser's Back button with nothing happening.
+      resetPendingRef.current = true;
+      pendingTargetRef.current = "area";
+      window.history.go(-entriesBack);
+    } else {
+      stackRef.current[posRef.current] = "area";
+      window.history.replaceState(
+        { ...(window.history.state ?? {}), hcStepId: "area", hcIdx: posRef.current, hcModal: false },
+        "",
+        window.location.pathname,
+      );
+    }
     setStepId("area");
     setForWhom("self");
     setBodyProfile("general");
@@ -1720,9 +1837,15 @@ export function HealthCheckExplorer() {
       : DESKTOP_GROUP[viewStep] + 1
     : currentIdx + 1;
   const totalSteps = isDesktop ? (emergencyPath ? 3 : 4) : activeSteps.length;
-  const stepIndicatorText = dict.ui.stepIndicator
-    .replace("{current}", String(displayStep))
-    .replace("{total}", String(totalSteps));
+  // Phones count the questions only: the result is where they lead, not one more of them.
+  const questionTotal = Math.max(1, totalSteps - 1);
+  const stepIndicatorText = isDesktop
+    ? dict.ui.stepIndicator.replace("{current}", String(displayStep)).replace("{total}", String(totalSteps))
+    : viewStep === "result"
+      ? ""
+      : c.questionProgress.replace("{current}", String(displayStep)).replace("{total}", String(questionTotal));
+  const progressTotal = isDesktop ? totalSteps : questionTotal;
+  const progressValue = Math.min(displayStep, progressTotal);
 
   const goBack = () => {
     if (currentIdx > 0) {
@@ -1755,6 +1878,49 @@ export function HealthCheckExplorer() {
       : null;
   const activeSpotBilateral = Boolean(detail && SUB_REGION_INFO[detail.subRegion]?.bilateral);
 
+  const recommendationTitle = isEmergency
+    ? dict.ui.emergency.title
+    : careLevel
+      ? dict.urgency[careLevel].title
+      : "";
+  /** What the result says under its heading. A mild mind and mood answer has its own home-care wording. */
+  const careIntro = !careLevel
+    ? ""
+    : careLevel === "low" && selectedPart === "mind"
+      ? c.mindLowIntro
+      : dict.urgency[careLevel].intro;
+
+  const places = findHelpLinks(activeLang);
+  /**
+   * Where the result sends people, most useful first: the pharmacy for home care, the family doctor
+   * for "see a doctor", the hospital as well for "today". A mediator is offered every time.
+   */
+  type CareAction = { key: string; label: string; href: string; place: boolean };
+  const mediatorAction: CareAction = {
+    key: "mediator",
+    label: dict.ui.requestMediatorHelp,
+    href: "/mediatori#solicita",
+    place: false,
+  };
+  const familyDoctorAction: CareAction = {
+    key: "gp",
+    label: places.familyDoctor,
+    href: findHelpHref("gp"),
+    place: true,
+  };
+  const careActions: CareAction[] =
+    isEmergency || !careLevel
+      ? []
+      : careLevel === "low"
+        ? [{ key: "pharmacy", label: places.nearestPharmacy, href: findHelpHref("pharmacy"), place: true }, mediatorAction]
+        : careLevel === "medium"
+          ? [familyDoctorAction, mediatorAction]
+          : [
+              familyDoctorAction,
+              { key: "hospital", label: places.hospital, href: findHelpHref("hospital"), place: true },
+              mediatorAction,
+            ];
+
   const currentQuestion =
     viewStep === "area"
       ? dict.ui.step1Question
@@ -1770,15 +1936,19 @@ export function HealthCheckExplorer() {
               ? dict.ui.durationHeading
               : viewStep === "extras"
                 ? c.alsoFeel
-                : dict.ui.step4Question;
+                : // The result opens on the recommendation itself, not on a heading above it.
+                  recommendationTitle || dict.ui.step4Question;
 
   const currentPrompt =
     viewStep === "area"
-      ? bodyShown
+      ? bodyShown && !phoneListOnly
         ? dict.ui.step1Prompt
         : c.chooseArea
       : viewStep === "spot"
-        ? c.exactSpotLead
+        ? // Phones open this step with the sheet over the body, so the lead points at the list.
+          isDesktop && bodyShown
+          ? c.exactSpotLead
+          : c.exactSpotLeadList
         : viewStep === "symptom"
           ? detail && predictedPartition.secondary.length > 0 && !showAllAreaSymptoms
             ? c.showingSpotSymptoms.replace(
@@ -1799,7 +1969,7 @@ export function HealthCheckExplorer() {
               ? c.durationLead
               : viewStep === "extras"
                 ? c.alsoFeelHint
-                : dict.ui.step4Prompt;
+                : "";
 
   // Assistant trail chips: every prior decision is a 1-tap return chip with ↺.
   const trailItems: { key: string; label: string; target: StepId }[] = [];
@@ -1862,7 +2032,10 @@ export function HealthCheckExplorer() {
   function spokenParts(): string[] {
     const parts: string[] = [currentQuestion, currentPrompt];
     if (stepId === "area") {
-      parts.push(...BODY_PARTS.map((id) => dict.bodyParts[id].title), dict.mentalArea.title);
+      // Read in the order shown: phones with the body on screen list mind and mood first.
+      const bodyTitles = BODY_PARTS.map((id) => dict.bodyParts[id].title);
+      if (mindFirst && !isDesktop) parts.push(dict.mentalArea.title, ...bodyTitles);
+      else parts.push(...bodyTitles, dict.mentalArea.title);
     } else if (stepId === "spot") {
       parts.push(c.exactSpotAny, ...quickSpots.map((sub) => getLocalizedSubRegion(sub, activeLang).label));
     } else if (stepId === "symptom") {
@@ -1877,9 +2050,18 @@ export function HealthCheckExplorer() {
     } else if (stepId === "extras") {
       parts.push(...extraCandidates.map((s) => s.title));
     } else if (stepId === "result") {
-      if (isEmergency) parts.push(dict.ui.emergency.title, dict.ui.emergency.description);
-      else if (careLevel) parts.push(dict.urgency[careLevel].title, dict.urgency[careLevel].intro);
+      // The heading (read first, as the question) is already the recommendation.
+      if (isEmergency) parts.push(dict.ui.emergency.description);
+      else if (careLevel) parts.push(careIntro);
       if (forWhom === "child") parts.push(c.childNote);
+      if (!isEmergency && careLevel) {
+        // The advice itself, not only its heading: home care, where to go, and what it may mean.
+        if (careLevel === "low" && selectedSymptom?.selfCareTip) parts.push(c.selfCare, selectedSymptom.selfCareTip);
+        parts.push(...careActions.map((action) => action.label));
+        if (careLevel !== "high" && selectedSymptom) {
+          parts.push(c.meaning, selectedSymptom.guidance || selectedSymptom.description);
+        }
+      }
     }
     return parts.filter(Boolean);
   }
@@ -1971,11 +2153,6 @@ export function HealthCheckExplorer() {
   }
 
   const roDict = getHealthCheckTranslations("ro");
-  const recommendationTitle = isEmergency
-    ? dict.ui.emergency.title
-    : careLevel
-      ? dict.urgency[careLevel].title
-      : "";
   const recommendationDetail = recommendationTitle
     ? `${c.recommendationGiven}: ${recommendationTitle}`
     : undefined;
@@ -2002,6 +2179,11 @@ export function HealthCheckExplorer() {
           bodyProfile,
         }
       : null;
+  // Kept for this tab so Back from the map finds the result again (see readSavedResult).
+  const sessionSearch = permalinkState ? buildTriageSessionSearch(permalinkState) : "";
+  useEffect(() => {
+    if (stepId === "result" && sessionSearch) writeSavedResult(sessionSearch);
+  }, [stepId, sessionSearch]);
   const todayIso = new Date().toISOString().slice(0, 10);
   const reproduceUrl =
     originUrl && permalinkState ? buildTriageReproductionUrl(originUrl, activeLang, permalinkState) : undefined;
@@ -2012,10 +2194,7 @@ export function HealthCheckExplorer() {
   const romanianNoteUrl =
     originUrl && permalinkState ? buildTriageNoteUrl(originUrl, "ro", permalinkState, todayIso) : undefined;
 
-  const stageVisibleInLayout =
-    bodyShown && stepId !== "result" && !(selectedPart === "mind" && stepId !== "area");
-
-  const places = findHelpLinks(activeLang);
+  const stageVisibleInLayout = bodyShown && stepId !== "result" && !mindPastArea;
 
   const placeLink = (category: InstituteCategory | undefined, label: string) => (
     <Link
@@ -2033,38 +2212,94 @@ export function HealthCheckExplorer() {
     </Link>
   );
 
-  const renderRoutingStack = (placeCategory?: InstituteCategory | "routine", placeLabel?: string) => (
-    <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-      {placeCategory === "routine" ? (
-        <Button
-          href={withLangPrefix("/mediatori#solicita", activeLang)}
-          variant="outline"
-          size="lg"
-          className="w-full sm:w-auto"
+  /**
+   * "For whom" and which body is shown (man or woman). Phones: above the body, so the label is read
+   * before the model it describes. Desktop: at the top of the question card, beside the body.
+   */
+  const renderWhoControls = (slot: "page" | "card") => (
+    <div className="divide-y divide-border/70 rounded-xl bg-muted/55 px-3.5 py-1.5">
+      <div className="flex flex-wrap items-center justify-between gap-2 py-2">
+        <span id={`${baseId}-who-${slot}`} className="text-meta font-medium text-muted-foreground">
+          {c.forWhom}
+        </span>
+        <div
+          role="radiogroup"
+          aria-labelledby={`${baseId}-who-${slot}`}
+          onKeyDown={handleRadioKeys}
+          className="inline-flex flex-wrap gap-1 rounded-xl bg-muted/75 p-1 ring-1 ring-border/80"
         >
-          <span>{dict.ui.requestMediatorHelp}</span>
-        </Button>
-      ) : placeCategory && placeLabel ? (
-        <Button
-          href={withLangPrefix("/find-help", activeLang)}
-          variant="action"
-          size="lg"
-          className="w-full sm:w-auto"
+          {(
+            [
+              { id: "self", label: c.forSelf },
+              { id: "child", label: c.forChild },
+            ] as const
+          ).map((opt) => {
+            const active = forWhom === opt.id;
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                role="radio"
+                data-segmented=""
+                aria-checked={active}
+                tabIndex={active ? 0 : -1}
+                onClick={() => handleForWhomChange(opt.id)}
+                className={`inline-flex min-h-11 items-center justify-center rounded-lg border px-3 text-body whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  active
+                    ? "border-rose-border bg-rose-tint font-semibold text-rose-ink shadow-2xs"
+                    : "border-transparent font-medium text-muted-foreground hover:bg-card/70 hover:text-foreground"
+                }`}
+              >
+                {opt.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center justify-between gap-2 py-2">
+        <span id={`${baseId}-anat-${slot}`} className="text-meta font-medium text-muted-foreground">
+          {bodyShown && !phoneListOnly ? c.bodyShownLabel : c.bodyTypeLabel}
+        </span>
+        <div
+          role="radiogroup"
+          aria-labelledby={`${baseId}-anat-${slot}`}
+          onKeyDown={handleRadioKeys}
+          className="inline-flex flex-wrap gap-1 rounded-xl bg-muted/75 p-1 ring-1 ring-border/80"
         >
-          <PinIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-          <span>{placeLabel}</span>
-        </Button>
-      ) : (
-        <Button
-          href={withLangPrefix("/find-help", activeLang)}
-          variant="action"
-          size="lg"
-          className="w-full sm:w-auto"
-        >
-          <PinIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-          <span>{places.nav}</span>
-        </Button>
-      )}
+          {(
+            [
+              { id: "general", label: c.bodyGeneral },
+              { id: "female", label: c.bodyFemale },
+            ] as const
+          ).map((opt) => {
+            const active = bodyProfile === opt.id;
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                role="radio"
+                data-segmented=""
+                aria-checked={active}
+                tabIndex={active ? 0 : -1}
+                onClick={() => handleBodyProfileChange(opt.id)}
+                className={`inline-flex min-h-11 items-center justify-center rounded-lg border px-3 text-body whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  active
+                    ? "border-rose-border bg-rose-tint font-semibold text-rose-ink shadow-2xs"
+                    : "border-transparent font-medium text-muted-foreground hover:bg-card/70 hover:text-foreground"
+                }`}
+              >
+                {opt.label}
+              </button>
+            );
+          })}
+        </div>
+        {bodyProfile === "general" && (
+          <p className="mt-1 basis-full text-meta text-muted-foreground">
+            {c.bodyGeneralHelper}
+          </p>
+        )}
+      </div>
     </div>
   );
 
@@ -2079,7 +2314,7 @@ export function HealthCheckExplorer() {
       lines.push(dict.ui.emergency.description);
     } else if (careLevel) {
       lines.push(`${c.recommendationGiven}: ${dict.urgency[careLevel].title}`);
-      lines.push(dict.urgency[careLevel].intro);
+      lines.push(careIntro);
       if (forWhom === "child") lines.push(c.childNote);
       if (careLevel === "low" && selectedSymptom?.selfCareTip) {
         lines.push(`${c.selfCare}: ${selectedSymptom.selfCareTip}`);
@@ -2133,7 +2368,7 @@ export function HealthCheckExplorer() {
   return (
     <div>
       <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
-        {`${stepIndicatorText}: ${currentQuestion}`}
+        {stepIndicatorText ? `${stepIndicatorText}: ${currentQuestion}` : currentQuestion}
       </div>
 
       <div
@@ -2146,17 +2381,21 @@ export function HealthCheckExplorer() {
       >
         <PageHeader
           ref={headerRef}
-          className={stageVisibleInLayout ? "lg:col-start-1 lg:row-start-1" : undefined}
+          // Phones drop the lead: the step question says the same, and the answers start a line higher.
+          className={`max-lg:[&>p]:hidden ${stageVisibleInLayout ? "lg:col-start-1 lg:row-start-1" : ""}`}
           title={dict.ui.heading}
           lead={stepId === "area" ? firstSentence(dict.ui.subtitle) : undefined}
         />
+
+        {stepId === "area" && <div className="mt-4 lg:hidden">{renderWhoControls("page")}</div>}
 
         {/* 3D stage: pinned under the site header on phones once Body picture is chosen; left column on desktop. */}
         <section
           ref={stageRef}
           aria-label={dict.ui.viewer3D.subModelInfo}
           className={
-            stepId === "result"
+            // Hidden for mind and mood too: left in place it pinned itself over the question card.
+            stepId === "result" || mindPastArea
               ? "hidden"
               : bodyShown
                 ? `${mobileListOnly ? "max-lg:hidden " : ""}mt-4 sm:mt-5 max-lg:sticky max-lg:top-[var(--chrome-h,0px)] ${
@@ -2227,7 +2466,8 @@ export function HealthCheckExplorer() {
               type="button"
               aria-expanded={stageExpanded && !sheetAtTop}
               aria-label={stageExpanded && !sheetAtTop ? c.showLessBody : c.showMoreBody}
-              className="mx-auto -mt-1 mb-1 flex h-7 w-24 touch-none items-center justify-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
+              // 44px tall for the finger; the negative margins keep the sheet's layout as it was at 28px.
+              className="mx-auto -mt-3 -mb-1 flex h-11 w-24 touch-none items-center justify-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
               onPointerDown={(e) => {
                 if (cardRef.current) cardRef.current.style.transform = "";
                 sheetDragRef.current = { y: e.clientY, dy: 0, atTop: sheetCoversBodyNow() };
@@ -2305,9 +2545,11 @@ export function HealthCheckExplorer() {
                     <span>{dict.ui.backButton}</span>
                   </button>
                 ) : null}
-                <p className="shrink-0 whitespace-nowrap text-meta font-medium text-muted-foreground tabular-nums">
-                  {stepIndicatorText}
-                </p>
+                {stepIndicatorText && (
+                  <p className="shrink-0 whitespace-nowrap text-meta font-medium text-muted-foreground tabular-nums">
+                    {stepIndicatorText}
+                  </p>
+                )}
               </div>
 
               <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-1 sm:gap-2">
@@ -2317,7 +2559,7 @@ export function HealthCheckExplorer() {
                     onClick={handleCopyDiagnosticSheet}
                     aria-label={sheetCopied ? c.copiedSheet : c.copySheet}
                     title={sheetCopied ? c.copiedSheet : c.copySheet}
-                    className={`inline-flex h-[44px] min-h-11 w-[44px] min-w-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-0 text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:h-11 sm:w-auto sm:min-w-11 sm:px-3 lg:h-9 lg:min-h-9 lg:min-w-9 ${
+                    className={`inline-flex h-[44px] min-h-11 w-[44px] min-w-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-0 max-sm:hidden text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:h-11 sm:w-auto sm:min-w-11 sm:px-3 lg:h-9 lg:min-h-9 lg:min-w-9 ${
                       sheetCopied
                         ? "border-sapphire bg-sapphire text-white"
                         : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30"
@@ -2350,17 +2592,17 @@ export function HealthCheckExplorer() {
               className="mt-3 flex h-1 w-full gap-1.5"
               role="progressbar"
               aria-label={c.progressLabel}
-              aria-valuenow={displayStep}
+              aria-valuenow={progressValue}
               aria-valuemin={1}
-              aria-valuemax={totalSteps}
-              aria-valuetext={stepIndicatorText}
+              aria-valuemax={progressTotal}
+              aria-valuetext={stepIndicatorText || dict.ui.step4Title}
             >
-              {Array.from({ length: totalSteps }, (_, idx) => idx + 1).map((segment) => (
+              {Array.from({ length: progressTotal }, (_, idx) => idx + 1).map((segment) => (
                 <div key={segment} className="h-1 flex-1 rounded-sm overflow-hidden bg-border">
                   {/* The fill sweeps in from the start of the segment (and back out when going back). */}
                   <div
                     className={`h-full w-full origin-left bg-sapphire transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] motion-reduce:transition-none rtl:origin-right dark:bg-sapphire-border ${
-                      displayStep >= segment ? "scale-x-100" : "scale-x-0"
+                      progressValue >= segment ? "scale-x-100" : "scale-x-0"
                     }`}
                   />
                 </div>
@@ -2410,9 +2652,9 @@ export function HealthCheckExplorer() {
             >
               {currentQuestion}
             </h2>
-            <p className={stepLead}>{currentPrompt}</p>
+            {currentPrompt && <p className={stepLead}>{currentPrompt}</p>}
 
-            {bodyShown && stepId !== "result" && (
+            {bodyShown && (stepId === "area" || stepId === "spot") && (
               <div
                 role="group"
                 aria-label={(AREA_VIEW_SWITCH_COPY[activeLang] ?? AREA_VIEW_SWITCH_COPY.ro).groupLabel}
@@ -2430,7 +2672,10 @@ export function HealthCheckExplorer() {
                       key={opt.id}
                       type="button"
                       aria-pressed={active}
-                      onClick={() => setMobileAreaModeOverride(opt.id)}
+                      onClick={() => {
+                        setMobileAreaModeOverride(opt.id);
+                        writeStoredAreaMode(opt.id);
+                      }}
                       className={`min-h-11 flex-1 rounded-lg px-2.5 py-2 text-body font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3 ${
                         active
                           ? "bg-card text-sapphire shadow-2xs ring-1 ring-border/70"
@@ -2447,89 +2692,7 @@ export function HealthCheckExplorer() {
             {/* STEP 1 — Body or Mind Area */}
             {viewStep === "area" && (
               <div className="mt-4 space-y-3">
-                {/* Upfront For me / For a child and Male / Female controls, visible without extra taps. */}
-                <div className="divide-y divide-border/70 rounded-xl bg-muted/55 px-3.5 py-1.5">
-                  <div className="flex flex-wrap items-center justify-between gap-2 py-2">
-                    <span id={`${baseId}-who`} className="text-meta font-medium text-muted-foreground">
-                      {c.forWhom}
-                    </span>
-                    <div
-                      role="radiogroup"
-                      aria-labelledby={`${baseId}-who`}
-                      onKeyDown={handleRadioKeys}
-                      className="inline-flex flex-wrap gap-1 rounded-xl bg-background/80 p-1 ring-1 ring-border"
-                    >
-                      {(
-                        [
-                          { id: "self", label: c.forSelf },
-                          { id: "child", label: c.forChild },
-                        ] as const
-                      ).map((opt) => {
-                        const active = forWhom === opt.id;
-                        return (
-                          <button
-                            key={opt.id}
-                            type="button"
-                            role="radio"
-                            aria-checked={active}
-                            tabIndex={active ? 0 : -1}
-                            onClick={() => handleForWhomChange(opt.id)}
-                            className={`inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-body font-medium whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                              active
-                                ? "bg-sapphire text-white"
-                                : "text-muted-foreground hover:text-foreground"
-                            }`}
-                          >
-                            {opt.label}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap items-center justify-between gap-2 py-2">
-                    <span id={`${baseId}-anat`} className="text-meta font-medium text-muted-foreground">
-                      {c.bodyTypeLabel}
-                    </span>
-                    <div
-                      role="radiogroup"
-                      aria-labelledby={`${baseId}-anat`}
-                      onKeyDown={handleRadioKeys}
-                      className="inline-flex flex-wrap gap-1 rounded-xl bg-background/80 p-1 ring-1 ring-border"
-                    >
-                      {(
-                        [
-                          { id: "general", label: c.bodyGeneral },
-                          { id: "female", label: c.bodyFemale },
-                        ] as const
-                      ).map((opt) => {
-                        const active = bodyProfile === opt.id;
-                        return (
-                          <button
-                            key={opt.id}
-                            type="button"
-                            role="radio"
-                            aria-checked={active}
-                            tabIndex={active ? 0 : -1}
-                            onClick={() => handleBodyProfileChange(opt.id)}
-                            className={`inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-body font-medium whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                              active
-                                ? "bg-sapphire text-white"
-                                : "text-muted-foreground hover:text-foreground"
-                            }`}
-                          >
-                            {opt.label}
-                          </button>
-                        );
-                      })}
-                    </div>
-                    {bodyProfile === "general" && (
-                      <p className="mt-1 basis-full text-meta text-muted-foreground">
-                        {c.bodyGeneralHelper}
-                      </p>
-                    )}
-                  </div>
-                </div>
+                <div className="hidden lg:block">{renderWhoControls("card")}</div>
 
                 {bodyShown && (
                   <p className="hidden px-0.5 text-body font-medium text-muted-foreground lg:block">{c.orList}</p>
@@ -2543,12 +2706,13 @@ export function HealthCheckExplorer() {
                   className={`grid grid-cols-1 ${optionGroup} lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-[repeat(var(--rows),auto)]`}
                   style={{ "--rows": Math.ceil(AREA_CHOICES.length / 2) } as CSSProperties}
                 >
-                  {AREA_CHOICES.map((id, index) => {
+                  {areaOrder.map((id) => {
                     const areaCopy = id === "mind" ? dict.mentalArea : dict.bodyParts[id];
                     return (
                       <AreaOptionCard
                         key={id}
-                        hotkey={isDesktop ? HOTKEYS[index] : undefined}
+                        hotkey={isDesktop ? HOTKEYS[AREA_CHOICES.indexOf(id)] : undefined}
+                        className={mindFirst && id === "mind" ? "lg:order-last" : undefined}
                         partId={id}
                         checked={selectedPart === id}
                         focusable={!selectedPart && id === AREA_CHOICES[0]}
@@ -2594,7 +2758,8 @@ export function HealthCheckExplorer() {
                         hotkey={isDesktop ? HOTKEYS[index + 1] : undefined}
                         onSelect={(byPointer) => handleSelectQuickSpot(sub, byPointer)}
                         title={localized.label}
-                        description={isDesktop ? undefined : localized.summary}
+                        // The Russian spot texts are missing or unreadable for now: show the name alone.
+                        description={isDesktop || activeLang === "ru" ? undefined : localized.summary}
                       />
                     );
                   })}
@@ -2747,9 +2912,27 @@ export function HealthCheckExplorer() {
                 {otherChosen ? (
                   <div className={`${softPanel} max-lg:bg-card max-lg:shadow-[0_0_0_1px_var(--color-border)]`}>
                     <p className="text-body font-medium text-foreground">{c.otherBody}</p>
-                    <div className="mt-3.5">
-                      {placeLink(undefined, places.nav)}
+                    <p className="mt-1.5 text-body text-muted-foreground">{places.pharmacyFirstHint}</p>
+                    <div className="mt-3.5 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                      <Button
+                        href={withLangPrefix(findHelpHref("pharmacy"), activeLang)}
+                        variant="action"
+                        size="lg"
+                        className="w-full sm:w-auto"
+                      >
+                        <PinIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+                        <span>{places.pharmacyFirst}</span>
+                      </Button>
+                      <Button
+                        href={withLangPrefix("/mediatori#solicita", activeLang)}
+                        variant="outline"
+                        size="lg"
+                        className="w-full sm:w-auto"
+                      >
+                        <span>{dict.ui.requestMediatorHelp}</span>
+                      </Button>
                     </div>
+                    {placeLink(undefined, places.nav)}
                   </div>
                 ) : selectedSymptom ? (
                   <ContinueRow
@@ -2834,7 +3017,7 @@ export function HealthCheckExplorer() {
                           aria-keyshortcuts={HOTKEYS[index]}
                           data-hotkey={HOTKEYS[index]}
                           tabIndex={checked || (!duration && index === 0) ? 0 : -1}
-                          title={dict.duration[key].hint}
+                          title={dict.duration[key].hint || undefined}
                           onClick={(e) => handleSelectDuration(key, e.detail > 0)}
                           className={`press-row flex min-h-11 min-w-[13.5rem] flex-1 items-center gap-2.5 whitespace-nowrap rounded-xl border px-3 py-1.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                             checked
@@ -2944,7 +3127,7 @@ export function HealthCheckExplorer() {
                       focusable={!duration && key === DURATION_KEYS[0]}
                       onSelect={(byPointer) => handleSelectDuration(key, byPointer)}
                       title={dict.duration[key].label}
-                      description={dict.duration[key].hint}
+                      description={dict.duration[key].hint || undefined}
                       iconBadge={<DurationHorizonVisual durationKey={key} checked={duration === key} />}
                     />
                   ))}
@@ -3016,12 +3199,7 @@ export function HealthCheckExplorer() {
                   <div className="space-y-6 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:col-span-7 lg:-mx-1 lg:max-h-[calc(100dvh-var(--chrome-h,0px)-2rem)] lg:overflow-y-auto lg:overscroll-auto lg:px-1 lg:pr-2 lg:pb-3 print:static print:max-h-none print:overflow-visible">
                     {isEmergency ? (
                       <div className={dangerPanel} role="alert">
-                        <h3 className="text-title leading-snug text-foreground">
-                          {dict.ui.emergency.title}
-                        </h3>
-                        <p className="mt-2 text-body text-foreground/90">
-                          {dict.ui.emergency.description}
-                        </p>
+                        <p className="text-body text-foreground/90">{dict.ui.emergency.description}</p>
                         {urgentSymptom && (
                           <p className="mt-3 text-body text-foreground">
                             <span className="font-medium text-primary">
@@ -3030,10 +3208,19 @@ export function HealthCheckExplorer() {
                             {urgentSymptom.title}
                           </p>
                         )}
-                        <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
+                        {/* 112 stays first and red; whole buttons stack on phones and wrap from sm. */}
+                        <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
                           <Button href="tel:112" variant="primary" size="lg">
                             <PhoneIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
                             <span className="min-w-0 truncate">{dict.ui.emergency.call112Now}</span>
+                          </Button>
+                          <Button
+                            href={withLangPrefix(findHelpHref("hospital"), activeLang)}
+                            variant="outline"
+                            size="lg"
+                          >
+                            <PinIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+                            <span className="min-w-0 truncate">{places.hospital}</span>
                           </Button>
                           <Button
                             type="button"
@@ -3055,19 +3242,7 @@ export function HealthCheckExplorer() {
                                 : softPanel
                             }
                           >
-                            <p
-                              className={`text-body font-medium ${
-                                careLevel === "high" ? "text-amber-care" : "text-sapphire"
-                              }`}
-                            >
-                              {c.nextStepLabel}
-                            </p>
-                            <h3 className="mt-1.5 text-title leading-snug text-foreground text-balance">
-                              {dict.urgency[careLevel].title}
-                            </h3>
-                            <p className="mt-2 text-body text-muted-foreground">
-                              {dict.urgency[careLevel].intro}
-                            </p>
+                            <p className="text-body text-foreground">{careIntro}</p>
                             {forWhom === "child" && (
                               <p className="mt-3 rounded-xl bg-amber-care-soft/80 px-3.5 py-2.5 text-body font-medium text-foreground dark:bg-amber-care/20">
                                 {c.childNote}
@@ -3075,23 +3250,36 @@ export function HealthCheckExplorer() {
                             )}
                           </div>
 
-                          <div>
-                            {careLevel === "low" ? (
-                              <div className="space-y-4">
-                                {selectedSymptom?.selfCareTip && (
-                                  <div>
-                                    <h4 className={subHeading}>{c.selfCare}</h4>
-                                    <p className="mt-1.5 text-body text-muted-foreground">
-                                      {selectedSymptom.selfCareTip}
-                                    </p>
-                                  </div>
-                                )}
-                                {renderRoutingStack("routine")}
+                          <div className="space-y-4">
+                            {careLevel === "low" && selectedSymptom?.selfCareTip && (
+                              <div>
+                                <h3 className={subHeading}>{c.selfCare}</h3>
+                                <p className="mt-1.5 text-body text-muted-foreground">
+                                  {selectedSymptom.selfCareTip}
+                                </p>
                               </div>
-                            ) : careLevel === "high" ? (
-                              renderRoutingStack("hospital", places.nav)
-                            ) : (
-                              renderRoutingStack("gp", places.nav)
+                            )}
+                            {/* The first button is this screen's main action; each opens the right kind of place. */}
+                            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                              {careActions.map((action, index) => (
+                                <Button
+                                  key={action.key}
+                                  href={withLangPrefix(action.href, activeLang)}
+                                  variant={index === 0 ? "action" : "outline"}
+                                  size="lg"
+                                  className="w-full sm:w-auto"
+                                >
+                                  {action.place && <PinIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />}
+                                  <span>{action.label}</span>
+                                </Button>
+                              ))}
+                            </div>
+                            {careLevel !== "low" && (
+                              // No family doctor, no insurance, no papers: the guide says where to go.
+                              <Link href={withLangPrefix("/health-assistant#triage", activeLang)} className={textLink}>
+                                <span className={textLinkLabel}>{c.noDoctorGuide}</span>
+                                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                              </Link>
                             )}
                           </div>
                         </div>
@@ -3162,6 +3350,7 @@ export function HealthCheckExplorer() {
                       doctorOpen={doctorOpen}
                       onDoctorOpenChange={(open) => (open ? openModal("doctor") : closeModal())}
                       lang={activeLang}
+                      patientView
                     />
                   </div>
                 </div>
@@ -3200,6 +3389,9 @@ export function HealthCheckExplorer() {
               <span className="font-medium text-primary">{dict.ui.emergency.whyEmergencyPrefix}</span>{" "}
               {urgentSymptom.title}
             </p>
+            {urgentSymptom.description && (
+              <p className="mt-1 text-body text-muted-foreground">{urgentSymptom.description}</p>
+            )}
             <div className="mt-6 grid gap-2.5 sm:grid-cols-[1fr_auto]">
               <Button
                 data-autofocus
@@ -3219,6 +3411,14 @@ export function HealthCheckExplorer() {
                 <span className="min-w-0 truncate">{dict.ui.emergency.continueReview}</span>
               </Button>
             </div>
+            {/* Below the two buttons, as plain text: a way out for a row tapped by mistake. */}
+            <button
+              type="button"
+              onClick={handleNotThisEmergency}
+              className="-ml-2 mt-2 inline-flex min-h-11 items-center whitespace-nowrap rounded-xl px-2 text-body font-medium text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              {dict.ui.emergency.notThis}
+            </button>
           </div>
         </div>
       )}

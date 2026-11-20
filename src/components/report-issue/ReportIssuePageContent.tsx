@@ -199,27 +199,20 @@ export function ReportIssuePageContent() {
         />
 
         <div className="mt-6">
-          <form onSubmit={onSubmit} className="max-w-2xl space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6">
-            <div>
-              <label htmlFor="report-email" className="mb-1.5 block text-body font-semibold text-foreground">{t.emailLabel}</label>
-              <input
-                id="report-email"
-                type="email"
-                autoComplete="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder={t.emailPlaceholder}
-                className="field-focus min-h-12 w-full rounded-lg border border-border-control bg-background px-3.5 py-2 text-body text-foreground placeholder:text-muted-foreground"
-              />
-            </div>
-
+          {/* noValidate: the too-short message is said in the page language, not in the browser's own bubble. */}
+          <form
+            noValidate
+            onSubmit={onSubmit}
+            className="max-w-2xl space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6"
+          >
+            {/* What happened comes first; the email is optional and sits below it. */}
             <div>
               <label htmlFor="report-message" className="mb-1.5 block text-body font-semibold text-foreground">{t.issueLabel}</label>
               <textarea
                 id="report-message"
                 required
                 minLength={10}
-                rows={8}
+                rows={5}
                 value={message}
                 onChange={(event) => setMessage(event.target.value)}
                 aria-invalid={detailInvalid}
@@ -237,17 +230,31 @@ export function ReportIssuePageContent() {
                   style={{ transform: `scaleX(${Math.min(trimmedLength, 10) / 10})` }}
                 />
               </span>
-              <p id="report-message-hint" className="mt-1.5 flex items-center justify-between gap-3 text-meta text-muted-foreground tabular-nums">
+              <p id="report-message-hint" className="mt-1.5 flex items-center justify-between gap-3 text-meta text-muted-foreground">
                 <span>{t.messageHint}</span>
-                <span key={trimmedLength >= 10 ? "ready" : "count"} className={trimmedLength >= 10 ? "swap-in font-semibold text-foreground" : undefined}>
-                  {trimmedLength >= 10 ? t.readyHint : `${trimmedLength}/10`}
-                </span>
+                {trimmedLength >= 10 ? (
+                  <span className="swap-in font-semibold text-foreground">{t.readyHint}</span>
+                ) : null}
               </p>
               {detailInvalid ? (
                 <p id="report-message-error" role="alert" className="swap-in mt-1.5 text-body font-medium text-primary">
                   {error}
                 </p>
               ) : null}
+            </div>
+
+            <div>
+              <label htmlFor="report-email" className="mb-1.5 block text-body font-semibold text-foreground">{t.emailLabel}</label>
+              <input
+                id="report-email"
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder={t.emailPlaceholder}
+                className="field-focus min-h-12 w-full rounded-lg border border-border-control bg-background px-3.5 py-2 text-body text-foreground placeholder:text-muted-foreground"
+              />
             </div>
 
             {error && error !== t.detailError ? (

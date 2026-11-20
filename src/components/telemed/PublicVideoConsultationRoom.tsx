@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { CheckCircleIcon, CheckIcon, PhoneIcon, StethoscopeIcon } from "@/components/ui/icons";
+import { PhoneIcon, StethoscopeIcon } from "@/components/ui/icons";
 import {
   buildJitsiEmbedUrl,
   PATIENT_VOICE_TOOLBAR,
@@ -232,13 +232,8 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
     return (
       <main id="main-content" className="flex min-h-[100dvh] items-center justify-center bg-background p-4">
         <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 sm:p-8">
-          <div className="flex items-start gap-3">
-            <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0 text-sapphire" />
-            <div>
-              <h1 className="text-page font-semibold text-foreground">{copy.endedTitle}</h1>
-              <p className="mt-1.5 text-body text-muted-foreground">{copy.endedDesc}</p>
-            </div>
-          </div>
+          <h1 className="text-page font-semibold text-foreground">{copy.endedTitle}</h1>
+          <p className="mt-1.5 text-body text-muted-foreground">{copy.endedDesc}</p>
           <div className="mt-6 space-y-3">
             <Button
               href={withLangPrefix("/contul-meu", lang)}
@@ -270,12 +265,9 @@ export function PublicVideoConsultationRoom({ roomId, patientName: patientNamePr
           <h1 className="mt-4 text-balance text-page font-semibold text-foreground">{copy.permTitle}</h1>
           <p className="mt-2 text-body text-muted-foreground">{copy.permDesc}</p>
 
-          <ul className="mt-6 space-y-2 border-t border-border pt-5 text-body text-muted-foreground">
+          <ul className="mt-6 list-disc space-y-2 border-t border-border pl-5 pt-5 text-body text-muted-foreground">
             {[copy.permFree, copy.permNoRecording, copy.permHeadphones].map((line) => (
-              <li key={line} className="flex items-start gap-2">
-                <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire" />
-                <span>{line}</span>
-              </li>
+              <li key={line}>{line}</li>
             ))}
           </ul>
 

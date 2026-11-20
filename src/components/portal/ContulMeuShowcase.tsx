@@ -1,17 +1,10 @@
 "use client";
 
-import type { ComponentType, SVGProps } from "react";
 import Link from "next/link";
-import { contulMeuCopy, type PortalPreviewFeatureId } from "@/components/portal/contul-meu-copy";
+import { contulMeuCopy } from "@/components/portal/contul-meu-copy";
 import { SmsPhoneAuthModal } from "@/components/portal/SmsPhoneAuthModal";
 import { Container } from "@/components/ui/Container";
-import {
-  ArrowLeftIcon,
-  CalendarIcon,
-  PrescriptionIcon,
-  ShareIcon,
-  ShieldIcon,
-} from "@/components/ui/icons";
+import { ArrowLeftIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
@@ -27,12 +20,6 @@ function useSafeLanguage(initialLang: Lang) {
     };
   }
 }
-
-const FEATURE_ICONS: Record<PortalPreviewFeatureId, ComponentType<SVGProps<SVGSVGElement>>> = {
-  plan: PrescriptionIcon,
-  appointments: CalendarIcon,
-  family: ShareIcon,
-};
 
 export function ContulMeuShowcase({ initialLang = "ro" }: { initialLang?: Lang }) {
   const { lang: activeLang } = useSafeLanguage(initialLang);
@@ -68,28 +55,16 @@ export function ContulMeuShowcase({ initialLang = "ro" }: { initialLang?: Lang }
               {copy.previewRegionLabel}
             </h2>
 
-            <ul className="space-y-2.5 px-1 text-body text-muted-foreground dark:text-mist">
-              {copy.features.map((feature) => {
-                const Icon = FEATURE_ICONS[feature.id];
-                return (
-                  <li key={feature.id} className="flex items-center gap-2.5">
-                    <Icon
-                      aria-hidden="true"
-                      className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"
-                    />
-                    <span>{feature.title}</span>
-                  </li>
-                );
-              })}
+            {/* Who this page is for, and that nothing else on the site needs an account. */}
+            <p className="px-1 text-body font-medium text-foreground dark:text-paper">{copy.whoFor}</p>
+
+            <ul className="mt-4 list-disc space-y-2 pr-1 pl-6 text-body text-muted-foreground dark:text-mist">
+              {copy.features.map((feature) => (
+                <li key={feature.id}>{feature.title}</li>
+              ))}
             </ul>
 
-            <p className="mt-4 flex items-start gap-2 px-1 text-body text-muted-foreground/85 dark:text-mist/80">
-              <ShieldIcon
-                aria-hidden="true"
-                className="mt-0.5 h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"
-              />
-              <span>{copy.privacyNote}</span>
-            </p>
+            <p className="mt-4 px-1 text-body text-muted-foreground/85 dark:text-mist/80">{copy.privacyNote}</p>
           </section>
         </div>
       </Container>

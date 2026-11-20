@@ -187,6 +187,7 @@ export function PwaExperience() {
         <div
           role="status"
           aria-live="polite"
+          data-floating-prompt=""
           className="fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-40 rounded-xl border border-border bg-card p-4 text-foreground shadow-(--shadow-card-hover) print:hidden sm:inset-x-auto sm:bottom-4 sm:left-4 sm:w-[24rem] dark:border-white/12 dark:bg-ink-900 dark:text-paper"
         >
           <div className="flex items-start justify-between gap-3">
@@ -231,6 +232,7 @@ export function PwaExperience() {
         <div
           role="region"
           aria-label={copy.bannerTitle}
+          data-floating-prompt=""
           className="fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-40 rounded-xl border border-border bg-card p-4 text-foreground shadow-(--shadow-card-hover) print:hidden sm:inset-x-auto sm:bottom-4 sm:left-4 sm:w-[24rem] dark:border-white/12 dark:bg-ink-900 dark:text-paper"
         >
           <div className="flex items-start gap-3">

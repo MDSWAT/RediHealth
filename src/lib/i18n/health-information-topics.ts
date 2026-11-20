@@ -572,7 +572,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "preventive-screening",
-        title: "Health screening",
+        title: "Health check-ups",
         description:
           "Tests that catch health problems early, before you feel ill.",
         intro:
@@ -874,7 +874,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "preventive-screening",
-        title: "Screening preventiv",
+        title: "Controale de sănătate",
         description:
           "Controale care găsesc bolile devreme, înainte să ai semne.",
         intro:
@@ -1478,7 +1478,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
       },
       {
         slug: "preventive-screening",
-        title: "Screening preventivo",
+        title: "Controlli di salute",
         description:
           "Controlli che trovano i problemi presto, prima dei sintomi.",
         intro:
@@ -2257,7 +2257,7 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Cum renunți la țigări, cum bei mai puțin și cine te ajută.",
     },
     "preventive-screening": {
-      title: "Screening preventiv",
+      title: "Controale de sănătate",
       description:
         "Controale gratuite care găsesc bolile devreme, înainte să doară.",
     },
@@ -2299,7 +2299,7 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "How to stop smoking, drink less and who can help you.",
     },
     "preventive-screening": {
-      title: "Health screening",
+      title: "Health check-ups",
       description:
         "Free check-ups that catch illness early, before it hurts.",
     },
@@ -2383,7 +2383,7 @@ export const HEALTH_TOPIC_CARD_SUMMARIES: Record<
         "Come smettere di fumare, bere meno e chi può aiutarti.",
     },
     "preventive-screening": {
-      title: "Screening preventivo",
+      title: "Controlli di salute",
       description:
         "Controlli gratuiti per scoprire i problemi presto, prima del dolore.",
     },
@@ -2499,6 +2499,87 @@ const TOPIC_ICONS: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   smoking: NoSmokingIcon,
   "preventive-screening": SearchIcon,
   "womens-health": ShieldIcon,
+};
+
+/**
+ * The interactive tool inside each guide, named in every language. Shown on the guide cards so a
+ * reader sees that a guide holds something to do, not only something to read.
+ */
+export const TOOL_LABELS_BY_SLUG: Record<string, Record<Lang, string>> = {
+  // Named for what the reader gets, in everyday words. The Romani names are the earlier ones,
+  // kept until a native speaker can check new wording.
+  "heart-health": {
+    ro: "Înțelege-ți tensiunea",
+    en: "Understand your blood pressure",
+    sq: "Kupto tensionin tënd",
+    it: "Capisci la tua pressione",
+    hr: "Razumij svoj krvni tlak",
+    rom: "Dikhiben e ratesko presia",
+    ru: "Что значит ваше давление",
+  },
+  diabetes: {
+    ro: "Înțelege-ți glicemia",
+    en: "Understand your blood sugar",
+    sq: "Kupto sheqerin në gjak",
+    it: "Capisci la tua glicemia",
+    hr: "Razumij svoj šećer u krvi",
+    rom: "Dikhiben e guglimasko",
+    ru: "Что значит ваш сахар в крови",
+  },
+  "healthy-eating": {
+    ro: "Câtă sare mănânci",
+    en: "How much salt you eat",
+    sq: "Sa kripë ha",
+    it: "Quanto sale mangi",
+    hr: "Koliko soli jedeš",
+    rom: "Kalkulatoro e lonesko",
+    ru: "Сколько соли вы едите",
+  },
+  "physical-activity": {
+    ro: "Planul tău de mișcare",
+    en: "Your movement plan",
+    sq: "Plani yt i lëvizjes",
+    it: "Il tuo piano di movimento",
+    hr: "Tvoj plan kretanja",
+    rom: "Plano e miškipnasko",
+    ru: "Ваш план движения",
+  },
+  "mental-wellbeing": {
+    ro: "Exercițiu de respirație",
+    en: "Breathing exercise",
+    sq: "Ushtrimi i frymëmarrjes",
+    it: "Esercizio di respirazione",
+    hr: "Vježba disanja",
+    rom: "Phurdipen thaj relaksacia",
+    ru: "Дыхательное упражнение",
+  },
+  smoking: {
+    ro: "Planul tău de renunțare la fumat",
+    en: "Your plan to stop smoking",
+    sq: "Plani yt për të lënë duhanin",
+    it: "Il tuo piano per non fumare più",
+    hr: "Tvoj plan za prestanak pušenja",
+    rom: "Ažutipen te mekes o duvano",
+    ru: "Ваш план отказа от курения",
+  },
+  "preventive-screening": {
+    ro: "Ce analize îți trebuie",
+    en: "Which check-ups you need",
+    sq: "Cilat kontrolle të duhen",
+    it: "Quali controlli ti servono",
+    hr: "Koji pregledi ti trebaju",
+    rom: "Alosaripen e kontrolengo",
+    ru: "Какие обследования вам нужны",
+  },
+  "womens-health": {
+    ro: "Sănătatea femeii, pas cu pas",
+    en: "Women's health, step by step",
+    sq: "Shëndeti i gruas, hap pas hapi",
+    it: "Salute della donna, passo passo",
+    hr: "Zdravlje žena, korak po korak",
+    rom: "Dikhiben sastipen e džuvljengo",
+    ru: "Женское здоровье, шаг за шагом",
+  },
 };
 
 const TOPIC_KEY_FACT_INDEX: Record<string, number> = {

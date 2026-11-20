@@ -65,44 +65,28 @@ export function openReportIssue(): boolean {
   return true;
 }
 
-export const feedbackTriggerCopy: Record<
-  Lang,
-  { compactTriggerLabel: string; footerLink: string; mobileDrawerSub: string }
-> = {
+/** The one feedback link wording, used by the footer and the phone menu. */
+export const feedbackTriggerCopy: Record<Lang, { footerLink: string }> = {
   ru: {
-    compactTriggerLabel: "Отзыв",
     footerLink: "Оставить отзыв",
-    mobileDrawerSub: "Анонимно, занимает около минуты",
   },
   ro: {
-    compactTriggerLabel: "Feedback",
     footerLink: "Lasă feedback",
-    mobileDrawerSub: "Anonim, durează aproximativ un minut",
   },
   en: {
-    compactTriggerLabel: "Feedback",
     footerLink: "Leave feedback",
-    mobileDrawerSub: "Anonymous, takes about a minute",
   },
   sq: {
-    compactTriggerLabel: "Përshtypje",
     footerLink: "Lër përshtypje",
-    mobileDrawerSub: "Anonime, zgjat rreth një minutë",
   },
   it: {
-    compactTriggerLabel: "Parere",
     footerLink: "Lascia un parere",
-    mobileDrawerSub: "Anonimo, richiede circa un minuto",
   },
   hr: {
-    compactTriggerLabel: "Povratna info",
     footerLink: "Ostavi povratnu informaciju",
-    mobileDrawerSub: "Anonimno, traje oko minutu",
   },
   rom: {
-    compactTriggerLabel: "Feedback",
     footerLink: "Mekh feedback",
-    mobileDrawerSub: "Anonimno, lel karing jekh minuta",
   },
 };
 

@@ -18,15 +18,9 @@ export async function MediatorsSection() {
 
   return (
     <Section tone="ink" aria-labelledby="home-mediators-title" className="relative isolate overflow-hidden">
-      {/* Subtle ambient warmth in the corner, matching the amber mediator accent. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-40 -top-64 -z-10 h-112 w-112 rounded-full bg-amber-care-border/10 blur-3xl sm:-right-48 sm:-top-56 sm:h-144 sm:w-144 sm:bg-amber-care/25"
-      />
-
       <Container>
         <Reveal>
-          <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-14">
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-14">
             <h2 id="home-mediators-title" className="text-balance text-page text-paper lg:col-span-7">
               {copy.title} <span className="text-mist">{copy.titleQuiet}</span>
             </h2>
@@ -51,8 +45,8 @@ export async function MediatorsSection() {
           <MediatorServices services={copy.services} />
         </Reveal>
 
-        <div className="mt-7 overflow-hidden sm:mt-12 sm:border-t sm:border-paper/12 sm:pt-6 lg:mt-14">
-          <ul className="flex flex-col gap-y-2 text-body font-semibold text-paper sm:-ml-3.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-y-2.5">
+        <div className="mt-6 overflow-hidden border-t border-paper/12 pt-4 sm:mt-12 sm:pt-6 lg:mt-14">
+          <ul className="flex flex-col gap-y-1.5 text-meta font-semibold text-paper/90 sm:-ml-3.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-y-2.5 sm:text-body sm:text-paper">
             {copy.facts.map((fact) => (
               <li key={fact} className="sm:whitespace-nowrap sm:border-l sm:border-paper/25 sm:px-3.5">
                 {fact}

@@ -97,7 +97,7 @@ const NAME_IN: Partial<Record<Lang, Record<Lang, string>>> = {
 
 // Romanian first (the site's default language), then the others in a fixed order on every page.
 const LANGUAGE_ORDER: Lang[] = ["ro", "en", "hr", "rom", "sq", "it", "ru"];
-const orderedLanguages = [...languages].sort(
+export const orderedLanguages = [...languages].sort(
   (a, b) => LANGUAGE_ORDER.indexOf(a.code) - LANGUAGE_ORDER.indexOf(b.code),
 );
 

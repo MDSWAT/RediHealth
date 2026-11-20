@@ -12,7 +12,7 @@ import {
 import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { AlertCircleIcon, ArrowRightIcon, PhoneIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, PhoneIcon } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
 import {
   getHealthCheckTranslations,
@@ -213,8 +213,13 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
     const recommendationDetail = recommendationTitle
       ? `${c.recommendationGiven}: ${recommendationTitle}`
       : undefined;
+    // Same wording as the result page: a mild mind and mood answer has its own home-care line.
     const recommendationIntro =
-      !redFlagNoticed && careLevel ? dict.urgency[careLevel].intro : undefined;
+      !redFlagNoticed && careLevel
+        ? careLevel === "low" && parsed.part === "mind"
+          ? c.mindLowIntro
+          : dict.urgency[careLevel].intro
+        : undefined;
 
     const roDict = getHealthCheckTranslations("ro");
     const roRecommendationTitle = redFlagNoticed
@@ -382,7 +387,6 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               {structuredProps.redFlagNoticed ? (
                 <div role="alert" style={{ "--i": 1 } as CSSProperties} className={`list-in mt-4 ${dangerPanel}`}>
                   <div className="flex items-start gap-3">
-                    <AlertCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                     <div className="min-w-0 flex-1">
                       <p className="text-body font-semibold leading-snug text-primary">
                         {structuredProps.recommendationTitle || dict.ui.emergency.title}
@@ -482,7 +486,6 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
               {fallback.redFlagNoticed ? (
                 <div role="alert" style={{ "--i": 1 } as CSSProperties} className={`list-in mt-4 ${dangerPanel}`}>
                   <div className="flex items-start gap-3">
-                    <AlertCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                     <div className="min-w-0 flex-1">
                       <p className="text-body font-semibold leading-snug text-primary">
                         {dict.ui.emergency.title}

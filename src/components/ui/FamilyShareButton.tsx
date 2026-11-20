@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import type { Lang } from "@/lib/i18n/translations";
-import { CheckCircleIcon, CopyIcon, MessageDotsIcon, ShareIcon } from "@/components/ui/icons";
+import { CopyIcon, MessageDotsIcon, ShareIcon } from "@/components/ui/icons";
 
 type FamilyShareCopy = {
   buttonLabel: string;
@@ -234,11 +234,7 @@ export function FamilyShareButton({
               onClick={() => void handleCopy()}
               className="flex min-h-11 w-full max-w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-left text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              {copied ? (
-                <CheckCircleIcon className="h-4 w-4 shrink-0 text-sapphire" />
-              ) : (
-                <CopyIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
-              )}
+              <CopyIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
               <span className="min-w-0 truncate">{copied ? copy.copied : copy.copyText}</span>
             </button>
 

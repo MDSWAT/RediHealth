@@ -66,6 +66,12 @@ export interface TriageSummaryCardProps {
   onDoctorOpenChange?: (open: boolean) => void;
   /** Inside a fold or parent card that already draws the outer border and card surface. */
   bare?: boolean;
+  /**
+   * The patient's own result page. No QR code on the page (nobody can scan their own screen; the
+   * doctor scans it inside "Show the doctor"), and on phones two labelled buttons, send and listen,
+   * instead of four icons. The note page keeps the full set: copying the note is what it is for.
+   */
+  patientView?: boolean;
   className?: string;
   lang?: Lang;
   /** Optional note timestamp (used when restoring a saved/scanned clinical note). */
@@ -365,6 +371,7 @@ export function TriageSummaryCard({
   doctorOpen,
   onDoctorOpenChange,
   bare = false,
+  patientView = false,
   className = "",
   lang,
   date,
@@ -722,6 +729,23 @@ export function TriageSummaryCard({
 
   const iconActionBtn = `press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-border-control bg-card text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire ${focusRing}`;
 
+  /** Reads the summary aloud, or stops it. */
+  function toggleSummaryVoice() {
+    if (voice.speaking) {
+      voice.stop();
+      return;
+    }
+    voice.speak(
+      [
+        `${t.title} (${currentDate})`,
+        ...rows.map((r) => `${r.label}: ${r.value}`),
+        ...extraRecLine,
+        ...doctorNotes,
+        warningNotice,
+      ].filter(Boolean),
+    );
+  }
+
   const iconActiveBtn = `press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-sapphire bg-sapphire-soft text-sapphire shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${focusRing}`;
 
   return (
@@ -781,7 +805,7 @@ export function TriageSummaryCard({
         </div>
       )}
 
-      {inlineQrSvg.size > 0 && (
+      {!patientView && inlineQrSvg.size > 0 && (
         <div
           ref={inlineQrWrapRef}
           onMouseLeave={() => {
@@ -825,7 +849,7 @@ export function TriageSummaryCard({
           <div className="min-w-0">
             <p className="text-body font-semibold text-foreground">{t.qrTitle}</p>
             {recommendationDetail && (
-              <p className="mt-1.5 rounded-xl bg-sapphire-soft/65 px-2.5 py-1.5 text-meta font-semibold leading-snug text-foreground dark:bg-sapphire/15">
+              <p className="mt-1 text-meta font-semibold leading-snug text-foreground">
                 {recommendationDetail}
               </p>
             )}
@@ -849,28 +873,39 @@ export function TriageSummaryCard({
         <Button type="button" variant="action" size="md" onClick={() => setOpen(true)} className="w-full min-w-0 sm:w-auto sm:flex-1">
           <span>{dict.ui.showDoctor}</span>
         </Button>
-        <div className="flex w-full flex-nowrap items-center justify-center gap-2 sm:w-auto sm:shrink-0 sm:justify-end">
+        {patientView && (
+          // Phones: whole labelled buttons that wrap. Copying is inside "Send to family".
+          <div className="flex flex-wrap gap-2 sm:hidden">
+            <FamilyShareButton
+              title={t.patientSummary}
+              text={inlineQrPayload}
+              url={reproduceUrl ?? noteUrl}
+              lang={activeLang}
+            />
+            {voice.available && (
+              <Button type="button" size="md" aria-pressed={voice.speaking} onClick={toggleSummaryVoice}>
+                {voice.speaking ? (
+                  <span aria-hidden="true" className="block h-3 w-3 shrink-0 rounded-xs bg-current" />
+                ) : (
+                  <VolumeIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+                )}
+                <span>{voice.speaking ? t.stopListening : t.listen}</span>
+              </Button>
+            )}
+          </div>
+        )}
+        <div
+          className={`w-full flex-nowrap items-center justify-center gap-2 sm:w-auto sm:shrink-0 sm:justify-end ${
+            patientView ? "hidden sm:flex" : "flex"
+          }`}
+        >
           {voice.available && (
             <button
               type="button"
               aria-pressed={voice.speaking}
               aria-label={voice.speaking ? t.stopListening : t.listen}
               title={voice.speaking ? t.stopListening : t.listen}
-              onClick={() => {
-                if (voice.speaking) {
-                  voice.stop();
-                } else {
-                  voice.speak(
-                    [
-                      `${t.title} (${currentDate})`,
-                      ...rows.map((r) => `${r.label}: ${r.value}`),
-                      ...extraRecLine,
-                      ...doctorNotes,
-                      warningNotice,
-                    ].filter(Boolean),
-                  );
-                }
-              }}
+              onClick={toggleSummaryVoice}
               className={voice.speaking ? iconActiveBtn : iconActionBtn}
             >
               {voice.speaking ? (
@@ -1083,7 +1118,7 @@ export function TriageSummaryCard({
                     <div className="min-w-0 text-center sm:text-left">
                       <p className="text-body font-semibold text-foreground">{activeDialogCopy.qrTitle}</p>
                       {activeRecommendationDetail && (
-                        <p className="mt-1.5 rounded-xl bg-sapphire-soft/65 px-2.5 py-1.5 text-meta font-semibold leading-snug text-foreground dark:bg-sapphire/15">
+                        <p className="mt-1 text-meta font-semibold leading-snug text-foreground">
                           {activeRecommendationDetail}
                         </p>
                       )}

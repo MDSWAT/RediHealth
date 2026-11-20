@@ -1,13 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { Container } from "@/components/ui/Container";
-import { IconTile, type IconTileTone } from "@/components/ui/IconTile";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import {
   ArrowRightIcon,
   CheckCircleIcon,
+  ChevronDownIcon,
   GlobeIcon,
   HandHelpingIcon,
   HeartIcon,
@@ -18,22 +19,23 @@ import type { NavIcon } from "@/components/layout/nav-links";
 import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
+import { useIsPhone } from "@/lib/use-is-phone";
 
 /** The promises, in order: free for everyone, data stays private, clear guidance. */
 const PROMISE_ICONS = [HeartIcon, LockIcon, MessageDotsIcon];
 
 const COMMITMENT_ACCENTS = [
   {
-    rule: "bg-sapphire dark:bg-sapphire-border",
-    icon: "text-sapphire dark:text-sapphire-border",
+    rule: "bg-ink-950 dark:bg-paper",
+    plate: "border border-border bg-surface-subtle text-foreground dark:border-white/12 dark:bg-white/[0.06] dark:text-paper",
   },
   {
     rule: "bg-wellness dark:bg-wellness-border",
-    icon: "text-wellness dark:text-wellness-border",
+    plate: "border border-border bg-surface-subtle text-foreground dark:border-white/12 dark:bg-white/[0.06] dark:text-paper",
   },
   {
     rule: "bg-amber-care dark:bg-amber-care-border",
-    icon: "text-amber-care dark:text-amber-care-border",
+    plate: "border border-border bg-surface-subtle text-foreground dark:border-white/12 dark:bg-white/[0.06] dark:text-paper",
   },
 ] as const;
 
@@ -209,25 +211,37 @@ const COPY: Record<Lang, TrustCopy> = {
   },
 };
 
-const SOURCE_TILES: Record<SourceId, { icon: NavIcon; tone: IconTileTone }> = {
-  oms: { icon: GlobeIcon, tone: "sapphire-soft" },
-  redi: { icon: HandHelpingIcon, tone: "amber" },
+const SOURCE_TILES: Record<SourceId, { icon: NavIcon; plate: string; rule: string }> = {
+  oms: {
+    icon: GlobeIcon,
+    plate: "bg-sapphire-soft text-sapphire dark:bg-white/10 dark:text-sapphire-border",
+    rule: "bg-sapphire dark:bg-sapphire-border",
+  },
+  redi: {
+    icon: HandHelpingIcon,
+    plate: "bg-amber-care-soft text-amber-care dark:bg-amber-care/20 dark:text-amber-care-border",
+    rule: "bg-amber-care dark:bg-amber-care-border",
+  },
 };
 
 /**
- * Who we work with (partner ledger) and what we promise (three bordered cards with distinct
- * semantic token top rules using sapphire, wellness teal, and amber-care) on the paper ground.
+ * Who we work with (editorial partner cards) and what we promise (framed commitment showcase
+ * using sapphire, wellness teal, and amber-care semantic accents) on the paper ground.
  */
 export function TrustSection() {
   const { lang, t } = useLanguage();
   const copy = COPY[lang] ?? COPY.ro;
+  const isPhone = useIsPhone();
+  const [openPartner, setOpenPartner] = useState<string | null>(null);
+  const [openCommitment, setOpenCommitment] = useState<number | null>(null);
 
   return (
     <Section tone="paper">
       <Container>
         <Reveal>
-          <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-12">
-            <div className="lg:col-span-4">
+          <div className="grid gap-6 sm:gap-8 lg:grid-cols-12 lg:items-start lg:gap-12">
+            <div className="lg:col-span-5">
+              <span aria-hidden="true" className="rule-draw mb-3.5 block h-0.5 w-10 bg-sapphire dark:bg-sapphire-border sm:mb-4" />
               <SectionHeading
                 as="h2"
                 align="left"
@@ -236,62 +250,167 @@ export function TrustSection() {
               />
             </div>
 
-            <div className="lg:col-span-8">
-              <ul className="divide-y divide-border overflow-hidden rounded-(--radius-surface) border border-border bg-card shadow-(--shadow-card-rest) dark:divide-white/10 dark:border-white/10 dark:bg-ink-800">
-                {copy.sources.map((item) => (
-                  <li key={item.id} className="p-5 sm:p-6">
-                    <div className="flex min-w-0 items-start gap-4">
-                      <IconTile size={40} {...SOURCE_TILES[item.id]} />
-                      <div className="min-w-0">
-                        <h3 className="text-balance text-title">{item.name}</h3>
-                        <p className="mt-1.5 max-w-(--measure-reading) text-pretty text-body text-muted-foreground dark:text-mist">
-                          {item.role}
-                        </p>
-                        {item.href && (
-                          <a
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group -mx-2 -my-2 mt-1 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-sapphire-border dark:hover:bg-white/10 dark:focus-visible:ring-paper"
+            <div className="lg:col-span-7">
+              <Reveal as="ul" stagger="editorial" className="grid gap-2.5 sm:grid-cols-2 sm:gap-4 lg:gap-5">
+                {copy.sources.map((item) => {
+                  const tile = SOURCE_TILES[item.id];
+                  const PartnerIcon = tile.icon;
+                  const expanded = !isPhone || openPartner === item.id;
+                  return (
+                    <li
+                      key={item.id}
+                      className="card-interactive flex flex-col justify-between rounded-2xl border border-border bg-card p-4 sm:p-6 dark:border-white/10 dark:bg-ink-900 dark:hover:border-white/25"
+                    >
+                      <div>
+                        {/* Phone: compact tappable info header */}
+                        <button
+                          type="button"
+                          aria-expanded={expanded}
+                          onClick={() => setOpenPartner((prev) => (prev === item.id ? null : item.id))}
+                          className="flex min-h-11 w-full items-center gap-3 text-left sm:hidden"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-subtle text-foreground dark:border-white/12 dark:bg-white/[0.06] dark:text-paper"
                           >
-                            <span>{item.hrefLabel}</span>
-                            <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0 -rotate-45" />
-                            <span className="sr-only"> ({copy.newTab})</span>
-                          </a>
-                        )}
+                            <PartnerIcon className="h-4.5 w-4.5" />
+                          </span>
+                          <span className="min-w-0 flex-1 text-body font-semibold text-foreground dark:text-paper">
+                            {item.name}
+                          </span>
+                          <ChevronDownIcon
+                            className={cn(
+                              "h-4.5 w-4.5 shrink-0 text-muted-foreground transition-transform duration-(--dur-fast)",
+                              expanded && "rotate-180",
+                            )}
+                            aria-hidden="true"
+                          />
+                        </button>
+
+                        {/* Desktop: editorial header */}
+                        <div className="hidden items-center justify-between gap-3 sm:flex">
+                          <span
+                            aria-hidden="true"
+                            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-subtle text-foreground dark:border-white/12 dark:bg-white/[0.06] dark:text-paper"
+                          >
+                            <PartnerIcon className="h-5 w-5" />
+                          </span>
+                          <span aria-hidden="true" className={cn("rule-draw block h-0.5 w-8", tile.rule)} />
+                        </div>
+
+                        <h3 className="mt-5 hidden text-balance text-title font-semibold text-foreground sm:block dark:text-paper">
+                          {item.name}
+                        </h3>
+
+                        <div
+                          className={cn(
+                            "grid transition-[grid-template-rows,opacity] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                            expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                          )}
+                        >
+                          <div className="overflow-hidden">
+                            <p className="mt-2.5 max-w-(--measure-reading) text-pretty text-body leading-relaxed text-muted-foreground sm:mt-2 dark:text-mist">
+                              {item.role}
+                            </p>
+
+                            {item.href ? (
+                              <div className="mt-3.5 border-t border-border/70 pt-2.5 sm:mt-5 sm:pt-3 dark:border-white/10">
+                                <a
+                                  href={item.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="group -mx-2 -my-1 inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-body font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper"
+                                >
+                                  <span className="link-draw">{item.hrefLabel}</span>
+                                  <ArrowRightIcon
+                                    aria-hidden="true"
+                                    className="h-3.5 w-3.5 shrink-0 -rotate-45 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none motion-reduce:transition-none"
+                                  />
+                                  <span className="sr-only"> ({copy.newTab})</span>
+                                </a>
+                              </div>
+                            ) : null}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                    </li>
+                  );
+                })}
+              </Reveal>
             </div>
           </div>
 
-          <div className="mt-14 sm:mt-16">
-            <h3 className="text-balance text-title font-bold">{copy.commitmentsTitle}</h3>
-            <ul className="mt-6 grid gap-5 sm:grid-cols-3 lg:gap-6">
+          <div className="mt-10 border-t border-border/80 pt-8 sm:mt-16 sm:pt-12 dark:border-white/10">
+            <h3 className="text-balance text-title font-semibold text-foreground dark:text-paper">
+              {copy.commitmentsTitle}
+            </h3>
+
+            <Reveal as="ul" stagger="editorial" className="mt-4 grid gap-2.5 sm:mt-6 sm:grid-cols-3 sm:gap-4 lg:gap-6">
               {t.landing.trustSection.commitments.map(({ title, description }, index) => {
                 const Icon = PROMISE_ICONS[index] ?? CheckCircleIcon;
                 const accent = COMMITMENT_ACCENTS[index % COMMITMENT_ACCENTS.length];
+                const expanded = !isPhone || openCommitment === index;
                 return (
                   <li
                     key={title}
-                    className="overflow-hidden rounded-(--radius-surface) border border-border bg-card shadow-(--shadow-card-rest) dark:border-white/10 dark:bg-ink-800"
+                    className="card-interactive flex flex-col rounded-2xl border border-border bg-card p-4 sm:p-6 dark:border-white/10 dark:bg-ink-900 dark:hover:border-white/25"
                   >
-                    <span aria-hidden="true" className={cn("block h-0.5", accent.rule)} />
-                    <div className="p-5 sm:p-6">
-                      <p className="flex items-start gap-2.5 text-lead font-semibold tabular-nums">
-                        <Icon aria-hidden="true" className={cn("mt-[0.2em] h-5.5 w-5.5 shrink-0", accent.icon)} />
-                        <span className="min-w-0 text-balance">{title}</span>
-                      </p>
-                      <p className="mt-2 text-pretty text-body tabular-nums text-muted-foreground dark:text-mist">
-                        {description}
-                      </p>
+                    {/* Phone: compact tappable info box */}
+                    <button
+                      type="button"
+                      aria-expanded={expanded}
+                      onClick={() => setOpenCommitment((prev) => (prev === index ? null : index))}
+                      className="flex min-h-11 w-full items-center gap-3 text-left sm:hidden"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-xl", accent.plate)}
+                      >
+                        <Icon className="h-4.5 w-4.5" />
+                      </span>
+                      <span className="min-w-0 flex-1 text-body font-semibold text-foreground dark:text-paper">
+                        {title}
+                      </span>
+                      <ChevronDownIcon
+                        className={cn(
+                          "h-4.5 w-4.5 shrink-0 text-muted-foreground transition-transform duration-(--dur-fast)",
+                          expanded && "rotate-180",
+                        )}
+                        aria-hidden="true"
+                      />
+                    </button>
+
+                    {/* Desktop: architectural card header */}
+                    <div className="hidden items-center justify-between gap-3 sm:flex">
+                      <span
+                        aria-hidden="true"
+                        className={cn("flex h-11 w-11 shrink-0 items-center justify-center rounded-xl", accent.plate)}
+                      >
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <span aria-hidden="true" className={cn("rule-draw block h-0.5 w-8", accent.rule)} />
+                    </div>
+
+                    <p className="mt-5 hidden text-balance text-title font-semibold text-foreground sm:block dark:text-paper">
+                      {title}
+                    </p>
+
+                    <div
+                      className={cn(
+                        "grid transition-[grid-template-rows,opacity] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                        expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                      )}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="mt-2.5 text-pretty text-body leading-relaxed text-muted-foreground sm:mt-2 dark:text-mist">
+                          {description}
+                        </p>
+                      </div>
                     </div>
                   </li>
                 );
               })}
-            </ul>
+            </Reveal>
           </div>
         </Reveal>
       </Container>

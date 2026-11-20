@@ -29,6 +29,17 @@ const TOO_MANY: Record<Lang, string> = {
   rom: "But zumavimata. Azhuker zalag thaj zumav palem.",
 };
 
+// What to do when the code does not arrive. The button it names is the form's own "resend" label.
+const CODE_HELP: Record<Lang, (resendLabel: string) => string> = {
+  ro: (resend) => `Nu a venit emailul? Caută în folderul spam, apoi apasă pe „${resend}”.`,
+  en: (resend) => `No email yet? Look in the spam folder, then tap "${resend}".`,
+  sq: (resend) => `Nuk erdhi emaili? Shiko te dosja spam, pastaj shtyp „${resend}“.`,
+  it: (resend) => `Nessuna email? Guarda nella cartella spam, poi tocca «${resend}».`,
+  hr: (resend) => `Nema e-pošte? Pogledaj u mapu neželjene pošte, zatim dodirni „${resend}“.`,
+  rom: (resend) => `Na avilo o emailo? Dikh and-o spam, pal kodo azba „${resend}”.`,
+  ru: (resend) => `Письмо не пришло? Проверьте папку «Спам», затем нажмите «${resend}».`,
+};
+
 const SIGN_IN_LEGAL_NOTICE: Record<Lang, { before: string; terms: string; between: string; privacy: string; after: string }> = {
   ro: {
     before: "Folosim adresa ta de email doar pentru autentificare și serviciile cerute. Nu vindem datele tale. Continuând, accepți",
@@ -355,6 +366,9 @@ export function SignInForm({
                   {form.codeResent}
                 </p>
               ) : null}
+              <p className="mt-2 text-body text-muted-foreground">
+                {CODE_HELP[lang](form.resendCode)}
+              </p>
               <div className="mt-6">
                 <Button
                   type="submit"

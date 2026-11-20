@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AccessibilitySettingsList } from "@/components/layout/AccessibilitySettingsList";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { PageListenAction } from "@/components/ui/PageListenAction";
@@ -25,7 +26,7 @@ export default async function AccessibilityPage() {
         <PageHeader
           title={copy.title}
           lead={copy.description}
-          actions={<PageListenAction lang={lang} segments={[copy.title, copy.description, ...copy.paragraphs]} />}
+          actions={<PageListenAction lang={lang} segments={[copy.title, copy.description, ...copy.paragraphs, copy.settingsLead]} />}
         />
 
         {/* The opening paragraph leads at a larger size in the body colour; the rest follow at a
@@ -39,6 +40,7 @@ export default async function AccessibilityPage() {
               {paragraph}
             </p>
           ))}
+          <AccessibilitySettingsList lang={lang} lead={copy.settingsLead} />
           <p>
             {copy.contactLead}{" "}
             <a href={`mailto:${LEGAL_OPERATOR.contactEmail}`} className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border">

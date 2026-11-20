@@ -4,8 +4,7 @@ export type CookieConsentCopy = {
   bannerRegionLabel: string;
   bannerTitle: string;
   bannerBody: string;
-  necessaryOnly: string;
-  acceptAll: string;
+  acknowledge: string;
   openSettings: string;
   policyLinkLabel: string;
   privacyLinkLabel: string;
@@ -16,242 +15,225 @@ export type CookieConsentCopy = {
   necessaryTitle: string;
   necessaryStatus: string;
   necessaryBody: string;
-  marketingTitle: string;
-  marketingStatusOn: string;
-  marketingStatusOff: string;
-  marketingBody: string;
-  marketingToggleAria: string;
-  saveChoices: string;
-  savedStatus: string;
+  securityTitle: string;
+  securityStatus: string;
+  securityBody: string;
+  adsTitle: string;
+  adsStatus: string;
+  adsBody: string;
   currentStatusLabel: string;
-  currentStatusAll: string;
-  currentStatusNecessary: string;
-  currentStatusUnset: string;
+  currentStatusActive: string;
 };
 
 export const cookieConsentCopy: Record<Lang, CookieConsentCopy> = {
   ro: {
-    bannerRegionLabel: "Preferințe cookie-uri",
+    bannerRegionLabel: "Informare cookie-uri",
     bannerTitle: "Cookie-uri și confidențialitate",
     bannerBody:
-      "Folosim cookie-uri strict necesare ca aplicația să funcționeze. Doar cu acordul tău activăm Meta Pixel pe paginile publice de informare, pentru a măsura impactul campaniilor. Nu trimitem niciodată date de sănătate.",
-    necessaryOnly: "Doar necesare",
-    acceptAll: "Acceptă toate",
-    openSettings: "Setări cookie-uri",
+      "Folosim doar cookie-uri strict necesare ca aplicația să funcționeze și protecție anti-roboți pe formularele publice. Nu folosim cookie-uri de publicitate sau urmărire comercială.",
+    acknowledge: "Am înțeles",
+    openSettings: "Detalii cookie-uri",
     policyLinkLabel: "Politica de cookie-uri",
     privacyLinkLabel: "Politica de confidențialitate",
     footerSettingsLink: "Setări cookie-uri",
-    dialogTitle: "Setări cookie-uri",
+    dialogTitle: "Cookie-uri în RediHealth",
     dialogIntro:
-      "Poți alege ce cookie-uri opționale permiți și îți poți schimba decizia oricând. Fără cookie-uri opționale poți folosi toate funcțiile RediHealth.",
-    closeLabel: "Închide setările",
+      "RediHealth folosește exclusiv cookie-uri esențiale și protecție de securitate. Nu folosim instrumente de publicitate și nu vindem datele tale.",
+    closeLabel: "Închide fereastra",
     necessaryTitle: "Cookie-uri strict necesare",
     necessaryStatus: "Mereu active",
     necessaryBody:
-      "Păstrează limba aleasă, autentificarea sigură, preferințele de accesibilitate și protecția anti-roboți pe formularele publice.",
-    marketingTitle: "Măsurare campanii (Meta Pixel)",
-    marketingStatusOn: "Activat",
-    marketingStatusOff: "Dezactivat",
-    marketingBody:
-      "Meta Platforms Ireland Ltd. (Pixel ID 2195130208072639). Se încarcă doar cu acordul tău și doar pe pagini publice generale. Nu rulează pe paginile de simptome, rețete, asistent, apel cu medicul sau contul tău.",
-    marketingToggleAria: "Permite cookie-urile opționale de măsurare campanii (Meta Pixel)",
-    saveChoices: "Salvează",
-    savedStatus: "Preferințele tale au fost salvate.",
+      "Păstrează limba aleasă, județul selectat, autentificarea sigură și preferințele de accesibilitate.",
+    securityTitle: "Protecție anti-roboți (Google reCAPTCHA)",
+    securityStatus: "Pe formulare publice",
+    securityBody:
+      "Protejează formularele publice împotriva abuzurilor automate. Verifică doar semnale tehnice din browser și nu primește niciodată date de sănătate.",
+    adsTitle: "Publicitate și urmărire comercială",
+    adsStatus: "Nu se folosesc",
+    adsBody:
+      "RediHealth nu încarcă cookie-uri de marketing, publicitate sau urmărire comercială.",
     currentStatusLabel: "Stare actuală",
-    currentStatusAll: "Cookie-uri necesare și măsurare campanii (Meta Pixel) active.",
-    currentStatusNecessary: "Doar cookie-uri strict necesare active.",
-    currentStatusUnset: "Nu ai ales încă preferințele. Cookie-urile opționale sunt oprite.",
+    currentStatusActive:
+      "Sunt active doar cookie-urile strict necesare. Nu există cookie-uri de publicitate sau urmărire comercială.",
   },
   en: {
-    bannerRegionLabel: "Cookie preferences",
+    bannerRegionLabel: "Cookie notice",
     bannerTitle: "Cookies and privacy",
     bannerBody:
-      "We use strictly necessary cookies so RediHealth works reliably. Only with your consent do we load Meta Pixel on public information pages to measure campaign reach. We never send health data.",
-    necessaryOnly: "Necessary only",
-    acceptAll: "Accept all",
-    openSettings: "Cookie settings",
+      "We use only strictly necessary cookies so RediHealth works reliably, plus bot protection on public forms. We do not use advertising or commercial tracking cookies.",
+    acknowledge: "Understood",
+    openSettings: "Cookie details",
     policyLinkLabel: "Cookie policy",
     privacyLinkLabel: "Privacy policy",
     footerSettingsLink: "Cookie settings",
-    dialogTitle: "Cookie settings",
+    dialogTitle: "Cookies on RediHealth",
     dialogIntro:
-      "Choose which optional cookies you allow. You can change or withdraw your consent at any time. All RediHealth features work without optional cookies.",
-    closeLabel: "Close settings",
+      "RediHealth uses only essential cookies and security protection. We do not run advertising trackers and never sell your data.",
+    closeLabel: "Close dialog",
     necessaryTitle: "Strictly necessary cookies",
     necessaryStatus: "Always active",
     necessaryBody:
-      "Keep your language choice, secure sign-in session, accessibility preferences and bot protection on public forms.",
-    marketingTitle: "Campaign measurement (Meta Pixel)",
-    marketingStatusOn: "Active",
-    marketingStatusOff: "Off",
-    marketingBody:
-      "Meta Platforms Ireland Ltd. (Pixel ID 2195130208072639). Loads only with your consent and only on general public pages. Never runs on symptom check, prescription review, assistant, doctor call or account pages.",
-    marketingToggleAria: "Allow optional campaign measurement cookies (Meta Pixel)",
-    saveChoices: "Save choices",
-    savedStatus: "Your cookie preferences have been saved.",
+      "Keep your chosen language, selected area, secure sign-in session and accessibility preferences.",
+    securityTitle: "Bot protection (Google reCAPTCHA)",
+    securityStatus: "On public forms",
+    securityBody:
+      "Protects public forms against automated abuse. Checks technical browser signals only and never receives health data.",
+    adsTitle: "Advertising and commercial tracking",
+    adsStatus: "Not used",
+    adsBody:
+      "RediHealth does not load marketing, advertising or commercial tracking cookies.",
     currentStatusLabel: "Current setting",
-    currentStatusAll: "Necessary cookies and campaign measurement (Meta Pixel) are active.",
-    currentStatusNecessary: "Only strictly necessary cookies are active.",
-    currentStatusUnset: "No choice saved yet. Optional cookies are off.",
+    currentStatusActive:
+      "Only strictly necessary cookies are active. No advertising or commercial tracking cookies are used.",
   },
   sq: {
-    bannerRegionLabel: "Preferencat e cookie-ve",
+    bannerRegionLabel: "Njoftimi për cookie-t",
     bannerTitle: "Cookie-t dhe privatësia",
     bannerBody:
-      "Përdorim cookie të domosdoshme që aplikacioni të funksionojë. Vetëm me pëlqimin tënd aktivizojmë Meta Pixel në faqet publike informative. Nuk dërgojmë kurrë të dhëna shëndetësore.",
-    necessaryOnly: "Vetëm të nevojshme",
-    acceptAll: "Prano të gjitha",
-    openSettings: "Cilësimet e cookie-ve",
+      "Përdorim vetëm cookie të domosdoshme që aplikacioni të funksionojë dhe mbrojtje kundër robotëve në formularët publikë. Nuk përdorim cookie reklamimi apo gjurmimi tregtar.",
+    acknowledge: "E kuptova",
+    openSettings: "Detajet e cookie-ve",
     policyLinkLabel: "Politika e cookie-ve",
     privacyLinkLabel: "Politika e privatësisë",
     footerSettingsLink: "Cilësimet e cookie-ve",
-    dialogTitle: "Cilësimet e cookie-ve",
+    dialogTitle: "Cookie-t në RediHealth",
     dialogIntro:
-      "Zgjidh cilat cookie opsionale lejon. Mund ta ndryshosh vendimin kurdoherë. Të gjitha funksionet e RediHealth punojnë pa cookie opsionale.",
-    closeLabel: "Mbyll cilësimet",
+      "RediHealth përdor vetëm cookie thelbësore dhe mbrojtje sigurie. Nuk përdorim gjurmues reklamimi dhe nuk i shesim të dhënat e tua.",
+    closeLabel: "Mbyll dritaren",
     necessaryTitle: "Cookie të domosdoshme",
     necessaryStatus: "Gjithmonë aktive",
     necessaryBody:
-      "Ruajnë gjuhën e zgjedhur, hyrjen e sigurt, preferencat e aksesueshmërisë dhe mbrojtjen nga robotët në formularët publikë.",
-    marketingTitle: "Matja e fushatave (Meta Pixel)",
-    marketingStatusOn: "Aktiv",
-    marketingStatusOff: "Joaktiv",
-    marketingBody:
-      "Meta Platforms Ireland Ltd. (Pixel ID 2195130208072639). Ngarkohet vetëm me pëlqimin tënd në faqe publike të përgjithshme. Nuk aktivizohet në faqet e simptomave, recetave, asistentit, thirrjes me mjekun apo llogarisë.",
-    marketingToggleAria: "Lejo cookie-t opsionale për matjen e fushatave (Meta Pixel)",
-    saveChoices: "Ruaj zgjedhjet",
-    savedStatus: "Preferencat e tua u ruajtën.",
+      "Ruajnë gjuhën e zgjedhur, zonën, hyrjen e sigurt dhe preferencat e aksesueshmërisë.",
+    securityTitle: "Mbrojtja nga robotët (Google reCAPTCHA)",
+    securityStatus: "Në formularë publikë",
+    securityBody:
+      "Mbron formularët publikë nga abuzimet automatike. Kontrollon vetëm sinjale teknike të shfletuesit dhe nuk merr kurrë të dhëna shëndetësore.",
+    adsTitle: "Reklamim dhe gjurmim tregtar",
+    adsStatus: "Nuk përdoren",
+    adsBody:
+      "RediHealth nuk ngarkon cookie marketingu, reklamimi apo gjurmimi tregtar.",
     currentStatusLabel: "Gjendja aktuale",
-    currentStatusAll: "Cookie-t e domosdoshme dhe matja e fushatave (Meta Pixel) janë aktive.",
-    currentStatusNecessary: "Vetëm cookie-t e domosdoshme janë aktive.",
-    currentStatusUnset: "Nuk ke zgjedhur ende. Cookie-t opsionale janë fikur.",
+    currentStatusActive:
+      "Janë aktive vetëm cookie-t e domosdoshme. Nuk përdoren cookie reklamimi.",
   },
   it: {
-    bannerRegionLabel: "Preferenze sui cookie",
+    bannerRegionLabel: "Informativa sui cookie",
     bannerTitle: "Cookie e privacy",
     bannerBody:
-      "Usiamo cookie strettamente necessari per far funzionare RediHealth. Solo con il tuo consenso attiviamo Meta Pixel sulle pagine informative pubbliche per misurare le campagne. Non inviamo mai dati sanitari.",
-    necessaryOnly: "Solo necessari",
-    acceptAll: "Accetta tutti",
-    openSettings: "Impostazioni cookie",
+      "Usiamo solo cookie strettamente necessari al funzionamento di RediHealth e protezione anti-bot sui moduli pubblici. Non usiamo cookie pubblicitari o di tracciamento commerciale.",
+    acknowledge: "Ho capito",
+    openSettings: "Dettagli cookie",
     policyLinkLabel: "Politica sui cookie",
     privacyLinkLabel: "Informativa sulla privacy",
     footerSettingsLink: "Impostazioni cookie",
-    dialogTitle: "Impostazioni cookie",
+    dialogTitle: "Cookie su RediHealth",
     dialogIntro:
-      "Scegli quali cookie facoltativi consentire. Puoi cambiare o revocare il consenso in qualsiasi momento. Tutte le funzioni di RediHealth funzionano senza cookie facoltativi.",
-    closeLabel: "Chiudi impostazioni",
+      "RediHealth utilizza esclusivamente cookie essenziali e protezione di sicurezza. Non usiamo tracker pubblicitari e non vendiamo i tuoi dati.",
+    closeLabel: "Chiudi finestra",
     necessaryTitle: "Cookie strettamente necessari",
     necessaryStatus: "Sempre attivi",
     necessaryBody:
-      "Mantengono la lingua scelta, l'accesso sicuro, le preferenze di accessibilità e la protezione anti-bot sui moduli pubblici.",
-    marketingTitle: "Misurazione campagne (Meta Pixel)",
-    marketingStatusOn: "Attivo",
-    marketingStatusOff: "Disattivato",
-    marketingBody:
-      "Meta Platforms Ireland Ltd. (Pixel ID 2195130208072639). Si carica solo con il tuo consenso e solo su pagine pubbliche generali. Non si attiva su controllo sintomi, ricette, assistente, chiamate con il medico o account.",
-    marketingToggleAria: "Consenti i cookie facoltativi di misurazione campagne (Meta Pixel)",
-    saveChoices: "Salva scelte",
-    savedStatus: "Le tue preferenze sui cookie sono state salvate.",
+      "Mantengono la lingua scelta, l'area selezionata, l'accesso sicuro e le preferenze di accessibilità.",
+    securityTitle: "Protezione anti-bot (Google reCAPTCHA)",
+    securityStatus: "Sui moduli pubblici",
+    securityBody:
+      "Protegge i moduli pubblici dagli abusi automatici. Controlla solo segnali tecnici del browser e non riceve mai dati sanitari.",
+    adsTitle: "Pubblicità e tracciamento commerciale",
+    adsStatus: "Non utilizzati",
+    adsBody:
+      "RediHealth non carica cookie di marketing, pubblicità o tracciamento commerciale.",
     currentStatusLabel: "Stato attuale",
-    currentStatusAll: "Cookie necessari e misurazione campagne (Meta Pixel) attivi.",
-    currentStatusNecessary: "Solo cookie strettamente necessari attivi.",
-    currentStatusUnset: "Nessuna scelta salvata. I cookie facoltativi sono disattivati.",
+    currentStatusActive:
+      "Sono attivi solo i cookie strettamente necessari. Nessun cookie pubblicitario è in uso.",
   },
   hr: {
-    bannerRegionLabel: "Postavke kolačića",
+    bannerRegionLabel: "Obavijest o kolačićima",
     bannerTitle: "Kolačići i privatnost",
     bannerBody:
-      "Koristimo nužne kolačiće kako bi RediHealth ispravno radio. Samo uz tvoju privolu učitavamo Meta Pixel na javnim informativnim stranicama radi mjerenja kampanja. Nikada ne šaljemo zdravstvene podatke.",
-    necessaryOnly: "Samo nužni",
-    acceptAll: "Prihvati sve",
-    openSettings: "Postavke kolačića",
+      "Koristimo samo nužne kolačiće za ispravan rad platforme RediHealth i zaštitu od botova na javnim obrascima. Ne koristimo oglašivačke ni komercijalne kolačiće za praćenje.",
+    acknowledge: "Razumijem",
+    openSettings: "Detalji kolačića",
     policyLinkLabel: "Politika kolačića",
     privacyLinkLabel: "Pravila privatnosti",
     footerSettingsLink: "Postavke kolačića",
-    dialogTitle: "Postavke kolačića",
+    dialogTitle: "Kolačići na RediHealthu",
     dialogIntro:
-      "Odaberi koje neobavezne kolačiće dopuštaš. Odluku možeš promijeniti ili povući u bilo kojem trenutku. Sve funkcije RediHealtha rade bez neobaveznih kolačića.",
-    closeLabel: "Zatvori postavke",
+      "RediHealth koristi isključivo nužne kolačiće i sigurnosnu zaštitu. Ne koristimo oglašivačke alate za praćenje i ne prodajemo tvoje podatke.",
+    closeLabel: "Zatvori prozor",
     necessaryTitle: "Nužni kolačići",
     necessaryStatus: "Uvijek aktivni",
     necessaryBody:
-      "Čuvaju odabrani jezik, sigurnu prijavu, postavke pristupačnosti i zaštitu od botova na javnim obrascima.",
-    marketingTitle: "Mjerenje kampanja (Meta Pixel)",
-    marketingStatusOn: "Uključeno",
-    marketingStatusOff: "Isključeno",
-    marketingBody:
-      "Meta Platforms Ireland Ltd. (Pixel ID 2195130208072639). Učitava se samo uz tvoju privolu na općim javnim stranicama. Nikada se ne pokreće na provjeri simptoma, receptima, asistentu, pozivu s liječnikom ili računu.",
-    marketingToggleAria: "Dopusti neobavezne kolačiće za mjerenje kampanja (Meta Pixel)",
-    saveChoices: "Spremi odabir",
-    savedStatus: "Tvoje postavke kolačića su spremljene.",
+      "Čuvaju odabrani jezik, područje, sigurnu prijavu i postavke pristupačnosti.",
+    securityTitle: "Zaštita od botova (Google reCAPTCHA)",
+    securityStatus: "Na javnim obrascima",
+    securityBody:
+      "Štiti javne obrasce od automatizirane zlouporabe. Provjerava samo tehničke signale preglednika i nikada ne prima zdravstvene podatke.",
+    adsTitle: "Oglašavanje i komercijalno praćenje",
+    adsStatus: "Ne koriste se",
+    adsBody:
+      "RediHealth ne učitava marketinške ni oglašivačke kolačiće za praćenje.",
     currentStatusLabel: "Trenutno stanje",
-    currentStatusAll: "Nužni kolačići i mjerenje kampanja (Meta Pixel) su uključeni.",
-    currentStatusNecessary: "Uključeni su samo nužni kolačići.",
-    currentStatusUnset: "Odabir još nije spremljen. Neobavezni kolačići su isključeni.",
+    currentStatusActive:
+      "Aktivni su samo nužni kolačići. Oglašivački kolačići se ne koriste.",
   },
   rom: {
-    bannerRegionLabel: "Cookie lasharimata",
+    bannerRegionLabel: "Cookie informaciya",
     bannerTitle: "Cookie thaj garavipe",
     bannerBody:
-      "Labaras cookie kay trubul te kerel buchi o RediHealth. Numay te des cho mangipe putras Meta Pixel pe putarde informaciyake riga. Shukar na bichhalas sastipnaske podatke.",
-    necessaryOnly: "Numay trubul",
-    acceptAll: "Kames savore",
-    openSettings: "Cookie lasharimata",
+      "Labaras numay cookie kay trubul te kerel buchi o RediHealth thaj arakhipe katar e roboturya. Na labaras cookie vash reklame.",
+    acknowledge: "Xatyardem",
+    openSettings: "Cookie detalya",
     policyLinkLabel: "Cookie pravila",
     privacyLinkLabel: "Garavipnaske pravila",
     footerSettingsLink: "Cookie lasharimata",
-    dialogTitle: "Cookie lasharimata",
+    dialogTitle: "Cookie ko RediHealth",
     dialogIntro:
-      "Alosar save aver cookie kames. Shay te paruves cho mangipe kana kames. Savori buchi ko RediHealth kerel buchi vi bi aver cookie-ngo.",
-    closeLabel: "Phand lasharimata",
+      "RediHealth labarel numay cookie kay trubul thaj arakhipe. Na labaras reklame thaj na bikinas che podatke.",
+    closeLabel: "Phand",
     necessaryTitle: "Cookie kay trubul",
     necessaryStatus: "Sako drom putarde",
     necessaryBody:
-      "Inkren chi chhib, o chacho dinipe andre, e lasharimata te labares thaj o arakhipe katar e roboturya.",
-    marketingTitle: "Kampaniyako dikhipe (Meta Pixel)",
-    marketingStatusOn: "Putardo",
-    marketingStatusOff: "Phando",
-    marketingBody:
-      "Meta Platforms Ireland Ltd. (Pixel ID 2195130208072639). Putrel pes numay che mangipesa pe putarde riga. Na kerel buchi pe simptome, recepte, asistento, svato e doktoreya vay cho konto.",
-    marketingToggleAria: "De drom e cookie-nge vash kampaniyako dikhipe (Meta Pixel)",
-    saveChoices: "Garav alosaripe",
-    savedStatus: "Che lasharimata sine garavde.",
+      "Inkren chi chhib, o than, o chacho dinipe andre thaj e lasharimata te labares.",
+    securityTitle: "Arakhipe katar e roboturya (Google reCAPTCHA)",
+    securityStatus: "Pe putarde formularya",
+    securityBody:
+      "Arakhel e putarde formularya. Dikhel numay tehnikane podatke thaj shukar na lel sastipnaske podatke.",
+    adsTitle: "Reklame",
+    adsStatus: "Na labaren pes",
+    adsBody:
+      "RediHealth na labarel cookie vash reklame vay bizeripe.",
     currentStatusLabel: "Akana",
-    currentStatusAll: "Cookie kay trubul thaj Meta Pixel si putarde.",
-    currentStatusNecessary: "Numay e cookie kay trubul si putarde.",
-    currentStatusUnset: "Inka na alosardyan. E aver cookie si phande.",
+    currentStatusActive:
+      "Numay e cookie kay trubul si putarde. Nay reklame cookie.",
   },
   ru: {
-    bannerRegionLabel: "Настройки файлов cookie",
+    bannerRegionLabel: "Уведомление о файлах cookie",
     bannerTitle: "Файлы cookie и конфиденциальность",
     bannerBody:
-      "Мы используем строго необходимые файлы cookie для работы RediHealth. Только с вашего согласия мы загружаем Meta Pixel на общедоступных информационных страницах для оценки охвата кампаний. Данные о здоровье никогда не передаются.",
-    necessaryOnly: "Только нужные",
-    acceptAll: "Принять все",
-    openSettings: "Настройки cookie",
+      "Мы используем только строго необходимые файлы cookie для работы RediHealth и защиту от ботов в публичных формах. Мы не используем рекламные или коммерческие трекеры.",
+    acknowledge: "Понятно",
+    openSettings: "Подробнее о cookie",
     policyLinkLabel: "Политика cookie",
     privacyLinkLabel: "Политика конфиденциальности",
     footerSettingsLink: "Настройки cookie",
-    dialogTitle: "Настройки cookie",
+    dialogTitle: "Файлы cookie в RediHealth",
     dialogIntro:
-      "Выберите, какие необязательные файлы cookie вы разрешаете. Вы можете изменить или отозвать согласие в любое время. Все функции RediHealth работают и без них.",
-    closeLabel: "Закрыть настройки",
+      "RediHealth использует только необходимые файлы cookie и средства безопасности. Мы не используем рекламные трекеры и не продаём ваши данные.",
+    closeLabel: "Закрыть окно",
     necessaryTitle: "Строго необходимые cookie",
     necessaryStatus: "Всегда включены",
     necessaryBody:
-      "Сохраняют выбранный язык, безопасный вход, настройки доступности и защиту от ботов в публичных формах.",
-    marketingTitle: "Оценка кампаний (Meta Pixel)",
-    marketingStatusOn: "Включено",
-    marketingStatusOff: "Отключено",
-    marketingBody:
-      "Meta Platforms Ireland Ltd. (Pixel ID 2195130208072639). Загружается только с вашего согласия на общих публичных страницах. Никогда не работает на страницах проверки симптомов, рецептов, помощника, звонков врачу или личного кабинета.",
-    marketingToggleAria: "Разрешить необязательные cookie для оценки кампаний (Meta Pixel)",
-    saveChoices: "Сохранить выбор",
-    savedStatus: "Ваши настройки cookie сохранены.",
+      "Сохраняют выбранный язык, регион, безопасный вход и настройки доступности.",
+    securityTitle: "Защита от ботов (Google reCAPTCHA)",
+    securityStatus: "В публичных формах",
+    securityBody:
+      "Защищает публичные формы от автоматических злоупотреблений. Проверяет только технические сигналы браузера и никогда не получает данные о здоровье.",
+    adsTitle: "Реклама и коммерческое отслеживание",
+    adsStatus: "Не используются",
+    adsBody:
+      "RediHealth не загружает маркетинговые, рекламные или коммерческие файлы cookie.",
     currentStatusLabel: "Текущий статус",
-    currentStatusAll: "Включены необходимые cookie и оценка кампаний (Meta Pixel).",
-    currentStatusNecessary: "Включены только строго необходимые cookie.",
-    currentStatusUnset: "Выбор ещё не сделан. Необязательные cookie отключены.",
+    currentStatusActive:
+      "Активны только строго необходимые файлы cookie. Рекламные cookie не используются.",
   },
 };

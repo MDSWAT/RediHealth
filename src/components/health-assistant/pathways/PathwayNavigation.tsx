@@ -1,22 +1,15 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+import { ListenButton } from "@/components/ui/ListenButton";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { LegalRightsCard } from "@/components/health-assistant/LegalRightsCard";
-import { MediatorRequestModal } from "@/components/health-assistant/MediatorRequestModal";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
-import {
-  getAssistantCopy,
-  type NavigationScenarioId,
-  useAssistantCopy,
-} from "@/components/health-assistant/assistant-copy";
-import {
-  optionArrow,
-  optionRow,
-  optionTitle,
-  stepHeading,
-  stepLead,
-  subHeading,
-} from "@/components/health-assistant/step-ui";
+import { type NavigationScenarioId, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
+import { optionArrow, optionRow, optionTitle, stepHeading, subHeading } from "@/components/health-assistant/step-ui";
+import { useLanguage } from "@/lib/i18n/language-context";
+import { withLangPrefix } from "@/lib/i18n/routing";
+import type { Lang } from "@/lib/i18n/translations";
 
 interface PathwayNavigationProps {
   step: 2 | 3;
@@ -27,14 +20,28 @@ interface PathwayNavigationProps {
 
 const SCENARIO_IDS: NavigationScenarioId[] = ["family_doctor", "no_insurance_id", "hospital_documents"];
 
+/**
+ * Label of the link to the mediator request on the mediators page (/mediatori#solicita), the same
+ * route the symptom check result uses. The wording is the one the request button already had.
+ */
+const MEDIATOR_LINK_LABEL: Record<Lang, string> = {
+  ro: "Cere un mediator sanitar",
+  en: "Ask a health mediator",
+  sq: "Kërko mediator shëndeti",
+  it: "Chiedi un mediatore",
+  hr: "Zatraži medijatora",
+  rom: "Mang jekhe mediatores",
+  ru: "Помощь медиатора",
+};
+
 export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: PathwayNavigationProps) {
   const { nav } = useAssistantCopy();
+  const { lang } = useLanguage();
 
   if (step === 2) {
     return (
       <div>
         <h2 className={stepHeading}>{nav.heading}</h2>
-        <p className={stepLead}>{nav.lead}</p>
 
         <ul className="mt-5 grid grid-cols-1 gap-3">
           {SCENARIO_IDS.map((id) => {
@@ -67,7 +74,20 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
 
   return (
     <div>
-      <h2 className="text-section font-semibold leading-snug text-foreground text-balance">{scenario.title}</h2>
+      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
+        <h2 className="min-w-0 text-section font-semibold leading-snug text-foreground text-balance">
+          {scenario.title}
+        </h2>
+        {/* Reads the whole plan: the page header's button only reads the page title. */}
+        <ListenButton
+          className="shrink-0"
+          getText={() =>
+            [scenario.title, nav.planHeading, ...scenario.steps.flatMap((item) => [item.title, item.body])]
+              .map((part) => (/[.?!:…]$/.test(part) ? part : `${part}.`))
+              .join(" ")
+          }
+        />
+      </div>
 
       <h3 className={`mt-8 ${subHeading}`}>{nav.planHeading}</h3>
       {/*
@@ -106,8 +126,10 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
       <section className="mt-10 border-t border-border pt-8">
         <h3 className={subHeading}>{nav.mediatorTitle}</h3>
         <p className="mt-1 text-body text-muted-foreground">{nav.mediatorBody}</p>
-        {/* Mediators read requests in Romanian, so the scenario is sent in Romanian on every page. */}
-        <MediatorRequestModal className="mt-4" defaultScenario={getAssistantCopy("ro").nav.scenarios[currentId].title} />
+        {/* The request form on the mediators page; the old pop-up here asked for a Romanian county. */}
+        <Button href={withLangPrefix("/mediatori#solicita", lang)} size="lg" className="mt-4">
+          <span>{MEDIATOR_LINK_LABEL[lang]}</span>
+        </Button>
       </section>
 
       <UniversalDoctorExit pathway="navigation" summary={nav.summary(scenario.title)} />

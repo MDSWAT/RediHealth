@@ -7,6 +7,7 @@ import { playEarcon } from "@/lib/audio/earcon";
 import { usePageAutoRead } from "@/lib/audio/page-auto-read";
 import { formatSpeechText, speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
+import { useVoicePresence } from "@/lib/audio/voice-presence";
 import { cn } from "@/lib/cn";
 import { SPEECH_LANG_BY_LOCALE } from "@/lib/i18n/speech-locales";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -84,6 +85,13 @@ export interface ListenButtonProps {
   autoRead?: boolean;
   /** Optional content key to re-trigger Auto-read when dynamic content updates in place. */
   autoReadKey?: string;
+  /**
+   * Hide the button when it is certain that no voice exists: the server said it has none and
+   * the phone has none in this language. It stays visible while that is still unknown and
+   * comes back if a voice appears. Defaults to on for buttons that speak through the shared
+   * engine themselves, off for buttons driven by `onToggle`, whose owner may have its own audio.
+   */
+  hideWhenNoVoice?: boolean;
   className?: string;
   /** Speaker icon colour. Defaults to sapphire; pass a light colour on ink or sapphire grounds. */
   iconClassName?: string;
@@ -109,6 +117,7 @@ export function ListenButton({
   closePlayerOnStop = false,
   autoRead = false,
   autoReadKey,
+  hideWhenNoVoice,
   className,
   iconClassName = "text-sapphire dark:text-sapphire-border",
 }: ListenButtonProps) {
@@ -117,8 +126,11 @@ export function ListenButton({
   const effectiveContentLang = contentLang ?? lang;
   const voiceAvailable = isVoiceEnabled(lang) && isVoiceEnabled(effectiveContentLang);
 
+  const voicePresence = useVoicePresence(String(effectiveContentLang));
+
   const [isPlayingLocal, setIsPlayingLocal] = useState(false);
   const [playbackError, setPlaybackError] = useState<string | null>(null);
+  const [engineLoading, setEngineLoading] = useState(false);
   const playingLocalRef = useRef(false);
   const activeAttemptRef = useRef(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -140,6 +152,7 @@ export function ListenButton({
     let mounted = false;
     const unsubscribe = speechEngine.subscribeState((state) => {
       if (!mounted) return;
+      setEngineLoading(state.isLoading);
       if (activeAttemptRef.current && state.activeTier === "transcript" && !state.isSpeaking) {
         activeAttemptRef.current = false;
         playingLocalRef.current = false;
@@ -212,9 +225,16 @@ export function ListenButton({
 
   if (!voiceAvailable) return null;
 
+  // Hidden only when no voice can exist, never while that is unknown, never mid-playback, and
+  // never while the "voice unavailable" line is showing: a missing button is worse than a message.
+  const mayHide = hideWhenNoVoice ?? !onToggle;
+  if (mayHide && voicePresence === "none" && !playing && !playbackError) return null;
+
   const copy = LISTEN_COPY[lang] ?? LISTEN_COPY[DEFAULT_LANG];
   const resolvedListen = label ?? copy.listen;
   const resolvedStop = stopLabel ?? copy.stop;
+  // Between the tap and the first sound the button says so, instead of "Stop" over silence.
+  const waitingForVoice = Boolean(playing) && engineLoading;
 
   const handleClick = () => {
     setPlaybackError(null);
@@ -275,6 +295,7 @@ export function ListenButton({
       onClick={handleClick}
       disabled={disabled}
       aria-pressed={playing}
+      aria-busy={waitingForVoice || undefined}
       aria-label={ariaLabel}
       title={title}
       className={cn(
@@ -293,7 +314,9 @@ export function ListenButton({
           aria-hidden="true"
         />
       )}
-      <span className="whitespace-nowrap">{playing ? resolvedStop : resolvedListen}</span>
+      <span className="whitespace-nowrap">
+        {waitingForVoice ? copy.loading : playing ? resolvedStop : resolvedListen}
+      </span>
     </Button>
   );
 

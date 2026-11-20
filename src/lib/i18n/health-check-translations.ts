@@ -72,6 +72,8 @@ export interface EmergencyStrings {
   whyEmergencyPrefix: string;
   call112Now: string;
   continueReview: string;
+  /** Closes the 112 pop-up and unpicks the emergency sign, for a row tapped by mistake. */
+  notThis: string;
 }
 
 export interface HealthCheckWizardUI {
@@ -213,7 +215,8 @@ const rawTranslations = {
         "description": "Не ждите. Если вы не можете позвонить, немедленно обратитесь в отделение неотложной помощи. Не садитесь за руль.",
         "whyEmergencyPrefix": "Вы выбрали:",
         "call112Now": "Позвоните 112 сейчас",
-        "continueReview": "Я понимаю"
+        "continueReview": "Я понимаю",
+        "notThis": "У меня не это"
       },
       "structure3DLabel": "3D-структура",
       "sensationLabel": "ощущение",
@@ -652,15 +655,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Сегодня или вчера",
-        "hint": "Менее 24 часов"
+        "hint": ""
       },
       "days": {
         "label": "2–7 дней",
-        "hint": "От 2 до 7 дней"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 недели",
-        "hint": "От 1 до 2 недель"
+        "hint": ""
       },
       "chronic": {
         "label": "Более 2 недель",
@@ -808,7 +811,8 @@ const rawTranslations = {
         "description": "Nu aștepta. Dacă nu poți suna, mergi repede la urgențe. Nu conduce singur.",
         "whyEmergencyPrefix": "Ai ales:",
         "call112Now": "Sună la 112",
-        "continueReview": "Am înțeles"
+        "continueReview": "Am înțeles",
+        "notThis": "Nu am asta"
       },
       "structure3DLabel": "Structură 3D",
       "sensationLabel": "Senzație",
@@ -1249,15 +1253,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Azi sau ieri",
-        "hint": "Sub 24 de ore"
+        "hint": ""
       },
       "days": {
         "label": "De 2–7 zile",
-        "hint": "2 până la 7 zile"
+        "hint": ""
       },
       "weeks": {
         "label": "De 1–2 săptămâni",
-        "hint": "1 până la 2 săptămâni"
+        "hint": ""
       },
       "chronic": {
         "label": "De peste 2 săptămâni",
@@ -1404,7 +1408,8 @@ const rawTranslations = {
         "description": "Don't wait. If you can't call, go to the emergency department quickly. Don't drive yourself.",
         "whyEmergencyPrefix": "You chose:",
         "call112Now": "Call 112 now",
-        "continueReview": "I understand"
+        "continueReview": "I understand",
+        "notThis": "That is not what I have"
       },
       "structure3DLabel": "3D structure",
       "sensationLabel": "Sensation",
@@ -1845,15 +1850,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Today or yesterday",
-        "hint": "Under 24 hours"
+        "hint": ""
       },
       "days": {
         "label": "2–7 days",
-        "hint": "2 to 7 days"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 weeks",
-        "hint": "1 to 2 weeks"
+        "hint": ""
       },
       "chronic": {
         "label": "Over 2 weeks",
@@ -2000,7 +2005,8 @@ const rawTranslations = {
         "description": "Mos prit. Nëse nuk mund të telefonosh, shko shpejt në urgjencë. Mos e drejto vetë makinën.",
         "whyEmergencyPrefix": "Zgjodhe:",
         "call112Now": "Telefono 112",
-        "continueReview": "E kuptova"
+        "continueReview": "E kuptova",
+        "notThis": "Nuk e kam këtë"
       },
       "structure3DLabel": "Struktura 3D",
       "sensationLabel": "Ndjesia",
@@ -2441,15 +2447,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Sot ose dje",
-        "hint": "Nën 24 orë"
+        "hint": ""
       },
       "days": {
         "label": "2–7 ditë",
-        "hint": "2 deri në 7 ditë"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 javë",
-        "hint": "1 deri në 2 javë"
+        "hint": ""
       },
       "chronic": {
         "label": "Mbi 2 javë",
@@ -2596,7 +2602,8 @@ const rawTranslations = {
         "description": "Non aspettare. Se non puoi chiamare, vai subito al pronto soccorso. Non guidare da solo.",
         "whyEmergencyPrefix": "Hai scelto:",
         "call112Now": "Chiama il 112",
-        "continueReview": "Ho capito"
+        "continueReview": "Ho capito",
+        "notThis": "Non ho questo"
       },
       "structure3DLabel": "Struttura 3D",
       "sensationLabel": "Sensazione",
@@ -3037,15 +3044,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Oggi o ieri",
-        "hint": "Meno di 24 ore"
+        "hint": ""
       },
       "days": {
         "label": "2–7 giorni",
-        "hint": "Da 2 a 7 giorni"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 settimane",
-        "hint": "Da 1 a 2 settimane"
+        "hint": ""
       },
       "chronic": {
         "label": "Più di 2 settimane",
@@ -3192,7 +3199,8 @@ const rawTranslations = {
         "description": "Nemoj čekati. Ako ne možeš nazvati, brzo idi na hitni bolnički prijem. Nemoj sam voziti.",
         "whyEmergencyPrefix": "Odabrao si:",
         "call112Now": "Nazovi 112 odmah",
-        "continueReview": "Razumijem"
+        "continueReview": "Razumijem",
+        "notThis": "Nemam to"
       },
       "structure3DLabel": "3D struktura",
       "sensationLabel": "Osjet",
@@ -3633,15 +3641,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Danas ili jučer",
-        "hint": "Manje od 24 sata"
+        "hint": ""
       },
       "days": {
         "label": "2–7 dana",
-        "hint": "Od 2 do 7 dana"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 tjedna",
-        "hint": "Od 1 do 2 tjedna"
+        "hint": ""
       },
       "chronic": {
         "label": "Više od 2 tjedna",
@@ -3788,7 +3796,8 @@ const rawTranslations = {
         "description": "Ma azhuker. Te nashti te akhares, dzha sigo ki bolnitsaki sigardiari. Ma trad korkoro o vurdono.",
         "whyEmergencyPrefix": "Alosardjan:",
         "call112Now": "Akhar 112 akana",
-        "continueReview": "Haljiljom"
+        "continueReview": "Haljiljom",
+        "notThis": "Naj man kadava"
       },
       "structure3DLabel": "3D struktura",
       "sensationLabel": "Hatjarimos",
@@ -4229,15 +4238,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Adives vaj idž",
-        "hint": "Tela 24 ore"
+        "hint": ""
       },
       "days": {
         "label": "2–7 dive",
-        "hint": "2 dzhi 7 dive"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 kurke",
-        "hint": "1 dzhi 2 kurke"
+        "hint": ""
       },
       "chronic": {
         "label": "Maj but katar 2 kurke",

@@ -101,12 +101,22 @@ describe("Single-line icon actions & cross-page filter consistency", () => {
       "src/components/health-check/HealthCheckExplorer.tsx",
       "src/components/telemed/MedicOnlineHero.tsx",
       "src/components/telemed/BookingSmsConfirmation.tsx",
-      "src/components/health-assistant/PrescriptionStructuredResult.tsx",
-      "src/components/portal/PatientPortalView.tsx",
     ];
 
     for (const file of files) {
       expect(readSrc(file), `${file} missing flex-nowrap single-line action row`).toContain("flex-nowrap");
+    }
+
+    // The medicine result and the portal plan name their actions in words (print, send to family),
+    // so the row is whole buttons that wrap, never icon-only squares squeezed onto one line.
+    for (const file of [
+      "src/components/health-assistant/PrescriptionStructuredResult.tsx",
+      "src/components/portal/PatientPortalView.tsx",
+    ]) {
+      const source = readSrc(file);
+      expect(source, `${file} action row must wrap whole buttons`).toContain("flex-wrap items-center gap-2 print:hidden");
+      expect(source, `${file} still renders an icon-only share button`).not.toContain("<FamilyShareButton iconOnly");
+      expect(source, `${file} still forces its action row onto one line`).not.toContain("flex-nowrap");
     }
 
     const findHelpSource = readSrc("src/components/find-help/FindHelpExplorer.tsx");
@@ -117,10 +127,11 @@ describe("Single-line icon actions & cross-page filter consistency", () => {
     expect(findHelpSource).not.toContain("iconActionClass");
 
     const hcSource = readSrc("src/components/health-check/HealthCheckExplorer.tsx");
+    // The result's "where to go" buttons: whole Buttons in a row that wraps from sm.
     const routingMatch = hcSource.match(
-      /const renderRoutingStack = [\s\S]*?(?=\n\s*async function handleCopyDiagnosticSheet)/,
+      /<div className="([^"]*)">\s*\{careActions\.map\(\(action, index\) => \(\s*<Button\b/,
     );
-    expect(routingMatch?.[0]).toContain("sm:flex-wrap");
+    expect(routingMatch?.[1]).toContain("sm:flex-wrap");
     expect(routingMatch?.[0]).toContain("<Button");
     expect(readSrc("src/components/ui/Button.tsx")).toContain("whitespace-nowrap");
 

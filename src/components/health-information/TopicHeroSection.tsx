@@ -28,6 +28,8 @@ export interface TopicHeroSectionProps {
   onListenClick: () => void;
   onStopClick?: () => void;
   isPlayingAudio?: boolean;
+  /** Names this button as the one for the whole guide, apart from the per-section Listen buttons. */
+  listenLabel?: string;
   saveText?: string;
   afterActions?: ReactNode;
   className?: string;
@@ -56,6 +58,7 @@ export function TopicHeroSection({
   onListenClick,
   onStopClick,
   isPlayingAudio = false,
+  listenLabel,
   saveText,
   afterActions,
   className = "",
@@ -97,6 +100,7 @@ export function TopicHeroSection({
                 <ArticleListenButton
                   uiLang={currentLang}
                   textToSpeak={topic.description}
+                  listenLabel={listenLabel}
                   isPlayingExternal={isPlayingAudio}
                   onStartOverride={onListenClick}
                   onStopOverride={() => {

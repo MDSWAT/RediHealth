@@ -123,7 +123,7 @@ export function TopicMythCard({
                 hasAnswered &&
                   chosen &&
                   !isMatch &&
-                  "border-ink-950 bg-ink-950 text-paper dark:border-paper dark:bg-paper dark:text-ink-950",
+                  "border-rose-border bg-rose-tint text-rose-ink",
                 hasAnswered &&
                   !chosen &&
                   isRightOption &&

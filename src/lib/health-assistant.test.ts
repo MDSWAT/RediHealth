@@ -262,4 +262,43 @@ describe("vision recognition confidence calibration", () => {
         "Never stop taking it suddenly without speaking to your doctor, because abrupt stopping can trigger withdrawal symptoms.",
     });
   });
+
+  it("never passes a guess on as an answer when a typed medicine name is not recognized", () => {
+    expect(buildMedicineLookupSystemInstruction("en")).toContain("recognized");
+
+    const lookup = (payload: Record<string, unknown>) =>
+      parseAssistantReply(
+        JSON.stringify({ urgency: "routine", careLevel: "routine", possibleCause: "", message: "", questions: [], ...payload }),
+        "en",
+        { isMedicineLookup: true },
+      );
+    const sertraline = { name: "Sertraline", purpose: "Supports mood balance." };
+
+    // The model says it does not know the name: any medicine it still sent is dropped.
+    const refused = lookup({ recognized: false, medicines: [sertraline] });
+    expect(refused.recognized).toBe(false);
+    expect(refused.medicines).toBeUndefined();
+
+    // The model left the flag out: recognized only because a named medicine came back.
+    const flagMissing = lookup({ medicines: [sertraline] });
+    expect(flagMissing.recognized).toBe(true);
+    expect(flagMissing.medicines?.[0]?.name).toBe("Sertraline");
+
+    // No flag and nothing usable: not recognized, whatever the free text says.
+    expect(lookup({ medicines: [] }).recognized).toBe(false);
+    expect(lookup({}).recognized).toBe(false);
+    expect(lookup({ medicines: [{ name: "   " }] }).recognized).toBe(false);
+
+    // "Recognized" with no medicine to show is still a not-found for the person.
+    expect(lookup({ recognized: true, medicines: [] }).recognized).toBe(false);
+
+    // Photo and symptom replies do not carry the flag at all.
+    const photo = parseAssistantReply(
+      JSON.stringify({ urgency: "routine", careLevel: "routine", message: "", questions: [], recognized: false, medicines: [sertraline] }),
+      "en",
+      { hasImage: true },
+    );
+    expect(photo.recognized).toBeUndefined();
+    expect(photo.medicines?.[0]?.name).toBe("Sertraline");
+  });
 });

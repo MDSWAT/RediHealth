@@ -13,9 +13,6 @@ export const LEGAL_EFFECTIVE_DATE: Record<Lang, string> = {
   ru: "19 ноября 2026 г.",
 };
 
-const rawPixelId = (process.env.NEXT_PUBLIC_META_PIXEL_ID || "2195130208072639").trim();
-export const META_PIXEL_ID = /^\d{5,24}$/.test(rawPixelId) ? rawPixelId : "";
-
 const contactEmail = (process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@redi.healthcare").trim();
 const privacyEmail = (process.env.NEXT_PUBLIC_PRIVACY_EMAIL || "privacy@redi.healthcare").trim();
 

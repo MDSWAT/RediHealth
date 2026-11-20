@@ -24,6 +24,8 @@ import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
+import { useVoicePresence } from "@/lib/audio/voice-presence";
+import { LISTEN_UNAVAILABLE_COPY } from "@/components/ui/ListenButton";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 import { SPEECH_LANG_BY_LOCALE } from "@/lib/i18n/speech-locales";
@@ -199,7 +201,9 @@ function useDualRegisterGlossaryState({
 }) {
   const contextLang = useSafeLang();
   const lang: Lang = propLang ?? contextLang ?? "ro";
-  const voiceEnabled = isVoiceEnabled(lang);
+  // The per-word Listen buttons go away only when it is certain that no voice exists.
+  const voicePresence = useVoicePresence(lang);
+  const voiceEnabled = isVoiceEnabled(lang) && voicePresence !== "none";
   const copy =
     DUAL_REGISTER_GLOSSARY_UI_COPY[lang] ?? DUAL_REGISTER_GLOSSARY_UI_COPY.ro;
   const extras = BRIDGE_EXTRAS_BY_LANG[lang] ?? BRIDGE_EXTRAS_BY_LANG.ro;
@@ -211,6 +215,8 @@ function useDualRegisterGlossaryState({
     "all" | MedicalGlossaryCategory
   >(initialCategory);
   const [speakingId, setSpeakingId] = useState<string | null>(null);
+  // Set when a word could not be read aloud, so the reader is told instead of seeing nothing happen.
+  const [speechError, setSpeechError] = useState(false);
   const [largeText, setLargeText] = useState<boolean>(readInitialLargeText);
   const speakingIdRef = useRef<string | null>(null);
   const wasActiveRef = useRef(isActive);
@@ -317,13 +323,16 @@ function useDualRegisterGlossaryState({
       (SPEECH_LANG_BY_LOCALE as Partial<Record<Lang, string>>)[lang] ??
       (lang === "hr" ? "hr-HR" : "ro-RO");
 
+    setSpeechError(false);
     setSpeakingId(entry.id);
     speechEngine.speak(loc.speechText, {
       lang: speechLang,
       onEnd: () =>
         setSpeakingId((prev) => (prev === entry.id ? null : prev)),
-      onError: () =>
-        setSpeakingId((prev) => (prev === entry.id ? null : prev)),
+      onError: () => {
+        setSpeakingId((prev) => (prev === entry.id ? null : prev));
+        setSpeechError(true);
+      },
     });
   };
 
@@ -354,6 +363,7 @@ function useDualRegisterGlossaryState({
   return {
     lang,
     voiceEnabled,
+    speechError,
     copy,
     extras,
     util,
@@ -389,6 +399,7 @@ function DualRegisterGlossaryBody({
   const {
     lang,
     voiceEnabled,
+    speechError,
     copy,
     extras,
     util,
@@ -408,6 +419,11 @@ function DualRegisterGlossaryBody({
 
   return (
     <>
+      {speechError && (
+        <p role="status" aria-live="polite" className="mb-3 text-body text-foreground">
+          {LISTEN_UNAVAILABLE_COPY[lang] ?? LISTEN_UNAVAILABLE_COPY.ro}
+        </p>
+      )}
       <DictionaryFilters
         label={copy.categoryTablistAria}
         options={categoryKeys.map((cat) => {

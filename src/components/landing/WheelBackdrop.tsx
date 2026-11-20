@@ -15,13 +15,13 @@ import { WHEEL_ORDER } from "./health-topics-wheel-config";
 import styles from "./WheelBackdrop.module.css";
 
 /**
- * The topic wheel as decoration on an ink ground: paper-white and faint, turning slowly.
+ * The topic wheel as decoration, faint and turning slowly.
  * In the footer the eight topic icons ride the outer ring and stay upright, as outlines only:
  * they are not buttons. The hero shows the stars and the chakra alone. Put it inside a positioned element that makes its own stacking context.
- * - `hero`: desktop only (phones and tablets draw their own wheel in HeroDock); larger than the
- *   hero and centred behind the headline on the left, fading out before the quick options.
- * - `footer`: a small wheel behind the footer's content: beside the brand block on desktop, centred
- *   behind the link columns on phones and tablets.
+ * - `hero`: sapphire on the light hero ground, centred behind the hero photograph (HeroPhoto) at
+ *   every screen size, so its star points show around the picture.
+ * - `footer`: paper-white on the ink footer, a small wheel behind the footer's content: beside the
+ *   brand block on desktop, centred behind the link columns on phones and tablets.
  * Purely decorative: hidden from assistive technology, never clickable, still under reduced motion.
  */
 export function WheelBackdrop({ placement }: { placement: "hero" | "footer" }) {

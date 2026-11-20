@@ -288,6 +288,9 @@ export function GlobalHealthAudioPlayer({
         onError: () => {
           if (gen !== playbackGenRef.current) return;
           setIsPlaying(false);
+          // No voice could speak: close the bar, so the Listen button above goes back to
+          // "Listen" and shows its "voice unavailable" line, instead of a bar that does nothing.
+          onCloseRef.current();
         },
       });
     },

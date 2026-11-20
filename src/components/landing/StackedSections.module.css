@@ -70,10 +70,12 @@
     box-shadow: 0 -1rem 2.5rem -1rem rgb(8 12 24 / 0.4);
   }
 
-  /* A sheet that is wholly covered rests: nothing in it keeps animating out of sight. */
-  .layer[data-buried] :global(*),
-  .layer[data-buried] :global(*)::before,
-  .layer[data-buried] :global(*)::after {
+  /* A sheet that is wholly covered rests: ambient looping animations pause out of sight,
+     while scroll-driven view() timelines on the hero dissolve stay live so jumping back to
+     the top never leaves the hero stuck at opacity 0. */
+  .layer[data-buried] :global(*:not(.hero-grid):not(.hero-wheel-dissolve)),
+  .layer[data-buried] :global(*:not(.hero-grid):not(.hero-wheel-dissolve))::before,
+  .layer[data-buried] :global(*:not(.hero-grid):not(.hero-wheel-dissolve))::after {
     animation-play-state: paused !important;
   }
 

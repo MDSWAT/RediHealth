@@ -71,6 +71,14 @@ export type Copy = {
   selectedTrailLabel: string;
   severityLead: string;
   durationLead: string;
+  /** Label of the man or woman choice while the 3D body is on screen: it says which body is drawn. */
+  bodyShownLabel: string;
+  /** Exact-spot lead on phones, where the question sheet covers the body. */
+  exactSpotLeadList: string;
+  /** "Home care" wording for a mild mind and mood answer (the general one says rest and drink water). */
+  mindLowIntro: string;
+  /** Link from "see a doctor" results to the where-to-go guide (same words as the guide's own title). */
+  noDoctorGuide: string;
 };
 
 export const COPY: Record<Lang, Copy> = {
@@ -97,6 +105,11 @@ export const COPY: Record<Lang, Copy> = {
 "selectedTrailLabel": "Выбранные ответы",
 "severityLead": "Выберите, насколько симптомы мешают вам сейчас.",
 "durationLead": "Выберите, как давно симптомы начались или повторяются.",
+    bodyShownLabel: "Тело на экране",
+    exactSpotLeadList: "Выберите место из списка.",
+    mindLowIntro:
+      "Сохраняйте привычный распорядок дня и поговорите с человеком, которому доверяете. Если за несколько дней не станет легче или станет хуже, обратитесь к семейному врачу.",
+    noDoctorGuide: "Я не знаю, куда идти",
 
 
 
@@ -240,6 +253,11 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Răspunsuri alese până acum",
     severityLead: "Alege varianta care descrie cel mai bine cât te încurcă acum.",
     durationLead: "Alege de cât timp a început sau se repetă.",
+    bodyShownLabel: "Corp afișat",
+    exactSpotLeadList: "Alege locul din listă.",
+    mindLowIntro:
+      "Păstrează-ți programul zilnic și vorbește cu cineva de încredere. Dacă nu se ușurează în câteva zile sau se înrăutățește, mergi la medicul de familie.",
+    noDoctorGuide: "Nu știu unde să merg",
   },
   en: {
     chosen: "Selected",
@@ -310,6 +328,11 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Answers chosen so far",
     severityLead: "Choose the option that best fits how much it affects your day.",
     durationLead: "Choose how long ago it started or has been coming back.",
+    bodyShownLabel: "Body shown",
+    exactSpotLeadList: "Choose the spot from the list.",
+    mindLowIntro:
+      "Keep your daily routine and talk to someone you trust. If it does not ease in a few days, or it gets worse, see your family doctor.",
+    noDoctorGuide: "I don't know where to go",
   },
   sq: {
     chosen: "Zgjodhe",
@@ -381,6 +404,11 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Përgjigjet e zgjedhura deri tani",
     severityLead: "Zgjidh variantin që tregon më mirë sa të pengon tani.",
     durationLead: "Zgjidh prej sa kohësh ka filluar ose përsëritet.",
+    bodyShownLabel: "Trupi i shfaqur",
+    exactSpotLeadList: "Zgjidh vendin nga lista.",
+    mindLowIntro:
+      "Mbaj rutinën e përditshme dhe fol me dikë që i beson. Nëse nuk lehtësohet për disa ditë ose përkeqësohet, shko te mjeku i familjes.",
+    noDoctorGuide: "Nuk e di ku të shkoj",
   },
   it: {
     chosen: "Hai scelto",
@@ -452,6 +480,11 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Risposte scelte finora",
     severityLead: "Scegli l'opzione che descrive meglio quanto ti limita adesso.",
     durationLead: "Scegli da quanto tempo è iniziato o si ripete.",
+    bodyShownLabel: "Corpo mostrato",
+    exactSpotLeadList: "Scegli il punto dall'elenco.",
+    mindLowIntro:
+      "Mantieni le tue abitudini di ogni giorno e parla con una persona di cui ti fidi. Se non migliora in pochi giorni o peggiora, vai dal medico di famiglia.",
+    noDoctorGuide: "Non so dove andare",
   },
   hr: {
     chosen: "Odabrano",
@@ -523,6 +556,11 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Dosad odabrani odgovori",
     severityLead: "Odaberi opciju koja najbolje opisuje koliko ti sada smeta.",
     durationLead: "Odaberi koliko dugo traje ili se ponavlja.",
+    bodyShownLabel: "Prikazano tijelo",
+    exactSpotLeadList: "Odaberi mjesto s popisa.",
+    mindLowIntro:
+      "Drži se svoje dnevne rutine i razgovaraj s nekim kome vjeruješ. Ako ne popusti za nekoliko dana ili se pogorša, javi se obiteljskom liječniku.",
+    noDoctorGuide: "Ne znam kamo otići",
   },
   rom: {
     chosen: "Alosardjan",
@@ -594,5 +632,10 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Anglalipnata alosarde dji akana",
     severityLead: "Alosar so sikavel maj mishto sode pharo si tuke akana.",
     durationLead: "Alosar de sode vrama shirdilo vaj avel palpale.",
+    bodyShownLabel: "Sikavdo trupo",
+    exactSpotLeadList: "Alosar o than katar i lista.",
+    mindLowIntro:
+      "Inker tiro divesesko programo thaj vorbin jekhe pachaime manushesa. Te na lokhjol ande xanci dive vaj avel maj nasul, dzha ko familijako doktori.",
+    noDoctorGuide: "Na dzanav kaj te djav",
   },
 };

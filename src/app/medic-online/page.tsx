@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { MedicOnlineHero } from "@/components/telemed/MedicOnlineHero";
+import { onlineDoctorUnavailableCopy } from "@/components/telemed/OnlineDoctorUnavailable";
 import { Container } from "@/components/ui/Container";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
 import type { Lang } from "@/lib/i18n/translations";
+import { isOnlineDoctorAvailable } from "@/lib/online-doctor";
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLang();
@@ -19,7 +21,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: localizedPageTitle(lang, "medic-online", "Doctor online - RediHealth"),
-    description: descriptions[lang] ?? descriptions.en,
+    description: isOnlineDoctorAvailable(lang)
+      ? (descriptions[lang] ?? descriptions.en)
+      : onlineDoctorUnavailableCopy[lang].title,
   };
 }
 
@@ -236,6 +240,15 @@ const copy: Record<
 export default async function MedicOnlinePage() {
   const lang = await getRequestLang();
   const c = copy[lang] ?? copy.en;
+
+  // Not offered for this language (Croatia): the hero shows the notice, and the steps of a call are left out.
+  if (!isOnlineDoctorAvailable(lang)) {
+    return (
+      <main id="main-content" className="min-h-screen bg-background">
+        <MedicOnlineHero />
+      </main>
+    );
+  }
 
   return (
     <main id="main-content" className="min-h-screen bg-background">

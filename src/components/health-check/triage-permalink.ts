@@ -73,6 +73,17 @@ export function buildTriageReproductionUrl(
 }
 
 /**
+ * The answers as a query string without the QR marker. Kept in the tab's sessionStorage (never in
+ * the address bar, so nothing lands in the history of a shared phone) to bring the result back
+ * after a visit to the map. Read it with `parseTriageReproductionSearch`.
+ */
+export function buildTriageSessionSearch(state: TriagePermalinkState): string {
+  const params = buildTriageQueryParams(state);
+  params.delete("qr");
+  return params.toString();
+}
+
+/**
  * Builds a compact URL to the distraction-free clinical note card opened when scanning a QR code
  * on iPhone (Safari) or Samsung / Android (Chrome), avoiding iOS Camera plain-text web-search behavior.
  */

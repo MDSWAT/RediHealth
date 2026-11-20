@@ -15,6 +15,8 @@ export type ContulMeuCopy = {
   previewRegionLabel: string;
   features: [PortalPreviewFeature, PortalPreviewFeature, PortalPreviewFeature];
   privacyNote: string;
+  /** Who the account is for, and that the rest of the site needs none. */
+  whoFor: string;
   card: {
     badge: string;
     step: (current: number, total: number) => string;
@@ -49,6 +51,7 @@ export const contulMeuCopy: Record<Lang, ContulMeuCopy> = {
       },
     ],
     privacyNote: "Accesul este protejat printr-un cod SMS valabil o singură dată. Datele tale rămân confidențiale și nu pot fi văzute de altcineva.",
+    whoFor: "Pagina aceasta este doar pentru cei care au avut o consultație la noi. Restul site-ului merge fără cont.",
     card: {
       badge: "Verificare prin SMS",
       step: (current, total) => `Pasul ${current} din ${total}`,
@@ -81,6 +84,7 @@ export const contulMeuCopy: Record<Lang, ContulMeuCopy> = {
       },
     ],
     privacyNote: "Your record is protected by a single-use SMS code. Your information stays private and confidential.",
+    whoFor: "This page is only for people who had a consultation with our team. Everything else on the site works without an account.",
     card: {
       badge: "SMS verification",
       step: (current, total) => `Step ${current} of ${total}`,
@@ -113,6 +117,7 @@ export const contulMeuCopy: Record<Lang, ContulMeuCopy> = {
       },
     ],
     privacyNote: "Hyrja mbrohet me një kod SMS që përdoret vetëm një herë. Të dhënat e tua mbeten konfidenciale.",
+    whoFor: "Kjo faqe është vetëm për ata që kanë pasur një konsultë te ne. Gjithçka tjetër në faqe punon pa llogari.",
     card: {
       badge: "Verifikim me SMS",
       step: (current, total) => `Hapi ${current} nga ${total}`,
@@ -145,6 +150,7 @@ export const contulMeuCopy: Record<Lang, ContulMeuCopy> = {
       },
     ],
     privacyNote: "L'accesso è protetto da un codice SMS monouso. I tuoi dati sanitari restano riservati.",
+    whoFor: "Questa pagina è solo per chi ha avuto una visita con noi. Tutto il resto del sito funziona senza account.",
     card: {
       badge: "Verifica via SMS",
       step: (current, total) => `Passo ${current} di ${total}`,
@@ -177,6 +183,7 @@ export const contulMeuCopy: Record<Lang, ContulMeuCopy> = {
       },
     ],
     privacyNote: "Pristup je zaštićen jednokratnim SMS kodom. Tvoji zdravstveni podaci ostaju povjerljivi.",
+    whoFor: "Ova stranica je samo za one koji su imali pregled kod nas. Sve ostalo na stranici radi bez računa.",
     card: {
       badge: "Provjera putem SMS poruke",
       step: (current, total) => `Korak ${current} od ${total}`,
@@ -209,6 +216,7 @@ export const contulMeuCopy: Record<Lang, ContulMeuCopy> = {
       },
     ],
     privacyNote: "O khuvipe si garavdo ekh-data SMS kodosa. Che date achhon garavde.",
+    whoFor: "Kadaja rig si numaj vash kola kas sas jekh konsultacia amende. Sa o aver po sajto kerel buki bi kontosko.",
     card: {
       badge: "Chacharipe katar SMS",
       step: (current, total) => `Kadam ${current} katar ${total}`,
@@ -241,6 +249,7 @@ export const contulMeuCopy: Record<Lang, ContulMeuCopy> = {
       },
     ],
     privacyNote: "Вход защищен одноразовым кодом из SMS. Ваши медицинские данные остаются конфиденциальными.",
+    whoFor: "Эта страница только для тех, у кого была консультация у нас. Всё остальное на сайте работает без аккаунта.",
     card: {
       badge: "Проверка по SMS",
       step: (current, total) => `Шаг ${current} из ${total}`,

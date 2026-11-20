@@ -21,8 +21,9 @@ export type FindHelpCopy = {
   ownershipAll: string;
   ownershipPublicOnly: string;
   ownershipPrivateOnly: string;
+  ownershipPublicHint: string;
+  ownershipPrivateHint: string;
   ownership: { public: string; private: string };
-  ownershipDetail: { public: string; private: string; unknown: string };
   searchPlaceholder: string;
   /** Short placeholder that fits a 375px phone; the label keeps the full searchPlaceholder. */
   searchHint: string;
@@ -31,6 +32,18 @@ export type FindHelpCopy = {
   locating: string;
   locationActive: string;
   locationDenied: string;
+  /** Phones: the list starts from a guessed city because the place is unknown. */
+  guessedPlaceHint: (city: string) => string;
+  /** A refresh failed with no connection and the earlier list stays on screen. */
+  offlineKeptList: string;
+  /** The typed address was not found and no place matches it by name either. */
+  addressNotFound: string;
+  /** Above a list restored from the phone when nothing could be loaded. */
+  savedListNotice: (date: string) => string;
+  hoursUnknown: string;
+  callBeforeGoing: string;
+  /** "Show more" when the next rows still have to be fetched, so their number is not known. */
+  showMorePlaces: string;
   placesInArea: string;
   changeCountry: string;
   distantLocationNotice: (country: string) => string;
@@ -229,19 +242,24 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipAll: "Государственные и частные",
     ownershipPublicOnly: "Только государственные",
     ownershipPrivateOnly: "Только частные",
+    ownershipPublicHint: "Бесплатно по страховке или при экстренных случаях; ожидание может быть дольше или нужно направление.",
+    ownershipPrivateHint: "Запись быстрее, но часто дороже — обычно оплачивается из своего кармана и редко принимает тяжёлые экстренные случаи.",
     ownership: { public: "Государственное", private: "Частное" },
-    ownershipDetail: {
-      public: "Государственная клиника или больница (госфинансирование)",
-      private: "Частная клиника или кабинет (платно)",
-      unknown: "Статус не указан — уточните по телефону",
-    },
     searchPlaceholder: "Введите адрес, улицу, город или название",
     searchHint: "ул. или город",
     searchButton: "Поиск",
     useMyLocation: "Использовать мое местоположение",
     locating: "Поиск вашего местоположения…",
     locationActive: "Ближайшие к вам места",
-    locationDenied: "Местоположение отключено. Вы видите места в выбранной вами стране.",
+    locationDenied: "Не удалось определить ваше местоположение. Введите свой город или улицу.",
+    guessedPlaceHint: (city) =>
+      `Мы не знаем, где вы находитесь, поэтому список начинается с города ${city}. Введите свой город или улицу либо используйте своё местоположение.`,
+    offlineKeptList: "Нет интернета. Это последний загруженный список.",
+    addressNotFound: "Мы не нашли такой адрес или название. Попробуйте ввести только название города.",
+    savedListNotice: (date) => `Список сохранён ${date}. Он может быть устаревшим.`,
+    hoursUnknown: "Часы работы не указаны.",
+    callBeforeGoing: "Позвоните перед визитом.",
+    showMorePlaces: "Показать ещё места",
 
     searchThisArea: "Искать в этой области",
     loading: "Загрузка мест…",
@@ -283,19 +301,24 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipAll: "Public and private",
     ownershipPublicOnly: "Public only",
     ownershipPrivateOnly: "Private only",
+    ownershipPublicHint: "Free with public insurance or for emergencies; wait times can be longer and some visits need a referral.",
+    ownershipPrivateHint: "Faster appointments, but often more expensive — usually paid out of pocket and rarely handles major emergencies.",
     ownership: { public: "Public", private: "Private" },
-    ownershipDetail: {
-      public: "Public clinic (state-funded)",
-      private: "Private clinic (paid)",
-      unknown: "Ownership not listed — confirm by phone",
-    },
     searchPlaceholder: "Enter address, street, town or clinic name",
     searchHint: "Street or town",
     searchButton: "Search",
     useMyLocation: "Use my location",
     locating: "Finding your location…",
     locationActive: "Places closest to you",
-    locationDenied: "Location is off. You see places in the country you chose.",
+    locationDenied: "We could not get your location. Type your town or street.",
+    guessedPlaceHint: (city) =>
+      `We do not know where you are, so this list starts from ${city}. Type your town or street, or use your location.`,
+    offlineKeptList: "You are offline. This is the last list that loaded.",
+    addressNotFound: "We did not find that address or name. Try only the name of the town.",
+    savedListNotice: (date) => `Saved list from ${date}. It may be out of date.`,
+    hoursUnknown: "Opening hours not listed.",
+    callBeforeGoing: "Call before you go.",
+    showMorePlaces: "Show more places",
     placesInArea: "Places in this area",
     changeCountry: "Change country",
     distantLocationNotice: (country) =>
@@ -386,19 +409,24 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipAll: "De stat și private",
     ownershipPublicOnly: "Doar de stat",
     ownershipPrivateOnly: "Doar private",
+    ownershipPublicHint: "Gratuit cu asigurare CNAS sau la urgențe; uneori aștepți mai mult sau ai nevoie de trimitere.",
+    ownershipPrivateHint: "Programări mai rapide, dar adesea mai scump — plătești din buzunar fără contract CNAS și rar preia urgențe grave.",
     ownership: { public: "De stat", private: "Privat" },
-    ownershipDetail: {
-      public: "Clinică publică (de stat)",
-      private: "Clinică privată (cu plată)",
-      unknown: "Statut nespecificat — confirmă telefonic",
-    },
     searchPlaceholder: "Scrie adresa, strada, orașul sau numele",
     searchHint: "Stradă sau oraș",
     searchButton: "Caută",
     useMyLocation: "Folosește locația mea",
     locating: "Căutăm unde ești…",
     locationActive: "Locurile cele mai apropiate de tine",
-    locationDenied: "Locația e oprită. Vezi locuri din țara aleasă.",
+    locationDenied: "Nu am putut afla unde ești. Scrie orașul sau strada ta.",
+    guessedPlaceHint: (city) =>
+      `Nu știm unde ești, așa că lista pornește din ${city}. Scrie orașul sau strada ta ori folosește locația ta.`,
+    offlineKeptList: "Nu ai internet. Aceasta este ultima listă încărcată.",
+    addressNotFound: "Nu am găsit adresa sau numele. Încearcă doar numele orașului.",
+    savedListNotice: (date) => `Listă salvată din ${date}. Poate fi veche.`,
+    hoursUnknown: "Programul nu este trecut.",
+    callBeforeGoing: "Sună înainte să mergi.",
+    showMorePlaces: "Arată mai multe locuri",
     placesInArea: "Locurile din zonă",
     changeCountry: "Schimbă țara",
     distantLocationNotice: (country) =>
@@ -509,19 +537,24 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipAll: "Publike dhe private",
     ownershipPublicOnly: "Vetëm publike",
     ownershipPrivateOnly: "Vetëm private",
+    ownershipPublicHint: "Falas me sigurim shëndetësor ose për urgjenca; pritja mund të jetë më e gjatë ose duhet rekomandim.",
+    ownershipPrivateHint: "Takime më të shpejta, por shpesh më e shtrenjtë — zakonisht paguhet vetë dhe rrallë trajton urgjenca të rënda.",
     ownership: { public: "Publik", private: "Privat" },
-    ownershipDetail: {
-      public: "Klinikë publike (shtetërore)",
-      private: "Klinikë private (me pagesë)",
-      unknown: "Pronësia nuk është shënuar — konfirmo me telefon",
-    },
     searchPlaceholder: "Shkruaj adresën, rrugën, qytetin ose emrin",
     searchHint: "Rrugë ose qytet",
     searchButton: "Kërko",
     useMyLocation: "Përdor vendndodhjen time",
     locating: "Po kërkojmë ku je…",
     locationActive: "Vendet më afër teje",
-    locationDenied: "Vendndodhja është e fikur. Sheh vende në shtetin që zgjodhe.",
+    locationDenied: "Nuk mundëm ta gjejmë vendndodhjen tënde. Shkruaj qytetin ose rrugën tënde.",
+    guessedPlaceHint: (city) =>
+      `Nuk e dimë ku je, prandaj lista fillon nga ${city}. Shkruaj qytetin ose rrugën tënde, ose përdor vendndodhjen tënde.`,
+    offlineKeptList: "Nuk ke internet. Kjo është lista e fundit që u ngarkua.",
+    addressNotFound: "Nuk e gjetëm këtë adresë ose emër. Provo vetëm emrin e qytetit.",
+    savedListNotice: (date) => `Listë e ruajtur më ${date}. Mund të jetë e vjetër.`,
+    hoursUnknown: "Orari nuk është shënuar.",
+    callBeforeGoing: "Telefono para se të shkosh.",
+    showMorePlaces: "Shfaq më shumë vende",
     placesInArea: "Vendet në këtë zonë",
     changeCountry: "Ndrysho shtetin",
     distantLocationNotice: (country) =>
@@ -612,19 +645,24 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipAll: "Pubblici e privati",
     ownershipPublicOnly: "Solo pubblici",
     ownershipPrivateOnly: "Solo privati",
+    ownershipPublicHint: "Gratuito o con ticket tramite SSN e per urgenze; i tempi di attesa possono essere più lunghi.",
+    ownershipPrivateHint: "Visite più rapide, ma spesso più costoso — si paga di tasca propria e raramente gestisce urgenze gravi.",
     ownership: { public: "Pubblico", private: "Privato" },
-    ownershipDetail: {
-      public: "Struttura pubblica (servizio sanitario)",
-      private: "Struttura privata (a pagamento)",
-      unknown: "Tipo non indicato — conferma al telefono",
-    },
     searchPlaceholder: "Inserisci indirizzo, via, città o nome",
     searchHint: "Via o città",
     searchButton: "Cerca",
     useMyLocation: "Usa la mia posizione",
     locating: "Cerchiamo dove sei…",
     locationActive: "I posti più vicini a te",
-    locationDenied: "La posizione è spenta. Vedi i posti nel paese che hai scelto.",
+    locationDenied: "Non siamo riusciti a trovare la tua posizione. Scrivi la tua città o la tua via.",
+    guessedPlaceHint: (city) =>
+      `Non sappiamo dove sei, quindi l'elenco parte da ${city}. Scrivi la tua città o la tua via, oppure usa la tua posizione.`,
+    offlineKeptList: "Sei senza internet. Questo è l'ultimo elenco caricato.",
+    addressNotFound: "Non abbiamo trovato questo indirizzo o nome. Prova solo con il nome della città.",
+    savedListNotice: (date) => `Elenco salvato il ${date}. Potrebbe non essere aggiornato.`,
+    hoursUnknown: "Orari non indicati.",
+    callBeforeGoing: "Chiama prima di andare.",
+    showMorePlaces: "Mostra altri posti",
     placesInArea: "Posti nella zona",
     changeCountry: "Cambia paese",
     distantLocationNotice: (country) =>
@@ -715,19 +753,24 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipAll: "Javne i privatne",
     ownershipPublicOnly: "Samo javne",
     ownershipPrivateOnly: "Samo privatne",
+    ownershipPublicHint: "Besplatno uz zdravstveno osiguranje ili za hitne slučajeve; čekanje može biti dulje ili treba uputnica.",
+    ownershipPrivateHint: "Brži termini, ali često skuplje — plaća se iz vlastitog džepa i rijetko prima teške hitne slučajeve.",
     ownership: { public: "Javno", private: "Privatno" },
-    ownershipDetail: {
-      public: "Javna ustanova (HZZO)",
-      private: "Privatna ustanova (plaćanje)",
-      unknown: "Vlasništvo nije navedeno — provjeri telefonom",
-    },
     searchPlaceholder: "Upiši adresu, ulicu, grad ili naziv ustanove",
     searchHint: "Ulica ili grad",
     searchButton: "Traži",
     useMyLocation: "Koristi moju lokaciju",
     locating: "Tražimo tvoju lokaciju…",
     locationActive: "Mjesta najbliža tebi",
-    locationDenied: "Lokacija je isključena. Prikazuju se mjesta u odabranoj državi.",
+    locationDenied: "Nismo uspjeli pronaći tvoju lokaciju. Upiši svoj grad ili ulicu.",
+    guessedPlaceHint: (city) =>
+      `Ne znamo gdje si, pa popis počinje od mjesta ${city}. Upiši svoj grad ili ulicu ili koristi svoju lokaciju.`,
+    offlineKeptList: "Nemaš internet. Ovo je zadnji učitani popis.",
+    addressNotFound: "Nismo pronašli tu adresu ni naziv. Pokušaj samo s nazivom grada.",
+    savedListNotice: (date) => `Popis spremljen ${date}. Možda je zastario.`,
+    hoursUnknown: "Radno vrijeme nije navedeno.",
+    callBeforeGoing: "Nazovi prije dolaska.",
+    showMorePlaces: "Prikaži još mjesta",
     placesInArea: "Mjesta u ovom području",
     changeCountry: "Promijeni državu",
     distantLocationNotice: (country) =>
@@ -818,19 +861,24 @@ export const findHelpTranslations: Record<Lang, FindHelpCopy> = {
     ownershipAll: "Themeske thaj privatno",
     ownershipPublicOnly: "Numa themeske",
     ownershipPrivateOnly: "Numa privatno",
+    ownershipPublicHint: "Bi lovesko siguranciyasa vay vaš sigardiari; butivar trubul te azhukeres may but vay trimiteri.",
+    ownershipPrivateHint: "May sigo programime, numa butivar may kuch — pokines katar cho džepo thaj čače na lel bare sigardiari.",
     ownership: { public: "Themesko", private: "Privatno" },
-    ownershipDetail: {
-      public: "Themeski klinika (bizo love)",
-      private: "Privatno klinika (pe love)",
-      unknown: "Na phenel pe te si themeski vaj privatno — phuch pe telefono",
-    },
     searchPlaceholder: "Ramov i adresa, o drom, o foro vaj o anav",
     searchHint: "Drom vaj foro",
     searchButton: "Rod",
     useMyLocation: "Le miro than",
     locating: "Rodas kai san…",
     locationActive: "E thana maj pashe tuke",
-    locationDenied: "O than si bandardo. Dikhes thana ando alosardo them.",
+    locationDenied: "Nashti arakhlam kai san. Ramov tiro foro vaj drom.",
+    guessedPlaceHint: (city) =>
+      `Na zhanas kai san, anda kodo i lista shirdel katar ${city}. Ramov tiro foro vaj drom, vaj le tiro than.`,
+    offlineKeptList: "Naj tut interneto. Kadi si i palutni lista so pherdili.",
+    addressNotFound: "Na arakhlam kadi adresa vaj anav. Rod numa o anav le forosko.",
+    savedListNotice: (date) => `Lista garavdi katar ${date}. Shay te avel purani.`,
+    hoursUnknown: "O programo naj ramome.",
+    callBeforeGoing: "Akhar angla so te zhas.",
+    showMorePlaces: "Sikav maj but thana",
     placesInArea: "Thana ande kadi zona",
     changeCountry: "Paruv o them",
     distantLocationNotice: (country) =>

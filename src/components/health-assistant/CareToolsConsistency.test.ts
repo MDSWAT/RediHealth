@@ -231,7 +231,10 @@ describe("Care tools design-system consistency", () => {
 
   it("opens HealthCheckExplorer on the 3D body on phones, keeps the list one tap away, and defers 3D mount in list mode (P01)", () => {
     const explorerSrc = readSrc("src/components/health-check/HealthCheckExplorer.tsx");
-    expect(explorerSrc).toContain('const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "3d";');
+    // The body is still the default; a "List" choice made on an earlier visit is remembered.
+    expect(explorerSrc).toContain(
+      'const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? storedAreaMode ?? "3d";',
+    );
     // Full screen: a tap selects without moving on; Save selection confirms.
     expect(explorerSrc).toContain('stepRef.current === "area" && !bodyFullScreenRef.current');
     const bodyMapSrc = readSrc("src/components/health-check/AnatomicalBodyMap.tsx");

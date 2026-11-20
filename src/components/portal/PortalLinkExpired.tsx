@@ -3,7 +3,6 @@
 import type { CSSProperties } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { ClockIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -60,16 +59,15 @@ export function PortalLinkExpired() {
   return (
     <main id="main-content" className="flex flex-1 items-center py-20 sm:py-28">
       <Container>
-        {/* The note arrives in reading order (mark, title, reassurance, way forward), 48ms apart. */}
+        {/* The note arrives in reading order (title, reassurance, way forward), 48ms apart. */}
         <div className="mx-auto max-w-xl text-center">
-          <ClockIcon aria-hidden="true" className="list-in mx-auto h-8 w-8 text-muted-foreground" style={{ "--i": 0 } as CSSProperties} />
-          <h1 className="list-in mt-6 text-balance text-page text-foreground" style={{ "--i": 1 } as CSSProperties}>
+          <h1 className="list-in text-balance text-page text-foreground" style={{ "--i": 0 } as CSSProperties}>
             {text.title}
           </h1>
-          <p className="list-in mx-auto mt-5 max-w-(--measure-lead) text-lead text-muted-foreground" style={{ "--i": 2 } as CSSProperties}>
+          <p className="list-in mx-auto mt-5 max-w-(--measure-lead) text-lead text-muted-foreground" style={{ "--i": 1 } as CSSProperties}>
             {text.body}
           </p>
-          <div className="list-in mt-8 flex flex-col items-center gap-3" style={{ "--i": 3 } as CSSProperties}>
+          <div className="list-in mt-8 flex flex-col items-center gap-3" style={{ "--i": 2 } as CSSProperties}>
             <Button
               href={withLangPrefix("/contul-meu", lang)}
               variant="action"

@@ -529,23 +529,23 @@ const ro: AssistantCopy = {
       },
     },
     mediatorTitle: "Ai probleme la ghișeu sau ești refuzat?",
-    mediatorBody: "Un mediator sanitar te poate însoți și te ajută să-ți aperi drepturile.",
+    mediatorBody: "Un mediator sanitar îți explică pașii și te ajută cu actele. Unde se poate, te și însoțește.",
     summary: (scenario) => `Orientare în sistemul medical: ${scenario}`,
   },
   result: {
-    heading: "Rețeta ta, pe înțeles",
-    lead: "Asistentul poate greși la citire. Verifică mereu cu farmacistul sau cu medicul înainte să iei medicamentele.",
-    pharmacistBannerTitle: "Arată farmacistului înainte să iei medicamentele",
+    heading: "Detalii despre tratamentul tău",
+    lead: "Citirea automată poate avea erori. Verifică întotdeauna cu farmacistul sau cu medicul înainte să începi tratamentul.",
+    pharmacistBannerTitle: "Confirmă cu farmacistul înainte să iei medicamentele",
     pharmacistBannerBody:
-      "Unele cuvinte sau doze nu s-au putut citi clar în poză. Arată telefonul sau foaia tipărită farmacistului ca să îți confirme exact cum se ia tratamentul.",
-    medicinesHeading: "Medicamentele citite de pe rețetă",
-    medicinesLead: "Orele de mai jos apar doar dacă s-au putut citi clar pe rețetă.",
-    boxMedicinesHeading: "Medicamente recunoscute de pe cutie",
+      "Unele cuvinte sau doze nu s-au putut citi clar din imagine. Arată telefonul sau foaia tipărită farmacistului pentru a confirma schema exactă.",
+    medicinesHeading: "Medicamentele identificate pe rețetă",
+    medicinesLead: "Orele de administrare apar doar dacă au fost clar lizibile pe rețetă.",
+    boxMedicinesHeading: "Medicamente identificate de pe cutie",
     boxMedicinesLead:
-      "Cutia arată numele și concentrația medicamentului. Urmează doza stabilită de medic sau farmacist.",
+      "Cutia indică numele și concentrația medicamentului. Urmează doza recomandată de medic sau farmacist.",
     lookupMedicinesHeading: "Informații despre medicamentul căutat",
     lookupMedicinesLead:
-      "Explicație generală pentru medicamentul căutat. Urmează întotdeauna doza scrisă de medicul sau farmacistul tău.",
+      "Informații generale despre medicamentul căutat. Urmează întotdeauna doza recomandată de medicul sau farmacistul tău.",
     scheduleSlots: {
       morning: "Dimineața",
       midday: "Prânz",
@@ -911,7 +911,7 @@ const en: AssistantCopy = {
       },
     },
     mediatorTitle: "Having trouble at the desk, or being turned away?",
-    mediatorBody: "A health mediator can go with you and help you stand up for your rights.",
+    mediatorBody: "A health mediator can explain the steps and help with papers. Where possible, they can also go with you.",
     summary: (scenario) => `Finding my way in the health system: ${scenario}`,
   },
   result: {
@@ -1293,7 +1293,7 @@ const sq: AssistantCopy = {
       },
     },
     mediatorTitle: "Ke vështirësi në sportel ose të refuzojnë?",
-    mediatorBody: "Një mediator shëndetësor mund të të shoqërojë dhe të të ndihmojë të mbrosh të drejtat e tua.",
+    mediatorBody: "Një mediator shëndetësor të shpjegon hapat dhe të ndihmon me dokumentet. Kur është e mundur, edhe të shoqëron.",
     summary: (scenario) => `Orientim në sistemin shëndetësor: ${scenario}`,
   },
   result: {
@@ -1675,7 +1675,7 @@ const it: AssistantCopy = {
       },
     },
     mediatorTitle: "Hai difficoltà allo sportello o ti hanno rifiutato?",
-    mediatorBody: "Un mediatore sanitario può accompagnarti e aiutarti a far valere i tuoi diritti.",
+    mediatorBody: "Un mediatore sanitario ti spiega i passaggi e ti aiuta con i documenti. Quando è possibile, ti accompagna.",
     summary: (scenario) => `Orientamento nel sistema sanitario: ${scenario}`,
   },
   result: {
@@ -2011,7 +2011,7 @@ const hr: AssistantCopy = {
           },
           {
             title: "Koje dokumente ponijeti",
-            body: "Osobnu iskaznicu (ili privremenu potvrdu), rodne listove djece ako upisuješ i njih te dokaz o osiguranju HZZO-a ili CNAS-a ako ga imaš.",
+            body: "Osobnu iskaznicu (ili privremenu potvrdu), rodne listove djece ako upisuješ i njih te dokaz o osiguranju HZZO-a ako ga imaš.",
           },
           {
             title: "Ako nemaš zdravstveno osiguranje",
@@ -2057,7 +2057,7 @@ const hr: AssistantCopy = {
       },
     },
     mediatorTitle: "Imaš poteškoća na šalteru ili su te odbili?",
-    mediatorBody: "Zdravstveni medijator može ići s tobom i pomoći ti zaštititi tvoja prava.",
+    mediatorBody: "Zdravstveni medijator može ti objasniti korake i pomoći s dokumentima. Kad je moguće, može ići i s tobom.",
     summary: (scenario) => `Snalaženje u zdravstvenom sustavu: ${scenario}`,
   },
   result: {
@@ -2439,7 +2439,7 @@ const rom: AssistantCopy = {
       },
     },
     mediatorTitle: "Si tut pharipen ko ghisevo vaj phende tuke na?",
-    mediatorBody: "Jekh sastipnasko mediatori shaj djal tusa thaj azhutinel tut te arakhes chire chachimata.",
+    mediatorBody: "Jekh sastipnasko mediatori shaj sikavel tuke le pashura thaj azhutinel tut le lilensa. Kana shaj, vov djal vi tusa.",
     summary: (scenario) => `Drom and-o sastipnasko sistemo: ${scenario}`,
   },
   result: {
@@ -2801,7 +2801,7 @@ ru: {
       },
     },
     mediatorTitle: "Возникли проблемы за столом или вам отказали?",
-    mediatorBody: "Медиатор по вопросам здоровья может пойти с вами и помочь вам отстоять свои права.",
+    mediatorBody: "Медиатор по вопросам здоровья объяснит шаги и поможет с документами. Когда это возможно, он может пойти с вами.",
     summary: (scenario) => `Ищу свой путь в системе здравоохранения: ${scenario}`,
   },
   result: {

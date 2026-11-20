@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { PageListenAction } from "@/components/ui/PageListenAction";
+import { LEGAL_LINK_CLASS } from "@/components/legal/LegalDocumentPrimitives";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { getLegalCopy } from "@/lib/i18n/legal-translations";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
@@ -35,27 +36,41 @@ export default async function AboutPage() {
           }
         />
 
-        <div className="mt-8 max-w-(--measure-reading) space-y-5 text-body text-muted-foreground">
-          {copy.paragraphs.map((paragraph, index) => (
-            <p
-              key={paragraph}
-              className={index === 0 ? "mb-6 text-title text-foreground sm:leading-relaxed" : undefined}
-            >
-              {paragraph}
-            </p>
-          ))}
+        <div className="mt-8 max-w-3xl space-y-6 text-body text-muted-foreground">
+          <div className="max-w-(--measure-reading) space-y-4">
+            {copy.paragraphs.map((paragraph, index) => (
+              <p
+                key={paragraph}
+                className={index === 0 ? "text-title text-foreground sm:leading-relaxed" : undefined}
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
 
-          <section className="border-t border-border pt-6">
+          <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
             <h2 className="text-title text-foreground">{copy.operatorHeading}</h2>
-            <p className="mt-2">{copy.operatorBody}</p>
-            <p className="mt-3">
+            <p className="mt-2 max-w-(--measure-reading)">{copy.operatorBody}</p>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-1">
               <Link
                 href={withLangPrefix("/contact", lang)}
-                className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
+                className={`inline-flex min-h-11 items-center ${LEGAL_LINK_CLASS}`}
               >
                 {legal.contact.title}
               </Link>
-            </p>
+              <Link
+                href={withLangPrefix("/privacy", lang)}
+                className={`inline-flex min-h-11 items-center ${LEGAL_LINK_CLASS}`}
+              >
+                {legal.contact.privacyLink}
+              </Link>
+              <Link
+                href={withLangPrefix("/terms", lang)}
+                className={`inline-flex min-h-11 items-center ${LEGAL_LINK_CLASS}`}
+              >
+                {legal.contact.termsLink}
+              </Link>
+            </div>
           </section>
         </div>
       </Container>

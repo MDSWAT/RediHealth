@@ -7,15 +7,10 @@ import {
   BellIcon,
   CalendarIcon,
   ChevronRightIcon,
-  ClockIcon,
   EditIcon,
   ImageIcon,
-  MailIcon,
-  PhoneIcon,
-  PinIcon,
   PlusIcon,
   PrinterIcon,
-  UserIcon,
 } from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
@@ -866,11 +861,8 @@ export function PatientPortalView({
     <main id="main-content" className="min-h-screen bg-background py-6 sm:py-10">
       <Container>
         {/* Calm, always-visible reminder: this page is not for emergencies. */}
-        <p className="mb-4 flex items-start gap-2.5 rounded-xl border border-border bg-card px-4 py-3 text-body text-muted-foreground">
-          <PhoneIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-          <span>
-            <strong className="font-semibold text-foreground">{t.emergencyTitle}</strong> {t.emergencyBody}
-          </span>
+        <p className="mb-4 rounded-xl border border-border bg-card px-4 py-3 text-body text-muted-foreground">
+          <strong className="font-semibold text-foreground">{t.emergencyTitle}</strong> {t.emergencyBody}
         </p>
 
         <article className="overflow-hidden rounded-xl border border-border bg-card">
@@ -896,22 +888,18 @@ export function PatientPortalView({
               </summary>
               <dl className="mt-2 grid gap-x-6 gap-y-2 pb-1 text-body sm:grid-cols-2">
                 <div className="flex items-center gap-2">
-                  <PhoneIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <dt className="text-muted-foreground">{t.phone}</dt>
                   <dd className="font-medium text-foreground tabular-nums">{patient.phone}</dd>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MailIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <dt className="text-muted-foreground">{t.email}</dt>
                   <dd className="break-all font-medium text-foreground">{patient.email}</dd>
                 </div>
                 <div className="flex items-center gap-2">
-                  <PinIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <dt className="text-muted-foreground">{t.location}</dt>
                   <dd className="break-words font-medium text-foreground">{patient.address || t.notSpecified}</dd>
                 </div>
                 <div className="flex items-center gap-2">
-                  <UserIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <dt className="text-muted-foreground">{t.assignedStaff}:</dt>
                   <dd className="font-medium text-foreground">{patient.assigned_worker_name || t.fallbackTeam}</dd>
                 </div>
@@ -1071,7 +1059,6 @@ export function PatientPortalView({
                     <li key={item.id} className="py-4 text-body">
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                         <div className="flex min-w-0 items-start gap-3">
-                          <ClockIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                           <div className="min-w-0">
                             <p className="font-semibold text-foreground">{item.title}</p>
                             <p className="text-muted-foreground">
@@ -1090,7 +1077,7 @@ export function PatientPortalView({
                       </div>
 
                       {item.status !== "completed" ? (
-                        <div className="mt-3 pl-7">
+                        <div className="mt-3">
                           {completingFollowupId === item.id ? (
                             <form onSubmit={handleCompleteFollowup} className="swap-in grid grid-cols-1 gap-4">
                               <div>
@@ -1179,7 +1166,7 @@ export function PatientPortalView({
                           )}
                         </div>
                       ) : (
-                        <div className="mt-2 pl-7 text-body text-muted-foreground">
+                        <div className="mt-2 text-body text-muted-foreground">
                           {item.completed_at ? <p className="tabular-nums">{`${t.completedOn} ${fmtDate(item.completed_at)}`}</p> : null}
                           {item.completion_notes ? <p className="mt-1 break-words text-foreground">{item.completion_notes}</p> : null}
                           {item.completion_photos && item.completion_photos.length > 0 ? (
@@ -1230,7 +1217,14 @@ export function PatientPortalView({
                   )
                   .join("\n\n");
                 return (
-                  <div className="mb-4 flex flex-nowrap items-center gap-2 print:hidden">
+                  <div className="mb-4 flex flex-wrap items-center gap-2 print:hidden">
+                    {/* Both actions say what they do in words. "Send to family" is first so its menu opens inside the card. */}
+                    <FamilyShareButton
+                      align="left"
+                      lang={lang}
+                      title={treatmentTranslations[lang].title}
+                      text={planShareText}
+                    />
                     <Button
                       type="button"
                       variant="outline"
@@ -1240,13 +1234,6 @@ export function PatientPortalView({
                       <PrinterIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
                       <span>{planLabels[lang]?.print ?? planLabels.ro.print}</span>
                     </Button>
-                    <FamilyShareButton
-                      iconOnly
-                      align="right"
-                      lang={lang}
-                      title={treatmentTranslations[lang].title}
-                      text={planShareText}
-                    />
                   </div>
                 );
               })()}

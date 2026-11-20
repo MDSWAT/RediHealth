@@ -38,13 +38,16 @@ const AnatomicalViewport3D = dynamic(
 
 type NetworkInformationLike = { saveData?: boolean; effectiveType?: string };
 
-/** Data saver, very slow networks or tiny-memory phones start without the 3D body. */
+/**
+ * Data saver, slow networks (3G and below) or small-memory phones (2 GB and below) start without
+ * the 3D body: it is about 7 MB to download. "Show the 3D body" still loads it on request.
+ */
 function prefersLiteBody(): boolean {
   const nav = navigator as Navigator & { connection?: NetworkInformationLike; deviceMemory?: number };
   const conn = nav.connection;
   if (conn?.saveData) return true;
-  if (conn?.effectiveType === "slow-2g" || conn?.effectiveType === "2g") return true;
-  return typeof nav.deviceMemory === "number" && nav.deviceMemory <= 1;
+  if (conn?.effectiveType === "slow-2g" || conn?.effectiveType === "2g" || conn?.effectiveType === "3g") return true;
+  return typeof nav.deviceMemory === "number" && nav.deviceMemory <= 2;
 }
 const subscribeNoop = () => () => {};
 function subscribeDesktopLayout(onChange: () => void) {
@@ -1371,10 +1374,10 @@ function AnatomicalBodyMapContent({
                                 setBodyProfile(id);
                                 closePanel();
                               }}
-                              className={`flex min-h-11 flex-1 items-center gap-2 whitespace-nowrap rounded-xl border px-3 py-2 text-left text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                              className={`flex min-h-11 flex-1 items-center gap-2 whitespace-nowrap rounded-xl border px-3 py-2 text-left text-body font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                                 active
-                                  ? "border-sapphire bg-sapphire-soft/50 text-foreground shadow-[inset_0_0_0_1px_var(--color-sapphire)]"
-                                  : "border-border-control bg-card text-foreground hover:bg-muted"
+                                  ? "border-rose-border bg-rose-tint text-rose-ink shadow-2xs"
+                                  : "border-border-control bg-card text-foreground hover:border-rose-border/75 hover:bg-muted/60"
                               }`}
                             >
                               <Icon className="h-5 w-5 shrink-0" />

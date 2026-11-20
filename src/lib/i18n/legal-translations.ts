@@ -43,6 +43,8 @@ export type LegalCopy = {
     title: string;
     description: string;
     paragraphs: string[];
+    /** Says where the settings listed on the page are changed: the Accessibility menu in the header. */
+    settingsLead: string;
     contactLead: string;
     contact: string;
   };
@@ -120,6 +122,7 @@ export function getLegalCopy(lang: Lang): LegalCopy {
           "RediHealth trebuie să poată fi folosit cu un cititor de ecran sau doar cu tastatura. Culorile au contrast suficient și vezi mereu unde te afli pe pagină.",
           "Lucrăm mereu la asta. Dacă o pagină este greu de folosit cu un cititor de ecran sau cu alt ajutor tehnic, spune-ne și o reparăm.",
         ],
+        settingsLead: "Poți schimba aceste setări din meniul Accesibilitate, în partea de sus a fiecărei pagini.",
         contactLead: "Scrie-ne la",
         contact: "ca să ne spui de o problemă de accesibilitate sau să primești informațiile în alt format.",
       },
@@ -171,6 +174,7 @@ export function getLegalCopy(lang: Lang): LegalCopy {
           "RediHealth should work with screen readers and with a keyboard alone. Colours have sufficient contrast, and you can always see where you are on the page.",
           "We keep improving this. If a page is hard to use with a screen reader or another assistive tool, tell us and we will fix it.",
         ],
+        settingsLead: "You can change these settings in the Accessibility menu at the top of every page.",
         contactLead: "Write to us at",
         contact: "to report an accessibility problem or to get information in another format.",
       },
@@ -222,6 +226,7 @@ export function getLegalCopy(lang: Lang): LegalCopy {
           "RediHealth duhet të punojë me lexues ekrani dhe vetëm me tastierë. Ngjyrat kanë kontrast të mjaftueshëm dhe sheh gjithmonë ku ndodhesh në faqe.",
           "Vazhdojmë të punojmë për këtë. Nëse një faqe është e vështirë për t'u përdorur me lexues ekrani ose me një mjet tjetër ndihmës, na trego dhe do ta rregullojmë.",
         ],
+        settingsLead: "Këto cilësime mund t'i ndryshosh te menyja Aksesueshmëria, në krye të çdo faqeje.",
         contactLead: "Na shkruaj te",
         contact: "për të na treguar një problem aksesueshmërie ose për të marrë informacionin në një format tjetër.",
       },
@@ -273,6 +278,7 @@ export function getLegalCopy(lang: Lang): LegalCopy {
           "RediHealth dovrebbe funzionare con i lettori di schermo e con la sola tastiera. I colori hanno un contrasto sufficiente e vedi sempre dove ti trovi nella pagina.",
           "Ci lavoriamo di continuo. Se una pagina è difficile da usare con un lettore di schermo o un altro strumento di aiuto, diccelo e la sistemiamo.",
         ],
+        settingsLead: "Puoi cambiare queste impostazioni dal menu Accessibilità, in alto in ogni pagina.",
         contactLead: "Scrivici a",
         contact: "per segnalare un problema di accessibilità o per ricevere le informazioni in un altro formato.",
       },
@@ -324,6 +330,7 @@ export function getLegalCopy(lang: Lang): LegalCopy {
           "RediHealth treba raditi s čitačima zaslona i samo pomoću tipkovnice. Boje imaju dovoljan kontrast i uvijek vidiš gdje se nalaziš na stranici.",
           "Stalno radimo na tome. Ako je neku stranicu teško koristiti s čitačem zaslona ili drugim pomagalom, javi nam i popravit ćemo je.",
         ],
+        settingsLead: "Ove postavke možeš promijeniti u izborniku Pristupačnost, na vrhu svake stranice.",
         contactLead: "Piši nam na",
         contact: "kako bi prijavio poteškoću s pristupačnošću ili zatražio informacije u drugom obliku.",
       },
@@ -375,6 +382,7 @@ export function getLegalCopy(lang: Lang): LegalCopy {
           "RediHealth trubul te kerel buchi ekraneske ginatorenca thaj numay tastaturasa. E rangurya si len dosta kontrasto thaj sako drom dikhes kay san pi rig.",
           "Sako drom keras buchi pe kava. Te si ekh rig phari te labares ekraneske ginatoresa vay avere zhutimaske alatesa, phen amenge thaj ka lasharas la.",
         ],
+        settingsLead: "Shay paruves len ando menu Akceso thaj drabaripe, opre pe sako rig.",
         contactLead: "Lekhav amenge pe",
         contact: "te phenes varesavi problema vay te les e informaciye ando aver formato.",
       },
@@ -426,6 +434,7 @@ export function getLegalCopy(lang: Lang): LegalCopy {
           "RediHealth должен корректно работать с программами чтения с экрана и при управлении только с клавиатуры. Цвета имеют достаточный контраст, а фокус всегда виден.",
           "Мы постоянно улучшаем доступность. Если какой-либо раздел неудобен при использовании вспомогательных технологий, напишите нам, и мы исправим это.",
         ],
+        settingsLead: "Эти настройки можно изменить в меню «Доступность» вверху каждой страницы.",
         contactLead: "Напишите нам на",
         contact: "чтобы сообщить о проблеме доступности или запросить информацию в другом формате.",
       },

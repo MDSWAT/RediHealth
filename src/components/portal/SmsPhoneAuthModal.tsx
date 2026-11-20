@@ -312,8 +312,14 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
         body: JSON.stringify({ phone: cleanPhone(), otp: code }),
       });
       if (!response.ok) {
-        setError(response.status === 400 ? page.invalidCode : copy.genericError);
+        const wrongCode = response.status === 400;
+        setError(wrongCode ? page.invalidCode : copy.genericError);
         setIsLoading(false);
+        if (wrongCode) {
+          // The real input is invisible and already full: empty it so the next digits go in.
+          setOtpCode("");
+          otpInputRef.current?.focus();
+        }
         return;
       }
       const data = (await response.json()) as { redirectUrl?: string };

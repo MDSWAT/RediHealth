@@ -4,6 +4,13 @@ import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { PageListenAction } from "@/components/ui/PageListenAction";
 import { CookiePreferencesManager } from "@/components/security/CookiePreferencesManager";
+import {
+  LEGAL_LINK_CLASS,
+  LegalDocumentLayout,
+  LegalSection,
+  ResponsiveLegalTable,
+  type TocSection,
+} from "@/components/legal/LegalDocumentPrimitives";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { getLegalCopy } from "@/lib/i18n/legal-translations";
 import { getCookiesDoc } from "@/lib/i18n/legal-docs-copy";
@@ -19,16 +26,18 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const linkClass =
-  "rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border";
-
-const sectionClass =
-  "border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 lg:grid lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-10";
-
 export default async function CookiesPage() {
   const lang = await getRequestLang();
   const legal = getLegalCopy(lang);
   const doc = getCookiesDoc(lang);
+
+  const toc: TocSection[] = [
+    { id: "stare", title: doc.preferencesTitle },
+    { id: "categorii", title: doc.categoriesTitle },
+    { id: "lista-cookie-uri", title: doc.inventoryTitle },
+    { id: "protectie", title: doc.safeguardsTitle },
+    { id: "control", title: doc.manageTitle },
+  ];
 
   return (
     <main id="main-content" className="flex-1 pb-12 sm:pb-16">
@@ -44,69 +53,81 @@ export default async function CookiesPage() {
                 doc.description,
                 legal.versionMeta,
                 doc.preferencesBody,
-                doc.pixelTitle,
-                doc.pixelBody,
+                doc.safeguardsTitle,
+                doc.safeguardsBody,
               ]}
             />
           }
         />
 
-        <p className="mt-3 text-meta text-muted-foreground">{legal.versionMeta}</p>
+        <LegalDocumentLayout
+          lang={lang}
+          currentPath="/cookies"
+          versionMeta={legal.versionMeta}
+          sections={toc}
+        >
+          <LegalSection id="stare" number={1} title={doc.preferencesTitle}>
+            <p className="max-w-(--measure-reading)">{doc.preferencesBody}</p>
+            <CookiePreferencesManager inline />
+          </LegalSection>
 
-        <div className="mt-8 max-w-4xl text-body text-muted-foreground">
-          <section className={sectionClass}>
-            <h2 className="text-title text-foreground">{doc.preferencesTitle}</h2>
-            <div className="mt-2 max-w-(--measure-reading) lg:mt-0">
-              <p>{doc.preferencesBody}</p>
-              <CookiePreferencesManager inline />
-            </div>
-          </section>
-
-          <section className={sectionClass}>
-            <h2 className="text-title text-foreground">{doc.categoriesTitle}</h2>
-            <div className="mt-2 max-w-(--measure-reading) space-y-6 lg:mt-0">
+          <LegalSection id="categorii" number={2} title={doc.categoriesTitle}>
+            <div className="space-y-4">
               {doc.categories.map((category) => (
-                <div key={category.title} className="space-y-2">
+                <article
+                  key={category.title}
+                  className="rounded-xl border border-border bg-card p-5 space-y-2.5"
+                >
                   <h3 className="text-body font-semibold text-foreground">{category.title}</h3>
                   <p className="text-meta text-muted-foreground">{category.legalBasis}</p>
-                  <p>{category.body}</p>
-                  <ul className="list-disc space-y-1.5 pl-5">
+                  <p className="text-body text-muted-foreground">{category.body}</p>
+                  <ul className="list-disc space-y-1.5 pl-5 text-meta leading-relaxed">
                     {category.items.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
-                </div>
+                </article>
               ))}
             </div>
-          </section>
+          </LegalSection>
 
-          <section className={sectionClass}>
-            <h2 className="text-title text-foreground">{doc.pixelTitle}</h2>
-            <div className="mt-2 max-w-(--measure-reading) space-y-3 lg:mt-0">
-              <p>{doc.pixelBody}</p>
-              <ul className="list-disc space-y-1.5 pl-5">
-                {doc.pixelSafeguards.map((item) => (
+          <LegalSection id="lista-cookie-uri" number={3} title={doc.inventoryTitle}>
+            <ResponsiveLegalTable
+              columns={doc.inventoryColumns}
+              rows={doc.inventoryRows}
+              monoFirstColumn
+            />
+          </LegalSection>
+
+          <LegalSection id="protectie" number={4} title={doc.safeguardsTitle}>
+            <div className="border-l-2 border-sapphire pl-4 space-y-3 dark:border-sapphire-border">
+              <p className="max-w-(--measure-reading) text-foreground">{doc.safeguardsBody}</p>
+              <ul className="max-w-(--measure-reading) list-disc space-y-1.5 pl-5">
+                {doc.safeguardsItems.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </div>
-          </section>
+          </LegalSection>
 
-          <section className={sectionClass}>
-            <h2 className="text-title text-foreground">{doc.manageTitle}</h2>
-            <div className="mt-2 max-w-(--measure-reading) space-y-3 lg:mt-0">
-              <p>{doc.manageBody}</p>
-              <div className="flex flex-wrap gap-x-6 gap-y-2 pt-1">
-                <Link href={withLangPrefix("/privacy", lang)} className={`inline-flex min-h-11 items-center ${linkClass}`}>
-                  {doc.privacyLinkLabel}
-                </Link>
-                <Link href={withLangPrefix("/contact", lang)} className={`inline-flex min-h-11 items-center ${linkClass}`}>
-                  {doc.contactLinkLabel}
-                </Link>
-              </div>
+          <LegalSection id="control" number={5} title={doc.manageTitle}>
+            <p className="max-w-(--measure-reading)">{doc.manageBody}</p>
+            <div className="flex flex-wrap gap-x-6 gap-y-1">
+              <Link
+                href={withLangPrefix("/privacy", lang)}
+                className={`inline-flex min-h-11 items-center ${LEGAL_LINK_CLASS}`}
+              >
+                {doc.privacyLinkLabel}
+              </Link>
+              <Link
+                href={withLangPrefix("/contact", lang)}
+                className={`inline-flex min-h-11 items-center ${LEGAL_LINK_CLASS}`}
+              >
+                {doc.contactLinkLabel}
+              </Link>
             </div>
-          </section>
-        </div>
+          </LegalSection>
+        </LegalDocumentLayout>
       </Container>
     </main>
   );

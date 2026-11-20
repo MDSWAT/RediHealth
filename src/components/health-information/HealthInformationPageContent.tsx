@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -15,115 +15,23 @@ import { ROMANIAN_MEDICAL_GLOSSARY } from "@/lib/i18n/romanian-medical-glossary"
 import { ROMANES_GLOSSARY_TERMS } from "@/lib/i18n/romanes-glossary";
 import { HealthTopicCategories } from "./HealthTopicCategories";
 import { TrueFalseQuizSection } from "@/components/landing/TrueFalseQuizSection";
+import { HEALTH_HUB_EXPLORER_COPY } from "@/lib/i18n/learn-hub-copy";
+import { TOOL_LABELS_BY_SLUG, getHealthTopicsList } from "@/lib/i18n/health-information-topics";
 import { handleTabKey, tabClass, TAB_LIST_CLASS } from "./diabetes/choice-styles";
+import {
+  LEARN_HUB_TABS,
+  type LearnHubInitialState,
+  type LearnHubTab,
+} from "@/lib/learn-hub-params";
 
-export const LEARN_HUB_TABS = ["guides", "topics", "quiz", "dictionary"] as const;
-export type LearnHubTab = (typeof LEARN_HUB_TABS)[number];
+export { LEARN_HUB_TABS, type LearnHubTab };
 
-export const HEALTH_HUB_EXPLORER_COPY: Record<
-  Lang,
-  {
-    exploreAria: string;
-    onThisPage: string;
-    guides: string;
-    articles: string;
-    topics: string;
-    myths: string;
-    dictionary: string;
-    title: string;
-    subtitle: string;
-  }
-> = {
-  ro: {
-    exploreAria: "Secțiunile paginii Învață și testează-te",
-    onThisPage: "Alege o secțiune",
-    guides: "Ghiduri și instrumente",
-    articles: "Articole",
-    topics: "Toate temele",
-    myths: "Adevărat sau fals",
-    dictionary: "Dicționar medical",
-    title: "Învață și testează-te",
-    subtitle:
-      "Ghiduri clare cu exerciții interactive pentru tensiune, glicemie, sare, respirație și controale, plus întrebări adevărat sau fals și dicționar medical.",
-  },
-  en: {
-    exploreAria: "Learn and test yourself sections",
-    onThisPage: "Choose a section",
-    guides: "Guides and tools",
-    articles: "Articles",
-    topics: "All topics",
-    myths: "True or false",
-    dictionary: "Medical dictionary",
-    title: "Learn and test yourself",
-    subtitle:
-      "Plain guides with interactive checks for blood pressure, blood sugar, salt, breathing, and screening, plus true or false questions and a medical dictionary.",
-  },
-  sq: {
-    exploreAria: "Seksionet Mëso dhe testo veten",
-    onThisPage: "Zgjidh një seksion",
-    guides: "Udhëzues dhe mjete",
-    articles: "Artikuj",
-    topics: "Të gjitha temat",
-    myths: "E vërtetë apo e rreme",
-    dictionary: "Fjalori mjekësor",
-    title: "Mëso dhe testo veten",
-    subtitle:
-      "Udhëzues të qartë me kontrolle praktike për tensionin, gliceminë, kripën, frymëmarrjen dhe analizat, plus pyetje e vërtetë apo e rreme dhe fjalor mjekësor.",
-  },
-  it: {
-    exploreAria: "Sezioni Impara e mettiti alla prova",
-    onThisPage: "Scegli una sezione",
-    guides: "Guide e strumenti",
-    articles: "Articoli",
-    topics: "Tutti i temi",
-    myths: "Vero o falso",
-    dictionary: "Dizionario medico",
-    title: "Impara e mettiti alla prova",
-    subtitle:
-      "Guide chiare con strumenti pratici per pressione, glicemia, sale, respirazione e controlli, più domande vero o falso e dizionario medico.",
-  },
-  hr: {
-    exploreAria: "Odjeljci Uči i testiraj se",
-    onThisPage: "Odaberi odjeljak",
-    guides: "Vodiči i alati",
-    articles: "Članci",
-    topics: "Sve teme",
-    myths: "Točno ili netočno",
-    dictionary: "Medicinski rječnik",
-    title: "Uči i testiraj se",
-    subtitle:
-      "Jasni vodiči s praktičnim provjerama za tlak, šećer, sol, disanje i preglede, te pitanja točno ili netočno i medicinski rječnik.",
-  },
-  rom: {
-    exploreAria: "Sekciye Sikljov thaj proba tu",
-    onThisPage: "Alosar jekh sekciya",
-    guides: "Droma thaj instrumentura",
-    articles: "Artikolura",
-    topics: "Sa e teme",
-    myths: "Čačes vaj na",
-    dictionary: "Doktorengo lavustik",
-    title: "Sikljov thaj proba tu",
-    subtitle:
-      "Lokhe droma praktikane dikhimasa vaš o presia, guglimo, lon, phurdipen thaj kontrole, plus čačes vaj na pučimata thaj doktorengo lavustik.",
-  },
-  ru: {
-    exploreAria: "Разделы Учись и проверяй себя",
-    onThisPage: "Выберите раздел",
-    guides: "Памятки и тесты",
-    articles: "Статьи",
-    topics: "Все темы",
-    myths: "Правда или ложь",
-    dictionary: "Медицинский словарь",
-    title: "Учись и проверяй себя",
-    subtitle:
-      "Понятные памятки с практическими проверками давления, сахара, соли, дыхания и обследований, а также вопросы правда или ложь и медицинский словарь.",
-  },
-};
+export { HEALTH_HUB_EXPLORER_COPY };
 
 /** Kept for links that pass an initial tab alias. */
 export type HealthInfoView = "menu" | "topics" | "triage";
 
-export interface HealthInformationPageContentProps {
+export interface HealthInformationPageContentProps extends LearnHubInitialState {
   initialView?: HealthInfoView;
   initialViewMode?: HealthInfoView;
   initialCategory?: string;
@@ -143,13 +51,25 @@ function resolveTabFromUrl(): { tab: LearnHubTab | null; dictSub: "dictionary" |
   const qTab = params.get("tab");
   const hash = window.location.hash.replace(/^#/, "");
 
-  if (hash === "romanes" || qTab === "romanes") {
+  // "romanes-glossary", "medical-glossary" and "quiz-section-heading" are the addresses the site
+  // search and older links use; without them a dictionary word opened the guides tab.
+  if (hash === "romanes" || hash === "romanes-glossary" || qTab === "romanes") {
     return { tab: "dictionary", dictSub: "romanes" };
   }
-  if (qTab === "dictionary" || hash === "dictionary" || hash === "medical-dictionary") {
+  if (
+    qTab === "dictionary" ||
+    hash === "dictionary" ||
+    hash === "medical-dictionary" ||
+    hash === "medical-glossary"
+  ) {
     return { tab: "dictionary", dictSub: params.get("sub") === "romanes" ? "romanes" : null };
   }
-  if (qTab === "quiz" || hash === "mituri-sanatate" || hash === "quiz") {
+  if (
+    qTab === "quiz" ||
+    hash === "mituri-sanatate" ||
+    hash === "quiz" ||
+    hash === "quiz-section-heading"
+  ) {
     return { tab: "quiz", dictSub: null };
   }
   if (qTab === "topics" || hash === "health-topics") {
@@ -166,13 +86,22 @@ function resolveTabFromUrl(): { tab: LearnHubTab | null; dictSub: "dictionary" |
  * the topic library, the true-or-false myth check, and the inline dual-register + Romani dictionary.
  */
 export function HealthInformationPageContent(props: HealthInformationPageContentProps = {}) {
-  const { initialView, initialCategory = "toate" } = props;
+  const {
+    initialView,
+    initialCategory = "toate",
+    initialTab,
+    initialDictionarySub,
+    initialDictionaryQuery,
+    initialTopicCategory,
+  } = props;
   const { lang } = useSafeLanguage();
 
   const [activeTab, setActiveTab] = useState<LearnHubTab>(
-    initialView === "topics" ? "topics" : "guides",
+    initialTab ?? (initialView === "topics" ? "topics" : "guides"),
   );
-  const [dictSubTab, setDictSubTab] = useState<"dictionary" | "romanes">("dictionary");
+  const [dictSubTab, setDictSubTab] = useState<"dictionary" | "romanes">(
+    initialDictionarySub ?? "dictionary",
+  );
   const explorer = HEALTH_HUB_EXPLORER_COPY[lang] ?? HEALTH_HUB_EXPLORER_COPY.ro;
 
   useEffect(() => {
@@ -195,11 +124,13 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
     if (typeof window !== "undefined") {
       try {
         const nextUrl = new URL(window.location.href);
+        // The looked-up word, the open topic group and the dictionary side belong to the tab left behind.
+        nextUrl.searchParams.delete("q");
+        nextUrl.searchParams.delete("cat");
+        nextUrl.searchParams.delete("sub");
         if (nextTab === "guides") {
           nextUrl.searchParams.delete("tab");
-          if (nextUrl.hash === "#health-topics" || nextUrl.hash === "#mituri-sanatate") {
-            nextUrl.hash = "";
-          }
+          nextUrl.hash = "";
         } else {
           nextUrl.searchParams.set("tab", nextTab);
           if (nextTab === "topics") nextUrl.hash = "#health-topics";
@@ -230,6 +161,25 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
     dictionary: explorer.dictionary,
   };
 
+  // Read aloud, the page says what is on it: the four tabs, then each guide with its tool.
+  // A person who cannot read the page hears where things are, not only the heading.
+  const pageNarration = useMemo(() => {
+    const guides = getHealthTopicsList(lang).map((topic) => {
+      const tool = TOOL_LABELS_BY_SLUG[topic.slug]?.[lang];
+      return tool ? `${topic.title}: ${tool}` : topic.title;
+    });
+    return [
+      explorer.title,
+      explorer.subtitle,
+      [explorer.guides, explorer.topics, explorer.myths, explorer.dictionary].join(". "),
+      ...guides,
+    ]
+      .map((part) => part.trim().replace(/[.:]+$/, ""))
+      .filter(Boolean)
+      .join(". ")
+      .concat(".");
+  }, [explorer, lang]);
+
   return (
     <main id="main-content" className="flex-1 bg-background">
       <section className="pb-12 sm:pb-16">
@@ -240,7 +190,7 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
             actions={
               <ArticleListenButton
                 uiLang={lang}
-                textToSpeak={`${explorer.title}. ${explorer.subtitle}`}
+                textToSpeak={pageNarration}
               />
             }
           />
@@ -289,7 +239,9 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
               />
             )}
 
-            {activeTab === "topics" && <HealthTopicCategories embedded />}
+            {activeTab === "topics" && (
+              <HealthTopicCategories embedded initialOpenCategory={initialTopicCategory} />
+            )}
 
             {activeTab === "quiz" && (
               <TrueFalseQuizSection embedded initialCategory={initialCategory} />
@@ -303,6 +255,7 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
                     isActive={activeTab === "dictionary" && dictSubTab === "dictionary"}
                     tabs={inlineDictionaryTabs}
                     lang={lang}
+                    initialQuery={initialDictionaryQuery}
                   />
                 ) : (
                   <RomanesGlossaryContent
@@ -310,6 +263,7 @@ export function HealthInformationPageContent(props: HealthInformationPageContent
                     isActive={activeTab === "dictionary" && dictSubTab === "romanes"}
                     tabs={inlineDictionaryTabs}
                     lang={lang}
+                    initialQuery={initialDictionaryQuery}
                   />
                 )}
               </div>

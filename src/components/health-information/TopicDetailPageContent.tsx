@@ -291,6 +291,7 @@ export function TopicDetailPageContent({
         }}
         onStopClick={closeAudioPlayer}
         isPlayingAudio={isAudioPlayerOpen}
+        listenLabel={ui.listenGuideLabel}
         saveText={narrationScript}
         afterActions={
           <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-body text-muted-foreground">

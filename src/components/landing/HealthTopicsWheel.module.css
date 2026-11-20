@@ -100,12 +100,13 @@
   --wheel-face-ring: var(--wheel-accent);
 }
 
-/* Runs on the ring's clock, so the button lights up at a fixed screen angle. */
+/* Runs on the ring's clock, so the button lights up in a calm decoloured rose at the highlight angle. */
 .lit {
-  --wheel-face-bg: var(--color-sapphire);
-  --wheel-face-fg: #fff;
-  --wheel-face-ring: rgb(255 255 255 / 0.8);
+  --wheel-face-bg: var(--color-rose-tint);
+  --wheel-face-fg: var(--color-rose-ink);
+  --wheel-face-ring: var(--color-rose-mid);
   opacity: 0;
+  box-shadow: 0 0 1.4cqw 0.35cqw color-mix(in srgb, var(--color-rose-border) 75%, transparent);
   animation: wheel-highlight var(--wheel-outer-dur) linear infinite;
   animation-delay: calc(var(--wheel-outer-dur) * var(--hl-phase, 0) * -1);
 }
@@ -161,7 +162,7 @@
   translate: -50% 0;
   padding: 0.25rem 0.625rem;
   border-radius: var(--radius-control);
-  background: var(--color-sapphire);
+  background: var(--color-rose-ink);
   color: #fff;
   font-size: 0.8125rem;
   font-weight: 600;

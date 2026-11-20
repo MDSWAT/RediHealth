@@ -109,25 +109,38 @@ describe("hero render", () => {
     currentLang.value = "en";
   });
 
-  it.each(ALL_LANGS)("renders one calm entry CTA to /health-check and zero hero dialogs or detours in %s", (lang) => {
+  it.each(ALL_LANGS)("renders one single primary entry CTA to /health-check and zero extra CTAs or hero dialogs in %s", (lang) => {
     const html = renderHero(lang);
     const copy = heroCopy[lang];
+    const escaped = (text: string) => text.replace(/'/g, "&#x27;");
 
-    expect(html).toContain(copy.trustLine.replace(/'/g, "&#x27;"));
-    expect(html).toContain(copy.primaryCta.replace(/'/g, "&#x27;"));
-    expect(html).toContain(`href="/${lang}/health-check"`);
-    expect(html).toContain("bg-paper!");
-    expect(html).toContain("text-ink-950!");
+    expect(html).toContain(escaped(copy.trustLine));
+    expect(html).toContain(escaped(copy.primaryCta));
+    expect(html).not.toContain(escaped(copy.checkNote));
+    expect(html).not.toContain(escaped(copy.offlineLine));
 
-    // No dialogs, search forms, 6-row menus, second unwell button, or mediator/doctor detours in the hero.
+    // Strictly one primary entry CTA to /health-check (sapphire action button) and zero competing route cards.
+    expect(html.match(new RegExp(`href="/${lang}/health-check"`, "g"))).toHaveLength(1);
+    expect(html).toContain("bg-sapphire");
+    expect(html).not.toContain(`href="/${lang}/prescription-review"`);
+    expect(html).not.toContain(`href="/${lang}/find-help"`);
+    expect(html).not.toContain(`href="/${lang}/mediatori"`);
+    expect(html).not.toContain(`href="/${lang}/health-information"`);
+
+    // No dialogs, search forms, 6-row menus, or online doctor detour in the hero.
     expect(html).not.toContain("<dialog");
     expect(html).not.toContain('role="tooltip"');
     expect(html).not.toContain('role="search"');
     expect(html).not.toContain("triage-option-");
     expect(html).not.toContain("triage-sheet");
     expect(html).not.toContain("/medic-online");
-    expect(html).not.toContain(`href="/${lang}/mediatori"`);
-    expect(html).not.toContain(`href="/${lang}/health-information"`);
+  });
+
+  it("promises health information, never medical advice, in every headline", () => {
+    for (const lang of ALL_LANGS) {
+      const headline = [heroCopy[lang].title, ...heroCopy[lang].mobileTitle].join(" ");
+      expect(headline, lang).not.toMatch(/advice|sfat|këshill|consigli|savjet|совет/i);
+    }
   });
 
   it("renders no Romanian characters on the English page", () => {
@@ -140,25 +153,29 @@ describe("hero render", () => {
     expect(html).not.toMatch(/rounded-full[^"]*px-2\.5[^"]*py-0\.5/);
   });
 
-  it("fills the first screen: the whole screen below lg, the screen below the sticky header from lg", () => {
-    expect(renderHero("en")).toMatch(/min-h-svh[^"]*lg:min-h-\[calc\(100svh-var\(--site-header-h\)\)\]/);
+  it("fills the first fold above the regional ribbon on both mobile and desktop", () => {
+    const html = renderHero("en");
+    expect(html).toMatch(/min-h-\[calc\(100svh-var\(--site-header-h\)-6\.5rem\)\]/);
+    expect(html).toMatch(/lg:min-h-\[calc\(100svh-var\(--site-header-h\)-3\.5rem\)\]/);
+    expect(html).toContain("hero-mobile-stage");
+    expect(html).not.toMatch(/\bmin-h-svh\b/);
   });
 
-  it("simplifies src/app/page.tsx to natural vertical sections without sticky stacking, news ribbon, online doctor, or quiz", () => {
+  it("restores StackedSections, RegionalHealthRibbon, HealthTopics, MediatorsSection and TrustSection in src/app/page.tsx without OnlineDoctorSection or landing quiz", () => {
     const pageSrc = readFileSync(path.resolve(__dirname, "../../app/page.tsx"), "utf8");
-    expect(pageSrc).not.toContain("StackedSections");
-    expect(pageSrc).not.toContain("StackLayer");
-    expect(pageSrc).not.toContain("RegionalHealthRibbon");
+    expect(pageSrc).toContain("StackedSections");
+    expect(pageSrc).toContain("StackLayer");
+    expect(pageSrc).toContain("RegionalHealthRibbon");
     expect(pageSrc).not.toContain("OnlineDoctorSection");
     expect(pageSrc).not.toContain("TrueFalseQuizSection");
-    expect(pageSrc).toMatch(/<Hero\s*\/>[\s\S]*<HealthTopics\s*\/>[\s\S]*<MediatorsSection\s*\/>[\s\S]*<TrustSection\s*\/>/);
+    expect(pageSrc).toMatch(/<Hero\s*\/>[\s\S]*<RegionalHealthRibbon\s*\/>[\s\S]*<HealthTopics\s*\/>[\s\S]*<MediatorsSection\s*\/>[\s\S]*<TrustSection\s*\/>/);
   });
 
   it("sets the headline as plain sentences: the concept's one sentence from lg, two short ones below it", () => {
     const html = renderHero("ro");
     const h1 = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/);
-    expect(h1?.[1]).toContain(`<span class="hero-in hidden [--in:140ms] lg:inline-block">${heroCopy.ro.title}</span>`);
-    expect(h1?.[1]).toContain(`<span class="hero-in block [--in:140ms]">${heroCopy.ro.mobileTitle[0]}</span><span class="hero-title-warm hero-in block [--in:230ms]">${heroCopy.ro.mobileTitle[1]}</span>`);
+    expect(h1?.[1]).toContain(`<span class="hero-in hidden [--in:60ms] lg:inline-block">${heroCopy.ro.title}</span>`);
+    expect(h1?.[1]).toContain(`<span class="hero-in block [--in:60ms]">${heroCopy.ro.mobileTitle[0]}</span><span class="hero-title-warm hero-in block [--in:140ms]">${heroCopy.ro.mobileTitle[1]}</span>`);
     expect(h1?.[0]).not.toContain("aria-label");
     expect(html).not.toContain("hero-word");
     for (const lang of ALL_LANGS) {
@@ -190,8 +207,7 @@ describe("landing interaction rules", () => {
   const landingDir = path.resolve(__dirname);
   const ownedLandingFiles = [
     "Hero.tsx",
-    "hero/HeroRoutes.tsx",
-    "hero/HeroDock.tsx",
+    "hero/HeroPhotos.tsx",
     "HealthTopics.tsx",
     "MediatorsSection.tsx",
     "MediatorServices.tsx",
@@ -213,41 +229,46 @@ describe("landing interaction rules", () => {
     expect(hero).not.toMatch(/hero-scroll|will-change|translate3d|addEventListener\("scroll"/);
   });
 
-  it("keeps the desktop photos desktop-only via getImageProps and <picture> source while hiding WheelBackdrop below lg", () => {
+  it("renders full-width filtered multi-image backdrop photos with white editorial veil and spinning wheel", () => {
     const hero = sources.find(([file]) => file === "Hero.tsx")![1];
-    const photos = readFileSync(path.join(landingDir, "hero/HeroPhotos.tsx"), "utf8");
+    const photos = sources.find(([file]) => file === "hero/HeroPhotos.tsx")![1];
     const css = readFileSync(path.join(landingDir, "hero/HeroPhotos.module.css"), "utf8");
+    const wheelCss = readFileSync(path.join(landingDir, "WheelBackdrop.module.css"), "utf8");
     expect(hero).toMatch(/<HeroPhotos \/>/);
-    expect(hero).toMatch(/hidden lg:block[\s\S]*<WheelBackdrop placement="hero"/);
+    expect(hero).toMatch(/<WheelBackdrop placement="hero" \/>/);
     expect(photos).toMatch(/getImageProps\(/);
-    expect(photos).toMatch(/<source media="\(min-width: 1024px\)"/);
-    expect(photos).toMatch(/loading: index === 0 \? "eager" : "lazy"[\s\S]*fetchPriority: index === 0 \? "high" : "low"/);
+    expect(photos).toContain("/images/hero-care.jpg");
+    expect(photos).toContain("/images/hero-consultation.jpg");
+    expect(photos).toContain("/images/health-topics/heart-health-care.jpg");
+    expect(photos).toContain("/images/hero-desk.jpg");
+    expect(photos).toMatch(/loading: index === 0 \? "eager" : "lazy"/);
+    expect(photos).toMatch(/fetchPriority: index === 0 \? "high" : "low"/);
     expect(photos).toMatch(/aria-hidden="true"/);
     expect(photos).not.toMatch(/\bpriority\b|\bquality=/);
-    expect(css).toMatch(/prefers-reduced-motion: reduce[\s\S]*animation: none/);
-    expect(css).toMatch(/html\[data-calm-motion\]\) \.photo[\s\S]*animation: none/);
+    expect(css).toMatch(/filter:\s*saturate/);
+    expect(css).toMatch(/\.veil\b/);
+    expect(css).toMatch(/@keyframes hero-fade-2/);
+    expect(css).toMatch(/@media \(prefers-reduced-motion: reduce\)/);
+    expect(css).toMatch(/:global\(html\[data-calm-motion\]\)/);
+    expect(css).toMatch(/:global\(html\[data-high-contrast\]\)/);
+    // The hero wheel is never switched off on phones, and it keeps turning.
+    expect(wheelCss).not.toMatch(/\.hero \{\s*display: none/);
+    expect(wheelCss).toMatch(/\.outer \{\s*animation: hero-wheel-spin/);
   });
 
-  it("renders one single entry CTA on both HeroRoutes and HeroDock without draggable sheets, modals, or wheel easter eggs", () => {
-    const routes = sources.find(([file]) => file === "hero/HeroRoutes.tsx")![1];
-    const dock = sources.find(([file]) => file === "hero/HeroDock.tsx")![1];
-    const dockCss = readFileSync(path.join(landingDir, "hero/HeroDock.module.css"), "utf8");
+  it("routes visitors from one calm action CTA to /health-check with scroll-dissolve classes and no dialogs or route cards", () => {
+    const hero = sources.find(([file]) => file === "Hero.tsx")![1];
 
-    expect(routes).toContain('localHref("/health-check", lang)');
-    expect(routes).not.toContain("<dialog");
-    expect(routes).not.toContain("TriagePanel");
-    expect(routes).not.toContain("openSmartSearch");
-
-    expect(dock).toContain('localHref("/health-check", lang)');
-    expect(dock).not.toContain("<dialog");
-    expect(dock).not.toContain("TriagePanel");
-    expect(dock).not.toContain("openSheet");
-    expect(dock).not.toContain("ringOn");
-    expect(dock).not.toContain("onPointerDown");
-    expect(dock).not.toMatch(/bg-primary|text-primary|active:scale|\btruncate\b/);
-    expect(dock).toMatch(/<source media="\(max-width: 1023px\)"/);
-    expect(dockCss).toMatch(/prefers-reduced-motion: reduce[\s\S]*animation: none/);
-    expect(dockCss).toMatch(/html\[data-calm-motion\]\) \.photo[\s\S]*animation: none/);
+    expect(hero).toContain('localHref("/health-check", lang)');
+    expect(hero).toContain('variant="action"');
+    expect(hero).toContain("hero-wheel-dissolve");
+    expect(hero).toContain("hero-mobile-stage");
+    expect(hero).toContain("hero-grid");
+    expect(hero).toContain("hero-phone-drift");
+    expect(hero).not.toContain("HeroRoutes");
+    expect(hero).not.toContain("<dialog");
+    expect(hero).not.toContain("TriagePanel");
+    expect(hero).not.toContain("openSmartSearch");
   });
 });
 
@@ -257,8 +278,8 @@ describe("landing accent roles and one source of copy", () => {
   it("keeps --color-primary exclusive to 112 and out of all landing components and wheel CSS", () => {
     const files = [
       "Hero.tsx",
-      "hero/HeroRoutes.tsx",
-      "hero/HeroDock.tsx",
+      "hero/HeroPhotos.tsx",
+      "hero/HeroPhotos.module.css",
       "HealthTopics.tsx",
       "HealthTopicsSpotlight.tsx",
       "HealthTopicsWheel.module.css",
@@ -284,18 +305,16 @@ describe("landing accent roles and one source of copy", () => {
     }
   });
 
-  it("renders all 8 health topics in a scannable Server Component grid with one action button to /health-information", () => {
+  it("renders all 8 health topics via Server Component with HealthTopicsWheel + HealthTopicsSpotlight and one button to /health-information", () => {
     const topics = read("HealthTopics.tsx");
     expect(topics).not.toMatch(/"use client"|from "motion/);
     expect(topics).toMatch(/getHealthTopicsList\(lang\)/);
     expect(topics).toMatch(/from "next\/image"/);
     expect(topics).toMatch(/alt=""/);
     expect(topics).not.toMatch(/\bpriority\b|\bquality=|loading="eager"/);
-    expect(topics).not.toContain("HealthTopicsSpotlight");
-    expect(topics).not.toContain("HealthTopicsWheel");
+    expect(topics).toContain("HealthTopicsSpotlight");
+    expect(topics).toContain("HealthTopicsWheel");
     expect(topics).toContain('withLangPrefix("/health-information", lang)');
-    expect(topics).toContain("bg-wellness");
-    expect(topics).toContain("bg-sapphire");
   });
 
   it("simplifies MediatorsSection to one action button to /mediatori#solicita and frames TrustSection commitments in cards", () => {
@@ -349,12 +368,13 @@ describe("hero motion safety", () => {
     expect(delays.length).toBeGreaterThan(0);
     for (const delay of delays) expect(delay).toBeLessThanOrEqual(500);
     expect(heroRules).toMatch(/prefers-reduced-motion: no-preference[\s\S]*html:not\(\[data-calm-motion\]\) \.hero-in/);
-    const intro = heroRules.slice(heroRules.indexOf("@keyframes hero-in"), heroRules.indexOf("@keyframes hero-dock-in") + 120);
+    const intro = heroRules.slice(heroRules.indexOf("@keyframes hero-in"), heroRules.indexOf("@keyframes hero-warm-up") + 120);
     expect(intro).not.toMatch(/\b(height|width|top|left|margin|padding|filter)\s*:/);
   });
 
-  it("renders the hero headline visible on first paint with the shared calm ease token", () => {
+  it("renders the hero headline visible on first paint with the shared calm ease token and desktop sheet dissolve", () => {
     expect(heroRules).toMatch(/--hero-ease:\s*var\(--ease-out-calm\)/);
+    expect(heroRules).toMatch(/hero-sheet-dissolve/);
     expect(heroRules).not.toMatch(/\.hero-enter|@keyframes\s+hero-enter/);
   });
 

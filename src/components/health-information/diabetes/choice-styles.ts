@@ -20,30 +20,31 @@ export const ROW_CLASS = `group flex min-h-[48px] w-full items-center gap-3 bord
 /** Radio dot: a ring when not chosen, a thick ring (reads as a filled dot) when chosen. */
 export function radioDotClass(selected: boolean): string {
   return `h-4 w-4 shrink-0 rounded-xs border-solid transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
-    selected ? "border-[5px] border-foreground" : "border-[1.5px] border-muted-foreground/60 group-hover:border-foreground/70"
+    selected ? "border-[5px] border-rose-ink" : "border-[1.5px] border-muted-foreground/60 group-hover:border-rose-mid"
   }`;
 }
 
 /** Tick box for multi-select rows; the tick icon sits inside it. */
 export function tickBoxClass(selected: boolean): string {
   return `flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-[5px] border transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
-    selected ? "border-foreground bg-foreground text-white" : "border-muted-foreground/60 bg-card group-hover:border-foreground/70"
+    selected ? "border-rose-ink bg-rose-ink text-white" : "border-muted-foreground/60 bg-card group-hover:border-rose-mid"
   }`;
 }
 
 /**
  * Section tabs: an underline band (the same pattern as the smoking and women's health hubs).
- * On phones the tabs sit in a grid, each cell on its own hairline; from `sm` they run in
- * one row on a single hairline and the chosen tab carries a 2px ink underline.
- * Pass the phone column count (`grid-cols-2`, `grid-cols-3`) with the list class.
+ * On phones the row wraps, so every tab is on screen: a row that scrolls sideways with no
+ * scrollbar hid the last tabs (the dictionary, the later tools). Whole tabs wrap, a label never
+ * breaks. From `sm` they run in one row on a single hairline and the chosen tab carries a 2px
+ * ink underline.
  */
 export const TAB_LIST_CLASS =
-  "flex items-center gap-5 overflow-x-auto border-b border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6";
+  "flex flex-wrap items-center gap-x-5 gap-y-0 border-b border-border sm:flex-nowrap sm:gap-6 sm:overflow-x-auto sm:[scrollbar-width:none] sm:[&::-webkit-scrollbar]:hidden";
 
 export function tabClass(selected: boolean): string {
   return `-mb-px inline-flex min-h-11 shrink-0 items-center whitespace-nowrap border-b-2 pb-2.5 pt-2 text-sm font-semibold ${FEEDBACK} focus-visible:ring-inset focus-visible:ring-offset-0 ${
     selected
-      ? "border-foreground text-foreground"
+      ? "border-rose-mid text-rose-ink"
       : "border-transparent text-muted-foreground hover:text-foreground"
   }`;
 }
@@ -78,13 +79,13 @@ export const STEP_LIST_CLASS = "grid grid-cols-1 gap-px overflow-hidden rounded-
 
 export function stepCellClass(current: boolean): string {
   return `group flex h-full min-h-[56px] w-full items-center gap-3 px-3.5 py-3 text-left ${FEEDBACK} focus-visible:ring-inset focus-visible:ring-offset-0 ${
-    current ? "bg-surface-subtle" : "bg-card hover:bg-surface-subtle/50"
+    current ? "bg-rose-tint/70" : "bg-card hover:bg-surface-subtle/50"
   }`;
 }
 
-/** Step number in a stepper row: filled ink for the current step, quiet otherwise. */
+/** Step number in a stepper row: soft rosewood ink for the current step, quiet otherwise. */
 export function stepNumberClass(current: boolean): string {
   return `flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
-    current ? "bg-foreground text-white" : "bg-surface-subtle text-muted-foreground"
+    current ? "bg-rose-ink text-white" : "bg-surface-subtle text-muted-foreground"
   }`;
 }

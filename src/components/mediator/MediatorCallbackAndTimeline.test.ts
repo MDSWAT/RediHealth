@@ -151,6 +151,20 @@ describe("MediatorCallbackStarter validation and /api/medical-help-requests subm
     });
     expect(payload.description.length).toBeGreaterThanOrEqual(10);
     expect(SUPPORTED_COUNTRIES).toContain(payload.country);
+
+    // A one-tap reason is added for the mediator in Romanian, whatever language the form is in.
+    const withReason = buildCallbackPayload({
+      name: "",
+      phone: "0721000111",
+      county: "Cluj",
+      country: "RO",
+      lang: "hr",
+      captchaToken: "tok_123",
+      reason: 1,
+    });
+    expect(withReason.description).toBe(
+      "Solicitare apel mediator sanitar din /mediatori#solicita (Zona: Cluj, limba: hr, nevoie: acte și asigurare)",
+    );
   });
 
   it("executes help_request reCAPTCHA and posts payload with REQUEST_LANG_HEADER", async () => {
@@ -229,7 +243,7 @@ describe("MediatorCallbackStarter validation and /api/medical-help-requests subm
 });
 
 describe("/mediatori page layout, accompaniment timeline, and calm patient hero", () => {
-  it.each(SUPPORTED_LANGS)("renders hero, warm 3-step timeline, #solicita starter, and quiet bottom sign-in strip in %s", async (lang) => {
+  it.each(SUPPORTED_LANGS)("renders hero, #solicita starter with its limits, no repeated timeline, and quiet bottom sign-in strip in %s", async (lang) => {
     mockedHeaderState.lang = lang;
     const element = await MediatoriPublicPage();
     const html = renderWithProviders(lang, element);
@@ -241,19 +255,22 @@ describe("/mediatori page layout, accompaniment timeline, and calm patient hero"
     expect(html).toContain(heroCopy[lang].title);
     expect(html).toContain(callbackAnchorHref);
 
-    // Accompaniment timeline tokens and 3 numbered steps without decorative prefixes.
-    expect(html).toContain("bg-amber-care-soft/55");
-    expect(html).toContain("border-amber-care-border");
-    expect(html).toContain(mediatorTimelineCopy[lang].title);
-    for (const step of mediatorTimelineCopy[lang].steps) {
-      expect(html).toContain(step.title);
-      expect(html).toContain(step.body);
-    }
-    expect(html).toContain(">1<");
-    expect(html).toContain(">2<");
-    expect(html).toContain(">3<");
+    // The three-step timeline repeated the hero and the form lead, so the page no longer shows it.
+    expect(html).not.toContain(mediatorTimelineCopy[lang].title);
+    expect(html).not.toContain("bg-amber-care-soft/55");
 
-    // Patient callback starter comes immediately after hero (before timeline) & sign-in strip at the bottom.
+    // Before sending: when the call comes, and what a mediator does not do.
+    const starter = callbackStarterCopy[lang];
+    expect(html).toContain(starter.lead);
+    expect(html).toContain(starter.limitsTitle);
+    expect(html).toContain(starter.limitAdvice);
+    expect(html).toContain(starter.limitAvailability);
+    expect(html).toContain(starter.successNotice.replace(/'/g, "&#x27;"));
+    for (const option of starter.reasonOptions) {
+      expect(html).toContain(`>${option}</button>`);
+    }
+
+    // Patient callback starter comes immediately after hero & sign-in strip at the bottom.
     expect(html).toContain(solicitaId);
     expect(html).toContain(mediatorStaffStripCopy[lang].prompt);
     expect(html).toContain(mediatorStaffStripCopy[lang].signIn);
@@ -262,12 +279,10 @@ describe("/mediatori page layout, accompaniment timeline, and calm patient hero"
     const heroEnd = html.indexOf("</section>");
     const signInIndex = html.indexOf(signInHref);
     const solicitaIndex = html.indexOf(solicitaId);
-    const timelineIndex = html.indexOf(mediatorTimelineCopy[lang].title);
     expect(heroEnd).toBeGreaterThan(-1);
     expect(html.slice(0, heroEnd)).not.toContain("/get-help?mode=mediator");
     expect(solicitaIndex).toBeGreaterThan(heroEnd);
-    expect(timelineIndex).toBeGreaterThan(solicitaIndex);
-    expect(signInIndex).toBeGreaterThan(timelineIndex);
+    expect(signInIndex).toBeGreaterThan(solicitaIndex);
   });
 
   it("keeps MediatorPublicHero free of /sign-in chrome and /get-help detours", () => {
@@ -321,6 +336,11 @@ describe("mediator localization, casing, and UI source invariants across all 7 l
         staff.signIn,
         starter.title,
         starter.lead,
+        starter.limitsTitle,
+        starter.limitAdvice,
+        starter.limitAvailability,
+        starter.reasonLabel,
+        ...starter.reasonOptions,
         starter.reassurance,
         starter.fullFormPrompt,
         starter.fullFormLink,
@@ -364,6 +384,7 @@ describe("mediator localization, casing, and UI source invariants across all 7 l
         starter.sendAnother,
         starter.fullFormLink,
         staff.signIn,
+        ...starter.reasonOptions,
       ];
       for (const label of buttonLabels) {
         expect(label).toMatch(/^\p{Lu}/u);

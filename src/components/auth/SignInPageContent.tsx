@@ -20,6 +20,52 @@ const TERMS_LINKS: Record<Lang, { terms: string; privacy: string }> = {
   rom: { terms: "labaripnaske pravila", privacy: "garavipnaske pravila" },
 };
 
+// Who this sign-in is for, and where patients go instead. The site itself needs no account.
+const STAFF_NOTICE: Record<Lang, { staffOnly: string; patientPrompt: string; patientLink: string }> = {
+  ro: {
+    staffOnly:
+      "Această pagină este pentru mediatori sanitari și personal medical. Nu ai nevoie de cont ca să folosești RediHealth.",
+    patientPrompt: "Cauți pagina ta de sănătate?",
+    patientLink: "Deschide contul meu",
+  },
+  en: {
+    staffOnly:
+      "This sign-in is for health mediators and medical staff. You do not need an account to use RediHealth.",
+    patientPrompt: "Looking for your own health page?",
+    patientLink: "Open my account",
+  },
+  sq: {
+    staffOnly:
+      "Kjo hyrje është për mediatorët shëndetësorë dhe stafin mjekësor. Nuk të duhet llogari për të përdorur RediHealth.",
+    patientPrompt: "Po kërkon faqen tënde të shëndetit?",
+    patientLink: "Hap llogarinë time",
+  },
+  it: {
+    staffOnly:
+      "Questo accesso è per i mediatori sanitari e il personale medico. Non ti serve un account per usare RediHealth.",
+    patientPrompt: "Cerchi la tua pagina della salute?",
+    patientLink: "Apri il mio account",
+  },
+  hr: {
+    staffOnly:
+      "Ova prijava je za zdravstvene medijatore i medicinsko osoblje. Ne treba ti račun za korištenje RediHealtha.",
+    patientPrompt: "Tražiš svoju zdravstvenu stranicu?",
+    patientLink: "Otvori moj račun",
+  },
+  rom: {
+    staffOnly:
+      "Kadava khuvipe si vash e sastipnaske mediatorya thaj o medicinako personalo. Na trebul tuke konto te labares RediHealth.",
+    patientPrompt: "Rodes chi sastipnaski rig?",
+    patientLink: "Puter miro konto",
+  },
+  ru: {
+    staffOnly:
+      "Этот вход предназначен для медиаторов здоровья и медицинского персонала. Чтобы пользоваться RediHealth, аккаунт не нужен.",
+    patientPrompt: "Ищете свою страницу здоровья?",
+    patientLink: "Открыть мой аккаунт",
+  },
+};
+
 const inlineLink =
   "rounded-sm font-medium text-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
@@ -56,6 +102,7 @@ export function SignInPageContent({
 }) {
   const { t, lang } = useLanguage();
   const page = t.signInPage;
+  const staffNotice = STAFF_NOTICE[lang];
   const initialErrorMessage =
     initialError === "unauthorized"
       ? page.unauthorizedGoogle
@@ -73,6 +120,13 @@ export function SignInPageContent({
           </h1>
           <p className="mt-2.5 text-body leading-relaxed text-muted-foreground text-pretty">
             {googleConfigured ? page.heroParagraphWithGoogle : page.heroParagraphNoGoogle}
+          </p>
+          <p className="mt-3 text-body leading-relaxed text-foreground text-pretty">{staffNotice.staffOnly}</p>
+          <p className="mt-1 text-body leading-relaxed text-muted-foreground text-pretty">
+            {staffNotice.patientPrompt}{" "}
+            <Link href={withLangPrefix("/contul-meu", lang)} className={`inline-flex min-h-11 items-center ${inlineLink}`}>
+              {staffNotice.patientLink}
+            </Link>
           </p>
 
           <div className="mt-6">

@@ -7,7 +7,7 @@ import { useReadAloud } from "@/components/health-check/readingTools";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ListenButton } from "@/components/ui/ListenButton";
-import { ArrowLeftIcon, CalendarIcon, ClockIcon, PhoneIcon, VolumeIcon } from "@/components/ui/icons";
+import { ArrowLeftIcon, CalendarIcon, PhoneIcon, VolumeIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { playSoundCheck } from "./sound-check";
 import { useOnCallStatus } from "./OnCallStatusBanner";
@@ -313,13 +313,8 @@ export function OnCallQueueLauncher({ queueToken = "ONCALL-102", initialPosition
               </>
             ) : (
               <>
-                <div className="flex items-start gap-3">
-                  <ClockIcon aria-hidden="true" className="mt-1.5 h-5 w-5 shrink-0 text-muted-foreground" />
-                  <div>
-                    <h1 className="text-balance text-page text-foreground">{copy.closedTitle}</h1>
-                    <p className="mt-2 text-body text-muted-foreground tabular-nums">{copy.closedBody}</p>
-                  </div>
-                </div>
+                <h1 className="text-balance text-page text-foreground">{copy.closedTitle}</h1>
+                <p className="mt-2 text-body text-muted-foreground tabular-nums">{copy.closedBody}</p>
                 <Button
                   href={withLangPrefix("/medic-online/programare", lang)}
                   variant="action"

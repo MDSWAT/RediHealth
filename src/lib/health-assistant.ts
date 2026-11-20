@@ -33,6 +33,11 @@ export type AssistantResponse = {
   confidenceReason?: string;
   prescriptionText?: string;
   medicines?: PrescribedMedicineItem[];
+  /**
+   * Typed-name lookups only: false when the typed text could not be identified as a medicine.
+   * Never trust a missing flag from the model: it is derived from whether a named medicine came back.
+   */
+  recognized?: boolean;
 };
 
 export const urgentPattern =
@@ -163,7 +168,8 @@ Safety and output rules:
 - Never diagnose as fact, prescribe, recommend starting or changing a personal dose, or state that a medicine is safe without medical review. Always remind the patient to check with their pharmacist or doctor before changing treatment.
 - Never invent personal dosing schedules: OMIT morning, midday, evening, bedtime, and personal duration unless clearly standard general context (better to leave personal slot fields omitted because no written prescription was uploaded).
 - Set urgency to "emergency" ONLY if the patient's message describes overdose, self-harm, severe allergic reaction, chest pain, or other emergency signs; otherwise set urgency to "routine" and careLevel to "routine".
-- Populate medicines with 1 object for the named medicine (or closest clear match noted gently) containing:
+- Set recognized (boolean). Set it to true only when you can identify the typed text, with confidence, as one real medicine (a brand name or an active substance). An obvious misspelling of exactly one known medicine still counts: set recognized to true and write the correct medicine name in name. If the typed text is not a medicine, is too vague, or could be several different medicines, set recognized to false, return medicines as an empty array, and use message to say in one short sentence that the name was not recognized. Never guess and never describe a different medicine than the one typed.
+- When recognized is true, populate medicines with 1 object for the named medicine containing:
   - name (string: medicine name in clear capitalization)
   - activeIngredient (optional string in ${language}: active substance / INN)
   - form (optional string in ${language}: common form such as tablets or capsules)
@@ -173,7 +179,7 @@ Safety and output rules:
   - sideEffects (optional array of 1-4 short plain-language common side effects in ${language}, e.g. mild nausea, drowsiness, dry mouth, headache, or irregular spotting for contraception)
   - benefitTimeline (string in ${language}: clear realistic timeline of when it usually starts to help — for example within an hour for pain relievers, 2 to 6 weeks of steady daily use for antidepressants, or when contraceptive protection begins)
   - stoppingGuidance (string in ${language}: essential guidance on stopping and missed doses — for psychiatric medicines such as antidepressants, anxiolytics, antipsychotics, and mood stabilizers, clearly explain NEVER to stop abruptly without talking to a doctor because sudden stopping can cause uncomfortable discontinuation symptoms or return of illness; for contraceptives, explain what to do if a pill is missed or if vomiting occurs and how to protect against unplanned pregnancy; for antibiotics, explain finishing the prescribed course)
-- Write possibleCause and message in warm plain ${language} with sentence casing and no "&" character. Never claim photo reading or invent confidenceScore. Return ONLY valid JSON with urgency, careLevel, possibleCause, message, questions (array), and medicines (array).`;
+- Write possibleCause and message in warm plain ${language} with sentence casing and no "&" character. Never claim photo reading or invent confidenceScore. Return ONLY valid JSON with urgency, careLevel, possibleCause, message, questions (array), recognized (boolean), and medicines (array).`;
 }
 
 export function buildMedicineLookupUserText({
@@ -346,13 +352,20 @@ export function parseAssistantReply(
   lang: Lang,
   options?: { hasImage?: boolean; isMedicineLookup?: boolean },
 ): AssistantResponse {
-  const generated = JSON.parse(normalizeJsonPayload(raw)) as Partial<AssistantResponse> & {
+  const generated = JSON.parse(normalizeJsonPayload(raw)) as Omit<Partial<AssistantResponse>, "recognized"> & {
     medicines?: unknown;
     sourceKind?: unknown;
     confidenceScore?: unknown;
     confidenceReason?: unknown;
+    recognized?: unknown;
   };
-  const medicines = sanitizePrescribedMedicines(generated.medicines);
+  const parsedMedicines = sanitizePrescribedMedicines(generated.medicines);
+  // Typed-name lookups: an explicit "not recognized" wins, and a missing flag counts as recognized
+  // only when a named medicine actually came back. A guess is never passed on as an answer.
+  const recognized = options?.isMedicineLookup
+    ? generated.recognized !== false && Boolean(parsedMedicines?.length)
+    : undefined;
+  const medicines = recognized === false ? undefined : parsedMedicines;
   const message = typeof generated.message === "string" ? generated.message : defaultMessageByLang[lang];
   const prescriptionText = typeof generated.prescriptionText === "string" ? generated.prescriptionText : undefined;
   const sourceKind = options?.isMedicineLookup ? undefined : parseSourceKind(generated.sourceKind);
@@ -409,5 +422,6 @@ export function parseAssistantReply(
     ...(confidenceReason ? { confidenceReason } : {}),
     prescriptionText,
     ...(medicines ? { medicines } : {}),
+    ...(recognized !== undefined ? { recognized } : {}),
   };
 }

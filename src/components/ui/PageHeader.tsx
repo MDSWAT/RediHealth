@@ -44,30 +44,34 @@ export function PageHeader({
       )}
     >
       {above ? <div className={cn("mb-3", centered && "flex justify-center")}>{above}</div> : null}
-      <h1 lang={titleLang} className="text-balance text-page text-foreground">
-        {title}
-      </h1>
-      {lead ? (
-        <p
-          lang={leadLang}
-          className={cn(
-            "mt-3 max-w-(--measure-lead) text-pretty text-lead text-muted-foreground",
-            centered && "mx-auto",
-          )}
-        >
-          {lead}
-        </p>
-      ) : null}
-      {actions ? (
-        <div
-          className={cn(
-            "btn-row mt-5 flex flex-wrap gap-3",
-            centered && "justify-center",
-          )}
-        >
-          {actions}
+      <div className={cn(!centered && actions ? "lg:flex lg:items-end lg:justify-between lg:gap-8" : undefined)}>
+        <div className="min-w-0 flex-1">
+          <h1 lang={titleLang} className="text-balance text-page text-foreground">
+            {title}
+          </h1>
+          {lead ? (
+            <p
+              lang={leadLang}
+              className={cn(
+                "mt-3 max-w-3xl text-pretty text-lead text-muted-foreground",
+                centered && "mx-auto",
+              )}
+            >
+              {lead}
+            </p>
+          ) : null}
         </div>
-      ) : null}
+        {actions ? (
+          <div
+            className={cn(
+              "btn-row mt-5 flex flex-wrap gap-3",
+              centered ? "justify-center" : "lg:mt-0 lg:shrink-0",
+            )}
+          >
+            {actions}
+          </div>
+        ) : null}
+      </div>
       {below}
     </header>
   );

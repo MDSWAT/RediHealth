@@ -120,7 +120,7 @@ function AnswerMark({
         "flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
         tone === "selected-right" && "bg-white/20 text-white",
         tone === "selected-wrong" &&
-          "bg-paper/20 text-paper dark:bg-ink-950/15 dark:text-ink-950",
+          "bg-rose-ink/15 text-rose-ink",
         tone === "hint-right" && "bg-sapphire text-white",
         // Idle marks fill in when their button is pointed at or focused, so the choice answers first.
         tone === "idle" &&
@@ -416,7 +416,7 @@ export function TrueFalseQuizSection({
                               "border border-sapphire bg-sapphire font-semibold text-white",
                             chosen &&
                               !isMatch &&
-                              "border border-ink-950 bg-ink-950 font-semibold text-paper dark:border-paper dark:bg-paper dark:text-ink-950",
+                              "border border-rose-border bg-rose-tint font-semibold text-rose-ink",
                             !chosen &&
                               isRightOption &&
                               "border border-sapphire/45 bg-sapphire-soft/75 font-semibold text-sapphire dark:border-sapphire-border/45 dark:bg-white/10 dark:text-sapphire-border",

@@ -8,6 +8,7 @@ import {
   getSmartSearchCopy,
   type Lang,
 } from "@/lib/i18n/smart-search-copy";
+import { getSmartSearchTriggerCopy } from "@/components/search/smart-search-events";
 import {
   detectEmergencyQuery,
   getContextualSuggestions,
@@ -754,6 +755,49 @@ describe("CLAUDE.md and MobileMenu source invariants", () => {
     expect(siteChromeSource).toContain("<SmartSearchModal />");
   });
 
+  it("opens before its copy loads, says when a search is loading or has failed, and waits for a pause in typing", () => {
+    // The sheet renders as soon as it is open; its lazy copy only gates what is below the search bar.
+    expect(modalSource).not.toContain("if (!open || !copy");
+    expect(modalSource).toContain("useSheetDialog(open, panelRef");
+    expect(modalSource).toContain("copyLoadFailed");
+    expect(modalSource).toContain("{copy ? (");
+
+    // Loading and failure are said in words, with a way to try again; a blank body is never the answer.
+    expect(modalSource).not.toContain("isWaitingForCatalog && results.length === 0 ? null");
+    expect(modalSource).toContain("{triggerCopy.searching}");
+    expect(modalSource).toContain("{triggerCopy.failed}");
+    expect(modalSource).toContain("setFailedCatalogKey(allCacheKey)");
+    expect(modalSource).toContain("onClick={handleRetry}");
+
+    // One request per pause in typing, not one per keystroke.
+    expect(modalSource).toContain("CATALOG_DEBOUNCE_MS");
+    expect(modalSource).toContain("window.clearTimeout(timer)");
+
+    for (const lang of ALL_LANGS) {
+      const copy = getSmartSearchTriggerCopy(lang);
+      for (const [key, value] of Object.entries(copy)) {
+        expect(value.trim().length, `${lang}.${key}`).toBeGreaterThan(0);
+        expect(value, `${lang}.${key}`).not.toContain("&");
+        expect(value, `${lang}.${key}`).not.toContain("·");
+        expect(value[0], `${lang}.${key}`).toBe(value[0].toLocaleUpperCase());
+      }
+      if (lang !== "ro") {
+        expect(copy.searching, `${lang}.searching`).not.toBe(getSmartSearchTriggerCopy("ro").searching);
+        expect(copy.failed, `${lang}.failed`).not.toBe(getSmartSearchTriggerCopy("ro").failed);
+      }
+    }
+  });
+
+  it("gives an empty search a next step and keeps a phone keyboard's Enter from opening a page", () => {
+    expect(modalSource).toContain("{copy.noResultsHint}");
+    expect(modalSource).toContain("copy.popularQueries.slice(0, 3)");
+    expect(modalSource).not.toContain("copy.emptyFallbackAction");
+    expect(modalSource).not.toContain("{copy.emptyBody}");
+    expect(modalSource).toContain('enterKeyHint="search"');
+    expect(modalSource).toContain('window.matchMedia("(pointer: coarse)")');
+    expect(modalSource).toContain("event.currentTarget.blur()");
+  });
+
   it("wires openSmartSearch in Header while preserving #mobile-menu invariants", () => {
     expect(headerSource).toContain('from "@/components/search/smart-search-events"');
     expect(headerSource).toContain("openSmartSearch()");
@@ -830,7 +874,15 @@ describe("CLAUDE.md and MobileMenu source invariants", () => {
     expect(feedbackWidgetSource).toContain("nextUnansweredAny");
     expect(feedbackWidgetSource).toContain("scrollIntoView");
     expect(feedbackWidgetSource).toContain("[writing-mode:vertical-rl]");
-    expect(feedbackWidgetSource).toContain("EDGE_DISMISSED_SESSION_KEY");
+    // The side tab stays off phones, and closing it is remembered on the device (30 days), not per session.
+    expect(feedbackWidgetSource).toContain("EDGE_DISMISSED_KEY");
+    expect(feedbackWidgetSource).toContain("window.localStorage.setItem(EDGE_DISMISSED_KEY");
+    expect(feedbackWidgetSource).not.toContain("EDGE_DISMISSED_SESSION_KEY");
+    expect(feedbackWidgetSource).toMatch(/feedback-edge-trigger [^"]*max-sm:hidden/);
+    // "Later" is never minutes, and the invite waits for the open menu and other floating prompts.
+    expect(feedbackWidgetSource).not.toContain("3 * 60 * 1000");
+    expect(feedbackWidgetSource).toContain("#mobile-menu:not([inert])");
+    expect(feedbackWidgetSource).toContain("[data-floating-prompt]");
     expect(feedbackWidgetSource).not.toContain("rounded-full");
   });
 });

@@ -18,58 +18,28 @@
   container-type: inline-size;
 }
 
-/* Phones and tablets: anchored in the open right corridor of the ink ground below the photo band,
-   keeping the Roma chakra whole and clear of both the photograph above and the CTA button below. */
+/* Hero: subtle geometric motif layered cleanly over the editorial veil and multi-photo ground. */
 .hero {
-  --hero-photo-end: calc(var(--site-header-h, 4rem) + clamp(180px, 30svh, 300px));
-  display: block;
-  opacity: 0.15;
-  mask-image:
-    linear-gradient(
-      180deg,
-      transparent 0px,
-      transparent calc(var(--hero-photo-end) - 2.25rem),
-      rgb(0 0 0 / 0.55) var(--hero-photo-end),
-      #000 calc(var(--hero-photo-end) + 3rem)
-    ),
-    linear-gradient(90deg, rgb(0 0 0 / 0.35) 0%, rgb(0 0 0 / 0.72) 48%, #000 78%);
-  mask-composite: intersect;
+  color: var(--color-sapphire);
+  opacity: 0.16;
+  --wheel-face-bg: var(--color-background);
 }
 
 .hero .wheel {
-  left: 85.5%;
-  top: calc(38.5% + var(--hero-photo-end) * 0.64);
-  width: clamp(23rem, 114vw, 34rem);
-}
-
-@media (min-width: 640px) and (max-width: 1023px) {
-  .hero .wheel {
-    left: 84%;
-    top: calc(33% + var(--hero-photo-end) * 0.58);
-    width: clamp(28rem, 70vw, 40rem);
-  }
+  left: 50%;
+  top: 52%;
+  width: min(20rem, 74vw);
 }
 
 @media (min-width: 1024px) {
   .hero {
-    opacity: 0.08;
-    /* Only the left 64% of the hero, so the surface the mask works on stays small. */
-    right: 36%;
-    /* Quiet behind the headline and lead (a soft oval at a fifth of the strength), fuller toward
-       the screen edges where there is no text, and fading out before the quick options on the right. */
-    mask-image:
-      radial-gradient(ellipse 46% 32% at 40% 55%, rgb(0 0 0 / 0.2) 0%, rgb(0 0 0 / 0.2) 50%, #000 100%),
-      linear-gradient(90deg, #000 0%, #000 58%, transparent 100%);
-    mask-composite: intersect;
+    opacity: 0.13;
   }
 
-  /* Centred behind the headline column and taller than the hero: the left edge of the screen
-     cuts through the rings, so the wheel reads as large and still lets the headline lead. */
   .hero .wheel {
-    left: 30%;
-    top: 50%;
-    width: auto;
-    height: 124%;
+    left: 82%;
+    top: 48%;
+    width: min(46rem, 58vw);
   }
 }
 
@@ -82,14 +52,10 @@
   width: var(--footer-wheel);
 }
 
-/* Phones and tablets: the hero has its own wheel (HeroDock), so only the hero placement is dropped.
-   The footer wheel stays whole, icons included, woven in behind the link columns: a little stronger
-   than on desktop so the icons read, still soft enough that the text over it stays clear. */
+/* Phones and tablets: the footer wheel stays whole, icons included, woven in behind the link
+   columns: a little stronger than on desktop so the icons read, still soft enough that the text
+   over it stays clear. */
 @media (max-width: 1023px) {
-  .hero {
-    display: none;
-  }
-
   .footer {
     opacity: 0.12;
   }

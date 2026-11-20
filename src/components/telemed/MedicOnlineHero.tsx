@@ -9,11 +9,13 @@ import { useReadAloud } from "@/components/health-check/readingTools";
 import { PinIcon, VolumeIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { DUTY_HOURS, useOnCallStatus } from "./OnCallStatusBanner";
+import { OnlineDoctorUnavailable } from "./OnlineDoctorUnavailable";
 import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
 import { playSoundCheck } from "./sound-check";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
+import { isOnlineDoctorAvailable } from "@/lib/online-doctor";
 
 function useSafeLanguage() {
   try {
@@ -105,6 +107,9 @@ export function MedicOnlineHero() {
   const voice = useReadAloud(lang);
   // Outside duty hours the booking is the useful action, so it takes the primary style.
   const { isOnDuty } = useOnCallStatus();
+
+  // Where the service is not offered, say so plainly instead of the two ways to call.
+  if (!isOnlineDoctorAvailable(lang)) return <OnlineDoctorUnavailable lang={lang} />;
 
   return (
     <section className="border-b border-border bg-background pb-10 sm:pb-14">

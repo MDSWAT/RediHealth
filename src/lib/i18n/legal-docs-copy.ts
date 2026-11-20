@@ -1,5 +1,5 @@
 import type { Lang } from "@/lib/i18n/languages";
-import { LEGAL_OPERATOR, META_PIXEL_ID, getOperatorFullAddress } from "@/lib/legal-config";
+import { LEGAL_OPERATOR, getOperatorFullAddress } from "@/lib/legal-config";
 
 export type LegalSection = {
   title: string;
@@ -76,9 +76,12 @@ export type CookiesDoc = {
   preferencesBody: string;
   categoriesTitle: string;
   categories: CookieCategoryDoc[];
-  pixelTitle: string;
-  pixelBody: string;
-  pixelSafeguards: string[];
+  inventoryTitle: string;
+  inventoryColumns: [string, string, string];
+  inventoryRows: Array<[string, string, string]>;
+  safeguardsTitle: string;
+  safeguardsBody: string;
+  safeguardsItems: string[];
   manageTitle: string;
   manageBody: string;
   privacyLinkLabel: string;
@@ -378,7 +381,6 @@ export function getTermsDoc(lang: Lang): TermsDoc {
 
 export function getPrivacyDoc(lang: Lang): PrivacyDoc {
   const address = getOperatorFullAddress(lang);
-  const pixelLabel = META_PIXEL_ID ? `Meta Pixel (ID ${META_PIXEL_ID})` : "Meta Pixel";
 
   const ro: PrivacyDoc = {
     title: "Politica de confidențialitate",
@@ -416,9 +418,8 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       ["Programări și emailuri despre ele", "Email, ziua și ora", "Art. 6(1)(b) – executarea serviciului"],
       ["Ajutorul mediatorului", "Datele pe care alegi să i le arăți, valorile măsurate", "Art. 6(1)(a) și art. 9(2)(a) – acordul tău explicit"],
       ["Securitate și protecție anti-roboți", "Date tehnice, Google reCAPTCHA", "Art. 6(1)(f) – interes legitim de protecție a aplicației"],
-      ["Măsurare campanii (pagini publice)", `Vizite pe pagini publice (${pixelLabel})`, "Art. 6(1)(a) – doar cu acordul tău explicit în bannerul de cookie-uri"],
     ],
-    noSaleNote: "Nu vindem datele tale personale sau medicale. Nu trimitem niciodată date de sănătate către Meta sau alte servicii de publicitate.",
+    noSaleNote: "Nu folosim datele tale pentru reclame și nu folosim instrumente de urmărire publicitară. Nu vindem datele tale personale sau medicale.",
     accessTitle: "Cine vede datele tale",
     accessItems: [
       "Medicul cu care vorbești: doar datele de sănătate pe care alegi să i le arăți.",
@@ -435,7 +436,6 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       ["Anthropic (Claude API)", "Răspunsurile asistentului și explicarea rețetelor", "Mesajele din asistent și rețetele încărcate; nu se folosesc pentru antrenarea modelelor"],
       ["Hostinger Mail", "Codurile de autentificare și emailurile despre programări", "Adresa de email și conținutul notificării"],
       ["Google reCAPTCHA", "Protecție împotriva roboților pe formulare publice", "Date tehnice din browser; nu primește date de sănătate"],
-      [`Meta Platforms Ireland Ltd. (${pixelLabel})`, "Măsurarea campaniilor pe pagini publice", "Doar cu acordul tău explicit: vizite pe pagini publice generale; blocat complet pe paginile medicale și de cont"],
     ],
     processorsNotes: [
       "Dacă un furnizor prelucrează date în afara UE/SEE, aplicăm garanțiile prevăzute de GDPR (de exemplu, clauze contractuale standard).",
@@ -446,11 +446,11 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       "Când cauți farmacii sau clinici după oraș sau adresă, folosim textul doar pentru căutare și nu îl salvăm în cont.",
       "Dacă alegi să folosești locația telefonului (GPS), browserul îți cere acordul separat, iar coordonatele nu se salvează pe server.",
     ],
-    cookiesTitle: "Cookie-uri și Meta Pixel",
+    cookiesTitle: "Cookie-uri și protecție",
     cookiesItems: [
       "Cookie-uri strict necesare: păstrează limba, sesiunea de autentificare și preferințele de accesibilitate. Nu necesită acord.",
       "Google reCAPTCHA: activ pe formularele publice pentru protecția împotriva abuzurilor automate.",
-      `Măsurare campanii (${pixelLabel}): opțional și dezactivat implicit. Se încarcă numai dacă apeși Acceptă toate sau îl activezi din Setări cookie-uri, și nu rulează niciodată pe paginile de simptome, rețete, asistent, apel cu medicul sau contul tău.`,
+      "Instrumente de reclamă sau urmărire comercială: nu le folosim.",
     ],
     cookiesLinkLabel: "Citește Politica de cookie-uri",
     callsTitle: "Apelurile cu medicul",
@@ -474,7 +474,7 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       "să restrângi prelucrarea lor;",
       "să primești datele într-un format portabil;",
       "să te opui prelucrării bazate pe interes legitim;",
-      "să îți retragi oricând acordul (inclusiv pentru cookie-uri), fără să afecteze prelucrarea anterioară.",
+      "să îți retragi oricând acordul, fără să afecteze prelucrarea anterioară.",
     ],
     rightsContactBefore: "Pentru exercitarea drepturilor, scrie-ne la",
     rightsContactAfter: "Îți răspundem în cel mult o lună.",
@@ -525,9 +525,8 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       ["Appointments and emails", "Email, date and time", "Art. 6(1)(b) – service performance"],
       ["Health mediator support", "Data you choose to share and home readings", "Art. 6(1)(a) and Art. 9(2)(a) – explicit consent"],
       ["Security and bot protection", "Technical data, Google reCAPTCHA", "Art. 6(1)(f) – legitimate interest in securing the service"],
-      ["Campaign measurement (public pages)", `Public page visits (${pixelLabel})`, "Art. 6(1)(a) – only after your explicit consent in the cookie banner"],
     ],
-    noSaleNote: "We never sell your personal or health data. We never send health information or form entries to Meta or any advertising network.",
+    noSaleNote: "We do not use your data for advertising and we do not run commercial ad trackers. We never sell your personal or health data.",
     accessTitle: "Who can see your data",
     accessItems: [
       "The doctor you speak with: only the health information you choose to share.",
@@ -544,7 +543,6 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       ["Anthropic (Claude API)", "Virtual assistant and prescription explanation", "Assistant messages and uploaded prescriptions; API data is not used to train models"],
       ["Hostinger Mail", "Sign-in codes and appointment emails", "Email address and notification message"],
       ["Google reCAPTCHA", "Bot protection on public forms", "Technical browser signals only; never health data"],
-      [`Meta Platforms Ireland Ltd. (${pixelLabel})`, "Campaign reach measurement on public pages", "Only with explicit consent: visits to general public pages; strictly disabled on medical, assistant, call and account routes"],
     ],
     processorsNotes: [
       "Where a provider processes data outside the EU/EEA, we apply GDPR transfer safeguards such as Standard Contractual Clauses.",
@@ -555,11 +553,11 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       "When you search by city or address, we use the text only to show nearby places and do not save it to your account.",
       "Optional device GPS location is requested separately by your browser and coordinates are never stored on our servers.",
     ],
-    cookiesTitle: "Cookies and Meta Pixel",
+    cookiesTitle: "Cookies and security",
     cookiesItems: [
       "Strictly necessary cookies: keep your language, sign-in session and accessibility settings working. No consent required.",
       "Google reCAPTCHA: protects public forms from automated abuse.",
-      `Campaign measurement (${pixelLabel}): optional and off by default. Loads only if you accept optional cookies and never runs on symptom check, prescription review, assistant, doctor call or account pages.`,
+      "Advertising or commercial tracking tools: not used.",
     ],
     cookiesLinkLabel: "Read our Cookie policy",
     callsTitle: "Online doctor calls",
@@ -583,7 +581,7 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       "restrict processing of your data;",
       "receive your data in a portable format;",
       "object to processing based on legitimate interest;",
-      "withdraw your consent at any time (including for cookies), without affecting prior lawful processing.",
+      "withdraw your consent at any time, without affecting prior lawful processing.",
     ],
     rightsContactBefore: "To exercise any of these rights, write to",
     rightsContactAfter: "We respond within one month.",
@@ -628,14 +626,12 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
 }
 
 export function getCookiesDoc(lang: Lang): CookiesDoc {
-  const pixelId = META_PIXEL_ID || "2195130208072639";
-
   const ro: CookiesDoc = {
     title: "Politica de cookie-uri",
-    description: "Ce cookie-uri și instrumente de măsurare folosește RediHealth și cum le poți controla.",
-    preferencesTitle: "Controlează preferințele tale",
+    description: "Ce cookie-uri folosește RediHealth și cum protejăm confidențialitatea ta.",
+    preferencesTitle: "Ce cookie-uri sunt active",
     preferencesBody:
-      "Cookie-urile opționale sunt oprite implicit. Poți accepta, refuza sau retrage acordul oricând mai jos. Toate serviciile RediHealth funcționează normal chiar dacă alegi Doar necesare.",
+      "RediHealth folosește exclusiv cookie-uri strict necesare pentru funcționarea aplicației și protecția anti-roboți pe formularele publice. Nu folosim cookie-uri de publicitate sau urmărire comercială.",
     categoriesTitle: "Categorii de cookie-uri",
     categories: [
       {
@@ -647,7 +643,7 @@ export function getCookiesDoc(lang: Lang): CookiesDoc {
           "redihealth_county – păstrează județul selectat pentru căutări locale și alerte.",
           "redihealth_emergency_dismissed – reține dacă ai ascuns banda 112 pe dispozitiv.",
           "redihealth_email_otp și cookie-uri de sesiune NextAuth – autentificare sigură cu cod unic pe email.",
-          "redihealth_cookie_consent – salvează decizia ta privind cookie-urile (180 de zile).",
+          "redihealth_cookie_consent – reține faptul că ai văzut informarea privind cookie-urile (180 de zile).",
         ],
       },
       {
@@ -659,38 +655,39 @@ export function getCookiesDoc(lang: Lang): CookiesDoc {
           "Nu primește niciodată datele tale de sănătate sau textul introdus în formulare.",
         ],
       },
-      {
-        title: "3. Măsurare campanii (Meta Pixel – opțional)",
-        legalBasis: "Temei legal: Art. 6(1)(a) GDPR – exclusiv cu acordul tău explicit",
-        body: `Folosim Meta Pixel (ID ${pixelId}), oferit de Meta Platforms Ireland Ltd., pentru a înțelege câte persoane ajung la paginile publice RediHealth din campaniile noastre de informare.`,
-        items: [
-          "Dezactivat implicit până când îți exprimi acordul explicit.",
-          "Poate seta cookie-uri de tip _fbp sau _fbc după activare.",
-          "Dacă retragi acordul, apelăm revocarea consimțământului Meta și ștergem cookie-urile _fbp / _fbc.",
-        ],
-      },
     ],
-    pixelTitle: "Protecție strictă pentru datele de sănătate",
-    pixelBody:
-      "Datele despre sănătate sunt date sensibile conform Art. 9 GDPR. Chiar și atunci când accepți cookie-urile opționale, Meta Pixel este blocat la nivel de cod pe toate paginile sensibile.",
-    pixelSafeguards: [
-      "Meta Pixel NU se încarcă și NU trimite evenimente pe paginile: Verifică simptomele, Asistent virtual, Explică-mi rețeta, Cere ajutor, Programare / Sală de așteptare / Apel video medic, Contul meu, Portalul pacientului, Autentificare și Panoul personalului.",
-      "Nu trimitem către Meta simptome, mesaje din asistent, rețete, nume, emailuri sau alte date introduse în formulare.",
-      "Pe paginile publice eligibile (pagina principală, ghiduri generale, farmacii și clinici, despre, contact, știri), se trimite exclusiv evenimentul tehnic PageView după consimțământ.",
+    inventoryTitle: "Lista cookie-urilor folosite",
+    inventoryColumns: ["Cookie", "Rol", "Durată"],
+    inventoryRows: [
+      ["redihealth_lang", "Păstrează limba aleasă în aplicație", "12 luni"],
+      ["redihealth_lang_manual", "Reține alegerea manuală a limbii", "12 luni"],
+      ["redihealth_county", "Păstrează județul selectat pentru căutări locale și alerte", "12 luni"],
+      ["redihealth_emergency_dismissed", "Reține dacă ai ascuns banda 112 pe dispozitiv", "30 de zile"],
+      ["redihealth_email_otp", "Token criptat pentru verificarea codului unic pe email", "10 minute"],
+      ["authjs.session-token", "Menține sesiunea autentificată în siguranță", "Pe durata sesiunii"],
+      ["redihealth_cookie_consent", "Reține faptul că ai văzut informarea privind cookie-urile", "180 de zile"],
     ],
-    manageTitle: "Cum îți schimbi decizia",
+    safeguardsTitle: "Fără publicitate și fără urmărire comercială",
+    safeguardsBody:
+      "Datele despre sănătate sunt date sensibile conform Art. 9 GDPR. RediHealth nu încarcă instrumente de publicitate sau profilare comercială.",
+    safeguardsItems: [
+      "Nu folosim cookie-uri de marketing, publicitate sau retargeting.",
+      "Nu trimitem simptome, mesaje din asistent, rețete sau date de cont către rețele de publicitate.",
+      "Poți șterge sau bloca oricând cookie-urile din setările browserului tău.",
+    ],
+    manageTitle: "Controlul din browser și contact",
     manageBody:
-      "Poți modifica preferințele oricând folosind butonul Setări cookie-uri din subsolul fiecărei pagini, panoul de mai sus sau setările browserului tău.",
+      "Poți vedea oricând rezumatul cookie-urilor din butonul Setări cookie-uri din subsolul fiecărei pagini sau poți șterge cookie-urile din setările browserului.",
     privacyLinkLabel: "Politica de confidențialitate (GDPR)",
     contactLinkLabel: "Contact și protecția datelor",
   };
 
   const en: CookiesDoc = {
     title: "Cookie policy",
-    description: "Which cookies and measurement tools RediHealth uses and how you can control them.",
-    preferencesTitle: "Manage your preferences",
+    description: "Which cookies RediHealth uses and how we protect your privacy.",
+    preferencesTitle: "Which cookies are active",
     preferencesBody:
-      "Optional cookies are off by default. You can accept, reject or withdraw consent at any time below. All RediHealth features work normally if you choose Necessary only.",
+      "RediHealth uses only strictly necessary cookies so the platform works reliably, plus bot protection on public forms. We do not use advertising or commercial tracking cookies.",
     categoriesTitle: "Cookie categories",
     categories: [
       {
@@ -702,7 +699,7 @@ export function getCookiesDoc(lang: Lang): CookiesDoc {
           "redihealth_county – remembers your selected county for local care search and alerts.",
           "redihealth_emergency_dismissed – remembers if you dismissed the 112 bar on this device.",
           "redihealth_email_otp and NextAuth session cookies – secure email-code authentication.",
-          "redihealth_cookie_consent – stores your cookie preference choice (180 days).",
+          "redihealth_cookie_consent – remembers that you acknowledged this cookie notice (180 days).",
         ],
       },
       {
@@ -714,28 +711,29 @@ export function getCookiesDoc(lang: Lang): CookiesDoc {
           "Never receives your health data or the content you type into forms.",
         ],
       },
-      {
-        title: "3. Campaign measurement (Meta Pixel – optional)",
-        legalBasis: "Legal basis: Art. 6(1)(a) GDPR – strictly with your explicit consent",
-        body: `We use Meta Pixel (ID ${pixelId}), provided by Meta Platforms Ireland Ltd., to measure how many visitors reach RediHealth public information pages from awareness campaigns.`,
-        items: [
-          "Disabled by default until you explicitly opt in.",
-          "May set _fbp or _fbc cookies once enabled.",
-          "When you withdraw consent, we invoke Meta consent revocation and clear _fbp / _fbc cookies.",
-        ],
-      },
     ],
-    pixelTitle: "Strict safeguards for health data",
-    pixelBody:
-      "Health information is special-category data under Art. 9 GDPR. Even when you accept optional cookies, Meta Pixel is blocked in code across every sensitive route.",
-    pixelSafeguards: [
-      "Meta Pixel NEVER loads or fires events on: Check my symptoms, Health assistant, Explain my prescription, Ask for help, Doctor booking / waiting room / video call, My account, Patient portal, Sign in and Worker panel.",
-      "We never send symptoms, assistant prompts, prescriptions, names, emails or any form inputs to Meta.",
-      "On eligible public informational pages (home, general health guides, pharmacies and clinics, about, contact, news), only a basic PageView event fires after consent.",
+    inventoryTitle: "Cookies we use",
+    inventoryColumns: ["Cookie", "Purpose", "Duration"],
+    inventoryRows: [
+      ["redihealth_lang", "Remembers your chosen interface language", "12 months"],
+      ["redihealth_lang_manual", "Remembers when you selected a language manually", "12 months"],
+      ["redihealth_county", "Remembers your selected area for local search and alerts", "12 months"],
+      ["redihealth_emergency_dismissed", "Remembers if you dismissed the 112 bar on this device", "30 days"],
+      ["redihealth_email_otp", "Encrypted token for one-time email sign-in verification", "10 minutes"],
+      ["authjs.session-token", "Keeps your signed-in session active securely", "Session duration"],
+      ["redihealth_cookie_consent", "Remembers that you acknowledged the cookie notice", "180 days"],
     ],
-    manageTitle: "How to change your choice",
+    safeguardsTitle: "No advertising and no commercial tracking",
+    safeguardsBody:
+      "Health information is special-category data under Art. 9 GDPR. RediHealth does not load advertising or commercial profiling tools.",
+    safeguardsItems: [
+      "We do not use marketing, advertising or retargeting cookies.",
+      "We never send symptoms, assistant messages, prescriptions or account details to advertising networks.",
+      "You can clear or block cookies at any time in your browser settings.",
+    ],
+    manageTitle: "Browser controls and contact",
     manageBody:
-      "You can update or withdraw your choice at any time using Cookie settings in the footer of any page, the controls above, or your browser settings.",
+      "You can review this summary at any time using Cookie settings in the footer of any page, or manage cookies directly in your browser settings.",
     privacyLinkLabel: "Privacy policy (GDPR)",
     contactLinkLabel: "Contact and data protection",
   };
@@ -746,23 +744,23 @@ export function getCookiesDoc(lang: Lang): CookiesDoc {
   const localizedHeaders: Record<Exclude<Lang, "ro" | "en">, { title: string; description: string }> = {
     sq: {
       title: "Politika e cookie-ve",
-      description: "Cilat cookie dhe mjete matjeje përdor RediHealth dhe si mund t'i kontrollosh.",
+      description: "Cilat cookie përdor RediHealth dhe si mbrojmë privatësinë tënde.",
     },
     it: {
       title: "Politica sui cookie",
-      description: "Quali cookie e strumenti di misurazione utilizza RediHealth e come controllarli.",
+      description: "Quali cookie utilizza RediHealth e come proteggiamo la tua privacy.",
     },
     hr: {
       title: "Politika kolačića",
-      description: "Koje kolačiće i alate za mjerenje RediHealth koristi i kako njima upravljati.",
+      description: "Koje kolačiće RediHealth koristi i kako štitimo tvoju privatnost.",
     },
     rom: {
       title: "Cookie pravila",
-      description: "Save cookie labarel RediHealth thaj sar shay te kontroline len.",
+      description: "Save cookie labarel RediHealth thaj sar arakhas cho garavipe.",
     },
     ru: {
       title: "Политика cookie",
-      description: "Какие файлы cookie и инструменты измерения использует RediHealth и как ими управлять.",
+      description: "Какие файлы cookie использует RediHealth и как мы защищаем вашу конфиденциальность.",
     },
   };
 

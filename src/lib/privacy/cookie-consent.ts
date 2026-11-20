@@ -7,38 +7,8 @@ export const OPEN_COOKIE_PREFERENCES_EVENT = "redihealth:open-cookie-preferences
 export type CookieConsentState = {
   version: string;
   necessary: true;
-  /** Optional campaign and visit measurement (Meta Pixel on public informational pages only). */
-  marketing: boolean;
   updatedAt: string;
 };
-
-/**
- * Sensitive, authenticated, or health-input routes where third-party campaign measurement
- * (Meta Pixel) must never load or send events, even when the visitor accepted optional cookies.
- */
-const PIXEL_BLOCKED_PREFIXES = [
-  "/panel",
-  "/demo",
-  "/offline",
-  "/patient-portal",
-  "/contul-meu",
-  "/sign-in",
-  "/health-check",
-  "/health-assistant",
-  "/ai-assistant",
-  "/prescription-review",
-  "/get-help",
-  "/medic-online/meet",
-  "/medic-online/asteptare",
-  "/medic-online/programare",
-] as const;
-
-export function isMetaPixelAllowedPath(barePath: string): boolean {
-  const normalized = barePath.startsWith("/") ? barePath : `/${barePath}`;
-  return !PIXEL_BLOCKED_PREFIXES.some(
-    (prefix) => normalized === prefix || normalized.startsWith(`${prefix}/`),
-  );
-}
 
 export function parseCookieConsent(raw: string | null | undefined): CookieConsentState | null {
   if (!raw) return null;
@@ -49,13 +19,11 @@ export function parseCookieConsent(raw: string | null | undefined): CookieConsen
       parsed &&
       parsed.version === COOKIE_CONSENT_VERSION &&
       parsed.necessary === true &&
-      typeof parsed.marketing === "boolean" &&
       typeof parsed.updatedAt === "string"
     ) {
       return {
         version: parsed.version,
         necessary: true,
-        marketing: parsed.marketing,
         updatedAt: parsed.updatedAt,
       };
     }
@@ -84,27 +52,13 @@ export function readCookieConsent(): CookieConsentState | null {
   }
 }
 
-export function clearMetaTrackingCookies(): void {
-  if (typeof document === "undefined") return;
-  const host = window.location.hostname;
-  const hostParts = host.split(".");
-  const domains = ["", host];
-  if (hostParts.length >= 2) {
-    domains.push(`.${hostParts.slice(-2).join(".")}`);
-  }
-  for (const name of ["_fbp", "_fbc"]) {
-    for (const domain of domains) {
-      const domainAttr = domain ? `; domain=${domain}` : "";
-      document.cookie = `${name}=; path=/${domainAttr}; max-age=0; samesite=lax`;
-    }
-  }
-}
+let cachedSnapshotRaw: string | null | undefined = undefined;
+let cachedSnapshotValue: CookieConsentState | null = null;
 
-export function writeCookieConsent(marketing: boolean): CookieConsentState {
+export function acknowledgeNecessaryCookies(): CookieConsentState {
   const next: CookieConsentState = {
     version: COOKIE_CONSENT_VERSION,
     necessary: true,
-    marketing,
     updatedAt: new Date().toISOString(),
   };
 
@@ -117,9 +71,6 @@ export function writeCookieConsent(marketing: boolean): CookieConsentState {
     } catch {
       // Ignore storage quota or private-mode restrictions; cookie remains primary.
     }
-    if (!marketing) {
-      clearMetaTrackingCookies();
-    }
     cachedSnapshotRaw = serialized;
     cachedSnapshotValue = next;
     window.dispatchEvent(new CustomEvent<CookieConsentState>(COOKIE_CONSENT_EVENT, { detail: next }));
@@ -128,10 +79,7 @@ export function writeCookieConsent(marketing: boolean): CookieConsentState {
   return next;
 }
 
-let cachedSnapshotRaw: string | null | undefined = undefined;
-let cachedSnapshotValue: CookieConsentState | null = null;
-
-/** Stable client snapshot for React's useSyncExternalStore (returns null if no choice saved yet). */
+/** Stable client snapshot for React's useSyncExternalStore (returns null if not yet acknowledged). */
 export function getCookieConsentSnapshot(): CookieConsentState | null {
   if (typeof window === "undefined") return null;
   let raw = readConsentCookie();

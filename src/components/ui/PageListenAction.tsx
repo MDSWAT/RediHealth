@@ -11,11 +11,14 @@ import type { Lang } from "@/lib/i18n/translations";
 export function PageListenAction({
   lang: langProp,
   segments,
+  autoRead = true,
   autoReadKey,
   className,
 }: {
   lang?: Lang;
   segments: string[];
+  /** Pass false for a second listen button on a page, so only the page's own one answers Auto-read. */
+  autoRead?: boolean;
   autoReadKey?: string;
   className?: string;
 }) {
@@ -28,7 +31,7 @@ export function PageListenAction({
   return (
     <ListenButton
       uiLang={activeLang}
-      autoRead
+      autoRead={autoRead}
       autoReadKey={autoReadKey}
       isPlaying={voice.speaking}
       onToggle={() => (voice.speaking ? voice.stop() : voice.speak(segments))}

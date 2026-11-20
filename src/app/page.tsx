@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/landing/Hero";
+import { RegionalHealthRibbon } from "@/components/news/RegionalHealthRibbon";
 import { HealthTopics } from "@/components/landing/HealthTopics";
 import { MediatorsSection } from "@/components/landing/MediatorsSection";
+import { StackedSections, StackLayer } from "@/components/landing/StackedSections";
 import { TrustSection } from "@/components/landing/TrustSection";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import { getRequestLang, withLangPrefix } from "@/lib/i18n/server-routing";
@@ -39,10 +41,25 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   return (
     <main id="main-content" className="flex-1">
-      <Hero />
-      <HealthTopics />
-      <MediatorsSection />
-      <TrustSection />
+      <StackedSections>
+        <StackLayer className="bg-background">
+          <div className="flex flex-1 flex-col">
+            <Hero />
+            <div className="bg-ink-950">
+              <RegionalHealthRibbon />
+            </div>
+          </div>
+        </StackLayer>
+        <StackLayer>
+          <HealthTopics />
+        </StackLayer>
+        <StackLayer>
+          <MediatorsSection />
+        </StackLayer>
+        <StackLayer>
+          <TrustSection />
+        </StackLayer>
+      </StackedSections>
     </main>
   );
 }

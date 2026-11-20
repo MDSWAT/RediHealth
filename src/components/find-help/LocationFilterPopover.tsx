@@ -56,6 +56,11 @@ export function LocationFilterPopover({
   onLocateUser,
 }: LocationFilterPopoverProps) {
   const [open, setOpen] = useState(defaultOpen);
+  /**
+   * The country whose cities the right-hand pane lists. Tapping a country only changes this pane:
+   * nothing is loaded until a city or the whole country is chosen.
+   */
+  const [browseCountry, setBrowseCountry] = useState<CountryCode>(activeCountry);
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const gpsButtonRef = useRef<HTMLButtonElement>(null);
@@ -129,11 +134,13 @@ export function LocationFilterPopover({
   function handlePane2KeyDown(event: ReactKeyboardEvent<HTMLButtonElement>) {
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      countryButtonRefs.current[activeCountry]?.focus();
+      countryButtonRefs.current[browseCountry]?.focus();
     }
   }
 
-  const cities = REGIONAL_CITY_PRESETS[activeCountry] ?? [];
+  const cities = REGIONAL_CITY_PRESETS[browseCountry] ?? [];
+  const browsingActiveCountry = browseCountry === activeCountry;
+  const wholeCountryShown = wholeCountrySelected && browsingActiveCountry;
 
   return (
     <div
@@ -156,6 +163,7 @@ export function LocationFilterPopover({
         onClick={() => {
           if (!open) {
             shouldAutoFocusOnOpenRef.current = true;
+            setBrowseCountry(activeCountry);
           }
           setOpen((prev) => !prev);
         }}
@@ -223,7 +231,7 @@ export function LocationFilterPopover({
               </p>
               <div className="flex flex-wrap gap-1 sm:flex-col sm:flex-nowrap sm:gap-0.5">
                 {SUPPORTED_COUNTRIES.map((country, index) => {
-                  const selected = activeCountry === country;
+                  const selected = browseCountry === country;
                   return (
                     <button
                       key={country}
@@ -232,12 +240,7 @@ export function LocationFilterPopover({
                       }}
                       type="button"
                       aria-pressed={selected}
-                      onClick={() => {
-                        onSelectCountry(country);
-                        if (selected) {
-                          closeAndFocusTrigger();
-                        }
-                      }}
+                      onClick={() => setBrowseCountry(country)}
                       onKeyDown={(event) => handleCountryKeyDown(event, index)}
                       className={cn(
                         "press-row flex min-h-11 items-center justify-between gap-2 whitespace-nowrap rounded-lg px-2.5 py-2 text-left text-body transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-full",
@@ -257,42 +260,42 @@ export function LocationFilterPopover({
             </div>
 
             <div role="group" aria-labelledby={cityGroupId} className="p-2">
-              <div key={activeCountry} ref={pane2ContainerRef} className="swap-in">
+              <div key={browseCountry} ref={pane2ContainerRef} className="swap-in">
                 <p id={cityGroupId} className="px-2.5 pb-1.5 pt-1 text-meta font-medium text-muted-foreground">
                   {cityGroupLabel}
                 </p>
 
                 <button
                   type="button"
-                  aria-pressed={wholeCountrySelected}
+                  aria-pressed={wholeCountryShown}
                   onClick={() => {
-                    onSelectCountry(activeCountry);
+                    onSelectCountry(browseCountry);
                     closeAndFocusTrigger();
                   }}
                   onKeyDown={handlePane2KeyDown}
                   className={cn(
                     "press-row mb-1 flex min-h-11 w-full items-center justify-between gap-2 whitespace-nowrap rounded-lg px-2.5 py-2 text-left text-body transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                    wholeCountrySelected
+                    wholeCountryShown
                       ? "bg-sapphire-soft font-semibold text-sapphire dark:bg-white/12 dark:text-paper"
                       : "font-medium text-foreground hover:bg-muted",
                   )}
                 >
-                  <span className="min-w-0 flex-1 truncate">{wholeCountryOption(countries[activeCountry])}</span>
-                  {wholeCountrySelected ? (
+                  <span className="min-w-0 flex-1 truncate">{wholeCountryOption(countries[browseCountry])}</span>
+                  {wholeCountryShown ? (
                     <CheckIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-paper" aria-hidden="true" />
                   ) : null}
                 </button>
 
                 <div className="grid grid-cols-2 gap-0.5">
                   {cities.map((city) => {
-                    const citySelected = activeCityName === city.name && !gpsActive;
+                    const citySelected = browsingActiveCountry && activeCityName === city.name && !gpsActive;
                     return (
                       <button
                         key={city.name}
                         type="button"
                         aria-pressed={citySelected}
                         onClick={() => {
-                          onSelectCity({ ...city, country: activeCountry });
+                          onSelectCity({ ...city, country: browseCountry });
                           closeAndFocusTrigger();
                         }}
                         onKeyDown={handlePane2KeyDown}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -39,6 +39,15 @@ function PausedRoute() {
   );
 }
 
+function subscribeToConnection(onChange: () => void) {
+  window.addEventListener("online", onChange);
+  window.addEventListener("offline", onChange);
+  return () => {
+    window.removeEventListener("online", onChange);
+    window.removeEventListener("offline", onChange);
+  };
+}
+
 export default function ErrorPage({
   error,
   retry,
@@ -48,6 +57,12 @@ export default function ErrorPage({
 }) {
   const { lang } = useLanguage();
   const copy = errorTranslations[lang];
+  // With no connection "come back in a few minutes" is the wrong advice: say what the matter is.
+  const offline = useSyncExternalStore(
+    subscribeToConnection,
+    () => !navigator.onLine,
+    () => false,
+  );
 
   useEffect(() => {
     console.error(error);
@@ -62,7 +77,7 @@ export default function ErrorPage({
             align="start"
             above={<PausedRoute />}
             title={copy.title}
-            lead={copy.body}
+            lead={offline ? copy.offlineBody : copy.body}
             actions={
               <>
                 <Button

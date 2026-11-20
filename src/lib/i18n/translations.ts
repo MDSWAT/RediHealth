@@ -1798,7 +1798,7 @@ export const translations: Record<Lang, Translations> = {
         commitments: [
           { title: "Gratuit pentru toți", description: "Nu plătești nimic, cu sau fără asigurare." },
           { title: "Datele tale rămân private", description: "Păstrăm informațiile tale în siguranță și nu le facem publice." },
-          { title: "Explicații pe înțelesul tău", description: "Cuvinte obișnuite, fără termeni greoi, direct la ce poți face." },
+          { title: "Informații clare și directe", description: "Explicații curate, fără termeni greoi, direct la pașii pe care îi poți urma." },
         ],
       },
       emergencyNotice: {

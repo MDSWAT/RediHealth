@@ -1,10 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { PhoneIcon } from "@/components/ui/icons";
+import { CalendarIcon, FileTextIcon, PhoneIcon, UsersIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { PageListenAction } from "@/components/ui/PageListenAction";
+import { Reveal } from "@/components/ui/Reveal";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
@@ -34,7 +35,7 @@ export const heroCopy = {
       "Направляет к семейным врачам, участковым медсестрам и программам профилактики и может прийти на встречу по местной договоренности.",
   },
   ro: {
-    title: "Mediatorii sanitari te pot sprijini",
+    title: "Mediatorii sanitari sunt aici să te ajute",
     subtitle:
       "Un mediator sanitar te ajută să te înscrii la medicul de familie, să pregătești actele pentru asigurare și să găsești serviciile de sănătate din zona ta.",
     ctaCallback: "Cere un apel",
@@ -49,7 +50,7 @@ export const heroCopy = {
       "Te pune în legătură cu medicii de familie, asistenții comunitari și campaniile locale de prevenție, și te poate însoți atunci când este disponibil local.",
   },
   en: {
-    title: "Health mediators can help you",
+    title: "Health mediators are here to help you",
     subtitle:
       "A health mediator helps you register with a family doctor, sort out paperwork and insurance steps, and connect with local health services.",
     ctaCallback: "Request a callback",
@@ -130,9 +131,9 @@ export function MediatorPublicHero({ lang: langProp }: { lang?: Lang }) {
   const lang = langProp ?? ctxLang;
   const copy = heroCopy[lang] ?? heroCopy.ro;
   const services = [
-    { title: copy.card1Title, body: copy.card1Desc },
-    { title: copy.card2Title, body: copy.card2Desc },
-    { title: copy.card3Title, body: copy.card3Desc },
+    { index: "01", Icon: CalendarIcon, title: copy.card1Title, body: copy.card1Desc },
+    { index: "02", Icon: FileTextIcon, title: copy.card2Title, body: copy.card2Desc },
+    { index: "03", Icon: UsersIcon, title: copy.card3Title, body: copy.card3Desc },
   ];
 
   return (
@@ -160,16 +161,36 @@ export function MediatorPublicHero({ lang: langProp }: { lang?: Lang }) {
           }
         />
 
-        {/* What a mediator does: three columns, each under its own hairline. */}
-        <div className="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-3">
-          {services.map((service) => (
-            <div key={service.title}>
-              <span aria-hidden="true" className="block h-px w-full bg-border" />
-              <h2 className="mt-5 text-balance text-body font-semibold text-foreground">{service.title}</h2>
-              <p className="mt-2 max-w-(--measure-lead) text-body text-muted-foreground">{service.body}</p>
+        {/* What a mediator does: three tactile REDI editorial cards with icons and numbered rhythm. */}
+        <Reveal stagger="editorial" className="mt-8 grid gap-4 md:grid-cols-3 lg:mt-10 lg:gap-5">
+          {services.map(({ index, Icon, title, body }) => (
+            <div
+              key={title}
+              className="card-interactive flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-2xs sm:p-7 dark:border-white/10 dark:bg-ink-900"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-3">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-subtle text-foreground dark:border-white/12 dark:bg-white/[0.06] dark:text-paper"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span className="font-mono text-meta font-semibold tabular-nums text-muted-foreground/75">
+                    {index}
+                  </span>
+                </div>
+                <span aria-hidden="true" className="rule-draw mt-5 block h-0.5 w-9 bg-amber-care dark:bg-amber-care-border" />
+                <h2 className="mt-4 text-balance text-title font-semibold text-foreground dark:text-paper">
+                  {title}
+                </h2>
+                <p className="mt-2 max-w-(--measure-lead) text-pretty text-body leading-relaxed text-muted-foreground dark:text-mist">
+                  {body}
+                </p>
+              </div>
             </div>
           ))}
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

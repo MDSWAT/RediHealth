@@ -384,7 +384,7 @@ describe("FindHelp location popover, inline FilterDropdown, and filter toolbar",
       }
 
       const toolbarButtons = assertCleanButtons(toolbarHtml, `${lang} FindHelpExplorer toolbar`);
-      expect(toolbarButtons.some((button) => button.text.includes(copy.emergencyWalkInFilter))).toBe(true);
+      expect(toolbarButtons.some((button) => button.text.includes(copy.filtersTitle))).toBe(true);
       expect(toolbarButtons.some((button) => button.text.includes(copy.openNowFilter))).toBe(true);
       expect(toolbarButtons.every((button) => !button.attrs.includes('type="submit"'))).toBe(true);
     }
@@ -553,8 +553,9 @@ describe("FindHelp location popover, inline FilterDropdown, and filter toolbar",
     expect(explorerSrc).toContain("useSheetDialog(filterSheetOpen");
     expect(explorerSrc).toContain("sheet-in");
     expect(explorerSrc).toContain(
-      "2xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)_minmax(0,0.62fr)_auto_auto_auto]",
+      "lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1.15fr)_minmax(0,0.68fr)_auto]",
     );
+    expect(explorerSrc).toContain("keepOpenOnSelect");
     expect(readSrc("src/components/find-help/LocationFilterPopover.tsx")).toContain(
       "event.stopPropagation();",
     );
@@ -651,14 +652,13 @@ describe("FindHelp location popover, inline FilterDropdown, and filter toolbar",
 
     for (const lang of ALL_LANGS) {
       const copy = findHelpTranslations[lang];
-      for (const value of [copy.ownershipDetail.public, copy.ownershipDetail.private, copy.ownershipDetail.unknown]) {
-        expect(value.trim().length).toBeGreaterThan(5);
+      // Public or private is one plain word after the kind of place ("Spital, de stat"), never a line of its own.
+      for (const value of [copy.ownership.public, copy.ownership.private]) {
+        expect(value.trim().length).toBeGreaterThan(3);
         expect(value).not.toContain("&");
         expect(value).not.toContain("\u00b7");
       }
-      if (lang === "sq") {
-        expect(copy.ownershipDetail.unknown).not.toMatch(/ndërmjetës/i);
-      }
+      expect("ownershipDetail" in copy).toBe(false);
 
       const pageHtml = renderToStaticMarkup(
         createElement(

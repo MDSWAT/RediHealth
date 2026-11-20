@@ -7,20 +7,18 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
+import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { openSmartSearch } from "@/components/search/smart-search-events";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
-const rescueCopy: Record<
-  Lang,
-  { searchLabel: string; assistantLabel: string; doctorLabel: string; findHelpLabel: string }
-> = {
-  ro: { searchLabel: "Caută pe site", assistantLabel: "Asistent virtual", doctorLabel: "Vorbește cu un medic", findHelpLabel: "Farmacii și clinici" },
-  en: { searchLabel: "Search the site", assistantLabel: "Health assistant", doctorLabel: "Talk to a doctor", findHelpLabel: "Pharmacies and clinics" },
-  sq: { searchLabel: "Kërko në faqe", assistantLabel: "Asistent shëndetësor", doctorLabel: "Fol me një mjek", findHelpLabel: "Farmaci dhe klinika" },
-  it: { searchLabel: "Cerca nel sito", assistantLabel: "Assistente sanitario", doctorLabel: "Parla con un medico", findHelpLabel: "Farmacie e ambulatori" },
-  hr: { searchLabel: "Pretraži stranicu", assistantLabel: "Zdravstveni asistent", doctorLabel: "Razgovaraj s liječnikom", findHelpLabel: "Ljekarne i klinike" },
-  rom: { searchLabel: "Rod pe sajt", assistantLabel: "Sastipnasko azhutitori", doctorLabel: "Vaker ekhe doktoreya", findHelpLabel: "Farmaciye thaj klinike" },
-  ru: { searchLabel: "Искать на сайте", assistantLabel: "Помощник по здоровью", doctorLabel: "Поговорите с врачом", findHelpLabel: "Аптеки и клиники" },
+const rescueCopy: Record<Lang, { searchLabel: string }> = {
+  ro: { searchLabel: "Caută pe site" },
+  en: { searchLabel: "Search the site" },
+  sq: { searchLabel: "Kërko në faqe" },
+  it: { searchLabel: "Cerca nel sito" },
+  hr: { searchLabel: "Pretraži stranicu" },
+  rom: { searchLabel: "Rod pe sajt" },
+  ru: { searchLabel: "Искать на сайте" },
 };
 
 function useSafeLanguage() {
@@ -63,6 +61,15 @@ export default function NotFound() {
   const { lang, t } = useSafeLanguage();
   const page = t.notFoundPage;
   const rescue = rescueCopy[lang];
+  // The same six destinations as the header and the phone menu, under the same names.
+  const destinations = [
+    { href: "/health-information", label: t.header.navAfla },
+    { href: "/health-check", label: t.header.navSymptoms },
+    { href: "/prescription-review", label: t.header.navMedicine },
+    { href: "/find-help", label: findHelpLinks(lang).nav },
+    { href: "/mediatori", label: t.header.forMediators },
+    { href: "/stiri", label: t.header.navStiri },
+  ];
 
   return (
     <main id="main-content" className="flex flex-1 items-center pb-16 sm:pb-24">
@@ -94,12 +101,7 @@ export default function NotFound() {
             className="relative mt-8 grid grid-cols-1 gap-2.5 pt-6 sm:grid-cols-2"
           >
             <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-border" />
-            {[
-              { href: "/health-assistant", label: rescue.assistantLabel },
-              { href: "/medic-online", label: rescue.doctorLabel },
-              { href: "/find-help", label: rescue.findHelpLabel },
-              { href: "/health-information", label: page.exploreHealth },
-            ].map((item) => (
+            {destinations.map((item) => (
               <Link
                 key={item.href}
                 href={withLangPrefix(item.href, lang)}

@@ -177,7 +177,7 @@ describe("Zero two-line buttons across all 7 locales", () => {
     expect(source).not.toContain("mask-image:linear-gradient");
 
     const placeLinkMatch = source.match(
-      /const placeLink = [\s\S]*?(?=\n\s*const renderRoutingStack =)/,
+      /const placeLink = [\s\S]*?(?=\n\s*const renderWhoControls =)/,
     );
     expect(placeLinkMatch).not.toBeNull();
     const placeLinkOpeningTags = Array.from(placeLinkMatch![0].matchAll(/<Link\b[\s\S]*?>/g));
@@ -186,17 +186,24 @@ describe("Zero two-line buttons across all 7 locales", () => {
       expect(linkTag).toContain("whitespace-nowrap");
     }
 
+    // The result's "where to go" row: one Button per place (pharmacy, family doctor, hospital,
+    // mediator), then the guide as a one-line text link.
     const routingStackMatch = source.match(
-      /const renderRoutingStack = [\s\S]*?(?=\n\s*async function handleCopyDiagnosticSheet)/,
+      /\{careActions\.map\([\s\S]*?(?=\n\s*\{selectedSymptom && !isEmergency && careLevel !== "high")/,
     );
     expect(routingStackMatch).not.toBeNull();
     const routingLinkOpeningTags = Array.from(routingStackMatch![0].matchAll(/<(?:Link|Button)\b[\s\S]*?>/g));
-    expect(routingLinkOpeningTags.length).toBeGreaterThanOrEqual(3);
+    expect(routingLinkOpeningTags.length).toBeGreaterThanOrEqual(2);
+    for (const place of ['findHelpHref("pharmacy")', 'findHelpHref("gp")', 'findHelpHref("hospital")', '"/mediatori#solicita"']) {
+      expect(source, `result actions must offer ${place}`).toContain(place);
+    }
     const buttonSource = readSrc("src/components/ui/Button.tsx");
     expect(buttonSource).toContain("whitespace-nowrap");
+    const stepUiSource = readSrc("src/components/health-assistant/step-ui.ts");
+    expect(stepUiSource).toMatch(/export const textLink = `[^`]*whitespace-nowrap/);
     for (const [linkTag] of routingLinkOpeningTags) {
       if (!linkTag.startsWith("<Button")) {
-        expect(linkTag).toContain("whitespace-nowrap");
+        expect(linkTag.includes("whitespace-nowrap") || linkTag.includes("className={textLink}")).toBe(true);
       }
     }
   });
