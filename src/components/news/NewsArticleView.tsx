@@ -10,7 +10,7 @@ import {
   HealthArticleRelatedList,
   HealthArticleShell,
 } from "@/components/health-information/HealthArticleShell";
-import { TopicNextSteps } from "@/components/health-information/TopicNextSteps";
+import { MedicalSafetyDisclaimer } from "@/components/health-information/MedicalSafetyDisclaimer";
 import { ClockIcon, PinIcon } from "@/components/ui/icons";
 import { EXTRA_MAP_COPY } from "@/components/ui/RomaniaCountyMap";
 import { CaravanPassActions } from "@/components/news/CaravanPassActions";
@@ -360,7 +360,7 @@ export function NewsArticleView({ id }: { id: string }) {
             }))}
           />
 
-          <TopicNextSteps lang={lang} topicTitle={article.title} className="mt-12" />
+          <MedicalSafetyDisclaimer lang={lang} className="mt-12" />
         </article>
       </HealthArticleShell>
     </main>

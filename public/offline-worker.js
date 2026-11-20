@@ -1,6 +1,7 @@
-/* Only the data-free offline shell, static assets, and zero-PHI offline fallback may enter Cache Storage or respond offline. */
+/* Only the data-free offline shell, static assets, non-PHI health guides, and zero-PHI offline fallback may enter Cache Storage or respond offline. */
 const SHELL_CACHE = "redihealth-offline-shell-v2";
 const STATIC_CACHE = "redihealth-static-v2";
+const GUIDES_CACHE = "redihealth-guides-v1";
 const SUPPORTED_LOCALES = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
 
 const OFFLINE_FALLBACK_COPY = {
@@ -87,6 +88,37 @@ function isCacheableResponse(response) {
   const cc = (response.headers.get("cache-control") || "").toLowerCase();
   if (cc.includes("no-store") || cc.includes("private")) return false;
   return true;
+}
+
+function isHealthGuidePath(pathname) {
+  if (isSensitivePath(pathname)) return false;
+  const stripped = pathname.replace(/^\/(ro|en|sq|it|hr|rom|ru)(?=\/|$)/, "") || "/";
+  return stripped === "/health-information" || stripped.startsWith("/health-information/");
+}
+
+async function cacheNextStaticAssets(html, supplied = [], { requireAll = false } = {}) {
+  const staticCache = await caches.open(STATIC_CACHE);
+  const assets = [
+    ...html.matchAll(/(?:src|href)="([^"]*\/_next\/static\/[^"]+)"/g),
+  ].map((match) => new URL(match[1].replace(/&amp;/g, "&"), self.location.origin).href);
+
+  for (const asset of [...new Set([...assets, ...supplied])]) {
+    const assetUrl = new URL(asset, self.location.origin);
+    if (
+      assetUrl.origin !== self.location.origin ||
+      !assetUrl.pathname.startsWith("/_next/static/")
+    ) {
+      continue;
+    }
+    const result = await fetch(assetUrl.href, { credentials: "omit" });
+    if (!result.ok) {
+      if (requireAll) throw new Error("Offline app asset unavailable.");
+      continue;
+    }
+    if (isCacheableResponse(result)) {
+      await staticCache.put(assetUrl.href, result);
+    }
+  }
 }
 
 function buildOfflineFallbackResponse(locale) {
@@ -242,7 +274,11 @@ self.addEventListener("activate", (event) => {
       await Promise.all(
         keys
           .filter(
-            (key) => key.startsWith("redihealth-") && key !== SHELL_CACHE && key !== STATIC_CACHE,
+            (key) =>
+              key.startsWith("redihealth-") &&
+              key !== SHELL_CACHE &&
+              key !== STATIC_CACHE &&
+              key !== GUIDES_CACHE,
           )
           .map((key) => caches.delete(key)),
       );
@@ -257,12 +293,48 @@ self.addEventListener("message", (event) => {
     return;
   }
 
+  if (event.data?.type === "CACHE_GUIDE") {
+    event.waitUntil(
+      (async () => {
+        try {
+          const targetUrl = new URL(String(event.data.url || ""), self.location.origin);
+          if (
+            targetUrl.origin !== self.location.origin ||
+            !isHealthGuidePath(targetUrl.pathname)
+          ) {
+            throw new Error("Only non-PHI health guides can be saved offline.");
+          }
+          const response = await fetch(targetUrl.pathname, {
+            credentials: "omit",
+            cache: "no-store",
+          });
+          if (
+            !isCacheableResponse(response) ||
+            !response.headers.get("content-type")?.includes("text/html")
+          ) {
+            throw new Error("Health guide unavailable for offline cache.");
+          }
+          const html = await response.clone().text();
+          const supplied = Array.isArray(event.data.assets) ? event.data.assets : [];
+          await cacheNextStaticAssets(html, supplied, { requireAll: false });
+          const guidesCache = await caches.open(GUIDES_CACHE);
+          await guidesCache.put(targetUrl.pathname, response);
+          event.ports[0]?.postMessage({ ok: true, path: targetUrl.pathname });
+        } catch (error) {
+          event.ports[0]?.postMessage({
+            error: error?.message || "Health guide offline save failed.",
+          });
+        }
+      })(),
+    );
+    return;
+  }
+
   if (event.data?.type !== "PREPARE_OFFLINE") return;
   event.waitUntil(
     (async () => {
       try {
         const shellCache = await caches.open(SHELL_CACHE);
-        const staticCache = await caches.open(STATIC_CACHE);
         const locale = SUPPORTED_LOCALES.includes(event.data.lang) ? event.data.lang : "en";
         const shell = `/${locale}/offline`;
         const response = await fetch(shell, { credentials: "omit", cache: "no-store" });
@@ -270,19 +342,8 @@ self.addEventListener("message", (event) => {
           throw new Error("Offline shell unavailable.");
         }
         const html = await response.clone().text();
-        const assets = [
-          ...html.matchAll(/(?:src|href)="([^"]*\/_next\/static\/[^"]+)"/g),
-        ].map((match) => new URL(match[1].replace(/&amp;/g, "&"), self.location.origin).href);
         const supplied = Array.isArray(event.data.assets) ? event.data.assets : [];
-        for (const asset of [...new Set([...assets, ...supplied])]) {
-          const url = new URL(asset, self.location.origin);
-          if (url.origin !== self.location.origin || !url.pathname.startsWith("/_next/static/")) {
-            continue;
-          }
-          const result = await fetch(url.href, { credentials: "omit" });
-          if (!result.ok) throw new Error("Offline app asset unavailable.");
-          await staticCache.put(url.href, result);
-        }
+        await cacheNextStaticAssets(html, supplied, { requireAll: true });
         await shellCache.put(shell, response);
         event.ports[0]?.postMessage({ ok: true });
       } catch (error) {
@@ -359,7 +420,17 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     (async () => {
       try {
-        return await fetch(event.request);
+        const response = await fetch(event.request);
+        if (isHealthGuidePath(url.pathname) && isCacheableResponse(response)) {
+          const clone = response.clone();
+          event.waitUntil(
+            caches
+              .open(GUIDES_CACHE)
+              .then((cache) => cache.put(url.pathname, clone))
+              .catch(() => {}),
+          );
+        }
+        return response;
       } catch {
         const panelOrOfflineMatch = /^\/(ro|en|sq|it|hr|rom|ru)\/(panel|offline)(\/|$)/.exec(
           url.pathname,
@@ -369,6 +440,11 @@ self.addEventListener("fetch", (event) => {
           const shellCache = await caches.open(SHELL_CACHE);
           const cached = await shellCache.match(`/${lang}/offline`);
           if (cached) return cached;
+        }
+        if (isHealthGuidePath(url.pathname)) {
+          const guidesCache = await caches.open(GUIDES_CACHE);
+          const cachedGuide = await guidesCache.match(url.pathname);
+          if (cachedGuide) return cachedGuide;
         }
         return buildOfflineFallbackResponse(resolveLocaleFromPath(url.pathname));
       }

@@ -14,6 +14,16 @@ import { LISTEN_COPY } from "@/lib/i18n/listen-copy";
 import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 
+export const LISTEN_UNAVAILABLE_COPY: Record<Lang, string> = {
+  ro: "Vocea nu este disponibilă pe acest dispozitiv. Poți citi textul pe ecran.",
+  en: "Voice playback is unavailable on this device. You can read the text on screen.",
+  sq: "Leximi me zë nuk është i disponueshëm në këtë pajisje. Mund ta lexosh tekstin në ekran.",
+  it: "La lettura vocale non è disponibile su questo dispositivo. Puoi leggere il testo sullo schermo.",
+  hr: "Glasovno čitanje nije dostupno na ovom uređaju. Tekst možeš pročitati na zaslonu.",
+  rom: "O glaso nane dostupno pe kadava aparati. Shaj te gines o teksto po ekrano.",
+  ru: "Озвучивание недоступно на этом устройстве. Вы можете прочитать текст на экране.",
+};
+
 function useOptionalLanguage(): Lang | undefined {
   try {
     return useLanguage().lang;
@@ -108,11 +118,14 @@ export function ListenButton({
   const voiceAvailable = isVoiceEnabled(lang) && isVoiceEnabled(effectiveContentLang);
 
   const [isPlayingLocal, setIsPlayingLocal] = useState(false);
+  const [playbackError, setPlaybackError] = useState<string | null>(null);
   const playingLocalRef = useRef(false);
+  const activeAttemptRef = useRef(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const controlled = isPlayingProp !== undefined;
   const playing = controlled ? isPlayingProp : isPlayingLocal;
+  const unavailableMessage = LISTEN_UNAVAILABLE_COPY[lang] ?? LISTEN_UNAVAILABLE_COPY.ro;
 
   const onToggleRef = useRef(onToggle);
   const getTextRef = useRef(getText);
@@ -123,14 +136,34 @@ export function ListenButton({
     textRef.current = text;
   }, [onToggle, getText, text]);
 
+  useEffect(() => {
+    let mounted = false;
+    const unsubscribe = speechEngine.subscribeState((state) => {
+      if (!mounted) return;
+      if (activeAttemptRef.current && state.activeTier === "transcript" && !state.isSpeaking) {
+        activeAttemptRef.current = false;
+        playingLocalRef.current = false;
+        setIsPlayingLocal(false);
+        setPlaybackError(unavailableMessage);
+      }
+    });
+    mounted = true;
+    return unsubscribe;
+  }, [unavailableMessage]);
+
   const startAutoRead = useCallback(() => {
     if (disabled) return;
+    setPlaybackError(null);
+    activeAttemptRef.current = true;
     if (onToggleRef.current) {
       onToggleRef.current();
       return;
     }
     const rawText = (getTextRef.current ? getTextRef.current() : textRef.current) ?? "";
-    if (!rawText.trim()) return;
+    if (!rawText.trim()) {
+      activeAttemptRef.current = false;
+      return;
+    }
 
     const speechLang = resolveSpeechLang(effectiveContentLang);
     playingLocalRef.current = true;
@@ -139,15 +172,18 @@ export function ListenButton({
       lang: speechLang,
       rate: 1.0,
       onEnd: () => {
+        activeAttemptRef.current = false;
         playingLocalRef.current = false;
         setIsPlayingLocal(false);
       },
       onError: () => {
+        activeAttemptRef.current = false;
         playingLocalRef.current = false;
         setIsPlayingLocal(false);
+        setPlaybackError(unavailableMessage);
       },
     });
-  }, [disabled, effectiveContentLang]);
+  }, [disabled, effectiveContentLang, unavailableMessage]);
 
   usePageAutoRead({
     enabled: Boolean(autoRead && !disabled && voiceAvailable),
@@ -181,7 +217,9 @@ export function ListenButton({
   const resolvedStop = stopLabel ?? copy.stop;
 
   const handleClick = () => {
+    setPlaybackError(null);
     if (onToggle) {
+      activeAttemptRef.current = !playing;
       if (playStartEarcon) {
         playEarcon(playing ? "stop" : "start");
       }
@@ -194,6 +232,7 @@ export function ListenButton({
     }
 
     if (playing) {
+      activeAttemptRef.current = false;
       if (playStartEarcon) playEarcon("stop");
       speechEngine.stop();
       if (closePlayerOnStop) speechEngine.requestClose();
@@ -207,23 +246,27 @@ export function ListenButton({
 
     if (playStartEarcon) playEarcon("start");
     const speechLang = resolveSpeechLang(effectiveContentLang);
+    activeAttemptRef.current = true;
     playingLocalRef.current = true;
     setIsPlayingLocal(true);
     speechEngine.speak(formatSpeechText(rawText, speechLang), {
       lang: speechLang,
       rate: 1.0,
       onEnd: () => {
+        activeAttemptRef.current = false;
         playingLocalRef.current = false;
         setIsPlayingLocal(false);
       },
       onError: () => {
+        activeAttemptRef.current = false;
         playingLocalRef.current = false;
         setIsPlayingLocal(false);
+        setPlaybackError(unavailableMessage);
       },
     });
   };
 
-  return (
+  const buttonEl = (
     <Button
       ref={buttonRef}
       type="button"
@@ -252,5 +295,22 @@ export function ListenButton({
       )}
       <span className="whitespace-nowrap">{playing ? resolvedStop : resolvedListen}</span>
     </Button>
+  );
+
+  if (!playbackError) {
+    return buttonEl;
+  }
+
+  return (
+    <span className="inline-flex flex-col items-start gap-1.5 print:hidden">
+      {buttonEl}
+      <span
+        role="status"
+        aria-live="polite"
+        className="max-w-xs text-meta leading-snug text-muted-foreground"
+      >
+        {playbackError}
+      </span>
+    </span>
   );
 }

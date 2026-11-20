@@ -235,7 +235,8 @@ describe("NewsArticleView actionable civic caravan pass (#10)", () => {
       );
 
       expect(html).toContain("data-health-article-column");
-      expect(html).toContain('id="next-steps-heading"');
+      expect(html).not.toContain('id="next-steps-heading"');
+      expect(html).not.toContain("/medic-online");
       expect(html).toContain('data-testid="medical-safety-disclaimer"');
       expect(html).toContain("https://www.google.com/maps/search/?api=1");
       expect(html).toContain("whitespace-nowrap");

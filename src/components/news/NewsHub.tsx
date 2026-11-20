@@ -22,7 +22,7 @@ import { useUserCounty } from "@/lib/geo-ip";
 import { CountyOverrideModal } from "@/components/news/CountyOverrideModal";
 import { isWholeCountry, newsForPlace } from "@/components/news/PlaceNewsModal";
 import { countyLabel, formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
-import { PinIcon, StethoscopeIcon, UsersIcon } from "@/components/ui/icons";
+import { PinIcon } from "@/components/ui/icons";
 import { useReadAloud } from "@/components/health-check/readingTools";
 
 const RomaniaCountyMap = dynamic(
@@ -512,36 +512,6 @@ export function NewsHub() {
                 )}
               </div>
             )}
-          </section>
-
-          <section
-            aria-labelledby="news-handover-heading"
-            className="mt-12 flex flex-col gap-5 rounded-xl border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"
-          >
-            <div className="max-w-xl space-y-1">
-              <h2 id="news-handover-heading" className="text-balance text-title font-semibold text-foreground">
-                {np.handoverTitle}
-              </h2>
-              <p className="text-body text-muted-foreground">{np.handoverSubtitle}</p>
-            </div>
-            <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row">
-              <Button
-                href={withLangPrefix("/medic-online", lang)}
-                variant="action"
-                size="lg"
-              >
-                <StethoscopeIcon className="h-4 w-4 shrink-0" />
-                <span className="min-w-0 truncate">{np.handoverTelemed}</span>
-              </Button>
-              <Button
-                href={withLangPrefix("/mediatori", lang)}
-                variant="outline"
-                size="lg"
-              >
-                <UsersIcon className="h-4 w-4 shrink-0 text-sapphire" />
-                <span className="min-w-0 truncate">{np.handoverMediator}</span>
-              </Button>
-            </div>
           </section>
         </Container>
       </div>

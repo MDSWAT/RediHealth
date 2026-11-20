@@ -5,7 +5,6 @@ import type { HealthMyth } from "@/lib/i18n/health-myths";
 import { Button } from "@/components/ui/Button";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
-import { MythDoctorHandoverButton } from "./MythDoctorHandoverButton";
 import { useLanguage } from "@/lib/i18n/language-context";
 
 export interface QuizFeedbackCardProps {
@@ -92,12 +91,7 @@ export function QuizFeedbackCard({
         <span>{q.sourcePrefix}</span> {myth.source}
       </p>
 
-      <div style={step(3)} className="list-in mt-5 flex flex-wrap items-center justify-between gap-3 pt-1">
-        <MythDoctorHandoverButton
-          mythId={myth.id}
-          mythStatement={myth.statement}
-          className="dark:text-sapphire-border dark:decoration-sapphire-border/40 dark:hover:bg-white/10 dark:hover:text-paper dark:hover:decoration-sapphire-border dark:focus-visible:ring-paper"
-        />
+      <div style={step(3)} className="list-in mt-5 flex flex-wrap items-center justify-end gap-3 pt-1">
         <Button
           type="button"
           variant="action"

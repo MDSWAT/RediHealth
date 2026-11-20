@@ -3,7 +3,6 @@
 import { useState } from "react";
 import type { HealthMyth } from "@/lib/i18n/health-myths";
 import { cn } from "@/lib/cn";
-import { MythDoctorHandoverButton } from "@/components/landing/MythDoctorHandoverButton";
 import { HEALTH_ARTICLE_SECTION_H2_CLASS } from "./HealthArticleShell";
 import { InlineAudioNarratorButton } from "./InlineAudioNarratorButton";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -224,13 +223,6 @@ export function TopicMythCard({
           <p className="text-body text-muted-foreground">
             {pickLocale(s.sourcePrefix, currentLang)} {myth.source}
           </p>
-
-          <div>
-            <MythDoctorHandoverButton
-              mythId={myth.id}
-              mythStatement={myth.statement}
-            />
-          </div>
         </div>
       )}
     </section>

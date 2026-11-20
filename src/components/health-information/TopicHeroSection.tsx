@@ -15,19 +15,20 @@ import {
   HealthArticleHeader,
 } from "./HealthArticleShell";
 import { TopicMetaBadge } from "./TopicMetaBadge";
+import { GuideOfflinePrintActions } from "./GuideOfflinePrintActions";
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
 export interface TopicHeroSectionProps {
   topic: HealthTopicContent;
   icon?: IconComponent;
-  readingLevel: "simple" | "complete";
   /** Estimated reading and listening time for this topic, in minutes. */
   readMinutes?: number;
   audioMinutes?: number;
   onListenClick: () => void;
   onStopClick?: () => void;
   isPlayingAudio?: boolean;
+  saveText?: string;
   afterActions?: ReactNode;
   className?: string;
   lang?: Lang;
@@ -50,12 +51,12 @@ function pickLocale(
 
 export function TopicHeroSection({
   topic,
-  readingLevel,
   readMinutes = 3,
   audioMinutes = 2,
   onListenClick,
   onStopClick,
   isPlayingAudio = false,
+  saveText,
   afterActions,
   className = "",
   lang,
@@ -63,11 +64,6 @@ export function TopicHeroSection({
   const { lang: ctxLang } = useSafeLanguageContext();
   const currentLang: Lang = lang ?? ctxLang ?? "ro";
   const s = HEALTH_DETAIL_SHARED_STRINGS.topicHero;
-
-  const effectiveReadMinutes =
-    readingLevel === "complete" ? readMinutes + 2 : readMinutes;
-  const effectiveAudioMinutes =
-    readingLevel === "complete" ? audioMinutes + 1 : audioMinutes;
 
   return (
     <section
@@ -90,14 +86,14 @@ export function TopicHeroSection({
             lead={topic.description}
             meta={
               <TopicMetaBadge
-                readMinutes={effectiveReadMinutes}
-                audioMinutes={effectiveAudioMinutes}
+                readMinutes={readMinutes}
+                audioMinutes={audioMinutes}
                 bordered={false}
                 lang={currentLang}
               />
             }
             actions={
-              <>
+              <div className="flex flex-wrap items-center gap-3">
                 <ArticleListenButton
                   uiLang={currentLang}
                   textToSpeak={topic.description}
@@ -107,7 +103,12 @@ export function TopicHeroSection({
                     if (onStopClick) onStopClick();
                   }}
                 />
-              </>
+                <GuideOfflinePrintActions
+                  lang={currentLang}
+                  title={topic.title}
+                  saveText={saveText}
+                />
+              </div>
             }
             afterActions={afterActions}
           />
