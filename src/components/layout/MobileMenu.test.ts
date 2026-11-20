@@ -39,6 +39,7 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(MOBILE_MENU_SOURCE).toContain('variant="outline"');
     expect(HEADER_SOURCE).toContain("gap-0.5 md:hidden");
     expect(HEADER_SOURCE).toContain("capsuleCloseItem()");
+    expect(HEADER_SOURCE).toMatch(/!mobileOpen\s*&&[\s\S]*?<UniversalEmergencyBanner/);
 
     // Account is a labelled row inside the menu, not an unlabelled icon beside Close.
     expect(MOBILE_MENU_SOURCE).toContain("data-mobile-account-trigger");
@@ -140,8 +141,9 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(mobileClusterStart).toBeGreaterThan(-1);
     expect(mobileBarSlice).toContain("openSmartSearch()");
     expect(mobileBarSlice).toContain('data-search-trigger=""');
-    expect(mobileBarSlice).toContain("<ComfortMenu />");
+    expect(mobileBarSlice).toContain('<ComfortMenu tone={onDarkBar ? "light" : "default"} />');
     expect(mobileBarSlice).not.toContain("showLabel");
+    expect(HEADER_SOURCE).toContain('const isTransparent = currentPath === "/" && !scrolled && !mobileOpen;');
     expect(mobileBarSlice).toContain("chrome.closeWord : chrome.menuWord");
     expect(mobileBarSlice).toContain("whitespace-nowrap");
     expect(MOBILE_MENU_SOURCE).not.toContain("openSmartSearch()");

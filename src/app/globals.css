@@ -564,10 +564,11 @@ h2 {
 /* ---------- Landing hero ---------- */
 
 /* One motion language for the hero: the shared calm ease-out, no overshoot.
-   Clean white surface backing the full-width filtered multi-image backdrop. */
+   The upward 2px ink shadow seals subpixel rounding seams at y=0 under fractional zoom. */
 .hero {
   --hero-ease: var(--ease-out-calm);
-  background: var(--color-background);
+  background: var(--color-ink-950);
+  box-shadow: 0 -2px 0 0 var(--color-ink-950);
 }
 
 .hero ::selection {
@@ -2285,6 +2286,10 @@ html[data-high-contrast] :is(footer, .bg-ink-950, .bg-ink-900, .dark, .phone-she
 html[data-high-contrast] :focus-visible {
   outline: 3px solid var(--color-ring);
   outline-offset: 2px;
+}
+
+html[data-high-contrast] .site-header[data-transparent="true"] :not(.capsule-panel, .capsule-panel *):focus-visible {
+  outline-color: #ffffff;
 }
 
 html[data-high-contrast] [tabindex="-1"]:focus-visible {

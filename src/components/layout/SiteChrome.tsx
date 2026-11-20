@@ -79,8 +79,9 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTrans
   const path = stripLangFromPathname(pathname);
   const isWorkerPanel = path.startsWith("/panel") || path === "/demo" || path.startsWith("/demo/") || path === "/offline" || path.startsWith("/offline/");
   const isChromelessSurface = isWorkerPanel || path === "/health-check/note";
-  // Symptom check and prescription review are interactive tasks: they end at their action button, with no footer after them.
-  const hideFooter = isChromelessSurface || path === "/health-check" || path === "/prescription-review";
+  const isAiAssistant = path === "/ai-assistant" || path.startsWith("/ai-assistant/");
+  // Symptom check, prescription review, and AI assistant are interactive workspaces with no footer after them.
+  const hideFooter = isChromelessSurface || path === "/health-check" || path === "/prescription-review" || isAiAssistant;
   const [widgetsReady, setWidgetsReady] = useState(false);
   useSkipLinkTarget(pathname);
   useComfortDomSync();
@@ -165,7 +166,7 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTrans
             {children}
             {isChromelessSurface || !widgetsReady ? null : <FeedbackWidget />}
             {isChromelessSurface || !widgetsReady ? null : <ReportIssueWidget />}
-            {isChromelessSurface ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
+            {isChromelessSurface || isAiAssistant ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
             {hideFooter ? null : <Footer />}
             {isChromelessSurface ? null : <CookieConsentBanner />}
             <ReadingGuide />

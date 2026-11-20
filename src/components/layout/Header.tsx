@@ -111,6 +111,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
   const [drawerHeight, setDrawerHeight] = useState<number | null>(null);
   const [authenticated, setAuthenticated] = useState(false);
   const [dialerOpen, setDialerOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname() || "/";
   const currentPath = stripLangFromPathname(pathname);
   const { lang, t } = useLanguage();
@@ -131,9 +132,19 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
         ? pwaCopy.updateNow
         : pwaCopy.refreshApp;
 
-  // Both the header and the open mobile menu stay on the warm paper ground in light mode
-  // (and switch cleanly to obsidian ink when the site itself is in dark mode).
-  const onDarkBar = false;
+  // Transparent over the dark landing hero at the top of the page; transitions to the solid
+  // blurred bar on scroll, on inner pages, or while the warm-paper mobile drawer is open.
+  const isTransparent = currentPath === "/" && !scrolled && !mobileOpen;
+  const onDarkBar = isTransparent;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 16);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [currentPath]);
 
   useEffect(() => {
     if (typeof document === "undefined" || !document.cookie.includes("session-token")) {
@@ -260,14 +271,19 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
     <>
       <header
         ref={headerRef}
+        data-transparent={isTransparent ? "true" : undefined}
         className={cn(
-          "site-header shadow-2xs scroll-edge sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:[--color-border:rgb(255_255_255/0.1)]",
-          mobileOpen
-            ? "border-b border-border bg-paper text-foreground dark:border-white/10 dark:bg-ink-950 dark:text-paper"
-            : "border-b border-border/85 bg-background/90 text-foreground backdrop-blur-xl supports-[backdrop-filter]:bg-background/82 dark:border-white/10 dark:bg-ink-950/90 dark:text-paper",
+          "site-header sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter,box-shadow] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:[--color-border:rgb(255_255_255/0.1)]",
+          isTransparent
+            ? "border-b border-transparent bg-transparent text-paper shadow-none"
+            : mobileOpen
+              ? "shadow-2xs border-b border-border bg-paper text-foreground dark:border-white/10 dark:bg-ink-950 dark:text-paper"
+              : "shadow-2xs scroll-edge border-b border-border/85 bg-background/90 text-foreground backdrop-blur-xl supports-[backdrop-filter]:bg-background/82 dark:border-white/10 dark:bg-ink-950/90 dark:text-paper",
         )}
       >
-        <UniversalEmergencyBanner tone="light" size={containerSize} initiallyDismissed={emergencyDismissed} />
+        {!mobileOpen && (
+          <UniversalEmergencyBanner tone={isTransparent ? "dark" : "light"} size={containerSize} initiallyDismissed={emergencyDismissed} />
+        )}
         <Container
           size={containerSize}
           data-header-bar=""
@@ -276,7 +292,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
           <div className="flex h-16 items-center justify-between gap-1 max-md:h-14 sm:gap-3 2xl:gap-2">
             <Logo
               className="min-h-11 shrink-0 whitespace-nowrap"
-              tone="default"
+              tone={isTransparent ? "light" : "default"}
               href={withLangPrefix("/", lang)}
               label={chrome.homeLink}
               onClick={closeMobile}
@@ -299,9 +315,13 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                         title={link.label}
                         className={cn(
                           "tab-ink relative flex min-h-11 flex-col justify-center rounded-lg px-2 py-1.5 xl:px-2.5 2xl:px-2 min-[1600px]:px-3 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
-                          isActive
-                            ? "font-semibold text-rose-ink focus-visible:ring-ring dark:text-paper dark:focus-visible:ring-paper"
-                            : "font-medium text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
+                          isTransparent
+                            ? isActive
+                              ? "font-semibold text-white focus-visible:ring-paper/70"
+                              : "font-medium text-paper/85 hover:bg-white/10 hover:text-white focus-visible:ring-paper/70"
+                            : isActive
+                              ? "font-semibold text-rose-ink focus-visible:ring-ring dark:text-paper dark:focus-visible:ring-paper"
+                              : "font-medium text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
                         )}
                       >
                         <span aria-hidden="true" className="whitespace-nowrap text-[0.9375rem] 2xl:hidden">
@@ -329,7 +349,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                 mobileOpen && "max-md:border-transparent max-md:p-0 max-md:shadow-none max-md:before:hidden",
               )}
             >
-              {!mobileOpen ? <CapsuleGlidePlate plateRef={glidePlateRef} /> : null}
+              {!mobileOpen ? <CapsuleGlidePlate plateRef={glidePlateRef} onHero={onDarkBar} /> : null}
               <div className="hidden shrink-0 items-center gap-0.5 md:flex">
                 <Link
                   href={withLangPrefix("/ai-assistant", lang)}
@@ -424,15 +444,15 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     title={searchCopy.triggerLabel}
                     data-capsule-item=""
                     data-search-trigger=""
-                    className={cn(capsuleItem(false), "w-11")}
+                    className={cn(capsuleItem(onDarkBar), "w-11")}
                   >
                     <SearchIcon className="h-4.5 w-4.5 shrink-0 opacity-85" aria-hidden="true" />
                     <span className="sr-only">{searchCopy.triggerLabel}</span>
                   </button>
-                  <ComfortMenu />
+                  <ComfortMenu tone={onDarkBar ? "light" : "default"} />
                   <span
                     aria-hidden="true"
-                    className={cn(capsuleDivider(false), "max-[359px]:hidden")}
+                    className={cn(capsuleDivider(onDarkBar), "max-[359px]:hidden")}
                   />
                 </div>
               )}
@@ -445,7 +465,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                 data-header-trigger=""
                 title={mobileOpen ? tHeader.closeMenu : tHeader.openMenu}
                 className={cn(
-                  mobileOpen ? capsuleCloseItem() : capsuleItem(false, false),
+                  mobileOpen ? capsuleCloseItem() : capsuleItem(onDarkBar, false),
                   "gap-1.5 px-3 whitespace-nowrap text-meta font-semibold max-[359px]:gap-1 max-[359px]:px-2.5 lg:hidden",
                 )}
                 aria-expanded={mobileOpen}

@@ -40,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   return (
-    <main id="main-content" className="flex-1">
+    <main id="main-content" className="-mt-(--site-header-h) flex-1">
       <StackedSections>
         <StackLayer className="bg-ink-950">
           <div className="flex flex-1 flex-col">

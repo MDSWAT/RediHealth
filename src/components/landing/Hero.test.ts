@@ -153,12 +153,14 @@ describe("hero render", () => {
     expect(html).not.toMatch(/rounded-full[^"]*px-2\.5[^"]*py-0\.5/);
   });
 
-  it("fills the first fold cleanly on both mobile (full-screen) and desktop (above the regional ribbon)", () => {
+  it("fills the first fold cleanly beneath the transparent-on-load sticky header on mobile and desktop", () => {
     const html = renderHero("en");
-    expect(html).toMatch(/min-h-\[calc\(100svh-var\(--site-header-h\)\)\]/);
-    expect(html).toMatch(/lg:min-h-\[calc\(100svh-var\(--site-header-h\)-3\.5rem\)\]/);
+    const pageSrc = readFileSync(path.resolve(__dirname, "../../app/page.tsx"), "utf8");
+    expect(pageSrc).toContain("-mt-(--site-header-h)");
+    expect(html).toContain("pt-(--site-header-h)");
+    expect(html).toMatch(/\bmin-h-svh\b/);
+    expect(html).toMatch(/lg:min-h-\[calc\(100svh-3\.5rem\)\]/);
     expect(html).toContain("hero-mobile-stage");
-    expect(html).not.toMatch(/\bmin-h-svh\b/);
   });
 
   it("restores StackedSections, RegionalHealthRibbon, HealthTopics, MediatorsSection and TrustSection in src/app/page.tsx without OnlineDoctorSection or landing quiz", () => {

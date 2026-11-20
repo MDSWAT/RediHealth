@@ -14,11 +14,11 @@ import { HeroPhotos } from "./hero/HeroPhotos";
 
 /**
  * Landing hero:
- * - Full-width white paper editorial ground with multiple calm clinical photos fading cleanly
- *   through a luminous daylight window on mobile and on the right side on desktop (HeroPhotos).
- * - Rotating geometric chakra wheel (WheelBackdrop) centered inside the open mobile visual stage
- *   and layered behind the right-side photography on desktop, dissolving as the next stacked
- *   sheet slides up, with rAF-smoothed subtle pointer parallax on fine desktop pointers.
+ * - Extends beneath the transparent-on-load sticky header (and its 112 line) by --site-header-h
+ *   over the obsidian-navy editorial ground with filtered consultation photos (HeroPhotos).
+ * - Rotating geometric chakra wheel (WheelBackdrop) centered above the headline on mobile and
+ *   layered behind the right-side photography on desktop, dissolving as the next stacked sheet
+ *   slides up, with rAF-smoothed subtle pointer parallax on fine desktop pointers.
  * - Strictly one single primary entry CTA straight to /health-check (plus quiet read-aloud when enabled).
  */
 export function Hero() {
@@ -98,7 +98,7 @@ export function Hero() {
     <section
       ref={sectionRef}
       aria-labelledby="hero-title"
-      className="hero relative isolate flex flex-1 flex-col justify-center overflow-hidden bg-ink-950 text-paper min-h-[calc(100svh-var(--site-header-h))] lg:min-h-[calc(100svh-var(--site-header-h)-3.5rem)]"
+      className="hero relative isolate flex flex-1 flex-col justify-center overflow-hidden bg-ink-950 pt-(--site-header-h) text-paper min-h-svh lg:min-h-[calc(100svh-3.5rem)]"
     >
       <HeroPhotos />
       <div aria-hidden="true" className="hero-pointer-aura pointer-events-none absolute inset-0 -z-10 hidden lg:block" />

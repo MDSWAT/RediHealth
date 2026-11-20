@@ -16,9 +16,8 @@ import {
 } from "@/components/health-assistant/ai-chat-copy";
 import { dangerPanel } from "@/components/health-assistant/step-ui";
 import { useReadAloud } from "@/components/health-check/readingTools";
-import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
+import { captchaErrorMessage, RecaptchaNotice, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
 import {
   AiAssistantIcon,
   ArrowRightIcon,
@@ -553,14 +552,21 @@ export function AiChatAssistant() {
       className={
         isFullscreen
           ? "fixed inset-0 z-[70] flex h-dvh w-screen flex-col overflow-hidden bg-card"
-          : "mx-auto flex h-[min(78dvh,46rem)] min-h-[30rem] max-w-3xl flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-(--shadow-card-hover) dark:border-ink-800"
+          : "mx-auto flex h-[min(78dvh,46rem)] min-h-[30rem] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-(--shadow-card-hover) dark:border-ink-800 lg:h-[calc(100dvh-var(--site-header-h))] lg:min-h-[32rem] lg:max-w-none lg:rounded-none lg:border-0 lg:shadow-none"
       }
     >
-      {/* Single-row compact chat header (never wraps on mobile) */}
+      {/* Single-row compact chat header (never wraps on mobile; aligns with site navbar on desktop) */}
       <header
         ref={popoverRef}
-        className="relative flex shrink-0 items-center justify-between gap-2 border-b border-border bg-card px-3.5 py-3 sm:px-5 dark:border-ink-800"
+        className="shrink-0 border-b border-border bg-card dark:border-ink-800"
       >
+        <div
+          className={
+            isFullscreen
+              ? "relative mx-auto flex w-full max-w-5xl items-center justify-between gap-2 px-3.5 py-3 sm:px-6"
+              : "relative mx-auto flex w-full items-center justify-between gap-2 px-3.5 py-3 sm:px-5 lg:max-w-[80rem] lg:px-8 2xl:max-w-[96rem] 2xl:px-5"
+          }
+        >
         <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
           <div
             aria-hidden="true"
@@ -645,7 +651,7 @@ export function AiChatAssistant() {
 
         {/* Popover: Info & Safety */}
         {openPopover === "info" && (
-          <div className="fhs-enter absolute right-3.5 top-full z-30 mt-2 w-[min(calc(100vw-2rem),22rem)] rounded-2xl border border-border bg-card p-4 shadow-xl shadow-ink-950/15 sm:right-5 dark:border-white/12 dark:bg-ink-900">
+          <div className="fhs-enter absolute right-3.5 top-full z-30 mt-2 w-[min(calc(100vw-2rem),22rem)] rounded-2xl border border-border bg-card p-4 shadow-xl shadow-ink-950/15 sm:right-5 lg:right-8 2xl:right-5 dark:border-white/12 dark:bg-ink-900">
             <p className="text-body font-semibold text-foreground">{chrome.infoButton}</p>
             <p className="mt-2 text-meta leading-relaxed text-muted-foreground">{t.disclaimer}</p>
             <p className="mt-2.5 rounded-xl border border-primary/25 bg-primary-soft px-3 py-2.5 text-meta font-medium leading-relaxed text-foreground">
@@ -658,6 +664,7 @@ export function AiChatAssistant() {
             </div>
           </div>
         )}
+        </div>
       </header>
 
       {/* Pure scrollable WhatsApp-like message canvas */}
@@ -665,8 +672,15 @@ export function AiChatAssistant() {
         role="log"
         aria-live="polite"
         aria-relevant="additions"
-        className="flex-1 space-y-4 overflow-y-auto bg-surface-subtle/45 px-4 py-5 sm:px-6 dark:bg-ink-950/40"
+        className="flex-1 overflow-y-auto bg-surface-subtle/45 dark:bg-ink-950/40"
       >
+        <div
+          className={
+            isFullscreen
+              ? "mx-auto flex w-full max-w-4xl flex-col space-y-4 px-4 py-6 sm:px-6 lg:py-8"
+              : "mx-auto flex w-full flex-col space-y-4 px-4 py-5 sm:px-6 lg:max-w-4xl lg:px-8 lg:py-8"
+          }
+        >
         {/* Welcome bubble */}
         <div className="flex justify-start">
           <div className="max-w-[88%] rounded-2xl rounded-tl-sm border border-border bg-card px-4 py-3.5 text-body text-foreground shadow-2xs sm:max-w-[78%] dark:border-ink-800 dark:bg-ink-900">
@@ -795,43 +809,53 @@ export function AiChatAssistant() {
         )}
 
         <div ref={endRef} />
+        </div>
       </div>
 
       {/* Active Claude-style voice strip when speaking or listening */}
       {(voice.speaking || isListening) && (
-        <div className="flex shrink-0 items-center justify-between gap-3 border-t border-border bg-ink-950 px-4 py-2.5 text-paper sm:px-5">
-          <div className="flex min-w-0 items-center gap-2.5">
-            {isListening ? (
-              <MicIcon className="h-4 w-4 shrink-0 text-amber-care-border" />
-            ) : (
-              <VolumeIcon className="h-4 w-4 shrink-0 text-amber-care-border" aria-hidden="true" />
-            )}
-            <span className="truncate text-meta font-medium">
-              {isListening ? chrome.micHint : t.voiceSpeaking}
-            </span>
-          </div>
-          <button
-            type="button"
-            onClick={() => {
-              if (isListening) {
-                stopMicrophone(true);
-              } else {
-                voice.stop();
-                setSpeakingMessageId(null);
-              }
-            }}
-            className="inline-flex min-h-9 shrink-0 items-center whitespace-nowrap rounded-lg border border-paper/20 bg-paper/10 px-3 py-1 text-meta font-semibold text-paper transition-colors duration-(--dur-fast) hover:bg-paper/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+        <div className="shrink-0 border-t border-border bg-ink-950 text-paper">
+          <div
+            className={
+              isFullscreen
+                ? "mx-auto flex w-full max-w-4xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6"
+                : "mx-auto flex w-full items-center justify-between gap-3 px-4 py-2.5 sm:px-5 lg:max-w-4xl lg:px-8"
+            }
           >
-            {t.stopVoice}
-          </button>
+            <div className="flex min-w-0 items-center gap-2.5">
+              {isListening ? (
+                <MicIcon className="h-4 w-4 shrink-0 text-amber-care-border" />
+              ) : (
+                <VolumeIcon className="h-4 w-4 shrink-0 text-amber-care-border" aria-hidden="true" />
+              )}
+              <span className="truncate text-meta font-medium">
+                {isListening ? chrome.micHint : t.voiceSpeaking}
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                if (isListening) {
+                  stopMicrophone(true);
+                } else {
+                  voice.stop();
+                  setSpeakingMessageId(null);
+                }
+              }}
+              className="inline-flex min-h-9 shrink-0 items-center whitespace-nowrap rounded-lg border border-paper/20 bg-paper/10 px-3 py-1 text-meta font-semibold text-paper transition-colors duration-(--dur-fast) hover:bg-paper/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+            >
+              {t.stopVoice}
+            </button>
+          </div>
         </div>
       )}
 
       {/* Clean bottom chat composer (no disclaimer wall) */}
       <form
         onSubmit={handleSubmit}
-        className="shrink-0 border-t border-border bg-card p-3 sm:p-4 dark:border-ink-800"
+        className="shrink-0 border-t border-border bg-card p-3 sm:p-4 lg:px-8 lg:py-5 dark:border-ink-800"
       >
+        <div className={isFullscreen ? "mx-auto w-full max-w-4xl" : "mx-auto w-full lg:max-w-4xl"}>
         {error && (
           <p
             role="alert"
@@ -882,10 +906,10 @@ export function AiChatAssistant() {
             }}
             onKeyDown={handleKeyDown}
             placeholder={t.placeholder}
-            className="max-h-40 min-h-12 w-full resize-none bg-transparent px-3.5 pt-3 pb-1.5 text-body leading-snug text-foreground [field-sizing:content] placeholder:text-muted-foreground focus:outline-none! focus-visible:outline-none!"
+            className="max-h-40 min-h-12 w-full resize-none bg-transparent px-3.5 pt-3 pb-1.5 text-body leading-snug text-foreground [field-sizing:content] placeholder:text-muted-foreground focus:outline-none! focus-visible:outline-none! lg:px-4 lg:pt-3.5 lg:pb-2"
           />
 
-          <div className="flex items-center justify-between gap-2 px-1.5 pt-0.5 pb-1.5">
+          <div className="flex items-center justify-between gap-2 px-1.5 pt-0.5 pb-1.5 lg:px-2 lg:pb-2">
             <div className="flex items-center gap-1">
               <button
                 type="button"
@@ -944,13 +968,20 @@ export function AiChatAssistant() {
             </button>
           </div>
         </div>
+
+        <div className="text-center empty:hidden [&_p]:mt-2 [&_p]:text-meta">
+          <RecaptchaNotice />
+        </div>
+        </div>
       </form>
     </section>
   );
 
   return (
-    <main id="main-content" className="flex-1 bg-background py-4 sm:py-6">
-      <Container>{chatShell}</Container>
+    <main id="main-content" className="flex flex-1 flex-col bg-background py-4 sm:py-6 lg:bg-card lg:py-0">
+      <div className="mx-auto flex w-full max-w-[80rem] flex-1 flex-col px-5 sm:px-6 lg:max-w-none lg:px-0">
+        {chatShell}
+      </div>
     </main>
   );
 }

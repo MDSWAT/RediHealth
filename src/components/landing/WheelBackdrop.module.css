@@ -38,8 +38,8 @@
 
   .hero .wheel {
     left: 78%;
-    top: 50%;
-    width: min(36rem, 44vw);
+    top: calc(50% + var(--site-header-h, 0px) / 2);
+    width: min(34rem, 42vw, calc(100svh - var(--site-header-h, 4.6875rem) - 6rem));
   }
 }
 
