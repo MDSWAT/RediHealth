@@ -276,7 +276,8 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
     const comfortSrc = readFileSync(resolve(process.cwd(), "src/components/layout/ComfortMenu.tsx"), "utf8");
     const iconsSrc = readFileSync(resolve(process.cwd(), "src/components/ui/icons.tsx"), "utf8");
     expect(comfortSrc).toContain("sm:rounded-3xl");
-    expect(comfortSrc).toContain("sm:max-h-[min(78dvh,38rem)]");
+    expect(comfortSrc).toContain("sm:w-[27rem] lg:w-[30rem]");
+    expect(comfortSrc).toContain("sm:max-h-[min(calc(100dvh-14.5rem),46rem)]");
     expect(comfortSrc).toContain("max-sm:max-h-[calc(100dvh-0.5rem)]");
     expect(comfortSrc).not.toContain("sheet-close");
     expect(comfortSrc).toContain("bg-[#c62f3c]");

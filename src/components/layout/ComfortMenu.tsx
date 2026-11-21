@@ -458,7 +458,7 @@ export function ComfortMenu({
   ];
 
   const controlsBody = (
-    <div className="space-y-3 text-left max-sm:space-y-2">
+    <div className="space-y-2.5 text-left max-sm:space-y-2">
       <div className="rounded-2xl px-2.5 pt-1 pb-0.5">
         <div className="flex items-baseline justify-between gap-3">
           <label htmlFor={sliderId} className="text-body font-medium text-foreground dark:text-paper">
@@ -502,7 +502,7 @@ export function ComfortMenu({
                 aria-checked={option.checked}
                 onClick={option.onToggle}
                 className={cn(
-                  "press-row flex min-h-11 w-full max-w-full items-center justify-between gap-3 rounded-lg px-2.5 py-2 max-sm:py-1.5 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none dark:focus-visible:ring-paper",
+                  "press-row flex min-h-11 w-full max-w-full items-center justify-between gap-3 rounded-lg px-2.5 py-1.5 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none dark:focus-visible:ring-paper",
                   option.checked
                     ? "bg-sapphire/[0.06] dark:bg-white/[0.08]"
                     : "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05]",
@@ -706,7 +706,7 @@ export function ComfortMenu({
             CAPSULE_PANEL,
             // Phones: a white sheet from the bottom edge, like search; dark only when the site is.
             isPhone && "phone-sheet-light",
-            "w-auto max-w-full overflow-x-hidden p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:w-96 sm:rounded-3xl sm:p-5",
+            "w-auto max-w-full overflow-x-hidden p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:w-[27rem] lg:w-[30rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-3xl sm:p-5",
             // Phones: the sheet may use the whole screen height so every control stays in view.
             "max-sm:flex max-sm:max-h-[calc(100dvh-0.5rem)] max-sm:flex-col",
           )}
@@ -728,7 +728,7 @@ export function ComfortMenu({
               <CloseIcon className="h-4.5 w-4.5" />
             </button>
           </div>
-          <div className="-m-0.5 min-h-0 overflow-y-auto overscroll-contain py-0.5 pl-0.5 pr-1.5 max-sm:flex-1 sm:max-h-[min(78dvh,38rem)]">
+          <div className="-m-0.5 min-h-0 overflow-y-auto overscroll-contain py-0.5 pl-0.5 pr-1.5 max-sm:flex-1 sm:max-h-[min(calc(100dvh-14.5rem),46rem)]">
             {controlsBody}
           </div>
         </div>
