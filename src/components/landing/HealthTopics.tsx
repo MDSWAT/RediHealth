@@ -90,7 +90,7 @@ export async function HealthTopics() {
             }
           >
             {/* Phones: the heading's empty action slot already adds a 16px gap, so the grid adds the other 16px. */}
-            <ul className="mt-4 grid grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3 lg:hidden">
+            <Reveal as="ul" stagger="ui" className="mt-4 grid grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3 lg:hidden">
               {topics.map(({ slug, title: topicTitle, description, image }) => (
                 <li key={slug}>
                   <Link
@@ -98,7 +98,13 @@ export async function HealthTopics() {
                     className="press-row group flex h-full flex-col rounded-(--radius-surface) transition-[background-color,border-color,box-shadow] duration-(--dur-base) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:overflow-hidden sm:border sm:border-sand-line sm:bg-card sm:shadow-(--shadow-card-rest) sm:hover:border-sapphire/35 sm:hover:shadow-(--shadow-card-hover) sm:active:shadow-(--shadow-card-rest) dark:focus-visible:ring-paper dark:sm:border-white/10 dark:sm:bg-ink-800 dark:sm:hover:border-white/25"
                   >
                     <div className="relative aspect-4/3 overflow-hidden rounded-(--radius-surface) bg-surface-subtle sm:rounded-none">
-                      <Image src={image} alt="" fill sizes="(min-width: 640px) 33vw, 50vw" className="object-cover" />
+                      <Image
+                        src={image}
+                        alt=""
+                        fill
+                        sizes="(min-width: 640px) 33vw, 50vw"
+                        className="object-cover transition-transform duration-(--dur-slow) ease-(--ease-out-calm) sm:group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:transform-none"
+                      />
                     </div>
                     <div className="min-w-0 px-1 pb-1 pt-2 sm:p-4">
                       <h3 className="text-balance wrap-break-word text-body font-semibold leading-snug text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper dark:group-hover:text-sapphire-border">
@@ -111,7 +117,7 @@ export async function HealthTopics() {
                   </Link>
                 </li>
               ))}
-            </ul>
+            </Reveal>
 
             <div className="mt-6 sm:hidden lg:mt-[clamp(1rem,2.5svh,1.5rem)] lg:block">
               <ViewAllLink href={viewAllHref} label={viewAll} className="w-full lg:w-auto" />

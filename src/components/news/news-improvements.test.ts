@@ -235,7 +235,8 @@ describe("NewsArticleView actionable civic caravan pass (#10)", () => {
       );
 
       expect(html).toContain("data-health-article-column");
-      expect(html).toContain('id="next-steps-heading"');
+      expect(html).not.toContain('id="next-steps-heading"');
+      expect(html).not.toContain("/medic-online");
       expect(html).toContain('data-testid="medical-safety-disclaimer"');
       expect(html).toContain("https://www.google.com/maps/search/?api=1");
       expect(html).toContain("whitespace-nowrap");
@@ -250,4 +251,34 @@ describe("NewsArticleView actionable civic caravan pass (#10)", () => {
       }
     },
   );
+
+  test("keeps NewsArticleView metadata wrap-safe, removes decorative icons, and provides single-line print action", () => {
+    const viewSrc = readFileSync(
+      path.join(process.cwd(), "src/components/news/NewsArticleView.tsx"),
+      "utf8",
+    );
+    expect(viewSrc).not.toContain("border-l border-border pl-3");
+    expect(viewSrc).not.toContain("<PinIcon");
+    expect(viewSrc).not.toContain("<ClockIcon");
+    expect(viewSrc).toContain("btn-row flex w-full flex-wrap items-start gap-2.5");
+    expect(viewSrc).toContain("mt-7 space-y-5 sm:mt-8");
+    expect(viewSrc).toContain('<div className="print:hidden">');
+    expect(viewSrc).not.toContain("минута чтения");
+
+    const standardArticle = NEWS_ARTICLES.find((a) => !a.caravanDetails)!;
+    for (const lang of ALL_LANGS) {
+      const html = renderToStaticMarkup(
+        withLang(lang, React.createElement(NewsArticleView, { id: standardArticle.slug })),
+      );
+      expect(html).toContain("data-health-article-column");
+      expect(html).toContain("btn-row flex w-full flex-wrap items-start gap-2.5");
+      expect(html).toContain("whitespace-nowrap");
+      expect(html).toContain("min-h-11");
+      expect(html).not.toContain("border-l border-border pl-3");
+      expect(html).not.toContain("rounded-full");
+      expect(html).not.toContain("\u00b7");
+      const plainText = html.replace(/<[^>]+>/g, " ");
+      expect(plainText).not.toContain("&amp;");
+    }
+  });
 });

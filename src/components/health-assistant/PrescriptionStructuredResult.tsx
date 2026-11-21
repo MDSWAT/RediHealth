@@ -1,16 +1,11 @@
 "use client";
 
 import { type CSSProperties, type ReactNode, useEffect, useState } from "react";
-import {
-  AlertCircleIcon,
-  ChevronDownIcon,
-  PhoneIcon,
-  PrinterIcon,
-} from "@/components/ui/icons";
+import { ChevronDownIcon, PhoneIcon, PrinterIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
 import { PrescriptionAudioPlayer } from "@/components/health-assistant/PrescriptionAudioPlayer";
-import { PrescriptionDoctorBridge } from "@/components/health-assistant/PrescriptionDoctorBridge";
+import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
 import { type AssistantCopy, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import { useReadAloud } from "@/components/health-check/readingTools";
 import type { DocumentSourceKind, PrescribedMedicineItem } from "@/lib/health-assistant";
@@ -18,6 +13,8 @@ import type { Lang } from "@/lib/i18n/translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 
 interface PrescriptionStructuredResultProps {
+  /** Whether this result came from a photo scan or typing a medicine name. */
+  mode?: "photo" | "name";
   /** The assistant's own explanation, written in the page language by the API. */
   aiMessage?: string;
   /** Text transcribed from the photo exactly as written (unreadable words are marked [unclear]). */
@@ -32,6 +29,10 @@ interface PrescriptionStructuredResultProps {
   confidenceReason?: string;
   /** True when the assistant flagged the request as a possible emergency. */
   emergency?: boolean;
+  /** Typed lookups: one plain line when the medicine shown is not spelled as the person typed it. */
+  nameNotice?: string;
+  /** The safety rules as the page words them, so the screen, the voice and the print say the same thing. */
+  rules?: string[];
   className?: string;
 }
 
@@ -242,6 +243,27 @@ export function buildMedicineSpeechParts(
       if (cleanWarning) parts.push(cleanWarning);
     }
   }
+  if (med.benefitTimeline) {
+    const cleanTimeline = stripUnclearForSpeech(med.benefitTimeline);
+    if (cleanTimeline) {
+      parts.push(`${resultCopy.benefitTimelineLabel}: ${cleanTimeline}`);
+    }
+  }
+  if (med.sideEffects?.length) {
+    const cleanEffects = med.sideEffects
+      .map((effect) => stripUnclearForSpeech(effect))
+      .filter(Boolean)
+      .join(", ");
+    if (cleanEffects) {
+      parts.push(`${resultCopy.sideEffectsLabel}: ${cleanEffects}.`);
+    }
+  }
+  if (med.stoppingGuidance) {
+    const cleanStop = stripUnclearForSpeech(med.stoppingGuidance);
+    if (cleanStop) {
+      parts.push(`${resultCopy.stoppingGuidanceLabel}: ${cleanStop}`);
+    }
+  }
   if (isMedicineUnclear(med)) {
     const spokenName = cleanName || med.name.trim();
     if (spokenName) {
@@ -393,29 +415,6 @@ function BedtimeMoonSvg({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-function PillCapsuleSvg({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className={className}>
-      <rect
-        x="3.4"
-        y="7.2"
-        width="13.2"
-        height="5.6"
-        rx="2.8"
-        transform="rotate(-38 10 10)"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      />
-      <path
-        d="M8.1 8.1l3.8 3.8"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
 function SpeakerListenSvg({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className={className}>
@@ -441,6 +440,7 @@ function SpeakerListenSvg({ className = "h-4 w-4" }: { className?: string }) {
  * pharmacist stay the source of truth.
  */
 export function PrescriptionStructuredResult({
+  mode = "photo",
   aiMessage,
   prescriptionText,
   medicines,
@@ -448,24 +448,29 @@ export function PrescriptionStructuredResult({
   confidenceScore,
   confidenceReason,
   emergency = false,
+  nameNotice,
+  rules,
   className = "",
 }: PrescriptionStructuredResultProps) {
   const { lang } = useLanguage();
   const { result, rx, symptoms } = useAssistantCopy();
   const voice = useReadAloud(lang);
+  const safetyRules = rules ?? rx.rules;
 
+  const isLookup = mode === "name";
   const message = aiMessage?.trim() ?? "";
-  const transcript = prescriptionText?.trim() ?? "";
+  const transcript = isLookup ? "" : (prescriptionText?.trim() ?? "");
   const explanationBlocks = splitExplanationIntoBlocks(message);
   const validMedicines = medicines?.filter((med) => Boolean(med.name?.trim())) ?? [];
 
   const hasUnclearContent =
-    containsUnclearMarker(message) ||
-    containsUnclearMarker(transcript) ||
-    validMedicines.some((med) => isMedicineUnclear(med));
+    !isLookup &&
+    (containsUnclearMarker(message) ||
+      containsUnclearMarker(transcript) ||
+      validMedicines.some((med) => isMedicineUnclear(med)));
 
   const effectiveConfidence =
-    typeof confidenceScore === "number"
+    !isLookup && typeof confidenceScore === "number"
       ? sourceKind === "unreadable"
         ? Math.min(Math.max(0, Math.round(confidenceScore)), 20)
         : hasUnclearContent
@@ -473,30 +478,42 @@ export function PrescriptionStructuredResult({
           : Math.max(0, Math.min(100, Math.round(confidenceScore)))
       : undefined;
 
-  const isMedicationBox = sourceKind === "medication_box";
-  const medicinesSectionHeading = isMedicationBox
-    ? result.boxMedicinesHeading
-    : result.medicinesHeading;
-  const medicinesSectionLead = isMedicationBox
-    ? result.boxMedicinesLead
-    : result.medicinesLead;
+  const isMedicationBox = !isLookup && sourceKind === "medication_box";
+  const medicinesSectionHeading = isLookup
+    ? result.lookupMedicinesHeading
+    : isMedicationBox
+      ? result.boxMedicinesHeading
+      : result.medicinesHeading;
+  const medicinesSectionLead = isLookup
+    ? result.lookupMedicinesLead
+    : isMedicationBox
+      ? result.boxMedicinesLead
+      : result.medicinesLead;
   const transcriptSectionHeading = isMedicationBox
     ? result.boxTranscriptHeading
     : result.transcriptHeading;
 
-  const speechText = buildPrescriptionSpeechText(
-    validMedicines,
-    message,
-    result,
-    rx.rules,
-    effectiveConfidence
-  );
+  // A typed name was never "read from a prescription": the heading and lead say what it is.
+  const resultHeading = isLookup ? result.lookupMedicinesHeading : result.heading;
+  const resultLead = isLookup ? result.lookupMedicinesLead : result.lead;
+
+  const speechText = [
+    nameNotice,
+    buildPrescriptionSpeechText(validMedicines, message, result, safetyRules, effectiveConfidence),
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const [transcriptOpen, setTranscriptOpen] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
   const [activeSpeechCard, setActiveSpeechCard] = useState<number | null>(null);
 
-  const hasFridgeSchedule = validMedicines.length > 0;
+  // The timetable sheet is for a schedule that was actually written down. A typed lookup has no
+  // times of day, so it prints as the cards on screen, not as a table of empty columns.
+  const hasFridgeSchedule = validMedicines.some((med) => {
+    const slots = deriveSafeTimeSlots(med);
+    return Boolean(slots.morning || slots.midday || slots.evening || slots.bedtime);
+  });
   const fridge = FRIDGE_COPY[lang] ?? FRIDGE_COPY.ro;
   const printedDate = new Date().toLocaleDateString(lang === "rom" ? "ro-RO" : lang);
 
@@ -512,13 +529,15 @@ export function PrescriptionStructuredResult({
       activeSlotLabels.join(", "),
       med.foodTiming && med.foodTiming !== "any" ? result.foodTiming[med.foodTiming] : null,
       med.duration ? result.durationLabel(med.duration) : null,
+      med.benefitTimeline ? `${result.benefitTimelineLabel}: ${med.benefitTimeline}` : null,
+      med.stoppingGuidance ? `${result.stoppingGuidanceLabel}: ${med.stoppingGuidance}` : null,
     ].filter(Boolean);
     const head = `${med.name}${med.strength ? ` (${med.strength})` : ""}`;
     return metaParts.length > 0 ? `${head} — ${metaParts.join(", ")}` : head;
   });
   const familyShareText = [
     ...(familyShareLines.length > 0 ? familyShareLines : message ? [message] : []),
-    rx.rules[0],
+    safetyRules[0],
   ]
     .filter(Boolean)
     .join("\n");
@@ -574,25 +593,21 @@ export function PrescriptionStructuredResult({
     <div className={className}>
       <div
         data-fridge-screen-only={hasFridgeSchedule ? "true" : undefined}
-        className="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:justify-between"
+        className="flex flex-col items-start gap-4 lg:flex-row lg:items-start lg:justify-between"
       >
         <div>
-          <h2 className="text-section text-foreground">{result.heading}</h2>
-          <p className="mt-1 max-w-xl text-body text-muted-foreground">{result.lead}</p>
+          <h2 className="text-section text-foreground">{resultHeading}</h2>
+          <p className="mt-1 max-w-xl text-body text-muted-foreground">{resultLead}</p>
         </div>
-        <div className="flex shrink-0 flex-nowrap items-center gap-2 print:hidden">
+        {/* Every action says what it does in words; whole buttons wrap to a second row on narrow phones.
+            "Send to family" is first so its menu always opens inside the screen. */}
+        <div className="flex max-w-full flex-wrap items-center gap-2 print:hidden">
+          <FamilyShareButton align="left" title={resultHeading} text={familyShareText} lang={lang} />
           <PrescriptionAudioPlayer speechText={speechText} />
-          <button
-            type="button"
-            onClick={handlePrint}
-            aria-label={result.printAria}
-            title={result.print}
-            className="press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-border-control bg-card text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
+          <Button type="button" variant="outline" size="md" onClick={handlePrint} aria-label={result.printAria}>
             <PrinterIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-            <span className="sr-only">{result.print}</span>
-          </button>
-          <FamilyShareButton iconOnly align="right" title={result.heading} text={familyShareText} lang={lang} />
+            <span>{result.print}</span>
+          </Button>
         </div>
       </div>
 
@@ -601,10 +616,7 @@ export function PrescriptionStructuredResult({
           role="alert"
           className="mt-6 flex flex-col gap-3 rounded-lg border border-primary/30 bg-primary-soft/55 p-4 dark:border-primary/40 dark:bg-primary/15 sm:flex-row sm:items-center sm:justify-between"
         >
-          <p className="flex items-start gap-2.5 text-body font-medium text-foreground">
-            <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-            <span>{result.emergency}</span>
-          </p>
+          <p className="text-body font-medium text-foreground">{result.emergency}</p>
           <Button href="tel:112" variant="primary" size="md" className="shrink-0">
             <PhoneIcon className="h-4 w-4 shrink-0" />
             <span>{symptoms.callNow}</span>
@@ -624,13 +636,24 @@ export function PrescriptionStructuredResult({
         </div>
       ) : null}
 
+      {nameNotice ? (
+        <p
+          role="note"
+          className="mt-6 rounded-xl border border-amber-care-border bg-amber-care-soft/65 p-4 text-body font-medium text-foreground dark:border-amber-care/45 dark:bg-amber-care/15 print:break-inside-avoid"
+        >
+          {nameNotice}
+        </p>
+      ) : null}
+
       <div data-fridge-screen-only={hasFridgeSchedule ? "true" : undefined}>
         {validMedicines.length > 0 ? (
           <section className="mt-6">
-          <div className="mb-3.5">
-            <h3 className="text-title text-foreground">{medicinesSectionHeading}</h3>
-            <p className="mt-0.5 text-body text-muted-foreground">{medicinesSectionLead}</p>
-          </div>
+          {isLookup ? null : (
+            <div className="mb-3.5">
+              <h3 className="text-title text-foreground">{medicinesSectionHeading}</h3>
+              <p className="mt-0.5 text-body text-muted-foreground">{medicinesSectionLead}</p>
+            </div>
+          )}
 
           <div
             className={
@@ -708,7 +731,7 @@ export function PrescriptionStructuredResult({
                               {renderWithUnclearHighlights(distinctActiveIngredient)}
                             </>
                           ) : null}
-                          {distinctActiveIngredient && med.form ? " · " : null}
+                          {distinctActiveIngredient && med.form ? ", " : null}
                           {med.form ? (
                             <>
                               {result.formLabel}: {renderWithUnclearHighlights(med.form)}
@@ -774,10 +797,9 @@ export function PrescriptionStructuredResult({
                             </div>
 
                             {value ? (
-                              <div className="mt-2 flex items-start gap-1.5 text-body font-semibold leading-snug text-foreground break-words">
-                                <PillCapsuleSvg className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" />
-                                <span>{renderWithUnclearHighlights(value)}</span>
-                              </div>
+                              <p className="mt-2 text-body font-semibold leading-snug text-foreground break-words">
+                                {renderWithUnclearHighlights(value)}
+                              </p>
                             ) : (
                               <p className="mt-2 text-body text-muted-foreground">
                                 <span aria-hidden="true">—</span>
@@ -808,21 +830,42 @@ export function PrescriptionStructuredResult({
                     </p>
                   ) : null}
 
+                  {/* Warnings come first: they hold the signs that mean "call a doctor or 112". */}
                   {med.warnings && med.warnings.length > 0 ? (
-                    <ul className="mt-3.5 space-y-1.5 rounded-lg border border-amber-care-border/75 bg-amber-care-soft/45 p-3 dark:border-amber-care/35 dark:bg-amber-care/10">
+                    <ul className="mt-3.5 list-disc space-y-1.5 rounded-lg border border-amber-care-border/75 bg-amber-care-soft/45 py-3 pr-3 pl-8 text-body text-foreground dark:border-amber-care/35 dark:bg-amber-care/10">
                       {med.warnings.map((warning, warningIdx) => (
-                        <li
-                          key={warningIdx}
-                          className="flex items-start gap-2 text-body text-foreground"
-                        >
-                          <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" />
-                          <span>{renderWithUnclearHighlights(warning)}</span>
-                        </li>
+                        <li key={warningIdx}>{renderWithUnclearHighlights(warning)}</li>
                       ))}
                     </ul>
                   ) : null}
 
-                  {typeof med.confidence === "number" ? (
+                  {/* Plain blocks, not boxes inside the card: on a small phone every frame costs reading width. */}
+                  {med.benefitTimeline ? (
+                    <div className="mt-4 border-t border-border pt-3 text-body text-foreground">
+                      <p className="font-semibold text-foreground">{result.benefitTimelineLabel}</p>
+                      <p className="mt-1 text-muted-foreground">{renderWithUnclearHighlights(med.benefitTimeline)}</p>
+                    </div>
+                  ) : null}
+
+                  {med.sideEffects && med.sideEffects.length > 0 ? (
+                    <div className="mt-4 border-t border-border pt-3 text-body text-foreground">
+                      <p className="font-semibold text-foreground">{result.sideEffectsLabel}</p>
+                      <ul className="mt-1.5 list-disc space-y-1 pl-5 text-muted-foreground">
+                        {med.sideEffects.map((effect, effectIdx) => (
+                          <li key={effectIdx}>{renderWithUnclearHighlights(effect)}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+
+                  {med.stoppingGuidance ? (
+                    <div className="mt-3.5 rounded-lg border border-amber-care-border/75 bg-amber-care-soft/45 p-3 text-body text-foreground dark:border-amber-care/35 dark:bg-amber-care/10">
+                      <p className="font-semibold text-foreground">{result.stoppingGuidanceLabel}</p>
+                      <p className="mt-1 text-foreground/90">{renderWithUnclearHighlights(med.stoppingGuidance)}</p>
+                    </div>
+                  ) : null}
+
+                  {!isLookup && typeof med.confidence === "number" ? (
                     <p className="mt-2.5 text-meta font-medium text-muted-foreground tabular-nums">
                       {result.confidenceItemLine(
                         medUnclear
@@ -915,7 +958,7 @@ export function PrescriptionStructuredResult({
       <section className="mt-8 border-t border-border pt-6">
         <h3 className="text-meta font-medium text-foreground">{result.rulesHeading}</h3>
         <ol className="mt-3 list-decimal space-y-2.5 pl-5 text-body text-foreground marker:font-medium marker:text-sapphire marker:tabular-nums dark:marker:text-sapphire-border">
-          {rx.rules.map((rule) => (
+          {safetyRules.map((rule) => (
             <li key={rule} className="pl-1">
               {rule}
             </li>
@@ -923,7 +966,8 @@ export function PrescriptionStructuredResult({
         </ol>
       </section>
 
-      <PrescriptionDoctorBridge />
+      {/* The next step is a person: the way to the nearest pharmacy, never an online consultation. */}
+      <UniversalDoctorExit title={rx.exitTitle} description={rx.exitBody} className="print:hidden" />
       </div>
 
       {hasFridgeSchedule ? (
@@ -967,10 +1011,11 @@ export function PrescriptionStructuredResult({
                     ? result.foodTiming[med.foodTiming]
                     : null,
                   med.duration ? result.durationLabel(med.duration) : null,
+                  med.benefitTimeline ? `${result.benefitTimelineLabel}: ${med.benefitTimeline}` : null,
+                  med.sideEffects?.length ? `${result.sideEffectsLabel}: ${med.sideEffects.join(", ")}` : null,
+                  med.stoppingGuidance ? `${result.stoppingGuidanceLabel}: ${med.stoppingGuidance}` : null,
                   ...(med.warnings ?? []),
-                ]
-                  .filter(Boolean)
-                  .join(", ");
+                ].filter((note): note is string => Boolean(note));
 
                 return (
                   <tr key={`${med.name}-fridge-${index}`} className="border-b border-black align-top">
@@ -993,7 +1038,17 @@ export function PrescriptionStructuredResult({
                     <td className="border-r border-black px-3 py-3 text-center text-lg font-bold">
                       {slots.bedtime || "—"}
                     </td>
-                    <td className="px-3 py-3 text-sm leading-snug">{notes || "—"}</td>
+                    <td className="px-3 py-3 text-base leading-snug">
+                      {notes.length > 0 ? (
+                        <ul className="space-y-1.5">
+                          {notes.map((note, noteIdx) => (
+                            <li key={noteIdx}>{note}</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        "—"
+                      )}
+                    </td>
                   </tr>
                 );
               })}
@@ -1001,7 +1056,7 @@ export function PrescriptionStructuredResult({
           </table>
 
           <p className="mt-4 border-t border-black pt-2 text-sm font-semibold">
-            {fridge.footer} {rx.rules[0]}
+            {fridge.footer} {safetyRules[0]}
           </p>
         </section>
       ) : null}

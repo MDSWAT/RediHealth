@@ -129,7 +129,7 @@ export function LanguageProvider({
     };
 
     const runGeoCheck = () => {
-      if (cancelled) return;
+      if (cancelled || (typeof navigator !== "undefined" && navigator.onLine === false)) return;
       fetch("/api/geo-locale", {
         method: "GET",
         credentials: "same-origin",

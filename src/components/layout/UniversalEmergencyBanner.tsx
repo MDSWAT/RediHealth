@@ -70,8 +70,8 @@ function dismiss() {
 
 /**
  * The 112 reminder: one slim line at the top of the sticky site header, so it stays in view on
- * every public page. A short question on phones, the full sentence from md, then "Call 112" and a
- * close button; closing is remembered on this device. `tone="dark"` is for the landing page,
+ * every public page. On phones one button holds the phone icon, a short question and "Call 112";
+ * from md the full sentence stands before the button. Then a close button; closing is remembered on this device. `tone="dark"` is for the landing page,
  * where the header sits over the dark hero.
  */
 export function UniversalEmergencyBanner({
@@ -131,22 +131,29 @@ export function UniversalEmergencyBanner({
           >
             <Container size={size} className="flex min-h-11 items-center gap-4 text-body leading-snug max-md:h-11 max-md:gap-2 max-md:px-2.5 md:py-1">
               <div className="flex min-w-0 items-center gap-2 max-md:gap-1.5">
-                <PhoneIcon className={`h-4 w-4 shrink-0 ${dark ? "text-paper/70" : "text-primary"}`} aria-hidden="true" />
-                <p className="min-w-0 leading-snug max-md:shrink-0 max-md:whitespace-nowrap">
-                  <span className="md:hidden">{chrome.emergencyQuestion}</span>
-                  <span className="hidden md:inline">{e.bannerText}</span>
-                </p>
+                {/* From md the full sentence stands beside the call button. */}
+                <p className="hidden min-w-0 leading-snug md:block">{e.bannerText}</p>
+                {/* The phone icon belongs to the control it marks. On phones the short question is part
+                    of the same button, so the whole left of the strip opens the call, not two words. */}
                 <button
                   type="button"
                   onClick={() => setDialerOpen(true)}
-                  className={`${dark ? "press-on-dark" : "press-row"} inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-md px-2 text-body font-semibold underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none max-md:px-1.5 sm:px-3 ${
-                    dark
-                      ? "text-paper decoration-paper/40 hover:decoration-paper focus-visible:outline-paper"
-                      : "text-primary decoration-primary/35 hover:decoration-primary focus-visible:outline-ring"
+                  className={`${dark ? "press-on-dark" : "press-row"} group -ml-1.5 inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md px-1.5 text-body transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none md:ml-0 md:gap-2 md:px-3 ${
+                    dark ? "focus-visible:outline-paper" : "focus-visible:outline-ring"
                   }`}
                 >
-                  <span className="md:hidden">{chrome.call112Short}</span>
-                  <span className="hidden md:inline">{e.call112}</span>
+                  <PhoneIcon className={`h-4 w-4 shrink-0 ${dark ? "text-paper/70" : "text-primary"}`} aria-hidden="true" />
+                  <span className="md:hidden">{chrome.emergencyQuestion}</span>
+                  <span
+                    className={`font-semibold underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none ${
+                      dark
+                        ? "text-paper decoration-paper/40 group-hover:decoration-paper"
+                        : "text-primary decoration-primary/35 group-hover:decoration-primary"
+                    }`}
+                  >
+                    <span className="md:hidden">{chrome.call112Short}</span>
+                    <span className="hidden md:inline">{e.call112}</span>
+                  </span>
                 </button>
               </div>
               <button

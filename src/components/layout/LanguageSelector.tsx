@@ -97,7 +97,7 @@ const NAME_IN: Partial<Record<Lang, Record<Lang, string>>> = {
 
 // Romanian first (the site's default language), then the others in a fixed order on every page.
 const LANGUAGE_ORDER: Lang[] = ["ro", "en", "hr", "rom", "sq", "it", "ru"];
-const orderedLanguages = [...languages].sort(
+export const orderedLanguages = [...languages].sort(
   (a, b) => LANGUAGE_ORDER.indexOf(a.code) - LANGUAGE_ORDER.indexOf(b.code),
 );
 
@@ -339,7 +339,7 @@ export function LanguageSelector({
           aria-expanded={isOpen}
           aria-controls={panelId}
           className={cn(
-            "group flex min-h-11 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-left press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper",
+            "group flex min-h-11 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-lg px-3 py-1 text-left press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper",
             isOpen
               ? "bg-sapphire/[0.06] dark:bg-white/[0.07]"
               : "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05]",
@@ -354,18 +354,18 @@ export function LanguageSelector({
             )}
             aria-hidden="true"
           />
-          <span className="min-w-0 flex-1 truncate text-body font-medium leading-snug text-foreground dark:text-paper">
+          <span className="min-w-0 flex-1 truncate text-[0.9375rem] font-medium leading-snug text-foreground dark:text-paper">
             {copy.label}
           </span>
           <span
             lang={activeLang.code}
-            className="shrink-0 whitespace-nowrap text-body font-medium text-muted-foreground dark:text-mist"
+            className="shrink-0 whitespace-nowrap text-[0.9375rem] font-semibold text-sapphire dark:text-sapphire-border"
           >
             {activeLang.label}
           </span>
           <ChevronDownIcon
             className={cn(
-              "h-4 w-4 shrink-0 text-muted-foreground dark:text-mist",
+              "h-4 w-4 shrink-0 text-sapphire/75 dark:text-mist",
               chevronMotion,
               isOpen && "rotate-180 text-sapphire dark:text-paper",
             )}

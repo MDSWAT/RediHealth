@@ -40,11 +40,15 @@ import { DURATION, ENTRANCE_OFFSET_PX, useCalmReducedMotion } from "@/lib/motion
 import { toSentences, useSpeech } from "@/components/landing/hero/use-speech";
 import { isVoiceEnabled } from "@/lib/audio/voice-availability";
 import { scrollExpandedIntoModalView, useSheetDialog } from "@/components/news/use-sheet-dialog";
+import { getChromeCopy } from "@/components/layout/chrome-copy";
 import {
   SMART_SEARCH_OPEN_EVENT,
   SMART_SEARCH_WARM_EVENT,
+  getSmartSearchTriggerCopy,
   type SmartSearchOpenDetail,
 } from "@/components/search/smart-search-events";
+import { errorTranslations } from "@/lib/i18n/error-translations";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 import type {
   GuidedJourneyId,
   SmartSearchCategory,
@@ -57,9 +61,12 @@ import type {
 } from "@/lib/search/smart-search-engine";
 
 type SmartSearchCopyModule = typeof import("@/lib/i18n/smart-search-copy");
+type SmartSearchEngineModule = typeof import("@/lib/search/smart-search-engine");
 
 let loadedCopyModule: SmartSearchCopyModule | null = null;
 let copyModulePromise: Promise<SmartSearchCopyModule> | null = null;
+let loadedEngineModule: SmartSearchEngineModule | null = null;
+let engineModulePromise: Promise<SmartSearchEngineModule> | null = null;
 
 function loadSmartSearchCopyModule(): Promise<SmartSearchCopyModule> {
   if (loadedCopyModule) {
@@ -77,6 +84,60 @@ function loadSmartSearchCopyModule(): Promise<SmartSearchCopyModule> {
       });
   }
   return copyModulePromise;
+}
+
+function loadSmartSearchEngineModule(): Promise<SmartSearchEngineModule> {
+  if (loadedEngineModule) {
+    return Promise.resolve(loadedEngineModule);
+  }
+  if (!engineModulePromise) {
+    engineModulePromise = import("@/lib/search/smart-search-engine")
+      .then((mod) => {
+        loadedEngineModule = mod;
+        return mod;
+      })
+      .catch((error) => {
+        engineModulePromise = null;
+        throw error;
+      });
+  }
+  return engineModulePromise;
+}
+
+async function resolveSmartSearchLocal(options: {
+  query: string;
+  lang: Lang;
+  pathname: string;
+  readingLevel: "standard" | "simple";
+  category: SmartSearchCategory;
+  includeContextual: boolean;
+}): Promise<SmartSearchGetPayload> {
+  const engine = await loadSmartSearchEngineModule();
+  const hasSearchable = /[\p{L}\p{N}]/u.test(options.query.trim());
+  const contextual =
+    options.includeContextual || !hasSearchable
+      ? engine.getContextualSuggestions(options.pathname, options.lang)
+      : undefined;
+  const allCatalog = hasSearchable
+    ? engine.searchSmartCatalog(options.query, {
+        lang: options.lang,
+        category: "all",
+        readingLevel: options.readingLevel,
+        pathname: options.pathname,
+        limit: 8,
+      })
+    : undefined;
+  const categoryCatalog =
+    hasSearchable && options.category !== "all"
+      ? engine.searchSmartCatalog(options.query, {
+          lang: options.lang,
+          category: options.category,
+          readingLevel: options.readingLevel,
+          pathname: options.pathname,
+          limit: 8,
+        })
+      : undefined;
+  return { contextual, allCatalog, categoryCatalog };
 }
 
 const MAX_CLIENT_CACHE = 40;
@@ -113,6 +174,8 @@ async function fetchSmartSearchGet(
   return (await res.json()) as SmartSearchGetPayload;
 }
 
+/** Wait for a short pause in typing before asking the server, so each keystroke is not a request. */
+const CATALOG_DEBOUNCE_MS = 250;
 const RECENT_SEARCHES_KEY = "redihealth-smart-search-recent";
 const MAX_RECENT_SEARCHES = 5;
 const CATEGORY_ORDER: SmartSearchCategory[] = [
@@ -250,11 +313,20 @@ export function SmartSearchModal() {
     resolvedCatKey: "",
     categoryCatalog: EMPTY_SEARCH_RESPONSE,
   });
+  // The sheet's own copy is a lazy chunk; when it cannot be fetched the sheet says so instead of staying shut.
+  const [copyLoadFailed, setCopyLoadFailed] = useState(false);
+  // Cache key of the search whose request failed, so the sheet can say so and offer another try.
+  const [failedCatalogKey, setFailedCatalogKey] = useState("");
+  const [retryNonce, setRetryNonce] = useState(0);
 
   const warmSearchAssets = useCallback(() => {
     void loadSmartSearchCopyModule()
-      .then((mod) => setCopyModule((prev) => prev ?? mod))
-      .catch(() => {});
+      .then((mod) => {
+        setCopyModule((prev) => prev ?? mod);
+        setCopyLoadFailed(false);
+      })
+      .catch(() => setCopyLoadFailed(true));
+    void loadSmartSearchEngineModule().catch(() => {});
 
     const ctxKey = `${lang}|${pathname}`;
     if (!contextualCache.has(ctxKey)) {
@@ -263,7 +335,39 @@ export function SmartSearchModal() {
         pathname,
         includeContextual: "1",
       });
-      void fetchSmartSearchGet(params)
+      const resolveContextual = isBrowserOffline()
+        ? resolveSmartSearchLocal({
+            query: "",
+            lang,
+            pathname,
+            readingLevel: "standard",
+            category: "all",
+            includeContextual: true,
+          })
+        : fetchSmartSearchGet(params)
+            .then((data) =>
+              data?.contextual
+                ? data
+                : resolveSmartSearchLocal({
+                    query: "",
+                    lang,
+                    pathname,
+                    readingLevel: "standard",
+                    category: "all",
+                    includeContextual: true,
+                  }),
+            )
+            .catch(() =>
+              resolveSmartSearchLocal({
+                query: "",
+                lang,
+                pathname,
+                readingLevel: "standard",
+                category: "all",
+                includeContextual: true,
+              }),
+            );
+      void resolveContextual
         .then((data) => {
           if (data?.contextual) {
             setBoundedCache(contextualCache, ctxKey, data.contextual);
@@ -279,6 +383,8 @@ export function SmartSearchModal() {
   const inputRef = useRef<HTMLInputElement>(null);
   const shouldRestoreFocusRef = useRef(true);
   const keyboardMoveRef = useRef(false);
+  // True once the reader has moved through the list with the arrow keys for the current query.
+  const arrowPickedRef = useRef(false);
   const lastExpandedControlIdRef = useRef<string | null>(null);
   const dialogTitleId = useId();
   const baseId = useId();
@@ -309,6 +415,7 @@ export function SmartSearchModal() {
     (nextQuery: string, resetCategory = true) => {
       if (speaking) stop();
       setSpeakingResultId(null);
+      arrowPickedRef.current = false;
       setQuery(nextQuery);
       if (resetCategory) {
         setCategory("all");
@@ -346,7 +453,7 @@ export function SmartSearchModal() {
     setOpen(false);
   }, [speaking, stop]);
 
-  useSheetDialog(Boolean(open && copy), panelRef, handleClose, inputRef, shouldRestoreFocusRef);
+  useSheetDialog(open, panelRef, handleClose, inputRef, shouldRestoreFocusRef);
 
   useEffect(() => {
     const onWarmEvent = () => {
@@ -435,7 +542,39 @@ export function SmartSearchModal() {
       pathname,
       includeContextual: "1",
     });
-    fetchSmartSearchGet(params, controller.signal)
+    const load = isBrowserOffline()
+      ? resolveSmartSearchLocal({
+          query: "",
+          lang,
+          pathname,
+          readingLevel,
+          category: "all",
+          includeContextual: true,
+        })
+      : fetchSmartSearchGet(params, controller.signal)
+          .then((data) => {
+            if (controller.signal.aborted || data?.contextual) return data;
+            return resolveSmartSearchLocal({
+              query: "",
+              lang,
+              pathname,
+              readingLevel,
+              category: "all",
+              includeContextual: true,
+            });
+          })
+          .catch(() => {
+            if (controller.signal.aborted) return null;
+            return resolveSmartSearchLocal({
+              query: "",
+              lang,
+              pathname,
+              readingLevel,
+              category: "all",
+              includeContextual: true,
+            });
+          });
+    load
       .then((data) => {
         if (controller.signal.aborted || !data?.contextual) return;
         setBoundedCache(contextualCache, contextualKey, data.contextual);
@@ -446,10 +585,10 @@ export function SmartSearchModal() {
     return () => {
       controller.abort();
     };
-  }, [open, cachedContextual, contextualKey, lang, pathname]);
+  }, [open, cachedContextual, contextualKey, lang, pathname, readingLevel]);
 
   useEffect(() => {
-    if (!open || !hasSearchableQuery || trimmedQuery.length < 3) return;
+    if (!open || !hasSearchableQuery || trimmedQuery.length < 3 || isBrowserOffline()) return;
     const controller = new AbortController();
     const timer = window.setTimeout(() => {
       fetch("/api/smart-search", {
@@ -548,23 +687,65 @@ export function SmartSearchModal() {
       category: effectiveCategory,
     });
 
-    fetchSmartSearchGet(params, controller.signal)
-      .then((data) => {
-        if (controller.signal.aborted || !data?.allCatalog) return;
-        setBoundedCache(catalogAllCache, allCacheKey, data.allCatalog);
-        if (effectiveCategory !== "all" && data.categoryCatalog && catCacheKey) {
-          setBoundedCache(catalogCategoryCache, catCacheKey, data.categoryCatalog);
-        }
-        setCatalogState({
-          resolvedAllKey: allCacheKey,
-          allCatalog: data.allCatalog,
-          resolvedCatKey: catCacheKey,
-          categoryCatalog: data.categoryCatalog ?? data.allCatalog,
+    const timer = window.setTimeout(() => {
+      const loadCatalog = isBrowserOffline()
+        ? resolveSmartSearchLocal({
+            query,
+            lang,
+            pathname,
+            readingLevel,
+            category: effectiveCategory,
+            includeContextual: false,
+          })
+        : fetchSmartSearchGet(params, controller.signal)
+            .then((data) => {
+              if (controller.signal.aborted || data?.allCatalog) return data;
+              return resolveSmartSearchLocal({
+                query,
+                lang,
+                pathname,
+                readingLevel,
+                category: effectiveCategory,
+                includeContextual: false,
+              });
+            })
+            .catch(() => {
+              if (controller.signal.aborted) return null;
+              return resolveSmartSearchLocal({
+                query,
+                lang,
+                pathname,
+                readingLevel,
+                category: effectiveCategory,
+                includeContextual: false,
+              });
+            });
+
+      loadCatalog
+        .then((data) => {
+          if (controller.signal.aborted) return;
+          if (!data?.allCatalog) {
+            setFailedCatalogKey(allCacheKey);
+            return;
+          }
+          setBoundedCache(catalogAllCache, allCacheKey, data.allCatalog);
+          if (effectiveCategory !== "all" && data.categoryCatalog && catCacheKey) {
+            setBoundedCache(catalogCategoryCache, catCacheKey, data.categoryCatalog);
+          }
+          setCatalogState({
+            resolvedAllKey: allCacheKey,
+            allCatalog: data.allCatalog,
+            resolvedCatKey: catCacheKey,
+            categoryCatalog: data.categoryCatalog ?? data.allCatalog,
+          });
+        })
+        .catch(() => {
+          if (!controller.signal.aborted) setFailedCatalogKey(allCacheKey);
         });
-      })
-      .catch(() => {});
+    }, CATALOG_DEBOUNCE_MS);
 
     return () => {
+      window.clearTimeout(timer);
       controller.abort();
     };
   }, [
@@ -579,6 +760,7 @@ export function SmartSearchModal() {
     pathname,
     readingLevel,
     effectiveCategory,
+    retryNonce,
   ]);
 
   const isWaitingForCatalog = Boolean(
@@ -586,6 +768,8 @@ export function SmartSearchModal() {
       !cachedAllCatalog &&
       catalogState.resolvedAllKey !== allCacheKey,
   );
+  // The request for exactly this search failed (no internet, server error): say so, do not stay blank.
+  const catalogFailed = isWaitingForCatalog && failedCatalogKey === allCacheKey;
 
   const catalogResponse = useMemo(
     () =>
@@ -737,6 +921,7 @@ export function SmartSearchModal() {
     if (event.key === "ArrowDown" && listCount > 0) {
       event.preventDefault();
       keyboardMoveRef.current = true;
+      arrowPickedRef.current = true;
       setActiveIndex((prev) => (prev + 1) % listCount);
       return;
     }
@@ -744,6 +929,7 @@ export function SmartSearchModal() {
     if (event.key === "ArrowUp" && listCount > 0) {
       event.preventDefault();
       keyboardMoveRef.current = true;
+      arrowPickedRef.current = true;
       setActiveIndex((prev) => (prev - 1 + listCount) % listCount);
       return;
     }
@@ -778,20 +964,67 @@ export function SmartSearchModal() {
         applyQuery(autocompleteRows[activeIndex].query, true);
         return;
       }
-      if (trimmedQuery && results[activeIndex]) {
-        event.preventDefault();
-        navigateToResult(results[activeIndex]);
+      if (trimmedQuery) {
+        // A touch keyboard's search key only puts the keyboard away so the list shows: it must not
+        // open a page the reader did not choose. Enter opens a result after the arrow keys picked
+        // one, or (with a mouse and keyboard, as before) the first result.
+        const touchKeyboard =
+          typeof window.matchMedia === "function" && window.matchMedia("(pointer: coarse)").matches;
+        if (touchKeyboard && !arrowPickedRef.current) {
+          event.preventDefault();
+          event.currentTarget.blur();
+          return;
+        }
+        if (results[activeIndex]) {
+          event.preventDefault();
+          navigateToResult(results[activeIndex]);
+        }
       }
     }
   };
 
-  if (!open || !copy || typeof document === "undefined") return null;
+  if (!open || typeof document === "undefined") return null;
 
-  const liveAnnouncement = !trimmedQuery
-    ? copy.journeysHeading
-    : results.length === 0
-      ? copy.emptyTitle
-      : `${results.length} ${results.length === 1 ? copy.resultsSingular : copy.resultsPlural}`;
+  // These few strings are in the main bundle, so the sheet can open before its own copy has loaded.
+  const triggerCopy = getSmartSearchTriggerCopy(lang);
+  const modalLabel = copy?.modalLabel ?? triggerCopy.triggerLabel;
+  const inputPlaceholder = copy?.inputPlaceholder ?? triggerCopy.triggerPlaceholder;
+  const closeLabel = copy?.closeLabel ?? getChromeCopy(lang).closeWord;
+  const retryLabel = (errorTranslations[lang] ?? errorTranslations.ro).retry;
+
+  const handleRetry = () => {
+    setFailedCatalogKey("");
+    setRetryNonce((value) => value + 1);
+    warmSearchAssets();
+  };
+
+  const liveAnnouncement = !copy
+    ? copyLoadFailed
+      ? triggerCopy.failed
+      : trimmedQuery
+        ? triggerCopy.searching
+        : ""
+    : !trimmedQuery
+      ? copy.journeysHeading
+      : catalogFailed
+        ? triggerCopy.failed
+        : isWaitingForCatalog && results.length === 0
+          ? triggerCopy.searching
+          : results.length === 0
+            ? copy.emptyTitle
+            : `${results.length} ${results.length === 1 ? copy.resultsSingular : copy.resultsPlural}`;
+
+  // Plain words and one way forward when the search (or the sheet's own copy) could not be loaded.
+  const failureNotice = (
+    <div className="swap-in rounded-xl border border-ink-900/10 px-5 py-7 text-center dark:border-paper/10">
+      <p className="mx-auto max-w-md text-body text-foreground dark:text-paper">{triggerCopy.failed}</p>
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+        <Button type="button" variant="outline" size="md" onClick={handleRetry}>
+          {retryLabel}
+        </Button>
+      </div>
+    </div>
+  );
 
   const assistantHref = withLangPrefix(
     hasSearchableQuery ? `/health-assistant?q=${encodeURIComponent(trimmedQuery)}` : "/health-assistant",
@@ -824,7 +1057,7 @@ export function SmartSearchModal() {
         className="mx-auto flex max-h-[92%] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border border-transparent bg-white text-foreground shadow-[0_28px_72px_-18px_rgba(12,24,48,0.38)] md:max-h-[80vh] md:rounded-2xl dark:border-paper/15 dark:bg-ink-950 dark:text-paper"
       >
         <h2 id={dialogTitleId} className="sr-only">
-          {copy.modalLabel}
+          {modalLabel}
         </h2>
 
         <div aria-live="polite" className="sr-only">
@@ -859,6 +1092,7 @@ export function SmartSearchModal() {
                   const nextVal = event.target.value;
                   if (speaking) stop();
                   setSpeakingResultId(null);
+                  arrowPickedRef.current = false;
                   setQuery(nextVal);
                   setCategory("all");
                   setActiveIndex(0);
@@ -867,8 +1101,9 @@ export function SmartSearchModal() {
                   setExpandedQuestionId(null);
                 }}
                 onKeyDown={handleInputKeyDown}
-                placeholder={copy.inputPlaceholder}
-                aria-label={copy.modalLabel}
+                placeholder={inputPlaceholder}
+                aria-label={modalLabel}
+                enterKeyHint="search"
                 autoComplete="off"
                 autoCorrect="off"
                 spellCheck={false}
@@ -877,7 +1112,7 @@ export function SmartSearchModal() {
               />
             </div>
 
-            {query.length > 0 ? (
+            {query.length > 0 && copy ? (
               <>
                 <button
                   type="button"
@@ -899,7 +1134,7 @@ export function SmartSearchModal() {
             <button
               type="button"
               onClick={handleClose}
-              aria-label={copy.closeLabel}
+              aria-label={closeLabel}
               // The red disc every sheet closes with (text size, the chooser), easy to find.
               className="sheet-close ml-1"
             >
@@ -908,631 +1143,668 @@ export function SmartSearchModal() {
           </div>
         </div>
 
-        {/* Progressive underline category filter bar (active whenever any category matches) */}
-        {showCategoryTabs ? (
-          <div
-            role="tablist"
-            aria-label={copy.modalLabel}
-            className="flex shrink-0 items-center overflow-x-auto border-b border-ink-900/10 px-4 [scrollbar-width:none] dark:border-paper/10 sm:px-6 [&::-webkit-scrollbar]:hidden"
-          >
-            {visibleTabs.map((cat) => {
-              const isSelected = effectiveCategory === cat;
-              const count = allCatalogResponse.groupedCounts[cat] ?? 0;
-              return (
-                <button
-                  key={cat}
-                  type="button"
-                  role="tab"
-                  aria-selected={isSelected}
-                  onClick={() => {
-                    setCategory(cat);
-                    setActiveIndex(0);
-                    setExpandedOverview(false);
-                    setExpandedResultId(null);
-                    setExpandedQuestionId(null);
-                  }}
-                  className={cn(
-                    // tab-ink: the marker under the chosen tab draws out from its centre; the label sits
-                    // exactly over it (px-3 matches the marker's 0.75rem inset).
-                    "tab-ink inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-md px-3 text-body font-medium whitespace-nowrap transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none",
-                    isSelected
-                      ? "text-sapphire dark:text-sapphire-border"
-                      : "text-muted-foreground hover:text-foreground dark:text-mist dark:hover:text-paper",
-                  )}
-                >
-                  <span>{copy.categories[cat]}</span>
-                  <span className="text-meta font-normal tabular-nums text-muted-foreground dark:text-mist">
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        ) : null}
-
-        {/* Single-column scrollable body */}
-        <div
-          ref={scrollBodyRef}
-          data-modal-scroller="true"
-          className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-4 pb-[calc(1.25rem+env(safe-area-inset-bottom))] sm:px-6"
-        >
-          {trimmedQuery.length === 0 ? (
-            <div className="space-y-4">
-              {/* Zero-keystroke Google autocomplete suggestions */}
-              <section aria-label={contextual.contextLabel}>
-                <div className="mb-1 flex min-h-[32px] items-center justify-between gap-2 px-2">
-                  <p className="text-meta font-medium text-muted-foreground dark:text-mist">
-                    {recentSearches.length > 0 ? copy.recentSearchesLabel : contextual.contextLabel}
-                  </p>
-                  {recentSearches.length > 0 ? (
-                    <button
-                      type="button"
-                      onClick={clearRecentSearches}
-                      className="inline-flex min-h-11 items-center rounded-lg px-2 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-ink-900/[0.04] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.06] dark:hover:text-paper"
-                    >
-                      {copy.clearRecentLabel}
-                    </button>
-                  ) : null}
-                </div>
-
-                <ul className="space-y-0.5">
-                  {autocompleteRows.map((row, idx) => {
-                    const isHighlighted = activeIndex === idx;
-                    const RowIcon = row.isRecent ? ClockIcon : SearchIcon;
-                    return (
-                      <li
-                        key={`${row.isRecent ? "recent" : "suggest"}-${row.query}`}
-                        className="list-in"
-                        style={{ "--i": idx } as CSSProperties}
-                      >
-                        <button
-                          type="button"
-                          data-search-row={idx}
-                          onMouseEnter={() => setActiveIndex(idx)}
-                          onClick={() => {
-                            applyQuery(row.query, true);
-                            inputRef.current?.focus();
-                          }}
-                          className={cn(
-                            "flex min-h-11 w-full items-center gap-3 rounded-lg px-2.5 py-2 text-left transition-colors",
-                            isHighlighted
-                              ? "bg-ink-900/[0.05] dark:bg-paper/[0.07]"
-                              : "hover:bg-ink-900/[0.04] dark:hover:bg-paper/[0.05]",
-                          )}
-                        >
-                          <RowIcon
-                            className="h-4 w-4 shrink-0 text-muted-foreground dark:text-mist"
-                            aria-hidden="true"
-                          />
-                          <span className="min-w-0 flex-1 text-body leading-snug text-foreground dark:text-paper">
-                            {row.query}
-                          </span>
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
-
-              {/* Powered expandable Guided Pathways */}
-              <section
-                aria-labelledby={`${baseId}-journeys`}
-                className="border-t border-ink-900/10 pt-3.5 dark:border-paper/10"
+        {copy ? (
+          <>
+            {/* Progressive underline category filter bar (active whenever any category matches) */}
+            {showCategoryTabs ? (
+              <div
+                role="tablist"
+                aria-label={copy.modalLabel}
+                className="flex shrink-0 items-center overflow-x-auto border-b border-ink-900/10 px-4 [scrollbar-width:none] dark:border-paper/10 sm:px-6 [&::-webkit-scrollbar]:hidden"
               >
-                <p
-                  id={`${baseId}-journeys`}
-                  className="px-2 pb-1.5 text-meta font-medium text-muted-foreground dark:text-mist"
-                >
-                  {copy.journeysHeading}
-                </p>
+                {visibleTabs.map((cat) => {
+                  const isSelected = effectiveCategory === cat;
+                  const count = allCatalogResponse.groupedCounts[cat] ?? 0;
+                  return (
+                    <button
+                      key={cat}
+                      type="button"
+                      role="tab"
+                      aria-selected={isSelected}
+                      onClick={() => {
+                        setCategory(cat);
+                        setActiveIndex(0);
+                        setExpandedOverview(false);
+                        setExpandedResultId(null);
+                        setExpandedQuestionId(null);
+                      }}
+                      className={cn(
+                        // tab-ink: the marker under the chosen tab draws out from its centre; the label sits
+                        // exactly over it (px-3 matches the marker's 0.75rem inset).
+                        "tab-ink inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-md px-3 text-body font-medium whitespace-nowrap transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none",
+                        isSelected
+                          ? "text-sapphire dark:text-sapphire-border"
+                          : "text-muted-foreground hover:text-foreground dark:text-mist dark:hover:text-paper",
+                      )}
+                    >
+                      <span>{copy.categories[cat]}</span>
+                      <span className="text-meta font-normal tabular-nums text-muted-foreground dark:text-mist">
+                        {count}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
 
-                <div className="divide-y divide-ink-900/8 dark:divide-paper/10">
-                  {copy.guidedJourneys.map((journey, journeyIdx) => {
-                    const isExpanded = expandedJourneyId === journey.id;
-                    const JourneyIcon = JOURNEY_ICONS[journey.id];
-                    const panelId = `${baseId}-journey-${journey.id}`;
-
-                    return (
-                      <div
-                        key={journey.id}
-                        className="list-in"
-                        style={{ "--i": autocompleteRows.length + journeyIdx } as CSSProperties}
-                      >
+            {/* Single-column scrollable body */}
+            <div
+              ref={scrollBodyRef}
+              data-modal-scroller="true"
+              className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-4 pb-[calc(1.25rem+env(safe-area-inset-bottom))] sm:px-6"
+            >
+              {trimmedQuery.length === 0 ? (
+                <div className="space-y-4">
+                  {/* Zero-keystroke Google autocomplete suggestions */}
+                  <section aria-label={contextual.contextLabel}>
+                    <div className="mb-1 flex min-h-[32px] items-center justify-between gap-2 px-2">
+                      <p className="text-meta font-medium text-muted-foreground dark:text-mist">
+                        {recentSearches.length > 0 ? copy.recentSearchesLabel : contextual.contextLabel}
+                      </p>
+                      {recentSearches.length > 0 ? (
                         <button
                           type="button"
-                          aria-expanded={isExpanded}
-                          aria-controls={panelId}
-                          onClick={() => {
-                            lastExpandedControlIdRef.current = panelId;
-                            setExpandedJourneyId((prev) =>
-                              prev === journey.id ? null : journey.id,
-                            );
-                          }}
-                          className="flex min-h-[48px] w-full items-center justify-between gap-3 rounded-lg px-2.5 py-2 text-left transition-colors hover:bg-ink-900/[0.03] dark:hover:bg-paper/[0.05]"
+                          onClick={clearRecentSearches}
+                          className="inline-flex min-h-11 items-center rounded-lg px-2 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-ink-900/[0.04] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.06] dark:hover:text-paper"
                         >
-                          <span className="flex min-w-0 flex-1 items-center gap-2.5">
-                            <JourneyIcon
-                              className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"
-                              aria-hidden="true"
-                            />
-                            <span className="min-w-0 text-body leading-snug font-medium text-foreground dark:text-paper">
-                              {journey.title}
-                            </span>
-                          </span>
-                          <ChevronDownIcon
-                            className={cn(
-                              "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-mist",
-                              isExpanded && "rotate-180",
-                            )}
-                            aria-hidden="true"
-                          />
+                          {copy.clearRecentLabel}
                         </button>
+                      ) : null}
+                    </div>
 
-                        <div
-                          id={panelId}
-                          className={cn(
-                            "grid",
-                            transitionClass,
-                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
-                          )}
-                        >
-                          <div className="overflow-hidden" inert={!isExpanded}>
-                            <div className="space-y-3 px-2.5 pt-0.5 pb-3.5 sm:pl-9">
-                              <p className="text-body text-muted-foreground dark:text-mist">
-                                {journey.summary}
-                              </p>
+                    <ul className="space-y-0.5">
+                      {autocompleteRows.map((row, idx) => {
+                        const isHighlighted = activeIndex === idx;
+                        const RowIcon = row.isRecent ? ClockIcon : SearchIcon;
+                        return (
+                          <li
+                            key={`${row.isRecent ? "recent" : "suggest"}-${row.query}`}
+                            className="list-in"
+                            style={{ "--i": idx } as CSSProperties}
+                          >
+                            <button
+                              type="button"
+                              data-search-row={idx}
+                              onMouseEnter={() => setActiveIndex(idx)}
+                              onClick={() => {
+                                applyQuery(row.query, true);
+                                inputRef.current?.focus();
+                              }}
+                              className={cn(
+                                "flex min-h-11 w-full items-center gap-3 rounded-lg px-2.5 py-2 text-left transition-colors",
+                                isHighlighted
+                                  ? "bg-ink-900/[0.05] dark:bg-paper/[0.07]"
+                                  : "hover:bg-ink-900/[0.04] dark:hover:bg-paper/[0.05]",
+                              )}
+                            >
+                              <RowIcon
+                                className="h-4 w-4 shrink-0 text-muted-foreground dark:text-mist"
+                                aria-hidden="true"
+                              />
+                              <span className="min-w-0 flex-1 text-body leading-snug text-foreground dark:text-paper">
+                                {row.query}
+                              </span>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </section>
 
-                              <div className="flex flex-wrap gap-2">
-                                {journey.queries.map((qItem) => (
-                                  <button
-                                    key={qItem.query}
-                                    type="button"
-                                    onClick={() => {
-                                      applyQuery(qItem.query, true);
-                                      inputRef.current?.focus();
-                                    }}
-                                    className="inline-flex min-h-11 items-center rounded-lg bg-ink-900/[0.04] px-2.5 text-body font-medium whitespace-nowrap text-foreground transition-colors hover:bg-ink-900/[0.08] sm:px-3 dark:bg-paper/[0.06] dark:text-paper dark:hover:bg-paper/[0.12]"
-                                  >
-                                    {qItem.label}
-                                  </button>
-                                ))}
-                              </div>
+                  {/* Powered expandable Guided Pathways */}
+                  <section
+                    aria-labelledby={`${baseId}-journeys`}
+                    className="border-t border-ink-900/10 pt-3.5 dark:border-paper/10"
+                  >
+                    <p
+                      id={`${baseId}-journeys`}
+                      className="px-2 pb-1.5 text-meta font-medium text-muted-foreground dark:text-mist"
+                    >
+                      {copy.journeysHeading}
+                    </p>
 
-                              <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
-                                {journey.actions.map((action) => {
-                                  const actionHref = withLangPrefix(action.href, lang);
-                                  return (
-                                    <Link
-                                      key={action.href}
-                                      href={actionHref}
-                                      onClick={() => handleFollowLink(actionHref, false)}
-                                      className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
-                                    >
-                                      <span>{action.label}</span>
-                                      <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                                    </Link>
-                                  );
-                                })}
+                    <div className="divide-y divide-ink-900/8 dark:divide-paper/10">
+                      {copy.guidedJourneys.map((journey, journeyIdx) => {
+                        const isExpanded = expandedJourneyId === journey.id;
+                        const JourneyIcon = JOURNEY_ICONS[journey.id];
+                        const panelId = `${baseId}-journey-${journey.id}`;
+
+                        return (
+                          <div
+                            key={journey.id}
+                            className="list-in"
+                            style={{ "--i": autocompleteRows.length + journeyIdx } as CSSProperties}
+                          >
+                            <button
+                              type="button"
+                              aria-expanded={isExpanded}
+                              aria-controls={panelId}
+                              onClick={() => {
+                                lastExpandedControlIdRef.current = panelId;
+                                setExpandedJourneyId((prev) =>
+                                  prev === journey.id ? null : journey.id,
+                                );
+                              }}
+                              className="flex min-h-[48px] w-full items-center justify-between gap-3 rounded-lg px-2.5 py-2 text-left transition-colors hover:bg-ink-900/[0.03] dark:hover:bg-paper/[0.05]"
+                            >
+                              <span className="flex min-w-0 flex-1 items-center gap-2.5">
+                                <JourneyIcon
+                                  className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"
+                                  aria-hidden="true"
+                                />
+                                <span className="min-w-0 text-body leading-snug font-medium text-foreground dark:text-paper">
+                                  {journey.title}
+                                </span>
+                              </span>
+                              <ChevronDownIcon
+                                className={cn(
+                                  "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-mist",
+                                  isExpanded && "rotate-180",
+                                )}
+                                aria-hidden="true"
+                              />
+                            </button>
+
+                            <div
+                              id={panelId}
+                              className={cn(
+                                "grid",
+                                transitionClass,
+                                isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                              )}
+                            >
+                              <div className="overflow-hidden" inert={!isExpanded}>
+                                <div className="space-y-3 px-2.5 pt-0.5 pb-3.5 sm:pl-9">
+                                  <p className="text-body text-muted-foreground dark:text-mist">
+                                    {journey.summary}
+                                  </p>
+
+                                  <div className="flex flex-wrap gap-2">
+                                    {journey.queries.map((qItem) => (
+                                      <button
+                                        key={qItem.query}
+                                        type="button"
+                                        onClick={() => {
+                                          applyQuery(qItem.query, true);
+                                          inputRef.current?.focus();
+                                        }}
+                                        className="inline-flex min-h-11 items-center rounded-lg bg-ink-900/[0.04] px-2.5 text-body font-medium whitespace-nowrap text-foreground transition-colors hover:bg-ink-900/[0.08] sm:px-3 dark:bg-paper/[0.06] dark:text-paper dark:hover:bg-paper/[0.12]"
+                                      >
+                                        {qItem.label}
+                                      </button>
+                                    ))}
+                                  </div>
+
+                                  <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
+                                    {journey.actions.map((action) => {
+                                      const actionHref = withLangPrefix(action.href, lang);
+                                      return (
+                                        <Link
+                                          key={action.href}
+                                          href={actionHref}
+                                          onClick={() => handleFollowLink(actionHref, false)}
+                                          className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                                        >
+                                          <span>{action.label}</span>
+                                          <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                        </Link>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {/* Immediate urgent 112 notice when serious symptoms detected */}
-              {catalogResponse.isEmergency ? (
-                <div
-                  role="alert"
-                  className="rounded-xl border border-primary/35 bg-primary-soft p-4 dark:border-ruby-300/40 dark:bg-primary/15"
-                >
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <div className="space-y-1">
-                      <p className="text-body font-semibold text-foreground dark:text-paper">
-                        {copy.emergencyTitle}
-                      </p>
-                      <p className="text-body text-foreground dark:text-paper">
-                        {copy.emergencyBody}
-                      </p>
+                        );
+                      })}
                     </div>
-                    <Button
-                      href="tel:112"
-                      variant="primary"
-                      size="md"
-                      className="shrink-0"
-                    >
-                      <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                      <span>{copy.emergencyCallLabel}</span>
-                    </Button>
-                  </div>
+                  </section>
                 </div>
-              ) : null}
-
-              {/* Live predictive query completions while typing */}
-              {livePredictions.length > 0 ? (
-                <div
-                  role="group"
-                  aria-label={copy.popularQueriesLabel}
-                  className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-0.5 [scrollbar-width:none] sm:-mx-6 sm:px-6 [&::-webkit-scrollbar]:hidden"
-                >
-                  {livePredictions.map((prediction) => (
-                    <button
-                      key={prediction}
-                      type="button"
-                      onClick={() => {
-                        applyQuery(prediction, true);
-                        inputRef.current?.focus();
-                      }}
-                      className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg border border-ink-900/12 bg-ink-900/[0.025] px-3 py-1.5 text-body font-medium whitespace-nowrap text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/35 hover:bg-sapphire-soft/55 hover:text-sapphire motion-reduce:transition-none dark:border-paper/14 dark:bg-paper/[0.05] dark:text-paper dark:hover:border-sapphire-border/45 dark:hover:bg-paper/[0.1]"
-                    >
-                      <SearchIcon
-                        className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border"
-                        aria-hidden="true"
-                      />
-                      <span>{prediction}</span>
-                    </button>
-                  ))}
-                </div>
-              ) : null}
-
-              {/* Did you mean correction */}
-              {catalogResponse.didYouMean ? (
-                <p className="px-1 text-body text-muted-foreground dark:text-mist">
-                  <span>{copy.didYouMeanPrefix} </span>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      applyQuery(catalogResponse.didYouMean!, true);
-                      inputRef.current?.focus();
-                    }}
-                    className="group inline-flex min-h-11 items-center font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
-                  >
-                    <span>{catalogResponse.didYouMean}</span>
-                  </button>
-                </p>
-              ) : null}
-
-              {/* Grounded Guidance Synthesis */}
-              {overview && overviewBody ? (
-                <section
-                  aria-label={copy.aiAnswerTitle}
-                  className="rounded-(--radius-surface) border border-sapphire/18 bg-sapphire-soft/75 p-4 shadow-(--shadow-card-rest) sm:p-5 dark:border-sapphire-border/22 dark:bg-white/[0.05]"
-                >
-                  <p className="mb-1.5 text-meta font-semibold text-sapphire dark:text-sapphire-border">
-                    {copy.aiAnswerTitle}
-                  </p>
-
-                  {/* Keyed: when a fuller remote answer replaces the catalogue synthesis, it settles in instead of snapping. */}
-                  <p
-                    key={hasDistinctRemoteAnswer ? "answer" : "lead"}
-                    className={cn(
-                      "text-body leading-relaxed text-foreground dark:text-paper",
-                      hasDistinctRemoteAnswer && "swap-in",
-                    )}
-                  >
-                    {overviewBody}
-                  </p>
-
-                  <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2">
-                    <Link
-                      href={overview.primaryAction.href}
-                      onClick={() => handleFollowLink(overview.primaryAction.href, true)}
-                      className="group inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-sapphire/25 bg-white/85 px-3 py-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/50 hover:bg-white motion-reduce:transition-none dark:border-sapphire-border/35 dark:bg-ink-900/70 dark:text-sapphire-border dark:hover:bg-ink-900"
-                    >
-                      <span>{overview.primaryAction.label}</span>
-                      <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                    </Link>
-
-                    {hasOverviewDetails ? (
-                      <button
-                        type="button"
-                        aria-expanded={expandedOverview}
-                        aria-controls={`${baseId}-overview-steps`}
-                        onClick={() => {
-                          lastExpandedControlIdRef.current = `${baseId}-overview-steps`;
-                          setExpandedOverview((prev) => !prev);
-                        }}
-                        className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2.5 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-ink-900/[0.04] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.06] dark:hover:text-paper"
-                      >
-                        <span>
-                          {expandedOverview
-                            ? copy.collapseDetailsLabel
-                            : copy.expandOverviewStepsLabel}
-                        </span>
-                        <ChevronDownIcon
-                          className={cn(
-                            "h-4 w-4 shrink-0 transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
-                            expandedOverview && "rotate-180",
-                          )}
-                          aria-hidden="true"
-                        />
-                      </button>
-                    ) : null}
-                  </div>
-
-                  {hasOverviewDetails ? (
+              ) : catalogFailed ? (
+                failureNotice
+              ) : (
+                <div className="space-y-4">
+                  {/* Immediate urgent 112 notice when serious symptoms detected */}
+                  {catalogResponse.isEmergency ? (
                     <div
-                      id={`${baseId}-overview-steps`}
-                      className={cn(
-                        "grid",
-                        transitionClass,
-                        expandedOverview ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
-                      )}
+                      role="alert"
+                      className="rounded-xl border border-primary/35 bg-primary-soft p-4 dark:border-ruby-300/40 dark:bg-primary/15"
                     >
-                      <div className="overflow-hidden" inert={!expandedOverview}>
-                        <div className="mt-2.5 space-y-2.5 border-t border-sapphire/12 pt-3 dark:border-sapphire-border/15">
-                          {overview.steps.length > 0 ? (
-                            <ol className="list-decimal space-y-1.5 pl-5 text-body text-foreground dark:text-paper">
-                              {overview.steps.map((step) => (
-                                <li key={step}>{step}</li>
-                              ))}
-                            </ol>
-                          ) : null}
-
-                          {hasDistinctRemoteAnswer ? (
-                            <p className="text-meta text-muted-foreground dark:text-mist">
-                              {copy.aiAnswerDisclaimer}
-                            </p>
-                          ) : null}
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="space-y-1">
+                          <p className="text-body font-semibold text-foreground dark:text-paper">
+                            {copy.emergencyTitle}
+                          </p>
+                          <p className="text-body text-foreground dark:text-paper">
+                            {copy.emergencyBody}
+                          </p>
                         </div>
+                        <Button
+                          href="tel:112"
+                          variant="primary"
+                          size="md"
+                          className="shrink-0"
+                        >
+                          <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                          <span>{copy.emergencyCallLabel}</span>
+                        </Button>
                       </div>
                     </div>
                   ) : null}
 
-                  {catalogResponse.suggestedFollowups.length > 0 ? (
-                    <div className="mt-2.5 flex flex-wrap items-center gap-2 border-t border-sapphire/12 pt-2.5 dark:border-sapphire-border/15">
-                      {catalogResponse.suggestedFollowups.map((follow) => (
+                  {/* Live predictive query completions while typing */}
+                  {livePredictions.length > 0 ? (
+                    <div
+                      role="group"
+                      aria-label={copy.popularQueriesLabel}
+                      className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-0.5 [scrollbar-width:none] sm:-mx-6 sm:px-6 [&::-webkit-scrollbar]:hidden"
+                    >
+                      {livePredictions.map((prediction) => (
                         <button
-                          key={follow}
+                          key={prediction}
                           type="button"
                           onClick={() => {
-                            applyQuery(follow, true);
+                            applyQuery(prediction, true);
                             inputRef.current?.focus();
                           }}
-                          className="group inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-sapphire/16 bg-white/90 px-3 py-1.5 text-meta font-medium whitespace-nowrap text-sapphire shadow-[0_1px_2px_rgba(12,18,32,0.04)] transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/35 hover:bg-white hover:text-sapphire-light motion-reduce:transition-none dark:border-sapphire-border/22 dark:bg-ink-900/75 dark:text-sapphire-border dark:hover:bg-ink-900"
+                          className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg border border-ink-900/12 bg-ink-900/[0.025] px-3 py-1.5 text-body font-medium whitespace-nowrap text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/35 hover:bg-sapphire-soft/55 hover:text-sapphire motion-reduce:transition-none dark:border-paper/14 dark:bg-paper/[0.05] dark:text-paper dark:hover:border-sapphire-border/45 dark:hover:bg-paper/[0.1]"
                         >
-                          <SearchIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                          <span>{follow}</span>
+                          <SearchIcon
+                            className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border"
+                            aria-hidden="true"
+                          />
+                          <span>{prediction}</span>
                         </button>
                       ))}
                     </div>
                   ) : null}
-                </section>
-              ) : null}
 
-              {/* Clean single-column Google result rows */}
-              {isWaitingForCatalog && results.length === 0 ? null : results.length === 0 ? (
-                <div className="swap-in rounded-xl border border-ink-900/10 px-5 py-7 text-center dark:border-paper/10">
-                  <p className="text-body font-semibold text-foreground dark:text-paper">
-                    {copy.emptyTitle}
-                  </p>
-                  <p className="mx-auto mt-1.5 max-w-md text-body text-muted-foreground dark:text-mist">
-                    {copy.emptyBody}
-                  </p>
-                  <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="md"
-                      onClick={() => {
-                        applyQuery("", true);
-                        inputRef.current?.focus();
-                      }}
-                    >
-                      {copy.emptyFallbackAction}
-                    </Button>
-                    <Button
-                      href={assistantHref}
-                      variant="action"
-                      size="md"
-                      onClick={() => handleFollowLink(assistantHref, false)}
-                    >
-                      <span>{copy.askAssistantLabel}</span>
-                      <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                // Keyed by tab: a tab switch replays the ordered entrance; while typing only new rows arrive.
-                <div key={effectiveCategory} className="divide-y divide-ink-900/8 dark:divide-paper/10">
-                  {results.map((result, idx) => {
-                    const isHighlighted = activeIndex === idx;
-                    const isExpanded = expandedResultId === result.id;
-                    const isThisSpeaking = speaking && speakingResultId === result.id;
-                    const detailsId = `${baseId}-result-${idx}`;
+                  {/* Did you mean correction */}
+                  {catalogResponse.didYouMean ? (
+                    <p className="px-1 text-body text-muted-foreground dark:text-mist">
+                      <span>{copy.didYouMeanPrefix} </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          applyQuery(catalogResponse.didYouMean!, true);
+                          inputRef.current?.focus();
+                        }}
+                        className="group inline-flex min-h-11 items-center font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
+                      >
+                        <span>{catalogResponse.didYouMean}</span>
+                      </button>
+                    </p>
+                  ) : null}
 
-                    return (
-                      <article
-                        key={result.id}
-                        data-search-row={idx}
-                        onMouseEnter={() => setActiveIndex(idx)}
-                        style={{ "--i": idx } as CSSProperties}
+                  {/* Grounded Guidance Synthesis */}
+                  {overview && overviewBody ? (
+                    <section
+                      aria-label={copy.aiAnswerTitle}
+                      className="rounded-(--radius-surface) border border-sapphire/18 bg-sapphire-soft/75 p-4 shadow-(--shadow-card-rest) sm:p-5 dark:border-sapphire-border/22 dark:bg-white/[0.05]"
+                    >
+                      <p className="mb-1.5 text-meta font-semibold text-sapphire dark:text-sapphire-border">
+                        {copy.aiAnswerTitle}
+                      </p>
+
+                      {/* Keyed: when a fuller remote answer replaces the catalogue synthesis, it settles in instead of snapping. */}
+                      <p
+                        key={hasDistinctRemoteAnswer ? "answer" : "lead"}
                         className={cn(
-                          "list-in rounded-lg px-3 py-3.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
-                          isHighlighted && "bg-ink-900/[0.035] dark:bg-paper/[0.05]",
+                          "text-body leading-relaxed text-foreground dark:text-paper",
+                          hasDistinctRemoteAnswer && "swap-in",
                         )}
                       >
-                        <div className="flex items-start justify-between gap-2">
-                          <Link
-                            href={result.href}
-                            onClick={() => handleFollowLink(result.href, true)}
-                            className="group min-w-0 flex-1 py-0.5"
-                          >
-                            <h3 className="text-body leading-snug font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border">
-                              {result.title}
-                            </h3>
-                            <p className="mt-1 text-body text-muted-foreground dark:text-mist">
-                              {result.summary}
-                            </p>
-                          </Link>
+                        {overviewBody}
+                      </p>
 
-                          <button
-                            type="button"
-                            aria-expanded={isExpanded}
-                            aria-controls={detailsId}
-                            aria-label={`${isExpanded ? copy.collapseDetailsLabel : copy.expandDetailsLabel}: ${result.title}`}
-                            onClick={() => {
-                              lastExpandedControlIdRef.current = detailsId;
-                              setExpandedResultId((prev) =>
-                                prev === result.id ? null : result.id,
-                              );
-                            }}
-                            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-ink-900/[0.05] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.08] dark:hover:text-paper"
-                          >
-                            <ChevronDownIcon
-                              className={cn(
-                                "h-4 w-4 transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
-                                isExpanded && "rotate-180",
-                              )}
-                              aria-hidden="true"
-                            />
-                          </button>
-                        </div>
-
-                        <div
-                          id={detailsId}
-                          className={cn(
-                            "grid",
-                            transitionClass,
-                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
-                          )}
+                      <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2">
+                        <Link
+                          href={overview.primaryAction.href}
+                          onClick={() => handleFollowLink(overview.primaryAction.href, true)}
+                          className="group inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-sapphire/25 bg-white/85 px-3 py-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/50 hover:bg-white motion-reduce:transition-none dark:border-sapphire-border/35 dark:bg-ink-900/70 dark:text-sapphire-border dark:hover:bg-ink-900"
                         >
-                          <div className="overflow-hidden" inert={!isExpanded}>
-                            <div className="mt-2 space-y-2.5 border-t border-ink-900/8 pt-2.5 pb-1 dark:border-paper/10">
-                              {result.summary.length > 110 || result.nextSteps.length === 0 ? (
-                                <p className="text-body text-foreground dark:text-paper">
-                                  {result.summary}
-                                </p>
-                              ) : null}
+                          <span>{overview.primaryAction.label}</span>
+                          <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                        </Link>
 
-                              {result.nextSteps.length > 0 ? (
-                                <ul className="list-disc space-y-1 pl-5 text-body text-foreground dark:text-paper">
-                                  {result.nextSteps.map((step) => (
-                                    <li key={step}>{step}</li>
-                                  ))}
-                                </ul>
-                              ) : null}
-
-                              <div className="flex flex-wrap items-center gap-4">
-                                {voiceEnabled && canSpeak ? (
-                                  <button
-                                    type="button"
-                                    onClick={() => handleToggleSpeech(result)}
-                                    className="inline-flex min-h-11 items-center gap-1.5 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:text-foreground dark:text-mist dark:hover:text-paper"
-                                  >
-                                    {isThisSpeaking ? (
-                                      <VolumeMuteIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                                    ) : (
-                                      <VolumeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                                    )}
-                                    <span>
-                                      {isThisSpeaking ? copy.stopReadingLabel : copy.readAloudLabel}
-                                    </span>
-                                  </button>
-                                ) : null}
-
-                                <Link
-                                  href={result.href}
-                                  onClick={() => handleFollowLink(result.href, true)}
-                                  className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
-                                >
-                                  <span>{copy.openPageLabel}</span>
-                                  <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                    );
-                  })}
-                </div>
-              )}
-
-              {/* Powered Related Questions ("People also ask") accordion */}
-              {catalogResponse.relatedQuestions.length > 0 ? (
-                <section
-                  aria-labelledby={`${baseId}-related`}
-                  className="rounded-(--radius-surface) border border-ink-900/10 bg-muted/35 p-3 sm:p-4 dark:border-paper/10 dark:bg-white/[0.03]"
-                >
-                  <p
-                    id={`${baseId}-related`}
-                    className="px-2 pb-1.5 text-meta font-medium text-muted-foreground dark:text-mist"
-                  >
-                    {copy.relatedQuestionsHeading}
-                  </p>
-
-                  <div className="divide-y divide-ink-900/8 dark:divide-paper/10">
-                    {catalogResponse.relatedQuestions.map((rq, idx) => {
-                      const isExpanded = expandedQuestionId === rq.id;
-                      const panelId = `${baseId}-rq-${idx}`;
-                      return (
-                        <div key={rq.id}>
+                        {hasOverviewDetails ? (
                           <button
                             type="button"
-                            aria-expanded={isExpanded}
-                            aria-controls={panelId}
+                            aria-expanded={expandedOverview}
+                            aria-controls={`${baseId}-overview-steps`}
                             onClick={() => {
-                              lastExpandedControlIdRef.current = panelId;
-                              setExpandedQuestionId((prev) => (prev === rq.id ? null : rq.id));
+                              lastExpandedControlIdRef.current = `${baseId}-overview-steps`;
+                              setExpandedOverview((prev) => !prev);
                             }}
-                            className="flex min-h-11 w-full items-center justify-between gap-3 rounded-lg px-2 py-2 text-left transition-colors hover:bg-ink-900/[0.03] dark:hover:bg-paper/[0.05]"
+                            className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2.5 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-ink-900/[0.04] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.06] dark:hover:text-paper"
                           >
-                            <span className="min-w-0 flex-1 text-body leading-snug font-medium text-foreground dark:text-paper">
-                              {rq.question}
+                            <span>
+                              {expandedOverview
+                                ? copy.collapseDetailsLabel
+                                : copy.expandOverviewStepsLabel}
                             </span>
                             <ChevronDownIcon
                               className={cn(
-                                "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-mist",
-                                isExpanded && "rotate-180",
+                                "h-4 w-4 shrink-0 transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                                expandedOverview && "rotate-180",
                               )}
                               aria-hidden="true"
                             />
                           </button>
+                        ) : null}
+                      </div>
 
-                          <div
-                            id={panelId}
-                            className={cn(
-                              "grid",
-                              transitionClass,
-                              isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
-                            )}
-                          >
-                            <div className="overflow-hidden" inert={!isExpanded}>
-                              <div className="space-y-2 px-2 pt-0.5 pb-3.5">
-                                <p className="text-body text-muted-foreground dark:text-mist">
-                                  {rq.answer}
+                      {hasOverviewDetails ? (
+                        <div
+                          id={`${baseId}-overview-steps`}
+                          className={cn(
+                            "grid",
+                            transitionClass,
+                            expandedOverview ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                          )}
+                        >
+                          <div className="overflow-hidden" inert={!expandedOverview}>
+                            <div className="mt-2.5 space-y-2.5 border-t border-sapphire/12 pt-3 dark:border-sapphire-border/15">
+                              {overview.steps.length > 0 ? (
+                                <ol className="list-decimal space-y-1.5 pl-5 text-body text-foreground dark:text-paper">
+                                  {overview.steps.map((step) => (
+                                    <li key={step}>{step}</li>
+                                  ))}
+                                </ol>
+                              ) : null}
+
+                              {hasDistinctRemoteAnswer ? (
+                                <p className="text-meta text-muted-foreground dark:text-mist">
+                                  {copy.aiAnswerDisclaimer}
                                 </p>
-                                {rq.href ? (
-                                  <Link
-                                    href={rq.href}
-                                    onClick={() => handleFollowLink(rq.href!, true)}
-                                    className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
-                                  >
-                                    <span>{rq.linkLabel ?? copy.openPageLabel}</span>
-                                    <ArrowRightIcon
-                                      className="h-3.5 w-3.5 shrink-0"
-                                      aria-hidden="true"
-                                    />
-                                  </Link>
-                                ) : null}
-                              </div>
+                              ) : null}
                             </div>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
-                </section>
-              ) : null}
+                      ) : null}
+
+                      {catalogResponse.suggestedFollowups.length > 0 ? (
+                        <div className="mt-2.5 flex flex-wrap items-center gap-2 border-t border-sapphire/12 pt-2.5 dark:border-sapphire-border/15">
+                          {catalogResponse.suggestedFollowups.map((follow) => (
+                            <button
+                              key={follow}
+                              type="button"
+                              onClick={() => {
+                                applyQuery(follow, true);
+                                inputRef.current?.focus();
+                              }}
+                              className="group inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-sapphire/16 bg-white/90 px-3 py-1.5 text-meta font-medium whitespace-nowrap text-sapphire shadow-[0_1px_2px_rgba(12,18,32,0.04)] transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/35 hover:bg-white hover:text-sapphire-light motion-reduce:transition-none dark:border-sapphire-border/22 dark:bg-ink-900/75 dark:text-sapphire-border dark:hover:bg-ink-900"
+                            >
+                              <SearchIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                              <span>{follow}</span>
+                            </button>
+                          ))}
+                        </div>
+                      ) : null}
+                    </section>
+                  ) : null}
+
+                  {/* Clean single-column Google result rows */}
+                  {isWaitingForCatalog && results.length === 0 ? (
+                    <p className="px-1 text-body text-muted-foreground dark:text-mist">{triggerCopy.searching}</p>
+                  ) : results.length === 0 ? (
+                    <div className="swap-in rounded-xl border border-ink-900/10 px-5 py-7 text-center dark:border-paper/10">
+                      <p className="text-body font-semibold text-foreground dark:text-paper">
+                        {copy.emptyTitle}
+                      </p>
+                      <p className="mx-auto mt-1.5 max-w-md text-body text-muted-foreground dark:text-mist">
+                        {copy.noResultsHint}
+                      </p>
+                      {/* Three searches that do return something, so a failed search still has a next step. */}
+                      <div className="mx-auto mt-4 max-w-md text-left">
+                        <p className="px-2.5 text-meta font-medium text-muted-foreground dark:text-mist">
+                          {copy.popularQueriesLabel}
+                        </p>
+                        <ul className="mt-1 space-y-0.5">
+                          {copy.popularQueries.slice(0, 3).map((popular) => (
+                            <li key={popular}>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  applyQuery(popular, true);
+                                  inputRef.current?.focus();
+                                }}
+                                className="flex min-h-11 w-full items-center gap-3 rounded-lg px-2.5 py-2 text-left transition-colors hover:bg-ink-900/[0.04] dark:hover:bg-paper/[0.05]"
+                              >
+                                <SearchIcon
+                                  className="h-4 w-4 shrink-0 text-muted-foreground dark:text-mist"
+                                  aria-hidden="true"
+                                />
+                                <span className="min-w-0 flex-1 text-body leading-snug text-foreground dark:text-paper">
+                                  {popular}
+                                </span>
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+                        <Button
+                          href={assistantHref}
+                          variant="action"
+                          size="md"
+                          onClick={() => handleFollowLink(assistantHref, false)}
+                        >
+                          <span>{copy.askAssistantLabel}</span>
+                          <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    // Keyed by tab: a tab switch replays the ordered entrance; while typing only new rows arrive.
+                    <div key={effectiveCategory} className="divide-y divide-ink-900/8 dark:divide-paper/10">
+                      {results.map((result, idx) => {
+                        const isHighlighted = activeIndex === idx;
+                        const isExpanded = expandedResultId === result.id;
+                        const isThisSpeaking = speaking && speakingResultId === result.id;
+                        const detailsId = `${baseId}-result-${idx}`;
+
+                        return (
+                          <article
+                            key={result.id}
+                            data-search-row={idx}
+                            onMouseEnter={() => setActiveIndex(idx)}
+                            style={{ "--i": idx } as CSSProperties}
+                            className={cn(
+                              "list-in rounded-lg px-3 py-3.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+                              isHighlighted && "bg-ink-900/[0.035] dark:bg-paper/[0.05]",
+                            )}
+                          >
+                            <div className="flex items-start justify-between gap-2">
+                              <Link
+                                href={result.href}
+                                onClick={() => handleFollowLink(result.href, true)}
+                                className="group min-w-0 flex-1 py-0.5"
+                              >
+                                <h3 className="text-body leading-snug font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border">
+                                  {result.title}
+                                </h3>
+                                <p className="mt-1 text-body text-muted-foreground dark:text-mist">
+                                  {result.summary}
+                                </p>
+                              </Link>
+
+                              <button
+                                type="button"
+                                aria-expanded={isExpanded}
+                                aria-controls={detailsId}
+                                aria-label={`${isExpanded ? copy.collapseDetailsLabel : copy.expandDetailsLabel}: ${result.title}`}
+                                onClick={() => {
+                                  lastExpandedControlIdRef.current = detailsId;
+                                  setExpandedResultId((prev) =>
+                                    prev === result.id ? null : result.id,
+                                  );
+                                }}
+                                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-ink-900/[0.05] hover:text-foreground dark:text-mist dark:hover:bg-paper/[0.08] dark:hover:text-paper"
+                              >
+                                <ChevronDownIcon
+                                  className={cn(
+                                    "h-4 w-4 transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                                    isExpanded && "rotate-180",
+                                  )}
+                                  aria-hidden="true"
+                                />
+                              </button>
+                            </div>
+
+                            <div
+                              id={detailsId}
+                              className={cn(
+                                "grid",
+                                transitionClass,
+                                isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                              )}
+                            >
+                              <div className="overflow-hidden" inert={!isExpanded}>
+                                <div className="mt-2 space-y-2.5 border-t border-ink-900/8 pt-2.5 pb-1 dark:border-paper/10">
+                                  {result.summary.length > 110 || result.nextSteps.length === 0 ? (
+                                    <p className="text-body text-foreground dark:text-paper">
+                                      {result.summary}
+                                    </p>
+                                  ) : null}
+
+                                  {result.nextSteps.length > 0 ? (
+                                    <ul className="list-disc space-y-1 pl-5 text-body text-foreground dark:text-paper">
+                                      {result.nextSteps.map((step) => (
+                                        <li key={step}>{step}</li>
+                                      ))}
+                                    </ul>
+                                  ) : null}
+
+                                  <div className="flex flex-wrap items-center gap-4">
+                                    {voiceEnabled && canSpeak ? (
+                                      <button
+                                        type="button"
+                                        onClick={() => handleToggleSpeech(result)}
+                                        className="inline-flex min-h-11 items-center gap-1.5 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors hover:text-foreground dark:text-mist dark:hover:text-paper"
+                                      >
+                                        {isThisSpeaking ? (
+                                          <VolumeMuteIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                                        ) : (
+                                          <VolumeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                                        )}
+                                        <span>
+                                          {isThisSpeaking ? copy.stopReadingLabel : copy.readAloudLabel}
+                                        </span>
+                                      </button>
+                                    ) : null}
+
+                                    <Link
+                                      href={result.href}
+                                      onClick={() => handleFollowLink(result.href, true)}
+                                      className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
+                                    >
+                                      <span>{copy.openPageLabel}</span>
+                                      <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                    </Link>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </article>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Powered Related Questions ("People also ask") accordion */}
+                  {catalogResponse.relatedQuestions.length > 0 ? (
+                    <section
+                      aria-labelledby={`${baseId}-related`}
+                      className="rounded-(--radius-surface) border border-ink-900/10 bg-muted/35 p-3 sm:p-4 dark:border-paper/10 dark:bg-white/[0.03]"
+                    >
+                      <p
+                        id={`${baseId}-related`}
+                        className="px-2 pb-1.5 text-meta font-medium text-muted-foreground dark:text-mist"
+                      >
+                        {copy.relatedQuestionsHeading}
+                      </p>
+
+                      <div className="divide-y divide-ink-900/8 dark:divide-paper/10">
+                        {catalogResponse.relatedQuestions.map((rq, idx) => {
+                          const isExpanded = expandedQuestionId === rq.id;
+                          const panelId = `${baseId}-rq-${idx}`;
+                          return (
+                            <div key={rq.id}>
+                              <button
+                                type="button"
+                                aria-expanded={isExpanded}
+                                aria-controls={panelId}
+                                onClick={() => {
+                                  lastExpandedControlIdRef.current = panelId;
+                                  setExpandedQuestionId((prev) => (prev === rq.id ? null : rq.id));
+                                }}
+                                className="flex min-h-11 w-full items-center justify-between gap-3 rounded-lg px-2 py-2 text-left transition-colors hover:bg-ink-900/[0.03] dark:hover:bg-paper/[0.05]"
+                              >
+                                <span className="min-w-0 flex-1 text-body leading-snug font-medium text-foreground dark:text-paper">
+                                  {rq.question}
+                                </span>
+                                <ChevronDownIcon
+                                  className={cn(
+                                    "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-mist",
+                                    isExpanded && "rotate-180",
+                                  )}
+                                  aria-hidden="true"
+                                />
+                              </button>
+
+                              <div
+                                id={panelId}
+                                className={cn(
+                                  "grid",
+                                  transitionClass,
+                                  isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                                )}
+                              >
+                                <div className="overflow-hidden" inert={!isExpanded}>
+                                  <div className="space-y-2 px-2 pt-0.5 pb-3.5">
+                                    <p className="text-body text-muted-foreground dark:text-mist">
+                                      {rq.answer}
+                                    </p>
+                                    {rq.href ? (
+                                      <Link
+                                        href={rq.href}
+                                        onClick={() => handleFollowLink(rq.href!, true)}
+                                        className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
+                                      >
+                                        <span>{rq.linkLabel ?? copy.openPageLabel}</span>
+                                        <ArrowRightIcon
+                                          className="h-3.5 w-3.5 shrink-0"
+                                          aria-hidden="true"
+                                        />
+                                      </Link>
+                                    ) : null}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </section>
+                  ) : null}
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </>
+        ) : (
+          // The sheet's own copy is still on its way (slow connection) or could not be fetched.
+          <div
+            data-modal-scroller="true"
+            className="min-h-40 flex-1 overflow-y-auto overscroll-contain px-4 py-4 pb-[calc(1.25rem+env(safe-area-inset-bottom))] sm:px-6"
+          >
+            {copyLoadFailed ? (
+              failureNotice
+            ) : trimmedQuery ? (
+              <p className="px-1 text-body text-muted-foreground dark:text-mist">{triggerCopy.searching}</p>
+            ) : null}
+          </div>
+        )}
       </m.div>
     </div>
   );

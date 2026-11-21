@@ -4,7 +4,6 @@ import { trackEvent } from "@/lib/analytics-events";
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
-import { LockIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang, Translations } from "@/lib/i18n/translations";
 import { isValidEmail } from "@/lib/text";
@@ -12,6 +11,8 @@ import { COUNTRY_LABELS, type CountryCode } from "@/lib/countries";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 
 type Fields = {
   name: string;
@@ -197,6 +198,11 @@ export function RequestHelpForm({
         ? "county"
         : (["phone", "email", "description"] as const).find((key) => nextErrors[key]) ?? "privacyConsent";
       formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
+      return;
+    }
+
+    if (isBrowserOffline()) {
+      setSubmissionError(getOfflineUiCopy(lang).formOfflineError);
       return;
     }
 
@@ -466,12 +472,9 @@ export function RequestHelpForm({
           </div>
         </div>
 
-        <div className="flex items-start gap-2.5 border-t border-border pt-5">
-          <LockIcon className="mt-0.5 h-4 w-4 flex-none text-muted-foreground" aria-hidden="true" />
-          <p className="text-body text-muted-foreground">
-            {form.privacyNote}
-          </p>
-        </div>
+        <p className="border-t border-border pt-5 text-body text-muted-foreground">
+          {form.privacyNote}
+        </p>
 
         <div>
           <label className="-mx-2 flex min-h-11 items-start gap-2.5 rounded-lg border border-transparent px-2 py-1.5 text-body text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted/40 focus-within:ring-2 focus-within:ring-ring motion-reduce:transition-none">
@@ -487,7 +490,8 @@ export function RequestHelpForm({
             />
             <span>
               {form.privacyConsent}{" "}
-              <a href={withLangPrefix("/privacy", lang)} className="font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire">
+              {/* New tab: opening the policy in this tab would discard what the reader has typed. */}
+              <a href={withLangPrefix("/privacy", lang)} target="_blank" rel="noopener noreferrer" className="font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire">
                 {form.privacyPolicyLabel}
               </a>.
             </span>

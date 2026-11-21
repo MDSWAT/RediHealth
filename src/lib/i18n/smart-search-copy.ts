@@ -2721,11 +2721,9 @@ const COPY: Record<Lang, SmartSearchCopy> = {
         queries: [
           { label: "Ljekarna u blizini", query: "Otvorena ljekarna u blizini" },
           { label: "Obiteljski liječnik", query: "Prijava kod obiteljskog liječnika" },
-          { label: "Liječnik online", query: "Online savjetovanje s liječnikom" },
         ],
         actions: [
           { label: "Karta lokalne pomoći", href: "/find-help" },
-          { label: "Liječnik online", href: "/medic-online" },
         ],
       },
       {

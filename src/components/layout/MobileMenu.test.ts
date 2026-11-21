@@ -22,11 +22,12 @@ const mobileMenuEnd = HEADER_SOURCE.indexOf("</header>");
 const MOBILE_MENU_SOURCE = HEADER_SOURCE.slice(mobileMenuStart, mobileMenuEnd);
 
 describe("mobile navigation drawer (#mobile-menu)", () => {
-  it("uses warm paper ground, compact width container, and removes duplicate triage CTA", () => {
+  it("uses clean white ground, subtly bordered cards, and removes duplicate triage CTA", () => {
     expect(mobileMenuStart).toBeGreaterThan(-1);
     expect(mobileMenuEnd).toBeGreaterThan(mobileMenuStart);
 
-    expect(MOBILE_MENU_SOURCE).toContain("bg-paper");
+    expect(MOBILE_MENU_SOURCE).toContain("bg-white");
+    expect(HEADER_SOURCE).toContain("bg-white");
     expect(MOBILE_MENU_SOURCE).toContain("dark:bg-ink-950");
     expect(MOBILE_MENU_SOURCE).not.toContain("max-w-xl");
     expect(MOBILE_MENU_SOURCE).not.toContain("/health-assistant#triage");
@@ -36,19 +37,82 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(MOBILE_MENU_SOURCE).not.toContain("rounded-2xl");
     expect(MOBILE_MENU_SOURCE).not.toContain("rounded-full");
     expect(MOBILE_MENU_SOURCE).not.toContain("bg-primary-soft/45");
-    expect(MOBILE_MENU_SOURCE).not.toContain("portalLink.label");
     expect(MOBILE_MENU_SOURCE).toContain('variant="outline"');
     expect(HEADER_SOURCE).toContain("gap-0.5 md:hidden");
-    expect(HEADER_SOURCE).toContain("data-mobile-account-trigger");
     expect(HEADER_SOURCE).toContain("capsuleCloseItem()");
+    expect(HEADER_SOURCE).toMatch(/!mobileOpen\s*&&[\s\S]*?<UniversalEmergencyBanner/);
+
+    // Account is a labelled row inside the menu, not an unlabelled icon beside Close.
+    expect(MOBILE_MENU_SOURCE).toContain("data-mobile-account-trigger");
+    expect(MOBILE_MENU_SOURCE).toContain("{portalLink.label}");
+    expect(HEADER_SOURCE.slice(0, mobileMenuStart)).not.toContain("data-mobile-account-trigger");
+
+    // One feedback link and no link that leaves the app.
+    expect(MOBILE_MENU_SOURCE.split("openSiteFeedback()").length - 1).toBe(1);
+    expect(MOBILE_MENU_SOURCE).not.toContain("mobileDrawerSub");
+    expect(MOBILE_MENU_SOURCE).not.toContain("redi-ngo.eu");
+    expect(MOBILE_MENU_SOURCE).not.toContain('target="_blank"');
   });
 
-  it("shows primary navigation and mediator subtitles visibly without sr-only or line clipping", () => {
-    expect(MOBILE_MENU_SOURCE).toContain("{link.subtext}");
-    expect(MOBILE_MENU_SOURCE).toContain("{tHeader.forMediatorsSub}");
-    expect(MOBILE_MENU_SOURCE).toContain("text-meta font-normal leading-snug text-muted-foreground");
+  it("puts language first, surfaces live doctor and AI assistant cards, and keeps the 112 row in view", () => {
+    const languageAt = MOBILE_MENU_SOURCE.indexOf("<LanguageSelector");
+    const liveDoctorAt = MOBILE_MENU_SOURCE.indexOf('href={withLangPrefix("/medic-online", lang)}');
+    const aiAssistantAt = MOBILE_MENU_SOURCE.indexOf('href={withLangPrefix("/ai-assistant", lang)}');
+    const linksAt = MOBILE_MENU_SOURCE.indexOf("primaryLinks.map");
+    const homeAt = MOBILE_MENU_SOURCE.indexOf('href={withLangPrefix("/", lang)}');
+    const feedbackAt = MOBILE_MENU_SOURCE.indexOf("openSiteFeedback()");
+    const emergencyAt = MOBILE_MENU_SOURCE.indexOf("sticky bottom-0");
+
+    expect(languageAt).toBeGreaterThan(-1);
+    expect(languageAt).toBeLessThan(liveDoctorAt);
+    expect(liveDoctorAt).toBeLessThan(aiAssistantAt);
+    expect(aiAssistantAt).toBeLessThan(linksAt);
+    expect(linksAt).toBeLessThan(homeAt);
+    expect(MOBILE_MENU_SOURCE).toContain("<HomeIcon");
+    expect(MOBILE_MENU_SOURCE).toContain("{chrome.homeShort}");
+
+    // The 112 row is the last block in the flow, so when stuck it never rests on the links above it.
+    expect(feedbackAt).toBeLessThan(emergencyAt);
+    expect(MOBILE_MENU_SOURCE.indexOf("setDialerOpen(true)")).toBeGreaterThan(emergencyAt);
+    expect(MOBILE_MENU_SOURCE).toContain("pb-[calc(0.5rem+env(safe-area-inset-bottom))]");
+
+    // A tap on the logo closes an open menu, and the logo is a 44px target.
+    expect(HEADER_SOURCE).toMatch(/<Logo[\s\S]*?className="min-h-11 [^"]*"[\s\S]*?onClick=\{closeMobile\}/);
+  });
+
+  it("places all 6 core destinations including /mediatori in a unified single-column editorial list", () => {
+    expect(HEADER_SOURCE).toContain('href: "/health-information"');
+    expect(HEADER_SOURCE).toContain('href: "/health-check"');
+    expect(HEADER_SOURCE).toContain('href: "/prescription-review"');
+    expect(HEADER_SOURCE).toContain('href: "/find-help"');
+    expect(HEADER_SOURCE).toContain('href: "/mediatori"');
+    expect(HEADER_SOURCE).toContain('href: "/stiri"');
+
+    // Desktop nav and mobile drawer share primaryLinks, with /mediatori inside the primary <nav>.
+    expect(MOBILE_MENU_SOURCE).toContain("primaryLinks.map");
+    expect(MOBILE_MENU_SOURCE).toContain("grid grid-cols-2");
+    expect(MOBILE_MENU_SOURCE).toContain("divide-y");
+    expect(MOBILE_MENU_SOURCE).toContain("ChevronRightIcon");
+    expect(MOBILE_MENU_SOURCE).toContain("flex flex-wrap");
+    expect(HEADER_SOURCE).toContain("mobileMenuRef.current.scrollTop = 0");
+    expect(MOBILE_MENU_SOURCE).not.toContain("{tHeader.forMediatorsSub}");
+    expect(MOBILE_MENU_SOURCE).not.toContain("block whitespace-nowrap text-meta");
     expect(MOBILE_MENU_SOURCE).not.toContain("sr-only");
     expect(MOBILE_MENU_SOURCE).not.toContain("line-clamp-1");
+  });
+
+  it("maps active routes 1-to-1 including /stiri and /news across locales, and keeps Footer public", () => {
+    expect(HEADER_SOURCE).toContain('currentPath === "/news"');
+    expect(HEADER_SOURCE).toContain('currentPath.startsWith("/news/")');
+    expect(HEADER_SOURCE).not.toContain("isGuidanceRoute");
+
+    const footerSource = readFileSync(
+      path.resolve(process.cwd(), "src/components/layout/Footer.tsx"),
+      "utf8",
+    );
+    expect(footerSource).not.toContain("/medic-online/programare");
+    expect(footerSource).not.toContain("/panel");
+    expect(footerSource).not.toContain('href: "/health-assistant"');
   });
 
   it("wires listRow, collapsible, and openDrawerSection mutual exclusion", () => {
@@ -76,17 +140,18 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     }
   });
 
-  it("shows search icon, universal accessibility comfort trigger, and single-line menu trigger on phones while keeping search in the drawer", () => {
+  it("shows search icon, universal accessibility comfort trigger, and single-line menu trigger on phones without duplicating search inside the drawer", () => {
     const mobileClusterStart = HEADER_SOURCE.indexOf("{!mobileOpen &&");
     const mobileBarSlice = HEADER_SOURCE.slice(mobileClusterStart, mobileMenuStart);
     expect(mobileClusterStart).toBeGreaterThan(-1);
     expect(mobileBarSlice).toContain("openSmartSearch()");
     expect(mobileBarSlice).toContain('data-search-trigger=""');
-    expect(mobileBarSlice).toContain('<ComfortMenu tone={isTransparent ? "light" : "default"} />');
+    expect(mobileBarSlice).toContain('<ComfortMenu tone={onDarkBar ? "light" : "default"} />');
     expect(mobileBarSlice).not.toContain("showLabel");
+    expect(HEADER_SOURCE).toContain('const isTransparent = currentPath === "/" && !scrolled && !mobileOpen;');
     expect(mobileBarSlice).toContain("chrome.closeWord : chrome.menuWord");
     expect(mobileBarSlice).toContain("whitespace-nowrap");
-    expect(MOBILE_MENU_SOURCE).toContain("openSmartSearch()");
+    expect(MOBILE_MENU_SOURCE).not.toContain("openSmartSearch()");
 
     for (const lang of LANGS) {
       const compactHtml = renderToStaticMarkup(
@@ -125,7 +190,9 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(HEADER_SOURCE).toContain('data-header-bar=""');
     expect(HEADER_SOURCE).toContain("flex h-16 items-center");
     expect(MOBILE_MENU_SOURCE).not.toContain("h-3 w-px");
-    expect(MOBILE_MENU_SOURCE).toContain("compactTriggerLabel");
+    expect(MOBILE_MENU_SOURCE).toContain("footerLink");
+    expect(HEADER_SOURCE).toContain("max-md:h-14");
+    expect(HEADER_SOURCE).toContain("max-md:pt-1");
     const containerHtml = renderToStaticMarkup(
       createElement(Container, { "data-header-bar": "", className: "max-[359px]:px-2" }, "ok"),
     );

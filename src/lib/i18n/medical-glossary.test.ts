@@ -9,12 +9,16 @@ import {
 } from "@/lib/i18n/romanes-glossary";
 import type { Lang } from "@/lib/i18n/translations";
 
-const ALL_LANGS: Lang[] = ["ro", "en", "sq", "it", "hr", "rom"];
-const NON_RO_LANGS: NonRoLang[] = ["en", "sq", "it", "hr", "rom"];
+const ALL_LANGS: Lang[] = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
+const NON_RO_LANGS: NonRoLang[] = ["en", "sq", "it", "hr", "rom", "ru"];
 
 describe("Medical dictionary clinical and multilingual integrity", () => {
-  it("provides complete 6-language localized entries for all dual-register terms with zero ampersands", () => {
-    expect(ROMANIAN_MEDICAL_GLOSSARY.length).toBeGreaterThanOrEqual(23);
+  it("provides complete 7-language localized entries for all dual-register terms including mental health with zero ampersands", () => {
+    expect(ROMANIAN_MEDICAL_GLOSSARY.length).toBeGreaterThanOrEqual(30);
+    const mentalHealthEntries = ROMANIAN_MEDICAL_GLOSSARY.filter(
+      (entry) => entry.category === "sanatate-mintala",
+    );
+    expect(mentalHealthEntries.length).toBeGreaterThanOrEqual(7);
 
     for (const entry of ROMANIAN_MEDICAL_GLOSSARY) {
       for (const lang of ALL_LANGS) {
@@ -120,8 +124,12 @@ describe("Medical dictionary clinical and multilingual integrity", () => {
     }
   });
 
-  it("maintains complete 6-language parity and authentic Romani medical forms across all 15 Romanes terms", () => {
-    expect(ROMANES_GLOSSARY_TERMS).toHaveLength(15);
+  it("maintains complete 7-language parity and authentic Romani medical forms across all 22 Romanes terms", () => {
+    expect(ROMANES_GLOSSARY_TERMS).toHaveLength(22);
+    const mentalHealthRomanes = ROMANES_GLOSSARY_TERMS.filter(
+      (term) => term.category === "sanatate-mintala",
+    );
+    expect(mentalHealthRomanes.length).toBeGreaterThanOrEqual(6);
 
     for (const term of ROMANES_GLOSSARY_TERMS) {
       expect(term.romanesTerm).not.toMatch(/chikat|cioranengo|barvali sigardiari|rengro/i);

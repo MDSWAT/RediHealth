@@ -8,6 +8,7 @@ vi.mock("next/navigation", () => ({
   usePathname: () => "/en/find-help",
 }));
 
+import { GET as geocodeGET } from "@/app/api/geocode/route";
 import { FindHelpExplorer, PlaceCardActions } from "@/components/find-help/FindHelpExplorer";
 import { FindHelpPageContent } from "@/components/find-help/FindHelpPageContent";
 import {
@@ -383,7 +384,7 @@ describe("FindHelp location popover, inline FilterDropdown, and filter toolbar",
       }
 
       const toolbarButtons = assertCleanButtons(toolbarHtml, `${lang} FindHelpExplorer toolbar`);
-      expect(toolbarButtons.some((button) => button.text.includes(copy.emergencyWalkInFilter))).toBe(true);
+      expect(toolbarButtons.some((button) => button.text.includes(copy.filtersTitle))).toBe(true);
       expect(toolbarButtons.some((button) => button.text.includes(copy.openNowFilter))).toBe(true);
       expect(toolbarButtons.every((button) => !button.attrs.includes('type="submit"'))).toBe(true);
     }
@@ -552,8 +553,9 @@ describe("FindHelp location popover, inline FilterDropdown, and filter toolbar",
     expect(explorerSrc).toContain("useSheetDialog(filterSheetOpen");
     expect(explorerSrc).toContain("sheet-in");
     expect(explorerSrc).toContain(
-      "2xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)_minmax(0,0.62fr)_auto_auto_auto]",
+      "lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1.15fr)_minmax(0,0.68fr)_auto]",
     );
+    expect(explorerSrc).toContain("keepOpenOnSelect");
     expect(readSrc("src/components/find-help/LocationFilterPopover.tsx")).toContain(
       "event.stopPropagation();",
     );
@@ -614,57 +616,62 @@ describe("FindHelp location popover, inline FilterDropdown, and filter toolbar",
     }
   });
 
-  it("improves open/closed scanability without dots/pills and unifies bottom guidance cards across all 7 locales", () => {
+  it("improves open/closed scanability without dots/pills, adds Varaždin and Čakovec presets, surfaces plain-text ownership, and removes bottom cross-link clutter", async () => {
     const explorerSrc = readSrc("src/components/find-help/FindHelpExplorer.tsx");
     expect(explorerSrc).toContain("border-t border-border/60 pt-2.5 text-body dark:border-ink-800");
     expect(explorerSrc).toContain('<span className="tabular-nums text-muted-foreground">{hours}</span>');
     expect(explorerSrc).toContain('<span className="tabular-nums text-muted-foreground">{previewHours}</span>');
     expect(explorerSrc).not.toContain("transition-all");
     expect(explorerSrc).not.toContain("rounded-full");
+    expect(explorerSrc).toContain("lg:grid-cols-[minmax(24rem,1.15fr)_minmax(0,1fr)]");
+
+    expect(REGIONAL_CITY_PRESETS.HR[0]?.name).toBe("Zagreb");
+    const hrNames = REGIONAL_CITY_PRESETS.HR.map((city) => city.name);
+    expect(hrNames).toContain("Varaždin");
+    expect(hrNames).toContain("Čakovec");
+    expect(hrNames.indexOf("Varaždin")).toBeGreaterThan(hrNames.indexOf("Zadar"));
+    expect(hrNames.indexOf("Čakovec")).toBeGreaterThan(hrNames.indexOf("Zadar"));
+
+    const geocodeRes = await geocodeGET(
+      new Request("http://localhost:3000/api/geocode?q=Me%C4%91imurje&country=HR"),
+    );
+    expect(geocodeRes.status).toBe(200);
+    const geocodeData = (await geocodeRes.json()) as {
+      match?: { lat: number; lng: number; label: string; country: string; kind: string } | null;
+    };
+    expect(geocodeData.match).toMatchObject({
+      label: "Čakovec",
+      country: "HR",
+      kind: "preset",
+    });
 
     const pageSrc = readSrc("src/components/find-help/FindHelpPageContent.tsx");
-    expect(pageSrc).toContain("p-6 sm:p-7");
-    expect(pageSrc).not.toContain("p-4 sm:p-7");
-    expect(pageSrc).toContain('variant="action"');
-    expect(pageSrc).toContain('variant="outline"');
-    expect(pageSrc).not.toContain('variant="primary"');
-    expect(pageSrc).not.toContain("rounded-full");
-    expect(pageSrc).not.toContain("transition-all");
+    expect(pageSrc).not.toContain("<AssistantNavigation");
+    expect(pageSrc).not.toContain("/mediatori");
+    expect(pageSrc).not.toContain("/get-help");
 
     for (const lang of ALL_LANGS) {
       const copy = findHelpTranslations[lang];
-      const pageHtml = renderWithLang(
-        lang,
-        createElement(FindHelpPageContent, {
-          initialCountry: "RO",
-        }),
-      );
+      // Public or private is one plain word after the kind of place ("Spital, de stat"), never a line of its own.
+      for (const value of [copy.ownership.public, copy.ownership.private]) {
+        expect(value.trim().length).toBeGreaterThan(3);
+        expect(value).not.toContain("&");
+        expect(value).not.toContain("\u00b7");
+      }
+      expect("ownershipDetail" in copy).toBe(false);
 
-      const guidanceMatch = pageHtml.match(/<section class="border-t border-border bg-muted\/40[\s\S]*<\/section>/);
-      expect(guidanceMatch, `${lang}: missing bottom guidance section`).not.toBeNull();
-      const guidanceHtml = guidanceMatch![0];
-      const guidanceText = extractVisibleText(guidanceHtml);
-      expect(guidanceHtml).toContain("p-6 sm:p-7");
-      expect(guidanceHtml).toContain(`href="/${lang}/mediatori"`);
-      expect(guidanceHtml).toContain(`href="/${lang}/get-help"`);
-      expect(guidanceText).toContain(copy.page.mediatorTitle);
-      expect(guidanceText).toContain(copy.page.mediatorButton);
-      expect(guidanceText).toContain(translations[lang].findHelpPage.ctaTitle);
-      expect(guidanceText).toContain(translations[lang].findHelpPage.ctaButton);
-      expect(guidanceHtml).toContain("bg-sapphire text-white");
-      expect(guidanceHtml).not.toContain("bg-primary");
-      expect(guidanceHtml).not.toContain("p-4 sm:p-7");
-      expect(guidanceHtml.match(/p-6 sm:p-7/g)?.length).toBe(2);
-      expect(guidanceHtml).not.toContain("rounded-full");
-      expect(guidanceText).not.toContain("&");
-      expect(guidanceText).not.toContain("\u00b7");
-      for (const attrValue of extractAttributeValues(guidanceHtml, ["aria-label", "title"])) {
-        expect(attrValue).not.toContain("&");
-        expect(attrValue).not.toContain("\u00b7");
-      }
-      if (lang === "sq") {
-        expect(guidanceText).not.toMatch(/ndërmjetës/i);
-      }
+      const pageHtml = renderToStaticMarkup(
+        createElement(
+          LanguageContext.Provider,
+          { value: { lang, t: translations[lang], setLang: () => {} } },
+          createElement(FindHelpPageContent, {
+            initialCountry: "RO",
+          }),
+        ),
+      );
+      expect(pageHtml).not.toContain(`href="/${lang}/mediatori"`);
+      expect(pageHtml).not.toContain(`href="/${lang}/get-help"`);
+      expect(pageHtml).not.toContain("rounded-full");
     }
   });
 });

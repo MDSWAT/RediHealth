@@ -267,4 +267,81 @@ describe("/api/health-assistant vision route", () => {
     expect(res.status).toBe(200);
     expect(generateTextMock).toHaveBeenCalledWith(expect.objectContaining({ maxTokens: 900 }));
   });
+
+  it("supports mode=medicine_lookup for typed psychiatric and contraceptive queries and hides photo confidence in name mode UI", async () => {
+    generateTextMock.mockResolvedValueOnce({
+      text: JSON.stringify({
+        urgency: "routine",
+        careLevel: "routine",
+        possibleCause: "Combined oral contraceptive.",
+        message: "Taken daily at the same time to prevent pregnancy.",
+        questions: [],
+        medicines: [
+          {
+            name: "Yasmin",
+            activeIngredient: "Drospirenone and ethinylestradiol",
+            form: "film-coated tablets",
+            purpose: "Daily hormonal contraception.",
+            benefitTimeline: "Works from day one if started on day 1 of your period; otherwise follow the leaflet.",
+            sideEffects: ["Mild nausea", "Light spotting between periods", "Breast tenderness"],
+            stoppingGuidance:
+              "If you miss a pill or vomit within 4 hours of taking it, check the leaflet or ask a pharmacist right away about backup protection.",
+          },
+        ],
+      }),
+      model: "claude-haiku-4-5-20251001",
+    });
+
+    const req = new Request("http://localhost:3000/api/health-assistant", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        mode: "medicine_lookup",
+        medicineName: "Yasmin",
+        prescriptionContext: "Contraception or women's health",
+        lang: "en",
+      }),
+    });
+
+    const res = await POST(req);
+    expect(res.status).toBe(200);
+    const data = (await res.json()) as Record<string, unknown>;
+    expect(data.confidenceScore).toBeUndefined();
+    expect(generateTextMock).toHaveBeenCalledWith(expect.objectContaining({ maxTokens: 2048 }));
+
+    const html = renderResultHtml("en", {
+      mode: "name",
+      aiMessage: String(data.message ?? ""),
+      medicines: data.medicines as NonNullable<Parameters<typeof PrescriptionStructuredResult>[0]["medicines"]>,
+      confidenceScore: 95,
+    });
+    expect(html).toContain(ASSISTANT_COPY.en.result.lookupMedicinesHeading);
+    expect(html).toContain(ASSISTANT_COPY.en.result.benefitTimelineLabel);
+    expect(html).toContain(ASSISTANT_COPY.en.result.sideEffectsLabel);
+    expect(html).toContain(ASSISTANT_COPY.en.result.stoppingGuidanceLabel);
+    expect(html).toContain("Yasmin");
+    expect(html).not.toContain("data-confidence-summary");
+    expect(html).not.toContain("rounded-full");
+  });
+
+  it("deterministically blocks off-topic chat requests before invoking the LLM", async () => {
+    const req = new Request("http://localhost:3000/api/health-assistant", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        lang: "it",
+        symptoms: "Dammi la ricetta della carbonara per favore",
+      }),
+    });
+
+    const res = await POST(req);
+    expect(res.status).toBe(200);
+    const data = (await res.json()) as Record<string, unknown>;
+    expect(data.outOfScope).toBe(true);
+    expect(data.responseKind).toBe("out_of_scope");
+    expect(data.possibleCause).toBe("");
+    expect(data.questions).toEqual([]);
+    expect(String(data.message)).toContain("RediHealth");
+    expect(generateTextMock).not.toHaveBeenCalled();
+  });
 });

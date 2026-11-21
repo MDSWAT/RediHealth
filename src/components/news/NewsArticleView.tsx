@@ -5,13 +5,15 @@ import { usePathname } from "next/navigation";
 import { ArticleListenButton } from "@/components/health-information/ArticleListenButton";
 import {
   HEALTH_ARTICLE_PROSE_CLASS,
+  HEALTH_ARTICLE_SECTION_H2_CLASS,
   HealthArticleBackLink,
   HealthArticleHeader,
   HealthArticleRelatedList,
   HealthArticleShell,
 } from "@/components/health-information/HealthArticleShell";
-import { TopicNextSteps } from "@/components/health-information/TopicNextSteps";
-import { ClockIcon, PinIcon } from "@/components/ui/icons";
+import { MedicalSafetyDisclaimer } from "@/components/health-information/MedicalSafetyDisclaimer";
+import { Button } from "@/components/ui/Button";
+import { PrinterIcon } from "@/components/ui/icons";
 import { EXTRA_MAP_COPY } from "@/components/ui/RomaniaCountyMap";
 import { CaravanPassActions } from "@/components/news/CaravanPassActions";
 import { formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
@@ -99,14 +101,22 @@ const COPY: Record<Lang, {
   where: string;
   when: string;
   freeServices: string;
+  printLabel: string;
+  printAria: string;
 }> = {
-ru: {
-"caravanHeading": "Где и когда принимает выездная клиника",
-"where": "Где",
-"when": "Часы приема",
-"freeServices": "Бесплатные услуги:",
- readTime: "минута чтения", read: "Читать", related: "Подробнее по этой теме", prevention: "Что вы можете сделать", topics: "Темы" },
-
+  ru: {
+    caravanHeading: "Где и когда принимает выездная клиника",
+    where: "Где",
+    when: "Часы приема",
+    freeServices: "Бесплатные услуги:",
+    readTime: "мин чтения",
+    read: "Читать",
+    related: "Подробнее по этой теме",
+    prevention: "Что вы можете сделать",
+    topics: "Темы",
+    printLabel: "Печать",
+    printAria: "Распечатать статью или сохранить в PDF",
+  },
   ro: {
     readTime: "min lectură",
     read: "Citește",
@@ -117,6 +127,8 @@ ru: {
     where: "Unde",
     when: "Program",
     freeServices: "Servicii gratuite:",
+    printLabel: "Tipărește",
+    printAria: "Tipărește articolul sau salvează-l ca PDF",
   },
   en: {
     readTime: "min read",
@@ -128,6 +140,8 @@ ru: {
     where: "Where",
     when: "Hours",
     freeServices: "Free services:",
+    printLabel: "Print",
+    printAria: "Print this article or save it as PDF",
   },
   sq: {
     readTime: "min lexim",
@@ -139,6 +153,8 @@ ru: {
     where: "Ku",
     when: "Orari",
     freeServices: "Shërbime falas:",
+    printLabel: "Printo",
+    printAria: "Printo këtë artikull ose ruaje si PDF",
   },
   it: {
     readTime: "min di lettura",
@@ -150,6 +166,8 @@ ru: {
     where: "Dove",
     when: "Orario",
     freeServices: "Servizi gratuiti:",
+    printLabel: "Stampa",
+    printAria: "Stampa questo articolo o salvalo come PDF",
   },
   hr: {
     readTime: "min čitanja",
@@ -161,6 +179,8 @@ ru: {
     where: "Gdje",
     when: "Radno vrijeme",
     freeServices: "Besplatne usluge:",
+    printLabel: "Ispiši",
+    printAria: "Ispiši ovaj članak ili ga spremi kao PDF",
   },
   rom: {
     readTime: "min ginavimos",
@@ -172,6 +192,8 @@ ru: {
     where: "Kaj",
     when: "Chasurya",
     freeServices: "Bi lovengo serviciye:",
+    printLabel: "Printisardes",
+    printAria: "Printisardes kado artikulo vaj garav les sar PDF",
   },
 };
 
@@ -234,29 +256,41 @@ export function NewsArticleView({ id }: { id: string }) {
             leadLang={article.language}
             meta={
               <>
-                <span className="font-medium text-foreground">{category}</span>
-                <span className="inline-flex items-center gap-1.5 border-l border-border pl-3">
-                  <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                  {placeLabel(article.county, articleCountry(article))}
+                <span>
+                  <span className="font-semibold text-foreground">{category}</span>
+                  <span>, {placeLabel(article.county, articleCountry(article))}</span>
                 </span>
-                <time dateTime={article.date} className="border-l border-border pl-3 tabular-nums">
-                  {formatNewsDate(article.date, lang)}
-                </time>
-                <span className="border-l border-border pl-3 tabular-nums">
-                  {article.readTimeMinutes} {c.readTime}
+                <span className="tabular-nums">
+                  <time dateTime={article.date}>{formatNewsDate(article.date, lang)}</time>
+                  <span>, {article.readTimeMinutes} {c.readTime}</span>
                 </span>
               </>
             }
             actions={
-              <ArticleListenButton
-                uiLang={lang}
-                contentLang={article.language ?? lang}
-                textToSpeak={`${article.title}. ${article.summary}. ${article.content.join(" ")}`}
-              />
+              <div className="btn-row flex w-full flex-wrap items-start gap-2.5">
+                <ArticleListenButton
+                  uiLang={lang}
+                  contentLang={article.language ?? lang}
+                  textToSpeak={`${article.title}. ${article.summary}. ${article.content.join(" ")}`}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="md"
+                  onClick={() => {
+                    if (typeof window !== "undefined") window.print();
+                  }}
+                  aria-label={c.printAria}
+                  className="print:hidden"
+                >
+                  <PrinterIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-(--dur-fast) group-hover:text-foreground motion-reduce:transition-none" aria-hidden="true" />
+                  <span>{c.printLabel}</span>
+                </Button>
+              </div>
             }
           />
 
-          <div lang={article.language} className={`mt-10 space-y-5 ${HEALTH_ARTICLE_PROSE_CLASS}`}>
+          <div lang={article.language} className={`mt-7 space-y-5 sm:mt-8 ${HEALTH_ARTICLE_PROSE_CLASS}`}>
             {article.content.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
@@ -269,7 +303,7 @@ export function NewsArticleView({ id }: { id: string }) {
             >
               <h2
                 id="article-caravan"
-                className="text-section font-semibold text-foreground"
+                className={HEALTH_ARTICLE_SECTION_H2_CLASS}
               >
                 {c.caravanHeading}
               </h2>
@@ -277,10 +311,9 @@ export function NewsArticleView({ id }: { id: string }) {
                 lang={article.language}
                 className="mt-4 space-y-3 text-reading text-foreground"
               >
-                <div className="flex items-start gap-2.5">
-                  <dt className="sr-only">{c.where}</dt>
-                  <PinIcon aria-hidden="true" className="mt-1.5 h-4 w-4 shrink-0 text-sapphire" />
-                  <dd>
+                <div className="min-w-0">
+                  <dt className="inline font-semibold text-foreground">{c.where}:</dt>{" "}
+                  <dd className="inline">
                     <span className="font-semibold text-foreground">
                       {article.caravanDetails.village}
                     </span>
@@ -289,17 +322,15 @@ export function NewsArticleView({ id }: { id: string }) {
                     </span>
                   </dd>
                 </div>
-                <div className="flex items-start gap-2.5">
-                  <dt className="sr-only">{c.when}</dt>
-                  <ClockIcon aria-hidden="true" className="mt-1.5 h-4 w-4 shrink-0 text-sapphire" />
-                  <dd className="tabular-nums">
+                <div className="min-w-0">
+                  <dt className="inline font-semibold text-foreground">{c.when}:</dt>{" "}
+                  <dd className="inline tabular-nums">
                     <time dateTime={article.date}>{formatNewsDate(article.date, lang)}</time>
-                    <span aria-hidden="true" className="mx-2 inline-block h-3.5 w-px align-middle bg-border" />
-                    <span>{article.caravanDetails.hours}</span>
+                    <span>, {article.caravanDetails.hours}</span>
                   </dd>
                 </div>
                 {article.caravanDetails.freeServices.length > 0 && (
-                  <div className="pt-1 text-muted-foreground">
+                  <div className="min-w-0 pt-1 text-muted-foreground">
                     <dt className="inline font-semibold text-foreground">{c.freeServices}</dt>{" "}
                     <dd className="inline text-foreground">
                       {article.caravanDetails.freeServices.join(", ")}
@@ -307,7 +338,9 @@ export function NewsArticleView({ id }: { id: string }) {
                   </div>
                 )}
               </dl>
-              <CaravanPassActions article={article} lang={lang} />
+              <div className="print:hidden">
+                <CaravanPassActions article={article} lang={lang} />
+              </div>
             </section>
           )}
 
@@ -318,7 +351,7 @@ export function NewsArticleView({ id }: { id: string }) {
             >
               <h2
                 id="article-prevention"
-                className="text-section font-semibold text-foreground"
+                className={HEALTH_ARTICLE_SECTION_H2_CLASS}
               >
                 {c.prevention}
               </h2>
@@ -335,7 +368,7 @@ export function NewsArticleView({ id }: { id: string }) {
                     >
                       {idx + 1}
                     </span>
-                    <span>{step}</span>
+                    <span className="min-w-0 flex-1">{step}</span>
                   </li>
                 ))}
               </ol>
@@ -360,7 +393,7 @@ export function NewsArticleView({ id }: { id: string }) {
             }))}
           />
 
-          <TopicNextSteps lang={lang} topicTitle={article.title} className="mt-12" />
+          <MedicalSafetyDisclaimer lang={lang} className="mt-12" />
         </article>
       </HealthArticleShell>
     </main>

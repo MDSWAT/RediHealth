@@ -3,6 +3,7 @@ import type { Lang } from "@/lib/i18n/translations";
 export type MedicalGlossaryCategory =
   | "diabet"
   | "cardiologie"
+  | "sanatate-mintala"
   | "analize"
   | "preventie"
   | "cnas"
@@ -321,6 +322,97 @@ export const ROMANIAN_MEDICAL_GLOSSARY: DualRegisterGlossaryEntry[] = [
       "Urgențele spitalului. Se mai numesc UPU. Sunt deschise zi și noapte pentru cazurile grave.",
     relatedTopicSlug: "heart-health",
   },
+  {
+    id: "anxietate",
+    plainTermRo: "Anxietate (neliniște și teamă care nu trec)",
+    formalTermRo: "Tulburare de anxietate",
+    category: "sanatate-mintala",
+    layExplanationRo:
+      "Stare de încordare, îngrijorare intensă sau teamă care persistă săptămâni întregi și îți îngreunează somnul, munca sau viața de zi cu zi.",
+    clinicalSignificanceRo:
+      "Este o problemă de sănătate reală și tratabilă, nu o slăbiciune. Vorbește cu medicul de familie pentru evaluare și sprijin gratuit.",
+    speechTextRo:
+      "Anxietate, adică neliniște și teamă care nu trec. Este o problemă de sănătate tratabilă, nu o slăbiciune. Medicul de familie te poate ajuta.",
+    relatedTopicSlug: "mental-wellbeing",
+  },
+  {
+    id: "depresie",
+    plainTermRo: "Depresie (tristețe adâncă și lipsă de energie)",
+    formalTermRo: "Episod depresiv / Tulburare depresivă",
+    category: "sanatate-mintala",
+    layExplanationRo:
+      "Tristețe persistentă, lipsă de chef, oboseală sau pierderea interesului pentru lucrurile obișnuite, care durează cel puțin 2 săptămâni.",
+    clinicalSignificanceRo:
+      "Se poate trata prin consiliere sau tratament recomandat de medic. Dacă apar gânduri de a-ți face rău, cere ajutor imediat sau sună la 112.",
+    speechTextRo:
+      "Depresie, adică tristețe adâncă și lipsă de energie timp de cel puțin două săptămâni. Se poate trata cu ajutorul medicului. Dacă ai gânduri de a-ți face rău, sună la 112.",
+    relatedTopicSlug: "mental-wellbeing",
+  },
+  {
+    id: "atac-de-panica",
+    plainTermRo: "Atac de panică (val brusc de frică puternică)",
+    formalTermRo: "Atac de panică",
+    category: "sanatate-mintala",
+    layExplanationRo:
+      "Val brusc și intens de frică, cu bătăi rapide ale inimii, tremur, transpirație, amețeală sau senzație de lipsă de aer. De obicei atinge vârful în câteva minute.",
+    clinicalSignificanceRo:
+      "Deși este foarte sperietor, atacul de panică trece și nu pune viața în pericol. Dacă ai prima dată durere puternică în piept, verifică la medic sau sună la 112.",
+    speechTextRo:
+      "Atac de panică. Este un val brusc de frică puternică, cu inimă grăbită și respirație scurtă, care atinge vârful în câteva minute și apoi scade.",
+    relatedTopicSlug: "mental-wellbeing",
+  },
+  {
+    id: "insomnie",
+    plainTermRo: "Insomnie (greutate la adormire sau treziri dese)",
+    formalTermRo: "Insomnie cronică / Tulburare de somn",
+    category: "sanatate-mintala",
+    layExplanationRo:
+      "Adormi greu, te trezești des noaptea sau te trezești prea devreme și nu poți adormi la loc, mai multe nopți pe săptămână.",
+    clinicalSignificanceRo:
+      "Lipsa somnului afectează tensiunea, glicemia și starea emoțională. Orele fixe de culcare și limitarea ecranelor seara ajută; dacă durează peste 3 săptămâni, mergi la medic.",
+    speechTextRo:
+      "Insomnie. Înseamnă că adormi greu sau te trezești des noaptea. Dacă durează mai mult de trei săptămâni, vorbește cu medicul de familie.",
+    relatedTopicSlug: "mental-wellbeing",
+  },
+  {
+    id: "stres-cronic",
+    plainTermRo: "Stres prelungit și epuizare",
+    formalTermRo: "Stres cronic / Sindrom de epuizare",
+    category: "sanatate-mintala",
+    layExplanationRo:
+      "Încordare continuă timp de luni de zile, când corpul rămâne mereu în alertă. Poate da dureri de cap, stomac strâns, iritabilitate și oboseală care nu trece cu odihna.",
+    clinicalSignificanceRo:
+      "Stresul cronic crește tensiunea arterială și slăbește imunitatea. Pauzele regulate, mișcarea și discuția cu o persoană de încredere sau cu medicul ajută recuperarea.",
+    speechTextRo:
+      "Stres prelungit și epuizare. Corpul rămâne mereu în alertă și apar dureri de cap, stomac strâns și oboseală care nu trece.",
+    relatedTopicSlug: "mental-wellbeing",
+  },
+  {
+    id: "antidepresiv",
+    plainTermRo: "Antidepresiv (tratament pentru echilibrul emoțional)",
+    formalTermRo: "Antidepresiv / Anxiolitic (ISRS)",
+    category: "sanatate-mintala",
+    layExplanationRo:
+      "Medicament prescris de medic care ajută la echilibrarea chimiei creierului în depresie sau anxietate severă. Nu dă dependență ca somniferele.",
+    clinicalSignificanceRo:
+      "Efectul se simte treptat după 2 până la 4 săptămâni. Nu îl opri brusc: oprirea bruscă poate da amețeli, greață și revenirea simptomelor; redu doza doar cu medicul.",
+    speechTextRo:
+      "Antidepresiv. Efectul apare treptat după două până la patru săptămâni. Nu îl opri brusc fără sfatul medicului.",
+    relatedTopicSlug: "mental-wellbeing",
+  },
+  {
+    id: "consiliere-psihologica",
+    plainTermRo: "Consiliere psihologică (sprijin prin discuție)",
+    formalTermRo: "Psihoterapie / Consiliere psihologică",
+    category: "sanatate-mintala",
+    layExplanationRo:
+      "Întâlniri confidențiale cu un specialist care te ascultă fără să te judece și te ajută să găsești moduri practice de a face față fricii, tristeții sau traumelor.",
+    clinicalSignificanceRo:
+      "În România, unele ședințe pot fi decontate prin bilet de trimitere de la medicul de familie sau psihiatru.",
+    speechTextRo:
+      "Consiliere psihologică. Întâlniri confidențiale cu un specialist care te ajută să faci față tristeții, fricii sau stresului.",
+    relatedTopicSlug: "mental-wellbeing",
+  },
 ];
 
 export interface LocalizedGlossaryText {
@@ -556,6 +648,76 @@ export const GLOSSARY_TRANSLATIONS: Record<
       speechText:
         "Больница, отделение неотложной помощи. Он открыт днем ​​и ночью для серьезных чрезвычайных ситуаций.",
     },
+    anxietate: {
+      plainTerm: "Тревога (беспокойство, которое не проходит)",
+      formalTerm: "Тревожное расстройство",
+      layExplanation:
+        "Состояние сильного напряжения, тревожных мыслей или страха, которое длится неделями и мешает сну, работе и повседневным делам.",
+      clinicalSignificance:
+        "Это реальное и поддающееся лечению состояние, а не слабость характера. Обратитесь к семейному врачу за оценкой и помощью.",
+      speechText:
+        "Тревога, или тревожное расстройство. Это состояние сильного беспокойства, которое длится неделями. Оно хорошо поддается лечению при помощи врача.",
+    },
+    depresie: {
+      plainTerm: "Депрессия (глубокая подавленность и упадок сил)",
+      formalTerm: "Депрессивный эпизод",
+      layExplanation:
+        "Постоянное подавленное настроение, усталость и потеря интереса к привычным делам, которые длятся не менее 2 недель.",
+      clinicalSignificance:
+        "Лечится с помощью консультаций специалиста или назначенного врачом лечения. При мыслях о самоповреждении немедленно звоните 112.",
+      speechText:
+        "Депрессия. Это стойкая подавленность и усталость не менее двух недель. При мыслях о том, чтобы причинить себе вред, сразу звоните 112.",
+    },
+    "atac-de-panica": {
+      plainTerm: "Паническая атака (резкий приступ страха)",
+      formalTerm: "Паническая атака",
+      layExplanation:
+        "Внезапный сильный приступ страха с учащенным сердцебиением, дрожью, головокружением или нехваткой воздуха. Пик обычно длится несколько минут.",
+      clinicalSignificance:
+        "Приступ очень пугает, но проходит и не опасен для жизни. Если впервые появилась сильная боль в груди, обратитесь к врачу или позвоните 112.",
+      speechText:
+        "Паническая атака. Это внезапный сильный приступ страха и сердцебиения, который достигает пика за несколько минут и затем проходит.",
+    },
+    insomnie: {
+      plainTerm: "Бессонница (трудности со сном)",
+      formalTerm: "Хроническая инсомния",
+      layExplanation:
+        "Трудно заснуть, вы часто просыпаетесь ночью или слишком рано утром несколько раз в неделю.",
+      clinicalSignificance:
+        "Нехватка сна влияет на давление, уровень сахара в крови и настроение. Если проблемы со сном длятся больше 3 недель, поговорите с врачом.",
+      speechText:
+        "Бессонница. Когда трудно уснуть или сон часто прерывается. Если это длится больше трех недель, обратитесь к врачу.",
+    },
+    "stres-cronic": {
+      plainTerm: "Длительный стресс и истощение",
+      formalTerm: "Хронический стресс / Синдром выгорания",
+      layExplanation:
+        "Длительное напряжение, при котором организм месяцами остается в состоянии тревоги. Вызывает головную боль, тяжесть в животе и усталость.",
+      clinicalSignificance:
+        "Хронический стресс повышает давление и снижает иммунитет. Регулярный отдых, движение и разговор со специалистом помогают восстановлению.",
+      speechText:
+        "Длительный стресс и истощение. Организм долго остается в напряжении, вызывая головную боль и усталость.",
+    },
+    antidepresiv: {
+      plainTerm: "Антидепрессант (лекарство для душевного равновесия)",
+      formalTerm: "Антидепрессант / Анксиолитик (СИОЗС)",
+      layExplanation:
+        "Лекарство по рецепту врача, помогающее восстановить баланс нервной системы при депрессии или тяжелой тревоге.",
+      clinicalSignificance:
+        "Действие ощущается постепенно через 2–4 недели. Не прекращайте прием резко: это вызывает головокружение и возврат симптомов. Снижайте дозу только с врачом.",
+      speechText:
+        "Антидепрессант. Эффект появляется постепенно через две или четыре недели. Нельзя резко прекращать прием без совета врача.",
+    },
+    "consiliere-psihologica": {
+      plainTerm: "Психологическая помощь (поддержка в беседе)",
+      formalTerm: "Психотерапия / Психологическое консультирование",
+      layExplanation:
+        "Конфиденциальные встречи со специалистом, который выслушает без осуждения и поможет справиться со страхом, грустью или тяжелым опытом.",
+      clinicalSignificance:
+        "Семейный врач или психиатр может подсказать, где получить бесплатную или субсидируемую помощь в вашем регионе.",
+      speechText:
+        "Психологическая помощь. Конфиденциальные беседы со специалистом, который помогает справиться со страхом, грустью и стрессом.",
+    },
   },
 
   en: {
@@ -788,6 +950,76 @@ export const GLOSSARY_TRANSLATIONS: Record<
         "For life-threatening situations: accidents, chest pain, loss of consciousness (coma). You are not seen in order of arrival. The most serious cases go first.",
       speechText:
         "Hospital emergency room. It is open day and night for serious emergencies.",
+    },
+    anxietate: {
+      plainTerm: "Anxiety (persistent worry and tension)",
+      formalTerm: "Anxiety disorder",
+      layExplanation:
+        "Ongoing feelings of intense worry, fear or inner tension lasting for weeks and making sleep, work or daily tasks harder.",
+      clinicalSignificance:
+        "It is a real and treatable health condition, not a personal weakness. Speak with your family doctor for calm support and assessment.",
+      speechText:
+        "Anxiety, or persistent worry and tension. It is a treatable health condition, not a weakness. Your family doctor can help.",
+    },
+    depresie: {
+      plainTerm: "Depression (deep low mood and low energy)",
+      formalTerm: "Depressive episode / Depressive disorder",
+      layExplanation:
+        "Persistent sadness, deep tiredness or loss of interest in everyday activities lasting at least 2 weeks.",
+      clinicalSignificance:
+        "It can improve with talking therapy or doctor-prescribed medicine. If you have thoughts of harming yourself, get urgent help or call 112.",
+      speechText:
+        "Depression, or deep low mood and fatigue lasting at least two weeks. Treatment helps. If you have thoughts of self-harm, call 112.",
+    },
+    "atac-de-panica": {
+      plainTerm: "Panic attack (sudden wave of intense fear)",
+      formalTerm: "Panic attack",
+      layExplanation:
+        "A sudden surge of strong fear with a racing heart, shaking, sweating, dizziness or shortness of breath. It usually peaks within minutes.",
+      clinicalSignificance:
+        "Although very frightening, a panic attack passes and is not life-threatening. If you get severe chest pain for the first time, seek medical advice or call 112.",
+      speechText:
+        "Panic attack. A sudden wave of intense fear with a racing heart and short breath that peaks within minutes and then passes.",
+    },
+    insomnie: {
+      plainTerm: "Insomnia (trouble falling or staying asleep)",
+      formalTerm: "Chronic insomnia / Sleep disorder",
+      layExplanation:
+        "Difficulty falling asleep, waking often at night, or waking too early several nights a week.",
+      clinicalSignificance:
+        "Poor sleep affects blood pressure, blood sugar and mood. Regular sleep hours help; if it lasts over 3 weeks, talk to a doctor.",
+      speechText:
+        "Insomnia. Trouble falling asleep or waking often during the night. If it lasts more than three weeks, speak to your doctor.",
+    },
+    "stres-cronic": {
+      plainTerm: "Chronic stress and exhaustion",
+      formalTerm: "Chronic stress / Burnout",
+      layExplanation:
+        "Long-lasting tension where your body stays on high alert for months, causing headaches, tight stomach, irritability and tiredness that rest does not fix.",
+      clinicalSignificance:
+        "Long-term stress raises blood pressure and lowers immunity. Regular breaks, movement and speaking with someone you trust or a doctor support recovery.",
+      speechText:
+        "Chronic stress and exhaustion. Your body stays on high alert, causing headaches, tension and ongoing tiredness.",
+    },
+    antidepresiv: {
+      plainTerm: "Antidepressant (medicine for mood balance)",
+      formalTerm: "Antidepressant / Anxiolytic (SSRI)",
+      layExplanation:
+        "A doctor-prescribed medicine that helps restore chemical balance in the brain during depression or severe anxiety. It does not cause addiction like sleeping pills.",
+      clinicalSignificance:
+        "Benefits are felt gradually after 2 to 4 weeks. Never stop suddenly: stopping abruptly can cause dizziness, nausea and returning symptoms; reduce doses only with a doctor.",
+      speechText:
+        "Antidepressant. Benefits are felt gradually after two to four weeks. Never stop taking it suddenly without speaking to your doctor.",
+    },
+    "consiliere-psihologica": {
+      plainTerm: "Psychological counselling (talking support)",
+      formalTerm: "Psychotherapy / Psychological counselling",
+      layExplanation:
+        "Confidential sessions with a trained professional who listens without judgement and helps you find practical ways to cope with fear, sadness or trauma.",
+      clinicalSignificance:
+        "Your family doctor or psychiatrist can guide you to free or state-covered counselling options in your area.",
+      speechText:
+        "Psychological counselling. Confidential sessions with a specialist who helps you cope with sadness, fear or stress.",
     },
   },
 
@@ -1022,6 +1254,76 @@ export const GLOSSARY_TRANSLATIONS: Record<
       speechText:
         "Urgjenca e spitalit. Është e hapur ditë e natë për urgjenca të rënda.",
     },
+    anxietate: {
+      plainTerm: "Ankthi (shqetësim dhe frikë që nuk kalojnë)",
+      formalTerm: "Çrregullim i ankthit",
+      layExplanation:
+        "Ndjesi tensioni, shqetësimi të fortë ose frike që zgjat me javë dhe ta vështirëson gjumin, punën ose jetën e përditshme.",
+      clinicalSignificance:
+        "Është gjendje shëndetësore reale dhe e trajtueshme, jo dobësi. Fol me mjekun e familjes për vlerësim dhe mbështetje.",
+      speechText:
+        "Ankthi, ose shqetësim dhe frikë që nuk kalojnë. Është gjendje e trajtueshme, jo dobësi. Mjeku i familjes mund të të ndihmojë.",
+    },
+    depresie: {
+      plainTerm: "Depresioni (trishtim i thellë dhe mungesë energjie)",
+      formalTerm: "Episod depresiv",
+      layExplanation:
+        "Trishtim i vazhdueshëm, lodhje e thellë ose humbje e interesit për gjërat e zakonshme që zgjat të paktën 2 javë.",
+      clinicalSignificance:
+        "Trajtohet me këshillim ose barna të rekomanduara nga mjeku. Nëse ke mendime për të lënduar veten, kërko ndihmë menjëherë ose telefono 112.",
+      speechText:
+        "Depresioni, trishtim i thellë dhe lodhje për të paktën dy javë. Trajtimi ndihmon. Nëse ke mendime për të lënduar veten, telefono 112.",
+    },
+    "atac-de-panica": {
+      plainTerm: "Sulmi i panikut (valë e papritur frike të fortë)",
+      formalTerm: "Sulm paniku",
+      layExplanation:
+        "Valë e papritur frike të fortë me rrahje të shpejta zemre, dridhje, djersitje, marramendje ose mungesë ajri. Zakonisht arrin kulmin brenda pak minutash.",
+      clinicalSignificance:
+        "Edhe pse frikëson shumë, kalon dhe nuk rrezikon jetën. Nëse ke për herë të parë dhimbje të fortë gjoksi, kontrollohu te mjeku ose telefono 112.",
+      speechText:
+        "Sulmi i panikut. Valë e papritur frike me rrahje të shpejta zemre dhe frymëmarrje të shkurtër që kalon pas pak minutash.",
+    },
+    insomnie: {
+      plainTerm: "Pagjumësia (vështirësi për të fjetur)",
+      formalTerm: "Insomnia kronike / Çrregullim i gjumit",
+      layExplanation:
+        "E ke të vështirë të zërë gjumi, zgjohesh shpesh natën ose shumë herët në mëngjes, disa net në javë.",
+      clinicalSignificance:
+        "Mungesa e gjumit ndikon në tension, sheqerin në gjak dhe gjendjen emocionale. Orari i rregullt ndihmon; nëse zgjat mbi 3 javë, fol me mjekun.",
+      speechText:
+        "Pagjumësia. Vështirësi për të fjetur ose zgjime të shpeshta natën. Nëse zgjat mbi tre javë, fol me mjekun e familjes.",
+    },
+    "stres-cronic": {
+      plainTerm: "Stresi i zgjatur dhe lodhja e thellë",
+      formalTerm: "Stres kronik / Ezaurim",
+      layExplanation:
+        "Tension i vazhdueshëm me muaj kur trupi mbetet në alarm. Mund të sjellë dhimbje koke, shtrëngim stomaku dhe lodhje që nuk kalon me pushim.",
+      clinicalSignificance:
+        "Stresi i zgjatur rrit tensionin dhe dobëson imunitetin. Pushimet e rregullta, lëvizja dhe biseda me mjekun ose një person të besuar ndihmojnë.",
+      speechText:
+        "Stresi i zgjatur dhe lodhja e thellë. Trupi mbetet në gjendje alarmi dhe shkakton dhimbje koke e lodhje të vazhdueshme.",
+    },
+    antidepresiv: {
+      plainTerm: "Antidepresiv (bar për ekuilibrin emocional)",
+      formalTerm: "Antidepresiv / Anksiolitik (SSRI)",
+      layExplanation:
+        "Bar i dhënë me recetë nga mjeku që ndihmon në rikthimin e ekuilibrit në tru gjatë depresionit ose ankthit të rëndë.",
+      clinicalSignificance:
+        "Efekti ndihet gradualisht pas 2 deri në 4 javë. Mos e ndërprit papritur: mund të japë marramendje dhe rikthim të shenjave; ule dozën vetëm me mjekun.",
+      speechText:
+        "Antidepresiv. Efekti ndihet gradualisht pas dy deri në katër javë. Mos e ndërprit papritur pa këshillën e mjekut.",
+    },
+    "consiliere-psihologica": {
+      plainTerm: "Këshillimi psikologjik (mbështetje me bisedë)",
+      formalTerm: "Psikoterapi / Këshillim psikologjik",
+      layExplanation:
+        "Takime konfidenciale me një specialist që të dëgjon pa të gjykuar dhe të ndihmon të gjesh mënyra praktike për të përballuar frikën ose trishtimin.",
+      clinicalSignificance:
+        "Mjeku i familjes ose një mediator mund të të orientojë drejt shërbimeve falas ose të mbuluara nga sigurimi shëndetësor.",
+      speechText:
+        "Këshillimi psikologjik. Takime konfidenciale me një specialist që të ndihmon të përballosh trishtimin, frikën dhe stresin.",
+    },
   },
 
   it: {
@@ -1254,6 +1556,76 @@ export const GLOSSARY_TRANSLATIONS: Record<
         "Per situazioni che mettono in pericolo la vita: incidenti, dolore al petto, perdita di coscienza (coma). Non entri in ordine di arrivo. Passano prima i casi più gravi.",
       speechText:
         "Pronto soccorso. È aperto giorno e notte per le emergenze gravi.",
+    },
+    anxietate: {
+      plainTerm: "Ansia (preoccupazione e tensione che non passano)",
+      formalTerm: "Disturbo d'ansia",
+      layExplanation:
+        "Stato di tensione, paura o preoccupazione intensa che dura settimane e rende difficili il sonno, il lavoro o la vita quotidiana.",
+      clinicalSignificance:
+        "È una condizione reale e curabile, non una debolezza. Parla con il medico di famiglia per una valutazione e aiuto.",
+      speechText:
+        "Ansia, cioè preoccupazione e tensione che non passano. È una condizione curabile, non una debolezza.",
+    },
+    depresie: {
+      plainTerm: "Depressione (tristezza profonda e mancanza di energia)",
+      formalTerm: "Episodio depressivo",
+      layExplanation:
+        "Tristezza persistente, stanchezza profonda o perdita di interesse per le attività abituali che dura almeno 2 settimane.",
+      clinicalSignificance:
+        "Si può curare con colloqui o farmaci prescritti dal medico. Se hai pensieri di farti del male, chiedi aiuto subito o chiama il 112.",
+      speechText:
+        "Depressione, tristezza profonda e stanchezza per almeno due settimane. Se hai pensieri di farti del male, chiama subito il 112.",
+    },
+    "atac-de-panica": {
+      plainTerm: "Attacco di panico (ondata improvvisa di paura intensa)",
+      formalTerm: "Attacco di panico",
+      layExplanation:
+        "Ondata improvvisa di forte paura con battito rapido, tremore, sudorazione, capogiri o fiato corto. Di solito raggiunge il picco in pochi minuti.",
+      clinicalSignificance:
+        "Anche se spaventa molto, passa e non mette in pericolo la vita. Se avverti per la prima volta un forte dolore al petto, chiama il medico o il 112.",
+      speechText:
+        "Attacco di panico. È un'ondata improvvisa di paura intensa con battito accelerato che passa dopo pochi minuti.",
+    },
+    insomnie: {
+      plainTerm: "Insonnia (difficoltà a dormire)",
+      formalTerm: "Insonnia cronica / Disturbo del sonno",
+      layExplanation:
+        "Difficoltà ad addormentarti, risvegli frequenti di notte o risveglio troppo presto al mattino per più notti a settimana.",
+      clinicalSignificance:
+        "La mancanza di sonno influisce su pressione, glicemia e umore. Orari regolari aiutano; se dura oltre 3 settimane, parlane con il medico.",
+      speechText:
+        "Insonnia. Difficoltà ad addormentarsi o risvegli frequenti. Se dura più di tre settimane, parlane con il medico.",
+    },
+    "stres-cronic": {
+      plainTerm: "Stress prolungato ed esaurimento",
+      formalTerm: "Stress cronico / Esaurimento",
+      layExplanation:
+        "Tensione continua per mesi in cui il corpo resta sempre in allerta. Può causare mal di testa, mal di stomaco e stanchezza che non passa.",
+      clinicalSignificance:
+        "Lo stress cronico alza la pressione e abbassa le difese. Pause regolari, movimento e il confronto con un medico aiutano a recuperare.",
+      speechText:
+        "Stress prolungato ed esaurimento. Il corpo resta sempre in allerta e provoca stanchezza e tensione.",
+    },
+    antidepresiv: {
+      plainTerm: "Antidepressivo (cura per l'equilibrio emotivo)",
+      formalTerm: "Antidepressivo / Ansiolitico (SSRI)",
+      layExplanation:
+        "Medicinale prescritto dal medico che aiuta a riequilibrare il sistema nervoso in caso di depressione o ansia grave.",
+      clinicalSignificance:
+        "L'effetto si sente gradualmente dopo 2–4 settimane. Non interromperlo di colpo: può causare capogiri e ritorno dei sintomi; riduci solo con il medico.",
+      speechText:
+        "Antidepressivo. L'effetto arriva gradualmente dopo due o quattro settimane. Non sospenderlo bruscamente senza il parere del medico.",
+    },
+    "consiliere-psihologica": {
+      plainTerm: "Supporto psicologico (aiuto attraverso il colloquio)",
+      formalTerm: "Psicoterapia / Consulenza psicologica",
+      layExplanation:
+        "Incontri riservati con uno specialista che ascolta senza giudicare e aiuta a trovare modi pratici per affrontare paura, tristezza o traumi.",
+      clinicalSignificance:
+        "Il medico di famiglia può indirizzarti verso consultori o servizi pubblici gratuiti o con ticket nella tua zona.",
+      speechText:
+        "Supporto psicologico. Incontri riservati con uno specialista per affrontare tristezza, paura o stress.",
     },
   },
 
@@ -1488,6 +1860,76 @@ export const GLOSSARY_TRANSLATIONS: Record<
       speechText:
         "Hitni bolnički prijem, odnosno OHBP. Otvoren je danju i noću za teška hitna stanja.",
     },
+    anxietate: {
+      plainTerm: "Tjeskoba (dugotrajan nemir i strah)",
+      formalTerm: "Anksiozni poremećaj",
+      layExplanation:
+        "Stanje stalne napetosti, jake brige ili straha koje traje tjednima i otežava san, posao ili svakodnevni život.",
+      clinicalSignificance:
+        "To je stvarno i izlječivo zdravstveno stanje, a ne slabost. Obrati se obiteljskom liječniku za razgovor i procjenu.",
+      speechText:
+        "Tjeskoba ili anksioznost. To je izlječivo zdravstveno stanje, a ne slabost. Obiteljski liječnik ti može pomoći.",
+    },
+    depresie: {
+      plainTerm: "Depresija (duboka tuga i manjak energije)",
+      formalTerm: "Depresivna epizoda",
+      layExplanation:
+        "Dugotrajna tuga, iscrpljenost ili gubitak interesa za uobičajene aktivnosti koji traje najmanje 2 tjedna.",
+      clinicalSignificance:
+        "Može se liječiti savjetovanjem ili lijekovima koje propisuje liječnik. Ako imaš misli o samoozljeđivanju, odmah zatraži pomoć ili nazovi 112.",
+      speechText:
+        "Depresija, dugotrajna tuga i umor najmanje dva tjedna. Liječenje pomaže. Ako imaš misli o samoozljeđivanju, nazovi 112.",
+    },
+    "atac-de-panica": {
+      plainTerm: "Napadaj panike (iznenadni val jakog straha)",
+      formalTerm: "Panični napadaj",
+      layExplanation:
+        "Nagao i snažan val straha uz lupanje srca, drhtanje, znojenje, vrtoglavicu ili osjećaj manjka zraka. Obično prođe za nekoliko minuta.",
+      clinicalSignificance:
+        "Iako je vrlo zastrašujući, napadaj panike prolazi i ne ugrožava život. Ako prvi put osjetiš jaku bol u prsima, javi se liječniku ili nazovi 112.",
+      speechText:
+        "Napadaj panike. Nagao val snažnog straha i lupanja srca koji dostigne vrhunac za nekoliko minuta i zatim prolazi.",
+    },
+    insomnie: {
+      plainTerm: "Nesanica (teškoće sa spavanjem)",
+      formalTerm: "Kronična nesanica (insomnija)",
+      layExplanation:
+        "Teško toneš u san, često se budiš noću ili prerano ujutro nekoliko noći u tjednu.",
+      clinicalSignificance:
+        "Manjak sna utječe na krvni tlak, šećer u krvi i raspoloženje. Redovit raspored pomaže; ako traje dulje od 3 tjedna, razgovaraj s liječnikom.",
+      speechText:
+        "Nesanica. Teškoće s uspavljivanjem ili često buđenje noću. Ako traje dulje od tri tjedna, javi se liječniku.",
+    },
+    "stres-cronic": {
+      plainTerm: "Dugotrajni stres i iscrpljenost",
+      formalTerm: "Kronični stres / Sindrom izgaranja",
+      layExplanation:
+        "Stalna napetost mjesecima pri kojoj tijelo ostaje u stanju pripravnosti. Može uzrokovati glavobolju, grčeve u želucu i stalni umor.",
+      clinicalSignificance:
+        "Kronični stres podiže tlak i slabi imunitet. Redovite pauze, kretanje i razgovor s liječnikom pomažu oporavku.",
+      speechText:
+        "Dugotrajni stres i iscrpljenost. Tijelo ostaje u stanju napetosti i izaziva glavobolje i stalni umor.",
+    },
+    antidepresiv: {
+      plainTerm: "Antidepresiv (lijek za emocionalnu ravnotežu)",
+      formalTerm: "Antidepresiv / Anksiolitik (SSRI)",
+      layExplanation:
+        "Lijek na liječnički recept koji pomaže uspostaviti ravnotežu u mozgu kod depresije ili teške tjeskobe.",
+      clinicalSignificance:
+        "Djelovanje se osjeti postupno nakon 2 do 4 tjedna. Ne prekidaj ga naglo: nagli prekid može izazvati vrtoglavicu i povratak tegoba; dozu smanjuj samo s liječnikom.",
+      speechText:
+        "Antidepresiv. Učinak se javlja postupno nakon dva do četiri tjedna. Nikada ga ne prekidaj naglo bez savjeta liječnika.",
+    },
+    "consiliere-psihologica": {
+      plainTerm: "Psihološko savjetovanje (podrška kroz razgovor)",
+      formalTerm: "Psihoterapija / Psihološko savjetovanje",
+      layExplanation:
+        "Povjerljivi razgovori sa stručnjakom koji te sluša bez osuđivanja i pomaže ti pronaći načine za nošenje sa strahom, tugom ili stresom.",
+      clinicalSignificance:
+        "Obiteljski liječnik može te uputiti na besplatno ili preko HZZO-a pokriveno savjetovanje u tvojoj okolici.",
+      speechText:
+        "Psihološko savjetovanje. Povjerljivi razgovori sa stručnjakom za lakše nošenje s tugom, strahom i stresom.",
+    },
   },
 
   rom: {
@@ -1721,6 +2163,76 @@ export const GLOSSARY_TRANSLATIONS: Record<
       speechText:
         "Bolnitsaki sigardiari. Si putardi dives thaj rat vash phare sastipnaske sigardiarja.",
     },
+    anxietate: {
+      plainTerm: "Anksieteta (dar thaj briga so na nakhel)",
+      formalTerm: "Tulburare e anksietataki",
+      layExplanation:
+        "Baro nervo thaj dar so achhel kurkenca thaj pharjarel cho sovipen, chi buchi vay o sako-divesko trajo.",
+      clinicalSignificance:
+        "Kadava si chacho sastipnasko problemo so shaj sastjarel pes, nane kovlipen. De svato che familijake doktoresa.",
+      speechText:
+        "Anksieteta, dar thaj briga so na nakhen. Shaj sastjarel pes, nane kovlipen.",
+    },
+    depresie: {
+      plainTerm: "Depresija (phari dukh ando ilo thaj bi-zoresko)",
+      formalTerm: "Depresivno epizodo",
+      layExplanation:
+        "Lungi dukh ando ilo, baro khinipen thaj xasarimos e interesosko, so trajil barem 2 kurke.",
+      clinicalSignificance:
+        "Shaj sastjarel pes duma-deipnasa vay drabensa katar o doktori. Te aven tuke gindura te dukhaves tut korkoro, akhar sigo ko 112.",
+      speechText:
+        "Depresija, phari dukh ando ilo barem duj kurke. Te si tut gindura te dukhaves tut korkoro, akhar sigo ko 112.",
+    },
+    "atac-de-panica": {
+      plainTerm: "Atako e panikako (sigo bari dar)",
+      formalTerm: "Atako e panikako",
+      layExplanation:
+        "Sigo thaj zurali dar, o ilo marel sigo, izdras, tatyos vay na resel tuke balval. Maj butivar nakhel pala xanci minutya.",
+      clinicalSignificance:
+        "Biyar kaj si but daravno, nakhel thaj na čhivel o trajo ando riziko. Te dukhal tut o kolin angluno var, dikh e doktores vaj akhar 112.",
+      speechText:
+        "Atako e panikako. Sigo bari dar zurales marime ilesa so nakhel pala xanci minutya.",
+    },
+    insomnie: {
+      plainTerm: "Insomnija (na-i sovipen)",
+      formalTerm: "Kronikani insomnija",
+      layExplanation:
+        "Phares soves, ushtes butivar ratjate vay but rano sabale, nekobor ratja ko kurko.",
+      clinicalSignificance:
+        "O bi-sovipnasko dukhavel i tensija, i glukoza thaj i godyi. Te trajil maj but katar 3 kurke, de svato e doktoresa.",
+      speechText:
+        "Insomnija, phares sovipen vay butivar ushtimos ratjate. Te trajil maj but katar trin kurke, de svato e doktoresa.",
+    },
+    "stres-cronic": {
+      plainTerm: "Lungo streso thaj pharo khinipen",
+      formalTerm: "Kronikano streso",
+      layExplanation:
+        "Lungo nervo chonenca kana o trupo achhel sa ando dar. Shaj anel dukh ando shero, dukh ando por thaj khinipen.",
+      clinicalSignificance:
+        "O lungo streso vazdel i tensija thaj tele peravel i zor e truposki. O hodinipe, o phirimos thaj o svato e doktoresa zhutin.",
+      speechText:
+        "Lungo streso thaj pharo khinipen. O trupo achhel ando nervo thaj anel dukh ando shero.",
+    },
+    antidepresiv: {
+      plainTerm: "Antidepresivo (drab vash i godyi thaj o ilo)",
+      formalTerm: "Antidepresivo / Anksiolitiko",
+      layExplanation:
+        "Drab dendo katar o doktori savo zhutil te lasel o balanso andi godyi kana si depresija vay phari anksieteta.",
+      clinicalSignificance:
+        "O efekto hatjarel pes pala 2 dzhi ko 4 kurke. Ma mukh les sigo bi e doktoresko: shaj anel sheresko phirimos thaj o nasvalipen palpale.",
+      speechText:
+        "Antidepresivo. O efekto avel pala duj dzhi ko shtar kurke. Ma mukh les sigo bi e doktoresko.",
+    },
+    "consiliere-psihologica": {
+      plainTerm: "Psihologikano svato (zhutimos duma-deipnasa)",
+      formalTerm: "Psihoterapija / Psihologikano konsiliro",
+      layExplanation:
+        "Garavde dikhibena ekhe specialistosa savo ashunel tut bi krisimasko thaj zhutil tut te nakhes o dar thaj i dukh.",
+      clinicalSignificance:
+        "Tiro familijako doktori shaj sikavel tut kaj si bi-loveske psihologikane servicya ande chi rig.",
+      speechText:
+        "Psihologikano svato. Garavdo dikhiben specialistosa te nakhes o dar, i dukh thaj o streso.",
+    },
   },
 };
 
@@ -1775,13 +2287,13 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "Мы не смогли найти это слово. Попробуйте другой.",
     categoryTablistAria: "Категории словаря",
     categories: {
-"preventie": "Профилактика",
-
-      all: "Все (22)",
+      all: "Все",
       diabet: "Диабет",
       cardiologie: "Сердце и кровяное давление",
+      "sanatate-mintala": "Психическое здоровье",
       analize: "Тесты и устройства",
-      cnas: "документы CNAS",
+      preventie: "Профилактика",
+      cnas: "Документы CNAS",
       urgente: "Чрезвычайные ситуации",
     },
   },
@@ -1798,9 +2310,10 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "Nu am găsit acest cuvânt. Încearcă altul.",
     categoryTablistAria: "Categorii din dicționar",
     categories: {
-      all: "Toate (23)",
+      all: "Toate",
       diabet: "Diabet",
       cardiologie: "Inimă și tensiune",
+      "sanatate-mintala": "Sănătate mintală",
       analize: "Analize și aparate",
       preventie: "Prevenție și vaccinuri",
       cnas: "Acte CNAS",
@@ -1819,9 +2332,10 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "We could not find this word. Try another one.",
     categoryTablistAria: "Dictionary categories",
     categories: {
-      all: "All (23)",
+      all: "All",
       diabet: "Diabetes",
       cardiologie: "Heart and blood pressure",
+      "sanatate-mintala": "Mental health",
       analize: "Tests and devices",
       preventie: "Prevention and vaccines",
       cnas: "CNAS papers",
@@ -1840,9 +2354,10 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "Nuk e gjetëm këtë fjalë. Provo një tjetër.",
     categoryTablistAria: "Kategoritë e fjalorit",
     categories: {
-      all: "Të gjitha (23)",
+      all: "Të gjitha",
       diabet: "Diabeti",
       cardiologie: "Zemra dhe tensioni",
+      "sanatate-mintala": "Shëndeti mendor",
       analize: "Analiza dhe aparate",
       preventie: "Parandalimi dhe vaksinat",
       cnas: "Dokumentet CNAS",
@@ -1861,9 +2376,10 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "Non abbiamo trovato questa parola. Provane un'altra.",
     categoryTablistAria: "Categorie del dizionario",
     categories: {
-      all: "Tutti (23)",
+      all: "Tutti",
       diabet: "Diabete",
       cardiologie: "Cuore e pressione",
+      "sanatate-mintala": "Salute mentale",
       analize: "Esami e apparecchi",
       preventie: "Prevenzione e vaccini",
       cnas: "Documenti CNAS",
@@ -1882,9 +2398,10 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "Nismo pronašli ovu riječ. Pokušaj drugu.",
     categoryTablistAria: "Kategorije rječnika",
     categories: {
-      all: "Sve (23)",
+      all: "Sve",
       diabet: "Dijabetes",
       cardiologie: "Srce i tlak",
+      "sanatate-mintala": "Mentalno zdravlje",
       analize: "Pretrage i uređaji",
       preventie: "Prevencija i cjepiva",
       cnas: "Dokumenti HZZO-a",
@@ -1903,9 +2420,10 @@ export const DUAL_REGISTER_GLOSSARY_UI_COPY: Record<Lang, DualRegisterGlossaryUi
     emptyState: "Na arakhljam akava alav. Probin aver.",
     categoryTablistAria: "Kategorije e alavareske",
     categories: {
-      all: "Savore (23)",
+      all: "Savore",
       diabet: "Dijabeto",
       cardiologie: "O ilo thaj i tensija",
+      "sanatate-mintala": "Sastipen e godyako",
       analize: "Analize thaj aparatura",
       preventie: "Arakhimos thaj vakcine",
       cnas: "Sastipnaske lila",

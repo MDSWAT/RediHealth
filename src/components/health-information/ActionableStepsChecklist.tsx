@@ -118,7 +118,7 @@ export function ActionableStepsChecklist({
 
   return (
     <section aria-labelledby="steps-heading" className={className}>
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
         <div className="min-w-0 flex-1">
           <h2 id="steps-heading" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
             {pickLocale(s.heading, currentLang)}
@@ -142,7 +142,7 @@ export function ActionableStepsChecklist({
                   <button
                     type="button"
                     onClick={resetChecks}
-                    className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2.5 text-body font-semibold text-sapphire underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft/50 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2.5 text-body font-semibold text-sapphire underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft/50 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:hover:bg-white/10 dark:hover:text-paper"
                   >
                     {RESET_LABELS[currentLang] ?? RESET_LABELS.ro}
                   </button>
@@ -210,7 +210,7 @@ export function ActionableStepsChecklist({
                   )}
                 </span>
 
-                <div>
+                <div className="min-w-0 flex-1">
                   <h3
                     className={`text-title font-semibold leading-snug transition-colors duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
                       isChecked ? "text-muted-foreground" : "text-foreground"

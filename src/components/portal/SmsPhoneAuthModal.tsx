@@ -8,7 +8,9 @@ import {
   ArrowRightIcon,
   ChevronRightIcon,
   DownloadIcon,
+  LockIcon,
   PhoneIcon,
+  ShieldIcon,
   UsersIcon,
 } from "@/components/ui/icons";
 import { useReadAloud } from "@/components/health-check/readingTools";
@@ -45,6 +47,9 @@ const authModalCopy: Record<
     invalidPhoneError: string;
     incompleteCodeError: string;
     tooManyAttempts: string;
+    noPatientRecord: string;
+    sharedPhoneError: string;
+    smsUnavailable: string;
     smsSent: string;
     smsSwitchHint: string;
     genericError: string;
@@ -62,6 +67,12 @@ const authModalCopy: Record<
     invalidPhoneError: "Напишите номер телефона, например 0721 000 000.",
     incompleteCodeError: "Введите 4 цифры из SMS.",
     tooManyAttempts: "Слишком много попыток. Подождите минуту и повторите попытку.",
+    noPatientRecord:
+      "Медицинская карта для этого номера телефона не найдена. Укажите номер с консультации или обратитесь к медиатору здоровья ниже.",
+    sharedPhoneError:
+      "Этот номер телефона привязан к нескольким пациентам. Откройте вашу личную ссылку или обратитесь к медиатору здоровья.",
+    smsUnavailable:
+      "Вход по SMS пока не активен. Используйте личную ссылку от вашей медицинской команды или обратитесь к медиатору здоровья.",
     smsSent: "Мы отправили вам код в текстовом сообщении.",
     smsSwitchHint: "Можете открыть SMS на телефоне, чтобы посмотреть код. Эта страница останется открытой.",
     genericError: "Что-то пошло не так. Попробуйте еще раз.",
@@ -78,6 +89,12 @@ const authModalCopy: Record<
     invalidPhoneError: "Scrie un număr de telefon, de exemplu 0721 000 000.",
     incompleteCodeError: "Scrie cele 4 cifre din SMS.",
     tooManyAttempts: "Ai încercat de prea multe ori. Așteaptă un minut și încearcă din nou.",
+    noPatientRecord:
+      "Nu am găsit un dosar medical pentru acest număr de telefon. Folosește numărul de la consultație sau cere ajutor unui mediator sanitar mai jos.",
+    sharedPhoneError:
+      "Acest număr apare la mai mulți pacienți. Deschide linkul personal primit de la echipa medicală sau cere ajutor unui mediator sanitar.",
+    smsUnavailable:
+      "Autentificarea prin SMS nu este activă încă. Folosește linkul personal primit de la echipa medicală sau cere ajutor unui mediator sanitar.",
     smsSent: "Ți-am trimis codul prin SMS.",
     smsSwitchHint: "Poți deschide mesajele SMS pe telefon ca să vezi codul. Această pagină rămâne deschisă și te așteaptă.",
     genericError: "Ceva nu a mers. Încearcă din nou.",
@@ -94,6 +111,12 @@ const authModalCopy: Record<
     invalidPhoneError: "Write a phone number, for example 0721 000 000.",
     incompleteCodeError: "Enter the 4 numbers from the SMS.",
     tooManyAttempts: "Too many tries. Wait a minute and try again.",
+    noPatientRecord:
+      "No medical record was found for this phone number. Use the number from your consultation or ask a health mediator below.",
+    sharedPhoneError:
+      "This phone number is linked to more than one patient. Open your personal portal link or ask a health mediator for help.",
+    smsUnavailable:
+      "SMS sign-in is not active yet. Use the personal link from your care team or ask a health mediator for help.",
     smsSent: "We sent you the code by text message.",
     smsSwitchHint: "You can open your SMS messages to check the code. This page stays open waiting for you.",
     genericError: "Something went wrong. Try again.",
@@ -110,6 +133,12 @@ const authModalCopy: Record<
     invalidPhoneError: "Shkruaj një numër telefoni, për shembull 0721 000 000.",
     incompleteCodeError: "Shkruaj 4 shifrat nga SMS-ja.",
     tooManyAttempts: "Provove shumë herë. Prit një minutë dhe provo përsëri.",
+    noPatientRecord:
+      "Nuk u gjet asnjë dosje mjekësore për këtë numër telefoni. Përdor numrin nga takimi mjekësor ose kërko ndihmë nga një mediator shëndetësor më poshtë.",
+    sharedPhoneError:
+      "Ky numër telefoni është i lidhur me më shumë se një pacient. Hap lidhjen tënde personale ose kërko ndihmë nga një mediator shëndetësor.",
+    smsUnavailable:
+      "Hyrja me SMS nuk është aktive ende. Përdor lidhjen personale nga ekipi mjekësor ose kërko ndihmë nga një mediator shëndetësor.",
     smsSent: "Ta dërguam kodin me SMS.",
     smsSwitchHint: "Mund t'i hapësh mesazhet SMS në telefon për të parë kodin. Kjo faqe mbetet e hapur.",
     genericError: "Diçka nuk shkoi. Provo përsëri.",
@@ -126,6 +155,12 @@ const authModalCopy: Record<
     invalidPhoneError: "Scrivi un numero di telefono, per esempio 0721 000 000.",
     incompleteCodeError: "Scrivi le 4 cifre dell'SMS.",
     tooManyAttempts: "Troppi tentativi. Aspetta un minuto e riprova.",
+    noPatientRecord:
+      "Nessun fascicolo sanitario trovato per questo numero di telefono. Usa il numero lasciato alla visita o chiedi aiuto a un mediatore sanitario qui sotto.",
+    sharedPhoneError:
+      "Questo numero di telefono è associato a più pazienti. Apri il tuo link personale o chiedi aiuto a un mediatore sanitario.",
+    smsUnavailable:
+      "L'accesso via SMS non è ancora attivo. Usa il link personale ricevuto dal team sanitario o chiedi aiuto a un mediatore sanitario.",
     smsSent: "Ti abbiamo mandato il codice via SMS.",
     smsSwitchHint: "Puoi aprire i messaggi SMS sul telefono per leggere il codice. Questa pagina resta aperta.",
     genericError: "Qualcosa non ha funzionato. Riprova.",
@@ -142,6 +177,12 @@ const authModalCopy: Record<
     invalidPhoneError: "Upiši broj telefona, na primjer 091 000 0000.",
     incompleteCodeError: "Upiši 4 broja iz SMS-a.",
     tooManyAttempts: "Previše pokušaja. Pričekaj minutu pa pokušaj ponovno.",
+    noPatientRecord:
+      "Nije pronađen zdravstveni karton za ovaj broj telefona. Upotrijebi broj s pregleda ili zatraži pomoć zdravstvenog medijatora niže.",
+    sharedPhoneError:
+      "Ovaj broj telefona povezan je s više pacijenata. Otvori svoju osobnu poveznicu ili zatraži pomoć zdravstvenog medijatora.",
+    smsUnavailable:
+      "Prijava putem SMS poruke još nije aktivna. Upotrijebi osobnu poveznicu od medicinskog tima ili zatraži pomoć zdravstvenog medijatora.",
     smsSent: "Poslali smo ti kod SMS porukom.",
     smsSwitchHint: "Možeš otvoriti SMS poruke na telefonu kako bi vidio kod. Ova stranica ostaje otvorena.",
     genericError: "Nešto nije uspjelo. Pokušaj ponovno.",
@@ -158,6 +199,12 @@ const authModalCopy: Record<
     invalidPhoneError: "Lekhav telefonesko gin, misal 0721 000 000.",
     incompleteCodeError: "Lekhav e 4 gina katar o SMS.",
     tooManyAttempts: "But zumavimata. Azhuker ekh minuta thaj zumav palem.",
+    noPatientRecord:
+      "Na arakhlam sastipnasko dosyaro vash kadava telefonesko gin. Labar o gin katar e konsultacia vay mang zhutipen katar o mediatori tele.",
+    sharedPhoneError:
+      "Kadava telefonesko gin si phandlo may but pacientenca. Putar cho personalo linko vay mang zhutipen katar o mediatori.",
+    smsUnavailable:
+      "O khuvipe katar SMS nane inke aktivo. Labar o personalo linko katar o timo vay mang zhutipen katar o mediatori.",
     smsSent: "Bichhaldyam tuke o kodo katar SMS.",
     smsSwitchHint: "Shaj putres e SMS mesažurya te dikhes o kodo. Kadi rig achhol putardi tuke.",
     genericError: "Vareso na kerdili mishto. Zumav palem.",
@@ -185,7 +232,13 @@ const CALM_EASE: [number, number, number, number] = [0.25, 1, 0.5, 1];
  * Uses a calm Apple-Health surface: spatial micro-float (disabled while typing or under
  * reduced motion), anticipation progress hairline, single-heading flow, and mediator fallback link.
  */
-export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }) {
+export function SmsPhoneAuthModal({
+  initialLang = "ro",
+  embedded = false,
+}: {
+  initialLang?: Lang;
+  embedded?: boolean;
+}) {
   const router = useRouter();
   const { lang: activeLang, t } = useSafeLanguage(initialLang);
   const lang = activeLang ?? initialLang;
@@ -209,6 +262,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
   const [sent, setSent] = useState(false);
 
   const otpInputRef = useRef<HTMLInputElement | null>(null);
+  const verifyingRef = useRef(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const sheenRef = useRef<HTMLDivElement>(null);
   const pointerTarget = useRef({ x: 0, y: 0, sx: 50, sy: 28, active: false });
@@ -228,7 +282,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
   };
 
   useEffect(() => {
-    if (calmMotion || isEditing) {
+    if (calmMotion || isEditing || embedded) {
       stopFloatLoop();
       pointerTarget.current = { x: 0, y: 0, sx: 50, sy: 28, active: false };
       pointerCurrent.current = { x: 0, y: 0, sx: 50, sy: 28 };
@@ -236,10 +290,10 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
       if (sheenRef.current) sheenRef.current.style.opacity = "0";
     }
     return stopFloatLoop;
-  }, [calmMotion, isEditing]);
+  }, [calmMotion, embedded, isEditing]);
 
   const startFloatLoop = () => {
-    if (pointerRaf.current !== null || calmMotion || isEditing) return;
+    if (pointerRaf.current !== null || calmMotion || isEditing || embedded) return;
     const stepFrame = () => {
       const target = pointerTarget.current;
       const cur = pointerCurrent.current;
@@ -274,7 +328,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
   };
 
   const handleCardPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (calmMotion || isEditing) return;
+    if (calmMotion || isEditing || embedded) return;
     if (event.pointerType !== "mouse") return;
     if (typeof window !== "undefined" && !window.matchMedia("(pointer: fine)").matches) return;
     const rect = cardRef.current?.getBoundingClientRect();
@@ -298,11 +352,13 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
   };
 
   const verifyOtp = async (code: string) => {
+    if (verifyingRef.current) return;
     if (!/^\d{4}$/.test(code.trim())) {
       setError(copy.incompleteCodeError);
       otpInputRef.current?.focus();
       return;
     }
+    verifyingRef.current = true;
     setError("");
     setIsLoading(true);
     try {
@@ -312,7 +368,26 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
         body: JSON.stringify({ phone: cleanPhone(), otp: code }),
       });
       if (!response.ok) {
-        setError(response.status === 400 ? page.invalidCode : copy.genericError);
+        const failure = (await response.json().catch(() => null)) as { code?: unknown } | null;
+        if (response.status === 429) {
+          setError(copy.tooManyAttempts);
+        } else if (response.status === 404 || failure?.code === "no_patient_record") {
+          setDemoCode(null);
+          setError(copy.noPatientRecord);
+        } else if (response.status === 409 || failure?.code === "shared_phone") {
+          setDemoCode(null);
+          setError(copy.sharedPhoneError);
+        } else if (response.status === 503 && failure?.code === "sms_unavailable") {
+          setDemoCode(null);
+          setError(copy.smsUnavailable);
+        } else if (response.status === 400) {
+          setError(page.invalidCode);
+          // The real input is invisible and already full: empty it so the next digits go in.
+          setOtpCode("");
+          otpInputRef.current?.focus();
+        } else {
+          setError(copy.genericError);
+        }
         setIsLoading(false);
         return;
       }
@@ -322,6 +397,8 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
     } catch {
       setError(copy.genericError);
       setIsLoading(false);
+    } finally {
+      verifyingRef.current = false;
     }
   };
 
@@ -371,12 +448,15 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
         body: JSON.stringify({ phone: cleanPhone() }),
       });
       if (!response.ok) {
+        const failure = (await response.json().catch(() => null)) as { code?: unknown } | null;
         setError(
           response.status === 429
             ? copy.tooManyAttempts
             : response.status === 400
               ? copy.invalidPhoneError
-              : copy.genericError,
+              : response.status === 503 && failure?.code === "sms_unavailable"
+                ? copy.smsUnavailable
+                : copy.genericError,
         );
         return;
       }
@@ -412,18 +492,24 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
       ref={cardRef}
       onPointerMove={handleCardPointerMove}
       onPointerLeave={handleCardPointerLeave}
-      className="relative overflow-hidden rounded-2xl border border-border/90 bg-card text-foreground shadow-(--shadow-card-hover) dark:border-white/12 dark:bg-ink-900 dark:text-paper"
+      className={
+        embedded
+          ? "relative flex h-full flex-col justify-between overflow-hidden bg-card text-foreground dark:bg-ink-900 dark:text-paper"
+          : "relative overflow-hidden rounded-2xl border border-border/90 bg-card text-foreground shadow-(--shadow-card-hover) dark:border-white/12 dark:bg-ink-900 dark:text-paper"
+      }
     >
-      {/* Subtle sapphire cursor sheen on desktop hover (still when typing or reduced motion). */}
-      <div
-        ref={sheenRef}
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-(--dur-base) ease-(--ease-out-calm)"
-        style={{
-          background:
-            "radial-gradient(380px circle at var(--sheen-x, 50%) var(--sheen-y, 28%), rgba(29, 53, 87, 0.06), transparent 70%)",
-        }}
-      />
+      {/* Subtle sapphire cursor sheen on standalone card hover (still when embedded, typing, or reduced motion). */}
+      {!embedded ? (
+        <div
+          ref={sheenRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-(--dur-base) ease-(--ease-out-calm)"
+          style={{
+            background:
+              "radial-gradient(380px circle at var(--sheen-x, 50%) var(--sheen-y, 28%), rgba(29, 53, 87, 0.06), transparent 70%)",
+          }}
+        />
+      ) : null}
 
       {/* Hairline progress bar driven by live form readiness */}
       <div className="relative z-10 h-[2px] w-full bg-foreground/8 dark:bg-white/10" aria-hidden="true">
@@ -433,38 +519,62 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
         />
       </div>
 
-      <div className="relative z-10 p-6 sm:p-8">
-        {/* Install sits beside Listen: people who open their record are the ones who come back, so this is where it earns its place. */}
-        {showInstall || voice.available ? (
-          <div className="mb-4 flex flex-wrap items-center justify-end gap-2">
-            {showInstall ? (
-              <button
-                type="button"
-                onClick={() => void openPwaInstall()}
-                className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-3 text-body font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <DownloadIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
-                <span>{installLabel}</span>
-              </button>
-            ) : null}
-            {voice.available ? (
-              <ListenButton
-                uiLang={lang}
-                isPlaying={voice.speaking}
-                onToggle={() =>
-                  voice.speaking
-                    ? voice.stop()
-                    : voice.speak([
-                        step === 1 ? page.title : surfaceCopy.card.step2Heading,
-                        activeSubtitle,
-                        copy.fallbackQuestion,
-                        copy.fallbackLinkText,
-                      ])
-                }
-              />
-            ) : null}
-          </div>
-        ) : null}
+      <div
+        className={
+          embedded
+            ? "relative z-10 flex flex-1 flex-col justify-between p-6 sm:p-8 lg:p-10"
+            : "relative z-10 p-6 sm:p-8"
+        }
+      >
+        <div>
+          {/* Install sits beside Listen: people who open their record are the ones who come back, so this is where it earns its place. */}
+          {embedded || showInstall || voice.available ? (
+            <div
+              className={`mb-5 flex flex-wrap items-center gap-2 ${
+                embedded ? "justify-between" : "justify-end"
+              }`}
+            >
+              {embedded ? (
+                <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/80 bg-muted/60 px-2.5 py-1 text-sm font-medium text-muted-foreground dark:border-white/10 dark:bg-white/[0.06] dark:text-mist">
+                  <LockIcon
+                    aria-hidden="true"
+                    className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border"
+                  />
+                  <span>{surfaceCopy.card.badge}</span>
+                </span>
+              ) : null}
+              {showInstall || voice.available ? (
+                <div className="flex flex-wrap items-center gap-2">
+                  {showInstall ? (
+                    <button
+                      type="button"
+                      onClick={() => void openPwaInstall()}
+                      className="press-row inline-flex min-h-11 max-w-full items-center gap-1.5 whitespace-nowrap rounded-lg border border-border-control bg-card px-3 text-body font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <DownloadIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" />
+                      <span>{installLabel}</span>
+                    </button>
+                  ) : null}
+                  {voice.available ? (
+                    <ListenButton
+                      uiLang={lang}
+                      isPlaying={voice.speaking}
+                      onToggle={() =>
+                        voice.speaking
+                          ? voice.stop()
+                          : voice.speak([
+                              step === 1 ? page.title : surfaceCopy.card.step2Heading,
+                              activeSubtitle,
+                              copy.fallbackQuestion,
+                              copy.fallbackLinkText,
+                            ])
+                      }
+                    />
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+          ) : null}
         <p aria-live="polite" className="sr-only">
           {stepText}
         </p>
@@ -635,6 +745,8 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
                     setStep(1);
                     setOtpCode("");
                     setError("");
+                    setDemoCode(null);
+                    setSent(false);
                   }}
                   className={`press-row min-h-11 max-w-full whitespace-nowrap rounded-xl px-2 text-muted-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:text-foreground hover:decoration-current dark:text-mist dark:decoration-white/25 dark:hover:text-paper ${FOCUS_RING}`}
                 >
@@ -652,6 +764,7 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
             </m.div>
           )}
         </AnimatePresence>
+        </div>
 
         <div className="mt-6 border-t border-border/80 pt-4 dark:border-white/10">
           <Link
@@ -664,6 +777,15 @@ export function SmsPhoneAuthModal({ initialLang = "ro" }: { initialLang?: Lang }
             </span>
             <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
           </Link>
+          {embedded ? (
+            <p className="mt-4 flex items-start gap-2 text-sm leading-relaxed text-muted-foreground/90 dark:text-mist/80">
+              <ShieldIcon
+                aria-hidden="true"
+                className="mt-0.5 h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"
+              />
+              <span>{surfaceCopy.privacyNote}</span>
+            </p>
+          ) : null}
         </div>
       </div>
     </div>

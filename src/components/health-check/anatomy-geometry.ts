@@ -1382,15 +1382,25 @@ export function classifySkinVertexSubRegions(
   const fallbackZone = (x: number, y: number, z: number): SubRegionId => {
     const absX = Math.abs(x);
     if (absX > armSplitX(y)) {
-      if (y >= 1.32) return z >= 0 ? "deltoid" : "rotator_cuff";
+      if (y >= 1.31) return z >= -0.02 ? "deltoid" : "rotator_cuff";
       if (y >= 1.12) return z >= 0 ? "biceps" : "triceps";
-      if (y >= 0.90) return z >= 0 ? "forearm_flexor" : "forearm_extensor";
+      if (y >= 0.90) return z >= 0.005 ? "forearm_flexor" : "forearm_extensor";
       return "hands_fingers";
     }
-    if (y < 0.48) return "calves";
-    if (y < 0.80) return z >= 0 ? "quadriceps" : "hamstrings";
-    if (z < 0) return y > 1.12 ? "upper_back" : y > 0.94 ? "lower_back" : "gluteal";
-    return y > 1.18 ? "pectoral" : "abdominals";
+    if (y < 0.46) return "calves";
+    if (y < 0.80) {
+      if (y >= 0.72 && z >= 0.015) return "hip_flexor";
+      return z >= -0.005 ? "quadriceps" : "hamstrings";
+    }
+    if (z < -0.012) {
+      if (y >= 1.32) return "trapezius";
+      if (y >= 1.11) return "upper_back";
+      if (y >= 0.95) return "lower_back";
+      return "gluteal";
+    }
+    if (y >= 1.20) return "pectoral";
+    if (y >= 0.94 && absX > 0.072) return "obliques";
+    return "abdominals";
   };
 
   for (let i = 0; i < vCount; i += 1) {
@@ -1464,4 +1474,232 @@ export function classifySkinVertexSubRegions(
   }
 
   return { general, female };
+}
+
+/**
+ * Computes fast, allocation-lean per-vertex sculptural crevice shading (ambient occlusion +
+ * soft overhang attenuation) in `[0.74, 1.04]` from 1-ring discrete mean-curvature concavity.
+ * Enhances anatomical readability on bone orbits, vertebrae, ribs, pelvic fossae, and organs
+ * with zero extra draw calls or network assets.
+ */
+export function computeVertexSculptAO(
+  positions: ArrayLike<number>,
+  normals: ArrayLike<number>,
+  indices: ArrayLike<number> | null,
+  strength = 1.0
+): Float32Array {
+  const vCount = Math.floor(positions.length / 3);
+  const ao = new Float32Array(vCount);
+  if (vCount === 0) return ao;
+
+  const sumX = new Float32Array(vCount);
+  const sumY = new Float32Array(vCount);
+  const sumZ = new Float32Array(vCount);
+  const edgeLenSum = new Float32Array(vCount);
+  const deg = new Uint16Array(vCount);
+
+  const addEdge = (u: number, v: number) => {
+    const ux = positions[u * 3];
+    const uy = positions[u * 3 + 1];
+    const uz = positions[u * 3 + 2];
+    const vx = positions[v * 3];
+    const vy = positions[v * 3 + 1];
+    const vz = positions[v * 3 + 2];
+    const len = Math.hypot(vx - ux, vy - uy, vz - uz);
+    sumX[u] += vx;
+    sumY[u] += vy;
+    sumZ[u] += vz;
+    edgeLenSum[u] += len;
+    deg[u] += 1;
+
+    sumX[v] += ux;
+    sumY[v] += uy;
+    sumZ[v] += uz;
+    edgeLenSum[v] += len;
+    deg[v] += 1;
+  };
+
+  const triCount = indices ? Math.floor(indices.length / 3) : Math.floor(vCount / 3);
+  for (let t = 0; t < triCount; t += 1) {
+    const a = indices ? indices[t * 3] : t * 3;
+    const b = indices ? indices[t * 3 + 1] : t * 3 + 1;
+    const c = indices ? indices[t * 3 + 2] : t * 3 + 2;
+    if (a >= vCount || b >= vCount || c >= vCount) continue;
+    addEdge(a, b);
+    addEdge(b, c);
+    addEdge(c, a);
+  }
+
+  for (let i = 0; i < vCount; i += 1) {
+    const d = deg[i];
+    const nx = normals[i * 3] ?? 0;
+    const ny = normals[i * 3 + 1] ?? 1;
+    const nz = normals[i * 3 + 2] ?? 0;
+    // Gentle sky-hemisphere bias so undersides of brow, chin, ribs, and pelvis read cleanly
+    const sky = 0.93 + 0.08 * ny;
+    if (d === 0 || edgeLenSum[i] < 1e-7) {
+      ao[i] = Math.min(1.04, Math.max(0.74, sky));
+      continue;
+    }
+    const invD = 1 / d;
+    const lx = sumX[i] * invD - positions[i * 3];
+    const ly = sumY[i] * invD - positions[i * 3 + 1];
+    const lz = sumZ[i] * invD - positions[i * 3 + 2];
+    const meanEdge = edgeLenSum[i] * invD;
+    // Positive when surrounding ring curves outward relative to vertex normal (concave crevice)
+    const concavity = (lx * nx + ly * ny + lz * nz) / Math.max(meanEdge, 1e-5);
+    const clampedConcavity = Math.max(-0.45, Math.min(0.65, concavity));
+    const curvatureTerm = 1.0 - clampedConcavity * 0.34 * strength;
+    const value = curvatureTerm * sky;
+    ao[i] = value < 0.74 ? 0.74 : value > 1.04 ? 1.04 : value;
+  }
+
+  return ao;
+}
+
+export interface SkeletonPartManifest {
+  id: string;
+  system: string;
+  subRegion?: SubRegionId;
+  showInHybrid?: boolean;
+  vertexCount: number;
+  indexCount: number;
+  positions: number;
+  normals: number;
+  indices: number;
+  indexType?: "uint16" | "uint32";
+  bounds: [number[], number[]];
+}
+
+export interface SkeletonBundleManifest {
+  version?: string | number;
+  source?: string;
+  license?: string;
+  totalBytes: number;
+  parts: SkeletonPartManifest[];
+}
+
+export interface DecodedSkeletonPart {
+  id: string;
+  subRegion: SubRegionId;
+  showInHybrid: boolean;
+  positions: Float32Array;
+  normals: Float32Array;
+  femalePositions: Float32Array;
+  femaleNormals: Float32Array;
+  indices: Uint16Array | Uint32Array;
+  sculptAO: Float32Array;
+}
+
+export const SKELETON_PART_SUB_REGION_FALLBACK: Record<string, SubRegionId> = {
+  skull_cranium: "skull",
+  skull: "skull",
+  mandible: "jaw_ear",
+  cervical_spine: "cervical_spine",
+  thoracic_spine: "thoracic_spine",
+  lumbar_spine: "lumbar_spine",
+  sacrum_coccyx: "sacroiliac_coccyx",
+  rib_cage: "rib_cage",
+  clavicle_scapula: "rotator_cuff",
+  pelvis: "hip_groin",
+  humerus: "biceps",
+  radius_ulna: "forearm_extensor",
+  wrist_carpals: "wrist_tendon",
+  hand_bones: "hands_fingers",
+  femur: "quadriceps",
+  patella: "patellar_tendon",
+  tibia_fibula: "calves",
+  foot_bones: "feet_soles",
+};
+
+const HYBRID_VISIBLE_SKELETON_PARTS = new Set<string>([
+  "cervical_spine",
+  "thoracic_spine",
+  "lumbar_spine",
+  "sacrum_coccyx",
+  "rib_cage",
+]);
+
+/**
+ * Decodes one binary BodyParts3D skeletal mesh from `human-atlas-skeleton.bin`, generates its
+ * female-morphed counterpart via the same C1 diffeomorphism applied to `skin_shell` (preserving
+ * exact anatomical bone geometry and interior containment), and computes vertex sculptural AO
+ * for warm ivory ceramic bone shading.
+ */
+export function decodeSkeletonPartBinary(
+  part: SkeletonPartManifest,
+  buffer: ArrayBuffer
+): DecodedSkeletonPart | null {
+  if (part.vertexCount <= 0 || part.indexCount <= 0) return null;
+  const posByteLen = part.vertexCount * 3 * 4;
+  const normByteLen = part.vertexCount * 3 * 2;
+  const useUint16 = part.indexType === "uint16";
+  const idxByteLen = part.indexCount * (useUint16 ? 2 : 4);
+  if (
+    part.positions + posByteLen > buffer.byteLength ||
+    part.normals + normByteLen > buffer.byteLength ||
+    part.indices + idxByteLen > buffer.byteLength
+  ) {
+    return null;
+  }
+
+  const rawPos = new Float32Array(buffer, part.positions, part.vertexCount * 3);
+  const rawNorm = new Int16Array(buffer, part.normals, part.vertexCount * 3);
+  const rawIdx = useUint16
+    ? new Uint16Array(buffer, part.indices, part.indexCount)
+    : new Uint32Array(buffer, part.indices, part.indexCount);
+
+  const positions = new Float32Array(rawPos);
+  const normals = new Float32Array(rawNorm.length);
+  for (let i = 0; i < rawNorm.length; i += 3) {
+    const nx = rawNorm[i] / 32767;
+    const ny = rawNorm[i + 1] / 32767;
+    const nz = rawNorm[i + 2] / 32767;
+    const len = Math.hypot(nx, ny, nz);
+    if (len > 1e-4) {
+      normals[i] = nx / len;
+      normals[i + 1] = ny / len;
+      normals[i + 2] = nz / len;
+    } else {
+      normals[i] = 0;
+      normals[i + 1] = 1;
+      normals[i + 2] = 0;
+    }
+  }
+  const indices = useUint16 ? new Uint16Array(rawIdx) : new Uint32Array(rawIdx);
+
+  const femalePositions = new Float32Array(positions.length);
+  const tmp: [number, number, number] = [0, 0, 0];
+  for (let i = 0; i < part.vertexCount; i += 1) {
+    const j = i * 3;
+    morphFemaleCoordinate(positions[j], positions[j + 1], positions[j + 2], tmp);
+    femalePositions[j] = tmp[0];
+    femalePositions[j + 1] = tmp[1];
+    femalePositions[j + 2] = tmp[2];
+  }
+  const femaleNormals = computeFloat32Normals(femalePositions, indices);
+  for (let i = 0; i < femaleNormals.length; i += 3) {
+    const len = Math.hypot(femaleNormals[i], femaleNormals[i + 1], femaleNormals[i + 2]);
+    if (!Number.isFinite(len) || len < 0.1) {
+      femaleNormals[i] = normals[i];
+      femaleNormals[i + 1] = normals[i + 1];
+      femaleNormals[i + 2] = normals[i + 2];
+    }
+  }
+  const sculptAO = computeVertexSculptAO(positions, normals, indices, 1.05);
+  const subRegion = part.subRegion ?? SKELETON_PART_SUB_REGION_FALLBACK[part.id] ?? "thoracic_spine";
+  const showInHybrid =
+    part.showInHybrid !== undefined ? Boolean(part.showInHybrid) : HYBRID_VISIBLE_SKELETON_PARTS.has(part.id);
+
+  return {
+    id: part.id,
+    subRegion,
+    showInHybrid,
+    positions,
+    normals,
+    femalePositions,
+    femaleNormals,
+    indices,
+    sculptAO,
+  };
 }

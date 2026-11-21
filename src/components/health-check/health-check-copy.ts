@@ -71,6 +71,14 @@ export type Copy = {
   selectedTrailLabel: string;
   severityLead: string;
   durationLead: string;
+  /** Label of the man or woman choice while the 3D body is on screen: it says which body is drawn. */
+  bodyShownLabel: string;
+  /** Exact-spot lead on phones, where the question sheet covers the body. */
+  exactSpotLeadList: string;
+  /** "Home care" wording for a mild mind and mood answer (the general one says rest and drink water). */
+  mindLowIntro: string;
+  /** Link from "see a doctor" results to the where-to-go guide (same words as the guide's own title). */
+  noDoctorGuide: string;
 };
 
 export const COPY: Record<Lang, Copy> = {
@@ -97,6 +105,11 @@ export const COPY: Record<Lang, Copy> = {
 "selectedTrailLabel": "Выбранные ответы",
 "severityLead": "Выберите, насколько симптомы мешают вам сейчас.",
 "durationLead": "Выберите, как давно симптомы начались или повторяются.",
+    bodyShownLabel: "Тело на экране",
+    exactSpotLeadList: "Выберите место из списка.",
+    mindLowIntro:
+      "Сохраняйте привычный распорядок дня и поговорите с человеком, которому доверяете. Если за несколько дней не станет легче или станет хуже, обратитесь к семейному врачу.",
+    noDoctorGuide: "Я не знаю, куда идти",
 
 
 
@@ -121,9 +134,9 @@ export const COPY: Record<Lang, Copy> = {
 
 
 
-"bodyGeneral": "Общая",
+"bodyGeneral": "Мужчина",
 "bodyFemale": "Женщина",
-"bodyGeneralHelper": "Выберите «Женщина», чтобы видеть грудь, менструацию и беременность.",
+"bodyGeneralHelper": "Выберите вариант «женщина», чтобы включить симптомы женского здоровья и беременности.",
 "exactSpot": "Точное место (необязательно)",
 "exactSpotAny": "Вся область",
 "sideLabel": "Сторона",
@@ -160,7 +173,7 @@ export const COPY: Record<Lang, Copy> = {
     childRow: "Для ребенка",
     otherTitle: "Что-то другое, или не уверен",
     otherDescription: "Здесь ничего не подходит.",
-    otherBody: "Расскажите нам своими словами или поговорите с врачом.",
+    otherBody: "Найдите ближайшую аптеку, кабинет врача или клинику рядом с вами.",
     otherAssistant: "Напишите помощнику",
     otherDoctor: "Поговорите с врачом",
     alsoFeel: "У вас также есть",
@@ -201,7 +214,7 @@ export const COPY: Record<Lang, Copy> = {
     childRow: "Pentru un copil",
     otherTitle: "Altceva sau nu știu",
     otherDescription: "Nimic de aici nu se potrivește.",
-    otherBody: "Spune-ne cu cuvintele tale sau vorbește cu un medic.",
+    otherBody: "Găsește cea mai apropiată farmacie, cabinet de medic de familie sau clinică lângă tine.",
     otherAssistant: "Scrie asistentului",
     otherDoctor: "Vorbește cu un medic",
     alsoFeel: "Mai ai și",
@@ -210,9 +223,9 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Oprește",
     largeText: "Text mai mare",
     bodyTypeLabel: "Corp",
-    bodyGeneral: "General",
+    bodyGeneral: "Bărbat",
     bodyFemale: "Femeie",
-    bodyGeneralHelper: "Alege Femeie pentru a vedea sâni, menstruație și sarcină.",
+    bodyGeneralHelper: "Alege opțiunea femeie pentru a include simptomele specifice femeilor și sarcinii.",
     exactSpot: "Locul mai exact (opțional)",
     exactSpotAny: "Toată zona",
     whatItFeelsLike: "Cum se simte?",
@@ -240,6 +253,11 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Răspunsuri alese până acum",
     severityLead: "Alege varianta care descrie cel mai bine cât te încurcă acum.",
     durationLead: "Alege de cât timp a început sau se repetă.",
+    bodyShownLabel: "Corp afișat",
+    exactSpotLeadList: "Alege locul din listă.",
+    mindLowIntro:
+      "Păstrează-ți programul zilnic și vorbește cu cineva de încredere. Dacă nu se ușurează în câteva zile sau se înrăutățește, mergi la medicul de familie.",
+    noDoctorGuide: "Nu știu unde să merg",
   },
   en: {
     chosen: "Selected",
@@ -271,7 +289,7 @@ export const COPY: Record<Lang, Copy> = {
     childRow: "For a child",
     otherTitle: "Something else, or not sure",
     otherDescription: "Nothing here fits.",
-    otherBody: "Tell us in your own words or talk to a doctor.",
+    otherBody: "Find the closest pharmacy, family doctor practice or clinic near you.",
     otherAssistant: "Write to the assistant",
     otherDoctor: "Talk to a doctor",
     alsoFeel: "Do you also have",
@@ -280,9 +298,9 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Stop",
     largeText: "Larger text",
     bodyTypeLabel: "Body",
-    bodyGeneral: "General",
-    bodyFemale: "Woman",
-    bodyGeneralHelper: "Choose Woman to see breasts, periods and pregnancy.",
+    bodyGeneral: "Male",
+    bodyFemale: "Female",
+    bodyGeneralHelper: "Select female to include women's health and pregnancy symptoms.",
     exactSpot: "Exact spot (optional)",
     exactSpotAny: "Whole area",
     whatItFeelsLike: "What does it feel like?",
@@ -310,6 +328,11 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Answers chosen so far",
     severityLead: "Choose the option that best fits how much it affects your day.",
     durationLead: "Choose how long ago it started or has been coming back.",
+    bodyShownLabel: "Body shown",
+    exactSpotLeadList: "Choose the spot from the list.",
+    mindLowIntro:
+      "Keep your daily routine and talk to someone you trust. If it does not ease in a few days, or it gets worse, see your family doctor.",
+    noDoctorGuide: "I don't know where to go",
   },
   sq: {
     chosen: "Zgjodhe",
@@ -342,7 +365,7 @@ export const COPY: Record<Lang, Copy> = {
     childRow: "Për një fëmijë",
     otherTitle: "Diçka tjetër ose nuk e di",
     otherDescription: "Asgjë këtu nuk më përshtatet.",
-    otherBody: "Na e thuaj me fjalët e tua ose fol me një mjek.",
+    otherBody: "Gjej farmacinë, mjekun e familjes ose klinikën më të afërt pranë teje.",
     otherAssistant: "Shkruaji asistentit",
     otherDoctor: "Fol me një mjek",
     alsoFeel: "Ke edhe",
@@ -351,9 +374,9 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Ndalo",
     largeText: "Tekst më i madh",
     bodyTypeLabel: "Trupi",
-    bodyGeneral: "I përgjithshëm",
-    bodyFemale: "Grua",
-    bodyGeneralHelper: "Zgjidh Grua për të parë gjinjtë, menstruacionet dhe shtatzëninë.",
+    bodyGeneral: "Mashkull",
+    bodyFemale: "Femër",
+    bodyGeneralHelper: "Zgjidh opsionin femër për të përfshirë simptomat e shëndetit të gruas dhe shtatzënisë.",
     exactSpot: "Vendi më i saktë (opsionale)",
     exactSpotAny: "E gjithë zona",
     whatItFeelsLike: "Si ndihet?",
@@ -381,6 +404,11 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Përgjigjet e zgjedhura deri tani",
     severityLead: "Zgjidh variantin që tregon më mirë sa të pengon tani.",
     durationLead: "Zgjidh prej sa kohësh ka filluar ose përsëritet.",
+    bodyShownLabel: "Trupi i shfaqur",
+    exactSpotLeadList: "Zgjidh vendin nga lista.",
+    mindLowIntro:
+      "Mbaj rutinën e përditshme dhe fol me dikë që i beson. Nëse nuk lehtësohet për disa ditë ose përkeqësohet, shko te mjeku i familjes.",
+    noDoctorGuide: "Nuk e di ku të shkoj",
   },
   it: {
     chosen: "Hai scelto",
@@ -413,7 +441,7 @@ export const COPY: Record<Lang, Copy> = {
     childRow: "Per un bambino",
     otherTitle: "Altro, o non so",
     otherDescription: "Nessuna di queste descrizioni va bene.",
-    otherBody: "Raccontalo con parole tue o parla con un medico.",
+    otherBody: "Trova la farmacia, il medico di famiglia o l'ambulatorio più vicino a te.",
     otherAssistant: "Scrivi all'assistente",
     otherDoctor: "Parla con un medico",
     alsoFeel: "Hai anche",
@@ -422,9 +450,9 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Ferma",
     largeText: "Testo più grande",
     bodyTypeLabel: "Corpo",
-    bodyGeneral: "Generale",
+    bodyGeneral: "Uomo",
     bodyFemale: "Donna",
-    bodyGeneralHelper: "Scegli Donna per vedere seno, ciclo e gravidanza.",
+    bodyGeneralHelper: "Seleziona l'opzione donna per includere i sintomi legati alla salute femminile e alla gravidanza.",
     exactSpot: "Punto più preciso (facoltativo)",
     exactSpotAny: "Tutta la zona",
     whatItFeelsLike: "Come si sente?",
@@ -452,6 +480,11 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Risposte scelte finora",
     severityLead: "Scegli l'opzione che descrive meglio quanto ti limita adesso.",
     durationLead: "Scegli da quanto tempo è iniziato o si ripete.",
+    bodyShownLabel: "Corpo mostrato",
+    exactSpotLeadList: "Scegli il punto dall'elenco.",
+    mindLowIntro:
+      "Mantieni le tue abitudini di ogni giorno e parla con una persona di cui ti fidi. Se non migliora in pochi giorni o peggiora, vai dal medico di famiglia.",
+    noDoctorGuide: "Non so dove andare",
   },
   hr: {
     chosen: "Odabrano",
@@ -484,7 +517,7 @@ export const COPY: Record<Lang, Copy> = {
     childRow: "Za dijete",
     otherTitle: "Nešto drugo ili nisam siguran",
     otherDescription: "Ništa od navedenog mi ne odgovara.",
-    otherBody: "Opiši svojim riječima ili razgovaraj s liječnikom.",
+    otherBody: "Pronađi najbližu ljekarnu, obiteljskog liječnika ili kliniku u svojoj blizini.",
     otherAssistant: "Napiši asistentu",
     otherDoctor: "Razgovaraj s liječnikom",
     alsoFeel: "Imaš li također",
@@ -493,9 +526,9 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Zaustavi",
     largeText: "Veći tekst",
     bodyTypeLabel: "Tijelo",
-    bodyGeneral: "Opći",
+    bodyGeneral: "Muškarac",
     bodyFemale: "Žena",
-    bodyGeneralHelper: "Odaberi Žena da vidiš dojke, mjesečnicu i trudnoću.",
+    bodyGeneralHelper: "Odaberi opciju žena kako bi se uključili simptomi ženskog zdravlja i trudnoće.",
     exactSpot: "Točnije mjesto (nije obavezno)",
     exactSpotAny: "Cijelo područje",
     whatItFeelsLike: "Kakav je osjećaj?",
@@ -523,6 +556,11 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Dosad odabrani odgovori",
     severityLead: "Odaberi opciju koja najbolje opisuje koliko ti sada smeta.",
     durationLead: "Odaberi koliko dugo traje ili se ponavlja.",
+    bodyShownLabel: "Prikazano tijelo",
+    exactSpotLeadList: "Odaberi mjesto s popisa.",
+    mindLowIntro:
+      "Drži se svoje dnevne rutine i razgovaraj s nekim kome vjeruješ. Ako ne popusti za nekoliko dana ili se pogorša, javi se obiteljskom liječniku.",
+    noDoctorGuide: "Ne znam kamo otići",
   },
   rom: {
     chosen: "Alosardjan",
@@ -555,7 +593,7 @@ export const COPY: Record<Lang, Copy> = {
     childRow: "Vash jekh chavoro",
     otherTitle: "Aver vareso vaj na dzanav",
     otherDescription: "Khanchi kathe na maladjol.",
-    otherBody: "Phen amenge chire vorbensa vaj vorbin jekhe doktorestar.",
+    otherBody: "Arakh i maj pashe farmacia, familijako doktori vaj klinika pashe tute.",
     otherAssistant: "Ramov le azhutitoreske",
     otherDoctor: "Vorbin jekhe doktorestar",
     alsoFeel: "Si tut vi",
@@ -564,9 +602,9 @@ export const COPY: Record<Lang, Copy> = {
     stopListening: "Achav",
     largeText: "Maj baro teksto",
     bodyTypeLabel: "Trupo",
-    bodyGeneral: "Generalno",
+    bodyGeneral: "Mursh",
     bodyFemale: "Dzhuvli",
-    bodyGeneralHelper: "Alosar Dzhuvli te dikhes kolin, menstruacia thaj khamnimos.",
+    bodyGeneralHelper: "Alosar dzhuvli te sikaven pes vi le simptomurya vash dzhuvlyango sastipen thaj khamnimos.",
     exactSpot: "Maj chacho than (te manges)",
     exactSpotAny: "Sasto than",
     whatItFeelsLike: "Sar hatjarel pes?",
@@ -594,5 +632,10 @@ export const COPY: Record<Lang, Copy> = {
     selectedTrailLabel: "Anglalipnata alosarde dji akana",
     severityLead: "Alosar so sikavel maj mishto sode pharo si tuke akana.",
     durationLead: "Alosar de sode vrama shirdilo vaj avel palpale.",
+    bodyShownLabel: "Sikavdo trupo",
+    exactSpotLeadList: "Alosar o than katar i lista.",
+    mindLowIntro:
+      "Inker tiro divesesko programo thaj vorbin jekhe pachaime manushesa. Te na lokhjol ande xanci dive vaj avel maj nasul, dzha ko familijako doktori.",
+    noDoctorGuide: "Na dzanav kaj te djav",
   },
 };

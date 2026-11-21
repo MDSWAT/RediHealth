@@ -7,9 +7,16 @@ import { Button } from "@/components/ui/Button";
 import { HandHelpingIcon, XIcon } from "@/components/ui/icons";
 import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
+import {
+  callbackStarterCopy,
+  isValidCallbackPhone,
+  normalizeCallbackPhone,
+} from "@/components/mediator/MediatorCallbackStarter";
 import { textInput } from "@/components/health-assistant/step-ui";
 
 interface MediatorRequestModalProps {
@@ -27,7 +34,7 @@ const dict = {
     nameLabel: "Ваше имя или инициалы",
     namePlaceholder: "Например: Мария И.",
     phoneLabel: "Номер телефона",
-    phonePlaceholder: "For example: 07xx xxx xxx",
+    phonePlaceholder: "Например: 07xx xxx xxx",
     countyLabel: "Округ",
     countyPlaceholder: "Выберите свой округ",
     locationLabel: "Город или деревня (по желанию)",
@@ -38,7 +45,7 @@ const dict = {
     submitButton: "Отправить запрос",
     submitting: "Отправка…",
     cancel: "Отмена",
-    phoneError: "Пожалуйста, введите номер телефона, по которому мы можем вам позвонить (минимум 10 цифр).",
+    phoneError: "Пожалуйста, введите номер телефона, по которому мы можем вам позвонить (минимум 8 цифр).",
     countyError: "Пожалуйста, выберите свой округ.",
     consentError: "Пожалуйста, подтвердите, что вы согласны с Политикой конфиденциальности.",
     sendError: "Нам не удалось отправить ваш запрос. Пожалуйста, повторите попытку через несколько минут.",
@@ -68,7 +75,7 @@ const dict = {
     submitButton: "Send request",
     submitting: "Sending…",
     cancel: "Cancel",
-    phoneError: "Please enter a phone number we can call you on (at least 10 digits).",
+    phoneError: "Please enter a phone number we can call you on (at least 8 digits).",
     countyError: "Please choose your county.",
     consentError: "Please confirm that you agree to the Privacy Policy.",
     sendError: "We could not send your request. Please try again in a few minutes.",
@@ -97,7 +104,7 @@ const dict = {
     submitButton: "Trimite cererea",
     submitting: "Se trimite…",
     cancel: "Anulează",
-    phoneError: "Introdu un număr de telefon la care te putem suna (minimum 10 cifre).",
+    phoneError: "Introdu un număr de telefon la care te putem suna (minimum 8 cifre).",
     countyError: "Alege județul în care te afli.",
     consentError: "Confirmă că ești de acord cu Politica de confidențialitate.",
     sendError: "Nu am putut trimite cererea. Încearcă din nou peste câteva minute.",
@@ -126,7 +133,7 @@ const dict = {
     submitButton: "Dërgo kërkesën",
     submitting: "Po dërgohet…",
     cancel: "Anulo",
-    phoneError: "Shkruaj një numër telefoni ku mund të të telefonojmë (të paktën 10 shifra).",
+    phoneError: "Shkruaj një numër telefoni ku mund të të telefonojmë (të paktën 8 shifra).",
     countyError: "Zgjidh qarkun ku ndodhesh.",
     consentError: "Konfirmo që pranon Politikën e Privatësisë.",
     sendError: "Nuk mundëm ta dërgojmë kërkesën. Provo përsëri pas pak minutash.",
@@ -155,7 +162,7 @@ const dict = {
     submitButton: "Invia la richiesta",
     submitting: "Invio in corso…",
     cancel: "Annulla",
-    phoneError: "Inserisci un numero a cui possiamo chiamarti (almeno 10 cifre).",
+    phoneError: "Inserisci un numero a cui possiamo chiamarti (almeno 8 cifre).",
     countyError: "Scegli la provincia in cui ti trovi.",
     consentError: "Conferma di accettare l'Informativa sulla privacy.",
     sendError: "Non è stato possibile inviare la richiesta. Riprova tra qualche minuto.",
@@ -184,7 +191,7 @@ const dict = {
     submitButton: "Pošalji zahtjev",
     submitting: "Šalje se…",
     cancel: "Odustani",
-    phoneError: "Unesi broj telefona na koji te možemo nazvati (najmanje 10 znamenki).",
+    phoneError: "Unesi broj telefona na koji te možemo nazvati (najmanje 8 znamenki).",
     countyError: "Odaberi područje u kojem se nalaziš.",
     consentError: "Potvrdi da prihvaćaš Pravila privatnosti.",
     sendError: "Nismo uspjeli poslati zahtjev. Pokušaj ponovno za nekoliko minuta.",
@@ -213,7 +220,7 @@ const dict = {
     submitButton: "Bichav o mangimos",
     submitting: "Bichavel pe…",
     cancel: "Mekh",
-    phoneError: "Ramov jekh telefonesko numero kaj shaj akharas tut (barem 10 cifre).",
+    phoneError: "Ramov jekh telefonesko numero kaj shaj akharas tut (barem 8 cifre).",
     countyError: "Alosar o judetso kaj san.",
     consentError: "Phen kaj kabulisares i Politika vash garavimos.",
     sendError: "Nashti bichaldas o mangimos. Zumav pale pala nesave minutia.",
@@ -240,9 +247,12 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  /** Each message sits under its own field, so it is seen with the keyboard open. */
+  const [errors, setErrors] = useState<{ phone?: string; county?: string; consent?: string }>({});
+  const optionalTag = (callbackStarterCopy[lang] ?? callbackStarterCopy[DEFAULT_LANG]).optionalTag;
 
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const firstFieldRef = useRef<HTMLInputElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
@@ -255,12 +265,14 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
     setLocation("");
     setConsent(false);
     setErrorMessage("");
+    setErrors({});
     triggerRef.current?.focus();
   }
 
   useEffect(() => {
     if (!isOpen) return;
-    firstFieldRef.current?.focus();
+    // The title, not a field: the keyboard stays down until the person has read what this is.
+    titleRef.current?.focus();
     // Capture phase + preventDefault: Escape closes the dialog without also stepping the triage back.
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -297,10 +309,22 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
     event.preventDefault();
     setErrorMessage("");
 
-    const cleanedPhone = phone.replace(/[^0-9+]/g, "");
-    if (cleanedPhone.length < 10) return setErrorMessage(t.phoneError);
-    if (!county) return setErrorMessage(t.countyError);
-    if (!consent) return setErrorMessage(t.consentError);
+    const nextErrors = {
+      phone: isValidCallbackPhone(phone) ? undefined : t.phoneError,
+      county: county ? undefined : t.countyError,
+      consent: consent ? undefined : t.consentError,
+    };
+    setErrors(nextErrors);
+    const firstInvalid = (["phone", "county", "consent"] as const).find((key) => nextErrors[key]);
+    if (firstInvalid) {
+      document.getElementById(`${ids}-${firstInvalid}`)?.focus();
+      return;
+    }
+    const cleanedPhone = normalizeCallbackPhone(phone);
+    if (isBrowserOffline()) {
+      setErrorMessage(getOfflineUiCopy(lang).formOfflineError);
+      return;
+    }
 
     setIsSubmitting(true);
     try {
@@ -332,6 +356,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
   }
 
   const inputClass = textInput;
+  const fieldErrorClass = "swap-in mt-1.5 text-body font-medium text-primary dark:text-ruby-300";
 
   return (
     <div className={className}>
@@ -370,32 +395,21 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
 
               {!submitted ? (
                 <form onSubmit={handleSubmit} noValidate>
-                  <h2 id={`${ids}-title`} className="pr-10 text-title font-semibold text-foreground">
+                  <h2
+                    ref={titleRef}
+                    tabIndex={-1}
+                    id={`${ids}-title`}
+                    className="pr-10 text-title font-semibold text-foreground focus:outline-none"
+                  >
                     {t.title}
                   </h2>
                   <p className="mt-2 text-body text-muted-foreground">{t.subtitle}</p>
 
+                  {/* What is needed comes first; what can be left empty says so in words, not with a star. */}
                   <div className="mt-5 space-y-4">
                     <div>
-                      <label htmlFor={`${ids}-name`} className="mb-1 block text-body font-semibold text-foreground">
-                        {t.nameLabel}
-                      </label>
-                      <input
-                        ref={firstFieldRef}
-                        id={`${ids}-name`}
-                        type="text"
-                        autoComplete="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder={t.namePlaceholder}
-                        className={inputClass}
-                      />
-                    </div>
-
-                    <div>
                       <label htmlFor={`${ids}-phone`} className="mb-1 block text-body font-semibold text-foreground">
-                        {t.phoneLabel} <span className="text-primary" aria-hidden="true">*</span>
-                        <span className="sr-only"> ({t.required})</span>
+                        {t.phoneLabel}
                       </label>
                       <input
                         id={`${ids}-phone`}
@@ -404,23 +418,37 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                         autoComplete="tel"
                         required
                         value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={(e) => {
+                          setPhone(e.target.value);
+                          if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
+                        }}
+                        aria-invalid={Boolean(errors.phone)}
+                        aria-describedby={errors.phone ? `${ids}-phone-error` : undefined}
                         placeholder={t.phonePlaceholder}
                         className={inputClass}
                       />
+                      {errors.phone ? (
+                        <p id={`${ids}-phone-error`} role="alert" className={fieldErrorClass}>
+                          {errors.phone}
+                        </p>
+                      ) : null}
                     </div>
 
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div>
                         <label htmlFor={`${ids}-county`} className="mb-1 block text-body font-semibold text-foreground">
-                          {t.countyLabel} <span className="text-primary" aria-hidden="true">*</span>
-                          <span className="sr-only"> ({t.required})</span>
+                          {t.countyLabel}
                         </label>
                         <select
                           id={`${ids}-county`}
                           required
                           value={county}
-                          onChange={(e) => setCounty(e.target.value)}
+                          onChange={(e) => {
+                            setCounty(e.target.value);
+                            if (errors.county) setErrors((prev) => ({ ...prev, county: undefined }));
+                          }}
+                          aria-invalid={Boolean(errors.county)}
+                          aria-describedby={errors.county ? `${ids}-county-error` : undefined}
                           className={inputClass}
                         >
                           <option value="">{t.countyPlaceholder}</option>
@@ -430,6 +458,11 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                             </option>
                           ))}
                         </select>
+                        {errors.county ? (
+                          <p id={`${ids}-county-error`} role="alert" className={fieldErrorClass}>
+                            {errors.county}
+                          </p>
+                        ) : null}
                       </div>
                       <div>
                         <label htmlFor={`${ids}-location`} className="mb-1 block text-body font-semibold text-foreground">
@@ -447,13 +480,35 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                       </div>
                     </div>
 
-                    <label className="flex items-start gap-2.5 text-body text-foreground">
+                    <div>
+                      <label htmlFor={`${ids}-name`} className="mb-1 block text-body font-semibold text-foreground">
+                        {t.nameLabel} <span className="font-normal text-muted-foreground">{optionalTag}</span>
+                      </label>
                       <input
+                        id={`${ids}-name`}
+                        type="text"
+                        autoComplete="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder={t.namePlaceholder}
+                        className={inputClass}
+                      />
+                    </div>
+
+                    <div>
+                    <label className="flex min-h-11 items-start gap-2.5 text-body text-foreground">
+                      <input
+                        id={`${ids}-consent`}
                         type="checkbox"
                         required
                         checked={consent}
-                        onChange={(e) => setConsent(e.target.checked)}
-                        className="mt-1 h-4 w-4 shrink-0 accent-[var(--color-sapphire)]"
+                        onChange={(e) => {
+                          setConsent(e.target.checked);
+                          if (errors.consent) setErrors((prev) => ({ ...prev, consent: undefined }));
+                        }}
+                        aria-invalid={Boolean(errors.consent)}
+                        aria-describedby={errors.consent ? `${ids}-consent-error` : undefined}
+                        className="mt-0.5 h-5 w-5 shrink-0 accent-[var(--color-sapphire)]"
                       />
                       <span>
                         {t.consent}{" "}
@@ -468,6 +523,12 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                         .
                       </span>
                     </label>
+                    {errors.consent ? (
+                      <p id={`${ids}-consent-error`} role="alert" className={fieldErrorClass}>
+                        {errors.consent}
+                      </p>
+                    ) : null}
+                    </div>
                   </div>
 
                   {errorMessage && (

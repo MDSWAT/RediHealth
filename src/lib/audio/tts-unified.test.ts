@@ -11,6 +11,7 @@ import {
   formatSpeechText,
   HealthSpeechEngine,
   splitSpeechSentences,
+  splitTextIntoTtsSegments,
 } from "@/lib/audio/speech-engine";
 import {
   computeTtsHash,
@@ -28,6 +29,7 @@ import {
 } from "@/lib/audio/tts-voices";
 import { SPEECH_LANG_BY_LOCALE } from "@/lib/i18n/health-myths";
 import { languages } from "@/lib/i18n/translations";
+import { LISTEN_UNAVAILABLE_COPY } from "@/components/ui/ListenButton";
 import { buildContentSecurityPolicy } from "@/lib/security/csp";
 
 const LOCAL_CACHE_DIR = path.join(os.tmpdir(), "redihealth-tts-cache");
@@ -938,5 +940,297 @@ describe("Sentence splitting, quiz spoiler guard, player lifecycle, and endReaso
     expect(audioInstances).toHaveLength(1);
     expect(audioInstances[0]?.src).toMatch(/^blob:/);
     expect(postCount).toBe(1);
+  });
+
+  it("does not clobber in-flight unlockFromGesture() mute state on stop() and only stops GlobalHealthAudioPlayer when closing", async () => {
+    const globalPlayerSrc = readFileSync(
+      path.join(process.cwd(), "src/components/health-information/GlobalHealthAudioPlayer.tsx"),
+      "utf8",
+    );
+    expect(globalPlayerSrc).toContain("wasActiveRef");
+    expect(globalPlayerSrc).toContain("if (!wasActiveRef.current)");
+    const closeGuardIdx = globalPlayerSrc.indexOf("if (!wasActiveRef.current)");
+    expect(globalPlayerSrc.indexOf("speechEngine.stop()", closeGuardIdx)).toBeGreaterThan(
+      closeGuardIdx,
+    );
+
+    const listenSrc = readFileSync(
+      path.join(process.cwd(), "src/components/ui/ListenButton.tsx"),
+      "utf8",
+    );
+    expect(listenSrc).toContain("playbackError");
+    expect(listenSrc).toContain('role="status"');
+    expect(listenSrc).toContain('aria-live="polite"');
+    for (const loc of ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const) {
+      expect(LISTEN_UNAVAILABLE_COPY[loc]?.trim().length).toBeGreaterThan(0);
+    }
+
+    let resolvePlay: (() => void) | null = null;
+    const sharedMockAudio = {
+      preload: "auto",
+      src: "",
+      muted: false,
+      currentTime: 0,
+      play: vi.fn(
+        () =>
+          new Promise<void>((resolve) => {
+            resolvePlay = resolve;
+          }),
+      ),
+      pause: vi.fn(),
+      removeAttribute: vi.fn(),
+      load: vi.fn(),
+    };
+    // A plain function, not an arrow: the engine calls it with `new`.
+    const MockAudio = vi.fn(function MockAudio() {
+      return sharedMockAudio;
+    });
+    vi.stubGlobal("window", { addEventListener: vi.fn(), removeEventListener: vi.fn() });
+    vi.stubGlobal("document", {});
+    vi.stubGlobal("Audio", MockAudio);
+
+    const engine = HealthSpeechEngine.getInstance();
+    engine.resetForTests();
+
+    const unlockPromise = engine.unlockFromGesture();
+    // stop() triggered immediately before unlock promise resolves must NOT force sharedAudio.muted = false while muted unlock is finishing, then restore muted cleanly
+    engine.stop();
+    resolvePlay!();
+    await unlockPromise;
+
+    expect(engine.isAudioUnlocked()).toBe(true);
+    expect(sharedMockAudio.muted).toBe(false);
+  });
+
+  it("retries once on synchronous WebSpeech canceled/interrupted error before failing loudly", async () => {
+    vi.useFakeTimers();
+    class MockUtterance {
+      lang = "";
+      rate = 1;
+      voice: SpeechSynthesisVoice | null = null;
+      onboundary: ((e: unknown) => void) | null = null;
+      onstart: (() => void) | null = null;
+      onend: (() => void) | null = null;
+      onerror: ((e: { error: string }) => void) | null = null;
+      constructor(public text: string) {}
+    }
+    const spoken: MockUtterance[] = [];
+
+    let speakAttempt = 0;
+    const synthMock = {
+      speaking: false,
+      pending: false,
+      getVoices: () => [makeVoice({ name: "Ioana", lang: "ro-RO", localService: true })],
+      speak: vi.fn((u: MockUtterance) => {
+        speakAttempt += 1;
+        spoken.push(u);
+        if (speakAttempt === 1) {
+          u.onerror?.({ error: "canceled" });
+        } else {
+          u.onstart?.();
+          u.onend?.();
+        }
+      }),
+      cancel: vi.fn(),
+    };
+
+    vi.stubGlobal("window", { speechSynthesis: synthMock });
+    vi.stubGlobal("SpeechSynthesisUtterance", MockUtterance);
+    globalThis.fetch = vi.fn<typeof fetch>().mockResolvedValue(
+      new Response(JSON.stringify({ configured: false }), { status: 200 }),
+    );
+
+    const engine = HealthSpeechEngine.getInstance();
+    engine.resetForTests();
+    await engine.probeNeuralServer();
+
+    let endCalls = 0;
+    let errorCalls = 0;
+    engine.speak("Text cu retry.", {
+      lang: "ro-RO",
+      onEnd: () => {
+        endCalls += 1;
+      },
+      onError: () => {
+        errorCalls += 1;
+      },
+    });
+
+    await vi.advanceTimersByTimeAsync(60);
+    expect(speakAttempt).toBe(2);
+    expect(endCalls).toBe(1);
+    expect(errorCalls).toBe(0);
+    vi.useRealTimers();
+  });
+});
+
+describe("Read-aloud start: short first clip, waiting state, start deadline and retry", () => {
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+  });
+
+  class MockUtterance {
+    lang = "";
+    rate = 1;
+    pitch = 1;
+    voice: SpeechSynthesisVoice | null = null;
+    onboundary: ((e: unknown) => void) | null = null;
+    onstart: (() => void) | null = null;
+    onend: (() => void) | null = null;
+    onerror: ((e: { error: string }) => void) | null = null;
+    constructor(public text: string) {}
+  }
+
+  it("cuts a long text into a short first clip, a middle clip, then full-size clips, with exact offsets", () => {
+    const sentence = "Aceasta este o propoziție simplă despre sănătate.";
+    const full = Array.from({ length: 160 }, (_, i) => `${sentence.slice(0, -1)} ${i + 1}.`).join(" ");
+    expect(full.length).toBeGreaterThan(6000);
+
+    const segments = splitTextIntoTtsSegments(full, 4000, [300, 1200]);
+    expect(segments.length).toBeGreaterThanOrEqual(3);
+    expect(segments[0].text.length).toBeLessThanOrEqual(300);
+    expect(segments[1].text.length).toBeLessThanOrEqual(1200);
+    expect(segments[1].text.length).toBeGreaterThan(300);
+    for (const segment of segments) {
+      expect(segment.text.length).toBeLessThanOrEqual(4000);
+      expect(full.slice(segment.offset, segment.offset + segment.text.length)).toBe(segment.text);
+    }
+    expect(segments.map((segment) => segment.text).join(" ")).toBe(full);
+
+    expect(splitTextIntoTtsSegments("Text scurt.", 4000, [300, 1200])).toEqual([
+      { text: "Text scurt.", offset: 0 },
+    ]);
+    expect(splitTextIntoTtsSegments(full, 4000).every((segment) => segment.text.length <= 4000)).toBe(true);
+  });
+
+  it("does not remember a failed server check, so the server voice is asked for again", async () => {
+    vi.stubGlobal("window", {});
+    const engine = HealthSpeechEngine.getInstance();
+    engine.resetForTests();
+
+    globalThis.fetch = vi.fn<typeof fetch>().mockRejectedValue(new TypeError("Failed to fetch"));
+    expect(await engine.probeNeuralServer()).toBe(false);
+    expect(engine.isNeuralServerAvailable()).toBeNull();
+
+    globalThis.fetch = vi.fn<typeof fetch>().mockResolvedValue(
+      new Response(JSON.stringify({ configured: true }), { status: 200 }),
+    );
+    expect(await engine.probeNeuralServer()).toBe(true);
+    expect(engine.isNeuralServerAvailable()).toBe(true);
+  });
+
+  it("tells the reader when the phone's voice never starts, and never cuts off a voice that has started", async () => {
+    vi.useFakeTimers();
+    const spoken: MockUtterance[] = [];
+    const synthMock = {
+      speaking: false,
+      pending: false,
+      getVoices: () => [makeVoice({ name: "Ioana", lang: "ro-RO", localService: true })],
+      speak: vi.fn((u: MockUtterance) => {
+        spoken.push(u);
+      }),
+      cancel: vi.fn(),
+    };
+    vi.stubGlobal("window", { speechSynthesis: synthMock });
+    vi.stubGlobal("SpeechSynthesisUtterance", MockUtterance);
+    globalThis.fetch = vi.fn<typeof fetch>().mockResolvedValue(
+      new Response(JSON.stringify({ configured: false }), { status: 200 }),
+    );
+
+    const engine = HealthSpeechEngine.getInstance();
+    engine.resetForTests();
+    await engine.probeNeuralServer();
+
+    let errors = 0;
+    engine.speak("Vocea nu pornește.", { lang: "ro-RO", onError: () => (errors += 1) });
+    expect(engine.getState().isLoading).toBe(true);
+    await vi.advanceTimersByTimeAsync(7_900);
+    expect(errors).toBe(0);
+    await vi.advanceTimersByTimeAsync(200);
+    expect(errors).toBe(1);
+    expect(engine.getState().isLoading).toBe(false);
+    expect(engine.getState().isSpeaking).toBe(false);
+
+    // A new attempt after a failure must not be reported as failed before it has begun.
+    const tiersSeen: string[] = [];
+    const unsubscribe = engine.subscribeState((state) => tiersSeen.push(state.activeTier));
+    tiersSeen.length = 0;
+    engine.speak("Vocea pornește.", { lang: "ro-RO", onError: () => (errors += 1) });
+    expect(tiersSeen).not.toContain("transcript");
+    expect(engine.getState().isLoading).toBe(true);
+
+    spoken[spoken.length - 1].onstart?.();
+    expect(engine.getState().isLoading).toBe(false);
+    expect(engine.getState().isSpeaking).toBe(true);
+    await vi.advanceTimersByTimeAsync(120_000);
+    expect(errors).toBe(1);
+    expect(engine.getState().isSpeaking).toBe(true);
+    expect(tiersSeen).not.toContain("transcript");
+    unsubscribe();
+    engine.stop();
+  });
+
+  it("keeps the order of voices when the server voice is slow: the phone's matching voice next, never another language", async () => {
+    vi.useFakeTimers();
+    const spoken: MockUtterance[] = [];
+    const synthMock = {
+      speaking: false,
+      pending: false,
+      getVoices: () => [
+        makeVoice({ name: "Samantha", lang: "en-US", localService: true }),
+        makeVoice({ name: "Lana", lang: "hr-HR", localService: true }),
+      ],
+      speak: vi.fn((u: MockUtterance) => {
+        spoken.push(u);
+        u.onstart?.();
+      }),
+      cancel: vi.fn(),
+    };
+    vi.stubGlobal("window", { speechSynthesis: synthMock });
+    vi.stubGlobal("SpeechSynthesisUtterance", MockUtterance);
+    vi.stubGlobal(
+      "Audio",
+      class {
+        src = "";
+        preload = "";
+        playbackRate = 1;
+        currentTime = 0;
+        muted = false;
+        pause = vi.fn();
+        play = vi.fn(async () => {});
+      },
+    );
+    // The server says it has a voice, then never sends the clip.
+    globalThis.fetch = vi.fn<typeof fetch>(async (_input, init) => {
+      if ((init?.method ?? "GET").toUpperCase() === "GET") {
+        return new Response(JSON.stringify({ configured: true }), { status: 200 });
+      }
+      return new Promise<Response>(() => {});
+    });
+
+    const engine = HealthSpeechEngine.getInstance();
+    engine.resetForTests();
+    await engine.probeNeuralServer();
+
+    let errors = 0;
+    engine.speak("Tekst na hrvatskom.", { lang: "hr-HR", onError: () => (errors += 1) });
+    await vi.advanceTimersByTimeAsync(14_000);
+    expect(spoken).toHaveLength(0);
+    expect(engine.getState().isLoading).toBe(true);
+    await vi.advanceTimersByTimeAsync(1_500);
+    expect(spoken).toHaveLength(1);
+    expect(spoken[0].voice?.lang).toBe("hr-HR");
+    expect(errors).toBe(0);
+    engine.stop();
+
+    // No Albanian voice on the phone: the server voice keeps its chance, English is never used.
+    engine.speak("Tekst në shqip.", { lang: "sq-AL", onError: () => (errors += 1) });
+    await vi.advanceTimersByTimeAsync(16_000);
+    expect(spoken).toHaveLength(1);
+    expect(errors).toBe(0);
+    await vi.advanceTimersByTimeAsync(30_500);
+    expect(spoken).toHaveLength(1);
+    expect(errors).toBe(1);
   });
 });

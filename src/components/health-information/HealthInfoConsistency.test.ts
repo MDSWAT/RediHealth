@@ -313,22 +313,26 @@ describe("health information, glossary, myth card, and topic grid design consist
     }
   });
 
-  it("P20: keeps plain wrapping jump links, single-control search, lead symptom link, and lighter cards", () => {
+  it("P20: renders Learn and test yourself 4-tab hub, all 8 guides with tool links, single-control search, and lighter cards", () => {
     const pageSrc = readSrc("src/components/health-information/HealthInformationPageContent.tsx");
-    expect(pageSrc).toContain("flex-wrap items-center gap-x-4 gap-y-1");
+    expect(pageSrc).toContain('role="tablist"');
+    expect(pageSrc).toContain('role="tabpanel"');
+    expect(pageSrc).toContain("TAB_LIST_CLASS");
+    expect(pageSrc).toContain("DualRegisterGlossaryContent");
+    expect(pageSrc).toContain("TrueFalseQuizSection");
     expect(pageSrc).not.toContain("shadow-2xs");
-    expect(pageSrc).toContain("/health-check");
-    const navSlice = pageSrc.slice(pageSrc.indexOf("<nav"), pageSrc.indexOf("</nav>"));
-    expect(navSlice).not.toContain("setOpenDrawer");
-    expect(navSlice).not.toContain("border-border-control");
+    expect(pageSrc).not.toContain("/health-check");
 
     for (const loc of ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const) {
       expect(HEALTH_HUB_EXPLORER_COPY[loc].onThisPage.trim().length).toBeGreaterThan(0);
-      expect(HEALTH_HUB_EXPLORER_COPY[loc].feelingUnwell.trim().length).toBeGreaterThan(0);
-      expect(HEALTH_HUB_EXPLORER_COPY[loc].checkSymptom.trim().length).toBeGreaterThan(0);
+      expect(HEALTH_HUB_EXPLORER_COPY[loc].title.trim().length).toBeGreaterThan(0);
+      expect(HEALTH_HUB_EXPLORER_COPY[loc].subtitle.trim().length).toBeGreaterThan(0);
+      expect(HEALTH_HUB_EXPLORER_COPY[loc].dictionary.trim().length).toBeGreaterThan(0);
     }
 
     const gridSrc = readSrc("src/components/health-information/HealthInformationTopicGrid.tsx");
+    expect(gridSrc).toContain("getHealthTopicsList");
+    expect(gridSrc).not.toContain("getFeaturedHealthTopics");
     expect(gridSrc).not.toContain("searchCopy.triggerLabel");
     expect(gridSrc).not.toContain("CardCategory");
     expect(gridSrc).not.toContain("h-9 w-9");
@@ -343,11 +347,13 @@ describe("health information, glossary, myth card, and topic grid design consist
       createElement(
         LanguageContext.Provider,
         { value: { lang: "en", t: translations.en, setLang: () => {} } },
-        createElement(HealthInformationTopicGrid, { readingLevel: "complete", onOpenDictionary: () => {} }),
+        createElement(HealthInformationTopicGrid, { onOpenDictionary: () => {} }),
       ),
     );
     expect(gridHtml).not.toContain("Key clinical fact");
-    expect(gridHtml).toContain("5 min read");
+    expect(gridHtml).toContain("Blood pressure check");
+    expect(gridHtml).toContain("#section-explainer");
+    expect(gridHtml).toContain("3 min read");
     expect(gridHtml).toContain("Medical dictionary");
 
     const badgeHtml = renderToStaticMarkup(
@@ -394,21 +400,24 @@ describe("health information, glossary, myth card, and topic grid design consist
     expect(dirHtml).not.toContain("indexed topics");
   });
 
-  it("syncs reading level globally across hub and topic detail pages via useReadingLevel", () => {
-    const hubSrc = readSrc(
+  it("eliminates simple-vs-complete reading-level splits and adds print/offline actions across guides", () => {
+    for (const filePath of [
       "src/components/health-information/HealthInformationPageContent.tsx",
-    );
-    const detailSrc = readSrc(
+      "src/components/health-information/HealthInformationTopicGrid.tsx",
       "src/components/health-information/TopicDetailPageContent.tsx",
+      "src/components/health-information/TopicHeroSection.tsx",
+    ]) {
+      const src = readSrc(filePath);
+      expect(src, `${filePath} must not use useReadingLevel()`).not.toContain("useReadingLevel()");
+      expect(src, `${filePath} must not split simple vs complete`).not.toContain('useState<"simple" | "complete">');
+    }
+
+    expect(readSrc("src/components/health-information/TopicHeroSection.tsx")).toContain(
+      "GuideOfflinePrintActions",
     );
-
-    expect(hubSrc).toContain('from "@/lib/comfort-preferences"');
-    expect(hubSrc).toContain("useReadingLevel()");
-    expect(hubSrc).not.toContain('useState<"simple" | "complete">');
-
-    expect(detailSrc).toContain('from "@/lib/comfort-preferences"');
-    expect(detailSrc).toContain("useReadingLevel()");
-    expect(detailSrc).not.toContain('useState<"simple" | "complete">');
+    expect(readSrc("src/components/health-information/SubjectHeaderToolbar.tsx")).toContain(
+      "GuideOfflinePrintActions",
+    );
   });
 
   it("renders the floating guide section control on every width across all 7 locales with a reachable, single-line trigger", () => {
@@ -529,5 +538,72 @@ describe("health information, glossary, myth card, and topic grid design consist
     expect(readerHtml).toContain('data-sentence-id="0"');
     expect(readerHtml).toContain("scroll-mt-20");
     expect(readerHtml).toContain("scroll-mb-20");
+  });
+
+  it("enforces responsive wrapping, accessible contrast, and CLAUDE.md UI rules across topic guide and summary components", () => {
+    const heroSrc = readSrc("src/components/health-information/TopicHeroSection.tsx");
+    expect(heroSrc).toContain("md:aspect-[4/3]");
+    expect(heroSrc).not.toContain("sm:aspect-[4/3]");
+    expect(heroSrc).toContain('sizes="(max-width: 767px) 100vw, 208px"');
+    expect(heroSrc).toContain("btn-row flex w-full flex-wrap items-start gap-2.5");
+    expect(heroSrc).not.toContain("border-sapphire/35!");
+    expect(heroSrc).not.toContain("bg-sapphire-soft/45!");
+
+    const detailSrc = readSrc("src/components/health-information/TopicDetailPageContent.tsx");
+    expect(detailSrc).toContain("btn-row flex flex-wrap items-center gap-2");
+    expect(detailSrc).not.toContain("grid w-full grid-cols-2");
+    expect(detailSrc).not.toContain("<BookIcon");
+    expect(detailSrc).toContain("border-border-control bg-card");
+
+    const summaryPageSrc = readSrc("src/app/health-information/topics/[topic]/page.tsx");
+    expect(summaryPageSrc).toContain("saveTitle={summary.title}");
+    expect(summaryPageSrc).toContain('<section aria-labelledby="summary-overview">');
+    expect(summaryPageSrc).not.toContain('<section aria-labelledby="summary-overview" className="mt-10">');
+    expect(summaryPageSrc).toContain('<footer className="mt-12 border-t border-border pt-8" aria-labelledby="summary-source">');
+    expect(summaryPageSrc).toContain("dark:text-sapphire-border");
+
+    const mythSrc = readSrc("src/components/health-information/TopicMythCard.tsx");
+    expect(mythSrc).not.toContain("text-paper dark:text-ink-950");
+    expect(mythSrc).toContain('hasAnswered && chosen && !isMatch && "text-rose-ink"');
+    expect(mythSrc).not.toContain("truncate");
+    expect(mythSrc).toContain("flex-wrap items-start justify-between");
+
+    const anatomySrc = readSrc("src/components/health-information/TopicAnatomyExplorer.tsx");
+    expect(anatomySrc).toContain("btn-row mt-3 flex flex-wrap items-center gap-2.5");
+    expect(anatomySrc).toContain("whitespace-nowrap");
+    expect(anatomySrc).not.toContain("sm:grid-cols-3");
+    expect(anatomySrc).not.toContain("md:grid-cols-3");
+    expect(anatomySrc).toContain("sm:flex-wrap");
+    expect(anatomySrc).not.toContain("EyebrowIcon");
+
+    const bpSimSrc = readSrc("src/components/health-information/heart-health/BloodPressureSimulator.tsx");
+    expect(bpSimSrc).toContain("btn-row mt-2 flex flex-wrap items-center gap-2");
+    expect(bpSimSrc).not.toContain("flex w-max");
+    expect(bpSimSrc).not.toContain("sm:overflow-visible");
+    expect(bpSimSrc).not.toContain("sm:basis-0");
+    expect(bpSimSrc).not.toContain("rounded-md border px-3 py-1");
+    expect(bpSimSrc).not.toContain("<CheckCircleIcon");
+    expect(bpSimSrc).not.toContain("<AlertCircleIcon");
+    expect(bpSimSrc).toContain("border-border-control");
+    expect(bpSimSrc).toContain("whitespace-nowrap");
+
+    for (const file of [
+      "src/components/health-information/WhyItMattersInfographic.tsx",
+      "src/components/health-information/ActionableStepsChecklist.tsx",
+      "src/components/health-information/WarningSignsEmergencyCard.tsx",
+    ]) {
+      const src = readSrc(file);
+      expect(src, `${file} section heading row must wrap safely`).toContain("flex-wrap items-start justify-between");
+      expect(src, `${file} must preserve dark-mode sapphire contrast`).toContain("dark:text-sapphire-border");
+    }
+
+    const nextStepsSrc = readSrc("src/components/health-information/TopicNextSteps.tsx");
+    expect(nextStepsSrc).toContain("min-w-0 flex-1");
+    expect(nextStepsSrc).toContain("md:flex-wrap");
+    expect(nextStepsSrc).not.toContain("truncate");
+
+    const disclaimerSrc = readSrc("src/components/health-information/MedicalSafetyDisclaimer.tsx");
+    expect(disclaimerSrc).not.toContain("<ShieldIcon");
+    expect(disclaimerSrc).toContain("min-w-0");
   });
 });

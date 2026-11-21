@@ -55,10 +55,10 @@ export default function manifest(): MetadataRoute.Manifest {
         ],
       },
       {
-        name: "Health assistant",
-        short_name: "Assistant",
-        description: "Talk with the guided health assistant",
-        url: "/health-assistant",
+        name: "Medicine check",
+        short_name: "Medicines",
+        description: "Check a medicine name or prescription in plain words",
+        url: "/prescription-review",
         icons: [
           {
             src: "/pwa/shortcut-assistant-96x96.png",
@@ -75,19 +75,6 @@ export default function manifest(): MetadataRoute.Manifest {
         icons: [
           {
             src: "/pwa/shortcut-clinics-96x96.png",
-            sizes: "96x96",
-            type: "image/png",
-          },
-        ],
-      },
-      {
-        name: "Online doctor",
-        short_name: "Doctor",
-        description: "Request an online medical consultation",
-        url: "/medic-online",
-        icons: [
-          {
-            src: "/pwa/shortcut-doctor-96x96.png",
             sizes: "96x96",
             type: "image/png",
           },

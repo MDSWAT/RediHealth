@@ -195,7 +195,7 @@ export function MobileGuideJumpBar({
         data-shown={shown}
         inert={!shown}
         className={cn(
-          "guide-contents-float fixed inset-x-4 z-30 mx-auto flex max-w-md flex-col gap-2 sm:inset-x-0 sm:w-[26rem] print:hidden",
+          "guide-contents-float fixed inset-x-4 z-30 mx-auto flex max-w-md flex-col gap-2 sm:inset-x-0 sm:w-[26rem] sm:max-w-[calc(100vw-2rem)] print:hidden",
           className,
         )}
       >

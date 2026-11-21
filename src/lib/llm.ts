@@ -31,6 +31,16 @@ export type LlmRequest = {
   maxTokens?: number;
 };
 
+export type LlmUsage = {
+  inputTokens: number;
+  outputTokens: number;
+  totalTokens: number;
+};
+
+export function estimateTokenCount(text: string, hasImage?: boolean): number {
+  return Math.max(1, Math.ceil(text.trim().length / 4)) + (hasImage ? 1_200 : 0);
+}
+
 type LlmConfig = {
   model: string;
   api: "anthropic";
@@ -89,7 +99,10 @@ async function post(url: string, headers: Record<string, string>, payload: unkno
   }
 }
 
-async function requestAnthropic(config: LlmConfig, request: LlmRequest): Promise<string | undefined> {
+async function requestAnthropic(
+  config: LlmConfig,
+  request: LlmRequest,
+): Promise<{ text: string | undefined; usage?: LlmUsage }> {
   const content: unknown[] = [{ type: "text", text: request.text }];
   if (request.image) {
     content.push({
@@ -114,23 +127,64 @@ async function requestAnthropic(config: LlmConfig, request: LlmRequest): Promise
   );
   if (!response.ok) throw await failureFromResponse(response);
 
-  const data = (await response.json()) as { content?: Array<{ type?: string; text?: string }> };
-  return data.content?.find((item) => item.type === "text" && typeof item.text === "string")?.text;
+  const data = (await response.json()) as {
+    content?: Array<{ type?: string; text?: string }>;
+    usage?: {
+      input_tokens?: unknown;
+      output_tokens?: unknown;
+      cache_creation_input_tokens?: unknown;
+      cache_read_input_tokens?: unknown;
+    };
+  };
+  const text = data.content?.find((item) => item.type === "text" && typeof item.text === "string")?.text;
+  let usage: LlmUsage | undefined;
+  const rawInput = data.usage?.input_tokens;
+  const rawOutput = data.usage?.output_tokens;
+  if (
+    typeof rawInput === "number" &&
+    Number.isFinite(rawInput) &&
+    rawInput >= 0 &&
+    typeof rawOutput === "number" &&
+    Number.isFinite(rawOutput) &&
+    rawOutput >= 0
+  ) {
+    const cacheCreation =
+      typeof data.usage?.cache_creation_input_tokens === "number" &&
+      Number.isFinite(data.usage.cache_creation_input_tokens) &&
+      data.usage.cache_creation_input_tokens >= 0
+        ? data.usage.cache_creation_input_tokens
+        : 0;
+    const cacheRead =
+      typeof data.usage?.cache_read_input_tokens === "number" &&
+      Number.isFinite(data.usage.cache_read_input_tokens) &&
+      data.usage.cache_read_input_tokens >= 0
+        ? data.usage.cache_read_input_tokens
+        : 0;
+    const inputTokens = Math.round(rawInput + cacheCreation + cacheRead);
+    const outputTokens = Math.round(rawOutput);
+    usage = { inputTokens, outputTokens, totalTokens: inputTokens + outputTokens };
+  }
+
+  return { text, usage };
 }
 
 /** Sends one prompt to the configured model and returns its text. Always rejects with an LlmError. */
-export async function generateText(request: LlmRequest): Promise<{ text: string; model: string }> {
+export async function generateText(
+  request: LlmRequest,
+): Promise<{ text: string; model: string; usage?: LlmUsage }> {
   const config = resolveLlmConfig({ hasImage: Boolean(request.image) });
-  let text: string | undefined;
+  let reply: { text: string | undefined; usage?: LlmUsage };
   try {
-    text = await requestAnthropic(config, request);
+    reply = await requestAnthropic(config, request);
   } catch (error) {
     if (error instanceof LlmError) throw error;
     throw new LlmError("bad-response", "The AI provider returned an unreadable response.");
   }
 
-  if (!text) {
+  if (!reply.text) {
     throw new LlmError("bad-response", "The AI provider returned no text.");
   }
-  return { text, model: config.model };
+  return reply.usage
+    ? { text: reply.text, model: config.model, usage: reply.usage }
+    : { text: reply.text, model: config.model };
 }

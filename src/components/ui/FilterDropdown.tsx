@@ -13,6 +13,8 @@ export interface FilterDropdownProps {
   hideLabel?: boolean;
   /** Renders `{label}: {value}` on a single horizontal baseline inside the trigger. */
   inlineLabel?: boolean;
+  /** Keep the menu open when buttons inside are clicked (useful for multi-filter settings popovers). */
+  keepOpenOnSelect?: boolean;
   id?: string;
   className?: string;
   children?: ReactNode;
@@ -29,6 +31,7 @@ export function FilterDropdown({
   align = "left",
   hideLabel = false,
   inlineLabel = false,
+  keepOpenOnSelect = false,
   id,
   className,
   children,
@@ -117,6 +120,7 @@ export function FilterDropdown({
             align === "right" ? "right-0" : "left-0",
           )}
           onClick={(event) => {
+            if (keepOpenOnSelect) return;
             if (!(event.target as HTMLElement).closest("button")) return;
             setOpen(false);
             triggerRef.current?.focus();
@@ -134,11 +138,13 @@ export function FilterMenuOption({
   selected,
   onSelect,
   icon,
+  description,
   children,
 }: {
   selected: boolean;
   onSelect: () => void;
   icon?: ReactNode;
+  description?: string;
   children?: ReactNode;
 }) {
   return (
@@ -147,15 +153,32 @@ export function FilterMenuOption({
       aria-pressed={selected}
       onClick={onSelect}
       className={cn(
-        "press-row flex min-h-11 w-full max-w-full items-center gap-3 whitespace-nowrap rounded-lg px-3 py-2 text-left text-body transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "press-row flex min-h-11 w-full max-w-full gap-3 rounded-lg px-3 py-2 text-left text-body transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        description ? "items-start" : "items-center whitespace-nowrap",
         selected
-          ? "bg-sapphire-soft font-semibold text-sapphire dark:bg-white/12 dark:text-paper"
+          ? "bg-rose-tint font-semibold text-rose-ink"
           : "font-medium text-foreground hover:bg-muted",
       )}
     >
-      {icon ? <span className="shrink-0 text-sapphire">{icon}</span> : null}
-      <span className="min-w-0 flex-1 truncate">{children}</span>
-      {selected ? <CheckIcon className="h-4 w-4 shrink-0 text-sapphire" aria-hidden="true" /> : null}
+      {icon ? (
+        <span className={cn("shrink-0", selected ? "text-rose-ink" : "text-foreground/75", description && "mt-0.5")}>
+          {icon}
+        </span>
+      ) : null}
+      <span className={cn("min-w-0 flex-1", !description && "truncate")}>
+        <span className="block leading-snug">{children}</span>
+        {description ? (
+          <span className="mt-0.5 block whitespace-normal text-meta font-normal leading-snug text-muted-foreground">
+            {description}
+          </span>
+        ) : null}
+      </span>
+      {selected ? (
+        <CheckIcon
+          className={cn("h-4 w-4 shrink-0 text-rose-ink", description && "mt-0.5")}
+          aria-hidden="true"
+        />
+      ) : null}
     </button>
   );
 }

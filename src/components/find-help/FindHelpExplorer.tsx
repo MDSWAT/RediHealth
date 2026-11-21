@@ -9,7 +9,7 @@ import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
 import { Button } from "@/components/ui/Button";
 import { ListenButton } from "@/components/ui/ListenButton";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { AlertCircleIcon, CheckIcon, ClockIcon, GlobeIcon, PhoneIcon, PinIcon, SearchIcon, XIcon } from "@/components/ui/icons";
+import { AlertCircleIcon, CheckIcon, ClockIcon, FilterIcon, GlobeIcon, PhoneIcon, PinIcon, SearchIcon, XIcon } from "@/components/ui/icons";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
 import { LocationFilterPopover } from "@/components/find-help/LocationFilterPopover";
 import {
@@ -19,6 +19,7 @@ import {
 import { useLanguage } from "@/lib/i18n/language-context";
 import {
   type CityPreset,
+  REGIONAL_CITY_PRESETS,
   findHelpTranslations,
   formatHumanDistance,
   formatOpeningHours,
@@ -27,6 +28,7 @@ import {
 } from "@/lib/i18n/find-help-translations";
 import {
   directionsUrl,
+  isInstituteCategory,
   primaryPhoneHref,
   type CountryCode,
   type InstituteCategory,
@@ -39,6 +41,8 @@ import {
   writeSavedFindHelpLocation,
   type SmartLocationResolution,
 } from "@/lib/smart-location";
+import { queryOfflineInstitutes, saveOfflineInstitutes } from "@/lib/pwa/offline-institutes";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 
 function MapLoading() {
   const { lang, t } = useLanguage();
@@ -95,8 +99,136 @@ function prefersReducedMotion() {
   return prefersCalmOrReducedMotion();
 }
 
+function normalizeLocationToken(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\u0111/g, "d")
+    .replace(/\u0110/g, "D")
+    .toLowerCase()
+    .trim();
+}
+
+function findPresetCityMatch(
+  rawQuery: string,
+  preferredCountry: CountryCode,
+): (CityPreset & { country: CountryCode }) | null {
+  const token = normalizeLocationToken(rawQuery);
+  if (!token) return null;
+
+  if (["medimurje", "medjimurje", "cakovec", "medimurska", "medjimurska"].includes(token)) {
+    const cakovec = REGIONAL_CITY_PRESETS.HR.find(
+      (c) => normalizeLocationToken(c.name) === "cakovec",
+    );
+    if (cakovec) return { ...cakovec, country: "HR" };
+  }
+  if (["varazdin", "varazdinska"].includes(token)) {
+    const varazdin = REGIONAL_CITY_PRESETS.HR.find(
+      (c) => normalizeLocationToken(c.name) === "varazdin",
+    );
+    if (varazdin) return { ...varazdin, country: "HR" };
+  }
+
+  const orderedCountries: CountryCode[] = [
+    preferredCountry,
+    ...(Object.keys(REGIONAL_CITY_PRESETS) as CountryCode[]).filter((c) => c !== preferredCountry),
+  ];
+  for (const country of orderedCountries) {
+    const cities = REGIONAL_CITY_PRESETS[country] ?? [];
+    for (const city of cities) {
+      if (normalizeLocationToken(city.name) === token) {
+        return { ...city, country };
+      }
+    }
+  }
+  return null;
+}
+
 function isDesktopViewport() {
   return typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches;
+}
+
+/** The last list that loaded, kept on the phone for when nothing can be loaded. */
+const LAST_LIST_STORAGE_KEY = "redihealth.findHelpLastList.v1";
+const LAST_LIST_MAX_ROWS = 40;
+
+/** Only what a result row shows. Nothing about the reader: no location, no search text. */
+type SavedListRow = {
+  name: string;
+  category: InstituteCategory;
+  emergency: boolean;
+  address: string | null;
+  city: string | null;
+  phone: string | null;
+  hours: string | null;
+  lat: number;
+  lng: number;
+};
+
+function writeSavedList(rows: MedicalInstitute[]) {
+  try {
+    const saved: SavedListRow[] = rows.slice(0, LAST_LIST_MAX_ROWS).map((row) => ({
+      name: row.name,
+      category: row.category,
+      emergency: row.emergency,
+      address: row.address,
+      city: row.city,
+      phone: row.phone,
+      hours: row.hours,
+      lat: row.lat,
+      lng: row.lng,
+    }));
+    window.localStorage.setItem(LAST_LIST_STORAGE_KEY, JSON.stringify({ savedAt: Date.now(), rows: saved }));
+  } catch {
+    // Storage is full or blocked: the list simply is not kept.
+  }
+}
+
+function textOrNull(value: unknown): string | null {
+  return typeof value === "string" && value.trim() ? value : null;
+}
+
+function readSavedList(country: CountryCode): { savedAt: number; rows: MedicalInstitute[] } | null {
+  try {
+    const raw = window.localStorage.getItem(LAST_LIST_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { savedAt?: unknown; rows?: unknown };
+    if (typeof parsed.savedAt !== "number" || !Array.isArray(parsed.rows)) return null;
+    const rows: MedicalInstitute[] = [];
+    parsed.rows.forEach((value: unknown, index: number) => {
+      if (!value || typeof value !== "object") return;
+      const row = value as Partial<SavedListRow>;
+      if (
+        typeof row.name !== "string" ||
+        !isInstituteCategory(row.category) ||
+        typeof row.lat !== "number" ||
+        typeof row.lng !== "number" ||
+        !Number.isFinite(row.lat) ||
+        !Number.isFinite(row.lng)
+      ) {
+        return;
+      }
+      rows.push({
+        id: `saved-${index}`,
+        country_code: country,
+        name: row.name,
+        category: row.category,
+        ownership: null,
+        address: textOrNull(row.address),
+        city: textOrNull(row.city),
+        phone: textOrNull(row.phone),
+        website: null,
+        hours: textOrNull(row.hours),
+        emergency: row.emergency === true,
+        lat: row.lat,
+        lng: row.lng,
+        distance_km: null,
+      });
+    });
+    return rows.length > 0 ? { savedAt: parsed.savedAt, rows } : null;
+  } catch {
+    return null;
+  }
 }
 
 type SearchArea =
@@ -110,8 +242,21 @@ type SearchArea =
       country?: CountryCode;
     };
 
+/**
+ * A remembered place that is not one of the listed cities is an address the reader typed before:
+ * it comes back as a searched point ("2 km away"), not as a city centre.
+ */
+function savedAddressLabel(resolution: SmartLocationResolution): string | null {
+  if (resolution.reason !== "saved" || resolution.mode !== "city" || !resolution.city) return null;
+  const { name, country } = resolution.city;
+  return REGIONAL_CITY_PRESETS[country].some((preset) => preset.name === name) ? null : name;
+}
+
 function areaFromSmartResolution(resolution: SmartLocationResolution): SearchArea {
   if (resolution.mode === "city" && resolution.city) {
+    if (savedAddressLabel(resolution)) {
+      return { kind: "point", lat: resolution.city.lat, lng: resolution.city.lng, source: "area" };
+    }
     return {
       kind: "point",
       lat: resolution.city.lat,
@@ -426,9 +571,31 @@ export function FindHelpExplorer({
   const [ownership, setOwnership] = useState<InstituteOwnership | null>(null);
   const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState("");
+  const [searchedPointLabel, setSearchedPointLabel] = useState<string | null>(null);
+  const [addressSearching, setAddressSearching] = useState(false);
+  const resolvedAddressInputRef = useRef<string | null>(null);
   const [institutes, setInstitutes] = useState<MedicalInstitute[]>([]);
   const [reloadKey, setReloadKey] = useState(0);
-  const [settled, setSettled] = useState<{ key: string; failed: boolean } | null>(null);
+  const [settled, setSettled] = useState<{ key: string; failed: boolean; offline: boolean } | null>(null);
+  /** Which place the rows now on screen were loaded for: a failed refresh keeps them only for that same place. */
+  const listInfoRef = useRef<{ areaKey: string | null; count: number }>({ areaKey: null, count: 0 });
+  /** Set while the rows on screen come from the list saved on the phone (when it was saved). */
+  const [savedListAt, setSavedListAt] = useState<number | null>(null);
+  /** Phones browse a whole country one page at a time; this is the next page, or null when there is none. */
+  const [countryNextPage, setCountryNextPage] = useState<number | null>(null);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [loadMoreFailed, setLoadMoreFailed] = useState(false);
+  const requestKeyRef = useRef("");
+  const activeCountryRef = useRef<CountryCode>(activeCountry);
+  useEffect(() => {
+    activeCountryRef.current = activeCountry;
+  }, [activeCountry]);
+  /** The typed text that was found neither as an address nor, so far, as a name. */
+  const [addressNotFoundFor, setAddressNotFoundFor] = useState<string | null>(null);
+  /** The map (Leaflet and one marker per place) loads only once it can be seen: at once on a wide screen, on first open on a phone. */
+  const [mapWanted, setMapWanted] = useState(false);
+  /** A location prompt that is never answered gives no callback; after a short wait the place counts as unknown. */
+  const [autoLocateWaited, setAutoLocateWaited] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const hoverRafRef = useRef<number | null>(null);
@@ -458,7 +625,7 @@ export function FindHelpExplorer({
   const filterSheetPanelRef = useRef<HTMLDivElement>(null);
   const filterSheetTitleId = useId();
   const desktopSearchInputId = useId();
-  const sheetSearchInputId = useId();
+  const mobileSearchInputId = useId();
   const closeFilterSheet = useCallback(() => setFilterSheetOpen(false), []);
   useSheetDialog(filterSheetOpen, filterSheetPanelRef, closeFilterSheet);
   useEffect(() => {
@@ -482,6 +649,23 @@ export function FindHelpExplorer({
   const itemRefs = useRef(new Map<string, HTMLLIElement>());
   const geolocationRequested = useRef(false);
 
+  /** Shows a remembered or guessed place. A remembered address also returns to the search box. */
+  const applySmartResolution = useCallback((resolution: SmartLocationResolution) => {
+    const targetArea = areaFromSmartResolution(resolution);
+    const addressLabel = savedAddressLabel(resolution);
+    setArea((prev) => {
+      if (prev.kind === "point" && prev.source === "gps") return prev;
+      return isSameSearchArea(prev, targetArea) ? prev : targetArea;
+    });
+    setActiveCountry(resolution.country);
+    setGuessReason(resolution.reason === "saved" ? null : resolution.reason);
+    if (addressLabel) {
+      resolvedAddressInputRef.current = addressLabel;
+      setSearchInput(addressLabel);
+      setSearchedPointLabel(addressLabel);
+    }
+  }, []);
+
   const locateUser = useCallback((isManual = false) => {
     if (isManual) {
       setManualLocateTried(true);
@@ -499,6 +683,8 @@ export function FindHelpExplorer({
         setLocationStatus("active");
         setFarFromServices(false);
         setGuessReason(null);
+        setSearchedPointLabel(null);
+        resolvedAddressInputRef.current = null;
         setArea({ kind: "point", ...point, source: "gps" });
       },
       () => setLocationStatus("denied"),
@@ -533,20 +719,12 @@ export function FindHelpExplorer({
         savedChoice,
       });
       clientSmartGuessRef.current = resolved;
-      if (!userPickedManuallyRef.current) {
-        const targetArea = areaFromSmartResolution(resolved);
-        setArea((prev) => {
-          if (prev.kind === "point" && prev.source === "gps") return prev;
-          return isSameSearchArea(prev, targetArea) ? prev : targetArea;
-        });
-        setActiveCountry(resolved.country);
-        setGuessReason(resolved.reason === "saved" ? null : resolved.reason);
-      }
+      if (!userPickedManuallyRef.current) applySmartResolution(resolved);
     });
     return () => {
       cancelled = true;
     };
-  }, [lang, detectedIpCountry]);
+  }, [lang, detectedIpCountry, applySmartResolution]);
 
   useEffect(() => {
     if (geolocationRequested.current) return;
@@ -555,17 +733,37 @@ export function FindHelpExplorer({
   }, [locateUser]);
 
   useEffect(() => {
+    const timer = window.setTimeout(() => setAutoLocateWaited(true), 6000);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    if (mq.matches) queueMicrotask(() => setMapWanted(true));
+    const onChange = (event: MediaQueryListEvent) => {
+      if (event.matches) setMapWanted(true);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
     const trimmed = searchInput.trim();
     if (searchInput === "") {
+      resolvedAddressInputRef.current = null;
+      if (searchedPointLabel !== null) queueMicrotask(() => setSearchedPointLabel(null));
       if (search !== "") queueMicrotask(() => setSearch(""));
       return;
     }
+    if (resolvedAddressInputRef.current === trimmed) return;
+    resolvedAddressInputRef.current = null;
     if (trimmed === search) return;
     const timer = window.setTimeout(() => {
+      if (resolvedAddressInputRef.current === trimmed) return;
       setSearch(trimmed);
     }, 280);
     return () => window.clearTimeout(timer);
-  }, [searchInput, search]);
+  }, [searchInput, search, searchedPointLabel]);
 
   const requestQuery = useMemo(() => {
     const params = new URLSearchParams();
@@ -592,10 +790,29 @@ export function FindHelpExplorer({
   const isRevalidating = loading && settled !== null;
   const error = !loading && Boolean(settled?.failed);
   const gpsActive = area.kind === "point" && area.source === "gps";
+  const countryBrowse = area.kind === "country";
+  const areaKey =
+    area.kind === "country" ? `country:${area.country}` : `point:${area.lat.toFixed(5)},${area.lng.toFixed(5)}`;
+
+  const areaPointLat = area.kind === "point" ? area.lat : null;
+  const areaPointLng = area.kind === "point" ? area.lng : null;
+  const areaTargetCountry = area.kind === "country" ? area.country : (area.country ?? null);
 
   useEffect(() => {
+    requestKeyRef.current = requestKey;
     const controller = new AbortController();
+    // A phone browsing a whole country takes one page of 500 at a time; "Show more" fetches the next one.
+    const onePageAtATime = countryBrowse && !isDesktopViewport();
+    const requestCountry = areaTargetCountry ?? activeCountryRef.current;
+    const requestPoint =
+      areaPointLat !== null && areaPointLng !== null
+        ? { lat: areaPointLat, lng: areaPointLng }
+        : null;
+
     const load = async () => {
+      if (isBrowserOffline()) {
+        throw new Error("Offline");
+      }
       const institutes: MedicalInstitute[] = [];
       let page = 0;
       let data: ApiResponse;
@@ -606,8 +823,9 @@ export function FindHelpExplorer({
         if (!Array.isArray(data.institutes)) throw new Error("Invalid directory response");
         institutes.push(...data.institutes);
         page += 1;
-      } while (data.hasMore && data.institutes.length > 0);
-      return { ...data, institutes };
+      } while (!onePageAtATime && data.hasMore && data.institutes.length > 0);
+      const nextPage = onePageAtATime && data.hasMore && data.institutes.length > 0 ? page : null;
+      return { ...data, institutes, nextPage };
     };
     load()
       .then((data) => {
@@ -624,14 +842,29 @@ export function FindHelpExplorer({
 
         if (isDistantGpsResult) {
           const fallback = clientSmartGuessRef.current;
+          const fallbackAddress = savedAddressLabel(fallback);
           setFarFromServices(true);
           setActiveCountry(fallback.country);
           setGuessReason(fallback.reason === "saved" ? null : fallback.reason);
           setArea(areaFromSmartResolution(fallback));
+          if (fallbackAddress) {
+            resolvedAddressInputRef.current = fallbackAddress;
+            setSearchInput(fallbackAddress);
+            setSearchedPointLabel(fallbackAddress);
+          }
           return;
         }
 
         setInstitutes(data.institutes);
+        listInfoRef.current = { areaKey, count: data.institutes.length };
+        setSavedListAt(null);
+        setCountryNextPage(data.nextPage);
+        setLoadMoreFailed(false);
+        // Nearest-first lists are worth keeping for a day without internet; a whole-country page is not.
+        if (!countryBrowse && data.institutes.length > 0) writeSavedList(data.institutes);
+        if (data.institutes.length > 0) {
+          saveOfflineInstitutes(data.country ?? requestCountry, data.institutes);
+        }
         if (data.country) setActiveCountry(data.country);
         setSelectedId(null);
         pendingHoverIdRef.current = null;
@@ -642,17 +875,98 @@ export function FindHelpExplorer({
         setHoveredId(null);
         setMobilePreviewId(null);
         setVisibleCount(PAGE_SIZE);
-        setSettled({ key: requestKey, failed: false });
+        setSettled({ key: requestKey, failed: false, offline: false });
       })
       .catch((fetchError: unknown) => {
         if (fetchError instanceof DOMException && fetchError.name === "AbortError") return;
-        console.error("Failed to load medical institutes", fetchError);
-        setInstitutes([]);
-        setSettled({ key: requestKey, failed: true });
+        const offline = isBrowserOffline();
+        if (!offline) {
+          console.error("Failed to load medical institutes", fetchError);
+        }
+
+        const offlineDirectory = queryOfflineInstitutes({
+          country: requestCountry,
+          point: requestPoint,
+          category,
+          search,
+        });
+
+        if (offlineDirectory) {
+          setInstitutes(offlineDirectory.rows);
+          setSavedListAt(offlineDirectory.savedAt);
+          listInfoRef.current = { areaKey, count: offlineDirectory.rows.length };
+          setCountryNextPage(null);
+          setSelectedId(null);
+          setMobilePreviewId(null);
+          setVisibleCount(PAGE_SIZE);
+          setSettled({
+            key: requestKey,
+            failed: offlineDirectory.rows.length > 0,
+            offline,
+          });
+          return;
+        }
+
+        // Rows already on screen for this same place stay. Otherwise the list saved on the phone, if any.
+        const kept = listInfoRef.current;
+        if (!(kept.count > 0 && kept.areaKey === areaKey)) {
+          const saved = readSavedList(initialCountry);
+          setInstitutes(saved?.rows ?? []);
+          setSavedListAt(saved?.savedAt ?? null);
+          listInfoRef.current = { areaKey: null, count: saved?.rows.length ?? 0 };
+          setCountryNextPage(null);
+          setSelectedId(null);
+          setMobilePreviewId(null);
+          setVisibleCount(PAGE_SIZE);
+        }
+        setSettled({
+          key: requestKey,
+          failed: true,
+          offline,
+        });
       });
 
     return () => controller.abort();
-  }, [requestQuery, requestKey, gpsActive]);
+  }, [
+    requestQuery,
+    requestKey,
+    gpsActive,
+    countryBrowse,
+    areaKey,
+    areaPointLat,
+    areaPointLng,
+    areaTargetCountry,
+    category,
+    search,
+    initialCountry,
+  ]);
+
+  async function loadNextCountryPage() {
+    if (countryNextPage === null || loadingMore) return;
+    const key = requestKey;
+    setLoadingMore(true);
+    setLoadMoreFailed(false);
+    try {
+      const response = await fetch(`/api/medical-institutes?${requestQuery}&page=${countryNextPage}`);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = (await response.json()) as ApiResponse;
+      if (!Array.isArray(data.institutes)) throw new Error("Invalid directory response");
+      // The search changed while this page was on its way: these rows belong to the old one.
+      if (requestKeyRef.current !== key) return;
+      if (data.institutes.length > 0) {
+        saveOfflineInstitutes(data.country ?? activeCountry, data.institutes);
+      }
+      setInstitutes((prev) => [...prev, ...data.institutes]);
+      listInfoRef.current = { ...listInfoRef.current, count: listInfoRef.current.count + data.institutes.length };
+      setCountryNextPage(data.hasMore && data.institutes.length > 0 ? countryNextPage + 1 : null);
+      setVisibleCount((count) => count + PAGE_SIZE);
+    } catch (loadError) {
+      console.error("Failed to load more medical institutes", loadError);
+      if (requestKeyRef.current === key) setLoadMoreFailed(true);
+    } finally {
+      setLoadingMore(false);
+    }
+  }
 
   const showFarNotice = farFromServices && !gpsActive;
 
@@ -692,6 +1006,7 @@ export function FindHelpExplorer({
 
   function switchMobileView(next: MobileViewMode, focusId: string | null = null) {
     setMobileView(next);
+    if (next === "map") setMapWanted(true);
     window.requestAnimationFrame(() => {
       const behavior: ScrollBehavior = prefersReducedMotion() ? "auto" : "smooth";
       if (next === "map") {
@@ -704,19 +1019,17 @@ export function FindHelpExplorer({
     });
   }
 
-  /** Tapping a place in the list: on a phone, open the map on that place with its card under it. */
+  /** Tapping a place selects it cleanly without forced tab jumps on phones. */
   function showInstitute(id: string) {
     setSelectedId(id);
-    if (!isDesktopViewport()) {
-      setMobilePreviewId(id);
-      switchMobileView("map");
-    }
   }
 
   function chooseCountry(country: CountryCode) {
     userPickedManuallyRef.current = true;
     setGuessReason(null);
     setFarFromServices(false);
+    setSearchedPointLabel(null);
+    resolvedAddressInputRef.current = null;
     setActiveCountry(country);
     setArea({ kind: "country", country });
     writeSavedFindHelpLocation({ mode: "country", country, chosenOnLang: lang });
@@ -727,6 +1040,7 @@ export function FindHelpExplorer({
     userPickedManuallyRef.current = true;
     setGuessReason(null);
     setFarFromServices(false);
+    setSearchedPointLabel(null);
     setActiveCountry(targetCountry);
     setArea({
       kind: "point",
@@ -746,9 +1060,82 @@ export function FindHelpExplorer({
     });
   }
 
+  async function resolveAndApplySearch(rawQuery: string) {
+    const trimmed = rawQuery.trim();
+    setAddressNotFoundFor(null);
+    if (!trimmed) {
+      resolvedAddressInputRef.current = null;
+      setSearchedPointLabel(null);
+      setSearch("");
+      return;
+    }
+
+    const presetMatch = findPresetCityMatch(trimmed, activeCountry);
+    if (presetMatch) {
+      resolvedAddressInputRef.current = trimmed;
+      setSearch("");
+      chooseCity(presetMatch);
+      return;
+    }
+
+    if (isBrowserOffline()) {
+      resolvedAddressInputRef.current = null;
+      setSearchedPointLabel(null);
+      setSearch(trimmed);
+      return;
+    }
+
+    setAddressSearching(true);
+    try {
+      const response = await fetch(
+        `/api/geocode?q=${encodeURIComponent(trimmed)}&country=${encodeURIComponent(activeCountry)}`,
+      );
+      if (response.ok) {
+        const payload = (await response.json()) as {
+          match?: { lat: number; lng: number; label: string; country?: CountryCode } | null;
+        };
+        if (payload.match && Number.isFinite(payload.match.lat) && Number.isFinite(payload.match.lng)) {
+          const targetCountry = payload.match.country ?? activeCountry;
+          resolvedAddressInputRef.current = trimmed;
+          userPickedManuallyRef.current = true;
+          setGuessReason(null);
+          setFarFromServices(false);
+          setActiveCountry(targetCountry);
+          setSearchedPointLabel(payload.match.label || trimmed);
+          setSearch("");
+          setArea({
+            kind: "point",
+            lat: payload.match.lat,
+            lng: payload.match.lng,
+            source: "area",
+          });
+          // Remembered on this phone, like a chosen city, so the next visit opens near the same address.
+          writeSavedFindHelpLocation({
+            mode: "city",
+            country: targetCountry,
+            cityName: payload.match.label || trimmed,
+            lat: payload.match.lat,
+            lng: payload.match.lng,
+            chosenOnLang: lang,
+          });
+          return;
+        }
+      }
+    } catch {
+      // Graceful fallback to local text match
+    } finally {
+      setAddressSearching(false);
+    }
+
+    // Not an address we can place: try it as a name, and say so if that finds nothing either.
+    setAddressNotFoundFor(trimmed);
+    setSearchedPointLabel(null);
+    setSearch(trimmed);
+  }
+
   function submitSearch(event: FormEvent) {
     event.preventDefault();
-    setSearch(searchInput.trim());
+    void resolveAndApplySearch(searchInput);
   }
 
   function clearFilters() {
@@ -756,37 +1143,53 @@ export function FindHelpExplorer({
     setEmergencyOnly(false);
     setOpenNowOnly(false);
     setOwnership(null);
+    resolvedAddressInputRef.current = null;
+    setAddressNotFoundFor(null);
+    setSearchedPointLabel(null);
     setSearch("");
     setSearchInput("");
   }
 
   const activeCityName = area.kind === "point" && area.source === "city" ? area.cityName ?? null : null;
+  /** The automatic request on load may never be answered, so only a tap on "Use my location" shows as searching. */
+  const locatingShown = locationStatus === "locating" && manualLocateTried;
+  /** Location was refused, never answered or failed: the list is a guess the reader has not chosen. */
+  const placeUnknown =
+    !gpsActive &&
+    locationStatus !== "active" &&
+    (locationStatus === "denied" || autoLocateWaited || manualLocateTried);
+  const guessedCity = placeUnknown && guessReason !== null ? activeCityName : null;
+  const showLocateButton = placeUnknown && (guessedCity !== null || area.kind === "country");
 
   /** What the "Where" trigger shows: includes country whenever a city is selected. */
   const locationValue =
-    locationStatus === "locating"
+    locatingShown
       ? copy.locating
       : gpsActive
         ? copy.myLocation
         : activeCityName
           ? `${activeCityName}, ${copy.countries[activeCountry]}`
-          : area.kind === "country"
-            ? copy.countries[area.country]
-            : copy.mapArea;
+          : area.kind === "point" && searchedPointLabel
+            ? `${searchedPointLabel}, ${copy.countries[activeCountry]}`
+            : area.kind === "country"
+              ? copy.countries[area.country]
+              : copy.mapArea;
 
   const locationSummary =
-    locationStatus === "locating"
+    locatingShown
       ? copy.locating
       : gpsActive
         ? copy.locationActive
         : activeCityName
           ? copy.nearCity(activeCityName)
-          : area.kind === "country"
-            ? copy.showingCountry(copy.countries[area.country])
-            : copy.placesInArea;
+          : area.kind === "point" && searchedPointLabel
+            ? copy.nearPlace(searchedPointLabel)
+            : area.kind === "country"
+              ? copy.showingCountry(copy.countries[area.country])
+              : copy.placesInArea;
 
   const spokenStatusLine =
-    locationStatus === "locating"
+    locatingShown
       ? copy.locating
       : gpsActive
         ? copy.locationActive
@@ -827,19 +1230,42 @@ export function FindHelpExplorer({
   );
 
   const numberLocale = lang === "rom" ? "ro" : lang;
+  const offlineFailure = error && Boolean(settled?.offline);
+  const listNotice =
+    savedListAt !== null
+      ? copy.savedListNotice(
+          new Date(savedListAt).toLocaleDateString(numberLocale, { day: "numeric", month: "long" }),
+        )
+      : offlineFailure
+        ? copy.offlineKeptList
+        : copy.loadError;
+  /**
+   * "Hospital, public": the kind of place and, where the name tells it, who runs it. Pharmacies and
+   * dentists are private by default and family doctors cannot be told, so those show the kind alone.
+   */
+  const placeKindLine = (institute: MedicalInstitute) => {
+    const kind = copy.categories[institute.category];
+    const tellsOwnership =
+      institute.category === "hospital" || institute.category === "clinic" || institute.category === "gp";
+    return institute.ownership && tellsOwnership
+      ? `${kind}, ${copy.ownership[institute.ownership].toLocaleLowerCase(numberLocale)}`
+      : kind;
+  };
   const allowOver80Km = area.kind === "point" && area.source === "city";
   const distanceOriginCity = !gpsActive ? activeCityName : null;
 
   const mobileLocationSummary =
-    locationStatus === "locating"
+    locatingShown
       ? copy.locating
       : gpsActive
         ? copy.locationActive
         : activeCityName
           ? copy.nearPlace(activeCityName)
-          : area.kind === "country"
-            ? copy.showingCountry(copy.countries[area.country])
-            : copy.placesInArea;
+          : area.kind === "point" && searchedPointLabel
+            ? copy.nearPlace(searchedPointLabel)
+            : area.kind === "country"
+              ? copy.showingCountry(copy.countries[area.country])
+              : copy.placesInArea;
   const mobileFilterSummary = [
     mobileLocationSummary,
     category ? copy.categories[category] : copy.allPlaces,
@@ -856,67 +1282,87 @@ export function FindHelpExplorer({
     showFarNotice ||
     emergencyOnly;
 
-  const renderFilterFields = (searchId: string, layout: "desktop" | "sheet") => {
+  // The phone sheet holds only what the card above it does not: where, public or private, emergency care, open now.
+  const extraFilterCount = (ownership ? 1 : 0) + (emergencyOnly ? 1 : 0) + (openNowOnly ? 1 : 0);
+  const filtersButtonValue = extraFilterCount > 0 ? `${copy.filtersTitle} (${extraFilterCount})` : copy.filtersTitle;
+
+  // The search box and the kind of place are already on the card, one tap away.
+  const renderFilterFields = (layout: "desktop" | "sheet") => {
     const isSheet = layout === "sheet";
     return (
       <div
         className={
           isSheet
             ? "flex flex-col gap-4"
-            : "grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.28fr)_minmax(0,1.24fr)_minmax(0,0.68fr)] lg:items-center 2xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)_minmax(0,0.62fr)_auto_auto_auto]"
+            : "grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1.15fr)_minmax(0,0.68fr)_auto] lg:items-center"
         }
       >
+        {isSheet ? null : (
         <form
           onSubmit={(event) => {
             submitSearch(event);
           }}
-          className={isSheet ? "min-w-0" : "col-span-1 min-w-0 sm:col-span-2 lg:col-span-1"}
+          className="col-span-1 min-w-0 sm:col-span-2 lg:col-span-1"
           role="search"
         >
-          <label
-            htmlFor={searchId}
-            className={isSheet ? "mb-1.5 block text-meta font-medium text-foreground" : "sr-only"}
-          >
+          <label htmlFor={desktopSearchInputId} className="sr-only">
             {copy.searchPlaceholder}
           </label>
-          <div className="relative min-w-0">
-            <input
-              id={searchId}
-              type="search"
-              name="q"
-              value={searchInput}
-              onChange={(event) => {
-                const next = event.target.value;
-                setSearchInput(next);
-                if (!next) setSearch("");
-              }}
-              placeholder={isSheet ? copy.searchHint : copy.searchPlaceholder}
-              title={copy.searchPlaceholder}
-              className={`field-focus peer min-h-12 w-full rounded-(--radius-control) border border-border-control bg-card py-2 pl-10 text-body text-foreground shadow-(--shadow-card-rest) motion-reduce:transition-none placeholder:text-muted-foreground dark:bg-ink-950/40 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
-                searchInput ? "pr-12" : "pr-3.5"
-              }`}
-            />
-            {/* After the input so it can follow its focus: the glass takes the focus colour with the edge. */}
-            <SearchIcon
-              className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none peer-focus-visible:text-sapphire dark:peer-focus-visible:text-sapphire-border"
-              aria-hidden="true"
-            />
-            {searchInput && (
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchInput("");
-                  setSearch("");
+          <div className="flex min-w-0 items-center gap-1.5">
+            <div className="relative min-w-0 flex-1">
+              <input
+                id={desktopSearchInputId}
+                type="search"
+                name="q"
+                enterKeyHint="search"
+                autoCapitalize="words"
+                value={searchInput}
+                onChange={(event) => {
+                  const next = event.target.value;
+                  setSearchInput(next);
+                  if (!next) setSearch("");
                 }}
-                aria-label={copy.clearFilters}
-                title={copy.clearFilters}
-                className="absolute right-1 top-1/2 inline-flex h-11 w-11 min-h-11 min-w-11 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-              </button>
-            )}
+                placeholder={copy.searchPlaceholder}
+                title={copy.searchPlaceholder}
+                className={`field-focus peer min-h-12 w-full rounded-(--radius-control) border border-border-control bg-card py-2 pl-10 text-body text-foreground shadow-(--shadow-card-rest) motion-reduce:transition-none placeholder:text-muted-foreground dark:bg-ink-950/40 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
+                  searchInput ? "pr-12" : "pr-3.5"
+                }`}
+              />
+              {/* After the input so it can follow its focus: the glass takes the focus colour with the edge. */}
+              <SearchIcon
+                className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none peer-focus-visible:text-sapphire dark:peer-focus-visible:text-sapphire-border"
+                aria-hidden="true"
+              />
+              {searchInput && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    resolvedAddressInputRef.current = null;
+                    setSearchedPointLabel(null);
+                    setSearchInput("");
+                    setSearch("");
+                  }}
+                  aria-label={copy.clearFilters}
+                  title={copy.clearFilters}
+                  className="absolute right-1 top-1/2 inline-flex h-11 w-11 min-h-11 min-w-11 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </button>
+              )}
+            </div>
+            <Button
+              type="button"
+              variant="action"
+              size="lg"
+              disabled={addressSearching}
+              onClick={() => void resolveAndApplySearch(searchInput)}
+              className="shrink-0"
+            >
+              {copy.searchButton}
+            </Button>
           </div>
         </form>
+        )}
 
         <div className="min-w-0">
           {isSheet ? (
@@ -930,7 +1376,7 @@ export function FindHelpExplorer({
             wholeCountrySelected={area.kind === "country" && area.country === activeCountry && !gpsActive}
             activeCityName={activeCityName}
             gpsActive={gpsActive}
-            locating={locationStatus === "locating"}
+            locating={locatingShown}
             countries={copy.countries}
             countryGroupLabel={copy.countryLabel}
             cityGroupLabel={copy.cityQuickJumpLabel}
@@ -943,17 +1389,14 @@ export function FindHelpExplorer({
           />
         </div>
 
-        <div className={isSheet ? "min-w-0" : "col-span-1 min-w-0"}>
-          {isSheet ? (
-            <p className="mb-1.5 text-meta font-medium text-foreground">{copy.categoryLabel}</p>
-          ) : null}
+        {isSheet ? null : (
+        <div className="col-span-1 min-w-0">
           <FilterDropdown
             label={copy.categoryLabel}
             value={category ? copy.categories[category] : copy.allCategories}
             icon={<CategoryIcon category={category} className="h-4 w-4" />}
-            align={isSheet ? "left" : "right"}
-            hideLabel={isSheet}
-            inlineLabel={!isSheet}
+            align="right"
+            inlineLabel
           >
             <div className="space-y-0.5">
               {WAYFINDING_CATEGORIES.map((item) => (
@@ -971,69 +1414,141 @@ export function FindHelpExplorer({
             </div>
           </FilterDropdown>
         </div>
+        )}
 
-        <div className={isSheet ? "flex flex-wrap gap-2" : "col-span-1 flex flex-wrap gap-2 sm:col-span-2 lg:col-span-3 2xl:contents"}>
-          {/* Public or private: the value says it all ("Doar de stat"), so the trigger shows no label. */}
-          <div className={isSheet ? "w-full min-w-0" : "min-w-0"}>
-            {isSheet ? (
+        {isSheet ? (
+          <div className="flex flex-wrap gap-2">
+            {/* Public or private: the value says it all ("Doar de stat"), so the trigger shows no label. */}
+            <div className="w-full min-w-0">
               <p className="mb-1.5 text-meta font-medium text-foreground">{copy.ownershipLabel}</p>
-            ) : null}
+              <FilterDropdown
+                label={copy.ownershipLabel}
+                value={
+                  ownership === "public"
+                    ? copy.ownershipPublicOnly
+                    : ownership === "private"
+                      ? copy.ownershipPrivateOnly
+                      : copy.ownershipAll
+                }
+                align="left"
+                hideLabel
+              >
+                <div className="space-y-0.5">
+                  {([null, "public", "private"] as const).map((item) => (
+                    <MenuOption
+                      key={item ?? "all"}
+                      selected={ownership === item}
+                      description={
+                        item === "public"
+                          ? copy.ownershipPublicHint
+                          : item === "private"
+                            ? copy.ownershipPrivateHint
+                            : undefined
+                      }
+                      onSelect={() => setOwnership(item)}
+                    >
+                      {item === "public"
+                        ? copy.ownershipPublicOnly
+                        : item === "private"
+                          ? copy.ownershipPrivateOnly
+                          : copy.ownershipAll}
+                    </MenuOption>
+                  ))}
+                </div>
+              </FilterDropdown>
+            </div>
+
+            <FilterToggleButton
+              checked={emergencyOnly}
+              onToggle={() => {
+                const next = !emergencyOnly;
+                setEmergencyOnly(next);
+                if (next && category && category !== "hospital") setCategory(null);
+              }}
+              renderIcon={(active) => (
+                <AlertCircleIcon
+                  className={`h-4 w-4 shrink-0 ${active ? "text-white" : "text-primary"}`}
+                  aria-hidden="true"
+                />
+              )}
+              label={copy.emergencyWalkInFilter}
+            />
+
+            <FilterToggleButton
+              checked={openNowOnly}
+              onToggle={() => setOpenNowOnly((prev) => !prev)}
+              renderIcon={(active) => (
+                <ClockIcon
+                  className={`h-4 w-4 shrink-0 ${active ? "text-white" : "text-sapphire dark:text-sapphire-border"}`}
+                  aria-hidden="true"
+                />
+              )}
+              label={copy.openNowFilter}
+            />
+          </div>
+        ) : (
+          <div className="min-w-0">
             <FilterDropdown
-              label={copy.ownershipLabel}
-              value={
-                ownership === "public"
-                  ? copy.ownershipPublicOnly
-                  : ownership === "private"
-                    ? copy.ownershipPrivateOnly
-                    : copy.ownershipAll
-              }
-              align="left"
+              label={copy.filtersTitle}
+              value={filtersButtonValue}
+              icon={<FilterIcon className="h-4 w-4" />}
+              align="right"
               hideLabel
+              keepOpenOnSelect
             >
-              <div className="space-y-0.5">
-                {([null, "public", "private"] as const).map((item) => (
-                  <MenuOption key={item ?? "all"} selected={ownership === item} onSelect={() => setOwnership(item)}>
-                    {item === "public"
-                      ? copy.ownershipPublicOnly
-                      : item === "private"
-                        ? copy.ownershipPrivateOnly
-                        : copy.ownershipAll}
+              <div className="space-y-1">
+                <p className="px-3 pb-1 pt-1 text-meta font-medium text-muted-foreground">
+                  {copy.ownershipLabel}
+                </p>
+                <div className="space-y-0.5">
+                  {([null, "public", "private"] as const).map((item) => (
+                    <MenuOption
+                      key={item ?? "all"}
+                      selected={ownership === item}
+                      description={
+                        item === "public"
+                          ? copy.ownershipPublicHint
+                          : item === "private"
+                            ? copy.ownershipPrivateHint
+                            : undefined
+                      }
+                      onSelect={() => setOwnership(item)}
+                    >
+                      {item === "public"
+                        ? copy.ownershipPublicOnly
+                        : item === "private"
+                          ? copy.ownershipPrivateOnly
+                          : copy.ownershipAll}
+                    </MenuOption>
+                  ))}
+                </div>
+
+                <div className="mt-2 space-y-0.5 border-t border-border pt-2">
+                  <MenuOption
+                    selected={emergencyOnly}
+                    icon={<AlertCircleIcon className="h-4 w-4 text-primary" aria-hidden="true" />}
+                    onSelect={() => {
+                      const next = !emergencyOnly;
+                      setEmergencyOnly(next);
+                      // Emergency departments are in hospitals and some clinics, never in a pharmacy or a
+                      // dentist: widen the kind of place so turning this on never ends in an empty list.
+                      if (next && category && category !== "hospital") setCategory(null);
+                    }}
+                  >
+                    {copy.emergencyWalkInFilter}
                   </MenuOption>
-                ))}
+                  <MenuOption
+                    selected={openNowOnly}
+                    icon={<ClockIcon className="h-4 w-4 text-sapphire dark:text-sapphire-border" aria-hidden="true" />}
+                    onSelect={() => setOpenNowOnly((prev) => !prev)}
+                  >
+                    {copy.openNowFilter}
+                  </MenuOption>
+                </div>
               </div>
             </FilterDropdown>
           </div>
-
-          <FilterToggleButton
-            checked={emergencyOnly}
-            onToggle={() => {
-              const next = !emergencyOnly;
-              setEmergencyOnly(next);
-              // Emergency departments are in hospitals and some clinics, never in a pharmacy or a
-              // dentist: widen the kind of place so turning this on never ends in an empty list.
-              if (next && category && category !== "hospital") setCategory(null);
-            }}
-            renderIcon={(active) => (
-              <AlertCircleIcon
-                className={`h-4 w-4 shrink-0 ${active ? "text-white" : "text-primary"}`}
-                aria-hidden="true"
-              />
-            )}
-            label={copy.emergencyWalkInFilter}
-          />
-
-          <FilterToggleButton
-            checked={openNowOnly}
-            onToggle={() => setOpenNowOnly((prev) => !prev)}
-            renderIcon={(active) => (
-              <ClockIcon
-                className={`h-4 w-4 shrink-0 ${active ? "text-white" : "text-sapphire dark:text-sapphire-border"}`}
-                aria-hidden="true"
-              />
-            )}
-            label={copy.openNowFilter}
-          />
-        </div>
+        )}
       </div>
     );
   };
@@ -1047,9 +1562,8 @@ export function FindHelpExplorer({
       )}
 
       {showFarNotice && (
-        <p className="flex items-start gap-2.5 text-body font-medium text-foreground">
-          <PinIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care dark:text-amber-care-border" aria-hidden="true" />
-          <span>{copy.distantLocationNotice(copy.countries[activeCountry])}</span>
+        <p className="text-body font-medium text-foreground">
+          {copy.distantLocationNotice(copy.countries[activeCountry])}
         </p>
       )}
 
@@ -1096,18 +1610,15 @@ export function FindHelpExplorer({
       <section aria-label={copy.searchPlaceholder} className="mt-4">
         <div className="rounded-2xl border border-border bg-card p-3 shadow-(--shadow-card-rest) dark:border-ink-800 lg:hidden">
           <div className="flex items-center justify-between gap-3">
-            <div className="flex min-w-0 flex-1 items-start gap-2.5">
-              <PinIcon className="mt-1 h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
-              <div className="min-w-0 flex-1">
-                <p className="text-body font-medium leading-snug text-foreground">
-                  {mobileFilterSummary}
+            <div className="min-w-0 flex-1">
+              <p className="text-body font-medium leading-snug text-foreground">
+                {mobileFilterSummary}
+              </p>
+              {!isColdLoad && !error ? (
+                <p className="mt-0.5 text-meta tabular-nums text-muted-foreground">
+                  {loading || addressSearching ? copy.loading : copy.resultsCount(displayedInstitutes.length)}
                 </p>
-                {!isColdLoad && !error ? (
-                  <p className="mt-0.5 text-meta tabular-nums text-muted-foreground">
-                    {loading ? copy.loading : copy.resultsCount(displayedInstitutes.length)}
-                  </p>
-                ) : null}
-              </div>
+              ) : null}
             </div>
             <Button
               type="button"
@@ -1122,6 +1633,84 @@ export function FindHelpExplorer({
               {copy.change}
             </Button>
           </div>
+
+          <form
+            onSubmit={submitSearch}
+            role="search"
+            className="mt-2.5 flex items-center gap-1.5 border-t border-border/70 pt-2.5 dark:border-ink-800"
+          >
+            <label htmlFor={mobileSearchInputId} className="sr-only">
+              {copy.searchPlaceholder}
+            </label>
+            <div className="relative min-w-0 flex-1">
+              <input
+                id={mobileSearchInputId}
+                type="search"
+                name="q"
+                enterKeyHint="search"
+                autoCapitalize="words"
+                value={searchInput}
+                onChange={(event) => {
+                  const next = event.target.value;
+                  setSearchInput(next);
+                  if (!next) setSearch("");
+                }}
+                placeholder={copy.searchPlaceholder}
+                title={copy.searchPlaceholder}
+                className={`field-focus peer min-h-11 w-full rounded-(--radius-control) border border-border-control bg-background py-2 pl-9 text-body text-foreground placeholder:text-muted-foreground [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden ${
+                  searchInput ? "pr-11" : "pr-3"
+                }`}
+              />
+              <SearchIcon
+                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground peer-focus-visible:text-sapphire dark:peer-focus-visible:text-sapphire-border"
+                aria-hidden="true"
+              />
+              {searchInput && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    resolvedAddressInputRef.current = null;
+                    setSearchedPointLabel(null);
+                    setSearchInput("");
+                    setSearch("");
+                  }}
+                  aria-label={copy.clearFilters}
+                  title={copy.clearFilters}
+                  className="absolute right-0.5 top-1/2 inline-flex h-11 w-11 min-h-11 min-w-11 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </button>
+              )}
+            </div>
+            <Button
+              type="button"
+              variant="action"
+              size="md"
+              disabled={addressSearching}
+              onClick={() => void resolveAndApplySearch(searchInput)}
+              className="shrink-0"
+            >
+              {copy.searchButton}
+            </Button>
+          </form>
+
+          {/* The list starts from a guess (the capital for this language): say so, and offer the one-tap way out. */}
+          {showLocateButton ? (
+            <div className="mt-2.5 border-t border-border/70 pt-2.5 dark:border-ink-800">
+              {guessedCity ? (
+                <p className="mb-2.5 text-body text-foreground">{copy.guessedPlaceHint(guessedCity)}</p>
+              ) : null}
+              <Button
+                type="button"
+                variant="outline"
+                size="md"
+                disabled={locatingShown}
+                onClick={() => locateUser(true)}
+              >
+                {locatingShown ? copy.locating : copy.useMyLocation}
+              </Button>
+            </div>
+          ) : null}
 
           <div
             role="group"
@@ -1176,7 +1765,7 @@ export function FindHelpExplorer({
         </div>
 
         <div className="hidden rounded-2xl border border-border bg-card p-4 shadow-(--shadow-card-rest) dark:border-ink-800 lg:block">
-          {renderFilterFields(desktopSearchInputId, "desktop")}
+          {renderFilterFields("desktop")}
 
           {/* Calm, compact status and active-filter strip */}
           <div
@@ -1184,7 +1773,6 @@ export function FindHelpExplorer({
             className="mt-3 flex scroll-mt-[calc(var(--chrome-h,0px)+0.75rem)] flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border/70 pt-3"
           >
             <p className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-body text-muted-foreground">
-              <PinIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
               <span>
                 {gpsActive
                   ? copy.locationActive
@@ -1200,7 +1788,7 @@ export function FindHelpExplorer({
                 <>
                   <span aria-hidden="true" className="h-4 w-px bg-border" />
                   <span role="status" className="tabular-nums text-muted-foreground">
-                    {loading ? copy.loading : copy.resultsCount(displayedInstitutes.length)}
+                    {loading || addressSearching ? copy.loading : copy.resultsCount(displayedInstitutes.length)}
                   </span>
                 </>
               ) : null}
@@ -1243,8 +1831,8 @@ export function FindHelpExplorer({
         </p>
       </section>
 
-      {/* Row 3: Aligned two-column workspace — results list and sticky map share the same top edge */}
-      <div className="mt-5 grid gap-6 lg:grid-cols-[minmax(22rem,0.85fr)_minmax(0,1.35fr)] 2xl:grid-cols-[minmax(26rem,0.75fr)_minmax(0,1.45fr)] lg:items-start lg:gap-8">
+      {/* Row 3: Aligned two-column workspace — distance-sorted list leads cleanly on the left */}
+      <div className="mt-5 grid gap-6 lg:grid-cols-[minmax(24rem,1.15fr)_minmax(0,1fr)] 2xl:grid-cols-[minmax(28rem,1.2fr)_minmax(0,1fr)] lg:items-start lg:gap-8">
         {/* Facility list column (first in DOM, left on desktop) */}
         <div
           ref={listColumnRef}
@@ -1280,9 +1868,9 @@ export function FindHelpExplorer({
                 ))}
               </ul>
             </div>
-          ) : error ? (
-            // The directory did not answer (a network drop, or the server's database is unreachable).
-            // One clear next step, with the failure stated plainly and nothing alarming around it.
+          ) : error && displayedInstitutes.length === 0 ? (
+            // The directory did not answer (a network drop, or the server's database is unreachable) and
+            // there is no earlier or saved list to show. One clear next step, the failure stated plainly.
             <div
               className="swap-in rounded-2xl border border-border bg-card px-5 py-6 shadow-2xs sm:px-6 sm:py-7 dark:border-ink-800"
               role="alert"
@@ -1304,7 +1892,9 @@ export function FindHelpExplorer({
               className="swap-in rounded-2xl border border-border bg-card px-5 py-6 shadow-2xs sm:px-6 sm:py-7 dark:border-ink-800"
               role="status"
             >
-              <p className="max-w-(--measure-lead) text-body font-medium leading-snug text-foreground">{copy.noResults}</p>
+              <p className="max-w-(--measure-lead) text-body font-medium leading-snug text-foreground">
+                {addressNotFoundFor !== null && addressNotFoundFor === search ? copy.addressNotFound : copy.noResults}
+              </p>
               {filtered ? (
                 <Button
                   type="button"
@@ -1334,6 +1924,27 @@ export function FindHelpExplorer({
                 isRevalidating ? "pointer-events-none opacity-60" : "opacity-100"
               }`}
             >
+              {/* The refresh failed but there is still a list to read: the earlier one, or the one saved on the phone. */}
+              {error ? (
+                <div
+                  role="alert"
+                  className="mb-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5 rounded-2xl border border-border bg-card px-4 py-3 shadow-2xs dark:border-ink-800"
+                >
+                  <p className="min-w-0 flex-[1_1_14rem] text-body font-medium leading-snug text-foreground">
+                    {listNotice}
+                  </p>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="md"
+                    onClick={() => setReloadKey((value) => value + 1)}
+                    className="shrink-0"
+                  >
+                    <RetryIcon className="h-4 w-4 shrink-0" />
+                    <span>{copy.retry}</span>
+                  </Button>
+                </div>
+              ) : null}
               <ul
                 key={resultSetKey}
                 className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-2xs dark:border-ink-800"
@@ -1381,28 +1992,7 @@ export function FindHelpExplorer({
                               : "hover:bg-muted/50"
                         }`}
                       >
-                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-meta">
-                          <span className="inline-flex items-center gap-1.5 font-medium text-muted-foreground">
-                            <CategoryIcon category={institute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" />
-                            <span>{copy.categories[institute.category]}</span>
-                          </span>
-                          {institute.ownership ? (
-                            <>
-                              <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
-                              <span className="font-medium text-muted-foreground">{copy.ownership[institute.ownership]}</span>
-                            </>
-                          ) : null}
-                          {institute.emergency ? (
-                            <>
-                              <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
-                              <span className="font-medium text-primary">
-                                {copy.emergency}
-                              </span>
-                            </>
-                          ) : null}
-                        </div>
-
-                        <h3 className="mt-1 text-title font-semibold leading-snug text-foreground">
+                        <h3 className="text-title font-semibold leading-snug text-foreground">
                           <button
                             type="button"
                             aria-pressed={active}
@@ -1418,14 +2008,23 @@ export function FindHelpExplorer({
                           </button>
                         </h3>
 
+                        <p className="text-body font-medium text-foreground">
+                          {placeKindLine(institute)}
+                          {institute.emergency ? (
+                            <>
+                              {", "}
+                              <span className="text-primary">{copy.emergency}</span>
+                            </>
+                          ) : null}
+                        </p>
+
                         {location ? (
                           <p className="mt-0.5 text-body text-muted-foreground">{location}</p>
                         ) : null}
 
                         {distanceLabel ? (
-                          <p className="mt-1 inline-flex items-center gap-1.5 text-body font-medium tabular-nums text-sapphire dark:text-sapphire-border">
-                            <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                            <span>{distanceLabel}</span>
+                          <p className="mt-1 text-body font-medium tabular-nums text-sapphire dark:text-sapphire-border">
+                            {distanceLabel}
                           </p>
                         ) : null}
 
@@ -1448,7 +2047,11 @@ export function FindHelpExplorer({
                             ) : null}
                             <span className="tabular-nums text-muted-foreground">{hours}</span>
                           </div>
-                        ) : null}
+                        ) : (
+                          <p className="mt-2.5 border-t border-border/60 pt-2.5 text-body text-muted-foreground dark:border-ink-800">
+                            {hasPhone ? `${copy.hoursUnknown} ${copy.callBeforeGoing}` : copy.hoursUnknown}
+                          </p>
+                        )}
 
                         <PlaceCardActions
                           institute={institute}
@@ -1465,19 +2068,32 @@ export function FindHelpExplorer({
                   );
                 })}
               </ul>
-              {displayedInstitutes.length > visibleCount ? (
+              {displayedInstitutes.length > visibleCount || countryNextPage !== null ? (
                 <Button
                   type="button"
                   variant="outline"
                   size="md"
                   fullWidth
-                  onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
+                  disabled={loadingMore}
+                  onClick={() => {
+                    if (displayedInstitutes.length > visibleCount) setVisibleCount((count) => count + PAGE_SIZE);
+                    else void loadNextCountryPage();
+                  }}
                   className="mt-3"
                 >
                   <span className="min-w-0 truncate">
-                    {copy.showMore(Math.min(PAGE_SIZE, displayedInstitutes.length - visibleCount))}
+                    {loadingMore
+                      ? copy.loading
+                      : displayedInstitutes.length > visibleCount
+                        ? copy.showMore(Math.min(PAGE_SIZE, displayedInstitutes.length - visibleCount))
+                        : copy.showMorePlaces}
                   </span>
                 </Button>
+              ) : null}
+              {loadMoreFailed ? (
+                <p role="alert" className="mt-2 text-body font-medium text-foreground">
+                  {copy.loadError}
+                </p>
               ) : null}
             </div>
           )}
@@ -1498,6 +2114,7 @@ export function FindHelpExplorer({
                   : "h-[min(62svh,30rem)]"
               }`}
             >
+              {mapWanted ? (
               <InstitutesMap
                 institutes={displayedInstitutes}
                 selectedId={selectedId}
@@ -1514,9 +2131,14 @@ export function FindHelpExplorer({
                   userPickedManuallyRef.current = true;
                   setGuessReason(null);
                   setFarFromServices(false);
+                  setSearchedPointLabel(null);
+                  resolvedAddressInputRef.current = null;
                   setArea({ kind: "point", ...center, source: "area" });
                 }}
               />
+              ) : (
+                <MapLoading />
+              )}
             </div>
           </div>
 
@@ -1529,29 +2151,18 @@ export function FindHelpExplorer({
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-meta">
-                    <span className="inline-flex items-center gap-1.5 font-medium text-muted-foreground">
-                      <CategoryIcon category={mobilePreviewInstitute.category} className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" />
-                      <span>{copy.categories[mobilePreviewInstitute.category]}</span>
-                    </span>
-                    {mobilePreviewInstitute.ownership ? (
-                      <>
-                        <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
-                        <span className="font-medium text-muted-foreground">{copy.ownership[mobilePreviewInstitute.ownership]}</span>
-                      </>
-                    ) : null}
-                    {mobilePreviewInstitute.emergency && (
-                      <>
-                        <span aria-hidden="true" className="inline-block h-3 w-px bg-border" />
-                        <span className="font-medium text-primary">
-                          {copy.emergency}
-                        </span>
-                      </>
-                    )}
-                  </div>
-                  <h3 className="mt-1.5 text-title font-semibold leading-snug text-foreground">
+                  <h3 className="text-title font-semibold leading-snug text-foreground">
                     {mobilePreviewInstitute.name}
                   </h3>
+                  <p className="mt-1 text-body font-medium text-foreground">
+                    {placeKindLine(mobilePreviewInstitute)}
+                    {mobilePreviewInstitute.emergency ? (
+                      <>
+                        {", "}
+                        <span className="text-primary">{copy.emergency}</span>
+                      </>
+                    ) : null}
+                  </p>
                 </div>
                 <button
                   type="button"
@@ -1588,12 +2199,11 @@ export function FindHelpExplorer({
                   <>
                     {previewLoc && <p className="mt-1 text-body text-muted-foreground">{previewLoc}</p>}
                     {previewDistance && (
-                      <p className="mt-1 inline-flex items-center gap-1.5 text-body font-medium tabular-nums text-sapphire dark:text-sapphire-border">
-                        <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                        <span>{previewDistance}</span>
+                      <p className="mt-1 text-body font-medium tabular-nums text-sapphire dark:text-sapphire-border">
+                        {previewDistance}
                       </p>
                     )}
-                    {previewHours && (
+                    {previewHours ? (
                       <div className="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-border/60 pt-2.5 text-body dark:border-ink-800">
                         {previewOpenNow ? (
                           <>
@@ -1612,6 +2222,10 @@ export function FindHelpExplorer({
                         ) : null}
                         <span className="tabular-nums text-muted-foreground">{previewHours}</span>
                       </div>
+                    ) : (
+                      <p className="mt-2.5 border-t border-border/60 pt-2.5 text-body text-muted-foreground dark:border-ink-800">
+                        {hasPreviewPhone ? `${copy.hoursUnknown} ${copy.callBeforeGoing}` : copy.hoursUnknown}
+                      </p>
                     )}
                     <PlaceCardActions
                       institute={mobilePreviewInstitute}
@@ -1757,7 +2371,7 @@ export function FindHelpExplorer({
               </div>
 
               <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
-                {renderFilterFields(sheetSearchInputId, "sheet")}
+                {renderFilterFields("sheet")}
 
                 {(area.kind === "point" || filtered) && (
                   <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-border/70 pt-3">
@@ -1793,10 +2407,7 @@ export function FindHelpExplorer({
                   variant="action"
                   size="lg"
                   fullWidth
-                  onClick={() => {
-                    setSearch(searchInput.trim());
-                    closeFilterSheet();
-                  }}
+                  onClick={closeFilterSheet}
                 >
                   {loading ? copy.loading : copy.showPlaces(displayedInstitutes.length)}
                 </Button>

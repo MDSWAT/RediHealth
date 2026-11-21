@@ -1,12 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { PhoneIcon, UsersIcon } from "@/components/ui/icons";
+import { CalendarIcon, FileTextIcon, PhoneIcon, UsersIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { PageListenAction } from "@/components/ui/PageListenAction";
+import { Reveal } from "@/components/ui/Reveal";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
 function useSafeLanguage() {
@@ -21,88 +21,108 @@ function useSafeLanguage() {
 export const heroCopy = {
   ru: {
     title: "Медицинские медиаторы могут вам помочь",
-    subtitle: "Медицинский посредник поможет вам обратиться к врачу, получить документы, удостоверяющие личность и медицинскую страховку, а также присмотреть за вашими детьми, бабушками и дедушками.",
-    ctaRequest: "Попросите посредника",
+    subtitle:
+      "Медицинский посредник поможет записаться к семейному врачу, оформить документы для страхования и найти местные службы здравоохранения.",
     ctaCallback: "Заказать звонок",
-    card1Title: "Запись и посещение врача",
-    card1Desc: "Они идут с вами к семейному врачу, помогают записаться на прием и объясняют ваши рецепты.",
+    card1Title: "Запись и практические шаги",
+    card1Desc:
+      "Помогает с записью к семейному врачу и организационными шагами, не заменяя медицинскую консультацию по лечению.",
     card2Title: "Документы и страховка",
-    card2Desc: "Они помогают со свидетельствами о рождении, удостоверениями личности и медицинской страховкой для всей семьи.",
-    card3Title: "Поговорите с врачом из дома",
-    card3Desc: "Приносят планшет и приборы для измерения артериального давления, кислорода и сахара в крови. Вы разговариваете с врачом по телефону.",
+    card2Desc:
+      "Подсказывает, какие шаги нужны для свидетельства о рождении, удостоверения личности и медицинской страховки.",
+    card3Title: "Связь со службами на месте",
+    card3Desc:
+      "Направляет к семейным врачам, участковым медсестрам и программам профилактики и может прийти на встречу по местной договоренности.",
   },
-
   ro: {
-    title: "Mediatori sanitari te ajută",
-    subtitle: "Mediatorul sanitar te ajută să ajungi la medic, să faci buletinul și asigurarea și să ai grijă de copii și de bunici.",
-    ctaRequest: "Cere un mediator",
+    title: "Mediatorii sanitari sunt aici să te ajute",
+    subtitle:
+      "Un mediator sanitar te ajută să te înscrii la medicul de familie, să pregătești actele pentru asigurare și să găsești serviciile de sănătate din zona ta.",
     ctaCallback: "Cere un apel",
-    card1Title: "Înscriere și vizite la medic",
-    card1Desc: "Merge cu tine la medicul de familie, te ajută cu programările și îți explică rețetele.",
+    card1Title: "Înscriere și programări",
+    card1Desc:
+      "Te ajută cu înscrierea la medicul de familie, programările și pașii administrativi, fără să ofere recomandări clinice despre rețete.",
     card2Title: "Acte și asigurare",
-    card2Desc: "Te ajută cu certificatul de naștere, buletinul și asigurarea CNAS pentru toată familia.",
-    card3Title: "Vorbești cu un medic, de acasă",
-    card3Desc: "Vine cu o tabletă și aparate pentru tensiune, oxigen și zahăr în sânge. Vorbești cu un medic la telefon.",
+    card2Desc:
+      "Îți explică ce acte sunt necesare pentru certificatul de naștere, buletin și asigurarea CNAS.",
+    card3Title: "Legătură cu serviciile din zonă",
+    card3Desc:
+      "Te pune în legătură cu medicii de familie, asistenții comunitari și campaniile locale de prevenție, și te poate însoți atunci când este disponibil local.",
   },
   en: {
-    title: "Health mediators can help you",
-    subtitle: "A health mediator helps you see a doctor, get ID papers and health insurance, and look after your children and grandparents.",
-    ctaRequest: "Ask for a mediator",
+    title: "Health mediators are here to help you",
+    subtitle:
+      "A health mediator helps you register with a family doctor, sort out paperwork and insurance steps, and connect with local health services.",
     ctaCallback: "Request a callback",
-    card1Title: "Registering and doctor visits",
-    card1Desc: "They go with you to the family doctor, help with appointments and explain your prescriptions.",
+    card1Title: "Registration and appointments",
+    card1Desc:
+      "Helps you register with a family doctor, book visits, and follow administrative steps, without giving clinical advice on prescriptions.",
     card2Title: "Documents and insurance",
-    card2Desc: "They help with birth certificates, ID cards and health insurance for the whole family.",
-    card3Title: "Talk to a doctor from home",
-    card3Desc: "They bring a tablet and devices for blood pressure, oxygen and blood sugar. You talk to a doctor by phone.",
+    card2Desc:
+      "Guides you on what paperwork is needed for birth certificates, ID cards, and public health insurance.",
+    card3Title: "Bridge to local care",
+    card3Desc:
+      "Connects you with family doctors, community nurses, and prevention programmes, and joins appointments only when available locally.",
   },
   sq: {
-    title: "Mediatorët shëndetësorë të ndihmojnë",
-    subtitle: "Mediatori shëndetësor të ndihmon të shkosh te mjeku, të nxjerrësh letërnjoftimin dhe sigurimin, dhe të kujdesesh për fëmijët dhe gjyshërit.",
-    ctaRequest: "Kërko një mediator",
+    title: "Mediatorët shëndetësorë mund të të ndihmojnë",
+    subtitle:
+      "Një mediator shëndetësor të ndihmon të regjistrohesh te mjeku i familjes, të përgatitësh dokumentet për sigurimin dhe të gjesh shërbimet lokale.",
     ctaCallback: "Kërko një telefonatë",
-    card1Title: "Regjistrimi dhe vizitat te mjeku",
-    card1Desc: "Vjen me ty te mjeku i familjes, të ndihmon me takimet dhe të shpjegon recetat.",
+    card1Title: "Regjistrimi dhe takimet",
+    card1Desc:
+      "Të ndihmon me regjistrimin te mjeku i familjes, takimet dhe hapat administrativë, pa dhënë këshilla klinike për recetat.",
     card2Title: "Dokumentet dhe sigurimi",
-    card2Desc: "Të ndihmon me certifikatën e lindjes, letërnjoftimin dhe sigurimin shëndetësor për gjithë familjen.",
-    card3Title: "Flet me një mjek nga shtëpia",
-    card3Desc: "Vjen me një tabletë dhe aparate për tensionin, oksigjenin dhe sheqerin në gjak. Flet me një mjek në telefon.",
+    card2Desc:
+      "Të orienton se çfarë dokumentesh duhen për certifikatën e lindjes, letërnjoftimin dhe sigurimin shëndetësor.",
+    card3Title: "Urë lidhëse me shërbimet lokale",
+    card3Desc:
+      "Të lidh me mjekët e familjes, infermierët e komunitetit dhe programet e parandalimit, dhe mund të të shoqërojë kur është e mundur në zonë.",
   },
   it: {
-    title: "Mediatori sanitari per aiutarti",
-    subtitle: "Il mediatore sanitario ti aiuta ad andare dal medico, a fare documenti e tessera sanitaria e a prenderti cura di bambini e nonni.",
-    ctaRequest: "Chiedi un mediatore",
+    title: "I mediatori sanitari possono aiutarti",
+    subtitle:
+      "Un mediatore sanitario ti aiuta a iscriverti dal medico di famiglia, orientarti tra documenti e tessera sanitaria e trovare i servizi locali.",
     ctaCallback: "Fatti richiamare",
-    card1Title: "Iscrizione e visite dal medico",
-    card1Desc: "Viene con te dal medico di famiglia, ti aiuta con gli appuntamenti e ti spiega le ricette.",
+    card1Title: "Iscrizione e appuntamenti",
+    card1Desc:
+      "Ti aiuta con iscrizione dal medico di famiglia, prenotazioni e passaggi amministrativi, senza dare indicazioni cliniche sulle ricette.",
     card2Title: "Documenti e tessera sanitaria",
-    card2Desc: "Ti aiuta con certificato di nascita, carta d'identità e iscrizione al servizio sanitario per tutta la famiglia.",
-    card3Title: "Parli con un medico da casa",
-    card3Desc: "Porta un tablet e gli apparecchi per pressione, ossigeno e zucchero nel sangue. Parli con un medico al telefono.",
+    card2Desc:
+      "Ti orienta sui documenti richiesti per certificato di nascita, carta d'identità e iscrizione sanitaria.",
+    card3Title: "Ponte con i servizi locali",
+    card3Desc:
+      "Ti mette in contatto con medici di famiglia, infermieri di comunità e prevenzione, accompagnandoti solo quando disponibile sul territorio.",
   },
   hr: {
     title: "Zdravstveni medijatori ti mogu pomoći",
-    subtitle: "Zdravstveni medijator pomaže ti otići liječniku, riješiti osobne dokumente i zdravstveno osiguranje te brinuti o djeci i starijima.",
-    ctaRequest: "Zatraži medijatora",
+    subtitle:
+      "Zdravstveni medijator pomaže ti upisati se kod obiteljskog liječnika, pripremiti dokumente za osiguranje i povezati se s lokalnim službama.",
     ctaCallback: "Zatraži poziv",
-    card1Title: "Upis i posjeti liječniku",
-    card1Desc: "Ide s tobom obiteljskom liječniku, pomaže oko naručivanja i objašnjava ti recepte i upute.",
-    card2Title: "Dokumenti i zdravstveno osiguranje",
-    card2Desc: "Pomaže oko rodnog lista, osobne iskaznice i zdravstvenog osiguranja HZZO za cijelu obitelj.",
-    card3Title: "Razgovor s liječnikom od kuće",
-    card3Desc: "Dolazi s tabletom i uređajima za mjerenje krvnog tlaka, zasićenosti kisikom (SpO2) i glukoze u krvi. S liječnikom razgovaraš telefonom.",
+    card1Title: "Upis i naručivanje",
+    card1Desc:
+      "Pomaže oko upisa kod obiteljskog liječnika, naručivanja i administrativnih koraka, bez davanja kliničkih savjeta o receptima.",
+    card2Title: "Dokumenti i osiguranje",
+    card2Desc:
+      "Upućuje te koji su papiri potrebni za rodni list, osobnu iskaznicu i zdravstveno osiguranje.",
+    card3Title: "Veza s lokalnim službama",
+    card3Desc:
+      "Povezuje te s obiteljskim liječnicima, patronažnim sestrama i preventivnim programima, uz pratnju kada je to lokalno dostupno.",
   },
   rom: {
-    title: "Sastipnaske mediatorya zhutin tut",
-    subtitle: "O sastipnasko mediatori zhutil tut te zhas ko doktori, te keres che lila thaj e sastipnaski siguranciya, thaj te arakhes e chhavoren thaj e phuren.",
-    ctaRequest: "Mang ekhe mediatores",
+    title: "Sastipnaske mediatorya šaj te ažutin tut",
+    subtitle:
+      "Jekh sastipnasko mediatori ažutil tut te lekhaves tut ko familiyako doktori, te lačhares e lila vaš e siguranciya thaj te arakhes e thaneske službe.",
     ctaCallback: "Mang ekh akharipe",
-    card1Title: "Lekhavipe thaj vizite ko doktori",
-    card1Desc: "Zhal tusa ko familiyako doktori, zhutil tut e vramenca thaj phenel tuke lokhes e recepte thaj sikavimata.",
-    card2Title: "Lila thaj sastipnaski siguranciya",
-    card2Desc: "Zhutil tut e bijandipnaske lilesa, buletinesa thaj sastipnaske siguranciyasa vash sasti familiya.",
-    card3Title: "Des svato ekhe doktoresa katar khere",
-    card3Desc: "Avel tabletesa thaj aparatenca vash phurdimos e ratesko (tensiyona), oksigeno and-o rat (SpO2) thaj zaharo and-o rat. Des svato e doktoresa ko telefono.",
+    card1Title: "Lekhavipe thaj programime",
+    card1Desc:
+      "Ažutil tut e lekhavipnase thaj e vramenca ko doktori, bi te del doktoresko sfato vaš e recepte.",
+    card2Title: "Lila thaj siguranciya",
+    card2Desc:
+      "Sikavel tuke save lila trubul vaš bijandipnasko lil, buletino thaj sastipnaski siguranciya.",
+    card3Title: "Phandipe e lokalne službenca",
+    card3Desc:
+      "Phandel tut e familiyake doktorenca, asistentenca thaj prevenciyake akciyenca, thaj šaj te džal tusa kana si thanesko ažutipen.",
   },
 };
 
@@ -111,9 +131,9 @@ export function MediatorPublicHero({ lang: langProp }: { lang?: Lang }) {
   const lang = langProp ?? ctxLang;
   const copy = heroCopy[lang] ?? heroCopy.ro;
   const services = [
-    { title: copy.card1Title, body: copy.card1Desc },
-    { title: copy.card2Title, body: copy.card2Desc },
-    { title: copy.card3Title, body: copy.card3Desc },
+    { index: "01", Icon: CalendarIcon, title: copy.card1Title, body: copy.card1Desc },
+    { index: "02", Icon: FileTextIcon, title: copy.card2Title, body: copy.card2Desc },
+    { index: "03", Icon: UsersIcon, title: copy.card3Title, body: copy.card3Desc },
   ];
 
   return (
@@ -125,41 +145,52 @@ export function MediatorPublicHero({ lang: langProp }: { lang?: Lang }) {
           actions={
             <div className="flex flex-wrap items-center gap-2.5">
               <Button
-                href={withLangPrefix("/get-help?mode=mediator", lang)}
+                href="#solicita"
                 variant="action"
                 size="lg"
-                className="px-6"
-              >
-                <UsersIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>{copy.ctaRequest}</span>
-              </Button>
-              <Button
-                href="#solicita"
-                variant="outline"
-                size="lg"
-                className="px-5"
+                className="whitespace-nowrap px-6"
               >
                 <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{copy.ctaCallback}</span>
               </Button>
               <PageListenAction
                 lang={lang}
-                segments={[copy.title, copy.subtitle, copy.ctaRequest, copy.ctaCallback]}
+                segments={[copy.title, copy.subtitle, copy.ctaCallback]}
               />
             </div>
           }
         />
 
-        {/* What a mediator does: three columns, each under its own hairline. */}
-        <div className="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-3">
-          {services.map((service) => (
-            <div key={service.title}>
-              <span aria-hidden="true" className="block h-px w-full bg-border" />
-              <h2 className="mt-5 text-balance text-body font-semibold text-foreground">{service.title}</h2>
-              <p className="mt-2 max-w-(--measure-lead) text-body text-muted-foreground">{service.body}</p>
+        {/* What a mediator does: three tactile REDI editorial cards with icons and numbered rhythm. */}
+        <Reveal stagger="editorial" className="mt-8 grid gap-4 md:grid-cols-3 lg:mt-10 lg:gap-5">
+          {services.map(({ index, Icon, title, body }) => (
+            <div
+              key={title}
+              className="card-interactive flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-2xs sm:p-7 dark:border-white/10 dark:bg-ink-900"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-3">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-subtle text-foreground dark:border-white/12 dark:bg-white/[0.06] dark:text-paper"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span className="font-mono text-meta font-semibold tabular-nums text-muted-foreground/75">
+                    {index}
+                  </span>
+                </div>
+                <span aria-hidden="true" className="rule-draw mt-5 block h-0.5 w-9 bg-amber-care dark:bg-amber-care-border" />
+                <h2 className="mt-4 text-balance text-title font-semibold text-foreground dark:text-paper">
+                  {title}
+                </h2>
+                <p className="mt-2 max-w-(--measure-lead) text-pretty text-body leading-relaxed text-muted-foreground dark:text-mist">
+                  {body}
+                </p>
+              </div>
             </div>
           ))}
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

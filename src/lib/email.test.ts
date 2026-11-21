@@ -113,7 +113,7 @@ describe("panel email localization", () => {
       expect(message.html.includes(`<html lang="${code}"`)).toBe(true);
       expect(message.subject).toBe(`RediHealth: ${emailTranslations[code].reply.templates[templateId].subject}`);
       expect(message.html.includes("<script>example</script>")).toBe(false);
-      if (templateId === "referral") expect(message.html.includes(`https://redihealth.org/${code}/find-help`)).toBe(true);
+      if (templateId === "referral") expect(message.html.includes(`https://redi.healthcare/${code}/find-help`)).toBe(true);
     }
   });
 

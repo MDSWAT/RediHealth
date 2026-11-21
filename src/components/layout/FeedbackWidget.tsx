@@ -18,16 +18,16 @@ import styles from "@/components/layout/ChromeDialogs.module.css";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { Button } from "@/components/ui/Button";
 import {
-  AlertCircleIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
   CloseIcon,
   MessageDotsIcon,
-  ShieldIcon,
 } from "@/components/ui/icons";
 import { feedbackWidgetCopy, type FeedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 import { CLINICAL_SETTLE_SPRING, DURATION, EASE_OUT, useCalmReducedMotion } from "@/lib/motion/tokens";
 import {
   AGE_GROUP_OPTIONS,
@@ -50,16 +50,25 @@ const PAGE_SETTLE_GRACE_MS = 10_000;
 const HEARTBEAT_INTERVAL_MS = 4_000;
 /** Treat a return after 6+ hours away as a fresh browsing session. */
 const VISIT_RESET_IDLE_MS = 6 * 60 * 60 * 1000;
-/** Progressive snooze intervals when the visitor taps "Later" or closes the invite/modal. */
+/** Snooze intervals when the visitor taps "Later" or closes the invite/modal: "Later" never means minutes. */
 const SNOOZE_STEPS_MS = [
-  3 * 60 * 1000, // 1st close: remind gently after 3 minutes
-  8 * 60 * 1000, // 2nd close: remind after 8 minutes
-  24 * 60 * 60 * 1000, // 3rd+ close: pause auto-popup for 24 hours (side button stays visible)
+  24 * 60 * 60 * 1000, // 1st close: ask again no sooner than tomorrow
+  7 * 24 * 60 * 60 * 1000, // 2nd close: a week
+  30 * 24 * 60 * 60 * 1000, // 3rd+ close: a month (the menu and footer links stay)
 ] as const;
 
 const SCHEDULE_STORAGE_KEY = "redihealth:feedback-schedule:v2";
 const DRAFT_SESSION_KEY = "redihealth:feedback-draft:v2";
-const EDGE_DISMISSED_SESSION_KEY = "redihealth:feedback-edge-dismissed:v1";
+/** Closing the side tab is remembered on this device for 30 days (the value is the time it may return). */
+const EDGE_DISMISSED_KEY = "redihealth:feedback-edge-dismissed:v2";
+const EDGE_DISMISS_MS = 30 * 24 * 60 * 60 * 1000;
+/**
+ * The invite card waits while any of these is on screen, so two floating prompts never stack:
+ * dialogs, a page's bottom action bar, the audio player, the open phone menu, and other floating
+ * prompts that mark themselves with `data-floating-prompt` (the install and update cards).
+ */
+const INVITE_BLOCKERS =
+  'dialog[open], [data-bottom-bar], .hh-dialog, [data-audio-player-open="true"], #mobile-menu:not([inert]), [data-floating-prompt]';
 import {
   consumePendingFeedbackOpen,
   OPEN_FEEDBACK_EVENT,
@@ -278,7 +287,6 @@ export function FeedbackWidget() {
     barePath === "/sign-in";
   const isClinicalTaskSurface =
     barePath === "/health-check" || barePath === "/prescription-review";
-  const [mobileHeroTop, setMobileHeroTop] = useState(false);
   const [edgeDismissed, setEdgeDismissed] = useState(false);
   const [edgeDismissing, setEdgeDismissing] = useState(false);
   const [edgeDragX, setEdgeDragX] = useState(0);
@@ -310,11 +318,12 @@ export function FeedbackWidget() {
     pageMountedAtRef.current = Date.now();
     queueMicrotask(() => {
       try {
-        if (window.sessionStorage.getItem(EDGE_DISMISSED_SESSION_KEY) === "1") {
+        const hiddenUntil = Number(window.localStorage.getItem(EDGE_DISMISSED_KEY));
+        if (Number.isFinite(hiddenUntil) && hiddenUntil > Date.now()) {
           setEdgeDismissed(true);
         }
       } catch {
-        // Ignore sessionStorage read errors
+        // Ignore storage read errors
       }
       const draft = readDraft();
       if (draft) {
@@ -338,22 +347,6 @@ export function FeedbackWidget() {
       }
     };
   }, []);
-
-  // Keep mobile full-viewport Hero completely unobstructed while at top of `/`, showing side tab once scrolled or on inner routes
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const syncHeroTop = () => {
-      const isPhone = window.matchMedia("(max-width: 639px)").matches;
-      setMobileHeroTop(isPhone && barePath === "/" && window.scrollY < 160);
-    };
-    syncHeroTop();
-    window.addEventListener("scroll", syncHeroTop, { passive: true });
-    window.addEventListener("resize", syncHeroTop, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", syncHeroTop);
-      window.removeEventListener("resize", syncHeroTop);
-    };
-  }, [barePath]);
 
   // Reset settle grace on route navigation and hide any open invite card on disallowed surfaces
   useEffect(() => {
@@ -421,9 +414,9 @@ export function FeedbackWidget() {
 
   const dismissEdgeTrigger = useCallback(() => {
     try {
-      window.sessionStorage.setItem(EDGE_DISMISSED_SESSION_KEY, "1");
+      window.localStorage.setItem(EDGE_DISMISSED_KEY, String(Date.now() + EDGE_DISMISS_MS));
     } catch {
-      // Ignore sessionStorage errors
+      // Ignore storage errors: the tab still hides for this page view
     }
     snoozeInvite();
     setEdgeDragging(false);
@@ -683,11 +676,7 @@ export function FeedbackWidget() {
         hasReachedGuideEnd();
       if (nextActiveMs < INITIAL_EXPLORE_MS && !reachedReadingCompletion) return;
 
-      if (
-        document.querySelector(
-          'dialog[open], [data-bottom-bar], .hh-dialog, [data-audio-player-open="true"], #mobile-menu[data-open="true"]',
-        )
-      ) {
+      if (document.querySelector(INVITE_BLOCKERS)) {
         return;
       }
 
@@ -804,6 +793,10 @@ export function FeedbackWidget() {
       revealFirstMissingRating();
       return;
     }
+    if (isBrowserOffline()) {
+      setError(getOfflineUiCopy(lang).formOfflineError);
+      return;
+    }
 
     setIsSubmitting(true);
     try {
@@ -863,7 +856,6 @@ export function FeedbackWidget() {
       !isClinicalTaskSurface &&
       !inviteVisible &&
       !modalOpen &&
-      !mobileHeroTop &&
       (!edgeDismissed || edgeDismissing) ? (
         <div
           onPointerDown={handleEdgePointerDown}
@@ -884,7 +876,8 @@ export function FeedbackWidget() {
                 : undefined,
           }}
           className={[
-            "feedback-edge-trigger fixed right-0 top-1/2 z-30 -translate-y-1/2 flex w-9 sm:w-10 flex-col items-stretch rounded-l-xl border border-r-0 border-border bg-card/95 text-foreground shadow-[0_12px_28px_-10px_rgba(15,23,42,0.28)] backdrop-blur-md touch-pan-y select-none print:hidden dark:border-white/15 dark:bg-ink-950/95 dark:text-paper",
+            // Phones reach feedback from the menu and the footer, so the tab never sits on their page text.
+            "feedback-edge-trigger fixed right-0 top-1/2 z-30 -translate-y-1/2 flex w-10 flex-col max-sm:hidden items-stretch rounded-l-xl border border-r-0 border-border bg-card/95 text-foreground shadow-[0_12px_28px_-10px_rgba(15,23,42,0.28)] backdrop-blur-md touch-pan-y select-none print:hidden dark:border-white/15 dark:bg-ink-950/95 dark:text-paper",
             edgeDragging || reducedMotion
               ? "transition-none"
               : "transition-[transform,opacity,border-color] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
@@ -1393,10 +1386,9 @@ export function FeedbackWidget() {
                         </div>
 
                         {/* Explicit Anonymization Reassurance */}
-                        <div className="flex items-start gap-2.5 rounded-xl bg-surface-subtle p-3.5 text-meta text-muted-foreground">
-                          <ShieldIcon className="mt-0.5 h-4 w-4 shrink-0 text-sapphire" />
-                          <span>{t.privacyNote}</span>
-                        </div>
+                        <p className="rounded-xl bg-surface-subtle p-3.5 text-meta text-muted-foreground">
+                          {t.privacyNote}
+                        </p>
                       </div>
                     ) : null}
                   </m.div>
@@ -1406,10 +1398,9 @@ export function FeedbackWidget() {
                   <p
                     id={errorId}
                     role="alert"
-                    className="mt-4 flex items-start gap-2 rounded-lg border border-primary/30 bg-primary-soft/60 px-3.5 py-2.5 text-body text-primary-active"
+                    className="mt-4 rounded-lg border border-primary/30 bg-primary-soft/60 px-3.5 py-2.5 text-body text-primary-active"
                   >
-                    <AlertCircleIcon className="mt-0.5 h-4 w-4 shrink-0" />
-                    <span>{error}</span>
+                    {error}
                   </p>
                 ) : null}
               </div>

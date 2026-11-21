@@ -56,6 +56,8 @@ export function ArticleListenButton({
       playStartEarcon
       closePlayerOnStop
       autoRead={autoRead}
+      // The guide player behind the override speaks through the same engine, so the same rule holds.
+      hideWhenNoVoice
       className={className}
     />
   );

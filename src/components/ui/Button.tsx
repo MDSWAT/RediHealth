@@ -20,11 +20,11 @@ const base =
 // Everything else uses outline (the default) or the quieter ghost for row-level tools.
 const variants: Record<Variant, string> = {
   primary:
-    "bg-primary text-white shadow-(--hairline-refraction) press-solid hover:bg-primary-hover active:bg-primary-active disabled:bg-muted",
+    "btn-sheen bg-primary text-white shadow-[var(--hairline-refraction),0_4px_14px_-4px_rgb(198_47_60/0.4)] press-solid hover:bg-primary-hover hover:shadow-[var(--hairline-refraction),0_8px_20px_-6px_rgb(198_47_60/0.48)] active:bg-primary-active disabled:bg-muted",
   action:
-    "bg-sapphire text-white shadow-(--hairline-refraction) press-solid hover:bg-sapphire-light disabled:bg-muted",
+    "btn-sheen bg-sapphire text-white shadow-[var(--hairline-refraction),0_4px_14px_-4px_rgb(29_53_87/0.36)] press-solid hover:bg-sapphire-light hover:shadow-[var(--hairline-refraction),0_10px_24px_-8px_rgb(29_53_87/0.46)] disabled:bg-muted",
   outline:
-    "border border-border-control bg-card text-foreground shadow-(--shadow-card-rest) press-row hover:border-foreground/40 hover:bg-muted/70 hover:shadow-(--shadow-card-hover) active:bg-muted disabled:bg-muted",
+    "border border-border-control bg-card text-foreground shadow-(--shadow-card-rest) press-row hover:border-sapphire/45 hover:bg-sapphire-soft/35 hover:shadow-(--shadow-card-hover) active:bg-muted disabled:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.08]",
   ghost: "press-row text-foreground hover:bg-muted active:bg-muted/80",
 };
 

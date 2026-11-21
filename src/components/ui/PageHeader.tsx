@@ -44,7 +44,10 @@ export function PageHeader({
       )}
     >
       {above ? <div className={cn("mb-3", centered && "flex justify-center")}>{above}</div> : null}
-      <h1 lang={titleLang} className="text-balance text-page text-foreground">
+      <h1
+        lang={titleLang}
+        className="text-balance text-page text-foreground [overflow-wrap:break-word]"
+      >
         {title}
       </h1>
       {lead ? (
@@ -61,7 +64,7 @@ export function PageHeader({
       {actions ? (
         <div
           className={cn(
-            "btn-row mt-5 flex flex-wrap gap-3",
+            "btn-row mt-5 flex flex-wrap items-center gap-3 [&:not(:has(*))]:hidden",
             centered && "justify-center",
           )}
         >

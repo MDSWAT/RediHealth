@@ -2,7 +2,20 @@ import { DEFAULT_LANG } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 
 export type BodyPartId = "head" | "chest" | "stomach" | "pelvis" | "back" | "arm" | "leg";
+export type CheckAreaId = BodyPartId | "mind";
 export type PartId = BodyPartId;
+
+export function isBodyPartId(value: string | null | undefined): value is BodyPartId {
+  return (
+    value === "head" ||
+    value === "chest" ||
+    value === "stomach" ||
+    value === "pelvis" ||
+    value === "back" ||
+    value === "arm" ||
+    value === "leg"
+  );
+}
 
 export type SeverityId = "mild" | "moderate" | "severe";
 export type Severity = SeverityId;
@@ -59,6 +72,8 @@ export interface EmergencyStrings {
   whyEmergencyPrefix: string;
   call112Now: string;
   continueReview: string;
+  /** Closes the 112 pop-up and unpicks the emergency sign, for a row tapped by mistake. */
+  notThis: string;
 }
 
 export interface HealthCheckWizardUI {
@@ -113,6 +128,8 @@ export interface HealthCheckWizardUI {
 export interface HealthCheckWizardLocaleData {
   ui: HealthCheckWizardUI;
   bodyParts: Record<BodyPartId, { title: string; subtitle: string }>;
+  mentalArea: { title: string; subtitle: string };
+  mentalSymptoms: SymptomChoice[];
   symptomsByRegion: Record<BodyPartId, SymptomChoice[]>;
   symptoms: Record<BodyPartId, SymptomChoice[]>;
   severity: Record<SeverityId, { title: string; description: string }>;
@@ -198,7 +215,8 @@ const rawTranslations = {
         "description": "Не ждите. Если вы не можете позвонить, немедленно обратитесь в отделение неотложной помощи. Не садитесь за руль.",
         "whyEmergencyPrefix": "Вы выбрали:",
         "call112Now": "Позвоните 112 сейчас",
-        "continueReview": "Я понимаю"
+        "continueReview": "Я понимаю",
+        "notThis": "У меня не это"
       },
       "structure3DLabel": "3D-структура",
       "sensationLabel": "ощущение",
@@ -637,15 +655,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Сегодня или вчера",
-        "hint": "Менее 24 часов"
+        "hint": ""
       },
       "days": {
         "label": "2–7 дней",
-        "hint": "От 2 до 7 дней"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 недели",
-        "hint": "От 1 до 2 недель"
+        "hint": ""
       },
       "chronic": {
         "label": "Более 2 недель",
@@ -665,7 +683,58 @@ const rawTranslations = {
         "title": "Посетите врача сегодня",
         "intro": "Не откладывайте это. Позвоните своему врачу или сходите в клинику сегодня. Если станет хуже, звоните 112."
       }
-    }
+    },
+    "mentalArea": {
+      "title": "Разум и настроение",
+      "subtitle": "Постоянная грусть, тревога, паника, плохой сон, сильный стресс или тяжёлые мысли"
+    },
+    "mentalSymptoms": [
+      {
+        "id": "mind_low_mood",
+        "label": "Подавленность или потеря интереса",
+        "title": "Постоянная грусть, пустота или потеря интереса",
+        "description": "Вы чувствуете подавленность, усталость или равнодушие к привычным делам почти каждый день.",
+        "isRedFlag": false,
+        "selfCareTip": "Постарайтесь сохранить простой режим сна и еды и не оставайтесь в одиночестве.",
+        "guidance": "Длительное снижение настроения поддаётся лечению. Семейный врач или специалист может подобрать поддержку или терапию."
+      },
+      {
+        "id": "mind_anxiety",
+        "label": "Сильная тревога или паника",
+        "title": "Постоянное беспокойство, напряжение или паника",
+        "description": "Тревожные мысли, внутреннее напряжение, сердцебиение или приступы страха мешают повседневной жизни.",
+        "isRedFlag": false,
+        "selfCareTip": "Сделайте медленный выдох дольше вдоха и переключите внимание на окружающие предметы.",
+        "guidance": "Если тревога мешает сну или работе, семейный врач поможет исключить соматические причины и назначить помощь."
+      },
+      {
+        "id": "mind_sleep",
+        "label": "Нарушения сна и истощение",
+        "title": "Трудно заснуть, частые пробуждения или истощение",
+        "description": "Вы не можете уснуть, просыпаетесь среди ночи или встаёте уже без сил.",
+        "isRedFlag": false,
+        "selfCareTip": "Проветрите комнату перед сном и отложите экран за час до отдыха.",
+        "guidance": "Стойкие нарушения сна могут быть связаны со стрессом или обменом веществ; врач поможет найти причину."
+      },
+      {
+        "id": "mind_overwhelmed",
+        "label": "Тяжело справляться со стрессом",
+        "title": "Чувство перегруженности или нехватка сил справляться",
+        "description": "Обычные дела кажутся непосильными, легко появляются слёзы, раздражительность или выгорание.",
+        "isRedFlag": false,
+        "selfCareTip": "Разделите дела на один небольшой шаг за раз и попросите близких или медитатора помочь с повседневными задачами.",
+        "guidance": "Разговор с семейным врачом или психологом помогает вовремя снять нагрузку и подобрать поддержку."
+      },
+      {
+        "id": "mind_crisis_self_harm",
+        "label": "Мысли о самоповреждении",
+        "title": "Мысли навредить себе или ощущение, что жить не хочется",
+        "description": "Вы чувствуете, что не в безопасности, или появляются мысли о самоубийстве или самоповреждении.",
+        "isRedFlag": true,
+        "selfCareTip": "",
+        "guidance": "Это срочная ситуация. Сейчас же позвоните 112 или обратитесь в ближайшее отделение неотложной помощи, не оставайтесь одни."
+      }
+    ]
   },
 
   "ro": {
@@ -739,10 +808,11 @@ const rawTranslations = {
       "emergency": {
         "badge": "Urgență medicală 112",
         "title": "Poate fi o urgență: sună acum la 112",
-        "description": "Nu aștepta. Dacă nu poți suna, mergi repede la Urgențe. Nu conduce singur.",
+        "description": "Nu aștepta. Dacă nu poți suna, mergi repede la urgențe. Nu conduce singur.",
         "whyEmergencyPrefix": "Ai ales:",
         "call112Now": "Sună la 112",
-        "continueReview": "Am înțeles"
+        "continueReview": "Am înțeles",
+        "notThis": "Nu am asta"
       },
       "structure3DLabel": "Structură 3D",
       "sensationLabel": "Senzație",
@@ -953,7 +1023,7 @@ const rawTranslations = {
           "id": "stomach_severe_widespread",
           "label": "Durere de burtă foarte puternică și continuă, cu vărsături repetate, burtă tare sau febră",
           "isRedFlag": true,
-          "selfCareTip": "Nu mânca și nu bea mult. Mergi imediat la Urgențe sau sună la 112.",
+          "selfCareTip": "Nu mânca și nu bea mult. Mergi imediat la urgențe sau sună la 112.",
           "guidance": "O durere foarte puternică, cu burta tare, poate cere o operație de urgență.",
           "title": "Durere foarte puternică în toată burta",
           "description": "Burta te doare tare și e tare ca lemnul, vomiți întruna sau te simți gata să leșini."
@@ -1000,7 +1070,7 @@ const rawTranslations = {
           "id": "pelvis_pregnancy_bleeding",
           "label": "Durere pelvină bruscă și foarte puternică, sângerare abundentă sau durere când ai putea fi însărcinată",
           "isRedFlag": true,
-          "selfCareTip": "Întinde-te, nu lua medicamente pe cont propriu și sună imediat la 112 sau mergi la Urgențe.",
+          "selfCareTip": "Întinde-te, nu lua medicamente pe cont propriu și sună imediat la 112 sau mergi la urgențe.",
           "guidance": "Durerea pelvină severă cu sângerare, amețeală sau o posibilă sarcină poate fi o urgență ginecologică și cere consult imediat.",
           "title": "Durere pelvină severă, sângerare mare sau sarcină",
           "description": "Durere bruscă jos în burtă cu sângerare vaginală puternică, amețeală, febră sau dacă știi ori bănuiești că ești însărcinată."
@@ -1141,7 +1211,7 @@ const rawTranslations = {
           "id": "leg_sudden_swelling",
           "label": "Un singur picior umflat brusc, cald, roșu și foarte dureros, sau nu poți călca pe el",
           "isRedFlag": true,
-          "selfCareTip": "Stai liniștit și nu masa gamba. Mergi repede la un medic sau la Urgențe.",
+          "selfCareTip": "Stai liniștit și nu masa gamba. Mergi repede la un medic sau la urgențe.",
           "guidance": "O gambă umflată brusc poate fi un cheag de sânge (tromboză). Trebuie tratată de urgență.",
           "title": "Gambă umflată brusc, doar pe un picior",
           "description": "O singură gambă s-a umflat brusc, e caldă, roșie și dureroasă."
@@ -1183,15 +1253,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Azi sau ieri",
-        "hint": "Sub 24 de ore"
+        "hint": ""
       },
       "days": {
         "label": "De 2–7 zile",
-        "hint": "2 până la 7 zile"
+        "hint": ""
       },
       "weeks": {
         "label": "De 1–2 săptămâni",
-        "hint": "1 până la 2 săptămâni"
+        "hint": ""
       },
       "chronic": {
         "label": "De peste 2 săptămâni",
@@ -1211,7 +1281,58 @@ const rawTranslations = {
         "title": "Vezi un medic azi",
         "intro": "Nu amâna. Sună medicul de familie sau mergi azi la o clinică. Dacă se înrăutățește, sună la 112."
       }
-    }
+    },
+    "mentalArea": {
+      "title": "Minte și stare sufletească",
+      "subtitle": "Tristețe persistentă, îngrijorare, panică, somn prost, stres greu de dus sau gânduri negre"
+    },
+    "mentalSymptoms": [
+      {
+        "id": "mind_low_mood",
+        "label": "Tristețe persistentă sau lipsă de chef",
+        "title": "Tristețe continuă, gol interior sau pierderea interesului",
+        "description": "Te simți apăsat, fără energie sau fără bucurie în lucrurile obișnuite aproape în fiecare zi.",
+        "isRedFlag": false,
+        "selfCareTip": "Păstrează un program simplu de somn și mese și vorbește cu cineva de încredere.",
+        "guidance": "Starea proastă care ține mai multe zile se poate trata. Medicul de familie sau un specialist te poate ajuta cu sprijin și tratament."
+      },
+      {
+        "id": "mind_anxiety",
+        "label": "Îngrijorare sau atacuri de panică",
+        "title": "Frică constantă, neliniște puternică sau panică",
+        "description": "Gândurile de teamă, tensiunea interioară, inima rapidă sau panica îți încurcă viața de zi cu zi.",
+        "isRedFlag": false,
+        "selfCareTip": "Expiră încet și lung pe gură și privește trei obiecte din jurul tău ca să te liniștești.",
+        "guidance": "Dacă teama îți taie somnul sau activitățile zilnice, un medic poate verifica cauzele fizice și îți poate recomanda tratament sigur."
+      },
+      {
+        "id": "mind_sleep",
+        "label": "Insomnie sau somn neodihnitor",
+        "title": "Somn rupt, adormire grea sau epuizare zilnică",
+        "description": "Adormi foarte greu, te trezești des noaptea ori dimineața te simți deja sfârșit.",
+        "isRedFlag": false,
+        "selfCareTip": "Aerisește camera înainte de culcare și lasă telefonul deoparte cu o oră înainte de somn.",
+        "guidance": "Lipsa somnului prelungită afectează corpul și mintea; cere sfatul medicului de familie dacă durează."
+      },
+      {
+        "id": "mind_overwhelmed",
+        "label": "Copleșire și stres greu de dus",
+        "title": "Simți că nu mai faci față stresului zilnic",
+        "description": "Treburile obișnuite par prea grele, apar ușor lacrimi, nervozitate sau epuizare.",
+        "isRedFlag": false,
+        "selfCareTip": "Ia câte un singur lucru mic pe rând și cere ajutorul familiei ori al unui mediator.",
+        "guidance": "Un consult la medicul de familie sau la psiholog ajută să primești sprijin înainte să se agraveze."
+      },
+      {
+        "id": "mind_crisis_self_harm",
+        "label": "Gânduri de autovătămare",
+        "title": "Gânduri să îți faci rău sau simți că nu vrei să mai trăiești",
+        "description": "Simți că nu ești în siguranță ori ai gânduri să îți iei viața sau să te rănești.",
+        "isRedFlag": true,
+        "selfCareTip": "",
+        "guidance": "Este o urgență medicală. Sună acum la 112 sau mergi imediat la urgențe și nu rămâne singur."
+      }
+    ]
   },
   "en": {
     "ui": {
@@ -1287,7 +1408,8 @@ const rawTranslations = {
         "description": "Don't wait. If you can't call, go to the emergency department quickly. Don't drive yourself.",
         "whyEmergencyPrefix": "You chose:",
         "call112Now": "Call 112 now",
-        "continueReview": "I understand"
+        "continueReview": "I understand",
+        "notThis": "That is not what I have"
       },
       "structure3DLabel": "3D structure",
       "sensationLabel": "Sensation",
@@ -1728,15 +1850,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Today or yesterday",
-        "hint": "Under 24 hours"
+        "hint": ""
       },
       "days": {
         "label": "2–7 days",
-        "hint": "2 to 7 days"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 weeks",
-        "hint": "1 to 2 weeks"
+        "hint": ""
       },
       "chronic": {
         "label": "Over 2 weeks",
@@ -1756,7 +1878,58 @@ const rawTranslations = {
         "title": "See a doctor today",
         "intro": "Don't put it off. Call your doctor or go to a clinic today. If it gets worse, call 112."
       }
-    }
+    },
+    "mentalArea": {
+      "title": "Mind and mood",
+      "subtitle": "Ongoing sadness, worry, panic, poor sleep, heavy stress or dark thoughts"
+    },
+    "mentalSymptoms": [
+      {
+        "id": "mind_low_mood",
+        "label": "Persistent low mood or sadness",
+        "title": "Ongoing sadness, emptiness or loss of interest",
+        "description": "You feel down, hopeless or unable to enjoy usual daily things most days.",
+        "isRedFlag": false,
+        "selfCareTip": "Keep a gentle routine for sleep and meals, and stay in touch with someone you trust.",
+        "guidance": "Lasting low mood can be treated. A family doctor or mental health service can offer support or treatment."
+      },
+      {
+        "id": "mind_anxiety",
+        "label": "Constant worry or panic",
+        "title": "Strong worry, tension or panic attacks",
+        "description": "Fear, inner restlessness, a racing heart or sudden panic gets in the way of daily life.",
+        "isRedFlag": false,
+        "selfCareTip": "Breathe out slowly longer than you breathe in and focus on steady objects around you.",
+        "guidance": "When anxiety disrupts sleep or work, a doctor can check physical causes and offer safe support or medicine."
+      },
+      {
+        "id": "mind_sleep",
+        "label": "Sleep trouble or exhaustion",
+        "title": "Trouble sleeping, waking often or feeling drained",
+        "description": "You struggle to fall asleep, wake through the night or feel exhausted each morning.",
+        "isRedFlag": false,
+        "selfCareTip": "Keep a steady bedtime and step away from phone screens for the last hour before sleep.",
+        "guidance": "Ongoing poor sleep wears down health and mood; talk with a family doctor to check causes."
+      },
+      {
+        "id": "mind_overwhelmed",
+        "label": "Struggling to cope with stress",
+        "title": "Feeling overwhelmed or unable to cope",
+        "description": "Ordinary tasks feel too heavy, bringing irritability, tears or mental burnout.",
+        "isRedFlag": false,
+        "selfCareTip": "Focus on one small step at a time and lean on family or a community mediator for practical help.",
+        "guidance": "Speaking early with a family doctor or counsellor helps prevent burnout from deepening."
+      },
+      {
+        "id": "mind_crisis_self_harm",
+        "label": "Thoughts of self-harm or crisis",
+        "title": "Thoughts of hurting yourself or feeling unsafe",
+        "description": "You feel unable to stay safe or are having thoughts of self-harm or suicide.",
+        "isRedFlag": true,
+        "selfCareTip": "",
+        "guidance": "This is an emergency. Call 112 right now or go to the nearest emergency department, and stay with someone if you can."
+      }
+    ]
   },
   "sq": {
     "ui": {
@@ -1829,10 +2002,11 @@ const rawTranslations = {
       "emergency": {
         "badge": "Urgjencë mjekësore 112",
         "title": "Mund të jetë urgjencë: telefono tani 112",
-        "description": "Mos prit. Nëse nuk mund të telefonosh, shko shpejt në Urgjencë. Mos e drejto vetë makinën.",
+        "description": "Mos prit. Nëse nuk mund të telefonosh, shko shpejt në urgjencë. Mos e drejto vetë makinën.",
         "whyEmergencyPrefix": "Zgjodhe:",
         "call112Now": "Telefono 112",
-        "continueReview": "E kuptova"
+        "continueReview": "E kuptova",
+        "notThis": "Nuk e kam këtë"
       },
       "structure3DLabel": "Struktura 3D",
       "sensationLabel": "Ndjesia",
@@ -2043,7 +2217,7 @@ const rawTranslations = {
           "id": "stomach_severe_widespread",
           "label": "Dhimbje barku shumë e fortë dhe e vazhdueshme, me të vjella të përsëritura, bark të fortë ose temperaturë",
           "isRedFlag": true,
-          "selfCareTip": "Mos ha dhe mos pi shumë. Shko menjëherë në Urgjencë ose telefono 112.",
+          "selfCareTip": "Mos ha dhe mos pi shumë. Shko menjëherë në urgjencë ose telefono 112.",
           "guidance": "Dhimbja shumë e fortë me bark të fortë mund të kërkojë operacion urgjent.",
           "title": "Dhimbje shumë e fortë në gjithë barkun",
           "description": "Gjithë barku të dhemb shumë dhe është i fortë, vjell vazhdimisht ose ndihesh sikur do të të bjerë të fikët."
@@ -2090,7 +2264,7 @@ const rawTranslations = {
           "id": "pelvis_pregnancy_bleeding",
           "label": "Dhimbje e papritur shumë e fortë në pelvis, gjakderdhje e madhe ose dhimbje kur mund të jesh shtatzënë",
           "isRedFlag": true,
-          "selfCareTip": "Shtrihu në vend të sigurt, mos merr ilaçe vetë dhe telefono menjëherë 112 ose shko në Urgjencë.",
+          "selfCareTip": "Shtrihu në vend të sigurt, mos merr ilaçe vetë dhe telefono menjëherë 112 ose shko në urgjencë.",
           "guidance": "Dhimbja e fortë në pelvis me gjakderdhje, marramendje ose shtatzëni të mundshme është urgjencë gjinekologjike dhe kërkon spital menjëherë.",
           "title": "Dhimbje e fortë në pelvis, gjakderdhje ose shtatzëni",
           "description": "Dhimbje e fortë e papritur në fund të barkut me gjakderdhje të madhe, marramendje, temperaturë ose kur je a dyshon se je shtatzënë."
@@ -2231,7 +2405,7 @@ const rawTranslations = {
           "id": "leg_sudden_swelling",
           "label": "Njëra këmbë e ënjtur papritur, e nxehtë, e kuqe dhe me shumë dhimbje, ose nuk shkel dot mbi të",
           "isRedFlag": true,
-          "selfCareTip": "Rri i qetë dhe mos e masazho pulpën. Shko shpejt te mjeku ose në Urgjencë.",
+          "selfCareTip": "Rri i qetë dhe mos e masazho pulpën. Shko shpejt te mjeku ose në urgjencë.",
           "guidance": "Ënjtja e papritur e njërës këmbë mund të jetë mpiksje gjaku (trombozë). Duhet trajtuar shpejt.",
           "title": "Pulpë e ënjtur papritur, vetëm në një këmbë",
           "description": "Vetëm njëra pulpë u ënjt papritur dhe është e ngrohtë, e kuqe dhe me dhimbje."
@@ -2273,15 +2447,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Sot ose dje",
-        "hint": "Nën 24 orë"
+        "hint": ""
       },
       "days": {
         "label": "2–7 ditë",
-        "hint": "2 deri në 7 ditë"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 javë",
-        "hint": "1 deri në 2 javë"
+        "hint": ""
       },
       "chronic": {
         "label": "Mbi 2 javë",
@@ -2301,7 +2475,58 @@ const rawTranslations = {
         "title": "Shko te një mjek sot",
         "intro": "Mos e shty. Telefono mjekun ose shko sot në një klinikë. Nëse përkeqësohet, telefono 112."
       }
-    }
+    },
+    "mentalArea": {
+      "title": "Mendja dhe gjendja shpirtërore",
+      "subtitle": "Trishtim i zgjatur, ankth, panik, gjumë i keq, stres i rëndë ose mendime të errëta"
+    },
+    "mentalSymptoms": [
+      {
+        "id": "mind_low_mood",
+        "label": "Trishtim i zgjatur ose humbje interesi",
+        "title": "Mërzitje e vazhdueshme, zbrazëti ose humbje gëzimi",
+        "description": "Ndihesh i rënduar, pa fuqi ose pa interes për gjërat e zakonshme pothuajse çdo ditë.",
+        "isRedFlag": false,
+        "selfCareTip": "Mbaj një ritëm të thjeshtë gjumi e ushqimi dhe fol me një njeri të besuar.",
+        "guidance": "Mërzitja që zgjat mund të trajtohet. Mjeku i familjes ose një specialist mund të të ndihmojë."
+      },
+      {
+        "id": "mind_anxiety",
+        "label": "Ankth i fortë ose sulm paniku",
+        "title": "Shqetësim i vazhdueshëm, tension ose panik",
+        "description": "Mendimet e frikës, zemra që rreh shpejt ose paniku i papritur të pengojnë jetën e përditshme.",
+        "isRedFlag": false,
+        "selfCareTip": "Nxirre frymën ngadalë më gjatë se sa e merr dhe shiko objekte të qeta rreth teje.",
+        "guidance": "Kur ankthi prish gjumin ose punën, mjeku mund të kontrollojë shkaqet fizike dhe të japë ndihmë të sigurt."
+      },
+      {
+        "id": "mind_sleep",
+        "label": "Pagjumësi ose lodhje e vazhdueshme",
+        "title": "Vështirësi në gjumë, zgjime të shpeshta ose rraskapitje",
+        "description": "Fle me vështirësi, zgjohesh natën ose zgjohesh në mëngjes pa fuqi.",
+        "isRedFlag": false,
+        "selfCareTip": "Ajros dhomën para gjumit dhe lëre telefonin mënjanë një orë para se të flesh.",
+        "guidance": "Pagjumësia e zgjatur lodh trupin dhe mendjen; pyet mjekun e familjes për shkakun."
+      },
+      {
+        "id": "mind_overwhelmed",
+        "label": "Vështirësi për të përballuar stresin",
+        "title": "Ndihesh i mbingarkuar ose sikur nuk ia del dot",
+        "description": "Punët e zakonshme duken të pamundura dhe sjellin lot, nervozizëm ose këputje.",
+        "isRedFlag": false,
+        "selfCareTip": "Bëj një hap të vogël në herë dhe kërko ndihmë nga familja ose një mediator.",
+        "guidance": "Një bisedë herët me mjekun e familjes ose psikologun parandalon përkeqësimin."
+      },
+      {
+        "id": "mind_crisis_self_harm",
+        "label": "Mendime për vetëlëndim",
+        "title": "Mendime për të lënduar veten ose ndjesia se nuk je i sigurt",
+        "description": "Ndihesh i pasigurt ose ke mendime për vetëvrasje apo vetëlëndim.",
+        "isRedFlag": true,
+        "selfCareTip": "",
+        "guidance": "Kjo është urgjencë mjekësore. Telefono tani 112 ose shko menjëherë në urgjencë dhe mos rri vetëm."
+      }
+    ]
   },
   "it": {
     "ui": {
@@ -2377,7 +2602,8 @@ const rawTranslations = {
         "description": "Non aspettare. Se non puoi chiamare, vai subito al pronto soccorso. Non guidare da solo.",
         "whyEmergencyPrefix": "Hai scelto:",
         "call112Now": "Chiama il 112",
-        "continueReview": "Ho capito"
+        "continueReview": "Ho capito",
+        "notThis": "Non ho questo"
       },
       "structure3DLabel": "Struttura 3D",
       "sensationLabel": "Sensazione",
@@ -2818,15 +3044,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Oggi o ieri",
-        "hint": "Meno di 24 ore"
+        "hint": ""
       },
       "days": {
         "label": "2–7 giorni",
-        "hint": "Da 2 a 7 giorni"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 settimane",
-        "hint": "Da 1 a 2 settimane"
+        "hint": ""
       },
       "chronic": {
         "label": "Più di 2 settimane",
@@ -2846,7 +3072,58 @@ const rawTranslations = {
         "title": "Vai da un medico oggi",
         "intro": "Non rimandare. Chiama il medico o vai oggi in un ambulatorio. Se peggiora, chiama il 112."
       }
-    }
+    },
+    "mentalArea": {
+      "title": "Mente e umore",
+      "subtitle": "Tristezza continua, ansia, panico, sonno difficile, forte stress o pensieri bui"
+    },
+    "mentalSymptoms": [
+      {
+        "id": "mind_low_mood",
+        "label": "Umore giù o tristezza continua",
+        "title": "Tristezza persistente, vuoto o perdita di interesse",
+        "description": "Ti senti giù, senza energie o senza voglia per le attività abituali quasi ogni giorno.",
+        "isRedFlag": false,
+        "selfCareTip": "Mantieni orari semplici per sonno e pasti e resta in contatto con una persona fidata.",
+        "guidance": "L'umore depresso che dura si può curare. Il medico di famiglia o uno specialista può offrirti sostegno o terapia."
+      },
+      {
+        "id": "mind_anxiety",
+        "label": "Ansia forte o attacchi di panico",
+        "title": "Preoccupazione costante, tensione o panico",
+        "description": "Paura continua, agitazione, battito accelerato o panico ostacolano la giornata.",
+        "isRedFlag": false,
+        "selfCareTip": "Espira lentamente più a lungo di quanto inspiri e osserva tre cose stabili intorno a te.",
+        "guidance": "Se l'ansia disturba il sonno o la giornata, il medico può escludere cause fisiche e indicare cure sicure."
+      },
+      {
+        "id": "mind_sleep",
+        "label": "Disturbi del sonno e stanchezza",
+        "title": "Fatica ad addormentarsi, risvegli o sfinimento",
+        "description": "Non riesci a dormire, ti svegli spesso di notte o ti alzi già esausto.",
+        "isRedFlag": false,
+        "selfCareTip": "Arieggia la stanza la sera e tieni lontano lo schermo del telefono nell'ultima ora.",
+        "guidance": "La mancanza di sonno prolungata logora corpo e mente; parlane con il medico di famiglia."
+      },
+      {
+        "id": "mind_overwhelmed",
+        "label": "Fatica a reggere lo stress",
+        "title": "Senso di sopraffazione o esaurimento emotivo",
+        "description": "Anche i compiti semplici sembrano troppo pesanti e portano pianto o irritabilità.",
+        "isRedFlag": false,
+        "selfCareTip": "Fai un piccolo passo alla volta e chiedi supporto a familiari o a un mediatore.",
+        "guidance": "Parlarne presto con il medico di famiglia o uno psicologo aiuta a ricevere sostegno adeguato."
+      },
+      {
+        "id": "mind_crisis_self_harm",
+        "label": "Pensieri di autolesionismo",
+        "title": "Pensieri di farti del male o di non essere al sicuro",
+        "description": "Non ti senti al sicuro oppure hai pensieri di suicidio o di autolesionismo.",
+        "isRedFlag": true,
+        "selfCareTip": "",
+        "guidance": "È un'emergenza. Chiama subito il 112 o vai al pronto soccorso più vicino e resta con qualcuno."
+      }
+    ]
   },
   "hr": {
     "ui": {
@@ -2922,7 +3199,8 @@ const rawTranslations = {
         "description": "Nemoj čekati. Ako ne možeš nazvati, brzo idi na hitni bolnički prijem. Nemoj sam voziti.",
         "whyEmergencyPrefix": "Odabrao si:",
         "call112Now": "Nazovi 112 odmah",
-        "continueReview": "Razumijem"
+        "continueReview": "Razumijem",
+        "notThis": "Nemam to"
       },
       "structure3DLabel": "3D struktura",
       "sensationLabel": "Osjet",
@@ -3363,15 +3641,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Danas ili jučer",
-        "hint": "Manje od 24 sata"
+        "hint": ""
       },
       "days": {
         "label": "2–7 dana",
-        "hint": "Od 2 do 7 dana"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 tjedna",
-        "hint": "Od 1 do 2 tjedna"
+        "hint": ""
       },
       "chronic": {
         "label": "Više od 2 tjedna",
@@ -3391,7 +3669,58 @@ const rawTranslations = {
         "title": "Posjeti liječnika danas",
         "intro": "Nemoj odgađati. Nazovi svog liječnika ili idi danas u ambulantu. Ako se pogorša, nazovi 112."
       }
-    }
+    },
+    "mentalArea": {
+      "title": "Um i raspoloženje",
+      "subtitle": "Dugotrajna tuga, tjeskoba, panika, loš san, snažan stres ili teške misli"
+    },
+    "mentalSymptoms": [
+      {
+        "id": "mind_low_mood",
+        "label": "Dugotrajna tuga ili gubitak volje",
+        "title": "Stalna tuga, praznina ili gubitak interesa",
+        "description": "Većinu dana osjećaš se potišteno, bez snage ili bez interesa za uobičajene stvari.",
+        "isRedFlag": false,
+        "selfCareTip": "Održavaj jednostavan ritam sna i obroka te ostani u kontaktu s osobom od povjerenja.",
+        "guidance": "Dugotrajno loše raspoloženje može se liječiti. Obiteljski liječnik ili stručnjak može ponuditi podršku ili terapiju."
+      },
+      {
+        "id": "mind_anxiety",
+        "label": "Stalna briga ili panika",
+        "title": "Jaka tjeskoba, nemir ili napadaji panike",
+        "description": "Stalni strah, unutarnji nemir, ubrzan rad srca ili panika ometaju ti svakodnevni život.",
+        "isRedFlag": false,
+        "selfCareTip": "Polako izdiši dulje nego što udišeš i usmjeri pogled na mirne predmete oko sebe.",
+        "guidance": "Ako tjeskoba ometa san ili rad, liječnik može provjeriti tjelesne uzroke i predložiti sigurnu pomoć."
+      },
+      {
+        "id": "mind_sleep",
+        "label": "Problemi sa snom i iscrpljenost",
+        "title": "Teško usnivanje, buđenje noću ili iscrpljenost",
+        "description": "Teško zaspiš, budiš se tijekom noći ili se ujutro budiš potpuno bez snage.",
+        "isRedFlag": false,
+        "selfCareTip": "Prozrači sobu prije spavanja i odloži ekran sata vremena prije odlaska u krevet.",
+        "guidance": "Dugotrajan manjak sna iscrpljuje tijelo i um; posavjetuj se s obiteljskim liječnikom."
+      },
+      {
+        "id": "mind_overwhelmed",
+        "label": "Teško nošenje sa stresom",
+        "title": "Osjećaj preopterećenosti ili nemogućnost nošenja",
+        "description": "Uobičajene obveze čine se preteškima i donose plač, razdražljivost ili sagorijevanje.",
+        "isRedFlag": false,
+        "selfCareTip": "Idi korak po korak i zamoli obitelj ili medijatora za praktičnu podršku.",
+        "guidance": "Rani razgovor s obiteljskim liječnikom ili psihologom pomaže spriječiti pogoršanje."
+      },
+      {
+        "id": "mind_crisis_self_harm",
+        "label": "Misli o samoozljeđivanju",
+        "title": "Misli o ozljeđivanju sebe ili osjećaj nesigurnosti",
+        "description": "Osjećaš da nisi siguran ili imaš misli o samoubojstvu ili samoozljeđivanju.",
+        "isRedFlag": true,
+        "selfCareTip": "",
+        "guidance": "Ovo je hitno stanje. Odmah nazovi 112 ili idi u najbližu hitnu službu i nemoj ostati sam."
+      }
+    ]
   },
   "rom": {
     "ui": {
@@ -3467,7 +3796,8 @@ const rawTranslations = {
         "description": "Ma azhuker. Te nashti te akhares, dzha sigo ki bolnitsaki sigardiari. Ma trad korkoro o vurdono.",
         "whyEmergencyPrefix": "Alosardjan:",
         "call112Now": "Akhar 112 akana",
-        "continueReview": "Haljiljom"
+        "continueReview": "Haljiljom",
+        "notThis": "Naj man kadava"
       },
       "structure3DLabel": "3D struktura",
       "sensationLabel": "Hatjarimos",
@@ -3908,15 +4238,15 @@ const rawTranslations = {
     "duration": {
       "today": {
         "label": "Adives vaj idž",
-        "hint": "Tela 24 ore"
+        "hint": ""
       },
       "days": {
         "label": "2–7 dive",
-        "hint": "2 dzhi 7 dive"
+        "hint": ""
       },
       "weeks": {
         "label": "1–2 kurke",
-        "hint": "1 dzhi 2 kurke"
+        "hint": ""
       },
       "chronic": {
         "label": "Maj but katar 2 kurke",
@@ -3936,7 +4266,58 @@ const rawTranslations = {
         "title": "Dzha ko doktori adives",
         "intro": "Ma mukh pe aver dives. Akhar tire doktores vaj dzha adives ki ambulanta. Te avel maj nasul, akhar 112."
       }
-    }
+    },
+    "mentalArea": {
+      "title": "Godji thaj vilo",
+      "subtitle": "Lungi brigako dukh, dar, panika, nasul sovimos, baro streso vaj pharo gindo"
+    },
+    "mentalSymptoms": [
+      {
+        "id": "mind_low_mood",
+        "label": "Bari briga vaj na-i lacho vilo",
+        "title": "Lungi briga, chucho vilo vaj bisterdo kamimos",
+        "description": "Hatjares tut pharo, bi zoresko vaj bi loshako ande diveske buchja sakone divesa.",
+        "isRedFlag": false,
+        "selfCareTip": "Arakh jekh lokho chaso vash sovimos thaj xabem thaj vorbin jekhe pachaime manushesa.",
+        "guidance": "O pharo vilo so achel maj but divesa shaj sastjol. O familijako doktori shaj del tut azhutimos vaj drab."
+      },
+      {
+        "id": "mind_anxiety",
+        "label": "Bari dar vaj panika",
+        "title": "Diveski dar, strekimos vaj panika",
+        "description": "Gindura darake, o ilo so marelas sigo vaj i panika astaven chiro dives.",
+        "isRedFlag": false,
+        "selfCareTip": "Phurde avri lokhes maj lungo thaj dikh trin buchja pashe tutar te linishtis tut.",
+        "guidance": "Kana i dar na mukhel tut te soves vaj te keres buti, o doktori shaj dikhel soske avel."
+      },
+      {
+        "id": "mind_sleep",
+        "label": "Nashti soves vaj san khino",
+        "title": "Pharo sovimos, ushchimos ratjate vaj baro khinipen",
+        "description": "Nashti soves, ushches butivar ratjate vaj tehara san but khino.",
+        "isRedFlag": false,
+        "selfCareTip": "Phuter i fereastra angla sovimos thaj mukh o telefono rigate jekh chaso angla soves.",
+        "guidance": "Te na soves but vrama, pharjol o trupo thaj i godji; phuch e familijake doktores."
+      },
+      {
+        "id": "mind_overwhelmed",
+        "label": "Pharo streso ko dives",
+        "title": "Hatjares ke nashti maj ingares o streso",
+        "description": "Le lokhe buchja dikhjon but phare thaj anen rovipen vaj xoli.",
+        "isRedFlag": false,
+        "selfCareTip": "Ker jekh tikni buchi po jekh thaj mang azhutimos katar i familija vaj jekh mediatori.",
+        "guidance": "Te vorbis sigo e doktoresa vaj psihologosa, na avel maj nasul."
+      },
+      {
+        "id": "mind_crisis_self_harm",
+        "label": "Gindura te dukhaves tut",
+        "title": "Gindura te dukhaves tut vaj na hatjares tut sigurime",
+        "description": "Na hatjares tut sigurime vaj si tut gindura te dukhaves tut vaj te mukhes o dživipen.",
+        "isRedFlag": true,
+        "selfCareTip": "",
+        "guidance": "Kadava si bari dar thaj sigardiari. Akhar akana 112 vaj dzha sigo ki urgenca thaj ma ach korkoro."
+      }
+    ]
   }
 };
 

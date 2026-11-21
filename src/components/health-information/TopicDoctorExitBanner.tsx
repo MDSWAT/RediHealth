@@ -86,10 +86,10 @@ export function TopicDoctorExitBanner({
   return (
     <section
       aria-labelledby="doctor-exit-title"
-      className={`rounded-lg border border-border bg-card p-6 shadow-xs sm:p-8 ${className}`}
+      className={`rounded-xl border border-border bg-card p-6 shadow-xs sm:p-8 ${className}`}
     >
-      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-2xl space-y-3">
+      <div className="flex flex-col gap-6 md:flex-row md:flex-wrap md:items-center md:justify-between">
+        <div className="min-w-0 flex-1 max-w-2xl space-y-3">
           <h2
             id="doctor-exit-title"
             className="text-balance text-section font-semibold text-foreground"
@@ -107,10 +107,10 @@ export function TopicDoctorExitBanner({
             href={targetHref}
             variant="action"
             size="lg"
-            className="px-6"
+            className="w-full px-6 sm:w-auto"
           >
-            <StethoscopeIcon className="h-4 w-4 shrink-0" />
-            <span className="min-w-0 truncate">{copy.buttonText}</span>
+            <StethoscopeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+            <span>{copy.buttonText}</span>
           </Button>
         </div>
       </div>

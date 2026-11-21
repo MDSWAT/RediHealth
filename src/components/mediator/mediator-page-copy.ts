@@ -2,89 +2,94 @@ import type { Lang } from "@/lib/i18n/translations";
 
 /** Meta description of /mediatori in each language. */
 export const mediatorPageDescriptions: Record<Lang, string> = {
-  ru: "Медицинские медиаторы RediHealth помогут вам записаться к врачу, разобраться с документами и поговорить с врачом по телефону из дома.",
-
-  ro: "Mediatorii sanitari RediHealth te ajută să te înscrii la medic, să faci actele și să vorbești cu un medic la telefon, de acasă.",
-  en: "RediHealth health mediators help you register with a doctor, sort out documents and talk to a doctor by phone from home.",
-  sq: "Mediatorët shëndetësorë të RediHealth të ndihmojnë të regjistrohesh te mjeku, të rregullosh dokumentet dhe të flasësh me mjekun në telefon nga shtëpia.",
-  it: "I mediatori sanitari di RediHealth ti aiutano a iscriverti dal medico, a sistemare i documenti e a parlare con un medico al telefono da casa.",
-  hr: "Zdravstveni medijatori RediHealth pomažu ti upisati se kod liječnika, riješiti dokumente i razgovarati s liječnikom telefonom od kuće.",
-  rom: "E sastipnaske mediatorya RediHealth zhutin tut te lekhaves tut ko doktori, te lačhares che lila thaj te des svato ekhe doktoresa ko telefono katar khere.",
+  ru: "Медицинские медиаторы RediHealth помогут вам записаться к семейному врачу, разобраться с документами и найти местные службы здравоохранения.",
+  ro: "Mediatorii sanitari RediHealth te ajută să te înscrii la medicul de familie, să pregătești actele de asigurare și să găsești serviciile de sănătate din zona ta.",
+  en: "RediHealth health mediators help you register with a family doctor, sort out paperwork and insurance steps, and connect with local health services.",
+  sq: "Mediatorët shëndetësorë të RediHealth të ndihmojnë të regjistrohesh te mjeku i familjes, të rregullosh dokumentet dhe të lidhesh me shërbimet lokale.",
+  it: "I mediatori sanitari di RediHealth ti aiutano a iscriverti dal medico di famiglia, a orientarti con documenti e tessera sanitaria e a trovare i servizi locali.",
+  hr: "Zdravstveni medijatori RediHealth pomažu ti upisati se kod obiteljskog liječnika, pripremiti dokumente za osiguranje i povezati se s lokalnim službama.",
+  rom: "E sastipnaske mediatorya RediHealth ažutin tut te lekhaves tut ko familiyako doktori, te lačhares che lila thaj te arakhes e thaneske službe.",
 };
 
 type MediatorPageCopy = { whoIsTitle: string; whoIsDesc: string; bullets: string[] };
 
-/** "Who the health mediator is", below the hero on /mediatori. */
+/** "Who the health mediator is", below the callback form on /mediatori. */
 export const mediatorPageCopy: Record<Lang, MediatorPageCopy> = {
   ru: {
-    whoIsTitle: "Кто является посредником в сфере здравоохранения",
-    whoIsDesc: "Медиатор по вопросам здоровья – это человек из вашего сообщества, прошедший обучение и сертифицированный для выполнения этой работы. Они помогут вам справиться с вашим семейным врачом, больницами, социальными службами и мэрией. Они говорят на вашем языке и сохраняют конфиденциальность того, что вы им говорите.",
+    whoIsTitle: "Кто такой медицинский медиатор",
+    whoIsDesc:
+      "Медиатор по вопросам здоровья – это обученный специалист, связывающий жителей со службами здравоохранения, семейными врачами, органами социальной защиты и местной администрацией. При наличии говорит на языках сообщества и хранит ваши данные в тайне.",
     bullets: [
-      "Сохраняет ваши медицинские и личные данные в тайне",
+      "Хранит ваши личные и контактные данные в тайне",
       "Никогда не просит у вас денег или услуг",
-      "Помогает детям, взрослым и пожилым людям",
-      "Работает с общественными медсестрами и врачами",
+      "Помогает с административными шагами без медицинских назначений",
+      "Сотрудничает с семейными врачами и участковыми медсестрами",
     ],
   },
-
   ro: {
     whoIsTitle: "Cine este mediatorul sanitar",
-    whoIsDesc: "Mediatorul sanitar este un om din comunitatea ta, pregătit și atestat pentru această muncă. Te ajută cu medicul de familie, spitalul, asistența socială și primăria. Îți vorbește limba și nu spune nimănui ce afli de la tine.",
+    whoIsDesc:
+      "Mediatorul sanitar este o persoană pregătită care face legătura între comunitate și serviciile de sănătate. Te ajută cu pașii administrativi pentru medicul de familie, primărie și asistența socială, vorbește limbile comunității acolo unde este posibil și respectă confidențialitatea datelor tale.",
     bullets: [
-      "Păstrează secretul medical și datele tale",
+      "Păstrează confidențialitatea datelor tale personale",
       "Nu îți cere niciodată bani sau alte foloase",
-      "Ajută copii, adulți și vârstnici",
-      "Lucrează împreună cu asistenții comunitari și cu medicii",
+      "Te ghidează cu actele și programările, fără să dea sfaturi medicale",
+      "Colaborează cu asistenții comunitari și medicii de familie",
     ],
   },
   en: {
     whoIsTitle: "Who the health mediator is",
-    whoIsDesc: "A health mediator is someone from your community, trained and certified for this work. They help you deal with your family doctor, hospitals, social services and the town hall. They speak your language and keep what you tell them private.",
+    whoIsDesc:
+      "A health mediator is a trained link between local communities and health services. They guide administrative steps with family doctors, town halls, and social services, speak community languages where available, and keep your details confidential.",
     bullets: [
-      "Keeps your medical and personal details private",
+      "Keeps your personal and contact details confidential",
       "Never asks you for money or favours",
-      "Helps children, adults and older people",
-      "Works with community nurses and doctors",
+      "Helps with paperwork and bookings without giving medical advice",
+      "Works alongside community nurses and family doctors",
     ],
   },
   sq: {
     whoIsTitle: "Kush është mediatori shëndetësor",
-    whoIsDesc: "Mediatori shëndetësor është dikush nga komuniteti yt, i trajnuar dhe i certifikuar për këtë punë. Të ndihmon me mjekun e familjes, spitalin, shërbimet sociale dhe bashkinë. Flet gjuhën tënde dhe nuk ia tregon askujt atë që i thua.",
+    whoIsDesc:
+      "Mediatori shëndetësor është një person i trajnuar që lidh komunitetin me shërbimet shëndetësore. Të ndihmon me hapat administrativë për mjekun e familjes, bashkinë dhe shërbimet sociale, flet gjuhët e komunitetit kur është e mundur dhe ruan privatësinë tënde.",
     bullets: [
-      "Ruan sekretin mjekësor dhe të dhënat e tua",
+      "Ruan konfidencialitetin e të dhënave të tua personale",
       "Nuk të kërkon kurrë para apo favore",
-      "Ndihmon fëmijë, të rritur dhe të moshuar",
-      "Punon bashkë me infermierët e komunitetit dhe me mjekët",
+      "Të orienton me dokumentet dhe takimet, pa dhënë këshilla mjekësore",
+      "Bashkëpunon me infermierët e komunitetit dhe mjekët e familjes",
     ],
   },
   it: {
     whoIsTitle: "Chi è il mediatore sanitario",
-    whoIsDesc: "Il mediatore sanitario è una persona della tua comunità, formata e abilitata per questo lavoro. Ti aiuta con il medico di famiglia, l'ospedale, i servizi sociali e il comune. Parla la tua lingua e non racconta a nessuno quello che gli dici.",
+    whoIsDesc:
+      "Il mediatore sanitario è una figura formata che collega comunità e servizi sanitari. Ti orienta nei passaggi amministrativi con medico di famiglia, comune e servizi sociali, parla le lingue della comunità quando disponibile e tutela la tua riservatezza.",
     bullets: [
-      "Tiene riservati i tuoi dati medici e personali",
-      "Non ti chiede mai soldi o favori",
-      "Aiuta bambini, adulti e anziani",
-      "Lavora insieme agli infermieri di comunità e ai medici",
+      "Mantiene riservati i tuoi dati personali",
+      "Non ti chiede mai denaro o favori",
+      "Ti aiuta con documenti e prenotazioni senza dare pareri clinici",
+      "Collabora con infermieri di comunità e medici di famiglia",
     ],
   },
   hr: {
     whoIsTitle: "Tko je zdravstveni medijator",
-    whoIsDesc: "Zdravstveni medijator je osoba iz tvoje zajednice, educirana i ovlaštena za ovaj posao. Pomaže ti u komunikaciji s obiteljskim liječnikom, bolnicom, socijalnom službom i općinom ili gradom. Govori tvoj jezik i čuva tajnost svega što mu povjeriš.",
+    whoIsDesc:
+      "Zdravstveni medijator je educirana osoba koja povezuje zajednicu i zdravstvene službe. Pomaže u administrativnim koracima kod obiteljskog liječnika, općine i socijalne službe, govori jezike zajednice kada je to dostupno i čuva povjerljivost tvojih podataka.",
     bullets: [
-      "Čuva liječničku tajnu i tvoje osobne podatke",
+      "Čuva povjerljivost tvojih osobnih podataka",
       "Nikada od tebe ne traži novac ni protuusluge",
-      "Pomaže djeci, odraslima i starijim osobama",
-      "Surađuje s patronažnim sestrama i liječnicima",
+      "Pomaže oko papira i naručivanja bez davanja liječničkih savjeta",
+      "Surađuje s patronažnim sestrama i obiteljskim liječnicima",
     ],
   },
   rom: {
     whoIsTitle: "Kon si o sastipnasko mediatori",
-    whoIsDesc: "O sastipnasko mediatori si manush katar chi komuniteta, sikavdo thaj atestisardo vash kadi buchi. Zhutil tut ko familiyako doktori, shpitalo, sociyalno zhutipen thaj primariya. Del svato pe chi chhib thaj na phenel nikaske so phenes leske.",
+    whoIsDesc:
+      "O sastipnasko mediatori si sikavdo manuš kaj phandel e komuniteta e sastipnaske službenca. Ažutil tut e administrativne pasenca ko familiyako doktori, primariya thaj sociyalno ažutipen, vakerel e komunitetake čhibya kana šaj, thaj garavel cho privatnost.",
     bullets: [
-      "Arakhel o sastipnasko garavipe thaj che date",
-      "Shoha na mangel tutar love vay aver mishtimata",
-      "Zhutil chhavoren, bare manushen thaj phuren",
-      "Kerel buchi khetane e komunitetake asistentenca thaj e doktorenca",
+      "Arakhel o garavipe e che personale datengo",
+      "Šoha na mangel tutar love vaj aver mishtimata",
+      "Ažutil e lilensa thaj vramenca bi te del doktoresko sfato",
+      "Kerel buchi khetane e asistentenca thaj e familiyake doktorenca",
     ],
   },
 };
@@ -100,131 +105,131 @@ export type MediatorTimelineCopy = {
   steps: [MediatorTimelineStep, MediatorTimelineStep, MediatorTimelineStep];
 };
 
-/** 3-step accompaniment timeline explaining how a health mediator walks with the patient. */
+/** 3-step explanation shown below the callback form on /mediatori. */
 export const mediatorTimelineCopy: Record<Lang, MediatorTimelineCopy> = {
   ro: {
-    title: "Cum merge mediatorul sanitar alături de tine",
-    lead: "Din clipa în care ne lași numărul tău, nu rămâi singur pe drumul spre medic.",
+    title: "Cum funcționează sprijinul",
+    lead: "După ce lași datele tale mai sus, echipa locală verifică cine te poate suna.",
     steps: [
       {
         title: "Ne lași județul și telefonul",
-        body: "Completezi rapid mai jos sau ceri ajutor prin formular, fără cont și fără documente pregătite.",
+        body: "Completezi rapid formularul de mai sus, fără cont și fără documente pregătite.",
       },
       {
-        title: "Te sună un mediator din zona ta",
-        body: "Îți vorbește limba, ascultă de ce ai nevoie și stabilește împreună cu tine următorul pas.",
+        title: "Te sună un mediator sau coordonator local",
+        body: "Ascultă de ce sprijin administrativ ai nevoie și îți spune ce servicii sunt disponibile în zona ta.",
       },
       {
-        title: "Merge cu tine până rezolvi",
-        body: "Te însoțește la medicul de familie, te ajută cu actele și asigurarea CNAS sau aduce tableta pentru un apel cu medicul de acasă.",
+        title: "Primești ajutor concret pentru pașii următori",
+        body: "Te ghidează la înscrierea la medicul de familie, pregătirea actelor CNAS sau programări, și te poate însoți când există disponibil local.",
       },
     ],
   },
   en: {
-    title: "How a health mediator walks with you",
-    lead: "From the moment you leave your number, you do not have to sort out care on your own.",
+    title: "How mediator support works",
+    lead: "Once you send the form above, a local team sees your request and calls you back.",
     steps: [
       {
         title: "Leave your county and phone number",
-        body: "Use the short form below or the full request page. You do not need an account or papers ready.",
+        body: "Fill in the short form above. You do not need an account or papers ready.",
       },
       {
-        title: "A local mediator calls you back",
-        body: "Someone from your community calls in your language, listens calmly and agrees on the next step with you.",
+        title: "A local team contacts you",
+        body: "A mediator or local coordinator listens calmly to your practical needs and explains what help is available nearby.",
       },
       {
-        title: "They stay with you to the end",
-        body: "They go with you to the family doctor, help with ID papers and insurance, or bring a tablet for a doctor call at home.",
+        title: "Guidance for the next steps",
+        body: "They help you prepare ID or insurance documents and book family doctor visits, or join an appointment when locally available.",
       },
     ],
   },
   sq: {
-    title: "Si ecën mediatori shëndetësor krah teje",
-    lead: "Që nga momenti kur lë numrin tënd, nuk mbetesh vetëm rrugës për te mjeku.",
+    title: "Si funksionon mbështetja",
+    lead: "Pasi të dërgosh formularin më lart, ekipi lokal e sheh kërkesën dhe të merr në telefon.",
     steps: [
       {
         title: "Lë qarkun dhe numrin e telefonit",
-        body: "Plotëso shpejt më poshtë ose përdor formularin e plotë, pa llogari dhe pa dokumente gati.",
+        body: "Plotëso formularin e shkurtër më lart, pa llogari dhe pa dokumente gati.",
       },
       {
-        title: "Të telefonon një mediator nga zona jote",
-        body: "Flet gjuhën tënde, të dëgjon me qetësi dhe vendos bashkë me ty hapin e radhës.",
+        title: "Të kontakton ekipi lokal",
+        body: "Një mediator ose koordinator dëgjon me qetësi nevojat e tua praktike dhe të tregon çfarë ndihme ka në zonën tënde.",
       },
       {
-        title: "Të shoqëron derisa të zgjidhet",
-        body: "Vjen me ty te mjeku i familjes, të ndihmon me dokumentet dhe sigurimin ose sjell tabletën për thirrje me mjekun nga shtëpia.",
+        title: "Udhëzim praktik për hapat e radhës",
+        body: "Të ndihmon të përgatitësh dokumentet për sigurimin dhe takimet te mjeku i familjes, ose të shoqëron kur është e mundur në zonë.",
       },
     ],
   },
   it: {
-    title: "Come ti accompagna il mediatore sanitario",
-    lead: "Dal momento in cui lasci il tuo numero, non resti solo nel percorso verso le cure.",
+    title: "Come funziona il supporto",
+    lead: "Dopo aver inviato il modulo qui sopra, il team locale riceve la richiesta e ti richiama.",
     steps: [
       {
         title: "Lasci provincia e numero di telefono",
-        body: "Compila in un attimo qui sotto oppure usa il modulo completo, senza account e senza documenti pronti.",
+        body: "Compila il modulo breve qui sopra, senza account e senza documenti pronti.",
       },
       {
-        title: "Ti richiama un mediatore della tua zona",
-        body: "Parla la tua lingua, ti ascolta con calma e concorda insieme a te il passo successivo.",
+        title: "Ti contatta un riferimento locale",
+        body: "Un mediatore ascolta le tue esigenze pratiche e ti spiega quali servizi sono disponibili nella tua zona.",
       },
       {
-        title: "Resta al tuo fianco fino in fondo",
-        body: "Viene con te dal medico di famiglia, ti aiuta con documenti e tessera sanitaria o porta il tablet per parlare con un medico da casa.",
+        title: "Aiuto pratico per i prossimi passi",
+        body: "Ti aiuta a preparare documenti o tessera sanitaria e a prenotare dal medico di famiglia, con accompagnamento quando disponibile localmente.",
       },
     ],
   },
   hr: {
-    title: "Kako te zdravstveni medijator prati korak po korak",
-    lead: "Od trenutka kada ostaviš svoj broj, nisi sam na putu do liječnika.",
+    title: "Kako podrška funkcionira",
+    lead: "Nakon što pošalješ obrazac iznad, lokalni tim vidi tvoj zahtjev i zove te natrag.",
     steps: [
       {
         title: "Ostaviš okrug i broj telefona",
-        body: "Ispuni brzo obrazac niže ili zatraži pomoć putem punog obrasca, bez računa i bez pripremljenih papira.",
+        body: "Ispuni kratki obrazac iznad, bez računa i bez pripremljenih papira.",
       },
       {
-        title: "Nazove te medijator iz tvog kraja",
-        body: "Govori tvoj jezik, sluša te bez žurbe i s tobom dogovara sljedeći korak.",
+        title: "Javlja ti se lokalni tim",
+        body: "Medijator sluša koje su ti praktične potrebe i objašnjava koja je pomoć dostupna u tvom kraju.",
       },
       {
-        title: "Ostaje uz tebe dok sve ne riješiš",
-        body: "Ide s tobom obiteljskom liječniku, pomaže s dokumentima i zdravstvenim osiguranjem ili donosi tablet za poziv liječniku od kuće.",
+        title: "Praktična pomoć za sljedeće korake",
+        body: "Pomaže ti pripremiti dokumente za osiguranje i naručiti se kod obiteljskog liječnika, uz pratnju kada je to lokalno dostupno.",
       },
     ],
   },
   rom: {
-    title: "Sar phirel tusa o sastipnasko mediatori",
-    lead: "Katar o momento kana mukhes cho telefonesko gin, na achhes korkoro po drom ko doktori.",
+    title: "Sar kerel buchi o ažutipen",
+    lead: "Pala so bičhales o formularo opre, e lokalno ekipa dikhel o mangipen thaj akharel tut.",
     steps: [
       {
         title: "Mukhes chi rig thaj o telefono",
-        body: "Lekhav sigo tele vay mang zhutimos katar o baro formularo, bi kontosko thaj bi lila getome.",
+        body: "Lekhav ando xarno formularo opre, bi kontosko thaj bi lila getome.",
       },
       {
-        title: "Akharel tut ekh mediatori katar cho than",
-        body: "Vakerel pe chi chhib, ashunel tut lokhes thaj khetane tusa alosarel o angluno drom.",
+        title: "Akharel tut lokalno mediatori",
+        body: "Ašunel tut lokhes thaj phenel tuke savo praktikano ažutipen si paše tute.",
       },
       {
-        title: "Achhel pasha tute zhi ko agor",
-        body: "Zhal tusa ko familiyako doktori, zhutil tut e lilensa thaj e siguranciyasa vay anel o tableto te des svato e doktoresa khere.",
+        title: "Praktikano ažutipen ko anglune pasora",
+        body: "Ažutil tut te lačhares lila vaš e siguranciya thaj te keres vrama ko doktori, vaj džal tusa kana si thanesko ažutipen.",
       },
     ],
   },
   ru: {
-    title: "Как медицинский медиатор сопровождает вас",
-    lead: "С того момента, как вы оставите номер телефона, вам не придётся разбираться в одиночку.",
+    title: "Как устроена поддержка",
+    lead: "После отправки формы выше местная команда увидит заявку и свяжется с вами.",
     steps: [
       {
         title: "Оставьте округ и номер телефона",
-        body: "Заполните короткую форму ниже или откройте полную заявку, без аккаунта и готовых справок.",
+        body: "Заполните короткую форму выше, без регистрации и готовых справок.",
       },
       {
-        title: "Вам перезвонит медиатор из вашего района",
-        body: "Он говорит на вашем языке, спокойно выслушает и договорится с вами о следующем шаге.",
+        title: "С вами свяжется местная команда",
+        body: "Медиатор спокойно выслушает, какая практическая помощь вам нужна, и расскажет о доступных возможностях рядом.",
       },
       {
-        title: "Идёт рядом до результата",
-        body: "Сопровождает к семейному врачу, помогает с документами и страховкой или приносит планшет для звонка врачу из дома.",
+        title: "Практическая помощь с шагами",
+        body: "Поможет подготовить документы для страховки и записаться к семейному врачу или сопроводит на приём при наличии такой возможности на месте.",
       },
     ],
   },

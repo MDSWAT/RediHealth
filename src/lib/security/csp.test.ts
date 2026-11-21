@@ -31,6 +31,8 @@ describe("buildContentSecurityPolicy", () => {
   it("allows CAPTCHA connections and frames without weakening script nonces", () => {
     const policy = buildContentSecurityPolicy({ ...base, isDevelopment: false });
     expect(policy).toContain("connect-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/");
+    expect(policy).not.toContain("facebook.com");
+    expect(policy).not.toContain("facebook.net");
     expect(policy).toContain("https://recaptcha.google.com/recaptcha/");
     expect(policy).toContain("'strict-dynamic'");
     expect(policy).not.toMatch(/script-src[^;]*unsafe-inline/);

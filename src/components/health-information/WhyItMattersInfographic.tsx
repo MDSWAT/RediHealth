@@ -70,7 +70,7 @@ export function WhyItMattersInfographic({
 
   return (
     <section aria-labelledby="why-it-matters-heading" className={className}>
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
         <div className="min-w-0 flex-1">
           <h2
             id="why-it-matters-heading"
@@ -86,20 +86,22 @@ export function WhyItMattersInfographic({
           </p>
         </div>
 
-        <InlineAudioNarratorButton
-          textToSpeak={`${pickLocale(s.heading, currentLang)}. ${facts.join(" ")}`}
-          label={pickLocale(s.listenAllLabel, currentLang)}
-          lang={speechLang}
-        />
+        <div className="shrink-0 self-start">
+          <InlineAudioNarratorButton
+            textToSpeak={`${pickLocale(s.heading, currentLang)}. ${facts.join(" ")}`}
+            label={pickLocale(s.listenAllLabel, currentLang)}
+            lang={speechLang}
+          />
+        </div>
       </div>
 
       <ul className="mt-5 divide-y divide-border rounded-xl border border-border bg-card px-6 py-2 sm:px-8">
         {facts.map((fact, idx) => (
-          <li key={idx} className="flex items-start gap-4 py-4 sm:py-5">
-            <span className="mt-0.5 shrink-0 text-title font-semibold tabular-nums text-sapphire">
+          <li key={idx} className="flex items-start gap-4 break-inside-avoid py-4 sm:py-5">
+            <span className="mt-0.5 shrink-0 text-title font-semibold tabular-nums text-sapphire dark:text-sapphire-border">
               {idx + 1}.
             </span>
-            <p className="text-reading text-foreground">
+            <p className="min-w-0 flex-1 text-reading text-foreground">
               {fact}
             </p>
           </li>

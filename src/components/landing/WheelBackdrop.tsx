@@ -15,16 +15,15 @@ import { WHEEL_ORDER } from "./health-topics-wheel-config";
 import styles from "./WheelBackdrop.module.css";
 
 /**
- * The topic wheel as decoration on an ink ground: paper-white and faint, turning slowly.
- * In the footer the eight topic icons ride the outer ring and stay upright, as outlines only:
- * they are not buttons. The hero shows the stars and the chakra alone. Put it inside a positioned element that makes its own stacking context.
- * - `hero`: desktop only (phones and tablets draw their own wheel in HeroDock); larger than the
- *   hero and centred behind the headline on the left, fading out before the quick options.
- * - `footer`: a small wheel behind the footer's content: beside the brand block on desktop, centred
- *   behind the link columns on phones and tablets.
+ * The topic wheel as decoration, turning slowly with all eight topic icons riding the outer ring
+ * upright as outlines (purely decorative, not buttons).
+ * - `hero`: paper-white on the obsidian-navy hero ground on desktop, layered behind the right side.
+ * - `hero-top`: enlarged inline wheel crowning above and fading subtly behind the mobile hero
+ *   headline so text readability stays crisp.
+ * - `footer`: paper-white on the ink footer, a small wheel behind the footer's content.
  * Purely decorative: hidden from assistive technology, never clickable, still under reduced motion.
  */
-export function WheelBackdrop({ placement }: { placement: "hero" | "footer" }) {
+export function WheelBackdrop({ placement }: { placement: "hero" | "hero-top" | "footer" }) {
   const idPrefix = `${placement}-htw`;
   const backdropRef = useRef<HTMLDivElement>(null);
   const [offscreen, setOffscreen] = useState(false);
@@ -44,19 +43,22 @@ export function WheelBackdrop({ placement }: { placement: "hero" | "footer" }) {
     return () => observer.disconnect();
   }, []);
 
+  const placementClass =
+    placement === "hero-top" ? styles.heroTop : styles[placement];
+
   return (
     <div
       ref={backdropRef}
       aria-hidden="true"
       data-offscreen={offscreen ? "" : undefined}
-      className={`${styles.backdrop} ${styles[placement]}`}
+      className={`${styles.backdrop} ${placementClass}`}
     >
       <div className={styles.wheel}>
         <div className={`${styles.layer} ${styles.outer}`}>
           <svg className={styles.layer} viewBox={WHEEL_VIEW_BOX} focusable="false">
             <WheelStars stars={OUTER_STARS} className={styles.star} idPrefix={idPrefix} />
           </svg>
-          {placement === "footer" && WHEEL_ORDER.map((slug, index) => {
+          {WHEEL_ORDER.map((slug, index) => {
             const Icon = WHEEL_ICONS[slug];
             const angle = ((index * 360) / WHEEL_ORDER.length - 90) * (Math.PI / 180);
             const orbit = (WHEEL_NODE_ORBIT / WHEEL_VIEW) * 100;

@@ -166,6 +166,7 @@ export function GlobalHealthAudioPlayer({
   const playerRootRef = useRef<HTMLDivElement | null>(null);
   const isDraggingRef = useRef(false);
   const scrubRafRef = useRef<number | null>(null);
+  const wasActiveRef = useRef(false);
 
   useEffect(() => {
     onCloseRef.current = onClose;
@@ -287,6 +288,9 @@ export function GlobalHealthAudioPlayer({
         onError: () => {
           if (gen !== playbackGenRef.current) return;
           setIsPlaying(false);
+          // No voice could speak: close the bar, so the Listen button above goes back to
+          // "Listen" and shows its "voice unavailable" line, instead of a bar that does nothing.
+          onCloseRef.current();
         },
       });
     },
@@ -295,6 +299,7 @@ export function GlobalHealthAudioPlayer({
 
   useEffect(() => {
     if (isActive) {
+      wasActiveRef.current = true;
       lastSentenceRef.current = -1;
       currentOffsetRef.current = 0;
       const unregister = speechEngine.registerActivePlayer(() =>
@@ -310,18 +315,23 @@ export function GlobalHealthAudioPlayer({
         playbackGenRef.current += 1;
         speechEngine.stop();
       };
-    } else {
-      playbackGenRef.current += 1;
-      speechEngine.stop();
-      lastSentenceRef.current = -1;
-      currentOffsetRef.current = 0;
-      const stopTimer = setTimeout(() => {
-        setIsPlaying(false);
-        setProgressPercent(0);
-        setViewOverride(null);
-      }, 0);
-      return () => clearTimeout(stopTimer);
     }
+
+    if (!wasActiveRef.current) {
+      return;
+    }
+
+    wasActiveRef.current = false;
+    playbackGenRef.current += 1;
+    speechEngine.stop();
+    lastSentenceRef.current = -1;
+    currentOffsetRef.current = 0;
+    const stopTimer = setTimeout(() => {
+      setIsPlaying(false);
+      setProgressPercent(0);
+      setViewOverride(null);
+    }, 0);
+    return () => clearTimeout(stopTimer);
   }, [isActive, startSpeechFromOffset]);
 
   useEffect(() => {

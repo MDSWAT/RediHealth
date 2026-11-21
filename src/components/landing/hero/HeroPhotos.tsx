@@ -1,65 +1,87 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { getImageProps } from "next/image";
+import { useEffect, useState } from "react";
 import styles from "./HeroPhotos.module.css";
 
-const TRANSPARENT_PIXEL =
-  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+interface HeroPhotoSpec {
+  src: string;
+  objectPosition: string;
+  photoClass: string;
+}
 
-/** The same three photos as the phone hero, from one consultation shoot (hands only, no faces). */
-const PHOTOS = ["/images/hero-care.jpg", "/images/hero-consultation.jpg", "/images/hero-desk.jpg"];
+const HERO_PHOTOS: readonly HeroPhotoSpec[] = [
+  {
+    src: "/images/hero-care.jpg",
+    objectPosition: "58% 46%",
+    photoClass: styles.photo1,
+  },
+  {
+    src: "/images/hero-consultation.jpg",
+    objectPosition: "62% 45%",
+    photoClass: styles.photo2,
+  },
+  {
+    src: "/images/health-topics/heart-health-care.jpg",
+    objectPosition: "64% 42%",
+    photoClass: styles.photo3,
+  },
+  {
+    src: "/images/hero-desk.jpg",
+    objectPosition: "52% 46%",
+    photoClass: styles.photo4,
+  },
+];
 
-/**
- * Desktop hero ground: the consultation photos, cross-fading slowly under a sapphire tint and
- * ink scrims (see HeroPhotos.module.css). The first photo loads with the page; the other two are
- * added once the browser is idle, fetched last. Phones and tablets never request them: the
- * only source is for screens from 1024px, and the phone hero has its own backdrop in HeroDock.
- */
 export function HeroPhotos() {
-  const [mountCycle, setMountCycle] = useState(false);
+  const [extraMounted, setExtraMounted] = useState(false);
 
   useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-    let idleId: number | undefined;
-    const schedule = () => {
-      timeoutId = setTimeout(() => setMountCycle(true), 1200);
+    const win = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
     };
-    if (typeof window.requestIdleCallback === "function") {
-      idleId = window.requestIdleCallback(schedule, { timeout: 2000 });
-    } else {
-      schedule();
+
+    if (typeof win.requestIdleCallback === "function") {
+      const id = win.requestIdleCallback(() => setExtraMounted(true), { timeout: 900 });
+      return () => win.cancelIdleCallback?.(id);
     }
-    return () => {
-      if (idleId !== undefined && typeof window.cancelIdleCallback === "function") {
-        window.cancelIdleCallback(idleId);
-      }
-      if (timeoutId !== undefined) clearTimeout(timeoutId);
-    };
+
+    const timer = window.setTimeout(() => setExtraMounted(true), 450);
+    return () => window.clearTimeout(timer);
   }, []);
 
-  const photos = (mountCycle ? PHOTOS : PHOTOS.slice(0, 1)).map((src, index) =>
-    getImageProps({
-      src,
-      alt: "",
-      fill: true,
-      sizes: "100vw",
-      loading: index === 0 ? "eager" : "lazy",
-      decoding: "async",
-      fetchPriority: index === 0 ? "high" : "low",
-    }).props,
-  );
-
   return (
-    <div aria-hidden="true" className={`${styles.ground} hidden lg:block`}>
-      {photos.map(({ srcSet, sizes, ...photoProps }, index) => (
-        <picture key={PHOTOS[index]}>
-          <source media="(min-width: 1024px)" srcSet={srcSet} sizes={sizes} />
-          <img {...photoProps} src={TRANSPARENT_PIXEL} alt="" className={styles.photo} />
-        </picture>
-      ))}
+    <div aria-hidden="true" className={styles.ground}>
+      {HERO_PHOTOS.map(({ src, objectPosition, photoClass }, index) => {
+        if (index > 0 && !extraMounted) {
+          return null;
+        }
+
+        const { style, className, ...restProps } = getImageProps({
+          src,
+          alt: "",
+          fill: true,
+          sizes: "100vw",
+          loading: index === 0 ? "eager" : "lazy",
+          decoding: "async",
+          fetchPriority: index === 0 ? "high" : "low",
+        }).props;
+
+        return (
+          /* getImageProps delivers Next-optimized srcSet/sizes without wrapper spans that constrain keyframes. */
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            key={src}
+            {...restProps}
+            alt=""
+            style={{ ...style, objectPosition }}
+            className={[styles.photo, photoClass, className].filter(Boolean).join(" ")}
+          />
+        );
+      })}
       <div className={styles.tint} />
-      <div className={styles.scrim} />
+      <div className={styles.veil} />
     </div>
   );
 }

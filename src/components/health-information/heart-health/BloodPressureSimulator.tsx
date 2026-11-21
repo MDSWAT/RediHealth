@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { AlertCircleIcon, CheckCircleIcon, PhoneIcon } from "@/components/ui/icons";
+import { PhoneIcon } from "@/components/ui/icons";
 import { EmergencyDialerGate } from "@/components/emergency/EmergencyDialerGate";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -66,21 +66,12 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
   const steps = esh.steps;
   const currentStep = steps[activeStepIndex] ?? steps[0];
 
-  const tone =
+  const statusTextClass =
     evaluation.badgeTone === "sage"
-      ? {
-          badge: "border-live-sage/35 bg-live-sage-soft/50 text-foreground",
-          dot: "bg-live-sage",
-        }
+      ? "text-wellness dark:text-wellness-border"
       : evaluation.badgeTone === "amber"
-        ? {
-            badge: "border-amber-care-border bg-amber-care-soft/60 text-foreground",
-            dot: "bg-amber-care",
-          }
-        : {
-            badge: "border-primary/35 bg-primary-soft/60 text-primary",
-            dot: "bg-primary",
-          };
+        ? "text-amber-care dark:text-amber-care-border"
+        : "text-primary dark:text-ruby-300";
 
   const sliders = [
     {
@@ -119,9 +110,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
 
         <div className="mt-5">
           <p className="text-meta font-medium text-muted-foreground">{pickLocale(ui.quickExamples, lang)}</p>
-          {/* Phones: one row that scrolls sideways (no orphan chip). From sm up: equal cells. */}
-          <div className="-mx-5 mt-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:overflow-visible sm:px-0 sm:pb-0">
-          <div className="flex w-max gap-1.5 sm:w-auto">
+          <div className="btn-row mt-2 flex flex-wrap items-center gap-2">
             {BP_PRESETS.map((preset) => {
               const isSelected =
                 systolic === preset.systolic &&
@@ -137,17 +126,16 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                     setDiastolic(preset.diastolic);
                     setHasRedFlags(Boolean(preset.hasRedFlags));
                   }}
-                  className={`inline-flex min-h-[44px] shrink-0 items-center justify-center whitespace-nowrap rounded-lg border px-3 text-center text-meta font-semibold tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:shrink sm:grow sm:basis-0 sm:px-2 sm:tracking-[-0.01em] ${
+                  className={`press-row inline-flex min-h-11 max-w-full items-center justify-center whitespace-nowrap rounded-(--radius-control) border px-3 py-2 text-center text-meta font-semibold tabular-nums transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     isSelected
-                      ? "border-foreground bg-foreground text-white"
-                      : "border-border bg-card text-foreground hover:border-foreground/40 hover:bg-muted/40"
+                      ? "border-foreground bg-foreground text-white dark:border-paper dark:bg-paper dark:text-ink-950"
+                      : "border-border-control bg-card text-foreground hover:border-sapphire/45 hover:bg-sapphire-soft/35 dark:hover:border-white/30 dark:hover:bg-white/[0.08]"
                   }`}
                 >
                   {pickLocale(BP_PRESET_STRINGS[preset.key], lang)}
                 </button>
               );
             })}
-          </div>
           </div>
         </div>
 
@@ -248,7 +236,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
               </span>
               <span className="text-meta text-muted-foreground">mmHg</span>
             </div>
-            <span className={`inline-flex items-center rounded-md border px-3 py-1 text-meta font-semibold ${tone.badge}`}>
+            <span className={`text-title font-semibold ${statusTextClass}`}>
               {pickLocale(evaluation.label, lang)}
             </span>
           </div>
@@ -273,8 +261,8 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
           </div>
 
           {evaluation.isEmergency112 && (
-            <div className="mt-4 flex flex-col gap-3 border-t border-border/70 pt-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-body font-semibold text-foreground">{pickLocale(ui.emergencyNotice, lang)}</p>
+            <div className="mt-4 flex flex-col gap-3 border-t border-border/70 pt-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+              <p className="min-w-0 flex-1 text-body font-semibold text-foreground">{pickLocale(ui.emergencyNotice, lang)}</p>
               <Button
                 type="button"
                 variant="primary"
@@ -283,7 +271,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
                 aria-haspopup="dialog"
                 className="shrink-0 px-5"
               >
-                <PhoneIcon className="h-4 w-4 shrink-0" />
+                <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 {pickLocale(ui.call112Btn, lang)}
               </Button>
             </div>
@@ -341,8 +329,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
 
           <div className="mt-5 grid grid-cols-1 gap-6 border-t border-border/70 pt-5 sm:grid-cols-2">
             <div>
-              <p className="flex items-center gap-2 text-body font-semibold text-foreground">
-                <CheckCircleIcon className="h-4 w-4 shrink-0 text-live-sage" />
+              <p className="text-body font-semibold text-foreground">
                 {pickLocale(esh.goodToKnowLabel, lang)}
               </p>
               <p className="mt-1.5 text-body text-muted-foreground">
@@ -350,8 +337,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
               </p>
             </div>
             <div>
-              <p className="flex items-center gap-2 text-body font-semibold text-foreground">
-                <AlertCircleIcon className="h-4 w-4 shrink-0 text-amber-care" />
+              <p className="text-body font-semibold text-foreground">
                 {pickLocale(esh.mistakeLabel, lang)}
               </p>
               <p className="mt-1.5 text-body text-muted-foreground">
@@ -361,7 +347,7 @@ export function BloodPressureSimulator({ lang: langProp }: BloodPressureSimulato
           </div>
 
           {/* The picker above already shows which step is open, so there is no "Step 1 of 4" counter. */}
-          <div className="mt-6 flex items-center justify-between gap-3 border-t border-border pt-4">
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
             <Button
               type="button"
               variant="ghost"

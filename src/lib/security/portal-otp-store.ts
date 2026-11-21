@@ -1,10 +1,94 @@
+import { createHash } from "crypto";
+import { EncryptJWT, jwtDecrypt } from "jose";
+
 export interface OtpEntry {
   otp: string;
   phone: string;
   expiresAt: number;
+  consumed?: boolean;
 }
 
-export const otpStore = new Map<string, OtpEntry>();
+type GlobalWithOtpStore = typeof globalThis & {
+  redihealthPhoneOtpStore?: Map<string, OtpEntry>;
+};
+
+const globalWithOtpStore = globalThis as GlobalWithOtpStore;
+
+export const otpStore = (globalWithOtpStore.redihealthPhoneOtpStore ??= new Map<string, OtpEntry>());
+
+export const PHONE_OTP_COOKIE = "redihealth_phone_otp";
+export const PHONE_OTP_TTL_SECONDS = 15 * 60;
+
+const devFallbackSecret =
+  process.env.NODE_ENV !== "production"
+    ? "redihealth-local-dev-only-auth-secret-32chars"
+    : undefined;
+
+function secretKey(): Buffer | null {
+  const secret = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || devFallbackSecret;
+  if (!secret) return null;
+  return createHash("sha256").update(secret).digest();
+}
+
+/** Encrypts a phone OTP payload into a JWE token for the HTTP-only cookie fallback across route chunks. */
+export async function encryptPhoneOtp(
+  entry: Pick<OtpEntry, "otp" | "phone" | "expiresAt">,
+): Promise<string | null> {
+  const key = secretKey();
+  if (!key) return null;
+
+  return new EncryptJWT({
+    otp: entry.otp,
+    phone: entry.phone,
+    expiresAt: entry.expiresAt,
+  })
+    .setProtectedHeader({ alg: "dir", enc: "A256GCM" })
+    .setIssuedAt()
+    .setExpirationTime(`${PHONE_OTP_TTL_SECONDS}s`)
+    .encrypt(key);
+}
+
+/** Decrypts and validates a phone OTP cookie token, returning null when missing, expired, or invalid. */
+export async function decryptPhoneOtp(token: string): Promise<OtpEntry | null> {
+  const key = secretKey();
+  if (!key || !token) return null;
+
+  try {
+    const { payload } = await jwtDecrypt(token, key);
+    if (
+      typeof payload.otp !== "string" ||
+      typeof payload.phone !== "string" ||
+      typeof payload.expiresAt !== "number"
+    ) {
+      return null;
+    }
+    return {
+      otp: payload.otp,
+      phone: payload.phone,
+      expiresAt: payload.expiresAt,
+    };
+  } catch {
+    return null;
+  }
+}
+
+/** Reads a named cookie value from an HTTP Cookie header without throwing on malformed percent-encoding. */
+export function readCookieValue(cookieHeader: string | null, name: string): string | null {
+  if (!cookieHeader) return null;
+  const prefix = `${name}=`;
+  for (const part of cookieHeader.split(";")) {
+    const trimmed = part.trim();
+    if (!trimmed.startsWith(prefix)) continue;
+    const raw = trimmed.slice(prefix.length);
+    if (!raw) return null;
+    try {
+      return decodeURIComponent(raw);
+    } catch {
+      return raw;
+    }
+  }
+  return null;
+}
 
 /**
  * Phone sign-in is a demonstration flow: no SMS provider is connected, so the code can only be

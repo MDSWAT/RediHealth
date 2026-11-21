@@ -24,6 +24,8 @@ export interface SpeechOptions {
 export interface SpeechEngineState {
   isSpeaking: boolean;
   isPaused: boolean;
+  /** True from the tap until the first sound: the voice is being fetched or started. */
+  isLoading: boolean;
   activeTier: SpeechTier;
   playbackRate: number;
   currentChunkIndex: number;
@@ -67,6 +69,20 @@ const PREFERRED_REGIONAL_TAGS: Record<string, string[]> = {
 };
 
 const MAX_NEURAL_SEGMENT_CHARS = 4000;
+/**
+ * The first server clips are short so sound starts quickly on a slow connection: a few
+ * sentences, then about a minute, then full-size clips. Each next clip downloads while the
+ * one before it plays.
+ */
+const NEURAL_LEAD_SEGMENT_CHARS = [300, 1200] as const;
+/** How long the server voice may take to start before the phone's own voice is tried. */
+const NEURAL_START_DEADLINE_MS = 15_000;
+/** With no matching voice on the phone, the server voice gets this much longer before giving up. */
+const NEURAL_START_LAST_CHANCE_MS = 30_000;
+/** How long the phone's own voice may take to start once it was asked to speak. */
+const WEBSPEECH_START_DEADLINE_MS = 8_000;
+/** Old Android phones load their voice list slowly; wait this long for it before giving up. */
+const VOICE_LIST_WAIT_MS = 2_500;
 const MAX_CLIENT_AUDIO_BLOBS = 64;
 const SILENT_WAV_BYTES = new Uint8Array([
   82, 73, 70, 70, 40, 0, 0, 0, 87, 65, 86, 69, 102, 109, 116, 32, 18, 0, 0, 0, 1, 0, 1, 0, 68,
@@ -476,11 +492,12 @@ function splitLongUnit(text: string, maxLen: number): string[] {
   return out;
 }
 
-function splitTextIntoTtsSegments(fullText: string, maxLen = MAX_NEURAL_SEGMENT_CHARS): TextSegment[] {
-  const trimmed = fullText.trim();
+function groupTtsSegments(text: string, maxLen: number, baseOffset: number): TextSegment[] {
+  const trimmed = text.trim();
   if (!trimmed) return [];
+  const lead = text.length - text.trimStart().length;
   if (trimmed.length <= maxLen) {
-    return [{ text: trimmed, offset: 0 }];
+    return [{ text: trimmed, offset: baseOffset + lead }];
   }
 
   const sentences = chunkTextIntoSentences(trimmed, maxLen).flatMap((unit) =>
@@ -503,11 +520,48 @@ function splitTextIntoTtsSegments(fullText: string, maxLen = MAX_NEURAL_SEGMENT_
     grouped.push(buffer);
   }
 
-  const offsets = computeChunkOffsets(trimmed, grouped);
-  return grouped.map((text, idx) => ({
-    text,
-    offset: offsets[idx] ?? 0,
+  const offsets = computeChunkOffsets(trimmed, grouped, baseOffset + lead);
+  return grouped.map((segmentText, idx) => ({
+    text: segmentText,
+    offset: offsets[idx] ?? baseOffset + lead,
   }));
+}
+
+/** Whole sentences from the start of `text`, up to `maxLen` characters (always at least one). */
+function takeLeadingSentences(text: string, maxLen: number): string {
+  const units = chunkTextIntoSentences(text, maxLen).flatMap((unit) => splitLongUnit(unit, maxLen));
+  let lead = "";
+  for (const unit of units) {
+    const next = lead ? `${lead} ${unit}` : unit;
+    if (lead && next.length > maxLen) break;
+    lead = next;
+  }
+  return lead;
+}
+
+export function splitTextIntoTtsSegments(
+  fullText: string,
+  maxLen = MAX_NEURAL_SEGMENT_CHARS,
+  leadSizes: readonly number[] = [],
+): TextSegment[] {
+  const trimmed = fullText.trim();
+  if (!trimmed) return [];
+
+  const segments: TextSegment[] = [];
+  let cursor = 0;
+  for (const size of leadSizes) {
+    const rest = trimmed.slice(cursor);
+    const restStart = cursor + (rest.length - rest.trimStart().length);
+    const restText = rest.trim();
+    if (size >= maxLen || restText.length <= size) break;
+    const lead = takeLeadingSentences(restText, size);
+    // The lead must be the literal start of what is left, or the offsets would drift.
+    if (!lead || !restText.startsWith(lead)) break;
+    segments.push({ text: lead, offset: restStart });
+    cursor = restStart + lead.length;
+  }
+
+  return [...segments, ...groupTtsSegments(trimmed.slice(cursor), maxLen, cursor)];
 }
 
 /**
@@ -583,6 +637,9 @@ export class HealthSpeechEngine {
   private activeTier: SpeechTier = "webspeech";
   private isSpeakingState = false;
   private isPausedState = false;
+  private isLoadingState = false;
+  private startDeadlineTimer: ReturnType<typeof setTimeout> | null = null;
+  private onlineListenerWindow: unknown = null;
   private playbackRate = 1.0;
   private isFallbackVoiceState = false;
   private neuralServerAvailable: boolean | null = null;
@@ -615,20 +672,119 @@ export class HealthSpeechEngine {
   private gestureUnlockInFlight = false;
   private unlockPrevMuted: boolean | null = null;
   private activeUnlockUrl: string | null = null;
+  private webSpeechRetryTimer: ReturnType<typeof setTimeout> | null = null;
   private gestureBoundWindow: unknown = null;
   private gestureUnlockHandler: (() => void) | null = null;
   private customUnlockHandler: (() => void) | null = null;
 
   private constructor() {
     if (typeof window !== "undefined") {
-      if ("speechSynthesis" in window) {
+      if ("speechSynthesis" in window && window.speechSynthesis) {
         window.speechSynthesis.addEventListener?.("voiceschanged", () => {
           // Pre-warm voices list
           window.speechSynthesis.getVoices();
         });
+        // Ask for the list now: some phones only start loading it on the first request,
+        // and it must be ready by the time the reader taps Listen.
+        try {
+          window.speechSynthesis.getVoices?.();
+        } catch {
+          // Ignore voice pre-warm errors
+        }
       }
       this.installGestureUnlockListeners();
+      this.installOnlineListener();
     }
+  }
+
+  /** Back online: ask again whether the server voice is there, if the last check could not reach it. */
+  private installOnlineListener(): void {
+    if (typeof window === "undefined" || typeof window.addEventListener !== "function") return;
+    if (this.onlineListenerWindow === window) return;
+    this.onlineListenerWindow = window;
+    window.addEventListener("online", () => {
+      if (this.neuralServerAvailable === null) {
+        void this.probeNeuralServer();
+      }
+    });
+  }
+
+  public isLoading(): boolean {
+    return this.isLoadingState;
+  }
+
+  private clearStartDeadline(): void {
+    if (this.startDeadlineTimer !== null) {
+      clearTimeout(this.startDeadlineTimer);
+      this.startDeadlineTimer = null;
+    }
+  }
+
+  /** Runs `onMiss` if no sound has started within `ms`. Sound that has started is never cut off. */
+  private armStartDeadline(ms: number, onMiss: () => void): void {
+    this.clearStartDeadline();
+    if (!this.isLoadingState || typeof setTimeout !== "function") return;
+    this.startDeadlineTimer = setTimeout(() => {
+      this.startDeadlineTimer = null;
+      if (!this.isLoadingState) return;
+      onMiss();
+    }, ms);
+  }
+
+  /** The first sound is out (or the attempt is over): no more waiting state, no deadline. */
+  private endLoading(): void {
+    this.isLoadingState = false;
+    this.clearStartDeadline();
+  }
+
+  private hasDeviceVoice(lang: string): boolean {
+    if (typeof window === "undefined" || !("speechSynthesis" in window) || !window.speechSynthesis) {
+      return false;
+    }
+    try {
+      const { voice, isFallback } = findBestVoice(window.speechSynthesis.getVoices?.() ?? [], lang);
+      return Boolean(voice) && !isFallback;
+    } catch {
+      return false;
+    }
+  }
+
+  /**
+   * The server voice has not started in time. Order stays the same: a matching voice on the
+   * phone is tried next; without one the server voice gets one longer chance, then the reader
+   * is told that voice is unavailable. Never a voice in another language.
+   */
+  private armNeuralStartDeadline(fullText: string, lang: string, currentRun: number): void {
+    const giveUpOnServerVoice = () => {
+      this.playbackAbortController?.abort();
+      this.playbackAbortController = null;
+      if (this.currentAudioElement) {
+        try {
+          this.clearAudioHandlers(this.currentAudioElement);
+          this.currentAudioElement.pause();
+        } catch {
+          // Ignore audio element errors
+        }
+        this.currentAudioElement = null;
+      }
+      this.mp3Session = null;
+      // Whatever the server still sends for this attempt is ignored from here on.
+      this.runId += 1;
+    };
+
+    this.armStartDeadline(NEURAL_START_DEADLINE_MS, () => {
+      if (this.runId !== currentRun) return;
+      if (this.hasDeviceVoice(lang)) {
+        giveUpOnServerVoice();
+        this.fallbackFromNeuralToWebSpeech(fullText, lang);
+        return;
+      }
+      this.armStartDeadline(NEURAL_START_LAST_CHANCE_MS, () => {
+        if (this.runId !== currentRun) return;
+        giveUpOnServerVoice();
+        this.fallbackFromNeuralToWebSpeech(fullText, lang);
+      });
+    });
   }
 
   public static getInstance(): HealthSpeechEngine {
@@ -704,10 +860,15 @@ export class HealthSpeechEngine {
           this.removeUserGestureUnlockListeners();
         }
 
+        const audioTakenOver =
+          this.currentAudioElement === audio ||
+          (Boolean(audio.src) &&
+            audio.src !== unlockUrl &&
+            !audio.src.startsWith("data:audio/wav"));
         const stillHoldingUnlockUrl =
           Boolean(this.activeUnlockUrl) &&
           (audio.src === this.activeUnlockUrl || audio.src.startsWith("data:audio/wav"));
-        if (!this.isSpeakingState && stillHoldingUnlockUrl) {
+        if (!audioTakenOver && stillHoldingUnlockUrl) {
           try {
             audio.pause?.();
             audio.currentTime = 0;
@@ -721,7 +882,7 @@ export class HealthSpeechEngine {
           }
         }
 
-        if (!this.isSpeakingState && this.unlockPrevMuted !== null) {
+        if (!audioTakenOver && this.unlockPrevMuted !== null) {
           audio.muted = this.unlockPrevMuted;
           this.unlockPrevMuted = null;
         }
@@ -831,8 +992,12 @@ export class HealthSpeechEngine {
       return false;
     }
     this.installGestureUnlockListeners();
+    this.installOnlineListener();
     if (this.neuralServerAvailable !== null) {
       return this.neuralServerAvailable;
+    }
+    if (typeof navigator !== "undefined" && navigator.onLine === false) {
+      return false;
     }
     if (this.probePromise) {
       return this.probePromise;
@@ -847,9 +1012,12 @@ export class HealthSpeechEngine {
         }
         const res = await fetch("/api/tts", { method: "GET" });
         const data = res.ok ? ((await res.json()) as { configured?: boolean }) : null;
-        this.neuralServerAvailable = Boolean(res.ok && data?.configured);
+        // Only a real answer from the server is remembered. A failed request (no signal, a
+        // server error) leaves the question open, so the next tap or the next time the phone
+        // is back online asks again instead of losing the server voice for the whole visit.
+        this.neuralServerAvailable = data ? Boolean(data.configured) : null;
       } catch {
-        this.neuralServerAvailable = false;
+        this.neuralServerAvailable = null;
       } finally {
         this.probePromise = null;
         this.notifyState();
@@ -869,6 +1037,10 @@ export class HealthSpeechEngine {
     this.gestureUnlockInFlight = false;
     this.unlockPrevMuted = null;
     this.activeUnlockUrl = null;
+    if (this.webSpeechRetryTimer !== null) {
+      clearTimeout(this.webSpeechRetryTimer);
+      this.webSpeechRetryTimer = null;
+    }
     this.sharedAudioElement = null;
     this.neuralServerAvailable = null;
     this.probePromise = null;
@@ -876,6 +1048,7 @@ export class HealthSpeechEngine {
     this.activeTier = "webspeech";
     this.isSpeakingState = false;
     this.isPausedState = false;
+    this.endLoading();
     this.isFallbackVoiceState = false;
     this.currentChunks = [];
     this.chunkCharOffsets = [];
@@ -924,6 +1097,7 @@ export class HealthSpeechEngine {
     return {
       isSpeaking: this.isSpeakingState,
       isPaused: this.isPausedState,
+      isLoading: this.isLoadingState,
       activeTier: this.activeTier,
       playbackRate: this.playbackRate,
       currentChunkIndex: this.currentChunkIndex,
@@ -1017,6 +1191,12 @@ export class HealthSpeechEngine {
 
   public stop(): void {
     this.runId += 1;
+    this.endLoading();
+
+    if (this.webSpeechRetryTimer !== null) {
+      clearTimeout(this.webSpeechRetryTimer);
+      this.webSpeechRetryTimer = null;
+    }
 
     if (this.playbackAbortController) {
       this.playbackAbortController.abort();
@@ -1027,10 +1207,18 @@ export class HealthSpeechEngine {
 
     if (typeof window !== "undefined") {
       if (window.speechSynthesis) {
-        try {
-          window.speechSynthesis.cancel();
-        } catch {
-          // Ignore cancellation errors
+        const synth = window.speechSynthesis;
+        const hasActiveSpeech =
+          this.currentUtterance !== null ||
+          this.activeUtterances.size > 0 ||
+          Boolean(synth.speaking) ||
+          Boolean(synth.pending);
+        if (hasActiveSpeech) {
+          try {
+            synth.cancel();
+          } catch {
+            // Ignore cancellation errors
+          }
         }
       }
 
@@ -1046,12 +1234,14 @@ export class HealthSpeechEngine {
       }
     }
 
-    if (this.sharedAudioElement && this.unlockPrevMuted !== null) {
-      this.sharedAudioElement.muted = this.unlockPrevMuted;
-      this.unlockPrevMuted = null;
+    // Preserve an in-flight capture-phase gesture unlock started on this same tap.
+    if (!this.gestureUnlockInFlight) {
+      if (this.sharedAudioElement && this.unlockPrevMuted !== null) {
+        this.sharedAudioElement.muted = this.unlockPrevMuted;
+        this.unlockPrevMuted = null;
+      }
+      this.activeUnlockUrl = null;
     }
-    this.gestureUnlockInFlight = false;
-    this.activeUnlockUrl = null;
 
     this.activeUtterances.clear();
     this.currentUtterance = null;
@@ -1072,6 +1262,12 @@ export class HealthSpeechEngine {
 
   public pause(): void {
     if (typeof window === "undefined") return;
+    this.endLoading();
+
+    if (this.webSpeechRetryTimer !== null) {
+      clearTimeout(this.webSpeechRetryTimer);
+      this.webSpeechRetryTimer = null;
+    }
 
     if (this.activeTier === "webspeech" && window.speechSynthesis) {
       // Simulate pause by bookmarking current chunk index and cancelling engine
@@ -1155,6 +1351,11 @@ export class HealthSpeechEngine {
   public speak(text: string, options: SpeechOptions = {}): void {
     if (typeof window === "undefined") return;
 
+    // A failed earlier attempt leaves the tier on "transcript". Clear it before stop() tells the
+    // listeners, or they would read this new attempt as failed before it has begun.
+    if (this.activeTier === "transcript") {
+      this.activeTier = "webspeech";
+    }
     this.stop();
 
     const trimmed = text?.trim();
@@ -1190,6 +1391,7 @@ export class HealthSpeechEngine {
     };
 
     const currentRun = ++this.runId;
+    this.isLoadingState = true;
 
     if (Boolean(options.mp3FallbackUrl) || this.neuralServerAvailable !== false) {
       this.primeSharedAudioElement();
@@ -1203,11 +1405,13 @@ export class HealthSpeechEngine {
 
     // (b) Neural server TTS when available or not yet probed
     if (this.neuralServerAvailable !== false) {
+      this.armNeuralStartDeadline(normalized, lang, currentRun);
       void this.speakWithNeuralServer(normalized, lang, currentRun);
       return;
     }
 
     // (c) Matching Web Speech API voice (never cross-language fallback) or transcript mode
+    this.activeTier = "webspeech";
     this.fallbackFromNeuralToWebSpeech(normalized, lang);
   }
 
@@ -1269,8 +1473,13 @@ export class HealthSpeechEngine {
       }
     }
 
-    const segments = splitTextIntoTtsSegments(fullText, MAX_NEURAL_SEGMENT_CHARS);
+    const segments = splitTextIntoTtsSegments(
+      fullText,
+      MAX_NEURAL_SEGMENT_CHARS,
+      NEURAL_LEAD_SEGMENT_CHARS,
+    );
     if (segments.length === 0) {
+      this.endLoading();
       this.isSpeakingState = false;
       this.notifyState();
       const done = this.listeners.onEnd;
@@ -1327,7 +1536,7 @@ export class HealthSpeechEngine {
     }
 
     try {
-      if (typeof fetch !== "function") {
+      if (typeof fetch !== "function" || (typeof navigator !== "undefined" && navigator.onLine === false)) {
         return { kind: "fallback" };
       }
       const res = await fetch("/api/tts", {
@@ -1392,6 +1601,7 @@ export class HealthSpeechEngine {
     if (!session || this.runId !== session.run) return;
 
     if (index >= session.segments.length) {
+      this.endLoading();
       this.mp3Session = null;
       this.currentAudioElement = null;
       this.playbackAbortController = null;
@@ -1496,6 +1706,7 @@ export class HealthSpeechEngine {
       }
       const audio = this.sharedAudioElement ?? new Audio();
       this.sharedAudioElement = audio;
+      this.currentAudioElement = audio;
       this.clearAudioHandlers(audio);
       if (this.unlockPrevMuted !== null) {
         audio.muted = this.unlockPrevMuted;
@@ -1504,11 +1715,11 @@ export class HealthSpeechEngine {
       this.gestureUnlockInFlight = false;
       this.activeUnlockUrl = null;
       audio.src = url;
-      this.currentAudioElement = audio;
       audio.playbackRate = this.playbackRate;
 
       audio.onplay = () => {
         if (this.runId !== session.run) return;
+        this.endLoading();
         this.isSpeakingState = true;
         this.isPausedState = false;
         this.notifyState();
@@ -1551,6 +1762,14 @@ export class HealthSpeechEngine {
       };
 
       await audio.play();
+      if (this.runId === session.run) {
+        this.audioUnlocked = true;
+        this.removeUserGestureUnlockListeners();
+        if (this.isLoadingState) {
+          this.endLoading();
+          this.notifyState();
+        }
+      }
     } catch {
       if (this.runId !== session.run || this.isPausedState) return;
       if (this.currentAudioElement) {
@@ -1665,7 +1884,7 @@ export class HealthSpeechEngine {
       this.isPausedState = false;
       this.notifyState();
 
-      voices = await this.resolveVoices(800);
+      voices = await this.resolveVoices(VOICE_LIST_WAIT_MS);
       if (this.runId !== currentRun) {
         return;
       }
@@ -1699,10 +1918,12 @@ export class HealthSpeechEngine {
   private speakChunkQueue(
     currentRun: number,
     voice?: SpeechSynthesisVoice | null,
-    mp3FallbackUrl?: string
+    mp3FallbackUrl?: string,
+    retryAttempt = 0,
   ): void {
     if (this.runId !== currentRun || this.currentChunkIndex >= this.currentChunks.length) {
       if (this.runId === currentRun) {
+        this.endLoading();
         this.isSpeakingState = false;
         this.isPausedState = false;
         this.notifyState();
@@ -1737,6 +1958,7 @@ export class HealthSpeechEngine {
     this.currentUtterance = utterance;
     // Retain in persistent Set so V8 cannot garbage-collect during playback
     this.activeUtterances.add(utterance);
+    let utteranceStarted = false;
 
     utterance.lang = resolvedVoice.lang || targetLang;
     utterance.rate = this.playbackRate;
@@ -1745,6 +1967,8 @@ export class HealthSpeechEngine {
 
     utterance.onstart = () => {
       if (this.runId !== currentRun) return;
+      utteranceStarted = true;
+      this.endLoading();
       this.isSpeakingState = true;
       this.isPausedState = false;
       this.notifyState();
@@ -1769,6 +1993,7 @@ export class HealthSpeechEngine {
     utterance.onend = () => {
       this.activeUtterances.delete(utterance);
       if (this.runId !== currentRun) return;
+      this.endLoading();
 
       this.currentChunkIndex = index + 1;
       this.speakChunkQueue(currentRun, resolvedVoice, mp3FallbackUrl);
@@ -1776,10 +2001,28 @@ export class HealthSpeechEngine {
 
     utterance.onerror = (event) => {
       this.activeUtterances.delete(utterance);
-      if (this.runId !== currentRun) return;
+      if (this.runId !== currentRun || this.currentUtterance !== utterance) return;
 
-      // Intentional aborts (e.g. cancel, pause, navigation) must not emit fallback errors
       if (event.error === "canceled" || event.error === "interrupted") {
+        // If an active utterance is dropped immediately after an earlier cancel(), retry once
+        // once the speech queue clears instead of swallowing the error and sticking in speaking state.
+        if (!utteranceStarted && retryAttempt < 1 && typeof setTimeout === "function") {
+          if (this.webSpeechRetryTimer !== null) {
+            clearTimeout(this.webSpeechRetryTimer);
+          }
+          this.webSpeechRetryTimer = setTimeout(() => {
+            this.webSpeechRetryTimer = null;
+            if (this.runId === currentRun && !this.isPausedState) {
+              this.speakChunkQueue(currentRun, resolvedVoice, mp3FallbackUrl, retryAttempt + 1);
+            }
+          }, 50);
+          return;
+        }
+        if (mp3FallbackUrl) {
+          this.playStaticMp3Queue(this.currentChunks.join(" "), targetLang, mp3FallbackUrl, currentRun);
+        } else {
+          this.fallbackToTranscript();
+        }
         return;
       }
 
@@ -1790,6 +2033,25 @@ export class HealthSpeechEngine {
         this.fallbackToTranscript();
       }
     };
+
+    // Some phones accept the request and then say nothing (for example when the browser decides
+    // the tap is too long ago). If no sound has started in time, tell the reader instead of
+    // leaving a button that says "Stop" over silence.
+    this.armStartDeadline(WEBSPEECH_START_DEADLINE_MS, () => {
+      if (this.runId !== currentRun || this.currentUtterance !== utterance || utteranceStarted) return;
+      this.activeUtterances.delete(utterance);
+      this.currentUtterance = null;
+      try {
+        window.speechSynthesis.cancel();
+      } catch {
+        // Ignore cancel errors
+      }
+      if (mp3FallbackUrl) {
+        this.playStaticMp3Queue(this.currentChunks.join(" "), targetLang, mp3FallbackUrl, currentRun);
+      } else {
+        this.fallbackToTranscript();
+      }
+    });
 
     try {
       window.speechSynthesis.speak(utterance);
@@ -1805,6 +2067,7 @@ export class HealthSpeechEngine {
   }
 
   private fallbackToTranscript(): void {
+    this.endLoading();
     this.activeTier = "transcript";
     this.isSpeakingState = false;
     this.isPausedState = false;

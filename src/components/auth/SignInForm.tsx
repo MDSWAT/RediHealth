@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
 import { ChevronDownIcon, GoogleIcon } from "@/components/ui/icons";
@@ -28,6 +29,69 @@ const TOO_MANY: Record<Lang, string> = {
   rom: "But zumavimata. Azhuker zalag thaj zumav palem.",
 };
 
+// What to do when the code does not arrive. The button it names is the form's own "resend" label.
+const CODE_HELP: Record<Lang, (resendLabel: string) => string> = {
+  ro: (resend) => `Nu a venit emailul? Caută în folderul spam, apoi apasă pe „${resend}”.`,
+  en: (resend) => `No email yet? Look in the spam folder, then tap "${resend}".`,
+  sq: (resend) => `Nuk erdhi emaili? Shiko te dosja spam, pastaj shtyp „${resend}“.`,
+  it: (resend) => `Nessuna email? Guarda nella cartella spam, poi tocca «${resend}».`,
+  hr: (resend) => `Nema e-pošte? Pogledaj u mapu neželjene pošte, zatim dodirni „${resend}“.`,
+  rom: (resend) => `Na avilo o emailo? Dikh and-o spam, pal kodo azba „${resend}”.`,
+  ru: (resend) => `Письмо не пришло? Проверьте папку «Спам», затем нажмите «${resend}».`,
+};
+
+const SIGN_IN_LEGAL_NOTICE: Record<Lang, { before: string; terms: string; between: string; privacy: string; after: string }> = {
+  ro: {
+    before: "Folosim adresa ta de email doar pentru autentificare și serviciile cerute. Nu vindem datele tale. Continuând, accepți",
+    terms: "Termenii și condițiile",
+    between: "și iei cunoștință de",
+    privacy: "Politica de confidențialitate",
+    after: ".",
+  },
+  en: {
+    before: "We use your email address only for sign-in and requested services. We never sell your data. By continuing, you accept the",
+    terms: "Terms and conditions",
+    between: "and acknowledge our",
+    privacy: "Privacy policy",
+    after: ".",
+  },
+  sq: {
+    before: "Përdorim emailin tënd vetëm për hyrje dhe shërbimet e kërkuara. Nuk i shesim të dhënat e tua. Duke vazhduar, pranon",
+    terms: "Kushtet dhe rregullat",
+    between: "dhe njihesh me",
+    privacy: "Politikën e privatësisë",
+    after: ".",
+  },
+  it: {
+    before: "Usiamo la tua email solo per l'accesso e i servizi richiesti. Non vendiamo i tuoi dati. Continuando, accetti i",
+    terms: "Termini e condizioni",
+    between: "e prendi visione dell'",
+    privacy: "Informativa sulla privacy",
+    after: ".",
+  },
+  hr: {
+    before: "Tvoju e-poštu koristimo samo za prijavu i zatražene usluge. Ne prodajemo tvoje podatke. Nastavkom prihvaćaš",
+    terms: "Uvjete korištenja",
+    between: "i upoznaješ se s",
+    privacy: "Pravilima privatnosti",
+    after: ".",
+  },
+  rom: {
+    before: "Labaras cho emailo numay vash dinipe andre thaj mangime sluzhbe. Na bikinas che podatke. Te zhas may dur, kames",
+    terms: "Labaripnaske pravila",
+    between: "thaj gines",
+    privacy: "Garavipnaske pravila",
+    after: ".",
+  },
+  ru: {
+    before: "Мы используем вашу электронную почту только для входа и запрошенных услуг. Мы не продаём ваши данные. Продолжая, вы принимаете",
+    terms: "Условия использования",
+    between: "и ознакомились с",
+    privacy: "Политикой конфиденциальности",
+    after: ".",
+  },
+};
+
 // field-focus: the edge darkens on hover and focus eases in a sapphire edge with a soft halo
 // (aria-invalid aware). Static under reduced motion and Calm Motion.
 const inputClass =
@@ -37,9 +101,11 @@ const inputClass =
 export function SignInForm({
   googleConfigured,
   initialError = "",
+  embedded = false,
 }: {
   googleConfigured: boolean;
   initialError?: string;
+  embedded?: boolean;
 }) {
   const { t, lang } = useLanguage();
   const executeCaptcha = useRecaptcha();
@@ -173,7 +239,13 @@ export function SignInForm({
 
   return (
     <div>
-      <div className="rounded-(--radius-surface) border border-border bg-card p-5 shadow-(--shadow-card-rest) sm:p-8">
+      <div
+        className={
+          embedded
+            ? "mt-1"
+            : "rounded-(--radius-surface) border border-border bg-card p-5 shadow-(--shadow-card-rest) sm:p-8"
+        }
+      >
         <div key={stage} className="fhs-enter">
           {stage === "email" ? (
             <form
@@ -229,6 +301,23 @@ export function SignInForm({
                   {isSubmitting ? form.sendingCode : form.emailMeCode}
                 </Button>
               </div>
+              <p className="mt-4 text-meta leading-relaxed text-muted-foreground">
+                {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).before}{" "}
+                <Link
+                  href={withLangPrefix("/terms", lang)}
+                  className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
+                >
+                  {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).terms}
+                </Link>{" "}
+                {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).between}{" "}
+                <Link
+                  href={withLangPrefix("/privacy", lang)}
+                  className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
+                >
+                  {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).privacy}
+                </Link>
+                {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).after}
+              </p>
             </form>
           ) : (
             <form
@@ -285,6 +374,9 @@ export function SignInForm({
                   {form.codeResent}
                 </p>
               ) : null}
+              <p className="mt-2 text-body text-muted-foreground">
+                {CODE_HELP[lang](form.resendCode)}
+              </p>
               <div className="mt-6">
                 <Button
                   type="submit"

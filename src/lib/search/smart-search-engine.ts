@@ -39,6 +39,7 @@ import {
   getLocalizedGlossaryEntry,
 } from "@/lib/i18n/romanian-medical-glossary";
 import { stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
+import { isOnlineDoctorAvailable } from "@/lib/online-doctor";
 import {
   SMART_SEARCH_SYNONYMS,
   SMART_SEARCH_TOOLS,
@@ -1130,6 +1131,8 @@ function buildCatalogIndex(lang: Lang): CatalogIndex {
 
   // 1. Core tools & primary guides from SMART_SEARCH_TOOLS
   for (const tool of SMART_SEARCH_TOOLS) {
+    // The online doctor is not offered to every country: search does not lead there where it is not.
+    if (tool.id === "medic-online" && !isOnlineDoctorAvailable(lang)) continue;
     const href = withLangPrefix(tool.href, lang);
     seenHrefs.add(href);
 

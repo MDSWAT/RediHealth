@@ -121,9 +121,18 @@ describe("Care tools design-system consistency", () => {
     expect(accordion).toContain("tabular-nums");
 
     const explorer = readSrc("src/components/health-check/HealthCheckExplorer.tsx");
-    expect(explorer).toContain("<AssistantNavigation />");
+    expect(explorer).not.toContain("<AssistantNavigation");
     expect(explorer).toContain("h-1 flex-1 rounded-sm");
     expect(explorer).toContain("inline-flex min-h-11 max-w-full items-center gap-1.5 rounded-lg");
+
+    for (const file of [
+      "src/components/health-assistant/HealthAssistant.tsx",
+      "src/components/health-assistant/AiChatAssistant.tsx",
+      "src/components/health-assistant/PrescriptionReview.tsx",
+      "src/components/find-help/FindHelpPageContent.tsx",
+    ]) {
+      expect(readSrc(file), `${file} still renders <AssistantNavigation`).not.toContain("<AssistantNavigation");
+    }
   });
 
   it("enforces 44px touch targets (min-h-11) and border-border-control across controls", () => {
@@ -136,7 +145,7 @@ describe("Care tools design-system consistency", () => {
     expect(switcher).toContain("min-h-11");
     expect(switcher).not.toContain("min-h-10");
     expect(Object.keys(READING_LEVEL_COPY)).toEqual(["ru", "ro", "en", "sq", "it", "hr", "rom"]);
-    expect(stateMachine).toContain("<ReadingLevelSwitcher");
+    expect(stateMachine).not.toContain("<ReadingLevelSwitcher");
     expect(stateMachine).not.toContain("TriagePlainLanguageToggle");
 
     const readingTools = readSrc("src/components/health-check/readingTools.ts");
@@ -162,7 +171,10 @@ describe("Care tools design-system consistency", () => {
 
     const explorer = readSrc("src/components/health-check/HealthCheckExplorer.tsx");
     expect(explorer).toContain("-my-1.5 inline-flex min-h-11 items-center rounded-md");
-    expect(explorer).toContain("inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-body");
+    expect(explorer).toContain('data-capsule-switch=""');
+    expect(explorer).toContain("CAPSULE_SHAPE");
+    expect(explorer).toContain("CAPSULE_OUTLINE");
+    expect(explorer).toContain("min-h-11 w-full min-w-0 items-center justify-center whitespace-nowrap px-2.5 text-body");
     expect(explorer).toContain("inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-2.5 text-body");
 
     const findHelp = readSrc("src/components/find-help/FindHelpExplorer.tsx");
@@ -222,7 +234,10 @@ describe("Care tools design-system consistency", () => {
 
   it("opens HealthCheckExplorer on the 3D body on phones, keeps the list one tap away, and defers 3D mount in list mode (P01)", () => {
     const explorerSrc = readSrc("src/components/health-check/HealthCheckExplorer.tsx");
-    expect(explorerSrc).toContain('const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "3d";');
+    // The body is still the default; a "List" choice made on an earlier visit is remembered.
+    expect(explorerSrc).toContain(
+      'const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? storedAreaMode ?? "3d";',
+    );
     // Full screen: a tap selects without moving on; Save selection confirms.
     expect(explorerSrc).toContain('stepRef.current === "area" && !bodyFullScreenRef.current');
     const bodyMapSrc = readSrc("src/components/health-check/AnatomicalBodyMap.tsx");

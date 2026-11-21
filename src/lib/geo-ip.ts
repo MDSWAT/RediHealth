@@ -66,7 +66,7 @@ export function useUserCounty(
     };
 
     const runGeoIp = () => {
-      if (cancelled) return;
+      if (cancelled || (typeof navigator !== "undefined" && navigator.onLine === false)) return;
       fetch("/api/geo-ip", { signal: controller.signal })
         .then((res) => (res.ok ? res.json() : null))
         .then((data: { county?: string; isOverride?: boolean } | null) => {
@@ -106,6 +106,7 @@ export function useUserCounty(
     countyListeners.forEach((l) => l());
 
     // Inform API
+    if (typeof navigator !== "undefined" && navigator.onLine === false) return;
     void fetch("/api/geo-ip", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

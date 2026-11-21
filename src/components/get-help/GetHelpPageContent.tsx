@@ -79,23 +79,22 @@ export function GetHelpPageContent({
             <RequestHelpForm countries={countries} initialCountry={initialCountry} />
           </div>
 
-          {/* Shorter than the form, so it stays in view on desktop instead of leaving an empty column. */}
-          <aside className="min-w-0 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1.5rem)] lg:self-start lg:pt-2">
-            <div className="flex items-start gap-3 rounded-xl border border-primary/20 bg-primary-soft p-5">
-              <PhoneIcon className="mt-0.5 h-5 w-5 flex-none text-primary" aria-hidden="true" />
-              <div>
-                <h2 className="text-body font-semibold text-foreground">{page.sidebar.emergencyTitle}</h2>
-                <p className="mt-1 text-body text-foreground/80">{page.sidebar.emergencyBody}</p>
-                <Button
-                  type="button"
-                  variant="primary"
-                  size="md"
-                  onClick={() => setDialerOpen(true)}
-                  className="mt-3"
-                >
-                  <span className="tabular-nums">{CALL_112[lang]}</span>
-                </Button>
-              </div>
+          {/* Shorter than the form, so it stays in view on desktop instead of leaving an empty column.
+              On phones and tablets it comes before the form, so "not for emergencies" is read first. */}
+          <aside className="min-w-0 max-lg:order-first lg:sticky lg:top-[calc(var(--chrome-h,0px)+1.5rem)] lg:self-start lg:pt-2">
+            <div className="rounded-xl border border-primary/20 bg-primary-soft p-5">
+              <h2 className="text-body font-semibold text-foreground">{page.sidebar.emergencyTitle}</h2>
+              <p className="mt-1 text-body text-foreground/80">{page.sidebar.emergencyBody}</p>
+              <Button
+                type="button"
+                variant="primary"
+                size="md"
+                onClick={() => setDialerOpen(true)}
+                className="mt-3"
+              >
+                <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span className="tabular-nums">{CALL_112[lang]}</span>
+              </Button>
             </div>
           </aside>
         </div>

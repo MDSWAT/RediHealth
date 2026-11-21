@@ -120,7 +120,7 @@ function AnswerMark({
         "flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
         tone === "selected-right" && "bg-white/20 text-white",
         tone === "selected-wrong" &&
-          "bg-paper/20 text-paper dark:bg-ink-950/15 dark:text-ink-950",
+          "bg-rose-ink/15 text-rose-ink",
         tone === "hint-right" && "bg-sapphire text-white",
         // Idle marks fill in when their button is pointed at or focused, so the choice answers first.
         tone === "idle" &&
@@ -188,6 +188,7 @@ const answerStore = (() => {
 export interface TrueFalseQuizSectionProps {
   className?: string;
   initialCategory?: string;
+  embedded?: boolean;
 }
 
 /**
@@ -198,6 +199,7 @@ export interface TrueFalseQuizSectionProps {
 export function TrueFalseQuizSection({
   className,
   initialCategory = "toate",
+  embedded = false,
 }: TrueFalseQuizSectionProps) {
   const { lang, t } = useLanguage();
   const q = t.quiz;
@@ -321,24 +323,17 @@ export function TrueFalseQuizSection({
   const isMatch = currentAnswer === currentMyth.isTrue;
   const quotes = QUOTES[lang as Lang] ?? QUOTES.ro;
 
-  return (
-    <Section
-      id="mituri-sanatate"
-      aria-labelledby="quiz-section-heading"
-      tone="sapphire-soft"
-      className={cn("py-10 sm:py-16 lg:py-24", className)}
-    >
-      <Container>
-        <Reveal>
-          <SectionHeading
-            as="h2"
-            title={<span id="quiz-section-heading">{q.sectionTitle}</span>}
-            subtitle={q.sectionSubtitle}
-          />
+  const content = (
+    <>
+      <SectionHeading
+        as="h2"
+        title={<span id="quiz-section-heading">{q.sectionTitle}</span>}
+        subtitle={q.sectionSubtitle}
+      />
 
-          {/* From lg: the categories as a list on the left, the myth quiz on the right.
-              Below lg: the categories as one row above the quiz. */}
-          <div className="mt-6 lg:mt-8 lg:grid lg:grid-cols-12 lg:items-start lg:gap-12">
+      {/* From lg: the categories as a list on the left, the myth quiz on the right.
+          Below lg: the categories as one row above the quiz. */}
+      <div className="mt-6 lg:mt-8 lg:grid lg:grid-cols-12 lg:items-start lg:gap-12">
           <MythCategoryFilter
             className="lg:col-span-4"
             categories={categories}
@@ -421,7 +416,7 @@ export function TrueFalseQuizSection({
                               "border border-sapphire bg-sapphire font-semibold text-white",
                             chosen &&
                               !isMatch &&
-                              "border border-ink-950 bg-ink-950 font-semibold text-paper dark:border-paper dark:bg-paper dark:text-ink-950",
+                              "border border-rose-border bg-rose-tint font-semibold text-rose-ink",
                             !chosen &&
                               isRightOption &&
                               "border border-sapphire/45 bg-sapphire-soft/75 font-semibold text-sapphire dark:border-sapphire-border/45 dark:bg-white/10 dark:text-sapphire-border",
@@ -497,7 +492,33 @@ export function TrueFalseQuizSection({
             )}
           </div>
         </div>
-        </Reveal>
+    </>
+  );
+
+  if (embedded) {
+    return (
+      <section
+        id="mituri-sanatate"
+        aria-labelledby="quiz-section-heading"
+        className={cn(
+          "scroll-mt-24 rounded-2xl border border-sapphire-border/60 bg-sapphire-soft/45 p-5 sm:p-7",
+          className,
+        )}
+      >
+        {content}
+      </section>
+    );
+  }
+
+  return (
+    <Section
+      id="mituri-sanatate"
+      aria-labelledby="quiz-section-heading"
+      tone="sapphire-soft"
+      className={cn("py-10 sm:py-16 lg:py-24", className)}
+    >
+      <Container>
+        <Reveal>{content}</Reveal>
       </Container>
     </Section>
   );

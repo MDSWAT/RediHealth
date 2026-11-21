@@ -1,73 +1,94 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { ArrowRightIcon, PinIcon, StethoscopeIcon } from "@/components/ui/icons";
-import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
+import { UsersIcon } from "@/components/ui/icons";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
-import { DOCTOR_BANNER_COPY } from "./TopicDoctorExitBanner";
 import { MedicalSafetyDisclaimer } from "./MedicalSafetyDisclaimer";
 
 export interface TopicNextStepsProps {
   lang: Lang;
-  /** Passes the topic to the online doctor, so the call starts with context. */
   topicSlug?: string;
   topicTitle?: string;
   className?: string;
 }
 
-/**
- * The end of a guide: one quiet surface with hairline rows. Talk to a doctor (a voice
- * call), or ask at a pharmacy, then the reminder that the guide does not replace a
- * doctor. 112 is not repeated here: the warning card, the top bar and the footer carry it.
- */
-export function TopicNextSteps({ lang, topicSlug, topicTitle, className = "" }: TopicNextStepsProps) {
-  const doctor = DOCTOR_BANNER_COPY[lang] ?? DOCTOR_BANNER_COPY.ro;
-  const findHelp = findHelpLinks(lang);
+const MEDIATOR_NEXT_STEP_COPY: Record<
+  Lang,
+  { title: string; description: string; buttonText: string }
+> = {
+  ro: {
+    title: "Ai nevoie de sprijin în comunitate?",
+    description:
+      "Un mediator sanitar te poate ajuta gratuit cu programări, formulare și pași administrativi.",
+    buttonText: "Întreabă un mediator",
+  },
+  en: {
+    title: "Need support finding care?",
+    description:
+      "A health mediator can help for free with appointments, paperwork, and practical guidance.",
+    buttonText: "Ask a health mediator",
+  },
+  sq: {
+    title: "Ke nevojë për mbështetje në komunitet?",
+    description:
+      "Një mediator shëndetësor mund të të ndihmojë falas me takimet, dokumentet dhe orientimin praktik.",
+    buttonText: "Pyet një mediator",
+  },
+  it: {
+    title: "Hai bisogno di orientamento?",
+    description:
+      "Un mediatore sanitario può aiutarti gratuitamente con appuntamenti, documenti e orientamento pratico.",
+    buttonText: "Chiedi a un mediatore",
+  },
+  hr: {
+    title: "Trebate pomoć pri snalaženju?",
+    description:
+      "Zdravstveni medijator može ti besplatno pomoći s naručivanjem, dokumentima i praktičnim koracima.",
+    buttonText: "Pitaj medijatora",
+  },
+  rom: {
+    title: "Kamlipe tut ažutipen ando gav?",
+    description:
+      "Jekh sastipnasko mediatori šaj te ažutil tut bi-lovengo te kerel programime thaj lila.",
+    buttonText: "Puč jekh mediatori",
+  },
+  ru: {
+    title: "Нужна помощь с обращением к врачу?",
+    description:
+      "Медицинский посредник бесплатно поможет с записью, документами и практическими шагами.",
+    buttonText: "Спросить посредника",
+  },
+};
 
-  const query = new URLSearchParams();
-  if (topicSlug) query.set("context", `topic_${topicSlug}`);
-  if (topicTitle) query.set("title", topicTitle);
-  const queryString = query.toString();
-  const doctorHref = withLangPrefix(`/medic-online${queryString ? `?${queryString}` : ""}`, lang);
+/**
+ * Calm closing surface at the end of a health guide: one optional link to a community
+ * health mediator plus the safety disclaimer, without pushing visitors across diagnostic pages.
+ */
+export function TopicNextSteps({ lang, className = "" }: TopicNextStepsProps) {
+  const copy = MEDIATOR_NEXT_STEP_COPY[lang] ?? MEDIATOR_NEXT_STEP_COPY.ro;
 
   return (
     <section
       aria-labelledby="next-steps-heading"
       className={`divide-y divide-border rounded-xl border border-border bg-card print:divide-y-0 print:border-0 ${className}`}
     >
-      <div className="flex flex-col gap-5 p-6 sm:p-8 md:flex-row md:items-center md:justify-between print:hidden">
-        <div className="max-w-xl">
+      <div className="flex flex-col gap-5 p-6 sm:p-8 md:flex-row md:flex-wrap md:items-center md:justify-between print:hidden">
+        <div className="min-w-0 flex-1 max-w-xl">
           <h2 id="next-steps-heading" className="text-section font-semibold text-foreground text-balance">
-            {doctor.title}
+            {copy.title}
           </h2>
-          <p className="mt-1.5 text-body text-muted-foreground">{doctor.description}</p>
+          <p className="mt-1.5 text-body text-muted-foreground">{copy.description}</p>
         </div>
         <Button
-          href={doctorHref}
-          variant="action"
+          href={withLangPrefix("/mediatori#solicita", lang)}
+          variant="outline"
           size="lg"
-          className="shrink-0"
+          className="w-full shrink-0 whitespace-nowrap sm:w-auto"
         >
-          <StethoscopeIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-          <span className="min-w-0 truncate">{doctor.buttonText}</span>
+          <UsersIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
+          <span>{copy.buttonText}</span>
         </Button>
-      </div>
-
-      <div className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8 print:hidden">
-        <div>
-          <p className="text-body font-semibold text-foreground">{findHelp.noDoctorNeeded}</p>
-          <p className="mt-0.5 text-body text-muted-foreground">{findHelp.pharmacyFirstHint}</p>
-        </div>
-        <Link
-          href={withLangPrefix(findHelpHref("pharmacy"), lang)}
-          className="group inline-flex min-h-12 max-w-full items-center gap-2 self-start whitespace-nowrap rounded-lg border border-sapphire/25 bg-sapphire-soft/55 px-3.5 py-2 text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:border-sapphire/45 hover:bg-sapphire-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:shrink-0 sm:self-auto dark:border-sapphire-border/30 dark:bg-white/[0.06] dark:text-sapphire-border dark:hover:bg-white/[0.1]"
-        >
-          <PinIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-          <span className="min-w-0 truncate">{findHelp.nearestPharmacy}</span>
-          <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
-        </Link>
       </div>
 
       <div className="px-6 py-4 sm:px-8 print:px-0" data-print-guide-section>

@@ -1,8 +1,29 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import type { Lang } from "@/lib/i18n/translations";
-import { CheckCircleIcon, CopyIcon, MessageDotsIcon, ShareIcon } from "@/components/ui/icons";
+import { CopyIcon, MessageDotsIcon, ShareIcon } from "@/components/ui/icons";
+
+const ESTIMATED_MENU_HEIGHT = 272;
+const VIEWPORT_MARGIN = 16;
+
+function findVerticalClipBounds(el: HTMLElement): { top: number; bottom: number } {
+  let top = 0;
+  let bottom = window.innerHeight;
+  let parent = el.parentElement;
+
+  while (parent && parent !== document.body && parent !== document.documentElement) {
+    const { overflowY } = window.getComputedStyle(parent);
+    if (/(auto|scroll|hidden|clip)/.test(overflowY)) {
+      const rect = parent.getBoundingClientRect();
+      top = Math.max(top, rect.top);
+      bottom = Math.min(bottom, rect.bottom);
+    }
+    parent = parent.parentElement;
+  }
+
+  return { top, bottom };
+}
 
 type FamilyShareCopy = {
   buttonLabel: string;
@@ -111,9 +132,64 @@ export function FamilyShareButton({
 }: FamilyShareButtonProps) {
   const copy = FAMILY_SHARE_COPY[lang] ?? FAMILY_SHARE_COPY.ro;
   const [open, setOpen] = useState(false);
+  const [placement, setPlacement] = useState<"down" | "up">("down");
   const [copied, setCopied] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
+
+  const resolvePlacement = useCallback((measuredHeight?: number): "down" | "up" => {
+    const trigger = containerRef.current;
+    if (!trigger || typeof window === "undefined") return "down";
+    const rect = trigger.getBoundingClientRect();
+    const bounds = findVerticalClipBounds(trigger);
+    const needed = (measuredHeight ?? ESTIMATED_MENU_HEIGHT) + VIEWPORT_MARGIN;
+    const spaceBelow = bounds.bottom - rect.bottom;
+    const spaceAbove = rect.top - bounds.top;
+    if (spaceBelow < needed && spaceAbove > spaceBelow) {
+      return "up";
+    }
+    return "down";
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!open) return;
+
+    const updatePlacement = () => {
+      const menuHeight = menuRef.current?.offsetHeight || ESTIMATED_MENU_HEIGHT;
+      setPlacement(resolvePlacement(menuHeight));
+    };
+
+    updatePlacement();
+
+    const menuEl = menuRef.current;
+    if (menuEl && typeof window !== "undefined") {
+      const menuRect = menuEl.getBoundingClientRect();
+      const bounds = containerRef.current
+        ? findVerticalClipBounds(containerRef.current)
+        : { top: 0, bottom: window.innerHeight };
+      if (menuRect.bottom > bounds.bottom - 8 || menuRect.top < bounds.top + 8) {
+        const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+        menuEl.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+      }
+    }
+
+    window.addEventListener("resize", updatePlacement, { passive: true });
+    window.addEventListener("scroll", updatePlacement, { passive: true, capture: true });
+    return () => {
+      window.removeEventListener("resize", updatePlacement);
+      window.removeEventListener("scroll", updatePlacement, true);
+    };
+  }, [open, resolvePlacement]);
+
+  function handleToggle() {
+    if (!open) {
+      setPlacement(resolvePlacement());
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -180,29 +256,39 @@ export function FamilyShareButton({
     <div ref={containerRef} className={`relative inline-block ${className}`}>
       <button
         type="button"
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={handleToggle}
         aria-expanded={open}
         aria-controls={open ? menuId : undefined}
         aria-label={copy.buttonAria}
         title={copy.buttonLabel}
         className={
           iconOnly
-            ? "press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-xl border border-border-control bg-card p-0 text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            : `press-row inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-card font-semibold text-foreground shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/50 hover:bg-sapphire-soft/35 hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                compact ? "px-3 py-2 text-body" : "px-4 py-2 text-body"
+            ? `press-row inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-xl border p-0 shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                open
+                  ? "border-rose-border bg-rose-tint text-rose-ink"
+                  : "border-border-control bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/45 hover:text-sapphire"
               }`
+            : `press-row inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border font-semibold shadow-2xs transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                open
+                  ? "border-rose-border bg-rose-tint text-rose-ink"
+                  : "border-border-control bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/35 hover:text-sapphire"
+              } ${compact ? "px-3 py-2 text-body" : "px-4 py-2 text-body"}`
         }
       >
-        <ShareIcon className="h-4 w-4 shrink-0 text-sapphire" />
+        <ShareIcon className={`h-4 w-4 shrink-0 ${open ? "text-rose-ink" : "text-sapphire"}`} />
         {iconOnly ? <span className="sr-only">{copy.buttonLabel}</span> : <span className="min-w-0 truncate">{copy.buttonLabel}</span>}
       </button>
 
       {open && (
         <div
+          ref={menuRef}
           id={menuId}
           role="dialog"
           aria-label={copy.menuLabel}
-          className={`fhs-enter absolute top-full z-40 mt-2 w-64 max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card/98 p-2 shadow-xl shadow-ink-950/10 backdrop-blur-md dark:border-ink-800 dark:bg-ink-900/98 ${alignClass}`}
+          data-placement={placement}
+          className={`fhs-enter absolute z-40 w-64 max-w-[calc(100vw-2rem)] rounded-2xl border border-border bg-card/98 p-2 shadow-xl shadow-ink-950/10 backdrop-blur-md dark:border-ink-800 dark:bg-ink-900/98 ${
+            placement === "up" ? "bottom-full mb-2" : "top-full mt-2"
+          } ${alignClass}`}
         >
           <p className="px-2.5 py-1.5 text-meta font-medium text-muted-foreground">
             {copy.menuLabel}
@@ -234,11 +320,7 @@ export function FamilyShareButton({
               onClick={() => void handleCopy()}
               className="flex min-h-11 w-full max-w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-3 py-2 text-left text-body font-medium text-foreground transition-colors duration-[var(--dur-fast)] hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              {copied ? (
-                <CheckCircleIcon className="h-4 w-4 shrink-0 text-sapphire" />
-              ) : (
-                <CopyIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
-              )}
+              <CopyIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
               <span className="min-w-0 truncate">{copied ? copy.copied : copy.copyText}</span>
             </button>
 

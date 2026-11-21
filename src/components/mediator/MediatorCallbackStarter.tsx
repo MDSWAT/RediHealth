@@ -3,18 +3,35 @@
 import Link from "next/link";
 import { useContext, useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
-import { LockIcon, PhoneIcon } from "@/components/ui/icons";
+import {
+  ArrowRightIcon,
+  CheckCircleIcon,
+  CheckIcon,
+  ChevronDownIcon,
+  LockIcon,
+  PhoneIcon,
+  ShieldIcon,
+} from "@/components/ui/icons";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import type { CountryCode } from "@/lib/countries";
 import { LanguageContext } from "@/lib/i18n/language-context";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import { DEFAULT_LANG, REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import { isRomanianCounty, ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 import type { CaptchaAction } from "@/lib/security/recaptcha";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 
 export type CallbackStarterCopy = {
   title: string;
   lead: string;
+  /** What a mediator does not do, said before the form is sent. Only limits the page already states elsewhere. */
+  limitsTitle: string;
+  limitAdvice: string;
+  limitAvailability: string;
+  /** Optional one-tap answer, so the mediator knows what the call is about. */
+  reasonLabel: string;
+  reasonOptions: [string, string, string];
   reassurance: string;
   fullFormPrompt: string;
   fullFormLink: string;
@@ -44,10 +61,15 @@ export type CallbackStarterCopy = {
 export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
   ro: {
     title: "Cere să fii sunat de un mediator",
-    lead: "Lasă județul și numărul tău de telefon. Un mediator sanitar din zona ta te sună înapoi, fără plată și fără programare.",
+    lead: "Lasă județul și numărul tău de telefon. Un mediator sanitar din zona ta te sună înapoi, de obicei în 24 de ore, fără plată și fără programare.",
+    limitsTitle: "Ce nu poate face un mediator",
+    limitAdvice: "Mediatorul nu dă sfaturi despre tratament sau rețete.",
+    limitAvailability: "Mediatorul vorbește limba ta și te însoțește la programări doar acolo unde este posibil.",
+    reasonLabel: "Cu ce ai nevoie de ajutor?",
+    reasonOptions: ["Medic de familie", "Acte și asigurare", "Altceva"],
     reassurance: "Datele tale rămân confidențiale și sunt folosite doar ca să te contactăm.",
     fullFormPrompt: "Vrei să descrii mai pe larg situația ta?",
-    fullFormLink: "Deschide formularul lung",
+    fullFormLink: "Adaugă mai multe detalii",
     countyLabel: "Județ",
     countyPlaceholder: "Alege județul",
     countyError: "Alege județul în care te afli.",
@@ -73,10 +95,15 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
   },
   en: {
     title: "Request a mediator callback",
-    lead: "Leave your county and phone number. A community health mediator from your area calls you back free of charge.",
+    lead: "Leave your county and phone number. A community health mediator from your area calls you back free of charge, usually within 24 hours.",
+    limitsTitle: "What a mediator cannot do",
+    limitAdvice: "A mediator does not give advice about treatment or prescriptions.",
+    limitAvailability: "A mediator speaks your language and comes with you to appointments only where this is available.",
+    reasonLabel: "What do you need help with?",
+    reasonOptions: ["Family doctor", "Papers and insurance", "Something else"],
     reassurance: "Your details stay confidential and are used only to call you back.",
     fullFormPrompt: "Need to explain more details about what you need?",
-    fullFormLink: "Open the full form",
+    fullFormLink: "Add more details",
     countyLabel: "County",
     countyPlaceholder: "Choose your county",
     countyError: "Choose your county.",
@@ -102,10 +129,15 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
   },
   sq: {
     title: "Kërko të të telefonojë një mediator",
-    lead: "Lë qarkun dhe numrin tënd të telefonit. Një mediator shëndetësor nga zona jote të merr në telefon falas.",
+    lead: "Lë qarkun dhe numrin tënd të telefonit. Një mediator shëndetësor nga zona jote të merr në telefon falas, zakonisht brenda 24 orëve.",
+    limitsTitle: "Çfarë nuk mund të bëjë një mediator",
+    limitAdvice: "Mediatori nuk jep këshilla për trajtimin ose recetat.",
+    limitAvailability: "Mediatori flet gjuhën tënde dhe të shoqëron në takime vetëm aty ku është e mundur.",
+    reasonLabel: "Për çfarë të duhet ndihmë?",
+    reasonOptions: ["Mjeku i familjes", "Dokumente dhe sigurim", "Diçka tjetër"],
     reassurance: "Të dhënat e tua mbeten konfidenciale dhe përdoren vetëm për të të telefonuar.",
     fullFormPrompt: "Do të shkruash më shumë hollësi për atë që të duhet?",
-    fullFormLink: "Hap formularin e plotë",
+    fullFormLink: "Shto më shumë detaje",
     countyLabel: "Qarku",
     countyPlaceholder: "Zgjidh qarkun",
     countyError: "Zgjidh qarkun ku ndodhesh.",
@@ -131,10 +163,15 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
   },
   it: {
     title: "Chiedi di essere richiamato da un mediatore",
-    lead: "Lascia la tua provincia e il numero di telefono. Un mediatore sanitario della tua zona ti richiama gratuitamente.",
+    lead: "Lascia la tua provincia e il numero di telefono. Un mediatore sanitario della tua zona ti richiama gratuitamente, di solito entro 24 ore.",
+    limitsTitle: "Cosa non può fare un mediatore",
+    limitAdvice: "Il mediatore non dà consigli su cure o ricette.",
+    limitAvailability: "Il mediatore parla la tua lingua e ti accompagna alle visite solo dove è possibile.",
+    reasonLabel: "Per cosa ti serve aiuto?",
+    reasonOptions: ["Medico di famiglia", "Documenti e tessera", "Altro"],
     reassurance: "I tuoi dati restano riservati e servono solo per richiamarti.",
     fullFormPrompt: "Vuoi aggiungere più dettagli su ciò di cui hai bisogno?",
-    fullFormLink: "Apri il modulo completo",
+    fullFormLink: "Aggiungi più dettagli",
     countyLabel: "Provincia",
     countyPlaceholder: "Scegli la provincia",
     countyError: "Scegli la provincia in cui ti trovi.",
@@ -160,10 +197,15 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
   },
   hr: {
     title: "Zatraži povratni poziv medijatora",
-    lead: "Ostavi svoje područje i broj telefona. Zdravstveni medijator iz tvog kraja nazvat će te besplatno.",
+    lead: "Ostavi svoje područje i broj telefona. Zdravstveni medijator iz tvog kraja nazvat će te besplatno, obično u roku od 24 sata.",
+    limitsTitle: "Što medijator ne može",
+    limitAdvice: "Medijator ne daje savjete o liječenju ni o receptima.",
+    limitAvailability: "Medijator govori tvoj jezik i ide s tobom na pregled samo ondje gdje je to dostupno.",
+    reasonLabel: "S čime trebaš pomoć?",
+    reasonOptions: ["Obiteljski liječnik", "Dokumenti i osiguranje", "Nešto drugo"],
     reassurance: "Tvoji podaci ostaju povjerljivi i koriste se samo za povratni poziv.",
     fullFormPrompt: "Želiš napisati više pojedinosti o tome što ti treba?",
-    fullFormLink: "Otvori puni obrazac",
+    fullFormLink: "Dodaj više pojedinosti",
     countyLabel: "Okrug",
     countyPlaceholder: "Odaberi okrug",
     countyError: "Odaberi okrug u kojem se nalaziš.",
@@ -189,10 +231,15 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
   },
   rom: {
     title: "Mang te akharel tut ekh mediatori",
-    lead: "Mukh chi rig thaj cho telefonesko gin. Ekh sastipnasko mediatori katar cho than ka akharel tut bi lovesko.",
+    lead: "Mukh chi rig thaj cho telefonesko gin. Ekh sastipnasko mediatori katar cho than ka akharel tut bi lovesko, may butivar ande 24 ore.",
+    limitsTitle: "So nashti kerel o mediatori",
+    limitAdvice: "O mediatori na del sfato vash o sastyaripe vay vash e recepte.",
+    limitAvailability: "O mediatori vakerel chi chhib thaj zhal tusa ko doktori numay kana shaj.",
+    reasonLabel: "Sostar trubul tut azhutipe?",
+    reasonOptions: ["Familiyako doktori", "Lila thaj siguranciya", "Aver buchi"],
     reassurance: "Che date achhen garavde thaj labaren pes numay te akharas tut palpale.",
     fullFormPrompt: "Kames te lekhaves may but vash so trubul tut?",
-    fullFormLink: "Putar o baro formularo",
+    fullFormLink: "Thov may but detali",
     countyLabel: "Rig",
     countyPlaceholder: "Alosar chi rig",
     countyError: "Alosar chi rig kay san.",
@@ -218,10 +265,15 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
   },
   ru: {
     title: "Закажите обратный звонок медиатора",
-    lead: "Оставьте ваш округ и номер телефона. Медицинский медиатор из вашего района перезвонит вам бесплатно.",
+    lead: "Оставьте ваш округ и номер телефона. Медицинский медиатор из вашего района перезвонит вам бесплатно, обычно в течение 24 часов.",
+    limitsTitle: "Чего медиатор не может",
+    limitAdvice: "Медиатор не даёт советов о лечении и рецептах.",
+    limitAvailability: "Медиатор говорит на вашем языке и сопровождает вас на приём только там, где это возможно.",
+    reasonLabel: "С чем вам нужна помощь?",
+    reasonOptions: ["Семейный врач", "Документы и страховка", "Другое"],
     reassurance: "Ваши данные остаются конфиденциальными и нужны только для обратного звонка.",
     fullFormPrompt: "Хотите подробнее описать свою ситуацию?",
-    fullFormLink: "Открыть полную форму",
+    fullFormLink: "Добавить подробности",
     countyLabel: "Округ",
     countyPlaceholder: "Выберите округ",
     countyError: "Выберите ваш округ.",
@@ -247,6 +299,9 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
   },
 };
 
+/** The chosen reason as staff read it in the request (requests are read in Romanian). */
+const REASON_NOTES = ["medic de familie", "acte și asigurare", "altceva"] as const;
+
 export type CallbackStarterErrors = {
   county?: string;
   phone?: string;
@@ -264,8 +319,9 @@ export type CallbackPayload = {
 };
 
 const inputClass =
-  "field-focus mt-1.5 block w-full min-h-12 rounded-lg border border-border-control bg-card px-3.5 py-2.5 text-body text-foreground " +
-  "placeholder:text-muted-foreground aria-[invalid=true]:border-primary";
+  "field-focus mt-1.5 block w-full min-h-12 rounded-xl border border-border-control bg-background px-3.5 py-2.5 text-body text-foreground " +
+  "transition-[border-color,background-color] duration-(--dur-fast) ease-(--ease-out-calm) hover:border-foreground/35 " +
+  "placeholder:text-muted-foreground aria-[invalid=true]:border-primary motion-reduce:transition-none";
 
 const fieldErrorClass = "swap-in mt-1.5 text-body font-medium text-primary";
 
@@ -309,6 +365,7 @@ export function buildCallbackPayload({
   country,
   lang,
   captchaToken,
+  reason = null,
 }: {
   name: string;
   phone: string;
@@ -316,14 +373,17 @@ export function buildCallbackPayload({
   country: CountryCode;
   lang: Lang;
   captchaToken: string;
+  /** Index of the chosen `reasonOptions` entry, when the person picked one. */
+  reason?: number | null;
 }): CallbackPayload {
   const trimmedCounty = country === "RO" ? county.trim() : "";
   const normalizedPhone = normalizeCallbackPhone(phone);
   const areaLabel = trimmedCounty || country;
+  const reasonNote = reason != null && REASON_NOTES[reason] ? `, nevoie: ${REASON_NOTES[reason]}` : "";
   return {
     name: name.trim(),
     phone: normalizedPhone,
-    description: `Solicitare apel mediator sanitar din /mediatori#solicita (Zona: ${areaLabel}, limba: ${lang})`,
+    description: `Solicitare apel mediator sanitar din /mediatori#solicita (Zona: ${areaLabel}, limba: ${lang}${reasonNote})`,
     country,
     county: trimmedCounty,
     privacyConsent: true,
@@ -337,6 +397,7 @@ export async function submitCallbackStarter({
   county,
   country,
   lang,
+  reason = null,
   executeCaptcha,
   fetchImpl = fetch,
 }: {
@@ -345,6 +406,7 @@ export async function submitCallbackStarter({
   county: string;
   country: CountryCode;
   lang: Lang;
+  reason?: number | null;
   executeCaptcha: (action: CaptchaAction) => Promise<string>;
   fetchImpl?: typeof fetch;
 }): Promise<{ ok: true } | { ok: false; kind: "rate_limit" | "error"; error?: unknown }> {
@@ -357,6 +419,7 @@ export async function submitCallbackStarter({
       country,
       lang,
       captchaToken,
+      reason,
     });
     const response = await fetchImpl("/api/medical-help-requests", {
       method: "POST",
@@ -399,10 +462,12 @@ export function MediatorCallbackStarter({
   const nameId = `${baseId}-name`;
   const consentId = `${baseId}-consent`;
   const consentErrorId = `${baseId}-consent-error`;
+  const reasonLabelId = `${baseId}-reason`;
 
   const [county, setCounty] = useState("");
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
+  const [reason, setReason] = useState<number | null>(null);
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [errors, setErrors] = useState<CallbackStarterErrors>({});
   const [submissionError, setSubmissionError] = useState("");
@@ -415,6 +480,12 @@ export function MediatorCallbackStarter({
 
   const formRef = useRef<HTMLFormElement>(null);
   const successHeadingRef = useRef<HTMLHeadingElement>(null);
+  const submissionErrorRef = useRef<HTMLParagraphElement>(null);
+
+  // The message sits by the button the person just pressed; on a short screen bring it into view.
+  useEffect(() => {
+    if (submissionError) submissionErrorRef.current?.scrollIntoView({ block: "nearest" });
+  }, [submissionError]);
 
   useEffect(() => {
     if (submitted) {
@@ -443,6 +514,11 @@ export function MediatorCallbackStarter({
       return;
     }
 
+    if (isBrowserOffline()) {
+      setSubmissionError(getOfflineUiCopy(lang).formOfflineError);
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const result = await submitCallbackStarter({
@@ -451,6 +527,7 @@ export function MediatorCallbackStarter({
         county,
         country,
         lang,
+        reason,
         executeCaptcha,
       });
 
@@ -478,6 +555,7 @@ export function MediatorCallbackStarter({
     setCounty("");
     setPhone("");
     setName("");
+    setReason(null);
     setPrivacyConsent(false);
     setErrors({});
     setSubmissionError("");
@@ -489,139 +567,205 @@ export function MediatorCallbackStarter({
       <div
         role="status"
         aria-live="polite"
-        className="swap-in rounded-xl border border-border bg-card p-6 shadow-(--shadow-card-rest) sm:p-8"
+        className="swap-in overflow-hidden rounded-2xl border border-border bg-card shadow-(--shadow-card-hover)"
       >
-        <h2
-          ref={successHeadingRef}
-          tabIndex={-1}
-          id="solicita-heading"
-          className="text-balance text-section font-semibold text-foreground focus:outline-none"
-        >
-          {copy.successTitle}
-        </h2>
-        <p className="mt-3 max-w-(--measure-reading) text-body text-foreground">
-          {copy.successBody(submittedDetails.county, submittedDetails.phone)}
-        </p>
-        <p className="mt-3 max-w-(--measure-reading) text-body text-muted-foreground">
-          {copy.successNotice}
-        </p>
-        <div className="mt-6">
-          <Button type="button" variant="outline" size="lg" onClick={handleReset}>
-            {copy.sendAnother}
-          </Button>
+        <div aria-hidden="true" className="h-1 bg-amber-care-border" />
+        <div className="p-6 sm:p-8 lg:p-10">
+          <div className="flex items-start gap-4">
+            <span
+              aria-hidden="true"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-wellness-soft text-wellness dark:text-wellness-border"
+            >
+              <CheckCircleIcon className="h-6 w-6" />
+            </span>
+            <div className="min-w-0 flex-1">
+              <h2
+                ref={successHeadingRef}
+                tabIndex={-1}
+                id="solicita-heading"
+                className="text-balance text-section font-semibold text-foreground focus:outline-none"
+              >
+                {copy.successTitle}
+              </h2>
+              <p className="mt-3 max-w-(--measure-reading) text-body text-foreground">
+                {copy.successBody(submittedDetails.county, submittedDetails.phone)}
+              </p>
+              <p className="mt-4 max-w-(--measure-reading) rounded-xl border border-border bg-surface-subtle/60 px-4 py-3 text-body text-muted-foreground">
+                {copy.successNotice}
+              </p>
+              <div className="mt-6">
+                <Button type="button" variant="outline" size="lg" onClick={handleReset}>
+                  {copy.sendAnother}
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="rounded-xl border border-border bg-card p-5 shadow-(--shadow-card-rest) sm:p-8">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12">
-        <div className="min-w-0">
-          <h2 id="solicita-heading" className="text-balance text-section font-semibold text-foreground">
-            {copy.title}
-          </h2>
-          <p className="mt-3 max-w-(--measure-reading) text-body text-muted-foreground">
-            {copy.lead}
-          </p>
+    <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-(--shadow-card-hover)">
+      <div className="grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+        {/* Left editorial ink panel: signature REDI obsidian visual identity */}
+        <div className="flex min-w-0 flex-col justify-between bg-ink-950 p-6 text-paper sm:p-8 lg:p-10">
+          <div>
+            <span aria-hidden="true" className="block h-0.5 w-12 bg-amber-care-border" />
+            <h2
+              id="solicita-heading"
+              className="mt-4 text-balance text-section font-semibold text-paper"
+            >
+              {copy.title}
+            </h2>
+            <p className="mt-3 max-w-(--measure-reading) text-pretty text-body leading-relaxed text-mist">
+              {copy.lead}
+            </p>
 
-          <div className="mt-6 flex items-start gap-2.5 border-t border-border pt-5">
-            <LockIcon className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-            <p className="text-body text-muted-foreground">{copy.reassurance}</p>
+            <div className="mt-6 rounded-xl border border-paper/12 bg-paper/[0.04] p-4 sm:p-5">
+              <div className="flex items-center gap-2.5">
+                <ShieldIcon className="h-4.5 w-4.5 shrink-0 text-amber-care-border" aria-hidden="true" />
+                <h3 className="text-body font-semibold text-paper">{copy.limitsTitle}</h3>
+              </div>
+              <ul className="mt-3 divide-y divide-paper/10 text-body text-mist">
+                <li className="pb-2.5">{copy.limitAdvice}</li>
+                <li className="py-2.5">{copy.limitAvailability}</li>
+                <li className="pt-2.5 font-medium text-paper/90">{copy.successNotice}</li>
+              </ul>
+            </div>
           </div>
 
-          <div className="mt-4 text-body text-muted-foreground">
-            <p>{copy.fullFormPrompt}</p>
-            <Link
-              href={withLangPrefix("/get-help?mode=mediator", lang)}
-              className="mt-1 inline-flex min-h-11 items-center whitespace-nowrap rounded-sm font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:decoration-sapphire-border/40"
-            >
-              {copy.fullFormLink}
-            </Link>
+          <div className="mt-7 space-y-4 border-t border-paper/12 pt-5">
+            <p className="flex items-start gap-2.5 text-meta leading-relaxed text-mist">
+              <LockIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care-border" aria-hidden="true" />
+              <span>{copy.reassurance}</span>
+            </p>
+
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-1 text-meta text-mist">
+              <p className="max-w-xs">{copy.fullFormPrompt}</p>
+              <Link
+                href={withLangPrefix("/get-help?mode=mediator", lang)}
+                className="hero-focus press-on-dark group inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl border border-paper/18 bg-paper/[0.07] px-3.5 py-2 text-meta font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-paper/35 hover:bg-paper/[0.14] motion-reduce:transition-none"
+              >
+                <span>{copy.fullFormLink}</span>
+                <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </div>
 
-        <form ref={formRef} noValidate onSubmit={handleSubmit} className="min-w-0">
-          {submissionError ? (
-            <p
-              role="alert"
-              className="swap-in mb-5 rounded-lg border border-primary/25 bg-primary-soft px-4 py-3 text-body font-medium text-foreground"
-            >
-              {submissionError}
-            </p>
-          ) : null}
-
+        {/* Right elevated paper form surface */}
+        <form ref={formRef} noValidate onSubmit={handleSubmit} className="min-w-0 bg-card p-6 sm:p-8 lg:p-10">
           <div className="grid gap-5">
-            {country === "RO" ? (
-              <div>
-                <label htmlFor={countyId} className="text-body font-semibold text-foreground">
-                  {copy.countyLabel}
+            <div className={country === "RO" ? "grid gap-5 sm:grid-cols-2" : "grid gap-5"}>
+              {country === "RO" ? (
+                <div className="min-w-0">
+                  <label htmlFor={countyId} className="text-body font-semibold text-foreground">
+                    {copy.countyLabel}
+                  </label>
+                  <div className="relative">
+                    <select
+                      id={countyId}
+                      name="county"
+                      required
+                      value={county}
+                      onChange={(event) => {
+                        setCounty(event.target.value);
+                        setSubmissionError("");
+                        if (errors.county) {
+                          setErrors((prev) => ({ ...prev, county: undefined }));
+                        }
+                      }}
+                      aria-invalid={Boolean(errors.county)}
+                      aria-describedby={errors.county ? countyErrorId : undefined}
+                      className={`${inputClass} appearance-none pr-10`}
+                    >
+                      <option value="">{copy.countyPlaceholder}</option>
+                      {ROMANIAN_COUNTIES.map((countyName) => (
+                        <option key={countyName} value={countyName}>
+                          {countyName}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDownIcon
+                      className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  {errors.county ? (
+                    <p id={countyErrorId} role="alert" className={fieldErrorClass}>
+                      {errors.county}
+                    </p>
+                  ) : null}
+                </div>
+              ) : null}
+
+              <div className="min-w-0">
+                <label htmlFor={phoneId} className="text-body font-semibold text-foreground">
+                  {copy.phoneLabel}
                 </label>
-                <select
-                  id={countyId}
-                  name="county"
+                <input
+                  id={phoneId}
+                  name="phone"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  maxLength={50}
                   required
-                  value={county}
+                  value={phone}
                   onChange={(event) => {
-                    setCounty(event.target.value);
+                    setPhone(event.target.value);
                     setSubmissionError("");
-                    if (errors.county) {
-                      setErrors((prev) => ({ ...prev, county: undefined }));
+                    if (errors.phone) {
+                      setErrors((prev) => ({ ...prev, phone: undefined }));
                     }
                   }}
-                  aria-invalid={Boolean(errors.county)}
-                  aria-describedby={errors.county ? countyErrorId : undefined}
+                  aria-invalid={Boolean(errors.phone)}
+                  aria-describedby={errors.phone ? phoneErrorId : phoneHintId}
+                  placeholder={copy.phonePlaceholder}
                   className={inputClass}
-                >
-                  <option value="">{copy.countyPlaceholder}</option>
-                  {ROMANIAN_COUNTIES.map((countyName) => (
-                    <option key={countyName} value={countyName}>
-                      {countyName}
-                    </option>
-                  ))}
-                </select>
-                {errors.county ? (
-                  <p id={countyErrorId} role="alert" className={fieldErrorClass}>
-                    {errors.county}
+                />
+                {errors.phone ? (
+                  <p id={phoneErrorId} role="alert" className={fieldErrorClass}>
+                    {errors.phone}
                   </p>
-                ) : null}
+                ) : (
+                  <p id={phoneHintId} className="mt-1.5 text-meta text-muted-foreground">
+                    {copy.phoneHint}
+                  </p>
+                )}
               </div>
-            ) : null}
+            </div>
 
-            <div>
-              <label htmlFor={phoneId} className="text-body font-semibold text-foreground">
-                {copy.phoneLabel}
-              </label>
-              <input
-                id={phoneId}
-                name="phone"
-                type="tel"
-                inputMode="tel"
-                autoComplete="tel"
-                maxLength={50}
-                required
-                value={phone}
-                onChange={(event) => {
-                  setPhone(event.target.value);
-                  setSubmissionError("");
-                  if (errors.phone) {
-                    setErrors((prev) => ({ ...prev, phone: undefined }));
-                  }
-                }}
-                aria-invalid={Boolean(errors.phone)}
-                aria-describedby={errors.phone ? phoneErrorId : phoneHintId}
-                placeholder={copy.phonePlaceholder}
-                className={inputClass}
-              />
-              {errors.phone ? (
-                <p id={phoneErrorId} role="alert" className={fieldErrorClass}>
-                  {errors.phone}
-                </p>
-              ) : (
-                <p id={phoneHintId} className="mt-1.5 text-body text-muted-foreground">
-                  {copy.phoneHint}
-                </p>
-              )}
+            <div role="group" aria-labelledby={reasonLabelId}>
+              <p id={reasonLabelId} className="text-body font-semibold text-foreground">
+                {copy.reasonLabel}{" "}
+                <span className="font-normal text-muted-foreground">{copy.optionalTag}</span>
+              </p>
+              <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                {copy.reasonOptions.map((label, index) => {
+                  const selected = reason === index;
+                  return (
+                    <button
+                      key={label}
+                      type="button"
+                      aria-pressed={selected}
+                      onClick={() => {
+                        setReason(selected ? null : index);
+                        setSubmissionError("");
+                      }}
+                      className={`press-row inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-body font-semibold transition-[border-color,background-color,color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                        selected
+                          ? "border-rose-border bg-rose-tint text-rose-ink shadow-xs"
+                          : "border-border-control bg-background text-foreground hover:border-rose-border/75 hover:bg-muted/50"
+                      }`}
+                    >
+                      {selected ? <CheckIcon className="h-4 w-4 shrink-0" aria-hidden="true" /> : null}
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             <div>
@@ -648,7 +792,7 @@ export function MediatorCallbackStarter({
             <div>
               <label
                 htmlFor={consentId}
-                className="-mx-2 flex min-h-11 items-start gap-2.5 rounded-lg border border-transparent px-2 py-1.5 text-body text-foreground transition-colors duration-(--dur-fast) hover:bg-muted/40 focus-within:ring-2 focus-within:ring-ring motion-reduce:transition-none"
+                className="flex min-h-12 cursor-pointer items-start gap-3 rounded-xl border border-border/80 bg-surface-subtle/50 px-3.5 py-3 text-body text-foreground transition-colors duration-(--dur-fast) hover:border-border-control hover:bg-surface-subtle focus-within:ring-2 focus-within:ring-ring motion-reduce:transition-none"
               >
                 <input
                   id={consentId}
@@ -669,12 +813,15 @@ export function MediatorCallbackStarter({
                 />
                 <span>
                   {copy.privacyConsent}{" "}
-                  <Link
+                  {/* A new tab: following the link must not throw away what was typed. */}
+                  <a
                     href={withLangPrefix("/privacy", lang)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:decoration-sapphire-border/40"
                   >
                     {copy.privacyPolicyLabel}
-                  </Link>
+                  </a>
                   .
                 </span>
               </label>
@@ -685,17 +832,28 @@ export function MediatorCallbackStarter({
               ) : null}
             </div>
 
-            <div>
+            {submissionError ? (
+              <p
+                ref={submissionErrorRef}
+                role="alert"
+                className="swap-in scroll-mb-24 rounded-xl border border-primary/25 bg-primary-soft px-4 py-3 text-body font-medium text-foreground"
+              >
+                {submissionError}
+              </p>
+            ) : null}
+
+            <div className="pt-1">
               <Button
                 type="submit"
                 variant="action"
                 size="lg"
                 disabled={isSubmitting}
                 aria-busy={isSubmitting}
-                className="w-full sm:w-auto sm:px-6"
+                className="min-h-13 w-full justify-center gap-2.5 sm:px-7"
               >
-                <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <PhoneIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
                 <span>{isSubmitting ? copy.submitting : copy.submit}</span>
+                {!isSubmitting ? <ArrowRightIcon className="arrow-travel h-4.5 w-4.5 shrink-0" aria-hidden="true" /> : null}
               </Button>
             </div>
           </div>

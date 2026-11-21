@@ -175,7 +175,7 @@ export function WarningSignsEmergencyCard({
         aria-labelledby="warning-signs-heading"
         className={`rounded-xl border border-primary/40 bg-card p-6 sm:p-8 break-inside-avoid ${className}`}
       >
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
           <div className="min-w-0 flex-1">
             <h2
               id="warning-signs-heading"
@@ -220,12 +220,12 @@ export function WarningSignsEmergencyCard({
               >
                 {String(idx + 1).padStart(2, "0")}
               </span>
-              <span>{sign}</span>
+              <span className="min-w-0">{sign}</span>
             </li>
           ))}
         </ol>
 
-        <div className="mt-6 flex flex-col items-start gap-x-6 gap-y-2 sm:flex-row sm:items-center print:hidden">
+        <div className="mt-6 flex flex-col items-start gap-x-6 gap-y-2 sm:flex-row sm:flex-wrap sm:items-center print:hidden">
           <Button
             type="button"
             variant="primary"
@@ -243,7 +243,7 @@ export function WarningSignsEmergencyCard({
             type="button"
             onClick={() => setIsModalOpen(true)}
             aria-haspopup="dialog"
-            className="press-row inline-flex min-h-12 items-center whitespace-nowrap rounded-sm px-1 text-body font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="press-row inline-flex min-h-12 items-center whitespace-nowrap rounded-sm px-1 text-body font-semibold text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:decoration-sapphire-border/50 dark:hover:decoration-sapphire-border"
           >
             {pickLocale(s.modalTrigger, currentLang)}
           </button>
@@ -271,7 +271,7 @@ export function WarningSignsEmergencyCard({
             />
 
             <div className="flex items-start justify-between gap-4 border-b border-border pb-4">
-              <div>
+              <div className="min-w-0">
                 <h3
                   id="emergency-modal-title"
                   className="text-title font-semibold text-foreground"
@@ -321,7 +321,7 @@ export function WarningSignsEmergencyCard({
                     className="list-in flex flex-col rounded-lg border border-border bg-surface-subtle/60 p-3.5"
                   >
                     <div className="flex items-baseline gap-2">
-                      <span className="text-meta font-bold tabular-nums text-primary">
+                      <span className="text-meta font-bold tabular-nums text-primary dark:text-ruby-300">
                         {String(idx + 1).padStart(2, "0")}.
                       </span>
                       <span className="text-body font-semibold text-foreground">
@@ -336,7 +336,7 @@ export function WarningSignsEmergencyCard({
               </ol>
             </div>
 
-            <div className="mt-6 flex flex-col-reverse gap-2.5 border-t border-border pt-4 sm:flex-row sm:justify-end">
+            <div className="mt-6 flex flex-col-reverse gap-2.5 border-t border-border pt-4 sm:flex-row sm:flex-wrap sm:justify-end">
               <Button
                 type="button"
                 variant="outline"

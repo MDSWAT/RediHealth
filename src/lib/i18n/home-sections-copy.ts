@@ -1,10 +1,9 @@
 import type { Lang } from "@/lib/i18n/translations";
 
 /**
- * Copy for the two service sections of the homepage: the online doctor and the health mediators.
- * Each brings forward a page that was only one link deep (/medic-online, /mediatori), so the
- * wording follows those pages: the steps are the ones on /medic-online, the mediator's work the
- * one on /mediatori. Every locale defines every key; sentence case, no ampersands.
+ * Copy for the service sections of the homepage.
+ * Wording reflects realistic health mediator scope across all 7 languages.
+ * Every locale defines every key; strict sentence case, no ampersands.
  */
 
 export type HomeStep = { title: string; text: string };
@@ -54,13 +53,22 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       teamText: "Family doctors, paediatricians and internists who volunteer. Calls are encrypted.",
     },
     mediators: {
-      title: "A health mediator goes with you.",
-      titleQuiet: "Someone from your community who speaks your language.",
-      lead: "They help with the family doctor, the hospital, social services and the town hall, and keep what you tell them private.",
+      title: "Support from a health mediator.",
+      titleQuiet: "Trusted help to reach healthcare services.",
+      lead: "They help you understand where to go, prepare papers, and contact health or social services, while keeping what you share private.",
       services: [
-        { title: "Registering and doctor visits", text: "They go with you to the family doctor, help with appointments and explain your prescriptions." },
-        { title: "Documents and insurance", text: "They help with birth certificates, ID cards and health insurance for the whole family." },
-        { title: "Check-ups at home", text: "They bring a tablet and devices for blood pressure, oxygen and blood sugar. You talk to a doctor by phone." },
+        {
+          title: "Registration and appointments",
+          text: "They help you find a family doctor, book visits, and prepare your questions for the clinic.",
+        },
+        {
+          title: "Documents and health insurance",
+          text: "They guide you through the identity papers and insurance steps needed for your family.",
+        },
+        {
+          title: "Local health and social support",
+          text: "They connect you with community nurses, clinics, and local social services when available.",
+        },
       ],
       facts: ["Never asks for money", "Keeps it private", "Helps the whole family"],
       ask: "Ask a mediator",
@@ -84,13 +92,22 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       teamText: "Medici de familie, pediatri și interniști voluntari. Apelurile sunt criptate.",
     },
     mediators: {
-      title: "Un mediator sanitar merge cu tine.",
-      titleQuiet: "Un om din comunitatea ta, care îți vorbește limba.",
-      lead: "Te ajută cu medicul de familie, spitalul, asistența socială și primăria și nu spune nimănui ce îi povestești.",
+      title: "Sprijin de la un mediator sanitar.",
+      titleQuiet: "Ajutor de încredere să ajungi la servicii medicale.",
+      lead: "Te ajută să știi unde să mergi, ce acte să pregătești și cum să iei legătura cu serviciile medicale sau sociale, păstrând confidențialitatea.",
       services: [
-        { title: "Înscriere și vizite la medic", text: "Merge cu tine la medicul de familie, te ajută cu programările și îți explică rețetele." },
-        { title: "Acte și asigurare", text: "Te ajută cu certificatul de naștere, buletinul și asigurarea CNAS pentru toată familia." },
-        { title: "Controale acasă", text: "Vine cu o tabletă și aparate pentru tensiune, oxigen și zahăr în sânge. Vorbești cu un medic la telefon." },
+        {
+          title: "Înscriere și programări",
+          text: "Te ajută să găsești un medic de familie, să faci programări și să îți pregătești întrebările pentru cabinet.",
+        },
+        {
+          title: "Acte și asigurare medicală",
+          text: "Te ghidează ce documente de identitate și pași pentru asigurarea CNAS sunt necesari pentru familie.",
+        },
+        {
+          title: "Legătura cu îngrijirea locală",
+          text: "Te pune în legătura cu asistenți comunitari, clinici și servicii sociale locale, acolo unde există.",
+        },
       ],
       facts: ["Nu îți cere bani", "Păstrează secretul", "Ajută toată familia"],
       ask: "Cere un mediator",
@@ -114,13 +131,22 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       teamText: "Mjekë familjeje, pediatër dhe internistë vullnetarë. Thirrjet janë të enkriptuara.",
     },
     mediators: {
-      title: "Një mediator shëndetësor vjen me ty.",
-      titleQuiet: "Dikush nga komuniteti yt që flet gjuhën tënde.",
-      lead: "Të ndihmon me mjekun e familjes, spitalin, shërbimet sociale dhe bashkinë, dhe nuk ia tregon askujt atë që i thua.",
+      title: "Mbështetje nga një mediator shëndetësor.",
+      titleQuiet: "Ndihmë e besueshme për të arritur shërbimet shëndetësore.",
+      lead: "Të ndihmon të dish ku të shkosh, çfarë dokumentesh të përgatitësh dhe si të lidhesh me shërbimet shëndetësore ose sociale, duke ruajtur privatësinë.",
       services: [
-        { title: "Regjistrimi dhe vizitat te mjeku", text: "Vjen me ty te mjeku i familjes, të ndihmon me takimet dhe të shpjegon recetat." },
-        { title: "Dokumentet dhe sigurimi", text: "Të ndihmon me certifikatën e lindjes, letërnjoftimin dhe sigurimin shëndetësor për gjithë familjen." },
-        { title: "Kontrolle në shtëpi", text: "Vjen me një tabletë dhe aparate për tensionin, oksigjenin dhe sheqerin në gjak. Flet me një mjek në telefon." },
+        {
+          title: "Regjistrimi dhe takimet",
+          text: "Të ndihmon të gjesh një mjek familjeje, të caktosh takime dhe të përgatitësh pyetjet për klinikën.",
+        },
+        {
+          title: "Dokumentet dhe sigurimi",
+          text: "Të udhëzon për dokumentet e identitetit dhe hapat e sigurimit shëndetësor për familjen.",
+        },
+        {
+          title: "Lidhja me kujdesin lokal",
+          text: "Të lidh me infermierë të komunitetit, klinika dhe shërbime sociale vendore kur janë të disponueshme.",
+        },
       ],
       facts: ["Nuk të kërkon para", "Ruan sekretin", "Ndihmon gjithë familjen"],
       ask: "Kërko një mediator",
@@ -144,13 +170,22 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       teamText: "Medici di famiglia, pediatri e internisti volontari. Le chiamate sono criptate.",
     },
     mediators: {
-      title: "Un mediatore sanitario ti accompagna.",
-      titleQuiet: "Una persona della tua comunità che parla la tua lingua.",
-      lead: "Ti aiuta con il medico di famiglia, l'ospedale, i servizi sociali e il comune, e non racconta a nessuno quello che gli dici.",
+      title: "Supporto da un mediatore sanitario.",
+      titleQuiet: "Aiuto affidabile per accedere alle cure.",
+      lead: "Ti aiuta a capire dove andare, quali documenti preparare e come contattare i servizi sanitari o sociali, rispettando la tua privacy.",
       services: [
-        { title: "Iscrizione e visite dal medico", text: "Viene con te dal medico di famiglia, ti aiuta con gli appuntamenti e ti spiega le ricette." },
-        { title: "Documenti e tessera sanitaria", text: "Ti aiuta con certificato di nascita, carta d'identità e iscrizione al servizio sanitario per tutta la famiglia." },
-        { title: "Controlli a casa", text: "Porta un tablet e gli apparecchi per pressione, ossigeno e zucchero nel sangue. Parli con un medico al telefono." },
+        {
+          title: "Iscrizione e appuntamenti",
+          text: "Ti aiuta a trovare un medico di famiglia, prenotare visite e preparare le domande per la clinica.",
+        },
+        {
+          title: "Documenti e tessera sanitaria",
+          text: "Ti orienta sui documenti d'identità e sui passaggi per l'assistenza sanitaria della famiglia.",
+        },
+        {
+          title: "Collegamento con i servizi locali",
+          text: "Ti mette in contatto con infermieri di comunità, ambulatori e servizi sociali locali quando disponibili.",
+        },
       ],
       facts: ["Non ti chiede soldi", "Mantiene il segreto", "Aiuta tutta la famiglia"],
       ask: "Chiedi un mediatore",
@@ -174,13 +209,22 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       teamText: "Obiteljski liječnici, pedijatri i internisti volonteri. Pozivi su šifrirani.",
     },
     mediators: {
-      title: "Zdravstveni medijator ide s tobom.",
-      titleQuiet: "Osoba iz tvoje zajednice koja govori tvoj jezik.",
-      lead: "Pomaže ti s obiteljskim liječnikom, bolnicom, socijalnom službom i općinom te čuva tajnost svega što mu povjeriš.",
+      title: "Podrška zdravstvenog medijatora.",
+      titleQuiet: "Pouzdana pomoć na putu do zdravstvene skrbi.",
+      lead: "Pomaže ti saznati kamo ići, koje dokumente pripremiti i kako kontaktirati zdravstvene ili socijalne službe, uz čuvanje privatnosti.",
       services: [
-        { title: "Upis i posjeti liječniku", text: "Ide s tobom obiteljskom liječniku, pomaže oko naručivanja i objašnjava ti recepte." },
-        { title: "Dokumenti i osiguranje", text: "Pomaže oko rodnog lista, osobne iskaznice i zdravstvenog osiguranja za cijelu obitelj." },
-        { title: "Pregledi kod kuće", text: "Dolazi s tabletom i uređajima za krvni tlak, kisik i šećer u krvi. S liječnikom razgovaraš telefonom." },
+        {
+          title: "Upis i naručivanje",
+          text: "Pomaže ti pronaći obiteljskog liječnika, dogovoriti termine i pripremiti pitanja za pregled.",
+        },
+        {
+          title: "Dokumenti i zdravstveno osiguranje",
+          text: "Upućuje te koji su osobni dokumenti i koraci za zdravstveno osiguranje potrebni za obitelj.",
+        },
+        {
+          title: "Povezivanje s lokalnom skrbi",
+          text: "Povezuje te s patronažnim sestrama, ambulantama i lokalnim socijalnim službama kada su dostupne.",
+        },
       ],
       facts: ["Ne traži novac", "Čuva tajnu", "Pomaže cijeloj obitelji"],
       ask: "Zatraži medijatora",
@@ -204,13 +248,22 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       teamText: "Familiyake doktorya, chhavorenge doktorya thaj interniste, bi lovesko. E svaturya si garavde.",
     },
     mediators: {
-      title: "O sastipnasko mediatori zhal tusa.",
-      titleQuiet: "Jekh manush katar chi komuniteta kay vakerel chi chhib.",
-      lead: "Zhutil tut e familiyake doktoresa, e bolnitsasa, e socialone servisurenca thaj e primariyasa, thaj na phenel khanikaske so phenes leske.",
+      title: "Zhutimos katar ekh sastipnasko mediatori.",
+      titleQuiet: "Pachivalo zhutimos te areses ko sastipnaske servisurya.",
+      lead: "Zhutil tut te zhanes kay te zhas, save lila te keres thaj sar te akhares e sastipnaske vay socialone servisurya, garavindoy so phenes.",
       services: [
-        { title: "Lekhavipe thaj vizite ko doktori", text: "Zhal tusa ko familiyako doktori, zhutil tut e vramenca thaj phenel tuke lokhes e recepte." },
-        { title: "Lila thaj siguranciya", text: "Zhutil tut e bijandipnaske lilesa, buletinesa thaj sastipnaske siguranciyasa vash sasti familiya." },
-        { title: "Dikhiben khere", text: "Avel tabletesa thaj aparatenca vash e tensiyona, o oksigeno thaj o zaharo and-o rat. Des svato e doktoresa ko telefono." },
+        {
+          title: "Lekhavipe thaj vrame",
+          text: "Zhutil tut te arakhes familiyako doktori, te keres vrama thaj te lashares che phuchimata.",
+        },
+        {
+          title: "Lila thaj siguranciya",
+          text: "Sikavel tut save lila thaj pasha trubun vash sastipnaski siguranciya chi familiyake.",
+        },
+        {
+          title: "Phandipe lokalne zhutipnasa",
+          text: "Phandel tut komunitetake asistentenca, klinikenca thaj socialone servisurenca kana si kathe.",
+        },
       ],
       facts: ["Na mangel tutar love", "Garavel so phenes", "Zhutil sasti familiya"],
       ask: "Mang ekhe mediatore",
@@ -234,13 +287,22 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       teamText: "Семейные врачи, педиатры и терапевты-волонтёры. Звонки шифруются.",
     },
     mediators: {
-      title: "Медиатор по здоровью пойдёт с вами.",
-      titleQuiet: "Человек из вашего сообщества, который говорит на вашем языке.",
-      lead: "Помогает с семейным врачом, больницей, социальными службами и мэрией и никому не рассказывает то, что вы ему доверили.",
+      title: "Поддержка медицинского медиатора.",
+      titleQuiet: "Надёжная помощь на пути к медицинской помощи.",
+      lead: "Помогает понять, куда обратиться, какие документы подготовить и как связаться с медицинскими или социальными службами, сохраняя конфиденциальность.",
       services: [
-        { title: "Запись и визиты к врачу", text: "Идёт с вами к семейному врачу, помогает записаться на приём и объясняет рецепты." },
-        { title: "Документы и страховка", text: "Помогает со свидетельством о рождении, удостоверением личности и медицинской страховкой для всей семьи." },
-        { title: "Осмотр на дому", text: "Приносит планшет и приборы для давления, кислорода и сахара в крови. Вы говорите с врачом по телефону." },
+        {
+          title: "Запись и прикрепление",
+          text: "Помогает найти семейного врача, записаться на приём и подготовить вопросы для клиники.",
+        },
+        {
+          title: "Документы и страховка",
+          text: "Подсказывает, какие документы и шаги для медицинской страховки нужны вашей семье.",
+        },
+        {
+          title: "Связь с местной помощью",
+          text: "Связывает с общинными медсёстрами, клиниками и социальными службами там, где они работают.",
+        },
       ],
       facts: ["Не просит денег", "Хранит тайну", "Помогает всей семье"],
       ask: "Обратиться к медиатору",

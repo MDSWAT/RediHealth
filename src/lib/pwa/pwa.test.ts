@@ -5,6 +5,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { PWA_COPY, getPwaCopy, type PwaCopy } from "@/lib/i18n/pwa-copy";
+import { OFFLINE_UI_COPY, getOfflineUiCopy, type OfflineUiCopy } from "@/lib/i18n/offline-copy";
 import type { Lang } from "@/lib/i18n/translations";
 import {
   _resetPwaRuntimeForTest,
@@ -17,6 +18,10 @@ import {
   openPwaInstall,
   usePwaSnapshot,
 } from "./pwa-state";
+import {
+  GUIDE_OFFLINE_PRINT_COPY,
+  GuideOfflinePrintActions,
+} from "@/components/health-information/GuideOfflinePrintActions";
 
 const ALL_LANGS: Lang[] = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
 const ALLOWED_MID_SENTENCE_CAPS = new Set([
@@ -283,10 +288,20 @@ describe("public/offline-worker.js", () => {
           cacheMap.set(name, store);
         }
         return {
-          async match(req: Request | string) {
+          async match(req: Request | string, options?: { ignoreSearch?: boolean }) {
             const key = typeof req === "string" ? req : req.url;
-            const pathname = new URL(key, "https://redihealth.example").pathname;
-            return store!.get(key) ?? store!.get(pathname);
+            const parsed = new URL(key, "https://redihealth.example");
+            const pathname = parsed.pathname;
+            const direct = store!.get(key) ?? store!.get(pathname);
+            if (direct) return direct;
+            if (options?.ignoreSearch) {
+              const cleanUrl = `${parsed.origin}${pathname}`;
+              for (const [storedKey, res] of store!.entries()) {
+                const storedUrl = new URL(storedKey, "https://redihealth.example");
+                if (`${storedUrl.origin}${storedUrl.pathname}` === cleanUrl) return res;
+              }
+            }
+            return undefined;
           },
           async put(req: Request | string, res: Response) {
             const key = typeof req === "string" ? req : req.url;
@@ -352,7 +367,12 @@ describe("public/offline-worker.js", () => {
         for (const fn of listeners.get(type) ?? []) fn(fullEvent);
         await Promise.all(promises);
       },
-      async dispatchFetch(request: { url: string; method?: string; mode?: string }) {
+      async dispatchFetch(request: {
+        url: string;
+        method?: string;
+        mode?: string;
+        headers?: Record<string, string>;
+      }) {
         let responsePromise: Promise<Response> | undefined;
         const backgroundPromises: Promise<unknown>[] = [];
         const fullEvent = {
@@ -360,6 +380,7 @@ describe("public/offline-worker.js", () => {
             url: request.url,
             method: request.method ?? "GET",
             mode: request.mode ?? "cors",
+            ...(request.headers ? { headers: new Headers(request.headers) } : {}),
           },
           respondWith(p: Promise<Response> | Response) {
             responsePromise = Promise.resolve(p);
@@ -387,6 +408,8 @@ describe("public/offline-worker.js", () => {
         "redihealth-offline-shell-v1": {},
         "redihealth-offline-shell-v2": {},
         "redihealth-static-v2": {},
+        "redihealth-pages-v1": {},
+        "redihealth-media-v1": {},
         "unrelated-cache": {},
       },
     });
@@ -397,6 +420,8 @@ describe("public/offline-worker.js", () => {
     expect(updateInstall.cacheMap.has("redihealth-offline-shell-v1")).toBe(false);
     expect(updateInstall.cacheMap.has("redihealth-offline-shell-v2")).toBe(true);
     expect(updateInstall.cacheMap.has("redihealth-static-v2")).toBe(true);
+    expect(updateInstall.cacheMap.has("redihealth-pages-v1")).toBe(true);
+    expect(updateInstall.cacheMap.has("redihealth-media-v1")).toBe(true);
     expect(updateInstall.cacheMap.has("unrelated-cache")).toBe(true);
     expect(updateInstall.claim).toHaveBeenCalledTimes(1);
 
@@ -519,6 +544,283 @@ describe("public/offline-worker.js", () => {
         .get("redihealth-static-v2")
         ?.has("https://redihealth.example/pwa/pwa-192x192.png"),
     ).toBe(true);
+  });
+
+  it("classifies public non-PHI routes vs sensitive PHI routes cleanly", () => {
+    const sandbox: {
+      isOfflinePublicPath?: (p: string) => boolean;
+      isSensitivePath?: (p: string) => boolean;
+    } = {};
+    vm.runInNewContext(
+      swSource.slice(swSource.indexOf("const SUPPORTED_LOCALES"), swSource.indexOf("function buildOfflineFallbackResponse")),
+      sandbox,
+    );
+
+    for (const publicPath of [
+      "/ro",
+      "/en",
+      "/ro/health-check",
+      "/en/find-help",
+      "/ro/stiri",
+      "/ro/stiri/1",
+      "/en/demo",
+      "/ro/health-assistant",
+      "/ro/about",
+      "/ro/ai-assistant",
+      "/ro/prescription-review",
+      "/ro/medic-online",
+      "/hr/health-information/heart-health",
+    ]) {
+      expect(sandbox.isOfflinePublicPath?.(publicPath), publicPath).toBe(true);
+      expect(sandbox.isSensitivePath?.(publicPath), publicPath).toBe(false);
+    }
+
+    for (const sensitivePath of [
+      "/api/patients",
+      "/ro/panel",
+      "/en/panel/patients",
+      "/en/patient-portal/abc",
+      "/ro/sign-in",
+      "/en/health-check/note",
+      "/ro/medic-online/meet/123",
+      "/ro/medic-online/asteptare/tok",
+    ]) {
+      expect(sandbox.isOfflinePublicPath?.(sensitivePath), sensitivePath).toBe(false);
+      expect(sandbox.isSensitivePath?.(sensitivePath), sensitivePath).toBe(true);
+    }
+  });
+
+  it("warms public pages, handles CACHE_PUBLIC_PAGE, RSC fallback, /_next/image fallback, and /models cache", async () => {
+    let online = true;
+    const harness = createSwHarness({
+      fetchImpl: async (input, init) => {
+        if (!online) throw new TypeError("Offline");
+        const url = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
+        const pathname = new URL(url, "https://redihealth.example").pathname;
+        if (pathname.startsWith("/_next/static/")) {
+          if (pathname === "/_next/static/chunks/main.js") {
+            return new Response('Promise.all(["static/chunks/lazy-3d.js"].map(e=>e.l(e)))', {
+              status: 200,
+              headers: { "Content-Type": "application/javascript", "Cache-Control": "public, max-age=31536000" },
+            });
+          }
+          if (pathname === "/_next/static/chunks/lazy-3d.js") {
+            return new Response('Promise.all(["static/chunks/lazy-sub.js"].map(e=>e.l(e)))', {
+              status: 200,
+              headers: { "Content-Type": "application/javascript", "Cache-Control": "public, max-age=31536000" },
+            });
+          }
+          if (pathname === "/_next/static/chunks/lazy-sub.js") {
+            return new Response("subChunk()", {
+              status: 200,
+              headers: { "Content-Type": "application/javascript", "Cache-Control": "public, max-age=31536000" },
+            });
+          }
+          return new Response("chunk()", {
+            status: 200,
+            headers: { "Content-Type": "application/javascript", "Cache-Control": "public, max-age=31536000" },
+          });
+        }
+        if (pathname === "/images/hero-care.jpg") {
+          return new Response("jpg-bytes", {
+            status: 200,
+            headers: { "Content-Type": "image/jpeg", "Cache-Control": "public, max-age=31536000" },
+          });
+        }
+        if (pathname === "/models/human-atlas-layers.bin") {
+          return new Response("bin-bytes", {
+            status: 200,
+            headers: { "Content-Type": "application/octet-stream", "Cache-Control": "public, max-age=86400" },
+          });
+        }
+        if (pathname.startsWith("/ro")) {
+          if (typeof input === "string") {
+            expect(init?.credentials).toBe("omit");
+          }
+          return new Response(
+            '<!doctype html><html><head><title>Page</title><script src="/_next/static/chunks/main.js"></script></head><body>ok</body></html>',
+            {
+              status: 200,
+              headers: {
+                "Content-Type": "text/html; charset=utf-8",
+                "Set-Cookie": "secret=123",
+                "Content-Security-Policy": "script-src 'nonce-abc'",
+              },
+            },
+          );
+        }
+        return new Response("not found", { status: 404, headers: { "Content-Type": "text/plain" } });
+      },
+    });
+
+    const warmMessages: Array<{ ok?: boolean; cachedCount?: number }> = [];
+    await harness.dispatchWaitable("message", {
+      data: { type: "WARM_OFFLINE_APP", lang: "ro", includeGuides: true, includeModels: false, assets: [] },
+      ports: [{ postMessage: (msg: { ok?: boolean; cachedCount?: number }) => warmMessages.push(msg) }],
+    });
+    expect(warmMessages[0]?.ok).toBe(true);
+    expect(warmMessages[0]?.cachedCount).toBeGreaterThan(0);
+
+    const cachedHome = harness.cacheMap.get("redihealth-pages-v1")?.get("/ro");
+    expect(cachedHome).toBeDefined();
+    expect(cachedHome?.headers.get("set-cookie")).toBeNull();
+    expect(cachedHome?.headers.get("content-security-policy")).toBe("script-src 'nonce-abc'");
+
+    const cachePageMessages: Array<{ ok?: boolean }> = [];
+    await harness.dispatchWaitable("message", {
+      data: { type: "CACHE_PUBLIC_PAGE", url: "/ro/stiri/1", assets: [] },
+      ports: [{ postMessage: (msg: { ok?: boolean }) => cachePageMessages.push(msg) }],
+    });
+    expect(cachePageMessages).toEqual([{ ok: true, path: "/ro/stiri/1" }]);
+
+    // Warm /models binary while online
+    const modelOnline = await harness.dispatchFetch({
+      url: "https://redihealth.example/models/human-atlas-layers.bin",
+    });
+    expect(modelOnline?.status).toBe(200);
+
+    // Switch offline
+    const broadcastMessages: unknown[] = [];
+    (harness.selfMock.clients as { claim: unknown; matchAll?: unknown }).matchAll = vi
+      .fn()
+      .mockResolvedValue([{ postMessage: (msg: unknown) => broadcastMessages.push(msg) }]);
+    online = false;
+
+    // Unprefixed root and shortcut resolve via LAST_LOCALE_KEY ("ro")
+    const offlineRoot = await harness.dispatchFetch({
+      url: "https://redihealth.example/",
+      mode: "navigate",
+    });
+    expect(offlineRoot?.status).toBe(200);
+
+    const offlineShortcut = await harness.dispatchFetch({
+      url: "https://redihealth.example/health-check",
+      mode: "navigate",
+    });
+    expect(offlineShortcut?.status).toBe(200);
+
+    // RSC request on offline public path returns 503 for clean MPA fallback
+    const offlineRsc = await harness.dispatchFetch({
+      url: "https://redihealth.example/ro/health-check?_rsc=xyz",
+      mode: "cors",
+      headers: { RSC: "1" },
+    });
+    expect(offlineRsc?.status).toBe(503);
+
+    // /_next/image falls back offline to cached /images/hero-care.jpg
+    const offlineNextImage = await harness.dispatchFetch({
+      url: "https://redihealth.example/_next/image?url=%2Fimages%2Fhero-care.jpg&w=640&q=75",
+    });
+    expect(offlineNextImage?.status).toBe(200);
+    expect(await offlineNextImage?.text()).toBe("jpg-bytes");
+
+    // /models binary serves from MEDIA_CACHE offline
+    const offlineModel = await harness.dispatchFetch({
+      url: "https://redihealth.example/models/human-atlas-layers.bin",
+    });
+    expect(offlineModel?.status).toBe(200);
+    expect(await offlineModel?.text()).toBe("bin-bytes");
+
+    // Transitive dynamic /_next/static chunks discovered from main.js serve from STATIC_CACHE offline
+    const offlineLazy3d = await harness.dispatchFetch({
+      url: "https://redihealth.example/_next/static/chunks/lazy-3d.js",
+    });
+    expect(offlineLazy3d?.status).toBe(200);
+    expect(await offlineLazy3d?.text()).toContain("lazy-sub.js");
+
+    const offlineLazySub = await harness.dispatchFetch({
+      url: "https://redihealth.example/_next/static/chunks/lazy-sub.js",
+    });
+    expect(offlineLazySub?.status).toBe(200);
+    expect(await offlineLazySub?.text()).toBe("subChunk()");
+
+    // SW reports offline status and recovers cleanly when online navigation succeeds
+    const offlineStatusReplies: unknown[] = [];
+    await harness.dispatchWaitable("message", {
+      data: { type: "GET_OFFLINE_STATUS" },
+      ports: [{ postMessage: (msg: unknown) => offlineStatusReplies.push(msg) }],
+    });
+    expect(offlineStatusReplies).toEqual([{ offline: true }]);
+    expect(broadcastMessages).toEqual([{ type: "OFFLINE_STATUS", offline: true }]);
+
+    online = true;
+    const onlineRecover = await harness.dispatchFetch({
+      url: "https://redihealth.example/ro/health-check",
+      mode: "navigate",
+    });
+    expect(onlineRecover?.status).toBe(200);
+
+    const onlineStatusReplies: unknown[] = [];
+    await harness.dispatchWaitable("message", {
+      data: { type: "GET_OFFLINE_STATUS" },
+      ports: [{ postMessage: (msg: unknown) => onlineStatusReplies.push(msg) }],
+    });
+    expect(onlineStatusReplies).toEqual([{ offline: false }]);
+    expect(broadcastMessages).toEqual([
+      { type: "OFFLINE_STATUS", offline: true },
+      { type: "OFFLINE_STATUS", offline: false },
+    ]);
+  });
+
+  it("caches transitive static/immutable/chunks and handles query params and uncached chunks offline safely", async () => {
+    let online = true;
+    const harness = createSwHarness({
+      fetchImpl: async (input) => {
+        if (!online) throw new TypeError("Offline");
+        const url = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
+        const pathname = new URL(url, "https://redihealth.example").pathname;
+        if (pathname === "/ro") {
+          return new Response(
+            '<!doctype html><html><head><script src="/_next/static/immutable/chunks/entry.js?dpl=abc"></script></head><body>ok</body></html>',
+            { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } },
+          );
+        }
+        if (pathname === "/_next/static/immutable/chunks/entry.js") {
+          return new Response(
+            'Promise.all(["static/immutable/chunks/nested/mod-15181.js","static/immutable/media/font.woff2"].map(e=>e.l(e)))',
+            { status: 200, headers: { "Content-Type": "application/javascript", "Cache-Control": "public, max-age=31536000" } },
+          );
+        }
+        if (pathname === "/_next/static/immutable/chunks/nested/mod-15181.js") {
+          return new Response("widgetChunk()", {
+            status: 200,
+            headers: { "Content-Type": "application/javascript", "Cache-Control": "public, max-age=31536000" },
+          });
+        }
+        if (pathname === "/_next/static/immutable/media/font.woff2") {
+          return new Response("woff2-bytes", {
+            status: 200,
+            headers: { "Content-Type": "font/woff2", "Cache-Control": "public, max-age=31536000" },
+          });
+        }
+        return new Response("not found", { status: 404, headers: { "Content-Type": "text/plain" } });
+      },
+    });
+
+    const warmMessages: Array<{ ok?: boolean }> = [];
+    await harness.dispatchWaitable("message", {
+      data: { type: "WARM_OFFLINE_APP", lang: "ro", includeGuides: false, includeModels: false, assets: [] },
+      ports: [{ postMessage: (msg: { ok?: boolean }) => warmMessages.push(msg) }],
+    });
+    expect(warmMessages[0]?.ok).toBe(true);
+
+    online = false;
+
+    const cachedNested = await harness.dispatchFetch({
+      url: "https://redihealth.example/_next/static/immutable/chunks/nested/mod-15181.js?dpl=other",
+    });
+    expect(cachedNested?.status).toBe(200);
+    expect(await cachedNested?.text()).toBe("widgetChunk()");
+
+    const cachedMedia = await harness.dispatchFetch({
+      url: "https://redihealth.example/_next/static/immutable/media/font.woff2",
+    });
+    expect(cachedMedia?.status).toBe(200);
+
+    const missingChunk = await harness.dispatchFetch({
+      url: "https://redihealth.example/_next/static/immutable/chunks/missing.js",
+    });
+    expect(missingChunk?.status).toBe(504);
   });
 });
 
@@ -658,5 +960,82 @@ describe("pwa-state runtime and SSR safety", () => {
     }
     await updatePromise;
     expect(reload).toHaveBeenCalledTimes(1);
+  });
+
+  it("isolates redihealth-guides-v1 strictly to non-PHI /health-information routes and provides 7-locale print/offline actions", () => {
+    const swSrc = readFileSync(resolve(process.cwd(), "public/offline-worker.js"), "utf8");
+    expect(swSrc).toContain('GUIDES_CACHE = "redihealth-guides-v1"');
+    expect(swSrc).toContain("isHealthGuidePath");
+    expect(swSrc).toContain("CACHE_GUIDE");
+
+    const fnStart = swSrc.indexOf("function isHealthGuidePath");
+    const sandbox: { isHealthGuidePath?: (p: string) => boolean } = {};
+    vm.runInNewContext(
+      swSrc.slice(swSrc.indexOf("const SUPPORTED_LOCALES"), swSrc.indexOf("function buildOfflineFallbackResponse")),
+      sandbox,
+    );
+    expect(fnStart).toBeGreaterThan(-1);
+    expect(sandbox.isHealthGuidePath?.("/ro/health-information/heart-health")).toBe(true);
+    expect(sandbox.isHealthGuidePath?.("/en/health-information/articles/flu")).toBe(true);
+    expect(sandbox.isHealthGuidePath?.("/ro/health-information")).toBe(true);
+    for (const sensitivePath of [
+      "/ro/panel",
+      "/ro/panel/patient-1",
+      "/en/patient-portal",
+      "/ro/sign-in",
+      "/en/health-check/note",
+      "/api/tts",
+      "/ro/mediatori",
+    ]) {
+      expect(sandbox.isHealthGuidePath?.(sensitivePath), sensitivePath).toBe(false);
+    }
+
+    const actionsSrc = readFileSync(
+      resolve(process.cwd(), "src/components/health-information/GuideOfflinePrintActions.tsx"),
+      "utf8",
+    );
+    expect(actionsSrc).toContain("window.print()");
+    expect(actionsSrc).toContain("redihealth-guides-v1");
+    expect(actionsSrc).not.toContain("rounded-full");
+
+    for (const loc of ALL_LANGS) {
+      const copy = GUIDE_OFFLINE_PRINT_COPY[loc];
+      expect(copy.printLabel.trim().length).toBeGreaterThan(0);
+      expect(copy.saveLabel.trim().length).toBeGreaterThan(0);
+      expect(copy.savedStatus.trim().length).toBeGreaterThan(0);
+      expect(copy.printLabel).not.toContain("&");
+      expect(copy.saveLabel).not.toContain("&");
+      const html = renderToStaticMarkup(createElement(GuideOfflinePrintActions, { lang: loc, title: "Test" }));
+      expect(html).toContain("min-h-11");
+      expect(html).toContain("whitespace-nowrap");
+      expect(html).toContain(copy.printLabel);
+      expect(html).toContain(copy.saveLabel);
+    }
+  });
+
+  it("validates OFFLINE_UI_COPY across all 7 locales with sentence case and <= 26-char buttons", () => {
+    const buttonFields: (keyof OfflineUiCopy)[] = [
+      "dismissLabel",
+      "openSymptomCheck",
+      "openGuides",
+    ];
+    for (const lang of ALL_LANGS) {
+      const copy = getOfflineUiCopy(lang);
+      expect(copy).toBe(OFFLINE_UI_COPY[lang]);
+
+      for (const btnKey of buttonFields) {
+        expect(copy[btnKey].length, `${lang}.${btnKey}`).toBeLessThanOrEqual(26);
+      }
+
+      for (const [key, value] of Object.entries(copy)) {
+        expect(value.trim(), `${lang}.${key}`).not.toBe("");
+        expect(value, `${lang}.${key} &`).not.toContain("&");
+        expect(value, `${lang}.${key} ·`).not.toContain("\u00b7");
+        expect(/^\p{Lu}/u.test(value), `${lang}.${key} uppercase start`).toBe(true);
+        const allCaps = value.match(/\b[\p{Lu}]{2,}\b/gu) ?? [];
+        expect(allCaps, `${lang}.${key} ALL CAPS`).toEqual([]);
+      }
+    }
+    expect(getOfflineUiCopy("fr")).toBe(OFFLINE_UI_COPY.en);
   });
 });

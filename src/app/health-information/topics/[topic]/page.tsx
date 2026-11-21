@@ -73,7 +73,7 @@ export default async function HealthSummaryPage({ params }: Props) {
       {/* Long read: a hairline under the header fills as the page is read. */}
       <div className="read-progress" aria-hidden="true" />
       <article lang={summary.contentLanguage}>
-      <HealthArticleShell className="pb-0 sm:pb-0">
+      <HealthArticleShell className="pb-0 sm:pb-0 print:pb-0">
         <HealthArticleBackLink
           href={withLangPrefix("/health-information#health-topics", lang)}
           label={copy.back}
@@ -96,6 +96,7 @@ export default async function HealthSummaryPage({ params }: Props) {
                 uiLang={lang}
                 contentLang={summary.contentLanguage}
                 textToSpeak={narrationText}
+                saveTitle={summary.title}
               />
             }
           />
@@ -108,9 +109,9 @@ export default async function HealthSummaryPage({ params }: Props) {
         sections={toc.items.map((item) => ({ id: item.href.slice(1), label: item.label }))}
       />
 
-      <HealthArticleShell className="pt-6 sm:pt-8">
+      <HealthArticleShell className="pt-6 sm:pt-8 print:pt-4">
 
-          <section aria-labelledby="summary-overview" className="mt-10">
+          <section aria-labelledby="summary-overview">
             <h2 id="summary-overview" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
               {copy.overview}
             </h2>
@@ -157,7 +158,7 @@ export default async function HealthSummaryPage({ params }: Props) {
             <a
               href={summary.sourceUrl}
               hrefLang="en"
-              className="mt-3 inline-flex min-h-11 items-center gap-2 text-body font-semibold text-sapphire underline underline-offset-4 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="mt-3 inline-flex min-h-11 min-w-0 items-center gap-2 break-words text-body font-semibold text-sapphire underline underline-offset-4 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:hover:text-paper"
             >
               {copy.sourceLink}
               <ArrowRightIcon className="h-4 w-4 shrink-0 -rotate-45" aria-hidden="true" />

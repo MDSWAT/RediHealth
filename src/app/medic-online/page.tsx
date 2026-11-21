@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { MedicOnlineHero } from "@/components/telemed/MedicOnlineHero";
+import { onlineDoctorUnavailableCopy } from "@/components/telemed/OnlineDoctorUnavailable";
 import { Container } from "@/components/ui/Container";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
 import type { Lang } from "@/lib/i18n/translations";
+import { isOnlineDoctorAvailable } from "@/lib/online-doctor";
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLang();
@@ -19,7 +21,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: localizedPageTitle(lang, "medic-online", "Doctor online - RediHealth"),
-    description: descriptions[lang] ?? descriptions.en,
+    description: isOnlineDoctorAvailable(lang)
+      ? (descriptions[lang] ?? descriptions.en)
+      : onlineDoctorUnavailableCopy[lang].title,
   };
 }
 
@@ -61,7 +65,7 @@ const copy: Record<
     smsSender: "SMS от RediHealth",
     smsTime: "14:15",
     smsBody: "Звонок с врачом Еленой Попеску начнётся в 14:20. Откройте в браузере:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Письменные рекомендации после звонка",
     adviceDoctor: "Д-р Елена Попеску",
     adviceItems: [
@@ -88,7 +92,7 @@ const copy: Record<
     smsSender: "SMS de la RediHealth",
     smsTime: "14:15",
     smsBody: "Apelul cu dr. Elena Popescu începe la 14:20. Deschide în browser:",
-    smsLinkText: "redihealth.org/apel",
+    smsLinkText: "redi.healthcare/apel",
     adviceTitle: "Sfaturi scrise după apel",
     adviceDoctor: "Dr. Elena Popescu",
     adviceItems: [
@@ -114,7 +118,7 @@ const copy: Record<
     smsSender: "SMS from RediHealth",
     smsTime: "14:15",
     smsBody: "Your call with Dr. Elena Popescu starts at 14:20. Open in your browser:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Written advice after the call",
     adviceDoctor: "Dr. Elena Popescu",
     adviceItems: [
@@ -140,7 +144,7 @@ const copy: Record<
     smsSender: "SMS nga RediHealth",
     smsTime: "14:15",
     smsBody: "Thirrja me dr. Elena Popescu fillon në 14:20. Hape në shfletues:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Këshilla me shkrim pas thirrjes",
     adviceDoctor: "Dr. Elena Popescu",
     adviceItems: [
@@ -166,7 +170,7 @@ const copy: Record<
     smsSender: "SMS da RediHealth",
     smsTime: "14:15",
     smsBody: "La chiamata con la dott.ssa Elena Popescu inizia alle 14:20. Apri nel browser:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Consigli scritti dopo la chiamata",
     adviceDoctor: "Dott.ssa Elena Popescu",
     adviceItems: [
@@ -192,7 +196,7 @@ const copy: Record<
     smsSender: "SMS od RediHealth",
     smsTime: "14:15",
     smsBody: "Poziv s dr. Elenom Popescu počinje u 14:20. Otvori u pregledniku:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Pisani savjet nakon poziva",
     adviceDoctor: "Dr. Elena Popescu",
     adviceItems: [
@@ -218,7 +222,7 @@ const copy: Record<
     smsSender: "SMS katar RediHealth",
     smsTime: "14:15",
     smsBody: "O svato e dr. Elena Popescu shirdel ko 14:20. Putar and-o brauzero:",
-    smsLinkText: "redihealth.org/call",
+    smsLinkText: "redi.healthcare/call",
     adviceTitle: "Lekhavde sikavimata palo svato",
     adviceDoctor: "Dr. Elena Popescu",
     adviceItems: [
@@ -236,6 +240,15 @@ const copy: Record<
 export default async function MedicOnlinePage() {
   const lang = await getRequestLang();
   const c = copy[lang] ?? copy.en;
+
+  // Not offered for this language (Croatia): the hero shows the notice, and the steps of a call are left out.
+  if (!isOnlineDoctorAvailable(lang)) {
+    return (
+      <main id="main-content" className="min-h-screen bg-background">
+        <MedicOnlineHero />
+      </main>
+    );
+  }
 
   return (
     <main id="main-content" className="min-h-screen bg-background">

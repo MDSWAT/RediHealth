@@ -10,9 +10,26 @@
   transition: clip-path var(--dur-slower) var(--ease-out-expo) 40ms;
 }
 
+.photo img {
+  transform: scale(1);
+  transition: transform var(--dur-slower) var(--ease-out-expo) 40ms;
+}
+
 .card[data-shown="false"] .photo {
   clip-path: inset(0 0 100% 0);
   transition: clip-path 0s linear var(--dur-base);
+}
+
+.card[data-shown="false"] .photo img {
+  transform: scale(1.06);
+  transition: transform 0s linear var(--dur-base);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .card[data-shown="true"]:hover .photo img {
+    transform: scale(1.03);
+    transition: transform var(--dur-slow) var(--ease-out-calm);
+  }
 }
 
 /* The name of the topic on the card carries a sapphire rule under it. When the card moves on,
@@ -49,8 +66,11 @@ a:focus-visible > .name:not([data-current]) {
 
 @media (prefers-reduced-motion: reduce) {
   .photo,
-  .card[data-shown="false"] .photo {
+  .photo img,
+  .card[data-shown="false"] .photo,
+  .card[data-shown="false"] .photo img {
     clip-path: none;
+    transform: none;
     transition: none;
   }
 
@@ -60,8 +80,11 @@ a:focus-visible > .name:not([data-current]) {
 }
 
 html[data-calm-motion] .photo,
-html[data-calm-motion] .card[data-shown="false"] .photo {
+html[data-calm-motion] .photo img,
+html[data-calm-motion] .card[data-shown="false"] .photo,
+html[data-calm-motion] .card[data-shown="false"] .photo img {
   clip-path: none;
+  transform: none;
   transition: none;
 }
 

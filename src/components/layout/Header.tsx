@@ -10,17 +10,19 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import {
+  AiAssistantIcon,
+  ChevronRightIcon,
   CloseIcon,
   DownloadIcon,
-  ExternalLinkIcon,
+  HomeIcon,
   MenuIcon,
-  MessageDotsIcon,
   PhoneIcon,
-  ChevronRightIcon,
   RefreshIcon,
   SearchIcon,
   UserIcon,
+  VideoIcon,
 } from "@/components/ui/icons";
+import { AI_CHAT_COPY } from "@/components/health-assistant/ai-chat-copy";
 import {
   feedbackTriggerCopy,
   openReportIssue,
@@ -32,7 +34,6 @@ import { LanguageSelector } from "@/components/layout/LanguageSelector";
 import {
   NAV_FULL_NAME_ON_WIDE,
   NAV_LINK_ICONS,
-  NAV_ONLINE_DOCTOR_LABEL,
   NAV_SHORT_LABELS,
   type NavLinkHref,
 } from "@/components/layout/nav-links";
@@ -50,11 +51,13 @@ import {
   preloadSmartSearch,
 } from "@/components/search/smart-search-events";
 import { cn } from "@/lib/cn";
+import { errorTranslations } from "@/lib/i18n/error-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { withLangPrefix, stripLangFromPathname } from "@/lib/i18n/routing";
 import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { applyPwaUpdate, openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-state";
+import { useOnlineStatus } from "@/lib/pwa/use-online-status";
 
 const EmergencyDialerGate = dynamic(
   () => import("@/components/emergency/EmergencyDialerGate").then((mod) => mod.EmergencyDialerGate),
@@ -69,11 +72,12 @@ const DRAWER_FOCUS =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper";
 const DRAWER_ROW_MOTION =
   "press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none";
+const DRAWER_CARD =
+  "border border-border/90 bg-card shadow-[0_1px_2px_rgb(15_23_42/0.04),0_4px_12px_-6px_rgb(29_53_87/0.09)] dark:border-white/12 dark:bg-ink-900 dark:shadow-none";
 
 /**
- * Site header: six one-word destinations on xl+ (including health mediators),
- * compact utility actions (search trigger, comfort menu, language ISO selector,
- * 44px account link) from md+ upward, and below lg a focus-trapped menu drawer.
+ * Site header: six clear, non-overlapping destinations in both the desktop bar and
+ * the mobile drawer primary list, plus compact utility actions inside the capsule.
  */
 export function Header({ emergencyDismissed = false }: { emergencyDismissed?: boolean } = {}) {
   const headerRef = useRef<HTMLElement>(null);
@@ -81,13 +85,10 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const { trackRef: glideTrackRef, plateRef: glidePlateRef } = useCapsuleGlide<HTMLDivElement>();
 
-  // Publish the header's height while it is pinned, so in-page sticky columns sit below it.
   useEffect(() => {
     const el = headerRef.current;
     if (!el) return;
     const root = document.documentElement;
-    // Measure the sticky header's full border-box height (including its 1px bottom border and optional 112 strip)
-    // so `--site-header-h` matches to the subpixel whether the emergency banner is shown or dismissed.
     const publish = () => {
       const pinned = getComputedStyle(el).position === "sticky";
       const measured = el.getBoundingClientRect().height;
@@ -119,7 +120,11 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
   const { lang, t } = useLanguage();
   const tHeader = t.header;
   const chrome = getChromeCopy(lang);
+  const aiCopy = AI_CHAT_COPY[lang] ?? AI_CHAT_COPY.ro;
+  const isLiveDoctorActive = currentPath === "/medic-online" || currentPath.startsWith("/medic-online/");
+  const isAiAssistantActive = currentPath === "/ai-assistant" || currentPath.startsWith("/ai-assistant/");
   const searchCopy = getSmartSearchTriggerCopy(lang);
+  const isOnline = useOnlineStatus();
   const pwa = usePwaSnapshot();
   const pwaCopy = getPwaCopy(lang);
   const showInstallTrigger = !pwa.isStandalone && !pwa.hasUpdate;
@@ -131,8 +136,10 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
         ? pwaCopy.updateNow
         : pwaCopy.refreshApp;
 
+  // Transparent over the dark landing hero at the top of the page; transitions to the solid
+  // blurred bar on scroll, on inner pages, or while the white mobile drawer is open.
   const isTransparent = currentPath === "/" && !scrolled && !mobileOpen;
-  const onDarkBar = isTransparent || mobileOpen;
+  const onDarkBar = isTransparent;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -141,7 +148,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [currentPath]);
 
   useEffect(() => {
     if (typeof document === "undefined" || !document.cookie.includes("session-token")) {
@@ -152,15 +159,15 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
       .catch(() => setAuthenticated(false));
   }, []);
 
-  // Phone/tablet menu: lock the page behind it, fit it to the screen, move initial focus inside,
-  // trap Tab/Shift+Tab, and close on Escape, browser back/forward, or resizing to lg+.
   useEffect(() => {
     if (!mobileOpen) return;
+    if (mobileMenuRef.current) {
+      mobileMenuRef.current.scrollTop = 0;
+    }
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     const fit = () => {
-      // With larger comfort text the bar keeps the menu up to 1280px (see globals.css).
       const largeText = ["large", "xl"].includes(document.documentElement.dataset.textScale ?? "");
       if (window.innerWidth >= (largeText ? 1280 : 1024)) {
         setOpenDrawerSection(null);
@@ -226,7 +233,6 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
     };
   }, [mobileOpen]);
 
-  // Link clicks navigate, so they only close. A close that stays on the page hands focus back to the toggle.
   const closeMobile = () => {
     setOpenDrawerSection(null);
     setMobileOpen(false);
@@ -237,37 +243,24 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
     menuButtonRef.current?.focus();
   };
 
-  // Ordered by need: get help now, find care nearby, talk to a doctor, then reading.
-  // Pharmacies come before the doctor: for many people the pharmacy is the first stop.
-  const helpLinks: { label: string; href: NavLinkHref; subtext: string }[] = [
-    { label: tHeader.navCere, href: "/health-assistant", subtext: tHeader.navCereSub },
-    { label: findHelpLinks(lang).nav, href: "/find-help", subtext: findHelpLinks(lang).navDescription },
-    { label: tHeader.navMedic, href: "/medic-online", subtext: tHeader.navMedicSub },
-  ];
-  const readingLinks: { label: string; href: NavLinkHref; subtext: string }[] = [
+  const primaryLinks: { label: string; href: NavLinkHref; subtext: string }[] = [
     { label: tHeader.navAfla, href: "/health-information", subtext: tHeader.navAflaSub },
+    { label: tHeader.navSymptoms, href: "/health-check", subtext: tHeader.navSymptomsSub },
+    { label: tHeader.navMedicine, href: "/prescription-review", subtext: tHeader.navMedicineSub },
+    { label: findHelpLinks(lang).nav, href: "/find-help", subtext: findHelpLinks(lang).navDescription },
+    { label: tHeader.forMediators, href: "/mediatori", subtext: tHeader.forMediatorsSub },
     { label: tHeader.navStiri, href: "/stiri", subtext: tHeader.navStiriSub },
   ];
 
-  const primaryLinks = [...helpLinks, ...readingLinks];
-
-  // The desktop bar keeps the people who help together: mediators sit with the help links, before reading.
-  const desktopLinks: { label: string; href: NavLinkHref; subtext: string }[] = [
-    ...helpLinks,
-    { label: tHeader.forMediators, href: "/mediatori", subtext: tHeader.forMediatorsSub },
-    ...readingLinks,
-  ];
-
-  const isGuidanceRoute =
-    currentPath === "/health-assistant" ||
-    currentPath.startsWith("/health-assistant/") ||
-    currentPath === "/health-check" ||
-    currentPath.startsWith("/health-check/") ||
-    currentPath === "/prescription-review" ||
-    currentPath.startsWith("/prescription-review/");
-
   const isActiveHref = (href: string) => {
-    if (href === "/health-assistant") return isGuidanceRoute;
+    if (href === "/stiri") {
+      return (
+        currentPath === "/stiri" ||
+        currentPath.startsWith("/stiri/") ||
+        currentPath === "/news" ||
+        currentPath.startsWith("/news/")
+      );
+    }
     return currentPath === href || (href !== "/" && currentPath.startsWith(`${href}/`));
   };
 
@@ -275,56 +268,50 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
     ? { href: "/panel", label: tHeader.medicalPanel }
     : { href: "/contul-meu", label: tHeader.myAccount };
 
-  const isMediatorsActive = isActiveHref("/mediatori");
   const isPortalActive = isActiveHref(portalLink.href);
+  const isHomeActive = currentPath === "/";
+  // The phone menu's Home row reuses the error page's wording, already written in all seven languages.
+  const homeLabel = (errorTranslations[lang] ?? errorTranslations.ro).home;
   const containerSize = "default";
 
   return (
     <>
       <header
         ref={headerRef}
+        data-transparent={isTransparent ? "true" : undefined}
         className={cn(
-          // scroll-edge: the hairline and soft shadow build as the page scrolls under the bar (scroll-linked, so
-          // it holds still for anyone not scrolling). In dark the hairline token follows the bar's own edge.
-          "site-header shadow-2xs scroll-edge sticky top-0 z-50 transition-[background-color,border-color] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:[--color-border:rgb(255_255_255/0.1)]",
-          // Solid ground once the page moves under it: no translucent glass.
+          "site-header sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter,box-shadow] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:[--color-border:rgb(255_255_255/0.1)]",
           isTransparent
-            ? "border-b border-transparent bg-transparent text-paper"
-            : "border-b border-border bg-background text-foreground dark:border-white/10 dark:bg-ink-950 dark:text-paper",
-          // While the phone menu is open the whole header (112 line, bar and menu) takes its deep blue
-          // styling, so the open menu is one calm full-screen surface under the button that opened it.
-          mobileOpen && "dark",
+            ? "border-b border-transparent bg-transparent text-paper shadow-none"
+            : mobileOpen
+              ? "border-b border-border/80 bg-white text-foreground shadow-none dark:border-white/10 dark:bg-ink-950 dark:text-paper"
+              : "shadow-2xs scroll-edge border-b border-border/85 bg-background/90 text-foreground backdrop-blur-xl supports-[backdrop-filter]:bg-background/82 dark:border-white/10 dark:bg-ink-950/90 dark:text-paper",
         )}
       >
-        {/* The 112 line rides on top of the bar, so it stays in view while the page scrolls. */}
-        <UniversalEmergencyBanner tone={isTransparent || mobileOpen ? "dark" : "light"} size={containerSize} initiallyDismissed={emergencyDismissed} />
+        {!mobileOpen && (
+          <UniversalEmergencyBanner tone={isTransparent ? "dark" : "light"} size={containerSize} initiallyDismissed={emergencyDismissed} />
+        )}
         <Container
           size={containerSize}
           data-header-bar=""
-          className="max-w-[80rem] pt-2.5 max-sm:px-3 max-[359px]:px-2 2xl:max-w-[96rem] 2xl:px-5"
+          className="max-w-[80rem] pt-2.5 max-md:pt-1 max-sm:px-3 max-[359px]:px-2 2xl:max-w-[96rem] 2xl:px-5"
         >
-          <div className="flex h-16 items-center justify-between gap-1 sm:gap-3 2xl:gap-2">
+          <div className="flex h-16 items-center justify-between gap-1 max-md:h-14 sm:gap-3 2xl:gap-2">
             <Logo
-              className="shrink-0 whitespace-nowrap"
-              tone={isTransparent || mobileOpen ? "light" : "default"}
+              className="min-h-11 shrink-0 whitespace-nowrap"
+              tone={isTransparent ? "light" : "default"}
               href={withLangPrefix("/", lang)}
               label={chrome.homeLink}
+              onClick={closeMobile}
             />
 
-            {/* Desktop destinations (from 1024px: six one-word links fit alongside the utilities in all 7 locales,
-                because search drops to its icon until xl) */}
+            {/* Desktop destinations (lg+): six clear tabs aligned with #mobile-menu */}
             <nav aria-label={chrome.primaryNav} data-desktop-nav="" className="hidden min-w-0 lg:block">
               <ul className="flex items-center gap-0.5">
-                {desktopLinks.map((link) => {
+                {primaryLinks.map((link) => {
                   const isActive = isActiveHref(link.href);
                   const shortLabel = (NAV_SHORT_LABELS[lang] ?? NAV_SHORT_LABELS.ro)[link.href];
-                  // One word from 1024px; from 1536px the unclear names get their second word.
-                  const wideLabel =
-                    link.href === "/medic-online"
-                      ? (NAV_ONLINE_DOCTOR_LABEL[lang] ?? NAV_ONLINE_DOCTOR_LABEL.ro)
-                      : NAV_FULL_NAME_ON_WIDE.includes(link.href)
-                        ? link.label
-                        : shortLabel;
+                  const wideLabel = NAV_FULL_NAME_ON_WIDE.includes(link.href) ? link.label : shortLabel;
 
                   return (
                     <li key={link.href}>
@@ -334,13 +321,13 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                         aria-current={isActive ? "page" : undefined}
                         title={link.label}
                         className={cn(
-                          "tab-ink relative flex min-h-11 flex-col justify-center rounded-lg px-2 py-1.5 xl:px-2.5 min-[1400px]:px-3 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
+                          "tab-ink relative flex min-h-11 flex-col justify-center rounded-lg px-2 py-1.5 xl:px-2.5 2xl:px-2 min-[1600px]:px-3 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2",
                           isTransparent
                             ? isActive
                               ? "font-semibold text-white focus-visible:ring-paper/70"
-                              : "font-medium text-paper/80 hover:bg-white/10 hover:text-white focus-visible:ring-paper/70"
+                              : "font-medium text-paper/85 hover:bg-white/10 hover:text-white focus-visible:ring-paper/70"
                             : isActive
-                              ? "font-semibold text-sapphire focus-visible:ring-ring dark:text-paper dark:focus-visible:ring-paper"
+                              ? "font-semibold text-rose-ink focus-visible:ring-ring dark:text-paper dark:focus-visible:ring-paper"
                               : "font-medium text-foreground/85 hover:bg-muted hover:text-foreground focus-visible:ring-ring dark:text-paper/80 dark:hover:bg-white/10 dark:hover:text-paper dark:focus-visible:ring-paper",
                         )}
                       >
@@ -361,9 +348,33 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
             </nav>
 
             {/* One capsule holds every utility: no control carries a box of its own. */}
-            <div ref={glideTrackRef} className={cn(capsuleSurface(onDarkBar), "shrink-0")}>
-              {!mobileOpen ? <CapsuleGlidePlate plateRef={glidePlateRef} onHero={isTransparent} /> : null}
+            <div
+              ref={glideTrackRef}
+              className={cn(
+                capsuleSurface(onDarkBar),
+                "shrink-0",
+                mobileOpen && "max-md:border-transparent max-md:p-0 max-md:shadow-none max-md:before:hidden",
+              )}
+            >
+              {!mobileOpen ? <CapsuleGlidePlate plateRef={glidePlateRef} onHero={onDarkBar} /> : null}
               <div className="hidden shrink-0 items-center gap-0.5 md:flex">
+                {isOnline && (
+                  <>
+                    <Link
+                      href={withLangPrefix("/ai-assistant", lang)}
+                      onClick={() => setOpenHeaderMenu(null)}
+                      aria-current={isAiAssistantActive ? "page" : undefined}
+                      aria-label={aiCopy.title}
+                      title={aiCopy.title}
+                      data-capsule-item=""
+                      className={cn(capsuleItem(onDarkBar, isAiAssistantActive), "px-3 text-[0.9375rem]")}
+                    >
+                      <AiAssistantIcon className="h-4.5 w-4.5 shrink-0 opacity-90" aria-hidden="true" />
+                      <span>{aiCopy.shortLabel}</span>
+                    </Link>
+                    <span aria-hidden="true" className={capsuleDivider(onDarkBar)} />
+                  </>
+                )}
                 <button
                   type="button"
                   onPointerEnter={preloadSmartSearch}
@@ -381,7 +392,6 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                   className={cn(capsuleItem(onDarkBar), "pl-3.5 pr-3 text-[0.9375rem] lg:max-xl:w-11 lg:max-xl:px-0")}
                 >
                   <SearchIcon className="h-4.5 w-4.5 shrink-0 opacity-85" aria-hidden="true" />
-                  {/* From lg to xl the six links need the room, so search shows its icon alone (the label stays in aria-label). */}
                   <span className="lg:max-xl:hidden">{searchCopy.triggerLabel}</span>
                   <kbd
                     aria-hidden="true"
@@ -414,7 +424,6 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                 />
                 <span aria-hidden="true" className={capsuleDivider(onDarkBar)} />
 
-                {/* Account is one click away. Install lives on the account screen and in the menu, not in the bar. */}
                 <Link
                   href={withLangPrefix(portalLink.href, lang)}
                   onClick={() => {
@@ -446,34 +455,16 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     title={searchCopy.triggerLabel}
                     data-capsule-item=""
                     data-search-trigger=""
-                    className={cn(capsuleItem(isTransparent), "w-11")}
+                    className={cn(capsuleItem(onDarkBar), "w-11")}
                   >
                     <SearchIcon className="h-4.5 w-4.5 shrink-0 opacity-85" aria-hidden="true" />
                     <span className="sr-only">{searchCopy.triggerLabel}</span>
                   </button>
-                  <ComfortMenu tone={isTransparent ? "light" : "default"} />
+                  <ComfortMenu tone={onDarkBar ? "light" : "default"} />
                   <span
                     aria-hidden="true"
-                    className={cn(capsuleDivider(isTransparent), "max-[359px]:hidden")}
+                    className={cn(capsuleDivider(onDarkBar), "max-[359px]:hidden")}
                   />
-                </div>
-              )}
-
-              {/* While the phone menu is open, surface Account directly next to Close */}
-              {mobileOpen && (
-                <div className="flex items-center gap-1 md:hidden">
-                  <Link
-                    href={withLangPrefix(portalLink.href, lang)}
-                    onClick={closeMobile}
-                    aria-current={isPortalActive ? "page" : undefined}
-                    aria-label={portalLink.label}
-                    title={portalLink.label}
-                    data-capsule-item=""
-                    data-mobile-account-trigger=""
-                    className={cn(capsuleItem(true, isPortalActive), "w-11")}
-                  >
-                    <UserIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
-                  </Link>
                 </div>
               )}
 
@@ -485,7 +476,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                 data-header-trigger=""
                 title={mobileOpen ? tHeader.closeMenu : tHeader.openMenu}
                 className={cn(
-                  mobileOpen ? capsuleCloseItem() : capsuleItem(isTransparent, false),
+                  mobileOpen ? capsuleCloseItem() : capsuleItem(onDarkBar, false),
                   "gap-1.5 px-3 whitespace-nowrap text-meta font-semibold max-[359px]:gap-1 max-[359px]:px-2.5 lg:hidden",
                 )}
                 aria-expanded={mobileOpen}
@@ -498,7 +489,6 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                   });
                 }}
               >
-                {/* The glyph hands over in place (keyed, so each swap replays a short settle). */}
                 {mobileOpen ? (
                   <CloseIcon key="close" className="h-5 w-5 shrink-0" aria-hidden="true" />
                 ) : (
@@ -522,9 +512,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
           )}
         />
 
-        {/* Phone/tablet menu: full screen below the bar, in the same deep blue as the bar while it is open.
-            It opens downward from the Menu button that owns it (a short fade and settle, nothing flying
-            in), traps Tab focus, and scrolls independently. The same button, now Close, shuts it. */}
+        {/* Phone/tablet menu: full screen below the bar. */}
         <div
           ref={mobileMenuRef}
           id="mobile-menu"
@@ -534,88 +522,165 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
           inert={!mobileOpen}
           style={{ height: drawerHeight ?? "calc(100dvh - var(--site-header-h, 4rem))" }}
           className={cn(
-            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain border-t border-border bg-paper text-foreground dark:border-white/10 dark:bg-ink-950 dark:text-paper print:hidden lg:hidden",
-            "transition-[opacity,translate,visibility] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain bg-white text-foreground dark:bg-ink-950 dark:text-paper print:hidden lg:hidden",
+            "transition-[opacity,translate,visibility] duration-(--dur-base) ease-(--ease-out-expo) motion-reduce:transition-none",
             mobileOpen
               ? "visible translate-y-0 opacity-100"
               : "pointer-events-none invisible -translate-y-2 opacity-0",
           )}
         >
-          {/* Same width and side padding as the bar, so the rows line up under the logo instead of
-              sitting in a narrow centred column on tablets. */}
-          <Container className="flex min-h-full flex-col gap-2 py-2.5 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
-            <button
-              type="button"
-              onPointerEnter={preloadSmartSearch}
-              onFocus={preloadSmartSearch}
-              onClick={() => {
-                closeMobile();
-                openSmartSearch();
-              }}
+          <Container className="flex min-h-full flex-col gap-1.5 pt-1.5">
+            {/* Language first: floating white bar so a reader finds their language right away. */}
+            <div
               style={{ "--i": 0 } as CSSProperties}
+              data-menu-card=""
               className={cn(
                 mobileOpen && "list-in",
-                "flex min-h-11 w-full max-w-full items-center gap-2.5 whitespace-nowrap rounded-xl md:hidden bg-ink-950/[0.05] px-3 py-1.5 text-left text-ink-900 press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-ink-950/[0.09] dark:bg-white/8 dark:text-paper dark:hover:bg-white/12",
-                DRAWER_FOCUS,
+                "rounded-[0.875rem] md:hidden",
+                DRAWER_CARD,
               )}
             >
-              <SearchIcon className="h-4.5 w-4.5 shrink-0 text-ink-900/50 dark:text-paper/55" aria-hidden="true" />
-              <span className="min-w-0 flex-1 overflow-hidden text-ellipsis text-body text-ink-900/65 dark:text-paper/65">
-                {searchCopy.triggerPlaceholder}
-              </span>
-            </button>
+              <LanguageSelector
+                variant="drawer"
+                listRow
+                open={openDrawerSection === "language"}
+                onOpenChange={(next) =>
+                  setOpenDrawerSection((prev) => (next ? "language" : prev === "language" ? null : prev))
+                }
+                onNavigate={closeMobile}
+              />
+            </div>
 
-            {/* Primary destinations */}
-            <nav aria-label={chrome.primaryNav}>
-              <ul className="divide-y divide-ink-900/8 dark:divide-white/10">
-                {primaryLinks.map((link, index) => {
+            {/* Featured care pair: two-column sapphire video doctor and crisp white AI assistant */}
+            <div
+              style={{ "--i": 1 } as CSSProperties}
+              className={cn(
+                mobileOpen && "list-in",
+                isOnline ? "grid grid-cols-2 gap-2" : "grid grid-cols-1 gap-2",
+              )}
+            >
+              <Link
+                href={withLangPrefix("/medic-online", lang)}
+                aria-current={isLiveDoctorActive ? "page" : undefined}
+                onClick={closeMobile}
+                className={cn(
+                  "btn-sheen press-row group flex min-h-21 min-w-0 flex-col justify-between rounded-(--radius-surface) bg-linear-to-br from-sapphire to-sapphire-light p-3 text-white shadow-[0_6px_16px_-6px_rgb(29_53_87/0.38)] ring-1 ring-inset ring-white/12 transition-[background-color,box-shadow,filter] duration-(--dur-fast) ease-(--ease-out-calm) hover:brightness-106 motion-reduce:transition-none max-[359px]:p-2.5",
+                  DRAWER_FOCUS,
+                  isLiveDoctorActive && "ring-2 ring-white/50 ring-inset",
+                )}
+              >
+                <span className="flex items-center justify-between gap-2">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/15 text-white"
+                  >
+                    <VideoIcon className="h-4.5 w-4.5" />
+                  </span>
+                  <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-white/80" aria-hidden="true" />
+                </span>
+                <span className="mt-2 block min-w-0">
+                  <span className="block font-display text-[0.9375rem] font-semibold leading-tight tracking-[-0.015em] text-white">
+                    {chrome.liveDoctor}
+                  </span>
+                  <span className="mt-0.5 block text-[0.8125rem] leading-snug text-on-sapphire-muted [overflow-wrap:break-word] max-[359px]:text-[0.75rem]">
+                    {chrome.liveDoctorSub}
+                  </span>
+                </span>
+              </Link>
+
+              {isOnline && (
+                <Link
+                  href={withLangPrefix("/ai-assistant", lang)}
+                  aria-current={isAiAssistantActive ? "page" : undefined}
+                  onClick={closeMobile}
+                  data-menu-card=""
+                  className={cn(
+                    "press-row group flex min-h-21 min-w-0 flex-col justify-between rounded-(--radius-surface) p-3 text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none max-[359px]:p-2.5",
+                    DRAWER_CARD,
+                    DRAWER_FOCUS,
+                    isAiAssistantActive
+                      ? "border-sapphire-border/80 bg-sapphire-soft/90 dark:border-white/25 dark:bg-sapphire/25 dark:text-paper"
+                      : "hover:border-sapphire-border/75 hover:bg-sapphire-soft/45 dark:text-paper dark:hover:bg-white/[0.06]",
+                  )}
+                >
+                  <span className="flex items-center justify-between gap-2">
+                    <span
+                      aria-hidden="true"
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire dark:bg-sapphire/25 dark:text-sapphire-border"
+                    >
+                      <AiAssistantIcon className="h-4.5 w-4.5" />
+                    </span>
+                    <ChevronRightIcon
+                      className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/75 dark:text-mist/75"
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <span className="mt-2 block min-w-0">
+                    <span className="block font-display text-[0.9375rem] font-semibold leading-tight tracking-[-0.015em] text-foreground dark:text-paper">
+                      {aiCopy.navLabel}
+                    </span>
+                    <span className="mt-0.5 block text-[0.8125rem] font-normal leading-snug text-muted-foreground [overflow-wrap:break-word] max-[359px]:text-[0.75rem] dark:text-mist">
+                      {chrome.aiAssistantSub}
+                    </span>
+                  </span>
+                </Link>
+              )}
+            </div>
+
+            {/* 6 core destinations: single-column editorial list inside one floating white card */}
+            <nav
+              aria-label={chrome.primaryNav}
+              style={{ "--i": 2 } as CSSProperties}
+              className={cn(mobileOpen && "list-in")}
+            >
+              <ul
+                data-menu-card=""
+                className={cn(
+                  "divide-y divide-border/75 overflow-hidden rounded-(--radius-surface) dark:divide-white/10",
+                  DRAWER_CARD,
+                )}
+              >
+                {primaryLinks.map((link) => {
                   const isActive = isActiveHref(link.href);
                   const NavIcon = NAV_LINK_ICONS[link.href];
+                  const shortLabel = (NAV_SHORT_LABELS[lang] ?? NAV_SHORT_LABELS.ro)[link.href];
+                  const isMediatorLink = link.href === "/mediatori";
 
                   return (
-                    <li
-                      key={link.href}
-                      style={{ "--i": index + 1 } as CSSProperties}
-                      className={cn(mobileOpen && "list-in")}
-                    >
+                    <li key={link.href}>
                       <Link
                         href={withLangPrefix(link.href, lang)}
                         aria-current={isActive ? "page" : undefined}
                         onClick={closeMobile}
                         className={cn(
-                          "group flex min-h-12 items-center gap-3 rounded-lg px-2.5 py-1.5",
+                          "group flex min-h-11 w-full items-center gap-2.5 px-3 py-1",
                           DRAWER_ROW_MOTION,
                           DRAWER_FOCUS,
                           isActive
-                            ? "bg-sapphire/[0.06] dark:bg-white/[0.07]"
-                            : "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05]",
+                            ? "bg-sapphire-soft/75 font-bold text-sapphire dark:bg-sapphire/25 dark:text-sapphire-border"
+                            : "font-semibold text-foreground hover:bg-sapphire-soft/40 dark:text-paper/92 dark:hover:bg-white/[0.05]",
                         )}
                       >
-                        <NavIcon
+                        <span
+                          aria-hidden="true"
                           className={cn(
-                            "h-4.5 w-4.5 shrink-0 transition-colors duration-(--dur-fast)",
-                            isActive
-                              ? "text-sapphire dark:text-sapphire-border"
-                              : "text-ink-900/55 group-hover:text-foreground dark:text-paper/60 dark:group-hover:text-paper",
+                            "flex h-7.5 w-7.5 shrink-0 items-center justify-center rounded-lg transition-colors duration-(--dur-fast)",
+                            isMediatorLink && !isActive
+                              ? "bg-amber-care-soft text-amber-care dark:bg-amber-care/20 dark:text-amber-care-border"
+                              : isActive
+                                ? "bg-sapphire text-white dark:bg-sapphire-border dark:text-ink-950"
+                                : "bg-sapphire-soft/85 text-sapphire group-hover:bg-sapphire-soft dark:bg-white/[0.07] dark:text-sapphire-border",
                           )}
+                        >
+                          <NavIcon className="h-4 w-4" />
+                        </span>
+                        <span className="min-w-0 flex-1 font-display text-[0.9375rem] leading-tight tracking-[-0.015em]">
+                          {shortLabel}
+                        </span>
+                        <ChevronRightIcon
+                          className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/65 group-hover:text-sapphire dark:text-mist/65 dark:group-hover:text-paper"
                           aria-hidden="true"
                         />
-                        <span className="min-w-0 flex-1">
-                          <span
-                            className={cn(
-                              "block text-body leading-snug",
-                              isActive
-                                ? "font-semibold text-sapphire dark:text-paper"
-                                : "font-medium text-foreground dark:text-paper",
-                            )}
-                          >
-                            {link.label}
-                          </span>
-                          <span className="block whitespace-nowrap text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
-                            {link.subtext}
-                          </span>
-                        </span>
-                        <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
                       </Link>
                     </li>
                   );
@@ -623,78 +688,79 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
               </ul>
             </nav>
 
-            {/* Secondary & Preferences */}
+            {/* Personal and settings cluster: Home + Wellness Teal account row over Install + Accessibility */}
             <div
-              style={{ "--i": primaryLinks.length + 1 } as CSSProperties}
-              className={cn(mobileOpen && "list-in", "border-t border-ink-900/10 pt-1.5 dark:border-white/10")}
+              style={{ "--i": 3 } as CSSProperties}
+              className={cn(mobileOpen && "list-in", "space-y-1.5 md:hidden")}
             >
-              {/* Language, accessibility and install sit in the bar from md up, so they are phone-only here. */}
-              <ul>
-                <li>
+              <div className="flex flex-wrap gap-2">
                 <Link
-                  href={withLangPrefix("/mediatori", lang)}
-                  aria-current={isMediatorsActive ? "page" : undefined}
+                  href={withLangPrefix("/", lang)}
+                  aria-label={homeLabel}
+                  aria-current={isHomeActive ? "page" : undefined}
                   onClick={closeMobile}
+                  data-menu-card=""
                   className={cn(
-                    "group flex min-h-12 items-center gap-3 rounded-lg px-2.5 py-1.5",
+                    "flex min-h-11 flex-[1_1_7rem] items-center gap-2 rounded-[0.875rem] px-3 py-1 text-[0.9375rem]",
+                    DRAWER_CARD,
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
-                    isMediatorsActive
-                      ? "bg-amber-care/[0.08] dark:bg-amber-care/20"
-                      : "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05]",
+                    isHomeActive
+                      ? "border-sapphire-border/80 bg-sapphire-soft/90 font-semibold text-sapphire dark:border-white/25 dark:bg-sapphire/25 dark:text-sapphire-border"
+                      : "font-semibold text-foreground hover:bg-sapphire-soft/40 dark:text-paper dark:hover:bg-white/[0.06]",
                   )}
                 >
-                  {(() => {
-                    const MediatorIcon = NAV_LINK_ICONS["/mediatori"];
-                    return (
-                      <MediatorIcon
-                        className="h-4.5 w-4.5 shrink-0 text-amber-care dark:text-amber-care-border"
-                        aria-hidden="true"
-                      />
-                    );
-                  })()}
-                  <span className="min-w-0 flex-1">
+                  <HomeIcon
+                    className={cn(
+                      "h-4.5 w-4.5 shrink-0",
+                      isHomeActive ? "text-sapphire dark:text-sapphire-border" : "text-muted-foreground dark:text-mist",
+                    )}
+                    aria-hidden="true"
+                  />
+                  <span className="whitespace-nowrap leading-snug">{chrome.homeShort}</span>
+                </Link>
+
+                <Link
+                  href={withLangPrefix(portalLink.href, lang)}
+                  onClick={closeMobile}
+                  aria-current={isPortalActive ? "page" : undefined}
+                  data-mobile-account-trigger=""
+                  data-menu-card=""
+                  className={cn(
+                    "group flex min-h-11 flex-[1.45_1_12rem] items-center justify-between gap-2 rounded-[0.875rem] px-3 py-1 text-[0.9375rem] font-semibold",
+                    DRAWER_CARD,
+                    DRAWER_ROW_MOTION,
+                    DRAWER_FOCUS,
+                    isPortalActive
+                      ? "border-wellness bg-wellness text-white shadow-2xs dark:border-wellness-border dark:bg-wellness dark:text-white"
+                      : "text-foreground hover:bg-wellness-soft/45 dark:text-paper dark:hover:bg-white/[0.06]",
+                  )}
+                >
+                  <span className="flex min-w-0 items-center gap-2">
                     <span
+                      aria-hidden="true"
                       className={cn(
-                        "block text-body leading-snug text-foreground dark:text-paper",
-                        isMediatorsActive ? "font-semibold" : "font-medium",
+                        "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg",
+                        isPortalActive
+                          ? "bg-white/18 text-white"
+                          : "bg-wellness-soft text-wellness dark:bg-wellness/25 dark:text-wellness-border",
                       )}
                     >
-                      {tHeader.forMediators}
+                      <UserIcon className="h-4 w-4" />
                     </span>
-                    <span className="block text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
-                      {tHeader.forMediatorsSub}
-                    </span>
+                    <span className="min-w-0 whitespace-nowrap leading-snug">{portalLink.label}</span>
                   </span>
-                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-foreground motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
+                  <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 opacity-75" aria-hidden="true" />
                 </Link>
-                </li>
+              </div>
 
-                <li className="border-t border-ink-900/8 dark:border-white/10 md:hidden">
-                <LanguageSelector
-                  variant="drawer"
-                  listRow
-                  open={openDrawerSection === "language"}
-                  onOpenChange={(next) =>
-                    setOpenDrawerSection((prev) => (next ? "language" : prev === "language" ? null : prev))
-                  }
-                  onNavigate={closeMobile}
-                />
-                </li>
-
-                <li className="border-t border-ink-900/8 dark:border-white/10 md:hidden">
-                <ComfortMenu
-                  variant="drawer"
-                  collapsible
-                  open={openDrawerSection === "comfort"}
-                  onOpenChange={(next) =>
-                    setOpenDrawerSection((prev) => (next ? "comfort" : prev === "comfort" ? null : prev))
-                  }
-                  onDone={closeMobile}
-                />
-                </li>
-
-                <li className="border-t border-ink-900/8 dark:border-white/10 md:hidden">
+              <div
+                data-menu-card=""
+                className={cn(
+                  "divide-y divide-border/75 overflow-hidden rounded-[0.875rem] dark:divide-white/10",
+                  DRAWER_CARD,
+                )}
+              >
                 <button
                   type="button"
                   disabled={!showInstallTrigger && pwa.isRefreshing}
@@ -707,68 +773,91 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     }
                   }}
                   className={cn(
-                    "group flex min-h-11 w-full items-center gap-3 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-left",
+                    "flex min-h-11 w-full items-center gap-2.5 px-3 py-1 text-left text-[0.9375rem] font-medium text-foreground hover:bg-sapphire-soft/40 disabled:cursor-wait disabled:opacity-75 dark:text-paper dark:hover:bg-white/[0.06]",
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
-                    "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05] disabled:cursor-wait disabled:opacity-75",
                   )}
                 >
                   {showInstallTrigger ? (
-                    <DownloadIcon
-                      className="h-4.5 w-4.5 shrink-0 text-ink-900/50 transition-colors duration-(--dur-fast) group-hover:text-foreground dark:text-paper/55 dark:group-hover:text-paper"
-                      aria-hidden="true"
-                    />
+                    <DownloadIcon className="h-4.5 w-4.5 shrink-0 text-muted-foreground dark:text-mist" aria-hidden="true" />
                   ) : (
-                    <RefreshIcon
-                      className="h-4.5 w-4.5 shrink-0 text-ink-900/50 transition-colors duration-(--dur-fast) group-hover:text-foreground dark:text-paper/55 dark:group-hover:text-paper"
-                      aria-hidden="true"
-                    />
+                    <RefreshIcon className="h-4.5 w-4.5 shrink-0 text-muted-foreground dark:text-mist" aria-hidden="true" />
                   )}
-                  <span className="min-w-0 flex-1 text-body font-medium leading-snug text-foreground dark:text-paper">
-                    {pwaTriggerLabel}
-                  </span>
-                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-900/35 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-foreground motion-reduce:transition-none dark:text-paper/35 dark:group-hover:text-paper" />
+                  <span className="leading-snug">{pwaTriggerLabel}</span>
                 </button>
-                </li>
 
-                <li className="border-t border-ink-900/8 pt-1 dark:border-white/10">
-                <button
-                  type="button"
-                  onClick={() => {
-                    closeMobile();
-                    openSiteFeedback();
-                  }}
-                  className={cn(
-                    "group flex min-h-12 w-full items-center gap-3 rounded-lg bg-sapphire/[0.06] px-2.5 py-2 text-left hover:bg-sapphire/[0.11] dark:bg-white/[0.07] dark:hover:bg-white/[0.12]",
-                    DRAWER_ROW_MOTION,
-                    DRAWER_FOCUS,
-                  )}
-                >
-                  <MessageDotsIcon
-                    className="h-4.5 w-4.5 shrink-0 text-sapphire dark:text-sapphire-border"
-                    aria-hidden="true"
+                <div className="px-0.5">
+                  <ComfortMenu
+                    variant="drawer"
+                    collapsible
+                    open={openDrawerSection === "comfort"}
+                    onOpenChange={(next) =>
+                      setOpenDrawerSection((prev) => (next ? "comfort" : prev === "comfort" ? null : prev))
+                    }
+                    onDone={closeMobile}
                   />
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-body font-semibold leading-snug text-sapphire dark:text-paper">
-                      {(feedbackTriggerCopy[lang] ?? feedbackTriggerCopy.ro).footerLink}
-                    </span>
-                    <span className="block text-meta font-normal leading-snug text-muted-foreground dark:text-mist">
-                      {(feedbackTriggerCopy[lang] ?? feedbackTriggerCopy.ro).mobileDrawerSub}
-                    </span>
-                  </span>
-                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-sapphire/60 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper/55 dark:group-hover:text-paper" />
-                </button>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
 
-            {/* Bottom 112 emergency row and single-line quiet colophon */}
+            {/* Feedback and report links: quiet row directly above the sticky 112 card */}
             <div
-              style={{ "--i": primaryLinks.length + 2 } as CSSProperties}
-              className={cn(mobileOpen && "list-in", "mt-auto space-y-1.5 border-t border-ink-900/10 pt-2 dark:border-white/10")}
+              style={{ "--i": 4 } as CSSProperties}
+              className={cn(
+                mobileOpen && "list-in",
+                "mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-0 px-1 text-[0.875rem] text-muted-foreground dark:text-mist",
+              )}
             >
-              <div className="flex min-h-11 items-center justify-between gap-3 px-2.5 py-0.5">
-                <p className="text-body font-medium text-foreground dark:text-paper">
+              <button
+                type="button"
+                onClick={() => {
+                  closeMobile();
+                  openSiteFeedback();
+                }}
+                className={cn(
+                  "-mx-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 font-medium hover:text-foreground dark:hover:text-paper",
+                  DRAWER_ROW_MOTION,
+                  DRAWER_FOCUS,
+                )}
+              >
+                {(feedbackTriggerCopy[lang] ?? feedbackTriggerCopy.ro).footerLink}
+              </button>
+
+              <Link
+                href={withLangPrefix("/report-issue", lang)}
+                onClick={(event) => {
+                  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+                    closeMobile();
+                    return;
+                  }
+                  closeMobile();
+                  if (openReportIssue()) {
+                    event.preventDefault();
+                  }
+                }}
+                className={cn(
+                  "-mx-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 font-medium hover:text-foreground dark:hover:text-paper",
+                  DRAWER_ROW_MOTION,
+                  DRAWER_FOCUS,
+                )}
+              >
+                {(reportIssueTriggerCopy[lang] ?? reportIssueTriggerCopy.ro).trigger}
+              </Link>
+            </div>
+
+            {/* 112 emergency card: last in the flow and stuck to the bottom edge */}
+            <div
+              style={{ "--i": 5 } as CSSProperties}
+              className={cn(
+                mobileOpen && "list-in",
+                "sticky bottom-0 z-10 -mx-1 bg-white/95 px-1 pt-1 pb-[calc(0.5rem+env(safe-area-inset-bottom))] backdrop-blur-md dark:bg-ink-950/95",
+              )}
+            >
+              <div
+                data-menu-card=""
+                className="flex min-h-12.5 items-center justify-between gap-2.5 rounded-(--radius-surface) border border-rose-border/80 bg-card px-3 py-1.5 shadow-[0_2px_10px_-3px_rgb(29_53_87/0.09)] dark:border-[#ff8f98]/25 dark:bg-ink-900"
+              >
+                <p className="font-display text-[0.9375rem] font-semibold text-foreground dark:text-paper">
                   {chrome.emergencyQuestion}
                 </p>
                 <Button
@@ -779,64 +868,11 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     setMobileOpen(false);
                     setDialerOpen(true);
                   }}
-                  className="min-h-11 shrink-0 rounded-lg border-primary/35! bg-primary/[0.06]! px-3.5 py-1.5 text-body font-semibold whitespace-nowrap text-primary! shadow-none! hover:border-primary/55! hover:bg-primary/[0.12]! dark:border-[#ff8f98]/35! dark:bg-white/[0.05]! dark:text-[#ffccd0]! dark:hover:border-[#ff8f98]/55! dark:hover:bg-[#c62f3c]/18! dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
+                  className="btn-sheen min-h-11 shrink-0 rounded-lg border-primary! bg-primary! px-3 py-1 text-[0.9375rem] font-semibold whitespace-nowrap text-white! shadow-[0_4px_12px_-4px_rgb(198_47_60/0.45)]! hover:border-primary-hover! hover:bg-primary-hover! dark:border-[#c62f3c]! dark:bg-[#c62f3c]! dark:text-white! dark:hover:bg-[#a8242f]! dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
                 >
                   <PhoneIcon className="h-4 w-4" />
                   <span>{tHeader.call112}</span>
                 </Button>
-              </div>
-
-              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-0 border-t border-ink-900/8 px-2.5 pt-0.5 text-meta text-muted-foreground dark:border-white/10 dark:text-mist">
-                <a
-                  href="https://www.redi-ngo.eu/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={closeMobile}
-                  className={cn(
-                    "-mx-1.5 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-1.5 font-medium hover:text-foreground dark:hover:text-paper",
-                    DRAWER_ROW_MOTION,
-                    DRAWER_FOCUS,
-                  )}
-                >
-                  <span>redi-ngo.eu</span>
-                  <ExternalLinkIcon className="h-3.5 w-3.5 shrink-0 opacity-65" aria-hidden="true" />
-                </a>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    closeMobile();
-                    openSiteFeedback();
-                  }}
-                  className={cn(
-                    "-mx-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 font-medium hover:text-foreground dark:hover:text-paper",
-                    DRAWER_ROW_MOTION,
-                    DRAWER_FOCUS,
-                  )}
-                >
-                  {(feedbackTriggerCopy[lang] ?? feedbackTriggerCopy.ro).compactTriggerLabel}
-                </button>
-
-                <Link
-                  href={withLangPrefix("/report-issue", lang)}
-                  onClick={(event) => {
-                    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
-                      closeMobile();
-                      return;
-                    }
-                    closeMobile();
-                    if (openReportIssue()) {
-                      event.preventDefault();
-                    }
-                  }}
-                  className={cn(
-                    "-mx-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-1.5 font-medium hover:text-foreground dark:hover:text-paper",
-                    DRAWER_ROW_MOTION,
-                    DRAWER_FOCUS,
-                  )}
-                >
-                  {(reportIssueTriggerCopy[lang] ?? reportIssueTriggerCopy.ro).trigger}
-                </Link>
               </div>
             </div>
           </Container>

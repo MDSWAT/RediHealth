@@ -26,7 +26,6 @@ import {
   CopyIcon,
   PhoneIcon,
   PinIcon,
-  StethoscopeIcon,
 } from "@/components/ui/icons";
 import {
   dangerPanel,
@@ -34,11 +33,14 @@ import {
   stepHeading,
   stepLead,
   subHeading,
+  textLink,
+  textLinkLabel,
 } from "@/components/health-assistant/step-ui";
+import { CAPSULE_OUTLINE, CAPSULE_SHAPE } from "@/components/layout/chrome-capsule";
 import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
+import { cn } from "@/lib/cn";
 import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
 import type { InstituteCategory } from "@/lib/medical-institutes";
-import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
 import { AnatomicalBodyMap } from "@/components/health-check/AnatomicalBodyMap";
 import {
   AbdomenRegionIcon,
@@ -54,6 +56,7 @@ import { predictSymptomsForSelection } from "@/components/health-check/symptom-p
 import {
   buildTriageNoteUrl,
   buildTriageReproductionUrl,
+  buildTriageSessionSearch,
   parseTriageReproductionSearch,
 } from "@/components/health-check/triage-permalink";
 import {
@@ -79,7 +82,9 @@ import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import {
   getHealthCheckTranslations,
+  isBodyPartId,
   type BodyPartId,
+  type CheckAreaId,
   type DurationId,
   type SeverityId,
   type SymptomChoice,
@@ -147,13 +152,13 @@ function firstSentence(text: string): string {
   return match ? match[0] : text;
 }
 
-/** iOS-style check on the right of a chosen row (phones). */
-function RowCheck({ urgent = false }: { urgent?: boolean }) {
+/** Calm check on the right of a chosen row. */
+function RowCheck({ urgent = false, showDesktop = false }: { urgent?: boolean; showDesktop?: boolean }) {
   return (
     <svg
       viewBox="0 0 16 16"
       aria-hidden="true"
-      className={`h-4.5 w-4.5 shrink-0 self-center lg:hidden ${urgent ? "text-primary" : "text-sapphire"}`}
+      className={`h-4.5 w-4.5 shrink-0 self-center ${showDesktop ? "" : "lg:hidden"} ${urgent ? "text-primary" : "text-sapphire"}`}
       fill="none"
       stroke="currentColor"
       strokeWidth="2.2"
@@ -185,11 +190,51 @@ const groupedRowInset =
 const SEVERITY_KEYS: readonly SeverityId[] = ["mild", "moderate", "severe"] as const;
 const DURATION_KEYS: readonly DurationId[] = ["today", "days", "weeks", "chronic"] as const;
 const BODY_PARTS: readonly BodyPartId[] = ["head", "chest", "stomach", "pelvis", "back", "arm", "leg"] as const;
+const AREA_CHOICES: readonly CheckAreaId[] = [...BODY_PARTS, "mind"] as const;
+/** Phones: the last "List" or "Body picture" choice, so a returning visitor is not sent the 3D body again. */
+const AREA_MODE_KEY = "rh:hc-area-mode";
+const subscribeNothing = () => () => {};
+function readStoredAreaMode(): "3d" | "list" | null {
+  try {
+    const stored = window.localStorage.getItem(AREA_MODE_KEY);
+    return stored === "list" || stored === "3d" ? stored : null;
+  } catch {
+    return null;
+  }
+}
+function writeStoredAreaMode(mode: "3d" | "list") {
+  try {
+    window.localStorage.setItem(AREA_MODE_KEY, mode);
+  } catch {
+    // Storage blocked: the choice holds for this visit only.
+  }
+}
 /** Calm pause after a pointer tap so the person sees their choice before advancing. */
 const AUTO_ADVANCE_MS = 320;
 
 function prefersReducedMotion(): boolean {
   return prefersCalmOrReducedMotion();
+}
+
+/**
+ * The answers behind the last result, kept for this tab only (sessionStorage). The result's main
+ * button opens the map; Back from there finds the result again. Never written to the address bar.
+ */
+const SAVED_RESULT_KEY = "rh:hc-result";
+function readSavedResult(): string {
+  try {
+    return window.sessionStorage.getItem(SAVED_RESULT_KEY) ?? "";
+  } catch {
+    return "";
+  }
+}
+function writeSavedResult(search: string | null) {
+  try {
+    if (search) window.sessionStorage.setItem(SAVED_RESULT_KEY, search);
+    else window.sessionStorage.removeItem(SAVED_RESULT_KEY);
+  } catch {
+    // Storage blocked (private mode): the check still works, it just starts again after the map.
+  }
 }
 
 /** How much of the top of the screen is covered by pinned site chrome once scrolled. */
@@ -331,7 +376,24 @@ function useSafeLanguage(): Lang {
   return contextLang;
 }
 
-const BODY_PART_ICONS: Record<BodyPartId, ComponentType<SVGProps<SVGSVGElement>>> = {
+function MindMoodRegionIcon({ className }: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M10 16.5s-5.5-3.4-5.5-7.4a3.2 3.2 0 0 1 5.5-2.2 3.2 3.2 0 0 1 5.5 2.2c0 4-5.5 7.4-5.5 7.4z" />
+    </svg>
+  );
+}
+
+const AREA_ICONS: Record<CheckAreaId, ComponentType<SVGProps<SVGSVGElement>>> = {
   head: HeadNeckRegionIcon,
   chest: ChestRegionIcon,
   stomach: AbdomenRegionIcon,
@@ -339,10 +401,11 @@ const BODY_PART_ICONS: Record<BodyPartId, ComponentType<SVGProps<SVGSVGElement>>
   back: BackSpineRegionIcon,
   arm: ArmsHandsRegionIcon,
   leg: LegsFeetRegionIcon,
+  mind: MindMoodRegionIcon,
 };
 
 /**
- * Body area choice. Phones: a settings-style row (icon, title, subtitle, chevron) inside a grouped
+ * Body or mind area choice. Phones: a settings-style row (icon, title, subtitle, chevron) inside a grouped
  * list. Desktop: a compact tile with its key letter, two to a row.
  */
 function AreaOptionCard({
@@ -353,16 +416,18 @@ function AreaOptionCard({
   title,
   description,
   hotkey,
+  className = "",
 }: {
-  partId: BodyPartId;
+  partId: CheckAreaId;
   checked: boolean;
   focusable?: boolean;
   onSelect: (byPointer: boolean) => void;
   title: string;
   description: string;
   hotkey?: string;
+  className?: string;
 }) {
-  const Icon = BODY_PART_ICONS[partId];
+  const Icon = AREA_ICONS[partId];
   return (
     <button
       type="button"
@@ -373,15 +438,15 @@ function AreaOptionCard({
       tabIndex={checked || focusable ? 0 : -1}
       onClick={(e: ReactMouseEvent<HTMLButtonElement>) => onSelect(e.detail > 0)}
       title={description}
-      className={`${groupedRowInset} group flex w-full items-center gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:min-h-[3.75rem] max-lg:px-4 max-lg:py-2.5 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:min-h-12 lg:rounded-xl lg:border lg:px-2.5 lg:py-2 lg:focus-visible:ring-offset-2 ${
+      className={`${groupedRowInset} group flex w-full items-center gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:min-h-[3.75rem] max-lg:px-4 max-lg:py-2.5 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:h-full lg:min-h-[3.25rem] lg:rounded-xl lg:border lg:px-3 lg:py-2.5 lg:shadow-2xs lg:focus-visible:ring-offset-2 ${
         checked
-          ? "max-lg:bg-sapphire-soft/40 lg:border-sapphire lg:bg-sapphire-soft/45"
-          : "lg:border-border lg:bg-card lg:hover:border-sapphire/50 lg:hover:bg-sapphire-soft/25"
-      }`}
+          ? "max-lg:bg-sapphire-soft/45 lg:border-sapphire lg:bg-sapphire-soft/55"
+          : "lg:border-border-control/70 lg:bg-card lg:hover:border-sapphire/55 lg:hover:bg-sapphire-soft/25"
+      } ${className}`}
     >
       <span
         aria-hidden="true"
-        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] ${
+        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
           checked ? "bg-sapphire text-white" : "bg-sapphire-soft text-sapphire"
         }`}
       >
@@ -397,7 +462,7 @@ function AreaOptionCard({
         <span className="sr-only max-lg:hidden">{description}</span>
       </span>
       {checked ? (
-        <RowCheck />
+        <RowCheck showDesktop />
       ) : (
         <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground/60 lg:hidden" />
       )}
@@ -494,6 +559,18 @@ function SymptomPictogram({
       <svg viewBox="0 0 20 20" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M6.8 8.2a3.8 3.8 0 1 1 6.4 2.8c-.9.9-1.4 1.8-1.6 3a1.6 1.6 0 0 1-3.1-.4" />
         <path d="M9.6 8.2a1.3 1.3 0 0 1 2 1.1" />
+      </svg>
+    );
+  } else if (/mind_low_mood|mind_anxiety|mind_overwhelmed/.test(id)) {
+    icon = (
+      <svg viewBox="0 0 20 20" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M10 16.5s-5.2-3.2-5.2-7a3 3 0 0 1 5.2-2 3 3 0 0 1 5.2 2c0 3.8-5.2 7-5.2 7z" />
+      </svg>
+    );
+  } else if (/mind_sleep/.test(id)) {
+    icon = (
+      <svg viewBox="0 0 20 20" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M14.2 12.6A5.6 5.6 0 0 1 7.4 5.8a5.8 5.8 0 1 0 6.8 6.8z" />
       </svg>
     );
   } else if (/numb|tingl/.test(id)) {
@@ -691,7 +768,7 @@ function OptionRow({
 }) {
   const urgent = tone === "urgent";
   return (
-    <div className={inset ? groupedRowInset : groupedRow}>
+    <div className={`${inset ? groupedRowInset : groupedRow} lg:h-full`}>
       <button
         type="button"
         role="radio"
@@ -700,38 +777,20 @@ function OptionRow({
         data-hotkey={hotkey}
         tabIndex={checked || focusable ? 0 : -1}
         onClick={(e: ReactMouseEvent<HTMLButtonElement>) => onSelect(e.detail > 0)}
-        className={`flex w-full items-start gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:min-h-[3.25rem] max-lg:px-4 max-lg:py-3 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:min-h-12 lg:rounded-xl lg:border lg:px-3 lg:py-2.5 lg:focus-visible:ring-offset-2 ${
-          onSpeak ? "pr-12" : ""
+        className={`flex w-full items-center gap-3 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:min-h-[3.375rem] max-lg:px-4 max-lg:py-3 max-lg:focus-visible:ring-inset max-lg:active:bg-muted lg:h-full lg:min-h-[3.25rem] lg:rounded-xl lg:border lg:px-3.5 lg:py-2.5 lg:shadow-2xs lg:focus-visible:ring-offset-2 ${
+          onSpeak ? "max-lg:pr-14 lg:pr-12" : ""
         } ${
           checked
             ? urgent
               ? "max-lg:bg-primary-soft/45 lg:border-primary lg:bg-primary-soft/45"
-              : "max-lg:bg-sapphire-soft/40 lg:border-sapphire lg:bg-sapphire-soft/40"
+              : "max-lg:bg-sapphire-soft/45 lg:border-sapphire lg:bg-sapphire-soft/55"
             : urgent
-              ? "max-lg:bg-primary-soft/20 lg:border-primary/25 lg:bg-primary-soft/20 lg:hover:border-primary/45 lg:hover:bg-primary-soft/35"
-              : "lg:border-border lg:bg-card lg:hover:border-sapphire/50 lg:hover:bg-sapphire-soft/25"
+              ? "max-lg:bg-primary-soft/20 lg:border-primary/30 lg:bg-primary-soft/20 lg:hover:border-primary/50 lg:hover:bg-primary-soft/35"
+              : "lg:border-border-control/70 lg:bg-card lg:hover:border-sapphire/55 lg:hover:bg-sapphire-soft/25"
         }`}
       >
-        <span
-          aria-hidden="true"
-          className={`mt-1 hidden h-[18px] w-[18px] shrink-0 items-center justify-center rounded-sm border-[1.5px] lg:flex ${
-            checked
-              ? urgent
-                ? "border-primary"
-                : "border-sapphire"
-              : urgent
-                ? "border-primary/65"
-                : "border-foreground/45"
-          }`}
-        >
-          <span
-            className={`h-2 w-2 rounded-xs transition-opacity duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
-              urgent ? "bg-primary" : "bg-sapphire"
-            } ${checked ? "opacity-100" : "opacity-0"}`}
-          />
-        </span>
         {iconBadge}
-        <span className="min-w-0 flex-1 self-center">
+        <span className="min-w-0 flex-1">
           <span className="block text-body font-semibold leading-snug text-foreground">
             {urgentPrefix ? <span className="text-primary">{urgentPrefix}: </span> : null}
             {title}
@@ -747,7 +806,7 @@ function OptionRow({
             </span>
           )}
         </span>
-        {checked && <RowCheck urgent={urgent} />}
+        {checked && <RowCheck urgent={urgent} showDesktop={!onSpeak} />}
       </button>
       {onSpeak && (
         <button
@@ -755,7 +814,7 @@ function OptionRow({
           onClick={onSpeak}
           aria-pressed={speakingThis}
           aria-label={speakLabel}
-          className={`absolute right-2 top-1/2 z-10 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:h-8 lg:w-8 ${
+          className={`absolute right-1.5 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-lg transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:right-2 lg:h-9 lg:w-9 ${
             speakingThis
               ? "bg-sapphire-soft text-sapphire"
               : "text-muted-foreground hover:bg-sapphire-soft/60 hover:text-sapphire"
@@ -768,7 +827,7 @@ function OptionRow({
   );
 }
 
-/** Continue button; on desktop it sits left with an "Enter" hint, as in a form. */
+/** Primary step progression button aligned cleanly with question controls. */
 function ContinueRow({
   label,
   onClick,
@@ -782,7 +841,7 @@ function ContinueRow({
 }) {
   return (
     // Phones: pinned to the bottom of the screen (above the home indicator) while the list scrolls.
-    <div className="flex items-center gap-3 pt-1 max-lg:sticky max-lg:bottom-0 max-lg:z-20 max-lg:-mx-4 max-lg:border-t max-lg:border-border/70 max-lg:bg-muted/90 max-lg:px-4 max-lg:pb-[max(0.75rem,env(safe-area-inset-bottom))] max-lg:pt-3 max-lg:backdrop-blur-md sm:max-lg:-mx-6 sm:max-lg:px-6">
+    <div className="flex items-center gap-3 pt-2 max-lg:sticky max-lg:bottom-0 max-lg:z-20 max-lg:-mx-4 max-lg:border-t max-lg:border-border/70 max-lg:bg-muted/90 max-lg:px-4 max-lg:pb-[max(0.75rem,env(safe-area-inset-bottom))] max-lg:pt-3 max-lg:backdrop-blur-md sm:max-lg:-mx-6 sm:max-lg:px-6">
       <Button
         type="button"
         variant={emergency ? "primary" : "action"}
@@ -790,18 +849,11 @@ function ContinueRow({
         data-continue
         disabled={disabled}
         onClick={onClick}
-        className="w-full lg:min-h-11 lg:w-auto lg:min-w-40"
+        className="w-full lg:min-h-11 lg:w-auto lg:min-w-44"
       >
         <span>{label}</span>
         <ArrowRightIcon className="arrow-travel h-4.5 w-4.5 shrink-0" aria-hidden="true" />
       </Button>
-      {!disabled && (
-        <span aria-hidden="true" className="hidden items-center gap-1 text-meta text-muted-foreground lg:inline-flex">
-          <kbd className="rounded-md border border-border bg-muted px-1.5 py-0.5 font-sans text-meta font-medium text-foreground">
-            Enter ↵
-          </kbd>
-        </span>
-      )}
     </div>
   );
 }
@@ -876,7 +928,7 @@ export function HealthCheckExplorer() {
   const [stepId, setStepId] = useState<StepId>("area");
   const [forWhom, setForWhom] = useState<ForWhom>("self");
   const [bodyProfile, setBodyProfile] = useState<BodyAnatomyProfile>("general");
-  const [selectedPart, setSelectedPart] = useState<BodyPartId | null>(null);
+  const [selectedPart, setSelectedPart] = useState<CheckAreaId | null>(null);
   const [detail, setDetail] = useState<{ subRegion: SubRegionId; side: Side } | null>(null);
   /** The side came from a tap on the left or right of the body, so it is not asked again. */
   const [sideFromBody, setSideFromBody] = useState(false);
@@ -897,12 +949,12 @@ export function HealthCheckExplorer() {
     () => SERVER_PUBLIC_ORIGIN,
   );
   const [showAllAreaSymptoms, setShowAllAreaSymptoms] = useState(false);
+  const [extrasExpanded, setExtrasExpanded] = useState(false);
   const [bodyShown, setBodyShown] = useState(true);
   const voice = useReadAloud(activeLang);
 
   const [shownStepId, setShownStepId] = useState<StepId>("area");
   const [stepDir, setStepDir] = useState<"forward" | "back" | null>(null);
-  const [setupOpen, setSetupOpen] = useState(false);
   if (shownStepId !== stepId) {
     setStepDir(STEP_RANK[stepId] >= STEP_RANK[shownStepId] ? "forward" : "back");
     setShownStepId(stepId);
@@ -915,7 +967,8 @@ export function HealthCheckExplorer() {
   /** Phones open on the 3D body; the list stays one tap away, and is the fallback where the body cannot be drawn. */
   const [stageExpanded, setStageExpanded] = useState(false);
   const [mobileAreaModeOverride, setMobileAreaModeOverride] = useState<"3d" | "list" | null>(null);
-  const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? "3d";
+  const storedAreaMode = useSyncExternalStore(subscribeNothing, readStoredAreaMode, () => null);
+  const effectiveMobileAreaMode: "3d" | "list" = mobileAreaModeOverride ?? storedAreaMode ?? "3d";
   /** While the body fills the screen, a tap only selects: Save selection moves on. */
   const bodyFullScreenRef = useRef(false);
   /** Lifts the stage above the question sheet and the site header while the body fills the screen. */
@@ -955,17 +1008,23 @@ export function HealthCheckExplorer() {
   const isEmergency = allSymptoms.some((s) => isAcuteSurgicalOrEmergency(s));
   const urgentSymptom = allSymptoms.find((s) => isAcuteSurgicalOrEmergency(s)) ?? null;
 
-  const quickSpots = selectedPart
+  const quickSpots = isBodyPartId(selectedPart)
     ? QUICK_SPOTS_BY_MACRO[selectedPart].filter(
         (sub) => !(forWhom === "child" && bodyProfile !== "female" && FEMALE_ONLY_SUB_REGIONS.has(sub)),
       )
     : [];
   const hasSpotStep = !selectedPart || quickSpots.length > 0;
 
+  const areaSymptoms =
+    selectedPart === "mind"
+      ? dict.mentalSymptoms || []
+      : isBodyPartId(selectedPart)
+        ? dict.symptoms[selectedPart] || []
+        : [];
   const predictedPartition = predictSymptomsForSelection(
-    selectedPart,
+    isBodyPartId(selectedPart) ? selectedPart : null,
     detail?.subRegion ?? null,
-    selectedPart ? dict.symptoms[selectedPart] || [] : [],
+    areaSymptoms,
     isAcuteSurgicalOrEmergency,
   );
   const symptomsList = showAllAreaSymptoms
@@ -975,6 +1034,16 @@ export function HealthCheckExplorer() {
   const hasExtrasStep = !selectedPart || extraCandidates.length > 0;
 
   const isDesktop = useIsDesktop();
+  /** A phone showing the list only: no body on screen to tap or to name. */
+  const phoneListOnly = mobileListOnly && !isDesktop;
+  /** "Mind and mood" has no place on the body, so its questions are shown without it. */
+  const mindPastArea = selectedPart === "mind" && stepId !== "area";
+  /**
+   * Phones with the body on screen list "Mind and mood" first: the seven body areas can be tapped on
+   * the picture, the mind cannot. Desktop keeps it last through CSS order, so letters stay A to H.
+   */
+  const mindFirst = bodyShown && !phoneListOnly;
+  const areaOrder: readonly CheckAreaId[] = mindFirst ? ["mind", ...BODY_PARTS] : AREA_CHOICES;
   /** On desktop, strength, duration and "also feeling" are one screen, shown under the "severity" step. */
   const viewStep: StepId =
     isDesktop && (stepId === "duration" || stepId === "extras") ? "severity" : stepId;
@@ -1053,6 +1122,8 @@ export function HealthCheckExplorer() {
   const stackRef = useRef<StepId[]>(["area"]);
   const posRef = useRef(0);
   const pendingTargetRef = useRef<StepId | null>(null);
+  /** "Start over" is walking the browser history back to the first entry of this check. */
+  const resetPendingRef = useRef(false);
   const modalOpenRef = useRef(false);
   useEffect(() => {
     modalOpenRef.current = showEmergencyOverlay || doctorOpen;
@@ -1070,20 +1141,34 @@ export function HealthCheckExplorer() {
 
   useEffect(() => {
     let cancelled = false;
-    const parsed = parseTriageReproductionSearch(window.location.search, activeLang);
+    const entryState = (window.history.state ?? {}) as { hcStepId?: StepId; hcIdx?: number };
+    const fromLink = parseTriageReproductionSearch(window.location.search, activeLang);
+    // Back from the map (or a reload) onto the entry that showed the result: bring the answers back
+    // from this tab's storage. A fresh visit starts clean, so the next person on a shared phone
+    // does not open someone else's result.
+    const fromSession =
+      !fromLink && !window.location.search && entryState.hcStepId === "result"
+        ? parseTriageReproductionSearch(readSavedResult(), activeLang)
+        : null;
+    const parsed = fromLink ?? fromSession;
     if (parsed) {
-      const regionSyms = getHealthCheckTranslations(activeLang).symptoms[parsed.part] ?? [];
+      const currentDict = getHealthCheckTranslations(activeLang);
+      const regionSyms = isBodyPartId(parsed.part)
+        ? (currentDict.symptoms[parsed.part] ?? [])
+        : (currentDict.mentalSymptoms ?? []);
       const primarySym = regionSyms.find((s) => s.id === parsed.symptomId) ?? null;
       const extraSyms = parsed.extraSymptomIds
         .map((id) => regionSyms.find((s) => s.id === id) ?? null)
         .filter((s): s is SymptomChoice => Boolean(s));
       if (primarySym) {
         const isEm = [primarySym, ...extraSyms].some((s) => isAcuteSurgicalOrEmergency(s));
-        const spots = QUICK_SPOTS_BY_MACRO[parsed.part].filter(
-          (sub) => !(parsed.forWhom === "child" && parsed.bodyProfile !== "female" && FEMALE_ONLY_SUB_REGIONS.has(sub)),
-        );
+        const spots = isBodyPartId(parsed.part)
+          ? QUICK_SPOTS_BY_MACRO[parsed.part].filter(
+              (sub) => !(parsed.forWhom === "child" && parsed.bodyProfile !== "female" && FEMALE_ONLY_SUB_REGIONS.has(sub)),
+            )
+          : [];
         const partition = predictSymptomsForSelection(
-          parsed.part,
+          isBodyPartId(parsed.part) ? parsed.part : null,
           parsed.subRegion,
           regionSyms,
           isAcuteSurgicalOrEmergency,
@@ -1108,8 +1193,19 @@ export function HealthCheckExplorer() {
           restoredStack = ["area", ...(spots.length > 0 ? (["spot"] as const) : []), "symptom", "severity"];
         }
         const targetStepId = restoredStack[restoredStack.length - 1];
-        stackRef.current = restoredStack;
-        posRef.current = restoredStack.length - 1;
+        // A shared link or QR code opens on a single history entry, so Back and the answer links
+        // move within that entry (they used to call history.go() onto pages that were never there).
+        // A return to the result entry still has this check's earlier entries behind it.
+        const keptIdx =
+          fromSession && typeof entryState.hcIdx === "number" && entryState.hcIdx > 0 ? entryState.hcIdx : 0;
+        if (keptIdx === restoredStack.length - 1) {
+          stackRef.current = restoredStack;
+        } else {
+          const filled: StepId[] = Array.from({ length: keptIdx + 1 }, () => "area");
+          filled[keptIdx] = targetStepId;
+          stackRef.current = filled;
+        }
+        posRef.current = keptIdx;
         answersRef.current = {
           part: true,
           hasSpotStep: spots.length > 0,
@@ -1154,10 +1250,14 @@ export function HealthCheckExplorer() {
       const next = clampAllowedStep(wanted);
       stackRef.current = stackRef.current.slice(0, idx + 1);
       stackRef.current[idx] = next;
-      if (next !== state.hcStepId) {
+      const resetting = resetPendingRef.current;
+      resetPendingRef.current = false;
+      if (resetting || next !== state.hcStepId) {
         window.history.replaceState(
           { ...(window.history.state ?? {}), hcStepId: next, hcIdx: idx, hcModal: false },
           "",
+          // "Start over" also drops a shared link's answers from the address.
+          resetting ? window.location.pathname : undefined,
         );
       }
       setShowEmergencyOverlay(false);
@@ -1225,8 +1325,27 @@ export function HealthCheckExplorer() {
       advanceTimer.current = null;
     }
     if (!modalOpenRef.current) pushEntry(stepRef.current, true);
-    if (which === "emergency") setShowEmergencyOverlay(true);
-    else setDoctorOpen(true);
+    if (which === "emergency") {
+      // The list behind must not keep talking over the pop-up; with the voice guide on, it is read out.
+      if (autoSpeakTimer.current) {
+        clearTimeout(autoSpeakTimer.current);
+        autoSpeakTimer.current = null;
+      }
+      voice.stop();
+      setSpeakingCardId(null);
+      if (autoVoiceGuideRef.current && voiceAvailableRef.current) {
+        voice.speak([dict.ui.emergency.title, dict.ui.emergency.description]);
+      }
+      setShowEmergencyOverlay(true);
+    } else setDoctorOpen(true);
+  }
+
+  /** "That is not what I have": unpick the emergency sign chosen by mistake and close the pop-up. */
+  function handleNotThisEmergency() {
+    clearQrIfNeeded();
+    if (selectedSymptom && isAcuteSurgicalOrEmergency(selectedSymptom)) setSelectedSymptom(null);
+    setExtraSymptoms((prev) => prev.filter((s) => !isAcuteSurgicalOrEmergency(s)));
+    closeModal();
   }
 
   function closeModal() {
@@ -1254,6 +1373,13 @@ export function HealthCheckExplorer() {
   }
 
   useDialogFocus(emergencyRef, showEmergencyOverlay, closeModal);
+
+  // However the pop-up closes, its reading stops with it.
+  const stopVoice = voice.stop;
+  useEffect(() => {
+    if (!showEmergencyOverlay) return;
+    return () => stopVoice();
+  }, [showEmergencyOverlay, stopVoice]);
 
   /**
    * Phones: snap the sheet to "body small" or "body large". The layout changes once (so the camera
@@ -1493,12 +1619,13 @@ export function HealthCheckExplorer() {
     }
   }
 
-  function handleSelectPart(partId: BodyPartId) {
+  function handleSelectPart(partId: CheckAreaId) {
     clearQrIfNeeded();
     if (partId !== selectedPart) {
       setDetail(null);
       setSelectedSymptom(null);
       setExtraSymptoms([]);
+      setExtrasExpanded(false);
       setOtherChosen(false);
       setSeverity(null);
       setDuration(null);
@@ -1507,7 +1634,8 @@ export function HealthCheckExplorer() {
     setSelectedPart(partId);
   }
 
-  function nextStepAfterArea(partId: BodyPartId): StepId {
+  function nextStepAfterArea(partId: CheckAreaId): StepId {
+    if (!isBodyPartId(partId)) return "symptom";
     const spots = QUICK_SPOTS_BY_MACRO[partId].filter(
       (sub) => !(forWhom === "child" && bodyProfile !== "female" && FEMALE_ONLY_SUB_REGIONS.has(sub)),
     );
@@ -1523,7 +1651,7 @@ export function HealthCheckExplorer() {
     }
   }
 
-  function handleSelectFromList(partId: BodyPartId, byPointer: boolean) {
+  function handleSelectFromList(partId: CheckAreaId, byPointer: boolean) {
     setDetail(null);
     handleSelectPart(partId);
     if (byPointer) {
@@ -1532,7 +1660,7 @@ export function HealthCheckExplorer() {
   }
 
   function applySubRegionDetail(
-    partId: BodyPartId | null,
+    partId: CheckAreaId | null,
     subRegion: SubRegionId | null,
     side: Side,
     cancelAdvance = true,
@@ -1551,7 +1679,7 @@ export function HealthCheckExplorer() {
       setBodyProfile("female");
     }
     setDetail({ subRegion, side });
-    if (partId) {
+    if (partId && isBodyPartId(partId)) {
       const regionSyms = dict.symptoms[partId] ?? [];
       const partition = predictSymptomsForSelection(partId, subRegion, regionSyms, isAcuteSurgicalOrEmergency);
       const validPrimaryIds = new Set(partition.primary.map((s) => s.id));
@@ -1650,12 +1778,22 @@ export function HealthCheckExplorer() {
     setAutoVoiceGuide(false);
     setRestoredFromQr(false);
     setShowAllAreaSymptoms(false);
-    stackRef.current[posRef.current] = "area";
-    window.history.replaceState(
-      { ...(window.history.state ?? {}), hcStepId: "area", hcIdx: posRef.current, hcModal: false },
-      "",
-      window.location.pathname,
-    );
+    writeSavedResult(null);
+    const entriesBack = posRef.current;
+    if (entriesBack > 0 && window.history.state?.hcIdx === entriesBack) {
+      // Walk back to the first entry of this check. Left in place, each cleared question would
+      // still answer one press of the browser's Back button with nothing happening.
+      resetPendingRef.current = true;
+      pendingTargetRef.current = "area";
+      window.history.go(-entriesBack);
+    } else {
+      stackRef.current[posRef.current] = "area";
+      window.history.replaceState(
+        { ...(window.history.state ?? {}), hcStepId: "area", hcIdx: posRef.current, hcModal: false },
+        "",
+        window.location.pathname,
+      );
+    }
     setStepId("area");
     setForWhom("self");
     setBodyProfile("general");
@@ -1663,12 +1801,12 @@ export function HealthCheckExplorer() {
     setDetail(null);
     setSelectedSymptom(null);
     setExtraSymptoms([]);
+    setExtrasExpanded(false);
     setOtherChosen(false);
     setSeverity(null);
     setDuration(null);
     setShowEmergencyOverlay(false);
     setDoctorOpen(false);
-    setSetupOpen(false);
   }
 
   const currentIdx = Math.max(0, activeSteps.indexOf(viewStep));
@@ -1679,9 +1817,15 @@ export function HealthCheckExplorer() {
       : DESKTOP_GROUP[viewStep] + 1
     : currentIdx + 1;
   const totalSteps = isDesktop ? (emergencyPath ? 3 : 4) : activeSteps.length;
-  const stepIndicatorText = dict.ui.stepIndicator
-    .replace("{current}", String(displayStep))
-    .replace("{total}", String(totalSteps));
+  // Phones count the questions only: the result is where they lead, not one more of them.
+  const questionTotal = Math.max(1, totalSteps - 1);
+  const stepIndicatorText = isDesktop
+    ? dict.ui.stepIndicator.replace("{current}", String(displayStep)).replace("{total}", String(totalSteps))
+    : viewStep === "result"
+      ? ""
+      : c.questionProgress.replace("{current}", String(displayStep)).replace("{total}", String(questionTotal));
+  const progressTotal = isDesktop ? totalSteps : questionTotal;
+  const progressValue = Math.min(displayStep, progressTotal);
 
   const goBack = () => {
     if (currentIdx > 0) {
@@ -1701,13 +1845,61 @@ export function HealthCheckExplorer() {
           detail.side === "Left" ? `, ${c.left}` : detail.side === "Right" ? `, ${c.right}` : ""
         }`
       : null;
-  const areaLabel = selectedPart ? dict.bodyParts[selectedPart].title : null;
+  const areaLabel =
+    selectedPart === "mind"
+      ? dict.mentalArea.title
+      : isBodyPartId(selectedPart)
+        ? dict.bodyParts[selectedPart].title
+        : null;
 
   const visceralFocus =
     STEP_RANK[stepId] >= STEP_RANK.symptom
       ? getVisceralFocusForSymptoms(allSymptoms, bodyProfile, detail?.side ?? "Center")
       : null;
   const activeSpotBilateral = Boolean(detail && SUB_REGION_INFO[detail.subRegion]?.bilateral);
+
+  const recommendationTitle = isEmergency
+    ? dict.ui.emergency.title
+    : careLevel
+      ? dict.urgency[careLevel].title
+      : "";
+  /** What the result says under its heading. A mild mind and mood answer has its own home-care wording. */
+  const careIntro = !careLevel
+    ? ""
+    : careLevel === "low" && selectedPart === "mind"
+      ? c.mindLowIntro
+      : dict.urgency[careLevel].intro;
+
+  const places = findHelpLinks(activeLang);
+  /**
+   * Where the result sends people, most useful first: the pharmacy for home care, the family doctor
+   * for "see a doctor", the hospital as well for "today". A mediator is offered every time.
+   */
+  type CareAction = { key: string; label: string; href: string; place: boolean };
+  const mediatorAction: CareAction = {
+    key: "mediator",
+    label: dict.ui.requestMediatorHelp,
+    href: "/mediatori#solicita",
+    place: false,
+  };
+  const familyDoctorAction: CareAction = {
+    key: "gp",
+    label: places.familyDoctor,
+    href: findHelpHref("gp"),
+    place: true,
+  };
+  const careActions: CareAction[] =
+    isEmergency || !careLevel
+      ? []
+      : careLevel === "low"
+        ? [{ key: "pharmacy", label: places.nearestPharmacy, href: findHelpHref("pharmacy"), place: true }, mediatorAction]
+        : careLevel === "medium"
+          ? [familyDoctorAction, mediatorAction]
+          : [
+              familyDoctorAction,
+              { key: "hospital", label: places.hospital, href: findHelpHref("hospital"), place: true },
+              mediatorAction,
+            ];
 
   const currentQuestion =
     viewStep === "area"
@@ -1724,15 +1916,19 @@ export function HealthCheckExplorer() {
               ? dict.ui.durationHeading
               : viewStep === "extras"
                 ? c.alsoFeel
-                : dict.ui.step4Question;
+                : // The result opens on the recommendation itself, not on a heading above it.
+                  recommendationTitle || dict.ui.step4Question;
 
   const currentPrompt =
     viewStep === "area"
-      ? bodyShown
+      ? bodyShown && !phoneListOnly
         ? dict.ui.step1Prompt
         : c.chooseArea
       : viewStep === "spot"
-        ? c.exactSpotLead
+        ? // Phones open this step with the sheet over the body, so the lead points at the list.
+          isDesktop && bodyShown
+          ? c.exactSpotLead
+          : c.exactSpotLeadList
         : viewStep === "symptom"
           ? detail && predictedPartition.secondary.length > 0 && !showAllAreaSymptoms
             ? c.showingSpotSymptoms.replace(
@@ -1753,7 +1949,7 @@ export function HealthCheckExplorer() {
               ? c.durationLead
               : viewStep === "extras"
                 ? c.alsoFeelHint
-                : dict.ui.step4Prompt;
+                : "";
 
   // Assistant trail chips: every prior decision is a 1-tap return chip with ↺.
   const trailItems: { key: string; label: string; target: StepId }[] = [];
@@ -1816,7 +2012,10 @@ export function HealthCheckExplorer() {
   function spokenParts(): string[] {
     const parts: string[] = [currentQuestion, currentPrompt];
     if (stepId === "area") {
-      parts.push(...BODY_PARTS.map((id) => dict.bodyParts[id].title));
+      // Read in the order shown: phones with the body on screen list mind and mood first.
+      const bodyTitles = BODY_PARTS.map((id) => dict.bodyParts[id].title);
+      if (mindFirst && !isDesktop) parts.push(dict.mentalArea.title, ...bodyTitles);
+      else parts.push(...bodyTitles, dict.mentalArea.title);
     } else if (stepId === "spot") {
       parts.push(c.exactSpotAny, ...quickSpots.map((sub) => getLocalizedSubRegion(sub, activeLang).label));
     } else if (stepId === "symptom") {
@@ -1831,9 +2030,18 @@ export function HealthCheckExplorer() {
     } else if (stepId === "extras") {
       parts.push(...extraCandidates.map((s) => s.title));
     } else if (stepId === "result") {
-      if (isEmergency) parts.push(dict.ui.emergency.title, dict.ui.emergency.description);
-      else if (careLevel) parts.push(dict.urgency[careLevel].title, dict.urgency[careLevel].intro);
+      // The heading (read first, as the question) is already the recommendation.
+      if (isEmergency) parts.push(dict.ui.emergency.description);
+      else if (careLevel) parts.push(careIntro);
       if (forWhom === "child") parts.push(c.childNote);
+      if (!isEmergency && careLevel) {
+        // The advice itself, not only its heading: home care, where to go, and what it may mean.
+        if (careLevel === "low" && selectedSymptom?.selfCareTip) parts.push(c.selfCare, selectedSymptom.selfCareTip);
+        parts.push(...careActions.map((action) => action.label));
+        if (careLevel !== "high" && selectedSymptom) {
+          parts.push(c.meaning, selectedSymptom.guidance || selectedSymptom.description);
+        }
+      }
     }
     return parts.filter(Boolean);
   }
@@ -1873,7 +2081,9 @@ export function HealthCheckExplorer() {
 
   type Dict = ReturnType<typeof getHealthCheckTranslations>;
   function findIn(d: Dict, symptom: SymptomChoice | null) {
-    return symptom && selectedPart ? d.symptoms[selectedPart]?.find((x) => x.id === symptom.id) ?? null : null;
+    if (!symptom || !selectedPart) return null;
+    const list = selectedPart === "mind" ? d.mentalSymptoms : d.symptoms[selectedPart];
+    return list?.find((x) => x.id === symptom.id) ?? null;
   }
 
   function doctorNotes(d: Dict, recLabel: string, child: string): string[] {
@@ -1893,7 +2103,15 @@ export function HealthCheckExplorer() {
     const ro = getHealthCheckTranslations("ro");
     const rows: SummaryRow[] = [
       ...(forWhom === "child" ? [{ label: "Pentru", value: COPY.ro.childRow }] : []),
-      { label: ro.ui.areaLabel, value: selectedPart ? ro.bodyParts[selectedPart].title : "" },
+      {
+        label: ro.ui.areaLabel,
+        value:
+          selectedPart === "mind"
+            ? ro.mentalArea.title
+            : isBodyPartId(selectedPart)
+              ? ro.bodyParts[selectedPart].title
+              : "",
+      },
       ...(detail
         ? [
             {
@@ -1915,11 +2133,6 @@ export function HealthCheckExplorer() {
   }
 
   const roDict = getHealthCheckTranslations("ro");
-  const recommendationTitle = isEmergency
-    ? dict.ui.emergency.title
-    : careLevel
-      ? dict.urgency[careLevel].title
-      : "";
   const recommendationDetail = recommendationTitle
     ? `${c.recommendationGiven}: ${recommendationTitle}`
     : undefined;
@@ -1946,6 +2159,11 @@ export function HealthCheckExplorer() {
           bodyProfile,
         }
       : null;
+  // Kept for this tab so Back from the map finds the result again (see readSavedResult).
+  const sessionSearch = permalinkState ? buildTriageSessionSearch(permalinkState) : "";
+  useEffect(() => {
+    if (stepId === "result" && sessionSearch) writeSavedResult(sessionSearch);
+  }, [stepId, sessionSearch]);
   const todayIso = new Date().toISOString().slice(0, 10);
   const reproduceUrl =
     originUrl && permalinkState ? buildTriageReproductionUrl(originUrl, activeLang, permalinkState) : undefined;
@@ -1956,11 +2174,9 @@ export function HealthCheckExplorer() {
   const romanianNoteUrl =
     originUrl && permalinkState ? buildTriageNoteUrl(originUrl, "ro", permalinkState, todayIso) : undefined;
 
-  const stageVisibleInLayout = bodyShown && stepId !== "result";
+  const stageVisibleInLayout = bodyShown && stepId !== "result" && !mindPastArea;
 
-  const places = findHelpLinks(activeLang);
-
-  const placeLink = (category: InstituteCategory, label: string) => (
+  const placeLink = (category: InstituteCategory | undefined, label: string) => (
     <Link
       href={withLangPrefix(findHelpHref(category), activeLang)}
       className="card-interactive press-row group mt-3 flex min-h-12 items-center justify-between gap-3 whitespace-nowrap rounded-xl border border-border-control bg-card px-4 py-2.5 text-body font-semibold text-foreground hover:bg-sapphire-soft/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
@@ -1976,40 +2192,101 @@ export function HealthCheckExplorer() {
     </Link>
   );
 
-  const renderRoutingStack = (placeCategory?: InstituteCategory, placeLabel?: string) => (
-    <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-      <Button
-        href={withLangPrefix("/medic-online/asteptare", activeLang)}
-        variant="action"
-        size="lg"
-        className="w-full sm:w-auto"
-      >
-        <StethoscopeIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-        <span>{c.doctorNow}</span>
-      </Button>
+  /**
+   * "For whom" and which body is shown (man or woman). Phones: above the body, so the label is read
+   * before the model it describes. Desktop: at the top of the question card, beside the body.
+   */
+  const renderWhoControls = (slot: "page" | "card") => {
+    const groups = [
+      {
+        id: `${baseId}-who-${slot}`,
+        label: c.forWhom,
+        isRightActive: forWhom === "child",
+        activeValue: forWhom,
+        onSelect: (id: string) => handleForWhomChange(id as "self" | "child"),
+        options: [
+          { id: "self", label: c.forSelf },
+          { id: "child", label: c.forChild },
+        ],
+      },
+      {
+        id: `${baseId}-anat-${slot}`,
+        label: bodyShown && !phoneListOnly ? c.bodyShownLabel : c.bodyTypeLabel,
+        isRightActive: bodyProfile === "female",
+        activeValue: bodyProfile,
+        onSelect: (id: string) => handleBodyProfileChange(id as BodyAnatomyProfile),
+        options: [
+          { id: "general", label: c.bodyGeneral },
+          { id: "female", label: c.bodyFemale },
+        ],
+      },
+    ];
 
-      <Button
-        href={withLangPrefix("/medic-online?source=triage", activeLang)}
-        variant="outline"
-        size="lg"
-        className="w-full sm:w-auto"
-      >
-        <span>{c.doctorBook}</span>
-      </Button>
-
-      {placeCategory && placeLabel && (
-        <Button
-          href={withLangPrefix(findHelpHref(placeCategory), activeLang)}
-          variant="outline"
-          size="md"
-          className="w-full sm:w-auto"
-        >
-          <PinIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-          <span>{placeLabel}</span>
-        </Button>
-      )}
-    </div>
-  );
+    return (
+      <div className="rounded-xl border border-border/80 bg-muted/45 p-3">
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
+          {groups.map((group) => (
+            <div key={group.id} className="space-y-1.5">
+              <span id={group.id} className="block text-meta font-medium text-muted-foreground">
+                {group.label}
+              </span>
+              <div
+                role="radiogroup"
+                aria-labelledby={group.id}
+                data-capsule-switch=""
+                onKeyDown={handleRadioKeys}
+                className={cn(
+                  "relative grid w-full grid-cols-2 items-center p-1",
+                  CAPSULE_SHAPE,
+                  CAPSULE_OUTLINE,
+                  "bg-card/95 dark:bg-white/[0.06]",
+                )}
+              >
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] bg-sapphire shadow-xs transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] motion-reduce:transition-none dark:bg-sapphire-light",
+                    CAPSULE_SHAPE,
+                  )}
+                  style={{
+                    transform: group.isRightActive ? "translateX(100%)" : "translateX(0%)",
+                  }}
+                />
+                {group.options.map((opt) => {
+                  const active = group.activeValue === opt.id;
+                  return (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      role="radio"
+                      data-segmented=""
+                      aria-checked={active}
+                      tabIndex={active ? 0 : -1}
+                      onClick={() => group.onSelect(opt.id)}
+                      className={cn(
+                        "press-row relative z-10 inline-flex min-h-11 w-full min-w-0 items-center justify-center whitespace-nowrap px-2.5 text-body transition-[color,background-color] duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+                        CAPSULE_SHAPE,
+                        active
+                          ? "font-semibold text-white"
+                          : "font-medium text-muted-foreground hover:bg-sapphire-soft/50 hover:text-foreground dark:hover:bg-white/5",
+                      )}
+                    >
+                      {opt.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+        {bodyProfile === "general" && (
+          <p className="mt-2 text-meta leading-snug text-muted-foreground">
+            {c.bodyGeneralHelper}
+          </p>
+        )}
+      </div>
+    );
+  };
 
   async function handleCopyDiagnosticSheet() {
     const lines: string[] = [
@@ -2022,7 +2299,7 @@ export function HealthCheckExplorer() {
       lines.push(dict.ui.emergency.description);
     } else if (careLevel) {
       lines.push(`${c.recommendationGiven}: ${dict.urgency[careLevel].title}`);
-      lines.push(dict.urgency[careLevel].intro);
+      lines.push(careIntro);
       if (forWhom === "child") lines.push(c.childNote);
       if (careLevel === "low" && selectedSymptom?.selfCareTip) {
         lines.push(`${c.selfCare}: ${selectedSymptom.selfCareTip}`);
@@ -2075,10 +2352,8 @@ export function HealthCheckExplorer() {
 
   return (
     <div>
-      <AssistantNavigation />
-
       <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
-        {`${stepIndicatorText}: ${currentQuestion}`}
+        {stepIndicatorText ? `${stepIndicatorText}: ${currentQuestion}` : currentQuestion}
       </div>
 
       <div
@@ -2091,17 +2366,21 @@ export function HealthCheckExplorer() {
       >
         <PageHeader
           ref={headerRef}
-          className={stageVisibleInLayout ? "lg:col-start-1 lg:row-start-1" : undefined}
+          // Phones drop the lead: the step question says the same, and the answers start a line higher.
+          className={`max-lg:[&>p]:hidden ${stageVisibleInLayout ? "lg:col-start-1 lg:row-start-1" : ""}`}
           title={dict.ui.heading}
           lead={stepId === "area" ? firstSentence(dict.ui.subtitle) : undefined}
         />
+
+        {stepId === "area" && <div className="mt-4 lg:hidden">{renderWhoControls("page")}</div>}
 
         {/* 3D stage: pinned under the site header on phones once Body picture is chosen; left column on desktop. */}
         <section
           ref={stageRef}
           aria-label={dict.ui.viewer3D.subModelInfo}
           className={
-            stepId === "result"
+            // Hidden for mind and mood too: left in place it pinned itself over the question card.
+            stepId === "result" || mindPastArea
               ? "hidden"
               : bodyShown
                 ? `${mobileListOnly ? "max-lg:hidden " : ""}mt-4 sm:mt-5 max-lg:sticky max-lg:top-[var(--chrome-h,0px)] ${
@@ -2114,7 +2393,7 @@ export function HealthCheckExplorer() {
         >
           <AnatomicalBodyMap
             deferred={mobileListOnly && !isDesktop}
-            selectedPart={selectedPart}
+            selectedPart={isBodyPartId(selectedPart) ? selectedPart : null}
             onSelectPart={handleSelectFromBody}
             selectedSubRegion={detail?.subRegion ?? null}
             selectedSide={detail?.side ?? "Center"}
@@ -2157,11 +2436,11 @@ export function HealthCheckExplorer() {
           ref={cardRef}
           data-triage-card
           aria-labelledby={`${baseId}-q`}
-          className={`min-w-0 rounded-2xl border border-border bg-card ${
+          className={`min-w-0 rounded-2xl border border-border bg-card lg:shadow-(--shadow-card-rest) ${
             stageVisibleInLayout
               ? mobileListOnly
-                ? "max-lg:mt-4 max-lg:p-4 max-lg:pb-6 sm:max-lg:p-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-2.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
-                : "max-lg:relative max-lg:z-10 max-lg:-mt-4 max-lg:min-h-[calc(100dvh-var(--chrome-h,0px))] max-lg:overflow-x-clip max-lg:rounded-t-[1.5rem] max-lg:border-0 max-lg:bg-muted max-lg:px-4 max-lg:pb-6 max-lg:pt-2 max-lg:shadow-[0_-10px_30px_-18px_rgb(15_23_42/0.35)] max-sm:-mx-4 max-sm:rounded-b-none sm:max-lg:px-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-2.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
+                ? "max-lg:mt-4 max-lg:p-4 max-lg:pb-6 sm:max-lg:p-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-1.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
+                : "max-lg:relative max-lg:z-10 max-lg:-mt-4 max-lg:min-h-[calc(100dvh-var(--chrome-h,0px))] max-lg:overflow-x-clip max-lg:rounded-t-[1.5rem] max-lg:border-0 max-lg:bg-muted max-lg:px-4 max-lg:pb-6 max-lg:pt-2 max-lg:shadow-[0_-10px_30px_-18px_rgb(15_23_42/0.35)] max-sm:-mx-4 max-sm:rounded-b-none sm:max-lg:px-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:flex lg:max-h-[calc(100svh-var(--chrome-h,0px)-1.5rem)] lg:flex-col lg:self-start lg:overflow-hidden lg:p-0"
               : "mt-6 w-full p-4 sm:mt-8 sm:p-8"
           }`}
         >
@@ -2172,7 +2451,8 @@ export function HealthCheckExplorer() {
               type="button"
               aria-expanded={stageExpanded && !sheetAtTop}
               aria-label={stageExpanded && !sheetAtTop ? c.showLessBody : c.showMoreBody}
-              className="mx-auto -mt-1 mb-1 flex h-7 w-24 touch-none items-center justify-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
+              // 44px tall for the finger; the negative margins keep the sheet's layout as it was at 28px.
+              className="mx-auto -mt-3 -mb-1 flex h-11 w-24 touch-none items-center justify-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
               onPointerDown={(e) => {
                 if (cardRef.current) cardRef.current.style.transform = "";
                 sheetDragRef.current = { y: e.clientY, dy: 0, atTop: sheetCoversBodyNow() };
@@ -2233,9 +2513,9 @@ export function HealthCheckExplorer() {
             </button>
           )}
           {/* Top bar: Back + Step X of Y + reading tools + progress + answer chips */}
-          <div className={stageVisibleInLayout ? "mb-4 lg:mb-0 lg:shrink-0 lg:px-6 lg:pb-4 lg:pt-4" : "mb-7"}>
+          <div className={stageVisibleInLayout ? "mb-4 lg:mb-0 lg:shrink-0 lg:border-b lg:border-border/70 lg:px-6 lg:pb-3 lg:pt-3.5" : "mb-7"}>
             {/* With large text the reading tools drop to their own line instead of covering "Step X of Y". */}
-            <div className="flex flex-wrap items-center justify-between gap-x-1.5 gap-y-1 sm:gap-x-2">
+            <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1.5">
               <div className="flex min-h-11 min-w-0 flex-nowrap items-center gap-1.5 sm:gap-2">
                 {displayStep > 1 ? (
                   <button
@@ -2243,29 +2523,31 @@ export function HealthCheckExplorer() {
                     onClick={goBack}
                     data-back
                     aria-keyshortcuts="Backspace"
-                    className="-ml-1.5 inline-flex min-h-11 shrink-0 items-center gap-0.5 whitespace-nowrap rounded-xl px-1 sm:px-1.5 text-body font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:min-h-9 lg:gap-1.5 lg:px-2"
+                    className="-ml-1.5 inline-flex min-h-11 shrink-0 items-center gap-1 whitespace-nowrap rounded-xl px-1.5 text-body font-medium text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-sapphire-soft/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:gap-1.5 lg:px-2.5"
                   >
                     <ChevronRightIcon className="h-5 w-5 rotate-180 lg:hidden" aria-hidden="true" />
                     <ArrowLeftIcon className="hidden h-4 w-4 lg:block" aria-hidden="true" />
                     <span>{dict.ui.backButton}</span>
                   </button>
                 ) : null}
-                <p className="shrink-0 whitespace-nowrap text-meta font-medium text-muted-foreground tabular-nums">
-                  {stepIndicatorText}
-                </p>
+                {stepIndicatorText && (
+                  <p className="shrink-0 whitespace-nowrap text-meta font-medium text-muted-foreground tabular-nums">
+                    {stepIndicatorText}
+                  </p>
+                )}
               </div>
 
-              <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-1 sm:gap-2">
+              <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-2">
                 {stepId === "result" && (
                   <button
                     type="button"
                     onClick={handleCopyDiagnosticSheet}
                     aria-label={sheetCopied ? c.copiedSheet : c.copySheet}
                     title={sheetCopied ? c.copiedSheet : c.copySheet}
-                    className={`inline-flex h-[44px] min-h-11 w-[44px] min-w-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-0 text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:h-11 sm:w-auto sm:min-w-11 sm:px-3 lg:h-9 lg:min-h-9 lg:min-w-9 ${
+                    className={`press-row inline-flex h-11 min-h-11 w-11 min-w-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border px-0 max-sm:hidden text-body font-semibold shadow-(--shadow-card-rest) transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-auto sm:min-w-11 sm:px-3.5 ${
                       sheetCopied
                         ? "border-sapphire bg-sapphire text-white"
-                        : "border-border-control bg-card text-foreground hover:border-sapphire/60 hover:bg-sapphire-soft/30"
+                        : "border-border-control bg-card text-foreground hover:border-sapphire/50 hover:bg-sapphire-soft/30"
                     }`}
                   >
                     {sheetCopied ? (
@@ -2292,20 +2574,20 @@ export function HealthCheckExplorer() {
             </div>
 
             <div
-              className="mt-3 flex h-1 w-full gap-1.5"
+              className="mt-2.5 flex h-1 w-full gap-1.5"
               role="progressbar"
               aria-label={c.progressLabel}
-              aria-valuenow={displayStep}
+              aria-valuenow={progressValue}
               aria-valuemin={1}
-              aria-valuemax={totalSteps}
-              aria-valuetext={stepIndicatorText}
+              aria-valuemax={progressTotal}
+              aria-valuetext={stepIndicatorText || dict.ui.step4Title}
             >
-              {Array.from({ length: totalSteps }, (_, idx) => idx + 1).map((segment) => (
+              {Array.from({ length: progressTotal }, (_, idx) => idx + 1).map((segment) => (
                 <div key={segment} className="h-1 flex-1 rounded-sm overflow-hidden bg-border">
                   {/* The fill sweeps in from the start of the segment (and back out when going back). */}
                   <div
                     className={`h-full w-full origin-left bg-sapphire transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] motion-reduce:transition-none rtl:origin-right dark:bg-sapphire-border ${
-                      displayStep >= segment ? "scale-x-100" : "scale-x-0"
+                      progressValue >= segment ? "scale-x-100" : "scale-x-0"
                     }`}
                   />
                 </div>
@@ -2315,7 +2597,7 @@ export function HealthCheckExplorer() {
             {trailItems.length > 0 && (
               // One quiet line of earlier answers, each a link back to that question. Full labels; when
               // they do not fit, the line scrolls sideways (snapped to the latest) and fades at the edge.
-              <nav aria-label={c.selectedTrailLabel} className="mt-2.5">
+              <nav aria-label={c.selectedTrailLabel} className="mt-2">
                 <ol className="flex flex-wrap items-center gap-x-1 gap-y-0.5 text-meta text-muted-foreground">
                   {trailItems.map((item, index) => (
                     <li key={item.key} className="swap-in flex min-w-0 max-w-full items-center">
@@ -2342,7 +2624,7 @@ export function HealthCheckExplorer() {
           <div
             className={
               stageVisibleInLayout
-                ? "lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:overscroll-auto lg:px-6 lg:pb-6 lg:pt-1"
+                ? "lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:overscroll-auto lg:px-6 lg:pb-5 lg:pt-3.5"
                 : undefined
             }
           >
@@ -2355,9 +2637,9 @@ export function HealthCheckExplorer() {
             >
               {currentQuestion}
             </h2>
-            <p className={stepLead}>{currentPrompt}</p>
+            {currentPrompt && <p className={stepLead}>{currentPrompt}</p>}
 
-            {bodyShown && stepId !== "result" && (
+            {bodyShown && (stepId === "area" || stepId === "spot") && (
               <div
                 role="group"
                 aria-label={(AREA_VIEW_SWITCH_COPY[activeLang] ?? AREA_VIEW_SWITCH_COPY.ro).groupLabel}
@@ -2375,7 +2657,10 @@ export function HealthCheckExplorer() {
                       key={opt.id}
                       type="button"
                       aria-pressed={active}
-                      onClick={() => setMobileAreaModeOverride(opt.id)}
+                      onClick={() => {
+                        setMobileAreaModeOverride(opt.id);
+                        writeStoredAreaMode(opt.id);
+                      }}
                       className={`min-h-11 flex-1 rounded-lg px-2.5 py-2 text-body font-semibold whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3 ${
                         active
                           ? "bg-card text-sapphire shadow-2xs ring-1 ring-border/70"
@@ -2389,146 +2674,39 @@ export function HealthCheckExplorer() {
               </div>
             )}
 
-            {/* STEP 1 — Body Area */}
+            {/* STEP 1 — Body or Mind Area */}
             {viewStep === "area" && (
-              <div className="mt-4 space-y-3">
-                {/* Phones: a quiet list heading (who it is for, which body) that opens into a small group. */}
-                <div
-                  className={`rounded-xl px-4 lg:bg-muted/55 lg:px-3.5 lg:py-1 ${
-                    setupOpen ? "bg-card py-1 max-lg:shadow-[0_0_0_1px_var(--color-border)]" : "max-lg:-mb-1.5"
-                  }`}
-                >
-                  <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
-                    <p className="min-w-0 text-body text-muted-foreground">
-                      <span className="text-foreground">
-                        {forWhom === "child" ? c.forChild : c.forSelf}
-                      </span>
-                      {", "}
-                      <span className="text-foreground">
-                        {bodyProfile === "female" ? c.bodyFemale : c.bodyGeneral}
-                      </span>
-                    </p>
-                    <button
-                      type="button"
-                      aria-expanded={setupOpen}
-                      aria-controls={`${baseId}-setup`}
-                      onClick={() => setSetupOpen((open) => !open)}
-                      className="-mr-2 inline-flex min-h-11 shrink-0 items-center rounded-xl px-2 text-body font-medium whitespace-nowrap text-sapphire underline decoration-sapphire/30 underline-offset-4 hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring max-lg:no-underline"
-                    >
-                      {c.change}
-                    </button>
-                  </div>
-
-                  {setupOpen && (
-                    <div id={`${baseId}-setup`} className="swap-in mt-2 divide-y divide-border/70 border-t border-border/70">
-                      <div className="flex flex-wrap items-center justify-between gap-2.5 py-2.5">
-                        <span id={`${baseId}-who`} className="text-meta font-medium text-muted-foreground">
-                          {c.forWhom}
-                        </span>
-                        <div
-                          role="radiogroup"
-                          aria-labelledby={`${baseId}-who`}
-                          onKeyDown={handleRadioKeys}
-                          className="inline-flex flex-wrap gap-1 rounded-xl bg-background/80 p-1 ring-1 ring-border"
-                        >
-                          {(
-                            [
-                              { id: "self", label: c.forSelf },
-                              { id: "child", label: c.forChild },
-                            ] as const
-                          ).map((opt) => {
-                            const active = forWhom === opt.id;
-                            return (
-                              <button
-                                key={opt.id}
-                                type="button"
-                                role="radio"
-                                aria-checked={active}
-                                tabIndex={active ? 0 : -1}
-                                onClick={() => handleForWhomChange(opt.id)}
-                                className={`inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-body font-medium whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                                  active
-                                    ? "bg-sapphire text-white"
-                                    : "text-muted-foreground hover:text-foreground"
-                                }`}
-                              >
-                                {opt.label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      <div className="flex flex-wrap items-center justify-between gap-2.5 py-2.5">
-                        <span id={`${baseId}-anat`} className="text-meta font-medium text-muted-foreground">
-                          {c.bodyTypeLabel}
-                        </span>
-                        <div
-                          role="radiogroup"
-                          aria-labelledby={`${baseId}-anat`}
-                          onKeyDown={handleRadioKeys}
-                          className="inline-flex flex-wrap gap-1 rounded-xl bg-background/80 p-1 ring-1 ring-border"
-                        >
-                          {(
-                            [
-                              { id: "general", label: c.bodyGeneral },
-                              { id: "female", label: c.bodyFemale },
-                            ] as const
-                          ).map((opt) => {
-                            const active = bodyProfile === opt.id;
-                            return (
-                              <button
-                                key={opt.id}
-                                type="button"
-                                role="radio"
-                                aria-checked={active}
-                                tabIndex={active ? 0 : -1}
-                                onClick={() => handleBodyProfileChange(opt.id)}
-                                className={`inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-body font-medium whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                                  active
-                                    ? "bg-sapphire text-white"
-                                    : "text-muted-foreground hover:text-foreground"
-                                }`}
-                              >
-                                {opt.label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                        {bodyProfile === "general" && (
-                          <p className="mt-1.5 basis-full text-meta text-muted-foreground">
-                            {c.bodyGeneralHelper}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
+              <div className="mt-3.5 space-y-3">
+                <div className="hidden lg:block">{renderWhoControls("card")}</div>
 
                 {bodyShown && (
-                  <p className="hidden px-0.5 text-body font-medium text-muted-foreground lg:block">{c.orList}</p>
+                  <p className="hidden px-0.5 text-meta font-medium text-muted-foreground lg:block">{c.orList}</p>
                 )}
 
                 <div
                   role="radiogroup"
                   aria-labelledby={`${baseId}-q`}
                   onKeyDown={handleRadioKeys}
-                  // Desktop: letters run down the left column first (A head … D pelvis), then the right.
-                  className={`grid grid-cols-1 ${optionGroup} lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-[repeat(var(--rows),auto)]`}
-                  style={{ "--rows": Math.ceil(BODY_PARTS.length / 2) } as CSSProperties}
+                  // Desktop: letters run down the left column first (A head … D pelvis), then the right (E back … H mind).
+                  className={`grid grid-cols-1 ${optionGroup} lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-[repeat(var(--rows),auto)] lg:gap-2.5`}
+                  style={{ "--rows": Math.ceil(AREA_CHOICES.length / 2) } as CSSProperties}
                 >
-                  {BODY_PARTS.map((id, index) => (
-                    <AreaOptionCard
-                      key={id}
-                      hotkey={isDesktop ? HOTKEYS[index] : undefined}
-                      partId={id}
-                      checked={selectedPart === id}
-                      focusable={!selectedPart && id === BODY_PARTS[0]}
-                      onSelect={(byPointer) => handleSelectFromList(id, byPointer)}
-                      title={dict.bodyParts[id].title}
-                      description={dict.bodyParts[id].subtitle}
-                    />
-                  ))}
+                  {areaOrder.map((id) => {
+                    const areaCopy = id === "mind" ? dict.mentalArea : dict.bodyParts[id];
+                    return (
+                      <AreaOptionCard
+                        key={id}
+                        hotkey={isDesktop ? HOTKEYS[AREA_CHOICES.indexOf(id)] : undefined}
+                        className={mindFirst && id === "mind" ? "lg:order-last" : undefined}
+                        partId={id}
+                        checked={selectedPart === id}
+                        focusable={!selectedPart && id === AREA_CHOICES[0]}
+                        onSelect={(byPointer) => handleSelectFromList(id, byPointer)}
+                        title={areaCopy.title}
+                        description={areaCopy.subtitle}
+                      />
+                    );
+                  })}
                 </div>
 
                 {selectedPart && (
@@ -2538,13 +2716,13 @@ export function HealthCheckExplorer() {
             )}
 
             {/* Exact spot (optional, synced live with the 3D body) */}
-            {viewStep === "spot" && selectedPart && (
+            {viewStep === "spot" && isBodyPartId(selectedPart) && (
               <div className="mt-4 space-y-3">
                 <div
                   role="radiogroup"
                   aria-labelledby={`${baseId}-q`}
                   onKeyDown={handleRadioKeys}
-                  className={`grid grid-cols-1 ${optionGroup} lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-[repeat(var(--rows),auto)]`}
+                  className={`grid grid-cols-1 ${optionGroup} lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-[repeat(var(--rows),auto)] lg:gap-2.5`}
                   style={{ "--rows": Math.ceil((quickSpots.length + 1) / 2) } as CSSProperties}
                 >
                   <OptionRow
@@ -2565,7 +2743,8 @@ export function HealthCheckExplorer() {
                         hotkey={isDesktop ? HOTKEYS[index + 1] : undefined}
                         onSelect={(byPointer) => handleSelectQuickSpot(sub, byPointer)}
                         title={localized.label}
-                        description={isDesktop ? undefined : localized.summary}
+                        // The Russian spot texts are missing or unreadable for now: show the name alone.
+                        description={isDesktop || activeLang === "ru" ? undefined : localized.summary}
                       />
                     );
                   })}
@@ -2591,10 +2770,10 @@ export function HealthCheckExplorer() {
                   <div
                     role="group"
                     aria-label={c.sideLabel}
-                    className="rounded-xl bg-card p-3.5 max-lg:shadow-[0_0_0_1px_var(--color-border)] lg:bg-muted/55"
+                    className="rounded-xl border border-border/80 bg-card p-3 lg:bg-muted/45"
                   >
-                    <p className="text-body font-medium text-foreground">{c.sideLabel}</p>
-                    <div className="mt-2 flex flex-wrap gap-1 rounded-xl bg-muted p-1 lg:bg-background/80 lg:ring-1 lg:ring-border">
+                    <p className="text-meta font-medium text-muted-foreground">{c.sideLabel}</p>
+                    <div className="mt-2 grid grid-cols-3 gap-1 rounded-xl bg-muted p-1 lg:bg-background/90 lg:ring-1 lg:ring-border/80">
                       {(
                         [
                           { id: "Center", label: c.bothSides },
@@ -2612,21 +2791,12 @@ export function HealthCheckExplorer() {
                             aria-keyshortcuts={hotkey}
                             data-hotkey={hotkey}
                             onClick={() => handleSelectSpotSide(detail.subRegion, opt.id)}
-                            className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-2.5 text-body font-medium flex-1 whitespace-nowrap sm:px-3 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                            className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-2.5 text-body font-medium w-full whitespace-nowrap sm:px-3 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                               active
-                                ? "bg-card text-sapphire shadow-sm ring-1 ring-border lg:bg-sapphire lg:text-white lg:ring-0"
-                                : "text-muted-foreground hover:text-foreground"
+                                ? "bg-card text-sapphire font-semibold shadow-2xs ring-1 ring-border lg:border lg:border-sapphire lg:bg-sapphire-soft/60 lg:text-sapphire lg:ring-0"
+                                : "text-muted-foreground hover:bg-card/70 hover:text-foreground"
                             }`}
                           >
-                            {/* Desktop: the number key that picks this side. */}
-                            <kbd
-                              aria-hidden="true"
-                              className={`hidden rounded-md border px-1.5 py-0.5 font-sans text-meta font-medium leading-none lg:inline ${
-                                active ? "border-white/40 text-white" : "border-border bg-muted text-foreground"
-                              }`}
-                            >
-                              {hotkey}
-                            </kbd>
                             {opt.label}
                           </button>
                         );
@@ -2646,7 +2816,7 @@ export function HealthCheckExplorer() {
                   role="radiogroup"
                   aria-labelledby={`${baseId}-q`}
                   onKeyDown={handleRadioKeys}
-                  className={`grid grid-cols-1 ${optionGroup}`}
+                  className={`grid grid-cols-1 ${optionGroup} lg:gap-2.5`}
                 >
                   {symptomsList.map((symptom, index) => {
                     const urgent = isAcuteSurgicalOrEmergency(symptom);
@@ -2718,15 +2888,27 @@ export function HealthCheckExplorer() {
                 {otherChosen ? (
                   <div className={`${softPanel} max-lg:bg-card max-lg:shadow-[0_0_0_1px_var(--color-border)]`}>
                     <p className="text-body font-medium text-foreground">{c.otherBody}</p>
-                    <div className="mt-3.5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-                      <Button href={withLangPrefix("/health-assistant", activeLang)} variant="action" size="lg">
-                        <span className="min-w-0 truncate">{c.otherAssistant}</span>
-                        <ArrowRightIcon className="arrow-travel h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+                    <p className="mt-1.5 text-body text-muted-foreground">{places.pharmacyFirstHint}</p>
+                    <div className="mt-3.5 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                      <Button
+                        href={withLangPrefix(findHelpHref("pharmacy"), activeLang)}
+                        variant="action"
+                        size="lg"
+                        className="w-full sm:w-auto"
+                      >
+                        <PinIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+                        <span>{places.pharmacyFirst}</span>
                       </Button>
-                      <Button href={withLangPrefix("/medic-online?source=triage", activeLang)} variant="outline" size="lg">
-                        <span className="min-w-0 truncate">{c.otherDoctor}</span>
+                      <Button
+                        href={withLangPrefix("/mediatori#solicita", activeLang)}
+                        variant="outline"
+                        size="lg"
+                        className="w-full sm:w-auto"
+                      >
+                        <span>{dict.ui.requestMediatorHelp}</span>
                       </Button>
                     </div>
+                    {placeLink(undefined, places.nav)}
                   </div>
                 ) : selectedSymptom ? (
                   <ContinueRow
@@ -2738,9 +2920,9 @@ export function HealthCheckExplorer() {
               </div>
             )}
 
-            {/* Desktop: strength, duration and "also feeling" on one screen */}
+            {/* Desktop: strength, duration and optional "also feeling" on one aligned screen */}
             {viewStep === "severity" && isDesktop && (
-              <div className="mt-4 space-y-4">
+              <div className="mt-2.5 space-y-3">
                 <div>
                   <p id={`${baseId}-sev`} className="text-body font-semibold text-foreground">
                     {dict.ui.severityHeading}
@@ -2749,7 +2931,7 @@ export function HealthCheckExplorer() {
                     role="radiogroup"
                     aria-labelledby={`${baseId}-sev`}
                     onKeyDown={handleRadioKeys}
-                    className="mt-2 flex flex-wrap gap-2"
+                    className="mt-1.5 grid grid-cols-3 gap-2.5"
                   >
                     {SEVERITY_KEYS.map((key, index) => {
                       const checked = severity === key;
@@ -2765,16 +2947,17 @@ export function HealthCheckExplorer() {
                           tabIndex={checked || (!severity && index === 0) ? 0 : -1}
                           title={dict.severity[key].description}
                           onClick={(e) => handleSelectSeverity(key, e.detail > 0)}
-                          className={`press-row flex min-h-[4.75rem] flex-1 flex-col items-start gap-1.5 whitespace-nowrap rounded-xl border px-3 py-2.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                          className={`press-row flex min-h-[4rem] w-full flex-col items-start justify-between gap-1.5 whitespace-nowrap rounded-xl border px-3.5 py-2 text-left shadow-2xs transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                             checked
                               ? urgent
                                 ? "border-primary bg-primary-soft/45"
-                                : "border-sapphire bg-sapphire-soft/45"
-                              : "border-border bg-card hover:border-sapphire/50 hover:bg-sapphire-soft/25"
+                                : "border-sapphire bg-sapphire-soft/55"
+                              : "border-border-control/70 bg-card hover:border-sapphire/55 hover:bg-sapphire-soft/25"
                           }`}
                         >
                           <span className="flex w-full items-center justify-between gap-2">
                             <SeverityComfortVisual severityKey={key} checked={checked} />
+                            {checked && <RowCheck urgent={urgent} showDesktop />}
                           </span>
                           <span className="whitespace-nowrap text-body font-semibold leading-snug text-foreground">
                             {dict.severity[key].title}
@@ -2784,7 +2967,7 @@ export function HealthCheckExplorer() {
                     })}
                   </div>
                   {severity && (
-                    <p className="mt-2 text-body leading-snug text-muted-foreground">
+                    <p className="mt-1.5 text-meta leading-snug text-muted-foreground">
                       {dict.severity[severity].description}
                     </p>
                   )}
@@ -2798,7 +2981,7 @@ export function HealthCheckExplorer() {
                     role="radiogroup"
                     aria-labelledby={`${baseId}-dur`}
                     onKeyDown={handleRadioKeys}
-                    className="mt-2 flex flex-wrap gap-2"
+                    className="mt-1.5 grid grid-cols-2 gap-2.5"
                   >
                     {DURATION_KEYS.map((key, index) => {
                       const checked = duration === key;
@@ -2811,18 +2994,19 @@ export function HealthCheckExplorer() {
                           aria-keyshortcuts={HOTKEYS[index]}
                           data-hotkey={HOTKEYS[index]}
                           tabIndex={checked || (!duration && index === 0) ? 0 : -1}
-                          title={dict.duration[key].hint}
+                          title={dict.duration[key].hint || undefined}
                           onClick={(e) => handleSelectDuration(key, e.detail > 0)}
-                          className={`press-row flex min-h-11 min-w-[13.5rem] flex-1 items-center gap-2.5 whitespace-nowrap rounded-xl border px-3 py-1.5 text-left transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                          className={`press-row flex min-h-11 w-full items-center gap-2.5 whitespace-nowrap rounded-xl border px-3 py-1.5 text-left shadow-2xs transition-[border-color,background-color] duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                             checked
-                              ? "border-sapphire bg-sapphire-soft/45"
-                              : "border-border bg-card hover:border-sapphire/50 hover:bg-sapphire-soft/25"
+                              ? "border-sapphire bg-sapphire-soft/55"
+                              : "border-border-control/70 bg-card hover:border-sapphire/55 hover:bg-sapphire-soft/25"
                           }`}
                         >
                           <DurationHorizonVisual durationKey={key} checked={checked} />
-                          <span className="whitespace-nowrap text-body font-semibold leading-snug text-foreground">
+                          <span className="min-w-0 flex-1 truncate whitespace-nowrap text-body font-semibold leading-snug text-foreground">
                             {dict.duration[key].label}
                           </span>
+                          {checked && <RowCheck showDesktop />}
                         </button>
                       );
                     })}
@@ -2830,38 +3014,72 @@ export function HealthCheckExplorer() {
                 </div>
 
                 {extraCandidates.length > 0 && (
-                  <div>
-                    <p id={`${baseId}-also`} className="text-body font-semibold text-foreground">
-                      {c.alsoFeel}{" "}
-                      <span className="font-normal text-muted-foreground">— {c.alsoFeelHint}</span>
-                    </p>
-                    <div role="group" aria-labelledby={`${baseId}-also`} className="mt-2 flex flex-wrap gap-1.5">
-                      {extraCandidates.map((symptom) => {
-                        const checked = extraSymptoms.some((s) => s.id === symptom.id);
-                        const urgent = isAcuteSurgicalOrEmergency(symptom);
-                        return (
-                          <button
-                            key={symptom.id}
-                            type="button"
-                            aria-pressed={checked}
-                            title={symptom.description}
-                            onClick={() => toggleExtra(symptom)}
-                            className={`inline-flex min-h-11 max-w-full items-center gap-1.5 rounded-lg whitespace-nowrap border px-3 py-1.5 text-left text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                              checked
-                                ? urgent
-                                  ? "border-primary bg-primary text-white press-solid"
-                                  : "border-sapphire bg-sapphire text-white press-solid"
-                                : urgent
-                                  ? "border-primary/40 bg-primary-soft/30 text-primary press-row hover:border-primary/60"
-                                  : "border-border-control bg-card text-foreground press-row hover:border-sapphire/50 hover:bg-sapphire-soft/25"
-                            }`}
-                          >
-                            <span aria-hidden="true" className="shrink-0 text-meta">{checked ? "✓" : "+"}</span>
-                            <span className="min-w-0 truncate">{symptom.title}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
+                  <div className="rounded-xl border border-border/80 bg-muted/35">
+                    <button
+                      type="button"
+                      aria-expanded={extrasExpanded}
+                      aria-controls={`${baseId}-also-panel`}
+                      onClick={() => setExtrasExpanded((prev) => !prev)}
+                      className="flex min-h-11 w-full items-center justify-between gap-3 rounded-xl px-3.5 py-2.5 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <span className="min-w-0 flex items-center gap-2">
+                        <span id={`${baseId}-also`} className="text-body font-semibold text-foreground">
+                          {c.alsoFeel}
+                        </span>
+                        {extraSymptoms.length > 0 ? (
+                          <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-md bg-sapphire-soft px-1.5 text-meta font-semibold text-sapphire tabular-nums">
+                            {extraSymptoms.length}
+                          </span>
+                        ) : (
+                          <span className="truncate text-meta font-normal text-muted-foreground">
+                            {c.alsoFeelHint}
+                          </span>
+                        )}
+                      </span>
+                      <ChevronRightIcon
+                        aria-hidden="true"
+                        className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none ${
+                          extrasExpanded ? "rotate-90" : ""
+                        }`}
+                      />
+                    </button>
+
+                    {extrasExpanded && (
+                      <div
+                        id={`${baseId}-also-panel`}
+                        role="group"
+                        aria-labelledby={`${baseId}-also`}
+                        className="grid grid-cols-1 gap-2 border-t border-border/70 p-2.5 sm:grid-cols-2"
+                      >
+                        {extraCandidates.map((symptom) => {
+                          const checked = extraSymptoms.some((s) => s.id === symptom.id);
+                          const urgent = isAcuteSurgicalOrEmergency(symptom);
+                          return (
+                            <button
+                              key={symptom.id}
+                              type="button"
+                              aria-pressed={checked}
+                              title={symptom.description}
+                              onClick={() => toggleExtra(symptom)}
+                              className={`inline-flex min-h-11 max-w-full items-center gap-1.5 rounded-lg w-full justify-start whitespace-nowrap border px-3 py-2 text-left text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                                checked
+                                  ? urgent
+                                    ? "border-primary bg-primary text-white press-solid"
+                                    : "border-sapphire bg-sapphire text-white press-solid"
+                                  : urgent
+                                    ? "border-primary/40 bg-primary-soft/30 text-primary press-row hover:border-primary/60"
+                                    : "border-border-control/75 bg-card text-foreground press-row hover:border-sapphire/50 hover:bg-sapphire-soft/25"
+                              }`}
+                            >
+                              <span aria-hidden="true" className="w-4 shrink-0 text-center text-meta font-semibold">
+                                {checked ? "✓" : "+"}
+                              </span>
+                              <span className="min-w-0 truncate">{symptom.title}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -2921,7 +3139,7 @@ export function HealthCheckExplorer() {
                       focusable={!duration && key === DURATION_KEYS[0]}
                       onSelect={(byPointer) => handleSelectDuration(key, byPointer)}
                       title={dict.duration[key].label}
-                      description={dict.duration[key].hint}
+                      description={dict.duration[key].hint || undefined}
                       iconBadge={<DurationHorizonVisual durationKey={key} checked={duration === key} />}
                     />
                   ))}
@@ -2993,12 +3211,7 @@ export function HealthCheckExplorer() {
                   <div className="space-y-6 lg:sticky lg:top-[calc(var(--chrome-h,0px)+1rem)] lg:col-span-7 lg:-mx-1 lg:max-h-[calc(100dvh-var(--chrome-h,0px)-2rem)] lg:overflow-y-auto lg:overscroll-auto lg:px-1 lg:pr-2 lg:pb-3 print:static print:max-h-none print:overflow-visible">
                     {isEmergency ? (
                       <div className={dangerPanel} role="alert">
-                        <h3 className="text-title leading-snug text-foreground">
-                          {dict.ui.emergency.title}
-                        </h3>
-                        <p className="mt-2 text-body text-foreground/90">
-                          {dict.ui.emergency.description}
-                        </p>
+                        <p className="text-body text-foreground/90">{dict.ui.emergency.description}</p>
                         {urgentSymptom && (
                           <p className="mt-3 text-body text-foreground">
                             <span className="font-medium text-primary">
@@ -3007,10 +3220,19 @@ export function HealthCheckExplorer() {
                             {urgentSymptom.title}
                           </p>
                         )}
-                        <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
+                        {/* 112 stays first and red; whole buttons stack on phones and wrap from sm. */}
+                        <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
                           <Button href="tel:112" variant="primary" size="lg">
                             <PhoneIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
                             <span className="min-w-0 truncate">{dict.ui.emergency.call112Now}</span>
+                          </Button>
+                          <Button
+                            href={withLangPrefix(findHelpHref("hospital"), activeLang)}
+                            variant="outline"
+                            size="lg"
+                          >
+                            <PinIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+                            <span className="min-w-0 truncate">{places.hospital}</span>
                           </Button>
                           <Button
                             type="button"
@@ -3021,7 +3243,6 @@ export function HealthCheckExplorer() {
                             <span className="min-w-0 truncate">{dict.ui.showDoctor}</span>
                           </Button>
                         </div>
-                        {placeLink("hospital", places.hospital)}
                       </div>
                     ) : (
                       careLevel && (
@@ -3033,19 +3254,7 @@ export function HealthCheckExplorer() {
                                 : softPanel
                             }
                           >
-                            <p
-                              className={`text-body font-medium ${
-                                careLevel === "high" ? "text-amber-care" : "text-sapphire"
-                              }`}
-                            >
-                              {c.nextStepLabel}
-                            </p>
-                            <h3 className="mt-1.5 text-title leading-snug text-foreground text-balance">
-                              {dict.urgency[careLevel].title}
-                            </h3>
-                            <p className="mt-2 text-body text-muted-foreground">
-                              {dict.urgency[careLevel].intro}
-                            </p>
+                            <p className="text-body text-foreground">{careIntro}</p>
                             {forWhom === "child" && (
                               <p className="mt-3 rounded-xl bg-amber-care-soft/80 px-3.5 py-2.5 text-body font-medium text-foreground dark:bg-amber-care/20">
                                 {c.childNote}
@@ -3053,29 +3262,36 @@ export function HealthCheckExplorer() {
                             )}
                           </div>
 
-                          <div>
-                            {careLevel === "low" && selectedSymptom?.selfCareTip ? (
-                              <div className="space-y-4">
-                                <div>
-                                  <h4 className={subHeading}>{c.selfCare}</h4>
-                                  <p className="mt-1.5 text-body text-muted-foreground">
-                                    {selectedSymptom.selfCareTip}
-                                  </p>
-                                </div>
-                                <div>
-                                  <h4 className={subHeading}>{places.pharmacyFirst}</h4>
-                                  <p className="mt-1.5 text-body text-muted-foreground">
-                                    {places.pharmacyFirstHint}
-                                  </p>
-                                  {placeLink("pharmacy", places.nearestPharmacy)}
-                                </div>
+                          <div className="space-y-4">
+                            {careLevel === "low" && selectedSymptom?.selfCareTip && (
+                              <div>
+                                <h3 className={subHeading}>{c.selfCare}</h3>
+                                <p className="mt-1.5 text-body text-muted-foreground">
+                                  {selectedSymptom.selfCareTip}
+                                </p>
                               </div>
-                            ) : careLevel === "low" ? (
-                              renderRoutingStack("pharmacy", places.pharmacyFirst)
-                            ) : careLevel === "high" ? (
-                              renderRoutingStack("hospital", places.hospital)
-                            ) : (
-                              renderRoutingStack("gp", places.familyDoctor)
+                            )}
+                            {/* The first button is this screen's main action; each opens the right kind of place. */}
+                            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                              {careActions.map((action, index) => (
+                                <Button
+                                  key={action.key}
+                                  href={withLangPrefix(action.href, activeLang)}
+                                  variant={index === 0 ? "action" : "outline"}
+                                  size="lg"
+                                  className="w-full sm:w-auto"
+                                >
+                                  {action.place && <PinIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />}
+                                  <span>{action.label}</span>
+                                </Button>
+                              ))}
+                            </div>
+                            {careLevel !== "low" && (
+                              // No family doctor, no insurance, no papers: the guide says where to go.
+                              <Link href={withLangPrefix("/health-assistant#triage", activeLang)} className={textLink}>
+                                <span className={textLinkLabel}>{c.noDoctorGuide}</span>
+                                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                              </Link>
                             )}
                           </div>
                         </div>
@@ -3104,16 +3320,6 @@ export function HealthCheckExplorer() {
                         )}
                       </div>
                     )}
-
-                    {!isEmergency && careLevel === "low" && (
-                      <div className="border-t border-border pt-6">
-                        <h3 className={subHeading}>{c.doctorTitle}</h3>
-                        <p className="mb-3.5 mt-1.5 text-body text-muted-foreground">
-                          {c.doctorBody}
-                        </p>
-                        {renderRoutingStack()}
-                      </div>
-                    )}
                   </div>
 
                   {/* Right column: Doctor Summary, Anatomical Pain Diagram, PDF & QR Handoff */}
@@ -3131,7 +3337,7 @@ export function HealthCheckExplorer() {
                       }
                       anatomicalStructure={detailLabel ?? undefined}
                       painLocation={
-                        selectedPart
+                        isBodyPartId(selectedPart)
                           ? {
                               part: selectedPart,
                               subRegion: detail?.subRegion ?? null,
@@ -3156,6 +3362,7 @@ export function HealthCheckExplorer() {
                       doctorOpen={doctorOpen}
                       onDoctorOpenChange={(open) => (open ? openModal("doctor") : closeModal())}
                       lang={activeLang}
+                      patientView
                     />
                   </div>
                 </div>
@@ -3194,6 +3401,9 @@ export function HealthCheckExplorer() {
               <span className="font-medium text-primary">{dict.ui.emergency.whyEmergencyPrefix}</span>{" "}
               {urgentSymptom.title}
             </p>
+            {urgentSymptom.description && (
+              <p className="mt-1 text-body text-muted-foreground">{urgentSymptom.description}</p>
+            )}
             <div className="mt-6 grid gap-2.5 sm:grid-cols-[1fr_auto]">
               <Button
                 data-autofocus
@@ -3213,6 +3423,14 @@ export function HealthCheckExplorer() {
                 <span className="min-w-0 truncate">{dict.ui.emergency.continueReview}</span>
               </Button>
             </div>
+            {/* Below the two buttons, as plain text: a way out for a row tapped by mistake. */}
+            <button
+              type="button"
+              onClick={handleNotThisEmergency}
+              className="-ml-2 mt-2 inline-flex min-h-11 items-center whitespace-nowrap rounded-xl px-2 text-body font-medium text-sapphire underline decoration-sapphire/30 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              {dict.ui.emergency.notThis}
+            </button>
           </div>
         </div>
       )}

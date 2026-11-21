@@ -235,6 +235,15 @@ export function UserIcon(props: IconProps) {
   );
 }
 
+// Home (in-house outline, matches Boxicons line weight): a house with a door, for the phone menu's Home row
+export function HomeIcon(props: IconProps) {
+  return (
+    <svg {...strokeProps(props)}>
+      <path d="M4 10.5 12 4l8 6.5V20h-5v-5H9v5H4z" />
+    </svg>
+  );
+}
+
 // bx-group
 export function UsersIcon(props: IconProps) {
   return (
@@ -515,6 +524,17 @@ export function MessageDotsIcon(props: IconProps) {
       <circle cx="9.5" cy="9.5" r="1.5" />
       <circle cx="14.5" cy="9.5" r="1.5" />
       <path d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.897 5.515 5 6.934V22l5.34-4.004C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8zm0 14h-.333L9 18v-2.417l-.641-.247C5.671 14.301 4 12.256 4 10c0-3.309 3.589-6 8-6s8 2.691 8 6-3.589 6-8 6z" />
+    </svg>
+  );
+}
+
+// In-house clinical assistant mark: clean rounded dialogue frame with a centered medical cross.
+export function AiAssistantIcon(props: IconProps) {
+  return (
+    <svg {...strokeProps(props)}>
+      <path d="M6 4h12a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H9.5L5 21v-3.2A3 3 0 0 1 3 15V7a3 3 0 0 1 3-3Z" />
+      <path d="M12 8v6" />
+      <path d="M9 11h6" />
     </svg>
   );
 }

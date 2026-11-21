@@ -5,105 +5,99 @@ import {
   BookIcon,
   ClipboardCheckIcon,
   PinIcon,
-  StethoscopeIcon,
+  PrescriptionIcon,
   UsersIcon,
 } from "@/components/ui/icons";
 
 export type NavIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 /**
- * The one glyph for each destination, keyed by its unprefixed path. The header, the phone menu
- * and the home page read this map, so a destination looks the same wherever it is offered.
+ * The one glyph for each top-level destination, keyed by its unprefixed path.
+ * The header and the mobile drawer share this map.
  */
 export const NAV_LINK_ICONS = {
   "/health-information": BookIcon,
-  "/health-assistant": ClipboardCheckIcon,
+  "/health-check": ClipboardCheckIcon,
+  "/prescription-review": PrescriptionIcon,
   "/find-help": PinIcon,
-  "/medic-online": StethoscopeIcon,
-  "/stiri": BellIcon,
   "/mediatori": UsersIcon,
+  "/stiri": BellIcon,
 } as const satisfies Record<string, NavIcon>;
 
 export type NavLinkHref = keyof typeof NAV_LINK_ICONS;
 
 /**
- * One-word names for the desktop bar, where six destinations share a row with the utilities.
- * The phone menu, footer and page titles keep the full names; the bar's links carry the full
- * name as their tooltip and their description for screen readers.
+ * Compact names for the desktop bar between lg (1024px) and 2xl (1536px), where six
+ * destinations share a row with the utility capsule. From 2xl up and inside the mobile
+ * drawer, every link displays its full descriptive label and subtitle.
  */
 export const NAV_SHORT_LABELS: Record<Lang, Record<NavLinkHref, string>> = {
   ro: {
-    "/health-information": "Ghiduri",
-    "/health-assistant": "Asistent",
+    "/health-information": "Învață",
+    "/health-check": "Simptome",
+    "/prescription-review": "Medicamente",
     "/find-help": "Farmacii",
-    "/medic-online": "Medic",
-    "/stiri": "Știri",
     "/mediatori": "Mediatori",
+    "/stiri": "Știri",
   },
   en: {
-    "/health-information": "Guides",
-    "/health-assistant": "Assistant",
+    "/health-information": "Learn",
+    "/health-check": "Symptoms",
+    "/prescription-review": "Medicines",
     "/find-help": "Pharmacies",
-    "/medic-online": "Doctor",
-    "/stiri": "News",
     "/mediatori": "Mediators",
+    "/stiri": "News",
   },
   sq: {
-    "/health-information": "Udhëzues",
-    "/health-assistant": "Asistent",
+    "/health-information": "Mëso",
+    "/health-check": "Simptomat",
+    "/prescription-review": "Ilaçet",
     "/find-help": "Farmaci",
-    "/medic-online": "Mjek",
-    "/stiri": "Lajme",
     "/mediatori": "Mediatorë",
+    "/stiri": "Lajme",
   },
   it: {
-    "/health-information": "Guide",
-    "/health-assistant": "Assistente",
+    "/health-information": "Impara",
+    "/health-check": "Sintomi",
+    "/prescription-review": "Farmaci",
     "/find-help": "Farmacie",
-    "/medic-online": "Medico",
-    "/stiri": "Notizie",
     "/mediatori": "Mediatori",
+    "/stiri": "Notizie",
   },
   hr: {
-    "/health-information": "Vodiči",
-    "/health-assistant": "Asistent",
+    "/health-information": "Uči",
+    "/health-check": "Simptomi",
+    "/prescription-review": "Lijekovi",
     "/find-help": "Ljekarne",
-    "/medic-online": "Liječnik",
-    "/stiri": "Vijesti",
     "/mediatori": "Medijatori",
+    "/stiri": "Vijesti",
   },
   rom: {
-    "/health-information": "Sikavimata",
-    "/health-assistant": "Azhutitori",
+    "/health-information": "Sikljov",
+    "/health-check": "Simptome",
+    "/prescription-review": "Draba",
     "/find-help": "Farmaciye",
-    "/medic-online": "Doktori",
-    "/stiri": "Nevimata",
     "/mediatori": "Mediatorya",
+    "/stiri": "Nevimata",
   },
   ru: {
-    "/health-information": "Справочник",
-    "/health-assistant": "Помощник",
+    "/health-information": "Обучение",
+    "/health-check": "Симптомы",
+    "/prescription-review": "Лекарства",
     "/find-help": "Аптеки",
-    "/medic-online": "Врач",
-    "/stiri": "Новости",
     "/mediatori": "Медиаторы",
+    "/stiri": "Новости",
   },
 };
 
 /**
- * On wide screens (2xl and up) the bar has room to say more, so the four names that are unclear
- * as a single word get a second one. The assistant, pharmacies and mediators use their full
- * names; the doctor link says it is online, which its full name ("Talk to a doctor") does not.
- * Guides and news stay one word: they are already clear.
+ * On wide screens (2xl and up) all six destinations display their full descriptive label.
  */
-export const NAV_FULL_NAME_ON_WIDE: readonly NavLinkHref[] = ["/health-assistant", "/find-help", "/mediatori"];
-
-export const NAV_ONLINE_DOCTOR_LABEL: Record<Lang, string> = {
-  ro: "Medic online",
-  en: "Online doctor",
-  sq: "Mjek online",
-  it: "Medico online",
-  hr: "Liječnik online",
-  rom: "Doktori online",
-  ru: "Врач онлайн",
-};
+export const NAV_FULL_NAME_ON_WIDE: readonly NavLinkHref[] = [
+  "/health-information",
+  "/health-check",
+  "/prescription-review",
+  "/find-help",
+  "/mediatori",
+  "/stiri",
+];
