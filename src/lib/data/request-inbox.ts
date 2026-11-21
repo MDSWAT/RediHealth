@@ -19,9 +19,9 @@ export async function loadRequestInbox(country: CountryCode, params: URLSearchPa
   }
   if (options.priority) clauses.push("r.priority = 'urgent'");
   if (options.from) { clauses.push("r.created_at >= ?"); values.push(options.from); }
-  if (options.to) { clauses.push("r.created_at < DATE_ADD(?, INTERVAL 1 DAY)"); values.push(options.to); }
+  if (options.to) { clauses.push("r.created_at < (?::date + 1)"); values.push(options.to); }
   const where = clauses.length ? ` WHERE ${clauses.join(" AND ")}` : "";
-  const patientScope = isAdmin ? "" : " AND (p.assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0)";
+  const patientScope = isAdmin ? "" : " AND (p.assigned_worker_id = ? OR jsonb_has_id(p.assigned_worker_ids, ?))";
   const [rows] = await db.query<RowDataPacket[]>(
     `SELECT r.*, (SELECT p.id FROM patients p WHERE p.request_id = r.id${patientScope} ORDER BY p.id LIMIT 1) AS patient_id FROM medical_help_requests r${where} ORDER BY r.created_at DESC, r.id DESC LIMIT ? OFFSET ?`,
     [...(isAdmin ? [] : [workerId, workerId]), ...values, options.limit, (options.page - 1) * options.limit],

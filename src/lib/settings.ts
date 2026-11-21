@@ -33,7 +33,7 @@ export async function getSetting(key: string): Promise<string | null> {
 export async function setSetting(key: string, value: string | null, updatedBy: string): Promise<void> {
   await getControlDatabase().query(
     `INSERT INTO app_settings (setting_key, setting_value, updated_by) VALUES (?, ?, ?)
-     ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value), updated_by = VALUES(updated_by)`,
+     ON CONFLICT (setting_key) DO UPDATE SET setting_value = EXCLUDED.setting_value, updated_by = EXCLUDED.updated_by`,
     [key, value, updatedBy],
   );
   cache.delete(key);

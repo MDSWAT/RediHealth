@@ -1,12 +1,9 @@
--- Promote this account to an active super admin.
--- Safe to run repeatedly after the workers table has been created.
-
--- Update these values before running this script.
-SET @super_admin_full_name = 'Super Administrator';
-SET @super_admin_email = 'change-me@example.com';
+-- Promote this account to an active super admin (PostgreSQL).
+-- Safe to run repeatedly after "npm run migrate". Run it on the country database the account works in.
+-- Change the name and email below before running it.
 
 INSERT INTO workers (full_name, email, role, status)
-VALUES (@super_admin_full_name, @super_admin_email, 'Super Admin', 'active')
-ON DUPLICATE KEY UPDATE
-  role = VALUES(role),
-  status = VALUES(status);
+VALUES ('Super Administrator', LOWER('change-me@example.com'), 'Super Admin', 'active')
+ON CONFLICT ((LOWER(email))) DO UPDATE SET
+  role = EXCLUDED.role,
+  status = EXCLUDED.status;

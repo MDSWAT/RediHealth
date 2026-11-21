@@ -21,12 +21,9 @@ import type {
 export const PATIENT_COLUMNS = `p.id, p.request_id, p.assigned_worker_id, w.full_name AS assigned_worker_name,
   p.assigned_worker_ids,
   (
-    SELECT GROUP_CONCAT(w2.full_name ORDER BY w2.full_name SEPARATOR '||')
+    SELECT string_agg(w2.full_name, '||' ORDER BY w2.full_name)
     FROM workers w2
-    WHERE FIND_IN_SET(
-      CAST(w2.id AS CHAR(32)),
-      REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', ''), ' ', '')
-    ) > 0
+    WHERE jsonb_has_id(p.assigned_worker_ids, w2.id::text)
   ) AS assigned_worker_names_concat,
   p.access_token_hash, p.full_name, p.phone, p.email, p.date_of_birth, p.gender, p.address, p.county,
   p.condition_notes, p.medical_history, p.profile_photo, p.treatment_plan, p.followups, p.photos, p.intake,
@@ -154,10 +151,7 @@ export async function loadPatients(
   if (scopeToWorkerId) {
     sql += ` WHERE (
       p.assigned_worker_id = ?
-      OR FIND_IN_SET(
-        ?,
-        REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', ''), ' ', '')
-      ) > 0
+      OR jsonb_has_id(p.assigned_worker_ids, ?)
     )`;
     params.push(scopeToWorkerId, scopeToWorkerId);
   }

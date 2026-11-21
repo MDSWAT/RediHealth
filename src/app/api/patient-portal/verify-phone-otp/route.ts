@@ -61,7 +61,7 @@ export async function POST(request: Request) {
 
         await db.query<ResultSetHeader>(
           `UPDATE patients
-           SET access_token_hash = ?, access_token_expires_at = DATE_ADD(NOW(), INTERVAL 90 DAY)
+           SET access_token_hash = ?, access_token_expires_at = NOW() + INTERVAL '90 days'
            WHERE id = ?`,
           [tokenHash, rows[0].id],
         );

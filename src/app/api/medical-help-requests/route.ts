@@ -97,7 +97,7 @@ export async function POST(request: Request) {
     const [result] = await getCountryDatabase(country).query<ResultSetHeader>(
       `INSERT INTO medical_help_requests
         (full_name, phone, email, description, county, privacy_consent_at)
-       VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)`,
+       VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP) RETURNING id`,
       // Older country databases define email as NOT NULL; an omitted email remains optional.
       [name || null, phone, email, description, county || null],
     );

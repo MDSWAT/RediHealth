@@ -34,6 +34,8 @@ type LegalCopy = {
     choicesBody: string;
     botTitle: string;
     botBody: string;
+    analyticsTitle: string;
+    analyticsBody: string;
   };
   accessibility: {
     title: string;
@@ -88,6 +90,8 @@ const english: LegalCopy = {
     choicesBody: "You can ask to see, correct or delete your information. Write to us at",
     botTitle: "Protection against bots",
     botBody: "When bot protection is on, we use Google reCAPTCHA to stop automated abuse of public forms. Google checks technical data about your browser and how you use the page, under its own Privacy Policy and Terms of Service. We send Google only a CAPTCHA token, not your health information or what you wrote in the form.",
+    analyticsTitle: "Visit statistics",
+    analyticsBody: "To learn which pages help people and which of our announcements bring visitors, our own server counts visits. Nothing is sent to an outside analytics company and no cookies are used. For each page we record its address, the website you came from, campaign tags in the link, your browser and type of device, language and country. Your country is worked out from your IP address, which is not stored. To count a visitor only once per day, we keep a code made from your IP address and browser with a secret key that changes every day, so it cannot identify you or connect your visits on different days. We never record what you type, your health information, the patient portal or staff pages, and we do not share these statistics with advertisers. If your browser sends a Do Not Track or Global Privacy Control signal, your visit is not counted at all. Statistics are deleted after 13 months.",
   },
   accessibility: {
     title: "Accessibility",
@@ -144,6 +148,8 @@ const romanian: LegalCopy = {
     choicesBody: "Poți cere să-ți vezi datele, să le corectezi sau să le ștergem. Scrie-ne la",
     botTitle: "Protecție împotriva roboților",
     botBody: "Când protecția este pornită, folosim Google reCAPTCHA ca să oprim abuzurile automate pe formularele publice. Google verifică date tehnice despre browser și despre cum folosești pagina, după propriile reguli de confidențialitate și termeni. Noi îi trimitem doar un cod CAPTCHA, nu datele tale medicale și nici ce ai scris în formular.",
+    analyticsTitle: "Statistici despre vizite",
+    analyticsBody: "Ca să aflăm ce pagini îi ajută pe oameni și ce anunțuri ale noastre aduc vizitatori, serverul nostru numără vizitele. Nu trimitem nimic unei firme externe de statistici și nu folosim cookie-uri. Pentru fiecare pagină înregistrăm adresa ei, site-ul de pe care ai venit, etichetele de campanie din link, browserul și tipul de dispozitiv, limba și țara. Țara este dedusă din adresa ta IP, care nu este păstrată. Ca să numărăm un vizitator o singură dată pe zi, păstrăm un cod obținut din adresa IP și browser cu o cheie secretă care se schimbă zilnic, așa că nu te poate identifica și nu poate lega vizitele tale din zile diferite. Nu înregistrăm niciodată ce scrii, informațiile tale medicale, portalul pacientului sau paginile personalului și nu împărțim aceste statistici cu cei care fac reclame. Dacă browserul tău trimite semnalul „Do Not Track” sau „Global Privacy Control”, vizita ta nu este numărată deloc. Statisticile sunt șterse după 13 luni.",
   },
   accessibility: {
     title: "Accesibilitate",
@@ -200,6 +206,8 @@ const albanian: LegalCopy = {
     choicesBody: "Mund të kërkosh t'i shohësh të dhënat e tua, t'i korrigjosh ose t'i fshijmë. Na shkruaj te",
     botTitle: "Mbrojtja nga robotët",
     botBody: "Kur mbrojtja është e ndezur, përdorim Google reCAPTCHA për të ndaluar abuzimet automatike në formularët publikë. Google kontrollon të dhëna teknike për shfletuesin dhe për mënyrën si e përdor faqen, sipas rregullave të veta të privatësisë dhe kushteve të shërbimit. Ne i dërgojmë vetëm një kod CAPTCHA, jo të dhënat e tua shëndetësore ose atë që shkrove në formular.",
+    analyticsTitle: "Statistikat e vizitave",
+    analyticsBody: "Për të kuptuar cilat faqe i ndihmojnë njerëzit dhe cilat njoftime tona sjellin vizitorë, serveri ynë i numëron vizitat. Nuk i dërgojmë asgjë një kompanie të jashtme statistikash dhe nuk përdorim cookie. Për çdo faqe regjistrojmë adresën e saj, faqen nga erdhe, etiketat e fushatës në lidhje, shfletuesin dhe llojin e pajisjes, gjuhën dhe vendin. Vendi nxirret nga adresa jote IP, e cila nuk ruhet. Për ta numëruar një vizitor vetëm një herë në ditë, ruajmë një kod të krijuar nga adresa IP dhe shfletuesi me një çelës sekret që ndryshon çdo ditë, prandaj nuk të identifikon dhe nuk i lidh vizitat e tua në ditë të ndryshme. Nuk regjistrojmë kurrë atë që shkruan, të dhënat e tua shëndetësore, portalin e pacientit ose faqet e stafit, dhe nuk ua japim këto statistika reklamuesve. Nëse shfletuesi yt dërgon sinjalin Do Not Track ose Global Privacy Control, vizita jote nuk numërohet fare. Statistikat fshihen pas 13 muajsh.",
   },
   accessibility: {
     title: "Aksesueshmëria",
@@ -256,6 +264,8 @@ const italian: LegalCopy = {
     choicesBody: "Puoi chiedere di vedere i tuoi dati, correggerli o cancellarli. Scrivici a",
     botTitle: "Protezione dai bot",
     botBody: "Quando la protezione è attiva, usiamo Google reCAPTCHA per fermare gli abusi automatici sui moduli pubblici. Google controlla dati tecnici sul browser e su come usi la pagina, secondo le sue regole sulla privacy e i suoi termini di servizio. Noi gli inviamo solo un codice CAPTCHA, non i tuoi dati sanitari né quello che hai scritto nel modulo.",
+    analyticsTitle: "Statistiche sulle visite",
+    analyticsBody: "Per capire quali pagine aiutano le persone e quali nostri annunci portano visitatori, il nostro server conta le visite. Non inviamo nulla a società esterne di statistica e non usiamo cookie. Per ogni pagina registriamo il suo indirizzo, il sito da cui arrivi, le etichette di campagna nel link, il browser e il tipo di dispositivo, la lingua e il paese. Il paese viene ricavato dal tuo indirizzo IP, che non viene conservato. Per contare un visitatore una sola volta al giorno conserviamo un codice ottenuto dall'indirizzo IP e dal browser con una chiave segreta che cambia ogni giorno, quindi non può identificarti né collegare le tue visite di giorni diversi. Non registriamo mai ciò che scrivi, i tuoi dati sanitari, il portale del paziente o le pagine del personale, e non condividiamo queste statistiche con gli inserzionisti. Se il tuo browser invia il segnale Do Not Track o Global Privacy Control, la tua visita non viene contata. Le statistiche vengono cancellate dopo 13 mesi.",
   },
   accessibility: {
     title: "Accessibilità",
@@ -312,6 +322,8 @@ const croatian: LegalCopy = {
     choicesBody: "Možeš zatražiti uvid, ispravak ili brisanje svojih podataka. Piši nam na",
     botTitle: "Zaštita od automatizirane zloupotrebe",
     botBody: "Kad je zaštita uključena, koristimo Google reCAPTCHA kako bismo spriječili automatiziranu zloupotrebu javnih obrazaca. Google provjerava tehničke podatke o tvom pregledniku i načinu korištenja stranice prema vlastitim pravilima privatnosti i uvjetima pružanja usluge. Googleu šaljemo samo CAPTCHA oznaku, a ne tvoje zdravstvene podatke ni ono što si napisao u obrascu.",
+    analyticsTitle: "Statistika posjeta",
+    analyticsBody: "Kako bismo saznali koje stranice pomažu ljudima i koje naše objave dovode posjetitelje, naš poslužitelj broji posjete. Ništa ne šaljemo vanjskoj tvrtki za statistiku i ne koristimo kolačiće. Za svaku stranicu bilježimo njezinu adresu, stranicu s koje si došao, oznake kampanje u poveznici, preglednik i vrstu uređaja, jezik i zemlju. Zemlja se određuje iz tvoje IP adrese, koja se ne pohranjuje. Kako bismo posjetitelja brojali samo jednom dnevno, čuvamo kôd izrađen iz IP adrese i preglednika tajnim ključem koji se mijenja svaki dan, pa te ne može identificirati ni povezati tvoje posjete u različitim danima. Nikad ne bilježimo ono što upišeš, tvoje zdravstvene podatke, portal za pacijente ni stranice za osoblje i ne dijelimo ovu statistiku s oglašivačima. Ako tvoj preglednik šalje signal Do Not Track ili Global Privacy Control, tvoj se posjet uopće ne broji. Statistika se briše nakon 13 mjeseci.",
   },
   accessibility: {
     title: "Pristupačnost",
@@ -368,6 +380,8 @@ const romani: LegalCopy = {
     choicesBody: "Shay te manges te dikhes, te lashares vay te chosas che podatke. Lekhav amenge pe",
     botTitle: "Arakhipe katar e roboturya",
     botBody: "Kana o arakhipe si putardo, labaras Google reCAPTCHA te astavas avtomatikano bilačho labaripe pe putarde formularya. Google dikhel tehnikane podatke vash o browsero thaj sar labares i rig, palo piro garavipnasko zakono. Ame bichhalas ko Google numay ekh CAPTCHA kodo, na che sastipnaske informaciye thaj na so lekhavdyan ando formularo.",
+    analyticsTitle: "Statistike vash o avipe",
+    analyticsBody: "Te zhanas savi rig zhutil e manushen thaj save amare anunsurya anen vizitatoren, amaro serveri ginel le avipe. Na bichhalas khanchi ekhe avere firmake statistikengi thaj na labaras cookie. Vash sako rig ramosaras lako adresa, o sait kotar avilyan, le kampanyake etikete ando link, o browsero thaj sar si o aparato, i chhib thaj o them. O them arakhel pe andar chi IP adresa, savi na garavel pe. Te ginas ekhe vizitatores numa jekhvar pe dives, garavas ekh kodo kerdo andar i IP adresa thaj o browsero ekhe garadi klidyasa savi parudel pe sako dives, gadya na shaj prinzharel tut thaj na shaj phandel che avipe ande aver divesa. Nikana na ramosaras so lekhaves, che sastipnaske informaciye, o portalo e pacientosko vay le rigi e butyarengi, thaj na das kadala statistike kodolen kai keren reklame. Te cho browsero bichhalel o semno Do Not Track vay Global Privacy Control, cho avipe chi ginel pe. Le statistike khosen pe pala 13 masek.",
   },
   accessibility: {
     title: "Shayipe te labares",
@@ -425,6 +439,8 @@ const legalCopyByLang: Record<Lang, LegalCopy> = {
     choicesBody: "Вы можете попросить просмотреть, исправить или удалить вашу информацию. Напишите нам по адресу",
     botTitle: "Защита от ботов",
     botBody: "Когда защита от ботов включена, мы используем Google reCAPTCHA, чтобы предотвратить автоматическое злоупотребление общедоступными формами. Google проверяет технические данные о вашем браузере и о том, как вы используете страницу, в соответствии со своей Политикой конфиденциальности и Условиями обслуживания. Мы отправляем Google только токен CAPTCHA, а не информацию о вашем здоровье или то, что вы написали в форме.",
+    analyticsTitle: "Статистика посещений",
+    analyticsBody: "Чтобы понимать, какие страницы помогают людям и какие наши объявления приводят посетителей, посещения считает наш собственный сервер. Мы ничего не передаем сторонним компаниям веб-аналитики и не используем cookie. Для каждой страницы мы записываем ее адрес, сайт, с которого вы пришли, метки кампании в ссылке, браузер и тип устройства, язык и страну. Страна определяется по вашему IP-адресу, который не сохраняется. Чтобы считать посетителя только один раз в день, мы храним код, полученный из IP-адреса и браузера с помощью секретного ключа, который меняется каждый день, поэтому он не позволяет вас идентифицировать или связать ваши посещения в разные дни. Мы никогда не записываем то, что вы вводите, сведения о вашем здоровье, портал пациента или страницы для персонала и не передаем эту статистику рекламодателям. Если ваш браузер отправляет сигнал Do Not Track или Global Privacy Control, ваше посещение вообще не учитывается. Статистика удаляется через 13 месяцев.",
   },
   accessibility: {
     title: "Доступность",

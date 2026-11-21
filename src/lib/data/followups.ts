@@ -19,7 +19,7 @@ export async function createFollowup(country: CountryCode, patientId: string, wo
   try {
     await connection.beginTransaction();
     const [rows] = await connection.query<RowDataPacket[]>(
-      `SELECT id, full_name, email, followups FROM patients WHERE id = ?${isAdmin ? "" : " AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0)"} FOR UPDATE`,
+      `SELECT id, full_name, email, followups FROM patients WHERE id = ?${isAdmin ? "" : " AND (assigned_worker_id = ? OR jsonb_has_id(assigned_worker_ids, ?))"} FOR UPDATE`,
       isAdmin ? [patientId] : [patientId, workerId, workerId],
     );
     if (!rows[0]) throw new FollowupError("Patient not found or not assigned to you.", 404);
@@ -34,7 +34,7 @@ export async function createFollowup(country: CountryCode, patientId: string, wo
       const domain = /^[a-z0-9.-]+$/i.test(configured) && !configured.includes("8x8.vc") ? configured : "meet.jit.si";
       item.meeting_url = `https://${domain}/redihealth-${randomUUID()}`;
       const [result] = await connection.query<ResultSetHeader>(
-        "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url) VALUES (?, ?, ?, ?, ?)",
+        "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url) VALUES (?, ?, ?, ?, ?) RETURNING id",
         [workerId, patientId, id, item.title, item.meeting_url],
       );
       item.meeting_id = String(result.insertId);

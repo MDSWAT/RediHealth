@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { reloadForNewVersion } from "@/lib/chunk-reload";
 import { reportClientError } from "@/lib/client-error-report";
 import { errorTranslations } from "@/lib/i18n/error-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -50,6 +51,8 @@ export default function ErrorPage({
   const copy = errorTranslations[lang];
 
   useEffect(() => {
+    // A tab left open across a deployment: load the new version instead of showing an error.
+    if (reloadForNewVersion(error)) return;
     console.error(error);
     reportClientError(error, "render");
   }, [error]);

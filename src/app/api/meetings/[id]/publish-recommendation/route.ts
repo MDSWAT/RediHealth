@@ -119,7 +119,7 @@ export async function POST(
         `INSERT INTO patient_care_recommendations (
           patient_id, meeting_id, doctor_worker_id, doctor_name, doctor_specialty,
           primary_diagnosis, action_steps, warning_signs, control_date, additional_notes, created_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW()) RETURNING id`,
         [
           patientId,
           Number(id),

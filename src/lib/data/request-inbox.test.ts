@@ -21,7 +21,7 @@ describe("request inbox queries", () => {
     mocks.query.mockResolvedValueOnce([[]]).mockResolvedValueOnce([[{ total: 0 }]]).mockResolvedValueOnce([[]]);
     await loadRequestInbox("RO", new URLSearchParams("folder=pending&q=patient&priority=urgent&from=2026-10-01&to=2026-10-02&limit=50"), "2", true);
     expect(mocks.query.mock.calls[0][1]).toEqual(["pending", "%patient%", "%patient%", "%patient%", "%patient%", "2026-10-01", "2026-10-02", 50, 0]);
-    expect(mocks.query.mock.calls[0][0]).toContain("DATE_ADD");
+    expect(mocks.query.mock.calls[0][0]).toContain("(?::date + 1)");
     expect(mocks.query.mock.calls[0][0]).not.toContain("p.assigned_worker_id = ?");
   });
   it("bounds malformed pagination and unknown folders", () => {

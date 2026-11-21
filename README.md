@@ -104,7 +104,7 @@ streaming (for Nginx, disable proxy buffering) to avoid holding the fallback unt
 ## Prerequisites
 
 - Node.js 20.19+ or 22.12+ (Node.js 24 LTS recommended)
-- A MySQL database (schema is in [`database/schema.sql`](database/schema.sql) and [`database/migrations`](database/migrations))
+- PostgreSQL 14 or newer (schema is in [`database/schema.sql`](database/schema.sql), [`database/control-schema.sql`](database/control-schema.sql) and [`database/migrations`](database/migrations)). On Vercel, a hosted PostgreSQL such as Neon in an EU region
 
 ## 1. Install dependencies
 
@@ -135,8 +135,9 @@ Required variables:
 | `AUTH_URL` | Public base URL of the app (e.g. `https://redihealth.org`). Also used for `sitemap.xml` and links in emails |
 | `REDIHEALTH_TRUST_PROXY_HEADERS` | Set to `true` behind a trusted reverse proxy/CDN that overwrites `X-Forwarded-For`/`X-Real-IP`. Without it every visitor shares one rate-limit bucket. Not needed on Vercel |
 | `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` | The **control database**: no personal data. Rate limits, settings and the institute directory |
-| `DATABASE_URL` | Alternative to the discrete settings: a full `mysql://` connection string |
-| `DATABASE_URL_<CC>` or `DB_<CC>_HOST/PORT/USER/PASSWORD/NAME` | The database of one country (`RO`, `AL`, `IT`, `MD`). See [Countries](#countries-and-data-isolation) |
+| `DATABASE_URL` | Alternative to the discrete settings: a full `postgres://` connection string |
+| `DATABASE_URL_<CC>` or `DB_<CC>_HOST/PORT/USER/PASSWORD/NAME` | The database of one country (`RO`, `AL`, `IT`, `MD`, `HR`). See [Countries](#countries-and-data-isolation) |
+| `ANALYTICS_SALT` | Optional secret for the daily visitor hash of the website statistics (defaults to `AUTH_SECRET`). See [Website statistics](#website-statistics) |
 | `DEFAULT_COUNTRY` | Country whose data lives in the control database of a single-database installation (default `RO`) |
 | `DATA_ENCRYPTION_KEY_<CC>` | 32-byte base64 key per country for encrypting medical history and photos |
 | `DB_CONNECTION_LIMIT` | Pool size per server process (default `10`) |
@@ -158,57 +159,48 @@ Required variables:
 
 ## 3. Set up the databases
 
-For a fresh MySQL install, run only the base schema. With one database per country (recommended, see
-[Countries](#countries-and-data-isolation)) apply `schema.sql` to each country database and
-`control-schema.sql` to the control database:
+RediHealth uses PostgreSQL 14 or newer. Create the databases (empty), configure their settings
+(see above), then create the tables:
 
 ```bash
-mysql -h <host> -u <user> -p <country database> < database/schema.sql
-mysql -h <host> -u <user> -p <control database> < database/control-schema.sql
+npm run migrate              # the control database (DATABASE_URL or DB_*)
+npm run migrate -- RO IT     # each country database (DATABASE_URL_RO, DATABASE_URL_IT, ...)
 ```
 
-A single-database installation applies `schema.sql` once, which contains both sets of tables.
+On an empty database `migrate` applies the full schema: [`database/control-schema.sql`](database/control-schema.sql)
+for the control database and [`database/schema.sql`](database/schema.sql) for a country. A single-database
+installation (only `DATABASE_URL`) gets both. Later schema changes are added as files in
+`database/migrations`; each runs in its own transaction, so a failing migration changes nothing.
+A file whose name contains `.control.` applies to the control database only.
 
-Before running consolidated migrations on an existing database, run the precheck:
+Every `migrate` run ends with [`database/lock-data-api.sql`](database/lock-data-api.sql): row-level security is switched on
+and Supabase's `anon` and `authenticated` roles lose all access, so the tables can never be read through
+Supabase's REST API with the publishable key. The app connects as the table owner and is not affected.
 
-```bash
-mysql -h <host> -u <user> -p <database> < database/migration-precheck.sql
-```
+**Supabase:** use the session pooler connection string (port 5432) for `migrate` and local development and the
+transaction pooler (port 6543) on Vercel. Set `DATABASE_SSL=true` and `DATABASE_SSL_CA` to Supabase's root
+certificate (Project Settings → Database → SSL certificate, `
+`-escaped) so the certificate is verified.
 
-Use the precheck result as a guide:
-- If most core tables are missing, use consolidated migrations.
-- If schema is partially present and duplicate checks return rows, run `database/cleanup-patient-duplicates.sql` before patient uniqueness constraints.
-- If schema already matches current columns/indexes, skip migrations.
+Check a database at any time with the read-only `npm run db:check` (and `npm run db:check -- RO`).
+To create the first super admin, edit and run [`database/set-super-administrator.sql`](database/set-super-administrator.sql)
+with `psql` or your provider's SQL editor.
 
-If you are using consolidated staged migrations, apply them **in order**:
+### Moving from MySQL
 
-```bash
-mysql -h <host> -u <user> -p <database> < database/migrations/001_requests_and_staff.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/002_patients_identity_and_portal.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/003_mediator_cases.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/004_meetings_and_followups.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/005_hash_portal_tokens.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/006_activity_logs.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/007_medical_institutes.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/008_patient_profile_photo.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/009_rate_limits_and_settings.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/010_portal_link_expiry.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/011_case_mapping_and_request_consent.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/012_worker_and_patient_counties.sql
-mysql -h <host> -u <user> -p <database> < database/migrations/013_patient_intake.sql
-```
+Until November 2026 RediHealth ran on MySQL. The old schema and migrations are kept in
+[`database/mysql-legacy`](database/mysql-legacy) for reference only. To move a live installation:
 
-Migration `009` adds the shared rate-limit counters and the settings table (apply it to the control
-database); `007` (institutes) also belongs to the control database, and the others to each country database.
-`010` gives existing patient portal links a fresh 90-day validity window (new links are valid for
-90 days, and patients can request a new one from the sign-in page).
-`011` adds county and recorded consent to public help requests, plus locality/UAT, approximate case
-map locations, planned home visits, and closure tracking to mediator cases. Apply it to every
-country database.
-
-Public help requests require a phone number, not an email address. When email is omitted,
-the API stores an empty string for compatibility with older `NOT NULL` email columns and
-does not send a confirmation email. No schema change is needed for this compatibility fix.
+1. Create the PostgreSQL databases and run `npm run migrate` (and `npm run migrate -- RO ...`).
+2. Put the site in maintenance mode, or stop it, so nothing is written to MySQL during the copy.
+3. Set `MYSQL_SOURCE_URL` (and `MYSQL_SOURCE_URL_<CC>`) to the old databases and run
+   `npm run db:copy-from-mysql` (and `npm run db:copy-from-mysql -- RO ...`). Each database is copied in one
+   transaction: if any row fails nothing is kept, and row counts are compared table by table.
+   MySQL is read in UTC; if the old server did not run in UTC, check portal link expiry times afterwards.
+4. Run `npm run db:check` for every database. Keep the same `DATA_ENCRYPTION_KEY_<CC>`: the copied
+   encrypted fields are unchanged.
+5. Point `DATABASE_URL` / `DATABASE_URL_<CC>` at PostgreSQL, set `DATABASE_SSL=true` for a hosted server,
+   redeploy, and remove the `MYSQL_SOURCE_*` settings. Keep the MySQL backup until you have confirmed the move.
 
 `013` adds patient intake details to each country database. The patient form supports an optional
 document checkbox, medical/identity uploads (PDF, JPEG, PNG, WebP; up to 5 files, 5 MB each,
@@ -216,7 +208,7 @@ document checkbox, medical/identity uploads (PDF, JPEG, PNG, WebP; up to 5 files
 after a click and requires browser permission and HTTPS (or localhost); no geocoding service is used.
 Documents and GPS are stored in the encrypted `patients.intake` field and require the country's
 `DATA_ENCRYPTION_KEY_<CC>`. They are available only in the authorized staff panel, not the
-patient portal, portal emails or printed reports. Apply the migration before deploying this version.
+patient portal, portal emails or printed reports.
 
 On Vercel, an error saying document/GPS storage requires a configured country encryption key
 means the deployment is missing this server-side environment variable. For **first-time setup**
@@ -236,7 +228,7 @@ use its same key. If encrypted records already exist, **restore their original k
 generating a replacement: changing or losing it makes those records unreadable. Never use a
 `NEXT_PUBLIC_` variable, commit a key, or disable encryption to work around this error.
 
-Allow at least 32 MB for MySQL's `max_allowed_packet` and the reverse proxy's request-body limit
+Allow at least 32 MB for the reverse proxy's request-body limit
 to accommodate base64 encoding and encrypted storage at the documented upload limit.
 Next.js buffers up to 16 MB through its proxy for the base64-encoded upload request.
 
@@ -284,7 +276,7 @@ Personal data never shares a database across countries:
   rate-limit counters, settings and the public institute directory. It holds nothing personal.
 - **One database per country** (`DATABASE_URL_RO`, `DATABASE_URL_AL`, ...): patients, help requests,
   staff, meetings and the audit log of that country, created from [`database/schema.sql`](database/schema.sql)
-  and migrations `001`-`006`, `008`, `010`-`013`. Give each its own MySQL user that can only reach that database.
+  Give each its own PostgreSQL user that can only reach that database.
   A country without settings is simply not offered.
 
 How requests are routed:
@@ -311,7 +303,7 @@ it keeps working unchanged. To split it, restore a copy into the country's own d
 
 1. Add its ISO code to `SUPPORTED_COUNTRIES` in `src/lib/countries.ts` together with its language,
    map centre and display names.
-2. Create the database and a dedicated MySQL user, then apply `schema.sql` (or the migrations).
+2. Create the database and a dedicated PostgreSQL user, then run `npm run migrate -- <CC>`.
 3. Set `DATABASE_URL_<CC>` and `DATA_ENCRYPTION_KEY_<CC>`.
 4. Create the first admin in that database with [`database/set-super-administrator.sql`](database/set-super-administrator.sql).
 5. Import its institutes: `npm run import:institutes -- <CC>`.
@@ -471,6 +463,39 @@ error if any indexed topic remains unavailable; `--allow-partial` explicitly ass
 checked complete entries for an editorial preview. Unfinished topics return 404 and are
 not linked as readable articles. Building and reading the website require no provider calls.
 
+## Website statistics
+
+Visits and ad campaigns are counted inside the app with [Nextlytics](https://github.com/jitsucom/nextlytics),
+an open-source analytics library for Next.js. There is no separate analytics server and nothing is
+sent to a third party: a custom backend ([`src/lib/analytics-server.ts`](src/lib/analytics-server.ts))
+writes to the `analytics_events` table of the control database. Administrators see the results in the
+panel under **Statistics** (`/panel/analytics`), by period, with visitors per day, campaigns, sources,
+pages, countries, devices, languages and conversions.
+
+How it is wired ([`src/nextlytics.ts`](src/nextlytics.ts)):
+
+- `proxy.ts` runs the Nextlytics middleware, which records full page loads on the server;
+- `<NextlyticsServer>` in the root layout reports client-side navigations to `/api/event`;
+- conversion events (`help_request_sent`, `mediator_request_sent`, `assistant_question_asked`,
+  `prescription_review_requested`, `feedback_sent`) are posted by
+  [`src/lib/analytics-events.ts`](src/lib/analytics-events.ts).
+
+Privacy rules ([`src/lib/analytics.ts`](src/lib/analytics.ts), covered by `src/lib/analytics.test.ts`):
+
+- staff, sign-in, account and triage-note pages and the patient portal are never recorded;
+- no IP address, cookie, full user agent or city is stored; only country, device type, browser and
+  OS family, interface language, the referring site's host and `utm_*` campaign tags;
+- the visitor ID is an HMAC of IP + browser keyed with a server secret that changes every day, so a
+  visitor is counted once per day but cannot be followed across days or traced back to an IP;
+- bots and browsers that send Do Not Track or Global Privacy Control are not counted;
+- rows older than 13 months are deleted automatically.
+
+Nextlytics' own visitor hash and its `last-page-render-id` cookie are not used. The package version
+is pinned because `analytics-events.ts` posts its event format directly.
+
+Tag every ad link with campaign parameters so visits are credited to the right campaign, for example
+`https://redi.healthcare/ro?utm_source=facebook&utm_medium=paid&utm_campaign=launch-2026`.
+
 ## Production
 
 User emails support English, Romanian, Albanian, Italian, Russian, Croatian and Romani in both HTML and plain text.
@@ -530,9 +555,8 @@ npm run start            # listens on port 3000; set PORT to change it
 - Put the app behind a TLS-terminating reverse proxy (nginx, Caddy) that sets
   `X-Forwarded-For`, and set `REDIHEALTH_TRUST_PROXY_HEADERS=true`. Set `AUTH_URL`
   to the public HTTPS origin and `AUTH_TRUST_HOST=true`.
-- Apply every migration in `database/migrations` before the first start; rate limiting
-  and settings need `009`, portal link expiry needs `010`.
-- Run the process under a supervisor (systemd, pm2) and back up the MySQL database;
+- Run `npm run migrate` for the control database and every country database before the first start.
+- Run the process under a supervisor (systemd, pm2) and back up the PostgreSQL databases;
   it holds all patient data, including photos.
 - Point an uptime monitor at `GET /api/health`. With `HEALTH_CHECK_TOKEN` configured and
   sent as `Authorization: Bearer <token>`, the response lists each service and a

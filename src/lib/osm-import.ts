@@ -355,8 +355,11 @@ const UPSERT_COLUMNS = [
 /** Inserts or refreshes OSM rows. Rows a super admin edited by hand (manually_edited = 1) are left untouched. */
 export async function upsertOsmInstitutes(db: Queryable, rows: OsmInstituteRow[], batchSize = 500) {
   let affected = 0;
-  for (let index = 0; index < rows.length; index += batchSize) {
-    const batch = rows.slice(index, index + batchSize);
+  // PostgreSQL refuses an upsert that touches the same row twice in one statement, so keep the
+  // last row for each OSM reference.
+  const unique = [...new Map(rows.map((row) => [row.osm_ref, row])).values()];
+  for (let index = 0; index < unique.length; index += batchSize) {
+    const batch = unique.slice(index, index + batchSize);
     const placeholders = batch.map(() => `(${UPSERT_COLUMNS.map(() => "?").join(", ")}, 'osm')`).join(", ");
     const params = batch.flatMap((row) => [
       row.osm_ref,
@@ -373,13 +376,13 @@ export async function upsertOsmInstitutes(db: Queryable, rows: OsmInstituteRow[]
       row.lng,
     ]);
     const updates = UPSERT_COLUMNS.filter((column) => column !== "osm_ref")
-      .map((column) => `${column} = IF(manually_edited = 1, ${column}, VALUES(${column}))`)
+      .map((column) => `${column} = CASE WHEN medical_institutes.manually_edited = 1 THEN medical_institutes.${column} ELSE EXCLUDED.${column} END`)
       .join(", ");
 
     await db.query<ResultSetHeader>(
       `INSERT INTO medical_institutes (${UPSERT_COLUMNS.join(", ")}, source)
        VALUES ${placeholders}
-       ON DUPLICATE KEY UPDATE ${updates}`,
+       ON CONFLICT (osm_ref) DO UPDATE SET ${updates}`,
       params,
     );
     affected += batch.length;

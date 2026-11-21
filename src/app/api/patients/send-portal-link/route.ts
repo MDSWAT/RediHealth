@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     const params: unknown[] = [patientId];
 
     if (!workerContext.isAdmin) {
-      query += ` AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', ''), ' ', '')) > 0)`;
+      query += ` AND (assigned_worker_id = ? OR jsonb_has_id(assigned_worker_ids, ?))`;
       params.push(workerContext.workerId, workerContext.workerId);
     }
 
@@ -59,7 +59,7 @@ export async function POST(request: Request) {
     const newAccessTokenHash = hashPortalToken(newAccessToken);
 
     await db.query<ResultSetHeader>(
-      `UPDATE patients SET access_token_hash = ?, access_token_expires_at = DATE_ADD(NOW(), INTERVAL ? DAY) WHERE id = ?`,
+      `UPDATE patients SET access_token_hash = ?, access_token_expires_at = NOW() + make_interval(days => ?::int) WHERE id = ?`,
       [newAccessTokenHash, PORTAL_LINK_TTL_DAYS, patientId],
     );
 

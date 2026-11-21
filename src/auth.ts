@@ -8,6 +8,7 @@ import { checkLoginAccess, hasLoginAccess } from "@/lib/login-access";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { DEFAULT_LANG, LOCALE_COOKIE, isSupportedLang, withLangPrefix } from "@/lib/i18n/routing";
 import { verifyRecaptcha } from "@/lib/security/recaptcha";
+import { AUTH_BASE_PATH } from "@/lib/auth-actions";
 
 const googleConfigured = Boolean(
   process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET,
@@ -116,4 +117,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   session: { strategy: "jwt" },
   trustHost: process.env.AUTH_TRUST_HOST === "true" || process.env.NODE_ENV !== "production",
+  // Fixed to the route in app/api/auth/[...nextauth]. Without it, Auth.js takes the base path from
+  // AUTH_URL's path (e.g. AUTH_URL=https://redi.healthcare/ro), and every sign-in and session
+  // request then fails with "UnknownAction: Cannot parse action at /api/auth/...".
+  basePath: AUTH_BASE_PATH,
 });

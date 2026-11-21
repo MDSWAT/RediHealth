@@ -11,7 +11,7 @@ type StaffWorker = Pick<UserWorkerContext, "country" | "isAdmin"> & { workerId: 
 /** SQL condition: the patient row (aliased `alias`) is assigned to the worker. Takes the worker id twice. */
 export function assignedToWorkerSql(alias = "") {
   const p = alias ? `${alias}.` : "";
-  return `(${p}assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(${p}assigned_worker_ids, '[]'), '[', ''), ']', ''), '"', ''), ' ', '')) > 0)`;
+  return `(${p}assigned_worker_id = ? OR jsonb_has_id(${p}assigned_worker_ids, ?))`;
 }
 
 export async function canAccessPatient(worker: StaffWorker, patientId: number): Promise<boolean> {

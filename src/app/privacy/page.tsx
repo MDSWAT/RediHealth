@@ -57,6 +57,13 @@ export default async function PrivacyPage() {
             </div>
 
             <div className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 lg:grid lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-10">
+              <h2 className="text-title text-foreground">{copy.analyticsTitle}</h2>
+              <p className="mt-2 max-w-(--measure-reading) lg:mt-0">
+                {copy.analyticsBody}
+              </p>
+            </div>
+
+            <div className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 lg:grid lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-10">
               <h2 className="text-title text-foreground">{copy.accessTitle}</h2>
               <p className="mt-2 max-w-(--measure-reading) lg:mt-0">
                 {copy.accessBody}

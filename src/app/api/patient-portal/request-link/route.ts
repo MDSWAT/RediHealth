@@ -80,7 +80,7 @@ export async function POST(request: Request) {
       const accessToken = generatePortalToken();
       await db.query<ResultSetHeader>(
         `UPDATE patients
-         SET access_token_hash = ?, access_token_expires_at = DATE_ADD(NOW(), INTERVAL ? DAY)
+         SET access_token_hash = ?, access_token_expires_at = NOW() + make_interval(days => ?::int)
          WHERE id = ?`,
         [hashPortalToken(accessToken), PORTAL_LINK_TTL_DAYS, patient.id],
       );

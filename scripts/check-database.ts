@@ -8,101 +8,61 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import mysql from "mysql2/promise";
-import type { Connection, ConnectionOptions } from "mysql2/promise";
+import pg from "pg";
+import { loadEnvFiles, postgresConfig } from "./lib/pg-connection";
 
-for (const file of [".env.local", ".env"]) {
-  if (fs.existsSync(file)) process.loadEnvFile(file);
-}
+loadEnvFiles();
 
 type Finding = { level: "problem" | "warning" | "ok"; text: string };
-
-function sslOptions(): ConnectionOptions["ssl"] {
-  if (process.env.DATABASE_SSL !== "true") return undefined;
-  const ca = process.env.DATABASE_SSL_CA?.replace(/\\n/g, "\n");
-  return { rejectUnauthorized: process.env.DATABASE_SSL_REJECT_UNAUTHORIZED !== "false", ...(ca ? { ca } : {}) };
-}
-
-function connectionOptions(target: string): ConnectionOptions {
-  const suffix = target === "main" ? "" : `_${target}`;
-  const prefix = target === "main" ? "DB" : `DB_${target}`;
-  const url = process.env[`DATABASE_URL${suffix}`];
-  if (url?.startsWith("mysql://")) {
-    const parsed = new URL(url);
-    return {
-      host: parsed.hostname,
-      port: Number(parsed.port || 3306),
-      user: decodeURIComponent(parsed.username),
-      password: decodeURIComponent(parsed.password),
-      database: parsed.pathname.replace(/^\//, ""),
-      ssl: sslOptions(),
-      connectTimeout: 15_000,
-    };
-  }
-  const host = process.env[`${prefix}_HOST`];
-  const user = process.env[`${prefix}_USER`];
-  const database = process.env[`${prefix}_NAME`];
-  if (!host || !user || !database) {
-    throw new Error(`No database settings found for "${target}".`);
-  }
-  return {
-    host,
-    port: Number(process.env[`${prefix}_PORT`] || 3306),
-    user,
-    password: process.env[`${prefix}_PASSWORD`],
-    database,
-    ssl: sslOptions(),
-    connectTimeout: 15_000,
-  };
-}
 
 /** Table name -> column names, read from the CREATE TABLE statements of a schema file. */
 function expectedTables(file: string): Map<string, string[]> {
   const sql = fs.readFileSync(path.resolve(process.cwd(), "database", file), "utf-8").replace(/--.*$/gm, "");
   const tables = new Map<string, string[]>();
-  for (const match of sql.matchAll(/CREATE TABLE IF NOT EXISTS (\w+) \(([\s\S]*?)\n\)/g)) {
+  for (const match of sql.matchAll(/CREATE TABLE IF NOT EXISTS (\w+) \(([\s\S]*?)\n\);/g)) {
     const columns = match[2]
       .split("\n")
       .map((line) => line.trim().match(/^(\w+)\s/)?.[1] ?? "")
-      .filter((name) => name && !["INDEX", "UNIQUE", "CONSTRAINT", "PRIMARY", "FOREIGN", "KEY", "ON", "REFERENCES"].includes(name.toUpperCase()));
+      .filter((name) => name && !["UNIQUE", "CONSTRAINT", "PRIMARY", "FOREIGN", "CHECK"].includes(name.toUpperCase()));
     tables.set(match[1], columns);
   }
   return tables;
 }
 
-async function rows<T = Record<string, unknown>>(connection: Connection, sql: string, params: unknown[] = []): Promise<T[]> {
-  const [result] = await connection.query(sql, params);
-  return result as T[];
+async function rows<T = Record<string, unknown>>(client: pg.Client, sql: string, params: unknown[] = []): Promise<T[]> {
+  const result = await client.query(sql, params);
+  return result.rows as T[];
 }
 
-async function count(connection: Connection, sql: string): Promise<number> {
-  const result = await rows<{ n: number }>(connection, sql);
+async function count(client: pg.Client, sql: string, params: unknown[] = []): Promise<number> {
+  const result = await rows<{ n: number }>(client, sql, params);
   return Number(result[0]?.n ?? 0);
 }
 
 async function check(target: string): Promise<Finding[]> {
-  const options = connectionOptions(target);
+  const config = postgresConfig(target);
   const findings: Finding[] = [];
   const add = (level: Finding["level"], text: string) => findings.push({ level, text });
-  console.log(`\n=== ${target === "main" ? "Main database" : `Country ${target}`}: ${options.database} on ${options.host} ===`);
+  console.log(`\n=== ${target === "main" ? "Main database" : `Country ${target}`}: ${config.database} on ${config.host} ===`);
 
-  const localHost = ["127.0.0.1", "localhost", "::1"].includes(String(options.host));
-  if (!options.ssl && !localHost) {
+  const localHost = ["127.0.0.1", "localhost", "::1"].includes(String(config.host));
+  if (!config.ssl && !localHost) {
     add("problem", "The connection to this remote database is not encrypted (DATABASE_SSL is not true). Patient data travels over the internet in clear text.");
   }
 
-  const connection = await mysql.createConnection(options);
+  const client = new pg.Client(config);
+  await client.connect();
   try {
-    await connection.query("START TRANSACTION READ ONLY");
+    await client.query("BEGIN READ ONLY");
 
-    const [{ version }] = await rows<{ version: string }>(connection, "SELECT VERSION() AS version");
-    add("ok", `Server version ${version}.`);
+    const [{ version }] = await rows<{ version: string }>(client, "SELECT current_setting('server_version') AS version");
+    add("ok", `PostgreSQL ${version}.`);
 
     const existing = new Map<string, Map<string, { nullable: boolean; type: string }>>();
     for (const row of await rows<{ t: string; c: string; n: string; ty: string }>(
-      connection,
-      `SELECT table_name AS t, column_name AS c, is_nullable AS n, column_type AS ty
-       FROM information_schema.columns WHERE table_schema = DATABASE()`,
+      client,
+      `SELECT table_name AS t, column_name AS c, is_nullable AS n, data_type AS ty
+       FROM information_schema.columns WHERE table_schema = current_schema()`,
     )) {
       if (!existing.has(row.t)) existing.set(row.t, new Map());
       existing.get(row.t)!.set(row.c, { nullable: row.n === "YES", type: row.ty });
@@ -128,26 +88,31 @@ async function check(target: string): Promise<Finding[]> {
     const unknownTables = [...existing.keys()].filter((table) => !expected.has(table) && table !== "schema_migrations");
     if (unknownTables.length > 0) add("warning", `Tables the application does not use: ${unknownTables.join(", ")}.`);
 
+    if (existing.has("patients")) {
+      const [fn] = await rows<{ present: boolean }>(client, "SELECT to_regprocedure('jsonb_has_id(jsonb, text)') IS NOT NULL AS present");
+      if (!fn?.present) add("problem", 'The function "jsonb_has_id" is missing, so staff cannot see the patients assigned to them. Apply database/schema.sql.');
+    }
+
     if (existing.has("schema_migrations")) {
-      const applied = await rows<{ name: string }>(connection, "SELECT name FROM schema_migrations ORDER BY name");
-      const files = fs.readdirSync(path.resolve(process.cwd(), "database/migrations")).filter((file) => file.endsWith(".sql"));
+      const applied = await rows<{ name: string }>(client, "SELECT name FROM schema_migrations ORDER BY name");
+      const dir = path.resolve(process.cwd(), "database/migrations");
+      const files = fs.existsSync(dir)
+        ? fs.readdirSync(dir).filter((file) => file.endsWith(".sql") && (target === "main" || !file.includes(".control.")))
+        : [];
       const pending = files.filter((file) => !applied.some((row) => row.name === file));
       add(pending.length > 0 ? "warning" : "ok", pending.length > 0 ? `Migrations not recorded as applied: ${pending.join(", ")}.` : "Every migration is recorded as applied.");
     } else {
-      add("warning", 'No "schema_migrations" table yet: "npm run migrate" has not been run with the new tracking.');
+      add("warning", 'No "schema_migrations" table yet: "npm run migrate" has not been run on this database.');
     }
 
     const patients = existing.get("patients");
     if (patients) {
-      if (patients.has("access_token")) {
-        add("problem", 'patients still has the old plaintext "access_token" column. Migration 005 hashes and removes it.');
-      }
-      const indexes = await rows<{ name: string; col: string; non_unique: number }>(
-        connection,
-        `SELECT index_name AS name, column_name AS col, non_unique
-         FROM information_schema.statistics WHERE table_schema = DATABASE() AND table_name = 'patients'`,
+      const indexes = await rows<{ def: string }>(
+        client,
+        "SELECT indexdef AS def FROM pg_indexes WHERE schemaname = current_schema() AND tablename = 'patients'",
       );
-      if (patients.has("access_token_hash") && !indexes.some((index) => index.col === "access_token_hash" && Number(index.non_unique) === 0)) {
+      const uniqueOn = (fragment: string) => indexes.some((index) => /UNIQUE/i.test(index.def) && index.def.includes(fragment));
+      if (patients.has("access_token_hash") && !uniqueOn("access_token_hash")) {
         add("warning", "patients.access_token_hash has no unique index, so portal link lookups scan the whole table.");
       }
       const email = patients.get("email");
@@ -155,19 +120,19 @@ async function check(target: string): Promise<Finding[]> {
         add("warning", "patients.email is required. Mediator intake, which collects no email, cannot save patients.");
       }
 
-      add("ok", `${await count(connection, "SELECT COUNT(*) AS n FROM patients")} patient record(s).`);
+      add("ok", `${await count(client, "SELECT COUNT(*) AS n FROM patients")} patient record(s).`);
 
       let encryptedValues = 0;
       for (const column of ["medical_history", "photos", "profile_photo", "intake"]) {
         if (!patients.has(column)) continue;
         const plain = await rows<{ id: number }>(
-          connection,
-          `SELECT id FROM patients WHERE \`${column}\` IS NOT NULL AND \`${column}\` <> '' AND \`${column}\` NOT LIKE 'enc:v1:%' ORDER BY id LIMIT 20`,
+          client,
+          `SELECT id FROM patients WHERE "${column}" IS NOT NULL AND "${column}" <> '' AND "${column}" NOT LIKE 'enc:v1:%' ORDER BY id LIMIT 20`,
         );
         if (plain.length > 0) {
           add("problem", `${plain.length} patient record(s) have "${column}" stored unencrypted (patient id ${plain.map((row) => row.id).join(", ")}).`);
         }
-        encryptedValues += await count(connection, `SELECT COUNT(*) AS n FROM patients WHERE \`${column}\` LIKE 'enc:v1:%'`);
+        encryptedValues += await count(client, `SELECT COUNT(*) AS n FROM patients WHERE "${column}" LIKE 'enc:v1:%'`);
       }
       // Encrypted values prove that some environment (for example the live site) already has a key.
       add(
@@ -179,62 +144,62 @@ async function check(target: string): Promise<Finding[]> {
 
       if (existing.has("workers")) {
         const orphans = await count(
-          connection,
+          client,
           "SELECT COUNT(*) AS n FROM patients p LEFT JOIN workers w ON w.id = p.assigned_worker_id WHERE p.assigned_worker_id IS NOT NULL AND w.id IS NULL",
         );
         if (orphans > 0) add("problem", `${orphans} patient record(s) are assigned to a staff member that no longer exists.`);
       }
 
       const duplicates = await rows<{ ids: string }>(
-        connection,
-        "SELECT GROUP_CONCAT(id ORDER BY id SEPARATOR ', ') AS ids FROM patients WHERE email IS NOT NULL AND email <> '' GROUP BY LOWER(email) HAVING COUNT(*) > 1 LIMIT 20",
+        client,
+        "SELECT string_agg(id::text, ', ' ORDER BY id) AS ids FROM patients WHERE email IS NOT NULL AND email <> '' GROUP BY LOWER(email) HAVING COUNT(*) > 1 LIMIT 20",
       );
       if (duplicates.length > 0) {
         add("problem", `${duplicates.length} email address(es) are used by more than one patient (patient ids: ${duplicates.map((row) => `[${row.ids}]`).join(" ")}).`);
       }
-      if (!indexes.some((index) => index.col === "email" && Number(index.non_unique) === 0)) {
+      if (!uniqueOn("email")) {
         add("warning", "patients.email has no unique index, so the database does not stop two patients sharing an email.");
       }
-      const noEmail = await count(connection, "SELECT COUNT(*) AS n FROM patients WHERE email IS NULL OR email = ''");
+      const noEmail = await count(client, "SELECT COUNT(*) AS n FROM patients WHERE email IS NULL OR email = ''");
       if (noEmail > 0) add("warning", `${noEmail} patient record(s) have no email, so they cannot receive a portal link.`);
 
       if (patients.has("access_token_expires_at") && patients.has("access_token_hash")) {
-        const noExpiry = await count(connection, "SELECT COUNT(*) AS n FROM patients WHERE access_token_hash IS NOT NULL AND access_token_expires_at IS NULL");
+        const noExpiry = await count(client, "SELECT COUNT(*) AS n FROM patients WHERE access_token_hash IS NOT NULL AND access_token_expires_at IS NULL");
         if (noExpiry > 0) add("warning", `${noExpiry} portal link(s) never expire.`);
       }
 
       // Largest rows: photos and documents are stored inside the patient row.
-      const [size] = await rows<{ biggest: number | null; total: number | null }>(
-        connection,
-        `SELECT MAX(COALESCE(LENGTH(photos), 0) + COALESCE(LENGTH(intake), 0) + COALESCE(LENGTH(profile_photo), 0) + COALESCE(LENGTH(followups), 0)) AS biggest,
-                SUM(COALESCE(LENGTH(photos), 0) + COALESCE(LENGTH(intake), 0) + COALESCE(LENGTH(profile_photo), 0) + COALESCE(LENGTH(followups), 0)) AS total
+      const [size] = await rows<{ biggest: string | null; total: string | null }>(
+        client,
+        `SELECT MAX(COALESCE(octet_length(photos), 0) + COALESCE(octet_length(intake), 0) + COALESCE(octet_length(profile_photo), 0) + COALESCE(octet_length(followups), 0)) AS biggest,
+                SUM(COALESCE(octet_length(photos), 0) + COALESCE(octet_length(intake), 0) + COALESCE(octet_length(profile_photo), 0) + COALESCE(octet_length(followups), 0)) AS total
          FROM patients`,
       );
-      const megabytes = (bytes: number | null) => `${(Number(bytes ?? 0) / 1_048_576).toFixed(1)} MB`;
+      const megabytes = (bytes: string | number | null) => `${(Number(bytes ?? 0) / 1_048_576).toFixed(1)} MB`;
       add(Number(size?.biggest ?? 0) > 20 * 1_048_576 ? "warning" : "ok", `Files stored inside patient rows: ${megabytes(size?.total ?? 0)} in total, largest record ${megabytes(size?.biggest ?? 0)}.`);
     }
 
     if (existing.has("workers")) {
       const admins = await count(
-        connection,
+        client,
         "SELECT COUNT(*) AS n FROM workers WHERE COALESCE(status, 'active') = 'active' AND LOWER(TRIM(role)) IN ('super admin', 'superadmin')",
       );
       if (admins === 0) add("problem", "There is no active super admin account, so nobody can open Settings, the audit log or the institute directory.");
       else add("ok", `${admins} active super admin account(s).`);
 
       const unusable = await count(
-        connection,
+        client,
         "SELECT COUNT(*) AS n FROM workers WHERE COALESCE(status, 'active') = 'active' AND LOWER(TRIM(role)) NOT IN ('administrator', 'admin', 'super admin', 'superadmin', 'doctor', 'mediator')",
       );
       if (unusable > 0) add("warning", `${unusable} active staff account(s) have a role that cannot sign in to the panel.`);
 
-      const mixedCase = await count(connection, "SELECT COUNT(*) AS n FROM workers WHERE email <> LOWER(TRIM(email))");
+      const mixedCase = await count(client, "SELECT COUNT(*) AS n FROM workers WHERE email <> LOWER(TRIM(email))");
       if (mixedCase > 0) add("warning", `${mixedCase} staff email(s) contain capitals or spaces.`);
     }
 
     if (existing.has("meetings") && patients) {
       const orphanMeetings = await rows<{ id: number }>(
-        connection,
+        client,
         "SELECT m.id FROM meetings m LEFT JOIN patients p ON p.id = m.patient_id WHERE m.patient_id IS NOT NULL AND p.id IS NULL ORDER BY m.id LIMIT 50",
       );
       if (orphanMeetings.length > 0) {
@@ -242,13 +207,26 @@ async function check(target: string): Promise<Finding[]> {
       }
     }
 
+    // A copied table whose id counter is behind its data fails on the next insert.
+    for (const table of expected.keys()) {
+      if (!existing.get(table)?.has("id")) continue;
+      const [state] = await rows<{ max_id: number | null; next_id: number | null }>(
+        client,
+        `SELECT (SELECT MAX(id) FROM "${table}") AS max_id,
+                (SELECT last_value FROM pg_sequences WHERE schemaname = current_schema() AND sequencename = split_part(pg_get_serial_sequence('"${table}"', 'id'), '.', 2)) AS next_id`,
+      );
+      if (state?.max_id && (state.next_id ?? 0) < state.max_id) {
+        add("problem", `The id counter of "${table}" (${state.next_id ?? "unused"}) is behind its highest id (${state.max_id}): the next insert will fail. Run "npm run db:copy-from-mysql" again or reset the sequence.`);
+      }
+    }
+
     if (existing.has("rate_limits")) {
-      const stale = await count(connection, `SELECT COUNT(*) AS n FROM rate_limits WHERE reset_at < ${Date.now() - 86_400_000}`);
+      const stale = await count(client, "SELECT COUNT(*) AS n FROM rate_limits WHERE reset_at < $1", [Date.now() - 86_400_000]);
       if (stale > 10_000) add("warning", `${stale} expired rate-limit rows are waiting to be cleaned up.`);
     }
   } finally {
-    await connection.query("ROLLBACK").catch(() => undefined);
-    await connection.end();
+    await client.query("ROLLBACK").catch(() => undefined);
+    await client.end();
   }
 
   const country = target === "main" ? (process.env.DEFAULT_COUNTRY || "RO").toUpperCase() : target;

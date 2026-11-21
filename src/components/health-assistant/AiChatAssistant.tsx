@@ -1,4 +1,5 @@
 "use client";
+import { trackEvent } from "@/lib/analytics-events";
 
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { AssistantNavigation } from "@/components/health-assistant/AssistantNavigation";
@@ -77,6 +78,7 @@ export function AiChatAssistant() {
         setError(response.status === 429 ? t.errors.busy : response.status === 503 ? t.errors.unavailable : t.errors.generic);
         return;
       }
+      trackEvent("assistant_question_asked");
       const data = (await response.json()) as AssistantResponse;
       setMessages((current) => [
         ...current,

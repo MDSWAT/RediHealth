@@ -1,7 +1,7 @@
 import { createHash } from "crypto";
 import { getControlDatabase, hasControlDatabase, type RowDataPacket } from "@/lib/database";
 
-// Counters live in MySQL so limits hold across server instances and restarts. When the database is
+// Counters live in the control database so limits hold across server instances and restarts. When the database is
 // unavailable (or migration 009 has not been applied) the limiter degrades to a per-process map
 // instead of failing requests.
 
@@ -73,12 +73,12 @@ async function checkStoredRateLimit(key: string, { limit, windowMs }: RateLimitO
   const db = getControlDatabase();
   const bucketKey = createHash("sha256").update(key).digest("hex");
 
-  // Assignments run left to right, so `hits` must be evaluated before `reset_at` is rewritten.
+  // Both assignments read the row as it was before this statement.
   await db.query(
     `INSERT INTO rate_limits (bucket_key, hits, reset_at) VALUES (?, 1, ?)
-     ON DUPLICATE KEY UPDATE
-       hits = IF(reset_at <= ?, 1, hits + 1),
-       reset_at = IF(reset_at <= ?, ?, reset_at)`,
+     ON CONFLICT (bucket_key) DO UPDATE SET
+       hits = CASE WHEN rate_limits.reset_at <= ? THEN 1 ELSE rate_limits.hits + 1 END,
+       reset_at = CASE WHEN rate_limits.reset_at <= ? THEN ? ELSE rate_limits.reset_at END`,
     [bucketKey, now + windowMs, now, now, now + windowMs],
   );
   const [rows] = await db.query<(RowDataPacket & { hits: number; reset_at: string | number })[]>(
@@ -88,7 +88,7 @@ async function checkStoredRateLimit(key: string, { limit, windowMs }: RateLimitO
 
   if (now - lastCleanupAt > CLEANUP_INTERVAL_MS) {
     lastCleanupAt = now;
-    void db.query("DELETE FROM rate_limits WHERE reset_at < ? LIMIT 1000", [now]).catch(() => undefined);
+    void db.query("DELETE FROM rate_limits WHERE bucket_key IN (SELECT bucket_key FROM rate_limits WHERE reset_at < ? LIMIT 1000)", [now]).catch(() => undefined);
   }
 
   const row = rows[0];

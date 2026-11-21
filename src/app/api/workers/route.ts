@@ -46,14 +46,9 @@ function needsCounty(role: string) {
   return ["mediator", "doctor", "general practitioner"].includes(role.trim().toLowerCase());
 }
 
+/** A unique index rejected the write (PostgreSQL error 23505). */
 function isDuplicateEntryError(error: unknown): boolean {
-  const dbError = error as { code?: string; errno?: number; sqlState?: string; message?: string };
-  return (
-    dbError.code === "ER_DUP_ENTRY"
-    || dbError.errno === 1062
-    || dbError.sqlState === "23000"
-    || /duplicate entry/i.test(dbError.message || "")
-  );
+  return (error as { code?: string } | null)?.code === "23505";
 }
 
 export async function GET(request: Request) {
@@ -178,7 +173,7 @@ export async function POST(request: Request) {
     const db = getCountryDatabase(workerContext.country);
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO workers (full_name, email, phone, role, department, county, status)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id`,
       [fullName, email, phone || null, role, department || null, county || null, status],
     );
 
@@ -355,7 +350,7 @@ export async function PATCH(request: Request) {
     if (Array.isArray(body.assign_patient_ids) && body.assign_patient_ids.length > 0) {
       const placeholders = body.assign_patient_ids.map(() => "?").join(", ");
       await db.query(
-        `UPDATE patients SET assigned_worker_id = ?, assigned_worker_ids = JSON_ARRAY(?) WHERE id IN (${placeholders})`,
+        `UPDATE patients SET assigned_worker_id = ?, assigned_worker_ids = jsonb_build_array(?::bigint) WHERE id IN (${placeholders})`,
         [id, id, ...body.assign_patient_ids],
       );
     }
@@ -472,9 +467,9 @@ export async function DELETE(request: Request) {
       // Remove the worker from every patient's assignment list, not only the primary assignment.
       const [assignedRows] = await connection.query<(RowDataPacket & { id: number; assigned_worker_ids: unknown })[]>(
         `SELECT id, assigned_worker_ids FROM patients
-         WHERE assigned_worker_id = ? OR assigned_worker_ids LIKE ?
+         WHERE assigned_worker_id = ? OR jsonb_has_id(assigned_worker_ids, ?)
          FOR UPDATE`,
-        [id, `%"${id}"%`],
+        [id, id],
       );
       for (const patient of assignedRows) {
         const remaining = (parseJsonColumn<Array<string | number>>(patient.assigned_worker_ids) || [])
