@@ -7,7 +7,9 @@ import { AlertCircleIcon, CloseIcon, MailIcon } from "@/components/ui/icons";
 import styles from "@/components/layout/ChromeDialogs.module.css";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import type { Lang } from "@/lib/i18n/translations";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 
 export type ReportIssueCopy = {
   trigger: string;
@@ -274,6 +276,10 @@ export function ReportIssueWidget() {
     }
     if (message.trim().length < 10) {
       setError({ text: t.tooShort, field: "message" });
+      return;
+    }
+    if (isBrowserOffline()) {
+      setError({ text: getOfflineUiCopy(lang).formOfflineError });
       return;
     }
 

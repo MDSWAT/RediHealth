@@ -16,9 +16,9 @@ import { HeroPhotos } from "./hero/HeroPhotos";
  * Landing hero:
  * - Extends beneath the transparent-on-load sticky header (and its 112 line) by --site-header-h
  *   over the obsidian-navy editorial ground with filtered consultation photos (HeroPhotos).
- * - Rotating geometric chakra wheel (WheelBackdrop) centered above the headline on mobile and
- *   layered behind the right-side photography on desktop, dissolving as the next stacked sheet
- *   slides up, with rAF-smoothed subtle pointer parallax on fine desktop pointers.
+ * - Rotating geometric chakra wheel (WheelBackdrop) rising above and fading subtly behind the
+ *   headline on mobile, and layered behind the right-side photography on desktop, dissolving as
+ *   the next stacked sheet slides up, with rAF-smoothed subtle pointer parallax on fine desktop pointers.
  * - Strictly one single primary entry CTA straight to /health-check (plus quiet read-aloud when enabled).
  */
 export function Hero() {
@@ -109,12 +109,15 @@ export function Hero() {
       </div>
 
       <Container className="hero-grid flex flex-1 flex-col items-center justify-center py-8 text-center lg:grid lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:content-center lg:items-center lg:gap-x-12 lg:py-14 lg:text-left xl:gap-x-20 [&>*]:min-w-0">
-        <div className="flex w-full max-w-xl flex-col items-center lg:col-start-1 lg:block lg:max-w-2xl">
-          <div aria-hidden="true" className="hero-in mb-7 flex justify-center [--in:40ms] lg:hidden">
+        <div className="relative flex w-full max-w-xl flex-col items-center pt-30 sm:pt-36 lg:col-start-1 lg:block lg:max-w-2xl lg:pt-0">
+          <div
+            aria-hidden="true"
+            className="hero-in pointer-events-none absolute inset-x-0 top-0 z-0 flex justify-center [--in:40ms] lg:hidden"
+          >
             <WheelBackdrop placement="hero-top" />
           </div>
 
-          <div className="hero-phone-drift">
+          <div className="hero-phone-drift relative z-10">
             <h1 id="hero-title" className="hero-title max-w-2xl text-balance font-bold text-paper">
               <span className="lg:hidden">
                 <span className="hero-in block [--in:60ms]">{copy.mobileTitle[0]}</span>
@@ -132,7 +135,7 @@ export function Hero() {
 
           <div
             id="triage"
-            className="hero-in w-full scroll-mt-24 [--in:260ms] lg:mt-9 lg:w-auto"
+            className="hero-in relative z-10 w-full scroll-mt-24 [--in:260ms] lg:mt-9 lg:w-auto"
           >
             <div className="btn-row flex flex-wrap items-center justify-center gap-3 lg:justify-start">
               <Button

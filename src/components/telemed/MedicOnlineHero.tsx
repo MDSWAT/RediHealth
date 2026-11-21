@@ -13,9 +13,11 @@ import { OnlineDoctorUnavailable } from "./OnlineDoctorUnavailable";
 import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
 import { playSoundCheck } from "./sound-check";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
 import { isOnlineDoctorAvailable } from "@/lib/online-doctor";
+import { useOnlineStatus } from "@/lib/pwa/use-online-status";
 
 function useSafeLanguage() {
   try {
@@ -100,6 +102,8 @@ export const heroCopy: Record<Lang, HeroFeatureCopy> = {
  */
 export function MedicOnlineHero() {
   const { lang, t } = useSafeLanguage();
+  const isOnline = useOnlineStatus();
+  const offlineCopy = getOfflineUiCopy(lang);
   const mp = t.medicOnlinePage;
   const c = heroCopy[lang] ?? heroCopy.ro;
   const findHelp = findHelpLinks(lang);
@@ -137,6 +141,16 @@ export function MedicOnlineHero() {
 
         {/* The two ways in share one surface, split by a hairline: no row of look-alike cards. */}
         {/* The page's one lit surface: a soft pointer light and top-edge highlight on fine pointers. */}
+        {!isOnline && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="mt-6 rounded-xl border border-border bg-card p-4 text-body text-foreground shadow-2xs dark:border-ink-800 dark:bg-ink-900"
+          >
+            <p className="leading-relaxed">{offlineCopy.doctorOfflineNotice}</p>
+          </div>
+        )}
+
         <div className="mt-8 divide-y divide-border rounded-xl border border-border bg-card shadow-(--shadow-card-rest)">
           <div className="grid grid-cols-1 divide-y divide-border md:grid-cols-2 md:divide-x md:divide-y-0">
             <div className="flex flex-col p-6">

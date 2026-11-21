@@ -1,4 +1,8 @@
 import { useSyncExternalStore } from "react";
+import { countryForLang } from "@/lib/medical-institutes";
+import type { Lang } from "@/lib/i18n/translations";
+import { warmCountryInstitutes } from "@/lib/pwa/offline-institutes";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 
 export type InstallPlatform =
   | "chromium-prompt"
@@ -516,6 +520,266 @@ export async function applyPwaUpdate(): Promise<void> {
   window.location.reload();
 }
 
+const OFFLINE_WARM_PREFIX = "redihealth:offline-warmed:v2:";
+const OFFLINE_WARM_TTL_MS = 24 * 60 * 60 * 1_000;
+const OFFLINE_WARM_TIMEOUT_MS = 60_000;
+const OFFLINE_SUPPORTED_LOCALES = new Set<Lang>(["ro", "en", "sq", "it", "hr", "rom", "ru"]);
+const warmedLocalesSession = new Set<string>();
+const cachedRoutesSession = new Set<string>();
+
+type NetworkInformationLike = { saveData?: boolean; effectiveType?: string };
+
+function isDataSaverOrSlowConnection(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const conn = (navigator as Navigator & { connection?: NetworkInformationLike }).connection;
+  if (!conn) return false;
+  if (conn.saveData) return true;
+  return conn.effectiveType === "slow-2g" || conn.effectiveType === "2g";
+}
+
+function isFastConnection(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const conn = (navigator as Navigator & { connection?: NetworkInformationLike }).connection;
+  if (!conn) return true;
+  if (conn.saveData) return false;
+  return conn.effectiveType !== "slow-2g" && conn.effectiveType !== "2g" && conn.effectiveType !== "3g";
+}
+
+function collectLoadedNextAssets(): string[] {
+  if (typeof window === "undefined" || typeof performance === "undefined") return [];
+  if (typeof performance.getEntriesByType !== "function") return [];
+  try {
+    return performance
+      .getEntriesByType("resource")
+      .map((entry) => entry.name)
+      .filter((name) => {
+        try {
+          const parsed = new URL(name, window.location.origin);
+          return parsed.origin === window.location.origin && parsed.pathname.startsWith("/_next/static/");
+        } catch {
+          return false;
+        }
+      });
+  } catch {
+    return [];
+  }
+}
+
+function isSensitiveClientPath(pathname: string): boolean {
+  const bare = pathname.replace(/^\/(ro|en|sq|it|hr|rom|ru)(?=\/|$)/, "") || "/";
+  return (
+    bare === "/panel" ||
+    bare.startsWith("/panel/") ||
+    bare === "/offline" ||
+    bare.startsWith("/offline/") ||
+    bare === "/patient-portal" ||
+    bare.startsWith("/patient-portal/") ||
+    bare === "/sign-in" ||
+    bare.startsWith("/sign-in/") ||
+    bare === "/health-check/note" ||
+    bare.startsWith("/health-check/note/") ||
+    bare === "/medic-online/meet" ||
+    bare.startsWith("/medic-online/meet/") ||
+    bare === "/medic-online/asteptare" ||
+    bare.startsWith("/medic-online/asteptare/")
+  );
+}
+
+function scheduleIdle(callback: () => void, delayMs: number): () => void {
+  if (typeof window === "undefined") return () => {};
+  const win = window as Window & {
+    requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
+    cancelIdleCallback?: (id: number) => void;
+  };
+  let cancelled = false;
+  let idleId = 0;
+  let timerId = 0;
+
+  const run = () => {
+    if (!cancelled) callback();
+  };
+
+  if (typeof win.requestIdleCallback === "function") {
+    timerId = window.setTimeout(() => {
+      if (cancelled) return;
+      idleId = win.requestIdleCallback(run, { timeout: 2_000 });
+    }, delayMs);
+  } else {
+    timerId = window.setTimeout(run, delayMs);
+  }
+
+  return () => {
+    cancelled = true;
+    if (timerId) window.clearTimeout(timerId);
+    if (idleId) win.cancelIdleCallback?.(idleId);
+  };
+}
+
+function postWorkerMessage<T>(
+  worker: ServiceWorker,
+  message: Record<string, unknown>,
+  timeoutMs: number,
+): Promise<T | null> {
+  return new Promise((resolve) => {
+    if (typeof MessageChannel === "undefined") {
+      resolve(null);
+      return;
+    }
+    const channel = new MessageChannel();
+    const timer = window.setTimeout(() => {
+      try {
+        channel.port1.close();
+      } catch {
+        // Ignore close failures.
+      }
+      resolve(null);
+    }, timeoutMs);
+    channel.port1.onmessage = (event) => {
+      window.clearTimeout(timer);
+      try {
+        channel.port1.close();
+      } catch {
+        // Ignore close failures.
+      }
+      resolve((event.data as T) ?? null);
+    };
+    try {
+      worker.postMessage(message, [channel.port2]);
+    } catch {
+      window.clearTimeout(timer);
+      resolve(null);
+    }
+  });
+}
+
+async function resolveActiveServiceWorker(): Promise<ServiceWorker | null> {
+  if (typeof window === "undefined" || !window.isSecureContext || !("serviceWorker" in navigator)) {
+    return null;
+  }
+  try {
+    const registration = await Promise.race([
+      navigator.serviceWorker.ready,
+      new Promise<null>((resolve) => window.setTimeout(() => resolve(null), 5_000)),
+    ]);
+    if (!registration) return null;
+    return registration.active ?? registration.waiting ?? registration.installing ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Quietly warms core non-PHI public routes, 8 guides, static chunks, search index, and clinics during idle time.
+ */
+export function warmOfflineAppForLocale(lang: string): () => void {
+  const safeLang: Lang = OFFLINE_SUPPORTED_LOCALES.has(lang as Lang) ? (lang as Lang) : "ro";
+  if (
+    typeof window === "undefined" ||
+    isBrowserOffline() ||
+    isDataSaverOrSlowConnection() ||
+    warmedLocalesSession.has(safeLang)
+  ) {
+    return () => {};
+  }
+
+  return scheduleIdle(() => {
+    if (
+      isBrowserOffline() ||
+      isDataSaverOrSlowConnection() ||
+      warmedLocalesSession.has(safeLang)
+    ) {
+      return;
+    }
+    warmedLocalesSession.add(safeLang);
+
+    const lastWarmedRaw = safeGetStorage(`${OFFLINE_WARM_PREFIX}${safeLang}`);
+    const lastWarmed = lastWarmedRaw ? Number(lastWarmedRaw) : 0;
+    const alreadyWarmedToday =
+      Number.isFinite(lastWarmed) && lastWarmed > 0 && Date.now() - lastWarmed < OFFLINE_WARM_TTL_MS;
+
+    void (async () => {
+      await Promise.allSettled([
+        import("@/lib/i18n/smart-search-copy"),
+        import("@/lib/search/smart-search-engine"),
+        import("@/components/emergency/EmergencySignsModal"),
+        import("@/components/emergency/EmergencyDialerGate"),
+      ]);
+      void warmCountryInstitutes(countryForLang(safeLang));
+
+      let cacheReady = false;
+      if (alreadyWarmedToday && "caches" in window) {
+        try {
+          const pagesCache = await window.caches.open("redihealth-pages-v1");
+          cacheReady = Boolean(await pagesCache.match(`/${safeLang}`));
+        } catch {
+          cacheReady = false;
+        }
+      }
+      if (alreadyWarmedToday && cacheReady) return;
+
+      const worker = await resolveActiveServiceWorker();
+      if (!worker || isBrowserOffline()) {
+        warmedLocalesSession.delete(safeLang);
+        return;
+      }
+
+      const reply = await postWorkerMessage<{ ok?: boolean }>(
+        worker,
+        {
+          type: "WARM_OFFLINE_APP",
+          lang: safeLang,
+          assets: collectLoadedNextAssets(),
+          includeGuides: true,
+          includeModels: isFastConnection(),
+        },
+        OFFLINE_WARM_TIMEOUT_MS,
+      );
+      if (reply?.ok) {
+        safeSetStorage(`${OFFLINE_WARM_PREFIX}${safeLang}`, String(Date.now()));
+      } else {
+        warmedLocalesSession.delete(safeLang);
+      }
+    })();
+  }, 3_000);
+}
+
+/**
+ * Ensures soft-navigated public pages and their client chunks are stored for offline revisit.
+ */
+export function cacheVisitedPublicPage(pathname: string | null | undefined): () => void {
+  if (
+    typeof window === "undefined" ||
+    !pathname ||
+    isBrowserOffline() ||
+    isDataSaverOrSlowConnection() ||
+    isSensitiveClientPath(pathname) ||
+    cachedRoutesSession.has(pathname)
+  ) {
+    return () => {};
+  }
+
+  return scheduleIdle(() => {
+    if (isBrowserOffline() || cachedRoutesSession.has(pathname)) return;
+    cachedRoutesSession.add(pathname);
+    void (async () => {
+      const worker = await resolveActiveServiceWorker();
+      if (!worker || isBrowserOffline()) {
+        cachedRoutesSession.delete(pathname);
+        return;
+      }
+      await postWorkerMessage(
+        worker,
+        {
+          type: "CACHE_PUBLIC_PAGE",
+          url: pathname,
+          assets: collectLoadedNextAssets(),
+        },
+        15_000,
+      );
+    })();
+  }, 1_200);
+}
+
 export function _resetPwaRuntimeForTest(): void {
   clearBannerTimer();
   if (updateInterval !== null && typeof window !== "undefined") {
@@ -527,6 +791,8 @@ export function _resetPwaRuntimeForTest(): void {
   deferredPrompt = null;
   swRegistration = null;
   lastUpdateCheckAt = 0;
+  warmedLocalesSession.clear();
+  cachedRoutesSession.clear();
   snapshot = SERVER_SNAPSHOT;
   listeners.clear();
 }

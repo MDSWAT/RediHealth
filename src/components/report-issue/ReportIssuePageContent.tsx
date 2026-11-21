@@ -7,7 +7,9 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { PageListenAction } from "@/components/ui/PageListenAction";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import type { Lang } from "@/lib/i18n/translations";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 
 type Copy = {
   title: string;
@@ -151,6 +153,10 @@ export function ReportIssuePageContent() {
 
     if (message.trim().length < 10) {
       setError(t.detailError);
+      return;
+    }
+    if (isBrowserOffline()) {
+      setError(getOfflineUiCopy(lang).formOfflineError);
       return;
     }
 

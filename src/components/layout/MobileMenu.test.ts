@@ -22,11 +22,12 @@ const mobileMenuEnd = HEADER_SOURCE.indexOf("</header>");
 const MOBILE_MENU_SOURCE = HEADER_SOURCE.slice(mobileMenuStart, mobileMenuEnd);
 
 describe("mobile navigation drawer (#mobile-menu)", () => {
-  it("uses warm paper ground, compact width container, and removes duplicate triage CTA", () => {
+  it("uses clean white ground, subtly bordered cards, and removes duplicate triage CTA", () => {
     expect(mobileMenuStart).toBeGreaterThan(-1);
     expect(mobileMenuEnd).toBeGreaterThan(mobileMenuStart);
 
-    expect(MOBILE_MENU_SOURCE).toContain("bg-paper");
+    expect(MOBILE_MENU_SOURCE).toContain("bg-white");
+    expect(HEADER_SOURCE).toContain("bg-white");
     expect(MOBILE_MENU_SOURCE).toContain("dark:bg-ink-950");
     expect(MOBILE_MENU_SOURCE).not.toContain("max-w-xl");
     expect(MOBILE_MENU_SOURCE).not.toContain("/health-assistant#triage");
@@ -79,7 +80,7 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(HEADER_SOURCE).toMatch(/<Logo[\s\S]*?className="min-h-11 [^"]*"[\s\S]*?onClick=\{closeMobile\}/);
   });
 
-  it("places all 6 core destinations including /mediatori in a compact 2-column grid", () => {
+  it("places all 6 core destinations including /mediatori in a unified single-column editorial list", () => {
     expect(HEADER_SOURCE).toContain('href: "/health-information"');
     expect(HEADER_SOURCE).toContain('href: "/health-check"');
     expect(HEADER_SOURCE).toContain('href: "/prescription-review"');
@@ -90,6 +91,10 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     // Desktop nav and mobile drawer share primaryLinks, with /mediatori inside the primary <nav>.
     expect(MOBILE_MENU_SOURCE).toContain("primaryLinks.map");
     expect(MOBILE_MENU_SOURCE).toContain("grid grid-cols-2");
+    expect(MOBILE_MENU_SOURCE).toContain("divide-y");
+    expect(MOBILE_MENU_SOURCE).toContain("ChevronRightIcon");
+    expect(MOBILE_MENU_SOURCE).toContain("flex flex-wrap");
+    expect(HEADER_SOURCE).toContain("mobileMenuRef.current.scrollTop = 0");
     expect(MOBILE_MENU_SOURCE).not.toContain("{tHeader.forMediatorsSub}");
     expect(MOBILE_MENU_SOURCE).not.toContain("block whitespace-nowrap text-meta");
     expect(MOBILE_MENU_SOURCE).not.toContain("sr-only");

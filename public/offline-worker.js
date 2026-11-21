@@ -1,12 +1,75 @@
-/* Only the data-free offline shell, static assets, non-PHI health guides, and zero-PHI offline fallback may enter Cache Storage or respond offline. */
+/* Only the data-free offline shell, static assets, non-PHI public pages/guides, and zero-PHI offline fallback may enter Cache Storage or respond offline. */
 const SHELL_CACHE = "redihealth-offline-shell-v2";
 const STATIC_CACHE = "redihealth-static-v2";
 const GUIDES_CACHE = "redihealth-guides-v1";
+const PAGES_CACHE = "redihealth-pages-v1";
+const MEDIA_CACHE = "redihealth-media-v1";
+
 /* Inside GUIDES_CACHE: the list of saved guides (path, title, language only) and the last language seen. */
 const SAVED_GUIDES_INDEX = "/__saved-guides.json";
 const LAST_LOCALE_KEY = "/__last-locale";
 const SAVED_GUIDES_LIMIT = 60;
+const PAGES_CACHE_LIMIT = 120;
+const MEDIA_CACHE_LIMIT = 200;
 const SUPPORTED_LOCALES = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
+
+const CORE_PUBLIC_BARE_PATHS = [
+  "",
+  "/health-check",
+  "/health-information",
+  "/health-assistant",
+  "/find-help",
+  "/stiri",
+  "/mediatori",
+  "/prescription-review",
+  "/ai-assistant",
+  "/medic-online",
+  "/about",
+  "/contact",
+  "/privacy",
+  "/terms",
+  "/cookies",
+  "/accessibility",
+];
+
+const CORE_GUIDE_SLUGS = [
+  "heart-health",
+  "diabetes",
+  "healthy-eating",
+  "mental-wellbeing",
+  "physical-activity",
+  "preventive-screening",
+  "smoking",
+  "womens-health",
+];
+
+const CORE_MEDIA_PATHS = [
+  "/Icons/Logo.svg",
+  "/manifest.webmanifest",
+  "/pwa/pwa-192x192.png",
+  "/pwa/pwa-512x512.png",
+  "/favicon.ico",
+  "/icon.svg",
+  "/images/hero-care.jpg",
+  "/images/hero-consultation.jpg",
+  "/images/hero-desk.jpg",
+  "/images/health-topics/diabetes.jpg",
+  "/images/health-topics/healthy-eating.jpg",
+  "/images/health-topics/heart-health.jpg",
+  "/images/health-topics/heart-health-care.jpg",
+  "/images/health-topics/mental-wellbeing.jpg",
+  "/images/health-topics/physical-activity.jpg",
+  "/images/health-topics/preventive-screening.jpg",
+  "/images/health-topics/smoking.jpg",
+  "/images/health-topics/womens-health.jpg",
+];
+
+const CORE_MODEL_PATHS = [
+  "/models/human-atlas-layers.json",
+  "/models/human-atlas-layers.bin",
+  "/models/human-atlas-skeleton.json",
+  "/models/human-atlas-skeleton.bin",
+];
 
 const OFFLINE_FALLBACK_COPY = {
   ro: {
@@ -16,9 +79,19 @@ const OFFLINE_FALLBACK_COPY = {
     emergencyNote: "Dacă este o urgență medicală, sună direct la 112.",
     call112: "Sună la 112",
     retry: "Încearcă din nou",
+    sectionsHeading: "Disponibile fără internet",
+    sectionsBody: "Poți deschide aceste secțiuni offline.",
     savedHeading: "Salvate pe telefon",
     savedBody: "Poți deschide aceste ghiduri fără internet.",
     savedEmpty: "Nu ai încă ghiduri salvate. Când ai internet, deschide un ghid și apasă Salvează pe telefon.",
+    sections: {
+      home: "Acasă",
+      healthCheck: "Verifică simptomele",
+      learn: "Învață și testează-te",
+      assistant: "Unde să mergi",
+      findHelp: "Farmacii și clinici",
+      news: "Știri medicale",
+    },
   },
   en: {
     title: "You are offline",
@@ -27,9 +100,19 @@ const OFFLINE_FALLBACK_COPY = {
     emergencyNote: "If this is a medical emergency, call 112 directly.",
     call112: "Call 112",
     retry: "Try again",
+    sectionsHeading: "Available offline",
+    sectionsBody: "You can open these sections without internet.",
     savedHeading: "Saved on this phone",
     savedBody: "You can open these guides without internet.",
     savedEmpty: "No guides saved yet. When you have internet, open a guide and tap Save on this phone.",
+    sections: {
+      home: "Home",
+      healthCheck: "Check symptoms",
+      learn: "Learn and test yourself",
+      assistant: "Where to go",
+      findHelp: "Pharmacies and clinics",
+      news: "Medical news",
+    },
   },
   sq: {
     title: "Je jashtë linje",
@@ -38,9 +121,19 @@ const OFFLINE_FALLBACK_COPY = {
     emergencyNote: "Nëse është urgjencë mjekësore, telefono direkt 112.",
     call112: "Telefono 112",
     retry: "Provo përsëri",
+    sectionsHeading: "Të hapura pa internet",
+    sectionsBody: "Mund t'i hapësh këto faqe pa internet.",
     savedHeading: "Ruajtur në telefon",
     savedBody: "Mund t'i hapësh këta udhëzues pa internet.",
     savedEmpty: "Nuk ke ende udhëzues të ruajtur. Kur të kesh internet, hap një udhëzues dhe shtyp Ruaj në telefon.",
+    sections: {
+      home: "Kreu",
+      healthCheck: "Kontrollo simptomat",
+      learn: "Mëso dhe testo veten",
+      assistant: "Ku të shkosh",
+      findHelp: "Farmaci dhe klinika",
+      news: "Lajme mjekësore",
+    },
   },
   it: {
     title: "Sei offline",
@@ -49,9 +142,19 @@ const OFFLINE_FALLBACK_COPY = {
     emergencyNote: "Se è un'emergenza medica, chiama subito il 112.",
     call112: "Chiama il 112",
     retry: "Riprova",
+    sectionsHeading: "Disponibili offline",
+    sectionsBody: "Puoi aprire queste sezioni senza internet.",
     savedHeading: "Salvate sul telefono",
     savedBody: "Puoi aprire queste guide senza internet.",
     savedEmpty: "Non hai ancora guide salvate. Quando hai internet, apri una guida e tocca Salva sul telefono.",
+    sections: {
+      home: "Home",
+      healthCheck: "Controlla i sintomi",
+      learn: "Impara e mettiti alla prova",
+      assistant: "Dove andare",
+      findHelp: "Farmacie e cliniche",
+      news: "Notizie mediche",
+    },
   },
   hr: {
     title: "Izvan mreže si",
@@ -60,9 +163,19 @@ const OFFLINE_FALLBACK_COPY = {
     emergencyNote: "Ako je hitan medicinski slučaj, odmah nazovi 112.",
     call112: "Nazovi 112",
     retry: "Pokušaj ponovno",
+    sectionsHeading: "Dostupno izvan mreže",
+    sectionsBody: "Ove dijelove možeš otvoriti bez interneta.",
     savedHeading: "Spremljeno na mobitelu",
     savedBody: "Ove vodiče možeš otvoriti bez interneta.",
     savedEmpty: "Još nemaš spremljenih vodiča. Kad imaš internet, otvori vodič i dodirni Spremi na mobitel.",
+    sections: {
+      home: "Početna",
+      healthCheck: "Provjeri simptome",
+      learn: "Uči i testiraj se",
+      assistant: "Kamo ići",
+      findHelp: "Ljekarne i klinike",
+      news: "Zdravstvene vijesti",
+    },
   },
   rom: {
     title: "San bi-internetesko",
@@ -71,9 +184,19 @@ const OFFLINE_FALLBACK_COPY = {
     emergencyNote: "Te si sastipnaski sigardiari, akhar rigate ko 112.",
     call112: "Akhar ko 112",
     retry: "Zumav palem",
+    sectionsHeading: "Putarde bi internetesko",
+    sectionsBody: "Shaj putres kadala riga bi internetesko.",
     savedHeading: "Garavde po telefono",
     savedBody: "Shaj putres kadala gidurya bi internetesko.",
     savedEmpty: "Inke nane tut garavde gidurya. Kana si tut interneto, putar jekh gido thaj ker klik po Garav po telefono.",
+    sections: {
+      home: "Khere",
+      healthCheck: "Dikh che simptome",
+      learn: "Sikljov thaj proba tu",
+      assistant: "Kaj te zhas",
+      findHelp: "Farmaciye thaj klinike",
+      news: "Sastipnaske nevimata",
+    },
   },
   ru: {
     title: "Нет подключения к сети",
@@ -82,9 +205,19 @@ const OFFLINE_FALLBACK_COPY = {
     emergencyNote: "Если это неотложная медицинская помощь, позвоните 112.",
     call112: "Позвоните 112",
     retry: "Попробуйте еще раз",
+    sectionsHeading: "Доступно офлайн",
+    sectionsBody: "Эти разделы можно открыть без интернета.",
     savedHeading: "Сохранено на телефоне",
     savedBody: "Эти памятки можно открыть без интернета.",
     savedEmpty: "Сохранённых памяток пока нет. Когда будет интернет, откройте памятку и нажмите Сохранить на телефон.",
+    sections: {
+      home: "Главная",
+      healthCheck: "Проверить симптомы",
+      learn: "Обучение и проверка",
+      assistant: "Куда обратиться",
+      findHelp: "Аптеки и клиники",
+      news: "Медицинские новости",
+    },
   },
 };
 
@@ -184,18 +317,50 @@ async function readLastLocale() {
   }
 }
 
+async function readCachedCoreSections(locale) {
+  const copy = OFFLINE_FALLBACK_COPY[locale] || OFFLINE_FALLBACK_COPY.en;
+  const candidates = [
+    { path: `/${locale}`, label: copy.sections.home, cacheName: PAGES_CACHE },
+    { path: `/${locale}/health-check`, label: copy.sections.healthCheck, cacheName: PAGES_CACHE },
+    { path: `/${locale}/health-information`, label: copy.sections.learn, cacheName: GUIDES_CACHE },
+    { path: `/${locale}/health-assistant`, label: copy.sections.assistant, cacheName: PAGES_CACHE },
+    { path: `/${locale}/find-help`, label: copy.sections.findHelp, cacheName: PAGES_CACHE },
+    { path: `/${locale}/stiri`, label: copy.sections.news, cacheName: PAGES_CACHE },
+  ];
+  try {
+    const [pagesCache, guidesCache] = await Promise.all([
+      caches.open(PAGES_CACHE),
+      caches.open(GUIDES_CACHE),
+    ]);
+    const available = [];
+    for (const entry of candidates) {
+      const cache = entry.cacheName === GUIDES_CACHE ? guidesCache : pagesCache;
+      const hit = await cache.match(entry.path);
+      if (hit) available.push({ path: entry.path, label: entry.label, lang: locale });
+    }
+    return available;
+  } catch {
+    return [];
+  }
+}
+
 /* The offline page: in the language of the address, else the last language used, else of the newest saved guide. */
 async function offlineFallbackFor(pathname) {
   const saved = await readSavedGuides();
   const locale =
     localeInPath(pathname) || (await readLastLocale()) || (saved[0] && saved[0].lang) || "en";
   const inLocale = saved.filter((item) => item.lang === locale);
-  return buildOfflineFallbackResponse(locale, inLocale.length > 0 ? inLocale : saved);
+  const cachedSections = await readCachedCoreSections(locale);
+  return buildOfflineFallbackResponse(locale, inLocale.length > 0 ? inLocale : saved, cachedSections);
+}
+
+function stripLocalePrefix(pathname) {
+  return pathname.replace(/^\/(ro|en|sq|it|hr|rom|ru)(?=\/|$)/, "") || "/";
 }
 
 function isSensitivePath(pathname) {
   if (pathname.startsWith("/api/")) return true;
-  const stripped = pathname.replace(/^\/(ro|en|sq|it|hr|rom|ru)(?=\/|$)/, "") || "/";
+  const stripped = stripLocalePrefix(pathname);
   return (
     stripped === "/panel" ||
     stripped.startsWith("/panel/") ||
@@ -204,7 +369,11 @@ function isSensitivePath(pathname) {
     stripped === "/sign-in" ||
     stripped.startsWith("/sign-in/") ||
     stripped === "/health-check/note" ||
-    stripped.startsWith("/health-check/note/")
+    stripped.startsWith("/health-check/note/") ||
+    stripped === "/medic-online/meet" ||
+    stripped.startsWith("/medic-online/meet/") ||
+    stripped === "/medic-online/asteptare" ||
+    stripped.startsWith("/medic-online/asteptare/")
   );
 }
 
@@ -217,18 +386,111 @@ function isCacheableResponse(response) {
 
 function isHealthGuidePath(pathname) {
   if (isSensitivePath(pathname)) return false;
-  const stripped = pathname.replace(/^\/(ro|en|sq|it|hr|rom|ru)(?=\/|$)/, "") || "/";
+  const stripped = stripLocalePrefix(pathname);
   return stripped === "/health-information" || stripped.startsWith("/health-information/");
+}
+
+function isOfflinePublicPath(pathname) {
+  if (isSensitivePath(pathname)) return false;
+  const stripped = stripLocalePrefix(pathname);
+  if (
+    stripped === "/" ||
+    stripped === "/health-check" ||
+    stripped === "/health-assistant" ||
+    stripped === "/find-help" ||
+    stripped === "/mediatori" ||
+    stripped === "/get-help" ||
+    stripped === "/prescription-review" ||
+    stripped === "/ai-assistant" ||
+    stripped === "/medic-online" ||
+    stripped === "/about" ||
+    stripped === "/contact" ||
+    stripped === "/privacy" ||
+    stripped === "/terms" ||
+    stripped === "/cookies" ||
+    stripped === "/accessibility" ||
+    stripped === "/report-issue"
+  ) {
+    return true;
+  }
+  return (
+    stripped === "/health-information" ||
+    stripped.startsWith("/health-information/") ||
+    stripped === "/stiri" ||
+    stripped.startsWith("/stiri/") ||
+    stripped === "/news" ||
+    stripped.startsWith("/news/") ||
+    stripped === "/demo" ||
+    stripped.startsWith("/demo/")
+  );
+}
+
+function sanitizePageResponseForCache(response, html) {
+  const headers = new Headers(response.headers);
+  headers.delete("set-cookie");
+  headers.delete("content-encoding");
+  headers.delete("content-length");
+  return new Response(html, { status: 200, headers });
+}
+
+async function trimCache(cacheName, limit) {
+  try {
+    const cache = await caches.open(cacheName);
+    if (typeof cache.keys !== "function" || typeof cache.delete !== "function") return;
+    const keys = await cache.keys();
+    if (keys.length <= limit) return;
+    const excess = keys.length - limit;
+    let removed = 0;
+    for (const req of keys) {
+      if (removed >= excess) break;
+      const reqPath = new URL(req.url, self.location.origin).pathname;
+      if (reqPath === SAVED_GUIDES_INDEX || reqPath === LAST_LOCALE_KEY) continue;
+      await cache.delete(req);
+      removed += 1;
+    }
+  } catch {
+    // Ignore cache trimming errors.
+  }
+}
+
+const scannedStaticChunks = new Set();
+
+function extractStaticAssetRefsFromText(text) {
+  if (!text) return [];
+  const refs = [];
+  const matches = text.matchAll(
+    /(?:\/_next\/)?static\/(?:immutable\/)?(?:chunks|media)\/[A-Za-z0-9._/-]+\.(?:js|css|woff2)/g,
+  );
+  for (const match of matches) {
+    const raw = match[0];
+    if (raw.includes("..") || raw.includes("//")) continue;
+    const normalized = raw.startsWith("/_next/") ? raw : `/_next/${raw}`;
+    try {
+      const resolved = new URL(normalized, self.location.origin);
+      if (
+        resolved.origin === self.location.origin &&
+        resolved.pathname.startsWith("/_next/static/")
+      ) {
+        refs.push(resolved.href);
+      }
+    } catch {
+      // Ignore malformed asset references.
+    }
+  }
+  return refs;
 }
 
 async function cacheNextStaticAssets(html, supplied = [], { requireAll = false } = {}) {
   const staticCache = await caches.open(STATIC_CACHE);
-  const assets = [
-    ...html.matchAll(/(?:src|href)="([^"]*\/_next\/static\/[^"]+)"/g),
-  ].map((match) => new URL(match[1].replace(/&amp;/g, "&"), self.location.origin).href);
+  const assets = html
+    ? [...html.matchAll(/(?:src|href)="([^"]*\/_next\/static\/[^"]+)"/g)].map(
+        (match) => new URL(match[1].replace(/&amp;/g, "&"), self.location.origin).href,
+      )
+    : [];
 
-  const wanted = [];
-  for (const asset of [...new Set([...assets, ...supplied])]) {
+  const visited = new Set();
+  let frontier = [];
+  for (const asset of [...assets, ...supplied]) {
     let assetUrl;
     try {
       assetUrl = new URL(asset, self.location.origin);
@@ -241,27 +503,137 @@ async function cacheNextStaticAssets(html, supplied = [], { requireAll = false }
     ) {
       continue;
     }
-    wanted.push(assetUrl.href);
+    if (!visited.has(assetUrl.href)) {
+      visited.add(assetUrl.href);
+      frontier.push(assetUrl.href);
+    }
   }
 
   // Files already kept are not downloaded again: on a slow or paid connection that is most of the cost.
-  await Promise.all(
-    [...new Set(wanted)].map(async (href) => {
-      if (await staticCache.match(href)) return;
-      const result = await fetch(href, { credentials: "omit" });
-      if (!result.ok) {
-        if (requireAll) throw new Error("Offline app asset unavailable.");
-        return;
-      }
-      if (isCacheableResponse(result)) {
-        await staticCache.put(href, result);
-      }
-    }),
-  );
+  for (let depth = 0; depth <= 3 && frontier.length > 0; depth += 1) {
+    const nextLevel = [];
+    for (let i = 0; i < frontier.length; i += 6) {
+      const batch = frontier.slice(i, i + 6);
+      await Promise.all(
+        batch.map(async (href) => {
+          let assetResponse = await staticCache.match(href);
+          if (!assetResponse) {
+            let result = null;
+            try {
+              result = await fetch(href, { credentials: "omit" });
+            } catch {
+              if (depth === 0 && requireAll) {
+                throw new Error("Offline app asset unavailable.");
+              }
+              return;
+            }
+            if (!result.ok) {
+              if (depth === 0 && requireAll) {
+                throw new Error("Offline app asset unavailable.");
+              }
+              return;
+            }
+            if (isCacheableResponse(result)) {
+              await staticCache.put(href, result.clone());
+              assetResponse = result;
+            }
+          }
+
+          if (!assetResponse || depth >= 3 || scannedStaticChunks.has(href)) return;
+          const pathname = new URL(href, self.location.origin).pathname;
+          if (!pathname.endsWith(".js") && !pathname.endsWith(".css")) return;
+
+          scannedStaticChunks.add(href);
+          try {
+            const body = await assetResponse.clone().text();
+            for (const refHref of extractStaticAssetRefsFromText(body)) {
+              if (!visited.has(refHref)) {
+                visited.add(refHref);
+                nextLevel.push(refHref);
+              }
+            }
+          } catch {
+            // Ignore unreadable static chunk bodies.
+          }
+        }),
+      );
+    }
+    frontier = nextLevel;
+  }
 }
 
-function buildOfflineFallbackResponse(locale, savedGuides = []) {
+async function cachePublicPathIfMissing(pathname, suppliedAssets = []) {
+  if (!isOfflinePublicPath(pathname)) return false;
+  const targetCacheName = isHealthGuidePath(pathname) ? GUIDES_CACHE : PAGES_CACHE;
+  const cache = await caches.open(targetCacheName);
+  const existing = await cache.match(pathname);
+  if (existing) {
+    const existingHtml = await existing.clone().text().catch(() => "");
+    await cacheNextStaticAssets(existingHtml, suppliedAssets, { requireAll: false });
+    return false;
+  }
+
+  const response = await fetch(pathname, { credentials: "omit", cache: "no-store" });
+  if (
+    !response.ok ||
+    response.type === "opaque" ||
+    response.redirected ||
+    !response.headers.get("content-type")?.includes("text/html")
+  ) {
+    return false;
+  }
+  const html = await response.text();
+  await cacheNextStaticAssets(html, suppliedAssets, { requireAll: false });
+  await cache.put(pathname, sanitizePageResponseForCache(response, html));
+  return true;
+}
+
+async function warmMediaAssets(paths) {
+  const [mediaCache, staticCache] = await Promise.all([
+    caches.open(MEDIA_CACHE),
+    caches.open(STATIC_CACHE),
+  ]);
+  for (let i = 0; i < paths.length; i += 3) {
+    const batch = paths.slice(i, i + 3);
+    await Promise.all(
+      batch.map(async (path) => {
+        try {
+          const isStaticSlot =
+            path.startsWith("/pwa/") ||
+            path === "/manifest.webmanifest" ||
+            path === "/favicon.ico" ||
+            path === "/icon.svg";
+          const targetCache = isStaticSlot ? staticCache : mediaCache;
+          if (await targetCache.match(path)) return;
+          const res = await fetch(path, { credentials: "omit" });
+          if (isCacheableResponse(res)) {
+            await targetCache.put(path, res);
+          }
+        } catch {
+          // Ignore individual media warm errors so remaining assets still cache.
+        }
+      }),
+    );
+  }
+}
+
+function buildOfflineFallbackResponse(locale, savedGuides = [], cachedSections = []) {
   const copy = OFFLINE_FALLBACK_COPY[locale] || OFFLINE_FALLBACK_COPY.en;
+  const sectionsHtml =
+    cachedSections.length > 0
+      ? `<section class="saved">
+      <h2>${copy.sectionsHeading}</h2>
+      <p>${copy.sectionsBody}</p>
+      <ul>
+        ${cachedSections
+          .map(
+            (item) =>
+              `<li><a href="${escapeHtml(item.path)}" lang="${escapeHtml(item.lang)}">${escapeHtml(item.label)}</a></li>`,
+          )
+          .join("\n        ")}
+      </ul>
+    </section>`
+      : "";
   const savedSection =
     savedGuides.length > 0
       ? `<section class="saved">
@@ -442,6 +814,7 @@ function buildOfflineFallbackResponse(locale, savedGuides = []) {
       <a class="btn btn-emergency" href="tel:112">${copy.call112}</a>
     </div>
     <p class="emergency">${copy.emergencyNote}</p>
+    ${sectionsHtml}
     ${savedSection}
   </main>
 </body>
@@ -453,6 +826,26 @@ function buildOfflineFallbackResponse(locale, savedGuides = []) {
       "Cache-Control": "no-store",
     },
   });
+}
+
+let swDetectedOffline = false;
+
+async function setSwOfflineState(nextOffline) {
+  const normalized = Boolean(nextOffline);
+  if (swDetectedOffline === normalized) return;
+  swDetectedOffline = normalized;
+  if (!self.clients || typeof self.clients.matchAll !== "function") return;
+  try {
+    const windowClients = await self.clients.matchAll({
+      type: "window",
+      includeUncontrolled: true,
+    });
+    for (const client of windowClients) {
+      client?.postMessage?.({ type: "OFFLINE_STATUS", offline: normalized });
+    }
+  } catch {
+    // Ignore broadcast failures when no window clients are active
+  }
 }
 
 self.addEventListener("install", (event) => {
@@ -474,7 +867,9 @@ self.addEventListener("activate", (event) => {
               key.startsWith("redihealth-") &&
               key !== SHELL_CACHE &&
               key !== STATIC_CACHE &&
-              key !== GUIDES_CACHE,
+              key !== GUIDES_CACHE &&
+              key !== PAGES_CACHE &&
+              key !== MEDIA_CACHE,
           )
           .map((key) => caches.delete(key)),
       );
@@ -519,11 +914,8 @@ self.addEventListener("message", (event) => {
           const html = await response.text();
           const supplied = Array.isArray(event.data.assets) ? event.data.assets : [];
           await cacheNextStaticAssets(html, supplied, { requireAll: false });
-          const headers = new Headers(response.headers);
-          headers.delete("content-encoding");
-          headers.delete("content-length");
           const guidesCache = await caches.open(GUIDES_CACHE);
-          await guidesCache.put(targetUrl.pathname, new Response(html, { status: 200, headers }));
+          await guidesCache.put(targetUrl.pathname, sanitizePageResponseForCache(response, html));
           await rememberSavedGuide(targetUrl.pathname, html);
           event.ports[0]?.postMessage({ ok: true, path: targetUrl.pathname });
         } catch (error) {
@@ -533,6 +925,89 @@ self.addEventListener("message", (event) => {
         }
       })(),
     );
+    return;
+  }
+
+  if (event.data?.type === "CACHE_PUBLIC_PAGE") {
+    event.waitUntil(
+      (async () => {
+        try {
+          const targetUrl = new URL(String(event.data.url || ""), self.location.origin);
+          if (
+            targetUrl.origin !== self.location.origin ||
+            !isOfflinePublicPath(targetUrl.pathname)
+          ) {
+            event.ports[0]?.postMessage({ ok: false });
+            return;
+          }
+          const supplied = Array.isArray(event.data.assets) ? event.data.assets : [];
+          const stored = await cachePublicPathIfMissing(targetUrl.pathname, supplied);
+          if (stored) {
+            await trimCache(PAGES_CACHE, PAGES_CACHE_LIMIT);
+          }
+          event.ports[0]?.postMessage({ ok: true, path: targetUrl.pathname });
+        } catch (error) {
+          event.ports[0]?.postMessage({
+            error: error?.message || "Public page offline save failed.",
+          });
+        }
+      })(),
+    );
+    return;
+  }
+
+  if (event.data?.type === "WARM_OFFLINE_APP") {
+    event.waitUntil(
+      (async () => {
+        try {
+          const locale = SUPPORTED_LOCALES.includes(event.data.lang) ? event.data.lang : "en";
+          const includeGuides = event.data.includeGuides !== false;
+          const includeModels = event.data.includeModels === true;
+          const supplied = Array.isArray(event.data.assets) ? event.data.assets : [];
+          const paths = CORE_PUBLIC_BARE_PATHS.map((suffix) => `/${locale}${suffix}`);
+          if (includeGuides) {
+            for (const slug of CORE_GUIDE_SLUGS) {
+              paths.push(`/${locale}/health-information/${slug}`);
+            }
+          }
+
+          let cachedCount = 0;
+          for (let i = 0; i < paths.length; i += 2) {
+            const batch = paths.slice(i, i + 2);
+            const batchAssets = i === 0 ? supplied : [];
+            const results = await Promise.all(
+              batch.map((path, idx) =>
+                cachePublicPathIfMissing(path, idx === 0 ? batchAssets : []).catch(() => false),
+              ),
+            );
+            cachedCount += results.filter(Boolean).length;
+          }
+
+          await warmMediaAssets(
+            includeModels ? [...CORE_MEDIA_PATHS, ...CORE_MODEL_PATHS] : CORE_MEDIA_PATHS,
+          );
+          await rememberLocale(locale);
+          await Promise.all([
+            trimCache(PAGES_CACHE, PAGES_CACHE_LIMIT),
+            trimCache(MEDIA_CACHE, MEDIA_CACHE_LIMIT),
+          ]);
+          event.ports[0]?.postMessage({
+            ok: true,
+            cachedCount,
+            totalCount: paths.length,
+          });
+        } catch (error) {
+          event.ports[0]?.postMessage({
+            error: error?.message || "Offline app warm failed.",
+          });
+        }
+      })(),
+    );
+    return;
+  }
+
+  if (event.data?.type === "GET_OFFLINE_STATUS") {
+    event.ports[0]?.postMessage({ offline: swDetectedOffline });
     return;
   }
 
@@ -573,17 +1048,38 @@ self.addEventListener("fetch", (event) => {
   // Dev builds reuse the same chunk URLs for changed code, so a cached copy would pin the old UI.
   const isLocalDevHost = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(self.location.hostname);
 
-  if (url.pathname.startsWith("/_next/static/") && !isLocalDevHost) {
+  if (url.pathname.startsWith("/_next/static/")) {
     event.respondWith(
       (async () => {
         const cache = await caches.open(STATIC_CACHE);
-        const cached = await cache.match(event.request);
-        if (cached) return cached;
-        const response = await fetch(event.request);
-        if (isCacheableResponse(response)) {
-          await cache.put(event.request, response.clone());
+        const matchStatic = async () =>
+          (await cache.match(event.request)) ||
+          (await cache.match(url.pathname)) ||
+          (await cache.match(event.request, { ignoreSearch: true }));
+
+        if (!isLocalDevHost) {
+          const cached = await matchStatic();
+          if (cached) return cached;
+          try {
+            const response = await fetch(event.request);
+            if (isCacheableResponse(response)) {
+              await cache.put(event.request, response.clone());
+            }
+            return response;
+          } catch {
+            return new Response("", { status: 504 });
+          }
         }
-        return response;
+        try {
+          const response = await fetch(event.request);
+          if (isCacheableResponse(response)) {
+            await cache.put(event.request, response.clone());
+          }
+          return response;
+        } catch {
+          const cached = await matchStatic();
+          return cached || new Response("", { status: 504 });
+        }
       })(),
     );
     return;
@@ -592,6 +1088,7 @@ self.addEventListener("fetch", (event) => {
   if (
     event.request.mode !== "navigate" &&
     (url.pathname.startsWith("/pwa/") ||
+      url.pathname === "/manifest.webmanifest" ||
       url.pathname === "/favicon.ico" ||
       url.pathname.startsWith("/favicon-") ||
       url.pathname === "/safari-pinned-tab.svg" ||
@@ -621,24 +1118,152 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  if (
+    event.request.mode !== "navigate" &&
+    (url.pathname.startsWith("/images/") || url.pathname.startsWith("/Icons/"))
+  ) {
+    event.respondWith(
+      (async () => {
+        const cache = await caches.open(MEDIA_CACHE);
+        const cached = await cache.match(event.request);
+        const revalidate = fetch(event.request)
+          .then(async (response) => {
+            if (isCacheableResponse(response)) {
+              await cache.put(event.request, response.clone());
+            }
+            return response;
+          })
+          .catch(() => cached);
+        if (cached) {
+          event.waitUntil(revalidate);
+          return cached;
+        }
+        const networkResponse = await revalidate;
+        return networkResponse || new Response("", { status: 504 });
+      })(),
+    );
+    return;
+  }
+
+  if (event.request.mode !== "navigate" && url.pathname === "/_next/image") {
+    event.respondWith(
+      (async () => {
+        const mediaCache = await caches.open(MEDIA_CACHE);
+        const cached = await mediaCache.match(event.request);
+        const revalidate = fetch(event.request)
+          .then(async (response) => {
+            if (isCacheableResponse(response)) {
+              await mediaCache.put(event.request, response.clone());
+            }
+            return response;
+          })
+          .catch(() => null);
+        if (cached) {
+          event.waitUntil(revalidate);
+          return cached;
+        }
+        const networkResponse = await revalidate;
+        if (networkResponse) return networkResponse;
+
+        const rawTarget = url.searchParams.get("url") || "";
+        if (
+          (rawTarget.startsWith("/images/") ||
+            rawTarget.startsWith("/Icons/") ||
+            rawTarget.startsWith("/pwa/")) &&
+          !rawTarget.includes("..") &&
+          !rawTarget.includes("//")
+        ) {
+          const mediaHit = await mediaCache.match(rawTarget);
+          if (mediaHit) return mediaHit;
+          const staticCache = await caches.open(STATIC_CACHE);
+          const staticHit = await staticCache.match(rawTarget);
+          if (staticHit) return staticHit;
+        }
+        return new Response("", { status: 504 });
+      })(),
+    );
+    return;
+  }
+
+  if (
+    event.request.mode !== "navigate" &&
+    (url.pathname.startsWith("/models/") || url.pathname.startsWith("/audio/health-check/"))
+  ) {
+    event.respondWith(
+      (async () => {
+        const cache = await caches.open(MEDIA_CACHE);
+        const cached = await cache.match(event.request);
+        if (cached) return cached;
+        try {
+          const response = await fetch(event.request);
+          if (isCacheableResponse(response)) {
+            await cache.put(event.request, response.clone());
+          }
+          return response;
+        } catch {
+          return new Response("", { status: 504 });
+        }
+      })(),
+    );
+    return;
+  }
+
+  const isRscRequest = event.request.headers?.get?.("RSC") === "1";
+  if (event.request.mode !== "navigate" && isRscRequest && isOfflinePublicPath(url.pathname)) {
+    event.respondWith(
+      (async () => {
+        try {
+          const response = await fetch(event.request);
+          event.waitUntil(setSwOfflineState(false));
+          return response;
+        } catch {
+          event.waitUntil(setSwOfflineState(true));
+          return new Response("", { status: 503 });
+        }
+      })(),
+    );
+    return;
+  }
+
   if (event.request.mode !== "navigate") return;
 
   event.respondWith(
     (async () => {
       try {
         const response = await fetch(event.request);
-        if (response.ok) event.waitUntil(rememberLocale(localeInPath(url.pathname)));
-        if (isHealthGuidePath(url.pathname) && isCacheableResponse(response)) {
-          const clone = response.clone();
+        event.waitUntil(setSwOfflineState(false));
+        if (response.ok) {
+          event.waitUntil(rememberLocale(localeInPath(url.pathname)));
+        }
+        const contentType = response.headers.get("content-type") || "";
+        if (
+          isOfflinePublicPath(url.pathname) &&
+          !url.search &&
+          response.ok &&
+          response.type !== "opaque" &&
+          !response.redirected &&
+          contentType.includes("text/html")
+        ) {
+          const htmlClone = response.clone();
+          const targetCacheName = isHealthGuidePath(url.pathname) ? GUIDES_CACHE : PAGES_CACHE;
           event.waitUntil(
-            caches
-              .open(GUIDES_CACHE)
-              .then((cache) => cache.put(url.pathname, clone))
-              .catch(() => {}),
+            (async () => {
+              try {
+                const html = await htmlClone.text();
+                const cache = await caches.open(targetCacheName);
+                await cache.put(url.pathname, sanitizePageResponseForCache(response, html));
+                if (targetCacheName === PAGES_CACHE) {
+                  await trimCache(PAGES_CACHE, PAGES_CACHE_LIMIT);
+                }
+              } catch {
+                // Ignore background cache failures.
+              }
+            })(),
           );
         }
         return response;
       } catch {
+        event.waitUntil(setSwOfflineState(true));
         const panelOrOfflineMatch = /^\/(ro|en|sq|it|hr|rom|ru)\/(panel|offline)(\/|$)/.exec(
           url.pathname,
         );
@@ -648,11 +1273,27 @@ self.addEventListener("fetch", (event) => {
           const cached = await shellCache.match(`/${lang}/offline`);
           if (cached) return cached;
         }
-        if (isHealthGuidePath(url.pathname)) {
+
+        const directLocale = localeInPath(url.pathname);
+        let candidatePath = url.pathname;
+        if (!directLocale) {
+          const fallbackLocale = (await readLastLocale()) || "ro";
+          candidatePath =
+            url.pathname === "/" ? `/${fallbackLocale}` : `/${fallbackLocale}${url.pathname}`;
+        }
+
+        if (isHealthGuidePath(candidatePath)) {
           const guidesCache = await caches.open(GUIDES_CACHE);
-          const cachedGuide = await guidesCache.match(url.pathname);
+          const cachedGuide = await guidesCache.match(candidatePath);
           if (cachedGuide) return cachedGuide;
         }
+
+        if (isOfflinePublicPath(candidatePath)) {
+          const pagesCache = await caches.open(PAGES_CACHE);
+          const cachedPage = await pagesCache.match(candidatePath);
+          if (cachedPage) return cachedPage;
+        }
+
         return offlineFallbackFor(url.pathname);
       }
     })(),

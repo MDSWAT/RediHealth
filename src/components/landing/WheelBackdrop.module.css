@@ -43,17 +43,33 @@
   }
 }
 
-/* Mobile inline hero centerpiece: sits cleanly above the headline text in full form with icons. */
+/* Mobile hero centerpiece: enlarged and layered half-behind the headline with a soft fade for crisp text contrast. */
 .heroTop {
   position: relative;
   inset: auto;
   z-index: 0;
   overflow: visible;
-  width: min(11.5rem, 48vw);
+  width: clamp(16rem, 74vw, 22rem);
   aspect-ratio: 1;
   color: var(--color-paper);
-  opacity: 0.62;
+  opacity: 0.3;
   --wheel-face-bg: var(--color-ink-950);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 0.9) 35%,
+    rgb(0 0 0 / 0.32) 65%,
+    rgb(0 0 0 / 0.08) 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 0.9) 35%,
+    rgb(0 0 0 / 0.32) 65%,
+    rgb(0 0 0 / 0.08) 88%,
+    transparent 100%
+  );
 }
 
 .heroTop .wheel {
@@ -151,6 +167,10 @@
   to {
     rotate: 360deg;
   }
+}
+
+:global(html[data-high-contrast]) .heroTop {
+  opacity: 0.14;
 }
 
 @media (prefers-reduced-motion: reduce) {

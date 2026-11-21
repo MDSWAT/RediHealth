@@ -15,10 +15,12 @@ import {
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import type { CountryCode } from "@/lib/countries";
 import { LanguageContext } from "@/lib/i18n/language-context";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import { DEFAULT_LANG, REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import { isRomanianCounty, ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 import type { CaptchaAction } from "@/lib/security/recaptcha";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 
 export type CallbackStarterCopy = {
   title: string;
@@ -509,6 +511,11 @@ export function MediatorCallbackStarter({
       if (firstInvalid) {
         formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
       }
+      return;
+    }
+
+    if (isBrowserOffline()) {
+      setSubmissionError(getOfflineUiCopy(lang).formOfflineError);
       return;
     }
 

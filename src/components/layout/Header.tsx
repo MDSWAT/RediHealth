@@ -11,7 +11,7 @@ import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import {
   AiAssistantIcon,
-  ArrowRightIcon,
+  ChevronRightIcon,
   CloseIcon,
   DownloadIcon,
   HomeIcon,
@@ -57,6 +57,7 @@ import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { withLangPrefix, stripLangFromPathname } from "@/lib/i18n/routing";
 import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { applyPwaUpdate, openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-state";
+import { useOnlineStatus } from "@/lib/pwa/use-online-status";
 
 const EmergencyDialerGate = dynamic(
   () => import("@/components/emergency/EmergencyDialerGate").then((mod) => mod.EmergencyDialerGate),
@@ -71,6 +72,8 @@ const DRAWER_FOCUS =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper";
 const DRAWER_ROW_MOTION =
   "press-row transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none";
+const DRAWER_CARD =
+  "border border-border/90 bg-card shadow-[0_1px_2px_rgb(15_23_42/0.04),0_4px_12px_-6px_rgb(29_53_87/0.09)] dark:border-white/12 dark:bg-ink-900 dark:shadow-none";
 
 /**
  * Site header: six clear, non-overlapping destinations in both the desktop bar and
@@ -121,6 +124,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
   const isLiveDoctorActive = currentPath === "/medic-online" || currentPath.startsWith("/medic-online/");
   const isAiAssistantActive = currentPath === "/ai-assistant" || currentPath.startsWith("/ai-assistant/");
   const searchCopy = getSmartSearchTriggerCopy(lang);
+  const isOnline = useOnlineStatus();
   const pwa = usePwaSnapshot();
   const pwaCopy = getPwaCopy(lang);
   const showInstallTrigger = !pwa.isStandalone && !pwa.hasUpdate;
@@ -133,7 +137,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
         : pwaCopy.refreshApp;
 
   // Transparent over the dark landing hero at the top of the page; transitions to the solid
-  // blurred bar on scroll, on inner pages, or while the warm-paper mobile drawer is open.
+  // blurred bar on scroll, on inner pages, or while the white mobile drawer is open.
   const isTransparent = currentPath === "/" && !scrolled && !mobileOpen;
   const onDarkBar = isTransparent;
 
@@ -157,6 +161,9 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
 
   useEffect(() => {
     if (!mobileOpen) return;
+    if (mobileMenuRef.current) {
+      mobileMenuRef.current.scrollTop = 0;
+    }
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -277,7 +284,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
           isTransparent
             ? "border-b border-transparent bg-transparent text-paper shadow-none"
             : mobileOpen
-              ? "shadow-2xs border-b border-border bg-paper text-foreground dark:border-white/10 dark:bg-ink-950 dark:text-paper"
+              ? "border-b border-border/80 bg-white text-foreground shadow-none dark:border-white/10 dark:bg-ink-950 dark:text-paper"
               : "shadow-2xs scroll-edge border-b border-border/85 bg-background/90 text-foreground backdrop-blur-xl supports-[backdrop-filter]:bg-background/82 dark:border-white/10 dark:bg-ink-950/90 dark:text-paper",
         )}
       >
@@ -351,19 +358,23 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
             >
               {!mobileOpen ? <CapsuleGlidePlate plateRef={glidePlateRef} onHero={onDarkBar} /> : null}
               <div className="hidden shrink-0 items-center gap-0.5 md:flex">
-                <Link
-                  href={withLangPrefix("/ai-assistant", lang)}
-                  onClick={() => setOpenHeaderMenu(null)}
-                  aria-current={isAiAssistantActive ? "page" : undefined}
-                  aria-label={aiCopy.title}
-                  title={aiCopy.title}
-                  data-capsule-item=""
-                  className={cn(capsuleItem(onDarkBar, isAiAssistantActive), "px-3 text-[0.9375rem]")}
-                >
-                  <AiAssistantIcon className="h-4.5 w-4.5 shrink-0 opacity-90" aria-hidden="true" />
-                  <span>{aiCopy.shortLabel}</span>
-                </Link>
-                <span aria-hidden="true" className={capsuleDivider(onDarkBar)} />
+                {isOnline && (
+                  <>
+                    <Link
+                      href={withLangPrefix("/ai-assistant", lang)}
+                      onClick={() => setOpenHeaderMenu(null)}
+                      aria-current={isAiAssistantActive ? "page" : undefined}
+                      aria-label={aiCopy.title}
+                      title={aiCopy.title}
+                      data-capsule-item=""
+                      className={cn(capsuleItem(onDarkBar, isAiAssistantActive), "px-3 text-[0.9375rem]")}
+                    >
+                      <AiAssistantIcon className="h-4.5 w-4.5 shrink-0 opacity-90" aria-hidden="true" />
+                      <span>{aiCopy.shortLabel}</span>
+                    </Link>
+                    <span aria-hidden="true" className={capsuleDivider(onDarkBar)} />
+                  </>
+                )}
                 <button
                   type="button"
                   onPointerEnter={preloadSmartSearch}
@@ -511,20 +522,22 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
           inert={!mobileOpen}
           style={{ height: drawerHeight ?? "calc(100dvh - var(--site-header-h, 4rem))" }}
           className={cn(
-            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain border-t border-border bg-paper text-foreground dark:border-white/12 dark:bg-ink-950 dark:text-paper print:hidden lg:hidden",
+            "absolute inset-x-0 top-full z-50 overflow-y-auto overscroll-contain bg-white text-foreground dark:bg-ink-950 dark:text-paper print:hidden lg:hidden",
             "transition-[opacity,translate,visibility] duration-(--dur-base) ease-(--ease-out-expo) motion-reduce:transition-none",
             mobileOpen
               ? "visible translate-y-0 opacity-100"
               : "pointer-events-none invisible -translate-y-2 opacity-0",
           )}
         >
-          <Container className="flex min-h-full flex-col gap-3 pt-2">
-            {/* Language first: a reader who cannot read the current language finds it without scrolling. */}
+          <Container className="flex min-h-full flex-col gap-1.5 pt-1.5">
+            {/* Language first: floating white bar so a reader finds their language right away. */}
             <div
               style={{ "--i": 0 } as CSSProperties}
+              data-menu-card=""
               className={cn(
                 mobileOpen && "list-in",
-                "border-b border-ink-950/16 pb-1.5 dark:border-white/15 md:hidden",
+                "rounded-[0.875rem] md:hidden",
+                DRAWER_CARD,
               )}
             >
               <LanguageSelector
@@ -538,139 +551,136 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
               />
             </div>
 
-            {/* Featured Live Care stage: deep sapphire video doctor with concentric wheel geometry + warm sand AI */}
+            {/* Featured care pair: two-column sapphire video doctor and crisp white AI assistant */}
             <div
               style={{ "--i": 1 } as CSSProperties}
-              className={cn(mobileOpen && "list-in", "grid grid-cols-2 gap-2.5 pt-0.5")}
+              className={cn(
+                mobileOpen && "list-in",
+                isOnline ? "grid grid-cols-2 gap-2" : "grid grid-cols-1 gap-2",
+              )}
             >
               <Link
                 href={withLangPrefix("/medic-online", lang)}
                 aria-current={isLiveDoctorActive ? "page" : undefined}
                 onClick={closeMobile}
                 className={cn(
-                  "btn-sheen press-row group relative flex min-h-27 flex-col justify-between overflow-hidden rounded-xl border p-3.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+                  "btn-sheen press-row group flex min-h-21 min-w-0 flex-col justify-between rounded-(--radius-surface) bg-linear-to-br from-sapphire to-sapphire-light p-3 text-white shadow-[0_6px_16px_-6px_rgb(29_53_87/0.38)] ring-1 ring-inset ring-white/12 transition-[background-color,box-shadow,filter] duration-(--dur-fast) ease-(--ease-out-calm) hover:brightness-106 motion-reduce:transition-none max-[359px]:p-2.5",
                   DRAWER_FOCUS,
-                  isLiveDoctorActive
-                    ? "border-ink-950/45 bg-rose-tint text-rose-ink shadow-[0_8px_20px_-14px_rgb(140_50_59/0.35)] ring-1 ring-ink-950/20 dark:border-white/35"
-                    : "border-ink-950/24 bg-rose-tint text-rose-ink shadow-[0_8px_20px_-14px_rgb(140_50_59/0.25)] hover:border-ink-950/40 dark:border-white/20",
+                  isLiveDoctorActive && "ring-2 ring-white/50 ring-inset",
                 )}
               >
-                {/* Faint concentric geometry echoing RediHealth's signature wheel */}
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 120 120"
-                  className="pointer-events-none absolute -right-5 -bottom-6 h-28 w-28 text-rose-mid/[0.18]"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                >
-                  <circle cx="60" cy="60" r="22" />
-                  <circle cx="60" cy="60" r="38" />
-                  <circle cx="60" cy="60" r="54" />
-                </svg>
-
-                <span className="relative flex items-center justify-between gap-2">
+                <span className="flex items-center justify-between gap-2">
                   <span
                     aria-hidden="true"
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-rose-ink text-white shadow-2xs dark:bg-rose-ink dark:text-ink-950"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/15 text-white"
                   >
                     <VideoIcon className="h-4.5 w-4.5" />
                   </span>
-                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-rose-ink/75" aria-hidden="true" />
+                  <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 text-white/80" aria-hidden="true" />
                 </span>
-                <span className="relative mt-3 block">
-                  <span className="block font-display text-[1.0625rem] font-semibold leading-tight tracking-[-0.015em] text-rose-ink">
+                <span className="mt-2 block min-w-0">
+                  <span className="block font-display text-[0.9375rem] font-semibold leading-tight tracking-[-0.015em] text-white">
                     {chrome.liveDoctor}
                   </span>
-                  <span className="mt-0.5 block text-meta leading-snug text-rose-ink/80">{chrome.liveDoctorSub}</span>
+                  <span className="mt-0.5 block text-[0.8125rem] leading-snug text-on-sapphire-muted [overflow-wrap:break-word] max-[359px]:text-[0.75rem]">
+                    {chrome.liveDoctorSub}
+                  </span>
                 </span>
               </Link>
 
-              <Link
-                href={withLangPrefix("/ai-assistant", lang)}
-                aria-current={isAiAssistantActive ? "page" : undefined}
-                onClick={closeMobile}
-                className={cn(
-                  "press-row group relative flex min-h-27 flex-col justify-between overflow-hidden rounded-xl border p-3.5 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
-                  DRAWER_FOCUS,
-                  isAiAssistantActive
-                    ? "border-ink-950/45 bg-card text-foreground shadow-2xs ring-1 ring-ink-950/15 dark:border-white/35 dark:bg-white/[0.09] dark:text-paper"
-                    : "border-ink-950/24 bg-surface-subtle/90 text-foreground hover:border-ink-950/40 hover:bg-muted/75 dark:border-white/20 dark:bg-white/[0.04] dark:text-paper dark:hover:bg-white/[0.08]",
-                )}
-              >
-                <span className="relative flex items-center justify-between gap-2">
-                  <span
-                    aria-hidden="true"
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-card text-muted-foreground ring-1 ring-ink-950/14 dark:bg-white/[0.08] dark:text-mist dark:ring-white/15"
-                  >
-                    <AiAssistantIcon className="h-4.5 w-4.5" />
+              {isOnline && (
+                <Link
+                  href={withLangPrefix("/ai-assistant", lang)}
+                  aria-current={isAiAssistantActive ? "page" : undefined}
+                  onClick={closeMobile}
+                  data-menu-card=""
+                  className={cn(
+                    "press-row group flex min-h-21 min-w-0 flex-col justify-between rounded-(--radius-surface) p-3 text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none max-[359px]:p-2.5",
+                    DRAWER_CARD,
+                    DRAWER_FOCUS,
+                    isAiAssistantActive
+                      ? "border-sapphire-border/80 bg-sapphire-soft/90 dark:border-white/25 dark:bg-sapphire/25 dark:text-paper"
+                      : "hover:border-sapphire-border/75 hover:bg-sapphire-soft/45 dark:text-paper dark:hover:bg-white/[0.06]",
+                  )}
+                >
+                  <span className="flex items-center justify-between gap-2">
+                    <span
+                      aria-hidden="true"
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire dark:bg-sapphire/25 dark:text-sapphire-border"
+                    >
+                      <AiAssistantIcon className="h-4.5 w-4.5" />
+                    </span>
+                    <ChevronRightIcon
+                      className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/75 dark:text-mist/75"
+                      aria-hidden="true"
+                    />
                   </span>
-                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/65" aria-hidden="true" />
-                </span>
-                <span className="relative mt-3 block">
-                  <span className="block font-display text-[1.0625rem] font-semibold leading-tight tracking-[-0.015em] text-foreground/90 dark:text-paper/90">
-                    {aiCopy.navLabel}
+                  <span className="mt-2 block min-w-0">
+                    <span className="block font-display text-[0.9375rem] font-semibold leading-tight tracking-[-0.015em] text-foreground dark:text-paper">
+                      {aiCopy.navLabel}
+                    </span>
+                    <span className="mt-0.5 block text-[0.8125rem] font-normal leading-snug text-muted-foreground [overflow-wrap:break-word] max-[359px]:text-[0.75rem] dark:text-mist">
+                      {chrome.aiAssistantSub}
+                    </span>
                   </span>
-                  <span className="mt-0.5 block text-meta leading-snug text-muted-foreground dark:text-mist">
-                    {chrome.aiAssistantSub}
-                  </span>
-                </span>
-              </Link>
+                </Link>
+              )}
             </div>
 
-            {/* 6 core destinations: crisp elevated card matrix on warm paper */}
+            {/* 6 core destinations: single-column editorial list inside one floating white card */}
             <nav
               aria-label={chrome.primaryNav}
               style={{ "--i": 2 } as CSSProperties}
               className={cn(mobileOpen && "list-in")}
             >
-              <ul className="grid grid-cols-2 overflow-hidden rounded-xl border border-ink-950/24 bg-card shadow-(--shadow-card-rest) dark:border-white/20 dark:bg-ink-900">
-                {primaryLinks.map((link, index) => {
+              <ul
+                data-menu-card=""
+                className={cn(
+                  "divide-y divide-border/75 overflow-hidden rounded-(--radius-surface) dark:divide-white/10",
+                  DRAWER_CARD,
+                )}
+              >
+                {primaryLinks.map((link) => {
                   const isActive = isActiveHref(link.href);
                   const NavIcon = NAV_LINK_ICONS[link.href];
                   const shortLabel = (NAV_SHORT_LABELS[lang] ?? NAV_SHORT_LABELS.ro)[link.href];
                   const isMediatorLink = link.href === "/mediatori";
-                  const isRightCol = index % 2 === 1;
-                  const isTopRow = index < 2;
 
                   return (
-                    <li
-                      key={link.href}
-                      className={cn(
-                        "flex min-w-0",
-                        !isTopRow && "border-t border-ink-950/16 dark:border-white/14",
-                        isRightCol && "border-l border-ink-950/16 dark:border-white/14",
-                      )}
-                    >
+                    <li key={link.href}>
                       <Link
                         href={withLangPrefix(link.href, lang)}
                         aria-current={isActive ? "page" : undefined}
                         onClick={closeMobile}
                         className={cn(
-                          "group flex min-h-14 w-full items-center gap-2.5 px-3 py-2.5",
+                          "group flex min-h-11 w-full items-center gap-2.5 px-3 py-1",
                           DRAWER_ROW_MOTION,
                           DRAWER_FOCUS,
                           isActive
                             ? "bg-sapphire-soft/75 font-bold text-sapphire dark:bg-sapphire/25 dark:text-sapphire-border"
-                            : "font-semibold text-foreground hover:bg-sand/35 dark:text-paper/92 dark:hover:bg-white/[0.05]",
+                            : "font-semibold text-foreground hover:bg-sapphire-soft/40 dark:text-paper/92 dark:hover:bg-white/[0.05]",
                         )}
                       >
                         <span
                           aria-hidden="true"
                           className={cn(
-                            "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-(--dur-fast)",
+                            "flex h-7.5 w-7.5 shrink-0 items-center justify-center rounded-lg transition-colors duration-(--dur-fast)",
                             isMediatorLink && !isActive
                               ? "bg-amber-care-soft text-amber-care dark:bg-amber-care/20 dark:text-amber-care-border"
                               : isActive
                                 ? "bg-sapphire text-white dark:bg-sapphire-border dark:text-ink-950"
-                                : "bg-surface-subtle text-ink-900/65 group-hover:bg-sapphire-soft group-hover:text-sapphire dark:bg-white/[0.06] dark:text-paper/70 dark:group-hover:text-sapphire-border",
+                                : "bg-sapphire-soft/85 text-sapphire group-hover:bg-sapphire-soft dark:bg-white/[0.07] dark:text-sapphire-border",
                           )}
                         >
-                          <NavIcon className="h-4.5 w-4.5" />
+                          <NavIcon className="h-4 w-4" />
                         </span>
-                        <span className="min-w-0 flex-1 font-display text-[1rem] leading-tight tracking-[-0.015em]">
+                        <span className="min-w-0 flex-1 font-display text-[0.9375rem] leading-tight tracking-[-0.015em]">
                           {shortLabel}
                         </span>
+                        <ChevronRightIcon
+                          className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground/65 group-hover:text-sapphire dark:text-mist/65 dark:group-hover:text-paper"
+                          aria-hidden="true"
+                        />
                       </Link>
                     </li>
                   );
@@ -678,98 +688,115 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
               </ul>
             </nav>
 
-            {/* Personal & App Bento: Home + signature Wellness Teal My account + Install + Accessibility */}
+            {/* Personal and settings cluster: Home + Wellness Teal account row over Install + Accessibility */}
             <div
               style={{ "--i": 3 } as CSSProperties}
-              className={cn(mobileOpen && "list-in", "space-y-2 md:hidden")}
+              className={cn(mobileOpen && "list-in", "space-y-1.5 md:hidden")}
             >
-              <div className="grid grid-cols-[0.78fr_1.22fr] gap-2.5">
+              <div className="flex flex-wrap gap-2">
                 <Link
                   href={withLangPrefix("/", lang)}
                   aria-label={homeLabel}
                   aria-current={isHomeActive ? "page" : undefined}
                   onClick={closeMobile}
+                  data-menu-card=""
                   className={cn(
-                    "flex min-h-13 items-center gap-2.5 rounded-xl border px-3 py-2.5 text-body",
+                    "flex min-h-11 flex-[1_1_7rem] items-center gap-2 rounded-[0.875rem] px-3 py-1 text-[0.9375rem]",
+                    DRAWER_CARD,
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                     isHomeActive
-                      ? "border-ink-950/45 bg-card font-semibold text-foreground shadow-2xs dark:border-white/35 dark:bg-white/12 dark:text-paper"
-                      : "border-ink-950/24 bg-sand/45 font-medium text-foreground hover:border-ink-950/40 hover:bg-sand/75 dark:border-white/20 dark:bg-white/[0.05] dark:text-paper dark:hover:bg-white/[0.09]",
+                      ? "border-sapphire-border/80 bg-sapphire-soft/90 font-semibold text-sapphire dark:border-white/25 dark:bg-sapphire/25 dark:text-sapphire-border"
+                      : "font-semibold text-foreground hover:bg-sapphire-soft/40 dark:text-paper dark:hover:bg-white/[0.06]",
                   )}
                 >
-                  <HomeIcon className="h-4.5 w-4.5 shrink-0 opacity-75" aria-hidden="true" />
-                  <span className="leading-snug">{chrome.homeShort}</span>
+                  <HomeIcon
+                    className={cn(
+                      "h-4.5 w-4.5 shrink-0",
+                      isHomeActive ? "text-sapphire dark:text-sapphire-border" : "text-muted-foreground dark:text-mist",
+                    )}
+                    aria-hidden="true"
+                  />
+                  <span className="whitespace-nowrap leading-snug">{chrome.homeShort}</span>
                 </Link>
 
-                {/* Signature Wellness Teal account tile: distinct 3rd chromatic anchor */}
                 <Link
                   href={withLangPrefix(portalLink.href, lang)}
                   onClick={closeMobile}
                   aria-current={isPortalActive ? "page" : undefined}
                   data-mobile-account-trigger=""
+                  data-menu-card=""
                   className={cn(
-                    "group flex min-h-13 items-center justify-between gap-2 rounded-xl border px-3 py-2.5 text-body",
+                    "group flex min-h-11 flex-[1.45_1_12rem] items-center justify-between gap-2 rounded-[0.875rem] px-3 py-1 text-[0.9375rem] font-semibold",
+                    DRAWER_CARD,
                     DRAWER_ROW_MOTION,
                     DRAWER_FOCUS,
                     isPortalActive
-                      ? "border-ink-950/45 bg-wellness font-semibold text-white dark:border-wellness-border dark:bg-wellness dark:text-white"
-                      : "border-ink-950/24 bg-wellness-soft font-semibold text-wellness hover:border-ink-950/40 hover:bg-wellness-soft/80 dark:border-wellness-border/45 dark:bg-wellness/25 dark:text-wellness-border dark:hover:bg-wellness/35",
+                      ? "border-wellness bg-wellness text-white shadow-2xs dark:border-wellness-border dark:bg-wellness dark:text-white"
+                      : "text-foreground hover:bg-wellness-soft/45 dark:text-paper dark:hover:bg-white/[0.06]",
                   )}
                 >
-                  <span className="flex min-w-0 items-center gap-2.5">
+                  <span className="flex min-w-0 items-center gap-2">
                     <span
                       aria-hidden="true"
                       className={cn(
                         "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg",
                         isPortalActive
                           ? "bg-white/18 text-white"
-                          : "bg-wellness/12 text-wellness dark:bg-wellness-border/18 dark:text-wellness-border",
+                          : "bg-wellness-soft text-wellness dark:bg-wellness/25 dark:text-wellness-border",
                       )}
                     >
                       <UserIcon className="h-4 w-4" />
                     </span>
-                    <span className="min-w-0 leading-snug">{portalLink.label}</span>
+                    <span className="min-w-0 whitespace-nowrap leading-snug">{portalLink.label}</span>
                   </span>
-                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0 opacity-80" aria-hidden="true" />
+                  <ChevronRightIcon className="arrow-travel h-4 w-4 shrink-0 opacity-75" aria-hidden="true" />
                 </Link>
               </div>
 
-              <button
-                type="button"
-                disabled={!showInstallTrigger && pwa.isRefreshing}
-                onClick={() => {
-                  closeMobile();
-                  if (showInstallTrigger) {
-                    void openPwaInstall();
-                  } else {
-                    void applyPwaUpdate();
-                  }
-                }}
+              <div
+                data-menu-card=""
                 className={cn(
-                  "flex min-h-12 w-full items-center gap-2.5 rounded-xl border border-ink-950/24 bg-card px-3.5 py-2 text-left text-body font-medium text-foreground shadow-2xs hover:border-ink-950/40 hover:bg-sand/35 disabled:cursor-wait disabled:opacity-75 dark:border-white/20 dark:bg-ink-900 dark:text-paper dark:hover:bg-white/[0.06]",
-                  DRAWER_ROW_MOTION,
-                  DRAWER_FOCUS,
+                  "divide-y divide-border/75 overflow-hidden rounded-[0.875rem] dark:divide-white/10",
+                  DRAWER_CARD,
                 )}
               >
-                {showInstallTrigger ? (
-                  <DownloadIcon className="h-4.5 w-4.5 shrink-0 text-muted-foreground dark:text-mist" aria-hidden="true" />
-                ) : (
-                  <RefreshIcon className="h-4.5 w-4.5 shrink-0 text-muted-foreground dark:text-mist" aria-hidden="true" />
-                )}
-                <span className="leading-snug">{pwaTriggerLabel}</span>
-              </button>
+                <button
+                  type="button"
+                  disabled={!showInstallTrigger && pwa.isRefreshing}
+                  onClick={() => {
+                    closeMobile();
+                    if (showInstallTrigger) {
+                      void openPwaInstall();
+                    } else {
+                      void applyPwaUpdate();
+                    }
+                  }}
+                  className={cn(
+                    "flex min-h-11 w-full items-center gap-2.5 px-3 py-1 text-left text-[0.9375rem] font-medium text-foreground hover:bg-sapphire-soft/40 disabled:cursor-wait disabled:opacity-75 dark:text-paper dark:hover:bg-white/[0.06]",
+                    DRAWER_ROW_MOTION,
+                    DRAWER_FOCUS,
+                  )}
+                >
+                  {showInstallTrigger ? (
+                    <DownloadIcon className="h-4.5 w-4.5 shrink-0 text-muted-foreground dark:text-mist" aria-hidden="true" />
+                  ) : (
+                    <RefreshIcon className="h-4.5 w-4.5 shrink-0 text-muted-foreground dark:text-mist" aria-hidden="true" />
+                  )}
+                  <span className="leading-snug">{pwaTriggerLabel}</span>
+                </button>
 
-              <div className="border-t border-ink-950/16 pt-1.5 dark:border-white/15">
-                <ComfortMenu
-                  variant="drawer"
-                  collapsible
-                  open={openDrawerSection === "comfort"}
-                  onOpenChange={(next) =>
-                    setOpenDrawerSection((prev) => (next ? "comfort" : prev === "comfort" ? null : prev))
-                  }
-                  onDone={closeMobile}
-                />
+                <div className="px-0.5">
+                  <ComfortMenu
+                    variant="drawer"
+                    collapsible
+                    open={openDrawerSection === "comfort"}
+                    onOpenChange={(next) =>
+                      setOpenDrawerSection((prev) => (next ? "comfort" : prev === "comfort" ? null : prev))
+                    }
+                    onDone={closeMobile}
+                  />
+                </div>
               </div>
             </div>
 
@@ -778,7 +805,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
               style={{ "--i": 4 } as CSSProperties}
               className={cn(
                 mobileOpen && "list-in",
-                "mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-0 px-1 pt-0.5 text-[0.9375rem] text-muted-foreground dark:text-mist",
+                "mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-0 px-1 text-[0.875rem] text-muted-foreground dark:text-mist",
               )}
             >
               <button
@@ -823,11 +850,14 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
               style={{ "--i": 5 } as CSSProperties}
               className={cn(
                 mobileOpen && "list-in",
-                "sticky bottom-0 z-10 bg-paper/95 pt-1.5 pb-[calc(0.5rem+env(safe-area-inset-bottom))] backdrop-blur-md dark:bg-ink-950/95",
+                "sticky bottom-0 z-10 -mx-1 bg-white/95 px-1 pt-1 pb-[calc(0.5rem+env(safe-area-inset-bottom))] backdrop-blur-md dark:bg-ink-950/95",
               )}
             >
-              <div className="flex min-h-14 items-center justify-between gap-3 rounded-xl border border-primary/20 bg-primary/[0.06] px-3.5 py-2 dark:border-[#ff8f98]/25 dark:bg-[#c62f3c]/14">
-                <p className="font-display text-body font-semibold text-foreground dark:text-paper">
+              <div
+                data-menu-card=""
+                className="flex min-h-12.5 items-center justify-between gap-2.5 rounded-(--radius-surface) border border-rose-border/80 bg-card px-3 py-1.5 shadow-[0_2px_10px_-3px_rgb(29_53_87/0.09)] dark:border-[#ff8f98]/25 dark:bg-ink-900"
+              >
+                <p className="font-display text-[0.9375rem] font-semibold text-foreground dark:text-paper">
                   {chrome.emergencyQuestion}
                 </p>
                 <Button
@@ -838,7 +868,7 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
                     setMobileOpen(false);
                     setDialerOpen(true);
                   }}
-                  className="btn-sheen min-h-11 shrink-0 rounded-lg border-primary! bg-primary! px-3.5 py-1.5 text-body font-semibold whitespace-nowrap text-white! shadow-[0_4px_12px_-4px_rgb(198_47_60/0.45)]! hover:border-primary-hover! hover:bg-primary-hover! dark:border-[#c62f3c]! dark:bg-[#c62f3c]! dark:text-white! dark:hover:bg-[#a8242f]! dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
+                  className="btn-sheen min-h-11 shrink-0 rounded-lg border-primary! bg-primary! px-3 py-1 text-[0.9375rem] font-semibold whitespace-nowrap text-white! shadow-[0_4px_12px_-4px_rgb(198_47_60/0.45)]! hover:border-primary-hover! hover:bg-primary-hover! dark:border-[#c62f3c]! dark:bg-[#c62f3c]! dark:text-white! dark:hover:bg-[#a8242f]! dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-950"
                 >
                   <PhoneIcon className="h-4 w-4" />
                   <span>{tHeader.call112}</span>

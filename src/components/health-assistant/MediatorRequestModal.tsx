@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/Button";
 import { HandHelpingIcon, XIcon } from "@/components/ui/icons";
 import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 import {
   callbackStarterCopy,
@@ -318,6 +320,10 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
       return;
     }
     const cleanedPhone = normalizeCallbackPhone(phone);
+    if (isBrowserOffline()) {
+      setErrorMessage(getOfflineUiCopy(lang).formOfflineError);
+      return;
+    }
 
     setIsSubmitting(true);
     try {

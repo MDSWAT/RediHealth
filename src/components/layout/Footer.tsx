@@ -23,9 +23,14 @@ import { markManualLocaleSelection } from "@/lib/i18n/locale-detection";
 import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { applyPwaUpdate, openPwaInstall, usePwaSnapshot } from "@/lib/pwa/pwa-state";
+import { useOnlineStatus } from "@/lib/pwa/use-online-status";
 import { cookieConsentCopy } from "@/components/security/cookie-consent-copy";
+import { RecaptchaNotice } from "@/components/security/RecaptchaProvider";
 import { openCookiePreferences } from "@/lib/privacy/cookie-consent";
 import { LEGAL_OPERATOR } from "@/lib/legal-config";
+
+const FOOTER_UTILITY_LINK_CLASS =
+  "hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-(--radius-control) px-2 text-meta text-mist press-on-dark transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-paper hover:underline hover:decoration-paper/45 hover:underline-offset-4 motion-reduce:transition-none";
 
 const EmergencySignsModal = dynamic(
   () => import("@/components/emergency/EmergencySignsModal").then((mod) => mod.EmergencySignsModal),
@@ -49,6 +54,7 @@ export function Footer() {
   const tFooter = t.footer;
   const chrome = getChromeCopy(lang);
   const cookieCopy = cookieConsentCopy[lang] ?? cookieConsentCopy.ro;
+  const isOnline = useOnlineStatus();
   const pwa = usePwaSnapshot();
   const pwaCopy = getPwaCopy(lang);
   const showInstallTrigger = !pwa.isStandalone && !pwa.hasUpdate;
@@ -91,7 +97,9 @@ export function Footer() {
         { label: tFooter.col1Link1, href: "/health-information" },
         { label: tFooter.col1Link2, href: "/health-check" },
         { label: tFooter.col1Link3, href: "/prescription-review" },
-        { label: (AI_CHAT_COPY[lang] ?? AI_CHAT_COPY.ro).navLabel, href: "/ai-assistant" },
+        ...(isOnline
+          ? [{ label: (AI_CHAT_COPY[lang] ?? AI_CHAT_COPY.ro).navLabel, href: "/ai-assistant" }]
+          : []),
       ],
     },
     {
@@ -130,7 +138,7 @@ export function Footer() {
         <div aria-hidden="true">
           <WheelBackdrop placement="footer" />
         </div>
-        <Container className="py-12 sm:py-16">
+        <Container className="pt-12 pb-10 sm:pt-16 sm:pb-12">
           <div className="grid gap-10 xl:grid-cols-[1.1fr_2.9fr] xl:gap-12">
             <div className="max-w-sm space-y-4">
               <Logo className="hero-focus" tone="light" href={withLangPrefix("/", lang)} label={chrome.homeLink} />
@@ -248,60 +256,65 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-meta text-mist lg:flex-row lg:items-center lg:justify-between lg:gap-8">
-            <p className="text-pretty leading-relaxed">
-              <span className="font-medium text-paper/85">{tFooter.copyrightLine}</span>
-              <span aria-hidden="true" className="mx-2.5 inline-block h-3 w-px align-middle bg-white/20" />
-              <span>{tFooter.nonEmergencyWarning}</span>
-            </p>
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:shrink-0">
-              <Link
-                href={withLangPrefix("/cookies", lang)}
-                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
-              >
-                {cookieCopy.policyLinkLabel}
-              </Link>
-              <button
-                type="button"
-                onClick={openCookiePreferences}
-                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
-              >
-                {cookieCopy.footerSettingsLink}
-              </button>
-              <button
-                type="button"
-                disabled={!showInstallTrigger && pwa.isRefreshing}
-                onClick={() => {
-                  if (showInstallTrigger) {
-                    void openPwaInstall();
-                  } else {
-                    void applyPwaUpdate();
-                  }
-                }}
-                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center whitespace-nowrap rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none disabled:cursor-wait disabled:opacity-70"
-              >
-                {pwaTriggerLabel}
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  openSiteFeedback();
-                }}
-                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none whitespace-nowrap"
-              >
-                {(feedbackTriggerCopy[lang] ?? feedbackTriggerCopy.ro).footerLink}
-              </button>
-              {/* Opens the report form in place (it records this page); the floating button is desktop-only. */}
-              <Link
-                href={withLangPrefix("/report-issue", lang)}
-                onClick={(event) => {
-                  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
-                  if (openReportIssue()) event.preventDefault();
-                }}
-                className="hero-focus -mx-2 -my-1.5 inline-flex min-h-11 items-center rounded-(--radius-control) px-2 text-meta underline decoration-mist/40 underline-offset-4 press-on-dark hover:text-paper hover:decoration-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none whitespace-nowrap"
-              >
-                {tFooter.reportIssueFallback}
-              </Link>
+          <div className="mt-8 border-t border-paper/12 pt-6 text-meta text-mist">
+            {/* Row 1: anchored copyright on the left, calm single-line utility links on the right */}
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+              <p className="shrink-0 font-medium text-paper/90">{tFooter.copyrightLine}</p>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-1 lg:justify-end lg:gap-x-6">
+                <Link
+                  href={withLangPrefix("/cookies", lang)}
+                  className={FOOTER_UTILITY_LINK_CLASS}
+                >
+                  {cookieCopy.policyLinkLabel}
+                </Link>
+                <button
+                  type="button"
+                  onClick={openCookiePreferences}
+                  className={FOOTER_UTILITY_LINK_CLASS}
+                >
+                  {cookieCopy.footerSettingsLink}
+                </button>
+                <button
+                  type="button"
+                  disabled={!showInstallTrigger && pwa.isRefreshing}
+                  onClick={() => {
+                    if (showInstallTrigger) {
+                      void openPwaInstall();
+                    } else {
+                      void applyPwaUpdate();
+                    }
+                  }}
+                  className={cn(FOOTER_UTILITY_LINK_CLASS, "disabled:cursor-wait disabled:opacity-70")}
+                >
+                  {pwaTriggerLabel}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    openSiteFeedback();
+                  }}
+                  className={FOOTER_UTILITY_LINK_CLASS}
+                >
+                  {(feedbackTriggerCopy[lang] ?? feedbackTriggerCopy.ro).footerLink}
+                </button>
+                {/* Opens the report form in place (it records this page); the floating button is desktop-only. */}
+                <Link
+                  href={withLangPrefix("/report-issue", lang)}
+                  onClick={(event) => {
+                    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+                    if (openReportIssue()) event.preventDefault();
+                  }}
+                  className={FOOTER_UTILITY_LINK_CLASS}
+                >
+                  {tFooter.reportIssueFallback}
+                </Link>
+              </div>
+            </div>
+
+            {/* Row 2: legal fine print — medical disclaimer paired with Google reCAPTCHA attribution */}
+            <div className="mt-4 flex flex-col gap-2 border-t border-paper/[0.07] pt-4 text-mist/80 xl:flex-row xl:items-baseline xl:justify-between xl:gap-8">
+              <p className="text-pretty leading-relaxed">{tFooter.nonEmergencyWarning}</p>
+              <RecaptchaNotice tone="dark" className="mt-0 xl:shrink-0 xl:text-right" />
             </div>
           </div>
         </Container>

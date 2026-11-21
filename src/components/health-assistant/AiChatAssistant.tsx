@@ -27,9 +27,11 @@ import {
 } from "@/components/ui/icons";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { DEFAULT_LANG } from "@/lib/i18n/routing";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
+import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import type { AssistantResponse } from "@/lib/health-assistant";
+import { isBrowserOffline, useOnlineStatus } from "@/lib/pwa/use-online-status";
 
 type CareLevel = AssistantResponse["careLevel"];
 
@@ -227,6 +229,8 @@ function writeVoicePref(enabled: boolean) {
  */
 export function AiChatAssistant() {
   const { lang } = useLanguage();
+  const isOnline = useOnlineStatus();
+  const offlineCopy = getOfflineUiCopy(lang);
   const t = AI_CHAT_COPY[lang] ?? AI_CHAT_COPY[DEFAULT_LANG];
   const chrome = AI_CHAT_CHROME_COPY[lang] ?? AI_CHAT_CHROME_COPY[DEFAULT_LANG];
   const executeCaptcha = useRecaptcha();
@@ -426,6 +430,10 @@ export function AiChatAssistant() {
         setError(t.tooLong);
         return;
       }
+      if (isBrowserOffline()) {
+        setError(offlineCopy.aiOfflineTitle);
+        return;
+      }
 
       // Synchronously unlock audio during the user's click/Enter gesture so the AI's voice reply
       // can play automatically once /api/health-assistant resolves.
@@ -500,13 +508,13 @@ export function AiChatAssistant() {
           speakAssistantReply(replyMsg);
         }
       } catch (caught) {
-        setError(captchaErrorMessage(caught, lang) ?? t.errors.generic);
+        setError(isBrowserOffline() ? offlineCopy.aiOfflineTitle : captchaErrorMessage(caught, lang) ?? t.errors.generic);
       } finally {
         setIsSubmitting(false);
         inputRef.current?.focus();
       }
     },
-    [draft, executeCaptcha, isListening, isSubmitting, lang, messages, speakAssistantReply, t, voice, voiceRepliesEnabled],
+    [draft, executeCaptcha, isListening, isSubmitting, lang, messages, offlineCopy.aiOfflineTitle, speakAssistantReply, t, voice, voiceRepliesEnabled],
   );
 
   useEffect(() => {
@@ -708,6 +716,27 @@ export function AiChatAssistant() {
             )}
           </div>
         </div>
+
+        {!isOnline && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="rounded-2xl border border-border bg-card p-4 text-body text-foreground shadow-2xs sm:p-5 dark:border-ink-800 dark:bg-ink-900"
+          >
+            <p className="font-semibold text-foreground">{offlineCopy.aiOfflineTitle}</p>
+            <p className="mt-1.5 text-meta leading-relaxed text-muted-foreground">
+              {offlineCopy.aiOfflineBody}
+            </p>
+            <div className="mt-3.5 flex flex-wrap items-center gap-2.5">
+              <Button href={withLangPrefix("/health-check", lang)} variant="action" size="md">
+                {offlineCopy.openSymptomCheck}
+              </Button>
+              <Button href={withLangPrefix("/health-information", lang)} variant="outline" size="md">
+                {offlineCopy.openGuides}
+              </Button>
+            </div>
+          </div>
+        )}
 
         {/* Message bubbles */}
         {messages.map((message) =>
@@ -914,7 +943,7 @@ export function AiChatAssistant() {
               <button
                 type="button"
                 onClick={toggleMicrophone}
-                disabled={isSubmitting}
+                disabled={isSubmitting || !isOnline}
                 aria-label={isListening ? t.micStop : t.micStart}
                 title={isListening ? t.micStop : t.micStart}
                 aria-pressed={isListening}
@@ -958,7 +987,7 @@ export function AiChatAssistant() {
 
             <button
               type="submit"
-              disabled={isSubmitting || !draft.trim()}
+              disabled={isSubmitting || !isOnline || !draft.trim()}
               aria-label={t.send}
               title={t.send}
               className="press-solid inline-flex h-11 min-h-11 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-ink-950 px-4 text-body font-semibold text-paper transition-colors duration-(--dur-fast) hover:bg-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:bg-muted disabled:text-muted-foreground dark:bg-paper dark:text-ink-950"

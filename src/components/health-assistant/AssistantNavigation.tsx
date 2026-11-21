@@ -11,6 +11,7 @@ import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
+import { useOnlineStatus } from "@/lib/pwa/use-online-status";
 
 export const ASSISTANT_NAV_COPY: Record<
   Lang,
@@ -62,6 +63,7 @@ export const ASSISTANT_NAV_COPY: Record<
 
 function useAssistantNavState() {
   const { lang } = useLanguage();
+  const isOnline = useOnlineStatus();
   const pathname = usePathname();
   const normalizedPathname = stripLangFromPathname(pathname);
   const { trackRef, plateRef } = useCapsuleGlide<HTMLDivElement>();
@@ -81,7 +83,9 @@ function useAssistantNavState() {
   const items = [
     { href: "/health-check", label: t.symptoms, Icon: ActivityIcon },
     // Free-text AI assistant: describe symptoms, learn how soon to see a doctor.
-    { href: "/ai-assistant", label: (AI_CHAT_COPY[lang] ?? AI_CHAT_COPY[DEFAULT_LANG]).navLabel, Icon: AiAssistantIcon },
+    ...(isOnline
+      ? [{ href: "/ai-assistant", label: (AI_CHAT_COPY[lang] ?? AI_CHAT_COPY[DEFAULT_LANG]).navLabel, Icon: AiAssistantIcon }]
+      : []),
     { href: "/prescription-review", label: t.prescription, Icon: FileTextIcon },
     // The former step-by-step assistant: now the "which doctor, or no ID card" guide.
     { href: "/health-assistant", label: t.assistant, Icon: HandHelpingIcon },

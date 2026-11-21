@@ -18,8 +18,8 @@ import styles from "./WheelBackdrop.module.css";
  * The topic wheel as decoration, turning slowly with all eight topic icons riding the outer ring
  * upright as outlines (purely decorative, not buttons).
  * - `hero`: paper-white on the obsidian-navy hero ground on desktop, layered behind the right side.
- * - `hero-top`: standalone centered inline wheel above the hero headline on mobile so it sits on top
- *   of the text rather than behind it.
+ * - `hero-top`: enlarged inline wheel crowning above and fading subtly behind the mobile hero
+ *   headline so text readability stays crisp.
  * - `footer`: paper-white on the ink footer, a small wheel behind the footer's content.
  * Purely decorative: hidden from assistive technology, never clickable, still under reduced motion.
  */

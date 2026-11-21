@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import { createContext, useCallback, useContext, useRef, type ReactNode } from "react";
+import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { CaptchaAction } from "@/lib/security/recaptcha";
 
@@ -145,17 +146,37 @@ export function useRecaptcha() {
   return execute;
 }
 
-export function RecaptchaNotice() {
+type RecaptchaNoticeProps = {
+  tone?: "light" | "dark";
+  className?: string;
+};
+
+export function RecaptchaNotice({ tone = "light", className }: RecaptchaNoticeProps = {}) {
   const { lang } = useLanguage();
   const enabled = useContext(CaptchaEnabledContext);
   if (!enabled) return null;
   const t = copy[lang];
+  const isDark = tone === "dark";
+  const linkClass = isDark
+    ? "hero-focus rounded-sm text-mist/90 underline decoration-mist/35 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-paper hover:decoration-paper motion-reduce:transition-none"
+    : "rounded-sm underline decoration-muted-foreground/45 underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-foreground hover:decoration-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none";
+
   return (
-    <p className="mt-4 text-meta text-muted-foreground">
+    <p
+      className={cn(
+        "text-meta leading-relaxed text-pretty",
+        isDark ? "text-mist/80" : "mt-4 text-muted-foreground",
+        className,
+      )}
+    >
       {t.notice}{" "}
-      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">{t.privacy}</a>{" "}
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className={linkClass}>
+        {t.privacy}
+      </a>{" "}
       {t.and}{" "}
-      <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline">{t.terms}</a>{" "}
+      <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className={linkClass}>
+        {t.terms}
+      </a>{" "}
       {t.apply}
     </p>
   );

@@ -48,6 +48,17 @@ function subscribeToConnection(onChange: () => void) {
   };
 }
 
+const CHUNK_RELOAD_STORAGE_KEY = "redihealth:chunk-reload:v1";
+const CHUNK_RELOAD_COOLDOWN_MS = 15_000;
+
+function isChunkLoadError(error: unknown): boolean {
+  if (!error || typeof error !== "object") return false;
+  const candidate = error as { name?: unknown; message?: unknown };
+  if (candidate.name === "ChunkLoadError") return true;
+  const message = typeof candidate.message === "string" ? candidate.message : "";
+  return /Failed to load chunk|Loading chunk [\w-]+ failed|Importing a module script failed/i.test(message);
+}
+
 export default function ErrorPage({
   error,
   retry,
@@ -63,11 +74,25 @@ export default function ErrorPage({
     () => !navigator.onLine,
     () => false,
   );
+  const chunkError = isChunkLoadError(error);
 
   useEffect(() => {
     console.error(error);
     reportClientError(error, "render");
   }, [error]);
+
+  useEffect(() => {
+    if (!chunkError || offline || typeof window === "undefined") return;
+    try {
+      const now = Date.now();
+      const last = Number(window.sessionStorage.getItem(CHUNK_RELOAD_STORAGE_KEY) || 0);
+      if (Number.isFinite(last) && now - last < CHUNK_RELOAD_COOLDOWN_MS) return;
+      window.sessionStorage.setItem(CHUNK_RELOAD_STORAGE_KEY, String(now));
+      window.location.reload();
+    } catch {
+      // Ignore storage access errors in restricted browsing contexts.
+    }
+  }, [chunkError, offline]);
 
   return (
     <main id="main-content" className="flex flex-1 items-center pb-16 sm:pb-24">
@@ -83,7 +108,13 @@ export default function ErrorPage({
                 <Button
                   size="lg"
                   variant="action"
-                  onClick={() => retry()}
+                  onClick={() => {
+                    if (chunkError && !offline) {
+                      window.location.reload();
+                      return;
+                    }
+                    retry();
+                  }}
                 >
                   {copy.retry}
                 </Button>

@@ -48,6 +48,7 @@ import {
   type SmartSearchOpenDetail,
 } from "@/components/search/smart-search-events";
 import { errorTranslations } from "@/lib/i18n/error-translations";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 import type {
   GuidedJourneyId,
   SmartSearchCategory,
@@ -60,9 +61,12 @@ import type {
 } from "@/lib/search/smart-search-engine";
 
 type SmartSearchCopyModule = typeof import("@/lib/i18n/smart-search-copy");
+type SmartSearchEngineModule = typeof import("@/lib/search/smart-search-engine");
 
 let loadedCopyModule: SmartSearchCopyModule | null = null;
 let copyModulePromise: Promise<SmartSearchCopyModule> | null = null;
+let loadedEngineModule: SmartSearchEngineModule | null = null;
+let engineModulePromise: Promise<SmartSearchEngineModule> | null = null;
 
 function loadSmartSearchCopyModule(): Promise<SmartSearchCopyModule> {
   if (loadedCopyModule) {
@@ -80,6 +84,60 @@ function loadSmartSearchCopyModule(): Promise<SmartSearchCopyModule> {
       });
   }
   return copyModulePromise;
+}
+
+function loadSmartSearchEngineModule(): Promise<SmartSearchEngineModule> {
+  if (loadedEngineModule) {
+    return Promise.resolve(loadedEngineModule);
+  }
+  if (!engineModulePromise) {
+    engineModulePromise = import("@/lib/search/smart-search-engine")
+      .then((mod) => {
+        loadedEngineModule = mod;
+        return mod;
+      })
+      .catch((error) => {
+        engineModulePromise = null;
+        throw error;
+      });
+  }
+  return engineModulePromise;
+}
+
+async function resolveSmartSearchLocal(options: {
+  query: string;
+  lang: Lang;
+  pathname: string;
+  readingLevel: "standard" | "simple";
+  category: SmartSearchCategory;
+  includeContextual: boolean;
+}): Promise<SmartSearchGetPayload> {
+  const engine = await loadSmartSearchEngineModule();
+  const hasSearchable = /[\p{L}\p{N}]/u.test(options.query.trim());
+  const contextual =
+    options.includeContextual || !hasSearchable
+      ? engine.getContextualSuggestions(options.pathname, options.lang)
+      : undefined;
+  const allCatalog = hasSearchable
+    ? engine.searchSmartCatalog(options.query, {
+        lang: options.lang,
+        category: "all",
+        readingLevel: options.readingLevel,
+        pathname: options.pathname,
+        limit: 8,
+      })
+    : undefined;
+  const categoryCatalog =
+    hasSearchable && options.category !== "all"
+      ? engine.searchSmartCatalog(options.query, {
+          lang: options.lang,
+          category: options.category,
+          readingLevel: options.readingLevel,
+          pathname: options.pathname,
+          limit: 8,
+        })
+      : undefined;
+  return { contextual, allCatalog, categoryCatalog };
 }
 
 const MAX_CLIENT_CACHE = 40;
@@ -268,6 +326,7 @@ export function SmartSearchModal() {
         setCopyLoadFailed(false);
       })
       .catch(() => setCopyLoadFailed(true));
+    void loadSmartSearchEngineModule().catch(() => {});
 
     const ctxKey = `${lang}|${pathname}`;
     if (!contextualCache.has(ctxKey)) {
@@ -276,7 +335,39 @@ export function SmartSearchModal() {
         pathname,
         includeContextual: "1",
       });
-      void fetchSmartSearchGet(params)
+      const resolveContextual = isBrowserOffline()
+        ? resolveSmartSearchLocal({
+            query: "",
+            lang,
+            pathname,
+            readingLevel: "standard",
+            category: "all",
+            includeContextual: true,
+          })
+        : fetchSmartSearchGet(params)
+            .then((data) =>
+              data?.contextual
+                ? data
+                : resolveSmartSearchLocal({
+                    query: "",
+                    lang,
+                    pathname,
+                    readingLevel: "standard",
+                    category: "all",
+                    includeContextual: true,
+                  }),
+            )
+            .catch(() =>
+              resolveSmartSearchLocal({
+                query: "",
+                lang,
+                pathname,
+                readingLevel: "standard",
+                category: "all",
+                includeContextual: true,
+              }),
+            );
+      void resolveContextual
         .then((data) => {
           if (data?.contextual) {
             setBoundedCache(contextualCache, ctxKey, data.contextual);
@@ -451,7 +542,39 @@ export function SmartSearchModal() {
       pathname,
       includeContextual: "1",
     });
-    fetchSmartSearchGet(params, controller.signal)
+    const load = isBrowserOffline()
+      ? resolveSmartSearchLocal({
+          query: "",
+          lang,
+          pathname,
+          readingLevel,
+          category: "all",
+          includeContextual: true,
+        })
+      : fetchSmartSearchGet(params, controller.signal)
+          .then((data) => {
+            if (controller.signal.aborted || data?.contextual) return data;
+            return resolveSmartSearchLocal({
+              query: "",
+              lang,
+              pathname,
+              readingLevel,
+              category: "all",
+              includeContextual: true,
+            });
+          })
+          .catch(() => {
+            if (controller.signal.aborted) return null;
+            return resolveSmartSearchLocal({
+              query: "",
+              lang,
+              pathname,
+              readingLevel,
+              category: "all",
+              includeContextual: true,
+            });
+          });
+    load
       .then((data) => {
         if (controller.signal.aborted || !data?.contextual) return;
         setBoundedCache(contextualCache, contextualKey, data.contextual);
@@ -462,10 +585,10 @@ export function SmartSearchModal() {
     return () => {
       controller.abort();
     };
-  }, [open, cachedContextual, contextualKey, lang, pathname]);
+  }, [open, cachedContextual, contextualKey, lang, pathname, readingLevel]);
 
   useEffect(() => {
-    if (!open || !hasSearchableQuery || trimmedQuery.length < 3) return;
+    if (!open || !hasSearchableQuery || trimmedQuery.length < 3 || isBrowserOffline()) return;
     const controller = new AbortController();
     const timer = window.setTimeout(() => {
       fetch("/api/smart-search", {
@@ -565,7 +688,40 @@ export function SmartSearchModal() {
     });
 
     const timer = window.setTimeout(() => {
-      fetchSmartSearchGet(params, controller.signal)
+      const loadCatalog = isBrowserOffline()
+        ? resolveSmartSearchLocal({
+            query,
+            lang,
+            pathname,
+            readingLevel,
+            category: effectiveCategory,
+            includeContextual: false,
+          })
+        : fetchSmartSearchGet(params, controller.signal)
+            .then((data) => {
+              if (controller.signal.aborted || data?.allCatalog) return data;
+              return resolveSmartSearchLocal({
+                query,
+                lang,
+                pathname,
+                readingLevel,
+                category: effectiveCategory,
+                includeContextual: false,
+              });
+            })
+            .catch(() => {
+              if (controller.signal.aborted) return null;
+              return resolveSmartSearchLocal({
+                query,
+                lang,
+                pathname,
+                readingLevel,
+                category: effectiveCategory,
+                includeContextual: false,
+              });
+            });
+
+      loadCatalog
         .then((data) => {
           if (controller.signal.aborted) return;
           if (!data?.allCatalog) {

@@ -2208,8 +2208,9 @@ html[data-calm-motion] .capsule-panel[data-open="false"] {
 }
 
 /* reCAPTCHA v3 floating badge. Google allows hiding it when the page shows the reCAPTCHA notice
-   with links to Google's Privacy Policy and Terms instead (RecaptchaNotice, rendered on every page
-   by SiteChrome). Keep `visibility`, not `display: none`, so the bot check keeps working. */
+   with links to Google's Privacy Policy and Terms instead (RecaptchaNotice, integrated inside Footer
+   on standard pages and rendered directly by SiteChrome or AiChatAssistant on footerless workspaces).
+   Keep `visibility`, not `display: none`, so the bot check keeps working. */
 .grecaptcha-badge {
   visibility: hidden;
 }
@@ -2245,6 +2246,11 @@ html[data-high-contrast]:not(.dark) {
   --color-wellness-soft: #d9f3ec;
   --color-wellness-border: #0a4d41;
   --color-live-sage: #047857;
+}
+
+html[data-high-contrast]:not(.dark) #mobile-menu [data-menu-card] {
+  border-color: var(--color-border-control);
+  box-shadow: none;
 }
 
 html[data-high-contrast].dark {

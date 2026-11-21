@@ -24,7 +24,9 @@ import {
 } from "@/components/ui/icons";
 import { feedbackWidgetCopy, type FeedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 import { CLINICAL_SETTLE_SPRING, DURATION, EASE_OUT, useCalmReducedMotion } from "@/lib/motion/tokens";
 import {
   AGE_GROUP_OPTIONS,
@@ -788,6 +790,10 @@ export function FeedbackWidget() {
       setStepDir(-1);
       setStep(0);
       revealFirstMissingRating();
+      return;
+    }
+    if (isBrowserOffline()) {
+      setError(getOfflineUiCopy(lang).formOfflineError);
       return;
     }
 

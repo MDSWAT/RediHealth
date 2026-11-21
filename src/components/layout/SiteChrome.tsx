@@ -1,22 +1,65 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Component, useEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { LazyMotion, MotionConfig } from "motion/react";
+import { LazyMotion, MotionConfig, type FeatureBundle } from "motion/react";
 
-const loadMotionFeatures = () => import("@/lib/motion/dom-features").then((mod) => mod.domAnimation);
+const loadMotionFeatures = () =>
+  import("@/lib/motion/dom-features")
+    .then((mod) => mod.domAnimation)
+    .catch(() => ({}) as FeatureBundle);
+
+const EmptyWidget = () => null;
+
+function loadOptionalWidget<K extends string>(
+  load: () => Promise<Record<K, ComponentType>>,
+  exportName: K,
+): () => Promise<{ default: ComponentType }> {
+  return () =>
+    load()
+      .then((mod) => ({ default: mod[exportName] }))
+      .catch(async () => {
+        if (isBrowserOffline()) {
+          return { default: EmptyWidget };
+        }
+        try {
+          const mod = await load();
+          return { default: mod[exportName] };
+        } catch {
+          return { default: EmptyWidget };
+        }
+      });
+}
+
+class OptionalWidgetBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch() {
+    // Optional chrome widgets degrade silently instead of crashing the page.
+  }
+
+  render() {
+    return this.state.hasError ? null : this.props.children;
+  }
+}
+
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SmartSearchModal } from "@/components/search/SmartSearchModal";
+import { OfflineStatusBar } from "@/components/pwa/OfflineStatusBar";
 import { PwaExperience } from "@/components/pwa/PwaExperience";
 
 const FeedbackWidget = dynamic(
-  () => import("@/components/layout/FeedbackWidget").then((mod) => mod.FeedbackWidget),
+  loadOptionalWidget(() => import("@/components/layout/FeedbackWidget"), "FeedbackWidget"),
   { ssr: false },
 );
 const ReportIssueWidget = dynamic(
-  () => import("@/components/layout/ReportIssueWidget").then((mod) => mod.ReportIssueWidget),
+  loadOptionalWidget(() => import("@/components/layout/ReportIssueWidget"), "ReportIssueWidget"),
   { ssr: false },
 );
 import { LanguageProvider } from "@/lib/i18n/language-context";
@@ -28,12 +71,17 @@ import {
   MOUNT_CHROME_WIDGETS_EVENT,
   setChromeWidgetsAvailable,
 } from "@/components/layout/chrome-widget-events";
-import { initPwaRuntime } from "@/lib/pwa/pwa-state";
+import {
+  cacheVisitedPublicPage,
+  initPwaRuntime,
+  warmOfflineAppForLocale,
+} from "@/lib/pwa/pwa-state";
 import { clearPageAutoReadSession } from "@/lib/audio/page-auto-read";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { useComfortDomSync } from "@/lib/comfort-preferences";
 import { ReadingGuide } from "@/components/layout/ReadingGuide";
 import { useCalmReducedMotion } from "@/lib/motion/tokens";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 import type { Lang, SerializableTranslations } from "@/lib/i18n/languages";
 import type { Translations } from "@/lib/i18n/translations";
 
@@ -82,6 +130,7 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTrans
   const isAiAssistant = path === "/ai-assistant" || path.startsWith("/ai-assistant/");
   // Symptom check, prescription review, and AI assistant are interactive workspaces with no footer after them.
   const hideFooter = isChromelessSurface || path === "/health-check" || path === "/prescription-review" || isAiAssistant;
+  const showStandaloneRecaptchaNotice = hideFooter && !isChromelessSurface && !isAiAssistant;
   const [widgetsReady, setWidgetsReady] = useState(false);
   useSkipLinkTarget(pathname);
   useComfortDomSync();
@@ -107,6 +156,14 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTrans
     initPwaRuntime();
   }, []);
   useEffect(() => {
+    if (isChromelessSurface) return;
+    return warmOfflineAppForLocale(lang);
+  }, [isChromelessSurface, lang]);
+  useEffect(() => {
+    if (isChromelessSurface) return;
+    return cacheVisitedPublicPage(pathname);
+  }, [isChromelessSurface, pathname]);
+  useEffect(() => {
     setChromeWidgetsAvailable(!isChromelessSurface);
     return () => setChromeWidgetsAvailable(false);
   }, [isChromelessSurface]);
@@ -117,11 +174,12 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTrans
     let timerId = 0;
 
     const mountWidgets = () => {
-      if (!cancelled) setWidgetsReady(true);
+      if (!cancelled && !isBrowserOffline()) setWidgetsReady(true);
     };
 
     const onWake = () => mountWidgets();
     window.addEventListener(MOUNT_CHROME_WIDGETS_EVENT, onWake, { once: true });
+    window.addEventListener("online", mountWidgets);
 
     let hasFeedbackParam = false;
     try {
@@ -147,6 +205,7 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTrans
     return () => {
       cancelled = true;
       window.removeEventListener(MOUNT_CHROME_WIDGETS_EVENT, onWake);
+      window.removeEventListener("online", mountWidgets);
       if (idleId) {
         (window as Window & { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(idleId);
       }
@@ -160,13 +219,22 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTrans
       <LazyMotion features={loadMotionFeatures}>
         <LanguageProvider requestLang={lang} initialTranslations={initialTranslations}>
           <RecaptchaProvider nonce={nonce} enabled={captchaEnabled && !isChromelessSurface}>
+            {isChromelessSurface ? null : <OfflineStatusBar />}
             {isChromelessSurface ? null : <Header emergencyDismissed={emergencyDismissed} />}
             {isChromelessSurface ? null : <SmartSearchModal />}
             {isChromelessSurface ? null : <PwaExperience />}
             {children}
-            {isChromelessSurface || !widgetsReady ? null : <FeedbackWidget />}
-            {isChromelessSurface || !widgetsReady ? null : <ReportIssueWidget />}
-            {isChromelessSurface || isAiAssistant ? null : <div className="px-4 pb-4 text-center empty:hidden"><RecaptchaNotice /></div>}
+            {isChromelessSurface || !widgetsReady ? null : (
+              <OptionalWidgetBoundary>
+                <FeedbackWidget />
+                <ReportIssueWidget />
+              </OptionalWidgetBoundary>
+            )}
+            {showStandaloneRecaptchaNotice ? (
+              <div className="px-4 pb-6 pt-1 text-center empty:hidden">
+                <RecaptchaNotice className="mt-0" />
+              </div>
+            ) : null}
             {hideFooter ? null : <Footer />}
             {isChromelessSurface ? null : <CookieConsentBanner />}
             <ReadingGuide />

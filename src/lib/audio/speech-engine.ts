@@ -996,6 +996,9 @@ export class HealthSpeechEngine {
     if (this.neuralServerAvailable !== null) {
       return this.neuralServerAvailable;
     }
+    if (typeof navigator !== "undefined" && navigator.onLine === false) {
+      return false;
+    }
     if (this.probePromise) {
       return this.probePromise;
     }
@@ -1533,7 +1536,7 @@ export class HealthSpeechEngine {
     }
 
     try {
-      if (typeof fetch !== "function") {
+      if (typeof fetch !== "function" || (typeof navigator !== "undefined" && navigator.onLine === false)) {
         return { kind: "fallback" };
       }
       const res = await fetch("/api/tts", {

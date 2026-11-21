@@ -66,7 +66,7 @@ export function capsuleComfortItem(onHero: boolean, active = false) {
 
 /** Consistent red-and-white Close button inside the header capsule when the mobile menu is open (matches .sheet-close). */
 export function capsuleCloseItem() {
-  return "relative z-10 inline-flex h-11 min-h-11 min-w-11 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-[#c62f3c] text-sm font-semibold text-white shadow-[0_2px_8px_-2px_rgb(2_6_23/0.45)] transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-[#a82733] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c62f3c] focus-visible:ring-offset-2 focus-visible:ring-offset-paper dark:focus-visible:ring-[#ff8f98] dark:focus-visible:ring-offset-ink-950";
+  return "relative z-10 inline-flex h-11 min-h-11 min-w-11 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-[#c62f3c] text-sm font-semibold text-white shadow-[0_2px_8px_-2px_rgb(2_6_23/0.45)] transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-[#a82733] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c62f3c] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-[#ff8f98] dark:focus-visible:ring-offset-ink-950";
 }
 
 /** Hairline between groups of segments. */

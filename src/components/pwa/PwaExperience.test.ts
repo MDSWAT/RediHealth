@@ -6,16 +6,20 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { PwaExperience } from "@/components/pwa/PwaExperience";
+import { OfflineStatusBar } from "@/components/pwa/OfflineStatusBar";
 import { LanguageContext } from "@/lib/i18n/language-context";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import { getPwaCopy } from "@/lib/i18n/pwa-copy";
 import { translations, type Lang } from "@/lib/i18n/translations";
 import type { InstallPlatform, PwaSnapshot } from "@/lib/pwa/pwa-state";
 
 const state: {
   pathname: string;
+  online: boolean;
   snapshot: PwaSnapshot;
 } = {
   pathname: "/ro",
+  online: true,
   snapshot: {
     hydrated: true,
     isStandalone: false,
@@ -43,6 +47,11 @@ vi.mock("@/lib/pwa/pwa-state", async (importOriginal) => {
     usePwaSnapshot: () => state.snapshot,
   };
 });
+
+vi.mock("@/lib/pwa/use-online-status", () => ({
+  isBrowserOffline: () => !state.online,
+  useOnlineStatus: () => state.online,
+}));
 
 const ALL_LANGS: Lang[] = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
 const ALL_PLATFORMS: InstallPlatform[] = [
@@ -99,6 +108,7 @@ function assertInteractiveButtonsAccessible(html: string, contextLabel: string) 
 describe("PwaExperience and layout PWA triggers", () => {
   beforeEach(() => {
     state.pathname = "/ro";
+    state.online = true;
     state.snapshot = {
       hydrated: true,
       isStandalone: false,
@@ -271,5 +281,55 @@ describe("PwaExperience and layout PWA triggers", () => {
       expect(decodeHtml(headerStandaloneHtml)).toContain(copy.refreshApp);
       expect(decodeHtml(footerStandaloneHtml)).toContain(copy.refreshApp);
     }
+  });
+
+  it("renders OfflineStatusBar cleanly when offline across all 7 locales and hides online or on note/offline routes", () => {
+    const barSource = readSrc("src/components/pwa/OfflineStatusBar.tsx");
+    expect(barSource).not.toContain("rounded-full");
+    expect(barSource).not.toContain("transition-all");
+    expect(barSource).not.toContain("focus-visible:ring-sapphire");
+    expect(barSource).not.toMatch(/h-1\.5 w-1\.5/);
+
+    state.online = true;
+    expect(renderWithLang("en", createElement(OfflineStatusBar))).toBe("");
+
+    state.online = false;
+    state.pathname = "/ro/health-check/note";
+    expect(renderWithLang("ro", createElement(OfflineStatusBar))).toBe("");
+
+    state.pathname = "/en/offline";
+    expect(renderWithLang("en", createElement(OfflineStatusBar))).toBe("");
+
+    state.pathname = "/ro/health-check";
+    for (const lang of ALL_LANGS) {
+      const html = renderWithLang(lang, createElement(OfflineStatusBar));
+      const copy = getOfflineUiCopy(lang);
+      expect(html).toContain('role="status"');
+      expect(decodeHtml(html)).toContain(copy.barMessage);
+      expect(html).not.toContain("rounded-full");
+      assertInteractiveButtonsAccessible(html, `OfflineStatusBar (${lang})`);
+    }
+  });
+
+  it("hides AI assistant triggers in Header and Footer when offline while keeping offline utilities intact", () => {
+    state.pathname = "/en";
+    state.online = true;
+    const onlineHeaderHtml = renderWithLang("en", createElement(Header));
+    const onlineFooterHtml = renderWithLang("en", createElement(Footer));
+    expect(onlineHeaderHtml).toContain("/en/ai-assistant");
+    expect(onlineHeaderHtml).toContain("grid-cols-2");
+    expect(onlineFooterHtml).toContain("/en/ai-assistant");
+
+    state.online = false;
+    const offlineHeaderHtml = renderWithLang("en", createElement(Header));
+    const offlineFooterHtml = renderWithLang("en", createElement(Footer));
+    expect(offlineHeaderHtml).not.toContain("/ai-assistant");
+    expect(offlineHeaderHtml).toContain("grid-cols-1");
+    expect(offlineHeaderHtml).not.toContain("grid-cols-2");
+    expect(offlineHeaderHtml).toContain("data-search-trigger");
+    expect(offlineHeaderHtml).toContain("/en/medic-online");
+    expect(offlineFooterHtml).not.toContain("/ai-assistant");
+    expect(offlineFooterHtml).toContain("/en/health-check");
+    expect(offlineFooterHtml).toContain("/en/health-information");
   });
 });

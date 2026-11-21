@@ -171,7 +171,10 @@ describe("Care tools design-system consistency", () => {
 
     const explorer = readSrc("src/components/health-check/HealthCheckExplorer.tsx");
     expect(explorer).toContain("-my-1.5 inline-flex min-h-11 items-center rounded-md");
-    expect(explorer).toContain("inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-body");
+    expect(explorer).toContain('data-capsule-switch=""');
+    expect(explorer).toContain("CAPSULE_SHAPE");
+    expect(explorer).toContain("CAPSULE_OUTLINE");
+    expect(explorer).toContain("min-h-11 w-full min-w-0 items-center justify-center whitespace-nowrap px-2.5 text-body");
     expect(explorer).toContain("inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-2.5 text-body");
 
     const findHelp = readSrc("src/components/find-help/FindHelpExplorer.tsx");

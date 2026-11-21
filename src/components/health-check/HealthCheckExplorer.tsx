@@ -36,7 +36,9 @@ import {
   textLink,
   textLinkLabel,
 } from "@/components/health-assistant/step-ui";
+import { CAPSULE_OUTLINE, CAPSULE_SHAPE } from "@/components/layout/chrome-capsule";
 import { findHelpHref, findHelpLinks } from "@/lib/i18n/find-help-links";
+import { cn } from "@/lib/cn";
 import { prefersCalmOrReducedMotion } from "@/lib/comfort-preferences";
 import type { InstituteCategory } from "@/lib/medical-institutes";
 import { AnatomicalBodyMap } from "@/components/health-check/AnatomicalBodyMap";
@@ -2194,94 +2196,97 @@ export function HealthCheckExplorer() {
    * "For whom" and which body is shown (man or woman). Phones: above the body, so the label is read
    * before the model it describes. Desktop: at the top of the question card, beside the body.
    */
-  const renderWhoControls = (slot: "page" | "card") => (
-    <div className="rounded-xl border border-border/80 bg-muted/45 p-3">
-      <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
-        <div className="space-y-1.5">
-          <span id={`${baseId}-who-${slot}`} className="block text-meta font-medium text-muted-foreground">
-            {c.forWhom}
-          </span>
-          <div
-            role="radiogroup"
-            aria-labelledby={`${baseId}-who-${slot}`}
-            onKeyDown={handleRadioKeys}
-            className="grid w-full grid-cols-2 gap-1 rounded-xl bg-background/90 p-1 ring-1 ring-border/80"
-          >
-            {(
-              [
-                { id: "self", label: c.forSelf },
-                { id: "child", label: c.forChild },
-              ] as const
-            ).map((opt) => {
-              const active = forWhom === opt.id;
-              return (
-                <button
-                  key={opt.id}
-                  type="button"
-                  role="radio"
-                  data-segmented=""
-                  aria-checked={active}
-                  tabIndex={active ? 0 : -1}
-                  onClick={() => handleForWhomChange(opt.id)}
-                  className={`inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-body border w-full whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                    active
-                      ? "border-rose-border bg-rose-tint font-semibold text-rose-ink shadow-2xs"
-                      : "border-transparent font-medium text-muted-foreground hover:bg-card/80 hover:text-foreground"
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+  const renderWhoControls = (slot: "page" | "card") => {
+    const groups = [
+      {
+        id: `${baseId}-who-${slot}`,
+        label: c.forWhom,
+        isRightActive: forWhom === "child",
+        activeValue: forWhom,
+        onSelect: (id: string) => handleForWhomChange(id as "self" | "child"),
+        options: [
+          { id: "self", label: c.forSelf },
+          { id: "child", label: c.forChild },
+        ],
+      },
+      {
+        id: `${baseId}-anat-${slot}`,
+        label: bodyShown && !phoneListOnly ? c.bodyShownLabel : c.bodyTypeLabel,
+        isRightActive: bodyProfile === "female",
+        activeValue: bodyProfile,
+        onSelect: (id: string) => handleBodyProfileChange(id as BodyAnatomyProfile),
+        options: [
+          { id: "general", label: c.bodyGeneral },
+          { id: "female", label: c.bodyFemale },
+        ],
+      },
+    ];
 
-        <div className="space-y-1.5">
-          <span id={`${baseId}-anat-${slot}`} className="block text-meta font-medium text-muted-foreground">
-            {bodyShown && !phoneListOnly ? c.bodyShownLabel : c.bodyTypeLabel}
-          </span>
-          <div
-            role="radiogroup"
-            aria-labelledby={`${baseId}-anat-${slot}`}
-            onKeyDown={handleRadioKeys}
-            className="grid w-full grid-cols-2 gap-1 rounded-xl bg-background/90 p-1 ring-1 ring-border/80"
-          >
-            {(
-              [
-                { id: "general", label: c.bodyGeneral },
-                { id: "female", label: c.bodyFemale },
-              ] as const
-            ).map((opt) => {
-              const active = bodyProfile === opt.id;
-              return (
-                <button
-                  key={opt.id}
-                  type="button"
-                  role="radio"
-                  data-segmented=""
-                  aria-checked={active}
-                  tabIndex={active ? 0 : -1}
-                  onClick={() => handleBodyProfileChange(opt.id)}
-                  className={`inline-flex min-h-11 items-center justify-center rounded-lg px-3 text-body border w-full whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                    active
-                      ? "border-rose-border bg-rose-tint font-semibold text-rose-ink shadow-2xs"
-                      : "border-transparent font-medium text-muted-foreground hover:bg-card/80 hover:text-foreground"
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              );
-            })}
-          </div>
+    return (
+      <div className="rounded-xl border border-border/80 bg-muted/45 p-3">
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
+          {groups.map((group) => (
+            <div key={group.id} className="space-y-1.5">
+              <span id={group.id} className="block text-meta font-medium text-muted-foreground">
+                {group.label}
+              </span>
+              <div
+                role="radiogroup"
+                aria-labelledby={group.id}
+                data-capsule-switch=""
+                onKeyDown={handleRadioKeys}
+                className={cn(
+                  "relative grid w-full grid-cols-2 items-center p-1",
+                  CAPSULE_SHAPE,
+                  CAPSULE_OUTLINE,
+                  "bg-card/95 dark:bg-white/[0.06]",
+                )}
+              >
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] bg-sapphire shadow-xs transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] motion-reduce:transition-none dark:bg-sapphire-light",
+                    CAPSULE_SHAPE,
+                  )}
+                  style={{
+                    transform: group.isRightActive ? "translateX(100%)" : "translateX(0%)",
+                  }}
+                />
+                {group.options.map((opt) => {
+                  const active = group.activeValue === opt.id;
+                  return (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      role="radio"
+                      data-segmented=""
+                      aria-checked={active}
+                      tabIndex={active ? 0 : -1}
+                      onClick={() => group.onSelect(opt.id)}
+                      className={cn(
+                        "press-row relative z-10 inline-flex min-h-11 w-full min-w-0 items-center justify-center whitespace-nowrap px-2.5 text-body transition-[color,background-color] duration-[var(--dur-slow)] ease-[var(--ease-out-expo)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+                        CAPSULE_SHAPE,
+                        active
+                          ? "font-semibold text-white"
+                          : "font-medium text-muted-foreground hover:bg-sapphire-soft/50 hover:text-foreground dark:hover:bg-white/5",
+                      )}
+                    >
+                      {opt.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </div>
+        {bodyProfile === "general" && (
+          <p className="mt-2 text-meta leading-snug text-muted-foreground">
+            {c.bodyGeneralHelper}
+          </p>
+        )}
       </div>
-      {bodyProfile === "general" && (
-        <p className="mt-2 text-meta leading-snug text-muted-foreground">
-          {c.bodyGeneralHelper}
-        </p>
-      )}
-    </div>
-  );
+    );
+  };
 
   async function handleCopyDiagnosticSheet() {
     const lines: string[] = [

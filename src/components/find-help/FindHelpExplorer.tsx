@@ -41,6 +41,8 @@ import {
   writeSavedFindHelpLocation,
   type SmartLocationResolution,
 } from "@/lib/smart-location";
+import { queryOfflineInstitutes, saveOfflineInstitutes } from "@/lib/pwa/offline-institutes";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 
 function MapLoading() {
   const { lang, t } = useLanguage();
@@ -584,6 +586,10 @@ export function FindHelpExplorer({
   const [loadingMore, setLoadingMore] = useState(false);
   const [loadMoreFailed, setLoadMoreFailed] = useState(false);
   const requestKeyRef = useRef("");
+  const activeCountryRef = useRef<CountryCode>(activeCountry);
+  useEffect(() => {
+    activeCountryRef.current = activeCountry;
+  }, [activeCountry]);
   /** The typed text that was found neither as an address nor, so far, as a name. */
   const [addressNotFoundFor, setAddressNotFoundFor] = useState<string | null>(null);
   /** The map (Leaflet and one marker per place) loads only once it can be seen: at once on a wide screen, on first open on a phone. */
@@ -788,12 +794,25 @@ export function FindHelpExplorer({
   const areaKey =
     area.kind === "country" ? `country:${area.country}` : `point:${area.lat.toFixed(5)},${area.lng.toFixed(5)}`;
 
+  const areaPointLat = area.kind === "point" ? area.lat : null;
+  const areaPointLng = area.kind === "point" ? area.lng : null;
+  const areaTargetCountry = area.kind === "country" ? area.country : (area.country ?? null);
+
   useEffect(() => {
     requestKeyRef.current = requestKey;
     const controller = new AbortController();
     // A phone browsing a whole country takes one page of 500 at a time; "Show more" fetches the next one.
     const onePageAtATime = countryBrowse && !isDesktopViewport();
+    const requestCountry = areaTargetCountry ?? activeCountryRef.current;
+    const requestPoint =
+      areaPointLat !== null && areaPointLng !== null
+        ? { lat: areaPointLat, lng: areaPointLng }
+        : null;
+
     const load = async () => {
+      if (isBrowserOffline()) {
+        throw new Error("Offline");
+      }
       const institutes: MedicalInstitute[] = [];
       let page = 0;
       let data: ApiResponse;
@@ -843,6 +862,9 @@ export function FindHelpExplorer({
         setLoadMoreFailed(false);
         // Nearest-first lists are worth keeping for a day without internet; a whole-country page is not.
         if (!countryBrowse && data.institutes.length > 0) writeSavedList(data.institutes);
+        if (data.institutes.length > 0) {
+          saveOfflineInstitutes(data.country ?? requestCountry, data.institutes);
+        }
         if (data.country) setActiveCountry(data.country);
         setSelectedId(null);
         pendingHoverIdRef.current = null;
@@ -857,7 +879,34 @@ export function FindHelpExplorer({
       })
       .catch((fetchError: unknown) => {
         if (fetchError instanceof DOMException && fetchError.name === "AbortError") return;
-        console.error("Failed to load medical institutes", fetchError);
+        const offline = isBrowserOffline();
+        if (!offline) {
+          console.error("Failed to load medical institutes", fetchError);
+        }
+
+        const offlineDirectory = queryOfflineInstitutes({
+          country: requestCountry,
+          point: requestPoint,
+          category,
+          search,
+        });
+
+        if (offlineDirectory) {
+          setInstitutes(offlineDirectory.rows);
+          setSavedListAt(offlineDirectory.savedAt);
+          listInfoRef.current = { areaKey, count: offlineDirectory.rows.length };
+          setCountryNextPage(null);
+          setSelectedId(null);
+          setMobilePreviewId(null);
+          setVisibleCount(PAGE_SIZE);
+          setSettled({
+            key: requestKey,
+            failed: offlineDirectory.rows.length > 0,
+            offline,
+          });
+          return;
+        }
+
         // Rows already on screen for this same place stay. Otherwise the list saved on the phone, if any.
         const kept = listInfoRef.current;
         if (!(kept.count > 0 && kept.areaKey === areaKey)) {
@@ -873,12 +922,24 @@ export function FindHelpExplorer({
         setSettled({
           key: requestKey,
           failed: true,
-          offline: typeof navigator !== "undefined" && navigator.onLine === false,
+          offline,
         });
       });
 
     return () => controller.abort();
-  }, [requestQuery, requestKey, gpsActive, countryBrowse, areaKey, initialCountry]);
+  }, [
+    requestQuery,
+    requestKey,
+    gpsActive,
+    countryBrowse,
+    areaKey,
+    areaPointLat,
+    areaPointLng,
+    areaTargetCountry,
+    category,
+    search,
+    initialCountry,
+  ]);
 
   async function loadNextCountryPage() {
     if (countryNextPage === null || loadingMore) return;
@@ -892,6 +953,9 @@ export function FindHelpExplorer({
       if (!Array.isArray(data.institutes)) throw new Error("Invalid directory response");
       // The search changed while this page was on its way: these rows belong to the old one.
       if (requestKeyRef.current !== key) return;
+      if (data.institutes.length > 0) {
+        saveOfflineInstitutes(data.country ?? activeCountry, data.institutes);
+      }
       setInstitutes((prev) => [...prev, ...data.institutes]);
       listInfoRef.current = { ...listInfoRef.current, count: listInfoRef.current.count + data.institutes.length };
       setCountryNextPage(data.hasMore && data.institutes.length > 0 ? countryNextPage + 1 : null);
@@ -1011,6 +1075,13 @@ export function FindHelpExplorer({
       resolvedAddressInputRef.current = trimmed;
       setSearch("");
       chooseCity(presetMatch);
+      return;
+    }
+
+    if (isBrowserOffline()) {
+      resolvedAddressInputRef.current = null;
+      setSearchedPointLabel(null);
+      setSearch(trimmed);
       return;
     }
 

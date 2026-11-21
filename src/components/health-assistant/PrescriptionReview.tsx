@@ -26,6 +26,7 @@ import { findHelpLinks } from "@/lib/i18n/find-help-links";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
+import { useOnlineStatus } from "@/lib/pwa/use-online-status";
 
 type InputMode = "name" | "photo";
 
@@ -254,6 +255,7 @@ function ArrowRightSvg() {
 export function PrescriptionReview() {
   const executeCaptcha = useRecaptcha();
   const { lang, t: siteCopy } = useLanguage();
+  const isOnline = useOnlineStatus();
   // The page is named exactly as the menu names it: "Medicine check", typing first, photo second.
   const pageTitle = siteCopy.header.navMedicine;
   const pageLead = siteCopy.header.navMedicineSub;
@@ -1117,6 +1119,16 @@ export function PrescriptionReview() {
             ) : undefined
           }
         />
+
+        {!isOnline && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="mt-5 rounded-2xl border border-border bg-card p-4 text-body text-foreground shadow-2xs print:hidden dark:border-ink-800 dark:bg-ink-900"
+          >
+            <p className="leading-relaxed">{t.offlineErr}</p>
+          </div>
+        )}
 
         <div className="mt-5 grid grid-cols-1 items-start gap-6 sm:mt-6 lg:grid-cols-12 lg:gap-8 print:block">
           <div className="min-w-0 lg:sticky lg:top-[calc(var(--site-header-h)+1.5rem)] lg:col-span-5 print:hidden">

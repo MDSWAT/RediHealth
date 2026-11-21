@@ -806,7 +806,7 @@ describe("CLAUDE.md and MobileMenu source invariants", () => {
     const mobileMenuEnd = headerSource.indexOf("</header>");
     const mobileMenuSource = headerSource.slice(mobileMenuStart, mobileMenuEnd);
 
-    expect(mobileMenuSource).toContain("bg-paper");
+    expect(mobileMenuSource).toContain("bg-white");
     expect(mobileMenuSource).toContain("dark:bg-ink-950");
     expect(mobileMenuSource).not.toContain("max-w-xl");
     expect(mobileMenuSource).not.toContain("/health-assistant#triage");

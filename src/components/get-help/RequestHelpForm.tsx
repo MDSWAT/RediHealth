@@ -10,6 +10,8 @@ import { COUNTRY_LABELS, type CountryCode } from "@/lib/countries";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
+import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
+import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 
 type Fields = {
   name: string;
@@ -195,6 +197,11 @@ export function RequestHelpForm({
         ? "county"
         : (["phone", "email", "description"] as const).find((key) => nextErrors[key]) ?? "privacyConsent";
       formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
+      return;
+    }
+
+    if (isBrowserOffline()) {
+      setSubmissionError(getOfflineUiCopy(lang).formOfflineError);
       return;
     }
 

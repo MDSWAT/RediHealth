@@ -27,7 +27,13 @@ const NOISE = [
 
 export function reportClientError(error: unknown, kind: "error" | "unhandledrejection" | "render"): void {
   try {
-    if (typeof window === "undefined" || reported.size >= MAX_REPORTS_PER_PAGE) return;
+    if (
+      typeof window === "undefined" ||
+      (typeof navigator !== "undefined" && navigator.onLine === false) ||
+      reported.size >= MAX_REPORTS_PER_PAGE
+    ) {
+      return;
+    }
 
     const isError = error instanceof Error;
     const message = (isError ? `${error.name}: ${error.message}` : typeof error === "string" ? error : "").slice(0, 1000);
