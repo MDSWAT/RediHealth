@@ -7,7 +7,6 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import {
   ActivityIcon,
   AppleIcon,
-  BookIcon,
   BrainIcon,
   DropletIcon,
   HeartIcon,
@@ -310,23 +309,22 @@ export function TopicDetailPageContent({
         listenLabel={ui.listenGuideLabel}
         saveText={narrationScript}
         afterActions={
-          <div className="flex flex-col gap-2.5 rounded-xl border border-sand-line/85 bg-sand/50 p-3 sm:flex-row sm:items-center sm:justify-between sm:px-4 sm:py-2.5 dark:border-white/10 dark:bg-white/[0.04]">
-            <span className="inline-flex items-center gap-2 text-meta font-semibold text-foreground/85">
-              <BookIcon className="h-4 w-4 shrink-0 text-rose-ink" aria-hidden="true" />
-              <span>{ui.dictionaryPrompt}</span>
+          <div className="flex flex-wrap items-center justify-between gap-2.5 rounded-xl border border-sand-line/85 bg-sand/50 px-4 py-3 dark:border-white/10 dark:bg-white/[0.04]">
+            <span className="text-meta font-semibold text-foreground">
+              {ui.dictionaryPrompt}
             </span>
-            <div className="grid w-full grid-cols-2 gap-2 sm:flex sm:w-auto sm:items-center">
+            <div className="btn-row flex flex-wrap items-center gap-2">
               <button
                 type="button"
                 onClick={() => setOpenDrawer("dictionary")}
-                className="press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-border-control/85 bg-card px-3.5 text-meta font-semibold text-foreground shadow-2xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-rose-border hover:bg-rose-tint hover:text-rose-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+                className="press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-3.5 py-2 text-body font-semibold text-foreground shadow-2xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/45 hover:bg-sapphire-soft/35 hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:hover:border-white/30 dark:hover:bg-white/[0.08] dark:hover:text-sapphire-border"
               >
                 {ui.dualGlossaryCta}
               </button>
               <button
                 type="button"
                 onClick={() => setOpenDrawer("romanes")}
-                className="press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-border-control/85 bg-card px-3.5 text-meta font-semibold text-foreground shadow-2xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-rose-border hover:bg-rose-tint hover:text-rose-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+                className="press-row inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-3.5 py-2 text-body font-semibold text-foreground shadow-2xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/45 hover:bg-sapphire-soft/35 hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:hover:border-white/30 dark:hover:bg-white/[0.08] dark:hover:text-sapphire-border"
               >
                 {ui.romanesGlossaryCta}
               </button>

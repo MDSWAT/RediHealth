@@ -188,12 +188,6 @@ function TopicAnatomyExplorerInner({
   const activeHotspot: TopicAnatomyHotspot =
     config.hotspots.find((h) => h.id === selectedHotspotId) ?? defaultHotspot;
 
-  const EyebrowIcon = HOTSPOT_ICONS[config.eyebrowIcon];
-  const hotspotGridClass =
-    config.hotspots.length === 4
-      ? "grid grid-cols-1 gap-2.5 sm:grid-cols-2"
-      : "grid grid-cols-1 gap-2.5 sm:grid-cols-3";
-
   const handleSelectHotspot = useCallback(
     (hotspot: TopicAnatomyHotspot) => {
       setSelectedHotspotId(hotspot.id);
@@ -248,23 +242,9 @@ function TopicAnatomyExplorerInner({
       <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-(--shadow-card-rest)">
         {/* Calm editorial ceramic header band */}
         <div className="border-b border-border/80 bg-sand/45 px-5 py-5 sm:px-7 sm:py-6 dark:bg-white/[0.03]">
-          <div className="flex flex-wrap items-center gap-2.5 text-meta">
-            <span className="inline-flex items-center gap-1.5 font-semibold text-wellness dark:text-wellness-border">
-              <EyebrowIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
-              <span>{ui.eyebrow}</span>
-            </span>
-            <span
-              aria-hidden="true"
-              className="h-3.5 w-px bg-border-control/45"
-            />
-            <span className="font-medium text-muted-foreground">
-              {ui.layers[activeLayer]}
-            </span>
-          </div>
-
           <h2
             id={headingId}
-            className="mt-2.5 text-section font-semibold leading-snug text-foreground text-balance"
+            className="text-section font-semibold leading-snug text-foreground text-balance"
           >
             {config.heading[lang]}
           </h2>
@@ -286,7 +266,7 @@ function TopicAnatomyExplorerInner({
             <div
               role="group"
               aria-labelledby={structuresLabelId}
-              className={cn("mt-3", hotspotGridClass)}
+              className="btn-row mt-3 flex flex-wrap items-center gap-2.5"
             >
               {config.hotspots.map((hotspot) => {
                 const isSelected =
@@ -300,26 +280,22 @@ function TopicAnatomyExplorerInner({
                     data-anatomy-hotspot={hotspot.id}
                     onClick={() => handleSelectHotspot(hotspot)}
                     className={cn(
-                      "press-row flex min-h-12 w-full items-center gap-3 rounded-xl border px-3.5 py-2.5 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
+                      "press-row inline-flex min-h-11 max-w-full items-center gap-2 whitespace-nowrap rounded-(--radius-control) border px-3 py-2 text-left text-meta font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none",
                       isSelected
                         ? "border-rose-border bg-rose-tint text-rose-ink shadow-2xs"
-                        : "border-border-control/75 bg-card text-foreground hover:border-sapphire/45 hover:bg-sapphire-soft/35 dark:hover:border-white/25 dark:hover:bg-white/[0.06]",
+                        : "border-border-control bg-card text-foreground hover:border-sapphire/45 hover:bg-sapphire-soft/35 dark:hover:border-white/25 dark:hover:bg-white/[0.06]",
                     )}
                   >
-                    <span
+                    <HotspotIcon
                       aria-hidden="true"
                       className={cn(
-                        "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
+                        "h-4 w-4 shrink-0 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none",
                         isSelected
-                          ? "border-rose-border/75 bg-card/85 text-rose-ink dark:bg-ink-900/50"
-                          : "border-border bg-surface-subtle text-sapphire dark:bg-white/[0.05] dark:text-sapphire-border",
+                          ? "text-rose-ink"
+                          : "text-sapphire dark:text-sapphire-border",
                       )}
-                    >
-                      <HotspotIcon className="h-4.5 w-4.5 shrink-0" />
-                    </span>
-                    <span className="min-w-0 flex-1 text-body font-semibold leading-snug text-pretty">
-                      {hotspot.label[lang]}
-                    </span>
+                    />
+                    <span>{hotspot.label[lang]}</span>
                   </button>
                 );
               })}
@@ -361,7 +337,7 @@ function TopicAnatomyExplorerInner({
               className="space-y-3 rounded-2xl border border-border bg-background/80 p-3 sm:p-4 dark:bg-ink-950/40"
             >
               <div className="flex flex-wrap items-center justify-between gap-2 px-1">
-                <p className="text-meta text-muted-foreground">
+                <p className="min-w-0 text-meta text-muted-foreground">
                   {ui.stageCaption}
                 </p>
                 <div className="flex flex-wrap items-center gap-2">
@@ -425,7 +401,7 @@ function TopicAnatomyExplorerInner({
 
           {/* Action footer: Explore in 3D trigger and direct symptom check link */}
           <div className="space-y-2.5 border-t border-border/80 pt-5">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="btn-row flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
               <Button
                 type="button"
                 variant={is3DOpen ? "outline" : "action"}

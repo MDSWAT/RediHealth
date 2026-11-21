@@ -315,14 +315,14 @@ export function GuideOfflinePrintActions({
           : null;
 
   return (
-    <div className={cn("print:hidden grid w-full grid-cols-2 gap-2 sm:flex sm:w-auto sm:flex-wrap sm:items-center", className)}>
+    <div className={cn("btn-row print:hidden flex flex-wrap items-center gap-2.5", className)}>
       <button
         type="button"
         onClick={handlePrint}
         aria-label={copy.printAria}
-        className="group press-row inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border-control/90 bg-card px-3.5 py-2 text-meta font-semibold text-foreground shadow-2xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-border-control hover:bg-muted/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="group press-row inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-3.5 py-2 text-body font-semibold text-foreground shadow-(--shadow-card-rest) transition-[background-color,border-color,color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:border-sapphire/45 hover:bg-sapphire-soft/35 hover:shadow-(--shadow-card-hover) active:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-4 dark:hover:border-white/30 dark:hover:bg-white/[0.08]"
       >
-        <PrinterIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-(--dur-fast) group-hover:text-foreground motion-reduce:transition-none" />
+        <PrinterIcon className="h-4 w-4 shrink-0 text-sapphire transition-colors duration-(--dur-fast) motion-reduce:transition-none dark:text-sapphire-border" />
         <span>{copy.printLabel}</span>
       </button>
 
@@ -331,23 +331,23 @@ export function GuideOfflinePrintActions({
         onClick={() => void handleSaveOffline()}
         disabled={saveState === "saving"}
         className={cn(
-          "group press-row inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border px-3.5 py-2 text-meta font-semibold shadow-2xs transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "group press-row inline-flex min-h-11 max-w-full items-center justify-center gap-2 whitespace-nowrap rounded-(--radius-control) border px-3.5 py-2 text-body font-semibold shadow-(--shadow-card-rest) transition-[background-color,border-color,color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-4",
           showsSaved
-            ? "border-rose-border bg-rose-tint text-rose-ink"
-            : "border-border-control/90 bg-card text-foreground hover:border-border-control hover:bg-muted/75",
+            ? "border-rose-border bg-rose-tint text-rose-ink hover:border-rose-mid hover:bg-rose-tint"
+            : "border-border-control bg-card text-foreground hover:border-sapphire/45 hover:bg-sapphire-soft/35 hover:shadow-(--shadow-card-hover) active:bg-muted dark:hover:border-white/30 dark:hover:bg-white/[0.08]",
         )}
       >
         <DownloadIcon
           className={cn(
             "h-4 w-4 shrink-0 transition-colors duration-(--dur-fast) motion-reduce:transition-none",
-            showsSaved ? "text-rose-ink" : "text-muted-foreground group-hover:text-foreground",
+            showsSaved ? "text-rose-ink" : "text-sapphire dark:text-sapphire-border",
           )}
         />
         <span>{saveButtonText}</span>
       </button>
 
       {statusMessage && (
-        <p role="status" aria-live="polite" className="col-span-2 basis-full pt-1 text-meta text-muted-foreground">
+        <p role="status" aria-live="polite" className="w-0 min-w-full basis-full pt-1 text-meta text-muted-foreground">
           {statusMessage}
         </p>
       )}

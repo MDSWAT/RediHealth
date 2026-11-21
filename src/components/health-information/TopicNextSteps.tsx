@@ -73,8 +73,8 @@ export function TopicNextSteps({ lang, className = "" }: TopicNextStepsProps) {
       aria-labelledby="next-steps-heading"
       className={`divide-y divide-border rounded-xl border border-border bg-card print:divide-y-0 print:border-0 ${className}`}
     >
-      <div className="flex flex-col gap-5 p-6 sm:p-8 md:flex-row md:items-center md:justify-between print:hidden">
-        <div className="max-w-xl">
+      <div className="flex flex-col gap-5 p-6 sm:p-8 md:flex-row md:flex-wrap md:items-center md:justify-between print:hidden">
+        <div className="min-w-0 flex-1 max-w-xl">
           <h2 id="next-steps-heading" className="text-section font-semibold text-foreground text-balance">
             {copy.title}
           </h2>
@@ -84,10 +84,10 @@ export function TopicNextSteps({ lang, className = "" }: TopicNextStepsProps) {
           href={withLangPrefix("/mediatori#solicita", lang)}
           variant="outline"
           size="lg"
-          className="shrink-0 whitespace-nowrap"
+          className="w-full shrink-0 whitespace-nowrap sm:w-auto"
         >
           <UsersIcon className="h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
-          <span className="min-w-0 truncate">{copy.buttonText}</span>
+          <span>{copy.buttonText}</span>
         </Button>
       </div>
 

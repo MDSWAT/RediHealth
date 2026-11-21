@@ -1288,7 +1288,7 @@ body:has(dialog[open]) .feedback-edge-trigger {
   /* Never print persistent site chrome, sticky navbars, fixed bottom thumb bars, or floating triggers */
   .emergency-banner,
   header.site-header,
-  footer,
+  footer:not(article footer):not(.print-block),
   .report-issue-trigger,
   .feedback-trigger,
   .feedback-edge-trigger,
@@ -1302,9 +1302,16 @@ body:has(dialog[open]) .feedback-edge-trigger {
     display: table-header-group;
   }
 
-  /* Prevent cards, table rows and checklist blocks from splitting awkwardly across pages */
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Prevent cards, table rows and checklist blocks from splitting awkwardly across pages while letting long multi-section articles paginate cleanly */
   section,
-  article,
+  article:not(:has(section)),
   li,
   dl,
   tr,
@@ -2281,6 +2288,18 @@ html[data-high-contrast] :is(footer, .bg-ink-950, .bg-ink-900, .dark, .phone-she
   --color-border-control: #f8fafc;
   --color-wellness-border: #99f6e4;
   --color-ring: #f8fafc;
+}
+
+/* Article and summary sources footers sit inside <article> on the light page canvas, not on the dark site footer. */
+html[data-high-contrast]:not(.dark) article footer {
+  --color-foreground: #000000;
+  --color-muted-foreground: #1e293b;
+  --color-border: #64748b;
+  --color-border-subtle: #94a3b8;
+  --color-border-control: #0f172a;
+  --color-sapphire: #0f2547;
+  --color-sapphire-light: #1e3a6d;
+  --color-ring: #0f2547;
 }
 
 html[data-high-contrast] :focus-visible {

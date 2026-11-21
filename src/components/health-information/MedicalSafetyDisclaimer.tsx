@@ -1,6 +1,5 @@
 "use client";
 
-import { ShieldIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 
@@ -77,12 +76,11 @@ export function MedicalSafetyDisclaimer({
     <section
       aria-label={copy.badge}
       data-testid="medical-safety-disclaimer"
-      className={`flex items-start gap-3 break-inside-avoid ${
+      className={`break-inside-avoid ${
         framed ? "rounded-xl border border-border bg-card p-4 sm:p-5" : ""
       } ${className}`}
     >
-      <ShieldIcon className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-      <p className="max-w-(--measure-reading) text-pretty text-body text-foreground/85">
+      <p className="min-w-0 max-w-(--measure-reading) text-pretty text-body text-foreground/85">
         <span className="font-semibold text-foreground">{copy.badge}.</span> {copy.body}
       </p>
     </section>

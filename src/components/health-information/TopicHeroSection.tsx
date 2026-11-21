@@ -110,19 +110,19 @@ export function TopicHeroSection({
             }
             media={
               heroPhoto ? (
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border/80 bg-sand/50 shadow-(--shadow-card-rest) sm:aspect-[4/3]">
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border/80 bg-sand/50 shadow-(--shadow-card-rest) md:aspect-[4/3]">
                   <Image
                     src={heroPhoto.src}
                     alt=""
                     fill
-                    sizes="(max-width: 640px) 100vw, 216px"
+                    sizes="(max-width: 767px) 100vw, 208px"
                     className={cn("object-cover", heroPhoto.objectPosition)}
                   />
                 </div>
               ) : undefined
             }
             actions={
-              <div className="flex w-full flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="btn-row flex w-full flex-wrap items-start gap-2.5">
                 <ArticleListenButton
                   uiLang={currentLang}
                   textToSpeak={topic.description}
@@ -132,7 +132,6 @@ export function TopicHeroSection({
                   onStopOverride={() => {
                     if (onStopClick) onStopClick();
                   }}
-                  className="w-full justify-center border-sapphire/35! bg-sapphire-soft/45! text-sapphire! hover:border-sapphire/55! hover:bg-sapphire-soft/75! sm:w-auto dark:border-sapphire-border/40! dark:bg-sapphire/20! dark:text-sapphire-border!"
                 />
                 <GuideOfflinePrintActions
                   lang={currentLang}

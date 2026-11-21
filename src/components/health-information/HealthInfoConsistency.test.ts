@@ -539,4 +539,71 @@ describe("health information, glossary, myth card, and topic grid design consist
     expect(readerHtml).toContain("scroll-mt-20");
     expect(readerHtml).toContain("scroll-mb-20");
   });
+
+  it("enforces responsive wrapping, accessible contrast, and CLAUDE.md UI rules across topic guide and summary components", () => {
+    const heroSrc = readSrc("src/components/health-information/TopicHeroSection.tsx");
+    expect(heroSrc).toContain("md:aspect-[4/3]");
+    expect(heroSrc).not.toContain("sm:aspect-[4/3]");
+    expect(heroSrc).toContain('sizes="(max-width: 767px) 100vw, 208px"');
+    expect(heroSrc).toContain("btn-row flex w-full flex-wrap items-start gap-2.5");
+    expect(heroSrc).not.toContain("border-sapphire/35!");
+    expect(heroSrc).not.toContain("bg-sapphire-soft/45!");
+
+    const detailSrc = readSrc("src/components/health-information/TopicDetailPageContent.tsx");
+    expect(detailSrc).toContain("btn-row flex flex-wrap items-center gap-2");
+    expect(detailSrc).not.toContain("grid w-full grid-cols-2");
+    expect(detailSrc).not.toContain("<BookIcon");
+    expect(detailSrc).toContain("border-border-control bg-card");
+
+    const summaryPageSrc = readSrc("src/app/health-information/topics/[topic]/page.tsx");
+    expect(summaryPageSrc).toContain("saveTitle={summary.title}");
+    expect(summaryPageSrc).toContain('<section aria-labelledby="summary-overview">');
+    expect(summaryPageSrc).not.toContain('<section aria-labelledby="summary-overview" className="mt-10">');
+    expect(summaryPageSrc).toContain('<footer className="mt-12 border-t border-border pt-8" aria-labelledby="summary-source">');
+    expect(summaryPageSrc).toContain("dark:text-sapphire-border");
+
+    const mythSrc = readSrc("src/components/health-information/TopicMythCard.tsx");
+    expect(mythSrc).not.toContain("text-paper dark:text-ink-950");
+    expect(mythSrc).toContain('hasAnswered && chosen && !isMatch && "text-rose-ink"');
+    expect(mythSrc).not.toContain("truncate");
+    expect(mythSrc).toContain("flex-wrap items-start justify-between");
+
+    const anatomySrc = readSrc("src/components/health-information/TopicAnatomyExplorer.tsx");
+    expect(anatomySrc).toContain("btn-row mt-3 flex flex-wrap items-center gap-2.5");
+    expect(anatomySrc).toContain("whitespace-nowrap");
+    expect(anatomySrc).not.toContain("sm:grid-cols-3");
+    expect(anatomySrc).not.toContain("md:grid-cols-3");
+    expect(anatomySrc).toContain("sm:flex-wrap");
+    expect(anatomySrc).not.toContain("EyebrowIcon");
+
+    const bpSimSrc = readSrc("src/components/health-information/heart-health/BloodPressureSimulator.tsx");
+    expect(bpSimSrc).toContain("btn-row mt-2 flex flex-wrap items-center gap-2");
+    expect(bpSimSrc).not.toContain("flex w-max");
+    expect(bpSimSrc).not.toContain("sm:overflow-visible");
+    expect(bpSimSrc).not.toContain("sm:basis-0");
+    expect(bpSimSrc).not.toContain("rounded-md border px-3 py-1");
+    expect(bpSimSrc).not.toContain("<CheckCircleIcon");
+    expect(bpSimSrc).not.toContain("<AlertCircleIcon");
+    expect(bpSimSrc).toContain("border-border-control");
+    expect(bpSimSrc).toContain("whitespace-nowrap");
+
+    for (const file of [
+      "src/components/health-information/WhyItMattersInfographic.tsx",
+      "src/components/health-information/ActionableStepsChecklist.tsx",
+      "src/components/health-information/WarningSignsEmergencyCard.tsx",
+    ]) {
+      const src = readSrc(file);
+      expect(src, `${file} section heading row must wrap safely`).toContain("flex-wrap items-start justify-between");
+      expect(src, `${file} must preserve dark-mode sapphire contrast`).toContain("dark:text-sapphire-border");
+    }
+
+    const nextStepsSrc = readSrc("src/components/health-information/TopicNextSteps.tsx");
+    expect(nextStepsSrc).toContain("min-w-0 flex-1");
+    expect(nextStepsSrc).toContain("md:flex-wrap");
+    expect(nextStepsSrc).not.toContain("truncate");
+
+    const disclaimerSrc = readSrc("src/components/health-information/MedicalSafetyDisclaimer.tsx");
+    expect(disclaimerSrc).not.toContain("<ShieldIcon");
+    expect(disclaimerSrc).toContain("min-w-0");
+  });
 });

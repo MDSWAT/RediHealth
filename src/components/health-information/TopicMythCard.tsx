@@ -71,24 +71,28 @@ export function TopicMythCard({
       aria-labelledby="topic-myth-title"
       className={`rounded-xl border border-border bg-card p-6 sm:p-8 ${className}`}
     >
-      <div className="flex items-start justify-between gap-4">
-        <h2 id="topic-myth-title" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
+      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
+        <h2
+          id="topic-myth-title"
+          className={cn(HEALTH_ARTICLE_SECTION_H2_CLASS, "min-w-0 flex-1")}
+        >
           {pickLocale(s.badge, currentLang)}
         </h2>
 
-        <InlineAudioNarratorButton
-          textToSpeak={pickLocale(s.audioPrompt, currentLang).replace(
-            "{statement}",
-            myth.statement,
-          )}
-          label={pickLocale(s.audioPrompt, currentLang).replace(
-            "{statement}",
-            myth.statement,
-          )}
-          lang={speechLang}
-          variant="ghost"
-          className="-mr-2 -mt-1"
-        />
+        <div className="shrink-0 self-start">
+          <InlineAudioNarratorButton
+            textToSpeak={pickLocale(s.audioPrompt, currentLang).replace(
+              "{statement}",
+              myth.statement,
+            )}
+            label={pickLocale(s.audioPrompt, currentLang).replace(
+              "{statement}",
+              myth.statement,
+            )}
+            lang={speechLang}
+            variant="ghost"
+          />
+        </div>
       </div>
 
       <p className="mt-3 max-w-(--measure-reading) text-title font-medium leading-snug text-foreground text-balance">
@@ -138,12 +142,9 @@ export function TopicMythCard({
                 <svg
                   className={cn(
                     "h-5 w-5 shrink-0",
-                    !hasAnswered && "text-sapphire",
+                    !hasAnswered && "text-sapphire dark:text-sapphire-border",
                     hasAnswered && chosen && isMatch && "text-white",
-                    hasAnswered &&
-                      chosen &&
-                      !isMatch &&
-                      "text-paper dark:text-ink-950",
+                    hasAnswered && chosen && !isMatch && "text-rose-ink",
                     hasAnswered &&
                       !chosen &&
                       isRightOption &&
@@ -169,10 +170,7 @@ export function TopicMythCard({
                     "h-5 w-5 shrink-0",
                     !hasAnswered && "text-muted-foreground",
                     hasAnswered && chosen && isMatch && "text-white",
-                    hasAnswered &&
-                      chosen &&
-                      !isMatch &&
-                      "text-paper dark:text-ink-950",
+                    hasAnswered && chosen && !isMatch && "text-rose-ink",
                     hasAnswered &&
                       !chosen &&
                       isRightOption &&
@@ -193,7 +191,7 @@ export function TopicMythCard({
                   <path d="M7 7l10 10M17 7 7 17" />
                 </svg>
               )}
-              <span className="min-w-0 truncate">{label}</span>
+              <span>{label}</span>
             </button>
           );
         })}

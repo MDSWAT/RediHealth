@@ -557,7 +557,7 @@ export function SynchronizedSentenceReader({
                   } as React.CSSProperties)
                 : undefined
             }
-            className="hh-dialog fixed inset-x-4 bottom-20 z-50 mx-auto max-w-sm rounded-xl border border-border bg-card p-5 shadow-xl sm:inset-x-auto sm:bottom-auto sm:mx-0 sm:w-96 sm:top-[var(--term-top,30%)] sm:left-[var(--term-left,30%)]"
+            className="hh-dialog fixed inset-x-4 bottom-20 z-50 mx-auto max-w-sm rounded-xl border border-border bg-card p-5 shadow-xl sm:inset-x-auto sm:bottom-auto sm:mx-0 sm:w-96 sm:max-w-[calc(100vw-2rem)] sm:top-[var(--term-top,30%)] sm:left-[var(--term-left,30%)]"
           >
             {/* Header */}
             <div className="flex items-start justify-between gap-3 border-b border-border/60 pb-3">

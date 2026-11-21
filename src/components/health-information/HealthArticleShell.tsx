@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
  */
 export const HEALTH_ARTICLE_CONTAINER_CLASS = "mx-auto w-full max-w-[44rem] [--measure-reading:44rem]";
 
-/** Elderly-first WCAG 2.2 AAA body prose scale: 18px base, 1.75 leading, 36rem unified reading measure. */
+/** Elderly-first WCAG 2.2 AAA body prose scale: 18px base, 1.65 leading, 44rem unified reading measure matching the centred column. */
 export const HEALTH_ARTICLE_PROSE_CLASS =
   "max-w-(--measure-reading) text-reading text-foreground";
 
@@ -61,7 +61,7 @@ export function HealthArticleBackLink({
     <nav aria-label={navAriaLabel ?? label} className={cn("mb-3 print:hidden", className)}>
       <Link
         href={href}
-        className="group -ml-2.5 inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-lg px-2.5 text-meta font-semibold text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/70 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+        className="group -ml-2.5 inline-flex min-h-12 max-w-full items-center gap-2 rounded-lg px-2.5 text-meta font-semibold text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/70 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:whitespace-nowrap"
       >
         <ArrowRightIcon
           className="h-4 w-4 shrink-0 rotate-180 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:-translate-x-0.5 motion-reduce:transition-none"
@@ -109,7 +109,7 @@ export function HealthArticleHeader({
   className,
 }: HealthArticleHeaderProps) {
   return (
-    <header className={cn("pt-1 pb-2 sm:pb-3", className)}>
+    <header className={cn("border-b border-border pb-6 pt-1 sm:pb-7 print:pb-4", className)}>
       {languageNotice && (
         <p
           role="note"
@@ -122,7 +122,9 @@ export function HealthArticleHeader({
 
       <div
         className={cn(
-          media ? "grid items-center gap-6 sm:grid-cols-[minmax(0,1fr)_13.5rem] sm:gap-8" : undefined,
+          media
+            ? "grid items-start gap-6 md:grid-cols-[minmax(0,1fr)_min(13rem,32%)] md:gap-7"
+            : undefined,
         )}
       >
         <div className="min-w-0">
@@ -134,7 +136,7 @@ export function HealthArticleHeader({
 
           <h1
             lang={titleLang}
-            className="min-w-0 text-balance text-display text-foreground [overflow-wrap:break-word]"
+            className="min-w-0 text-balance text-page text-foreground [overflow-wrap:break-word]"
           >
             {title}
           </h1>
@@ -142,7 +144,7 @@ export function HealthArticleHeader({
           {lead && (
             <p
               lang={leadLang}
-              className="mt-3 max-w-[38rem] text-pretty text-lead text-muted-foreground"
+              className="mt-3 max-w-(--measure-reading) text-pretty text-lead text-muted-foreground"
             >
               {lead}
             </p>
@@ -153,13 +155,13 @@ export function HealthArticleHeader({
       </div>
 
       {actions && (
-        <div className="btn-row mt-6 border-y border-border/80 py-3 print:hidden">
+        <div className="mt-5 border-t border-border/75 pt-4 print:hidden [&:not(:has(*))]:hidden">
           {actions}
         </div>
       )}
 
       {reviewNote && (
-        <p className="mt-3.5 max-w-(--measure-reading) text-meta text-muted-foreground">
+        <p className="mt-4 max-w-(--measure-reading) text-meta leading-relaxed text-muted-foreground">
           {reviewNote}
         </p>
       )}

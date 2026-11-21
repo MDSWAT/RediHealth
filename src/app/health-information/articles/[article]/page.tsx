@@ -60,8 +60,8 @@ export default async function HealthArticlePage({ params }: Props) {
         href: `#article-section-${i}`,
         label: section.heading,
       })),
-      { href: "#article-examples", label: copy.examples },
-      { href: "#article-questions", label: copy.questions },
+      ...(article.examples.length > 0 ? [{ href: "#article-examples", label: copy.examples }] : []),
+      ...(article.questions.length > 0 ? [{ href: "#article-questions", label: copy.questions }] : []),
     ],
   };
 
@@ -70,7 +70,7 @@ export default async function HealthArticlePage({ params }: Props) {
       {/* Long read: a hairline under the header fills as the page is read. */}
       <div className="read-progress" aria-hidden="true" />
       <article lang={article.contentLanguage}>
-      <HealthArticleShell className="pb-0 sm:pb-0">
+      <HealthArticleShell className="pt-5 pb-0 sm:pt-8 sm:pb-0">
         <HealthArticleBackLink
           href={withLangPrefix("/health-information#health-topics", lang)}
           label={copy.back}
@@ -110,7 +110,7 @@ export default async function HealthArticlePage({ params }: Props) {
       <HealthArticleShell className="pt-6 sm:pt-8">
 
           {article.sections.map((section, i) => (
-            <section key={i} aria-labelledby={`article-section-${i}`} className="mt-10">
+            <section key={i} aria-labelledby={`article-section-${i}`} className="mt-10 first:mt-0">
               <h2 id={`article-section-${i}`} className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
                 {section.heading}
               </h2>
@@ -122,31 +122,35 @@ export default async function HealthArticlePage({ params }: Props) {
             </section>
           ))}
 
-          <section aria-labelledby="article-examples" className="mt-10">
-            <h2 id="article-examples" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
-              {copy.examples}
-            </h2>
-            <p className="mt-3 max-w-(--measure-reading) text-body text-muted-foreground">
-              {copy.exampleNote}
-            </p>
-            {article.examples.map((example, i) => (
-              <div key={i} className="mt-6 rounded-xl border border-border bg-card p-6">
-                <h3 className="text-title font-semibold text-foreground">{example.title}</h3>
-                <p className={`mt-3 ${HEALTH_ARTICLE_PROSE_CLASS}`}>{example.text}</p>
-              </div>
-            ))}
-          </section>
-
-          <section aria-labelledby="article-questions" className="mt-10">
-            <h2 id="article-questions" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
-              {copy.questions}
-            </h2>
-            <ul className="mt-4 max-w-(--measure-reading) list-disc space-y-3.5 pl-6 text-reading text-foreground">
-              {article.questions.map((question) => (
-                <li key={question}>{question}</li>
+          {article.examples.length > 0 && (
+            <section aria-labelledby="article-examples" className="mt-10">
+              <h2 id="article-examples" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
+                {copy.examples}
+              </h2>
+              <p className="mt-3 max-w-(--measure-reading) text-body text-muted-foreground">
+                {copy.exampleNote}
+              </p>
+              {article.examples.map((example, i) => (
+                <div key={i} className="mt-5 rounded-xl border border-border bg-card p-5 sm:p-6 print:break-inside-avoid">
+                  <h3 className="text-title font-semibold text-foreground">{example.title}</h3>
+                  <p className={`mt-2.5 ${HEALTH_ARTICLE_PROSE_CLASS}`}>{example.text}</p>
+                </div>
               ))}
-            </ul>
-          </section>
+            </section>
+          )}
+
+          {article.questions.length > 0 && (
+            <section aria-labelledby="article-questions" className="mt-10">
+              <h2 id="article-questions" className={HEALTH_ARTICLE_SECTION_H2_CLASS}>
+                {copy.questions}
+              </h2>
+              <ul className="mt-4 max-w-(--measure-reading) list-disc space-y-3.5 pl-6 text-reading text-foreground">
+                {article.questions.map((question) => (
+                  <li key={question}>{question}</li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           <HealthArticleRelatedList
             heading={copy.related}
@@ -184,9 +188,9 @@ export default async function HealthArticlePage({ params }: Props) {
                   <a
                     href={source.url}
                     hrefLang="en"
-                    className="inline-flex min-h-11 items-center gap-2 text-body font-semibold text-sapphire underline underline-offset-4 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex min-h-11 max-w-full items-center gap-2 text-body font-semibold text-sapphire underline underline-offset-4 hover:text-sapphire-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border dark:hover:text-paper"
                   >
-                    {source.label}
+                    <span className="min-w-0 [overflow-wrap:anywhere]">{source.label}</span>
                     <ArrowRightIcon className="h-4 w-4 shrink-0 -rotate-45" aria-hidden="true" />
                   </a>
                 </li>
