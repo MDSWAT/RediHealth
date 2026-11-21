@@ -124,7 +124,7 @@ const outOfScopeMessageByLang: Record<Lang, string> = {
 };
 
 const PROMPT_INJECTION_PATTERN =
-  /ignore\s+(?:all\s+|your\s+|the\s+)?(?:previous|prior|above)\s+(?:instructions|rules|prompt)|forget\s+(?:all\s+|your\s+)?(?:instructions|rules|prompt)|(?:reveal|show|print|repeat)\s+(?:your\s+)?(?:system|developer)\s+prompt|jailbreak|\bDAN\s+mode\b|override\s+(?:your\s+)?rules|bypass\s+(?:your\s+)?(?:safety|filter|rules)|pretend\s+(?:you\s+are|to\s+be)\s+(?:a|an)\s+(?!patient|doctor)|act\s+as\s+(?:a|an)\s+(?!patient)|ignora\s+(?:tutte\s+)?(?:le\s+)?(?:istruzioni|regole)|dimentica\s+(?:le\s+)?(?:istruzioni|regole)|ignor[ăa]\s+(?:toate\s+)?(?:instruc[țt]iunile|regulile)|uit[ăa]\s+(?:toate\s+)?(?:instruc[țt]iunile|regulile)|забудь\s+(?:все\s+)?(?:инструкции|правила)|игнорируй\s+(?:все\s+)?(?:инструкции|правила)|zanemari\s+(?:sve\s+)?(?:upute|pravila)|injoro\s+(?:të\s+gjitha\s+)?(?:udhëzimet|rregullat)/i;
+  /ignore\s+(?:all\s+|your\s+|the\s+)?(?:previous|prior|above)\s+(?:instructions|rules|prompt)|forget\s+(?:all\s+|your\s+)?(?:instructions|rules|prompt)|(?:reveal|show|print|repeat)\s+(?:your\s+)?(?:system|developer)\s+prompt|jailbreak|\bDAN\s+mode\b|override\s+(?:your\s+)?rules|bypass\s+(?:your\s+)?(?:safety|filter|rules)|pretend\s+(?:you\s+are|to\s+be)\s+(?:a|an)\s+(?!patient|doctor)|act\s+as\s+(?:a|an)\s+(?!patient)|ignora\s+(?:tutte\s+)?(?:le\s+)?(?:istruzioni|regole)|dimentica\s+(?:le\s+)?(?:istruzioni|regole)|ignor[ăa]\s+(?:toate\s+)?(?:instruc[țt]iunile|regulile)|uit[ăa]\s+(?:toate\s+)?(?:instruc[țt]iunile|regulile)|забудь\s+(?:все\s+)?(?:инструкции|правила)|игнорируй\s+(?:все\s+)?(?:инструкции|правила)|zanemari\s+(?:sve\s+)?(?:upute|pravila)|injoro\s+(?:t[eë]\s+gjitha\s+)?(?:udh[eë]zimet|rregullat)|bister\s+(?:sa\s+)?(?:le\s+)?(?:regule|instrucie)|ma\s+dikh\s+(?:le\s+)?(?:regule|instrucie)/i;
 
 const HEALTH_OR_PLATFORM_SIGNAL =
   /redihealth|\b112\b|health|medic|doctor|nurse|clinic|hospital|pharmac|symptom|pain|ache|fever|cough|throat|stomach|nausea|vomit|diarrh|headache|migraine|blood|pressure|hypertension|diabet|glucose|insulin|cholesterol|hemoglobin|haemoglobin|anemia|asthma|allerg|rash|itch|skin|eye|ear|tooth|dental|heart|chest|lung|breath|kidney|liver|thyroid|cancer|infection|virus|bacteri|antibiotic|vaccine|pill|tablet|capsule|dose|dosage|prescription|side effect|pregnan|period|menstrua|contracep|child|baby|mental|stress|anxiety|depress|sleep|insomnia|fatigue|dizz|swelling|injury|wound|burn|fracture|diet|nutrition|salt|sugar|bmi|mediator|dictionary|guide|quiz|offline|account|gdpr|privacy|accessibility|telemed|sănăt|sanat|medic|spital|farmaci|simptom|durere|doare|febr|tuse|gât|gat|stomac|greaț|diabet|tensiun|sânge|sange|glicemi|rețet|retet|pastil|sarcin|copil|stres|somn|ghid|dicționar|dictionar|contul meu|salut|farmac|sintom|dolor|febbr|toss|gola|stomac|nause|pression|sangu|diabet|ricett|gravidanz|bambin|ansia|sonno|ospedal|ambulatori|mediatore|dizionario|shëndet|shendet|mjek|spital|farmaci|simptom|dhimbj|temperatur|koll|fyt|stomak|tension|gjak|diabet|recet|ilaç|ilac|shtatzën|fëmij|stres|gjum|udhëzues|fjalor|zdravlj|liječnik|lijecnik|bolnic|ljekarn|simptom|boli|temperatur|kašalj|grlo|želudac|tlak|krv|šećer|lijek|recept|trudnoć|dijete|stres|spavan|vodič|rječnik|sastip|doktor|bolnits|drab|dukhal|tatipen|khas|kurlo|per\b|rat\b|shero|streso|chavor|gidur|здоров|врач|доктор|больниц|аптек|симптом|бол[иья]|температур|кашл|горл|желуд|тошнот|давлен|кров|диабет|сахар|лекарств|таблет|рецепт|беремен|реб[её]н|стресс|сон|бессон|медиатор|словарь|руководств/i;
@@ -134,6 +134,11 @@ const CLEAR_OFF_TOPIC_PATTERN =
 
 const EXPLICIT_CULINARY_RECIPE_PATTERN =
   /recipe\s+for\s+(?:pasta|carbonara|pizza|cake|tiramisu|lasagna|soup|cookies|pancakes|bread)|re[țt]et[ăa]\s+de\s+(?:paste|tort|pr[ăa]jitur|pizza|sarmale|ciorb|clatite|cl[ăa]tite|m[âa]ncare)|ricetta\s+(?:della|del|per|di)\s+(?:carbonara|pasta|pizza|tiramis[uù]|torta|lasagna|dolc|risotto)|рецепт\s+(?:пицц|торт|борщ|паст|блин|суп|пирог)/i;
+
+export function isPromptInjectionAttempt(text: string): boolean {
+  const trimmed = text.trim();
+  return Boolean(trimmed && PROMPT_INJECTION_PATTERN.test(trimmed));
+}
 
 /**
  * Deterministic pre-LLM scope gate for chat messages.
@@ -145,7 +150,7 @@ const EXPLICIT_CULINARY_RECIPE_PATTERN =
 export function detectOffTopicRequest(text: string): boolean {
   const trimmed = text.trim();
   if (!trimmed) return false;
-  if (PROMPT_INJECTION_PATTERN.test(trimmed)) return true;
+  if (isPromptInjectionAttempt(trimmed)) return true;
   if (EXPLICIT_CULINARY_RECIPE_PATTERN.test(trimmed)) return true;
   if (HEALTH_OR_PLATFORM_SIGNAL.test(trimmed)) return false;
   return CLEAR_OFF_TOPIC_PATTERN.test(trimmed);

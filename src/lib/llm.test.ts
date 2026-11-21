@@ -132,4 +132,29 @@ describe("generateText", () => {
     const textReply = await generateText({ system: "s", text: "t" });
     expect(textReply.model).toBe("claude-haiku-4-5-20251001");
   });
+
+  it("extracts token usage from Anthropic responses when provided", async () => {
+    fetchMock.mockResolvedValueOnce(
+      jsonResponse({
+        content: [{ type: "text", text: "ok" }],
+        usage: {
+          input_tokens: 120,
+          output_tokens: 45,
+          cache_creation_input_tokens: 30,
+          cache_read_input_tokens: 10,
+        },
+      }),
+    );
+
+    const reply = await generateText({ system: "s", text: "t" });
+    expect(reply).toEqual({
+      text: "ok",
+      model: "claude-haiku-4-5-20251001",
+      usage: {
+        inputTokens: 160,
+        outputTokens: 45,
+        totalTokens: 205,
+      },
+    });
+  });
 });

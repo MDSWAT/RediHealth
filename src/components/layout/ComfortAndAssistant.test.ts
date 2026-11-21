@@ -108,8 +108,24 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
 
       for (const value of Object.values(comfort)) {
         expect(value, `${lang}: "${value}"`).not.toContain("&");
+        expect(value, `${lang}: "${value}"`).not.toContain("·");
         expect(value, `${lang}: "${value}"`).not.toContain("Cum explicăm");
         expect(value, `${lang}: "${value}"`).not.toContain("Pe scurt și simplu");
+      }
+
+      const maxHelpLen = lang === "ru" ? 38 : 42;
+      for (const helpKey of [
+        "autoReadHelp",
+        "highContrastHelp",
+        "underlineLinksHelp",
+        "wideSpacingHelp",
+        "readingGuideHelp",
+        "calmMotionHelp",
+      ] as const) {
+        expect(
+          comfort[helpKey].length,
+          `${lang}.${helpKey}: "${comfort[helpKey]}"`,
+        ).toBeLessThanOrEqual(maxHelpLen);
       }
     }
   });
@@ -204,7 +220,7 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
     expect((enHtml.match(/type="range"/g) ?? []).length).toBe(1);
     expect(enHtml).not.toContain(">Aa<");
     expect(enHtml).toContain(COMFORT_COPY.en.readingGuideToggle);
-    expect(enHtml).toContain(COMFORT_COPY.en.grayscaleToggle);
+    expect(enHtml).not.toContain("Greyscale");
     expect(enHtml).toContain(COMFORT_COPY.en.autoReadToggle);
 
     const romHtml = renderToStaticMarkup(
@@ -276,8 +292,8 @@ describe("plain reading mode copy (Pe scurt / Simple)", () => {
     const comfortSrc = readFileSync(resolve(process.cwd(), "src/components/layout/ComfortMenu.tsx"), "utf8");
     const iconsSrc = readFileSync(resolve(process.cwd(), "src/components/ui/icons.tsx"), "utf8");
     expect(comfortSrc).toContain("sm:rounded-3xl");
-    expect(comfortSrc).toContain("sm:w-[27rem] lg:w-[30rem]");
-    expect(comfortSrc).toContain("sm:max-h-[min(calc(100dvh-14.5rem),46rem)]");
+    expect(comfortSrc).toContain("sm:w-[25rem] lg:w-[26.5rem]");
+    expect(comfortSrc).toContain("sm:max-h-[min(calc(100dvh-12rem),42rem)]");
     expect(comfortSrc).toContain("max-sm:max-h-[calc(100dvh-0.5rem)]");
     expect(comfortSrc).not.toContain("sheet-close");
     expect(comfortSrc).toContain("bg-[#c62f3c]");

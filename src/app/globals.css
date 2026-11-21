@@ -2342,12 +2342,6 @@ html[data-underline-links] a[href].link-draw {
   background-image: none;
 }
 
-/* Grey colours: the whole page in shades of grey, for people who find colour tiring or hard to tell apart.
-   On the root element a filter does not trap fixed-position headers, sheets or dialogs. */
-html[data-grayscale] {
-  filter: grayscale(1);
-}
-
 /* Text size slider (Accessibility menu): a 44px-tall touch target with a 6px track and a 26px thumb.
    --fill is the share of the track left of the thumb, set inline from the current step. */
 .comfort-slider {

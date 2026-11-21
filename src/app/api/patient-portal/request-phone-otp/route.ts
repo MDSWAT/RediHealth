@@ -1,13 +1,23 @@
 import { randomInt } from "crypto";
 import { NextResponse } from "next/server";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
-import { isPhoneOtpDemoEnabled, normalizeOtpPhone, otpStore } from "@/lib/security/portal-otp-store";
+import {
+  PHONE_OTP_COOKIE,
+  PHONE_OTP_TTL_SECONDS,
+  encryptPhoneOtp,
+  isPhoneOtpDemoEnabled,
+  normalizeOtpPhone,
+  otpStore,
+} from "@/lib/security/portal-otp-store";
 
 export async function POST(request: Request) {
   // No SMS provider is connected yet; see isPhoneOtpDemoEnabled.
   if (!isPhoneOtpDemoEnabled()) {
     return NextResponse.json(
-      { error: "Autentificarea prin SMS nu este disponibilă încă. Folosește linkul primit pe email." },
+      {
+        error: "Autentificarea prin SMS nu este disponibilă încă. Folosește linkul primit pe email.",
+        code: "sms_unavailable",
+      },
       { status: 503 },
     );
   }
@@ -35,7 +45,7 @@ export async function POST(request: Request) {
     }
 
     const otp = String(randomInt(1000, 10000));
-    const expiresAt = Date.now() + 15 * 60 * 1000; // 15 minutes
+    const expiresAt = Date.now() + PHONE_OTP_TTL_SECONDS * 1000;
 
     // Development-only store: drop expired codes so it cannot grow without limit.
     for (const [key, entry] of otpStore) {
@@ -47,12 +57,25 @@ export async function POST(request: Request) {
       expiresAt,
     });
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
       message: "Codul de verificare de 4 cifre a fost generat.",
       // Development only: shown on screen because no SMS is sent.
       demoCode: otp,
     });
+
+    const cookieToken = await encryptPhoneOtp({ otp, phone: normalizedPhone, expiresAt });
+    if (cookieToken) {
+      response.cookies.set(PHONE_OTP_COOKIE, cookieToken, {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+        maxAge: PHONE_OTP_TTL_SECONDS,
+        path: "/",
+      });
+    }
+
+    return response;
   } catch (error) {
     console.error("Error generating phone OTP:", error);
     return NextResponse.json({ error: "Codul SMS nu a putut fi trimis." }, { status: 500 });

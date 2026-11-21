@@ -8,7 +8,6 @@ import {
   CloseIcon,
   ContrastIcon,
   PauseCircleIcon,
-  DropletIcon,
   ReadingGuideIcon,
   TextSpacingIcon,
   UnderlineIcon,
@@ -23,7 +22,6 @@ import {
   resetComfortPreferences,
   useAutoRead,
   useCalmMotion,
-  useGrayscale,
   useReadingGuide,
   useHighContrast,
   useTextScale,
@@ -52,8 +50,6 @@ type ComfortCopy = {
   wideSpacingHelp: string;
   readingGuideToggle: string;
   readingGuideHelp: string;
-  grayscaleToggle: string;
-  grayscaleHelp: string;
   motionLabel: string;
   calmMotionToggle: string;
   calmMotionHelp: string;
@@ -71,20 +67,18 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     scaleLarge: "Mare",
     scaleXl: "Foarte mare",
     autoReadToggle: "Citire automată cu voce",
-    autoReadHelp: "Pornește automat citirea pe paginile cu audio disponibil.",
+    autoReadHelp: "Citește automat paginile cu audio.",
     highContrastToggle: "Contrast ridicat",
-    highContrastHelp: "Text mai închis și margini clare pentru o citire ușoară.",
+    highContrastHelp: "Text mai închis și margini mai clare.",
     underlineLinksToggle: "Subliniază linkurile",
-    underlineLinksHelp: "Fiecare link rămâne subliniat vizibil în pagină.",
+    underlineLinksHelp: "Subliniază vizibil toate linkurile.",
     wideSpacingToggle: "Spațiere mărită",
-    wideSpacingHelp: "Mai mult spațiu între litere, cuvinte și rânduri.",
+    wideSpacingHelp: "Mai mult spațiu între litere și rânduri.",
     readingGuideToggle: "Ghid de citire",
-    readingGuideHelp: "O bandă clară urmează degetul sau mouse-ul și umbrește restul paginii.",
-    grayscaleToggle: "Tonuri de gri",
-    grayscaleHelp: "Pagina apare în nuanțe de gri, fără culori.",
+    readingGuideHelp: "O bandă luminoasă urmărește rândul citit.",
     motionLabel: "Mișcări pe ecran",
     calmMotionToggle: "Oprește elementele care se mișcă",
-    calmMotionHelp: "Paginile și știrile rămân nemișcate, fără efecte de derulare.",
+    calmMotionHelp: "Oprește animațiile și știrile mobile.",
     reset: "Resetează",
     close: "Închide",
   },
@@ -97,20 +91,18 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     scaleLarge: "Large",
     scaleXl: "Extra large",
     autoReadToggle: "Auto-read pages",
-    autoReadHelp: "Reads aloud automatically on pages where voice is available.",
+    autoReadHelp: "Reads pages with voice automatically.",
     highContrastToggle: "High contrast",
-    highContrastHelp: "Sharper ink, pure canvas, and bolder control borders.",
+    highContrastHelp: "Darker text and sharper borders.",
     underlineLinksToggle: "Underline links",
-    underlineLinksHelp: "Keeps every clickable link clearly underlined.",
+    underlineLinksHelp: "Keeps every link clearly underlined.",
     wideSpacingToggle: "Wider text spacing",
-    wideSpacingHelp: "Adds breathing room between letters, words, and lines.",
+    wideSpacingHelp: "More space between letters and lines.",
     readingGuideToggle: "Reading guide",
-    readingGuideHelp: "A clear band follows your finger or mouse and dims the rest of the page.",
-    grayscaleToggle: "Greyscale",
-    grayscaleHelp: "Shows the page in shades of grey instead of colour.",
+    readingGuideHelp: "Highlights the line you are reading.",
     motionLabel: "Screen motion",
     calmMotionToggle: "Stop moving screen elements",
-    calmMotionHelp: "Keeps news tickers and sections still while you read.",
+    calmMotionHelp: "Keeps news and animations still.",
     reset: "Reset settings",
     close: "Close",
   },
@@ -123,20 +115,18 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     scaleLarge: "E madhe",
     scaleXl: "Shumë e madhe",
     autoReadToggle: "Lexim automatik me zë",
-    autoReadHelp: "Nis leximin me zë automatikisht në faqet ku audio ofrohet.",
+    autoReadHelp: "Lexon automatikisht faqet me zë.",
     highContrastToggle: "Kontrast i lartë",
-    highContrastHelp: "Shkrim më i mprehtë dhe korniza më të qarta.",
+    highContrastHelp: "Shkrim më i errët dhe korniza të qarta.",
     underlineLinksToggle: "Nënvizo lidhjet",
-    underlineLinksHelp: "Të gjitha lidhjet shfaqen të nënvizuara qartë.",
+    underlineLinksHelp: "Nënvizon qartë çdo lidhje në faqe.",
     wideSpacingToggle: "Hapësirë më e gjerë e tekstit",
-    wideSpacingHelp: "Shton hapësirë mes shkronjave, fjalëve dhe rreshtave.",
+    wideSpacingHelp: "Shton hapësirë mes fjalëve dhe rreshtave.",
     readingGuideToggle: "Udhëzues leximi",
-    readingGuideHelp: "Një brez i qartë ndjek gishtin ose miun dhe errëson pjesën tjetër të faqes.",
-    grayscaleToggle: "Nuanca gri",
-    grayscaleHelp: "Faqja shfaqet në nuanca gri në vend të ngjyrave.",
+    readingGuideHelp: "Thekson rreshtin që po lexon tani.",
     motionLabel: "Lëvizjet në ekran",
     calmMotionToggle: "Ndalo elementet që lëvizin",
-    calmMotionHelp: "Lajmet dhe faqet qëndrojnë të qeta ndërsa lexon.",
+    calmMotionHelp: "Lajmet dhe lëvizjet mbeten të qeta.",
     reset: "Kthe cilësimet",
     close: "Mbyll",
   },
@@ -149,20 +139,18 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     scaleLarge: "Grande",
     scaleXl: "Molto grande",
     autoReadToggle: "Lettura vocale automatica",
-    autoReadHelp: "Avvia automaticamente la voce nelle pagine con audio disponibile.",
+    autoReadHelp: "Avvia la voce sulle pagine con audio.",
     highContrastToggle: "Contrasto elevato",
-    highContrastHelp: "Testo più scuro e bordi nitidi per leggere meglio.",
+    highContrastHelp: "Testo più scuro e bordi più nitidi.",
     underlineLinksToggle: "Sottolinea i link",
-    underlineLinksHelp: "Mantiene ogni collegamento chiaramente sottolineato.",
+    underlineLinksHelp: "Sottolinea chiaramente ogni link.",
     wideSpacingToggle: "Spaziatura ampia",
-    wideSpacingHelp: "Più spazio tra lettere, parole e righe di testo.",
+    wideSpacingHelp: "Più spazio tra lettere, parole e righe.",
     readingGuideToggle: "Guida alla lettura",
-    readingGuideHelp: "Una fascia chiara segue il dito o il mouse e scurisce il resto della pagina.",
-    grayscaleToggle: "Scala di grigi",
-    grayscaleHelp: "Mostra la pagina in sfumature di grigio invece che a colori.",
+    readingGuideHelp: "Evidenzia la riga che stai leggendo.",
     motionLabel: "Movimenti sullo schermo",
     calmMotionToggle: "Ferma gli elementi in movimento",
-    calmMotionHelp: "Notizie e sezioni restano ferme mentre leggi.",
+    calmMotionHelp: "Ferma notizie scorrevoli e animazioni.",
     reset: "Ripristina tutto",
     close: "Chiudi",
   },
@@ -175,20 +163,18 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     scaleLarge: "Veliko",
     scaleXl: "Vrlo veliko",
     autoReadToggle: "Automatsko čitanje naglas",
-    autoReadHelp: "Automatski pokreće čitanje na stranicama s dostupnim glasom.",
+    autoReadHelp: "Automatski čita stranice sa zvukom.",
     highContrastToggle: "Visoki kontrast",
-    highContrastHelp: "Oštrija slova i jasniji rubovi za lakše čitanje.",
+    highContrastHelp: "Tamniji tekst i jasniji rubovi.",
     underlineLinksToggle: "Podcrtaj poveznice",
-    underlineLinksHelp: "Svaka poveznica ostaje jasno podcrtana.",
+    underlineLinksHelp: "Svaka poveznica ostaje podcrtana.",
     wideSpacingToggle: "Veći razmak teksta",
-    wideSpacingHelp: "Više prostora između slova, riječi i redaka.",
+    wideSpacingHelp: "Više razmaka između slova i redaka.",
     readingGuideToggle: "Vodič za čitanje",
-    readingGuideHelp: "Svijetla traka prati prst ili miš i zatamnjuje ostatak stranice.",
-    grayscaleToggle: "Nijanse sive",
-    grayscaleHelp: "Stranica se prikazuje u nijansama sive umjesto u bojama.",
+    readingGuideHelp: "Ističe redak koji trenutno čitaš.",
     motionLabel: "Pokreti na zaslonu",
     calmMotionToggle: "Zaustavi pokretne elemente",
-    calmMotionHelp: "Vijesti i stranice ostaju mirne dok čitaš.",
+    calmMotionHelp: "Zaustavlja pokrete i traku vijesti.",
     reset: "Vrati zadano",
     close: "Zatvori",
   },
@@ -201,20 +187,18 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     scaleLarge: "Baro",
     scaleXl: "But baro",
     autoReadToggle: "Drabar korkoro avazesa",
-    autoReadHelp: "Putrel korkoro o avazi pe riga kaj si audio.",
+    autoReadHelp: "Putrel korkoro o avazi kaj si audio.",
     highContrastToggle: "Zoralo kontrasto",
-    highContrastHelp: "Mai kale lekha thaj klaro borduri te dikhes mai mishto.",
+    highContrastHelp: "Mai kale lekha thaj klaro borduri.",
     underlineLinksToggle: "Linia telal e linkura",
-    underlineLinksHelp: "Sako linko ačhol liniasa telal te dikhjol.",
+    underlineLinksHelp: "Sako linko ačhol liniasa telal.",
     wideSpacingToggle: "Mai baro than maškar e lava",
-    wideSpacingHelp: "Mai but than maškar e buchave, lava thaj riga.",
+    wideSpacingHelp: "Mai but than maškar e lava thaj riga.",
     readingGuideToggle: "Drom vash drabaripe",
-    readingGuideHelp: "Jekh klaro pervazo phirel palal o naj vaj o mouse thaj kalarel aver riga.",
-    grayscaleToggle: "Numa siva",
-    grayscaleHelp: "I riga sikadjol numa ando siva, bi farbengo.",
+    readingGuideHelp: "Sikhavel klaro o rindo so drabares.",
     motionLabel: "Miškipen pe ekrano",
     calmMotionToggle: "Ačhav so miškisajvel",
-    calmMotionHelp: "E nevimata thaj e riga ačhon phandade kana drabares.",
+    calmMotionHelp: "Ačhavel e animaciye thaj e nevimata.",
     reset: "Risar setimata",
     close: "Phandav",
   },
@@ -227,20 +211,18 @@ export const COMFORT_COPY: Record<Lang, ComfortCopy> = {
     scaleLarge: "Крупный",
     scaleXl: "Очень крупный",
     autoReadToggle: "Авточтение вслух",
-    autoReadHelp: "Автоматически включает озвучивание на страницах с поддержкой голоса.",
+    autoReadHelp: "Автоматически озвучивает страницы.",
     highContrastToggle: "Высокий контраст",
-    highContrastHelp: "Более чёткий шрифт, фон и выраженные границы кнопок.",
+    highContrastHelp: "Чёткий текст и заметные границы.",
     underlineLinksToggle: "Подчёркивать ссылки",
-    underlineLinksHelp: "Все ссылки на странице остаются заметно подчёркнутыми.",
+    underlineLinksHelp: "Подчёркивает все ссылки на странице.",
     wideSpacingToggle: "Увеличенный интервал",
-    wideSpacingHelp: "Больше пространства между буквами, словами и строками.",
+    wideSpacingHelp: "Увеличивает интервал букв и строк.",
     readingGuideToggle: "Линейка для чтения",
-    readingGuideHelp: "Светлая полоса следует за пальцем или мышью и затемняет остальную страницу.",
-    grayscaleToggle: "Оттенки серого",
-    grayscaleHelp: "Страница показывается в оттенках серого, без цвета.",
+    readingGuideHelp: "Подсвечивает читаемую строку.",
     motionLabel: "Движение на экране",
     calmMotionToggle: "Остановить движущиеся элементы",
-    calmMotionHelp: "Строка новостей и блоки остаются неподвижными при чтении.",
+    calmMotionHelp: "Отключает анимации и движение.",
     reset: "Сбросить",
     close: "Закрыть",
   },
@@ -284,7 +266,6 @@ export function ComfortMenu({
   const [underlineLinks, setUnderlineLinks] = useUnderlineLinks();
   const [wideSpacing, setWideSpacing] = useWideSpacing();
   const [readingGuide, setReadingGuide] = useReadingGuide();
-  const [grayscale, setGrayscale] = useGrayscale();
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
 
   const isControlled = open !== undefined;
@@ -325,7 +306,6 @@ export function ComfortMenu({
     underlineLinks ||
     wideSpacing ||
     readingGuide ||
-    grayscale ||
     (voiceAvailable && autoRead);
   const hasComfortBoost =
     textScale !== "normal" ||
@@ -334,7 +314,6 @@ export function ComfortMenu({
     underlineLinks ||
     wideSpacing ||
     readingGuide ||
-    grayscale ||
     (voiceAvailable && autoRead);
 
   useEffect(() => {
@@ -440,14 +419,6 @@ export function ComfortMenu({
       onToggle: () => setReadingGuide(!readingGuide),
     },
     {
-      id: "grayscale",
-      label: copy.grayscaleToggle,
-      help: copy.grayscaleHelp,
-      checked: grayscale,
-      Icon: DropletIcon,
-      onToggle: () => setGrayscale(!grayscale),
-    },
-    {
       id: "calm-motion",
       label: copy.calmMotionToggle,
       help: copy.calmMotionHelp,
@@ -458,8 +429,8 @@ export function ComfortMenu({
   ];
 
   const controlsBody = (
-    <div className="space-y-2.5 text-left max-sm:space-y-2">
-      <div className="rounded-2xl px-2.5 pt-1 pb-0.5">
+    <div className="space-y-2 text-left">
+      <div className="rounded-2xl px-2 pt-0.5 pb-0">
         <div className="flex items-baseline justify-between gap-3">
           <label htmlFor={sliderId} className="text-body font-medium text-foreground dark:text-paper">
             {copy.textSizeLabel}
@@ -469,7 +440,7 @@ export function ComfortMenu({
           </span>
         </div>
         {/* Three stops (normal, large, extra large); the small and big A show which way makes text bigger. */}
-        <div className="mt-1 flex items-center gap-3 max-sm:mt-0.5">
+        <div className="mt-0.5 flex items-center gap-2.5">
           <span aria-hidden="true" className="w-4 shrink-0 text-center text-[0.95rem] font-semibold leading-none text-foreground dark:text-paper">
             A
           </span>
@@ -491,27 +462,27 @@ export function ComfortMenu({
         </div>
       </div>
 
-      <div className="divide-y divide-ink-900/8 border-t border-ink-900/10 pt-1 dark:divide-white/10 dark:border-white/10">
+      <div className="divide-y divide-ink-900/8 border-t border-ink-900/10 pt-0.5 dark:divide-white/10 dark:border-white/10">
         {switchOptions.map((option) => {
           const { Icon } = option;
           return (
-            <div key={option.id} className="py-0.5">
+            <div key={option.id}>
               <button
                 type="button"
                 role="switch"
                 aria-checked={option.checked}
                 onClick={option.onToggle}
                 className={cn(
-                  "press-row flex min-h-11 w-full max-w-full items-center justify-between gap-3 rounded-lg px-2.5 py-1.5 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none dark:focus-visible:ring-paper",
+                  "press-row flex min-h-11 w-full max-w-full items-center justify-between gap-2.5 rounded-lg px-2 py-1.5 text-left transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring motion-reduce:transition-none dark:focus-visible:ring-paper",
                   option.checked
                     ? "bg-sapphire/[0.06] dark:bg-white/[0.08]"
                     : "hover:bg-ink-900/[0.035] dark:hover:bg-white/[0.05]",
                 )}
               >
-                <span className="flex min-w-0 flex-1 items-center gap-3">
+                <span className="flex min-w-0 flex-1 items-center gap-2.5">
                   <Icon
                     className={cn(
-                      "h-4.5 w-4.5 shrink-0 transition-colors duration-(--dur-fast)",
+                      "h-4 w-4 shrink-0 transition-colors duration-(--dur-fast)",
                       option.checked
                         ? "text-sapphire dark:text-sapphire-border"
                         : "text-muted-foreground dark:text-mist",
@@ -521,7 +492,7 @@ export function ComfortMenu({
                   <span className="min-w-0 flex-1">
                     <span
                       className={cn(
-                        "block text-body leading-snug",
+                        "block text-[0.9375rem] leading-tight",
                         option.checked
                           ? "font-semibold text-sapphire dark:text-paper"
                           : "font-medium text-foreground dark:text-paper",
@@ -530,7 +501,7 @@ export function ComfortMenu({
                       {option.label}
                     </span>
                     {/* Phones: the help line is read out but not shown, so the whole sheet fits on screen. */}
-                    <span className="mt-0.5 block text-meta leading-snug text-muted-foreground max-sm:sr-only dark:text-mist">
+                    <span className="mt-0.5 block text-[0.8125rem] leading-tight text-muted-foreground max-sm:sr-only dark:text-mist">
                       {option.help}
                     </span>
                   </span>
@@ -706,12 +677,12 @@ export function ComfortMenu({
             CAPSULE_PANEL,
             // Phones: a white sheet from the bottom edge, like search; dark only when the site is.
             isPhone && "phone-sheet-light",
-            "w-auto max-w-full overflow-x-hidden p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:w-[27rem] lg:w-[30rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-3xl sm:p-5",
+            "w-auto max-w-full overflow-x-hidden p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:w-[25rem] lg:w-[26.5rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-3xl sm:p-4",
             // Phones: the sheet may use the whole screen height so every control stays in view.
             "max-sm:flex max-sm:max-h-[calc(100dvh-0.5rem)] max-sm:flex-col",
           )}
         >
-          <div className="mb-3 flex shrink-0 items-center justify-between gap-2 border-b border-border/70 pb-2.5 max-sm:mb-2.5 max-sm:pb-2 dark:border-white/10">
+          <div className="mb-2 flex shrink-0 items-center justify-between gap-2 border-b border-border/70 pb-2 dark:border-white/10">
             <h2 className="text-body font-semibold text-foreground dark:text-paper">{copy.title}</h2>
             <button
               type="button"
@@ -728,7 +699,7 @@ export function ComfortMenu({
               <CloseIcon className="h-4.5 w-4.5" />
             </button>
           </div>
-          <div className="-m-0.5 min-h-0 overflow-y-auto overscroll-contain py-0.5 pl-0.5 pr-1.5 max-sm:flex-1 sm:max-h-[min(calc(100dvh-14.5rem),46rem)]">
+          <div className="-m-0.5 min-h-0 overflow-y-auto overscroll-contain py-0.5 pl-0.5 pr-1.5 max-sm:flex-1 sm:max-h-[min(calc(100dvh-12rem),42rem)]">
             {controlsBody}
           </div>
         </div>

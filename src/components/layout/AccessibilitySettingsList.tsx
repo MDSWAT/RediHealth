@@ -20,7 +20,6 @@ export function AccessibilitySettingsList({ lang, lead }: { lang: Lang; lead: st
     { title: copy.underlineLinksToggle, help: copy.underlineLinksHelp },
     { title: copy.wideSpacingToggle, help: copy.wideSpacingHelp },
     { title: copy.readingGuideToggle, help: copy.readingGuideHelp },
-    { title: copy.grayscaleToggle, help: copy.grayscaleHelp },
     { title: copy.calmMotionToggle, help: copy.calmMotionHelp },
   ];
 

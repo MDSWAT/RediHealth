@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { SignInForm } from "@/components/auth/SignInForm";
+import { ArrowRightIcon, StethoscopeIcon } from "@/components/ui/icons";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -111,30 +113,64 @@ export function SignInPageContent({
         : undefined;
 
   return (
-    <main id="main-content" className="flex-1 pb-12 sm:pb-16">
+    <main id="main-content" className="relative flex flex-1 flex-col justify-center pb-12 sm:pb-16">
       <Container>
-        {/* One narrow, centred column: the page has a single job, so nothing sits beside it. */}
-        <div className="mx-auto w-full max-w-[30rem] pt-8 sm:pt-14">
-          <h1 className="text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.02em] text-foreground text-balance sm:text-[2rem]">
-            {page.heroTitle}
-          </h1>
-          <p className="mt-2.5 text-body leading-relaxed text-muted-foreground text-pretty">
-            {googleConfigured ? page.heroParagraphWithGoogle : page.heroParagraphNoGoogle}
-          </p>
-          <p className="mt-3 text-body leading-relaxed text-foreground text-pretty">{staffNotice.staffOnly}</p>
-          <p className="mt-1 text-body leading-relaxed text-muted-foreground text-pretty">
-            {staffNotice.patientPrompt}{" "}
-            <Link href={withLangPrefix("/contul-meu", lang)} className={`inline-flex min-h-11 items-center ${inlineLink}`}>
-              {staffNotice.patientLink}
-            </Link>
-          </p>
+        <div className="mx-auto w-full max-w-[70rem] py-6 sm:py-10">
+          <div className="grid overflow-hidden rounded-3xl border border-border/85 bg-card shadow-(--shadow-card-hover) dark:border-white/12 dark:bg-ink-900 lg:grid-cols-12">
+            <div className="p-6 sm:p-8 lg:col-span-6 lg:p-10">
+              <h1 className="text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.02em] text-foreground text-balance sm:text-[2rem]">
+                {page.heroTitle}
+              </h1>
+              <p className="mt-2.5 text-body leading-relaxed text-muted-foreground text-pretty">
+                {googleConfigured ? page.heroParagraphWithGoogle : page.heroParagraphNoGoogle}
+              </p>
 
-          <div className="mt-6">
-            <SignInForm googleConfigured={googleConfigured} initialError={initialErrorMessage} />
+              <div className="mt-6">
+                <SignInForm googleConfigured={googleConfigured} initialError={initialErrorMessage} embedded />
+              </div>
+
+              <p className="mt-6 px-2 text-sm leading-relaxed text-muted-foreground text-pretty">
+                {termsWithLinks(page.terms, lang)}
+              </p>
+            </div>
+
+            <div className="relative flex min-h-[20rem] flex-col justify-between overflow-hidden bg-ink-950 p-6 sm:p-8 lg:col-span-6 lg:min-h-[34rem] lg:p-10">
+              <Image
+                src="/images/hero-consultation.jpg"
+                alt=""
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover object-center"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/95 via-ink-950/60 to-ink-950/25"
+              />
+
+              <div className="relative z-10 inline-flex w-fit items-center gap-2 rounded-xl border border-white/15 bg-ink-950/60 px-3.5 py-2 text-sm font-medium text-paper backdrop-blur-md">
+                <StethoscopeIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-sapphire-border" />
+                <span>RediHealth</span>
+              </div>
+
+              <div className="relative z-10 mt-auto pt-20 sm:pt-24">
+                <p className="text-balance text-[1.2rem] font-semibold leading-snug text-paper sm:text-[1.35rem]">
+                  {staffNotice.staffOnly}
+                </p>
+
+                <div className="mt-5 rounded-xl border border-white/15 bg-ink-950/60 p-4 backdrop-blur-md">
+                  <p className="text-body text-paper/85 text-pretty">{staffNotice.patientPrompt}</p>
+                  <Link
+                    href={withLangPrefix("/contul-meu", lang)}
+                    className="mt-1 inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-sm font-semibold text-paper underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+                  >
+                    <span>{staffNotice.patientLink}</span>
+                    <ArrowRightIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
-          <p className="mt-6 px-2 text-sm leading-relaxed text-muted-foreground text-pretty">
-            {termsWithLinks(page.terms, lang)}
-          </p>
         </div>
       </Container>
     </main>

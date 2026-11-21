@@ -16,6 +16,7 @@ import {
   TrashIcon,
 } from "@/components/ui/icons";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
+import { AI_CHAT_COPY } from "@/components/health-assistant/ai-chat-copy";
 import { PrescriptionStructuredResult } from "@/components/health-assistant/PrescriptionStructuredResult";
 import { useReadAloud } from "@/components/health-check/readingTools";
 import { prefersCalmOrReducedMotion, useReadingLevel } from "@/lib/comfort-preferences";
@@ -23,6 +24,7 @@ import { Container } from "@/components/ui/Container";
 import type { DocumentSourceKind, PrescribedMedicineItem } from "@/lib/health-assistant";
 import { prepareMedicalImageForUpload } from "@/lib/image";
 import { findHelpLinks } from "@/lib/i18n/find-help-links";
+import { getOrCreateClientDeviceId } from "@/lib/security/client-device-id";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -721,8 +723,20 @@ export function PrescriptionReview() {
   const [context, setContext] = useState("");
   const [result, setResult] = useState<ReviewResponse | null>(null);
   const [qualityState, setQualityState] = useState<"idle" | "checking" | "good" | "warn">("idle");
+  const safetyCopy = (AI_CHAT_COPY[lang] ?? AI_CHAT_COPY.en).safety;
   const [errorKind, setErrorKind] = useState<
-    "nameReq" | "file" | "uploadReq" | "read" | "rateLimit" | "offline" | "service" | "review" | null
+    | "nameReq"
+    | "file"
+    | "uploadReq"
+    | "read"
+    | "rateLimit"
+    | "blocked"
+    | "dailyLimit"
+    | "abuseWarning"
+    | "offline"
+    | "service"
+    | "review"
+    | null
   >(null);
   // A typed name and a photo fail in different words: nothing was "read" when the person typed.
   const nameMode = inputMode === "name";
@@ -732,6 +746,9 @@ export function PrescriptionReview() {
     uploadReq: t.uploadReqErr,
     read: t.readErr,
     rateLimit: t.rateLimitErr,
+    blocked: safetyCopy.blockedBody,
+    dailyLimit: safetyCopy.dailyLimitBody,
+    abuseWarning: safetyCopy.abuseWarning,
     offline: t.offlineErr,
     service: nameMode ? t.nameServiceErr : t.serviceErr,
     review: nameMode ? t.nameReviewErr : t.reviewErr,
@@ -989,7 +1006,10 @@ export function PrescriptionReview() {
 
       const response = await fetch("/api/health-assistant", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-device-id": getOrCreateClientDeviceId(),
+        },
         body: JSON.stringify(requestPayload),
         signal: controller.signal,
       });
@@ -997,7 +1017,11 @@ export function PrescriptionReview() {
       // Server errors are written in English; the person always sees a message in their language.
       // A fault on our side (5xx) is never blamed on the photo or on the name that was typed.
       if (!response.ok) {
-        if (response.status === 429) setErrorKind("rateLimit");
+        const errData = (await response.json().catch(() => null)) as { code?: string } | null;
+        if (errData?.code === "device_blocked") setErrorKind("blocked");
+        else if (errData?.code === "abuse_warning") setErrorKind("abuseWarning");
+        else if (errData?.code === "daily_token_limit") setErrorKind("dailyLimit");
+        else if (response.status === 429) setErrorKind("rateLimit");
         else if (response.status >= 500) setErrorKind("service");
         else setErrorKind("review");
         return;

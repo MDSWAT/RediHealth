@@ -125,11 +125,6 @@ export function getReadingGuideSnapshot(): boolean {
   return readBooleanPreference(READING_GUIDE_KEY);
 }
 
-/** Shows the site in shades of grey, for people who find colour tiring or hard to tell apart. */
-export function getGrayscaleSnapshot(): boolean {
-  return readBooleanPreference(GRAYSCALE_KEY);
-}
-
 /**
  * The "Simple / Detailed" reading switch was removed: every visitor reads the regular (detailed)
  * text, whatever an earlier visit stored in the browser.
@@ -148,7 +143,6 @@ export function applyComfortToDom() {
   const underlineLinks = getUnderlineLinksSnapshot();
   const wideSpacing = getWideSpacingSnapshot();
   const readingGuide = getReadingGuideSnapshot();
-  const grayscale = getGrayscaleSnapshot();
   const readingLevel = getReadingLevelSnapshot();
 
   if (textScale === "xl") {
@@ -168,7 +162,7 @@ export function applyComfortToDom() {
   syncBooleanAttribute(root, "data-underline-links", underlineLinks);
   syncBooleanAttribute(root, "data-wide-spacing", wideSpacing);
   syncBooleanAttribute(root, "data-reading-guide", readingGuide);
-  syncBooleanAttribute(root, "data-grayscale", grayscale);
+  root.removeAttribute("data-grayscale");
 
   root.setAttribute("data-reading-level", readingLevel);
 }
@@ -218,10 +212,6 @@ export function setWideSpacingPreference(next: boolean) {
 
 export function setReadingGuidePreference(next: boolean) {
   writeBooleanPreference(READING_GUIDE_KEY, next, getReadingGuideSnapshot);
-}
-
-export function setGrayscalePreference(next: boolean) {
-  writeBooleanPreference(GRAYSCALE_KEY, next, getGrayscaleSnapshot);
 }
 
 /** Kept so older callers still compile; the reading level can no longer be changed. */
@@ -293,12 +283,6 @@ export function useWideSpacing(): [boolean, (next: boolean) => void] {
 export function useReadingGuide(): [boolean, (next: boolean) => void] {
   const enabled = useSyncExternalStore(subscribeComfort, getReadingGuideSnapshot, () => false);
   const update = useCallback((next: boolean) => setReadingGuidePreference(next), []);
-  return [enabled, update];
-}
-
-export function useGrayscale(): [boolean, (next: boolean) => void] {
-  const enabled = useSyncExternalStore(subscribeComfort, getGrayscaleSnapshot, () => false);
-  const update = useCallback((next: boolean) => setGrayscalePreference(next), []);
   return [enabled, update];
 }
 

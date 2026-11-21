@@ -33,6 +33,18 @@ export type AiChatCopy = {
   statusReady: string;
   quickPrompts: [string, string, string];
   errors: { generic: string; busy: string; unavailable: string };
+  safety: {
+    abuseWarning: string;
+    blockedTitle: string;
+    blockedBody: string;
+    blockedUntilPrefix: string;
+    dailyLimitTitle: string;
+    dailyLimitBody: string;
+    dailyLimitResetPrefix: string;
+    useOtherTools: string;
+    symptomCheckerLink: string;
+    healthGuidesLink: string;
+  };
 };
 
 export const AI_CHAT_MAX_LENGTH = 4000;
@@ -197,6 +209,22 @@ export const AI_CHAT_COPY: Record<Lang, AiChatCopy> = {
       busy: "Asistentul este ocupat. Încearcă din nou peste câteva minute.",
       unavailable: "Asistentul nu funcționează acum. Încearcă mai târziu.",
     },
+    safety: {
+      abuseWarning:
+        "Mesajul a fost oprit. Păstrează un limbaj respectuos și folosește asistentul doar pentru întrebări medicale. Repetarea blochează asistentul pe acest dispozitiv timp de 72 de ore.",
+      blockedTitle: "Asistentul IA este blocat temporar pe acest dispozitiv",
+      blockedBody:
+        "Conversația a fost oprită și asistentul IA a fost dezactivat timp de 72 de ore din cauza limbajului nepotrivit sau a utilizării abuzive.",
+      blockedUntilPrefix: "Disponibil din nou după:",
+      dailyLimitTitle: "Limita zilnică pentru asistentul IA a fost atinsă",
+      dailyLimitBody:
+        "Acest dispozitiv a atins limita zilnică de utilizare pentru asistentul IA.",
+      dailyLimitResetPrefix: "Se resetează după:",
+      useOtherTools:
+        "Poți folosi în continuare verificarea simptomelor și ghidurile medicale fără restricții.",
+      symptomCheckerLink: "Verifică simptomele",
+      healthGuidesLink: "Ghiduri de sănătate",
+    },
   },
   en: {
     navLabel: "AI assistant",
@@ -243,6 +271,22 @@ export const AI_CHAT_COPY: Record<Lang, AiChatCopy> = {
       generic: "We could not answer right now. Please try again.",
       busy: "The assistant is busy. Try again in a few minutes.",
       unavailable: "The assistant is not working right now. Try again later.",
+    },
+    safety: {
+      abuseWarning:
+        "Message interrupted. Please keep your language respectful and use the assistant only for health questions. Repeated abuse disables the assistant on this device for 72 hours.",
+      blockedTitle: "AI assistant disabled on this device",
+      blockedBody:
+        "This conversation was interrupted and the AI assistant has been blocked for 72 hours due to abusive language or misuse.",
+      blockedUntilPrefix: "Available again after:",
+      dailyLimitTitle: "Daily AI assistant limit reached",
+      dailyLimitBody:
+        "This device has reached its daily token allowance for the AI assistant.",
+      dailyLimitResetPrefix: "Resets after:",
+      useOtherTools:
+        "You can still use the symptom checker and health guides normally.",
+      symptomCheckerLink: "Check symptoms",
+      healthGuidesLink: "Health guides",
     },
   },
   sq: {
@@ -291,6 +335,22 @@ export const AI_CHAT_COPY: Record<Lang, AiChatCopy> = {
       busy: "Asistenti është i zënë. Provo përsëri pas pak minutash.",
       unavailable: "Asistenti nuk funksionon tani. Provo më vonë.",
     },
+    safety: {
+      abuseWarning:
+        "Mesazhi u ndalua. Mbaj gjuhë të respektueshme dhe përdor asistentin vetëm për pyetje shëndetësore. Përsëritja e bllokon asistentin në këtë pajisje për 72 orë.",
+      blockedTitle: "Asistenti IA është bllokuar përkohësisht në këtë pajisje",
+      blockedBody:
+        "Biseda u ndërpre dhe asistenti IA u çaktivizua për 72 orë për shkak të gjuhës fyese ose keqpërdorimit.",
+      blockedUntilPrefix: "Disponohet sërish pas:",
+      dailyLimitTitle: "Limiti ditor për asistentin IA u arrit",
+      dailyLimitBody:
+        "Kjo pajisje ka arritur kufirin ditor të përdorimit për asistentin IA.",
+      dailyLimitResetPrefix: "Rikthehet pas:",
+      useOtherTools:
+        "Mund të vazhdosh të përdorësh kontrollin e simptomave dhe udhëzuesit shëndetësorë normalisht.",
+      symptomCheckerLink: "Kontrollo simptomat",
+      healthGuidesLink: "Udhëzues shëndetësorë",
+    },
   },
   it: {
     navLabel: "Assistente IA",
@@ -337,6 +397,22 @@ export const AI_CHAT_COPY: Record<Lang, AiChatCopy> = {
       generic: "Non siamo riusciti a rispondere ora. Riprova.",
       busy: "L'assistente è occupato. Riprova tra qualche minuto.",
       unavailable: "L'assistente non funziona in questo momento. Riprova più tardi.",
+    },
+    safety: {
+      abuseWarning:
+        "Messaggio interrotto. Usa un linguaggio rispettoso e utilizza l'assistente solo per domande sulla salute. Il ripetersi blocca l'assistente su questo dispositivo per 72 ore.",
+      blockedTitle: "Assistente IA disabilitato su questo dispositivo",
+      blockedBody:
+        "La conversazione è stata interrotta e l'assistente IA è stato bloccato per 72 ore a causa di linguaggio offensivo o uso improprio.",
+      blockedUntilPrefix: "Di nuovo disponibile dopo:",
+      dailyLimitTitle: "Limite giornaliero dell'assistente IA raggiunto",
+      dailyLimitBody:
+        "Questo dispositivo ha raggiunto il limite giornaliero di utilizzo per l'assistente IA.",
+      dailyLimitResetPrefix: "Si reimposta dopo:",
+      useOtherTools:
+        "Puoi comunque usare il controllo sintomi e le guide sulla salute senza limitazioni.",
+      symptomCheckerLink: "Controlla i sintomi",
+      healthGuidesLink: "Guide alla salute",
     },
   },
   hr: {
@@ -385,6 +461,22 @@ export const AI_CHAT_COPY: Record<Lang, AiChatCopy> = {
       busy: "Asistent je zauzet. Pokušaj ponovno za nekoliko minuta.",
       unavailable: "Asistent trenutno ne radi. Pokušaj kasnije.",
     },
+    safety: {
+      abuseWarning:
+        "Poruka je prekinuta. Zadrži pristojan ton i koristi asistenta samo za zdravstvena pitanja. Ponavljanje blokira asistenta na ovom uređaju na 72 sata.",
+      blockedTitle: "AI asistent je privremeno onemogućen na ovom uređaju",
+      blockedBody:
+        "Razgovor je prekinut i AI asistent je blokiran na 72 sata zbog neprimjerenog jezika ili zlouporabe.",
+      blockedUntilPrefix: "Ponovno dostupno nakon:",
+      dailyLimitTitle: "Dosegnuto je dnevno ograničenje AI asistenta",
+      dailyLimitBody:
+        "Ovaj je uređaj dosegnuo dnevno dopuštenje korištenja za AI asistenta.",
+      dailyLimitResetPrefix: "Resetira se nakon:",
+      useOtherTools:
+        "I dalje možeš normalno koristiti provjeru simptoma i zdravstvene vodiče.",
+      symptomCheckerLink: "Provjeri simptome",
+      healthGuidesLink: "Zdravstveni vodiči",
+    },
   },
   rom: {
     navLabel: "AI azhutitori",
@@ -432,6 +524,22 @@ export const AI_CHAT_COPY: Record<Lang, AiChatCopy> = {
       busy: "O azhutitori si ande buti. Zumav palem pale nesave minutura.",
       unavailable: "O azhutitori na kerel buti akana. Zumav maj palal.",
     },
+    safety: {
+      abuseWarning:
+        "O mesazho achavdilo. Vaker pakivasa thaj loshan o azhutitori numa vash sastipnaske phuchimata. Te avla palem, o azhutitori phandavel pe pe kadava telefono 72 chasurya.",
+      blockedTitle: "O AI azhutitori si phandavdo pe kadava telefono",
+      blockedBody:
+        "O vorbipen achavdilo thaj o AI azhutitori si phandavdo 72 chasurya sebepi bilaćhe lava vaj nasul loshanipe.",
+      blockedUntilPrefix: "Puterdo palem pala:",
+      dailyLimitTitle: "E dyeseski limita vash o AI azhutitori resli",
+      dailyLimitBody:
+        "Kadava telefono reslya e dyeseski limita vash o AI azhutitori.",
+      dailyLimitResetPrefix: "Neviola pala:",
+      useOtherTools:
+        "Shaj te loshanes inke o dikhipe e simptomengo thaj le sastipnaske gidura.",
+      symptomCheckerLink: "Dikh che simptome",
+      healthGuidesLink: "Sastipnaske gidura",
+    },
   },
   ru: {
     navLabel: "ИИ-помощник",
@@ -478,6 +586,22 @@ export const AI_CHAT_COPY: Record<Lang, AiChatCopy> = {
       generic: "Сейчас не удалось ответить. Попробуйте ещё раз.",
       busy: "Помощник занят. Попробуйте через несколько минут.",
       unavailable: "Помощник сейчас не работает. Попробуйте позже.",
+    },
+    safety: {
+      abuseWarning:
+        "Сообщение остановлено. Соблюдайте уважительный тон и используйте помощника только для вопросов о здоровье. При повторении доступ на этом устройстве будет заблокирован на 72 часа.",
+      blockedTitle: "ИИ-помощник временно отключён на этом устройстве",
+      blockedBody:
+        "Разговор был прерван, а ИИ-помощник заблокирован на 72 часа из-за оскорбительной лексики или злоупотребления.",
+      blockedUntilPrefix: "Снова будет доступен после:",
+      dailyLimitTitle: "Дневной лимит ИИ-помощника исчерпан",
+      dailyLimitBody:
+        "На этом устройстве достигнут дневной лимит токенов для ИИ-помощника.",
+      dailyLimitResetPrefix: "Сбросится после:",
+      useOtherTools:
+        "Вы можете и дальше пользоваться проверкой симптомов и медицинскими памятками.",
+      symptomCheckerLink: "Проверить симптомы",
+      healthGuidesLink: "Медицинские памятки",
     },
   },
 };

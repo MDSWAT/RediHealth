@@ -101,9 +101,11 @@ const inputClass =
 export function SignInForm({
   googleConfigured,
   initialError = "",
+  embedded = false,
 }: {
   googleConfigured: boolean;
   initialError?: string;
+  embedded?: boolean;
 }) {
   const { t, lang } = useLanguage();
   const executeCaptcha = useRecaptcha();
@@ -237,7 +239,13 @@ export function SignInForm({
 
   return (
     <div>
-      <div className="rounded-(--radius-surface) border border-border bg-card p-5 shadow-(--shadow-card-rest) sm:p-8">
+      <div
+        className={
+          embedded
+            ? "mt-1"
+            : "rounded-(--radius-surface) border border-border bg-card p-5 shadow-(--shadow-card-rest) sm:p-8"
+        }
+      >
         <div key={stage} className="fhs-enter">
           {stage === "email" ? (
             <form

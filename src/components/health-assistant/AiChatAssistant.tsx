@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   useCallback,
   useEffect,
@@ -32,6 +33,11 @@ import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import type { AssistantResponse } from "@/lib/health-assistant";
 import { isBrowserOffline, useOnlineStatus } from "@/lib/pwa/use-online-status";
+import {
+  getOrCreateClientDeviceId,
+  readCachedAiBlockUntil,
+  writeCachedAiBlockUntil,
+} from "@/lib/security/client-device-id";
 
 type CareLevel = AssistantResponse["careLevel"];
 
@@ -79,6 +85,17 @@ function formatTime(): string {
     return new Intl.DateTimeFormat(undefined, { hour: "2-digit", minute: "2-digit" }).format(new Date());
   } catch {
     return "";
+  }
+}
+
+function formatUnlockTimestamp(timestampMs: number, lang: Lang): string {
+  try {
+    return new Intl.DateTimeFormat(lang === "rom" ? "ro" : lang, {
+      dateStyle: "medium",
+      timeStyle: "short",
+    }).format(new Date(timestampMs));
+  } catch {
+    return new Date(timestampMs).toISOString();
   }
 }
 
@@ -251,6 +268,13 @@ export function AiChatAssistant() {
   const [isListening, setIsListening] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [openPopover, setOpenPopover] = useState<"faq" | "info" | null>(null);
+  const [blockedUntil, setBlockedUntil] = useState<number | null>(null);
+  const [dailyLimitResetAt, setDailyLimitResetAt] = useState<number | null>(null);
+  const [nowMs, setNowMs] = useState<number>(0);
+
+  const isBlocked = blockedUntil !== null && blockedUntil > nowMs;
+  const isDailyLimited = !isBlocked && dailyLimitResetAt !== null && dailyLimitResetAt > nowMs;
+  const isDisabled = isBlocked || isDailyLimited;
 
   const nextId = useRef(1);
   const endRef = useRef<HTMLDivElement>(null);
@@ -302,6 +326,59 @@ export function AiChatAssistant() {
   }, [openPopover]);
 
   useEffect(() => {
+    let cancelled = false;
+    const syncAccessStatus = async () => {
+      await Promise.resolve();
+      if (cancelled) return;
+      const now = Date.now();
+      setNowMs(now);
+      const cached = readCachedAiBlockUntil();
+      if (cached && cached > now) {
+        setBlockedUntil(cached);
+      }
+      try {
+        const response = await fetch("/api/health-assistant", {
+          method: "GET",
+          headers: { "x-device-id": getOrCreateClientDeviceId() },
+          cache: "no-store",
+        });
+        if (!response.ok || cancelled) return;
+        const data = (await response.json()) as {
+          blocked?: boolean;
+          blockedUntil?: number | null;
+          quota?: { remaining?: number; resetAt?: number };
+        };
+        if (cancelled) return;
+        setNowMs(Date.now());
+        if (data.blocked && typeof data.blockedUntil === "number") {
+          writeCachedAiBlockUntil(data.blockedUntil);
+          setBlockedUntil(data.blockedUntil);
+          setDailyLimitResetAt(null);
+        } else {
+          writeCachedAiBlockUntil(null);
+          setBlockedUntil(null);
+          if (
+            data.quota &&
+            typeof data.quota.remaining === "number" &&
+            data.quota.remaining <= 0 &&
+            typeof data.quota.resetAt === "number"
+          ) {
+            setDailyLimitResetAt(data.quota.resetAt);
+          } else {
+            setDailyLimitResetAt(null);
+          }
+        }
+      } catch {
+        // Keep cached lockout if offline or unreachable.
+      }
+    };
+    void syncAccessStatus();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
     return () => {
       cancelledMicRef.current = true;
       recognitionRef.current?.stop();
@@ -345,7 +422,7 @@ export function AiChatAssistant() {
     writeVoicePref(next);
   }
 
-  function stopMicrophone(cancelAutoSend = false) {
+  const stopMicrophone = useCallback((cancelAutoSend = false) => {
     cancelledMicRef.current = cancelAutoSend;
     try {
       recognitionRef.current?.stop();
@@ -353,9 +430,10 @@ export function AiChatAssistant() {
       // Ignore stop errors if already ended.
     }
     setIsListening(false);
-  }
+  }, []);
 
   function toggleMicrophone() {
+    if (isDisabled) return;
     if (isListening) {
       stopMicrophone(false);
       return;
@@ -425,7 +503,7 @@ export function AiChatAssistant() {
   const send = useCallback(
     async (explicitText?: string) => {
       const text = (explicitText ?? draft).trim();
-      if (!text || isSubmitting) return;
+      if (!text || isSubmitting || isDisabled) return;
       if (text.length > AI_CHAT_MAX_LENGTH) {
         setError(t.tooLong);
         return;
@@ -442,13 +520,7 @@ export function AiChatAssistant() {
       }
 
       if (isListening) {
-        cancelledMicRef.current = true;
-        try {
-          recognitionRef.current?.stop();
-        } catch {
-          // Ignore.
-        }
-        setIsListening(false);
+        stopMicrophone(true);
       }
       voice.stop();
       setSpeakingMessageId(null);
@@ -458,11 +530,13 @@ export function AiChatAssistant() {
         .slice(-HISTORY_ITEMS)
         .map(({ role, content }) => ({ role, content: content.slice(0, HISTORY_ITEM_LENGTH) }));
 
+      const messageId = nextId.current++;
+      let shouldFocusInput = true;
       setError("");
       setIsSubmitting(true);
       setMessages((current) => [
         ...current,
-        { id: nextId.current++, role: "user", content: text, time: formatTime() },
+        { id: messageId, role: "user", content: text, time: formatTime() },
       ]);
       setDraft("");
 
@@ -470,10 +544,57 @@ export function AiChatAssistant() {
         const captchaToken = await executeCaptcha("health_assistant");
         const response = await fetch("/api/health-assistant", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "x-device-id": getOrCreateClientDeviceId(),
+          },
           body: JSON.stringify({ symptoms: text, history, lang, captchaToken }),
         });
         if (!response.ok) {
+          const errData = (await response.json().catch(() => null)) as {
+            code?: string;
+            blockedUntil?: number | null;
+            quota?: { resetAt?: number };
+          } | null;
+          const code = errData?.code;
+          if (code === "device_blocked") {
+            const until =
+              typeof errData?.blockedUntil === "number"
+                ? errData.blockedUntil
+                : Date.now() + 72 * 60 * 60 * 1_000;
+            shouldFocusInput = false;
+            setNowMs(Date.now());
+            writeCachedAiBlockUntil(until);
+            setBlockedUntil(until);
+            setDailyLimitResetAt(null);
+            setMessages((current) => current.filter((item) => item.id !== messageId));
+            stopMicrophone(true);
+            voice.stop();
+            setSpeakingMessageId(null);
+            setError("");
+            return;
+          }
+          if (code === "abuse_warning") {
+            setMessages((current) => current.filter((item) => item.id !== messageId));
+            stopMicrophone(true);
+            voice.stop();
+            setSpeakingMessageId(null);
+            setError(t.safety.abuseWarning);
+            return;
+          }
+          if (code === "daily_token_limit") {
+            const resetAt =
+              typeof errData?.quota?.resetAt === "number"
+                ? errData.quota.resetAt
+                : Date.now() + 24 * 60 * 60 * 1_000;
+            shouldFocusInput = false;
+            setNowMs(Date.now());
+            setDailyLimitResetAt(resetAt);
+            setMessages((current) => current.filter((item) => item.id !== messageId));
+            setDraft(text);
+            setError("");
+            return;
+          }
           setError(
             response.status === 429
               ? t.errors.busy
@@ -511,10 +632,12 @@ export function AiChatAssistant() {
         setError(isBrowserOffline() ? offlineCopy.aiOfflineTitle : captchaErrorMessage(caught, lang) ?? t.errors.generic);
       } finally {
         setIsSubmitting(false);
-        inputRef.current?.focus();
+        if (shouldFocusInput) {
+          inputRef.current?.focus();
+        }
       }
     },
-    [draft, executeCaptcha, isListening, isSubmitting, lang, messages, offlineCopy.aiOfflineTitle, speakAssistantReply, t, voice, voiceRepliesEnabled],
+    [draft, executeCaptcha, isDisabled, isListening, isSubmitting, lang, messages, offlineCopy.aiOfflineTitle, speakAssistantReply, stopMicrophone, t, voice, voiceRepliesEnabled],
   );
 
   useEffect(() => {
@@ -647,10 +770,10 @@ export function AiChatAssistant() {
             <button
               type="button"
               onClick={resetChat}
-              disabled={isSubmitting}
+              disabled={isSubmitting || isDisabled}
               aria-label={t.newChat}
               title={t.newChat}
-              className="press-row inline-flex h-10 w-10 min-h-10 min-w-10 items-center justify-center rounded-xl border border-border-control bg-background text-muted-foreground transition-colors duration-(--dur-fast) hover:border-foreground/40 hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="press-row inline-flex h-10 w-10 min-h-10 min-w-10 items-center justify-center rounded-xl border border-border-control bg-background text-muted-foreground transition-colors duration-(--dur-fast) hover:border-foreground/40 hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
             >
               <RefreshIcon className="h-4 w-4" aria-hidden="true" />
             </button>
@@ -885,6 +1008,46 @@ export function AiChatAssistant() {
         className="shrink-0 border-t border-border bg-card p-3 sm:p-4 lg:px-8 lg:py-5 dark:border-ink-800"
       >
         <div className={isFullscreen ? "mx-auto w-full max-w-4xl" : "mx-auto w-full lg:max-w-4xl"}>
+        {isDisabled ? (
+          <div
+            role="alert"
+            className="rounded-2xl border border-border bg-background p-4 text-body text-foreground sm:p-5 dark:border-ink-800 dark:bg-ink-900"
+          >
+            <p className="font-semibold text-foreground">
+              {isBlocked ? t.safety.blockedTitle : t.safety.dailyLimitTitle}
+            </p>
+            <p className="mt-1.5 text-meta leading-relaxed text-muted-foreground">
+              {isBlocked ? t.safety.blockedBody : t.safety.dailyLimitBody}
+            </p>
+            {(isBlocked ? blockedUntil : dailyLimitResetAt) ? (
+              <p className="mt-2 text-meta font-medium text-foreground">
+                {isBlocked ? t.safety.blockedUntilPrefix : t.safety.dailyLimitResetPrefix}{" "}
+                <span className="tabular-nums">
+                  {formatUnlockTimestamp((isBlocked ? blockedUntil : dailyLimitResetAt) as number, lang)}
+                </span>
+              </p>
+            ) : null}
+            <p className="mt-2 text-meta leading-relaxed text-muted-foreground">{t.safety.useOtherTools}</p>
+            <div className="mt-3.5 flex flex-wrap items-center gap-2.5">
+              <Link
+                href={withLangPrefix("/health-check", lang)}
+                className="inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-4 py-2 text-meta font-semibold text-foreground transition-colors duration-(--dur-fast) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-950 dark:hover:bg-ink-800"
+              >
+                <span>{t.safety.symptomCheckerLink}</span>
+                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              </Link>
+              <Link
+                href={withLangPrefix("/health-information", lang)}
+                className="inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-4 py-2 text-meta font-semibold text-foreground transition-colors duration-(--dur-fast) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-950 dark:hover:bg-ink-800"
+              >
+                <span>{t.safety.healthGuidesLink}</span>
+                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              </Link>
+            </div>
+            <p className="mt-3 text-meta leading-relaxed text-muted-foreground">{t.emergencyNote}</p>
+          </div>
+        ) : (
+          <>
         {error && (
           <p
             role="alert"
@@ -997,6 +1160,8 @@ export function AiChatAssistant() {
             </button>
           </div>
         </div>
+          </>
+        )}
 
         <div className="text-center empty:hidden [&_p]:mt-2 [&_p]:text-meta">
           <RecaptchaNotice />
