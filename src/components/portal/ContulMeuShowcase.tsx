@@ -3,10 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { contulMeuCopy, type PortalPreviewFeatureId } from "@/components/portal/contul-meu-copy";
+import { mediatorStaffStripCopy } from "@/components/mediator/mediator-page-copy";
 import { SmsPhoneAuthModal } from "@/components/portal/SmsPhoneAuthModal";
 import { Container } from "@/components/ui/Container";
 import {
   ArrowLeftIcon,
+  ArrowRightIcon,
   CalendarIcon,
   FileTextIcon,
   PrescriptionIcon,
@@ -38,6 +40,7 @@ export function ContulMeuShowcase({ initialLang = "ro" }: { initialLang?: Lang }
   const { lang: activeLang } = useSafeLanguage(initialLang);
   const lang = activeLang ?? initialLang;
   const copy = contulMeuCopy[lang] ?? contulMeuCopy.ro;
+  const staffStrip = mediatorStaffStripCopy[lang] ?? mediatorStaffStripCopy.ro;
 
   return (
     <main
@@ -124,6 +127,21 @@ export function ContulMeuShowcase({ initialLang = "ro" }: { initialLang?: Lang }
               </section>
             </div>
           </div>
+
+          {/* Mediators and other staff sign in with email or Google, not with the patient SMS code. */}
+          <section
+            aria-label={staffStrip.regionLabel}
+            className="mt-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 rounded-2xl border border-border/85 bg-card px-5 py-4 sm:px-7 dark:border-white/12 dark:bg-ink-900"
+          >
+            <p className="text-body font-medium text-foreground dark:text-paper">{staffStrip.prompt}</p>
+            <Link
+              href={withLangPrefix("/sign-in", lang)}
+              className="press-row group inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-background px-4 py-2 text-body font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-foreground/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:border-white/16 dark:bg-white/[0.06] dark:text-paper dark:hover:bg-white/[0.12]"
+            >
+              <span>{staffStrip.signIn}</span>
+              <ArrowRightIcon aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0" />
+            </Link>
+          </section>
         </div>
       </Container>
     </main>

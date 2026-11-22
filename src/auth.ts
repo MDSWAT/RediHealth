@@ -9,6 +9,18 @@ import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { DEFAULT_LANG, LOCALE_COOKIE, isSupportedLang, withLangPrefix } from "@/lib/i18n/routing";
 import { verifyRecaptcha } from "@/lib/security/recaptcha";
 import { AUTH_BASE_PATH } from "@/lib/auth-actions";
+import { normalizeOrigin } from "@/lib/site-url";
+
+// Auth.js calls new URL(AUTH_URL) on every request, so a value typed without the scheme
+// ("redi.healthcare") would break every sign-in. Keep only a valid origin, or drop it so
+// Auth.js falls back to the request's own address.
+for (const key of ["AUTH_URL", "NEXTAUTH_URL"] as const) {
+  if (process.env[key] !== undefined) {
+    const origin = normalizeOrigin(process.env[key]);
+    if (origin) process.env[key] = origin;
+    else delete process.env[key];
+  }
+}
 
 const googleConfigured = Boolean(
   process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET,

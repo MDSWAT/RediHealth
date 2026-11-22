@@ -4,7 +4,7 @@ import "./globals.css";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { siteMetadata } from "@/lib/i18n/site-metadata";
-import { getSiteUrl } from "@/lib/site-url";
+import { getSiteUrl, publicOrigin as toPublicOrigin } from "@/lib/site-url";
 import { EMERGENCY_DISMISS_COOKIE } from "@/lib/emergency-bar";
 import { serializeTranslations } from "@/lib/i18n/languages";
 import { translations } from "@/lib/i18n/translations";
@@ -104,11 +104,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const emergencyDismissed = (await cookies()).get(EMERGENCY_DISMISS_COOKIE)?.value === "1";
   // Links that leave this device (QR codes, copied notes) use the configured public address,
   // never a loopback one. See components/health-check/public-origin.ts.
-  const configuredOrigin = process.env.APP_URL?.trim().replace(/\/+$/, "");
-  const publicOrigin =
-    configuredOrigin && !/\/\/(localhost|127\.0\.0\.1|\[::1\])(:|\/|$)/.test(configuredOrigin)
-      ? configuredOrigin
-      : undefined;
+  const publicOrigin = toPublicOrigin(process.env.APP_URL);
 
   return (
     <html

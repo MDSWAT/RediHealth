@@ -13,6 +13,7 @@ import { escapeHtml } from "@/lib/text";
 import { LEGAL_OPERATOR } from "@/lib/legal-config";
 import { emailTranslations, helpReplyContent, type HelpReplyInput } from "@/lib/i18n/email-translations";
 import { withLangPrefix } from "@/lib/i18n/routing";
+import { normalizeOrigin } from "@/lib/site-url";
 
 type PanelEmailCopy = {
   greeting: string;
@@ -895,9 +896,9 @@ export async function sendPatientPortalLinkEmail({
   const portalCopy = copy.portal;
   const recipientName = name.trim() || portalCopy.fallbackName;
   const baseUrl =
-    process.env.APP_URL ||
-    requestBaseUrl ||
-    process.env.AUTH_URL ||
+    normalizeOrigin(process.env.APP_URL) ||
+    normalizeOrigin(requestBaseUrl) ||
+    normalizeOrigin(process.env.AUTH_URL) ||
     "http://localhost:3000";
   const portalUrl = `${baseUrl.replace(/\/$/, "")}${withLangPrefix(portalPath(accessToken, country), lang)}`;
 
