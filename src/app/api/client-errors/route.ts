@@ -1,4 +1,5 @@
 import { after, NextResponse } from "next/server";
+import { isClientErrorNoise } from "@/lib/client-error-report";
 import { safeErrorPath } from "@/lib/error-path";
 import { reportError } from "@/lib/error-reporting";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
@@ -31,6 +32,11 @@ export async function POST(request: Request) {
   const kind = KINDS.includes(String(body.kind)) ? String(body.kind) : "error";
   if (!message) {
     return NextResponse.json({ error: "Invalid report." }, { status: 400 });
+  }
+
+  // Pages loaded before a filter was added still send these; drop them here too.
+  if (isClientErrorNoise(message, text(body.stack))) {
+    return new NextResponse(null, { status: 204 });
   }
 
   const report = {

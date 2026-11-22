@@ -23,7 +23,16 @@ const NOISE = [
   "NetworkError",
   "The operation was aborted",
   "AbortError",
+  // Android in-app browsers (Facebook, Instagram, TikTok, Google app…) inject a JavaScript bridge
+  // into every page; it throws these when the app closes its side. The site never uses it.
+  "Java object is gone",
+  "Java bridge method invocation error",
 ];
+
+/** True for errors that come from the browser or an app around the page, not from the website. */
+export function isClientErrorNoise(message: string, stack = ""): boolean {
+  return NOISE.some((noise) => message.includes(noise) || stack.includes(noise));
+}
 
 export function reportClientError(error: unknown, kind: "error" | "unhandledrejection" | "render"): void {
   try {
@@ -38,7 +47,7 @@ export function reportClientError(error: unknown, kind: "error" | "unhandledreje
     const isError = error instanceof Error;
     const message = (isError ? `${error.name}: ${error.message}` : typeof error === "string" ? error : "").slice(0, 1000);
     const stack = isError && error.stack ? error.stack.slice(0, 4000) : "";
-    if (!message || NOISE.some((noise) => message.includes(noise) || stack.includes(noise))) return;
+    if (!message || isClientErrorNoise(message, stack)) return;
 
     if (reported.has(message)) return;
     reported.add(message);
