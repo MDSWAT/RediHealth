@@ -69,6 +69,7 @@ const CORE_MODEL_PATHS = [
   "/models/human-atlas-layers.bin",
   "/models/human-atlas-skeleton.json",
   "/models/human-atlas-skeleton.bin",
+  "/models/muscular.glb",
 ];
 
 const OFFLINE_FALLBACK_COPY = {
@@ -459,7 +460,7 @@ function extractStaticAssetRefsFromText(text) {
   if (!text) return [];
   const refs = [];
   const matches = text.matchAll(
-    /(?:\/_next\/)?static\/(?:immutable\/)?(?:chunks|media)\/[A-Za-z0-9._/-]+\.(?:js|css|woff2)/g,
+    /(?:\/_next\/)?static\/(?:immutable\/)?(?:chunks|media)\/[A-Za-z0-9._/%-]+\.(?:js|css|woff2)/g,
   );
   for (const match of matches) {
     const raw = match[0];

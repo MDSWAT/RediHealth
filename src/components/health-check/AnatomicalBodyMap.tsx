@@ -31,8 +31,24 @@ import {
 import { useReadAloud } from "./readingTools";
 
 // Three.js is the heaviest part of the page: load it after the list is usable.
+function ViewportChunkFallback({
+  lang = DEFAULT_LANG,
+  onUnavailable,
+}: {
+  lang?: Lang;
+  onUnavailable?: (message: string) => void;
+}) {
+  useEffect(() => {
+    onUnavailable?.(WEBGL_ERROR[lang] ?? WEBGL_ERROR[DEFAULT_LANG]);
+  }, [lang, onUnavailable]);
+  return null;
+}
+
 const AnatomicalViewport3D = dynamic(
-  () => import("./AnatomicalViewport3D").then((m) => m.AnatomicalViewport3D),
+  () =>
+    import("./AnatomicalViewport3D")
+      .then((m) => m.AnatomicalViewport3D)
+      .catch(() => ViewportChunkFallback),
   { ssr: false, loading: () => null },
 );
 

@@ -1968,7 +1968,7 @@ export function AnatomicalViewport3D({
       const activePart = stateRef.current.selectedPart;
 
       if (skinShellMesh) {
-        const isSurfaceMode = mode === "surface";
+        const isSurfaceMode = mode === "surface" || (mode === "muscular" && !musclesMounted);
         const wantTransparent = !isSurfaceMode;
         if (skinShellMaterial.transparent !== wantTransparent) {
           skinShellMaterial.transparent = wantTransparent;
@@ -2734,7 +2734,7 @@ export function AnatomicalViewport3D({
     const initMusclePromise = needsMuscularLayer(initLayer)
       ? loadMuscularAssets(corePromise, (pct) => {
           if (!disposed) setLoadProgress(pct);
-        })
+        }).catch(() => null)
       : Promise.resolve(globalMuscularCache);
 
     Promise.all([corePromise, initMusclePromise])
@@ -3032,7 +3032,9 @@ export function AnatomicalViewport3D({
         setLoadProgress(100);
         syncAllVisuals();
         setModelReady(true);
-        ensureLayerAssets();
+        if (initialMuscles || !needsMuscularLayer(stateRef.current.layerMode)) {
+          ensureLayerAssets();
+        }
         requestRender();
       })
       .catch((err) => {
