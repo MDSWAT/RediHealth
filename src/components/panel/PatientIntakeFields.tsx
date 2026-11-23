@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type ChangeEvent } from "react";
-import { FileTextIcon, PinIcon } from "@/components/ui/icons";
+import { PinIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { patientIntakeTranslations } from "@/lib/i18n/patient-intake-translations";
 import { DOCUMENT_ACCEPT, MAX_DOCUMENT_BYTES, MAX_PATIENT_DOCUMENTS, validatePatientIntake } from "@/lib/patient-intake";
@@ -92,41 +92,42 @@ export function PatientIntakeFields({ value, onChange, disabled, onBusyChange }:
 
   const busy = disabled || reading || locating;
   return <div className="space-y-5">
-    <section className="rounded-xl border border-border bg-muted/30 p-4">
-      <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold"><PinIcon className="h-5 w-5 text-primary" />{t.location}</h3>
-      <p className="mb-3 text-xs leading-relaxed text-muted-foreground">{t.gpsHint}</p>
-      <button type="button" disabled={busy} onClick={getLocation} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary/20 bg-primary-soft px-4 py-2 text-sm font-semibold text-primary disabled:bg-muted disabled:text-muted-foreground">
-        <PinIcon className="h-4 w-4" />{locating ? t.locating : t.useGps}
+    <section className="space-y-3 border-t border-[var(--panel-line)] pt-5">
+      <h3 className="text-sm font-semibold text-[var(--panel-ink)]">{t.location}</h3>
+      <p className="text-xs leading-relaxed text-[var(--panel-muted)]">{t.gpsHint}</p>
+      <button type="button" disabled={busy} onClick={getLocation} className="crm-button whitespace-nowrap border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]">
+        <PinIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
+        <span>{locating ? t.locating : t.useGps}</span>
       </button>
-      {value.location && <div role="status" className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl bg-card p-3 text-xs">
-        <span>{value.location.latitude.toFixed(6)}, {value.location.longitude.toFixed(6)}<br />{t.accuracy}: {Math.round(value.location.accuracy)} m</span>
-        <button type="button" disabled={busy} onClick={() => onChange({ ...value, location: null })} className="min-h-11 px-2 font-semibold text-red-700">{t.remove}</button>
+      {value.location && <div role="status" className="flex flex-wrap items-center justify-between gap-2 border-t border-[var(--panel-line)] pt-3 text-xs text-[var(--panel-ink)]">
+        <span className="tabular-nums [font-feature-settings:'zero'_0]">{value.location.latitude.toFixed(6)}, {value.location.longitude.toFixed(6)}<br /><span className="text-[var(--panel-muted)]">{t.accuracy}: {Math.round(value.location.accuracy)} m</span></span>
+        <button type="button" disabled={busy} onClick={() => onChange({ ...value, location: null })} className="inline-flex min-h-11 items-center whitespace-nowrap px-2 font-semibold text-[#b91c1c] hover:underline dark:text-[#ffb4b4]">{t.remove}</button>
       </div>}
-      {gpsError && <p role="alert" className="mt-3 text-sm text-red-700">{gpsError}</p>}
+      {gpsError && <p role="alert" className="text-sm text-[#b91c1c] dark:text-[#ffb4b4]">{gpsError}</p>}
     </section>
-    <section className="rounded-xl border border-border bg-muted/30 p-4">
-      <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold"><FileTextIcon className="h-5 w-5 text-primary" />{t.documents}</h3>
-      <label className="flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border border-border bg-card p-3 text-sm font-medium">
+    <section className="space-y-3 border-t border-[var(--panel-line)] pt-5">
+      <h3 className="text-sm font-semibold text-[var(--panel-ink)]">{t.documents}</h3>
+      <label className="flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-[var(--panel-line)] bg-[var(--panel-subtle)] px-3.5 py-2.5 text-sm font-medium text-[var(--panel-ink)]">
         <input type="checkbox" checked={value.has_documents} disabled={busy} aria-controls={`${id}-uploads`} aria-expanded={value.has_documents}
           onChange={(event) => { setFileError(""); onChange({ ...value, has_documents: event.target.checked, documents: [] }); }}
-          className="h-5 w-5 accent-primary" />{t.hasDocuments}
+          className="h-5 w-5 shrink-0 accent-primary" />{t.hasDocuments}
       </label>
-      {value.has_documents && <div id={`${id}-uploads`} className="mt-4 space-y-3">
-        <p id={`${id}-hint`} className="text-xs leading-relaxed text-muted-foreground">{t.documentHint}</p>
+      {value.has_documents && <div id={`${id}-uploads`} className="space-y-3 pt-1">
+        <p id={`${id}-hint`} className="text-xs leading-relaxed text-[var(--panel-muted)]">{t.documentHint}</p>
         <select aria-label={t.documents} disabled={busy} value={category} onChange={(event) => setCategory(event.target.value === "identity" ? "identity" : "medical")}
-          className="min-h-11 w-full rounded-lg border border-border bg-card px-3 text-sm">
+          className="min-h-11 w-full whitespace-nowrap rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3 text-sm text-[var(--panel-ink)]">
           <option value="medical">{t.medical}</option><option value="identity">{t.identity}</option>
         </select>
-        <label className={`flex min-h-20 items-center justify-center rounded-xl border-2 border-dashed border-primary/30 bg-card p-4 text-sm font-semibold text-primary focus-within:ring-2 focus-within:ring-ring ${busy ? "opacity-50" : "cursor-pointer hover:bg-primary-soft"}`}>
+        <label className={`flex min-h-20 items-center justify-center rounded-xl border-2 border-dashed border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-subtle)] p-4 text-sm font-semibold text-primary focus-within:ring-2 focus-within:ring-ring dark:text-[#bad7fa] ${busy ? "opacity-50" : "cursor-pointer hover:bg-[var(--panel-selection)]"}`}>
           {reading ? t.reading : t.upload}
           <input type="file" multiple accept={DOCUMENT_ACCEPT} disabled={busy} aria-describedby={`${id}-hint`} onChange={(event) => void readDocuments(event)} className="sr-only" />
         </label>
-        <ul className="space-y-2">{value.documents.map((document) => <li key={document.id} className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card p-3">
-          <div className="min-w-0"><p className="truncate text-sm font-medium">{document.name}</p><p className="text-xs text-muted-foreground">{document.category === "identity" ? t.identity : t.medical}</p></div>
-          <button type="button" disabled={busy} aria-label={`${t.remove}: ${document.name}`} onClick={() => onChange({ ...value, documents: value.documents.filter((item) => item.id !== document.id) })} className="min-h-11 px-2 text-xs font-semibold text-red-700">{t.remove}</button>
-        </li>)}</ul>
+        {value.documents.length > 0 && <ul className="divide-y divide-[var(--panel-line)] border-t border-[var(--panel-line)]">{value.documents.map((document) => <li key={document.id} className="flex items-center justify-between gap-3 py-2.5">
+          <div className="min-w-0"><p className="truncate text-sm font-medium text-[var(--panel-ink)]">{document.name}</p><p className="text-xs text-[var(--panel-muted)]">{document.category === "identity" ? t.identity : t.medical}</p></div>
+          <button type="button" disabled={busy} aria-label={`${t.remove}: ${document.name}`} onClick={() => onChange({ ...value, documents: value.documents.filter((item) => item.id !== document.id) })} className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap px-2 text-xs font-semibold text-[#b91c1c] hover:underline dark:text-[#ffb4b4]">{t.remove}</button>
+        </li>)}</ul>}
       </div>}
-      {fileError && <p role="alert" className="mt-3 text-sm text-red-700">{fileError}</p>}
+      {fileError && <p role="alert" className="text-sm text-[#b91c1c] dark:text-[#ffb4b4]">{fileError}</p>}
     </section>
   </div>;
 }

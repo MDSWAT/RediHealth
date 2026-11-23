@@ -8,7 +8,7 @@ import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 import { countAttentionRequests } from "@/lib/data/requests";
 import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const generateMetadata = createPageMetadata("patient-profile", "Patient Profile - RediHealth Panel", "");
+export const generateMetadata = createPageMetadata("patient-profile", "Patient profile - RediHealth panel", "");
 export const dynamic = "force-dynamic";
 export default async function PatientPage({ params }: { params: Promise<{ id: string }> }) {
   const session = await auth();

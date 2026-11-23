@@ -9,6 +9,7 @@ import { patientDesignTranslations } from "@/lib/i18n/patient-design-translation
 
 interface PatientPhotosTabProps {
   busy?: boolean;
+  hasOtherMedia?: boolean;
   photos: PatientPhoto[];
   newPhotoName: string;
   onChangeNewPhotoName: (value: string) => void;
@@ -22,6 +23,7 @@ interface PatientPhotosTabProps {
 
 export function PatientPhotosTab({
   busy = false,
+  hasOtherMedia = false,
   photos,
   newPhotoName,
   onChangeNewPhotoName,
@@ -34,13 +36,13 @@ export function PatientPhotosTab({
 }: PatientPhotosTabProps) {
   const { lang } = useLanguage();
   const t = {
-  ru: {
+    ru: {
       title: "Фотографии и документы",
       subtitle: "Клинические фотографии, результаты анализов или рецепты.",
       attachNew: "Добавить фотографию или документ",
       selectImage: "Выбрать изображение",
       label: "Название",
-      labelPh: "например Кожная сыпь, Результат анализа крови",
+      labelPh: "Например, кожная сыпь, анализ крови",
       notes: "Примечание",
       notesPh: "Что изображено на фото",
       ready: "Изображение готово",
@@ -55,7 +57,7 @@ export function PatientPhotosTab({
       attachNew: "Add a photo or document",
       selectImage: "Choose image",
       label: "Title",
-      labelPh: "e.g. Skin rash, Blood test result",
+      labelPh: "e.g. Skin rash, blood test result",
       notes: "Note",
       notesPh: "What the photo shows",
       ready: "Image ready",
@@ -135,17 +137,34 @@ export function PatientPhotosTab({
     },
   }[lang];
   const design = patientDesignTranslations[lang];
+  const showEmpty = photos.length === 0 && !hasOtherMedia;
   return <section className="crm-card patient-photo-section">
-    <div className="patient-section-heading"><div><h2>{t.title}</h2><p>{design.photoHint}</p></div><span className="patient-section-count">{photos.length}</span></div>
-    {photos.length ? <PatientPhotoGallery photos={photos} onDelete={onDeletePhoto} busy={busy} /> : <div className="patient-photos-empty"><ImageIcon className="h-7 w-7" aria-hidden="true" /><p>{t.empty}</p><span>{t.subtitle}</span></div>}
-    <form onSubmit={onAddPhoto} className="patient-photo-form">
-      <h3>{t.attachNew}</h3>
+    {photos.length > 0 || !hasOtherMedia ? (
+      <div className="patient-section-heading">
+        <div>
+          <h2>{t.title}</h2>
+          <p>{design.photoHint}</p>
+        </div>
+        <span className="patient-section-count tabular-nums [font-feature-settings:'zero'_0]">{photos.length}</span>
+      </div>
+    ) : null}
+    {photos.length > 0 ? (
+      <PatientPhotoGallery photos={photos} onDelete={onDeletePhoto} busy={busy} />
+    ) : showEmpty ? (
+      <div className="patient-photos-empty">
+        <ImageIcon className="h-7 w-7" aria-hidden="true" />
+        <p>{t.empty}</p>
+        <span>{t.subtitle}</span>
+      </div>
+    ) : null}
+    <form onSubmit={onAddPhoto} className={photos.length > 0 || showEmpty ? "patient-photo-form" : ""}>
+      <h3 className={photos.length > 0 || showEmpty ? undefined : "mb-4 text-base font-semibold text-[var(--panel-ink)]"}>{t.attachNew}</h3>
       <fieldset disabled={busy} className="patient-photo-fields">
         <label className="crm-label">{t.selectImage}<input required={!newPhotoData} type="file" accept="image/*" onChange={onImageUpload} className="patient-file-input" /></label>
         <label className="crm-label">{t.label}<input type="text" value={newPhotoName} onChange={(e) => onChangeNewPhotoName(e.target.value)} placeholder={t.labelPh} className="crm-input" /></label>
         <label className="crm-label patient-photo-note-field">{t.notes}<input type="text" value={newPhotoNote} onChange={(e) => onChangeNewPhotoNote(e.target.value)} placeholder={t.notesPh} className="crm-input" /></label>
         {newPhotoData && <div className="patient-pending-photo"><PatientPhotoTrigger photo={{ id: "pending", name: newPhotoName || t.ready, data_url: newPhotoData, date: "" }} /><span>{t.ready}</span></div>}
-        <div className="patient-photo-submit"><button type="submit" disabled={!newPhotoData || busy} className="crm-button crm-primary">{t.attach}</button></div>
+        <div className="patient-photo-submit"><button type="submit" disabled={!newPhotoData || busy} className="crm-button crm-primary whitespace-nowrap">{t.attach}</button></div>
       </fieldset>
     </form>
   </section>;

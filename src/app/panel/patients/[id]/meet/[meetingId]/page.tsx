@@ -5,7 +5,7 @@ import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const generateMetadata = createPageMetadata("follow-up-meeting", "Follow-up Meeting - RediHealth Panel", "");
+export const generateMetadata = createPageMetadata("follow-up-meeting", "Follow-up meeting - RediHealth panel", "");
 
 export default async function PatientFollowupMeetingPage({
   params,

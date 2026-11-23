@@ -137,17 +137,10 @@ export function PatientsDashboard({
     label: string;
     hint: string;
     count: number;
-    urgentDot?: boolean;
   }> = [
     { key: "all", label: copy.cohortAll, hint: copy.cohortAllHint, count: counts.all },
     { key: "active", label: copy.cohortActive, hint: copy.cohortActiveHint, count: counts.active },
-    {
-      key: "due",
-      label: copy.cohortDue,
-      hint: copy.cohortDueHint,
-      count: counts.due,
-      urgentDot: counts.due > 0,
-    },
+    { key: "due", label: copy.cohortDue, hint: copy.cohortDueHint, count: counts.due },
     { key: "archived", label: copy.cohortArchived, hint: copy.cohortArchivedHint, count: counts.archived },
   ];
 
@@ -168,7 +161,7 @@ export function PatientsDashboard({
             <div
               role="progressbar"
               aria-label={copy.refreshingList}
-              className="mb-4 h-1 w-full overflow-hidden rounded-xs bg-muted"
+              className="mb-4 h-1 w-full overflow-hidden rounded-xs bg-[var(--panel-line)]"
             >
               <div className="panel-indeterminate-bar h-full bg-sapphire" />
             </div>
@@ -176,13 +169,15 @@ export function PatientsDashboard({
 
           <header className="patient-directory-header">
             <div className="min-w-0 space-y-1.5">
-              <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[28px]">
+              <h1 className="text-2xl font-bold tracking-tight text-[var(--panel-ink)] sm:text-[1.875rem]">
                 {copy.patientTitle}
               </h1>
-              <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+              <p className="max-w-2xl text-[15px] leading-relaxed text-[var(--panel-muted)]">
                 {copy.patientSubtitle}
               </p>
-              <p className="patient-directory-sync">{copy.syncedLabel} {syncedTimeLabel}</p>
+              <p className="patient-directory-sync min-h-[1.125rem] tabular-nums [font-feature-settings:'zero'_0]">
+                {syncedTimeLabel ? `${copy.syncedLabel} ${syncedTimeLabel}` : ""}
+              </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-2.5">
@@ -191,19 +186,17 @@ export function PatientsDashboard({
                   type="button"
                   onClick={() => void handleRefresh()}
                   disabled={isRefreshing}
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-border bg-card px-3.5 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-60"
+                  aria-keyshortcuts="Shift+R"
+                  className="crm-button whitespace-nowrap border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]"
                 >
-                  <span>{isRefreshing ? copy.refreshingList : copy.refreshList}</span>
-                  <kbd className="hidden rounded-md border border-border bg-muted px-1.5 py-0.5 font-mono text-[11px] font-medium text-muted-foreground sm:inline-block">
-                    Shift+R
-                  </kbd>
+                  {isRefreshing ? copy.refreshingList : copy.refreshList}
                 </button>
               ) : null}
 
               {canOpenOfflineVault ? (
                 <a
                   href={withLangPrefix("/offline", lang)}
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-sapphire/25 bg-sapphire-soft px-3.5 py-2 text-sm font-semibold text-sapphire transition-colors hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="crm-button whitespace-nowrap border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] text-[var(--color-sapphire)] hover:bg-[var(--panel-selection)] dark:text-[#bad7fa]"
                 >
                   <ShieldIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                   <span>{copy.offlineVaultCta}</span>
@@ -213,7 +206,7 @@ export function PatientsDashboard({
           </header>
 
           {!databaseAvailable ? (
-            <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
+            <p className="rounded-2xl border border-[var(--panel-line)] bg-[var(--panel-surface)] p-6 text-sm leading-relaxed text-[var(--panel-ink)]">
               {t.noDatabase}
             </p>
           ) : (
@@ -232,35 +225,16 @@ export function PatientsDashboard({
                       aria-pressed={active}
                       onClick={() => setCohort(item.key)}
                       title={item.hint}
-                      className={`patient-cohort ${
+                      className={`patient-cohort whitespace-nowrap transition-colors ${
                         active
-                          ? "border-sapphire bg-sapphire-soft/75 shadow-xs"
-                          : "border-border bg-card hover:border-sapphire/40 hover:bg-muted/40"
+                          ? "text-[var(--color-sapphire)] dark:text-[#bad7fa]"
+                          : "hover:text-[var(--panel-ink)]"
                       }`}
                     >
-                      <div className="flex w-full items-center justify-between gap-2">
-                        <span
-                          className={`text-sm font-semibold ${
-                            active ? "text-sapphire" : "text-foreground"
-                          }`}
-                        >
-                          {item.label}
-                        </span>
-                        {item.urgentDot ? (
-                          <span
-                            className="h-2 w-2 shrink-0 rounded-full bg-amber-care"
-                            aria-hidden="true"
-                          />
-                        ) : null}
-                      </div>
-                      <div className="mt-3 flex items-baseline justify-between gap-2">
-                        <span className="tabular-nums text-2xl font-bold tracking-tight text-foreground sm:text-[28px]">
-                          {item.count}
-                        </span>
-                        <span className="line-clamp-1 text-xs text-muted-foreground">
-                          {item.hint}
-                        </span>
-                      </div>
+                      <span className="text-sm font-medium">{item.label}</span>
+                      <span className="text-[0.8125rem] font-normal tabular-nums [font-feature-settings:'zero'_0]">
+                        {item.count}
+                      </span>
                     </button>
                   );
                 })}

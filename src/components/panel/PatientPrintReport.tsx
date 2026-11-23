@@ -67,56 +67,44 @@ export function PatientPrintReport({
   const statusLabel =
     status === "active" ? t.active : status === "inactive" ? t.inactive : t.archived;
 
-  const statusBadgeClass =
-    status === "active"
-      ? "border-slate-300 bg-slate-100 text-slate-900"
-      : status === "inactive"
-        ? "border-slate-200 bg-white text-slate-700"
-        : "border-slate-200 bg-slate-100 text-slate-600";
+  const formatDay = (iso?: string | null) => {
+    if (!iso) return "";
+    const date = new Date(/^\d{4}-\d{2}-\d{2}$/.test(iso) ? `${iso}T12:00:00` : iso);
+    return Number.isNaN(date.getTime()) ? iso : formatPanelDate(date, langToLocale[lang], "date");
+  };
 
   return (
-    <div className="min-h-screen bg-background p-4 sm:p-6 print:static print:bg-white print:p-0">
-      <div className="mx-auto mb-6 flex max-w-4xl flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card p-3.5 shadow-sm sm:p-4 print:hidden">
-        <div className="flex items-center gap-2.5">
-          <PrinterIcon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-          <span className="text-sm font-bold text-foreground">{t.title}</span>
-        </div>
+    <div className="min-h-screen bg-[var(--panel-canvas)] p-4 sm:p-6 print:static print:bg-white print:p-0">
+      <div className="mx-auto mb-6 flex max-w-4xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-[var(--panel-line)] bg-[var(--panel-surface)] p-4 text-[var(--panel-ink)] print:hidden">
+        <span className="text-sm font-semibold text-[var(--panel-ink)]">{t.title}</span>
 
         <div className="flex flex-wrap items-center gap-2.5">
           <button
             type="button"
             aria-pressed={compactHandout}
             onClick={() => setCompactHandout((prev) => !prev)}
-            className={`inline-flex min-h-[44px] items-center gap-2 rounded-lg border px-3.5 py-2 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+            className={`crm-button whitespace-nowrap border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] ${
               compactHandout
-                ? "border-sapphire bg-sapphire-soft text-sapphire"
-                : "border-border bg-card text-foreground hover:bg-muted"
+                ? "border-[var(--color-sapphire)] bg-[var(--panel-selection)] text-[var(--color-sapphire)] dark:border-[#bad7fa] dark:text-[#bad7fa]"
+                : ""
             }`}
           >
-            <span
-              className={`h-2 w-2 shrink-0 rounded-full ${
-                compactHandout ? "bg-sapphire" : "bg-muted-foreground/40"
-              }`}
-              aria-hidden="true"
-            />
-            <span>{t.compactHandout}</span>
+            {t.compactHandout}
           </button>
 
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-keyshortcuts="Escape"
+            className="crm-button whitespace-nowrap border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)]"
           >
-            <span>{t.backToProfile}</span>
-            <kbd className="hidden rounded-md border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-block">
-              Esc
-            </kbd>
+            {t.backToProfile}
           </button>
 
           <button
             type="button"
             onClick={() => window.print()}
-            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg bg-primary px-5 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="crm-button crm-primary whitespace-nowrap"
           >
             <PrinterIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span>{t.printSave}</span>
@@ -124,15 +112,13 @@ export function PatientPrintReport({
         </div>
       </div>
 
-      <article className="mx-auto max-w-4xl rounded-xl border border-border bg-white p-6 text-slate-900 shadow-lg sm:p-10 print:border-none print:p-0 print:shadow-none">
-        <header className="print-block flex flex-wrap items-start justify-between gap-4 border-b-2 border-primary pb-5">
-          <div className="min-w-0 space-y-1.5">
-            <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl font-bold tracking-tight text-primary">{t.clinicName}</h1>
-              <span className="inline-flex items-center rounded-md border border-slate-300 bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-800">
-                {compactHandout ? t.handoutBadge : t.confidential}
-              </span>
-            </div>
+      <article className="mx-auto max-w-4xl rounded-2xl border border-[var(--panel-line)] bg-white p-6 text-slate-900 sm:p-10 print:rounded-none print:border-none print:p-0">
+        <header className="print-block flex flex-wrap items-start justify-between gap-4 border-b-2 border-[var(--color-sapphire)] pb-5">
+          <div className="min-w-0 space-y-1">
+            <h1 className="text-2xl font-bold tracking-tight text-[var(--color-sapphire)]">{t.clinicName}</h1>
+            <p className="text-xs font-semibold text-slate-800">
+              {compactHandout ? t.handoutBadge : t.confidential}
+            </p>
             <p className="text-xs text-slate-600">
               {compactHandout ? t.handoutSubtitle : t.subtitle}
             </p>
@@ -140,10 +126,10 @@ export function PatientPrintReport({
 
           <div className="flex items-start gap-3.5">
             <div className="text-right text-xs text-slate-600">
-              <p className="tabular-nums font-semibold text-slate-900">
+              <p className="tabular-nums [font-feature-settings:'zero'_0] font-semibold text-slate-900">
                 {t.recordId}: #{patient.id}
               </p>
-              <p className="mt-0.5 tabular-nums">
+              <p className="mt-0.5 tabular-nums [font-feature-settings:'zero'_0]">
                 {t.reportDate}: {formatPanelDate(new Date(), langToLocale[lang], "full")}
               </p>
               <p className="mt-1 text-[11px] text-slate-500">{t.qrSealHint}</p>
@@ -165,67 +151,63 @@ export function PatientPrintReport({
         </header>
 
         <section className="print-block mt-6">
-          <h2 className="mb-3 border-b border-slate-200 pb-1 text-sm font-bold text-slate-800">
+          <h2 className="mb-3 border-b border-slate-200 pb-1.5 text-sm font-bold text-slate-800">
             {t.s1}
           </h2>
-          <div className="grid grid-cols-2 gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs sm:grid-cols-3">
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-4 border-b border-slate-200 pb-4 text-xs sm:grid-cols-3">
             <div className="min-w-0">
-              <p className="font-semibold text-slate-500">{t.fullName}</p>
-              <p className="mt-0.5 text-sm font-bold text-slate-900 [overflow-wrap:anywhere]">
+              <dt className="font-semibold text-slate-500">{t.fullName}</dt>
+              <dd className="mt-0.5 text-sm font-bold text-slate-900 [overflow-wrap:anywhere]">
                 {patient.full_name}
-              </p>
+              </dd>
             </div>
             <div className="min-w-0">
-              <p className="font-semibold text-slate-500">{t.phone}</p>
-              <p className="mt-0.5 tabular-nums font-medium text-slate-800 [overflow-wrap:anywhere]">
+              <dt className="font-semibold text-slate-500">{t.phone}</dt>
+              <dd className="mt-0.5 tabular-nums [font-feature-settings:'zero'_0] font-medium text-slate-800 [overflow-wrap:anywhere]">
                 {patient.phone || t.notSpecified}
-              </p>
+              </dd>
             </div>
             {!compactHandout ? (
               <div className="min-w-0">
-                <p className="font-semibold text-slate-500">{t.email}</p>
-                <p className="mt-0.5 font-medium text-slate-800 [overflow-wrap:anywhere]">
+                <dt className="font-semibold text-slate-500">{t.email}</dt>
+                <dd className="mt-0.5 font-medium text-slate-800 [overflow-wrap:anywhere]">
                   {patient.email || t.notSpecified}
-                </p>
+                </dd>
               </div>
             ) : null}
             <div className="min-w-0">
-              <p className="font-semibold text-slate-500">{t.dob}</p>
-              <p className="mt-0.5 tabular-nums font-medium text-slate-800">
-                {patient.date_of_birth || t.notSpecified}
-              </p>
+              <dt className="font-semibold text-slate-500">{t.dob}</dt>
+              <dd className="mt-0.5 tabular-nums [font-feature-settings:'zero'_0] font-medium text-slate-800">
+                {patient.date_of_birth ? formatDay(patient.date_of_birth) : t.notSpecified}
+              </dd>
             </div>
             {!compactHandout ? (
               <div className="min-w-0">
-                <p className="font-semibold text-slate-500">{t.gender}</p>
-                <p className="mt-0.5 font-medium text-slate-800">
+                <dt className="font-semibold text-slate-500">{t.gender}</dt>
+                <dd className="mt-0.5 font-medium text-slate-800">
                   {patient.gender || t.notSpecified}
-                </p>
+                </dd>
               </div>
             ) : null}
             <div className="min-w-0">
-              <p className="font-semibold text-slate-500">{t.careStatus}</p>
-              <p className="mt-1">
-                <span
-                  className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[11px] font-semibold ${statusBadgeClass}`}
-                >
-                  {statusLabel}
-                </span>
-              </p>
+              <dt className="font-semibold text-slate-500">{t.careStatus}</dt>
+              <dd className="mt-0.5 font-semibold text-slate-900">
+                {statusLabel}
+              </dd>
             </div>
             {!compactHandout ? (
               <div className="col-span-2 min-w-0 sm:col-span-3">
-                <p className="font-semibold text-slate-500">{t.address}</p>
-                <p className="mt-0.5 font-medium text-slate-800 [overflow-wrap:anywhere]">
+                <dt className="font-semibold text-slate-500">{t.address}</dt>
+                <dd className="mt-0.5 font-medium text-slate-800 [overflow-wrap:anywhere]">
                   {patient.address || t.notSpecified}
-                </p>
+                </dd>
               </div>
             ) : null}
-          </div>
+          </dl>
         </section>
 
         <section className="mt-6">
-          <h2 className="mb-3 border-b border-slate-200 pb-1 text-sm font-bold text-slate-800">
+          <h2 className="mb-3 border-b border-slate-200 pb-1.5 text-sm font-bold text-slate-800">
             {t.s2}
           </h2>
           <div className="[overflow-wrap:anywhere]">
@@ -234,37 +216,35 @@ export function PatientPrintReport({
         </section>
 
         <section className="mt-6">
-          <h2 className="mb-3 border-b border-slate-200 pb-1 text-sm font-bold text-slate-800">
+          <h2 className="mb-3 border-b border-slate-200 pb-1.5 text-sm font-bold text-slate-800">
             {t.s3}
           </h2>
           {followups.length === 0 ? (
-            <p className="text-xs italic text-slate-500">{t.noFollowups}</p>
+            <p className="text-xs text-slate-500">{t.noFollowups}</p>
           ) : (
-            <table className="w-full overflow-hidden rounded-lg border border-slate-200 text-left text-xs">
-              <thead className="bg-slate-100 text-xs font-semibold text-slate-700">
+            <table className="w-full border-collapse text-left text-xs">
+              <thead className="border-b border-slate-300 text-xs font-semibold text-slate-700">
                 <tr>
-                  <th className="border-b border-slate-200 p-2">{t.scheduledDate}</th>
-                  <th className="border-b border-slate-200 p-2">{t.goal}</th>
-                  <th className="border-b border-slate-200 p-2">{t.status}</th>
-                  <th className="border-b border-slate-200 p-2">{t.notes}</th>
+                  <th className="py-2 pr-3">{t.scheduledDate}</th>
+                  <th className="py-2 pr-3">{t.goal}</th>
+                  <th className="py-2 pr-3">{t.status}</th>
+                  <th className="py-2">{t.notes}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
                 {followups.map((item) => (
                   <tr key={item.id} className="print-block">
-                    <td className="whitespace-nowrap p-2 tabular-nums font-medium text-slate-800">
+                    <td className="whitespace-nowrap py-2.5 pr-3 tabular-nums [font-feature-settings:'zero'_0] font-medium text-slate-800">
                       {formatDateKey(item.date, langToLocale[lang])}
                       {item.time ? ` ${followupTime(item, "", viewerZone)}` : ""}
                     </td>
-                    <td className="p-2 font-semibold text-slate-900 [overflow-wrap:anywhere]">
+                    <td className="py-2.5 pr-3 font-semibold text-slate-900 [overflow-wrap:anywhere]">
                       {item.title}
                     </td>
-                    <td className="p-2">
-                      <span className="inline-flex items-center rounded-md border border-slate-300 bg-slate-50 px-2 py-0.5 text-[11px] font-semibold text-slate-700">
-                        {t[item.status]}
-                      </span>
+                    <td className="whitespace-nowrap py-2.5 pr-3 font-medium text-slate-700">
+                      {t[item.status]}
                     </td>
-                    <td className="p-2 text-slate-600 [overflow-wrap:anywhere]">
+                    <td className="py-2.5 text-slate-600 [overflow-wrap:anywhere]">
                       {item.notes || "—"}
                     </td>
                   </tr>
@@ -276,21 +256,21 @@ export function PatientPrintReport({
 
         {!compactHandout ? (
           <section className="mt-6">
-            <h2 className="mb-3 border-b border-slate-200 pb-1 text-sm font-bold text-slate-800">
+            <h2 className="mb-3 border-b border-slate-200 pb-1.5 text-sm font-bold text-slate-800">
               {t.s4}
             </h2>
-            <div className="space-y-3 text-xs">
-              <div className="print-block">
-                <p className="mb-1 font-bold text-slate-800">{t.symptoms}</p>
-                <div className="whitespace-pre-wrap rounded-lg border border-slate-200 bg-slate-50 p-3 text-slate-700 [overflow-wrap:anywhere]">
+            <div className="divide-y divide-slate-200 text-xs">
+              <div className="print-block py-3 first:pt-0">
+                <p className="mb-1 font-semibold text-slate-800">{t.symptoms}</p>
+                <p className="whitespace-pre-wrap leading-relaxed text-slate-700 [overflow-wrap:anywhere]">
                   {patient.condition_notes || t.noneRecorded}
-                </div>
+                </p>
               </div>
-              <div className="print-block">
-                <p className="mb-1 font-bold text-slate-800">{t.history}</p>
-                <div className="whitespace-pre-wrap rounded-lg border border-slate-200 bg-slate-50 p-3 text-slate-700 [overflow-wrap:anywhere]">
+              <div className="print-block py-3 last:pb-0">
+                <p className="mb-1 font-semibold text-slate-800">{t.history}</p>
+                <p className="whitespace-pre-wrap leading-relaxed text-slate-700 [overflow-wrap:anywhere]">
                   {patient.medical_history || t.noneRecorded}
-                </div>
+                </p>
               </div>
             </div>
           </section>
@@ -298,23 +278,29 @@ export function PatientPrintReport({
 
         {!compactHandout && photos.length > 0 ? (
           <section className="mt-6">
-            <h2 className="mb-3 border-b border-slate-200 pb-1 text-sm font-bold text-slate-800">
-              {t.s5} (<span className="tabular-nums">{photos.length}</span>)
+            <h2 className="mb-3 border-b border-slate-200 pb-1.5 text-sm font-bold text-slate-800">
+              {t.s5} (<span className="tabular-nums [font-feature-settings:'zero'_0]">{photos.length}</span>)
             </h2>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
               {photos.map((photo) => (
-                <div
+                <figure
                   key={photo.id}
-                  className="print-block rounded-lg border border-slate-200 bg-slate-50 p-2"
+                  className="print-block border border-slate-200 bg-white p-2"
                 >
                   <img
                     src={photo.data_url}
                     alt={photo.name}
-                    className="mb-1.5 h-28 w-full rounded border border-slate-200 object-contain"
+                    className="mb-1.5 h-32 w-full bg-white object-contain"
                   />
-                  <p className="truncate text-[11px] font-bold text-slate-800">{photo.name}</p>
-                  <p className="tabular-nums text-[10px] text-slate-500">{photo.date}</p>
-                </div>
+                  <figcaption>
+                    <p className="truncate text-[11px] font-semibold text-slate-800">{photo.name}</p>
+                    {photo.date ? (
+                      <p className="tabular-nums [font-feature-settings:'zero'_0] text-[10px] text-slate-500">
+                        {formatDay(photo.date)}
+                      </p>
+                    ) : null}
+                  </figcaption>
+                </figure>
               ))}
             </div>
           </section>
@@ -322,7 +308,7 @@ export function PatientPrintReport({
 
         <footer className="print-block mt-10 flex flex-wrap items-end justify-between gap-4 border-t border-slate-300 pt-6 text-xs text-slate-500">
           <div>
-            <p className="font-bold text-slate-700">{t.signature}</p>
+            <p className="font-semibold text-slate-700">{t.signature}</p>
             <div className="mt-6 w-48 border-b border-slate-400" />
             <p className="mt-1 text-[10px]">{t.authorizedWorker}</p>
           </div>

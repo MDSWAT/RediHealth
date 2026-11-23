@@ -1,7 +1,6 @@
 "use client";
 
 import type { ChangeEvent, FormEvent } from "react";
-import { CheckCircleIcon, ImageIcon } from "@/components/ui/icons";
 import { PatientPhotoGallery, PatientPhotoTrigger } from "./PatientMedia";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { TreatmentEntry } from "@/lib/types/patient";
@@ -194,7 +193,7 @@ export function TreatmentPlanEditor({
     },
   }[lang];
   return (
-    <div className="space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6 shadow-xs">
+    <div className="crm-card space-y-5">
       <fieldset disabled={isSavingTreatment} className="grid gap-4 sm:grid-cols-2">
         <label className="crm-label sm:col-span-2">
           {copy.name}
@@ -202,24 +201,21 @@ export function TreatmentPlanEditor({
         </label>
         <label className="crm-label">
           {copy.start}
-          <input type="date" className="crm-input" value={treatmentPlan.start_date || ""} max={treatmentPlan.end_date || undefined} onChange={(e) => onChangeTreatmentPlan({ ...treatmentPlan, start_date: e.target.value })} />
+          <input type="date" className="crm-input tabular-nums" value={treatmentPlan.start_date || ""} max={treatmentPlan.end_date || undefined} onChange={(e) => onChangeTreatmentPlan({ ...treatmentPlan, start_date: e.target.value })} />
         </label>
         <label className="crm-label">
           {copy.end}
-          <input type="date" className="crm-input" value={treatmentPlan.end_date || ""} min={treatmentPlan.start_date || undefined} onChange={(e) => onChangeTreatmentPlan({ ...treatmentPlan, end_date: e.target.value })} />
+          <input type="date" className="crm-input tabular-nums" value={treatmentPlan.end_date || ""} min={treatmentPlan.start_date || undefined} onChange={(e) => onChangeTreatmentPlan({ ...treatmentPlan, end_date: e.target.value })} />
         </label>
       </fieldset>
       {treatmentSavedMsg ? (
-        <div role="status" className="flex items-center gap-2 rounded-xl bg-sapphire-soft/60 border border-sapphire/20 p-3.5 text-xs text-sapphire dark:text-blue-300">
-          <CheckCircleIcon className="h-4 w-4 text-sapphire" />
-          <span>{copy.saved}</span>
-        </div>
+        <p role="status" className="rounded-lg border border-[var(--panel-line)] bg-[var(--panel-selection)] px-4 py-3 text-sm font-medium text-[var(--panel-ink)]">
+          {copy.saved}
+        </p>
       ) : null}
 
-      <div>
-        <label className="text-xs font-semibold text-foreground mb-1.5 block">
-          {t.diagnosis}
-        </label>
+      <label className="crm-label">
+        {t.diagnosis}
         <textarea
           rows={3}
           value={treatmentPlan.diagnosis || ""}
@@ -227,15 +223,13 @@ export function TreatmentPlanEditor({
             onChangeTreatmentPlan({ ...treatmentPlan, diagnosis: e.target.value })
           }
           placeholder={t.diagnosisPh}
-          className="w-full rounded-lg border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="crm-input"
         />
-      </div>
+      </label>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="text-xs font-semibold text-foreground mb-1.5 block">
-            {t.goals}
-          </label>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <label className="crm-label">
+          {t.goals}
           <textarea
             rows={3}
             value={treatmentPlan.goals || ""}
@@ -243,14 +237,12 @@ export function TreatmentPlanEditor({
               onChangeTreatmentPlan({ ...treatmentPlan, goals: e.target.value })
             }
             placeholder={t.goalsPh}
-            className="w-full rounded-lg border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="crm-input"
           />
-        </div>
+        </label>
 
-        <div>
-          <label className="text-xs font-semibold text-foreground mb-1.5 block">
-            {t.meds}
-          </label>
+        <label className="crm-label">
+          {t.meds}
           <textarea
             rows={3}
             value={treatmentPlan.medications || ""}
@@ -258,15 +250,13 @@ export function TreatmentPlanEditor({
               onChangeTreatmentPlan({ ...treatmentPlan, medications: e.target.value })
             }
             placeholder={t.medsPh}
-            className="w-full rounded-lg border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="crm-input"
           />
-        </div>
+        </label>
       </div>
 
-      <div>
-        <label className="text-xs font-semibold text-foreground mb-1.5 block">
-          {t.instructions}
-        </label>
+      <label className="crm-label">
+        {t.instructions}
         <textarea
           rows={3}
           value={treatmentPlan.care_instructions || ""}
@@ -277,56 +267,48 @@ export function TreatmentPlanEditor({
             })
           }
           placeholder={t.instructionsPh}
-          className="w-full rounded-lg border border-border bg-background p-3.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="crm-input"
         />
-      </div>
+      </label>
 
-      <div className="border-t border-border pt-5 space-y-4">
+      <div className="space-y-4 border-t border-[var(--panel-line)] pt-5">
         <div>
-          <h4 className="text-xs font-bold text-foreground flex items-center gap-1.5">
-            <ImageIcon className="h-4 w-4 text-primary" />
-            <span>{t.attachTitle}</span>
-          </h4>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <h3 className="text-sm font-semibold text-[var(--panel-ink)]">
+            {t.attachTitle}
+          </h3>
+          <p className="mt-0.5 text-xs text-[var(--panel-muted)]">
             {t.attachHint}
           </p>
         </div>
 
-        <form
-          onSubmit={onAddTpPhoto}
-          className="rounded-xl border border-border bg-muted/30 p-4 space-y-3"
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
-                {t.selectImage}
-              </label>
+        <form onSubmit={onAddTpPhoto} className="space-y-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <label className="crm-label">
+              {t.selectImage}
               <input
                 type="file"
                 accept="image/*"
                 onChange={onTpPhotoUpload}
-                className="w-full text-xs text-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-primary/10 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary hover:file:bg-primary/20"
+                className="patient-file-input"
               />
-            </div>
+            </label>
 
-            <div>
-              <label className="text-xs font-semibold text-foreground mb-1 block">
-                {t.photoLabel}
-              </label>
+            <label className="crm-label">
+              {t.photoLabel}
               <input
                 type="text"
                 value={tpPhotoName}
                 onChange={(e) => onChangeTpPhotoName(e.target.value)}
                 placeholder={t.photoPh}
-                className="w-full rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="crm-input"
               />
-            </div>
+            </label>
           </div>
 
           {tpPhotoData ? (
-            <div className="flex items-center gap-3 bg-card p-2 rounded-lg border border-border">
+            <div className="patient-pending-photo">
               <PatientPhotoTrigger photo={{ id: "pending-treatment", name: tpPhotoName || t.ready, data_url: tpPhotoData, date: "" }} />
-              <span className="text-xs text-emerald-600 font-semibold">
+              <span className="text-sm font-medium text-[var(--panel-ink)]">
                 {t.ready}
               </span>
             </div>
@@ -336,23 +318,30 @@ export function TreatmentPlanEditor({
             <button
               type="submit"
               disabled={!tpPhotoData}
-              className="rounded-lg bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary hover:bg-primary/20 disabled:bg-muted disabled:text-muted-foreground"
+              className="crm-button whitespace-nowrap"
             >
               {t.attachButton}
             </button>
           </div>
         </form>
 
-        {!!treatmentPlan.photos?.length && <div className="mt-5"><p className="mb-3 text-sm font-semibold">{t.attached} ({treatmentPlan.photos.length})</p><PatientPhotoGallery photos={treatmentPlan.photos} onDelete={onDeleteTpPhoto} busy={isSavingTreatment} /></div>}
-
+        {!!treatmentPlan.photos?.length && (
+          <div className="mt-5 border-t border-[var(--panel-line)] pt-5">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <p className="text-sm font-semibold text-[var(--panel-ink)]">{t.attached}</p>
+              <span className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{treatmentPlan.photos.length}</span>
+            </div>
+            <PatientPhotoGallery photos={treatmentPlan.photos} onDelete={onDeleteTpPhoto} busy={isSavingTreatment} />
+          </div>
+        )}
       </div>
 
-      <div className="flex justify-end pt-2">
+      <div className="flex justify-end border-t border-[var(--panel-line)] pt-5">
         <button
           type="button"
           disabled={isSavingTreatment}
           onClick={onSaveTreatmentPlan}
-          className="rounded-lg bg-primary px-6 py-2.5 text-xs font-semibold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground shadow-sm"
+          className="crm-button crm-primary whitespace-nowrap"
         >
           {isSavingTreatment ? copy.saving : copy.save}
         </button>

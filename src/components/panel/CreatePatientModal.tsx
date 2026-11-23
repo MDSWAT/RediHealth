@@ -4,7 +4,7 @@ import { usePanelRouter as useRouter, usePanelRuntime } from "./PanelRuntime";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { ArrowLeftIcon, ArrowRightIcon, CheckCircleIcon, CloseIcon } from "@/components/ui/icons";
+import { ArrowLeftIcon, ArrowRightIcon, CloseIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { createPatientModalTranslations } from "@/lib/i18n/panel-component-translations";
 import type { MedicalHelpRequestItem } from "@/lib/types/medical-request";
@@ -310,14 +310,14 @@ export function CreatePatientModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={dialogTitleId}
-        className="app-sheet-slide-up relative flex h-dvh min-h-0 w-full max-w-3xl flex-col overflow-hidden border-border bg-card shadow-2xl sm:h-auto sm:max-h-[min(850px,calc(100dvh-2rem))] sm:rounded-xl sm:border"
+        className="app-sheet-slide-up relative flex h-dvh min-h-0 w-full max-w-3xl flex-col overflow-hidden border-[var(--panel-line)] bg-[var(--panel-surface)] text-[var(--panel-ink)] shadow-2xl sm:h-auto sm:max-h-[min(850px,calc(100dvh-2rem))] sm:rounded-2xl sm:border"
       >
-        <div className="flex shrink-0 items-start justify-between gap-3 border-b border-border bg-muted/30 p-5 sm:items-center sm:px-6">
+        <div className="flex shrink-0 items-start justify-between gap-3 border-b border-[var(--panel-line)] bg-[var(--panel-subtle)] p-5 sm:items-center sm:px-6">
           <div className="min-w-0">
-            <h2 id={dialogTitleId} className="text-base font-bold text-foreground sm:text-lg">
+            <h2 id={dialogTitleId} className="text-base font-bold text-[var(--panel-ink)] sm:text-lg">
               {isEditing ? t.titleEdit : t.titleCreate}
             </h2>
-            <p className="text-xs text-muted-foreground break-words">
+            <p className="mt-0.5 text-xs text-[var(--panel-muted)] break-words">
               {request ? t.convertedFrom(String(request.id)) : t.subtitleCreate}
             </p>
           </div>
@@ -327,43 +327,57 @@ export function CreatePatientModal({
             onClick={onClose}
             disabled={isSubmitting || intakeBusy}
             aria-label={t.close}
-            className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+            className="inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg text-[var(--panel-muted)] transition-colors hover:bg-[var(--panel-selection)] hover:text-[var(--panel-ink)]"
           >
-            <CloseIcon className="h-5 w-5" />
+            <CloseIcon aria-hidden="true" className="h-5 w-5" />
           </button>
         </div>
 
-        {!isEditing && <nav aria-label={wizard.progress} className="shrink-0 border-b border-border bg-card px-4 py-4 sm:px-6">
-          {/* One surface of numbered cells with hairline dividers, like the other step pickers on the site. */}
-          <ol className="grid grid-cols-3 divide-x divide-border overflow-hidden rounded-lg border border-border">
-            {wizard.steps.map((label, index) => <li key={label} className="min-w-0">
-              <button type="button" disabled={index > furthestStep || isSubmitting || intakeBusy} onClick={() => goToStep(index)} aria-current={step === index ? "step" : undefined}
-                className={`flex h-full min-h-12 w-full flex-col items-start gap-1.5 px-3 py-2.5 text-left text-xs font-medium leading-snug transition-colors disabled:cursor-default sm:flex-row sm:items-center sm:gap-2.5 ${step === index ? "bg-slate-50 text-foreground" : index < step ? "bg-card text-foreground hover:bg-slate-50" : "bg-card text-muted-foreground"}`}>
-                <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-semibold tabular-nums ${step === index ? "bg-primary text-white" : "bg-muted text-muted-foreground"}`}>{index < step ? <CheckCircleIcon aria-hidden="true" className="h-4 w-4" /> : index + 1}</span>{label}
+        {!isEditing && <nav aria-label={wizard.progress} className="shrink-0 border-b border-[var(--panel-line)] bg-[var(--panel-surface)] px-4 sm:px-6">
+          <ol className="flex overflow-x-auto divide-x divide-[var(--panel-line)]">
+            {wizard.steps.map((label, index) => <li key={label} className="shrink-0 sm:flex-1">
+              <button
+                type="button"
+                disabled={index > furthestStep || isSubmitting || intakeBusy}
+                onClick={() => goToStep(index)}
+                aria-current={step === index ? "step" : undefined}
+                className={`relative flex h-full min-h-12 w-full items-center gap-2 whitespace-nowrap px-3.5 py-3 text-left text-xs font-medium leading-snug transition-colors disabled:cursor-default ${
+                  step === index
+                    ? "bg-[var(--panel-selection)] font-semibold text-[var(--color-sapphire)] dark:text-[#bad7fa]"
+                    : index < step
+                    ? "text-[var(--panel-ink)] hover:bg-[var(--panel-subtle)]"
+                    : "text-[var(--panel-muted)]"
+                }`}
+              >
+                <span className="shrink-0 tabular-nums [font-feature-settings:'zero'_0] font-semibold">
+                  {index + 1}.
+                </span>
+                <span>{label}</span>
+                {step === index ? (
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 bottom-0 h-0.5 bg-[var(--color-sapphire)] dark:bg-[#bad7fa]"
+                  />
+                ) : null}
               </button>
             </li>)}
           </ol>
         </nav>}
 
         {errorMessage ? (
-          <div role="alert" className="mx-5 mt-4 rounded-xl bg-red-500/10 border border-red-500/20 p-3 text-xs font-medium text-red-600 dark:text-red-400">
+          <div role="alert" className="mx-5 mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-xs font-medium text-[#b91c1c] dark:text-[#ffb4b4]">
             {errorMessage}
           </div>
         ) : null}
 
         {saveSuccess ? (
-          <div className="mt-4 flex items-center gap-2 rounded-xl bg-sapphire-soft/60 border border-sapphire/20 p-3 text-xs font-medium text-sapphire dark:text-blue-300">
-            <CheckCircleIcon className="h-4 w-4 text-sapphire" />
-            <span>
-              {isEditing
-                ? t.successEdit
-                : t.successCreate}
-            </span>
+          <div role="status" className="mx-5 mt-4 rounded-lg border border-[var(--panel-line)] bg-[var(--panel-selection)] px-4 py-3 text-xs font-medium text-[var(--panel-ink)]">
+            {isEditing ? t.successEdit : t.successCreate}
           </div>
         ) : null}
 
         {warningMessage ? (
-          <div className="mt-4 rounded-xl bg-amber-500/10 border border-amber-500/20 p-3 text-xs font-medium text-amber-800 dark:text-amber-300">
+          <div role="status" className="mx-5 mt-4 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs font-medium text-[#9a4d0b] dark:text-[#f5c58e]">
             {warningMessage}
           </div>
         ) : null}
@@ -372,25 +386,25 @@ export function CreatePatientModal({
           if (event.target instanceof HTMLInputElement || event.target instanceof HTMLSelectElement || event.target instanceof HTMLTextAreaElement) event.target.setCustomValidity("");
         }} className="min-h-0 flex-1 space-y-5 overflow-y-auto overscroll-contain p-5 sm:p-6">
           {!isEditing && <div>
-            <h3 ref={stepHeadingRef} tabIndex={-1} className="text-xl font-bold tracking-tight outline-none">{wizard.steps[step]}</h3>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{wizard.hints[step]}</p>
+            <h3 ref={stepHeadingRef} tabIndex={-1} className="text-xl font-bold tracking-tight text-[var(--panel-ink)] outline-none">{wizard.steps[step]}</h3>
+            <p className="mt-1 text-sm leading-relaxed text-[var(--panel-muted)]">{wizard.hints[step]}</p>
           </div>}
           <div data-patient-contact hidden={!isEditing && step !== 0} className="space-y-4">
           {isEditing &&
-          <h3 className="text-sm font-bold text-foreground">{intakeCopy.contact}</h3>
+          <h3 className="text-sm font-semibold text-[var(--panel-ink)]">{intakeCopy.contact}</h3>
           }
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {isRomania ? (
               <div>
-                <label htmlFor={`${formId}-county`} className="text-xs font-semibold text-foreground mb-1 block">
-                  {t.county} <span className="text-red-500">*</span>
+                <label htmlFor={`${formId}-county`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">
+                  {t.county} <span aria-hidden="true" className="text-[#b91c1c] dark:text-[#ffb4b4]">*</span>
                 </label>
                 <select
                   id={`${formId}-county`}
                   required={!isEditing || Boolean(patient?.county)}
                   value={county}
                   onChange={(event) => setCounty(event.target.value)}
-                  className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="min-h-11 w-full whitespace-nowrap rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3.5 py-2 text-sm text-[var(--panel-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <option value="">{t.selectCounty}</option>
                   {ROMANIAN_COUNTIES.map((countyName) => <option key={countyName} value={countyName}>{countyName}</option>)}
@@ -398,8 +412,8 @@ export function CreatePatientModal({
               </div>
             ) : null}
             <div>
-              <label htmlFor={`${formId}-name`} className="text-xs font-semibold text-foreground mb-1 block">
-                {t.fullName} <span className="text-red-500">*</span>
+              <label htmlFor={`${formId}-name`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">
+                {t.fullName} <span aria-hidden="true" className="text-[#b91c1c] dark:text-[#ffb4b4]">*</span>
               </label>
               <input
                 id={`${formId}-name`}
@@ -408,12 +422,12 @@ export function CreatePatientModal({
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder={t.fullNamePh}
-                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="min-h-11 w-full rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3.5 py-2 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
             <div>
-              <label htmlFor={`${formId}-phone`} className="text-xs font-semibold text-foreground mb-1 block">
-                {t.phone} <span className="text-red-500">*</span>
+              <label htmlFor={`${formId}-phone`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">
+                {t.phone} <span aria-hidden="true" className="text-[#b91c1c] dark:text-[#ffb4b4]">*</span>
               </label>
               <input
                 type="tel"
@@ -422,13 +436,13 @@ export function CreatePatientModal({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder={t.phonePh}
-                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="min-h-11 w-full rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3.5 py-2 text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
 
             <div className="sm:col-span-2">
-              <label htmlFor={`${formId}-email`} className="text-xs font-semibold text-foreground mb-1 block">
-                {t.email} <span className="text-red-500">*</span>
+              <label htmlFor={`${formId}-email`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">
+                {t.email} <span aria-hidden="true" className="text-[#b91c1c] dark:text-[#ffb4b4]">*</span>
               </label>
               <input
                 type="email"
@@ -437,40 +451,42 @@ export function CreatePatientModal({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t.emailPh}
-                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="min-h-11 w-full rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3.5 py-2 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           </div>
           </div>
 
           <div hidden={!isEditing && step !== 1} className="space-y-5">
-          <div className="rounded-xl border border-border bg-muted/30 p-4">
-            <h3 className="mb-3 text-sm font-bold text-foreground">{intakeCopy.care}</h3>
-            <label htmlFor={`${formId}-condition`} className="text-xs font-semibold text-foreground mb-1 block">
-              {t.condition}
-            </label>
-            <textarea
-              id={`${formId}-condition`}
-              rows={3}
-              value={conditionNotes}
-              onChange={(e) => setConditionNotes(e.target.value)}
-              placeholder={t.conditionPh}
-              className="w-full rounded-lg border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            />
+          <div className="space-y-3 border-t border-[var(--panel-line)] pt-5">
+            <h3 className="text-sm font-semibold text-[var(--panel-ink)]">{intakeCopy.care}</h3>
+            <div>
+              <label htmlFor={`${formId}-condition`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">
+                {t.condition}
+              </label>
+              <textarea
+                id={`${formId}-condition`}
+                rows={3}
+                value={conditionNotes}
+                onChange={(e) => setConditionNotes(e.target.value)}
+                placeholder={t.conditionPh}
+                className="w-full rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] p-3 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              />
+            </div>
           </div>
 
           <div>
-            <label htmlFor={`${formId}-address`} className="mb-1 block text-xs font-semibold text-foreground">{t.address}</label>
+            <label htmlFor={`${formId}-address`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">{t.address}</label>
             <input id={`${formId}-address`} type="text" value={address} onChange={(event) => setAddress(event.target.value)} placeholder={t.addressPh}
-              className="min-h-11 w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+              className="min-h-11 w-full rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3.5 py-2 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
           </div>
           <PatientIntakeFields value={intake} onChange={setIntake} disabled={isSubmitting} onBusyChange={setIntakeBusy} />
 
-          <section aria-labelledby={`${formId}-personal`} className="space-y-4 rounded-xl border border-border p-4 sm:p-5">
-            <div><h4 id={`${formId}-personal`} className="font-semibold">{wizard.personal}</h4><p className="mt-1 text-xs text-muted-foreground">{wizard.personalHint}</p></div>
+          <section aria-labelledby={`${formId}-personal`} className="space-y-4 border-t border-[var(--panel-line)] pt-5">
+            <div><h4 id={`${formId}-personal`} className="text-sm font-semibold text-[var(--panel-ink)]">{wizard.personal}</h4><p className="mt-0.5 text-xs text-[var(--panel-muted)]">{wizard.personalHint}</p></div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor={`${formId}-dob`} className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-dob`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">
                 {t.dob}
               </label>
               <input
@@ -478,19 +494,19 @@ export function CreatePatientModal({
                 type="date"
                 value={dateOfBirth}
                 onChange={(e) => setDateOfBirth(e.target.value)}
-                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="min-h-11 w-full rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3.5 py-2 text-sm tabular-nums text-[var(--panel-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
 
             <div>
-              <label htmlFor={`${formId}-gender`} className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-gender`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">
                 {t.gender}
               </label>
               <select
                 id={`${formId}-gender`}
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
-                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="min-h-11 w-full whitespace-nowrap rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3.5 py-2 text-sm text-[var(--panel-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="">{t.selectGender}</option>
                 <option value="Female">{t.female}</option>
@@ -501,24 +517,24 @@ export function CreatePatientModal({
             </div>
           </div>
           <div>
-            <label htmlFor={`${formId}-history`} className="mb-1 block text-xs font-semibold text-foreground">{t.history}</label>
+            <label htmlFor={`${formId}-history`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">{t.history}</label>
             <textarea id={`${formId}-history`} rows={3} value={medicalHistory} onChange={(e) => setMedicalHistory(e.target.value)}
-              placeholder={t.historyPh} className="w-full rounded-lg border border-border bg-background p-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+              placeholder={t.historyPh} className="w-full rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] p-3 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
           </div>
           </section>
 
-          <section aria-labelledby={`${formId}-care`} className="space-y-4 rounded-xl border border-border p-4 sm:p-5">
-            <div><h4 id={`${formId}-care`} className="font-semibold">{wizard.care}</h4><p className="mt-1 text-xs text-muted-foreground">{wizard.careHint}</p></div>
+          <section aria-labelledby={`${formId}-care`} className="space-y-4 border-t border-[var(--panel-line)] pt-5">
+            <div><h4 id={`${formId}-care`} className="text-sm font-semibold text-[var(--panel-ink)]">{wizard.care}</h4><p className="mt-0.5 text-xs text-[var(--panel-muted)]">{wizard.careHint}</p></div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor={`${formId}-status`} className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-status`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">
                 {t.patientStatus}
               </label>
               <select
                 id={`${formId}-status`}
                 value={status}
                 onChange={(e) => setStatus(e.target.value as PatientStatus)}
-                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="min-h-11 w-full whitespace-nowrap rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3.5 py-2 text-sm text-[var(--panel-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="active">{t.activeCare}</option>
                 <option value="inactive">{t.inactive}</option>
@@ -527,14 +543,14 @@ export function CreatePatientModal({
             </div>
 
             <div>
-              <label htmlFor={`${formId}-priority`} className="text-xs font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${formId}-priority`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">
                 {t.priority}
               </label>
               <select
                 id={`${formId}-priority`}
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as PatientPriority)}
-                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="min-h-11 w-full whitespace-nowrap rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3.5 py-2 text-sm font-medium text-[var(--panel-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="critical">{t.pCritical}</option>
                 <option value="high">{t.pHigh}</option>
@@ -546,13 +562,13 @@ export function CreatePatientModal({
           </section>
 
             {isAdmin ? (
-            <section aria-labelledby={`${formId}-team`} className="space-y-4 rounded-xl border border-border p-4 sm:p-5">
+            <section aria-labelledby={`${formId}-team`} className="space-y-4 border-t border-[var(--panel-line)] pt-5">
                 <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="min-w-0 flex-1"><h4 id={`${formId}-team`} className="font-semibold">{wizard.team}</h4><p className="mt-1 text-xs leading-relaxed text-muted-foreground">{wizard.teamHint}</p></div>
-                  <span aria-live="polite" className="shrink-0 rounded-md bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">{assignedWorkerIds.length} {crm.selected}</span>
+                  <div className="min-w-0 flex-1"><h4 id={`${formId}-team`} className="text-sm font-semibold text-[var(--panel-ink)]">{wizard.team}</h4><p className="mt-0.5 text-xs leading-relaxed text-[var(--panel-muted)]">{wizard.teamHint}</p></div>
+                  <span aria-live="polite" className="shrink-0 whitespace-nowrap text-xs font-medium tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{assignedWorkerIds.length} {crm.selected}</span>
                 </div>
                 {assignedWorkerIds.length > 0 ? (
-                  <div className="flex flex-wrap gap-2 rounded-xl bg-muted/50 p-3">
+                  <div className="flex flex-wrap gap-2">
                     {assignedWorkerIds.map((id) => {
                       const worker = workersList.find((item) => item.id === id);
                       return (
@@ -561,31 +577,31 @@ export function CreatePatientModal({
                         type="button"
                         onClick={() => removeSelectedWorker(id)}
                         aria-label={`${crm.removeSelection}: ${worker?.full_name || id}`}
-                        className="inline-flex min-h-11 max-w-full items-center gap-2 rounded-lg border border-primary/20 bg-primary-soft px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/15"
+                        className="inline-flex min-h-11 max-w-full items-center gap-2 whitespace-nowrap rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-selection)] px-3 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-subtle)]"
                       >
-                        <span className="break-words">{worker?.full_name || id}</span><CloseIcon className="h-4 w-4 shrink-0" />
+                        <span className="truncate">{worker?.full_name || id}</span><CloseIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
                       </button>
                       );
                     })}
                   </div>
-                ) : <p className="rounded-xl bg-muted/50 p-3 text-sm text-muted-foreground">{wizard.emptyTeam}</p>}
-                <label htmlFor={`${formId}-worker-search`} className="block text-xs font-semibold">{wizard.searchTeam}</label>
+                ) : <p className="text-sm text-[var(--panel-muted)]">{wizard.emptyTeam}</p>}
+                <label htmlFor={`${formId}-worker-search`} className="block text-xs font-semibold text-[var(--panel-ink)]">{wizard.searchTeam}</label>
                 <input
                   id={`${formId}-worker-search`}
                   type="search"
                   value={workerSearchQuery}
                   onChange={(event) => setWorkerSearchQuery(event.target.value)}
                   placeholder={wizard.searchTeam}
-                  className="min-h-11 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="min-h-11 w-full rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3 py-2 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
-                {workersLoading ? <p role="status" className="text-sm text-muted-foreground">{wizard.loadingTeam}</p>
-                : workersError ? <div role="alert" className="flex flex-wrap items-center gap-3 text-sm text-red-600 dark:text-red-400">
-                  <p>{wizard.teamError}</p><button type="button" onClick={() => setWorkersRetry((value) => value + 1)} className="min-h-11 font-semibold underline">{wizard.retry}</button>
+                {workersLoading ? <p role="status" className="text-sm text-[var(--panel-muted)]">{wizard.loadingTeam}</p>
+                : workersError ? <div role="alert" className="flex flex-wrap items-center gap-3 text-sm text-[#b91c1c] dark:text-[#ffb4b4]">
+                  <p>{wizard.teamError}</p><button type="button" onClick={() => setWorkersRetry((value) => value + 1)} className="inline-flex min-h-11 items-center whitespace-nowrap font-semibold underline">{wizard.retry}</button>
                 </div>
                 : workersList.length === 0 ? (
-                  <p className="px-2 py-1.5 text-xs text-muted-foreground">{t.unassigned}</p>
+                  <p className="py-1.5 text-xs text-[var(--panel-muted)]">{t.unassigned}</p>
                 ) : filteredWorkers.length === 0 ? (
-                  <p role="status" className="py-3 text-sm text-muted-foreground">{crm.noMatches}</p>
+                  <p role="status" className="py-3 text-sm text-[var(--panel-muted)]">{crm.noMatches}</p>
                 ) : (
                   <div role="group" aria-labelledby={`${formId}-team`} className="grid max-h-80 grid-cols-1 gap-2 overflow-y-auto p-1 sm:grid-cols-2">
                     {filteredWorkers.map((w) => {
@@ -593,7 +609,11 @@ export function CreatePatientModal({
                       return (
                         <label
                           key={w.id}
-                          className={`flex min-h-20 min-w-0 cursor-pointer items-center gap-3 rounded-xl border p-3 text-sm transition-colors ${isSelected ? "border-primary bg-primary-soft" : "border-border bg-background hover:bg-muted"}`}
+                          className={`flex min-h-20 min-w-0 cursor-pointer items-center gap-3 rounded-xl border p-3 text-sm transition-colors ${
+                            isSelected
+                              ? "border-[var(--panel-selected-border,#9eb4cc)] bg-[var(--panel-selection)]"
+                              : "border-[var(--panel-line)] bg-[var(--panel-surface)] hover:bg-[var(--panel-subtle)]"
+                          }`}
                         >
                           <input
                             type="checkbox"
@@ -605,12 +625,12 @@ export function CreatePatientModal({
                                   : [...current, w.id],
                               );
                             }}
-                            className="h-5 w-5 shrink-0 rounded border-border accent-primary focus:ring-ring"
+                            className="h-5 w-5 shrink-0 rounded border-[var(--color-border-control,#8a94a6)] accent-primary focus:ring-ring"
                           />
                           <span className="min-w-0">
-                            <span className="block break-words font-semibold">{w.full_name}</span>
-                            <span className="mt-1 block break-words text-xs text-muted-foreground">{w.role}{w.county ? ` · ${w.county}` : ""}</span>
-                            <span className="mt-1 block break-all text-xs text-muted-foreground">{w.email}</span>
+                            <span className="block break-words font-semibold text-[var(--panel-ink)]">{w.full_name}</span>
+                            <span className="mt-1 block break-words text-xs text-[var(--panel-muted)]">{w.role}{w.county ? ` · ${w.county}` : ""}</span>
+                            <span className="mt-1 block break-all text-xs text-[var(--panel-muted)]">{w.email}</span>
                           </span>
                         </label>
                       );
@@ -620,16 +640,20 @@ export function CreatePatientModal({
             </section>
             ) : null}
           </div>
-          {!isEditing && step === 2 && <div className="space-y-4">
-            <div className="rounded-xl border border-primary/20 bg-primary-soft p-4">
-              <p className="mb-3 flex items-center gap-2 text-xs font-semibold text-primary"><CheckCircleIcon className="h-4 w-4" />{wizard.ready}</p>
+          {!isEditing && step === 2 && <div className="space-y-5">
+            <div className="rounded-xl border border-[var(--panel-line)] bg-[var(--panel-selection)] p-4">
+              <p className="mb-2 text-xs font-semibold text-[var(--color-sapphire)] dark:text-[#bad7fa]">{wizard.ready}</p>
               <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0"><p className="break-words text-xl font-bold">{fullName}</p><p className="mt-1 break-all text-sm">{phone} · {email}</p>{county && <p className="mt-1 text-sm text-muted-foreground">{county}</p>}</div>
-                <button type="button" onClick={() => goToStep(0)} className="min-h-10 shrink-0 px-2 text-sm font-semibold text-primary">{wizard.edit}</button>
+                <div className="min-w-0">
+                  <p className="break-words text-xl font-bold text-[var(--panel-ink)]">{fullName}</p>
+                  <p className="mt-1 break-all text-sm text-[var(--panel-ink)]"><span className="tabular-nums [font-feature-settings:'zero'_0]">{phone}</span> · {email}</p>
+                  {county && <p className="mt-1 text-sm text-[var(--panel-muted)]">{county}</p>}
+                </div>
+                <button type="button" onClick={() => goToStep(0)} className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap px-2 text-sm font-semibold text-primary hover:underline dark:text-[#bad7fa]">{wizard.edit}</button>
               </div>
             </div>
-            <section className="rounded-xl border border-border p-4">
-              <div className="mb-4 flex items-center justify-between gap-3"><h4 className="font-semibold">{wizard.steps[1]}</h4><button type="button" onClick={() => goToStep(1)} className="min-h-10 px-2 text-sm font-semibold text-primary">{wizard.edit}</button></div>
+            <section className="border-t border-[var(--panel-line)] pt-5">
+              <div className="mb-4 flex items-center justify-between gap-3"><h4 className="text-sm font-semibold text-[var(--panel-ink)]">{wizard.steps[1]}</h4><button type="button" onClick={() => goToStep(1)} className="inline-flex min-h-11 items-center whitespace-nowrap px-2 text-sm font-semibold text-primary hover:underline dark:text-[#bad7fa]">{wizard.edit}</button></div>
               <dl className="grid gap-4 text-sm sm:grid-cols-2">
                 {([
                   [t.address, address], [t.condition, conditionNotes], [t.history, medicalHistory],
@@ -639,32 +663,32 @@ export function CreatePatientModal({
                   ...(isAdmin ? [[t.assignedWorker, selectedWorkers.map((worker) => worker.full_name).join(", ")]] : []),
                   [intakeCopy.documents, intake.has_documents ? intakeCopy.hasDocuments : intakeCopy.noDocuments],
                   [wizard.gps, intake.location ? `${intake.location.latitude.toFixed(6)}, ${intake.location.longitude.toFixed(6)}` : ""],
-                ]).map(([label, value]) => <div key={label} className="min-w-0"><dt className="text-xs font-medium text-muted-foreground">{label}</dt><dd className="mt-1 whitespace-pre-wrap break-words">{value || wizard.empty}</dd></div>)}
+                ]).map(([label, value]) => <div key={label} className="min-w-0"><dt className="text-xs font-medium text-[var(--panel-muted)]">{label}</dt><dd className="mt-1 whitespace-pre-wrap break-words text-[var(--panel-ink)]">{value || wizard.empty}</dd></div>)}
               </dl>
-              {intake.documents.length > 0 && <div className="mt-4 border-t border-border pt-4"><h4 className="text-xs font-medium text-muted-foreground">{wizard.documents} ({intake.documents.length})</h4><ul className="mt-2 space-y-2">{intake.documents.map((document) => <li key={document.id} className="break-words rounded-lg bg-muted p-2 text-sm">{document.name} · {document.category === "identity" ? intakeCopy.identity : intakeCopy.medical}</li>)}</ul></div>}
+              {intake.documents.length > 0 && <div className="mt-4 border-t border-[var(--panel-line)] pt-4"><h4 className="text-xs font-medium text-[var(--panel-muted)]">{wizard.documents} (<span className="tabular-nums [font-feature-settings:'zero'_0]">{intake.documents.length}</span>)</h4><ul className="mt-2 divide-y divide-[var(--panel-line)] border-t border-[var(--panel-line)]">{intake.documents.map((document) => <li key={document.id} className="break-words py-2 text-sm text-[var(--panel-ink)]">{document.name} · <span className="text-[var(--panel-muted)]">{document.category === "identity" ? intakeCopy.identity : intakeCopy.medical}</span></li>)}</ul></div>}
             </section>
           </div>}
         </form>
-          <div className="flex shrink-0 items-center justify-between gap-3 border-t border-border bg-card p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6">
+          <div className="flex shrink-0 items-center justify-between gap-3 border-t border-[var(--panel-line)] bg-[var(--panel-surface)] p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6">
             <button
               type="button"
               onClick={() => !isEditing && step > 0 ? goToStep(step - 1) : onClose()}
               disabled={isSubmitting || intakeBusy}
-              className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+              className="crm-button whitespace-nowrap border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)]"
             >
-              {!isEditing && step > 0 ? <span className="inline-flex items-center gap-2"><ArrowLeftIcon className="h-4 w-4" />{wizard.back}</span> : t.cancel}
+              {!isEditing && step > 0 ? <><ArrowLeftIcon aria-hidden="true" className="h-4 w-4 shrink-0" /><span>{wizard.back}</span></> : t.cancel}
             </button>
             <button
               type="submit"
               form={formId}
               disabled={isSubmitting || intakeBusy}
-              className="min-h-11 flex-1 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground sm:flex-none"
+              className="crm-button crm-primary flex-1 whitespace-nowrap sm:flex-none"
             >
               {isSubmitting
                 ? t.saving
                 : isEditing
                 ? t.update
-                : step === 2 ? t.create : <span className="inline-flex items-center gap-2">{wizard.next}<ArrowRightIcon className="h-4 w-4" /></span>}
+                : step === 2 ? t.create : <><span>{wizard.next}</span><ArrowRightIcon aria-hidden="true" className="h-4 w-4 shrink-0" /></>}
             </button>
           </div>
       </div>

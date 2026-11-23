@@ -4,6 +4,7 @@ import { PanelLink as Link, usePanelRuntime } from "./PanelRuntime";
 import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import { UsersIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { panelDesignTranslations } from "@/lib/i18n/panel-design-translations";
 import type { PatientItem, PatientPriority, PatientStatus } from "@/lib/types/patient";
 import { getFollowupState } from "@/lib/patient-helpers";
 import { withLangPrefix } from "@/lib/i18n/routing";
@@ -47,6 +48,7 @@ export function PatientsTable({
   const { lang } = useLanguage();
   const { request: fetch } = usePanelRuntime();
   const t = patientsTableTranslations[lang];
+  const copy = panelDesignTranslations[lang];
   const patients = initialPatients;
   const setPatients = onPatientsChange;
   const crm = crmTranslations[lang];
@@ -211,20 +213,21 @@ export function PatientsTable({
       {errorMessage ? (
         <div
           role="alert"
-          className="mx-4 mb-4 flex items-center justify-between rounded-xl border border-red-500/20 bg-red-500/10 p-3 text-xs font-medium text-red-600 dark:text-red-400"
+          className="mx-4 mb-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-[#b91c1c] dark:text-[#ffb4b4]"
         >
           <span>{errorMessage}</span>
           <button
+            type="button"
             onClick={() => setErrorMessage(null)}
-            className="ml-4 font-bold underline hover:no-underline"
+            className="inline-flex min-h-11 items-center whitespace-nowrap font-semibold underline underline-offset-2 hover:no-underline"
           >
             {t.dismiss}
           </button>
         </div>
       ) : null}
 
-      <div className="flex items-center justify-between border-y border-border bg-muted/40 px-4 py-2.5 text-xs text-muted-foreground">
-        <p className="font-medium">
+      <div className="flex items-center justify-between border-y border-[var(--panel-line)] bg-[var(--panel-subtle)] px-4 py-2.5 text-xs text-[var(--panel-muted)]">
+        <p className="font-medium tabular-nums [font-feature-settings:'zero'_0]">
           {t.showing(filteredPatients.length, patients.length)}
         </p>
       </div>
@@ -232,20 +235,148 @@ export function PatientsTable({
       {filteredPatients.length === 0 ? (
         <div className="px-6 py-12 text-center">
           <div className="mx-auto max-w-sm">
-            <UsersIcon className="mx-auto h-8 w-8 text-muted-foreground" />
-            <h3 className="mt-3 text-base font-semibold text-foreground">{t.noneTitle}</h3>
-            <p className="mt-1 text-xs text-muted-foreground">
+            <UsersIcon aria-hidden="true" className="mx-auto h-7 w-7 text-[var(--panel-muted)]" />
+            <h3 className="mt-3 text-base font-semibold text-[var(--panel-ink)]">{t.noneTitle}</h3>
+            <p className="mt-1 text-sm text-[var(--panel-muted)]">
               {t.noneHint}
             </p>
+            {hasActiveFilters ? (
+              <button
+                type="button"
+                onClick={resetFilters}
+                className="crm-button mt-4 whitespace-nowrap border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)]"
+              >
+                {copy.reset}
+              </button>
+            ) : null}
           </div>
         </div>
       ) : (
-        <div className="divide-y divide-border">
-          {filteredPatients.map((patient) => <article key={patient.id} className="patient-directory-row">
-            <div className="flex min-w-0 flex-1 items-center gap-3"><PatientAvatar name={patient.full_name} src={patient.profile_photo} /><div className="min-w-0"><Link href={withLangPrefix(`/panel/patients/${patient.id}`, lang)} className="block text-base font-medium hover:text-primary">{patient.full_name}</Link><div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground"><a href={`tel:${patient.phone}`}>{patient.phone}</a><a className="break-all" href={`mailto:${patient.email}`}>{patient.email}</a></div><p className="mt-1 line-clamp-1 text-xs text-muted-foreground">{patient.condition_notes || t.noNotes}</p></div></div>
-            <div className="flex flex-wrap items-center gap-3 text-xs"><span className="text-muted-foreground">{patient.status === "active" ? t.activeCare : patient.status === "inactive" ? t.inactive : t.archived}</span><span className={patient.priority === "critical" ? "text-red-700" : patient.priority === "high" ? "text-amber-800" : "text-muted-foreground"}>{patient.priority === "critical" ? fields.pCritical : patient.priority === "high" ? fields.pHigh : patient.priority === "low" ? fields.pLow : fields.pModerate}</span><Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}`, lang)}>{crm.openPatient}</Link><details className="crm-menu"><summary className="crm-button">{crm.more}</summary><div><button onClick={() => setEditingPatient(patient)}>{crm.edit}</button>{patient.status !== "archived" && <button disabled={closingPatientId === patient.id} onClick={() => void handleClosePatient(patient)}>{closingPatientId === patient.id ? t.closingPatient : t.closePatient}</button>}<button onClick={() => setConfirmingDeleteId(patient.id)}>{crm.delete}</button></div></details></div>
-            {confirmingDeleteId === patient.id && <div className="flex flex-wrap items-center gap-2"><span className="text-xs text-red-700">{t.deleteQ}</span><button className="crm-button" disabled={deletingId === patient.id} onClick={() => handleDelete(patient.id)}>{t.yesDelete}</button><button className="crm-button" onClick={() => setConfirmingDeleteId(null)}>{t.cancel}</button></div>}
-          </article>)}
+        <div className="divide-y divide-[var(--panel-line)]">
+          {filteredPatients.map((patient) => (
+            <article key={patient.id} className="patient-directory-row">
+              <div className="flex min-w-0 flex-1 items-center gap-3.5">
+                <PatientAvatar name={patient.full_name} src={patient.profile_photo} />
+                <div className="min-w-0">
+                  <Link
+                    href={withLangPrefix(`/panel/patients/${patient.id}`, lang)}
+                    className="block truncate text-base font-semibold text-[var(--panel-ink)] hover:text-primary dark:hover:text-[#bad7fa]"
+                  >
+                    {patient.full_name}
+                  </Link>
+                  <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-[var(--panel-muted)]">
+                    <a
+                      href={`tel:${patient.phone}`}
+                      className="tabular-nums [font-feature-settings:'zero'_0] hover:text-[var(--panel-ink)] hover:underline"
+                    >
+                      {patient.phone}
+                    </a>
+                    <a
+                      className="break-all hover:text-[var(--panel-ink)] hover:underline"
+                      href={`mailto:${patient.email}`}
+                    >
+                      {patient.email}
+                    </a>
+                  </div>
+                  <p className="mt-1 line-clamp-1 text-xs text-[var(--panel-muted)]">
+                    {patient.condition_notes || t.noNotes}
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 text-xs">
+                <span className={patient.status === "active" ? "font-medium text-[var(--panel-ink)]" : "text-[var(--panel-muted)]"}>
+                  {patient.status === "active" ? t.activeCare : patient.status === "inactive" ? t.inactive : t.archived}
+                </span>
+                <span
+                  className={
+                    patient.priority === "critical"
+                      ? "font-medium text-[#b91c1c] dark:text-[#ffb4b4]"
+                      : patient.priority === "high"
+                      ? "font-medium text-[#9a4d0b] dark:text-[#f5c58e]"
+                      : "text-[var(--panel-muted)]"
+                  }
+                >
+                  {patient.priority === "critical"
+                    ? fields.pCritical
+                    : patient.priority === "high"
+                    ? fields.pHigh
+                    : patient.priority === "low"
+                    ? fields.pLow
+                    : fields.pModerate}
+                </span>
+                <Link
+                  className="crm-button whitespace-nowrap border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)]"
+                  href={withLangPrefix(`/panel/patients/${patient.id}`, lang)}
+                >
+                  {crm.openPatient}
+                </Link>
+                <details className="crm-menu">
+                  <summary className="crm-button whitespace-nowrap border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)]">
+                    {crm.more}
+                  </summary>
+                  <div>
+                    <button
+                      type="button"
+                      className="min-h-11 whitespace-nowrap"
+                      onClick={(event) => {
+                        event.currentTarget.closest("details")?.removeAttribute("open");
+                        setEditingPatient(patient);
+                      }}
+                    >
+                      {crm.edit}
+                    </button>
+                    {patient.status !== "archived" ? (
+                      <button
+                        type="button"
+                        className="min-h-11 whitespace-nowrap"
+                        disabled={closingPatientId === patient.id}
+                        onClick={(event) => {
+                          event.currentTarget.closest("details")?.removeAttribute("open");
+                          void handleClosePatient(patient);
+                        }}
+                      >
+                        {closingPatientId === patient.id ? t.closingPatient : t.closePatient}
+                      </button>
+                    ) : null}
+                    <button
+                      type="button"
+                      className="min-h-11 whitespace-nowrap text-[#b91c1c] dark:text-[#ffb4b4]"
+                      onClick={(event) => {
+                        event.currentTarget.closest("details")?.removeAttribute("open");
+                        setConfirmingDeleteId(patient.id);
+                      }}
+                    >
+                      {crm.delete}
+                    </button>
+                  </div>
+                </details>
+              </div>
+              {confirmingDeleteId === patient.id ? (
+                <div className="flex basis-full flex-wrap items-center justify-between gap-3 border-t border-[var(--panel-line)] pt-3">
+                  <span className="text-sm font-medium text-[#b91c1c] dark:text-[#ffb4b4]">
+                    {t.deleteQ}
+                  </span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <button
+                      type="button"
+                      className="crm-button whitespace-nowrap border-[#b91c1c] bg-[#b91c1c] text-white hover:bg-[#991b1b] disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]"
+                      disabled={deletingId === patient.id}
+                      onClick={() => void handleDelete(patient.id)}
+                    >
+                      {t.yesDelete}
+                    </button>
+                    <button
+                      type="button"
+                      className="crm-button whitespace-nowrap border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)]"
+                      onClick={() => setConfirmingDeleteId(null)}
+                    >
+                      {t.cancel}
+                    </button>
+                  </div>
+                </div>
+              ) : null}
+            </article>
+          ))}
         </div>
       )}
 

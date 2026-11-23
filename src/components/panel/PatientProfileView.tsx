@@ -193,32 +193,51 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
   };
   const careTeam = (patient.assigned_worker_names?.length ? patient.assigned_worker_names : [patient.assigned_worker_name || ""])
     .map((name) => name.trim()).filter(Boolean);
+  const intakeDocCount = patient.intake?.has_documents ? patient.intake.documents.length : 0;
+  const totalMediaCount = photos.length + treatmentPhotos.length + intakeDocCount;
+  const hasOtherMedia = treatmentPhotos.length > 0 || intakeDocCount > 0;
   return <div className="patient-record space-y-5">
     <header>
-      <Link className="mb-4 inline-flex items-center gap-1 text-sm text-primary hover:underline" href={withLangPrefix("/panel/patients", lang)}><ChevronLeftIcon aria-hidden="true" className="h-4 w-4" />{t.back}</Link>
+      <Link className="mb-3 inline-flex min-h-11 items-center gap-1 whitespace-nowrap text-sm font-medium text-primary hover:underline dark:text-[#bad7fa]" href={withLangPrefix("/panel/patients", lang)}><ChevronLeftIcon aria-hidden="true" className="h-4 w-4 shrink-0" />{t.back}</Link>
       <div className="patient-record-header">
         <div className="patient-record-identity">
           <div className="patient-portrait"><PatientAvatar name={patient.full_name} src={patient.profile_photo} large onPreview={() => setProfilePreview(true)} />
             <label className={`patient-photo-upload${saving ? " is-disabled" : ""}`}>{patient.profile_photo ? t.changeProfilePhoto : t.addProfilePhoto}<input type="file" accept="image/jpeg,image/png,image/webp,image/gif" disabled={saving} onChange={readProfilePhoto} /></label>
-            {patient.profile_photo && <button className="patient-photo-remove" disabled={saving} onClick={() => { if (window.confirm(t.deleteConfirm)) void save({ profile_photo: null }); }}>{t.removeProfilePhoto}</button>}
+            {patient.profile_photo && <button type="button" className="patient-photo-remove whitespace-nowrap dark:text-[#ffb4b4]" disabled={saving} onClick={() => { if (window.confirm(t.deleteConfirm)) void save({ profile_photo: null }); }}>{t.removeProfilePhoto}</button>}
           </div>
           <div className="patient-record-details">
-            <h1 className="break-words text-2xl font-semibold">{patient.full_name}</h1>
+            <h1 className="break-words text-2xl font-bold text-[var(--panel-ink)]">{patient.full_name}</h1>
             <div aria-label={t.contact} className="mt-2 space-y-1 text-sm">
               <div className="flex flex-wrap gap-x-4 gap-y-1">
-                <a className="text-primary" href={`tel:${patient.phone}`}>{patient.phone}</a>
-                <a className="min-w-0 break-all text-primary" href={`mailto:${patient.email}`}>{patient.email}</a>
+                <a className="tabular-nums [font-feature-settings:'zero'_0] text-primary dark:text-[#bad7fa]" href={`tel:${patient.phone}`}>{patient.phone}</a>
+                <a className="min-w-0 break-all text-primary dark:text-[#bad7fa]" href={`mailto:${patient.email}`}>{patient.email}</a>
               </div>
-              {patient.date_of_birth && <p>{fields.dob}: {formatDay(patient.date_of_birth)}</p>}
+              {patient.date_of_birth && <p className="tabular-nums [font-feature-settings:'zero'_0]">{fields.dob}: {formatDay(patient.date_of_birth)}</p>}
               {patient.address && <p className="break-words">{patient.address}</p>}
             </div>
-            <div className="patient-record-meta"><span data-patient-status={patient.status}>{statusLabel}</span><span data-patient-priority={patient.priority}>{priorityLabel}</span><span>#{patient.id}</span></div>
+            <div className="patient-record-meta">
+              <span data-patient-status={patient.status}>{statusLabel}</span>
+              <span data-patient-priority={patient.priority} className={patient.priority === "critical" || patient.priority === "high" ? "font-medium" : undefined}>{priorityLabel}</span>
+              <span className="tabular-nums [font-feature-settings:'zero'_0]">#{patient.id}</span>
+            </div>
           </div>
         </div>
-        <div className="patient-record-actions"><button className="crm-button crm-primary" onClick={() => setScheduling(true)}>{t.schedule}</button><button className="crm-button" onClick={() => setEditing(true)}>{t.edit}</button><details className="crm-menu"><summary className="crm-button">{t.more}</summary><div><button onClick={() => setPrinting(true)}>{t.print}</button>{patient.has_portal_access && <button disabled={saving} onClick={sendPortal}>{t.sendPortal}</button>}<button className="text-red-700" disabled={saving} onClick={deletePatient}>{t.delete}</button></div></details></div>
+        <div className="patient-record-actions">
+          <button type="button" className="crm-button crm-primary whitespace-nowrap" onClick={() => setScheduling(true)}>{t.schedule}</button>
+          <button type="button" className="crm-button whitespace-nowrap" onClick={() => setEditing(true)}>{t.edit}</button>
+          <details className="crm-menu">
+            <summary className="crm-button whitespace-nowrap">{t.more}</summary>
+            <div>
+              <button type="button" className="min-h-11 whitespace-nowrap" onClick={(event) => { event.currentTarget.closest("details")?.removeAttribute("open"); setPrinting(true); }}>{t.print}</button>
+              {patient.has_portal_access && <button type="button" className="min-h-11 whitespace-nowrap" disabled={saving} onClick={(event) => { event.currentTarget.closest("details")?.removeAttribute("open"); void sendPortal(); }}>{t.sendPortal}</button>}
+              <button type="button" className="min-h-11 whitespace-nowrap text-[#b91c1c] dark:text-[#ffb4b4]" disabled={saving} onClick={(event) => { event.currentTarget.closest("details")?.removeAttribute("open"); void deletePatient(); }}>{t.delete}</button>
+            </div>
+          </details>
+        </div>
       </div>
     </header>
-    {error && <p className="crm-error" role="alert">{error}</p>}{notice && <p className="crm-notice" role="status">{notice}</p>}
+    {error && <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-[#b91c1c] dark:text-[#ffb4b4]" role="alert"><span>{error}</span><button type="button" onClick={() => setError("")} className="inline-flex min-h-11 items-center whitespace-nowrap font-semibold underline underline-offset-2 hover:no-underline">{t.close}</button></div>}
+    {notice && <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-[var(--panel-line)] bg-[var(--panel-selection)] px-4 py-2 text-sm text-[var(--panel-ink)]" role="status"><span>{notice}</span><button type="button" onClick={() => setNotice("")} className="inline-flex min-h-11 items-center whitespace-nowrap font-semibold text-primary underline underline-offset-2 hover:no-underline dark:text-[#bad7fa]">{t.close}</button></div>}
     <div className="crm-tabs" role="tablist" aria-label={patient.full_name} onKeyDown={(event) => {
       if (event.altKey || event.ctrlKey || event.metaKey) return;
       if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
@@ -226,45 +245,105 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
       const current = tabs.indexOf(event.target as HTMLButtonElement);
       if (current < 0) return;
       event.preventDefault();
-      const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1 : (current + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
-      tabs[next].focus(); tabs[next].click();
-    }}>{(["summary", "carePlan", "photos", "history"] as const).map((id) => <button key={id} id={`tab-${id}`} role="tab" tabIndex={tab === id ? 0 : -1} aria-selected={tab === id} aria-controls={`content-${id}`} onClick={() => {
+      const nextTab = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1 : (current + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+      tabs[nextTab].focus(); tabs[nextTab].click();
+    }}>{(["summary", "carePlan", "photos", "history"] as const).map((id) => <button key={id} type="button" id={`tab-${id}`} role="tab" tabIndex={tab === id ? 0 : -1} aria-selected={tab === id} aria-controls={`content-${id}`} className="whitespace-nowrap" onClick={() => {
       if (pendingTreatmentPhoto && id !== "carePlan" && !window.confirm(treatmentTranslations[lang].discardPhoto)) return;
       if (photoData && id !== "photos") { if (!window.confirm(t.unsaved)) return; setPhotoData(null); }
       setTab(id);
-    }}>{id === "photos" ? <>{design.photos}<span className="patient-tab-count">{photos.length + treatmentPhotos.length + (patient.intake?.documents.length || 0)}</span></> : t[id]}</button>)}</div>
+    }}>{id === "photos" ? <>{design.photos}<span className="patient-tab-count tabular-nums [font-feature-settings:'zero'_0]">{totalMediaCount}</span></> : t[id]}</button>)}</div>
     <section id={`content-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`} className="space-y-5">
       {tab === "summary" && <>
         <div className="patient-summary-grid">
-          <div className="patient-summary-main space-y-5"><section className="crm-card"><h2>{t.condition}</h2><p className="whitespace-pre-wrap text-sm leading-relaxed">{patient.condition_notes || "—"}</p><div className="mt-5 border-t border-border pt-4"><h2>{treatmentTranslations[lang].title} ({treatmentEntries.length})</h2>{treatmentEntries.slice(0, 3).map((entry) => <div key={entry.id} className="mt-3 text-sm"><p className="font-medium">{entry.title || treatmentTranslations[lang].legacy}</p><p className="text-xs text-muted-foreground">{entry.start_date ? `${formatDay(entry.start_date)} – ${formatDay(entry.end_date)}` : treatmentTranslations[lang].undated}</p><p className="line-clamp-2 text-muted-foreground">{entry.diagnosis || entry.care_instructions}</p></div>)}<button className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline" onClick={() => setTab("carePlan")}>{t.carePlan}<ChevronRightIcon aria-hidden="true" className="h-4 w-4" /></button></div></section><PatientTimelineTab patient={patient} followups={followups} photos={photos} compact /></div>
+          <div className="patient-summary-main space-y-5">
+            <section className="crm-card">
+              <h2>{t.condition}</h2>
+              <p className="whitespace-pre-wrap text-sm leading-relaxed text-[var(--panel-ink)]">{patient.condition_notes || "—"}</p>
+              <div className="mt-5 border-t border-[var(--panel-line)] pt-5">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-base font-semibold text-[var(--panel-ink)]">{treatmentTranslations[lang].title}</h3>
+                  <span className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{treatmentEntries.length}</span>
+                </div>
+                {treatmentEntries.length > 0 ? (
+                  <div className="mt-3 space-y-3">
+                    {treatmentEntries.slice(0, 3).map((entry) => <div key={entry.id} className="text-sm">
+                      <p className="font-medium text-[var(--panel-ink)]">{entry.title || treatmentTranslations[lang].legacy}</p>
+                      <p className="mt-0.5 text-xs tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{entry.start_date ? `${formatDay(entry.start_date)} – ${formatDay(entry.end_date)}` : treatmentTranslations[lang].undated}</p>
+                      {(entry.diagnosis || entry.care_instructions) && <p className="mt-1 line-clamp-2 text-[var(--panel-muted)]">{entry.diagnosis || entry.care_instructions}</p>}
+                    </div>)}
+                  </div>
+                ) : (
+                  <p className="mt-2 text-sm text-[var(--panel-muted)]">{treatmentTranslations[lang].empty}</p>
+                )}
+                <button type="button" className="mt-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap text-sm font-medium text-primary hover:underline dark:text-[#bad7fa]" onClick={() => setTab("carePlan")}>{t.carePlan}<ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0" /></button>
+              </div>
+            </section>
+            <PatientTimelineTab patient={patient} followups={followups} photos={photos} compact onViewAll={() => setTab("history")} />
+          </div>
           <div className="patient-summary-aside space-y-5">
-            <section className="crm-card"><h2>{t.nextFollowup}</h2>{next ? <><p className="font-medium">{next.title}</p><p className="mt-2 text-sm text-muted-foreground">{followupLabel(next, langToLocale[lang], t.allDay, viewerZone)}</p>{next.notes && <p className="mt-3 text-sm">{next.notes}</p>}<div className="mt-4 flex flex-wrap gap-2">{next.meeting_id && <Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${next.meeting_id}`, lang)}>{t.join}</Link>}<button className="crm-button" disabled={saving} onClick={() => setSelectedFollowup(next)}>{t.markComplete}</button></div></> : <p className="text-sm text-muted-foreground">{t.noFollowup}</p>}</section>
+            <section className="crm-card">
+              <h2>{t.nextFollowup}</h2>
+              {next ? <>
+                <p className="font-medium text-[var(--panel-ink)]">{next.title}</p>
+                <p className="mt-2 text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{followupLabel(next, langToLocale[lang], t.allDay, viewerZone)}</p>
+                {next.notes && <p className="mt-3 text-sm text-[var(--panel-ink)]">{next.notes}</p>}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {next.meeting_id && <Link className="crm-button whitespace-nowrap" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${next.meeting_id}`, lang)}>{t.join}</Link>}
+                  <button type="button" className="crm-button whitespace-nowrap" disabled={saving} onClick={() => setSelectedFollowup(next)}>{t.markComplete}</button>
+                </div>
+              </> : <p className="text-sm text-[var(--panel-muted)]">{t.noFollowup}</p>}
+            </section>
             <section className="crm-card">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <h2 className="!mb-0">{t.careTeam}</h2>
-                <span className="text-sm tabular-nums text-muted-foreground">{careTeam.length}</span>
+                <span className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{careTeam.length}</span>
               </div>
-              {careTeam.length ? <ul aria-label={t.careTeam} className="divide-y divide-border">
+              {careTeam.length ? <ul aria-label={t.careTeam} className="divide-y divide-[var(--panel-line)]">
                 {careTeam.map((name, index) => <li key={`${name}:${index}`} className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
-                  <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary-soft text-xs font-semibold text-primary">
+                  <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--panel-selection)] text-xs font-semibold text-[var(--color-sapphire)] dark:text-[#bad7fa]">
                     {name.split(/\s+/).filter((part) => !/^(dr\.?|doctor)$/i.test(part)).slice(0, 2).map((part) => part.charAt(0)).join("").toUpperCase() || name.charAt(0).toUpperCase()}
                   </span>
-                  <p className="min-w-0 break-words text-sm font-medium text-foreground">{name}</p>
+                  <p className="min-w-0 break-words text-sm font-medium text-[var(--panel-ink)]">{name}</p>
                 </li>)}
-              </ul> : <p className="text-sm text-muted-foreground">{fields.unassigned}</p>}
+              </ul> : <p className="text-sm text-[var(--panel-muted)]">{fields.unassigned}</p>}
             </section>
 
           </div>
         </div>
         {/* The next follow-up already has its own card; this list only shows the ones after it. */}
-        {upcoming.length > 1 && <section className="crm-card"><div className="mb-3 flex flex-wrap items-center justify-between gap-3"><h2>{t.upcoming}</h2></div>{upcoming.slice(1).map((item) => <div key={item.id} className="flex flex-wrap items-center justify-between gap-3 border-t border-border py-4"><div><p className="font-medium text-sm">{item.title}</p><p className="mt-1 text-sm text-muted-foreground">{followupLabel(item, langToLocale[lang], t.allDay, viewerZone)}</p></div><div className="flex gap-2">{item.meeting_id && <Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${item.meeting_id}`, lang)}>{t.join}</Link>}<button className="crm-button" disabled={saving} onClick={() => setSelectedFollowup(item)}>{t.markComplete}</button></div></div>)}</section>}
+        {upcoming.length > 1 && <section className="crm-card">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+            <h2 className="!mb-0">{t.upcoming}</h2>
+            <span className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{upcoming.length - 1}</span>
+          </div>
+          {upcoming.slice(1).map((item) => <div key={item.id} className="flex flex-wrap items-center justify-between gap-3 border-t border-[var(--panel-line)] py-4">
+            <div>
+              <p className="text-sm font-medium text-[var(--panel-ink)]">{item.title}</p>
+              <p className="mt-1 text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{followupLabel(item, langToLocale[lang], t.allDay, viewerZone)}</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {item.meeting_id && <Link className="crm-button whitespace-nowrap" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${item.meeting_id}`, lang)}>{t.join}</Link>}
+              <button type="button" className="crm-button whitespace-nowrap" disabled={saving} onClick={() => setSelectedFollowup(item)}>{t.markComplete}</button>
+            </div>
+          </div>)}
+        </section>}
       </>}
       {tab === "carePlan" && <>
-        <section className="crm-card"><div className="flex items-center justify-between gap-3"><h2>{t.medicalHistory}</h2><button className="crm-button" onClick={() => setEditing(true)}>{t.edit}</button></div><p className="whitespace-pre-wrap text-sm leading-relaxed">{patient.medical_history || "—"}</p></section>
+        <section className="crm-card">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+            <h2 className="!mb-0">{t.medicalHistory}</h2>
+            <button type="button" className="crm-button whitespace-nowrap" onClick={() => setEditing(true)}>{t.edit}</button>
+          </div>
+          <p className="whitespace-pre-wrap text-sm leading-relaxed text-[var(--panel-ink)]">{patient.medical_history || "—"}</p>
+        </section>
         <PatientTreatmentTab treatmentPlan={treatment} onChangeTreatmentPlan={(plan) => { setTreatment(plan); setTreatmentSaved(false); }} treatmentSavedMsg={treatmentSaved} isSavingTreatment={saving} onSaveTreatmentPlan={saveTreatments} onPendingPhotoChange={handlePendingTreatmentPhoto} />
 
       </>}
-      {tab === "photos" && <><PatientIntakeSummary intake={patient.intake} />{treatmentPhotos.length > 0 && <section className="crm-card"><h2>{treatmentTranslations[lang].title}</h2><PatientPhotoGallery photos={treatmentPhotos} /></section>}<PatientPhotosTab busy={saving} photos={photos} newPhotoName={photoName} onChangeNewPhotoName={setPhotoName} newPhotoNote={photoNote} onChangeNewPhotoNote={setPhotoNote} newPhotoData={photoData} onImageUpload={(e) => readPhoto(e, setPhotoData)} onAddPhoto={addPhoto} onDeletePhoto={async (id) => { if (!saving && window.confirm(t.deleteConfirm)) await save({ photos: photos.filter((p) => p.id !== id) }); }} /></>}
+      {tab === "photos" && <>
+        <PatientIntakeSummary intake={patient.intake} />
+        {treatmentPhotos.length > 0 && <section className="crm-card"><h2>{treatmentTranslations[lang].title}</h2><PatientPhotoGallery photos={treatmentPhotos} /></section>}
+        <PatientPhotosTab busy={saving} hasOtherMedia={hasOtherMedia} photos={photos} newPhotoName={photoName} onChangeNewPhotoName={setPhotoName} newPhotoNote={photoNote} onChangeNewPhotoNote={setPhotoNote} newPhotoData={photoData} onImageUpload={(e) => readPhoto(e, setPhotoData)} onAddPhoto={addPhoto} onDeletePhoto={async (id) => { if (!saving && window.confirm(t.deleteConfirm)) await save({ photos: photos.filter((p) => p.id !== id) }); }} />
+      </>}
       {tab === "history" && <PatientTimelineTab patient={patient} followups={followups} photos={photos} onSelectFollowup={setSelectedFollowup} onCreateMeeting={createFollowupMeeting} onDeleteFollowup={deleteFollowup} busy={saving} />}
     </section>
     {profilePreview && patient.profile_photo && <PatientImageViewer images={[{ id: patient.id, name: patient.full_name, data_url: patient.profile_photo, date: "" }]} index={0} onClose={() => setProfilePreview(false)} />}
