@@ -28,12 +28,12 @@ export default async function MediatorCasesCohortPage() {
       userRole={workerContext.role}
       isAdmin={workerContext.isAdmin}
     >
-      <div
+      <main
         id="main-content"
         className="min-h-dvh bg-[var(--panel-surface)] px-4 py-5 pb-24 text-[var(--panel-ink)] sm:px-6 sm:py-6"
       >
         <CaseTrackingMatrix />
-      </div>
+      </main>
     </AdminShell>
   );
 }

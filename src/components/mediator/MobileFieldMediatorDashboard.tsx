@@ -224,7 +224,7 @@ export function MobileFieldMediatorDashboard({
   };
 
   return (
-    <div
+    <main
       id="main-content"
       className="min-h-dvh bg-[var(--panel-surface)] px-4 py-5 pb-24 text-[var(--panel-ink)] sm:px-6 sm:py-6"
     >
@@ -249,7 +249,7 @@ export function MobileFieldMediatorDashboard({
               type="button"
               aria-pressed={activeTool === "intake"}
               onClick={() => toggleTool("intake")}
-              className={`${toolBtnBase} border-sapphire bg-sapphire text-white hover:bg-[#28476f]`}
+              className={`${toolBtnBase} border-sapphire bg-sapphire text-white hover:bg-[#28476f] active:bg-[#101a33]`}
             >
               {copy.intakeAction}
             </button>
@@ -261,7 +261,7 @@ export function MobileFieldMediatorDashboard({
               className={`${toolBtnBase} ${
                 activeTool === "handover"
                   ? "border-sapphire bg-[var(--panel-selection)] text-sapphire dark:border-[#bad7fa] dark:text-[#bad7fa]"
-                  : "border-[#8a94a6] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] dark:border-[var(--panel-line)]"
+                  : "border-[#8a94a6] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] active:bg-[var(--panel-selection)] dark:border-[var(--panel-line)]"
               }`}
             >
               {copy.videoAction}
@@ -274,7 +274,7 @@ export function MobileFieldMediatorDashboard({
               className={`${toolBtnBase} ${
                 activeTool === "telemetry"
                   ? "border-sapphire bg-[var(--panel-selection)] text-sapphire dark:border-[#bad7fa] dark:text-[#bad7fa]"
-                  : "border-[#8a94a6] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] dark:border-[var(--panel-line)]"
+                  : "border-[#8a94a6] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] active:bg-[var(--panel-selection)] dark:border-[var(--panel-line)]"
               }`}
             >
               {copy.kitAction}
@@ -282,18 +282,18 @@ export function MobileFieldMediatorDashboard({
 
             <Link
               href={withLangPrefix("/panel/mediator/cazuri", lang)}
-              className={`${toolBtnBase} border-[#8a94a6] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] dark:border-[var(--panel-line)]`}
+              className={`${toolBtnBase} border-[#8a94a6] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] active:bg-[var(--panel-selection)] dark:border-[var(--panel-line)]`}
             >
               {copy.casesLink}
             </Link>
           </div>
         </header>
 
-        {/* Flat inline tool workspace (zero nested cards, zero colliding close button) */}
+        {/* Flat full-bleed inline tool workspace (zero nested cards, zero colliding close button) */}
         {activeTool && (
           <section
             aria-label={activeToolTitle}
-            className="border-b border-[var(--panel-line)] py-6"
+            className="-mx-4 border-b border-[var(--panel-line)] bg-[var(--panel-subtle)] px-4 py-6 sm:-mx-6 sm:px-6"
           >
             <div className="mb-4 flex items-center justify-between gap-3">
               <h2 className="text-lg font-semibold text-[var(--panel-ink)]">
@@ -303,7 +303,7 @@ export function MobileFieldMediatorDashboard({
                 type="button"
                 onClick={() => setActiveTool(null)}
                 aria-label={copy.closeAria}
-                className="inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[var(--panel-selection)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]"
+                className="inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[var(--panel-selection)] active:bg-[var(--panel-selection)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]"
               >
                 <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{copy.close}</span>
@@ -320,12 +320,14 @@ export function MobileFieldMediatorDashboard({
             )}
 
             {activeTool === "telemetry" && (
-              <HardwareKitTelemetryPanel
-                patientId={selectedVisitForTool?.id}
-                onSaved={() => {
-                  setOfflineSyncCount((c) => c + 1);
-                }}
-              />
+              <div className="min-w-0">
+                <HardwareKitTelemetryPanel
+                  patientId={selectedVisitForTool?.id}
+                  onSaved={() => {
+                    setOfflineSyncCount((c) => c + 1);
+                  }}
+                />
+              </div>
             )}
 
             {activeTool === "handover" && (
@@ -357,6 +359,6 @@ export function MobileFieldMediatorDashboard({
           />
         </div>
       </div>
-    </div>
+    </main>
   );
 }

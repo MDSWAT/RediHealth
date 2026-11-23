@@ -320,8 +320,8 @@ export function CaseTrackingMatrix({ initialCases }: { initialCases?: CommunityC
     return matchesFilter && matchesSearch;
   });
 
-  const cohorts: Array<{ key: CohortFilter; label: string }> = [
-    { key: "all", label: copy.all(localizedCases.length) },
+  const cohorts: Array<{ key: CohortFilter; label: string; count?: number }> = [
+    { key: "all", label: copy.all(localizedCases.length).replace(/\s*\(\d+\)\s*$/, ""), count: localizedCases.length },
     { key: "mame", label: copy.mothers },
     { key: "cronice", label: copy.chronic },
     { key: "fara_acte", label: copy.noDocuments },
@@ -376,13 +376,18 @@ export function CaseTrackingMatrix({ initialCases }: { initialCases?: CommunityC
               role="tab"
               aria-selected={active}
               onClick={() => setFilter(item.key)}
-              className={`relative -mb-px inline-flex min-h-12 shrink-0 items-center whitespace-nowrap border-b-2 py-3 text-sm tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa] ${
+              className={`relative -mb-px inline-flex min-h-12 shrink-0 items-center gap-2 whitespace-nowrap border-b-2 py-3 text-sm tabular-nums transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa] ${
                 active
                   ? "border-sapphire font-semibold text-sapphire dark:border-[#bad7fa] dark:text-[#bad7fa]"
                   : "border-transparent font-medium text-[var(--panel-muted)] hover:text-[var(--panel-ink)]"
               }`}
             >
-              {item.label}
+              <span>{item.label}</span>
+              {item.count !== undefined && (
+                <span className="font-normal tabular-nums text-[var(--panel-muted)]">
+                  {item.count}
+                </span>
+              )}
             </button>
           );
         })}
@@ -390,25 +395,19 @@ export function CaseTrackingMatrix({ initialCases }: { initialCases?: CommunityC
 
       {/* Case list or honest empty state */}
       {localizedCases.length === 0 ? (
-        <div className="py-12">
+        <div className="py-8">
           <h2 className="text-base font-semibold text-[var(--panel-ink)]">
             {copy.emptyLiveTitle}
           </h2>
           <p className="mt-1.5 max-w-[54ch] text-sm leading-relaxed text-[var(--panel-muted)]">
             {copy.emptyLiveBody}
           </p>
-          <div className="mt-5 flex flex-wrap items-center gap-2">
+          <div className="mt-4 flex flex-wrap items-center gap-2">
             <Link
               href={withLangPrefix("/panel/patients", lang)}
-              className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-sapphire bg-sapphire px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#28476f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]"
+              className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-sapphire bg-sapphire px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#28476f] active:bg-[#101a33] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]"
             >
               {copy.openPatients}
-            </Link>
-            <Link
-              href={withLangPrefix("/panel/mediator", lang)}
-              className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-4 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]"
-            >
-              {copy.backToMediator}
             </Link>
           </div>
         </div>

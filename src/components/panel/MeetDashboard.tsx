@@ -24,10 +24,10 @@ export type MeetItem = {
 };
 
 const outlineBtn =
-  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3.5 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[var(--panel-selection)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]";
+  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3.5 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[var(--panel-selection)] active:bg-[var(--panel-selection)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]";
 
 const primaryBtn =
-  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-sapphire bg-sapphire px-4 py-2 text-sm font-medium text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[#28476f] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]";
+  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-sapphire bg-sapphire px-4 py-2 text-sm font-medium text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[#28476f] active:bg-[#101a33] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]";
 
 export function MeetDashboard({
   userEmail,
@@ -181,132 +181,137 @@ export function MeetDashboard({
                 />
               </div>
 
-              {/* Horizontal underline tabs */}
-              <div
-                className="flex flex-nowrap gap-6 overflow-x-auto border-b border-[var(--panel-line)]"
-                role="tablist"
-                aria-label={t.meetings}
-              >
-                {tabs.map((item) => {
-                  const active = tab === item.id;
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      id={`meetings-tab-${item.id}`}
-                      role="tab"
-                      aria-selected={active}
-                      aria-controls="meeting-list"
-                      onClick={() => setTab(item.id)}
-                      className={`-mb-px inline-flex min-h-12 shrink-0 items-center gap-2 whitespace-nowrap border-b-2 py-3 text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa] ${
-                        active
-                          ? "border-sapphire font-semibold text-sapphire dark:border-[#bad7fa] dark:text-[#bad7fa]"
-                          : "border-transparent font-medium text-[var(--panel-muted)] hover:text-[var(--panel-ink)]"
-                      }`}
-                    >
-                      <span>{item.label}</span>
-                      <span className="font-normal tabular-nums text-[var(--panel-muted)]">
-                        {item.count}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
+              {/* Horizontal underline tabs flowing seamlessly into meeting list */}
+              <div>
+                <div
+                  className="flex flex-nowrap gap-6 overflow-x-auto border-b border-[var(--panel-line)]"
+                  role="tablist"
+                  aria-label={t.meetings}
+                >
+                  {tabs.map((item) => {
+                    const active = tab === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        id={`meetings-tab-${item.id}`}
+                        role="tab"
+                        aria-selected={active}
+                        aria-controls="meeting-list"
+                        onClick={() => setTab(item.id)}
+                        className={`-mb-px inline-flex min-h-12 shrink-0 items-center gap-2 whitespace-nowrap border-b-2 py-3 text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa] ${
+                          active
+                            ? "border-sapphire font-semibold text-sapphire dark:border-[#bad7fa] dark:text-[#bad7fa]"
+                            : "border-transparent font-medium text-[var(--panel-muted)] hover:text-[var(--panel-ink)]"
+                        }`}
+                      >
+                        <span>{item.label}</span>
+                        <span className="font-normal tabular-nums text-[var(--panel-muted)]">
+                          {item.count}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
 
-              <section
-                id="meeting-list"
-                role="tabpanel"
-                aria-labelledby={`meetings-tab-${tab}`}
-              >
-                {!visible.length ? (
-                  <div className="py-12">
-                    <p className="text-base font-semibold text-[var(--panel-ink)]">{t.empty}</p>
-                    <div className="mt-4">
-                      <Link href={withLangPrefix("/panel/calendar", lang)} className={primaryBtn}>
-                        {t.schedule}
-                      </Link>
+                <section
+                  id="meeting-list"
+                  role="tabpanel"
+                  aria-labelledby={`meetings-tab-${tab}`}
+                >
+                  {!visible.length ? (
+                    <div className="py-8">
+                      <p className="text-base font-semibold text-[var(--panel-ink)]">{t.empty}</p>
+                      <div className="mt-4">
+                        <Link href={withLangPrefix("/panel/calendar", lang)} className={primaryBtn}>
+                          {t.schedule}
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <div className="divide-y divide-[var(--panel-line)]">
-                    {visible.map((meeting) => {
-                      const appointment = followup(meeting);
-                      return (
-                        <article
-                          key={meeting.id}
-                          className="flex flex-col justify-between gap-4 py-4 transition-colors duration-[var(--dur-fast)] hover:bg-[var(--panel-subtle)] sm:flex-row sm:items-center sm:px-2"
-                        >
-                          <div className="min-w-0">
-                            <h2 className="text-base font-semibold text-[var(--panel-ink)]">
-                              {meeting.title}
-                            </h2>
-                            <p className="mt-0.5 text-sm text-[var(--panel-muted)]">
-                              {meeting.patient_name || t.unnamed}
-                            </p>
-                            <p className="mt-1 text-xs tabular-nums text-[var(--panel-muted)]">
-                              {appointment
-                                ? followupLabel(appointment, langToLocale[lang], t.allDay, viewerZone)
-                                : formatPanelDate(meeting.created_at, langToLocale[lang], "date")}
-                            </p>
-                          </div>
+                  ) : (
+                    <div className="divide-y divide-[var(--panel-line)]">
+                      {visible.map((meeting) => {
+                        const appointment = followup(meeting);
+                        return (
+                          <article
+                            key={meeting.id}
+                            className="flex flex-col justify-between gap-4 py-4 transition-colors duration-[var(--dur-fast)] hover:bg-[var(--panel-subtle)] sm:flex-row sm:items-center sm:px-2"
+                          >
+                            <div className="min-w-0">
+                              <h2 className="text-base font-semibold text-[var(--panel-ink)]">
+                                {meeting.title}
+                              </h2>
+                              <p className="mt-0.5 text-sm text-[var(--panel-muted)]">
+                                {meeting.patient_name || t.unnamed}
+                              </p>
+                              <p className="mt-1 text-xs tabular-nums text-[var(--panel-muted)]">
+                                {appointment
+                                  ? followupLabel(appointment, langToLocale[lang], t.allDay, viewerZone)
+                                  : formatPanelDate(meeting.created_at, langToLocale[lang], "date")}
+                              </p>
+                            </div>
 
-                          <div className="flex flex-wrap items-center gap-2">
-                            {meeting.patient_id ? (
-                              <Link
-                                className={primaryBtn}
-                                href={withLangPrefix(
-                                  `/panel/patients/${meeting.patient_id}/meet/${meeting.id}`,
-                                  lang,
-                                )}
-                              >
-                                {t.join}
-                              </Link>
-                            ) : (
-                              <a
-                                className={primaryBtn}
-                                href={meeting.meeting_url}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {t.join}
-                              </a>
-                            )}
-                            <button
-                              type="button"
-                              className={outlineBtn}
-                              onClick={() => void copy(meeting)}
-                            >
-                              {copied === meeting.id ? t.copied : t.copyLink}
-                            </button>
-                            <details className="crm-menu">
-                              <summary className={`${outlineBtn} cursor-pointer`}>
-                                {t.more}
-                              </summary>
-                              <div className="!border-[var(--panel-line)] !bg-[var(--panel-surface)] !text-[var(--panel-ink)]">
-                                {meeting.patient_id && (
-                                  <Link
-                                    href={withLangPrefix(`/panel/patients/${meeting.patient_id}`, lang)}
-                                    className="inline-flex min-h-11 w-full items-center whitespace-nowrap text-[var(--panel-ink)] hover:!bg-[var(--panel-selection)]"
-                                  >
-                                    {t.openPatient}
-                                  </Link>
-                                )}
-                                <button
-                                  type="button"
-                                  onClick={() => void remove(meeting)}
-                                  className="inline-flex min-h-11 w-full items-center whitespace-nowrap text-[#b91c1c] hover:!bg-[var(--panel-selection)] dark:text-[#ffb4b4]"
+                            <div className="flex flex-wrap items-center gap-2">
+                              {meeting.patient_id ? (
+                                <Link
+                                  className={primaryBtn}
+                                  href={withLangPrefix(
+                                    `/panel/patients/${meeting.patient_id}/meet/${meeting.id}`,
+                                    lang,
+                                  )}
                                 >
-                                  {t.delete}
-                                </button>
-                              </div>
-                            </details>
-                          </div>
-                        </article>
-                      );
-                    })}
-                  </div>
-                )}
-              </section>
+                                  {t.join}
+                                </Link>
+                              ) : (
+                                <a
+                                  className={primaryBtn}
+                                  href={meeting.meeting_url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {t.join}
+                                </a>
+                              )}
+                              <button
+                                type="button"
+                                className={outlineBtn}
+                                onClick={() => void copy(meeting)}
+                              >
+                                {copied === meeting.id ? t.copied : t.copyLink}
+                              </button>
+                              <details className="crm-menu">
+                                <summary className={`${outlineBtn} cursor-pointer`}>
+                                  {t.more}
+                                </summary>
+                                <div className="!border-[var(--panel-line)] !bg-[var(--panel-surface)] !text-[var(--panel-ink)]">
+                                  {meeting.patient_id && (
+                                    <Link
+                                      href={withLangPrefix(`/panel/patients/${meeting.patient_id}`, lang)}
+                                      className="inline-flex min-h-11 w-full items-center whitespace-nowrap text-[var(--panel-ink)] hover:!bg-[var(--panel-selection)]"
+                                    >
+                                      {t.openPatient}
+                                    </Link>
+                                  )}
+                                  <button
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.currentTarget.closest("details")?.removeAttribute("open");
+                                      void remove(meeting);
+                                    }}
+                                    className="inline-flex min-h-11 w-full items-center whitespace-nowrap text-[#b91c1c] hover:!bg-[var(--panel-selection)] dark:text-[#ffb4b4]"
+                                  >
+                                    {t.delete}
+                                  </button>
+                                </div>
+                              </details>
+                            </div>
+                          </article>
+                        );
+                      })}
+                    </div>
+                  )}
+                </section>
+              </div>
               <p className="sr-only" role="status" aria-live="polite">
                 {copied ? t.copied : ""}
               </p>

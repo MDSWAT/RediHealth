@@ -19,10 +19,10 @@ type CalendarEvent = { patient: PatientItem; followup: FollowupItem };
 type View = "agenda" | "day" | "week" | "month";
 
 const outlineBtn =
-  "inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3.5 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[var(--panel-selection)] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]";
+  "inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3.5 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[var(--panel-selection)] active:bg-[var(--panel-selection)] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]";
 
 const primaryBtn =
-  "inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-sapphire bg-sapphire px-4 py-2 text-sm font-medium text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[#28476f] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]";
+  "inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-sapphire bg-sapphire px-4 py-2 text-sm font-medium text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[#28476f] active:bg-[#101a33] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]";
 
 const fieldInput =
   "min-h-11 rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3 py-2 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]";
@@ -346,203 +346,204 @@ export function CalendarDashboard({
                 </button>
               </div>
 
-              {/* Horizontal underline tabs */}
-              <div
-                className="flex flex-nowrap gap-6 overflow-x-auto border-b border-[var(--panel-line)]"
-                role="tablist"
-                aria-label={shellCopy.calendar}
-              >
-                {(["agenda", "day", "week", "month"] as const).map((id) => {
-                  const active = view === id;
-                  return (
-                    <button
-                      key={id}
-                      type="button"
-                      id={`calendar-tab-${id}`}
-                      role="tab"
-                      aria-selected={active}
-                      aria-controls="calendar-view"
-                      onClick={() => setView(id)}
-                      className={`-mb-px inline-flex min-h-12 shrink-0 items-center whitespace-nowrap border-b-2 py-3 text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa] ${
-                        active
-                          ? "border-sapphire font-semibold text-sapphire dark:border-[#bad7fa] dark:text-[#bad7fa]"
-                          : "border-transparent font-medium text-[var(--panel-muted)] hover:text-[var(--panel-ink)]"
-                      }`}
-                    >
-                      {t[id]}
-                    </button>
-                  );
-                })}
-              </div>
+              {/* Horizontal underline tabs flowing seamlessly into calendar view */}
+              <div>
+                <div
+                  className="flex flex-nowrap gap-6 overflow-x-auto border-b border-[var(--panel-line)]"
+                  role="tablist"
+                  aria-label={shellCopy.calendar}
+                >
+                  {(["agenda", "day", "week", "month"] as const).map((id) => {
+                    const active = view === id;
+                    return (
+                      <button
+                        key={id}
+                        type="button"
+                        id={`calendar-tab-${id}`}
+                        role="tab"
+                        aria-selected={active}
+                        aria-controls="calendar-view"
+                        onClick={() => setView(id)}
+                        className={`-mb-px inline-flex min-h-12 shrink-0 items-center whitespace-nowrap border-b-2 py-3 text-sm transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa] ${
+                          active
+                            ? "border-sapphire font-semibold text-sapphire dark:border-[#bad7fa] dark:text-[#bad7fa]"
+                            : "border-transparent font-medium text-[var(--panel-muted)] hover:text-[var(--panel-ink)]"
+                        }`}
+                      >
+                        {t[id]}
+                      </button>
+                    );
+                  })}
+                </div>
 
-              <div
-                id="calendar-view"
-                role="tabpanel"
-                aria-labelledby={`calendar-tab-${view}`}
-                className="space-y-4"
-              >
-                {view !== "agenda" && (
-                  <div className="flex flex-wrap items-center gap-2">
-                    <button
-                      type="button"
-                      className={`${outlineBtn} min-w-11 px-2.5`}
-                      aria-label={t.previous}
-                      title={t.previous}
-                      onClick={() => navigate(-1)}
-                    >
-                      <ChevronLeftIcon aria-hidden="true" className="h-4 w-4" />
-                    </button>
-                    <button
-                      type="button"
-                      className={outlineBtn}
-                      onClick={() => setCurrentDate(today)}
-                    >
-                      {t.today}
-                    </button>
-                    <button
-                      type="button"
-                      className={`${outlineBtn} min-w-11 px-2.5`}
-                      aria-label={t.next}
-                      title={t.next}
-                      onClick={() => navigate(1)}
-                    >
-                      <ChevronRightIcon aria-hidden="true" className="h-4 w-4" />
-                    </button>
-                    <input
-                      type="date"
-                      aria-label={t.date}
-                      className={fieldInput}
-                      value={currentDate}
-                      onChange={(e) => {
-                        if (e.target.value) setCurrentDate(e.target.value);
-                      }}
-                    />
-                    <h2 className="text-base font-semibold text-[var(--panel-ink)] sm:ml-auto">
-                      {formatPanelDate(anchor, locale, "monthYear")}
-                    </h2>
-                  </div>
-                )}
-
-                {view === "agenda" ? (
-                  !events.length ? (
-                    <div className="py-12">
-                      <p className="text-base font-semibold text-[var(--panel-ink)]">
-                        {patients.length ? t.noFollowup : t.noPatients}
-                      </p>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {patients.length > 0 ? (
-                          <button
-                            type="button"
-                            className={primaryBtn}
-                            onClick={() => setScheduleDate(currentDate)}
-                          >
-                            {t.schedule}
-                          </button>
-                        ) : (
-                          <Link
-                            href={withLangPrefix("/panel/patients", lang)}
-                            className={primaryBtn}
-                          >
-                            {t.createPatient}
-                          </Link>
-                        )}
-                      </div>
-                    </div>
-                  ) : (
-                    <div>
-                      {dateGroups.map((date) => (
-                        <section
-                          key={date}
-                          className="border-b border-[var(--panel-line)] last:border-b-0"
-                        >
-                          <h2 className="border-b border-[var(--panel-line)] bg-[var(--panel-subtle)] px-3 py-2 text-xs font-semibold tabular-nums text-[var(--panel-muted)]">
-                            {date < today && (
-                              <span className="mr-2 font-semibold text-[#9a4d0b] dark:text-[#f5c58e]">
-                                {t.overdue} ·
-                              </span>
-                            )}
-                            {dayLabel(date, locale, t.today, t.yesterday)}
-                          </h2>
-                          <div className="divide-y divide-[var(--panel-line)]">
-                            {events
-                              .filter((event) => event.followup.date.slice(0, 10) === date)
-                              .map(row)}
-                          </div>
-                        </section>
-                      ))}
-                    </div>
-                  )
-                ) : view === "day" ? (
-                  <section>
-                    <h2 className="border-b border-[var(--panel-line)] bg-[var(--panel-subtle)] px-3 py-2 text-xs font-semibold text-[var(--panel-muted)]">
-                      {dayLabel(currentDate, locale, t.today, t.yesterday)}
-                    </h2>
-                    {dayEvents.length === 0 ? (
-                      <p className="py-8 text-sm text-[var(--panel-muted)]">{t.noFollowup}</p>
-                    ) : (
-                      <div className="divide-y divide-[var(--panel-line)] border-b border-[var(--panel-line)]">
-                        {dayEvents.map(row)}
-                      </div>
-                    )}
-                    <div className="mt-4">
+                <div
+                  id="calendar-view"
+                  role="tabpanel"
+                  aria-labelledby={`calendar-tab-${view}`}
+                >
+                  {view !== "agenda" && (
+                    <div className="flex flex-wrap items-center gap-2 border-b border-[var(--panel-line)] py-3">
+                      <button
+                        type="button"
+                        className={`${outlineBtn} min-w-11 px-2.5`}
+                        aria-label={t.previous}
+                        title={t.previous}
+                        onClick={() => navigate(-1)}
+                      >
+                        <ChevronLeftIcon aria-hidden="true" className="h-4 w-4" />
+                      </button>
                       <button
                         type="button"
                         className={outlineBtn}
-                        disabled={!patients.length}
-                        onClick={() => setScheduleDate(currentDate)}
+                        onClick={() => setCurrentDate(today)}
                       >
-                        {t.schedule}
+                        {t.today}
                       </button>
+                      <button
+                        type="button"
+                        className={`${outlineBtn} min-w-11 px-2.5`}
+                        aria-label={t.next}
+                        title={t.next}
+                        onClick={() => navigate(1)}
+                      >
+                        <ChevronRightIcon aria-hidden="true" className="h-4 w-4" />
+                      </button>
+                      <input
+                        type="date"
+                        aria-label={t.date}
+                        className={fieldInput}
+                        value={currentDate}
+                        onChange={(e) => {
+                          if (e.target.value) setCurrentDate(e.target.value);
+                        }}
+                      />
+                      <h2 className="text-base font-semibold text-[var(--panel-ink)] sm:ml-auto">
+                        {formatPanelDate(anchor, locale, "monthYear")}
+                      </h2>
                     </div>
-                  </section>
-                ) : (
-                  <div className="overflow-x-auto">
-                    <div className="crm-calendar-grid !border-[var(--panel-line)]">
-                      {days.map((date) => (
-                        <section
-                          key={date}
-                          className="crm-calendar-cell !border-[var(--panel-line)] !bg-[var(--panel-surface)] text-[var(--panel-ink)]"
-                        >
-                          <button
-                            type="button"
-                            className={`crm-calendar-day flex min-h-11 items-center whitespace-nowrap hover:!bg-[var(--panel-selection)] hover:!text-[var(--panel-ink)] ${
-                              date === today
-                                ? "is-today !font-semibold !text-sapphire dark:!text-[#bad7fa]"
-                                : view === "month" &&
-                                    date.slice(0, 7) !== currentDate.slice(0, 7)
-                                  ? "is-outside !text-[var(--panel-muted)] opacity-60"
-                                  : "!text-[var(--panel-muted)]"
-                            }`}
-                            aria-current={date === today ? "date" : undefined}
-                            disabled={!patients.length}
-                            onClick={() => setScheduleDate(date)}
-                            title={t.schedule}
+                  )}
+
+                  {view === "agenda" ? (
+                    !events.length ? (
+                      <div className="py-8">
+                        <p className="text-base font-semibold text-[var(--panel-ink)]">
+                          {patients.length ? t.noFollowup : t.noPatients}
+                        </p>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {patients.length > 0 ? (
+                            <button
+                              type="button"
+                              className={outlineBtn}
+                              onClick={() => setScheduleDate(currentDate)}
+                            >
+                              {t.schedule}
+                            </button>
+                          ) : (
+                            <Link
+                              href={withLangPrefix("/panel/patients", lang)}
+                              className={primaryBtn}
+                            >
+                              {t.createPatient}
+                            </Link>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        {dateGroups.map((date) => (
+                          <section
+                            key={date}
+                            className="border-b border-[var(--panel-line)] last:border-b-0"
                           >
-                            {formatPanelDate(`${date}T12:00:00`, locale, "weekdayDay")}
-                          </button>
-                          {events
-                            .filter((event) => event.followup.date.slice(0, 10) === date)
-                            .map((event) => (
-                              <button
-                                key={`${event.patient.id}-${event.followup.id}`}
-                                type="button"
-                                className="crm-calendar-event min-h-11 !bg-[var(--panel-subtle)] !text-[var(--panel-ink)] hover:!bg-[var(--panel-selection)]"
-                                title={`${event.patient.full_name} · ${event.followup.time || t.allDay} · ${event.followup.title}`}
-                                onClick={() => setSelected(event)}
-                              >
-                                <span className="block truncate font-semibold">
-                                  {event.patient.full_name}
+                            <h2 className="border-b border-[var(--panel-line)] bg-[var(--panel-subtle)] px-3 py-2 text-xs font-semibold tabular-nums text-[var(--panel-muted)]">
+                              {date < today && (
+                                <span className="mr-2 font-semibold text-[#9a4d0b] dark:text-[#f5c58e]">
+                                  {t.overdue} ·
                                 </span>
-                                <span className="block truncate tabular-nums text-[var(--panel-muted)]">
-                                  {event.followup.time || t.allDay} · {event.followup.title}
-                                </span>
-                              </button>
-                            ))}
-                        </section>
-                      ))}
+                              )}
+                              {dayLabel(date, locale, t.today, t.yesterday)}
+                            </h2>
+                            <div className="divide-y divide-[var(--panel-line)]">
+                              {events
+                                .filter((event) => event.followup.date.slice(0, 10) === date)
+                                .map(row)}
+                            </div>
+                          </section>
+                        ))}
+                      </div>
+                    )
+                  ) : view === "day" ? (
+                    <section>
+                      <h2 className="border-b border-[var(--panel-line)] bg-[var(--panel-subtle)] px-3 py-2 text-xs font-semibold text-[var(--panel-muted)]">
+                        {dayLabel(currentDate, locale, t.today, t.yesterday)}
+                      </h2>
+                      {dayEvents.length === 0 ? (
+                        <p className="py-8 text-sm text-[var(--panel-muted)]">{t.noFollowup}</p>
+                      ) : (
+                        <div className="divide-y divide-[var(--panel-line)] border-b border-[var(--panel-line)]">
+                          {dayEvents.map(row)}
+                        </div>
+                      )}
+                      <div className="mt-4">
+                        <button
+                          type="button"
+                          className={outlineBtn}
+                          disabled={!patients.length}
+                          onClick={() => setScheduleDate(currentDate)}
+                        >
+                          {t.schedule}
+                        </button>
+                      </div>
+                    </section>
+                  ) : (
+                    <div className="-mx-4 overflow-x-auto px-4 pt-3 sm:mx-0 sm:px-0">
+                      <div className="crm-calendar-grid !border-[var(--panel-line)]">
+                        {days.map((date) => (
+                          <section
+                            key={date}
+                            className="crm-calendar-cell !border-[var(--panel-line)] !bg-[var(--panel-surface)] text-[var(--panel-ink)]"
+                          >
+                            <button
+                              type="button"
+                              className={`crm-calendar-day flex min-h-11 items-center whitespace-nowrap hover:!bg-[var(--panel-selection)] hover:!text-[var(--panel-ink)] ${
+                                date === today
+                                  ? "is-today !font-semibold !text-sapphire dark:!text-[#bad7fa]"
+                                  : view === "month" &&
+                                      date.slice(0, 7) !== currentDate.slice(0, 7)
+                                    ? "is-outside !text-[var(--panel-muted)] opacity-60"
+                                    : "!text-[var(--panel-muted)]"
+                              }`}
+                              aria-current={date === today ? "date" : undefined}
+                              disabled={!patients.length}
+                              onClick={() => setScheduleDate(date)}
+                              title={t.schedule}
+                            >
+                              {formatPanelDate(`${date}T12:00:00`, locale, "weekdayDay")}
+                            </button>
+                            {events
+                              .filter((event) => event.followup.date.slice(0, 10) === date)
+                              .map((event) => (
+                                <button
+                                  key={`${event.patient.id}-${event.followup.id}`}
+                                  type="button"
+                                  className="crm-calendar-event min-h-11 !bg-[var(--panel-subtle)] !text-[var(--panel-ink)] hover:!bg-[var(--panel-selection)]"
+                                  title={`${event.patient.full_name} · ${event.followup.time || t.allDay} · ${event.followup.title}`}
+                                  onClick={() => setSelected(event)}
+                                >
+                                  <span className="block truncate font-semibold">
+                                    {event.patient.full_name}
+                                  </span>
+                                  <span className="block truncate tabular-nums text-[var(--panel-muted)]">
+                                    {event.followup.time || t.allDay} · {event.followup.title}
+                                  </span>
+                                </button>
+                              ))}
+                          </section>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </>
           )}

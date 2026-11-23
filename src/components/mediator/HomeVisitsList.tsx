@@ -261,10 +261,10 @@ const DEMO_TODAY_VISITS: ScheduledHomeVisit[] = [
 ];
 
 const actionOutlineClass =
-  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[var(--panel-selection)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]";
+  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[var(--panel-selection)] active:bg-[var(--panel-selection)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]";
 
 const actionPrimaryClass =
-  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-sapphire bg-sapphire px-3.5 py-2 text-sm font-medium text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[#28476f] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]";
+  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-sapphire bg-sapphire px-3.5 py-2 text-sm font-medium text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[#28476f] active:bg-[#101a33] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]";
 
 export function HomeVisitsList({
   initialVisits,
@@ -322,19 +322,19 @@ export function HomeVisitsList({
       )}
 
       {visits.length === 0 ? (
-        <div className="py-12">
+        <div className="py-8">
           <h3 className="text-base font-semibold text-[var(--panel-ink)]">
             {copy.emptyTitle}
           </h3>
           <p className="mt-1.5 max-w-[54ch] text-sm leading-relaxed text-[var(--panel-muted)]">
             {copy.emptyBody}
           </p>
-          <div className="mt-5 flex flex-wrap items-center gap-2">
+          <div className="mt-4 flex flex-wrap items-center gap-2">
             {onStartIntake && (
               <button
                 type="button"
                 onClick={onStartIntake}
-                className={actionPrimaryClass}
+                className={actionOutlineClass}
               >
                 {copy.newVisit}
               </button>
