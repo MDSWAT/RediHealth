@@ -19,12 +19,111 @@ export const ANALYTICS_EVENTS = [
 
 export type AnalyticsEventName = (typeof ANALYTICS_EVENTS)[number];
 
+/** Behavioural and UX telemetry events (kept separate from conversion counts). */
+export const BEHAVIOUR_EVENTS = [
+  "page_engagement",
+  "ui_click",
+  "feedback_prompt_shown",
+  "feedback_prompt_dismissed",
+] as const;
+
+export type BehaviourEventName = (typeof BEHAVIOUR_EVENTS)[number];
+export type TrackedEventName = AnalyticsEventName | BehaviourEventName;
+
+export const CLICK_TARGET_KINDS = ["link", "button", "tab", "card", "cta", "control"] as const;
+export type ClickTargetKind = (typeof CLICK_TARGET_KINDS)[number];
+
 /** Periods offered in the panel, in days. */
 export const ANALYTICS_RANGES = [7, 30, 90, 365] as const;
 export type AnalyticsRange = (typeof ANALYTICS_RANGES)[number];
 
 export function isAnalyticsEvent(value: unknown): value is AnalyticsEventName {
   return typeof value === "string" && (ANALYTICS_EVENTS as readonly string[]).includes(value);
+}
+
+export function isBehaviourEvent(value: unknown): value is BehaviourEventName {
+  return typeof value === "string" && (BEHAVIOUR_EVENTS as readonly string[]).includes(value);
+}
+
+export function isTrackedEvent(value: unknown): value is TrackedEventName {
+  return isAnalyticsEvent(value) || isBehaviourEvent(value);
+}
+
+const MAX_DWELL_MS = 3_600_000;
+
+export function sanitizeDurationMs(value: unknown): number | null {
+  const num = typeof value === "number" ? value : Number(value);
+  if (!Number.isFinite(num) || num < 500) return null;
+  return Math.min(MAX_DWELL_MS, Math.round(num));
+}
+
+export function sanitizeScrollDepth(value: unknown): number | null {
+  const num = typeof value === "number" ? value : Number(value);
+  if (!Number.isFinite(num) || num < 0) return null;
+  return Math.min(100, Math.round(num));
+}
+
+const CLICK_EMAIL_RE = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi;
+const CLICK_LONG_DIGITS_RE = /\d{6,}/g;
+const CLICK_URL_RE = /https?:\/\/\S+/gi;
+
+export function sanitizeTargetLabel(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  const cleaned = value
+    .replace(/[\u0000-\u001F\u007F]/g, " ")
+    .replace(CLICK_EMAIL_RE, "")
+    .replace(CLICK_URL_RE, "")
+    .replace(CLICK_LONG_DIGITS_RE, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!cleaned) return null;
+  return cleaned.slice(0, 120);
+}
+
+export function sanitizeTargetKey(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  const cleaned = value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9:/._-]+/g, "-")
+    .replace(/-{2,}/g, "-")
+    .replace(/^-+|-+$/g, "");
+  if (!cleaned) return null;
+  return cleaned.slice(0, 120);
+}
+
+export function sanitizeTargetKind(value: unknown): ClickTargetKind | null {
+  if (typeof value !== "string") return null;
+  const normalized = value.trim().toLowerCase();
+  return (CLICK_TARGET_KINDS as readonly string[]).includes(normalized)
+    ? (normalized as ClickTargetKind)
+    : null;
+}
+
+/**
+ * Normalizes a clicked link href to either an anonymized internal path (e.g. "/health-check")
+ * or an external host ("external:who.int"). Never keeps query parameters, fragments, or private paths.
+ */
+export function cleanClickHref(rawHref: string | null | undefined, ownHost?: string | null): string | null {
+  if (!rawHref) return null;
+  const trimmed = rawHref.trim();
+  if (!trimmed || trimmed.startsWith("#") || trimmed.startsWith("javascript:")) return null;
+  if (trimmed.startsWith("tel:")) return trimmed.includes("112") ? "tel:112" : "tel:phone";
+  if (trimmed.startsWith("mailto:")) return "mailto:contact";
+  try {
+    const base = ownHost ? `https://${ownHost}` : "https://redihealth.local";
+    const parsed = new URL(trimmed, base);
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return null;
+    const own = (ownHost ?? "redihealth.local").toLowerCase().split(":")[0].replace(/^www\./, "");
+    const targetHost = parsed.hostname.toLowerCase().replace(/^www\./, "");
+    if (targetHost === own) {
+      const cleaned = cleanPagePath(parsed.pathname);
+      return cleaned ? cleaned.path : null;
+    }
+    return `external:${targetHost.slice(0, 80)}`;
+  } catch {
+    return null;
+  }
 }
 
 /** Pages that are never counted (checked after the language prefix is removed). */

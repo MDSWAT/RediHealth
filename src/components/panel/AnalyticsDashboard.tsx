@@ -122,20 +122,159 @@ function Summary({ summary, t, number, locale }: SummaryProps) {
 
   return (
     <div className="space-y-6">
-      <section aria-label={t.title} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+      <section aria-label={t.title} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label={t.visitors} value={number.format(totals.visitors)} />
         <Stat label={t.pageviews} value={number.format(totals.pageviews)} />
         <Stat label={t.pagesPerVisitor} value={pagesPerVisitor} />
         <Stat
+          label={t.stayRate}
+          value={
+            totals.visitors > 0
+              ? `${number.format(Math.round((summary.behaviour.engagedVisitors / totals.visitors) * 1000) / 10)}%`
+              : "–"
+          }
+        />
+        <Stat
           label={t.bounceRate}
           value={totals.visitors > 0 ? `${number.format(Math.round((summary.behaviour.bounces / totals.visitors) * 1000) / 10)}%` : "–"}
         />
-        <Stat label={t.avgTime} value={formatDuration(summary.behaviour.avgSeconds)} />
+        <Stat
+          label={t.avgPageTime}
+          value={formatDuration(summary.behaviour.avgPageSeconds ?? summary.behaviour.avgSeconds)}
+        />
+        <Stat
+          label={t.avgScrollDepth}
+          value={
+            summary.behaviour.avgScrollDepth !== null
+              ? `${number.format(summary.behaviour.avgScrollDepth)}%`
+              : "–"
+          }
+        />
         <Stat label={t.conversions} value={number.format(totals.events)} />
       </section>
       <p className="-mt-2 text-xs text-muted-foreground">{t.visitorsNote}</p>
 
       <DailyChart daily={summary.daily} t={t} number={number} locale={locale} />
+
+      <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
+        <div className="mb-4">
+          <h2 className="text-lg font-semibold text-foreground">{t.journeysTitle}</h2>
+          <p className="mt-1 text-sm text-muted-foreground">{t.journeysSubtitle}</p>
+        </div>
+        {summary.journeys.transitions.length === 0 && summary.journeys.paths.length === 0 ? (
+          <p className="text-sm text-muted-foreground">{t.noJourneys}</p>
+        ) : (
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div>
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 className="text-sm font-semibold text-foreground">{t.topTransitions}</h3>
+                <span className="text-xs text-muted-foreground">{t.colVisitors}</span>
+              </div>
+              {summary.journeys.transitions.length === 0 ? (
+                <p className="mt-3 text-sm text-muted-foreground">{t.noJourneys}</p>
+              ) : (
+                <ul className="mt-3 space-y-2.5">
+                  {(() => {
+                    const maxTrans = Math.max(1, ...summary.journeys.transitions.map((r) => r.visitors));
+                    return summary.journeys.transitions.map((row) => (
+                      <li key={`${row.fromPath}->${row.toPath}`} className="space-y-1">
+                        <div className="flex items-baseline justify-between gap-3 text-xs">
+                          <span className="min-w-0 truncate font-mono text-foreground" title={`${row.fromPath} → ${row.toPath}`}>
+                            {row.fromPath} <span className="text-muted-foreground">→</span> {row.toPath}
+                          </span>
+                          <span className="shrink-0 font-semibold tabular-nums text-foreground">
+                            {number.format(row.visitors)}
+                          </span>
+                        </div>
+                        <div className="h-1.5 w-full overflow-hidden rounded bg-muted" aria-hidden="true">
+                          <div className="h-full rounded bg-primary/70" style={{ width: `${(row.visitors / maxTrans) * 100}%` }} />
+                        </div>
+                      </li>
+                    ));
+                  })()}
+                </ul>
+              )}
+            </div>
+
+            <div>
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 className="text-sm font-semibold text-foreground">{t.topPaths}</h3>
+                <span className="text-xs text-muted-foreground">{t.colVisitors}</span>
+              </div>
+              {summary.journeys.paths.length === 0 ? (
+                <p className="mt-3 text-sm text-muted-foreground">{t.noJourneys}</p>
+              ) : (
+                <ul className="mt-3 space-y-2.5">
+                  {summary.journeys.paths.map((row, index) => (
+                    <li
+                      key={`${row.steps.join("->")}-${index}`}
+                      className="flex items-center justify-between gap-3 rounded-lg border border-border/60 bg-background/50 px-3 py-2"
+                    >
+                      <div className="flex min-w-0 flex-wrap items-center gap-1.5 font-mono text-xs text-foreground">
+                        {row.steps.map((stepPath, stepIdx) => (
+                          <span key={`${stepPath}-${stepIdx}`} className="inline-flex items-center gap-1.5">
+                            {stepIdx > 0 ? <span className="text-muted-foreground">→</span> : null}
+                            <span className="rounded bg-muted px-1.5 py-0.5">{stepPath}</span>
+                          </span>
+                        ))}
+                      </div>
+                      <span className="shrink-0 text-sm font-semibold tabular-nums text-foreground">
+                        {number.format(row.visitors)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        )}
+      </section>
+
+      <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
+        <h2 className="text-lg font-semibold text-foreground">{t.clicksTitle}</h2>
+        <p className="mt-1 text-sm text-muted-foreground">{t.clicksSubtitle}</p>
+        {summary.clicks.length === 0 ? (
+          <p className="mt-3 text-sm text-muted-foreground">{t.noClicks}</p>
+        ) : (
+          <div className="mt-3 overflow-x-auto">
+            <table className="w-full min-w-[540px] text-left text-sm">
+              <thead className="text-xs text-muted-foreground">
+                <tr className="border-b border-border">
+                  <th className="py-2 pr-3 font-medium">{t.colElement}</th>
+                  <th className="py-2 pr-3 font-medium">{t.colPage}</th>
+                  <th className="py-2 pr-3 text-right font-medium">{t.colClicks}</th>
+                  <th className="py-2 text-right font-medium">{t.colVisitors}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {summary.clicks.map((row) => (
+                  <tr key={`${row.targetKey}|${row.path}`} className="border-b border-border/60 last:border-b-0">
+                    <td className="py-2 pr-3 text-foreground">
+                      <span className="font-medium">{row.targetLabel}</span>
+                      <span className="ml-2 inline-flex rounded bg-muted px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
+                        {row.targetKind}
+                      </span>
+                    </td>
+                    <td className="py-2 pr-3 font-mono text-xs text-muted-foreground">{row.path}</td>
+                    <td className="py-2 pr-3 text-right tabular-nums text-foreground">{number.format(row.clicks)}</td>
+                    <td className="py-2 text-right tabular-nums text-foreground">{number.format(row.visitors)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
+        <h2 className="text-lg font-semibold text-foreground">{t.feedbackFunnelTitle}</h2>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <Stat label={t.feedbackInitialShown} value={number.format(summary.feedbackFunnel.initialShown)} />
+          <Stat label={t.feedbackFollowupShown} value={number.format(summary.feedbackFunnel.followupShown)} />
+          <Stat label={t.feedbackDismissed} value={number.format(summary.feedbackFunnel.dismissed)} />
+          <Stat label={t.feedbackCompleted} value={number.format(summary.feedbackFunnel.submitted)} />
+        </div>
+      </section>
 
       <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-foreground">{t.campaigns}</h2>
@@ -172,30 +311,41 @@ function Summary({ summary, t, number, locale }: SummaryProps) {
       </section>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
+        <section className="rounded-xl border border-border bg-card p-5 sm:p-6 lg:col-span-2">
           <h2 className="text-lg font-semibold text-foreground">{t.topPages}</h2>
-          <table className="mt-3 w-full text-left text-sm">
-            <thead className="text-xs text-muted-foreground">
-              <tr className="border-b border-border">
-                <th className="py-2 pr-3 font-medium">{t.topPages}</th>
-                <th className="py-2 pr-3 text-right font-medium">{t.colViews}</th>
-                <th className="py-2 text-right font-medium">{t.colVisitors}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {summary.pages.map((row) => (
-                <tr key={row.path} className="border-b border-border/60 last:border-b-0">
-                  <td className="max-w-0 truncate py-2 pr-3 font-mono text-xs text-foreground" title={row.path}>
-                    {row.path}
-                  </td>
-                  <td className="py-2 pr-3 text-right tabular-nums text-foreground">{number.format(row.views)}</td>
-                  <td className="py-2 text-right tabular-nums text-foreground">{number.format(row.visitors)}</td>
+          <div className="mt-3 overflow-x-auto">
+            <table className="w-full min-w-[520px] text-left text-sm">
+              <thead className="text-xs text-muted-foreground">
+                <tr className="border-b border-border">
+                  <th className="py-2 pr-3 font-medium">{t.topPages}</th>
+                  <th className="py-2 pr-3 text-right font-medium">{t.colViews}</th>
+                  <th className="py-2 pr-3 text-right font-medium">{t.colVisitors}</th>
+                  <th className="py-2 pr-3 text-right font-medium">{t.colAvgTime}</th>
+                  <th className="py-2 text-right font-medium">{t.colScroll}</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {summary.pages.map((row) => (
+                  <tr key={row.path} className="border-b border-border/60 last:border-b-0">
+                    <td className="max-w-0 truncate py-2 pr-3 font-mono text-xs text-foreground" title={row.path}>
+                      {row.path}
+                    </td>
+                    <td className="py-2 pr-3 text-right tabular-nums text-foreground">{number.format(row.views)}</td>
+                    <td className="py-2 pr-3 text-right tabular-nums text-foreground">{number.format(row.visitors)}</td>
+                    <td className="py-2 pr-3 text-right tabular-nums text-foreground">
+                      {formatDuration(row.avgSeconds)}
+                    </td>
+                    <td className="py-2 text-right tabular-nums text-foreground">
+                      {row.avgScrollDepth !== null ? `${number.format(row.avgScrollDepth)}%` : "–"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
         <Breakdown title={t.landingPages} rows={summary.landingPages} label={(path) => path ?? t.unknown} t={t} number={number} mono />
+        <Breakdown title={t.exitPages} rows={summary.journeys.exits} label={(path) => path ?? t.unknown} t={t} number={number} mono />
         <Breakdown title={t.sources} rows={summary.sources} label={(source) => source ?? t.direct} t={t} number={number} />
         <Breakdown title={t.countries} rows={summary.countries} label={countryName} t={t} number={number} />
         <Breakdown title={t.devices} rows={summary.devices} label={deviceName} t={t} number={number} />

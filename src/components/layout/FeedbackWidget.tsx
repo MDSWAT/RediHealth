@@ -14,21 +14,23 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import styles from "@/components/layout/ChromeDialogs.module.css";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { Button } from "@/components/ui/Button";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
+  CheckIcon,
   CloseIcon,
   MessageDotsIcon,
 } from "@/components/ui/icons";
 import { feedbackWidgetCopy, type FeedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
-import { stripLangFromPathname } from "@/lib/i18n/routing";
+import { stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
 import { isBrowserOffline } from "@/lib/pwa/use-online-status";
-import { CLINICAL_SETTLE_SPRING, DURATION, EASE_OUT, useCalmReducedMotion } from "@/lib/motion/tokens";
+import { DURATION, EASE_OUT, useCalmReducedMotion } from "@/lib/motion/tokens";
 import {
   AGE_GROUP_OPTIONS,
   GENDER_OPTIONS,
@@ -39,25 +41,21 @@ import {
   type FeedbackMaritalStatus,
   type RatingKey,
 } from "@/lib/platform-feedback-shared";
+import {
+  applyFeedbackDismissal,
+  defaultFeedbackSchedule,
+  evaluateSmartFeedbackPrompt,
+  FEEDBACK_PAGE_SETTLE_GRACE_MS,
+  FEEDBACK_VISIT_RESET_IDLE_MS,
+  isSmartFeedbackAllowedPath,
+  type FeedbackPromptVariant,
+  type StoredFeedbackSchedule,
+} from "@/components/layout/feedback-schedule";
 
-/** Wait 45 seconds of active browsing so visitors can explore the platform first, then gently invite feedback. */
-const INITIAL_EXPLORE_MS = 45_000;
-/** Allow earlier invite (after 20 seconds) when a reader finishes scrolling a health guide or article. */
-const READ_COMPLETE_MIN_MS = 20_000;
-/** Never show the floating invite in the first 10 seconds after a page load or route transition. */
-const PAGE_SETTLE_GRACE_MS = 10_000;
-/** Heartbeat interval while the tab is visible. */
-const HEARTBEAT_INTERVAL_MS = 4_000;
-/** Treat a return after 6+ hours away as a fresh browsing session. */
-const VISIT_RESET_IDLE_MS = 6 * 60 * 60 * 1000;
-/** Snooze intervals when the visitor taps "Later" or closes the invite/modal: "Later" never means minutes. */
-const SNOOZE_STEPS_MS = [
-  24 * 60 * 60 * 1000, // 1st close: ask again no sooner than tomorrow
-  7 * 24 * 60 * 60 * 1000, // 2nd close: a week
-  30 * 24 * 60 * 60 * 1000, // 3rd+ close: a month (the menu and footer links stay)
-] as const;
+/** Heartbeat interval while the tab is visible (1s precision for 30s initial + 2m follow-up triggers). */
+const HEARTBEAT_INTERVAL_MS = 1_000;
 
-const SCHEDULE_STORAGE_KEY = "redihealth:feedback-schedule:v2";
+const SCHEDULE_STORAGE_KEY = "redihealth:feedback-schedule:v3";
 const DRAFT_SESSION_KEY = "redihealth:feedback-draft:v2";
 /** Closing the side tab is remembered on this device for 30 days (the value is the time it may return). */
 const EDGE_DISMISSED_KEY = "redihealth:feedback-edge-dismissed:v2";
@@ -77,48 +75,9 @@ import {
 
 export { openSiteFeedback };
 
-const AUTO_INVITE_PATHS = new Set([
-  "/",
-  "/health-information",
-  "/stiri",
-  "/find-help",
-  "/medic-online",
-  "/mediatori",
-  "/about",
-  "/get-help",
-]);
-
-function isReadingDetailPath(barePath: string): boolean {
-  return (
-    (barePath.startsWith("/health-information/") && barePath !== "/health-information") ||
-    (barePath.startsWith("/stiri/") && barePath !== "/stiri")
-  );
-}
-
-function hasReachedGuideEnd(): boolean {
-  if (typeof window === "undefined") return false;
-  const target =
-    document.querySelector("article") ??
-    document.querySelector("main") ??
-    document.documentElement;
-  return target.getBoundingClientRect().bottom <= window.innerHeight + 160;
-}
-
-function isAutoInviteAllowedPath(barePath: string): boolean {
-  return AUTO_INVITE_PATHS.has(barePath) || isReadingDetailPath(barePath);
-}
-
 type StepIndex = 0 | 1 | 2;
 
 type RatingsState = Record<RatingKey, number | null>;
-
-type StoredSchedule = {
-  activeMs: number;
-  lastSeenAt: number;
-  snoozedUntil: number;
-  dismissCount: number;
-  submitted: boolean;
-};
 
 type StoredDraft = {
   step: StepIndex;
@@ -139,23 +98,13 @@ const INITIAL_RATINGS: RatingsState = {
   rating_future_use: null,
 };
 
-function defaultSchedule(now: number): StoredSchedule {
-  return {
-    activeMs: 0,
-    lastSeenAt: now,
-    snoozedUntil: 0,
-    dismissCount: 0,
-    submitted: false,
-  };
-}
-
-function readSchedule(now = Date.now()): StoredSchedule {
+function readSchedule(now = Date.now()): StoredFeedbackSchedule {
   try {
     const raw = window.localStorage.getItem(SCHEDULE_STORAGE_KEY);
-    if (!raw) return defaultSchedule(now);
-    const parsed = JSON.parse(raw) as Partial<StoredSchedule>;
+    if (!raw) return defaultFeedbackSchedule(now);
+    const parsed = JSON.parse(raw) as Partial<StoredFeedbackSchedule>;
     const lastSeenAt = typeof parsed.lastSeenAt === "number" ? parsed.lastSeenAt : now;
-    const isStaleVisit = now - lastSeenAt > VISIT_RESET_IDLE_MS;
+    const isStaleVisit = now - lastSeenAt > FEEDBACK_VISIT_RESET_IDLE_MS;
     return {
       activeMs: isStaleVisit ? 0 : Math.max(0, Number(parsed.activeMs) || 0),
       lastSeenAt: now,
@@ -164,11 +113,11 @@ function readSchedule(now = Date.now()): StoredSchedule {
       submitted: Boolean(parsed.submitted),
     };
   } catch {
-    return defaultSchedule(now);
+    return defaultFeedbackSchedule(now);
   }
 }
 
-function writeSchedule(next: StoredSchedule): void {
+function writeSchedule(next: StoredFeedbackSchedule): void {
   try {
     window.localStorage.setItem(SCHEDULE_STORAGE_KEY, JSON.stringify(next));
   } catch {
@@ -241,6 +190,46 @@ function errorForResponse(status: number, code: string | undefined, t: FeedbackW
   return t.errorGeneric;
 }
 
+function isUserTypingInDocument(): boolean {
+  const active = document.activeElement;
+  if (!active || !(active instanceof HTMLElement)) return false;
+  const tag = active.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") {
+    return true;
+  }
+  if (active.isContentEditable || active.getAttribute("contenteditable") === "true") {
+    return true;
+  }
+  return Boolean(active.closest('[contenteditable="true"]'));
+}
+
+function SubmittingSpinner() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      className="h-4 w-4 shrink-0 animate-spin motion-reduce:animate-none"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="9"
+        stroke="currentColor"
+        strokeOpacity="0.28"
+        strokeWidth="2.5"
+      />
+      <path
+        d="M21 12a9 9 0 0 0-9-9"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function FeedbackWidget() {
   const { lang } = useLanguage();
   const pathname = usePathname();
@@ -248,7 +237,7 @@ export function FeedbackWidget() {
   const reducedMotion = useCalmReducedMotion();
   const t = feedbackWidgetCopy[lang] ?? feedbackWidgetCopy.ro;
 
-  const [inviteVisible, setInviteVisible] = useState(false);
+  const [modalLeadSource, setModalLeadSource] = useState<"manual" | FeedbackPromptVariant>("manual");
   const [modalOpen, setModalOpen] = useState(false);
   const [step, setStep] = useState<StepIndex>(0);
   const [stepDir, setStepDir] = useState<1 | -1>(1);
@@ -267,8 +256,12 @@ export function FeedbackWidget() {
 
   const dialogRef = useRef<HTMLDialogElement>(null);
   const bodyScrollerRef = useRef<HTMLDivElement>(null);
+  const ratingsRef = useRef<RatingsState>(INITIAL_RATINGS);
   const questionRefs = useRef<Partial<Record<RatingKey, HTMLFieldSetElement | null>>>({});
   const pageMountedAtRef = useRef<number>(0);
+  const lastScrollAtRef = useRef<number>(0);
+  const pauseRecheckTimerRef = useRef<number | null>(null);
+  const trackedPromptAppearanceRef = useRef<string | null>(null);
 
   const titleId = useId();
   const subtitleId = useId();
@@ -291,22 +284,12 @@ export function FeedbackWidget() {
   const [edgeDismissing, setEdgeDismissing] = useState(false);
   const [edgeDragX, setEdgeDragX] = useState(0);
   const [edgeDragging, setEdgeDragging] = useState(false);
-  const [inviteDrag, setInviteDrag] = useState({ x: 0, y: 0 });
-  const [inviteDragging, setInviteDragging] = useState(false);
 
   const edgeDragRef = useRef<{
     pointerId: number;
     startX: number;
     startTime: number;
     maxAbsDx: number;
-    captured: boolean;
-  } | null>(null);
-  const inviteDragRef = useRef<{
-    pointerId: number;
-    startX: number;
-    startY: number;
-    startTime: number;
-    maxDist: number;
     captured: boolean;
   } | null>(null);
   const suppressEdgeClickRef = useRef(false);
@@ -328,6 +311,7 @@ export function FeedbackWidget() {
       const draft = readDraft();
       if (draft) {
         setStep(draft.step);
+        ratingsRef.current = draft.ratings;
         setRatings(draft.ratings);
         setOpenAnswer(draft.openAnswer);
         setGender(draft.gender);
@@ -348,12 +332,9 @@ export function FeedbackWidget() {
     };
   }, []);
 
-  // Reset settle grace on route navigation and hide any open invite card on disallowed surfaces
+  // Reset settle grace on route navigation
   useEffect(() => {
     pageMountedAtRef.current = Date.now();
-    if (!isAutoInviteAllowedPath(barePath)) {
-      queueMicrotask(() => setInviteVisible(false));
-    }
   }, [pathname, barePath]);
 
   // Persist in-session draft automatically until submitted
@@ -396,21 +377,20 @@ export function FeedbackWidget() {
     occupation,
   ]);
 
-  const snoozeInvite = useCallback(() => {
-    setInviteVisible(false);
-    setInviteDragging(false);
-    setInviteDrag({ x: 0, y: 0 });
-    const now = Date.now();
-    const current = readSchedule(now);
-    const snoozeDuration =
-      SNOOZE_STEPS_MS[Math.min(current.dismissCount, SNOOZE_STEPS_MS.length - 1)];
-    writeSchedule({
-      ...current,
-      lastSeenAt: now,
-      snoozedUntil: now + snoozeDuration,
-      dismissCount: current.dismissCount + 1,
-    });
-  }, []);
+  const snoozeAutoPrompt = useCallback(
+    (recordDismissalEvent = true) => {
+      setError(null);
+      setHighlightMissing(false);
+      trackedPromptAppearanceRef.current = null;
+      const now = Date.now();
+      const current = readSchedule(now);
+      writeSchedule(applyFeedbackDismissal(current, now));
+      if (recordDismissalEvent && modalLeadSource !== "manual") {
+        trackEvent("feedback_prompt_dismissed", { variant: modalLeadSource });
+      }
+    },
+    [modalLeadSource],
+  );
 
   const dismissEdgeTrigger = useCallback(() => {
     try {
@@ -418,7 +398,7 @@ export function FeedbackWidget() {
     } catch {
       // Ignore storage errors: the tab still hides for this page view
     }
-    snoozeInvite();
+    snoozeAutoPrompt(false);
     setEdgeDragging(false);
     if (reducedMotion) {
       setEdgeDismissed(true);
@@ -436,7 +416,7 @@ export function FeedbackWidget() {
       setEdgeDragX(0);
       edgeDismissTimerRef.current = null;
     }, 180);
-  }, [reducedMotion, snoozeInvite]);
+  }, [reducedMotion, snoozeAutoPrompt]);
 
   const handleEdgePointerDown = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
@@ -517,90 +497,27 @@ export function FeedbackWidget() {
     [dismissEdgeTrigger],
   );
 
-  const handleInvitePointerDown = useCallback((event: ReactPointerEvent<HTMLElement>) => {
-    if (event.pointerType === "mouse" && event.button !== 0) return;
-    inviteDragRef.current = {
-      pointerId: event.pointerId,
-      startX: event.clientX,
-      startY: event.clientY,
-      startTime: performance.now(),
-      maxDist: 0,
-      captured: false,
-    };
-  }, []);
-
-  const handleInvitePointerMove = useCallback((event: ReactPointerEvent<HTMLElement>) => {
-    const drag = inviteDragRef.current;
-    if (!drag || drag.pointerId !== event.pointerId) return;
-    const dx = Math.max(0, event.clientX - drag.startX);
-    const dy = Math.max(0, event.clientY - drag.startY);
-    drag.maxDist = Math.max(drag.maxDist, dx, dy);
-    if (drag.maxDist > 8) {
-      if (!drag.captured) {
-        drag.captured = true;
-        try {
-          event.currentTarget.setPointerCapture(event.pointerId);
-        } catch {
-          // Ignore pointer capture errors
-        }
-      }
-      setInviteDragging(true);
-      setInviteDrag({ x: Math.min(dx, 160), y: Math.min(dy, 120) });
-    }
-  }, []);
-
-  const handleInvitePointerEnd = useCallback(
-    (event: ReactPointerEvent<HTMLElement>) => {
-      const drag = inviteDragRef.current;
-      if (!drag || drag.pointerId !== event.pointerId) return;
-      inviteDragRef.current = null;
-      if (drag.captured) {
-        try {
-          event.currentTarget.releasePointerCapture(event.pointerId);
-        } catch {
-          // Ignore release errors
-        }
-      }
-      setInviteDragging(false);
-      const dx = event.clientX - drag.startX;
-      const dy = event.clientY - drag.startY;
-      const elapsed = Math.max(1, performance.now() - drag.startTime);
-      const vx = dx / elapsed;
-      const vy = dy / elapsed;
-
-      if (
-        event.type !== "pointercancel" &&
-        (dx >= 48 || dy >= 48 || vx >= 0.35 || vy >= 0.35)
-      ) {
-        snoozeInvite();
-      } else {
-        setInviteDrag({ x: 0, y: 0 });
-      }
-    },
-    [snoozeInvite],
-  );
-
-  const openModal = useCallback((prefillUsefulness?: number) => {
-    setInviteVisible(false);
-    setError(null);
-    setHighlightMissing(false);
-    if (prefillUsefulness && prefillUsefulness >= 1 && prefillUsefulness <= 5) {
-      setRatings((prev) => ({ ...prev, rating_usefulness: prefillUsefulness }));
+  const openModal = useCallback(
+    (leadSource: "manual" | FeedbackPromptVariant = "manual") => {
+      setModalLeadSource(leadSource);
+      setError(null);
+      setHighlightMissing(false);
       setStep(0);
-    }
-    setStepDir(1);
-    setModalOpen(true);
-  }, []);
+      setStepDir(1);
+      setModalOpen(true);
+    },
+    [],
+  );
 
   const closeModal = useCallback(
     (wasSubmitted: boolean) => {
       setModalOpen(false);
       if (!wasSubmitted) {
-        // Snooze auto-invite so closing the modal never pops the card right back up
-        snoozeInvite();
+        // Snooze auto-prompt (2 min after 1st discard, 24h after 2nd, 7d after 3rd+)
+        snoozeAutoPrompt(true);
       }
     },
-    [snoozeInvite],
+    [snoozeAutoPrompt],
   );
 
   // Support programmatic open via `openSiteFeedback()` and `?feedback=1` deep link
@@ -608,20 +525,20 @@ export function FeedbackWidget() {
     const handleCustomOpen = (event: Event) => {
       event.preventDefault();
       setSubmitted(false);
-      openModal();
+      openModal("manual");
     };
     window.addEventListener(OPEN_FEEDBACK_EVENT, handleCustomOpen);
 
     if (consumePendingFeedbackOpen()) {
       queueMicrotask(() => {
         setSubmitted(false);
-        openModal();
+        openModal("manual");
       });
     } else {
       try {
         const params = new URLSearchParams(window.location.search);
         if (params.get("feedback") === "1") {
-          queueMicrotask(() => openModal());
+          queueMicrotask(() => openModal("manual"));
         }
       } catch {
         // Ignore malformed URL edge cases
@@ -631,13 +548,28 @@ export function FeedbackWidget() {
     return () => window.removeEventListener(OPEN_FEEDBACK_EVENT, handleCustomOpen);
   }, [openModal]);
 
-  // Active browsing timer (45s general exploration or 20s + reading completion, plus progressive snooze)
+  // Smart active browsing timer for the existing feedback form modal:
+  // - 30s on the platform -> opens the current 5-question form with a friendly initial lead
+  // - If discarded once -> re-opens after 2 more minutes with a different, warmer lead (5 questions visible)
+  // - If discarded again -> backs off to 24h / 7d
+  // - Pause-aware: never interrupts active typing or scrolling; waits until the user pauses.
   useEffect(() => {
-    if (modalOpen || submitted || isConsultationOrPortal || isClinicalTaskSurface) {
+    if (modalOpen || submitted || isConsultationOrPortal) {
       return;
     }
 
     let lastTick = Date.now();
+
+    const clearPauseRecheck = () => {
+      if (pauseRecheckTimerRef.current !== null) {
+        window.clearTimeout(pauseRecheckTimerRef.current);
+        pauseRecheckTimerRef.current = null;
+      }
+    };
+
+    const handleScroll = () => {
+      lastScrollAtRef.current = Date.now();
+    };
 
     const evaluateAndTick = () => {
       const now = Date.now();
@@ -649,50 +581,59 @@ export function FeedbackWidget() {
 
       const schedule = readSchedule(now);
       if (schedule.submitted) {
+        clearPauseRecheck();
         return;
       }
 
-      const nextActiveMs = schedule.activeMs + delta;
-      writeSchedule({
+      const nextSchedule: StoredFeedbackSchedule = {
         ...schedule,
-        activeMs: nextActiveMs,
+        activeMs: schedule.activeMs + delta,
         lastSeenAt: now,
-      });
+      };
+      writeSchedule(nextSchedule);
 
       if (document.visibilityState !== "visible") return;
-      if (!isAutoInviteAllowedPath(barePath)) return;
-      if (now - pageMountedAtRef.current < PAGE_SETTLE_GRACE_MS) return;
-      if (schedule.snoozedUntil > now) return;
 
-      const isPhoneAtHeroTop =
-        window.matchMedia("(max-width: 639px)").matches &&
-        barePath === "/" &&
-        window.scrollY < 160;
-      if (isPhoneAtHeroTop) return;
+      const decision = evaluateSmartFeedbackPrompt(nextSchedule, now, {
+        allowedPath: isSmartFeedbackAllowedPath(barePath),
+        pageSettled: now - pageMountedAtRef.current >= FEEDBACK_PAGE_SETTLE_GRACE_MS,
+        blockedByUi: Boolean(document.querySelector(INVITE_BLOCKERS)),
+        userInteracting: isUserTypingInDocument(),
+        lastScrollAt: lastScrollAtRef.current,
+      });
 
-      const reachedReadingCompletion =
-        isReadingDetailPath(barePath) &&
-        nextActiveMs >= READ_COMPLETE_MIN_MS &&
-        hasReachedGuideEnd();
-      if (nextActiveMs < INITIAL_EXPLORE_MS && !reachedReadingCompletion) return;
-
-      if (document.querySelector(INVITE_BLOCKERS)) {
+      if (!decision.shouldOpen) {
+        if (decision.reason === "user_interacting" && decision.nextCheckMs !== null) {
+          clearPauseRecheck();
+          pauseRecheckTimerRef.current = window.setTimeout(() => {
+            pauseRecheckTimerRef.current = null;
+            evaluateAndTick();
+          }, decision.nextCheckMs + 50);
+        }
         return;
       }
 
-      setInviteVisible(true);
+      clearPauseRecheck();
+      openModal(decision.variant);
+
+      const appearanceKey = `${decision.variant}:${nextSchedule.dismissCount}`;
+      if (trackedPromptAppearanceRef.current !== appearanceKey) {
+        trackedPromptAppearanceRef.current = appearanceKey;
+        trackEvent("feedback_prompt_shown", { variant: decision.variant });
+      }
     };
 
+    window.addEventListener("scroll", handleScroll, { passive: true });
     const intervalId = window.setInterval(evaluateAndTick, HEARTBEAT_INTERVAL_MS);
-    const settleTimerId = window.setTimeout(evaluateAndTick, PAGE_SETTLE_GRACE_MS + 250);
-    window.addEventListener("scroll", evaluateAndTick, { passive: true });
+    const settleTimerId = window.setTimeout(evaluateAndTick, FEEDBACK_PAGE_SETTLE_GRACE_MS + 150);
 
     return () => {
+      window.removeEventListener("scroll", handleScroll);
       window.clearInterval(intervalId);
       window.clearTimeout(settleTimerId);
-      window.removeEventListener("scroll", evaluateAndTick);
+      clearPauseRecheck();
     };
-  }, [modalOpen, submitted, isConsultationOrPortal, isClinicalTaskSurface, barePath, pathname]);
+  }, [modalOpen, submitted, isConsultationOrPortal, barePath, pathname, openModal]);
 
   // Native <dialog> synchronization (focus trap, Escape key, inert background)
   useEffect(() => {
@@ -716,6 +657,17 @@ export function FeedbackWidget() {
     if (!modalOpen) return;
     bodyScrollerRef.current?.scrollTo({ top: 0 });
   }, [step, modalOpen]);
+
+  useEffect(() => {
+    if (!modalOpen || !error) return;
+    const scroller = bodyScrollerRef.current;
+    if (scroller) {
+      scroller.scrollTo({
+        top: scroller.scrollHeight,
+        behavior: reducedMotion ? "auto" : "smooth",
+      });
+    }
+  }, [error, modalOpen, reducedMotion]);
 
   function handleBackdropClick(event: MouseEvent<HTMLDialogElement>) {
     if (event.target === event.currentTarget && !isSubmitting) {
@@ -778,14 +730,9 @@ export function FeedbackWidget() {
     }
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function submitFeedback(options: { ratingsOnly?: boolean } = {}) {
+    if (isSubmitting) return;
     setError(null);
-
-    if (step < 2) {
-      goNextStep();
-      return;
-    }
 
     if (!allRatingsComplete) {
       setStepDir(-1);
@@ -798,6 +745,7 @@ export function FeedbackWidget() {
       return;
     }
 
+    const ratingsOnly = Boolean(options.ratingsOnly);
     setIsSubmitting(true);
     try {
       const captchaToken = await executeCaptcha("platform_feedback");
@@ -812,12 +760,12 @@ export function FeedbackWidget() {
           rating_visual_design: ratings.rating_visual_design,
           rating_content_clarity: ratings.rating_content_clarity,
           rating_future_use: ratings.rating_future_use,
-          open_feedback: openAnswer.trim() || undefined,
-          gender: gender || undefined,
-          age_group: ageGroup || undefined,
-          marital_status: maritalStatus || undefined,
-          locality: locality.trim() || undefined,
-          occupation: occupation.trim() || undefined,
+          open_feedback: ratingsOnly ? undefined : openAnswer.trim() || undefined,
+          gender: ratingsOnly ? undefined : gender || undefined,
+          age_group: ratingsOnly ? undefined : ageGroup || undefined,
+          marital_status: ratingsOnly ? undefined : maritalStatus || undefined,
+          locality: ratingsOnly ? undefined : locality.trim() || undefined,
+          occupation: ratingsOnly ? undefined : occupation.trim() || undefined,
           captchaToken,
         }),
       });
@@ -831,6 +779,7 @@ export function FeedbackWidget() {
       trackEvent("feedback_sent");
       markScheduleSubmitted();
       clearDraft();
+      ratingsRef.current = INITIAL_RATINGS;
       setRatings(INITIAL_RATINGS);
       setOpenAnswer("");
       setGender("");
@@ -839,6 +788,7 @@ export function FeedbackWidget() {
       setLocality("");
       setOccupation("");
       setStep(0);
+      setHighlightMissing(false);
       setSubmitted(true);
     } catch (caught) {
       setError(captchaErrorMessage(caught, t.errorGeneric));
@@ -847,14 +797,45 @@ export function FeedbackWidget() {
     }
   }
 
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError(null);
+
+    if (step < 2) {
+      goNextStep();
+      return;
+    }
+
+    await submitFeedback({ ratingsOnly: false });
+  }
+
+  async function handleQuickSubmitRatings() {
+    await submitFeedback({ ratingsOnly: true });
+  }
+
   const inputBaseClass =
     "min-h-11 w-full rounded-(--radius-control) border border-border-control bg-background px-3.5 py-2 text-body text-foreground placeholder:text-muted-foreground/80 field-focus";
+
+  const modalHeaderTitle = submitted
+    ? t.thankYouTitle
+    : modalLeadSource === "followup"
+      ? t.inviteReturnTitle
+      : modalLeadSource === "initial"
+        ? t.inviteTitle
+        : t.modalTitle;
+
+  const modalHeaderSubtitle = submitted
+    ? t.thankYouBody
+    : modalLeadSource === "followup"
+      ? t.inviteReturnBody
+      : modalLeadSource === "initial"
+        ? t.inviteBody
+        : t.modalSubtitle;
 
   return (
     <>
       {!isConsultationOrPortal &&
       !isClinicalTaskSurface &&
-      !inviteVisible &&
       !modalOpen &&
       (!edgeDismissed || edgeDismissing) ? (
         <div
@@ -920,103 +901,12 @@ export function FeedbackWidget() {
         </div>
       ) : null}
 
-      {/* Calm, non-disruptive floating invitation card after 45 seconds of active browsing (or 20s after reading an article) */}
-      <AnimatePresence>
-        {inviteVisible && !modalOpen ? (
-          <m.aside
-            role="region"
-            aria-label={t.inviteOpenCta}
-            onPointerDown={handleInvitePointerDown}
-            onPointerMove={handleInvitePointerMove}
-            onPointerUp={handleInvitePointerEnd}
-            onPointerCancel={handleInvitePointerEnd}
-            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
-            animate={{
-              opacity:
-                inviteDrag.x > 0 || inviteDrag.y > 0
-                  ? Math.max(0.35, 1 - Math.max(inviteDrag.x, inviteDrag.y) / 140)
-                  : 1,
-              x: inviteDrag.x,
-              y: inviteDrag.y,
-            }}
-            exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
-            transition={
-              reducedMotion || inviteDragging ? { duration: 0 } : CLINICAL_SETTLE_SPRING
-            }
-            className="feedback-invite-card fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-30 mx-auto max-w-md overflow-hidden rounded-(--radius-surface) border border-border bg-card text-foreground shadow-[0_20px_48px_-14px_rgba(15,23,42,0.34)] touch-pan-y sm:inset-x-auto sm:right-4 sm:bottom-4 sm:mx-0 sm:w-[22rem] dark:border-white/14 dark:bg-ink-950 dark:text-paper"
-          >
-            <div className="p-4">
-              <div className="flex items-start justify-between gap-2.5">
-                <div className="min-w-0">
-                  <h2 className="text-body font-semibold leading-snug text-balance text-foreground dark:text-paper">
-                    {t.inviteTitle}
-                  </h2>
-                  <p className="mt-1 text-meta leading-relaxed text-muted-foreground dark:text-mist">
-                    {t.inviteBody}
-                  </p>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={snoozeInvite}
-                  aria-label={t.inviteCloseAria}
-                  className="-mr-2 -mt-2 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <CloseIcon className="h-4 w-4" />
-                </button>
-              </div>
-
-              {/* Instant 1–5 usefulness tap strip that jumps straight into Step 1 */}
-              <div className="mt-3.5">
-                <p className="text-body font-medium text-foreground dark:text-paper">
-                  {t.inviteQuickScaleHint}
-                </p>
-                <div
-                  className="mt-2 grid grid-cols-5 gap-1.5"
-                  role="group"
-                  aria-label={t.questions.rating_usefulness.question}
-                >
-                  {[1, 2, 3, 4, 5].map((score, idx) => (
-                    <button
-                      key={score}
-                      type="button"
-                      onClick={() => openModal(score)}
-                      aria-label={t.scaleValueLabels[idx]}
-                      className="press-solid flex min-h-11 items-center justify-center rounded-lg border border-border-control/80 bg-card text-body font-semibold tabular-nums text-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:border-sapphire hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/15 dark:bg-ink-800 dark:text-paper"
-                    >
-                      {score}
-                    </button>
-                  ))}
-                </div>
-                <div className="mt-1.5 flex items-center justify-between gap-2 text-meta text-muted-foreground dark:text-mist">
-                  <span>{t.scaleLow}</span>
-                  <span>{t.scaleHigh}</span>
-                </div>
-              </div>
-
-              <div className="mt-3 -mb-1 flex flex-wrap items-center justify-between gap-2">
-                <button
-                  type="button"
-                  onClick={snoozeInvite}
-                  className="inline-flex min-h-11 items-center rounded-lg px-2.5 text-body font-medium whitespace-nowrap text-muted-foreground transition-colors duration-(--dur-fast) motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  {t.inviteLaterCta}
-                </button>
-                <Button type="button" variant="action" size="md" onClick={() => openModal()}>
-                  <span>{t.inviteOpenCta}</span>
-                  <ArrowRightIcon className="h-3.5 w-3.5" />
-                </Button>
-              </div>
-            </div>
-          </m.aside>
-        ) : null}
-      </AnimatePresence>
-
-      {/* Dedicated Feedback Modal */}
+      {/* Existing Feedback Form Modal (also auto-opened at 30s and after 2m discard with tailored lead copy) */}
       <dialog
         ref={dialogRef}
         aria-labelledby={titleId}
         aria-describedby={subtitleId}
+        data-prompt-variant={modalLeadSource}
         onClose={() => closeModal(submitted)}
         onClick={handleBackdropClick}
         className={[
@@ -1035,13 +925,13 @@ export function FeedbackWidget() {
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <h2 id={titleId} className="text-title font-bold leading-snug text-foreground">
-                  {submitted ? t.thankYouTitle : t.modalTitle}
+                  {modalHeaderTitle}
                 </h2>
                 <p
                   id={subtitleId}
                   className="mt-0.5 text-meta leading-snug text-muted-foreground sm:mt-1 sm:text-body"
                 >
-                  {submitted ? t.thankYouBody : t.modalSubtitle}
+                  {modalHeaderSubtitle}
                 </p>
               </div>
               <button
@@ -1081,7 +971,7 @@ export function FeedbackWidget() {
                       <button
                         key={idx}
                         type="button"
-                        disabled={lockedByMandatoryRatings}
+                        disabled={lockedByMandatoryRatings || isSubmitting}
                         aria-label={`${t.stepIndicator(idx + 1, 3)}: ${stepLabel}`}
                         aria-current={step === idx ? "step" : undefined}
                         onClick={() => jumpToStep(idx)}
@@ -1116,6 +1006,32 @@ export function FeedbackWidget() {
                   <p className="text-muted-foreground">{t.privacyNote}</p>
                 </div>
               </div>
+              <div className="rounded-xl border border-border/70 bg-surface-subtle/75 p-4">
+                <p className="text-body font-semibold text-foreground">{t.nextExploreHeading}</p>
+                <div className="mt-2.5 grid gap-2 sm:grid-cols-3">
+                  <Link
+                    href={withLangPrefix("/health-check", lang)}
+                    onClick={() => closeModal(true)}
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-border-control/75 bg-card px-3 py-2 text-center text-meta font-medium text-foreground transition-colors hover:border-sapphire hover:bg-sapphire-soft/60"
+                  >
+                    {t.nextExploreSymptoms}
+                  </Link>
+                  <Link
+                    href={withLangPrefix("/ai-assistant", lang)}
+                    onClick={() => closeModal(true)}
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-border-control/75 bg-card px-3 py-2 text-center text-meta font-medium text-foreground transition-colors hover:border-sapphire hover:bg-sapphire-soft/60"
+                  >
+                    {t.nextExploreAssistant}
+                  </Link>
+                  <Link
+                    href={withLangPrefix("/health-information", lang)}
+                    onClick={() => closeModal(true)}
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-border-control/75 bg-card px-3 py-2 text-center text-meta font-medium text-foreground transition-colors hover:border-sapphire hover:bg-sapphire-soft/60"
+                  >
+                    {t.nextExploreGuides}
+                  </Link>
+                </div>
+              </div>
               <div className="flex justify-end">
                 <Button type="button" variant="action" onClick={() => closeModal(true)}>
                   {t.doneCloseCta}
@@ -1127,7 +1043,11 @@ export function FeedbackWidget() {
               <div
                 ref={bodyScrollerRef}
                 data-modal-scroller="true"
-                className="flex-1 overflow-y-auto overscroll-contain px-4 pt-3 pb-4 sm:px-6 sm:py-5"
+                className={`flex-1 overflow-y-auto overscroll-contain ${
+                  step === 0
+                    ? "px-4 pt-0 pb-4 sm:px-6 sm:pt-0 sm:pb-5"
+                    : "px-4 pt-3 pb-4 sm:px-6 sm:py-5"
+                }`}
               >
                 <AnimatePresence mode="wait" initial={false}>
                   <m.div
@@ -1144,7 +1064,7 @@ export function FeedbackWidget() {
                     {/* Step 1: five mandatory ratings with sticky scale cue and smooth auto-advance scroll. */}
                     {step === 0 ? (
                       <div className="space-y-0.5">
-                        <div className="sticky top-0 z-10 -mx-4 -mt-3 mb-1 bg-card px-4 pt-2.5 pb-1.5 sm:-mx-6 sm:-mt-5 sm:px-6 sm:pt-3.5 sm:pb-2">
+                        <div className="sticky top-0 z-10 -mx-4 mb-1 bg-card px-4 pt-2.5 pb-1.5 sm:-mx-6 sm:px-6 sm:pt-3.5 sm:pb-2">
                           <div className="flex items-center justify-between rounded-xl border border-border/60 bg-surface-subtle px-3 py-1.5 text-meta font-medium text-muted-foreground sm:px-3.5 sm:py-2">
                             <span>{t.scaleLow}</span>
                             <span className="tabular-nums font-semibold text-sapphire">
@@ -1161,6 +1081,7 @@ export function FeedbackWidget() {
                           return (
                             <fieldset
                               key={key}
+                              disabled={isSubmitting}
                               ref={(node) => {
                                 questionRefs.current[key] = node;
                               }}
@@ -1195,11 +1116,15 @@ export function FeedbackWidget() {
                                         aria-checked={active}
                                         aria-label={`${itemCopy.label}: ${t.scaleValueLabels[idx]}`}
                                         onClick={() => {
-                                          const nextRatings = { ...ratings, [key]: value };
+                                          const nextRatings = {
+                                            ...ratingsRef.current,
+                                            [key]: value,
+                                          };
+                                          ratingsRef.current = nextRatings;
                                           const nextComplete = RATING_KEYS.every(
                                             (k) => nextRatings[k] !== null,
                                           );
-                                          setRatings(nextRatings);
+                                          setRatings((prev) => ({ ...prev, [key]: value }));
                                           if (nextComplete) {
                                             setHighlightMissing(false);
                                           }
@@ -1406,44 +1331,97 @@ export function FeedbackWidget() {
               </div>
 
               {/* Modal Sticky Footer */}
-              <div className="flex items-center justify-between gap-3 border-t border-border bg-surface-subtle/50 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:px-6 sm:py-4 sm:pb-4">
-                {step > 0 ? (
-                  <Button type="button" variant="outline" onClick={goPrevStep} disabled={isSubmitting}>
-                    <ArrowLeftIcon className="h-4 w-4" />
-                    <span>{t.backCta}</span>
-                  </Button>
-                ) : (
-                  <Button type="button" variant="ghost" onClick={() => closeModal(false)}>
-                    {t.inviteLaterCta}
-                  </Button>
-                )}
+              <fieldset
+                disabled={isSubmitting}
+                className="m-0 min-w-0 border-0 border-t border-border bg-surface-subtle/50 p-0"
+              >
+                <div
+                  className={
+                    step === 0 && allRatingsComplete
+                      ? "grid grid-cols-[auto_1fr] items-center gap-2 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:flex sm:items-center sm:gap-2.5 sm:px-6 sm:py-4 sm:pb-4"
+                      : "flex items-center justify-between gap-3 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:px-6 sm:py-4 sm:pb-4"
+                  }
+                >
+                  {step > 0 ? (
+                    <Button type="button" variant="outline" onClick={goPrevStep} disabled={isSubmitting}>
+                      <ArrowLeftIcon className="h-4 w-4" />
+                      <span>{t.backCta}</span>
+                    </Button>
+                  ) : (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      onClick={() => closeModal(false)}
+                      disabled={isSubmitting}
+                      className={
+                        allRatingsComplete
+                          ? "col-start-1 row-start-2 justify-self-start sm:mr-auto"
+                          : undefined
+                      }
+                    >
+                      {t.inviteLaterCta}
+                    </Button>
+                  )}
 
-                {step < 2 ? (
-                  <Button
-                    key="next-step"
-                    type="button"
-                    variant="action"
-                    disabled={step === 0 && !allRatingsComplete}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      goNextStep();
-                    }}
-                  >
-                    <span>{t.nextCta}</span>
-                    {step === 0 && !allRatingsComplete ? (
-                      <span className="tabular-nums text-meta font-semibold opacity-85">
-                        {" "}({answeredRatingsCount}/{RATING_KEYS.length})
-                      </span>
-                    ) : (
-                      <ArrowRightIcon className="h-4 w-4" />
-                    )}
-                  </Button>
-                ) : (
-                  <Button key="submit-feedback" type="submit" variant="action" disabled={isSubmitting}>
-                    {isSubmitting ? t.submitting : t.submitCta}
-                  </Button>
-                )}
-              </div>
+                  {step === 0 && allRatingsComplete ? (
+                    <Button
+                      key="quick-submit-ratings"
+                      type="button"
+                      variant="outline"
+                      disabled={isSubmitting}
+                      aria-busy={isSubmitting}
+                      onClick={handleQuickSubmitRatings}
+                      className="col-span-2 row-start-1 w-full sm:w-auto"
+                    >
+                      {isSubmitting ? (
+                        <SubmittingSpinner />
+                      ) : (
+                        <CheckIcon className="h-4 w-4 text-sapphire dark:text-sapphire-border" />
+                      )}
+                      <span>{isSubmitting ? t.submitting : t.sendRatingsNowCta}</span>
+                    </Button>
+                  ) : null}
+
+                  {step < 2 ? (
+                    <Button
+                      key="next-step"
+                      type="button"
+                      variant="action"
+                      disabled={step === 0 && !allRatingsComplete}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        if (isSubmitting) return;
+                        goNextStep();
+                      }}
+                      className={
+                        step === 0 && allRatingsComplete
+                          ? "col-start-2 row-start-2 justify-self-end"
+                          : undefined
+                      }
+                    >
+                      <span>{t.nextCta}</span>
+                      {step === 0 && !allRatingsComplete ? (
+                        <span className="tabular-nums text-meta font-semibold opacity-85">
+                          {" "}({answeredRatingsCount}/{RATING_KEYS.length})
+                        </span>
+                      ) : (
+                        <ArrowRightIcon className="h-4 w-4" />
+                      )}
+                    </Button>
+                  ) : (
+                    <Button
+                      key="submit-feedback"
+                      type="submit"
+                      variant="action"
+                      disabled={isSubmitting}
+                      aria-busy={isSubmitting}
+                    >
+                      {isSubmitting ? <SubmittingSpinner /> : null}
+                      <span>{isSubmitting ? t.submitting : t.submitCta}</span>
+                    </Button>
+                  )}
+                </div>
+              </fieldset>
             </form>
           )}
         </div>

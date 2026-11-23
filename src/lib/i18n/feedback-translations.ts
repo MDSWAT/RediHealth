@@ -9,10 +9,17 @@ import type {
 export type FeedbackWidgetCopy = {
   inviteTitle: string;
   inviteBody: string;
+  inviteReturnTitle: string;
+  inviteReturnBody: string;
+  inviteAddDetailsCta: string;
   inviteOpenCta: string;
   inviteLaterCta: string;
   inviteCloseAria: string;
   inviteQuickScaleHint: string;
+  nextExploreHeading: string;
+  nextExploreSymptoms: string;
+  nextExploreAssistant: string;
+  nextExploreGuides: string;
   footerLink: string;
   compactTriggerLabel: string;
   modalTitle: string;
@@ -47,6 +54,7 @@ export type FeedbackWidgetCopy = {
   occupationPlaceholder: string;
   backCta: string;
   nextCta: string;
+  sendRatingsNowCta: string;
   submitCta: string;
   submitting: string;
   doneCloseCta: string;
@@ -97,20 +105,27 @@ export type FeedbackAdminCopy = {
 export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
 "ru": {
 "stepIndicator": (current, total) => `Шаг ${current} из ${total}`,
-"inviteTitle":"Есть минута, чтобы оценить платформу?","inviteBody":"Ваш анонимный отзыв поможет сделать медицинскую информацию понятнее и доступнее.","inviteOpenCta":"Оставить отзыв","inviteLaterCta":"Позже","inviteCloseAria":"Закрыть приглашение","inviteQuickScaleHint":"Или оцените полезность от 1 до 5:","footerLink":"Оставить отзыв","compactTriggerLabel":"Отзыв","modalTitle":"Ваше мнение о RediHealth","modalSubtitle":"Это займёт около минуты. Ответы анонимны.","closeAria":"Закрыть форму отзыва","stepTitles":{"ratings":"Оценки","openQuestion":"Что вы хотели бы видеть в приложении","demographics":"Необязательные сведения о себе"},"scaleLow":"1 — Совсем нет","scaleHigh":"5 — Очень","scaleValueLabels":["1 — Совсем нет","2 — Немного","3 — Умеренно","4 — Сильно","5 — Очень сильно"],"questions":{"rating_usefulness":{"label":"Полезность","question":"Насколько полезна для вас платформа?"},"rating_ease_of_use":{"label":"Удобство","question":"Насколько легко пользоваться платформой?"},"rating_visual_design":{"label":"Внешний вид","question":"Насколько вам нравится оформление платформы?"},"rating_content_clarity":{"label":"Понятность","question":"Насколько понятны информация и доступные действия?"},"rating_future_use":{"label":"Использование в будущем","question":"Насколько вероятно, что вы будете пользоваться платформой снова?"}},"openQuestionLabel":"Что вы хотели бы найти или делать в таком приложении?","openQuestionPlaceholder":"Напишите об идеях, функциях или медицинской информации, которые были бы вам полезны…","openQuestionHint":"Можно пропустить. Не указывайте имена, номера телефонов или личные идентификационные номера.","demographicsIntro":"Эти необязательные сведения помогают понять, кому доступна платформа.","privacyNote":"Мы не сохраняем ваше имя, электронную почту, телефон или IP-адрес.","genderLabel":"Пол","genderOptions":{"female":"Женский","male":"Мужской","other":"Другой вариант","prefer_not_to_say":"Предпочитаю не отвечать"},"ageGroupLabel":"Возрастная группа","ageGroupPlaceholder":"Выберите возрастную группу","ageGroupOptions":{
+"inviteTitle":"Есть минута, чтобы оценить платформу?","inviteBody":"Ваш анонимный отзыв поможет сделать медицинскую информацию понятнее и доступнее.","inviteReturnTitle":"Всё ещё изучаете RediHealth? Короткая оценка очень поможет","inviteReturnBody":"Теперь, когда вы увидели больше, поставьте 5 быстрых оценок ниже. Это займёт меньше 20 секунд и останется анонимным.","inviteAddDetailsCta":"Добавить комментарий","inviteOpenCta":"Оставить отзыв","inviteLaterCta":"Позже","inviteCloseAria":"Закрыть приглашение","inviteQuickScaleHint":"Или оцените полезность от 1 до 5:","nextExploreHeading":"Продолжить знакомство с RediHealth","nextExploreSymptoms":"Проверка симптомов","nextExploreAssistant":"ИИ-помощник","nextExploreGuides":"Медицинские памятки","footerLink":"Оставить отзыв","compactTriggerLabel":"Отзыв","modalTitle":"Ваше мнение о RediHealth","modalSubtitle":"Это займёт около минуты. Ответы анонимны.","closeAria":"Закрыть форму отзыва","stepTitles":{"ratings":"Оценки","openQuestion":"Что вы хотели бы видеть в приложении","demographics":"Необязательные сведения о себе"},"scaleLow":"1 — Совсем нет","scaleHigh":"5 — Очень","scaleValueLabels":["1 — Совсем нет","2 — Немного","3 — Умеренно","4 — Сильно","5 — Очень сильно"],"questions":{"rating_usefulness":{"label":"Полезность","question":"Насколько полезна для вас платформа?"},"rating_ease_of_use":{"label":"Удобство","question":"Насколько легко пользоваться платформой?"},"rating_visual_design":{"label":"Внешний вид","question":"Насколько вам нравится оформление платформы?"},"rating_content_clarity":{"label":"Понятность","question":"Насколько понятны информация и доступные действия?"},"rating_future_use":{"label":"Использование в будущем","question":"Насколько вероятно, что вы будете пользоваться платформой снова?"}},"openQuestionLabel":"Что вы хотели бы найти или делать в таком приложении?","openQuestionPlaceholder":"Напишите об идеях, функциях или медицинской информации, которые были бы вам полезны…","openQuestionHint":"Можно пропустить. Не указывайте имена, номера телефонов или личные идентификационные номера.","demographicsIntro":"Эти необязательные сведения помогают понять, кому доступна платформа.","privacyNote":"Мы не сохраняем ваше имя, электронную почту, телефон или IP-адрес.","genderLabel":"Пол","genderOptions":{"female":"Женский","male":"Мужской","other":"Другой вариант","prefer_not_to_say":"Предпочитаю не отвечать"},"ageGroupLabel":"Возрастная группа","ageGroupPlaceholder":"Выберите возрастную группу","ageGroupOptions":{
 "prefer_not_to_say": "Предпочитаю не отвечать",
 "under_18":"До 18 лет","18_24":"18–24 года","25_34":"25–34 года","35_44":"35–44 года","45_54":"45–54 года","55_64":"55–64 года","65_plus":"65 лет и старше"},"maritalStatusLabel":"Семейное положение","maritalStatusPlaceholder":"Выберите вариант","maritalStatusOptions":{
 "married_or_partnered": "В браке или отношениях",
 "divorced_or_separated": "В разводе или живу отдельно",
-"single":"Не состою в браке","widowed":"Вдовец / вдова","prefer_not_to_say":"Предпочитаю не отвечать"},"localityLabel":"Населённый пункт","localityPlaceholder":"Например, город или село","occupationLabel":"Занятость","occupationPlaceholder":"Например, учитель, студент, пенсионер","backCta":"Назад","nextCta":"Далее","submitCta":"Отправить отзыв","submitting":"Отправка…","doneCloseCta":"Вернуться на платформу","thankYouTitle":"Спасибо за ваше время","thankYouBody":"Ваши анонимные ответы сохранены и помогут улучшить RediHealth.","validationMissingRatings":"Оцените все пять вопросов от 1 до 5.","errorTooMany":"Вы недавно уже отправили отзыв. Повторите позже.","errorCaptcha":"Не удалось пройти проверку безопасности. Повторите попытку.","errorUnavailable":"Отзывы временно недоступны. Повторите позже.","errorGeneric":"Не удалось сохранить ответ. Повторите попытку."},
+"single":"Не состою в браке","widowed":"Вдовец / вдова","prefer_not_to_say":"Предпочитаю не отвечать"},"localityLabel":"Населённый пункт","localityPlaceholder":"Например, город или село","occupationLabel":"Занятость","occupationPlaceholder":"Например, учитель, студент, пенсионер","backCta":"Назад","nextCta":"Далее","sendRatingsNowCta":"Отправить оценки сейчас","submitCta":"Отправить отзыв","submitting":"Отправка…","doneCloseCta":"Вернуться на платформу","thankYouTitle":"Спасибо за ваше время","thankYouBody":"Ваши анонимные ответы сохранены и помогут улучшить RediHealth.","validationMissingRatings":"Оцените все пять вопросов от 1 до 5.","errorTooMany":"Вы недавно уже отправили отзыв. Повторите позже.","errorCaptcha":"Не удалось пройти проверку безопасности. Повторите попытку.","errorUnavailable":"Отзывы временно недоступны. Повторите позже.","errorGeneric":"Не удалось сохранить ответ. Повторите попытку."},
 
   ro: {
     inviteTitle: "Ai un minut să ne spui cum ți se pare platforma?",
     inviteBody: "Părerea ta anonimă ne ajută să facem informațiile medicale mai clare pentru toată lumea.",
+    inviteReturnTitle: "Încă explorezi RediHealth? Părerea ta chiar ne ajută",
+    inviteReturnBody: "Acum că ai văzut mai mult din platformă, alege cele 5 note de mai jos. Durează sub 20 de secunde și rămâne anonim.",
+    inviteAddDetailsCta: "Adaugă un comentariu",
     inviteOpenCta: "Lasă feedback",
     inviteLaterCta: "Mai târziu",
     inviteCloseAria: "Închide invitația de feedback",
     inviteQuickScaleHint: "Sau alege direct o notă de la 1 la 5 pentru utilitate:",
+    nextExploreHeading: "Continuă explorarea pe RediHealth",
+    nextExploreSymptoms: "Verifică simptomele",
+    nextExploreAssistant: "Asistent IA",
+    nextExploreGuides: "Ghiduri medicale",
     footerLink: "Lasă feedback",
     compactTriggerLabel: "Feedback",
     modalTitle: "Spune-ne părerea ta despre RediHealth",
@@ -186,6 +201,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     occupationPlaceholder: "ex. profesor, student, pensionar",
     backCta: "Înapoi",
     nextCta: "Continuă",
+    sendRatingsNowCta: "Trimite notele acum",
     submitCta: "Trimite feedbackul",
     submitting: "Se trimite…",
     doneCloseCta: "Înapoi la platformă",
@@ -200,10 +216,17 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
   en: {
     inviteTitle: "Have a minute to share how RediHealth feels to use?",
     inviteBody: "Your anonymous feedback helps us make health guidance clearer and easier to reach.",
+    inviteReturnTitle: "Still exploring RediHealth? A quick rating helps a lot",
+    inviteReturnBody: "Now that you have seen more of the platform, tap the 5 quick scores below. It takes under 20 seconds and stays anonymous.",
+    inviteAddDetailsCta: "Add a comment",
     inviteOpenCta: "Leave feedback",
     inviteLaterCta: "Maybe later",
     inviteCloseAria: "Dismiss feedback invitation",
     inviteQuickScaleHint: "Or tap a score from 1 to 5 for usefulness to begin:",
+    nextExploreHeading: "Continue exploring RediHealth",
+    nextExploreSymptoms: "Symptom check",
+    nextExploreAssistant: "AI assistant",
+    nextExploreGuides: "Health guides",
     footerLink: "Leave feedback",
     compactTriggerLabel: "Feedback",
     modalTitle: "Share your thoughts on RediHealth",
@@ -279,6 +302,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     occupationPlaceholder: "e.g. teacher, student, retiree, nurse",
     backCta: "Back",
     nextCta: "Continue",
+    sendRatingsNowCta: "Send ratings now",
     submitCta: "Send feedback",
     submitting: "Sending…",
     doneCloseCta: "Back to website",
@@ -293,10 +317,17 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
   sq: {
     inviteTitle: "Ke një minutë të na thuash si të duket platforma?",
     inviteBody: "Mendimi yt anonim na ndihmon t'i bëjmë udhëzimet shëndetësore më të qarta për të gjithë.",
+    inviteReturnTitle: "Ende po eksploron RediHealth? Vlerësimi yt na ndihmon shumë",
+    inviteReturnBody: "Tani që ke parë më shumë nga platforma, zgjidh 5 vlerësimet më poshtë. Zgjat më pak se 20 sekonda dhe mbetet anonim.",
+    inviteAddDetailsCta: "Shto një koment",
     inviteOpenCta: "Lër përshtypje",
     inviteLaterCta: "Më vonë",
     inviteCloseAria: "Mbyll ftesën për përshtypje",
     inviteQuickScaleHint: "Ose zgjidh një vlerësim nga 1 në 5 për dobishmërinë:",
+    nextExploreHeading: "Vazhdo eksplorimin në RediHealth",
+    nextExploreSymptoms: "Kontrollo simptomat",
+    nextExploreAssistant: "Asistenti IA",
+    nextExploreGuides: "Udhëzues shëndetësorë",
     footerLink: "Lër përshtypje",
     compactTriggerLabel: "Përshtypje",
     modalTitle: "Na trego mendimin tënd për RediHealth",
@@ -372,6 +403,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     occupationPlaceholder: "p.sh. mësues, student, pensionist",
     backCta: "Kthehu",
     nextCta: "Vazhdo",
+    sendRatingsNowCta: "Dërgo vlerësimet tani",
     submitCta: "Dërgo përshtypjet",
     submitting: "Po dërgohet…",
     doneCloseCta: "Kthehu te faqja",
@@ -386,10 +418,17 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
   it: {
     inviteTitle: "Hai un minuto per dirci come ti trovi sulla piattaforma?",
     inviteBody: "Il tuo parere anonimo ci aiuta a rendere le informazioni sanitarie più chiare per tutti.",
+    inviteReturnTitle: "Stai ancora esplorando RediHealth? Un voto veloce aiuta molto",
+    inviteReturnBody: "Ora che hai visto di più della piattaforma, scegli i 5 voti rapidi qui sotto. Richiede meno di 20 secondi ed è anonimo.",
+    inviteAddDetailsCta: "Aggiungi un commento",
     inviteOpenCta: "Lascia un parere",
     inviteLaterCta: "Più tardi",
     inviteCloseAria: "Chiudi l'invito al questionario",
     inviteQuickScaleHint: "Oppure scegli subito un voto da 1 a 5 per l'utilità:",
+    nextExploreHeading: "Continua a esplorare RediHealth",
+    nextExploreSymptoms: "Controllo sintomi",
+    nextExploreAssistant: "Assistente IA",
+    nextExploreGuides: "Guide alla salute",
     footerLink: "Lascia un parere",
     compactTriggerLabel: "Parere",
     modalTitle: "Raccontaci la tua esperienza su RediHealth",
@@ -465,6 +504,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     occupationPlaceholder: "es. insegnante, studente, pensionato",
     backCta: "Indietro",
     nextCta: "Continua",
+    sendRatingsNowCta: "Invia i voti ora",
     submitCta: "Invia valutazione",
     submitting: "Invio in corso…",
     doneCloseCta: "Torna alla piattaforma",
@@ -479,10 +519,17 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
   hr: {
     inviteTitle: "Imaš li minutu da nam kažeš kako ti se čini platforma?",
     inviteBody: "Tvoje anonimno mišljenje pomaže nam učiniti zdravstvene upute jasnijima za sve.",
+    inviteReturnTitle: "Još uvijek istražuješ RediHealth? Kratka ocjena puno pomaže",
+    inviteReturnBody: "Sad kad si vidio ili vidjela više na platformi, odaberi 5 brzih ocjena ispod. Traje manje od 20 sekundi i ostaje anonimno.",
+    inviteAddDetailsCta: "Dodaj komentar",
     inviteOpenCta: "Ostavi povratnu informaciju",
     inviteLaterCta: "Kasnije",
     inviteCloseAria: "Zatvori poziv za povratnu informaciju",
     inviteQuickScaleHint: "Ili odmah odaberi ocjenu od 1 do 5 za korisnost:",
+    nextExploreHeading: "Nastavi istraživati RediHealth",
+    nextExploreSymptoms: "Provjera simptoma",
+    nextExploreAssistant: "AI asistent",
+    nextExploreGuides: "Zdravstveni vodiči",
     footerLink: "Ostavi povratnu informaciju",
     compactTriggerLabel: "Povratna info",
     modalTitle: "Podijeli svoje mišljenje o RediHealthu",
@@ -558,6 +605,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     occupationPlaceholder: "npr. učitelj, student, umirovljenik",
     backCta: "Natrag",
     nextCta: "Nastavi",
+    sendRatingsNowCta: "Pošalji ocjene sada",
     submitCta: "Pošalji povratnu informaciju",
     submitting: "Šalje se…",
     doneCloseCta: "Natrag na stranicu",
@@ -572,10 +620,17 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
   rom: {
     inviteTitle: "Si tut ekh minuta te phenes amenge sar dikhljol tuke i platforma?",
     inviteBody: "Chiro anonimno gindo zhutil amen te keras le sastipnaske informaciye maj ashkare savorenge.",
+    inviteReturnTitle: "Inke dikhes RediHealth? Ekh sigo nota zhutil amen but",
+    inviteReturnBody: "Akana kana dikhljan maj but andar i platforma, alosar le 5 note tele. Lel maj xantsi katar 20 sekunde thaj achel anonimno.",
+    inviteAddDetailsCta: "Thov ekh komentari",
     inviteOpenCta: "Mekh feedback",
     inviteLaterCta: "Maj palal",
     inviteCloseAria: "Phandav o akharipe vash feedback",
     inviteQuickScaleHint: "Vaj alosar sigo ekh nota katar 1 dji ko 5:",
+    nextExploreHeading: "Dja maj dur pe RediHealth",
+    nextExploreSymptoms: "Dikh le simptome",
+    nextExploreAssistant: "AI azhutitori",
+    nextExploreGuides: "Sastipnaske gidura",
     footerLink: "Mekh feedback",
     compactTriggerLabel: "Feedback",
     modalTitle: "Phen amenge chiro gindo vash RediHealth",
@@ -651,6 +706,7 @@ export const feedbackWidgetCopy: Record<Lang, FeedbackWidgetCopy> = {
     occupationPlaceholder: "misal: sikavno, studento, pensionaro",
     backCta: "Palpale",
     nextCta: "Maj dur",
+    sendRatingsNowCta: "Bichav le note akana",
     submitCta: "Bichav o feedback",
     submitting: "Bichavel pe…",
     doneCloseCta: "Palpale ki platforma",

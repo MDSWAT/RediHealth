@@ -2,15 +2,23 @@ import { describe, expect, it } from "vitest";
 import type { NextlyticsEvent } from "@nextlytics/core";
 import {
   campaignFromSearch,
+  cleanClickHref,
   cleanPagePath,
   countryFromHeaders,
   isAnalyticsEvent,
+  isBehaviourEvent,
   isBot,
+  isTrackedEvent,
   optedOut,
   parseUserAgent,
   referrerHost,
+  sanitizeDurationMs,
+  sanitizeScrollDepth,
+  sanitizeTargetLabel,
 } from "@/lib/analytics";
 import { eventToRow, visitorHash } from "@/lib/analytics-server";
+import { analyticsTranslations } from "@/lib/i18n/analytics-translations";
+import type { Lang } from "@/lib/i18n/translations";
 
 const CHROME = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
 const IPHONE = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Mobile/15E148 Safari/604.1";
@@ -150,5 +158,92 @@ describe("eventToRow (Nextlytics backend)", () => {
       }),
     );
     expect(navigation).toMatchObject({ kind: "pageview", path: "/about", lang: "en", referrer_host: null });
+  });
+
+  it("records sanitized page engagement, UI clicks, and feedback prompt events without leaking PII", () => {
+    expect(isAnalyticsEvent("page_engagement")).toBe(false);
+    expect(isBehaviourEvent("page_engagement")).toBe(true);
+    expect(isTrackedEvent("ui_click")).toBe(true);
+
+    expect(sanitizeDurationMs(350)).toBeNull();
+    expect(sanitizeDurationMs(45_200)).toBe(45_200);
+    expect(sanitizeDurationMs(99_999_999)).toBe(3_600_000);
+    expect(sanitizeScrollDepth(120)).toBe(100);
+    expect(sanitizeTargetLabel("Call ana@example.com 0745123456 now")).toBe("Call now");
+    expect(cleanClickHref("/ro/health-check?foo=bar", "redi.healthcare")).toBe("/health-check");
+    expect(cleanClickHref("/ro/patient-portal/secret-token", "redi.healthcare")).toBeNull();
+    expect(cleanClickHref("https://www.who.int/topics/diabetes", "redi.healthcare")).toBe("external:who.int");
+    expect(cleanClickHref("tel:112", "redi.healthcare")).toBe("tel:112");
+
+    const engagement = eventToRow(
+      event({
+        type: "page_engagement",
+        origin: "client",
+        properties: { durationMs: 62_400, scrollDepth: 85 },
+      }),
+    );
+    expect(engagement).toMatchObject({
+      kind: "event",
+      event_name: "page_engagement",
+      duration_ms: 62_400,
+      scroll_depth: 85,
+    });
+
+    const click = eventToRow(
+      event({
+        type: "ui_click",
+        origin: "client",
+        properties: {
+          targetKey: "link:/health-check",
+          targetLabel: "Symptom check",
+          targetKind: "link",
+        },
+      }),
+    );
+    expect(click).toMatchObject({
+      kind: "event",
+      event_name: "ui_click",
+      target_key: "link:/health-check",
+      target_label: "Symptom check",
+      target_kind: "link",
+    });
+
+    const followupPrompt = eventToRow(
+      event({
+        type: "feedback_prompt_shown",
+        origin: "client",
+        properties: { variant: "followup" },
+      }),
+    );
+    expect(followupPrompt).toMatchObject({
+      kind: "event",
+      event_name: "feedback_prompt_shown",
+      target_key: "feedback_prompt:followup",
+    });
+
+    // Empty engagement or empty clicks are dropped
+    expect(eventToRow(event({ type: "page_engagement", origin: "client", properties: {} }))).toBeNull();
+    expect(eventToRow(event({ type: "ui_click", origin: "client", properties: {} }))).toBeNull();
+  });
+
+  it("provides ampersand-free engagement and journey labels across all 7 languages", () => {
+    const langs: Lang[] = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
+    for (const lang of langs) {
+      const copy = analyticsTranslations[lang];
+      for (const key of [
+        "stayRate",
+        "avgPageTime",
+        "avgScrollDepth",
+        "journeysTitle",
+        "topTransitions",
+        "topPaths",
+        "exitPages",
+        "clicksTitle",
+        "feedbackFunnelTitle",
+      ] as const) {
+        expect(copy[key].trim(), `${lang}.${key}`).not.toBe("");
+        expect(copy[key], `${lang}.${key} has &`).not.toContain("&");
+      }
+    }
   });
 });

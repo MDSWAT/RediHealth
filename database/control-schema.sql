@@ -100,11 +100,17 @@ CREATE TABLE IF NOT EXISTS analytics_events (
   device VARCHAR(10) NULL CHECK (device IN ('mobile', 'tablet', 'desktop')),
   browser VARCHAR(20) NULL,
   os VARCHAR(20) NULL,
-  visitor_hash VARCHAR(32) NOT NULL
+  visitor_hash VARCHAR(32) NOT NULL,
+  duration_ms INT NULL CHECK (duration_ms >= 0 AND duration_ms <= 3600000),
+  scroll_depth SMALLINT NULL CHECK (scroll_depth >= 0 AND scroll_depth <= 100),
+  target_key VARCHAR(120) NULL,
+  target_label VARCHAR(120) NULL,
+  target_kind VARCHAR(24) NULL
 );
 CREATE INDEX IF NOT EXISTS analytics_events_created_idx ON analytics_events (created_at);
 CREATE INDEX IF NOT EXISTS analytics_events_kind_created_idx ON analytics_events (kind, created_at);
 CREATE INDEX IF NOT EXISTS analytics_events_visitor_idx ON analytics_events (visitor_hash, created_at);
+CREATE INDEX IF NOT EXISTS analytics_events_event_path_idx ON analytics_events (event_name, path, created_at) WHERE event_name IS NOT NULL;
 
 -- Tagged ad links saved from the panel's Statistics page (lib/data/campaign-links.ts). Each URL is
 -- rebuilt on the server from its fields, so only links to our own pages are stored.

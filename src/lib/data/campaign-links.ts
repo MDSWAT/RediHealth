@@ -1,5 +1,8 @@
 import { getControlDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { ANALYTICS_EVENTS } from "@/lib/analytics";
 import type { ValidCampaignLink } from "@/lib/campaign-links";
+
+const CONVERSION_EVENT_SQL = ANALYTICS_EVENTS.map((name) => `'${name}'`).join(", ");
 
 /**
  * Saved ad links (table campaign_links) with what each one brought, measured on our own site:
@@ -119,7 +122,7 @@ export async function listCampaignLinks(options: ListCampaignLinksOptions = {}):
        per_visitor AS (
          SELECT lv.link_id, lv.visitor_hash,
                 COUNT(*) FILTER (WHERE a.kind = 'pageview') AS pages,
-                COUNT(*) FILTER (WHERE a.kind = 'event') AS conversions,
+                COUNT(*) FILTER (WHERE a.kind = 'event' AND a.event_name IN (${CONVERSION_EVENT_SQL})) AS conversions,
                 EXTRACT(EPOCH FROM MAX(a.created_at) - MIN(a.created_at)) AS seconds
          FROM link_visitors lv
          JOIN analytics_events a

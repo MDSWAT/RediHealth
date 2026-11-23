@@ -80,6 +80,7 @@ import { clearPageAutoReadSession } from "@/lib/audio/page-auto-read";
 import { speechEngine } from "@/lib/audio/speech-engine";
 import { useComfortDomSync } from "@/lib/comfort-preferences";
 import { ReadingGuide } from "@/components/layout/ReadingGuide";
+import { EngagementTracker } from "@/components/analytics/EngagementTracker";
 import { useCalmReducedMotion } from "@/lib/motion/tokens";
 import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 import type { Lang, SerializableTranslations } from "@/lib/i18n/languages";
@@ -237,6 +238,7 @@ export function SiteChrome({ children, nonce, captchaEnabled, lang, initialTrans
             ) : null}
             {hideFooter ? null : <Footer />}
             {isChromelessSurface ? null : <CookieConsentBanner />}
+            {isChromelessSurface ? null : <EngagementTracker />}
             <ReadingGuide />
           </RecaptchaProvider>
         </LanguageProvider>
