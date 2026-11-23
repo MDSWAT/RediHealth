@@ -386,7 +386,11 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
             </button>
           </ActionMenu>
         </div>
-        {actions}
+        {actions && (
+          <div className="flex shrink-0 items-center [&_.panel-create-patient]:!ml-0">
+            {actions}
+          </div>
+        )}
       </header>
 
       {filters && (
