@@ -145,7 +145,7 @@ const STAFF_NOTICE: Record<Lang, { staffOnly: string; patientPrompt: string; pat
 };
 
 const inlineLink =
-  "rounded-sm font-medium text-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire dark:hover:text-[#bad7fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "rounded-sm font-medium text-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-paper dark:hover:text-[#bad7fa] dark:focus-visible:ring-[#93c5fd]";
 
 export function SignInPageContent({
   googleConfigured,
@@ -181,16 +181,19 @@ export function SignInPageContent({
         : null;
 
   return (
-    <main id="main-content" className="relative flex flex-1 flex-col justify-center pb-12 sm:pb-16">
+    <main
+      id="main-content"
+      className="relative flex flex-1 flex-col justify-center bg-background pb-12 text-foreground dark:bg-ink-950 dark:text-paper dark:[color-scheme:dark] sm:pb-16"
+    >
       <Container>
         <div className="mx-auto w-full max-w-[70rem] py-6 sm:py-10">
-          <div className="grid overflow-hidden rounded-2xl border border-border bg-card dark:border-white/12 dark:bg-ink-900 lg:grid-cols-12">
+          <div className="grid overflow-hidden rounded-2xl border border-border bg-card dark:border-white/15 dark:bg-ink-900 lg:grid-cols-12">
             <div className="p-6 sm:p-8 lg:col-span-6 lg:p-10">
-              <h1 className="text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.02em] text-foreground text-balance sm:text-[2rem]">
+              <h1 className="text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.02em] text-foreground text-balance dark:text-paper sm:text-[2rem]">
                 {page.heroTitle}
               </h1>
               {subtitle ? (
-                <p className="mt-2.5 text-body leading-relaxed text-muted-foreground text-pretty">
+                <p className="mt-2.5 text-body leading-relaxed text-muted-foreground text-pretty dark:text-mist">
                   {subtitle}
                 </p>
               ) : null}
@@ -205,7 +208,7 @@ export function SignInPageContent({
                 />
               </div>
 
-              <p className="mt-6 text-sm leading-relaxed text-muted-foreground text-pretty">
+              <p className="mt-6 text-sm leading-relaxed text-muted-foreground text-pretty dark:text-mist">
                 {legal.before}{" "}
                 <Link href={withLangPrefix("/terms", lang)} className={inlineLink}>
                   {legal.terms}

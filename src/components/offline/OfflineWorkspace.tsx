@@ -535,40 +535,44 @@ export function OfflineWorkspace() {
 
   if (!store || !runtime) {
     return (
-      <main id="main-content" className="flex-1 py-10 sm:py-16">
+      <main
+        id="main-content"
+        data-offline-setup="true"
+        className="min-h-dvh flex-1 bg-background py-10 text-foreground dark:bg-ink-950 dark:text-paper dark:[color-scheme:dark] sm:py-16"
+      >
         <Container>
-          <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-6 dark:border-white/12 dark:bg-ink-900 sm:p-8">
-            <h1 className="text-balance text-page text-foreground">
+          <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-6 dark:border-white/15 dark:bg-ink-900 sm:p-8">
+            <h1 className="text-balance text-page text-foreground dark:text-paper">
               {title}
             </h1>
 
             <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-meta">
-              <span className="font-medium text-foreground">
+              <span className="font-medium text-foreground dark:text-paper">
                 {online ? copy.online : copy.offline}
               </span>
-              <span aria-hidden="true" className="h-3 w-px bg-border" />
+              <span aria-hidden="true" className="h-3 w-px bg-border dark:bg-white/20" />
               <span className="font-semibold text-sapphire dark:text-[#bad7fa]">
                 {copy.encryptionBadge}
               </span>
             </div>
 
-            <div className="mt-4 space-y-3 text-body text-muted-foreground">
+            <div className="mt-4 space-y-3 text-body text-muted-foreground dark:text-mist">
               <p>{copy.intro}</p>
               <p className="tabular-nums">{copy.limits(OFFLINE_CACHE_LIMIT)}</p>
             </div>
 
             {storageEstimate ? (
-              <div className="mt-5 border-t border-border pt-4">
+              <div className="mt-5 border-t border-border pt-4 dark:border-white/15">
                 <div className="flex flex-wrap items-center justify-between gap-2 text-meta">
-                  <span className="font-semibold text-foreground">{copy.storageMeterLabel}</span>
-                  <span className="tabular-nums text-muted-foreground">
+                  <span className="font-semibold text-foreground dark:text-paper">{copy.storageMeterLabel}</span>
+                  <span className="tabular-nums text-muted-foreground dark:text-mist">
                     {copy.storageQuotaSummary(
                       formatMegabytes(storageEstimate.usageBytes),
                       formatMegabytes(storageEstimate.quotaBytes),
                     )}
                   </span>
                 </div>
-                <div className="mt-2 h-1.5 w-full overflow-hidden rounded-xs bg-muted">
+                <div className="mt-2 h-1.5 w-full overflow-hidden rounded-xs bg-muted dark:bg-white/15">
                   <div
                     className="h-full w-full origin-left bg-sapphire transition-transform duration-[var(--dur-base)] ease-[var(--ease-out-calm)] motion-reduce:transition-none dark:bg-[#bad7fa]"
                     style={{ transform: `scaleX(${(storageRatio / 100).toFixed(3)})` }}
@@ -578,12 +582,12 @@ export function OfflineWorkspace() {
             ) : null}
 
             {exists === null ? (
-              <p role="status" className="mt-6 border-t border-border pt-5 text-body text-muted-foreground">
+              <p role="status" className="mt-6 border-t border-border pt-5 text-body text-muted-foreground dark:border-white/15 dark:text-mist">
                 {copy.checkingStorage}
               </p>
             ) : (
               <form
-                className="mt-6 space-y-5 border-t border-border pt-5"
+                className="mt-6 space-y-5 border-t border-border pt-5 dark:border-white/15"
                 onSubmit={(event) => {
                   event.preventDefault();
                   void openVault();
@@ -593,13 +597,13 @@ export function OfflineWorkspace() {
                   <div>
                     <label
                       htmlFor="offline-passphrase"
-                      className="mb-1.5 block text-body font-semibold text-foreground"
+                      className="mb-1.5 block text-body font-semibold text-foreground dark:text-paper"
                     >
                       {copy.legacyPassphrase}
                     </label>
                     <input
                       id="offline-passphrase"
-                      className="field-focus min-h-[44px] w-full rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground dark:border-white/20 dark:bg-ink-950"
+                      className="field-focus min-h-[44px] w-full rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground dark:border-white/25 dark:bg-ink-950 dark:text-paper dark:placeholder:text-mist/80 dark:focus-visible:border-[#93c5fd] dark:focus-visible:ring-2 dark:focus-visible:ring-[#93c5fd]/40"
                       type="password"
                       autoComplete="off"
                       required
@@ -611,10 +615,10 @@ export function OfflineWorkspace() {
                 ) : null}
 
                 {!exists || legacy ? (
-                  <label className="flex min-h-[44px] cursor-pointer items-start gap-3 text-body text-foreground">
+                  <label className="flex min-h-[44px] cursor-pointer items-start gap-3 text-body text-foreground dark:text-paper">
                     <input
                       type="checkbox"
-                      className="mt-0.5 h-5 w-5 shrink-0 rounded border-border-control accent-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="mt-0.5 h-5 w-5 shrink-0 rounded border-border-control accent-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:border-white/40 dark:bg-ink-950 dark:accent-[#bad7fa] dark:focus-visible:ring-[#93c5fd]"
                       required
                       checked={trustedDevice}
                       onChange={(event) => setTrustedDevice(event.target.checked)}
@@ -628,6 +632,7 @@ export function OfflineWorkspace() {
                   type="submit"
                   variant="action"
                   disabled={busy}
+                  className="dark:border dark:border-[#bad7fa]/30 dark:bg-[#254872] dark:hover:bg-[#2f5a8e]"
                 >
                   {busy ? copy.wait : legacy ? copy.migrate : exists ? copy.reopen : copy.enable}
                 </Button>
@@ -637,7 +642,7 @@ export function OfflineWorkspace() {
             {error ? (
               <p
                 role="alert"
-                className="fhs-fade motion-reduce:animate-none mt-5 rounded-lg border border-primary/25 bg-primary-soft px-3.5 py-2.5 text-body text-foreground dark:border-[#ffb4b4]/35 dark:bg-[#b91c1c]/18 dark:text-[#ffb4b4]"
+                className="fhs-fade motion-reduce:animate-none mt-5 rounded-lg border border-primary/25 bg-primary-soft px-3.5 py-2.5 text-body text-foreground dark:border-[#ffb4b4]/35 dark:bg-[#b91c1c]/20 dark:text-[#ffb4b4]"
               >
                 {error}
               </p>
@@ -645,15 +650,15 @@ export function OfflineWorkspace() {
             {notice ? (
               <p
                 role="status"
-                className="fhs-fade motion-reduce:animate-none mt-5 rounded-lg border border-border bg-muted/60 px-3.5 py-2.5 text-body text-foreground"
+                className="fhs-fade motion-reduce:animate-none mt-5 rounded-lg border border-border bg-muted/60 px-3.5 py-2.5 text-body text-foreground dark:border-white/15 dark:bg-ink-800 dark:text-paper"
               >
                 {notice}
               </p>
             ) : null}
 
-            <div className="mt-7 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-border pt-5 text-body">
+            <div className="mt-7 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-border pt-5 text-body dark:border-white/15">
               <a
-                className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-[#bad7fa] dark:decoration-[#bad7fa]/40"
+                className="inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-1 font-medium text-sapphire underline decoration-sapphire/40 underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-[#bad7fa] dark:decoration-[#bad7fa]/40 dark:hover:text-white dark:focus-visible:ring-[#93c5fd]"
                 href={withLangPrefix("/panel", lang)}
               >
                 {copy.backToPanel}
@@ -661,7 +666,7 @@ export function OfflineWorkspace() {
               {exists ? (
                 <button
                   type="button"
-                  className="press-row inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 font-medium text-[#b91c1c] underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none disabled:cursor-not-allowed dark:text-[#ffb4b4]"
+                  className="press-row inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 font-medium text-[#b91c1c] underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none disabled:cursor-not-allowed dark:text-[#ffb4b4] dark:focus-visible:ring-[#93c5fd]"
                   disabled={busy}
                   onClick={() => void logout(true)}
                 >

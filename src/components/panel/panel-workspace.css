@@ -1,4 +1,23 @@
 /* Staff workspace: a single open canvas for requests and their details. */
+html:has(.care-panel),
+html:has(.care-panel) body {
+  background-color: #f4f6f8;
+}
+
+html.dark:has(.care-panel),
+html.dark:has(.care-panel) body {
+  background-color: #101a28;
+  color: #edf3fa;
+  color-scheme: dark;
+}
+
+html.dark:has([data-offline-setup="true"]),
+html.dark:has([data-offline-setup="true"]) body {
+  background-color: #0a1226;
+  color: #fbfaf6;
+  color-scheme: dark;
+}
+
 .panel-desktop-sidebar { background: var(--panel-surface); border-color: var(--panel-line); }
 .panel-desktop-sidebar .panel-sidebar-nav { padding-top: 8px; }
 .panel-desktop-sidebar .panel-nav-link { min-height: 44px; white-space: nowrap; }
@@ -128,6 +147,7 @@
   --color-ring: var(--panel-focus-ring);
 
   caret-color: #bad7fa;
+  color-scheme: dark;
 }
 
 .dark .care-panel ::selection {

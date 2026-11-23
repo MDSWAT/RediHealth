@@ -181,7 +181,8 @@ const SIGN_IN_LEGAL_NOTICE: Record<Lang, { before: string; terms: string; betwee
 // (aria-invalid aware). Static under reduced motion and Calm Motion.
 const inputClass =
   "field-focus mt-1.5 block h-12 w-full rounded-lg border border-border-control bg-card px-3.5 text-body text-foreground " +
-  "placeholder:text-muted-foreground";
+  "placeholder:text-muted-foreground dark:border-white/25 dark:bg-ink-950 dark:text-paper dark:placeholder:text-mist/80 " +
+  "dark:focus-visible:border-[#93c5fd] dark:focus-visible:ring-2 dark:focus-visible:ring-[#93c5fd]/40";
 
 export function SignInForm({
   googleConfigured,
@@ -418,7 +419,7 @@ export function SignInForm({
         className={
           embedded
             ? "mt-1"
-            : "rounded-(--radius-surface) border border-border bg-card p-5 shadow-(--shadow-card-rest) sm:p-8"
+            : "rounded-(--radius-surface) border border-border bg-card p-5 dark:border-white/15 dark:bg-ink-900 sm:p-8"
         }
       >
         <input
@@ -440,10 +441,10 @@ export function SignInForm({
                 setError("");
                 setStage("email");
               }}
-              className={`min-h-11 whitespace-nowrap rounded-lg border px-4 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
+              className={`min-h-11 whitespace-nowrap rounded-lg border px-4 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:focus-visible:ring-[#93c5fd] ${
                 stage !== "password"
-                  ? "border-sapphire bg-sapphire text-white dark:border-sapphire-border dark:bg-sapphire"
-                  : "border-border-control bg-card text-foreground hover:bg-muted/60 dark:border-white/20 dark:bg-ink-900 dark:hover:bg-white/5"
+                  ? "border-sapphire bg-sapphire text-white dark:border-[#bad7fa] dark:bg-[#254872] dark:text-white"
+                  : "border-border-control bg-card text-foreground hover:bg-muted/60 dark:border-white/25 dark:bg-ink-800 dark:text-paper dark:hover:bg-[#24355a]"
               }`}
             >
               {passwordCopy.codeTab}
@@ -457,10 +458,10 @@ export function SignInForm({
                 setCodeResent(false);
                 setStage("password");
               }}
-              className={`min-h-11 whitespace-nowrap rounded-lg border px-4 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
+              className={`min-h-11 whitespace-nowrap rounded-lg border px-4 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:focus-visible:ring-[#93c5fd] ${
                 stage === "password"
-                  ? "border-sapphire bg-sapphire text-white dark:border-sapphire-border dark:bg-sapphire"
-                  : "border-border-control bg-card text-foreground hover:bg-muted/60 dark:border-white/20 dark:bg-ink-900 dark:hover:bg-white/5"
+                  ? "border-sapphire bg-sapphire text-white dark:border-[#bad7fa] dark:bg-[#254872] dark:text-white"
+                  : "border-border-control bg-card text-foreground hover:bg-muted/60 dark:border-white/25 dark:bg-ink-800 dark:text-paper dark:hover:bg-[#24355a]"
               }`}
             >
               {passwordCopy.passwordTab}
@@ -478,7 +479,7 @@ export function SignInForm({
             >
               <label
                 htmlFor="admin-email"
-                className="text-body font-semibold text-foreground"
+                className="text-body font-semibold text-foreground dark:text-paper"
               >
                 {form.emailLabel}
               </label>
@@ -497,7 +498,7 @@ export function SignInForm({
               />
               <label
                 htmlFor="admin-password"
-                className="mt-4 block text-body font-semibold text-foreground"
+                className="mt-4 block text-body font-semibold text-foreground dark:text-paper"
               >
                 {passwordCopy.passwordLabel}
               </label>
@@ -529,6 +530,7 @@ export function SignInForm({
                   size="lg"
                   fullWidth
                   disabled={isSubmitting}
+                  className="dark:border dark:border-[#bad7fa]/30 dark:bg-[#254872] dark:hover:bg-[#2f5a8e]"
                 >
                   {isSubmitting ? form.signingIn : passwordCopy.signInLabel}
                 </Button>
@@ -544,7 +546,7 @@ export function SignInForm({
             >
               <label
                 htmlFor="email"
-                className="text-body font-semibold text-foreground"
+                className="text-body font-semibold text-foreground dark:text-paper"
               >
                 {form.emailLabel}
               </label>
@@ -572,7 +574,7 @@ export function SignInForm({
               ) : !embedded ? (
                 <p
                   id="email-hint"
-                  className="mt-2 text-body text-muted-foreground"
+                  className="mt-2 text-body text-muted-foreground dark:text-mist"
                 >
                   {form.emailHint}
                 </p>
@@ -584,23 +586,24 @@ export function SignInForm({
                   size="lg"
                   fullWidth
                   disabled={isSubmitting}
+                  className="dark:border dark:border-[#bad7fa]/30 dark:bg-[#254872] dark:hover:bg-[#2f5a8e]"
                 >
                   {isSubmitting ? form.sendingCode : form.emailMeCode}
                 </Button>
               </div>
               {!embedded ? (
-                <p className="mt-4 text-meta leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-meta leading-relaxed text-muted-foreground dark:text-mist">
                   {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).before}{" "}
                   <Link
                     href={withLangPrefix("/terms", lang)}
-                    className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-[#bad7fa]"
+                    className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-[#bad7fa] dark:focus-visible:ring-[#93c5fd]"
                   >
                     {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).terms}
                   </Link>{" "}
                   {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).between}{" "}
                   <Link
                     href={withLangPrefix("/privacy", lang)}
-                    className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-[#bad7fa]"
+                    className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-[#bad7fa] dark:focus-visible:ring-[#93c5fd]"
                   >
                     {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).privacy}
                   </Link>
@@ -616,15 +619,15 @@ export function SignInForm({
               }}
               noValidate
             >
-              <h2 className="text-section font-semibold text-foreground">
+              <h2 className="text-section font-semibold text-foreground dark:text-paper">
                 {form.checkEmailTitle}
               </h2>
-              <p className="mt-2 text-body text-muted-foreground">
+              <p className="mt-2 text-body text-muted-foreground dark:text-mist">
                 {form.codeSentBody(email)}
               </p>
               <label
                 htmlFor="code"
-                className="mt-6 block text-body font-semibold text-foreground"
+                className="mt-6 block text-body font-semibold text-foreground dark:text-paper"
               >
                 {form.codeLabel}
               </label>
@@ -658,12 +661,12 @@ export function SignInForm({
                 <p
                   id="code-resent"
                   role="status"
-                  className="swap-in mt-2 text-body text-muted-foreground"
+                  className="swap-in mt-2 text-body text-muted-foreground dark:text-mist"
                 >
                   {form.codeResent}
                 </p>
               ) : null}
-              <p className="mt-2 text-body text-muted-foreground">
+              <p className="mt-2 text-body text-muted-foreground dark:text-mist">
                 {CODE_HELP[lang](form.resendCode)}
               </p>
               <div className="mt-6">
@@ -673,6 +676,7 @@ export function SignInForm({
                   size="lg"
                   fullWidth
                   disabled={isSubmitting}
+                  className="dark:border dark:border-[#bad7fa]/30 dark:bg-[#254872] dark:hover:bg-[#2f5a8e]"
                 >
                   {isSubmitting ? form.signingIn : form.continueLabel}
                 </Button>
@@ -681,14 +685,14 @@ export function SignInForm({
                 <button
                   type="button"
                   disabled={isSubmitting}
-                  className="press-row min-h-11 max-w-full whitespace-nowrap rounded-lg px-1.5 text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-sapphire-light disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="press-row min-h-11 max-w-full whitespace-nowrap rounded-lg px-1.5 text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-sapphire-light disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none dark:text-[#bad7fa] dark:hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:focus-visible:ring-[#93c5fd]"
                   onClick={() => void requestCode(true)}
                 >
                   {form.resendCode}
                 </button>
                 <button
                   type="button"
-                  className="press-row min-h-11 max-w-full whitespace-nowrap rounded-lg px-1.5 text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="press-row min-h-11 max-w-full whitespace-nowrap rounded-lg px-1.5 text-body font-semibold text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-muted/60 hover:text-sapphire-light motion-reduce:transition-none dark:text-[#bad7fa] dark:hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:focus-visible:ring-[#93c5fd]"
                   onClick={() => {
                     setCode("");
                     setCodeResent(false);
@@ -705,9 +709,9 @@ export function SignInForm({
         {googleConfigured ? (
           <>
             <div className="my-6 flex items-center gap-4" aria-hidden="true">
-              <span className="h-px flex-1 bg-border" />
-              <span className="text-meta text-muted-foreground">{form.or}</span>
-              <span className="h-px flex-1 bg-border" />
+              <span className="h-px flex-1 bg-border dark:bg-white/15" />
+              <span className="text-meta text-muted-foreground dark:text-mist">{form.or}</span>
+              <span className="h-px flex-1 bg-border dark:bg-white/15" />
             </div>
 
             <Button
@@ -715,7 +719,7 @@ export function SignInForm({
               variant="outline"
               fullWidth
               disabled={isSubmitting}
-              className="px-3 sm:px-4"
+              className="px-3 dark:border-white/25 dark:bg-ink-800 dark:text-paper dark:hover:bg-[#24355a] sm:px-4"
               onClick={() => void signInWithGoogle()}
             >
               <GoogleIcon className="h-5 w-5 shrink-0" />
@@ -726,18 +730,18 @@ export function SignInForm({
       </div>
 
       {/* A second, rarer task: it stays one quiet line under the card until someone needs it. */}
-      <section className="mt-5 border-t border-border pt-1.5">
+      <section className="mt-5 border-t border-border pt-1.5 dark:border-white/15">
         <h2>
           <button
             type="button"
             aria-expanded={recoveryOpen}
             aria-controls="portal-recovery-panel"
             onClick={() => setRecoveryOpen((open) => !open)}
-            className="press-row flex min-h-12 w-full items-center justify-between gap-3 whitespace-nowrap rounded-lg px-2 text-left text-body font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:hover:bg-white/5"
+            className="press-row flex min-h-12 w-full items-center justify-between gap-3 whitespace-nowrap rounded-lg px-2 text-left text-body font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-[#93c5fd]"
           >
             <span className="min-w-0 flex-1 truncate">{form.portalRecoveryTitle}</span>
             <ChevronDownIcon
-              className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none ${recoveryOpen ? "rotate-180" : ""}`}
+              className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none dark:text-mist ${recoveryOpen ? "rotate-180" : ""}`}
               aria-hidden="true"
             />
           </button>
@@ -752,12 +756,12 @@ export function SignInForm({
         >
           <div className="overflow-hidden" inert={!recoveryOpen}>
             <form onSubmit={requestPortalLink} className="px-2 pt-1 pb-3">
-              <p className="text-body text-muted-foreground text-pretty">
+              <p className="text-body text-muted-foreground text-pretty dark:text-mist">
                 {form.portalRecoveryHint}
               </p>
               <label
                 htmlFor="portal-recovery-email"
-                className="mt-3 block text-body font-semibold text-foreground"
+                className="mt-3 block text-body font-semibold text-foreground dark:text-paper"
               >
                 {form.portalRecoveryEmailLabel}
               </label>
@@ -792,7 +796,7 @@ export function SignInForm({
               {portalRecoveryMessage ? (
                 <p
                   id="portal-recovery-message"
-                  className="swap-in mt-2 text-body text-muted-foreground"
+                  className="swap-in mt-2 text-body text-muted-foreground dark:text-mist"
                   role="status"
                 >
                   {portalRecoveryMessage}
@@ -804,6 +808,7 @@ export function SignInForm({
                   variant="outline"
                   size="md"
                   disabled={isRequestingPortal}
+                  className="dark:border-white/25 dark:bg-ink-800 dark:text-paper dark:hover:bg-[#24355a]"
                 >
                   {isRequestingPortal
                     ? form.portalRecoverySending
