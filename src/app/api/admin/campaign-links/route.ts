@@ -1,31 +1,24 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
 import { logActivity } from "@/lib/activity-log";
 import { validateCampaignLink, type ValidCampaignLink } from "@/lib/campaign-links";
 import { hasControlDatabase } from "@/lib/database";
 import { deleteCampaignLink, listCampaignLinks, saveCampaignLinks } from "@/lib/data/campaign-links";
 import { getClientIp } from "@/lib/rate-limit";
-import { getUserWorkerContext } from "@/lib/worker-auth";
+import { requireSuperAdmin } from "@/lib/super-admin";
 
-/** Saved ad links for the Statistics page (admins only). Every response returns the full list. */
+/** Saved ad links for the Statistics page (super admins only; stored in global control DB). Every response returns the full list. */
 const MAX_LINKS_PER_SAVE = 30;
 
-async function requireAdminAccess() {
-  const session = await auth();
-  if (!session?.user?.email) {
-    return { error: NextResponse.json({ error: "Unauthorized." }, { status: 401 }) };
-  }
-  const worker = await getUserWorkerContext(session.user.email);
-  if (!worker.isAdmin && !worker.isSuperAdmin) {
-    return { error: NextResponse.json({ error: "Administrator access is required." }, { status: 403 }) };
-  }
+async function requireCampaignLinkAccess() {
+  const access = await requireSuperAdmin();
+  if ("error" in access) return access;
   if (!hasControlDatabase()) {
     return { error: NextResponse.json({ error: "Database is not configured." }, { status: 503 }) };
   }
-  return { worker, email: session.user.email };
+  return access;
 }
 
-type Access = Exclude<Awaited<ReturnType<typeof requireAdminAccess>>, { error: unknown }>;
+type Access = Exclude<Awaited<ReturnType<typeof requireCampaignLinkAccess>>, { error: unknown }>;
 
 function log(request: Request, access: Access, action: string, entityId: string | null, details: Record<string, unknown>) {
   return logActivity({
@@ -53,7 +46,7 @@ function idFrom(request: Request, body?: { id?: unknown } | null): number | null
 }
 
 export async function GET() {
-  const access = await requireAdminAccess();
+  const access = await requireCampaignLinkAccess();
   if ("error" in access) return access.error;
   try {
     return await listResponse();
@@ -64,10 +57,11 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const access = await requireAdminAccess();
+  const access = await requireCampaignLinkAccess();
   if ("error" in access) return access.error;
 
-  const body = (await request.json().catch(() => null)) as { links?: unknown } | null;
+  const parsed = await request.json().catch(() => null);
+  const body = parsed && typeof parsed === "object" && !Array.isArray(parsed) ? (parsed as { links?: unknown }) : null;
   const input = Array.isArray(body?.links) ? body.links : [];
   if (input.length === 0 || input.length > MAX_LINKS_PER_SAVE) {
     return NextResponse.json({ error: `Send between 1 and ${MAX_LINKS_PER_SAVE} links.` }, { status: 400 });
@@ -88,10 +82,12 @@ export async function POST(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-  const access = await requireAdminAccess();
+  const access = await requireCampaignLinkAccess();
   if ("error" in access) return access.error;
 
-  const id = idFrom(request, (await request.json().catch(() => null)) as { id?: unknown } | null);
+  const parsed = await request.json().catch(() => null);
+  const body = parsed && typeof parsed === "object" && !Array.isArray(parsed) ? (parsed as { id?: unknown }) : null;
+  const id = idFrom(request, body);
   if (!id) return NextResponse.json({ error: "Link ID is required." }, { status: 400 });
 
   try {

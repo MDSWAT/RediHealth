@@ -59,9 +59,13 @@ export function resolveCountyFromHeaders(headers: Headers, cookieString?: string
   if (cookieString) {
     const match = cookieString.match(new RegExp(`(?:^|;\\s*)${USER_COUNTY_COOKIE}=([^;]+)`));
     if (match) {
-      const decoded = decodeURIComponent(match[1]);
-      if (isRomanianCounty(decoded)) {
-        return decoded;
+      try {
+        const decoded = decodeURIComponent(match[1]);
+        if (isRomanianCounty(decoded)) {
+          return decoded;
+        }
+      } catch {
+        return DEFAULT_COUNTY;
       }
     }
   }

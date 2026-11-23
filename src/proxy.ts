@@ -4,10 +4,40 @@ import { LOCALE_COOKIE, REQUEST_LANG_HEADER, getLangFromPathname, stripLangFromP
 import { detectPreferredLocaleFromRequest } from "@/lib/i18n/locale-detection";
 import { buildContentSecurityPolicy, createNonce, meetingOriginFromEnv } from "@/lib/security/csp";
 import { resolveCountyFromHeaders, USER_COUNTY_HEADER, REDIHEALTH_COUNTY_HEADER } from "@/lib/geo-ip-server";
+import { getSiteUrl, normalizeOrigin } from "@/lib/site-url";
 import { ANALYTICS_EVENT_ENDPOINT, analyticsMiddleware } from "@/nextlytics";
 
 const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 const PRIVATE_PREFIXES = ["/panel", "/offline", "/sign-in", "/patient-portal", "/health-check/note"];
+const PHI_PAGE_PREFIXES = ["/panel", "/patient-portal"];
+const PHI_API_PREFIXES = [
+  "/api/patients",
+  "/api/patient-portal",
+  "/api/meetings",
+  "/api/medical-help-requests",
+  "/api/telemetry",
+  "/api/activity-logs",
+  "/api/workers",
+  "/api/mediatori",
+  "/api/offline",
+];
+const STATE_CHANGING_METHODS = new Set(["POST", "PUT", "PATCH", "DELETE"]);
+
+function matchesPrefix(pathname: string, prefixes: readonly string[]): boolean {
+  return prefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+}
+
+function isAllowedOrigin(rawOrigin: string, request: NextRequest): boolean {
+  if (!/^https?:\/\//i.test(rawOrigin)) return false;
+  const origin = normalizeOrigin(rawOrigin);
+  if (!origin) return false;
+  const allowed = new Set<string>([request.nextUrl.origin, getSiteUrl()]);
+  const appOrigin = normalizeOrigin(process.env.APP_URL);
+  const authOrigin = normalizeOrigin(process.env.AUTH_URL);
+  if (appOrigin) allowed.add(appOrigin);
+  if (authOrigin) allowed.add(authOrigin);
+  return allowed.has(origin);
+}
 
 /** Runs Nextlytics (website statistics) and returns the request headers its server component reads. */
 async function runAnalytics(request: NextRequest, event: NextFetchEvent): Promise<[string, string][]> {
@@ -28,10 +58,44 @@ export async function proxy(request: NextRequest, event: NextFetchEvent) {
 
   // Client-side navigations and conversion events (see src/nextlytics.ts).
   if (pathname === ANALYTICS_EVENT_ENDPOINT) {
-    const site = request.headers.get("sec-fetch-site");
-    if (site && site !== "same-origin") return new NextResponse(null, { status: 403 });
+    const secFetchSite = request.headers.get("sec-fetch-site")?.trim().toLowerCase() || null;
+    const origin = request.headers.get("origin")?.trim() || null;
+    if (secFetchSite && secFetchSite !== "same-origin") {
+      return new NextResponse(null, { status: 403 });
+    }
+    if (origin && !isAllowedOrigin(origin, request)) {
+      return new NextResponse(null, { status: 403 });
+    }
+    const hasTrustedSignal =
+      secFetchSite === "same-origin" || (origin !== null && isAllowedOrigin(origin, request));
+    if (!hasTrustedSignal) {
+      return new NextResponse(null, { status: 403 });
+    }
     return (await analyticsMiddleware(request, event)) ?? NextResponse.next();
   }
+
+  // Centralized same-origin CSRF protection and PHI cache controls for API routes.
+  if (pathname === "/api" || pathname.startsWith("/api/")) {
+    const isAuthRoute = pathname === "/api/auth" || pathname.startsWith("/api/auth/");
+    if (!isAuthRoute && STATE_CHANGING_METHODS.has(request.method.toUpperCase())) {
+      const secFetchSite = request.headers.get("sec-fetch-site")?.trim().toLowerCase() || null;
+      if (secFetchSite && secFetchSite !== "same-origin" && secFetchSite !== "none") {
+        return NextResponse.json({ error: "Cross-site request rejected." }, { status: 403 });
+      }
+      const origin = request.headers.get("origin")?.trim() || null;
+      if (origin && !isAllowedOrigin(origin, request)) {
+        return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
+      }
+    }
+
+    const response = NextResponse.next();
+    if (matchesPrefix(pathname, PHI_API_PREFIXES)) {
+      response.headers.set("Cache-Control", "no-store, private");
+    }
+    return response;
+  }
+
+  const isProd = process.env.NODE_ENV === "production";
   const localeInPath = getLangFromPathname(pathname);
 
   if (!localeInPath) {
@@ -43,7 +107,18 @@ export async function proxy(request: NextRequest, event: NextFetchEvent) {
     redirectUrl.pathname = withLangPrefix(pathname, lang);
     const response = NextResponse.redirect(redirectUrl);
     response.headers.set("Vary", "Accept-Language, CF-IPCountry, X-Vercel-IP-Country");
-    response.cookies.set(LOCALE_COOKIE, lang, { path: "/", sameSite: "lax", maxAge: LOCALE_COOKIE_MAX_AGE });
+    response.cookies.set(LOCALE_COOKIE, lang, {
+      path: "/",
+      sameSite: "lax",
+      secure: isProd,
+      maxAge: LOCALE_COOKIE_MAX_AGE,
+    });
+    if (matchesPrefix(pathname, PHI_PAGE_PREFIXES)) {
+      response.headers.set("Cache-Control", "no-store, private");
+    }
+    if (pathname.startsWith("/patient-portal/")) {
+      response.headers.set("Referrer-Policy", "no-referrer");
+    }
     return response;
   }
 
@@ -74,10 +149,18 @@ export async function proxy(request: NextRequest, event: NextFetchEvent) {
   response.headers.set("Content-Security-Policy", csp);
   response.headers.set(USER_COUNTY_HEADER, encodedCounty);
   response.headers.set(REDIHEALTH_COUNTY_HEADER, encodedCounty);
-  response.cookies.set(LOCALE_COOKIE, localeInPath, { path: "/", sameSite: "lax", maxAge: LOCALE_COOKIE_MAX_AGE });
+  response.cookies.set(LOCALE_COOKIE, localeInPath, {
+    path: "/",
+    sameSite: "lax",
+    secure: isProd,
+    maxAge: LOCALE_COOKIE_MAX_AGE,
+  });
 
-  if (PRIVATE_PREFIXES.some((prefix) => barePath === prefix || barePath.startsWith(`${prefix}/`))) {
+  if (matchesPrefix(barePath, PRIVATE_PREFIXES)) {
     response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  }
+  if (matchesPrefix(barePath, PHI_PAGE_PREFIXES)) {
+    response.headers.set("Cache-Control", "no-store, private");
   }
   if (barePath.startsWith("/patient-portal/") || barePath === "/health-check/note") {
     // Sensitive tokens and triage note query parameters belong to the URL alone; never leak them via Referer.
@@ -88,6 +171,9 @@ export async function proxy(request: NextRequest, event: NextFetchEvent) {
 }
 
 export const config = {
-  // The second entry lets Nextlytics receive client-side navigations and events (src/nextlytics.ts).
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|icon|apple-icon|manifest.webmanifest|manifest.json|robots.txt|sitemap.xml|.*\\..*).*)", "/api/event"],
+  // Covers locale-prefixed pages and all /api/* routes (Nextlytics /api/event, CSRF protection, PHI Cache-Control).
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|icon|apple-icon|manifest.webmanifest|manifest.json|robots.txt|sitemap.xml|.*\\..*).*)",
+    "/api/:path*",
+  ],
 };

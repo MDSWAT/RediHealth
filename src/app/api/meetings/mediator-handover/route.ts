@@ -21,21 +21,36 @@ interface HandoverVignette {
   timestamp?: string;
 }
 
-// Short-lived, per-instance hand-off buffer. Nothing reads it across server instances yet, so it is
-// kept small and temporary instead of growing for as long as the server runs.
+interface StoredHandover {
+  handoverId: string;
+  vignette: HandoverVignette;
+  creatorWorkerId: string;
+  meetingId: number | null;
+  expiresAt: number;
+}
+
+// Short-lived, per-instance hand-off buffers. Handover IDs and meeting IDs live in separate maps
+// so a crafted handoverId (e.g. "meeting:123") can never collide with a meeting lookup key.
 const HANDOVER_TTL_MS = 2 * 60 * 60_000;
 const MAX_HANDOVERS = 500;
-const activeHandoverStore = new Map<string, { vignette: HandoverVignette; expiresAt: number }>();
+const HANDOVER_ID_RE = /^handover-[0-9a-f-]{36}$/i;
+const byHandoverId = new Map<string, StoredHandover>();
+const byMeetingId = new Map<string, StoredHandover>();
 
-function pruneHandovers(now: number) {
-  for (const [key, entry] of activeHandoverStore) {
-    if (entry.expiresAt <= now) activeHandoverStore.delete(key);
+function pruneMap(map: Map<string, StoredHandover>, now: number) {
+  for (const [key, entry] of map) {
+    if (entry.expiresAt <= now) map.delete(key);
   }
   // Maps iterate in insertion order, so this drops the oldest entries first.
-  for (const key of activeHandoverStore.keys()) {
-    if (activeHandoverStore.size <= MAX_HANDOVERS) break;
-    activeHandoverStore.delete(key);
+  for (const key of map.keys()) {
+    if (map.size <= MAX_HANDOVERS) break;
+    map.delete(key);
   }
+}
+
+function pruneHandovers(now: number) {
+  pruneMap(byHandoverId, now);
+  pruneMap(byMeetingId, now);
 }
 
 function parseMeetingId(value: unknown): number | null {
@@ -43,9 +58,25 @@ function parseMeetingId(value: unknown): number | null {
   return /^\d{1,18}$/.test(id) ? Number(id) : null;
 }
 
-function readHandover(key: string): HandoverVignette | null {
-  const entry = activeHandoverStore.get(key);
-  return entry && entry.expiresAt > Date.now() ? entry.vignette : null;
+function readStored(map: Map<string, StoredHandover>, key: string): StoredHandover | null {
+  const entry = map.get(key);
+  if (!entry) return null;
+  if (entry.expiresAt <= Date.now()) {
+    map.delete(key);
+    return null;
+  }
+  return entry;
+}
+
+async function canReadHandover(
+  worker: Parameters<typeof canAccessMeeting>[0],
+  entry: StoredHandover,
+): Promise<boolean> {
+  if (worker.isAdmin) return true;
+  if (entry.meetingId !== null) {
+    return canAccessMeeting(worker, entry.meetingId);
+  }
+  return entry.creatorWorkerId === worker.workerId;
 }
 
 export async function POST(request: Request) {
@@ -58,7 +89,7 @@ export async function POST(request: Request) {
 
     const body = (await request.json().catch(() => null)) as HandoverVignette | null;
 
-    if (!body || typeof body !== "object" || !body.patientName || !body.reasonForVisit) {
+    if (!body || typeof body !== "object" || Array.isArray(body) || !body.patientName || !body.reasonForVisit) {
       return NextResponse.json(
         { error: "Numele pacientului și motivul consultației sunt obligatorii." },
         { status: 400 },
@@ -80,10 +111,16 @@ export async function POST(request: Request) {
     };
 
     const now = Date.now();
-    const stored = { vignette, expiresAt: now + HANDOVER_TTL_MS };
-    activeHandoverStore.set(`${country}:${handoverId}`, stored);
+    const stored: StoredHandover = {
+      handoverId,
+      vignette,
+      creatorWorkerId: access.worker.workerId,
+      meetingId,
+      expiresAt: now + HANDOVER_TTL_MS,
+    };
+    byHandoverId.set(`${country}:${handoverId}`, stored);
     if (meetingId !== null) {
-      activeHandoverStore.set(`${country}:meeting:${meetingId}`, stored);
+      byMeetingId.set(`${country}:${meetingId}`, stored);
     }
     pruneHandovers(now);
 
@@ -105,18 +142,24 @@ export async function GET(request: Request) {
   const country = access.worker.country;
 
   const { searchParams } = new URL(request.url);
-  const meetingId = searchParams.get("meetingId");
-  const handoverId = searchParams.get("handoverId");
+  const rawMeetingId = searchParams.get("meetingId");
+  const rawHandoverId = searchParams.get("handoverId")?.trim() || null;
 
-  const meetingRecordId = parseMeetingId(meetingId);
-  if (meetingRecordId !== null && !(await canAccessMeeting(access.worker, meetingRecordId))) {
-    return NextResponse.json({ vignette: null });
+  const meetingRecordId = parseMeetingId(rawMeetingId);
+  if (meetingRecordId !== null) {
+    if (!(await canAccessMeeting(access.worker, meetingRecordId))) {
+      return NextResponse.json({ vignette: null });
+    }
+    const entry = readStored(byMeetingId, `${country}:${meetingRecordId}`);
+    if (entry) return NextResponse.json({ vignette: entry.vignette });
   }
 
-  const vignette =
-    (meetingRecordId !== null ? readHandover(`${country}:meeting:${meetingRecordId}`) : null) ??
-    (handoverId ? readHandover(`${country}:${handoverId}`) : null);
-  if (vignette) return NextResponse.json({ vignette });
+  if (rawHandoverId && HANDOVER_ID_RE.test(rawHandoverId)) {
+    const entry = readStored(byHandoverId, `${country}:${rawHandoverId}`);
+    if (entry && (await canReadHandover(access.worker, entry))) {
+      return NextResponse.json({ vignette: entry.vignette });
+    }
+  }
 
   return NextResponse.json({ vignette: null });
 }

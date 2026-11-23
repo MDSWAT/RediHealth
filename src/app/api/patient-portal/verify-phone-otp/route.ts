@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   PHONE_OTP_COOKIE,
   decryptPhoneOtp,
+  isMatchingOtpCode,
   isPhoneOtpDemoEnabled,
   normalizeOtpPhone,
   otpStore,
@@ -73,7 +74,16 @@ export async function POST(request: Request) {
       }
     }
 
-    if (!activeEntry || activeEntry.otp !== otp) {
+    if (otpStore.get(phone)?.consumed) {
+      return clearOtpCookie(
+        NextResponse.json(
+          { error: "Codul introdus este incorect sau a expirat.", code: "invalid_code" },
+          { status: 400 },
+        ),
+      );
+    }
+
+    if (!activeEntry || !isMatchingOtpCode(activeEntry.otp, otp)) {
       return NextResponse.json(
         { error: "Codul introdus este incorect sau a expirat.", code: "invalid_code" },
         { status: 400 },
@@ -89,6 +99,9 @@ export async function POST(request: Request) {
         ),
       );
     }
+
+    // Mark consumed synchronously before awaiting DB queries to prevent concurrent TOCTOU replay.
+    otpStore.set(phone, { ...activeEntry, consumed: true });
 
     const accessToken = generatePortalToken();
     const tokenHash = hashPortalToken(accessToken);
@@ -118,7 +131,6 @@ export async function POST(request: Request) {
            WHERE id = ?`,
           [tokenHash, rows[0].id],
         );
-        otpStore.set(phone, { ...activeEntry, consumed: true });
         return clearOtpCookie(
           NextResponse.json({
             success: true,
@@ -132,13 +144,16 @@ export async function POST(request: Request) {
     }
 
     if (countries.length === 0 || dbFailures === countries.length) {
+      otpStore.set(phone, {
+        otp: activeEntry.otp,
+        phone: activeEntry.phone,
+        expiresAt: activeEntry.expiresAt,
+      });
       return NextResponse.json(
         { error: "Nu am putut verifica contul acum. Încearcă din nou în câteva minute.", code: "service_unavailable" },
         { status: 503 },
       );
     }
-
-    otpStore.set(phone, { ...activeEntry, consumed: true });
 
     if (sharedPhoneMatch) {
       return clearOtpCookie(

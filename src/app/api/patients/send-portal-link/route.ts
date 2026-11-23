@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
+import { logActivity } from "@/lib/activity-log";
 import { getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { sendPatientPortalLinkEmail } from "@/lib/email";
 import { parseJsonColumn } from "@/lib/json";
+import { getClientIp } from "@/lib/rate-limit";
 import { PORTAL_LINK_TTL_DAYS, generatePortalToken, hashPortalToken } from "@/lib/security/portal-token";
 import type { TreatmentPlan } from "@/lib/types/patient";
 import { getRequestLang } from "@/lib/i18n/server-routing";
@@ -20,14 +22,25 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Staff access is required." }, { status: 403 });
   }
 
-  let body: { id?: string | number };
+  let parsed: unknown;
   try {
-    body = await request.json();
+    parsed = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
   }
 
-  const patientId = body.id ? String(body.id) : null;
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+    return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
+  }
+
+  const body = parsed as { id?: unknown };
+  const rawId =
+    typeof body.id === "number"
+      ? String(body.id)
+      : typeof body.id === "string"
+        ? body.id.trim()
+        : "";
+  const patientId = /^\d+$/.test(rawId) ? rawId : null;
   if (!patientId) {
     return NextResponse.json({ error: "Patient ID is required." }, { status: 400 });
   }
@@ -54,7 +67,7 @@ export async function POST(request: Request) {
 
     const patient = rows[0];
 
-    // Generate a new token, update the hash, and send the email
+    // Generate a new token, update the hash, and send the email using the canonical server origin.
     const newAccessToken = generatePortalToken();
     const newAccessTokenHash = hashPortalToken(newAccessToken);
 
@@ -71,7 +84,19 @@ export async function POST(request: Request) {
       lang: await getRequestLang(request),
       treatmentPlan: parseJsonColumn<TreatmentPlan>(patient.treatment_plan),
       conditionNotes: patient.condition_notes,
-      baseUrl: new URL(request.url).origin,
+    });
+
+    await logActivity({
+      country: workerContext.country,
+      actorWorkerId: workerContext.workerId,
+      actorName: workerContext.workerName,
+      actorEmail: session.user.email ?? null,
+      actorRole: workerContext.role,
+      action: "patient.portal_link_sent",
+      entityType: "patient",
+      entityId: patientId,
+      details: { emailSent },
+      ipAddress: getClientIp(request),
     });
 
     return NextResponse.json({ success: true, email_sent: emailSent });

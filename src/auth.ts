@@ -3,7 +3,7 @@ import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { errors } from "jose";
 import { cookies } from "next/headers";
-import { decryptEmailCode, emailAuthCookies } from "@/lib/email-auth";
+import { decryptEmailCode, emailAuthCookies, isMatchingOneTimeCode } from "@/lib/email-auth";
 import { checkLoginAccess, hasLoginAccess } from "@/lib/login-access";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { DEFAULT_LANG, LOCALE_COOKIE, isSupportedLang, withLangPrefix } from "@/lib/i18n/routing";
@@ -99,13 +99,24 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           throw error;
         }
 
-        if (stored.code !== code) {
+        if (!isMatchingOneTimeCode(stored.code, code)) {
           console.warn("Email-code sign-in rejected: code mismatch. Use the most recently requested code.");
           return null;
         }
 
         if (!(await hasLoginAccess(stored.email))) {
           console.warn("Email-code sign-in rejected: login access check failed.");
+          return null;
+        }
+
+        // Enforce single-use OTP consumption server-side across instances so a copied cookie cannot be replayed.
+        const consumed = await checkRateLimit(`email-otp-used:${stored.jti}`, {
+          limit: 1,
+          windowMs: 15 * 60_000,
+        });
+        if (!consumed.allowed) {
+          console.warn("Email-code sign-in rejected: verification code has already been used.");
+          cookieStore.delete(emailAuthCookies.otp);
           return null;
         }
 
@@ -118,7 +129,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    async signIn({ user }) {
+    async signIn({ user, account, profile }) {
+      if (account?.provider === "google" && profile?.email_verified !== true) {
+        console.warn("Google sign-in rejected: email address is not verified.");
+        return getLocalizedSignInPath("unauthorized-email");
+      }
+
       const access = await checkLoginAccess(user.email);
       if (access.reason === "database-unavailable") {
         return getLocalizedSignInPath("auth-unavailable");
@@ -127,7 +143,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return access.allowed || (await getLocalizedSignInPath("unauthorized-email"));
     },
   },
-  session: { strategy: "jwt" },
+  session: {
+    strategy: "jwt",
+    maxAge: 12 * 60 * 60,
+    updateAge: 30 * 60,
+  },
   trustHost: process.env.AUTH_TRUST_HOST === "true" || process.env.NODE_ENV !== "production",
   // Fixed to the route in app/api/auth/[...nextauth]. Without it, Auth.js takes the base path from
   // AUTH_URL's path (e.g. AUTH_URL=https://redi.healthcare/ro), and every sign-in and session

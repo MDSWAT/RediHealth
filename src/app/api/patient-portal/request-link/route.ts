@@ -60,7 +60,6 @@ export async function POST(request: Request) {
   // The patient's country is not known from an email address, so every country database is
   // checked. Each match gets its own link, which only works against that country's data.
   const lang = await getRequestLang(request);
-  const baseUrl = new URL(request.url).origin;
   let failures = 0;
   const countries = configuredCountries();
 
@@ -85,15 +84,14 @@ export async function POST(request: Request) {
         [hashPortalToken(accessToken), PORTAL_LINK_TTL_DAYS, patient.id],
       );
 
+      // Anyone who knows the address can trigger this email, so it carries the link only:
+      // no diagnosis, medication or condition notes. Origin is derived strictly from server config.
       const emailSent = await sendPatientPortalLinkEmail({
         name: patient.full_name,
         email: patient.email,
         accessToken,
         country,
         lang,
-        // Anyone who knows the address can trigger this email, so it carries the link only:
-        // no diagnosis, medication or condition notes.
-        baseUrl,
       });
       if (!emailSent) {
         console.error("Patient portal recovery email could not be sent.");

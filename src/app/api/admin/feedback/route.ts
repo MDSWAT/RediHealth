@@ -7,9 +7,13 @@ import { isSupportedLang } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 import { deletePlatformFeedback, listPlatformFeedback } from "@/lib/platform-feedback";
 import { getClientIp } from "@/lib/rate-limit";
-import { getUserWorkerContext } from "@/lib/worker-auth";
+import { getUserWorkerContext, type UserWorkerContext } from "@/lib/worker-auth";
 
-async function requireAdminAccess() {
+type AdminAccess =
+  | { error: NextResponse }
+  | { worker: UserWorkerContext; email: string };
+
+async function requireAdminAccess(): Promise<AdminAccess> {
   const session = await auth();
   if (!session?.user?.email) {
     return { error: NextResponse.json({ error: "Unauthorized." }, { status: 401 }) };
@@ -32,9 +36,14 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const rawCountry = searchParams.get("country")?.trim().toUpperCase() || "";
   const rawLang = searchParams.get("lang")?.trim().toLowerCase() || "";
-  const limit = Number(searchParams.get("limit") || 250);
+  const rawLimitParam = searchParams.get("limit");
+  const parsedLimit = rawLimitParam === null || rawLimitParam.trim() === "" ? 250 : Number(rawLimitParam);
+  const limit = Number.isFinite(parsedLimit) ? Math.min(500, Math.max(1, Math.trunc(parsedLimit))) : 250;
 
-  const country: CountryCode | "" = isSupportedCountry(rawCountry) ? rawCountry : "";
+  // Country-level Administrators are restricted strictly to their own country; only Super Admins may query cross-country.
+  const country: CountryCode | "" = access.worker.isSuperAdmin
+    ? (isSupportedCountry(rawCountry) ? rawCountry : "")
+    : access.worker.country;
   const lang: Lang | "" = isSupportedLang(rawLang) ? rawLang : "";
 
   try {
@@ -58,7 +67,9 @@ export async function DELETE(request: Request) {
   let id = searchParams.get("id")?.trim() || "";
   if (!id) {
     const body = (await request.json().catch(() => null)) as { id?: unknown } | null;
-    if (body?.id != null) id = String(body.id).trim();
+    if (body && typeof body === "object" && !Array.isArray(body) && body.id != null) {
+      id = String(body.id).trim();
+    }
   }
 
   if (!id) {
@@ -66,7 +77,10 @@ export async function DELETE(request: Request) {
   }
 
   try {
-    const removed = await deletePlatformFeedback(id);
+    const removed = await deletePlatformFeedback(
+      id,
+      access.worker.isSuperAdmin ? undefined : { country: access.worker.country },
+    );
     if (!removed) {
       return NextResponse.json({ error: "Feedback entry not found." }, { status: 404 });
     }

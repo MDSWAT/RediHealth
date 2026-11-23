@@ -4,13 +4,17 @@ import type { UserWorkerContext } from "@/lib/worker-auth";
 import { getCountryDatabase, isCountryConfigured, type RowDataPacket, type ResultSetHeader } from "@/lib/database";
 import { logActivity } from "@/lib/activity-log";
 import { parseJsonColumn } from "@/lib/json";
+import { assignedToWorkerSql } from "@/lib/record-access";
 import type { CareRecommendationRecord } from "@/lib/types/telemetry";
 
 // Recommendations live in the country database only, so every server instance sees the same data.
 
 type OwnedMeeting = { patient_id: number | null; full_name: string | null };
 
-/** The meeting, when it exists in the worker's country and the worker organised it (administrators see all). */
+/**
+ * The meeting, when it exists in the worker's country and (for non-admins) the worker organised it
+ * and is still assigned to its patient when `m.patient_id IS NOT NULL`. Administrators see all.
+ */
 async function findOwnedMeeting(
   worker: Pick<UserWorkerContext, "country" | "workerId" | "isAdmin">,
   meetingId: string,
@@ -21,9 +25,15 @@ async function findOwnedMeeting(
       `SELECT m.patient_id, p.full_name
        FROM meetings m
        LEFT JOIN patients p ON p.id = m.patient_id
-       WHERE m.id = ?${worker.isAdmin ? "" : " AND m.organizer_worker_id = ?"}
+       WHERE m.id = ?${
+         worker.isAdmin
+           ? ""
+           : ` AND m.organizer_worker_id = ? AND (m.patient_id IS NULL OR (p.id IS NOT NULL AND ${assignedToWorkerSql("p")}))`
+       }
        LIMIT 1`,
-      worker.isAdmin ? [meetingId] : [meetingId, worker.workerId],
+      worker.isAdmin
+        ? [meetingId]
+        : [meetingId, worker.workerId, worker.workerId, worker.workerId],
     );
     return rows[0] ?? null;
   } catch (error) {

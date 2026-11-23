@@ -1,13 +1,14 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { NextAuthConfig } from "next-auth";
 import type { CredentialsConfig } from "next-auth/providers/credentials";
-import { encryptEmailCode, emailAuthCookies } from "@/lib/email-auth";
+import { decryptEmailCode, encryptEmailCode, emailAuthCookies, isMatchingOneTimeCode } from "@/lib/email-auth";
 
 const mocks = vi.hoisted(() => ({
   config: vi.fn<(config: NextAuthConfig) => void>(),
   get: vi.fn(),
   delete: vi.fn(),
   access: vi.fn(),
+  checkAccess: vi.fn(),
   rateLimit: vi.fn(),
   captcha: vi.fn(),
 }));
@@ -26,7 +27,7 @@ vi.mock("next/headers", () => ({
 }));
 vi.mock("@/lib/login-access", () => ({
   hasLoginAccess: mocks.access,
-  checkLoginAccess: vi.fn(),
+  checkLoginAccess: mocks.checkAccess,
 }));
 vi.mock("@/lib/rate-limit", () => ({
   checkRateLimit: mocks.rateLimit,
@@ -51,6 +52,7 @@ describe("email-code credentials", () => {
     mocks.get.mockReset();
     mocks.delete.mockReset();
     mocks.access.mockReset().mockResolvedValue(true);
+    mocks.checkAccess.mockReset().mockResolvedValue({ allowed: true });
     mocks.rateLimit.mockReset().mockResolvedValue({ allowed: true, retryAfterSeconds: 0 });
     mocks.captcha.mockReset().mockResolvedValue(null);
     vi.spyOn(console, "warn").mockImplementation(() => {});
@@ -137,5 +139,89 @@ describe("email-code credentials", () => {
     await setCodeCookie();
     mocks.delete.mockImplementation(() => { throw new Error("Cookie mutation failed"); });
     await expect(authorize("123456")).rejects.toThrow("Cookie mutation failed");
+  });
+
+  it("embeds a unique jti in every OTP JWE and rejects server-side replay", async () => {
+    const token1 = await encryptEmailCode({ email: "test@example.com", code: "123456" });
+    const token2 = await encryptEmailCode({ email: "test@example.com", code: "123456" });
+    const decoded1 = await decryptEmailCode(token1);
+    const decoded2 = await decryptEmailCode(token2);
+    expect(decoded1.jti).toBeTruthy();
+    expect(decoded2.jti).toBeTruthy();
+    expect(decoded1.jti).not.toBe(decoded2.jti);
+
+    mocks.get.mockReturnValue({ value: token1 });
+    mocks.rateLimit
+      .mockResolvedValueOnce({ allowed: true, retryAfterSeconds: 0 }) // IP limit
+      .mockResolvedValueOnce({ allowed: true, retryAfterSeconds: 0 }) // token attempts
+      .mockResolvedValueOnce({ allowed: true, retryAfterSeconds: 0 }) // first jti use
+      .mockResolvedValueOnce({ allowed: true, retryAfterSeconds: 0 }) // IP limit (replay)
+      .mockResolvedValueOnce({ allowed: true, retryAfterSeconds: 0 }) // token attempts (replay)
+      .mockResolvedValueOnce({ allowed: false, retryAfterSeconds: 900 }); // replayed jti rejected
+
+    expect(await authorize("123456")).toEqual({ id: "test@example.com", email: "test@example.com" });
+    expect(mocks.rateLimit).toHaveBeenCalledWith(`email-otp-used:${decoded1.jti}`, {
+      limit: 1,
+      windowMs: 15 * 60_000,
+    });
+
+    expect(await authorize("123456")).toBeNull();
+    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining("already been used"));
+  });
+
+  it("compares OTP codes in constant time across equal and unequal lengths", () => {
+    expect(isMatchingOneTimeCode("123456", "123456")).toBe(true);
+    expect(isMatchingOneTimeCode("123456", "123457")).toBe(false);
+    expect(isMatchingOneTimeCode("123456", "12345")).toBe(false);
+    expect(isMatchingOneTimeCode("123456", "")).toBe(false);
+  });
+});
+
+describe("OAuth verification and session lifetime", () => {
+  beforeEach(() => {
+    mocks.get.mockReset();
+    mocks.checkAccess.mockReset().mockResolvedValue({ allowed: true });
+    vi.spyOn(console, "warn").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("configures a 12-hour JWT session with 30-minute sliding updates", () => {
+    expect(config.session).toEqual({
+      strategy: "jwt",
+      maxAge: 12 * 60 * 60,
+      updateAge: 30 * 60,
+    });
+  });
+
+  it("rejects Google OAuth sign-ins unless profile.email_verified is strictly true", async () => {
+    const signIn = config.callbacks?.signIn;
+    expect(signIn).toBeTypeOf("function");
+
+    const unverified = await signIn!({
+      user: { email: "doctor@example.com" },
+      account: { provider: "google", type: "oidc", providerAccountId: "g-1" },
+      profile: { email: "doctor@example.com", email_verified: false },
+    });
+    expect(unverified).toBe("/en/sign-in?error=unauthorized-email");
+    expect(mocks.checkAccess).not.toHaveBeenCalled();
+
+    const missingFlag = await signIn!({
+      user: { email: "doctor@example.com" },
+      account: { provider: "google", type: "oidc", providerAccountId: "g-2" },
+      profile: { email: "doctor@example.com" },
+    });
+    expect(missingFlag).toBe("/en/sign-in?error=unauthorized-email");
+    expect(mocks.checkAccess).not.toHaveBeenCalled();
+
+    const verified = await signIn!({
+      user: { email: "doctor@example.com" },
+      account: { provider: "google", type: "oidc", providerAccountId: "g-3" },
+      profile: { email: "doctor@example.com", email_verified: true },
+    });
+    expect(verified).toBe(true);
+    expect(mocks.checkAccess).toHaveBeenCalledWith("doctor@example.com");
   });
 });

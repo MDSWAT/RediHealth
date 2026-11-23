@@ -3,7 +3,8 @@ import type { UserWorkerContext } from "@/lib/worker-auth";
 
 /**
  * Object-level access checks for staff routes. A staff member may touch a patient only when they
- * are assigned to them, and a meeting only when they organise it or are assigned to its patient.
+ * are currently assigned to them, and a meeting only when they are currently assigned to its
+ * patient (or, for standalone meetings without a patient, when they organise it).
  * Admins (and super admins) may touch any record in their country.
  */
 type StaffWorker = Pick<UserWorkerContext, "country" | "isAdmin"> & { workerId: string };
@@ -31,7 +32,7 @@ export async function canAccessMeeting(worker: StaffWorker, meetingId: number): 
     worker.isAdmin
       ? "SELECT id FROM meetings WHERE id = ? LIMIT 1"
       : `SELECT m.id FROM meetings m LEFT JOIN patients p ON p.id = m.patient_id
-         WHERE m.id = ? AND (m.organizer_worker_id = ? OR (p.id IS NOT NULL AND ${assignedToWorkerSql("p")})) LIMIT 1`,
+         WHERE m.id = ? AND ((m.patient_id IS NULL AND m.organizer_worker_id = ?) OR (p.id IS NOT NULL AND ${assignedToWorkerSql("p")})) LIMIT 1`,
     worker.isAdmin ? [meetingId] : [meetingId, worker.workerId, worker.workerId, worker.workerId],
   );
   return rows.length > 0;

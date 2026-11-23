@@ -40,6 +40,8 @@ function extractCookiePair(response: Response, name: string): string {
 describe("patient portal SMS phone OTP flow", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.stubEnv("NODE_ENV", "development");
+    vi.stubEnv("ENABLE_LOCAL_DEMO_OTP", "true");
     otpStore.clear();
     mocks.configuredCountries.mockReturnValue(["RO", "IT"]);
     mocks.checkRateLimit.mockResolvedValue({ allowed: true, retryAfterSeconds: 0 });
@@ -227,24 +229,75 @@ describe("patient portal SMS phone OTP flow", () => {
     expect(okRes.status).toBe(200);
   });
 
-  it("disables phone OTP demo endpoints with 503 sms_unavailable in production", async () => {
-    vi.stubEnv("NODE_ENV", "production");
+  it("disables phone OTP demo endpoints unless ENABLE_LOCAL_DEMO_OTP=true in development", async () => {
+    for (const [env, flag] of [
+      ["production", "true"],
+      ["development", "false"],
+      ["development", ""],
+      ["test", "true"],
+    ] as const) {
+      vi.stubEnv("NODE_ENV", env);
+      vi.stubEnv("ENABLE_LOCAL_DEMO_OTP", flag);
 
+      const reqRes = await requestOtpPost(
+        makeJsonRequest("https://redihealth.local/api/patient-portal/request-phone-otp", {
+          phone: "0721000000",
+        }),
+      );
+      expect(reqRes.status).toBe(503);
+      expect(await reqRes.json()).toMatchObject({ code: "sms_unavailable" });
+
+      const verifyRes = await verifyOtpPost(
+        makeJsonRequest("https://redihealth.local/api/patient-portal/verify-phone-otp", {
+          phone: "0721000000",
+          otp: "1234",
+        }),
+      );
+      expect(verifyRes.status).toBe(503);
+      expect(await verifyRes.json()).toMatchObject({ code: "sms_unavailable" });
+    }
+  });
+
+  it("prevents concurrent TOCTOU verification replays from double-rotating the portal token", async () => {
     const reqRes = await requestOtpPost(
       makeJsonRequest("https://redihealth.local/api/patient-portal/request-phone-otp", {
         phone: "0721000000",
       }),
     );
-    expect(reqRes.status).toBe(503);
-    expect(await reqRes.json()).toMatchObject({ code: "sms_unavailable" });
+    const { demoCode } = (await reqRes.json()) as { demoCode: string };
 
-    const verifyRes = await verifyOtpPost(
+    let releaseSelect!: () => void;
+    const selectGate = new Promise<void>((resolve) => {
+      releaseSelect = resolve;
+    });
+
+    mocks.query
+      .mockImplementationOnce(async () => {
+        await selectGate;
+        return [[{ id: 99 }]];
+      })
+      .mockResolvedValueOnce([{ affectedRows: 1 }]);
+
+    const first = verifyOtpPost(
       makeJsonRequest("https://redihealth.local/api/patient-portal/verify-phone-otp", {
         phone: "0721000000",
-        otp: "1234",
+        otp: demoCode,
       }),
     );
-    expect(verifyRes.status).toBe(503);
-    expect(await verifyRes.json()).toMatchObject({ code: "sms_unavailable" });
+    const second = verifyOtpPost(
+      makeJsonRequest("https://redihealth.local/api/patient-portal/verify-phone-otp", {
+        phone: "0721000000",
+        otp: demoCode,
+      }),
+    );
+
+    // Let both reach rate-limit / store check before releasing the DB query.
+    await new Promise((r) => setTimeout(r, 10));
+    releaseSelect();
+
+    const [res1, res2] = await Promise.all([first, second]);
+    const statuses = [res1.status, res2.status].sort();
+    expect(statuses).toEqual([200, 400]);
+    expect(mocks.query).toHaveBeenCalledTimes(2); // 1 SELECT + 1 UPDATE only
   });
 });

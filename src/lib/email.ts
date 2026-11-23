@@ -8,7 +8,7 @@ import { escapeHtml } from "@/lib/text";
 import { LEGAL_OPERATOR } from "@/lib/legal-config";
 import { emailTranslations, helpReplyContent, type HelpReplyInput } from "@/lib/i18n/email-translations";
 import { withLangPrefix } from "@/lib/i18n/routing";
-import { normalizeOrigin } from "@/lib/site-url";
+import { getSiteUrl } from "@/lib/site-url";
 
 type PanelEmailCopy = {
   greeting: string;
@@ -1000,7 +1000,7 @@ export type PatientPortalEmailParams = {
   lang?: Lang;
   treatmentPlan?: TreatmentPlan | null;
   conditionNotes?: string | null;
-  /** Origin of the incoming request (e.g. https://example.com). Used as a fallback when APP_URL is not set. */
+  /** @deprecated Ignored to prevent Host header poisoning; canonical origin is always derived from server-side config via getSiteUrl(). */
   baseUrl?: string;
 };
 
@@ -1012,7 +1012,6 @@ export async function sendPatientPortalLinkEmail({
   lang = "en",
   treatmentPlan,
   conditionNotes,
-  baseUrl: requestBaseUrl,
 }: PatientPortalEmailParams) {
   if (!isEmailConfigured()) {
     console.warn("Resend email delivery is not configured. Skipping patient portal email.");
@@ -1022,11 +1021,7 @@ export async function sendPatientPortalLinkEmail({
   const copy = panelEmailCopy[lang];
   const portalCopy = copy.portal;
   const recipientName = name.trim() || portalCopy.fallbackName;
-  const baseUrl =
-    normalizeOrigin(process.env.APP_URL) ||
-    normalizeOrigin(requestBaseUrl) ||
-    normalizeOrigin(process.env.AUTH_URL) ||
-    "http://localhost:3000";
+  const baseUrl = getSiteUrl();
   const portalUrl = `${baseUrl.replace(/\/$/, "")}${withLangPrefix(portalPath(accessToken, country), lang)}`;
 
   const textContent = `${copy.greeting} ${recipientName},

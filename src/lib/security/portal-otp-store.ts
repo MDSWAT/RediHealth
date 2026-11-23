@@ -1,4 +1,4 @@
-import { createHash } from "crypto";
+import { createHash, timingSafeEqual } from "crypto";
 import { EncryptJWT, jwtDecrypt } from "jose";
 
 export interface OtpEntry {
@@ -90,13 +90,24 @@ export function readCookieValue(cookieHeader: string | null, name: string): stri
   return null;
 }
 
+/** Constant-time equality check for OTP codes using equal-length UTF-8 buffers. */
+export function isMatchingOtpCode(expected: string, candidate: string): boolean {
+  const expectedBuf = Buffer.from(expected, "utf8");
+  const candidateBuf = Buffer.from(candidate, "utf8");
+  if (expectedBuf.length !== candidateBuf.length) {
+    timingSafeEqual(expectedBuf, expectedBuf);
+    return false;
+  }
+  return timingSafeEqual(expectedBuf, candidateBuf);
+}
+
 /**
  * Phone sign-in is a demonstration flow: no SMS provider is connected, so the code can only be
  * shown on screen. That must never happen on a deployed site, where it would let anyone open a
- * patient's portal. It stays available in local development only.
+ * patient's portal. It requires an explicit opt-in flag in local development only.
  */
 export function isPhoneOtpDemoEnabled(): boolean {
-  return process.env.NODE_ENV !== "production";
+  return process.env.ENABLE_LOCAL_DEMO_OTP === "true" && process.env.NODE_ENV === "development";
 }
 
 /** Digits only, with an optional leading +. Rejects anything that could act as a SQL LIKE wildcard. */

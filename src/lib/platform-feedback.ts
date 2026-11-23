@@ -153,7 +153,11 @@ export async function listPlatformFeedback(options?: {
   }
 
   const whereSql = clauses.length > 0 ? `WHERE ${clauses.join(" AND ")}` : "";
-  const limit = Math.min(500, Math.max(1, options?.limit ?? 250));
+  const rawLimit = options?.limit;
+  const limit =
+    typeof rawLimit === "number" && Number.isFinite(rawLimit)
+      ? Math.min(500, Math.max(1, Math.trunc(rawLimit)))
+      : 250;
 
   const [rows] = await getControlDatabase().query<FeedbackRow[]>(
     `SELECT id, country_code, lang, page_path,
@@ -173,13 +177,19 @@ export async function listPlatformFeedback(options?: {
   };
 }
 
-export async function deletePlatformFeedback(id: string): Promise<boolean> {
-  const numericId = Number.parseInt(id, 10);
-  if (!Number.isFinite(numericId) || numericId <= 0) return false;
+export async function deletePlatformFeedback(
+  id: string,
+  options?: { country?: CountryCode },
+): Promise<boolean> {
+  const trimmed = id.trim();
+  if (!/^\d+$/.test(trimmed)) return false;
+  const numericId = Number(trimmed);
+  if (!Number.isSafeInteger(numericId) || numericId <= 0) return false;
   await ensureFeedbackTable();
-  const [result] = await getControlDatabase().query<ResultSetHeader>(
-    "DELETE FROM platform_feedback WHERE id = ?",
-    [numericId],
-  );
+  const sql = options?.country
+    ? "DELETE FROM platform_feedback WHERE id = ? AND country_code = ?"
+    : "DELETE FROM platform_feedback WHERE id = ?";
+  const queryParams = options?.country ? [numericId, options.country] : [numericId];
+  const [result] = await getControlDatabase().query<ResultSetHeader>(sql, queryParams);
   return result.affectedRows > 0;
 }

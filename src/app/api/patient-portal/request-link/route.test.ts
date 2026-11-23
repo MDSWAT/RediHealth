@@ -76,6 +76,7 @@ describe("patient portal link recovery", () => {
       lang: "ro",
       accessToken: expect.any(String),
     }));
+    expect(mocks.sendEmail.mock.calls[0][0]).not.toHaveProperty("baseUrl");
   });
 
   it("finds a patient registered in another country and issues the link for that country", async () => {

@@ -4,6 +4,7 @@ import { getCountryDatabase, type RowDataPacket } from "@/lib/database";
 import { sendMeetingInvitationEmail } from "@/lib/email";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { getRequestLang } from "@/lib/i18n/server-routing";
+import { assignedToWorkerSql } from "@/lib/record-access";
 
 type InvitationRow = RowDataPacket & {
   id: number;
@@ -52,21 +53,29 @@ export async function POST(
   try {
     const query = worker.isAdmin
       ? "SELECT m.id, m.title, m.meeting_url, p.full_name, p.email FROM meetings m INNER JOIN patients p ON p.id = m.patient_id WHERE m.id = ? LIMIT 1"
-      : "SELECT m.id, m.title, m.meeting_url, p.full_name, p.email FROM meetings m INNER JOIN patients p ON p.id = m.patient_id WHERE m.id = ? AND m.organizer_worker_id = ? LIMIT 1";
-    const params = worker.isAdmin ? [id] : [id, worker.workerId];
-    const [rows] = await getCountryDatabase(worker.country).query<InvitationRow[]>(query, params);
+      : `SELECT m.id, m.title, m.meeting_url, p.full_name, p.email FROM meetings m INNER JOIN patients p ON p.id = m.patient_id WHERE m.id = ? AND m.organizer_worker_id = ? AND ${assignedToWorkerSql("p")} LIMIT 1`;
+    const queryParams = worker.isAdmin
+      ? [id]
+      : [id, worker.workerId, worker.workerId, worker.workerId];
+    const [rows] = await getCountryDatabase(worker.country).query<InvitationRow[]>(query, queryParams);
     const meeting = rows[0];
     if (!meeting) {
       return NextResponse.json({ error: "A linked patient meeting was not found." }, { status: 404 });
     }
 
-    await sendMeetingInvitationEmail({
+    const sent = await sendMeetingInvitationEmail({
       name: meeting.full_name,
       email: meeting.email,
       title: meeting.title,
       meetingUrl: normalizeMeetingUrl(meeting.meeting_url, meeting.id),
       lang: await getRequestLang(request),
     });
+    if (!sent) {
+      return NextResponse.json(
+        { error: "Could not send the invitation. Check the email settings and try again." },
+        { status: 502 },
+      );
+    }
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Failed to send meeting invitation", error);

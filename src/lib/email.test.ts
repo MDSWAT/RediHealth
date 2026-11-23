@@ -194,4 +194,24 @@ describe("Resend transport and RediHealth email templates", () => {
     }
     expect((mailMocks.send.mock.calls[0][0] as { text: string }).text.includes(`/${code}/patient-portal/secure-token?c=ro`)).toBe(true);
   });
+
+  it("ignores request baseUrl and derives patient portal link origin strictly from server config", async () => {
+    vi.stubEnv("APP_URL", "");
+    vi.stubEnv("AUTH_URL", "https://portal.redi.healthcare");
+
+    await sendPatientPortalLinkEmail({
+      name: "Ana",
+      email: "ana@example.com",
+      accessToken: "secure-token-xyz",
+      country: "RO",
+      lang: "ro",
+      baseUrl: "https://attacker.evil.example",
+    });
+
+    const sent = mailMocks.send.mock.calls[0][0] as { text: string; html: string };
+    expect(sent.text).toContain("https://portal.redi.healthcare/ro/patient-portal/secure-token-xyz?c=ro");
+    expect(sent.html).toContain("https://portal.redi.healthcare/ro/patient-portal/secure-token-xyz?c=ro");
+    expect(sent.text).not.toContain("attacker.evil.example");
+    expect(sent.html).not.toContain("attacker.evil.example");
+  });
 });
