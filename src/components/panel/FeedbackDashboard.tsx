@@ -37,10 +37,10 @@ type FeedbackDashboardProps = {
 const SUPPORTED_FILTER_LANGS = ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const;
 
 const OUTLINE_BUTTON_CLASS =
-  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--color-border-control)] bg-[var(--panel-surface)] px-3.5 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-(--dur-fast) hover:bg-[var(--panel-selection)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:border-[#62768c] dark:focus-visible:outline-[#bad7fa] disabled:cursor-not-allowed disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]";
+  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--color-border-control)] bg-[var(--panel-surface)] px-3.5 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-(--dur-fast) hover:bg-[var(--panel-selection)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:border-[#62768c] dark:focus-visible:outline-[#bad7fa] disabled:cursor-not-allowed disabled:border-[var(--color-border-control)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] dark:disabled:border-[#62768c]";
 
 const PRIMARY_BUTTON_CLASS =
-  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--color-sapphire)] bg-[var(--color-sapphire)] px-4 text-sm font-semibold text-white transition-colors duration-(--dur-fast) hover:bg-[#28476f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa] disabled:cursor-not-allowed disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]";
+  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--color-sapphire)] bg-[var(--color-sapphire)] px-4 text-sm font-semibold text-white transition-colors duration-(--dur-fast) hover:bg-[#28476f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa] disabled:cursor-not-allowed disabled:border-[var(--color-border-control)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] dark:disabled:border-[#62768c]";
 
 const CONTROL_INPUT_CLASS =
   "min-h-11 rounded-lg border border-[var(--color-border-control)] bg-[var(--panel-surface)] px-3 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:border-[var(--color-sapphire)] focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[var(--color-sapphire)] dark:border-[#62768c] dark:focus-visible:border-[#bad7fa] dark:focus-visible:outline-[#bad7fa]";
@@ -705,7 +705,9 @@ export function FeedbackDashboard({
                             {[1, 2, 3, 4, 5].map((score, idx) => (
                               <span key={score}>
                                 {score}/5:{" "}
-                                <strong className="font-semibold text-[var(--panel-ink)]">{dim.distribution[idx]}</strong>
+                                <strong className="font-display font-semibold tabular-nums text-[var(--panel-ink)]">
+                                  {dim.distribution[idx]}
+                                </strong>
                               </span>
                             ))}
                           </div>
@@ -847,7 +849,7 @@ export function FeedbackDashboard({
                       value={langFilter}
                       onChange={(event) => setLangFilter(event.target.value)}
                       aria-label={t.allLanguages}
-                      className={`${CONTROL_INPUT_CLASS} max-w-full whitespace-nowrap`}
+                      className={`${CONTROL_INPUT_CLASS} min-w-0 max-w-full flex-1 whitespace-nowrap sm:flex-none`}
                     >
                       <option value="">{t.allLanguages}</option>
                       {SUPPORTED_FILTER_LANGS.map((code) => (
@@ -860,7 +862,7 @@ export function FeedbackDashboard({
                       value={ageFilter}
                       onChange={(event) => setAgeFilter(event.target.value as FeedbackAgeGroup | "")}
                       aria-label={t.allAgeGroups}
-                      className={`${CONTROL_INPUT_CLASS} max-w-full whitespace-nowrap`}
+                      className={`${CONTROL_INPUT_CLASS} min-w-0 max-w-full flex-1 whitespace-nowrap sm:flex-none`}
                     >
                       <option value="">{t.allAgeGroups}</option>
                       {AGE_GROUP_OPTIONS.map((opt) => (
@@ -921,7 +923,7 @@ export function FeedbackDashboard({
                             </td>
 
                             <td className="py-3.5 pr-4">
-                              <p className={`text-sm font-bold tabular-nums ${ratingToneClass(entry.average_rating)}`}>
+                              <p className={`font-display text-sm font-bold tabular-nums ${ratingToneClass(entry.average_rating)}`}>
                                 {entry.average_rating.toFixed(1)} / 5
                               </p>
                               <dl className="mt-1.5 grid grid-cols-1 gap-0.5 text-xs text-[var(--panel-muted)]">
@@ -999,7 +1001,7 @@ export function FeedbackDashboard({
                                 onClick={() => handleDelete(entry.id)}
                                 disabled={deletingId === entry.id}
                                 aria-label={`${t.deleteEntry} #${entry.id}`}
-                                className="inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-[var(--panel-line)] bg-[var(--panel-surface)] px-3 text-xs font-medium text-[var(--panel-muted)] transition-colors duration-(--dur-fast) hover:border-clinical-ruby/50 hover:bg-clinical-ruby-soft hover:text-clinical-ruby focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:hover:border-ruby-300/50 dark:hover:bg-clinical-ruby/20 dark:hover:text-ruby-300 dark:focus-visible:outline-[#bad7fa] disabled:cursor-not-allowed disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]"
+                                className="inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-[var(--color-border-control)] bg-[var(--panel-surface)] px-3 text-xs font-medium text-[var(--panel-muted)] transition-colors duration-(--dur-fast) hover:border-clinical-ruby/50 hover:bg-clinical-ruby-soft hover:text-clinical-ruby focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:border-[#62768c] dark:hover:border-ruby-300/50 dark:hover:bg-clinical-ruby/20 dark:hover:text-ruby-300 dark:focus-visible:outline-[#bad7fa] disabled:cursor-not-allowed disabled:border-[var(--color-border-control)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] dark:disabled:border-[#62768c]"
                               >
                                 <TrashIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                                 <span>{t.deleteEntry}</span>

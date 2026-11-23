@@ -60,14 +60,14 @@ export function AnalyticsDashboard({ userEmail, userRole, range, result, savedLi
             <h1 className="font-display text-2xl font-bold tracking-[-0.025em] text-[var(--panel-ink)] sm:text-[1.875rem]">
               {t.title}
             </h1>
-            <nav aria-label={t.period} className="flex flex-wrap gap-2">
+            <nav aria-label={t.period} className="flex flex-wrap gap-1.5 sm:gap-2">
               {ANALYTICS_RANGES.map((days) => (
                 <Link
                   key={days}
                   href={{ query: { range: days } }}
                   scroll={false}
                   aria-current={days === range ? "page" : undefined}
-                  className={`inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border px-3.5 text-sm font-medium transition-colors duration-(--dur-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa] ${
+                  className={`inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border px-2.5 text-[13px] font-medium transition-colors duration-(--dur-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] sm:px-3.5 sm:text-sm dark:focus-visible:outline-[#bad7fa] ${
                     days === range
                       ? "border-[var(--color-sapphire)] bg-[var(--color-sapphire)] font-semibold text-white hover:bg-[#28476f]"
                       : "border-[var(--color-border-control)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] dark:border-[#62768c]"
@@ -90,9 +90,9 @@ export function AnalyticsDashboard({ userEmail, userRole, range, result, savedLi
             <SavedCampaignLinks t={t} locale={locale} links={savedLinks} onDelete={deleteLink} />
           ) : null}
 
-          <p className="mt-10 max-w-3xl border-t border-[var(--panel-line)] pt-5 text-xs leading-relaxed text-[var(--panel-muted)]">
-            {t.privacyNote}
-          </p>
+          <div className="mt-10 border-t border-[var(--panel-line)] pt-5">
+            <p className="max-w-3xl text-xs leading-relaxed text-[var(--panel-muted)]">{t.privacyNote}</p>
+          </div>
         </Container>
       </main>
     </AdminShell>
@@ -500,59 +500,73 @@ function DailyChart({ daily, t, number, locale }: DailyChartProps) {
             : null}
         </p>
       </div>
-      <div
-        className="mt-4 flex items-end border-b border-[var(--panel-line)]"
-        style={{ height, gap }}
-        role="group"
-        aria-label={t.dailyTitle}
-        onMouseLeave={() => setActive(null)}
-      >
-        {daily.map((point, index) => {
-          const isSelected = selectedIndex === index;
-          return (
-            <button
-              key={point.day}
-              ref={(node) => {
-                barRefs.current[index] = node;
-              }}
-              type="button"
-              tabIndex={isSelected ? 0 : -1}
-              aria-pressed={active === index}
-              aria-label={`${formatDay(point.day)}: ${t.visitors} ${number.format(point.visitors)}, ${t.colViews} ${number.format(point.pageviews)}`}
-              className="flex h-full min-w-0 flex-1 cursor-pointer items-end whitespace-nowrap border-0 bg-transparent p-0 transition-colors duration-(--dur-fast) hover:bg-[var(--panel-subtle)] focus-visible:bg-[var(--panel-selection)] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa]"
-              onMouseEnter={() => setActive(index)}
-              onFocus={() => setActive(index)}
-              onClick={() => setActive(index)}
-              onKeyDown={(event) => {
-                if (event.key === "ArrowLeft") {
-                  event.preventDefault();
-                  moveFocus(index - 1);
-                } else if (event.key === "ArrowRight") {
-                  event.preventDefault();
-                  moveFocus(index + 1);
-                } else if (event.key === "Home") {
-                  event.preventDefault();
-                  moveFocus(0);
-                } else if (event.key === "End") {
-                  event.preventDefault();
-                  moveFocus(daily.length - 1);
-                }
-              }}
-            >
-              <span
-                className={`block w-full rounded-t-[2px] transition-colors duration-(--dur-fast) ${
-                  isSelected
-                    ? "bg-[var(--color-sapphire)] dark:bg-[#bad7fa]"
-                    : "bg-[var(--color-sapphire)]/65 dark:bg-[#bad7fa]/55"
-                }`}
-                style={{ height: point.visitors > 0 ? `${Math.max(3, (point.visitors / max) * height)}px` : 0 }}
-              />
-            </button>
-          );
-        })}
+      <div className="relative mt-4">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-1/2 border-t border-[var(--panel-line)]/60"
+        />
+        <div
+          className="relative flex items-end border-b border-[var(--panel-line)]"
+          style={{ height, gap }}
+          role="group"
+          aria-label={t.dailyTitle}
+          onMouseLeave={() => setActive(null)}
+        >
+          {daily.map((point, index) => {
+            const isSelected = selectedIndex === index;
+            const hasVisitors = point.visitors > 0;
+            return (
+              <button
+                key={point.day}
+                ref={(node) => {
+                  barRefs.current[index] = node;
+                }}
+                type="button"
+                tabIndex={isSelected ? 0 : -1}
+                aria-pressed={active === index}
+                aria-label={`${formatDay(point.day)}: ${t.visitors} ${number.format(point.visitors)}, ${t.colViews} ${number.format(point.pageviews)}`}
+                className="flex h-full min-w-0 flex-1 cursor-pointer items-end whitespace-nowrap border-0 bg-transparent p-0 transition-colors duration-(--dur-fast) hover:bg-[var(--panel-subtle)] focus-visible:bg-[var(--panel-selection)] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa]"
+                onMouseEnter={() => setActive(index)}
+                onFocus={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onKeyDown={(event) => {
+                  if (event.key === "ArrowLeft") {
+                    event.preventDefault();
+                    moveFocus(index - 1);
+                  } else if (event.key === "ArrowRight") {
+                    event.preventDefault();
+                    moveFocus(index + 1);
+                  } else if (event.key === "Home") {
+                    event.preventDefault();
+                    moveFocus(0);
+                  } else if (event.key === "End") {
+                    event.preventDefault();
+                    moveFocus(daily.length - 1);
+                  }
+                }}
+              >
+                <span
+                  className={`block w-full rounded-t-[2px] transition-colors duration-(--dur-fast) ${
+                    hasVisitors
+                      ? isSelected
+                        ? "bg-[var(--color-sapphire)] dark:bg-[#bad7fa]"
+                        : "bg-[var(--color-sapphire)]/70 dark:bg-[#bad7fa]/60"
+                      : isSelected
+                        ? "bg-[var(--color-sapphire)]/65 dark:bg-[#bad7fa]/65"
+                        : "bg-[var(--panel-line)]"
+                  }`}
+                  style={{ height: hasVisitors ? `${Math.max(4, (point.visitors / max) * height)}px` : "2px" }}
+                />
+              </button>
+            );
+          })}
+        </div>
       </div>
       <div className="mt-2 flex justify-between text-xs tabular-nums text-[var(--panel-muted)]">
         <span>{daily[0] ? formatDay(daily[0].day) : ""}</span>
+        {daily.length >= 14 ? (
+          <span className="hidden sm:inline">{formatDay(daily[Math.floor(daily.length / 2)].day)}</span>
+        ) : null}
         <span>{daily.at(-1) ? formatDay(daily.at(-1)!.day) : ""}</span>
       </div>
     </section>
