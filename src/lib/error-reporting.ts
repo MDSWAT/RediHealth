@@ -3,10 +3,11 @@ import { createHash } from "node:crypto";
 import { after } from "next/server";
 
 /**
- * Sends every error the website hits to the alert addresses set in the panel (Settings).
+ * Sends critical failures to the alert addresses set in the panel (Settings).
  *
  * Three sources feed it: errors Next.js catches while handling a request, anything the server
- * writes with console.error, and errors reported by visitors' browsers. The same error is emailed
+ * writes with console.error, and browser render crashes. Runtime warnings, recoverable hydration
+ * errors and ordinary browser reports remain in the logs. The same critical error is emailed
  * once per cooldown window, and there is an hourly ceiling, so a fault that repeats on every
  * request produces one message instead of thousands.
  */
@@ -24,9 +25,20 @@ const SAME_ERROR_COOLDOWN_MS = 15 * 60_000;
 const MAX_ERROR_EMAILS_PER_HOUR = 40;
 const MAX_TRACKED_ERRORS = 500;
 
-/** Node prints this runtime advisory through console.error; it is not an application failure. */
+/** Node writes runtime warnings through console.error, even though they are not failures. */
 function isServerLogNoise(message: string): boolean {
-  return /^(?:\(node:\d+\)\s*)?ExperimentalWarning: vm\.USE_MAIN_CONTEXT_DEFAULT_LOADER is an experimental feature and might change at any time(?:\s+\(Use `node --trace-warnings \.\.\.` to show where the warning was created\))?\s*$/.test(message.trim());
+  const [firstLine, ...rest] = message.trim().split(/\r?\n/);
+  return /^(?:\(node:\d+\)\s*)?(?:\w*Warning):/i.test(firstLine) &&
+    !rest.some((line) => /^\s*(?:\w*Error):/.test(line));
+}
+
+function isCriticalReport(report: ErrorReport): boolean {
+  if (report.source === "server-log" && isServerLogNoise(report.message)) return false;
+  if (report.source !== "browser") return true;
+  // React recovers #418 by rebuilding the tree in the browser. Even a render-boundary
+  // report of this warning must not be promoted to a critical email.
+  if (/Minified React error #418\b|Hydration failed because the server rendered|Text content does not match server-rendered HTML/i.test(report.message)) return false;
+  return report.details?.kind === "render";
 }
 
 // True while a report is being sent, so failures of the alert pipeline itself are never re-reported.
@@ -82,7 +94,7 @@ const SOURCE_LABEL: Record<ErrorReport["source"], string> = {
 /** Emails one error to the alert addresses. Returns false when it was skipped or could not be sent. */
 export async function reportError(report: ErrorReport): Promise<boolean> {
   if (sending.getStore() || !isErrorReportingEnabled()) return false;
-  if (report.source === "server-log" && isServerLogNoise(report.message)) return false;
+  if (!isCriticalReport(report)) return false;
 
   const message = redactErrorText(report.message).trim().slice(0, 2000);
   if (!message) return false;
@@ -99,7 +111,7 @@ export async function reportError(report: ErrorReport): Promise<boolean> {
         title: `${SOURCE_LABEL[report.source]}: ${firstLine}`,
         summary: message,
         source: report.where || report.source,
-        severity: report.source === "browser" ? "warning" : "critical",
+        severity: "critical",
         details: {
           ...report.details,
           stack: report.stack ? redactErrorText(report.stack).slice(0, 3000) : undefined,
@@ -128,9 +140,9 @@ function describeLogValue(value: unknown): string {
 type GlobalWithErrorReporting = typeof globalThis & { redihealthConsoleErrorReporting?: boolean };
 
 /**
- * Makes every server-side console.error also reach the alert addresses. Most failures in this
- * codebase are caught and logged that way (a failed query, an email that could not be sent), so
- * without this they would only ever appear in the hosting logs.
+ * Makes server-side console.error failures reach the alert addresses. Most failures are caught
+ * and logged that way (a failed query, an email that could not be sent). Runtime warnings stay
+ * in the hosting logs.
  */
 export function installConsoleErrorReporting(): void {
   const scope = globalThis as GlobalWithErrorReporting;

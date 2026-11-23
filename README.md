@@ -145,6 +145,7 @@ Required variables:
 | `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET` | Optional Google OAuth sign-in |
 | `HOSTINGER_MAIL_API_TOKEN`, `HOSTINGER_MAIL_FROM`, `HOSTINGER_MAIL_DISPLAY_NAME` | Used to send one-time login codes and patient portal links |
 | `OPERATIONAL_ALERT_EMAIL` | Fallback recipient for issue reports and operational alerts. Super admins can set the recipient in **Panel → Settings**, which takes precedence |
+| `ERROR_ALERTS_ENABLED` | Automatic emails for critical server failures and browser render crashes (default on in production). Warnings, info alerts, ordinary browser reports and recoverable React hydration errors (#418) stay in logs. Explicit critical service alerts use their own existing controls |
 | `ANTHROPIC_API_KEY` | Server-only Anthropic API key for the Health Assistant, prescription-image review and AI summaries; requests go directly to `https://api.anthropic.com` |
 | `ANTHROPIC_MODEL` | Exact Claude model ID; defaults to `claude-haiku-4-5-20251001`. Legacy relay model and endpoint variables are ignored by the assistant |
 | `RECAPTCHA_ENABLED` | `true` for Google reCAPTCHA v3; defaults to enabled in production, disabled in development. Explicit `false` disables it |

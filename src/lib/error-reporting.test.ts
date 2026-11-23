@@ -44,7 +44,6 @@ describe("server log alert classification", () => {
 
   it.each([
     "Failed to read setting alert_email Error: Connection terminated due to connection timeout",
-    "ExperimentalWarning: a different experimental API",
     `${warning}\nError: real failure`,
   ])("still alerts on other server logs: %s", async (message) => {
     const { reportError } = await import("./error-reporting");
@@ -55,5 +54,37 @@ describe("server log alert classification", () => {
   it("does not filter request exceptions that contain the warning text", async () => {
     const { reportError } = await import("./error-reporting");
     expect(await reportError({ source: "server", message: warning })).toBe(true);
+  });
+
+  it.each([
+    "ExperimentalWarning: a different experimental API",
+    "(node:8) DeprecationWarning: this API is deprecated",
+    "Warning: a runtime advisory",
+  ])("keeps runtime warnings out of email: %s", async (message) => {
+    const { reportError } = await import("./error-reporting");
+    expect(await reportError({ source: "server-log", message })).toBe(false);
+    expect(notifyOperationalIssue).not.toHaveBeenCalled();
+  });
+});
+
+describe("critical browser alerts", () => {
+  const hydration = "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message";
+
+  it.each(["error", "unhandledrejection", "render"])("does not email recoverable hydration reports (%s)", async (kind) => {
+    const { reportError } = await import("./error-reporting");
+    expect(await reportError({ source: "browser", message: hydration, details: { kind } })).toBe(false);
+    expect(notifyOperationalIssue).not.toHaveBeenCalled();
+  });
+
+  it("keeps ordinary browser errors as warnings", async () => {
+    const { reportError } = await import("./error-reporting");
+    expect(await reportError({ source: "browser", message: "SyntaxError: Unexpected end of input", details: { kind: "error" } })).toBe(false);
+    expect(notifyOperationalIssue).not.toHaveBeenCalled();
+  });
+
+  it("emails a browser render crash as critical", async () => {
+    const { reportError } = await import("./error-reporting");
+    expect(await reportError({ source: "browser", message: "TypeError: Cannot read properties of undefined", details: { kind: "render" } })).toBe(true);
+    expect(notifyOperationalIssue).toHaveBeenCalledWith(expect.objectContaining({ severity: "critical" }));
   });
 });

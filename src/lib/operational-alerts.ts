@@ -26,6 +26,10 @@ function formatDetails(details?: Record<string, unknown>): string {
 }
 
 export async function notifyOperationalIssue(input: OperationalAlertInput) {
+  // Email is reserved for explicitly critical failures. Warning/info events must not
+  // perform recipient lookups or consume the critical alert rate-limit budget.
+  if (input.severity !== "critical") return false;
+
   const { emails: recipients } = await getAlertRecipients();
   if (recipients.length === 0 || !isEmailConfigured()) {
     return false;
@@ -51,7 +55,7 @@ export async function notifyOperationalIssue(input: OperationalAlertInput) {
     }
   }
 
-  const severity = input.severity || "warning";
+  const severity = input.severity;
   const timestamp = new Date().toISOString();
   const detailsText = formatDetails(input.details);
 
@@ -76,7 +80,7 @@ export async function notifyOperationalIssue(input: OperationalAlertInput) {
 
   const htmlBody = renderBrandEmail({
     previewText: `Operational alert: ${input.title}`,
-    badgeText: severity === "critical" ? "Critical Alert" : severity === "warning" ? "Warning Alert" : "Info Alert",
+    badgeText: "Critical Alert",
     heading: input.title,
     intro: input.summary,
     align: "left",
