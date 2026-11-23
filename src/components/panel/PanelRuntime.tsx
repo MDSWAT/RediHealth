@@ -2,7 +2,7 @@
 
 import NextLink from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { createContext, useContext, type ComponentProps, type ReactNode } from "react";
+import { createContext, useContext, useSyncExternalStore, type ComponentProps, type ReactNode } from "react";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
 
 export type PanelRuntime = {
@@ -19,6 +19,8 @@ export type PanelRuntime = {
 const Context = createContext<PanelRuntime | null>(null);
 const liveRequest: typeof fetch = (...args) => fetch(...args);
 const openAnyPanelRoute = () => true;
+const subscribeToHydration = () => () => {};
+const serverPathname = () => "";
 
 export function PanelRuntimeProvider({ value, children }: { value: PanelRuntime; children: ReactNode }) {
   return <Context.Provider value={value}>{children}</Context.Provider>;
@@ -46,7 +48,11 @@ export function usePanelRouter() {
 export function usePanelPathname() {
   const pathname = usePathname();
   const runtime = useContext(Context);
-  return runtime?.pathname || (runtime?.demo ? stripLangFromPathname(pathname).replace(/^\/demo(?=\/|$)/, "/panel") : pathname);
+  // Rewrites and streamed loading boundaries can expose a different route on the server.
+  // Keep route-derived text and active links stable until hydration has finished. Next's
+  // usePathname still drives subsequent client navigations without an effect or extra delay.
+  const hydratedPathname = useSyncExternalStore(subscribeToHydration, () => pathname, serverPathname);
+  return runtime?.pathname || (runtime?.demo ? stripLangFromPathname(hydratedPathname).replace(/^\/demo(?=\/|$)/, "/panel") : hydratedPathname);
 }
 
 export function offlinePanelHref(href: string) {

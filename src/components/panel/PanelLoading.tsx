@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePanelPathname } from "./PanelRuntime";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { stripLangFromPathname } from "@/lib/i18n/routing";
 import { panelTranslations } from "@/lib/i18n/panel-translations";
@@ -16,7 +16,7 @@ function Placeholder({ className = "" }: { className?: string }) {
 
 export default function PanelLoading() {
   const { lang } = useLanguage();
-  const pathname = stripLangFromPathname(usePathname()).replace(/^\/demo(?=\/|$)/, "/panel");
+  const pathname = stripLangFromPathname(usePanelPathname()).replace(/^\/demo(?=\/|$)/, "/panel");
   const t = panelTranslations[lang].adminShell;
   const loading = {
 ru: "Загрузка…",
@@ -30,7 +30,8 @@ ru: "Загрузка…",
   }[lang];
   const profile = /^\/panel\/patients\/[^/]+/.test(pathname);
   const calendar = pathname === "/panel/calendar";
-  const title = pathname.startsWith("/panel/patients") ? t.patients
+  const title = !pathname ? loading
+    : pathname.startsWith("/panel/patients") ? t.patients
     : pathname === "/panel/workers" ? t.workers
     : calendar ? t.calendar
     : pathname === "/panel/meet" ? crmTranslations[lang].meetings

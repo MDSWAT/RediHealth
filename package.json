@@ -54,6 +54,7 @@
     "@types/three": "^0.187.0",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
+    "jsdom": "26.1.0",
     "mysql2": "^3.24.6",
     "tailwindcss": "^4",
     "tsx": "^4.23.15",
