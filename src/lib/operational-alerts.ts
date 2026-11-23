@@ -60,7 +60,7 @@ export async function notifyOperationalIssue(input: OperationalAlertInput) {
   const detailsText = formatDetails(input.details);
 
   const textBody = [
-    `[${severity.toUpperCase()}] ${input.title}`,
+    `[${severity}] ${input.title}`,
     "",
     `Source: ${input.source}`,
     `Detected at (UTC): ${timestamp}`,
@@ -80,7 +80,7 @@ export async function notifyOperationalIssue(input: OperationalAlertInput) {
 
   const htmlBody = renderBrandEmail({
     previewText: `Operational alert: ${input.title}`,
-    badgeText: "Critical Alert",
+    badgeText: "Critical alert",
     heading: input.title,
     intro: input.summary,
     align: "left",
@@ -99,10 +99,10 @@ export async function notifyOperationalIssue(input: OperationalAlertInput) {
   try {
     await sendEmail({
       to: recipients,
-      subject: `[RediHealth ${severity.toUpperCase()}] ${input.title}`,
+      subject: `[RediHealth ${severity}] ${input.title}`,
       text: textBody,
       html: htmlBody,
-      displayName: "RediHealth Ops Alerts",
+      displayName: "RediHealth alerts",
     });
     return true;
   } catch (error) {

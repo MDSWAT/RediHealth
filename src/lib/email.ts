@@ -1,9 +1,4 @@
-import {
-  AccountApi,
-  Configuration,
-  SendApi,
-  type V1SendRequest,
-} from "hostinger-mail-api-sdk";
+import { Resend } from "resend";
 import type { TreatmentPlan } from "@/lib/types/patient";
 import { getTreatmentEntries, sortTreatments } from "@/lib/treatments";
 import type { Lang } from "@/lib/i18n/translations";
@@ -111,23 +106,23 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
 
   en: {
     greeting: "Hello",
-    teamName: "The RediHealth Team",
-    footerBrand: "RediHealth · Healthcare Support and Patient Portal",
+    teamName: "The RediHealth team",
+    footerBrand: "RediHealth · Healthcare support and patient portal",
     footerContactLead: "Questions or feedback?",
-    footerContactLink: "Contact Support",
+    footerContactLink: "Contact support",
     patientFallbackName: "Patient",
-    emergencyHeading: "Emergency Notice:",
+    emergencyHeading: "Emergency notice:",
     emergencyText: "RediHealth is not an emergency response service. If you are experiencing a life-threatening medical emergency, please call 112 immediately.",
     portal: {
-      subject: "Your RediHealth Patient Portal and Care Plan Link",
+      subject: "Your RediHealth patient portal and care plan link",
       preview: "Your RediHealth patient portal is ready.",
-      badge: "Patient Portal",
+      badge: "Patient portal",
       heading: "Your medical portal is ready",
       intro: "Your personal patient portal is now active. Access your profile to review your care instructions, report symptoms, and connect with your care team.",
-      textIntro: "Your RediHealth Patient Profile and Portal Access is ready! You can view your medical profile, condition notes, care instructions, report new symptoms, add photos, and request follow-ups using your personal link:",
-      cta: "Open Patient Portal",
+      textIntro: "Your RediHealth patient profile and portal access are ready. You can view your medical profile, condition notes, care instructions, report new symptoms, add photos, and request follow-ups using your personal link:",
+      cta: "Open patient portal",
       linkDuration: "This secure portal link is valid for 90 days. After that, or if you lose it, request a new link from the RediHealth sign-in page.",
-      conditionSummary: "Condition / Symptoms Summary",
+      conditionSummary: "Condition and symptoms summary",
       portalDetailsHeading: "In your patient portal",
       portalDetails: [
         "View diagnosis and care plan directives",
@@ -135,7 +130,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
         "Schedule and attend follow-up video visits",
         "Upload medical photos or relevant health documents",
       ],
-      fallbackName: "Valued Customer",
+      fallbackName: "Valued patient",
       treatmentPlan: "Treatment plan",
       datesNotRecorded: "Dates not recorded",
       diagnosis: "Diagnosis",
@@ -146,12 +141,12 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
     meeting: {
       subject: "Invitation",
       preview: (title: string) => `Video appointment invitation: ${title}`,
-      badge: "Video Appointment",
+      badge: "Video appointment",
       heading: "You're invited to a video visit",
       intro: "A video consultation has been scheduled with your healthcare support team. When it is time for your appointment, tap the button below to join directly in your browser.",
       textInvitation: (title) => `You have been invited to a RediHealth video appointment: ${title}.`,
-      cta: "Join Video Visit",
-      appointment: "Scheduled Appointment",
+      cta: "Join video visit",
+      appointment: "Scheduled appointment",
       joinText: "Join the meeting at:",
       closing: "If you need help connecting, please contact your healthcare team.",
       footerReason: "You received this email because an appointment was scheduled for you on RediHealth.",
@@ -417,64 +412,101 @@ type EmailMessage = {
   text: string;
   html?: string;
   displayName?: string;
+  replyTo?: string;
 };
 
-let mailboxResourceId: string | undefined;
+const DEFAULT_EMAIL_FROM = `no-reply@${LEGAL_OPERATOR.platformDomain}`;
+const DEFAULT_DISPLAY_NAME = "RediHealth";
 
-function getHostingerMailConfig() {
-  const accessToken = process.env.HOSTINGER_MAIL_API_TOKEN;
-  const fromAddress = process.env.HOSTINGER_MAIL_FROM;
-  const displayName = process.env.HOSTINGER_MAIL_DISPLAY_NAME || "RediHealth";
+class ResendDeliveryError extends Error {
+  readonly response?: { status?: number };
 
-  if (!accessToken || !fromAddress) {
+  constructor(message: string, status?: number | null) {
+    super(message);
+    this.name = "ResendDeliveryError";
+    if (typeof status === "number" && Number.isInteger(status)) {
+      this.response = { status };
+    }
+  }
+}
+
+let cachedResendClient: { apiKey: string; client: Resend } | null = null;
+
+function sanitizeHeaderPart(value: string): string {
+  return value.replace(/[\r\n<>"]/g, "").trim();
+}
+
+function getResendMailConfig() {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  if (!apiKey) {
     return null;
   }
 
-  return { accessToken, fromAddress, displayName };
+  const fromAddress = (
+    process.env.EMAIL_FROM ||
+    process.env.RESEND_FROM_EMAIL ||
+    DEFAULT_EMAIL_FROM
+  ).trim();
+  const displayName =
+    sanitizeHeaderPart(process.env.EMAIL_DISPLAY_NAME || DEFAULT_DISPLAY_NAME) ||
+    DEFAULT_DISPLAY_NAME;
+  const replyTo = (process.env.EMAIL_REPLY_TO || LEGAL_OPERATOR.contactEmail).trim();
+
+  if (!fromAddress) {
+    return null;
+  }
+
+  return { apiKey, fromAddress, displayName, replyTo };
+}
+
+function getResendClient(apiKey: string): Resend {
+  if (cachedResendClient && cachedResendClient.apiKey === apiKey) {
+    return cachedResendClient.client;
+  }
+  const client = new Resend(apiKey);
+  cachedResendClient = { apiKey, client };
+  return client;
 }
 
 export function isEmailConfigured() {
-  return getHostingerMailConfig() !== null;
+  return getResendMailConfig() !== null;
 }
 
-export async function sendEmail({ to, subject, text, html, displayName }: EmailMessage) {
-  const config = getHostingerMailConfig();
+export async function sendEmail({ to, subject, text, html, displayName, replyTo }: EmailMessage) {
+  const config = getResendMailConfig();
   if (!config) {
-    throw new Error("Hostinger Mail API is not configured.");
+    throw new Error("Resend email delivery is not configured.");
   }
 
-  const sdkConfig = new Configuration({ accessToken: config.accessToken });
+  const resolvedName = sanitizeHeaderPart(displayName || config.displayName) || config.displayName;
+  const from = config.fromAddress.includes("<")
+    ? config.fromAddress
+    : `${resolvedName} <${config.fromAddress}>`;
+  const resolvedReplyTo = (replyTo ?? config.replyTo).trim();
 
-  if (!mailboxResourceId) {
-    const account = await new AccountApi(sdkConfig).getCurrentAccount();
-    const mailbox = account.data.data.mailboxes.find(
-      ({ address }) => address.toLowerCase() === config.fromAddress.toLowerCase(),
-    );
-
-    if (!mailbox) {
-      throw new Error(
-        `The Hostinger API token cannot manage ${config.fromAddress}.`,
-      );
-    }
-
-    mailboxResourceId = mailbox.resourceId;
-  }
-
-  const message = {
+  const client = getResendClient(config.apiKey);
+  const { error } = await client.emails.send({
+    from,
     to: Array.isArray(to) ? to : [to],
-    displayName: displayName || config.displayName,
+    ...(resolvedReplyTo ? { replyTo: resolvedReplyTo } : {}),
     subject,
     text,
-    html: html || "",
-  } as V1SendRequest;
+    ...(html ? { html } : {}),
+  });
 
-  await new SendApi(sdkConfig).sendEmail(mailboxResourceId, message);
+  if (error) {
+    throw new ResendDeliveryError(
+      error.message || "Resend email delivery failed.",
+      error.statusCode,
+    );
+  }
 }
 
 export type BrandEmailOptions = {
   lang?: Lang;
   previewText: string;
   badgeText?: string;
+  badgeTone?: "default" | "critical";
   heading: string;
   recipientName?: string;
   intro?: string;
@@ -497,6 +529,7 @@ export function renderBrandEmail({
   lang = "en",
   previewText,
   badgeText,
+  badgeTone,
   heading,
   recipientName,
   intro,
@@ -506,7 +539,7 @@ export function renderBrandEmail({
   emergencyNotice = false,
   closingText,
   footerReason,
-  align = "center",
+  align = "left",
 }: BrandEmailOptions) {
   const copy = panelEmailCopy[lang];
   const userCopy = emailTranslations[lang];
@@ -518,32 +551,34 @@ export function renderBrandEmail({
   const safeFooterReason = escapeHtml(footerReason ?? userCopy.defaultReason);
   const isCentered = align === "center";
   const textAlign = isCentered ? "center" : "left";
+  const isCritical =
+    badgeTone === "critical" || Boolean(badgeText && /critical|alert/i.test(badgeText));
+  const topBarColor = isCritical ? "#c62f3c" : "#1d3557";
+  const platformUrl = `https://${LEGAL_OPERATOR.platformDomain}`;
+  const logoUrl = `${platformUrl}/pwa/pwa-192x192.png`;
 
-  const badgeHtml = badgeText
-    ? `
-      <tr>
-        <td align="${textAlign}" style="padding: 0 0 12px 0;">
-          <span class="email-badge" style="display: inline-block; font-size: 11px; line-height: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #cc3846; background-color: #fbeef0; padding: 4px 12px; border-radius: 9999px;">
-            ${escapeHtml(badgeText)}
-          </span>
-        </td>
-      </tr>`
+  const headerBadgeHtml = badgeText
+    ? `<td align="right" valign="middle" style="padding-left: 12px;">
+        <span class="${isCritical ? "email-badge-critical" : "email-badge"}" style="display: inline-block; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.01em; color: ${isCritical ? "#a8242f" : "#475569"}; white-space: nowrap;">
+          ${escapeHtml(badgeText)}
+        </span>
+      </td>`
     : "";
 
   const codeHtml = codeBlock
     ? `
       <tr>
-        <td align="center" style="padding: 6px 0 20px 0;">
-          <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin: 0 auto; width: 100%; max-width: 360px;">
+        <td align="center" style="padding: 4px 0 22px 0;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate; border-spacing: 0;">
             <tr>
-              <td class="email-box" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 22px 16px; text-align: center;">
-                <div style="font-size: 11px; line-height: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #64748b; margin-bottom: 8px;">
+              <td class="email-box" style="background-color: #f4f7fb; border: 1px solid #d7e2f0; border-radius: 14px; padding: 24px 20px; text-align: center;">
+                <div class="email-subtext" style="font-size: 13px; line-height: 18px; font-weight: 600; color: #475569; margin: 0 0 10px 0;">
                   ${escapeHtml(userCopy.code.label)}
                 </div>
-                <div class="email-code-digits" style="font-family: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', monospace; font-size: 38px; line-height: 44px; font-weight: 800; letter-spacing: 8px; text-indent: 8px; color: #0f172a; margin: 4px 0 8px 0;">
+                <div class="email-code-digits" style="font-family: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', monospace; font-size: 38px; line-height: 44px; font-weight: 800; letter-spacing: 8px; text-indent: 8px; color: #0b132b; margin: 4px 0 12px 0;">
                   ${escapeHtml(codeBlock.code)}
                 </div>
-                <div class="email-subtext" style="font-size: 12px; line-height: 16px; color: #94a3b8; font-weight: 500;">
+                <div class="email-subtext" style="font-size: 12px; line-height: 18px; color: #64748b; font-weight: 500;">
                   ${escapeHtml(userCopy.code.expires)} ${escapeHtml(codeBlock.expiresInText || userCopy.code.duration)} · ${escapeHtml(userCopy.code.secret)}
                 </div>
               </td>
@@ -556,16 +591,19 @@ export function renderBrandEmail({
   const ctaHtml = cta
     ? `
       <tr>
-        <td align="${textAlign}" style="padding: 10px 0 24px 0;">
-          <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="${textAlign === "center" ? "center" : "left"}" style="${textAlign === "center" ? "margin: 0 auto;" : ""}">
+        <td align="${textAlign}" style="padding: 6px 0 22px 0;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="${isCentered ? "center" : "left"}" style="${isCentered ? "margin: 0 auto;" : ""}">
             <tr>
-              <td style="border-radius: 10px; background-color: #cc3846;">
-                <a href="${escapeHtml(cta.url)}" class="button-link" style="display: inline-block; padding: 13px 30px; font-size: 15px; line-height: 20px; font-weight: 600; color: #ffffff !important; text-decoration: none; border-radius: 10px; background-color: #cc3846;">
+              <td style="border-radius: 10px; background-color: #1d3557;">
+                <a href="${escapeHtml(cta.url)}" class="button-link" style="display: inline-block; padding: 14px 28px; font-size: 15px; line-height: 20px; font-weight: 600; color: #ffffff !important; text-decoration: none; border-radius: 10px; background-color: #1d3557;">
                   ${escapeHtml(cta.label)}
                 </a>
               </td>
             </tr>
           </table>
+          <div class="email-subtext" style="clear: both; padding-top: 12px; font-size: 12px; line-height: 18px; color: #64748b; word-break: break-all; text-align: ${textAlign};">
+            <a href="${escapeHtml(cta.url)}" class="email-link" style="color: #1d3557; text-decoration: underline;">${escapeHtml(cta.url)}</a>
+          </div>
         </td>
       </tr>`
     : "";
@@ -573,11 +611,11 @@ export function renderBrandEmail({
   const emergencyHtml = emergencyNotice
     ? `
       <tr>
-        <td style="padding: 8px 0 20px 0;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate; border-spacing: 0; background-color: #fff9f9; border: 1px solid #fee2e2; border-left: 3px solid #cc3846; border-radius: 10px;">
+        <td style="padding: 4px 0 20px 0;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-emergency-box" style="border-collapse: separate; border-spacing: 0; background-color: #fff6f7; border: 1px solid #f5c6cb; border-left: 4px solid #c62f3c; border-radius: 10px;">
             <tr>
-              <td style="padding: 12px 16px; font-size: 13px; line-height: 20px; color: #991b1b; text-align: left;">
-                <strong style="color: #991b1b;">${escapeHtml(copy.emergencyHeading)}</strong> ${escapeHtml(copy.emergencyText)}
+              <td class="email-emergency" style="padding: 13px 16px; font-size: 13px; line-height: 20px; color: #8f1d27; text-align: left;">
+                <strong style="color: #8f1d27;">${escapeHtml(copy.emergencyHeading)}</strong> ${escapeHtml(copy.emergencyText)}
               </td>
             </tr>
           </table>
@@ -586,7 +624,7 @@ export function renderBrandEmail({
     : "";
 
   const greetingHtml = safeRecipientName
-    ? `<tr><td class="email-body-text" style="padding: 0 0 10px 0; font-size: 15px; line-height: 24px; color: #334155; text-align: ${textAlign};">${escapeHtml(copy.greeting)} <strong>${safeRecipientName}</strong>,</td></tr>`
+    ? `<tr><td class="email-body-text" style="padding: 0 0 10px 0; font-size: 15px; line-height: 24px; color: #334155; text-align: ${textAlign};">${escapeHtml(copy.greeting)} <strong class="email-heading" style="color: #0b132b;">${safeRecipientName}</strong>,</td></tr>`
     : "";
 
   const introHtml = safeIntro
@@ -620,9 +658,10 @@ export function renderBrandEmail({
       img {
         -ms-interpolation-mode: bicubic;
         border: 0;
+        display: block;
       }
       a {
-        color: #cc3846;
+        color: #1d3557;
       }
       a[x-apple-data-detectors],
       #MessageViewBody a,
@@ -641,17 +680,19 @@ export function renderBrandEmail({
       }
       @media (prefers-color-scheme: dark) {
         body, #body, .email-bg {
-          background-color: #0b0f17 !important;
+          background-color: #0a1226 !important;
         }
         .email-card {
-          background-color: #141c2b !important;
-          border-color: #223048 !important;
+          background-color: #101a33 !important;
+          border-color: #233252 !important;
         }
-        .email-brand-name {
-          color: #f8fafc !important;
+        .email-card-header,
+        .email-border {
+          border-color: #233252 !important;
         }
+        .email-brand-name,
         .email-heading {
-          color: #f8fafc !important;
+          color: #fbfaf6 !important;
         }
         .email-body-text {
           color: #cbd5e1 !important;
@@ -660,83 +701,139 @@ export function renderBrandEmail({
           color: #94a3b8 !important;
         }
         .email-box {
-          background-color: #0d1420 !important;
-          border-color: #223048 !important;
+          background-color: #0b132b !important;
+          border-color: #233252 !important;
+        }
+        .email-inner-surface {
+          background-color: #14203d !important;
+          border-color: #233252 !important;
+          color: #e2e8f0 !important;
         }
         .email-code-digits {
-          color: #ffffff !important;
+          color: #fbfaf6 !important;
         }
         .email-badge {
-          background-color: #271d24 !important;
-          color: #f87171 !important;
+          color: #94a3b8 !important;
+        }
+        .email-badge-critical {
+          color: #fca5a5 !important;
+        }
+        .email-emergency-box {
+          background-color: #2b141a !important;
+          border-color: #5e222e !important;
+          border-left-color: #f87171 !important;
+        }
+        .email-emergency,
+        .email-emergency strong {
+          color: #fecdd3 !important;
+        }
+        .email-link {
+          color: #bfdbfe !important;
         }
         .email-footer-text {
-          color: #64748b !important;
-        }
-        .email-border {
-          border-color: #223048 !important;
+          color: #94a3b8 !important;
         }
       }
       @media screen and (max-width: 600px) {
         .email-container {
           width: 100% !important;
         }
-        .email-card {
-          border-radius: 12px !important;
-          padding: 28px 20px !important;
+        .email-header-pad {
+          padding: 20px 20px 16px 20px !important;
+        }
+        .email-body-pad {
+          padding: 24px 20px 22px 20px !important;
         }
         .email-heading {
           font-size: 21px !important;
           line-height: 28px !important;
         }
+        .email-code-digits {
+          font-size: 32px !important;
+          line-height: 38px !important;
+          letter-spacing: 6px !important;
+          text-indent: 6px !important;
+        }
       }
     </style>
   </head>
-  <body id="body" class="email-bg" style="margin: 0; padding: 0; width: 100% !important; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+  <body id="body" class="email-bg" style="margin: 0; padding: 0; width: 100% !important; background-color: #fcfbf9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
     <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all;">
       ${safePreviewText} ${previewSpacingFiller}
     </div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-bg" style="background-color: #f8fafc;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-bg" style="background-color: #fcfbf9;">
       <tr>
-        <td align="center" style="padding: 40px 14px 44px 14px;">
-          <table role="presentation" class="email-container" width="540" cellpadding="0" cellspacing="0" border="0" align="center" style="width: 540px; max-width: 540px; margin: 0 auto;">
-            <!-- Main White Card -->
+        <td align="center" style="padding: 32px 14px 40px 14px;">
+          <table role="presentation" class="email-container" width="560" cellpadding="0" cellspacing="0" border="0" align="center" style="width: 560px; max-width: 560px; margin: 0 auto;">
+            <!-- Main Elevated Card -->
             <tr>
-              <td class="email-card" style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 36px 32px 32px 32px; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);">
+              <td class="email-card" style="background-color: #ffffff; border: 1px solid #e6e3dc; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 18px rgba(11, 19, 43, 0.05);">
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                  ${badgeHtml}
+                  <!-- Accent Hairline -->
                   <tr>
-                    <td class="email-heading" style="padding: 0 0 14px 0; font-size: 23px; line-height: 30px; font-weight: 700; color: #0f172a; letter-spacing: -0.02em; text-align: ${textAlign};">
-                      ${safeHeading}
+                    <td style="background-color: ${topBarColor}; height: 4px; line-height: 4px; font-size: 1px;">&nbsp;</td>
+                  </tr>
+                  <!-- Brand Header -->
+                  <tr>
+                    <td class="email-header-pad email-card-header" style="padding: 22px 32px 18px 32px; border-bottom: 1px solid #edf0f5;">
+                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td align="left" valign="middle">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                              <tr>
+                                <td valign="middle" style="padding-right: 10px;">
+                                  <img src="${logoUrl}" width="28" height="28" alt="RediHealth" style="width: 28px; height: 28px; border-radius: 7px;" />
+                                </td>
+                                <td valign="middle">
+                                  <a href="${platformUrl}" class="email-brand-name" style="font-size: 17px; line-height: 22px; font-weight: 700; letter-spacing: -0.02em; color: #0b132b; text-decoration: none;">RediHealth</a>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          ${headerBadgeHtml}
+                        </tr>
+                      </table>
                     </td>
                   </tr>
-                  ${greetingHtml}
-                  ${introHtml}
-                  ${codeHtml}
-                  ${ctaHtml}
-                  ${contentHtml}
-                  ${emergencyHtml}
+                  <!-- Content Body -->
                   <tr>
-                    <td class="email-subtext" style="padding: 12px 0 0 0; font-size: 14px; line-height: 22px; color: #64748b; text-align: ${textAlign};">
-                      ${safeClosingText}<br />
-                      <strong class="email-brand-name" style="color: #0f172a;">${escapeHtml(copy.teamName)}</strong>
+                    <td class="email-body-pad" style="padding: 28px 32px 28px 32px;">
+                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td class="email-heading" style="padding: 0 0 12px 0; font-size: 24px; line-height: 31px; font-weight: 700; color: #0b132b; letter-spacing: -0.025em; text-align: ${textAlign};">
+                            ${safeHeading}
+                          </td>
+                        </tr>
+                        ${greetingHtml}
+                        ${introHtml}
+                        ${codeHtml}
+                        ${ctaHtml}
+                        ${contentHtml}
+                        ${emergencyHtml}
+                        <tr>
+                          <td class="email-subtext email-border" style="padding: 18px 0 0 0; border-top: 1px solid #edf0f5; font-size: 14px; line-height: 22px; color: #64748b; text-align: ${textAlign};">
+                            ${safeClosingText}<br />
+                            <strong class="email-brand-name" style="color: #0b132b;">${escapeHtml(copy.teamName)}</strong>
+                          </td>
+                        </tr>
+                      </table>
                     </td>
                   </tr>
                 </table>
               </td>
             </tr>
 
-            <!-- Minimal Modern Footer -->
+            <!-- Calm Trust Footer -->
             <tr>
-              <td align="center" style="padding: 24px 16px 0 16px; text-align: center;">
-                <p class="email-footer-text" style="margin: 0 0 6px 0; font-size: 12px; line-height: 18px; color: #64748b; font-weight: 500;">
+              <td align="center" style="padding: 22px 16px 0 16px; text-align: center;">
+                <p class="email-footer-text" style="margin: 0 0 6px 0; font-size: 12px; line-height: 18px; color: #475569; font-weight: 600;">
                   ${escapeHtml(copy.footerBrand)}
                 </p>
-                <p class="email-footer-text" style="margin: 0 0 8px 0; font-size: 12px; line-height: 18px; color: #94a3b8;">
+                <p class="email-footer-text" style="margin: 0 0 8px 0; font-size: 12px; line-height: 18px; color: #64748b;">
                   ${safeFooterReason}
                 </p>
-                <p class="email-footer-text" style="margin: 0; font-size: 12px; line-height: 18px; color: #94a3b8;">
-                  ${escapeHtml(copy.footerContactLead)} <a href="mailto:${escapeHtml(LEGAL_OPERATOR.contactEmail)}" style="color: #cc3846; text-decoration: underline;">${escapeHtml(copy.footerContactLink)}</a>
+                <p class="email-footer-text" style="margin: 0; font-size: 12px; line-height: 18px; color: #64748b;">
+                  ${escapeHtml(copy.footerContactLead)} <a href="mailto:${escapeHtml(LEGAL_OPERATOR.contactEmail)}" class="email-link" style="color: #1d3557; font-weight: 600; text-decoration: underline;">${escapeHtml(copy.footerContactLink)}</a> · <a href="${platformUrl}" class="email-link" style="color: #1d3557; text-decoration: underline;">${escapeHtml(LEGAL_OPERATOR.platformDomain)}</a>
                 </p>
               </td>
             </tr>
@@ -753,11 +850,18 @@ export function renderSignInCodeEmail({ email, code, lang }: { email: string; co
   const auth = copy.code;
   return {
     subject: auth.subject,
-    text: [`${copy.greeting},`, auth.intro, `${auth.label}: ${code}`, `${auth.expires} ${auth.duration}.`, auth.ignored, auth.secret, `${copy.closing}\n${copy.team}`].join("\n\n"),
+    text: [`${copy.greeting},`, auth.intro, `${auth.label}:\n${code}`, `${auth.expires} ${auth.duration}.`, auth.ignored, auth.secret, `${copy.closing}\n${copy.team}`].join("\n\n"),
     html: renderBrandEmail({
-      lang, previewText: auth.subject, badgeText: auth.badge, heading: auth.heading, recipientName: email,
-      intro: auth.intro, codeBlock: { code }, closingText: auth.secret, footerReason: auth.reason,
-      contentHtml: `<tr><td style="padding: 0 0 20px; font-size: 14px; line-height: 22px;">${escapeHtml(auth.ignored)}</td></tr>`,
+      lang,
+      previewText: auth.subject,
+      badgeText: auth.badge,
+      heading: auth.heading,
+      recipientName: email,
+      intro: auth.intro,
+      codeBlock: { code },
+      closingText: auth.secret,
+      footerReason: auth.reason,
+      contentHtml: `<tr><td class="email-subtext" style="padding: 0 0 18px 0; font-size: 13px; line-height: 20px; color: #64748b;">${escapeHtml(auth.ignored)}</td></tr>`,
     }),
   };
 }
@@ -766,12 +870,18 @@ export function renderHelpRequestReplyEmail(input: HelpReplyInput) {
   const copy = emailTranslations[input.lang];
   const content = helpReplyContent(input);
   return {
-    subject: content.subject, text: content.text,
+    subject: content.subject,
+    text: content.text,
     html: renderBrandEmail({
-      lang: input.lang, previewText: content.heading, heading: content.heading, recipientName: input.name,
-      intro: content.intro, footerReason: copy.reply.reason,
+      lang: input.lang,
+      previewText: content.heading,
+      heading: content.heading,
+      recipientName: input.name,
+      intro: content.intro,
+      footerReason: copy.reply.reason,
       contentHtml: content.details.length
-        ? `<tr><td style="padding: 0 0 20px; font-size: 14px; line-height: 22px;">${content.details.map(line => `<p>${escapeHtml(line)}</p>`).join("")}</td></tr>` : undefined,
+        ? `<tr><td style="padding: 0 0 20px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate; border-spacing: 0;"><tr><td class="email-box email-body-text" style="background-color: #f4f7fb; border: 1px solid #d7e2f0; border-radius: 12px; padding: 14px 18px; font-size: 14px; line-height: 22px; color: #334155;">${content.details.map((line) => `<p style="margin: 0 0 8px 0;">${escapeHtml(line)}</p>`).join("")}</td></tr></table></td></tr>`
+        : undefined,
       cta: input.templateId === "referral" ? { label: copy.reply.map, url: content.mapUrl } : undefined,
     }),
   };
@@ -793,7 +903,7 @@ export async function sendHelpRequestConfirmationEmail({
   lang = "en",
 }: HelpRequestEmailParams) {
   if (!isEmailConfigured()) {
-    console.warn("Hostinger Mail API is not configured. Skipping confirmation email.");
+    console.warn("Resend email delivery is not configured. Skipping confirmation email.");
     return false;
   }
 
@@ -819,19 +929,36 @@ ${copy.team}`;
   const summaryHtml = `
       <tr>
         <td style="padding: 0 0 20px 0;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate; border-spacing: 0; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate; border-spacing: 0;">
             <tr>
-              <td style="padding: 14px 18px; font-size: 13px; line-height: 18px; font-weight: 700; color: #0f172a; border-bottom: 1px solid #e2e8f0; text-transform: uppercase; letter-spacing: 0.05em;">
-                ${escapeHtml(requestCopy.summary)}
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 14px 18px;">
-                <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">${escapeHtml(requestCopy.name)}:</strong> ${escapeHtml(name.trim() || requestCopy.missing)}</p>
-                <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">${escapeHtml(requestCopy.phone)}:</strong> ${escapeHtml(phone.trim())}</p>
-                <p style="margin: 0 0 8px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">${escapeHtml(requestCopy.email)}:</strong> ${escapeHtml(email.trim())}</p>
-                <p style="margin: 0 0 6px 0; font-size: 14px; line-height: 22px; color: #475569;"><strong style="color: #0f172a;">${escapeHtml(requestCopy.description)}:</strong></p>
-                <div style="padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #ffffff; font-size: 14px; line-height: 22px; color: #334155; white-space: pre-wrap;">${escapeHtml(description.trim())}</div>
+              <td class="email-box" style="background-color: #f9fafb; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td class="email-heading email-border" style="padding: 13px 18px; font-size: 14px; line-height: 20px; font-weight: 700; color: #0b132b; border-bottom: 1px solid #e2e8f0;">
+                      ${escapeHtml(requestCopy.summary)}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 14px 18px;">
+                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td class="email-subtext" style="padding: 0 0 8px 0; font-size: 13px; line-height: 20px; color: #64748b; width: 110px; vertical-align: top;">${escapeHtml(requestCopy.name)}</td>
+                          <td class="email-heading" style="padding: 0 0 8px 0; font-size: 14px; line-height: 20px; font-weight: 600; color: #0b132b;">${escapeHtml(name.trim() || requestCopy.missing)}</td>
+                        </tr>
+                        <tr>
+                          <td class="email-subtext" style="padding: 0 0 8px 0; font-size: 13px; line-height: 20px; color: #64748b; vertical-align: top;">${escapeHtml(requestCopy.phone)}</td>
+                          <td class="email-body-text" style="padding: 0 0 8px 0; font-size: 14px; line-height: 20px; color: #334155;">${escapeHtml(phone.trim())}</td>
+                        </tr>
+                        <tr>
+                          <td class="email-subtext" style="padding: 0 0 12px 0; font-size: 13px; line-height: 20px; color: #64748b; vertical-align: top;">${escapeHtml(requestCopy.email)}</td>
+                          <td class="email-body-text" style="padding: 0 0 12px 0; font-size: 14px; line-height: 20px; color: #334155;">${escapeHtml(email.trim())}</td>
+                        </tr>
+                      </table>
+                      <div class="email-subtext" style="margin: 0 0 6px 0; font-size: 13px; line-height: 18px; font-weight: 600; color: #475569;">${escapeHtml(requestCopy.description)}</div>
+                      <div class="email-inner-surface" style="padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #ffffff; font-size: 14px; line-height: 22px; color: #334155; white-space: pre-wrap;">${escapeHtml(description.trim())}</div>
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
           </table>
@@ -888,7 +1015,7 @@ export async function sendPatientPortalLinkEmail({
   baseUrl: requestBaseUrl,
 }: PatientPortalEmailParams) {
   if (!isEmailConfigured()) {
-    console.warn("Hostinger Mail API is not configured. Skipping patient portal email.");
+    console.warn("Resend email delivery is not configured. Skipping patient portal email.");
     return false;
   }
 
@@ -926,26 +1053,32 @@ ${copy.teamName}`;
 
   const portalDetailsHtml = `
       <tr>
-        <td align="center" style="padding: 0 0 16px 0; font-size: 13px; line-height: 20px; color: #64748b;">
+        <td class="email-subtext" style="padding: 0 0 18px 0; font-size: 13px; line-height: 20px; color: #64748b;">
           ${escapeHtml(portalCopy.linkDuration)}
         </td>
       </tr>
       <tr>
         <td style="padding: 0 0 20px 0;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate; border-spacing: 0; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate; border-spacing: 0;">
             <tr>
-              <td style="padding: 14px 18px; font-size: 13px; line-height: 18px; font-weight: 700; color: #0f172a; border-bottom: 1px solid #e2e8f0; text-transform: uppercase; letter-spacing: 0.05em;">
-                ${escapeHtml(portalCopy.portalDetailsHeading)}
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 14px 18px; font-size: 14px; line-height: 22px; color: #475569;">
-                <ul style="margin: 0; padding-left: 20px;">
-                  <li style="margin-bottom: 6px;">${escapeHtml(portalCopy.portalDetails[0])}</li>
-                  <li style="margin-bottom: 6px;">${escapeHtml(portalCopy.portalDetails[1])}</li>
-                  <li style="margin-bottom: 6px;">${escapeHtml(portalCopy.portalDetails[2])}</li>
-                  <li>${escapeHtml(portalCopy.portalDetails[3])}</li>
-                </ul>
+              <td class="email-box" style="background-color: #f9fafb; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td class="email-heading email-border" style="padding: 13px 18px; font-size: 14px; line-height: 20px; font-weight: 700; color: #0b132b; border-bottom: 1px solid #e2e8f0;">
+                      ${escapeHtml(portalCopy.portalDetailsHeading)}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="email-body-text" style="padding: 14px 18px; font-size: 14px; line-height: 22px; color: #475569;">
+                      <ul style="margin: 0; padding-left: 18px;">
+                        <li style="margin-bottom: 6px;">${escapeHtml(portalCopy.portalDetails[0])}</li>
+                        <li style="margin-bottom: 6px;">${escapeHtml(portalCopy.portalDetails[1])}</li>
+                        <li style="margin-bottom: 6px;">${escapeHtml(portalCopy.portalDetails[2])}</li>
+                        <li>${escapeHtml(portalCopy.portalDetails[3])}</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
           </table>
@@ -999,7 +1132,7 @@ export async function sendMeetingInvitationEmail({
   date?: string; time?: string; timezone?: string;
 }) {
   if (!isEmailConfigured()) {
-    console.warn("Hostinger Mail API is not configured. Skipping meeting invitation email.");
+    console.warn("Resend email delivery is not configured. Skipping meeting invitation email.");
     return false;
   }
 
@@ -1022,12 +1155,12 @@ ${copy.teamName}`;
   const meetingDetailsHtml = `
       <tr>
         <td style="padding: 0 0 20px 0;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate; border-spacing: 0; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: separate; border-spacing: 0;">
             <tr>
-              <td style="padding: 16px 18px; font-size: 14px; line-height: 22px; color: #475569; text-align: center;">
-                <div style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">${escapeHtml(meetingCopy.appointment)}</div>
-                <div style="font-size: 16px; font-weight: 700; color: #0f172a;">${escapeHtml(title)}</div>
-                ${appointment ? `<p>${escapeHtml(appointment)}</p>` : ""}
+              <td class="email-box" style="background-color: #f4f7fb; border: 1px solid #d7e2f0; border-radius: 12px; padding: 18px 20px; text-align: left;">
+                <div class="email-subtext" style="font-size: 12px; line-height: 18px; font-weight: 600; color: #475569; margin-bottom: 4px;">${escapeHtml(meetingCopy.appointment)}</div>
+                <div class="email-heading" style="font-size: 17px; line-height: 24px; font-weight: 700; color: #0b132b;">${escapeHtml(title)}</div>
+                ${appointment ? `<p class="email-body-text" style="margin: 6px 0 0 0; font-size: 14px; line-height: 20px; color: #334155;">${escapeHtml(appointment)}</p>` : ""}
               </td>
             </tr>
           </table>

@@ -31,7 +31,6 @@
     "@nextlytics/core": "0.8.0",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.119.2",
-    "hostinger-mail-api-sdk": "^1.19.0",
     "jose": "^6.2.10",
     "leaflet": "^1.9.4",
     "motion": "^14.10.1",
@@ -42,6 +41,7 @@
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-leaflet": "^5.0.0",
+    "resend": "^6.39.0",
     "three": "^0.187.0"
   },
   "devDependencies": {

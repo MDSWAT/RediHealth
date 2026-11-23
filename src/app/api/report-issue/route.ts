@@ -111,7 +111,7 @@ export async function POST(request: Request) {
             </tr>
             <tr>
               <td style="padding: 14px 16px;">
-                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 18px; font-weight: 700; color: #0f172a; text-transform: uppercase; letter-spacing: 0.04em;">Issue details</p>
+                <p style="margin: 0 0 8px 0; font-size: 13px; line-height: 18px; font-weight: 700; color: #0f172a;">Issue details</p>
                 <div style="white-space: pre-wrap; font-size: 14px; line-height: 22px; color: #334155; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #ffffff; padding: 12px;">${escapeHtml(message)}</div>
               </td>
             </tr>
@@ -121,7 +121,7 @@ export async function POST(request: Request) {
 
   const htmlBody = renderBrandEmail({
     previewText: "A new issue report was submitted on RediHealth.",
-    badgeText: "Issue Report",
+    badgeText: "Issue report",
     heading: "New website issue report",
     intro: "A user submitted an issue from the website.",
     contentHtml: detailsHtml,
@@ -136,7 +136,7 @@ export async function POST(request: Request) {
       subject: `RediHealth issue report: ${subjectPreview}`,
       text: textBody,
       html: htmlBody,
-      displayName: "RediHealth Alerts",
+      displayName: "RediHealth alerts",
     });
   } catch (error) {
     console.error("Failed to send issue report email", error);

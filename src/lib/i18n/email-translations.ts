@@ -17,25 +17,25 @@ export const emailTranslations: Record<Lang, EmailCopy> = {
 "rom": {"greeting":"Mishto avilyan","closing":"Sastipnasa,","team":"I ekipa RediHealth","defaultReason":"Akava email avel vash chi aktivita pe RediHealth.","code":{"subject":"Cho RediHealth kodo vash konfirmacia","badge":"Kodo vash konfirmacia","heading":"Anderav pe RediHealth","intro":"Lel o kodo telal vash jekhvarno sigurno anderavimos ande cho konto.","label":"Kodo vash konfirmacia","duration":"10 minuti","expires":"O kodo agorisarel ande","secret":"Ma de akava kodo khanikaske.","ignored":"Te na manglyan akava kodo, shaj te mukhes akava email. Cho konto na paruvdilo.","reason":"Akava email avel ke ekh anderavimos sas manglo vash chi email adresa."},"request":{"subject":"Konfirmacia: cho mangimos vash sastipnasko zhutimos si lino — RediHealth","badge":"Mangimos lino","heading":"Liyam cho mangimos","intro":"Nais tuke ke kontaktisardyan RediHealth. Amari sastipnaski ekipa liyas cho mangimos thaj sigo ka drabarel les.","summary":"Xarno mangimos","name":"Anav","phone":"Telefono","email":"Email","description":"Vakerimos","missing":"Naj dino","reason":"Akava email avel ke ekh mangimos vash sastipnasko zhutimos sas bichhaldo kadale adresasa."},"reply":{"reason":"Akava si amaro palpale vakerimos vash cho mangimos pe RediHealth.","topic":"Tema e mangimaski","phone":"Telefono vash kontakto","call":"Ekh manush katar amari sastipnaski ekipa sigo ka akharel tut pe","preferredTime":"Lekhar amenge kana shaj te des duma.","map":"Phuter i mapa vash zhutimos","templates":{"acknowledgment":{"subject":"Cho mangimos si lino","intro":"Liyam cho mangimos vash sastipnasko zhutimos thaj amari ekipa drabarel les akana."},"consultation":{"subject":"Vakerimos thaj zhutimos","intro":"Shaj te akharas tut vash ekh kharno vakerimos vay te zhutas tut te arakhes pashutni klinika."},"referral":{"subject":"Zhutimos thaj e avutne pasura","intro":"Vash kodya so lekhardyan amenge, dzha ko cho familijako doktori vay ki pashutni klinika. Arakhes klinike thaj farmaciye pe amari mapa."}}}},
 
   en: {
-    greeting: "Hello", closing: "Best regards,", team: "The RediHealth Team",
+    greeting: "Hello", closing: "Best regards,", team: "The RediHealth team",
     defaultReason: "You received this email regarding your RediHealth activity.",
     code: {
-      subject: "Your RediHealth verification code", badge: "Verification Code", heading: "Sign in to RediHealth",
+      subject: "Your RediHealth verification code", badge: "Verification code", heading: "Sign in to RediHealth",
       intro: "Use the one-time verification code below to securely access your RediHealth account.",
-      label: "Verification Code", duration: "10 minutes", expires: "Expires in", secret: "Never share this code with anyone.",
+      label: "Verification code", duration: "10 minutes", expires: "Expires in", secret: "Never share this code with anyone.",
       ignored: "If you did not request this code, you can ignore this email. No changes have been made to your account.",
       reason: "You received this email because a sign-in attempt was initiated for your email address.",
     },
     request: {
-      subject: "Confirmation: Medical Help Request Received - RediHealth", badge: "Request Received", heading: "We received your request",
+      subject: "Confirmation: medical help request received - RediHealth", badge: "Request received", heading: "We received your request",
       intro: "Thank you for reaching out to RediHealth. Our healthcare team has received your medical assistance request and will review it shortly.",
-      summary: "Request Summary", name: "Name", phone: "Phone", email: "Email", description: "Description", missing: "Not provided",
+      summary: "Request summary", name: "Name", phone: "Phone", email: "Email", description: "Description", missing: "Not provided",
       reason: "You received this email because a medical assistance request was submitted for this address.",
     },
     reply: {
       reason: "You received this email in response to your medical help request on RediHealth.",
       topic: "Request topic", phone: "Contact phone", call: "A member of our healthcare team will call you shortly at",
-      preferredTime: "Please reply with your preferred time for a call.", map: "Open Find Help map",
+      preferredTime: "Please reply with your preferred time for a call.", map: "Open find help map",
       templates: {
         acknowledgment: { subject: "Medical request received", intro: "We received your medical help request and a member of our healthcare team is now reviewing it." },
         consultation: { subject: "Support consultation options", intro: "We can schedule a short call or help you find a nearby healthcare facility." },

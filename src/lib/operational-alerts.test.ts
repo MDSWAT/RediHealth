@@ -26,6 +26,6 @@ it("continues to email critical service failures with the existing rate limits",
     hourlyCap: { key: "errors", limit: 40 },
   })).toBe(true);
   expect(checkRateLimit).toHaveBeenCalledTimes(2);
-  expect(renderBrandEmail).toHaveBeenCalledWith(expect.objectContaining({ badgeText: "Critical Alert" }));
-  expect(sendEmail).toHaveBeenCalledWith(expect.objectContaining({ subject: "[RediHealth CRITICAL] Database unavailable" }));
+  expect(renderBrandEmail).toHaveBeenCalledWith(expect.objectContaining({ badgeText: "Critical alert" }));
+  expect(sendEmail).toHaveBeenCalledWith(expect.objectContaining({ subject: "[RediHealth critical] Database unavailable" }));
 });

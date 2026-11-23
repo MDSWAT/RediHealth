@@ -143,7 +143,7 @@ Required variables:
 | `DB_CONNECTION_LIMIT` | Maximum connections per database per server process (default `2`; positive integer). Budget across all app instances, local servers and background jobs |
 | `DATABASE_SSL`, `DATABASE_SSL_CA` | Enable TLS to the database; the server certificate is verified. Set `DATABASE_SSL_REJECT_UNAUTHORIZED=false` only for self-signed development servers |
 | `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET` | Optional Google OAuth sign-in |
-| `HOSTINGER_MAIL_API_TOKEN`, `HOSTINGER_MAIL_FROM`, `HOSTINGER_MAIL_DISPLAY_NAME` | Used to send one-time login codes and patient portal links |
+| `RESEND_API_KEY`, `EMAIL_FROM`, `EMAIL_DISPLAY_NAME`, `EMAIL_REPLY_TO` | Resend API key and sender settings on the verified `redi.healthcare` domain for login codes, patient portal links, help confirmations, and alerts |
 | `OPERATIONAL_ALERT_EMAIL` | Fallback recipient for issue reports and operational alerts. Super admins can set the recipient in **Panel → Settings**, which takes precedence |
 | `ERROR_ALERTS_ENABLED` | Automatic emails for critical server failures and browser render crashes (default on in production). Warnings, info alerts, ordinary browser reports and recoverable React hydration errors (#418) stay in logs. Explicit critical service alerts use their own existing controls |
 | `ANTHROPIC_API_KEY` | Server-only Anthropic API key for the Health Assistant, prescription-image review and AI summaries; requests go directly to `https://api.anthropic.com` |
