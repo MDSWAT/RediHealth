@@ -10,7 +10,7 @@ import { serializeTranslations } from "@/lib/i18n/languages";
 import { translations } from "@/lib/i18n/translations";
 import { cookies, headers } from "next/headers";
 import { isRecaptchaEnabled } from "@/lib/security/recaptcha-config";
-import { NextlyticsServer } from "@/nextlytics";
+import { WebsiteStatistics } from "@/components/analytics/WebsiteStatistics";
 
 // latin-ext carries ă, ș, ț, č, ć, đ, š, ž across Romanian, Croatian, Albanian, and Romani.
 // Using display: "swap" with preload: false avoids unused-preload console warnings on English/Italian
@@ -135,9 +135,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           {siteMetadata[lang].skipLink}
         </a>
         {/* Website statistics (src/nextlytics.ts): counts client-side navigations on tracked pages. */}
-        <NextlyticsServer>
+        <WebsiteStatistics>
         <SiteChrome lang={lang} initialTranslations={serializeTranslations(translations[lang])} nonce={nonce} captchaEnabled={isRecaptchaEnabled()} emergencyDismissed={emergencyDismissed}>{children}</SiteChrome>
-        </NextlyticsServer>
+        </WebsiteStatistics>
       </body>
     </html>
   );
