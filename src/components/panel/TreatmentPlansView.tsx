@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -7,6 +6,7 @@ import { langToLocale } from "@/lib/i18n/panel-translations";
 import { getTreatmentEntries, sortTreatments, treatmentStatus } from "@/lib/treatments";
 import { formatDateKey, localDateKey } from "@/lib/panel-dates";
 import type { TreatmentPlan } from "@/lib/types/patient";
+import { PatientPhotoGallery } from "./PatientMedia";
 
 export function TreatmentPlansView({ plan }: { plan?: TreatmentPlan | null }) {
   const { lang } = useLanguage();
@@ -27,12 +27,7 @@ export function TreatmentPlansView({ plan }: { plan?: TreatmentPlan | null }) {
       </dl>
       {!!entry.photos?.length && <div className="mt-4">
         <h4 className="mb-2 text-xs font-semibold text-muted-foreground">{t.photos}</h4>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {entry.photos.map((photo) => <a key={photo.id} href={photo.data_url} target="_blank" rel="noreferrer" className="min-w-0 rounded-md border border-border p-2">
-            <img src={photo.data_url} alt={photo.name} className="h-24 w-full rounded object-contain" />
-            <p className="mt-1 break-words text-xs">{photo.name}</p>
-          </a>)}
-        </div>
+        <PatientPhotoGallery photos={entry.photos} />
       </div>}
     </article>)}
   </div>;

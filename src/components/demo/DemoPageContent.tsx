@@ -16,6 +16,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
 import { createDemoData, DEMO_STORAGE_KEY, DEMO_WORKERS, DemoPanelStore, demoInbox, parseDemoData, type DemoRole } from "@/lib/demo-panel";
 import { demoPanelTranslations } from "@/lib/i18n/demo-panel-translations";
+import { PatientPortalView } from "@/components/portal/PatientPortalView";
 
 const DemoScreenContext = createContext<ReactNode>(null);
 
@@ -131,6 +132,8 @@ export function DemoPageContent({ children }: { children: ReactNode }) {
   // Same set as the inbox's first folder, so the menu badge and "Needs attention" agree.
   const pendingRequestsCount = data.requests.filter((r) => r.status === "pending" || r.status === "in_progress").length;
   const path = stripLangFromPathname(pathname).slice("/demo".length) || "/";
+  // The patient cabinet demo uses local view state. Production portal writes still require its token and captcha.
+  if (path === "/cabinet" && data.patients[0]) return <>{toolbar}<DemoScreenContext.Provider value={<PatientPortalView initialPatient={data.patients[0]} token="" country="RO" onPatch={async () => undefined} />}>{children}</DemoScreenContext.Provider></>;
   const patientMatch = /^\/patients\/(\d+)$/.exec(path);
   const meetingMatch = /^\/patients\/(\d+)\/meet\/(\d+)$/.exec(path);
   let content;

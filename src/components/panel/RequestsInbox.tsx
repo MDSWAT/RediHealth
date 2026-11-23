@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
+import { panelWorkspaceTranslations } from "@/lib/i18n/panel-workspace-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import { dayLabel, formatPanelDate, requestDay } from "@/lib/panel-dates";
@@ -13,12 +14,13 @@ import { CreatePatientModal } from "./CreatePatientModal";
 import { QuickTemplatesModal } from "./QuickTemplatesModal";
 import { useUnsavedChanges } from "./useUnsavedChanges";
 import { csvTimestamp, downloadCsv } from "./panel-csv";
-import { ChevronLeftIcon } from "@/components/ui/icons";
+import { ChevronLeftIcon, FileTextIcon, SearchIcon, FilterIcon, RefreshIcon } from "@/components/ui/icons";
 
 export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, isRomania }: { isAdmin?: boolean; isRomania: boolean; initialInbox: InboxPage; onPendingChange: (count: number) => void }) {
   const { lang } = useLanguage();
   const { request: fetch } = usePanelRuntime();
   const t = crmTranslations[lang];
+  const copy = panelWorkspaceTranslations[lang];
   const locale = langToLocale[lang];
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -39,6 +41,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
   query.delete("request"); query.set("folder", folder); query.set("limit", "50"); query.delete("page");
   const queryString = query.toString();
   const selected = inbox.requests.find((r) => r.id === requestId) || (detached?.id === requestId ? detached : null);
+  const hasFilters = ["q", "priority", "from", "to"].some((key) => Boolean(searchParams.get(key)));
   useUnsavedChanges(dirty, t.unsaved);
   function updateUrl(changes: Record<string, string>, replace = false, confirmed = false) {
     if (!confirmed && dirty && !window.confirm(t.unsaved)) return;
@@ -94,18 +97,26 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
     setInbox((current) => ({ ...current, requests: current.requests.map((r) => r.id === updated.id ? updated : r) }));
     setRefreshKey((key) => key + 1);
   }
-  return <>
-    <header className="crm-inbox-toolbar"><h1 className="text-xl font-semibold">{t.requests}</h1><input type="search" className="crm-input max-w-md" aria-label={t.search} placeholder={t.search} value={searchParams.get("q") || ""} onChange={(e) => updateUrl({ q: e.target.value }, true)} /><button className="crm-button" onClick={() => setFilters(!filters)} aria-expanded={filters}>{t.filters}</button><details className="crm-menu"><summary className="crm-button">{t.more}</summary><div><button onClick={() => setRefreshKey((key) => key + 1)} disabled={loading}>{t.refresh}</button><button onClick={exportCsv} disabled={!inbox.requests.length}>{t.export}</button></div></details></header>
-    {filters && <div className="crm-filter-row"><label>{t.priority}<select className="crm-input" value={searchParams.get("priority") || ""} onChange={(e) => updateUrl({ priority: e.target.value })}><option value="">{t.all}</option><option value="urgent">{t.urgent}</option></select></label><label>{t.from}<input type="date" className="crm-input" value={searchParams.get("from") || ""} onChange={(e) => updateUrl({ from: e.target.value })} /></label><label>{t.to}<input type="date" className="crm-input" value={searchParams.get("to") || ""} onChange={(e) => updateUrl({ to: e.target.value })} /></label><button className="crm-button" onClick={() => updateUrl({ q: "", priority: "", from: "", to: "" })}>{t.clear}</button></div>}
+  return <section className="panel-inbox" aria-labelledby="panel-inbox-title">
+    <header className="crm-inbox-toolbar">
+      <div className="panel-inbox-title"><h2 id="panel-inbox-title">{t.requests}<span>{inbox.counts.all.toLocaleString(locale)}</span></h2><p>{copy.inboxHint}</p></div>
+      <div className="panel-inbox-controls">
+        <label className="panel-request-search"><SearchIcon className="h-4 w-4" aria-hidden="true" /><input type="search" className="crm-input" aria-label={t.search} placeholder={t.search} value={searchParams.get("q") || ""} onChange={(e) => updateUrl({ q: e.target.value }, true)} /></label>
+        <button className="crm-button" onClick={() => setFilters(!filters)} aria-expanded={filters} aria-controls="panel-request-filters"><FilterIcon className="h-4 w-4" aria-hidden="true" /><span>{t.filters}</span>{hasFilters && <span className="panel-filter-indicator" />}</button>
+        <button className="crm-button panel-refresh" onClick={() => setRefreshKey((key) => key + 1)} disabled={loading} aria-label={t.refresh} title={t.refresh}><RefreshIcon className="h-4 w-4" aria-hidden="true" /></button>
+        <details className="crm-menu"><summary className="crm-button">{t.more}</summary><div><button onClick={exportCsv} disabled={!inbox.requests.length}>{t.export}</button></div></details>
+      </div>
+    </header>
+    {filters && <div id="panel-request-filters" className="crm-filter-row"><label>{t.priority}<select className="crm-input" value={searchParams.get("priority") || ""} onChange={(e) => updateUrl({ priority: e.target.value })}><option value="">{t.all}</option><option value="urgent">{t.urgent}</option></select></label><label>{t.from}<input type="date" className="crm-input" value={searchParams.get("from") || ""} onChange={(e) => updateUrl({ from: e.target.value })} /></label><label>{t.to}<input type="date" className="crm-input" value={searchParams.get("to") || ""} onChange={(e) => updateUrl({ to: e.target.value })} /></label><button className="crm-button" onClick={() => updateUrl({ q: "", priority: "", from: "", to: "" })}>{t.clear}</button></div>}
     {error && <p className="crm-error mx-4" role="alert">{error}</p>}
+    <nav className="crm-folders" aria-label={t.requests}>{requestFolders.map((id) => <button key={id} className={folder === id ? "active" : ""} aria-current={folder === id ? "page" : undefined} onClick={() => updateUrl({ folder: id, request: "" })}><span>{t[id]}</span><span>{inbox.counts[id].toLocaleString(locale)}</span></button>)}</nav>
     <div className="crm-inbox-grid">
-      <nav className="crm-folders" aria-label={t.requests}>{requestFolders.map((id) => <button key={id} className={folder === id ? "active" : ""} aria-current={folder === id ? "page" : undefined} onClick={() => updateUrl({ folder: id, request: "" })}><span>{t[id]}</span><span>{inbox.counts[id]}</span></button>)}</nav>
       <section className="crm-request-list" aria-label={t.requests} aria-busy={loading}>
-        {!inbox.requests.length && <p className="p-8 text-center text-muted-foreground">{loading ? t.loading : t.empty}</p>}
+        {!inbox.requests.length && <div className="panel-list-empty" role="status"><SearchIcon className="h-6 w-6" aria-hidden="true" /><h3>{loading ? t.loading : t.empty}</h3>{!loading && <><p>{copy.emptyHint}</p>{hasFilters && <button className="crm-button" onClick={() => updateUrl({ q: "", priority: "", from: "", to: "" })}>{t.clear}</button>}</>}</div>}
         {inbox.requests.map((r, index) => {
           const key = requestDay(r.created_at);
           const heading = index === 0 || key !== requestDay(inbox.requests[index - 1].created_at);
-          return <div key={r.id}>{heading && <h2 className="crm-day-heading">{dayLabel(key, locale, t.today, t.yesterday)}</h2>}<button className={`crm-request-row ${requestId === r.id ? "selected" : ""}`} onClick={() => updateUrl({ request: r.id })} aria-pressed={requestId === r.id}><div className="flex justify-between gap-3"><span className="truncate font-semibold">{r.full_name || t.unnamed}</span><time className="shrink-0 text-xs text-muted-foreground" dateTime={r.created_at}>{formatPanelDate(r.created_at, locale, "time")}</time></div><p className="mt-1 truncate text-sm text-muted-foreground">{r.description}</p><div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground"><span>{t[r.status]}</span>{r.priority === "urgent" && <span className="crm-urgent">{t.urgent}</span>}</div></button></div>;
+          return <div key={r.id}>{heading && <h3 className="crm-day-heading">{dayLabel(key, locale, t.today, t.yesterday)}</h3>}<button className={`crm-request-row ${requestId === r.id ? "selected" : ""}`} onClick={() => updateUrl({ request: r.id })} aria-pressed={requestId === r.id}><div className="panel-request-identity"><span className="panel-request-avatar" aria-hidden="true">{(r.full_name || t.unnamed).trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join("")}</span><div className="min-w-0 flex-1"><div className="flex justify-between gap-3"><span className="truncate font-semibold">{r.full_name || t.unnamed}</span><time className="shrink-0 text-xs text-muted-foreground" dateTime={r.created_at}>{formatPanelDate(r.created_at, locale, "time")}</time></div><p className="panel-request-description">{r.description}</p><div className="panel-request-meta"><span className="panel-request-status" data-status={r.status}>{t[r.status]}</span>{r.priority === "urgent" && <span className="crm-urgent">{t.urgent}</span>}</div></div></div></button></div>;
         })}
         {inbox.hasMore && <div className="p-4 text-center"><button className="crm-button" disabled={loading} onClick={loadMore}>{loading ? t.loading : t.loadMore}</button></div>}
       </section>
@@ -114,12 +125,12 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
           const response = await fetch(`/api/medical-help-requests?id=${encodeURIComponent(selected.id)}`, { method: "DELETE" });
           if (!response.ok) throw new Error();
           setDirty(false); updateUrl({ request: "" }, false, true); setRefreshKey((key) => key + 1);
-        }} /> : <p className="m-auto p-10 text-center text-muted-foreground">{requestId ? t.loading : t.selectRequest}</p>}
+        }} /> : <div className="panel-reader-empty"><FileTextIcon className="panel-reader-empty-icon" aria-hidden="true" /><h3>{requestId ? t.loading : t.selectRequest}</h3><p>{copy.selectionHint}</p></div>}
       </section>
     </div>
     {creating && <CreatePatientModal isAdmin={isAdmin} isRomania={isRomania} request={creating} onClose={() => setCreating(null)} />}
     {replying && <QuickTemplatesModal request={replying} onClose={() => setReplying(null)} />}
-  </>;
+  </section>;
 }
 
 function RequestReader({ request, onDirtyChange, onUpdate, onBack, onCreate, onReply, onDelete }: {

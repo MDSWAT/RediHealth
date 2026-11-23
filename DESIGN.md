@@ -1,6 +1,175 @@
-# RediHealth Design System
+---
+name: RediHealth
+description: Clinical authority with community warmth, with a scoped care coordination workspace.
+colors:
+  background: "#fcfbf9"
+  foreground: "#0b132b"
+  ink-950: "#0a1226"
+  ink-900: "#101a33"
+  ink-800: "#1b2744"
+  paper: "#fbfaf6"
+  mist: "#a9b3c6"
+  sapphire: "#1d3557"
+  sapphire-soft: "#eff6ff"
+  primary: "#c62f3c"
+  amber-care: "#b45309"
+  border-control: "#8a94a6"
+  live-sage: "#059669"
+  panel-canvas: "#f4f6f8"
+  panel-surface: "#fff"
+  panel-subtle: "#f8fafb"
+  panel-line: "#dde4eb"
+  panel-ink: "#172b43"
+  panel-muted: "#58697c"
+  panel-selection: "#edf3f9"
+  panel-action-hover: "#28476f"
+  panel-selected-border: "#9eb4cc"
+  panel-status-neutral: "#798696"
+  panel-status-progress: "#356cb0"
+  patient-priority-high: "#9a4d0b"
+  patient-destructive: "#b91c1c"
+  patient-priority-high-dark: "#f5c58e"
+  patient-priority-critical-dark: "#ffb4b4"
+  patient-viewer-backdrop: "#0b132bd1"
+  cabinet-sapphire-dark: "#bad7fa"
+typography:
+  display:
+    fontFamily: "Bricolage Grotesque, Heading Fallback, Arial, Helvetica, sans-serif"
+    fontSize: "clamp(1.75rem, 1.15rem + 1.9vw, 2.75rem)"
+    fontWeight: 700
+    lineHeight: 1.06
+    letterSpacing: "-0.035em"
+  body:
+    fontFamily: "Atkinson Hyperlegible Next, Body Fallback, Arial, Helvetica, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 400
+    lineHeight: 1.6
+  panel-headline:
+    fontFamily: "Bricolage Grotesque, Heading Fallback, Arial, Helvetica, sans-serif"
+    fontSize: "1.875rem"
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: "-0.025em"
+  panel-title:
+    fontFamily: "Atkinson Hyperlegible Next, Body Fallback, Arial, Helvetica, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 600
+    lineHeight: 1.4
+  panel-description:
+    fontFamily: "Atkinson Hyperlegible Next, Body Fallback, Arial, Helvetica, sans-serif"
+    fontSize: "0.8125rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  patient-caption:
+    fontFamily: "Atkinson Hyperlegible Next, Body Fallback, Arial, Helvetica, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 600
+  patient-media-label:
+    fontFamily: "Atkinson Hyperlegible Next, Body Fallback, Arial, Helvetica, sans-serif"
+    fontSize: "0.75rem"
+  patient-initials-mobile:
+    fontSize: "1.375rem"
+    fontWeight: 600
+  cabinet-compact-title:
+    fontSize: "1.25rem"
+    fontWeight: 600
+  cabinet-body:
+    fontSize: "0.9375rem"
+    lineHeight: 1.65
+  cabinet-action-label:
+    fontSize: "0.875rem"
+  cabinet-entry-title:
+    fontSize: "1.5rem"
+    fontWeight: 600
+    lineHeight: 1.3
+rounded:
+  control: "0.75rem"
+  panel-control: "8px"
+  panel-inbox: "16px"
+  patient-media-label: "6px"
+  patient-inline-preview: "10px"
+  patient-thumbnail: "12px"
+spacing:
+  panel-gap: "8px"
+  panel-mobile-gutter: "16px"
+  panel-row: "20px"
+  panel-gutter: "24px"
+  panel-reader: "28px"
+  panel-directory-bottom: "32px"
+components:
+  panel-button-action:
+    backgroundColor: "{colors.sapphire}"
+    textColor: "{colors.panel-surface}"
+    rounded: "{rounded.panel-control}"
+    padding: "8px 12px"
+  panel-button-action-hover:
+    backgroundColor: "{colors.panel-action-hover}"
+  panel-button-outline:
+    backgroundColor: "{colors.panel-surface}"
+    textColor: "{colors.panel-ink}"
+    rounded: "{rounded.panel-control}"
+    padding: "8px 12px"
+  panel-search:
+    backgroundColor: "{colors.panel-surface}"
+    textColor: "{colors.panel-ink}"
+    rounded: "{rounded.panel-control}"
+    width: "240px"
+  panel-navigation-active:
+    backgroundColor: "{colors.sapphire}"
+    textColor: "{colors.panel-surface}"
+  panel-status:
+    textColor: "{colors.panel-muted}"
+  panel-inbox:
+    backgroundColor: "{colors.panel-surface}"
+    rounded: "{rounded.panel-inbox}"
+  panel-tool:
+    textColor: "{colors.panel-ink}"
+    padding: "20px 22px"
+  panel-request-selected:
+    backgroundColor: "{colors.panel-selection}"
+    textColor: "{colors.panel-ink}"
+    padding: "20px"
+  patient-portrait:
+    backgroundColor: "{colors.panel-selection}"
+    textColor: "{colors.sapphire}"
+    rounded: "{rounded.panel-inbox}"
+    width: "104px"
+    height: "120px"
+  patient-thumbnail:
+    backgroundColor: "{colors.panel-subtle}"
+    rounded: "{rounded.patient-thumbnail}"
+  patient-viewer:
+    backgroundColor: "{colors.panel-surface}"
+    textColor: "{colors.panel-ink}"
+    rounded: "{rounded.panel-inbox}"
+  cabinet-navigation-active:
+    backgroundColor: "{colors.panel-selection}"
+    textColor: "{colors.sapphire}"
+    rounded: "{rounded.panel-control}"
+    padding: "12px"
+  cabinet-care-team:
+    backgroundColor: "{colors.panel-subtle}"
+    rounded: "{rounded.patient-thumbnail}"
+    padding: "20px"
+---
+# Design System: RediHealth
 
-## 1. Visual Direction & Philosophy
+## Overview
+
+**Creative North Star: "Clinical authority with community warmth"**
+
+RediHealth pairs clinical authority with community warmth. The public experience stays editorial and accessible. Staff screens use the same identity within a pale slate workspace, white working surfaces, sapphire destinations, and fine dividing rules.
+
+The staff panel is a scoped expression of the incumbent system, not a global rebrand. Its composition is recorded in `.impeccable/surfaces/src-app-panel-page-tsx.md`; future public pages continue to follow the public rules below.
+
+**Key Characteristics:**
+
+- Readable typography and predictable hierarchy.
+- Sapphire staff actions, with emergency red retaining its established role.
+- Flat working surfaces and clear selection feedback.
+- Seven-language parity and accessible comfort controls.
+
+### Established public philosophy
 
 RediHealth pairs **clinical authority with community warmth**. Every screen is built for ordinary people, older adults, and health mediators navigating stressful health questions across seven languages (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`).
 
@@ -8,9 +177,7 @@ RediHealth pairs **clinical authority with community warmth**. Every screen is b
 - **Calm motion:** Animations serve orientation (where you tapped, which step changed, how the cursor glides across options) rather than spectacle. Every motion stops cleanly under OS `prefers-reduced-motion` or the persistent `Calm motion` toggle in `ComfortMenu`.
 - **Single source of clinical truth:** Colors carry strict functional roles so users learn the visual grammar once and keep it across every flow.
 
----
-
-## 2. Color & Surface Tokens
+## Colors
 
 Defined in `src/app/globals.css` (`@theme`):
 
@@ -28,9 +195,19 @@ Defined in `src/app/globals.css` (`@theme`):
 | `--color-border-control` | `#8a94a6` | Form inputs, toggles & interactive controls (`>= 3:1` non-text contrast) |
 | `--color-live-sage` | `#059669` | Restricted exclusively to live open-now status indicators |
 
----
+### Staff workspace scope
 
-## 3. Typography, Scale & Global Comfort Scaling
+The frontmatter panel color tokens come from `src/components/panel/panel-workspace.css`. Slate canvas and subtle surfaces separate the working area from white content. Ink supplies primary copy; muted ink supports descriptions. Selection is a pale sapphire tint with a distinct selected-row border. Pending uses amber; in-progress uses blue; resolved remains neutral rather than borrowing the live-open sage token. Status always includes text.
+
+**The Scoped Sapphire Rule.** Within the care panel, the legacy primary CSS alias resolves to sapphire. The global primary token stays emergency red; public Button variant rules remain authoritative.
+
+Dark panel overrides exist in CSS for canvas, surface, subtle surface, lines, ink, muted ink, and selection. High contrast maps panel surfaces and copy back to global accessibility tokens. The selected dark reader is captured in `.impeccable/review/dark-reader.png`; high contrast and the full range of dark and comfort states remain uncaptured.
+
+### Patient priority and media
+
+Patient high-priority text uses the patient-priority-high token; critical priority and destructive photo removal use patient-destructive. Their dark priority counterparts are explicitly scoped to the patient record. These semantic states retain text labels. The viewer backdrop token belongs only to modal image inspection. This extension does not change public emergency-red or staff sapphire roles.
+
+## Typography
 
 - **Display / Section / Title / Body**: Fluid tokens (`--text-display` `clamp(2rem, 1.2rem + 2.3vw, 3.25rem)`, `--text-section`, `--text-title`, `--text-body`, `--text-meta`) defined in `src/app/globals.css`.
 - **Weight hierarchy:** `text-display`, `text-page`, and `text-section` carry weight `700` from tokens. Spend weight `600` (`text-title` / `font-semibold`) only on `text-title` / `<h3>` headings, button labels, field labels, and at most one key fact per row or card; keep values, notes, list items, and descriptions at weight `400` (`font-normal`) or `500` (`text-meta`).
@@ -45,19 +222,49 @@ Defined in `src/app/globals.css` (`@theme`):
   - `wideSpacing`: boolean persisted in `localStorage` (`redihealth-wide-spacing`), synced to `html[data-wide-spacing="true"]`; applies relaxed WCAG 2.2 SC 1.4.12 line/word/letter spacing via `html[data-wide-spacing]` while preserving single-line `whitespace-nowrap` UI controls.
   - `calmMotion`: boolean persisted in `localStorage`, hooked into `useCalmReducedMotion()` / `prefersCalmOrReducedMotion()` (never styled with `html[data-calm-motion="true"]` in `globals.css`).
 
----
+### Staff hierarchy
 
-## 4. Copywriting & Multilingual Invariants
+The root layout loads Atkinson Hyperlegible Next for body copy and Bricolage Grotesque for headings, with Arial/Helvetica fallbacks. Workspace headline uses the panel-headline token, reducing to (1.625rem) below (640px). Inbox titles explicitly use the body family. Tool titles use (0.9375rem), weight (600); request identity uses (0.875rem); descriptions use the panel-description token. Metadata uses (0.75rem); numeric counts use tabular figures. Root comfort scaling remains available; do not freeze these rem sizes into pixels.
 
-Enforced across all 7 locales (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`) and automated tests (`Hero.test.ts`, `triage-improvements.test.ts`):
+Patient media captions use patient-caption; dates, counters, and upload labels use patient-media-label. Mobile portrait initials use patient-initials-mobile (22px at the default root size). These intentional sizes supplement existing panel typography; the directory retains its preexisting (15px) introduction and (11px) keyboard hint.
 
-1. **Strict sentence casing everywhere:** Only the first word of a sentence and approved acronyms/proper nouns (`CNAS`, `GDPR`, `SMS`, `QR`, `PDF`, `OMS`, `WHO`, `REDI`, `Roma`, `112`) are capitalized. Never use Title Case or ALL CAPS.
-2. **Zero ampersands (`&`):** Always write the full word (`and`, `și`, `dhe`, `e`, `i`, `thaj`, `и`) in prose and interface copy.
-3. **Complete locale parity:** Every interface key added to `hero-copy.ts` or shared components must exist in all supported languages without falling back silently.
+### Patient cabinet typography
 
----
+The cabinet inherits the established heading/body families and panel palette. Its compact-title token serves mobile overview headings and (64 × 76px) portrait initials; cabinet-body serves introductory, navigation, and care copy. Action labels use cabinet-action-label; the plain entrance benefits heading uses cabinet-entry-title. Desktop overview headings use (1.375rem), weight (600). The cabinet-sapphire-dark accent is the existing pale blue used for active navigation, icons, and focus in source-defined dark mode, scoped to cabinet and entrance. These extracted roles do not alter public typography or staff action rules.
 
-## 5. Motion Physics & Behavioural UI Grammar
+## Layout
+
+### Public containers and reading measures
+
+The established Container and article rules are preserved in Components below.
+
+### Staff workspace composition
+
+The expanded desktop sidebar is (224px) from the desktop breakpoint and (240px) at xl; its collapsed mode is (72px). The main workspace uses (36px 32px 32px) padding, becomes (40px 48px) from (1600px), and uses (28px 24px) below (1280px). The tool directory is a single wrapping row with fine separators, not a dashboard of separate statistic cards.
+
+The inbox is one bounded surface. Horizontal folders scroll when necessary, and active folders use a sapphire underline. At desktop width, the request list occupies (38%) with a (280px) minimum; the reader takes the remainder. Inbox height is `min(680px, 70dvh)` with a (460px) minimum. List and reader scroll independently.
+
+Below (1024px), the list occupies the full width and selecting a request opens the existing full-screen reader. Bottom navigation remains available through the existing shell. Below (640px), workspace padding becomes (24px 16px 32px), heading and create action stack, and tools become a compact icon-and-label grid with descriptions hidden. Search occupies a full row; filters and actions wrap. Reader copy has a (70ch) maximum width.
+
+### Patient record and directory extension
+
+The patient record and directory have a (1440px) maximum width and inherit the staff workspace. The white identity header uses (28px) padding and grouped actions. Summary content uses `minmax(0, 1.6fr) minmax(260px, 1fr)` with a (24px) gap: care summary and recent activity on the left, follow-up and care team on the right. Below (768px), content stacks; below (1200px), header actions wrap below identity. The record keeps dedicated Summary, Care plan, Photos and documents, and History tabs, scrolling horizontally when needed.
+
+Gallery columns use `repeat(auto-fill, minmax(min(100%, 210px), 1fr))` with (20px) gaps; below (640px), two columns use (16px 12px) gaps. The viewer fills the phone viewport; desktop uses `min(1200px, calc(100vw - 48px))` by `calc(100dvh - 48px)`. Its image stage scrolls while controls stay in header/footer slots.
+
+### Patient-facing cabinet and phone entrance
+
+The cabinet composition is scoped by `.impeccable/surfaces/src-app-patient-portal-token-page-tsx.md`. Identity and a native contact-details disclosure precede a two-column body: (220px) persistent desktop navigation plus flexible care content. The overview first presents equal appointment and treatment columns with a fine separator, followed by patient actions and care team in a (1.4fr / 1fr) grid. White shell, (16px) corners, fine rules, and restrained depth inherit the accepted care workspace.
+
+Below (1024px), navigation becomes a horizontal row; below (640px), all six destinations remain visible in a three-column grid. Overview and secondary content stack below (768px). Header padding reduces from (28px 32px 20px) to (20px); content from (28px 32px) to (24px 20px) on phones. Contact details can expand without displacing the persistent navigation model.
+
+The public phone entrance pairs the existing SMS sign-in form with plain benefits in a (1fr / 0.9fr) surface capped at (1080px), then stacks form and benefits below (768px). The benefits use subtle paper, sapphire icons, and fine rules rather than a dark photo overlay. Existing phone-code authentication, installation/read-aloud controls, staff sign-in, and public chrome retain their behavior.
+
+## Elevation & Depth
+
+Staff working surfaces are flat: fine borders, background tones, and selected-row outlines provide separation. The new overview heading action removes its shadow; selected folders and rows do not use inset shadows. Existing public overlays and the capsule menus retain their own depth treatments, preserved under Components.
+
+### Motion and established behavior
 
 - **Shared CSS easing & timing (`globals.css` & `src/lib/motion/tokens.ts`):**
   - `--ease-out-calm`: `cubic-bezier(0.25, 1, 0.5, 1)`
@@ -70,9 +277,17 @@ Enforced across all 7 locales (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`) and au
   - Anchored at the base of the panel below the 6 choices inside an inset contextual readout capsule with a morphing icon badge, updating by priority: active voice playback (`speaking`) -> hovered/focused care need (`needs[id].hint`, in `sapphire`) -> mediator link hover (`amber`) -> returning from Step 2 (`returned`) -> gentle 7s hesitation cue (`idle`, in `amber`) -> calm trust default (`default`).
 - **Safe Mobile Fallbacks:** Sticky stacked sections (`StackedSections`) operate strictly at `min-width: 1024px` and disable automatically under `calmMotion` or enlarged text scales (`large` / `xl`).
 
----
+Panel tool feedback uses (160ms) and the shared calm easing. Tool arrows move (3px) on hover and stop translating under reduced motion. The existing panel stylesheet also disables transitions and animations for reduced motion or the persisted calm-motion class.
 
-## 6. Component Architecture Rules
+The patient image viewer is an intentional modal exception to flat working surfaces: its shadow is `0 24px 80px #0004`, with the patient-viewer-backdrop behind it. Gallery hover changes image opacity to (0.8) over (160ms ease-out); existing care-panel reduced-motion/calm rules suppress the transition.
+
+## Shapes
+
+Public actions retain the global control radius. Staff search and inbox actions use the smaller panel-control radius; the inbox is the single larger rounded boundary. Request rows remain square within the container, and text status labels remain unboxed. Initial avatars are circular (36px) identity cues, not new status chips. Existing capsule-specific shapes remain scoped to their documented menus and switches.
+
+Patient identity uses contained rectangular portraits: record (104 × 120px), mobile (76 × 92px), directory (52 × 58px). Large portraits inherit the (16px) surface radius; directory portraits and gallery thumbnails use patient-thumbnail, inline previews patient-inline-preview, and the gallery open label patient-media-label. Image fit is `contain`, preserving the full frame; these patient portraits do not replace circular request initials elsewhere.
+
+## Components
 
 - **Landing hero (`src/components/landing/Hero.tsx`):** A full-width white paper editorial ground under the solid header, with filtered cross-fading consultation photography on the right (`hero/HeroPhotos.tsx`), the sapphire topic wheel turning subtly behind it (`WheelBackdrop`), strictly one primary `action` CTA to `/health-check` (plus read-aloud), and the dark `RegionalHealthRibbon` ticker at the foot of the first screen. Below the first fold, desktop restores stacked section sheets (`StackedSections`), the interactive `HealthTopicsWheel` + `HealthTopicsSpotlight`, and `MediatorServices` accordion/columns. The headline promises health information, never medical advice.
 - **Action Buttons (`src/components/ui/Button.tsx`):** Every action `<button>`, submit button, and CTA link uses `<Button>` with `rounded-(--radius-control)`, `text-body`, fluid `min-h-11` (`md`) or `min-h-12` (`lg`) growth (no fixed `h-*`), and strict variant roles: `primary` (red — 112/emergency only), `action` (sapphire — the one main next step of a screen), `outline` (default — all other action buttons), and `ghost` (quiet row or dialog actions). Never hand-roll solid `bg-sapphire` / `bg-primary` / `bg-foreground` action buttons or use the retired `secondary` variant.
@@ -87,9 +302,7 @@ Enforced across all 7 locales (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`) and au
 - **Print-First Clinical Sheets (`data-print-mode="fridge-sheet"`):** Printing structured prescriptions hides dense screen chrome and outputs a high-contrast large-print daily medication schedule.
 - **Minimum Touch Ergonomics:** Interactive rows and buttons maintain `min-h-11` (`44px+`) hit targets with clear `focus-visible` sapphire outlines (`outline-ring`).
 
----
-
-## 7. Header Capsule & In-Page Capsule Menus
+### Header capsule and in-page capsule menus
 
 One pattern for every menu bar, defined in `src/components/layout/chrome-capsule.ts`.
 
@@ -104,3 +317,69 @@ One pattern for every menu bar, defined in `src/components/layout/chrome-capsule
 - **Where the capsule is not used:** status labels, counts and categories never get a capsule (see the UI rules in `CLAUDE.md`). Wrapping filter chips keep their rounded-rectangle shape.
 - **Motion:** plate and panel motion stop under `prefers-reduced-motion` and the in-app Calm motion toggle.
 - **Dev note:** `public/offline-worker.js` does not serve cached `/_next/static/` files on localhost, so UI changes show without clearing the service worker.
+
+### Staff overview and request inbox
+
+- **Actions:** The overview create-patient control uses the shared Button action variant. Existing inbox controls retain their CRM primitives with an (8px) radius, (44px) minimum height, sapphire primary save action, outlined utilities, and source-defined disabled states. These are scoped existing panel components, not an alternative public button API.
+- **Search:** A leading search icon and accessible search label sit within a control-colored border. Focus-within draws a (2px) sapphire outline with (2px) offset; global high contrast retains its stronger accessibility treatment.
+- **Navigation:** The active desktop destination is filled sapphire with white text and a (46px) minimum height. Inbox folders are unfilled with a (2px) active underline and (48px) minimum height. Selection is conveyed through `aria-current` or `aria-pressed` as appropriate.
+- **Directory:** Patient, calendar, video, and eligible team destinations share one ruled directory. All destinations respect `canOpen`; team appears only for administrators outside demo. Preserve the runtime link abstraction and locale prefixes.
+- **Rows and reader:** Selecting a request opens its details beside the list on desktop, and in the existing full-screen reader on smaller screens. Selected rows use the selection surface and border. Empty states explain the next action; the list shows loading, empty/filter recovery, and error feedback. Search, date/priority filters, refresh, loaded-row CSV export, pagination, editing, and unsaved-change prompts remain functional.
+- **Runtime:** Preserve authentication, role permissions, country context, database-availability disabled states, and the `PanelRuntime` abstraction for online, offline, and fictional browser-local demo operation. Do not infer permission from visual placement.
+- **Locales:** All new workspace text comes from the typed seven-locale translation map (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`). Counts use locale formatting, dates use the existing panel date helpers, and translated titles wrap. Keep source status values independent of their translated labels.
+
+### Patient photos, documents, and viewer
+
+- **Portraits:** `PatientAvatar` shows the entire image within its rectangle, falls back to initials when absent, and provides a labeled preview trigger when available. New portrait uploads use `toAvatarDataUrl` with aspect-preserving dimensions, a maximum side of (256px), no upscaling, a white canvas, and JPEG quality (0.85). Existing stored images are not rewritten or restored beyond their available resolution.
+- **Gallery:** The dedicated Photos and documents tab keeps intake documents, treatment photos, and patient attachments accessible. Thumbnails have a (4:3) frame with contained images and (12px) inset; titles, dates, notes, and permitted delete controls remain outside the image. Failed images show a translated unavailable state. Inline document previews and print-report photos also use contain; print hides viewer/open/delete chrome.
+- **Inspection:** A native `dialog.showModal()` viewer provides contained fit-to-screen inspection, a (160%) scrollable zoom mode, previous/next controls and arrow-key navigation for multi-image galleries, download, and an announced image counter. Close receives initial focus; Escape closes the dialog. Closing restores body scrolling and focus to the originating trigger. Moving between images resets zoom and scroll. Viewer controls retain (44px) minimum hit areas and a (3px) sapphire focus outline with (3px) offset.
+- **Continuity:** Keep existing authentication, role and country permissions, care/treatment actions, unsaved-change guards, printing, and online/offline/demo operations. All new media controls and unavailable messages support `ro`, `en`, `sq`, `it`, `hr`, `rom`, and `ru`; dates use the existing locale helpers.
+
+### Patient cabinet operations and media
+
+Cabinet navigation persists across Overview, symptom reporting, check-ups, treatment, photos, and notes; active destinations use a pale selection surface, sapphire text, and `aria-current`. Identity uses the shared contained rectangular portrait. Existing emergency guidance remains above routine care. The overview derives appointments, treatment, and care-team content from the patient record, including real empty states; do not invent care data.
+
+Shared full-frame galleries and native image inspection now serve cabinet photos, treatment plans, and completed follow-up attachments. Preserve the existing fit/zoom/navigation/download/focus-restoration behavior. During print, thumbnail buttons explicitly remain `display: flex !important` so global button hiding cannot remove the images; viewer, open-image labels, and delete controls stay hidden. This is a source rule, not a claim of captured print-dialog verification.
+
+The optional `onPatch` transport callback is supplied only by `/demo/cabinet` for browser-local view-state simulation. The real token route omits it; production continues through the token/country/captcha-protected portal API. Keep symptom, appointment, upload, completion-note, sharing, and print handlers intact. The new cabinet copy supports all seven locales (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`); translated destinations wrap rather than disappearing on phones.
+
+### Evidence boundary
+
+The supplied desktop/mobile overview and reader screenshots under `.impeccable/review/` show the shared production components through `/en/demo` with fictional records. The selected dark reader is also visually checked in `dark-reader.png`, following label and contact-link contrast corrections. Authenticated live data, high contrast, and all other dark/comfort combinations are not established by these captures. Source rules describe support; they do not constitute captured visual verification.
+
+Patient review captures are in `.impeccable/review/patient/`: desktop/mobile summary, photos, viewer, and directory. The sampled summary, gallery, and mobile viewer preserve the contained document frame. Fixture PNGs generated by `fixtures/create-patient-fixtures.cjs` are local review artifacts marked DEMO ONLY, not shipping imagery or clinical evidence. Patient dark and comfort states were not visually rechecked; source dark tokens do not establish visual verification.
+
+Cabinet evidence under `.impeccable/review/cabinet/` covers English/light desktop and phone demo overview/media/viewer plus the real public phone entrance. Representative desktop overview and phone entrance captures were inspected for this documentation. Dark mode, comfort variants, successful real authentication, and print dialogs were not captured. No new product image assets were introduced; prior DEMO ONLY fixtures remain fictional local review media.
+
+## Do's and Don'ts
+
+### Established copywriting and multilingual invariants
+
+Enforced across all 7 locales (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`) and automated tests (`Hero.test.ts`, `triage-improvements.test.ts`):
+
+1. **Strict sentence casing everywhere:** Only the first word of a sentence and approved acronyms/proper nouns (`CNAS`, `GDPR`, `SMS`, `QR`, `PDF`, `OMS`, `WHO`, `REDI`, `Roma`, `112`) are capitalized. Never use Title Case or ALL CAPS.
+2. **Zero ampersands (`&`):** Always write the full word (`and`, `și`, `dhe`, `e`, `i`, `thaj`, `и`) in prose and interface copy.
+3. **Complete locale parity:** Every interface key added to `hero-copy.ts` or shared components must exist in all supported languages without falling back silently.
+
+### Do:
+
+- Do preserve public design rules when extending the staff workspace.
+- Do keep panel colors scoped to the care panel and retain the existing logo.
+- Do derive counts and clinical content from the runtime; label fictional demo data.
+- Do preserve all seven locales, keyboard focus, touch targets, and reduced motion.
+
+
+- Do preserve the full image frame in identity, gallery, inline preview, and print.
+- Do keep inspection keyboard-accessible and return focus to its trigger.
+
+- Do preserve all six cabinet destinations on phones and keep patient data ahead of everyday actions.
+
+### Don't:
+
+- Don't export the staff workspace composition or token overrides to public pages.
+- Don't use emergency red for routine staff actions.
+- Don't invent statistics or present browser-local demo records as live data.
+- Don't replace role and runtime visibility checks with decorative tool links.
+
+- Don't destructively crop patient documents or claim a downscaled portrait is an untouched original.
+- Don't supply the demo transport callback to the real token route or treat local simulation as authentication evidence.

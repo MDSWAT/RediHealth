@@ -1,8 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import type { ChangeEvent, FormEvent } from "react";
-import { CheckCircleIcon, ImageIcon, TrashIcon } from "@/components/ui/icons";
+import { CheckCircleIcon, ImageIcon } from "@/components/ui/icons";
+import { PatientPhotoGallery, PatientPhotoTrigger } from "./PatientMedia";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { TreatmentEntry } from "@/lib/types/patient";
 import { treatmentTranslations } from "@/lib/i18n/treatment-translations";
@@ -325,11 +325,7 @@ export function TreatmentPlanEditor({
 
           {tpPhotoData ? (
             <div className="flex items-center gap-3 bg-card p-2 rounded-lg border border-border">
-              <img
-                src={tpPhotoData}
-                alt=""
-                className="h-12 w-12 object-cover rounded border border-border"
-              />
+              <PatientPhotoTrigger photo={{ id: "pending-treatment", name: tpPhotoName || t.ready, data_url: tpPhotoData, date: "" }} />
               <span className="text-xs text-emerald-600 font-semibold">
                 {t.ready}
               </span>
@@ -347,44 +343,8 @@ export function TreatmentPlanEditor({
           </div>
         </form>
 
-        {treatmentPlan.photos && treatmentPlan.photos.length > 0 ? (
-          <div>
-            <p className="text-xs font-bold text-foreground mb-2">
-              {t.attached} ({treatmentPlan.photos.length})
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {treatmentPlan.photos.map((photo) => (
-                <div
-                  key={photo.id}
-                  className="group relative flex flex-col justify-between rounded-xl border border-border bg-background p-2"
-                >
-                  <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-border bg-muted">
-                    <img
-                      src={photo.data_url}
-                      alt={photo.name}
-                      className="h-full w-full object-cover"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => onDeleteTpPhoto(photo.id)}
-                      className="absolute right-1.5 top-1.5 rounded bg-black/60 p-1.5 text-white transition-opacity hover:bg-red-600 focus-visible:opacity-100 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100"
-                      title={t.removePhoto}
-                      aria-label={`${t.removePhoto}: ${photo.name}`}
-                    >
-                      <TrashIcon className="h-3.5 w-3.5" />
-                    </button>
-                  </div>
-                  <p
-                    className="mt-1.5 text-xs font-bold text-foreground truncate"
-                    title={photo.name}
-                  >
-                    {photo.name}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : null}
+        {!!treatmentPlan.photos?.length && <div className="mt-5"><p className="mb-3 text-sm font-semibold">{t.attached} ({treatmentPlan.photos.length})</p><PatientPhotoGallery photos={treatmentPlan.photos} onDelete={onDeleteTpPhoto} busy={isSavingTreatment} /></div>}
+
       </div>
 
       <div className="flex justify-end pt-2">

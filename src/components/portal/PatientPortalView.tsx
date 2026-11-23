@@ -1,7 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, useState } from "react";
 import {
   ArrowLeftIcon,
   BellIcon,
@@ -11,6 +10,8 @@ import {
   ImageIcon,
   PlusIcon,
   PrinterIcon,
+  ShieldIcon,
+  FileTextIcon,
 } from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
 import { FamilyShareButton } from "@/components/ui/FamilyShareButton";
@@ -27,8 +28,12 @@ import type { Lang } from "@/lib/i18n/translations";
 import { TreatmentPlansView } from "@/components/panel/TreatmentPlansView";
 import { treatmentTranslations } from "@/lib/i18n/treatment-translations";
 import type { CountryCode } from "@/lib/countries";
+import { PatientAvatar, PatientPhotoGallery, PatientPhotoTrigger } from "@/components/panel/PatientMedia";
+import { cabinetTranslations } from "./cabinet-translations";
+import "./patient-cabinet.css";
 
 interface PatientPortalViewProps {
+  onPatch?: (payload: object) => Promise<void>;
   initialPatient: PatientItem;
   token: string;
   country: CountryCode;
@@ -728,13 +733,15 @@ export function PatientPortalView({
   initialPatient,
   token,
   country,
+  onPatch,
 }: PatientPortalViewProps) {
   const { lang } = useLanguage();
   const t = portalTranslations[lang];
+  const cabinet = cabinetTranslations[lang];
   const [activeTab, setActiveTab] = useState<PortalTab>("home");
   const [activeAction, setActiveAction] = useState<PortalAction>("symptoms");
   const { patient, errorMessage, symptoms, followup, photo } =
-    usePatientPortal({ initialPatient, token, country });
+    usePatientPortal({ initialPatient, token, country, onPatch });
   const sortedFollowups = useMemo(
     () => sortFollowups(patient.followups || []),
     [patient.followups],
@@ -847,26 +854,30 @@ export function PatientPortalView({
   } = photo;
 
   const fmtDate = (value?: string | null) => (value ? formatNewsDate(value, lang) : "");
+  const plans = sortTreatments(getTreatmentEntries(patient.treatment_plan));
+  const allPhotos = [...(patient.photos || []), ...plans.flatMap((entry) => entry.photos || []), ...(patient.followups || []).flatMap((entry) => entry.completion_photos || [])];
+  const nextVisit = sortedFollowups.find((entry) => entry.status === "scheduled");
+  const careTeam = patient.assigned_worker_names?.length ? patient.assigned_worker_names.join(", ") : patient.assigned_worker_name || t.fallbackTeam;
   const statusLabel = (status: string) =>
     status === "completed" ? t.statusCompleted : status === "cancelled" ? t.statusCancelled : t.statusScheduled;
   const homeActions = [
     { key: "symptoms", Icon: BellIcon, title: t.actionSymptomsTitle, hint: t.actionSymptomsHint, onClick: () => { setActiveAction("symptoms"); setActiveTab("actions"); } },
-    { key: "followups", Icon: CalendarIcon, title: t.actionFollowupTitle, hint: t.actionFollowupHint, onClick: () => { setActiveAction("followups"); setShowAddFollowup(true); setActiveTab("actions"); } },
+    { key: "followups", Icon: CalendarIcon, title: t.actionFollowupTitle, hint: t.actionFollowupHint, onClick: () => { setActiveAction("followups"); setShowAddFollowup(false); setActiveTab("actions"); } },
     { key: "plan", Icon: EditIcon, title: t.actionPlanTitle, hint: t.actionPlanHint, onClick: () => setActiveTab("plan") },
     { key: "photos", Icon: ImageIcon, title: t.actionPhotosTitle, hint: t.actionPhotosHint, onClick: () => setActiveTab("photos") },
     { key: "notes", Icon: EditIcon, title: t.tabs.notes, hint: t.notesTabTitle, onClick: () => setActiveTab("notes") },
   ];
 
   return (
-    <main id="main-content" className="min-h-screen bg-background py-6 sm:py-10">
+    <main id="main-content" className="patient-cabinet min-h-screen py-6 sm:py-10">
       <Container>
         {/* Calm, always-visible reminder: this page is not for emergencies. */}
-        <p className="mb-4 rounded-xl border border-border bg-card px-4 py-3 text-body text-muted-foreground">
+        <p className="cabinet-emergency">
           <strong className="font-semibold text-foreground">{t.emergencyTitle}</strong> {t.emergencyBody}
         </p>
 
-        <article className="overflow-hidden rounded-xl border border-border bg-card">
-          <header className="border-b border-border px-4 py-5 sm:px-8 sm:py-6">
+        <article className="cabinet-shell">
+          <header className="cabinet-header">
             {activeTab !== "home" ? (
               <button
                 type="button"
@@ -878,8 +889,7 @@ export function PatientPortalView({
               </button>
             ) : null}
 
-            <h1 className="text-balance text-page text-foreground">{patient.full_name}</h1>
-            <p className="mt-1 text-body text-muted-foreground">{t.homeTitle}</p>
+            <div className="cabinet-identity"><PatientAvatar name={patient.full_name} src={patient.profile_photo} large /><div><h1>{patient.full_name}</h1><p>{t.homeTitle}</p></div><span className="cabinet-private"><ShieldIcon className="h-4 w-4" aria-hidden="true" />{cabinet.private}</span></div>
 
             <details className="group mt-4 border-t border-border pt-3">
               <summary className="flex min-h-[44px] cursor-pointer list-none items-center gap-2 text-body font-semibold text-foreground [&::-webkit-details-marker]:hidden">
@@ -901,7 +911,7 @@ export function PatientPortalView({
                 </div>
                 <div className="flex items-center gap-2">
                   <dt className="text-muted-foreground">{t.assignedStaff}:</dt>
-                  <dd className="font-medium text-foreground">{patient.assigned_worker_name || t.fallbackTeam}</dd>
+                  <dd className="font-medium text-foreground">{careTeam}</dd>
                 </div>
               </dl>
             </details>
@@ -913,29 +923,27 @@ export function PatientPortalView({
             </p>
           ) : null}
 
-          {activeTab === "home" ? (
-            <section aria-label={t.homeIntro} className="px-4 py-5 sm:px-8 sm:py-6">
-              <p className="text-body text-muted-foreground">{t.homeIntro}</p>
-              <ul className="mt-3 divide-y divide-border border-y border-border">
-                {homeActions.map(({ key, Icon, title, hint, onClick }, index) => (
-                  <li key={key} className="list-in" style={{ "--i": index } as CSSProperties}>
-                    <button
-                      type="button"
-                      onClick={onClick}
-                      className="press-row group flex min-h-[64px] w-full items-center gap-4 px-1 py-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
-                    >
-                      <Icon aria-hidden="true" className="h-5 w-5 shrink-0 text-sapphire" />
-                      <span className="min-w-0 flex-1">
-                        <span className="block font-semibold text-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none">{title}</span>
-                        <span className="mt-0.5 block text-body text-muted-foreground">{hint}</span>
-                      </span>
-                      <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none" />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ) : null}
+          <div className="cabinet-body">
+            <nav className="cabinet-navigation" aria-label={t.homeTitle}>
+              <button type="button" aria-current={activeTab === "home" ? "page" : undefined} onClick={() => setActiveTab("home")}><FileTextIcon className="h-5 w-5" aria-hidden="true" /><span>{cabinet.overview}</span></button>
+              {homeActions.map(({ key, Icon, title, onClick }) => <button key={key} type="button" aria-current={(activeTab === key || (activeTab === "actions" && activeAction === key)) ? "page" : undefined} onClick={onClick}><Icon className="h-5 w-5" aria-hidden="true" /><span>{key === "plan" ? t.treatmentTitle : key === "photos" ? t.tabs.photos : title}</span>{key === "photos" && allPhotos.length > 0 && <span className="cabinet-nav-count">{allPhotos.length}</span>}</button>)}
+            </nav>
+            <div className="cabinet-content">
+          {activeTab === "home" && <section className="cabinet-overview" aria-label={cabinet.overview}>
+            <div className="cabinet-section-heading"><h2>{cabinet.intro}</h2><p>{t.homeIntro}</p></div>
+            <div className="cabinet-overview-grid">
+              <section className="cabinet-overview-visits"><div className="cabinet-section-top"><CalendarIcon className="h-5 w-5" aria-hidden="true" /><h3>{t.followupsTitle}</h3></div>
+                {nextVisit ? <><p className="cabinet-visit-name">{nextVisit.title}</p><p className="cabinet-visit-date">{followupLabel(nextVisit, langToLocale[lang], crmTranslations[lang].allDay)}</p><span className="cabinet-visit-status">{statusLabel(nextVisit.status)}</span></> : <p className="cabinet-empty-copy">{crmTranslations[lang].noFollowup}</p>}
+                <Button variant="outline" onClick={homeActions[1].onClick}>{t.actionFollowupTitle}<ChevronRightIcon className="h-4 w-4" aria-hidden="true" /></Button>
+              </section>
+              <section className="cabinet-overview-plan"><div className="cabinet-section-top"><FileTextIcon className="h-5 w-5" aria-hidden="true" /><h3>{t.treatmentTitle}</h3></div>
+                {plans.length ? <><p className="cabinet-plan-name">{plans[0].title || treatmentTranslations[lang].legacy}</p><p className="cabinet-plan-copy">{plans[0].care_instructions || plans[0].medications || t.actionPlanHint}</p></> : <p className="cabinet-empty-copy">{t.noTreatment}</p>}
+                <Button variant="outline" onClick={() => setActiveTab("plan")}>{t.actionPlanTitle}<ChevronRightIcon className="h-4 w-4" aria-hidden="true" /></Button>
+              </section>
+            </div>
+            <div className="cabinet-secondary-grid"><section className="cabinet-action-list" aria-label={t.tabs.actions}>{homeActions.filter(({key}) => ["symptoms", "photos", "notes"].includes(key)).map(({key,Icon,title,hint,onClick})=><button key={key} type="button" onClick={onClick}><Icon className="h-5 w-5" aria-hidden="true" /><span><strong>{title}</strong><span>{hint}</span></span><ChevronRightIcon className="h-4 w-4" aria-hidden="true" /></button>)}</section>
+            <section className="cabinet-care-team"><h3>{t.assignedStaff}</h3><p>{cabinet.teamHint}</p><ul>{(patient.assigned_worker_names?.length ? patient.assigned_worker_names : [patient.assigned_worker_name || t.fallbackTeam]).map((name)=><li key={name}><span aria-hidden="true">{name.split(/\s+/).filter((part)=>!/^dr\.?$/i.test(part)).slice(0,2).map((part)=>part[0]).join("")}</span>{name}</li>)}</ul></section></div>
+          </section>}
 
           {activeTab === "actions" && activeAction === "symptoms" ? (
             <section className="swap-in px-4 py-5 sm:px-8 sm:py-6">
@@ -1169,16 +1177,7 @@ export function PatientPortalView({
                         <div className="mt-2 text-body text-muted-foreground">
                           {item.completed_at ? <p className="tabular-nums">{`${t.completedOn} ${fmtDate(item.completed_at)}`}</p> : null}
                           {item.completion_notes ? <p className="mt-1 break-words text-foreground">{item.completion_notes}</p> : null}
-                          {item.completion_photos && item.completion_photos.length > 0 ? (
-                            <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                              {item.completion_photos.map((photoItem) => (
-                                <figure key={photoItem.id} className="overflow-hidden rounded-lg border border-border bg-card">
-                                  <img src={photoItem.data_url} alt={photoItem.name} className="h-16 w-full object-cover" />
-                                  <figcaption className="truncate px-2 py-1 text-meta text-foreground">{photoItem.name}</figcaption>
-                                </figure>
-                              ))}
-                            </div>
-                          ) : null}
+                          {!!item.completion_photos?.length && <PatientPhotoGallery photos={item.completion_photos} />}
                         </div>
                       )}
                     </li>
@@ -1243,7 +1242,8 @@ export function PatientPortalView({
 
           {activeTab === "photos" ? (
             <section className="px-4 py-5 sm:px-8 sm:py-6">
-              <SectionTitle title={t.photosTitle} count={patient.photos?.length || 0} />
+              <SectionTitle title={t.photosTitle} count={allPhotos.length} />
+              {allPhotos.length ? <PatientPhotoGallery photos={allPhotos} /> : <p className={emptyStateClass}>{t.noPhotos}</p>}
 
               <form onSubmit={handleUploadPhoto} className="mb-6 grid grid-cols-1 gap-4 border-y border-border py-5 text-meta">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -1278,7 +1278,7 @@ export function PatientPortalView({
 
                 {newPhotoData ? (
                   <div className="flex items-center gap-3">
-                    <img src={newPhotoData} alt={t.photoPreview} className="h-12 w-12 rounded-md border border-border object-cover" />
+                    <PatientPhotoTrigger photo={{id:"pending-portal",name:newPhotoName || t.photoPreview,data_url:newPhotoData,date:""}} />
                     <span className="text-body font-medium text-foreground">{t.readyPhoto}</span>
                   </div>
                 ) : null}
@@ -1290,24 +1290,7 @@ export function PatientPortalView({
                 </div>
               </form>
 
-              {patient.photos && patient.photos.length > 0 ? (
-                <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                  {patient.photos.map((item, index) => (
-                    <li key={item.id} className="list-in overflow-hidden rounded-lg border border-border bg-card" style={{ "--i": index } as CSSProperties}>
-                      <div className="aspect-square w-full overflow-hidden bg-muted">
-                        <img src={item.data_url} alt={item.name} className="h-full w-full object-cover" />
-                      </div>
-                      <div className="p-2 text-meta">
-                        <p className="truncate font-semibold text-foreground" title={item.name}>{item.name}</p>
-                        <p className="text-muted-foreground tabular-nums">{fmtDate(item.date)}</p>
-                        {item.notes ? <p className="mt-1 text-muted-foreground">{item.notes}</p> : null}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className={emptyStateClass}>{t.noPhotos}</p>
-              )}
+
             </section>
           ) : null}
 
@@ -1332,6 +1315,8 @@ export function PatientPortalView({
               )}
             </section>
           ) : null}
+            </div>
+          </div>
         </article>
       </Container>
     </main>

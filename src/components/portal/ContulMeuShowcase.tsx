@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { contulMeuCopy, type PortalPreviewFeatureId } from "@/components/portal/contul-meu-copy";
 import { mediatorStaffStripCopy } from "@/components/mediator/mediator-page-copy";
@@ -12,10 +11,10 @@ import {
   CalendarIcon,
   FileTextIcon,
   PrescriptionIcon,
-  ShieldIcon,
 } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
+import "./patient-cabinet.css";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
 const FEATURE_ICONS: Record<PortalPreviewFeatureId, typeof PrescriptionIcon> = {
@@ -42,108 +41,16 @@ export function ContulMeuShowcase({ initialLang = "ro" }: { initialLang?: Lang }
   const copy = contulMeuCopy[lang] ?? contulMeuCopy.ro;
   const staffStrip = mediatorStaffStripCopy[lang] ?? mediatorStaffStripCopy.ro;
 
-  return (
-    <main
-      id="main-content"
-      className="relative isolate flex min-h-[calc(100svh-var(--site-header-h,4.5rem))] flex-1 flex-col justify-center overflow-hidden bg-background text-foreground dark:bg-ink-950 dark:text-paper"
-    >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-80 bg-[radial-gradient(60%_100%_at_50%_0%,rgba(29,53,87,0.07),transparent_75%)] dark:bg-[radial-gradient(60%_100%_at_50%_0%,rgba(42,77,124,0.28),transparent_75%)]"
-      />
-
-      <Container className="relative z-10 flex flex-1 flex-col justify-center">
-        <div className="fhs-enter mx-auto w-full max-w-[70rem] py-5 sm:py-8 lg:py-10">
-          <Link
-            href={withLangPrefix("/", lang)}
-            className="press-row mb-4 -ml-2 inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-(--radius-control) px-2 text-body font-semibold text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-mist dark:hover:text-paper"
-          >
-            <ArrowLeftIcon aria-hidden="true" className="h-5 w-5 shrink-0" />
-            <span>{copy.backHome}</span>
-          </Link>
-
-          <div className="grid overflow-hidden rounded-3xl border border-border/85 bg-card shadow-(--shadow-card-hover) dark:border-white/12 dark:bg-ink-900 lg:grid-cols-12">
-            <div className="flex flex-col lg:col-span-6">
-              <SmsPhoneAuthModal initialLang={lang} embedded />
-            </div>
-
-            <div className="relative flex min-h-[21rem] flex-col justify-between overflow-hidden bg-ink-950 p-6 sm:p-8 lg:col-span-6 lg:min-h-[36rem] lg:p-10">
-              <Image
-                src="/images/health-topics/heart-health-care.jpg"
-                alt=""
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover object-[50%_25%]"
-              />
-
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/95 via-ink-950/60 to-ink-950/25"
-              />
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 lg:bg-gradient-to-r lg:from-ink-950/30 lg:via-transparent lg:to-transparent"
-              />
-
-              <div className="relative z-10 inline-flex w-fit items-center gap-2 rounded-xl border border-white/15 bg-ink-950/60 px-3.5 py-2 text-sm font-medium text-paper backdrop-blur-md">
-                <ShieldIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-sapphire-border" />
-                <span>{copy.eyebrow}</span>
-              </div>
-
-              <section
-                aria-labelledby="portal-preview-heading"
-                className="relative z-10 mt-auto pt-20 sm:pt-24 lg:pt-28"
-              >
-                <h2 id="portal-preview-heading" className="sr-only">
-                  {copy.previewRegionLabel}
-                </h2>
-
-                {/* Who this page is for, and that nothing else on the site needs an account. */}
-                <p className="text-balance text-[1.2rem] font-semibold leading-snug tracking-[-0.015em] text-paper sm:text-[1.35rem]">
-                  {copy.whoFor}
-                </p>
-
-                <ul className="mt-4 space-y-2.5">
-                  {copy.features.map((feature) => {
-                    const FeatureIcon = FEATURE_ICONS[feature.id];
-                    return (
-                      <li
-                        key={feature.id}
-                        className="flex items-start gap-3 rounded-xl border border-white/12 bg-ink-950/55 px-3.5 py-2.5 backdrop-blur-md"
-                      >
-                        <FeatureIcon
-                          aria-hidden="true"
-                          className="mt-0.5 h-5 w-5 shrink-0 text-sapphire-border"
-                        />
-                        <div>
-                          <p className="text-body font-semibold text-paper">{feature.title}</p>
-                          <p className="mt-0.5 text-sm leading-snug text-paper/80">{feature.body}</p>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
-            </div>
-          </div>
-
-          {/* Mediators and other staff sign in with email or Google, not with the patient SMS code. */}
-          <section
-            aria-label={staffStrip.regionLabel}
-            className="mt-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 rounded-2xl border border-border/85 bg-card px-5 py-4 sm:px-7 dark:border-white/12 dark:bg-ink-900"
-          >
-            <p className="text-body font-medium text-foreground dark:text-paper">{staffStrip.prompt}</p>
-            <Link
-              href={withLangPrefix("/sign-in", lang)}
-              className="press-row group inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-background px-4 py-2 text-body font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-foreground/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:border-white/16 dark:bg-white/[0.06] dark:text-paper dark:hover:bg-white/[0.12]"
-            >
-              <span>{staffStrip.signIn}</span>
-              <ArrowRightIcon aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0" />
-            </Link>
-          </section>
-        </div>
-      </Container>
-    </main>
-  );
+  return <main id="main-content" className="cabinet-entry">
+    <Container>
+      <div className="mx-auto max-w-[1080px]"><Link href={withLangPrefix("/", lang)} className="mb-5 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-muted-foreground"><ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />{copy.backHome}</Link></div>
+      <div className="cabinet-entry-layout">
+        <div><SmsPhoneAuthModal initialLang={lang} embedded /></div>
+        <section className="cabinet-entry-benefits" aria-labelledby="portal-preview-heading"><h2 id="portal-preview-heading">{copy.previewRegionLabel}</h2><p>{copy.whoFor}</p>
+          <ul>{copy.features.map((feature) => { const Icon = FEATURE_ICONS[feature.id]; return <li key={feature.id}><Icon className="h-5 w-5" aria-hidden="true" /><div><h3>{feature.title}</h3><p>{feature.body}</p></div></li>; })}</ul>
+        </section>
+      </div>
+      <section className="cabinet-staff-entry" aria-label={staffStrip.regionLabel}><p>{staffStrip.prompt}</p><Link href={withLangPrefix("/sign-in", lang)} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border-control px-4 font-semibold text-foreground">{staffStrip.signIn}<ArrowRightIcon className="h-4 w-4" aria-hidden="true" /></Link></section>
+    </Container>
+  </main>;
 }

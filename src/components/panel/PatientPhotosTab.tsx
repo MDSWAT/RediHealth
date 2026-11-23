@@ -1,12 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import type { ChangeEvent, FormEvent } from "react";
-import { ImageIcon, TrashIcon } from "@/components/ui/icons";
+import { ImageIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { PatientPhoto } from "@/lib/types/patient";
+import { PatientPhotoGallery, PatientPhotoTrigger } from "./PatientMedia";
+import { patientDesignTranslations } from "@/lib/i18n/patient-design-translations";
 
 interface PatientPhotosTabProps {
+  busy?: boolean;
   photos: PatientPhoto[];
   newPhotoName: string;
   onChangeNewPhotoName: (value: string) => void;
@@ -19,6 +21,7 @@ interface PatientPhotosTabProps {
 }
 
 export function PatientPhotosTab({
+  busy = false,
   photos,
   newPhotoName,
   onChangeNewPhotoName,
@@ -131,133 +134,19 @@ export function PatientPhotosTab({
       remove: "Chude o tasviri",
     },
   }[lang];
-  return (
-    <div className="space-y-5 rounded-xl border border-border bg-card p-5 sm:p-6 shadow-xs">
-      <div>
-        <h3 className="text-sm font-semibold text-foreground">
-          {t.title}
-        </h3>
-        <p className="text-xs text-muted-foreground">
-          {t.subtitle}
-        </p>
-      </div>
-
-      <form
-        onSubmit={onAddPhoto}
-        className="rounded-xl border border-border bg-muted/30 p-4 space-y-3"
-      >
-        <h4 className="text-xs font-bold text-foreground">
-          {t.attachNew}
-        </h4>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label className="text-xs font-semibold text-foreground mb-1 block">
-              {t.selectImage} <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={onImageUpload}
-              className="w-full text-xs text-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-primary/10 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary hover:file:bg-primary/20"
-            />
-          </div>
-
-          <div>
-            <label className="text-xs font-semibold text-foreground mb-1 block">
-              {t.label}
-            </label>
-            <input
-              type="text"
-              value={newPhotoName}
-              onChange={(e) => onChangeNewPhotoName(e.target.value)}
-              placeholder={t.labelPh}
-              className="w-full rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label className="text-xs font-semibold text-foreground mb-1 block">
-            {t.notes}
-          </label>
-          <input
-            type="text"
-            value={newPhotoNote}
-            onChange={(e) => onChangeNewPhotoNote(e.target.value)}
-            placeholder={t.notesPh}
-            className="w-full rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          />
-        </div>
-
-        {newPhotoData ? (
-          <div className="flex items-center gap-3 bg-card p-2 rounded-lg border border-border">
-            <img
-              src={newPhotoData}
-              alt=""
-              className="h-12 w-12 object-cover rounded border border-border"
-            />
-            <span className="text-xs text-emerald-600 font-semibold">
-              {t.ready}
-            </span>
-          </div>
-        ) : null}
-
-        <div className="flex justify-end pt-1">
-          <button
-            type="submit"
-            disabled={!newPhotoData}
-            className="rounded-lg bg-primary px-4 py-1.5 text-xs font-semibold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground"
-          >
-            {t.attach}
-          </button>
-        </div>
-      </form>
-
-      {photos.length === 0 ? (
-        <div className="rounded-xl border border-border bg-background p-8 text-center text-xs text-muted-foreground">
-          <ImageIcon className="mx-auto h-6 w-6 text-muted-foreground mb-2" />
-          <span>{t.empty}</span>
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {photos.map((photo) => (
-            <div
-              key={photo.id}
-              className="group relative flex flex-col justify-between rounded-xl border border-border bg-background p-2.5"
-            >
-              <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-border bg-muted">
-                <img
-                  src={photo.data_url}
-                  alt={photo.name}
-                  className="h-full w-full object-cover"
-                />
-                <button
-                  type="button"
-                  onClick={() => onDeletePhoto(photo.id)}
-                  className="absolute right-1.5 top-1.5 rounded bg-black/60 p-1.5 text-white transition-opacity hover:bg-red-600 focus-visible:opacity-100 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100"
-                  title={t.remove}
-                  aria-label={`${t.remove}: ${photo.name}`}
-                >
-                  <TrashIcon className="h-3.5 w-3.5" />
-                </button>
-              </div>
-
-              <div className="mt-2 text-xs">
-                <p className="font-bold text-foreground truncate" title={photo.name}>
-                  {photo.name}
-                </p>
-                <p className="text-[10px] text-muted-foreground">{photo.date}</p>
-                {photo.notes ? (
-                  <p className="mt-1 text-[11px] text-muted-foreground line-clamp-2">
-                    {photo.notes}
-                  </p>
-                ) : null}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
+  const design = patientDesignTranslations[lang];
+  return <section className="crm-card patient-photo-section">
+    <div className="patient-section-heading"><div><h2>{t.title}</h2><p>{design.photoHint}</p></div><span className="patient-section-count">{photos.length}</span></div>
+    {photos.length ? <PatientPhotoGallery photos={photos} onDelete={onDeletePhoto} busy={busy} /> : <div className="patient-photos-empty"><ImageIcon className="h-7 w-7" aria-hidden="true" /><p>{t.empty}</p><span>{t.subtitle}</span></div>}
+    <form onSubmit={onAddPhoto} className="patient-photo-form">
+      <h3>{t.attachNew}</h3>
+      <fieldset disabled={busy} className="patient-photo-fields">
+        <label className="crm-label">{t.selectImage}<input required={!newPhotoData} type="file" accept="image/*" onChange={onImageUpload} className="patient-file-input" /></label>
+        <label className="crm-label">{t.label}<input type="text" value={newPhotoName} onChange={(e) => onChangeNewPhotoName(e.target.value)} placeholder={t.labelPh} className="crm-input" /></label>
+        <label className="crm-label patient-photo-note-field">{t.notes}<input type="text" value={newPhotoNote} onChange={(e) => onChangeNewPhotoNote(e.target.value)} placeholder={t.notesPh} className="crm-input" /></label>
+        {newPhotoData && <div className="patient-pending-photo"><PatientPhotoTrigger photo={{ id: "pending", name: newPhotoName || t.ready, data_url: newPhotoData, date: "" }} /><span>{t.ready}</span></div>}
+        <div className="patient-photo-submit"><button type="submit" disabled={!newPhotoData || busy} className="crm-button crm-primary">{t.attach}</button></div>
+      </fieldset>
+    </form>
+  </section>;
 }

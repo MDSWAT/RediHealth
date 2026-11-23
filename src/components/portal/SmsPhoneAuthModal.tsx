@@ -8,7 +8,6 @@ import {
   ArrowRightIcon,
   ChevronRightIcon,
   DownloadIcon,
-  LockIcon,
   PhoneIcon,
   ShieldIcon,
   UsersIcon,
@@ -528,21 +527,10 @@ export function SmsPhoneAuthModal({
       >
         <div>
           {/* Install sits beside Listen: people who open their record are the ones who come back, so this is where it earns its place. */}
-          {embedded || showInstall || voice.available ? (
+          {showInstall || voice.available ? (
             <div
-              className={`mb-5 flex flex-wrap items-center gap-2 ${
-                embedded ? "justify-between" : "justify-end"
-              }`}
+              className="mb-5 flex flex-wrap items-center justify-end gap-2"
             >
-              {embedded ? (
-                <span className="inline-flex items-center gap-1.5 rounded-lg border border-border/80 bg-muted/60 px-2.5 py-1 text-sm font-medium text-muted-foreground dark:border-white/10 dark:bg-white/[0.06] dark:text-mist">
-                  <LockIcon
-                    aria-hidden="true"
-                    className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border"
-                  />
-                  <span>{surfaceCopy.card.badge}</span>
-                </span>
-              ) : null}
               {showInstall || voice.available ? (
                 <div className="flex flex-wrap items-center gap-2">
                   {showInstall ? (

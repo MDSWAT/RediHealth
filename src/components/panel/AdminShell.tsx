@@ -40,6 +40,7 @@ import { createPatientModalTranslations } from "@/lib/i18n/panel-component-trans
 import { CreatePatientModal } from "./CreatePatientModal";
 import { hasOfflineVault } from "@/lib/offline-vault";
 import "./panel.css";
+import "./panel-workspace.css";
 
 /** Desktop sidebar "Administration" group, in this order: staff, feedback, then statistics under it. */
 const ADMINISTRATION_HREFS = new Set(["/panel/workers", "/panel/feedback", "/panel/analytics"]);
@@ -840,8 +841,8 @@ function AdminShellFrame({
       ) : null}
 
       {/* Desktop Sticky Sidebar */}
-      <div className={`panel-sidebar-layout lg:grid ${desktopSidebarCollapsed ? "lg:grid-cols-[72px_minmax(0,1fr)]" : "lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[216px_minmax(0,1fr)]"}`}>
-        <aside className={`hidden border-r border-border bg-white lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col ${desktopSidebarCollapsed ? "lg:w-[72px]" : ""}`}>
+      <div className={`panel-sidebar-layout lg:grid ${desktopSidebarCollapsed ? "lg:grid-cols-[72px_minmax(0,1fr)]" : "lg:grid-cols-[224px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)]"}`}>
+        <aside className={`panel-desktop-sidebar hidden border-r border-border bg-white lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col ${desktopSidebarCollapsed ? "lg:w-[72px]" : ""}`}>
           <div className={`relative flex min-h-[88px] border-b border-border/80 py-4 ${desktopSidebarCollapsed ? "justify-center px-2" : "flex-col gap-1 px-5"}`}>
             {desktopSidebarCollapsed ? (
               <button
