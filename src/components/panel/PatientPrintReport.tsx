@@ -112,7 +112,7 @@ export function PatientPrintReport({
         </div>
       </div>
 
-      <article className="mx-auto max-w-4xl rounded-2xl border border-[var(--panel-line)] bg-white p-6 text-slate-900 sm:p-10 print:rounded-none print:border-none print:p-0">
+      <article className="mx-auto max-w-4xl rounded-2xl border border-[var(--panel-line)] bg-white p-6 text-slate-900 [--panel-ink:#0b132b] [--panel-line:#dde4eb] [--panel-muted:#58697c] [--panel-selection:#edf3f9] [--panel-subtle:#f8fafb] [--panel-surface:#ffffff] sm:p-10 print:rounded-none print:border-none print:p-0">
         <header className="print-block flex flex-wrap items-start justify-between gap-4 border-b-2 border-[var(--color-sapphire)] pb-5">
           <div className="min-w-0 space-y-1">
             <h1 className="text-2xl font-bold tracking-tight text-[var(--color-sapphire)]">{t.clinicName}</h1>
@@ -211,7 +211,7 @@ export function PatientPrintReport({
             {t.s2}
           </h2>
           <div className="[overflow-wrap:anywhere]">
-            <TreatmentPlansView plan={treatmentPlan} />
+            <TreatmentPlansView plan={treatmentPlan} variant="paper" />
           </div>
         </section>
 

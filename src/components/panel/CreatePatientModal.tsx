@@ -641,17 +641,16 @@ export function CreatePatientModal({
             ) : null}
           </div>
           {!isEditing && step === 2 && <div className="space-y-5">
-            <div className="rounded-xl border border-[var(--panel-line)] bg-[var(--panel-selection)] p-4">
-              <p className="mb-2 text-xs font-semibold text-[var(--color-sapphire)] dark:text-[#bad7fa]">{wizard.ready}</p>
+            <section className="border-t border-[var(--panel-line)] pt-5">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="break-words text-xl font-bold text-[var(--panel-ink)]">{fullName}</p>
+                  <h4 className="break-words text-lg font-bold text-[var(--panel-ink)]">{fullName}</h4>
                   <p className="mt-1 break-all text-sm text-[var(--panel-ink)]"><span className="font-display tabular-nums">{phone}</span> · {email}</p>
                   {county && <p className="mt-1 text-sm text-[var(--panel-muted)]">{county}</p>}
                 </div>
                 <button type="button" onClick={() => goToStep(0)} className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap px-2 text-sm font-semibold text-primary hover:underline dark:text-[#bad7fa]">{wizard.edit}</button>
               </div>
-            </div>
+            </section>
             <section className="border-t border-[var(--panel-line)] pt-5">
               <div className="mb-4 flex items-center justify-between gap-3"><h4 className="text-sm font-semibold text-[var(--panel-ink)]">{wizard.steps[1]}</h4><button type="button" onClick={() => goToStep(1)} className="inline-flex min-h-11 items-center whitespace-nowrap px-2 text-sm font-semibold text-primary hover:underline dark:text-[#bad7fa]">{wizard.edit}</button></div>
               <dl className="grid gap-4 text-sm sm:grid-cols-2">
