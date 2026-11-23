@@ -1,18 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { Button } from "@/components/ui/Button";
-import {
-  CheckCircleIcon,
-  AlertCircleIcon,
-  CameraIcon,
-  HeartIcon,
-  DropletIcon,
-  UsersIcon,
-  ActivityIcon,
-  UserIcon,
-  StethoscopeIcon,
-} from "@/components/ui/icons";
+import { useId, useRef, useState } from "react";
+import { CameraIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
@@ -32,78 +21,77 @@ interface ProxyPatientIntakeWizardProps {
 type SymptomCategoryId = "inima" | "diabet" | "sarcina" | "respirator" | "copil" | "general";
 
 // apiValue is the value stored by /api/mediatori/intake. Keep it unchanged; only the label is localized.
-const SYMPTOM_CATEGORIES: { id: SymptomCategoryId; apiValue: string; Icon: typeof HeartIcon }[] = [
-  { id: "inima", apiValue: "Dureri de inimă sau tensiune", Icon: HeartIcon },
-  { id: "diabet", apiValue: "Diabet sau sete excesivă", Icon: DropletIcon },
-  { id: "sarcina", apiValue: "Sarcină sau sănătatea mamei", Icon: UsersIcon },
-  { id: "respirator", apiValue: "Tuse prelungită sau lipsă de aer", Icon: ActivityIcon },
-  { id: "copil", apiValue: "Copil bolnav sau vaccinuri", Icon: UserIcon },
-  { id: "general", apiValue: "Alte probleme de sănătate", Icon: StethoscopeIcon },
+const SYMPTOM_CATEGORIES: { id: SymptomCategoryId; apiValue: string }[] = [
+  { id: "inima", apiValue: "Dureri de inimă sau tensiune" },
+  { id: "diabet", apiValue: "Diabet sau sete excesivă" },
+  { id: "sarcina", apiValue: "Sarcină sau sănătatea mamei" },
+  { id: "respirator", apiValue: "Tuse prelungită sau lipsă de aer" },
+  { id: "copil", apiValue: "Copil bolnav sau vaccinuri" },
+  { id: "general", apiValue: "Alte probleme de sănătate" },
 ];
 
 const intakeCopy = {
   ru: {
     categories: {
-      inima: "Боль в сердце или кровяное давление",
-      diabet: "Диабет или сильная жажда",
-      sarcina: "Беременность или здоровье матери",
-      respirator: "Длительный кашель или одышка",
-      copil: "Больной ребенок или вакцины",
-      general: "Другая проблема со здоровьем",
+      inima: "Сердце или давление",
+      diabet: "Диабет или жажда",
+      sarcina: "Беременность и мама",
+      respirator: "Кашель или одышка",
+      copil: "Ребёнок или прививки",
+      general: "Другой вопрос",
     } as Record<SymptomCategoryId, string>,
-    title: "Зарегистрировать пациента",
     stepOf: (n: number) => `Шаг ${n} из 3`,
-    scriptLabel: "Что ты можешь сказать",
-    script: "\"Здравствуйте. Я здесь, чтобы помочь. Что вас беспокоит больше всего и с каких пор?\"",
+    scriptLabel: "Что можно сказать",
+    script: "«Здравствуйте. Я здесь, чтобы помочь. Что беспокоит вас больше всего и с каких пор?»",
     nameLabel: "Имя пациента *",
-    namePlaceholder: "например Василе Станеску",
-    ageLabel: "Возраст (приблизительный)",
-    agePlaceholder: "например 64",
+    namePlaceholder: "Например: Василе Стэнеску",
+    ageLabel: "Возраст (примерно)",
+    agePlaceholder: "Например: 64",
     categoryLabel: "Основная проблема",
     complaintLabel: "Что говорит пациент своими словами",
-    complaintPlaceholder: "например головная боль в течение 3 дней, головокружение при вставании",
+    complaintPlaceholder: "Например: головная боль 3 дня, головокружение при вставании",
     nameRequired: "Введите имя пациента.",
     next: "Продолжить",
     back: "Назад",
-    documentTitle: "Сфотографируйте документ, удостоверяющий личность",
-    documentBody: "Если у пациента есть удостоверение личности или сертификат, сфотографируйте его на планшет. Если у них нет документов, переходите к следующему шагу.",
+    documentTitle: "Фото документа, удостоверяющего личность",
+    documentBody: "Если у пациента есть удостоверение личности или справка, сделайте фото на планшет. Если документов нет, перейдите к следующему шагу.",
     documentAlt: "Фотография документа, удостоверяющего личность",
     retakePhoto: "Переснять фото",
-    captureTitle: "Сфотографируйте документ",
+    captureTitle: "Сделать фото документа",
     captureHint: "Нажмите, чтобы открыть камеру.",
     phoneLabel: "Мобильный телефон (пациента или семьи) *",
-    phoneHelp: "Консультации и ссылки врача приходят по СМС на этот номер.",
-    countyLabel: "Округ",
-    localityLabel: "Город или деревня",
+    phoneHelp: "Рекомендации врача и ссылки приходят по SMS на этот номер.",
+    countyLabel: "Округ или область",
+    countyPlaceholder: "Например: Галац",
+    localityLabel: "Город или село",
+    localityPlaceholder: "Название населённого пункта",
     summaryPatient: "Пациент:",
     ageUnknown: "возраст не указан",
     summaryProblem: "Проблема:",
     submitting: "Сохранение…",
-    submit: "Спасти пациента",
+    submit: "Сохранить пациента",
     missingFields: "Введите имя пациента и контактный номер.",
-    saveError: "Пациента не удалось спасти. Попробуйте еще раз.",
+    saveError: "Не удалось сохранить пациента. Попробуйте ещё раз.",
     successTitle: "Пациент зарегистрирован",
-    accountNote: "У аккаунта нет электронной почты и он привязан к этому номеру:",
-    addAnother: "Добавить еще одного пациента",
+    accountNote: "Аккаунт без электронной почты привязан к номеру:",
+    addAnother: "Добавить ещё пациента",
   },
-
   ro: {
     categories: {
-      inima: "Durere de inimă sau tensiune",
-      diabet: "Diabet sau sete mare",
-      sarcina: "Sarcină sau sănătatea mamei",
-      respirator: "Tuse lungă sau lipsă de aer",
-      copil: "Copil bolnav sau vaccinuri",
-      general: "Altă problemă de sănătate",
+      inima: "Inimă sau tensiune",
+      diabet: "Diabet sau sete",
+      sarcina: "Sarcină și mamă",
+      respirator: "Tuse sau lipsă de aer",
+      copil: "Copil sau vaccinuri",
+      general: "Altă problemă",
     } as Record<SymptomCategoryId, string>,
-    title: "Înregistrează un pacient",
     stepOf: (n: number) => `Pasul ${n} din 3`,
     scriptLabel: "Ce poți spune",
     script: "„Bună ziua. Sunt aici să vă ajut. Ce vă supără cel mai tare și de când?”",
     nameLabel: "Numele pacientului *",
     namePlaceholder: "ex.: Vasile Stănescu",
     ageLabel: "Vârsta (aproximativ)",
-    agePlaceholder: "ex.: 64 de ani",
+    agePlaceholder: "ex.: 64 ani",
     categoryLabel: "Problema principală",
     complaintLabel: "Ce spune pacientul, cu cuvintele lui",
     complaintPlaceholder: "ex.: îl doare capul de 3 zile și amețește când se ridică",
@@ -119,7 +107,9 @@ const intakeCopy = {
     phoneLabel: "Telefon mobil (pacient sau familie) *",
     phoneHelp: "Sfaturile medicului și linkurile vin prin SMS la acest număr.",
     countyLabel: "Județ",
+    countyPlaceholder: "ex.: Galați",
     localityLabel: "Localitate sau sat",
+    localityPlaceholder: "Numele localității",
     summaryPatient: "Pacient:",
     ageUnknown: "vârstă necunoscută",
     summaryProblem: "Problemă:",
@@ -133,14 +123,13 @@ const intakeCopy = {
   },
   en: {
     categories: {
-      inima: "Heart pain or blood pressure",
-      diabet: "Diabetes or strong thirst",
-      sarcina: "Pregnancy or mother's health",
-      respirator: "Long cough or short of breath",
+      inima: "Heart or blood pressure",
+      diabet: "Diabetes or thirst",
+      sarcina: "Pregnancy or maternal",
+      respirator: "Cough or breathing",
       copil: "Sick child or vaccines",
-      general: "Other health problem",
+      general: "Other health issue",
     } as Record<SymptomCategoryId, string>,
-    title: "Register a patient",
     stepOf: (n: number) => `Step ${n} of 3`,
     scriptLabel: "What you can say",
     script: "“Hello. I'm here to help. What bothers you most, and since when?”",
@@ -158,12 +147,14 @@ const intakeCopy = {
     documentBody: "If the patient has an ID card or certificate, photograph it with the tablet. If they have no documents, go to the next step.",
     documentAlt: "Photo of the ID document",
     retakePhoto: "Retake photo",
-    captureTitle: "Photograph the document",
+    captureTitle: "Photograph document",
     captureHint: "Tap to open the camera.",
     phoneLabel: "Mobile phone (patient or family) *",
     phoneHelp: "The doctor's advice and links are sent by SMS to this number.",
     countyLabel: "County",
+    countyPlaceholder: "e.g. Cluj",
     localityLabel: "Town or village",
+    localityPlaceholder: "Locality name",
     summaryPatient: "Patient:",
     ageUnknown: "age not given",
     summaryProblem: "Problem:",
@@ -177,14 +168,13 @@ const intakeCopy = {
   },
   sq: {
     categories: {
-      inima: "Dhimbje zemre ose tension",
-      diabet: "Diabet ose etje e madhe",
-      sarcina: "Shtatzëni ose shëndeti i nënës",
-      respirator: "Kollë e gjatë ose mungesë ajri",
-      copil: "Fëmijë i sëmurë ose vaksina",
-      general: "Problem tjetër shëndetësor",
+      inima: "Zemra ose tensioni",
+      diabet: "Diabeti ose etja",
+      sarcina: "Shtatzënia dhe nëna",
+      respirator: "Kolla ose frymëmarrja",
+      copil: "Fëmija ose vaksinat",
+      general: "Problem tjetër",
     } as Record<SymptomCategoryId, string>,
-    title: "Regjistro një pacient",
     stepOf: (n: number) => `Hapi ${n} nga 3`,
     scriptLabel: "Çfarë mund të thuash",
     script: "“Mirëdita. Jam këtu t'ju ndihmoj. Çfarë ju shqetëson më shumë dhe që kur?”",
@@ -207,7 +197,9 @@ const intakeCopy = {
     phoneLabel: "Celulari (i pacientit ose i familjes) *",
     phoneHelp: "Këshillat e mjekut dhe lidhjet vijnë me SMS në këtë numër.",
     countyLabel: "Qarku",
+    countyPlaceholder: "p.sh. Tiranë",
     localityLabel: "Qyteti ose fshati",
+    localityPlaceholder: "Emri i vendbanimit",
     summaryPatient: "Pacienti:",
     ageUnknown: "mosha nuk dihet",
     summaryProblem: "Problemi:",
@@ -221,14 +213,13 @@ const intakeCopy = {
   },
   it: {
     categories: {
-      inima: "Dolore al cuore o pressione",
-      diabet: "Diabete o molta sete",
-      sarcina: "Gravidanza o salute della mamma",
-      respirator: "Tosse lunga o fiato corto",
-      copil: "Bambino malato o vaccini",
-      general: "Altro problema di salute",
+      inima: "Cuore o pressione",
+      diabet: "Diabete o sete",
+      sarcina: "Gravidanza o mamma",
+      respirator: "Tosse o respiro corto",
+      copil: "Bambino o vaccini",
+      general: "Altro problema",
     } as Record<SymptomCategoryId, string>,
-    title: "Registra un paziente",
     stepOf: (n: number) => `Passo ${n} di 3`,
     scriptLabel: "Cosa puoi dire",
     script: "“Buongiorno. Sono qui per aiutarla. Che cosa la disturba di più, e da quando?”",
@@ -246,33 +237,34 @@ const intakeCopy = {
     documentBody: "Se il paziente ha la carta d'identità o un certificato, fotografalo con il tablet. Se non ha documenti, vai al passo successivo.",
     documentAlt: "Foto del documento d'identità",
     retakePhoto: "Rifai la foto",
-    captureTitle: "Fotografa il documento",
+    captureTitle: "Fotografa documento",
     captureHint: "Tocca per aprire la fotocamera.",
     phoneLabel: "Cellulare (paziente o familiare) *",
     phoneHelp: "I consigli del medico e i link arrivano via SMS a questo numero.",
     countyLabel: "Provincia",
+    countyPlaceholder: "es. Vicenza",
     localityLabel: "Comune o paese",
+    localityPlaceholder: "Nome del comune",
     summaryPatient: "Paziente:",
     ageUnknown: "età non indicata",
     summaryProblem: "Problema:",
     submitting: "Salvataggio…",
-    submit: "Salva il paziente",
+    submit: "Salva paziente",
     missingFields: "Scrivi il nome del paziente e un numero di contatto.",
     saveError: "Il paziente non è stato salvato. Riprova.",
     successTitle: "Paziente registrato",
     accountNote: "L'account non ha email ed è collegato al numero:",
-    addAnother: "Aggiungi un paziente",
+    addAnother: "Aggiungi paziente",
   },
   hr: {
     categories: {
-      inima: "Bol u prsima ili krvni tlak",
-      diabet: "Šećerna bolest ili jaka žeđ",
-      sarcina: "Trudnoća ili zdravlje majke",
-      respirator: "Dugotrajan kašalj ili nedostatak zraka",
-      copil: "Bolesno dijete ili cijepljenje",
-      general: "Druga zdravstvena poteškoća",
+      inima: "Srce ili krvni tlak",
+      diabet: "Dijabetes ili žeđ",
+      sarcina: "Trudnoća i majka",
+      respirator: "Kašalj ili zaduha",
+      copil: "Dijete ili cijepljenje",
+      general: "Druga poteškoća",
     } as Record<SymptomCategoryId, string>,
-    title: "Upis pacijenta",
     stepOf: (n: number) => `Korak ${n} od 3`,
     scriptLabel: "Što možete reći",
     script: "„Dobar dan. Ovdje sam da vam pomognem. Što vas najviše muči i od kada?”",
@@ -295,7 +287,9 @@ const intakeCopy = {
     phoneLabel: "Broj mobitela (pacijent ili obitelj) *",
     phoneHelp: "Upute liječnika i poveznice stižu SMS porukom na ovaj broj.",
     countyLabel: "Županija",
+    countyPlaceholder: "npr. Međimurska",
     localityLabel: "Grad ili naselje",
+    localityPlaceholder: "Naziv mjesta",
     summaryPatient: "Pacijent:",
     ageUnknown: "dob nije navedena",
     summaryProblem: "Poteškoća:",
@@ -305,18 +299,17 @@ const intakeCopy = {
     saveError: "Pacijent nije spremljen. Pokušajte ponovno.",
     successTitle: "Pacijent je upisan",
     accountNote: "Račun nema adresu e-pošte i povezan je s brojem:",
-    addAnother: "Dodaj drugog pacijenta",
+    addAnother: "Dodaj pacijenta",
   },
   rom: {
     categories: {
-      inima: "Dukh ko ilo vay phurdimos e ratesko (tensiyona)",
-      diabet: "Zaharo (diabeto) vay bari trush",
-      sarcina: "Pharipe vay sastipen e dayako",
-      respirator: "Lungo xasipe vay pharo phurdipe",
-      copil: "Nasvalo chhavoro vay vakcine",
-      general: "Aver sastipnasko pharipen",
+      inima: "Ilo vay tensiyona",
+      diabet: "Diabeto vay trush",
+      sarcina: "Pharipe thaj day",
+      respirator: "Xasipe vay pharo phurdipe",
+      copil: "Chhavoro vay vakcine",
+      general: "Aver pharipen",
     } as Record<SymptomCategoryId, string>,
-    title: "Lekhav ekhe pacientes",
     stepOf: (n: number) => `Phiripen ${n} katar 3`,
     scriptLabel: "So shay te phenes",
     script: "„Lacho dives. Sem kathe te zhutisarav tumen. So dukhal tumen nay-but thaj katar kana?”",
@@ -333,18 +326,20 @@ const intakeCopy = {
     documentTitle: "Ker poza e identiteteske lileske",
     documentBody: "Te si e pacientes buletino vay adeverinca, ker poza e tabletesa. Te nane les lila, nakh ko aver phiripen.",
     documentAlt: "Poza e identiteteske lileski",
-    retakePhoto: "Ker e poza palem",
-    captureTitle: "Ker poza e lileske",
+    retakePhoto: "Ker poza palem",
+    captureTitle: "Ker poza lileske",
     captureHint: "Azba te putres e kamera.",
     phoneLabel: "Mobilno telefono (paciento vay familiya) *",
     phoneHelp: "E sikavimata e doktoreske thaj e linkurya aven katar SMS pe kadava gin.",
-    countyLabel: "Zhudeco / Regiyona",
+    countyLabel: "Zhudeco",
+    countyPlaceholder: "misal: Cluj",
     localityLabel: "Foro vay gav",
+    localityPlaceholder: "Anav e gavesko",
     summaryPatient: "Paciento:",
     ageUnknown: "borsha bi-zhande",
     summaryProblem: "Pharipen:",
     submitting: "Arakhel pes…",
-    submit: "Arakh e pacientes",
+    submit: "Arakh pacientes",
     missingFields: "Lekhav o anav e pacientesko thaj telefonesko gin.",
     saveError: "O paciento na arakhadilo. Zumav palem.",
     successTitle: "O paciento sas lekhavdo",
@@ -359,13 +354,21 @@ interface IntakeSuccessData {
   tempPassword?: string;
 }
 
+const inputClass =
+  "min-h-11 w-full rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3 py-2 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]";
+
+const primaryBtnClass =
+  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-sapphire bg-sapphire px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#28476f] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]";
+
+const outlineBtnClass =
+  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-4 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]";
+
 export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizardProps) {
   const { lang } = useSafeLanguage();
   const copy = intakeCopy[lang] ?? intakeCopy.ro;
+  const baseId = useId();
 
-  // Wizard steps: 1 = oral interview & symptoms, 2 = ID photo capture, 3 = contact & confirm
   const [step, setStep] = useState<1 | 2 | 3>(1);
-
   const [fullName, setFullName] = useState("");
   const [age, setAge] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<SymptomCategoryId>(SYMPTOM_CATEGORIES[0].id);
@@ -375,8 +378,8 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
 
   const [idDocumentData, setIdDocumentData] = useState<string | null>(null);
   const [familyPhone, setFamilyPhone] = useState("");
-  const [county, setCounty] = useState("Galați");
-  const [locality, setLocality] = useState("Toflea");
+  const [county, setCounty] = useState("");
+  const [locality, setLocality] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -414,8 +417,8 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
           age: age.trim() || undefined,
           phone: familyPhone.trim(),
           familyContactPhone: familyPhone.trim(),
-          county,
-          locality,
+          county: county.trim() || undefined,
+          locality: locality.trim() || undefined,
           symptomCategory: selectedCategoryApiValue,
           chiefComplaint: complaintText.trim() || undefined,
           documentScanUrl: idDocumentData || undefined,
@@ -440,24 +443,20 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
 
   if (successInfo) {
     return (
-      <div className="rounded-lg border border-border bg-card p-6 text-center">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire">
-          <CheckCircleIcon className="h-6 w-6" />
-        </div>
-        <h3 className="mt-4 text-body font-bold text-foreground">
+      <div role="status" aria-live="polite" className="max-w-xl space-y-3 py-2">
+        <h3 className="text-base font-semibold text-[var(--panel-ink)]">
           {copy.successTitle}
         </h3>
-        <p className="mt-1 text-meta text-muted-foreground">
-          {successInfo.message}
+        {successInfo.message && (
+          <p className="text-sm text-[var(--panel-muted)]">{successInfo.message}</p>
+        )}
+        <p className="text-sm text-[var(--panel-ink)]">
+          <span className="text-[var(--panel-muted)]">{copy.accountNote} </span>
+          <strong className="font-semibold tabular-nums">{familyPhone}</strong>
         </p>
-        <div className="mt-4 rounded-md bg-muted p-3 text-meta">
-          <span>{copy.accountNote} <strong>{familyPhone}</strong></span>
-        </div>
-        <div className="mt-6 flex justify-center gap-3">
-          <Button
+        <div className="pt-2">
+          <button
             type="button"
-            variant="action"
-            size="md"
             onClick={() => {
               setStep(1);
               setFullName("");
@@ -465,89 +464,91 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
               setComplaintText("");
               setIdDocumentData(null);
               setFamilyPhone("");
+              setCounty("");
+              setLocality("");
               setSuccessInfo(null);
             }}
+            className={primaryBtnClass}
           >
             {copy.addAnother}
-          </Button>
+          </button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="rounded-lg border border-border bg-card p-5 sm:p-6 shadow-xs">
-      {/* Wizard Step Bar */}
-      <div className="flex items-center justify-between pb-3 mb-4 border-b border-border">
-        <div>
-          <h2 className="text-body font-semibold text-foreground">
-            {copy.title}
-          </h2>
-        </div>
-        <span className="text-meta font-semibold text-muted-foreground">
-          {copy.stepOf(step)}
-        </span>
-      </div>
+    <div className="max-w-3xl space-y-5">
+      <p className="text-sm font-medium tabular-nums text-[var(--panel-muted)]">
+        {copy.stepOf(step)}
+      </p>
 
       {errorMessage && (
-        <div
+        <p
           role="alert"
-          className="mb-4 rounded-lg border border-primary/30 bg-primary-soft/75 p-3 text-body font-medium text-foreground dark:border-ruby-300/35 dark:bg-primary/15 dark:text-paper flex items-center gap-2"
+          className="rounded-lg border border-[#b91c1c]/35 bg-[#b91c1c]/10 px-3.5 py-2.5 text-sm font-medium text-[#b91c1c] dark:border-[#ffb4b4]/35 dark:bg-[#b91c1c]/20 dark:text-[#ffb4b4]"
         >
-          <AlertCircleIcon className="h-4 w-4 shrink-0 text-primary dark:text-ruby-300" />
-          <span>{errorMessage}</span>
-        </div>
+          {errorMessage}
+        </p>
       )}
 
-      {/* Step 1: Oral interview & symptom touch cards */}
+      {/* Step 1: Oral interview and symptom choices */}
       {step === 1 && (
-        <div className="space-y-4">
-          {/* Oral script box */}
-          <div className="rounded-lg border border-sapphire/20 bg-sapphire/5 p-3.5 text-meta text-foreground">
-            <p className="font-semibold text-sapphire dark:text-sapphire-border">
+        <div className="space-y-5">
+          <div className="border-t border-[var(--panel-line)] pt-3">
+            <p className="text-xs font-semibold text-sapphire dark:text-[#bad7fa]">
               {copy.scriptLabel}
             </p>
-            <p className="mt-1 italic leading-relaxed text-muted-foreground">
+            <p className="mt-1 max-w-[65ch] text-sm leading-relaxed text-[var(--panel-muted)]">
               {copy.script}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="block text-meta font-semibold text-foreground mb-1">
+              <label
+                htmlFor={`${baseId}-name`}
+                className="mb-1.5 block text-sm font-medium text-[var(--panel-ink)]"
+              >
                 {copy.nameLabel}
               </label>
               <input
+                id={`${baseId}-name`}
                 type="text"
                 required
-                aria-label={copy.nameLabel}
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder={copy.namePlaceholder}
-                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             </div>
 
             <div>
-              <label className="block text-meta font-semibold text-foreground mb-1">
+              <label
+                htmlFor={`${baseId}-age`}
+                className="mb-1.5 block text-sm font-medium text-[var(--panel-ink)]"
+              >
                 {copy.ageLabel}
               </label>
               <input
+                id={`${baseId}-age`}
                 type="text"
-                aria-label={copy.ageLabel}
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
                 placeholder={copy.agePlaceholder}
-                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             </div>
           </div>
 
-          <div>
-            <label className="block text-meta font-semibold text-foreground mb-1.5">
+          <div role="group" aria-labelledby={`${baseId}-cat-label`}>
+            <p
+              id={`${baseId}-cat-label`}
+              className="mb-2 text-sm font-medium text-[var(--panel-ink)]"
+            >
               {copy.categoryLabel}
-            </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            </p>
+            <div className="flex flex-wrap gap-2">
               {SYMPTOM_CATEGORIES.map((cat) => {
                 const isSelected = selectedCategory === cat.id;
                 return (
@@ -556,14 +557,13 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                     type="button"
                     aria-pressed={isSelected}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`press-row min-h-[48px] flex items-center gap-2.5 whitespace-nowrap rounded-lg border p-3 text-left text-body font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                    className={`inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border px-3.5 py-2 text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa] ${
                       isSelected
-                        ? "border-sapphire bg-sapphire text-white shadow-xs font-semibold"
-                        : "border-border-control bg-background text-foreground hover:bg-muted"
+                        ? "border-sapphire bg-sapphire font-semibold text-white"
+                        : "border-[#8a94a6] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] dark:border-[var(--panel-line)]"
                     }`}
                   >
-                    <cat.Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                    <span>{copy.categories[cat.id]}</span>
+                    {copy.categories[cat.id]}
                   </button>
                 );
               })}
@@ -571,24 +571,25 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
           </div>
 
           <div>
-            <label className="block text-meta font-medium text-foreground mb-1">
+            <label
+              htmlFor={`${baseId}-complaint`}
+              className="mb-1.5 block text-sm font-medium text-[var(--panel-ink)]"
+            >
               {copy.complaintLabel}
             </label>
             <textarea
+              id={`${baseId}-complaint`}
               rows={2}
-              aria-label={copy.complaintLabel}
               value={complaintText}
               onChange={(e) => setComplaintText(e.target.value)}
               placeholder={copy.complaintPlaceholder}
-              className="w-full rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className={`${inputClass} min-h-[76px]`}
             />
           </div>
 
-          <div className="pt-2 flex justify-end">
-            <Button
+          <div className="flex justify-end pt-1">
+            <button
               type="button"
-              variant="action"
-              size="md"
               onClick={() => {
                 if (!fullName.trim()) {
                   setErrorMessage(copy.nameRequired);
@@ -597,22 +598,22 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
                 setErrorMessage("");
                 setStep(2);
               }}
-              className="px-5"
+              className={primaryBtnClass}
             >
               {copy.next}
-            </Button>
+            </button>
           </div>
         </div>
       )}
 
-      {/* Step 2: Document / CI photo capture */}
+      {/* Step 2: Document photo capture */}
       {step === 2 && (
         <div className="space-y-4">
-          <div className="rounded-lg border border-border bg-muted/30 p-4 text-meta text-foreground">
-            <p className="font-semibold text-foreground">
+          <div>
+            <p className="text-sm font-semibold text-[var(--panel-ink)]">
               {copy.documentTitle}
             </p>
-            <p className="mt-1 text-muted-foreground leading-relaxed">
+            <p className="mt-1 max-w-[65ch] text-sm leading-relaxed text-[var(--panel-muted)]">
               {copy.documentBody}
             </p>
           </div>
@@ -627,131 +628,132 @@ export function ProxyPatientIntakeWizard({ onSuccess }: ProxyPatientIntakeWizard
           />
 
           {idDocumentData ? (
-            <div className="rounded-lg border border-border p-4 text-center bg-background">
+            <div className="space-y-3 border-t border-[var(--panel-line)] pt-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={idDocumentData}
                 alt={copy.documentAlt}
-                className="max-h-52 mx-auto rounded-md object-contain border border-border shadow-xs"
+                className="max-h-56 rounded-lg border border-[var(--panel-line)] object-contain"
               />
-              <button
-                type="button"
-                onClick={() => setIdDocumentData(null)}
-                className="mt-3 whitespace-nowrap text-body font-semibold text-sapphire underline-offset-4 hover:underline"
-              >
-                {copy.retakePhoto}
-              </button>
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setIdDocumentData(null)}
+                  className={outlineBtnClass}
+                >
+                  {copy.retakePhoto}
+                </button>
+              </div>
             </div>
           ) : (
-            <div
+            <button
+              type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="cursor-pointer rounded-lg border-2 border-dashed border-border bg-muted/20 p-8 text-center hover:border-foreground/30 transition-colors"
+              className="flex min-h-28 w-full flex-col items-center justify-center gap-1.5 rounded-lg border border-dashed border-[#8a94a6] bg-[var(--panel-subtle)] p-6 text-center transition-colors hover:bg-[var(--panel-selection)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]"
             >
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-muted text-sapphire">
-                <CameraIcon className="h-6 w-6" />
-              </div>
-              <p className="mt-3 text-meta font-bold text-foreground">
+              <CameraIcon className="h-5 w-5 text-sapphire dark:text-[#bad7fa]" aria-hidden="true" />
+              <span className="whitespace-nowrap text-sm font-semibold text-[var(--panel-ink)]">
                 {copy.captureTitle}
-              </p>
-              <p className="mt-1 text-meta text-muted-foreground">
+              </span>
+              <span className="text-xs text-[var(--panel-muted)]">
                 {copy.captureHint}
-              </p>
-            </div>
+              </span>
+            </button>
           )}
 
-          <div className="pt-2 flex items-center justify-between">
-            <Button
-              type="button"
-              variant="ghost"
-              size="md"
-              onClick={() => setStep(1)}
-              className="px-3 text-muted-foreground hover:text-foreground"
-            >
+          <div className="flex flex-wrap items-center justify-between gap-2 pt-2">
+            <button type="button" onClick={() => setStep(1)} className={outlineBtnClass}>
               {copy.back}
-            </Button>
-
-            <Button
-              type="button"
-              variant="action"
-              size="md"
-              onClick={() => setStep(3)}
-              className="px-5"
-            >
+            </button>
+            <button type="button" onClick={() => setStep(3)} className={primaryBtnClass}>
               {copy.next}
-            </Button>
+            </button>
           </div>
         </div>
       )}
 
-      {/* Step 3: Contact & final submit */}
+      {/* Step 3: Contact and final submit */}
       {step === 3 && (
         <div className="space-y-4">
           <div>
-            <label className="block text-meta font-semibold text-foreground mb-1">
+            <label
+              htmlFor={`${baseId}-phone`}
+              className="mb-1.5 block text-sm font-medium text-[var(--panel-ink)]"
+            >
               {copy.phoneLabel}
             </label>
             <input
+              id={`${baseId}-phone`}
               type="tel"
+              inputMode="tel"
               required
-              aria-label={copy.phoneLabel}
               value={familyPhone}
               onChange={(e) => setFamilyPhone(e.target.value)}
               placeholder="0721 000 000"
-              className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className={inputClass}
             />
-            <p className="mt-1 text-body text-muted-foreground">
+            <p className="mt-1.5 text-xs text-[var(--panel-muted)]">
               {copy.phoneHelp}
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="block text-body font-medium text-foreground mb-1">{copy.countyLabel}</label>
+              <label
+                htmlFor={`${baseId}-county`}
+                className="mb-1.5 block text-sm font-medium text-[var(--panel-ink)]"
+              >
+                {copy.countyLabel}
+              </label>
               <input
+                id={`${baseId}-county`}
                 type="text"
-                aria-label={copy.countyLabel}
                 value={county}
                 onChange={(e) => setCounty(e.target.value)}
-                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                placeholder={copy.countyPlaceholder}
+                className={inputClass}
               />
             </div>
+
             <div>
-              <label className="block text-body font-medium text-foreground mb-1">{copy.localityLabel}</label>
+              <label
+                htmlFor={`${baseId}-locality`}
+                className="mb-1.5 block text-sm font-medium text-[var(--panel-ink)]"
+              >
+                {copy.localityLabel}
+              </label>
               <input
+                id={`${baseId}-locality`}
                 type="text"
-                aria-label={copy.localityLabel}
                 value={locality}
                 onChange={(e) => setLocality(e.target.value)}
-                className="w-full min-h-[44px] rounded-lg border border-border-control bg-background px-3 py-2 text-body text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                placeholder={copy.localityPlaceholder}
+                className={inputClass}
               />
             </div>
           </div>
 
-          <div className="rounded-md bg-muted/40 p-3 text-meta text-muted-foreground">
-            {copy.summaryPatient} <strong>{fullName}</strong> ({age || copy.ageUnknown}), {copy.summaryProblem} <strong>{copy.categories[selectedCategory]}</strong>
-          </div>
+          <p className="border-t border-[var(--panel-line)] pt-3 text-sm text-[var(--panel-muted)]">
+            {copy.summaryPatient}{" "}
+            <strong className="font-semibold text-[var(--panel-ink)]">{fullName}</strong>{" "}
+            ({age || copy.ageUnknown}), {copy.summaryProblem}{" "}
+            <strong className="font-semibold text-[var(--panel-ink)]">
+              {copy.categories[selectedCategory]}
+            </strong>
+          </p>
 
-          <div className="pt-2 flex items-center justify-between">
-            <Button
-              type="button"
-              variant="ghost"
-              size="md"
-              onClick={() => setStep(2)}
-              className="px-3 text-muted-foreground hover:text-foreground"
-            >
+          <div className="flex flex-wrap items-center justify-between gap-2 pt-2">
+            <button type="button" onClick={() => setStep(2)} className={outlineBtnClass}>
               {copy.back}
-            </Button>
-
-            <Button
+            </button>
+            <button
               type="button"
-              variant="action"
-              size="md"
               disabled={isSubmitting}
               onClick={handleFinalSubmit}
-              className="px-6"
+              className={primaryBtnClass}
             >
               {isSubmitting ? copy.submitting : copy.submit}
-            </Button>
+            </button>
           </div>
         </div>
       )}

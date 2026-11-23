@@ -1,18 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "@/components/ui/Button";
-import {
-  UsersIcon,
-  VideoIcon,
-  ShieldIcon,
-  XIcon,
-} from "@/components/ui/icons";
+import { useState, useSyncExternalStore } from "react";
+import { PanelLink as Link, usePanelRuntime } from "@/components/panel/PanelRuntime";
+import { XIcon } from "@/components/ui/icons";
 import { HomeVisitsList, type ScheduledHomeVisit } from "./HomeVisitsList";
 import { HardwareKitTelemetryPanel } from "@/components/telemed/HardwareKitTelemetryPanel";
 import { ProxyPatientIntakeWizard } from "./ProxyPatientIntakeWizard";
 import { MediatorDoctorHandoverProtocol } from "./MediatorDoctorHandoverProtocol";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
 function useSafeLanguage() {
@@ -23,182 +19,149 @@ function useSafeLanguage() {
   }
 }
 
+const subscribeNoop = () => () => {};
+
+function useClientHour(): number | null {
+  return useSyncExternalStore(
+    subscribeNoop,
+    () => new Date().getHours(),
+    () => null,
+  );
+}
+
 const dashboardCopy = {
   ru: {
+    workspace: "Полевая работа",
     morning: "Доброе утро",
     afternoon: "Добрый день",
     evening: "Добрый вечер",
     synced: "Все синхронизировано",
-    syncedShort: "Онлайн",
-    savedOffline: (n: number) => (n === 1 ? "1 change saved offline" : `${n} изменения сохранены офлайн`),
-    savedOfflineShort: (n: number) => `${n} оффлайн`,
-    quickActions: "Быстрые действия",
-    intakeBadge: "Открыть",
-    intakeTitle: "Новый визит на дом",
-    intakeText: "Данные пациента и фотография документа, удостоверяющего личность.",
-    videoBadge: "Видеозвонок",
+    savedOffline: (n: number) =>
+      n === 1 ? "1 изменение сохранено офлайн" : `${n} изменения сохранены офлайн`,
+    quickActions: "Полевые инструменты",
+    intakeAction: "Новый визит",
+    intakeTitle: "Регистрация визита на дом",
+    videoAction: "Передача врачу",
     videoTitle: "Видеоконсультация с врачом",
-    videoText: "Отправьте данные и поговорите с дежурным врачом.",
-    kitBadge: "Полевой комплект",
+    kitAction: "Полевой комплект",
     kitTitle: "Замеры с комплектом",
-    kitText: "Артериальное давление, SpO2, уровень сахара в крови и температура по Bluetooth или вручную.",
+    casesLink: "Отслеженные дела",
     close: "Закрыть",
-    closeAria: "Закройте открытый инструмент",
-    demoAge: "68 лет",
-    casesTitle: "Отслеженные дела",
-    casesText: "Ваши пациенты по группам: матери, хронические заболевания, без удостоверения личности.",
-    casesLink: "Посмотреть дела",
+    closeAria: "Закрыть открытый инструмент",
   },
-
   ro: {
+    workspace: "Activitate în teren",
     morning: "Bună dimineața",
     afternoon: "Bună ziua",
     evening: "Bună seara",
     synced: "Totul e sincronizat",
-    syncedShort: "Online",
-    savedOffline: (n: number) => (n === 1 ? "1 modificare salvată offline" : `${n} modificări salvate offline`),
-    savedOfflineShort: (n: number) => `${n} offline`,
-    quickActions: "Acțiuni rapide",
-    intakeBadge: "Deschide",
+    savedOffline: (n: number) =>
+      n === 1 ? "1 modificare salvată offline" : `${n} modificări salvate offline`,
+    quickActions: "Instrumente de teren",
+    intakeAction: "Vizită nouă",
     intakeTitle: "Vizită nouă la domiciliu",
-    intakeText: "Datele pacientului și poza actului de identitate.",
-    videoBadge: "Apel video",
+    videoAction: "Predare medic",
     videoTitle: "Consultație video cu medicul",
-    videoText: "Trimite datele și vorbește cu medicul de gardă.",
-    kitBadge: "Kit de teren",
+    kitAction: "Kit de teren",
     kitTitle: "Măsurători cu kitul",
-    kitText: "Tensiune, SpO2, glicemie și temperatură, prin Bluetooth sau manual.",
+    casesLink: "Cazuri urmărite",
     close: "Închide",
     closeAria: "Închide instrumentul deschis",
-    demoAge: "68 ani",
-    casesTitle: "Cazuri urmărite",
-    casesText: "Pacienții tăi pe categorii: mame, boli cronice, fără acte.",
-    casesLink: "Vezi cazurile",
   },
   en: {
+    workspace: "Field workspace",
     morning: "Good morning",
     afternoon: "Good afternoon",
     evening: "Good evening",
     synced: "All synced",
-    syncedShort: "Online",
-    savedOffline: (n: number) => (n === 1 ? "1 change saved offline" : `${n} changes saved offline`),
-    savedOfflineShort: (n: number) => `${n} offline`,
-    quickActions: "Quick actions",
-    intakeBadge: "Open",
+    savedOffline: (n: number) =>
+      n === 1 ? "1 change saved offline" : `${n} changes saved offline`,
+    quickActions: "Field tools",
+    intakeAction: "New home visit",
     intakeTitle: "New home visit",
-    intakeText: "Patient details and a photo of the ID document.",
-    videoBadge: "Video call",
+    videoAction: "Doctor handover",
     videoTitle: "Video consultation with the doctor",
-    videoText: "Send the details and talk to the doctor on call.",
-    kitBadge: "Field kit",
+    kitAction: "Field kit",
     kitTitle: "Measurements with the kit",
-    kitText: "Blood pressure, SpO2, blood sugar and temperature, by Bluetooth or by hand.",
+    casesLink: "Tracked cases",
     close: "Close",
     closeAria: "Close the open tool",
-    demoAge: "68 years",
-    casesTitle: "Tracked cases",
-    casesText: "Your patients by group: mothers, chronic illness, no ID.",
-    casesLink: "View cases",
   },
   sq: {
+    workspace: "Puna në terren",
     morning: "Mirëmëngjes",
     afternoon: "Mirëdita",
     evening: "Mirëmbrëma",
-    synced: "Gjithçka është sinkronizuar",
-    syncedShort: "Online",
-    savedOffline: (n: number) => (n === 1 ? "1 ndryshim i ruajtur offline" : `${n} ndryshime të ruajtura offline`),
-    savedOfflineShort: (n: number) => `${n} offline`,
-    quickActions: "Veprime të shpejta",
-    intakeBadge: "Hap",
+    synced: "Gjithçka e sinkronizuar",
+    savedOffline: (n: number) =>
+      n === 1 ? "1 ndryshim i ruajtur offline" : `${n} ndryshime të ruajtura offline`,
+    quickActions: "Mjetet në terren",
+    intakeAction: "Vizitë e re",
     intakeTitle: "Vizitë e re në shtëpi",
-    intakeText: "Të dhënat e pacientit dhe foto e dokumentit të identitetit.",
-    videoBadge: "Thirrje video",
+    videoAction: "Dorëzim te mjeku",
     videoTitle: "Konsultë video me mjekun",
-    videoText: "Dërgo të dhënat dhe fol me mjekun e turnit.",
-    kitBadge: "Kiti në terren",
+    kitAction: "Kiti në terren",
     kitTitle: "Matje me kitin",
-    kitText: "Tensioni, SpO2, sheqeri në gjak dhe temperatura, me Bluetooth ose me dorë.",
+    casesLink: "Rastet që ndjek",
     close: "Mbyll",
     closeAria: "Mbyll mjetin e hapur",
-    demoAge: "68 vjeç",
-    casesTitle: "Rastet që ndjek",
-    casesText: "Pacientët e tu sipas grupit: nëna, sëmundje kronike, pa dokumente.",
-    casesLink: "Shiko rastet",
   },
   it: {
+    workspace: "Lavoro sul campo",
     morning: "Buongiorno",
     afternoon: "Buon pomeriggio",
     evening: "Buonasera",
     synced: "Tutto sincronizzato",
-    syncedShort: "Online",
-    savedOffline: (n: number) => (n === 1 ? "1 modifica salvata offline" : `${n} modifiche salvate offline`),
-    savedOfflineShort: (n: number) => `${n} offline`,
-    quickActions: "Azioni rapide",
-    intakeBadge: "Apri",
+    savedOffline: (n: number) =>
+      n === 1 ? "1 modifica salvata offline" : `${n} modifiche salvate offline`,
+    quickActions: "Strumenti sul campo",
+    intakeAction: "Nuova visita",
     intakeTitle: "Nuova visita a domicilio",
-    intakeText: "Dati del paziente e foto del documento d'identità.",
-    videoBadge: "Videochiamata",
+    videoAction: "Passaggio medico",
     videoTitle: "Visita video con il medico",
-    videoText: "Invia i dati e parla con il medico di turno.",
-    kitBadge: "Kit sul campo",
+    kitAction: "Kit sul campo",
     kitTitle: "Misurazioni con il kit",
-    kitText: "Pressione, SpO2, glicemia e temperatura, via Bluetooth o a mano.",
+    casesLink: "Casi seguiti",
     close: "Chiudi",
     closeAria: "Chiudi lo strumento aperto",
-    demoAge: "68 anni",
-    casesTitle: "Casi seguiti",
-    casesText: "I tuoi pazienti per gruppo: mamme, malattie croniche, senza documenti.",
-    casesLink: "Vedi i casi",
   },
   hr: {
+    workspace: "Terenski rad",
     morning: "Dobro jutro",
     afternoon: "Dobar dan",
     evening: "Dobra večer",
     synced: "Sve je sinkronizirano",
-    syncedShort: "Na mreži",
-    savedOffline: (n: number) => (n === 1 ? "1 izmjena spremljena izvan mreže" : `${n} izmjena spremljeno izvan mreže`),
-    savedOfflineShort: (n: number) => `${n} izvan mreže`,
-    quickActions: "Brze radnje",
-    intakeBadge: "Otvori",
+    savedOffline: (n: number) =>
+      n === 1 ? "1 izmjena spremljena izvan mreže" : `${n} izmjena spremljeno izvan mreže`,
+    quickActions: "Terenski alati",
+    intakeAction: "Novi posjet",
     intakeTitle: "Novi kućni posjet",
-    intakeText: "Podatci o pacijentu i fotografija osobnog dokumenta.",
-    videoBadge: "Videopoziv",
+    videoAction: "Predaja liječniku",
     videoTitle: "Videokonzultacija s liječnikom",
-    videoText: "Pošaljite podatke i razgovarajte s dežurnim liječnikom.",
-    kitBadge: "Terenski komplet",
+    kitAction: "Terenski komplet",
     kitTitle: "Mjerenja kompletom",
-    kitText: "Krvni tlak, SpO2, glukoza u krvi i tjelesna temperatura, putem Bluetootha ili ručno.",
+    casesLink: "Praćeni slučajevi",
     close: "Zatvori",
     closeAria: "Zatvori otvoreni alat",
-    demoAge: "68 god.",
-    casesTitle: "Praćeni slučajevi",
-    casesText: "Vaši pacijenti po skupinama: majke, kronične bolesti, bez dokumenata.",
-    casesLink: "Pogledaj slučajeve",
   },
   rom: {
+    workspace: "Buchi pe tereno",
     morning: "Lachi tosara",
     afternoon: "Lacho dives",
     evening: "Lachi rjat",
     synced: "Sa si sinkronizisardo",
-    syncedShort: "Online",
-    savedOffline: (n: number) => (n === 1 ? "1 paruvipe arakhado bi-internetesko" : `${n} paruvimata arakhade bi-internetesko`),
-    savedOfflineShort: (n: number) => `${n} bi-internetesko`,
-    quickActions: "Sige buchya",
-    intakeBadge: "Putar",
+    savedOffline: (n: number) =>
+      n === 1 ? "1 paruvipe arakhado bi-internetesko" : `${n} paruvimata arakhade bi-internetesko`,
+    quickActions: "Instrumenturya pe tereno",
+    intakeAction: "Nevi vizita",
     intakeTitle: "Nevi vizita khere",
-    intakeText: "Date e pacienteske thaj poza katar o identitetesko lil.",
-    videoBadge: "Video-svato",
+    videoAction: "Dinipe ko doktori",
     videoTitle: "Video-svato e doktoresa",
-    videoText: "Bichhal e date thaj de svato e doktoresa kay si pe buchi.",
-    kitBadge: "Terensko kito",
+    kitAction: "Terensko kito",
     kitTitle: "Merimata e kitosa",
-    kitText: "Phurdimos e ratesko (tensiyona), SpO2, zaharo and-o rat thaj tatipen, katar Bluetooth vay vastesa.",
+    casesLink: "Dikhle kazurya",
     close: "Phand",
     closeAria: "Phand o putardo instrumento",
-    demoAge: "68 borsha",
-    casesTitle: "Dikhle kazurya",
-    casesText: "Che pacienturya pe grupe: daya, kronikane nasvalimata, bi lilengo.",
-    casesLink: "Dikh e kazurya",
   },
 };
 
@@ -208,160 +171,155 @@ interface MobileFieldMediatorDashboardProps {
   county?: string;
 }
 
+type ActiveTool = "intake" | "handover" | "telemetry" | null;
+
+const toolBtnBase =
+  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border px-3.5 py-2 text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]";
+
 export function MobileFieldMediatorDashboard({
-  mediatorName = "Elena Rădulescu",
-  communityName = "Toflea",
-  county = "Galați",
+  mediatorName,
+  communityName,
+  county,
 }: MobileFieldMediatorDashboardProps) {
   const { lang } = useSafeLanguage();
+  const { demo } = usePanelRuntime();
   const copy = dashboardCopy[lang] ?? dashboardCopy.ro;
+  const clientHour = useClientHour();
 
-  // Active tool overlay: null = dashboard, "intake" | "handover" | "telemetry"
-  const [activeModal, setActiveModal] = useState<"intake" | "handover" | "telemetry" | null>(null);
+  const [activeTool, setActiveTool] = useState<ActiveTool>(null);
   const [selectedVisitForTool, setSelectedVisitForTool] = useState<ScheduledHomeVisit | null>(null);
   const [offlineSyncCount, setOfflineSyncCount] = useState<number>(0);
 
-  const getGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return copy.morning;
-    if (hour < 18) return copy.afternoon;
-    return copy.evening;
+  const greetingPrefix =
+    clientHour === null
+      ? null
+      : clientHour < 12
+        ? copy.morning
+        : clientHour < 18
+          ? copy.afternoon
+          : copy.evening;
+
+  const headingText = mediatorName
+    ? greetingPrefix
+      ? `${greetingPrefix}, ${mediatorName}`
+      : mediatorName
+    : copy.workspace;
+
+  const locationLine = [communityName, county].filter(Boolean).join(", ");
+  const syncLine =
+    offlineSyncCount === 0 ? copy.synced : copy.savedOffline(offlineSyncCount);
+
+  const activeToolTitle =
+    activeTool === "intake"
+      ? copy.intakeTitle
+      : activeTool === "handover"
+        ? copy.videoTitle
+        : activeTool === "telemetry"
+          ? copy.kitTitle
+          : "";
+
+  const toggleTool = (tool: Exclude<ActiveTool, null>) => {
+    setSelectedVisitForTool(null);
+    setActiveTool((current) => (current === tool ? null : tool));
   };
 
   return (
-    <div className="min-h-screen bg-background dark:bg-obsidian-navy pb-24">
-      {/* Sticky Mobile/Tablet Header */}
-      <header className="sticky top-0 z-30 border-b border-border bg-card px-4 py-3">
-        <div className="mx-auto max-w-5xl flex items-center justify-between gap-3">
+    <div
+      id="main-content"
+      className="min-h-dvh bg-[var(--panel-surface)] px-4 py-5 pb-24 text-[var(--panel-ink)] sm:px-6 sm:py-6"
+    >
+      <div className="mx-auto max-w-[1240px]">
+        {/* Open-canvas header: real identity + plain sync state */}
+        <header className="flex flex-col gap-3 border-b border-[var(--panel-line)] pb-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="min-w-0">
-            <h1 className="truncate text-body font-semibold text-foreground">
-              {getGreeting()}, {mediatorName}
-              <span aria-hidden="true" className="mx-2 inline-block h-3.5 w-px align-middle bg-border" />
-              {communityName}, {county}
+            <h1 className="font-display text-2xl font-bold tracking-[-0.025em] text-[var(--panel-ink)] sm:text-[1.875rem] sm:leading-[1.2]">
+              {headingText}
             </h1>
+            <p className="mt-1 text-sm tabular-nums text-[var(--panel-muted)]">
+              {locationLine ? `${locationLine} · ${syncLine}` : syncLine}
+            </p>
           </div>
 
-          <span className="shrink-0 tabular-nums text-meta font-medium text-muted-foreground">
-            <span className="hidden sm:inline">
-              {offlineSyncCount === 0 ? copy.synced : copy.savedOffline(offlineSyncCount)}
-            </span>
-            <span className="sm:hidden">
-              {offlineSyncCount === 0 ? copy.syncedShort : copy.savedOfflineShort(offlineSyncCount)}
-            </span>
-          </span>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-5xl px-4 sm:px-6 py-6 space-y-6">
-        {/* 3 Prominent Floating Action Tiles (min 100px height, 48px envelopes) */}
-        <section aria-label={copy.quickActions} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {/* Tile 1: Intake */}
-          <button
-            type="button"
-            onClick={() => {
-              setSelectedVisitForTool(null);
-              setActiveModal("intake");
-            }}
-            className="press-row flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          <div
+            role="toolbar"
+            aria-label={copy.quickActions}
+            className="flex flex-wrap items-center gap-2"
           >
-            <div className="flex items-center justify-between">
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sapphire/10 text-sapphire">
-                <UsersIcon className="h-5 w-5" />
-              </span>
-              <span className="text-meta font-semibold text-sapphire">
-                {copy.intakeBadge}
-              </span>
-            </div>
-            <div>
-              <p className="text-body font-bold text-foreground">
-                {copy.intakeTitle}
-              </p>
-              <p className="mt-0.5 text-meta text-muted-foreground">
-                {copy.intakeText}
-              </p>
-            </div>
-          </button>
-
-          {/* Tile 2: Video consultation handover */}
-          <button
-            type="button"
-            onClick={() => {
-              setSelectedVisitForTool(null);
-              setActiveModal("handover");
-            }}
-            className="press-row flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <div className="flex items-center justify-between">
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire">
-                <VideoIcon className="h-5 w-5" />
-              </span>
-              <span className="text-meta font-semibold text-sapphire">
-                {copy.videoBadge}
-              </span>
-            </div>
-            <div>
-              <p className="text-body font-bold text-foreground">
-                {copy.videoTitle}
-              </p>
-              <p className="mt-0.5 text-meta text-muted-foreground">
-                {copy.videoText}
-              </p>
-            </div>
-          </button>
-
-          {/* Tile 3: Telemetry kit panel */}
-          <button
-            type="button"
-            onClick={() => {
-              setSelectedVisitForTool(null);
-              setActiveModal("telemetry");
-            }}
-            className="press-row flex min-h-[105px] flex-col justify-between rounded-lg border border-border bg-card p-4 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:border-sapphire/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <div className="flex items-center justify-between">
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sapphire-soft text-sapphire">
-                <ShieldIcon className="h-5 w-5" aria-hidden="true" />
-              </span>
-              <span className="text-meta font-semibold text-muted-foreground">
-                {copy.kitBadge}
-              </span>
-            </div>
-            <div>
-              <p className="text-body font-bold text-foreground">
-                {copy.kitTitle}
-              </p>
-              <p className="mt-0.5 text-meta text-muted-foreground">
-                {copy.kitText}
-              </p>
-            </div>
-          </button>
-        </section>
-
-        {/* Modal/Tool Overlay when triggered */}
-        {activeModal && (
-          <div className="fhs-enter relative rounded-xl border border-border bg-card p-4 shadow-sm sm:p-6">
             <button
               type="button"
-              onClick={() => setActiveModal(null)}
-              className="press-row absolute top-4 right-4 inline-flex min-h-11 items-center whitespace-nowrap rounded-md border border-border-control px-2.5 py-1.5 text-body text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              aria-label={copy.closeAria}
+              aria-pressed={activeTool === "intake"}
+              onClick={() => toggleTool("intake")}
+              className={`${toolBtnBase} border-sapphire bg-sapphire text-white hover:bg-[#28476f]`}
             >
-              <span className="inline-flex items-center gap-1">
-                <XIcon className="h-3.5 w-3.5" aria-hidden="true" />
-                {copy.close}
-              </span>
+              {copy.intakeAction}
             </button>
 
-            {activeModal === "intake" && (
+            <button
+              type="button"
+              aria-pressed={activeTool === "handover"}
+              onClick={() => toggleTool("handover")}
+              className={`${toolBtnBase} ${
+                activeTool === "handover"
+                  ? "border-sapphire bg-[var(--panel-selection)] text-sapphire dark:border-[#bad7fa] dark:text-[#bad7fa]"
+                  : "border-[#8a94a6] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] dark:border-[var(--panel-line)]"
+              }`}
+            >
+              {copy.videoAction}
+            </button>
+
+            <button
+              type="button"
+              aria-pressed={activeTool === "telemetry"}
+              onClick={() => toggleTool("telemetry")}
+              className={`${toolBtnBase} ${
+                activeTool === "telemetry"
+                  ? "border-sapphire bg-[var(--panel-selection)] text-sapphire dark:border-[#bad7fa] dark:text-[#bad7fa]"
+                  : "border-[#8a94a6] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] dark:border-[var(--panel-line)]"
+              }`}
+            >
+              {copy.kitAction}
+            </button>
+
+            <Link
+              href={withLangPrefix("/panel/mediator/cazuri", lang)}
+              className={`${toolBtnBase} border-[#8a94a6] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] dark:border-[var(--panel-line)]`}
+            >
+              {copy.casesLink}
+            </Link>
+          </div>
+        </header>
+
+        {/* Flat inline tool workspace (zero nested cards, zero colliding close button) */}
+        {activeTool && (
+          <section
+            aria-label={activeToolTitle}
+            className="border-b border-[var(--panel-line)] py-6"
+          >
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h2 className="text-lg font-semibold text-[var(--panel-ink)]">
+                {activeToolTitle}
+              </h2>
+              <button
+                type="button"
+                onClick={() => setActiveTool(null)}
+                aria-label={copy.closeAria}
+                className="inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[var(--panel-selection)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]"
+              >
+                <XIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>{copy.close}</span>
+              </button>
+            </div>
+
+            {activeTool === "intake" && (
               <ProxyPatientIntakeWizard
                 onSuccess={() => {
                   setOfflineSyncCount((c) => c + 1);
                 }}
-                onCancel={() => setActiveModal(null)}
+                onCancel={() => setActiveTool(null)}
               />
             )}
 
-            {activeModal === "telemetry" && (
+            {activeTool === "telemetry" && (
               <HardwareKitTelemetryPanel
                 patientId={selectedVisitForTool?.id}
                 onSaved={() => {
@@ -370,48 +328,35 @@ export function MobileFieldMediatorDashboard({
               />
             )}
 
-            {activeModal === "handover" && (
+            {activeTool === "handover" && (
               <MediatorDoctorHandoverProtocol
-                initialPatientName={selectedVisitForTool?.patientName || "Maria Căldăraru"}
-                initialAge={selectedVisitForTool?.patientAge || copy.demoAge}
+                initialPatientName={
+                  selectedVisitForTool?.patientName ?? (demo ? "Maria Căldăraru" : "")
+                }
+                initialAge={selectedVisitForTool?.patientAge}
               />
             )}
-          </div>
+          </section>
         )}
 
-        {/* Daily Home Visits Agenda (Change 72) */}
-        <HomeVisitsList
-          onLaunchHandover={(visit) => {
-            setSelectedVisitForTool(visit);
-            setActiveModal("handover");
-          }}
-          onLaunchTelemetry={(visit) => {
-            setSelectedVisitForTool(visit);
-            setActiveModal("telemetry");
-          }}
-        />
-
-        {/* Link to longitudinal case tracking cohort (Change 73) */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-lg border border-border bg-card p-5 shadow-xs">
-          <div>
-            <h3 className="text-body font-bold text-foreground">
-              {copy.casesTitle}
-            </h3>
-            <p className="text-meta text-muted-foreground mt-0.5">
-              {copy.casesText}
-            </p>
-          </div>
-
-          <Button
-            href="/panel/mediator/cazuri"
-            variant="action"
-            size="md"
-            className="shrink-0"
-          >
-            {copy.casesLink}
-          </Button>
+        {/* Daily Home Visits Agenda immediately above the fold */}
+        <div className="pt-6">
+          <HomeVisitsList
+            onStartIntake={() => {
+              setSelectedVisitForTool(null);
+              setActiveTool("intake");
+            }}
+            onLaunchHandover={(visit) => {
+              setSelectedVisitForTool(visit);
+              setActiveTool("handover");
+            }}
+            onLaunchTelemetry={(visit) => {
+              setSelectedVisitForTool(visit);
+              setActiveTool("telemetry");
+            }}
+          />
         </div>
-      </main>
+      </div>
     </div>
   );
 }

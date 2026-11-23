@@ -5,12 +5,7 @@ import { useContext, useEffect, useId, useRef, useState, type FormEvent } from "
 import { Button } from "@/components/ui/Button";
 import {
   ArrowRightIcon,
-  CheckCircleIcon,
-  CheckIcon,
   ChevronDownIcon,
-  LockIcon,
-  PhoneIcon,
-  ShieldIcon,
 } from "@/components/ui/icons";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import type { CountryCode } from "@/lib/countries";
@@ -567,37 +562,28 @@ export function MediatorCallbackStarter({
       <div
         role="status"
         aria-live="polite"
-        className="swap-in overflow-hidden rounded-2xl border border-border bg-card shadow-(--shadow-card-hover)"
+        className="swap-in overflow-hidden rounded-2xl border border-border bg-card"
       >
-        <div aria-hidden="true" className="h-1 bg-amber-care-border" />
         <div className="p-6 sm:p-8 lg:p-10">
-          <div className="flex items-start gap-4">
-            <span
-              aria-hidden="true"
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-wellness-soft text-wellness dark:text-wellness-border"
+          <div className="min-w-0">
+            <h2
+              ref={successHeadingRef}
+              tabIndex={-1}
+              id="solicita-heading"
+              className="text-balance text-section font-semibold text-foreground focus:outline-none"
             >
-              <CheckCircleIcon className="h-6 w-6" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <h2
-                ref={successHeadingRef}
-                tabIndex={-1}
-                id="solicita-heading"
-                className="text-balance text-section font-semibold text-foreground focus:outline-none"
-              >
-                {copy.successTitle}
-              </h2>
-              <p className="mt-3 max-w-(--measure-reading) text-body text-foreground">
-                {copy.successBody(submittedDetails.county, submittedDetails.phone)}
-              </p>
-              <p className="mt-4 max-w-(--measure-reading) rounded-xl border border-border bg-surface-subtle/60 px-4 py-3 text-body text-muted-foreground">
-                {copy.successNotice}
-              </p>
-              <div className="mt-6">
-                <Button type="button" variant="outline" size="lg" onClick={handleReset}>
-                  {copy.sendAnother}
-                </Button>
-              </div>
+              {copy.successTitle}
+            </h2>
+            <p className="mt-3 max-w-(--measure-reading) text-body text-foreground">
+              {copy.successBody(submittedDetails.county, submittedDetails.phone)}
+            </p>
+            <p className="mt-4 max-w-(--measure-reading) border-t border-border pt-4 text-body text-muted-foreground">
+              {copy.successNotice}
+            </p>
+            <div className="mt-6">
+              <Button type="button" variant="outline" size="lg" onClick={handleReset}>
+                {copy.sendAnother}
+              </Button>
             </div>
           </div>
         </div>
@@ -606,15 +592,14 @@ export function MediatorCallbackStarter({
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-(--shadow-card-hover)">
+    <div className="overflow-hidden rounded-2xl border border-border bg-card">
       <div className="grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
         {/* Left editorial ink panel: signature REDI obsidian visual identity */}
         <div className="flex min-w-0 flex-col justify-between bg-ink-950 p-6 text-paper sm:p-8 lg:p-10">
           <div>
-            <span aria-hidden="true" className="block h-0.5 w-12 bg-amber-care-border" />
             <h2
               id="solicita-heading"
-              className="mt-4 text-balance text-section font-semibold text-paper"
+              className="text-balance text-section font-semibold text-paper"
             >
               {copy.title}
             </h2>
@@ -622,11 +607,8 @@ export function MediatorCallbackStarter({
               {copy.lead}
             </p>
 
-            <div className="mt-6 rounded-xl border border-paper/12 bg-paper/[0.04] p-4 sm:p-5">
-              <div className="flex items-center gap-2.5">
-                <ShieldIcon className="h-4.5 w-4.5 shrink-0 text-amber-care-border" aria-hidden="true" />
-                <h3 className="text-body font-semibold text-paper">{copy.limitsTitle}</h3>
-              </div>
+            <div className="mt-6 border-t border-paper/12 pt-5">
+              <h3 className="text-body font-semibold text-paper">{copy.limitsTitle}</h3>
               <ul className="mt-3 divide-y divide-paper/10 text-body text-mist">
                 <li className="pb-2.5">{copy.limitAdvice}</li>
                 <li className="py-2.5">{copy.limitAvailability}</li>
@@ -636,9 +618,8 @@ export function MediatorCallbackStarter({
           </div>
 
           <div className="mt-7 space-y-4 border-t border-paper/12 pt-5">
-            <p className="flex items-start gap-2.5 text-meta leading-relaxed text-mist">
-              <LockIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-care-border" aria-hidden="true" />
-              <span>{copy.reassurance}</span>
+            <p className="text-meta leading-relaxed text-mist">
+              {copy.reassurance}
             </p>
 
             <div className="flex flex-wrap items-center justify-between gap-3 pt-1 text-meta text-mist">
@@ -742,7 +723,7 @@ export function MediatorCallbackStarter({
                 {copy.reasonLabel}{" "}
                 <span className="font-normal text-muted-foreground">{copy.optionalTag}</span>
               </p>
-              <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+              <div className="mt-2 flex flex-wrap gap-2">
                 {copy.reasonOptions.map((label, index) => {
                   const selected = reason === index;
                   return (
@@ -754,13 +735,12 @@ export function MediatorCallbackStarter({
                         setReason(selected ? null : index);
                         setSubmissionError("");
                       }}
-                      className={`press-row inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-body font-semibold transition-[border-color,background-color,color,box-shadow] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                      className={`press-row inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-body font-semibold transition-[border-color,background-color,color] duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                         selected
-                          ? "border-rose-border bg-rose-tint text-rose-ink shadow-xs"
-                          : "border-border-control bg-background text-foreground hover:border-rose-border/75 hover:bg-muted/50"
+                          ? "border-sapphire bg-sapphire text-white"
+                          : "border-border-control bg-background text-foreground hover:border-sapphire/60 hover:bg-muted/50"
                       }`}
                     >
-                      {selected ? <CheckIcon className="h-4 w-4 shrink-0" aria-hidden="true" /> : null}
                       {label}
                     </button>
                   );
@@ -849,11 +829,10 @@ export function MediatorCallbackStarter({
                 size="lg"
                 disabled={isSubmitting}
                 aria-busy={isSubmitting}
-                className="min-h-13 w-full justify-center gap-2.5 sm:px-7"
+                className="min-h-12 w-full justify-center gap-2 sm:px-7"
               >
-                <PhoneIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
                 <span>{isSubmitting ? copy.submitting : copy.submit}</span>
-                {!isSubmitting ? <ArrowRightIcon className="arrow-travel h-4.5 w-4.5 shrink-0" aria-hidden="true" /> : null}
+                {!isSubmitting ? <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" /> : null}
               </Button>
             </div>
           </div>

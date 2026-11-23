@@ -6,14 +6,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { AdminShell } from "./AdminShell";
-import { Container } from "@/components/ui/Container";
-import {
-  CameraIcon,
-  CheckCircleIcon,
-  ChevronLeftIcon,
-  FileTextIcon,
-  MailIcon,
-} from "@/components/ui/icons";
+import { ChevronLeftIcon } from "@/components/ui/icons";
 import { demoPanelTranslations } from "@/lib/i18n/demo-panel-translations";
 import { meetingWorkspaceTranslations } from "@/lib/i18n/meeting-workspace-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
@@ -59,18 +52,18 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     presetsAria: "Режим рабочего пространства",
     presetStandard: "Обычный",
     presetWideNotes: "Широкие заметки",
-    presetFocusVideo: "Основное видео",
+    presetFocusVideo: "Фокус на видео",
     sessionTimerAria: "Время консультации",
     micLevelAria: "Уровень микрофона",
-    stampNotesBtn: "Добавить время",
-    stampTranscriptBtn: "Отметить время",
-    sendToNotesBtn: "Вставить в заметки со временем",
+    stampNotesBtn: "Метка времени",
+    stampTranscriptBtn: "Метка времени",
+    sendToNotesBtn: "Вставить в заметки",
     sentToNotesStatus: "Фрагмент расшифровки со временем добавлен в медицинские заметки.",
-    draftRecoveredNotice: "Восстановлен несохраненный медицинский черновик из этого сеанса браузера.",
+    draftRecoveredNotice: "Восстановлен несохранённый медицинский черновик из этого сеанса браузера.",
     discardDraftBtn: "Удалить черновик",
     saveShortcutHint: "Ctrl+S / ⌘S",
-    callEndedNotice: "Звонок завершен. Вы можете продолжить работу с заметками или переподключиться.",
-    rejoinCallBtn: "Переподключиться к звонку",
+    callEndedNotice: "Звонок завершён. Вы можете продолжить работу с заметками или вернуться к звонку.",
+    rejoinCallBtn: "Вернуться к звонку",
   },
   en: {
     presetsAria: "Workspace layout preset",
@@ -81,10 +74,10 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     micLevelAria: "Microphone voice level",
     stampNotesBtn: "Add timestamp",
     stampTranscriptBtn: "Stamp time",
-    sendToNotesBtn: "Insert timestamped into notes",
+    sendToNotesBtn: "Send to notes",
     sentToNotesStatus: "Timestamped transcript excerpt added to clinical notes.",
     draftRecoveredNotice: "Unsaved clinical draft recovered from this browser session.",
-    discardDraftBtn: "Discard local draft",
+    discardDraftBtn: "Discard draft",
     saveShortcutHint: "Ctrl+S / ⌘S",
     callEndedNotice: "The call has ended. You can keep editing clinical notes or rejoin the room.",
     rejoinCallBtn: "Rejoin call",
@@ -96,15 +89,15 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     presetFocusVideo: "Focus video",
     sessionTimerAria: "Durata sesiunii curente",
     micLevelAria: "Nivelul vocii în microfon",
-    stampNotesBtn: "Adaugă marcaj de timp",
+    stampNotesBtn: "Marcaj timp",
     stampTranscriptBtn: "Marcaj timp",
-    sendToNotesBtn: "Trimite cu marcaj în notițe",
+    sendToNotesBtn: "Trimite în notițe",
     sentToNotesStatus: "Transcrierea marcată temporal a fost adăugată în notițele clinice.",
     draftRecoveredNotice: "Ciorna nesalvată a fost recuperată din această sesiune.",
-    discardDraftBtn: "Renunță la ciorna locală",
+    discardDraftBtn: "Renunță la ciornă",
     saveShortcutHint: "Ctrl+S / ⌘S",
     callEndedNotice: "Apelul s-a încheiat. Poți continua notițele clinice sau poți reveni în apel.",
-    rejoinCallBtn: "Intră din nou în apel",
+    rejoinCallBtn: "Revino în apel",
   },
   sq: {
     presetsAria: "Pamja e hapësirës së vizitës",
@@ -115,13 +108,13 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     micLevelAria: "Niveli i zërit në mikrofon",
     stampNotesBtn: "Shto kohën",
     stampTranscriptBtn: "Shëno kohën",
-    sendToNotesBtn: "Kalo me orar te shënimet",
+    sendToNotesBtn: "Kalo te shënimet",
     sentToNotesStatus: "Transkriptimi me orar iu shtua shënimeve klinike.",
     draftRecoveredNotice: "Drafti i paruajtur u rikthye nga ky sesion shfletuesi.",
-    discardDraftBtn: "Hiq draftin lokal",
+    discardDraftBtn: "Hiq draftin",
     saveShortcutHint: "Ctrl+S / ⌘S",
     callEndedNotice: "Thirrja përfundoi. Mund të vazhdoni shënimet klinike ose të hyni sërish në thirrje.",
-    rejoinCallBtn: "Hyr sërish në thirrje",
+    rejoinCallBtn: "Hyr sërish",
   },
   it: {
     presetsAria: "Disposizione dello spazio visita",
@@ -132,13 +125,13 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     micLevelAria: "Livello vocale del microfono",
     stampNotesBtn: "Aggiungi orario",
     stampTranscriptBtn: "Segna orario",
-    sendToNotesBtn: "Inserisci con orario nelle note",
+    sendToNotesBtn: "Inserisci nelle note",
     sentToNotesStatus: "Trascrizione con orario aggiunta alle note cliniche.",
     draftRecoveredNotice: "Bozza non salvata recuperata da questa sessione.",
-    discardDraftBtn: "Scarta bozza locale",
+    discardDraftBtn: "Scarta bozza",
     saveShortcutHint: "Ctrl+S / ⌘S",
     callEndedNotice: "La chiamata è terminata. Puoi continuare a scrivere le note cliniche o rientrare.",
-    rejoinCallBtn: "Rientra nella chiamata",
+    rejoinCallBtn: "Rientra in chiamata",
   },
   hr: {
     presetsAria: "Raspored radnog prostora",
@@ -147,15 +140,15 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     presetFocusVideo: "Fokus na video",
     sessionTimerAria: "Trajanje konzultacije",
     micLevelAria: "Razina glasa na mikrofonu",
-    stampNotesBtn: "Dodaj oznaku vremena",
+    stampNotesBtn: "Označi vrijeme",
     stampTranscriptBtn: "Označi vrijeme",
-    sendToNotesBtn: "Umetni s vremenom u bilješke",
+    sendToNotesBtn: "Dodaj u bilješke",
     sentToNotesStatus: "Prijepis s vremenskom oznakom dodan je u kliničke bilješke.",
     draftRecoveredNotice: "Nespremljeni nacrt vraćen je iz ove sesije preglednika.",
-    discardDraftBtn: "Odbaci lokalni nacrt",
+    discardDraftBtn: "Odbaci nacrt",
     saveShortcutHint: "Ctrl+S / ⌘S",
     callEndedNotice: "Poziv je završen. Možete nastaviti uređivati bilješke ili se ponovno uključiti.",
-    rejoinCallBtn: "Ponovno uđi u poziv",
+    rejoinCallBtn: "Ponovno uđi",
   },
   rom: {
     presetsAria: "Dikhiben e bukyako",
@@ -166,13 +159,13 @@ const COCKPIT_COPY: Record<Lang, CockpitCopy> = {
     micLevelAria: "Glaso and-o mikrofono",
     stampNotesBtn: "Tho vrama",
     stampTranscriptBtn: "Lekhav vrama",
-    sendToNotesBtn: "Tho vramasa and-e noticye",
+    sendToNotesBtn: "Tho and-e noticye",
     sentToNotesStatus: "O lekhavipe vramasa sas thodino and-e klinikane noticye.",
     draftRecoveredNotice: "Bi-arakhlo lekhavipe sas palpale lino katar kadi sesia.",
-    discardDraftBtn: "Muk lokalno lekhavipe",
+    discardDraftBtn: "Muk lekhavipe",
     saveShortcutHint: "Ctrl+S / ⌘S",
     callEndedNotice: "O akharipen getosardilo. Shai te lekhaves maj dur vaj te khuves palpale.",
-    rejoinCallBtn: "Khuv palpale and-o akharipen",
+    rejoinCallBtn: "Khuv palpale",
   },
 };
 
@@ -303,7 +296,6 @@ export function FollowupMeetingWorkspace({
   const recorderStreamRef = useRef<MediaStream | null>(null);
   const recordedChunksRef = useRef<Blob[]>([]);
   const meterBarRefs = useRef<Array<HTMLSpanElement | null>>([]);
-  const meterBarSecondaryRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const loadedDraftRef = useRef(false);
 
   const draftStorageKey = useMemo(
@@ -439,10 +431,6 @@ export function FollowupMeetingWorkspace({
         if (bar) {
           bar.style.transform = `scaleY(${scale})`;
         }
-        const secondaryBar = meterBarSecondaryRefs.current[i];
-        if (secondaryBar) {
-          secondaryBar.style.transform = `scaleY(${scale})`;
-        }
       }
     };
 
@@ -522,10 +510,6 @@ export function FollowupMeetingWorkspace({
             const el = meterBarRefs.current[barIdx];
             if (el) {
               el.style.transform = `scaleY(${scale.toFixed(3)})`;
-            }
-            const secondaryEl = meterBarSecondaryRefs.current[barIdx];
-            if (secondaryEl) {
-              secondaryEl.style.transform = `scaleY(${scale.toFixed(3)})`;
             }
           }
           rafId = window.requestAnimationFrame(updateMeter);
@@ -870,67 +854,59 @@ export function FollowupMeetingWorkspace({
     { key: "focus_video", label: cockpit.presetFocusVideo },
   ];
 
+  const outlineBtn =
+    "inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3.5 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[var(--panel-selection)] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]";
+
+  const primaryBtn =
+    "inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-sapphire bg-sapphire px-4 py-2 text-sm font-medium text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[#28476f] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]";
+
   return (
     <AdminShell userEmail={userEmail} userRole={userRole} isAdmin={isAdmin}>
-      <main id="main-content" className="py-4 sm:py-6">
-        <Container className="max-w-[1600px]">
+      <main
+        id="main-content"
+        className="min-h-dvh bg-[var(--panel-surface)] px-4 py-4 pb-24 text-[var(--panel-ink)] sm:px-6 sm:py-5"
+      >
+        <div className="mx-auto max-w-[1600px]">
           <Link
             href={withLangPrefix(`/panel/patients/${patientId}`, lang)}
-            className="mb-3 inline-flex min-h-[44px] items-center gap-1 rounded-lg px-2 text-xs font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="mb-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-lg text-sm font-medium text-sapphire hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:text-[#bad7fa] dark:focus-visible:outline-[#bad7fa]"
           >
-            <ChevronLeftIcon aria-hidden="true" className="h-4 w-4" />
-            {t.back}
+            <ChevronLeftIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
+            <span>{t.back}</span>
           </Link>
 
-          <header className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-4 pt-1">
-            <div className="min-w-0 space-y-1.5">
-              <div className="flex flex-wrap items-center gap-2">
-                {meeting ? (
-                  <span
-                    aria-label={cockpit.sessionTimerAria}
-                    className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-2.5 py-1 text-xs font-semibold text-foreground"
-                  >
-                    <span className="h-2 w-2 shrink-0 rounded-full bg-live-sage" aria-hidden="true" />
-                    <span className="tabular-nums font-mono">{formattedClock}</span>
-                  </span>
-                ) : null}
-
-                {meeting ? (
-                  <span
-                    role="status"
-                    className={`inline-flex items-center gap-2 rounded-md border px-2.5 py-1 text-xs font-medium ${
-                      dirty
-                        ? "border-amber-care/35 bg-amber-care/10 text-foreground"
-                        : "border-border bg-muted/50 text-foreground"
-                    }`}
-                  >
-                    <span
-                      className={`h-2 w-2 shrink-0 rounded-full ${
-                        dirty ? "bg-amber-care" : "bg-live-sage"
-                      }`}
-                      aria-hidden="true"
-                    />
-                    <span>{dirty ? t.unsaved : t.saved}</span>
-                  </span>
-                ) : null}
-              </div>
-
-              <h1 className="break-words text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+          <header className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--panel-line)] pb-4">
+            <div className="min-w-0">
+              <h1 className="break-words font-display text-xl font-bold tracking-[-0.025em] text-[var(--panel-ink)] sm:text-2xl">
                 {meeting?.title || t.loading}
               </h1>
+              {meeting ? (
+                <p className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-sm text-[var(--panel-muted)]">
+                  <span aria-label={cockpit.sessionTimerAria} className="tabular-nums">
+                    {formattedClock}
+                  </span>
+                  <span aria-hidden="true">·</span>
+                  <span
+                    role="status"
+                    className={
+                      dirty ? "font-semibold text-[#9a4d0b] dark:text-[#f5c58e]" : ""
+                    }
+                  >
+                    {dirty ? t.unsaved : t.saved}
+                  </span>
+                </p>
+              ) : null}
             </div>
 
             {meeting ? (
-              <div className="flex flex-wrap items-center gap-2.5">
+              <div className="flex flex-wrap items-center gap-2">
                 <div
                   role="group"
                   aria-label={cockpit.presetsAria}
-                  className="inline-flex flex-wrap items-center gap-1 rounded-lg border border-border bg-muted/50 p-1"
+                  className="inline-flex flex-wrap items-center gap-1"
                 >
                   {presetButtons.map((item) => {
                     const active = preset === item.key;
-                    const showDirtyDot =
-                      dirty && preset === "focus_video" && item.key === "standard";
                     return (
                       <button
                         key={item.key}
@@ -938,20 +914,13 @@ export function FollowupMeetingWorkspace({
                         aria-pressed={active}
                         aria-controls={sidebarId}
                         onClick={() => setPreset(item.key)}
-                        className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                        className={`inline-flex min-h-11 items-center whitespace-nowrap rounded-lg border px-3 py-2 text-sm font-medium transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa] ${
                           active
-                            ? "bg-card text-sapphire shadow-xs"
-                            : "text-muted-foreground hover:text-foreground"
+                            ? "border-sapphire bg-[var(--panel-selection)] font-semibold text-sapphire dark:border-[#bad7fa] dark:text-[#bad7fa]"
+                            : "border-[#8a94a6] bg-[var(--panel-surface)] text-[var(--panel-muted)] hover:bg-[var(--panel-subtle)] hover:text-[var(--panel-ink)] dark:border-[var(--panel-line)]"
                         }`}
                       >
-                        <FileTextIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                        <span>{item.label}</span>
-                        {showDirtyDot ? (
-                          <span
-                            className="h-2 w-2 shrink-0 rounded-full bg-amber-care"
-                            aria-hidden="true"
-                          />
-                        ) : null}
+                        {item.label}
                       </button>
                     );
                   })}
@@ -961,9 +930,8 @@ export function FollowupMeetingWorkspace({
                   type="button"
                   onClick={() => void invitePatient()}
                   disabled={isInviting}
-                  className="crm-button inline-flex min-h-[44px] items-center gap-2 rounded-lg"
+                  className={outlineBtn}
                 >
-                  <MailIcon className="h-4 w-4" aria-hidden="true" />
                   {isInviting ? t.sending : t.invite}
                 </button>
               </div>
@@ -973,16 +941,15 @@ export function FollowupMeetingWorkspace({
           {hasRecoveredDraft ? (
             <div
               role="status"
-              className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-amber-care/35 bg-amber-care/10 px-4 py-3 text-xs text-foreground"
+              className="mt-4 flex flex-wrap items-center justify-between gap-3 border-y border-[#9a4d0b]/35 bg-[#9a4d0b]/10 px-4 py-3 text-sm text-[var(--panel-ink)] dark:border-[#f5c58e]/35 dark:bg-[#9a4d0b]/20"
             >
-              <div className="flex items-center gap-2.5 font-medium">
-                <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-amber-care" aria-hidden="true" />
-                <span>{cockpit.draftRecoveredNotice}</span>
-              </div>
+              <span className="font-medium text-[#9a4d0b] dark:text-[#f5c58e]">
+                {cockpit.draftRecoveredNotice}
+              </span>
               <button
                 type="button"
                 onClick={discardRecoveredDraft}
-                className="inline-flex min-h-[44px] items-center rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={outlineBtn}
               >
                 {cockpit.discardDraftBtn}
               </button>
@@ -991,7 +958,7 @@ export function FollowupMeetingWorkspace({
 
           {error ? (
             <p
-              className="mt-4 rounded-xl border border-primary/25 bg-primary-soft px-4 py-3 text-xs font-medium text-foreground"
+              className="mt-4 rounded-lg border border-[#b91c1c]/35 bg-[#b91c1c]/10 px-4 py-3 text-sm font-medium text-[#b91c1c] dark:border-[#ffb4b4]/35 dark:bg-[#b91c1c]/20 dark:text-[#ffb4b4]"
               role="alert"
             >
               {error}
@@ -999,7 +966,7 @@ export function FollowupMeetingWorkspace({
           ) : null}
           {status ? (
             <p
-              className="mt-4 rounded-xl border border-border bg-sapphire-soft px-4 py-3 text-xs font-medium text-sapphire"
+              className="mt-4 rounded-lg border border-[var(--panel-line)] bg-[var(--panel-selection)] px-4 py-3 text-sm font-medium text-sapphire dark:text-[#bad7fa]"
               role="status"
             >
               {status}
@@ -1007,17 +974,18 @@ export function FollowupMeetingWorkspace({
           ) : null}
 
           {meeting ? (
-            <section className={`mt-4 grid min-w-0 gap-4 ${gridLayoutClass}`}>
-              <div className="flex min-w-0 flex-col gap-3">
+            <section className={`mt-5 grid min-w-0 gap-6 ${gridLayoutClass}`}>
+              <div className="flex min-w-0 flex-col gap-4">
                 <ConsultationVitalsStreamOverlay
                   meetingId={meeting.id}
                   patientId={meeting.patient_id}
                   onInsertToNotes={(vitalsSummary) => {
                     setNotes((curr) =>
-                      (curr ? `${curr}\n\n[${formattedClock}] ${vitalsSummary}` : `[${formattedClock}] ${vitalsSummary}`).slice(
-                        0,
-                        4000,
-                      ),
+                      (
+                        curr
+                          ? `${curr}\n\n[${formattedClock}] ${vitalsSummary}`
+                          : `[${formattedClock}] ${vitalsSummary}`
+                      ).slice(0, 4000),
                     );
                   }}
                 />
@@ -1026,47 +994,16 @@ export function FollowupMeetingWorkspace({
                   className="min-w-0 overflow-hidden rounded-xl border border-slate-800 bg-slate-950 text-white"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 px-4 py-3">
-                    <span className="inline-flex items-center gap-2 text-sm font-semibold">
-                      <CameraIcon className="h-4 w-4 text-slate-400" aria-hidden="true" />
-                      {t.heading}
+                    <span className="text-sm font-semibold text-white">{t.heading}</span>
+                    <span role="status" className="text-xs font-medium text-slate-300">
+                      {isListening
+                        ? t.listening
+                        : isRecordingFallback
+                          ? t.recording
+                          : isTranscribingFallback
+                            ? t.transcribing
+                            : t.idle}
                     </span>
-
-                    <div className="flex items-center gap-3">
-                      <div
-                        role="img"
-                        aria-label={cockpit.micLevelAria}
-                        className="inline-flex h-4 items-end gap-0.5 rounded-md border border-white/10 bg-white/5 px-2 py-0.5"
-                      >
-                        {[0, 1, 2, 3, 4].map((barIdx) => (
-                          <span
-                            key={barIdx}
-                            ref={(node) => {
-                              meterBarRefs.current[barIdx] = node;
-                            }}
-                            aria-hidden="true"
-                            className={`telemed-meter-bar block h-3 w-1 rounded-xs ${
-                              activeMicCapture ? "bg-live-sage" : "bg-slate-600"
-                            }`}
-                          />
-                        ))}
-                      </div>
-
-                      <span role="status" className="inline-flex items-center gap-2 text-xs text-slate-300">
-                        <span
-                          className={`h-2 w-2 rounded-full ${
-                            activeMicCapture ? "bg-live-sage" : "bg-slate-500"
-                          }`}
-                          aria-hidden="true"
-                        />
-                        {isListening
-                          ? t.listening
-                          : isRecordingFallback
-                            ? t.recording
-                            : isTranscribingFallback
-                              ? t.transcribing
-                              : t.idle}
-                      </span>
-                    </div>
                   </div>
                   {demo ? (
                     <div className="flex min-h-48 items-center justify-center p-6 text-center lg:min-h-64">
@@ -1076,14 +1013,13 @@ export function FollowupMeetingWorkspace({
                     </div>
                   ) : jitsiCallEnded ? (
                     <div className="flex h-[55dvh] min-h-80 flex-col items-center justify-center gap-4 p-6 text-center lg:h-[68dvh]">
-                      <CheckCircleIcon className="h-7 w-7 text-live-sage" />
                       <p className="max-w-md text-sm leading-relaxed text-slate-200">
                         {cockpit.callEndedNotice}
                       </p>
                       <button
                         type="button"
                         onClick={() => setJitsiCallEnded(false)}
-                        className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors duration-[var(--dur-fast)] hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                       >
                         {cockpit.rejoinCallBtn}
                       </button>
@@ -1110,32 +1046,21 @@ export function FollowupMeetingWorkspace({
                 id={sidebarId}
                 aria-label={t.workspace}
                 hidden={!sidebarOpen}
-                className="min-w-0 self-start rounded-xl border border-border bg-card"
+                className="min-w-0 self-start border-t border-[var(--panel-line)] pt-5 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0"
               >
-                <div className="flex items-start justify-between gap-3 px-4 pt-4">
-                  <div>
-                    <h2 className="text-sm font-bold text-foreground">{t.workspace}</h2>
-                    <p className="mt-1 inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <span
-                        className={`h-2 w-2 shrink-0 rounded-full ${
-                          dirty ? "bg-amber-care" : "bg-live-sage"
-                        }`}
-                        aria-hidden="true"
-                      />
-                      <span className={dirty ? "font-semibold text-foreground" : ""}>
-                        {dirty ? t.unsaved : t.saved}
-                      </span>
-                    </p>
-                  </div>
-                  <kbd className="rounded-md border border-border bg-muted px-1.5 py-0.5 font-mono text-[11px] font-medium text-muted-foreground">
+                <div className="flex items-baseline justify-between gap-3">
+                  <h2 className="text-base font-semibold text-[var(--panel-ink)]">
+                    {t.workspace}
+                  </h2>
+                  <span className="text-xs text-[var(--panel-muted)]">
                     {cockpit.saveShortcutHint}
-                  </kbd>
+                  </span>
                 </div>
 
                 <div
                   role="tablist"
                   aria-label={t.workspace}
-                  className="mb-4 mt-3 flex gap-5 overflow-x-auto border-b border-border px-4"
+                  className="mb-4 mt-3 flex flex-nowrap gap-5 overflow-x-auto border-b border-[var(--panel-line)]"
                 >
                   {(["notes", "transcript", "recommendations"] as const).map((tab) => (
                     <button
@@ -1168,10 +1093,10 @@ export function FollowupMeetingWorkspace({
                           document.getElementById(`${sidebarId}-${next}-tab`)?.focus();
                         }
                       }}
-                      className={`-mb-px min-h-[44px] shrink-0 whitespace-nowrap border-b-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      className={`-mb-px inline-flex min-h-12 shrink-0 items-center whitespace-nowrap border-b-2 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa] ${
                         activeTab === tab
-                          ? "border-sapphire font-semibold text-sapphire"
-                          : "border-transparent text-muted-foreground hover:text-foreground"
+                          ? "border-sapphire font-semibold text-sapphire dark:border-[#bad7fa] dark:text-[#bad7fa]"
+                          : "border-transparent font-medium text-[var(--panel-muted)] hover:text-[var(--panel-ink)]"
                       }`}
                     >
                       {t[tab]}
@@ -1184,23 +1109,19 @@ export function FollowupMeetingWorkspace({
                   id={`${sidebarId}-notes`}
                   aria-labelledby={`${sidebarId}-notes-tab`}
                   hidden={activeTab !== "notes"}
-                  className="space-y-3 px-4 pb-4"
+                  className="space-y-3 pb-4"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <p
                       id={`${sidebarId}-notes-help`}
-                      className="text-xs leading-relaxed text-muted-foreground"
+                      className="text-xs leading-relaxed text-[var(--panel-muted)]"
                     >
                       {t.notesHelp}
                     </p>
-                    <button
-                      type="button"
-                      onClick={stampTimeIntoNotes}
-                      className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-border bg-muted/60 px-3 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    >
+                    <button type="button" onClick={stampTimeIntoNotes} className={outlineBtn}>
                       <span>{cockpit.stampNotesBtn}</span>
-                      <span className="tabular-nums font-mono text-[11px] text-muted-foreground">
-                        [{formattedClock}]
+                      <span className="tabular-nums text-xs text-[var(--panel-muted)]">
+                        {formattedClock}
                       </span>
                     </button>
                   </div>
@@ -1218,9 +1139,9 @@ export function FollowupMeetingWorkspace({
                     rows={12}
                     maxLength={4000}
                     placeholder={t.notesPlaceholder}
-                    className="crm-input min-h-64 resize-y text-sm"
+                    className="min-h-64 w-full resize-y rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3 py-2 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]"
                   />
-                  <p className="tabular-nums text-right text-xs text-muted-foreground">
+                  <p className="text-right text-xs tabular-nums text-[var(--panel-muted)]">
                     {notes.length} / 4000
                   </p>
                 </div>
@@ -1230,11 +1151,11 @@ export function FollowupMeetingWorkspace({
                   id={`${sidebarId}-transcript`}
                   aria-labelledby={`${sidebarId}-transcript-tab`}
                   hidden={activeTab !== "transcript"}
-                  className="space-y-3 px-4 pb-4"
+                  className="space-y-3 pb-4"
                 >
                   <p
                     id={`${sidebarId}-transcript-help`}
-                    className="text-xs leading-relaxed text-muted-foreground"
+                    className="text-xs leading-relaxed text-[var(--panel-muted)]"
                   >
                     {t.transcriptHelp}
                   </p>
@@ -1244,7 +1165,7 @@ export function FollowupMeetingWorkspace({
                       type="button"
                       onClick={() => void toggleTranscription()}
                       disabled={isRecordingFallback || isTranscribingFallback}
-                      className="crm-button min-h-[44px] rounded-lg text-xs"
+                      className={outlineBtn}
                     >
                       {isListening ? t.stop : t.start}
                     </button>
@@ -1252,7 +1173,7 @@ export function FollowupMeetingWorkspace({
                       type="button"
                       onClick={() => void toggleFallbackRecording()}
                       disabled={isListening || isTranscribingFallback}
-                      className="crm-button min-h-[44px] rounded-lg text-xs"
+                      className={outlineBtn}
                     >
                       {isTranscribingFallback
                         ? t.transcribing
@@ -1264,17 +1185,17 @@ export function FollowupMeetingWorkspace({
                     <div
                       role="img"
                       aria-label={cockpit.micLevelAria}
-                      className="inline-flex min-h-[44px] items-center gap-1 rounded-lg border border-border bg-muted/50 px-3"
+                      className="inline-flex min-h-11 items-center gap-1 rounded-lg border border-[var(--panel-line)] bg-[var(--panel-subtle)] px-3"
                     >
                       {[0, 1, 2, 3, 4].map((idx) => (
                         <span
                           key={idx}
                           ref={(node) => {
-                            meterBarSecondaryRefs.current[idx] = node;
+                            meterBarRefs.current[idx] = node;
                           }}
                           aria-hidden="true"
                           className={`telemed-meter-bar block h-4 w-1 rounded-xs ${
-                            activeMicCapture ? "bg-live-sage" : "bg-muted-foreground/40"
+                            activeMicCapture ? "bg-live-sage" : "bg-[var(--panel-muted)]/40"
                           }`}
                         />
                       ))}
@@ -1285,18 +1206,18 @@ export function FollowupMeetingWorkspace({
                     <button
                       type="button"
                       onClick={stampTimeIntoTranscript}
-                      className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-border bg-card px-3 text-xs font-semibold text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className={outlineBtn}
                     >
                       <span>{cockpit.stampTranscriptBtn}</span>
-                      <span className="tabular-nums font-mono text-[11px] text-muted-foreground">
-                        [{formattedClock}]
+                      <span className="tabular-nums text-xs text-[var(--panel-muted)]">
+                        {formattedClock}
                       </span>
                     </button>
                     <button
                       type="button"
                       onClick={insertTimestampedTranscriptIntoNotes}
                       disabled={!transcript.trim()}
-                      className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-sapphire/25 bg-sapphire-soft px-3 text-xs font-semibold text-sapphire transition-colors hover:bg-sapphire hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                      className={outlineBtn}
                     >
                       {cockpit.sendToNotesBtn}
                     </button>
@@ -1315,10 +1236,10 @@ export function FollowupMeetingWorkspace({
                     }}
                     rows={10}
                     placeholder={t.transcriptPlaceholder}
-                    className="crm-input min-h-56 resize-y text-sm"
+                    className="min-h-56 w-full resize-y rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3 py-2 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]"
                   />
                   {interimTranscript ? (
-                    <p className="rounded-lg border border-dashed border-border p-3 text-xs text-muted-foreground">
+                    <p className="border-t border-[var(--panel-line)] pt-2 text-xs text-[var(--panel-muted)]">
                       {interimTranscript}
                     </p>
                   ) : null}
@@ -1329,7 +1250,7 @@ export function FollowupMeetingWorkspace({
                   id={`${sidebarId}-recommendations`}
                   aria-labelledby={`${sidebarId}-recommendations-tab`}
                   hidden={activeTab !== "recommendations"}
-                  className="space-y-3 px-4 pb-4"
+                  className="space-y-3 pb-4"
                 >
                   <DoctorRecommendationPublisher
                     meetingId={meeting.id}
@@ -1344,21 +1265,20 @@ export function FollowupMeetingWorkspace({
                   />
                 </div>
 
-                <div className="border-t border-border p-4">
+                <div className="border-t border-[var(--panel-line)] pt-4">
                   <button
                     type="button"
                     onClick={() => void saveMeetingRecord()}
                     disabled={isSaving}
-                    className="crm-button crm-primary inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg"
+                    className={`${primaryBtn} w-full`}
                   >
-                    <CheckCircleIcon className="h-4 w-4" aria-hidden="true" />
-                    <span>{isSaving ? t.saving : t.save}</span>
+                    {isSaving ? t.saving : t.save}
                   </button>
                 </div>
               </aside>
             </section>
           ) : null}
-        </Container>
+        </div>
       </main>
     </AdminShell>
   );

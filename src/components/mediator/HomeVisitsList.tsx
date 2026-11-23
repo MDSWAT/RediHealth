@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/Button";
-import { ClockIcon, PhoneIcon, PinIcon } from "@/components/ui/icons";
+import { PanelLink as Link, usePanelRuntime } from "@/components/panel/PanelRuntime";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { withLangPrefix } from "@/lib/i18n/routing";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
 function useSafeLanguage() {
@@ -18,32 +18,43 @@ type VisitSeedText = Record<string, { patientAge: string; purpose: string }>;
 
 const visitsCopy = {
   ru: {
-    title: (n: number) => `Сегодняшние визиты(${n})`,
-    subtitle: "Сортировано по времени.",
-    progress: (done: number, total: number) => `${done} из ${total} сделано`,
+    title: (n: number) => `Сегодняшние визиты (${n})`,
+    headingPlain: "Сегодняшние визиты",
+    progress: (done: number, total: number) => `${done} из ${total} выполнено`,
+    demoNotice: "Демонстрационные визиты для предпросмотра.",
+    emptyTitle: "На сегодня домашних визитов не запланировано",
+    emptyBody: "Зарегистрируйте новый визит на дом или откройте календарь, чтобы посмотреть запланированные приёмы.",
+    newVisit: "Новый визит",
+    openCalendar: "Открыть календарь",
     urgent: "Срочно",
-    completed: "Готово",
+    completed: "Выполнено",
+    arrivedStatus: "На месте",
     purpose: "Причина:",
     openMap: "Открыть карту",
-    callPatient: "Позвонить пациенту",
-    arrived: "я здесь",
-    addMeasurements: "Добавить измерения",
+    callPatient: "Позвонить",
+    arrived: "Я на месте",
+    addMeasurements: "Добавить замеры",
     connectDoctor: "Подключить врача",
-    endVisit: "Завершение визита",
+    endVisit: "Завершить визит",
     seed: {
-      "visit-1": { patientAge: "68 years", purpose: "Проверка артериального давления и проверка рецепта" },
-      "visit-2": { patientAge: "74 years", purpose: "Проверка уровня сахара в крови и видеозвонок с врачом" },
-      "visit-3": { patientAge: "24 years, 7 months pregnant", purpose: "Запись на дородовые осмотры и файл CNAS" },
-      "visit-4": { patientAge: "5 years, with his mother", purpose: "Проверка температуры и помощь в записи к педиатру" },
+      "visit-1": { patientAge: "68 лет", purpose: "Проверка артериального давления и рецепта" },
+      "visit-2": { patientAge: "74 года", purpose: "Проверка уровня сахара в крови и видеозвонок с врачом" },
+      "visit-3": { patientAge: "24 года, 7-й месяц беременности", purpose: "Запись на дородовые осмотры и оформление CNAS" },
+      "visit-4": { patientAge: "5 лет, с мамой", purpose: "Проверка температуры и помощь с записью к педиатру" },
     } as VisitSeedText,
   },
-
   ro: {
     title: (n: number) => `Vizitele de azi (${n})`,
-    subtitle: "În ordinea orei.",
+    headingPlain: "Vizitele de azi",
     progress: (done: number, total: number) => `${done} din ${total} încheiate`,
+    demoNotice: "Vizite demonstrative pentru previzualizare.",
+    emptyTitle: "Nu ai vizite programate pentru azi",
+    emptyBody: "Înregistrează o vizită nouă la domiciliu sau deschide calendarul pentru controalele planificate.",
+    newVisit: "Vizită nouă",
+    openCalendar: "Deschide calendarul",
     urgent: "Urgent",
     completed: "Încheiată",
+    arrivedStatus: "La adresă",
     purpose: "Motiv:",
     openMap: "Deschide harta",
     callPatient: "Sună pacientul",
@@ -60,10 +71,16 @@ const visitsCopy = {
   },
   en: {
     title: (n: number) => `Today's visits (${n})`,
-    subtitle: "Sorted by time.",
+    headingPlain: "Today's visits",
     progress: (done: number, total: number) => `${done} of ${total} done`,
+    demoNotice: "Sample visits for demo preview.",
+    emptyTitle: "No home visits scheduled for today",
+    emptyBody: "Register a new home visit or open the calendar to check planned follow-ups.",
+    newVisit: "New home visit",
+    openCalendar: "Open calendar",
     urgent: "Urgent",
     completed: "Done",
+    arrivedStatus: "On site",
     purpose: "Reason:",
     openMap: "Open map",
     callPatient: "Call patient",
@@ -80,13 +97,19 @@ const visitsCopy = {
   },
   sq: {
     title: (n: number) => `Vizitat e sotme (${n})`,
-    subtitle: "Sipas orës.",
+    headingPlain: "Vizitat e sotme",
     progress: (done: number, total: number) => `${done} nga ${total} të mbyllura`,
+    demoNotice: "Vizita shembull për parashikimin demo.",
+    emptyTitle: "Nuk ka vizita në shtëpi të planifikuara për sot",
+    emptyBody: "Regjistro një vizitë të re në shtëpi ose hap kalendarin për kontrollet e planifikuara.",
+    newVisit: "Vizitë e re",
+    openCalendar: "Hap kalendarin",
     urgent: "Urgjent",
     completed: "E mbyllur",
+    arrivedStatus: "Në adresë",
     purpose: "Arsyeja:",
     openMap: "Hap hartën",
-    callPatient: "Telefono pacientin",
+    callPatient: "Telefono",
     arrived: "Mbërrita",
     addMeasurements: "Shto matjet",
     connectDoctor: "Lidh mjekun",
@@ -100,17 +123,23 @@ const visitsCopy = {
   },
   it: {
     title: (n: number) => `Visite di oggi (${n})`,
-    subtitle: "In ordine di orario.",
+    headingPlain: "Visite di oggi",
     progress: (done: number, total: number) => `${done} di ${total} concluse`,
+    demoNotice: "Visite di esempio per l'anteprima demo.",
+    emptyTitle: "Nessuna visita a domicilio prevista per oggi",
+    emptyBody: "Registra una nuova visita a domicilio o apri il calendario per i controlli programmati.",
+    newVisit: "Nuova visita",
+    openCalendar: "Apri calendario",
     urgent: "Urgente",
     completed: "Conclusa",
+    arrivedStatus: "Sul posto",
     purpose: "Motivo:",
-    openMap: "Apri la mappa",
-    callPatient: "Chiama il paziente",
+    openMap: "Apri mappa",
+    callPatient: "Chiama",
     arrived: "Sono sul posto",
-    addMeasurements: "Aggiungi misurazioni",
-    connectDoctor: "Collega il medico",
-    endVisit: "Chiudi la visita",
+    addMeasurements: "Aggiungi misure",
+    connectDoctor: "Collega medico",
+    endVisit: "Chiudi visita",
     seed: {
       "visit-1": { patientAge: "68 anni", purpose: "Misurazione della pressione e controllo della ricetta" },
       "visit-2": { patientAge: "74 anni", purpose: "Controllo della glicemia e videochiamata con il medico" },
@@ -120,13 +149,19 @@ const visitsCopy = {
   },
   hr: {
     title: (n: number) => `Današnji posjeti (${n})`,
-    subtitle: "Poredano po vremenu.",
+    headingPlain: "Današnji posjeti",
     progress: (done: number, total: number) => `${done} od ${total} obavljeno`,
+    demoNotice: "Ogledni posjeti za demo prikaz.",
+    emptyTitle: "Danas nema zakazanih kućnih posjeta",
+    emptyBody: "Upišite novi kućni posjet ili otvorite kalendar za zakazane kontrolne preglede.",
+    newVisit: "Novi posjet",
+    openCalendar: "Otvori kalendar",
     urgent: "Hitno",
     completed: "Obavljeno",
+    arrivedStatus: "Na adresi",
     purpose: "Razlog:",
     openMap: "Otvori kartu",
-    callPatient: "Nazovi pacijenta",
+    callPatient: "Nazovi",
     arrived: "Na adresi sam",
     addMeasurements: "Dodaj mjerenja",
     connectDoctor: "Spoji liječnika",
@@ -140,17 +175,23 @@ const visitsCopy = {
   },
   rom: {
     title: (n: number) => `Adyesutne vizite (${n})`,
-    subtitle: "Palo chaso.",
+    headingPlain: "Adyesutne vizite",
     progress: (done: number, total: number) => `${done} katar ${total} getosarde`,
+    demoNotice: "Demo vizite vash dikhiben.",
+    emptyTitle: "Nane khere vizite planisarde adyes",
+    emptyBody: "Lekhav nevi vizita khere vay putar o kalendaro te dikhes le planisarde kontrole.",
+    newVisit: "Nevi vizita",
+    openCalendar: "Putar kalendaro",
     urgent: "Sigo",
     completed: "Getosardi",
+    arrivedStatus: "Ko than",
     purpose: "Soske:",
-    openMap: "Putar e mapa",
-    callPatient: "Mar telefono e pacienteske",
+    openMap: "Putar mapa",
+    callPatient: "Mar telefono",
     arrived: "Reslyom",
     addMeasurements: "Tho merimata",
-    connectDoctor: "Phand e doktoresa",
-    endVisit: "Phand e vizita",
+    connectDoctor: "Phand doktoresa",
+    endVisit: "Phand vizita",
     seed: {
       "visit-1": { patientAge: "68 borsha", purpose: "Meripe vash phurdimos e ratesko thaj dikhlipe e receptako" },
       "visit-2": { patientAge: "74 borsha", purpose: "Kontrola vash zaharo and-o rat thaj video-svato e doktoresa" },
@@ -172,13 +213,13 @@ export interface ScheduledHomeVisit {
   status: "scheduled" | "arrived" | "completed";
 }
 
-const DEFAULT_TODAY_VISITS: ScheduledHomeVisit[] = [
+const DEMO_TODAY_VISITS: ScheduledHomeVisit[] = [
   {
     id: "visit-1",
     time: "09:30",
-    patientName: "Maria Căldăraru",
+    patientName: "Maria Demo",
     patientAge: "68 ani",
-    address: "Strada Livezilor nr. 14, Toflea",
+    address: "Strada Livezilor nr. 14",
     phone: "0721 112 233",
     purpose: "Măsurarea tensiunii și verificarea rețetei",
     urgency: "moderate",
@@ -187,9 +228,9 @@ const DEFAULT_TODAY_VISITS: ScheduledHomeVisit[] = [
   {
     id: "visit-2",
     time: "11:00",
-    patientName: "Ion Stănescu",
+    patientName: "Ion Demo",
     patientAge: "74 ani",
-    address: "Ulița Mare nr. 8, Toflea",
+    address: "Ulița Mare nr. 8",
     phone: "0732 445 566",
     purpose: "Control glicemie și apel video cu medicul",
     urgency: "high",
@@ -198,9 +239,9 @@ const DEFAULT_TODAY_VISITS: ScheduledHomeVisit[] = [
   {
     id: "visit-3",
     time: "13:30",
-    patientName: "Elena Mihai",
+    patientName: "Elena Demo",
     patientAge: "24 ani, însărcinată în luna a 7-a",
-    address: "Strada Dealului nr. 22, Ghidigeni",
+    address: "Strada Dealului nr. 22",
     phone: "0745 778 899",
     purpose: "Înscriere la controale prenatale și dosar CNAS",
     urgency: "moderate",
@@ -209,9 +250,9 @@ const DEFAULT_TODAY_VISITS: ScheduledHomeVisit[] = [
   {
     id: "visit-4",
     time: "15:00",
-    patientName: "Vasile Radu",
+    patientName: "Vasile Demo",
     patientAge: "5 ani, cu mama",
-    address: "Cătunul Nou nr. 3, Brăhășești",
+    address: "Strada Nouă nr. 3",
     phone: "0766 001 122",
     purpose: "Verificare febră și programare la pediatru",
     urgency: "high",
@@ -219,176 +260,217 @@ const DEFAULT_TODAY_VISITS: ScheduledHomeVisit[] = [
   },
 ];
 
+const actionOutlineClass =
+  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-[#8a94a6] bg-[var(--panel-surface)] px-3 py-2 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[var(--panel-selection)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:border-[var(--panel-line)] dark:focus-visible:outline-[#bad7fa]";
+
+const actionPrimaryClass =
+  "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border border-sapphire bg-sapphire px-3.5 py-2 text-sm font-medium text-white transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:bg-[#28476f] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sapphire dark:focus-visible:outline-[#bad7fa]";
+
 export function HomeVisitsList({
+  initialVisits,
+  onStartIntake,
   onLaunchHandover,
   onLaunchTelemetry,
 }: {
+  initialVisits?: ScheduledHomeVisit[];
+  onStartIntake?: () => void;
   onLaunchHandover?: (visit: ScheduledHomeVisit) => void;
   onLaunchTelemetry?: (visit: ScheduledHomeVisit) => void;
 }) {
   const { lang } = useSafeLanguage();
+  const { demo } = usePanelRuntime();
   const copy = visitsCopy[lang] ?? visitsCopy.ro;
-  const [baseVisits, setVisits] = useState<ScheduledHomeVisit[]>(DEFAULT_TODAY_VISITS);
-  // Demo seed text (age, purpose) is shown in the active language.
-  const visits = baseVisits.map((v) => ({ ...v, ...(copy.seed[v.id] ?? {}) }));
+
+  const isDemoPreview = !initialVisits && demo;
+  const [baseVisits, setVisits] = useState<ScheduledHomeVisit[]>(
+    () => initialVisits ?? (demo ? DEMO_TODAY_VISITS : []),
+  );
+
+  const visits = isDemoPreview
+    ? baseVisits.map((v) => ({ ...v, ...(copy.seed[v.id] ?? {}) }))
+    : baseVisits;
 
   const updateStatus = (id: string, status: "scheduled" | "arrived" | "completed") => {
     setVisits((prev) =>
-      prev.map((v) => (v.id === id ? { ...v, status } : v))
+      prev.map((v) => (v.id === id ? { ...v, status } : v)),
     );
   };
 
   const completedCount = visits.filter((v) => v.status === "completed").length;
 
   return (
-    <div className="rounded-lg border border-border bg-card p-5 shadow-xs">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-border">
-        <div>
-          <div className="flex items-center gap-2">
-            <ClockIcon className="h-4 w-4 text-sapphire" />
-            <h2 className="text-body font-bold text-foreground">
-              {copy.title(visits.length)}
-            </h2>
-          </div>
-          <p className="text-meta text-muted-foreground mt-0.5">
-            {copy.subtitle}
-          </p>
-        </div>
+    <section aria-labelledby="home-visits-heading">
+      <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-[var(--panel-line)] pb-3">
+        <h2
+          id="home-visits-heading"
+          className="text-lg font-semibold text-[var(--panel-ink)] tabular-nums"
+        >
+          {visits.length > 0 ? copy.title(visits.length) : copy.headingPlain}
+        </h2>
 
-        <div className="flex items-center gap-2">
-          <span className="rounded-md border border-border bg-muted/60 px-2.5 py-1 text-meta font-semibold text-foreground">
+        {visits.length > 0 && (
+          <p className="text-sm tabular-nums text-[var(--panel-muted)]">
             {copy.progress(completedCount, visits.length)}
-          </span>
-        </div>
+          </p>
+        )}
       </div>
 
-      {/* Visits list */}
-      <div className="mt-4 space-y-4">
-        {visits.map((visit) => {
-          const isArrived = visit.status === "arrived";
-          const isCompleted = visit.status === "completed";
+      {isDemoPreview && (
+        <p className="mt-2 text-xs text-[var(--panel-muted)]">
+          {copy.demoNotice}
+        </p>
+      )}
 
-          return (
-            <div
-              key={visit.id}
-              className={`rounded-lg border p-4 transition-colors duration-[var(--dur-base)] ${
-                isCompleted
-                  ? "border-border bg-muted/40 opacity-80"
-                  : isArrived
-                  ? "border-sapphire bg-sapphire/5 shadow-xs"
-                  : "border-border bg-background"
-              }`}
+      {visits.length === 0 ? (
+        <div className="py-12">
+          <h3 className="text-base font-semibold text-[var(--panel-ink)]">
+            {copy.emptyTitle}
+          </h3>
+          <p className="mt-1.5 max-w-[54ch] text-sm leading-relaxed text-[var(--panel-muted)]">
+            {copy.emptyBody}
+          </p>
+          <div className="mt-5 flex flex-wrap items-center gap-2">
+            {onStartIntake && (
+              <button
+                type="button"
+                onClick={onStartIntake}
+                className={actionPrimaryClass}
+              >
+                {copy.newVisit}
+              </button>
+            )}
+            <Link
+              href={withLangPrefix("/panel/calendar", lang)}
+              className={actionOutlineClass}
             >
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="flex h-10 w-12 shrink-0 items-center justify-center rounded-md border border-border bg-muted/60 font-mono text-meta font-bold text-foreground">
-                    {visit.time}
-                  </span>
+              {copy.openCalendar}
+            </Link>
+          </div>
+        </div>
+      ) : (
+        <ul className="divide-y divide-[var(--panel-line)]">
+          {visits.map((visit) => {
+            const isArrived = visit.status === "arrived";
+            const isCompleted = visit.status === "completed";
 
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-body font-bold text-foreground">
-                        {visit.patientName}
-                      </h3>
-                      <span className="text-meta text-muted-foreground">
-                        ({visit.patientAge})
-                      </span>
-                      {visit.urgency === "high" && (
-                        <span className="rounded-md border border-primary/30 bg-primary-soft px-2 py-0.5 text-meta font-semibold text-primary-hover dark:border-ruby-300/35 dark:bg-primary/15 dark:text-ruby-300">
-                          {copy.urgent}
+            return (
+              <li
+                key={visit.id}
+                className={`py-4 transition-colors duration-[var(--dur-fast)] ${
+                  isArrived
+                    ? "-mx-4 bg-[var(--panel-selection)] px-4 sm:-mx-6 sm:px-6"
+                    : isCompleted
+                      ? "opacity-75"
+                      : ""
+                }`}
+              >
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="flex min-w-0 items-baseline gap-4">
+                    <span className="w-12 shrink-0 text-sm font-semibold tabular-nums text-[var(--panel-ink)]">
+                      {visit.time}
+                    </span>
+
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
+                        <h3 className="text-base font-semibold text-[var(--panel-ink)]">
+                          {visit.patientName}
+                        </h3>
+                        <span className="text-sm text-[var(--panel-muted)]">
+                          {visit.patientAge}
                         </span>
-                      )}
-                      {isCompleted && (
-                        <span className="rounded-md border border-border bg-muted px-2 py-0.5 text-meta font-semibold text-muted-foreground">
-                          {copy.completed}
-                        </span>
-                      )}
+                        {visit.urgency === "high" && !isCompleted && (
+                          <span className="text-sm font-semibold text-[#b91c1c] dark:text-[#ffb4b4]">
+                            {copy.urgent}
+                          </span>
+                        )}
+                        {isArrived && (
+                          <span className="text-sm font-semibold text-sapphire dark:text-[#bad7fa]">
+                            {copy.arrivedStatus}
+                          </span>
+                        )}
+                        {isCompleted && (
+                          <span className="text-sm text-[var(--panel-muted)]">
+                            {copy.completed}
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="mt-1 text-sm text-[var(--panel-muted)]">
+                        {visit.address}
+                      </p>
+                      <p className="mt-1 text-sm text-[var(--panel-ink)]">
+                        <span className="text-[var(--panel-muted)]">{copy.purpose} </span>
+                        {visit.purpose}
+                      </p>
                     </div>
-
-                    <p className="mt-1 flex items-center gap-1 text-meta text-muted-foreground">
-                      <PinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                      {visit.address}
-                    </p>
-                    <p className="mt-0.5 text-meta font-medium text-foreground">
-                      {copy.purpose} {visit.purpose}
-                    </p>
                   </div>
                 </div>
 
-                {/* Map navigation button */}
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(visit.address)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md border border-border bg-muted/40 px-3 py-1.5 text-body font-semibold text-foreground hover:bg-muted shrink-0"
-                >
-                  {copy.openMap}
-                </a>
-              </div>
-
-              {/* Action row on card */}
-              <div className="mt-4 pt-3 border-t border-border flex flex-wrap items-center gap-2">
-                <a
-                  href={`tel:${visit.phone.replace(/\s+/g, "")}`}
-                  className="inline-flex min-h-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-border bg-background px-3 py-1.5 text-body font-semibold text-foreground hover:bg-muted"
-                >
-                  <PhoneIcon className="h-3.5 w-3.5 shrink-0 text-sapphire" />
-                  {copy.callPatient}
-                </a>
-
-                {!isCompleted && !isArrived && (
-                  <button
-                    type="button"
-                    onClick={() => updateStatus(visit.id, "arrived")}
-                    className="inline-flex min-h-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-border bg-background px-3 py-1.5 text-body font-semibold text-foreground hover:bg-muted"
+                {/* One-handed wrapping action row */}
+                <div className="mt-3 flex flex-wrap items-center gap-2 sm:pl-16">
+                  <a
+                    href={`tel:${visit.phone.replace(/\s+/g, "")}`}
+                    className={actionOutlineClass}
                   >
-                    {copy.arrived}
-                  </button>
-                )}
+                    {copy.callPatient}
+                  </a>
 
-                {isArrived && (
-                  <>
-                    {onLaunchTelemetry && (
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="md"
-                        onClick={() => onLaunchTelemetry(visit)}
-                        className="border-sapphire/30 bg-sapphire/10 px-3 text-sapphire hover:bg-sapphire-soft"
-                      >
-                        {copy.addMeasurements}
-                      </Button>
-                    )}
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(visit.address)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={actionOutlineClass}
+                  >
+                    {copy.openMap}
+                  </a>
 
-                    {onLaunchHandover && (
-                      <Button
-                        type="button"
-                        variant="action"
-                        size="md"
-                        onClick={() => onLaunchHandover(visit)}
-                        className="px-3"
-                      >
-                        {copy.connectDoctor}
-                      </Button>
-                    )}
-
-                    <Button
+                  {!isCompleted && !isArrived && (
+                    <button
                       type="button"
-                      variant="outline"
-                      size="md"
-                      onClick={() => updateStatus(visit.id, "completed")}
-                      className="px-3"
+                      onClick={() => updateStatus(visit.id, "arrived")}
+                      className={actionPrimaryClass}
                     >
-                      {copy.endVisit}
-                    </Button>
-                  </>
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+                      {copy.arrived}
+                    </button>
+                  )}
+
+                  {isArrived && (
+                    <>
+                      {onLaunchTelemetry && (
+                        <button
+                          type="button"
+                          onClick={() => onLaunchTelemetry(visit)}
+                          className={actionOutlineClass}
+                        >
+                          {copy.addMeasurements}
+                        </button>
+                      )}
+
+                      {onLaunchHandover && (
+                        <button
+                          type="button"
+                          onClick={() => onLaunchHandover(visit)}
+                          className={actionPrimaryClass}
+                        >
+                          {copy.connectDoctor}
+                        </button>
+                      )}
+
+                      <button
+                        type="button"
+                        onClick={() => updateStatus(visit.id, "completed")}
+                        className={actionOutlineClass}
+                      >
+                        {copy.endVisit}
+                      </button>
+                    </>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
   );
 }
