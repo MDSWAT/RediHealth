@@ -1,12 +1,9 @@
--- Promote this account to an active administrator.
--- Safe to run repeatedly after the workers table has been created.
-
--- Update these values before running this script.
-SET @admin_full_name = 'Administrator';
-SET @admin_email = 'change-me@example.com';
+-- Promote this account to an active administrator (PostgreSQL).
+-- Safe to run repeatedly after "npm run migrate". Run it on the country database the account works in.
+-- Change the name and email below before running it.
 
 INSERT INTO workers (full_name, email, role, status)
-VALUES (@admin_full_name, @admin_email, 'Administrator', 'active')
-ON DUPLICATE KEY UPDATE
-  role = VALUES(role),
-  status = VALUES(status);
+VALUES ('Administrator', LOWER('change-me@example.com'), 'Administrator', 'active')
+ON CONFLICT ((LOWER(email))) DO UPDATE SET
+  role = EXCLUDED.role,
+  status = EXCLUDED.status;

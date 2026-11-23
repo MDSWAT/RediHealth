@@ -50,7 +50,7 @@ export async function POST(request: Request) {
       `INSERT INTO patients (
         full_name, phone, county, condition_notes, assigned_worker_id,
         access_token_hash, access_token_expires_at, created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL 90 DAY), NOW())`,
+      ) VALUES (?, ?, ?, ?, ?, ?, NOW() + INTERVAL '90 days', NOW()) RETURNING id`,
       [
         fullName,
         effectivePhone,

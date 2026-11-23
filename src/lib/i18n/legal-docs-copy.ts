@@ -41,6 +41,8 @@ export type PrivacyDoc = {
   cookiesTitle: string;
   cookiesItems: string[];
   cookiesLinkLabel: string;
+  statsTitle: string;
+  statsBody: string;
   callsTitle: string;
   callsBody: string;
   retentionTitle: string;
@@ -431,7 +433,7 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
     processorsIntro: "Folosim furnizori care prelucrează date în numele nostru, pe bază de contract și garanții de securitate:",
     processorsColumns: ["Furnizor", "Pentru ce", "Ce date primește"],
     processorsRows: [
-      ["Vercel și baza de date MySQL", "Găzduirea aplicației și stocarea datelor", "Datele aplicației, cu criptare pentru datele sensibile"],
+      ["Vercel și Supabase (bază de date PostgreSQL, Frankfurt)", "Găzduirea aplicației și stocarea datelor", "Datele aplicației, cu criptare pentru datele sensibile"],
       ["Jitsi (meet.jit.si)", "Apelul video cu medicul", "Sunetul și imaginea din timpul apelului (neînregistrate)"],
       ["Anthropic (Claude API)", "Răspunsurile asistentului și explicarea rețetelor", "Mesajele din asistent și rețetele încărcate; nu se folosesc pentru antrenarea modelelor"],
       ["Hostinger Mail", "Codurile de autentificare și emailurile despre programări", "Adresa de email și conținutul notificării"],
@@ -453,6 +455,8 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       "Instrumente de reclamă sau urmărire comercială: nu le folosim.",
     ],
     cookiesLinkLabel: "Citește Politica de cookie-uri",
+    statsTitle: "Statistici despre vizite",
+    statsBody: "Ca să aflăm ce pagini îi ajută pe oameni și ce anunțuri ale noastre aduc vizitatori, serverul nostru numără vizitele. Nu trimitem nimic unei firme externe de statistici și nu folosim cookie-uri. Pentru fiecare pagină înregistrăm adresa ei, site-ul de pe care ai venit, etichetele de campanie din link, browserul și tipul de dispozitiv, limba și țara. Țara este dedusă din adresa ta IP, care nu este păstrată. Ca să numărăm un vizitator o singură dată pe zi, păstrăm un cod obținut din adresa IP și browser cu o cheie secretă care se schimbă zilnic, așa că nu te poate identifica și nu poate lega vizitele tale din zile diferite. Nu înregistrăm niciodată ce scrii, informațiile tale medicale, portalul pacientului sau paginile personalului și nu împărțim aceste statistici cu cei care fac reclame. Dacă browserul tău trimite semnalul „Do Not Track” sau „Global Privacy Control”, vizita ta nu este numărată deloc. Statisticile sunt șterse după 13 luni.",
     callsTitle: "Apelurile cu medicul",
     callsBody: "Apelurile video cu medicul nu sunt înregistrate. Medicul notează doar sfaturile și pașii următori, pe care îi poți consulta în contul tău.",
     retentionTitle: "Cât timp păstrăm datele",
@@ -464,6 +468,7 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       ["Sfaturile medicului și planul de tratament", "Conform obligațiilor legale aplicabile documentelor medicale"],
       ["Analizele încărcate", "Până le ștergi tu sau până ștergi contul"],
       ["Datele tehnice și jurnalele de erori", "Cel mult 90 de zile"],
+      ["Statisticile despre vizite (fără adresă IP sau cookie-uri)", "13 luni"],
     ],
     rightsTitle: "Drepturile tale (GDPR)",
     rightsLead: "Ai dreptul oricând:",
@@ -538,7 +543,7 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
     processorsIntro: "We rely on contracted processors with data protection safeguards:",
     processorsColumns: ["Provider", "Purpose", "Data received"],
     processorsRows: [
-      ["Vercel and hosted MySQL", "Application hosting and database storage", "Platform data, with field-level encryption for sensitive medical records"],
+      ["Vercel and Supabase (PostgreSQL database, Frankfurt)", "Application hosting and database storage", "Platform data, with field-level encryption for sensitive medical records"],
       ["Jitsi (meet.jit.si)", "Online doctor video calls", "Live audio and video during the call (not recorded)"],
       ["Anthropic (Claude API)", "Virtual assistant and prescription explanation", "Assistant messages and uploaded prescriptions; API data is not used to train models"],
       ["Hostinger Mail", "Sign-in codes and appointment emails", "Email address and notification message"],
@@ -560,6 +565,8 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       "Advertising or commercial tracking tools: not used.",
     ],
     cookiesLinkLabel: "Read our Cookie policy",
+    statsTitle: "Visit statistics",
+    statsBody: "To learn which pages help people and which of our announcements bring visitors, our own server counts visits. Nothing is sent to an outside analytics company and no cookies are used. For each page we record its address, the website you came from, campaign tags in the link, your browser and type of device, language and country. Your country is worked out from your IP address, which is not stored. To count a visitor only once per day, we keep a code made from your IP address and browser with a secret key that changes every day, so it cannot identify you or connect your visits on different days. We never record what you type, your health information, the patient portal or staff pages, and we do not share these statistics with advertisers. If your browser sends a Do Not Track or Global Privacy Control signal, your visit is not counted at all. Statistics are deleted after 13 months.",
     callsTitle: "Online doctor calls",
     callsBody: "Doctor video calls are not recorded. The doctor records only written advice and next steps so you can review them in your account.",
     retentionTitle: "How long we keep data",
@@ -571,6 +578,7 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
       ["Doctor advice and care plan", "Retained in line with applicable medical record legal obligations"],
       ["Uploaded lab results", "Until you delete them or delete your account"],
       ["Technical logs", "Up to 90 days"],
+      ["Visit statistics (no IP address or cookies)", "13 months"],
     ],
     rightsTitle: "Your GDPR rights",
     rightsLead: "You have the right at any time to:",
@@ -622,7 +630,31 @@ export function getPrivacyDoc(lang: Lang): PrivacyDoc {
     },
   };
 
-  return { ...en, ...localizedTitles[lang] };
+  // The statistics section is translated in every language (the rest of the document is English for now).
+  const localizedStats: Record<Exclude<Lang, "ro" | "en">, { statsTitle: string; statsBody: string }> = {
+    sq: {
+      statsTitle: "Statistikat e vizitave",
+      statsBody: "Për të kuptuar cilat faqe i ndihmojnë njerëzit dhe cilat njoftime tona sjellin vizitorë, serveri ynë i numëron vizitat. Nuk i dërgojmë asgjë një kompanie të jashtme statistikash dhe nuk përdorim cookie. Për çdo faqe regjistrojmë adresën e saj, faqen nga erdhe, etiketat e fushatës në lidhje, shfletuesin dhe llojin e pajisjes, gjuhën dhe vendin. Vendi nxirret nga adresa jote IP, e cila nuk ruhet. Për ta numëruar një vizitor vetëm një herë në ditë, ruajmë një kod të krijuar nga adresa IP dhe shfletuesi me një çelës sekret që ndryshon çdo ditë, prandaj nuk të identifikon dhe nuk i lidh vizitat e tua në ditë të ndryshme. Nuk regjistrojmë kurrë atë që shkruan, të dhënat e tua shëndetësore, portalin e pacientit ose faqet e stafit, dhe nuk ua japim këto statistika reklamuesve. Nëse shfletuesi yt dërgon sinjalin Do Not Track ose Global Privacy Control, vizita jote nuk numërohet fare. Statistikat fshihen pas 13 muajsh.",
+    },
+    it: {
+      statsTitle: "Statistiche sulle visite",
+      statsBody: "Per capire quali pagine aiutano le persone e quali nostri annunci portano visitatori, il nostro server conta le visite. Non inviamo nulla a società esterne di statistica e non usiamo cookie. Per ogni pagina registriamo il suo indirizzo, il sito da cui arrivi, le etichette di campagna nel link, il browser e il tipo di dispositivo, la lingua e il paese. Il paese viene ricavato dal tuo indirizzo IP, che non viene conservato. Per contare un visitatore una sola volta al giorno conserviamo un codice ottenuto dall'indirizzo IP e dal browser con una chiave segreta che cambia ogni giorno, quindi non può identificarti né collegare le tue visite di giorni diversi. Non registriamo mai ciò che scrivi, i tuoi dati sanitari, il portale del paziente o le pagine del personale, e non condividiamo queste statistiche con gli inserzionisti. Se il tuo browser invia il segnale Do Not Track o Global Privacy Control, la tua visita non viene contata. Le statistiche vengono cancellate dopo 13 mesi.",
+    },
+    hr: {
+      statsTitle: "Statistika posjeta",
+      statsBody: "Kako bismo saznali koje stranice pomažu ljudima i koje naše objave dovode posjetitelje, naš poslužitelj broji posjete. Ništa ne šaljemo vanjskoj tvrtki za statistiku i ne koristimo kolačiće. Za svaku stranicu bilježimo njezinu adresu, stranicu s koje si došao, oznake kampanje u poveznici, preglednik i vrstu uređaja, jezik i zemlju. Zemlja se određuje iz tvoje IP adrese, koja se ne pohranjuje. Kako bismo posjetitelja brojali samo jednom dnevno, čuvamo kôd izrađen iz IP adrese i preglednika tajnim ključem koji se mijenja svaki dan, pa te ne može identificirati ni povezati tvoje posjete u različitim danima. Nikad ne bilježimo ono što upišeš, tvoje zdravstvene podatke, portal za pacijente ni stranice za osoblje i ne dijelimo ovu statistiku s oglašivačima. Ako tvoj preglednik šalje signal Do Not Track ili Global Privacy Control, tvoj se posjet uopće ne broji. Statistika se briše nakon 13 mjeseci.",
+    },
+    rom: {
+      statsTitle: "Statistike vash o avipe",
+      statsBody: "Te zhanas savi rig zhutil e manushen thaj save amare anunsurya anen vizitatoren, amaro serveri ginel le avipe. Na bichhalas khanchi ekhe avere firmake statistikengi thaj na labaras cookie. Vash sako rig ramosaras lako adresa, o sait kotar avilyan, le kampanyake etikete ando link, o browsero thaj sar si o aparato, i chhib thaj o them. O them arakhel pe andar chi IP adresa, savi na garavel pe. Te ginas ekhe vizitatores numa jekhvar pe dives, garavas ekh kodo kerdo andar i IP adresa thaj o browsero ekhe garadi klidyasa savi parudel pe sako dives, gadya na shaj prinzharel tut thaj na shaj phandel che avipe ande aver divesa. Nikana na ramosaras so lekhaves, che sastipnaske informaciye, o portalo e pacientosko vay le rigi e butyarengi, thaj na das kadala statistike kodolen kai keren reklame. Te cho browsero bichhalel o semno Do Not Track vay Global Privacy Control, cho avipe chi ginel pe. Le statistike khosen pe pala 13 masek.",
+    },
+    ru: {
+      statsTitle: "Статистика посещений",
+      statsBody: "Чтобы понимать, какие страницы помогают людям и какие наши объявления приводят посетителей, посещения считает наш собственный сервер. Мы ничего не передаем сторонним компаниям веб-аналитики и не используем cookie. Для каждой страницы мы записываем ее адрес, сайт, с которого вы пришли, метки кампании в ссылке, браузер и тип устройства, язык и страну. Страна определяется по вашему IP-адресу, который не сохраняется. Чтобы считать посетителя только один раз в день, мы храним код, полученный из IP-адреса и браузера с помощью секретного ключа, который меняется каждый день, поэтому он не позволяет вас идентифицировать или связать ваши посещения в разные дни. Мы никогда не записываем то, что вы вводите, сведения о вашем здоровье, портал пациента или страницы для персонала и не передаем эту статистику рекламодателям. Если ваш браузер отправляет сигнал Do Not Track или Global Privacy Control, ваше посещение вообще не учитывается. Статистика удаляется через 13 месяцев.",
+    },
+  };
+
+  return { ...en, ...localizedTitles[lang], ...localizedStats[lang] };
 }
 
 export function getCookiesDoc(lang: Lang): CookiesDoc {

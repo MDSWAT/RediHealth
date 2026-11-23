@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import { PanelLink as Link, usePanelRouter as useRouter, usePanelRuntime } from "./PanelRuntime";
 import { useCallback, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
@@ -24,16 +23,21 @@ import { ScheduleFollowupDialog } from "./ScheduleFollowupDialog";
 import { FollowupDetailDialog } from "./FollowupDetailDialog";
 import { useUnsavedChanges } from "./useUnsavedChanges";
 import { PatientIntakeSummary } from "./PatientIntakeSummary";
+import { PatientAvatar, PatientImageViewer, PatientPhotoGallery } from "./PatientMedia";
+import { patientDesignTranslations } from "@/lib/i18n/patient-design-translations";
+import "./patient-workspace.css";
 
 export function PatientProfileView({ initialPatient, isAdmin = false, isRomania }: { initialPatient: PatientItem; isAdmin?: boolean; isRomania: boolean }) {
   const { lang } = useLanguage();
   const viewerZone = useViewerTimeZone();
   const { request: fetch } = usePanelRuntime();
   const t = crmTranslations[lang];
+  const design = patientDesignTranslations[lang];
   const fields = createPatientModalTranslations[lang];
   const router = useRouter();
   const [patient, setPatient] = useState(initialPatient);
-  const [tab, setTab] = useState<"summary" | "carePlan" | "history">("summary");
+  const [tab, setTab] = useState<"summary" | "carePlan" | "photos" | "history">("summary");
+  const [profilePreview, setProfilePreview] = useState(false);
   const [editing, setEditing] = useState(false);
   const [scheduling, setScheduling] = useState(false);
   const [selectedFollowup, setSelectedFollowup] = useState<FollowupItem | null>(null);
@@ -56,7 +60,8 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
   const upcoming = sortFollowups(followups.filter((item) => item.status === "scheduled"));
   const next = upcoming[0];
   const treatmentEntries = sortTreatments(getTreatmentEntries(treatment));
-  const dirty = pendingTreatmentPhoto || JSON.stringify(treatment) !== JSON.stringify(patient.treatment_plan || {});
+  const treatmentPhotos = treatmentEntries.flatMap((entry) => entry.photos || []);
+  const dirty = Boolean(photoData) || pendingTreatmentPhoto || JSON.stringify(treatment) !== JSON.stringify(patient.treatment_plan || {});
   useUnsavedChanges(dirty, t.unsaved);
   useEffect(() => {
     if (sessionStorage.getItem(`patient-portal-warning:${initialPatient.id}`)) {
@@ -146,7 +151,9 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
   }
   function readPhoto(event: ChangeEvent<HTMLInputElement>, update: (value: string | null) => void) {
     const file = event.target.files?.[0];
+    event.target.value = "";
     if (!file) return;
+    update(null);
     if (!file.type.startsWith("image/") || file.size > 5 * 1024 * 1024) { setError(t.imageError); event.target.value = ""; return; }
     const reader = new FileReader(); reader.onload = () => update(String(reader.result)); reader.onerror = () => setError(t.error); reader.readAsDataURL(file);
   }
@@ -186,13 +193,16 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
   };
   const careTeam = (patient.assigned_worker_names?.length ? patient.assigned_worker_names : [patient.assigned_worker_name || ""])
     .map((name) => name.trim()).filter(Boolean);
-  return <div className="space-y-5">
+  return <div className="patient-record space-y-5">
     <header>
       <Link className="mb-4 inline-flex items-center gap-1 text-sm text-primary hover:underline" href={withLangPrefix("/panel/patients", lang)}><ChevronLeftIcon aria-hidden="true" className="h-4 w-4" />{t.back}</Link>
-      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
-        <div className="flex min-w-0 items-start gap-4">
-          <div className="flex h-16 w-16 flex-none items-center justify-center overflow-hidden rounded-full bg-primary-soft text-xl font-semibold text-primary">{patient.profile_photo ? <img src={patient.profile_photo} alt={t.profilePhoto} className="h-full w-full object-cover" /> : patient.full_name.trim().charAt(0).toUpperCase()}</div>
-          <div className="min-w-0">
+      <div className="patient-record-header">
+        <div className="patient-record-identity">
+          <div className="patient-portrait"><PatientAvatar name={patient.full_name} src={patient.profile_photo} large onPreview={() => setProfilePreview(true)} />
+            <label className={`patient-photo-upload${saving ? " is-disabled" : ""}`}>{patient.profile_photo ? t.changeProfilePhoto : t.addProfilePhoto}<input type="file" accept="image/jpeg,image/png,image/webp,image/gif" disabled={saving} onChange={readProfilePhoto} /></label>
+            {patient.profile_photo && <button className="patient-photo-remove" disabled={saving} onClick={() => { if (window.confirm(t.deleteConfirm)) void save({ profile_photo: null }); }}>{t.removeProfilePhoto}</button>}
+          </div>
+          <div className="patient-record-details">
             <h1 className="break-words text-2xl font-semibold">{patient.full_name}</h1>
             <div aria-label={t.contact} className="mt-2 space-y-1 text-sm">
               <div className="flex flex-wrap gap-x-4 gap-y-1">
@@ -202,23 +212,33 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
               {patient.date_of_birth && <p>{fields.dob}: {formatDay(patient.date_of_birth)}</p>}
               {patient.address && <p className="break-words">{patient.address}</p>}
             </div>
-            <p className="mt-2 text-sm text-muted-foreground">#{patient.id} · {statusLabel} · {priorityLabel}</p>
-            <div className="mt-2 flex flex-wrap gap-3 text-xs"><label className="cursor-pointer font-medium text-primary">{patient.profile_photo ? t.changeProfilePhoto : t.addProfilePhoto}<input className="sr-only" type="file" accept="image/jpeg,image/png,image/webp,image/gif" disabled={saving} onChange={readProfilePhoto} /></label>{patient.profile_photo && <button className="text-red-700" disabled={saving} onClick={() => void save({ profile_photo: null })}>{t.removeProfilePhoto}</button>}</div>
+            <div className="patient-record-meta"><span data-patient-status={patient.status}>{statusLabel}</span><span data-patient-priority={patient.priority}>{priorityLabel}</span><span>#{patient.id}</span></div>
           </div>
         </div>
-        <div className="flex flex-wrap gap-2"><button className="crm-button crm-primary" onClick={() => setScheduling(true)}>{t.schedule}</button><button className="crm-button" onClick={() => setEditing(true)}>{t.edit}</button><details className="crm-menu"><summary className="crm-button">{t.more}</summary><div><button onClick={() => setPrinting(true)}>{t.print}</button>{patient.has_portal_access && <button disabled={saving} onClick={sendPortal}>{t.sendPortal}</button>}<button className="text-red-700" disabled={saving} onClick={deletePatient}>{t.delete}</button></div></details></div>
+        <div className="patient-record-actions"><button className="crm-button crm-primary" onClick={() => setScheduling(true)}>{t.schedule}</button><button className="crm-button" onClick={() => setEditing(true)}>{t.edit}</button><details className="crm-menu"><summary className="crm-button">{t.more}</summary><div><button onClick={() => setPrinting(true)}>{t.print}</button>{patient.has_portal_access && <button disabled={saving} onClick={sendPortal}>{t.sendPortal}</button>}<button className="text-red-700" disabled={saving} onClick={deletePatient}>{t.delete}</button></div></details></div>
       </div>
     </header>
     {error && <p className="crm-error" role="alert">{error}</p>}{notice && <p className="crm-notice" role="status">{notice}</p>}
-    <div className="crm-tabs" role="tablist" aria-label={patient.full_name}>{(["summary", "carePlan", "history"] as const).map((id) => <button key={id} id={`tab-${id}`} role="tab" aria-selected={tab === id} aria-controls={`content-${id}`} onClick={() => {
+    <div className="crm-tabs" role="tablist" aria-label={patient.full_name} onKeyDown={(event) => {
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      const tabs = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+      const current = tabs.indexOf(event.target as HTMLButtonElement);
+      if (current < 0) return;
+      event.preventDefault();
+      const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1 : (current + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+      tabs[next].focus(); tabs[next].click();
+    }}>{(["summary", "carePlan", "photos", "history"] as const).map((id) => <button key={id} id={`tab-${id}`} role="tab" tabIndex={tab === id ? 0 : -1} aria-selected={tab === id} aria-controls={`content-${id}`} onClick={() => {
       if (pendingTreatmentPhoto && id !== "carePlan" && !window.confirm(treatmentTranslations[lang].discardPhoto)) return;
+      if (photoData && id !== "photos") { if (!window.confirm(t.unsaved)) return; setPhotoData(null); }
       setTab(id);
-    }}>{t[id]}</button>)}</div>
+    }}>{id === "photos" ? <>{design.photos}<span className="patient-tab-count">{photos.length + treatmentPhotos.length + (patient.intake?.documents.length || 0)}</span></> : t[id]}</button>)}</div>
     <section id={`content-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`} className="space-y-5">
       {tab === "summary" && <>
-        <PatientIntakeSummary intake={patient.intake} />
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]">
-          <div className="space-y-5">
+        <div className="patient-summary-grid">
+          <div className="patient-summary-main space-y-5"><section className="crm-card"><h2>{t.condition}</h2><p className="whitespace-pre-wrap text-sm leading-relaxed">{patient.condition_notes || "—"}</p><div className="mt-5 border-t border-border pt-4"><h2>{treatmentTranslations[lang].title} ({treatmentEntries.length})</h2>{treatmentEntries.slice(0, 3).map((entry) => <div key={entry.id} className="mt-3 text-sm"><p className="font-medium">{entry.title || treatmentTranslations[lang].legacy}</p><p className="text-xs text-muted-foreground">{entry.start_date ? `${formatDay(entry.start_date)} – ${formatDay(entry.end_date)}` : treatmentTranslations[lang].undated}</p><p className="line-clamp-2 text-muted-foreground">{entry.diagnosis || entry.care_instructions}</p></div>)}<button className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline" onClick={() => setTab("carePlan")}>{t.carePlan}<ChevronRightIcon aria-hidden="true" className="h-4 w-4" /></button></div></section><PatientTimelineTab patient={patient} followups={followups} photos={photos} compact /></div>
+          <div className="patient-summary-aside space-y-5">
+            <section className="crm-card"><h2>{t.nextFollowup}</h2>{next ? <><p className="font-medium">{next.title}</p><p className="mt-2 text-sm text-muted-foreground">{followupLabel(next, langToLocale[lang], t.allDay, viewerZone)}</p>{next.notes && <p className="mt-3 text-sm">{next.notes}</p>}<div className="mt-4 flex flex-wrap gap-2">{next.meeting_id && <Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${next.meeting_id}`, lang)}>{t.join}</Link>}<button className="crm-button" disabled={saving} onClick={() => setSelectedFollowup(next)}>{t.markComplete}</button></div></> : <p className="text-sm text-muted-foreground">{t.noFollowup}</p>}</section>
             <section className="crm-card">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <h2 className="!mb-0">{t.careTeam}</h2>
@@ -233,9 +253,8 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
                 </li>)}
               </ul> : <p className="text-sm text-muted-foreground">{fields.unassigned}</p>}
             </section>
-            <section className="crm-card"><h2>{t.nextFollowup}</h2>{next ? <><p className="font-medium">{next.title}</p><p className="mt-2 text-sm text-muted-foreground">{followupLabel(next, langToLocale[lang], t.allDay, viewerZone)}</p>{next.notes && <p className="mt-3 text-sm">{next.notes}</p>}<div className="mt-4 flex flex-wrap gap-2">{next.meeting_id && <Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${next.meeting_id}`, lang)}>{t.join}</Link>}<button className="crm-button" disabled={saving} onClick={() => setSelectedFollowup(next)}>{t.markComplete}</button></div></> : <p className="text-sm text-muted-foreground">{t.noFollowup}</p>}</section>
+
           </div>
-          <div className="space-y-5"><section className="crm-card"><h2>{t.condition}</h2><p className="whitespace-pre-wrap text-sm leading-relaxed">{patient.condition_notes || "—"}</p><div className="mt-5 border-t border-border pt-4"><h2>{treatmentTranslations[lang].title} ({treatmentEntries.length})</h2>{treatmentEntries.slice(0, 3).map((entry) => <div key={entry.id} className="mt-3 text-sm"><p className="font-medium">{entry.title || treatmentTranslations[lang].legacy}</p><p className="text-xs text-muted-foreground">{entry.start_date ? `${formatDay(entry.start_date)} – ${formatDay(entry.end_date)}` : treatmentTranslations[lang].undated}</p><p className="line-clamp-2 text-muted-foreground">{entry.diagnosis || entry.care_instructions}</p></div>)}<button className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline" onClick={() => setTab("carePlan")}>{t.carePlan}<ChevronRightIcon aria-hidden="true" className="h-4 w-4" /></button></div></section><PatientTimelineTab patient={patient} followups={followups} photos={photos} compact /></div>
         </div>
         {/* The next follow-up already has its own card; this list only shows the ones after it. */}
         {upcoming.length > 1 && <section className="crm-card"><div className="mb-3 flex flex-wrap items-center justify-between gap-3"><h2>{t.upcoming}</h2></div>{upcoming.slice(1).map((item) => <div key={item.id} className="flex flex-wrap items-center justify-between gap-3 border-t border-border py-4"><div><p className="font-medium text-sm">{item.title}</p><p className="mt-1 text-sm text-muted-foreground">{followupLabel(item, langToLocale[lang], t.allDay, viewerZone)}</p></div><div className="flex gap-2">{item.meeting_id && <Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${item.meeting_id}`, lang)}>{t.join}</Link>}<button className="crm-button" disabled={saving} onClick={() => setSelectedFollowup(item)}>{t.markComplete}</button></div></div>)}</section>}
@@ -243,10 +262,12 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
       {tab === "carePlan" && <>
         <section className="crm-card"><div className="flex items-center justify-between gap-3"><h2>{t.medicalHistory}</h2><button className="crm-button" onClick={() => setEditing(true)}>{t.edit}</button></div><p className="whitespace-pre-wrap text-sm leading-relaxed">{patient.medical_history || "—"}</p></section>
         <PatientTreatmentTab treatmentPlan={treatment} onChangeTreatmentPlan={(plan) => { setTreatment(plan); setTreatmentSaved(false); }} treatmentSavedMsg={treatmentSaved} isSavingTreatment={saving} onSaveTreatmentPlan={saveTreatments} onPendingPhotoChange={handlePendingTreatmentPhoto} />
-        <details className="crm-card"><summary className="cursor-pointer text-sm font-medium">{t.attachments} ({photos.length})</summary><div className="mt-4"><PatientPhotosTab photos={photos} newPhotoName={photoName} onChangeNewPhotoName={setPhotoName} newPhotoNote={photoNote} onChangeNewPhotoNote={setPhotoNote} newPhotoData={photoData} onImageUpload={(e) => readPhoto(e, setPhotoData)} onAddPhoto={addPhoto} onDeletePhoto={async (id) => { if (!saving && window.confirm(t.deleteConfirm)) await save({ photos: photos.filter((p) => p.id !== id) }); }} /></div></details>
+
       </>}
+      {tab === "photos" && <><PatientIntakeSummary intake={patient.intake} />{treatmentPhotos.length > 0 && <section className="crm-card"><h2>{treatmentTranslations[lang].title}</h2><PatientPhotoGallery photos={treatmentPhotos} /></section>}<PatientPhotosTab busy={saving} photos={photos} newPhotoName={photoName} onChangeNewPhotoName={setPhotoName} newPhotoNote={photoNote} onChangeNewPhotoNote={setPhotoNote} newPhotoData={photoData} onImageUpload={(e) => readPhoto(e, setPhotoData)} onAddPhoto={addPhoto} onDeletePhoto={async (id) => { if (!saving && window.confirm(t.deleteConfirm)) await save({ photos: photos.filter((p) => p.id !== id) }); }} /></>}
       {tab === "history" && <PatientTimelineTab patient={patient} followups={followups} photos={photos} onSelectFollowup={setSelectedFollowup} onCreateMeeting={createFollowupMeeting} onDeleteFollowup={deleteFollowup} busy={saving} />}
     </section>
+    {profilePreview && patient.profile_photo && <PatientImageViewer images={[{ id: patient.id, name: patient.full_name, data_url: patient.profile_photo, date: "" }]} index={0} onClose={() => setProfilePreview(false)} />}
     {scheduling && <ScheduleFollowupDialog patients={[patient]} patientId={patient.id} onClose={() => setScheduling(false)} onSaved={(_, item, emailSent) => { setPatient((current) => ({ ...current, followups: [item, ...(current.followups || []).filter((f) => f.id !== item.id)] })); setNotice(emailSent === false ? t.invitationWarning : ""); }} />}
     {selectedFollowup && followups.some((item) => item.id === selectedFollowup.id) && <FollowupDetailDialog patient={patient} followup={followups.find((item) => item.id === selectedFollowup.id)!} busy={saving} error={error} onClose={() => setSelectedFollowup(null)} onToggle={(notes) => toggleFollowup(selectedFollowup.id, selectedFollowup.status === "completed" ? "scheduled" : "completed", notes)} onCreateMeeting={() => createFollowupMeeting(selectedFollowup)} onDelete={() => deleteFollowup(selectedFollowup)} />}
     {editing && <CreatePatientModal patient={patient} isAdmin={isAdmin} isRomania={isRomania} onClose={() => setEditing(false)} onSuccess={(updated) => { setPatient((current) => ({ ...current, ...updated })); setEditing(false); }} />}

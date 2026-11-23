@@ -33,14 +33,9 @@ import { encryptField, isEncryptionConfigured } from "@/lib/security/field-encry
 import { isRomanianCounty } from "@/lib/romanian-counties";
 import { validatePatientIntake } from "@/lib/patient-intake";
 
+/** A unique index rejected the write (PostgreSQL error 23505). */
 function isDuplicateEntryError(error: unknown): boolean {
-  const dbError = error as { code?: string; errno?: number; sqlState?: string; message?: string };
-  return (
-    dbError.code === "ER_DUP_ENTRY"
-    || dbError.errno === 1062
-    || dbError.sqlState === "23000"
-    || /duplicate entry/i.test(dbError.message || "")
-  );
+  return (error as { code?: string } | null)?.code === "23505";
 }
 
 const MAX_CONDITION_NOTES_LENGTH = 20_000;
@@ -90,13 +85,13 @@ export async function GET(request: Request) {
 
     // Non-admins may only ever see patients assigned to them.
     if (!workerContext.isAdmin && workerContext.workerId) {
-      conditions.push("(p.assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0)");
+      conditions.push("(p.assigned_worker_id = ? OR jsonb_has_id(p.assigned_worker_ids, ?))");
       params.push(workerContext.workerId, workerContext.workerId);
     } else if (workerIdParam && workerIdParam !== "all") {
       if (workerIdParam === "unassigned") {
-        conditions.push("(p.assigned_worker_id IS NULL AND (p.assigned_worker_ids IS NULL OR JSON_LENGTH(p.assigned_worker_ids) = 0))");
+        conditions.push("(p.assigned_worker_id IS NULL AND (p.assigned_worker_ids IS NULL OR p.assigned_worker_ids = '[]'::jsonb OR p.assigned_worker_ids = 'null'::jsonb))");
       } else {
-        conditions.push("(p.assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(p.assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0)");
+        conditions.push("(p.assigned_worker_id = ? OR jsonb_has_id(p.assigned_worker_ids, ?))");
         params.push(workerIdParam, workerIdParam);
       }
     }
@@ -278,7 +273,7 @@ export async function POST(request: Request) {
     const db = getCountryDatabase(workerContext.country);
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO patients (request_id, assigned_worker_id, assigned_worker_ids, access_token_hash, access_token_expires_at, full_name, phone, email, date_of_birth, gender, address, condition_notes, medical_history, treatment_plan, followups, photos, status, priority, county, intake)
-       VALUES (?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL ? DAY), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, NOW() + make_interval(days => ?::int), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id`,
       [
         requestId,
         assignedWorkerId ?? workerContext.workerId,
@@ -590,7 +585,7 @@ export async function PATCH(request: Request) {
   // Non-admins may only update patients assigned to them.
   let whereClause = "id = ?";
   if (!workerContext.isAdmin) {
-    whereClause += " AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0)";
+    whereClause += " AND (assigned_worker_id = ? OR jsonb_has_id(assigned_worker_ids, ?))";
     params.push(workerContext.workerId, workerContext.workerId);
   }
 
@@ -677,7 +672,7 @@ export async function DELETE(request: Request) {
   let whereClause = "id = ?";
   const deleteParams: unknown[] = [id];
   if (!workerContext.isAdmin) {
-    whereClause += " AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0)";
+    whereClause += " AND (assigned_worker_id = ? OR jsonb_has_id(assigned_worker_ids, ?))";
     deleteParams.push(workerContext.workerId, workerContext.workerId);
   }
 

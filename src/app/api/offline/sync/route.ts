@@ -32,8 +32,8 @@ export async function POST(request: Request) {
     if (!isEncryptionConfigured(identity.country)) return Response.json({ error: "Country encryption is required for offline sync." }, { status: 503 });
     return await inOfflineTransaction(identity.country, async () => {
       const db = getCountryDatabase(identity.country);
-      // INSERT ... ON DUPLICATE KEY locks the operation before checking the receipt.
-      await db.query("INSERT INTO offline_sync_receipts (worker_id, operation_id) VALUES (?, ?) ON DUPLICATE KEY UPDATE operation_id = operation_id", [identity.workerId, op.operationId]);
+      // The upsert locks the operation's receipt row before it is checked.
+      await db.query("INSERT INTO offline_sync_receipts (worker_id, operation_id) VALUES (?, ?) ON CONFLICT (worker_id, operation_id) DO UPDATE SET operation_id = EXCLUDED.operation_id", [identity.workerId, op.operationId]);
       const [receipts] = await db.query<RowDataPacket[]>("SELECT entity_id, revision FROM offline_sync_receipts WHERE worker_id = ? AND operation_id = ? FOR UPDATE", [identity.workerId, op.operationId]);
       if (receipts[0]?.entity_id) return Response.json({ id: String(receipts[0].entity_id), revision: receipts[0].revision });
       const entity = op.entity === "patient" ? "patient" : "request";

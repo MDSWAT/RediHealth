@@ -3,7 +3,9 @@
 import { PanelLink as Link, usePanelPathname as usePathname, usePanelRuntime } from "./PanelRuntime";
 import { createContext, useCallback, useContext, useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import { signOut } from "next-auth/react";
+import { analyticsTranslations } from "@/lib/i18n/analytics-translations";
 import {
+  ActivityIcon,
   AlertCircleIcon,
   ArrowRightIcon,
   BellIcon,
@@ -38,6 +40,10 @@ import { createPatientModalTranslations } from "@/lib/i18n/panel-component-trans
 import { CreatePatientModal } from "./CreatePatientModal";
 import { hasOfflineVault } from "@/lib/offline-vault";
 import "./panel.css";
+import "./panel-workspace.css";
+
+/** Desktop sidebar "Administration" group, in this order: staff, feedback, then statistics under it. */
+const ADMINISTRATION_HREFS = new Set(["/panel/workers", "/panel/feedback", "/panel/analytics"]);
 
 type AdminShellProps = {
   children: ReactNode;
@@ -190,6 +196,7 @@ function AdminShellFrame({
   const feedbackCopy = feedbackAdminCopy[lang] ?? feedbackAdminCopy.ro;
   const institutesCopy = institutesAdminTranslations[lang];
   const settingsCopy = settingsTranslations[lang];
+  const analyticsCopy = analyticsTranslations[lang];
   const currentPath = stripLangFromPathname(pathname);
   const role = userRole.trim().toLowerCase();
   const isSuperAdmin = role === "super admin" || role === "superadmin";
@@ -244,11 +251,14 @@ function AdminShellFrame({
         { label: crm.meetings, href: "/panel/meet", icon: CameraIcon, chord: undefined },
         { label: t.workers, href: "/panel/workers", icon: StethoscopeIcon, chord: undefined },
         { label: feedbackCopy.navLabel, href: "/panel/feedback", icon: MessageDotsIcon, chord: undefined },
+        { label: analyticsCopy.navLabel, href: "/panel/analytics", icon: ActivityIcon, chord: undefined },
       ].filter((item) => {
-        if ((item.href === "/panel/workers" || item.href === "/panel/feedback") && !isAdmin) return false;
+        if (["/panel/workers", "/panel/feedback", "/panel/analytics"].includes(item.href) && !isAdmin) return false;
+        // The demo has no analytics data of its own.
+        if (item.href === "/panel/analytics" && demo) return false;
         return canOpen(item.href);
       }),
-    [crm.requests, crm.meetings, t.patients, t.calendar, t.workers, feedbackCopy.navLabel, isAdmin, canOpen],
+    [crm.requests, crm.meetings, t.patients, t.calendar, t.workers, feedbackCopy.navLabel, analyticsCopy.navLabel, isAdmin, demo, canOpen],
   );
 
   // Mobile App Bottom Navigation Bar items (primary quick tabs)
@@ -266,6 +276,7 @@ function AdminShellFrame({
     { label: t.reportIssue, href: "#report-issue", icon: AlertCircleIcon },
     ...(isAdmin ? [{ label: t.workers, href: "/panel/workers", icon: StethoscopeIcon }] : []),
     ...(isAdmin ? [{ label: feedbackCopy.navLabel, href: "/panel/feedback", icon: MessageDotsIcon }] : []),
+    ...(isAdmin && !demo ? [{ label: analyticsCopy.navLabel, href: "/panel/analytics", icon: ActivityIcon }] : []),
     ...(isSuperAdmin ? [{ label: t.logs, href: "/panel/logs", icon: ClockIcon }] : []),
     ...(isSuperAdmin ? [{ label: institutesCopy.navLabel, href: "/panel/institutes", icon: PinIcon }] : []),
     ...(isSuperAdmin ? [{ label: settingsCopy.navLabel, href: "/panel/settings", icon: BellIcon }] : []),
@@ -830,8 +841,8 @@ function AdminShellFrame({
       ) : null}
 
       {/* Desktop Sticky Sidebar */}
-      <div className={`panel-sidebar-layout lg:grid ${desktopSidebarCollapsed ? "lg:grid-cols-[72px_minmax(0,1fr)]" : "lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[216px_minmax(0,1fr)]"}`}>
-        <aside className={`hidden border-r border-border bg-white lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col ${desktopSidebarCollapsed ? "lg:w-[72px]" : ""}`}>
+      <div className={`panel-sidebar-layout lg:grid ${desktopSidebarCollapsed ? "lg:grid-cols-[72px_minmax(0,1fr)]" : "lg:grid-cols-[224px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)]"}`}>
+        <aside className={`panel-desktop-sidebar hidden border-r border-border bg-white lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col ${desktopSidebarCollapsed ? "lg:w-[72px]" : ""}`}>
           <div className={`relative flex min-h-[88px] border-b border-border/80 py-4 ${desktopSidebarCollapsed ? "justify-center px-2" : "flex-col gap-1 px-5"}`}>
             {desktopSidebarCollapsed ? (
               <button
@@ -895,7 +906,7 @@ function AdminShellFrame({
             className={`panel-sidebar-nav flex-1 overflow-y-auto py-4 ${desktopSidebarCollapsed ? "panel-sidebar-nav-collapsed px-2" : "px-3"}`}
           >
             <ul className="space-y-1">
-              {desktopItems.filter((item) => item.href !== "/panel/workers" && item.href !== "/panel/feedback").map((item) => {
+              {desktopItems.filter((item) => !ADMINISTRATION_HREFS.has(item.href)).map((item) => {
                 const active =
                   item.href === "/panel"
                     ? currentPath === "/panel"
@@ -933,7 +944,7 @@ function AdminShellFrame({
                 );
               })}
             </ul>
-            {desktopItems.some((item) => item.href === "/panel/workers" || item.href === "/panel/feedback") ? (
+            {desktopItems.some((item) => ADMINISTRATION_HREFS.has(item.href)) ? (
               <p
                 aria-hidden={desktopSidebarCollapsed || undefined}
                 className={`mt-7 mb-2 px-3 text-xs text-muted-foreground ${desktopSidebarCollapsed ? "invisible" : ""}`}
@@ -942,7 +953,7 @@ function AdminShellFrame({
               </p>
             ) : null}
             <ul className="space-y-1">
-              {desktopItems.filter((item) => item.href === "/panel/workers" || item.href === "/panel/feedback").map((item) => {
+              {desktopItems.filter((item) => ADMINISTRATION_HREFS.has(item.href)).map((item) => {
                 const active =
                   item.href === "/panel"
                     ? currentPath === "/panel"

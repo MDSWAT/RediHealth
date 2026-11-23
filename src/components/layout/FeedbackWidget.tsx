@@ -1,4 +1,5 @@
 "use client";
+import { trackEvent } from "@/lib/analytics-events";
 
 import { AnimatePresence, m } from "motion/react";
 import {
@@ -827,6 +828,7 @@ export function FeedbackWidget() {
         return;
       }
 
+      trackEvent("feedback_sent");
       markScheduleSubmitted();
       clearDraft();
       setRatings(INITIAL_RATINGS);

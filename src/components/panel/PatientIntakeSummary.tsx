@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/i18n/language-context";
 import { patientIntakeTranslations } from "@/lib/i18n/patient-intake-translations";
 import { documentBytes } from "@/lib/patient-intake";
 import type { PatientDocument, PatientIntake } from "@/lib/types/patient";
+import { PatientPhotoTrigger } from "./PatientMedia";
 
 export function PatientIntakeSummary({ intake }: { intake?: PatientIntake | null }) {
   const { lang } = useLanguage();
@@ -34,7 +35,7 @@ export function PatientIntakeSummary({ intake }: { intake?: PatientIntake | null
     <div><h2>{t.documents}</h2>
       {intake.has_documents && intake.documents.length ? null : <p className="text-sm text-muted-foreground">{intake.has_documents ? t.hasDocuments : t.noDocuments}</p>}
       {intake.has_documents && <ul className="divide-y divide-border border-t border-border">{intake.documents.map((document) => <li key={document.id} className="flex flex-wrap items-center justify-between gap-2 py-2.5">
-        <div className="min-w-0"><p className="break-all text-sm font-medium">{document.name}</p><p className="text-xs text-muted-foreground">{document.category === "identity" ? t.identity : t.medical}</p></div>
+        <div className="patient-document-identity">{/^data:image\/(png|jpeg|webp|gif);base64,/i.test(document.data_url) && <div className="patient-document-preview"><PatientPhotoTrigger photo={{ id: document.id, name: document.name, data_url: document.data_url, date: "" }} /></div>}<div className="min-w-0"><p className="break-all text-sm font-medium">{document.name}</p><p className="text-xs text-muted-foreground">{document.category === "identity" ? t.identity : t.medical}</p></div></div>
         <button type="button" onClick={() => download(document)} className="min-h-11 px-2 text-sm font-semibold text-primary">{t.download}</button>
       </li>)}</ul>}
     </div>

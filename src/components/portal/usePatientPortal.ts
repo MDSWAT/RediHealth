@@ -103,6 +103,8 @@ const MAX_PHOTO_BYTES = 5 * 1024 * 1024;
 const SAVED_MESSAGE_TIMEOUT_MS = 3_000;
 
 interface UsePatientPortalArgs {
+  /** Browser-local demo transport; production requests still use the protected portal API. */
+  onPatch?: (payload: object) => Promise<void>;
   initialPatient: PatientItem;
   token: string;
   country: CountryCode;
@@ -132,7 +134,7 @@ class PortalRequestError extends Error {
  * component stays presentational. Handlers optimistically update local state only
  * after the server confirms the change.
  */
-export function usePatientPortal({ initialPatient, token, country }: UsePatientPortalArgs) {
+export function usePatientPortal({ initialPatient, token, country, onPatch }: UsePatientPortalArgs) {
   const executeCaptcha = useRecaptcha();
   const messages = portalMessages[useSafeLang()] ?? portalMessages.ro;
   const errorText = (error: unknown, fallback: string) => {
@@ -144,6 +146,7 @@ export function usePatientPortal({ initialPatient, token, country }: UsePatientP
     return captchaErrorMessage(error, fallback);
   };
   const patch = async (payload: object) => {
+    if (onPatch) return onPatch(payload);
     const captchaToken = await executeCaptcha("patient_portal");
     return patchPortal(token, country, { ...payload, captchaToken });
   };

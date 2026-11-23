@@ -1,0 +1,655 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-22T08:39:12.157991+00:00",
+  "title": "Design System: RediHealth",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Background",
+        "tonalRamp": [
+          "oklch(15% 0.0029 84.56)",
+          "oklch(27% 0.0029 84.56)",
+          "oklch(38% 0.0029 84.56)",
+          "oklch(50% 0.0029 84.56)",
+          "oklch(61% 0.0029 84.56)",
+          "oklch(73% 0.0029 84.56)",
+          "oklch(84% 0.0029 84.56)",
+          "oklch(95% 0.0029 84.56)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Foreground",
+        "tonalRamp": [
+          "oklch(15% 0.0498 267.74)",
+          "oklch(27% 0.0498 267.74)",
+          "oklch(38% 0.0498 267.74)",
+          "oklch(50% 0.0498 267.74)",
+          "oklch(61% 0.0498 267.74)",
+          "oklch(73% 0.0498 267.74)",
+          "oklch(84% 0.0498 267.74)",
+          "oklch(95% 0.0498 267.74)"
+        ]
+      },
+      "ink-950": {
+        "role": "neutral",
+        "displayName": "Ink 950",
+        "tonalRamp": [
+          "oklch(15% 0.0427 265.98)",
+          "oklch(27% 0.0427 265.98)",
+          "oklch(38% 0.0427 265.98)",
+          "oklch(50% 0.0427 265.98)",
+          "oklch(61% 0.0427 265.98)",
+          "oklch(73% 0.0427 265.98)",
+          "oklch(84% 0.0427 265.98)",
+          "oklch(95% 0.0427 265.98)"
+        ]
+      },
+      "ink-900": {
+        "role": "neutral",
+        "displayName": "Ink 900",
+        "tonalRamp": [
+          "oklch(15% 0.0510 265.97)",
+          "oklch(27% 0.0510 265.97)",
+          "oklch(38% 0.0510 265.97)",
+          "oklch(50% 0.0510 265.97)",
+          "oklch(61% 0.0510 265.97)",
+          "oklch(73% 0.0510 265.97)",
+          "oklch(84% 0.0510 265.97)",
+          "oklch(95% 0.0510 265.97)"
+        ]
+      },
+      "ink-800": {
+        "role": "neutral",
+        "displayName": "Ink 800",
+        "tonalRamp": [
+          "oklch(15% 0.0564 265.85)",
+          "oklch(27% 0.0564 265.85)",
+          "oklch(38% 0.0564 265.85)",
+          "oklch(50% 0.0564 265.85)",
+          "oklch(61% 0.0564 265.85)",
+          "oklch(73% 0.0564 265.85)",
+          "oklch(84% 0.0564 265.85)",
+          "oklch(95% 0.0564 265.85)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "tonalRamp": [
+          "oklch(15% 0.0054 95.10)",
+          "oklch(27% 0.0054 95.10)",
+          "oklch(38% 0.0054 95.10)",
+          "oklch(50% 0.0054 95.10)",
+          "oklch(61% 0.0054 95.10)",
+          "oklch(73% 0.0054 95.10)",
+          "oklch(84% 0.0054 95.10)",
+          "oklch(95% 0.0054 95.10)"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "tonalRamp": [
+          "oklch(15% 0.0294 263.39)",
+          "oklch(27% 0.0294 263.39)",
+          "oklch(38% 0.0294 263.39)",
+          "oklch(50% 0.0294 263.39)",
+          "oklch(61% 0.0294 263.39)",
+          "oklch(73% 0.0294 263.39)",
+          "oklch(84% 0.0294 263.39)",
+          "oklch(95% 0.0294 263.39)"
+        ]
+      },
+      "sapphire": {
+        "role": "primary",
+        "displayName": "Sapphire",
+        "tonalRamp": [
+          "oklch(15% 0.0678 257.27)",
+          "oklch(27% 0.0678 257.27)",
+          "oklch(38% 0.0678 257.27)",
+          "oklch(50% 0.0678 257.27)",
+          "oklch(61% 0.0678 257.27)",
+          "oklch(73% 0.0678 257.27)",
+          "oklch(84% 0.0678 257.27)",
+          "oklch(95% 0.0678 257.27)"
+        ]
+      },
+      "sapphire-soft": {
+        "role": "neutral",
+        "displayName": "Sapphire soft",
+        "tonalRamp": [
+          "oklch(15% 0.0142 254.60)",
+          "oklch(27% 0.0142 254.60)",
+          "oklch(38% 0.0142 254.60)",
+          "oklch(50% 0.0142 254.60)",
+          "oklch(61% 0.0142 254.60)",
+          "oklch(73% 0.0142 254.60)",
+          "oklch(84% 0.0142 254.60)",
+          "oklch(95% 0.0142 254.60)"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Primary",
+        "tonalRamp": [
+          "oklch(15% 0.1865 21.73)",
+          "oklch(27% 0.1865 21.73)",
+          "oklch(38% 0.1865 21.73)",
+          "oklch(50% 0.1865 21.73)",
+          "oklch(61% 0.1865 21.73)",
+          "oklch(73% 0.1865 21.73)",
+          "oklch(84% 0.1865 21.73)",
+          "oklch(95% 0.1865 21.73)"
+        ]
+      },
+      "amber-care": {
+        "role": "secondary",
+        "displayName": "Amber care",
+        "tonalRamp": [
+          "oklch(15% 0.1455 49.00)",
+          "oklch(27% 0.1455 49.00)",
+          "oklch(38% 0.1455 49.00)",
+          "oklch(50% 0.1455 49.00)",
+          "oklch(61% 0.1455 49.00)",
+          "oklch(73% 0.1455 49.00)",
+          "oklch(84% 0.1455 49.00)",
+          "oklch(95% 0.1455 49.00)"
+        ]
+      },
+      "border-control": {
+        "role": "neutral",
+        "displayName": "Border control",
+        "tonalRamp": [
+          "oklch(15% 0.0291 262.29)",
+          "oklch(27% 0.0291 262.29)",
+          "oklch(38% 0.0291 262.29)",
+          "oklch(50% 0.0291 262.29)",
+          "oklch(61% 0.0291 262.29)",
+          "oklch(73% 0.0291 262.29)",
+          "oklch(84% 0.0291 262.29)",
+          "oklch(95% 0.0291 262.29)"
+        ]
+      },
+      "live-sage": {
+        "role": "secondary",
+        "displayName": "Live sage",
+        "tonalRamp": [
+          "oklch(15% 0.1274 163.23)",
+          "oklch(27% 0.1274 163.23)",
+          "oklch(38% 0.1274 163.23)",
+          "oklch(50% 0.1274 163.23)",
+          "oklch(61% 0.1274 163.23)",
+          "oklch(73% 0.1274 163.23)",
+          "oklch(84% 0.1274 163.23)",
+          "oklch(95% 0.1274 163.23)"
+        ]
+      },
+      "panel-canvas": {
+        "role": "neutral",
+        "displayName": "Panel canvas",
+        "tonalRamp": [
+          "oklch(15% 0.0034 247.86)",
+          "oklch(27% 0.0034 247.86)",
+          "oklch(38% 0.0034 247.86)",
+          "oklch(50% 0.0034 247.86)",
+          "oklch(61% 0.0034 247.86)",
+          "oklch(73% 0.0034 247.86)",
+          "oklch(84% 0.0034 247.86)",
+          "oklch(95% 0.0034 247.86)"
+        ]
+      },
+      "panel-surface": {
+        "role": "neutral",
+        "displayName": "Panel surface",
+        "tonalRamp": [
+          "oklch(15% 0.0000 89.88)",
+          "oklch(27% 0.0000 89.88)",
+          "oklch(38% 0.0000 89.88)",
+          "oklch(50% 0.0000 89.88)",
+          "oklch(61% 0.0000 89.88)",
+          "oklch(73% 0.0000 89.88)",
+          "oklch(84% 0.0000 89.88)",
+          "oklch(95% 0.0000 89.88)"
+        ]
+      },
+      "panel-subtle": {
+        "role": "neutral",
+        "displayName": "Panel subtle",
+        "tonalRamp": [
+          "oklch(15% 0.0025 228.78)",
+          "oklch(27% 0.0025 228.78)",
+          "oklch(38% 0.0025 228.78)",
+          "oklch(50% 0.0025 228.78)",
+          "oklch(61% 0.0025 228.78)",
+          "oklch(73% 0.0025 228.78)",
+          "oklch(84% 0.0025 228.78)",
+          "oklch(95% 0.0025 228.78)"
+        ]
+      },
+      "panel-line": {
+        "role": "neutral",
+        "displayName": "Panel line",
+        "tonalRamp": [
+          "oklch(15% 0.0122 247.96)",
+          "oklch(27% 0.0122 247.96)",
+          "oklch(38% 0.0122 247.96)",
+          "oklch(50% 0.0122 247.96)",
+          "oklch(61% 0.0122 247.96)",
+          "oklch(73% 0.0122 247.96)",
+          "oklch(84% 0.0122 247.96)",
+          "oklch(95% 0.0122 247.96)"
+        ]
+      },
+      "panel-ink": {
+        "role": "neutral",
+        "displayName": "Panel ink",
+        "tonalRamp": [
+          "oklch(15% 0.0515 253.90)",
+          "oklch(27% 0.0515 253.90)",
+          "oklch(38% 0.0515 253.90)",
+          "oklch(50% 0.0515 253.90)",
+          "oklch(61% 0.0515 253.90)",
+          "oklch(73% 0.0515 253.90)",
+          "oklch(84% 0.0515 253.90)",
+          "oklch(95% 0.0515 253.90)"
+        ]
+      },
+      "panel-muted": {
+        "role": "neutral",
+        "displayName": "Panel muted",
+        "tonalRamp": [
+          "oklch(15% 0.0366 251.40)",
+          "oklch(27% 0.0366 251.40)",
+          "oklch(38% 0.0366 251.40)",
+          "oklch(50% 0.0366 251.40)",
+          "oklch(61% 0.0366 251.40)",
+          "oklch(73% 0.0366 251.40)",
+          "oklch(84% 0.0366 251.40)",
+          "oklch(95% 0.0366 251.40)"
+        ]
+      },
+      "panel-selection": {
+        "role": "neutral",
+        "displayName": "Panel selection",
+        "tonalRamp": [
+          "oklch(15% 0.0103 247.93)",
+          "oklch(27% 0.0103 247.93)",
+          "oklch(38% 0.0103 247.93)",
+          "oklch(50% 0.0103 247.93)",
+          "oklch(61% 0.0103 247.93)",
+          "oklch(73% 0.0103 247.93)",
+          "oklch(84% 0.0103 247.93)",
+          "oklch(95% 0.0103 247.93)"
+        ]
+      },
+      "panel-action-hover": {
+        "role": "neutral",
+        "displayName": "Panel action hover",
+        "tonalRamp": [
+          "oklch(15% 0.0777 255.48)",
+          "oklch(27% 0.0777 255.48)",
+          "oklch(38% 0.0777 255.48)",
+          "oklch(50% 0.0777 255.48)",
+          "oklch(61% 0.0777 255.48)",
+          "oklch(73% 0.0777 255.48)",
+          "oklch(84% 0.0777 255.48)",
+          "oklch(95% 0.0777 255.48)"
+        ]
+      },
+      "panel-selected-border": {
+        "role": "neutral",
+        "displayName": "Panel selected border",
+        "tonalRamp": [
+          "oklch(15% 0.0423 250.66)",
+          "oklch(27% 0.0423 250.66)",
+          "oklch(38% 0.0423 250.66)",
+          "oklch(50% 0.0423 250.66)",
+          "oklch(61% 0.0423 250.66)",
+          "oklch(73% 0.0423 250.66)",
+          "oklch(84% 0.0423 250.66)",
+          "oklch(95% 0.0423 250.66)"
+        ]
+      },
+      "panel-status-neutral": {
+        "role": "neutral",
+        "displayName": "Panel status neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0287 253.67)",
+          "oklch(27% 0.0287 253.67)",
+          "oklch(38% 0.0287 253.67)",
+          "oklch(50% 0.0287 253.67)",
+          "oklch(61% 0.0287 253.67)",
+          "oklch(73% 0.0287 253.67)",
+          "oklch(84% 0.0287 253.67)",
+          "oklch(95% 0.0287 253.67)"
+        ]
+      },
+      "panel-status-progress": {
+        "role": "secondary",
+        "displayName": "Panel status progress",
+        "tonalRamp": [
+          "oklch(15% 0.1223 255.05)",
+          "oklch(27% 0.1223 255.05)",
+          "oklch(38% 0.1223 255.05)",
+          "oklch(50% 0.1223 255.05)",
+          "oklch(61% 0.1223 255.05)",
+          "oklch(73% 0.1223 255.05)",
+          "oklch(84% 0.1223 255.05)",
+          "oklch(95% 0.1223 255.05)"
+        ]
+      },
+      "patient-priority-high": {
+        "role": "secondary",
+        "displayName": "Patient priority high",
+        "tonalRamp": [
+          "oklch(15% 0.1238 53.00)",
+          "oklch(27% 0.1238 53.00)",
+          "oklch(38% 0.1238 53.00)",
+          "oklch(50% 0.1238 53.00)",
+          "oklch(61% 0.1238 53.00)",
+          "oklch(73% 0.1238 53.00)",
+          "oklch(84% 0.1238 53.00)",
+          "oklch(95% 0.1238 53.00)"
+        ]
+      },
+      "patient-destructive": {
+        "role": "secondary",
+        "displayName": "Patient destructive",
+        "tonalRamp": [
+          "oklch(15% 0.1905 27.52)",
+          "oklch(27% 0.1905 27.52)",
+          "oklch(38% 0.1905 27.52)",
+          "oklch(50% 0.1905 27.52)",
+          "oklch(61% 0.1905 27.52)",
+          "oklch(73% 0.1905 27.52)",
+          "oklch(84% 0.1905 27.52)",
+          "oklch(95% 0.1905 27.52)"
+        ]
+      },
+      "patient-priority-high-dark": {
+        "role": "secondary",
+        "displayName": "Patient priority high dark",
+        "tonalRamp": [
+          "oklch(15% 0.0895 69.97)",
+          "oklch(27% 0.0895 69.97)",
+          "oklch(38% 0.0895 69.97)",
+          "oklch(50% 0.0895 69.97)",
+          "oklch(61% 0.0895 69.97)",
+          "oklch(73% 0.0895 69.97)",
+          "oklch(84% 0.0895 69.97)",
+          "oklch(95% 0.0895 69.97)"
+        ]
+      },
+      "patient-priority-critical-dark": {
+        "role": "secondary",
+        "displayName": "Patient priority critical dark",
+        "tonalRamp": [
+          "oklch(15% 0.0878 19.07)",
+          "oklch(27% 0.0878 19.07)",
+          "oklch(38% 0.0878 19.07)",
+          "oklch(50% 0.0878 19.07)",
+          "oklch(61% 0.0878 19.07)",
+          "oklch(73% 0.0878 19.07)",
+          "oklch(84% 0.0878 19.07)",
+          "oklch(95% 0.0878 19.07)"
+        ]
+      },
+      "patient-viewer-backdrop": {
+        "role": "neutral",
+        "displayName": "Patient viewer backdrop",
+        "tonalRamp": [
+          "oklch(15% 0.0498 267.74 / 0.8196)",
+          "oklch(27% 0.0498 267.74 / 0.8196)",
+          "oklch(38% 0.0498 267.74 / 0.8196)",
+          "oklch(50% 0.0498 267.74 / 0.8196)",
+          "oklch(61% 0.0498 267.74 / 0.8196)",
+          "oklch(73% 0.0498 267.74 / 0.8196)",
+          "oklch(84% 0.0498 267.74 / 0.8196)",
+          "oklch(95% 0.0498 267.74 / 0.8196)"
+        ]
+      },
+      "cabinet-sapphire-dark": {
+        "role": "primary",
+        "displayName": "Cabinet dark sapphire accent",
+        "tonalRamp": [
+          "oklch(15% 0.0578 253.28)",
+          "oklch(27% 0.0578 253.28)",
+          "oklch(38% 0.0578 253.28)",
+          "oklch(50% 0.0578 253.28)",
+          "oklch(61% 0.0578 253.28)",
+          "oklch(73% 0.0578 253.28)",
+          "oklch(84% 0.0578 253.28)",
+          "oklch(95% 0.0578 253.28)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Public display",
+        "purpose": "Public editorial hero typography."
+      },
+      "panel-headline": {
+        "displayName": "Workspace headline",
+        "purpose": "Panel overview h1; 1.625rem below 640px."
+      },
+      "panel-title": {
+        "displayName": "Inbox title",
+        "purpose": "Body-family section heading."
+      },
+      "patient-caption": {
+        "displayName": "Patient media caption",
+        "purpose": "Attachment titles; mobile gallery titles reduce to 0.8125rem."
+      },
+      "patient-media-label": {
+        "displayName": "Patient media label",
+        "purpose": "12px-at-default dates, counts, and upload labels."
+      },
+      "patient-initials-mobile": {
+        "displayName": "Mobile portrait initials",
+        "purpose": "22px-at-default fallback initials; desktop large initials use 1.75rem."
+      },
+      "cabinet-compact-title": {
+        "displayName": "Cabinet compact title",
+        "purpose": "Mobile overview heading and contained portrait initials."
+      },
+      "cabinet-body": {
+        "displayName": "Cabinet care copy",
+        "purpose": "Readable 0.9375rem care copy; navigation uses line-height 1.4."
+      },
+      "cabinet-action-label": {
+        "displayName": "Cabinet action label",
+        "purpose": "0.875rem overview action controls and supporting copy."
+      },
+      "cabinet-entry-title": {
+        "displayName": "Phone entrance benefits title",
+        "purpose": "1.5rem benefits heading with 1.3 line-height."
+      }
+    },
+    "shadows": [
+      {
+        "name": "patient-viewer",
+        "value": "0 24px 80px #0004",
+        "purpose": "Native patient image modal above the existing workspace; not a working-card shadow."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-calm",
+        "value": "cubic-bezier(0.25, 1, 0.5, 1)",
+        "purpose": "Shared calm control feedback."
+      },
+      {
+        "name": "dur-fast",
+        "value": "160ms",
+        "purpose": "Panel tool and control feedback; reduced-motion and calm preferences disable motion."
+      },
+      {
+        "name": "dur-base",
+        "value": "240ms",
+        "purpose": "Existing public motion grammar."
+      },
+      {
+        "name": "dur-slow",
+        "value": "420ms",
+        "purpose": "Existing public motion grammar."
+      },
+      {
+        "name": "patient-thumbnail-hover",
+        "value": "opacity 160ms ease-out",
+        "purpose": "Image opacity becomes 0.8 on hover; care-panel reduced/calm motion rules suppress transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "panel-compact",
+        "value": "640px"
+      },
+      {
+        "name": "panel-desktop-reader",
+        "value": "1024px"
+      },
+      {
+        "name": "panel-full-toolbar",
+        "value": "1280px"
+      },
+      {
+        "name": "panel-wide",
+        "value": "1600px"
+      },
+      {
+        "name": "patient-summary-stacked",
+        "value": "768px"
+      },
+      {
+        "name": "patient-header-actions-wrap",
+        "value": "1200px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Panel save action",
+      "kind": "button",
+      "refersTo": "panel-button-action",
+      "description": "Existing inbox save action; the overview create action continues to use the shared Button component.",
+      "html": "<button class=\"ds-panel-save\">Save changes</button>",
+      "css": ".ds-panel-save{font-family:var(--font-body,Arial),sans-serif;font-size:13px;min-height:44px;padding:8px 12px;border:1px solid var(--color-sapphire,#1d3557);border-radius:8px;background:var(--color-sapphire,#1d3557);color:white;font-weight:500;cursor:pointer;transition:background-color 160ms cubic-bezier(.25,1,.5,1)}.ds-panel-save:hover{background:#28476f}.ds-panel-save:focus-visible{outline:2px solid var(--color-sapphire,#1d3557);outline-offset:2px;}@media(prefers-reduced-motion:reduce){.ds-panel-save{transition:none}}"
+    },
+    {
+      "name": "Panel outline action",
+      "kind": "button",
+      "refersTo": "panel-button-outline",
+      "description": "Quiet inbox utilities and secondary actions.",
+      "html": "<button class=\"ds-panel-outline\">Filters</button>",
+      "css": ".ds-panel-outline{font-family:var(--font-body,Arial),sans-serif;font-size:13px;min-height:44px;padding:8px 12px;border:1px solid #8a94a6;border-radius:8px;background:#fff;color:#172b43;font-weight:500;cursor:pointer}.ds-panel-outline:hover{background:#edf3f9}.ds-panel-outline[aria-expanded=\"true\"]{background:#edf3f9;border-color:#1d3557}.ds-panel-outline:focus-visible{outline:2px solid var(--color-sapphire,#1d3557);outline-offset:2px;}.ds-panel-outline:disabled{color:#58697c;border-color:#dde4eb;background:#f8fafb;cursor:default}"
+    },
+    {
+      "name": "Request search",
+      "kind": "input",
+      "refersTo": "panel-search",
+      "description": "Full-width on mobile; the visible placeholder also has an accessible label.",
+      "html": "<label class=\"ds-panel-search\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m16 16 4 4\"/></svg><input type=\"search\" aria-label=\"Search requests\" placeholder=\"Search requests\"></label>",
+      "css": ".ds-panel-search{display:flex;align-items:center;gap:8px;width:240px;max-width:100%;padding-left:12px;border:1px solid #8a94a6;border-radius:8px;background:#fff;color:#58697c}.ds-panel-search input{font-family:var(--font-body,Arial),sans-serif;font-size:13px;min-height:44px;min-width:0;width:100%;border:0;background:transparent;color:#172b43;padding:9px 11px 9px 0;outline:none;font-size:14px}.ds-panel-search input::placeholder{color:#58697c;opacity:1}.ds-panel-search:focus-within{outline:2px solid #1d3557;outline-offset:2px}"
+    },
+    {
+      "name": "Active staff destination",
+      "kind": "nav",
+      "refersTo": "panel-navigation-active",
+      "description": "Filled current page in the expanded desktop sidebar.",
+      "html": "<nav aria-label=\"Staff navigation\"><a class=\"ds-panel-nav\" href=\"#requests\" aria-current=\"page\">Requests</a></nav>",
+      "css": ".ds-panel-nav{font-family:var(--font-body,Arial),sans-serif;font-size:13px;display:flex;align-items:center;min-height:46px;padding:0 12px;border-radius:8px;text-decoration:none;background:var(--color-sapphire,#1d3557);color:#fff;font-weight:600}.ds-panel-nav:hover{background:#28476f}.ds-panel-nav:focus-visible{outline:2px solid var(--color-sapphire,#1d3557);outline-offset:2px;}"
+    },
+    {
+      "name": "Request status",
+      "kind": "custom",
+      "refersTo": "panel-status",
+      "description": "Text plus a small dot; status is not a pill or a color-only signal.",
+      "html": "<span class=\"ds-panel-status\">Pending</span>",
+      "css": ".ds-panel-status{font-family:var(--font-body,Arial),sans-serif;font-size:13px;display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#58697c}.ds-panel-status::before{content:\"\";width:6px;height:6px;border-radius:50%;background:#b45309}"
+    },
+    {
+      "name": "Inbox boundary",
+      "kind": "card",
+      "refersTo": "panel-inbox",
+      "description": "A single rounded working surface; interior rows stay flat.",
+      "html": "<section class=\"ds-panel-inbox\"><h2>Requests</h2><p>Review requests and plan the next step.</p></section>",
+      "css": ".ds-panel-inbox{font-family:var(--font-body,Arial),sans-serif;font-size:13px;border:1px solid #dde4eb;border-radius:16px;background:#fff;color:#172b43;padding:22px 24px 18px}.ds-panel-inbox h2{font-family:var(--font-body,Arial),sans-serif;font-size:18px;font-weight:600;line-height:1.4;margin:0}.ds-panel-inbox p{color:#58697c;margin:4px 0 0;font-size:13px}"
+    },
+    {
+      "name": "Care tool destination",
+      "kind": "nav",
+      "refersTo": "panel-tool",
+      "description": "Ruled directory destinations, with descriptions on desktop.",
+      "html": "<a class=\"ds-panel-tool\" href=\"#patients\"><span>Patients</span><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg><p>Find a patient and open their record.</p></a>",
+      "css": ".ds-panel-tool{font-family:var(--font-body,Arial),sans-serif;font-size:13px;display:block;position:relative;min-height:44px;padding:20px 22px;color:#172b43;border-block:1px solid #dde4eb;text-decoration:none;transition:background-color 160ms cubic-bezier(.25,1,.5,1)}.ds-panel-tool span{font-size:15px;font-weight:600}.ds-panel-tool svg{position:absolute;right:22px;top:22px;color:#58697c;transition:transform 160ms cubic-bezier(.25,1,.5,1)}.ds-panel-tool p{max-width:30ch;margin:8px 0 0;font-size:13px;line-height:1.5;color:#58697c}.ds-panel-tool:hover{background:#edf3f9}.ds-panel-tool:hover svg{transform:translateX(3px)}.ds-panel-tool:focus-visible{outline:2px solid var(--color-sapphire,#1d3557);outline-offset:2px;}@media(prefers-reduced-motion:reduce){.ds-panel-tool,.ds-panel-tool svg{transition:none}.ds-panel-tool:hover svg{transform:none}}"
+    },
+    {
+      "name": "Selected request row",
+      "kind": "button",
+      "refersTo": "panel-request-selected",
+      "description": "Selection surface and outline identify the open request.",
+      "html": "<button class=\"ds-panel-row\" aria-pressed=\"true\"><strong>Fictional patient</strong><p>Made-up request for a follow-up appointment.</p><span>Pending</span></button>",
+      "css": ".ds-panel-row{font-family:var(--font-body,Arial),sans-serif;font-size:13px;display:block;position:relative;width:100%;min-height:44px;text-align:left;border:1px solid #9eb4cc;padding:20px;background:#edf3f9;color:#172b43;cursor:pointer}.ds-panel-row strong{font-size:14px;font-weight:600}.ds-panel-row p{margin:5px 0 10px;font-size:13px;line-height:1.55;color:#58697c}.ds-panel-row span{font-size:12px;color:#58697c}.ds-panel-row:hover{background:#f8fafb}.ds-panel-row[aria-pressed=\"true\"]{background:#edf3f9}.ds-panel-row:focus-visible{outline:2px solid var(--color-sapphire,#1d3557);outline-offset:2px;}"
+    },
+    {
+      "name": "Patient portrait",
+      "kind": "custom",
+      "refersTo": "patient-portrait",
+      "description": "Contained rectangular identity portrait, with initials fallback; production image triggers open the native viewer.",
+      "html": "<button type=\"button\" class=\"ds-patient-portrait\" aria-label=\"View image: Fictional patient\"><span aria-hidden=\"true\">FP</span></button>",
+      "css": ".ds-patient-portrait{display:flex;align-items:center;justify-content:center;flex:none;width:104px;height:120px;overflow:hidden;border:0;border-radius:16px;background:var(--panel-selection,#edf3f9);color:var(--color-sapphire,#1d3557);font:600 1.75rem var(--font-body,Arial),sans-serif;cursor:zoom-in}.ds-patient-portrait img{width:100%;height:100%;object-fit:contain}.ds-patient-portrait:focus-visible{outline:3px solid var(--color-sapphire,#1d3557);outline-offset:3px}@media(max-width:639px){.ds-patient-portrait{width:76px;height:92px;font-size:1.375rem}}"
+    },
+    {
+      "name": "Patient gallery thumbnail",
+      "kind": "custom",
+      "refersTo": "patient-thumbnail",
+      "description": "Uncropped 4:3 attachment frame. This self-contained sample uses the production unavailable state; production thumbnails open a native image dialog.",
+      "html": "<figure class=\"ds-patient-photo\"><button class=\"ds-patient-thumbnail\" type=\"button\" aria-label=\"View image: Example attachment\"><span class=\"ds-patient-unavailable\" role=\"img\" aria-label=\"Example attachment\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8\" cy=\"8\" r=\"1\"/><path d=\"m3 17 5-5 4 4 3-3 6 6\"/></svg>This image could not be displayed.</span><span class=\"ds-patient-open\">View image</span></button><figcaption>Example attachment</figcaption></figure>",
+      "css": ".ds-patient-photo{margin:0;max-width:280px;font-family:var(--font-body,Arial),sans-serif}.ds-patient-thumbnail{position:relative;display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--panel-line,#dde4eb);border-radius:12px;background:var(--panel-subtle,#f8fafb);cursor:zoom-in}.ds-patient-thumbnail img{width:100%;height:100%;object-fit:contain;padding:12px;transition:opacity 160ms ease-out}.ds-patient-thumbnail:hover img{opacity:.8}.ds-patient-thumbnail:focus-visible{outline:3px solid var(--color-sapphire,#1d3557);outline-offset:3px}.ds-patient-unavailable{display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px;font-size:.875rem;color:var(--panel-muted,#58697c)}.ds-patient-open{position:absolute;right:8px;bottom:8px;padding:6px 8px;border-radius:6px;background:var(--panel-surface,#fff);color:var(--panel-ink,#172b43);font-size:.75rem}.ds-patient-photo figcaption{padding-top:12px;color:var(--panel-ink,#172b43);font-size:.875rem;font-weight:600}@media(prefers-reduced-motion:reduce){.ds-patient-thumbnail img{transition:none}}"
+    },
+    {
+      "name": "Cabinet current destination",
+      "kind": "nav",
+      "refersTo": "cabinet-navigation-active",
+      "description": "Persistent patient navigation: a pale current destination, unlike filled staff sidebar selection. Real section switching remains in PatientPortalView.",
+      "html": "<nav class=\"ds-cabinet-nav\" aria-label=\"Patient care\"><button type=\"button\" aria-current=\"page\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z\"/><path d=\"M14 2v6h6M8 13h8M8 17h6\"/></svg><span>Overview</span></button></nav>",
+      "css": ".ds-cabinet-nav{width:220px;max-width:100%;font-family:var(--font-body,Arial),sans-serif}.ds-cabinet-nav button{display:flex;align-items:center;gap:12px;min-height:48px;width:100%;padding:12px;border:0;border-radius:8px;background:transparent;color:var(--panel-muted,#58697c);font-family:inherit;font-size:.9375rem;line-height:1.4;text-align:left;cursor:pointer}.ds-cabinet-nav button:hover{background:var(--panel-subtle,#f8fafb);color:var(--panel-ink,#172b43)}.ds-cabinet-nav button[aria-current=\"page\"]{background:var(--panel-selection,#edf3f9);color:var(--color-sapphire,#1d3557);font-weight:600}.ds-cabinet-nav button:focus-visible{outline:2px solid var(--color-sapphire,#1d3557);outline-offset:3px}@media(max-width:639px){.ds-cabinet-nav button{flex-direction:column;text-align:center;font-size:.8125rem}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Clinical authority with community warmth",
+    "overview": "RediHealth pairs clinical authority with community warmth. The public experience stays editorial and accessible. Staff screens use the same identity within a pale slate workspace, white working surfaces, sapphire destinations, and fine dividing rules.\n\nThe staff panel is a scoped expression of the incumbent system, not a global rebrand. Its composition is recorded in `.impeccable/surfaces/src-app-panel-page-tsx.md`; future public pages continue to follow the public rules below.",
+    "keyCharacteristics": [
+      "Readable typography and predictable hierarchy.",
+      "Sapphire staff actions, with emergency red retaining its established role.",
+      "Flat working surfaces and clear selection feedback.",
+      "Seven-language parity and accessible comfort controls."
+    ],
+    "rules": [
+      {
+        "name": "The Scoped Sapphire Rule",
+        "body": "Within the care panel, the legacy primary CSS alias resolves to sapphire. The global primary token stays emergency red; public Button variant rules remain authoritative.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do preserve public design rules when extending the staff workspace.",
+      "Do keep panel colors scoped to the care panel and retain the existing logo.",
+      "Do derive counts and clinical content from the runtime; label fictional demo data.",
+      "Do preserve all seven locales, keyboard focus, touch targets, and reduced motion.",
+      "Do preserve the full image frame in identity, gallery, inline preview, and print.",
+      "Do keep inspection keyboard-accessible and return focus to its trigger.",
+      "Do preserve all six cabinet destinations on phones and keep patient data ahead of everyday actions."
+    ],
+    "donts": [
+      "Don't export the staff workspace composition or token overrides to public pages.",
+      "Don't use emergency red for routine staff actions.",
+      "Don't invent statistics or present browser-local demo records as live data.",
+      "Don't replace role and runtime visibility checks with decorative tool links.",
+      "Don't destructively crop patient documents or claim a downscaled portrait is an untouched original.",
+      "Don't supply the demo transport callback to the real token route or treat local simulation as authentication evidence."
+    ]
+  }
+}

@@ -40,6 +40,7 @@ export default async function PrivacyPage() {
     { id: "acces-date", title: doc.accessTitle },
     { id: "furnizori", title: doc.processorsTitle },
     { id: "cookie-uri", title: doc.cookiesTitle },
+    { id: "statistici", title: doc.statsTitle },
     { id: "locatie", title: doc.locationTitle },
     { id: "apeluri", title: doc.callsTitle },
     { id: "pastrare", title: doc.retentionTitle },
@@ -163,7 +164,11 @@ export default async function PrivacyPage() {
             <CookiePreferencesManager inline={false} />
           </LegalSection>
 
-          <LegalSection id="locatie" number={7} title={doc.locationTitle}>
+          <LegalSection id="statistici" number={7} title={doc.statsTitle}>
+            <p className="max-w-(--measure-reading)">{doc.statsBody}</p>
+          </LegalSection>
+
+          <LegalSection id="locatie" number={8} title={doc.locationTitle}>
             <ul className="max-w-(--measure-reading) list-disc space-y-2 pl-5">
               {doc.locationItems.map((item) => (
                 <li key={item}>{item}</li>
@@ -171,18 +176,18 @@ export default async function PrivacyPage() {
             </ul>
           </LegalSection>
 
-          <LegalSection id="apeluri" number={8} title={doc.callsTitle}>
+          <LegalSection id="apeluri" number={9} title={doc.callsTitle}>
             <p className="max-w-(--measure-reading)">{doc.callsBody}</p>
           </LegalSection>
 
-          <LegalSection id="pastrare" number={9} title={doc.retentionTitle}>
+          <LegalSection id="pastrare" number={10} title={doc.retentionTitle}>
             <ResponsiveLegalTable
               columns={doc.retentionColumns}
               rows={doc.retentionRows}
             />
           </LegalSection>
 
-          <LegalSection id="drepturi" number={10} title={doc.rightsTitle}>
+          <LegalSection id="drepturi" number={11} title={doc.rightsTitle}>
             <p className="max-w-(--measure-reading)">{doc.rightsLead}</p>
             <ul className="max-w-(--measure-reading) list-disc space-y-2 pl-5">
               {doc.rightsItems.map((item) => (
@@ -204,22 +209,22 @@ export default async function PrivacyPage() {
             </div>
           </LegalSection>
 
-          <LegalSection id="stergere" number={11} title={doc.deletionTitle}>
+          <LegalSection id="stergere" number={12} title={doc.deletionTitle}>
             <p className="max-w-(--measure-reading)">{doc.deletionBody}</p>
           </LegalSection>
 
-          <LegalSection id="copii" number={12} title={doc.childrenTitle}>
+          <LegalSection id="copii" number={13} title={doc.childrenTitle}>
             <p className="max-w-(--measure-reading)">{doc.childrenBody}</p>
           </LegalSection>
 
-          <LegalSection id="securitate" number={13} title={doc.botTitle}>
+          <LegalSection id="securitate" number={14} title={doc.botTitle}>
             <div className="max-w-(--measure-reading)">
               <p>{doc.botBody}</p>
               <RecaptchaNotice />
             </div>
           </LegalSection>
 
-          <LegalSection id="schimbari" number={14} title={doc.changesTitle}>
+          <LegalSection id="schimbari" number={15} title={doc.changesTitle}>
             <p className="max-w-(--measure-reading)">{doc.changesBody}</p>
           </LegalSection>
         </LegalDocumentLayout>

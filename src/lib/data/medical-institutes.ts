@@ -267,7 +267,7 @@ export async function createInstitute(input: MedicalInstituteInput) {
   const [result] = await getControlDatabase().query<ResultSetHeader>(
     `INSERT INTO medical_institutes
        (country_code, name, category, address, city, phone, website, hours, emergency, lat, lng, is_active, source, manually_edited)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'manual', 1)`,
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'manual', 1) RETURNING id`,
     inputParams(input),
   );
   return getInstituteForAdmin(String(result.insertId));

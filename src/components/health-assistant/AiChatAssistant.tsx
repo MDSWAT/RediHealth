@@ -27,6 +27,7 @@ import {
   VolumeMuteIcon,
 } from "@/components/ui/icons";
 import { speechEngine } from "@/lib/audio/speech-engine";
+import { trackEvent } from "@/lib/analytics-events";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
@@ -604,6 +605,7 @@ export function AiChatAssistant() {
           );
           return;
         }
+        trackEvent("assistant_question_asked");
         const data = (await response.json()) as AssistantResponse;
         const replyId = nextId.current++;
         const isOutOfScope = Boolean(data.outOfScope || data.responseKind === "out_of_scope");

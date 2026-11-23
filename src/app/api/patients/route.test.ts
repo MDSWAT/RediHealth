@@ -77,7 +77,7 @@ describe("patient treatment persistence", () => {
   it("gives new portal links a 90 day expiry", async () => {
     mocks.query.mockResolvedValueOnce([{ insertId: 10 }]);
     await POST(request("POST", { full_name: "Test", email: "test@example.com", phone: "123", county: "Cluj" }));
-    expect(mocks.query.mock.calls[0][0]).toContain("DATE_ADD(NOW(), INTERVAL ? DAY)");
+    expect(mocks.query.mock.calls[0][0]).toContain("NOW() + make_interval(days => ?::int)");
     expect(mocks.query.mock.calls[0][1][4]).toBe(90);
   });
 

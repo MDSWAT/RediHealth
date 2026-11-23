@@ -123,7 +123,7 @@ export async function POST(request: Request) {
       if (patientId) {
         const patientQuery = access.worker.isAdmin
           ? "SELECT id, full_name, email, followups FROM patients WHERE id = ? LIMIT 1 FOR UPDATE"
-          : "SELECT id, full_name, email, followups FROM patients WHERE id = ? AND (assigned_worker_id = ? OR FIND_IN_SET(?, REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(assigned_worker_ids, '[]'), '[', ''), ']', ''), '\"', ''), ' ', '')) > 0) LIMIT 1 FOR UPDATE";
+          : "SELECT id, full_name, email, followups FROM patients WHERE id = ? AND (assigned_worker_id = ? OR jsonb_has_id(assigned_worker_ids, ?)) LIMIT 1 FOR UPDATE";
         const patientParams = access.worker.isAdmin
           ? [patientId]
           : [patientId, access.worker.workerId, access.worker.workerId];
@@ -149,7 +149,7 @@ export async function POST(request: Request) {
 
           followup = { ...followups[index], meeting_url: "" };
           const [meetingResult] = await connection.query<ResultSetHeader>(
-            "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url, transcript, notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url, transcript, notes) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id",
             [access.worker.workerId, patientId, followupId, title, meetingUrl, transcript || null, notes || null],
           );
           followup.meeting_id = String(meetingResult.insertId);
@@ -162,14 +162,14 @@ export async function POST(request: Request) {
           result = meetingResult;
         } else {
           const [meetingResult] = await connection.query<ResultSetHeader>(
-            "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url, transcript, notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url, transcript, notes) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id",
             [access.worker.workerId, patientId, null, title, meetingUrl, transcript || null, notes || null],
           );
           result = meetingResult;
         }
       } else {
         const [meetingResult] = await connection.query<ResultSetHeader>(
-          "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url, transcript, notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
+          "INSERT INTO meetings (organizer_worker_id, patient_id, followup_id, title, meeting_url, transcript, notes) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id",
           [access.worker.workerId, null, null, title, meetingUrl, transcript || null, notes || null],
         );
         result = meetingResult;

@@ -67,7 +67,7 @@ describe("patient portal link recovery", () => {
     expect(await response.json()).toMatchObject({ success: true });
     expect(mocks.query).toHaveBeenNthCalledWith(
       2,
-      expect.stringContaining("DATE_ADD(NOW(), INTERVAL ? DAY)"),
+      expect.stringContaining("NOW() + make_interval(days => ?::int)"),
       [expect.any(String), 90, 14],
     );
     expect(mocks.sendEmail).toHaveBeenCalledWith(expect.objectContaining({

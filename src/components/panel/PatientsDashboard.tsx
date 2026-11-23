@@ -162,7 +162,7 @@ export function PatientsDashboard({
       pendingCount={pendingRequestsCount}
       mobilePatientCreation={databaseAvailable ? { isRomania } : undefined}
     >
-      <main id="main-content" className="crm-page">
+      <main id="main-content" className="crm-page patient-directory-page">
         <section className="mx-auto w-full max-w-7xl">
           {isRefreshing ? (
             <div
@@ -174,21 +174,15 @@ export function PatientsDashboard({
             </div>
           ) : null}
 
-          <header className="mb-6 flex flex-col gap-4 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between">
+          <header className="patient-directory-header">
             <div className="min-w-0 space-y-1.5">
-              <div className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-2.5 py-1 text-xs font-medium text-muted-foreground">
-                <span className="h-2 w-2 shrink-0 rounded-full bg-live-sage" aria-hidden="true" />
-                <span>{copy.syncedLabel}</span>
-                {syncedTimeLabel ? (
-                  <span className="tabular-nums font-semibold text-foreground">{syncedTimeLabel}</span>
-                ) : null}
-              </div>
               <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[28px]">
                 {copy.patientTitle}
               </h1>
               <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
                 {copy.patientSubtitle}
               </p>
+              <p className="patient-directory-sync">{copy.syncedLabel} {syncedTimeLabel}</p>
             </div>
 
             <div className="flex flex-wrap items-center gap-2.5">
@@ -227,7 +221,7 @@ export function PatientsDashboard({
               <div
                 role="group"
                 aria-label={copy.cohortAria}
-                className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4"
+                className="patient-cohorts"
               >
                 {cohortItems.map((item) => {
                   const active = cohort === item.key;
@@ -237,7 +231,8 @@ export function PatientsDashboard({
                       type="button"
                       aria-pressed={active}
                       onClick={() => setCohort(item.key)}
-                      className={`group flex min-h-[44px] flex-col justify-between rounded-xl border p-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-5 ${
+                      title={item.hint}
+                      className={`patient-cohort ${
                         active
                           ? "border-sapphire bg-sapphire-soft/75 shadow-xs"
                           : "border-border bg-card hover:border-sapphire/40 hover:bg-muted/40"

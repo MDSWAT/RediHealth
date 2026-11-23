@@ -4,12 +4,13 @@ import "./globals.css";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { siteMetadata } from "@/lib/i18n/site-metadata";
-import { getSiteUrl } from "@/lib/site-url";
+import { getSiteUrl, publicOrigin as toPublicOrigin } from "@/lib/site-url";
 import { EMERGENCY_DISMISS_COOKIE } from "@/lib/emergency-bar";
 import { serializeTranslations } from "@/lib/i18n/languages";
 import { translations } from "@/lib/i18n/translations";
 import { cookies, headers } from "next/headers";
 import { isRecaptchaEnabled } from "@/lib/security/recaptcha-config";
+import { NextlyticsServer } from "@/nextlytics";
 
 // latin-ext carries ă, ș, ț, č, ć, đ, š, ž across Romanian, Croatian, Albanian, and Romani.
 // Using display: "swap" with preload: false avoids unused-preload console warnings on English/Italian
@@ -103,11 +104,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const emergencyDismissed = (await cookies()).get(EMERGENCY_DISMISS_COOKIE)?.value === "1";
   // Links that leave this device (QR codes, copied notes) use the configured public address,
   // never a loopback one. See components/health-check/public-origin.ts.
-  const configuredOrigin = process.env.APP_URL?.trim().replace(/\/+$/, "");
-  const publicOrigin =
-    configuredOrigin && !/\/\/(localhost|127\.0\.0\.1|\[::1\])(:|\/|$)/.test(configuredOrigin)
-      ? configuredOrigin
-      : undefined;
+  const publicOrigin = toPublicOrigin(process.env.APP_URL);
 
   return (
     <html
@@ -137,7 +134,10 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         >
           {siteMetadata[lang].skipLink}
         </a>
+        {/* Website statistics (src/nextlytics.ts): counts client-side navigations on tracked pages. */}
+        <NextlyticsServer>
         <SiteChrome lang={lang} initialTranslations={serializeTranslations(translations[lang])} nonce={nonce} captchaEnabled={isRecaptchaEnabled()} emergencyDismissed={emergencyDismissed}>{children}</SiteChrome>
+        </NextlyticsServer>
       </body>
     </html>
   );

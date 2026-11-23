@@ -1,16 +1,9 @@
-import mysql, {
-  type Pool,
-  type PoolConnection,
-  type ResultSetHeader,
-  type RowDataPacket,
-} from "mysql2/promise";
+import pg from "pg";
 import { SUPPORTED_COUNTRIES, isSupportedCountry, type CountryCode } from "@/lib/countries";
 import { AsyncLocalStorage } from "node:async_hooks";
 
-export type { ResultSetHeader, RowDataPacket };
-
 /**
- * Two kinds of database:
+ * Two kinds of database (PostgreSQL):
  *  - the control database holds nothing personal: rate-limit counters, settings and the public
  *    medical-institute directory;
  *  - one database per country holds that country's patients, requests, staff and audit log, and is
@@ -20,8 +13,22 @@ export type { ResultSetHeader, RowDataPacket };
  * deliberately no default, so a missing country is a compile error rather than a data leak.
  */
 
+/** One result row. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type RowDataPacket = Record<string, any>;
+
+/** What a write reports. `insertId` is the `id` returned by `INSERT ... RETURNING id`, else 0. */
+export type ResultSetHeader = {
+  affectedRows: number;
+  insertId: number;
+};
+
+// BIGINT ids and COUNT(*) fit comfortably in a JS number; return them as numbers, not strings.
+// NUMERIC stays a string so decimals (coordinates, glucose) keep their exact value.
+pg.types.setTypeParser(pg.types.builtins.INT8, (value) => Number.parseInt(value, 10));
+
 type GlobalWithDatabase = typeof globalThis & {
-  databasePools?: Map<string, Pool>;
+  databasePools?: Map<string, pg.Pool>;
 };
 
 const globalWithDatabase = globalThis as GlobalWithDatabase;
@@ -42,8 +49,13 @@ export class CountryNotConfiguredError extends Error {
   }
 }
 
-function mysqlUrl(value: string | undefined) {
-  return value?.startsWith("mysql://") ? value : undefined;
+/** A unique index rejected the write (PostgreSQL error 23505). */
+export function isUniqueViolation(error: unknown): boolean {
+  return (error as { code?: string } | null)?.code === "23505";
+}
+
+function postgresUrl(value: string | undefined) {
+  return value && /^postgres(ql)?:\/\//.test(value) ? value : undefined;
 }
 
 function isComplete(settings: ConnectionSettings) {
@@ -53,13 +65,13 @@ function isComplete(settings: ConnectionSettings) {
 function controlSettings(): ConnectionSettings {
   const isProduction = process.env.NODE_ENV === "production";
   const connectionString = isProduction
-    ? mysqlUrl(process.env.DATABASE_URL_PRODUCTION || process.env.DATABASE_URL)
-    : mysqlUrl(process.env.DATABASE_URL || process.env.DATABASE_URL_PRODUCTION);
+    ? postgresUrl(process.env.DATABASE_URL_PRODUCTION || process.env.DATABASE_URL)
+    : postgresUrl(process.env.DATABASE_URL || process.env.DATABASE_URL_PRODUCTION);
 
   return {
     connectionString,
     host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT || 3306),
+    port: Number(process.env.DB_PORT || 5432),
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
@@ -68,9 +80,9 @@ function controlSettings(): ConnectionSettings {
 
 function countrySettings(country: CountryCode): ConnectionSettings {
   return {
-    connectionString: mysqlUrl(process.env[`DATABASE_URL_${country}`]),
+    connectionString: postgresUrl(process.env[`DATABASE_URL_${country}`]),
     host: process.env[`DB_${country}_HOST`],
-    port: Number(process.env[`DB_${country}_PORT`] || 3306),
+    port: Number(process.env[`DB_${country}_PORT`] || 5432),
     user: process.env[`DB_${country}_USER`],
     password: process.env[`DB_${country}_PASSWORD`],
     database: process.env[`DB_${country}_NAME`],
@@ -120,75 +132,136 @@ function resolveSslConfig() {
 
 function createPool(settings: ConnectionSettings, label: string) {
   const baseConfig = {
-    waitForConnections: true,
-    connectionLimit: Number(process.env.DB_CONNECTION_LIMIT || 10),
-    queueLimit: 0,
-    connectTimeout: 10_000,
-    enableKeepAlive: true,
-    keepAliveInitialDelay: 30_000,
+    max: Number(process.env.DB_CONNECTION_LIMIT || 10),
+    connectionTimeoutMillis: 10_000,
+    idleTimeoutMillis: 30_000,
+    keepAlive: true,
+    keepAliveInitialDelayMillis: 30_000,
     ssl: resolveSslConfig(),
   };
 
+  let pool: pg.Pool;
   if (settings.connectionString) {
     const url = new URL(settings.connectionString);
-    const database = url.pathname.replace(/^\//, "");
+    const database = decodeURIComponent(url.pathname.replace(/^\//, ""));
     if (!database) {
-      throw new Error(`MySQL connection URL for ${label} must include a database name.`);
+      throw new Error(`PostgreSQL connection URL for ${label} must include a database name.`);
     }
 
-    return mysql.createPool({
+    // Parsed by hand so DATABASE_SSL keeps deciding TLS, not an sslmode left in the URL.
+    pool = new pg.Pool({
       ...baseConfig,
       host: url.hostname,
-      port: Number(url.port || 3306),
+      port: Number(url.port || 5432),
       user: decodeURIComponent(url.username),
       password: decodeURIComponent(url.password),
       database,
     });
+  } else {
+    if (!settings.host || !settings.user || !settings.database) {
+      throw new Error(`Configure PostgreSQL for ${label} using a postgres:// URL or the host, user and database settings.`);
+    }
+
+    pool = new pg.Pool({
+      ...baseConfig,
+      host: settings.host,
+      port: settings.port,
+      user: settings.user,
+      password: settings.password,
+      database: settings.database,
+    });
   }
 
-  if (!settings.host || !settings.user || !settings.database) {
-    throw new Error(`Configure MySQL for ${label} using a mysql:// URL or the host, user and database settings.`);
-  }
-
-  return mysql.createPool({
-    ...baseConfig,
-    host: settings.host,
-    port: settings.port,
-    user: settings.user,
-    password: settings.password,
-    database: settings.database,
+  // An idle client losing its connection must not crash the server; the pool replaces it.
+  pool.on?.("error", (error) => {
+    console.error(`[database] idle connection error (${label}):`, error.message);
   });
+  return pool;
 }
 
-type MysqlQueryable = Pool | PoolConnection;
+/**
+ * The application writes `?` placeholders; PostgreSQL wants `$1, $2, ...`. Question marks inside
+ * quoted strings, quoted identifiers and comments are left alone.
+ */
+export function toPostgresPlaceholders(sql: string): string {
+  let out = "";
+  let index = 0;
+  let quote: "'" | '"' | null = null;
 
-function makeQueryable(client: MysqlQueryable) {
+  for (let i = 0; i < sql.length; i += 1) {
+    const char = sql[i];
+    if (quote) {
+      out += char;
+      if (char === quote) {
+        if (sql[i + 1] === quote) {
+          out += sql[i + 1];
+          i += 1;
+        } else {
+          quote = null;
+        }
+      }
+    } else if (char === "'" || char === '"') {
+      quote = char;
+      out += char;
+    } else if (char === "-" && sql[i + 1] === "-") {
+      const end = sql.indexOf("\n", i);
+      const stop = end === -1 ? sql.length : end;
+      out += sql.slice(i, stop);
+      i = stop - 1;
+    } else if (char === "?") {
+      index += 1;
+      out += `$${index}`;
+    } else {
+      out += char;
+    }
+  }
+  return out;
+}
+
+/** Booleans are stored as SMALLINT 0/1 (as they were in MySQL), so send them that way. */
+function toPostgresParams(params: unknown[]) {
+  return params.map((value) => (typeof value === "boolean" ? (value ? 1 : 0) : value));
+}
+
+type PgQueryable = pg.Pool | pg.PoolClient;
+
+/**
+ * Same calling convention as before the move to PostgreSQL: `const [rows] = await db.query(sql, params)`.
+ * The rows array also carries `affectedRows` and `insertId`, so a write can be read either way.
+ */
+function makeQueryable(client: PgQueryable) {
   return {
     async query<T extends RowDataPacket[] | ResultSetHeader>(
       sql: string,
       params: unknown[] = [],
     ): Promise<[T, undefined]> {
-      const [rows] = await client.query(sql, params);
-      return [rows as T, undefined];
+      const result = await client.query(toPostgresPlaceholders(sql), toPostgresParams(params));
+      const rows = (result?.rows ?? []) as RowDataPacket[] & Partial<ResultSetHeader>;
+      const firstId = rows[0]?.id;
+      Object.defineProperties(rows, {
+        affectedRows: { value: result?.rowCount ?? 0, enumerable: false },
+        insertId: { value: typeof firstId === "number" ? firstId : Number(firstId) || 0, enumerable: false },
+      });
+      return [rows as unknown as T, undefined];
     },
   };
 }
 
-function wrapPool(pool: Pool) {
+function wrapPool(pool: pg.Pool) {
   return {
     ...makeQueryable(pool),
     async getConnection() {
-      const client = await pool.getConnection();
+      const client = await pool.connect();
       return {
         ...makeQueryable(client),
         async beginTransaction() {
-          await client.beginTransaction();
+          await client.query("BEGIN");
         },
         async commit() {
-          await client.commit();
+          await client.query("COMMIT");
         },
         async rollback() {
-          await client.rollback();
+          await client.query("ROLLBACK");
         },
         release() {
           client.release();
@@ -211,9 +284,12 @@ export async function inOfflineTransaction<T>(country: CountryCode, run: () => P
   const connection = await db.getConnection();
   let started = false;
   try {
-    await connection.query("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ");
     await connection.beginTransaction();
     started = true;
+    // Rows the handlers change are locked with SELECT ... FOR UPDATE. READ COMMITTED matches how
+    // MySQL treated those locking reads, without PostgreSQL's REPEATABLE READ aborting the whole
+    // sync with a serialization error when a colleague edited the same patient a moment earlier.
+    await connection.query("SET TRANSACTION ISOLATION LEVEL READ COMMITTED");
     const scoped: Database = {
       query: connection.query,
       getConnection: async () => { throw new Error("Nested offline transactions are not supported."); },

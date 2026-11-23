@@ -1,7 +1,6 @@
 /**
- * Helpers for MySQL columns that store JSON as text. Depending on the driver and
- * column type, a value may arrive already parsed (JSON column) or as a raw string
- * (TEXT/LONGTEXT column), so both cases are handled.
+ * Helpers for columns that store JSON. A value may arrive already parsed (JSONB column)
+ * or as a raw string (TEXT column), so both cases are handled.
  */
 export function parseJsonColumn<T>(value: unknown): T | null {
   if (value === null || value === undefined) return null;

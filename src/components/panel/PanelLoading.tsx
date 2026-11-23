@@ -7,6 +7,7 @@ import { panelTranslations } from "@/lib/i18n/panel-translations";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { institutesAdminTranslations } from "@/lib/i18n/institutes-admin-translations";
 import { settingsTranslations } from "@/lib/i18n/settings-translations";
+import { analyticsTranslations } from "@/lib/i18n/analytics-translations";
 
 /** Static placeholder block. No pulsing: the whole skeleton fades in once, after a short delay (see .panel-skeleton). */
 function Placeholder({ className = "" }: { className?: string }) {
@@ -35,6 +36,7 @@ ru: "Загрузка…",
     : pathname === "/panel/meet" ? crmTranslations[lang].meetings
     : pathname === "/panel/logs" ? t.logs
     : pathname === "/panel/settings" ? settingsTranslations[lang].navLabel
+    : pathname === "/panel/analytics" ? analyticsTranslations[lang].navLabel
     : pathname === "/panel/institutes" ? institutesAdminTranslations[lang].navLabel
     : crmTranslations[lang].requests;
 

@@ -1,4 +1,5 @@
 "use client";
+import { trackEvent } from "@/lib/analytics-events";
 
 import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 /* eslint-disable @next/next/no-img-element -- preview is an object URL from user file */
@@ -1026,6 +1027,7 @@ export function PrescriptionReview() {
         else setErrorKind("review");
         return;
       }
+      trackEvent("prescription_review_requested");
       setResult((await response.json()) as ReviewResponse);
     } catch (caughtError) {
       // A dropped connection, a timeout or a failed bot check: the service did not answer.

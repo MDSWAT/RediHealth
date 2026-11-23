@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useSyncExternalStore } from "react";
+import { reloadForNewVersion } from "@/lib/chunk-reload";
 import { reportClientError } from "@/lib/client-error-report";
 import { errorTranslations } from "@/lib/i18n/error-translations";
 import type { Lang } from "@/lib/i18n/translations";
@@ -49,6 +50,8 @@ export default function GlobalError({
   const lang = useSyncExternalStore(noSubscribe, langFromUrl, () => "ro" as Lang);
 
   useEffect(() => {
+    // A tab left open across a deployment: load the new version instead of showing an error.
+    if (reloadForNewVersion(error)) return;
     console.error(error);
     reportClientError(error, "render");
   }, [error]);

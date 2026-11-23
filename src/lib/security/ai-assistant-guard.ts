@@ -120,9 +120,9 @@ async function addBucketDelta(rawKey: string, delta: number, windowMs: number, n
       const db = getControlDatabase();
       await db.query(
         `INSERT INTO rate_limits (bucket_key, hits, reset_at) VALUES (?, ?, ?)
-         ON DUPLICATE KEY UPDATE
-           hits = IF(reset_at <= ?, ?, hits + ?),
-           reset_at = IF(reset_at <= ?, ?, reset_at)`,
+         ON CONFLICT (bucket_key) DO UPDATE SET
+           hits = CASE WHEN rate_limits.reset_at <= ? THEN ? ELSE rate_limits.hits + ? END,
+           reset_at = CASE WHEN rate_limits.reset_at <= ? THEN ? ELSE rate_limits.reset_at END`,
         [hashed, safeDelta, nextReset, now, safeDelta, safeDelta, now, nextReset],
       );
       const [rows] = await db.query<(RowDataPacket & { hits: number; reset_at: string | number })[]>(
@@ -131,7 +131,9 @@ async function addBucketDelta(rawKey: string, delta: number, windowMs: number, n
       );
       if (now - lastCleanupAt > CLEANUP_INTERVAL_MS) {
         lastCleanupAt = now;
-        void db.query("DELETE FROM rate_limits WHERE reset_at < ? LIMIT 1000", [now]).catch(() => undefined);
+        void db
+          .query("DELETE FROM rate_limits WHERE bucket_key IN (SELECT bucket_key FROM rate_limits WHERE reset_at < ? LIMIT 1000)", [now])
+          .catch(() => undefined);
       }
       const row = rows[0];
       if (row) {
@@ -164,9 +166,9 @@ async function setBlockBucket(rawKey: string, blockedUntil: number): Promise<voi
       const db = getControlDatabase();
       await db.query(
         `INSERT INTO rate_limits (bucket_key, hits, reset_at) VALUES (?, 1, ?)
-         ON DUPLICATE KEY UPDATE
-           hits = hits + 1,
-           reset_at = GREATEST(reset_at, VALUES(reset_at))`,
+         ON CONFLICT (bucket_key) DO UPDATE SET
+           hits = rate_limits.hits + 1,
+           reset_at = GREATEST(rate_limits.reset_at, EXCLUDED.reset_at)`,
         [hashed, blockedUntil],
       );
       return;

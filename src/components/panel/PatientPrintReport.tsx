@@ -310,7 +310,7 @@ export function PatientPrintReport({
                   <img
                     src={photo.data_url}
                     alt={photo.name}
-                    className="mb-1.5 h-28 w-full rounded border border-slate-200 object-cover"
+                    className="mb-1.5 h-28 w-full rounded border border-slate-200 object-contain"
                   />
                   <p className="truncate text-[11px] font-bold text-slate-800">{photo.name}</p>
                   <p className="tabular-nums text-[10px] text-slate-500">{photo.date}</p>

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse, type NextFetchEvent } from "next/server";
 import { GET as getGeoLocale } from "@/app/api/geo-locale/route";
 import {
   LOCALE_MANUAL_COOKIE,
@@ -14,6 +14,22 @@ import {
 import { LOCALE_COOKIE, REQUEST_LANG_HEADER } from "@/lib/i18n/routing";
 import { countryFromHeaders, langForCountry } from "@/lib/medical-institutes";
 import { proxy } from "@/proxy";
+import { analyticsMiddleware } from "@/nextlytics";
+
+// Nextlytics itself is not run here: the mock answers like its middleware does for a tracked page.
+vi.mock("@/nextlytics", () => ({
+  ANALYTICS_EVENT_ENDPOINT: "/api/event",
+  analyticsMiddleware: vi.fn(async () => {
+    const response = NextResponse.next();
+    response.headers.set("x-nl-page-render-id", "render-1");
+    response.cookies.set("last-page-render-id", "render-1");
+    return response;
+  }),
+}));
+
+function fetchEvent() {
+  return { waitUntil: vi.fn() } as unknown as NextFetchEvent & { waitUntil: ReturnType<typeof vi.fn> };
+}
 
 function cookieJar(entries: Record<string, string> = {}) {
   return {
@@ -311,14 +327,14 @@ describe("isAutomatedOrAuditUserAgent & hasManualLocaleCookie", () => {
 });
 
 describe("proxy locale redirection and Vary headers", () => {
-  it("redirects bare paths using smart detection with Vary headers and without setting manual override", () => {
+  it("redirects bare paths using smart detection with Vary headers and without setting manual override", async () => {
     const req = new NextRequest("https://redihealth.org/", {
       headers: {
         "cf-ipcountry": "RO",
         "accept-language": "en-US,en;q=0.9",
       },
     });
-    const res = proxy(req);
+    const res = (await proxy(req, fetchEvent())) as NextResponse;
     expect(res.status).toBe(307);
     expect(new URL(res.headers.get("location")!).pathname).toBe("/ro");
     expect(res.headers.get("vary")).toBe("Accept-Language, CF-IPCountry, X-Vercel-IP-Country");
@@ -326,14 +342,41 @@ describe("proxy locale redirection and Vary headers", () => {
     expect(res.cookies.get(LOCALE_MANUAL_COOKIE)).toBeUndefined();
   });
 
-  it("keeps canonical locale routes intact without redirecting", () => {
+  it("keeps canonical locale routes intact without redirecting", async () => {
     const req = new NextRequest("https://redihealth.org/en", {
       headers: { "cf-ipcountry": "RO" },
     });
-    const res = proxy(req);
+    const res = (await proxy(req, fetchEvent())) as NextResponse;
     expect(res.status).toBe(200);
     expect(res.headers.get("location")).toBeNull();
     expect(res.headers.get("x-middleware-request-" + REQUEST_LANG_HEADER)).toBe("en");
+  });
+
+  it("passes the website statistics context to the page but drops the statistics cookie", async () => {
+    vi.mocked(analyticsMiddleware).mockClear();
+    const res = (await proxy(new NextRequest("https://redihealth.org/ro/find-help", { headers: { "sec-fetch-dest": "document" } }), fetchEvent())) as NextResponse;
+    expect(analyticsMiddleware).toHaveBeenCalledTimes(1);
+    expect(res.headers.get("x-middleware-request-x-nl-page-render-id")).toBe("render-1");
+    expect(res.headers.get("x-nl-page-render-id")).toBeNull();
+    expect(res.cookies.get("last-page-render-id")).toBeUndefined();
+  });
+
+  it("hands /api/event to the statistics middleware and refuses cross-site posts", async () => {
+    vi.mocked(analyticsMiddleware).mockClear();
+    await proxy(new NextRequest("https://redihealth.org/api/event", { method: "POST", headers: { "sec-fetch-site": "same-origin" } }), fetchEvent());
+    expect(analyticsMiddleware).toHaveBeenCalledTimes(1);
+
+    const crossSite = await proxy(new NextRequest("https://redihealth.org/api/event", { method: "POST", headers: { "sec-fetch-site": "cross-site" } }), fetchEvent());
+    expect(crossSite.status).toBe(403);
+    expect(analyticsMiddleware).toHaveBeenCalledTimes(1);
+  });
+
+  it("keeps serving pages when the statistics middleware fails", async () => {
+    vi.mocked(analyticsMiddleware).mockRejectedValueOnce(new Error("database down"));
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const res = await proxy(new NextRequest("https://redihealth.org/en"), fetchEvent());
+    expect(res.status).toBe(200);
+    warn.mockRestore();
   });
 });
 

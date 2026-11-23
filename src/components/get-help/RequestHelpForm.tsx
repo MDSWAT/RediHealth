@@ -1,4 +1,5 @@
 "use client";
+import { trackEvent } from "@/lib/analytics-events";
 
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
@@ -223,6 +224,7 @@ export function RequestHelpForm({
         }),
       });
       if (response.ok) {
+        trackEvent("help_request_sent");
         setSubmitted(true);
       } else {
         // The API answers in English; the fields were already checked here, so show the

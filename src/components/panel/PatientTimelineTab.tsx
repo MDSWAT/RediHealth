@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import { PanelLink as Link } from "./PanelRuntime";
 import { MoreVerticalIcon, TrashIcon } from "@/components/ui/icons";
@@ -11,6 +10,7 @@ import { useViewerTimeZone } from "./useViewerTimeZone";
 import { getTreatmentEntries } from "@/lib/treatments";
 import { treatmentTranslations } from "@/lib/i18n/treatment-translations";
 import type { FollowupItem, PatientItem, PatientPhoto } from "@/lib/types/patient";
+import { PatientPhotoTrigger } from "./PatientMedia";
 
 type TimelineEvent = { id: string; date: string; title: string; note?: string; followup?: FollowupItem; photo?: PatientPhoto };
 export function PatientTimelineTab({ patient, followups, photos, compact = false, busy = false, onToggleStatus, onSelectFollowup, onCreateMeeting, onDeleteFollowup }: {
@@ -36,11 +36,11 @@ export function PatientTimelineTab({ patient, followups, photos, compact = false
       <p className="mt-1 text-xs text-muted-foreground">{event.followup ? followupLabel(event.followup, langToLocale[lang], t.allDay, viewerZone) : formatPanelDate(event.date.length === 10 ? `${event.date}T12:00:00` : event.date, langToLocale[lang], "date")}</p>
       {!compact && <>
         {event.note && <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed">{event.note}</p>}
-        {event.photo && <a href={event.photo.data_url} target="_blank" rel="noreferrer"><img src={event.photo.data_url} alt={event.photo.name} className="mt-3 max-h-52 max-w-full rounded-md object-contain" /></a>}
+        {event.photo && <PatientPhotoTrigger photo={event.photo} />}
         {event.followup && <>
           {event.followup.completion_notes && <div className="mt-3"><h4 className="text-xs font-medium text-muted-foreground">{t.completionNotes}</h4><p className="mt-1 whitespace-pre-wrap text-sm">{event.followup.completion_notes}</p></div>}
           {event.followup.completed_at && <p className="mt-2 text-xs text-muted-foreground">{t.itemCompleted}: {formatPanelDate(event.followup.completed_at, langToLocale[lang], "dateTime")}</p>}
-          {event.followup.completion_photos?.map((photo) => <a key={photo.id} href={photo.data_url} target="_blank" rel="noreferrer"><img src={photo.data_url} alt={photo.name} className="mt-3 max-h-40 max-w-full rounded-md object-contain" /></a>)}
+          {event.followup.completion_photos?.map((photo) => <PatientPhotoTrigger key={photo.id} photo={photo} />)}
           {(event.followup.meeting_notes || event.followup.meeting_transcript) && <details className="mt-3"><summary className="cursor-pointer text-sm text-primary">{t.consultationNotes}</summary>{event.followup.meeting_notes && <p className="mt-3 whitespace-pre-wrap text-sm">{event.followup.meeting_notes}</p>}{event.followup.meeting_transcript && <div className="mt-3"><h4 className="text-xs font-medium">{t.transcript}</h4><p className="mt-1 whitespace-pre-wrap text-sm">{event.followup.meeting_transcript}</p></div>}</details>}
           <div className="mt-3 flex flex-wrap gap-2">
             {event.followup.meeting_id && <Link className="crm-button" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${event.followup.meeting_id}`, lang)}>{t.join}</Link>}

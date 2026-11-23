@@ -76,7 +76,7 @@ export async function POST(request: Request) {
           blood_pressure_systolic, blood_pressure_diastolic, pulse_bpm,
           oxygen_saturation_pct, blood_glucose_mg_dl, glucose_context,
           body_temperature_c, notes, recorded_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW()) RETURNING id`,
         [
           record.patientId,
           record.meetingId,

@@ -1,4 +1,5 @@
 "use client";
+import { trackEvent } from "@/lib/analytics-events";
 
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -345,6 +346,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
         setErrorMessage(response.status === 429 ? t.rateLimitError : t.sendError);
         return;
       }
+      trackEvent("mediator_request_sent");
       setSubmitted(true);
     } catch {
       setErrorMessage(t.sendError);
