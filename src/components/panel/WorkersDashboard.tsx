@@ -5,10 +5,8 @@ import type { PatientItem } from "@/lib/types/patient";
 import type { WorkerItem } from "@/lib/types/worker";
 import { AdminShell } from "./AdminShell";
 import { WorkersTable } from "./WorkersTable";
-import { Container } from "@/components/ui/Container";
-import { StethoscopeIcon, UserIcon, UsersIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
-import { panelTranslations } from "@/lib/i18n/panel-translations";
+import { langToLocale, panelTranslations } from "@/lib/i18n/panel-translations";
 import { normalizePatientsFromApi, normalizeWorkersFromApi } from "@/lib/api-normalizers";
 
 interface WorkersDashboardProps {
@@ -33,6 +31,7 @@ export function WorkersDashboard({
   pendingRequestsCount = 0,
 }: WorkersDashboardProps) {
   const { lang } = useLanguage();
+  const locale = langToLocale[lang];
   const t = panelTranslations[lang].workersDashboard;
   const [workers, setWorkers] = useState<WorkerItem[]>(initialWorkers);
   const [patients, setPatients] = useState<PatientItem[]>(initialPatients);
@@ -84,6 +83,13 @@ export function WorkersDashboard({
     };
   }, [workers, patients]);
 
+  const summaryItems = [
+    { label: t.totalStaffWorkers, value: metrics.totalWorkers },
+    { label: t.activeStaff, value: metrics.activeWorkers },
+    { label: t.assignedPatients, value: metrics.assignedPatients },
+    { label: t.unassignedPatients, value: metrics.unassignedPatients },
+  ];
+
   return (
     <AdminShell
       userEmail={userEmail}
@@ -91,105 +97,58 @@ export function WorkersDashboard({
       isAdmin={isAdmin}
       pendingCount={pendingRequestsCount}
     >
-      <main id="main-content" className="min-h-screen py-8 sm:py-10">
-        <Container>
-          <div className="mb-8 flex flex-col gap-2 border-b border-border pb-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-xs font-bold text-primary">
-                {t.eyebrow}
-              </p>
-              <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                {t.title}
-              </h1>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {t.subtitle}
-              </p>
+      <main
+        id="main-content"
+        className="min-h-dvh bg-[var(--panel-surface)] px-4 py-6 pb-24 text-[var(--panel-ink)] sm:px-6 lg:px-8"
+      >
+        <div className="mx-auto w-full max-w-[1440px]">
+          {isRefreshing ? (
+            <div
+              role="progressbar"
+              aria-label={t.title}
+              className="mb-4 h-0.5 w-full overflow-hidden bg-[var(--panel-line)]"
+            >
+              <div className="panel-indeterminate-bar h-full bg-[var(--color-sapphire)] dark:bg-[#bad7fa]" />
             </div>
-          </div>
+          ) : null}
+
+          <header className="border-b border-[var(--panel-line)] pb-5">
+            <h1 className="text-2xl font-bold leading-[1.2] tracking-[-0.025em] text-[var(--panel-ink)] sm:text-[1.875rem]">
+              {t.title}
+            </h1>
+            {databaseAvailable ? (
+              <dl className="mt-3 flex flex-wrap items-baseline gap-x-6 gap-y-1.5 text-sm">
+                {summaryItems.map((item) => (
+                  <div key={item.label} className="flex items-baseline gap-1.5">
+                    <dd className="font-semibold tabular-nums text-[var(--panel-ink)]">
+                      {item.value.toLocaleString(locale)}
+                    </dd>
+                    <dt className="text-[var(--panel-muted)]">{item.label}</dt>
+                  </div>
+                ))}
+              </dl>
+            ) : null}
+          </header>
 
           {!databaseAvailable ? (
-            <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
+            <p
+              role="status"
+              className="mt-6 rounded-lg border border-[var(--panel-line)] bg-[var(--panel-subtle)] p-5 text-sm leading-relaxed text-[var(--panel-ink)]"
+            >
               {t.noDatabase}
             </p>
           ) : (
-            <div className="space-y-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
-                      <StethoscopeIcon className="h-5 w-5" />
-                    </span>
-                  </div>
-                  <div className="mt-4">
-                    <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                      {metrics.totalWorkers}
-                    </p>
-                    <p className="mt-1 text-xs font-semibold text-muted-foreground">
-                      {t.totalStaffWorkers}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
-                      <StethoscopeIcon className="h-5 w-5" />
-                    </span>
-                  </div>
-                  <div className="mt-4">
-                    <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                      {metrics.activeWorkers}
-                    </p>
-                    <p className="mt-1 text-xs font-semibold text-muted-foreground">
-                      {t.activeStaff}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-50 text-sky-700">
-                      <UsersIcon className="h-5 w-5" />
-                    </span>
-                  </div>
-                  <div className="mt-4">
-                    <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                      {metrics.assignedPatients}
-                    </p>
-                    <p className="mt-1 text-xs font-semibold text-muted-foreground">
-                      {t.assignedPatients}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col justify-between rounded-xl border border-border bg-card p-5 shadow-xs transition-colors hover:shadow-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
-                      <UserIcon className="h-5 w-5" />
-                    </span>
-                  </div>
-                  <div className="mt-4">
-                    <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                      {metrics.unassignedPatients}
-                    </p>
-                    <p className="mt-1 text-xs font-semibold text-muted-foreground">
-                      {t.unassignedPatients}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <WorkersTable
-                isRomania={isRomania}
-                initialWorkers={workers}
-                patients={patients}
-                onRefresh={handleRefresh}
-                isRefreshing={isRefreshing}
-                onUpdatePatients={(updatedPatients) => setPatients(updatedPatients)}
-              />
-            </div>
+            <WorkersTable
+              isRomania={isRomania}
+              initialWorkers={workers}
+              onWorkersChange={setWorkers}
+              patients={patients}
+              onRefresh={handleRefresh}
+              isRefreshing={isRefreshing}
+              onUpdatePatients={(updatedPatients) => setPatients(updatedPatients)}
+            />
           )}
-        </Container>
+        </div>
       </main>
     </AdminShell>
   );

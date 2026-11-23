@@ -2,7 +2,6 @@
 
 import { useState, type FormEvent } from "react";
 import { AdminShell } from "@/components/panel/AdminShell";
-import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { settingsTranslations } from "@/lib/i18n/settings-translations";
 import { isValidEmail } from "@/lib/text";
@@ -75,47 +74,66 @@ export function SettingsDashboard({
 
   return (
     <AdminShell userEmail={userEmail} userRole={userRole} isAdmin>
-      <main id="main-content" className="min-h-screen py-8 sm:py-10">
-        <Container>
-          <div className="mb-6 border-b border-border pb-6">
-            <p className="text-xs font-bold text-primary">{t.eyebrow}</p>
-            <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{t.title}</h1>
-            <p className="mt-1 text-sm text-muted-foreground">{t.subtitle}</p>
-          </div>
+      <main
+        id="main-content"
+        className="min-h-dvh bg-[var(--panel-surface)] px-4 py-6 pb-24 text-[var(--panel-ink)] sm:px-6 lg:px-8"
+      >
+        <div className="mx-auto w-full max-w-[1440px]">
+          <header className="border-b border-[var(--panel-line)] pb-5">
+            <h1 className="text-2xl font-bold leading-[1.2] tracking-[-0.025em] text-[var(--panel-ink)] sm:text-[1.875rem]">
+              {t.title}
+            </h1>
+            <p className="mt-1.5 max-w-[65ch] text-sm leading-relaxed text-[var(--panel-muted)]">
+              {t.subtitle}
+            </p>
+          </header>
 
           {!databaseAvailable ? (
-            <p className="rounded-xl border border-primary/20 bg-primary-soft p-6 text-sm leading-relaxed text-foreground">
+            <p
+              role="status"
+              className="mt-6 max-w-2xl rounded-lg border border-[var(--panel-line)] bg-[var(--panel-subtle)] p-5 text-sm leading-relaxed text-[var(--panel-ink)]"
+            >
               {t.noDatabase}
             </p>
           ) : (
-            <form onSubmit={save} className="max-w-xl rounded-xl border border-border bg-card p-6">
-              <h2 className="text-lg font-semibold text-foreground">{t.alertSectionTitle}</h2>
-              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{t.alertSectionHelp}</p>
+            <form onSubmit={save} className="mt-6 max-w-2xl">
+              <h2 className="text-lg font-semibold leading-snug text-[var(--panel-ink)]">
+                {t.alertSectionTitle}
+              </h2>
+              <p className="mt-1.5 max-w-[65ch] text-sm leading-relaxed text-[var(--panel-muted)]">
+                {t.alertSectionHelp}
+              </p>
 
-              <fieldset className="mt-5">
-                <legend className="block text-sm font-medium text-foreground">{t.alertEmailLabel}</legend>
-                <div className="mt-1.5 flex flex-col gap-2">
+              <fieldset className="mt-6">
+                <legend className="block text-sm font-medium text-[var(--panel-ink)]">
+                  {t.alertEmailLabel}
+                </legend>
+                <div className="mt-2 flex flex-col gap-2.5">
                   {alertEmails.map((email, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <input
                         type="email"
                         value={email}
                         onChange={(event) =>
-                          setAlertEmails((current) => current.map((item, i) => (i === index ? event.target.value : item)))
+                          setAlertEmails((current) =>
+                            current.map((item, i) => (i === index ? event.target.value : item)),
+                          )
                         }
                         placeholder={t.alertEmailPlaceholder}
                         aria-label={`${t.alertEmailLabel} ${index + 1}`}
                         maxLength={320}
                         autoComplete="off"
-                        className="block min-h-11 w-full min-w-0 flex-1 rounded-lg border border-border bg-white px-3.5 text-base outline-none focus:border-ring"
+                        className="block min-h-11 w-full min-w-0 flex-1 rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-3.5 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa]"
                       />
                       {alertEmails.length > 1 ? (
                         <button
                           type="button"
-                          onClick={() => setAlertEmails((current) => current.filter((_, i) => i !== index))}
+                          onClick={() =>
+                            setAlertEmails((current) => current.filter((_, i) => i !== index))
+                          }
                           aria-label={`${t.removeEmail} ${index + 1}`}
                           title={t.removeEmail}
-                          className="flex h-11 w-11 flex-none items-center justify-center rounded-lg border border-border text-lg leading-none text-muted-foreground hover:text-foreground"
+                          className="inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] text-lg leading-none text-[var(--panel-muted)] transition-colors hover:border-[#b91c1c]/40 hover:bg-[#fef2f2] hover:text-[#b91c1c] dark:hover:bg-[#3f1d24] dark:hover:text-[#ffb4b4]"
                         >
                           <span aria-hidden="true">×</span>
                         </button>
@@ -127,33 +145,40 @@ export function SettingsDashboard({
                   <button
                     type="button"
                     onClick={() => setAlertEmails((current) => [...current, ""])}
-                    className="mt-3 min-h-10 whitespace-nowrap rounded-lg border border-border px-4 text-sm font-semibold text-foreground"
+                    className="mt-3 inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-4 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)]"
                   >
                     {t.addEmail}
                   </button>
                 ) : null}
               </fieldset>
-              <p className="mt-2 text-xs text-muted-foreground">{sourceText}</p>
+
+              <p className="mt-3 text-xs text-[var(--panel-muted)]">{sourceText}</p>
 
               {message ? (
                 <p
                   role={message.kind === "error" ? "alert" : "status"}
-                  className={`mt-4 text-sm ${message.kind === "error" ? "text-primary" : "text-foreground"}`}
+                  className={`mt-4 rounded-lg border px-4 py-3 text-sm ${
+                    message.kind === "error"
+                      ? "border-[#b91c1c]/30 bg-[#fef2f2] text-[#991b1b] dark:border-[#ffb4b4]/35 dark:bg-[#2c1519] dark:text-[#ffb4b4]"
+                      : "border-[var(--panel-line)] bg-[var(--panel-selection)] text-[var(--panel-ink)]"
+                  }`}
                 >
                   {message.text}
                 </p>
               ) : null}
 
-              <button
-                type="submit"
-                disabled={saving}
-                className="mt-5 min-h-10 whitespace-nowrap rounded-lg bg-primary px-5 text-sm font-semibold text-white disabled:bg-muted disabled:text-muted-foreground"
-              >
-                {saving ? t.saving : t.save}
-              </button>
+              <div className="mt-6 border-t border-[var(--panel-line)] pt-5">
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg bg-[var(--color-sapphire)] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#28476f] disabled:cursor-default disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]"
+                >
+                  {saving ? t.saving : t.save}
+                </button>
+              </div>
             </form>
           )}
-        </Container>
+        </div>
       </main>
     </AdminShell>
   );

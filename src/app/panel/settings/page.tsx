@@ -7,7 +7,7 @@ import { getAlertRecipients } from "@/lib/settings";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const generateMetadata = createPageMetadata("settings", "Settings - RediHealth Panel", "");
+export const generateMetadata = createPageMetadata("settings", "Settings - RediHealth panel", "");
 
 export default async function SettingsPage() {
   const session = await auth();

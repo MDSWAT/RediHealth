@@ -11,7 +11,7 @@ import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const generateMetadata = createPageMetadata("workers", "Workers - RediHealth Panel", "");
+export const generateMetadata = createPageMetadata("workers", "Staff - RediHealth panel", "");
 
 export default async function WorkersPage() {
   const session = await auth();

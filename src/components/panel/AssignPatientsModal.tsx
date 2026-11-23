@@ -1,14 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import {
-  CheckCircleIcon,
-  CloseIcon,
-  SearchIcon,
-  StethoscopeIcon,
-  UserIcon,
-} from "@/components/ui/icons";
+import { useEffect, useId, useMemo, useState } from "react";
+import { CloseIcon, SearchIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { langToLocale } from "@/lib/i18n/panel-translations";
 import type { PatientItem } from "@/lib/types/patient";
 import type { WorkerItem } from "@/lib/types/worker";
 
@@ -26,25 +21,27 @@ export function AssignPatientsModal({
   onSuccess,
 }: AssignPatientsModalProps) {
   const { lang } = useLanguage();
+  const locale = langToLocale[lang];
+  const baseId = useId();
   const t = {
-  ru: {
+    ru: {
       errSave: "Не удалось сохранить.",
       errUnexpected: "Не удалось сохранить. Попробуйте еще раз.",
-      title: "Назначение пациентов",
-      assignedCount: (count: number) => `Назначенные пациенты: ${count}`,
+      title: "Назначить пациентов",
+      assignedCount: (count: number) => `Назначено пациентов: ${count}`,
       success: "Сохранено.",
       search: "Поиск пациентов",
-      none: "Больных не обнаружено.",
-      assignedTo: "Назначено",
-      otherWorker: "кто-то другой",
-      assigned: "Назначено",
-      unassigned: "Неназначенный",
+      none: "Пациенты не найдены.",
+      assignedTo: "Назначено:",
+      otherWorker: "другому сотруднику",
+      assigned: "Назначен",
+      unassigned: "Не назначен",
       selectedCount: (count: number) => `Выбрано: ${count}`,
       cancel: "Отмена",
+      close: "Закрыть",
       saving: "Сохранение...",
       save: "Сохранить",
     },
-
     en: {
       errSave: "Could not save.",
       errUnexpected: "Could not save. Try again.",
@@ -59,6 +56,7 @@ export function AssignPatientsModal({
       unassigned: "Unassigned",
       selectedCount: (count: number) => `Selected: ${count}`,
       cancel: "Cancel",
+      close: "Close",
       saving: "Saving...",
       save: "Save",
     },
@@ -76,6 +74,7 @@ export function AssignPatientsModal({
       unassigned: "Nealocat",
       selectedCount: (count: number) => `Selectați: ${count}`,
       cancel: "Anulează",
+      close: "Închide",
       saving: "Se salvează...",
       save: "Salvează",
     },
@@ -93,6 +92,7 @@ export function AssignPatientsModal({
       unassigned: "Pa caktim",
       selectedCount: (count: number) => `Të zgjedhur: ${count}`,
       cancel: "Anulo",
+      close: "Mbyll",
       saving: "Duke ruajtur...",
       save: "Ruaj",
     },
@@ -110,6 +110,7 @@ export function AssignPatientsModal({
       unassigned: "Non assegnato",
       selectedCount: (count: number) => `Selezionati: ${count}`,
       cancel: "Annulla",
+      close: "Chiudi",
       saving: "Salvataggio...",
       save: "Salva",
     },
@@ -127,6 +128,7 @@ export function AssignPatientsModal({
       unassigned: "Nedodijeljen",
       selectedCount: (count: number) => `Odabrano: ${count}`,
       cancel: "Odustani",
+      close: "Zatvori",
       saving: "Spremanje...",
       save: "Spremi",
     },
@@ -144,6 +146,7 @@ export function AssignPatientsModal({
       unassigned: "Bi-dindo",
       selectedCount: (count: number) => `Alosarde: ${count}`,
       cancel: "Mekh",
+      close: "Phandav",
       saving: "Arakhel...",
       save: "Arakh",
     },
@@ -164,6 +167,16 @@ export function AssignPatientsModal({
     }
     return set;
   });
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape" && !isSaving) {
+        onClose();
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isSaving, onClose]);
 
   const filteredPatients = useMemo(() => {
     if (!searchQuery.trim()) return patientList;
@@ -248,7 +261,7 @@ export function AssignPatientsModal({
 
       setTimeout(() => {
         onClose();
-      }, 1000);
+      }, 900);
     } catch {
       setErrorMessage(t.errUnexpected);
     } finally {
@@ -257,106 +270,123 @@ export function AssignPatientsModal({
   }
 
   return (
-    <div className="panel-scrim fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/50 p-0 sm:p-4">
-      <div className="app-sheet-slide-up relative w-full max-w-xl rounded-t-xl sm:rounded-xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] flex flex-col care-panel-bottom-bar">
-        {/* Mobile bottom sheet drag handle */}
-        <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
-        <div className="flex items-center justify-between border-b border-border pb-4">
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-soft text-primary">
-              <StethoscopeIcon className="h-5 w-5" />
-            </span>
-            <div>
-              <h2 className="text-base font-bold text-foreground sm:text-lg">
-                {t.title}
-              </h2>
-              <p className="text-xs text-muted-foreground">
-                {worker.full_name} ({worker.role}) &bull; {t.assignedCount(assignedIds.size)}
-              </p>
-            </div>
+    <div
+      className="panel-scrim fixed inset-0 z-50 flex items-end justify-center bg-[#0b132b]/60 p-0 sm:items-center sm:p-4"
+      onClick={(event) => {
+        if (event.target === event.currentTarget && !isSaving) {
+          onClose();
+        }
+      }}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`${baseId}-title`}
+        className="app-sheet-slide-up relative flex max-h-[92dvh] w-full max-w-xl flex-col rounded-t-2xl border border-[var(--panel-line)] bg-[var(--panel-surface)] p-5 text-[var(--panel-ink)] shadow-[0_24px_80px_rgba(11,19,43,0.28)] sm:max-h-[90vh] sm:rounded-2xl sm:p-6 care-panel-bottom-bar"
+      >
+        <div className="flex items-start justify-between gap-3 border-b border-[var(--panel-line)] pb-4">
+          <div className="min-w-0">
+            <h2
+              id={`${baseId}-title`}
+              className="text-lg font-semibold leading-snug text-[var(--panel-ink)]"
+            >
+              {t.title}
+            </h2>
+            <p className="mt-0.5 text-xs tabular-nums text-[var(--panel-muted)]">
+              {worker.full_name} — {t.assignedCount(assignedIds.size).replace(
+                String(assignedIds.size),
+                assignedIds.size.toLocaleString(locale),
+              )}
+            </p>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+            aria-label={t.close}
+            className="inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg text-[var(--panel-muted)] transition-colors hover:bg-[var(--panel-selection)] hover:text-[var(--panel-ink)]"
           >
-            <CloseIcon className="h-5 w-5" />
+            <CloseIcon className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
 
         {errorMessage ? (
-          <div className="mt-4 rounded-xl bg-red-500/10 border border-red-500/20 p-3 text-xs font-medium text-red-600 dark:text-red-400">
+          <p
+            role="alert"
+            className="mt-4 rounded-lg border border-[#b91c1c]/30 bg-[#fef2f2] px-3.5 py-2.5 text-sm text-[#991b1b] dark:border-[#ffb4b4]/35 dark:bg-[#2c1519] dark:text-[#ffb4b4]"
+          >
             {errorMessage}
-          </div>
+          </p>
         ) : null}
 
         {saveSuccess ? (
-          <div className="mt-4 flex items-center gap-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs font-medium text-emerald-700 dark:text-emerald-400">
-            <CheckCircleIcon className="h-4 w-4" />
-            <span>{t.success}</span>
-          </div>
+          <p
+            role="status"
+            className="mt-4 rounded-lg border border-[var(--panel-line)] bg-[var(--panel-selection)] px-3.5 py-2.5 text-sm font-medium text-[var(--panel-ink)]"
+          >
+            {t.success}
+          </p>
         ) : null}
 
-        <div className="mt-4 relative">
-          <SearchIcon className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <label className="mt-4 flex min-h-11 items-center gap-2 rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-3 text-[var(--panel-muted)] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[var(--color-sapphire)] dark:focus-within:outline-[#bad7fa]">
+          <SearchIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
           <input
-            type="text"
+            type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            aria-label={t.search}
             placeholder={t.search}
-            className="w-full rounded-lg border border-border bg-background pl-10 pr-4 py-2 text-xs text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="min-h-11 w-full min-w-0 bg-transparent text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] outline-none"
           />
-        </div>
+        </label>
 
-        <div className="mt-4 flex-1 overflow-y-auto space-y-2 border border-border rounded-xl p-3 bg-muted/20 min-h-[220px] max-h-[360px]">
+        <div className="mt-4 min-h-[200px] max-h-[360px] flex-1 divide-y divide-[var(--panel-line)] overflow-y-auto border-y border-[var(--panel-line)]">
           {filteredPatients.length === 0 ? (
-            <div className="p-8 text-center text-xs text-muted-foreground">
-              <UserIcon className="mx-auto h-6 w-6 text-muted-foreground mb-2" />
-              <span>{t.none}</span>
-            </div>
+            <p className="py-10 text-center text-sm text-[var(--panel-muted)]">{t.none}</p>
           ) : (
             filteredPatients.map((patient) => {
               const isChecked = assignedIds.has(patient.id);
               const isAssignedToOther =
-                patient.assigned_worker_id &&
+                Boolean(patient.assigned_worker_id) &&
                 patient.assigned_worker_id !== worker.id;
 
               return (
                 <label
                   key={patient.id}
-                  className={`flex items-center justify-between gap-3 p-3 rounded-xl border transition-colors cursor-pointer ${
+                  className={`flex min-h-14 cursor-pointer items-center justify-between gap-3 px-2 py-3 transition-colors ${
                     isChecked
-                      ? "bg-primary-soft/50 border-primary/40 text-foreground"
-                      : "bg-card border-border hover:bg-muted/50"
+                      ? "bg-[var(--panel-selection)]"
+                      : "hover:bg-[var(--panel-subtle)]"
                   }`}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex min-w-0 items-center gap-3">
                     <input
                       type="checkbox"
                       checked={isChecked}
                       onChange={() => togglePatientAssignment(patient.id)}
-                      className="rounded border-border text-primary focus:ring-ring h-4 w-4"
+                      className="h-4 w-4 shrink-0 rounded border-[var(--color-border-control)] text-[var(--color-sapphire)]"
                     />
-                    <div>
-                      <p className="text-xs font-bold text-foreground">
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-medium text-[var(--panel-ink)]">
                         {patient.full_name}
                       </p>
-                      <p className="text-[11px] text-muted-foreground">
-                        {patient.phone} &bull; {patient.email}
+                      <p className="truncate text-xs tabular-nums text-[var(--panel-muted)]">
+                        {[patient.phone, patient.email].filter(Boolean).join(" — ")}
                       </p>
                     </div>
                   </div>
 
                   {isAssignedToOther ? (
-                    <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-md">
+                    <span className="shrink-0 text-right text-xs font-medium text-[#9a4d0b] dark:text-[#f5c58e]">
                       {t.assignedTo} {patient.assigned_worker_name || t.otherWorker}
                     </span>
                   ) : isChecked ? (
-                    <span className="text-[10px] font-bold text-primary bg-primary-soft border border-primary/20 px-2 py-0.5 rounded-md">
+                    <span className="shrink-0 text-xs font-semibold text-[var(--color-sapphire)] dark:text-[#bad7fa]">
                       {t.assigned}
                     </span>
                   ) : (
-                    <span className="text-[10px] text-muted-foreground">{t.unassigned}</span>
+                    <span className="shrink-0 text-xs text-[var(--panel-muted)]">
+                      {t.unassigned}
+                    </span>
                   )}
                 </label>
               );
@@ -364,16 +394,19 @@ export function AssignPatientsModal({
           )}
         </div>
 
-        <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
-          <span className="text-xs font-medium text-muted-foreground">
-            {t.selectedCount(assignedIds.size)}
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-2">
+          <span className="text-xs font-medium tabular-nums text-[var(--panel-muted)]">
+            {t.selectedCount(assignedIds.size).replace(
+              String(assignedIds.size),
+              assignedIds.size.toLocaleString(locale),
+            )}
           </span>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-4 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)]"
             >
               {t.cancel}
             </button>
@@ -381,7 +414,7 @@ export function AssignPatientsModal({
               type="button"
               disabled={isSaving}
               onClick={handleSaveAssignments}
-              className="rounded-lg bg-primary px-5 py-2 text-xs font-bold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground shadow-2xs transition-colors"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg bg-[var(--color-sapphire)] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#28476f] disabled:cursor-default disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]"
             >
               {isSaving ? t.saving : t.save}
             </button>

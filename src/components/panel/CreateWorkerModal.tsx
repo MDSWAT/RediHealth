@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { CheckCircleIcon, CloseIcon, StethoscopeIcon } from "@/components/ui/icons";
+import { useEffect, useId, useState } from "react";
+import { CloseIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { CreateWorkerPayload, WorkerItem, WorkerStatus } from "@/lib/types/worker";
 import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
@@ -24,44 +24,45 @@ export function CreateWorkerModal({
   onSuccess,
 }: CreateWorkerModalProps) {
   const { lang } = useLanguage();
+  const baseId = useId();
   const t = {
-  ru: {
+    ru: {
       healthcareWorker: "Медицинский работник",
-      errSave: "Спасти сотрудника не удалось.",
+      errSave: "Не удалось сохранить сотрудника.",
       errUnexpected: "Не удалось сохранить. Попробуйте еще раз.",
-      titleEdit: "Изменить сотрудника",
-      titleMediator: "Добавить посредника",
+      titleEdit: "Редактировать сотрудника",
+      titleMediator: "Добавить медиатора",
       titleWorker: "Добавить сотрудника",
-      subtitleMediator: "Медиатор может открывать новые дела медиатора.",
+      subtitleMediator: "Медиатор может открывать новые дела медиации.",
       subtitleWorker: "Имя, контакт и роль.",
       success: "Сохранено.",
       fullName: "Полное имя",
-      fullNamePh: "например Доктор Алекс Мунтяну",
-      email: "Email",
+      fullNamePh: "например, д-р Алекс Мунтяну",
+      email: "Электронная почта",
       emailPh: "worker@redihealth.org",
-      phone: "Phone",
-      phonePh: "например 0722 123 456",
-      role: "Role",
-      doctor: "Доктор",
-      mediator: "Посредник",
+      phone: "Телефон",
+      phonePh: "например, 0722 123 456",
+      role: "Роль",
+      doctor: "Врач",
+      mediator: "Медиатор",
       nurse: "Медсестра",
-      caseWorker: "Сотрудник дела",
+      caseWorker: "Специалист по случаю",
       gp: "Семейный врач",
       admin: "Администратор",
       superAdmin: "Суперадминистратор",
       department: "Специальность",
-      deptPh: "например Кардиология, Семейная медицина",
-      accountStatus: "Аккаунт",
+      deptPh: "например, кардиология, семейная медицина",
+      accountStatus: "Статус аккаунта",
       activeStaff: "Активный",
       inactiveStaff: "Неактивный",
       cancel: "Отмена",
+      close: "Закрыть",
       saving: "Сохранение...",
       update: "Сохранить изменения",
       create: "Добавить сотрудника",
-      county: "Округ, где они работают",
+      county: "Округ работы",
       selectCounty: "Выберите округ",
     },
-
     en: {
       healthcareWorker: "Health worker",
       errSave: "Could not save the staff member.",
@@ -87,11 +88,12 @@ export function CreateWorkerModal({
       admin: "Administrator",
       superAdmin: "Super admin",
       department: "Specialty",
-      deptPh: "e.g. Cardiology, Family medicine",
+      deptPh: "e.g. Cardiology, family medicine",
       accountStatus: "Account",
       activeStaff: "Active",
       inactiveStaff: "Inactive",
       cancel: "Cancel",
+      close: "Close",
       saving: "Saving...",
       update: "Save changes",
       create: "Add staff member",
@@ -123,11 +125,12 @@ export function CreateWorkerModal({
       admin: "Administrator",
       superAdmin: "Super administrator",
       department: "Specialitate",
-      deptPh: "ex. Cardiologie, Medicină de familie",
+      deptPh: "ex. Cardiologie, medicină de familie",
       accountStatus: "Cont",
       activeStaff: "Activ",
       inactiveStaff: "Inactiv",
       cancel: "Anulează",
+      close: "Închide",
       saving: "Se salvează...",
       update: "Salvează modificările",
       create: "Adaugă",
@@ -159,11 +162,12 @@ export function CreateWorkerModal({
       admin: "Administrator",
       superAdmin: "Super administrator",
       department: "Specialiteti",
-      deptPh: "p.sh. Kardiologji, Mjekësi familjare",
+      deptPh: "p.sh. Kardiologji, mjekësi familjare",
       accountStatus: "Llogaria",
       activeStaff: "Aktiv",
       inactiveStaff: "Joaktiv",
       cancel: "Anulo",
+      close: "Mbyll",
       saving: "Duke ruajtur...",
       update: "Ruaj ndryshimet",
       create: "Shto",
@@ -195,11 +199,12 @@ export function CreateWorkerModal({
       admin: "Amministratore",
       superAdmin: "Super amministratore",
       department: "Specialità",
-      deptPh: "es. Cardiologia, Medicina generale",
+      deptPh: "es. Cardiologia, medicina generale",
       accountStatus: "Account",
       activeStaff: "Attivo",
       inactiveStaff: "Inattivo",
       cancel: "Annulla",
+      close: "Chiudi",
       saving: "Salvataggio...",
       update: "Salva modifiche",
       create: "Aggiungi operatore",
@@ -236,9 +241,10 @@ export function CreateWorkerModal({
       activeStaff: "Aktivan",
       inactiveStaff: "Neaktivan",
       cancel: "Odustani",
+      close: "Zatvori",
       saving: "Spremanje...",
       update: "Spremi promjene",
-      create: "Dodaj člana osoblja",
+      create: "Dodaj osoblje",
       county: "Županija u kojoj radi",
       selectCounty: "Odaberi županiju",
     },
@@ -272,6 +278,7 @@ export function CreateWorkerModal({
       activeStaff: "Aktivno",
       inactiveStaff: "Bi-aktivno",
       cancel: "Mekh",
+      close: "Phandav",
       saving: "Arakhel...",
       update: "Arakh le paruvimata",
       create: "Tho and-i ekipa",
@@ -285,16 +292,28 @@ export function CreateWorkerModal({
   const [fullName, setFullName] = useState(worker?.full_name || "");
   const [email, setEmail] = useState(worker?.email || "");
   const [phone, setPhone] = useState(worker?.phone || "");
-  const [role, setRole] = useState(worker?.role || defaultRole || t.healthcareWorker);
+  const [role, setRole] = useState(worker?.role || defaultRole || "Healthcare Worker");
   const [department, setDepartment] = useState(worker?.department || defaultDepartment || "");
   const [county, setCounty] = useState(worker?.county || "");
   const [status, setStatus] = useState<WorkerStatus>(worker?.status || "active");
-  const countyRequired = isRomania && ["mediator", "doctor", "general practitioner"].includes(role.trim().toLowerCase());
-  const countySelectionRequired = countyRequired && (!isEditing || role !== worker?.role || Boolean(worker?.county));
+  const countyRequired =
+    isRomania && ["mediator", "doctor", "general practitioner"].includes(role.trim().toLowerCase());
+  const countySelectionRequired =
+    countyRequired && (!isEditing || role !== worker?.role || Boolean(worker?.county));
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape" && !isSubmitting) {
+        onClose();
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isSubmitting, onClose]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -307,7 +326,7 @@ export function CreateWorkerModal({
       full_name: fullName.trim(),
       email: email.trim().toLowerCase(),
       phone: phone.trim() || undefined,
-      role: role.trim() || t.healthcareWorker,
+      role: role.trim() || "Healthcare Worker",
       department: department.trim() || undefined,
       county: isRomania && countyRequired && county ? county : undefined,
       status,
@@ -346,7 +365,7 @@ export function CreateWorkerModal({
         full_name: payload.full_name,
         email: payload.email,
         phone: payload.phone || null,
-        role: payload.role || t.healthcareWorker,
+        role: payload.role || "Healthcare Worker",
         department: payload.department || null,
         county: payload.county || null,
         status: payload.status || "active",
@@ -358,7 +377,7 @@ export function CreateWorkerModal({
 
       setTimeout(() => {
         onClose();
-      }, 1000);
+      }, 900);
     } catch {
       setErrorMessage(t.errUnexpected);
     } finally {
@@ -366,119 +385,153 @@ export function CreateWorkerModal({
     }
   }
 
+  const fieldClass =
+    "min-h-11 w-full rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-3.5 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa]";
+  const labelClass = "mb-1.5 block text-sm font-medium text-[var(--panel-ink)]";
+
   return (
-    <div className="panel-scrim fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/50 p-0 sm:p-4">
-      <div className="app-sheet-slide-up relative w-full max-w-lg rounded-t-xl sm:rounded-xl border-t sm:border border-border bg-card p-5 sm:p-6 shadow-2xl max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto care-panel-bottom-bar">
-        {/* Mobile bottom sheet drag handle */}
-        <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border sm:hidden" />
-        <div className="flex items-center justify-between border-b border-border pb-4">
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-soft text-primary">
-              <StethoscopeIcon className="h-5 w-5" />
-            </span>
-            <div>
-              <h2 className="text-base font-bold text-foreground sm:text-lg">
-                {isEditing ? t.titleEdit : defaultRole === "Mediator" ? t.titleMediator : t.titleWorker}
-              </h2>
-              <p className="text-xs text-muted-foreground">
-                {!isEditing && defaultRole === "Mediator"
-                  ? t.subtitleMediator
-                  : t.subtitleWorker}
-              </p>
-            </div>
+    <div
+      className="panel-scrim fixed inset-0 z-50 flex items-end justify-center bg-[#0b132b]/60 p-0 sm:items-center sm:p-4"
+      onClick={(event) => {
+        if (event.target === event.currentTarget && !isSubmitting) {
+          onClose();
+        }
+      }}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`${baseId}-title`}
+        className="app-sheet-slide-up relative max-h-[92dvh] w-full max-w-lg overflow-y-auto rounded-t-2xl border border-[var(--panel-line)] bg-[var(--panel-surface)] p-5 text-[var(--panel-ink)] shadow-[0_24px_80px_rgba(11,19,43,0.28)] sm:max-h-[90vh] sm:rounded-2xl sm:p-6 care-panel-bottom-bar"
+      >
+        <div className="flex items-start justify-between gap-3 border-b border-[var(--panel-line)] pb-4">
+          <div className="min-w-0">
+            <h2
+              id={`${baseId}-title`}
+              className="text-lg font-semibold leading-snug text-[var(--panel-ink)]"
+            >
+              {isEditing
+                ? t.titleEdit
+                : defaultRole === "Mediator"
+                  ? t.titleMediator
+                  : t.titleWorker}
+            </h2>
+            <p className="mt-0.5 text-xs text-[var(--panel-muted)]">
+              {!isEditing && defaultRole === "Mediator"
+                ? t.subtitleMediator
+                : t.subtitleWorker}
+            </p>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+            aria-label={t.close}
+            className="inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg text-[var(--panel-muted)] transition-colors hover:bg-[var(--panel-selection)] hover:text-[var(--panel-ink)]"
           >
-            <CloseIcon className="h-5 w-5" />
+            <CloseIcon className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
 
         {errorMessage ? (
-          <div className="mt-4 rounded-xl bg-red-500/10 border border-red-500/20 p-3 text-xs font-medium text-red-600 dark:text-red-400">
+          <p
+            role="alert"
+            className="mt-4 rounded-lg border border-[#b91c1c]/30 bg-[#fef2f2] px-3.5 py-2.5 text-sm text-[#991b1b] dark:border-[#ffb4b4]/35 dark:bg-[#2c1519] dark:text-[#ffb4b4]"
+          >
             {errorMessage}
-          </div>
+          </p>
         ) : null}
 
         {saveSuccess ? (
-          <div className="mt-4 flex items-center gap-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs font-medium text-emerald-700 dark:text-emerald-400">
-            <CheckCircleIcon className="h-4 w-4" />
-            <span>{t.success}</span>
-          </div>
+          <p
+            role="status"
+            className="mt-4 rounded-lg border border-[var(--panel-line)] bg-[var(--panel-selection)] px-3.5 py-2.5 text-sm font-medium text-[var(--panel-ink)]"
+          >
+            {t.success}
+          </p>
         ) : null}
 
-        <form onSubmit={handleSubmit} className="mt-5 space-y-4 text-xs">
+        <form onSubmit={handleSubmit} className="mt-5 space-y-4">
           <div>
-            <label className="font-semibold text-foreground mb-1 block">
-              {t.fullName} <span className="text-red-500">*</span>
+            <label htmlFor={`${baseId}-name`} className={labelClass}>
+              {t.fullName} <span aria-hidden="true" className="text-[#b91c1c] dark:text-[#ffb4b4]">*</span>
             </label>
             <input
+              id={`${baseId}-name`}
               type="text"
-              required={countySelectionRequired}
+              required
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder={t.fullNamePh}
-              className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className={fieldClass}
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
             <div>
-              <label className="font-semibold text-foreground mb-1 block">
-                {t.email} <span className="text-red-500">*</span>
+              <label htmlFor={`${baseId}-email`} className={labelClass}>
+                {t.email} <span aria-hidden="true" className="text-[#b91c1c] dark:text-[#ffb4b4]">*</span>
               </label>
               <input
+                id={`${baseId}-email`}
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t.emailPh}
-                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={fieldClass}
               />
             </div>
 
             {isRomania && countyRequired ? (
               <div>
-                <label className="font-semibold text-foreground mb-1 block">
-                  {t.county} <span className="text-red-500">*</span>
+                <label htmlFor={`${baseId}-county`} className={labelClass}>
+                  {t.county}{" "}
+                  {countySelectionRequired ? (
+                    <span aria-hidden="true" className="text-[#b91c1c] dark:text-[#ffb4b4]">*</span>
+                  ) : null}
                 </label>
                 <select
-                  required
+                  id={`${baseId}-county`}
+                  required={countySelectionRequired}
                   value={county}
                   onChange={(e) => setCounty(e.target.value)}
-                  className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className={`${fieldClass} whitespace-nowrap`}
                 >
                   <option value="">{t.selectCounty}</option>
-                  {ROMANIAN_COUNTIES.map((countyName) => <option key={countyName} value={countyName}>{countyName}</option>)}
+                  {ROMANIAN_COUNTIES.map((countyName) => (
+                    <option key={countyName} value={countyName}>
+                      {countyName}
+                    </option>
+                  ))}
                 </select>
               </div>
             ) : null}
 
             <div>
-              <label className="font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${baseId}-phone`} className={labelClass}>
                 {t.phone}
               </label>
               <input
+                id={`${baseId}-phone`}
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder={t.phonePh}
-                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={fieldClass}
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
             <div>
-              <label className="font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${baseId}-role`} className={labelClass}>
                 {t.role}
               </label>
               <select
+                id={`${baseId}-role`}
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={`${fieldClass} whitespace-nowrap`}
               >
                 <option value="Healthcare Worker">{t.healthcareWorker}</option>
                 <option value="Doctor">{t.doctor}</option>
@@ -492,51 +545,49 @@ export function CreateWorkerModal({
             </div>
 
             <div>
-              <label className="font-semibold text-foreground mb-1 block">
+              <label htmlFor={`${baseId}-department`} className={labelClass}>
                 {t.department}
               </label>
               <input
+                id={`${baseId}-department`}
                 type="text"
                 value={department}
                 onChange={(e) => setDepartment(e.target.value)}
                 placeholder={t.deptPh}
-                className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={fieldClass}
               />
             </div>
           </div>
 
           <div>
-            <label className="font-semibold text-foreground mb-1 block">
+            <label htmlFor={`${baseId}-status`} className={labelClass}>
               {t.accountStatus}
             </label>
             <select
+              id={`${baseId}-status`}
               value={status}
               onChange={(e) => setStatus(e.target.value as WorkerStatus)}
-              className="w-full rounded-lg border border-border bg-background px-3.5 py-2 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className={`${fieldClass} whitespace-nowrap`}
             >
               <option value="active">{t.activeStaff}</option>
               <option value="inactive">{t.inactiveStaff}</option>
             </select>
           </div>
 
-          <div className="flex items-center justify-end gap-3 border-t border-border pt-4">
+          <div className="flex flex-wrap items-center justify-end gap-2.5 border-t border-[var(--panel-line)] pt-4">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-border bg-card px-4 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-4 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)]"
             >
               {t.cancel}
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="rounded-lg bg-primary px-5 py-2 text-xs font-bold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground shadow-2xs transition-colors"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg bg-[var(--color-sapphire)] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#28476f] disabled:cursor-default disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]"
             >
-              {isSubmitting
-                ? t.saving
-                : isEditing
-                ? t.update
-                : t.create}
+              {isSubmitting ? t.saving : isEditing ? t.update : t.create}
             </button>
           </div>
         </form>

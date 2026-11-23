@@ -2,12 +2,12 @@
 
 import {
   DownloadIcon,
-  HandHelpingIcon,
+  PlusIcon,
   RefreshIcon,
   SearchIcon,
-  StethoscopeIcon,
 } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { langToLocale } from "@/lib/i18n/panel-translations";
 import type { WorkerStatus } from "@/lib/types/worker";
 
 interface WorkersFilterBarProps {
@@ -15,6 +15,7 @@ interface WorkersFilterBarProps {
   onChangeSearchQuery: (value: string) => void;
   statusFilter: WorkerStatus | "all";
   onChangeStatusFilter: (value: WorkerStatus | "all") => void;
+  counts?: { all: number; active: number; inactive: number };
   onAddWorker: () => void;
   onAddMediator: () => void;
   onExportCSV: () => void;
@@ -23,17 +24,14 @@ interface WorkersFilterBarProps {
   isRefreshing?: boolean;
 }
 
-const statusFilters = [
-  { id: "all", label: "All Staff" },
-  { id: "active", label: "Active Staff" },
-  { id: "inactive", label: "Inactive Staff" },
-] as const;
+const STATUS_IDS = ["all", "active", "inactive"] as const;
 
 export function WorkersFilterBar({
   searchQuery,
   onChangeSearchQuery,
   statusFilter,
   onChangeStatusFilter,
+  counts,
   onAddWorker,
   onAddMediator,
   onExportCSV,
@@ -42,22 +40,22 @@ export function WorkersFilterBar({
   isRefreshing = false,
 }: WorkersFilterBarProps) {
   const { lang } = useLanguage();
+  const locale = langToLocale[lang];
   const t = {
-  ru: {
-      search: "Поиск по имени, электронной почте, телефону или должности",
+    ru: {
+      search: "Поиск по имени, почте, телефону или роли",
       addWorker: "Добавить сотрудника",
-      addMediator: "Добавить посредника",
-      addMediatorTitle: "Добавить аккаунт посредника",
-      exportCsv: "Экспортировать CSV",
+      addMediator: "Добавить медиатора",
+      addMediatorTitle: "Добавить аккаунт медиатора",
+      exportCsv: "Экспорт CSV",
       refreshTitle: "Обновить список сотрудников",
-      refreshing: "Освежающий...",
+      refreshing: "Обновление...",
       refresh: "Обновить",
-      staffStatus: "Статус",
+      staffStatus: "Статус персонала",
       all: "Весь персонал",
-      active: "Активный",
-      inactive: "Неактивный",
+      active: "Активные",
+      inactive: "Неактивные",
     },
-
     en: {
       search: "Search by name, email, phone or role",
       addWorker: "Add staff member",
@@ -67,7 +65,7 @@ export function WorkersFilterBar({
       refreshTitle: "Refresh staff list",
       refreshing: "Refreshing...",
       refresh: "Refresh",
-      staffStatus: "Status",
+      staffStatus: "Staff status",
       all: "All staff",
       active: "Active",
       inactive: "Inactive",
@@ -81,7 +79,7 @@ export function WorkersFilterBar({
       refreshTitle: "Actualizează lista personalului",
       refreshing: "Se actualizează...",
       refresh: "Actualizează",
-      staffStatus: "Status",
+      staffStatus: "Status personal",
       all: "Tot personalul",
       active: "Activ",
       inactive: "Inactiv",
@@ -95,7 +93,7 @@ export function WorkersFilterBar({
       refreshTitle: "Rifresko listën e stafit",
       refreshing: "Duke rifreskuar...",
       refresh: "Rifresko",
-      staffStatus: "Statusi",
+      staffStatus: "Statusi i stafit",
       all: "I gjithë stafi",
       active: "Aktiv",
       inactive: "Joaktiv",
@@ -109,21 +107,21 @@ export function WorkersFilterBar({
       refreshTitle: "Aggiorna elenco operatori",
       refreshing: "Aggiornamento...",
       refresh: "Aggiorna",
-      staffStatus: "Stato",
+      staffStatus: "Stato operatori",
       all: "Tutti gli operatori",
       active: "Attivi",
       inactive: "Inattivi",
     },
     hr: {
       search: "Pretraži po imenu, emailu, telefonu ili ulozi",
-      addWorker: "Dodaj člana osoblja",
+      addWorker: "Dodaj osoblje",
       addMediator: "Dodaj medijatora",
       addMediatorTitle: "Dodaj račun zdravstvenog medijatora",
       exportCsv: "Izvezi CSV",
       refreshTitle: "Osvježi popis osoblja",
       refreshing: "Osvježavanje...",
       refresh: "Osvježi",
-      staffStatus: "Status",
+      staffStatus: "Status osoblja",
       all: "Svo osoblje",
       active: "Aktivni",
       inactive: "Neaktivni",
@@ -137,63 +135,119 @@ export function WorkersFilterBar({
       refreshTitle: "Nevyar i lista e ekipaki",
       refreshing: "Nevyarel...",
       refresh: "Nevyar",
-      staffStatus: "Statuso",
+      staffStatus: "Statuso e ekipako",
       all: "Sasti ekipa",
       active: "Aktivne",
       inactive: "Bi-aktivne",
     },
   }[lang];
 
-  const localizedStatusFilters = statusFilters.map((item) => ({
-    ...item,
-    label: item.id === "all" ? t.all : item.id === "active" ? t.active : t.inactive,
+  const statusTabs = STATUS_IDS.map((id) => ({
+    id,
+    label: id === "all" ? t.all : id === "active" ? t.active : t.inactive,
+    count: counts ? counts[id] : undefined,
   }));
 
+  const outlineBtn =
+    "inline-flex min-h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-3.5 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]";
+
   return (
-    <div className="mb-6 flex flex-col gap-4 rounded-xl border border-border bg-card p-4 sm:p-5">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="relative flex-1">
-          <SearchIcon className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+    <div className="pt-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <label className="flex min-h-11 min-w-0 flex-1 basis-64 items-center gap-2 rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-3 text-[var(--panel-muted)] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[var(--color-sapphire)] dark:focus-within:outline-[#bad7fa]">
+          <SearchIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
           <input
-            type="text"
+            type="search"
             value={searchQuery}
             onChange={(e) => onChangeSearchQuery(e.target.value)}
+            aria-label={t.search}
             placeholder={t.search}
-            className="w-full rounded-lg border border-border bg-white pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="min-h-11 w-full min-w-0 bg-transparent text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] outline-none"
           />
-        </div>
+        </label>
 
         <div className="flex flex-wrap items-center gap-2">
-          <select
-            className="crm-input crm-input-auto !mt-0"
-            aria-label={t.staffStatus}
-            value={statusFilter}
-            onChange={(e) => onChangeStatusFilter(e.target.value as WorkerStatus | "all")}
+          <button
+            type="button"
+            onClick={onAddWorker}
+            className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-[var(--color-sapphire)] px-4 text-sm font-semibold text-white transition-colors hover:bg-[#28476f]"
           >
-            {localizedStatusFilters.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
-          </select>
-
-          <button type="button" onClick={onAddWorker} className="crm-button crm-primary">
-            <StethoscopeIcon className="h-4 w-4" />
+            <PlusIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span>{t.addWorker}</span>
           </button>
 
-          <button type="button" onClick={onAddMediator} title={t.addMediatorTitle} className="crm-button">
-            <HandHelpingIcon className="h-4 w-4" />
+          <button
+            type="button"
+            onClick={onAddMediator}
+            title={t.addMediatorTitle}
+            className={outlineBtn}
+          >
             <span>{t.addMediator}</span>
           </button>
 
-          <button type="button" onClick={onExportCSV} disabled={exportDisabled} aria-label={t.exportCsv} className="crm-button">
-            <DownloadIcon className="h-4 w-4" />
+          <button
+            type="button"
+            onClick={onExportCSV}
+            disabled={exportDisabled}
+            aria-label={t.exportCsv}
+            className={outlineBtn}
+          >
+            <DownloadIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span className="hidden sm:inline">{t.exportCsv}</span>
           </button>
 
           {onRefresh ? (
-            <button type="button" onClick={onRefresh} disabled={isRefreshing} aria-label={t.refreshTitle} title={t.refreshTitle} className="crm-button">
-              <RefreshIcon className={`h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`} />
+            <button
+              type="button"
+              onClick={onRefresh}
+              disabled={isRefreshing}
+              aria-label={isRefreshing ? t.refreshing : t.refreshTitle}
+              title={t.refreshTitle}
+              className="inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]"
+            >
+              <RefreshIcon
+                className={`h-4 w-4 shrink-0 ${isRefreshing ? "animate-spin" : ""}`}
+                aria-hidden="true"
+              />
             </button>
           ) : null}
         </div>
+      </div>
+
+      <div
+        role="group"
+        aria-label={t.staffStatus}
+        className="mt-3 flex flex-nowrap gap-6 overflow-x-auto border-b border-[var(--panel-line)]"
+      >
+        {statusTabs.map((item) => {
+          const active = statusFilter === item.id;
+          return (
+            <button
+              key={item.id}
+              type="button"
+              aria-pressed={active}
+              onClick={() => onChangeStatusFilter(item.id)}
+              className={`relative inline-flex min-h-12 shrink-0 items-center gap-2 whitespace-nowrap py-3 text-sm transition-colors ${
+                active
+                  ? "font-semibold text-[var(--color-sapphire)] dark:text-[#bad7fa]"
+                  : "font-medium text-[var(--panel-muted)] hover:text-[var(--panel-ink)]"
+              }`}
+            >
+              <span>{item.label}</span>
+              {typeof item.count === "number" ? (
+                <span className="text-xs font-normal tabular-nums text-[var(--panel-muted)]">
+                  {item.count.toLocaleString(locale)}
+                </span>
+              ) : null}
+              {active ? (
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-0.5 bg-[var(--color-sapphire)] dark:bg-[#bad7fa]"
+                />
+              ) : null}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

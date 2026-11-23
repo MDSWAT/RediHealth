@@ -7,7 +7,7 @@ import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const generateMetadata = createPageMetadata("institutes", "Medical institutes - RediHealth Panel", "");
+export const generateMetadata = createPageMetadata("institutes", "Medical institutes - RediHealth panel", "");
 
 export default async function MedicalInstitutesPage() {
   const session = await auth();

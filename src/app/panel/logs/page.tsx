@@ -7,7 +7,7 @@ import type { ActivityLogItem } from "@/lib/types/activity-log";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const generateMetadata = createPageMetadata("logs", "Activity Logs - RediHealth Panel", "");
+export const generateMetadata = createPageMetadata("logs", "Activity log - RediHealth panel", "");
 
 type ActivityLogRow = RowDataPacket & {
   id: string | number;
