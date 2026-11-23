@@ -349,7 +349,7 @@ export function CreatePatientModal({
                     : "text-[var(--panel-muted)]"
                 }`}
               >
-                <span className="shrink-0 tabular-nums [font-feature-settings:'zero'_0] font-semibold">
+                <span className="shrink-0 font-display tabular-nums font-semibold">
                   {index + 1}.
                 </span>
                 <span>{label}</span>
@@ -386,8 +386,8 @@ export function CreatePatientModal({
           if (event.target instanceof HTMLInputElement || event.target instanceof HTMLSelectElement || event.target instanceof HTMLTextAreaElement) event.target.setCustomValidity("");
         }} className="min-h-0 flex-1 space-y-5 overflow-y-auto overscroll-contain p-5 sm:p-6">
           {!isEditing && <div>
-            <h3 ref={stepHeadingRef} tabIndex={-1} className="text-xl font-bold tracking-tight text-[var(--panel-ink)] outline-none">{wizard.steps[step]}</h3>
-            <p className="mt-1 text-sm leading-relaxed text-[var(--panel-muted)]">{wizard.hints[step]}</p>
+            <h3 ref={stepHeadingRef} tabIndex={-1} className="sr-only">{wizard.steps[step]}</h3>
+            <p className="text-sm leading-relaxed text-[var(--panel-muted)]">{wizard.hints[step]}</p>
           </div>}
           <div data-patient-contact hidden={!isEditing && step !== 0} className="space-y-4">
           {isEditing &&
@@ -411,7 +411,7 @@ export function CreatePatientModal({
                 </select>
               </div>
             ) : null}
-            <div>
+            <div className={isRomania ? undefined : "sm:col-span-2"}>
               <label htmlFor={`${formId}-name`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">
                 {t.fullName} <span aria-hidden="true" className="text-[#b91c1c] dark:text-[#ffb4b4]">*</span>
               </label>
@@ -436,11 +436,11 @@ export function CreatePatientModal({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder={t.phonePh}
-                className="min-h-11 w-full rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3.5 py-2 text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="min-h-11 w-full rounded-lg border border-[var(--color-border-control,#8a94a6)] bg-[var(--panel-surface)] px-3.5 py-2 text-sm font-display tabular-nums text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
 
-            <div className="sm:col-span-2">
+            <div>
               <label htmlFor={`${formId}-email`} className="mb-1 block text-xs font-semibold text-[var(--panel-ink)]">
                 {t.email} <span aria-hidden="true" className="text-[#b91c1c] dark:text-[#ffb4b4]">*</span>
               </label>
@@ -565,7 +565,7 @@ export function CreatePatientModal({
             <section aria-labelledby={`${formId}-team`} className="space-y-4 border-t border-[var(--panel-line)] pt-5">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0 flex-1"><h4 id={`${formId}-team`} className="text-sm font-semibold text-[var(--panel-ink)]">{wizard.team}</h4><p className="mt-0.5 text-xs leading-relaxed text-[var(--panel-muted)]">{wizard.teamHint}</p></div>
-                  <span aria-live="polite" className="shrink-0 whitespace-nowrap text-xs font-medium tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{assignedWorkerIds.length} {crm.selected}</span>
+                  <span aria-live="polite" className="shrink-0 whitespace-nowrap text-xs font-medium font-display tabular-nums text-[var(--panel-muted)]">{assignedWorkerIds.length} {crm.selected}</span>
                 </div>
                 {assignedWorkerIds.length > 0 ? (
                   <div className="flex flex-wrap gap-2">
@@ -646,7 +646,7 @@ export function CreatePatientModal({
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="break-words text-xl font-bold text-[var(--panel-ink)]">{fullName}</p>
-                  <p className="mt-1 break-all text-sm text-[var(--panel-ink)]"><span className="tabular-nums [font-feature-settings:'zero'_0]">{phone}</span> · {email}</p>
+                  <p className="mt-1 break-all text-sm text-[var(--panel-ink)]"><span className="font-display tabular-nums">{phone}</span> · {email}</p>
                   {county && <p className="mt-1 text-sm text-[var(--panel-muted)]">{county}</p>}
                 </div>
                 <button type="button" onClick={() => goToStep(0)} className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap px-2 text-sm font-semibold text-primary hover:underline dark:text-[#bad7fa]">{wizard.edit}</button>
@@ -665,7 +665,7 @@ export function CreatePatientModal({
                   [wizard.gps, intake.location ? `${intake.location.latitude.toFixed(6)}, ${intake.location.longitude.toFixed(6)}` : ""],
                 ]).map(([label, value]) => <div key={label} className="min-w-0"><dt className="text-xs font-medium text-[var(--panel-muted)]">{label}</dt><dd className="mt-1 whitespace-pre-wrap break-words text-[var(--panel-ink)]">{value || wizard.empty}</dd></div>)}
               </dl>
-              {intake.documents.length > 0 && <div className="mt-4 border-t border-[var(--panel-line)] pt-4"><h4 className="text-xs font-medium text-[var(--panel-muted)]">{wizard.documents} (<span className="tabular-nums [font-feature-settings:'zero'_0]">{intake.documents.length}</span>)</h4><ul className="mt-2 divide-y divide-[var(--panel-line)] border-t border-[var(--panel-line)]">{intake.documents.map((document) => <li key={document.id} className="break-words py-2 text-sm text-[var(--panel-ink)]">{document.name} · <span className="text-[var(--panel-muted)]">{document.category === "identity" ? intakeCopy.identity : intakeCopy.medical}</span></li>)}</ul></div>}
+              {intake.documents.length > 0 && <div className="mt-4 border-t border-[var(--panel-line)] pt-4"><h4 className="text-xs font-medium text-[var(--panel-muted)]">{wizard.documents} (<span className="font-display tabular-nums">{intake.documents.length}</span>)</h4><ul className="mt-2 divide-y divide-[var(--panel-line)] border-t border-[var(--panel-line)]">{intake.documents.map((document) => <li key={document.id} className="break-words py-2 text-sm text-[var(--panel-ink)]">{document.name} · <span className="text-[var(--panel-muted)]">{document.category === "identity" ? intakeCopy.identity : intakeCopy.medical}</span></li>)}</ul></div>}
             </section>
           </div>}
         </form>

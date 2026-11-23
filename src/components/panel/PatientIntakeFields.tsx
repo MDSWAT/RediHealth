@@ -100,7 +100,7 @@ export function PatientIntakeFields({ value, onChange, disabled, onBusyChange }:
         <span>{locating ? t.locating : t.useGps}</span>
       </button>
       {value.location && <div role="status" className="flex flex-wrap items-center justify-between gap-2 border-t border-[var(--panel-line)] pt-3 text-xs text-[var(--panel-ink)]">
-        <span className="tabular-nums [font-feature-settings:'zero'_0]">{value.location.latitude.toFixed(6)}, {value.location.longitude.toFixed(6)}<br /><span className="text-[var(--panel-muted)]">{t.accuracy}: {Math.round(value.location.accuracy)} m</span></span>
+        <span className="font-display tabular-nums">{value.location.latitude.toFixed(6)}, {value.location.longitude.toFixed(6)}<br /><span className="text-[var(--panel-muted)]">{t.accuracy}: {Math.round(value.location.accuracy)} m</span></span>
         <button type="button" disabled={busy} onClick={() => onChange({ ...value, location: null })} className="inline-flex min-h-11 items-center whitespace-nowrap px-2 font-semibold text-[#b91c1c] hover:underline dark:text-[#ffb4b4]">{t.remove}</button>
       </div>}
       {gpsError && <p role="alert" className="text-sm text-[#b91c1c] dark:text-[#ffb4b4]">{gpsError}</p>}

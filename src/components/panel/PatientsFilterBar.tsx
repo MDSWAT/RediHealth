@@ -347,7 +347,7 @@ export function PatientsFilterBar({
             <FilterIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
             <span>{copy.filters}</span>
             {activeAdvancedCount > 0 ? (
-              <span className="tabular-nums [font-feature-settings:'zero'_0]">
+              <span className="font-display tabular-nums">
                 ({activeAdvancedCount})
               </span>
             ) : null}

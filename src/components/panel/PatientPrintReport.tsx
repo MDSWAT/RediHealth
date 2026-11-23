@@ -126,10 +126,10 @@ export function PatientPrintReport({
 
           <div className="flex items-start gap-3.5">
             <div className="text-right text-xs text-slate-600">
-              <p className="tabular-nums [font-feature-settings:'zero'_0] font-semibold text-slate-900">
+              <p className="font-display tabular-nums font-semibold text-slate-900">
                 {t.recordId}: #{patient.id}
               </p>
-              <p className="mt-0.5 tabular-nums [font-feature-settings:'zero'_0]">
+              <p className="mt-0.5 font-display tabular-nums">
                 {t.reportDate}: {formatPanelDate(new Date(), langToLocale[lang], "full")}
               </p>
               <p className="mt-1 text-[11px] text-slate-500">{t.qrSealHint}</p>
@@ -163,7 +163,7 @@ export function PatientPrintReport({
             </div>
             <div className="min-w-0">
               <dt className="font-semibold text-slate-500">{t.phone}</dt>
-              <dd className="mt-0.5 tabular-nums [font-feature-settings:'zero'_0] font-medium text-slate-800 [overflow-wrap:anywhere]">
+              <dd className="mt-0.5 font-display tabular-nums font-medium text-slate-800 [overflow-wrap:anywhere]">
                 {patient.phone || t.notSpecified}
               </dd>
             </div>
@@ -177,7 +177,7 @@ export function PatientPrintReport({
             ) : null}
             <div className="min-w-0">
               <dt className="font-semibold text-slate-500">{t.dob}</dt>
-              <dd className="mt-0.5 tabular-nums [font-feature-settings:'zero'_0] font-medium text-slate-800">
+              <dd className="mt-0.5 font-display tabular-nums font-medium text-slate-800">
                 {patient.date_of_birth ? formatDay(patient.date_of_birth) : t.notSpecified}
               </dd>
             </div>
@@ -234,7 +234,7 @@ export function PatientPrintReport({
               <tbody className="divide-y divide-slate-200">
                 {followups.map((item) => (
                   <tr key={item.id} className="print-block">
-                    <td className="whitespace-nowrap py-2.5 pr-3 tabular-nums [font-feature-settings:'zero'_0] font-medium text-slate-800">
+                    <td className="whitespace-nowrap py-2.5 pr-3 font-display tabular-nums font-medium text-slate-800">
                       {formatDateKey(item.date, langToLocale[lang])}
                       {item.time ? ` ${followupTime(item, "", viewerZone)}` : ""}
                     </td>
@@ -279,7 +279,7 @@ export function PatientPrintReport({
         {!compactHandout && photos.length > 0 ? (
           <section className="mt-6">
             <h2 className="mb-3 border-b border-slate-200 pb-1.5 text-sm font-bold text-slate-800">
-              {t.s5} (<span className="tabular-nums [font-feature-settings:'zero'_0]">{photos.length}</span>)
+              {t.s5} (<span className="font-display tabular-nums">{photos.length}</span>)
             </h2>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
               {photos.map((photo) => (
@@ -295,7 +295,7 @@ export function PatientPrintReport({
                   <figcaption>
                     <p className="truncate text-[11px] font-semibold text-slate-800">{photo.name}</p>
                     {photo.date ? (
-                      <p className="tabular-nums [font-feature-settings:'zero'_0] text-[10px] text-slate-500">
+                      <p className="font-display tabular-nums text-[10px] text-slate-500">
                         {formatDay(photo.date)}
                       </p>
                     ) : null}

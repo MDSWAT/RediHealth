@@ -145,7 +145,7 @@ export function PatientPhotosTab({
           <h2>{t.title}</h2>
           <p>{design.photoHint}</p>
         </div>
-        <span className="patient-section-count tabular-nums [font-feature-settings:'zero'_0]">{photos.length}</span>
+        <span className="patient-section-count font-display tabular-nums">{photos.length}</span>
       </div>
     ) : null}
     {photos.length > 0 ? (

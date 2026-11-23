@@ -29,13 +29,13 @@ export function PatientIntakeSummary({ intake }: { intake?: PatientIntake | null
   return <section className="crm-card space-y-4">
     {intake.location && <div>
       <h2>{t.location}</h2>
-      <p className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-ink)]">{intake.location.latitude.toFixed(6)}, {intake.location.longitude.toFixed(6)}</p>
-      <p className="mt-0.5 text-xs tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{t.accuracy}: {Math.round(intake.location.accuracy)} m</p>
+      <p className="text-sm font-display tabular-nums text-[var(--panel-ink)]">{intake.location.latitude.toFixed(6)}, {intake.location.longitude.toFixed(6)}</p>
+      <p className="mt-0.5 text-xs font-display tabular-nums text-[var(--panel-muted)]">{t.accuracy}: {Math.round(intake.location.accuracy)} m</p>
     </div>}
     {intake.has_documents && <div>
       <div className="mb-3 flex items-center justify-between gap-3">
         <h2 className="!mb-0">{t.documents}</h2>
-        <span className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{intake.documents.length}</span>
+        <span className="text-sm font-display tabular-nums text-[var(--panel-muted)]">{intake.documents.length}</span>
       </div>
       {intake.documents.length === 0 ? (
         <p className="text-sm text-[var(--panel-muted)]">{t.hasDocuments}</p>

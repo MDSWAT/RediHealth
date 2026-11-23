@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
-import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, DownloadIcon, ImageIcon, TrashIcon } from "@/components/ui/icons";
+import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, DownloadIcon, FileTextIcon, ImageIcon, TrashIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { patientDesignTranslations } from "@/lib/i18n/patient-design-translations";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
@@ -23,10 +23,56 @@ function isSafeMediaSource(src: string): boolean {
 
 function MediaImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
   const { lang } = useLanguage();
+  const imgRef = useRef<HTMLImageElement>(null);
   const [failedSource, setFailedSource] = useState<string | null>(null);
+  const [tinyPlaceholderSource, setTinyPlaceholderSource] = useState<string | null>(null);
   const unsafe = !isSafeMediaSource(src);
-  return unsafe || failedSource === src ? <span className="patient-media-unavailable" role="img" aria-label={alt}><ImageIcon className="h-6 w-6" aria-hidden="true" /><span>{patientDesignTranslations[lang].unavailable}</span></span>
-    : <img src={src} alt={alt} className={className} loading="lazy" onError={() => setFailedSource(src)} />;
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img || !img.complete) return;
+    if (img.naturalWidth > 0 && img.naturalWidth <= 4 && img.naturalHeight <= 4) {
+      queueMicrotask(() => setTinyPlaceholderSource(src));
+    }
+  }, [src]);
+
+  if (unsafe || failedSource === src) {
+    return (
+      <span className="patient-media-unavailable" role="img" aria-label={alt}>
+        <ImageIcon className="h-6 w-6" aria-hidden="true" />
+        <span>{patientDesignTranslations[lang].unavailable}</span>
+      </span>
+    );
+  }
+
+  if (tinyPlaceholderSource === src) {
+    return (
+      <span
+        className="flex h-full min-h-[2.5rem] w-full min-w-[2.5rem] items-center justify-center rounded-md bg-[var(--panel-subtle)] text-[var(--panel-muted)]"
+        role="img"
+        aria-label={alt}
+      >
+        <FileTextIcon className="h-6 w-6" aria-hidden="true" />
+      </span>
+    );
+  }
+
+  return (
+    <img
+      ref={imgRef}
+      src={src}
+      alt={alt}
+      className={className}
+      loading="lazy"
+      onLoad={(event) => {
+        const { naturalWidth, naturalHeight } = event.currentTarget;
+        if (naturalWidth > 0 && naturalWidth <= 4 && naturalHeight <= 4) {
+          setTinyPlaceholderSource(src);
+        }
+      }}
+      onError={() => setFailedSource(src)}
+    />
+  );
 }
 
 export function PatientAvatar({ name, src, large = false, onPreview }: { name: string; src?: string | null; large?: boolean; onPreview?: () => void }) {
@@ -68,7 +114,7 @@ export function PatientImageViewer({ images, index, onClose }: { images: Patient
     if ((event.target as HTMLElement).matches("input, textarea, select")) return;
     if (images.length > 1 && ["ArrowLeft", "ArrowRight"].includes(event.key)) { event.preventDefault(); move(event.key === "ArrowLeft" ? -1 : 1); }
   }}>
-    <header className="patient-viewer-header"><div className="min-w-0"><h2 id={titleId}>{image.name}</h2><p aria-live="polite" className="tabular-nums [font-feature-settings:'zero'_0]">{Math.min(current + 1, images.length)} / {images.length}</p></div><button type="button" className="patient-media-button whitespace-nowrap" onClick={onClose} aria-label={t.close} autoFocus><CloseIcon className="h-5 w-5" aria-hidden="true" /></button></header>
+    <header className="patient-viewer-header"><div className="min-w-0"><h2 id={titleId}>{image.name}</h2><p aria-live="polite" className="font-display tabular-nums">{Math.min(current + 1, images.length)} / {images.length}</p></div><button type="button" className="patient-media-button whitespace-nowrap" onClick={onClose} aria-label={t.close} autoFocus><CloseIcon className="h-5 w-5" aria-hidden="true" /></button></header>
     <div ref={stage} className={`patient-viewer-stage${zoomed ? " is-zoomed" : ""}`}><MediaImage key={image.id} src={image.data_url} alt={image.name} /></div>
     <footer className="patient-viewer-footer">
       <div className="patient-viewer-controls">{images.length > 1 && <><button type="button" className="patient-media-button whitespace-nowrap" onClick={() => move(-1)} aria-label={t.previous}><ChevronLeftIcon className="h-5 w-5" aria-hidden="true" /></button><button type="button" className="patient-media-button whitespace-nowrap" onClick={() => move(1)} aria-label={t.next}><ChevronRightIcon className="h-5 w-5" aria-hidden="true" /></button></>}<button type="button" className="patient-media-button whitespace-nowrap" aria-pressed={zoomed} onClick={() => { setZoomed(!zoomed); stage.current?.scrollTo(0, 0); }}>{zoomed ? t.fit : t.zoom}</button>{safeDownloadUrl && <a className="patient-media-button whitespace-nowrap" href={safeDownloadUrl} download={safeDownloadName}><DownloadIcon className="h-4 w-4 shrink-0" aria-hidden="true" /><span>{t.download}</span></a>}</div>
@@ -84,7 +130,7 @@ export function PatientPhotoGallery({ photos, onDelete, busy = false }: { photos
   return <>
     <div className="patient-photo-gallery">{photos.map((photo, index) => <figure key={photo.id} className="patient-photo-tile">
       <button type="button" className="patient-photo-thumbnail" onClick={() => setPreview(index)} aria-label={`${t.view}: ${photo.name}`}><MediaImage src={photo.data_url} alt={photo.name} /><span className="patient-photo-open whitespace-nowrap"><ImageIcon className="h-4 w-4 shrink-0" aria-hidden="true" />{t.view}</span></button>
-      <figcaption><div className="patient-photo-caption"><div className="min-w-0"><p>{photo.name}</p>{photo.date && <time dateTime={photo.date} className="tabular-nums [font-feature-settings:'zero'_0]">{formatPanelDate(photo.date.length === 10 ? `${photo.date}T12:00:00` : photo.date, langToLocale[lang], "date")}</time>}</div>{onDelete && <button type="button" className="patient-media-button patient-photo-delete whitespace-nowrap dark:text-[#ffb4b4]" disabled={busy} onClick={() => onDelete(photo.id)} aria-label={`${crmTranslations[lang].delete}: ${photo.name}`}><TrashIcon className="h-4 w-4" aria-hidden="true" /></button>}</div>{photo.notes && <p className="patient-photo-note">{photo.notes}</p>}</figcaption>
+      <figcaption><div className="patient-photo-caption"><div className="min-w-0"><p>{photo.name}</p>{photo.date && <time dateTime={photo.date} className="font-display tabular-nums">{formatPanelDate(photo.date.length === 10 ? `${photo.date}T12:00:00` : photo.date, langToLocale[lang], "date")}</time>}</div>{onDelete && <button type="button" className="patient-media-button patient-photo-delete whitespace-nowrap dark:text-[#ffb4b4]" disabled={busy} onClick={() => onDelete(photo.id)} aria-label={`${crmTranslations[lang].delete}: ${photo.name}`}><TrashIcon className="h-4 w-4" aria-hidden="true" /></button>}</div>{photo.notes && <p className="patient-photo-note">{photo.notes}</p>}</figcaption>
     </figure>)}</div>
     {preview !== null && photos.length > 0 && <PatientImageViewer images={photos} index={preview} onClose={() => setPreview(null)} />}
   </>;

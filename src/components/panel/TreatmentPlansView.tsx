@@ -18,7 +18,7 @@ export function TreatmentPlansView({ plan }: { plan?: TreatmentPlan | null }) {
       <header className="mb-4 flex flex-wrap items-start justify-between gap-2">
         <div>
           <h3 className="font-semibold">{entry.title || t.legacy}</h3>
-          <p className="mt-1 text-xs tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted,var(--color-muted-foreground))]">{entry.start_date ? `${formatDateKey(entry.start_date, langToLocale[lang])} – ${entry.end_date ? formatDateKey(entry.end_date, langToLocale[lang]) : t.undated}` : t.undated}</p>
+          <p className="mt-1 text-xs font-display tabular-nums text-[var(--panel-muted,var(--color-muted-foreground))]">{entry.start_date ? `${formatDateKey(entry.start_date, langToLocale[lang])} – ${entry.end_date ? formatDateKey(entry.end_date, langToLocale[lang]) : t.undated}` : t.undated}</p>
         </div>
         <span className="whitespace-nowrap text-xs font-medium text-[var(--panel-muted,var(--color-muted-foreground))]">{t[treatmentStatus(entry, localDateKey())]}</span>
       </header>

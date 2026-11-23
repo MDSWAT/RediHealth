@@ -329,7 +329,7 @@ export function TreatmentPlanEditor({
           <div className="mt-5 border-t border-[var(--panel-line)] pt-5">
             <div className="mb-3 flex items-center justify-between gap-3">
               <p className="text-sm font-semibold text-[var(--panel-ink)]">{t.attached}</p>
-              <span className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{treatmentPlan.photos.length}</span>
+              <span className="text-sm font-display tabular-nums text-[var(--panel-muted)]">{treatmentPlan.photos.length}</span>
             </div>
             <PatientPhotoGallery photos={treatmentPlan.photos} onDelete={onDeleteTpPhoto} busy={isSavingTreatment} />
           </div>

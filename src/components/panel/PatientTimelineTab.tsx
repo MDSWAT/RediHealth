@@ -35,7 +35,7 @@ export function PatientTimelineTab({ patient, followups, photos, compact = false
   return <section className="crm-card">
     <div className="mb-3 flex items-center justify-between gap-3">
       <h2 className="!mb-0">{compact ? t.recentActivity : t.history}</h2>
-      <span className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{events.length}</span>
+      <span className="text-sm font-display tabular-nums text-[var(--panel-muted)]">{events.length}</span>
     </div>
     <div className="divide-y divide-[var(--panel-line)]">
       {visibleEvents.map((event) => <article key={event.id} className="py-4 first:pt-1 last:pb-0">
@@ -43,13 +43,13 @@ export function PatientTimelineTab({ patient, followups, photos, compact = false
           <h3 className="text-sm font-medium text-[var(--panel-ink)]">{event.title}</h3>
           {event.followup && <span className={`whitespace-nowrap text-xs ${event.followup.status === "scheduled" ? "font-medium text-[var(--panel-ink)]" : "text-[var(--panel-muted)]"}`}>{followupStatusLabel(event.followup.status, t)}</span>}
         </div>
-        <p className="mt-1 text-xs tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{event.followup ? followupLabel(event.followup, langToLocale[lang], t.allDay, viewerZone) : formatPanelDate(event.date.length === 10 ? `${event.date}T12:00:00` : event.date, langToLocale[lang], "date")}</p>
+        <p className="mt-1 text-xs font-display tabular-nums text-[var(--panel-muted)]">{event.followup ? followupLabel(event.followup, langToLocale[lang], t.allDay, viewerZone) : formatPanelDate(event.date.length === 10 ? `${event.date}T12:00:00` : event.date, langToLocale[lang], "date")}</p>
         {!compact && <>
           {event.note && <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-[var(--panel-ink)]">{event.note}</p>}
           {event.photo && <PatientPhotoTrigger photo={event.photo} />}
           {event.followup && <>
             {event.followup.completion_notes && <div className="mt-3"><h4 className="text-xs font-medium text-[var(--panel-muted)]">{t.completionNotes}</h4><p className="mt-1 whitespace-pre-wrap text-sm text-[var(--panel-ink)]">{event.followup.completion_notes}</p></div>}
-            {event.followup.completed_at && <p className="mt-2 text-xs tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{t.itemCompleted}: {formatPanelDate(event.followup.completed_at, langToLocale[lang], "dateTime")}</p>}
+            {event.followup.completed_at && <p className="mt-2 text-xs font-display tabular-nums text-[var(--panel-muted)]">{t.itemCompleted}: {formatPanelDate(event.followup.completed_at, langToLocale[lang], "dateTime")}</p>}
             {event.followup.completion_photos?.map((photo) => <PatientPhotoTrigger key={photo.id} photo={photo} />)}
             {(event.followup.meeting_notes || event.followup.meeting_transcript) && <details className="mt-3">
               <summary className="inline-flex min-h-11 cursor-pointer items-center whitespace-nowrap text-sm font-medium text-primary hover:underline dark:text-[#bad7fa]">{t.consultationNotes}</summary>

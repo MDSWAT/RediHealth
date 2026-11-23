@@ -167,17 +167,21 @@ export function PatientsDashboard({
             </div>
           ) : null}
 
-          <header className="patient-directory-header">
-            <div className="min-w-0 space-y-1.5">
+          <header className="patient-directory-header mb-5!">
+            <div className="min-w-0 space-y-1">
               <h1 className="text-2xl font-bold tracking-tight text-[var(--panel-ink)] sm:text-[1.875rem]">
                 {copy.patientTitle}
               </h1>
-              <p className="max-w-2xl text-[15px] leading-relaxed text-[var(--panel-muted)]">
-                {copy.patientSubtitle}
-              </p>
-              <p className="patient-directory-sync min-h-[1.125rem] tabular-nums [font-feature-settings:'zero'_0]">
-                {syncedTimeLabel ? `${copy.syncedLabel} ${syncedTimeLabel}` : ""}
-              </p>
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+                <p className="text-[15px] leading-relaxed text-[var(--panel-muted)]">
+                  {copy.patientSubtitle}
+                </p>
+                {syncedTimeLabel ? (
+                  <p className="patient-directory-sync font-display tabular-nums sm:border-l sm:border-[var(--panel-line)] sm:pl-3">
+                    {copy.syncedLabel} {syncedTimeLabel}
+                  </p>
+                ) : null}
+              </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-2.5">
@@ -232,7 +236,7 @@ export function PatientsDashboard({
                       }`}
                     >
                       <span className="text-sm font-medium">{item.label}</span>
-                      <span className="text-[0.8125rem] font-normal tabular-nums [font-feature-settings:'zero'_0]">
+                      <span className="text-[0.8125rem] font-normal font-display tabular-nums">
                         {item.count}
                       </span>
                     </button>

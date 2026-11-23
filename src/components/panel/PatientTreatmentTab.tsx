@@ -33,7 +33,7 @@ export function PatientTreatmentTab(props: Props) {
       <div className="min-w-0">
         <div className="flex items-baseline gap-2.5">
           <h2 className="text-lg font-semibold text-[var(--panel-ink)]">{t.title}</h2>
-          <span className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{entries.length}</span>
+          <span className="text-sm font-display tabular-nums text-[var(--panel-muted)]">{entries.length}</span>
         </div>
         <p className="mt-1 text-sm text-[var(--panel-muted)]">{t.subtitle}</p>
       </div>
@@ -55,7 +55,7 @@ export function PatientTreatmentTab(props: Props) {
               setSelectedId(entry.id);
             }}>
               <span className="block break-words text-sm font-semibold text-[var(--panel-ink)]">{entry.title || (entry.id === "legacy-treatment" ? t.legacy : t.newPlan)}</span>
-              <span className="mt-1 block text-xs tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{entry.start_date ? `${formatDateKey(entry.start_date, langToLocale[lang])} – ${entry.end_date ? formatDateKey(entry.end_date, langToLocale[lang]) : t.undated}` : t.undated}</span>
+              <span className="mt-1 block text-xs font-display tabular-nums text-[var(--panel-muted)]">{entry.start_date ? `${formatDateKey(entry.start_date, langToLocale[lang])} – ${entry.end_date ? formatDateKey(entry.end_date, langToLocale[lang]) : t.undated}` : t.undated}</span>
               <span className={`mt-1.5 inline-block text-xs ${status === "active" ? "font-medium text-[var(--panel-ink)]" : "text-[var(--panel-muted)]"}`}>{t[status]}</span>
             </button>
             <div className="mt-2">

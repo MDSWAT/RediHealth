@@ -209,20 +209,20 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
             <h1 className="break-words text-2xl font-bold text-[var(--panel-ink)]">{patient.full_name}</h1>
             <div aria-label={t.contact} className="mt-2 space-y-1 text-sm">
               <div className="flex flex-wrap gap-x-4 gap-y-1">
-                <a className="tabular-nums [font-feature-settings:'zero'_0] text-primary dark:text-[#bad7fa]" href={`tel:${patient.phone}`}>{patient.phone}</a>
+                <a className="font-display tabular-nums text-primary dark:text-[#bad7fa]" href={`tel:${patient.phone}`}>{patient.phone}</a>
                 <a className="min-w-0 break-all text-primary dark:text-[#bad7fa]" href={`mailto:${patient.email}`}>{patient.email}</a>
               </div>
-              {patient.date_of_birth && <p className="tabular-nums [font-feature-settings:'zero'_0]">{fields.dob}: {formatDay(patient.date_of_birth)}</p>}
+              {patient.date_of_birth && <p className="font-display tabular-nums">{fields.dob}: {formatDay(patient.date_of_birth)}</p>}
               {patient.address && <p className="break-words">{patient.address}</p>}
             </div>
             <div className="patient-record-meta">
               <span data-patient-status={patient.status}>{statusLabel}</span>
               <span data-patient-priority={patient.priority} className={patient.priority === "critical" || patient.priority === "high" ? "font-medium" : undefined}>{priorityLabel}</span>
-              <span className="tabular-nums [font-feature-settings:'zero'_0]">#{patient.id}</span>
+              <span className="font-display tabular-nums">#{patient.id}</span>
             </div>
           </div>
         </div>
-        <div className="patient-record-actions">
+        <div className="flex flex-wrap items-center gap-2 min-[1200px]:shrink-0 min-[1200px]:justify-end">
           <button type="button" className="crm-button crm-primary whitespace-nowrap" onClick={() => setScheduling(true)}>{t.schedule}</button>
           <button type="button" className="crm-button whitespace-nowrap" onClick={() => setEditing(true)}>{t.edit}</button>
           <details className="crm-menu">
@@ -251,7 +251,7 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
       if (pendingTreatmentPhoto && id !== "carePlan" && !window.confirm(treatmentTranslations[lang].discardPhoto)) return;
       if (photoData && id !== "photos") { if (!window.confirm(t.unsaved)) return; setPhotoData(null); }
       setTab(id);
-    }}>{id === "photos" ? <>{design.photos}<span className="patient-tab-count tabular-nums [font-feature-settings:'zero'_0]">{totalMediaCount}</span></> : t[id]}</button>)}</div>
+    }}>{id === "photos" ? <>{design.photos}<span className="patient-tab-count font-display tabular-nums">{totalMediaCount}</span></> : t[id]}</button>)}</div>
     <section id={`content-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`} className="space-y-5">
       {tab === "summary" && <>
         <div className="patient-summary-grid">
@@ -262,13 +262,13 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
               <div className="mt-5 border-t border-[var(--panel-line)] pt-5">
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="text-base font-semibold text-[var(--panel-ink)]">{treatmentTranslations[lang].title}</h3>
-                  <span className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{treatmentEntries.length}</span>
+                  <span className="text-sm font-display tabular-nums text-[var(--panel-muted)]">{treatmentEntries.length}</span>
                 </div>
                 {treatmentEntries.length > 0 ? (
                   <div className="mt-3 space-y-3">
                     {treatmentEntries.slice(0, 3).map((entry) => <div key={entry.id} className="text-sm">
                       <p className="font-medium text-[var(--panel-ink)]">{entry.title || treatmentTranslations[lang].legacy}</p>
-                      <p className="mt-0.5 text-xs tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{entry.start_date ? `${formatDay(entry.start_date)} – ${formatDay(entry.end_date)}` : treatmentTranslations[lang].undated}</p>
+                      <p className="mt-0.5 text-xs font-display tabular-nums text-[var(--panel-muted)]">{entry.start_date ? `${formatDay(entry.start_date)} – ${formatDay(entry.end_date)}` : treatmentTranslations[lang].undated}</p>
                       {(entry.diagnosis || entry.care_instructions) && <p className="mt-1 line-clamp-2 text-[var(--panel-muted)]">{entry.diagnosis || entry.care_instructions}</p>}
                     </div>)}
                   </div>
@@ -285,7 +285,7 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
               <h2>{t.nextFollowup}</h2>
               {next ? <>
                 <p className="font-medium text-[var(--panel-ink)]">{next.title}</p>
-                <p className="mt-2 text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{followupLabel(next, langToLocale[lang], t.allDay, viewerZone)}</p>
+                <p className="mt-2 text-sm font-display tabular-nums text-[var(--panel-muted)]">{followupLabel(next, langToLocale[lang], t.allDay, viewerZone)}</p>
                 {next.notes && <p className="mt-3 text-sm text-[var(--panel-ink)]">{next.notes}</p>}
                 <div className="mt-4 flex flex-wrap gap-2">
                   {next.meeting_id && <Link className="crm-button whitespace-nowrap" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${next.meeting_id}`, lang)}>{t.join}</Link>}
@@ -296,7 +296,7 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
             <section className="crm-card">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <h2 className="!mb-0">{t.careTeam}</h2>
-                <span className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{careTeam.length}</span>
+                <span className="text-sm font-display tabular-nums text-[var(--panel-muted)]">{careTeam.length}</span>
               </div>
               {careTeam.length ? <ul aria-label={t.careTeam} className="divide-y divide-[var(--panel-line)]">
                 {careTeam.map((name, index) => <li key={`${name}:${index}`} className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
@@ -314,12 +314,12 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
         {upcoming.length > 1 && <section className="crm-card">
           <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
             <h2 className="!mb-0">{t.upcoming}</h2>
-            <span className="text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{upcoming.length - 1}</span>
+            <span className="text-sm font-display tabular-nums text-[var(--panel-muted)]">{upcoming.length - 1}</span>
           </div>
           {upcoming.slice(1).map((item) => <div key={item.id} className="flex flex-wrap items-center justify-between gap-3 border-t border-[var(--panel-line)] py-4">
             <div>
               <p className="text-sm font-medium text-[var(--panel-ink)]">{item.title}</p>
-              <p className="mt-1 text-sm tabular-nums [font-feature-settings:'zero'_0] text-[var(--panel-muted)]">{followupLabel(item, langToLocale[lang], t.allDay, viewerZone)}</p>
+              <p className="mt-1 text-sm font-display tabular-nums text-[var(--panel-muted)]">{followupLabel(item, langToLocale[lang], t.allDay, viewerZone)}</p>
             </div>
             <div className="flex flex-wrap gap-2">
               {item.meeting_id && <Link className="crm-button whitespace-nowrap" href={withLangPrefix(`/panel/patients/${patient.id}/meet/${item.meeting_id}`, lang)}>{t.join}</Link>}

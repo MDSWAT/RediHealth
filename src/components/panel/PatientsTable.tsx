@@ -226,14 +226,16 @@ export function PatientsTable({
         </div>
       ) : null}
 
-      <div className="flex items-center justify-between border-y border-[var(--panel-line)] bg-[var(--panel-subtle)] px-4 py-2.5 text-xs text-[var(--panel-muted)]">
-        <p className="font-medium tabular-nums [font-feature-settings:'zero'_0]">
-          {t.showing(filteredPatients.length, patients.length)}
-        </p>
-      </div>
+      {hasActiveFilters ? (
+        <div className="flex items-center justify-between border-y border-[var(--panel-line)] bg-[var(--panel-subtle)] px-4 py-2 text-xs text-[var(--panel-muted)]">
+          <p className="font-medium font-display tabular-nums">
+            {t.showing(filteredPatients.length, patients.length)}
+          </p>
+        </div>
+      ) : null}
 
       {filteredPatients.length === 0 ? (
-        <div className="px-6 py-12 text-center">
+        <div className={`px-6 py-12 text-center${hasActiveFilters ? "" : " border-t border-[var(--panel-line)]"}`}>
           <div className="mx-auto max-w-sm">
             <UsersIcon aria-hidden="true" className="mx-auto h-7 w-7 text-[var(--panel-muted)]" />
             <h3 className="mt-3 text-base font-semibold text-[var(--panel-ink)]">{t.noneTitle}</h3>
@@ -252,7 +254,7 @@ export function PatientsTable({
           </div>
         </div>
       ) : (
-        <div className="divide-y divide-[var(--panel-line)]">
+        <div className={`divide-y divide-[var(--panel-line)]${hasActiveFilters ? "" : " border-t border-[var(--panel-line)]"}`}>
           {filteredPatients.map((patient) => (
             <article key={patient.id} className="patient-directory-row">
               <div className="flex min-w-0 flex-1 items-center gap-3.5">
@@ -267,7 +269,7 @@ export function PatientsTable({
                   <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-[var(--panel-muted)]">
                     <a
                       href={`tel:${patient.phone}`}
-                      className="tabular-nums [font-feature-settings:'zero'_0] hover:text-[var(--panel-ink)] hover:underline"
+                      className="font-display tabular-nums hover:text-[var(--panel-ink)] hover:underline"
                     >
                       {patient.phone}
                     </a>
