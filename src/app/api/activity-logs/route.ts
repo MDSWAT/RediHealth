@@ -50,7 +50,11 @@ export async function GET(request: Request) {
   const search = toText(searchParams.get("search") || "").toLowerCase();
   const action = toText(searchParams.get("action") || "");
   const entityType = toText(searchParams.get("entity_type") || "");
-  const limit = Math.min(300, Math.max(20, Number(searchParams.get("limit") || 100)));
+  const rawLimit = searchParams.get("limit");
+  const parsedLimit = rawLimit === null || rawLimit.trim() === "" ? 100 : Number(rawLimit);
+  const limit = Number.isFinite(parsedLimit)
+    ? Math.min(300, Math.max(20, Math.trunc(parsedLimit)))
+    : 100;
 
   const conditions: string[] = [];
   const params: unknown[] = [];

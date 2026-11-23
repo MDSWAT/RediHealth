@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { decryptField } from "@/lib/security/field-encryption";
 
-const mocks = vi.hoisted(() => ({ auth: vi.fn(), worker: vi.fn(), query: vi.fn(), log: vi.fn() }));
+const mocks = vi.hoisted(() => ({ auth: vi.fn(), worker: vi.fn(), query: vi.fn(), log: vi.fn(), sendPortalEmail: vi.fn() }));
 vi.mock("@/auth", () => ({ auth: mocks.auth }));
 vi.mock("@/lib/worker-auth", () => ({ getUserWorkerContext: mocks.worker }));
 vi.mock("@/lib/database", () => ({ getCountryDatabase: () => ({ query: mocks.query }), isOfflineSyncTransaction: () => false }));
-vi.mock("@/lib/email", () => ({ sendPatientPortalLinkEmail: vi.fn().mockResolvedValue(false) }));
+vi.mock("@/lib/email", () => ({ sendPatientPortalLinkEmail: mocks.sendPortalEmail }));
 vi.mock("@/lib/i18n/server-routing", () => ({ getRequestLang: async () => "en" }));
 vi.mock("@/lib/activity-log", () => ({ logActivity: mocks.log }));
 vi.mock("@/lib/rate-limit", () => ({ getClientIp: () => "127.0.0.1" }));
@@ -28,6 +28,7 @@ describe("patient treatment persistence", () => {
     mocks.worker.mockResolvedValue({ country: "RO", workerId: "2", isAdmin: false });
     mocks.query.mockResolvedValue([{ affectedRows: 1 }]);
     mocks.log.mockResolvedValue(undefined);
+    mocks.sendPortalEmail.mockResolvedValue(false);
   });
 
   it("persists every plan and retains staff assignment restrictions", async () => {
@@ -143,5 +144,33 @@ describe("patient treatment persistence", () => {
     expect((await POST(request("POST", { full_name: "Test", email: "test@example.com", phone: "123", county: "Cluj", intake }))).status).toBe(503);
     expect((await PATCH(request("PATCH", { id: "7", intake }))).status).toBe(503);
     expect(mocks.query).not.toHaveBeenCalled();
+  });
+
+  it("assigns assigned_worker_id and assigned_worker_ids only once when an admin sends both (C1)", async () => {
+    mocks.worker.mockResolvedValueOnce({ country: "RO", workerId: "1", isAdmin: true });
+    const response = await PATCH(request("PATCH", {
+      id: "7",
+      assigned_worker_id: "2",
+      assigned_worker_ids: ["2", "3"],
+      full_name: "Updated Patient",
+    }));
+    expect(response.status).toBe(200);
+    const sql = String(mocks.query.mock.calls[0][0]);
+    const setClause = sql.slice(sql.indexOf("SET "), sql.indexOf(" WHERE "));
+    expect(setClause.match(/\bassigned_worker_id\s*=/g)).toHaveLength(1);
+    expect(setClause.match(/\bassigned_worker_ids\s*=/g)).toHaveLength(1);
+    expect(mocks.query.mock.calls[0][1]).toEqual(["Updated Patient", '["2","3"]', "2", "7"]);
+  });
+
+  it("does not forward request origin as baseUrl when emailing portal links", async () => {
+    mocks.query.mockResolvedValueOnce([{ insertId: 11 }]);
+    const req = new Request("https://evil.example/api/patients", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ full_name: "Test", email: "portal@example.com", phone: "123", county: "Cluj" }),
+    });
+    expect((await POST(req)).status).toBe(201);
+    expect(mocks.sendPortalEmail).toHaveBeenCalledOnce();
+    expect(mocks.sendPortalEmail.mock.calls[0][0]).not.toHaveProperty("baseUrl");
   });
 });

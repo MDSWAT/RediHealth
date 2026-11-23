@@ -38,17 +38,20 @@ export function mapWorkerRow(row: DBWorkerRow): WorkerItem {
 }
 
 /** Loads workers together with a count of their currently assigned patients. */
-export async function loadWorkers(country: CountryCode): Promise<WorkerItem[]> {
+export async function loadWorkers(country: CountryCode, limit = 500): Promise<WorkerItem[]> {
+  const safeLimit = Number.isFinite(limit) ? Math.min(1000, Math.max(1, Math.trunc(limit))) : 500;
   const db = getCountryDatabase(country);
   const [rows] = await db.query<DBWorkerRow[]>(
     `SELECT w.id, w.full_name, w.email, w.phone, w.role, w.department, w.county,
             COALESCE(w.status, 'active') AS status,
-            COUNT(p.id) AS assigned_patients_count,
+            COUNT(DISTINCT p.id) AS assigned_patients_count,
             w.created_at, w.updated_at
      FROM workers w
-     LEFT JOIN patients p ON p.assigned_worker_id = w.id
+     LEFT JOIN patients p ON p.assigned_worker_id = w.id OR jsonb_has_id(p.assigned_worker_ids, w.id::text)
      GROUP BY w.id
-     ORDER BY w.created_at DESC`,
+     ORDER BY w.created_at DESC
+     LIMIT ?`,
+    [safeLimit],
   );
   return rows.map(mapWorkerRow);
 }

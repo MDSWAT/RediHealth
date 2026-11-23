@@ -38,4 +38,16 @@ describe("localized staff reply delivery", () => {
     expect(response.status).toBe(401);
     expect(mocks.send).not.toHaveBeenCalled();
   });
+
+  it("returns 400 for null or non-object JSON bodies instead of 500 (M3)", async () => {
+    for (const payload of ["null", "[]", '"str"']) {
+      const response = await POST(new Request("http://localhost/api/medical-help-requests/reply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+      }));
+      expect(response.status).toBe(400);
+    }
+    expect(mocks.query).not.toHaveBeenCalled();
+  });
 });

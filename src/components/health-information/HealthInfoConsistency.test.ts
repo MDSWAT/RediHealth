@@ -351,7 +351,7 @@ describe("health information, glossary, myth card, and topic grid design consist
       ),
     );
     expect(gridHtml).not.toContain("Key clinical fact");
-    expect(gridHtml).toContain("Blood pressure check");
+    expect(gridHtml).toContain("Understand your blood pressure");
     expect(gridHtml).toContain("#section-explainer");
     expect(gridHtml).toContain("3 min read");
     expect(gridHtml).toContain("Medical dictionary");

@@ -32,6 +32,9 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json({ error: "Invalid request data." }, { status: 400 });
   }
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid request data." }, { status: 400 });
+  }
 
   const requestId = typeof body.requestId === "string" ? body.requestId.trim() : "";
   const templateId = body.templateId;

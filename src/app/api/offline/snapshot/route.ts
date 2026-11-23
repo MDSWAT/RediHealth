@@ -26,7 +26,7 @@ export async function GET() {
       }
       const authorizedAt = Date.now();
       return { identity, authorizedAt, expiresAt: authorizedAt + OFFLINE_DAYS * 86400_000, patients, requests: inbox.requests, revisions };
-    });
+    }, { readOnly: true });
     return Response.json(snapshot, { headers: { "Cache-Control": "no-store, private" } });
   } catch (error) {
     console.error("Offline preparation failed", error);

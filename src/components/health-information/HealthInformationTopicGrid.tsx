@@ -284,7 +284,7 @@ const photoFrameClass =
   "relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-surface-subtle sm:aspect-[16/10] sm:h-auto sm:w-full sm:rounded-none";
 
 const photoClass =
-  "object-cover transition-[opacity,transform] duration-(--dur-slow) ease-(--ease-out-calm) sm:group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none";
+  "object-cover transition-opacity duration-(--dur-slow) ease-(--ease-out-calm) motion-reduce:transition-none";
 
 function CardFooter({ readMinutes, audioMinutes, lang, actionLabel }: Pick<TopicCardProps, "readMinutes" | "audioMinutes" | "lang" | "actionLabel">) {
   return (

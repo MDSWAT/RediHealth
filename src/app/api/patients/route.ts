@@ -345,7 +345,6 @@ export async function POST(request: Request) {
       lang: await getRequestLang(request),
       treatmentPlan: parseJsonColumn<TreatmentPlan>(treatmentPlan),
       conditionNotes,
-      baseUrl: new URL(request.url).origin,
     });
   } catch (error) {
     console.error("Failed to send patient portal link email", error);
@@ -547,20 +546,6 @@ export async function PATCH(request: Request) {
     updates.push("priority = ?");
     params.push(body.priority);
   }
-  if (body.assigned_worker_id !== undefined) {
-    if (!workerContext.isAdmin) {
-      return NextResponse.json(
-        { error: "Only administrators can change patient assignments." },
-        { status: 403 },
-      );
-    }
-
-    const nextAssignedWorkerId = body.assigned_worker_id ? String(body.assigned_worker_id) : null;
-    updates.push("assigned_worker_id = ?");
-    params.push(nextAssignedWorkerId);
-    updates.push("assigned_worker_ids = ?");
-    params.push(stringifyJsonColumn(nextAssignedWorkerId ? [nextAssignedWorkerId] : null));
-  }
   if (body.assigned_worker_ids !== undefined) {
     if (!workerContext.isAdmin) {
       return NextResponse.json(
@@ -574,6 +559,19 @@ export async function PATCH(request: Request) {
     params.push(stringifyJsonColumn(nextAssignedWorkerIds.length > 0 ? nextAssignedWorkerIds : null));
     updates.push("assigned_worker_id = ?");
     params.push(nextAssignedWorkerIds[0] || null);
+  } else if (body.assigned_worker_id !== undefined) {
+    if (!workerContext.isAdmin) {
+      return NextResponse.json(
+        { error: "Only administrators can change patient assignments." },
+        { status: 403 },
+      );
+    }
+
+    const nextAssignedWorkerId = body.assigned_worker_id ? String(body.assigned_worker_id) : null;
+    updates.push("assigned_worker_id = ?");
+    params.push(nextAssignedWorkerId);
+    updates.push("assigned_worker_ids = ?");
+    params.push(stringifyJsonColumn(nextAssignedWorkerId ? [nextAssignedWorkerId] : null));
   }
 
   if (updates.length === 0) {

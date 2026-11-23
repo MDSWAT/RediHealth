@@ -43,7 +43,11 @@ export async function createFollowup(country: CountryCode, patientId: string, wo
     await connection.commit();
     return { followup: item, created: true, name: String(rows[0].full_name || ""), email: String(rows[0].email || "") };
   } catch (error) {
-    await connection.rollback();
+    try {
+      await connection.rollback();
+    } catch {
+      // Preserve the original failure if rollback also fails.
+    }
     throw error;
   } finally {
     connection.release();

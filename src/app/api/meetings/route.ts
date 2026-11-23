@@ -5,6 +5,7 @@ import { logActivity } from "@/lib/activity-log";
 import { getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { sendMeetingInvitationEmail } from "@/lib/email";
 import { getClientIp } from "@/lib/rate-limit";
+import { assignedToWorkerSql } from "@/lib/record-access";
 import type { FollowupItem } from "@/lib/types/patient";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { getRequestLang } from "@/lib/i18n/server-routing";
@@ -41,7 +42,11 @@ function parseFollowups(value: unknown): FollowupItem[] {
   }
 }
 
-async function requireWorker() {
+type MeetingWorkerAccess =
+  | { error: NextResponse }
+  | { worker: Awaited<ReturnType<typeof getUserWorkerContext>> & { workerId: string } };
+
+async function requireWorker(): Promise<MeetingWorkerAccess> {
   const session = await auth();
   if (!session?.user?.email) {
     return { error: NextResponse.json({ error: "Unauthorized." }, { status: 401 }) };
@@ -52,7 +57,7 @@ async function requireWorker() {
     return { error: NextResponse.json({ error: "Staff access is required." }, { status: 403 }) };
   }
 
-  return { worker };
+  return { worker: { ...worker, workerId: worker.workerId } };
 }
 
 export async function GET(request: Request) {
@@ -67,8 +72,14 @@ export async function GET(request: Request) {
   try {
     const query = access.worker.isAdmin
       ? "SELECT id, title, meeting_url, transcript, notes, patient_id, followup_id, created_at, updated_at FROM meetings WHERE id = ? LIMIT 1"
-      : "SELECT id, title, meeting_url, transcript, notes, patient_id, followup_id, created_at, updated_at FROM meetings WHERE id = ? AND organizer_worker_id = ? LIMIT 1";
-    const params = access.worker.isAdmin ? [id] : [id, access.worker.workerId];
+      : `SELECT m.id, m.title, m.meeting_url, m.transcript, m.notes, m.patient_id, m.followup_id, m.created_at, m.updated_at
+         FROM meetings m
+         LEFT JOIN patients p ON p.id = m.patient_id
+         WHERE m.id = ? AND m.organizer_worker_id = ? AND (m.patient_id IS NULL OR (p.id IS NOT NULL AND ${assignedToWorkerSql("p")}))
+         LIMIT 1`;
+    const params = access.worker.isAdmin
+      ? [id]
+      : [id, access.worker.workerId, access.worker.workerId, access.worker.workerId];
     const [rows] = await getCountryDatabase(access.worker.country).query<MeetingRow[]>(query, params);
     if (!rows[0]) {
       return NextResponse.json({ error: "Meeting not found." }, { status: 404 });
@@ -88,6 +99,9 @@ export async function POST(request: Request) {
   try {
     body = await request.json();
   } catch {
+    return NextResponse.json({ error: "Invalid meeting data." }, { status: 400 });
+  }
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
     return NextResponse.json({ error: "Invalid meeting data." }, { status: 400 });
   }
 
@@ -129,7 +143,7 @@ export async function POST(request: Request) {
           : [patientId, access.worker.workerId, access.worker.workerId];
         const [patientRows] = await connection.query<(RowDataPacket & { followups: string | null })[]>(patientQuery, patientParams);
         if (!patientRows[0]) {
-          await connection.rollback();
+          await connection.rollback().catch(() => undefined);
           return NextResponse.json({ error: "Patient not found or not assigned to you." }, { status: 404 });
         }
 
@@ -139,11 +153,11 @@ export async function POST(request: Request) {
           const followups = parseFollowups(patientRows[0].followups);
           const index = followups.findIndex((item) => item.id === followupId);
           if (index < 0) {
-            await connection.rollback();
+            await connection.rollback().catch(() => undefined);
             return NextResponse.json({ error: "Follow-up not found." }, { status: 404 });
           }
           if (followups[index].meeting_id) {
-            await connection.rollback();
+            await connection.rollback().catch(() => undefined);
             return NextResponse.json({ error: "A meeting is already linked to this follow-up." }, { status: 409 });
           }
 
@@ -177,7 +191,7 @@ export async function POST(request: Request) {
 
       await connection.commit();
     } catch (error) {
-      await connection.rollback();
+      await connection.rollback().catch(() => undefined);
       throw error;
     } finally {
       connection.release();
@@ -236,6 +250,9 @@ export async function PATCH(request: Request) {
   } catch {
     return NextResponse.json({ error: "Invalid transcript data." }, { status: 400 });
   }
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid transcript data." }, { status: 400 });
+  }
 
   const idValue = body.id;
   const id = typeof idValue === "number" && Number.isFinite(idValue) ? String(idValue) : text(idValue);
@@ -245,79 +262,89 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Invalid meeting record data." }, { status: 400 });
   }
 
-  const db = getCountryDatabase(access.worker.country);
-  const connection = await db.getConnection();
+  let updatedMeeting: Pick<MeetingRow, "patient_id" | "followup_id">;
   try {
-    await connection.beginTransaction();
-    const meetingQuery = access.worker.isAdmin
-      ? "SELECT patient_id, followup_id FROM meetings WHERE id = ? FOR UPDATE"
-      : "SELECT patient_id, followup_id FROM meetings WHERE id = ? AND organizer_worker_id = ? FOR UPDATE";
-    const meetingParams = access.worker.isAdmin ? [id] : [id, access.worker.workerId];
-    const [meetingRows] = await connection.query<MeetingRow[]>(meetingQuery, meetingParams);
-    const meeting = meetingRows[0];
-    if (!meeting) {
-      await connection.rollback();
-      return NextResponse.json({ error: "Meeting not found." }, { status: 404 });
-    }
-
-    const query = access.worker.isAdmin
-      ? "UPDATE meetings SET transcript = ?, notes = ? WHERE id = ?"
-      : "UPDATE meetings SET transcript = ?, notes = ? WHERE id = ? AND organizer_worker_id = ?";
-    const params = access.worker.isAdmin
-      ? [transcript || null, notes || null, id]
-      : [transcript || null, notes || null, id, access.worker.workerId];
-    const [result] = await connection.query<ResultSetHeader>(query, params);
-    if (result.affectedRows === 0) {
-      await connection.rollback();
-      return NextResponse.json({ error: "Meeting not found." }, { status: 404 });
-    }
-
-    if (meeting.patient_id && meeting.followup_id) {
-      const [patientRows] = await connection.query<(RowDataPacket & { followups: string | null })[]>(
-        "SELECT followups FROM patients WHERE id = ? FOR UPDATE",
-        [meeting.patient_id],
-      );
-      const followups = parseFollowups(patientRows[0]?.followups);
-      const followupIndex = followups.findIndex((followup) => followup.id === meeting.followup_id);
-      if (followupIndex < 0) {
-        await connection.rollback();
-        return NextResponse.json({ error: "Linked follow-up not found." }, { status: 404 });
+    const db = getCountryDatabase(access.worker.country);
+    const connection = await db.getConnection();
+    try {
+      await connection.beginTransaction();
+      const meetingQuery = access.worker.isAdmin
+        ? "SELECT patient_id, followup_id FROM meetings WHERE id = ? FOR UPDATE"
+        : `SELECT m.patient_id, m.followup_id
+           FROM meetings m
+           LEFT JOIN patients p ON p.id = m.patient_id
+           WHERE m.id = ? AND m.organizer_worker_id = ? AND (m.patient_id IS NULL OR (p.id IS NOT NULL AND ${assignedToWorkerSql("p")}))
+           FOR UPDATE OF m`;
+      const meetingParams = access.worker.isAdmin
+        ? [id]
+        : [id, access.worker.workerId, access.worker.workerId, access.worker.workerId];
+      const [meetingRows] = await connection.query<MeetingRow[]>(meetingQuery, meetingParams);
+      const meeting = meetingRows[0];
+      if (!meeting) {
+        await connection.rollback().catch(() => undefined);
+        return NextResponse.json({ error: "Meeting not found." }, { status: 404 });
       }
-      followups[followupIndex] = {
-        ...followups[followupIndex],
-        meeting_transcript: transcript || undefined,
-        meeting_notes: notes || undefined,
-      };
-      await connection.query<ResultSetHeader>("UPDATE patients SET followups = ? WHERE id = ?", [JSON.stringify(followups), meeting.patient_id]);
+
+      const query = access.worker.isAdmin
+        ? "UPDATE meetings SET transcript = ?, notes = ? WHERE id = ?"
+        : "UPDATE meetings SET transcript = ?, notes = ? WHERE id = ? AND organizer_worker_id = ?";
+      const params = access.worker.isAdmin
+        ? [transcript || null, notes || null, id]
+        : [transcript || null, notes || null, id, access.worker.workerId];
+      const [result] = await connection.query<ResultSetHeader>(query, params);
+      if (result.affectedRows === 0) {
+        await connection.rollback().catch(() => undefined);
+        return NextResponse.json({ error: "Meeting not found." }, { status: 404 });
+      }
+
+      if (meeting.patient_id && meeting.followup_id) {
+        const [patientRows] = await connection.query<(RowDataPacket & { followups: string | null })[]>(
+          "SELECT followups FROM patients WHERE id = ? FOR UPDATE",
+          [meeting.patient_id],
+        );
+        const followups = parseFollowups(patientRows[0]?.followups);
+        const followupIndex = followups.findIndex((followup) => followup.id === meeting.followup_id);
+        if (followupIndex >= 0) {
+          followups[followupIndex] = {
+            ...followups[followupIndex],
+            meeting_transcript: transcript || undefined,
+            meeting_notes: notes || undefined,
+          };
+          await connection.query<ResultSetHeader>("UPDATE patients SET followups = ? WHERE id = ?", [JSON.stringify(followups), meeting.patient_id]);
+        }
+      }
+
+      await connection.commit();
+      updatedMeeting = { patient_id: meeting.patient_id, followup_id: meeting.followup_id };
+    } catch (error) {
+      await connection.rollback().catch(() => undefined);
+      throw error;
+    } finally {
+      connection.release();
     }
-
-    await connection.commit();
-
-    await logActivity({
-      country: access.worker.country,
-      actorWorkerId: access.worker.workerId,
-      actorName: access.worker.workerName,
-      actorRole: access.worker.role,
-      action: "meeting.updated",
-      entityType: "meeting",
-      entityId: id,
-      details: {
-        transcript_length: transcript.length,
-        notes_length: notes.length,
-        patient_id: meeting.patient_id,
-        followup_id: meeting.followup_id,
-      },
-      ipAddress: getClientIp(request),
-    });
-
-    return NextResponse.json({ success: true });
   } catch (error) {
-    await connection.rollback();
     console.error("Failed to save meeting transcript", error);
     return NextResponse.json({ error: "Could not save transcript." }, { status: 503 });
-  } finally {
-    connection.release();
   }
+
+  await logActivity({
+    country: access.worker.country,
+    actorWorkerId: access.worker.workerId,
+    actorName: access.worker.workerName,
+    actorRole: access.worker.role,
+    action: "meeting.updated",
+    entityType: "meeting",
+    entityId: id,
+    details: {
+      transcript_length: transcript.length,
+      notes_length: notes.length,
+      patient_id: updatedMeeting.patient_id,
+      followup_id: updatedMeeting.followup_id,
+    },
+    ipAddress: getClientIp(request),
+  });
+
+  return NextResponse.json({ success: true });
 }
 
 export async function DELETE(request: Request) {
@@ -329,64 +356,74 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "Invalid meeting." }, { status: 400 });
   }
 
-  const connection = await getCountryDatabase(access.worker.country).getConnection();
+  let deletedMeeting: Pick<MeetingRow, "patient_id" | "followup_id">;
   try {
-    await connection.beginTransaction();
-    const meetingQuery = access.worker.isAdmin
-      ? "SELECT patient_id, followup_id FROM meetings WHERE id = ? FOR UPDATE"
-      : "SELECT patient_id, followup_id FROM meetings WHERE id = ? AND organizer_worker_id = ? FOR UPDATE";
-    const meetingParams = access.worker.isAdmin ? [id] : [id, access.worker.workerId];
-    const [meetingRows] = await connection.query<MeetingRow[]>(meetingQuery, meetingParams);
-    const meeting = meetingRows[0];
-    if (!meeting) {
-      await connection.rollback();
-      return NextResponse.json({ error: "Meeting not found." }, { status: 404 });
-    }
-
-    if (meeting.patient_id && meeting.followup_id) {
-      const [patientRows] = await connection.query<(RowDataPacket & { followups: string | null })[]>(
-        "SELECT followups FROM patients WHERE id = ? FOR UPDATE",
-        [meeting.patient_id],
-      );
-      const followups = parseFollowups(patientRows[0]?.followups);
-      const followupIndex = followups.findIndex((followup) => followup.id === meeting.followup_id);
-      if (followupIndex < 0) {
-        await connection.rollback();
-        return NextResponse.json({ error: "Linked follow-up not found." }, { status: 404 });
+    const connection = await getCountryDatabase(access.worker.country).getConnection();
+    try {
+      await connection.beginTransaction();
+      const meetingQuery = access.worker.isAdmin
+        ? "SELECT patient_id, followup_id FROM meetings WHERE id = ? FOR UPDATE"
+        : `SELECT m.patient_id, m.followup_id
+           FROM meetings m
+           LEFT JOIN patients p ON p.id = m.patient_id
+           WHERE m.id = ? AND m.organizer_worker_id = ? AND (m.patient_id IS NULL OR (p.id IS NOT NULL AND ${assignedToWorkerSql("p")}))
+           FOR UPDATE OF m`;
+      const meetingParams = access.worker.isAdmin
+        ? [id]
+        : [id, access.worker.workerId, access.worker.workerId, access.worker.workerId];
+      const [meetingRows] = await connection.query<MeetingRow[]>(meetingQuery, meetingParams);
+      const meeting = meetingRows[0];
+      if (!meeting) {
+        await connection.rollback().catch(() => undefined);
+        return NextResponse.json({ error: "Meeting not found." }, { status: 404 });
       }
-      const followup = { ...followups[followupIndex] };
-      delete followup.meeting_id;
-      delete followup.meeting_url;
-      delete followup.meeting_transcript;
-      delete followup.meeting_notes;
-      followups[followupIndex] = followup;
-      await connection.query<ResultSetHeader>("UPDATE patients SET followups = ? WHERE id = ?", [JSON.stringify(followups), meeting.patient_id]);
+
+      if (meeting.patient_id && meeting.followup_id) {
+        const [patientRows] = await connection.query<(RowDataPacket & { followups: string | null })[]>(
+          "SELECT followups FROM patients WHERE id = ? FOR UPDATE",
+          [meeting.patient_id],
+        );
+        const followups = parseFollowups(patientRows[0]?.followups);
+        const followupIndex = followups.findIndex((followup) => followup.id === meeting.followup_id);
+        if (followupIndex >= 0) {
+          const followup = { ...followups[followupIndex] };
+          delete followup.meeting_id;
+          delete followup.meeting_url;
+          delete followup.meeting_transcript;
+          delete followup.meeting_notes;
+          followups[followupIndex] = followup;
+          await connection.query<ResultSetHeader>("UPDATE patients SET followups = ? WHERE id = ?", [JSON.stringify(followups), meeting.patient_id]);
+        }
+      }
+
+      await connection.query<ResultSetHeader>("DELETE FROM meetings WHERE id = ?", [id]);
+      await connection.commit();
+      deletedMeeting = { patient_id: meeting.patient_id, followup_id: meeting.followup_id };
+    } catch (error) {
+      await connection.rollback().catch(() => undefined);
+      throw error;
+    } finally {
+      connection.release();
     }
-
-    await connection.query<ResultSetHeader>("DELETE FROM meetings WHERE id = ?", [id]);
-    await connection.commit();
-
-    await logActivity({
-      country: access.worker.country,
-      actorWorkerId: access.worker.workerId,
-      actorName: access.worker.workerName,
-      actorRole: access.worker.role,
-      action: "meeting.deleted",
-      entityType: "meeting",
-      entityId: id,
-      details: {
-        patient_id: meeting.patient_id,
-        followup_id: meeting.followup_id,
-      },
-      ipAddress: getClientIp(request),
-    });
-
-    return NextResponse.json({ success: true });
   } catch (error) {
-    await connection.rollback();
     console.error("Failed to delete meeting", error);
     return NextResponse.json({ error: "Could not delete meeting history." }, { status: 503 });
-  } finally {
-    connection.release();
   }
+
+  await logActivity({
+    country: access.worker.country,
+    actorWorkerId: access.worker.workerId,
+    actorName: access.worker.workerName,
+    actorRole: access.worker.role,
+    action: "meeting.deleted",
+    entityType: "meeting",
+    entityId: id,
+    details: {
+      patient_id: deletedMeeting.patient_id,
+      followup_id: deletedMeeting.followup_id,
+    },
+    ipAddress: getClientIp(request),
+  });
+
+  return NextResponse.json({ success: true });
 }

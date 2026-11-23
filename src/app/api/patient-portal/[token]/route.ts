@@ -111,6 +111,8 @@ export async function PATCH(request: Request, { params }: Params) {
           updateParams.push(body.priority);
         }
 
+        let workingFollowups: FollowupItem[] | null = null;
+
         if (body.new_followup !== undefined) {
           const result = validateFollowupInput(body.new_followup);
           if (!result.ok) {
@@ -118,8 +120,7 @@ export async function PATCH(request: Request, { params }: Params) {
           }
           const existingFollowups =
             parseJsonColumn<FollowupItem[]>(fresh.followups) || [];
-          updates.push("followups = ?");
-          updateParams.push(stringifyJsonColumn([result.value, ...existingFollowups]));
+          workingFollowups = [result.value, ...existingFollowups];
         }
 
         if (body.new_photo !== undefined) {
@@ -139,7 +140,8 @@ export async function PATCH(request: Request, { params }: Params) {
             return NextResponse.json({ error: result.error }, { status: 400 });
           }
 
-          const existingFollowups = parseJsonColumn<FollowupItem[]>(fresh.followups) || [];
+          const existingFollowups =
+            workingFollowups ?? (parseJsonColumn<FollowupItem[]>(fresh.followups) || []);
           const followupIndex = existingFollowups.findIndex(
             (item) => item.id === result.value.followup_id,
           );
@@ -161,9 +163,14 @@ export async function PATCH(request: Request, { params }: Params) {
                 : current.completion_photos || [],
           };
 
-          existingFollowups[followupIndex] = merged;
+          const updatedFollowups = [...existingFollowups];
+          updatedFollowups[followupIndex] = merged;
+          workingFollowups = updatedFollowups;
+        }
+
+        if (workingFollowups !== null) {
           updates.push("followups = ?");
-          updateParams.push(stringifyJsonColumn(existingFollowups));
+          updateParams.push(stringifyJsonColumn(workingFollowups));
         }
 
         if (updates.length === 0) {
@@ -183,7 +190,7 @@ export async function PATCH(request: Request, { params }: Params) {
         return null;
       })();
       if (failure) {
-        await connection.rollback();
+        await connection.rollback().catch(() => undefined);
         return failure;
       }
       await connection.commit();

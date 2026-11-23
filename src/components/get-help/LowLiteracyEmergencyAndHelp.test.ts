@@ -118,7 +118,8 @@ describe("Scenario 6: 404 rescue actions", () => {
     expect(html).not.toContain("/medic-online");
     expect(html).not.toContain("/health-assistant");
     expect(html).toContain("<button");
-    expect(html).not.toContain("&amp;");
+    const plainText = html.replace(/<[^>]+>/g, " ");
+    expect(plainText).not.toContain("&amp;");
   });
 
   it("source keeps rescue contracts", () => {

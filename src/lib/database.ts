@@ -301,18 +301,31 @@ export function isOfflineSyncTransaction() {
   return transactionScope.getStore()?.offline === true;
 }
 
+export type OfflineTransactionOptions = {
+  /** Use REPEATABLE READ READ ONLY so multi-query snapshots read one consistent MVCC view. */
+  readOnly?: boolean;
+};
+
 /** Reuse the normal validated mutation handlers inside one idempotent sync transaction. */
-export async function inOfflineTransaction<T>(country: CountryCode, run: () => Promise<T>): Promise<T> {
+export async function inOfflineTransaction<T>(
+  country: CountryCode,
+  run: () => Promise<T>,
+  options?: OfflineTransactionOptions,
+): Promise<T> {
   const db = getCountryDatabase(country);
   const connection = await db.getConnection();
   let started = false;
   try {
     await connection.beginTransaction();
     started = true;
-    // Rows the handlers change are locked with SELECT ... FOR UPDATE. READ COMMITTED matches how
-    // MySQL treated those locking reads, without PostgreSQL's REPEATABLE READ aborting the whole
-    // sync with a serialization error when a colleague edited the same patient a moment earlier.
-    await connection.query("SET TRANSACTION ISOLATION LEVEL READ COMMITTED");
+    if (options?.readOnly) {
+      await connection.query("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY");
+    } else {
+      // Rows the handlers change are locked with SELECT ... FOR UPDATE. READ COMMITTED matches how
+      // MySQL treated those locking reads, without PostgreSQL's REPEATABLE READ aborting the whole
+      // sync with a serialization error when a colleague edited the same patient a moment earlier.
+      await connection.query("SET TRANSACTION ISOLATION LEVEL READ COMMITTED");
+    }
     const scoped: Database = {
       query: connection.query,
       getConnection: async () => { throw new Error("Nested offline transactions are not supported."); },
@@ -321,7 +334,7 @@ export async function inOfflineTransaction<T>(country: CountryCode, run: () => P
     await connection.commit();
     return result;
   } catch (error) {
-    if (started) await connection.rollback();
+    if (started) await connection.rollback().catch(() => undefined);
     throw error;
   } finally {
     connection.release();

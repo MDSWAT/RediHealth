@@ -43,4 +43,11 @@ describe("atomic scheduling", () => {
     expect(result.followup.time).toBeUndefined(); expect(result.followup.timezone).toBeUndefined(); expect(result.followup.meeting_id).toBeUndefined();
     expect(mocks.query).toHaveBeenCalledTimes(2);
   });
+
+  it("preserves the original error even if rollback fails (H6)", async () => {
+    mocks.query.mockResolvedValueOnce([[{ followups: "[]" }]]).mockRejectedValueOnce(new Error("Insert failed"));
+    mocks.rollback.mockRejectedValueOnce(new Error("Connection closed"));
+    await expect(createFollowup("RO", "7", "2", false, input)).rejects.toThrow("Insert failed");
+    expect(mocks.release).toHaveBeenCalledOnce();
+  });
 });

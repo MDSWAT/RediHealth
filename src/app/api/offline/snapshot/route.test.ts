@@ -1,18 +1,19 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-const mocks = vi.hoisted(() => ({ identity: vi.fn(), encryption: vi.fn(), patients: vi.fn(), inbox: vi.fn(), query: vi.fn() }));
+const mocks = vi.hoisted(() => ({ identity: vi.fn(), encryption: vi.fn(), patients: vi.fn(), inbox: vi.fn(), query: vi.fn(), inOfflineTx: vi.fn() }));
 vi.mock("@/lib/offline-server", () => ({ offlineIdentity: mocks.identity, recordRevision: () => "digest" }));
 vi.mock("@/lib/security/field-encryption", () => ({ isEncryptionConfigured: mocks.encryption }));
 vi.mock("@/lib/data/patients", () => ({ loadPatients: mocks.patients }));
 vi.mock("@/lib/data/request-inbox", () => ({ loadRequestInbox: mocks.inbox }));
 vi.mock("@/lib/database", () => ({
   getCountryDatabase: () => ({ query: mocks.query }),
-  inOfflineTransaction: (_country: string, run: () => Promise<unknown>) => run(),
+  inOfflineTransaction: mocks.inOfflineTx,
 }));
 import { GET } from "./route";
 
 describe("offline snapshot", () => {
   beforeEach(() => {
     vi.resetAllMocks();
+    mocks.inOfflineTx.mockImplementation((_country: string, run: () => Promise<unknown>) => run());
     mocks.identity.mockResolvedValue({ email: "doctor@example.test", workerId: "2", workerName: "Synthetic", role: "Doctor", country: "RO" });
     mocks.encryption.mockReturnValue(true);
     mocks.patients.mockResolvedValue([{ id: "1", full_name: "Synthetic" }, { id: "2" }]);
@@ -40,5 +41,6 @@ describe("offline snapshot", () => {
     const snapshot = JSON.parse(text);
     expect(snapshot.revisions).toEqual({ "patient:1": "digest", "patient:2": "digest", "request:3": "digest" });
     expect(snapshot.expiresAt - snapshot.authorizedAt).toBe(30 * 86400000);
+    expect(mocks.inOfflineTx).toHaveBeenCalledWith("RO", expect.any(Function), { readOnly: true });
   });
 });

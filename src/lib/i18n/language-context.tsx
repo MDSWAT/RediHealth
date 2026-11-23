@@ -78,7 +78,11 @@ export function LanguageProvider({
   useEffect(() => {
     document.documentElement.lang = lang;
     document.cookie = `${LOCALE_COOKIE}=${lang}; path=/; max-age=31536000; samesite=lax`;
-    window.localStorage.setItem(LOCALE_COOKIE, lang);
+    try {
+      window.localStorage?.setItem(LOCALE_COOKIE, lang);
+    } catch {
+      // Ignore storage failures in restricted browsing contexts.
+    }
   }, [lang]);
 
   useEffect(() => {

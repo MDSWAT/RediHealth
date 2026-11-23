@@ -100,6 +100,25 @@ describe("country databases", () => {
     expect(connection.release).toHaveBeenCalledTimes(2);
   });
 
+  it("uses REPEATABLE READ READ ONLY for offline snapshot transactions (H3)", async () => {
+    clearEnv();
+    vi.stubEnv("DB_RO_HOST", "db-ro");
+    vi.stubEnv("DB_RO_USER", "test");
+    vi.stubEnv("DB_RO_NAME", "test");
+    const connection = { query: vi.fn().mockResolvedValue({ rows: [], rowCount: 0 }), release: vi.fn() };
+    const pool = { query: vi.fn(), connect: vi.fn().mockResolvedValue(connection), on: vi.fn() };
+    usePool(pool);
+
+    await inOfflineTransaction("RO", async () => {
+      await getCountryDatabase("RO").query("SELECT 1");
+    }, { readOnly: true });
+
+    const statements = connection.query.mock.calls.map(([sql]) => sql);
+    expect(statements).toContain("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY");
+    expect(statements).not.toContain("SET TRANSACTION ISOLATION LEVEL READ COMMITTED");
+    expect(connection.release).toHaveBeenCalledTimes(1);
+  });
+
   it("has no databases when nothing is configured", () => {
     clearEnv();
     expect(configuredCountries()).toEqual([]);

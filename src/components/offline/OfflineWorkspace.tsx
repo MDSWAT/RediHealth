@@ -59,8 +59,13 @@ async function getSnapshot(errors: OfflineCopy["errors"]): Promise<OfflineSnapsh
     cache: "no-store",
     signal: AbortSignal.timeout(30_000),
   });
-  const result = await response.json();
-  if (!response.ok) throw new Error(result.error || errors.authFailed);
+  const parsed = await response.json().catch(() => null);
+  const result = parsed && typeof parsed === "object" && !Array.isArray(parsed)
+    ? (parsed as OfflineSnapshot & { error?: unknown })
+    : null;
+  if (!response.ok || !result) {
+    throw new Error((typeof result?.error === "string" && result.error) || errors.authFailed);
+  }
   return result;
 }
 
@@ -418,7 +423,7 @@ export function OfflineWorkspace() {
     try {
       const mappings = await active.sync();
       const snapshot = await getSnapshot(errors);
-      await active.exclusive(() => active.refresh(snapshot));
+      await active.refresh(snapshot);
       await prepareShell(lang, errors);
       const match = /\/patients\/(-\d+)$/.exec(location.pathname);
       if (match && mappings[match[1]]) {
@@ -1080,7 +1085,14 @@ export function OfflineWorkspace() {
               if (request.patient_id === op.id) request.patient_id = null;
             });
           }
-          draft.revisions = { ...draft.revisions, ...snapshot.revisions };
+          const revisionKey = `${op.entity}:${op.id}`;
+          if (revisionKey in snapshot.revisions) {
+            draft.revisions = { ...draft.revisions, [revisionKey]: snapshot.revisions[revisionKey] };
+          } else {
+            const nextRevisions = { ...draft.revisions };
+            delete nextRevisions[revisionKey];
+            draft.revisions = nextRevisions;
+          }
         }
         await current.current!.commit(draft);
       });

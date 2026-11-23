@@ -77,4 +77,47 @@ describe("encrypted offline queue", () => {
     await store.sync(fetcher);
     expect(JSON.parse(fetcher.mock.calls[0][1].body).operationId).toBe(id);
   });
+
+  it("handles non-JSON 502/504 gateway responses without throwing SyntaxError and retries cleanly (M2)", async () => {
+    const { store } = setup();
+    await store.request("/api/patients", body("PATCH", { id: "1", status: "archived" }));
+    const gatewayHtml = () => new Response("<html><body>502 Bad Gateway</body></html>", { status: 502, headers: { "Content-Type": "text/html" } });
+    await expect(store.sync(vi.fn().mockResolvedValue(gatewayHtml()))).rejects.toThrow("Sign-in or database not available.");
+    expect(store.data.queue).toHaveLength(1);
+    expect(store.data.queue[0].error).toBeUndefined();
+
+    // Retry once gateway recovers clears the queued operation.
+    await store.sync(vi.fn().mockResolvedValue(Response.json({ id: "1", revision: "rev-2" })));
+    expect(store.data.queue).toHaveLength(0);
+    expect(store.data.revisions["patient:1"]).toBe("rev-2");
+  });
+
+  it("clears submitted flag on 401/403 so subsequent offline edits remain allowed (M2)", async () => {
+    const { store } = setup();
+    await store.request("/api/patients", body("PATCH", { id: "1", status: "archived" }));
+    await expect(store.sync(vi.fn().mockResolvedValue(new Response("Forbidden", { status: 403 })))).rejects.toThrow("Sign-in or database not available.");
+    expect(store.data.queue[0].submitted).toBeUndefined();
+    expect((await store.request("/api/patients", body("PATCH", { id: "1", priority: "high" }))).ok).toBe(true);
+  });
+
+  it("serializes refresh() inside exclusive() so concurrent edits are not overwritten (H3)", async () => {
+    let releaseFirstPersist!: () => void;
+    let enteredFirstPersist!: () => void;
+    const firstPersistStarted = new Promise<void>((resolve) => { enteredFirstPersist = resolve; });
+    const persist = vi.fn()
+      .mockImplementationOnce(() => {
+        enteredFirstPersist();
+        return new Promise<void>((resolve) => { releaseFirstPersist = resolve; });
+      })
+      .mockResolvedValue(undefined);
+    const { store } = setup(persist);
+    const editPromise = store.request("/api/patients", body("PATCH", { id: "1", medical_history: "Concurrent local edit" }));
+    await firstPersistStarted;
+    const snapshot = structuredClone({ ...store.data, expiresAt: Date.now() + 2592000000 });
+    const refreshPromise = store.refresh(snapshot);
+    releaseFirstPersist();
+    await Promise.all([editPromise, refreshPromise]);
+    expect(store.data.queue).toHaveLength(1);
+    expect(store.data.patients.find((p) => p.id === "1")?.medical_history).toBe("Concurrent local edit");
+  });
 });

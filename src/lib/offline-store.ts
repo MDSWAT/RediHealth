@@ -128,22 +128,40 @@ export class OfflineStore {
         marked.queue.find((op) => op.operationId === queued.operationId)!.submitted = true;
         await this.commit(marked);
         const response = await fetcher("/api/offline/sync", { method: "POST", headers: { "Content-Type": "application/json" }, signal: AbortSignal.timeout(30_000), body: JSON.stringify({ ...queued, ...this.data.identity }) });
-        const result = await response.json() as { error?: string; id: string; revision: string };
-        if ([401, 403, 503].includes(response.status)) throw new Error(result.error || "Sign-in or database not available.");
-        if (response.ok && (typeof result.id !== "string" || !/^\d+$/.test(result.id) || typeof result.revision !== "string" || !result.revision)) throw new Error("Invalid synchronization receipt. Your changes are still waiting. Try again online.");
+        const parsed = await response.json().catch(() => null);
+        const result = parsed && typeof parsed === "object" && !Array.isArray(parsed)
+          ? (parsed as { error?: unknown; id?: unknown; revision?: unknown })
+          : null;
+        const serverError = typeof result?.error === "string" && result.error ? result.error : null;
+        if (response.status === 401 || response.status === 403) {
+          // Rejected before applying any server mutation; allow further offline edits until sign-in.
+          const reset = structuredClone(this.data);
+          const pending = reset.queue.find((op) => op.operationId === queued.operationId);
+          if (pending) delete pending.submitted;
+          await this.commit(reset);
+          throw new Error(serverError || "Sign-in or database not available.");
+        }
+        if (response.status >= 500) {
+          throw new Error(serverError || "Sign-in or database not available.");
+        }
+        if (response.ok && (!result || typeof result.id !== "string" || !/^\d+$/.test(result.id) || typeof result.revision !== "string" || !result.revision)) {
+          throw new Error("Invalid synchronization receipt. Your changes are still waiting. Try again online.");
+        }
         const draft = structuredClone(this.data);
         if (!response.ok) {
           const op = draft.queue.find((op) => op.operationId === queued.operationId)!;
-          op.error = result.error || "Sync was refused. Check this record.";
+          op.error = serverError || "Sync was refused. Check this record.";
           await this.commit(draft);
           continue;
         }
+        const syncedId = result!.id as string;
+        const syncedRevision = result!.revision as string;
         draft.queue = draft.queue.filter((op) => op.operationId !== queued.operationId);
-        draft.revisions[`${queued.entity}:${result.id}`] = result.revision;
+        draft.revisions[`${queued.entity}:${syncedId}`] = syncedRevision;
         if (queued.create) {
-          mappings[queued.id] = result.id;
-          draft.patients.forEach((p) => { if (p.id === queued.id) p.id = result.id; });
-          draft.requests.forEach((r) => { if (r.patient_id === queued.id) r.patient_id = result.id; });
+          mappings[queued.id] = syncedId;
+          draft.patients.forEach((p) => { if (p.id === queued.id) p.id = syncedId; });
+          draft.requests.forEach((r) => { if (r.patient_id === queued.id) r.patient_id = syncedId; });
         }
         await this.commit(draft);
       }
@@ -152,17 +170,27 @@ export class OfflineStore {
   }
 
   async refresh(snapshot: OfflineSnapshot) {
-    if (snapshot.identity.email !== this.data.identity.email || snapshot.identity.workerId !== this.data.identity.workerId || snapshot.identity.country !== this.data.identity.country) throw new Error("Sign in to the same staff account and country to refresh this device.");
-    const draft = { ...this.data, ...snapshot };
-    for (const op of draft.queue) {
-      if (op.entity === "patient") {
-        const local = this.data.patients.find((p) => p.id === op.id);
-        if (local && (op.create || snapshot.patients.some((p) => p.id === op.id))) draft.patients = [...draft.patients.filter((p) => p.id !== op.id), local];
-      } else {
-        const local = this.data.requests.find((r) => r.id === op.id);
-        if (local) draft.requests = [...draft.requests.filter((r) => r.id !== op.id), local];
+    return this.exclusive(async () => {
+      if (snapshot.identity.email !== this.data.identity.email || snapshot.identity.workerId !== this.data.identity.workerId || snapshot.identity.country !== this.data.identity.country) throw new Error("Sign in to the same staff account and country to refresh this device.");
+      const draft: OfflineData = {
+        ...this.data,
+        identity: snapshot.identity,
+        authorizedAt: snapshot.authorizedAt,
+        expiresAt: snapshot.expiresAt,
+        patients: [...snapshot.patients],
+        requests: [...snapshot.requests],
+        revisions: { ...snapshot.revisions },
+      };
+      for (const op of draft.queue) {
+        if (op.entity === "patient") {
+          const local = this.data.patients.find((p) => p.id === op.id);
+          if (local && (op.create || snapshot.patients.some((p) => p.id === op.id))) draft.patients = [...draft.patients.filter((p) => p.id !== op.id), local];
+        } else {
+          const local = this.data.requests.find((r) => r.id === op.id);
+          if (local) draft.requests = [...draft.requests.filter((r) => r.id !== op.id), local];
+        }
       }
-    }
-    await this.commit(draft);
+      await this.commit(draft);
+    });
   }
 }

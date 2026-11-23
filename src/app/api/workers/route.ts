@@ -21,12 +21,38 @@ function isWorkerStatus(value: unknown): value is WorkerStatus {
 
 type TargetWorker = { id: string; role: string };
 
+const MAX_BULK_ASSIGNMENT_IDS = 200;
+
+function parsePatientIdList(
+  value: unknown,
+  label: string,
+): { ok: true; ids: string[] } | { ok: false; error: string } {
+  if (value === undefined) return { ok: true, ids: [] };
+  if (!Array.isArray(value)) {
+    return { ok: false, error: `Invalid ${label}.` };
+  }
+  if (value.length > MAX_BULK_ASSIGNMENT_IDS) {
+    return { ok: false, error: `Cannot update more than ${MAX_BULK_ASSIGNMENT_IDS} patients at once.` };
+  }
+  const normalized: string[] = [];
+  for (const item of value) {
+    if (typeof item === "number" && Number.isSafeInteger(item) && item > 0) {
+      normalized.push(String(item));
+    } else if (typeof item === "string" && /^\d+$/.test(item.trim()) && Number(item.trim()) > 0) {
+      normalized.push(item.trim());
+    } else {
+      return { ok: false, error: `Invalid patient ID in ${label}.` };
+    }
+  }
+  return { ok: true, ids: [...new Set(normalized)] };
+}
+
 /**
  * Administrators manage staff, but only super admins may touch a super admin account. Otherwise an
  * administrator could take one over by changing its email address, or remove it altogether.
  */
 async function loadTargetWorker(
-  db: ReturnType<typeof getCountryDatabase>,
+  db: Pick<ReturnType<typeof getCountryDatabase>, "query">,
   id: string,
   actor: { isSuperAdmin: boolean },
 ): Promise<{ target: TargetWorker } | { error: NextResponse }> {
@@ -72,10 +98,10 @@ export async function GET(request: Request) {
     let query = `
       SELECT w.id, w.full_name, w.email, w.phone, w.role, w.department, w.county,
              COALESCE(w.status, 'active') AS status,
-             COUNT(p.id) AS assigned_patients_count,
+             COUNT(DISTINCT p.id) AS assigned_patients_count,
              w.created_at, w.updated_at
       FROM workers w
-      LEFT JOIN patients p ON p.assigned_worker_id = w.id
+      LEFT JOIN patients p ON p.assigned_worker_id = w.id OR jsonb_has_id(p.assigned_worker_ids, w.id::text)
     `;
     const params: unknown[] = [];
     const conditions: string[] = [];
@@ -130,6 +156,10 @@ export async function POST(request: Request) {
   try {
     body = (await request.json()) as CreateWorkerPayload;
   } catch {
+    return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
+  }
+
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
     return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
   }
 
@@ -253,10 +283,21 @@ export async function PATCH(request: Request) {
   if (!body || typeof body !== "object" || Array.isArray(body)) {
     return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
   }
-  const id = body.id ? String(body.id) : null;
-  if (!id) {
+  const id = body.id ? String(body.id).trim() : null;
+  if (!id || !/^\d+$/.test(id)) {
     return NextResponse.json({ error: "Staff ID is required." }, { status: 400 });
   }
+
+  const parsedAssign = parsePatientIdList(body.assign_patient_ids, "assign_patient_ids");
+  if (!parsedAssign.ok) {
+    return NextResponse.json({ error: parsedAssign.error }, { status: 400 });
+  }
+  const parsedUnassign = parsePatientIdList(body.unassign_patient_ids, "unassign_patient_ids");
+  if (!parsedUnassign.ok) {
+    return NextResponse.json({ error: parsedUnassign.error }, { status: 400 });
+  }
+  const assignPatientIds = parsedAssign.ids;
+  const unassignPatientIds = parsedUnassign.ids;
 
   const updates: string[] = [];
   const params: unknown[] = [];
@@ -329,38 +370,83 @@ export async function PATCH(request: Request) {
     params.push(body.status);
   }
 
-  const db = getCountryDatabase(workerContext.country);
+  const changedFields = updates
+    .map((entry) => entry.split("=")[0]?.trim())
+    .filter(Boolean);
 
   try {
-    const loaded = await loadTargetWorker(db, id, workerContext);
-    if ("error" in loaded) return loaded.error;
+    const db = getCountryDatabase(workerContext.country);
+    const connection = await db.getConnection();
+    try {
+      await connection.beginTransaction();
 
-    const changedFields = updates
-      .map((entry) => entry.split("=")[0]?.trim())
-      .filter(Boolean);
+      const loaded = await loadTargetWorker(connection, id, workerContext);
+      if ("error" in loaded) {
+        await connection.rollback().catch(() => undefined);
+        return loaded.error;
+      }
 
-    if (updates.length > 0) {
-      params.push(id);
-      await db.query<ResultSetHeader>(
-        `UPDATE workers SET ${updates.join(", ")} WHERE id = ?`,
-        params,
-      );
-    }
+      if (updates.length > 0) {
+        const updateParams = [...params, id];
+        await connection.query<ResultSetHeader>(
+          `UPDATE workers SET ${updates.join(", ")} WHERE id = ?`,
+          updateParams,
+        );
+      }
 
-    if (Array.isArray(body.assign_patient_ids) && body.assign_patient_ids.length > 0) {
-      const placeholders = body.assign_patient_ids.map(() => "?").join(", ");
-      await db.query(
-        `UPDATE patients SET assigned_worker_id = ?, assigned_worker_ids = jsonb_build_array(?::bigint) WHERE id IN (${placeholders})`,
-        [id, id, ...body.assign_patient_ids],
-      );
-    }
+      if (assignPatientIds.length > 0) {
+        const placeholders = assignPatientIds.map(() => "?").join(", ");
+        const [assignedRows] = await connection.query<
+          (RowDataPacket & { id: number; assigned_worker_id: string | number | null; assigned_worker_ids: unknown })[]
+        >(
+          `SELECT id, assigned_worker_id, assigned_worker_ids FROM patients WHERE id IN (${placeholders}) FOR UPDATE`,
+          assignPatientIds,
+        );
+        for (const patient of assignedRows) {
+          const existing = (parseJsonColumn<Array<string | number>>(patient.assigned_worker_ids) || [])
+            .map(String)
+            .filter((workerId) => workerId.length > 0);
+          if (existing.length === 0 && patient.assigned_worker_id != null) {
+            existing.push(String(patient.assigned_worker_id));
+          }
+          const nextIds = existing.includes(id) ? existing : [...existing, id];
+          const nextPrimary = patient.assigned_worker_id != null ? String(patient.assigned_worker_id) : nextIds[0];
+          await connection.query(
+            "UPDATE patients SET assigned_worker_id = ?, assigned_worker_ids = ? WHERE id = ?",
+            [nextPrimary, JSON.stringify(nextIds), patient.id],
+          );
+        }
+      }
 
-    if (Array.isArray(body.unassign_patient_ids) && body.unassign_patient_ids.length > 0) {
-      const placeholders = body.unassign_patient_ids.map(() => "?").join(", ");
-      await db.query(
-        `UPDATE patients SET assigned_worker_id = NULL, assigned_worker_ids = NULL WHERE id IN (${placeholders})`,
-        body.unassign_patient_ids,
-      );
+      if (unassignPatientIds.length > 0) {
+        const placeholders = unassignPatientIds.map(() => "?").join(", ");
+        const [unassignRows] = await connection.query<
+          (RowDataPacket & { id: number; assigned_worker_id: string | number | null; assigned_worker_ids: unknown })[]
+        >(
+          `SELECT id, assigned_worker_id, assigned_worker_ids FROM patients WHERE id IN (${placeholders}) FOR UPDATE`,
+          unassignPatientIds,
+        );
+        for (const patient of unassignRows) {
+          const existing = (parseJsonColumn<Array<string | number>>(patient.assigned_worker_ids) || [])
+            .map(String)
+            .filter((workerId) => workerId.length > 0);
+          if (existing.length === 0 && patient.assigned_worker_id != null) {
+            existing.push(String(patient.assigned_worker_id));
+          }
+          const remaining = existing.filter((workerId) => workerId !== id);
+          await connection.query(
+            "UPDATE patients SET assigned_worker_id = ?, assigned_worker_ids = ? WHERE id = ?",
+            [remaining[0] ?? null, remaining.length > 0 ? JSON.stringify(remaining) : null, patient.id],
+          );
+        }
+      }
+
+      await connection.commit();
+    } catch (error) {
+      await connection.rollback().catch(() => undefined);
+      throw error;
+    } finally {
+      connection.release();
     }
 
     await logActivity({
@@ -374,8 +460,8 @@ export async function PATCH(request: Request) {
       entityId: id,
       details: {
         updated_fields: changedFields,
-        assigned_patient_ids: body.assign_patient_ids || [],
-        unassigned_patient_ids: body.unassign_patient_ids || [],
+        assigned_patient_ids: assignPatientIds,
+        unassigned_patient_ids: unassignPatientIds,
       },
       ipAddress: getClientIp(request),
     });
@@ -417,8 +503,8 @@ export async function DELETE(request: Request) {
   if (!id) {
     // The id may arrive as a query parameter or in a JSON body.
     try {
-      const body = (await request.json()) as { id?: string | number };
-      if (body.id) {
+      const body = (await request.json()) as { id?: string | number } | null;
+      if (body && typeof body === "object" && !Array.isArray(body) && body.id) {
         id = String(body.id);
       }
     } catch {

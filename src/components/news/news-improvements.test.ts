@@ -206,13 +206,15 @@ describe("NewsHub inline live-filtered feed (#9)", () => {
     }
   });
 
-  test.each(ALL_LANGS)("SSR renders inline feed with category chips and zero modals in %s", (lang) => {
+  test.each(ALL_LANGS)("SSR renders inline feed with collapsible filters and zero modals in %s", (lang) => {
     const html = renderToStaticMarkup(withLang(lang, React.createElement(NewsHub)));
 
     expect(html).not.toContain('role="dialog"');
     expect(html).toContain('aria-live="polite"');
-    expect(html).toContain('aria-pressed="true"');
-    expect(html).toContain('aria-pressed="false"');
+    expect(html).toContain('aria-controls="news-filters-panel"');
+    expect(html).toContain('aria-expanded="false"');
+    expect(html).toContain('id="news-category-select"');
+    expect(html).toContain('value="all"');
     expect(html).toContain("whitespace-nowrap");
     expect(html).not.toContain("rounded-full");
     expect(html).not.toContain("\u00b7");
