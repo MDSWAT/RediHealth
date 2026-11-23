@@ -130,6 +130,21 @@ function resolveSslConfig() {
   };
 }
 
+/**
+ * Supabase's session pooler (port 5432) pins one server connection to every client and refuses
+ * more than its pool_size (EMAXCONNSESSION), which dev servers, build workers and serverless
+ * instances exhaust quickly. The transaction pooler (port 6543) shares them, and the app needs
+ * nothing session-scoped: transactions run on one checked-out client between BEGIN and COMMIT.
+ */
+function warnIfSessionPooler(host: string | undefined, port: number | undefined, label: string) {
+  if (host?.endsWith(".pooler.supabase.com") && Number(port || 5432) === 5432) {
+    console.warn(
+      `[database] ${label} uses the Supabase session pooler (port 5432), which allows only a few clients in total. ` +
+        "Use the transaction pooler (same URL, port 6543) to avoid EMAXCONNSESSION errors.",
+    );
+  }
+}
+
 function createPool(settings: ConnectionSettings, label: string) {
   // This budget applies per database, per process. Session poolers count clients across
   // development servers, deployed instances and background jobs, so keep the default small.
@@ -177,6 +192,8 @@ function createPool(settings: ConnectionSettings, label: string) {
       database: settings.database,
     });
   }
+
+  warnIfSessionPooler(pool.options?.host, pool.options?.port, label);
 
   // An idle client losing its connection must not crash the server; the pool replaces it.
   pool.on?.("error", (error) => {

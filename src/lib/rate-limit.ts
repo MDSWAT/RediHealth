@@ -112,7 +112,12 @@ export async function checkRateLimit(key: string, options: RateLimitOptions): Pr
     } catch (error) {
       if (!warnedStoreFailure) {
         warnedStoreFailure = true;
-        console.warn("Shared rate limiting unavailable, using in-memory counters. Is migration 009 applied?", error);
+        // 42P01: the rate_limits table does not exist. Anything else is a connection problem.
+        const missingTable = (error as { code?: string } | null)?.code === "42P01";
+        console.warn(
+          `Shared rate limiting unavailable, using in-memory counters.${missingTable ? " Is migration 009 applied?" : ""}`,
+          error,
+        );
       }
     }
   }
