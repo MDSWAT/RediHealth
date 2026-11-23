@@ -7,7 +7,9 @@ import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { panelWorkspaceTranslations } from "@/lib/i18n/panel-workspace-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
 import { withLangPrefix } from "@/lib/i18n/routing";
-import { dayLabel, formatPanelDate, requestDay } from "@/lib/panel-dates";
+import { dayLabel } from "@/lib/panel-dates";
+import { inboxDay, inboxTimestamp } from "@/lib/request-inbox-dates";
+import { useViewerTimeZone } from "./useViewerTimeZone";
 import { requestFolders, type InboxPage, type RequestFolder } from "@/lib/request-inbox";
 import type { MedicalHelpRequestItem, RequestPriority, RequestStatus } from "@/lib/types/medical-request";
 import { CreatePatientModal } from "./CreatePatientModal";
@@ -22,6 +24,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
   const t = crmTranslations[lang];
   const copy = panelWorkspaceTranslations[lang];
   const locale = langToLocale[lang];
+  const localizedDates = useViewerTimeZone() !== null;
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const folder = requestFolders.includes(searchParams.get("folder") as RequestFolder) ? searchParams.get("folder") as RequestFolder : "attention";
@@ -114,9 +117,9 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
       <section className="crm-request-list" aria-label={t.requests} aria-busy={loading}>
         {!inbox.requests.length && <div className="panel-list-empty" role="status"><SearchIcon className="h-6 w-6" aria-hidden="true" /><h3>{loading ? t.loading : t.empty}</h3>{!loading && <><p>{copy.emptyHint}</p>{hasFilters && <button className="crm-button" onClick={() => updateUrl({ q: "", priority: "", from: "", to: "" })}>{t.clear}</button>}</>}</div>}
         {inbox.requests.map((r, index) => {
-          const key = requestDay(r.created_at);
-          const heading = index === 0 || key !== requestDay(inbox.requests[index - 1].created_at);
-          return <div key={r.id}>{heading && <h3 className="crm-day-heading">{dayLabel(key, locale, t.today, t.yesterday)}</h3>}<button className={`crm-request-row ${requestId === r.id ? "selected" : ""}`} onClick={() => updateUrl({ request: r.id })} aria-pressed={requestId === r.id}><div className="panel-request-identity"><span className="panel-request-avatar" aria-hidden="true">{(r.full_name || t.unnamed).trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join("")}</span><div className="min-w-0 flex-1"><div className="flex justify-between gap-3"><span className="truncate font-semibold">{r.full_name || t.unnamed}</span><time className="shrink-0 text-xs text-muted-foreground" dateTime={r.created_at}>{formatPanelDate(r.created_at, locale, "time")}</time></div><p className="panel-request-description">{r.description}</p><div className="panel-request-meta"><span className="panel-request-status" data-status={r.status}>{t[r.status]}</span>{r.priority === "urgent" && <span className="crm-urgent">{t.urgent}</span>}</div></div></div></button></div>;
+          const key = inboxDay(r.created_at, localizedDates);
+          const heading = index === 0 || key !== inboxDay(inbox.requests[index - 1].created_at, localizedDates);
+          return <div key={r.id}>{heading && <h3 className="crm-day-heading">{(localizedDates ? dayLabel(key, locale, t.today, t.yesterday) : key || "—")}</h3>}<button className={`crm-request-row ${requestId === r.id ? "selected" : ""}`} onClick={() => updateUrl({ request: r.id })} aria-pressed={requestId === r.id}><div className="panel-request-identity"><span className="panel-request-avatar" aria-hidden="true">{(r.full_name || t.unnamed).trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join("")}</span><div className="min-w-0 flex-1"><div className="flex justify-between gap-3"><span className="truncate font-semibold">{r.full_name || t.unnamed}</span><time className="shrink-0 text-xs text-muted-foreground" dateTime={r.created_at}>{inboxTimestamp(r.created_at, locale, "time", localizedDates)}</time></div><p className="panel-request-description">{r.description}</p><div className="panel-request-meta"><span className="panel-request-status" data-status={r.status}>{t[r.status]}</span>{r.priority === "urgent" && <span className="crm-urgent">{t.urgent}</span>}</div></div></div></button></div>;
         })}
         {inbox.hasMore && <div className="p-4 text-center"><button className="crm-button" disabled={loading} onClick={loadMore}>{loading ? t.loading : t.loadMore}</button></div>}
       </section>
@@ -137,6 +140,7 @@ function RequestReader({ request, onDirtyChange, onUpdate, onBack, onCreate, onR
   request: MedicalHelpRequestItem; onDirtyChange: (value: boolean) => void; onUpdate: (request: MedicalHelpRequestItem) => void; onBack: () => void; onCreate: () => void; onReply: () => void; onDelete: () => Promise<void>;
 }) {
   const { lang } = useLanguage();
+  const localizedDates = useViewerTimeZone() !== null;
   const { request: fetch } = usePanelRuntime();
   const t = crmTranslations[lang];
   const [status, setStatus] = useState<RequestStatus>(request.status);
@@ -156,7 +160,7 @@ function RequestReader({ request, onDirtyChange, onUpdate, onBack, onCreate, onR
     } catch { setError(t.error); } finally { setSaving(false); }
   }
   return <div className="crm-reader-content">
-    <div className="flex items-center justify-between"><button className="crm-reader-back inline-flex min-h-10 items-center gap-1 rounded-lg pr-2 text-sm font-medium text-primary" onClick={onBack}><ChevronLeftIcon aria-hidden="true" className="h-4 w-4" />{t.back}</button><span className="text-xs text-muted-foreground">#{request.id} · {formatPanelDate(request.created_at, langToLocale[lang], "dateTime")}</span><details className="crm-menu"><summary className="crm-button">{t.more}</summary><div><button disabled={saving} onClick={async () => { if (!window.confirm(t.deleteConfirm)) return; setSaving(true); try { await onDelete(); } catch { setError(t.error); setSaving(false); } }}>{t.delete}</button></div></details></div>
+    <div className="flex items-center justify-between"><button className="crm-reader-back inline-flex min-h-10 items-center gap-1 rounded-lg pr-2 text-sm font-medium text-primary" onClick={onBack}><ChevronLeftIcon aria-hidden="true" className="h-4 w-4" />{t.back}</button><span className="text-xs text-muted-foreground">#{request.id} · {inboxTimestamp(request.created_at, langToLocale[lang], "dateTime", localizedDates)}</span><details className="crm-menu"><summary className="crm-button">{t.more}</summary><div><button disabled={saving} onClick={async () => { if (!window.confirm(t.deleteConfirm)) return; setSaving(true); try { await onDelete(); } catch { setError(t.error); setSaving(false); } }}>{t.delete}</button></div></details></div>
     <h2 className="mt-6 text-2xl font-semibold">{request.full_name || t.unnamed}</h2>
     <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm"><a className="text-primary" href={`tel:${request.phone}`}>{request.phone}</a>{request.email && <a className="break-all text-primary" href={`mailto:${request.email}`}>{request.email}</a>}{request.county && <span className="text-muted-foreground">{request.county}</span>}</div>
     <p className="my-7 whitespace-pre-wrap text-base leading-relaxed">{request.description}</p>

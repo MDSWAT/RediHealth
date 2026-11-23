@@ -5,6 +5,34 @@ export const ALERT_EMAIL_SETTING = "alert_email";
 
 const CACHE_TTL_MS = 30_000;
 const cache = new Map<string, { value: string | null; expiresAt: number }>();
+const pendingReads = new Map<string, Promise<string | null>>();
+
+function isConnectionFailure(error: unknown): boolean {
+  if (!(error instanceof Error)) return false;
+  const code = "code" in error ? error.code : undefined;
+  return ["ECONNRESET", "ECONNREFUSED", "ETIMEDOUT", "EPIPE", "08001", "08006", "57P03"].includes(String(code)) ||
+    /^(Connection terminated due to connection timeout|Connection terminated unexpectedly|timeout exceeded when trying to connect)$/.test(error.message);
+}
+
+async function readSetting(key: string): Promise<string | null> {
+  try {
+    const read = () => getControlDatabase().query<(RowDataPacket & { setting_value: string | null })[]>(
+      "SELECT setting_value FROM app_settings WHERE setting_key = ? LIMIT 1",
+      [key],
+    );
+    // Only this idempotent read is retried. pg discards the failed connection; writes elsewhere
+    // must never be replayed because the server may already have committed them.
+    const [rows] = await read().catch((error: unknown) => {
+      if (!isConnectionFailure(error)) throw error;
+      return read();
+    });
+    return rows[0]?.setting_value?.trim() || null;
+  } catch (error) {
+    console.error(`Failed to read setting ${key}`, error);
+    // Keep known alert recipients available during an outage; a cold process uses the env fallback.
+    return cache.get(key)?.value ?? null;
+  }
+}
 
 export async function getSetting(key: string): Promise<string | null> {
   const cached = cache.get(key);
@@ -16,18 +44,20 @@ export async function getSetting(key: string): Promise<string | null> {
     return null;
   }
 
-  try {
-    const [rows] = await getControlDatabase().query<(RowDataPacket & { setting_value: string | null })[]>(
-      "SELECT setting_value FROM app_settings WHERE setting_key = ? LIMIT 1",
-      [key],
-    );
-    const value = rows[0]?.setting_value?.trim() || null;
-    cache.set(key, { value, expiresAt: Date.now() + CACHE_TTL_MS });
+  const pending = pendingReads.get(key);
+  if (pending) return pending;
+
+  const read = readSetting(key).then((value) => {
+    // A successful write invalidates an older in-flight read too.
+    if (pendingReads.get(key) === read) {
+      cache.set(key, { value, expiresAt: Date.now() + CACHE_TTL_MS });
+    }
     return value;
-  } catch (error) {
-    console.error(`Failed to read setting ${key}`, error);
-    return null;
-  }
+  }).finally(() => {
+    if (pendingReads.get(key) === read) pendingReads.delete(key);
+  });
+  pendingReads.set(key, read);
+  return read;
 }
 
 export async function setSetting(key: string, value: string | null, updatedBy: string): Promise<void> {
@@ -37,6 +67,7 @@ export async function setSetting(key: string, value: string | null, updatedBy: s
     [key, value, updatedBy],
   );
   cache.delete(key);
+  pendingReads.delete(key);
 }
 
 export const MAX_ALERT_RECIPIENTS = 10;

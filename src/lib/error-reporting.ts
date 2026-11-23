@@ -24,6 +24,11 @@ const SAME_ERROR_COOLDOWN_MS = 15 * 60_000;
 const MAX_ERROR_EMAILS_PER_HOUR = 40;
 const MAX_TRACKED_ERRORS = 500;
 
+/** Node prints this runtime advisory through console.error; it is not an application failure. */
+function isServerLogNoise(message: string): boolean {
+  return /^(?:\(node:\d+\)\s*)?ExperimentalWarning: vm\.USE_MAIN_CONTEXT_DEFAULT_LOADER is an experimental feature and might change at any time(?:\s+\(Use `node --trace-warnings \.\.\.` to show where the warning was created\))?\s*$/.test(message.trim());
+}
+
 // True while a report is being sent, so failures of the alert pipeline itself are never re-reported.
 const sending = new AsyncLocalStorage<boolean>();
 const lastSentAt = new Map<string, number>();
@@ -77,6 +82,7 @@ const SOURCE_LABEL: Record<ErrorReport["source"], string> = {
 /** Emails one error to the alert addresses. Returns false when it was skipped or could not be sent. */
 export async function reportError(report: ErrorReport): Promise<boolean> {
   if (sending.getStore() || !isErrorReportingEnabled()) return false;
+  if (report.source === "server-log" && isServerLogNoise(report.message)) return false;
 
   const message = redactErrorText(report.message).trim().slice(0, 2000);
   if (!message) return false;
@@ -138,7 +144,7 @@ export function installConsoleErrorReporting(): void {
       if (sending.getStore()) return;
       const error = args.find((arg): arg is Error => arg instanceof Error);
       const message = args.map(describeLogValue).filter(Boolean).join(" ");
-      if (!message) return;
+      if (!message || isServerLogNoise(message)) return;
 
       const send = () => reportError({ source: "server-log", message, stack: error?.stack });
       try {
