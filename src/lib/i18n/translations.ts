@@ -220,6 +220,7 @@ export type Translations = {
       portalRecoverySent: string;
       portalRecoveryError: string;
       genericSendError: string;
+      unknownEmail: string;
       checkEmailTitle: string;
       codeSentBody: (email: string) => string;
       codeLabel: string;
@@ -741,6 +742,7 @@ export const translations: Record<Lang, Translations> = {
         portalRecoverySent: "Если в этом письме есть портал для пациентов, вы скоро получите новую ссылку.",
         portalRecoveryError: "Что-то пошло не так. Повторите попытку через некоторое время.",
         genericSendError: "Мы не смогли отправить код. Попробуйте еще раз.",
+        unknownEmail: "Этот адрес электронной почты не зарегистрирован в RediHealth. Проверьте адрес или попросите координатора добавить вас.",
         checkEmailTitle: "Проверьте свою электронную почту",
         codeSentBody: (email: string) => `Мы отправили 6-значный код на ${email}. Срок действия кода истекает через 10 минут.`,
         codeLabel: "6-значный код",
@@ -1307,6 +1309,7 @@ export const translations: Record<Lang, Translations> = {
         portalRecoverySent: "If this email has a patient portal, you'll get a new link soon.",
         portalRecoveryError: "Something went wrong. Try again in a little while.",
         genericSendError: "We couldn't send the code. Try again.",
+        unknownEmail: "This email isn't registered in RediHealth. Check the address, or ask your coordinator to add you.",
         checkEmailTitle: "Check your email",
         codeSentBody: (email: string) => `We sent a 6-digit code to ${email}. The code expires in 10 minutes.`,
         codeLabel: "6-digit code",
@@ -1872,6 +1875,7 @@ export const translations: Record<Lang, Translations> = {
         portalRecoverySent: "Dacă adresa are un portal de pacient, primești curând un link nou.",
         portalRecoveryError: "Ceva nu a mers. Încearcă din nou puțin mai târziu.",
         genericSendError: "Nu am putut trimite codul. Încearcă din nou.",
+        unknownEmail: "Această adresă de email nu este înregistrată în RediHealth. Verifică adresa sau cere coordonatorului să te adauge.",
         checkEmailTitle: "Verifică-ți emailul",
         codeSentBody: (email: string) => `Am trimis un cod din 6 cifre la ${email}. Codul expiră în 10 minute.`,
         codeLabel: "Codul din 6 cifre",
@@ -2437,6 +2441,7 @@ export const translations: Record<Lang, Translations> = {
         portalRecoverySent: "Nëse ky email ka një portal pacienti, së shpejti merr një lidhje të re.",
         portalRecoveryError: "Diçka nuk shkoi. Provo përsëri pak më vonë.",
         genericSendError: "Nuk mundëm ta dërgojmë kodin. Provo përsëri.",
+        unknownEmail: "Ky email nuk është i regjistruar në RediHealth. Kontrollo adresën ose kërkoji koordinatorit të të shtojë.",
         checkEmailTitle: "Kontrollo emailin tënd",
         codeSentBody: (email: string) => `Dërguam një kod me 6 shifra në ${email}. Kodi skadon pas 10 minutash.`,
         codeLabel: "Kodi me 6 shifra",
@@ -3002,6 +3007,7 @@ export const translations: Record<Lang, Translations> = {
         portalRecoverySent: "Se questa email ha un portale paziente, riceverai presto un nuovo link.",
         portalRecoveryError: "Qualcosa non ha funzionato. Riprova tra poco.",
         genericSendError: "Non siamo riusciti a inviare il codice. Riprova.",
+        unknownEmail: "Questa email non è registrata su RediHealth. Controlla l'indirizzo o chiedi al tuo coordinatore di aggiungerti.",
         checkEmailTitle: "Controlla la tua email",
         codeSentBody: (email: string) => `Abbiamo inviato un codice di 6 cifre a ${email}. Il codice scade tra 10 minuti.`,
         codeLabel: "Codice di 6 cifre",
@@ -3567,6 +3573,7 @@ export const translations: Record<Lang, Translations> = {
         portalRecoverySent: "Ako ova adresa ima portal za pacijente, uskoro ćeš dobiti novu poveznicu.",
         portalRecoveryError: "Nešto je pošlo po zlu. Pokušaj ponovno malo kasnije.",
         genericSendError: "Nismo uspjeli poslati kod. Pokušaj ponovno.",
+        unknownEmail: "Ova e-pošta nije registrirana u sustavu RediHealth. Provjeri adresu ili zamoli koordinatora da te doda.",
         checkEmailTitle: "Provjeri svoju e-poštu",
         codeSentBody: (email: string) => `Poslali smo 6-znamenkasti kod na adresu ${email}. Kod vrijedi 10 minuta.`,
         codeLabel: "6-znamenkasti kod",
@@ -4132,6 +4139,7 @@ export const translations: Record<Lang, Translations> = {
         portalRecoverySent: "Te si kadale emailes paciyentesko portalo, sigo ka les nevo linko.",
         portalRecoveryError: "Vareso na gelo mishto. Zumav palem palo zalag vrama.",
         genericSendError: "Nashti bichhaldam o kodo. Zumav palem.",
+        unknownEmail: "Kadava emailo nane registrime ando RediHealth. Dikh e adresa, vai mang ka cho koordinatori te del tut andre.",
         checkEmailTitle: "Dikh cho emailo",
         codeSentBody: (email: string) => `Bichhaldam kodo katar 6 gina pe ${email}. O kodo nakhavel piro vrama ande 10 minute.`,
         codeLabel: "Kodo katar 6 gina",

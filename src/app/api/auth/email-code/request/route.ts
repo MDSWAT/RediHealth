@@ -75,9 +75,13 @@ export async function POST(request: Request) {
     );
   }
 
-  // Answer the same way for unknown addresses so this endpoint cannot be used to discover staff accounts.
+  // Tell people when the address has no access, so a typo or an unregistered colleague does not
+  // wait for a code that never comes. The captcha and the rate limits above keep probing slow.
   if (!access.allowed) {
-    return NextResponse.json({ success: true });
+    return NextResponse.json(
+      { error: "This email is not registered in RediHealth.", code: "unknown-email" },
+      { status: 403 },
+    );
   }
 
   const code = createOneTimeCode();

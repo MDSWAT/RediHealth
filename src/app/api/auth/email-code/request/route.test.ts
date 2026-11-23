@@ -84,11 +84,11 @@ describe("email code request route", () => {
     expect(mocks.set).not.toHaveBeenCalled();
   });
 
-  it("answers unknown addresses exactly like known ones without sending anything", async () => {
+  it("tells unknown addresses they are not registered, without sending anything", async () => {
     mocks.access.mockResolvedValue({ allowed: false, reason: "unauthorized" });
     const response = await POST(request(JSON.stringify({ email: "stranger@example.com" }), "198.51.100.30"));
-    expect(response.status).toBe(200);
-    expect(await response.json()).toEqual({ success: true });
+    expect(response.status).toBe(403);
+    expect(await response.json()).toMatchObject({ code: "unknown-email" });
     expect(mocks.sendEmail).not.toHaveBeenCalled();
     expect(mocks.set).not.toHaveBeenCalled();
   });

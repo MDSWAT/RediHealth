@@ -191,9 +191,13 @@ export function SignInForm({
         setError(
           response.status === 429
             ? TOO_MANY[lang]
-            : (captchaFailureMessage(lang, failure?.code) ??
-              (response.status === 400 ? form.emailInvalid : form.genericSendError)),
+            : failure?.code === "unknown-email"
+              ? form.unknownEmail
+              : (captchaFailureMessage(lang, failure?.code) ??
+                (response.status === 400 ? form.emailInvalid : form.genericSendError)),
         );
+        // A resend from the code step goes back to the address, where the message belongs.
+        if (failure?.code === "unknown-email") setStage("email");
         return;
       }
       setStage("code");
