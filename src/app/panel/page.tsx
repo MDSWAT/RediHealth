@@ -3,11 +3,12 @@ import { auth } from "@/auth";
 import { isCountryConfigured } from "@/lib/database";
 import { WorkerDashboard } from "@/components/panel/WorkerDashboard";
 import { loadRequestInbox, type InboxPage } from "@/lib/data/request-inbox";
+import { requestFolders, type RequestFolder } from "@/lib/request-inbox";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 import { createPageMetadata } from "@/lib/i18n/page-metadata";
 
-export const generateMetadata = createPageMetadata("panel", "Worker Panel Dashboard - RediHealth", "");
+export const generateMetadata = createPageMetadata("panel", "Worker panel - RediHealth", "");
 
 export default async function PanelPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const session = await auth();
@@ -19,7 +20,8 @@ export default async function PanelPage({ searchParams }: { searchParams: Promis
   let inbox: InboxPage = { requests: [], counts: { attention: 0, all: 0, pending: 0, in_progress: 0, resolved: 0, archived: 0 }, page: 1, hasMore: false, total: 0 };
   const params = new URLSearchParams();
   for (const [key, value] of Object.entries(await searchParams)) if (typeof value === "string") params.set(key, value);
-  if (!params.has("folder")) params.set("folder", "attention");
+  const rawFolder = params.get("folder");
+  params.set("folder", requestFolders.includes(rawFolder as RequestFolder) ? (rawFolder as RequestFolder) : "attention");
   params.set("limit", "50");
   params.delete("page");
   if (databaseAvailable) {
