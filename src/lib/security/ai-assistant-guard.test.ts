@@ -601,6 +601,52 @@ describe("AI assistant device token quota, content safety, and 72h lockout", () 
     expect(llmPrompt.match(/<\/untrusted_conversation_history>/g)?.length).toBe(1);
   });
 
+  it("allows legitimate health follow-ups after an earlier off-topic turn in history while stripping the off-topic entry from the LLM prompt", async () => {
+    const devHeader = { "x-device-id": "dev-offtopic-followup-005" };
+
+    // Turn 1: user asks an accidental off-topic question -> 200 outOfScope, 0 LLM calls
+    const firstTurn = await POST(
+      makePostRequest({ symptoms: "What is the weather forecast today?", lang: "en" }, devHeader),
+    );
+    expect(firstTurn.status).toBe(200);
+    expect(await firstTurn.json()).toMatchObject({ outOfScope: true, responseKind: "out_of_scope" });
+    expect(mocks.generateText).not.toHaveBeenCalled();
+
+    // Subsequent legitimate health follow-ups include the old off-topic turn in history (as AiChatAssistant sends):
+    // none should be rejected or accrue strikes toward a 72h lockout, and the off-topic text must be stripped from the prompt.
+    for (let turn = 0; turn < 4; turn += 1) {
+      mocks.generateText.mockResolvedValueOnce({
+        text: validMedicalReplyJson(),
+        model: "claude-haiku-4-5-20251001",
+        usage: { inputTokens: 180, outputTokens: 90, totalTokens: 270 },
+      });
+
+      const followUp = await POST(
+        makePostRequest(
+          {
+            symptoms: "I have a headache and fever for two days",
+            lang: "en",
+            history: [
+              { role: "user", content: "What is the weather forecast today?" },
+              { role: "assistant", content: "I can only help with medical terms, symptoms, or RediHealth." },
+              { role: "user", content: "My temperature was 38.2 C this morning." },
+            ],
+          },
+          devHeader,
+        ),
+      );
+      expect(followUp.status, `follow-up turn ${turn + 1}`).toBe(200);
+      const body = (await followUp.json()) as { outOfScope?: boolean; code?: string };
+      expect(body.outOfScope).toBeUndefined();
+      expect(body.code).toBeUndefined();
+    }
+
+    expect(mocks.generateText).toHaveBeenCalledTimes(4);
+    const promptSent = String(mocks.generateText.mock.calls[0]?.[0]?.text ?? "");
+    expect(promptSent).not.toContain("weather forecast");
+    expect(promptSent).toContain("[prior_user_turn]: My temperature was 38.2 C this morning.");
+  });
+
   it("enforces a conservative shared fallback quota when client IP is unknown and supports atomic pre-call reservation", async () => {
     vi.stubEnv("AI_DAILY_TOKEN_LIMIT_DEVICE", "5000");
     vi.stubEnv("AI_DAILY_TOKEN_LIMIT_IP", "5000");

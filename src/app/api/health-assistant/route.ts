@@ -236,7 +236,6 @@ export async function POST(request: Request) {
   }
 
   const parsedHistoryEntries = parseHistory(body.history);
-  const parsedHistory = parsedHistoryEntries.map((entry) => entry.formatted);
   const historyContents = parsedHistoryEntries.map((entry) => entry.content);
 
   const safety = evaluateCombinedSafety([symptoms, medicineName, prescriptionContext, ...historyContents]);
@@ -313,10 +312,11 @@ export async function POST(request: Request) {
 
   const hasImage = !isMedicineLookup && Boolean(imageData);
 
-  // Deterministically block prompt injections and clearly off-topic chat requests before calling the LLM,
-  // including when an image is attached (for any non-empty text/history) and across all history turns.
-  const offTopicInputs = [symptoms, prescriptionContext, ...historyContents].filter(Boolean);
-  if (!isMedicineLookup && offTopicInputs.some((part) => detectOffTopicRequest(part))) {
+  // Deterministically block clearly off-topic current-turn requests before calling the LLM,
+  // including when an image is attached. Prior off-topic turns in history are stripped below
+  // rather than penalized so legitimate health follow-ups after an out-of-scope reply still work.
+  const currentTurnOffTopicInputs = [symptoms, prescriptionContext].filter(Boolean);
+  if (!isMedicineLookup && currentTurnOffTopicInputs.some((part) => detectOffTopicRequest(part))) {
     const offTopicOutcome = await recordOffTopicStrike({ deviceKeys: deviceIdentity.deviceKeys, ip });
     if (offTopicOutcome.outcome === "blocked") {
       return respondWithCookie(
@@ -348,6 +348,10 @@ export async function POST(request: Request) {
     }
     return respondWithCookie(NextResponse.json(buildOutOfScopeResponse(lang)));
   }
+
+  const parsedHistory = parsedHistoryEntries
+    .filter((entry) => !detectOffTopicRequest(entry.content))
+    .map((entry) => entry.formatted);
 
   const system = isMedicineLookup
     ? buildMedicineLookupSystemInstruction(lang)
