@@ -12,10 +12,11 @@ export function WorkerDashboard({ initialInbox, userEmail, userRole, isAdmin, is
   const { lang } = useLanguage();
   // The menu badge counts the same set as the inbox's first folder ("Needs attention": pending + in progress).
   const [pending, setPending] = useState(initialInbox.counts.attention);
+  const createPatient = <PanelOverview isAdmin={Boolean(isAdmin)} isRomania={isRomania} databaseAvailable={databaseAvailable} />;
   return <AdminShell userEmail={userEmail} userRole={userRole} isAdmin={isAdmin} pendingCount={pending} mobilePatientCreation={databaseAvailable ? { isRomania } : undefined}>
     <main id="main-content" className="crm-workspace panel-home">
-      <PanelOverview isAdmin={Boolean(isAdmin)} isRomania={isRomania} databaseAvailable={databaseAvailable} />
-      {databaseAvailable ? <RequestsInbox isAdmin={isAdmin} isRomania={isRomania} initialInbox={initialInbox} onPendingChange={setPending} /> : <p role="alert" className="crm-error m-6">{panelTranslations[lang].workerDashboard.noDatabase}</p>}
+      <h1 className="sr-only">{panelTranslations[lang].adminShell.requests}</h1>
+      {databaseAvailable ? <RequestsInbox isAdmin={isAdmin} isRomania={isRomania} initialInbox={initialInbox} onPendingChange={setPending} actions={createPatient} /> : <>{createPatient}<p role="alert" className="crm-error my-6">{panelTranslations[lang].workerDashboard.noDatabase}</p></>}
     </main>
   </AdminShell>;
 }

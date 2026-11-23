@@ -12,7 +12,7 @@ RediHealth staff, including health workers, mediators, doctors, and administrato
 
 ## Product Purpose
 
-Help staff review requests, find patient records, coordinate appointments, and access the tools needed to provide care. The requested panel redesign prioritizes a balanced overview of all available panel tools.
+Help staff review requests, find patient records, coordinate appointments, and access the tools needed to provide care. The panel home prioritizes direct request handling, with search, filters, and actions above the request list; existing navigation provides access to other tools.
 
 ## Capabilities and Constraints
 

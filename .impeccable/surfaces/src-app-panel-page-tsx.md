@@ -5,21 +5,21 @@ primary_target: "src/app/panel/page.tsx"
 related_targets: ["src/components/panel/PanelOverview.tsx","src/components/panel/RequestsInbox.tsx","src/components/panel/panel-workspace.css"]
 ---
 
-# Panel redesign
+# Panel workspace
 
-Mode: Operate. Scope: panel home and shared navigation. The user confirmed a balanced overview of panel tools and a direct implementation in code. Preserve the existing product identity, authentication, role visibility, and request operations.
+Mode: Operate. Scope: panel home. The latest user request reduces containers, removes page titles, and lets necessary information fill the page. Preserve the existing product identity, authentication, role visibility, navigation, and request operations.
 
 ## Direction contract
 
-THESIS: A care coordination board makes the available work visible through a compact tool directory and a request inbox, replacing the former three-column email layout.
+THESIS: Requests fill a single open working canvas, with task controls directly above the information.
 
-OWN-WORLD: Pale slate workspace, white working surfaces, sapphire current destinations, readable body typography, fine rules, and a single rounded inbox boundary. No decorative statistics or fabricated clinical data.
+OWN-WORLD: White working canvas, sapphire current destinations, readable body typography, and fine rules between requests. No enclosing inbox card, duplicate tool directory, decorative statistics, or fabricated clinical data.
 
-STORY: Staff orient to the workspace, open patient, calendar, video, or team tools, then review requests by status and act in the adjacent reading pane.
+STORY: Staff search or filter requests, then select one to review and act. Existing sidebar and mobile navigation retain access to other tools.
 
-FIRST VIEWPORT: A 240px desktop sidebar, a 30px workspace heading with the create-patient action on the right, a unified directory, and horizontal inbox folders above a 38/62 list/reader split. Phones use compact tool destinations and the existing full-screen request reader and bottom navigation.
+FIRST VIEWPORT: The existing desktop sidebar beside a compact search/filter/action toolbar, horizontal folders, and full-width requests. Selection opens a 38/62 list/reader split; Back restores the full-width list. Phones retain the full-screen reader and bottom navigation. The page heading is available to assistive technology without a visible title or introductory copy.
 
-FORM: Care coordination board, candidate 6, seed c70b3de5. The user's balanced overview and direct-build choice govern the scope. The signature interaction is selecting a request without leaving the workspace; active folders and rows provide immediate state feedback. Motion is limited to short control feedback and stops under reduced motion.
+FORM: Refinement of the care coordination board, candidate 6, seed c70b3de5. The user's request for fewer containers and only necessary information governs this simplification. Selecting a request keeps it in the workspace; active folders and rows provide immediate state feedback. Motion stays limited to existing control feedback.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 

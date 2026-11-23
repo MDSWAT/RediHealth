@@ -92,10 +92,9 @@ rounded:
 spacing:
   panel-gap: "8px"
   panel-mobile-gutter: "16px"
-  panel-row: "20px"
+  panel-row: "16px"
   panel-gutter: "24px"
   panel-reader: "28px"
-  panel-directory-bottom: "32px"
 components:
   panel-button-action:
     backgroundColor: "{colors.sapphire}"
@@ -119,16 +118,10 @@ components:
     textColor: "{colors.panel-surface}"
   panel-status:
     textColor: "{colors.panel-muted}"
-  panel-inbox:
-    backgroundColor: "{colors.panel-surface}"
-    rounded: "{rounded.panel-inbox}"
-  panel-tool:
-    textColor: "{colors.panel-ink}"
-    padding: "20px 22px"
   panel-request-selected:
     backgroundColor: "{colors.panel-selection}"
     textColor: "{colors.panel-ink}"
-    padding: "20px"
+    padding: "16px"
   patient-portrait:
     backgroundColor: "{colors.panel-selection}"
     textColor: "{colors.sapphire}"
@@ -224,7 +217,7 @@ Patient high-priority text uses the patient-priority-high token; critical priori
 
 ### Staff hierarchy
 
-The root layout loads Atkinson Hyperlegible Next for body copy and Bricolage Grotesque for headings, with Arial/Helvetica fallbacks. Workspace headline uses the panel-headline token, reducing to (1.625rem) below (640px). Inbox titles explicitly use the body family. Tool titles use (0.9375rem), weight (600); request identity uses (0.875rem); descriptions use the panel-description token. Metadata uses (0.75rem); numeric counts use tabular figures. Root comfort scaling remains available; do not freeze these rem sizes into pixels.
+The root layout loads Atkinson Hyperlegible Next for body copy and Bricolage Grotesque for headings, with Arial/Helvetica fallbacks. Panel home retains a screen-reader-only main heading and omits visible overview and inbox titles. Request identity uses (0.875rem); descriptions use the panel-description token. Metadata uses (0.75rem); numeric counts use tabular figures. Root comfort scaling remains available; do not freeze these rem sizes into pixels.
 
 Patient media captions use patient-caption; dates, counters, and upload labels use patient-media-label. Mobile portrait initials use patient-initials-mobile (22px at the default root size). These intentional sizes supplement existing panel typography; the directory retains its preexisting (15px) introduction and (11px) keyboard hint.
 
@@ -240,11 +233,11 @@ The established Container and article rules are preserved in Components below.
 
 ### Staff workspace composition
 
-The expanded desktop sidebar is (224px) from the desktop breakpoint and (240px) at xl; its collapsed mode is (72px). The main workspace uses (36px 32px 32px) padding, becomes (40px 48px) from (1600px), and uses (28px 24px) below (1280px). The tool directory is a single wrapping row with fine separators, not a dashboard of separate statistic cards.
+The expanded desktop sidebar is (224px) from the desktop breakpoint and (240px) at xl; its collapsed mode is (72px). Panel home uses one white working canvas with (24px) padding. Search, filters, refresh, export, and patient creation sit directly above the folders and request list. Existing sidebar and mobile navigation provide other destinations; panel home has no duplicate tool directory or enclosing inbox card.
 
-The inbox is one bounded surface. Horizontal folders scroll when necessary, and active folders use a sapphire underline. At desktop width, the request list occupies (38%) with a (280px) minimum; the reader takes the remainder. Inbox height is `min(680px, 70dvh)` with a (460px) minimum. List and reader scroll independently.
+Horizontal folders scroll when necessary, and active folders use a sapphire underline. The default request list fills the available width and scrolls with the page. Selecting a request at desktop width introduces a (38%) list with a (280px) minimum and an adjacent reader taking the remainder. The reader is sticky at (24px), capped at `calc(100dvh - 48px)`, and scrolls internally. Back restores the full-width list. Request rows use (16px) padding.
 
-Below (1024px), the list occupies the full width and selecting a request opens the existing full-screen reader. Bottom navigation remains available through the existing shell. Below (640px), workspace padding becomes (24px 16px 32px), heading and create action stack, and tools become a compact icon-and-label grid with descriptions hidden. Search occupies a full row; filters and actions wrap. Reader copy has a (70ch) maximum width.
+Below (1024px), the list occupies the full width and selecting a request opens a fixed full-screen reader. Bottom navigation remains available through the existing shell. Below (640px), workspace padding becomes (16px 16px 32px). Search occupies a full row; filters and actions wrap. Reader copy has a (70ch) maximum width.
 
 ### Patient record and directory extension
 
@@ -262,7 +255,7 @@ The public phone entrance pairs the existing SMS sign-in form with plain benefit
 
 ## Elevation & Depth
 
-Staff working surfaces are flat: fine borders, background tones, and selected-row outlines provide separation. The new overview heading action removes its shadow; selected folders and rows do not use inset shadows. Existing public overlays and the capsule menus retain their own depth treatments, preserved under Components.
+Staff working surfaces are flat: fine borders, background tones, and selected-row outlines provide separation. The panel create-patient action has no shadow; selected folders and rows do not use inset shadows. Existing public overlays and the capsule menus retain their own depth treatments, preserved under Components.
 
 ### Motion and established behavior
 
@@ -277,13 +270,13 @@ Staff working surfaces are flat: fine borders, background tones, and selected-ro
   - Anchored at the base of the panel below the 6 choices inside an inset contextual readout capsule with a morphing icon badge, updating by priority: active voice playback (`speaking`) -> hovered/focused care need (`needs[id].hint`, in `sapphire`) -> mediator link hover (`amber`) -> returning from Step 2 (`returned`) -> gentle 7s hesitation cue (`idle`, in `amber`) -> calm trust default (`default`).
 - **Safe Mobile Fallbacks:** Sticky stacked sections (`StackedSections`) operate strictly at `min-width: 1024px` and disable automatically under `calmMotion` or enlarged text scales (`large` / `xl`).
 
-Panel tool feedback uses (160ms) and the shared calm easing. Tool arrows move (3px) on hover and stop translating under reduced motion. The existing panel stylesheet also disables transitions and animations for reduced motion or the persisted calm-motion class.
+Panel folder feedback uses (160ms) and the shared calm easing. The existing panel stylesheet disables transitions and animations for reduced motion or the persisted calm-motion class.
 
 The patient image viewer is an intentional modal exception to flat working surfaces: its shadow is `0 24px 80px #0004`, with the patient-viewer-backdrop behind it. Gallery hover changes image opacity to (0.8) over (160ms ease-out); existing care-panel reduced-motion/calm rules suppress the transition.
 
 ## Shapes
 
-Public actions retain the global control radius. Staff search and inbox actions use the smaller panel-control radius; the inbox is the single larger rounded boundary. Request rows remain square within the container, and text status labels remain unboxed. Initial avatars are circular (36px) identity cues, not new status chips. Existing capsule-specific shapes remain scoped to their documented menus and switches.
+Public actions retain the global control radius. Staff search and inbox actions use the smaller panel-control radius. Panel home has no rounded inbox boundary; request rows remain square and text status labels remain unboxed. Initial avatars are circular (36px) identity cues, not new status chips. The larger panel-inbox radius remains in use by patient portraits and viewers. Existing capsule-specific shapes remain scoped to their documented menus and switches.
 
 Patient identity uses contained rectangular portraits: record (104 × 120px), mobile (76 × 92px), directory (52 × 58px). Large portraits inherit the (16px) surface radius; directory portraits and gallery thumbnails use patient-thumbnail, inline previews patient-inline-preview, and the gallery open label patient-media-label. Image fit is `contain`, preserving the full frame; these patient portraits do not replace circular request initials elsewhere.
 
@@ -320,10 +313,10 @@ One pattern for every menu bar, defined in `src/components/layout/chrome-capsule
 
 ### Staff overview and request inbox
 
-- **Actions:** The overview create-patient control uses the shared Button action variant. Existing inbox controls retain their CRM primitives with an (8px) radius, (44px) minimum height, sapphire primary save action, outlined utilities, and source-defined disabled states. These are scoped existing panel components, not an alternative public button API.
+- **Actions:** The create-patient control sits in the inbox toolbar and uses the shared Button action variant. Existing inbox controls retain their CRM primitives with an (8px) radius, (44px) minimum height, sapphire primary save action, outlined utilities, and source-defined disabled states. These are scoped existing panel components, not an alternative public button API.
 - **Search:** A leading search icon and accessible search label sit within a control-colored border. Focus-within draws a (2px) sapphire outline with (2px) offset; global high contrast retains its stronger accessibility treatment.
 - **Navigation:** The active desktop destination is filled sapphire with white text and a (46px) minimum height. Inbox folders are unfilled with a (2px) active underline and (48px) minimum height. Selection is conveyed through `aria-current` or `aria-pressed` as appropriate.
-- **Directory:** Patient, calendar, video, and eligible team destinations share one ruled directory. All destinations respect `canOpen`; team appears only for administrators outside demo. Preserve the runtime link abstraction and locale prefixes.
+- **Destinations:** Existing sidebar and mobile navigation retain access to other panel tools. Preserve their role and runtime visibility checks, runtime link abstraction, and locale prefixes.
 - **Rows and reader:** Selecting a request opens its details beside the list on desktop, and in the existing full-screen reader on smaller screens. Selected rows use the selection surface and border. Empty states explain the next action; the list shows loading, empty/filter recovery, and error feedback. Search, date/priority filters, refresh, loaded-row CSV export, pagination, editing, and unsaved-change prompts remain functional.
 - **Runtime:** Preserve authentication, role permissions, country context, database-availability disabled states, and the `PanelRuntime` abstraction for online, offline, and fictional browser-local demo operation. Do not infer permission from visual placement.
 - **Locales:** All new workspace text comes from the typed seven-locale translation map (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`). Counts use locale formatting, dates use the existing panel date helpers, and translated titles wrap. Keep source status values independent of their translated labels.

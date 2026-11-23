@@ -1,6 +1,6 @@
 "use client";
 import { PanelLink as Link, usePanelRuntime } from "./PanelRuntime";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
@@ -16,9 +16,9 @@ import { CreatePatientModal } from "./CreatePatientModal";
 import { QuickTemplatesModal } from "./QuickTemplatesModal";
 import { useUnsavedChanges } from "./useUnsavedChanges";
 import { csvTimestamp, downloadCsv } from "./panel-csv";
-import { ChevronLeftIcon, FileTextIcon, SearchIcon, FilterIcon, RefreshIcon } from "@/components/ui/icons";
+import { ChevronLeftIcon, SearchIcon, FilterIcon, RefreshIcon } from "@/components/ui/icons";
 
-export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, isRomania }: { isAdmin?: boolean; isRomania: boolean; initialInbox: InboxPage; onPendingChange: (count: number) => void }) {
+export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, isRomania, actions }: { isAdmin?: boolean; isRomania: boolean; initialInbox: InboxPage; onPendingChange: (count: number) => void; actions?: ReactNode }) {
   const { lang } = useLanguage();
   const { request: fetch } = usePanelRuntime();
   const t = crmTranslations[lang];
@@ -100,15 +100,15 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
     setInbox((current) => ({ ...current, requests: current.requests.map((r) => r.id === updated.id ? updated : r) }));
     setRefreshKey((key) => key + 1);
   }
-  return <section className="panel-inbox" aria-labelledby="panel-inbox-title">
+  return <section className={`panel-inbox ${requestId ? "has-selection" : ""}`} aria-label={t.requests}>
     <header className="crm-inbox-toolbar">
-      <div className="panel-inbox-title"><h2 id="panel-inbox-title">{t.requests}<span>{inbox.counts.all.toLocaleString(locale)}</span></h2><p>{copy.inboxHint}</p></div>
       <div className="panel-inbox-controls">
         <label className="panel-request-search"><SearchIcon className="h-4 w-4" aria-hidden="true" /><input type="search" className="crm-input" aria-label={t.search} placeholder={t.search} value={searchParams.get("q") || ""} onChange={(e) => updateUrl({ q: e.target.value }, true)} /></label>
         <button className="crm-button" onClick={() => setFilters(!filters)} aria-expanded={filters} aria-controls="panel-request-filters"><FilterIcon className="h-4 w-4" aria-hidden="true" /><span>{t.filters}</span>{hasFilters && <span className="panel-filter-indicator" />}</button>
         <button className="crm-button panel-refresh" onClick={() => setRefreshKey((key) => key + 1)} disabled={loading} aria-label={t.refresh} title={t.refresh}><RefreshIcon className="h-4 w-4" aria-hidden="true" /></button>
         <details className="crm-menu"><summary className="crm-button">{t.more}</summary><div><button onClick={exportCsv} disabled={!inbox.requests.length}>{t.export}</button></div></details>
       </div>
+      {actions}
     </header>
     {filters && <div id="panel-request-filters" className="crm-filter-row"><label>{t.priority}<select className="crm-input" value={searchParams.get("priority") || ""} onChange={(e) => updateUrl({ priority: e.target.value })}><option value="">{t.all}</option><option value="urgent">{t.urgent}</option></select></label><label>{t.from}<input type="date" className="crm-input" value={searchParams.get("from") || ""} onChange={(e) => updateUrl({ from: e.target.value })} /></label><label>{t.to}<input type="date" className="crm-input" value={searchParams.get("to") || ""} onChange={(e) => updateUrl({ to: e.target.value })} /></label><button className="crm-button" onClick={() => updateUrl({ q: "", priority: "", from: "", to: "" })}>{t.clear}</button></div>}
     {error && <p className="crm-error mx-4" role="alert">{error}</p>}
@@ -128,7 +128,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
           const response = await fetch(`/api/medical-help-requests?id=${encodeURIComponent(selected.id)}`, { method: "DELETE" });
           if (!response.ok) throw new Error();
           setDirty(false); updateUrl({ request: "" }, false, true); setRefreshKey((key) => key + 1);
-        }} /> : <div className="panel-reader-empty"><FileTextIcon className="panel-reader-empty-icon" aria-hidden="true" /><h3>{requestId ? t.loading : t.selectRequest}</h3><p>{copy.selectionHint}</p></div>}
+        }} /> : requestId ? <p className="p-6 text-sm text-muted-foreground" role="status">{t.loading}</p> : null}
       </section>
     </div>
     {creating && <CreatePatientModal isAdmin={isAdmin} isRomania={isRomania} request={creating} onClose={() => setCreating(null)} />}
