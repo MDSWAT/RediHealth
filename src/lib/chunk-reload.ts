@@ -19,9 +19,7 @@ export function isChunkLoadError(error: unknown): boolean {
   return false;
 }
 
-/** Reloads the page for a chunk error, at most once per 30 seconds. Returns true when it reloads. */
-export function reloadForNewVersion(error: unknown, now = Date.now()): boolean {
-  if (typeof window === "undefined" || !isChunkLoadError(error)) return false;
+function claimReloadAttempt(now: number): boolean {
   try {
     const last = Number(window.sessionStorage.getItem(RELOAD_KEY) || 0);
     if (now - last < RELOAD_GUARD_MS) return false;
@@ -30,6 +28,43 @@ export function reloadForNewVersion(error: unknown, now = Date.now()): boolean {
     // Storage blocked (private mode): without a guard, do not risk a reload loop.
     return false;
   }
+  return true;
+}
+
+/** Reloads the page for a chunk error, at most once per 30 seconds. Returns true when it reloads. */
+export function reloadForNewVersion(error: unknown, now = Date.now()): boolean {
+  if (typeof window === "undefined" || !isChunkLoadError(error) || !claimReloadAttempt(now)) return false;
   window.location.reload();
   return true;
+}
+
+/** A truncated cached app script needs a fresh download; a plain reload would serve the same bytes. */
+export async function reloadForTruncatedChunk(error: unknown, filename: string, now = Date.now()): Promise<boolean> {
+  if (typeof window === "undefined" || !filename) return false;
+  const message = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
+  if (!/^(?:Uncaught )?SyntaxError: (?:Unexpected end of input|Unexpected EOF)$/i.test(message)) return false;
+
+  try {
+    const source = new URL(filename, window.location.href);
+    if (source.origin !== window.location.origin || !source.pathname.startsWith("/_next/static/") || !source.pathname.endsWith(".js")) return false;
+    if (!claimReloadAttempt(now)) return false;
+    // An older active worker may not yet honor reload requests. Evict only the broken static
+    // file (including query variants), leaving saved guides, pages and offline data intact.
+    if (window.caches) {
+      const names = await window.caches.keys();
+      await Promise.all(names.filter((name) => name.startsWith("redihealth-static-")).map(async (name) => {
+        const cache = await window.caches.open(name);
+        await cache.delete(source.href, { ignoreSearch: true });
+      }));
+    }
+    // The service worker also honors cache: reload, replacing all cached query variants.
+    const response = await fetch(source.href, { cache: "reload", credentials: "same-origin", signal: AbortSignal.timeout(10_000) });
+    if (!response.ok || !/^(?:application|text)\/javascript\b/i.test(response.headers.get("content-type") || "")) return false;
+    if (!(await response.text()).trim()) return false;
+    window.location.reload();
+    return true;
+  } catch {
+    // Missing, unreadable or offline scripts remain reportable. Never reload without a guard.
+    return false;
+  }
 }

@@ -7,6 +7,10 @@ import { text } from "@/lib/text";
 
 const KINDS = ["error", "unhandledrejection", "render"];
 
+function sourcePosition(value: unknown): number | undefined {
+  return typeof value === "number" && Number.isSafeInteger(value) && value > 0 ? value : undefined;
+}
+
 /** Receives errors from visitors' browsers (see lib/client-error-report.ts) and forwards them to the alert addresses. */
 export async function POST(request: Request) {
   // Reports come from the site's own pages only.
@@ -47,10 +51,16 @@ export async function POST(request: Request) {
     details: {
       kind,
       digest: text(body.digest).slice(0, 64) || undefined,
+      filename: safeErrorPath(text(body.filename)) || undefined,
+      lineno: sourcePosition(body.lineno),
+      colno: sourcePosition(body.colno),
       browser: (request.headers.get("user-agent") || "").slice(0, 300) || undefined,
     },
   };
-  console.warn("Browser error reported", { kind, where: report.where, message });
+  console.warn("Browser error reported", {
+    kind, where: report.where, message,
+    filename: report.details.filename, lineno: report.details.lineno, colno: report.details.colno,
+  });
 
   // Answer immediately; the email goes out after the response.
   after(() => reportError(report));

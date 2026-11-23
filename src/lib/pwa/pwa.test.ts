@@ -307,6 +307,17 @@ describe("public/offline-worker.js", () => {
             const key = typeof req === "string" ? req : req.url;
             store!.set(key, res);
           },
+          async delete(req: Request | string, options?: { ignoreSearch?: boolean }) {
+            const target = new URL(typeof req === "string" ? req : req.url, "https://redihealth.example");
+            let deleted = false;
+            for (const key of store!.keys()) {
+              const url = new URL(key, "https://redihealth.example");
+              if (url.origin === target.origin && url.pathname === target.pathname && (options?.ignoreSearch || url.search === target.search)) {
+                deleted = store!.delete(key) || deleted;
+              }
+            }
+            return deleted;
+          },
         };
       },
       async keys() {
@@ -371,6 +382,7 @@ describe("public/offline-worker.js", () => {
         url: string;
         method?: string;
         mode?: string;
+        cache?: RequestCache;
         headers?: Record<string, string>;
       }) {
         let responsePromise: Promise<Response> | undefined;
@@ -380,6 +392,7 @@ describe("public/offline-worker.js", () => {
             url: request.url,
             method: request.method ?? "GET",
             mode: request.mode ?? "cors",
+            cache: request.cache ?? "default",
             ...(request.headers ? { headers: new Headers(request.headers) } : {}),
           },
           respondWith(p: Promise<Response> | Response) {
@@ -396,6 +409,37 @@ describe("public/offline-worker.js", () => {
       },
     };
   }
+
+  it("bypasses a damaged cached chunk on an explicit reload and replaces query variants", async () => {
+    const path = "/_next/static/immutable/chunks/app.js";
+    const origin = "https://redihealth.example";
+    const harness = createSwHarness({
+      existingCaches: { "redihealth-static-v2": {
+        [origin + path]: new Response("(()=>{"),
+        [origin + path + "?dpl=old"]: new Response("(()=>{"),
+      } },
+      fetchImpl: async () => new Response("(()=>{})()", { headers: { "Content-Type": "application/javascript" } }),
+    });
+    const normal = await harness.dispatchFetch({ url: origin + path });
+    expect(await normal?.clone().text()).toBe("(()=>{");
+    expect(harness.fetchMock).not.toHaveBeenCalled();
+    const repaired = await harness.dispatchFetch({ url: origin + path, cache: "reload" });
+    expect(await repaired?.text()).toBe("(()=>{})()");
+    expect(harness.fetchMock).toHaveBeenCalledTimes(1);
+    const next = await harness.dispatchFetch({ url: origin + path + "?dpl=old" });
+    expect(await next?.text()).toBe("(()=>{})()");
+  });
+
+  it("does not replace an offline copy with an interrupted reload response", async () => {
+    const url = "https://redihealth.example/_next/static/chunks/app.js";
+    const harness = createSwHarness({
+      existingCaches: { "redihealth-static-v2": { [url]: new Response("app()") } },
+      fetchImpl: async () => new Response(new ReadableStream({ start(controller) { controller.error(new Error("connection interrupted")); } })),
+    });
+    expect((await harness.dispatchFetch({ url, cache: "reload" }))?.status).toBe(504);
+    const cached = await harness.dispatchFetch({ url });
+    expect(await cached?.text()).toBe("app()");
+  });
 
   it("calls skipWaiting on first install only, prunes stale caches on activate, and handles SKIP_WAITING", async () => {
     const firstInstall = createSwHarness({ activeWorker: null });

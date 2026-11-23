@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { isChunkLoadError, reloadForNewVersion } from "@/lib/chunk-reload";
+import { isChunkLoadError, reloadForNewVersion, reloadForTruncatedChunk } from "@/lib/chunk-reload";
 import { isAuthActionPath } from "@/lib/auth-actions";
 
 function fakeWindow() {
@@ -10,12 +10,71 @@ function fakeWindow() {
       getItem: (key: string) => store.get(key) ?? null,
       setItem: (key: string, value: string) => void store.set(key, value),
     },
-    location: { reload },
+    location: { reload, href: "https://redihealth.example/ro", origin: "https://redihealth.example" },
   });
   return reload;
 }
 
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
+
+describe("truncated application scripts", () => {
+  const filename = "https://redihealth.example/_next/static/immutable/chunks/app.js?dpl=abc";
+  const error = new SyntaxError("Unexpected end of input");
+
+  it("refetches a truncated app chunk bypassing caches before reloading once", async () => {
+    const reload = fakeWindow();
+    const fetch = vi.fn().mockResolvedValue(new Response("app()", { headers: { "Content-Type": "application/javascript" } }));
+    vi.stubGlobal("fetch", fetch);
+    expect(await reloadForTruncatedChunk(error, filename, 1_000_000)).toBe(true);
+    expect(fetch).toHaveBeenCalledWith(filename, expect.objectContaining({ cache: "reload", credentials: "same-origin" }));
+    expect(reload).toHaveBeenCalledTimes(1);
+    expect(await reloadForTruncatedChunk(error, filename, 1_010_000)).toBe(false);
+    expect(fetch).toHaveBeenCalledTimes(1);
+  });
+
+  it.each(["", "https://example.com/app.js", "chrome-extension://abc/app.js", "https://redihealth.example/ro"])(
+    "does not reload unidentified, inline or third-party failures (%s)", async (source) => {
+      const reload = fakeWindow();
+      expect(await reloadForTruncatedChunk(error, source, 1_000_000)).toBe(false);
+      expect(reload).not.toHaveBeenCalled();
+    },
+  );
+
+  it("leaves unrelated syntax errors reportable", async () => {
+    const reload = fakeWindow();
+    expect(await reloadForTruncatedChunk(new SyntaxError("Unexpected token '<'"), filename, 1_000_000)).toBe(false);
+    expect(reload).not.toHaveBeenCalled();
+  });
+
+  it("evicts the affected chunk for older workers without deleting offline pages or data", async () => {
+    fakeWindow();
+    const remove = vi.fn().mockResolvedValue(true);
+    const open = vi.fn().mockResolvedValue({ delete: remove });
+    Object.assign(window, { caches: {
+      keys: async () => ["redihealth-static-v2", "redihealth-guides-v1", "redihealth-pages-v1", "another-app"], open,
+    } });
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response("app()", { headers: { "Content-Type": "application/javascript" } })));
+    expect(await reloadForTruncatedChunk(error, filename, 1_000_000)).toBe(true);
+    expect(open).toHaveBeenCalledExactlyOnceWith("redihealth-static-v2");
+    expect(remove).toHaveBeenCalledExactlyOnceWith(filename, { ignoreSearch: true });
+  });
+
+  it("does not retry when session storage is blocked", async () => {
+    const reload = fakeWindow();
+    window.sessionStorage.setItem = () => { throw new Error("blocked"); };
+    expect(await reloadForTruncatedChunk(error, filename, 1_000_000)).toBe(false);
+    expect(reload).not.toHaveBeenCalled();
+  });
+
+  it.each(["network", "html", "body"])("does not reload after a failed refresh (%s)", async (failure) => {
+    const reload = fakeWindow();
+    const response = failure === "html" ? new Response("<html>", { headers: { "Content-Type": "text/html" } }) :
+      { ok: true, headers: new Headers({ "Content-Type": "application/javascript" }), text: () => Promise.reject(new Error("truncated body")) };
+    vi.stubGlobal("fetch", failure === "network" ? vi.fn().mockRejectedValue(new Error("offline")) : vi.fn().mockResolvedValue(response));
+    expect(await reloadForTruncatedChunk(error, filename, 1_000_000)).toBe(false);
+    expect(reload).not.toHaveBeenCalled();
+  });
+});
 
 describe("chunk load errors after a deployment", () => {
   it("recognises the chunk errors of Next.js and the browsers", () => {

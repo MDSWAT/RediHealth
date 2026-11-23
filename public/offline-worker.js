@@ -1053,6 +1053,23 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       (async () => {
         const cache = await caches.open(STATIC_CACHE);
+        // Recovery from a script parse failure must bypass both HTTP and service-worker caches.
+        // Otherwise an incomplete cached chunk is returned again even after a page reload.
+        if (event.request.cache === "reload") {
+          try {
+            const response = await fetch(event.request);
+            if (isCacheableResponse(response)) {
+              // Read the full body before replacing anything; interrupted streams must not
+              // evict a working offline copy. Refresh every deployment-query variant too.
+              await response.clone().arrayBuffer();
+              await cache.delete(event.request, { ignoreSearch: true });
+              await cache.put(event.request, response.clone());
+            }
+            return response;
+          } catch {
+            return new Response("", { status: 504 });
+          }
+        }
         const matchStatic = async () =>
           (await cache.match(event.request)) ||
           (await cache.match(url.pathname)) ||

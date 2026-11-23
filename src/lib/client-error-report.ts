@@ -34,7 +34,9 @@ export function isClientErrorNoise(message: string, stack = ""): boolean {
   return NOISE.some((noise) => message.includes(noise) || stack.includes(noise));
 }
 
-export function reportClientError(error: unknown, kind: "error" | "unhandledrejection" | "render"): void {
+export type ClientErrorLocation = { filename?: string; lineno?: number; colno?: number };
+
+export function reportClientError(error: unknown, kind: "error" | "unhandledrejection" | "render", location?: ClientErrorLocation): void {
   try {
     if (
       typeof window === "undefined" ||
@@ -47,13 +49,18 @@ export function reportClientError(error: unknown, kind: "error" | "unhandledreje
     const isError = error instanceof Error;
     const message = (isError ? `${error.name}: ${error.message}` : typeof error === "string" ? error : "").slice(0, 1000);
     const stack = isError && error.stack ? error.stack.slice(0, 4000) : "";
-    if (!message || isClientErrorNoise(message, stack)) return;
+    if (!message || isClientErrorNoise(message, `${stack}\n${location?.filename ?? ""}`)) return;
 
     if (reported.has(message)) return;
     reported.add(message);
 
     const digest = isError && "digest" in error && typeof error.digest === "string" ? error.digest : undefined;
-    const body = JSON.stringify({ kind, message, stack, digest, path: safeErrorPath(window.location.pathname) });
+    const body = JSON.stringify({
+      kind, message, stack, digest, path: safeErrorPath(window.location.pathname),
+      filename: safeErrorPath(location?.filename) || undefined,
+      lineno: location?.lineno,
+      colno: location?.colno,
+    });
 
     // sendBeacon still delivers when the page is closing; fetch covers browsers that refuse the beacon.
     const sent = navigator.sendBeacon?.("/api/client-errors", new Blob([body], { type: "application/json" }));

@@ -1,5 +1,29 @@
-import { describe, expect, it } from "vitest";
-import { isClientErrorNoise } from "@/lib/client-error-report";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { isClientErrorNoise, reportClientError } from "@/lib/client-error-report";
+
+afterEach(() => vi.unstubAllGlobals());
+
+describe("native script parse error reports", () => {
+  it("preserves source coordinates when there is no error stack and removes URL secrets", async () => {
+    const sendBeacon = vi.fn().mockReturnValue(true);
+    vi.stubGlobal("window", { location: { pathname: "/ro" } });
+    vi.stubGlobal("navigator", { onLine: true, sendBeacon });
+    reportClientError("SyntaxError: Unexpected end of input", "error", {
+      filename: "https://redihealth.example/_next/static/chunks/app.js?secret=hidden#private", lineno: 1, colno: 427,
+    });
+    const body = JSON.parse(await (sendBeacon.mock.calls[0][1] as Blob).text());
+    expect(body).toMatchObject({ filename: "/_next/static/chunks/app.js", lineno: 1, colno: 427, path: "/ro" });
+    expect(JSON.stringify(body)).not.toContain("hidden");
+  });
+
+  it("filters extension parse errors identified only by the source filename", () => {
+    const sendBeacon = vi.fn().mockReturnValue(true);
+    vi.stubGlobal("window", { location: { pathname: "/ro" } });
+    vi.stubGlobal("navigator", { onLine: true, sendBeacon });
+    reportClientError("SyntaxError: Unexpected end of input", "error", { filename: "chrome-extension://abc/injected.js" });
+    expect(sendBeacon).not.toHaveBeenCalled();
+  });
+});
 
 describe("isClientErrorNoise", () => {
   it("ignores errors from Android in-app browser bridges", () => {
