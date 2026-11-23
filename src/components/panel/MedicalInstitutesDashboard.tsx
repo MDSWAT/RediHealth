@@ -326,9 +326,9 @@ export function MedicalInstitutesDashboard({
                 </p>
               ) : null}
 
-              <div className="mt-5 flex flex-wrap items-center gap-2.5">
+              <div className="mt-5 flex flex-col gap-2.5 lg:flex-row lg:items-center">
                 <form
-                  className="flex min-w-0 flex-1 basis-64"
+                  className="flex min-w-0 lg:flex-1"
                   onSubmit={(event) => {
                     event.preventDefault();
                     applyFilter(() => setSearch(searchInput.trim()));
@@ -350,46 +350,48 @@ export function MedicalInstitutesDashboard({
                   </label>
                 </form>
 
-                <select
-                  value={country}
-                  aria-label={t.fieldCountry}
-                  onChange={(event) => applyFilter(() => setCountry(event.target.value as CountryCode | ""))}
-                  className={`${controlClass} shrink-0 whitespace-nowrap`}
-                >
-                  <option value="">{t.allCountries}</option>
-                  {ownCountries.map((code) => (
-                    <option key={code} value={code}>
-                      {labels.countries[code]}
-                    </option>
-                  ))}
-                </select>
+                <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3 lg:flex lg:shrink-0 lg:items-center">
+                  <select
+                    value={country}
+                    aria-label={t.fieldCountry}
+                    onChange={(event) => applyFilter(() => setCountry(event.target.value as CountryCode | ""))}
+                    className={`${controlClass} w-full min-w-0 whitespace-nowrap lg:w-auto lg:shrink-0`}
+                  >
+                    <option value="">{t.allCountries}</option>
+                    {ownCountries.map((code) => (
+                      <option key={code} value={code}>
+                        {labels.countries[code]}
+                      </option>
+                    ))}
+                  </select>
 
-                <select
-                  value={category}
-                  aria-label={t.fieldCategory}
-                  onChange={(event) =>
-                    applyFilter(() => setCategory(event.target.value as InstituteCategory | ""))
-                  }
-                  className={`${controlClass} shrink-0 whitespace-nowrap`}
-                >
-                  <option value="">{t.allCategories}</option>
-                  {INSTITUTE_CATEGORIES.map((item) => (
-                    <option key={item} value={item}>
-                      {labels.categories[item]}
-                    </option>
-                  ))}
-                </select>
+                  <select
+                    value={category}
+                    aria-label={t.fieldCategory}
+                    onChange={(event) =>
+                      applyFilter(() => setCategory(event.target.value as InstituteCategory | ""))
+                    }
+                    className={`${controlClass} w-full min-w-0 whitespace-nowrap lg:w-auto lg:shrink-0`}
+                  >
+                    <option value="">{t.allCategories}</option>
+                    {INSTITUTE_CATEGORIES.map((item) => (
+                      <option key={item} value={item}>
+                        {labels.categories[item]}
+                      </option>
+                    ))}
+                  </select>
 
-                <select
-                  value={status}
-                  aria-label={t.colStatus}
-                  onChange={(event) => applyFilter(() => setStatus(event.target.value as typeof status))}
-                  className={`${controlClass} shrink-0 whitespace-nowrap`}
-                >
-                  <option value="all">{t.statusAll}</option>
-                  <option value="active">{t.statusActive}</option>
-                  <option value="hidden">{t.statusHidden}</option>
-                </select>
+                  <select
+                    value={status}
+                    aria-label={t.colStatus}
+                    onChange={(event) => applyFilter(() => setStatus(event.target.value as typeof status))}
+                    className={`${controlClass} w-full min-w-0 whitespace-nowrap lg:w-auto lg:shrink-0`}
+                  >
+                    <option value="all">{t.statusAll}</option>
+                    <option value="active">{t.statusActive}</option>
+                    <option value="hidden">{t.statusHidden}</option>
+                  </select>
+                </div>
               </div>
 
               <p

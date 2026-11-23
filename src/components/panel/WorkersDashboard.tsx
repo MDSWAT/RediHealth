@@ -76,7 +76,6 @@ export function WorkersDashboard({
     }
 
     return {
-      totalWorkers: workers.length,
       activeWorkers,
       assignedPatients,
       unassignedPatients,
@@ -84,7 +83,6 @@ export function WorkersDashboard({
   }, [workers, patients]);
 
   const summaryItems = [
-    { label: t.totalStaffWorkers, value: metrics.totalWorkers },
     { label: t.activeStaff, value: metrics.activeWorkers },
     { label: t.assignedPatients, value: metrics.assignedPatients },
     { label: t.unassignedPatients, value: metrics.unassignedPatients },
@@ -120,7 +118,7 @@ export function WorkersDashboard({
               <dl className="mt-3 flex flex-wrap items-baseline gap-x-6 gap-y-1.5 text-sm">
                 {summaryItems.map((item) => (
                   <div key={item.label} className="flex items-baseline gap-1.5">
-                    <dd className="font-semibold tabular-nums text-[var(--panel-ink)]">
+                    <dd className="font-display text-base font-bold tabular-nums text-[var(--panel-ink)]">
                       {item.value.toLocaleString(locale)}
                     </dd>
                     <dt className="text-[var(--panel-muted)]">{item.label}</dt>

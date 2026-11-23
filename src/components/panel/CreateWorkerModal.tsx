@@ -482,31 +482,6 @@ export function CreateWorkerModal({
               />
             </div>
 
-            {isRomania && countyRequired ? (
-              <div>
-                <label htmlFor={`${baseId}-county`} className={labelClass}>
-                  {t.county}{" "}
-                  {countySelectionRequired ? (
-                    <span aria-hidden="true" className="text-[#b91c1c] dark:text-[#ffb4b4]">*</span>
-                  ) : null}
-                </label>
-                <select
-                  id={`${baseId}-county`}
-                  required={countySelectionRequired}
-                  value={county}
-                  onChange={(e) => setCounty(e.target.value)}
-                  className={`${fieldClass} whitespace-nowrap`}
-                >
-                  <option value="">{t.selectCounty}</option>
-                  {ROMANIAN_COUNTIES.map((countyName) => (
-                    <option key={countyName} value={countyName}>
-                      {countyName}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            ) : null}
-
             <div>
               <label htmlFor={`${baseId}-phone`} className={labelClass}>
                 {t.phone}
@@ -545,6 +520,27 @@ export function CreateWorkerModal({
             </div>
 
             <div>
+              <label htmlFor={`${baseId}-status`} className={labelClass}>
+                {t.accountStatus}
+              </label>
+              <select
+                id={`${baseId}-status`}
+                value={status}
+                onChange={(e) => setStatus(e.target.value as WorkerStatus)}
+                className={`${fieldClass} whitespace-nowrap`}
+              >
+                <option value="active">{t.activeStaff}</option>
+                <option value="inactive">{t.inactiveStaff}</option>
+              </select>
+            </div>
+          </div>
+
+          <div
+            className={`grid grid-cols-1 gap-3.5 ${
+              isRomania && countyRequired ? "sm:grid-cols-2" : ""
+            }`}
+          >
+            <div>
               <label htmlFor={`${baseId}-department`} className={labelClass}>
                 {t.department}
               </label>
@@ -557,21 +553,31 @@ export function CreateWorkerModal({
                 className={fieldClass}
               />
             </div>
-          </div>
 
-          <div>
-            <label htmlFor={`${baseId}-status`} className={labelClass}>
-              {t.accountStatus}
-            </label>
-            <select
-              id={`${baseId}-status`}
-              value={status}
-              onChange={(e) => setStatus(e.target.value as WorkerStatus)}
-              className={`${fieldClass} whitespace-nowrap`}
-            >
-              <option value="active">{t.activeStaff}</option>
-              <option value="inactive">{t.inactiveStaff}</option>
-            </select>
+            {isRomania && countyRequired ? (
+              <div>
+                <label htmlFor={`${baseId}-county`} className={labelClass}>
+                  {t.county}{" "}
+                  {countySelectionRequired ? (
+                    <span aria-hidden="true" className="text-[#b91c1c] dark:text-[#ffb4b4]">*</span>
+                  ) : null}
+                </label>
+                <select
+                  id={`${baseId}-county`}
+                  required={countySelectionRequired}
+                  value={county}
+                  onChange={(e) => setCounty(e.target.value)}
+                  className={`${fieldClass} whitespace-nowrap`}
+                >
+                  <option value="">{t.selectCounty}</option>
+                  {ROMANIAN_COUNTIES.map((countyName) => (
+                    <option key={countyName} value={countyName}>
+                      {countyName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : null}
           </div>
 
           <div className="flex flex-wrap items-center justify-end gap-2.5 border-t border-[var(--panel-line)] pt-4">

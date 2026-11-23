@@ -488,14 +488,16 @@ export function WorkersTable({
         </div>
       ) : null}
 
-      <div className="flex items-center justify-between py-3">
-        <p className="text-xs font-medium tabular-nums text-[var(--panel-muted)]" aria-live="polite">
-          {t.showing(filteredWorkers.length, workers.length)}
-        </p>
-      </div>
+      {hasFilters ? (
+        <div className="flex items-center justify-between py-3">
+          <p className="text-xs font-medium tabular-nums text-[var(--panel-muted)]" aria-live="polite">
+            {t.showing(filteredWorkers.length, workers.length)}
+          </p>
+        </div>
+      ) : null}
 
       {filteredWorkers.length === 0 ? (
-        <div className="border-t border-[var(--panel-line)] py-12 text-center">
+        <div className={`py-12 text-center ${hasFilters ? "border-t border-[var(--panel-line)]" : ""}`}>
           <h2 className="text-base font-semibold text-[var(--panel-ink)]">{t.noneTitle}</h2>
           <p className="mt-1 text-sm text-[var(--panel-muted)]">{t.noneHint}</p>
           {hasFilters ? (
@@ -512,7 +514,11 @@ export function WorkersTable({
           ) : null}
         </div>
       ) : (
-        <div className="divide-y divide-[var(--panel-line)] border-y border-[var(--panel-line)]">
+        <div
+          className={`divide-y divide-[var(--panel-line)] border-b border-[var(--panel-line)] ${
+            hasFilters ? "border-t" : ""
+          }`}
+        >
           {filteredWorkers.map((worker) => {
             const isDeleting = deletingId === worker.id;
             const isToggling = togglingId === worker.id;

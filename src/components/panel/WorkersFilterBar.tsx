@@ -149,7 +149,7 @@ export function WorkersFilterBar({
   }));
 
   const outlineBtn =
-    "inline-flex min-h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-3.5 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]";
+    "inline-flex min-h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-3 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] sm:px-3.5";
 
   return (
     <div className="pt-5">
@@ -166,51 +166,56 @@ export function WorkersFilterBar({
           />
         </label>
 
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={onAddWorker}
-            className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-[var(--color-sapphire)] px-4 text-sm font-semibold text-white transition-colors hover:bg-[#28476f]"
-          >
-            <PlusIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-            <span>{t.addWorker}</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={onAddMediator}
-            title={t.addMediatorTitle}
-            className={outlineBtn}
-          >
-            <span>{t.addMediator}</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={onExportCSV}
-            disabled={exportDisabled}
-            aria-label={t.exportCsv}
-            className={outlineBtn}
-          >
-            <DownloadIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
-            <span className="hidden sm:inline">{t.exportCsv}</span>
-          </button>
-
-          {onRefresh ? (
+        <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:justify-end">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
-              onClick={onRefresh}
-              disabled={isRefreshing}
-              aria-label={isRefreshing ? t.refreshing : t.refreshTitle}
-              title={t.refreshTitle}
-              className="inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]"
+              onClick={onAddWorker}
+              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg bg-[var(--color-sapphire)] px-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#28476f] sm:gap-2 sm:px-4"
             >
-              <RefreshIcon
-                className={`h-4 w-4 shrink-0 ${isRefreshing ? "animate-spin" : ""}`}
-                aria-hidden="true"
-              />
+              <PlusIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span>{t.addWorker}</span>
             </button>
-          ) : null}
+
+            <button
+              type="button"
+              onClick={onAddMediator}
+              title={t.addMediatorTitle}
+              className={outlineBtn}
+            >
+              <span>{t.addMediator}</span>
+            </button>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              onClick={onExportCSV}
+              disabled={exportDisabled}
+              aria-label={t.exportCsv}
+              className={outlineBtn}
+            >
+              <DownloadIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span>{t.exportCsv}</span>
+            </button>
+
+            {onRefresh ? (
+              <button
+                type="button"
+                onClick={onRefresh}
+                disabled={isRefreshing}
+                aria-label={isRefreshing ? t.refreshing : t.refreshTitle}
+                title={t.refreshTitle}
+                className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-3 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)] disabled:cursor-default disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)] sm:h-11 sm:w-11 sm:min-w-11 sm:px-0"
+              >
+                <RefreshIcon
+                  className={`h-4 w-4 shrink-0 ${isRefreshing ? "animate-spin" : ""}`}
+                  aria-hidden="true"
+                />
+                <span className="sm:hidden">{isRefreshing ? t.refreshing : t.refresh}</span>
+              </button>
+            ) : null}
+          </div>
         </div>
       </div>
 

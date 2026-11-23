@@ -212,15 +212,21 @@ export function ActivityLogsDashboard({
                 </p>
               ) : null}
 
-              <p
-                className="py-3 text-xs font-medium tabular-nums text-[var(--panel-muted)]"
-                aria-live="polite"
-              >
-                {extra.showing(filteredLogs.length, logs.length)}
-              </p>
+              {logs.length > 0 || search.trim() ? (
+                <p
+                  className="py-3 text-xs font-medium tabular-nums text-[var(--panel-muted)]"
+                  aria-live="polite"
+                >
+                  {extra.showing(filteredLogs.length, logs.length)}
+                </p>
+              ) : null}
 
               {filteredLogs.length === 0 ? (
-                <div className="border-t border-[var(--panel-line)] py-10">
+                <div
+                  className={`border-t border-[var(--panel-line)] py-10 ${
+                    logs.length === 0 && !search.trim() ? "mt-5" : ""
+                  }`}
+                >
                   <p className="text-sm text-[var(--panel-muted)]">{t.noEntries}</p>
                   {search.trim() ? (
                     <button
