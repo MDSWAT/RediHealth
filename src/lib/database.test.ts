@@ -25,6 +25,7 @@ const envKeys = [
   "DB_HOST",
   "DB_USER",
   "DB_NAME",
+  "DB_CONNECTION_LIMIT",
   "DEFAULT_COUNTRY",
   "DATABASE_URL_RO",
   "DATABASE_URL_AL",
@@ -52,6 +53,29 @@ function usePool(pool: FakePool) {
 }
 
 describe("country databases", () => {
+  it("keeps the default pool small enough to share a session pooler across app processes", () => {
+    clearEnv();
+    vi.stubEnv("DATABASE_URL_RO", "postgres://ro:pw@db-ro:5432/redihealth_ro");
+    getCountryDatabase("RO");
+    expect(Pool).toHaveBeenCalledWith(expect.objectContaining({ max: 2 }));
+  });
+
+  it("allows an explicitly budgeted pool size", () => {
+    clearEnv();
+    vi.stubEnv("DATABASE_URL_RO", "postgres://ro:pw@db-ro:5432/redihealth_ro");
+    vi.stubEnv("DB_CONNECTION_LIMIT", "4");
+    getCountryDatabase("RO");
+    expect(Pool).toHaveBeenCalledWith(expect.objectContaining({ max: 4 }));
+  });
+
+  it.each(["0", "-1", "1.5", "invalid"])("rejects an invalid pool limit (%s) before connecting", (limit) => {
+    clearEnv();
+    vi.stubEnv("DATABASE_URL_RO", "postgres://ro:pw@db-ro:5432/redihealth_ro");
+    vi.stubEnv("DB_CONNECTION_LIMIT", limit);
+    expect(() => getCountryDatabase("RO")).toThrow("DB_CONNECTION_LIMIT must be a positive integer");
+    expect(Pool).not.toHaveBeenCalled();
+  });
+
   it("uses the same connection for offline mutations and releases it after commit or rollback", async () => {
     clearEnv();
     vi.stubEnv("DB_RO_HOST", "db-ro");

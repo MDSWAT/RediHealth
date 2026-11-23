@@ -131,8 +131,14 @@ function resolveSslConfig() {
 }
 
 function createPool(settings: ConnectionSettings, label: string) {
+  // This budget applies per database, per process. Session poolers count clients across
+  // development servers, deployed instances and background jobs, so keep the default small.
+  const max = Number(process.env.DB_CONNECTION_LIMIT?.trim() || 2);
+  if (!Number.isSafeInteger(max) || max < 1) {
+    throw new Error("DB_CONNECTION_LIMIT must be a positive integer.");
+  }
   const baseConfig = {
-    max: Number(process.env.DB_CONNECTION_LIMIT || 10),
+    max,
     connectionTimeoutMillis: 10_000,
     idleTimeoutMillis: 30_000,
     keepAlive: true,

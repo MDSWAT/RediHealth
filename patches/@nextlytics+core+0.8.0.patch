@@ -1,0 +1,13 @@
+diff --git a/node_modules/@nextlytics/core/dist/server.js b/node_modules/@nextlytics/core/dist/server.js
+index b57b171..761c8d1 100644
+--- a/node_modules/@nextlytics/core/dist/server.js
++++ b/node_modules/@nextlytics/core/dist/server.js
+@@ -93,7 +93,7 @@ function collectTemplates(config, ctx) {
+ }
+ function Nextlytics(userConfig) {
+   const config = (0, import_config_helpers.withDefaults)(userConfig);
+-  const validationResult = (0, import_config_helpers.validateConfig)(config);
++  const validationResult = (0, import_config_helpers.validateConfig)(userConfig);
+   (0, import_config_helpers.logConfigWarnings)(validationResult);
+   const dispatchEventInternal = (event, ctx, policyFilter) => {
+     const plugins = resolvePlugins(config, ctx);

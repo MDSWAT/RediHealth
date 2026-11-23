@@ -140,7 +140,7 @@ Required variables:
 | `ANALYTICS_SALT` | Optional secret for the daily visitor hash of the website statistics (defaults to `AUTH_SECRET`). See [Website statistics](#website-statistics) |
 | `DEFAULT_COUNTRY` | Country whose data lives in the control database of a single-database installation (default `RO`) |
 | `DATA_ENCRYPTION_KEY_<CC>` | 32-byte base64 key per country for encrypting medical history and photos |
-| `DB_CONNECTION_LIMIT` | Pool size per server process (default `10`) |
+| `DB_CONNECTION_LIMIT` | Maximum connections per database per server process (default `2`; positive integer). Budget across all app instances, local servers and background jobs |
 | `DATABASE_SSL`, `DATABASE_SSL_CA` | Enable TLS to the database; the server certificate is verified. Set `DATABASE_SSL_REJECT_UNAUTHORIZED=false` only for self-signed development servers |
 | `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET` | Optional Google OAuth sign-in |
 | `HOSTINGER_MAIL_API_TOKEN`, `HOSTINGER_MAIL_FROM`, `HOSTINGER_MAIL_DISPLAY_NAME` | Used to send one-time login codes and patient portal links |
@@ -181,6 +181,12 @@ Supabase's REST API with the publishable key. The app connects as the table owne
 transaction pooler (port 6543) on Vercel. Set `DATABASE_SSL=true` and `DATABASE_SSL_CA` to Supabase's root
 certificate (Project Settings → Database → SSL certificate, `
 `-escaped) so the certificate is verified.
+
+Session pooling holds one backend connection for each connected client. With a pool size of 15,
+two app processes configured with `DB_CONNECTION_LIMIT=10` can exceed that shared budget.
+Keep the application pools small, leave room for database tools, and use the provider's transaction
+pooler connection string for serverless deployments. Changing the limit requires restarting
+existing app processes; their already-created pools keep their previous size.
 
 Check a database at any time with the read-only `npm run db:check` (and `npm run db:check -- RO`).
 To create the first super admin, edit and run [`database/set-super-administrator.sql`](database/set-super-administrator.sql)
