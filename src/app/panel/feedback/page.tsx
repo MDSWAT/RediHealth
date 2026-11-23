@@ -7,7 +7,7 @@ import { withRequestLangPrefix } from "@/lib/i18n/server-routing";
 import { listPlatformFeedback, type PlatformFeedbackItem } from "@/lib/platform-feedback";
 import { getUserWorkerContext } from "@/lib/worker-auth";
 
-export const generateMetadata = createPageMetadata("feedback", "Platform feedback - RediHealth Panel", "");
+export const generateMetadata = createPageMetadata("feedback", "Platform feedback - RediHealth panel", "");
 
 export default async function PlatformFeedbackPage() {
   const session = await auth();

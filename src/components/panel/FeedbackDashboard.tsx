@@ -5,24 +5,17 @@ import { AdminShell } from "@/components/panel/AdminShell";
 import { usePanelRuntime } from "@/components/panel/PanelRuntime";
 import { csvTimestamp, downloadCsv } from "@/components/panel/panel-csv";
 import { Container } from "@/components/ui/Container";
-import {
-  CloseIcon,
-  DownloadIcon,
-  RefreshIcon,
-  ShieldIcon,
-  TagIcon,
-  TrashIcon,
-} from "@/components/ui/icons";
+import { CloseIcon, DownloadIcon, RefreshIcon, TrashIcon } from "@/components/ui/icons";
 import { feedbackAnalyticsCopy } from "@/lib/i18n/feedback-analytics-translations";
 import { feedbackAdminCopy, feedbackWidgetCopy } from "@/lib/i18n/feedback-translations";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { languages } from "@/lib/i18n/languages";
 import { langToLocale } from "@/lib/i18n/panel-translations";
 import { formatPanelDate } from "@/lib/panel-dates";
 import {
   computeFeedbackBreakdowns,
   computeFeedbackTrends,
   extractFeedbackKeywords,
-  type FeedbackKeywordWeight,
 } from "@/lib/platform-feedback-analytics";
 import {
   AGE_GROUP_OPTIONS,
@@ -43,32 +36,23 @@ type FeedbackDashboardProps = {
 
 const SUPPORTED_FILTER_LANGS = ["ro", "en", "sq", "it", "hr", "rom", "ru"] as const;
 
-const KEYWORD_SIZE_CLASSES: Record<FeedbackKeywordWeight, string> = {
-  1: "min-h-8 px-2.5 py-1.5 text-xs font-normal",
-  2: "min-h-8 px-2.5 py-1.5 text-xs font-medium",
-  3: "min-h-9 px-3 py-1.5 text-sm font-medium",
-  4: "min-h-9 px-3 py-1.5 text-[15px] font-semibold",
-  5: "min-h-9 px-3.5 py-1.5 text-base font-semibold",
-};
+const OUTLINE_BUTTON_CLASS =
+  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--color-border-control)] bg-[var(--panel-surface)] px-3.5 text-sm font-medium text-[var(--panel-ink)] transition-colors duration-(--dur-fast) hover:bg-[var(--panel-selection)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:border-[#62768c] dark:focus-visible:outline-[#bad7fa] disabled:cursor-not-allowed disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]";
 
-const KEYWORD_TONE_CLASSES: Record<FeedbackKeywordWeight, string> = {
-  1: "border-border bg-surface-subtle/60 text-muted-foreground hover:border-border-control hover:text-foreground",
-  2: "border-border bg-surface-subtle text-foreground hover:border-border-control",
-  3: "border-border bg-card text-foreground hover:border-sapphire-border hover:bg-sapphire-soft/50 dark:hover:bg-sapphire/20",
-  4: "border-sapphire-border bg-sapphire-soft/60 text-sapphire hover:bg-sapphire-soft dark:border-sapphire-border/40 dark:bg-sapphire/25 dark:text-on-sapphire-muted",
-  5: "border-sapphire bg-sapphire-soft text-sapphire hover:bg-sapphire-soft/85 dark:border-sapphire-border/70 dark:bg-sapphire/40 dark:text-white",
-};
+const PRIMARY_BUTTON_CLASS =
+  "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-[var(--color-sapphire)] bg-[var(--color-sapphire)] px-4 text-sm font-semibold text-white transition-colors duration-(--dur-fast) hover:bg-[#28476f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa] disabled:cursor-not-allowed disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]";
+
+const CONTROL_INPUT_CLASS =
+  "min-h-11 rounded-lg border border-[var(--color-border-control)] bg-[var(--panel-surface)] px-3 text-sm text-[var(--panel-ink)] placeholder:text-[var(--panel-muted)] focus-visible:border-[var(--color-sapphire)] focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[var(--color-sapphire)] dark:border-[#62768c] dark:focus-visible:border-[#bad7fa] dark:focus-visible:outline-[#bad7fa]";
 
 function ratingToneClass(score: number): string {
   if (score >= 4.0) return "text-wellness dark:text-wellness-border";
-  if (score >= 3.0) return "text-amber-care dark:text-amber-care-border";
+  if (score >= 3.0) return "text-amber-care dark:text-[#f5c58e]";
   return "text-clinical-ruby dark:text-ruby-300";
 }
 
-function ratingDotClass(score: number): string {
-  if (score >= 4.0) return "bg-wellness";
-  if (score >= 3.0) return "bg-amber-care";
-  return "bg-clinical-ruby";
+function languageLabel(code: string): string {
+  return languages.find((item) => item.code === code)?.label ?? code.toUpperCase();
 }
 
 export function FeedbackDashboard({
@@ -274,21 +258,17 @@ export function FeedbackDashboard({
 
   return (
     <AdminShell userEmail={userEmail} userRole={userRole} isAdmin={isAdmin || isSuperAdmin}>
-      <main id="main-content" className="min-h-screen py-8 sm:py-10">
-        <Container>
+      <main id="main-content" className="min-h-dvh min-w-0 bg-[var(--panel-surface)] text-[var(--panel-ink)] py-6 sm:py-8">
+        <Container className="min-w-0">
           {/* Header */}
-          <div className="mb-6 flex flex-col gap-4 border-b border-border pb-6 lg:flex-row lg:items-end lg:justify-between">
-            <div className="space-y-2">
-              <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          <header className="flex flex-col gap-4 border-b border-[var(--panel-line)] pb-5 lg:flex-row lg:items-end lg:justify-between">
+            <div className="min-w-0">
+              <h1 className="font-display text-2xl font-bold tracking-[-0.025em] text-[var(--panel-ink)] sm:text-[1.875rem]">
                 {t.title}
               </h1>
-              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                {t.subtitle}
+              <p className="mt-1.5 max-w-2xl text-xs leading-relaxed text-[var(--panel-muted)]">
+                {t.privacyBadge}
               </p>
-              <div className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground">
-                <ShieldIcon className="h-4 w-4 text-primary" />
-                <span>{t.privacyBadge}</span>
-              </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
@@ -296,9 +276,9 @@ export function FeedbackDashboard({
                 type="button"
                 onClick={handleExportCsv}
                 disabled={displayedItems.length === 0}
-                className="crm-button"
+                className={OUTLINE_BUTTON_CLASS}
               >
-                <DownloadIcon className="h-4 w-4" />
+                <DownloadIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span className="tabular-nums">
                   {isFiltered && displayedItems.length > 0
                     ? `${t.exportCsv} (${displayedItems.length})`
@@ -309,81 +289,73 @@ export function FeedbackDashboard({
                 type="button"
                 onClick={handleRefresh}
                 disabled={loading || !databaseAvailable}
-                className="crm-button crm-primary"
+                className={PRIMARY_BUTTON_CLASS}
               >
-                <RefreshIcon className="h-4 w-4" />
+                <RefreshIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{loading ? t.refreshing : t.refresh}</span>
               </button>
             </div>
-          </div>
+          </header>
 
           {!databaseAvailable ? (
-            <p className="rounded-xl border border-border bg-card p-6 text-sm leading-relaxed text-foreground">
-              {t.noDatabase}
-            </p>
+            <p className="mt-6 max-w-2xl text-sm leading-relaxed text-[var(--panel-muted)]">{t.noDatabase}</p>
           ) : (
-            <div className="space-y-6">
-              {/* Summary Strip */}
-              <section aria-label={t.overallScore} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="rounded-xl border border-border bg-card p-5">
-                  <p className="text-xs font-medium text-muted-foreground">{t.totalResponses}</p>
-                  <p className="mt-2 text-3xl font-bold tabular-nums text-foreground">
-                    {summary.totalResponses}
-                  </p>
-                </div>
-
-                <div className="rounded-xl border border-border bg-card p-5">
-                  <p className="text-xs font-medium text-muted-foreground">{t.overallScore}</p>
-                  <div className="mt-2 flex items-baseline gap-2">
-                    <span className="text-3xl font-bold tabular-nums text-primary">
-                      {summary.overallAverage.toFixed(2)}
-                    </span>
-                    <span className="text-xs text-muted-foreground">{t.outOfFive}</span>
+            <div className="min-w-0 space-y-8">
+              {/* Editorial Summary Ledger */}
+              <section aria-label={t.overallScore} className="min-w-0">
+                <dl className="grid grid-cols-2 gap-px border-b border-[var(--panel-line)] bg-[var(--panel-line)] lg:grid-cols-4">
+                  <div className="min-w-0 bg-[var(--panel-surface)] px-4 py-3.5 max-lg:pl-0 sm:px-5 sm:py-4 lg:pl-0">
+                    <dt className="text-xs font-medium text-[var(--panel-muted)]">{t.totalResponses}</dt>
+                    <dd className="mt-1 font-display text-2xl font-bold tracking-[-0.02em] tabular-nums text-[var(--panel-ink)] sm:text-[1.625rem]">
+                      {summary.totalResponses}
+                    </dd>
                   </div>
-                </div>
 
-                <div className="rounded-xl border border-border bg-card p-5">
-                  <p className="text-xs font-medium text-muted-foreground">{t.openAnswersCount}</p>
-                  <p className="mt-2 text-3xl font-bold tabular-nums text-foreground">
-                    {summary.withOpenFeedbackCount}
-                  </p>
-                </div>
+                  <div className="min-w-0 bg-[var(--panel-surface)] px-4 py-3.5 max-lg:pr-0 sm:px-5 sm:py-4">
+                    <dt className="text-xs font-medium text-[var(--panel-muted)]">{t.overallScore}</dt>
+                    <dd className="mt-1 flex flex-wrap items-baseline gap-1.5">
+                      <span className="font-display text-2xl font-bold tracking-[-0.02em] tabular-nums text-[var(--color-sapphire)] dark:text-[#bad7fa] sm:text-[1.625rem]">
+                        {summary.overallAverage.toFixed(2)}
+                      </span>
+                      <span className="text-xs text-[var(--panel-muted)]">{t.outOfFive}</span>
+                    </dd>
+                  </div>
 
-                <div className="rounded-xl border border-border bg-card p-5">
-                  <p className="text-xs font-medium text-muted-foreground">{t.anonymizedCount}</p>
-                  <p className="mt-2 text-3xl font-bold tabular-nums text-foreground">
-                    {summary.anonymizedCount}
-                  </p>
-                </div>
+                  <div className="min-w-0 bg-[var(--panel-surface)] px-4 py-3.5 max-lg:pl-0 sm:px-5 sm:py-4">
+                    <dt className="text-xs font-medium text-[var(--panel-muted)]">{t.openAnswersCount}</dt>
+                    <dd className="mt-1 font-display text-2xl font-bold tracking-[-0.02em] tabular-nums text-[var(--panel-ink)] sm:text-[1.625rem]">
+                      {summary.withOpenFeedbackCount}
+                    </dd>
+                  </div>
+
+                  <div className="min-w-0 bg-[var(--panel-surface)] px-4 py-3.5 max-lg:pr-0 sm:px-5 sm:py-4 lg:pr-0">
+                    <dt className="text-xs font-medium text-[var(--panel-muted)]">{t.anonymizedCount}</dt>
+                    <dd className="mt-1 font-display text-2xl font-bold tracking-[-0.02em] tabular-nums text-[var(--panel-ink)] sm:text-[1.625rem]">
+                      {summary.anonymizedCount}
+                    </dd>
+                  </div>
+                </dl>
               </section>
 
-              {/* Satisfaction Tiers Summary Bar */}
-              <section
-                aria-labelledby="satisfaction-tiers-heading"
-                className="rounded-xl border border-border bg-card p-5 sm:p-6"
-              >
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                  <div>
-                    <h2 id="satisfaction-tiers-heading" className="text-lg font-semibold text-foreground">
-                      {analyticsCopy.satisfactionHeading}
-                    </h2>
-                    <p className="mt-0.5 text-xs text-muted-foreground">
-                      {analyticsCopy.satisfactionSubtitle}
-                    </p>
-                  </div>
+              {/* Satisfaction Tiers */}
+              <section aria-labelledby="satisfaction-tiers-heading" className="min-w-0">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <h2 id="satisfaction-tiers-heading" className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">
+                    {analyticsCopy.satisfactionHeading}
+                  </h2>
                   {breakdowns.total > 0 ? (
-                    <span className="text-xs font-medium tabular-nums text-muted-foreground">
+                    <span className="text-xs font-medium tabular-nums text-[var(--panel-muted)]">
                       {analyticsCopy.responsesCountShort(breakdowns.total)}
                     </span>
                   ) : null}
                 </div>
 
                 {breakdowns.total === 0 ? (
-                  <p className="mt-4 text-sm text-muted-foreground">{analyticsCopy.tierEmpty}</p>
+                  <p className="mt-3 text-sm text-[var(--panel-muted)]">{analyticsCopy.tierEmpty}</p>
                 ) : (
                   <div className="mt-4 space-y-4">
                     <div
-                      className="flex h-2.5 w-full overflow-hidden rounded-full bg-surface-subtle"
+                      className="flex h-2 w-full overflow-hidden rounded-xs bg-[var(--panel-subtle)]"
                       role="img"
                       aria-label={`${analyticsCopy.tierPositive}: ${breakdowns.tiers.positive.sharePct}%, ${analyticsCopy.tierNeutral}: ${breakdowns.tiers.neutral.sharePct}%, ${analyticsCopy.tierNeedsAttention}: ${breakdowns.tiers.needsAttention.sharePct}%`}
                     >
@@ -409,88 +381,69 @@ export function FeedbackDashboard({
                       ) : null}
                     </div>
 
-                    <div className="grid gap-3 border-t border-border/60 pt-4 sm:grid-cols-3">
-                      <div className="flex items-center justify-between gap-3 sm:block">
-                        <div className="flex items-center gap-2">
-                          <span className="h-2.5 w-2.5 shrink-0 rounded-sm bg-wellness" aria-hidden="true" />
-                          <span className="text-xs font-medium text-muted-foreground">
-                            {analyticsCopy.tierPositive}
-                          </span>
-                        </div>
-                        <div className="flex items-baseline gap-2 sm:mt-1.5">
-                          <span className="text-xl font-bold tabular-nums text-foreground">
+                    <dl className="grid gap-4 border-t border-[var(--panel-line)] pt-4 sm:grid-cols-3">
+                      <div className="flex items-baseline justify-between gap-3 sm:block">
+                        <dt className="text-xs font-medium text-wellness dark:text-wellness-border">
+                          {analyticsCopy.tierPositive}
+                        </dt>
+                        <dd className="flex items-baseline gap-2 sm:mt-1">
+                          <span className="font-display text-xl font-bold tabular-nums text-[var(--panel-ink)]">
                             {breakdowns.tiers.positive.count}
                           </span>
-                          <span className="text-xs font-medium tabular-nums text-muted-foreground">
+                          <span className="text-xs font-medium tabular-nums text-[var(--panel-muted)]">
                             {breakdowns.tiers.positive.sharePct}%
                           </span>
-                        </div>
+                        </dd>
                       </div>
 
-                      <div className="flex items-center justify-between gap-3 sm:block">
-                        <div className="flex items-center gap-2">
-                          <span className="h-2.5 w-2.5 shrink-0 rounded-sm bg-amber-care" aria-hidden="true" />
-                          <span className="text-xs font-medium text-muted-foreground">
-                            {analyticsCopy.tierNeutral}
-                          </span>
-                        </div>
-                        <div className="flex items-baseline gap-2 sm:mt-1.5">
-                          <span className="text-xl font-bold tabular-nums text-foreground">
+                      <div className="flex items-baseline justify-between gap-3 sm:block">
+                        <dt className="text-xs font-medium text-amber-care dark:text-[#f5c58e]">
+                          {analyticsCopy.tierNeutral}
+                        </dt>
+                        <dd className="flex items-baseline gap-2 sm:mt-1">
+                          <span className="font-display text-xl font-bold tabular-nums text-[var(--panel-ink)]">
                             {breakdowns.tiers.neutral.count}
                           </span>
-                          <span className="text-xs font-medium tabular-nums text-muted-foreground">
+                          <span className="text-xs font-medium tabular-nums text-[var(--panel-muted)]">
                             {breakdowns.tiers.neutral.sharePct}%
                           </span>
-                        </div>
+                        </dd>
                       </div>
 
-                      <div className="flex items-center justify-between gap-3 sm:block">
-                        <div className="flex items-center gap-2">
-                          <span className="h-2.5 w-2.5 shrink-0 rounded-sm bg-clinical-ruby" aria-hidden="true" />
-                          <span className="text-xs font-medium text-muted-foreground">
-                            {analyticsCopy.tierNeedsAttention}
-                          </span>
-                        </div>
-                        <div className="flex items-baseline gap-2 sm:mt-1.5">
-                          <span className="text-xl font-bold tabular-nums text-foreground">
+                      <div className="flex items-baseline justify-between gap-3 sm:block">
+                        <dt className="text-xs font-medium text-clinical-ruby dark:text-ruby-300">
+                          {analyticsCopy.tierNeedsAttention}
+                        </dt>
+                        <dd className="flex items-baseline gap-2 sm:mt-1">
+                          <span className="font-display text-xl font-bold tabular-nums text-[var(--panel-ink)]">
                             {breakdowns.tiers.needsAttention.count}
                           </span>
-                          <span className="text-xs font-medium tabular-nums text-muted-foreground">
+                          <span className="text-xs font-medium tabular-nums text-[var(--panel-muted)]">
                             {breakdowns.tiers.needsAttention.sharePct}%
                           </span>
-                        </div>
+                        </dd>
                       </div>
-                    </div>
+                    </dl>
                   </div>
                 )}
               </section>
 
-              {/* Trends Over Time + Interactive Keyword Cloud */}
-              <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+              {/* Trends Over Time + Recurring Themes */}
+              <div className="grid min-w-0 gap-x-10 gap-y-8 border-t border-[var(--panel-line)] pt-7 lg:grid-cols-[1.15fr_0.85fr]">
                 {/* Responses and average rating over time */}
-                <section
-                  aria-labelledby="feedback-trends-heading"
-                  className="rounded-xl border border-border bg-card p-5 sm:p-6"
-                >
-                  <div className="flex flex-wrap items-start justify-between gap-3">
+                <section aria-labelledby="feedback-trends-heading" className="min-w-0">
+                  <div className="flex flex-wrap items-baseline justify-between gap-3">
                     <div>
-                      <h2 id="feedback-trends-heading" className="text-lg font-semibold text-foreground">
+                      <h2 id="feedback-trends-heading" className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">
                         {analyticsCopy.trendsHeading}
                       </h2>
-                      <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
-                        <span className="inline-flex items-center gap-1.5">
-                          <span className="h-2.5 w-2.5 rounded-xs bg-sapphire/80 dark:bg-sapphire-border/80" aria-hidden="true" />
-                          <span>{analyticsCopy.trendsResponsesLabel}</span>
-                        </span>
-                        <span className="inline-flex items-center gap-1.5">
-                          <span className="h-2 w-2 rounded-full bg-wellness" aria-hidden="true" />
-                          <span>{analyticsCopy.trendsAvgRatingLabel}</span>
-                        </span>
-                      </div>
+                      <p className="mt-0.5 text-xs text-[var(--panel-muted)]">
+                        {analyticsCopy.trendsResponsesLabel} · {analyticsCopy.trendsAvgRatingLabel}
+                      </p>
                     </div>
 
                     {trends.buckets.length > 0 ? (
-                      <span className="rounded-md border border-border bg-surface-subtle px-2.5 py-1 text-xs font-medium text-muted-foreground">
+                      <span className="text-xs font-medium text-[var(--panel-muted)]">
                         {trends.granularity === "day"
                           ? analyticsCopy.trendsDailyLabel
                           : analyticsCopy.trendsWeeklyLabel}
@@ -499,33 +452,29 @@ export function FeedbackDashboard({
                   </div>
 
                   {trends.buckets.length === 0 ? (
-                    <p className="mt-5 rounded-lg border border-dashed border-border bg-surface-subtle/50 p-4 text-sm text-muted-foreground">
-                      {analyticsCopy.trendsEmpty}
-                    </p>
+                    <p className="mt-3 text-sm text-[var(--panel-muted)]">{analyticsCopy.trendsEmpty}</p>
                   ) : (
                     <div className="mt-4 space-y-3">
                       {activeTrendBucket ? (
                         <div
                           aria-live="polite"
-                          className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border/70 bg-surface-subtle/60 px-3 py-2 text-xs"
+                          className="flex flex-wrap items-baseline justify-between gap-2 border-b border-[var(--panel-line)] pb-2.5 text-xs"
                         >
-                          <span className="font-medium text-foreground">
+                          <span className="font-medium text-[var(--panel-ink)]">
                             {analyticsCopy.trendsBucketSummary(
                               activeTrendBucket.label,
                               activeTrendBucket.count,
                               activeTrendBucket.avgRating.toFixed(2),
                             )}
                           </span>
-                          <span
-                            className={`font-semibold tabular-nums ${ratingToneClass(activeTrendBucket.avgRating)}`}
-                          >
+                          <span className={`font-semibold tabular-nums ${ratingToneClass(activeTrendBucket.avgRating)}`}>
                             {activeTrendBucket.avgRating.toFixed(2)} / 5
                           </span>
                         </div>
                       ) : null}
 
-                      <div className="overflow-x-auto pb-1">
-                        <div className="flex min-w-full items-end gap-1.5 border-b border-border pt-2">
+                      <div className="min-w-0 w-full overflow-x-auto pb-1">
+                        <div className="flex min-w-full items-end gap-1.5 border-b border-[var(--panel-line)] pt-2">
                           {trends.buckets.map((bucket) => {
                             const barPct = Math.max(10, Math.round((bucket.count / maxTrendCount) * 100));
                             const isActive = activeTrendBucket?.key === bucket.key;
@@ -542,28 +491,22 @@ export function FeedbackDashboard({
                                   bucket.count,
                                   bucket.avgRating.toFixed(2),
                                 )}
-                                className={`group flex min-w-[46px] flex-1 flex-col items-center rounded-t-lg px-1 pt-1 pb-2 text-center transition-colors duration-(--dur-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ${
-                                  isActive ? "bg-surface-subtle/80" : "hover:bg-surface-subtle/40"
+                                className={`group flex min-h-11 min-w-[48px] flex-1 flex-col items-center whitespace-nowrap rounded-t-sm px-1 pt-1.5 pb-2 text-center transition-colors duration-(--dur-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa] ${
+                                  isActive ? "bg-[var(--panel-selection)]" : "hover:bg-[var(--panel-subtle)]"
                                 }`}
                               >
-                                <span
-                                  className={`inline-flex items-center gap-1 text-[11px] font-semibold tabular-nums ${ratingToneClass(bucket.avgRating)}`}
-                                >
-                                  <span
-                                    className={`h-1.5 w-1.5 shrink-0 rounded-full ${ratingDotClass(bucket.avgRating)}`}
-                                    aria-hidden="true"
-                                  />
-                                  <span>{bucket.avgRating.toFixed(1)}</span>
+                                <span className={`whitespace-nowrap text-xs font-semibold tabular-nums ${ratingToneClass(bucket.avgRating)}`}>
+                                  {bucket.avgRating.toFixed(1)}
                                 </span>
-                                <span className="mt-0.5 text-[11px] tabular-nums text-muted-foreground">
+                                <span className="mt-0.5 whitespace-nowrap text-[11px] tabular-nums text-[var(--panel-muted)]">
                                   {bucket.count}
                                 </span>
                                 <div className="mt-1.5 flex h-24 w-full items-end justify-center">
                                   <span
-                                    className={`w-full max-w-[26px] rounded-t-sm transition-colors duration-(--dur-fast) ${
+                                    className={`w-full max-w-[26px] rounded-t-[2px] transition-colors duration-(--dur-fast) ${
                                       isActive
-                                        ? "bg-sapphire dark:bg-sapphire-border"
-                                        : "bg-sapphire/70 group-hover:bg-sapphire/90 dark:bg-sapphire-border/60 dark:group-hover:bg-sapphire-border"
+                                        ? "bg-[var(--color-sapphire)] dark:bg-[#bad7fa]"
+                                        : "bg-[var(--color-sapphire)]/65 group-hover:bg-[var(--color-sapphire)]/90 dark:bg-[#bad7fa]/55 dark:group-hover:bg-[#bad7fa]/85"
                                     }`}
                                     style={{ height: `${barPct}%` }}
                                   />
@@ -576,7 +519,7 @@ export function FeedbackDashboard({
                           {trends.buckets.map((bucket) => (
                             <span
                               key={bucket.key}
-                              className="min-w-[46px] flex-1 truncate text-center text-[11px] tabular-nums text-muted-foreground"
+                              className="min-w-[48px] flex-1 truncate whitespace-nowrap text-center text-[11px] tabular-nums text-[var(--panel-muted)]"
                               title={bucket.label}
                             >
                               {bucket.label}
@@ -588,36 +531,26 @@ export function FeedbackDashboard({
                   )}
                 </section>
 
-                {/* Interactive keyword cloud */}
-                <section
-                  aria-labelledby="feedback-keywords-heading"
-                  className="rounded-xl border border-border bg-card p-5 sm:p-6"
-                >
-                  <div className="flex flex-wrap items-start justify-between gap-2">
-                    <div>
-                      <h2 id="feedback-keywords-heading" className="text-lg font-semibold text-foreground">
-                        {analyticsCopy.keywordCloudHeading}
-                      </h2>
-                      <p className="mt-0.5 text-xs text-muted-foreground">
-                        {analyticsCopy.keywordCloudSubtitle}
-                      </p>
-                    </div>
+                {/* Recurring themes (interactive keyword filters) */}
+                <section aria-labelledby="feedback-keywords-heading" className="min-w-0">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h2 id="feedback-keywords-heading" className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">
+                      {analyticsCopy.keywordCloudHeading}
+                    </h2>
                     {activeKeyword ? (
                       <button
                         type="button"
                         onClick={() => setSelectedKeyword(null)}
-                        className="inline-flex min-h-9 items-center gap-1 rounded-lg border border-border bg-surface-subtle px-2.5 text-xs font-medium text-foreground transition-colors duration-(--dur-fast) hover:border-border-control focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                        className={OUTLINE_BUTTON_CLASS}
                       >
-                        <CloseIcon className="h-3.5 w-3.5" />
+                        <CloseIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                         <span>{analyticsCopy.keywordClear}</span>
                       </button>
                     ) : null}
                   </div>
 
                   {keywords.length === 0 ? (
-                    <p className="mt-5 rounded-lg border border-dashed border-border bg-surface-subtle/50 p-4 text-sm text-muted-foreground">
-                      {analyticsCopy.keywordCloudEmpty}
-                    </p>
+                    <p className="mt-3 text-sm text-[var(--panel-muted)]">{analyticsCopy.keywordCloudEmpty}</p>
                   ) : (
                     <div
                       role="group"
@@ -633,18 +566,16 @@ export function FeedbackDashboard({
                             aria-pressed={isSelected}
                             aria-label={analyticsCopy.keywordMentionsAria(kw.term, kw.count, isSelected)}
                             onClick={() => handleToggleKeyword(kw.normalized)}
-                            className={`inline-flex items-center gap-1.5 rounded-lg border leading-tight transition-colors duration-(--dur-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ${
-                              KEYWORD_SIZE_CLASSES[kw.weight]
-                            } ${
+                            className={`inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg border px-3 text-sm font-medium transition-colors duration-(--dur-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa] ${
                               isSelected
-                                ? "border-primary bg-primary text-white hover:bg-primary-hover"
-                                : KEYWORD_TONE_CLASSES[kw.weight]
+                                ? "border-[var(--color-sapphire)] bg-[var(--color-sapphire)] font-semibold text-white hover:bg-[#28476f]"
+                                : "border-[var(--color-border-control)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] dark:border-[#62768c]"
                             }`}
                           >
                             <span>{kw.term}</span>
                             <span
-                              className={`tabular-nums text-[11px] font-medium ${
-                                isSelected ? "text-white/90" : "opacity-75"
+                              className={`tabular-nums text-xs ${
+                                isSelected ? "text-white/85" : "text-[var(--panel-muted)]"
                               }`}
                             >
                               {kw.count}
@@ -658,31 +589,28 @@ export function FeedbackDashboard({
               </div>
 
               {/* Ratings by Page and Language */}
-              <section
-                aria-labelledby="feedback-breakdowns-heading"
-                className="rounded-xl border border-border bg-card p-5 sm:p-6"
-              >
-                <h2 id="feedback-breakdowns-heading" className="text-lg font-semibold text-foreground">
+              <section aria-labelledby="feedback-breakdowns-heading" className="min-w-0 border-t border-[var(--panel-line)] pt-7">
+                <h2 id="feedback-breakdowns-heading" className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">
                   {analyticsCopy.breakdownsHeading}
                 </h2>
 
-                <div className="mt-4 grid gap-6 md:grid-cols-2 md:divide-x md:divide-border">
+                <div className="mt-4 grid min-w-0 gap-x-10 gap-y-6 md:grid-cols-2">
                   {/* Top pages */}
-                  <div>
-                    <h3 className="text-xs font-semibold text-muted-foreground">
+                  <div className="min-w-0">
+                    <h3 className="border-b border-[var(--panel-line)] pb-2 text-xs font-semibold text-[var(--panel-muted)]">
                       {analyticsCopy.byPageHeading}
                     </h3>
                     {breakdowns.byPage.length === 0 ? (
-                      <p className="mt-3 text-xs text-muted-foreground">{analyticsCopy.noBreakdownData}</p>
+                      <p className="mt-3 text-sm text-[var(--panel-muted)]">{analyticsCopy.noBreakdownData}</p>
                     ) : (
                       <ul className="mt-3 space-y-3">
                         {breakdowns.byPage.map((row) => {
                           const widthPct = Math.max(6, Math.round((row.count / maxPageCount) * 100));
                           return (
-                            <li key={row.pagePath} className="space-y-1">
+                            <li key={row.pagePath} className="min-w-0 space-y-1">
                               <div className="flex items-baseline justify-between gap-3 text-xs">
                                 <span
-                                  className="min-w-0 truncate font-mono text-foreground"
+                                  className="min-w-0 truncate font-mono text-[var(--panel-ink)]"
                                   title={row.pagePath}
                                 >
                                   {row.pagePath}
@@ -691,12 +619,12 @@ export function FeedbackDashboard({
                                   <strong className={`font-semibold ${ratingToneClass(row.avgRating)}`}>
                                     {row.avgRating.toFixed(2)}
                                   </strong>
-                                  <span className="text-muted-foreground"> · {row.count}</span>
+                                  <span className="text-[var(--panel-muted)]"> · {row.count}</span>
                                 </span>
                               </div>
-                              <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-subtle">
+                              <div className="h-1 w-full overflow-hidden rounded-xs bg-[var(--panel-subtle)]" aria-hidden="true">
                                 <div
-                                  className="h-full rounded-full bg-sapphire/75 dark:bg-sapphire-border/75"
+                                  className="h-full rounded-xs bg-[var(--color-sapphire)]/80 dark:bg-[#bad7fa]/80"
                                   style={{ width: `${widthPct}%` }}
                                 />
                               </div>
@@ -708,34 +636,32 @@ export function FeedbackDashboard({
                   </div>
 
                   {/* By language */}
-                  <div className="md:pl-6">
-                    <h3 className="text-xs font-semibold text-muted-foreground">
+                  <div className="min-w-0">
+                    <h3 className="border-b border-[var(--panel-line)] pb-2 text-xs font-semibold text-[var(--panel-muted)]">
                       {analyticsCopy.byLanguageHeading}
                     </h3>
                     {breakdowns.byLanguage.length === 0 ? (
-                      <p className="mt-3 text-xs text-muted-foreground">{analyticsCopy.noBreakdownData}</p>
+                      <p className="mt-3 text-sm text-[var(--panel-muted)]">{analyticsCopy.noBreakdownData}</p>
                     ) : (
                       <ul className="mt-3 space-y-3">
                         {breakdowns.byLanguage.map((row) => {
                           const widthPct = Math.max(6, Math.round((row.count / maxLangCount) * 100));
                           return (
-                            <li key={row.lang} className="space-y-1">
-                              <div className="flex items-center justify-between gap-3 text-xs">
-                                <div className="flex items-center gap-2">
-                                  <span className="inline-flex min-w-10 items-center justify-center rounded border border-border bg-surface-subtle px-1.5 py-0.5 text-[11px] font-semibold text-foreground">
-                                    {row.lang.toUpperCase()}
+                            <li key={row.lang} className="min-w-0 space-y-1">
+                              <div className="flex items-baseline justify-between gap-3 text-xs">
+                                <span className="min-w-0 truncate">
+                                  <span className="font-medium text-[var(--panel-ink)]">{languageLabel(row.lang)}</span>
+                                  <span className="ml-2 tabular-nums text-[var(--panel-muted)]">
+                                    · {analyticsCopy.responsesCountShort(row.count)}
                                   </span>
-                                  <span className="tabular-nums text-muted-foreground">
-                                    {analyticsCopy.responsesCountShort(row.count)}
-                                  </span>
-                                </div>
+                                </span>
                                 <strong className={`shrink-0 font-semibold tabular-nums ${ratingToneClass(row.avgRating)}`}>
                                   {row.avgRating.toFixed(2)} / 5
                                 </strong>
                               </div>
-                              <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-subtle">
+                              <div className="h-1 w-full overflow-hidden rounded-xs bg-[var(--panel-subtle)]" aria-hidden="true">
                                 <div
-                                  className="h-full rounded-full bg-primary/75"
+                                  className="h-full rounded-xs bg-[var(--color-sapphire)]/80 dark:bg-[#bad7fa]/80"
                                   style={{ width: `${widthPct}%` }}
                                 />
                               </div>
@@ -748,35 +674,38 @@ export function FeedbackDashboard({
                 </div>
               </section>
 
-              {/* 5 Evaluation Criteria + Demographics Breakdown */}
-              <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-                <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
-                  <h2 className="text-lg font-semibold text-foreground">{t.evaluationHeading}</h2>
-                  <div className="mt-4 space-y-4">
+              {/* 5 Evaluation Criteria + Demographics */}
+              <div className="grid min-w-0 gap-x-10 gap-y-8 border-t border-[var(--panel-line)] pt-7 lg:grid-cols-[1.15fr_0.85fr]">
+                <section className="min-w-0">
+                  <h2 className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">
+                    {t.evaluationHeading}
+                  </h2>
+                  <div className="mt-4 divide-y divide-[var(--panel-line)] border-t border-[var(--panel-line)]">
                     {summary.dimensions.map((dim) => {
                       const q = widgetCopy.questions[dim.key];
                       const pct = Math.min(100, Math.max(0, (dim.average / 5) * 100));
                       return (
-                        <div key={dim.key} className="space-y-1.5 border-b border-border/60 pb-3.5 last:border-b-0 last:pb-0">
+                        <div key={dim.key} className="space-y-2 py-3.5">
                           <div className="flex items-baseline justify-between gap-3">
                             <div className="min-w-0">
-                              <p className="text-sm font-semibold text-foreground">{q.label}</p>
-                              <p className="text-xs text-muted-foreground">{q.question}</p>
+                              <p className="text-sm font-semibold text-[var(--panel-ink)]">{q.label}</p>
+                              <p className="text-xs text-[var(--panel-muted)]">{q.question}</p>
                             </div>
-                            <span className="shrink-0 text-base font-bold tabular-nums text-primary">
+                            <span className="shrink-0 font-display text-base font-bold tabular-nums text-[var(--color-sapphire)] dark:text-[#bad7fa]">
                               {dim.average.toFixed(2)} / 5
                             </span>
                           </div>
-                          <div className="h-2 w-full overflow-hidden rounded-full bg-surface-subtle">
+                          <div className="h-1.5 w-full overflow-hidden rounded-xs bg-[var(--panel-subtle)]" aria-hidden="true">
                             <div
-                              className="h-full rounded-full bg-primary transition-[width] duration-(--dur-base) ease-(--ease-out-calm)"
+                              className="h-full rounded-xs bg-[var(--color-sapphire)] transition-[width] duration-(--dur-base) ease-(--ease-out-calm) dark:bg-[#bad7fa]"
                               style={{ width: `${pct}%` }}
                             />
                           </div>
-                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] tabular-nums text-muted-foreground">
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs tabular-nums text-[var(--panel-muted)]">
                             {[1, 2, 3, 4, 5].map((score, idx) => (
                               <span key={score}>
-                                {score}★: <strong className="font-semibold text-foreground">{dim.distribution[idx]}</strong>
+                                {score}/5:{" "}
+                                <strong className="font-semibold text-[var(--panel-ink)]">{dim.distribution[idx]}</strong>
                               </span>
                             ))}
                           </div>
@@ -786,23 +715,23 @@ export function FeedbackDashboard({
                   </div>
                 </section>
 
-                <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
-                  <h2 className="text-lg font-semibold text-foreground">{t.demographicsHeading}</h2>
-                  <div className="mt-4 space-y-5 text-sm">
+                <section className="min-w-0">
+                  <h2 className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">
+                    {t.demographicsHeading}
+                  </h2>
+                  <div className="mt-4 space-y-5 border-t border-[var(--panel-line)] pt-4 text-sm">
                     {/* Gender and Age Group */}
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div>
-                        <h3 className="text-xs font-semibold text-muted-foreground">
-                          {widgetCopy.genderLabel}
-                        </h3>
+                    <div className="grid gap-6 sm:grid-cols-2">
+                      <div className="min-w-0">
+                        <h3 className="text-xs font-semibold text-[var(--panel-muted)]">{widgetCopy.genderLabel}</h3>
                         <ul className="mt-2 space-y-1.5">
                           {summary.demographics.gender.length === 0 ? (
-                            <li className="text-xs text-muted-foreground">{t.unspecified}</li>
+                            <li className="text-xs text-[var(--panel-muted)]">{t.unspecified}</li>
                           ) : (
                             summary.demographics.gender.map((bucket) => (
-                              <li key={bucket.key} className="flex items-center justify-between gap-2 text-xs">
-                                <span className="truncate text-muted-foreground">{formatGender(bucket.key)}</span>
-                                <span className="shrink-0 font-semibold tabular-nums text-foreground">
+                              <li key={bucket.key} className="flex items-baseline justify-between gap-2 text-xs">
+                                <span className="truncate text-[var(--panel-muted)]">{formatGender(bucket.key)}</span>
+                                <span className="shrink-0 font-semibold tabular-nums text-[var(--panel-ink)]">
                                   {bucket.count} ({bucket.sharePct}%)
                                 </span>
                               </li>
@@ -811,18 +740,16 @@ export function FeedbackDashboard({
                         </ul>
                       </div>
 
-                      <div>
-                        <h3 className="text-xs font-semibold text-muted-foreground">
-                          {widgetCopy.ageGroupLabel}
-                        </h3>
+                      <div className="min-w-0">
+                        <h3 className="text-xs font-semibold text-[var(--panel-muted)]">{widgetCopy.ageGroupLabel}</h3>
                         <ul className="mt-2 space-y-1.5">
                           {summary.demographics.ageGroup.length === 0 ? (
-                            <li className="text-xs text-muted-foreground">{t.unspecified}</li>
+                            <li className="text-xs text-[var(--panel-muted)]">{t.unspecified}</li>
                           ) : (
                             summary.demographics.ageGroup.map((bucket) => (
-                              <li key={bucket.key} className="flex items-center justify-between gap-2 text-xs">
-                                <span className="truncate text-muted-foreground">{formatAge(bucket.key)}</span>
-                                <span className="shrink-0 font-semibold tabular-nums text-foreground">
+                              <li key={bucket.key} className="flex items-baseline justify-between gap-2 text-xs">
+                                <span className="truncate text-[var(--panel-muted)]">{formatAge(bucket.key)}</span>
+                                <span className="shrink-0 font-semibold tabular-nums text-[var(--panel-ink)]">
                                   {bucket.count} ({bucket.sharePct}%)
                                 </span>
                               </li>
@@ -833,18 +760,16 @@ export function FeedbackDashboard({
                     </div>
 
                     {/* Marital Status */}
-                    <div className="border-t border-border/70 pt-4">
-                      <h3 className="text-xs font-semibold text-muted-foreground">
-                        {widgetCopy.maritalStatusLabel}
-                      </h3>
-                      <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
+                    <div className="border-t border-[var(--panel-line)] pt-4">
+                      <h3 className="text-xs font-semibold text-[var(--panel-muted)]">{widgetCopy.maritalStatusLabel}</h3>
+                      <ul className="mt-2 grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
                         {summary.demographics.maritalStatus.length === 0 ? (
-                          <li className="text-xs text-muted-foreground">{t.unspecified}</li>
+                          <li className="text-xs text-[var(--panel-muted)]">{t.unspecified}</li>
                         ) : (
                           summary.demographics.maritalStatus.map((bucket) => (
-                            <li key={bucket.key} className="flex items-center justify-between gap-2 text-xs">
-                              <span className="truncate text-muted-foreground">{formatMarital(bucket.key)}</span>
-                              <span className="shrink-0 font-semibold tabular-nums text-foreground">
+                            <li key={bucket.key} className="flex items-baseline justify-between gap-2 text-xs">
+                              <span className="truncate text-[var(--panel-muted)]">{formatMarital(bucket.key)}</span>
+                              <span className="shrink-0 font-semibold tabular-nums text-[var(--panel-ink)]">
                                 {bucket.count} ({bucket.sharePct}%)
                               </span>
                             </li>
@@ -854,47 +779,41 @@ export function FeedbackDashboard({
                     </div>
 
                     {/* Top Localities and Occupations */}
-                    <div className="grid gap-4 border-t border-border/70 pt-4 sm:grid-cols-2">
-                      <div>
-                        <h3 className="text-xs font-semibold text-muted-foreground">
-                          {t.topLocalities}
-                        </h3>
-                        <div className="mt-2 flex flex-wrap gap-1.5">
+                    <div className="grid gap-6 border-t border-[var(--panel-line)] pt-4 sm:grid-cols-2">
+                      <div className="min-w-0">
+                        <h3 className="text-xs font-semibold text-[var(--panel-muted)]">{t.topLocalities}</h3>
+                        <ul className="mt-2 space-y-1.5">
                           {summary.demographics.topLocalities.length === 0 ? (
-                            <span className="text-xs text-muted-foreground">{t.unspecified}</span>
+                            <li className="text-xs text-[var(--panel-muted)]">{t.unspecified}</li>
                           ) : (
                             summary.demographics.topLocalities.map((bucket) => (
-                              <span
-                                key={bucket.key}
-                                className="inline-flex items-center gap-1 rounded-md border border-border bg-surface-subtle px-2 py-1 text-xs text-foreground"
-                              >
-                                <span>{bucket.key}</span>
-                                <strong className="tabular-nums text-primary">{bucket.count}</strong>
-                              </span>
+                              <li key={bucket.key} className="flex items-baseline justify-between gap-2 text-xs">
+                                <span className="truncate text-[var(--panel-ink)]">{bucket.key}</span>
+                                <span className="shrink-0 font-semibold tabular-nums text-[var(--color-sapphire)] dark:text-[#bad7fa]">
+                                  {bucket.count}
+                                </span>
+                              </li>
                             ))
                           )}
-                        </div>
+                        </ul>
                       </div>
 
-                      <div>
-                        <h3 className="text-xs font-semibold text-muted-foreground">
-                          {t.topOccupations}
-                        </h3>
-                        <div className="mt-2 flex flex-wrap gap-1.5">
+                      <div className="min-w-0">
+                        <h3 className="text-xs font-semibold text-[var(--panel-muted)]">{t.topOccupations}</h3>
+                        <ul className="mt-2 space-y-1.5">
                           {summary.demographics.topOccupations.length === 0 ? (
-                            <span className="text-xs text-muted-foreground">{t.unspecified}</span>
+                            <li className="text-xs text-[var(--panel-muted)]">{t.unspecified}</li>
                           ) : (
                             summary.demographics.topOccupations.map((bucket) => (
-                              <span
-                                key={bucket.key}
-                                className="inline-flex items-center gap-1 rounded-md border border-border bg-surface-subtle px-2 py-1 text-xs text-foreground"
-                              >
-                                <span>{bucket.key}</span>
-                                <strong className="tabular-nums text-primary">{bucket.count}</strong>
-                              </span>
+                              <li key={bucket.key} className="flex items-baseline justify-between gap-2 text-xs">
+                                <span className="truncate text-[var(--panel-ink)]">{bucket.key}</span>
+                                <span className="shrink-0 font-semibold tabular-nums text-[var(--color-sapphire)] dark:text-[#bad7fa]">
+                                  {bucket.count}
+                                </span>
+                              </li>
                             ))
                           )}
-                        </div>
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -902,12 +821,14 @@ export function FeedbackDashboard({
               </div>
 
               {/* Filter Toolbar and Responses Table */}
-              <section ref={responsesSectionRef} className="rounded-xl border border-border bg-card">
-                <div className="flex flex-col gap-3 border-b border-border p-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+              <section ref={responsesSectionRef} className="min-w-0 border-t border-[var(--panel-line)] pt-7">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex flex-wrap items-baseline gap-2.5">
-                    <h2 className="text-lg font-semibold text-foreground">{t.responsesHeading}</h2>
+                    <h2 className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">
+                      {t.responsesHeading}
+                    </h2>
                     {isFiltered ? (
-                      <span className="text-xs font-medium tabular-nums text-muted-foreground">
+                      <span className="text-xs font-medium tabular-nums text-[var(--panel-muted)]">
                         {analyticsCopy.filteredCountSummary(displayedItems.length, items.length)}
                       </span>
                     ) : null}
@@ -919,18 +840,19 @@ export function FeedbackDashboard({
                       value={search}
                       onChange={(event) => setSearch(event.target.value)}
                       placeholder={t.searchPlaceholder}
-                      className="min-h-10 w-full rounded-lg border border-border bg-card px-3 text-sm text-foreground outline-none focus-visible:border-ring focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring sm:w-64"
+                      aria-label={t.searchPlaceholder}
+                      className={`${CONTROL_INPUT_CLASS} w-full sm:w-64`}
                     />
                     <select
                       value={langFilter}
                       onChange={(event) => setLangFilter(event.target.value)}
                       aria-label={t.allLanguages}
-                      className="min-h-10 rounded-lg border border-border bg-card px-3 text-sm text-foreground outline-none focus-visible:border-ring focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring"
+                      className={`${CONTROL_INPUT_CLASS} max-w-full whitespace-nowrap`}
                     >
                       <option value="">{t.allLanguages}</option>
                       {SUPPORTED_FILTER_LANGS.map((code) => (
                         <option key={code} value={code}>
-                          {code.toUpperCase()}
+                          {languageLabel(code)}
                         </option>
                       ))}
                     </select>
@@ -938,7 +860,7 @@ export function FeedbackDashboard({
                       value={ageFilter}
                       onChange={(event) => setAgeFilter(event.target.value as FeedbackAgeGroup | "")}
                       aria-label={t.allAgeGroups}
-                      className="min-h-10 rounded-lg border border-border bg-card px-3 text-sm text-foreground outline-none focus-visible:border-ring focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring"
+                      className={`${CONTROL_INPUT_CLASS} max-w-full whitespace-nowrap`}
                     >
                       <option value="">{t.allAgeGroups}</option>
                       {AGE_GROUP_OPTIONS.map((opt) => (
@@ -951,67 +873,64 @@ export function FeedbackDashboard({
                 </div>
 
                 {activeKeyword ? (
-                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-sapphire-border bg-sapphire-soft/75 px-4 py-2.5 sm:px-5 dark:border-sapphire-border/40 dark:bg-sapphire/25">
-                    <div className="inline-flex items-center gap-2 text-xs font-medium text-sapphire dark:text-on-sapphire-muted">
-                      <TagIcon className="h-4 w-4 shrink-0" />
-                      <span className="tabular-nums">
-                        {analyticsCopy.keywordActiveFilter(activeKeyword.term, displayedItems.length)}
-                      </span>
-                    </div>
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-y border-[var(--panel-line)] bg-[var(--panel-selection)] px-3 py-2">
+                    <span className="text-xs font-medium tabular-nums text-[var(--panel-ink)]">
+                      {analyticsCopy.keywordActiveFilter(activeKeyword.term, displayedItems.length)}
+                    </span>
                     <button
                       type="button"
                       onClick={() => setSelectedKeyword(null)}
-                      className="inline-flex min-h-9 items-center gap-1 rounded-lg border border-sapphire-border bg-card px-2.5 text-xs font-medium text-sapphire transition-colors duration-(--dur-fast) hover:bg-sapphire-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring dark:border-sapphire-border/50 dark:bg-sapphire/30 dark:text-on-sapphire-muted dark:hover:bg-sapphire/45"
+                      className={OUTLINE_BUTTON_CLASS}
                     >
-                      <CloseIcon className="h-3.5 w-3.5" />
+                      <CloseIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                       <span>{analyticsCopy.keywordClear}</span>
                     </button>
                   </div>
                 ) : null}
 
                 {displayedItems.length === 0 ? (
-                  <p className="p-6 text-sm text-muted-foreground">{t.emptyState}</p>
+                  <p className="mt-4 text-sm text-[var(--panel-muted)]">{t.emptyState}</p>
                 ) : (
-                  <div className="overflow-x-auto">
-                    <table className="min-w-full text-left text-sm">
-                      <thead className="border-b border-border bg-surface-subtle text-xs font-semibold text-muted-foreground">
+                  <div className="mt-4 min-w-0 w-full overflow-x-auto">
+                    <table className="min-w-[720px] w-full border-collapse text-left text-sm">
+                      <thead className="border-y border-[var(--panel-line)] bg-[var(--panel-subtle)] text-xs font-semibold text-[var(--panel-muted)]">
                         <tr>
-                          <th className="px-4 py-3">{t.tableWhen}</th>
-                          <th className="px-4 py-3">{t.tableScores}</th>
-                          <th className="px-4 py-3">{t.tableOpenAnswer}</th>
-                          <th className="px-4 py-3">{t.tableDemographics}</th>
-                          <th className="px-4 py-3 text-right">{t.tableActions}</th>
+                          <th className="py-2.5 pr-4 pl-2 font-medium">{t.tableWhen}</th>
+                          <th className="py-2.5 pr-4 font-medium">{t.tableScores}</th>
+                          <th className="py-2.5 pr-4 font-medium">{t.tableOpenAnswer}</th>
+                          <th className="py-2.5 pr-4 font-medium">{t.tableDemographics}</th>
+                          <th className="py-2.5 pr-2 text-right font-medium">{t.tableActions}</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="divide-y divide-[var(--panel-line)]">
                         {displayedItems.map((entry) => (
                           <tr
                             key={entry.id}
-                            className={`border-b border-border/70 align-top last:border-b-0 ${
-                              activeKeyword ? "bg-sapphire-soft/20 dark:bg-sapphire/15" : ""
+                            className={`align-top transition-colors duration-(--dur-fast) hover:bg-[var(--panel-subtle)] ${
+                              activeKeyword ? "bg-[var(--panel-selection)]/40" : ""
                             }`}
                           >
-                            <td className="whitespace-nowrap px-4 py-3.5 text-xs text-muted-foreground">
-                              <p className="font-medium text-foreground">
+                            <td className="whitespace-nowrap py-3.5 pr-4 pl-2 text-xs text-[var(--panel-muted)]">
+                              <p className="font-medium tabular-nums text-[var(--panel-ink)]">
                                 {formatPanelDate(entry.created_at, locale, "dateTime")}
                               </p>
-                              <p className="mt-0.5 text-[11px] text-muted-foreground">
-                                {entry.country_code} · {entry.lang.toUpperCase()}
+                              <p className="mt-0.5 text-xs text-[var(--panel-muted)]">
+                                {entry.country_code} · {languageLabel(entry.lang)}
                                 {entry.page_path ? ` · ${entry.page_path}` : ""}
                               </p>
                             </td>
 
-                            <td className="px-4 py-3.5">
-                              <div className="inline-flex items-center gap-1.5 rounded-md bg-primary-soft px-2 py-0.5 text-xs font-bold tabular-nums text-primary dark:bg-primary/20">
-                                <span>{entry.average_rating.toFixed(1)} / 5</span>
-                              </div>
-                              <dl className="mt-2 grid grid-cols-1 gap-0.5 text-xs text-muted-foreground">
+                            <td className="py-3.5 pr-4">
+                              <p className={`text-sm font-bold tabular-nums ${ratingToneClass(entry.average_rating)}`}>
+                                {entry.average_rating.toFixed(1)} / 5
+                              </p>
+                              <dl className="mt-1.5 grid grid-cols-1 gap-0.5 text-xs text-[var(--panel-muted)]">
                                 {RATING_KEYS.map((key) => (
-                                  <div key={key} className="flex items-center justify-between gap-3">
-                                    <dt className="truncate text-muted-foreground">
+                                  <div key={key} className="flex items-baseline justify-between gap-3">
+                                    <dt className="truncate text-[var(--panel-muted)]">
                                       {widgetCopy.questions[key].label}
                                     </dt>
-                                    <dd className="font-semibold tabular-nums text-foreground">
+                                    <dd className="font-semibold tabular-nums text-[var(--panel-ink)]">
                                       {entry[key]}
                                     </dd>
                                   </div>
@@ -1019,48 +938,48 @@ export function FeedbackDashboard({
                               </dl>
                             </td>
 
-                            <td className="max-w-md px-4 py-3.5 text-sm leading-relaxed text-foreground">
+                            <td className="max-w-md py-3.5 pr-4 text-sm leading-relaxed text-[var(--panel-ink)]">
                               {entry.open_feedback ? (
                                 <p className="whitespace-pre-wrap break-words">{entry.open_feedback}</p>
                               ) : (
-                                <p className="text-xs text-muted-foreground">{t.noOpenAnswer}</p>
+                                <p className="text-xs text-[var(--panel-muted)]">{t.noOpenAnswer}</p>
                               )}
                               {entry.anonymized_redactions > 0 ? (
-                                <span className="mt-1.5 inline-block rounded-md border border-border bg-surface-subtle px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+                                <p className="mt-1.5 text-xs tabular-nums text-[var(--panel-muted)]">
                                   {t.redactedTag} ({entry.anonymized_redactions})
-                                </span>
+                                </p>
                               ) : null}
                             </td>
 
-                            <td className="px-4 py-3.5 text-xs leading-relaxed text-foreground">
+                            <td className="py-3.5 pr-4 text-xs leading-relaxed text-[var(--panel-ink)]">
                               <ul className="space-y-0.5">
                                 {entry.gender ? (
                                   <li>
-                                    <span className="text-muted-foreground">{widgetCopy.genderLabel}:</span>{" "}
+                                    <span className="text-[var(--panel-muted)]">{widgetCopy.genderLabel}:</span>{" "}
                                     <span className="font-medium">{formatGender(entry.gender)}</span>
                                   </li>
                                 ) : null}
                                 {entry.age_group ? (
                                   <li>
-                                    <span className="text-muted-foreground">{widgetCopy.ageGroupLabel}:</span>{" "}
+                                    <span className="text-[var(--panel-muted)]">{widgetCopy.ageGroupLabel}:</span>{" "}
                                     <span className="font-medium">{formatAge(entry.age_group)}</span>
                                   </li>
                                 ) : null}
                                 {entry.marital_status ? (
                                   <li>
-                                    <span className="text-muted-foreground">{widgetCopy.maritalStatusLabel}:</span>{" "}
+                                    <span className="text-[var(--panel-muted)]">{widgetCopy.maritalStatusLabel}:</span>{" "}
                                     <span className="font-medium">{formatMarital(entry.marital_status)}</span>
                                   </li>
                                 ) : null}
                                 {entry.locality ? (
                                   <li>
-                                    <span className="text-muted-foreground">{widgetCopy.localityLabel}:</span>{" "}
+                                    <span className="text-[var(--panel-muted)]">{widgetCopy.localityLabel}:</span>{" "}
                                     <span className="font-medium">{entry.locality}</span>
                                   </li>
                                 ) : null}
                                 {entry.occupation ? (
                                   <li>
-                                    <span className="text-muted-foreground">{widgetCopy.occupationLabel}:</span>{" "}
+                                    <span className="text-[var(--panel-muted)]">{widgetCopy.occupationLabel}:</span>{" "}
                                     <span className="font-medium">{entry.occupation}</span>
                                   </li>
                                 ) : null}
@@ -1069,20 +988,20 @@ export function FeedbackDashboard({
                                 !entry.marital_status &&
                                 !entry.locality &&
                                 !entry.occupation ? (
-                                  <li className="text-muted-foreground">{t.unspecified}</li>
+                                  <li className="text-[var(--panel-muted)]">{t.unspecified}</li>
                                 ) : null}
                               </ul>
                             </td>
 
-                            <td className="whitespace-nowrap px-4 py-3.5 text-right">
+                            <td className="whitespace-nowrap py-3.5 pr-2 text-right">
                               <button
                                 type="button"
                                 onClick={() => handleDelete(entry.id)}
                                 disabled={deletingId === entry.id}
                                 aria-label={`${t.deleteEntry} #${entry.id}`}
-                                className="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-border bg-card px-2.5 text-xs font-medium text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-primary-soft hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:opacity-50"
+                                className="inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-[var(--panel-line)] bg-[var(--panel-surface)] px-3 text-xs font-medium text-[var(--panel-muted)] transition-colors duration-(--dur-fast) hover:border-clinical-ruby/50 hover:bg-clinical-ruby-soft hover:text-clinical-ruby focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:hover:border-ruby-300/50 dark:hover:bg-clinical-ruby/20 dark:hover:text-ruby-300 dark:focus-visible:outline-[#bad7fa] disabled:cursor-not-allowed disabled:border-[var(--panel-line)] disabled:bg-[var(--panel-subtle)] disabled:text-[var(--panel-muted)]"
                               >
-                                <TrashIcon className="h-4 w-4" />
+                                <TrashIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                                 <span>{t.deleteEntry}</span>
                               </button>
                             </td>

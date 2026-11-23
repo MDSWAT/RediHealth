@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { AdminShell } from "@/components/panel/AdminShell";
 import { CampaignLinkBuilder } from "@/components/panel/CampaignLinkBuilder";
@@ -54,13 +54,12 @@ export function AnalyticsDashboard({ userEmail, userRole, range, result, savedLi
 
   return (
     <AdminShell userEmail={userEmail} userRole={userRole} isAdmin>
-      <main id="main-content" className="min-h-screen py-8 sm:py-10">
-        <Container>
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
-            <div className="min-w-0">
-              <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{t.title}</h1>
-              <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{t.subtitle}</p>
-            </div>
+      <main id="main-content" className="min-h-dvh min-w-0 bg-[var(--panel-surface)] text-[var(--panel-ink)] py-6 sm:py-8">
+        <Container className="min-w-0">
+          <header className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--panel-line)] pb-5">
+            <h1 className="font-display text-2xl font-bold tracking-[-0.025em] text-[var(--panel-ink)] sm:text-[1.875rem]">
+              {t.title}
+            </h1>
             <nav aria-label={t.period} className="flex flex-wrap gap-2">
               {ANALYTICS_RANGES.map((days) => (
                 <Link
@@ -68,18 +67,20 @@ export function AnalyticsDashboard({ userEmail, userRole, range, result, savedLi
                   href={{ query: { range: days } }}
                   scroll={false}
                   aria-current={days === range ? "page" : undefined}
-                  className={`inline-flex items-center whitespace-nowrap rounded-lg border px-3 py-1.5 text-sm font-semibold ${
-                    days === range ? "border-primary bg-primary text-white" : "border-border bg-card text-foreground hover:bg-muted"
+                  className={`inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg border px-3.5 text-sm font-medium transition-colors duration-(--dur-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa] ${
+                    days === range
+                      ? "border-[var(--color-sapphire)] bg-[var(--color-sapphire)] font-semibold text-white hover:bg-[#28476f]"
+                      : "border-[var(--color-border-control)] bg-[var(--panel-surface)] text-[var(--panel-ink)] hover:bg-[var(--panel-selection)] dark:border-[#62768c]"
                   }`}
                 >
                   {days === 365 ? t.lastYear : t.lastDays.replace("{n}", String(days))}
                 </Link>
               ))}
             </nav>
-          </div>
+          </header>
 
           {message ? (
-            <p className="max-w-2xl rounded-xl border border-border bg-card p-6 text-sm leading-relaxed text-foreground">{message}</p>
+            <p className="mt-6 max-w-2xl text-sm leading-relaxed text-[var(--panel-muted)]">{message}</p>
           ) : result.status === "ok" ? (
             <Summary summary={result.summary} t={t} number={number} locale={locale} />
           ) : null}
@@ -88,7 +89,10 @@ export function AnalyticsDashboard({ userEmail, userRole, range, result, savedLi
           {result.status === "ok" ? (
             <SavedCampaignLinks t={t} locale={locale} links={savedLinks} onDelete={deleteLink} />
           ) : null}
-          <p className="mt-4 max-w-2xl text-xs leading-relaxed text-muted-foreground">{t.privacyNote}</p>
+
+          <p className="mt-10 max-w-3xl border-t border-[var(--panel-line)] pt-5 text-xs leading-relaxed text-[var(--panel-muted)]">
+            {t.privacyNote}
+          </p>
         </Container>
       </main>
     </AdminShell>
@@ -117,77 +121,140 @@ function Summary({ summary, t, number, locale }: SummaryProps) {
   const pagesPerVisitor = totals.visitors > 0 ? (totals.pageviews / totals.visitors).toFixed(1) : "0";
 
   if (totals.visitors === 0 && totals.events === 0) {
-    return <p className="max-w-2xl rounded-xl border border-border bg-card p-6 text-sm leading-relaxed text-foreground">{t.empty}</p>;
+    return <p className="mt-6 max-w-2xl text-sm leading-relaxed text-[var(--panel-muted)]">{t.empty}</p>;
   }
 
+  const primaryMetrics: [string, string][] = [
+    [t.visitors, number.format(totals.visitors)],
+    [t.pageviews, number.format(totals.pageviews)],
+    [t.pagesPerVisitor, pagesPerVisitor],
+    [
+      t.stayRate,
+      totals.visitors > 0
+        ? `${number.format(Math.round((summary.behaviour.engagedVisitors / totals.visitors) * 1000) / 10)}%`
+        : "–",
+    ],
+    [
+      t.bounceRate,
+      totals.visitors > 0 ? `${number.format(Math.round((summary.behaviour.bounces / totals.visitors) * 1000) / 10)}%` : "–",
+    ],
+    [t.avgPageTime, formatDuration(summary.behaviour.avgPageSeconds ?? summary.behaviour.avgSeconds)],
+    [
+      t.avgScrollDepth,
+      summary.behaviour.avgScrollDepth !== null ? `${number.format(summary.behaviour.avgScrollDepth)}%` : "–",
+    ],
+    [t.conversions, number.format(totals.events)],
+  ];
+
+  const funnelMetrics: [string, string][] = [
+    [t.feedbackInitialShown, number.format(summary.feedbackFunnel.initialShown)],
+    [t.feedbackFollowupShown, number.format(summary.feedbackFunnel.followupShown)],
+    [t.feedbackDismissed, number.format(summary.feedbackFunnel.dismissed)],
+    [t.feedbackCompleted, number.format(summary.feedbackFunnel.submitted)],
+  ];
+
   return (
-    <div className="space-y-6">
-      <section aria-label={t.title} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label={t.visitors} value={number.format(totals.visitors)} />
-        <Stat label={t.pageviews} value={number.format(totals.pageviews)} />
-        <Stat label={t.pagesPerVisitor} value={pagesPerVisitor} />
-        <Stat
-          label={t.stayRate}
-          value={
-            totals.visitors > 0
-              ? `${number.format(Math.round((summary.behaviour.engagedVisitors / totals.visitors) * 1000) / 10)}%`
-              : "–"
-          }
-        />
-        <Stat
-          label={t.bounceRate}
-          value={totals.visitors > 0 ? `${number.format(Math.round((summary.behaviour.bounces / totals.visitors) * 1000) / 10)}%` : "–"}
-        />
-        <Stat
-          label={t.avgPageTime}
-          value={formatDuration(summary.behaviour.avgPageSeconds ?? summary.behaviour.avgSeconds)}
-        />
-        <Stat
-          label={t.avgScrollDepth}
-          value={
-            summary.behaviour.avgScrollDepth !== null
-              ? `${number.format(summary.behaviour.avgScrollDepth)}%`
-              : "–"
-          }
-        />
-        <Stat label={t.conversions} value={number.format(totals.events)} />
+    <div className="min-w-0 space-y-8">
+      {/* Editorial KPI ledger */}
+      <section aria-label={t.title} className="min-w-0">
+        <dl className="grid grid-cols-2 gap-px border-b border-[var(--panel-line)] bg-[var(--panel-line)] lg:grid-cols-4">
+          {primaryMetrics.map(([label, value]) => (
+            <div
+              key={label}
+              className="min-w-0 bg-[var(--panel-surface)] px-4 py-3.5 max-lg:odd:pl-0 max-lg:even:pr-0 sm:px-5 sm:py-4 lg:[&:nth-child(4n+1)]:pl-0 lg:[&:nth-child(4n)]:pr-0"
+            >
+              <dt className="text-xs font-medium text-[var(--panel-muted)]">{label}</dt>
+              <dd className="mt-1 font-display text-2xl font-bold tracking-[-0.02em] tabular-nums text-[var(--panel-ink)] sm:text-[1.625rem]">
+                {value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-3 max-w-3xl text-xs leading-relaxed text-[var(--panel-muted)]">{t.visitorsNote}</p>
       </section>
-      <p className="-mt-2 text-xs text-muted-foreground">{t.visitorsNote}</p>
 
       <DailyChart daily={summary.daily} t={t} number={number} locale={locale} />
 
-      <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
-        <div className="mb-4">
-          <h2 className="text-lg font-semibold text-foreground">{t.journeysTitle}</h2>
-          <p className="mt-1 text-sm text-muted-foreground">{t.journeysSubtitle}</p>
-        </div>
-        {summary.journeys.transitions.length === 0 && summary.journeys.paths.length === 0 ? (
-          <p className="text-sm text-muted-foreground">{t.noJourneys}</p>
+      {/* Top pages */}
+      <section className="min-w-0 border-t border-[var(--panel-line)] pt-7">
+        <h2 className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">{t.topPages}</h2>
+        {summary.pages.length === 0 ? (
+          <p className="mt-3 text-sm text-[var(--panel-muted)]">{t.empty}</p>
         ) : (
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div>
-              <div className="flex items-baseline justify-between gap-3">
-                <h3 className="text-sm font-semibold text-foreground">{t.topTransitions}</h3>
-                <span className="text-xs text-muted-foreground">{t.colVisitors}</span>
+          <div className="mt-3 min-w-0 w-full overflow-x-auto">
+            <table className="w-full min-w-[500px] border-collapse text-left text-sm">
+              <thead className="border-b border-[var(--panel-line)] text-xs text-[var(--panel-muted)]">
+                <tr>
+                  <th className="py-2 pr-4 font-medium">{t.topPages}</th>
+                  <th className="w-20 py-2 pr-4 text-right font-medium">{t.colViews}</th>
+                  <th className="w-24 py-2 pr-4 text-right font-medium">{t.colVisitors}</th>
+                  <th className="w-24 py-2 pr-4 text-right font-medium">{t.colAvgTime}</th>
+                  <th className="w-20 py-2 text-right font-medium">{t.colScroll}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[var(--panel-line)]">
+                {summary.pages.map((row) => (
+                  <tr key={row.path} className="hover:bg-[var(--panel-subtle)]">
+                    <td className="max-w-[220px] truncate py-2.5 pr-4 font-mono text-xs text-[var(--panel-ink)] sm:max-w-none" title={row.path}>
+                      {row.path}
+                    </td>
+                    <td className="py-2.5 pr-4 text-right tabular-nums text-[var(--panel-ink)]">{number.format(row.views)}</td>
+                    <td className="py-2.5 pr-4 text-right tabular-nums text-[var(--panel-ink)]">{number.format(row.visitors)}</td>
+                    <td className="py-2.5 pr-4 text-right tabular-nums text-[var(--panel-ink)]">{formatDuration(row.avgSeconds)}</td>
+                    <td className="py-2.5 text-right tabular-nums text-[var(--panel-ink)]">
+                      {row.avgScrollDepth !== null ? `${number.format(row.avgScrollDepth)}%` : "–"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      {/* Ranked breakdowns */}
+      <div className="grid min-w-0 gap-x-10 gap-y-8 border-t border-[var(--panel-line)] pt-7 lg:grid-cols-2">
+        <Breakdown title={t.landingPages} rows={summary.landingPages} label={(path) => path ?? t.unknown} t={t} number={number} mono />
+        <Breakdown title={t.exitPages} rows={summary.journeys.exits} label={(path) => path ?? t.unknown} t={t} number={number} mono />
+        <Breakdown title={t.sources} rows={summary.sources} label={(source) => source ?? t.direct} t={t} number={number} />
+        <Breakdown title={t.countries} rows={summary.countries} label={countryName} t={t} number={number} />
+        <Breakdown title={t.devices} rows={summary.devices} label={deviceName} t={t} number={number} />
+        <Breakdown title={t.languages} rows={summary.languages} label={languageName} t={t} number={number} />
+      </div>
+
+      {/* User journeys */}
+      <section className="min-w-0 border-t border-[var(--panel-line)] pt-7">
+        <h2 className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">{t.journeysTitle}</h2>
+        {summary.journeys.transitions.length === 0 && summary.journeys.paths.length === 0 ? (
+          <p className="mt-3 text-sm text-[var(--panel-muted)]">{t.noJourneys}</p>
+        ) : (
+          <div className="mt-4 grid min-w-0 gap-x-10 gap-y-6 lg:grid-cols-2">
+            <div className="min-w-0">
+              <div className="flex items-baseline justify-between gap-3 border-b border-[var(--panel-line)] pb-2">
+                <h3 className="text-sm font-semibold text-[var(--panel-ink)]">{t.topTransitions}</h3>
+                <span className="text-xs text-[var(--panel-muted)]">{t.colVisitors}</span>
               </div>
               {summary.journeys.transitions.length === 0 ? (
-                <p className="mt-3 text-sm text-muted-foreground">{t.noJourneys}</p>
+                <p className="mt-3 text-sm text-[var(--panel-muted)]">{t.noJourneys}</p>
               ) : (
                 <ul className="mt-3 space-y-2.5">
                   {(() => {
                     const maxTrans = Math.max(1, ...summary.journeys.transitions.map((r) => r.visitors));
                     return summary.journeys.transitions.map((row) => (
-                      <li key={`${row.fromPath}->${row.toPath}`} className="space-y-1">
+                      <li key={`${row.fromPath}->${row.toPath}`} className="min-w-0 space-y-1">
                         <div className="flex items-baseline justify-between gap-3 text-xs">
-                          <span className="min-w-0 truncate font-mono text-foreground" title={`${row.fromPath} → ${row.toPath}`}>
-                            {row.fromPath} <span className="text-muted-foreground">→</span> {row.toPath}
+                          <span className="min-w-0 truncate font-mono text-[var(--panel-ink)]" title={`${row.fromPath} → ${row.toPath}`}>
+                            {row.fromPath} <span className="text-[var(--panel-muted)]">→</span> {row.toPath}
                           </span>
-                          <span className="shrink-0 font-semibold tabular-nums text-foreground">
+                          <span className="shrink-0 font-semibold tabular-nums text-[var(--panel-ink)]">
                             {number.format(row.visitors)}
                           </span>
                         </div>
-                        <div className="h-1.5 w-full overflow-hidden rounded bg-muted" aria-hidden="true">
-                          <div className="h-full rounded bg-primary/70" style={{ width: `${(row.visitors / maxTrans) * 100}%` }} />
+                        <div className="h-1 w-full overflow-hidden rounded-xs bg-[var(--panel-subtle)]" aria-hidden="true">
+                          <div
+                            className="h-full rounded-xs bg-[var(--color-sapphire)]/80 dark:bg-[#bad7fa]/80"
+                            style={{ width: `${(row.visitors / maxTrans) * 100}%` }}
+                          />
                         </div>
                       </li>
                     ));
@@ -196,29 +263,29 @@ function Summary({ summary, t, number, locale }: SummaryProps) {
               )}
             </div>
 
-            <div>
-              <div className="flex items-baseline justify-between gap-3">
-                <h3 className="text-sm font-semibold text-foreground">{t.topPaths}</h3>
-                <span className="text-xs text-muted-foreground">{t.colVisitors}</span>
+            <div className="min-w-0">
+              <div className="flex items-baseline justify-between gap-3 border-b border-[var(--panel-line)] pb-2">
+                <h3 className="text-sm font-semibold text-[var(--panel-ink)]">{t.topPaths}</h3>
+                <span className="text-xs text-[var(--panel-muted)]">{t.colVisitors}</span>
               </div>
               {summary.journeys.paths.length === 0 ? (
-                <p className="mt-3 text-sm text-muted-foreground">{t.noJourneys}</p>
+                <p className="mt-3 text-sm text-[var(--panel-muted)]">{t.noJourneys}</p>
               ) : (
-                <ul className="mt-3 space-y-2.5">
+                <ul className="divide-y divide-[var(--panel-line)]">
                   {summary.journeys.paths.map((row, index) => (
                     <li
                       key={`${row.steps.join("->")}-${index}`}
-                      className="flex items-center justify-between gap-3 rounded-lg border border-border/60 bg-background/50 px-3 py-2"
+                      className="flex items-baseline justify-between gap-4 py-2.5"
                     >
-                      <div className="flex min-w-0 flex-wrap items-center gap-1.5 font-mono text-xs text-foreground">
+                      <span className="min-w-0 break-words font-mono text-xs leading-relaxed text-[var(--panel-ink)]">
                         {row.steps.map((stepPath, stepIdx) => (
-                          <span key={`${stepPath}-${stepIdx}`} className="inline-flex items-center gap-1.5">
-                            {stepIdx > 0 ? <span className="text-muted-foreground">→</span> : null}
-                            <span className="rounded bg-muted px-1.5 py-0.5">{stepPath}</span>
+                          <span key={`${stepPath}-${stepIdx}`}>
+                            {stepIdx > 0 ? <span className="mx-1.5 text-[var(--panel-muted)]">→</span> : null}
+                            {stepPath}
                           </span>
                         ))}
-                      </div>
-                      <span className="shrink-0 text-sm font-semibold tabular-nums text-foreground">
+                      </span>
+                      <span className="shrink-0 text-sm font-semibold tabular-nums text-[var(--panel-ink)]">
                         {number.format(row.visitors)}
                       </span>
                     </li>
@@ -230,34 +297,34 @@ function Summary({ summary, t, number, locale }: SummaryProps) {
         )}
       </section>
 
-      <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
-        <h2 className="text-lg font-semibold text-foreground">{t.clicksTitle}</h2>
-        <p className="mt-1 text-sm text-muted-foreground">{t.clicksSubtitle}</p>
+      {/* Clicks */}
+      <section className="min-w-0 border-t border-[var(--panel-line)] pt-7">
+        <h2 className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">{t.clicksTitle}</h2>
         {summary.clicks.length === 0 ? (
-          <p className="mt-3 text-sm text-muted-foreground">{t.noClicks}</p>
+          <p className="mt-3 text-sm text-[var(--panel-muted)]">{t.noClicks}</p>
         ) : (
-          <div className="mt-3 overflow-x-auto">
-            <table className="w-full min-w-[540px] text-left text-sm">
-              <thead className="text-xs text-muted-foreground">
-                <tr className="border-b border-border">
-                  <th className="py-2 pr-3 font-medium">{t.colElement}</th>
-                  <th className="py-2 pr-3 font-medium">{t.colPage}</th>
-                  <th className="py-2 pr-3 text-right font-medium">{t.colClicks}</th>
-                  <th className="py-2 text-right font-medium">{t.colVisitors}</th>
+          <div className="mt-3 min-w-0 w-full overflow-x-auto">
+            <table className="w-full min-w-[520px] border-collapse text-left text-sm">
+              <thead className="border-b border-[var(--panel-line)] text-xs text-[var(--panel-muted)]">
+                <tr>
+                  <th className="py-2 pr-4 font-medium">{t.colElement}</th>
+                  <th className="py-2 pr-4 font-medium">{t.colPage}</th>
+                  <th className="w-24 py-2 pr-4 text-right font-medium">{t.colClicks}</th>
+                  <th className="w-24 py-2 text-right font-medium">{t.colVisitors}</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-[var(--panel-line)]">
                 {summary.clicks.map((row) => (
-                  <tr key={`${row.targetKey}|${row.path}`} className="border-b border-border/60 last:border-b-0">
-                    <td className="py-2 pr-3 text-foreground">
+                  <tr key={`${row.targetKey}|${row.path}`} className="hover:bg-[var(--panel-subtle)]">
+                    <td className="py-2.5 pr-4 text-[var(--panel-ink)]">
                       <span className="font-medium">{row.targetLabel}</span>
-                      <span className="ml-2 inline-flex rounded bg-muted px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
-                        {row.targetKind}
-                      </span>
+                      {row.targetKind ? (
+                        <span className="ml-2 text-xs text-[var(--panel-muted)]">· {row.targetKind}</span>
+                      ) : null}
                     </td>
-                    <td className="py-2 pr-3 font-mono text-xs text-muted-foreground">{row.path}</td>
-                    <td className="py-2 pr-3 text-right tabular-nums text-foreground">{number.format(row.clicks)}</td>
-                    <td className="py-2 text-right tabular-nums text-foreground">{number.format(row.visitors)}</td>
+                    <td className="py-2.5 pr-4 font-mono text-xs text-[var(--panel-muted)]">{row.path}</td>
+                    <td className="py-2.5 pr-4 text-right tabular-nums text-[var(--panel-ink)]">{number.format(row.clicks)}</td>
+                    <td className="py-2.5 text-right tabular-nums text-[var(--panel-ink)]">{number.format(row.visitors)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -266,42 +333,51 @@ function Summary({ summary, t, number, locale }: SummaryProps) {
         )}
       </section>
 
-      <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
-        <h2 className="text-lg font-semibold text-foreground">{t.feedbackFunnelTitle}</h2>
-        <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <Stat label={t.feedbackInitialShown} value={number.format(summary.feedbackFunnel.initialShown)} />
-          <Stat label={t.feedbackFollowupShown} value={number.format(summary.feedbackFunnel.followupShown)} />
-          <Stat label={t.feedbackDismissed} value={number.format(summary.feedbackFunnel.dismissed)} />
-          <Stat label={t.feedbackCompleted} value={number.format(summary.feedbackFunnel.submitted)} />
-        </div>
+      {/* Feedback prompt funnel */}
+      <section className="min-w-0 border-t border-[var(--panel-line)] pt-7">
+        <h2 className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">{t.feedbackFunnelTitle}</h2>
+        <dl className="mt-4 grid grid-cols-2 gap-px border-y border-[var(--panel-line)] bg-[var(--panel-line)] lg:grid-cols-4">
+          {funnelMetrics.map(([label, value]) => (
+            <div
+              key={label}
+              className="min-w-0 bg-[var(--panel-surface)] px-4 py-3.5 max-lg:odd:pl-0 max-lg:even:pr-0 sm:px-5 sm:py-4 lg:first:pl-0 lg:last:pr-0"
+            >
+              <dt className="text-xs font-medium text-[var(--panel-muted)]">{label}</dt>
+              <dd className="mt-1 font-display text-2xl font-bold tracking-[-0.02em] tabular-nums text-[var(--panel-ink)]">
+                {value}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
-      <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
-        <h2 className="text-lg font-semibold text-foreground">{t.campaigns}</h2>
+      {/* Ad campaigns */}
+      <section className="min-w-0 border-t border-[var(--panel-line)] pt-7">
+        <h2 className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">{t.campaigns}</h2>
         {summary.campaigns.length === 0 ? (
-          <p className="mt-3 text-sm text-muted-foreground">{t.noCampaigns}</p>
+          <p className="mt-3 text-sm text-[var(--panel-muted)]">{t.noCampaigns}</p>
         ) : (
-          <div className="mt-3 overflow-x-auto">
-            <table className="w-full min-w-[620px] text-left text-sm">
-              <thead className="text-xs text-muted-foreground">
-                <tr className="border-b border-border">
-                  <th className="py-2 pr-3 font-medium">{t.campaign}</th>
-                  <th className="py-2 pr-3 font-medium">{t.source}</th>
-                  <th className="py-2 pr-3 font-medium">{t.medium}</th>
-                  <th className="py-2 pr-3 font-medium">{t.variantShort}</th>
-                  <th className="py-2 pr-3 text-right font-medium">{t.colVisitors}</th>
-                  <th className="py-2 text-right font-medium">{t.conversions}</th>
+          <div className="mt-3 min-w-0 w-full overflow-x-auto">
+            <table className="w-full min-w-[580px] border-collapse text-left text-sm">
+              <thead className="border-b border-[var(--panel-line)] text-xs text-[var(--panel-muted)]">
+                <tr>
+                  <th className="py-2 pr-4 font-medium">{t.campaign}</th>
+                  <th className="py-2 pr-4 font-medium">{t.source}</th>
+                  <th className="py-2 pr-4 font-medium">{t.medium}</th>
+                  <th className="py-2 pr-4 font-medium">{t.variantShort}</th>
+                  <th className="w-24 py-2 pr-4 text-right font-medium">{t.colVisitors}</th>
+                  <th className="w-28 py-2 text-right font-medium">{t.conversions}</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-[var(--panel-line)]">
                 {summary.campaigns.map((row, index) => (
-                  <tr key={index} className="border-b border-border/60 last:border-b-0">
-                    <td className="py-2 pr-3 font-medium text-foreground">{row.campaign ?? "–"}</td>
-                    <td className="py-2 pr-3 text-foreground">{row.source ?? "–"}</td>
-                    <td className="py-2 pr-3 text-foreground">{row.medium ?? "–"}</td>
-                    <td className="py-2 pr-3 text-foreground">{row.content ?? "–"}</td>
-                    <td className="py-2 pr-3 text-right tabular-nums text-foreground">{number.format(row.visitors)}</td>
-                    <td className="py-2 text-right tabular-nums text-foreground">{number.format(row.conversions)}</td>
+                  <tr key={index} className="hover:bg-[var(--panel-subtle)]">
+                    <td className="py-2.5 pr-4 font-medium text-[var(--panel-ink)]">{row.campaign ?? "–"}</td>
+                    <td className="py-2.5 pr-4 text-[var(--panel-ink)]">{row.source ?? "–"}</td>
+                    <td className="py-2.5 pr-4 text-[var(--panel-ink)]">{row.medium ?? "–"}</td>
+                    <td className="py-2.5 pr-4 text-[var(--panel-ink)]">{row.content ?? "–"}</td>
+                    <td className="py-2.5 pr-4 text-right tabular-nums text-[var(--panel-ink)]">{number.format(row.visitors)}</td>
+                    <td className="py-2.5 text-right tabular-nums text-[var(--panel-ink)]">{number.format(row.conversions)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -310,82 +386,36 @@ function Summary({ summary, t, number, locale }: SummaryProps) {
         )}
       </section>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <section className="rounded-xl border border-border bg-card p-5 sm:p-6 lg:col-span-2">
-          <h2 className="text-lg font-semibold text-foreground">{t.topPages}</h2>
-          <div className="mt-3 overflow-x-auto">
-            <table className="w-full min-w-[520px] text-left text-sm">
-              <thead className="text-xs text-muted-foreground">
-                <tr className="border-b border-border">
-                  <th className="py-2 pr-3 font-medium">{t.topPages}</th>
-                  <th className="py-2 pr-3 text-right font-medium">{t.colViews}</th>
-                  <th className="py-2 pr-3 text-right font-medium">{t.colVisitors}</th>
-                  <th className="py-2 pr-3 text-right font-medium">{t.colAvgTime}</th>
-                  <th className="py-2 text-right font-medium">{t.colScroll}</th>
+      {/* Conversion events */}
+      <section className="min-w-0 border-t border-[var(--panel-line)] pt-7">
+        <h2 className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">{t.events}</h2>
+        {summary.events.length === 0 ? (
+          <p className="mt-3 text-sm text-[var(--panel-muted)]">{t.empty}</p>
+        ) : (
+          <div className="mt-3 min-w-0 w-full overflow-x-auto">
+            <table className="w-full min-w-[360px] border-collapse text-left text-sm">
+              <thead className="border-b border-[var(--panel-line)] text-xs text-[var(--panel-muted)]">
+                <tr>
+                  <th className="py-2 pr-4 font-medium">{t.events}</th>
+                  <th className="w-24 py-2 pr-4 text-right font-medium">{t.colCount}</th>
+                  <th className="w-24 py-2 text-right font-medium">{t.colVisitors}</th>
                 </tr>
               </thead>
-              <tbody>
-                {summary.pages.map((row) => (
-                  <tr key={row.path} className="border-b border-border/60 last:border-b-0">
-                    <td className="max-w-0 truncate py-2 pr-3 font-mono text-xs text-foreground" title={row.path}>
-                      {row.path}
+              <tbody className="divide-y divide-[var(--panel-line)]">
+                {summary.events.map((row) => (
+                  <tr key={row.name} className="hover:bg-[var(--panel-subtle)]">
+                    <td className="py-2.5 pr-4 text-[var(--panel-ink)]">
+                      {isAnalyticsEvent(row.name) ? t.eventNames[row.name] : row.name}
                     </td>
-                    <td className="py-2 pr-3 text-right tabular-nums text-foreground">{number.format(row.views)}</td>
-                    <td className="py-2 pr-3 text-right tabular-nums text-foreground">{number.format(row.visitors)}</td>
-                    <td className="py-2 pr-3 text-right tabular-nums text-foreground">
-                      {formatDuration(row.avgSeconds)}
-                    </td>
-                    <td className="py-2 text-right tabular-nums text-foreground">
-                      {row.avgScrollDepth !== null ? `${number.format(row.avgScrollDepth)}%` : "–"}
-                    </td>
+                    <td className="py-2.5 pr-4 text-right tabular-nums text-[var(--panel-ink)]">{number.format(row.count)}</td>
+                    <td className="py-2.5 text-right tabular-nums text-[var(--panel-ink)]">{number.format(row.visitors)}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </section>
-        <Breakdown title={t.landingPages} rows={summary.landingPages} label={(path) => path ?? t.unknown} t={t} number={number} mono />
-        <Breakdown title={t.exitPages} rows={summary.journeys.exits} label={(path) => path ?? t.unknown} t={t} number={number} mono />
-        <Breakdown title={t.sources} rows={summary.sources} label={(source) => source ?? t.direct} t={t} number={number} />
-        <Breakdown title={t.countries} rows={summary.countries} label={countryName} t={t} number={number} />
-        <Breakdown title={t.devices} rows={summary.devices} label={deviceName} t={t} number={number} />
-        <Breakdown title={t.languages} rows={summary.languages} label={languageName} t={t} number={number} />
-      </div>
-
-      <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
-        <h2 className="text-lg font-semibold text-foreground">{t.events}</h2>
-        {summary.events.length === 0 ? (
-          <p className="mt-3 text-sm text-muted-foreground">{t.empty}</p>
-        ) : (
-          <table className="mt-3 w-full text-left text-sm">
-            <thead className="text-xs text-muted-foreground">
-              <tr className="border-b border-border">
-                <th className="py-2 pr-3 font-medium">{t.events}</th>
-                <th className="py-2 pr-3 text-right font-medium">{t.colCount}</th>
-                <th className="py-2 text-right font-medium">{t.colVisitors}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {summary.events.map((row) => (
-                <tr key={row.name} className="border-b border-border/60 last:border-b-0">
-                  <td className="py-2 pr-3 text-foreground">{isAnalyticsEvent(row.name) ? t.eventNames[row.name] : row.name}</td>
-                  <td className="py-2 pr-3 text-right tabular-nums text-foreground">{number.format(row.count)}</td>
-                  <td className="py-2 text-right tabular-nums text-foreground">{number.format(row.visitors)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         )}
       </section>
-    </div>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-xl border border-border bg-card p-5">
-      <p className="text-xs font-medium text-muted-foreground">{label}</p>
-      <p className="mt-2 text-3xl font-bold tabular-nums text-foreground">{value}</p>
     </div>
   );
 }
@@ -399,29 +429,32 @@ type BreakdownProps = {
   mono?: boolean;
 };
 
-/** A ranked list with a proportional bar behind each count (one measure, one colour). */
+/** A ranked list with a hairline proportional bar behind each count. */
 function Breakdown({ title, rows, label, t, number, mono }: BreakdownProps) {
   const max = Math.max(1, ...rows.map((row) => row.visitors));
   return (
-    <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
-      <div className="flex items-baseline justify-between gap-3">
-        <h2 className="text-lg font-semibold text-foreground">{title}</h2>
-        <span className="text-xs text-muted-foreground">{t.colVisitors}</span>
+    <section className="min-w-0">
+      <div className="flex items-baseline justify-between gap-3 border-b border-[var(--panel-line)] pb-2">
+        <h2 className="text-sm font-semibold text-[var(--panel-ink)]">{title}</h2>
+        <span className="text-xs text-[var(--panel-muted)]">{t.colVisitors}</span>
       </div>
       {rows.length === 0 ? (
-        <p className="mt-3 text-sm text-muted-foreground">{t.empty}</p>
+        <p className="mt-3 text-sm text-[var(--panel-muted)]">{t.empty}</p>
       ) : (
         <ul className="mt-3 space-y-2.5">
           {rows.map((row) => (
-            <li key={row.label ?? "__none"} className="space-y-1">
+            <li key={row.label ?? "__none"} className="min-w-0 space-y-1">
               <div className="flex items-baseline justify-between gap-3 text-sm">
-                <span className={`min-w-0 truncate text-foreground ${mono ? "font-mono text-xs" : ""}`} title={label(row.label)}>
+                <span className={`min-w-0 truncate text-[var(--panel-ink)] ${mono ? "font-mono text-xs" : ""}`} title={label(row.label)}>
                   {label(row.label)}
                 </span>
-                <span className="shrink-0 font-semibold tabular-nums text-foreground">{number.format(row.visitors)}</span>
+                <span className="shrink-0 font-semibold tabular-nums text-[var(--panel-ink)]">{number.format(row.visitors)}</span>
               </div>
-              <div className="h-1.5 w-full overflow-hidden rounded bg-muted" aria-hidden="true">
-                <div className="h-full rounded bg-primary/70" style={{ width: `${(row.visitors / max) * 100}%` }} />
+              <div className="h-1 w-full overflow-hidden rounded-xs bg-[var(--panel-subtle)]" aria-hidden="true">
+                <div
+                  className="h-full rounded-xs bg-[var(--color-sapphire)]/80 dark:bg-[#bad7fa]/80"
+                  style={{ width: `${(row.visitors / max) * 100}%` }}
+                />
               </div>
             </li>
           ))}
@@ -438,48 +471,87 @@ type DailyChartProps = {
   locale: string;
 };
 
-/** Visitors per day: one series, bars anchored to the baseline, with a hover readout. */
+/** Visitors per day: one series anchored to a hairline baseline, navigable by pointer, touch, and arrow keys. */
 function DailyChart({ daily, t, number, locale }: DailyChartProps) {
   const [active, setActive] = useState<number | null>(null);
+  const barRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const max = Math.max(1, ...daily.map((point) => point.visitors));
   const dateFormat = useMemo(() => new Intl.DateTimeFormat(locale, { day: "numeric", month: "short", timeZone: "UTC" }), [locale]);
   const formatDay = (day: string) => dateFormat.format(new Date(`${day}T00:00:00Z`));
-  // Without hover, the readout shows the most recent day.
-  const shown = daily[active ?? daily.length - 1];
-  const height = 160;
+  const selectedIndex = active ?? (daily.length > 0 ? daily.length - 1 : -1);
+  const shown = selectedIndex >= 0 ? daily[selectedIndex] : undefined;
+  const height = 148;
   const gap = daily.length > 120 ? 0 : 2;
 
+  function moveFocus(nextIndex: number) {
+    if (daily.length === 0) return;
+    const clamped = Math.max(0, Math.min(daily.length - 1, nextIndex));
+    setActive(clamped);
+    barRefs.current[clamped]?.focus();
+  }
+
   return (
-    <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
+    <section className="min-w-0 border-t border-[var(--panel-line)] pt-7">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h2 className="text-lg font-semibold text-foreground">{t.dailyTitle}</h2>
-        <p className="text-sm tabular-nums text-muted-foreground" aria-live="polite">
+        <h2 className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">{t.dailyTitle}</h2>
+        <p className="text-sm tabular-nums text-[var(--panel-muted)]" aria-live="polite">
           {shown
             ? `${formatDay(shown.day)}: ${t.visitors} ${number.format(shown.visitors)} · ${t.colViews} ${number.format(shown.pageviews)}`
             : null}
         </p>
       </div>
       <div
-        className="mt-4 flex items-end border-b border-border"
+        className="mt-4 flex items-end border-b border-[var(--panel-line)]"
         style={{ height, gap }}
-        role="img"
-        aria-label={`${t.dailyTitle}: ${daily.map((point) => `${formatDay(point.day)} ${point.visitors}`).join(", ")}`}
+        role="group"
+        aria-label={t.dailyTitle}
         onMouseLeave={() => setActive(null)}
       >
-        {daily.map((point, index) => (
-          <div
-            key={point.day}
-            className="flex h-full min-w-0 flex-1 cursor-default items-end"
-            onMouseEnter={() => setActive(index)}
-          >
-            <div
-              className={`w-full rounded-t ${active === index ? "bg-primary" : "bg-primary/70"}`}
-              style={{ height: point.visitors > 0 ? `${Math.max(2, (point.visitors / max) * height)}px` : 0 }}
-            />
-          </div>
-        ))}
+        {daily.map((point, index) => {
+          const isSelected = selectedIndex === index;
+          return (
+            <button
+              key={point.day}
+              ref={(node) => {
+                barRefs.current[index] = node;
+              }}
+              type="button"
+              tabIndex={isSelected ? 0 : -1}
+              aria-pressed={active === index}
+              aria-label={`${formatDay(point.day)}: ${t.visitors} ${number.format(point.visitors)}, ${t.colViews} ${number.format(point.pageviews)}`}
+              className="flex h-full min-w-0 flex-1 cursor-pointer items-end whitespace-nowrap border-0 bg-transparent p-0 transition-colors duration-(--dur-fast) hover:bg-[var(--panel-subtle)] focus-visible:bg-[var(--panel-selection)] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--color-sapphire)] dark:focus-visible:outline-[#bad7fa]"
+              onMouseEnter={() => setActive(index)}
+              onFocus={() => setActive(index)}
+              onClick={() => setActive(index)}
+              onKeyDown={(event) => {
+                if (event.key === "ArrowLeft") {
+                  event.preventDefault();
+                  moveFocus(index - 1);
+                } else if (event.key === "ArrowRight") {
+                  event.preventDefault();
+                  moveFocus(index + 1);
+                } else if (event.key === "Home") {
+                  event.preventDefault();
+                  moveFocus(0);
+                } else if (event.key === "End") {
+                  event.preventDefault();
+                  moveFocus(daily.length - 1);
+                }
+              }}
+            >
+              <span
+                className={`block w-full rounded-t-[2px] transition-colors duration-(--dur-fast) ${
+                  isSelected
+                    ? "bg-[var(--color-sapphire)] dark:bg-[#bad7fa]"
+                    : "bg-[var(--color-sapphire)]/65 dark:bg-[#bad7fa]/55"
+                }`}
+                style={{ height: point.visitors > 0 ? `${Math.max(3, (point.visitors / max) * height)}px` : 0 }}
+              />
+            </button>
+          );
+        })}
       </div>
-      <div className="mt-2 flex justify-between text-xs tabular-nums text-muted-foreground">
+      <div className="mt-2 flex justify-between text-xs tabular-nums text-[var(--panel-muted)]">
         <span>{daily[0] ? formatDay(daily[0].day) : ""}</span>
         <span>{daily.at(-1) ? formatDay(daily.at(-1)!.day) : ""}</span>
       </div>
