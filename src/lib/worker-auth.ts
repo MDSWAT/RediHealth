@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { isConfiguredAdminEmail } from "@/lib/admin-auth";
 import { configuredCountries, defaultCountry, getCountryDatabase, type RowDataPacket } from "@/lib/database";
 import { parseCountry, type CountryCode } from "@/lib/countries";
 
@@ -83,17 +84,45 @@ export async function getPanelMemberships(
   return { ...result, memberships: result.memberships.filter(hasPanelRole) };
 }
 
+function configuredAdminMembership(country: CountryCode): WorkerMembership {
+  return {
+    country,
+    workerId: "0",
+    workerName: "Super Admin",
+    role: "Super Admin",
+  };
+}
+
 export async function getWorkerMemberships(
   email: string | null | undefined,
 ): Promise<{ memberships: WorkerMembership[]; lookupFailed: boolean }> {
   if (!email) return { memberships: [], lookupFailed: false };
 
   const normalized = normalizeEmail(email);
-  const results = await Promise.all(configuredCountries().map((country) => lookupWorker(country, normalized)));
+  const countries = configuredCountries();
+  const isEnvAdmin = isConfiguredAdminEmail(normalized);
+  const results = await Promise.all(
+    countries.map(async (country) => ({ country, result: await lookupWorker(country, normalized) })),
+  );
+
+  const memberships: WorkerMembership[] = [];
+  for (const { country, result } of results) {
+    if (result.status === "found") {
+      memberships.push(
+        isEnvAdmin ? { ...result.membership, role: "Super Admin" } : result.membership,
+      );
+    } else if (isEnvAdmin) {
+      memberships.push(configuredAdminMembership(country));
+    }
+  }
+
+  if (isEnvAdmin && memberships.length === 0) {
+    memberships.push(configuredAdminMembership(defaultCountry()));
+  }
 
   return {
-    memberships: results.flatMap((result) => (result.status === "found" ? [result.membership] : [])),
-    lookupFailed: results.some((result) => result.status === "failed"),
+    memberships,
+    lookupFailed: results.some(({ result }) => result.status === "failed"),
   };
 }
 
@@ -106,14 +135,14 @@ async function preferredCountry(): Promise<CountryCode | null> {
   }
 }
 
-function contextFor(membership: WorkerMembership): UserWorkerContext {
+function contextFor(membership: WorkerMembership, lookupFailed = false): UserWorkerContext {
   return {
     country: membership.country,
     workerId: membership.workerId,
     workerName: membership.workerName,
     role: membership.role,
     ...roleFlags(membership.role),
-    lookupFailed: false,
+    lookupFailed,
   };
 }
 
@@ -144,16 +173,22 @@ export async function getUserWorkerContext(
   if (!userEmail) return unauthorizedContext(fallbackCountry, false);
 
   const email = normalizeEmail(userEmail);
+  const isEnvAdmin = isConfiguredAdminEmail(email);
   const preferred = await preferredCountry();
 
   if (preferred && configuredCountries().includes(preferred)) {
     const result = await lookupWorker(preferred, email);
-    if (result.status === "found" && hasPanelRole(result.membership)) return contextFor(result.membership);
+    if (result.status === "found") {
+      const membership = isEnvAdmin ? { ...result.membership, role: "Super Admin" } : result.membership;
+      if (hasPanelRole(membership)) return contextFor(membership);
+    } else if (isEnvAdmin) {
+      return contextFor(configuredAdminMembership(preferred), result.status === "failed");
+    }
   }
 
   const { memberships, lookupFailed } = await getWorkerMemberships(email);
   const panelMembership = memberships.find(hasPanelRole);
-  if (panelMembership) return contextFor(panelMembership);
+  if (panelMembership) return contextFor(panelMembership, isEnvAdmin ? lookupFailed : false);
 
   return unauthorizedContext(preferred ?? fallbackCountry, lookupFailed);
 }

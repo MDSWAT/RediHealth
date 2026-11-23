@@ -5,6 +5,8 @@ export type CaptchaAction =
   | "help_request"
   | "email_code"
   | "verify_code"
+  | "admin_password"
+  | "google_sign_in"
   | "portal_link"
   | "issue_report"
   | "platform_feedback"

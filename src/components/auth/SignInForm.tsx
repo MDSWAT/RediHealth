@@ -15,7 +15,84 @@ import {
   useRecaptcha,
 } from "@/components/security/RecaptchaProvider";
 
-type Stage = "email" | "code";
+type Stage = "email" | "code" | "password";
+
+const PASSWORD_COPY: Record<
+  Lang,
+  {
+    codeTab: string;
+    passwordTab: string;
+    passwordLabel: string;
+    passwordPlaceholder: string;
+    passwordRequired: string;
+    signInLabel: string;
+    invalidCredentials: string;
+  }
+> = {
+  ro: {
+    codeTab: "Cod pe email",
+    passwordTab: "Parolă",
+    passwordLabel: "Parolă",
+    passwordPlaceholder: "Introdu parola",
+    passwordRequired: "Introdu parola.",
+    signInLabel: "Intră în cont",
+    invalidCredentials: "Adresa de email sau parola nu este corectă.",
+  },
+  en: {
+    codeTab: "Email code",
+    passwordTab: "Password",
+    passwordLabel: "Password",
+    passwordPlaceholder: "Enter password",
+    passwordRequired: "Enter your password.",
+    signInLabel: "Sign in",
+    invalidCredentials: "The email address or password is not correct.",
+  },
+  sq: {
+    codeTab: "Kod në email",
+    passwordTab: "Fjalëkalim",
+    passwordLabel: "Fjalëkalimi",
+    passwordPlaceholder: "Shkruaj fjalëkalimin",
+    passwordRequired: "Shkruaj fjalëkalimin.",
+    signInLabel: "Hyr",
+    invalidCredentials: "Adresa e emailit ose fjalëkalimi nuk është i saktë.",
+  },
+  it: {
+    codeTab: "Codice email",
+    passwordTab: "Password",
+    passwordLabel: "Password",
+    passwordPlaceholder: "Inserisci la password",
+    passwordRequired: "Inserisci la password.",
+    signInLabel: "Accedi",
+    invalidCredentials: "L'indirizzo email o la password non sono corretti.",
+  },
+  hr: {
+    codeTab: "Kod e-poštom",
+    passwordTab: "Lozinka",
+    passwordLabel: "Lozinka",
+    passwordPlaceholder: "Unesi lozinku",
+    passwordRequired: "Unesi lozinku.",
+    signInLabel: "Prijavi se",
+    invalidCredentials: "Adresa e-pošte ili lozinka nije točna.",
+  },
+  rom: {
+    codeTab: "Email kodo",
+    passwordTab: "Parola",
+    passwordLabel: "Parola",
+    passwordPlaceholder: "Ramosar parola",
+    passwordRequired: "Ramosar chi parola.",
+    signInLabel: "Khuv andre",
+    invalidCredentials: "O emailo vay i parola naj lachi.",
+  },
+  ru: {
+    codeTab: "Код на почту",
+    passwordTab: "Пароль",
+    passwordLabel: "Пароль",
+    passwordPlaceholder: "Введите пароль",
+    passwordRequired: "Введите пароль.",
+    signInLabel: "Войти",
+    invalidCredentials: "Неверный адрес электронной почты или пароль.",
+  },
+};
 
 // The sign-in APIs answer in English; a rate limit gets its own sentence, anything else the form's own message.
 const TOO_MANY: Record<Lang, string> = {
@@ -100,18 +177,23 @@ const inputClass =
 
 export function SignInForm({
   googleConfigured,
+  passwordConfigured = false,
   initialError = "",
   embedded = false,
 }: {
   googleConfigured: boolean;
+  passwordConfigured?: boolean;
   initialError?: string;
   embedded?: boolean;
 }) {
   const { t, lang } = useLanguage();
   const executeCaptcha = useRecaptcha();
   const form = t.signInPage.form;
+  const passwordCopy = PASSWORD_COPY[lang] ?? PASSWORD_COPY.en;
   const [stage, setStage] = useState<Stage>("email");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [website, setWebsite] = useState("");
   const [portalEmail, setPortalEmail] = useState("");
   const [code, setCode] = useState("");
   const [codeResent, setCodeResent] = useState(false);
@@ -142,7 +224,7 @@ export function SignInForm({
           "Content-Type": "application/json",
           [REQUEST_LANG_HEADER]: lang,
         },
-        body: JSON.stringify({ email: normalizedEmail, captchaToken }),
+        body: JSON.stringify({ email: normalizedEmail, captchaToken, website }),
       });
       if (!response.ok) {
         const failure = (await response.json().catch(() => null)) as { code?: unknown } | null;
@@ -184,7 +266,7 @@ export function SignInForm({
           "Content-Type": "application/json",
           [REQUEST_LANG_HEADER]: lang,
         },
-        body: JSON.stringify({ email: normalizedEmail, captchaToken }),
+        body: JSON.stringify({ email: normalizedEmail, captchaToken, website }),
       });
       if (!response.ok) {
         const failure = (await response.json().catch(() => null)) as { code?: unknown } | null;
@@ -223,17 +305,92 @@ export function SignInForm({
       const res = await signIn("email-code", {
         code: code.trim(),
         captchaToken,
+        website,
         redirect: false,
       });
 
+      if (res?.status === 429 || res?.code === "rate_limited") {
+        setError(TOO_MANY[lang]);
+        return;
+      }
       if (res?.error) {
-        setError(form.genericVerifyError);
+        setError(captchaFailureMessage(lang, res.code) ?? form.genericVerifyError);
         return;
       }
 
       // Hard navigation: the new session cookie must reach the server on the very next request.
       // A client-side push can reuse a cached /panel result (a redirect back to sign-in), which looked like "enter your email again".
       window.location.assign(withLangPrefix("/panel", lang));
+    } catch (error) {
+      setError(captchaErrorMessage(error, form.genericVerifyError));
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function signInWithPassword() {
+    const normalizedEmail = email.trim().toLowerCase();
+    if (!isValidEmail(normalizedEmail)) {
+      setError(form.emailInvalid);
+      return;
+    }
+    if (!password) {
+      setError(passwordCopy.passwordRequired);
+      return;
+    }
+
+    setError("");
+    setIsSubmitting(true);
+    try {
+      const captchaToken = await executeCaptcha("admin_password");
+      const res = await signIn("admin-password", {
+        email: normalizedEmail,
+        password,
+        captchaToken,
+        website,
+        redirect: false,
+      });
+
+      if (res?.status === 429 || res?.code === "rate_limited") {
+        setError(TOO_MANY[lang]);
+        return;
+      }
+      if (res?.error) {
+        setError(captchaFailureMessage(lang, res.code) ?? passwordCopy.invalidCredentials);
+        return;
+      }
+
+      window.location.assign(withLangPrefix("/panel", lang));
+    } catch (error) {
+      setError(captchaErrorMessage(error, passwordCopy.invalidCredentials));
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function signInWithGoogle() {
+    setError("");
+    setIsSubmitting(true);
+    try {
+      const captchaToken = await executeCaptcha("google_sign_in");
+      const res = await signIn("google", {
+        callbackUrl: withLangPrefix("/panel", lang),
+        captchaToken,
+        website,
+        redirect: false,
+      });
+
+      if (res?.status === 429 || res?.code === "rate_limited") {
+        setError(TOO_MANY[lang]);
+        return;
+      }
+      if (res?.error) {
+        setError(captchaFailureMessage(lang, res.code) ?? form.genericVerifyError);
+        return;
+      }
+      if (res?.url) {
+        window.location.assign(res.url);
+      }
     } catch (error) {
       setError(captchaErrorMessage(error, form.genericVerifyError));
     } finally {
@@ -250,8 +407,120 @@ export function SignInForm({
             : "rounded-(--radius-surface) border border-border bg-card p-5 shadow-(--shadow-card-rest) sm:p-8"
         }
       >
+        <input
+          type="text"
+          name="website"
+          value={website}
+          onChange={(event) => setWebsite(event.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="sr-only"
+        />
+        {passwordConfigured ? (
+          <div className="mb-5 flex flex-wrap gap-2" role="group" aria-label={form.emailLabel}>
+            <button
+              type="button"
+              aria-pressed={stage !== "password"}
+              onClick={() => {
+                setError("");
+                setStage("email");
+              }}
+              className={`min-h-11 whitespace-nowrap rounded-lg border px-4 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
+                stage !== "password"
+                  ? "border-sapphire bg-sapphire text-white dark:border-sapphire-border dark:bg-sapphire"
+                  : "border-border-control bg-card text-foreground hover:bg-muted/60"
+              }`}
+            >
+              {passwordCopy.codeTab}
+            </button>
+            <button
+              type="button"
+              aria-pressed={stage === "password"}
+              onClick={() => {
+                setError("");
+                setCode("");
+                setCodeResent(false);
+                setStage("password");
+              }}
+              className={`min-h-11 whitespace-nowrap rounded-lg border px-4 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
+                stage === "password"
+                  ? "border-sapphire bg-sapphire text-white dark:border-sapphire-border dark:bg-sapphire"
+                  : "border-border-control bg-card text-foreground hover:bg-muted/60"
+              }`}
+            >
+              {passwordCopy.passwordTab}
+            </button>
+          </div>
+        ) : null}
         <div key={stage} className="fhs-enter">
-          {stage === "email" ? (
+          {stage === "password" ? (
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                void signInWithPassword();
+              }}
+              noValidate
+            >
+              <label
+                htmlFor="admin-email"
+                className="text-body font-semibold text-foreground"
+              >
+                {form.emailLabel}
+              </label>
+              <input
+                id="admin-email"
+                name="email"
+                type="email"
+                inputMode="email"
+                autoComplete="username"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                aria-invalid={Boolean(error)}
+                aria-describedby={error ? "password-error" : undefined}
+                className={inputClass}
+                placeholder={form.emailPlaceholder}
+              />
+              <label
+                htmlFor="admin-password"
+                className="mt-4 block text-body font-semibold text-foreground"
+              >
+                {passwordCopy.passwordLabel}
+              </label>
+              <input
+                id="admin-password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                aria-invalid={Boolean(error)}
+                aria-describedby={error ? "password-error" : undefined}
+                className={inputClass}
+                placeholder={passwordCopy.passwordPlaceholder}
+              />
+              {error ? (
+                <p
+                  id="password-error"
+                  role="alert"
+                  className="swap-in mt-2 text-body text-amber-care dark:text-amber-care-border"
+                >
+                  {error}
+                </p>
+              ) : null}
+              <div className="mt-6">
+                <Button
+                  type="submit"
+                  variant="action"
+                  size="lg"
+                  fullWidth
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? form.signingIn : passwordCopy.signInLabel}
+                </Button>
+              </div>
+            </form>
+          ) : stage === "email" ? (
             <form
               onSubmit={(event) => {
                 event.preventDefault();
@@ -429,12 +698,9 @@ export function SignInForm({
               type="button"
               variant="outline"
               fullWidth
+              disabled={isSubmitting}
               className="px-3 sm:px-4"
-              onClick={() =>
-                void signIn("google", {
-                  callbackUrl: withLangPrefix("/panel", lang),
-                })
-              }
+              onClick={() => void signInWithGoogle()}
             >
               <GoogleIcon className="h-5 w-5 shrink-0" />
               {form.continueWithGoogle}

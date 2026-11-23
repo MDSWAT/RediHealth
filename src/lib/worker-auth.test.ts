@@ -124,4 +124,23 @@ describe("login access", () => {
     mocks.queries.IT.mockRejectedValue(new Error("down"));
     expect(await checkLoginAccess("someone@example.com")).toEqual({ allowed: false, reason: "database-unavailable" });
   });
+
+  it("authorizes the configured ADMIN_EMAIL as Super Admin even without a worker row", async () => {
+    vi.stubEnv("ADMIN_EMAIL", "admin@example.com");
+    vi.stubEnv("ADMIN_PASSWORD", "SecretPass1!");
+    try {
+      expect(await checkLoginAccess("Admin@Example.com")).toEqual({ allowed: true, reason: "authorized" });
+      const context = await getUserWorkerContext("admin@example.com");
+      expect(context).toMatchObject({
+        country: "RO",
+        workerId: "0",
+        role: "Super Admin",
+        isAdmin: true,
+        isSuperAdmin: true,
+        lookupFailed: false,
+      });
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
 });

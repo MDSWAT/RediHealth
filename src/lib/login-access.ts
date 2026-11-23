@@ -1,3 +1,4 @@
+import { isConfiguredAdminEmail } from "@/lib/admin-auth";
 import { configuredCountries } from "@/lib/database";
 import { getWorkerMemberships, hasPanelRole } from "@/lib/worker-auth";
 
@@ -19,6 +20,10 @@ export async function checkLoginAccess(
   const normalizedEmail = email?.trim().toLowerCase();
   if (!normalizedEmail) {
     return { allowed: false, reason: "invalid-email" };
+  }
+
+  if (isConfiguredAdminEmail(normalizedEmail)) {
+    return { allowed: true, reason: "authorized" };
   }
 
   if (configuredCountries().length === 0) {

@@ -9,14 +9,22 @@ type EmailCodePayload = {
   code: string;
 };
 
-const devFallbackSecret =
-  process.env.NODE_ENV !== "production"
-    ? "redihealth-local-dev-only-auth-secret-32chars"
-    : undefined;
+function resolveAuthSecret(): string | undefined {
+  return (
+    process.env.AUTH_SECRET ||
+    process.env.NEXTAUTH_SECRET ||
+    (process.env.NODE_ENV !== "production"
+      ? "redihealth-local-dev-only-auth-secret-32chars"
+      : undefined)
+  );
+}
+
+export function hasEmailAuthSecret(): boolean {
+  return Boolean(resolveAuthSecret());
+}
 
 function secretKey() {
-  const secret =
-    process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || devFallbackSecret;
+  const secret = resolveAuthSecret();
   if (!secret) {
     throw new Error("AUTH_SECRET is not configured.");
   }

@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: { email?: unknown; captchaToken?: unknown };
+  let body: { email?: unknown; captchaToken?: unknown; website?: unknown };
   try {
     body = await request.json();
   } catch {
@@ -33,6 +33,10 @@ export async function POST(request: Request) {
 
   if (!body || typeof body !== "object" || Array.isArray(body)) {
     return NextResponse.json({ error: "Invalid request payload." }, { status: 400 });
+  }
+  if (typeof body.website === "string" && body.website.trim().length > 0) {
+    console.warn("Patient portal link request rejected: anti-spam honeypot field was populated.");
+    return NextResponse.json({ error: "Invalid request payload.", code: "spam_detected" }, { status: 400 });
   }
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   if (!isValidEmail(email)) {

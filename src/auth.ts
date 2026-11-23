@@ -4,6 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import { errors } from "jose";
 import { cookies } from "next/headers";
 import { decryptEmailCode, emailAuthCookies, isMatchingOneTimeCode } from "@/lib/email-auth";
+import { verifyAdminPasswordCredentials } from "@/lib/admin-auth";
 import { checkLoginAccess, hasLoginAccess } from "@/lib/login-access";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { DEFAULT_LANG, LOCALE_COOKIE, isSupportedLang, withLangPrefix } from "@/lib/i18n/routing";
@@ -124,6 +125,59 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return {
           id: stored.email,
           email: stored.email,
+        };
+      },
+    }),
+    Credentials({
+      id: "admin-password",
+      name: "Admin Password",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+        captchaToken: { label: "Bot verification", type: "text" },
+      },
+      async authorize(credentials, request) {
+        const ipLimit = await checkRateLimit(`admin-password:ip:${getClientIp(request)}`, {
+          limit: 10,
+          windowMs: 15 * 60_000,
+        });
+        if (!ipLimit.allowed) {
+          console.warn("Admin password sign-in rejected: too many attempts from this client.");
+          return null;
+        }
+
+        if (await verifyRecaptcha(credentials?.captchaToken, "admin_password")) {
+          console.warn("Admin password sign-in rejected: bot verification failed.");
+          return null;
+        }
+
+        const email =
+          typeof credentials?.email === "string" ? credentials.email.trim().toLowerCase() : "";
+        const password =
+          typeof credentials?.password === "string" ? credentials.password : "";
+        if (!email || !password) {
+          console.warn("Admin password sign-in rejected: missing credentials.");
+          return null;
+        }
+
+        const accountLimit = await checkRateLimit(`admin-password:email:${email}`, {
+          limit: 6,
+          windowMs: 15 * 60_000,
+        });
+        if (!accountLimit.allowed) {
+          console.warn("Admin password sign-in rejected: too many attempts for this account.");
+          return null;
+        }
+
+        if (!verifyAdminPasswordCredentials(email, password)) {
+          console.warn("Admin password sign-in rejected: invalid credentials.");
+          return null;
+        }
+
+        return {
+          id: email,
+          email,
+          name: "Super Admin",
         };
       },
     }),

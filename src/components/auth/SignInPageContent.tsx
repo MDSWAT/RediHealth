@@ -97,9 +97,11 @@ function termsWithLinks(sentence: string, lang: Lang): ReactNode {
 
 export function SignInPageContent({
   googleConfigured,
+  passwordConfigured = false,
   initialError,
 }: {
   googleConfigured: boolean;
+  passwordConfigured?: boolean;
   initialError?: "unauthorized" | "unavailable";
 }) {
   const { t, lang } = useLanguage();
@@ -126,7 +128,12 @@ export function SignInPageContent({
               </p>
 
               <div className="mt-6">
-                <SignInForm googleConfigured={googleConfigured} initialError={initialErrorMessage} embedded />
+                <SignInForm
+                  googleConfigured={googleConfigured}
+                  passwordConfigured={passwordConfigured}
+                  initialError={initialErrorMessage}
+                  embedded
+                />
               </div>
 
               <p className="mt-6 px-2 text-sm leading-relaxed text-muted-foreground text-pretty">

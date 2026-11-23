@@ -225,3 +225,61 @@ describe("OAuth verification and session lifetime", () => {
     expect(mocks.checkAccess).toHaveBeenCalledWith("doctor@example.com");
   });
 });
+
+describe("admin-password credentials", () => {
+  const adminProvider = config.providers.find(
+    (item) => typeof item !== "function" && item.type === "credentials" && item.id === "admin-password",
+  ) as CredentialsConfig;
+
+  function authorizeAdmin(email: string, password: string) {
+    return adminProvider.authorize(
+      { email, password },
+      new Request("http://localhost/api/auth/callback/admin-password"),
+    );
+  }
+
+  beforeEach(() => {
+    vi.stubEnv("ADMIN_EMAIL", "admin@example.com");
+    vi.stubEnv("ADMIN_PASSWORD", "SecretPass1!");
+    mocks.rateLimit.mockReset().mockResolvedValue({ allowed: true, retryAfterSeconds: 0 });
+    mocks.captcha.mockReset().mockResolvedValue(null);
+    vi.spyOn(console, "warn").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.restoreAllMocks();
+  });
+
+  it("accepts matching admin email (case-insensitive) and exact password", async () => {
+    expect(await authorizeAdmin("  ADMIN@Example.com ", "SecretPass1!")).toEqual({
+      id: "admin@example.com",
+      email: "admin@example.com",
+      name: "Super Admin",
+    });
+    expect(console.warn).not.toHaveBeenCalled();
+  });
+
+  it("rejects wrong passwords or unknown emails without logging secrets", async () => {
+    expect(await authorizeAdmin("admin@example.com", "wrong")).toBeNull();
+    expect(await authorizeAdmin("other@example.com", "SecretPass1!")).toBeNull();
+    for (const call of vi.mocked(console.warn).mock.calls) {
+      expect(JSON.stringify(call)).not.toContain("SecretPass1!");
+      expect(JSON.stringify(call)).not.toContain("wrong");
+    }
+  });
+
+  it("rejects when ADMIN_EMAIL or ADMIN_PASSWORD is not configured", async () => {
+    vi.stubEnv("ADMIN_PASSWORD", "");
+    expect(await authorizeAdmin("admin@example.com", "SecretPass1!")).toBeNull();
+  });
+
+  it("enforces bot verification and rate limits before checking credentials", async () => {
+    mocks.captcha.mockResolvedValue(new Response(null, { status: 400 }));
+    expect(await authorizeAdmin("admin@example.com", "SecretPass1!")).toBeNull();
+
+    mocks.captcha.mockResolvedValue(null);
+    mocks.rateLimit.mockResolvedValueOnce({ allowed: false, retryAfterSeconds: 60 });
+    expect(await authorizeAdmin("admin@example.com", "SecretPass1!")).toBeNull();
+  });
+});

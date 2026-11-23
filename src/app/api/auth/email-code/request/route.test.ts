@@ -155,4 +155,30 @@ describe("email code request route", () => {
     response = await POST(request("{", "198.51.100.40"));
     expect(response.status).toBe(429);
   });
+
+  it("uses the dev fallback secret in non-production when AUTH_SECRET is unset, but fails closed in production", async () => {
+    vi.stubEnv("AUTH_SECRET", "");
+    vi.stubEnv("NEXTAUTH_SECRET", "");
+    vi.stubEnv("NODE_ENV", "development");
+    const devResponse = await POST(request(JSON.stringify({ email: "dev-fallback@example.com" }), "198.51.100.70"));
+    expect(devResponse.status).toBe(200);
+
+    vi.stubEnv("NODE_ENV", "production");
+    const prodMissing = await POST(request(JSON.stringify({ email: "prod-missing@example.com" }), "198.51.100.71"));
+    expect(prodMissing.status).toBe(503);
+
+    vi.stubEnv("NEXTAUTH_SECRET", "prod-nextauth-secret");
+    const prodNextAuth = await POST(request(JSON.stringify({ email: "prod-nextauth@example.com" }), "198.51.100.72"));
+    expect(prodNextAuth.status).toBe(200);
+  });
+
+  it("rejects requests when the anti-spam honeypot field is populated", async () => {
+    const response = await POST(
+      request(JSON.stringify({ email: "staff@example.com", website: "https://spam.example" }), "198.51.100.75"),
+    );
+    expect(response.status).toBe(400);
+    expect(await response.json()).toMatchObject({ code: "spam_detected" });
+    expect(mocks.sendEmail).not.toHaveBeenCalled();
+    expect(mocks.access).not.toHaveBeenCalled();
+  });
 });

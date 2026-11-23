@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SignInPageContent } from "@/components/auth/SignInPageContent";
+import { isAdminPasswordConfigured } from "@/lib/admin-auth";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -31,6 +32,7 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
   const googleConfigured = Boolean(
     process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET,
   );
+  const passwordConfigured = isAdminPasswordConfigured();
   const { error } = await searchParams;
   const errorCode = Array.isArray(error) ? error[0] : error;
 
@@ -44,6 +46,7 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
   return (
     <SignInPageContent
       googleConfigured={googleConfigured}
+      passwordConfigured={passwordConfigured}
       initialError={initialError}
     />
   );
