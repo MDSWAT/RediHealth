@@ -382,6 +382,7 @@ describe("proxy locale redirection and Vary headers", () => {
 
 describe("GET /api/geo-locale", () => {
   afterEach(() => {
+    vi.unstubAllEnvs();
     vi.unstubAllGlobals();
     vi.restoreAllMocks();
   });
@@ -416,6 +417,7 @@ describe("GET /api/geo-locale", () => {
   });
 
   it("skips external lookup for loopback and private IPs", async () => {
+    vi.stubEnv("REDIHEALTH_TRUST_PROXY_HEADERS", "true");
     const fetchSpy = vi.fn();
     vi.stubGlobal("fetch", fetchSpy);
 
@@ -432,6 +434,7 @@ describe("GET /api/geo-locale", () => {
   });
 
   it("queries Geo-IP for public routable IPs and fails open on network errors", async () => {
+    vi.stubEnv("REDIHEALTH_TRUST_PROXY_HEADERS", "true");
     const fetchSpy = vi.fn().mockResolvedValue(
       new Response(JSON.stringify({ country: "RO" }), {
         status: 200,
