@@ -240,7 +240,7 @@ export function WorkersFilterBar({
             >
               <span>{item.label}</span>
               {typeof item.count === "number" ? (
-                <span className="text-xs font-normal tabular-nums text-[var(--panel-muted)]">
+                <span className="font-display text-xs font-medium tabular-nums text-[var(--panel-muted)]">
                   {item.count.toLocaleString(locale)}
                 </span>
               ) : null}

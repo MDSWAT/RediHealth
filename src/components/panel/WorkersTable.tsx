@@ -623,7 +623,7 @@ export function WorkersTable({
                       <button
                         type="button"
                         onClick={() => setAssigningWorker(worker)}
-                        className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-3.5 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)]"
+                        className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] px-3 text-sm font-medium text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)] sm:px-3.5"
                       >
                         {t.assignPatients}
                       </button>
@@ -633,30 +633,32 @@ export function WorkersTable({
                         disabled={isToggling}
                         onClick={() => handleToggleStatus(worker)}
                         title={t.statusToggle}
-                        className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-3 text-sm font-medium text-[var(--panel-muted)] transition-colors hover:bg-[var(--panel-selection)] hover:text-[var(--panel-ink)] disabled:cursor-default disabled:opacity-60"
+                        className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-2.5 text-sm font-medium text-[var(--panel-muted)] transition-colors hover:bg-[var(--panel-selection)] hover:text-[var(--panel-ink)] disabled:cursor-default disabled:opacity-60 sm:px-3"
                       >
                         {worker.status === "active" ? t.deactivate : t.activate}
                       </button>
 
-                      <button
-                        type="button"
-                        onClick={() => setEditingWorker(worker)}
-                        aria-label={`${t.editWorker}: ${worker.full_name}`}
-                        title={t.editWorker}
-                        className="inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)]"
-                      >
-                        <EditIcon className="h-4 w-4" aria-hidden="true" />
-                      </button>
+                      <span className="inline-flex shrink-0 items-center gap-1.5 sm:gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setEditingWorker(worker)}
+                          aria-label={`${t.editWorker}: ${worker.full_name}`}
+                          title={t.editWorker}
+                          className="inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border-control)] dark:border-[var(--panel-line)] bg-[var(--panel-surface)] text-[var(--panel-ink)] transition-colors hover:bg-[var(--panel-selection)]"
+                        >
+                          <EditIcon className="h-4 w-4" aria-hidden="true" />
+                        </button>
 
-                      <button
-                        type="button"
-                        onClick={() => setConfirmingDeleteId(worker.id)}
-                        aria-label={`${t.deleteWorker}: ${worker.full_name}`}
-                        title={t.deleteWorker}
-                        className="inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg text-[#b91c1c] transition-colors hover:bg-[#fef2f2] dark:text-[#ffb4b4] dark:hover:bg-[#3f1d24]"
-                      >
-                        <TrashIcon className="h-4 w-4" aria-hidden="true" />
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() => setConfirmingDeleteId(worker.id)}
+                          aria-label={`${t.deleteWorker}: ${worker.full_name}`}
+                          title={t.deleteWorker}
+                          className="inline-flex h-11 w-11 min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg text-[#b91c1c] transition-colors hover:bg-[#fef2f2] dark:text-[#ffb4b4] dark:hover:bg-[#3f1d24]"
+                        >
+                          <TrashIcon className="h-4 w-4" aria-hidden="true" />
+                        </button>
+                      </span>
                     </>
                   )}
                 </div>
