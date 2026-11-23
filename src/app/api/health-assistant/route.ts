@@ -9,6 +9,7 @@ import {
   buildVisionSystemInstruction,
   buildVisionUserText,
   detectOffTopicRequest,
+  isPromptInjectionAttempt,
   parseAssistantReply,
 } from "@/lib/health-assistant";
 import { detectEmergencyText } from "@/lib/emergency-detection";
@@ -18,9 +19,10 @@ import { notifyOperationalIssue } from "@/lib/operational-alerts";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import {
   getAiAccessStatus,
+  reconcileAiTokenUsage,
   recordAiAbuseEvent,
-  recordAiTokenUsage,
   recordOffTopicStrike,
+  reserveAiTokenBudget,
 } from "@/lib/security/ai-assistant-guard";
 import { evaluateAiMessageSafety } from "@/lib/security/ai-content-safety";
 import { attachAiDeviceCookie, resolveAiDeviceIdentity } from "@/lib/security/device-id";
@@ -43,16 +45,50 @@ const MAX_HISTORY_ITEM_LENGTH = 1_000;
 // Base64 safely under Anthropic's 5 MB image cap and Vercel's 4.5 MB request body limit.
 const MAX_IMAGE_DATA_LENGTH = 5_000_000;
 
-function parseHistory(value: unknown): string[] {
+type ParsedHistoryEntry = {
+  role: "user" | "assistant";
+  content: string;
+  formatted: string;
+};
+
+function parseHistory(value: unknown): ParsedHistoryEntry[] {
   if (!Array.isArray(value)) return [];
 
   return value.slice(-MAX_HISTORY_ITEMS).flatMap((item) => {
     if (!item || typeof item !== "object") return [];
     const { role, content } = item as { role?: unknown; content?: unknown };
-    return (role === "assistant" || role === "user") && typeof content === "string"
-      ? [`${role}: ${content.slice(0, MAX_HISTORY_ITEM_LENGTH)}`]
-      : [];
+    if ((role !== "assistant" && role !== "user") || typeof content !== "string") {
+      return [];
+    }
+    const cleaned = content
+      .replace(/<\/?untrusted_conversation_history>/gi, "")
+      .replace(/[\r\n]+/g, " ")
+      .trim()
+      .slice(0, MAX_HISTORY_ITEM_LENGTH);
+    if (!cleaned) return [];
+    const label = role === "assistant" ? "prior_assistant_turn" : "prior_user_turn";
+    return [{ role, content: cleaned, formatted: `[${label}]: ${cleaned}` }];
   });
+}
+
+function evaluateCombinedSafety(parts: string[]): ReturnType<typeof evaluateAiMessageSafety> {
+  const nonEmpty = parts.map((p) => p.trim()).filter(Boolean);
+  if (nonEmpty.length === 0) return { action: "allow" };
+
+  let strictest: ReturnType<typeof evaluateAiMessageSafety> = { action: "allow" };
+  const candidates = [...nonEmpty, nonEmpty.join("\n")];
+  for (const text of candidates) {
+    const decision = evaluateAiMessageSafety(text);
+    if (decision.action === "block_immediately") {
+      return decision;
+    }
+    if (decision.action === "warn") {
+      strictest = decision;
+    } else if (strictest.action === "allow" && isPromptInjectionAttempt(text)) {
+      strictest = { action: "warn", category: "prompt_injection" };
+    }
+  }
+  return strictest;
 }
 
 function alertProviderFailure(error: LlmError) {
@@ -199,8 +235,11 @@ export async function POST(request: Request) {
     );
   }
 
-  const combinedText = [symptoms, medicineName, prescriptionContext].filter(Boolean).join("\n");
-  const safety = evaluateAiMessageSafety(combinedText);
+  const parsedHistoryEntries = parseHistory(body.history);
+  const parsedHistory = parsedHistoryEntries.map((entry) => entry.formatted);
+  const historyContents = parsedHistoryEntries.map((entry) => entry.content);
+
+  const safety = evaluateCombinedSafety([symptoms, medicineName, prescriptionContext, ...historyContents]);
   if (safety.action === "block_immediately") {
     const abuseResult = await recordAiAbuseEvent({
       deviceKeys: deviceIdentity.deviceKeys,
@@ -274,8 +313,10 @@ export async function POST(request: Request) {
 
   const hasImage = !isMedicineLookup && Boolean(imageData);
 
-  // Deterministically block prompt injections and clearly off-topic chat requests before calling the LLM.
-  if (!isMedicineLookup && !hasImage && detectOffTopicRequest(symptoms)) {
+  // Deterministically block prompt injections and clearly off-topic chat requests before calling the LLM,
+  // including when an image is attached (for any non-empty text/history) and across all history turns.
+  const offTopicInputs = [symptoms, prescriptionContext, ...historyContents].filter(Boolean);
+  if (!isMedicineLookup && offTopicInputs.some((part) => detectOffTopicRequest(part))) {
     const offTopicOutcome = await recordOffTopicStrike({ deviceKeys: deviceIdentity.deviceKeys, ip });
     if (offTopicOutcome.outcome === "blocked") {
       return respondWithCookie(
@@ -308,7 +349,6 @@ export async function POST(request: Request) {
     return respondWithCookie(NextResponse.json(buildOutOfScopeResponse(lang)));
   }
 
-  const parsedHistory = parseHistory(body.history);
   const system = isMedicineLookup
     ? buildMedicineLookupSystemInstruction(lang)
     : hasImage
@@ -320,15 +360,45 @@ export async function POST(request: Request) {
       ? buildVisionUserText({ symptoms, history: parsedHistory, prescriptionContext })
       : buildUserText({ symptoms, history: parsedHistory, prescriptionContext });
 
+  const maxTokens = hasImage || isMedicineLookup ? 2048 : 900;
+  const estimatedTokens = Math.min(
+    2_500,
+    Math.max(300, estimateTokenCount(`${system}\n${userText}`, hasImage)),
+  );
+  const reservation = await reserveAiTokenBudget({
+    deviceKeys: deviceIdentity.deviceKeys,
+    ip,
+    estimatedTokens,
+  });
+  if (!reservation.allowed) {
+    return respondWithCookie(
+      NextResponse.json(
+        {
+          error: "Daily AI assistant usage limit reached on this device.",
+          code: "daily_token_limit",
+          quota: reservation.quota,
+          retryAfterSeconds: reservation.retryAfterSeconds,
+        },
+        { status: 429, headers: { "Retry-After": String(reservation.retryAfterSeconds) } },
+      ),
+    );
+  }
+
   let generated: { text: string; model: string; usage?: { inputTokens: number; outputTokens: number; totalTokens: number } };
   try {
     generated = await generateText({
       system,
       text: userText,
       image: hasImage ? { mimeType: imageMimeType, data: imageData } : undefined,
-      maxTokens: hasImage || isMedicineLookup ? 2048 : 900,
+      maxTokens,
     });
   } catch (error) {
+    await reconcileAiTokenUsage({
+      deviceKeys: deviceIdentity.deviceKeys,
+      ip,
+      reservedTokens: reservation.reservedTokens,
+      actualTokens: 0,
+    });
     if (!(error instanceof LlmError)) throw error;
     console.error("AI assistant request failed", error.kind, error.status ?? "", error.providerCode ?? "");
     alertProviderFailure(error);
@@ -338,10 +408,11 @@ export async function POST(request: Request) {
   const tokensUsed =
     generated.usage?.totalTokens ??
     estimateTokenCount(`${system}\n${userText}\n${generated.text}`, hasImage);
-  const updatedQuota = await recordAiTokenUsage({
+  const updatedQuota = await reconcileAiTokenUsage({
     deviceKeys: deviceIdentity.deviceKeys,
     ip,
-    tokens: tokensUsed,
+    reservedTokens: reservation.reservedTokens,
+    actualTokens: tokensUsed,
   });
 
   try {

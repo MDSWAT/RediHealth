@@ -7,6 +7,7 @@ import {
 } from "@/lib/i18n/locale-detection";
 import type { Lang } from "@/lib/i18n/translations";
 import { countryFromHeaders } from "@/lib/medical-institutes";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
@@ -139,11 +140,8 @@ function isPrivateOrReservedIpv6(ip: string): boolean {
   return false;
 }
 
-function extractPublicClientIp(headers: Pick<Headers, "get">): string | null {
-  const forwarded = headers.get("x-forwarded-for");
-  const rawCandidate = forwarded
-    ? forwarded.split(",")[0] ?? ""
-    : headers.get("x-real-ip") ?? "";
+function extractPublicIpFromValue(rawCandidate: string): string | null {
+  if (!rawCandidate || rawCandidate === "unknown") return null;
 
   const normalized = normalizeIpCandidate(rawCandidate);
   if (!normalized) return null;
@@ -159,6 +157,21 @@ function extractPublicClientIp(headers: Pick<Headers, "get">): string | null {
 }
 
 export async function GET(request: Request) {
+  const clientIp = getClientIp(request);
+  const rateLimit = await checkRateLimit(`geo-locale:${clientIp}`, {
+    limit: 30,
+    windowMs: 60_000,
+  });
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Wait a moment and try again." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(Math.max(1, rateLimit.retryAfterSeconds)) },
+      },
+    );
+  }
+
   const acceptLanguage = request.headers.get("accept-language");
   const headerCountry = countryFromHeaders(request.headers);
 
@@ -178,7 +191,7 @@ export async function GET(request: Request) {
     return jsonGeoResponse(headerCountry, null, "header");
   }
 
-  const publicIp = extractPublicClientIp(request.headers);
+  const publicIp = extractPublicIpFromValue(clientIp);
   if (!publicIp) {
     return jsonGeoResponse(null, null, "none");
   }

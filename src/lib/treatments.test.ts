@@ -9,7 +9,7 @@ import type { TreatmentEntry } from "@/lib/types/patient";
 const first: TreatmentEntry = {
   id: "first", title: "First course", start_date: "2026-10-01", end_date: "2026-10-07",
   diagnosis: "First diagnosis", medications: "First therapy",
-  photos: [{ id: "photo-1", name: "Prescription", date: "2026-10-01", data_url: "data:image/png;base64,AAAA" }],
+  photos: [{ id: "photo-1", name: "Prescription", date: "2026-10-01", data_url: "data:image/png;base64,iVBORw0KGgo=" }],
 };
 const second: TreatmentEntry = {
   id: "second", title: "Second course", start_date: "2026-10-05", end_date: "2026-10-12",

@@ -31,6 +31,67 @@ const FOLLOWUP_STATUSES: readonly FollowupItem["status"][] = [
 // upload cannot exhaust the row/packet limits (~5 MB of original image data).
 const MAX_PHOTO_DATA_URL_LENGTH = 7_000_000;
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const RASTER_IMAGE_DATA_URL_PATTERN = /^data:image\/(jpeg|png|webp|gif);base64,([A-Za-z0-9+/]+={0,2})$/;
+
+export type RasterImageSubtype = "jpeg" | "png" | "webp" | "gif";
+
+const EXTENSION_BY_RASTER_SUBTYPE: Record<RasterImageSubtype, string> = {
+  jpeg: ".jpg",
+  png: ".png",
+  webp: ".webp",
+  gif: ".gif",
+};
+
+/**
+ * Validates that a data URL is a strict base64-encoded raster image (JPEG, PNG, WebP, or GIF)
+ * whose decoded magic bytes match the declared MIME type (rejecting SVG, HTML, XML, and spoofed headers).
+ */
+export function parseRasterImageDataUrl(dataUrl: string): { subtype: RasterImageSubtype } | null {
+  if (typeof dataUrl !== "string" || dataUrl.length === 0 || dataUrl.length > MAX_PHOTO_DATA_URL_LENGTH) {
+    return null;
+  }
+  const match = RASTER_IMAGE_DATA_URL_PATTERN.exec(dataUrl);
+  if (!match) return null;
+  const subtype = match[1] as RasterImageSubtype;
+  const base64 = match[2];
+  if (base64.length === 0 || base64.length % 4 !== 0) return null;
+
+  let header: string;
+  try {
+    header = atob(base64.slice(0, 24));
+  } catch {
+    return null;
+  }
+
+  const matchesMagic =
+    subtype === "jpeg"
+      ? header.startsWith("\xff\xd8\xff")
+      : subtype === "png"
+        ? header.startsWith("\x89PNG\r\n\x1a\n")
+        : subtype === "webp"
+          ? header.startsWith("RIFF") && header.slice(8, 12) === "WEBP"
+          : header.startsWith("GIF87a") || header.startsWith("GIF89a");
+
+  return matchesMagic ? { subtype } : null;
+}
+
+export function isValidRasterImageDataUrl(dataUrl: string): boolean {
+  return parseRasterImageDataUrl(dataUrl) !== null;
+}
+
+/** Forces a safe filename with a raster extension matching the verified image MIME type. */
+export function sanitizeRasterDownloadFilename(rawName: string, dataUrl: string): string {
+  const parsed = parseRasterImageDataUrl(dataUrl);
+  const ext = parsed ? EXTENSION_BY_RASTER_SUBTYPE[parsed.subtype] : ".png";
+  const cleaned = rawName
+    .replace(/[/\\:*?"<>|\x00-\x1f]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const withoutTrailingDots = cleaned.replace(/\.+$/, "");
+  const withoutExt = withoutTrailingDots.replace(/\.[a-zA-Z0-9]{1,10}$/, "").trim();
+  const base = (withoutExt || "patient-photo").slice(0, 120);
+  return `${base}${ext}`;
+}
 
 export type ValidationResult<T> =
   | { ok: true; value: T }
@@ -192,11 +253,11 @@ export function validatePhotoInput(
   }
 
   const dataUrl = typeof value.data_url === "string" ? value.data_url : "";
-  if (!dataUrl.startsWith("data:image/")) {
-    return { ok: false, error: "Photo must be an image data URL." };
-  }
   if (dataUrl.length > MAX_PHOTO_DATA_URL_LENGTH) {
     return { ok: false, error: "Photo exceeds the maximum allowed size." };
+  }
+  if (!isValidRasterImageDataUrl(dataUrl)) {
+    return { ok: false, error: "Photo must be a valid JPEG, PNG, WebP or GIF image." };
   }
 
   const name =

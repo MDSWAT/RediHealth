@@ -1,4 +1,4 @@
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import {
   isAzureTtsConfigured,
   synthesizeAzureMp3,
@@ -12,11 +12,22 @@ import {
   TTS_OUTPUT_FORMAT,
 } from "@/lib/audio/tts-voices";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { attachAiDeviceCookie, resolveAiDeviceIdentity } from "@/lib/security/device-id";
 
 export const runtime = "nodejs";
 
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
 const MAX_TTS_TEXT_LENGTH = 5000;
+const DAILY_WINDOW_MS = 24 * 60 * 60 * 1_000;
+const DEFAULT_DAILY_CHAR_LIMIT_IP = 50_000;
+const DEFAULT_DAILY_CHAR_LIMIT_DEVICE = 30_000;
+
+function readPositiveIntEnv(name: string, fallback: number): number {
+  const raw = process.env[name]?.trim();
+  if (!raw) return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
 
 export async function GET(request: NextRequest | Request) {
   const searchParams =
@@ -60,7 +71,8 @@ export async function GET(request: NextRequest | Request) {
 }
 
 export async function POST(request: NextRequest | Request) {
-  const rl = await checkRateLimit(`tts-synthesize:${getClientIp(request)}`, {
+  const ip = getClientIp(request);
+  const rl = await checkRateLimit(`tts-synthesize:${ip}`, {
     limit: 30,
     windowMs: 60_000,
   });
@@ -106,6 +118,52 @@ export async function POST(request: NextRequest | Request) {
     return Response.json({ error: "Unsupported or invalid TTS language." }, { status: 400 });
   }
 
+  const deviceIdentity = resolveAiDeviceIdentity(request);
+  const respondWithCookie = (response: NextResponse) => attachAiDeviceCookie(response, deviceIdentity);
+
+  const dailyIpCharLimit = readPositiveIntEnv("TTS_DAILY_CHAR_LIMIT_IP", DEFAULT_DAILY_CHAR_LIMIT_IP);
+  const dailyDeviceCharLimit = readPositiveIntEnv("TTS_DAILY_CHAR_LIMIT_DEVICE", DEFAULT_DAILY_CHAR_LIMIT_DEVICE);
+
+  const ipCharBudget = await checkRateLimit(`tts-daily-chars:ip:${ip}`, {
+    limit: dailyIpCharLimit,
+    windowMs: DAILY_WINDOW_MS,
+    cost: trimmedLength,
+  });
+  if (!ipCharBudget.allowed) {
+    return respondWithCookie(
+      NextResponse.json(
+        { error: "Daily speech synthesis character limit reached. Please try again tomorrow.", code: "tts_daily_limit" },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(Math.max(1, ipCharBudget.retryAfterSeconds)),
+          },
+        },
+      ),
+    );
+  }
+
+  for (const deviceKey of deviceIdentity.deviceKeys) {
+    const deviceCharBudget = await checkRateLimit(`tts-daily-chars:device:${deviceKey}`, {
+      limit: dailyDeviceCharLimit,
+      windowMs: DAILY_WINDOW_MS,
+      cost: trimmedLength,
+    });
+    if (!deviceCharBudget.allowed) {
+      return respondWithCookie(
+        NextResponse.json(
+          { error: "Daily speech synthesis character limit reached on this device. Please try again tomorrow.", code: "tts_daily_limit" },
+          {
+            status: 429,
+            headers: {
+              "Retry-After": String(Math.max(1, deviceCharBudget.retryAfterSeconds)),
+            },
+          },
+        ),
+      );
+    }
+  }
+
   try {
     const { audio, hash, voice, cached } = await synthesizeAzureMp3({
       lang: resolvedLang,
@@ -113,32 +171,36 @@ export async function POST(request: NextRequest | Request) {
     });
     const accept = request.headers.get("accept")?.toLowerCase() ?? "";
     if (accept.includes("audio/mpeg")) {
-      return new Response(new Uint8Array(audio), {
-        status: 200,
-        headers: {
-          "Content-Type": "audio/mpeg",
-          "Content-Length": String(audio.byteLength),
-          "Cache-Control": "private, max-age=86400",
-          "X-TTS-Hash": hash,
-          "X-TTS-Voice": voice,
-          "X-TTS-Cached": cached ? "1" : "0",
-        },
-      });
+      return respondWithCookie(
+        new NextResponse(new Uint8Array(audio), {
+          status: 200,
+          headers: {
+            "Content-Type": "audio/mpeg",
+            "Content-Length": String(audio.byteLength),
+            "Cache-Control": "private, max-age=86400",
+            "X-TTS-Hash": hash,
+            "X-TTS-Voice": voice,
+            "X-TTS-Cached": cached ? "1" : "0",
+          },
+        }),
+      );
     }
-    return Response.json({
-      hash,
-      url: getPublicTtsUrl(hash),
-      cached,
-      voice,
-    });
+    return respondWithCookie(
+      NextResponse.json({
+        hash,
+        url: getPublicTtsUrl(hash),
+        cached,
+        voice,
+      }),
+    );
   } catch (error) {
     if (error instanceof TtsUnconfiguredError) {
-      return Response.json({ error: error.message }, { status: 503 });
+      return respondWithCookie(NextResponse.json({ error: error.message }, { status: 503 }));
     }
     if (error instanceof TtsQuotaExceededError) {
-      return Response.json({ error: error.message }, { status: 429 });
+      return respondWithCookie(NextResponse.json({ error: error.message }, { status: 429 }));
     }
     console.warn("TTS synthesis failed:", error);
-    return Response.json({ error: "Speech synthesis failed." }, { status: 502 });
+    return respondWithCookie(NextResponse.json({ error: "Speech synthesis failed." }, { status: 502 }));
   }
 }

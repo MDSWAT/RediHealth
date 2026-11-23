@@ -9,7 +9,7 @@ import type { CountryCode } from "@/lib/countries";
  */
 
 const PREFIX = "enc:v1:";
-let warnedMissingKey = false;
+const warnedMissingKeyCountries = new Set<CountryCode>();
 
 function keyFor(country: CountryCode): Buffer | null {
   const raw = process.env[`DATA_ENCRYPTION_KEY_${country}`]?.trim();
@@ -30,16 +30,29 @@ export function isEncrypted(value: unknown): value is string {
   return typeof value === "string" && value.startsWith(PREFIX);
 }
 
-/** Encrypts a value for storage. Without a key for the country the value is stored as is. */
+/**
+ * Encrypts a value for storage.
+ * Throws when REQUIRE_FIELD_ENCRYPTION=true and the country's key is missing;
+ * otherwise logs a structured error once per country in production and falls back to plaintext.
+ */
 export function encryptField(country: CountryCode, value: string | null | undefined): string | null {
   if (value === null || value === undefined || value === "") return null;
   if (isEncrypted(value)) return value;
 
   const key = keyFor(country);
   if (!key) {
-    if (process.env.NODE_ENV === "production" && !warnedMissingKey) {
-      warnedMissingKey = true;
-      console.warn(`DATA_ENCRYPTION_KEY_${country} is not set: sensitive patient fields are stored unencrypted.`);
+    if (process.env.REQUIRE_FIELD_ENCRYPTION === "true") {
+      throw new Error(
+        `DATA_ENCRYPTION_KEY_${country} is required when REQUIRE_FIELD_ENCRYPTION is enabled.`,
+      );
+    }
+    if (process.env.NODE_ENV === "production" && !warnedMissingKeyCountries.has(country)) {
+      warnedMissingKeyCountries.add(country);
+      console.error("[security] field_encryption_missing_key", {
+        country,
+        envVar: `DATA_ENCRYPTION_KEY_${country}`,
+        fallback: "plaintext",
+      });
     }
     return value;
   }
@@ -69,4 +82,8 @@ export function decryptField(country: CountryCode, value: unknown): string | nul
   const decipher = createDecipheriv("aes-256-gcm", key, Buffer.from(iv, "base64url"));
   decipher.setAuthTag(Buffer.from(tag, "base64url"));
   return Buffer.concat([decipher.update(Buffer.from(encrypted, "base64url")), decipher.final()]).toString("utf8");
+}
+
+export function _resetFieldEncryptionWarningsForTest(): void {
+  warnedMissingKeyCountries.clear();
 }

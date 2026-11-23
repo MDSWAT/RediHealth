@@ -9,12 +9,23 @@ import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
 import { formatPanelDate } from "@/lib/panel-dates";
 import type { PatientPhoto } from "@/lib/types/patient";
+import { isValidRasterImageDataUrl, sanitizeRasterDownloadFilename } from "@/lib/validation";
 import "./patient-media.css";
+
+function isSafeMediaSource(src: string): boolean {
+  const trimmed = src.trim();
+  if (!trimmed) return false;
+  if (/^data:/i.test(trimmed)) {
+    return isValidRasterImageDataUrl(trimmed);
+  }
+  return trimmed.startsWith("/") || /^https?:\/\//i.test(trimmed);
+}
 
 function MediaImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
   const { lang } = useLanguage();
   const [failedSource, setFailedSource] = useState<string | null>(null);
-  return failedSource === src ? <span className="patient-media-unavailable" role="img" aria-label={alt}><ImageIcon className="h-6 w-6" aria-hidden="true" /><span>{patientDesignTranslations[lang].unavailable}</span></span>
+  const unsafe = !isSafeMediaSource(src);
+  return unsafe || failedSource === src ? <span className="patient-media-unavailable" role="img" aria-label={alt}><ImageIcon className="h-6 w-6" aria-hidden="true" /><span>{patientDesignTranslations[lang].unavailable}</span></span>
     : <img src={src} alt={alt} className={className} loading="lazy" onError={() => setFailedSource(src)} />;
 }
 
@@ -51,6 +62,8 @@ export function PatientImageViewer({ images, index, onClose }: { images: Patient
     stage.current?.scrollTo(0, 0);
   }
   if (!image) return null;
+  const safeDownloadUrl = isValidRasterImageDataUrl(image.data_url) ? image.data_url : null;
+  const safeDownloadName = safeDownloadUrl ? sanitizeRasterDownloadFilename(image.name, safeDownloadUrl) : "";
   return <dialog ref={dialog} className="patient-image-viewer" aria-labelledby={titleId} onCancel={(event) => { event.preventDefault(); onClose(); }} onKeyDown={(event) => {
     if ((event.target as HTMLElement).matches("input, textarea, select")) return;
     if (images.length > 1 && ["ArrowLeft", "ArrowRight"].includes(event.key)) { event.preventDefault(); move(event.key === "ArrowLeft" ? -1 : 1); }
@@ -58,7 +71,7 @@ export function PatientImageViewer({ images, index, onClose }: { images: Patient
     <header className="patient-viewer-header"><div className="min-w-0"><h2 id={titleId}>{image.name}</h2><p aria-live="polite">{Math.min(current + 1, images.length)} / {images.length}</p></div><button type="button" className="patient-media-button" onClick={onClose} aria-label={t.close} autoFocus><CloseIcon className="h-5 w-5" aria-hidden="true" /></button></header>
     <div ref={stage} className={`patient-viewer-stage${zoomed ? " is-zoomed" : ""}`}><MediaImage key={image.id} src={image.data_url} alt={image.name} /></div>
     <footer className="patient-viewer-footer">
-      <div className="patient-viewer-controls">{images.length > 1 && <><button type="button" className="patient-media-button" onClick={() => move(-1)} aria-label={t.previous}><ChevronLeftIcon className="h-5 w-5" aria-hidden="true" /></button><button type="button" className="patient-media-button" onClick={() => move(1)} aria-label={t.next}><ChevronRightIcon className="h-5 w-5" aria-hidden="true" /></button></>}<button type="button" className="patient-media-button" aria-pressed={zoomed} onClick={() => { setZoomed(!zoomed); stage.current?.scrollTo(0, 0); }}>{zoomed ? t.fit : t.zoom}</button><a className="patient-media-button" href={image.data_url} download={image.name}><DownloadIcon className="h-4 w-4" aria-hidden="true" /><span>{t.download}</span></a></div>
+      <div className="patient-viewer-controls">{images.length > 1 && <><button type="button" className="patient-media-button" onClick={() => move(-1)} aria-label={t.previous}><ChevronLeftIcon className="h-5 w-5" aria-hidden="true" /></button><button type="button" className="patient-media-button" onClick={() => move(1)} aria-label={t.next}><ChevronRightIcon className="h-5 w-5" aria-hidden="true" /></button></>}<button type="button" className="patient-media-button" aria-pressed={zoomed} onClick={() => { setZoomed(!zoomed); stage.current?.scrollTo(0, 0); }}>{zoomed ? t.fit : t.zoom}</button>{safeDownloadUrl && <a className="patient-media-button" href={safeDownloadUrl} download={safeDownloadName}><DownloadIcon className="h-4 w-4" aria-hidden="true" /><span>{t.download}</span></a>}</div>
       {image.notes && <p className="patient-viewer-note">{image.notes}</p>}
     </footer>
   </dialog>;

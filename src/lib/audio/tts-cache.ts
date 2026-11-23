@@ -7,6 +7,18 @@ import { TTS_OUTPUT_FORMAT } from "@/lib/audio/tts-voices";
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
 const LOCAL_CACHE_DIR = path.join(os.tmpdir(), "redihealth-tts-cache");
 const R2_TIMEOUT_MS = 8_000;
+const DEFAULT_MAX_LOCAL_CACHE_FILES = 200;
+const DEFAULT_MAX_LOCAL_CACHE_BYTES = 50 * 1024 * 1024;
+const STALE_TMP_AGE_MS = 10 * 60_000;
+
+function readLocalCacheLimits(): { maxFiles: number; maxBytes: number } {
+  const rawFiles = Number.parseInt(process.env.TTS_LOCAL_CACHE_MAX_FILES ?? "", 10);
+  const rawBytes = Number.parseInt(process.env.TTS_LOCAL_CACHE_MAX_BYTES ?? "", 10);
+  return {
+    maxFiles: Number.isFinite(rawFiles) && rawFiles > 0 ? rawFiles : DEFAULT_MAX_LOCAL_CACHE_FILES,
+    maxBytes: Number.isFinite(rawBytes) && rawBytes > 0 ? rawBytes : DEFAULT_MAX_LOCAL_CACHE_BYTES,
+  };
+}
 
 interface R2Config {
   accountId: string;
@@ -116,6 +128,61 @@ function buildR2SignedRequest(params: {
   return { url, headers: requestHeaders };
 }
 
+/** Enforces bounded file count and total size on LOCAL_CACHE_DIR using LRU (oldest mtime) eviction. */
+export async function evictLocalTtsCache(overrides?: { maxFiles?: number; maxBytes?: number }): Promise<number> {
+  const defaults = readLocalCacheLimits();
+  const maxFiles = overrides?.maxFiles ?? defaults.maxFiles;
+  const maxBytes = overrides?.maxBytes ?? defaults.maxBytes;
+
+  let entries: string[];
+  try {
+    entries = await fs.readdir(LOCAL_CACHE_DIR);
+  } catch {
+    return 0;
+  }
+
+  const now = Date.now();
+  const mp3Files: { filePath: string; size: number; mtimeMs: number }[] = [];
+  let totalBytes = 0;
+
+  for (const name of entries) {
+    const filePath = path.join(LOCAL_CACHE_DIR, name);
+    try {
+      const stat = await fs.stat(filePath);
+      if (!stat.isFile()) continue;
+      if (name.endsWith(".tmp")) {
+        if (now - stat.mtimeMs > STALE_TMP_AGE_MS) {
+          await fs.rm(filePath, { force: true }).catch(() => undefined);
+        }
+        continue;
+      }
+      if (!name.endsWith(".mp3")) continue;
+      mp3Files.push({ filePath, size: stat.size, mtimeMs: stat.mtimeMs });
+      totalBytes += stat.size;
+    } catch {
+      // Ignore files removed concurrently.
+    }
+  }
+
+  if (mp3Files.length <= maxFiles && totalBytes <= maxBytes) {
+    return 0;
+  }
+
+  // Evict least-recently-used (oldest mtime) files first until within both limits.
+  mp3Files.sort((a, b) => a.mtimeMs - b.mtimeMs);
+  let evicted = 0;
+  let remainingCount = mp3Files.length;
+  for (const file of mp3Files) {
+    if (remainingCount <= maxFiles && totalBytes <= maxBytes) break;
+    await fs.rm(file.filePath, { force: true }).catch(() => undefined);
+    remainingCount -= 1;
+    totalBytes = Math.max(0, totalBytes - file.size);
+    evicted += 1;
+  }
+
+  return evicted;
+}
+
 async function writeLocalCache(hash: string, audio: Buffer): Promise<void> {
   try {
     await fs.mkdir(LOCAL_CACHE_DIR, { recursive: true });
@@ -123,6 +190,7 @@ async function writeLocalCache(hash: string, audio: Buffer): Promise<void> {
     const tmpPath = path.join(LOCAL_CACHE_DIR, tmpName);
     await fs.writeFile(tmpPath, audio);
     await fs.rename(tmpPath, localCachePath(hash));
+    await evictLocalTtsCache();
   } catch (error) {
     console.warn("Local TTS cache write failed:", error);
   }
@@ -146,8 +214,11 @@ export async function getCachedTtsAudio(hash: string): Promise<Buffer | null> {
   }
 
   try {
-    const localAudio = await fs.readFile(localCachePath(hash));
+    const filePath = localCachePath(hash);
+    const localAudio = await fs.readFile(filePath);
     if (localAudio.byteLength > 0) {
+      const now = new Date();
+      void fs.utimes(filePath, now, now).catch(() => undefined);
       return localAudio;
     }
   } catch (error) {

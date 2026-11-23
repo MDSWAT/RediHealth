@@ -48,7 +48,7 @@ export async function PUT(request: Request) {
   } catch (error) {
     console.error("Failed to save alert email setting", error);
     return NextResponse.json(
-      { error: "Could not save the setting. Ensure migration 009 is applied." },
+      { error: "Could not save the setting." },
       { status: 503 },
     );
   }

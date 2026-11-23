@@ -21,11 +21,27 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  let rawBody: unknown;
   try {
-    const body = (await request.json()) as { county?: string };
-    const { county } = body;
+    rawBody = await request.json();
+  } catch {
+    return NextResponse.json(
+      { error: "Invalid request body." },
+      { status: 400 }
+    );
+  }
 
-    if (!county || !isRomanianCounty(county)) {
+  if (!rawBody || typeof rawBody !== "object" || Array.isArray(rawBody)) {
+    return NextResponse.json(
+      { error: "Invalid request body." },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const { county } = rawBody as { county?: unknown };
+
+    if (typeof county !== "string" || !county || !isRomanianCounty(county)) {
       return NextResponse.json(
         { error: "Choose a county." },
         { status: 400 }
@@ -40,6 +56,7 @@ export async function POST(request: NextRequest) {
     response.cookies.set(USER_COUNTY_COOKIE, county, {
       path: "/",
       sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
       maxAge: 60 * 60 * 24 * 365,
     });
 

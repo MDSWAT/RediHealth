@@ -13,9 +13,17 @@ function sourcePosition(value: unknown): number | undefined {
 
 /** Receives errors from visitors' browsers (see lib/client-error-report.ts) and forwards them to the alert addresses. */
 export async function POST(request: Request) {
-  // Reports come from the site's own pages only.
+  // Reports must come from the site's own pages: require a valid same-origin Origin or Sec-Fetch-Site: same-origin.
+  const requestOrigin = new URL(request.url).origin;
   const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin) {
+  const fetchSite = request.headers.get("sec-fetch-site");
+  if (origin && origin !== requestOrigin) {
+    return NextResponse.json({ error: "Invalid origin." }, { status: 403 });
+  }
+  if (fetchSite && fetchSite !== "same-origin") {
+    return NextResponse.json({ error: "Invalid origin." }, { status: 403 });
+  }
+  if (!origin && fetchSite !== "same-origin") {
     return NextResponse.json({ error: "Invalid origin." }, { status: 403 });
   }
 

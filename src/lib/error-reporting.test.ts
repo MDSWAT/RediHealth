@@ -82,9 +82,23 @@ describe("critical browser alerts", () => {
     expect(notifyOperationalIssue).not.toHaveBeenCalled();
   });
 
-  it("emails a browser render crash as critical", async () => {
+  it("emails a browser render crash as critical under an isolated client-errors hourly cap", async () => {
     const { reportError } = await import("./error-reporting");
     expect(await reportError({ source: "browser", message: "TypeError: Cannot read properties of undefined", details: { kind: "render" } })).toBe(true);
-    expect(notifyOperationalIssue).toHaveBeenCalledWith(expect.objectContaining({ severity: "critical" }));
+    expect(notifyOperationalIssue).toHaveBeenCalledWith(
+      expect.objectContaining({
+        severity: "critical",
+        hourlyCap: expect.objectContaining({ key: "client-errors" }),
+      }),
+    );
+
+    notifyOperationalIssue.mockClear();
+    expect(await reportError({ source: "server", message: "Database connection failed" })).toBe(true);
+    expect(notifyOperationalIssue).toHaveBeenCalledWith(
+      expect.objectContaining({
+        severity: "critical",
+        hourlyCap: expect.objectContaining({ key: "errors" }),
+      }),
+    );
   });
 });

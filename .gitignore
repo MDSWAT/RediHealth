@@ -61,3 +61,7 @@ test-results/
 
 # Local source/review cache for health article authoring (never served)
 .health-content-cache/
+
+# Source archives
+*.tgz
+*.tar.gz

@@ -23,6 +23,7 @@ export type ErrorReport = {
 
 const SAME_ERROR_COOLDOWN_MS = 15 * 60_000;
 const MAX_ERROR_EMAILS_PER_HOUR = 40;
+const MAX_CLIENT_ERROR_EMAILS_PER_HOUR = 20;
 const MAX_TRACKED_ERRORS = 500;
 
 /** Node writes runtime warnings through console.error, even though they are not failures. */
@@ -117,7 +118,10 @@ export async function reportError(report: ErrorReport): Promise<boolean> {
           stack: report.stack ? redactErrorText(report.stack).slice(0, 3000) : undefined,
         },
         cooldownMs: SAME_ERROR_COOLDOWN_MS,
-        hourlyCap: { key: "errors", limit: MAX_ERROR_EMAILS_PER_HOUR },
+        hourlyCap:
+          report.source === "browser"
+            ? { key: "client-errors", limit: MAX_CLIENT_ERROR_EMAILS_PER_HOUR }
+            : { key: "errors", limit: MAX_ERROR_EMAILS_PER_HOUR },
       });
     } catch {
       // Reporting must never break the request that hit the error.

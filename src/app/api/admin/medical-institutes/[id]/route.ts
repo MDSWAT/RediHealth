@@ -25,15 +25,17 @@ export async function PATCH(
   if (!id) return NextResponse.json({ error: "Invalid id." }, { status: 400 });
 
   const body = (await request.json().catch(() => null)) as Record<string, unknown> | null;
-  if (!body) return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
-
-  // Super admins only manage the directory of the country they are working in.
-  const current = await getInstituteForAdmin(id);
-  if (!current || current.country_code !== access.worker.country) {
-    return NextResponse.json({ error: "Not found." }, { status: 404 });
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
   try {
+    // Super admins only manage the directory of the country they are working in.
+    const current = await getInstituteForAdmin(id);
+    if (!current || current.country_code !== access.worker.country) {
+      return NextResponse.json({ error: "Not found." }, { status: 404 });
+    }
+
     let institute;
     let action: string;
 

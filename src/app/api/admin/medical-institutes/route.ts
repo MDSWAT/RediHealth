@@ -30,7 +30,7 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error("Failed to list medical institutes", error);
     return NextResponse.json(
-      { error: "Could not load medical institutes. Ensure migration 007 is applied." },
+      { error: "Could not load medical institutes." },
       { status: 503 },
     );
   }

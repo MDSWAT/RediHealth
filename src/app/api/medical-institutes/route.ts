@@ -7,6 +7,7 @@ import {
   isSupportedCountry,
   type CountryCode,
 } from "@/lib/medical-institutes";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 function parseCoordinate(value: string | null, max: number) {
   if (value == null || value.trim() === "") return null;
@@ -21,6 +22,17 @@ function parseCoordinate(value: string | null, max: number) {
  * - neither: country detected from CDN headers, falling back to Romania.
  */
 export async function GET(request: Request) {
+  const rateLimit = await checkRateLimit(`medical-institutes:${getClientIp(request)}`, {
+    limit: 60,
+    windowMs: 60_000,
+  });
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Wait a moment and try again." },
+      { status: 429, headers: { "Retry-After": String(Math.max(1, rateLimit.retryAfterSeconds)) } },
+    );
+  }
+
   if (!hasControlDatabase()) {
     return NextResponse.json({ error: "Directory unavailable." }, { status: 503 });
   }
@@ -70,7 +82,7 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error("Failed to load medical institutes", error);
     return NextResponse.json(
-      { error: "Could not load medical institutes. Ensure migration 007 is applied." },
+      { error: "Could not load medical institutes." },
       { status: 503 },
     );
   }

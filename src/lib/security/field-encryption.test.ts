@@ -1,6 +1,12 @@
 import { randomBytes } from "crypto";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { decryptField, encryptField, isEncrypted, isEncryptionConfigured } from "@/lib/security/field-encryption";
+import {
+  _resetFieldEncryptionWarningsForTest,
+  decryptField,
+  encryptField,
+  isEncrypted,
+  isEncryptionConfigured,
+} from "@/lib/security/field-encryption";
 
 const keyRo = randomBytes(32).toString("base64");
 const keyIt = randomBytes(32).toString("base64");
@@ -14,6 +20,8 @@ describe("field encryption", () => {
 
   afterEach(() => {
     vi.unstubAllEnvs();
+    vi.restoreAllMocks();
+    _resetFieldEncryptionWarningsForTest();
   });
 
   it("round-trips text and photos without leaving plaintext in the stored value", () => {
@@ -60,5 +68,26 @@ describe("field encryption", () => {
   it("rejects keys of the wrong size", () => {
     vi.stubEnv("DATA_ENCRYPTION_KEY_MD", "c2hvcnQ=");
     expect(() => encryptField("MD", "x")).toThrow(/32 bytes/);
+  });
+
+  it("fails closed when REQUIRE_FIELD_ENCRYPTION=true and a country's key is missing", () => {
+    vi.stubEnv("REQUIRE_FIELD_ENCRYPTION", "true");
+    expect(() => encryptField("AL", "sensitive-phi")).toThrow(/REQUIRE_FIELD_ENCRYPTION/);
+    // Countries with a configured key continue to encrypt normally.
+    expect(isEncrypted(encryptField("RO", "sensitive-phi"))).toBe(true);
+  });
+
+  it("emits a structured console.error warning once per country in production when key is missing", () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("REQUIRE_FIELD_ENCRYPTION", "");
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => undefined);
+
+    expect(encryptField("AL", "hello")).toBe("hello");
+    expect(encryptField("AL", "hello again")).toBe("hello again");
+    expect(errorSpy).toHaveBeenCalledTimes(1);
+    expect(errorSpy).toHaveBeenCalledWith(
+      "[security] field_encryption_missing_key",
+      expect.objectContaining({ country: "AL", envVar: "DATA_ENCRYPTION_KEY_AL", fallback: "plaintext" }),
+    );
   });
 });

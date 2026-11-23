@@ -6,10 +6,14 @@ vi.mock("@/lib/data/medical-institutes", () => ({
   findCountryInstitutes: directory.country,
   findNearbyInstitutes: directory.nearby,
 }));
+import { _resetRateLimitMemoryForTest } from "@/lib/rate-limit";
 import { GET } from "./route";
 
 describe("national healthcare directory", () => {
-  beforeEach(() => { vi.clearAllMocks(); });
+  beforeEach(() => {
+    vi.clearAllMocks();
+    _resetRateLimitMemoryForTest();
+  });
   it("browses Moldova by page without restricting results to the capital", async () => {
     directory.country.mockResolvedValue({ institutes: [{ id: "501", country_code: "MD" }], hasMore: true });
     const response = await GET(new Request("http://localhost/api/medical-institutes?country=MD&page=1&category=clinic&q=Balti"));
@@ -30,5 +34,21 @@ describe("national healthcare directory", () => {
       expect((await GET(new Request(`http://localhost/api/medical-institutes?country=MD&page=${page}`))).status).toBe(400);
     }
     expect(directory.country).not.toHaveBeenCalled();
+  });
+  it("omits internal migration hints on database failure and enforces IP rate limits", async () => {
+    vi.spyOn(console, "error").mockImplementation(() => undefined);
+    directory.country.mockRejectedValueOnce(new Error("DB error"));
+    const errorRes = await GET(new Request("http://localhost/api/medical-institutes?country=RO"));
+    expect(errorRes.status).toBe(503);
+    const errorBody = (await errorRes.json()) as { error: string };
+    expect(errorBody.error).not.toMatch(/migration/i);
+
+    directory.country.mockResolvedValue({ institutes: [], hasMore: false });
+    for (let i = 0; i < 59; i += 1) {
+      expect((await GET(new Request("http://localhost/api/medical-institutes?country=RO"))).status).toBe(200);
+    }
+    const limited = await GET(new Request("http://localhost/api/medical-institutes?country=RO"));
+    expect(limited.status).toBe(429);
+    expect(limited.headers.get("retry-after")).toBeTruthy();
   });
 });

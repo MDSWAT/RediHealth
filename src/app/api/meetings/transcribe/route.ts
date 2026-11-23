@@ -9,6 +9,54 @@ type TranscriptionResponse = {
 };
 
 const TRANSCRIPTION_TIMEOUT_MS = 120_000;
+const DEFAULT_RELAY_BASE_URL = "https://api.llmsrelay.com";
+
+const ALLOWED_AUDIO_MIME_TO_FILENAME: Record<string, string> = {
+  "audio/webm": "recording.webm",
+  "video/webm": "recording.webm",
+  "audio/ogg": "recording.ogg",
+  "application/ogg": "recording.ogg",
+  "audio/mpeg": "recording.mp3",
+  "audio/mp3": "recording.mp3",
+  "audio/mp4": "recording.m4a",
+  "audio/m4a": "recording.m4a",
+  "audio/x-m4a": "recording.m4a",
+  "audio/wav": "recording.wav",
+  "audio/wave": "recording.wav",
+  "audio/x-wav": "recording.wav",
+  "audio/flac": "recording.flac",
+  "audio/x-flac": "recording.flac",
+};
+
+function resolveSafeAudioFilename(mimeType: string | undefined): string | null {
+  if (!mimeType) return null;
+  const baseMime = mimeType.split(";")[0]?.trim().toLowerCase() ?? "";
+  return ALLOWED_AUDIO_MIME_TO_FILENAME[baseMime] ?? null;
+}
+
+function resolveValidatedRelayBaseUrl(rawValue: string | undefined): string | null {
+  const candidate = rawValue?.trim().replace(/\/+$/, "") || DEFAULT_RELAY_BASE_URL;
+  let parsed: URL;
+  try {
+    parsed = new URL(candidate);
+  } catch {
+    return null;
+  }
+
+  if (parsed.protocol === "https:") {
+    return candidate;
+  }
+
+  if (
+    parsed.protocol === "http:" &&
+    process.env.NODE_ENV !== "production" &&
+    (parsed.hostname === "localhost" || parsed.hostname === "127.0.0.1")
+  ) {
+    return candidate;
+  }
+
+  return null;
+}
 
 async function requireWorker() {
   const session = await auth();
@@ -29,19 +77,17 @@ async function requestRelayTranscription({
   apiKey,
   model,
   file,
+  filename,
   language,
 }: {
   baseUrl: string;
   apiKey: string;
   model?: string;
   file: Blob;
+  filename: string;
   language: string;
 }): Promise<Response> {
   const body = new FormData();
-  const filename = "name" in file && typeof (file as File).name === "string" && (file as File).name
-    ? (file as File).name
-    : "meeting-audio.webm";
-
   body.append("file", file, filename);
   if (model) {
     body.append("model", model);
@@ -98,7 +144,14 @@ export async function POST(request: Request) {
     );
   }
 
-  const relayBaseUrl = (process.env.LLMSRELAY_BASE_URL?.trim().replace(/\/$/, "") || "https://api.llmsrelay.com");
+  const relayBaseUrl = resolveValidatedRelayBaseUrl(process.env.LLMSRELAY_BASE_URL);
+  if (!relayBaseUrl) {
+    console.error("Invalid LLMSRELAY_BASE_URL configuration: must use https://");
+    return NextResponse.json(
+      { error: "Transcription is not available right now." },
+      { status: 503 },
+    );
+  }
   const model = process.env.LLMSRELAY_TRANSCRIPTION_MODEL?.trim().replace(/^["']|["']$/g, "") || undefined;
 
   let formData: FormData;
@@ -120,12 +173,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Audio file must be between 1 byte and 25 MB." }, { status: 400 });
   }
 
+  const safeFilename = resolveSafeAudioFilename(audio.type);
+  if (!safeFilename) {
+    return NextResponse.json({ error: "Unsupported audio format." }, { status: 400 });
+  }
+
   try {
     const response = await requestRelayTranscription({
       baseUrl: relayBaseUrl,
       apiKey: relayApiKey,
       model,
       file: audio,
+      filename: safeFilename,
       language,
     });
 

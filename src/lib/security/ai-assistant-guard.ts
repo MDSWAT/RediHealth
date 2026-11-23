@@ -12,6 +12,8 @@ export const IP_DEVICE_BLOCKS_FOR_IP_BAN = 3;
 
 const DEFAULT_DAILY_DEVICE_TOKEN_LIMIT = 30_000;
 const DEFAULT_DAILY_IP_TOKEN_LIMIT = 120_000;
+const DEFAULT_DAILY_UNKNOWN_IP_TOKEN_LIMIT = 60_000;
+const MAX_MEMORY_BUCKETS = 10_000;
 const CLEANUP_INTERVAL_MS = 10 * 60_000;
 
 type Bucket = { count: number; resetAt: number };
@@ -51,6 +53,16 @@ export function getDailyIpTokenLimit(): number {
   return readPositiveIntEnv("AI_DAILY_TOKEN_LIMIT_IP", DEFAULT_DAILY_IP_TOKEN_LIMIT, 100, 50_000_000);
 }
 
+export function getDailyUnknownIpTokenLimit(): number {
+  const configured = readPositiveIntEnv(
+    "AI_DAILY_TOKEN_LIMIT_UNKNOWN_IP",
+    DEFAULT_DAILY_UNKNOWN_IP_TOKEN_LIMIT,
+    100,
+    50_000_000,
+  );
+  return Math.min(configured, getDailyIpTokenLimit());
+}
+
 function hashBucketKey(rawKey: string): string {
   return createHash("sha256").update(rawKey).digest("hex");
 }
@@ -60,9 +72,14 @@ function shouldUseDatabase(): boolean {
 }
 
 function pruneMemoryBuckets(now: number) {
-  if (memoryBuckets.size <= 10_000) return;
+  if (memoryBuckets.size < MAX_MEMORY_BUCKETS) return;
   for (const [key, bucket] of memoryBuckets) {
     if (bucket.resetAt <= now) memoryBuckets.delete(key);
+  }
+  while (memoryBuckets.size >= MAX_MEMORY_BUCKETS) {
+    const oldestKey = memoryBuckets.keys().next().value;
+    if (oldestKey === undefined) break;
+    memoryBuckets.delete(oldestKey);
   }
 }
 
@@ -118,16 +135,13 @@ async function addBucketDelta(rawKey: string, delta: number, windowMs: number, n
   if (shouldUseDatabase()) {
     try {
       const db = getControlDatabase();
-      await db.query(
+      const [rows] = await db.query<(RowDataPacket & { hits: number; reset_at: string | number })[]>(
         `INSERT INTO rate_limits (bucket_key, hits, reset_at) VALUES (?, ?, ?)
          ON CONFLICT (bucket_key) DO UPDATE SET
            hits = CASE WHEN rate_limits.reset_at <= ? THEN ? ELSE rate_limits.hits + ? END,
-           reset_at = CASE WHEN rate_limits.reset_at <= ? THEN ? ELSE rate_limits.reset_at END`,
+           reset_at = CASE WHEN rate_limits.reset_at <= ? THEN ? ELSE rate_limits.reset_at END
+         RETURNING hits, reset_at`,
         [hashed, safeDelta, nextReset, now, safeDelta, safeDelta, now, nextReset],
-      );
-      const [rows] = await db.query<(RowDataPacket & { hits: number; reset_at: string | number })[]>(
-        "SELECT hits, reset_at FROM rate_limits WHERE bucket_key = ?",
-        [hashed],
       );
       if (now - lastCleanupAt > CLEANUP_INTERVAL_MS) {
         lastCleanupAt = now;
@@ -147,14 +161,58 @@ async function addBucketDelta(rawKey: string, delta: number, windowMs: number, n
     }
   }
 
-  pruneMemoryBuckets(now);
   const existing = memoryBuckets.get(hashed);
   if (!existing || existing.resetAt <= now) {
+    if (existing) {
+      memoryBuckets.delete(hashed);
+    } else {
+      pruneMemoryBuckets(now);
+    }
     const fresh = { count: safeDelta, resetAt: nextReset };
     memoryBuckets.set(hashed, fresh);
     return { ...fresh };
   }
   existing.count += safeDelta;
+  return { ...existing };
+}
+
+async function adjustBucketDelta(rawKey: string, delta: number, windowMs: number, now: number): Promise<Bucket> {
+  const rounded = Math.round(delta);
+  if (rounded >= 0) {
+    return addBucketDelta(rawKey, rounded, windowMs, now);
+  }
+
+  const hashed = hashBucketKey(rawKey);
+  const nextReset = now + windowMs;
+
+  if (shouldUseDatabase()) {
+    try {
+      const db = getControlDatabase();
+      const [rows] = await db.query<(RowDataPacket & { hits: number; reset_at: string | number })[]>(
+        `UPDATE rate_limits
+         SET hits = GREATEST(0, hits + ?)
+         WHERE bucket_key = ? AND reset_at > ?
+         RETURNING hits, reset_at`,
+        [rounded, hashed, now],
+      );
+      const row = rows[0];
+      if (row) {
+        return { count: Number(row.hits), resetAt: Number(row.reset_at) };
+      }
+      return { count: 0, resetAt: nextReset };
+    } catch (error) {
+      if (!warnedStoreFailure) {
+        warnedStoreFailure = true;
+        console.warn("AI guard DB adjustment failed, using in-memory fallback.", error);
+      }
+    }
+  }
+
+  const existing = memoryBuckets.get(hashed);
+  if (!existing || existing.resetAt <= now) {
+    return { count: 0, resetAt: nextReset };
+  }
+  existing.count = Math.max(0, existing.count + rounded);
   return { ...existing };
 }
 
@@ -181,6 +239,9 @@ async function setBlockBucket(rawKey: string, blockedUntil: number): Promise<voi
   }
 
   const existing = memoryBuckets.get(hashed);
+  if (!existing) {
+    pruneMemoryBuckets(Date.now());
+  }
   memoryBuckets.set(hashed, {
     count: (existing?.count ?? 0) + 1,
     resetAt: Math.max(existing?.resetAt ?? 0, blockedUntil),
@@ -203,6 +264,14 @@ function deviceOffTopicKeys(deviceKeys: string[]): string[] {
   return deviceKeys.map((key) => `ai-offtopic-strikes:${key}`);
 }
 
+function resolveIpTokenBucket(ip: string): { key: string; limit: number } {
+  const knownIp = Boolean(ip && ip !== "unknown");
+  if (knownIp) {
+    return { key: `ai-tokens-ip:${ip}`, limit: getDailyIpTokenLimit() };
+  }
+  return { key: "ai-tokens-ip:unknown", limit: getDailyUnknownIpTokenLimit() };
+}
+
 function computeQuotaSnapshot(
   buckets: Map<string, Bucket>,
   deviceKeys: string[],
@@ -210,7 +279,8 @@ function computeQuotaSnapshot(
   now: number,
 ): { quota: AiQuotaSnapshot; limitedBy?: "device" | "ip" } {
   const deviceLimit = getDailyDeviceTokenLimit();
-  const ipLimit = getDailyIpTokenLimit();
+  const ipTarget = resolveIpTokenBucket(ip);
+  const ipLimit = ipTarget.limit;
   const defaultResetAt = now + AI_TOKEN_WINDOW_MS;
 
   let deviceUsed = 0;
@@ -226,17 +296,14 @@ function computeQuotaSnapshot(
 
   let ipUsed = 0;
   let ipResetAt = defaultResetAt;
-  const trackIp = Boolean(ip && ip !== "unknown");
-  if (trackIp) {
-    const ipBucket = buckets.get(`ai-tokens-ip:${ip}`);
-    if (ipBucket) {
-      ipUsed = ipBucket.count;
-      ipResetAt = ipBucket.resetAt;
-    }
+  const ipBucket = buckets.get(ipTarget.key);
+  if (ipBucket) {
+    ipUsed = ipBucket.count;
+    ipResetAt = ipBucket.resetAt;
   }
-  const ipRemaining = trackIp ? Math.max(0, ipLimit - ipUsed) : Number.POSITIVE_INFINITY;
+  const ipRemaining = Math.max(0, ipLimit - ipUsed);
 
-  const ipRestricted = trackIp && ipRemaining < deviceRemaining;
+  const ipRestricted = ipRemaining < deviceRemaining;
   const remaining = Math.max(0, Math.min(deviceRemaining, ipRemaining));
 
   if (remaining === 0) {
@@ -268,16 +335,14 @@ export async function getAiAccessStatus(input: {
   now?: number;
 }): Promise<AiAccessStatus> {
   const now = input.now ?? Date.now();
-  const trackIp = Boolean(input.ip && input.ip !== "unknown");
+  const trackIpBan = Boolean(input.ip && input.ip !== "unknown");
+  const ipTarget = resolveIpTokenBucket(input.ip);
 
   const blockKeys = [
     ...deviceBlockKeys(input.deviceKeys),
-    ...(trackIp ? [`ai-abuse-ip-block:${input.ip}`] : []),
+    ...(trackIpBan ? [`ai-abuse-ip-block:${input.ip}`] : []),
   ];
-  const tokenKeys = [
-    ...deviceTokenKeys(input.deviceKeys),
-    ...(trackIp ? [`ai-tokens-ip:${input.ip}`] : []),
-  ];
+  const tokenKeys = [...deviceTokenKeys(input.deviceKeys), ipTarget.key];
 
   const buckets = await readBuckets([...blockKeys, ...tokenKeys], now);
 
@@ -315,6 +380,106 @@ function remainingRetrySeconds(quota: AiQuotaSnapshot, now: number): number {
   return Math.max(1, Math.ceil((quota.resetAt - now) / 1000));
 }
 
+export type AiTokenReservation = {
+  allowed: boolean;
+  reservedTokens: number;
+  retryAfterSeconds: number;
+  quota: AiQuotaSnapshot;
+  limitedBy?: "device" | "ip";
+};
+
+/**
+ * Atomically reserves an estimated token budget BEFORE invoking an LLM so concurrent requests
+ * cannot race past daily device/IP limits. Call `reconcileAiTokenUsage` after the LLM returns
+ * (or with `actualTokens: 0` on failure) to settle the exact token spend.
+ */
+export async function reserveAiTokenBudget(input: {
+  deviceKeys: string[];
+  ip: string;
+  estimatedTokens: number;
+  now?: number;
+}): Promise<AiTokenReservation> {
+  const now = input.now ?? Date.now();
+  const safeReserve = Math.max(1, Math.round(input.estimatedTokens));
+  const deviceLimit = getDailyDeviceTokenLimit();
+  const ipTarget = resolveIpTokenBucket(input.ip);
+
+  const devKeys = deviceTokenKeys(input.deviceKeys);
+  const updatedBuckets = new Map<string, Bucket>();
+
+  const deviceWrites = await Promise.all(
+    devKeys.map(async (key) => [key, await addBucketDelta(key, safeReserve, AI_TOKEN_WINDOW_MS, now)] as const),
+  );
+  for (const [key, bucket] of deviceWrites) {
+    updatedBuckets.set(key, bucket);
+  }
+  const ipBucket = await addBucketDelta(ipTarget.key, safeReserve, AI_TOKEN_WINDOW_MS, now);
+  updatedBuckets.set(ipTarget.key, ipBucket);
+
+  const deviceExceededBefore = deviceWrites.some(([, bucket]) => bucket.count - safeReserve >= deviceLimit);
+  const ipExceededBefore = ipBucket.count - safeReserve >= ipTarget.limit;
+
+  if (deviceExceededBefore || ipExceededBefore) {
+    // Refund the rejected reservation so counters stay accurate.
+    const refundedBuckets = new Map<string, Bucket>();
+    const refundedDev = await Promise.all(
+      devKeys.map(async (key) => [key, await adjustBucketDelta(key, -safeReserve, AI_TOKEN_WINDOW_MS, now)] as const),
+    );
+    for (const [key, bucket] of refundedDev) {
+      refundedBuckets.set(key, bucket);
+    }
+    refundedBuckets.set(ipTarget.key, await adjustBucketDelta(ipTarget.key, -safeReserve, AI_TOKEN_WINDOW_MS, now));
+    const snapshot = computeQuotaSnapshot(refundedBuckets, input.deviceKeys, input.ip, now);
+    return {
+      allowed: false,
+      reservedTokens: 0,
+      retryAfterSeconds: Math.max(1, remainingRetrySeconds(snapshot.quota, now)),
+      quota: snapshot.quota,
+      limitedBy: snapshot.limitedBy ?? (ipExceededBefore ? "ip" : "device"),
+    };
+  }
+
+  const snapshot = computeQuotaSnapshot(updatedBuckets, input.deviceKeys, input.ip, now);
+  return {
+    allowed: true,
+    reservedTokens: safeReserve,
+    retryAfterSeconds: 0,
+    quota: snapshot.quota,
+  };
+}
+
+/** Settles a pre-call token reservation against the actual LLM token usage (use 0 to release on error). */
+export async function reconcileAiTokenUsage(input: {
+  deviceKeys: string[];
+  ip: string;
+  reservedTokens: number;
+  actualTokens: number;
+  now?: number;
+}): Promise<AiQuotaSnapshot> {
+  const now = input.now ?? Date.now();
+  const ipTarget = resolveIpTokenBucket(input.ip);
+  const safeReserved = Math.max(0, Math.round(input.reservedTokens));
+  const safeActual = Math.max(0, Math.round(input.actualTokens));
+  const delta = safeActual - safeReserved;
+
+  const devKeys = deviceTokenKeys(input.deviceKeys);
+  if (delta === 0) {
+    const buckets = await readBuckets([...devKeys, ipTarget.key], now);
+    return computeQuotaSnapshot(buckets, input.deviceKeys, input.ip, now).quota;
+  }
+
+  const updatedBuckets = new Map<string, Bucket>();
+  const deviceWrites = await Promise.all(
+    devKeys.map(async (key) => [key, await adjustBucketDelta(key, delta, AI_TOKEN_WINDOW_MS, now)] as const),
+  );
+  for (const [key, bucket] of deviceWrites) {
+    updatedBuckets.set(key, bucket);
+  }
+  updatedBuckets.set(ipTarget.key, await adjustBucketDelta(ipTarget.key, delta, AI_TOKEN_WINDOW_MS, now));
+
+  return computeQuotaSnapshot(updatedBuckets, input.deviceKeys, input.ip, now).quota;
+}
+
 /** Records LLM tokens spent by this device and IP in a 24-hour sliding window. */
 export async function recordAiTokenUsage(input: {
   deviceKeys: string[];
@@ -323,7 +488,7 @@ export async function recordAiTokenUsage(input: {
   now?: number;
 }): Promise<AiQuotaSnapshot> {
   const now = input.now ?? Date.now();
-  const trackIp = Boolean(input.ip && input.ip !== "unknown");
+  const ipTarget = resolveIpTokenBucket(input.ip);
   const safeTokens = Math.max(1, Math.round(input.tokens));
 
   const updatedBuckets = new Map<string, Bucket>();
@@ -334,10 +499,7 @@ export async function recordAiTokenUsage(input: {
     updatedBuckets.set(key, bucket);
   }
 
-  if (trackIp) {
-    const ipKey = `ai-tokens-ip:${input.ip}`;
-    updatedBuckets.set(ipKey, await addBucketDelta(ipKey, safeTokens, AI_TOKEN_WINDOW_MS, now));
-  }
+  updatedBuckets.set(ipTarget.key, await addBucketDelta(ipTarget.key, safeTokens, AI_TOKEN_WINDOW_MS, now));
 
   return computeQuotaSnapshot(updatedBuckets, input.deviceKeys, input.ip, now).quota;
 }
