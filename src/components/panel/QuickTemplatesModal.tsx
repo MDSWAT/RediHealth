@@ -270,7 +270,7 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="app-sheet-slide-up care-panel-bottom-bar relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl bg-[var(--panel-surface)] text-[var(--panel-ink)] shadow-[0_24px_80px_rgba(11,19,43,0.28)] sm:max-h-[88dvh] sm:rounded-2xl"
+        className="app-sheet-slide-up care-panel-bottom-bar relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl bg-[var(--panel-surface)] text-[var(--panel-ink)] shadow-[0_24px_80px_rgba(11,19,43,0.28)] dark:ring-1 dark:ring-[var(--panel-line)] sm:max-h-[88dvh] sm:rounded-2xl"
       >
         <div className="flex shrink-0 items-start justify-between gap-3 border-b border-[var(--panel-line)] px-5 pb-4 pt-5 sm:px-6">
           <div className="min-w-0">
@@ -292,7 +292,7 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
               {request.phone && (
                 <a
                   href={`tel:${request.phone}`}
-                  className="inline-flex min-h-11 items-center font-sans tabular-nums text-primary underline underline-offset-3 dark:text-[#bad7fa] dark:decoration-[#bad7fa]/50"
+                  className="inline-flex min-h-11 items-center font-display tabular-nums text-primary underline underline-offset-3 dark:text-[#bad7fa] dark:decoration-[#bad7fa]/50"
                 >
                   {request.phone}
                 </a>
@@ -378,7 +378,7 @@ export function QuickTemplatesModal({ request, onClose }: QuickTemplatesModalPro
             role="tabpanel"
             id={`${titleId}-panel-${activeTemplate.id}`}
             aria-labelledby={`${titleId}-tab-${activeTemplate.id}`}
-            className="rounded-lg bg-[var(--panel-subtle)] p-4 sm:p-5"
+            className="rounded-lg bg-[var(--panel-subtle)] p-4 dark:bg-[var(--panel-canvas)] sm:p-5"
           >
             <div className="max-w-[68ch] whitespace-pre-wrap font-sans text-sm leading-relaxed text-[var(--panel-ink)] [overflow-wrap:break-word]">
               {activeTemplate.body}

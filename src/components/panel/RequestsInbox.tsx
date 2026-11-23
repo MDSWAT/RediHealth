@@ -3,6 +3,7 @@ import { PanelLink as Link, usePanelRuntime } from "./PanelRuntime";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/language-context";
+import type { Lang } from "@/lib/i18n/translations";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { panelWorkspaceTranslations } from "@/lib/i18n/panel-workspace-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
@@ -23,6 +24,66 @@ const STATUS_TONE: Record<RequestStatus, string> = {
   in_progress: "font-medium text-primary dark:text-[#bad7fa]",
   resolved: "font-normal text-[var(--panel-muted)]",
   archived: "font-normal text-[var(--panel-muted)]",
+};
+
+type InboxEmptyCopy = {
+  noRequestsTitle: string;
+  noRequestsHint: string;
+  noPendingTitle: string;
+  emptyFolderTitle: string;
+  otherFolderHint: string;
+};
+
+const INBOX_EMPTY_COPY: Record<Lang, InboxEmptyCopy> = {
+  en: {
+    noRequestsTitle: "No requests yet",
+    noRequestsHint: "New medical help requests will appear here as soon as they arrive.",
+    noPendingTitle: "No pending requests",
+    emptyFolderTitle: "Nothing in this folder",
+    otherFolderHint: "Switch to another folder to review existing requests.",
+  },
+  ro: {
+    noRequestsTitle: "Nicio solicitare încă",
+    noRequestsHint: "Solicitările noi de ajutor medical vor apărea aici imediat ce sosesc.",
+    noPendingTitle: "Nicio solicitare în așteptare",
+    emptyFolderTitle: "Nimic în acest dosar",
+    otherFolderHint: "Deschide alt dosar pentru a vedea solicitările existente.",
+  },
+  sq: {
+    noRequestsTitle: "Ende asnjë kërkesë",
+    noRequestsHint: "Kërkesat e reja për ndihmë mjekësore do të shfaqen këtu sapo të mbërrijnë.",
+    noPendingTitle: "Asnjë kërkesë në pritje",
+    emptyFolderTitle: "Asgjë në këtë dosje",
+    otherFolderHint: "Zgjidh një dosje tjetër për të parë kërkesat ekzistuese.",
+  },
+  it: {
+    noRequestsTitle: "Nessuna richiesta al momento",
+    noRequestsHint: "Le nuove richieste di assistenza medica appariranno qui appena arrivano.",
+    noPendingTitle: "Nessuna richiesta in attesa",
+    emptyFolderTitle: "Nessuna richiesta in questa cartella",
+    otherFolderHint: "Passa a un'altra cartella per consultare le richieste esistenti.",
+  },
+  hr: {
+    noRequestsTitle: "Još nema zahtjeva",
+    noRequestsHint: "Novi zahtjevi za medicinsku pomoć pojavit će se ovdje čim stignu.",
+    noPendingTitle: "Nema zahtjeva na čekanju",
+    emptyFolderTitle: "Nema zahtjeva u ovoj mapi",
+    otherFolderHint: "Odaberi drugu mapu za pregled postojećih zahtjeva.",
+  },
+  rom: {
+    noRequestsTitle: "Inke naj mangimata",
+    noRequestsHint: "Neve mangimata vash sastipnasko zhutimos ka sikadyon kathe kana aven.",
+    noPendingTitle: "Naj mangimata so uzharen",
+    emptyFolderTitle: "Khanchi and-akava dosaro",
+    otherFolderHint: "Alosar aver dosaro te dikhes le mangimata so isi.",
+  },
+  ru: {
+    noRequestsTitle: "Запросов пока нет",
+    noRequestsHint: "Новые запросы на медицинскую помощь появятся здесь сразу после поступления.",
+    noPendingTitle: "Нет ожидающих запросов",
+    emptyFolderTitle: "В этой папке пусто",
+    otherFolderHint: "Откройте другую папку, чтобы просмотреть существующие запросы.",
+  },
 };
 
 function requestInitials(name: string | null | undefined, fallback: string): string {
@@ -90,6 +151,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
   const { request: fetch, demo, offline } = usePanelRuntime();
   const t = crmTranslations[lang];
   const copy = panelWorkspaceTranslations[lang];
+  const emptyCopy = INBOX_EMPTY_COPY[lang];
   const locale = langToLocale[lang];
   const localizedDates = useViewerTimeZone() !== null;
   const pathname = usePathname();
@@ -298,7 +360,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
             <FilterIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span>{t.filters}</span>
             {activePanelFilterCount > 0 && (
-              <span className="font-sans font-semibold tabular-nums text-primary dark:text-[#bad7fa]">
+              <span className="font-display font-semibold tabular-nums text-primary dark:text-[#bad7fa]">
                 {activePanelFilterCount}
               </span>
             )}
@@ -395,7 +457,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
             onClick={() => updateUrl({ folder: id, request: "" })}
           >
             <span>{t[id]}</span>
-            <span className="font-sans tabular-nums">{inbox.counts[id].toLocaleString(locale)}</span>
+            <span className="font-display tabular-nums">{inbox.counts[id].toLocaleString(locale)}</span>
           </button>
         ))}
       </nav>
@@ -425,12 +487,37 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
               </div>
             ) : (
               <div className="panel-list-empty" role="status">
-                <h3>{t.empty}</h3>
-                <p>{copy.emptyHint}</p>
-                {hasFilters && (
-                  <button type="button" className="crm-button whitespace-nowrap" onClick={clearFilters}>
-                    {t.clear}
-                  </button>
+                {hasFilters ? (
+                  <>
+                    <h3>{t.noMatches}</h3>
+                    <p>{copy.emptyHint}</p>
+                    <button type="button" className="crm-button whitespace-nowrap" onClick={clearFilters}>
+                      {t.clear}
+                    </button>
+                  </>
+                ) : inbox.counts.all === 0 ? (
+                  <>
+                    <h3>{emptyCopy.noRequestsTitle}</h3>
+                    <p>{emptyCopy.noRequestsHint}</p>
+                  </>
+                ) : (
+                  <>
+                    <h3>
+                      {folder === "attention" || folder === "pending"
+                        ? emptyCopy.noPendingTitle
+                        : emptyCopy.emptyFolderTitle}
+                    </h3>
+                    <p>{emptyCopy.otherFolderHint}</p>
+                    {folder !== "all" && (
+                      <button
+                        type="button"
+                        className="crm-button whitespace-nowrap"
+                        onClick={() => updateUrl({ folder: "all", request: "" })}
+                      >
+                        {t.all}
+                      </button>
+                    )}
+                  </>
                 )}
               </div>
             )
@@ -442,7 +529,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
             return (
               <div key={r.id}>
                 {heading && (
-                  <h3 className="crm-day-heading">
+                  <h3 className="crm-day-heading !font-display tabular-nums">
                     {localizedDates ? dayLabel(key, locale, t.today, t.yesterday) : key || "—"}
                   </h3>
                 )}
@@ -460,7 +547,7 @@ export function RequestsInbox({ initialInbox, onPendingChange, isAdmin = false, 
                       <div className="flex items-baseline justify-between gap-3">
                         <span className="truncate font-semibold">{r.full_name || t.unnamed}</span>
                         <time
-                          className="shrink-0 font-sans text-xs tabular-nums text-[var(--panel-muted)]"
+                          className="shrink-0 font-display text-xs font-normal tabular-nums text-[var(--panel-muted)]"
                           dateTime={r.created_at}
                         >
                           {inboxTimestamp(r.created_at, locale, "time", localizedDates)}
@@ -644,9 +731,9 @@ function RequestReader({ request, onDirtyChange, onUpdate, onBack, onCreate, onR
         <h2 className="text-2xl font-semibold tracking-[-0.02em] text-[var(--panel-ink)] [overflow-wrap:break-word]">
           {request.full_name || t.unnamed}
         </h2>
-        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-sans text-xs tabular-nums text-[var(--panel-muted)]">
-          <span>#{request.id}</span>
-          <time dateTime={request.created_at}>
+        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[var(--panel-muted)]">
+          <span className="font-display tabular-nums">#{request.id}</span>
+          <time className="font-display tabular-nums" dateTime={request.created_at}>
             {inboxTimestamp(request.created_at, langToLocale[lang], "dateTime", localizedDates)}
           </time>
           {request.county && <span>{request.county}</span>}
@@ -655,7 +742,7 @@ function RequestReader({ request, onDirtyChange, onUpdate, onBack, onCreate, onR
           <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">
             {request.phone && (
               <a
-                className="inline-flex min-h-11 items-center font-sans tabular-nums text-primary dark:text-[#bad7fa] dark:decoration-[#bad7fa]/50"
+                className="inline-flex min-h-11 items-center font-display tabular-nums text-primary dark:text-[#bad7fa] dark:decoration-[#bad7fa]/50"
                 href={`tel:${request.phone}`}
               >
                 {request.phone}
