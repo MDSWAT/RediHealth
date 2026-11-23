@@ -101,7 +101,7 @@ html.dark:has([data-offline-setup="true"]) body {
   .panel-home .crm-inbox-toolbar { justify-content: flex-start; gap: 8px; }
   .panel-inbox-controls { display: contents; }
   .panel-request-search { flex: 1 1 100%; }
-  .panel-create-patient { margin-left: auto; padding-inline: 10px; font-size: 0.8125rem; }
+  .panel-create-patient { margin-left: 0; padding-inline: 12px; font-size: 0.8125rem; }
   .panel-home .crm-folders { gap: 22px; }
   .panel-home .crm-reader-content { padding: 20px; }
 }
@@ -171,14 +171,74 @@ html.dark:has([data-offline-setup="true"]) body {
   color: var(--panel-ink);
 }
 
-html[data-high-contrast] .care-panel {
-  --panel-canvas: var(--color-background);
-  --panel-surface: var(--color-background);
-  --panel-subtle: var(--color-background);
-  --panel-line: var(--color-foreground);
-  --panel-control-border: var(--color-foreground);
-  --panel-ink: var(--color-foreground);
-  --panel-muted: var(--color-foreground);
-  --panel-focus-ring: var(--color-ring);
-  --panel-selected-border: var(--color-foreground);
+/* Non-cyclic concrete high-contrast tokens: .care-panel derives --color-* from --panel-*, so never reference var(--color-*) back here. */
+html[data-high-contrast]:not(.dark):has(.care-panel),
+html[data-high-contrast]:not(.dark):has(.care-panel) body {
+  background-color: #ffffff;
+}
+
+html[data-high-contrast].dark:has(.care-panel),
+html[data-high-contrast].dark:has(.care-panel) body {
+  background-color: #020617;
+}
+
+html[data-high-contrast]:not(.dark) .care-panel {
+  --panel-canvas: #ffffff;
+  --panel-surface: #ffffff;
+  --panel-subtle: #f1f5f9;
+  --panel-line: #0f172a;
+  --panel-control-border: #0f172a;
+  --panel-ink: #000000;
+  --panel-muted: #1e293b;
+  --panel-selection: #dbeafe;
+  --panel-selected-border: #0f2547;
+  --panel-focus-ring: #0f2547;
+  --panel-scrollbar: #0f172a;
+  --panel-scrollbar-hover: #000000;
+  --panel-danger: #9e1b26;
+  --panel-danger-soft: #fde8ea;
+  --panel-danger-border: #9e1b26;
+  --panel-warning: #7c2d12;
+  --panel-warning-soft: #fef3c7;
+  --panel-warning-border: #7c2d12;
+  --panel-status-pending: #7c2d12;
+  --panel-status-progress: #0f2547;
+  --panel-status-neutral: #1e293b;
+  --color-primary: #0f2547;
+  --color-primary-hover: #1e3a6d;
+  --color-primary-active: #020617;
+  --color-muted: #e2e8f0;
+}
+
+html[data-high-contrast].dark .care-panel {
+  --panel-canvas: #020617;
+  --panel-surface: #020617;
+  --panel-subtle: #0f172a;
+  --panel-line: #cbd5e1;
+  --panel-control-border: #f8fafc;
+  --panel-ink: #ffffff;
+  --panel-muted: #e2e8f0;
+  --panel-selection: #1e293b;
+  --panel-selected-border: #f8fafc;
+  --panel-focus-ring: #f8fafc;
+  --panel-scrollbar: #cbd5e1;
+  --panel-scrollbar-hover: #ffffff;
+  --panel-danger: #ffb4b4;
+  --panel-danger-soft: #3b0d11;
+  --panel-danger-border: #ffb4b4;
+  --panel-warning: #fde68a;
+  --panel-warning-soft: #3b2307;
+  --panel-warning-border: #fde68a;
+  --panel-status-pending: #fde68a;
+  --panel-status-progress: #bfdbfe;
+  --panel-status-neutral: #e2e8f0;
+  --color-primary: #1e40af;
+  --color-primary-hover: #2563eb;
+  --color-primary-active: #1d4ed8;
+  --color-muted: #1e293b;
+}
+
+html[data-high-contrast] .care-panel :is(button, a, input, select, textarea):focus-visible {
+  outline: 3px solid var(--panel-focus-ring);
+  outline-offset: 2px;
 }
