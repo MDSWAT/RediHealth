@@ -1,25 +1,101 @@
 "use client";
 
 import Image from "next/image";
-import { Container } from "@/components/ui/Container";
-import { SignInForm } from "@/components/auth/SignInForm";
-import { ArrowRightIcon, StethoscopeIcon } from "@/components/ui/icons";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useState } from "react";
+import { Container } from "@/components/ui/Container";
+import { SignInForm, type SignInStage } from "@/components/auth/SignInForm";
+import { ArrowRightIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
 
-// The words inside the terms sentence that open the Terms and the Privacy pages, per language.
-const TERMS_LINKS: Record<Lang, { terms: string; privacy: string }> = {
-  ru: { terms: "Условия", privacy: "Уведомление о конфиденциальности" },
+// Subtitle copy for the Password tab so switching away from Email code never says "we'll send you a code".
+const PASSWORD_SUBTITLE: Record<Lang, { withGoogle: string; noGoogle: string }> = {
+  ro: {
+    withGoogle: "Intră în cont cu adresa de email și parola de personal, sau cu contul Google.",
+    noGoogle: "Intră în cont cu adresa de email și parola de personal.",
+  },
+  en: {
+    withGoogle: "Sign in with your staff email and password, or with Google.",
+    noGoogle: "Sign in with your staff email and password.",
+  },
+  sq: {
+    withGoogle: "Hyr me emailin dhe fjalëkalimin e stafit, ose me Google.",
+    noGoogle: "Hyr me emailin dhe fjalëkalimin e stafit.",
+  },
+  it: {
+    withGoogle: "Accedi con l'email e la password del personale, o con Google.",
+    noGoogle: "Accedi con l'email e la password del personale.",
+  },
+  hr: {
+    withGoogle: "Prijavi se e-poštom i lozinkom osoblja ili putem Googlea.",
+    noGoogle: "Prijavi se e-poštom i lozinkom osoblja.",
+  },
+  rom: {
+    withGoogle: "Khuv andre e bukyarne emailosa thaj parolasa, vay Google kontosa.",
+    noGoogle: "Khuv andre e bukyarne emailosa thaj parolasa.",
+  },
+  ru: {
+    withGoogle: "Войдите с помощью электронной почты и пароля сотрудника или через Google.",
+    noGoogle: "Войдите с помощью электронной почты и пароля сотрудника.",
+  },
+};
 
-  ro: { terms: "Termenii", privacy: "Politica de confidențialitate" },
-  en: { terms: "Terms", privacy: "Privacy Notice" },
-  sq: { terms: "Kushtet", privacy: "Njoftimin e Privatësisë" },
-  it: { terms: "Termini", privacy: "Informativa sulla privacy" },
-  hr: { terms: "uvjete korištenja", privacy: "pravila privatnosti" },
-  rom: { terms: "labaripnaske pravila", privacy: "garavipnaske pravila" },
+// Single sentence-cased legal notice shared across Email code and Password sign-in tabs.
+const LEGAL_NOTICE: Record<
+  Lang,
+  { before: string; terms: string; between: string; privacy: string; after: string }
+> = {
+  ro: {
+    before: "Folosim adresa ta de email doar pentru autentificare și serviciile cerute. Continuând, accepți",
+    terms: "termenii și condițiile",
+    between: "și",
+    privacy: "politica de confidențialitate",
+    after: ".",
+  },
+  en: {
+    before: "We use your email only for sign-in and requested services. By continuing, you accept the",
+    terms: "terms and conditions",
+    between: "and",
+    privacy: "privacy policy",
+    after: ".",
+  },
+  sq: {
+    before: "Emailin tënd e përdorim vetëm për hyrje dhe shërbimet e kërkuara. Duke vazhduar, pranon",
+    terms: "kushtet dhe rregullat",
+    between: "dhe",
+    privacy: "politikën e privatësisë",
+    after: ".",
+  },
+  it: {
+    before: "Usiamo la tua email solo per l'accesso e i servizi richiesti. Continuando, accetti i",
+    terms: "termini e condizioni",
+    between: "e l'",
+    privacy: "informativa sulla privacy",
+    after: ".",
+  },
+  hr: {
+    before: "Tvoju e-poštu koristimo samo za prijavu i zatražene usluge. Nastavkom prihvaćaš",
+    terms: "uvjete korištenja",
+    between: "i",
+    privacy: "pravila privatnosti",
+    after: ".",
+  },
+  rom: {
+    before: "Labaras cho emailo numay vash dinipe andre thaj mangime sluzhbe. Te zhas may dur, kames",
+    terms: "labaripnaske pravila",
+    between: "thaj",
+    privacy: "garavipnaske pravila",
+    after: ".",
+  },
+  ru: {
+    before: "Мы используем вашу электронную почту только для входа и запрошенных услуг. Продолжая, вы принимаете",
+    terms: "условия использования",
+    between: "и",
+    privacy: "политику конфиденциальности",
+    after: ".",
+  },
 };
 
 // Who this sign-in is for, and where patients go instead. The site itself needs no account.
@@ -69,31 +145,7 @@ const STAFF_NOTICE: Record<Lang, { staffOnly: string; patientPrompt: string; pat
 };
 
 const inlineLink =
-  "rounded-sm font-medium text-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire dark:hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
-
-/** The terms sentence with its two documents as real links; plain text if a phrase is not found. */
-function termsWithLinks(sentence: string, lang: Lang): ReactNode {
-  const words = TERMS_LINKS[lang] ?? TERMS_LINKS.ro;
-  const parts: Array<{ phrase: string; href: string }> = [
-    { phrase: words.terms, href: withLangPrefix("/terms", lang) },
-    { phrase: words.privacy, href: withLangPrefix("/privacy", lang) },
-  ];
-  const out: ReactNode[] = [];
-  let rest = sentence;
-  for (const { phrase, href } of parts) {
-    const at = rest.indexOf(phrase);
-    if (at < 0) continue;
-    out.push(rest.slice(0, at));
-    out.push(
-      <Link key={href} href={href} className={inlineLink}>
-        {phrase}
-      </Link>,
-    );
-    rest = rest.slice(at + phrase.length);
-  }
-  out.push(rest);
-  return out;
-}
+  "rounded-sm font-medium text-foreground underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] hover:text-sapphire dark:hover:text-[#bad7fa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 export function SignInPageContent({
   googleConfigured,
@@ -105,8 +157,11 @@ export function SignInPageContent({
   initialError?: "unauthorized" | "unavailable";
 }) {
   const { t, lang } = useLanguage();
+  const [stage, setStage] = useState<SignInStage>("email");
   const page = t.signInPage;
   const staffNotice = STAFF_NOTICE[lang];
+  const passwordSubtitle = PASSWORD_SUBTITLE[lang] ?? PASSWORD_SUBTITLE.en;
+  const legal = LEGAL_NOTICE[lang] ?? LEGAL_NOTICE.en;
   const initialErrorMessage =
     initialError === "unauthorized"
       ? page.unauthorizedGoogle
@@ -114,34 +169,56 @@ export function SignInPageContent({
         ? page.authUnavailable
         : undefined;
 
+  const subtitle =
+    stage === "password"
+      ? googleConfigured
+        ? passwordSubtitle.withGoogle
+        : passwordSubtitle.noGoogle
+      : stage === "email"
+        ? googleConfigured
+          ? page.heroParagraphWithGoogle
+          : page.heroParagraphNoGoogle
+        : null;
+
   return (
     <main id="main-content" className="relative flex flex-1 flex-col justify-center pb-12 sm:pb-16">
       <Container>
         <div className="mx-auto w-full max-w-[70rem] py-6 sm:py-10">
-          <div className="grid overflow-hidden rounded-3xl border border-border/85 bg-card shadow-(--shadow-card-hover) dark:border-white/12 dark:bg-ink-900 lg:grid-cols-12">
+          <div className="grid overflow-hidden rounded-2xl border border-border bg-card dark:border-white/12 dark:bg-ink-900 lg:grid-cols-12">
             <div className="p-6 sm:p-8 lg:col-span-6 lg:p-10">
               <h1 className="text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.02em] text-foreground text-balance sm:text-[2rem]">
                 {page.heroTitle}
               </h1>
-              <p className="mt-2.5 text-body leading-relaxed text-muted-foreground text-pretty">
-                {googleConfigured ? page.heroParagraphWithGoogle : page.heroParagraphNoGoogle}
-              </p>
+              {subtitle ? (
+                <p className="mt-2.5 text-body leading-relaxed text-muted-foreground text-pretty">
+                  {subtitle}
+                </p>
+              ) : null}
 
               <div className="mt-6">
                 <SignInForm
                   googleConfigured={googleConfigured}
                   passwordConfigured={passwordConfigured}
                   initialError={initialErrorMessage}
+                  onStageChange={setStage}
                   embedded
                 />
               </div>
 
-              <p className="mt-6 px-2 text-sm leading-relaxed text-muted-foreground text-pretty">
-                {termsWithLinks(page.terms, lang)}
+              <p className="mt-6 text-sm leading-relaxed text-muted-foreground text-pretty">
+                {legal.before}{" "}
+                <Link href={withLangPrefix("/terms", lang)} className={inlineLink}>
+                  {legal.terms}
+                </Link>{" "}
+                {legal.between}{" "}
+                <Link href={withLangPrefix("/privacy", lang)} className={inlineLink}>
+                  {legal.privacy}
+                </Link>
+                {legal.after}
               </p>
             </div>
 
-            <div className="relative flex min-h-[20rem] flex-col justify-between overflow-hidden bg-ink-950 p-6 sm:p-8 lg:col-span-6 lg:min-h-[34rem] lg:p-10">
+            <div className="relative flex min-h-[20rem] flex-col justify-end overflow-hidden bg-ink-950 p-6 sm:p-8 lg:col-span-6 lg:min-h-[34rem] lg:p-10">
               <Image
                 src="/images/hero-consultation.jpg"
                 alt=""
@@ -152,20 +229,15 @@ export function SignInPageContent({
               />
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/95 via-ink-950/60 to-ink-950/25"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/95 via-ink-950/65 to-ink-950/20"
               />
 
-              <div className="relative z-10 inline-flex w-fit items-center gap-2 rounded-xl border border-white/15 bg-ink-950/60 px-3.5 py-2 text-sm font-medium text-paper backdrop-blur-md">
-                <StethoscopeIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-sapphire-border" />
-                <span>RediHealth</span>
-              </div>
-
-              <div className="relative z-10 mt-auto pt-20 sm:pt-24">
-                <p className="text-balance text-[1.2rem] font-semibold leading-snug text-paper sm:text-[1.35rem]">
+              <div className="relative z-10 mt-auto pt-24 sm:pt-32">
+                <p className="max-w-[34ch] text-balance text-[1.2rem] font-semibold leading-snug text-paper sm:text-[1.35rem]">
                   {staffNotice.staffOnly}
                 </p>
 
-                <div className="mt-5 rounded-xl border border-white/15 bg-ink-950/60 p-4 backdrop-blur-md">
+                <div className="mt-6 border-t border-white/20 pt-5">
                   <p className="text-body text-paper/85 text-pretty">{staffNotice.patientPrompt}</p>
                   <Link
                     href={withLangPrefix("/contul-meu", lang)}

@@ -13,7 +13,6 @@ type CountryAccess = {
 
 const labelByLang: Record<Lang, string> = {
   ru: "Страна",
-
   en: "Country",
   ro: "Țara",
   sq: "Shteti",
@@ -49,7 +48,10 @@ export function CountrySwitcher({ compact = false }: { compact?: boolean }) {
 
   if (access.available.length < 2) {
     return (
-      <p className="px-1 text-[11px] font-semibold text-muted-foreground" title={`${label}: ${activeName}`}>
+      <p
+        className={`truncate whitespace-nowrap text-xs font-medium text-(--panel-muted) ${compact ? "text-center" : "px-1"}`}
+        title={`${label}: ${activeName}`}
+      >
         {compact ? access.active : `${label}: ${activeName}`}
       </p>
     );
@@ -76,7 +78,7 @@ export function CountrySwitcher({ compact = false }: { compact?: boolean }) {
         value={access.active}
         disabled={switching}
         onChange={(event) => void switchCountry(event.target.value as CountryCode)}
-        className="h-9 w-full rounded-lg border border-border bg-white px-2 text-xs font-semibold text-foreground"
+        className={`min-h-11 w-full whitespace-nowrap rounded-lg border border-(--panel-control-border) bg-(--panel-surface) font-medium text-(--panel-ink) transition-colors hover:bg-(--panel-subtle) disabled:opacity-60 ${compact ? "px-1 text-center text-xs" : "px-2.5 text-[13px]"}`}
       >
         {access.available.map(({ country }) => (
           <option key={country} value={country}>

@@ -8,31 +8,31 @@
 .patient-record-details [aria-label] { margin-top: 12px; line-height: 1.7; }
 .patient-record-details [aria-label] > p { color: var(--panel-muted); }
 .patient-record-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin-top: 16px; font-size: 0.8125rem; color: var(--panel-muted); }
-.patient-record-meta > span:first-child { display: inline-flex; align-items: center; gap: 6px; font-weight: 500; color: var(--panel-ink); }
-.patient-record-meta > span:first-child::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #798696; }
-.patient-record-meta > span[data-patient-status="active"]::before { background: var(--color-sapphire); }
-.patient-record-meta > span[data-patient-priority="high"] { color: #9a4d0b; }
-.patient-record-meta > span[data-patient-priority="critical"] { color: #b91c1c; }
+/* Plain typographic status — zero status dots (CLAUDE.md rule 2). */
+.patient-record-meta > span:first-child { display: inline-flex; align-items: center; font-weight: 500; color: var(--panel-ink); }
+.patient-record-meta > span[data-patient-status="active"] { color: var(--panel-status-progress, var(--color-sapphire)); font-weight: 600; }
+.patient-record-meta > span[data-patient-priority="high"] { color: var(--panel-warning, #9a4d0b); font-weight: 500; }
+.patient-record-meta > span[data-patient-priority="critical"] { color: var(--panel-danger, #b91c1c); font-weight: 600; }
 .patient-record-actions { display: flex; flex: 0 1 220px; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
 .patient-record-actions > .crm-primary { flex-basis: 100%; }
-.patient-record :is(.crm-button, .crm-input) { background: var(--panel-surface); color: var(--panel-ink); border-color: #8a94a6; }
+.patient-record :is(.crm-button, .crm-input) { background: var(--panel-surface); color: var(--panel-ink); border-color: var(--panel-control-border, #8a94a6); }
 .patient-record .crm-button:hover { background: var(--panel-selection); }
-.patient-record .crm-primary { background: var(--color-sapphire); color: white; border-color: var(--color-sapphire); }
-.patient-record .crm-primary:hover { background: #28476f; }
+.patient-record .crm-primary { background: var(--color-primary); color: #ffffff; border-color: var(--color-primary); }
+.patient-record .crm-primary:hover { background: var(--color-primary-hover); border-color: var(--color-primary-hover); }
 .patient-record .crm-button:disabled { color: var(--panel-muted); background: var(--panel-subtle); border-color: var(--panel-line); }
 .patient-record .crm-label { color: var(--panel-ink); }
 .patient-record .crm-card { padding: 24px; border-color: var(--panel-line); border-radius: 16px; background: var(--panel-surface); }
 .patient-record .crm-card h2 { font-family: var(--font-body), sans-serif; font-size: 1rem; font-weight: 600; }
 .patient-record .crm-menu > div { background: var(--panel-surface); color: var(--panel-ink); border-color: var(--panel-line); }
 .patient-record .crm-menu > div > button:hover { background: var(--panel-selection); }
-.patient-photo-upload { position: relative; display: flex; align-items: center; justify-content: center; min-height: 44px; max-width: 100%; margin-top: 4px; padding: 8px 2px; color: var(--color-sapphire); text-align: center; font-size: 0.75rem; font-weight: 500; line-height: 1.4; cursor: pointer; }
+.patient-photo-upload { position: relative; display: flex; align-items: center; justify-content: center; min-height: 44px; max-width: 100%; margin-top: 4px; padding: 8px 2px; color: var(--panel-status-progress, var(--color-sapphire)); text-align: center; font-size: 0.75rem; font-weight: 500; line-height: 1.4; cursor: pointer; }
 .patient-photo-upload input { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; }
-.patient-photo-upload:focus-within { outline: 2px solid var(--color-sapphire); outline-offset: 2px; border-radius: 6px; }
+.patient-photo-upload:focus-within { outline: 2px solid var(--panel-focus-ring, var(--color-sapphire)); outline-offset: 2px; border-radius: 6px; }
 .patient-photo-upload.is-disabled { opacity: 0.5; cursor: default; }
-.patient-photo-remove { min-height: 44px; width: 100%; color: #b91c1c; font-size: 0.75rem; }
+.patient-photo-remove { min-height: 44px; width: 100%; color: var(--panel-danger, #b91c1c); font-size: 0.75rem; white-space: nowrap; }
 .patient-record .crm-tabs { gap: 28px; margin-top: 12px; margin-bottom: 24px; overflow-x: auto; border-color: var(--panel-line); }
 .patient-record .crm-tabs button { display: flex; align-items: center; gap: 8px; flex-shrink: 0; min-height: 52px; color: var(--panel-muted); white-space: nowrap; }
-.patient-record .crm-tabs button[aria-selected="true"] { color: var(--color-sapphire); }
+.patient-record .crm-tabs button[aria-selected="true"] { color: var(--panel-status-progress, var(--color-sapphire)); border-bottom-color: var(--panel-status-progress, var(--color-sapphire)); }
 .patient-tab-count { color: var(--panel-muted); font-size: 0.75rem; font-weight: 400; font-variant-numeric: tabular-nums; }
 .patient-summary-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr); gap: 24px; align-items: start; }
 .patient-summary-main { grid-column: 1; grid-row: 1; }
@@ -49,7 +49,7 @@
 .patient-photo-form h3 { margin-bottom: 16px; font-size: 0.9375rem; font-weight: 600; }
 .patient-photo-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
 .patient-file-input { display: block; width: 100%; margin-top: 6px; color: var(--panel-muted); font-size: 0.8125rem; }
-.patient-file-input::file-selector-button { min-height: 44px; margin-right: 12px; padding: 8px 12px; border: 1px solid #8a94a6; border-radius: 8px; background: var(--panel-surface); color: var(--panel-ink); font-weight: 500; cursor: pointer; }
+.patient-file-input::file-selector-button { min-height: 44px; margin-right: 12px; padding: 8px 12px; border: 1px solid var(--panel-control-border, #8a94a6); border-radius: 8px; background: var(--panel-surface); color: var(--panel-ink); font-weight: 500; white-space: nowrap; cursor: pointer; }
 .patient-photo-note-field, .patient-photo-submit, .patient-pending-photo { grid-column: 1/-1; }
 .patient-photo-submit { display: flex; justify-content: flex-end; }
 .patient-pending-photo { display: flex; align-items: center; gap: 16px; color: var(--panel-muted); font-size: 0.875rem; }
@@ -60,13 +60,16 @@
 .patient-directory-header h1 { font-size: 1.875rem; font-weight: 700; letter-spacing: -0.025em; }
 .patient-directory-sync { font-size: 0.75rem; color: var(--panel-muted); }
 .patient-cohorts { display: flex; gap: 24px; overflow-x: auto; padding: 0 20px; border: 1px solid var(--panel-line); border-bottom: 0; border-radius: 16px 16px 0 0; background: var(--panel-surface); }
-.patient-cohort { position: relative; display: flex; align-items: center; gap: 10px; flex-shrink: 0; min-height: 60px; padding: 12px 0; border: 0; box-shadow: none; background: transparent; color: var(--panel-muted); white-space: nowrap; }
+.patient-cohort { position: relative; display: flex; align-items: center; gap: 8px; flex-shrink: 0; min-height: 52px; padding: 12px 0; border: 0; box-shadow: none; background: transparent; color: var(--panel-muted); white-space: nowrap; }
+.patient-cohort:hover { color: var(--panel-ink); }
+.patient-cohort > span:first-child { font-size: 0.875rem; font-weight: 500; color: inherit; }
+.patient-cohort > span:last-child:not(:first-child) { font-size: 0.8125rem; font-weight: 400; font-variant-numeric: tabular-nums; color: inherit; }
 .patient-cohort > div { display: contents; }
 .patient-cohort > div > span { margin: 0; color: inherit; font-size: 0.875rem; font-weight: 500; }
-.patient-cohort > div:last-child > span:first-child { font-size: 0.8125rem; font-weight: 400; }
+.patient-cohort > div:last-child > span:first-child { font-size: 0.8125rem; font-weight: 400; font-variant-numeric: tabular-nums; }
 .patient-cohort > div:last-child > span:last-child, .patient-cohort > div:first-child > span:last-child:not(:first-child) { display: none; }
-.patient-cohort[aria-pressed="true"] { color: var(--color-sapphire); }
-.patient-cohort[aria-pressed="true"]::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--color-sapphire); }
+.patient-cohort[aria-pressed="true"] { color: var(--panel-status-progress, var(--color-sapphire)); }
+.patient-cohort[aria-pressed="true"]::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--panel-status-progress, var(--color-sapphire)); }
 .patient-directory { border: 1px solid var(--panel-line); border-radius: 0 0 16px 16px; background: var(--panel-surface); }
 .patient-directory-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 22px 24px; }
 .patient-directory-row:hover { background: var(--panel-subtle); }
@@ -107,6 +110,11 @@
   .patient-directory-row > div:nth-child(2) .crm-menu > summary { width: 100%; }
 }
 .dark .patient-record :is(.text-primary, .patient-photo-upload, .crm-tabs button[aria-selected="true"]) { color: #bad7fa; }
+.dark .patient-record .crm-tabs button[aria-selected="true"] { border-bottom-color: #bad7fa; }
+.dark .patient-record-meta > span[data-patient-status="active"] { color: #bad7fa; }
 .dark .patient-record-meta > span[data-patient-priority="high"] { color: #f5c58e; }
 .dark .patient-record-meta > span[data-patient-priority="critical"] { color: #ffb4b4; }
+.dark .patient-photo-remove { color: #ffb4b4; }
+.dark .patient-cohort[aria-pressed="true"] { color: #bad7fa; }
+.dark .patient-cohort[aria-pressed="true"]::after { background: #bad7fa; }
 .dark .patient-avatar { color: #bad7fa; }

@@ -15,11 +15,12 @@ import {
   useRecaptcha,
 } from "@/components/security/RecaptchaProvider";
 
-type Stage = "email" | "code" | "password";
+export type SignInStage = "email" | "code" | "password";
 
 const PASSWORD_COPY: Record<
   Lang,
   {
+    methodLabel: string;
     codeTab: string;
     passwordTab: string;
     passwordLabel: string;
@@ -30,6 +31,7 @@ const PASSWORD_COPY: Record<
   }
 > = {
   ro: {
+    methodLabel: "Metodă de autentificare",
     codeTab: "Cod pe email",
     passwordTab: "Parolă",
     passwordLabel: "Parolă",
@@ -39,6 +41,7 @@ const PASSWORD_COPY: Record<
     invalidCredentials: "Adresa de email sau parola nu este corectă.",
   },
   en: {
+    methodLabel: "Sign-in method",
     codeTab: "Email code",
     passwordTab: "Password",
     passwordLabel: "Password",
@@ -48,6 +51,7 @@ const PASSWORD_COPY: Record<
     invalidCredentials: "The email address or password is not correct.",
   },
   sq: {
+    methodLabel: "Mënyra e hyrjes",
     codeTab: "Kod në email",
     passwordTab: "Fjalëkalim",
     passwordLabel: "Fjalëkalimi",
@@ -57,6 +61,7 @@ const PASSWORD_COPY: Record<
     invalidCredentials: "Adresa e emailit ose fjalëkalimi nuk është i saktë.",
   },
   it: {
+    methodLabel: "Metodo di accesso",
     codeTab: "Codice email",
     passwordTab: "Password",
     passwordLabel: "Password",
@@ -66,6 +71,7 @@ const PASSWORD_COPY: Record<
     invalidCredentials: "L'indirizzo email o la password non sono corretti.",
   },
   hr: {
+    methodLabel: "Način prijave",
     codeTab: "Kod e-poštom",
     passwordTab: "Lozinka",
     passwordLabel: "Lozinka",
@@ -75,6 +81,7 @@ const PASSWORD_COPY: Record<
     invalidCredentials: "Adresa e-pošte ili lozinka nije točna.",
   },
   rom: {
+    methodLabel: "Drom vash dinipe andre",
     codeTab: "Email kodo",
     passwordTab: "Parola",
     passwordLabel: "Parola",
@@ -84,6 +91,7 @@ const PASSWORD_COPY: Record<
     invalidCredentials: "O emailo vay i parola naj lachi.",
   },
   ru: {
+    methodLabel: "Способ входа",
     codeTab: "Код на почту",
     passwordTab: "Пароль",
     passwordLabel: "Пароль",
@@ -119,52 +127,52 @@ const CODE_HELP: Record<Lang, (resendLabel: string) => string> = {
 
 const SIGN_IN_LEGAL_NOTICE: Record<Lang, { before: string; terms: string; between: string; privacy: string; after: string }> = {
   ro: {
-    before: "Folosim adresa ta de email doar pentru autentificare și serviciile cerute. Nu vindem datele tale. Continuând, accepți",
-    terms: "Termenii și condițiile",
-    between: "și iei cunoștință de",
-    privacy: "Politica de confidențialitate",
+    before: "Folosim adresa ta de email doar pentru autentificare și serviciile cerute. Continuând, accepți",
+    terms: "termenii și condițiile",
+    between: "și",
+    privacy: "politica de confidențialitate",
     after: ".",
   },
   en: {
-    before: "We use your email address only for sign-in and requested services. We never sell your data. By continuing, you accept the",
-    terms: "Terms and conditions",
-    between: "and acknowledge our",
-    privacy: "Privacy policy",
+    before: "We use your email address only for sign-in and requested services. By continuing, you accept the",
+    terms: "terms and conditions",
+    between: "and",
+    privacy: "privacy policy",
     after: ".",
   },
   sq: {
-    before: "Përdorim emailin tënd vetëm për hyrje dhe shërbimet e kërkuara. Nuk i shesim të dhënat e tua. Duke vazhduar, pranon",
-    terms: "Kushtet dhe rregullat",
-    between: "dhe njihesh me",
-    privacy: "Politikën e privatësisë",
+    before: "Emailin tënd e përdorim vetëm për hyrje dhe shërbimet e kërkuara. Duke vazhduar, pranon",
+    terms: "kushtet dhe rregullat",
+    between: "dhe",
+    privacy: "politikën e privatësisë",
     after: ".",
   },
   it: {
-    before: "Usiamo la tua email solo per l'accesso e i servizi richiesti. Non vendiamo i tuoi dati. Continuando, accetti i",
-    terms: "Termini e condizioni",
-    between: "e prendi visione dell'",
-    privacy: "Informativa sulla privacy",
+    before: "Usiamo la tua email solo per l'accesso e i servizi richiesti. Continuando, accetti i",
+    terms: "termini e condizioni",
+    between: "e l'",
+    privacy: "informativa sulla privacy",
     after: ".",
   },
   hr: {
-    before: "Tvoju e-poštu koristimo samo za prijavu i zatražene usluge. Ne prodajemo tvoje podatke. Nastavkom prihvaćaš",
-    terms: "Uvjete korištenja",
-    between: "i upoznaješ se s",
-    privacy: "Pravilima privatnosti",
+    before: "Tvoju e-poštu koristimo samo za prijavu i zatražene usluge. Nastavkom prihvaćaš",
+    terms: "uvjete korištenja",
+    between: "i",
+    privacy: "pravila privatnosti",
     after: ".",
   },
   rom: {
-    before: "Labaras cho emailo numay vash dinipe andre thaj mangime sluzhbe. Na bikinas che podatke. Te zhas may dur, kames",
-    terms: "Labaripnaske pravila",
-    between: "thaj gines",
-    privacy: "Garavipnaske pravila",
+    before: "Labaras cho emailo numay vash dinipe andre thaj mangime sluzhbe. Te zhas may dur, kames",
+    terms: "labaripnaske pravila",
+    between: "thaj",
+    privacy: "garavipnaske pravila",
     after: ".",
   },
   ru: {
-    before: "Мы используем вашу электронную почту только для входа и запрошенных услуг. Мы не продаём ваши данные. Продолжая, вы принимаете",
-    terms: "Условия использования",
-    between: "и ознакомились с",
-    privacy: "Политикой конфиденциальности",
+    before: "Мы используем вашу электронную почту только для входа и запрошенных услуг. Продолжая, вы принимаете",
+    terms: "условия использования",
+    between: "и",
+    privacy: "политику конфиденциальности",
     after: ".",
   },
 };
@@ -180,17 +188,23 @@ export function SignInForm({
   passwordConfigured = false,
   initialError = "",
   embedded = false,
+  onStageChange,
 }: {
   googleConfigured: boolean;
   passwordConfigured?: boolean;
   initialError?: string;
   embedded?: boolean;
+  onStageChange?: (stage: SignInStage) => void;
 }) {
   const { t, lang } = useLanguage();
   const executeCaptcha = useRecaptcha();
   const form = t.signInPage.form;
   const passwordCopy = PASSWORD_COPY[lang] ?? PASSWORD_COPY.en;
-  const [stage, setStage] = useState<Stage>("email");
+  const [stage, setStageState] = useState<SignInStage>("email");
+  const setStage = (next: SignInStage) => {
+    setStageState(next);
+    onStageChange?.(next);
+  };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [website, setWebsite] = useState("");
@@ -418,7 +432,7 @@ export function SignInForm({
           className="sr-only"
         />
         {passwordConfigured ? (
-          <div className="mb-5 flex flex-wrap gap-2" role="group" aria-label={form.emailLabel}>
+          <div className="mb-5 flex flex-wrap gap-2" role="group" aria-label={passwordCopy.methodLabel}>
             <button
               type="button"
               aria-pressed={stage !== "password"}
@@ -429,7 +443,7 @@ export function SignInForm({
               className={`min-h-11 whitespace-nowrap rounded-lg border px-4 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
                 stage !== "password"
                   ? "border-sapphire bg-sapphire text-white dark:border-sapphire-border dark:bg-sapphire"
-                  : "border-border-control bg-card text-foreground hover:bg-muted/60"
+                  : "border-border-control bg-card text-foreground hover:bg-muted/60 dark:border-white/20 dark:bg-ink-900 dark:hover:bg-white/5"
               }`}
             >
               {passwordCopy.codeTab}
@@ -446,7 +460,7 @@ export function SignInForm({
               className={`min-h-11 whitespace-nowrap rounded-lg border px-4 text-body font-semibold transition-colors duration-(--dur-fast) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none ${
                 stage === "password"
                   ? "border-sapphire bg-sapphire text-white dark:border-sapphire-border dark:bg-sapphire"
-                  : "border-border-control bg-card text-foreground hover:bg-muted/60"
+                  : "border-border-control bg-card text-foreground hover:bg-muted/60 dark:border-white/20 dark:bg-ink-900 dark:hover:bg-white/5"
               }`}
             >
               {passwordCopy.passwordTab}
@@ -503,7 +517,7 @@ export function SignInForm({
                 <p
                   id="password-error"
                   role="alert"
-                  className="swap-in mt-2 text-body text-amber-care dark:text-amber-care-border"
+                  className="swap-in mt-2 text-body text-amber-care dark:text-[#f5c58e]"
                 >
                   {error}
                 </p>
@@ -543,7 +557,7 @@ export function SignInForm({
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 aria-invalid={Boolean(error)}
-                aria-describedby={error ? "email-error" : "email-hint"}
+                aria-describedby={error ? "email-error" : !embedded ? "email-hint" : undefined}
                 className={inputClass}
                 placeholder={form.emailPlaceholder}
               />
@@ -551,18 +565,18 @@ export function SignInForm({
                 <p
                   id="email-error"
                   role="alert"
-                  className="swap-in mt-2 text-body text-amber-care dark:text-amber-care-border"
+                  className="swap-in mt-2 text-body text-amber-care dark:text-[#f5c58e]"
                 >
                   {error}
                 </p>
-              ) : (
+              ) : !embedded ? (
                 <p
                   id="email-hint"
                   className="mt-2 text-body text-muted-foreground"
                 >
                   {form.emailHint}
                 </p>
-              )}
+              ) : null}
               <div className="mt-6">
                 <Button
                   type="submit"
@@ -574,23 +588,25 @@ export function SignInForm({
                   {isSubmitting ? form.sendingCode : form.emailMeCode}
                 </Button>
               </div>
-              <p className="mt-4 text-meta leading-relaxed text-muted-foreground">
-                {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).before}{" "}
-                <Link
-                  href={withLangPrefix("/terms", lang)}
-                  className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
-                >
-                  {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).terms}
-                </Link>{" "}
-                {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).between}{" "}
-                <Link
-                  href={withLangPrefix("/privacy", lang)}
-                  className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-sapphire-border"
-                >
-                  {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).privacy}
-                </Link>
-                {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).after}
-              </p>
+              {!embedded ? (
+                <p className="mt-4 text-meta leading-relaxed text-muted-foreground">
+                  {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).before}{" "}
+                  <Link
+                    href={withLangPrefix("/terms", lang)}
+                    className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-[#bad7fa]"
+                  >
+                    {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).terms}
+                  </Link>{" "}
+                  {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).between}{" "}
+                  <Link
+                    href={withLangPrefix("/privacy", lang)}
+                    className="rounded-sm text-sapphire underline decoration-sapphire/40 underline-offset-4 hover:text-sapphire-light hover:decoration-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:text-[#bad7fa]"
+                  >
+                    {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).privacy}
+                  </Link>
+                  {(SIGN_IN_LEGAL_NOTICE[lang] ?? SIGN_IN_LEGAL_NOTICE.en).after}
+                </p>
+              ) : null}
             </form>
           ) : (
             <form
@@ -634,7 +650,7 @@ export function SignInForm({
                 <p
                   id="code-error"
                   role="alert"
-                  className="swap-in mt-2 text-body text-amber-care dark:text-amber-care-border"
+                  className="swap-in mt-2 text-body text-amber-care dark:text-[#f5c58e]"
                 >
                   {error}
                 </p>
@@ -717,9 +733,9 @@ export function SignInForm({
             aria-expanded={recoveryOpen}
             aria-controls="portal-recovery-panel"
             onClick={() => setRecoveryOpen((open) => !open)}
-            className="press-row flex min-h-12 w-full items-center justify-between gap-3 rounded-lg px-2 text-left text-body font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+            className="press-row flex min-h-12 w-full items-center justify-between gap-3 whitespace-nowrap rounded-lg px-2 text-left text-body font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:hover:bg-white/5"
           >
-            <span className="min-w-0 flex-1">{form.portalRecoveryTitle}</span>
+            <span className="min-w-0 flex-1 truncate">{form.portalRecoveryTitle}</span>
             <ChevronDownIcon
               className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none ${recoveryOpen ? "rotate-180" : ""}`}
               aria-hidden="true"
@@ -767,7 +783,7 @@ export function SignInForm({
               {portalRecoveryError ? (
                 <p
                   id="portal-recovery-error"
-                  className="swap-in mt-2 text-body text-amber-care dark:text-amber-care-border"
+                  className="swap-in mt-2 text-body text-amber-care dark:text-[#f5c58e]"
                   role="alert"
                 >
                   {portalRecoveryError}

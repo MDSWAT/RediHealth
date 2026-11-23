@@ -1,4 +1,4 @@
-.patient-avatar { display: flex; flex: none; align-items: center; justify-content: center; width: 52px; height: 58px; overflow: hidden; border-radius: 12px; background: var(--panel-selection, #edf3f9); color: var(--color-sapphire, #1d3557); font-size: 0.875rem; font-weight: 600; }
+.patient-avatar { display: flex; flex: none; align-items: center; justify-content: center; width: 52px; height: 58px; overflow: hidden; border-radius: 12px; background: var(--panel-selection, #edf3f9); color: var(--panel-status-progress, var(--color-sapphire, #1d3557)); font-size: 0.875rem; font-weight: 600; }
 .patient-avatar img { width: 100%; height: 100%; object-fit: contain; }
 .patient-avatar-large { width: 104px; height: 120px; border-radius: 16px; font-size: 1.75rem; }
 .patient-avatar button { cursor: zoom-in; }
@@ -9,16 +9,17 @@
 .patient-photo-thumbnail { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; aspect-ratio: 4/3; overflow: hidden; border: 1px solid var(--panel-line, #dde4eb); border-radius: 12px; background: var(--panel-subtle, #f8fafb); cursor: zoom-in; }
 .patient-photo-thumbnail img { width: 100%; height: 100%; object-fit: contain; padding: 12px; transition: opacity 160ms ease-out; }
 .patient-photo-thumbnail:hover img { opacity: 0.8; }
-.patient-photo-open { position: absolute; bottom: 8px; right: 8px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 8px; border-radius: 6px; background: var(--panel-surface, #fff); color: var(--panel-ink, #172b43); font-size: 0.75rem; }
+.patient-photo-open { position: absolute; bottom: 8px; right: 8px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 8px; border-radius: 6px; background: var(--panel-surface, #fff); color: var(--panel-ink, #172b43); font-size: 0.75rem; white-space: nowrap; }
 .patient-photo-tile figcaption { padding-top: 12px; }
 .patient-photo-caption { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
 .patient-photo-caption p { color: var(--panel-ink, #172b43); font-size: 0.875rem; font-weight: 600; overflow-wrap: anywhere; }
-.patient-photo-caption time { display: block; margin-top: 4px; font-size: 0.75rem; color: var(--panel-muted, #58697c); }
+.patient-photo-caption time { display: block; margin-top: 4px; font-size: 0.75rem; color: var(--panel-muted, #58697c); font-variant-numeric: tabular-nums; }
 .patient-photo-note { margin-top: 6px; font-size: 0.8125rem; line-height: 1.6; color: var(--panel-muted, #58697c); overflow-wrap: anywhere; }
-.patient-media-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--panel-line, #dde4eb); border-radius: 8px; background: transparent; color: inherit; font-size: 0.875rem; font-weight: 500; cursor: pointer; }
+.patient-media-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--panel-control-border, var(--panel-line, #dde4eb)); border-radius: 8px; background: transparent; color: inherit; font-size: 0.875rem; font-weight: 500; white-space: nowrap; cursor: pointer; }
 .patient-media-button:hover { background: var(--panel-selection, #edf3f9); }
 .patient-media-button:disabled { cursor: default; color: var(--panel-muted, #58697c); }
-.patient-photo-delete { flex-shrink: 0; color: #b91c1c; }
+.patient-photo-delete { flex-shrink: 0; color: var(--panel-danger, #b91c1c); }
+.dark .patient-photo-delete { color: #ffb4b4; }
 .patient-photo-inline { display: block; width: fit-content; max-width: 100%; margin-top: 12px; border: 1px solid var(--panel-line, #dde4eb); border-radius: 10px; padding: 8px; cursor: zoom-in; }
 .patient-photo-inline img { display: block; width: auto; max-width: 100%; max-height: 200px; object-fit: contain; }
 .patient-image-viewer { position: fixed; inset: 0; width: min(1200px, calc(100vw - 48px)); height: calc(100dvh - 48px); max-width: none; max-height: none; margin: auto; padding: 0; overflow: hidden; border: 0; border-radius: 16px; background: var(--panel-surface, #fff); color: var(--panel-ink, #172b43); box-shadow: 0 24px 80px #0004; }
@@ -35,7 +36,7 @@
 .patient-viewer-controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; }
 .patient-viewer-note { max-height: 5rem; overflow-y: auto; margin-top: 10px; font-size: 0.875rem; line-height: 1.5; overflow-wrap: anywhere; }
 :is(.patient-image-viewer, .patient-photo-gallery, .patient-avatar, .patient-photo-inline) :is(button, a):focus-visible,
-:is(button.patient-avatar, .patient-photo-inline):focus-visible { outline: 3px solid var(--color-sapphire, #1d3557); outline-offset: 3px; }
+:is(button.patient-avatar, .patient-photo-inline):focus-visible { outline: 3px solid var(--panel-focus-ring, var(--color-sapphire, #1d3557)); outline-offset: 3px; }
 @media (max-width: 639px) {
   .patient-avatar-large { width: 76px; height: 92px; font-size: 1.375rem; }
   .patient-photo-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 12px; }

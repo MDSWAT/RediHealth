@@ -105,22 +105,48 @@ export function DemoPageContent({ children }: { children: ReactNode }) {
     return { request, demo: true, canOpen, navigate: (href: string, replace = false) => replace ? router.replace(href) : router.push(href) };
   }, [store, router, seed]);
 
-  const toolbar = <div className="border-b border-amber-care-border bg-amber-care-soft px-4 py-3 text-foreground dark:border-amber-care/40 dark:bg-amber-care/15 dark:text-paper">
-    <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
-      <div><p className="text-body font-bold">{t.title}</p><p className="max-w-3xl text-meta">{t.notice}</p></div>
-      <div className="flex flex-wrap items-center gap-2">
-        <label className="text-body font-semibold">{t.role}
-          <select className="ml-2 min-h-10 rounded-lg border border-amber-care-border bg-card px-3 text-body text-foreground dark:border-amber-care/50 dark:bg-ink-900 dark:text-paper" value={store?.data.role || "mediator"} disabled={!store}
-            onChange={(event) => changeRole(event.target.value === "doctor" ? "doctor" : "mediator")}>
-            <option value="mediator">{t.mediator}</option><option value="doctor">{t.doctor}</option>
-          </select>
-        </label>
-        <button type="button" onClick={reset} className="min-h-11 whitespace-nowrap rounded-lg border border-amber-care-border bg-card px-3 text-body font-semibold text-foreground dark:border-amber-care/50 dark:bg-ink-900 dark:text-paper">{t.reset}</button>
-        <Link href={withLangPrefix("/", lang)} className="inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2 text-body font-semibold underline underline-offset-2">{t.exit}</Link>
+  const toolbar = (
+    <div className="border-b border-amber-200/90 bg-amber-50/90 px-4 py-2.5 text-ink-950 dark:border-amber-400/25 dark:bg-[#1e1b13] dark:text-[#f8f3e6]">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <p className="min-w-0 max-w-3xl text-xs leading-snug text-ink-950/85 dark:text-[#e6dcc6] sm:text-[13px]">
+          <strong className="font-semibold text-ink-950 dark:text-[#f8f3e6]">{t.title}.</strong>{" "}
+          {t.notice}
+        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <label className="inline-flex items-center gap-2 text-xs font-semibold text-ink-950 dark:text-[#f8f3e6] sm:text-[13px]">
+            <span className="whitespace-nowrap">{t.role}</span>
+            <select
+              className="min-h-11 whitespace-nowrap rounded-lg border border-[#b59f6e] bg-white px-2.5 text-[13px] font-medium text-ink-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring dark:border-[#5b4d31] dark:bg-[#141a24] dark:text-[#f4f6f8]"
+              value={store?.data.role || "mediator"}
+              disabled={!store}
+              onChange={(event) => changeRole(event.target.value === "doctor" ? "doctor" : "mediator")}
+            >
+              <option value="mediator">{t.mediator}</option>
+              <option value="doctor">{t.doctor}</option>
+            </select>
+          </label>
+          <button
+            type="button"
+            onClick={reset}
+            className="min-h-11 whitespace-nowrap rounded-lg border border-[#b59f6e] bg-white px-3 text-[13px] font-semibold text-ink-950 transition-colors hover:bg-amber-100/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring dark:border-[#5b4d31] dark:bg-[#141a24] dark:text-[#f4f6f8] dark:hover:bg-[#1f2937]"
+          >
+            {t.reset}
+          </button>
+          <Link
+            href={withLangPrefix("/", lang)}
+            className="inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-2 text-[13px] font-semibold text-ink-950 underline underline-offset-4 transition-colors hover:text-sapphire focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring dark:text-[#f8f3e6] dark:hover:text-[#bad7fa]"
+          >
+            {t.exit}
+          </Link>
+        </div>
       </div>
+      {error && (
+        <p role="alert" className="mx-auto mt-2 max-w-7xl text-[13px] font-semibold text-[#b91c1c] dark:text-[#ffb4b4]">
+          {error}
+        </p>
+      )}
     </div>
-    {error && <p role="alert" className="mt-2 text-body font-semibold text-primary dark:text-ruby-300">{error}</p>}
-  </div>;
+  );
   if (!loaded) return <>{toolbar}<PanelLoading /></>;
   if (!store || !runtime) return <>{toolbar}<p role="status" className="p-6">{t.resetToContinue}</p></>;
 
@@ -139,7 +165,7 @@ export function DemoPageContent({ children }: { children: ReactNode }) {
   let content;
   if (path === "/") content = <WorkerDashboard {...props} initialInbox={demoInbox(data)} isRomania />;
   else if (path === "/patients") content = <PatientsDashboard {...props} initialPatients={patients} pendingRequestsCount={pendingRequestsCount} isRomania />;
-  else if (patientMatch && patients.find((p) => p.id === patientMatch[1])) content = <AdminShell {...props} pendingCount={pendingRequestsCount} mobilePatientCreation={{ isRomania: true }}><main id="main-content" className="crm-page"><PatientProfileView initialPatient={patients.find((p) => p.id === patientMatch[1])!} isRomania /></main></AdminShell>;
+  else if (patientMatch && patients.find((p) => p.id === patientMatch[1])) content = <AdminShell {...props} pendingCount={pendingRequestsCount}><main id="main-content" className="crm-page"><PatientProfileView initialPatient={patients.find((p) => p.id === patientMatch[1])!} isRomania /></main></AdminShell>;
   else if (path === "/calendar" && role === "doctor") content = <CalendarDashboard {...props} initialPatients={patients} pendingRequestsCount={pendingRequestsCount} />;
   else if (path === "/meet" && role === "doctor") content = <MeetDashboard {...props} assignedPatients={patients} pendingRequestsCount={pendingRequestsCount} initialMeetings={data.meetings.filter((m) => patients.some((p) => p.id === m.patient_id))} />;
   else if (meetingMatch && data.meetings.some((m) => m.id === meetingMatch[2] && m.patient_id === meetingMatch[1] && patients.some((p) => p.id === m.patient_id))) content = <FollowupMeetingWorkspace {...props} meetingId={meetingMatch[2]} patientId={meetingMatch[1]} />;

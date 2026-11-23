@@ -58,9 +58,8 @@ type PageShellOptions = Pick<AdminShellProps, "pendingCount" | "mobilePatientCre
 
 /** Staff roles are stored in English; show them in the reader's language (same wording as the worker form). */
 const ROLE_LABELS: Record<Lang, Record<string, string>> = {
-ru: { "healthcare worker": "Медицинский работник", "case worker": "Сотрудник дела", "general practitioner": "Семейный врач", "super admin": "Суперадминистратор", superadmin: "Суперадминистратор" },
-
-  en: { "healthcare worker": "Health worker", "case worker": "Case worker", "general practitioner": "Family doctor", "super admin": "Super admin", superadmin: "Super admin" },
+  ru: { doctor: "Врач", mediator: "Медиатор", nurse: "Медсестра", administrator: "Администратор", "healthcare worker": "Медицинский работник", "case worker": "Сотрудник дела", "general practitioner": "Семейный врач", "super admin": "Суперадминистратор", superadmin: "Суперадминистратор" },
+  en: { doctor: "Doctor", mediator: "Mediator", nurse: "Nurse", administrator: "Administrator", "healthcare worker": "Health worker", "case worker": "Case worker", "general practitioner": "Family doctor", "super admin": "Super admin", superadmin: "Super admin" },
   ro: { doctor: "Medic", mediator: "Mediator", nurse: "Asistent medical", "case worker": "Responsabil de caz", "general practitioner": "Medic de familie", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Personal medical" },
   sq: { doctor: "Mjek", mediator: "Mediator", nurse: "Infermier", "case worker": "Përgjegjës rasti", "general practitioner": "Mjek familje", administrator: "Administrator", "super admin": "Super administrator", superadmin: "Super administrator", "healthcare worker": "Punonjës shëndetësor" },
   it: { doctor: "Medico", mediator: "Mediatore", nurse: "Infermiere", "case worker": "Referente del caso", "general practitioner": "Medico di base", administrator: "Amministratore", "super admin": "Super amministratore", superadmin: "Super amministratore", "healthcare worker": "Operatore sanitario" },
@@ -201,6 +200,7 @@ function AdminShellFrame({
   const role = userRole.trim().toLowerCase();
   const isSuperAdmin = role === "super admin" || role === "superadmin";
   const isMediatorOnly = role === "mediator" && !isAdmin;
+  const isPatientProfile = /^\/panel\/patients\/[^/]+/.test(currentPath);
   const roleLabel = ROLE_LABELS[lang][role] || userRole;
 
   const [mobileAccountSheetOpen, setMobileAccountSheetOpen] = useState(false);
@@ -212,6 +212,17 @@ function AdminShellFrame({
   const [reportSuccess, setReportSuccess] = useState<string | null>(null);
   const [reportSubmitting, setReportSubmitting] = useState(false);
   const [creatingPatient, setCreatingPatient] = useState(false);
+  const [showMobileFab, setShowMobileFab] = useState(true);
+
+  useEffect(() => {
+    if (!isMediatorOnly || !mobilePatientCreation || isPatientProfile) return;
+    const syncFab = () => {
+      setShowMobileFab(window.scrollY > 240);
+    };
+    syncFab();
+    window.addEventListener("scroll", syncFab, { passive: true });
+    return () => window.removeEventListener("scroll", syncFab);
+  }, [isMediatorOnly, mobilePatientCreation, isPatientProfile, currentPath]);
 
   const [commandOpen, setCommandOpen] = useState(false);
   const [commandQuery, setCommandQuery] = useState("");
@@ -286,7 +297,7 @@ function AdminShellFrame({
   ru: {
       title: "Сообщить о проблеме",
       subtitle: "Расскажите нам, что пошло не так. Мы рассмотрим это.",
-      email: "Your email (optional)",
+      email: "Ваш email (необязательно)",
       message: "Что случилось",
       send: "Отправить отчет",
       sending: "Отправка...",
@@ -674,18 +685,43 @@ function AdminShellFrame({
     }
   }
 
+  const superAdminItems = [
+    {
+      label: t.logs,
+      href: "/panel/logs",
+      icon: ClockIcon,
+      active: currentPath === "/panel/logs" || currentPath.startsWith("/panel/logs/"),
+    },
+    {
+      label: institutesCopy.navLabel,
+      href: "/panel/institutes",
+      icon: PinIcon,
+      active: currentPath === "/panel/institutes" || currentPath.startsWith("/panel/institutes/"),
+    },
+    {
+      label: settingsCopy.navLabel,
+      href: "/panel/settings",
+      icon: BellIcon,
+      active: currentPath === "/panel/settings" || currentPath.startsWith("/panel/settings/"),
+    },
+  ];
+
+  const primaryDesktopItems = desktopItems.filter((item) => !ADMINISTRATION_HREFS.has(item.href));
+  const adminDesktopItems = desktopItems.filter((item) => ADMINISTRATION_HREFS.has(item.href));
+  const fabAvailable = isMediatorOnly && Boolean(mobilePatientCreation) && !isPatientProfile;
+
   return (
-    <div className="care-panel min-h-screen bg-slate-50/50">
+    <div className="care-panel min-h-screen">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-md focus:text-primary focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:whitespace-nowrap focus:rounded-lg focus:border focus:border-(--panel-line) focus:bg-(--panel-surface) focus:px-4 focus:py-2 focus:font-semibold focus:text-primary"
       >
         {copy.skip}
       </a>
 
       {/* Mobile Native-style Header */}
-      <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-border bg-white px-4 lg:hidden">
-        <div className="flex items-center gap-2">
+      <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-(--panel-line) bg-(--panel-surface) px-4 lg:hidden">
+        <div className="flex min-w-0 items-center gap-2">
           <Logo href={withLangPrefix("/", lang)} className="[&_img]:h-7 [&_img]:w-7 text-sm" />
         </div>
 
@@ -698,25 +734,16 @@ function AdminShellFrame({
               setCommandOpen(true);
             }}
             aria-label={copy.commandTrigger}
-            className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-slate-50 text-muted-foreground hover:bg-muted hover:text-foreground"
+            className="flex h-11 w-11 items-center justify-center rounded-lg border border-(--panel-line) bg-(--panel-subtle) text-(--panel-muted) transition-colors hover:bg-(--panel-selection) hover:text-(--panel-ink)"
           >
-            <SearchIcon className="h-4 w-4" />
+            <SearchIcon className="h-4 w-4" aria-hidden="true" />
           </button>
-
-          {pendingCount > 0 ? (
-            <span
-              className="inline-flex h-5 min-w-5 items-center justify-center rounded-md bg-primary px-1.5 text-xs font-bold text-white shadow-2xs tabular-nums"
-              aria-label={t.pendingRequests(pendingCount)}
-            >
-              {pendingCount}
-            </span>
-          ) : null}
 
           <button
             type="button"
             onClick={() => setMobileAccountSheetOpen(true)}
             aria-label={copy.account}
-            className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary-soft text-xs font-bold text-primary"
+            className="flex h-11 w-11 items-center justify-center rounded-lg bg-(--panel-selection) text-xs font-semibold text-primary transition-colors hover:bg-(--panel-selection)"
           >
             {userInitial}
           </button>
@@ -736,23 +763,23 @@ function AdminShellFrame({
             role="dialog"
             aria-modal="true"
             aria-label={copy.account}
-            className="app-sheet-slide-up relative w-full rounded-t-xl border-t border-border bg-card p-5 shadow-xl max-h-[85dvh] overflow-y-auto care-panel-bottom-bar"
+            className="app-sheet-slide-up relative max-h-[85dvh] w-full overflow-y-auto rounded-t-xl border-t border-(--panel-line) bg-(--panel-surface) p-5 text-(--panel-ink) care-panel-bottom-bar"
           >
-            {/* Grab Handle */}
-            <div className="mx-auto mb-3 h-1.5 w-12 rounded-sm bg-border" />
-
             <div className="mb-3">
               <CountrySwitcher />
             </div>
 
-            <div className="flex items-center justify-between pb-3 border-b border-border">
-              <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-base font-bold text-primary">
+            <div className="flex items-center justify-between border-b border-(--panel-line) pb-3">
+              <div className="flex min-w-0 items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-(--panel-selection) text-base font-semibold text-primary"
+                >
                   {userInitial}
                 </span>
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-bold text-foreground">{roleLabel}</p>
-                  <p className="truncate text-xs text-muted-foreground" title={userEmail}>
+                  <p className="truncate text-sm font-semibold text-(--panel-ink)">{roleLabel}</p>
+                  <p className="truncate text-xs text-(--panel-muted)" title={userEmail}>
                     {userEmail}
                   </p>
                 </div>
@@ -760,10 +787,10 @@ function AdminShellFrame({
               <button
                 type="button"
                 onClick={() => setMobileAccountSheetOpen(false)}
-                className="flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-(--panel-muted) transition-colors hover:bg-(--panel-selection) hover:text-(--panel-ink)"
                 aria-label={t.closeMenu}
               >
-                <CloseIcon className="h-5 w-5" />
+                <CloseIcon className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
 
@@ -771,7 +798,7 @@ function AdminShellFrame({
             <div className="mt-4 space-y-1">
               {sheetQuickLinks.length > 0 ? (
                 <>
-                  <p className="px-2 text-xs font-semibold text-muted-foreground mb-2">
+                  <p className="mb-1.5 px-2 text-xs font-medium text-(--panel-muted)">
                     {copy.quickActions}
                   </p>
 
@@ -788,26 +815,26 @@ function AdminShellFrame({
                           setReportError(null);
                           setReportSuccess(null);
                         }}
-                        className="flex min-h-11 w-full items-center justify-between rounded-lg px-3 text-left text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
+                        className="flex min-h-11 w-full items-center justify-between gap-2 whitespace-nowrap rounded-lg px-3 text-left text-sm font-medium text-(--panel-ink) transition-colors hover:bg-(--panel-selection)"
                       >
-                        <span className="flex items-center gap-2.5">
-                          <Icon className="h-5 w-5 text-primary" />
-                          <span>{link.label}</span>
+                        <span className="flex min-w-0 items-center gap-2.5">
+                          <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                          <span className="truncate">{link.label}</span>
                         </span>
-                        <ArrowRightIcon className="h-4 w-4 text-muted-foreground" />
+                        <ArrowRightIcon className="h-4 w-4 shrink-0 text-(--panel-muted)" aria-hidden="true" />
                       </button>
                     ) : (
                       <Link
                         key={link.href}
                         href={withLangPrefix(link.href, lang)}
                         onClick={() => setMobileAccountSheetOpen(false)}
-                        className="flex min-h-11 items-center justify-between rounded-xl px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
+                        className="flex min-h-11 items-center justify-between gap-2 whitespace-nowrap rounded-lg px-3 text-sm font-medium text-(--panel-ink) transition-colors hover:bg-(--panel-selection)"
                       >
-                        <span className="flex items-center gap-2.5">
-                          <Icon className="h-5 w-5 text-primary" />
-                          <span>{link.label}</span>
+                        <span className="flex min-w-0 items-center gap-2.5">
+                          <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                          <span className="truncate">{link.label}</span>
                         </span>
-                        <ArrowRightIcon className="h-4 w-4 text-muted-foreground" />
+                        <ArrowRightIcon className="h-4 w-4 shrink-0 text-(--panel-muted)" aria-hidden="true" />
                       </Link>
                     );
                   })}
@@ -817,22 +844,22 @@ function AdminShellFrame({
               <Link
                 href={withLangPrefix("/", lang)}
                 onClick={() => setMobileAccountSheetOpen(false)}
-                className="flex min-h-11 items-center justify-between rounded-xl px-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted active:bg-muted"
+                className="flex min-h-11 items-center justify-between gap-2 whitespace-nowrap rounded-lg px-3 text-sm font-medium text-(--panel-ink) transition-colors hover:bg-(--panel-selection)"
               >
-                <span className="flex items-center gap-2.5">
-                  <ArrowRightIcon className="h-5 w-5 text-muted-foreground rotate-180" />
-                  <span>{t.returnToWebsite}</span>
+                <span className="flex min-w-0 items-center gap-2.5">
+                  <ArrowRightIcon className="h-5 w-5 shrink-0 rotate-180 text-(--panel-muted)" aria-hidden="true" />
+                  <span className="truncate">{t.returnToWebsite}</span>
                 </span>
               </Link>
             </div>
 
-            <div className="mt-5 border-t border-border pt-4">
+            <div className="mt-4 border-t border-(--panel-line) pt-4">
               <button
                 type="button"
                 onClick={handleSignOut}
-                className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-border bg-white text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+                className="flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-(--panel-control-border) bg-(--panel-surface) px-4 text-sm font-semibold text-(--panel-ink) transition-colors hover:bg-(--panel-selection)"
               >
-                <LogOutIcon className="h-4 w-4" />
+                <LogOutIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{t.signOut}</span>
               </button>
             </div>
@@ -841,38 +868,40 @@ function AdminShellFrame({
       ) : null}
 
       {/* Desktop Sticky Sidebar */}
-      <div className={`panel-sidebar-layout lg:grid ${desktopSidebarCollapsed ? "lg:grid-cols-[72px_minmax(0,1fr)]" : "lg:grid-cols-[224px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)]"}`}>
-        <aside className={`panel-desktop-sidebar hidden border-r border-border bg-white lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col ${desktopSidebarCollapsed ? "lg:w-[72px]" : ""}`}>
-          <div className={`relative flex min-h-[88px] border-b border-border/80 py-4 ${desktopSidebarCollapsed ? "justify-center px-2" : "flex-col gap-1 px-5"}`}>
+      <div className={`panel-sidebar-layout lg:grid ${desktopSidebarCollapsed ? "lg:grid-cols-[72px_minmax(0,1fr)]" : "lg:grid-cols-[232px_minmax(0,1fr)] xl:grid-cols-[248px_minmax(0,1fr)]"}`}>
+        <aside className={`panel-desktop-sidebar hidden border-r border-(--panel-line) bg-(--panel-surface) lg:sticky lg:top-0 lg:flex lg:h-dvh lg:flex-col ${desktopSidebarCollapsed ? "lg:w-[72px]" : ""}`}>
+          <div className={`flex h-14 shrink-0 items-center border-b border-(--panel-line) ${desktopSidebarCollapsed ? "justify-center px-2" : "justify-between gap-2 pl-4 pr-2"}`}>
             {desktopSidebarCollapsed ? (
               <button
                 type="button"
                 onClick={() => setDesktopSidebarCollapsed(false)}
                 aria-label={copy.expandSidebar}
                 title={copy.expandSidebar}
-                className="flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-(--panel-muted) transition-colors hover:bg-(--panel-selection) hover:text-(--panel-ink)"
               >
-                <ChevronRightIcon className="h-5 w-5" />
+                <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
               </button>
             ) : (
               <>
-                <Logo href={withLangPrefix("/", lang)} className="[&_img]:h-9 [&_img]:w-9" />
-                <p className="mt-1 text-xs font-medium text-muted-foreground">{copy.workspace}</p>
+                <div className="min-w-0">
+                  <Logo href={withLangPrefix("/", lang)} className="[&_img]:h-7 [&_img]:w-7 text-[15px]" />
+                  <span className="sr-only">{copy.workspace}</span>
+                </div>
                 <button
                   type="button"
                   onClick={() => setDesktopSidebarCollapsed(true)}
                   aria-label={copy.collapseSidebar}
                   title={`${copy.collapseSidebar} ([)`}
-                  className="absolute right-2 top-4 flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-(--panel-muted) transition-colors hover:bg-(--panel-selection) hover:text-(--panel-ink)"
                 >
-                  <ChevronLeftIcon className="h-5 w-5" />
+                  <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
                 </button>
               </>
             )}
           </div>
 
           {/* Cmd+K Command Palette Trigger */}
-          <div className={`border-b border-border/70 py-2.5 ${desktopSidebarCollapsed ? "px-2" : "px-3"}`}>
+          <div className={`shrink-0 border-b border-(--panel-line) py-1.5 ${desktopSidebarCollapsed ? "px-2" : "px-3"}`}>
             <button
               type="button"
               onClick={() => {
@@ -882,18 +911,18 @@ function AdminShellFrame({
               }}
               aria-label={copy.commandTrigger}
               title={`${copy.commandTrigger} (⌘K)`}
-              className={`flex min-h-11 w-full items-center rounded-lg border border-border bg-slate-50/80 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${
-                desktopSidebarCollapsed ? "justify-center px-2" : "justify-between gap-2 px-2.5"
+              className={`flex min-h-11 w-full items-center whitespace-nowrap rounded-lg border border-(--panel-line) bg-(--panel-subtle) text-[13px] font-medium text-(--panel-muted) transition-colors hover:bg-(--panel-selection) hover:text-(--panel-ink) ${
+                desktopSidebarCollapsed ? "justify-center px-2" : "justify-between gap-2 px-3"
               }`}
             >
               <span className="flex min-w-0 items-center gap-2">
-                <SearchIcon className="h-4 w-4 shrink-0" />
+                <SearchIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                 {!desktopSidebarCollapsed ? (
                   <span className="truncate">{copy.commandTrigger}</span>
                 ) : null}
               </span>
               {!desktopSidebarCollapsed ? (
-                <kbd className="shrink-0 rounded-md border border-border bg-white px-1.5 py-0.5 font-mono text-[10px] font-semibold text-muted-foreground">
+                <kbd className="shrink-0 font-mono text-[11px] font-medium text-(--panel-muted) tabular-nums">
                   ⌘K
                 </kbd>
               ) : null}
@@ -903,10 +932,10 @@ function AdminShellFrame({
           <nav
             data-panel-sidebar-nav="true"
             aria-label={copy.navigation}
-            className={`panel-sidebar-nav flex-1 overflow-y-auto py-4 ${desktopSidebarCollapsed ? "panel-sidebar-nav-collapsed px-2" : "px-3"}`}
+            className={`panel-sidebar-nav flex-1 overflow-y-auto py-2 ${desktopSidebarCollapsed ? "panel-sidebar-nav-collapsed px-2" : "px-3"}`}
           >
-            <ul className="space-y-1">
-              {desktopItems.filter((item) => !ADMINISTRATION_HREFS.has(item.href)).map((item) => {
+            <ul className="space-y-0.5">
+              {primaryDesktopItems.map((item) => {
                 const active =
                   item.href === "/panel"
                     ? currentPath === "/panel"
@@ -919,20 +948,20 @@ function AdminShellFrame({
                       aria-current={active ? "page" : undefined}
                       title={desktopSidebarCollapsed ? item.label : undefined}
                       aria-label={`${item.label}${item.href === "/panel" && pendingCount > 0 ? `, ${t.pendingRequests(pendingCount)}` : ""}`}
-                      className={`panel-nav-link flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
+                      className={`panel-nav-link flex min-h-11 items-center gap-2.5 whitespace-nowrap rounded-lg text-[13.5px] font-medium transition-colors ${
                         desktopSidebarCollapsed ? "relative justify-center px-2" : "px-3"
                       } ${
                         active
-                          ? "bg-primary-soft font-semibold text-primary"
-                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                          ? "bg-primary font-semibold text-white"
+                          : "text-(--panel-muted) hover:bg-(--panel-selection) hover:text-(--panel-ink)"
                       }`}
                     >
-                      <Icon className="h-5 w-5 shrink-0" />
-                      {!desktopSidebarCollapsed ? <span>{item.label}</span> : null}
+                      <Icon className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
+                      {!desktopSidebarCollapsed ? <span className="truncate">{item.label}</span> : null}
                       {item.href === "/panel" && pendingCount > 0 ? (
                         <span
-                          className={`${desktopSidebarCollapsed ? "absolute right-1 top-0.5 rounded-md px-1.5 py-0.5 text-[10px]" : "ml-auto rounded-md px-2 py-0.5 text-xs"} font-bold tabular-nums ${
-                            active ? "bg-primary/10 text-primary" : "bg-primary-soft text-primary"
+                          className={`${desktopSidebarCollapsed ? "absolute right-1 top-1 text-[10px]" : "ml-auto shrink-0 text-xs"} font-semibold tabular-nums ${
+                            active ? "text-white/90" : "text-(--panel-ink)"
                           }`}
                           aria-label={t.pendingRequests(pendingCount)}
                         >
@@ -944,102 +973,73 @@ function AdminShellFrame({
                 );
               })}
             </ul>
-            {desktopItems.some((item) => ADMINISTRATION_HREFS.has(item.href)) ? (
-              <p
-                aria-hidden={desktopSidebarCollapsed || undefined}
-                className={`mt-7 mb-2 px-3 text-xs text-muted-foreground ${desktopSidebarCollapsed ? "invisible" : ""}`}
-              >
-                {crm.administration}
-              </p>
+
+            {adminDesktopItems.length > 0 ? (
+              <>
+                <p
+                  aria-hidden={desktopSidebarCollapsed || undefined}
+                  className={`mt-3 mb-1 px-3 text-[11px] font-medium text-(--panel-muted) ${desktopSidebarCollapsed ? "invisible" : ""}`}
+                >
+                  {crm.administration}
+                </p>
+                <ul className="space-y-0.5">
+                  {adminDesktopItems.map((item) => {
+                    const active = currentPath === item.href || currentPath.startsWith(`${item.href}/`);
+                    const Icon = item.icon;
+                    return (
+                      <li key={item.href}>
+                        <Link
+                          href={withLangPrefix(item.href, lang)}
+                          aria-current={active ? "page" : undefined}
+                          title={desktopSidebarCollapsed ? item.label : undefined}
+                          aria-label={item.label}
+                          className={`panel-nav-link flex min-h-11 items-center gap-2.5 whitespace-nowrap rounded-lg text-[13.5px] font-medium transition-colors ${
+                            desktopSidebarCollapsed ? "justify-center px-2" : "px-3"
+                          } ${
+                            active
+                              ? "bg-primary font-semibold text-white"
+                              : "text-(--panel-muted) hover:bg-(--panel-selection) hover:text-(--panel-ink)"
+                          }`}
+                        >
+                          <Icon className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
+                          {!desktopSidebarCollapsed ? <span className="truncate">{item.label}</span> : null}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
             ) : null}
-            <ul className="space-y-1">
-              {desktopItems.filter((item) => ADMINISTRATION_HREFS.has(item.href)).map((item) => {
-                const active =
-                  item.href === "/panel"
-                    ? currentPath === "/panel"
-                    : currentPath === item.href || currentPath.startsWith(`${item.href}/`);
-                const Icon = item.icon;
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={withLangPrefix(item.href, lang)}
-                      aria-current={active ? "page" : undefined}
-                      title={desktopSidebarCollapsed ? item.label : undefined}
-                      aria-label={`${item.label}${item.href === "/panel" && pendingCount > 0 ? `, ${t.pendingRequests(pendingCount)}` : ""}`}
-                      className={`panel-nav-link flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
-                        desktopSidebarCollapsed ? "relative justify-center px-2" : "px-3"
-                      } ${
-                        active
-                          ? "bg-primary-soft font-semibold text-primary"
-                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                      }`}
-                    >
-                      <Icon className="h-5 w-5 shrink-0" />
-                      {!desktopSidebarCollapsed ? <span>{item.label}</span> : null}
-                      {item.href === "/panel" && pendingCount > 0 ? (
-                        <span
-                          className={`ml-auto rounded-md px-2 py-0.5 text-xs font-bold tabular-nums ${
-                            active ? "bg-primary/10 text-primary" : "bg-primary-soft text-primary"
-                          }`}
-                          aria-label={t.pendingRequests(pendingCount)}
-                        >
-                          {pendingCount}
-                        </span>
-                      ) : null}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
 
             {isSuperAdmin ? (
-              <div className="mt-4 border-t border-border/70 pt-3">
-                <Link
-                  href={withLangPrefix("/panel/logs", lang)}
-                  aria-current={currentPath === "/panel/logs" || currentPath.startsWith("/panel/logs/") ? "page" : undefined}
-                  title={desktopSidebarCollapsed ? t.logs : undefined}
-                  aria-label={t.logs}
-                  className={`panel-nav-link flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
-                    currentPath === "/panel/logs" || currentPath.startsWith("/panel/logs/")
-                      ? "bg-primary-soft font-semibold text-primary"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  }`}
-                >
-                  <ClockIcon className="h-5 w-5 shrink-0" />
-                  {!desktopSidebarCollapsed ? <span>{t.logs}</span> : null}
-                </Link>
-                <Link
-                  href={withLangPrefix("/panel/institutes", lang)}
-                  aria-current={currentPath === "/panel/institutes" ? "page" : undefined}
-                  title={desktopSidebarCollapsed ? institutesCopy.navLabel : undefined}
-                  aria-label={institutesCopy.navLabel}
-                  className={`panel-nav-link mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
-                    currentPath === "/panel/institutes"
-                      ? "bg-primary-soft font-semibold text-primary"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  }`}
-                >
-                  <PinIcon className="h-5 w-5 shrink-0" />
-                  {!desktopSidebarCollapsed ? <span>{institutesCopy.navLabel}</span> : null}
-                </Link>
-                <Link
-                  href={withLangPrefix("/panel/settings", lang)}
-                  aria-current={currentPath === "/panel/settings" ? "page" : undefined}
-                  title={desktopSidebarCollapsed ? settingsCopy.navLabel : undefined}
-                  aria-label={settingsCopy.navLabel}
-                  className={`panel-nav-link mt-1 flex min-h-11 items-center gap-3 rounded-lg text-sm font-medium transition-colors ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"} ${
-                    currentPath === "/panel/settings"
-                      ? "bg-primary-soft font-semibold text-primary"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  }`}
-                >
-                  <BellIcon className="h-5 w-5 shrink-0" />
-                  {!desktopSidebarCollapsed ? <span>{settingsCopy.navLabel}</span> : null}
-                </Link>
-              </div>
+              <ul className="mt-2 space-y-0.5 border-t border-(--panel-line) pt-2">
+                {superAdminItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={withLangPrefix(item.href, lang)}
+                        aria-current={item.active ? "page" : undefined}
+                        title={desktopSidebarCollapsed ? item.label : undefined}
+                        aria-label={item.label}
+                        className={`panel-nav-link flex min-h-11 items-center gap-2.5 whitespace-nowrap rounded-lg text-[13.5px] font-medium transition-colors ${
+                          desktopSidebarCollapsed ? "justify-center px-2" : "px-3"
+                        } ${
+                          item.active
+                            ? "bg-primary font-semibold text-white"
+                            : "text-(--panel-muted) hover:bg-(--panel-selection) hover:text-(--panel-ink)"
+                        }`}
+                      >
+                        <Icon className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
+                        {!desktopSidebarCollapsed ? <span className="truncate">{item.label}</span> : null}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
             ) : null}
 
-            <div className="mt-4 border-t border-border/70 pt-3">
+            <div className="mt-2 border-t border-(--panel-line) pt-2">
               <button
                 type="button"
                 onClick={() => {
@@ -1049,66 +1049,73 @@ function AdminShellFrame({
                 }}
                 aria-label={t.reportIssue}
                 title={desktopSidebarCollapsed ? t.reportIssue : undefined}
-                className={`flex min-h-11 w-full items-center gap-3 rounded-lg text-left text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center px-2" : "px-3"}`}
+                className={`flex min-h-11 w-full items-center gap-2.5 whitespace-nowrap rounded-lg text-left text-[13.5px] font-medium text-(--panel-muted) transition-colors hover:bg-(--panel-selection) hover:text-(--panel-ink) ${
+                  desktopSidebarCollapsed ? "justify-center px-2" : "px-3"
+                }`}
               >
-                <AlertCircleIcon className="h-5 w-5 shrink-0" />
-                {!desktopSidebarCollapsed ? <span>{t.reportIssue}</span> : null}
+                <AlertCircleIcon className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
+                {!desktopSidebarCollapsed ? <span className="truncate">{t.reportIssue}</span> : null}
               </button>
             </div>
           </nav>
 
-          <div className={`border-t border-border bg-muted/20 ${desktopSidebarCollapsed ? "space-y-2 p-2" : "space-y-3 p-4"}`}>
+          {/* Flat, spacious, hairline-separated sidebar footer */}
+          <div className={`shrink-0 border-t border-(--panel-line) bg-(--panel-surface) ${desktopSidebarCollapsed ? "space-y-1.5 px-2 py-2" : "space-y-1.5 px-3 py-2.5"}`}>
             <CountrySwitcher compact={desktopSidebarCollapsed} />
             <div
               title={desktopSidebarCollapsed ? `${roleLabel} — ${userEmail}` : undefined}
-              className={`flex items-center rounded-lg border border-border/60 bg-white ${desktopSidebarCollapsed ? "justify-center p-2" : "gap-3 p-2.5"}`}
+              className={`flex items-center ${desktopSidebarCollapsed ? "justify-center py-1" : "gap-2.5 px-1 py-1"}`}
             >
               <span
                 aria-hidden="true"
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-soft font-bold text-primary"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-(--panel-selection) text-xs font-semibold text-primary"
               >
                 {userInitial}
               </span>
               {!desktopSidebarCollapsed ? (
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-xs font-bold text-foreground">{roleLabel}</p>
-                  <p className="truncate text-[11px] text-muted-foreground" title={userEmail}>
+                <div className="min-w-0 flex-1 leading-tight">
+                  <p className="truncate text-[13px] font-semibold text-(--panel-ink)">{roleLabel}</p>
+                  <p className="truncate text-[11px] text-(--panel-muted)" title={userEmail}>
                     {userEmail}
                   </p>
                 </div>
               ) : null}
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-0.5 border-t border-(--panel-line)/70 pt-1">
               <Link
                 href={withLangPrefix("/", lang)}
                 aria-label={t.returnToWebsite}
                 title={desktopSidebarCollapsed ? t.returnToWebsite : undefined}
-                className={`flex min-h-11 items-center rounded-lg text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center" : "justify-between px-2.5"}`}
+                className={`flex min-h-11 w-full items-center whitespace-nowrap rounded-lg text-[13px] font-medium text-(--panel-muted) transition-colors hover:bg-(--panel-selection) hover:text-(--panel-ink) ${
+                  desktopSidebarCollapsed ? "justify-center" : "justify-between gap-2 px-2.5"
+                }`}
               >
-                {!desktopSidebarCollapsed ? <span>{t.returnToWebsite}</span> : null}
-                <ArrowRightIcon className="h-3.5 w-3.5" />
+                {!desktopSidebarCollapsed ? <span className="truncate">{t.returnToWebsite}</span> : null}
+                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               </Link>
               <button
                 type="button"
                 onClick={handleSignOut}
                 aria-label={t.signOut}
                 title={desktopSidebarCollapsed ? t.signOut : undefined}
-                className={`flex min-h-11 w-full items-center rounded-lg text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground ${desktopSidebarCollapsed ? "justify-center" : "justify-between px-2.5"}`}
+                className={`flex min-h-11 w-full items-center whitespace-nowrap rounded-lg text-[13px] font-medium text-(--panel-muted) transition-colors hover:bg-(--panel-selection) hover:text-(--panel-ink) ${
+                  desktopSidebarCollapsed ? "justify-center" : "justify-between gap-2 px-2.5"
+                }`}
               >
-                {!desktopSidebarCollapsed ? <span>{t.signOut}</span> : null}
-                <LogOutIcon className="h-3.5 w-3.5" />
+                {!desktopSidebarCollapsed ? <span className="truncate">{t.signOut}</span> : null}
+                <LogOutIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               </button>
             </div>
           </div>
         </aside>
 
-        {/* Main Content Area - with bottom padding for mobile app bar */}
-        <div className="min-w-0 flex-1 pb-20 lg:pb-0">
+        {/* Main Content Area - with bottom padding for mobile app bar (and scroll clearance when FAB is active) */}
+        <div className={`min-w-0 flex-1 ${fabAvailable ? "pb-36 lg:pb-0" : "pb-20 lg:pb-0"}`}>
           {!demo && !offline && ["doctor", "mediator"].includes(role) && (
-            <div className="border-b border-border bg-card px-4 py-1.5 text-right text-sm">
+            <div className="border-b border-(--panel-line) bg-(--panel-surface) px-4 py-1 text-right text-sm">
               <a
-                className="inline-flex min-h-11 items-center rounded-md px-2 font-medium text-primary"
+                className="inline-flex min-h-11 items-center whitespace-nowrap rounded-md px-2 font-medium text-primary hover:underline"
                 href={withLangPrefix("/offline", lang)}
               >
                 {reportText.offline}
@@ -1122,37 +1129,29 @@ function AdminShellFrame({
       {/* Native App Bottom Tab Bar (Mobile only) */}
       <nav
         aria-label={copy.navigation}
-        className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-white lg:hidden care-panel-bottom-bar"
+        className="fixed bottom-0 left-0 right-0 z-40 border-t border-(--panel-line) bg-(--panel-surface) lg:hidden care-panel-bottom-bar"
       >
-        <ul className="flex items-center justify-around h-14 px-1">
+        <ul className="flex h-14 items-center justify-around px-1">
           {mobilePrimaryTabs.map((item) => {
             const active =
               item.href === "/panel"
                 ? currentPath === "/panel"
                 : currentPath === item.href || currentPath.startsWith(`${item.href}/`);
             const Icon = item.icon;
+            const showCount = item.href === "/panel" && pendingCount > 0;
             return (
-              <li key={item.href} className="flex-1">
+              <li key={item.href} className="min-w-0 flex-1">
                 <Link
                   href={withLangPrefix(item.href, lang)}
                   aria-current={active ? "page" : undefined}
-                  className={`flex min-h-11 flex-col items-center justify-center py-1 text-center transition-colors ${
-                    active ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground"
+                  aria-label={`${item.label}${showCount ? `, ${t.pendingRequests(pendingCount)}` : ""}`}
+                  className={`flex min-h-11 flex-col items-center justify-center whitespace-nowrap py-1 text-center transition-colors ${
+                    active ? "font-semibold text-primary" : "text-(--panel-muted) hover:text-(--panel-ink)"
                   }`}
                 >
-                  <div className="relative">
-                    <Icon className="h-5 w-5" />
-                    {item.href === "/panel" && pendingCount > 0 ? (
-                      <span
-                        className="absolute -top-1 -right-2.5 flex h-4 min-w-4 items-center justify-center rounded-md bg-primary px-1 text-[9px] font-bold text-white shadow-2xs tabular-nums"
-                        aria-label={t.pendingRequests(pendingCount)}
-                      >
-                        {pendingCount}
-                      </span>
-                    ) : null}
-                  </div>
-                  <span className="mt-1 text-[10px] tracking-tight truncate max-w-[68px] block">
-                    {item.label}
+                  <Icon className="h-5 w-5 shrink-0" aria-hidden="true" />
+                  <span className="mt-0.5 block max-w-[84px] truncate text-[11px] tabular-nums tracking-tight">
+                    {showCount ? `${item.label} (${pendingCount})` : item.label}
                   </span>
                 </Link>
               </li>
@@ -1160,19 +1159,19 @@ function AdminShellFrame({
           })}
 
           {/* Account / More tab */}
-          <li className="flex-1">
+          <li className="min-w-0 flex-1">
             <button
               type="button"
               onClick={() => setMobileAccountSheetOpen(true)}
               aria-label={copy.more}
-              className={`flex min-h-11 w-full flex-col items-center justify-center py-1 text-center transition-colors ${
+              className={`flex min-h-11 w-full flex-col items-center justify-center whitespace-nowrap py-1 text-center transition-colors ${
                 mobileAccountSheetOpen
-                  ? "text-primary font-bold"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "font-semibold text-primary"
+                  : "text-(--panel-muted) hover:text-(--panel-ink)"
               }`}
             >
-              <UserIcon className="h-5 w-5" />
-              <span className="mt-1 text-[10px] tracking-tight truncate max-w-[68px] block">
+              <UserIcon className="h-5 w-5 shrink-0" aria-hidden="true" />
+              <span className="mt-0.5 block max-w-[84px] truncate text-[11px] tracking-tight">
                 {copy.more}
               </span>
             </button>
@@ -1180,9 +1179,9 @@ function AdminShellFrame({
         </ul>
       </nav>
 
-      {isMediatorOnly && mobilePatientCreation ? (
+      {fabAvailable && mobilePatientCreation ? (
         <>
-          {!mobileAccountSheetOpen && !reportIssueOpen && !creatingPatient && !commandOpen ? (
+          {showMobileFab && !mobileAccountSheetOpen && !reportIssueOpen && !creatingPatient && !commandOpen ? (
             <button
               type="button"
               aria-label={createPatientModalTranslations[lang].titleCreate}
@@ -1219,14 +1218,14 @@ function AdminShellFrame({
             role="dialog"
             aria-modal="true"
             aria-labelledby={`${commandDialogId}-title`}
-            className="app-sheet-slide-up relative w-full max-w-lg overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
+            className="app-sheet-slide-up relative w-full max-w-lg overflow-hidden rounded-xl border border-(--panel-line) bg-(--panel-surface) text-(--panel-ink) shadow-2xl"
           >
             <h2 id={`${commandDialogId}-title`} className="sr-only">
               {copy.commandTitle}
             </h2>
 
-            <div className="flex items-center gap-2.5 border-b border-border px-4 py-2.5">
-              <SearchIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
+            <div className="flex items-center gap-2.5 border-b border-(--panel-line) px-4 py-2.5">
+              <SearchIcon className="h-4 w-4 shrink-0 text-(--panel-muted)" aria-hidden="true" />
               <input
                 ref={commandInputRef}
                 type="search"
@@ -1258,7 +1257,7 @@ function AdminShellFrame({
                 }}
                 placeholder={copy.commandPlaceholder}
                 aria-label={copy.commandPlaceholder}
-                className="min-h-11 flex-1 rounded-md border-0 bg-transparent px-2 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+                className="min-h-11 flex-1 rounded-md border-0 bg-transparent px-2 text-base text-(--panel-ink) placeholder:text-(--panel-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
               />
               <button
                 type="button"
@@ -1267,15 +1266,15 @@ function AdminShellFrame({
                   setCommandQuery("");
                 }}
                 aria-label={t.closeMenu}
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-(--panel-muted) hover:bg-(--panel-selection) hover:text-(--panel-ink)"
               >
-                <CloseIcon className="h-4 w-4" />
+                <CloseIcon className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
 
             <div className="max-h-80 overflow-y-auto p-2">
               {filteredCommands.length === 0 ? (
-                <p className="px-3 py-8 text-center text-sm text-muted-foreground">
+                <p className="px-3 py-8 text-center text-sm text-(--panel-muted)">
                   {copy.commandEmpty}
                 </p>
               ) : (
@@ -1286,7 +1285,7 @@ function AdminShellFrame({
                   if (groupItems.length === 0) return null;
                   return (
                     <div key={groupKey} className="mb-2 last:mb-0">
-                      <p className="px-2.5 py-1 text-xs font-semibold text-muted-foreground">
+                      <p className="px-2.5 py-1 text-xs font-medium text-(--panel-muted)">
                         {groupKey === "nav"
                           ? copy.commandGroupNav
                           : copy.commandGroupActions}
@@ -1306,18 +1305,18 @@ function AdminShellFrame({
                                   setCommandQuery("");
                                   entry.execute();
                                 }}
-                                className={`flex min-h-11 w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors ${
+                                className={`flex min-h-11 w-full items-center justify-between gap-3 whitespace-nowrap rounded-lg px-3 py-2 text-left text-sm transition-colors ${
                                   isHighlighted
-                                    ? "bg-primary-soft font-semibold text-primary"
-                                    : "text-foreground hover:bg-muted"
+                                    ? "bg-(--panel-selection) font-semibold text-primary"
+                                    : "text-(--panel-ink) hover:bg-(--panel-subtle)"
                                 }`}
                               >
                                 <span className="flex min-w-0 items-center gap-2.5">
-                                  <Icon className="h-4 w-4 shrink-0" />
+                                  <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
                                   <span className="truncate">{entry.label}</span>
                                 </span>
                                 {entry.shortcut ? (
-                                  <kbd className="shrink-0 rounded-md border border-border bg-white px-1.5 py-0.5 font-mono text-[11px] font-semibold text-muted-foreground">
+                                  <kbd className="shrink-0 font-mono text-[11px] font-medium text-(--panel-muted) tabular-nums">
                                     {entry.shortcut}
                                   </kbd>
                                 ) : null}
@@ -1332,7 +1331,7 @@ function AdminShellFrame({
               )}
             </div>
 
-            <div className="border-t border-border bg-muted/40 px-4 py-2 text-[11px] text-muted-foreground">
+            <div className="border-t border-(--panel-line) bg-(--panel-subtle) px-4 py-2 text-[11px] text-(--panel-muted)">
               {copy.commandFooterHint}
             </div>
           </div>
@@ -1351,29 +1350,28 @@ function AdminShellFrame({
             role="dialog"
             aria-modal="true"
             aria-labelledby={`${reportFieldId}-title`}
-            className="app-sheet-slide-up relative w-full max-w-2xl rounded-t-xl border-t border-border bg-card p-5 shadow-xl sm:rounded-xl sm:border sm:p-6"
+            className="app-sheet-slide-up relative w-full max-w-2xl rounded-t-xl border-t border-(--panel-line) bg-(--panel-surface) p-5 text-(--panel-ink) shadow-xl sm:rounded-xl sm:border sm:p-6"
           >
-            <div className="mx-auto mb-3 h-1.5 w-12 rounded-sm bg-border sm:hidden" />
-            <div className="mb-4 flex items-start justify-between gap-3 border-b border-border pb-4 sm:items-center">
+            <div className="mb-4 flex items-start justify-between gap-3 border-b border-(--panel-line) pb-4 sm:items-center">
               <div className="min-w-0">
-                <h2 id={`${reportFieldId}-title`} className="text-base font-bold text-foreground sm:text-lg">
+                <h2 id={`${reportFieldId}-title`} className="text-base font-semibold text-(--panel-ink) sm:text-lg">
                   {reportText.title}
                 </h2>
-                <p className="text-sm text-muted-foreground">{reportText.subtitle}</p>
+                <p className="text-sm text-(--panel-muted)">{reportText.subtitle}</p>
               </div>
               <button
                 type="button"
                 onClick={() => setReportIssueOpen(false)}
                 aria-label={reportText.cancel}
-                className="flex h-11 w-11 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-(--panel-muted) hover:bg-(--panel-selection) hover:text-(--panel-ink)"
               >
-                <CloseIcon className="h-5 w-5" />
+                <CloseIcon className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
 
             <form onSubmit={handleSubmitIssue} className="space-y-4">
               <div>
-                <label htmlFor={`${reportFieldId}-email`} className="mb-1 block text-xs font-semibold text-foreground">
+                <label htmlFor={`${reportFieldId}-email`} className="mb-1 block text-xs font-semibold text-(--panel-ink)">
                   {reportText.email}
                 </label>
                 <input
@@ -1383,12 +1381,12 @@ function AdminShellFrame({
                   value={reportEmail}
                   onChange={(event) => setReportEmail(event.target.value)}
                   placeholder="you@example.com"
-                  className="min-h-11 w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+                  className="min-h-11 w-full rounded-lg border border-(--panel-control-border) bg-(--panel-surface) px-3 py-2 text-base text-(--panel-ink) placeholder:text-(--panel-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
                 />
               </div>
 
               <div>
-                <label htmlFor={`${reportFieldId}-message`} className="mb-1 block text-xs font-semibold text-foreground">
+                <label htmlFor={`${reportFieldId}-message`} className="mb-1 block text-xs font-semibold text-(--panel-ink)">
                   {reportText.message}
                 </label>
                 <textarea
@@ -1399,18 +1397,18 @@ function AdminShellFrame({
                   value={reportMessage}
                   onChange={(event) => setReportMessage(event.target.value)}
                   placeholder={reportText.placeholder}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
+                  className="w-full rounded-lg border border-(--panel-control-border) bg-(--panel-surface) px-3 py-2 text-base text-(--panel-ink) placeholder:text-(--panel-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:text-sm"
                 />
               </div>
 
               {reportError ? (
-                <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+                <p role="alert" className="rounded-lg border border-(--panel-danger-border) bg-(--panel-danger-soft) px-3 py-2 text-sm text-(--panel-danger)">
                   {reportError}
                 </p>
               ) : null}
 
               {reportSuccess ? (
-                <p role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+                <p role="status" className="rounded-lg border border-(--panel-line) bg-(--panel-selection) px-3 py-2 text-sm text-(--panel-ink)">
                   {reportSuccess}
                 </p>
               ) : null}
@@ -1419,14 +1417,14 @@ function AdminShellFrame({
                 <button
                   type="button"
                   onClick={() => setReportIssueOpen(false)}
-                  className="inline-flex min-h-11 items-center rounded-lg px-4 text-sm font-semibold text-foreground hover:bg-muted"
+                  className="inline-flex min-h-11 items-center whitespace-nowrap rounded-lg px-4 text-sm font-semibold text-(--panel-ink) transition-colors hover:bg-(--panel-selection)"
                 >
                   {reportText.cancel}
                 </button>
                 <button
                   type="submit"
                   disabled={reportSubmitting}
-                  className="inline-flex min-h-11 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-white hover:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground"
+                  className="inline-flex min-h-11 items-center whitespace-nowrap rounded-lg bg-primary px-4 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:bg-(--panel-subtle) disabled:text-(--panel-muted)"
                 >
                   {reportSubmitting ? reportText.sending : reportText.send}
                 </button>
