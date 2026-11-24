@@ -107,7 +107,6 @@ export function Footer() {
       links: [
         { label: chrome.liveDoctor, href: "/medic-online" },
         { label: tFooter.col2Link1, href: "/find-help" },
-        { label: tFooter.col2Link2, href: "/stiri" },
         { label: tFooter.col2Link3, href: "/contul-meu" },
       ],
     },

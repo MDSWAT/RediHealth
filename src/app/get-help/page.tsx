@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { GetHelpPageContent } from "@/components/get-help/GetHelpPageContent";
-import { COUNTRY_INFO, parseCountry } from "@/lib/countries";
-import { configuredCountries } from "@/lib/database";
+import { SUPPORTED_COUNTRIES, parseCountry } from "@/lib/countries";
+import { defaultCountryForLang } from "@/lib/country-areas";
 import { getRequestLang } from "@/lib/i18n/server-routing";
 import { countryFromHeaders } from "@/lib/medical-institutes";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
@@ -21,14 +21,10 @@ export default async function GetHelpPage({
 }: {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const countries = configuredCountries();
+  const countries = [...SUPPORTED_COUNTRIES];
   const lang = await getRequestLang();
   const visitorCountry = parseCountry(countryFromHeaders(await headers()));
-  const initialCountry =
-    (visitorCountry && countries.includes(visitorCountry) ? visitorCountry : null) ??
-    countries.find((country) => COUNTRY_INFO[country].lang === lang) ??
-    countries[0] ??
-    null;
+  const initialCountry = visitorCountry ?? defaultCountryForLang(lang);
   const resolvedSearchParams = await searchParams;
   const mode = resolvedSearchParams?.mode === "mediator" ? "mediator" : undefined;
 

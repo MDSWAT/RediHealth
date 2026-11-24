@@ -17,7 +17,7 @@ import {
 import { filterCountyModalGroups } from "@/components/news/CountyOverrideModal";
 import { newsForPlace, placeCountry } from "@/components/news/PlaceNewsModal";
 import { countyLabel, formatNewsDate, resolveNewsBasePath } from "@/components/news/news-format";
-import { NEWS_ARTICLES, articleCountry, getLocalizedArticle } from "@/lib/data/news";
+import { NEWS_ARTICLES, articleCountry, getLocalizedArticle, type NewsArticle } from "@/lib/data/news";
 import { GLOSSARY_TRANSLATIONS, ROMANIAN_MEDICAL_GLOSSARY } from "@/lib/i18n/romanian-medical-glossary";
 import { ROMANES_GLOSSARY_TERMS } from "@/lib/i18n/romanes-glossary";
 import { getLangFromPathname, isSupportedLang, stripLangFromPathname, withLangPrefix } from "@/lib/i18n/routing";
@@ -86,26 +86,135 @@ describe("Croatia and Moldova regional maps and conditional /news hub", () => {
     expect(mapCountriesForLang("rom")).toEqual(["ro", "md"]);
   });
 
-  it("isolates local and nationwide news per country with zero cross-country leakage (including shared name Călărași and Albania)", () => {
-    const hrZagreb = newsForPlace("Grad Zagreb", NEWS_ARTICLES);
+  it("keeps NEWS_ARTICLES empty and isolates local and nationwide news per country with zero cross-country leakage", () => {
+    expect(NEWS_ARTICLES).toEqual([]);
+
+    const fixtureArticles: NewsArticle[] = [
+      {
+        id: "fx-hr-zagreb",
+        slug: "fx-hr-zagreb",
+        title: "Zagreb",
+        category: "Caravane medicale",
+        county: "Grad Zagreb",
+        country: "hr",
+        date: "2026-11-09",
+        readTimeMinutes: 2,
+        summary: "Summary",
+        content: ["Body"],
+        verifiedDoctor: { name: "Dr", specialty: "GP", verifiedDate: "2026-11-09" },
+        tags: [],
+        audioNarrationDuration: "1 min",
+      },
+      {
+        id: "fx-hr-nat",
+        slug: "fx-hr-nat",
+        title: "Croatia",
+        category: "Campanii de vaccinare",
+        county: ALL_CROATIA,
+        country: "hr",
+        date: "2026-11-09",
+        readTimeMinutes: 2,
+        summary: "Summary",
+        content: ["Body"],
+        verifiedDoctor: { name: "Dr", specialty: "GP", verifiedDate: "2026-11-09" },
+        tags: [],
+        audioNarrationDuration: "1 min",
+      },
+      {
+        id: "fx-al-tirane",
+        slug: "fx-al-tirane",
+        title: "Tiranë",
+        category: "Caravane medicale",
+        county: "Tiranë",
+        country: "al",
+        date: "2026-11-09",
+        readTimeMinutes: 2,
+        summary: "Summary",
+        content: ["Body"],
+        verifiedDoctor: { name: "Dr", specialty: "GP", verifiedDate: "2026-11-09" },
+        tags: [],
+        audioNarrationDuration: "1 min",
+      },
+      {
+        id: "fx-al-nat",
+        slug: "fx-al-nat",
+        title: "Albania",
+        category: "Campanii de vaccinare",
+        county: ALL_ALBANIA,
+        country: "al",
+        date: "2026-11-09",
+        readTimeMinutes: 2,
+        summary: "Summary",
+        content: ["Body"],
+        verifiedDoctor: { name: "Dr", specialty: "GP", verifiedDate: "2026-11-09" },
+        tags: [],
+        audioNarrationDuration: "1 min",
+      },
+      {
+        id: "fx-md-soroca",
+        slug: "fx-md-soroca",
+        title: "Soroca",
+        category: "Caravane medicale",
+        county: "Soroca",
+        country: "md",
+        date: "2026-11-09",
+        readTimeMinutes: 2,
+        summary: "Summary",
+        content: ["Body"],
+        verifiedDoctor: { name: "Dr", specialty: "GP", verifiedDate: "2026-11-09" },
+        tags: [],
+        audioNarrationDuration: "1 min",
+      },
+      {
+        id: "fx-md-nat",
+        slug: "fx-md-nat",
+        title: "Moldova",
+        category: "Campanii de vaccinare",
+        county: ALL_MOLDOVA,
+        country: "md",
+        date: "2026-11-09",
+        readTimeMinutes: 2,
+        summary: "Summary",
+        content: ["Body"],
+        verifiedDoctor: { name: "Dr", specialty: "GP", verifiedDate: "2026-11-09" },
+        tags: [],
+        audioNarrationDuration: "1 min",
+      },
+      {
+        id: "fx-ro-calarasi",
+        slug: "fx-ro-calarasi",
+        title: "Călărași RO",
+        category: "Alerte locale",
+        county: "Călărași",
+        date: "2026-11-09",
+        readTimeMinutes: 2,
+        summary: "Summary",
+        content: ["Body"],
+        verifiedDoctor: { name: "Dr", specialty: "GP", verifiedDate: "2026-11-09" },
+        tags: [],
+        audioNarrationDuration: "1 min",
+      },
+    ];
+
+    const hrZagreb = newsForPlace("Grad Zagreb", fixtureArticles);
     expect(hrZagreb.local.length).toBeGreaterThan(0);
     expect(hrZagreb.national.length).toBeGreaterThan(0);
     expect([...hrZagreb.local, ...hrZagreb.national].every((a) => articleCountry(a) === "hr")).toBe(true);
 
-    const alTirane = newsForPlace("Tiranë", NEWS_ARTICLES);
+    const alTirane = newsForPlace("Tiranë", fixtureArticles);
     expect(alTirane.local.length).toBeGreaterThan(0);
     expect(alTirane.national.length).toBeGreaterThan(0);
     expect([...alTirane.local, ...alTirane.national].every((a) => articleCountry(a) === "al")).toBe(true);
 
-    const mdSoroca = newsForPlace("Soroca", NEWS_ARTICLES);
+    const mdSoroca = newsForPlace("Soroca", fixtureArticles);
     expect(mdSoroca.local.length).toBeGreaterThan(0);
     expect(mdSoroca.national.length).toBeGreaterThan(0);
     expect([...mdSoroca.local, ...mdSoroca.national].every((a) => articleCountry(a) === "md")).toBe(true);
 
-    const mdCalarasi = newsForPlace("Călărași", NEWS_ARTICLES, "md");
+    const mdCalarasi = newsForPlace("Călărași", fixtureArticles, "md");
     expect([...mdCalarasi.local, ...mdCalarasi.national].every((a) => articleCountry(a) === "md")).toBe(true);
 
-    const roCalarasi = newsForPlace("Călărași", NEWS_ARTICLES, "ro");
+    const roCalarasi = newsForPlace("Călărași", fixtureArticles, "ro");
     expect([...roCalarasi.local, ...roCalarasi.national].every((a) => articleCountry(a) === "ro")).toBe(true);
 
     expect(placeCountry(ALL_CROATIA)).toBe("hr");
@@ -152,9 +261,37 @@ describe("Croatian (hr) and Common Romani (rom) clinical terminology and URL rou
     }
   });
 
-  it("localizes Moldova and Croatia news articles across all 6 languages", () => {
-    const hrArticle = NEWS_ARTICLES.find((a) => a.id === "hr-mobilna-ambulanta-zagreb")!;
-    const mdArticle = NEWS_ARTICLES.find((a) => a.id === "md-caravana-soroca")!;
+  it("localizes Moldova and Croatia news article structures across all 6 languages", () => {
+    const hrArticle: NewsArticle = {
+      id: "hr-mobilna-ambulanta-zagreb",
+      slug: "mobilna-ambulanta-zagreb-besplatni-pregledi",
+      title: "Clinica mobilă în Zagreb",
+      category: "Caravane medicale",
+      county: "Grad Zagreb",
+      country: "hr",
+      date: "2026-11-09",
+      readTimeMinutes: 2,
+      summary: "Summary",
+      content: ["Body"],
+      verifiedDoctor: { name: "Dr", specialty: "GP", verifiedDate: "2026-11-09" },
+      tags: [],
+      audioNarrationDuration: "1 min",
+    };
+    const mdArticle: NewsArticle = {
+      id: "md-caravana-soroca",
+      slug: "caravana-medicala-soroca-consultatii-gratuite",
+      title: "Caravana medicală ajunge la Soroca",
+      category: "Caravane medicale",
+      county: "Soroca",
+      country: "md",
+      date: "2026-11-08",
+      readTimeMinutes: 2,
+      summary: "Summary",
+      content: ["Body"],
+      verifiedDoctor: { name: "Dr", specialty: "GP", verifiedDate: "2026-11-08" },
+      tags: [],
+      audioNarrationDuration: "1 min",
+    };
     for (const lang of ["ro", "en", "sq", "it", "hr", "rom"] as const) {
       expect(getLocalizedArticle(hrArticle, lang).title.length).toBeGreaterThan(10);
       expect(getLocalizedArticle(mdArticle, lang).title.length).toBeGreaterThan(10);

@@ -2055,11 +2055,12 @@ html[data-text-scale="xl"] .site-header :is(button, a)[class~="w-11"] {
     background-color var(--dur-fast) var(--ease-out-calm);
 
   @media (hover: hover) and (pointer: fine) {
-    &:hover:not(:disabled, :focus-visible) {
+    &:hover:not(:disabled, :focus, :focus-visible) {
       border-color: color-mix(in oklab, var(--color-foreground) 55%, var(--color-border-control));
     }
   }
 
+  &:focus,
   &:focus-visible {
     outline: none;
     border-color: var(--color-sapphire);
@@ -2070,14 +2071,29 @@ html[data-text-scale="xl"] .site-header :is(button, a)[class~="w-11"] {
     border-color: var(--color-primary);
   }
 
+  &[aria-invalid="true"]:focus,
   &[aria-invalid="true"]:focus-visible {
     box-shadow: 0 0 0 4px var(--color-primary-ring);
   }
 
+  &:where(.dark, .dark *):focus,
   &:where(.dark, .dark *):focus-visible {
     border-color: var(--color-sapphire-border);
     box-shadow: 0 0 0 4px rgb(191 219 254 / 0.2);
   }
+}
+
+/* Custom-chevron selects: suppress native browser arrow and Chromium 135+ ::picker-icon. */
+select.appearance-none {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none;
+  align-content: center;
+}
+
+select.appearance-none::picker-icon {
+  display: none;
 }
 
 /*

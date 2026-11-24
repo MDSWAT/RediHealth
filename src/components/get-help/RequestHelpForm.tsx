@@ -4,11 +4,17 @@ import { trackEvent } from "@/lib/analytics-events";
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
+import { ChevronDownIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang, Translations } from "@/lib/i18n/translations";
 import { isValidEmail } from "@/lib/text";
 import { COUNTRY_LABELS, type CountryCode } from "@/lib/countries";
-import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
+import {
+  PHONE_PLACEHOLDERS,
+  getAreaFieldCopy,
+  getAreasForCountry,
+  isValidAreaForCountry,
+} from "@/lib/country-areas";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
@@ -28,6 +34,10 @@ type Errors = Partial<Record<keyof Fields, string>>;
 const inputClass =
   "field-focus mt-1.5 block w-full min-h-12 rounded-lg border border-border-control bg-card px-3.5 text-body text-foreground " +
   "placeholder:text-muted-foreground aria-[invalid=true]:border-primary";
+
+const selectClass =
+  "field-focus min-h-12 w-full cursor-pointer appearance-none rounded-lg border border-border-control bg-card py-2.5 pl-3.5 pr-10 text-body text-foreground " +
+  "aria-[invalid=true]:border-primary";
 
 /** Field messages ease in under their field instead of snapping the form taller. */
 const fieldErrorClass = "swap-in mt-1.5 text-body font-medium text-primary";
@@ -172,6 +182,10 @@ export function RequestHelpForm({
   const formRef = useRef<HTMLFormElement>(null);
   const successHeadingRef = useRef<HTMLHeadingElement>(null);
 
+  const areaCopy = country ? getAreaFieldCopy(country, lang) : null;
+  const areaOptions = country ? getAreasForCountry(country) : [];
+  const phonePlaceholder = country ? PHONE_PLACEHOLDERS[country] : form.phonePlaceholder;
+
   // After sending, move focus to the confirmation so it is announced and in view.
   useEffect(() => {
     if (submitted) successHeadingRef.current?.focus();
@@ -189,7 +203,7 @@ export function RequestHelpForm({
     event.preventDefault();
     const nextErrors = validate(values, form);
     setErrors(nextErrors);
-    const missingCounty = country === "RO" && !county;
+    const missingCounty = Boolean(country) && !isValidAreaForCountry(country as CountryCode, county);
     setCountyError(missingCounty);
     setConsentAttempted(true);
     if (Object.keys(nextErrors).length !== 0 || missingCounty || !privacyConsent) {
@@ -362,7 +376,7 @@ export function RequestHelpForm({
             aria-invalid={Boolean(errors.phone)}
             aria-describedby={errors.phone ? "phone-error" : undefined}
             className={`${inputClass} h-12`}
-            placeholder={form.phonePlaceholder}
+            placeholder={phonePlaceholder}
           />
           {errors.phone ? (
             <p id="phone-error" className={fieldErrorClass}>
@@ -376,51 +390,63 @@ export function RequestHelpForm({
             <label htmlFor="country" className="text-body font-semibold text-foreground">
               {countryLabel[lang]}
             </label>
-            <select
-              id="country"
-              name="country"
-              value={country}
-              onChange={(event) => {
-                setCountry(event.target.value as CountryCode);
-                setCounty("");
-                setCountyError(false);
-              }}
-              className={`${inputClass} h-12`}
-            >
-              {countries.map((code) => (
-                <option key={code} value={code}>
-                  {COUNTRY_LABELS[code][lang]}
-                </option>
-              ))}
-            </select>
+            <div className="relative mt-1.5">
+              <select
+                id="country"
+                name="country"
+                value={country}
+                onChange={(event) => {
+                  setCountry(event.target.value as CountryCode);
+                  setCounty("");
+                  setCountyError(false);
+                }}
+                className={selectClass}
+              >
+                {countries.map((code) => (
+                  <option key={code} value={code}>
+                    {COUNTRY_LABELS[code][lang]}
+                  </option>
+                ))}
+              </select>
+              <ChevronDownIcon
+                className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+                aria-hidden="true"
+              />
+            </div>
           </div>
         ) : null}
 
-        {country === "RO" ? (
+        {country && areaCopy ? (
           <div>
             <label htmlFor="county" className="text-body font-semibold text-foreground">
-              {form.countyLabel}
+              {areaCopy.label}
             </label>
-            <select
-              id="county"
-              name="county"
-              required
-              value={county}
-              onChange={(event) => {
-                setCounty(event.target.value);
-                setCountyError(false);
-              }}
-              className={`${inputClass} h-12`}
-              aria-invalid={countyError}
-              aria-describedby={countyError ? "county-error" : undefined}
-            >
-              <option value="">{form.selectCounty}</option>
-              {ROMANIAN_COUNTIES.map((name) => (
-                <option key={name} value={name}>{name}</option>
-              ))}
-            </select>
+            <div className="relative mt-1.5">
+              <select
+                id="county"
+                name="county"
+                required
+                value={county}
+                onChange={(event) => {
+                  setCounty(event.target.value);
+                  setCountyError(false);
+                }}
+                className={selectClass}
+                aria-invalid={countyError}
+                aria-describedby={countyError ? "county-error" : undefined}
+              >
+                <option value="">{areaCopy.placeholder}</option>
+                {areaOptions.map((name) => (
+                  <option key={name} value={name}>{name}</option>
+                ))}
+              </select>
+              <ChevronDownIcon
+                className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+                aria-hidden="true"
+              />
+            </div>
             {countyError ? (
-              <p id="county-error" className={fieldErrorClass}>{form.errorCounty}</p>
+              <p id="county-error" className={fieldErrorClass}>{areaCopy.error}</p>
             ) : null}
           </div>
         ) : null}

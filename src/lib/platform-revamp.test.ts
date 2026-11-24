@@ -6,7 +6,7 @@ import { getLocalizedSubRegion, SUB_REGION_INFO } from "@/components/health-chec
 import { getHealthTopicsList } from "@/lib/i18n/health-information-topics";
 import { getHealthMyths } from "@/lib/i18n/health-myths";
 import { evaluateBloodPressure } from "@/lib/simulators/blood-pressure-types";
-import { NEWS_ARTICLES, getLocalizedArticle } from "@/lib/data/news";
+import { NEWS_ARTICLES } from "@/lib/data/news";
 import type { Lang } from "@/lib/i18n/translations";
 
 const LOCALES: Lang[] = ["ro", "en", "sq", "it", "hr", "rom"];
@@ -99,13 +99,7 @@ describe("Platform core capabilities and multi-locale contracts", () => {
     expect(evaluateBloodPressure(185, 122).tier).toBe("grade_3_hypertension");
   });
 
-  it("provides localized regional health news articles across all 4 locales", () => {
-    expect(NEWS_ARTICLES.length).toBeGreaterThan(0);
-    const sample = NEWS_ARTICLES[0];
-    for (const lang of LOCALES) {
-      const localized = getLocalizedArticle(sample, lang);
-      expect(localized.title.length).toBeGreaterThan(5);
-      expect(localized.summary.length).toBeGreaterThan(10);
-    }
+  it("keeps demo/placeholder regional news articles removed", () => {
+    expect(NEWS_ARTICLES).toEqual([]);
   });
 });

@@ -4,14 +4,22 @@ import { trackEvent } from "@/lib/analytics-events";
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/Button";
-import { HandHelpingIcon, XIcon } from "@/components/ui/icons";
+import { ChevronDownIcon, HandHelpingIcon, XIcon } from "@/components/ui/icons";
 import { useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import { DEFAULT_LANG, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
+import { COUNTRY_LABELS, SUPPORTED_COUNTRIES, type CountryCode } from "@/lib/countries";
+import {
+  COUNTRY_FIELD_LABELS,
+  PHONE_PLACEHOLDERS,
+  defaultCountryForLang,
+  getAreaFieldCopy,
+  getAreasForCountry,
+  isValidAreaForCountry,
+} from "@/lib/country-areas";
 import { isBrowserOffline } from "@/lib/pwa/use-online-status";
-import { ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 import {
   callbackStarterCopy,
   isValidCallbackPhone,
@@ -123,7 +131,7 @@ const dict = {
     namePlaceholder: "Për shembull: Maria I.",
     phoneLabel: "Numri i telefonit",
     phonePlaceholder: "Për shembull: 07xx xxx xxx",
-    countyLabel: "Qarku (județ)",
+    countyLabel: "Qarku",
     countyPlaceholder: "Zgjidh qarkun",
     locationLabel: "Qyteti ose fshati (sipas dëshirës)",
     locationPlaceholder: "Për shembull: Florești",
@@ -152,7 +160,7 @@ const dict = {
     namePlaceholder: "Ad esempio: Maria I.",
     phoneLabel: "Numero di telefono",
     phonePlaceholder: "Ad esempio: 07xx xxx xxx",
-    countyLabel: "Provincia (județ)",
+    countyLabel: "Provincia",
     countyPlaceholder: "Scegli la provincia",
     locationLabel: "Comune o località (facoltativo)",
     locationPlaceholder: "Ad esempio: Florești",
@@ -181,7 +189,7 @@ const dict = {
     namePlaceholder: "Na primjer: Marija I.",
     phoneLabel: "Broj telefona",
     phonePlaceholder: "Na primjer: 07xx xxx xxx",
-    countyLabel: "Županija ili okrug (județ)",
+    countyLabel: "Županija ili okrug",
     countyPlaceholder: "Odaberi područje",
     locationLabel: "Mjesto ili naselje (nije obavezno)",
     locationPlaceholder: "Na primjer: Florești",
@@ -241,6 +249,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState<CountryCode>(() => defaultCountryForLang(lang));
   const [county, setCounty] = useState("");
   const [location, setLocation] = useState("");
   const [consent, setConsent] = useState(false);
@@ -250,6 +259,8 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
   /** Each message sits under its own field, so it is seen with the keyboard open. */
   const [errors, setErrors] = useState<{ phone?: string; county?: string; consent?: string }>({});
   const optionalTag = (callbackStarterCopy[lang] ?? callbackStarterCopy[DEFAULT_LANG]).optionalTag;
+  const areaCopy = getAreaFieldCopy(selectedCountry, lang);
+  const areaOptions = getAreasForCountry(selectedCountry);
 
   const triggerRef = useRef<HTMLButtonElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -261,6 +272,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
     setSubmitted(false);
     setName("");
     setPhone("");
+    setSelectedCountry(defaultCountryForLang(lang));
     setCounty("");
     setLocation("");
     setConsent(false);
@@ -311,7 +323,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
 
     const nextErrors = {
       phone: isValidCallbackPhone(phone) ? undefined : t.phoneError,
-      county: county ? undefined : t.countyError,
+      county: isValidAreaForCountry(selectedCountry, county) ? undefined : areaCopy.error,
       consent: consent ? undefined : t.consentError,
     };
     setErrors(nextErrors);
@@ -335,8 +347,8 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
         body: JSON.stringify({
           name: name.trim() || "Anonim",
           phone: cleanedPhone,
-          description: `Cerere mediator sanitar din triaj (Scenariu: ${defaultScenario || "nedefinit"}, Localitate: ${location.trim() || "nespecificată"})`,
-          country: "RO",
+          description: `Cerere mediator sanitar din triaj (Țara: ${selectedCountry}, Scenariu: ${defaultScenario || "nedefinit"}, Localitate: ${location.trim() || "nespecificată"})`,
+          country: selectedCountry,
           county,
           privacyConsent: true,
           captchaToken,
@@ -424,7 +436,7 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                         }}
                         aria-invalid={Boolean(errors.phone)}
                         aria-describedby={errors.phone ? `${ids}-phone-error` : undefined}
-                        placeholder={t.phonePlaceholder}
+                        placeholder={PHONE_PLACEHOLDERS[selectedCountry]}
                         className={inputClass}
                       />
                       {errors.phone ? (
@@ -434,30 +446,64 @@ export function MediatorRequestModal({ defaultScenario, className = "" }: Mediat
                       ) : null}
                     </div>
 
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <div>
-                        <label htmlFor={`${ids}-county`} className="mb-1 block text-body font-semibold text-foreground">
-                          {t.countyLabel}
-                        </label>
+                    <div>
+                      <label htmlFor={`${ids}-country`} className="mb-1 block text-body font-semibold text-foreground">
+                        {COUNTRY_FIELD_LABELS[lang]}
+                      </label>
+                      <div className="relative">
                         <select
-                          id={`${ids}-county`}
-                          required
-                          value={county}
+                          id={`${ids}-country`}
+                          value={selectedCountry}
                           onChange={(e) => {
-                            setCounty(e.target.value);
+                            setSelectedCountry(e.target.value as CountryCode);
+                            setCounty("");
                             if (errors.county) setErrors((prev) => ({ ...prev, county: undefined }));
                           }}
-                          aria-invalid={Boolean(errors.county)}
-                          aria-describedby={errors.county ? `${ids}-county-error` : undefined}
-                          className={inputClass}
+                          className={`${inputClass} min-h-12 cursor-pointer appearance-none py-2.5 pr-10`}
                         >
-                          <option value="">{t.countyPlaceholder}</option>
-                          {ROMANIAN_COUNTIES.map((c) => (
-                            <option key={c} value={c}>
-                              {c}
+                          {SUPPORTED_COUNTRIES.map((code) => (
+                            <option key={code} value={code}>
+                              {COUNTRY_LABELS[code][lang]}
                             </option>
                           ))}
                         </select>
+                        <ChevronDownIcon
+                          className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+                          aria-hidden="true"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div>
+                        <label htmlFor={`${ids}-county`} className="mb-1 block text-body font-semibold text-foreground">
+                          {areaCopy.label}
+                        </label>
+                        <div className="relative">
+                          <select
+                            id={`${ids}-county`}
+                            required
+                            value={county}
+                            onChange={(e) => {
+                              setCounty(e.target.value);
+                              if (errors.county) setErrors((prev) => ({ ...prev, county: undefined }));
+                            }}
+                            aria-invalid={Boolean(errors.county)}
+                            aria-describedby={errors.county ? `${ids}-county-error` : undefined}
+                            className={`${inputClass} min-h-12 cursor-pointer appearance-none py-2.5 pr-10`}
+                          >
+                            <option value="">{areaCopy.placeholder}</option>
+                            {areaOptions.map((c) => (
+                              <option key={c} value={c}>
+                                {c}
+                              </option>
+                            ))}
+                          </select>
+                          <ChevronDownIcon
+                            className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+                            aria-hidden="true"
+                          />
+                        </div>
                         {errors.county ? (
                           <p id={`${ids}-county-error`} role="alert" className={fieldErrorClass}>
                             {errors.county}

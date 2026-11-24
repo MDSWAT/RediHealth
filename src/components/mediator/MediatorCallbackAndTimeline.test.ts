@@ -3,7 +3,8 @@ import path from "node:path";
 import { createElement, type ComponentType, type ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import { SUPPORTED_COUNTRIES } from "@/lib/countries";
+import { COUNTRY_LABELS, SUPPORTED_COUNTRIES, type CountryCode } from "@/lib/countries";
+import { COUNTRY_AREAS, getAreaFieldCopy } from "@/lib/country-areas";
 import { LanguageContext } from "@/lib/i18n/language-context";
 import { REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import { languages, translations, type Lang } from "@/lib/i18n/translations";
@@ -57,15 +58,16 @@ function renderWithProviders(lang: Lang, node: ReturnType<typeof createElement>)
 }
 
 describe("MediatorCallbackStarter under RecaptchaProvider (enabled: false)", () => {
-  it.each(SUPPORTED_LANGS)("renders accessible county, phone, consent, and single-line CTA in %s", (lang) => {
+  it.each(SUPPORTED_LANGS)("renders country selector, accessible area, phone, consent, and single-line CTA in %s", (lang) => {
     const html = renderWithProviders(
       lang,
-      createElement(MediatorCallbackStarter, { lang, country: "RO" }),
+      createElement(MediatorCallbackStarter, { lang, country: "RO", countries: [...SUPPORTED_COUNTRIES] }),
     );
     const copy = callbackStarterCopy[lang];
 
     expect(html).toContain('id="solicita-heading"');
     expect(html).toContain(copy.title);
+    expect(html).toContain('name="country"');
     expect(html).toContain('name="county"');
     expect(html).toContain('name="phone"');
     expect(html).toContain('type="tel"');
@@ -79,20 +81,29 @@ describe("MediatorCallbackStarter under RecaptchaProvider (enabled: false)", () 
     expect(html).toContain("whitespace-nowrap");
     expect(html).toContain(copy.submit);
 
+    for (const code of SUPPORTED_COUNTRIES) {
+      expect(html).toContain(`value="${code}"`);
+      expect(html).toContain(COUNTRY_LABELS[code][lang]);
+    }
+
     for (const county of ROMANIAN_COUNTIES) {
       expect(html).toContain(`value="${county}"`);
     }
   });
 
-  it("omits county selector for non-RO countries while keeping phone and consent", () => {
+  it.each(SUPPORTED_COUNTRIES)("renders administrative areas for %s while keeping country selector, phone, and consent", (code) => {
     const html = renderWithProviders(
-      "sq",
-      createElement(MediatorCallbackStarter, { lang: "sq", country: "AL" }),
+      "en",
+      createElement(MediatorCallbackStarter, { lang: "en", country: code, countries: [...SUPPORTED_COUNTRIES] }),
     );
 
-    expect(html).not.toContain('name="county"');
+    expect(html).toContain('name="country"');
+    expect(html).toContain('name="county"');
     expect(html).toContain('name="phone"');
     expect(html).toContain('name="privacyConsent"');
+    for (const area of COUNTRY_AREAS[code]) {
+      expect(html).toContain(`value="${area.replace(/'/g, "&#x27;")}"`);
+    }
   });
 });
 
@@ -106,31 +117,50 @@ describe("MediatorCallbackStarter validation and /api/medical-help-requests subm
     expect(isValidCallbackPhone("1".repeat(16))).toBe(false);
   });
 
-  it("returns localized field errors for invalid county, phone, and unchecked consent", () => {
+  it("returns localized field errors for invalid area, phone, and unchecked consent across all countries", () => {
     const roErrors = validateCallbackStarter(
       { county: "", phone: "123", privacyConsent: false, country: "RO" },
       callbackStarterCopy.ro,
+      "ro",
     );
-    expect(roErrors.county).toBe(callbackStarterCopy.ro.countyError);
+    expect(roErrors.county).toBe(getAreaFieldCopy("RO", "ro").error);
     expect(roErrors.phone).toBe(callbackStarterCopy.ro.phoneError);
     expect(roErrors.privacyConsent).toBe(callbackStarterCopy.ro.privacyConsentError);
 
     const invalidCounty = validateCallbackStarter(
       { county: "UnknownCounty", phone: "0721000111", privacyConsent: true, country: "RO" },
       callbackStarterCopy.en,
+      "en",
     );
-    expect(invalidCounty.county).toBe(callbackStarterCopy.en.countyError);
+    expect(invalidCounty.county).toBe(getAreaFieldCopy("RO", "en").error);
     expect(invalidCounty.phone).toBeUndefined();
     expect(invalidCounty.privacyConsent).toBeUndefined();
 
-    const nonRoValid = validateCallbackStarter(
-      { county: "", phone: "+355 69 200 0000", privacyConsent: true, country: "AL" },
+    const mismatchedArea = validateCallbackStarter(
+      { county: "Cluj", phone: "+355 69 200 0000", privacyConsent: true, country: "AL" },
       callbackStarterCopy.sq,
+      "sq",
     );
-    expect(nonRoValid).toEqual({});
+    expect(mismatchedArea.county).toBe(getAreaFieldCopy("AL", "sq").error);
+
+    const validAreas: Record<CountryCode, string> = {
+      RO: "Cluj",
+      AL: "Tiranë",
+      IT: "Lazio",
+      MD: "Chișinău",
+      HR: "Grad Zagreb",
+    };
+    for (const [country, county] of Object.entries(validAreas) as [CountryCode, string][]) {
+      const res = validateCallbackStarter(
+        { county, phone: "+40 721 000 111", privacyConsent: true, country },
+        callbackStarterCopy.en,
+        "en",
+      );
+      expect(res, country).toEqual({});
+    }
   });
 
-  it("builds the exact /api/medical-help-requests payload with valid Romanian county and description >= 10 chars", () => {
+  it("builds the exact /api/medical-help-requests payload with valid area and country", () => {
     const payload = buildCallbackPayload({
       name: "  Maria I.  ",
       phone: " 0721 000 111 ",
@@ -143,7 +173,7 @@ describe("MediatorCallbackStarter validation and /api/medical-help-requests subm
     expect(payload).toEqual({
       name: "Maria I.",
       phone: "0721000111",
-      description: "Solicitare apel mediator sanitar din /mediatori#solicita (Zona: Cluj, limba: ro)",
+      description: "Solicitare apel mediator sanitar din /mediatori#solicita (Zona: Cluj, RO, limba: ro)",
       country: "RO",
       county: "Cluj",
       privacyConsent: true,
@@ -151,6 +181,24 @@ describe("MediatorCallbackStarter validation and /api/medical-help-requests subm
     });
     expect(payload.description.length).toBeGreaterThanOrEqual(10);
     expect(SUPPORTED_COUNTRIES).toContain(payload.country);
+
+    const albaniaPayload = buildCallbackPayload({
+      name: "Arben D.",
+      phone: "+355 69 200 0000",
+      county: "Tiranë",
+      country: "AL",
+      lang: "sq",
+      captchaToken: "tok_456",
+    });
+    expect(albaniaPayload).toEqual({
+      name: "Arben D.",
+      phone: "+355692000000",
+      description: "Solicitare apel mediator sanitar din /mediatori#solicita (Zona: Tiranë, AL, limba: sq)",
+      country: "AL",
+      county: "Tiranë",
+      privacyConsent: true,
+      captchaToken: "tok_456",
+    });
 
     // A one-tap reason is added for the mediator in Romanian, whatever language the form is in.
     const withReason = buildCallbackPayload({
@@ -163,7 +211,7 @@ describe("MediatorCallbackStarter validation and /api/medical-help-requests subm
       reason: 1,
     });
     expect(withReason.description).toBe(
-      "Solicitare apel mediator sanitar din /mediatori#solicita (Zona: Cluj, limba: hr, nevoie: acte și asigurare)",
+      "Solicitare apel mediator sanitar din /mediatori#solicita (Zona: Cluj, RO, limba: hr, nevoie: acte și asigurare)",
     );
   });
 
@@ -197,7 +245,7 @@ describe("MediatorCallbackStarter validation and /api/medical-help-requests subm
     expect(JSON.parse(String(init.body))).toEqual({
       name: "Ion P.",
       phone: "0722333444",
-      description: "Solicitare apel mediator sanitar din /mediatori#solicita (Zona: Bihor, limba: en)",
+      description: "Solicitare apel mediator sanitar din /mediatori#solicita (Zona: Bihor, RO, limba: en)",
       country: "RO",
       county: "Bihor",
       privacyConsent: true,
@@ -283,6 +331,21 @@ describe("/mediatori page layout, accompaniment timeline, and calm patient hero"
     expect(html.slice(0, heroEnd)).not.toContain("/get-help?mode=mediator");
     expect(solicitaIndex).toBeGreaterThan(heroEnd);
     expect(signInIndex).toBeGreaterThan(solicitaIndex);
+
+    for (const code of SUPPORTED_COUNTRIES) {
+      expect(html).toContain(`value="${code}"`);
+    }
+    const expectedSelectedByLang: Record<Lang, CountryCode> = {
+      ro: "RO",
+      en: "RO",
+      rom: "RO",
+      sq: "AL",
+      it: "IT",
+      hr: "HR",
+      ru: "MD",
+    };
+    const expectedCountry = expectedSelectedByLang[lang];
+    expect(html).toMatch(new RegExp(`<option value="${expectedCountry}"[^>]*selected`));
   });
 
   it("keeps MediatorPublicHero free of /sign-in chrome and /get-help detours", () => {

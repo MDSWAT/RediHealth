@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 import { MediatorCallbackStarter } from "@/components/mediator/MediatorCallbackStarter";
 import { MediatorPublicHero } from "@/components/mediator/MediatorPublicHero";
@@ -10,10 +11,11 @@ import {
 import { Container } from "@/components/ui/Container";
 import { ArrowRightIcon, FileTextIcon, LockIcon, ShieldIcon, UsersIcon } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/Reveal";
-import type { CountryCode } from "@/lib/countries";
-import { configuredCountries } from "@/lib/database";
+import { SUPPORTED_COUNTRIES, parseCountry, type CountryCode } from "@/lib/countries";
+import { defaultCountryForLang } from "@/lib/country-areas";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
 import { getRequestLang, withLangPrefix } from "@/lib/i18n/server-routing";
+import { countryFromHeaders } from "@/lib/medical-institutes";
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await getRequestLang();
@@ -28,9 +30,8 @@ export default async function MediatoriPublicPage() {
   const lang = await getRequestLang();
   const pageCopy = mediatorPageCopy[lang] ?? mediatorPageCopy.en;
   const staffStrip = mediatorStaffStripCopy[lang] ?? mediatorStaffStripCopy.ro;
-  const availableCountries = configuredCountries();
-  const initialCountry: CountryCode =
-    availableCountries.length === 0 || availableCountries.includes("RO") ? "RO" : availableCountries[0];
+  const visitorCountry = parseCountry(countryFromHeaders(await headers()));
+  const initialCountry: CountryCode = visitorCountry ?? defaultCountryForLang(lang);
 
   return (
     <main id="main-content" className="flex-1 bg-background">
@@ -42,7 +43,11 @@ export default async function MediatoriPublicPage() {
         className="scroll-mt-20 border-b border-border bg-muted/35 py-10 sm:py-16"
       >
         <Container>
-          <MediatorCallbackStarter lang={lang} country={initialCountry} />
+          <MediatorCallbackStarter
+            lang={lang}
+            country={initialCountry}
+            countries={[...SUPPORTED_COUNTRIES]}
+          />
         </Container>
       </section>
 

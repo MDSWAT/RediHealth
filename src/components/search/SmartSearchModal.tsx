@@ -185,7 +185,6 @@ const CATEGORY_ORDER: SmartSearchCategory[] = [
   "glossary",
   "myths",
   "articles",
-  "news",
 ];
 
 const EMPTY_GROUPED_COUNTS: Record<SmartSearchCategory, number> = {

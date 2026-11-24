@@ -98,7 +98,7 @@ export function Hero() {
     <section
       ref={sectionRef}
       aria-labelledby="hero-title"
-      className="hero relative isolate flex flex-1 flex-col justify-center overflow-hidden bg-ink-950 pt-(--site-header-h) text-paper min-h-svh lg:min-h-[calc(100svh-3.5rem)]"
+      className="hero relative isolate flex flex-1 flex-col justify-center overflow-hidden bg-ink-950 pt-(--site-header-h) text-paper min-h-svh"
     >
       <HeroPhotos />
       <div aria-hidden="true" className="hero-pointer-aura pointer-events-none absolute inset-0 -z-10 hidden lg:block" />

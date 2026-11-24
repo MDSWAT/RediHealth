@@ -27,9 +27,7 @@ vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
 
-import { NewsArticleView } from "@/components/news/NewsArticleView";
 import { NewsHub } from "@/components/news/NewsHub";
-import { newsForPlace } from "@/components/news/PlaceNewsModal";
 import {
   buildCaravanIcs,
   caravanDirectionsUrl,
@@ -37,7 +35,7 @@ import {
   foldIcsLine,
   parseCaravanHours,
 } from "@/components/news/caravan-calendar";
-import { NEWS_ARTICLES, articleCountry, type NewsArticle } from "@/lib/data/news";
+import { NEWS_ARTICLES, type NewsArticle } from "@/lib/data/news";
 import { LanguageContext } from "@/lib/i18n/language-context";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
@@ -105,9 +103,28 @@ describe("caravan-calendar RFC 5545 helpers", () => {
     expect(unfolded).toBe(raw);
   });
 
-  test("builds valid CRLF VCALENDAR/VEVENT payloads for all caravan articles", () => {
-    const caravans = NEWS_ARTICLES.filter((a) => Boolean(a.caravanDetails));
-    expect(caravans.length).toBeGreaterThan(0);
+  test("builds valid CRLF VCALENDAR/VEVENT payloads for fixture caravan articles", () => {
+    const sampleCaravan: NewsArticle = {
+      id: "caravana-galati-barcea",
+      slug: "caravana-medicala-mobila-barcea",
+      title: "Caravana medicală vine în Barcea și Ivești",
+      category: "Caravane medicale",
+      county: "Galați",
+      date: "2026-11-09",
+      readTimeMinutes: 2,
+      summary: "Consultații gratuite",
+      content: ["Detalii"],
+      verifiedDoctor: { name: "Dr. Test", specialty: "GP", verifiedDate: "2026-11-05" },
+      tags: ["Caravană"],
+      audioNarrationDuration: "1 min",
+      caravanDetails: {
+        village: "Comuna Barcea",
+        landmark: "În curtea căminului cultural, lângă școală",
+        hours: "09:00 – 16:30",
+        freeServices: ["Tensiunea", "EKG"],
+      },
+    };
+    const caravans = [sampleCaravan];
 
     for (const article of caravans) {
       const ics = buildCaravanIcs(article, {
@@ -140,8 +157,18 @@ describe("caravan-calendar RFC 5545 helpers", () => {
 
   test("falls back to VALUE=DATE when caravan hours are unparseable", () => {
     const sample: NewsArticle = {
-      ...NEWS_ARTICLES.find((a) => Boolean(a.caravanDetails))!,
+      id: "caravana-test",
+      slug: "caravana-test",
+      title: "Caravană test",
+      category: "Caravane medicale",
+      county: "Galați",
       date: "2026-11-30",
+      readTimeMinutes: 2,
+      summary: "Sumar",
+      content: ["Conținut"],
+      verifiedDoctor: { name: "Dr. Test", specialty: "GP", verifiedDate: "2026-11-05" },
+      tags: [],
+      audioNarrationDuration: "1 min",
       caravanDetails: {
         village: "Barcea",
         landmark: "Cămin cultural",
@@ -155,8 +182,16 @@ describe("caravan-calendar RFC 5545 helpers", () => {
   });
 
   test("builds Google Maps directions query without repeating area or whole-country sentinels", () => {
-    const alCaravan = NEWS_ARTICLES.find((a) => Boolean(a.caravanDetails) && articleCountry(a) === "al")!;
-    expect(alCaravan).toBeDefined();
+    const alCaravan = {
+      county: "Tiranë",
+      country: "al" as const,
+      caravanDetails: {
+        village: "Tiranë (Kombinat)",
+        landmark: "Sheshi",
+        hours: "09:00 – 15:30",
+        freeServices: [],
+      },
+    };
     const alUrl = caravanDirectionsUrl(alCaravan);
     expect(alUrl).toContain("https://www.google.com/maps/search/?api=1&query=");
     expect(decodeURIComponent(alUrl)).toContain("Albania");
@@ -187,23 +222,8 @@ describe("NewsHub inline live-filtered feed (#9)", () => {
     expect(modalSource).toContain("export function placeCountry");
   });
 
-  test("renders all local and national items for the selected place without slice(0, 3) truncation", () => {
-    const roArticles = NEWS_ARTICLES.filter((a) => articleCountry(a) === "ro");
-    const bucGroups = newsForPlace("București", roArticles, "ro");
-    const expectedArticles = [...bucGroups.local, ...bucGroups.national];
-    expect(expectedArticles.length).toBeGreaterThan(3);
-
-    const html = renderToStaticMarkup(withLang("ro", React.createElement(NewsHub)));
-    for (const article of expectedArticles) {
-      expect(html).toContain(article.slug);
-    }
-
-    const hrArticles = NEWS_ARTICLES.filter((a) => articleCountry(a) === "hr");
-    expect(hrArticles.length).toBeGreaterThan(3);
-    const hrHtml = renderToStaticMarkup(withLang("hr", React.createElement(NewsHub)));
-    for (const article of hrArticles) {
-      expect(hrHtml).toContain(article.slug);
-    }
+  test("keeps NEWS_ARTICLES empty so no dummy demo articles render", () => {
+    expect(NEWS_ARTICLES).toEqual([]);
   });
 
   test.each(ALL_LANGS)("SSR renders inline feed with collapsible filters and zero modals in %s", (lang) => {
@@ -225,35 +245,7 @@ describe("NewsHub inline live-filtered feed (#9)", () => {
   });
 });
 
-describe("NewsArticleView actionable civic caravan pass (#10)", () => {
-  const caravanArticles = NEWS_ARTICLES.filter((a) => Boolean(a.caravanDetails));
-  const primaryCaravan = caravanArticles[0]!;
-
-  test.each(ALL_LANGS)(
-    "SSR renders Directions, Save reminder, FamilyShareButton and consistency invariants in %s",
-    (lang) => {
-      const html = renderToStaticMarkup(
-        withLang(lang, React.createElement(NewsArticleView, { id: primaryCaravan.slug })),
-      );
-
-      expect(html).toContain("data-health-article-column");
-      expect(html).not.toContain('id="next-steps-heading"');
-      expect(html).not.toContain("/medic-online");
-      expect(html).toContain('data-testid="medical-safety-disclaimer"');
-      expect(html).toContain("https://www.google.com/maps/search/?api=1");
-      expect(html).toContain("whitespace-nowrap");
-      expect(html).toContain("min-h-11");
-      expect(html).not.toContain("rounded-full");
-      expect(html).not.toContain("\u00b7");
-
-      const plainText = html.replace(/<[^>]+>/g, " ");
-      expect(plainText).not.toContain("&amp;");
-      if (lang === "sq") {
-        expect(plainText.toLowerCase()).not.toContain("ndërmjetës");
-      }
-    },
-  );
-
+describe("NewsArticleView metadata layout invariants", () => {
   test("keeps NewsArticleView metadata wrap-safe, removes decorative icons, and provides single-line print action", () => {
     const viewSrc = readFileSync(
       path.join(process.cwd(), "src/components/news/NewsArticleView.tsx"),
@@ -266,21 +258,5 @@ describe("NewsArticleView actionable civic caravan pass (#10)", () => {
     expect(viewSrc).toContain("mt-7 space-y-5 sm:mt-8");
     expect(viewSrc).toContain('<div className="print:hidden">');
     expect(viewSrc).not.toContain("минута чтения");
-
-    const standardArticle = NEWS_ARTICLES.find((a) => !a.caravanDetails)!;
-    for (const lang of ALL_LANGS) {
-      const html = renderToStaticMarkup(
-        withLang(lang, React.createElement(NewsArticleView, { id: standardArticle.slug })),
-      );
-      expect(html).toContain("data-health-article-column");
-      expect(html).toContain("btn-row flex w-full flex-wrap items-start gap-2.5");
-      expect(html).toContain("whitespace-nowrap");
-      expect(html).toContain("min-h-11");
-      expect(html).not.toContain("border-l border-border pl-3");
-      expect(html).not.toContain("rounded-full");
-      expect(html).not.toContain("\u00b7");
-      const plainText = html.replace(/<[^>]+>/g, " ");
-      expect(plainText).not.toContain("&amp;");
-    }
   });
 });

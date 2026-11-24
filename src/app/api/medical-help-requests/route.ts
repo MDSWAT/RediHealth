@@ -1,9 +1,9 @@
 import { loadRequestInbox } from "@/lib/data/request-inbox";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { configuredCountries, getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
+import { configuredCountries, defaultCountry, getCountryDatabase, type ResultSetHeader, type RowDataPacket } from "@/lib/database";
 import { parseCountry } from "@/lib/countries";
-import { isRomanianCounty } from "@/lib/romanian-counties";
+import { isValidAreaForCountry } from "@/lib/country-areas";
 import { logActivity } from "@/lib/activity-log";
 import { sendHelpRequestConfirmationEmail } from "@/lib/email";
 import type { RequestStatus, RequestPriority } from "@/lib/types/medical-request";
@@ -47,20 +47,38 @@ export async function POST(request: Request) {
   const captchaError = await verifyRecaptcha(body.captchaToken, "help_request");
   if (captchaError) return captchaError;
 
-  // The request is stored in the database of the country the person chose, never anywhere else.
+  // The request is stored in the database of the requested country when configured,
+  // or falls back to the single/default configured database so all supported countries can submit.
   const available = configuredCountries();
-  const country = parseCountry(body.country) ?? (available.length === 1 ? available[0] : null);
-  if (!country || !available.includes(country)) {
+  const requestedCountry =
+    parseCountry(body.country) ?? (available.length === 1 ? available[0] : null);
+  if (!requestedCountry) {
     return NextResponse.json({ error: "Choose your country." }, { status: 400 });
   }
 
-  const county = country === "RO" ? text(body.county) : "";
+  const storageCountry = available.includes(requestedCountry)
+    ? requestedCountry
+    : available.length === 1
+      ? available[0]
+      : available.includes(defaultCountry())
+        ? defaultCountry()
+        : null;
+  if (!storageCountry) {
+    return NextResponse.json(
+      { error: "Your request was not saved. Try again." },
+      { status: 503 },
+    );
+  }
+
+  const county = text(body.county);
   if (body.privacyConsent !== true) {
     return NextResponse.json({ error: "Agree to the privacy policy to continue." }, { status: 400 });
   }
-  if (country === "RO" && !isRomanianCounty(county)) {
+  if (!isValidAreaForCountry(requestedCountry, county)) {
     return NextResponse.json({ error: "Choose a county." }, { status: 400 });
   }
+  const storedCounty =
+    storageCountry === requestedCountry ? county : `${county} (${requestedCountry})`;
 
   const name = text(body.name);
   const phone = text(body.phone);
@@ -94,16 +112,16 @@ export async function POST(request: Request) {
   }
 
   try {
-    const [result] = await getCountryDatabase(country).query<ResultSetHeader>(
+    const [result] = await getCountryDatabase(storageCountry).query<ResultSetHeader>(
       `INSERT INTO medical_help_requests
         (full_name, phone, email, description, county, privacy_consent_at)
        VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP) RETURNING id`,
       // Older country databases define email as NOT NULL; an omitted email remains optional.
-      [name || null, phone, email, description, county || null],
+      [name || null, phone, email, description, storedCounty || null],
     );
 
     await logActivity({
-      country,
+      country: storageCountry,
       actorName: name || null,
       actorEmail: email || null,
       actorRole: "public_user",
@@ -111,6 +129,7 @@ export async function POST(request: Request) {
       entityType: "medical_help_request",
       entityId: result.insertId || null,
       details: {
+        requested_country: requestedCountry,
         has_name: Boolean(name),
         has_email: Boolean(email),
         description_length: description.length,

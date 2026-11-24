@@ -1,7 +1,6 @@
 import type { ComponentType, SVGProps } from "react";
 import type { Lang } from "@/lib/i18n/translations";
 import {
-  BellIcon,
   BookIcon,
   ClipboardCheckIcon,
   PinIcon,
@@ -21,13 +20,12 @@ export const NAV_LINK_ICONS = {
   "/prescription-review": PrescriptionIcon,
   "/find-help": PinIcon,
   "/mediatori": UsersIcon,
-  "/stiri": BellIcon,
 } as const satisfies Record<string, NavIcon>;
 
 export type NavLinkHref = keyof typeof NAV_LINK_ICONS;
 
 /**
- * Compact names for the desktop bar between lg (1024px) and 2xl (1536px), where six
+ * Compact names for the desktop bar between lg (1024px) and 2xl (1536px), where five
  * destinations share a row with the utility capsule. From 2xl up and inside the mobile
  * drawer, every link displays its full descriptive label and subtitle.
  */
@@ -38,7 +36,6 @@ export const NAV_SHORT_LABELS: Record<Lang, Record<NavLinkHref, string>> = {
     "/prescription-review": "Medicamente",
     "/find-help": "Farmacii",
     "/mediatori": "Mediatori",
-    "/stiri": "Știri",
   },
   en: {
     "/health-information": "Learn",
@@ -46,7 +43,6 @@ export const NAV_SHORT_LABELS: Record<Lang, Record<NavLinkHref, string>> = {
     "/prescription-review": "Medicines",
     "/find-help": "Pharmacies",
     "/mediatori": "Mediators",
-    "/stiri": "News",
   },
   sq: {
     "/health-information": "Mëso",
@@ -54,7 +50,6 @@ export const NAV_SHORT_LABELS: Record<Lang, Record<NavLinkHref, string>> = {
     "/prescription-review": "Ilaçet",
     "/find-help": "Farmaci",
     "/mediatori": "Mediatorë",
-    "/stiri": "Lajme",
   },
   it: {
     "/health-information": "Impara",
@@ -62,7 +57,6 @@ export const NAV_SHORT_LABELS: Record<Lang, Record<NavLinkHref, string>> = {
     "/prescription-review": "Farmaci",
     "/find-help": "Farmacie",
     "/mediatori": "Mediatori",
-    "/stiri": "Notizie",
   },
   hr: {
     "/health-information": "Uči",
@@ -70,7 +64,6 @@ export const NAV_SHORT_LABELS: Record<Lang, Record<NavLinkHref, string>> = {
     "/prescription-review": "Lijekovi",
     "/find-help": "Ljekarne",
     "/mediatori": "Medijatori",
-    "/stiri": "Vijesti",
   },
   rom: {
     "/health-information": "Sikljov",
@@ -78,7 +71,6 @@ export const NAV_SHORT_LABELS: Record<Lang, Record<NavLinkHref, string>> = {
     "/prescription-review": "Draba",
     "/find-help": "Farmaciye",
     "/mediatori": "Mediatorya",
-    "/stiri": "Nevimata",
   },
   ru: {
     "/health-information": "Обучение",
@@ -86,12 +78,11 @@ export const NAV_SHORT_LABELS: Record<Lang, Record<NavLinkHref, string>> = {
     "/prescription-review": "Лекарства",
     "/find-help": "Аптеки",
     "/mediatori": "Медиаторы",
-    "/stiri": "Новости",
   },
 };
 
 /**
- * On wide screens (2xl and up) all six destinations display their full descriptive label.
+ * On wide screens (2xl and up) all five destinations display their full descriptive label.
  */
 export const NAV_FULL_NAME_ON_WIDE: readonly NavLinkHref[] = [
   "/health-information",
@@ -99,5 +90,4 @@ export const NAV_FULL_NAME_ON_WIDE: readonly NavLinkHref[] = [
   "/prescription-review",
   "/find-help",
   "/mediatori",
-  "/stiri",
 ];

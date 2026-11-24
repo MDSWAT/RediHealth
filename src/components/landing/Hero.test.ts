@@ -159,18 +159,17 @@ describe("hero render", () => {
     expect(pageSrc).toContain("-mt-(--site-header-h)");
     expect(html).toContain("pt-(--site-header-h)");
     expect(html).toMatch(/\bmin-h-svh\b/);
-    expect(html).toMatch(/lg:min-h-\[calc\(100svh-3\.5rem\)\]/);
     expect(html).toContain("hero-mobile-stage");
   });
 
-  it("restores StackedSections, RegionalHealthRibbon, HealthTopics, MediatorsSection and TrustSection in src/app/page.tsx without OnlineDoctorSection or landing quiz", () => {
+  it("renders StackedSections, HealthTopics, MediatorsSection and TrustSection in src/app/page.tsx without RegionalHealthRibbon, OnlineDoctorSection or landing quiz", () => {
     const pageSrc = readFileSync(path.resolve(__dirname, "../../app/page.tsx"), "utf8");
     expect(pageSrc).toContain("StackedSections");
     expect(pageSrc).toContain("StackLayer");
-    expect(pageSrc).toContain("RegionalHealthRibbon");
+    expect(pageSrc).not.toContain("RegionalHealthRibbon");
     expect(pageSrc).not.toContain("OnlineDoctorSection");
     expect(pageSrc).not.toContain("TrueFalseQuizSection");
-    expect(pageSrc).toMatch(/<Hero\s*\/>[\s\S]*<RegionalHealthRibbon\s*\/>[\s\S]*<HealthTopics\s*\/>[\s\S]*<MediatorsSection\s*\/>[\s\S]*<TrustSection\s*\/>/);
+    expect(pageSrc).toMatch(/<Hero\s*\/>[\s\S]*<HealthTopics\s*\/>[\s\S]*<MediatorsSection\s*\/>[\s\S]*<TrustSection\s*\/>/);
   });
 
   it("sets the headline as plain sentences: the concept's one sentence from lg, two short ones below it", () => {

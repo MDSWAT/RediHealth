@@ -9,9 +9,7 @@ import {
   getHealthInformationDictionary,
   getHealthTopicBySlug,
 } from "@/lib/i18n/health-information-topics";
-import { NEWS_ARTICLES } from "@/lib/data/news";
 import { TopicDetailPageContent } from "./TopicDetailPageContent";
-import { NewsArticleView } from "@/components/news/NewsArticleView";
 import { PageHeader } from "@/components/ui/PageHeader";
 
 const ALL_LANGS: Lang[] = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
@@ -22,10 +20,6 @@ const state = vi.hoisted(() => ({ lang: "ro" as Lang }));
 vi.mock("@/lib/i18n/server-routing", async () => ({
   getRequestLang: async () => state.lang,
   withLangPrefix: (await import("@/lib/i18n/routing")).withLangPrefix,
-}));
-
-vi.mock("next/navigation", () => ({
-  usePathname: () => `/${state.lang}/news/${NEWS_ARTICLES[0].slug}`,
 }));
 
 import HealthSummaryPage from "@/app/health-information/topics/[topic]/page";
@@ -74,17 +68,10 @@ describe("unified layout and elderly WCAG consistency across health reading surf
         ),
       );
 
-      const newsArticleHtml = renderToStaticMarkup(
-        providerWrap(
-          createElement(NewsArticleView, { id: NEWS_ARTICLES[0].slug }),
-        ),
-      );
-
       const surfaces = [
         ["topic-guide", topicGuideHtml],
         ["topic-summary", topicSummaryHtml],
         ["health-article", healthArticleHtml],
-        ["news-article", newsArticleHtml],
       ] as const;
 
       for (const [surfaceName, html] of surfaces) {
@@ -98,18 +85,9 @@ describe("unified layout and elderly WCAG consistency across health reading surf
         expect(html, `${surfaceName} (${lang}) missing measure constraint`).toContain(
           "max-w-(--measure-reading)",
         );
-        if (surfaceName === "news-article") {
-          expect(html, `${surfaceName} (${lang}) must not embed TopicNextSteps detours`).not.toContain(
-            'id="next-steps-heading"',
-          );
-          expect(html, `${surfaceName} (${lang}) must not push online doctor`).not.toContain(
-            "/medic-online",
-          );
-        } else {
-          expect(html, `${surfaceName} (${lang}) missing TopicNextSteps`).toContain(
-            'id="next-steps-heading"',
-          );
-        }
+        expect(html, `${surfaceName} (${lang}) missing TopicNextSteps`).toContain(
+          'id="next-steps-heading"',
+        );
         expect(html, `${surfaceName} (${lang}) missing safety disclaimer`).toContain(
           'data-testid="medical-safety-disclaimer"',
         );

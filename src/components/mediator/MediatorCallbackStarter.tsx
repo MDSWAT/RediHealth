@@ -8,12 +8,19 @@ import {
   ChevronDownIcon,
 } from "@/components/ui/icons";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
-import type { CountryCode } from "@/lib/countries";
+import { COUNTRY_LABELS, SUPPORTED_COUNTRIES, type CountryCode } from "@/lib/countries";
+import {
+  COUNTRY_FIELD_LABELS,
+  PHONE_PLACEHOLDERS,
+  defaultCountryForLang,
+  getAreaFieldCopy,
+  getAreasForCountry,
+  isValidAreaForCountry,
+} from "@/lib/country-areas";
 import { LanguageContext } from "@/lib/i18n/language-context";
 import { getOfflineUiCopy } from "@/lib/i18n/offline-copy";
 import { DEFAULT_LANG, REQUEST_LANG_HEADER, withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
-import { isRomanianCounty, ROMANIAN_COUNTIES } from "@/lib/romanian-counties";
 import type { CaptchaAction } from "@/lib/security/recaptcha";
 import { isBrowserOffline } from "@/lib/pwa/use-online-status";
 
@@ -56,7 +63,7 @@ export type CallbackStarterCopy = {
 export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
   ro: {
     title: "Cere să fii sunat de un mediator",
-    lead: "Lasă județul și numărul tău de telefon. Un mediator sanitar din zona ta te sună înapoi, de obicei în 24 de ore, fără plată și fără programare.",
+    lead: "Alege țara, zona și lasă numărul tău de telefon. Un mediator sanitar te sună înapoi, de obicei în 24 de ore, fără plată și fără programare.",
     limitsTitle: "Ce nu poate face un mediator",
     limitAdvice: "Mediatorul nu dă sfaturi despre tratament sau rețete.",
     limitAvailability: "Mediatorul vorbește limba ta și te însoțește la programări doar acolo unde este posibil.",
@@ -84,13 +91,13 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
     rateLimitError: "Ai trimis prea multe cereri de pe acest dispozitiv. Încearcă din nou mai târziu.",
     successTitle: "Cererea ta de apel a fost trimisă",
     successBody: (county, phone) =>
-      `Un mediator sanitar din județul ${county} va suna la numărul ${phone} cât mai curând, de obicei în 24 de ore.`,
+      `Un mediator sanitar din ${county} va suna la numărul ${phone} cât mai curând, de obicei în 24 de ore.`,
     successNotice: "Acest serviciu nu este pentru urgențe. Dacă este o urgență medicală, sună imediat la 112.",
     sendAnother: "Trimite alt număr",
   },
   en: {
     title: "Request a mediator callback",
-    lead: "Leave your county and phone number. A community health mediator from your area calls you back free of charge, usually within 24 hours.",
+    lead: "Choose your country and area and leave your phone number. A community health mediator calls you back free of charge, usually within 24 hours.",
     limitsTitle: "What a mediator cannot do",
     limitAdvice: "A mediator does not give advice about treatment or prescriptions.",
     limitAvailability: "A mediator speaks your language and comes with you to appointments only where this is available.",
@@ -118,13 +125,13 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
     rateLimitError: "Too many requests were sent from this device. Please try again later.",
     successTitle: "Your callback request was sent",
     successBody: (county, phone) =>
-      `A community health mediator in ${county} will call ${phone} as soon as possible, usually within 24 hours.`,
+      `A community health mediator for ${county} will call ${phone} as soon as possible, usually within 24 hours.`,
     successNotice: "This service is not for emergencies. If it is a medical emergency, call 112 right away.",
     sendAnother: "Send another number",
   },
   sq: {
     title: "Kërko të të telefonojë një mediator",
-    lead: "Lë qarkun dhe numrin tënd të telefonit. Një mediator shëndetësor nga zona jote të merr në telefon falas, zakonisht brenda 24 orëve.",
+    lead: "Zgjidh shtetin, zonën dhe lë numrin tënd të telefonit. Një mediator shëndetësor të merr në telefon falas, zakonisht brenda 24 orëve.",
     limitsTitle: "Çfarë nuk mund të bëjë një mediator",
     limitAdvice: "Mediatori nuk jep këshilla për trajtimin ose recetat.",
     limitAvailability: "Mediatori flet gjuhën tënde dhe të shoqëron në takime vetëm aty ku është e mundur.",
@@ -152,13 +159,13 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
     rateLimitError: "Janë dërguar shumë kërkesa nga kjo pajisje. Provo përsëri më vonë.",
     successTitle: "Kërkesa jote për telefonatë u dërgua",
     successBody: (county, phone) =>
-      `Një mediator shëndetësor në ${county} do të telefonojë në ${phone} sa më shpejt, zakonisht brenda 24 orëve.`,
+      `Një mediator shëndetësor për ${county} do të telefonojë në ${phone} sa më shpejt, zakonisht brenda 24 orëve.`,
     successNotice: "Ky shërbim nuk është për urgjenca. Nëse është urgjencë mjekësore, telefono menjëherë 112.",
     sendAnother: "Dërgo numër tjetër",
   },
   it: {
     title: "Chiedi di essere richiamato da un mediatore",
-    lead: "Lascia la tua provincia e il numero di telefono. Un mediatore sanitario della tua zona ti richiama gratuitamente, di solito entro 24 ore.",
+    lead: "Scegli il paese, la zona e lascia il tuo numero di telefono. Un mediatore sanitario ti richiama gratuitamente, di solito entro 24 ore.",
     limitsTitle: "Cosa non può fare un mediatore",
     limitAdvice: "Il mediatore non dà consigli su cure o ricette.",
     limitAvailability: "Il mediatore parla la tua lingua e ti accompagna alle visite solo dove è possibile.",
@@ -186,13 +193,13 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
     rateLimitError: "Sono state inviate troppe richieste da questo dispositivo. Riprova più tardi.",
     successTitle: "La tua richiesta di chiamata è stata inviata",
     successBody: (county, phone) =>
-      `Un mediatore sanitario della provincia di ${county} chiamerà il numero ${phone} il prima possibile, di solito entro 24 ore.`,
+      `Un mediatore sanitario per ${county} chiamerà il numero ${phone} il prima possibile, di solito entro 24 ore.`,
     successNotice: "Questo servizio non è per le emergenze. Se è un'emergenza medica, chiama subito il 112.",
     sendAnother: "Invia un altro numero",
   },
   hr: {
     title: "Zatraži povratni poziv medijatora",
-    lead: "Ostavi svoje područje i broj telefona. Zdravstveni medijator iz tvog kraja nazvat će te besplatno, obično u roku od 24 sata.",
+    lead: "Odaberi državu, područje i ostavi svoj broj telefona. Zdravstveni medijator nazvat će te besplatno, obično u roku od 24 sata.",
     limitsTitle: "Što medijator ne može",
     limitAdvice: "Medijator ne daje savjete o liječenju ni o receptima.",
     limitAvailability: "Medijator govori tvoj jezik i ide s tobom na pregled samo ondje gdje je to dostupno.",
@@ -220,13 +227,13 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
     rateLimitError: "S ovog je uređaja poslano previše zahtjeva. Pokušaj ponovno kasnije.",
     successTitle: "Tvoj zahtjev za poziv je poslan",
     successBody: (county, phone) =>
-      `Zdravstveni medijator za područje ${county} nazvat će broj ${phone} što prije, obično u roku od 24 sata.`,
+      `Zdravstveni medijator za ${county} nazvat će broj ${phone} što prije, obično u roku od 24 sata.`,
     successNotice: "Ova usluga nije za hitne slučajeve. Ako je hitan medicinski slučaj, odmah nazovi 112.",
     sendAnother: "Pošalji drugi broj",
   },
   rom: {
     title: "Mang te akharel tut ekh mediatori",
-    lead: "Mukh chi rig thaj cho telefonesko gin. Ekh sastipnasko mediatori katar cho than ka akharel tut bi lovesko, may butivar ande 24 ore.",
+    lead: "Alosar o them, i rig thaj mukh cho telefonesko gin. Ekh sastipnasko mediatori ka akharel tut bi lovesko, may butivar ande 24 ore.",
     limitsTitle: "So nashti kerel o mediatori",
     limitAdvice: "O mediatori na del sfato vash o sastyaripe vay vash e recepte.",
     limitAvailability: "O mediatori vakerel chi chhib thaj zhal tusa ko doktori numay kana shaj.",
@@ -260,7 +267,7 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
   },
   ru: {
     title: "Закажите обратный звонок медиатора",
-    lead: "Оставьте ваш округ и номер телефона. Медицинский медиатор из вашего района перезвонит вам бесплатно, обычно в течение 24 часов.",
+    lead: "Выберите страну, регион и оставьте ваш номер телефона. Медицинский медиатор перезвонит вам бесплатно, обычно в течение 24 часов.",
     limitsTitle: "Чего медиатор не может",
     limitAdvice: "Медиатор не даёт советов о лечении и рецептах.",
     limitAvailability: "Медиатор говорит на вашем языке и сопровождает вас на приём только там, где это возможно.",
@@ -288,7 +295,7 @@ export const callbackStarterCopy: Record<Lang, CallbackStarterCopy> = {
     rateLimitError: "С этого устройства отправлено слишком много запросов. Попробуйте позже.",
     successTitle: "Запрос на обратный звонок отправлен",
     successBody: (county, phone) =>
-      `Медицинский медиатор в округе ${county} позвонит на номер ${phone} как можно скорее, обычно в течение 24 часов.`,
+      `Медицинский медиатор для ${county} позвонит на номер ${phone} как можно скорее, обычно в течение 24 часов.`,
     successNotice: "Эта служба не для экстренных случаев. При неотложной ситуации немедленно звоните 112.",
     sendAnother: "Отправить другой номер",
   },
@@ -318,6 +325,11 @@ const inputClass =
   "transition-[border-color,background-color] duration-(--dur-fast) ease-(--ease-out-calm) hover:border-foreground/35 " +
   "placeholder:text-muted-foreground aria-[invalid=true]:border-primary motion-reduce:transition-none";
 
+const selectClass =
+  "field-focus min-h-12 w-full cursor-pointer appearance-none rounded-xl border border-border-control bg-background py-2.5 pl-3.5 pr-10 text-body text-foreground " +
+  "transition-[border-color,background-color] duration-(--dur-fast) ease-(--ease-out-calm) hover:border-foreground/35 " +
+  "aria-[invalid=true]:border-primary motion-reduce:transition-none";
+
 const fieldErrorClass = "swap-in mt-1.5 text-body font-medium text-primary";
 
 export function normalizeCallbackPhone(raw: string): string {
@@ -339,10 +351,11 @@ export function validateCallbackStarter(
     country: CountryCode;
   },
   copy: CallbackStarterCopy,
+  lang?: Lang,
 ): CallbackStarterErrors {
   const errors: CallbackStarterErrors = {};
-  if (values.country === "RO" && !isRomanianCounty(values.county.trim())) {
-    errors.county = copy.countyError;
+  if (!isValidAreaForCountry(values.country, values.county.trim())) {
+    errors.county = lang ? getAreaFieldCopy(values.country, lang).error : copy.countyError;
   }
   if (!isValidCallbackPhone(values.phone)) {
     errors.phone = copy.phoneError;
@@ -371,9 +384,9 @@ export function buildCallbackPayload({
   /** Index of the chosen `reasonOptions` entry, when the person picked one. */
   reason?: number | null;
 }): CallbackPayload {
-  const trimmedCounty = country === "RO" ? county.trim() : "";
+  const trimmedCounty = county.trim();
   const normalizedPhone = normalizeCallbackPhone(phone);
-  const areaLabel = trimmedCounty || country;
+  const areaLabel = trimmedCounty ? `${trimmedCounty}, ${country}` : country;
   const reasonNote = reason != null && REASON_NOTES[reason] ? `, nevoie: ${REASON_NOTES[reason]}` : "";
   return {
     name: name.trim(),
@@ -438,17 +451,28 @@ export async function submitCallbackStarter({
 
 export function MediatorCallbackStarter({
   lang: langProp,
-  country = "RO",
+  country: countryProp,
+  countries,
 }: {
   lang?: Lang;
   country?: CountryCode;
+  countries?: readonly CountryCode[];
 }) {
   const languageContext = useContext(LanguageContext);
   const lang: Lang = langProp ?? languageContext?.lang ?? DEFAULT_LANG;
   const copy = callbackStarterCopy[lang] ?? callbackStarterCopy.ro;
+  const availableCountries = countries && countries.length > 0 ? countries : SUPPORTED_COUNTRIES;
+  const initialCountry: CountryCode =
+    countryProp && availableCountries.includes(countryProp)
+      ? countryProp
+      : availableCountries.includes(defaultCountryForLang(lang))
+        ? defaultCountryForLang(lang)
+        : availableCountries[0];
+
   const executeCaptcha = useRecaptcha();
   const baseId = useId();
 
+  const countryId = `${baseId}-country`;
   const countyId = `${baseId}-county`;
   const countyErrorId = `${baseId}-county-error`;
   const phoneId = `${baseId}-phone`;
@@ -459,6 +483,7 @@ export function MediatorCallbackStarter({
   const consentErrorId = `${baseId}-consent-error`;
   const reasonLabelId = `${baseId}-reason`;
 
+  const [selectedCountry, setSelectedCountry] = useState<CountryCode>(initialCountry);
   const [county, setCounty] = useState("");
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
@@ -472,6 +497,9 @@ export function MediatorCallbackStarter({
     county: "",
     phone: "",
   });
+
+  const areaCopy = getAreaFieldCopy(selectedCountry, lang);
+  const areaOptions = getAreasForCountry(selectedCountry);
 
   const formRef = useRef<HTMLFormElement>(null);
   const successHeadingRef = useRef<HTMLHeadingElement>(null);
@@ -493,8 +521,9 @@ export function MediatorCallbackStarter({
     if (isSubmitting) return;
 
     const nextErrors = validateCallbackStarter(
-      { county, phone, privacyConsent, country },
+      { county, phone, privacyConsent, country: selectedCountry },
       copy,
+      lang,
     );
     setErrors(nextErrors);
     setSubmissionError("");
@@ -520,7 +549,7 @@ export function MediatorCallbackStarter({
         name,
         phone,
         county,
-        country,
+        country: selectedCountry,
         lang,
         reason,
         executeCaptcha,
@@ -528,7 +557,7 @@ export function MediatorCallbackStarter({
 
       if (result.ok) {
         setSubmittedDetails({
-          county: country === "RO" ? county.trim() : country,
+          county: `${county.trim()}, ${COUNTRY_LABELS[selectedCountry][lang]}`,
           phone: normalizeCallbackPhone(phone),
         });
         setSubmitted(true);
@@ -638,33 +667,31 @@ export function MediatorCallbackStarter({
         {/* Right elevated paper form surface */}
         <form ref={formRef} noValidate onSubmit={handleSubmit} className="min-w-0 bg-card p-6 sm:p-8 lg:p-10">
           <div className="grid gap-5">
-            <div className={country === "RO" ? "grid gap-5 sm:grid-cols-2" : "grid gap-5"}>
-              {country === "RO" ? (
+            <div className={availableCountries.length > 1 ? "grid gap-5 sm:grid-cols-2" : "grid gap-5"}>
+              {availableCountries.length > 1 ? (
                 <div className="min-w-0">
-                  <label htmlFor={countyId} className="text-body font-semibold text-foreground">
-                    {copy.countyLabel}
+                  <label htmlFor={countryId} className="text-body font-semibold text-foreground">
+                    {COUNTRY_FIELD_LABELS[lang]}
                   </label>
-                  <div className="relative">
+                  <div className="relative mt-1.5">
                     <select
-                      id={countyId}
-                      name="county"
-                      required
-                      value={county}
+                      id={countryId}
+                      name="country"
+                      value={selectedCountry}
                       onChange={(event) => {
-                        setCounty(event.target.value);
+                        const nextCountry = event.target.value as CountryCode;
+                        setSelectedCountry(nextCountry);
+                        setCounty("");
                         setSubmissionError("");
                         if (errors.county) {
                           setErrors((prev) => ({ ...prev, county: undefined }));
                         }
                       }}
-                      aria-invalid={Boolean(errors.county)}
-                      aria-describedby={errors.county ? countyErrorId : undefined}
-                      className={`${inputClass} appearance-none pr-10`}
+                      className={selectClass}
                     >
-                      <option value="">{copy.countyPlaceholder}</option>
-                      {ROMANIAN_COUNTIES.map((countyName) => (
-                        <option key={countyName} value={countyName}>
-                          {countyName}
+                      {availableCountries.map((code) => (
+                        <option key={code} value={code}>
+                          {COUNTRY_LABELS[code][lang]}
                         </option>
                       ))}
                     </select>
@@ -673,49 +700,84 @@ export function MediatorCallbackStarter({
                       aria-hidden="true"
                     />
                   </div>
-                  {errors.county ? (
-                    <p id={countyErrorId} role="alert" className={fieldErrorClass}>
-                      {errors.county}
-                    </p>
-                  ) : null}
                 </div>
               ) : null}
 
               <div className="min-w-0">
-                <label htmlFor={phoneId} className="text-body font-semibold text-foreground">
-                  {copy.phoneLabel}
+                <label htmlFor={countyId} className="text-body font-semibold text-foreground">
+                  {areaCopy.label}
                 </label>
-                <input
-                  id={phoneId}
-                  name="phone"
-                  type="tel"
-                  inputMode="tel"
-                  autoComplete="tel"
-                  maxLength={50}
-                  required
-                  value={phone}
-                  onChange={(event) => {
-                    setPhone(event.target.value);
-                    setSubmissionError("");
-                    if (errors.phone) {
-                      setErrors((prev) => ({ ...prev, phone: undefined }));
-                    }
-                  }}
-                  aria-invalid={Boolean(errors.phone)}
-                  aria-describedby={errors.phone ? phoneErrorId : phoneHintId}
-                  placeholder={copy.phonePlaceholder}
-                  className={inputClass}
-                />
-                {errors.phone ? (
-                  <p id={phoneErrorId} role="alert" className={fieldErrorClass}>
-                    {errors.phone}
+                <div className="relative mt-1.5">
+                  <select
+                    id={countyId}
+                    name="county"
+                    required
+                    value={county}
+                    onChange={(event) => {
+                      setCounty(event.target.value);
+                      setSubmissionError("");
+                      if (errors.county) {
+                        setErrors((prev) => ({ ...prev, county: undefined }));
+                      }
+                    }}
+                    aria-invalid={Boolean(errors.county)}
+                    aria-describedby={errors.county ? countyErrorId : undefined}
+                    className={selectClass}
+                  >
+                    <option value="">{areaCopy.placeholder}</option>
+                    {areaOptions.map((areaName) => (
+                      <option key={areaName} value={areaName}>
+                        {areaName}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDownIcon
+                    className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+                    aria-hidden="true"
+                  />
+                </div>
+                {errors.county ? (
+                  <p id={countyErrorId} role="alert" className={fieldErrorClass}>
+                    {errors.county}
                   </p>
-                ) : (
-                  <p id={phoneHintId} className="mt-1.5 text-meta text-muted-foreground">
-                    {copy.phoneHint}
-                  </p>
-                )}
+                ) : null}
               </div>
+            </div>
+
+            <div className="min-w-0">
+              <label htmlFor={phoneId} className="text-body font-semibold text-foreground">
+                {copy.phoneLabel}
+              </label>
+              <input
+                id={phoneId}
+                name="phone"
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                maxLength={50}
+                required
+                value={phone}
+                onChange={(event) => {
+                  setPhone(event.target.value);
+                  setSubmissionError("");
+                  if (errors.phone) {
+                    setErrors((prev) => ({ ...prev, phone: undefined }));
+                  }
+                }}
+                aria-invalid={Boolean(errors.phone)}
+                aria-describedby={errors.phone ? phoneErrorId : phoneHintId}
+                placeholder={PHONE_PLACEHOLDERS[selectedCountry]}
+                className={inputClass}
+              />
+              {errors.phone ? (
+                <p id={phoneErrorId} role="alert" className={fieldErrorClass}>
+                  {errors.phone}
+                </p>
+              ) : (
+                <p id={phoneHintId} className="mt-1.5 text-meta text-muted-foreground">
+                  {copy.phoneHint}
+                </p>
+              )}
             </div>
 
             <div role="group" aria-labelledby={reasonLabelId}>

@@ -68,7 +68,6 @@ export default function NotFound() {
     { href: "/prescription-review", label: t.header.navMedicine },
     { href: "/find-help", label: findHelpLinks(lang).nav },
     { href: "/mediatori", label: t.header.forMediators },
-    { href: "/stiri", label: t.header.navStiri },
   ];
 
   return (

@@ -1,12 +1,22 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
-  query: vi.fn(), log: vi.fn(), sendEmail: vi.fn(), captcha: vi.fn(), rateLimit: vi.fn(),
+  query: vi.fn(),
+  log: vi.fn(),
+  sendEmail: vi.fn(),
+  captcha: vi.fn(),
+  rateLimit: vi.fn(),
+  configuredCountries: vi.fn(() => ["RO"]),
+  getCountryDatabase: vi.fn(),
 }));
 vi.mock("@/auth", () => ({ auth: vi.fn() }));
 vi.mock("@/lib/database", () => ({
-  configuredCountries: () => ["RO"],
-  getCountryDatabase: () => ({ query: mocks.query }),
+  configuredCountries: () => mocks.configuredCountries(),
+  defaultCountry: () => "RO",
+  getCountryDatabase: (country: string) => {
+    mocks.getCountryDatabase(country);
+    return { query: mocks.query };
+  },
 }));
 vi.mock("@/lib/activity-log", () => ({ logActivity: mocks.log }));
 vi.mock("@/lib/email", () => ({ sendHelpRequestConfirmationEmail: mocks.sendEmail }));
@@ -34,6 +44,7 @@ function request(overrides: Record<string, unknown> = {}, lang = "en") {
 describe("public help request optional email", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mocks.configuredCountries.mockReturnValue(["RO"]);
     mocks.rateLimit.mockResolvedValue({ allowed: true });
     mocks.captcha.mockResolvedValue(null);
     mocks.log.mockResolvedValue(undefined);
@@ -82,5 +93,39 @@ describe("public help request optional email", () => {
   it.each([{ privacyConsent: false }, { county: "" }, { phone: "" }])("preserves required validation for %j", async (overrides) => {
     expect((await POST(request(overrides))).status).toBe(400);
     expect(mocks.query).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    { country: "AL", county: "Tiranë" },
+    { country: "IT", county: "Lazio" },
+    { country: "MD", county: "Chișinău" },
+    { country: "HR", county: "Grad Zagreb" },
+  ])("accepts valid areas for %j on single-DB and routes cleanly", async ({ country, county }) => {
+    const response = await POST(request({ country, county }));
+    expect(response.status).toBe(201);
+    expect(mocks.getCountryDatabase).toHaveBeenCalledWith("RO");
+    expect(mocks.query).toHaveBeenCalledWith(
+      expect.stringContaining("INSERT INTO medical_help_requests"),
+      ["Synthetic request", "0001122334", "", "Synthetic request for assistance", `${county} (${country})`],
+    );
+    expect(mocks.log).toHaveBeenCalledWith(expect.objectContaining({
+      country: "RO",
+      details: expect.objectContaining({ requested_country: country }),
+    }));
+  });
+
+  it("routes to the dedicated country database when configured and rejects mismatched areas", async () => {
+    mocks.configuredCountries.mockReturnValue(["RO", "AL"]);
+
+    expect((await POST(request({ country: "AL", county: "Cluj" }))).status).toBe(400);
+    expect(mocks.query).not.toHaveBeenCalled();
+
+    const ok = await POST(request({ country: "AL", county: "Tiranë" }));
+    expect(ok.status).toBe(201);
+    expect(mocks.getCountryDatabase).toHaveBeenCalledWith("AL");
+    expect(mocks.query).toHaveBeenCalledWith(
+      expect.stringContaining("INSERT INTO medical_help_requests"),
+      ["Synthetic request", "0001122334", "", "Synthetic request for assistance", "Tiranë"],
+    );
   });
 });

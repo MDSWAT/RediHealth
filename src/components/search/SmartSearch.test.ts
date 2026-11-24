@@ -440,87 +440,12 @@ describe("smart search engine", () => {
     }
   });
 
-  it("scopes regional and fixed-language news strictly to the active locale and never leaks Italian content onto English", () => {
-    const enQueries = [
-      "",
-      "vaccine",
-      "vaccin",
-      "vaccino",
-      "influenza",
-      "clinic",
-      "mediator",
-      "roma",
-      "ambulatorio",
-    ];
-
-    for (const q of enQueries) {
-      const allRes = searchSmartCatalog(q, { lang: "en", category: "all", limit: 50 });
-      const newsRes = searchSmartCatalog(q, { lang: "en", category: "news", limit: 50 });
-
-      for (const item of [...allRes.results, ...newsRes.results]) {
-        expect(item.id, `en query "${q}" leaked it/hr/al news ${item.id}`).not.toMatch(
-          /^news:(it|hr|al)-/,
-        );
-        expect(item.title, `en query "${q}" leaked Italian title`).not.toMatch(
-          /Vaccino antinfluenzale|Ambulatorio mobile a Roma/i,
-        );
-        expect(item.summary, `en query "${q}" leaked Italian summary`).not.toMatch(
-          /Il vaccino contro l'influenza|Un camper con medici volontari/i,
-        );
-        expect(item.highlights, `en query "${q}" leaked Italian highlight`).not.toContain(
-          "vaccinazione",
-        );
-        expect(item.tags.join(" "), `en query "${q}" leaked Romanian Moldova sentinel`).not.toContain(
-          "Toată Moldova",
-        );
-      }
-    }
-
-    for (const nonItLang of ["ro", "en", "sq", "hr", "rom", "ru"] as const) {
-      for (const q of ["", "vaccino", "ambulatorio", "vaccine"]) {
-        const res = searchSmartCatalog(q, { lang: nonItLang, category: "news", limit: 50 });
-        for (const item of res.results) {
-          expect(
-            item.id,
-            `${nonItLang} query "${q}" must not include Italy-only articles`,
-          ).not.toBe("news:it-campagna-antinfluenzale");
-          expect(
-            item.id,
-            `${nonItLang} query "${q}" must not include Italy-only Rome clinic article`,
-          ).not.toBe("news:it-ambulatorio-mobile-roma");
-        }
-      }
-    }
-
-    const itVaccino = searchSmartCatalog("vaccino", { lang: "it", limit: 30 });
-    expect(itVaccino.results.some((r) => r.id === "news:it-campagna-antinfluenzale")).toBe(true);
-
-    const itAmbulatorio = searchSmartCatalog("ambulatorio", { lang: "it", limit: 30 });
-    expect(itAmbulatorio.results.some((r) => r.id === "news:it-ambulatorio-mobile-roma")).toBe(
-      true,
-    );
-
-    for (const q of ["vaccino", "ambulatorio", "influenza"]) {
-      const itNews = searchSmartCatalog(q, { lang: "it", category: "news", limit: 50 });
-      expect(itNews.results.length, `it query "${q}"`).toBeGreaterThan(0);
-      for (const item of itNews.results) {
-        expect(item.id).toMatch(/^news:it-/);
-      }
-    }
-
-    for (const q of ["ambulanta", "cijepljenje", "zagreb", "split"]) {
-      const hrNews = searchSmartCatalog(q, { lang: "hr", category: "news", limit: 50 });
-      expect(hrNews.results.length, `hr query "${q}"`).toBeGreaterThan(0);
-      for (const item of hrNews.results) {
-        expect(item.id).toMatch(/^news:hr-/);
-      }
-    }
-
-    for (const q of ["tirane", "shkoder", "grip", "elbasan"]) {
-      const sqNews = searchSmartCatalog(q, { lang: "sq", category: "news", limit: 50 });
-      expect(sqNews.results.length, `sq query "${q}"`).toBeGreaterThan(0);
-      for (const item of sqNews.results) {
-        expect(item.id).toMatch(/^news:al-/);
+  it("returns zero dummy demo news items across all locales and queries", () => {
+    for (const lang of ALL_LANGS) {
+      for (const q of ["", "vaccino", "ambulatorio", "caravana", "rujeola", "news", "stiri"]) {
+        const newsRes = searchSmartCatalog(q, { lang, category: "news", limit: 50 });
+        expect(newsRes.results, `${lang} "${q}" news results`).toEqual([]);
+        expect(newsRes.groupedCounts.news, `${lang} "${q}" news count`).toBe(0);
       }
     }
   });
