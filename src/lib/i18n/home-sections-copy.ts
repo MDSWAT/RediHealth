@@ -24,8 +24,8 @@ export type HomeSectionsCopy = {
   };
   mediators: {
     title: string;
-    /** Second sentence of the heading, set quieter. */
-    titleQuiet: string;
+    /** Second sentence of the heading, set in a muted tone. */
+    titleSecondary: string;
     lead: string;
     services: [HomeStep, HomeStep, HomeStep];
     /** Three plain facts, separated by hairlines. */
@@ -44,7 +44,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       offDuty: "The waiting room opens at 08:00. You can book a call now.",
       steps: [
         { title: "Choose when to talk", text: "Talk to the on-call doctor now or book a time that suits you." },
-        { title: "Get a link by SMS", text: "Tap the link. The call opens in your browser." },
+        { title: "Get a link by SMS", text: "Tap the link and the call opens in your browser." },
         { title: "Get the advice in writing", text: "After the call, the doctor sends your next steps by SMS." },
       ],
       talkNow: "Talk to a doctor",
@@ -54,7 +54,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
     },
     mediators: {
       title: "Support from a health mediator.",
-      titleQuiet: "Trusted help to reach healthcare services.",
+      titleSecondary: "Trusted help to reach healthcare services.",
       lead: "They help you understand where to go, prepare papers, and contact health or social services, while keeping what you share private.",
       services: [
         {
@@ -83,7 +83,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       offDuty: "Sala de așteptare se deschide la 08:00. Poți programa un apel acum.",
       steps: [
         { title: "Alegi când vorbești", text: "Intri acum la medicul de gardă sau îți alegi o oră potrivită." },
-        { title: "Primești un link prin SMS", text: "Apeși pe link. Apelul se deschide în browser." },
+        { title: "Primești un link prin SMS", text: "Apeși pe link și apelul se deschide în browser." },
         { title: "Primești sfaturile în scris", text: "După apel, medicul îți trimite prin SMS ce ai de făcut." },
       ],
       talkNow: "Vorbește cu un medic",
@@ -93,7 +93,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
     },
     mediators: {
       title: "Sprijin de la un mediator sanitar.",
-      titleQuiet: "Ajutor de încredere să ajungi la servicii medicale.",
+      titleSecondary: "Ajutor de încredere să ajungi la servicii medicale.",
       lead: "Te ajută să știi unde să mergi, ce acte să pregătești și cum să iei legătura cu serviciile medicale sau sociale, păstrând confidențialitatea.",
       services: [
         {
@@ -122,7 +122,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       offDuty: "Dhoma e pritjes hapet në 08:00. Mund të rezervosh një thirrje tani.",
       steps: [
         { title: "Zgjidh kur flet", text: "Fol tani me mjekun kujdestar ose zgjidh një orar që të përshtatet." },
-        { title: "Merr një lidhje me SMS", text: "Shtyp lidhjen. Thirrja hapet në shfletues." },
+        { title: "Merr një lidhje me SMS", text: "Shtyp lidhjen dhe thirrja hapet në shfletues." },
         { title: "Merr këshillat me shkrim", text: "Pas thirrjes, mjeku të dërgon hapat e radhës me SMS." },
       ],
       talkNow: "Fol me një mjek",
@@ -132,7 +132,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
     },
     mediators: {
       title: "Mbështetje nga një mediator shëndetësor.",
-      titleQuiet: "Ndihmë e besueshme për të arritur shërbimet shëndetësore.",
+      titleSecondary: "Ndihmë e besueshme për të arritur shërbimet shëndetësore.",
       lead: "Të ndihmon të dish ku të shkosh, çfarë dokumentesh të përgatitësh dhe si të lidhesh me shërbimet shëndetësore ose sociale, duke ruajtur privatësinë.",
       services: [
         {
@@ -161,7 +161,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       offDuty: "La sala d'attesa apre alle 08:00. Puoi già prenotare una chiamata.",
       steps: [
         { title: "Scegli quando parlare", text: "Parla subito con il medico di guardia o prenota un orario che ti va bene." },
-        { title: "Ricevi un link via SMS", text: "Tocca il link. La chiamata si apre nel browser." },
+        { title: "Ricevi un link via SMS", text: "Tocca il link e la chiamata si apre nel browser." },
         { title: "Ricevi i consigli per iscritto", text: "Dopo la chiamata, il medico ti manda via SMS cosa fare." },
       ],
       talkNow: "Parla con un medico",
@@ -171,7 +171,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
     },
     mediators: {
       title: "Supporto da un mediatore sanitario.",
-      titleQuiet: "Aiuto affidabile per accedere alle cure.",
+      titleSecondary: "Aiuto affidabile per accedere alle cure.",
       lead: "Ti aiuta a capire dove andare, quali documenti preparare e come contattare i servizi sanitari o sociali, rispettando la tua privacy.",
       services: [
         {
@@ -200,7 +200,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       offDuty: "Čekaonica se otvara u 08:00. Poziv možeš rezervirati već sada.",
       steps: [
         { title: "Odaberi kada želiš razgovarati", text: "Javi se odmah dežurnom liječniku ili rezerviraj termin koji ti odgovara." },
-        { title: "Primi poveznicu SMS porukom", text: "Dodirni poveznicu. Poziv se otvara u tvojem pregledniku." },
+        { title: "Primi poveznicu SMS porukom", text: "Dodirni poveznicu i poziv se otvara u tvojem pregledniku." },
         { title: "Primi pisane upute", text: "Nakon poziva liječnik ti SMS porukom šalje upute što dalje." },
       ],
       talkNow: "Razgovaraj s liječnikom",
@@ -210,7 +210,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
     },
     mediators: {
       title: "Podrška zdravstvenog medijatora.",
-      titleQuiet: "Pouzdana pomoć na putu do zdravstvene skrbi.",
+      titleSecondary: "Pouzdana pomoć na putu do zdravstvene skrbi.",
       lead: "Pomaže ti saznati kamo ići, koje dokumente pripremiti i kako kontaktirati zdravstvene ili socijalne službe, uz čuvanje privatnosti.",
       services: [
         {
@@ -239,7 +239,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       offDuty: "E azhukeripnaski soba putrel pes ko 08:00. Shaj alosares vrama akana.",
       steps: [
         { title: "Alosar kana kames te des svato", text: "De svato akana e doktoresa kay si pe buchi vay alosar vrama kay avel tuke mishto." },
-        { title: "Le ekh linko katar SMS", text: "Azba o linko. O svato putrel pes and-o brauzero." },
+        { title: "Le ekh linko katar SMS", text: "Azba o linko thaj o svato putrel pes and-o brauzero." },
         { title: "Le e sikavimata lekhavde", text: "Palo svato, o doktori bichhalel tuke katar SMS so te keres may dur." },
       ],
       talkNow: "De svato e doktoresa",
@@ -249,7 +249,7 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
     },
     mediators: {
       title: "Zhutimos katar ekh sastipnasko mediatori.",
-      titleQuiet: "Pachivalo zhutimos te areses ko sastipnaske servisurya.",
+      titleSecondary: "Pachivalo zhutimos te areses ko sastipnaske servisurya.",
       lead: "Zhutil tut te zhanes kay te zhas, save lila te keres thaj sar te akhares e sastipnaske vay socialone servisurya, garavindoy so phenes.",
       services: [
         {
@@ -284,11 +284,11 @@ export const homeSectionsCopy: Record<Lang, HomeSectionsCopy> = {
       talkNow: "Поговорить с врачом",
       book: "Записаться на звонок",
       teamTitle: "Лицензированные врачи",
-      teamText: "Семейные врачи, педиатры и терапевты-волонтёры. Звонки шифруются.",
+      teamText: "Семейные врачи, педиатры и терапевты-волонтёры принимают по шифрованной связи.",
     },
     mediators: {
       title: "Поддержка медицинского медиатора.",
-      titleQuiet: "Надёжная помощь на пути к медицинской помощи.",
+      titleSecondary: "Надёжная помощь на пути к медицинской помощи.",
       lead: "Помогает понять, куда обратиться, какие документы подготовить и как связаться с медицинскими или социальными службами, сохраняя конфиденциальность.",
       services: [
         {

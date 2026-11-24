@@ -53,7 +53,7 @@ export const viewport: Viewport = {
   viewportFit: "cover",
   // Browser bar matches the page ground; a red bar on every page read as an alarm.
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fcfbf9" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
     { media: "(prefers-color-scheme: dark)", color: "#0a1226" },
   ],
 };

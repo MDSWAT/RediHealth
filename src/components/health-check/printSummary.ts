@@ -22,7 +22,7 @@ export interface PrintablePainDiagram {
 
 export interface PrintableSummary {
   lang: string;
-  /** Line under the title, e.g. "Pentru medic · 8 noiembrie 2026". */
+  /** Line under the title, e.g. "Pentru medic — 8 noiembrie 2026". */
   meta: string;
   title: string;
   rows: { label: string; value: string }[];
@@ -116,7 +116,7 @@ export function buildPrintSummaryHtml(summary: PrintableSummary, logoUrl: string
   .qr-frame svg { display: block; width: 96px; height: 96px; }
   .qr-copy { min-width: 0; }
   .qr-title { margin: 0; font-size: 10.25pt; font-weight: 600; color: ${PALETTE.obsidianNavy}; }
-  .qr-detail { margin: 4px 0 0; padding: 4px 8px; border-left: 2.5px solid ${PALETTE.sapphire}; background: ${PALETTE.surfaceSubtle}; font-size: 9.75pt; font-weight: 700; color: ${PALETTE.obsidianNavy}; line-height: 1.35; overflow-wrap: break-word; }
+  .qr-detail { margin: 4px 0 0; padding: 4px 8px; border: 1px solid ${PALETTE.borderControl}; border-radius: 4px; background: ${PALETTE.surfaceSubtle}; font-size: 9.75pt; font-weight: 700; color: ${PALETTE.obsidianNavy}; line-height: 1.35; overflow-wrap: break-word; }
   .qr-hint { margin: 4px 0 0; font-size: 9pt; line-height: 1.38; color: ${PALETTE.mutedForeground}; }
   footer { margin-top: 14px; padding-top: 9px; border-top: 1px solid ${PALETTE.border}; color: ${PALETTE.mutedForeground}; font-size: 9pt; }
 </style>

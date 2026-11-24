@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { AnimatePresence, m } from "motion/react";
 import {
-  ArrowRightIcon,
   ChevronRightIcon,
   DownloadIcon,
   PhoneIcon,
@@ -263,9 +262,8 @@ export function SmsPhoneAuthModal({
   const otpInputRef = useRef<HTMLInputElement | null>(null);
   const verifyingRef = useRef(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  const sheenRef = useRef<HTMLDivElement>(null);
-  const pointerTarget = useRef({ x: 0, y: 0, sx: 50, sy: 28, active: false });
-  const pointerCurrent = useRef({ x: 0, y: 0, sx: 50, sy: 28 });
+  const pointerTarget = useRef({ x: 0, y: 0, active: false });
+  const pointerCurrent = useRef({ x: 0, y: 0 });
   const pointerRaf = useRef<number | null>(null);
 
   const cleanPhone = () => normalizePortalPhone(phone);
@@ -283,10 +281,9 @@ export function SmsPhoneAuthModal({
   useEffect(() => {
     if (calmMotion || isEditing || embedded) {
       stopFloatLoop();
-      pointerTarget.current = { x: 0, y: 0, sx: 50, sy: 28, active: false };
-      pointerCurrent.current = { x: 0, y: 0, sx: 50, sy: 28 };
+      pointerTarget.current = { x: 0, y: 0, active: false };
+      pointerCurrent.current = { x: 0, y: 0 };
       if (cardRef.current) cardRef.current.style.transform = "translate3d(0px, 0px, 0)";
-      if (sheenRef.current) sheenRef.current.style.opacity = "0";
     }
     return stopFloatLoop;
   }, [calmMotion, embedded, isEditing]);
@@ -299,16 +296,9 @@ export function SmsPhoneAuthModal({
       const lerp = 0.14;
       cur.x += (target.x - cur.x) * lerp;
       cur.y += (target.y - cur.y) * lerp;
-      cur.sx += (target.sx - cur.sx) * lerp;
-      cur.sy += (target.sy - cur.sy) * lerp;
 
       if (cardRef.current) {
         cardRef.current.style.transform = `translate3d(${cur.x.toFixed(2)}px, ${cur.y.toFixed(2)}px, 0)`;
-      }
-      if (sheenRef.current) {
-        sheenRef.current.style.setProperty("--sheen-x", `${cur.sx.toFixed(1)}%`);
-        sheenRef.current.style.setProperty("--sheen-y", `${cur.sy.toFixed(1)}%`);
-        sheenRef.current.style.opacity = target.active ? "1" : "0";
       }
 
       const settled =
@@ -338,8 +328,6 @@ export function SmsPhoneAuthModal({
     pointerTarget.current = {
       x: (nx - 0.5) * 9,
       y: (ny - 0.5) * 7,
-      sx: nx * 100,
-      sy: ny * 100,
       active: true,
     };
     startFloatLoop();
@@ -497,19 +485,6 @@ export function SmsPhoneAuthModal({
           : "relative overflow-hidden rounded-2xl border border-border/90 bg-card text-foreground shadow-(--shadow-card-hover) dark:border-white/12 dark:bg-ink-900 dark:text-paper"
       }
     >
-      {/* Subtle sapphire cursor sheen on standalone card hover (still when embedded, typing, or reduced motion). */}
-      {!embedded ? (
-        <div
-          ref={sheenRef}
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-(--dur-base) ease-(--ease-out-calm)"
-          style={{
-            background:
-              "radial-gradient(380px circle at var(--sheen-x, 50%) var(--sheen-y, 28%), rgba(29, 53, 87, 0.06), transparent 70%)",
-          }}
-        />
-      ) : null}
-
       {/* Hairline progress bar driven by live form readiness */}
       <div className="relative z-10 h-[2px] w-full bg-foreground/8 dark:bg-white/10" aria-hidden="true">
         <div
@@ -647,7 +622,6 @@ export function SmsPhoneAuthModal({
               </div>
               <Button type="submit" variant="action" size="lg" fullWidth disabled={isLoading} className="min-h-14 sm:px-5">
                 <span>{isLoading ? copy.sending : page.sendCode}</span>
-                {!isLoading && <ArrowRightIcon aria-hidden="true" className="arrow-travel h-5 w-5 shrink-0" />}
               </Button>
             </m.form>
           ) : (
@@ -723,7 +697,6 @@ export function SmsPhoneAuthModal({
                 className="min-h-14 sm:px-5"
               >
                 <span>{isLoading ? copy.verifying : page.verifyCode}</span>
-                {!isLoading && <ArrowRightIcon aria-hidden="true" className="arrow-travel h-5 w-5 shrink-0" />}
               </Button>
 
               <div className="btn-row -mx-2 flex flex-wrap items-center justify-between gap-3 text-body">

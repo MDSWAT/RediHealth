@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SignInForm, type SignInStage } from "@/components/auth/SignInForm";
-import { ArrowRightIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -244,10 +243,9 @@ export function SignInPageContent({
                   <p className="text-body text-paper/85 text-pretty">{staffNotice.patientPrompt}</p>
                   <Link
                     href={withLangPrefix("/contul-meu", lang)}
-                    className="mt-1 inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-sm font-semibold text-paper underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+                    className="mt-1 inline-flex min-h-11 items-center whitespace-nowrap rounded-sm font-semibold text-paper underline underline-offset-4 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
                   >
                     <span>{staffNotice.patientLink}</span>
-                    <ArrowRightIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
                   </Link>
                 </div>
               </div>

@@ -13,7 +13,7 @@ import {
   type MouseEvent,
 } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowRightIcon, ChevronDownIcon, GlobeIcon } from "@/components/ui/icons";
+import { ChevronDownIcon, GlobeIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { markManualLocaleSelection } from "@/lib/i18n/locale-detection";
 import { withLangPrefix } from "@/lib/i18n/routing";
@@ -318,10 +318,9 @@ export function LanguageSelector({
               setOpen(false);
               onNavigate?.();
             }}
-            className="flex min-h-11 max-w-full items-center justify-between gap-2.5 whitespace-nowrap rounded-(--radius-control) px-3 text-[13.5px] font-medium leading-snug text-sapphire/90 press-row hover:bg-sapphire/[0.06] hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper dark:text-sapphire-border dark:hover:bg-white/[0.06] dark:hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
+            className="flex min-h-11 max-w-full items-center gap-2.5 whitespace-nowrap rounded-(--radius-control) px-3 text-[13.5px] font-medium leading-snug text-sapphire/90 press-row hover:bg-sapphire/[0.06] hover:text-sapphire focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:focus-visible:ring-paper dark:text-sapphire-border dark:hover:bg-white/[0.06] dark:hover:text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none"
           >
             <span className="min-w-0 flex-1">{copy.romaniNote}</span>
-            <ArrowRightIcon className="h-3.5 w-3.5 shrink-0 opacity-75" />
           </Link>
         </div>
       ) : null}
@@ -440,10 +439,9 @@ export function LanguageSelector({
                     setOpen(false);
                     onNavigate?.();
                   }}
-                  className="mt-2 flex min-h-11 items-center justify-between max-w-full gap-2.5 whitespace-nowrap rounded-lg px-2.5 text-body leading-snug text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-ink-900/[0.035] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:text-mist dark:hover:bg-white/5 dark:hover:text-paper dark:focus-visible:ring-paper"
+                  className="mt-2 flex min-h-11 items-center max-w-full gap-2.5 whitespace-nowrap rounded-lg px-2.5 text-body leading-snug text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) motion-reduce:transition-none hover:bg-ink-900/[0.035] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:text-mist dark:hover:bg-white/5 dark:hover:text-paper dark:focus-visible:ring-paper"
                 >
                   <span className="min-w-0 flex-1">{copy.romaniNote}</span>
-                  <ArrowRightIcon className="h-3.5 w-3.5 shrink-0 opacity-70" />
                 </Link>
               ) : null}
             </div>

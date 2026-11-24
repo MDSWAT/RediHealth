@@ -2185,10 +2185,6 @@ export function HealthCheckExplorer() {
         <PinIcon className="h-4.5 w-4.5 shrink-0 text-sapphire" aria-hidden="true" />
         <span className="min-w-0 truncate">{label}</span>
       </span>
-      <ArrowRightIcon
-        className="h-4.5 w-4.5 shrink-0 text-sapphire transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire-light motion-reduce:transition-none"
-        aria-hidden="true"
-      />
     </Link>
   );
 
@@ -3290,7 +3286,6 @@ export function HealthCheckExplorer() {
                               // No family doctor, no insurance, no papers: the guide says where to go.
                               <Link href={withLangPrefix("/health-assistant#triage", activeLang)} className={textLink}>
                                 <span className={textLinkLabel}>{c.noDoctorGuide}</span>
-                                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                               </Link>
                             )}
                           </div>
@@ -3312,10 +3307,6 @@ export function HealthCheckExplorer() {
                             <span className="min-w-0 truncate">
                               {c.readAbout}: {topicMapping.title}
                             </span>
-                            <ArrowRightIcon
-                              className="h-4.5 w-4.5 shrink-0 text-sapphire"
-                              aria-hidden="true"
-                            />
                           </Link>
                         )}
                       </div>

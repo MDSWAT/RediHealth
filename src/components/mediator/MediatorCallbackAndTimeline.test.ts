@@ -291,7 +291,7 @@ describe("MediatorCallbackStarter validation and /api/medical-help-requests subm
 });
 
 describe("/mediatori page layout, accompaniment timeline, and calm patient hero", () => {
-  it.each(SUPPORTED_LANGS)("renders hero, #solicita starter with its limits, no repeated timeline, and quiet bottom sign-in strip in %s", async (lang) => {
+  it.each(SUPPORTED_LANGS)("renders hero, #solicita starter with its limits, no repeated timeline, and subtle bottom sign-in strip in %s", async (lang) => {
     mockedHeaderState.lang = lang;
     const element = await MediatoriPublicPage();
     const html = renderWithProviders(lang, element);
@@ -472,7 +472,18 @@ describe("mediator localization, casing, and UI source invariants across all 7 l
       expect(source).not.toContain("tracking-widest");
       expect(source).not.toContain("uppercase");
       expect(source).not.toContain(" · ");
+      expect(source).not.toContain("ArrowRightIcon");
+      expect(source).not.toContain("Reveal");
+      expect(source).not.toMatch(/animate-(pulse|ping)/);
+      expect(source).not.toMatch(/border-l-[24]/);
     }
+
+    const heroSource = readFileSync(
+      path.join(process.cwd(), "src/components/mediator/MediatorPublicHero.tsx"),
+      "utf8",
+    );
+    expect(heroSource).not.toContain("md:grid-cols-3");
+    expect(heroSource).not.toMatch(/"0[123]"/);
 
     const starterSource = readFileSync(
       path.join(process.cwd(), "src/components/mediator/MediatorCallbackStarter.tsx"),

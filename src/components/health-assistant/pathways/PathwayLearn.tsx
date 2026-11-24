@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRightIcon, BookIcon } from "@/components/ui/icons";
+import { BookIcon } from "@/components/ui/icons";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
 import { type LearnTopicId, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import {
-  optionArrow,
   optionDesc,
   optionIcon,
   optionRow,
@@ -62,7 +61,6 @@ export function PathwayLearn({ step, selectedTopicId, onSelectTopic, plainLangua
                     <span className={optionTitle}>{topic.title}</span>
                     <span className={optionDesc}>{topic.subtitle}</span>
                   </span>
-                  <ArrowRightIcon aria-hidden="true" className={optionArrow} />
                 </button>
               </li>
             );
@@ -100,7 +98,6 @@ export function PathwayLearn({ step, selectedTopicId, onSelectTopic, plainLangua
 
       <Link href={guideHref} className={`mt-3 max-w-full text-body ${textLink}`}>
         <span className={`min-w-0 truncate ${textLinkLabel}`}>{current.guideSlug ? learn.readGuide : learn.browseGuides}</span>
-        <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
       </Link>
 
       <UniversalDoctorExit pathway="learn" summary={learn.summary(topic.title)} />

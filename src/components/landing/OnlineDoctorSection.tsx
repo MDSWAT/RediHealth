@@ -1,9 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
-import { ArrowRightIcon } from "@/components/ui/icons";
 import { OnCallLine } from "@/components/landing/OnCallLine";
 import { homeSectionsCopy } from "@/lib/i18n/home-sections-copy";
 import { getRequestLang, withLangPrefix } from "@/lib/i18n/server-routing";
@@ -25,7 +23,7 @@ export async function OnlineDoctorSection() {
     <Section tone="paper" aria-labelledby="home-doctor-title">
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:items-stretch lg:gap-14">
-          <Reveal className="lg:col-span-6">
+          <div className="lg:col-span-6">
             <h2 id="home-doctor-title" className="text-balance text-page text-foreground dark:text-paper">
               {copy.title}
             </h2>
@@ -54,15 +52,14 @@ export async function OnlineDoctorSection() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href={withLangPrefix("/medic-online", lang)} variant="action" size="lg">
                 {copy.talkNow}
-                <ArrowRightIcon className="arrow-travel h-5 w-5 shrink-0" />
               </Button>
               <Button href={withLangPrefix("/medic-online/programare", lang)} variant="outline" size="lg">
                 {copy.book}
               </Button>
             </div>
-          </Reveal>
+          </div>
 
-          <Reveal className="lg:col-span-6">
+          <div className="lg:col-span-6">
             <figure className="relative aspect-4/3 overflow-hidden rounded-(--radius-surface) bg-surface-subtle sm:aspect-16/10 lg:aspect-auto lg:h-full lg:min-h-112">
               <Image
                 src="/images/hero-desk.jpg"
@@ -76,7 +73,7 @@ export async function OnlineDoctorSection() {
                 <p className="mt-1 text-pretty text-body text-muted-foreground dark:text-mist">{copy.teamText}</p>
               </figcaption>
             </figure>
-          </Reveal>
+          </div>
         </div>
       </Container>
     </Section>

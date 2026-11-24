@@ -103,7 +103,7 @@ export function ConsultationVitalsStreamOverlay({
       : null;
   const source = [telemetry.recordedByWorkerName, telemetry.deviceKitId]
     .filter(Boolean)
-    .join(" · ");
+    .join(", ");
 
   function handleInsert() {
     const summary = readings.map((r) => `${r.label}: ${r.value} ${r.unit}`).join("; ");
@@ -130,7 +130,7 @@ export function ConsultationVitalsStreamOverlay({
                   {t.recordedBy} {source}
                 </>
               )}
-              {source && recordedAt && " · "}
+              {source && recordedAt && ", "}
               {recordedAt && <time dateTime={telemetry.recordedAt}>{recordedAt}</time>}
             </p>
           )}

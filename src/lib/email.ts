@@ -58,7 +58,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
   ru: {
     greeting: "Здравствуйте",
     teamName: "Команда RediHealth",
-    footerBrand: "RediHealth · Поддержка здравоохранения и портал пациентов",
+    footerBrand: "RediHealth — Поддержка здравоохранения и портал пациентов",
     footerContactLead: "Вопросы или отзывы?",
     footerContactLink: "Обратиться в службу поддержки",
     patientFallbackName: "Пациент",
@@ -107,7 +107,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
   en: {
     greeting: "Hello",
     teamName: "The RediHealth team",
-    footerBrand: "RediHealth · Healthcare support and patient portal",
+    footerBrand: "RediHealth — Healthcare support and patient portal",
     footerContactLead: "Questions or feedback?",
     footerContactLink: "Contact support",
     patientFallbackName: "Patient",
@@ -155,7 +155,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
   ro: {
     greeting: "Bună",
     teamName: "Echipa RediHealth",
-    footerBrand: "RediHealth · Asistență medicală și portalul pacientului",
+    footerBrand: "RediHealth — Asistență medicală și portalul pacientului",
     footerContactLead: "Întrebări sau sugestii?",
     footerContactLink: "Contactează echipa de asistență",
     patientFallbackName: "Pacient",
@@ -203,7 +203,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
   sq: {
     greeting: "Përshëndetje",
     teamName: "Ekipi i RediHealth",
-    footerBrand: "RediHealth · Mbështetje shëndetësore dhe portali i pacientit",
+    footerBrand: "RediHealth — Mbështetje shëndetësore dhe portali i pacientit",
     footerContactLead: "Pyetje ose komente?",
     footerContactLink: "Kontakto mbështetjen",
     patientFallbackName: "Pacient",
@@ -251,7 +251,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
   it: {
     greeting: "Buongiorno",
     teamName: "Il team RediHealth",
-    footerBrand: "RediHealth · Supporto sanitario e portale del paziente",
+    footerBrand: "RediHealth — Supporto sanitario e portale del paziente",
     footerContactLead: "Domande o suggerimenti?",
     footerContactLink: "Contatta l'assistenza",
     patientFallbackName: "Paziente",
@@ -299,7 +299,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
   hr: {
     greeting: "Pozdrav",
     teamName: "RediHealth tim",
-    footerBrand: "RediHealth · Zdravstvena podrška i portal za pacijente",
+    footerBrand: "RediHealth — Zdravstvena podrška i portal za pacijente",
     footerContactLead: "Pitanja ili povratne informacije?",
     footerContactLink: "Obrati se podršci",
     patientFallbackName: "Pacijent",
@@ -347,7 +347,7 @@ const panelEmailCopy: Record<Lang, PanelEmailCopy> = {
   rom: {
     greeting: "Mishto avilyan",
     teamName: "I ekipa RediHealth",
-    footerBrand: "RediHealth · Sastipnasko zhutimos thaj portalo e pacientesko",
+    footerBrand: "RediHealth — Sastipnasko zhutimos thaj portalo e pacientesko",
     footerContactLead: "Phuchimata vay gindurya?",
     footerContactLink: "Akhar i ekipa zhutipnaski",
     patientFallbackName: "Paciento",
@@ -579,7 +579,7 @@ export function renderBrandEmail({
                   ${escapeHtml(codeBlock.code)}
                 </div>
                 <div class="email-subtext" style="font-size: 12px; line-height: 18px; color: #64748b; font-weight: 500;">
-                  ${escapeHtml(userCopy.code.expires)} ${escapeHtml(codeBlock.expiresInText || userCopy.code.duration)} · ${escapeHtml(userCopy.code.secret)}
+                  ${escapeHtml(userCopy.code.expires)} ${escapeHtml(codeBlock.expiresInText || userCopy.code.duration)}, ${escapeHtml(userCopy.code.secret)}
                 </div>
               </td>
             </tr>
@@ -612,7 +612,7 @@ export function renderBrandEmail({
     ? `
       <tr>
         <td style="padding: 4px 0 20px 0;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-emergency-box" style="border-collapse: separate; border-spacing: 0; background-color: #fff6f7; border: 1px solid #f5c6cb; border-left: 4px solid #c62f3c; border-radius: 10px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-emergency-box" style="border-collapse: separate; border-spacing: 0; background-color: #fff6f7; border: 1px solid #f5c6cb; border-radius: 10px;">
             <tr>
               <td class="email-emergency" style="padding: 13px 16px; font-size: 13px; line-height: 20px; color: #8f1d27; text-align: left;">
                 <strong style="color: #8f1d27;">${escapeHtml(copy.emergencyHeading)}</strong> ${escapeHtml(copy.emergencyText)}
@@ -692,7 +692,7 @@ export function renderBrandEmail({
         }
         .email-brand-name,
         .email-heading {
-          color: #fbfaf6 !important;
+          color: #ffffff !important;
         }
         .email-body-text {
           color: #cbd5e1 !important;
@@ -710,7 +710,7 @@ export function renderBrandEmail({
           color: #e2e8f0 !important;
         }
         .email-code-digits {
-          color: #fbfaf6 !important;
+          color: #ffffff !important;
         }
         .email-badge {
           color: #94a3b8 !important;
@@ -721,7 +721,6 @@ export function renderBrandEmail({
         .email-emergency-box {
           background-color: #2b141a !important;
           border-color: #5e222e !important;
-          border-left-color: #f87171 !important;
         }
         .email-emergency,
         .email-emergency strong {
@@ -757,17 +756,17 @@ export function renderBrandEmail({
       }
     </style>
   </head>
-  <body id="body" class="email-bg" style="margin: 0; padding: 0; width: 100% !important; background-color: #fcfbf9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+  <body id="body" class="email-bg" style="margin: 0; padding: 0; width: 100% !important; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
     <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all;">
       ${safePreviewText} ${previewSpacingFiller}
     </div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-bg" style="background-color: #fcfbf9;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-bg" style="background-color: #f8fafc;">
       <tr>
         <td align="center" style="padding: 32px 14px 40px 14px;">
           <table role="presentation" class="email-container" width="560" cellpadding="0" cellspacing="0" border="0" align="center" style="width: 560px; max-width: 560px; margin: 0 auto;">
             <!-- Main Elevated Card -->
             <tr>
-              <td class="email-card" style="background-color: #ffffff; border: 1px solid #e6e3dc; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 18px rgba(11, 19, 43, 0.05);">
+              <td class="email-card" style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 18px rgba(11, 19, 43, 0.05);">
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                   <!-- Accent Hairline -->
                   <tr>
@@ -833,7 +832,7 @@ export function renderBrandEmail({
                   ${safeFooterReason}
                 </p>
                 <p class="email-footer-text" style="margin: 0; font-size: 12px; line-height: 18px; color: #64748b;">
-                  ${escapeHtml(copy.footerContactLead)} <a href="mailto:${escapeHtml(LEGAL_OPERATOR.contactEmail)}" class="email-link" style="color: #1d3557; font-weight: 600; text-decoration: underline;">${escapeHtml(copy.footerContactLink)}</a> · <a href="${platformUrl}" class="email-link" style="color: #1d3557; text-decoration: underline;">${escapeHtml(LEGAL_OPERATOR.platformDomain)}</a>
+                  ${escapeHtml(copy.footerContactLead)} <a href="mailto:${escapeHtml(LEGAL_OPERATOR.contactEmail)}" class="email-link" style="color: #1d3557; font-weight: 600; text-decoration: underline;">${escapeHtml(copy.footerContactLink)}</a> — <a href="${platformUrl}" class="email-link" style="color: #1d3557; text-decoration: underline;">${escapeHtml(LEGAL_OPERATOR.platformDomain)}</a>
                 </p>
               </td>
             </tr>

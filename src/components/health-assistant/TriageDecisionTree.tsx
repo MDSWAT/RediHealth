@@ -1,6 +1,5 @@
 "use client";
 
-import { ChevronRightIcon } from "@/components/ui/icons";
 import { PathwayId } from "@/lib/triage-state";
 import { TriageInputBar } from "@/components/health-assistant/TriageInputBar";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
@@ -69,11 +68,6 @@ export function TriageDecisionTree({
                     </span>
                   )}
                 </span>
-
-                <ChevronRightIcon
-                  className="h-5 w-5 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none dark:group-hover:text-sapphire-light"
-                  aria-hidden="true"
-                />
               </button>
             </li>
           );

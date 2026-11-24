@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Reveal } from "@/components/ui/Reveal";
-import { ArrowRightIcon } from "@/components/ui/icons";
 import { HealthTopicsSpotlight } from "@/components/landing/HealthTopicsSpotlight";
 import { HealthTopicsWheel } from "@/components/landing/HealthTopicsWheel";
 import { WHEEL_ICONS } from "@/components/landing/HealthTopicsWheelIcons";
@@ -25,7 +23,6 @@ function ViewAllLink({ href, label, className }: { href: string; label: string; 
       className={cn("sm:px-5", className)}
     >
       <span className="min-w-0 overflow-hidden text-ellipsis">{label}</span>
-      <ArrowRightIcon className="arrow-travel h-5 w-5 shrink-0" />
     </Button>
   );
 }
@@ -65,65 +62,63 @@ export async function HealthTopics() {
   return (
     <Section tone="sand" className="lg:py-[clamp(1.5rem,5svh,4rem)]!">
       <Container>
-        <Reveal>
-          <HealthTopicsSpotlight
-            topics={spotlightTopics}
-            wheel={
-              <div>
-                <HealthTopicsWheel label={title} className="lg:max-w-[min(42.5rem,calc(100svh-var(--site-header-h)-4rem))]!" />
-              </div>
-            }
-            heading={
-              // Short desktop screens (under 760px tall) drop the subtitle, so the section fits.
-              <div className="lg:[@media(max-height:760px)]:[&_p]:hidden">
-                <SectionHeading
-                  as="h2"
-                  title={title}
-                  subtitle={subtitle}
-                  action={
-                    <div className="hidden sm:block lg:hidden">
-                      <ViewAllLink href={viewAllHref} label={viewAll} />
-                    </div>
-                  }
-                />
-              </div>
-            }
-          >
-            {/* Phones: the heading's empty action slot already adds a 16px gap, so the grid adds the other 16px. */}
-            <Reveal as="ul" stagger="ui" className="mt-4 grid grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3 lg:hidden">
-              {topics.map(({ slug, title: topicTitle, description, image }) => (
-                <li key={slug}>
-                  <Link
-                    href={withLangPrefix(`/health-information/${slug}`, lang)}
-                    className="press-row group flex h-full flex-col rounded-(--radius-surface) transition-[background-color,border-color,box-shadow] duration-(--dur-base) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:overflow-hidden sm:border sm:border-sand-line sm:bg-card sm:shadow-(--shadow-card-rest) sm:hover:border-sapphire/35 sm:hover:shadow-(--shadow-card-hover) sm:active:shadow-(--shadow-card-rest) dark:focus-visible:ring-paper dark:sm:border-white/10 dark:sm:bg-ink-800 dark:sm:hover:border-white/25"
-                  >
-                    <div className="relative aspect-4/3 overflow-hidden rounded-(--radius-surface) bg-surface-subtle sm:rounded-none">
-                      <Image
-                        src={image}
-                        alt=""
-                        fill
-                        sizes="(min-width: 640px) 33vw, 50vw"
-                        className="object-cover transition-transform duration-(--dur-slow) ease-(--ease-out-calm) sm:group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:transform-none"
-                      />
-                    </div>
-                    <div className="min-w-0 px-1 pb-1 pt-2 sm:p-4">
-                      <h3 className="text-balance wrap-break-word text-body font-semibold leading-snug text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper dark:group-hover:text-sapphire-border">
-                        {topicTitle}
-                      </h3>
-                      <p className="mt-1 hidden text-pretty text-body text-muted-foreground sm:block dark:text-mist">
-                        {description}
-                      </p>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </Reveal>
-
-            <div className="mt-6 sm:hidden lg:mt-[clamp(1rem,2.5svh,1.5rem)] lg:block">
-              <ViewAllLink href={viewAllHref} label={viewAll} className="w-full lg:w-auto" />
+        <HealthTopicsSpotlight
+          topics={spotlightTopics}
+          wheel={
+            <div>
+              <HealthTopicsWheel label={title} className="lg:max-w-[min(42.5rem,calc(100svh-var(--site-header-h)-4rem))]!" />
             </div>
-          </HealthTopicsSpotlight>
-        </Reveal>
+          }
+          heading={
+            // Short desktop screens (under 760px tall) drop the subtitle, so the section fits.
+            <div className="lg:[@media(max-height:760px)]:[&_p]:hidden">
+              <SectionHeading
+                as="h2"
+                title={title}
+                subtitle={subtitle}
+                action={
+                  <div className="hidden sm:block lg:hidden">
+                    <ViewAllLink href={viewAllHref} label={viewAll} />
+                  </div>
+                }
+              />
+            </div>
+          }
+        >
+          {/* Phones: the heading's empty action slot already adds a 16px gap, so the grid adds the other 16px. */}
+          <ul className="mt-4 grid grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3 lg:hidden">
+            {topics.map(({ slug, title: topicTitle, description, image }) => (
+              <li key={slug}>
+                <Link
+                  href={withLangPrefix(`/health-information/${slug}`, lang)}
+                  className="press-row group flex h-full flex-col rounded-(--radius-surface) transition-[background-color,border-color,box-shadow] duration-(--dur-base) ease-(--ease-out-calm) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none sm:overflow-hidden sm:border sm:border-sand-line sm:bg-card sm:shadow-(--shadow-card-rest) sm:hover:border-sapphire/35 sm:hover:shadow-(--shadow-card-hover) sm:active:shadow-(--shadow-card-rest) dark:focus-visible:ring-paper dark:sm:border-white/10 dark:sm:bg-ink-800 dark:sm:hover:border-white/25"
+                >
+                  <div className="relative aspect-4/3 overflow-hidden rounded-(--radius-surface) bg-surface-subtle sm:rounded-none">
+                    <Image
+                      src={image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 640px) 33vw, 50vw"
+                      className="object-cover transition-transform duration-(--dur-slow) ease-(--ease-out-calm) sm:group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:transform-none"
+                    />
+                  </div>
+                  <div className="min-w-0 px-1 pb-1 pt-2 sm:p-4">
+                    <h3 className="text-balance wrap-break-word text-body font-semibold leading-snug text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:text-paper dark:group-hover:text-sapphire-border">
+                      {topicTitle}
+                    </h3>
+                    <p className="mt-1 hidden text-pretty text-body text-muted-foreground sm:block dark:text-mist">
+                      {description}
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6 sm:hidden lg:mt-[clamp(1rem,2.5svh,1.5rem)] lg:block">
+            <ViewAllLink href={viewAllHref} label={viewAll} className="w-full lg:w-auto" />
+          </div>
+        </HealthTopicsSpotlight>
       </Container>
     </Section>
   );

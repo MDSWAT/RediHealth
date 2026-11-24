@@ -10,7 +10,7 @@ import { healthArticleCopy } from "@/lib/i18n/health-article-translations";
 import { findHealthArticles, formatHealthArticleTitle, healthArticlePath } from "@/lib/data/health-article-index";
 import { informedHealthAreas } from "@/lib/data/informedhealth-directory";
 import { Button } from "@/components/ui/Button";
-import { ArrowRightIcon, SearchIcon, TagIcon, VolumeIcon } from "@/components/ui/icons";
+import { SearchIcon, TagIcon, VolumeIcon } from "@/components/ui/icons";
 import { FilterDropdown, FilterMenuOption } from "@/components/ui/FilterDropdown";
 import { openSmartSearch } from "@/components/search/smart-search-events";
 import { getSmartSearchCopy } from "@/lib/i18n/smart-search-copy";
@@ -148,10 +148,6 @@ export function HealthArticleDirectory({ areaId }: { areaId?: string }) {
                     <span>{copy.read}</span>
                   </span>
                 </span>
-                <ArrowRightIcon
-                  className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none"
-                  aria-hidden="true"
-                />
               </Link>
             </li>
           ))}

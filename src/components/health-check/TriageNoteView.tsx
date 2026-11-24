@@ -12,7 +12,7 @@ import {
 import { getChromeCopy } from "@/components/layout/chrome-copy";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { ArrowRightIcon, PhoneIcon } from "@/components/ui/icons";
+import { PhoneIcon } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
 import {
   getHealthCheckTranslations,
@@ -466,7 +466,6 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                   className="w-full sm:w-auto"
                 >
                   <span className="min-w-0 truncate">{noteCopy.openFullCheck}</span>
-                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
                 </Button>
               </div>
 
@@ -539,7 +538,6 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                   className="w-full sm:w-auto"
                 >
                   <span className="min-w-0 truncate">{noteCopy.startCheck}</span>
-                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
                 </Button>
               </div>
 
@@ -559,7 +557,6 @@ export function TriageNoteView({ initialSearch = "", lang: propLang }: TriageNot
                   className="w-full sm:w-auto"
                 >
                   <span className="min-w-0 truncate">{noteCopy.startCheck}</span>
-                  <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
                 </Button>
               </div>
             </div>

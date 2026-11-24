@@ -84,8 +84,8 @@ export default async function ContactPage() {
             </div>
           </section>
 
-          {/* Emergency notice with calm ruby left accent (112 visual grammar) */}
-          <section className="rounded-xl border border-border border-l-4 border-l-primary bg-card p-5 sm:p-6">
+          {/* Emergency notice (112) */}
+          <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
             <h2 className="text-title text-foreground">{copy.emergencies}</h2>
             <p className="mt-2 flex items-start gap-2.5 text-foreground">
               <PhoneIcon className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />

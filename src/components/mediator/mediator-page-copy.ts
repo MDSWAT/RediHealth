@@ -241,7 +241,7 @@ export type MediatorStaffStripCopy = {
   signIn: string;
 };
 
-/** Quiet bottom strip for community health mediator staff sign-in, below patient actions. */
+/** Subtle bottom strip for community health mediator staff sign-in, below patient actions. */
 export const mediatorStaffStripCopy: Record<Lang, MediatorStaffStripCopy> = {
   ro: {
     regionLabel: "Acces pentru mediatori sanitari",

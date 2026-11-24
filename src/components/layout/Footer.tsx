@@ -107,6 +107,7 @@ export function Footer() {
       links: [
         { label: chrome.liveDoctor, href: "/medic-online" },
         { label: tFooter.col2Link1, href: "/find-help" },
+        { label: tFooter.col2Link2, href: "/stiri" },
         { label: tFooter.col2Link3, href: "/contul-meu" },
       ],
     },
@@ -143,7 +144,7 @@ export function Footer() {
               <Logo className="hero-focus" tone="light" href={withLangPrefix("/", lang)} label={chrome.homeLink} />
               <p className="text-body text-mist">{tFooter.brandDescription}</p>
               <p className="text-meta text-mist/85">
-                {LEGAL_OPERATOR.name} · {LEGAL_OPERATOR.streetAddress}, {LEGAL_OPERATOR.cityCountry[lang] ?? LEGAL_OPERATOR.cityCountry.en} · BCE {LEGAL_OPERATOR.bceNumber}
+                {LEGAL_OPERATOR.name}, {LEGAL_OPERATOR.streetAddress}, {LEGAL_OPERATOR.cityCountry[lang] ?? LEGAL_OPERATOR.cityCountry.en}, BCE {LEGAL_OPERATOR.bceNumber}
               </p>
             </div>
 

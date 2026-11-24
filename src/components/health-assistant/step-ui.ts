@@ -18,7 +18,7 @@ export const stepLead = "mt-2 text-base leading-relaxed text-muted-foreground te
 
 export const subHeading = "text-base font-semibold text-foreground";
 
-/** A whole-row button or link: icon tile, title, description, arrow. */
+/** A whole-row button or link: icon tile, title, description. */
 const optionRowBase = `group flex w-full items-start gap-4 rounded-xl border p-4 text-left transition-[border-color,background-color] ${motion} ${focusRing} sm:p-5`;
 
 export const optionRow = `${optionRowBase} press-row border-border bg-card shadow-2xs hover:border-sapphire/45 hover:bg-sapphire-soft/25 dark:border-ink-800`;
@@ -28,9 +28,6 @@ export const optionIcon = `mt-0.5 flex h-5 w-5 shrink-0 items-center justify-cen
 export const optionTitle = "block text-base font-semibold leading-snug text-foreground";
 
 export const optionDesc = "mt-1 block text-sm leading-relaxed text-muted-foreground";
-
-/** Row arrow indicator; transitions colour calmly on hover. */
-export const optionArrow = `mt-1 h-4.5 w-4.5 shrink-0 text-muted-foreground transition-colors ${motion} motion-reduce:transition-none group-hover:text-sapphire`;
 
 /** A calm tinted panel (no border) for a short aside inside a step. */
 export const softPanel = "rounded-xl border border-sapphire/15 bg-sapphire-soft/55 p-5 dark:border-sapphire/25 dark:bg-sapphire/15";

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/landing/Hero";
+import { RegionalHealthRibbon } from "@/components/news/RegionalHealthRibbon";
 import { HealthTopics } from "@/components/landing/HealthTopics";
 import { MediatorsSection } from "@/components/landing/MediatorsSection";
 import { StackedSections, StackLayer } from "@/components/landing/StackedSections";
@@ -44,6 +45,9 @@ export default async function Home() {
         <StackLayer className="bg-ink-950">
           <div className="flex flex-1 flex-col">
             <Hero />
+            <div className="hidden bg-ink-950 lg:block">
+              <RegionalHealthRibbon />
+            </div>
           </div>
         </StackLayer>
         <StackLayer>
@@ -56,6 +60,9 @@ export default async function Home() {
           <TrustSection />
         </StackLayer>
       </StackedSections>
+      <div className="bg-ink-950 lg:hidden">
+        <RegionalHealthRibbon />
+      </div>
     </main>
   );
 }

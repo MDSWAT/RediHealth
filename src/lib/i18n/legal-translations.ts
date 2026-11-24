@@ -54,19 +54,19 @@ function versionMetaFor(lang: Lang): string {
   const date = LEGAL_EFFECTIVE_DATE[lang] ?? LEGAL_EFFECTIVE_DATE.en;
   switch (lang) {
     case "ro":
-      return `Versiunea ${LEGAL_VERSION} · În vigoare din ${date} · Faza de test`;
+      return `Versiunea ${LEGAL_VERSION}, în vigoare din ${date}, faza de test`;
     case "en":
-      return `Version ${LEGAL_VERSION} · Effective ${date} · Test phase`;
+      return `Version ${LEGAL_VERSION}, effective ${date}, test phase`;
     case "sq":
-      return `Versioni ${LEGAL_VERSION} · Në fuqi nga ${date} · Faza e testimit`;
+      return `Versioni ${LEGAL_VERSION}, në fuqi nga ${date}, faza e testimit`;
     case "it":
-      return `Versione ${LEGAL_VERSION} · In vigore dal ${date} · Fase di test`;
+      return `Versione ${LEGAL_VERSION}, in vigore dal ${date}, fase di test`;
     case "hr":
-      return `Verzija ${LEGAL_VERSION} · Na snazi od ${date} · Faza testiranja`;
+      return `Verzija ${LEGAL_VERSION}, na snazi od ${date}, faza testiranja`;
     case "rom":
-      return `Versiya ${LEGAL_VERSION} · Katar ${date} · Testiripnaski faza`;
+      return `Versiya ${LEGAL_VERSION}, katar ${date}, testiripnaski faza`;
     case "ru":
-      return `Версия ${LEGAL_VERSION} · Действует с ${date} · Тестовая фаза`;
+      return `Версия ${LEGAL_VERSION}, действует с ${date}, тестовая фаза`;
   }
 }
 

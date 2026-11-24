@@ -183,7 +183,7 @@ export function followupStatusLabel(status: FollowupItem["status"], t: { itemSch
 export function followupLabel(item: FollowupItem, locale: string, allDay: string, viewerZone?: string | null): string {
   const date = new Date(`${item.date.slice(0, 10)}T12:00:00`);
   const label = Number.isNaN(date.getTime()) ? item.date : formatPanelDate(date, locale, "date");
-  return `${label} · ${followupTime(item, allDay, viewerZone)}`;
+  return `${label}, ${followupTime(item, allDay, viewerZone)}`;
 }
 
 export function sortFollowups(items: FollowupItem[]): FollowupItem[] {

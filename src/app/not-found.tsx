@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRightIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Button } from "@/components/ui/Button";
@@ -68,6 +67,7 @@ export default function NotFound() {
     { href: "/prescription-review", label: t.header.navMedicine },
     { href: "/find-help", label: findHelpLinks(lang).nav },
     { href: "/mediatori", label: t.header.forMediators },
+    { href: "/stiri", label: t.header.navStiri },
   ];
 
   return (
@@ -104,13 +104,9 @@ export default function NotFound() {
               <Link
                 key={item.href}
                 href={withLangPrefix(item.href, lang)}
-                className="card-interactive group press-row inline-flex min-h-12 items-center justify-between gap-2 whitespace-nowrap rounded-lg border border-border-control bg-card px-2.5 py-3 text-left text-body font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:gap-3 sm:px-4"
+                className="card-interactive group press-row inline-flex min-h-12 items-center gap-2 whitespace-nowrap rounded-lg border border-border-control bg-card px-2.5 py-3 text-left text-body font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:gap-3 sm:px-4"
               >
                 <span className="transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none">{item.label}</span>
-                <ArrowRightIcon
-                  className="hidden h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none sm:inline-block"
-                  aria-hidden="true"
-                />
               </Link>
             ))}
           </nav>

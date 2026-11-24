@@ -629,7 +629,7 @@ export function CreatePatientModal({
                           />
                           <span className="min-w-0">
                             <span className="block break-words font-semibold text-[var(--panel-ink)]">{w.full_name}</span>
-                            <span className="mt-1 block break-words text-xs text-[var(--panel-muted)]">{w.role}{w.county ? ` · ${w.county}` : ""}</span>
+                            <span className="mt-1 block break-words text-xs text-[var(--panel-muted)]">{w.role}{w.county ? `, ${w.county}` : ""}</span>
                             <span className="mt-1 block break-all text-xs text-[var(--panel-muted)]">{w.email}</span>
                           </span>
                         </label>
@@ -645,7 +645,7 @@ export function CreatePatientModal({
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <h4 className="break-words text-lg font-bold text-[var(--panel-ink)]">{fullName}</h4>
-                  <p className="mt-1 break-all text-sm text-[var(--panel-ink)]"><span className="font-display tabular-nums">{phone}</span> · {email}</p>
+                  <p className="mt-1 break-all text-sm text-[var(--panel-ink)]"><span className="font-display tabular-nums">{phone}</span>, {email}</p>
                   {county && <p className="mt-1 text-sm text-[var(--panel-muted)]">{county}</p>}
                 </div>
                 <button type="button" onClick={() => goToStep(0)} className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap px-2 text-sm font-semibold text-primary hover:underline dark:text-[#bad7fa]">{wizard.edit}</button>
@@ -664,7 +664,7 @@ export function CreatePatientModal({
                   [wizard.gps, intake.location ? `${intake.location.latitude.toFixed(6)}, ${intake.location.longitude.toFixed(6)}` : ""],
                 ]).map(([label, value]) => <div key={label} className="min-w-0"><dt className="text-xs font-medium text-[var(--panel-muted)]">{label}</dt><dd className="mt-1 whitespace-pre-wrap break-words text-[var(--panel-ink)]">{value || wizard.empty}</dd></div>)}
               </dl>
-              {intake.documents.length > 0 && <div className="mt-4 border-t border-[var(--panel-line)] pt-4"><h4 className="text-xs font-medium text-[var(--panel-muted)]">{wizard.documents} (<span className="font-display tabular-nums">{intake.documents.length}</span>)</h4><ul className="mt-2 divide-y divide-[var(--panel-line)] border-t border-[var(--panel-line)]">{intake.documents.map((document) => <li key={document.id} className="break-words py-2 text-sm text-[var(--panel-ink)]">{document.name} · <span className="text-[var(--panel-muted)]">{document.category === "identity" ? intakeCopy.identity : intakeCopy.medical}</span></li>)}</ul></div>}
+              {intake.documents.length > 0 && <div className="mt-4 border-t border-[var(--panel-line)] pt-4"><h4 className="text-xs font-medium text-[var(--panel-muted)]">{wizard.documents} (<span className="font-display tabular-nums">{intake.documents.length}</span>)</h4><ul className="mt-2 divide-y divide-[var(--panel-line)] border-t border-[var(--panel-line)]">{intake.documents.map((document) => <li key={document.id} className="break-words py-2 text-sm text-[var(--panel-ink)]">{document.name} — <span className="text-[var(--panel-muted)]">{document.category === "identity" ? intakeCopy.identity : intakeCopy.medical}</span></li>)}</ul></div>}
             </section>
           </div>}
         </form>

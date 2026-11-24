@@ -1150,7 +1150,7 @@ export const TOPIC_ANATOMY_CONFIGS: Record<TopicAnatomySlug, TopicAnatomyConfig>
     },
     intro: {
       ro: "Controalele preventive prind schimbările înainte să apară simptomele. Alege o zonă pentru a vedea ce verificări simple o protejează și comută între corpul general și cel feminin în 3D.",
-      en: "Preventive checks spot quiet changes before symptoms begin. Select each zone to see which routine checks protect it, and switch between general and female views in 3D.",
+      en: "Preventive checks spot early changes before symptoms begin. Select each zone to see which routine checks protect it, and switch between general and female views in 3D.",
       sq: "Kontrollet parandaluese zbulojnë ndryshime të heshtura para se të shfaqen simptomat. Zgjidh një zonë ose kalo mes profilit të përgjithshëm dhe femëror në 3D.",
       it: "I controlli preventivi individuano i cambiamenti silenziosi prima dei sintomi. Seleziona una zona o passa dal profilo generale a quello femminile in 3D.",
       hr: "Preventivni pregledi otkrivaju tihe promjene prije pojave simptoma. Odaberi područje ili u 3D prikazu prebaci između općeg i ženskog profila.",
@@ -1282,7 +1282,7 @@ export const TOPIC_ANATOMY_CONFIGS: Record<TopicAnatomySlug, TopicAnatomyConfig>
         },
         fact: {
           ro: "Testul Babeș-Papanicolau, testarea HPV și mamografia recomandată vârstei verifică sânii și colul uterin înainte ca problemele să producă durere.",
-          en: "Cervical screening and age-guided breast imaging check the breast and pelvic organs quietly and effectively before any symptoms start.",
+          en: "Cervical screening and age-guided breast imaging check the breast and pelvic organs early and effectively before any symptoms start.",
           sq: "Testi Pap, testi HPV dhe mamografia sipas moshës kontrollojnë qafën e mitrës dhe gjirin përpara se të shfaqen simptoma.",
           it: "Pap test, test HPV e mammografia secondo l'età controllano seno e collo dell'utero in modo mirato prima dei sintomi.",
           hr: "Papa test, HPV test i mamografija prema dobi pravodobno štite zdravlje dojki i vrata maternice.",

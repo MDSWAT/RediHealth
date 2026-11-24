@@ -2,18 +2,15 @@
 
 import { useId, useState } from "react";
 import { ChevronDownIcon } from "@/components/ui/icons";
-import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 import type { HomeStep } from "@/lib/i18n/home-sections-copy";
 import { useIsPhone } from "@/lib/use-is-phone";
 
 /**
  * What a health mediator does, on the ink ground.
- * - From sm: three elevated dark-glass architectural panels under an animated amber rule, every text showing.
- * - Phones: the same three as rows that grow open and shrink shut, so the section reads as three
- *   short titles first. The first is open; any number can be open at once. Each title is a real
- *   button (aria-expanded) and the text under a closed one leaves the tab order.
- * The server renders everything open, so nothing is hidden before the script runs.
+ * - From sm: an asymmetric editorial hairline list with titles on the left and descriptions on the right.
+ * - Phones: the same three rows grow open and shrink shut, so the section reads as three
+ *   short titles first. Each title is a button (aria-expanded) and closed text leaves the tab order.
  */
 export function MediatorServices({ services }: { services: HomeStep[] }) {
   const isPhone = useIsPhone();
@@ -21,22 +18,16 @@ export function MediatorServices({ services }: { services: HomeStep[] }) {
   const baseId = useId();
 
   return (
-    <Reveal
-      as="ul"
-      stagger="editorial"
-      className="mt-7 grid gap-2.5 sm:mt-12 sm:grid-cols-3 sm:gap-5 lg:mt-14 lg:gap-6"
-    >
+    <ul className="mt-7 divide-y divide-paper/12 border-t border-paper/12 sm:mt-12 lg:mt-14">
       {services.map((service, index) => {
         const shown = !isPhone || open[index];
         const panelId = `${baseId}-${index}`;
         return (
           <li
             key={service.title}
-            className="max-sm:rounded-xl max-sm:border max-sm:border-paper/12 max-sm:bg-paper/[0.04] max-sm:px-4 sm:rounded-2xl sm:border sm:border-paper/12 sm:bg-paper/[0.035] sm:p-6 sm:shadow-[inset_0_1px_0_0_rgb(255_255_255/0.07)] sm:backdrop-blur-xs sm:transition-[background-color,border-color,box-shadow] sm:duration-(--dur-base) sm:ease-(--ease-out-calm) sm:hover:border-amber-care-border/45 sm:hover:bg-paper/[0.06] sm:hover:shadow-[inset_0_1px_0_0_rgb(255_255_255/0.12),0_18px_36px_-20px_rgb(0_0_0/0.6)] motion-reduce:transition-none"
+            className="sm:grid sm:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] sm:items-baseline sm:gap-10 sm:py-6"
           >
-            <span aria-hidden="true" className="rule-draw hidden h-0.5 w-10 bg-amber-care-border sm:block" />
-
-            {/* Phones: compact tappable info box. */}
+            {/* Phones: compact tappable row. */}
             <h3 className="sm:hidden">
               <button
                 type="button"
@@ -54,8 +45,9 @@ export function MediatorServices({ services }: { services: HomeStep[] }) {
                 />
               </button>
             </h3>
-            {/* From sm: a plain heading. */}
-            <h3 className="mt-5 hidden text-balance text-title font-semibold text-paper sm:block">{service.title}</h3>
+
+            {/* From sm: asymmetric left column heading. */}
+            <h3 className="hidden text-balance text-title font-semibold text-paper sm:block">{service.title}</h3>
 
             <div
               id={panelId}
@@ -66,12 +58,12 @@ export function MediatorServices({ services }: { services: HomeStep[] }) {
               )}
             >
               <div className="overflow-hidden">
-                <p className="max-w-(--measure-reading) pb-4 text-pretty text-body text-mist sm:mt-2.5 sm:pb-0">{service.text}</p>
+                <p className="max-w-(--measure-reading) pb-4 text-pretty text-body text-mist sm:pb-0">{service.text}</p>
               </div>
             </div>
           </li>
         );
       })}
-    </Reveal>
+    </ul>
   );
 }

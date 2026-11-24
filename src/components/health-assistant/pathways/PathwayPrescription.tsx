@@ -3,11 +3,10 @@
 import { useId, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { ArrowRightIcon, CameraIcon, CheckCircleIcon } from "@/components/ui/icons";
+import { CameraIcon, CheckCircleIcon } from "@/components/ui/icons";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import {
-  optionArrow,
   optionDesc,
   optionIcon,
   optionRow,
@@ -94,7 +93,6 @@ export function PathwayPrescription({ step, input, onSelectInput, plainLanguage 
             <span className={optionTitle}>{rx.photoTitle}</span>
             <span className={optionDesc}>{rx.photoDesc}</span>
           </span>
-          <ArrowRightIcon aria-hidden="true" className={optionArrow} />
         </Link>
 
         <form onSubmit={handleTextSubmit} className="mt-6 border-t border-border pt-6">

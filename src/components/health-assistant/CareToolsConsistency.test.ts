@@ -309,7 +309,8 @@ describe("Care tools design-system consistency", () => {
     const treeSrc = readSrc("src/components/health-assistant/TriageDecisionTree.tsx");
     expect(treeSrc).toContain("min-h-[56px]");
     expect(treeSrc).toContain("border-b border-ink-950/[0.08]");
-    expect(treeSrc).toContain("<ChevronRightIcon");
+    expect(treeSrc).not.toContain("<ChevronRightIcon");
+    expect(treeSrc).not.toContain("<ArrowRightIcon");
     expect(treeSrc).not.toContain("surface-spotlight");
     expect(treeSrc).not.toContain("card-interactive");
     expect(treeSrc).not.toContain("list-in");

@@ -1,7 +1,7 @@
 "use client";
 import { PanelLink as Link, usePanelRouter as useRouter, usePanelRuntime } from "./PanelRuntime";
 import { useCallback, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/icons";
+import { ChevronLeftIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { toAvatarDataUrl } from "@/lib/image";
@@ -275,7 +275,7 @@ export function PatientProfileView({ initialPatient, isAdmin = false, isRomania 
                 ) : (
                   <p className="mt-2 text-sm text-[var(--panel-muted)]">{treatmentTranslations[lang].empty}</p>
                 )}
-                <button type="button" className="mt-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap text-sm font-medium text-primary hover:underline dark:text-[#bad7fa]" onClick={() => setTab("carePlan")}>{t.carePlan}<ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0" /></button>
+                <button type="button" className="mt-2 inline-flex min-h-11 items-center gap-1 whitespace-nowrap text-sm font-medium text-primary hover:underline dark:text-[#bad7fa]" onClick={() => setTab("carePlan")}>{t.carePlan}</button>
               </div>
             </section>
             <PatientTimelineTab patient={patient} followups={followups} photos={photos} compact onViewAll={() => setTab("history")} />

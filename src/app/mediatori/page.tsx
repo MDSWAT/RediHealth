@@ -9,8 +9,6 @@ import {
   mediatorStaffStripCopy,
 } from "@/components/mediator/mediator-page-copy";
 import { Container } from "@/components/ui/Container";
-import { ArrowRightIcon, FileTextIcon, LockIcon, ShieldIcon, UsersIcon } from "@/components/ui/icons";
-import { Reveal } from "@/components/ui/Reveal";
 import { SUPPORTED_COUNTRIES, parseCountry, type CountryCode } from "@/lib/countries";
 import { defaultCountryForLang } from "@/lib/country-areas";
 import { localizedPageTitle } from "@/lib/i18n/page-metadata";
@@ -63,28 +61,15 @@ export default async function MediatoriPublicPage() {
             </div>
 
             <div className="lg:col-span-7">
-              <Reveal as="ul" stagger="ui" className="grid gap-4 sm:grid-cols-2">
-                {pageCopy.bullets.map((bullet, index) => {
-                  const icons = [LockIcon, ShieldIcon, FileTextIcon, UsersIcon];
-                  const Icon = icons[index % icons.length];
-                  return (
-                    <li
-                      key={bullet}
-                      className="flex flex-col gap-3.5 rounded-2xl border border-border bg-card p-5 shadow-2xs sm:p-6 dark:border-white/10 dark:bg-ink-900"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-subtle text-foreground dark:border-white/12 dark:bg-white/[0.06] dark:text-paper"
-                      >
-                        <Icon className="h-4.5 w-4.5" />
-                      </span>
-                      <p className="text-pretty text-body font-medium leading-snug text-foreground dark:text-paper">
-                        {bullet}
-                      </p>
-                    </li>
-                  );
-                })}
-              </Reveal>
+              <ul className="divide-y divide-border border-y border-border dark:divide-white/10 dark:border-white/10">
+                {pageCopy.bullets.map((bullet) => (
+                  <li key={bullet} className="py-4 sm:py-5">
+                    <p className="text-pretty text-body font-medium leading-snug text-foreground dark:text-paper">
+                      {bullet}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </Container>
@@ -92,14 +77,13 @@ export default async function MediatoriPublicPage() {
 
       <section className="border-t border-border bg-muted/30 py-8 sm:py-10" aria-label={staffStrip.regionLabel}>
         <Container>
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-card px-5 py-4 shadow-2xs sm:px-7 sm:py-5 dark:border-white/10 dark:bg-ink-900">
+          <div className="flex flex-wrap items-center justify-between gap-4">
             <p className="text-body font-medium text-foreground dark:text-paper">{staffStrip.prompt}</p>
             <Link
               href={withLangPrefix("/sign-in", lang)}
-              className="press-row group inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl border border-border-control bg-background px-4 py-2 text-body font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-foreground/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/16 dark:bg-white/[0.06] dark:text-paper dark:hover:bg-white/[0.12]"
+              className="press-row inline-flex min-h-11 items-center whitespace-nowrap rounded-xl border border-border-control bg-background px-4 py-2 text-body font-semibold text-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-foreground/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:border-white/16 dark:bg-white/[0.06] dark:text-paper dark:hover:bg-white/[0.12]"
             >
               <span>{staffStrip.signIn}</span>
-              <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
             </Link>
           </div>
         </Container>

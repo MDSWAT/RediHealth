@@ -84,7 +84,8 @@ describe("Resend transport and RediHealth email templates", () => {
     const signIn = renderSignInCodeEmail({ email: "staff@example.com", code: "482910", lang: "en" });
     expect(signIn.html).toContain("https://redi.healthcare/pwa/pwa-192x192.png");
     expect(signIn.html).toContain("#1d3557");
-    expect(signIn.html).toContain("#fcfbf9");
+    expect(signIn.html).toContain("#f8fafc");
+    expect(signIn.html).not.toMatch(/#fcfbf9|#fbfaf6|border-left|\u00b7/i);
     expect(signIn.html).toContain("prefers-color-scheme: dark");
     expect(signIn.html).not.toContain("text-transform: uppercase");
     expect(signIn.html).not.toContain("border-radius: 9999px");

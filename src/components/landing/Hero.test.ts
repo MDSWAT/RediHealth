@@ -21,7 +21,7 @@ const { Hero } = await import("./Hero");
 const ALL_LANGS: Lang[] = ["ro", "en", "sq", "it", "hr", "rom", "ru"];
 const CORE_LANGS: Lang[] = ["en", "ro", "sq", "it"];
 
-/** Every user-visible string in a locale, flattened (functions sampled with real values). */
+/** Every user-visible string in a locale, flattened (functions sampled with valid values). */
 function allStrings(copy: unknown): string[] {
   const out: string[] = [];
   const walk = (value: unknown) => {
@@ -159,17 +159,18 @@ describe("hero render", () => {
     expect(pageSrc).toContain("-mt-(--site-header-h)");
     expect(html).toContain("pt-(--site-header-h)");
     expect(html).toMatch(/\bmin-h-svh\b/);
+    expect(html).toMatch(/lg:min-h-\[calc\(100svh-3\.5rem\)\]/);
     expect(html).toContain("hero-mobile-stage");
   });
 
-  it("renders StackedSections, HealthTopics, MediatorsSection and TrustSection in src/app/page.tsx without RegionalHealthRibbon, OnlineDoctorSection or landing quiz", () => {
+  it("restores StackedSections, RegionalHealthRibbon, HealthTopics, MediatorsSection and TrustSection in src/app/page.tsx without OnlineDoctorSection or landing quiz", () => {
     const pageSrc = readFileSync(path.resolve(__dirname, "../../app/page.tsx"), "utf8");
     expect(pageSrc).toContain("StackedSections");
     expect(pageSrc).toContain("StackLayer");
-    expect(pageSrc).not.toContain("RegionalHealthRibbon");
+    expect(pageSrc).toContain("RegionalHealthRibbon");
     expect(pageSrc).not.toContain("OnlineDoctorSection");
     expect(pageSrc).not.toContain("TrueFalseQuizSection");
-    expect(pageSrc).toMatch(/<Hero\s*\/>[\s\S]*<HealthTopics\s*\/>[\s\S]*<MediatorsSection\s*\/>[\s\S]*<TrustSection\s*\/>/);
+    expect(pageSrc).toMatch(/<Hero\s*\/>[\s\S]*<RegionalHealthRibbon\s*\/>[\s\S]*<HealthTopics\s*\/>[\s\S]*<MediatorsSection\s*\/>[\s\S]*<TrustSection\s*\/>/);
   });
 
   it("sets the headline as plain sentences: the concept's one sentence from lg, two short ones below it", () => {
@@ -318,8 +319,9 @@ describe("landing accent roles and one source of copy", () => {
     expect(topics).toContain('withLangPrefix("/health-information", lang)');
   });
 
-  it("simplifies MediatorsSection to one action button to /mediatori#solicita and frames TrustSection commitments in cards", () => {
+  it("simplifies MediatorsSection to one action button to /mediatori#solicita and frames TrustSection commitments in an editorial hairline list", () => {
     const mediators = read("MediatorsSection.tsx");
+    const mediatorServices = read("MediatorServices.tsx");
     const hero = read("Hero.tsx");
     const trust = read("TrustSection.tsx");
 
@@ -328,12 +330,42 @@ describe("landing accent roles and one source of copy", () => {
     expect(mediators).not.toContain("first:border-l-0");
     expect(mediators).toMatch(/overflow-hidden[\s\S]*sm:-ml-3\.5/);
     expect(mediators).toMatch(/flex flex-col[\s\S]*sm:flex-row sm:flex-wrap/);
+    expect(mediatorServices).not.toContain("sm:grid-cols-3");
     expect(hero).not.toContain("first:border-l-0");
+    expect(hero).not.toContain("hero-pointer-aura");
 
     expect(trust).toContain("bg-card");
     expect(trust).toContain("bg-sapphire");
     expect(trust).toContain("bg-wellness");
     expect(trust).toContain("bg-amber-care");
+    expect(trust).not.toContain("sm:grid-cols-3");
+  });
+
+  it("enforces zero AI design slop across landing components and copy", () => {
+    const routineLandingFiles = [
+      "Hero.tsx",
+      "MediatorsSection.tsx",
+      "MediatorServices.tsx",
+      "HealthTopics.tsx",
+      "HealthTopicsSpotlight.tsx",
+      "OnlineDoctorSection.tsx",
+      "QuizFeedbackCard.tsx",
+      "TrueFalseQuizSection.tsx",
+      "TrustSection.tsx",
+    ];
+    for (const file of routineLandingFiles) {
+      const src = read(file);
+      expect(src, `${file} must not import ArrowRightIcon`).not.toContain("ArrowRightIcon");
+      expect(src, `${file} must not use Reveal scroll-fade`).not.toContain("Reveal");
+      expect(src, `${file} must not use animate-pulse or animate-ping`).not.toMatch(/animate-(pulse|ping)/);
+      expect(src, `${file} must not use Sparkle or middle dots`).not.toMatch(/Sparkle|✨|·/);
+      expect(src, `${file} must not use colored left borders`).not.toMatch(/border-l-[24]/);
+    }
+
+    for (const lang of ALL_LANGS) {
+      // mobileLead must be a single natural phrase, never staccato two-word sentences.
+      expect(heroCopy[lang].mobileLead, lang).not.toMatch(/\.\s+\S/);
+    }
   });
 
   it("calls health mediators 'mediator' in Albanian, never 'ndërmjetës'", () => {

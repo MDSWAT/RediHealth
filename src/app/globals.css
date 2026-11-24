@@ -2,12 +2,12 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-background: #fcfbf9;
+  --color-background: #ffffff;
   --color-foreground: #0b132b;
 
   --color-obsidian-navy: #0b132b;
   --color-surface-subtle: #f3f4f7;
-  --color-surface-card: #f8f9fa;
+  --color-surface-card: #f8fafc;
   --color-surface-elevated: #ffffff;
 
   --color-muted: #f0f2f6;
@@ -35,17 +35,17 @@
   --color-clinical-ruby-active: #8f1d27;
   --color-clinical-ruby-soft: #fde8ea;
 
-  /* Hero ground: obsidian ink, warm paper, and a cool mist for secondary text on dark */
+  /* Hero ground: obsidian ink, crisp white paper, and a cool mist for secondary text on dark */
   --color-ink-950: #0a1226;
   --color-ink-900: #101a33;
   --color-ink-800: #1b2744;
-  --color-paper: #fbfaf6;
+  --color-paper: #ffffff;
   --color-mist: #a9b3c6;
 
-  /* Warm neutral ground for alternating sections. The line is a decorative hairline only:
-     it is too faint for a control edge, so outlined controls on sand sit on a card. */
-  --color-sand: #f5eee3;
-  --color-sand-line: #e7d9c3;
+  /* Crisp neutral off-white ground for alternating sections. The line is a decorative hairline only:
+     it is too faint for a control edge, so outlined controls on subtle surfaces sit on a card. */
+  --color-sand: #f8fafc;
+  --color-sand-line: #e2e8f0;
 
   /* Deep Sapphire (Telemedicine and Clinical Authority) */
   --color-sapphire: #1d3557;
@@ -473,10 +473,10 @@ h2 {
    element using it also carries the `dark` class (or re-points its tokens) so its content is light. */
 .phone-sheet {
   border: 0;
-  border-top: 1px solid rgb(251 250 246 / 0.16);
+  border-top: 1px solid rgb(255 255 255 / 0.16);
   border-radius: 1.75rem 1.75rem 0 0;
   background: linear-gradient(180deg, #13203f 0%, #0c1730 38%, #0a1226 100%);
-  color: #fbfaf6;
+  color: #ffffff;
   box-shadow: 0 -24px 60px -20px rgb(2 6 23 / 0.7);
 }
 
@@ -542,7 +542,7 @@ h2 {
 }
 
 .dark .phone-sheet-light {
-  border-top: 1px solid rgb(251 250 246 / 0.16);
+  border-top: 1px solid rgb(255 255 255 / 0.16);
   background: var(--color-ink-950);
   color: var(--color-paper);
 }
@@ -615,20 +615,10 @@ h2 {
   }
 }
 
-/* Subtle pointer-tracked parallax on the desktop hero wheel & ambient ceramic glow. */
+/* Subtle pointer-tracked parallax on the desktop hero wheel. */
 .hero-parallax-wheel {
   transform: translate3d(calc(var(--hero-px, 0) * -10px), calc(var(--hero-py, 0) * -8px), 0);
   will-change: transform;
-}
-
-.hero-pointer-aura {
-  background: radial-gradient(
-    34rem circle at var(--hero-mx, 50%) var(--hero-my, 50%),
-    color-mix(in oklab, var(--color-sapphire) 6%, transparent) 0%,
-    transparent 65%
-  );
-  opacity: var(--hero-aura, 0);
-  transition: opacity var(--dur-slow) var(--ease-out-calm);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -636,18 +626,11 @@ h2 {
     transform: none;
     will-change: auto;
   }
-  .hero-pointer-aura {
-    display: none;
-  }
 }
 
 html[data-calm-motion] .hero-parallax-wheel {
   transform: none;
   will-change: auto;
-}
-
-html[data-calm-motion] .hero-pointer-aura {
-  display: none;
 }
 
 @keyframes hero-warm-up {
@@ -756,14 +739,14 @@ html[data-calm-motion] .hero-phone-drift {
    paper, paper as the sheet's ground, sapphire and the 112 red as lighter tints), so every class
    in the panel keeps its meaning and its contrast on the dark ground. */
 .triage-sheet {
-  --color-ink-950: #fbfaf6;
+  --color-ink-950: #ffffff;
   --color-paper: #0c1730;
   --color-muted-foreground: #a9b3c6;
   --color-sapphire: #a9c6f2;
   --color-sapphire-light: #cfe0fa;
-  --color-sapphire-soft: rgb(251 250 246 / 0.1);
+  --color-sapphire-soft: rgb(255 255 255 / 0.1);
   --color-primary: #ff9aa2;
-  --color-ring: #fbfaf6;
+  --color-ring: #ffffff;
   position: fixed;
   inset: auto 0 0 0;
   width: 100%;
@@ -935,33 +918,6 @@ html[data-calm-motion] .triage-sheet[open] {
   }
 }
 /* ---------- End landing hero ---------- */
-
-/*
- * Reveal (src/components/ui/Reveal.tsx): one entrance for content below the fold, opacity plus a
- * 12px rise, once. The server HTML never carries data-reveal, so without JavaScript nothing is
- * hidden; the component only arms a block that is still below the viewport after hydration.
- */
-[data-reveal="armed"] {
-  opacity: 0;
-  transform: translate3d(0, 12px, 0);
-}
-
-[data-reveal="revealed"] {
-  transition:
-    opacity var(--dur-slow) var(--ease-out-calm) var(--reveal-delay, 0ms),
-    transform var(--dur-slow) var(--ease-out-calm) var(--reveal-delay, 0ms);
-}
-
-@media (prefers-reduced-motion: reduce), print {
-  [data-reveal="armed"] {
-    opacity: 1;
-    transform: none;
-  }
-
-  [data-reveal="revealed"] {
-    transition: none;
-  }
-}
 
 @media (max-width: 1023.98px) {
   body:has(.news-sheet) .report-issue-trigger,
@@ -1199,14 +1155,11 @@ body:has(dialog[open]) .feedback-edge-trigger {
 }
 
 .rh-dict-masthead {
-  background-color: #f5f7fa;
-  background-image: radial-gradient(rgba(29, 53, 87, 0.07) 1px, transparent 1px);
-  background-size: 14px 14px;
+  background-color: #f8fafc;
 }
 
 .dark .rh-dict-masthead {
   background-color: var(--color-ink-900);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
 }
 
 .rh-dict-tab-body {
@@ -1750,89 +1703,6 @@ html[data-text-scale="xl"] .site-header :is(button, a)[class~="w-11"] {
   }
 }
 
-/* Slow ambient glow breath for dark editorial sections (pauses under data-buried / reduced motion). */
-@keyframes ambient-breathe {
-  0%,
-  100% {
-    opacity: 0.78;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.06);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html:not([data-calm-motion]) .ambient-breathe {
-    animation: ambient-breathe 12s var(--ease-in-out-calm) infinite;
-  }
-}
-
-/*
- * Reveal variants (Reveal.tsx `variant`). "rise" is the default above. "mask" uncovers media
- * from the bottom edge with a clip, so an image arrives as a surface, not as a fade. "fade" is
- * for blocks that must not move (tables, maps). `stagger` hands the entrance to the children,
- * which then arrive one after another.
- */
-[data-reveal="armed"][data-reveal-variant="mask"] {
-  opacity: 1;
-  transform: none;
-  clip-path: inset(0 0 100% 0 round var(--radius-surface));
-}
-
-[data-reveal="revealed"][data-reveal-variant="mask"] {
-  clip-path: inset(0 0 0 0 round var(--radius-surface));
-  transition: clip-path var(--dur-slower) var(--ease-out-expo) var(--reveal-delay, 0ms);
-}
-
-[data-reveal="armed"][data-reveal-variant="fade"] {
-  transform: none;
-}
-
-[data-reveal="armed"][data-reveal-stagger] {
-  opacity: 1;
-  transform: none;
-}
-
-[data-reveal="armed"][data-reveal-stagger] > * {
-  opacity: 0;
-  transform: translate3d(0, 12px, 0);
-}
-
-[data-reveal="revealed"][data-reveal-stagger] > * {
-  transition:
-    opacity var(--dur-slow) var(--ease-out-calm) calc(var(--reveal-delay, 0ms) + var(--reveal-step, 0ms)),
-    transform var(--dur-slow) var(--ease-out-calm) calc(var(--reveal-delay, 0ms) + var(--reveal-step, 0ms));
-}
-
-[data-reveal-stagger="editorial"] {
-  --reveal-gap: var(--stagger-editorial);
-}
-
-[data-reveal-stagger] > :nth-child(2) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 1); }
-[data-reveal-stagger] > :nth-child(3) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 2); }
-[data-reveal-stagger] > :nth-child(4) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 3); }
-[data-reveal-stagger] > :nth-child(5) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 4); }
-[data-reveal-stagger] > :nth-child(6) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 5); }
-[data-reveal-stagger] > :nth-child(n + 7) { --reveal-step: calc(var(--reveal-gap, var(--stagger-ui)) * 6); }
-
-@media (prefers-reduced-motion: reduce), print {
-  [data-reveal="armed"][data-reveal-variant="mask"] {
-    clip-path: none;
-  }
-
-  [data-reveal="armed"][data-reveal-stagger] > * {
-    opacity: 1;
-    transform: none;
-  }
-
-  [data-reveal="revealed"][data-reveal-variant="mask"],
-  [data-reveal="revealed"][data-reveal-stagger] > * {
-    transition: none;
-  }
-}
-
 /*
  * rule-draw: a hairline (an <hr> or an empty span) that draws from the left the first time it is
  * revealed. Inside a Reveal it follows the reveal; on its own it runs once on load.
@@ -1852,27 +1722,7 @@ html[data-text-scale="xl"] .site-header :is(button, a)[class~="w-11"] {
   transform-origin: 100% 50%;
 }
 
-/* Inside a Reveal the rule waits, undrawn, and draws when its block is revealed. */
-[data-reveal="armed"] .rule-draw {
-  animation: none;
-  transform: scaleX(0);
-}
 
-[data-reveal="revealed"] .rule-draw {
-  animation: none;
-  transition: transform var(--dur-slower) var(--ease-out-expo)
-    calc(var(--reveal-delay, 0ms) + var(--reveal-step, 0ms) + 80ms);
-}
-
-@media (prefers-reduced-motion: reduce), print {
-  [data-reveal="armed"] .rule-draw {
-    transform: none;
-  }
-
-  [data-reveal="revealed"] .rule-draw {
-    transition: none;
-  }
-}
 
 /*
  * read-progress: a 2px line under the pinned header that fills as a long page is read. Pure CSS

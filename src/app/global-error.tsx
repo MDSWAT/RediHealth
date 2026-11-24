@@ -17,7 +17,7 @@ const GLOBAL_ERROR_CSS = `
 .ge-retry:focus-visible, .ge-home:focus-visible { outline: 2px solid #1d3557; outline-offset: 3px; }
 .ge-home { color: #1d3557; }
 @media (prefers-color-scheme: dark) {
-  .ge-body-root { color: #fbfaf6; background: #101a33; }
+  .ge-body-root { color: #ffffff; background: #101a33; }
   .ge-body { color: #cbd5e1; }
   .ge-retry { background: #a9c6f2; color: #0a1226; }
   .ge-retry:hover, .ge-retry:active { background: #cfe0fa; }

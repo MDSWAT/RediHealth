@@ -3,10 +3,7 @@
 import Link from "next/link";
 import { useContext, useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
-import {
-  ArrowRightIcon,
-  ChevronDownIcon,
-} from "@/components/ui/icons";
+import { ChevronDownIcon } from "@/components/ui/icons";
 import { captchaErrorMessage, useRecaptcha } from "@/components/security/RecaptchaProvider";
 import { COUNTRY_LABELS, SUPPORTED_COUNTRIES, type CountryCode } from "@/lib/countries";
 import {
@@ -655,10 +652,9 @@ export function MediatorCallbackStarter({
               <p className="max-w-xs">{copy.fullFormPrompt}</p>
               <Link
                 href={withLangPrefix("/get-help?mode=mediator", lang)}
-                className="hero-focus press-on-dark group inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-xl border border-paper/18 bg-paper/[0.07] px-3.5 py-2 text-meta font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-paper/35 hover:bg-paper/[0.14] motion-reduce:transition-none"
+                className="hero-focus press-on-dark inline-flex min-h-11 items-center whitespace-nowrap rounded-xl border border-paper/18 bg-paper/[0.07] px-3.5 py-2 text-meta font-semibold text-paper transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-paper/35 hover:bg-paper/[0.14] motion-reduce:transition-none"
               >
                 <span>{copy.fullFormLink}</span>
-                <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -891,10 +887,9 @@ export function MediatorCallbackStarter({
                 size="lg"
                 disabled={isSubmitting}
                 aria-busy={isSubmitting}
-                className="min-h-12 w-full justify-center gap-2 sm:px-7"
+                className="min-h-12 w-full justify-center sm:px-7"
               >
                 <span>{isSubmitting ? copy.submitting : copy.submit}</span>
-                {!isSubmitting ? <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" /> : null}
               </Button>
             </div>
           </div>

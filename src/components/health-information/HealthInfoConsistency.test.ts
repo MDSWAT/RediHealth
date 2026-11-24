@@ -594,8 +594,15 @@ describe("health information, glossary, myth card, and topic grid design consist
     ]) {
       const src = readSrc(file);
       expect(src, `${file} section heading row must wrap safely`).toContain("flex-wrap items-start justify-between");
+    }
+    for (const file of [
+      "src/components/health-information/ActionableStepsChecklist.tsx",
+      "src/components/health-information/WarningSignsEmergencyCard.tsx",
+    ]) {
+      const src = readSrc(file);
       expect(src, `${file} must preserve dark-mode sapphire contrast`).toContain("dark:text-sapphire-border");
     }
+    expect(readSrc("src/components/health-information/WhyItMattersInfographic.tsx")).not.toContain('"01"');
 
     const nextStepsSrc = readSrc("src/components/health-information/TopicNextSteps.tsx");
     expect(nextStepsSrc).toContain("min-w-0 flex-1");

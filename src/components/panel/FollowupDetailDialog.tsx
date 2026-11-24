@@ -64,7 +64,7 @@ export function FollowupDetailDialog({
             {followup.title}
           </h2>
           <p className="mt-1 text-sm tabular-nums text-[var(--panel-muted)]">
-            {followupLabel(followup, langToLocale[lang], t.allDay, viewerZone)} ·{" "}
+            {followupLabel(followup, langToLocale[lang], t.allDay, viewerZone)} —{" "}
             {followupStatusLabel(followup.status, t)}
           </p>
         </div>

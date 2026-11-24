@@ -16,7 +16,7 @@ describe("buildPrintSummaryHtml", () => {
     const html = buildPrintSummaryHtml(
       {
         lang: "ro",
-        meta: "Pentru medic · 10 noiembrie 2026",
+        meta: "Pentru medic — 10 noiembrie 2026",
         title: "Simptomele pacientului",
         rows: [
           { label: "Zona", value: "Pelvis și partea de jos a burții" },
@@ -59,18 +59,18 @@ describe("buildPrintSummaryHtml", () => {
     const html = buildPrintSummaryHtml(
       {
         lang: "en",
-        meta: "For the doctor · 11 November 2026",
+        meta: "For the doctor — 11 November 2026",
         title: "Symptom summary",
         rows: [
           { label: "Body area", value: "Head and neck" },
-          { label: "Exact spot", value: "Neck · Right side" },
+          { label: "Exact spot", value: "Neck, Right side" },
           { label: "Symptom", value: "Neck pain or stiff neck" },
         ],
         painDiagram: {
           svg: diagramSvg,
           heading: "Pain location on the body",
           primaryLocation: "Head and neck",
-          secondaryLocation: "Neck · Right side",
+          secondaryLocation: "Neck, Right side",
         },
         notes: ["Recommendation given: See your family doctor within a few days"],
         status: "No emergency sign selected.",
@@ -91,7 +91,7 @@ describe("buildPrintSummaryHtml", () => {
     expect(html).toContain('class="clinical-grid"');
     expect(html).toContain('class="pain-map"');
     expect(html).toContain("Pain location on the body");
-    expect(html).toContain("Neck · Right side");
+    expect(html).toContain("Neck, Right side");
     expect(html).toContain("Recommendation given: See your family doctor within a few days");
     expect(html).toContain("<svg");
   });

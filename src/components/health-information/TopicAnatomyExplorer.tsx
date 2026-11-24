@@ -4,7 +4,7 @@ import { useCallback, useId, useState, type ComponentType, type SVGProps } from 
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { ArrowRightIcon, CloseIcon, StethoscopeIcon } from "@/components/ui/icons";
+import { CloseIcon, StethoscopeIcon } from "@/components/ui/icons";
 import {
   AbdomenRegionIcon,
   BackSpineRegionIcon,
@@ -431,10 +431,6 @@ function TopicAnatomyExplorerInner({
                   aria-hidden="true"
                 />
                 <span>{ui.checkSymptomsCta}</span>
-                <ArrowRightIcon
-                  className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 group-hover:text-sapphire motion-reduce:transform-none motion-reduce:transition-none"
-                  aria-hidden="true"
-                />
               </Link>
             </div>
 

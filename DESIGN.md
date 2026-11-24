@@ -2,12 +2,12 @@
 name: RediHealth
 description: Clinical authority with community warmth, with a scoped care coordination workspace.
 colors:
-  background: "#fcfbf9"
+  background: "#ffffff"
   foreground: "#0b132b"
   ink-950: "#0a1226"
   ink-900: "#101a33"
   ink-800: "#1b2744"
-  paper: "#fbfaf6"
+  paper: "#ffffff"
   mist: "#a9b3c6"
   sapphire: "#1d3557"
   sapphire-soft: "#eff6ff"
@@ -176,10 +176,10 @@ Defined in `src/app/globals.css` (`@theme`):
 
 | Token | Value | Strict Role |
 | --- | --- | --- |
-| `--color-background` | `#fcfbf9` | Primary page canvas (warm off-white paper) |
+| `--color-background` | `#ffffff` | Primary page canvas (crisp neutral white) |
 | `--color-foreground` | `#0b132b` | Primary high-contrast body & heading ink |
 | `--color-ink-950` / `900` / `800` | `#0a1226` / `#101a33` / `#1b2744` | Footer, dark mode canvas & deep contrast buttons |
-| `--color-paper` | `#fbfaf6` | Elevated assistant card & light text on dark ground |
+| `--color-paper` | `#ffffff` | Elevated assistant card and light text on dark ground (`#f8fafc` for subtle off-white sections) |
 | `--color-mist` | `#a9b3c6` | Secondary copy on obsidian ink ground |
 | `--color-sapphire` | `#1d3557` | Clinical authority, focus cues, active progress & read-aloud state |
 | `--color-sapphire-soft` | `#eff6ff` | Active option follower plate & icon plates |
@@ -262,8 +262,9 @@ Staff working surfaces are flat: fine borders, background tones, and selected-ro
 - **Shared CSS easing & timing (`globals.css` & `src/lib/motion/tokens.ts`):**
   - `--ease-out-calm`: `cubic-bezier(0.25, 1, 0.5, 1)`
   - `--dur-fast`: `160ms`, `--dur-base`: `240ms`, `--dur-slow`: `420ms`
+- **No scroll-triggered opacity fades or hero glows:** Sections render immediately visible at `opacity: 1` (`src/components/ui/Reveal.tsx` performs zero `IntersectionObserver` hiding or fade-in delays), and hero sections carry zero radial-gradient aura or blurry background glows.
 - **Tactile Spatial Micro-Physics (`src/components/landing/hero/TriagePanel.tsx`):**
-  - `rAF`-smoothed pointer tracking (`±5.5px` horizontal, `±4.5px` vertical translation, zero distortion/blur tilt) + subtle radial cursor sheen on fine desktop pointers.
+  - `rAF`-smoothed pointer tracking (`±5.5px` horizontal, `±4.5px` vertical translation, zero distortion/blur tilt) on fine desktop pointers.
   - Spring-gliding row follower (`type: "spring", stiffness: 440, damping: 34, mass: 0.55`) using GPU `transform` + `opacity` only.
   - Fixed-height header/footer dock slots (`min-h-[2.375rem]`) and concise single-line micro-copy prevent layout shift when contextual copy updates dynamically.
 - **Behavioural Subtitle Pattern (`QuestionView` Footer Dock):**
@@ -282,7 +283,7 @@ Patient identity uses contained rectangular portraits: record (104 × 120px), mo
 
 ## Components
 
-- **Landing hero (`src/components/landing/Hero.tsx`):** A full-width white paper editorial ground under the solid header, with filtered cross-fading consultation photography on the right (`hero/HeroPhotos.tsx`), the sapphire topic wheel turning subtly behind it (`WheelBackdrop`), strictly one primary `action` CTA to `/health-check` (plus read-aloud), and the dark `RegionalHealthRibbon` ticker at the foot of the first screen. Below the first fold, desktop restores stacked section sheets (`StackedSections`), the interactive `HealthTopicsWheel` + `HealthTopicsSpotlight`, and `MediatorServices` accordion/columns. The headline promises health information, never medical advice.
+- **Landing hero (`src/components/landing/Hero.tsx`):** A full-width crisp neutral white (`#ffffff`) editorial ground under the solid header, with filtered cross-fading consultation photography on the right (`hero/HeroPhotos.tsx`), the sapphire topic wheel turning subtly behind it (`WheelBackdrop`), strictly one primary `action` CTA to `/health-check` (plus read-aloud), and the dark `RegionalHealthRibbon` ticker at the foot of the first screen. Below the first fold, desktop restores stacked section sheets (`StackedSections`), the interactive `HealthTopicsWheel` + `HealthTopicsSpotlight`, and `MediatorServices` accordion/columns. The headline promises health information, never medical advice.
 - **Action Buttons (`src/components/ui/Button.tsx`):** Every action `<button>`, submit button, and CTA link uses `<Button>` with `rounded-(--radius-control)`, `text-body`, fluid `min-h-11` (`md`) or `min-h-12` (`lg`) growth (no fixed `h-*`), and strict variant roles: `primary` (red — 112/emergency only), `action` (sapphire — the one main next step of a screen), `outline` (default — all other action buttons), and `ghost` (quiet row or dialog actions). Never hand-roll solid `bg-sapphire` / `bg-primary` / `bg-foreground` action buttons or use the retired `secondary` variant.
 - **Public Page Headers (`src/components/ui/PageHeader.tsx`):** Every public page header (excluding the landing home hero `#hero-title` and full-screen portal states) uses `<PageHeader>` with `align="start"` flush-left alignment—including `src/app/error.tsx` and `src/app/not-found.tsx`—in an uncrushable vertical editorial stack: optional `above` slot, direct-child `text-page` `<h1>` with `[overflow-wrap:break-word]`, direct-child `text-lead` lead at `--measure-lead` (`34rem`) with `mt-3` (12px) gap, `mt-5` (20px) wrapping action row (`btn-row flex flex-wrap items-center gap-3 [&:not(:has(*))]:hidden`), `pt-6 sm:pt-10` top padding, and no decorative header band. Never place `actions` beside title and lead in a `lg:flex` / `lg:shrink-0` row that can compress the headline column.
 - **Health reading column, article header and action toolbar (`HealthArticleShell.tsx`, `SubjectHeaderToolbar.tsx`, `GuideOfflinePrintActions.tsx`):**
@@ -376,3 +377,4 @@ Enforced across all 7 locales (`ro`, `en`, `sq`, `it`, `hr`, `rom`, `ru`) and au
 
 - Don't destructively crop patient documents or claim a downscaled portrait is an untouched original.
 - Don't supply the demo transport callback to the real token route or treat local simulation as authentication evidence.
+- Don't introduce any of the 20 prohibited AI design slop patterns codified in `CLAUDE.md` and `~/.gemini/GEMINI.md` (no decorative button arrows, middle dots, eyebrow tags, warm cream or beige surfaces, italic accent words in headings, sparkle icons, over-carding, `"quiet"` or `"real"` filler, `01`/`02`/`03` section numbers, pulsing status dots, blurry hero glows, Instrument Serif, colored left accent borders, 3-icon-cards-in-a-row grids, pills above headings, fabricated stats, staccato two-word sentences, scroll-triggered opacity fades, or dithering and halftone overlays).

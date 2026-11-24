@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRightIcon, BookIcon, SearchIcon } from "@/components/ui/icons";
+import { BookIcon, SearchIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -148,7 +148,6 @@ function SavedGuidesList({ heading }: { heading: string }) {
               <span lang={item.lang} className="min-w-0 text-body font-semibold text-pretty">
                 {item.title}
               </span>
-              <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
             </a>
           </li>
         ))}
@@ -231,10 +230,6 @@ export function HealthInformationTopicGrid({
                     <span className="block text-body font-semibold text-pretty">{card.toolLabel}</span>
                     <span className="mt-0.5 block text-meta text-muted-foreground">{topic.title}</span>
                   </span>
-                  <ArrowRightIcon
-                    className="arrow-travel h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-sapphire motion-reduce:transition-none dark:group-hover:text-sapphire-border"
-                    aria-hidden="true"
-                  />
                 </Link>
               </li>
             );

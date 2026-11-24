@@ -20,7 +20,6 @@ import { captchaErrorMessage, useRecaptcha } from "@/components/security/Recaptc
 import { Button } from "@/components/ui/Button";
 import {
   ArrowLeftIcon,
-  ArrowRightIcon,
   CheckIcon,
   CloseIcon,
   MessageDotsIcon,
@@ -1404,9 +1403,7 @@ export function FeedbackWidget() {
                         <span className="tabular-nums text-meta font-semibold opacity-85">
                           {" "}({answeredRatingsCount}/{RATING_KEYS.length})
                         </span>
-                      ) : (
-                        <ArrowRightIcon className="h-4 w-4" />
-                      )}
+                      ) : null}
                     </Button>
                   ) : (
                     <Button

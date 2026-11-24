@@ -10,7 +10,6 @@ import {
 } from "@/lib/i18n/health-myths";
 
 export interface InfographicPillar {
-  number: "01" | "02" | "03";
   title: string;
   description: string;
 }
@@ -45,7 +44,7 @@ function pickSpeechLang(lang: Lang): string {
   );
 }
 
-/** Three key facts as a quiet, single-column numbered hairline list. */
+/** Three key facts as a single-column hairline list. */
 export function WhyItMattersInfographic({
   topicTitle,
   keyFacts = [],
@@ -97,11 +96,8 @@ export function WhyItMattersInfographic({
 
       <ul className="mt-5 divide-y divide-border rounded-xl border border-border bg-card px-6 py-2 sm:px-8">
         {facts.map((fact, idx) => (
-          <li key={idx} className="flex items-start gap-4 break-inside-avoid py-4 sm:py-5">
-            <span className="mt-0.5 shrink-0 text-title font-semibold tabular-nums text-sapphire dark:text-sapphire-border">
-              {idx + 1}.
-            </span>
-            <p className="min-w-0 flex-1 text-reading text-foreground">
+          <li key={idx} className="break-inside-avoid py-4 sm:py-5">
+            <p className="min-w-0 text-reading text-foreground">
               {fact}
             </p>
           </li>

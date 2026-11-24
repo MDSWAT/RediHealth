@@ -103,7 +103,7 @@ describe("Scenario 5: callback request without free text", () => {
 });
 
 describe("Scenario 6: 404 rescue actions", () => {
-  it("renders search and the five active header destinations, without the online doctor or dummy news", () => {
+  it("renders search and the six header destinations, without the online doctor", () => {
     const html = renderToStaticMarkup(createElement(NotFound));
     for (const href of [
       "/health-information",
@@ -111,10 +111,10 @@ describe("Scenario 6: 404 rescue actions", () => {
       "/prescription-review",
       "/find-help",
       "/mediatori",
+      "/stiri",
     ]) {
       expect(html, href).toContain(`href="/ro${href}"`);
     }
-    expect(html).not.toContain("/stiri");
     expect(html).not.toContain("/medic-online");
     expect(html).not.toContain("/health-assistant");
     expect(html).toContain("<button");

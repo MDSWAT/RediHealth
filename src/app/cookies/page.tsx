@@ -100,7 +100,7 @@ export default async function CookiesPage() {
           </LegalSection>
 
           <LegalSection id="protectie" number={4} title={doc.safeguardsTitle}>
-            <div className="border-l-2 border-sapphire pl-4 space-y-3 dark:border-sapphire-border">
+            <div className="rounded-xl border border-border bg-card p-5 space-y-3">
               <p className="max-w-(--measure-reading) text-foreground">{doc.safeguardsBody}</p>
               <ul className="max-w-(--measure-reading) list-disc space-y-1.5 pl-5">
                 {doc.safeguardsItems.map((item) => (

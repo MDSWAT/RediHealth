@@ -1,11 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { CalendarIcon, FileTextIcon, PhoneIcon, UsersIcon } from "@/components/ui/icons";
+import { PhoneIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { PageListenAction } from "@/components/ui/PageListenAction";
-import { Reveal } from "@/components/ui/Reveal";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { translations, type Lang } from "@/lib/i18n/translations";
 
@@ -131,9 +130,9 @@ export function MediatorPublicHero({ lang: langProp }: { lang?: Lang }) {
   const lang = langProp ?? ctxLang;
   const copy = heroCopy[lang] ?? heroCopy.ro;
   const services = [
-    { index: "01", Icon: CalendarIcon, title: copy.card1Title, body: copy.card1Desc },
-    { index: "02", Icon: FileTextIcon, title: copy.card2Title, body: copy.card2Desc },
-    { index: "03", Icon: UsersIcon, title: copy.card3Title, body: copy.card3Desc },
+    { title: copy.card1Title, body: copy.card1Desc },
+    { title: copy.card2Title, body: copy.card2Desc },
+    { title: copy.card3Title, body: copy.card3Desc },
   ];
 
   return (
@@ -161,36 +160,22 @@ export function MediatorPublicHero({ lang: langProp }: { lang?: Lang }) {
           }
         />
 
-        {/* What a mediator does: three tactile REDI editorial cards with icons and numbered rhythm. */}
-        <Reveal stagger="editorial" className="mt-8 grid gap-4 md:grid-cols-3 lg:mt-10 lg:gap-5">
-          {services.map(({ index, Icon, title, body }) => (
-            <div
+        {/* What a mediator does: open-canvas asymmetric hairline list. */}
+        <ul className="mt-8 divide-y divide-border border-t border-border lg:mt-10 dark:divide-white/10 dark:border-white/10">
+          {services.map(({ title, body }) => (
+            <li
               key={title}
-              className="card-interactive flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-2xs sm:p-7 dark:border-white/10 dark:bg-ink-900"
+              className="grid gap-2 py-5 sm:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] sm:items-baseline sm:gap-10 sm:py-6"
             >
-              <div>
-                <div className="flex items-center justify-between gap-3">
-                  <span
-                    aria-hidden="true"
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-subtle text-foreground dark:border-white/12 dark:bg-white/[0.06] dark:text-paper"
-                  >
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <span className="font-mono text-meta font-semibold tabular-nums text-muted-foreground/75">
-                    {index}
-                  </span>
-                </div>
-                <span aria-hidden="true" className="rule-draw mt-5 block h-0.5 w-9 bg-amber-care dark:bg-amber-care-border" />
-                <h2 className="mt-4 text-balance text-title font-semibold text-foreground dark:text-paper">
-                  {title}
-                </h2>
-                <p className="mt-2 max-w-(--measure-lead) text-pretty text-body leading-relaxed text-muted-foreground dark:text-mist">
-                  {body}
-                </p>
-              </div>
-            </div>
+              <h2 className="text-balance text-title font-semibold text-foreground dark:text-paper">
+                {title}
+              </h2>
+              <p className="max-w-(--measure-lead) text-pretty text-body leading-relaxed text-muted-foreground dark:text-mist">
+                {body}
+              </p>
+            </li>
           ))}
-        </Reveal>
+        </ul>
       </Container>
     </section>
   );

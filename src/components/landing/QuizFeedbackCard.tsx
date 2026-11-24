@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, type CSSProperties, type SVGProps } from "react";
 import type { HealthMyth } from "@/lib/i18n/health-myths";
 import { Button } from "@/components/ui/Button";
-import { ArrowRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
 
@@ -99,7 +98,6 @@ export function QuizFeedbackCard({
           className="group shrink-0 whitespace-nowrap dark:bg-paper dark:text-ink-950 dark:hover:bg-paper/90 dark:focus-visible:ring-paper dark:focus-visible:ring-offset-ink-800"
         >
           <span>{isLastMyth ? q.restartFirstMyth : q.nextMyth}</span>
-          <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" />
         </Button>
       </div>
     </div>

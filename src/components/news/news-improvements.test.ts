@@ -226,13 +226,24 @@ describe("NewsHub inline live-filtered feed (#9)", () => {
     expect(NEWS_ARTICLES).toEqual([]);
   });
 
-  test.each(ALL_LANGS)("SSR renders inline feed with collapsible filters and zero modals in %s", (lang) => {
+  test.each(ALL_LANGS)("SSR renders inline feed with open regional map, empty-published message, collapsible filters, and zero modals in %s", (lang) => {
     const html = renderToStaticMarkup(withLang(lang, React.createElement(NewsHub)));
+    const expectedEmptyTitle: Record<Lang, string> = {
+      ro: "Nu sunt știri sau alerte publicate acum",
+      en: "No health news or alerts published right now",
+      sq: "Nuk ka lajme ose njoftime të publikuara tani",
+      it: "Nessuna notizia o avviso pubblicato al momento",
+      hr: "Trenutačno nema objavljenih vijesti ni upozorenja",
+      rom: "Nane nevimata vay avizurya bichhalde akana",
+      ru: "Сейчас нет опубликованных новостей или оповещений",
+    };
 
     expect(html).not.toContain('role="dialog"');
     expect(html).toContain('aria-live="polite"');
     expect(html).toContain('aria-controls="news-filters-panel"');
     expect(html).toContain('aria-expanded="false"');
+    expect(html).toContain('id="news-county-map" data-open="true"');
+    expect(html).toContain(expectedEmptyTitle[lang]);
     expect(html).toContain('id="news-category-select"');
     expect(html).toContain('value="all"');
     expect(html).toContain("whitespace-nowrap");

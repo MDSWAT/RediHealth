@@ -439,7 +439,7 @@ export function CaseTrackingMatrix({ initialCases }: { initialCases?: CommunityC
                     </div>
 
                     <p className="mt-1 text-sm text-[var(--panel-muted)]">
-                      {c.village} · {copy.lastVisit} {c.lastVisited}
+                      {c.village}, {copy.lastVisit} {c.lastVisited}
                     </p>
                     <p className="mt-1.5 text-sm text-[var(--panel-ink)]">
                       <span className="text-[var(--panel-muted)]">{copy.nextStep} </span>

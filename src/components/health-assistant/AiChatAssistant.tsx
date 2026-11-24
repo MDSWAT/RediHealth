@@ -21,7 +21,6 @@ import { captchaErrorMessage, RecaptchaNotice, useRecaptcha } from "@/components
 import { Button } from "@/components/ui/Button";
 import {
   AiAssistantIcon,
-  ArrowRightIcon,
   RefreshIcon,
   VolumeIcon,
   VolumeMuteIcon,
@@ -1036,14 +1035,12 @@ export function AiChatAssistant() {
                 className="inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-4 py-2 text-meta font-semibold text-foreground transition-colors duration-(--dur-fast) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-950 dark:hover:bg-ink-800"
               >
                 <span>{t.safety.symptomCheckerLink}</span>
-                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               </Link>
               <Link
                 href={withLangPrefix("/health-information", lang)}
                 className="inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-(--radius-control) border border-border-control bg-card px-4 py-2 text-meta font-semibold text-foreground transition-colors duration-(--dur-fast) hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-ink-950 dark:hover:bg-ink-800"
               >
                 <span>{t.safety.healthGuidesLink}</span>
-                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               </Link>
             </div>
             <p className="mt-3 text-meta leading-relaxed text-muted-foreground">{t.emergencyNote}</p>
@@ -1077,7 +1074,6 @@ export function AiChatAssistant() {
                     className="press-row flex w-full items-center justify-between gap-2.5 rounded-xl border border-border bg-background px-3.5 py-2.5 text-left text-meta font-medium text-foreground transition-colors duration-(--dur-fast) hover:border-rose-border hover:bg-rose-tint/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <span>{prompt}</span>
-                    <ArrowRightIcon className="h-3.5 w-3.5 shrink-0 opacity-50" aria-hidden="true" />
                   </button>
                 ))}
               </div>
@@ -1157,8 +1153,7 @@ export function AiChatAssistant() {
               title={t.send}
               className="press-solid inline-flex h-11 min-h-11 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-ink-950 px-4 text-body font-semibold text-paper transition-colors duration-(--dur-fast) hover:bg-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:bg-muted disabled:text-muted-foreground dark:bg-paper dark:text-ink-950"
             >
-              <span className="hidden sm:inline">{t.send}</span>
-              <ArrowRightIcon className="h-4.5 w-4.5 shrink-0" aria-hidden="true" />
+              <span>{t.send}</span>
             </button>
           </div>
         </div>

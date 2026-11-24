@@ -319,7 +319,7 @@ function Summary({ summary, t, number, locale }: SummaryProps) {
                     <td className="py-2.5 pr-4 text-[var(--panel-ink)]">
                       <span className="font-medium">{row.targetLabel}</span>
                       {row.targetKind ? (
-                        <span className="ml-2 text-xs text-[var(--panel-muted)]">· {row.targetKind}</span>
+                        <span className="ml-2 text-xs text-[var(--panel-muted)]">({row.targetKind})</span>
                       ) : null}
                     </td>
                     <td className="py-2.5 pr-4 font-mono text-xs text-[var(--panel-muted)]">{row.path}</td>
@@ -496,7 +496,7 @@ function DailyChart({ daily, t, number, locale }: DailyChartProps) {
         <h2 className="text-base font-semibold tracking-[-0.015em] text-[var(--panel-ink)]">{t.dailyTitle}</h2>
         <p className="text-sm tabular-nums text-[var(--panel-muted)]" aria-live="polite">
           {shown
-            ? `${formatDay(shown.day)}: ${t.visitors} ${number.format(shown.visitors)} · ${t.colViews} ${number.format(shown.pageviews)}`
+            ? `${formatDay(shown.day)}: ${t.visitors} ${number.format(shown.visitors)}, ${t.colViews} ${number.format(shown.pageviews)}`
             : null}
         </p>
       </div>

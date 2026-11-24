@@ -7,7 +7,6 @@ import { SmsPhoneAuthModal } from "@/components/portal/SmsPhoneAuthModal";
 import { Container } from "@/components/ui/Container";
 import {
   ArrowLeftIcon,
-  ArrowRightIcon,
   CalendarIcon,
   FileTextIcon,
   PrescriptionIcon,
@@ -50,7 +49,7 @@ export function ContulMeuShowcase({ initialLang = "ro" }: { initialLang?: Lang }
           <ul>{copy.features.map((feature) => { const Icon = FEATURE_ICONS[feature.id]; return <li key={feature.id}><Icon className="h-5 w-5" aria-hidden="true" /><div><h3>{feature.title}</h3><p>{feature.body}</p></div></li>; })}</ul>
         </section>
       </div>
-      <section className="cabinet-staff-entry" aria-label={staffStrip.regionLabel}><p>{staffStrip.prompt}</p><Link href={withLangPrefix("/sign-in", lang)} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border-control px-4 font-semibold text-foreground">{staffStrip.signIn}<ArrowRightIcon className="h-4 w-4" aria-hidden="true" /></Link></section>
+      <section className="cabinet-staff-entry" aria-label={staffStrip.regionLabel}><p>{staffStrip.prompt}</p><Link href={withLangPrefix("/sign-in", lang)} className="inline-flex min-h-11 items-center rounded-lg border border-border-control px-4 font-semibold text-foreground">{staffStrip.signIn}</Link></section>
     </Container>
   </main>;
 }

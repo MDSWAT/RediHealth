@@ -80,13 +80,13 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(HEADER_SOURCE).toMatch(/<Logo[\s\S]*?className="min-h-11 [^"]*"[\s\S]*?onClick=\{closeMobile\}/);
   });
 
-  it("places all 5 active core destinations including /mediatori in a unified single-column editorial list", () => {
+  it("places all 6 core destinations including /mediatori in a unified single-column editorial list", () => {
     expect(HEADER_SOURCE).toContain('href: "/health-information"');
     expect(HEADER_SOURCE).toContain('href: "/health-check"');
     expect(HEADER_SOURCE).toContain('href: "/prescription-review"');
     expect(HEADER_SOURCE).toContain('href: "/find-help"');
     expect(HEADER_SOURCE).toContain('href: "/mediatori"');
-    expect(HEADER_SOURCE).not.toContain('href: "/stiri"');
+    expect(HEADER_SOURCE).toContain('href: "/stiri"');
 
     // Desktop nav and mobile drawer share primaryLinks, with /mediatori inside the primary <nav>.
     expect(MOBILE_MENU_SOURCE).toContain("primaryLinks.map");
@@ -101,9 +101,9 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(MOBILE_MENU_SOURCE).not.toContain("line-clamp-1");
   });
 
-  it("maps active routes 1-to-1 without dummy /stiri or /news routes, and keeps Footer public", () => {
-    expect(HEADER_SOURCE).not.toContain('currentPath === "/news"');
-    expect(HEADER_SOURCE).not.toContain('currentPath.startsWith("/news/")');
+  it("maps active routes 1-to-1 including /stiri and /news across locales, and keeps Footer public", () => {
+    expect(HEADER_SOURCE).toContain('currentPath === "/news"');
+    expect(HEADER_SOURCE).toContain('currentPath.startsWith("/news/")');
     expect(HEADER_SOURCE).not.toContain("isGuidanceRoute");
 
     const footerSource = readFileSync(
@@ -113,7 +113,6 @@ describe("mobile navigation drawer (#mobile-menu)", () => {
     expect(footerSource).not.toContain("/medic-online/programare");
     expect(footerSource).not.toContain("/panel");
     expect(footerSource).not.toContain('href: "/health-assistant"');
-    expect(footerSource).not.toContain('href: "/stiri"');
   });
 
   it("wires listRow, collapsible, and openDrawerSection mutual exclusion", () => {

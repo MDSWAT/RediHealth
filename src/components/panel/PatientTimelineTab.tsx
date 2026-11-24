@@ -1,6 +1,6 @@
 "use client";
 import { PanelLink as Link } from "./PanelRuntime";
-import { ChevronRightIcon, MoreVerticalIcon, TrashIcon } from "@/components/ui/icons";
+import { MoreVerticalIcon, TrashIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { crmTranslations } from "@/lib/i18n/crm-translations";
 import { langToLocale } from "@/lib/i18n/panel-translations";
@@ -79,7 +79,6 @@ export function PatientTimelineTab({ patient, followups, photos, compact = false
       <div className="mt-3 border-t border-[var(--panel-line)] pt-2">
         <button type="button" onClick={onViewAll} className="inline-flex min-h-11 items-center gap-1 whitespace-nowrap text-sm font-medium text-primary hover:underline dark:text-[#bad7fa]">
           {t.history}
-          <ChevronRightIcon aria-hidden="true" className="h-4 w-4 shrink-0" />
         </button>
       </div>
     )}

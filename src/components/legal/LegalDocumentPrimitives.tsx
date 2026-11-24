@@ -143,12 +143,12 @@ export function LegalDocumentLayout({
         <aside className="hidden lg:sticky lg:top-[calc(var(--site-header-h,4.5rem)+1.5rem)] lg:block">
           <nav aria-label={copy.onThisPage}>
             <p className="text-meta font-semibold text-foreground">{copy.onThisPage}</p>
-            <ol className="mt-3 space-y-0.5 border-l border-border">
+            <ol className="mt-3 space-y-0.5">
               {sections.map((section, index) => (
                 <li key={section.id}>
                   <a
                     href={`#${section.id}`}
-                    className="-ml-px flex items-baseline gap-2 border-l-2 border-transparent py-1.5 pl-3.5 text-meta leading-snug text-muted-foreground transition-colors duration-(--dur-fast) hover:border-sapphire hover:text-foreground focus-visible:border-sapphire focus-visible:text-foreground focus-visible:outline-none dark:hover:border-sapphire-border"
+                    className="flex items-baseline gap-2 rounded-lg px-2.5 py-1.5 text-meta leading-snug text-muted-foreground transition-colors duration-(--dur-fast) hover:bg-muted/60 hover:text-foreground focus-visible:bg-muted/60 focus-visible:text-foreground focus-visible:outline-none dark:hover:bg-white/[0.06]"
                   >
                     <span className="w-4 shrink-0 font-mono tabular-nums text-muted-foreground/75">
                       {index + 1}.
@@ -207,7 +207,7 @@ export function LegalSection({
     >
       <h2 className="flex items-baseline gap-2.5 text-title text-foreground">
         <span className="shrink-0 font-mono text-meta font-medium tabular-nums text-muted-foreground">
-          {String(number).padStart(2, "0")}
+          {number}.
         </span>
         <span className="min-w-0">{title}</span>
       </h2>

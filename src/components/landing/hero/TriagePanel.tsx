@@ -56,7 +56,7 @@ const headingId = (view: View, variant: Variant = "card") => `${idBase(variant)}
  * colours instead: a light button with dark text, as on the dock that opens the sheet.
  */
 const SHEET_ACTION = "bg-background! text-foreground! hover:bg-background/90!";
-/** In the sheet the two urgent needs lead, larger; the four routine needs follow, quieter. */
+/** In the sheet the two urgent needs lead, larger; the four routine needs follow. */
 const SHEET_URGENT: HeroNeedId[] = ["problem", "doctor"];
 const SHEET_NEED_ORDER: HeroNeedId[] = [
   ...SHEET_URGENT,
@@ -365,12 +365,12 @@ function QuestionView({
           const nextId = order[index + 1];
           // Sheet: hierarchy by size and weight alone. Urgent rows are taller, semibold, on a plate.
           const urgent = sheet && SHEET_URGENT.includes(id);
-          const quiet = sheet && !urgent;
+          const secondary = sheet && !urgent;
           // Dissolve the row divider above/below the hovered plate so lines never cut across it.
           const hideDivider = isHovered || (hoveredNeed !== null && nextId === hoveredNeed);
           const rowClassName = cn(
             "press-row group relative -mx-2 flex w-[calc(100%+1rem)] items-center gap-3.5 rounded-xl px-2 py-2 text-left transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring motion-reduce:transition-none sm:-mx-3 sm:w-[calc(100%+1.5rem)] sm:px-3",
-            urgent ? "min-h-[60px]" : quiet ? "min-h-12 py-1" : "min-h-[56px] sm:min-h-[58px]",
+            urgent ? "min-h-[60px]" : secondary ? "min-h-12 py-1" : "min-h-[56px] sm:min-h-[58px]",
           );
           const handlePointerEnter = (event: PointerEvent<HTMLElement>) => {
             if (event.pointerType === "mouse") {
@@ -393,7 +393,7 @@ function QuestionView({
                       ? "bg-sapphire-soft text-sapphire ring-1 ring-sapphire/25"
                       : urgent
                         ? "bg-sapphire-soft text-sapphire"
-                        : quiet
+                        : secondary
                           ? "bg-ink-950/[0.08] text-ink-950/90"
                           : "bg-ink-950/[0.045] text-ink-950/70",
                 )}
@@ -403,7 +403,7 @@ function QuestionView({
               <span
                 className={cn(
                   "min-w-0 flex-1 text-body leading-snug text-ink-950 transition-colors",
-                  urgent ? "font-semibold" : quiet ? "font-normal" : "font-medium",
+                  urgent ? "font-semibold" : secondary ? "font-normal" : "font-medium",
                   " duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] motion-reduce:transition-none",
                 )}
               >
@@ -583,7 +583,6 @@ function AnswerView({ copy, id, alarmSigns, lang, variant, onBack }: AnswerViewP
               className={cn("mt-2 min-h-13 max-sm:gap-1.5 max-sm:px-2.5", sheet && SHEET_ACTION)}
             >
               <span className="min-w-0">{copy.needs.doctor.action.label}</span>
-              <ChevronRightIcon className="arrow-travel hidden h-4 w-4 shrink-0 sm:inline-block" />
             </Button>
           </>
         ) : (
@@ -595,7 +594,6 @@ function AnswerView({ copy, id, alarmSigns, lang, variant, onBack }: AnswerViewP
             className={cn("min-h-13 max-sm:gap-1.5 max-sm:px-2.5", sheet && SHEET_ACTION)}
           >
             <span className="min-w-0 truncate">{need.action.label}</span>
-            <ChevronRightIcon className="arrow-travel hidden h-4 w-4 shrink-0 sm:inline-block" />
           </Button>
         )}
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Lang } from "@/lib/i18n/translations";
-import { ArrowRightIcon, CheckIcon } from "@/components/ui/icons";
+import { CheckIcon } from "@/components/ui/icons";
 import { SALT_CALCULATOR_COPY, type SaltFoodItem } from "./healthy-eating-copy";
 import { ROW_CLASS, ROW_LIST_CLASS, tickBoxClass } from "../diabetes/choice-styles";
 
@@ -192,7 +192,7 @@ export function SaltIntakeCalculator({ lang, className = "" }: SaltIntakeCalcula
                   {copy.swapInsteadOf}: {item.name} (+{grams.format(item.saltGrams)} g)
                 </p>
                 <p className="mt-1 flex items-start gap-1.5 text-body font-semibold leading-snug text-foreground">
-                  <ArrowRightIcon className="mt-0.5 h-4 w-4 shrink-0 text-live-sage" />
+                  <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-live-sage" aria-hidden="true" />
                   <span>
                     {item.swapName} (+{grams.format(item.swapSaltGrams)} g)
                   </span>

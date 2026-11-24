@@ -140,12 +140,12 @@ function SavedLinkRow({ link, t, number, countryName, onDelete }: SavedLinkRowPr
             {link.content ? (
               <span className="font-normal text-[var(--panel-muted)]">
                 {" "}
-                · {t.variantShort}: {link.content}
+                — {t.variantShort}: {link.content}
               </span>
             ) : null}
           </p>
           <p className="mt-0.5 text-xs text-[var(--panel-muted)]">
-            {link.path === "/" ? t.home : link.path} · {languageLabel} · {link.medium}
+            {link.path === "/" ? t.home : link.path}, {languageLabel}, {link.medium}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">

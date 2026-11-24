@@ -43,7 +43,7 @@ export type HeroCopy = {
   lead: string;
   /** Short plain trust line shown directly under the headline on both desktop and mobile. */
   trustLine: string;
-  /** Phones and tablets: the headline as two short sentences (the second is set quieter). */
+  /** Phones and tablets: the headline as two short sentences (the second uses a muted tone). */
   mobileTitle: [string, string];
   /** Phones and tablets: the two trust facts under the headline. */
   mobileLead: string;
@@ -106,7 +106,7 @@ const en: HeroCopy = {
   lead: "Open to everyone, with dedicated support for Roma communities. Free, private, and no account needed.",
   trustLine: "Free, private, and no account needed.",
   mobileTitle: ["Free health information.", "Help finding the right care."],
-  mobileLead: "Private. No account needed.",
+  mobileLead: "Private, with no account needed.",
   trust: ["Free", "Private", "No account needed"],
   journey: ["Say what worries you", "Get clear next steps", "Talk to a doctor"],
   primaryCta: "Check your symptoms",
@@ -173,7 +173,7 @@ const en: HeroCopy = {
         hint: "Snap a photo to understand each pill.",
         direct: true,
         title: "Your prescription, explained",
-        body: "Take a photo. We explain each medicine: what it is for and when to take it.",
+        body: "Take a photo and we explain each medicine: what it is for and when to take it.",
         action: { label: "Explain my prescription", href: "/prescription-review" },
       },
       navigate: {
@@ -202,7 +202,7 @@ const ro: HeroCopy = {
   lead: "Deschis tuturor, cu sprijin dedicat comunităților rome. Gratuit, confidențial și fără cont.",
   trustLine: "Gratuit, confidențial și fără cont.",
   mobileTitle: ["Informații de sănătate gratuite.", "Ajutor să ajungi la medic."],
-  mobileLead: "Confidențial. Fără cont.",
+  mobileLead: "Confidențial și fără cont.",
   trust: ["Gratuit", "Confidențial", "Fără cont"],
   journey: ["Spui ce te îngrijorează", "Primești pașii de urmat", "Vorbești cu un medic"],
   primaryCta: "Verifică simptomele",
@@ -269,7 +269,7 @@ const ro: HeroCopy = {
         hint: "Faci o poză rețetei și îți explicăm.",
         direct: true,
         title: "Rețeta ta, explicată",
-        body: "Fă o poză rețetei. Îți explicăm fiecare medicament: la ce folosește și când îl iei.",
+        body: "Fă o poză rețetei și îți explicăm fiecare medicament: la ce folosește și când îl iei.",
         action: { label: "Explică-mi rețeta", href: "/prescription-review" },
       },
       navigate: {
@@ -298,7 +298,7 @@ const sq: HeroCopy = {
   lead: "E hapur për të gjithë, me mbështetje për komunitetet rome. Falas, konfidenciale dhe pa llogari.",
   trustLine: "Falas, konfidenciale dhe pa llogari.",
   mobileTitle: ["Informacion shëndetësor falas.", "Ndihmë për kujdesin e duhur."],
-  mobileLead: "Konfidenciale. Pa llogari.",
+  mobileLead: "Konfidenciale dhe pa llogari.",
   trust: ["Falas", "Konfidenciale", "Pa llogari"],
   journey: ["Thua çfarë të shqetëson", "Merr hapat e radhës", "Flet me një mjek"],
   primaryCta: "Kontrollo simptomat",
@@ -365,7 +365,7 @@ const sq: HeroCopy = {
         hint: "Bëji foto recetës për çdo shpjegim.",
         direct: true,
         title: "Receta jote, e shpjeguar",
-        body: "Bëji një foto recetës. Të shpjegojmë çdo ilaç: për çfarë shërben dhe kur merret.",
+        body: "Bëji një foto recetës dhe të shpjegojmë çdo ilaç: për çfarë shërben dhe kur merret.",
         action: { label: "Shpjego recetën time", href: "/prescription-review" },
       },
       navigate: {
@@ -394,7 +394,7 @@ const it: HeroCopy = {
   lead: "Aperto a tutti, con supporto dedicato alle comunità rom. Gratuito, riservato e senza registrazione.",
   trustLine: "Gratuito, riservato e senza registrazione.",
   mobileTitle: ["Informazioni sanitarie gratuite.", "Aiuto per trovare le cure giuste."],
-  mobileLead: "Riservato. Senza registrazione.",
+  mobileLead: "Riservato e senza registrazione.",
   trust: ["Gratuito", "Riservato", "Senza registrazione"],
   journey: ["Dici cosa ti preoccupa", "Ricevi i passi da seguire", "Parli con un medico"],
   primaryCta: "Controlla i sintomi",
@@ -461,7 +461,7 @@ const it: HeroCopy = {
         hint: "Scatta una foto per capire la ricetta.",
         direct: true,
         title: "La tua ricetta, spiegata",
-        body: "Fai una foto alla ricetta. Ti spieghiamo ogni farmaco: a cosa serve e quando prenderlo.",
+        body: "Fai una foto alla ricetta e ti spieghiamo ogni farmaco: a cosa serve e quando prenderlo.",
         action: { label: "Spiegami la ricetta", href: "/prescription-review" },
       },
       navigate: {
@@ -490,7 +490,7 @@ const hr: HeroCopy = {
   lead: "Otvoreno svima, uz podršku romskim zajednicama. Besplatno, povjerljivo i bez prijave.",
   trustLine: "Besplatno, povjerljivo i bez prijave.",
   mobileTitle: ["Besplatne informacije o zdravlju.", "Pomoć do prave skrbi."],
-  mobileLead: "Povjerljivo. Bez prijave.",
+  mobileLead: "Povjerljivo i bez prijave.",
   trust: ["Besplatno", "Povjerljivo", "Bez prijave"],
   journey: ["Reci što te brine", "Dobij jasne sljedeće korake", "Razgovaraj s liječnikom"],
   primaryCta: "Provjeri simptome",
@@ -557,7 +557,7 @@ const hr: HeroCopy = {
         hint: "Uslikaj recept za jasno objašnjenje.",
         direct: true,
         title: "Tvoj recept jednostavnim riječima",
-        body: "Fotografiraj recept. Objašnjavamo svaki lijek: čemu služi i kada se uzima.",
+        body: "Fotografiraj recept i objasnit ćemo svaki lijek: čemu služi i kada se uzima.",
         action: { label: "Objasni mi recept", href: "/prescription-review" },
       },
       navigate: {
@@ -586,7 +586,7 @@ const rom: HeroCopy = {
   lead: "Putardo savorenge, zhutipnasa vash e romane komunitetya. Bi lovesko, garavdo thaj bi kontosko.",
   trustLine: "Bi lovesko, garavdo thaj bi kontosko.",
   mobileTitle: ["Informaciye vash o sastipen.", "Zhutimos te reses ko doktori."],
-  mobileLead: "Garavdo. Bi kontosko.",
+  mobileLead: "Garavdo thaj bi kontosko.",
   trust: ["Bi lovesko", "Garavdo", "Bi kontosko"],
   journey: ["Phen so daravel tut", "Le chache pasha", "Vaker ekhe doktoreya"],
   primaryCta: "Dikh e simptome",
@@ -653,7 +653,7 @@ const rom: HeroCopy = {
         hint: "Ker chitro te xatyares sako drab.",
         direct: true,
         title: "Chi receta, ashkardi",
-        body: "Ker ekh chitro e recetake. Ashkaras sako drab: soske si thaj kana te les la.",
+        body: "Ker ekh chitro e recetake thaj ashkaras sako drab: soske si thaj kana te les la.",
         action: { label: "Xatyar mange i receta", href: "/prescription-review" },
       },
       navigate: {
@@ -683,7 +683,7 @@ ru: {
   lead: "Открыто для всех, с поддержкой ромских общин. Бесплатно, конфиденциально и без регистрации.",
   trustLine: "Бесплатно, конфиденциально и без регистрации.",
   mobileTitle: ["Бесплатная информация о здоровье.", "Помощь в поиске врача."],
-  mobileLead: "Конфиденциально. Без регистрации.",
+  mobileLead: "Конфиденциально и без регистрации.",
   trust: ["Бесплатно", "Конфиденциально", "Без регистрации"],
   journey: ["Расскажите, что вас беспокоит", "Узнайте, что делать дальше", "Поговорите с врачом"],
   primaryCta: "Проверить симптомы",
@@ -750,7 +750,7 @@ ru: {
         hint: "Сфотографируйте рецепт для разбора.",
         direct: true,
         title: "Ваш рецепт простыми словами",
-        body: "Сфотографируйте рецепт. Мы объясним, зачем нужно каждое лекарство и когда его принимать.",
+        body: "Сфотографируйте рецепт, и мы объясним, зачем нужно каждое лекарство и когда его принимать.",
         action: { label: "Объяснить рецепт", href: "/prescription-review" },
       },
       navigate: {

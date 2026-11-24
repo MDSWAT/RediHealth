@@ -5,11 +5,11 @@
  * serialized SVGs) and as SSR fallbacks for runtime `getComputedStyle` lookups.
  */
 export const PALETTE = {
-  background: "#fcfbf9",
+  background: "#ffffff",
   foreground: "#0b132b",
   obsidianNavy: "#0b132b",
   surfaceSubtle: "#f3f4f7",
-  surfaceCard: "#f8f9fa",
+  surfaceCard: "#f8fafc",
   surfaceElevated: "#ffffff",
   muted: "#f0f2f6",
   mutedForeground: "#475569",
@@ -26,10 +26,10 @@ export const PALETTE = {
   ink950: "#0a1226",
   ink900: "#101a33",
   ink800: "#1b2744",
-  paper: "#fbfaf6",
+  paper: "#ffffff",
   mist: "#a9b3c6",
-  sand: "#f5eee3",
-  sandLine: "#e7d9c3",
+  sand: "#f8fafc",
+  sandLine: "#e2e8f0",
   sapphire: "#1d3557",
   sapphireLight: "#2a4d7c",
   sapphireSoft: "#eff6ff",

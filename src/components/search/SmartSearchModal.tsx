@@ -19,7 +19,6 @@ import { m } from "motion/react";
 import { Button } from "@/components/ui/Button";
 import {
   ActivityIcon,
-  ArrowRightIcon,
   ChevronDownIcon,
   ClockIcon,
   CloseIcon,
@@ -185,6 +184,7 @@ const CATEGORY_ORDER: SmartSearchCategory[] = [
   "glossary",
   "myths",
   "articles",
+  "news",
 ];
 
 const EMPTY_GROUPED_COUNTS: Record<SmartSearchCategory, number> = {
@@ -1342,10 +1342,9 @@ export function SmartSearchModal() {
                                           key={action.href}
                                           href={actionHref}
                                           onClick={() => handleFollowLink(actionHref, false)}
-                                          className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
+                                          className="group inline-flex min-h-11 items-center text-body font-semibold whitespace-nowrap text-sapphire dark:text-sapphire-border"
                                         >
                                           <span>{action.label}</span>
-                                          <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                                         </Link>
                                       );
                                     })}
@@ -1460,10 +1459,9 @@ export function SmartSearchModal() {
                         <Link
                           href={overview.primaryAction.href}
                           onClick={() => handleFollowLink(overview.primaryAction.href, true)}
-                          className="group inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-sapphire/25 bg-white/85 px-3 py-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/50 hover:bg-white motion-reduce:transition-none dark:border-sapphire-border/35 dark:bg-ink-900/70 dark:text-sapphire-border dark:hover:bg-ink-900"
+                          className="group inline-flex min-h-11 items-center rounded-lg border border-sapphire/25 bg-white/85 px-3 py-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:border-sapphire/50 hover:bg-white motion-reduce:transition-none dark:border-sapphire-border/35 dark:bg-ink-900/70 dark:text-sapphire-border dark:hover:bg-ink-900"
                         >
                           <span>{overview.primaryAction.label}</span>
-                          <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                         </Link>
 
                         {hasOverviewDetails ? (
@@ -1590,7 +1588,6 @@ export function SmartSearchModal() {
                           onClick={() => handleFollowLink(assistantHref, false)}
                         >
                           <span>{copy.askAssistantLabel}</span>
-                          <ArrowRightIcon className="arrow-travel h-4 w-4 shrink-0" aria-hidden="true" />
                         </Button>
                       </div>
                     </div>
@@ -1696,10 +1693,9 @@ export function SmartSearchModal() {
                                     <Link
                                       href={result.href}
                                       onClick={() => handleFollowLink(result.href, true)}
-                                      className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
+                                      className="group inline-flex min-h-11 items-center text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                                     >
                                       <span>{copy.openPageLabel}</span>
-                                      <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                                     </Link>
                                   </div>
                                 </div>
@@ -1769,13 +1765,9 @@ export function SmartSearchModal() {
                                       <Link
                                         href={rq.href}
                                         onClick={() => handleFollowLink(rq.href!, true)}
-                                        className="group inline-flex min-h-11 items-center gap-1.5 text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
+                                        className="group inline-flex min-h-11 items-center text-body font-semibold whitespace-nowrap text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:text-sapphire-light motion-reduce:transition-none dark:text-sapphire-border"
                                       >
                                         <span>{rq.linkLabel ?? copy.openPageLabel}</span>
-                                        <ArrowRightIcon
-                                          className="h-3.5 w-3.5 shrink-0"
-                                          aria-hidden="true"
-                                        />
                                       </Link>
                                     ) : null}
                                   </div>

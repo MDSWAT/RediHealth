@@ -3,9 +3,7 @@
 import { useId, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { Reveal } from "@/components/ui/Reveal";
 import {
-  ArrowRightIcon,
   CheckCircleIcon,
   ChevronDownIcon,
   GlobeIcon,
@@ -207,9 +205,9 @@ const SOURCE_TILES: Record<SourceId, { icon: NavIcon; rule: string }> = {
 };
 
 /**
- * Who we work with and what we promise unified inside one modernist hairline sheet on the
- * paper ground: an aligned 3-column architectural ledger (intro | WHO | REDI above three
- * commitments under a hairline strip), collapsing cleanly into compact rows on phones.
+ * Who we work with and what we promise unified inside an open-canvas editorial ledger on the
+ * paper ground: an aligned partner ledger (intro | WHO | REDI) followed by an asymmetric
+ * commitment hairline list, collapsing cleanly into compact rows on phones.
  */
 export function TrustSection() {
   const { lang, t } = useLanguage();
@@ -222,118 +220,110 @@ export function TrustSection() {
   return (
     <Section tone="paper" aria-labelledby="home-trust-title" className="py-10! sm:py-14! lg:py-16!">
       <Container>
-        <Reveal>
-          <div className="overflow-hidden rounded-2xl border border-border bg-card dark:border-white/10 dark:bg-ink-900">
-            <div className="grid lg:grid-cols-3">
-              <div className="border-b border-border/80 p-5 sm:p-6 lg:border-r lg:border-b-0 lg:p-7 dark:border-white/10">
-                <span aria-hidden="true" className="rule-draw mb-3.5 block h-0.5 w-8 bg-sapphire dark:bg-sapphire-border" />
-                <h2 id="home-trust-title" className="text-balance text-section text-foreground [overflow-wrap:break-word] dark:text-paper">
-                  {copy.title}
-                </h2>
-                <p className="mt-2.5 text-pretty text-body leading-relaxed text-muted-foreground dark:text-mist">
-                  {copy.subtitle}
-                </p>
-              </div>
-
-              <Reveal
-                as="ul"
-                stagger="editorial"
-                className="grid divide-y divide-border/80 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:col-span-2 dark:divide-white/10"
-              >
-                {copy.sources.map((item) => {
-                  const tile = SOURCE_TILES[item.id];
-                  const PartnerIcon = tile.icon;
-                  const expanded = !isPhone || openPartner === item.id;
-                  const panelId = `${baseId}-partner-${item.id}`;
-
-                  return (
-                    <li
-                      key={item.id}
-                      className="flex min-w-0 flex-col px-5 py-1 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-surface-subtle/45 sm:p-6 lg:p-7 dark:hover:bg-white/[0.025] motion-reduce:transition-none"
-                    >
-                      {/* Phone: compact hairline accordion header */}
-                      <button
-                        type="button"
-                        aria-expanded={expanded}
-                        aria-controls={panelId}
-                        onClick={() => setOpenPartner((prev) => (prev === item.id ? null : item.id))}
-                        className="flex min-h-12 w-full items-center gap-3 rounded-lg py-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:hidden dark:focus-visible:ring-paper"
-                      >
-                        <PartnerIcon
-                          aria-hidden="true"
-                          className="h-4.5 w-4.5 shrink-0 text-muted-foreground dark:text-mist"
-                        />
-                        <span className="min-w-0 flex-1 text-body font-semibold text-foreground dark:text-paper">
-                          {item.name}
-                        </span>
-                        <ChevronDownIcon
-                          className={cn(
-                            "h-4.5 w-4.5 shrink-0 text-muted-foreground transition-transform duration-(--dur-fast) dark:text-mist",
-                            expanded && "rotate-180",
-                          )}
-                          aria-hidden="true"
-                        />
-                      </button>
-
-                      {/* Desktop: hairline accent rule and quiet stroke icon */}
-                      <div className="hidden items-center justify-between sm:flex">
-                        <span aria-hidden="true" className={cn("rule-draw h-0.5 w-6", tile.rule)} />
-                        <PartnerIcon
-                          aria-hidden="true"
-                          className="h-4.5 w-4.5 shrink-0 text-muted-foreground/75 dark:text-mist/75"
-                        />
-                      </div>
-
-                      <h3 className="mt-4 hidden text-balance text-title font-semibold text-foreground [overflow-wrap:break-word] sm:block dark:text-paper">
-                        {item.name}
-                      </h3>
-
-                      <div
-                        id={panelId}
-                        inert={!expanded}
-                        className={cn(
-                          "grid transition-[grid-template-rows,opacity] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
-                          expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
-                        )}
-                      >
-                        <div className="overflow-hidden">
-                          <p className="pb-3.5 pl-7.5 text-pretty text-body leading-relaxed text-muted-foreground sm:mt-2 sm:pb-0 sm:pl-0 dark:text-mist">
-                            {item.role}
-                          </p>
-
-                          {item.href ? (
-                            <div className="pb-2 pl-7.5 sm:mt-2.5 sm:pb-0 sm:pl-0">
-                              <a
-                                href={item.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group -mx-2 inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-soft/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper"
-                              >
-                                <span className="link-draw">{item.hrefLabel}</span>
-                                <ArrowRightIcon
-                                  aria-hidden="true"
-                                  className="h-3.5 w-3.5 shrink-0 -rotate-45 transition-transform duration-(--dur-fast) ease-(--ease-out-calm) group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none motion-reduce:transition-none"
-                                />
-                                <span className="sr-only"> ({copy.newTab})</span>
-                              </a>
-                            </div>
-                          ) : null}
-                        </div>
-                      </div>
-                    </li>
-                  );
-                })}
-              </Reveal>
+        <div className="overflow-hidden rounded-2xl border border-border bg-card dark:border-white/10 dark:bg-ink-900">
+          <div className="grid lg:grid-cols-3">
+            <div className="border-b border-border/80 p-5 sm:p-6 lg:border-r lg:border-b-0 lg:p-7 dark:border-white/10">
+              <span aria-hidden="true" className="rule-draw mb-3.5 block h-0.5 w-8 bg-sapphire dark:bg-sapphire-border" />
+              <h2 id="home-trust-title" className="text-balance text-section text-foreground [overflow-wrap:break-word] dark:text-paper">
+                {copy.title}
+              </h2>
+              <p className="mt-2.5 text-pretty text-body leading-relaxed text-muted-foreground dark:text-mist">
+                {copy.subtitle}
+              </p>
             </div>
 
-            <div className="border-t border-border/80 dark:border-white/10">
-              <div className="border-b border-border/80 bg-surface-subtle/50 px-5 py-2.5 sm:px-6 lg:px-7 dark:border-white/10 dark:bg-white/[0.025]">
-                <h3 className="text-meta font-semibold text-muted-foreground dark:text-mist">
+            <ul className="grid divide-y divide-border/80 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:col-span-2 dark:divide-white/10">
+              {copy.sources.map((item) => {
+                const tile = SOURCE_TILES[item.id];
+                const PartnerIcon = tile.icon;
+                const expanded = !isPhone || openPartner === item.id;
+                const panelId = `${baseId}-partner-${item.id}`;
+
+                return (
+                  <li
+                    key={item.id}
+                    className="flex min-w-0 flex-col px-5 py-1 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-surface-subtle/45 sm:p-6 lg:p-7 dark:hover:bg-white/[0.025] motion-reduce:transition-none"
+                  >
+                    {/* Phone: compact hairline accordion header */}
+                    <button
+                      type="button"
+                      aria-expanded={expanded}
+                      aria-controls={panelId}
+                      onClick={() => setOpenPartner((prev) => (prev === item.id ? null : item.id))}
+                      className="flex min-h-12 w-full items-center gap-3 rounded-lg py-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:hidden dark:focus-visible:ring-paper"
+                    >
+                      <PartnerIcon
+                        aria-hidden="true"
+                        className="h-4.5 w-4.5 shrink-0 text-muted-foreground dark:text-mist"
+                      />
+                      <span className="min-w-0 flex-1 text-body font-semibold text-foreground dark:text-paper">
+                        {item.name}
+                      </span>
+                      <ChevronDownIcon
+                        className={cn(
+                          "h-4.5 w-4.5 shrink-0 text-muted-foreground transition-transform duration-(--dur-fast) dark:text-mist",
+                          expanded && "rotate-180",
+                        )}
+                        aria-hidden="true"
+                      />
+                    </button>
+
+                    {/* Desktop: hairline accent rule and stroke icon */}
+                    <div className="hidden items-center justify-between sm:flex">
+                      <span aria-hidden="true" className={cn("rule-draw h-0.5 w-6", tile.rule)} />
+                      <PartnerIcon
+                        aria-hidden="true"
+                        className="h-4.5 w-4.5 shrink-0 text-muted-foreground/75 dark:text-mist/75"
+                      />
+                    </div>
+
+                    <h3 className="mt-4 hidden text-balance text-title font-semibold text-foreground [overflow-wrap:break-word] sm:block dark:text-paper">
+                      {item.name}
+                    </h3>
+
+                    <div
+                      id={panelId}
+                      inert={!expanded}
+                      className={cn(
+                        "grid transition-[grid-template-rows,opacity] duration-(--dur-base) ease-(--ease-out-calm) motion-reduce:transition-none",
+                        expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                      )}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="pb-3.5 pl-7.5 text-pretty text-body leading-relaxed text-muted-foreground sm:mt-2 sm:pb-0 sm:pl-0 dark:text-mist">
+                          {item.role}
+                        </p>
+
+                        {item.href ? (
+                          <div className="pb-2 pl-7.5 sm:mt-2.5 sm:pb-0 sm:pl-0">
+                            <a
+                              href={item.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group -mx-2 inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-body font-semibold text-sapphire transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-sapphire-soft/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none dark:text-paper dark:hover:bg-white/10 dark:focus-visible:ring-paper"
+                            >
+                              <span className="link-draw">{item.hrefLabel}</span>
+                              <span className="sr-only"> ({copy.newTab})</span>
+                            </a>
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          <div className="border-t border-border/80 dark:border-white/10">
+            <div className="grid lg:grid-cols-3">
+              <div className="border-b border-border/80 bg-surface-subtle/50 px-5 py-4 sm:px-6 lg:border-r lg:border-b-0 lg:p-7 dark:border-white/10 dark:bg-white/[0.025]">
+                <h3 className="text-body font-semibold text-foreground dark:text-paper">
                   {copy.commitmentsTitle}
                 </h3>
               </div>
 
-              <Reveal as="ul" stagger="editorial" className="grid divide-y divide-border/80 sm:grid-cols-3 sm:divide-x sm:divide-y-0 dark:divide-white/10">
+              <ul className="divide-y divide-border/80 lg:col-span-2 dark:divide-white/10">
                 {t.landing.trustSection.commitments.map(({ title, description }, index) => {
                   const Icon = PROMISE_ICONS[index] ?? CheckCircleIcon;
                   const accent = COMMITMENT_ACCENTS[index % COMMITMENT_ACCENTS.length];
@@ -343,7 +333,7 @@ export function TrustSection() {
                   return (
                     <li
                       key={title}
-                      className="flex min-w-0 flex-col px-5 py-1 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-surface-subtle/45 sm:p-6 lg:p-7 dark:hover:bg-white/[0.025] motion-reduce:transition-none"
+                      className="flex min-w-0 flex-col px-5 py-1 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) hover:bg-surface-subtle/45 sm:grid sm:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] sm:items-baseline sm:gap-6 sm:px-6 sm:py-5 lg:px-7 dark:hover:bg-white/[0.025] motion-reduce:transition-none"
                     >
                       {/* Phone: compact hairline accordion row */}
                       <button
@@ -369,18 +359,13 @@ export function TrustSection() {
                         />
                       </button>
 
-                      {/* Desktop: hairline accent rule and quiet stroke icon */}
-                      <div className="hidden items-center justify-between sm:flex">
-                        <span aria-hidden="true" className={cn("rule-draw h-0.5 w-6", accent.rule)} />
-                        <Icon
-                          aria-hidden="true"
-                          className="h-4.5 w-4.5 shrink-0 text-muted-foreground/75 dark:text-mist/75"
-                        />
+                      {/* Desktop: hairline accent rule and heading */}
+                      <div className="hidden sm:block">
+                        <span aria-hidden="true" className={cn("rule-draw mb-2 block h-0.5 w-6", accent.rule)} />
+                        <h4 className="text-balance text-body font-semibold text-foreground [overflow-wrap:break-word] dark:text-paper">
+                          {title}
+                        </h4>
                       </div>
-
-                      <h4 className="mt-4 hidden text-balance text-title font-semibold text-foreground [overflow-wrap:break-word] sm:block dark:text-paper">
-                        {title}
-                      </h4>
 
                       <div
                         id={panelId}
@@ -391,7 +376,7 @@ export function TrustSection() {
                         )}
                       >
                         <div className="overflow-hidden">
-                          <p className="pb-4 pl-7.5 text-pretty text-body leading-relaxed text-muted-foreground sm:mt-2 sm:pb-0 sm:pl-0 dark:text-mist">
+                          <p className="pb-4 pl-7.5 text-pretty text-body leading-relaxed text-muted-foreground sm:pb-0 sm:pl-0 dark:text-mist">
                             {description}
                           </p>
                         </div>
@@ -399,10 +384,10 @@ export function TrustSection() {
                     </li>
                   );
                 })}
-              </Reveal>
+              </ul>
             </div>
           </div>
-        </Reveal>
+        </div>
       </Container>
     </Section>
   );

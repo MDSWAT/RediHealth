@@ -438,7 +438,7 @@ export function FeedbackDashboard({
                         {analyticsCopy.trendsHeading}
                       </h2>
                       <p className="mt-0.5 text-xs text-[var(--panel-muted)]">
-                        {analyticsCopy.trendsResponsesLabel} · {analyticsCopy.trendsAvgRatingLabel}
+                        {analyticsCopy.trendsResponsesLabel}, {analyticsCopy.trendsAvgRatingLabel}
                       </p>
                     </div>
 
@@ -619,7 +619,7 @@ export function FeedbackDashboard({
                                   <strong className={`font-semibold ${ratingToneClass(row.avgRating)}`}>
                                     {row.avgRating.toFixed(2)}
                                   </strong>
-                                  <span className="text-[var(--panel-muted)]"> · {row.count}</span>
+                                  <span className="text-[var(--panel-muted)]"> ({row.count})</span>
                                 </span>
                               </div>
                               <div className="h-1 w-full overflow-hidden rounded-xs bg-[var(--panel-subtle)]" aria-hidden="true">
@@ -652,7 +652,7 @@ export function FeedbackDashboard({
                                 <span className="min-w-0 truncate">
                                   <span className="font-medium text-[var(--panel-ink)]">{languageLabel(row.lang)}</span>
                                   <span className="ml-2 tabular-nums text-[var(--panel-muted)]">
-                                    · {analyticsCopy.responsesCountShort(row.count)}
+                                    ({analyticsCopy.responsesCountShort(row.count)})
                                   </span>
                                 </span>
                                 <strong className={`shrink-0 font-semibold tabular-nums ${ratingToneClass(row.avgRating)}`}>
@@ -917,8 +917,8 @@ export function FeedbackDashboard({
                                 {formatPanelDate(entry.created_at, locale, "dateTime")}
                               </p>
                               <p className="mt-0.5 text-xs text-[var(--panel-muted)]">
-                                {entry.country_code} · {languageLabel(entry.lang)}
-                                {entry.page_path ? ` · ${entry.page_path}` : ""}
+                                {entry.country_code}, {languageLabel(entry.lang)}
+                                {entry.page_path ? `, ${entry.page_path}` : ""}
                               </p>
                             </td>
 

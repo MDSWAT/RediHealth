@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
-import { ArrowRightIcon, ClockIcon, CloseIcon, PinIcon } from "@/components/ui/icons";
+import { ClockIcon, CloseIcon, PinIcon } from "@/components/ui/icons";
 import {
   ALL_ALBANIA,
   ALL_CROATIA,
@@ -569,9 +569,8 @@ function ArticleItem(props: ItemProps & { article: NewsArticle }) {
       )}
 
       <div className="mt-3 flex justify-end text-meta">
-        <span aria-hidden="true" className="inline-flex shrink-0 items-center gap-1 font-semibold text-sapphire dark:text-sapphire-border">
+        <span aria-hidden="true" className="font-semibold text-sapphire dark:text-sapphire-border">
           {c.read}
-          <ArrowRightIcon className="h-3.5 w-3.5" />
         </span>
       </div>
     </article>
@@ -625,10 +624,9 @@ function AlertItem(props: ItemProps & { article: NewsArticle }) {
             href={href}
             variant="ghost"
             size="md"
-            className="gap-1 hover:text-sapphire dark:hover:text-sapphire-border"
+            className="hover:text-sapphire dark:hover:text-sapphire-border"
           >
             {c.readGuide}
-            <ArrowRightIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
           </Button>
         </div>
       </div>

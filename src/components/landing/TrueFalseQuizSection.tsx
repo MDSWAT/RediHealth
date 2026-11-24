@@ -4,7 +4,6 @@ import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Lang } from "@/lib/i18n/translations";
@@ -62,7 +61,7 @@ const extraCopy: Record<
 /**
  * Keyboard answers, active only while focus is inside the quiz: the first
  * letter of each language's word for "true" / "false", or 1 / 2. Announced
- * through aria-keyshortcuts on the answer buttons and shown as quiet keycaps.
+ * through aria-keyshortcuts on the answer buttons and shown as subtle keycaps.
  */
 const ANSWER_KEYS: Record<Lang, { true: string[]; false: string[] }> = {
   ru: { true: ["т", "1"], false: ["ж", "2"] },
@@ -518,7 +517,7 @@ export function TrueFalseQuizSection({
       className={cn("py-10 sm:py-16 lg:py-24", className)}
     >
       <Container>
-        <Reveal>{content}</Reveal>
+        {content}
       </Container>
     </Section>
   );

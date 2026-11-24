@@ -124,7 +124,7 @@ export default async function PrivacyPage() {
               columns={doc.purposesColumns}
               rows={doc.purposesRows}
             />
-            <p className="border-l-2 border-sapphire pl-4 text-body font-medium text-foreground dark:border-sapphire-border">
+            <p className="rounded-xl border border-border bg-card px-4 py-3.5 text-body font-medium text-foreground">
               {doc.noSaleNote}
             </p>
           </LegalSection>

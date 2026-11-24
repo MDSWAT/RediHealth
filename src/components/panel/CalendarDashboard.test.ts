@@ -17,7 +17,7 @@ describe("calendar quick completion", () => {
     }));
     const labels = html.match(new RegExp(`aria-label="${crmTranslations.en.markComplete}:[^"]*"`, "gi")) || [];
     expect(labels).toHaveLength(6);
-    expect(html).toContain(`${crmTranslations.en.markComplete}: Follow-up consultation · Maria Demo`);
+    expect(html).toContain(`${crmTranslations.en.markComplete}: Follow-up consultation, Maria Demo`);
     expect(html).not.toContain(`${crmTranslations.en.markComplete}: Initial assessment`);
   });
 });

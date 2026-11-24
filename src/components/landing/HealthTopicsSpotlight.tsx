@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, type FocusEvent, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { litProgress, litTopicIndex } from "./health-topics-wheel-config";
 import styles from "./HealthTopicsSpotlight.module.css";
@@ -184,10 +183,6 @@ export function HealthTopicsSpotlight({ topics, wheel, heading, children }: Heal
                     </h3>
                     <p className="mt-1.5 text-pretty text-body leading-relaxed text-muted-foreground dark:text-mist">{description}</p>
                   </div>
-                  <ArrowRightIcon
-                    aria-hidden="true"
-                    className="arrow-travel mt-1 h-5 w-5 shrink-0 text-rose-ink/75 transition-colors duration-(--dur-fast) ease-(--ease-out-calm) group-hover:text-rose-ink motion-reduce:transition-none"
-                  />
                 </div>
               </Link>
             );
@@ -212,13 +207,6 @@ export function HealthTopicsSpotlight({ topics, wheel, heading, children }: Heal
                   )}
                 >
                   <span className="min-w-0 truncate">{title}</span>
-                  <ArrowRightIcon
-                    aria-hidden="true"
-                    className={cn(
-                      "h-3.5 w-3.5 shrink-0 transition-transform duration-(--dur-fast)",
-                      current ? "text-rose-ink opacity-90" : "opacity-35 group-hover:translate-x-0.5 group-hover:opacity-75",
-                    )}
-                  />
                 </Link>
               </li>
             );

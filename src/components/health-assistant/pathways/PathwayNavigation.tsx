@@ -2,11 +2,10 @@
 
 import { Button } from "@/components/ui/Button";
 import { ListenButton } from "@/components/ui/ListenButton";
-import { ArrowRightIcon } from "@/components/ui/icons";
 import { LegalRightsCard } from "@/components/health-assistant/LegalRightsCard";
 import { UniversalDoctorExit } from "@/components/health-assistant/UniversalDoctorExit";
 import { type NavigationScenarioId, useAssistantCopy } from "@/components/health-assistant/assistant-copy";
-import { optionArrow, optionRow, optionTitle, stepHeading, subHeading } from "@/components/health-assistant/step-ui";
+import { optionRow, optionTitle, stepHeading, subHeading } from "@/components/health-assistant/step-ui";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { withLangPrefix } from "@/lib/i18n/routing";
 import type { Lang } from "@/lib/i18n/translations";
@@ -59,7 +58,6 @@ export function PathwayNavigation({ step, selectedScenario, onSelectScenario }: 
                     {/* Body size, not the 14px option text: these lines decide which path to take. */}
                     <span className="mt-1 block text-body text-muted-foreground">{scenario.desc}</span>
                   </span>
-                  <ArrowRightIcon aria-hidden="true" className={optionArrow} />
                 </button>
               </li>
             );

@@ -2,7 +2,7 @@
 
 import { useRef, useState, type CSSProperties } from "react";
 import { Button } from "@/components/ui/Button";
-import { ArrowRightIcon, SearchIcon } from "@/components/ui/icons";
+import { SearchIcon } from "@/components/ui/icons";
 import { useAssistantCopy } from "@/components/health-assistant/assistant-copy";
 import { classifyLocalIntent } from "@/components/health-assistant/intent-keywords";
 import { classifyIntentToPathway, type PathwayId } from "@/lib/triage-state";
@@ -185,7 +185,6 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
           className="sm:absolute sm:right-1 sm:top-1/2 sm:-translate-y-1/2"
         >
           <span>{t.buttonLabel}</span>
-          <ArrowRightIcon className="arrow-travel h-3.5 w-3.5 shrink-0" aria-hidden="true" />
         </Button>
       </div>
 
@@ -204,7 +203,6 @@ export function TriageInputBar({ onSubmitQuery, plainLanguage = true, className 
               className="shrink-0"
             >
               <span>{t.openRoute}</span>
-              <ArrowRightIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
             </Button>
           </div>
         )}

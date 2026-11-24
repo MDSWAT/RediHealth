@@ -885,7 +885,7 @@ export function FollowupMeetingWorkspace({
                   <span aria-label={cockpit.sessionTimerAria} className="tabular-nums">
                     {formattedClock}
                   </span>
-                  <span aria-hidden="true">·</span>
+                  <span aria-hidden="true">—</span>
                   <span
                     role="status"
                     className={

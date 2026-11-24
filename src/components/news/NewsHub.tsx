@@ -21,7 +21,7 @@ import { useUserCounty } from "@/lib/geo-ip";
 import { CountyOverrideModal } from "@/components/news/CountyOverrideModal";
 import { isWholeCountry, newsForPlace } from "@/components/news/PlaceNewsModal";
 import { countyLabel, formatNewsDate, placeName, resolveNewsBasePath } from "@/components/news/news-format";
-import { AlertCircleIcon, ArrowRightIcon, ChevronDownIcon, FilterIcon, HeartIcon, PinIcon, ShieldIcon } from "@/components/ui/icons";
+import { AlertCircleIcon, ChevronDownIcon, FilterIcon, HeartIcon, PinIcon, ShieldIcon } from "@/components/ui/icons";
 import { useReadAloud } from "@/components/health-check/readingTools";
 
 const RomaniaCountyMap = dynamic(
@@ -82,6 +82,8 @@ const FEED_COPY: Record<Lang, {
   local: string;
   national: string;
   noLocal: (place: string) => string;
+  noPublishedTitle: string;
+  noPublishedBody: string;
 }> = {
   ro: {
     filtersButton: "Filtre",
@@ -90,6 +92,9 @@ const FEED_COPY: Record<Lang, {
     local: "Anunțuri locale",
     national: "La nivel național",
     noLocal: (place) => `Nu sunt alerte locale pentru ${place}. Mai jos apar anunțurile naționale.`,
+    noPublishedTitle: "Nu sunt știri sau alerte publicate acum",
+    noPublishedBody:
+      "Aici vor apărea alertele locale, caravanele medicale și campaniile de vaccinare pentru zona aleasă, de îndată ce sunt publicate.",
   },
   en: {
     filtersButton: "Filters",
@@ -98,6 +103,9 @@ const FEED_COPY: Record<Lang, {
     local: "Local updates",
     national: "Nationwide",
     noLocal: (place) => `No local alerts for ${place}. Nationwide updates appear below.`,
+    noPublishedTitle: "No health news or alerts published right now",
+    noPublishedBody:
+      "Local alerts, mobile clinics, and vaccination campaigns for your selected area will appear here once published.",
   },
   sq: {
     filtersButton: "Filtra",
@@ -106,6 +114,9 @@ const FEED_COPY: Record<Lang, {
     local: "Njoftime lokale",
     national: "Në nivel kombëtar",
     noLocal: (place) => `Nuk ka njoftime lokale për ${place}. Njoftimet kombëtare shfaqen më poshtë.`,
+    noPublishedTitle: "Nuk ka lajme ose njoftime të publikuara tani",
+    noPublishedBody:
+      "Këtu do të shfaqen njoftimet lokale, klinikat lëvizëse dhe fushatat e vaksinimit për zonën e zgjedhur sapo të publikohen.",
   },
   it: {
     filtersButton: "Filtri",
@@ -114,6 +125,9 @@ const FEED_COPY: Record<Lang, {
     local: "Avvisi locali",
     national: "A livello nazionale",
     noLocal: (place) => `Nessun avviso locale per ${place}. Gli avvisi nazionali appaiono qui sotto.`,
+    noPublishedTitle: "Nessuna notizia o avviso pubblicato al momento",
+    noPublishedBody:
+      "Qui appariranno avvisi locali, ambulatori mobili e campagne di vaccinazione per la zona scelta non appena saranno pubblicati.",
   },
   hr: {
     filtersButton: "Filtri",
@@ -122,6 +136,9 @@ const FEED_COPY: Record<Lang, {
     local: "Lokalne obavijesti",
     national: "Na nacionalnoj razini",
     noLocal: (place) => `Nema lokalnih obavijesti za ${place}. Nacionalne obavijesti su ispod.`,
+    noPublishedTitle: "Trenutačno nema objavljenih vijesti ni upozorenja",
+    noPublishedBody:
+      "Ovdje će se prikazivati lokalna upozorenja, mobilne ambulante i kampanje cijepljenja za odabrano područje čim budu objavljene.",
   },
   rom: {
     filtersButton: "Filtruya",
@@ -130,6 +147,9 @@ const FEED_COPY: Record<Lang, {
     local: "Lokalni neve",
     national: "Pe saoro them",
     noLocal: (place) => `Nane lokalni neve vaš ${place}. Tele si e themaqe neve.`,
+    noPublishedTitle: "Nane nevimata vay avizurya bichhalde akana",
+    noPublishedBody:
+      "Kothe ka sikaven pes thanune avizurya, mobilne klinike thaj vakcinaciye vash cho than kana ka aven bichhalde.",
   },
   ru: {
     filtersButton: "Фильтры",
@@ -138,6 +158,9 @@ const FEED_COPY: Record<Lang, {
     local: "Местные новости",
     national: "По всей стране",
     noLocal: (place) => `Для ${place} нет местных объявлений. Ниже показаны новости по стране.`,
+    noPublishedTitle: "Сейчас нет опубликованных новостей или оповещений",
+    noPublishedBody:
+      "Местные оповещения, мобильные клиники и кампании вакцинации для выбранного региона появятся здесь после публикации.",
   },
 };
 import { useLanguage } from "@/lib/i18n/language-context";
@@ -219,9 +242,9 @@ export function NewsHub() {
 
   const [countyModalOpen, setCountyModalOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
-  // News-first for low-literacy clarity: show real alerts and caravans immediately above the fold,
-  // keeping the interactive county map and filter controls cleanly tucked behind one Filters button.
-  const [showMap, setShowMap] = useState(false);
+  // News-first when items are present; when no articles are published yet, show the regional map
+  // so visitors can explore the regional alerts capability right away.
+  const [showMap, setShowMap] = useState(NEWS_ARTICLES.length === 0);
 
   const selectedAreaForMap =
     activeCountry === "ro"
@@ -627,12 +650,6 @@ export function NewsHub() {
                                 </p>
                               ) : null}
                             </div>
-                            <span
-                              aria-hidden="true"
-                              className="inline-flex h-11 w-11 shrink-0 items-center justify-center self-start rounded-xl border border-border bg-background text-sapphire transition-colors duration-[var(--dur-fast)] group-hover:border-sapphire group-hover:bg-sapphire group-hover:text-white sm:self-end dark:border-white/12 dark:bg-ink-800 dark:text-sapphire-border"
-                            >
-                              <ArrowRightIcon className="arrow-travel h-5 w-5" />
-                            </span>
                           </div>
                         </div>
                       </Link>
@@ -689,15 +706,11 @@ export function NewsHub() {
                                   </p>
                                 ) : null}
 
-                                <div className="mt-auto flex items-center justify-between gap-2 border-t border-border/70 pt-3.5 text-meta text-muted-foreground">
+                                <div className="mt-auto flex items-center gap-2 border-t border-border/70 pt-3.5 text-meta text-muted-foreground">
                                   <span className="inline-flex min-w-0 items-center gap-1.5">
                                     <PinIcon className="h-3.5 w-3.5 shrink-0 text-sapphire dark:text-sapphire-border" aria-hidden="true" />
                                     <span className="truncate">{placeLabel(article.county, articleCountry(article))}</span>
                                   </span>
-                                  <ArrowRightIcon
-                                    className="arrow-travel h-4 w-4 shrink-0 text-sapphire dark:text-sapphire-border"
-                                    aria-hidden="true"
-                                  />
                                 </div>
                               </div>
                             </Link>
@@ -712,9 +725,13 @@ export function NewsHub() {
 
             {filteredTotal === 0 && (
               <div key={`empty-${activeCountry}-${selectedAreaForMap}-${selectedCategory}`} className="swap-in border-b border-border py-8">
-                <p className="text-body font-semibold text-foreground">{np.emptyTitle}</p>
-                <p className="mt-1 max-w-(--measure-reading) text-body text-muted-foreground">{np.emptySubtitle}</p>
-                {isFiltered && (
+                <p className="text-body font-semibold text-foreground">
+                  {countryArticles.length === 0 ? fc.noPublishedTitle : np.emptyTitle}
+                </p>
+                <p className="mt-1 max-w-(--measure-reading) text-body text-muted-foreground">
+                  {countryArticles.length === 0 ? fc.noPublishedBody : np.emptySubtitle}
+                </p>
+                {countryArticles.length > 0 && isFiltered && (
                   <button
                     type="button"
                     onClick={resetFilters}

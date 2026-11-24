@@ -7,7 +7,6 @@ import { analyticsTranslations } from "@/lib/i18n/analytics-translations";
 import {
   ActivityIcon,
   AlertCircleIcon,
-  ArrowRightIcon,
   BellIcon,
   CalendarIcon,
   CameraIcon,
@@ -616,7 +615,7 @@ function AdminShellFrame({
       id: "act-return-site",
       group: "action",
       label: t.returnToWebsite,
-      icon: ArrowRightIcon,
+      icon: ChevronLeftIcon,
       execute: () => window.location.assign(withLangPrefix("/", lang)),
     },
     {
@@ -815,26 +814,20 @@ function AdminShellFrame({
                           setReportError(null);
                           setReportSuccess(null);
                         }}
-                        className="flex min-h-11 w-full items-center justify-between gap-2 whitespace-nowrap rounded-lg px-3 text-left text-sm font-medium text-(--panel-ink) transition-colors hover:bg-(--panel-selection)"
+                        className="flex min-h-11 w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-3 text-left text-sm font-medium text-(--panel-ink) transition-colors hover:bg-(--panel-selection)"
                       >
-                        <span className="flex min-w-0 items-center gap-2.5">
-                          <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-                          <span className="truncate">{link.label}</span>
-                        </span>
-                        <ArrowRightIcon className="h-4 w-4 shrink-0 text-(--panel-muted)" aria-hidden="true" />
+                        <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                        <span className="truncate">{link.label}</span>
                       </button>
                     ) : (
                       <Link
                         key={link.href}
                         href={withLangPrefix(link.href, lang)}
                         onClick={() => setMobileAccountSheetOpen(false)}
-                        className="flex min-h-11 items-center justify-between gap-2 whitespace-nowrap rounded-lg px-3 text-sm font-medium text-(--panel-ink) transition-colors hover:bg-(--panel-selection)"
+                        className="flex min-h-11 items-center gap-2.5 whitespace-nowrap rounded-lg px-3 text-sm font-medium text-(--panel-ink) transition-colors hover:bg-(--panel-selection)"
                       >
-                        <span className="flex min-w-0 items-center gap-2.5">
-                          <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-                          <span className="truncate">{link.label}</span>
-                        </span>
-                        <ArrowRightIcon className="h-4 w-4 shrink-0 text-(--panel-muted)" aria-hidden="true" />
+                        <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                        <span className="truncate">{link.label}</span>
                       </Link>
                     );
                   })}
@@ -844,12 +837,10 @@ function AdminShellFrame({
               <Link
                 href={withLangPrefix("/", lang)}
                 onClick={() => setMobileAccountSheetOpen(false)}
-                className="flex min-h-11 items-center justify-between gap-2 whitespace-nowrap rounded-lg px-3 text-sm font-medium text-(--panel-ink) transition-colors hover:bg-(--panel-selection)"
+                className="flex min-h-11 items-center gap-2.5 whitespace-nowrap rounded-lg px-3 text-sm font-medium text-(--panel-ink) transition-colors hover:bg-(--panel-selection)"
               >
-                <span className="flex min-w-0 items-center gap-2.5">
-                  <ArrowRightIcon className="h-5 w-5 shrink-0 rotate-180 text-(--panel-muted)" aria-hidden="true" />
-                  <span className="truncate">{t.returnToWebsite}</span>
-                </span>
+                <ChevronLeftIcon className="h-5 w-5 shrink-0 text-(--panel-muted)" aria-hidden="true" />
+                <span className="truncate">{t.returnToWebsite}</span>
               </Link>
             </div>
 
@@ -1092,7 +1083,7 @@ function AdminShellFrame({
                 }`}
               >
                 {!desktopSidebarCollapsed ? <span className="truncate">{t.returnToWebsite}</span> : null}
-                <ArrowRightIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <ChevronLeftIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               </Link>
               <button
                 type="button"

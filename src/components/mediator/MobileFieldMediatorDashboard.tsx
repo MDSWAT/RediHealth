@@ -229,14 +229,14 @@ export function MobileFieldMediatorDashboard({
       className="min-h-dvh bg-[var(--panel-surface)] px-4 py-5 pb-24 text-[var(--panel-ink)] sm:px-6 sm:py-6"
     >
       <div className="mx-auto max-w-[1240px]">
-        {/* Open-canvas header: real identity + plain sync state */}
+        {/* Open-canvas header: mediator identity and sync state */}
         <header className="flex flex-col gap-3 border-b border-[var(--panel-line)] pb-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="min-w-0">
             <h1 className="font-display text-2xl font-bold tracking-[-0.025em] text-[var(--panel-ink)] sm:text-[1.875rem] sm:leading-[1.2]">
               {headingText}
             </h1>
             <p className="mt-1 text-sm tabular-nums text-[var(--panel-muted)]">
-              {locationLine ? `${locationLine} · ${syncLine}` : syncLine}
+              {locationLine ? `${locationLine}, ${syncLine}` : syncLine}
             </p>
           </div>
 

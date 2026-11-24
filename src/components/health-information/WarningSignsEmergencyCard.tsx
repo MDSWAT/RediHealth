@@ -218,7 +218,7 @@ export function WarningSignsEmergencyCard({
                 aria-hidden="true"
                 className="text-body font-semibold tabular-nums text-primary dark:text-ruby-300"
               >
-                {String(idx + 1).padStart(2, "0")}
+                {idx + 1}.
               </span>
               <span className="min-w-0">{sign}</span>
             </li>
@@ -322,7 +322,7 @@ export function WarningSignsEmergencyCard({
                   >
                     <div className="flex items-baseline gap-2">
                       <span className="text-meta font-bold tabular-nums text-primary dark:text-ruby-300">
-                        {String(idx + 1).padStart(2, "0")}.
+                        {idx + 1}.
                       </span>
                       <span className="text-body font-semibold text-foreground">
                         {urgencyUi.cardLabels[idx]}

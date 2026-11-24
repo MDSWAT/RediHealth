@@ -1,123 +1,24 @@
-"use client";
-
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import { useCalmReducedMotion } from "@/lib/motion/tokens";
+import type { ReactNode } from "react";
 
 type RevealProps = {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
-  /** Optional delay in seconds for items of a grid or list (clamped to 0.24s). */
+  /** Retained for caller compatibility; sections render immediately visible without scroll delay. */
   delay?: number;
-  /**
-   * How the block arrives. "rise" (default): opacity plus a 12px rise. "mask": a clip uncovers
-   * it from the bottom edge, for images and media. "fade": opacity only, for blocks that must
-   * not move (maps, tables).
-   */
+  /** Retained for caller compatibility; sections render immediately visible without scroll animation. */
   variant?: RevealVariant;
-  /**
-   * Hand the entrance to the direct children, which arrive one after another: "ui" (48ms apart)
-   * for rows and controls, "editorial" (84ms) for cards and large blocks. `true` means "ui".
-   */
+  /** Retained for caller compatibility; children render immediately visible without scroll stagger. */
   stagger?: boolean | "ui" | "editorial";
-  /** The element to render, so a staggered list can stay a real `ul` or `ol`. */
+  /** The element to render, so a semantic container can stay a `div`, `ul`, `ol`, `section`, or `dl`. */
   as?: "div" | "ul" | "ol" | "section" | "dl";
 };
 
 export type RevealVariant = "rise" | "mask" | "fade";
 
-const MAX_DELAY_S = 0.24;
-
-type RevealCallback = () => void;
-
-let sharedObserver: IntersectionObserver | null = null;
-const observedCallbacks = new WeakMap<Element, RevealCallback>();
-
-function getSharedObserver(): IntersectionObserver | null {
-  if (typeof window === "undefined" || typeof IntersectionObserver === "undefined") {
-    return null;
-  }
-  if (!sharedObserver) {
-    sharedObserver = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          // On screen, or already scrolled past (an anchor jump): either way it must be visible now.
-          if (entry.isIntersecting || entry.boundingClientRect.top <= 0) {
-            const cb = observedCallbacks.get(entry.target);
-            if (cb) {
-              observedCallbacks.delete(entry.target);
-              sharedObserver?.unobserve(entry.target);
-              cb();
-            }
-          }
-        }
-      },
-      { rootMargin: "0px 0px -40px 0px", threshold: 0.04 },
-    );
-  }
-  return sharedObserver;
-}
-
-type Phase = "visible" | "armed" | "revealed";
-
 /**
- * One calm entrance for content below the fold: opacity plus a 12px rise over `--dur-slow`,
- * once. The styles live in globals.css under `[data-reveal]`.
- * - The server HTML carries no `data-reveal`, so without JavaScript nothing is ever hidden.
- * - After hydration only a block that is still below the viewport is hidden ("armed"); what is
- *   already on screen stays as painted. Without IntersectionObserver nothing is armed.
- * - Static under reduced motion and in print.
+ * Semantic layout wrapper. Renders immediately visible at opacity: 1 with zero scroll-triggered
+ * hiding or fade-in animation.
  */
-export function Reveal({ children, className, delay = 0, variant = "rise", stagger = false, as: Tag = "div" }: RevealProps) {
-  const reducedMotion = useCalmReducedMotion();
-  const ref = useRef<HTMLElement>(null);
-  const [phase, setPhase] = useState<Phase>("visible");
-
-  useEffect(() => {
-    if (reducedMotion) return;
-    const el = ref.current;
-    const observer = getSharedObserver();
-    if (!el || !observer) return;
-
-    let frameId = window.requestAnimationFrame(() => {
-      frameId = 0;
-      if (el.getBoundingClientRect().top >= window.innerHeight) {
-        setPhase("armed");
-      }
-      // Observed even when not armed here: a block left armed by an earlier run is then released.
-      observedCallbacks.set(el, () => setPhase((current) => (current === "armed" ? "revealed" : current)));
-      observer.observe(el);
-    });
-
-    return () => {
-      if (frameId !== 0) {
-        window.cancelAnimationFrame(frameId);
-      }
-      observedCallbacks.delete(el);
-      observer.unobserve(el);
-    };
-  }, [reducedMotion]);
-
-  if (reducedMotion || phase === "visible") {
-    return (
-      <Tag ref={ref as never} className={className}>
-        {children}
-      </Tag>
-    );
-  }
-
-  const delayMs = Math.round(Math.min(Math.max(delay, 0), MAX_DELAY_S) * 1000);
-  const style = delayMs > 0 ? ({ "--reveal-delay": `${delayMs}ms` } as CSSProperties) : undefined;
-
-  return (
-    <Tag
-      ref={ref as never}
-      className={className}
-      data-reveal={phase}
-      data-reveal-variant={variant === "rise" ? undefined : variant}
-      data-reveal-stagger={stagger ? (stagger === true ? "ui" : stagger) : undefined}
-      style={style}
-    >
-      {children}
-    </Tag>
-  );
+export function Reveal({ children, className, as: Tag = "div" }: RevealProps) {
+  return <Tag className={className}>{children}</Tag>;
 }

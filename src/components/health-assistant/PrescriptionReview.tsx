@@ -241,20 +241,6 @@ function ReasonChipIcon({ reason }: { reason: ReasonChipKey }) {
   }
 }
 
-function ArrowRightSvg() {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="arrow-travel h-4 w-4 shrink-0">
-      <path
-        d="M4.25 10h11.5m0 0-4.25-4.25M15.75 10l-4.25 4.25"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export function PrescriptionReview() {
   const executeCaptcha = useRecaptcha();
   const { lang, t: siteCopy } = useLanguage();
@@ -1479,7 +1465,6 @@ export function PrescriptionReview() {
                           ? t.nameSubmit
                           : t.reviewButton}
                     </span>
-                    {!isSubmitting ? <ArrowRightSvg /> : null}
                   </Button>
 
                   {/* Honest progress: a calm indeterminate line, no fake percentages or scanning effects. */}

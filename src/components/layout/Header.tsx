@@ -249,9 +249,18 @@ export function Header({ emergencyDismissed = false }: { emergencyDismissed?: bo
     { label: tHeader.navMedicine, href: "/prescription-review", subtext: tHeader.navMedicineSub },
     { label: findHelpLinks(lang).nav, href: "/find-help", subtext: findHelpLinks(lang).navDescription },
     { label: tHeader.forMediators, href: "/mediatori", subtext: tHeader.forMediatorsSub },
+    { label: tHeader.navStiri, href: "/stiri", subtext: tHeader.navStiriSub },
   ];
 
   const isActiveHref = (href: string) => {
+    if (href === "/stiri") {
+      return (
+        currentPath === "/stiri" ||
+        currentPath.startsWith("/stiri/") ||
+        currentPath === "/news" ||
+        currentPath.startsWith("/news/")
+      );
+    }
     return currentPath === href || (href !== "/" && currentPath.startsWith(`${href}/`));
   };
 

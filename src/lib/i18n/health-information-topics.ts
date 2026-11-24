@@ -368,7 +368,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         intro:
           "Your heart pumps blood around your body every minute of the day. Looking after it lowers your risk of heart disease and stroke. Most of the habits that help are small.",
         keyFacts: [
-          "High blood pressure and cholesterol quietly strain your arteries and make your heart work harder for years without signs.",
+          "High blood pressure and cholesterol gradually strain your arteries and make your heart work harder for years without signs.",
           "A healthy heart and normal blood pressure give you better stamina, steadier breathing and lower risk of stroke.",
           "Using less salt, walking briskly most days and checking your blood pressure regularly protect your heart.",
         ],
@@ -403,7 +403,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         intro:
           "Diabetes affects how your body handles sugar in the blood. Type 2 diabetes is often linked to daily habits. You can often delay or prevent it, and with the right help you can live well with it.",
         keyFacts: [
-          "In type 2 diabetes, sugar stays in the blood instead of entering your cells, and can quietly harm blood vessels for years.",
+          "In type 2 diabetes, sugar stays in the blood instead of entering your cells, and can gradually harm blood vessels for years.",
           "Keeping your blood sugar steady gives you even energy through the day and protects your eyes, kidneys, nerves and heart.",
           "Small daily habits like filling half your plate with vegetables and walking after meals lower your risk.",
         ],
@@ -578,7 +578,7 @@ const dictionaries: Record<Lang, HealthTopicDictionary> = {
         intro:
           "Screening looks for early signs of illness before you notice anything wrong. Problems found early are often easier to treat.",
         keyFacts: [
-          "Many conditions like high blood pressure, diabetes or early cancers start quietly in the body long before any pain appears.",
+          "Many conditions like high blood pressure, diabetes or early cancers start without noticeable symptoms long before any pain appears.",
           "Even when you feel well every day, a routine check gives you peace of mind and catches changes while treatment is simple.",
           "Ask your family doctor which free check-ups and age-appropriate screening tests you can book this year.",
         ],

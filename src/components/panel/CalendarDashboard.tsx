@@ -213,7 +213,7 @@ export function CalendarDashboard({
       <button
         type="button"
         className={`${outlineBtn} text-sapphire dark:text-[#bad7fa]`}
-        aria-label={`${t.markComplete}: ${event.followup.title} · ${event.patient.full_name}`}
+        aria-label={`${t.markComplete}: ${event.followup.title}, ${event.patient.full_name}`}
         disabled={busy}
         onClick={() => void updateEvent(event)}
       >
@@ -235,7 +235,7 @@ export function CalendarDashboard({
         >
           <p className="text-sm font-semibold text-[var(--panel-ink)]">{event.followup.title}</p>
           <p className="mt-0.5 text-sm tabular-nums text-[var(--panel-muted)]">
-            {event.patient.full_name} · {followupTime(event.followup, t.allDay, viewerZone)}
+            {event.patient.full_name}, {followupTime(event.followup, t.allDay, viewerZone)}
           </p>
         </button>
 
@@ -458,7 +458,7 @@ export function CalendarDashboard({
                             <h2 className="border-b border-[var(--panel-line)] bg-[var(--panel-subtle)] px-3 py-2 text-xs font-semibold tabular-nums text-[var(--panel-muted)]">
                               {date < today && (
                                 <span className="mr-2 font-semibold text-[#9a4d0b] dark:text-[#f5c58e]">
-                                  {t.overdue} ·
+                                  {t.overdue} —
                                 </span>
                               )}
                               {dayLabel(date, locale, t.today, t.yesterday)}
@@ -527,14 +527,14 @@ export function CalendarDashboard({
                                   key={`${event.patient.id}-${event.followup.id}`}
                                   type="button"
                                   className="crm-calendar-event min-h-11 !bg-[var(--panel-subtle)] !text-[var(--panel-ink)] hover:!bg-[var(--panel-selection)]"
-                                  title={`${event.patient.full_name} · ${event.followup.time || t.allDay} · ${event.followup.title}`}
+                                  title={`${event.patient.full_name}, ${event.followup.time || t.allDay}, ${event.followup.title}`}
                                   onClick={() => setSelected(event)}
                                 >
                                   <span className="block truncate font-semibold">
                                     {event.patient.full_name}
                                   </span>
                                   <span className="block truncate tabular-nums text-[var(--panel-muted)]">
-                                    {event.followup.time || t.allDay} · {event.followup.title}
+                                    {event.followup.time || t.allDay}, {event.followup.title}
                                   </span>
                                 </button>
                               ))}

@@ -3558,10 +3558,6 @@ export function AnatomicalViewport3D({
           data-layer-loading={layerLoading}
           className="pointer-events-none absolute left-1/2 top-3 z-30 inline-flex -translate-x-1/2 items-center gap-2 rounded-lg border border-border/90 bg-card/94 px-3 py-1.5 text-meta font-medium text-foreground shadow-xs backdrop-blur-md"
         >
-          <span
-            aria-hidden="true"
-            className="h-2 w-2 rounded-full bg-sapphire animate-pulse motion-reduce:animate-none"
-          />
           <span>{layerLoading === "skeletal" ? labels.loadingBones : labels.loadingMuscles}</span>
         </div>
       )}

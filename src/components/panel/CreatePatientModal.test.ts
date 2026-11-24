@@ -95,7 +95,7 @@ describe("patient intake form layout", () => {
     for (const worker of workers) {
       expect(html).toContain(`aria-label="${crmTranslations.ro.removeSelection}: ${worker.full_name}"`);
     }
-    expect(html).toContain("Doctor · Cluj");
+    expect(html).toContain("Doctor, Cluj");
     expect(html).toContain('aria-live="polite"');
     const staffHtml = renderToStaticMarkup(createElement(CreatePatientModal, props));
     expect(staffHtml).not.toContain('type="search"');

@@ -48,8 +48,8 @@ describe("PWA web app manifest", () => {
     expect(data.scope).toBe("/");
     expect(data.display).toBe("standalone");
     expect(data.display_override).toEqual(["standalone", "minimal-ui"]);
-    expect(data.background_color).toBe("#fcfbf9");
-    expect(data.theme_color).toBe("#fcfbf9");
+    expect(data.background_color).toBe("#ffffff");
+    expect(data.theme_color).toBe("#ffffff");
     expect(data.categories).toEqual(["health", "medical"]);
 
     const copyFields = [

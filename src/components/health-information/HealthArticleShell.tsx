@@ -224,7 +224,7 @@ export function HealthArticleToc({
                   aria-hidden="true"
                   className="w-6 shrink-0 text-meta font-semibold tabular-nums text-muted-foreground"
                 >
-                  {String(index + 1).padStart(2, "0")}
+                  {index + 1}.
                 </span>
                 <span>{item.label}</span>
               </a>
@@ -299,11 +299,6 @@ export function HealthArticleRelatedList({
                   </span>
                 )}
               </span>
-
-              <ArrowRightIcon
-                className="h-4 w-4 shrink-0 text-muted-foreground transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out-calm)] group-hover:text-sapphire motion-reduce:transition-none"
-                aria-hidden="true"
-              />
             </Link>
           </li>
         ))}

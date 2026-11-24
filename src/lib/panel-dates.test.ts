@@ -21,10 +21,10 @@ describe("staff calendar dates", () => {
     expect(sortFollowups([late, old, early]).map((f) => f.id)).toEqual(["old", "early", "late"]);
     expect(followupLabel(old, "en", "All day")).toContain("All day");
     // No raw IANA zone: hidden when the viewer zone is unknown or has the same offset, readable offset otherwise.
-    expect(followupLabel(late, "en", "All day")).toBe("Oct 2, 2026 · 14:30");
-    expect(followupLabel(late, "en", "All day", "Europe/Bucharest")).toBe("Oct 2, 2026 · 14:30");
-    expect(followupLabel(late, "en", "All day", "Europe/Chisinau")).toBe("Oct 2, 2026 · 14:30");
-    expect(followupLabel(late, "en", "All day", "Europe/Rome")).toBe("Oct 2, 2026 · 14:30 (GMT+3)");
+    expect(followupLabel(late, "en", "All day")).toBe("Oct 2, 2026, 14:30");
+    expect(followupLabel(late, "en", "All day", "Europe/Bucharest")).toBe("Oct 2, 2026, 14:30");
+    expect(followupLabel(late, "en", "All day", "Europe/Chisinau")).toBe("Oct 2, 2026, 14:30");
+    expect(followupLabel(late, "en", "All day", "Europe/Rome")).toBe("Oct 2, 2026, 14:30 (GMT+3)");
     expect(followupLabel(late, "en", "All day", "Europe/Rome")).not.toContain("Europe/");
   });
   it("accepts leap days, validates clock times and requires a real timezone for timed items", () => {
@@ -51,7 +51,7 @@ describe("staff calendar dates", () => {
     expect(formatPanelDate(morning, "sq-AL", "numeric")).toBe("7.11.2026");
     expect(formatDateKey("1970-05-12", "sq-AL")).toBe("12 maj 1970");
     expect(dayLabel("2026-11-02", "sq-AL", "Sot", "Dje", morning)).toBe("hën, 2 nën 2026");
-    expect(followupLabel({ id: "a", title: "Kontroll", date: "2026-11-09", status: "scheduled", time: "10:00" }, "sq-AL", "Gjithë ditën")).toBe("9 nën 2026 · 10:00");
+    expect(followupLabel({ id: "a", title: "Kontroll", date: "2026-11-09", status: "scheduled", time: "10:00" }, "sq-AL", "Gjithë ditën")).toBe("9 nën 2026, 10:00");
     expect(formatPanelNumber(36.6, "sq-AL", 1)).toBe("36,6");
     for (const style of ["date", "dateWeekday", "weekdayDay", "monthYear", "time", "dateTime", "full", "numeric"] as const) {
       expect(formatPanelDate(morning, "sq-AL", style)).not.toMatch(/Nov|Sat|AM|PM|p\.d\.|m\.d\./);

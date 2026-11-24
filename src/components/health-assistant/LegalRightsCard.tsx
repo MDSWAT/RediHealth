@@ -161,10 +161,10 @@ ru: {
   }
 
   return (
-    // Set like a cited statute: a sapphire rule down the left, the right in plain words, then the
-    // article it comes from. No icons on the lines; the rule already marks this as the law.
+    // Set like a cited statute: a sapphire hairline frame, the right in plain words, then the
+    // article it comes from. No icons on the lines.
     <section
-      className={`border-l-4 border-sapphire bg-sapphire-soft/40 py-5 pl-5 pr-4 sm:pl-6 sm:pr-6 dark:border-sapphire-border dark:bg-sapphire/10 ${className}`}
+      className={`rounded-xl border border-sapphire/25 bg-sapphire-soft/40 p-5 sm:p-6 dark:border-sapphire-border/35 dark:bg-sapphire/10 ${className}`}
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
